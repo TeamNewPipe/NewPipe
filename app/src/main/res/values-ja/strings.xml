@@ -136,7 +136,6 @@
     <string name="player_stream_failure">動画の再生ができませんでした</string>
     <string name="player_unrecoverable_failure">回復不能なエラーが発生しました</string>
     <string name="search_no_results">一致する結果はありませんでした</string>
-    <string name="no_subscribers">チャンネル登録者なし</string>
     <string name="no_videos">動画がありません</string>
     <string name="settings_category_downloads_title">保存</string>
     <string name="settings_file_charset_title">ファイル名に使用可能な文字</string>
@@ -253,13 +252,6 @@
     <string name="delete_view_history_alert">すべての再生履歴を削除しますか？</string>
     <string name="delete_search_history_alert">すべての検索履歴を削除しますか？</string>
     <string name="invalid_source">このファイル/コンテンツはありません</string>
-    <plurals name="subscribers">
-        <item quantity="other">チャンネル登録者数 %s人</item>
-    </plurals>
-    <string name="no_views">再生なし</string>
-    <plurals name="views">
-        <item quantity="other">再生回数 %s回</item>
-    </plurals>
     <string name="one_item_deleted">1 つのアイテムが削除されました。</string>
     <string name="give_back">支援する</string>
     <string name="privacy_policy_encouragement">NewPipe プロジェクトはあなたのプライバシーを非常に大切にしています。あなたの同意がない限り、アプリはいかなるデータも収集しません。
@@ -326,7 +318,6 @@
     <string name="download_to_sdcard_error_title">外部記憶装置は利用できません</string>
     <string name="restore_defaults">既定値に戻す</string>
     <string name="restore_defaults_confirmation">既定の設定を復元しますか\?</string>
-    <string name="subscribers_count_not_available">登録者数は利用できません</string>
     <string name="conferences">会議</string>
     <string name="start_accept_privacy_policy">ヨーロッパの一般データ保護規制（GDPR）に準拠するために、NewPipeの個人情報保護方針にご注意ください。よく読んでください。
 \n私たちに不具合報告を送るためには、これを受け入れなければなりません。</string>
@@ -403,18 +394,7 @@
     <string name="clear_playback_states_summary">すべての再生位置を削除します</string>
     <string name="delete_playback_states_alert">すべての再生位置を削除しますか\?</string>
     <string name="drawer_header_description">サービスの切り替え、現在の選択:</string>
-    <plurals name="videos">
-        <item quantity="other">%s本の動画</item>
-    </plurals>
     <string name="default_kiosk_page_summary">デフォルトのKiosk</string>
-    <string name="no_one_watching">誰も見ていません</string>
-    <plurals name="watching">
-        <item quantity="other">%s人が視聴中</item>
-    </plurals>
-    <string name="no_one_listening">誰も聴いていません</string>
-    <plurals name="listening">
-        <item quantity="other">%s 人が聴取中</item>
-    </plurals>
     <string name="seek_duration_title">高速早送り/巻き戻し間隔</string>
     <string name="peertube_instance_url_title">PeerTube インスタンス</string>
     <string name="peertube_instance_url_summary">PeerTube インスタンスを選択する</string>
@@ -486,8 +466,6 @@
 \nYouTubeは、この高速な読み込み方法をRSSフィードで提供するサービスのひとつです。
 \n
 \nつまり、読み込み方法の選択は速度または正確さのどちらを優先するか、あなたの好みによります。</string>
-    <string name="infinite_videos">∞ の動画</string>
-    <string name="more_than_100_videos">100 以上の動画</string>
     <string name="content_not_supported">このコンテンツはまだ NewPipe でサポートされていません。
 \n
 \n今後のバージョンでサポートされるかもしれません。</string>

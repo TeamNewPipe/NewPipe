@@ -505,7 +505,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
                     .sum();
             headerBinding.playlistStreamCount.setText(
                 Localization.concatenateStrings(
-                    Localization.localizeStreamCount(activity, streamCount),
+                    Localization.formatStreamCount(activity, streamCount),
                     Localization.getDurationString(playlistOverallDurationSeconds,
                             isDurationComplete, true))
             );

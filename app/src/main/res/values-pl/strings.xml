@@ -139,7 +139,6 @@
     <string name="settings_category_history_title">Historia i pamięć podręczna</string>
     <string name="undo">Cofnij</string>
     <string name="search_no_results">Brak wyników</string>
-    <string name="no_views">Brak wyświetleń</string>
     <string name="show_hold_to_append_title">Pokazuj poradę „Przytrzymaj, aby dodać”</string>
     <string name="show_hold_to_append_summary">Pokaż wskazówkę po naciśnięciu tła lub wyskakującego przycisku „Szczegóły” w odtwarzaczu</string>
     <string name="play_all">Odtwórz wszystkie</string>
@@ -148,26 +147,7 @@
     <string name="player_unrecoverable_failure">Wystąpił nieodwracalny błąd odtwarzacza</string>
     <string name="player_recoverable_failure">Odzyskiwanie po błędzie odtwarzacza</string>
     <string name="empty_list_subtitle">Nic tu nie ma. Słychać tylko świerszcze.</string>
-    <string name="no_subscribers">Brak subskrybentów</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s subskrybent</item>
-        <item quantity="few">%s subskrybentów</item>
-        <item quantity="many">%s subskrybentów</item>
-        <item quantity="other">%s subskrybentów</item>
-    </plurals>
-    <plurals name="views">
-        <item quantity="one">%s wyświetlenie</item>
-        <item quantity="few">%s wyświetlenia</item>
-        <item quantity="many">%s wyświetleń</item>
-        <item quantity="other">%s wyświetleń</item>
-    </plurals>
     <string name="no_videos">Brak wideo</string>
-    <plurals name="videos">
-        <item quantity="one">%s wideo</item>
-        <item quantity="few">%s wideo</item>
-        <item quantity="many">%s wideo</item>
-        <item quantity="other">%s wideo</item>
-    </plurals>
     <string name="charset_most_special_characters">Większość znaków specjalnych</string>
     <string name="donation_title">Dotacja</string>
     <string name="donation_encouragement">NewPipe jest rozwijany przez wolontariuszy, którzy poświęcają swój wolny czas, zapewniając Ci najlepsze wrażenia z użytkowania. To dobry moment na wsparcie programistów i sprawienie, aby NewPipe był jeszcze lepszy, podczas gdy oni będą mogli delektować się filiżanką kawy.</string>
@@ -343,7 +323,6 @@
     <string name="saved_tabs_invalid_json">Nie udało się odczytać zapisanych kart, więc będą używane domyślne</string>
     <string name="restore_defaults">Przywróć domyślne</string>
     <string name="restore_defaults_confirmation">Czy chcesz przywrócić ustawienia domyślne\?</string>
-    <string name="subscribers_count_not_available">Liczba subskrybentów niedostępna</string>
     <string name="main_page_content_summary">Karty wyświetlane na stronie głównej</string>
     <string name="updates_setting_title">Aktualizacje</string>
     <string name="updates_setting_description">Pokazuj powiadomienie zachęcające do pobrania aktualizacji aplikacji, gdy jest dostępna nowa wersja</string>
@@ -416,19 +395,6 @@
     <string name="delete_playback_states_alert">Usunąć wszystkie pozycje odtwarzania\?</string>
     <string name="drawer_header_description">Przełącz usługę, aktualnie wybrana:</string>
     <string name="default_kiosk_page_summary">Domyślna karta „Odkrywaj”</string>
-    <string name="no_one_watching">Nikt nie ogląda</string>
-    <plurals name="watching">
-        <item quantity="one">%s oglądający</item>
-        <item quantity="few">%s oglądających</item>
-        <item quantity="many">%s oglądających</item>
-        <item quantity="other">%s oglądających</item>
-    </plurals>
-    <string name="no_one_listening">Nikt nie słucha</string>
-    <plurals name="listening">
-        <item quantity="one">%s słuchacz</item>
-        <item quantity="few">%s słuchaczy</item>
-        <item quantity="many">%s słuchaczy</item>
-    </plurals>
     <string name="seek_duration_title">Wielkość skoku przy przewijaniu</string>
     <string name="peertube_instance_url_title">Serwery PeerTube</string>
     <string name="peertube_instance_url_summary">Wybierz swoje ulubione serwery PeerTube</string>
@@ -514,8 +480,6 @@
     <string name="content_not_supported">Ta treść nie jest jeszcze obsługiwana przez NewPipe.
 \n
 \nMiejmy nadzieję, że będzie obsługiwana w przyszłej wersji.</string>
-    <string name="infinite_videos">∞ wideo</string>
-    <string name="more_than_100_videos">100+ wideo</string>
     <string name="artists">Artyści</string>
     <string name="albums">Albumy</string>
     <string name="songs">Utwory</string>

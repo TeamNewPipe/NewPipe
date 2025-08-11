@@ -48,17 +48,13 @@ class ChannelItem(
     }
 
     private fun getDetailLine(context: Context): String {
-        var details = if (infoItem.subscriberCount >= 0) {
-            Localization.shortSubscriberCount(context, infoItem.subscriberCount)
-        } else {
-            context.getString(R.string.subscribers_count_not_available)
-        }
-
+        val details = Localization.formatSubscriberCount(context, infoItem.subscriberCount)
         if (itemVersion == ItemVersion.NORMAL && infoItem.streamCount >= 0) {
-            val formattedVideoAmount = Localization.localizeStreamCount(context, infoItem.streamCount)
-            details = Localization.concatenateStrings(details, formattedVideoAmount)
+            val formattedVideoAmount = Localization.formatStreamCount(context, infoItem.streamCount)
+            return Localization.concatenateStrings(details, formattedVideoAmount)
+        } else {
+            return details
         }
-        return details
     }
 
     override fun getSpanSize(spanCount: Int, position: Int): Int {

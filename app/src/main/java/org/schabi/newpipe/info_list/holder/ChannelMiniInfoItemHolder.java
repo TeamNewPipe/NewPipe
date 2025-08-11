@@ -100,15 +100,15 @@ public class ChannelMiniInfoItemHolder extends InfoItemHolder {
     private String getDetailLine(final ChannelInfoItem item) {
         if (item.getStreamCount() >= 0 && item.getSubscriberCount() >= 0) {
             return Localization.concatenateStrings(
-                    Localization.shortSubscriberCount(itemBuilder.getContext(),
+                    Localization.formatSubscriberCount(itemBuilder.getContext(),
                             item.getSubscriberCount()),
-                    Localization.localizeStreamCount(itemBuilder.getContext(),
+                    Localization.formatStreamCount(itemBuilder.getContext(),
                             item.getStreamCount()));
         } else if (item.getStreamCount() >= 0) {
-            return Localization.localizeStreamCount(itemBuilder.getContext(),
+            return Localization.formatStreamCount(itemBuilder.getContext(),
                     item.getStreamCount());
         } else if (item.getSubscriberCount() >= 0) {
-            return Localization.shortSubscriberCount(itemBuilder.getContext(),
+            return Localization.formatSubscriberCount(itemBuilder.getContext(),
                     item.getSubscriberCount());
         } else {
             return null;

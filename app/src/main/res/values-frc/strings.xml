@@ -12,7 +12,6 @@
     <string name="download">installer</string>
     <string name="install">Installer</string>
     <string name="mark_as_watched">marquer comme vu</string>
-    <string name="upload_date_text">"publié le  %1$s"</string>
     <string name="no_player_found_toast">aucun joueur de stream n\'est trouvé ( vous pouvez installez VLC pour jouer)</string>
     <string name="cancel">Annuler</string>
     <string name="ok">OK</string>

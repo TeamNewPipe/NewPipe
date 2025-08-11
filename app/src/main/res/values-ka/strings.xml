@@ -238,34 +238,7 @@
     <string name="audio">აუდიო</string>
     <string name="retry">ხელახლა სცადეთ</string>
     <string name="drawer_header_description">სერვისის გადართვა, ამჟამად არჩეულია:</string>
-    <string name="no_subscribers">გამოწერები არ არის</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s გამომწერი</item>
-        <item quantity="other">%s გამომწერები</item>
-    </plurals>
-    <string name="subscribers_count_not_available">გამომწერების რაოდენობა მიუწვდომელია</string>
-    <string name="no_views">ნახვები არ არის</string>
-    <plurals name="views">
-        <item quantity="one">%s ნახვა</item>
-        <item quantity="other">%s ნახვები</item>
-    </plurals>
-    <string name="no_one_watching">არავინ უყურებს</string>
-    <plurals name="watching">
-        <item quantity="one">%s უყურებს</item>
-        <item quantity="other">%s უყურებენ</item>
-    </plurals>
-    <string name="no_one_listening">არავინ უსმენს</string>
-    <plurals name="listening">
-        <item quantity="one">%s მსმენელი</item>
-        <item quantity="other">%s მსმენელები</item>
-    </plurals>
     <string name="no_videos">ვიდეოები არ არის</string>
-    <string name="more_than_100_videos">100+ ვიდეოები</string>
-    <string name="infinite_videos">∞ ვიდეოები</string>
-    <plurals name="videos">
-        <item quantity="one">%s ვიდეო</item>
-        <item quantity="other">%s ვიდეოები</item>
-    </plurals>
     <string name="no_comments">კომენტარი არ არის</string>
     <plurals name="new_streams">
         <item quantity="one">%s ახალი ნაკადი</item>

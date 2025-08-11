@@ -89,10 +89,6 @@
     <string name="title_activity_recaptcha">reCAPTCHA defio</string>
     <string name="recaptcha_request_toast">reCAPTCHA defio petita</string>
     <string name="all">Ĉiuj</string>
-    <plurals name="videos">
-        <item quantity="one">%s filmeto</item>
-        <item quantity="other">%s filmetoj</item>
-    </plurals>
     <string name="msg_popup_permission">Tiu permeso estas necesa por
 \nmalfermi en ŝprucfenestra modo</string>
     <string name="popup_playing_toast">Ludante en ŝprucfenestra modo</string>
@@ -257,10 +253,6 @@
     <string name="msg_wait">Bonvolu atendi…</string>
     <string name="msg_copied">Enpoŝigita</string>
     <string name="no_available_dir">Bonvolu difini elŝutan dosierujon poste en agordoj</string>
-    <plurals name="views">
-        <item quantity="one">%s spekto</item>
-        <item quantity="other">%s spektoj</item>
-    </plurals>
     <string name="title_activity_about">Pri NewPipe</string>
     <string name="title_licenses">Eksteraj permesiloj</string>
     <string name="copyright" formatted="true">© %1$s de %2$s sub %3$s</string>
@@ -278,12 +270,6 @@
     <string name="action_history">Historio</string>
     <string name="search_no_results">Neniuj rezultoj</string>
     <string name="empty_list_subtitle">Neniu enhavo</string>
-    <string name="no_subscribers">Neniuj abonantoj</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s abonanto</item>
-        <item quantity="other">%s abonantoj</item>
-    </plurals>
-    <string name="no_views">Neniuj spektoj</string>
     <string name="no_videos">Neniu filmeto</string>
     <string name="delete_item_search_history">Ĉu vi volas forviŝi tion eron el la historio de serĉo \?</string>
     <string name="main_page_content">Enhavo de la ĉefpaĝo</string>
@@ -369,7 +355,6 @@
     <string name="saved_tabs_invalid_json">Ne povis legi agorditajn langetojn, do uzos la implicitajn</string>
     <string name="restore_defaults">Restarigi implicitajn valorojn</string>
     <string name="restore_defaults_confirmation">Ĉu vi volas restarigi la implicitajn valorojn?</string>
-    <string name="subscribers_count_not_available">Abonantoj kalkulo malhaveblas</string>
     <string name="main_page_content_summary">Kioj ongletoj estas montritaj en la ĉefpaĝo</string>
     <string name="updates_setting_title">Ĝisdatigoj</string>
     <string name="updates_setting_description">Montri sciigon por proponi ĝisdatigon de la apo kiam nova versio estas havebla</string>
@@ -408,16 +393,6 @@
     <string name="error_timeout">Eltempiĝo de Konekto</string>
     <string name="drawer_header_description">Ŝangi la servon, nuntempe elektita:</string>
     <string name="default_kiosk_page_summary">Implicita Kiosko</string>
-    <string name="no_one_watching">Neniu spektas</string>
-    <plurals name="watching">
-        <item quantity="one">%s spektanto</item>
-        <item quantity="other">%s spektantoj</item>
-    </plurals>
-    <string name="no_one_listening">Neniu aŭskultas</string>
-    <plurals name="listening">
-        <item quantity="one">%s aŭskultanto</item>
-        <item quantity="other">%s aŭskultantoj</item>
-    </plurals>
     <string name="seek_duration_title">Daŭro de rapidpluiga/revolva serĉo</string>
     <string name="peertube_instance_url_title">Instancoj de PeerTube</string>
     <string name="peertube_instance_url_summary">Elekti viajn preferitajn instancojn de PeerTube</string>
@@ -485,8 +460,6 @@
     <string name="mute">Mutigi</string>
     <string name="unmute">Malmutigi</string>
     <string name="content_not_supported">Tio enhavo ne estas ankoraŭ subtenata per NewPipe.\n\nĜi espereble estos en sekvanta versio.</string>
-    <string name="infinite_videos">∞ filmetoj</string>
-    <string name="more_than_100_videos">100+ filmetoj</string>
     <string name="artists">Artistoj</string>
     <string name="albums">Albumoj</string>
     <string name="songs">Kantoj</string>

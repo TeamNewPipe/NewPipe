@@ -24,7 +24,6 @@
     <string name="delete">ডিলেট</string>
     <string name="pause">বিরতি</string>
     <string name="start">শুরু</string>
-    <string name="no_views">স্টোরেজ অ্যাক্সেস করার অনুমতি অস্বীকার করা হয়েছে</string>
     <string name="audio">অডিও</string>
     <string name="video">ভিডিও</string>
     <string name="detail_dislikes_img_view_description">অপছন্দ হয়েছে</string>
@@ -241,7 +240,6 @@
     <string name="charset_letters_and_digits">শব্দ ও নম্বর</string>
     <string name="done">হয়েছে</string>
     <string name="no_comments">কোন মন্তব্য নেই</string>
-    <string name="no_subscribers">কোন সাবস্ক্রাইবার নেই</string>
     <string name="no_streams_available_download">ডাউন লোড এর জন্য কোন স্ট্রিম নেই</string>
     <string name="file_name_empty_error">ফাইল এর নাম খালি থাকতে পারে না</string>
     <string name="video_streams_empty">কোন ভিডিও</string>
@@ -273,11 +271,6 @@
     <string name="clear_queue_confirmation_title">কিউ মোছার আগে নিশ্চিত করুন</string>
     <string name="notification_action_repeat">পুনরায়</string>
     <string name="website_encouragement">নিউ পাইপ ওয়েব সাইট এ যান বিস্তারিত বিবরণ ও খবর এর জন্য</string>
-    <string name="more_than_100_videos">১০০+ ভিডিও</string>
-    <plurals name="listening">
-        <item quantity="one">%s শ্রোতা</item>
-        <item quantity="other">%s শ্রোতা গন</item>
-    </plurals>
     <string name="description_tab_description">বিবরণ</string>
     <string name="comments_tab_description">মন্তব্য</string>
     <string name="show_meta_info_title">মেটা ইনফো দেখান</string>

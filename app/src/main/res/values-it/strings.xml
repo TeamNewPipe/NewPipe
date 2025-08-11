@@ -140,24 +140,7 @@
     <string name="notification_channel_name">Notifica NewPipe</string>
     <string name="notification_channel_description">Notifiche per il lettore multimediale di NewPipe</string>
     <string name="search_no_results">Nessun risultato</string>
-    <string name="no_subscribers">Nessun iscritto</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s iscritto</item>
-        <item quantity="many">%s iscritti</item>
-        <item quantity="other">%s iscritti</item>
-    </plurals>
-    <string name="no_views">Nessuna visualizzazione</string>
-    <plurals name="views">
-        <item quantity="one">%s visualizzazione</item>
-        <item quantity="many">%s visualizzazioni</item>
-        <item quantity="other">%s visualizzazioni</item>
-    </plurals>
     <string name="no_videos">Nessun video</string>
-    <plurals name="videos">
-        <item quantity="one">%s video</item>
-        <item quantity="many">%s video</item>
-        <item quantity="other">%s video</item>
-    </plurals>
     <string name="empty_list_subtitle">Nulla da mostrare</string>
     <string name="delete_item_search_history">Eliminare questo elemento dalla cronologia delle ricerche\?</string>
     <string name="main_page_content">Contenuto della pagina principale</string>
@@ -340,7 +323,6 @@
     <string name="saved_tabs_invalid_json">Impossibile leggere le schede salvate, verranno usate quelle predefinite</string>
     <string name="restore_defaults">Ripristina predefiniti</string>
     <string name="restore_defaults_confirmation">Ripristinare valori predefiniti\?</string>
-    <string name="subscribers_count_not_available">Contatore degli iscritti non disponibile</string>
     <string name="main_page_content_summary">Schede mostrate nella pagina principale</string>
     <string name="updates_setting_title">Aggiornamenti</string>
     <string name="updates_setting_description">Mostra una notifica per suggerire l\'aggiornamento dell\'app se una nuova versione è disponibile</string>
@@ -412,18 +394,6 @@
     <string name="clear_playback_states_summary">Elimina tutte le posizioni di riproduzione</string>
     <string name="delete_playback_states_alert">Eliminare tutte le posizioni di riproduzione\?</string>
     <string name="drawer_header_description">Attiva/disattiva il servizio, attualmente selezionato:</string>
-    <string name="no_one_watching">Nessuno sta guardando</string>
-    <plurals name="watching">
-        <item quantity="one">%s sta guardando</item>
-        <item quantity="many">%s stanno guardando</item>
-        <item quantity="other">%s stanno guardando</item>
-    </plurals>
-    <string name="no_one_listening">Nessuno sta ascoltando</string>
-    <plurals name="listening">
-        <item quantity="one">%s ascoltatore</item>
-        <item quantity="many">%s ascoltatori</item>
-        <item quantity="other">%s ascoltatori</item>
-    </plurals>
     <string name="default_kiosk_page_summary">Contenuti in evidenza predefiniti</string>
     <string name="seek_duration_title">Durata avanzamento e riavvolgimento rapidi</string>
     <string name="peertube_instance_url_title">Istanze PeerTube</string>
@@ -509,8 +479,6 @@
     <string name="content_not_supported">Questo contenuto non è supportato da NewPipe. 
 \n 
 \nSi spera che possa essere supportato in una versione futura.</string>
-    <string name="infinite_videos">∞ video</string>
-    <string name="more_than_100_videos">100+ video</string>
     <string name="artists">Artisti</string>
     <string name="albums">Album</string>
     <string name="songs">Canzoni</string>

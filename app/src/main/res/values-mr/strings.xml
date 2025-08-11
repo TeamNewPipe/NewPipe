@@ -124,7 +124,6 @@
     <string name="error_details_headline">तपशील:</string>
     <string name="pause">थांबवा</string>
     <string name="recaptcha_solve">सोडवा</string>
-    <string name="no_one_watching">कोणीही पाहत नाही आहे</string>
     <string name="tracks">गाणी</string>
     <string name="downloads">डाऊनलोडस्</string>
     <string name="notification_colorize_title">नोटिफिकेशनला रंगीत करा</string>
@@ -189,10 +188,6 @@
     <string name="best_resolution">सर्वोत्तम क्वालिटी</string>
     <string name="file_deleted">File हटवली आहे</string>
     <string name="just_once">फक्त एकदा</string>
-    <plurals name="watching">
-        <item quantity="one">%s पाहत आहे</item>
-        <item quantity="other">%s पाहत आहेत</item>
-    </plurals>
     <string name="start">सुरुवात करा</string>
     <string name="list">यादी</string>
     <string name="albums">अल्बम</string>

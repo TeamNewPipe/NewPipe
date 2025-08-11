@@ -165,15 +165,6 @@
     <string name="video">วิดีโอ</string>
     <string name="audio">เสียง</string>
     <string name="retry">ลองอีกครั้ง</string>
-    <string name="no_subscribers">ไม่มีสมาชิกที่สมัครรับ</string>
-    <plurals name="subscribers">
-        <item quantity="other">%s บอกรับ</item>
-    </plurals>
-    <string name="subscribers_count_not_available">ไม่สามารถนับจำนวนสมาชิกได้</string>
-    <string name="no_views">ไม่มียอดวิว</string>
-    <plurals name="views">
-        <item quantity="other">%s วิว</item>
-    </plurals>
     <string name="no_videos">ไม่มีวิดีโอ</string>
     <string name="no_comments">ไม่มีความคิดเห็น</string>
     <string name="start">เริ่ม</string>

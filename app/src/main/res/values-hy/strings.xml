@@ -95,20 +95,6 @@
     <string name="no_comments">Կարծիքներ չկան</string>
     <string name="name">Վերնագիր</string>
     <string name="rename_playlist">Վերանվանել</string>
-    <plurals name="videos">
-        <item quantity="one">%s տեսանյութ</item>
-        <item quantity="other">%s տեսանյութ</item>
-    </plurals>
-    <string name="infinite_videos">∞ տեսանյութեր</string>
-    <string name="more_than_100_videos">100+ տեսանյութեր</string>
-    <plurals name="watching">
-        <item quantity="one">%s դիտում է</item>
-        <item quantity="other">%s դիտում են</item>
-    </plurals>
-    <plurals name="views">
-        <item quantity="one">%s դիտում</item>
-        <item quantity="other">%s դիտում</item>
-    </plurals>
     <string name="subscribed_button_title">Բաժանորդագրված</string>
     <string name="rename">Վերանվանել</string>
     <string name="create">Ստեղծել</string>
@@ -176,14 +162,6 @@
     <string name="show_description_title">Տեսնել նկարագիրը</string>
     <string name="show_search_suggestions_title">Որոնման հուշումներ</string>
     <string name="settings_category_clear_data_title">Մաքրել տվյալները</string>
-    <plurals name="listening">
-        <item quantity="one">%s լսող</item>
-        <item quantity="other">%s լսող</item>
-    </plurals>
-    <plurals name="subscribers">
-        <item quantity="one">%s հետևորդ</item>
-        <item quantity="other">%s հետևորդ</item>
-    </plurals>
     <string name="percent">Տոկոս</string>
     <string name="grid">Աղյուսակ</string>
     <string name="import_title">Ներմուծել</string>
@@ -203,7 +181,6 @@
     <string name="resize_fit">Հարմարվել</string>
     <string name="app_language_title">Ափփի լեզու</string>
     <string name="notification_action_nothing">Ոչինչ</string>
-    <string name="no_subscribers">Առանց հետևորդ</string>
     <string name="msg_threads">Հոսքեր</string>
     <string name="add_to_playlist">Ավելացնել նվագացանկին</string>
     <string name="caption_none">Անենթագիր</string>

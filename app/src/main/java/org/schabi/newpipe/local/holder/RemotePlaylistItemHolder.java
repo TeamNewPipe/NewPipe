@@ -29,13 +29,12 @@ public class RemotePlaylistItemHolder extends PlaylistItemHolder {
     public void updateFromItem(final LocalItem localItem,
                                final HistoryRecordManager historyRecordManager,
                                final DateTimeFormatter dateTimeFormatter) {
-        if (!(localItem instanceof PlaylistRemoteEntity)) {
+        if (!(localItem instanceof PlaylistRemoteEntity item)) {
             return;
         }
-        final PlaylistRemoteEntity item = (PlaylistRemoteEntity) localItem;
 
         itemTitleView.setText(item.getName());
-        itemStreamCountView.setText(Localization.localizeStreamCountMini(
+        itemStreamCountView.setText(Localization.formatStreamCountMini(
                 itemStreamCountView.getContext(), item.getStreamCount()));
         // Here is where the uploader name is set in the bookmarked playlists library
         if (!TextUtils.isEmpty(item.getUploader())) {

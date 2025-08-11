@@ -139,16 +139,6 @@
     <string name="notification_channel_description">NewPipe oynatıcısı için bildirimler</string>
     <string name="search_no_results">Sonuç yok</string>
     <string name="empty_list_subtitle">Burada cırcır böceklerinden başka bir şey yok</string>
-    <string name="no_subscribers">Abone yok</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s abone</item>
-        <item quantity="other">%s abone</item>
-    </plurals>
-    <string name="no_views">Görüntüleme yok</string>
-    <plurals name="views">
-        <item quantity="one">%s görüntülenme</item>
-        <item quantity="other">%s görüntülenme</item>
-    </plurals>
     <string name="no_videos">Video yok</string>
     <string name="title_activity_history">Geçmiş</string>
     <string name="action_history">Geçmiş</string>
@@ -333,7 +323,6 @@
     <string name="saved_tabs_invalid_json">Kayıtlı sekmeler okunamadı, bu nedenle öntanımlılar kullanılıyor</string>
     <string name="restore_defaults">Öntanımlıları geri yükle</string>
     <string name="restore_defaults_confirmation">Öntanımlıları geri yüklemek istiyor musunuz\?</string>
-    <string name="subscribers_count_not_available">Abone sayısı yok</string>
     <string name="main_page_content_summary">Ana sayfada hangi sekmeler gösterilir</string>
     <string name="updates_setting_title">Güncellemeler</string>
     <string name="updates_setting_description">Yeni sürüm olduğunda uygulama güncellemesi için bildirim göster</string>
@@ -404,21 +393,7 @@
     <string name="clear_playback_states_summary">Tüm oynatım konumlarını siler</string>
     <string name="delete_playback_states_alert">Tüm oynatım konumları silinsin mi\?</string>
     <string name="drawer_header_description">Hizmeti değiştir, şu anda seçili olan:</string>
-    <plurals name="videos">
-        <item quantity="one">%s video</item>
-        <item quantity="other">%s video</item>
-    </plurals>
     <string name="default_kiosk_page_summary">Öntanımlı Kiosk</string>
-    <string name="no_one_watching">Kimse izlemiyor</string>
-    <plurals name="watching">
-        <item quantity="one">%s izleyici</item>
-        <item quantity="other">%s izleyici</item>
-    </plurals>
-    <string name="no_one_listening">Kimse dinlemiyor</string>
-    <plurals name="listening">
-        <item quantity="one">%s dinleyici</item>
-        <item quantity="other">%s dinleyici</item>
-    </plurals>
     <string name="seek_duration_title">Hızlı ileri/geri atlama süresi</string>
     <string name="peertube_instance_url_title">PeerTube örnekleri</string>
     <string name="peertube_instance_url_summary">Favori PeerTube örneklerinizi seçin</string>
@@ -498,8 +473,6 @@
     <string name="content_not_supported">Bu içerik henüz NewPipe tarafından desteklenmiyor.
 \n
 \nUmarım gelecekteki bir sürümde desteklenir.</string>
-    <string name="infinite_videos">∞ video</string>
-    <string name="more_than_100_videos">100+ video</string>
     <string name="artists">Sanatçılar</string>
     <string name="albums">Albümler</string>
     <string name="songs">Şarkılar</string>
