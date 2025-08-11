@@ -59,7 +59,7 @@ fun ErrorPanel(
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-
+        modifier = modifier
     ) {
 
         Text(
@@ -126,5 +126,12 @@ fun ErrorPanel(
 @Composable
 fun ErrorPanelPreview() {
     AppTheme {
+        ErrorPanel(
+            errorInfo = ErrorInfo(
+                throwable = Exception("Network error"),
+                userAction = org.schabi.newpipe.error.UserAction.UI_ERROR,
+                request = "Preview request"
+            )
+        )
     }
 }
