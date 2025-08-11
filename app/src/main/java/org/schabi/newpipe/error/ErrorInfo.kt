@@ -20,7 +20,8 @@ class ErrorInfo(
     val userAction: UserAction,
     val serviceName: String,
     val request: String,
-    val messageStringId: Int
+    val messageStringId: Int,
+    val openInBrowserUrl: String? = null
 ) : Parcelable {
 
     // no need to store throwable, all data for report is in other variables
@@ -112,5 +113,10 @@ class ErrorInfo(
                 else -> R.string.general_error
             }
         }
+    }
+
+    // fun to extract service explanation
+    fun getExplanation(): String {
+        return throwable?.message ?: return ""
     }
 }

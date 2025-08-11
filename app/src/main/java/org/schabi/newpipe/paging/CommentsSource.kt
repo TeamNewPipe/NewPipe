@@ -16,12 +16,14 @@ class CommentsSource(private val commentInfo: CommentInfo) : PagingSource<Page, 
     override suspend fun load(params: LoadParams<Page>): LoadResult<Page, CommentsInfoItem> {
         // params.key is null the first time the load() function is called, so we need to return the
         // first batch of already-loaded comments
+
         if (params.key == null) {
             return LoadResult.Page(commentInfo.comments, null, commentInfo.nextPage)
         } else {
             val info = withContext(Dispatchers.IO) {
                 CommentsInfo.getMoreItems(service, commentInfo.url, params.key)
             }
+
             return LoadResult.Page(info.items, null, info.nextPage)
         }
     }
