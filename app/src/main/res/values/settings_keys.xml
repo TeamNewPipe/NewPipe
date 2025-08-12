@@ -123,6 +123,10 @@
     <string name="default_popup_resolution_key">default_popup_resolution</string>
     <string name="default_popup_resolution_value">480p</string>
     <string name="best_resolution_key">best_resolution</string>
+    <string name="max_silence_duration_value">1000</string>
+    <string name="max_silence_duration_min">100</string>
+    <string name="max_silence_duration_max">5000</string>
+    <string name="max_silence_duration_key">max_silence_duration</string>
 
     <string-array name="high_resolution_list_values">
         <item>2160p</item>
