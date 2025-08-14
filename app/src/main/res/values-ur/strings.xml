@@ -146,9 +146,6 @@
     <string name="video">ویڈیو</string>
     <string name="audio">آڈیو</string>
     <string name="retry">دوبارہ کوشش کریں</string>
-    <string name="short_thousand">ہزار</string>
-    <string name="short_million">دہ لاکھ</string>
-    <string name="short_billion">ارب</string>
     <string name="no_subscribers">کوئی صارفین نہیں</string>
     <plurals name="subscribers">
         <item quantity="one">%s صارف</item>
@@ -417,7 +414,6 @@
         <item quantity="one">%s سننے والا</item>
         <item quantity="other">%s سننے والے</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">جب ایپ دوبارہ شروع ہو گی تو زبان تبدیل ہو جائے گی</string>
     <string name="default_kiosk_page_summary">طے شدہ کیوسک</string>
     <string name="seek_duration_title">آگے بھگانے /- پیچھے کرنے کی مدت</string>
     <string name="peertube_instance_url_title">پیر ٹیوب واقعات</string>
@@ -478,7 +474,7 @@
     <string name="notification_action_shuffle">شفل</string>
     <string name="notification_action_repeat">دوہرائیں</string>
     <string name="notification_actions_at_most_three">آپ کومپیکٹ نوٹیفکیشن میں زیادہ سے زیادہ تین ایکشن منتخب کرسکتے ہیں!</string>
-    <string name="notification_actions_summary">ذیل میں ہر اطلاع کی کارروائی پر ٹیپ کرکے اس میں ترمیم کریں۔ دائیں طرف کے چیک باکسز کا استعمال کرکے کمپیکٹ نوٹیفکیشن میں دکھائے جانے والے ان میں سے تین تک کا انتخاب کریں:</string>
+    <string name="notification_actions_summary">ذیل میں ہر اطلاع کی کارروائی پر ٹیپ کرکے اس میں ترمیم کریں۔ دائیں طرف کے چیک باکسز کا استعمال کرکے کمپیکٹ نوٹیفکیشن میں دکھائے جانے والے ان میں سے تین تک کا انتخاب کریں۔</string>
     <string name="notification_action_4_title">پانچواں ایکشن بٹن</string>
     <string name="notification_action_3_title">چوتھا ایکشن بٹن</string>
     <string name="notification_action_2_title">تیسرا ایکشن بٹن</string>
@@ -555,4 +551,9 @@
     <string name="unset_playlist_thumbnail">مستقل تھمب نیل کو ان سیٹ کریں</string>
     <string name="ignore_hardware_media_buttons_title">ہارڈ ویئر میڈیا بٹن کے واقعات کو نظر انداز کریں</string>
     <string name="ignore_hardware_media_buttons_summary">کار آمد، مثلاً، اگر آپ ہیڈسیٹ ٹوٹے ہوئے فزیکل بٹن کے ساتھ استعمال کر رہے ہیں</string>
+    <string name="notification_actions_summary_android13">ذیل میں ہر اطلاعی کارروائی پر ٹیپ کرکے ترمیم کریں۔ پہلے تین ایکشن (پلے/پاؤز، پچھلی اور اگلی) سسٹم کے ذریعے سیٹ کیے گئے ہیں اور انہیں اپنی مرضی کے مطابق نہیں بنایا جا سکتا۔</string>
+    <string name="progressive_load_interval_summary">پروگریسو مواد پر لوڈ وقفہ کا سائز تبدیل کریں (فی الحال %s)۔ کم کیمیت ان کی ابتدائی لوڈنگ کو تیز کر سکتی ہے</string>
+    <string name="tab_bookmarks_short">پلے لسٹ</string>
+    <string name="yes">ہاں</string>
+    <string name="no">نہیں</string>
 </resources>

@@ -13,6 +13,7 @@ import android.view.MenuItem
 import android.view.SubMenu
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
@@ -460,6 +461,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     }
 
     companion object {
-        const val JSON_MIME_TYPE = "application/json"
+        val JSON_MIME_TYPE = MimeTypeMap.getSingleton()
+            .getMimeTypeFromExtension("json") ?: "application/octet-stream"
     }
 }

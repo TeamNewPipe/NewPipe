@@ -322,7 +322,7 @@ public final class ListHelper {
         }
 
         // Sort collected streams by name
-        return collectedStreams.values().stream().sorted(getAudioTrackNameComparator(context))
+        return collectedStreams.values().stream().sorted(getAudioTrackNameComparator())
                 .collect(Collectors.toList());
     }
 
@@ -359,7 +359,7 @@ public final class ListHelper {
         }
 
         // Sort tracks alphabetically, sort track streams by quality
-        final Comparator<AudioStream> nameCmp = getAudioTrackNameComparator(context);
+        final Comparator<AudioStream> nameCmp = getAudioTrackNameComparator();
         final Comparator<AudioStream> formatCmp = getAudioFormatComparator(context);
 
         return collectedStreams.values().stream()
@@ -867,12 +867,10 @@ public final class ListHelper {
      * Get a {@link Comparator} to compare {@link AudioStream}s by their languages and track types
      * for alphabetical sorting.
      *
-     * @param context app context for localization
      * @return Comparator
      */
-    private static Comparator<AudioStream> getAudioTrackNameComparator(
-            @NonNull final Context context) {
-        final Locale appLoc = Localization.getAppLocale(context);
+    private static Comparator<AudioStream> getAudioTrackNameComparator() {
+        final Locale appLoc = Localization.getAppLocale();
 
         return Comparator.comparing(AudioStream::getAudioLocale, Comparator.nullsLast(
                         Comparator.comparing(locale -> locale.getDisplayName(appLoc))))

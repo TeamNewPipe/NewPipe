@@ -116,9 +116,6 @@
     <string name="info_labels">무엇:\\n요청:\\n콘텐츠 언어:\\n콘텐츠 국가:\\n앱 언어:\\n서비스:\\nGMT 시간:\\n패키지:\\n버전:\\nOS 버전:</string>
     <string name="search_no_results">결과 없음</string>
     <string name="empty_list_subtitle">구독할 항목을 추가하세요</string>
-    <string name="short_thousand">천</string>
-    <string name="short_million">백만</string>
-    <string name="short_billion">십억</string>
     <string name="no_subscribers">구독자 없음</string>
     <plurals name="subscribers">
         <item quantity="other">구독자 %s명</item>
@@ -418,7 +415,6 @@
     <plurals name="listening">
         <item quantity="other">%s명 청취중</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">앱이 다시 시작되면 언어가 변경됩니다</string>
     <string name="seek_duration_title">빠른-감기/되감기 찾는 시간</string>
     <string name="peertube_instance_url_title">피어튜브 인스턴스</string>
     <string name="peertube_instance_url_summary">선호하는 PeerTube 인스턴스 선택</string>

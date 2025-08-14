@@ -5,7 +5,7 @@
     <string name="did_you_mean">Vouliez-vous dire « %1$s » \?</string>
     <string name="download">Télécharger</string>
     <string name="download_path_title">Dossier de téléchargement vidéo</string>
-    <string name="download_path_dialog_title">Choisissez le dossier de téléchargement des vidéos</string>
+    <string name="download_path_dialog_title">Choisissez le dossier de téléchargement pour les fichiers vidéos</string>
     <string name="download_path_summary">Les vidéos téléchargées sont stockées ici</string>
     <string name="install">Installer</string>
     <string name="kore_not_found">Installer l’application Kore manquante \?</string>
@@ -87,8 +87,6 @@
     <string name="popup_playing_toast">Lecture en mode flottant</string>
     <string name="disabled">Désactivés</string>
     <string name="info_labels">Quoi :\\nRequest :\\nContent Language :\\nContent Country :\\nApp Language :\\nService :\\nGMT Time :\\nPackage :\\nVersion :\\nOS version :</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
     <string name="msg_popup_permission">Cette autorisation est nécessaire pour
 \nutiliser le mode flottant</string>
     <string name="controls_background_title">Arrière-plan</string>
@@ -100,7 +98,6 @@
     <string name="popup_remember_size_pos_title">Mémoriser les propriétés de la fenêtre flottante</string>
     <string name="popup_remember_size_pos_summary">Mémoriser les dernières taille et position de la fenêtre flottante</string>
     <string name="clear">Effacer</string>
-    <string name="short_billion">G</string>
     <string name="use_external_video_player_summary">Le son peut être absent à certaines définitions</string>
     <string name="show_search_suggestions_title">Suggestions de recherche</string>
     <string name="show_search_suggestions_summary">Sélectionner les suggestions à afficher lors d’une recherche</string>
@@ -164,7 +161,7 @@
     <string name="charset_most_special_characters">Caractères spéciaux</string>
     <string name="delete_item_search_history">Voulez-vous supprimer cet élément de l’historique de recherche \?</string>
     <string name="main_page_content">Contenu de la page principale</string>
-    <string name="blank_page_summary">Page vide</string>
+    <string name="blank_page_summary">Page blanche</string>
     <string name="channel_page_summary">Chaîne</string>
     <string name="select_a_channel">Sélectionner une chaîne</string>
     <string name="trending">Tendances</string>
@@ -428,7 +425,6 @@
         <item quantity="many">%s auditeurs</item>
         <item quantity="other">%s auditeurs</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">La langue changera une fois que l’application aura redémarré</string>
     <string name="seek_duration_title">Durée de l’avance et retour rapide</string>
     <string name="peertube_instance_url_title">Instances PeerTube</string>
     <string name="peertube_instance_url_summary">Veuillez choisir vos instances PeerTube préférées</string>
@@ -841,4 +837,14 @@
     <string name="error_insufficient_storage">Pas assez d\'espace disponible sur l\'appareil</string>
     <string name="import_settings_vulnerable_format">Les paramètres de l\'export en cours d\'importation utilisent un format vulnérable qui a été déprécié depuis NewPipe 0.27.0. Assurez-vous que l\'export en cours d\'importation provient d\'une source fiable. Privilégiez les exports obtenues à partir de NewPipe 0.27.0 ou des versions plus récentes à l\'avenir. Le support pour l\'importation des paramètres dans ce format vulnérable sera bientôt complètement supprimé et les anciennes versions de NewPipe ne pourront plus importer les paramètres des exports des nouvelles versions.</string>
     <string name="audio_track_type_secondary">secondaire</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Partager comme liste de lecture YouTube temporaire</string>
+    <string name="tab_bookmarks_short">Listes de lecture</string>
+    <string name="select_a_feed_group">Sélectionnez un groupe de flux</string>
+    <string name="no_feed_group_created_yet">Aucun groupe de flux n\'a encore été créé</string>
+    <string name="feed_group_page_summary">Page du groupe de chaînes</string>
+    <string name="search_with_service_name">Rechercher %1$s</string>
+    <string name="search_with_service_name_and_filter">Rechercher %1$s (%2$s)</string>
+    <string name="channel_tab_likes">Likes</string>
+    <string name="migration_info_6_7_title">Page SoundCloud Top 50 supprimée</string>
+    <string name="migration_info_6_7_message">SoundCloud a abandonné le classement original du Top 50. L\'onglet correspondant a été supprimé de votre page d\'accueil.</string>
 </resources>

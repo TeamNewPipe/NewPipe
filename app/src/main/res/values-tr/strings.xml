@@ -88,9 +88,6 @@
     <string name="disabled">Devre dışı</string>
     <string name="your_comment">Yorumunuz (İngilizce):</string>
     <string name="error_details_headline">Ayrıntılar:</string>
-    <string name="short_thousand">b</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">M</string>
     <string name="msg_popup_permission">Bu izin, açılır pencere kipinde
 \naçmak için gereklidir</string>
     <string name="title_activity_recaptcha">reCAPTCHA formu</string>
@@ -164,9 +161,9 @@
     <string name="player_unrecoverable_failure">Kurtarılamayan oynatıcı hatası oluştu</string>
     <string name="player_recoverable_failure">Oynatıcı hatasından kurtarılıyor</string>
     <string name="main_page_content">Ana sayfanın içeriği</string>
-    <string name="blank_page_summary">Boş Sayfa</string>
-    <string name="kiosk_page_summary">Kiosk Sayfası</string>
-    <string name="channel_page_summary">Kanal Sayfası</string>
+    <string name="blank_page_summary">Boş sayfa</string>
+    <string name="kiosk_page_summary">Kiosk sayfası</string>
+    <string name="channel_page_summary">Kanal sayfası</string>
     <string name="select_a_channel">Kanal seçin</string>
     <string name="no_channel_subscribed_yet">Henüz kanal aboneliği yok</string>
     <string name="select_a_kiosk">Kiosk seçin</string>
@@ -212,7 +209,7 @@
     <string name="override_current_data">Bu, var olan kurulumunuzu geçersiz kılacaktır.</string>
     <string name="controls_download_desc">Akış dosyasını indir</string>
     <string name="show_info">Bilgi göster</string>
-    <string name="tab_bookmarks">İmlenen Çalma Listeleri</string>
+    <string name="tab_bookmarks">İmlenen Oynatma Listeleri</string>
     <string name="controls_add_to_playlist_title">Ekle</string>
     <string name="detail_drag_description">Yeniden düzenlemek için sürükleyin</string>
     <string name="create">Oluştur</string>
@@ -422,7 +419,6 @@
         <item quantity="one">%s dinleyici</item>
         <item quantity="other">%s dinleyici</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Uygulama yeniden başlatıldıktan sonra dil değişecektir</string>
     <string name="seek_duration_title">Hızlı ileri/geri atlama süresi</string>
     <string name="peertube_instance_url_title">PeerTube örnekleri</string>
     <string name="peertube_instance_url_summary">Favori PeerTube örneklerinizi seçin</string>
@@ -825,4 +821,14 @@
 \nBunu etkinleştirmek istiyor musunuz?</string>
     <string name="import_settings_vulnerable_format">İçe aktarılmakta olan dışa aktarımdaki ayarlar, NewPipe 0.27.0\'dan itibaren kullanımdan kaldırılan güvenlik açığı olan bir biçim kullanmaktadır. İçe aktarılmakta olan dışa aktarımın güvenilir bir kaynaktan alındığından emin olun ve gelecekte yalnızca NewPipe 0.27.0 veya daha yeni sürümlerden alınan dışa aktarımları kullanmayı tercih edin. Bu güvenlik açığı bulunan biçimdeki ayarları içe aktarma desteği yakında tamamen kaldırılacak ve ardından NewPipe\'ın eski sürümleri artık yeni sürümlerden dışa aktarılan ayarların içe aktarımını yapamayacaktır.</string>
     <string name="audio_track_type_secondary">ikincil</string>
+    <string name="tab_bookmarks_short">Oynatma Listeleri</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">YouTube geçici oynatma listesi olarak paylaş</string>
+    <string name="select_a_feed_group">Besleme kümesi seç</string>
+    <string name="feed_group_page_summary">Kanal küme sayfası</string>
+    <string name="no_feed_group_created_yet">Besleme kümesi oluşturulmadı</string>
+    <string name="channel_tab_likes">Beğeni</string>
+    <string name="search_with_service_name">%1$s İle Ara</string>
+    <string name="search_with_service_name_and_filter">%1$s İle Ara (%2$s)</string>
+    <string name="migration_info_6_7_title">SoundCloud Top 50 sayfası kaldırıldı</string>
+    <string name="migration_info_6_7_message">SoundCloud, özgün Top 50 listesini artık yayınlamıyor. İlgili sekme ana sayfanızdan kaldırıldı.</string>
 </resources>

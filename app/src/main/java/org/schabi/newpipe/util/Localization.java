@@ -5,14 +5,12 @@ import static org.schabi.newpipe.MainActivity.DEBUG;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.icu.text.CompactDecimalFormat;
 import android.os.Build;
+import android.text.BidiFormatter;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
-import android.text.BidiFormatter;
-import android.util.DisplayMetrics;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -43,7 +41,6 @@ import java.time.format.FormatStyle;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 
@@ -120,39 +117,34 @@ public final class Localization {
         return getLocaleFromPrefs(context, R.string.content_language_key);
     }
 
-    public static Locale getAppLocale(@NonNull final Context context) {
-        if (Build.VERSION.SDK_INT >= 33) {
-            final Locale customLocale = AppCompatDelegate.getApplicationLocales().get(0);
-            return Objects.requireNonNullElseGet(customLocale, Locale::getDefault);
-        }
-        return getLocaleFromPrefs(context, R.string.app_language_key);
+    public static Locale getAppLocale() {
+        final Locale customLocale = AppCompatDelegate.getApplicationLocales().get(0);
+        return customLocale != null ? customLocale : Locale.getDefault();
     }
 
-    public static String localizeNumber(@NonNull final Context context, final long number) {
-        return localizeNumber(context, (double) number);
+    public static String localizeNumber(final long number) {
+        return localizeNumber((double) number);
     }
 
-    public static String localizeNumber(@NonNull final Context context, final double number) {
-        final NumberFormat nf = NumberFormat.getInstance(getAppLocale(context));
-        return nf.format(number);
+    public static String localizeNumber(final double number) {
+        return NumberFormat.getInstance(getAppLocale()).format(number);
     }
 
-    public static String formatDate(@NonNull final Context context,
-                                    @NonNull final OffsetDateTime offsetDateTime) {
+    public static String formatDate(@NonNull final OffsetDateTime offsetDateTime) {
         return DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
-                .withLocale(getAppLocale(context)).format(offsetDateTime
-                        .atZoneSameInstant(ZoneId.systemDefault()));
+            .withLocale(getAppLocale())
+            .format(offsetDateTime.atZoneSameInstant(ZoneId.systemDefault()));
     }
 
     @SuppressLint("StringFormatInvalid")
     public static String localizeUploadDate(@NonNull final Context context,
                                             @NonNull final OffsetDateTime offsetDateTime) {
-        return context.getString(R.string.upload_date_text, formatDate(context, offsetDateTime));
+        return context.getString(R.string.upload_date_text, formatDate(offsetDateTime));
     }
 
     public static String localizeViewCount(@NonNull final Context context, final long viewCount) {
         return getQuantity(context, R.plurals.views, R.string.no_views, viewCount,
-                localizeNumber(context, viewCount));
+                localizeNumber(viewCount));
     }
 
     public static String localizeStreamCount(@NonNull final Context context,
@@ -166,7 +158,7 @@ public final class Localization {
                 return context.getResources().getString(R.string.more_than_100_videos);
             default:
                 return getQuantity(context, R.plurals.videos, R.string.no_videos, streamCount,
-                        localizeNumber(context, streamCount));
+                        localizeNumber(streamCount));
         }
     }
 
@@ -187,27 +179,33 @@ public final class Localization {
     public static String localizeWatchingCount(@NonNull final Context context,
                                                final long watchingCount) {
         return getQuantity(context, R.plurals.watching, R.string.no_one_watching, watchingCount,
-                localizeNumber(context, watchingCount));
+                localizeNumber(watchingCount));
     }
 
     public static String shortCount(@NonNull final Context context, final long count) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return CompactDecimalFormat.getInstance(getAppLocale(context),
+            return CompactDecimalFormat.getInstance(getAppLocale(),
                     CompactDecimalFormat.CompactStyle.SHORT).format(count);
         }
 
         final double value = (double) count;
         if (count >= 1000000000) {
-            return localizeNumber(context, round(value / 1000000000))
-                    + context.getString(R.string.short_billion);
+            final double shortenedValue = value / 1000000000;
+            final int scale = shortenedValue >= 100 ? 0 : 1;
+            return context.getString(R.string.short_billion,
+                    localizeNumber(round(shortenedValue, scale)));
         } else if (count >= 1000000) {
-            return localizeNumber(context, round(value / 1000000))
-                    + context.getString(R.string.short_million);
+            final double shortenedValue = value / 1000000;
+            final int scale = shortenedValue >= 100 ? 0 : 1;
+            return context.getString(R.string.short_million,
+                    localizeNumber(round(shortenedValue, scale)));
         } else if (count >= 1000) {
-            return localizeNumber(context, round(value / 1000))
-                    + context.getString(R.string.short_thousand);
+            final double shortenedValue = value / 1000;
+            final int scale = shortenedValue >= 100 ? 0 : 1;
+            return context.getString(R.string.short_thousand,
+                    localizeNumber(round(shortenedValue, scale)));
         } else {
-            return localizeNumber(context, value);
+            return localizeNumber(value);
         }
     }
 
@@ -377,8 +375,8 @@ public final class Localization {
         prettyTime.removeUnit(Decade.class);
     }
 
-    public static PrettyTime resolvePrettyTime(@NonNull final Context context) {
-        return new PrettyTime(getAppLocale(context));
+    public static PrettyTime resolvePrettyTime() {
+        return new PrettyTime(getAppLocale());
     }
 
     public static String relativeTime(@NonNull final OffsetDateTime offsetDateTime) {
@@ -396,9 +394,10 @@ public final class Localization {
      *         {@code parsed != null} and the relevant setting is enabled, {@code textual} will
      *         be appended to the returned string for debugging purposes.
      */
+    @Nullable
     public static String relativeTimeOrTextual(@Nullable final Context context,
                                                @Nullable final DateWrapper parsed,
-                                               final String textual) {
+                                               @Nullable final String textual) {
         if (parsed == null) {
             return textual;
         } else if (DEBUG && context != null && PreferenceManager
@@ -408,14 +407,6 @@ public final class Localization {
         } else {
             return relativeTime(parsed.offsetDateTime());
         }
-    }
-
-    public static void assureCorrectAppLanguage(final Context c) {
-        final Resources res = c.getResources();
-        final DisplayMetrics dm = res.getDisplayMetrics();
-        final Configuration conf = res.getConfiguration();
-        conf.setLocale(getAppLocale(c));
-        res.updateConfiguration(conf, dm);
     }
 
     private static Locale getLocaleFromPrefs(@NonNull final Context context,
@@ -431,8 +422,8 @@ public final class Localization {
         }
     }
 
-    private static double round(final double value) {
-        return new BigDecimal(value).setScale(1, RoundingMode.HALF_UP).doubleValue();
+    private static double round(final double value, final int scale) {
+        return new BigDecimal(value).setScale(scale, RoundingMode.HALF_UP).doubleValue();
     }
 
     private static String getQuantity(@NonNull final Context context,
@@ -452,29 +443,32 @@ public final class Localization {
         return context.getResources().getQuantityString(pluralId, safeCount, formattedCount);
     }
 
+    // Starting with pull request #12093, NewPipe exclusively uses Android's
+    // public per-app language APIs to read and set the UI language for NewPipe.
+    // The following code will migrate any existing custom app language in SharedPreferences to
+    // use the public per-app language APIs instead.
+    // For reference, see
+    // https://android-developers.googleblog.com/2022/11/per-app-language-preferences-part-1.html
     public static void migrateAppLanguageSettingIfNecessary(@NonNull final Context context) {
-        // Starting with pull request #12093, NewPipe on Android 13+ exclusively uses Android's
-        // public per-app language APIs to read and set the UI language for NewPipe.
-        // If running on Android 13+, the following code will migrate any existing custom
-        // app language in SharedPreferences to use the public per-app language APIs instead.
-        if (Build.VERSION.SDK_INT >= 33) {
-            final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-            final String appLanguageKey = context.getString(R.string.app_language_key);
-            final String appLanguageValue = sp.getString(appLanguageKey, null);
-            if (appLanguageValue != null) {
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        final String appLanguageKey = context.getString(R.string.app_language_key);
+        final String appLanguageValue = sp.getString(appLanguageKey, null);
+        if (appLanguageValue != null) {
+            // The app language key is used on Android versions < 33
+            // for more info, see ContentSettingsFragment
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 sp.edit().remove(appLanguageKey).apply();
-                final String appLanguageDefaultValue =
-                        context.getString(R.string.default_localization_key);
-                if (!appLanguageValue.equals(appLanguageDefaultValue)) {
-                    try {
-                        AppCompatDelegate.setApplicationLocales(
-                                LocaleListCompat.forLanguageTags(appLanguageValue)
-                        );
-                    } catch (final RuntimeException e) {
-                        Log.e(TAG, "Failed to migrate previous custom app language "
-                                + "setting to public per-app language APIs"
-                        );
-                    }
+            }
+            final String appLanguageDefaultValue =
+                    context.getString(R.string.default_localization_key);
+            if (!appLanguageValue.equals(appLanguageDefaultValue)) {
+                try {
+                    AppCompatDelegate.setApplicationLocales(
+                        LocaleListCompat.forLanguageTags(appLanguageValue));
+                } catch (final RuntimeException e) {
+                    Log.e(TAG, "Failed to migrate previous custom app language "
+                            + "setting to public per-app language APIs"
+                    );
                 }
             }
         }

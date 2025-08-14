@@ -52,6 +52,14 @@ public final class KioskTranslator {
                 return c.getString(R.string.featured);
             case "Radio":
                 return c.getString(R.string.radio);
+            case "trending_gaming":
+                return c.getString(R.string.trending_gaming);
+            case "trending_music":
+                return c.getString(R.string.trending_music);
+            case "trending_movies_and_shows":
+                return c.getString(R.string.trending_movies);
+            case "trending_podcasts_episodes":
+                return c.getString(R.string.trending_podcasts);
             default:
                 return kioskId;
         }
@@ -77,6 +85,14 @@ public final class KioskTranslator {
                 return R.drawable.ic_stars;
             case "Radio":
                 return R.drawable.ic_radio;
+            case "trending_gaming":
+                return R.drawable.ic_videogame_asset;
+            case "trending_music":
+                return R.drawable.ic_music_note;
+            case "trending_movies_and_shows":
+                return R.drawable.ic_movie;
+            case "trending_podcasts_episodes":
+                return R.drawable.ic_podcasts;
             default:
                 return 0;
         }

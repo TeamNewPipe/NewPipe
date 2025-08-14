@@ -19,8 +19,6 @@
 
 package org.schabi.newpipe.player;
 
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
@@ -91,7 +89,6 @@ public final class PlayerService extends MediaBrowserServiceCompat {
         if (DEBUG) {
             Log.d(TAG, "onCreate() called");
         }
-        assureCorrectAppLanguage(this);
         ThemeHelper.setTheme(this);
 
         mediaBrowserImpl = new MediaBrowserImpl(this, this::notifyChildrenChanged);
@@ -330,7 +327,6 @@ public final class PlayerService extends MediaBrowserServiceCompat {
     public BrowserRoot onGetRoot(@NonNull final String clientPackageName,
                                  final int clientUid,
                                  @Nullable final Bundle rootHints) {
-        // TODO check if the accessing package has permission to view data
         return mediaBrowserImpl.onGetRoot(clientPackageName, clientUid, rootHints);
     }
 

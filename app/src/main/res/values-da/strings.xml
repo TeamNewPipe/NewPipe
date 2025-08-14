@@ -305,9 +305,6 @@
     <string name="stop">Stop</string>
     <string name="events">Hændelser</string>
     <string name="empty_list_subtitle">Ikke andet end fårekyllinger her</string>
-    <string name="short_thousand">t</string>
-    <string name="short_million">mio.</string>
-    <string name="short_billion">mia.</string>
     <plurals name="subscribers">
         <item quantity="one">%s abonnent</item>
         <item quantity="other">%s abonnenter</item>
@@ -507,7 +504,6 @@
     <string name="main_page_content_swipe_remove">Stryg på elementer for at fjerne dem</string>
     <string name="select_a_playlist">Vælg en playliste</string>
     <string name="no_playlist_bookmarked_yet">Ingen playliste-bogmærker endnu</string>
-    <string name="localization_changes_requires_app_restart">Sproget ændres, når appen genstarter</string>
     <string name="title_activity_play_queue">Afspillerkø</string>
     <string name="show_channel_details">Vis kanalens detaljer</string>
     <string name="enqueue_stream">Sæt i kø</string>
@@ -825,4 +821,9 @@
     <string name="import_settings_vulnerable_format">Indstillingerne i den eksport, der importeres, bruger et sårbart format, der er blevet forældet siden NewPipe 0.27.0. Sørg for, at den eksport, der importeres, er fra en pålidelig kilde, og brug helst kun eksport fra NewPipe 0.27.0 eller nyere i fremtiden. Understøttelse af import af indstillinger i dette sårbare format fjernes snart helt, og så vil gamle versioner af NewPipe ikke længere være i stand til at importere indstillinger fra eksport fra nye versioner.</string>
     <string name="settings_category_backup_restore_title">Sikkerhedskopiering og gendannelse</string>
     <string name="audio_track_type_secondary">sekundær</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Del som midlertidig YouTube-playliste</string>
+    <string name="tab_bookmarks_short">Playlister</string>
+    <string name="feed_group_page_summary">Kanalgruppeside</string>
+    <string name="select_a_feed_group">Vælg en feed-gruppe</string>
+    <string name="no_feed_group_created_yet">Ingen feed-gruppe oprettet endnu</string>
 </resources>

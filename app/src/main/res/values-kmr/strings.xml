@@ -49,9 +49,6 @@
     </plurals>
     <string name="no_subscribers">Ne abone</string>
     <string name="drawer_header_description">Karûbarê veguheztinê, niha hatî hilbijartin:</string>
-    <string name="short_billion">B</string>
-    <string name="short_million">M</string>
-    <string name="short_thousand">k</string>
     <string name="retry">Dîsa biceribîne</string>
     <string name="audio">Deng</string>
     <string name="video">Vîdyo</string>
@@ -139,7 +136,6 @@
     <string name="file_deleted">Pel hate jêbirin</string>
     <string name="undo">Betal bike</string>
     <string name="best_resolution">Çareseriya çêtirîn</string>
-    <string name="localization_changes_requires_app_restart">Gava ku sepanê ji nû ve dest pê kir dê ziman biguhere.</string>
     <string name="error_unable_to_load_comments">Ouldîrove nehat barkirin</string>
     <string name="import_settings">Ma hûn dixwazin mîhengan jî îthal bikin\?</string>
     <string name="override_current_data">Ev ê sazkirina xweya heyî ji holê rabike.</string>

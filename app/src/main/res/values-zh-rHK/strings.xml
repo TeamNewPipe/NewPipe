@@ -87,8 +87,6 @@
     <string name="all">全部嘢</string>
     <string name="app_ui_crash">App/界面閃退</string>
     <string name="info_labels">經過：\\n請求：\\n內容語言：\\n內容國家：\\nApp 語言：\\n服務：\\nGMT 時間：\\n封裝：\\n版本：\\nOS 版本：</string>
-    <string name="short_thousand">千</string>
-    <string name="short_million">百萬</string>
     <string name="title_activity_recaptcha">reCAPTCHA 考驗</string>
     <string name="msg_popup_permission">以浮面模式開啟
 \n有呢個權限至得</string>
@@ -103,7 +101,6 @@
     <string name="disabled">不適用</string>
     <string name="clear">抹走</string>
     <string name="best_resolution">最佳解像度</string>
-    <string name="short_billion">十億</string>
     <string name="title_activity_about">關於 NewPipe</string>
     <string name="title_licenses">第三方版權協議</string>
     <string name="copyright" formatted="true">© %1$s %2$s 版權所有，根據 %3$s 嘅條款授權</string>
@@ -326,7 +323,6 @@
     <string name="main_page_content_summary">頭版要擺放邊啲分頁</string>
     <string name="main_page_content_swipe_remove">打橫掃走啲項目去剷走佢</string>
     <string name="blank_page_summary">空白頁</string>
-    <string name="localization_changes_requires_app_restart">重新開過個 app 之後就會轉新語言</string>
     <string name="trending">時興</string>
     <string name="top_50">頭 50 位</string>
     <string name="new_and_hot">最新同大熱</string>

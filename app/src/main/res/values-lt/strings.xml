@@ -6,7 +6,7 @@
     <string name="install">Įdiegti</string>
     <string name="cancel">Atšaukti</string>
     <string name="open_in_browser">Atverti naršyklėje</string>
-    <string name="open_in_popup_mode">Atverti iššokančio lango rėžime</string>
+    <string name="open_in_popup_mode">Atverti iššokančio lango režime</string>
     <string name="share">Dalintis</string>
     <string name="download">Atsisiųsti</string>
     <string name="search">Paieška</string>
@@ -139,9 +139,6 @@
     <string name="player_recoverable_failure">Atstatoma po grotuvo klaidos</string>
     <string name="search_no_results">Nėra rezultatų</string>
     <string name="empty_list_subtitle">Čia nieko nėra išskyrus svirplius</string>
-    <string name="short_thousand">Tūkst.</string>
-    <string name="short_million">Mln.</string>
-    <string name="short_billion">Mlrd.</string>
     <string name="no_subscribers">Nėra prenumeratorių</string>
     <string name="no_views">Nėra peržiūrų</string>
     <plurals name="views">
@@ -494,7 +491,6 @@
     <string name="most_liked">Labiausiai patikę</string>
     <string name="recently_added">Nesenai pridėta</string>
     <string name="local">Vietinė</string>
-    <string name="localization_changes_requires_app_restart">Kalba pasikeis paleidus programą iš naujo</string>
     <string name="error_unable_to_load_comments">Komentarų įkelti nepavyko</string>
     <string name="import_settings">Ar norite importuoti nustatymus\?</string>
     <string name="no_playlist_bookmarked_yet">Kol kas nėra grojaraščio žymų</string>
@@ -838,4 +834,7 @@
 \n%2$s</string>
     <string name="question_mark">\?</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="tab_bookmarks_short">Grojaraščiai</string>
+    <string name="audio_track_type_secondary">Antrinis</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Dalintis kaip laikinuoju youtube grojaraščiu</string>
 </resources>

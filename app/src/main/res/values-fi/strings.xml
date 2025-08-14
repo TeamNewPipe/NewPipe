@@ -102,9 +102,6 @@
     <string name="video">Video</string>
     <string name="audio">Ääni</string>
     <string name="retry">Toista uudelleen</string>
-    <string name="short_thousand">t.</string>
-    <string name="short_million">milj.</string>
-    <string name="short_billion">bilj.</string>
     <string name="no_subscribers">Ei tilaajia</string>
     <plurals name="subscribers">
         <item quantity="one">%s tilaaja</item>
@@ -337,7 +334,6 @@
     <string name="recently_added">Hiljattain lisätyt</string>
     <string name="local">Paikalliset</string>
     <string name="most_liked">Pidetyimmät</string>
-    <string name="localization_changes_requires_app_restart">Kieli vaihtuu, kun sovellus uudelleenkäynnistetään</string>
     <string name="error_unable_to_load_comments">Kommentteja ei voitu ladata</string>
     <string name="main_page_content_summary">Mitkä välilehdet näytetään pääsivulla</string>
     <string name="done">Valmis</string>
@@ -809,4 +805,9 @@
     <string name="auto_update_check_description">NewPipe voi automaattisesti tarkistaa päivitysten saatavuuden silloin tällöin ja ilmoittaa kun niitä on saatavilla.
 \nHaluatko ottaa tämän käyttöön?</string>
     <string name="error_insufficient_storage">Laitteella ei ole riittävästi vapaata tilaa</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Jaa tilapäisenä YouTube-soittolistana</string>
+    <string name="channel_tab_tracks">Raidat</string>
+    <string name="question_mark">\?</string>
+    <string name="audio_track_type_secondary">toissijainen</string>
+    <string name="tab_bookmarks_short">Soittolistat</string>
 </resources>

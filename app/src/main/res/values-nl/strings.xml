@@ -59,7 +59,7 @@
     <string name="video">Video</string>
     <string name="audio">Geluid</string>
     <string name="retry">Opnieuw proberen</string>
-    <string name="main_bg_subtitle">Druk op het vergrootglas om te beginnen.</string>
+    <string name="main_bg_subtitle">Tik op het vergrootglas om te beginnen.</string>
     <string name="duration_live">Live</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
@@ -68,7 +68,7 @@
     <string name="info_labels">Wat:\\nVerzoek:\\nInhoudstaal:\\nInhoudsland:\\nApp-taal:\\nDienst:\\nGMT-tijd:\\nPakket:\\nVersie:\\nVersie van besturingssysteem:</string>
     <string name="start">Starten</string>
     <string name="pause">Pauzeren</string>
-    <string name="delete">Verwijderen</string>
+    <string name="delete">Verwĳderen</string>
     <string name="checksum">Controlesom</string>
     <string name="ok">Oké</string>
     <string name="msg_name">Bestandsnaam</string>
@@ -84,9 +84,6 @@
     <string name="recaptcha_request_toast">reCAPTCHA-uitdaging gevraagd</string>
     <string name="open_in_popup_mode">Openen in pop-upmodus</string>
     <string name="all">Alles</string>
-    <string name="short_thousand">dznd.</string>
-    <string name="short_million">mln.</string>
-    <string name="short_billion">mld.</string>
     <string name="msg_popup_permission">Deze machtiging is vereist om te
 \nopenen in pop-upmodus</string>
     <string name="popup_playing_toast">Speelt af in pop-upmodus</string>
@@ -420,7 +417,6 @@
         <item quantity="one">%s luisteraar</item>
         <item quantity="other">%s luisteraars</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">De taal zal veranderen zodra de app opnieuw is opgestart</string>
     <string name="default_kiosk_page_summary">Standaard kiosk</string>
     <string name="seek_duration_title">Duur voor-/achteruit spoelen</string>
     <string name="peertube_instance_url_title">PeerTube-instanties</string>
@@ -825,4 +821,9 @@
     <string name="reset_settings_title">Instellingen resetten</string>
     <string name="import_settings_vulnerable_format">De instellingen in de export die wordt geïmporteerd, gebruiken een kwetsbaar formaat dat verouderd is sinds NewPipe 0.27.0. Zorg ervoor dat de export die wordt geïmporteerd afkomstig is van een vertrouwde bron, en geef er de voorkeur aan om in de toekomst alleen exporten te gebruiken die zijn verkregen van NewPipe 0.27.0 of nieuwer. Ondersteuning voor het importeren van instellingen in dit kwetsbare formaat zal binnenkort volledig worden verwijderd, en oude versies van NewPipe zullen dan geen export­instellingen meer uit nieuwe versies kunnen importeren.</string>
     <string name="audio_track_type_secondary">secundair</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Delen als tĳdelijke YouTube-afspeel­lĳst</string>
+    <string name="tab_bookmarks_short">Afspeel­lĳsten</string>
+    <string name="select_a_feed_group">Selecteer een feedgroep</string>
+    <string name="feed_group_page_summary">Kanaalgroep­pagina</string>
+    <string name="no_feed_group_created_yet">Nog geen feedgroep geselecteerd</string>
 </resources>
