@@ -13,7 +13,9 @@ import com.google.android.material.snackbar.Snackbar;
 import org.schabi.newpipe.R;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
+import kotlin.Pair;
 import us.shandian.giga.get.FinishedMission;
 import us.shandian.giga.get.Mission;
 import us.shandian.giga.service.DownloadManager;
@@ -30,7 +32,8 @@ public class Deleter {
     private static final int DELAY_RESUME = 400;// ms
 
     private Snackbar snackbar;
-    private ArrayList<Mission> items;
+    // list of missions to be deleted, and whether to also delete the corresponding file
+    private ArrayList<Pair<Mission, Boolean>> items;
     private boolean running = true;
 
     private final Context mContext;
@@ -51,7 +54,7 @@ public class Deleter {
         items = new ArrayList<>(2);
     }
 
-    public void append(Mission item) {
+    public void append(Mission item, boolean alsoDeleteFile) {
         /* If a mission is removed from the list while the Snackbar for a previously
          * removed item is still showing, commit the action for the previous item
          * immediately. This prevents Snackbars from stacking up in reverse order.
@@ -60,13 +63,13 @@ public class Deleter {
         commit();
 
         mIterator.hide(item);
-        items.add(0, item);
+        items.add(0, new Pair<>(item, alsoDeleteFile));
 
         show();
     }
 
     private void forget() {
-        mIterator.unHide(items.remove(0));
+        mIterator.unHide(items.remove(0).getFirst());
         mAdapter.applyChanges();
 
         show();
@@ -84,7 +87,19 @@ public class Deleter {
     private void next() {
         if (items.size() < 1) return;
 
-        String msg = mContext.getString(R.string.file_deleted).concat(":\n").concat(items.get(0).storage.getName());
+        final Optional<String> fileToBeDeleted = items.stream()
+                .filter(Pair::getSecond)
+                .map(p -> p.getFirst().storage.getName())
+                .findFirst();
+
+        String msg;
+        if (fileToBeDeleted.isPresent()) {
+            msg = mContext.getString(R.string.file_deleted)
+                    .concat(":\n")
+                    .concat(fileToBeDeleted.get());
+        } else {
+            msg = mContext.getString(R.string.entry_deleted);
+        }
 
         snackbar = Snackbar.make(mView, msg, Snackbar.LENGTH_INDEFINITE);
         snackbar.setAction(R.string.undo, s -> forget());
@@ -98,11 +113,13 @@ public class Deleter {
         if (items.size() < 1) return;
 
         while (items.size() > 0) {
-            Mission mission = items.remove(0);
+            Pair<Mission, Boolean> missionAndAlsoDeleteFile = items.remove(0);
+            Mission mission = missionAndAlsoDeleteFile.getFirst();
+            boolean alsoDeleteFile = missionAndAlsoDeleteFile.getSecond();
             if (mission.deleted) continue;
 
             mIterator.unHide(mission);
-            mDownloadManager.deleteMission(mission);
+            mDownloadManager.deleteMission(mission, alsoDeleteFile);
 
             if (mission instanceof FinishedMission) {
                 mContext.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, mission.storage.getUri()));
@@ -137,7 +154,11 @@ public class Deleter {
 
         pause();
 
-        for (Mission mission : items) mDownloadManager.deleteMission(mission);
+        for (Pair<Mission, Boolean> missionAndAlsoDeleteFile : items) {
+            Mission mission = missionAndAlsoDeleteFile.getFirst();
+            boolean alsoDeleteFile = missionAndAlsoDeleteFile.getSecond();
+            mDownloadManager.deleteMission(mission, alsoDeleteFile);
+        }
         items = null;
     }
 }
