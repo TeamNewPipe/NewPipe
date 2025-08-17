@@ -92,9 +92,6 @@
     <string name="disabled">Dezactivat</string>
     <string name="app_ui_crash">Aplicația/UI s-a oprit</string>
     <string name="info_labels">Ce:\\nSolicitare:\\nLimba conținutului:\\nȚara conținutului:\\nLimba aplicației:\\nServiciu:\\nOra GMT:\\nPachet:\\nVersiune:\\nVersiune SO:</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">mil.</string>
-    <string name="short_billion">mld.</string>
     <string name="use_external_video_player_summary">Elimină sunetul audio la anumite rezoluții</string>
     <string name="controls_background_title">Fundal</string>
     <string name="controls_popup_title">Pop-up</string>
@@ -164,9 +161,9 @@
     <string name="action_history">Istoric</string>
     <string name="delete_item_search_history">Doriți să ștergeți acest element din istoricul de căutare?</string>
     <string name="main_page_content">Conținutul pagini principale</string>
-    <string name="blank_page_summary">Pagină Goală</string>
+    <string name="blank_page_summary">Pagină goală</string>
     <string name="kiosk_page_summary">Pagina de chioșc</string>
-    <string name="channel_page_summary">Pagină Canale</string>
+    <string name="channel_page_summary">Pagină canale</string>
     <string name="select_a_channel">Alegeți un canal</string>
     <string name="no_channel_subscribed_yet">Nu v-ați abonat la niciun canal deocamdată</string>
     <string name="select_a_kiosk">Alegeți un chioșc</string>
@@ -839,4 +836,11 @@
     <string name="share_playlist_as_youtube_temporary_playlist">Distribuie ca listă de redare temporară YouTube</string>
     <string name="tab_bookmarks_short">Liste de redare</string>
     <string name="feed_group_page_summary">Pagina grupului de canale</string>
+    <string name="search_with_service_name">Caută: %1$s</string>
+    <string name="search_with_service_name_and_filter">Caută %1$s (%2$s)</string>
+    <string name="select_a_feed_group">Selectează un grup de fluxuri</string>
+    <string name="no_feed_group_created_yet">Încă nu a fost creat niciun grup de fluxuri</string>
+    <string name="channel_tab_likes">Aprecieri</string>
+    <string name="migration_info_6_7_title">Pagina SoundCloud Top 50 a fost eliminată</string>
+    <string name="migration_info_6_7_message">SoundCloud a eliminat Top 50. Fila corespunzătoare a fost eliminată din pagina principală.</string>
 </resources>

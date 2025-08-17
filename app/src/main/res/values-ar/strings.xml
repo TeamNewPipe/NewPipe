@@ -116,9 +116,6 @@
     <string name="empty_list_subtitle">لا شيء هنا سوى الصراصير</string>
     <string name="audio">الصوت</string>
     <string name="retry">إعادة المحاولة</string>
-    <string name="short_thousand">ألف</string>
-    <string name="short_million">مليون</string>
-    <string name="short_billion">بليون</string>
     <string name="no_subscribers">ليس هناك مشترِكون</string>
     <plurals name="subscribers">
         <item quantity="zero">%s مشارك</item>
@@ -883,4 +880,9 @@
     <string name="feed_group_page_summary">صفحة مجموعة القناة</string>
     <string name="select_a_feed_group">حدد مجموعة المحتوى</string>
     <string name="no_feed_group_created_yet">لم تنشئ مجموعة محتوى</string>
+    <string name="channel_tab_likes">الإعجابات</string>
+    <string name="search_with_service_name">البحث %1$s</string>
+    <string name="search_with_service_name_and_filter">البحث %1$s (%2$s)</string>
+    <string name="migration_info_6_7_title">تمت إزالة صفحة أفضل 50 من SoundCloud</string>
+    <string name="migration_info_6_7_message">أوقفت SoundCloud صفحة أفضل 50 الأصلية. تمت إزالة علامة التبويب المقابلة من صفحتك الرئيسية.</string>
 </resources>

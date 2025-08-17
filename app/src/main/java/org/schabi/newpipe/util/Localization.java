@@ -127,14 +127,13 @@ public final class Localization {
     }
 
     public static String localizeNumber(final double number) {
-        final NumberFormat nf = NumberFormat.getInstance(getAppLocale());
-        return nf.format(number);
+        return NumberFormat.getInstance(getAppLocale()).format(number);
     }
 
     public static String formatDate(@NonNull final OffsetDateTime offsetDateTime) {
         return DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
-                .withLocale(getAppLocale()).format(offsetDateTime
-                        .atZoneSameInstant(ZoneId.systemDefault()));
+            .withLocale(getAppLocale())
+            .format(offsetDateTime.atZoneSameInstant(ZoneId.systemDefault()));
     }
 
     @SuppressLint("StringFormatInvalid")
@@ -191,14 +190,20 @@ public final class Localization {
 
         final double value = (double) count;
         if (count >= 1000000000) {
-            return localizeNumber(round(value / 1000000000))
-                    + context.getString(R.string.short_billion);
+            final double shortenedValue = value / 1000000000;
+            final int scale = shortenedValue >= 100 ? 0 : 1;
+            return context.getString(R.string.short_billion,
+                    localizeNumber(round(shortenedValue, scale)));
         } else if (count >= 1000000) {
-            return localizeNumber(round(value / 1000000))
-                    + context.getString(R.string.short_million);
+            final double shortenedValue = value / 1000000;
+            final int scale = shortenedValue >= 100 ? 0 : 1;
+            return context.getString(R.string.short_million,
+                    localizeNumber(round(shortenedValue, scale)));
         } else if (count >= 1000) {
-            return localizeNumber(round(value / 1000))
-                    + context.getString(R.string.short_thousand);
+            final double shortenedValue = value / 1000;
+            final int scale = shortenedValue >= 100 ? 0 : 1;
+            return context.getString(R.string.short_thousand,
+                    localizeNumber(round(shortenedValue, scale)));
         } else {
             return localizeNumber(value);
         }
@@ -384,9 +389,10 @@ public final class Localization {
      *         {@code parsed != null} and the relevant setting is enabled, {@code textual} will
      *         be appended to the returned string for debugging purposes.
      */
+    @Nullable
     public static String relativeTimeOrTextual(@Nullable final Context context,
                                                @Nullable final DateWrapper parsed,
-                                               final String textual) {
+                                               @Nullable final String textual) {
         if (parsed == null) {
             return textual;
         } else if (DEBUG && context != null && PreferenceManager
@@ -411,8 +417,8 @@ public final class Localization {
         }
     }
 
-    private static double round(final double value) {
-        return new BigDecimal(value).setScale(1, RoundingMode.HALF_UP).doubleValue();
+    private static double round(final double value, final int scale) {
+        return new BigDecimal(value).setScale(scale, RoundingMode.HALF_UP).doubleValue();
     }
 
     private static String getQuantity(@NonNull final Context context,

@@ -176,9 +176,6 @@
     <string name="video">भिडियो</string>
     <string name="audio">अडियो</string>
     <string name="retry">पुन: प्रयास</string>
-    <string name="short_thousand">हजार</string>
-    <string name="short_million">करोड</string>
-    <string name="short_billion">अर्ब</string>
     <string name="no_subscribers">कुनै सदस्यहरू छैनन्</string>
     <plurals name="subscribers">
         <item quantity="one">%s सदस्य</item>

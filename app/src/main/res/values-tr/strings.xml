@@ -88,9 +88,6 @@
     <string name="disabled">Devre dışı</string>
     <string name="your_comment">Yorumunuz (İngilizce):</string>
     <string name="error_details_headline">Ayrıntılar:</string>
-    <string name="short_thousand">b</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">M</string>
     <string name="msg_popup_permission">Bu izin, açılır pencere kipinde
 \naçmak için gereklidir</string>
     <string name="title_activity_recaptcha">reCAPTCHA formu</string>
@@ -164,9 +161,9 @@
     <string name="player_unrecoverable_failure">Kurtarılamayan oynatıcı hatası oluştu</string>
     <string name="player_recoverable_failure">Oynatıcı hatasından kurtarılıyor</string>
     <string name="main_page_content">Ana sayfanın içeriği</string>
-    <string name="blank_page_summary">Boş Sayfa</string>
-    <string name="kiosk_page_summary">Kiosk Sayfası</string>
-    <string name="channel_page_summary">Kanal Sayfası</string>
+    <string name="blank_page_summary">Boş sayfa</string>
+    <string name="kiosk_page_summary">Kiosk sayfası</string>
+    <string name="channel_page_summary">Kanal sayfası</string>
     <string name="select_a_channel">Kanal seçin</string>
     <string name="no_channel_subscribed_yet">Henüz kanal aboneliği yok</string>
     <string name="select_a_kiosk">Kiosk seçin</string>
@@ -828,4 +825,8 @@
     <string name="feed_group_page_summary">Kanal küme sayfası</string>
     <string name="no_feed_group_created_yet">Besleme kümesi oluşturulmadı</string>
     <string name="channel_tab_likes">Beğeni</string>
+    <string name="search_with_service_name">%1$s İle Ara</string>
+    <string name="search_with_service_name_and_filter">%1$s İle Ara (%2$s)</string>
+    <string name="migration_info_6_7_title">SoundCloud Top 50 sayfası kaldırıldı</string>
+    <string name="migration_info_6_7_message">SoundCloud, özgün Top 50 listesini artık yayınlamıyor. İlgili sekme ana sayfanızdan kaldırıldı.</string>
 </resources>

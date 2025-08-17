@@ -287,9 +287,9 @@
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Retry</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">B</string>
+    <string name="short_thousand">%sK</string>
+    <string name="short_million">%sM</string>
+    <string name="short_billion">%sB</string>
     <string name="drawer_header_description">Toggle service, currently selected:</string>
     <!--Zero don't get selected (in some languages) as it is not a "special case" for android-->
     <string name="no_subscribers">No subscribers</string>
@@ -883,4 +883,10 @@
         <item quantity="one">Importing %d subscription…</item>
         <item quantity="other">Importing %d subscriptions…</item>
     </plurals>
+    <string name="migration_info_7_8_title">YouTube combined trending removed</string>
+    <string name="migration_info_7_8_message">YouTube has discontinued the combined trending page as of 21st July 2025. NewPipe replaced the default trending page with the trending livestreams.\n\nYou can also select different trending pages in \"Settings > Content > Content of main page\".</string>
+    <string name="trending_gaming">Gaming trends</string>
+    <string name="trending_podcasts">Trending podcasts</string>
+    <string name="trending_movies">Trending movies and shows</string>
+    <string name="trending_music">Trending music</string>
 </resources>

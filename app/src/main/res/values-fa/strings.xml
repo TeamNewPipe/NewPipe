@@ -148,9 +148,6 @@
     <string name="error_occurred_detail">خطایی رخ داد: %1$s</string>
     <string name="no_streams_available_download">جریانی برای بارگیری در دسترس نیست</string>
     <string name="search_no_results">بدون نتیجه</string>
-    <string name="short_thousand">K</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">B</string>
     <plurals name="subscribers">
         <item quantity="one">%s مشترک</item>
         <item quantity="other">%s مشترک</item>

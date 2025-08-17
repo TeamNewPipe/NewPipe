@@ -245,7 +245,6 @@
     <string name="peertube_instance_url_summary">உம் அபிமான பியர்டியூப் நிகழ்வுகளைத் தேர்ந்தெடு</string>
     <string name="content_language_title">உள்ளடக்க இயல்பிருப்பு மொழி</string>
     <string name="resume_on_audio_focus_gain_title">இயக்குதலைத் மறுதொடர்</string>
-    <string name="short_billion">நி</string>
     <string name="peertube_instance_add_exists">நிகழ்வு ஏற்கனவே உள்ளது</string>
     <string name="youtube_restricted_mode_enabled_title">யூடியூபின் \"கட்டுப்பாடு பயன்முறை\"ஐ இயக்கு</string>
     <string name="songs">பாடல்கள்</string>
@@ -260,8 +259,6 @@
     <string name="info_labels">என்ன:\\nகோரிக்கை:\\nஉள்ளடக்க மொழி:\\nஉள்ளடக்க நாடு:\\nசெயலி மொழி:\\nசேவை:\\nGMT நேரம்:\\nசிப்பம்:\\nபதிப்பு:\\nOS பதிப்பு:</string>
     <string name="detail_thumbnail_view_description">காணொளியை இயக்கு, காலவளவு:</string>
     <string name="comments_tab_description">கருத்தளிப்புகள்</string>
-    <string name="short_thousand">ஆ</string>
-    <string name="short_million">ப.ல</string>
     <string name="crash_the_player">இயக்கியைச் சிதை</string>
     <string name="enable_playback_state_lists_summary">பட்டியல்களில் இயக்கக குறியட நிலைகாட்டிகளைக் காட்டு</string>
     <string name="start_main_player_fullscreen_summary">துணையியக்கியில் காணொளிகளை துவக்காதே, ஆனால் தானாக சுழற்றல் பூட்டப்பட்டிருந்தால் நேரடியாக முழுதிரைக்குத் திரும்பு. முழுதிரையை வெளியேறி நீங்கள் இன்னும் துணையியக்கியை அணுகலாம்</string>

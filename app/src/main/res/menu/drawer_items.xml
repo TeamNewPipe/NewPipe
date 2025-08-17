@@ -2,5 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:id="@+id/menu_services_group" />
     <group android:id="@+id/menu_tabs_group" />
+    <group android:id="@+id/menu_kiosks_group" />
     <group android:id="@+id/menu_options_about_group" />
 </menu>

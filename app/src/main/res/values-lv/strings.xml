@@ -136,9 +136,6 @@
     </plurals>
     <string name="no_subscribers">Nav abonamentu</string>
     <string name="drawer_header_description">Izvēlaties pakalpojumu, šobrīd izvēlēts:</string>
-    <string name="short_billion">B</string>
-    <string name="short_million">M</string>
-    <string name="short_thousand">k</string>
     <string name="retry">Atkārtot</string>
     <string name="audio">Audio</string>
     <string name="video">Video</string>

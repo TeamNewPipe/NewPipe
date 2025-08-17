@@ -57,7 +57,7 @@
     <string name="msg_name">Jméno souboru</string>
     <string name="msg_threads">Vlákna</string>
     <string name="pause">Zastavit</string>
-    <string name="delete">Smazat</string>
+    <string name="delete">Odstranit</string>
     <string name="start">Start</string>
     <string name="retry">Zkusit znovu</string>
     <string name="video">Video</string>
@@ -83,9 +83,7 @@
     <string name="no_available_dir">Určete prosím složku pro stahování později v nastavení</string>
     <string name="info_labels">Co:\\nŽádost:\\nJazyk obsahu:\\nZemě obsahu:\\nJazyk aplikace:\\nSlužba:\\nČas GMT:\\nBalíček:\\nVerze:\\nVerze OS:</string>
     <string name="all">Vše</string>
-    <string name="short_thousand">tis.</string>
     <string name="open_in_popup_mode">Otevřít ve vyskakovacím okně</string>
-    <string name="short_million">mil.</string>
     <string name="msg_popup_permission">Toto oprávnění je vyžadováno
 \npro otevření ve vyskakovacím okně</string>
     <string name="use_external_video_player_summary">Odstraňuje zvuk v některých rozlišeních</string>
@@ -124,7 +122,6 @@
     <string name="notification_channel_description">Oznámení pro NewPipe přehrávač</string>
     <string name="search_no_results">Žádné výsledky</string>
     <string name="empty_list_subtitle">Je tu sranda jak v márnici</string>
-    <string name="short_billion">mld.</string>
     <string name="no_subscribers">Žádní odběratelé</string>
     <plurals name="subscribers">
         <item quantity="one">%s odběratel</item>
@@ -234,8 +231,8 @@
     <string name="add_to_playlist">Přidat do playlistu</string>
     <string name="set_as_playlist_thumbnail">Nastavit jako náhled playlistu</string>
     <string name="bookmark_playlist">Přidat playlist do záložek</string>
-    <string name="unbookmark_playlist">Smazat záložku</string>
-    <string name="delete_playlist_prompt">Smazat tento playlist\?</string>
+    <string name="unbookmark_playlist">Odstranit záložku</string>
+    <string name="delete_playlist_prompt">Odstranit tento playlist?</string>
     <string name="playlist_creation_success">Playlist vytvořen</string>
     <string name="playlist_add_stream_success">V playlistu</string>
     <string name="playlist_thumbnail_change_success">Náhled playlistu změněn.</string>
@@ -411,9 +408,9 @@
     <string name="enable_playback_state_lists_summary">Zobrazit pozici přehrávání v seznamech</string>
     <string name="watch_history_states_deleted">Pozice playbacku smazány</string>
     <string name="error_timeout">Timeout spojení</string>
-    <string name="clear_playback_states_title">Smazat pozice playbacku</string>
-    <string name="clear_playback_states_summary">Smazat všechny pozice playbacku</string>
-    <string name="delete_playback_states_alert">Smazat všechny pozice playbacku\?</string>
+    <string name="clear_playback_states_title">Vymazat pozice přehrávání</string>
+    <string name="clear_playback_states_summary">Vymaže všechny pozice přehrávání</string>
+    <string name="delete_playback_states_alert">Vymazat všechny pozice přehrávání?</string>
     <string name="drawer_header_description">Přepnout službu, právě vybráno:</string>
     <string name="no_one_watching">Nikdo nesleduje</string>
     <plurals name="watching">
@@ -444,8 +441,8 @@
     <string name="recovering">obnovuji</string>
     <string name="error_download_resource_gone">Toto stahování nelze obnovit</string>
     <string name="choose_instance_prompt">Vyberte instanci</string>
-    <string name="clear_download_history">Smazat historii stahování</string>
-    <string name="delete_downloaded_files">Smazat stažené soubory</string>
+    <string name="clear_download_history">Vymazat historii stahování</string>
+    <string name="delete_downloaded_files">Odstranit stažené soubory</string>
     <string name="permission_display_over_apps">Souhlasit se zobrazením přes jiné aplikace</string>
     <string name="app_language_title">Jazyk aplikace</string>
     <string name="systems_language">Jazyk systému</string>
@@ -488,7 +485,7 @@
         <item quantity="other">%d vybráno</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Prázdné jméno skupiny</string>
-    <string name="feed_group_dialog_delete_message">Přejete si smazat tuto skupinu\?</string>
+    <string name="feed_group_dialog_delete_message">Přejete si odstranit tuto skupinu?</string>
     <string name="feed_create_new_group_button_title">Nová</string>
     <string name="settings_category_feed_title">Novinky</string>
     <string name="feed_update_threshold_title">Limit aktualizace novinek</string>
@@ -687,7 +684,7 @@
     <string name="streams_notifications_interval_title">Frekvence kontroly</string>
     <string name="any_network">Jakákoli síť</string>
     <string name="streams_notifications_network_title">Požadované síťové připojení</string>
-    <string name="delete_downloaded_files_confirm">Smazat všechny stažené soubory z disku\?</string>
+    <string name="delete_downloaded_files_confirm">Odstranit všechny stažené soubory z disku?</string>
     <string name="you_successfully_subscribed">Objednali jste si nyní tento kanál</string>
     <string name="toggle_all">Všechny přepnout</string>
     <string name="streams_notification_channel_name">Nové streamy</string>
@@ -844,4 +841,6 @@
     <string name="search_with_service_name">Hledat %1$s</string>
     <string name="search_with_service_name_and_filter">Hledat %1$s (%2$s)</string>
     <string name="channel_tab_likes">Líbí se</string>
+    <string name="migration_info_6_7_title">Stránka SoundCloud Top 50 odstraněna</string>
+    <string name="migration_info_6_7_message">SoundCloud zrušil původní žebříčky Top 50. Příslušná karta byla odstraněna z vaší hlavní stránky.</string>
 </resources>
