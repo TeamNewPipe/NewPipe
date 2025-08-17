@@ -219,8 +219,6 @@
     <string name="create">Aanmaken</string>
     <string name="dismiss">Sluiten</string>
     <string name="rename">Naam wijzigen</string>
-    <string name="title_last_played">Laatst afgespeeld</string>
-    <string name="title_most_played">Meest afgespeeld</string>
     <string name="always_ask_open_action">Altijd vragen</string>
     <string name="create_playlist">Nieuwe afspeellijst</string>
     <string name="rename_playlist">Naam wijzigen</string>

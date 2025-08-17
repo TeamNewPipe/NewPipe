@@ -403,7 +403,6 @@
     <string name="right_gesture_control_title">اجراء الإيماءة اليمنى</string>
     <string name="settings_file_charset_title">الرموز المسموح بها في أسماء الملفات</string>
     <string name="audio_track_name">%1$s %2$s</string>
-    <string name="title_last_played">آخر ما تم تشغيله</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">استخدم دائمًا الحل البديل لإعداد سطح إخراج فيديو ExoPlayer</string>
     <string name="next_stream">البث التالي</string>
     <string name="disable_media_tunneling_automatic_info">تم تعطيل نفق وسائل الإعلام عن طريق التقصير على جهازك لأن نموذج جهازك معروف بأنه لا يدعمه.</string>
@@ -493,7 +492,6 @@
     <string name="search_showing_result_for">عرض نتائج ل: %s</string>
     <string name="open_with">افتح باستخدام</string>
     <string name="delete_item_search_history">هل تريد حذف هذا العنصر من سجل البحث؟</string>
-    <string name="title_most_played">الأكثر تشغيلا</string>
     <string name="show_original_time_ago_title">عرض الوقت الأصلي على العناصر</string>
     <string name="import_from">استعادة مِن</string>
     <string name="default_resolution_title">الدقة الافتراضية</string>

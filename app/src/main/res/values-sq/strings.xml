@@ -223,8 +223,6 @@
     <string name="blank_page_summary">Faqe Bosh</string>
     <string name="main_page_content_summary">Cilat tab-e shfaqen në faqen kryesore</string>
     <string name="main_page_content">Përmbajtja e faqes kryesore</string>
-    <string name="title_most_played">Më të Luajturat</string>
-    <string name="title_last_played">Luajtur së Fundmi</string>
     <string name="delete_item_search_history">Doni ta fshini këtë objekt nga historiku i kërkimeve\?</string>
     <string name="title_activity_history">Historiku</string>
     <string name="action_history">Historiku</string>

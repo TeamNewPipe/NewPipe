@@ -91,7 +91,6 @@
     <string name="minimize_on_exit_none_description">Ulac</string>
     <string name="msg_copied">Yettwanɣel ɣef afus</string>
     <string name="playlists">Tibdarin n tɣuri</string>
-    <string name="title_last_played">Aneggaru yettwaslekmen</string>
     <string name="autoplay_title">Taɣuri tawurmant</string>
     <string name="error_snackbar_action">Aneqqis</string>
     <string name="download">Sider</string>
@@ -212,7 +211,6 @@
     <string name="more_options">Ugar n tnefrunin</string>
     <string name="share_dialog_title">Bḍu d</string>
     <string name="error_details_headline">Talqayt :</string>
-    <string name="title_most_played">Tid yettwaɣran s waṭas</string>
     <string name="tab_choose">Fren iccer</string>
     <string name="metadata_language">Tutlayt</string>
     <string name="unknown_content">[Arussin]</string>

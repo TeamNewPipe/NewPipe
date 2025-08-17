@@ -245,8 +245,6 @@
     <string name="override_current_data">此操作会覆盖当前设置。</string>
     <string name="show_info">显示信息</string>
     <string name="tab_bookmarks">收藏</string>
-    <string name="title_last_played">最近观看</string>
-    <string name="title_most_played">最多观看</string>
     <string name="always_ask_open_action">每次询问</string>
     <string name="create_playlist">新建播放列表</string>
     <string name="rename_playlist">重命名</string>

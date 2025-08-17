@@ -238,8 +238,6 @@
     <string name="dismiss">Baztertu</string>
     <string name="rename">Aldatu izena</string>
     <string name="one_item_deleted">Elementu 1 ezabatuta.</string>
-    <string name="title_last_played">Jotako azkena</string>
-    <string name="title_most_played">Ikusiena</string>
     <string name="export_complete_toast">Esportatuta</string>
     <string name="import_complete_toast">Inportatuta</string>
     <string name="no_valid_zip_file">Ez da baliozko ZIP fitxategia</string>

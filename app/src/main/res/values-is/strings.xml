@@ -263,8 +263,6 @@
     <string name="title_activity_history">Ferill</string>
     <string name="action_history">Ferill</string>
     <string name="read_full_license">Lesa leyfi</string>
-    <string name="title_last_played">Nýlega spilað</string>
-    <string name="title_most_played">Mest spilað</string>
     <string name="main_page_content">Aðalsíða</string>
     <string name="export_complete_toast">Flutt út</string>
     <string name="import_complete_toast">Flutt inn</string>

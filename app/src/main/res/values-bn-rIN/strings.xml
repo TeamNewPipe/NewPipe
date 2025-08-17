@@ -233,8 +233,6 @@
     <string name="play_queue_audio_settings">অডিও সেটিং</string>
     <string name="play_queue_stream_detail">বিবরণ</string>
     <string name="local">স্থানীয়</string>
-    <string name="title_most_played">সবথেকে বেশি চালানো</string>
-    <string name="title_last_played">শেষ চালানো</string>
     <string name="give_back">ফিরিয়ে দিন</string>
     <string name="contribution_title">যোগদান</string>
     <string name="title_activity_about">নিউ পাইপ এর সম্বন্ধে</string>

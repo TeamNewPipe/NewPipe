@@ -129,7 +129,7 @@ class DatabaseMigrationTest {
         )
 
         val migratedDatabaseV3 = getMigratedDatabase()
-        val listFromDB = migratedDatabaseV3.streamDAO().all.blockingFirst()
+        val listFromDB = migratedDatabaseV3.streamDAO().getAll().blockingFirst()
 
         // Only expect 2, the one with the null url will be ignored
         assertEquals(2, listFromDB.size)
