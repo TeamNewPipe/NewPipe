@@ -24,6 +24,8 @@ import org.schabi.newpipe.streams.io.StoredFileHelper;
 import us.shandian.giga.util.Utility;
 
 import static org.schabi.newpipe.BuildConfig.DEBUG;
+import static us.shandian.giga.get.DownloadMission.ERROR_NOTHING;
+import static us.shandian.giga.get.DownloadMission.ERROR_PROGRESS_LOST;
 
 public class DownloadManager {
     private static final String TAG = DownloadManager.class.getSimpleName();
@@ -149,10 +151,29 @@ public class DownloadManager {
             if (sub.getName().equals(".tmp")) continue;
 
             DownloadMission mis = Utility.readFromFile(sub);
-            if (mis == null || mis.isFinished() || mis.hasInvalidStorage()) {
+            if (mis == null) {
                 //noinspection ResultOfMethodCallIgnored
                 sub.delete();
                 continue;
+            }
+
+            // DON'T delete missions that are truly finished - let them be moved to finished list
+            if (mis.isFinished()) {
+                // Move to finished missions instead of deleting
+                setFinished(mis);
+                //noinspection ResultOfMethodCallIgnored
+                sub.delete();
+                continue;
+            }
+
+            // DON'T delete missions with storage issues - try to recover them
+            if (mis.hasInvalidStorage() && mis.errCode != ERROR_PROGRESS_LOST) {
+                // Only delete if it's truly unrecoverable (not just progress lost)
+                if (mis.storage == null && mis.errCode != ERROR_PROGRESS_LOST) {
+                    //noinspection ResultOfMethodCallIgnored
+                    sub.delete();
+                    continue;
+                }
             }
 
             mis.threads = new Thread[0];
@@ -163,16 +184,13 @@ public class DownloadManager {
                 exists = !mis.storage.isInvalid() && mis.storage.existsAsFile();
             } catch (Exception ex) {
                 Log.e(TAG, "Failed to load the file source of " + mis.storage.toString(), ex);
-                mis.storage.invalidate();
+                // Don't invalidate storage immediately - try to recover first
                 exists = false;
             }
 
             if (mis.isPsRunning()) {
                 if (mis.psAlgorithm.worksOnSameFile) {
                     // Incomplete post-processing results in a corrupted download file
-                    // because the selected algorithm works on the same file to save space.
-                    // the file will be deleted if the storage API
-                    // is Java IO (avoid showing the "Save as..." dialog)
                     if (exists && mis.storage.isDirect() && !mis.storage.delete())
                         Log.w(TAG, "Unable to delete incomplete download file: " + sub.getPath());
                 }
@@ -181,10 +199,11 @@ public class DownloadManager {
                 mis.errCode = DownloadMission.ERROR_POSTPROCESSING_STOPPED;
             } else if (!exists) {
                 tryRecover(mis);
-
-                // the progress is lost, reset mission state
-                if (mis.isInitialized())
-                    mis.resetState(true, true, DownloadMission.ERROR_PROGRESS_LOST);
+                // Keep the mission even if recovery fails - don't reset to ERROR_PROGRESS_LOST
+                // This allows user to see the failed download and potentially retry
+                if (mis.isInitialized() && mis.errCode == ERROR_NOTHING) {
+                    mis.resetState(true, true, ERROR_PROGRESS_LOST);
+                }
             }
 
             if (mis.psAlgorithm != null) {
@@ -446,7 +465,7 @@ public class DownloadManager {
                     continue;
 
                 resumeMission(mission);
-                if (mission.errCode != DownloadMission.ERROR_NOTHING) continue;
+                if (mission.errCode != ERROR_NOTHING) continue;
 
                 if (mPrefQueueLimit) return true;
                 flag = true;
@@ -508,6 +527,15 @@ public class DownloadManager {
         synchronized (this) {
             for (DownloadMission mission : mMissionsPending) mission.maxRetry = mPrefMaxRetry;
         }
+    }
+
+    public boolean canRecoverMission(DownloadMission mission) {
+        if (mission == null) return false;
+
+        // Can recover missions with progress lost or storage issues
+        return mission.errCode == ERROR_PROGRESS_LOST ||
+                mission.storage == null ||
+                !mission.storage.existsAsFile();
     }
 
     public MissionState checkForExistingMission(StoredFileHelper storage) {
@@ -582,8 +610,16 @@ public class DownloadManager {
                 ArrayList<Mission> finished = new ArrayList<>(mMissionsFinished);
                 List<Mission> remove = new ArrayList<>(hidden);
 
-                // hide missions (if required)
-                remove.removeIf(mission -> pending.remove(mission) || finished.remove(mission));
+                // Don't hide recoverable missions
+                remove.removeIf(mission -> {
+                    if (mission instanceof DownloadMission) {
+                        DownloadMission dm = (DownloadMission) mission;
+                        if (canRecoverMission(dm)) {
+                            return false; // Don't remove recoverable missions
+                        }
+                    }
+                    return pending.remove(mission) || finished.remove(mission);
+                });
 
                 int fakeTotal = pending.size();
                 if (fakeTotal > 0) fakeTotal++;
