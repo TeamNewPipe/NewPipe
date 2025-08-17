@@ -24,7 +24,10 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.text.InlineTextContent
+import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.OpenInNew
 import androidx.compose.material.icons.automirrored.filled.PlaylistPlay
 import androidx.compose.material.icons.filled.Tune
 import androidx.compose.material3.BottomSheetDefaults
@@ -54,6 +57,8 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.Placeholder
+import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -379,13 +384,14 @@ fun LongPressMenuHeader(
                     Text(
                         text = subtitle,
                         style = MaterialTheme.typography.bodyMedium,
+                        inlineContent = getSubtitleInlineContent(),
                         modifier = if (onUploaderClick == null) {
                             Modifier
                         } else {
                             Modifier.clickable(onClick = onUploaderClick)
                         }
                             .fillMaxWidth()
-                            .fadedMarquee(edgeWidth = 12.dp)
+                            .fadedMarquee(edgeWidth = 12.dp),
                     )
                 }
             }
@@ -413,6 +419,9 @@ fun getSubtitleAnnotatedString(
             } else {
                 append(item.uploader)
             }
+            append(" ")
+            // see getSubtitleInlineContent()
+            appendInlineContent("open_in_new", "↗")
         }
         shouldAddSeparator = true
     } else if (!item.uploader.isNullOrBlank()) {
@@ -440,6 +449,27 @@ fun getSubtitleAnnotatedString(
         append(viewCount)
     }
 }
+
+/**
+ * [getSubtitleAnnotatedString] returns a string that might make use of the OpenInNew icon, and we
+ * provide it to [Text] through its `inlineContent` parameter.
+ */
+@Composable
+fun getSubtitleInlineContent() = mapOf(
+    "open_in_new" to InlineTextContent(
+        placeholder = Placeholder(
+            width = MaterialTheme.typography.bodyMedium.fontSize,
+            height = MaterialTheme.typography.bodyMedium.fontSize,
+            placeholderVerticalAlign = PlaceholderVerticalAlign.Center,
+        )
+    ) {
+        Icon(
+            imageVector = Icons.AutoMirrored.Filled.OpenInNew,
+            contentDescription = null,
+            tint = MaterialTheme.customColors.onSurfaceVariantLink,
+        )
+    }
+)
 
 @Composable
 fun LongPressMenuButton(
