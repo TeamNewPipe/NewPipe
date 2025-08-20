@@ -128,12 +128,14 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     private static final int POPUP_MENU_ID_AUDIO_TRACK = 70;
     private static final int POPUP_MENU_ID_PLAYBACK_SPEED = 79;
     private static final int POPUP_MENU_ID_CAPTION = 89;
+    private static final int POPUP_MENU_ID_SLEEP_TIMER = 90; // TODO is 90 still available?
 
     protected boolean isSomePopupMenuVisible = false;
     private PopupMenu qualityPopupMenu;
     private PopupMenu audioTrackPopupMenu;
     protected PopupMenu playbackSpeedPopupMenu;
     private PopupMenu captionPopupMenu;
+    private PopupMenu sleepTimerPopupMenu;
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -186,6 +188,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         audioTrackPopupMenu = new PopupMenu(themeWrapper, binding.audioTrackTextView);
         playbackSpeedPopupMenu = new PopupMenu(context, binding.playbackSpeed);
         captionPopupMenu = new PopupMenu(themeWrapper, binding.captionTextView);
+        sleepTimerPopupMenu = new PopupMenu(themeWrapper, binding.sleepTimer);
+        buildSleepTimerMenu();
 
         binding.progressBarLoadingPanel.getIndeterminateDrawable()
                 .setColorFilter(new PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY));
@@ -204,6 +208,9 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.audioTrackTextView.setOnClickListener(
                 makeOnClickListener(this::onAudioTracksClicked));
         binding.playbackSpeed.setOnClickListener(makeOnClickListener(this::onPlaybackSpeedClicked));
+        binding.sleepTimer.setOnClickListener(makeOnClickListener(this::onSleepTimerClicked));
+        binding.sleepTimerCancel.setOnClickListener(
+                makeOnClickListener(this::onSleepTimerCancelClicked));
 
         binding.playbackSeekBar.setOnSeekBarChangeListener(this);
         binding.captionTextView.setOnClickListener(makeOnClickListener(this::onCaptionClicked));
@@ -1239,6 +1246,49 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         }
     }
 
+    private void buildSleepTimerMenu() {
+        if (sleepTimerPopupMenu == null) {
+            return;
+        }
+        qualityPopupMenu.getMenu().removeGroup(POPUP_MENU_ID_SLEEP_TIMER);
+
+        final Resources res = context.getResources();
+        sleepTimerPopupMenu.getMenu().add(POPUP_MENU_ID_SLEEP_TIMER, 0, 0,
+                res.getString(R.string.sleep_timer_popup_title));
+
+        final String[] descriptions = context.getResources().getStringArray(
+                R.array.sleep_timer_description);
+        final int[] values = context.getResources().getIntArray(
+                R.array.sleep_timer_value);
+        for (int i = 0; i < descriptions.length && i < values.length; i++) {
+            String description = "";
+            try {
+                final int hours = values[i] / 60;
+                final int minutes = values[i] % 60;
+                if (hours != 0) {
+                    description += String.format(res.getQuantityString(R.plurals.hours, hours),
+                            hours);
+                }
+
+                if (minutes != 0) {
+                    if (hours != 0) {
+                        description += " ";
+                    }
+                    description += String.format(res.getQuantityString(R.plurals.minutes, minutes),
+                            minutes);
+                }
+            } catch (final Resources.NotFoundException ignored) {
+                // if this happens, the translation is missing,
+                // and the english string will be displayed instead
+                description = descriptions[i];
+            }
+            sleepTimerPopupMenu.getMenu().add(POPUP_MENU_ID_SLEEP_TIMER, i + 1, i + 1, description);
+        }
+
+        sleepTimerPopupMenu.setOnMenuItemClickListener(this);
+        sleepTimerPopupMenu.setOnDismissListener(this);
+    }
+
     protected abstract void onPlaybackSpeedClicked();
 
     private void onQualityClicked() {
@@ -1253,6 +1303,19 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     private void onAudioTracksClicked() {
         audioTrackPopupMenu.show();
         isSomePopupMenuVisible = true;
+    }
+
+    private void onSleepTimerClicked() {
+        sleepTimerPopupMenu.show();
+        isSomePopupMenuVisible = true;
+    }
+
+    private void onSleepTimerCancelClicked() {
+        player.cancelSleepTimer();
+
+        binding.sleepTimerCancel.setVisibility(View.INVISIBLE);
+        binding.sleepTimerTextView.setVisibility(View.INVISIBLE);
+        binding.sleepTimerTextView.setText("0:00");
     }
 
     /**
@@ -1278,7 +1341,11 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
             player.setPlaybackSpeed(speed);
             binding.playbackSpeed.setText(formatSpeed(speed));
+        } else if (menuItem.getGroupId() == POPUP_MENU_ID_SLEEP_TIMER) {
+            onSleepTimerItemClick(menuItem);
+            return true;
         }
+
 
         return false;
     }
@@ -1322,6 +1389,24 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         player.setAudioTrack(newAudioTrack);
 
         binding.audioTrackTextView.setText(menuItem.getTitle());
+    }
+
+    private void onSleepTimerItemClick(@NonNull final MenuItem menuItem) {
+        final int menuItemIndex = menuItem.getItemId();
+        if (menuItemIndex == 0) {
+            return;
+        }
+
+        final int index = menuItemIndex - 1;
+        final int sleepTime = context.getResources().getIntArray(R.array.sleep_timer_value)[index];
+        final long remainingTimeHours = sleepTime / 60;
+        final long remainingTimeMinutes = sleepTime % 60;
+        final String text = String.format("%d:%02d", remainingTimeHours, remainingTimeMinutes);
+
+        player.setSleepTimer(sleepTime);
+        binding.sleepTimerCancel.setVisibility(View.VISIBLE);
+        binding.sleepTimerTextView.setVisibility(View.VISIBLE);
+        binding.sleepTimerTextView.setText(text);
     }
 
     /**
@@ -1561,6 +1646,32 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     }
     //endregion
 
+    @Override
+    public void onSleepTimerUpdate(final long remainingTime) {
+        if (remainingTime == 0) {
+            binding.sleepTimerTextView.post(new Runnable() {
+                public void run() {
+                    player.pause();
+                    binding.sleepTimerCancel.setVisibility(View.INVISIBLE);
+                    binding.sleepTimerTextView.setVisibility(View.INVISIBLE);
+                    binding.sleepTimerTextView.setText("0:00");
+                }
+            });
+            return;
+        }
+
+        final long remainingTimeHours = remainingTime / 60;
+        final long remainingTimeMinutes = remainingTime % 60;
+        final String text = String.format("%d:%02d", remainingTimeHours, remainingTimeMinutes);
+
+        // Since this callback can/will be called from a different thread, we need to run set
+        // the code in the UI thread
+        binding.sleepTimerTextView.post(new Runnable() {
+            public void run() {
+                binding.sleepTimerTextView.setText(text);
+            }
+        });
+    }
 
     /*//////////////////////////////////////////////////////////////////////////
     // SurfaceHolderCallback helpers

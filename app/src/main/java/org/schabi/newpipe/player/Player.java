@@ -122,6 +122,7 @@ import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.StreamTypeUtil;
 import org.schabi.newpipe.util.image.CoilHelper;
 
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -262,6 +263,9 @@ public final class Player implements PlaybackListener, Listener {
     private final SharedPreferences prefs;
     @NonNull
     private final HistoryRecordManager recordManager;
+
+    java.util.Timer sleepTimer;
+    java.time.Instant sleepTimerEnd;
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -2261,6 +2265,44 @@ public final class Player implements PlaybackListener, Listener {
         reloadPlayQueueManager();
     }
 
+
+    public void setSleepTimer(@Nullable final long sleepMinutes) {
+        if (sleepTimer != null) {
+            sleepTimer.cancel();
+            sleepTimer.purge();
+            sleepTimer = null;
+        }
+
+        sleepTimerEnd = java.time.Instant.now().plus(sleepMinutes, ChronoUnit.MINUTES);
+
+        sleepTimer = new java.util.Timer();
+        //final Player thisPlayer = this;
+        final java.util.TimerTask task = new java.util.TimerTask() {
+
+
+            @Override
+            public void run() {
+                if (java.time.Instant.now().compareTo(sleepTimerEnd) >= 0) {
+                    UIs.call(playerUi -> playerUi.onSleepTimerUpdate(0));
+                    cancelSleepTimer();
+                    return;
+                }
+
+                final long remainingMinutes = java.time.Instant.now().until(sleepTimerEnd,
+                        ChronoUnit.MINUTES);
+                UIs.call(playerUi -> playerUi.onSleepTimerUpdate(remainingMinutes + 1));
+            }
+        };
+        sleepTimer.schedule(task, 1000, 1000);
+    }
+
+    public void cancelSleepTimer() {
+        if (sleepTimer != null) {
+            sleepTimer.cancel();
+            sleepTimer.purge();
+            sleepTimer = null;
+        }
+    }
 
     @NonNull
     public Context getContext() {

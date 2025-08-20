@@ -50,6 +50,27 @@
         <item>30000</item>
     </string-array>
 
+    <string-array name="sleep_timer_description">
+        <!-- They are overridden in VideoPlayerUI.java if the translation (minutes, hours) exist.
+        Otherwise this array is picked-->
+        <item>5 minutes</item>
+        <item>10 minutes</item>
+        <item>20 minutes</item>
+        <item>30 minutes</item>
+        <item>45 minutes</item>
+        <item>1 hour</item>
+        <item>2 hours</item>
+    </string-array>
+    <integer-array name="sleep_timer_value">
+        <item>5</item>
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>45</item>
+        <item>60</item>
+        <item>120</item>
+    </integer-array>
+
     <string name="progressive_load_interval_key">progressive_load_interval</string>
     <string name="progressive_load_interval_default_value">64</string>
     <string name="progressive_load_interval_exoplayer_default_value">exoplayer_default</string>

@@ -262,33 +262,145 @@
                     android:layout_height="wrap_content"
                     android:gravity="top"
                     android:visibility="invisible"
-                    tools:ignore="RtlHardcoded"
-                    tools:visibility="visible">
+                    android:orientation="vertical">
 
-                    <org.schabi.newpipe.views.NewPipeTextView
-                        android:id="@+id/resizeTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:layout_marginEnd="8dp"
-                        android:background="?attr/selectableItemBackground"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/player_main_buttons_padding"
-                        android:textColor="@android:color/white"
-                        android:textStyle="bold"
-                        tools:ignore="HardcodedText,RtlHardcoded"
-                        tools:text="FIT" />
-
-                    <FrameLayout
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:id="@+id/secondaryControlsFirstLine"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="3">
+                        android:gravity="top"
+                        tools:ignore="RtlHardcoded">
 
                         <org.schabi.newpipe.views.NewPipeTextView
-                            android:id="@+id/captionTextView"
+                            android:id="@+id/resizeTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="?attr/selectableItemBackground"
+                            android:gravity="center"
+                            android:minWidth="50dp"
+                            android:padding="@dimen/player_main_buttons_padding"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            tools:ignore="HardcodedText,RtlHardcoded"
+                            tools:text="FIT" />
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3">
+
+                            <org.schabi.newpipe.views.NewPipeTextView
+                                android:id="@+id/captionTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="8dp"
+                                android:background="?attr/selectableItemBackground"
+                                android:ellipsize="end"
+                                android:gravity="center|left"
+                                android:lines="1"
+                                android:minWidth="50dp"
+                                android:minHeight="35dp"
+                                android:padding="@dimen/player_main_buttons_padding"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold"
+                                tools:ignore="RelativeOverlap,RtlHardcoded"
+                                tools:text="English" />
+
+                        </FrameLayout>
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/playWithKodi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:contentDescription="@string/play_with_kodi_title"
+                            android:focusable="true"
+                            android:padding="@dimen/player_main_buttons_padding"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_cast"
+                            app:tint="@color/white"
+                            tools:ignore="RtlHardcoded" />
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/openInBrowser"
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:contentDescription="@string/open_in_browser"
+                            android:focusable="true"
+                            android:padding="@dimen/player_main_buttons_padding"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_language"
+                            app:tint="@color/white"
+                            tools:ignore="RtlHardcoded" />
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/share"
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:contentDescription="@string/share"
+                            android:focusable="true"
+                            android:padding="@dimen/player_main_buttons_padding"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_share"
+                            app:tint="@color/white"
+                            tools:ignore="RtlHardcoded" />
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/switchMute"
+                            android:layout_width="wrap_content"
+                            android:layout_height="37dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:contentDescription="@string/mute"
+                            android:focusable="true"
+                            android:padding="@dimen/player_main_buttons_padding"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_volume_off"
+                            app:tint="@color/white"
+                            tools:ignore="RtlHardcoded" />
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/fullScreenButton"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:padding="@dimen/player_main_buttons_padding"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_fullscreen"
+                            android:contentDescription="@string/toggle_fullscreen"
+                            android:visibility="gone"
+                            app:tint="@color/white"
+                            tools:ignore="RtlHardcoded"
+                            tools:visibility="visible" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/secondaryControlsSecondLine"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="top"
+                        tools:ignore="RtlHardcoded">
+
+                        <Space
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1" />
+
+                        <org.schabi.newpipe.views.NewPipeTextView
+                            android:id="@+id/sleepTimerTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:background="?attr/selectableItemBackground"
                             android:ellipsize="end"
                             android:gravity="center|left"
@@ -299,87 +411,39 @@
                             android:textColor="@android:color/white"
                             android:textStyle="bold"
                             tools:ignore="RelativeOverlap,RtlHardcoded"
-                            tools:text="English" />
+                            tools:text="0:25" />
 
-                    </FrameLayout>
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/sleepTimerCancel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:contentDescription="@string/sleep_timer_cancel"
+                            android:focusable="true"
+                            android:padding="@dimen/player_main_buttons_padding"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_alarm_off"
+                            app:tint="@color/white"
+                            android:visibility="invisible"
+                            tools:ignore="RtlHardcoded" />
 
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/playWithKodi"
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:layout_marginEnd="8dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:contentDescription="@string/play_with_kodi_title"
-                        android:focusable="true"
-                        android:padding="@dimen/player_main_buttons_padding"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/ic_cast"
-                        app:tint="@color/white"
-                        tools:ignore="RtlHardcoded" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/openInBrowser"
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:layout_marginEnd="8dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:contentDescription="@string/open_in_browser"
-                        android:focusable="true"
-                        android:padding="@dimen/player_main_buttons_padding"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/ic_language"
-                        app:tint="@color/white"
-                        tools:ignore="RtlHardcoded" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/share"
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:layout_marginEnd="8dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:contentDescription="@string/share"
-                        android:focusable="true"
-                        android:padding="@dimen/player_main_buttons_padding"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/ic_share"
-                        app:tint="@color/white"
-                        tools:ignore="RtlHardcoded" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/switchMute"
-                        android:layout_width="wrap_content"
-                        android:layout_height="37dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:contentDescription="@string/mute"
-                        android:focusable="true"
-                        android:padding="@dimen/player_main_buttons_padding"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/ic_volume_off"
-                        app:tint="@color/white"
-                        tools:ignore="RtlHardcoded" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/fullScreenButton"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:padding="@dimen/player_main_buttons_padding"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/ic_fullscreen"
-                        android:contentDescription="@string/toggle_fullscreen"
-                        android:visibility="gone"
-                        app:tint="@color/white"
-                        tools:ignore="RtlHardcoded"
-                        tools:visibility="visible" />
-
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/sleepTimer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:contentDescription="@string/sleep_timer_set"
+                            android:focusable="true"
+                            android:padding="@dimen/player_main_buttons_padding"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_alarm"
+                            app:tint="@color/white"
+                            tools:ignore="RtlHardcoded" />
+                    </LinearLayout>
                 </LinearLayout>
-
             </LinearLayout>
 
             <LinearLayout

@@ -829,4 +829,7 @@
     <string name="channel_tab_likes">Gefällt mir</string>
     <string name="migration_info_6_7_title">SoundCloud-Top-50-Seite entfernt</string>
     <string name="migration_info_6_7_message">SoundCloud hat die ursprünglichen Top-50-Charts abgeschafft. Der entsprechende Tab wurde von deiner Hauptseite entfernt.</string>
+    <string name="sleep_timer_popup_title">Sleep Timer</string>
+    <string name="sleep_timer_set">Sleep Timer stellen</string>
+    <string name="sleep_timer_cancel">Sleep Timer beenden</string>
 </resources>
