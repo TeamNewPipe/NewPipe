@@ -1,5 +1,8 @@
 package org.schabi.newpipe.ui.theme
 
+// Color.kt is generated using the Material theme builder https://material-foundation.github.io/material-theme-builder/
+// TODO: Update the colors to properly match the existing color scheme + also add colors schemes for other services
+
 import androidx.compose.ui.graphics.Color
 
 val primaryLight = Color(0xFF904A45)

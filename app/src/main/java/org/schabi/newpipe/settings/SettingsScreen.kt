@@ -6,17 +6,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import org.schabi.newpipe.R
+import org.schabi.newpipe.ui.SettingsRoutes
 import org.schabi.newpipe.ui.TextPreference
 
 @Composable
 fun SettingsScreen(
-    onSelectSettingOption: (SettingsScreenKey) -> Unit,
+    onSelectSettingOption: (settingsRoute: SettingsRoutes) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
         TextPreference(
             title = R.string.settings_category_debug_title,
-            onClick = { onSelectSettingOption(SettingsScreenKey.DEBUG) }
+            onClick = { onSelectSettingOption(SettingsRoutes.SettingsDebugRoute) }
         )
         HorizontalDivider(color = Color.Black)
     }
