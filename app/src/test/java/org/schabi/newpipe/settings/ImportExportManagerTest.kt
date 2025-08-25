@@ -25,11 +25,12 @@ import org.schabi.newpipe.streams.io.StoredFileHelper
 import us.shandian.giga.io.FileStream
 import java.io.File
 import java.io.ObjectInputStream
+import java.nio.file.Paths
 import java.util.zip.ZipFile
-import kotlin.io.path.Path
 import kotlin.io.path.createTempDirectory
 import kotlin.io.path.createTempFile
 import kotlin.io.path.deleteIfExists
+import kotlin.io.path.div
 import kotlin.io.path.exists
 import kotlin.io.path.fileSize
 import kotlin.io.path.inputStream
@@ -52,7 +53,7 @@ class ImportExportManagerTest {
 
     @Test
     fun `The settings must be exported successfully in the correct format`() {
-        val db = Path(classloader.getResource("settings/newpipe.db")!!.file)
+        val db = Paths.get(classloader.getResource("settings/newpipe.db")!!.toURI())
         `when`(fileLocator.db).thenReturn(db)
 
         val expectedPreferences = mapOf("such pref" to "much wow")
@@ -87,21 +88,21 @@ class ImportExportManagerTest {
 
     @Test
     fun `Ensuring db directory existence must work`() {
-        val dir = createTempDirectory("newpipe_")
-        Assume.assumeTrue(dir.deleteIfExists())
-        `when`(fileLocator.dbDir).thenReturn(dir)
+        val path = createTempDirectory("newpipe_") / BackupFileLocator.FILE_NAME_DB
+        Assume.assumeTrue(path.parent.deleteIfExists())
+        `when`(fileLocator.db).thenReturn(path)
 
         ImportExportManager(fileLocator).ensureDbDirectoryExists()
-        assertTrue(dir.exists())
+        assertTrue(path.parent.exists())
     }
 
     @Test
     fun `Ensuring db directory existence must work when the directory already exists`() {
-        val dir = createTempDirectory("newpipe_")
-        `when`(fileLocator.dbDir).thenReturn(dir)
+        val path = createTempDirectory("newpipe_") / BackupFileLocator.FILE_NAME_DB
+        `when`(fileLocator.db).thenReturn(path)
 
         ImportExportManager(fileLocator).ensureDbDirectoryExists()
-        assertTrue(dir.exists())
+        assertTrue(path.parent.exists())
     }
 
     @Test
