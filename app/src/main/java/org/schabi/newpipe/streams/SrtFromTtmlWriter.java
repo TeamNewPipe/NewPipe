@@ -54,6 +54,30 @@ public class SrtFromTtmlWriter {
         out.write(text.getBytes(charset));
     }
 
+    /*
+     *   Recursive method to extract text from all nodes
+     *   - This method processes TextNode and <br> tags, recursively
+     *     extracting text from nested tags.
+     *     For example: extract text from nested <span> tags
+     *   - Appends newlines for <br> tags.
+     */
+    private void extractText(final Node node, final StringBuilder text) {
+        if (node instanceof TextNode) {
+            text.append(((TextNode) node).text());
+        } else if (node instanceof Element) {
+            final Element element = (Element) node;
+            // <br> is a self-closing HTML tag used to insert a line break.
+            if (element.tagName().equalsIgnoreCase("br")) {
+                // Add a newline for <br> tags
+                text.append(NEW_LINE);
+            }
+        }
+        // Recursively process child nodes
+        for (final Node child : node.childNodes()) {
+            extractText(child, text);
+        }
+    }
+
     public void build(final SharpStream ttml) throws IOException {
         /*
          * TTML parser with BASIC support
@@ -81,14 +105,8 @@ public class SrtFromTtmlWriter {
         for (final Element paragraph : paragraphList) {
             text.setLength(0);
 
-            for (final Node children : paragraph.childNodes()) {
-                if (children instanceof TextNode) {
-                    text.append(((TextNode) children).text());
-                } else if (children instanceof Element
-                        && ((Element) children).tagName().equalsIgnoreCase("br")) {
-                    text.append(NEW_LINE);
-                }
-            }
+            // Recursively extract text from all child nodes
+            extractText(paragraph, text);
 
             if (ignoreEmptyFrames && text.length() < 1) {
                 continue;
