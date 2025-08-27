@@ -132,7 +132,7 @@ fun LongPressMenu(
             val minButtonWidth = 86.dp
             val buttonHeight = 86.dp
             val headerWidthInButtons = 5 // the header is 5 times as wide as the buttons
-            val buttonsPerRow = (maxWidth / minButtonWidth).toInt()
+            val buttonsPerRow = (this.maxWidth / minButtonWidth).toInt()
 
             // the channel icon goes in the menu header, so do not show a button for it
             val actions = longPressActions.toMutableList()
@@ -476,8 +476,8 @@ fun LongPressMenuButton(
     icon: ImageVector,
     text: String,
     onClick: () -> Unit,
-    enabled: Boolean = true,
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
 ) {
     // TODO possibly make it so that when you long-press on the button, the label appears on-screen
     //  as a small popup, so in case the label text is cut off the users can still read it in full
