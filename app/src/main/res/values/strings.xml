@@ -889,4 +889,7 @@
     <string name="trending_podcasts">Trending podcasts</string>
     <string name="trending_movies">Trending movies and shows</string>
     <string name="trending_music">Trending music</string>
+    <string name="sleep_timer_popup_title">Sleep timer</string>
+    <string name="sleep_timer_set">Set sleep timer</string>
+    <string name="sleep_timer_cancel">Cancel sleep timer</string>
 </resources>

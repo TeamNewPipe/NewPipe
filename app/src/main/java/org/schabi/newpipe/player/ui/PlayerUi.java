@@ -209,4 +209,11 @@ public abstract class PlayerUi {
      */
     public void onVideoSizeChanged(@NonNull final VideoSize videoSize) {
     }
+
+    /**
+     * @param remainingTime the remaining sleep timer time, set to 0 to pause the player and
+     *                      disable the sleep timer
+     */
+    public void onSleepTimerUpdate(final long remainingTime) {
+    }
 }
