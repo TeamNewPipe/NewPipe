@@ -54,18 +54,23 @@ public class SrtFromTtmlWriter {
         out.write(text.getBytes(charset));
     }
 
-    /*
-     *   Recursive method to extract text from all nodes
-     *   - This method processes TextNode and <br> tags, recursively
-     *     extracting text from nested tags.
-     *     For example: extract text from nested <span> tags
-     *   - Appends newlines for <br> tags.
+    // CHECKSTYLE:OFF checkstyle:JavadocStyle
+    // checkstyle does not understand that span tags are inside a code block
+    /**
+     * <p>Recursive method to extract text from all nodes.</p>
+     * <p>
+     *   This method processes {@link TextNode}s and {@code <br>} tags,
+     *   recursively extracting text from nested tags
+     *   (e.g. extracting text from nested {@code <span>} tags).
+     *   Newlines are added for {@code <br>} tags.
+     * </p>
+     * @param node the current node to process
+     * @param text the {@link StringBuilder} to append the extracted text to
      */
     private void extractText(final Node node, final StringBuilder text) {
-        if (node instanceof TextNode) {
-            text.append(((TextNode) node).text());
-        } else if (node instanceof Element) {
-            final Element element = (Element) node;
+        if (node instanceof TextNode textNode) {
+            text.append((textNode).text());
+        } else if (node instanceof Element element) {
             // <br> is a self-closing HTML tag used to insert a line break.
             if (element.tagName().equalsIgnoreCase("br")) {
                 // Add a newline for <br> tags
@@ -77,6 +82,7 @@ public class SrtFromTtmlWriter {
             extractText(child, text);
         }
     }
+    // CHECKSTYLE:ON
 
     public void build(final SharpStream ttml) throws IOException {
         /*
@@ -98,7 +104,7 @@ public class SrtFromTtmlWriter {
         final Elements paragraphList = doc.select("body > div > p");
 
         // check if has frames
-        if (paragraphList.size() < 1) {
+        if (paragraphList.isEmpty()) {
             return;
         }
 
