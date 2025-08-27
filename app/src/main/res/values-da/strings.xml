@@ -303,9 +303,6 @@
     <string name="stop">Stop</string>
     <string name="events">Hændelser</string>
     <string name="empty_list_subtitle">Ikke andet end fårekyllinger her</string>
-    <string name="short_thousand">t</string>
-    <string name="short_million">mio.</string>
-    <string name="short_billion">mia.</string>
     <plurals name="subscribers">
         <item quantity="one">%s abonnent</item>
         <item quantity="other">%s abonnenter</item>

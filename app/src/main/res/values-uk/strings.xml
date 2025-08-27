@@ -65,9 +65,6 @@
     <string name="video">Відео</string>
     <string name="audio">Аудіо</string>
     <string name="retry">Повторити спробу</string>
-    <string name="short_thousand">тис</string>
-    <string name="short_million">млн</string>
-    <string name="short_billion">млрд</string>
     <string name="start">Почати</string>
     <string name="pause">Пауза</string>
     <string name="delete">Видалити</string>
@@ -216,8 +213,8 @@
     <string name="delete_item_search_history">Видалити цей елемент з історії пошуку\?</string>
     <string name="main_page_content">Вміст на головній сторінці</string>
     <string name="blank_page_summary">Порожня сторінка</string>
-    <string name="kiosk_page_summary">Кіоск-сторінка</string>
-    <string name="channel_page_summary">Канал</string>
+    <string name="kiosk_page_summary">Сторінка кіоску</string>
+    <string name="channel_page_summary">Сторінка каналу</string>
     <string name="select_a_channel">Обрати канал</string>
     <string name="no_channel_subscribed_yet">Немає підписок на канали</string>
     <string name="select_a_kiosk">Обрати кіоск</string>
@@ -845,4 +842,8 @@
     <string name="select_a_feed_group">Виберіть групу каналів</string>
     <string name="no_feed_group_created_yet">Групу каналів ще не створено</string>
     <string name="channel_tab_likes">Вподобання</string>
+    <string name="search_with_service_name">Пошук %1$s</string>
+    <string name="search_with_service_name_and_filter">Пошук %1$s (%2$s)</string>
+    <string name="migration_info_6_7_title">Сторінку SoundCloud Top 50 видалено</string>
+    <string name="migration_info_6_7_message">SoundCloud припинив підтримку оригінальних чартів Топ-50. Відповідну вкладку видалено з вашої головної сторінки.</string>
 </resources>

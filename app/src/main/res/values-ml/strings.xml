@@ -181,9 +181,6 @@
     </plurals>
     <string name="no_subscribers">സബ്ക്രൈബേഴ്സ് ഇല്ല</string>
     <string name="drawer_header_description">സേവനം മാറ്റുക, ഇപ്പോൾ തിരഞ്ഞെടുത്തത്:</string>
-    <string name="short_billion">B</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
     <string name="retry">വീണ്ടും ശ്രമിക്കുക</string>
     <string name="audio">ഓഡിയോ</string>
     <string name="video">വീഡിയോ</string>

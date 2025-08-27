@@ -297,9 +297,6 @@
     <string name="detail_likes_img_view_description">Bəyən</string>
     <string name="detail_dislikes_img_view_description">Bəyənmə</string>
     <string name="detail_drag_description">Yenidən sıralamaq üçün sürüklə</string>
-    <string name="short_thousand">min</string>
-    <string name="short_million">Mln</string>
-    <string name="short_billion">Mlrd</string>
     <string name="drawer_header_description">Xidməti dəyiş, hazırda seçilmiş:</string>
     <string name="no_subscribers">Abunəçi yoxdur</string>
     <string name="no_views">Baxış yoxdur</string>

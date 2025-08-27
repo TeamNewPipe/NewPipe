@@ -171,9 +171,6 @@
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Cuba semula</string>
-    <string name="short_thousand">K</string>
-    <string name="short_million">J</string>
-    <string name="short_billion">B</string>
     <string name="no_subscribers">Tiada pelanggan</string>
     <plurals name="subscribers">
         <item quantity="other">%s pelanggan</item>

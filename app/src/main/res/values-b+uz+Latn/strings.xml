@@ -265,9 +265,6 @@
     </plurals>
     <string name="no_subscribers">Obunachilar yo\'q</string>
     <string name="drawer_header_description">Hozirda tanlangan xizmatni yoqish:</string>
-    <string name="short_billion">B</string>
-    <string name="short_million">M</string>
-    <string name="short_thousand">k</string>
     <string name="retry">Qayta</string>
     <string name="audio">Audio</string>
     <string name="video">Video</string>

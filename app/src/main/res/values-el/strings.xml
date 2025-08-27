@@ -41,7 +41,6 @@
     <string name="detail_uploader_thumbnail_view_description">Μικρογραφία εικόνας προφίλ του χρήστη</string>
     <string name="detail_likes_img_view_description">Like</string>
     <string name="detail_dislikes_img_view_description">Dislike</string>
-    <string name="short_billion">δισ/ρια</string>
     <string name="open_in_popup_mode">Άνοιγμα σε αναδυόμενο παράθυρο</string>
     <string name="subscribe_button_title">Εγγραφή</string>
     <string name="subscribed_button_title">Εγγεγραμμένος</string>
@@ -169,8 +168,6 @@
     <string name="empty_list_subtitle">Δεν υπάρχει τίποτα εδώ</string>
     <string name="detail_drag_description">Σύρετε για ταξινόμηση</string>
     <string name="retry">Προσπάθεια εκ νέου</string>
-    <string name="short_thousand">χιλ.</string>
-    <string name="short_million">εκ/ρια</string>
     <string name="no_subscribers">Κανένας συνδρομητής</string>
     <plurals name="subscribers">
         <item quantity="one">%s συνδρομητής</item>
@@ -825,4 +822,9 @@
     <string name="select_a_feed_group">Επιλογή ομάδας τροφοδοσίας</string>
     <string name="no_feed_group_created_yet">Δεν δημιουργήθηκε ομάδα τροφοδοσίας ακόμα</string>
     <string name="feed_group_page_summary">Σελίδα καναλιού ομάδας</string>
+    <string name="search_with_service_name">Αναζήτηση %1$s</string>
+    <string name="search_with_service_name_and_filter">Αναζήτηση %1$s (%2$s)</string>
+    <string name="channel_tab_likes">Likes</string>
+    <string name="migration_info_6_7_title">Η σελίδα των SoundCloud Top 50 αφαιρέθηκε</string>
+    <string name="migration_info_6_7_message">Το SoundCloud έχει καταργήσει τα αρχικά charts με τα Top 50. Η αντίστοιχη καρτέλα έχει αφαιρεθεί από την κύρια σελίδα σας.</string>
 </resources>

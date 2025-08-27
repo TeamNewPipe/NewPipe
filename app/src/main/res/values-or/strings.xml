@@ -436,7 +436,6 @@
     <string name="detail_dislikes_img_view_description">ନାପସନ୍ଦ</string>
     <string name="comments_tab_description">ମନ୍ତବ୍ୟ ଗୁଡିକ</string>
     <string name="description_tab_description">ବର୍ଣ୍ଣନା</string>
-    <string name="short_million">ନିୟୁତ</string>
     <string name="recaptcha_solve">ସମାଧାନ</string>
     <string name="playback_speed_control">ପ୍ଲେବେକ୍ ସ୍ପିଡ୍ ନିୟନ୍ତ୍ରଣ</string>
     <string name="playback_tempo">ଟେମ୍ପୋ</string>
@@ -526,7 +525,6 @@
     <string name="related_items_tab_description">ସମ୍ବନ୍ଧୀୟ ଆଇଟମ୍ ଗୁଡ଼ିକ</string>
     <string name="detail_drag_description">ପୁନଃ ସଯାଇବାକୁ ଡ୍ରାଗ୍ କରନ୍ତୁ</string>
     <string name="pause">ବିରାମ</string>
-    <string name="short_billion">ଵୃନ୍ଦ</string>
     <string name="no_subscribers">କୌଣସି ଗ୍ରାହକ ନାହାଁନ୍ତି</string>
     <string name="create">ସୃଷ୍ଟି କରନ୍ତୁ</string>
     <string name="msg_running_detail">ବିବରଣୀ ପାଇଁ ଟ୍ୟାପ୍ କରନ୍ତୁ</string>
@@ -607,7 +605,6 @@
     <string name="select_quality_external_players">ବହିଃ-ଚାଳକ ପାଇଁ ଗୁଣବତ୍ତା ଚୟନ କରନ୍ତୁ</string>
     <string name="detail_pinned_comment_view_description">ପିନ୍ ହୋଇଥିବା ମନ୍ତବ୍ୟ</string>
     <string name="open_website_license">ୱେବସାଇଟ୍ ଖୋଲନ୍ତୁ</string>
-    <string name="short_thousand">ହଜାର</string>
     <string name="preferred_player_fetcher_notification_title">ସୂଚନା ପାଇବା…</string>
     <plurals name="subscribers">
         <item quantity="one">%s ଗ୍ରାହକ</item>

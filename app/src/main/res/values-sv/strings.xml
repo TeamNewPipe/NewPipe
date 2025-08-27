@@ -112,9 +112,6 @@
     <string name="video">Video</string>
     <string name="audio">Ljud</string>
     <string name="retry">Försök igen</string>
-    <string name="short_thousand">t</string>
-    <string name="short_million">mn</string>
-    <string name="short_billion">md</string>
     <string name="no_subscribers">Inga prenumeranter</string>
     <plurals name="subscribers">
         <item quantity="one">%s prenumerant</item>

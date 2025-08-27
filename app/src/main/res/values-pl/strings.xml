@@ -96,10 +96,7 @@
     <string name="all">Wszystkie</string>
     <string name="disabled">Wyłączone</string>
     <string name="clear">Wyczyść</string>
-    <string name="short_thousand">tys.</string>
-    <string name="short_million">mln</string>
-    <string name="short_billion">mld</string>
-    <string name="msg_popup_permission">To pozwolenie jest wymagane, aby 
+    <string name="msg_popup_permission">To pozwolenie jest wymagane, aby
 \notworzyć w trybie okienkowym</string>
     <string name="open_in_popup_mode">Otwórz w trybie okienkowym</string>
     <string name="controls_popup_title">Tryb okienkowy</string>
@@ -851,4 +848,6 @@
     <string name="search_with_service_name">Szukaj %1$s</string>
     <string name="search_with_service_name_and_filter">Szukaj %1$s (%2$s)</string>
     <string name="channel_tab_likes">Polubienia</string>
+    <string name="migration_info_6_7_title">Usunięto stronę SoundCloud 50 najlepszych</string>
+    <string name="migration_info_6_7_message">SoundCloud wycofał oryginalną listę 50 najlepszych. Odpowiadająca karta została usunięta ze strony głównej.</string>
 </resources>

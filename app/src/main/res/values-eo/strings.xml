@@ -261,9 +261,6 @@
         <item quantity="one">%s spekto</item>
         <item quantity="other">%s spektoj</item>
     </plurals>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">Mrd</string>
     <string name="title_activity_about">Pri NewPipe</string>
     <string name="title_licenses">Eksteraj permesiloj</string>
     <string name="copyright" formatted="true">© %1$s de %2$s sub %3$s</string>

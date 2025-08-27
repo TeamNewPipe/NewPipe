@@ -82,9 +82,6 @@
     <string name="open_in_popup_mode">Abrir no modo popup</string>
     <string name="black_theme_title">Preto</string>
     <string name="all">Tudo</string>
-    <string name="short_thousand">K</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">MM</string>
     <string name="msg_popup_permission">Esta permissão é necessária
 \npara o modo popup</string>
     <string name="title_activity_recaptcha">Desafio reCAPTCHA</string>
@@ -839,4 +836,6 @@
     <string name="select_a_feed_group">Selecione um grupo de feeds</string>
     <string name="no_feed_group_created_yet">Ainda nenhum grupo de feeds criado</string>
     <string name="feed_group_page_summary">Página do grupo do canal</string>
+    <string name="search_with_service_name">Pesquisar %1$s</string>
+    <string name="search_with_service_name_and_filter">Pesquisar %1$s (%2$s)</string>
 </resources>

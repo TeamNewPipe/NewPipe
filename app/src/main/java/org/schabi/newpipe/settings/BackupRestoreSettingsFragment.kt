@@ -47,8 +47,7 @@ class BackupRestoreSettingsFragment : BasePreferenceFragment() {
         rootKey: String?,
     ) {
         val activity = requireActivity()
-        val dbDir = activity.getDatabasePath(BackupFileLocator.FILE_NAME_DB).toPath().parent
-        manager = ImportExportManager(BackupFileLocator(dbDir))
+        manager = ImportExportManager(BackupFileLocator(activity))
 
         addPreferencesFromResourceRegistry()
 
