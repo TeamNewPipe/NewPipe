@@ -333,6 +333,8 @@
     <string name="pause">Pause</string>
     <string name="create">Create</string>
     <string name="delete">Delete</string>
+    <string name="delete_file">Delete file</string>
+    <string name="delete_entry">Delete entry</string>
     <string name="checksum">Checksum</string>
     <string name="dismiss">Dismiss</string>
     <string name="rename">Rename</string>
@@ -872,4 +874,5 @@
     <string name="trending_podcasts">Trending podcasts</string>
     <string name="trending_movies">Trending movies and shows</string>
     <string name="trending_music">Trending music</string>
+    <string name="entry_deleted">Entry deleted</string>
 </resources>

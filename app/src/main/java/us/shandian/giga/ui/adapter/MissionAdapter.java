@@ -614,7 +614,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         while (i.hasNext()) {
             Mission mission = i.next();
             if (mission != null) {
-                mDownloadManager.deleteMission(mission);
+                mDownloadManager.deleteMission(mission, true);
                 mContext.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, mission.storage.getUri()));
             }
             i.remove();
@@ -667,7 +667,14 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 shareFile(h.item.mission);
                 return true;
             case R.id.delete:
-                mDeleter.append(h.item.mission);
+                // delete the entry and the file
+                mDeleter.append(h.item.mission, true);
+                applyChanges();
+                checkMasterButtonsVisibility();
+                return true;
+            case R.id.delete_entry:
+                // just delete the entry
+                mDeleter.append(h.item.mission, false);
                 applyChanges();
                 checkMasterButtonsVisibility();
                 return true;
@@ -676,7 +683,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 final StoredFileHelper storage = h.item.mission.storage;
                 if (!storage.existsAsFile()) {
                     Toast.makeText(mContext, R.string.missing_file, Toast.LENGTH_SHORT).show();
-                    mDeleter.append(h.item.mission);
+                    mDeleter.append(h.item.mission, true);
                     applyChanges();
                     return true;
                 }

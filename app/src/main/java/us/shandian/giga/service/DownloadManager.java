@@ -265,7 +265,7 @@ public class DownloadManager {
         }
     }
 
-    public void deleteMission(Mission mission) {
+    public void deleteMission(Mission mission, boolean alsoDeleteFile) {
         synchronized (this) {
             if (mission instanceof DownloadMission) {
                 mMissionsPending.remove(mission);
@@ -274,7 +274,9 @@ public class DownloadManager {
                 mFinishedMissionStore.deleteMission(mission);
             }
 
-            mission.delete();
+            if (alsoDeleteFile) {
+                mission.delete();
+            }
         }
     }
 
