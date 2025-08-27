@@ -1,12 +1,13 @@
 package org.schabi.newpipe.settings.export
 
+import android.content.Context
 import java.nio.file.Path
 import kotlin.io.path.div
 
 /**
  * Locates specific files of NewPipe based on the home directory of the app.
  */
-class BackupFileLocator(homeDir: Path) {
+class BackupFileLocator(context: Context) {
     companion object {
         const val FILE_NAME_DB = "newpipe.db"
         @Deprecated(
@@ -17,9 +18,8 @@ class BackupFileLocator(homeDir: Path) {
         const val FILE_NAME_JSON_PREFS = "preferences.json"
     }
 
-    val dbDir = homeDir / "databases"
-    val db = homeDir / FILE_NAME_DB
-    val dbJournal = homeDir / "$FILE_NAME_DB-journal"
-    val dbShm = dbDir / "$FILE_NAME_DB-shm"
-    val dbWal = dbDir / "$FILE_NAME_DB-wal"
+    val db: Path = context.getDatabasePath(FILE_NAME_DB).toPath()
+    val dbJournal: Path = db.resolveSibling("$FILE_NAME_DB-journal")
+    val dbShm: Path = db.resolveSibling("$FILE_NAME_DB-shm")
+    val dbWal: Path = db.resolveSibling("$FILE_NAME_DB-wal")
 }
