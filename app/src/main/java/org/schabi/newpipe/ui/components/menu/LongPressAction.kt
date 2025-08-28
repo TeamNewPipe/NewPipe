@@ -111,6 +111,20 @@ data class LongPressAction(
             )
         }
 
+        private fun buildPlayerFromHereActionList(queueFromHere: () -> PlayQueue): List<LongPressAction> {
+            return listOf(
+                Type.BackgroundFromHere.buildAction { context ->
+                    NavigationHelper.playOnBackgroundPlayer(context, queueFromHere(), true)
+                },
+                Type.PopupFromHere.buildAction { context ->
+                    NavigationHelper.playOnPopupPlayer(context, queueFromHere(), true)
+                },
+                Type.PlayFromHere.buildAction { context ->
+                    NavigationHelper.playOnMainPlayer(context, queueFromHere(), false)
+                },
+            )
+        }
+
         private fun buildShareActionList(item: InfoItem): List<LongPressAction> {
             return listOf(
                 Type.Share.buildAction { context ->
@@ -133,13 +147,18 @@ data class LongPressAction(
             )
         }
 
+        /**
+         * @param queueFromHere returns a play queue for the list that contains [item], with the
+         * queue index pointing to [item], used to build actions like "Play playlist from here".
+         */
         @JvmStatic
         fun fromStreamInfoItem(
             item: StreamInfoItem,
+            queueFromHere: (() -> PlayQueue)?,
             /* TODO isKodiEnabled: Boolean, */
-            /* TODO wholeListQueue: (() -> PlayQueue)? */
         ): List<LongPressAction> {
             return buildPlayerActionList { SinglePlayQueue(item) } +
+                (queueFromHere?.let { buildPlayerFromHereActionList(queueFromHere) } ?: listOf()) +
                 buildShareActionList(item) +
                 listOf(
                     Type.Download.buildAction { context ->
@@ -205,18 +224,20 @@ data class LongPressAction(
         @JvmStatic
         fun fromStreamEntity(
             item: StreamEntity,
+            queueFromHere: (() -> PlayQueue)?,
         ): List<LongPressAction> {
             // TODO decide if it's fine to just convert to StreamInfoItem here (it poses an
             //  unnecessary dependency on the extractor, when we want to just look at data; maybe
             //  using something like LongPressable would work)
-            return fromStreamInfoItem(item.toStreamInfoItem())
+            return fromStreamInfoItem(item.toStreamInfoItem(), queueFromHere)
         }
 
         @JvmStatic
         fun fromStreamStatisticsEntry(
             item: StreamStatisticsEntry,
+            queueFromHere: (() -> PlayQueue)?,
         ): List<LongPressAction> {
-            return fromStreamEntity(item.streamEntity) +
+            return fromStreamEntity(item.streamEntity, queueFromHere) +
                 listOf(
                     Type.Delete.buildAction { context ->
                         HistoryRecordManager(context)
@@ -236,11 +257,12 @@ data class LongPressAction(
         @JvmStatic
         fun fromPlaylistStreamEntry(
             item: PlaylistStreamEntry,
+            queueFromHere: (() -> PlayQueue)?,
             // TODO possibly embed these two actions here
             onDelete: Runnable,
             onSetAsPlaylistThumbnail: Runnable,
         ): List<LongPressAction> {
-            return fromStreamEntity(item.streamEntity) +
+            return fromStreamEntity(item.streamEntity, queueFromHere) +
                 listOf(
                     Type.Delete.buildAction { onDelete.run() },
                     Type.SetAsPlaylistThumbnail.buildAction { onSetAsPlaylistThumbnail.run() }

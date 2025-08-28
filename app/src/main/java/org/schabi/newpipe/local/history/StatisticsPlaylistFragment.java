@@ -319,7 +319,7 @@ public class StatisticsPlaylistFragment
         openLongPressMenuInActivity(
                 requireActivity(),
                 LongPressable.fromStreamEntity(item.getStreamEntity()),
-                LongPressAction.fromStreamStatisticsEntry(item)
+                LongPressAction.fromStreamStatisticsEntry(item, () -> getPlayQueueStartingAt(item))
         );
     }
 

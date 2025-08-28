@@ -79,7 +79,8 @@ fun StreamListItem(
         if (showLongPressMenu) {
             LongPressMenu(
                 longPressable = LongPressable.fromStreamInfoItem(stream),
-                longPressActions = LongPressAction.fromStreamInfoItem(stream),
+                // TODO queueFromHere: allow playing the whole list starting from one stream
+                longPressActions = LongPressAction.fromStreamInfoItem(stream, null),
                 onDismissRequest = { showLongPressMenu = false },
             )
         }
