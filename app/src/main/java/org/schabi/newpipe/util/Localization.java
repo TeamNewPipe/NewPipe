@@ -31,6 +31,7 @@ import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.DateWrapper;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.AudioTrackType;
+import org.schabi.newpipe.extractor.stream.StreamType;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -183,9 +184,50 @@ public final class Localization {
         return context.getString(R.string.upload_date_text, formatDate(offsetDateTime));
     }
 
-    public static String localizeViewCount(@NonNull final Context context, final long viewCount) {
+    /**
+     * Localizes the number of views of a stream reported by the service,
+     * with different words based on the stream type.
+     *
+     * @param context the Android context
+     * @param shortForm whether the number of views should be formatted in a short approximated form
+     * @param streamType influences the accompanying text, i.e. views/watching/listening
+     * @param viewCount the number of views reported by the service to localize
+     * @return the formatted and localized view count
+     */
+    public static String localizeViewCount(@NonNull final Context context,
+                                           final boolean shortForm,
+                                           @Nullable final StreamType streamType,
+                                           final long viewCount) {
+        final String localizedNumber;
+        if (shortForm) {
+            localizedNumber = shortCount(context, viewCount);
+        } else {
+            localizedNumber = localizeNumber(viewCount);
+        }
+
+        if (streamType == StreamType.AUDIO_LIVE_STREAM) {
+            return getQuantity(context, R.plurals.listening, R.string.no_one_listening, viewCount,
+                    localizedNumber);
+        } else if (streamType == StreamType.LIVE_STREAM) {
+            return getQuantity(context, R.plurals.watching, R.string.no_one_watching, viewCount,
+                    localizedNumber);
+        } else {
+            return getQuantity(context, R.plurals.views, R.string.no_views, viewCount,
+                    localizedNumber);
+        }
+    }
+
+    /**
+     * Localizes the number of times the user watched a video that they have in the history.
+     *
+     * @param context the Android context
+     * @param viewCount the number of times (stored in the database) the user watched a video
+     * @return the formatted and localized watch count
+     */
+    public static String localizeWatchCount(@NonNull final Context context,
+                                            final long viewCount) {
         return getQuantity(context, R.plurals.views, R.string.no_views, viewCount,
-                localizeNumber(viewCount));
+                shortCount(context, viewCount));
     }
 
     public static String localizeStreamCount(@NonNull final Context context,
@@ -217,12 +259,6 @@ public final class Localization {
         }
     }
 
-    public static String localizeWatchingCount(@NonNull final Context context,
-                                               final long watchingCount) {
-        return getQuantity(context, R.plurals.watching, R.string.no_one_watching, watchingCount,
-                localizeNumber(watchingCount));
-    }
-
     public static String shortCount(@NonNull final Context context, final long count) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             return CompactDecimalFormat.getInstance(getAppLocale(),
@@ -248,22 +284,6 @@ public final class Localization {
         } else {
             return localizeNumber(value);
         }
-    }
-
-    public static String listeningCount(@NonNull final Context context, final long listeningCount) {
-        return getQuantity(context, R.plurals.listening, R.string.no_one_listening, listeningCount,
-                shortCount(context, listeningCount));
-    }
-
-    public static String shortWatchingCount(@NonNull final Context context,
-                                            final long watchingCount) {
-        return getQuantity(context, R.plurals.watching, R.string.no_one_watching, watchingCount,
-                shortCount(context, watchingCount));
-    }
-
-    public static String shortViewCount(@NonNull final Context context, final long viewCount) {
-        return getQuantity(context, R.plurals.views, R.string.no_views, viewCount,
-                shortCount(context, viewCount));
     }
 
     public static String shortSubscriberCount(@NonNull final Context context,

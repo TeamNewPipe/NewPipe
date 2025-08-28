@@ -23,6 +23,7 @@ data class LongPressable(
     val uploader: String?,
     val uploaderUrl: String?,
     val viewCount: Long?,
+    val streamType: StreamType?, // only used to format the view count properly
     val uploadDate: Either<String, OffsetDateTime>?,
     val decoration: Decoration?,
 ) {
@@ -50,6 +51,7 @@ data class LongPressable(
             uploader = item.uploaderName?.takeIf { it.isNotBlank() },
             uploaderUrl = item.uploaderUrl?.takeIf { it.isNotBlank() },
             viewCount = item.viewCount.takeIf { it >= 0 },
+            streamType = item.streamType,
             uploadDate = item.uploadDate?.let { Either.right(it.offsetDateTime()) }
                 ?: item.textualUploadDate?.let { Either.left(it) },
             decoration = Decoration.from(item.streamType, item.duration),
@@ -63,6 +65,7 @@ data class LongPressable(
             uploader = item.uploader.takeIf { it.isNotBlank() },
             uploaderUrl = item.uploaderUrl?.takeIf { it.isNotBlank() },
             viewCount = item.viewCount?.takeIf { it >= 0 },
+            streamType = item.streamType,
             uploadDate = item.uploadDate?.let { Either.right(it) }
                 ?: item.textualUploadDate?.let { Either.left(it) },
             decoration = Decoration.from(item.streamType, item.duration),
@@ -77,6 +80,7 @@ data class LongPressable(
             uploader = null,
             uploaderUrl = null,
             viewCount = null,
+            streamType = null,
             uploadDate = null,
             decoration = Decoration.Playlist(item.streamCount),
         )
@@ -89,6 +93,7 @@ data class LongPressable(
             uploader = item.uploader,
             uploaderUrl = null,
             viewCount = null,
+            streamType = null,
             uploadDate = null,
             decoration = Decoration.Playlist(
                 item.streamCount ?: ListExtractor.ITEM_COUNT_UNKNOWN
@@ -103,6 +108,7 @@ data class LongPressable(
             uploader = null,
             uploaderUrl = item.url?.takeIf { it.isNotBlank() },
             viewCount = null,
+            streamType = null,
             uploadDate = null,
             decoration = null,
         )
@@ -115,6 +121,7 @@ data class LongPressable(
             uploader = item.uploaderName.takeIf { it.isNotBlank() },
             uploaderUrl = item.uploaderUrl?.takeIf { it.isNotBlank() },
             viewCount = null,
+            streamType = null,
             uploadDate = null,
             decoration = Decoration.Playlist(item.streamCount),
         )
