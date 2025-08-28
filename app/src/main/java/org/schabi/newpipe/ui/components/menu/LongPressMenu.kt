@@ -72,6 +72,7 @@ import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import org.schabi.newpipe.R
+import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.ktx.popFirst
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.EnqueueNext
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.ShowChannelDetails
@@ -441,7 +442,9 @@ fun getSubtitleAnnotatedString(
         append(uploadDate)
     }
 
-    val viewCount = item.viewCount?.let { Localization.localizeViewCount(ctx, it) }
+    val viewCount = item.viewCount?.let {
+        Localization.localizeViewCount(ctx, true, item.streamType, it)
+    }
     if (!viewCount.isNullOrBlank()) {
         if (shouldAddSeparator) {
             append(Localization.DOT_SEPARATOR)
@@ -545,6 +548,7 @@ private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPre
             uploader = "Blender",
             uploaderUrl = "https://www.youtube.com/@BlenderOfficial",
             viewCount = 8765432,
+            streamType = null,
             uploadDate = Either.left("16 years ago"),
             decoration = LongPressable.Decoration.Playlist(12),
         ),
@@ -555,6 +559,7 @@ private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPre
             uploader = "Blender",
             uploaderUrl = "https://www.youtube.com/@BlenderOfficial",
             viewCount = 8765432,
+            streamType = StreamType.VIDEO_STREAM,
             uploadDate = Either.left("16 years ago"),
             decoration = LongPressable.Decoration.Duration(500),
         ),
@@ -565,6 +570,7 @@ private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPre
             uploader = null,
             uploaderUrl = "https://www.youtube.com/@BlenderOfficial",
             viewCount = null,
+            streamType = null,
             uploadDate = null,
             decoration = null,
         ),
@@ -575,6 +581,7 @@ private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPre
             uploader = null,
             uploaderUrl = null,
             viewCount = null,
+            streamType = StreamType.AUDIO_STREAM,
             uploadDate = null,
             decoration = LongPressable.Decoration.Duration(500),
         ),
@@ -585,6 +592,7 @@ private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPre
             uploader = null,
             uploaderUrl = null,
             viewCount = null,
+            streamType = StreamType.LIVE_STREAM,
             uploadDate = null,
             decoration = LongPressable.Decoration.Live,
         ),
@@ -595,6 +603,7 @@ private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPre
             uploader = null,
             uploaderUrl = null,
             viewCount = null,
+            streamType = StreamType.AUDIO_LIVE_STREAM,
             uploadDate = Either.right(OffsetDateTime.now().minusSeconds(12)),
             decoration = LongPressable.Decoration.Playlist(1500),
         ),
