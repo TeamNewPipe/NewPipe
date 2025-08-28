@@ -30,7 +30,7 @@ data class StreamItem(
         const val UPDATE_RELATIVE_TIME = 1
     }
 
-    private val stream: StreamEntity = streamWithState.stream
+    val stream: StreamEntity = streamWithState.stream
     private val stateProgressTime: Long? = streamWithState.stateProgressMillis
 
     /**

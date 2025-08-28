@@ -73,6 +73,7 @@ import org.schabi.newpipe.ktx.slideUp
 import org.schabi.newpipe.local.feed.item.StreamItem
 import org.schabi.newpipe.local.feed.service.FeedLoadService
 import org.schabi.newpipe.local.subscription.SubscriptionManager
+import org.schabi.newpipe.player.playqueue.SinglePlayQueue
 import org.schabi.newpipe.ui.components.menu.LongPressAction
 import org.schabi.newpipe.ui.components.menu.LongPressable
 import org.schabi.newpipe.ui.components.menu.openLongPressMenuInActivity
@@ -384,7 +385,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     private val listenerStreamItem = object : OnItemClickListener, OnItemLongClickListener {
         override fun onItemClick(item: Item<*>, view: View) {
             if (item is StreamItem && !isRefreshing) {
-                val stream = item.streamWithState.stream
+                val stream = item.stream
                 NavigationHelper.openVideoDetailFragment(
                     requireContext(),
                     fm,
@@ -401,9 +402,31 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             if (item is StreamItem && !isRefreshing) {
                 openLongPressMenuInActivity(
                     requireActivity(),
-                    LongPressable.fromStreamEntity(item.streamWithState.stream),
-                    // TODO queueFromHere: allow playing the whole feed starting from one stream
-                    LongPressAction.fromStreamEntity(item.streamWithState.stream, null),
+                    LongPressable.fromStreamEntity(item.stream),
+                    LongPressAction.fromStreamEntity(
+                        item = item.stream,
+                        queueFromHere = {
+                            val items = (viewModel.stateLiveData.value as? FeedState.LoadedState)
+                                ?.items
+
+                            if (items != null) {
+                                val index = items.indexOf(item)
+                                if (index >= 0) {
+                                    return@fromStreamEntity SinglePlayQueue(
+                                        items.map { it.stream.toStreamInfoItem() },
+                                        index
+                                    )
+                                }
+                            }
+
+                            // when long-pressing on an item the state should be LoadedState and the
+                            // item list should contain the long-pressed item, so the following
+                            // statement should be unreachable, but let's return a SinglePlayQueue
+                            // just in case
+                            Log.w(TAG, "Could not get full list of items on long press")
+                            return@fromStreamEntity SinglePlayQueue(item.stream.toStreamInfoItem())
+                        },
+                    ),
                 )
                 return true
             }
@@ -575,7 +598,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             }
             if (doCheck) {
                 // If the uploadDate is null or true we should highlight the item
-                if (item.streamWithState.stream.uploadDate?.isAfter(updateTime) != false) {
+                if (item.stream.uploadDate?.isAfter(updateTime) != false) {
                     highlightCount++
 
                     typeface = Typeface.DEFAULT_BOLD
