@@ -1,5 +1,7 @@
 package org.schabi.newpipe.fragments.list.channel;
 
+import static org.schabi.newpipe.ui.components.menu.LongPressMenuKt.openLongPressMenuInActivity;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,12 +28,15 @@ import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistControlViewHolder;
 import org.schabi.newpipe.player.playqueue.ChannelTabPlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.ui.components.menu.LongPressAction;
+import org.schabi.newpipe.ui.components.menu.LongPressable;
 import org.schabi.newpipe.ui.emptystate.EmptyStateUtil;
 import org.schabi.newpipe.util.ChannelTabHelper;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.PlayButtonHelper;
 
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -165,13 +170,30 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
     }
 
     @Override
-    public PlayQueue getPlayQueue() {
+    protected void showInfoItemDialog(final StreamInfoItem item) {
+        openLongPressMenuInActivity(
+                requireActivity(),
+                LongPressable.fromStreamInfoItem(item),
+                LongPressAction.fromStreamInfoItem(item, () -> getPlayQueueStartingAt(item))
+        );
+    }
+
+    private PlayQueue getPlayQueueStartingAt(final StreamInfoItem infoItem) {
+        return getPlayQueue(streamItems -> Math.max(streamItems.indexOf(infoItem), 0));
+    }
+
+    public PlayQueue getPlayQueue(final Function<List<StreamInfoItem>, Integer> index) {
         final List<StreamInfoItem> streamItems = infoListAdapter.getItemsList().stream()
                 .filter(StreamInfoItem.class::isInstance)
                 .map(StreamInfoItem.class::cast)
                 .collect(Collectors.toList());
 
         return new ChannelTabPlayQueue(currentInfo.getServiceId(), tabHandler,
-                currentInfo.getNextPage(), streamItems, 0);
+                currentInfo.getNextPage(), streamItems, index.apply(streamItems));
+    }
+
+    @Override
+    public PlayQueue getPlayQueue() {
+        return getPlayQueue(streamItems -> 0);
     }
 }
