@@ -793,9 +793,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         openLongPressMenuInActivity(
                 requireActivity(),
                 LongPressable.fromStreamEntity(item.getStreamEntity()),
-                // TODO getPlayQueueStartingAt(), resumePlayback=true
                 LongPressAction.fromPlaylistStreamEntry(
                         item,
+                        () -> getPlayQueueStartingAt(item),
                         () -> deleteItem(item),
                         () -> changeThumbnailStreamId(item.getStreamEntity().getUid(), true)
                 )

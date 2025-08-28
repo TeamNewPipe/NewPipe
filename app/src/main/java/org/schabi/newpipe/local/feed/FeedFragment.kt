@@ -402,7 +402,8 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                 openLongPressMenuInActivity(
                     requireActivity(),
                     LongPressable.fromStreamEntity(item.streamWithState.stream),
-                    LongPressAction.fromStreamEntity(item.streamWithState.stream),
+                    // TODO queueFromHere: allow playing the whole feed starting from one stream
+                    LongPressAction.fromStreamEntity(item.streamWithState.stream, null),
                 )
                 return true
             }

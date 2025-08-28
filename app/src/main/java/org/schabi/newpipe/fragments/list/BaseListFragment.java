@@ -329,7 +329,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         openLongPressMenuInActivity(
                 requireActivity(),
                 LongPressable.fromStreamInfoItem(item),
-                LongPressAction.fromStreamInfoItem(item)
+                // TODO generalize obtaining queue from here when fully migrating to Compose
+                LongPressAction.fromStreamInfoItem(item, null)
         );
     }
 

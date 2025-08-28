@@ -153,8 +153,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
         openLongPressMenuInActivity(
             activity,
             LongPressable.fromStreamInfoItem(item),
-            // TODO handle play queue starting at
-            LongPressAction.fromStreamInfoItem(item)
+            LongPressAction.fromStreamInfoItem(item, () -> getPlayQueueStartingAt(item))
         );
     }
 
