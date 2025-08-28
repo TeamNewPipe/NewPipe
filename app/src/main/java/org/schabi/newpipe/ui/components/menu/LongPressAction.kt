@@ -44,6 +44,9 @@ import org.schabi.newpipe.player.playqueue.ChannelTabPlayQueue
 import org.schabi.newpipe.player.playqueue.PlayQueue
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue
+import org.schabi.newpipe.ui.components.menu.icons.BackgroundFromHere
+import org.schabi.newpipe.ui.components.menu.icons.PlayFromHere
+import org.schabi.newpipe.ui.components.menu.icons.PopupFromHere
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.SparseItemUtil
 import org.schabi.newpipe.util.external_communication.ShareUtils
@@ -60,8 +63,11 @@ data class LongPressAction(
         Enqueue(R.string.enqueue, Icons.Default.AddToQueue),
         EnqueueNext(R.string.enqueue_next_stream, Icons.Default.QueuePlayNext),
         Background(R.string.controls_background_title, Icons.Default.Headset),
+        BackgroundFromHere(R.string.background_from_here, Icons.Default.BackgroundFromHere),
         Popup(R.string.controls_popup_title, Icons.Default.PictureInPicture),
+        PopupFromHere(R.string.popup_from_here, Icons.Default.PopupFromHere),
         Play(R.string.play, Icons.Default.PlayArrow),
+        PlayFromHere(R.string.play_from_here, Icons.Default.PlayFromHere),
         PlayWithKodi(R.string.play_with_kodi_title, Icons.Default.Cast),
         Download(R.string.download, Icons.Default.Download),
         AddToPlaylist(R.string.add_to_playlist, Icons.AutoMirrored.Default.PlaylistAdd),
