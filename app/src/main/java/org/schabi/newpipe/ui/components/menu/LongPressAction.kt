@@ -79,6 +79,7 @@ data class LongPressAction(
         Rename(R.string.rename, Icons.Default.Edit),
         SetAsPlaylistThumbnail(R.string.set_as_playlist_thumbnail, Icons.Default.Image),
         UnsetPlaylistThumbnail(R.string.unset_playlist_thumbnail, Icons.Default.HideImage),
+        Unsubscribe(R.string.unsubscribe, Icons.Default.Delete),
         ;
 
         // TODO allow actions to return disposables
@@ -302,7 +303,10 @@ data class LongPressAction(
         }
 
         @JvmStatic
-        fun fromChannelInfoItem(item: ChannelInfoItem): List<LongPressAction> {
+        fun fromChannelInfoItem(
+            item: ChannelInfoItem,
+            onUnsubscribe: Runnable?,
+        ): List<LongPressAction> {
             return buildPlayerActionList { ChannelTabPlayQueue(item.serviceId, item.url) } +
                 buildShareActionList(item) +
                 listOf(
@@ -314,7 +318,14 @@ data class LongPressAction(
                             item.name,
                         )
                     },
-                )
+                ) +
+                (
+                    onUnsubscribe
+                        ?.let { onUnsubscribe ->
+                            listOf(Type.Unsubscribe.buildAction { onUnsubscribe.run() })
+                        }
+                        ?: listOf()
+                    )
         }
 
         @JvmStatic
