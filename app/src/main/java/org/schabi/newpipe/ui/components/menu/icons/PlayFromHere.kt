@@ -14,17 +14,88 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 /**
- * Obtained by combining Filled.PlayArrow and Filled.PlaylistPlay
+ * Obtained by combining [androidx.compose.material.icons.filled.PlayArrow]
+ * and the tiny arrow in [androidx.compose.material.icons.filled.ContentPasteGo].
  */
 val Icons.Filled.PlayFromHere: ImageVector by lazy {
-    materialIcon(name = "Filled.HeadsetPlus") {
+    materialIcon(name = "Filled.PlayFromHere") {
         materialPath {
-            moveTo(5.000f, 3.000f)
-            verticalLineToRelative(11.200f)
-            lineToRelative(8.800f, -5.600f)
+            moveTo(2.5f, 2.5f)
+            verticalLineToRelative(14.0f)
+            lineToRelative(11.0f, -7.0f)
             close()
         }
         materialPath {
+            moveTo(19f, 11.5f)
+            lineToRelative(-1.42f, 1.41f)
+            lineToRelative(1.58f, 1.58f)
+            lineToRelative(-6.17f, 0.0f)
+            lineToRelative(0.0f, 2.0f)
+            lineToRelative(6.17f, 0.0f)
+            lineToRelative(-1.58f, 1.59f)
+            lineToRelative(1.42f, 1.41f)
+            lineToRelative(3.99f, -4.0f)
+            close()
+        }
+        /*materialPath {
+            moveTo(18.6f, 11.00f)
+            lineToRelative(-1.064f, 1.064f)
+            lineToRelative(2.586f, 2.586f)
+            horizontalLineToRelative(-5.622f)
+            verticalLineToRelative(-2.086f)
+            horizontalLineToRelative(-1.5f)
+            verticalLineToRelative(5.672f)
+            horizontalLineToRelative(1.5f)
+            verticalLineToRelative(-2.086f)
+            horizontalLineToRelative(5.622f)
+            lineToRelative(-2.586f, 2.586f)
+            lineToRelative(1.064f, 1.064f)
+            lineToRelative(4.400f, -4.400f)
+            close()
+        }*/
+        /*materialPath {
+            moveTo(18.6f, 11.00f)
+            lineToRelative(-1.064f, 1.064f)
+            lineToRelative(3.336f, 3.336f)
+            lineToRelative(-3.336f, 3.336f)
+            lineToRelative(1.064f, 1.064f)
+            lineToRelative(4.400f, -4.400f)
+            close()
+        }
+        materialPath {
+            moveTo(14f, 11.00f)
+            lineToRelative(-1.064f, 1.064f)
+            lineToRelative(3.336f, 3.336f)
+            lineToRelative(-3.336f, 3.336f)
+            lineToRelative(1.064f, 1.064f)
+            lineToRelative(4.400f, -4.400f)
+            close()
+        }*/
+        /*materialPath {
+            moveTo(18.6f, 11.00f)
+            lineToRelative(-1.064f, 1.064f)
+            lineToRelative(2.586f, 2.586f)
+            horizontalLineToRelative(-7.122f)
+            verticalLineToRelative(1.500f)
+            horizontalLineToRelative(7.122f)
+            lineToRelative(-2.586f, 2.586f)
+            lineToRelative(1.064f, 1.064f)
+            lineToRelative(4.400f, -4.400f)
+            close()
+        }*/
+        /*materialPath {
+            moveTo(17.200f, 11.200f)
+            lineToRelative(-0.775f, 0.775f)
+            lineToRelative(3.075f, 3.075f)
+            horizontalLineToRelative(-6.694f)
+            verticalLineToRelative(1.100f)
+            horizontalLineToRelative(6.694f)
+            lineToRelative(-3.075f, 3.075f)
+            lineToRelative(0.775f, 0.775f)
+            lineToRelative(4.400f, -4.400f)
+            close()
+        }*/
+        /*materialPath {
             moveTo(15.817f, 16.202f)
             lineToRelative(-0.916f, 0.916f)
             lineToRelative(2.977f, 2.983f)
@@ -41,7 +112,7 @@ val Icons.Filled.PlayFromHere: ImageVector by lazy {
             lineToRelative(0.916f, 0.916f)
             lineToRelative(3.900f, -3.900f)
             close()
-        }
+        }*/
     }
 }
 
