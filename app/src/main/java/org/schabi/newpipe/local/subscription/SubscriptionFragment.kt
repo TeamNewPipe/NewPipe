@@ -2,7 +2,6 @@ package org.schabi.newpipe.local.subscription
 
 import android.app.Activity
 import android.content.Context
-import android.content.DialogInterface
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
@@ -17,7 +16,6 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.evernote.android.state.State
@@ -31,7 +29,6 @@ import java.util.Date
 import java.util.Locale
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity.Companion.GROUP_ALL_ID
-import org.schabi.newpipe.databinding.DialogTitleBinding
 import org.schabi.newpipe.databinding.FeedItemCarouselBinding
 import org.schabi.newpipe.databinding.FragmentSubscriptionBinding
 import org.schabi.newpipe.error.ErrorInfo
@@ -56,12 +53,14 @@ import org.schabi.newpipe.local.subscription.workers.SubscriptionExportWorker
 import org.schabi.newpipe.local.subscription.workers.SubscriptionImportInput
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard
 import org.schabi.newpipe.streams.io.StoredFileHelper
+import org.schabi.newpipe.ui.components.menu.LongPressAction
+import org.schabi.newpipe.ui.components.menu.LongPressable
+import org.schabi.newpipe.ui.components.menu.openLongPressMenuInActivity
 import org.schabi.newpipe.ui.emptystate.setEmptyStateComposable
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.OnClickGesture
 import org.schabi.newpipe.util.ServiceHelper
 import org.schabi.newpipe.util.ThemeHelper.getGridSpanCountChannels
-import org.schabi.newpipe.util.external_communication.ShareUtils
 
 class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private var _binding: FragmentSubscriptionBinding? = null
@@ -334,36 +333,14 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     }
 
     private fun showLongTapDialog(selectedItem: ChannelInfoItem) {
-        val commands = arrayOf(
-            getString(R.string.share),
-            getString(R.string.open_in_browser),
-            getString(R.string.unsubscribe)
+        openLongPressMenuInActivity(
+            requireActivity(),
+            LongPressable.fromChannelInfoItem(selectedItem),
+            LongPressAction.fromChannelInfoItem(
+                item = selectedItem,
+                onUnsubscribe = { deleteChannel(selectedItem) }
+            )
         )
-
-        val actions = DialogInterface.OnClickListener { _, i ->
-            when (i) {
-                0 -> ShareUtils.shareText(
-                    requireContext(),
-                    selectedItem.name,
-                    selectedItem.url,
-                    selectedItem.thumbnails
-                )
-
-                1 -> ShareUtils.openUrlInBrowser(requireContext(), selectedItem.url)
-
-                2 -> deleteChannel(selectedItem)
-            }
-        }
-
-        val dialogTitleBinding = DialogTitleBinding.inflate(LayoutInflater.from(requireContext()))
-        dialogTitleBinding.root.isSelected = true
-        dialogTitleBinding.itemTitleView.text = selectedItem.name
-        dialogTitleBinding.itemAdditionalDetails.visibility = View.GONE
-
-        AlertDialog.Builder(requireContext())
-            .setCustomTitle(dialogTitleBinding.root)
-            .setItems(commands, actions)
-            .show()
     }
 
     private fun deleteChannel(selectedItem: ChannelInfoItem) {
