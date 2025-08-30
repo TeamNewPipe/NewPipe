@@ -554,7 +554,6 @@
     <string name="description_select_note">Agora pode seleccionar o texto na descrición. Teña en conta que a páxina pode cintilar e as ligazóns poden non ser clicábeis no modo selección.</string>
     <string name="auto_device_theme_title">Automático (Tema do dispositivo)</string>
     <string name="radio">Radio</string>
-    <string name="service_provides_reason">%s dá este motivo:</string>
     <string name="georestricted_content">Este contido non está dispoñíbel no seu país.</string>
     <string name="chapters">Capítulos</string>
     <string name="recent">Recentes</string>

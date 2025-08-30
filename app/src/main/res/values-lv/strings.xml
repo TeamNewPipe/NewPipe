@@ -631,7 +631,6 @@
 \nNewPipe turpmāk nevarēs ielādēt šo plūsmu.
 \nVai vēlaties atteikties no šī kanāla abonēšanas\?</string>
     <string name="feed_load_error_fast_unknown">Ātrās straumes režīms nesniedz vairāk informācijas par šo.</string>
-    <string name="service_provides_reason">%s dod šādu pamatojumu:</string>
     <string name="description_select_disable">Izslēgt teksta atlasīšanu video aprakstā</string>
     <string name="metadata_privacy_internal">Iekšeji</string>
     <string name="detail_heart_img_view_description">Autors piekrīt</string>

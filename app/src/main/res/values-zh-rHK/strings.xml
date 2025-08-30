@@ -486,7 +486,6 @@
     <string name="content_not_supported">NewPipe 仲未支援到呢樣。
 \n
 \n希望未來會喺日後嘅版本支援啦。</string>
-    <string name="service_provides_reason">%s 話理由如下：</string>
     <string name="no_appropriate_file_manager_message">搵唔到合適嘅檔案總管進行呢個動作。
 \n請安裝一個檔案管理程式，又或者試下喺下載設定度停用「%s」</string>
     <string name="no_appropriate_file_manager_message_android_10">搵唔到合適嘅檔案總管進行呢個動作。

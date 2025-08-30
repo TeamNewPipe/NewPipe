@@ -118,7 +118,7 @@ class MediaBrowserPlaybackPreparer(
 
     private fun onPrepareError(throwable: Throwable) {
         setMediaSessionError.accept(
-            ContextCompat.getString(context, ErrorInfo.getMessageStringId(throwable, null)),
+            ErrorInfo.getMessage(throwable, null, null).getString(context),
             PlaybackStateCompat.ERROR_CODE_APP_ERROR
         )
     }

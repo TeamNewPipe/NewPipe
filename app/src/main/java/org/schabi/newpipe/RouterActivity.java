@@ -276,7 +276,7 @@ public class RouterActivity extends AppCompatActivity {
                 || errorInfo.getThrowable() instanceof ContentNotSupportedException) {
             // this exception does not usually indicate a problem that should be reported,
             // so just show a toast instead of the notification
-            Toast.makeText(context, errorInfo.getMessageStringId(), Toast.LENGTH_LONG).show();
+            Toast.makeText(context, errorInfo.getMessage(context), Toast.LENGTH_LONG).show();
         } else {
             ErrorUtil.createNotification(context, errorInfo);
         }
