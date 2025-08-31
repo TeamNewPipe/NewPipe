@@ -173,6 +173,7 @@ public final class NotificationUtil {
         }
         updateNotification();
 
+        // ServiceInfo constants are not used below Android Q, so 0 is set here
         final int serviceType = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
                 ? ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK : 0;
         ServiceCompat.startForeground(player.getService(), NOTIFICATION_ID,
