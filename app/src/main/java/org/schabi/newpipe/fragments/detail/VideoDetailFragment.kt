@@ -281,7 +281,7 @@ class VideoDetailFragment :
 
         pageAdapter = TabAdapter(childFragmentManager)
         binding.viewPager.setAdapter(pageAdapter)
-        binding.tabLayout.setupWithViewPager(this@VideoDetailFragment.binding.viewPager)
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
 
         binding.detailThumbnailRootLayout.requestFocus()
 
@@ -318,8 +318,10 @@ class VideoDetailFragment :
                                 }
                                 if (stack.peek()?.playQueue != viewModel.playQueue) {
                                     // also if stack empty (!)
-                                    val item = StackItem(viewModel.serviceId, viewModel.url,
-                                        viewModel.title, viewModel.playQueue)
+                                    val item = StackItem(
+                                        viewModel.serviceId, viewModel.url,
+                                        viewModel.title, viewModel.playQueue
+                                    )
                                     stack.push(item)
                                 }
                             }
@@ -679,8 +681,7 @@ class VideoDetailFragment :
         setAutoPlay(false)
         hideMainPlayerOnLoadingNewStream()
 
-        viewModel.updateData(item.serviceId, item.url, item.title.orEmpty(),
-            item.playQueue)
+        viewModel.updateData(item.serviceId, item.url, item.title.orEmpty(), item.playQueue)
         viewModel.startLoading(false)
 
         // Maybe an item was deleted in background activity

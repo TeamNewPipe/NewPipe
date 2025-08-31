@@ -38,16 +38,16 @@ import org.schabi.newpipe.viewmodels.VideoDetailViewModel
 import org.schabi.newpipe.viewmodels.util.Resource
 
 @Composable
-fun CommentSection(videoDetailViewModel: VideoDetailViewModel) {
-    val streamState by videoDetailViewModel.streamState.collectAsStateWithLifecycle()
-    val commentState by videoDetailViewModel.commentState.collectAsStateWithLifecycle()
+fun CommentSection(viewModel: VideoDetailViewModel) {
+    val streamState by viewModel.streamState.collectAsStateWithLifecycle()
+    val commentState by viewModel.commentState.collectAsStateWithLifecycle()
     val avatars = (streamState as? Resource.Success)?.data?.uploaderAvatars.orEmpty()
     val uploaderAvatarUrl = ImageStrategy.choosePreferredImage(avatars)
 
     CommentSection(
         commentState,
         uploaderAvatarUrl,
-        videoDetailViewModel.comments,
+        viewModel.comments,
     )
 }
 
