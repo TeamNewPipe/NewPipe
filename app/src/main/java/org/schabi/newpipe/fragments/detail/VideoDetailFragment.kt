@@ -1,7 +1,6 @@
 package org.schabi.newpipe.fragments.detail
 
 import android.animation.ValueAnimator
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -35,15 +34,21 @@ import android.widget.Toast
 import androidx.annotation.AttrRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import androidx.core.net.toUri
+import androidx.core.os.bundleOf
 import androidx.core.os.postDelayed
 import androidx.core.view.isGone
+import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceManager
 import coil3.util.CoilUtils
 import com.evernote.android.state.State
@@ -56,12 +61,16 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.schabi.newpipe.App
+import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.databinding.FragmentVideoDetailBinding
 import org.schabi.newpipe.download.DownloadDialog
 import org.schabi.newpipe.error.ErrorInfo
+import org.schabi.newpipe.error.ErrorPanelHelper
 import org.schabi.newpipe.error.ErrorUtil.Companion.showSnackbar
 import org.schabi.newpipe.error.ErrorUtil.Companion.showUiErrorSnackbar
 import org.schabi.newpipe.error.ReCaptchaActivity
@@ -76,11 +85,10 @@ import org.schabi.newpipe.extractor.stream.StreamExtractor
 import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.fragments.BackPressable
-import org.schabi.newpipe.fragments.BaseStateFragment
 import org.schabi.newpipe.fragments.EmptyFragment
 import org.schabi.newpipe.fragments.MainFragment
-import org.schabi.newpipe.fragments.list.comments.CommentsFragment.Companion.getInstance
-import org.schabi.newpipe.fragments.list.videos.RelatedItemsFragment.Companion.getInstance
+import org.schabi.newpipe.fragments.list.comments.CommentsFragment
+import org.schabi.newpipe.fragments.list.videos.RelatedItemsFragment
 import org.schabi.newpipe.ktx.AnimationType
 import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.ktx.animateRotation
@@ -102,9 +110,11 @@ import org.schabi.newpipe.util.DependentPreferenceHelper
 import org.schabi.newpipe.util.DeviceUtils
 import org.schabi.newpipe.util.ExtractorHelper
 import org.schabi.newpipe.util.InfoCache
+import org.schabi.newpipe.util.KEY_SERVICE_ID
+import org.schabi.newpipe.util.KEY_TITLE
+import org.schabi.newpipe.util.KEY_URL
 import org.schabi.newpipe.util.ListHelper
 import org.schabi.newpipe.util.Localization
-import org.schabi.newpipe.util.NO_SERVICE_ID
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.PermissionHelper
 import org.schabi.newpipe.util.PermissionHelper.checkStoragePermissions
@@ -114,6 +124,8 @@ import org.schabi.newpipe.util.ThemeHelper
 import org.schabi.newpipe.util.external_communication.KoreUtils
 import org.schabi.newpipe.util.external_communication.ShareUtils
 import org.schabi.newpipe.util.image.CoilHelper
+import org.schabi.newpipe.viewmodels.VideoDetailViewModel
+import org.schabi.newpipe.viewmodels.util.Resource
 import java.util.LinkedList
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
@@ -121,20 +133,15 @@ import kotlin.math.max
 import kotlin.math.min
 
 class VideoDetailFragment :
-    BaseStateFragment<StreamInfo>(),
+    Fragment(),
     BackPressable,
     PlayerServiceExtendedEventListener,
     OnKeyDownListener {
-
-    // stream info
-    @JvmField @State var serviceId: Int = NO_SERVICE_ID
-    @JvmField @State var title: String = ""
-    @JvmField @State var url: String? = null
+    private val viewModel: VideoDetailViewModel by viewModels()
     private var currentInfo: StreamInfo? = null
 
     // player objects
-    private var playQueue: PlayQueue? = null
-    @JvmField @State var autoPlayEnabled: Boolean = true
+    @JvmField @State var autoPlayEnabled = true
     private var playerService: PlayerService? = null
     private var player: Player? = null
 
@@ -143,7 +150,7 @@ class VideoDetailFragment :
     private var nullableBinding: FragmentVideoDetailBinding? = null
     private val binding: FragmentVideoDetailBinding get() = nullableBinding!!
     private lateinit var pageAdapter: TabAdapter
-    private var settingsContentObserver: ContentObserver? = null
+    private lateinit var settingsContentObserver: ContentObserver
 
     // tabs
     private var showComments = false
@@ -153,7 +160,7 @@ class VideoDetailFragment :
     @AttrRes val tabIcons = ArrayList<Int>()
     @StringRes val tabContentDescriptions = ArrayList<Int>()
     private var tabSettingsChanged = false
-    private var lastAppBarVerticalOffset = Int.Companion.MAX_VALUE // prevents useless updates
+    private var lastAppBarVerticalOffset = Int.MAX_VALUE // prevents useless updates
 
     private val preferenceChangeListener =
         OnSharedPreferenceChangeListener { sharedPreferences, key ->
@@ -177,7 +184,6 @@ class VideoDetailFragment :
     private lateinit var broadcastReceiver: BroadcastReceiver
 
     // disposables
-    private var currentWorker: Disposable? = null
     private val disposables = CompositeDisposable()
     private var positionSubscriber: Disposable? = null
 
@@ -190,6 +196,7 @@ class VideoDetailFragment :
 
     override fun onPlayerConnected(connectedPlayer: Player, playAfterConnect: Boolean) {
         player = connectedPlayer
+        val context = requireContext()
 
         // It will do nothing if the player is not in fullscreen mode
         hideSystemUiIfNeeded()
@@ -199,13 +206,13 @@ class VideoDetailFragment :
         }
 
         val mainUi = player?.UIs()?.get(MainPlayerUi::class)
-        if (DeviceUtils.isLandscape(requireContext())) {
+        if (DeviceUtils.isLandscape(context)) {
             // If the video is playing but orientation changed
             // let's make the video in fullscreen again
             checkLandscape()
         } else if (mainUi != null && mainUi.isFullscreen && !mainUi.isVerticalVideo &&
             // Tablet UI has orientation-independent fullscreen
-            !DeviceUtils.isTablet(activity)
+            !DeviceUtils.isTablet(context)
         ) {
             // Device is in portrait orientation after rotation but UI is in fullscreen.
             // Return back to non-fullscreen state
@@ -237,6 +244,7 @@ class VideoDetailFragment :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val activity = requireActivity()
         val prefs = PreferenceManager.getDefaultSharedPreferences(activity)
         showComments = prefs.getBoolean(getString(R.string.show_comments_key), true)
         showRelatedItems = prefs.getBoolean(getString(R.string.show_next_video_key), true)
@@ -250,14 +258,14 @@ class VideoDetailFragment :
 
         settingsContentObserver = object : ContentObserver(Handler(Looper.getMainLooper())) {
             override fun onChange(selfChange: Boolean) {
-                if (activity != null && !PlayerHelper.globalScreenOrientationLocked(activity)) {
+                if (!PlayerHelper.globalScreenOrientationLocked(activity)) {
                     activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
                 }
             }
         }
-        activity.contentResolver.registerContentObserver(
+        requireActivity().contentResolver.registerContentObserver(
             Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION), false,
-            settingsContentObserver!!
+            settingsContentObserver
         )
     }
 
@@ -266,14 +274,84 @@ class VideoDetailFragment :
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val newBinding = FragmentVideoDetailBinding.inflate(inflater, container, false)
-        nullableBinding = newBinding
-        return newBinding.getRoot()
+        val binding = FragmentVideoDetailBinding.inflate(inflater, container, false)
+        nullableBinding = binding
+
+        val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
+
+        pageAdapter = TabAdapter(childFragmentManager)
+        binding.viewPager.setAdapter(pageAdapter)
+        binding.tabLayout.setupWithViewPager(this@VideoDetailFragment.binding.viewPager)
+
+        binding.detailThumbnailRootLayout.requestFocus()
+
+        binding.detailControlsPlayWithKodi.isVisible =
+            KoreUtils.shouldShowPlayWithKodi(requireContext(), viewModel.serviceId)
+        binding.detailControlsCrashThePlayer.isVisible =
+            BuildConfig.DEBUG && prefs.getBoolean(getString(R.string.show_crash_the_player_key), false)
+
+        accommodateForTvAndDesktopMode()
+        setupBottomPlayer()
+        initTabs()
+
+        lifecycleScope.launch {
+            viewModel.streamState.collectLatest {
+                when (val state = viewModel.streamState.value) {
+                    is Resource.Loading -> {
+                        showLoading()
+                    }
+
+                    is Resource.Success -> {
+                        val info = state.data
+
+                        hideMainPlayerOnLoadingNewStream()
+                        if (info.ageLimit != StreamExtractor.NO_AGE_LIMIT &&
+                            !prefs.getBoolean(getString(R.string.show_age_restricted_content), false)
+                        ) {
+                            hideAgeRestrictedContent()
+                        } else {
+                            handleResult(info)
+                            showContent()
+                            if (viewModel.addToBackStack) {
+                                if (viewModel.playQueue == null) {
+                                    viewModel.playQueue = SinglePlayQueue(info)
+                                }
+                                if (stack.peek()?.playQueue != viewModel.playQueue) {
+                                    // also if stack empty (!)
+                                    val item = StackItem(viewModel.serviceId, viewModel.url,
+                                        viewModel.title, viewModel.playQueue)
+                                    stack.push(item)
+                                }
+                            }
+
+                            if (isAutoplayEnabled) {
+                                openVideoPlayerAutoFullscreen()
+                            }
+                        }
+                    }
+
+                    is Resource.Error -> {
+                        binding.detailThumbnailImageView.setImageResource(R.drawable.not_available_monkey)
+                        binding.detailThumbnailImageView.animate(false, 0, AnimationType.ALPHA, 0) {
+                            binding.detailThumbnailImageView.animate(true, 500)
+                        }
+
+                        // hide related streams for tablets
+                        binding.relatedItemsLayout?.isInvisible = true
+
+                        // hide comments / related streams / description tabs
+                        binding.viewPager.visibility = View.GONE
+                        binding.tabLayout.visibility = View.GONE
+                    }
+                }
+            }
+        }
+
+        return binding.root
     }
 
     override fun onPause() {
         super.onPause()
-        currentWorker?.dispose()
         restoreDefaultBrightness()
         PreferenceManager.getDefaultSharedPreferences(requireContext()).edit {
             putString(
@@ -285,11 +363,11 @@ class VideoDetailFragment :
 
     override fun onResume() {
         super.onResume()
-        if (DEBUG) {
+        if (BuildConfig.DEBUG) {
             Log.d(TAG, "onResume() called")
         }
 
-        activity.sendBroadcast(Intent(ACTION_VIDEO_FRAGMENT_RESUMED))
+        requireActivity().sendBroadcast(Intent(ACTION_VIDEO_FRAGMENT_RESUMED))
 
         updateOverlayPlayQueueButtonVisibility()
 
@@ -300,16 +378,12 @@ class VideoDetailFragment :
             initTabs()
             currentInfo?.let { updateTabs(it) }
         }
-
-        // Check if it was loading when the fragment was stopped/paused
-        if (wasLoading.getAndSet(false) && !wasCleared()) {
-            startLoading(false)
-        }
     }
 
     override fun onStop() {
         super.onStop()
 
+        val activity = requireActivity()
         if (!activity.isChangingConfigurations) {
             activity.sendBroadcast(Intent(ACTION_VIDEO_FRAGMENT_STOPPED))
         }
@@ -318,6 +392,7 @@ class VideoDetailFragment :
     override fun onDestroy() {
         super.onDestroy()
 
+        val activity = requireActivity()
         // Stop the service when user leaves the app with double back press
         // if video player is selected. Otherwise unbind
         if (activity.isFinishing && player?.videoPlayerSelected() == true) {
@@ -329,19 +404,15 @@ class VideoDetailFragment :
         PreferenceManager.getDefaultSharedPreferences(activity)
             .unregisterOnSharedPreferenceChangeListener(preferenceChangeListener)
         activity.unregisterReceiver(broadcastReceiver)
-        activity.contentResolver.unregisterContentObserver(settingsContentObserver!!)
+        activity.contentResolver.unregisterContentObserver(settingsContentObserver)
 
         positionSubscriber?.dispose()
-        currentWorker?.dispose()
         disposables.clear()
         positionSubscriber = null
-        currentWorker = null
         bottomSheetBehavior.removeBottomSheetCallback(bottomSheetCallback)
 
         if (activity.isFinishing) {
-            playQueue = null
-            currentInfo = null
-            stack = LinkedList<StackItem>()
+            stack.clear()
         }
     }
 
@@ -355,7 +426,9 @@ class VideoDetailFragment :
         if (requestCode == ReCaptchaActivity.RECAPTCHA_REQUEST) {
             if (resultCode == Activity.RESULT_OK) {
                 NavigationHelper.openVideoDetailFragment(
-                    requireContext(), getFM(), serviceId, url, title, null, false
+                    requireContext(), parentFragmentManager,
+                    viewModel.serviceId, viewModel.url, viewModel.title,
+                    null, false
                 )
             } else {
                 Log.e(TAG, "ReCaptcha failed")
@@ -365,24 +438,32 @@ class VideoDetailFragment :
         }
     }
 
+    private fun hideAgeRestrictedContent() {
+        val errorHelper = ErrorPanelHelper(this, binding.root, viewModel::startLoading)
+        errorHelper.showTextError(
+            getString(
+                R.string.restricted_video,
+                getString(R.string.show_age_restricted_content_title)
+            )
+        )
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // OnClick
     ////////////////////////////////////////////////////////////////////////// */
-    private fun setOnClickListeners() {
+    private fun setOnClickListeners(info: StreamInfo) {
         binding.detailTitleRootLayout.setOnClickListener { toggleTitleAndSecondaryControls() }
-        binding.detailUploaderRootLayout.setOnClickListener(
-            makeOnClickListener { info ->
-                if (info.subChannelUrl.isEmpty()) {
-                    if (info.uploaderUrl.isNotEmpty()) {
-                        openChannel(info.uploaderUrl, info.uploaderName, info.serviceId)
-                    } else if (DEBUG) {
-                        Log.w(TAG, "Can't open sub-channel because we got no channel URL")
-                    }
-                } else {
-                    openChannel(info.subChannelUrl, info.subChannelName, info.serviceId)
+        binding.detailUploaderRootLayout.setOnClickListener {
+            if (info.subChannelUrl.isEmpty()) {
+                if (info.uploaderUrl.isNotEmpty()) {
+                    openChannel(info.uploaderUrl, info.uploaderName, info.serviceId)
+                } else if (BuildConfig.DEBUG) {
+                    Log.w(TAG, "Can't open sub-channel because we got no channel URL")
                 }
+            } else {
+                openChannel(info.subChannelUrl, info.subChannelName, info.serviceId)
             }
-        )
+        }
         binding.detailThumbnailRootLayout.setOnClickListener {
             autoPlayEnabled = true // forcefully start playing
             // FIXME Workaround #7427
@@ -392,48 +473,38 @@ class VideoDetailFragment :
 
         binding.detailControlsBackground.setOnClickListener { openBackgroundPlayer(false) }
         binding.detailControlsPopup.setOnClickListener { openPopupPlayer(false) }
-        binding.detailControlsPlaylistAppend.setOnClickListener(
-            makeOnClickListener { info ->
-                if (getFM() != null) {
-                    val fragment = getParentFragmentManager().findFragmentById(R.id.fragment_holder)
+        binding.detailControlsPlaylistAppend.setOnClickListener {
+            val fragment = parentFragmentManager.findFragmentById(R.id.fragment_holder)
 
-                    // commit previous pending changes to database
-                    if (fragment is LocalPlaylistFragment) {
-                        fragment.saveImmediate()
-                    } else if (fragment is MainFragment) {
-                        fragment.commitPlaylistTabs()
-                    }
-
-                    disposables.add(
-                        PlaylistDialog.createCorrespondingDialog(
-                            requireContext(),
-                            listOf(StreamEntity(info))
-                        ) { dialog -> dialog.show(getParentFragmentManager(), TAG) }
-                    )
-                }
+            // commit previous pending changes to database
+            if (fragment is LocalPlaylistFragment) {
+                fragment.saveImmediate()
+            } else if (fragment is MainFragment) {
+                fragment.commitPlaylistTabs()
             }
-        )
+
+            disposables.add(
+                PlaylistDialog.createCorrespondingDialog(
+                    requireContext(),
+                    listOf(StreamEntity(info))
+                ) { dialog -> dialog.show(getParentFragmentManager(), TAG) }
+            )
+        }
         binding.detailControlsDownload.setOnClickListener {
             if (checkStoragePermissions(activity, PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
                 openDownloadDialog()
             }
         }
-        binding.detailControlsShare.setOnClickListener(
-            makeOnClickListener { info ->
-                ShareUtils.shareText(requireContext(), info.name, info.url, info.thumbnails)
-            }
-        )
-        binding.detailControlsOpenInBrowser.setOnClickListener(
-            makeOnClickListener { info ->
-                ShareUtils.openUrlInBrowser(requireContext(), info.url)
-            }
-        )
-        binding.detailControlsPlayWithKodi.setOnClickListener(
-            makeOnClickListener { info ->
-                KoreUtils.playWithKore(requireContext(), info.url.toUri())
-            }
-        )
-        if (DEBUG) {
+        binding.detailControlsShare.setOnClickListener {
+            ShareUtils.shareText(requireContext(), info.name, info.url, info.thumbnails)
+        }
+        binding.detailControlsOpenInBrowser.setOnClickListener {
+            ShareUtils.openUrlInBrowser(requireContext(), info.url)
+        }
+        binding.detailControlsPlayWithKodi.setOnClickListener {
+            KoreUtils.playWithKore(requireContext(), info.url.toUri())
+        }
+        if (BuildConfig.DEBUG) {
             binding.detailControlsCrashThePlayer.setOnClickListener {
                 VideoDetailPlayerCrasher.onCrashThePlayer(requireContext(), player)
             }
@@ -464,13 +535,7 @@ class VideoDetailFragment :
         }
     }
 
-    private fun makeOnClickListener(listener: (StreamInfo) -> Unit): View.OnClickListener {
-        return View.OnClickListener {
-            currentInfo?.takeIf { !isLoading.get() }?.let(listener)
-        }
-    }
-
-    private fun setOnLongClickListeners() {
+    private fun setOnLongClickListeners(info: StreamInfo) {
         binding.detailTitleRootLayout.setOnLongClickListener {
             binding.detailVideoTitleView.text?.toString()?.let {
                 if (!it.isBlank()) {
@@ -480,48 +545,39 @@ class VideoDetailFragment :
             }
             return@setOnLongClickListener false
         }
-        binding.detailUploaderRootLayout.setOnLongClickListener(
-            makeOnLongClickListener { info ->
-                if (info.subChannelUrl.isEmpty()) {
-                    Log.w(TAG, "Can't open parent channel because we got no parent channel URL")
-                } else {
-                    openChannel(info.uploaderUrl, info.uploaderName, info.serviceId)
-                }
+        binding.detailUploaderRootLayout.setOnLongClickListener {
+            if (info.subChannelUrl.isEmpty()) {
+                Log.w(TAG, "Can't open parent channel because we got no parent channel URL")
+            } else {
+                openChannel(info.uploaderUrl, info.uploaderName, info.serviceId)
             }
-        )
+            return@setOnLongClickListener true
+        }
 
-        binding.detailControlsBackground.setOnLongClickListener(
-            makeOnLongClickListener { info ->
-                openBackgroundPlayer(true)
-            }
-        )
-        binding.detailControlsPopup.setOnLongClickListener(
-            makeOnLongClickListener { info ->
-                openPopupPlayer(true)
-            }
-        )
-        binding.detailControlsDownload.setOnLongClickListener(
-            makeOnLongClickListener { info ->
-                NavigationHelper.openDownloads(activity)
-            }
-        )
+        binding.detailControlsBackground.setOnLongClickListener {
+            openBackgroundPlayer(true)
+            return@setOnLongClickListener true
+        }
+        binding.detailControlsPopup.setOnLongClickListener {
+            openPopupPlayer(true)
+            return@setOnLongClickListener true
+        }
+        binding.detailControlsDownload.setOnLongClickListener {
+            NavigationHelper.openDownloads(activity)
+            return@setOnLongClickListener true
+        }
 
-        val overlayListener = makeOnLongClickListener { info ->
+        val overlayListener = OnLongClickListener {
             openChannel(info.uploaderUrl, info.uploaderName, info.serviceId)
+            return@OnLongClickListener true
         }
         binding.overlayThumbnail.setOnLongClickListener(overlayListener)
         binding.overlayMetadataLayout.setOnLongClickListener(overlayListener)
     }
 
-    private fun makeOnLongClickListener(listener: (StreamInfo) -> Unit): OnLongClickListener {
-        return OnLongClickListener {
-            currentInfo?.takeIf { !isLoading.get() }?.let(listener) != null
-        }
-    }
-
     private fun openChannel(subChannelUrl: String?, subChannelName: String, serviceId: Int) {
         try {
-            NavigationHelper.openChannelFragment(getFM(), serviceId, subChannelUrl, subChannelName)
+            NavigationHelper.openChannelFragment(parentFragmentManager, serviceId, subChannelUrl, subChannelName)
         } catch (e: Exception) {
             showUiErrorSnackbar(this, "Opening channel fragment", e)
         }
@@ -546,35 +602,14 @@ class VideoDetailFragment :
     /*//////////////////////////////////////////////////////////////////////////
     // Init
     ////////////////////////////////////////////////////////////////////////// */
-    // called from onViewCreated in {@link BaseFragment#onViewCreated}
-    override fun initViews(rootView: View?, savedInstanceState: Bundle?) {
-        super.initViews(rootView, savedInstanceState)
 
-        pageAdapter = TabAdapter(getChildFragmentManager())
-        binding.viewPager.setAdapter(pageAdapter)
-        binding.tabLayout.setupWithViewPager(binding.viewPager)
-
-        binding.detailThumbnailRootLayout.requestFocus()
-
-        binding.detailControlsPlayWithKodi.isVisible =
-            KoreUtils.shouldShowPlayWithKodi(requireContext(), serviceId)
-        binding.detailControlsCrashThePlayer.isVisible =
-            DEBUG && PreferenceManager.getDefaultSharedPreferences(requireContext())
-            .getBoolean(getString(R.string.show_crash_the_player_key), false)
-
-        accommodateForTvAndDesktopMode()
-    }
-
-    @SuppressLint("ClickableViewAccessibility")
-    override fun initListeners() {
-        super.initListeners()
-
-        setOnClickListeners()
-        setOnLongClickListeners()
+    private fun initListeners(info: StreamInfo) {
+        setOnClickListeners(info)
+        setOnLongClickListeners(info)
 
         val controlsTouchListener = OnTouchListener { view, motionEvent ->
             if (motionEvent.action == MotionEvent.ACTION_DOWN &&
-                PlayButtonHelper.shouldShowHoldToAppendTip(activity)
+                PlayButtonHelper.shouldShowHoldToAppendTip(requireContext())
             ) {
                 binding.touchAppendDetail.animate(true, 250, AnimationType.ALPHA, 0) {
                     binding.touchAppendDetail.animate(false, 1500, AnimationType.ALPHA, 1000)
@@ -607,13 +642,13 @@ class VideoDetailFragment :
     }
 
     override fun onBackPressed(): Boolean {
-        if (DEBUG) {
+        if (BuildConfig.DEBUG) {
             Log.d(TAG, "onBackPressed() called")
         }
 
         // If we are in fullscreen mode just exit from it via first back press
         if (this.isFullscreen) {
-            if (!DeviceUtils.isTablet(activity)) {
+            if (!DeviceUtils.isTablet(requireActivity())) {
                 player!!.pause()
             }
             restoreDefaultOrientation()
@@ -644,8 +679,9 @@ class VideoDetailFragment :
         setAutoPlay(false)
         hideMainPlayerOnLoadingNewStream()
 
-        setInitialData(item.serviceId, item.url, item.title ?: "", item.playQueue)
-        startLoading(false)
+        viewModel.updateData(item.serviceId, item.url, item.title.orEmpty(),
+            item.playQueue)
+        viewModel.startLoading(false)
 
         // Maybe an item was deleted in background activity
         if (item.playQueue.item == null) {
@@ -662,30 +698,20 @@ class VideoDetailFragment :
     /*//////////////////////////////////////////////////////////////////////////
     // Info loading and handling
     ////////////////////////////////////////////////////////////////////////// */
-    override fun doInitialLoadLogic() {
-        if (wasCleared()) {
-            return
-        }
-
-        when (val info = currentInfo) {
-            null -> prepareAndLoadInfo()
-            else -> prepareAndHandleInfoIfNeededAfterDelay(info, false, 50)
-        }
-    }
-
     fun selectAndLoadVideo(
         newServiceId: Int,
-        newUrl: String,
+        newUrl: String?,
         newTitle: String,
         newQueue: PlayQueue?
     ) {
-        if (newQueue != null && playQueue?.item?.url != newUrl) {
+        if (newQueue != null && viewModel.playQueue?.item?.url != newUrl) {
             // Preloading can be disabled since playback is surely being replaced.
             player?.disablePreloadingOfCurrentTrack()
         }
 
-        setInitialData(newServiceId, newUrl, newTitle, newQueue)
-        startLoading(false, true)
+        viewModel.updateData(newServiceId, newUrl, newTitle, newQueue)
+        viewModel.addToBackStack = true
+        viewModel.startLoading(false)
     }
 
     private fun prepareAndHandleInfoIfNeededAfterDelay(
@@ -706,7 +732,7 @@ class VideoDetailFragment :
     }
 
     private fun prepareAndHandleInfo(info: StreamInfo, scrollToTop: Boolean) {
-        if (DEBUG) {
+        if (BuildConfig.DEBUG) {
             Log.d(TAG, "prepareAndHandleInfo(info=[$info], scrollToTop=[$scrollToTop]) called")
         }
 
@@ -718,63 +744,6 @@ class VideoDetailFragment :
         }
         handleResult(info)
         showContent()
-    }
-
-    private fun prepareAndLoadInfo() {
-        scrollToTop()
-        startLoading(false)
-    }
-
-    public override fun startLoading(forceLoad: Boolean) {
-        startLoading(forceLoad, null)
-    }
-
-    private fun startLoading(forceLoad: Boolean, addToBackStack: Boolean?) {
-        super.startLoading(forceLoad)
-
-        initTabs()
-        currentInfo = null
-        currentWorker?.dispose()
-
-        runWorker(forceLoad, addToBackStack ?: stack.isEmpty())
-    }
-
-    private fun runWorker(forceLoad: Boolean, addToBackStack: Boolean) {
-        val prefs = PreferenceManager.getDefaultSharedPreferences(activity)
-        currentWorker = ExtractorHelper.getStreamInfo(serviceId, url, forceLoad)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { result ->
-                    isLoading.set(false)
-                    hideMainPlayerOnLoadingNewStream()
-                    if (result.ageLimit != StreamExtractor.NO_AGE_LIMIT &&
-                        !prefs.getBoolean(getString(R.string.show_age_restricted_content), false)
-                    ) {
-                        hideAgeRestrictedContent()
-                    } else {
-                        handleResult(result)
-                        showContent()
-                        if (addToBackStack) {
-                            if (playQueue == null) {
-                                playQueue = SinglePlayQueue(result)
-                            }
-                            if (stack.peek()?.playQueue != playQueue) { // also if stack empty (!)
-                                stack.push(StackItem(serviceId, url, title, playQueue))
-                            }
-                        }
-
-                        if (this.isAutoplayEnabled) {
-                            openVideoPlayerAutoFullscreen()
-                        }
-                    }
-                },
-                { throwable ->
-                    showError(
-                        ErrorInfo(throwable, UserAction.REQUESTED_STREAM, url ?: "no url", serviceId)
-                    )
-                }
-            )
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -789,7 +758,7 @@ class VideoDetailFragment :
         tabContentDescriptions.clear()
 
         if (shouldShowComments()) {
-            pageAdapter.addFragment(getInstance(serviceId, url), COMMENTS_TAB_TAG)
+            pageAdapter.addFragment(CommentsFragment(), COMMENTS_TAB_TAG)
             tabIcons.add(R.drawable.ic_comment)
             tabContentDescriptions.add(R.string.comments_tab_description)
         }
@@ -843,11 +812,11 @@ class VideoDetailFragment :
     private fun updateTabs(info: StreamInfo) {
         if (showRelatedItems) {
             when (val relatedItemsLayout = binding.relatedItemsLayout) {
-                null -> pageAdapter.updateItem(RELATED_TAB_TAG, getInstance(info)) // phone
+                null -> pageAdapter.updateItem(RELATED_TAB_TAG, RelatedItemsFragment()) // phone
                 else -> { // tablet + TV
-                    getChildFragmentManager().beginTransaction()
-                        .replace(R.id.relatedItemsLayout, getInstance(info))
-                        .commitAllowingStateLoss()
+                    childFragmentManager.commit(allowStateLoss = true) {
+                        replace<RelatedItemsFragment>(R.id.relatedItemsLayout)
+                    }
                     relatedItemsLayout.isVisible = !this.isFullscreen
                 }
             }
@@ -866,7 +835,7 @@ class VideoDetailFragment :
 
     private fun shouldShowComments(): Boolean {
         return showComments && try {
-            NewPipe.getService(serviceId).serviceInfo.mediaCapabilities
+            NewPipe.getService(viewModel.serviceId).serviceInfo.mediaCapabilities
                 .contains(MediaCapability.COMMENTS)
         } catch (_: ExtractionException) {
             false
@@ -886,7 +855,7 @@ class VideoDetailFragment :
             // call `post()` to be sure `viewPager.getHitRect()`
             // is up to date and not being currently recomputed
             binding.tabLayout.post {
-                getActivity()?.let { activity ->
+                activity?.let { activity ->
                     val pagerHitRect = Rect()
                     binding.viewPager.getHitRect(pagerHitRect)
 
@@ -931,6 +900,7 @@ class VideoDetailFragment :
     }
 
     private fun openBackgroundPlayer(append: Boolean) {
+        val activity = requireActivity()
         val useExternalAudioPlayer = PreferenceManager
             .getDefaultSharedPreferences(activity)
             .getBoolean(activity.getString(R.string.use_external_audio_player_key), false)
@@ -948,6 +918,7 @@ class VideoDetailFragment :
     }
 
     private fun openPopupPlayer(append: Boolean) {
+        val activity = requireActivity()
         if (!PermissionHelper.isPopupEnabledElseAsk(activity)) {
             return
         }
@@ -978,9 +949,10 @@ class VideoDetailFragment :
      * in landscape and screen orientation is locked
      */
     fun openVideoPlayer(directlyFullscreenIfApplicable: Boolean) {
+        val context = requireContext()
         if (directlyFullscreenIfApplicable &&
-            !DeviceUtils.isLandscape(requireContext()) &&
-            PlayerHelper.globalScreenOrientationLocked(requireContext())
+            !DeviceUtils.isLandscape(context) &&
+            PlayerHelper.globalScreenOrientationLocked(context)
         ) {
             // Make sure the bottom sheet turns out expanded. When this code kicks in the bottom
             // sheet could not have fully expanded yet, and thus be in the STATE_SETTLING state.
@@ -994,7 +966,7 @@ class VideoDetailFragment :
             onScreenRotationButtonClicked()
         }
 
-        if (PreferenceManager.getDefaultSharedPreferences(activity)
+        if (PreferenceManager.getDefaultSharedPreferences(context)
             .getBoolean(this.getString(R.string.use_external_video_player_key), false)
         ) {
             showExternalVideoPlaybackDialog()
@@ -1046,7 +1018,7 @@ class VideoDetailFragment :
         val playerIntent = NavigationHelper.getPlayerIntent(
             requireContext(), PlayerService::class.java, queue, true, autoPlayEnabled
         )
-        ContextCompat.startForegroundService(activity, playerIntent)
+        ContextCompat.startForegroundService(requireContext(), playerIntent)
     }
 
     /**
@@ -1076,7 +1048,7 @@ class VideoDetailFragment :
             return SinglePlayQueue(currentInfo)
         }
 
-        var queue = playQueue
+        var queue = viewModel.playQueue
         // Size can be 0 because queue removes bad stream automatically when error occurs
         if (queue == null || queue.isEmpty) {
             queue = SinglePlayQueue(currentInfo)
@@ -1168,6 +1140,7 @@ class VideoDetailFragment :
     }
 
     private val preDrawListener: OnPreDrawListener = OnPreDrawListener {
+        val activity = requireActivity()
         view?.let { view ->
             val decorView = if (DeviceUtils.isInMultiWindow(activity))
                 view
@@ -1188,6 +1161,7 @@ class VideoDetailFragment :
      */
     private fun setHeightThumbnail() {
         val metrics = resources.displayMetrics
+        val activity = requireActivity()
         requireView().getViewTreeObserver().removeOnPreDrawListener(preDrawListener)
 
         if (this.isFullscreen) {
@@ -1233,52 +1207,6 @@ class VideoDetailFragment :
         binding.detailContentRootHiding.visibility = View.VISIBLE
     }
 
-    private fun setInitialData(
-        newServiceId: Int,
-        newUrl: String?,
-        newTitle: String,
-        newPlayQueue: PlayQueue?
-    ) {
-        this.serviceId = newServiceId
-        this.url = newUrl
-        this.title = newTitle
-        this.playQueue = newPlayQueue
-    }
-
-    private fun setErrorImage() {
-        if (nullableBinding == null || activity == null) {
-            return
-        }
-
-        binding.detailThumbnailImageView.setImageDrawable(
-            AppCompatResources.getDrawable(requireContext(), R.drawable.not_available_monkey)
-        )
-        binding.detailThumbnailImageView.animate(false, 0, AnimationType.ALPHA, 0) {
-            binding.detailThumbnailImageView.animate(true, 500)
-        }
-    }
-
-    override fun handleError() {
-        super.handleError()
-        setErrorImage()
-
-        // hide related streams for tablets
-        binding.relatedItemsLayout?.visibility = View.INVISIBLE
-
-        // hide comments / related streams / description tabs
-        binding.viewPager.visibility = View.GONE
-        binding.tabLayout.visibility = View.GONE
-    }
-
-    private fun hideAgeRestrictedContent() {
-        showTextError(
-            getString(
-                R.string.restricted_video,
-                getString(R.string.show_age_restricted_content_title)
-            )
-        )
-    }
-
     private fun setupBroadcastReceiver() {
         broadcastReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent) {
@@ -1302,7 +1230,10 @@ class VideoDetailFragment :
         intentFilter.addAction(ACTION_SHOW_MAIN_PLAYER)
         intentFilter.addAction(ACTION_HIDE_MAIN_PLAYER)
         intentFilter.addAction(ACTION_PLAYER_STARTED)
-        ContextCompat.registerReceiver(activity, broadcastReceiver, intentFilter, ContextCompat.RECEIVER_EXPORTED)
+        ContextCompat.registerReceiver(
+            requireContext(), broadcastReceiver, intentFilter,
+            ContextCompat.RECEIVER_EXPORTED
+        )
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1317,6 +1248,7 @@ class VideoDetailFragment :
         // User can tap on Play button and video will be in fullscreen mode again
         // Note for tablet: trying to avoid orientation changes since it's not easy
         // to physically rotate the tablet every time
+        val activity = activity
         if (activity != null && !DeviceUtils.isTablet(activity)) {
             activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
         }
@@ -1325,11 +1257,9 @@ class VideoDetailFragment :
     /*//////////////////////////////////////////////////////////////////////////
     // Contract
     ////////////////////////////////////////////////////////////////////////// */
-    override fun showLoading() {
-        super.showLoading()
-
+    private fun showLoading() {
         // if data is already cached, transition from VISIBLE -> INVISIBLE -> VISIBLE is not required
-        if (!ExtractorHelper.isCached(serviceId, url!!, InfoCache.Type.STREAM)) {
+        if (!ExtractorHelper.isCached(viewModel.serviceId, viewModel.url, InfoCache.Type.STREAM)) {
             binding.detailContentRootHiding.visibility = View.INVISIBLE
         }
 
@@ -1338,7 +1268,7 @@ class VideoDetailFragment :
         binding.detailPositionView.visibility = View.GONE
         binding.positionView.visibility = View.GONE
 
-        binding.detailVideoTitleView.text = title
+        binding.detailVideoTitleView.text = viewModel.title
         binding.detailVideoTitleView.setMaxLines(1)
         binding.detailVideoTitleView.animate(true, 0)
 
@@ -1357,16 +1287,15 @@ class VideoDetailFragment :
         binding.detailSubChannelThumbnailView.setImageBitmap(null)
     }
 
-    override fun handleResult(info: StreamInfo) {
-        super.handleResult(info)
-
+    fun handleResult(info: StreamInfo) {
         currentInfo = info
-        setInitialData(info.serviceId, info.originalUrl, info.name, playQueue)
 
+        val activity = requireActivity()
         updateTabs(info)
+        initListeners(info)
 
         binding.detailThumbnailPlayButton.animate(true, 200)
-        binding.detailVideoTitleView.text = title
+        binding.detailVideoTitleView.text = viewModel.title
 
         binding.detailSubChannelThumbnailView.visibility = View.GONE
 
@@ -1459,7 +1388,8 @@ class VideoDetailFragment :
             }
 
             if (!info.errors.isEmpty()) {
-                showSnackBarError(
+                showSnackbar(
+                    this,
                     ErrorInfo(info.errors, UserAction.REQUESTED_STREAM, info.url, info)
                 )
             }
@@ -1478,6 +1408,7 @@ class VideoDetailFragment :
     }
 
     private fun displayUploaderAsSubChannel(info: StreamInfo) {
+        val activity = requireActivity()
         binding.detailSubChannelTextView.text = info.uploaderName
         binding.detailSubChannelTextView.visibility = View.VISIBLE
         binding.detailSubChannelTextView.setSelected(true)
@@ -1496,6 +1427,7 @@ class VideoDetailFragment :
     }
 
     private fun displayBothUploaderAndSubChannel(info: StreamInfo) {
+        val activity = requireActivity()
         binding.detailSubChannelTextView.text = info.subChannelName
         binding.detailSubChannelTextView.visibility = View.VISIBLE
         binding.detailSubChannelTextView.setSelected(true)
@@ -1529,6 +1461,7 @@ class VideoDetailFragment :
 
     fun openDownloadDialog() {
         val info = currentInfo ?: return
+        val activity = requireActivity()
 
         try {
             val downloadDialog = DownloadDialog(activity, info)
@@ -1598,18 +1531,19 @@ class VideoDetailFragment :
     }
 
     override fun onQueueUpdate(queue: PlayQueue) {
-        playQueue = queue
-        if (DEBUG) {
+        viewModel.playQueue = queue
+        if (BuildConfig.DEBUG) {
             Log.d(
                 TAG,
-                "onQueueUpdate() called with: serviceId = [$serviceId], url = [${
-                url}], name = [$title], playQueue = [$playQueue]"
+                "onQueueUpdate() called with: serviceId = [${viewModel.serviceId}]" +
+                    ", url = [${viewModel.url}], name = [${viewModel.title}]" +
+                    ", playQueue = [${viewModel.playQueue}]"
             )
         }
 
         // Register broadcast receiver to listen to playQueue changes
         // and hide the overlayPlayQueueButton when the playQueue is empty / destroyed.
-        playQueue?.broadcastReceiver?.subscribe { updateOverlayPlayQueueButtonVisibility() }
+        viewModel.playQueue?.broadcastReceiver?.subscribe { updateOverlayPlayQueueButtonVisibility() }
             ?.let { disposables.add(it) }
 
         // This should be the only place where we push data to stack.
@@ -1639,7 +1573,7 @@ class VideoDetailFragment :
         setOverlayPlayPauseImage(player?.isPlaying == true)
 
         if (state == Player.STATE_PLAYING && binding.positionView.alpha != 1.0f &&
-            player?.playQueue?.item?.url?.equals(url) == true
+            player?.playQueue?.item?.url == viewModel.url
         ) {
             binding.positionView.animate(true, 100)
             binding.detailPositionView.animate(true, 100)
@@ -1653,7 +1587,7 @@ class VideoDetailFragment :
     ) {
         // Progress updates are received every second even if media is paused. It's useless until
         // playing, hence the `player?.isPlaying == true` check.
-        if (player?.isPlaying == true && player?.playQueue?.item?.url?.equals(url) == true) {
+        if (player?.isPlaying == true && player?.playQueue?.item?.url == viewModel.url) {
             updatePlaybackProgress(currentProgress.toLong(), duration.toLong())
         }
     }
@@ -1669,7 +1603,7 @@ class VideoDetailFragment :
         // They are not equal when user watches something in popup while browsing in fragment and
         // then changes screen orientation. In that case the fragment will set itself as
         // a service listener and will receive initial call to onMetadataUpdate()
-        if (queue != playQueue) {
+        if (queue != viewModel.playQueue) {
             return
         }
 
@@ -1678,8 +1612,8 @@ class VideoDetailFragment :
             return
         }
 
-        currentInfo = info
-        setInitialData(info.serviceId, info.url, info.name, queue)
+        viewModel.updateStreamState(info)
+        viewModel.updateData(info.serviceId, info.url, info.name, queue)
         setAutoPlay(false)
         // Delay execution just because it freezes the main thread, and while playing
         // next/previous video you see visual glitches
@@ -1731,7 +1665,8 @@ class VideoDetailFragment :
         // from landscape to portrait every time.
         // Just turn on fullscreen mode in landscape orientation
         // or portrait & unlocked global orientation
-        val isLandscape = DeviceUtils.isLandscape(requireContext())
+        val activity = requireActivity()
+        val isLandscape = DeviceUtils.isLandscape(activity)
         if (DeviceUtils.isTablet(activity) &&
             (!PlayerHelper.globalScreenOrientationLocked(activity) || isLandscape)
         ) {
@@ -1767,10 +1702,11 @@ class VideoDetailFragment :
     // Player related utils
     ////////////////////////////////////////////////////////////////////////// */
     private fun showSystemUi() {
-        if (DEBUG) {
+        if (BuildConfig.DEBUG) {
             Log.d(TAG, "showSystemUi() called")
         }
 
+        val activity = activity
         if (activity == null) {
             return
         }
@@ -1788,10 +1724,11 @@ class VideoDetailFragment :
     }
 
     private fun hideSystemUi() {
-        if (DEBUG) {
+        if (BuildConfig.DEBUG) {
             Log.d(TAG, "hideSystemUi() called")
         }
 
+        val activity = activity
         if (activity == null) {
             return
         }
@@ -1844,6 +1781,7 @@ class VideoDetailFragment :
         get() = player?.isStopped ?: true
 
     private fun restoreDefaultBrightness() {
+        val activity = requireActivity()
         val lp = activity.window.attributes
         if (lp.screenBrightness == -1f) {
             return
@@ -1856,9 +1794,7 @@ class VideoDetailFragment :
     }
 
     private fun setupBrightness() {
-        if (activity == null) {
-            return
-        }
+        val activity = activity ?: return
 
         val lp = activity.window.attributes
         if (!this.isFullscreen || bottomSheetState != BottomSheetBehavior.STATE_EXPANDED) {
@@ -1909,7 +1845,7 @@ class VideoDetailFragment :
     }
 
     private fun checkLandscape() {
-        if ((!player!!.isPlaying && player!!.playQueue !== playQueue) ||
+        if ((!player!!.isPlaying && player!!.playQueue !== viewModel.playQueue) ||
             player!!.playQueue == null
         ) {
             setAutoPlay(true)
@@ -1922,14 +1858,6 @@ class VideoDetailFragment :
         }
     }
 
-    /*
-     * Means that the player fragment was swiped away via BottomSheetLayout
-     * and is empty but ready for any new actions. See cleanUp()
-     * */
-    private fun wasCleared(): Boolean {
-        return url == null
-    }
-
     private fun findQueueInStack(queue: PlayQueue): StackItem? {
         return stack.descendingIterator().asSequence()
             .firstOrNull { it?.playQueue?.equals(queue) == true }
@@ -1937,8 +1865,8 @@ class VideoDetailFragment :
 
     private fun replaceQueueIfUserConfirms(onAllow: Runnable) {
         // Player will have STATE_IDLE when a user pressed back button
-        if (PlayerHelper.isClearingQueueConfirmationRequired(activity) &&
-            !playerIsStopped && player?.playQueue != playQueue
+        if (PlayerHelper.isClearingQueueConfirmationRequired(requireContext()) &&
+            !playerIsStopped && player?.playQueue != viewModel.playQueue
         ) {
             showClearingQueueConfirmation(onAllow)
         } else {
@@ -1947,7 +1875,7 @@ class VideoDetailFragment :
     }
 
     private fun showClearingQueueConfirmation(onAllow: Runnable) {
-        AlertDialog.Builder(activity)
+        AlertDialog.Builder(requireContext())
             .setTitle(R.string.clear_queue_confirmation_description)
             .setNegativeButton(R.string.cancel, null)
             .setPositiveButton(R.string.ok) { dialog, which ->
@@ -1959,12 +1887,13 @@ class VideoDetailFragment :
 
     private fun showExternalVideoPlaybackDialog() {
         val info = currentInfo ?: return
+        val activity = requireActivity()
 
         val builder = AlertDialog.Builder(activity)
-        builder.setTitle(R.string.select_quality_external_players)
-        builder.setNeutralButton(R.string.open_in_browser) { dialog, which ->
-            ShareUtils.openUrlInBrowser(requireActivity(), url)
-        }
+            .setTitle(R.string.select_quality_external_players)
+            .setNeutralButton(R.string.open_in_browser) { dialog, which ->
+                ShareUtils.openUrlInBrowser(requireActivity(), viewModel.url)
+            }
 
         val videoStreamsForExternalPlayers = ListHelper.getSortedStreamVideosList(
             activity,
@@ -1976,7 +1905,7 @@ class VideoDetailFragment :
 
         if (videoStreamsForExternalPlayers.isEmpty()) {
             builder.setMessage(R.string.no_video_streams_available_for_external_players)
-            builder.setPositiveButton(R.string.ok, null)
+                .setPositiveButton(R.string.ok, null)
         } else {
             val selectedVideoStreamIndexForExternalPlayers =
                 ListHelper.getDefaultResolutionIndex(activity, videoStreamsForExternalPlayers)
@@ -1986,23 +1915,24 @@ class VideoDetailFragment :
 
             builder
                 .setSingleChoiceItems(resolutions, selectedVideoStreamIndexForExternalPlayers, null)
-            builder.setNegativeButton(R.string.cancel, null)
-            builder.setPositiveButton(R.string.ok) { dialog, which ->
-                val index = (dialog as AlertDialog).listView.getCheckedItemPosition()
-                // We don't have to manage the index validity because if there is no stream
-                // available for external players, this code will be not executed and if there is
-                // no stream which matches the default resolution, 0 is returned by
-                // ListHelper.getDefaultResolutionIndex.
-                // The index cannot be outside the bounds of the list as its always between 0 and
-                // the list size - 1, .
-                startOnExternalPlayer(activity, info, videoStreamsForExternalPlayers[index])
-            }
+                .setNegativeButton(R.string.cancel, null)
+                .setPositiveButton(R.string.ok) { dialog, which ->
+                    val index = (dialog as AlertDialog).listView.getCheckedItemPosition()
+                    // We don't have to manage the index validity because if there is no stream
+                    // available for external players, this code will be not executed and if there is
+                    // no stream which matches the default resolution, 0 is returned by
+                    // ListHelper.getDefaultResolutionIndex.
+                    // The index cannot be outside the bounds of the list as its always between 0 and
+                    // the list size - 1, .
+                    startOnExternalPlayer(activity, info, videoStreamsForExternalPlayers[index])
+                }
         }
         builder.show()
     }
 
     private fun showExternalAudioPlaybackDialog() {
         val info = currentInfo ?: return
+        val activity = requireActivity()
 
         val audioStreams = ListHelper.getUrlAndNonTorrentStreams(info.audioStreams)
         val audioTracks = ListHelper.getFilteredAudioStreams(activity, audioStreams)
@@ -2021,7 +1951,7 @@ class VideoDetailFragment :
             AlertDialog.Builder(activity)
                 .setTitle(R.string.select_audio_track_external_players)
                 .setNeutralButton(R.string.open_in_browser) { dialog, which ->
-                    ShareUtils.openUrlInBrowser(requireActivity(), url)
+                    ShareUtils.openUrlInBrowser(requireActivity(), viewModel.url)
                 }
                 .setSingleChoiceItems(trackNames.toTypedArray(), selectedAudioStream, null)
                 .setNegativeButton(R.string.cancel, null)
@@ -2039,9 +1969,7 @@ class VideoDetailFragment :
     private fun cleanUp() {
         // New beginning
         stack.clear()
-        currentWorker?.dispose()
         PlayerHolder.stopService()
-        setInitialData(0, null, "", null)
         currentInfo = null
         updateOverlayData(null, null, listOf())
     }
@@ -2107,6 +2035,7 @@ class VideoDetailFragment :
     private fun setupBottomPlayer() {
         val params = binding.appBarLayout.layoutParams as CoordinatorLayout.LayoutParams
         val behavior = params.behavior as AppBarLayout.Behavior?
+        val activity = requireActivity()
 
         val bottomSheetLayout = activity.findViewById<FrameLayout>(R.id.fragment_player_holder)
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetLayout)
@@ -2151,7 +2080,7 @@ class VideoDetailFragment :
                         if (DeviceUtils.isLandscape(requireContext()) &&
                             player?.isPlaying == true &&
                             !this@VideoDetailFragment.isFullscreen &&
-                            !DeviceUtils.isTablet(activity)
+                            !DeviceUtils.isTablet(requireActivity())
                         ) {
                             player?.UIs()?.get(MainPlayerUi::class)?.toggleFullscreen()
                         }
@@ -2263,7 +2192,8 @@ class VideoDetailFragment :
     }
 
     companion object {
-        const val KEY_SWITCHING_PLAYERS: String = "switching_players"
+        private val TAG = VideoDetailFragment::class.java.simpleName
+        const val KEY_SWITCHING_PLAYERS = "switching_players"
 
         private const val MAX_OVERLAY_ALPHA = 0.9f
         private const val MAX_PLAYER_HEIGHT = 0.7f
@@ -2291,10 +2221,13 @@ class VideoDetailFragment :
             url: String?,
             name: String,
             queue: PlayQueue?
-        ): VideoDetailFragment {
-            val instance = VideoDetailFragment()
-            instance.setInitialData(serviceId, url, name, queue)
-            return instance
+        ) = VideoDetailFragment().apply {
+            arguments = bundleOf(
+                KEY_SERVICE_ID to serviceId,
+                KEY_URL to url,
+                KEY_TITLE to name,
+                VideoDetailViewModel.KEY_PLAY_QUEUE to queue
+            )
         }
 
         @JvmStatic
@@ -2311,6 +2244,6 @@ class VideoDetailFragment :
          * Stack that contains the "navigation history".<br></br>
          * The peek is the current video.
          */
-        private var stack = LinkedList<StackItem>()
+        private val stack = LinkedList<StackItem>()
     }
 }

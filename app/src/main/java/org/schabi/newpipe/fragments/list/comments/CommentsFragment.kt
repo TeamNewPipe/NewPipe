@@ -7,6 +7,7 @@ import androidx.compose.material3.Surface
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.compose.content
+import androidx.lifecycle.viewmodel.compose.viewModel
 import org.schabi.newpipe.ui.components.video.comment.CommentSection
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.KEY_SERVICE_ID
@@ -20,7 +21,7 @@ class CommentsFragment : Fragment() {
     ) = content {
         AppTheme {
             Surface {
-                CommentSection()
+                CommentSection(viewModel(requireParentFragment()))
             }
         }
     }

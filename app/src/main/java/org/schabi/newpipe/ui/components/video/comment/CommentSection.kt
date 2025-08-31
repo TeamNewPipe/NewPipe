@@ -19,7 +19,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -35,18 +34,21 @@ import org.schabi.newpipe.ui.emptystate.EmptyStateComposable
 import org.schabi.newpipe.ui.emptystate.EmptyStateSpec
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.image.ImageStrategy
-import org.schabi.newpipe.viewmodels.CommentsViewModel
+import org.schabi.newpipe.viewmodels.VideoDetailViewModel
 import org.schabi.newpipe.viewmodels.util.Resource
 
 @Composable
-fun CommentSection(commentsViewModel: CommentsViewModel = viewModel()) {
-    val streamState by commentsViewModel.streamState.collectAsStateWithLifecycle()
-    val commentState by commentsViewModel.commentState.collectAsStateWithLifecycle()
-
+fun CommentSection(videoDetailViewModel: VideoDetailViewModel) {
+    val streamState by videoDetailViewModel.streamState.collectAsStateWithLifecycle()
+    val commentState by videoDetailViewModel.commentState.collectAsStateWithLifecycle()
     val avatars = (streamState as? Resource.Success)?.data?.uploaderAvatars.orEmpty()
     val uploaderAvatarUrl = ImageStrategy.choosePreferredImage(avatars)
 
-    CommentSection(commentState, uploaderAvatarUrl, commentsViewModel.comments)
+    CommentSection(
+        commentState,
+        uploaderAvatarUrl,
+        videoDetailViewModel.comments,
+    )
 }
 
 @Composable

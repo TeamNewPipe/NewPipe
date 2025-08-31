@@ -6,7 +6,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueue;
 
 import java.io.Serializable;
 
-class StackItem implements Serializable {
+public class StackItem implements Serializable {
     private final int serviceId;
     private String url;
     private String title;
