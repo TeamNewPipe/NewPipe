@@ -167,19 +167,17 @@ public final class NotificationUtil {
                 && notificationBuilder.mActions.get(2).actionIntent != null);
     }
 
-
     public void createNotificationAndStartForeground() {
         if (notificationBuilder == null) {
             notificationBuilder = createNotification();
         }
         updateNotification();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            player.getService().startForeground(NOTIFICATION_ID, notificationBuilder.build(),
-                    ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
-        } else {
-            player.getService().startForeground(NOTIFICATION_ID, notificationBuilder.build());
-        }
+        // ServiceInfo constants are not used below Android Q, so 0 is set here
+        final int serviceType = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
+                ? ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK : 0;
+        ServiceCompat.startForeground(player.getService(), NOTIFICATION_ID,
+                notificationBuilder.build(), serviceType);
     }
 
     public void cancelNotificationAndStopForeground() {
