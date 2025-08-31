@@ -1,0 +1,17 @@
+Nowe
+- Obsł. Android Auto
+- Opcja ustawiania grup kanałów jako kart ekranu głównego
+- [YouTube] Udostęp. jako tymczasowa playlista
+- [SoundCloud] Karta kanału polubień
+
+Ulepszone
+- Lepsze podpow. paska wysz.
+- Wyśw. daty pobrania w Pobranych
+- Używanie języka aplikacji w Androidzie 13
+
+Naprawione
+- Uszkodzone kolory tekstu w trybie ciemnym
+- [YouTube] Playlisty ładujące maks. 100 pozycji
+- [YouTube] Brakujące polecane wideo
+- Awarie w widoku listy Historii
+- Znaczniki czasu w odp. na komentarze

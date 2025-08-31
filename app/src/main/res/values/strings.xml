@@ -17,6 +17,8 @@
     <string name="download">Download</string>
     <string name="controls_download_desc">Download stream file</string>
     <string name="search">Search</string>
+    <string name="search_with_service_name">Search %1$s</string>
+    <string name="search_with_service_name_and_filter">Search %1$s (%2$s)</string>
     <string name="settings">Settings</string>
     <string name="did_you_mean">Did you mean \"%1$s\"?</string>
     <string name="search_showing_result_for">Showing results for: %s</string>
@@ -285,9 +287,9 @@
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Retry</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">B</string>
+    <string name="short_thousand">%sK</string>
+    <string name="short_million">%sM</string>
+    <string name="short_billion">%sB</string>
     <string name="drawer_header_description">Toggle service, currently selected:</string>
     <!--Zero don't get selected (in some languages) as it is not a "special case" for android-->
     <string name="no_subscribers">No subscribers</string>
@@ -395,10 +397,10 @@
     <string name="main_page_content">Content of main page</string>
     <string name="main_page_content_summary">What tabs are shown on the main page</string>
     <string name="main_page_content_swipe_remove">Swipe items to remove them</string>
-    <string name="blank_page_summary">Blank Page</string>
-    <string name="kiosk_page_summary">Kiosk Page</string>
+    <string name="blank_page_summary">Blank page</string>
+    <string name="kiosk_page_summary">Kiosk page</string>
     <string name="default_kiosk_page_summary">Default Kiosk</string>
-    <string name="channel_page_summary">Channel Page</string>
+    <string name="channel_page_summary">Channel page</string>
     <string name="select_a_channel">Select a channel</string>
     <string name="no_channel_subscribed_yet">No channel subscriptions yet</string>
     <string name="select_a_playlist">Select a playlist</string>
@@ -411,7 +413,6 @@
     <string name="override_current_data">This will override your current setup.</string>
     <string name="import_settings">Do you want to also import settings?</string>
     <string name="error_unable_to_load_comments">Could not load comments</string>
-    <string name="localization_changes_requires_app_restart">The language will change once the app is restarted</string>
     <string name="select_a_feed_group">Select a feed group</string>
     <string name="no_feed_group_created_yet">No feed group created yet</string>
     <!-- Kiosk Names -->
@@ -827,6 +828,7 @@
     <string name="channel_tab_channels">Channels</string>
     <string name="channel_tab_playlists">Playlists</string>
     <string name="channel_tab_albums">Albums</string>
+    <string name="channel_tab_likes">Likes</string>
     <string name="channel_tab_about">About</string>
     <string name="show_channel_tabs">Channel tabs</string>
     <string name="show_channel_tabs_summary">What tabs are shown on the channel pages</string>
@@ -861,6 +863,8 @@
     <string name="show_more">Show more</string>
     <string name="show_less">Show less</string>
     <string name="import_settings_vulnerable_format">The settings in the export being imported use a vulnerable format that was deprecated since NewPipe 0.27.0. Make sure the export being imported is from a trusted source, and prefer using only exports obtained from NewPipe 0.27.0 or newer in the future. Support for importing settings in this vulnerable format will soon be removed completely, and then old versions of NewPipe will not be able to import settings of exports from new versions anymore.</string>
+    <string name="migration_info_6_7_title">SoundCloud Top 50 page removed</string>
+    <string name="migration_info_6_7_message">SoundCloud has discontinued the original Top 50 charts. The corresponding tab has been removed from your main page.</string>
     <string name="auto_queue_description">Next</string>
     <string name="newpipe_extractor_description">NewPipeExtractor is a library for extracting things from streaming sites. It is a core component of NewPipe, but could be used independently.</string>
     <plurals name="comments">
@@ -879,4 +883,10 @@
         <item quantity="one">Importing %d subscription…</item>
         <item quantity="other">Importing %d subscriptions…</item>
     </plurals>
+    <string name="migration_info_7_8_title">YouTube combined trending removed</string>
+    <string name="migration_info_7_8_message">YouTube has discontinued the combined trending page as of 21st July 2025. NewPipe replaced the default trending page with the trending livestreams.\n\nYou can also select different trending pages in \"Settings > Content > Content of main page\".</string>
+    <string name="trending_gaming">Gaming trends</string>
+    <string name="trending_podcasts">Trending podcasts</string>
+    <string name="trending_movies">Trending movies and shows</string>
+    <string name="trending_music">Trending music</string>
 </resources>

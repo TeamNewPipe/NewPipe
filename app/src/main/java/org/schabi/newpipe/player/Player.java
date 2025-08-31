@@ -44,7 +44,6 @@ import static org.schabi.newpipe.player.notification.NotificationConstants.ACTIO
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_SHUFFLE;
 import static org.schabi.newpipe.util.ListHelper.getPopupResolutionIndex;
 import static org.schabi.newpipe.util.ListHelper.getResolutionIndex;
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static coil3.Image_androidKt.toBitmap;
 
@@ -61,6 +60,7 @@ import android.view.LayoutInflater;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.core.math.MathUtils;
 import androidx.preference.PreferenceManager;
 
@@ -133,6 +133,10 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.disposables.SerialDisposable;
 
+/**
+ * The ExoPlayer wrapper & Player business logic.
+ * Only instantiated once, from {@link PlayerService}.
+ */
 public final class Player implements PlaybackListener, Listener {
     public static final boolean DEBUG = MainActivity.DEBUG;
     public static final String TAG = Player.class.getSimpleName();
@@ -397,7 +401,7 @@ public final class Player implements PlaybackListener, Listener {
                 && newQueue.size() == 1 && newQueue.getItem() != null
                 && playQueue != null && playQueue.size() == 1 && playQueue.getItem() != null
                 && newQueue.getItem().getUrl().equals(playQueue.getItem().getUrl())
-                && newQueue.getItem().getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET) {
+                && newQueue.getItem().getRecoveryPosition() != Long.MIN_VALUE) {
             // Player can have state = IDLE when playback is stopped or failed
             // and we should retry in this case
             if (simpleExoPlayer.getPlaybackState()
@@ -425,7 +429,7 @@ public final class Player implements PlaybackListener, Listener {
                 && !samePlayQueue
                 && !newQueue.isEmpty()
                 && newQueue.getItem() != null
-                && newQueue.getItem().getRecoveryPosition() == PlayQueueItem.RECOVERY_UNSET) {
+                && newQueue.getItem().getRecoveryPosition() == Long.MIN_VALUE) {
             databaseUpdateDisposable.add(recordManager.loadStreamState(newQueue.getItem())
                     .observeOn(AndroidSchedulers.mainThread())
                     // Do not place initPlayback() in doFinally() because
@@ -473,22 +477,23 @@ public final class Player implements PlaybackListener, Listener {
     }
 
     private void initUIsForCurrentPlayerType() {
-        if ((UIs.getOpt(MainPlayerUi.class).isPresent() && playerType == PlayerType.MAIN)
-                || (UIs.getOpt(PopupPlayerUi.class).isPresent()
+        if ((UIs.get(MainPlayerUi.class) != null && playerType == PlayerType.MAIN)
+                || (UIs.get(PopupPlayerUi.class) != null
                     && playerType == PlayerType.POPUP)) {
             // correct UI already in place
             return;
         }
 
         // try to reuse binding if possible
-        final PlayerBinding binding = UIs.getOpt(VideoPlayerUi.class).map(VideoPlayerUi::getBinding)
-                .orElseGet(() -> {
-                    if (playerType == PlayerType.AUDIO) {
-                        return null;
-                    } else {
-                        return PlayerBinding.inflate(LayoutInflater.from(context));
-                    }
-                });
+        @Nullable final VideoPlayerUi ui = UIs.get(VideoPlayerUi.class);
+        final PlayerBinding binding;
+        if (ui != null) {
+            binding = ui.getBinding();
+        } else if (playerType == PlayerType.AUDIO) {
+            binding = null;
+        } else {
+            binding = PlayerBinding.inflate(LayoutInflater.from(context));
+        }
 
         switch (playerType) {
             case MAIN:
@@ -751,7 +756,6 @@ public final class Player implements PlaybackListener, Listener {
                 toggleShuffleModeEnabled();
                 break;
             case Intent.ACTION_CONFIGURATION_CHANGED:
-                assureCorrectAppLanguage(service);
                 if (DEBUG) {
                     Log.d(TAG, "ACTION_CONFIGURATION_CHANGED received");
                 }
@@ -764,7 +768,8 @@ public final class Player implements PlaybackListener, Listener {
     private void registerBroadcastReceiver() {
         // Try to unregister current first
         unregisterBroadcastReceiver();
-        context.registerReceiver(broadcastReceiver, intentFilter);
+        ContextCompat.registerReceiver(context, broadcastReceiver, intentFilter,
+                ContextCompat.RECEIVER_EXPORTED);
     }
 
     private void unregisterBroadcastReceiver() {
@@ -1588,7 +1593,7 @@ public final class Player implements PlaybackListener, Listener {
             }
 
             // sync the player index with the queue index, and seek to the correct position
-            if (item.getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET) {
+            if (item.getRecoveryPosition() != Long.MIN_VALUE) {
                 simpleExoPlayer.seekTo(playQueueIndex, item.getRecoveryPosition());
                 playQueue.unsetRecovery(playQueueIndex);
             } else {

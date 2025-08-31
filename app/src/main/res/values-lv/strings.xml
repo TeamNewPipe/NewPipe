@@ -136,9 +136,6 @@
     </plurals>
     <string name="no_subscribers">Nav abonamentu</string>
     <string name="drawer_header_description">Izvēlaties pakalpojumu, šobrīd izvēlēts:</string>
-    <string name="short_billion">B</string>
-    <string name="short_million">M</string>
-    <string name="short_thousand">k</string>
     <string name="retry">Atkārtot</string>
     <string name="audio">Audio</string>
     <string name="video">Video</string>
@@ -272,7 +269,6 @@
     <string name="peertube_instance_url_help">Atrodiet instances, kas jums patīk ar %s</string>
     <string name="peertube_instance_url_summary">Izvēlaties jūsu mīļākās PeerTube instances</string>
     <string name="peertube_instance_url_title">PeerTube serveri (instances)</string>
-    <string name="localization_changes_requires_app_restart">Valoda nomainīsies, kad aplikāciju restartēs</string>
     <string name="no_app_to_open_intent">Neviena lietotne jūsu ierīcē nevar šo atvērt</string>
     <string name="chapters">Nodaļas</string>
     <string name="recent">Jaunākie</string>
@@ -414,7 +410,7 @@
 \n2. Dodieties uz šo URL:%1$s
 \n3. Ierakstaties, kad tiek prasīts
 \n4. Nokopējiet profila URL, uz kuru tikāt novirzīts.</string>
-    <string name="import_youtube_instructions">YouTube abonementu importēšana no Google Takeout:\n\n1. Dodieties uz šo vietni: %1$s\n2. Autorizējieties, ja nepieciešams\n3. Noklikšķiniet uz \"Visi dati iekļauti\", pēc tam uz \"Atcelt visu atlasi\", pēc tam atlasiet tikai \"Abonementi\" un noklikšķiniet uz \"Labi\"\n4. Noklikšķiniet uz \"Nākamais solis\" un pēc tam uz \"Izveidot eksportu\"\n5. Pēc tam, kad tā parādās, noklikšķiniet uz pogas \"Lejupielādēt\"\n6. Noklikšķiniet IMPORTĒT DATNI zemāk un izvēlaties lejupielādēto .zip failu\n7. [Ja .zip failu neizdodas importēt] Izvelciet .csv failu (parasti zem \"YouTube un YouTube Music/subscriptions/subscriptions.csv\") no arhīva, tad noklikšķiniet uz IMPORTĒT DATNI zemāk un izvēlaties tikko izvilkto csv failu</string>
+    <string name="import_youtube_instructions">Ievietot YouTube abonementus no Google Takeout:\n\n1. Dodieties uz šo vietni: %1$s\n2. Autorizējieties, ja nepieciešams\n3. Noklikšķiniet uz \"Visi dati iekļauti\", pēc tam uz \"Atcelt visu atlasi\", pēc tam atlasiet tikai \"Abonementi\" un noklikšķiniet uz \"Labi\"\n4. Noklikšķiniet uz \"Nākamais solis\" un pēc tam uz \"Izveidot eksportu\"\n5. Pēc tam, kad tā parādās, noklikšķiniet uz pogas \"Lejupielādēt\"\n6. Noklikšķiniet IEVIETOT DATNI zemāk un izvēlaties lejupielādēto .zip failu\n7. [Ja .zip failu neizdodas ievietot] Izvelciet .csv failu (parasti zem \"YouTube un YouTube Music/subscriptions/subscriptions.csv\") no arhīva, tad noklikšķiniet uz IEVIETOT DATNI zemāk un atlasiet tikko izvilkto csv failu</string>
     <string name="preferred_open_action_settings_summary">Noklusējuma darbība, kad atver saturu — %s</string>
     <string name="show_original_time_ago_summary">Pakalpojumu oriģinālteksti būs redzami video vienumos</string>
     <string name="enable_disposed_exceptions_summary">Pēc izdzēšanas, piespiedu kārtā ziņot par nepiegādātiem Rx izņēmumiem, ārpus fragmenta vai darbības dzīves cikla</string>
@@ -527,7 +523,7 @@
     <string name="open_in_browser">Atvērt pārlūkā</string>
     <string name="cancel">Atcelt</string>
     <string name="install">Uzstādīt</string>
-    <string name="no_player_found_toast">Netika atrasts video atskaņotājs (jūs varat uzstādīt VLC, lai to atskaņotu).</string>
+    <string name="no_player_found_toast">Netika atrasts video atskaņotājs (jūs variet uzstādīt VLC, lai to atskaņotu).</string>
     <string name="no_player_found">Netika atrasts video atskaņotājs. Uzstādīt VLC?</string>
     <string name="upload_date_text">Publicēts %1$s</string>
     <string name="main_bg_subtitle">Nospiediet uz meklēšanas ikonas, lai sāktu.</string>
@@ -560,7 +556,7 @@
     <string name="download_path_title">Video lejupielādes mape</string>
     <string name="controls_add_to_playlist_title">Pievienot</string>
     <string name="controls_background_title">Fonā</string>
-    <string name="tab_choose">Izvēlieties Cilni</string>
+    <string name="tab_choose">Atlasiet cilni</string>
     <string name="tab_bookmarks">Saglabātie saraksti</string>
     <string name="tab_subscriptions">Abonementi</string>
     <string name="show_info">Rādīt informāciju</string>
@@ -574,11 +570,11 @@
     <string name="use_external_video_player_summary">Noņem skaņu dažās izšķirtspējās</string>
     <string name="use_external_video_player_title">Izmantot ārējo video atskaņotāju</string>
     <string name="share_dialog_title">Kopīgot ar</string>
-    <string name="search_showing_result_for">Tiek rādīti rezultāti priekš: %s</string>
+    <string name="search_showing_result_for">Tiek rādīti %s rezultāti</string>
     <string name="did_you_mean">Vai jūs domājāt \"%1$s\"\?</string>
     <string name="settings">Iestatījumi</string>
     <string name="search">Meklēt</string>
-    <string name="controls_download_desc">Lejupielādēt video failu</string>
+    <string name="controls_download_desc">Lejupielādēt video datni</string>
     <string name="download">Lejupielādēt</string>
     <string name="featured">Populāri</string>
     <string name="download_has_started">Lejupielāde ir sākusies</string>
@@ -643,7 +639,7 @@
     <string name="metadata_privacy">Privātums</string>
     <string name="metadata_privacy_unlisted">Sarakstā neiekļauts</string>
     <string name="metadata_host">Uzņēmums</string>
-    <string name="remote_search_suggestions">Attālinātie meklēšanas ieteikumi</string>
+    <string name="remote_search_suggestions">Servera meklēšanas ieteikumi</string>
     <string name="mark_as_watched">Atzīmēt kā skatītu</string>
     <string name="processing_may_take_a_moment">Apstrādā... Var aizņemt kādu laiku</string>
     <plurals name="deleted_downloads_toast">
@@ -826,4 +822,7 @@
     <string name="share_playlist_with_titles">Kopīgot nosaukumus</string>
     <string name="import_settings_vulnerable_format">Importētā eksporta iestatījumi izmanto ievainojamo formātu, kas tika pārtraukts kopš NewPipe 0.27.0 versijas. Pārliecinieties, ka importētie dati ir no uzticama avota, un turpmāk ir vēlams izmantot tikai datus, kas veikti NewPipe 0.27.0 vai jaunākās versijās. Iestatījumu importēšanas atbalsts šajā neaizsargātajā formātā drīzumā tiks pilnībā aizvākts, un tad vecās NewPipe versijas vairs nevarēs importēt iestatījumus, kas veikti jaunajās versijās.</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">Šis risinājums problēmas novēršanai atbrīvo un atkārtoti instantiē video kodekus, kad notiek virsmas maiņa, nevis tieši iestatīt virsmu kodekam. ExoPlayer jau izmanto šo risinājumu dažās ierīcēs, kurām ir šī problēma. Šis iestatījums darbosies tikai ierīcēs, kurās uzstādīta operētājsistēma Android 6 un jaunāka.\n\nIespējojot šo iestatījumu, var novērst atskaņošanas kļūdas, pārslēdzot pašreizējo video atskaņotāju vai pārejot uz pilnekrāna režīmu</string>
+    <string name="tab_bookmarks_short">Atskaņošanas saraksti</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Kopīgot kā pagaidu YouTube atskaņošanas sarakstu</string>
+    <string name="audio_track_type_secondary">sekundārais</string>
 </resources>

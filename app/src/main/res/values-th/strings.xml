@@ -165,9 +165,6 @@
     <string name="video">วิดีโอ</string>
     <string name="audio">เสียง</string>
     <string name="retry">ลองอีกครั้ง</string>
-    <string name="short_thousand">พัน</string>
-    <string name="short_million">ล้าน</string>
-    <string name="short_billion">พันล้าน</string>
     <string name="no_subscribers">ไม่มีสมาชิกที่สมัครรับ</string>
     <plurals name="subscribers">
         <item quantity="other">%s บอกรับ</item>

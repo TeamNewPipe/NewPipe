@@ -133,9 +133,6 @@
     <string name="video">ڤیدیۆ</string>
     <string name="audio">دەنگ</string>
     <string name="retry">هەوڵدانەوە</string>
-    <string name="short_thousand">هەزار</string>
-    <string name="short_million">ملیۆن</string>
-    <string name="short_billion">بلیۆن</string>
     <string name="no_subscribers">هیچ بەشداربوویەک نییە</string>
     <plurals name="subscribers">
         <item quantity="one">%s بەشداربوو</item>
@@ -398,7 +395,6 @@
     <string name="overwrite_unrelated_warning">فایلێک بەهەمان ناو هەیە</string>
     <string name="overwrite_finished_warning">فایلێکی دابەزێنراو بەم ناوەوە هەیە</string>
     <string name="overwrite_failed">ناتوانرێ لەسەر ئەو فایلە جێگیربکرێ</string>
-    <string name="localization_changes_requires_app_restart">زمان دەگۆڕدرێ لەدوای داخستن و پاشان کردنەوەی ئەپ.</string>
     <string name="default_kiosk_page_summary">پەڕەی بنەڕەتی</string>
     <string name="seek_duration_title">ماوەی خێرا بردنە پێشەوە\\ گێڕانەوە بۆ دواوە</string>
     <string name="peertube_instance_url_title">دۆخی پێرتووبی</string>

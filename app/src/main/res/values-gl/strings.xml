@@ -158,9 +158,6 @@
     <string name="video">Vídeo</string>
     <string name="audio">Audio</string>
     <string name="retry">Tentar de novo</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">B</string>
     <string name="no_subscribers">Ningún subscrito</string>
     <plurals name="subscribers">
         <item quantity="one">%s subscrito</item>
@@ -463,7 +460,6 @@
     <string name="conferences">Conferencias</string>
     <string name="most_liked">O que ten mais gústames</string>
     <string name="recently_added">Engadiuse recentemente</string>
-    <string name="localization_changes_requires_app_restart">O idioma cambiará unha vez que se reinicie o aplicativo</string>
     <string name="error_unable_to_load_comments">Non se puideron cargar os comentarios</string>
     <string name="no_playlist_bookmarked_yet">Aínda non hai marcadores nesta lista de reprodución</string>
     <string name="select_a_playlist">Seleccionar unha lista de reprodución</string>

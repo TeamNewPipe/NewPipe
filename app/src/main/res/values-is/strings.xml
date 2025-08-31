@@ -97,7 +97,6 @@
     <string name="play_queue_audio_settings">Hljóðstillingar</string>
     <string name="start_here_on_background">Spila í bakgrunni</string>
     <string name="preferred_open_action_settings_summary">Þegar hlekkur er opnaður — %s</string>
-    <string name="short_thousand">þús.</string>
     <string name="detail_dislikes_img_view_description">Líkar ekki við</string>
     <string name="retry">Reyna aftur</string>
     <string name="description_tab_description">Lýsing</string>
@@ -217,7 +216,6 @@
     <string name="your_comment">Athugasemd þín (á ensku):</string>
     <string name="search_no_results">Engar niðurstöður</string>
     <string name="video">Myndskeið</string>
-    <string name="short_billion">ma.</string>
     <string name="no_views">Engin áhorf</string>
     <plurals name="views">
         <item quantity="one">%s áhorf</item>
@@ -268,7 +266,6 @@
     <string name="title_last_played">Nýlega spilað</string>
     <string name="title_most_played">Mest spilað</string>
     <string name="main_page_content">Aðalsíða</string>
-    <string name="localization_changes_requires_app_restart">Tungumálið breytist þegar forritið er endurræst</string>
     <string name="export_complete_toast">Flutt út</string>
     <string name="import_complete_toast">Flutt inn</string>
     <string name="local">Staðbundið</string>
@@ -353,7 +350,6 @@
     <string name="metadata_category">Flokkur</string>
     <string name="metadata_tags">Merki</string>
     <string name="donation_encouragement">NewPipe er þróað af sjálfboðaliðum sem eyða frítíma sínum í að færa þér bestu notendaupplifunina. Gefðu til baka til að hjálpa forriturum að gera NewPipe enn betri á meðan þeir njóta kaffibolla.</string>
-    <string name="short_million">millj.</string>
     <string name="show_description_summary">Slökktu á til að fela lýsingu og viðbótarupplýsingar myndskeiðs</string>
     <string name="error_occurred_detail">Villa kom upp: %1$s</string>
     <string name="title_activity_recaptcha">Þraut reCAPTCHA</string>
@@ -802,4 +798,14 @@
     <string name="show_error_snackbar">Sýna villustiku</string>
     <string name="image_quality_summary">Veldu gæði mynda og hvort eigi að hlaða myndum inn yfirhöfuð, til að minnka notun gagna og minnis. Breytingar munu hreinsa bæði vinnsluminni og diskminni - %s</string>
     <string name="audio_track_type_secondary">auka</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Deila sem YouTube-bráðabirgðaspilunarlista</string>
+    <string name="tab_bookmarks_short">Spilunarlistar</string>
+    <string name="search_with_service_name">Leita í %1$s</string>
+    <string name="search_with_service_name_and_filter">Leita í %1$s (%2$s)</string>
+    <string name="select_a_feed_group">Veldu hóp streyma</string>
+    <string name="no_feed_group_created_yet">Enginn hópur streyma útbúinn ennþá</string>
+    <string name="feed_group_page_summary">Síða rásahóps</string>
+    <string name="channel_tab_likes">Líkar við</string>
+    <string name="migration_info_6_7_title">Topp 50 síða SoundCloud fjarlægð</string>
+    <string name="migration_info_6_7_message">SoundCloud er hætt með Topp 50 vinsældalistann. Viðkomandi flipi hefur verið fjarlægður af aðalsíðunni þinni.</string>
 </resources>

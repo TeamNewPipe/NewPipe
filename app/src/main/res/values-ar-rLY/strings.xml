@@ -75,13 +75,11 @@
     <string name="downloads_title">الملفات المحملة</string>
     <string name="invalid_source">لا يوجد مثل هذا الملف/مصدر المحتوى</string>
     <string name="most_liked">الأكثر إعجابًا</string>
-    <string name="short_billion">بليون</string>
     <string name="feed_load_error_account_info">تعذر تحميل موجز \'%s\'.</string>
     <string name="question_mark">؟</string>
     <string name="check_for_updates">التحقق من وجود تحديثات</string>
     <string name="peertube_instance_url_title">مثيلات خوادم پيرتيوب</string>
     <string name="more_than_100_videos">+100 فيديو</string>
-    <string name="short_thousand">ألف</string>
     <string name="peertube_instance_add_exists">مثيل الخادم موجود بالفعل</string>
     <string name="clear_queue_confirmation_title">طلب تأكيد قبل مسح قائمة الانتظار</string>
     <string name="metadata_subscribers">المشتركون</string>
@@ -227,7 +225,6 @@
     <string name="featured">المميزة</string>
     <string name="show_age_restricted_content_summary">عرض المحتوى الذي يُحتمل أن يكون غير مناسب للأطفال لأن له حدًا عمريًا (مثل 18+)</string>
     <string name="start_here_on_background">بدأ التشغيل في الخلفية</string>
-    <string name="localization_changes_requires_app_restart">ستتغير اللغة بمجرد إعادة تشغيل التطبيق</string>
     <string name="channel_tab_shorts">القصيرة</string>
     <string name="playlists">قوائم التشغيل</string>
     <string name="clear">تنظيف</string>
@@ -649,7 +646,6 @@
     <string name="seek_duration_title">تسريع إلى الأمام/-ترجيع وقت البحث</string>
     <string name="permission_denied">تم رفضها من قبل النظام</string>
     <string name="no_comments">ليس هناك تعليقات</string>
-    <string name="short_million">مليون</string>
     <string name="checking_updates_toast">جاري التحقق من وجود تحديثات…</string>
     <string name="content">المحتوى</string>
     <string name="downloads_storage_ask_title">اسأل عن مكان التنزيل</string>

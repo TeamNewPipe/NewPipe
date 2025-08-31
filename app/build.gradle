@@ -17,20 +17,20 @@ plugins {
 }
 
 android {
-    compileSdk 35
+    compileSdk 36
     namespace 'org.schabi.newpipe'
 
     defaultConfig {
         applicationId "org.schabi.newpipe"
         resValue "string", "app_name", "NewPipe"
         minSdk 21
-        targetSdk 33
+        targetSdk 35
         if (System.properties.containsKey('versionCodeOverride')) {
             versionCode System.getProperty('versionCodeOverride') as Integer
         } else {
-            versionCode 1004
+            versionCode 1005
         }
-        versionName "0.27.7"
+        versionName "0.28.0"
         if (System.properties.containsKey('versionNameSuffix')) {
             versionNameSuffix System.getProperty('versionNameSuffix')
         }

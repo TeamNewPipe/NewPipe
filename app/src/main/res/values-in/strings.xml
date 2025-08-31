@@ -82,9 +82,6 @@
     <string name="recaptcha_request_toast">Meminta kode reCAPTCHA</string>
     <string name="black_theme_title">Hitam</string>
     <string name="all">Semua</string>
-    <string name="short_thousand">r</string>
-    <string name="short_million">J</string>
-    <string name="short_billion">T</string>
     <string name="open_in_popup_mode">Buka pada mode sembulan</string>
     <string name="msg_popup_permission">Izin ini dibutuhkan untuk
 \nmembuka di mode sembul</string>
@@ -193,8 +190,8 @@
     <string name="title_last_played">Terakhir Diputar</string>
     <string name="title_most_played">Sering Diputar</string>
     <string name="main_page_content">Konten halaman utama</string>
-    <string name="blank_page_summary">Halaman Kosong</string>
-    <string name="kiosk_page_summary">Halaman Kedai</string>
+    <string name="blank_page_summary">Halaman kosong</string>
+    <string name="kiosk_page_summary">Halaman kiosk</string>
     <string name="channel_page_summary">Halaman saluran</string>
     <string name="select_a_channel">Pilih saluran</string>
     <string name="no_channel_subscribed_yet">Belum ada saluran langganan</string>
@@ -417,7 +414,6 @@
     <plurals name="listening">
         <item quantity="other">%s pendengar</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Bahasa yang diubah akan diterapkan setelah aplikasi dimulai ulang</string>
     <string name="peertube_instance_url_title">Situs PeerTube</string>
     <string name="peertube_instance_url_summary">Pilih situs PeerTube favorit Anda</string>
     <string name="peertube_instance_url_help">Temukan situs yang Anda suka di %s</string>
@@ -809,4 +805,14 @@
     <string name="settings_category_backup_restore_title">Cadangkan dan pulihkan</string>
     <string name="import_settings_vulnerable_format">Pengaturan dalam ekspor yang diimpor menggunakan format rentan yang tidak digunakan lagi sejak NewPipe 0.27.0. Pastikan ekspor yang diimpor berasal dari sumber tepercaya, dan lebih memilih hanya menggunakan ekspor yang diperoleh dari NewPipe 0.27.0 atau yang lebih baru di masa mendatang. Dukungan untuk mengimpor pengaturan dalam format rentan ini akan segera dihapus sepenuhnya, dan NewPipe versi lama tidak akan dapat lagi mengimpor pengaturan ekspor dari versi baru.</string>
     <string name="audio_track_type_secondary">sekunder</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Daftar putar</string>
+    <string name="tab_bookmarks_short">Daftar putar</string>
+    <string name="feed_group_page_summary">Halaman grup saluran</string>
+    <string name="no_feed_group_created_yet">Belum ada grup umpan yang dibuat</string>
+    <string name="select_a_feed_group">Pilih grup umpan</string>
+    <string name="search_with_service_name">Cari %1$s</string>
+    <string name="search_with_service_name_and_filter">Cari %1$s (%2$s)</string>
+    <string name="channel_tab_likes">Suka</string>
+    <string name="migration_info_6_7_title">Halaman Top 50 SoundCloud dihapus</string>
+    <string name="migration_info_6_7_message">SoundCloud telah menghentikan dukungan tangga lagu Top 50. Tab terkait telah dihapus dari halaman utama Anda.</string>
 </resources>

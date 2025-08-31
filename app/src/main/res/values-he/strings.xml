@@ -105,16 +105,13 @@
     <string name="error_details_headline">פרטים:</string>
     <string name="detail_thumbnail_view_description">נגינת סרטון, משך:</string>
     <string name="detail_uploader_thumbnail_view_description">תמונה ייצוגית של המפרסם</string>
-    <string name="detail_likes_img_view_description">אהבו</string>
+    <string name="detail_likes_img_view_description">לייקים</string>
     <string name="detail_dislikes_img_view_description">לא אהבו</string>
     <string name="search_no_results">אין תוצאות</string>
     <string name="empty_list_subtitle">אין כאן כלום מלבד צרצרים</string>
     <string name="video">סרטון</string>
     <string name="audio">שמע</string>
     <string name="retry">ניסיון חוזר</string>
-    <string name="short_thousand">אלפ.</string>
-    <string name="short_million">מיל.</string>
-    <string name="short_billion">מיליארד</string>
     <string name="no_subscribers">אין מנויים</string>
     <plurals name="subscribers">
         <item quantity="one">מנוי אחד</item>
@@ -179,9 +176,9 @@
     <string name="action_history">היסטוריה</string>
     <string name="delete_item_search_history">למחוק את הפריט הזה מהיסטוריית החיפושים\?</string>
     <string name="main_page_content">תוכן הדף הראשי</string>
-    <string name="blank_page_summary">דף ריק</string>
-    <string name="kiosk_page_summary">דף גישה מזדמנת</string>
-    <string name="channel_page_summary">דף ערוצים</string>
+    <string name="blank_page_summary">עמוד ריק</string>
+    <string name="kiosk_page_summary">עמוד גישה מזדמנת</string>
+    <string name="channel_page_summary">עמוד הערוץ</string>
     <string name="select_a_channel">נא לבחור ערוץ</string>
     <string name="no_channel_subscribed_yet">אין עדיין מינויים לערוצים</string>
     <string name="select_a_kiosk">נא לבחור סוג גישה מזדמנת</string>
@@ -196,7 +193,7 @@
     <string name="start_here_on_popup">להתחיל לנגן בנגן צף</string>
     <string name="controls_download_desc">הורדת קובץ הזרמה</string>
     <string name="show_info">הצגת מידע</string>
-    <string name="tab_bookmarks">רשימות נגינה מסומנות</string>
+    <string name="tab_bookmarks">רשימות השמעה מסומנות</string>
     <string name="controls_add_to_playlist_title">הוספה אל</string>
     <string name="default_content_country_title">מדינת תוכן כברירת מחדל</string>
     <string name="settings_category_debug_title">ניפוי שגיאות</string>
@@ -432,7 +429,6 @@
         <item quantity="many">%s מאזינים</item>
         <item quantity="other">%s מאזינים</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">השפה תוחלף עם הפעלת היישומון מחדש</string>
     <string name="default_kiosk_page_summary">קיוסק ברירת מחדל</string>
     <string name="seek_duration_title">משך קפיצה מהירה קדימה/אחורה</string>
     <string name="peertube_instance_url_title">מופעים של PeerTube</string>
@@ -850,4 +846,12 @@
     <string name="error_insufficient_storage">אין מספיק מקום פנוי במכשיר</string>
     <string name="import_settings_vulnerable_format">ההגדרות בייצוא המיובא משתמשות בתסדיר פגיע שהוצא משימוש מאז NewPipe 0.27.0. יש לוודא שהייצוא המיובא הוא ממקור מהימן, ועדיף להשתמש רק בייצוא שהושג מ־NewPipe 0.27.0 ומעלה בעתיד. תמיכה בייבוא הגדרות בתסדיר פגיע זה תוסר בקרוב לחלוטין, ואז גרסאות ישנות של NewPipe לא יוכלו לייבא עוד הגדרות של ייצוא מגרסאות חדשות.</string>
     <string name="audio_track_type_secondary">משני</string>
+    <string name="tab_bookmarks_short">רשימות נגינה</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">שיתוף כרשימת נגינה זמנית של YouTube</string>
+    <string name="select_a_feed_group">הגדרת קבוצת ערוצי עדכונים</string>
+    <string name="no_feed_group_created_yet">לא נוצרו עדיין קבוצות ערוצי עדכונים</string>
+    <string name="feed_group_page_summary">עמוד קבוצת ערוצים</string>
+    <string name="search_with_service_name">חיפוש ב־%1$s</string>
+    <string name="search_with_service_name_and_filter">חיפוש ב־%1$s‏ (%2$s)</string>
+    <string name="channel_tab_likes">לייקים</string>
 </resources>

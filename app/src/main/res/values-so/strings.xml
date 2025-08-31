@@ -139,7 +139,6 @@
     <string name="trending">Shiddan</string>
     <string name="new_and_hot">Cusub oo Shiddan</string>
     <string name="top_50">50ka Sare</string>
-    <string name="localization_changes_requires_app_restart">Luuqadu waxay isbaddali doontaa marka appka dib loo soo kiciyo</string>
     <string name="error_unable_to_load_comments">Faallooyinka lama soo kicin karo</string>
     <string name="import_settings">Inaad sidoo kale fadhiga soo galiso ma rabtaa\?</string>
     <string name="override_current_data">Tani waxay baddali fadhiga siduu kuu yahay hadda.</string>
@@ -243,9 +242,6 @@
     </plurals>
     <string name="no_subscribers">Dad rukuntay ma jiraan</string>
     <string name="drawer_header_description">Furo adeega, hada waxaa dooran:</string>
-    <string name="short_billion">B</string>
-    <string name="short_thousand">K</string>
-    <string name="short_million">M</string>
     <string name="retry">ku celi</string>
     <string name="audio">Dhagaysi</string>
     <string name="video">Muuqaal</string>

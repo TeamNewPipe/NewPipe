@@ -1,7 +1,5 @@
 package org.schabi.newpipe.settings;
 
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -89,7 +87,6 @@ public class SettingsActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(final Bundle savedInstanceBundle) {
         setTheme(ThemeHelper.getSettingsThemeStyle(this));
-        assureCorrectAppLanguage(this);
 
         super.onCreate(savedInstanceBundle);
         Bridge.restoreInstanceState(this, savedInstanceBundle);
@@ -228,7 +225,6 @@ public class SettingsActivity extends AppCompatActivity implements
 
         // Build search items
         final Context searchContext = getApplicationContext();
-        assureCorrectAppLanguage(searchContext);
         final PreferenceParser parser = new PreferenceParser(searchContext, config);
         final PreferenceSearcher searcher = new PreferenceSearcher(config);
 

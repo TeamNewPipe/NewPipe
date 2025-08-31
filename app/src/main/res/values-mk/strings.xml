@@ -146,9 +146,6 @@
     <string name="video">Видео</string>
     <string name="audio">Звук</string>
     <string name="retry">Пробај повторно</string>
-    <string name="short_thousand">илјади</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">милијарди</string>
     <string name="no_subscribers">Нема зачленети</string>
     <plurals name="subscribers">
         <item quantity="one">%s зачленет</item>
@@ -685,7 +682,6 @@
         <item quantity="other">%s нови стримови</item>
     </plurals>
     <string name="error_report_open_github_notice">Ве молиме, проверете дали веќе има дискусија за проблем како овој. Создадените дупликати ни одземаат од времето, коешто можеме да го посветиме на поправање на проблемот.</string>
-    <string name="localization_changes_requires_app_restart">Јазикот ќе се смени откако апликацијата ќе биде рестартирана</string>
     <string name="enqueue_next_stream">Додај го во редослед следното</string>
     <string name="no_one_watching">Нема гледачи</string>
     <string name="done">Готово</string>

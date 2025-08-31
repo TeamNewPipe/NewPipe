@@ -84,7 +84,6 @@ import org.schabi.newpipe.util.ChannelTabHelper;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
-import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -132,7 +131,6 @@ public class RouterActivity extends AppCompatActivity {
         ThemeHelper.setDayNightMode(this);
         setTheme(ThemeHelper.isLightThemeSelected(this)
                 ? R.style.RouterActivityThemeLight : R.style.RouterActivityThemeDark);
-        Localization.assureCorrectAppLanguage(this);
 
         // Pass-through touch events to background activities
         // so that our transparent window won't lock UI in the mean time
@@ -701,7 +699,7 @@ public class RouterActivity extends AppCompatActivity {
         }
 
         // ...the player is not running or in normal Video-mode/type
-        final PlayerType playerType = PlayerHolder.getInstance().getType();
+        final PlayerType playerType = PlayerHolder.INSTANCE.getType();
         return playerType == null || playerType == PlayerType.MAIN;
     }
 

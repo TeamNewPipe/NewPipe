@@ -1,7 +1,6 @@
 package org.schabi.newpipe.settings;
 
 import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -17,7 +16,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 
@@ -35,12 +33,10 @@ import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ZipHelper;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Objects;
 
 public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
 
@@ -61,12 +57,9 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
     @Override
     public void onCreatePreferences(@Nullable final Bundle savedInstanceState,
                                     @Nullable final String rootKey) {
-        final File homeDir = ContextCompat.getDataDir(requireContext());
-        Objects.requireNonNull(homeDir);
-        manager = new ImportExportManager(new BackupFileLocator(homeDir));
+        manager = new ImportExportManager(new BackupFileLocator(requireContext()));
 
         importExportDataPathKey = getString(R.string.import_export_data_path);
-
 
         addPreferencesFromResourceRegistry();
 
@@ -126,7 +119,6 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
     }
 
     private void requestExportPathResult(final ActivityResult result) {
-        assureCorrectAppLanguage(requireContext());
         if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
             // will be saved only on success
             final Uri lastExportDataUri = result.getData().getData();
@@ -139,7 +131,6 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
     }
 
     private void requestImportPathResult(final ActivityResult result) {
-        assureCorrectAppLanguage(requireContext());
         if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
             // will be saved only on success
             final Uri lastImportDataUri = result.getData().getData();
@@ -183,9 +174,7 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
         }
 
         try {
-            if (!manager.ensureDbDirectoryExists()) {
-                throw new IOException("Could not create databases dir");
-            }
+            manager.ensureDbDirectoryExists();
 
             // replace the current database
             if (!manager.extractDb(file)) {
