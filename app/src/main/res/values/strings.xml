@@ -257,6 +257,8 @@
     <string name="restore_defaults">Restore defaults</string>
     <string name="restore_defaults_confirmation">Do you want to restore defaults?</string>
     <string name="permission_display_over_apps">Give permission to display over other apps</string>
+    <string name="permission_display_over_apps_message">In order to use the Popup Player, please select %1$s in the following Android settings menu and enable %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">“Allow display over other apps”</string>
     <!-- error activity -->
     <string name="error_report_notification_title">NewPipe encountered an error, tap to report</string>
     <string name="error_report_notification_toast">An error occurred, see the notification</string>
@@ -333,6 +335,8 @@
     <string name="pause">Pause</string>
     <string name="create">Create</string>
     <string name="delete">Delete</string>
+    <string name="delete_file">Delete file</string>
+    <string name="delete_entry">Delete entry</string>
     <string name="checksum">Checksum</string>
     <string name="dismiss">Dismiss</string>
     <string name="rename">Rename</string>
@@ -889,4 +893,5 @@
     <string name="trending_podcasts">Trending podcasts</string>
     <string name="trending_movies">Trending movies and shows</string>
     <string name="trending_music">Trending music</string>
+    <string name="entry_deleted">Entry deleted</string>
 </resources>
