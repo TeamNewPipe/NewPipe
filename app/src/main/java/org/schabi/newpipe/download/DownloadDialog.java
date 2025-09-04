@@ -389,8 +389,7 @@ public class DownloadDialog extends DialogFragment
                     }
                 }, throwable -> ErrorUtil.showSnackbar(context,
                         new ErrorInfo(throwable, UserAction.DOWNLOAD_OPEN_DIALOG,
-                                "Downloading video stream size",
-                                currentInfo.getServiceId()))));
+                                "Downloading video stream size", currentInfo))));
         disposables.add(StreamInfoWrapper.fetchMoreInfoForWrapper(getWrappedAudioStreams())
                 .subscribe(result -> {
                     if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()
@@ -399,8 +398,7 @@ public class DownloadDialog extends DialogFragment
                     }
                 }, throwable -> ErrorUtil.showSnackbar(context,
                         new ErrorInfo(throwable, UserAction.DOWNLOAD_OPEN_DIALOG,
-                                "Downloading audio stream size",
-                                currentInfo.getServiceId()))));
+                                "Downloading audio stream size", currentInfo))));
         disposables.add(StreamInfoWrapper.fetchMoreInfoForWrapper(wrappedSubtitleStreams)
                 .subscribe(result -> {
                     if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()
@@ -409,8 +407,7 @@ public class DownloadDialog extends DialogFragment
                     }
                 }, throwable -> ErrorUtil.showSnackbar(context,
                         new ErrorInfo(throwable, UserAction.DOWNLOAD_OPEN_DIALOG,
-                                "Downloading subtitle stream size",
-                                currentInfo.getServiceId()))));
+                                "Downloading subtitle stream size", currentInfo))));
     }
 
     private void setupAudioTrackSpinner() {

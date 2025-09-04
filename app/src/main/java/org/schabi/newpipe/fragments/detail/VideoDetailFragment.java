@@ -876,7 +876,7 @@ public final class VideoDetailFragment
                         }
                     }
                 }, throwable -> showError(new ErrorInfo(throwable, UserAction.REQUESTED_STREAM,
-                        url == null ? "no url" : url, serviceId)));
+                        url == null ? "no url" : url, serviceId, url)));
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1593,8 +1593,8 @@ public final class VideoDetailFragment
             }
 
             if (!info.getErrors().isEmpty()) {
-                showSnackBarError(new ErrorInfo(info.getErrors(),
-                        UserAction.REQUESTED_STREAM, info.getUrl(), info));
+                showSnackBarError(new ErrorInfo(info.getErrors(), UserAction.REQUESTED_STREAM,
+                        "Some info not extracted: " + info.getUrl(), info));
             }
         }
 

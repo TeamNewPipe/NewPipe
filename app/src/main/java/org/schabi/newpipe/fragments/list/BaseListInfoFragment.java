@@ -153,7 +153,7 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
                     handleResult(result);
                 }, throwable ->
                         showError(new ErrorInfo(throwable, errorUserAction,
-                                "Start loading: " + url, serviceId)));
+                                "Start loading: " + url, serviceId, url)));
     }
 
     /**
@@ -184,7 +184,7 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
                     handleNextItems(infoItemsPage);
                 }, (@NonNull Throwable throwable) ->
                         dynamicallyShowErrorPanelOrSnackbar(new ErrorInfo(throwable,
-                                errorUserAction, "Loading more items: " + url, serviceId)));
+                                errorUserAction, "Loading more items: " + url, serviceId, url)));
     }
 
     private void forbidDownwardFocusScroll() {
@@ -210,7 +210,7 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
 
         if (!result.getErrors().isEmpty()) {
             dynamicallyShowErrorPanelOrSnackbar(new ErrorInfo(result.getErrors(), errorUserAction,
-                    "Get next items of: " + url, serviceId));
+                    "Get next items of: " + url, serviceId, url));
         }
     }
 
@@ -250,7 +250,7 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
 
             if (!errors.isEmpty()) {
                 dynamicallyShowErrorPanelOrSnackbar(new ErrorInfo(result.getErrors(),
-                        errorUserAction, "Start loading: " + url, serviceId));
+                        errorUserAction, "Start loading: " + url, serviceId, url));
             }
         }
     }
