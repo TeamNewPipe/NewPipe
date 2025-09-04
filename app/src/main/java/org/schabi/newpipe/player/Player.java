@@ -2196,7 +2196,7 @@ public final class Player implements PlaybackListener, Listener {
     }
 
     public void useVideoAndSubtitles(final boolean videoAndSubtitlesEnabled) {
-        if (playQueue == null || audioPlayerSelected()) {
+        if (playQueue == null) {
             return;
         }
 
@@ -2208,17 +2208,11 @@ public final class Player implements PlaybackListener, Listener {
             final SourceType sourceType = videoResolver.getStreamSourceType()
                     .orElse(SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY);
 
+            setRecovery();
+
             if (playQueueManagerReloadingNeeded(sourceType, info, getVideoRendererIndex())) {
                 reloadPlayQueueManager();
             }
-
-            setRecovery();
-
-            // Disable or enable video and subtitles renderers depending of the
-            // videoAndSubtitlesEnabled value
-            trackSelector.setParameters(trackSelector.buildUponParameters()
-                    .setTrackTypeDisabled(C.TRACK_TYPE_TEXT, !videoAndSubtitlesEnabled)
-                    .setTrackTypeDisabled(C.TRACK_TYPE_VIDEO, !videoAndSubtitlesEnabled));
         }, () -> {
             /*
             The current metadata may be null sometimes (for e.g. when using an unstable connection
@@ -2227,9 +2221,15 @@ public final class Player implements PlaybackListener, Listener {
             Reload the play queue manager in this case, which is the behavior when we don't know the
             index of the video renderer or playQueueManagerReloadingNeeded returns true
             */
-            reloadPlayQueueManager();
             setRecovery();
+            reloadPlayQueueManager();
         });
+
+        // Disable or enable video and subtitles renderers depending of the
+        // videoAndSubtitlesEnabled value
+        trackSelector.setParameters(trackSelector.buildUponParameters()
+                .setTrackTypeDisabled(C.TRACK_TYPE_TEXT, !videoAndSubtitlesEnabled)
+                .setTrackTypeDisabled(C.TRACK_TYPE_VIDEO, !videoAndSubtitlesEnabled));
     }
 
     /**
