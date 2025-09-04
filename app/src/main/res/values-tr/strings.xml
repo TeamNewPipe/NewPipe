@@ -608,7 +608,6 @@
     <string name="description_select_enable">Açıklamadaki metni seçmeyi etkinleştir</string>
     <string name="description_select_note">Artık, açıklamadaki metni seçebilirsiniz. Seçim kipindeyken sayfanın titreyebileceğini ve bağlantıların tıklanamayacağını unutmayın.</string>
     <string name="open_website_license">Web sitesini aç</string>
-    <string name="service_provides_reason">%s şu nedeni sağlıyor:</string>
     <string name="account_terminated">Hesap sonlandırıldı</string>
     <string name="feed_load_error_fast_unknown">Hızlı besleme kipi bununla ilgili daha çok bilgi sağlamıyor.</string>
     <string name="feed_load_error_terminated">Yazarın hesabı sonlandırılmış.

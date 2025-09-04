@@ -624,7 +624,6 @@
     <string name="description_select_disable">Dezactivați selectarea textului în descriere</string>
     <string name="description_select_enable">Activați selectarea textului în descriere</string>
     <string name="description_select_note">Acum puteți selecta text în interiorul descrierii. Rețineți că este posibil ca pagina să pâlpâie, iar linkurile să nu poată fi accesate în modul de selecție.</string>
-    <string name="service_provides_reason">%s oferă acest motiv:</string>
     <string name="account_terminated">Contul a fost închis</string>
     <string name="feed_load_error_fast_unknown">Modul rapid nu furnizează mai multe informații în acest sens.</string>
     <string name="feed_load_error_terminated">Contul autorului a fost închis.

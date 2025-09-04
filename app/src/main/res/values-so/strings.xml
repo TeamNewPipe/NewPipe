@@ -608,7 +608,6 @@
     <string name="description_select_disable">Xidh caalamadinta qoraalka</string>
     <string name="description_select_enable">Fur caalamadinta qoraalka</string>
     <string name="description_select_note">Hadda waad dooran kartaa qoraalka ku dhexjira faahfaahinta. Ogow markaad caalamdinayso qoraalka boggu wuu boodboodi karaa tixraacyadana waxay noqon karaan kuwo aan lagu dhufan karin.</string>
-    <string name="service_provides_reason">%s wuxuu sheegayaa sababtan:</string>
     <string name="account_terminated">Akoonka waa lajoojiyay</string>
     <string name="feed_load_error_fast_unknown">Nidaamka dagdaga ah faahfaahin dheeraad ah uma hayo shaygan.</string>
     <string name="feed_load_error_terminated">Akoonka soosaaraha waa la joojiyay.

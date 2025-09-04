@@ -619,7 +619,6 @@
     <string name="description_select_enable">Ativar seleção de texto na descrição</string>
     <string name="description_select_note">Agora você pode selecionar o texto dentro da descrição. Note que a página pode piscar e os URL podem não ser clicáveis no modo de seleção.</string>
     <string name="open_website_license">Abrir site</string>
-    <string name="service_provides_reason">%s fornece este motivo:</string>
     <string name="account_terminated">Conta encerrada</string>
     <string name="feed_load_error_fast_unknown">O modo feed rápido não fornece mais informações sobre isso.</string>
     <string name="feed_load_error_terminated">A conta do autor foi encerrada.

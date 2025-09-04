@@ -599,7 +599,6 @@
     <string name="description_select_enable">Aktifkan dapat memilih teks pada deskripsi</string>
     <string name="description_select_note">Anda sekarang dapat memilih teks di dalam deskripsi. Perhatikan bahwa halaman mungkin berkedip dan tautan tidak dapat diklik saat dalam mode pemilihan.</string>
     <string name="open_website_license">Buka situs web</string>
-    <string name="service_provides_reason">%s menyediakan alasan ini:</string>
     <string name="account_terminated">Akun dinonaktifkan</string>
     <string name="feed_load_error_fast_unknown">Mode langganan cepat tidak menyediakan lebih banyak info tentang ini.</string>
     <string name="feed_load_error_terminated">Akun kreator telah dinonaktifkan.
