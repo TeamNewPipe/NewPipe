@@ -510,7 +510,6 @@
     <string name="related_items_tab_description">Kapcsolódó elemek</string>
     <string name="error_report_open_github_notice">Ellenőrizze, hogy létezik-e már olyan jegy, amely az összeomlásával foglalkozik. Ha duplikált jegyet ad fel, akkor olyan időt vesz el tőlünk, amelyet a hiba javítására tudnánk fordítani.</string>
     <string name="minimize_on_exit_title">Minimalizálás alkalmazásváltáskor</string>
-    <string name="service_provides_reason">A(z) %s ezt az okot adta meg:</string>
     <string name="local_search_suggestions">Helyi keresési javaslatok</string>
     <string name="remote_search_suggestions">Távoli keresési javaslatok</string>
     <string name="start_main_player_fullscreen_title">A fő lejátszó teljes képernyős indítása</string>

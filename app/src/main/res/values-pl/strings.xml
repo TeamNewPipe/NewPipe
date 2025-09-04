@@ -587,7 +587,6 @@
     <string name="metadata_category">Kategoria</string>
     <string name="open_website_license">Otwórz stronę</string>
     <string name="description_select_note">Teraz możesz zaznaczyć tekst wewnątrz opisu. Pamiętaj, że w trybie zaznaczania strona może migotać i linki nie będą klikalne.</string>
-    <string name="service_provides_reason">%s podaje ten powód:</string>
     <string name="account_terminated">Konto zamknięte</string>
     <string name="feed_load_error_fast_unknown">Tryb szybki dla ładowania kanału nie dostarcza więcej informacji na ten temat.</string>
     <string name="feed_load_error_terminated">Konto autora zostało zawieszone.

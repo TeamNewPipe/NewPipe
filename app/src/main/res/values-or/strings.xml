@@ -480,7 +480,6 @@
     <string name="feed_group_dialog_select_subscriptions">ସଦସ୍ୟତା ଚୟନ କରନ୍ତୁ</string>
     <string name="feed_group_dialog_empty_selection">କୌଣସି ସଦସ୍ୟତା ଚୟନ ହୋଇନାହିଁ</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">ଦ୍ରୁତ ମୋଡ୍ ସକ୍ଷମ କରନ୍ତୁ</string>
-    <string name="service_provides_reason">%s ଏହି କାରଣ ପ୍ରଦାନ କରେ:</string>
     <string name="detail_sub_channel_thumbnail_view_description">ଚ୍ୟାନେଲର ଅବତାର ଥମ୍ୱନେଲ୍</string>
     <string name="featured">ବୈଶିଷ୍ଟ୍ୟ</string>
     <string name="radio">ରେଡିଓ</string>

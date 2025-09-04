@@ -115,7 +115,7 @@ public class ErrorActivity extends AppCompatActivity {
 
         // normal bugreport
         buildInfo(errorInfo);
-        activityErrorBinding.errorMessageView.setText(errorInfo.getMessageStringId());
+        activityErrorBinding.errorMessageView.setText(errorInfo.getMessage(this));
         activityErrorBinding.errorView.setText(formErrorText(errorInfo.getStackTraces()));
 
         // print stack trace once again for debugging:

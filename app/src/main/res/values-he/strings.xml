@@ -593,7 +593,6 @@
 \nל־NewPipe לא תהיה אפשרות להוריד את ההזנה הזאת בעתיד.
 \nלהסיר את המינוי מהערוץ הזה\?</string>
     <string name="open_website_license">פתיחת האתר</string>
-    <string name="service_provides_reason">%s מספק את הסיבה הבאה:</string>
     <string name="account_terminated">החשבון הושמד</string>
     <string name="feed_load_error_fast_unknown">מצב ההזנה המהירה לא מספק מידע נוסף על כך.</string>
     <string name="feed_load_error_account_info">לא ניתן לטעון את ההזנה עבור ‚%s’.</string>

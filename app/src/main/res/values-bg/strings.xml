@@ -392,7 +392,6 @@
     <string name="playlist_page_summary">Страница на плейлиста</string>
     <string name="chapters">Глави</string>
     <string name="metadata_licence">Лиценз</string>
-    <string name="service_provides_reason">%s посочва следната причина:</string>
     <string name="metadata_tags">Маркери</string>
     <string name="metadata_privacy">Поверителност</string>
     <string name="metadata_language">Език</string>

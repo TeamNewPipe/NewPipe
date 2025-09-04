@@ -513,7 +513,6 @@
     <string name="feed_load_error_account_info">\'%s\' এর জন্য ফিড প্রক্রিয়া করা যাচ্ছে না।</string>
     <string name="description_select_disable">বর্ণনার লেখা নির্বাচন করা নিষ্ক্রিয় করো</string>
     <string name="description_select_enable">বর্ণনার লেখা নির্বাচন করা সক্ষম করো</string>
-    <string name="service_provides_reason">%s এই কারণ বলছে:</string>
     <string name="feed_load_error">প্রক্রিয়াকরণ ফিডে ত্রুটি</string>
     <string name="open_website_license">ওয়েবসাইট খুলুন</string>
     <string name="account_terminated">অ্যাকাউন্ট ধ্বংসকৃত</string>

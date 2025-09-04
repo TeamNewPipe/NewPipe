@@ -573,7 +573,6 @@
     <string name="disable_media_tunneling_title">Desativar túnel multimédia</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Sempre que descarregar um ficheiro, terá que indicar o local para o guardar</string>
     <string name="no_dir_yet">Ainda não definiu uma pasta para as descargas. Escolha agora a pasta a utilizar</string>
-    <string name="service_provides_reason">%s fornece este motivo:</string>
     <string name="account_terminated">Conta encerrada</string>
     <string name="feed_load_error_fast_unknown">O modo de fonte rápida não fornece mais informações sobre isto.</string>
     <string name="feed_load_error_terminated">A conta do autor foi encerrada.

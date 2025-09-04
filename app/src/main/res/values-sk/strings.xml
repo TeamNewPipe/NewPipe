@@ -586,7 +586,6 @@
     <string name="description_select_enable">Povolenie výberu textu v popise</string>
     <string name="description_select_note">Teraz môžete vybrať text vo vnútri popisu. Upozorňujeme, že stránka môže blikať a odkazy nemusia byť klikateľné, keď je v režime výberu.</string>
     <string name="open_website_license">Otvoriť webstránku</string>
-    <string name="service_provides_reason">%s uvádza tento dôvod:</string>
     <string name="account_terminated">Účet bol zrušený</string>
     <string name="feed_load_error_fast_unknown">Tento rýchly režim neposkytuje viac informácií.</string>
     <string name="feed_load_error_terminated">Účet autora bol zrušený.

@@ -407,7 +407,6 @@
     <string name="enable_queue_limit">பதிவிறக்க வரிசையை கட்டுப்படுத்துங்கள்</string>
     <string name="enable_queue_limit_desc">ஒரு பதிவிறக்கம் ஒரே நேரத்தில் இயங்கும்</string>
     <string name="no_app_to_open_intent">உங்கள் சாதனத்தில் எந்த பயன்பாடும் இதைத் திறக்க முடியாது</string>
-    <string name="service_provides_reason">%s இந்த காரணத்தை வழங்குகிறது:</string>
     <string name="metadata_subchannel_avatars">துணை சேனல் அவதாரங்கள்</string>
     <string name="metadata_avatars">அவதாரங்கள்</string>
     <string name="progressive_load_interval_exoplayer_default">எக்சோப்ளேயர் இயல்புநிலை</string>

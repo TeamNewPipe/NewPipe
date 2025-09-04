@@ -585,7 +585,6 @@
     <string name="on">Aan</string>
     <string name="tablet_mode_title">Tablet-modus</string>
     <string name="open_website_license">Website openen</string>
-    <string name="service_provides_reason">%s geeft de volgende reden:</string>
     <string name="account_terminated">Account getermineerd</string>
     <string name="feed_load_error_fast_unknown">De snelle feed mode levert hierover niet meer informatie.</string>
     <string name="feed_load_error_terminated">De account van de auteur is getermineerd.

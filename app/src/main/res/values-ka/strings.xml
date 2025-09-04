@@ -518,7 +518,6 @@
     <string name="georestricted_content">ეს ხელმიუწვდომელია თქვენი ქვეყნიდან.</string>
     <string name="private_content">ეს მასალა პირადულია, ამიტომაც NewPipe-ს მისი არც მთლიანად და არც თანდათანობით ჩამოწერა არ შეუძლია.</string>
     <string name="account_terminated">ანგარიში შეწყვეტილია</string>
-    <string name="service_provides_reason">%s იძლევა ამ მიზეზს:</string>
     <string name="paid_content">ეს მასალა ხელმისაწვდომია მხოლოდ გადამხდელებისთვის, ამიტომაც NewPipe-ს მისი არც მთლიანად და არც თანდათანობით ჩამოწერა არ შეუძლია.</string>
     <string name="featured">გამორჩეული</string>
     <string name="radio">რადიო</string>

@@ -482,7 +482,6 @@
     <string name="enable_queue_limit">Endirmə növbəsini məhdudlaşdır</string>
     <string name="enable_queue_limit_desc">Eyni vaxtda ancaq bir endirmə həyata keçiriləcək</string>
     <string name="account_terminated">Hesab ləğv edildi</string>
-    <string name="service_provides_reason">%s bu səbəbi təmin edir:</string>
     <string name="download_has_started">Yükləmə başladı</string>
     <string name="description_select_disable">Açıqlamadakı mətni seçməyi qeyri-aktiv et</string>
     <string name="metadata_category">Kateqoriya</string>

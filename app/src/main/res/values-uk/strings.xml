@@ -592,7 +592,6 @@
     <string name="description_select_disable">Заборонити виділення тексту в описі</string>
     <string name="description_select_enable">Дозволити виділяти текст в описі</string>
     <string name="description_select_note">Тепер можна виділяти текст в описі. Зауважте, що сторінка може мигати і посилання можуть не працювати в режимі виділення.</string>
-    <string name="service_provides_reason">%s подає таку причину:</string>
     <string name="feed_load_error_account_info">Неможливо завантажити стрічку для «%s».</string>
     <string name="feed_load_error">Помилка завантаження стрічки</string>
     <string name="feed_load_error_terminated">Обліковий запис автора припинено.

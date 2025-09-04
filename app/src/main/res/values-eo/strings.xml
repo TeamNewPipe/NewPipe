@@ -477,7 +477,6 @@
     <string name="on">Ŝaltita</string>
     <string name="metadata_tags">Etikedoj</string>
     <string name="download_has_started">Elŝutado komenciĝis</string>
-    <string name="service_provides_reason">%s donas tiun kialon:</string>
     <string name="georestricted_content">Tiu enaĵo ne disponeblas en via lando.</string>
     <string name="recent">Freŝaj</string>
     <string name="video_detail_by">De %s</string>

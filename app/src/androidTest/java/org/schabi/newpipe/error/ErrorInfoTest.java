@@ -12,6 +12,7 @@ import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -23,8 +24,23 @@ import static org.junit.Assert.assertTrue;
 @LargeTest
 public class ErrorInfoTest {
 
+    /**
+     * @param errorInfo the error info to access
+     * @return the private field errorInfo.message.stringRes using reflection
+     */
+    private int getMessageFromErrorInfo(final ErrorInfo errorInfo)
+            throws NoSuchFieldException, IllegalAccessException {
+        final var message = ErrorInfo.class.getDeclaredField("message");
+        message.setAccessible(true);
+        final var messageValue = (ErrorInfo.Companion.ErrorMessage) message.get(errorInfo);
+
+        final var stringRes = ErrorInfo.Companion.ErrorMessage.class.getDeclaredField("stringRes");
+        stringRes.setAccessible(true);
+        return (int) Objects.requireNonNull(stringRes.get(messageValue));
+    }
+
     @Test
-    public void errorInfoTestParcelable() {
+    public void errorInfoTestParcelable() throws NoSuchFieldException, IllegalAccessException {
         final ErrorInfo info = new ErrorInfo(new ParsingException("Hello"),
                 UserAction.USER_REPORT, "request", ServiceList.YouTube.getServiceId());
         // Obtain a Parcel object and write the parcelable object to it:
@@ -39,7 +55,7 @@ public class ErrorInfoTest {
         assertEquals(ServiceList.YouTube.getServiceInfo().getName(),
                 infoFromParcel.getServiceName());
         assertEquals("request", infoFromParcel.getRequest());
-        assertEquals(R.string.parsing_error, infoFromParcel.getMessageStringId());
+        assertEquals(R.string.parsing_error, getMessageFromErrorInfo(infoFromParcel));
 
         parcel.recycle();
     }

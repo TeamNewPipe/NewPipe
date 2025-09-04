@@ -604,7 +604,6 @@
     <string name="play_queue_audio_track">الصوت : %s</string>
     <string name="playback_step">خطوة</string>
     <string name="recaptcha_solve">حل</string>
-    <string name="service_provides_reason">%s يقدم هذا السبب:</string>
     <string name="selected_stream_external_player_not_supported">الدفق المحدد غير مدعوم من قبل المشغلون الخارجيون</string>
     <string name="title_activity_about">عن تطبيق نيوپايپ</string>
     <string name="seek_duration_title">تسريع إلى الأمام/-ترجيع وقت البحث</string>

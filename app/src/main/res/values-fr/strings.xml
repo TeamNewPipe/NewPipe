@@ -586,7 +586,6 @@
     <string name="metadata_tags">Étiquettes</string>
     <string name="metadata_category">Catégorie</string>
     <string name="description_select_note">Vous pouvez maintenant sélectionner du texte à l’intérieur de la description. Notez que la page peut scintiller et que les liens peuvent ne pas être cliquables en mode sélection.</string>
-    <string name="service_provides_reason">%s indique le motif :</string>
     <string name="no_dir_yet">Aucun dossier de téléchargement n’est défini pour le moment, sélectionnez le dossier de téléchargement par défaut</string>
     <string name="open_website_license">Ouvrir le site web</string>
     <string name="account_terminated">Compte résilié</string>

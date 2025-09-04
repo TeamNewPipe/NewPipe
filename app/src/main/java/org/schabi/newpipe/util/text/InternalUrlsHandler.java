@@ -1,14 +1,13 @@
 package org.schabi.newpipe.util.text;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 
 import org.schabi.newpipe.MainActivity;
-import org.schabi.newpipe.R;
-import org.schabi.newpipe.error.ErrorPanelHelper;
+import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
+import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
@@ -158,19 +157,13 @@ public final class InternalUrlsHandler {
         disposables.add(single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(info -> {
-                    final PlayQueue playQueue =
-                            new SinglePlayQueue(info, seconds * 1000L);
+                    final PlayQueue playQueue = new SinglePlayQueue(info, seconds * 1000L);
                     NavigationHelper.playOnPopupPlayer(context, playQueue, false);
                 }, throwable -> {
-                    if (DEBUG) {
-                        Log.e(TAG, "Could not play on popup: " + url, throwable);
-                    }
-                    new AlertDialog.Builder(context)
-                            .setTitle(R.string.player_stream_failure)
-                            .setMessage(
-                                    ErrorPanelHelper.Companion.getExceptionDescription(throwable))
-                            .setPositiveButton(R.string.ok, null)
-                            .show();
+                    final var errorInfo = new ErrorInfo(throwable, UserAction.PLAY_ON_POPUP, url);
+                    // This will only show a snackbar if the passed context has a root view:
+                    // otherwise it will resort to showing a notification, so we are safe here.
+                    ErrorUtil.showSnackbar(context, errorInfo);
                 }));
         return true;
     }
