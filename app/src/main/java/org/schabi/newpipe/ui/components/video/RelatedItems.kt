@@ -21,20 +21,35 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.edit
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.preference.PreferenceManager
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.info_list.ItemViewMode
+import org.schabi.newpipe.ui.components.common.LoadingIndicator
 import org.schabi.newpipe.ui.components.items.ItemList
 import org.schabi.newpipe.ui.components.items.stream.StreamInfoItem
 import org.schabi.newpipe.ui.emptystate.EmptyStateComposable
 import org.schabi.newpipe.ui.emptystate.EmptyStateSpec
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.NO_SERVICE_ID
+import org.schabi.newpipe.viewmodels.VideoDetailViewModel
+import org.schabi.newpipe.viewmodels.util.Resource
 
 @Composable
-fun RelatedItems(info: StreamInfo) {
+fun RelatedItems(viewModel: VideoDetailViewModel) {
+    val streamState by viewModel.streamState.collectAsStateWithLifecycle()
+
+    when (val state = streamState) {
+        is Resource.Loading -> LoadingIndicator()
+        is Resource.Success -> RelatedItems(state.data)
+        is Resource.Error -> TODO()
+    }
+}
+
+@Composable
+private fun RelatedItems(info: StreamInfo) {
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(LocalContext.current)
     val key = stringResource(R.string.auto_queue_key)
     // TODO: AndroidX DataStore might be a better option.

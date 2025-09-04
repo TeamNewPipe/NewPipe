@@ -3,6 +3,7 @@ package org.schabi.newpipe.util;
 import static android.content.Context.INPUT_SERVICE;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.UiModeManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -21,7 +22,6 @@ import android.webkit.CookieManager;
 
 import androidx.annotation.Dimension;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
@@ -286,7 +286,7 @@ public final class DeviceUtils {
                 .getDisplayMetrics().widthPixels;
     }
 
-    public static boolean isInMultiWindow(final AppCompatActivity activity) {
+    public static boolean isInMultiWindow(final Activity activity) {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && activity.isInMultiWindowMode();
     }
 

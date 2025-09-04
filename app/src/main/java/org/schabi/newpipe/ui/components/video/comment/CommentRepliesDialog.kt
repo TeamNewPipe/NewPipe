@@ -46,7 +46,7 @@ import org.schabi.newpipe.ui.theme.AppTheme
 fun CommentRepliesDialog(
     parentComment: CommentsInfoItem,
     onDismissRequest: () -> Unit,
-    onCommentAuthorOpened: () -> Unit,
+    onCommentAuthorOpened: (() -> Unit)?,
 ) {
     val coroutineScope = rememberCoroutineScope()
     val commentsFlow = remember {
@@ -66,7 +66,7 @@ private fun CommentRepliesDialog(
     parentComment: CommentsInfoItem,
     commentsFlow: Flow<PagingData<CommentsInfoItem>>,
     onDismissRequest: () -> Unit,
-    onCommentAuthorOpened: () -> Unit,
+    onCommentAuthorOpened: (() -> Unit)? = null,
 ) {
     val comments = commentsFlow.collectAsLazyPagingItems()
     val nestedScrollInterop = rememberNestedScrollInteropConnection()
@@ -76,7 +76,7 @@ private fun CommentRepliesDialog(
     val sheetState = rememberModalBottomSheetState()
     val nestedOnCommentAuthorOpened: () -> Unit = {
         // also partialExpand any parent dialog
-        onCommentAuthorOpened()
+        onCommentAuthorOpened?.invoke()
         coroutineScope.launch {
             sheetState.partialExpand()
         }
@@ -148,10 +148,7 @@ private fun CommentRepliesDialog(
                     }
                 } else {
                     items(comments.itemCount) {
-                        Comment(
-                            comment = comments[it]!!,
-                            onCommentAuthorOpened = nestedOnCommentAuthorOpened,
-                        )
+                        Comment(comments[it]!!, onCommentAuthorOpened = nestedOnCommentAuthorOpened)
                     }
                 }
             }
@@ -182,6 +179,6 @@ private fun CommentRepliesDialogPreview() {
     val flow = flowOf(PagingData.from(replies))
 
     AppTheme {
-        CommentRepliesDialog(comment, flow, onDismissRequest = {}, onCommentAuthorOpened = {})
+        CommentRepliesDialog(comment, flow, onDismissRequest = {})
     }
 }

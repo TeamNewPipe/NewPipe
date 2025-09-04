@@ -55,7 +55,11 @@ import org.schabi.newpipe.util.image.ImageStrategy
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
+fun Comment(
+    comment: CommentsInfoItem,
+    uploaderAvatarUrl: String? = null,
+    onCommentAuthorOpened: (() -> Unit)? = null,
+) {
     val context = LocalContext.current
     var isExpanded by rememberSaveable { mutableStateOf(false) }
     var showReplies by rememberSaveable { mutableStateOf(false) }
@@ -82,7 +86,7 @@ fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
                 .clip(CircleShape)
                 .clickable {
                     NavigationHelper.openCommentAuthorIfPresent(context, comment)
-                    onCommentAuthorOpened()
+                    onCommentAuthorOpened?.invoke()
                 }
         )
 
@@ -161,17 +165,31 @@ fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
                 }
 
                 if (comment.replies != null) {
-                    // reduce LocalMinimumInteractiveComponentSize from 48dp to 44dp to slightly
-                    // reduce the button margin (which is still clickable but not visible)
-                    CompositionLocalProvider(LocalMinimumInteractiveComponentSize provides 44.dp) {
-                        TextButton(
-                            onClick = { showReplies = true },
-                            modifier = Modifier.padding(end = 2.dp)
-                        ) {
-                            val text = pluralStringResource(
-                                R.plurals.replies, comment.replyCount, comment.replyCount.toString()
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        if (comment.hasCreatorReply()) {
+                            AsyncImage(
+                                model = uploaderAvatarUrl,
+                                contentDescription = null,
+                                placeholder = painterResource(R.drawable.placeholder_person),
+                                error = painterResource(R.drawable.placeholder_person),
+                                modifier = Modifier
+                                    .size(30.dp)
+                                    .clip(CircleShape)
                             )
-                            Text(text = text)
+                        }
+
+                        // reduce LocalMinimumInteractiveComponentSize from 48dp to 44dp to slightly
+                        // reduce the button margin (which is still clickable but not visible)
+                        CompositionLocalProvider(LocalMinimumInteractiveComponentSize provides 44.dp) {
+                            TextButton(
+                                onClick = { showReplies = true },
+                                modifier = Modifier.padding(end = 2.dp)
+                            ) {
+                                val text = pluralStringResource(
+                                    R.plurals.replies, comment.replyCount, comment.replyCount.toString()
+                                )
+                                Text(text = text)
+                            }
                         }
                     }
                 }
@@ -200,6 +218,7 @@ fun CommentsInfoItem(
     isPinned: Boolean = false,
     replies: Page? = null,
     replyCount: Int = 0,
+    hasCreatorReply: Boolean = false,
 ) = CommentsInfoItem(serviceId, url, name).apply {
     this.commentText = commentText
     this.uploaderName = uploaderName
@@ -209,6 +228,7 @@ fun CommentsInfoItem(
     this.isPinned = isPinned
     this.replies = replies
     this.replyCount = replyCount
+    setCreatorReply(hasCreatorReply)
 }
 
 private class CommentPreviewProvider : CollectionPreviewParameterProvider<CommentsInfoItem>(
@@ -247,7 +267,8 @@ private class CommentPreviewProvider : CollectionPreviewParameterProvider<Commen
             isPinned = false,
             isHeartedByUploader = false,
             replies = Page(""),
-            replyCount = 4283
+            replyCount = 4283,
+            hasCreatorReply = true,
         ),
     )
 )
@@ -260,7 +281,7 @@ private fun CommentPreview(
 ) {
     AppTheme {
         Surface {
-            Comment(commentsInfoItem) {}
+            Comment(commentsInfoItem)
         }
     }
 }
@@ -272,7 +293,7 @@ private fun CommentListPreview() {
         Surface {
             Column {
                 for (comment in CommentPreviewProvider().values) {
-                    Comment(comment) {}
+                    Comment(comment)
                 }
             }
         }
