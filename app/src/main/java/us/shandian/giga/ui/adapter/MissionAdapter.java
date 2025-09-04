@@ -563,11 +563,11 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         }
         request.append("]");
 
-        String service;
+        Integer service;
         try {
-            service = NewPipe.getServiceByUrl(mission.source).getServiceInfo().getName();
+            service = NewPipe.getServiceByUrl(mission.source).getServiceId();
         } catch (Exception e) {
-            service = ErrorInfo.SERVICE_NONE;
+            service = null;
         }
 
         ErrorUtil.createNotification(mContext,

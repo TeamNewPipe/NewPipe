@@ -599,7 +599,6 @@
     <string name="description_select_enable">啟用選取描述中的文字</string>
     <string name="description_select_note">您現在可以選取描述中的文字了。請注意，在選取模式下，頁面可能會閃爍，連結也可能無法點擊。</string>
     <string name="open_website_license">開啟網站</string>
-    <string name="service_provides_reason">%s 提供了這個理由：</string>
     <string name="account_terminated">帳號已終止</string>
     <string name="feed_load_error_fast_unknown">快速 feed 模式不會提供更多資訊。</string>
     <string name="feed_load_error_terminated">作者的帳號已被終止。
