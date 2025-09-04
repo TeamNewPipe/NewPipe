@@ -877,7 +877,7 @@
     <string name="trending_movies">Trending movies and shows</string>
     <string name="trending_music">Trending music</string>
     <string name="entry_deleted">Entry deleted</string>
-    <string name="player_http_403">HTTP error 403 received from server while playing, likely caused by an IP ban or by streaming URL expiration</string>
+    <string name="player_http_403">HTTP error 403 received from server while playing, likely caused by streaming URL expiration or an IP ban</string>
     <string name="player_http_invalid_status">HTTP error %1$s received from server while playing</string>
     <string name="youtube_player_http_403">HTTP error 403 received from server while playing, likely caused by an IP ban or streaming URL deobfuscation issues</string>
     <string name="sign_in_confirm_not_bot_error">%1$s refused to provide data, asking for a login to confirm the requester is not a bot.\n\nYour IP might have been temporarily banned by %1$s, you can wait some time or switch to a different IP (for example by turning on/off a VPN, or by switching from WiFi to mobile data).</string>
