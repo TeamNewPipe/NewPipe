@@ -114,6 +114,7 @@ import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver.SourceType;
+import org.schabi.newpipe.player.ui.BackgroundPlayerUi;
 import org.schabi.newpipe.player.ui.MainPlayerUi;
 import org.schabi.newpipe.player.ui.PlayerUi;
 import org.schabi.newpipe.player.ui.PlayerUiList;
@@ -271,6 +272,7 @@ public final class Player implements PlaybackListener, Listener {
     @NonNull
     private final HistoryRecordManager recordManager;
 
+    private boolean screenOn = true;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Constructor
@@ -592,14 +594,17 @@ public final class Player implements PlaybackListener, Listener {
         switch (playerType) {
             case MAIN:
                 UIs.destroyAll(PopupPlayerUi.class);
+                UIs.destroyAll(BackgroundPlayerUi.class);
                 UIs.addAndPrepare(new MainPlayerUi(this, binding));
                 break;
             case POPUP:
                 UIs.destroyAll(MainPlayerUi.class);
+                UIs.destroyAll(BackgroundPlayerUi.class);
                 UIs.addAndPrepare(new PopupPlayerUi(this, binding));
                 break;
             case AUDIO:
                 UIs.destroyAll(VideoPlayerUi.class);
+                UIs.addAndPrepare(new BackgroundPlayerUi(this));
                 break;
         }
     }
@@ -841,6 +846,12 @@ public final class Player implements PlaybackListener, Listener {
                 break;
             case ACTION_SHUFFLE:
                 toggleShuffleModeEnabled();
+                break;
+            case Intent.ACTION_SCREEN_OFF:
+                screenOn = false;
+                break;
+            case Intent.ACTION_SCREEN_ON:
+                screenOn = true;
                 break;
             case Intent.ACTION_CONFIGURATION_CHANGED:
                 if (DEBUG) {
@@ -2462,4 +2473,11 @@ public final class Player implements PlaybackListener, Listener {
                 .orElse(RENDERER_UNAVAILABLE);
     }
     //endregion
+
+    /**
+     * @return whether the device screen is turned on.
+     */
+    public boolean isScreenOn() {
+        return screenOn;
+    }
 }

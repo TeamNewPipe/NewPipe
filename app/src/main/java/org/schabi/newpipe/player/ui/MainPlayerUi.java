@@ -216,6 +216,10 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         playQueueAdapter = new PlayQueueAdapter(context,
                 Objects.requireNonNull(player.getPlayQueue()));
         segmentAdapter = new StreamSegmentAdapter(getStreamSegmentListener());
+
+        // Make sure video and text tracks are enabled if the user is in the app, in the case user
+        // switched from background player to main player
+        player.useVideoAndSubtitles(fragmentIsVisible);
     }
 
     @Override

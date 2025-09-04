@@ -153,6 +153,14 @@ public final class PopupPlayerUi extends VideoPlayerUi {
     }
 
     @Override
+    public void initPlayback() {
+        super.initPlayback();
+        // Make sure video and text tracks are enabled if the screen is turned on (which should
+        // always be the case), in the case user switched from background player to popup player
+        player.useVideoAndSubtitles(player.isScreenOn());
+    }
+
+    @Override
     protected void setupElementsVisibility() {
         binding.fullScreenButton.setVisibility(View.VISIBLE);
         binding.screenRotationButton.setVisibility(View.GONE);
