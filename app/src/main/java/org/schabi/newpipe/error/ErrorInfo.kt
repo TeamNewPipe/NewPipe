@@ -28,6 +28,7 @@ import org.schabi.newpipe.extractor.exceptions.YoutubeMusicPremiumContentExcepti
 import org.schabi.newpipe.ktx.isNetworkRelated
 import org.schabi.newpipe.player.mediasource.FailedMediaSource
 import org.schabi.newpipe.player.resolver.PlaybackResolver
+import org.schabi.newpipe.util.Localization
 import java.net.UnknownHostException
 
 /**
@@ -147,13 +148,11 @@ class ErrorInfo private constructor(
             private vararg val formatArgs: String,
         ) : Parcelable {
             fun getString(context: Context): String {
+                // use Localization.compatGetString() just in case context is not AppCompatActivity
                 return if (formatArgs.isEmpty()) {
-                    // use ContextCompat.getString() just in case context is not AppCompatActivity
-                    ContextCompat.getString(context, stringRes)
+                    Localization.compatGetString(context, stringRes)
                 } else {
-                    // ContextCompat.getString() with formatArgs does not exist, so we just
-                    // replicate its source code but with formatArgs
-                    ContextCompat.getContextForLanguage(context).getString(stringRes, *formatArgs)
+                    Localization.compatGetString(context, stringRes, *formatArgs)
                 }
             }
         }

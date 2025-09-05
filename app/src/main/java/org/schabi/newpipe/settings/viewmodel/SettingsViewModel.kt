@@ -3,13 +3,13 @@ package org.schabi.newpipe.settings.viewmodel
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.schabi.newpipe.R
+import org.schabi.newpipe.util.Localization
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,11 +20,12 @@ class SettingsViewModel @Inject constructor(
 
     private var _settingsLayoutRedesignPref: Boolean
         get() = preferenceManager.getBoolean(
-            ContextCompat.getString(getApplication(), R.string.settings_layout_redesign_key), false
+            Localization.compatGetString(getApplication(), R.string.settings_layout_redesign_key),
+            false
         )
         set(value) {
             preferenceManager.edit().putBoolean(
-                ContextCompat.getString(getApplication(), R.string.settings_layout_redesign_key),
+                Localization.compatGetString(getApplication(), R.string.settings_layout_redesign_key),
                 value
             ).apply()
         }

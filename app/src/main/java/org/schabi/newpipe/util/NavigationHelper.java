@@ -641,10 +641,9 @@ public final class NavigationHelper {
 
     public static void openSettings(final Context context) {
         final Class<?> settingsClass = PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(
-                        ContextCompat.getString(context, R.string.settings_layout_redesign_key),
-                        false
-                ) ? SettingsV2Activity.class : SettingsActivity.class;
+                .getBoolean(Localization.compatGetString(context,
+                                R.string.settings_layout_redesign_key), false)
+                ? SettingsV2Activity.class : SettingsActivity.class;
 
         final Intent intent = new Intent(context, settingsClass);
         context.startActivity(intent);
