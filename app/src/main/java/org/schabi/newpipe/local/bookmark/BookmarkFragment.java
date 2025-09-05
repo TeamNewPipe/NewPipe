@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.compose.ui.platform.ComposeView;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -125,10 +126,8 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         super.initViews(rootView, savedInstanceState);
 
         itemListAdapter.setUseItemHandle(true);
-        EmptyStateUtil.setEmptyStateComposable(
-                rootView.findViewById(R.id.empty_state_view),
-                EmptyStateSpec.Companion.getNoBookmarkedPlaylist()
-        );
+        final ComposeView emptyView = rootView.findViewById(R.id.empty_state_view);
+        EmptyStateUtil.setEmptyStateComposable(emptyView, EmptyStateSpec.NoBookmarkedPlaylist);
     }
 
     @Override

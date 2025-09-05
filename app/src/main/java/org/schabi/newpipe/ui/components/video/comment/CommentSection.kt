@@ -15,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.res.pluralStringResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -75,7 +74,6 @@ private fun CommentSection(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .heightIn(min = 128.dp)
-
                             )
                         }
                     } else if (count == 0) {
@@ -111,13 +109,7 @@ private fun CommentSection(
                             is LoadState.Error -> {
                                 item {
                                     // TODO use error panel instead
-                                    EmptyStateComposable(
-                                        EmptyStateSpec.DisabledComments.copy(
-                                            descriptionText = {
-                                                stringResource(R.string.error_unable_to_load_comments)
-                                            }
-                                        )
-                                    )
+                                    EmptyStateComposable(EmptyStateSpec.ErrorLoadingComments)
                                 }
                             }
 
@@ -134,11 +126,7 @@ private fun CommentSection(
                     item {
                         // TODO use error panel instead
                         EmptyStateComposable(
-                            spec = EmptyStateSpec.DisabledComments.copy(
-                                descriptionText = {
-                                    stringResource(R.string.error_unable_to_load_comments)
-                                }
-                            ),
+                            spec = EmptyStateSpec.ErrorLoadingComments,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .heightIn(min = 128.dp)
