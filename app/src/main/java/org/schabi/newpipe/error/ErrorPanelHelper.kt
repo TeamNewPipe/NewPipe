@@ -2,7 +2,6 @@ package org.schabi.newpipe.error
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -14,11 +13,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
-import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
-import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException
-import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
 import org.schabi.newpipe.ktx.animate
-import org.schabi.newpipe.ktx.isInterruptedCaused
 import org.schabi.newpipe.util.external_communication.ShareUtils
 import java.util.concurrent.TimeUnit
 
@@ -68,50 +63,32 @@ class ErrorPanelHelper(
     }
 
     fun showError(errorInfo: ErrorInfo) {
-
-        if (errorInfo.throwable != null && errorInfo.throwable!!.isInterruptedCaused) {
-            if (DEBUG) {
-                Log.w(TAG, "onError() isInterruptedCaused! = [$errorInfo.throwable]")
-            }
-            return
-        }
-
         ensureDefaultVisibility()
+        errorTextView.text = errorInfo.getMessage(context)
 
-        if (errorInfo.throwable is ReCaptchaException) {
-            errorTextView.setText(R.string.recaptcha_request_toast)
-
-            showAndSetErrorButtonAction(
-                R.string.recaptcha_solve
-            ) {
+        if (errorInfo.recaptchaUrl != null) {
+            showAndSetErrorButtonAction(R.string.recaptcha_solve) {
                 // Starting ReCaptcha Challenge Activity
                 val intent = Intent(context, ReCaptchaActivity::class.java)
-                intent.putExtra(
-                    ReCaptchaActivity.RECAPTCHA_URL_EXTRA,
-                    (errorInfo.throwable as ReCaptchaException).url
-                )
+                intent.putExtra(ReCaptchaActivity.RECAPTCHA_URL_EXTRA, errorInfo.recaptchaUrl)
                 fragment.startActivityForResult(intent, ReCaptchaActivity.RECAPTCHA_REQUEST)
                 errorActionButton.setOnClickListener(null)
             }
-
-            errorRetryButton.isVisible = retryShouldBeShown
-            showAndSetOpenInBrowserButtonAction(errorInfo)
-        } else {
-            showAndSetErrorButtonAction(
-                R.string.error_snackbar_action
-            ) {
+        } else if (errorInfo.isReportable) {
+            showAndSetErrorButtonAction(R.string.error_snackbar_action) {
                 ErrorUtil.openActivity(context, errorInfo)
             }
+        }
 
-            errorTextView.text = errorInfo.getMessage(context)
+        if (errorInfo.isRetryable) {
+            errorRetryButton.isVisible = retryShouldBeShown
+        }
 
-            if (errorInfo.throwable !is ContentNotAvailableException &&
-                errorInfo.throwable !is ContentNotSupportedException
-            ) {
-                // show retry button only for content which is not unavailable or unsupported
-                errorRetryButton.isVisible = retryShouldBeShown
+        if (errorInfo.openInBrowserUrl != null) {
+            errorOpenInBrowserButton.isVisible = true
+            errorOpenInBrowserButton.setOnClickListener {
+                ShareUtils.openUrlInBrowser(context, errorInfo.openInBrowserUrl)
             }
-            showAndSetOpenInBrowserButtonAction(errorInfo)
         }
 
         setRootVisible()
@@ -127,15 +104,6 @@ class ErrorPanelHelper(
         errorActionButton.isVisible = true
         errorActionButton.setText(resid)
         errorActionButton.setOnClickListener(listener)
-    }
-
-    fun showAndSetOpenInBrowserButtonAction(
-        errorInfo: ErrorInfo
-    ) {
-        errorOpenInBrowserButton.isVisible = true
-        errorOpenInBrowserButton.setOnClickListener {
-            ShareUtils.openUrlInBrowser(context, errorInfo.request)
-        }
     }
 
     fun showTextError(errorString: String) {

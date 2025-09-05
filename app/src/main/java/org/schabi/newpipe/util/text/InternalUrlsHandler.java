@@ -160,10 +160,10 @@ public final class InternalUrlsHandler {
                     final PlayQueue playQueue = new SinglePlayQueue(info, seconds * 1000L);
                     NavigationHelper.playOnPopupPlayer(context, playQueue, false);
                 }, throwable -> {
-                    final var errorInfo = new ErrorInfo(throwable, UserAction.PLAY_ON_POPUP, url);
                     // This will only show a snackbar if the passed context has a root view:
                     // otherwise it will resort to showing a notification, so we are safe here.
-                    ErrorUtil.showSnackbar(context, errorInfo);
+                    ErrorUtil.showSnackbar(context,
+                            new ErrorInfo(throwable, UserAction.PLAY_ON_POPUP, url, null, url));
                 }));
         return true;
     }
