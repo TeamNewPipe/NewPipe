@@ -1,9 +1,8 @@
 package org.schabi.newpipe.ui.components.common
 
 import android.content.Intent
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,12 +14,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import org.schabi.newpipe.R
 import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.ErrorUtil
 import org.schabi.newpipe.error.ReCaptchaActivity
+import org.schabi.newpipe.error.UserAction
+import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
 import org.schabi.newpipe.ui.theme.AppTheme
-import org.schabi.newpipe.ui.theme.SizeTokens
 import org.schabi.newpipe.util.external_communication.ShareUtils
 
 @Composable
@@ -28,7 +29,6 @@ fun ErrorPanel(
     errorInfo: ErrorInfo,
     modifier: Modifier = Modifier,
     onRetry: (() -> Unit)? = null,
-
 ) {
     val context = LocalContext.current
     val isPreview = LocalInspectionMode.current
@@ -39,29 +39,24 @@ fun ErrorPanel(
     }
 
     Column(
+        verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier
+        modifier = modifier,
     ) {
-
         Text(
             text = messageText,
             style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
             textAlign = TextAlign.Center
         )
 
-        Spacer(Modifier.height(SizeTokens.SpacingMedium))
-        if (errorInfo.isReportable) {
+        if (errorInfo.recaptchaUrl != null) {
             ServiceColoredButton(onClick = {
-                ErrorUtil.openActivity(context, errorInfo)
-            }) {
-                Text(stringResource(R.string.error_snackbar_action).uppercase())
-            }
-        }
-
-        errorInfo.recaptchaUrl?.let { recaptchaUrl ->
-            ServiceColoredButton(onClick = {
+                // Starting ReCaptcha Challenge Activity
                 val intent = Intent(context, ReCaptchaActivity::class.java)
-                    .putExtra(ReCaptchaActivity.RECAPTCHA_URL_EXTRA, recaptchaUrl)
+                    .putExtra(
+                        ReCaptchaActivity.RECAPTCHA_URL_EXTRA,
+                        errorInfo.recaptchaUrl
+                    )
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 context.startActivity(intent)
             }) {
@@ -77,29 +72,32 @@ fun ErrorPanel(
             }
         }
 
-        errorInfo.openInBrowserUrl?.let { url ->
-            ServiceColoredButton(onClick = {
-                ShareUtils.openUrlInBrowser(context, url)
-            }) {
-                Text(stringResource(R.string.open_in_browser).uppercase())
+        if (errorInfo.isReportable) {
+            ServiceColoredButton(onClick = { ErrorUtil.openActivity(context, errorInfo) }) {
+                Text(stringResource(R.string.error_snackbar_action).uppercase())
             }
         }
 
-        Spacer(Modifier.height(SizeTokens.SpacingExtraLarge))
+        errorInfo.openInBrowserUrl?.let { url ->
+            ServiceColoredButton(onClick = { ShareUtils.openUrlInBrowser(context, url) }) {
+                Text(stringResource(R.string.open_in_browser).uppercase())
+            }
+        }
     }
 }
 
-@Preview(showBackground = true, widthDp = 360, heightDp = 640)
-
+@Preview(showBackground = true, widthDp = 360, heightDp = 640, backgroundColor = 0xffffffff)
 @Composable
 fun ErrorPanelPreview() {
     AppTheme {
         ErrorPanel(
             errorInfo = ErrorInfo(
-                throwable = Exception("Network error"),
-                userAction = org.schabi.newpipe.error.UserAction.UI_ERROR,
-                request = "Preview request"
-            )
+                throwable = ReCaptchaException("An error", "https://example.com"),
+                userAction = UserAction.REQUESTED_STREAM,
+                request = "Preview request",
+                openInBrowserUrl = "https://example.com",
+            ),
+            onRetry = {},
         )
     }
 }

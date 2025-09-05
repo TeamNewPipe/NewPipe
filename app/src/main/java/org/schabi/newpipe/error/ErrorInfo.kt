@@ -3,7 +3,6 @@ package org.schabi.newpipe.error
 import android.content.Context
 import android.os.Parcelable
 import androidx.annotation.StringRes
-import androidx.core.content.ContextCompat
 import com.google.android.exoplayer2.ExoPlaybackException
 import com.google.android.exoplayer2.upstream.HttpDataSource
 import com.google.android.exoplayer2.upstream.Loader
@@ -275,6 +274,9 @@ class ErrorInfo private constructor(
                 // we don't have an exception, so this is a manually built error, which likely
                 // indicates that it's important and is thus reportable
                 null -> true
+                // a recaptcha was detected, and the user needs to solve it, there is no use in
+                // letting users report it
+                is ReCaptchaException -> false
                 // the service explicitly said that content is not available (e.g. age restrictions,
                 // video deleted, etc.), there is no use in letting users report it
                 is ContentNotAvailableException -> false
