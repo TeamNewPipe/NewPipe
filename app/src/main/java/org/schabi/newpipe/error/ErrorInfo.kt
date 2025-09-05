@@ -7,7 +7,6 @@ import androidx.core.content.ContextCompat
 import com.google.android.exoplayer2.ExoPlaybackException
 import com.google.android.exoplayer2.upstream.HttpDataSource
 import com.google.android.exoplayer2.upstream.Loader
-import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.Info
@@ -29,70 +28,108 @@ import org.schabi.newpipe.extractor.exceptions.YoutubeMusicPremiumContentExcepti
 import org.schabi.newpipe.ktx.isNetworkRelated
 import org.schabi.newpipe.player.mediasource.FailedMediaSource
 import org.schabi.newpipe.player.resolver.PlaybackResolver
+import java.net.UnknownHostException
 
+/**
+ * An error has occurred in the app. This class contains plain old parcelable data that can be used
+ * to report the error and to show it to the user along with correct action buttons.
+ */
 @Parcelize
 class ErrorInfo private constructor(
     val stackTraces: Array<String>,
     val userAction: UserAction,
-    val serviceId: Int?,
     val request: String,
+    val serviceId: Int?,
     private val message: ErrorMessage,
+    /**
+     * If `true`, a report button will be shown for this error. Otherwise the error is not something
+     * that can really be reported (e.g. a network issue, or content not being available at all).
+     */
+    val isReportable: Boolean,
+    /**
+     * If `true`, the process causing this error can be retried, otherwise not.
+     */
+    val isRetryable: Boolean,
+    /**
+     * If present, indicates that the exception was a ReCaptchaException, and this is the URL
+     * provided by the service that can be used to solve the ReCaptcha challenge.
+     */
+    val recaptchaUrl: String?,
+    /**
+     * If present, this resource can alternatively be opened in browser (useful if NewPipe is
+     * badly broken).
+     */
+    val openInBrowserUrl: String?,
 ) : Parcelable {
 
-    // no need to store throwable, all data for report is in other variables
-    // also, the throwable might not be serializable, see TeamNewPipe/NewPipe#7302
-    @IgnoredOnParcel
-    var throwable: Throwable? = null
-
-    private constructor(
+    @JvmOverloads
+    constructor(
         throwable: Throwable,
         userAction: UserAction,
-        serviceId: Int?,
-        request: String
+        request: String,
+        serviceId: Int? = null,
+        openInBrowserUrl: String? = null,
     ) : this(
         throwableToStringList(throwable),
         userAction,
-        serviceId,
         request,
-        getMessage(throwable, userAction, serviceId)
-    ) {
-        this.throwable = throwable
-    }
+        serviceId,
+        getMessage(throwable, userAction, serviceId),
+        isReportable(throwable),
+        isRetryable(throwable),
+        (throwable as? ReCaptchaException)?.url,
+        openInBrowserUrl,
+    )
 
-    private constructor(
-        throwable: List<Throwable>,
+    @JvmOverloads
+    constructor(
+        throwables: List<Throwable>,
         userAction: UserAction,
-        serviceId: Int?,
-        request: String
+        request: String,
+        serviceId: Int? = null,
+        openInBrowserUrl: String? = null,
     ) : this(
-        throwableListToStringList(throwable),
+        throwableListToStringList(throwables),
         userAction,
-        serviceId,
         request,
-        getMessage(throwable.firstOrNull(), userAction, serviceId)
-    ) {
-        this.throwable = throwable.firstOrNull()
-    }
+        serviceId,
+        getMessage(throwables.firstOrNull(), userAction, serviceId),
+        throwables.any(::isReportable),
+        throwables.isEmpty() || throwables.any(::isRetryable),
+        throwables.firstNotNullOfOrNull { it as? ReCaptchaException }?.url,
+        openInBrowserUrl,
+    )
 
-    // constructor to manually build ErrorInfo
-    constructor(stackTraces: Array<String>, userAction: UserAction, serviceId: Int?, request: String, @StringRes message: Int) :
-        this(stackTraces, userAction, serviceId, request, ErrorMessage(message))
+    // constructor to manually build ErrorInfo when no throwable is available
+    constructor(
+        stackTraces: Array<String>,
+        userAction: UserAction,
+        request: String,
+        serviceId: Int?,
+        @StringRes message: Int
+    ) :
+        this(
+            stackTraces, userAction, request, serviceId, ErrorMessage(message),
+            true, false, null, null
+        )
 
-    // constructors with single throwable
-    constructor(throwable: Throwable, userAction: UserAction, request: String) :
-        this(throwable, userAction, null, request)
-    constructor(throwable: Throwable, userAction: UserAction, request: String, serviceId: Int) :
-        this(throwable, userAction, serviceId, request)
-    constructor(throwable: Throwable, userAction: UserAction, request: String, info: Info?) :
-        this(throwable, userAction, info?.serviceId, request)
+    // constructor with only one throwable to extract service id and openInBrowserUrl from an Info
+    constructor(
+        throwable: Throwable,
+        userAction: UserAction,
+        request: String,
+        info: Info?,
+    ) :
+        this(throwable, userAction, request, info?.serviceId, info?.url)
 
-    // constructors with list of throwables
-    constructor(throwable: List<Throwable>, userAction: UserAction, request: String) :
-        this(throwable, userAction, null, request)
-    constructor(throwable: List<Throwable>, userAction: UserAction, request: String, serviceId: Int) :
-        this(throwable, userAction, serviceId, request)
-    constructor(throwable: List<Throwable>, userAction: UserAction, request: String, info: Info?) :
-        this(throwable, userAction, info?.serviceId, request)
+    // constructor with multiple throwables to extract service id and openInBrowserUrl from an Info
+    constructor(
+        throwables: List<Throwable>,
+        userAction: UserAction,
+        request: String,
+        info: Info?,
+    ) :
+        this(throwables, userAction, request, info?.serviceId, info?.url)
 
     fun getServiceName(): String {
         return getServiceName(serviceId)
@@ -205,8 +242,7 @@ class ErrorInfo private constructor(
                 // other extractor exceptions
                 throwable is ContentNotSupportedException ->
                     ErrorMessage(R.string.content_not_supported)
-                // ReCaptchas should have already been handled elsewhere,
-                // but return an error message here just in case
+                // ReCaptchas will be handled in a special way anyway
                 throwable is ReCaptchaException ->
                     ErrorMessage(R.string.recaptcha_request_toast)
                 // test this at the end as many exceptions could be a subclass of IOException
@@ -232,6 +268,37 @@ class ErrorInfo private constructor(
                     ErrorMessage(R.string.could_not_setup_download_menu)
                 else ->
                     ErrorMessage(R.string.error_snackbar_message)
+            }
+        }
+
+        fun isReportable(throwable: Throwable?): Boolean {
+            return when (throwable) {
+                // we don't have an exception, so this is a manually built error, which likely
+                // indicates that it's important and is thus reportable
+                null -> true
+                // the service explicitly said that content is not available (e.g. age restrictions,
+                // video deleted, etc.), there is no use in letting users report it
+                is ContentNotAvailableException -> false
+                // we know the content is not supported, no need to let the user report it
+                is ContentNotSupportedException -> false
+                // happens often when there is no internet connection; we don't use
+                // `throwable.isNetworkRelated` since any `IOException` would make that function
+                // return true, but not all `IOException`s are network related
+                is UnknownHostException -> false
+                // by default, this is an unexpected exception, which the user could report
+                else -> true
+            }
+        }
+
+        fun isRetryable(throwable: Throwable?): Boolean {
+            return when (throwable) {
+                // we know the content is not available, retrying won't help
+                is ContentNotAvailableException -> false
+                // we know the content is not supported, retrying won't help
+                is ContentNotSupportedException -> false
+                // by default (including if throwable is null), enable retrying (though the retry
+                // button will be shown only if a way to perform the retry is implemented)
+                else -> true
             }
         }
     }

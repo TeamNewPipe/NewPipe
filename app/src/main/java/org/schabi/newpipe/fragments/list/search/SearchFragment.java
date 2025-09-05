@@ -54,6 +54,7 @@ import org.schabi.newpipe.extractor.MetaInfo;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.search.SearchExtractor;
 import org.schabi.newpipe.extractor.search.SearchInfo;
 import org.schabi.newpipe.extractor.services.peertube.linkHandler.PeertubeSearchQueryHandlerFactory;
@@ -934,7 +935,21 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             infoListAdapter.clearStreamItemList();
             showEmptyState();
         } else {
-            showError(new ErrorInfo(exception, UserAction.SEARCHED, searchString, serviceId));
+            showError(new ErrorInfo(exception, UserAction.SEARCHED, searchString, serviceId,
+                    getOpenInBrowserUrlForErrors()));
+        }
+    }
+
+    @Nullable
+    private String getOpenInBrowserUrlForErrors() {
+        if (TextUtils.isEmpty(searchString)) {
+            return null;
+        }
+        try {
+            return service.getSearchQHFactory().getUrl(searchString,
+                    Arrays.asList(contentFilter), sortFilter);
+        } catch (final NullPointerException | ParsingException ignored) {
+            return null;
         }
     }
 
@@ -1022,7 +1037,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 && !(exceptions.size() == 1
                 && exceptions.get(0) instanceof SearchExtractor.NothingFoundException)) {
             showSnackBarError(new ErrorInfo(result.getErrors(), UserAction.SEARCHED,
-                    searchString, serviceId));
+                    searchString, serviceId, getOpenInBrowserUrlForErrors()));
         }
 
         searchSuggestion = result.getSearchSuggestion();
@@ -1095,13 +1110,14 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             // whose results are handled here, but let's check it anyway
             if (nextPage == null) {
                 showSnackBarError(new ErrorInfo(result.getErrors(), UserAction.SEARCHED,
-                        "\"" + searchString + "\" → nextPage == null", serviceId));
+                        "\"" + searchString + "\" → nextPage == null", serviceId,
+                        getOpenInBrowserUrlForErrors()));
             } else {
                 showSnackBarError(new ErrorInfo(result.getErrors(), UserAction.SEARCHED,
                         "\"" + searchString + "\" → pageUrl: " + nextPage.getUrl() + ", "
                                 + "pageIds: " + nextPage.getIds() + ", "
                                 + "pageCookies: " + nextPage.getCookies(),
-                        serviceId));
+                        serviceId, getOpenInBrowserUrlForErrors()));
             }
         }
 
