@@ -169,7 +169,7 @@ public class DownloadManager {
             // DON'T delete missions with storage issues - try to recover them
             if (mis.hasInvalidStorage() && mis.errCode != ERROR_PROGRESS_LOST) {
                 // Only delete if it's truly unrecoverable (not just progress lost)
-                if (mis.storage == null && mis.errCode != ERROR_PROGRESS_LOST) {
+                if (mis.storage == null) {
                     //noinspection ResultOfMethodCallIgnored
                     sub.delete();
                     continue;
@@ -612,11 +612,8 @@ public class DownloadManager {
 
                 // Don't hide recoverable missions
                 remove.removeIf(mission -> {
-                    if (mission instanceof DownloadMission) {
-                        DownloadMission dm = (DownloadMission) mission;
-                        if (canRecoverMission(dm)) {
-                            return false; // Don't remove recoverable missions
-                        }
+                    if (mission instanceof DownloadMission dm && canRecoverMission(dm)) {
+                        return false; // Don't remove recoverable missions
                     }
                     return pending.remove(mission) || finished.remove(mission);
                 });
