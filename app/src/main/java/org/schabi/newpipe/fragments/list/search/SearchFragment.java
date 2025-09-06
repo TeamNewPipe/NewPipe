@@ -3,6 +3,7 @@ package org.schabi.newpipe.fragments.list.search;
 import static androidx.recyclerview.widget.ItemTouchHelper.Callback.makeMovementFlags;
 import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.ui.emptystate.EmptyStateUtil.setEmptyStateComposable;
 import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
 import static java.util.Arrays.asList;
 
@@ -66,7 +67,6 @@ import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.ui.emptystate.EmptyStateSpec;
-import org.schabi.newpipe.ui.emptystate.EmptyStateUtil;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -357,9 +357,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
 
-        EmptyStateUtil.setEmptyStateComposable(
-                searchBinding.emptyStateView,
-                EmptyStateSpec.Companion.getNoSearchResult());
+        setEmptyStateComposable(searchBinding.emptyStateView, EmptyStateSpec.NoSearchResult);
 
         searchBinding.suggestionsList.setAdapter(suggestionListAdapter);
         // animations are just strange and useless, since the suggestions keep changing too much
