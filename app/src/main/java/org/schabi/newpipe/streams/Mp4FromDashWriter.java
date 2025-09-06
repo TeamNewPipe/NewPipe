@@ -185,8 +185,12 @@ public class Mp4FromDashWriter {
             Mp4DashChunk chunk;
             while ((chunk = readers[i].getNextChunk(true)) != null) {
 
-                if (defaultMediaTime[i] < 1 && chunk.moof.traf.tfhd.defaultSampleDuration > 0) {
-                    defaultMediaTime[i] = chunk.moof.traf.tfhd.defaultSampleDuration;
+                if (defaultMediaTime[i] < 1) {
+                    if (chunk.moof.traf.tfdt > 0) {
+                        defaultMediaTime[i] = (int) chunk.moof.traf.tfdt;
+                    } else if (chunk.moof.traf.tfhd.defaultSampleDuration > 0) {
+                        defaultMediaTime[i] = chunk.moof.traf.tfhd.defaultSampleDuration;
+                    }
                 }
 
                 read += chunk.moof.traf.trun.chunkSize;
@@ -763,8 +767,8 @@ public class Mp4FromDashWriter {
         final int mediaTime;
 
         if (tracks[index].trak.edstElst == null) {
-            // is a audio track ¿is edst/elst optional for audio tracks?
-            mediaTime = 0x00; // ffmpeg set this value as zero, instead of defaultMediaTime
+            // there is no edit list, use the first decode timestamp as start time
+            mediaTime = defaultMediaTime;
             bMediaRate = 0x00010000;
         } else {
             mediaTime = (int) tracks[index].trak.edstElst.mediaTime;
