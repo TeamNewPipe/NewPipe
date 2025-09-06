@@ -40,10 +40,12 @@ import org.schabi.newpipe.extractor.ListExtractor.InfoItemsPage;
 import org.schabi.newpipe.extractor.MetaInfo;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.Page;
+import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.channel.tabs.ChannelTabInfo;
 import org.schabi.newpipe.extractor.comments.CommentsInfo;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
+import org.schabi.newpipe.extractor.kiosk.KioskExtractor;
 import org.schabi.newpipe.extractor.kiosk.KioskInfo;
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
@@ -53,6 +55,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.suggestion.SuggestionExtractor;
 import org.schabi.newpipe.util.text.TextLinkifier;
 
+import java.lang.reflect.Constructor;
 import java.util.Collections;
 import java.util.List;
 
@@ -194,7 +197,17 @@ public final class ExtractorHelper {
                                                  final String url,
                                                  final boolean forceLoad) {
         return checkCache(forceLoad, serviceId, url, InfoCache.Type.KIOSK,
-                Single.fromCallable(() -> KioskInfo.getInfo(NewPipe.getService(serviceId), url)));
+                Single.fromCallable(() -> {
+                    try {
+                        return KioskInfo.getInfo(NewPipe.getService(serviceId), url);
+                    } catch (final Exception e) {
+                        if (e.getMessage() != null
+                                && e.getMessage().contains("Could not get channel name")) {
+                            return getKioskInfoFallback(serviceId, url);
+                        }
+                        throw e;
+                    }
+                }));
     }
 
     public static Single<InfoItemsPage<StreamInfoItem>> getMoreKioskItems(final int serviceId,
@@ -202,6 +215,33 @@ public final class ExtractorHelper {
                                                                           final Page nextPage) {
         return Single.fromCallable(() ->
                 KioskInfo.getMoreItems(NewPipe.getService(serviceId), url, nextPage));
+    }
+
+    private static KioskInfo getKioskInfoFallback(final int serviceId, final String url)
+            throws Exception {
+        final StreamingService service = NewPipe.getService(serviceId);
+        final KioskExtractor extractor = service.getKioskList().getExtractorByUrl(url, null);
+        extractor.fetchPage();
+
+        String name;
+        try {
+            name = extractor.getName();
+        } catch (final Exception ignored) {
+            name = extractor.getId();
+        }
+
+        final Constructor<KioskInfo> constructor = KioskInfo.class
+                .getDeclaredConstructor(int.class, ListLinkHandler.class, String.class);
+        constructor.setAccessible(true);
+        final KioskInfo info = constructor.newInstance(extractor.getServiceId(),
+                extractor.getLinkHandler(), name);
+
+        final org.schabi.newpipe.extractor.ListExtractor.InfoItemsPage<StreamInfoItem> itemsPage =
+                org.schabi.newpipe.extractor.utils.ExtractorHelper
+                        .getItemsPageOrLogError(info, extractor);
+        info.setRelatedItems(itemsPage.getItems());
+        info.setNextPage(itemsPage.getNextPage());
+        return info;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
