@@ -89,9 +89,6 @@
     <string name="popup_playing_toast">Spiller av i oppsprettsmodus</string>
     <string name="all">Alle</string>
     <string name="disabled">Avskrudd</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">Mrd.</string>
     <string name="msg_popup_permission">Denne tilgangen trengs for
 \nåpning i oppsprettsmodus</string>
     <string name="recaptcha_request_toast">reCAPTCHA-oppgave forespurt</string>
@@ -422,7 +419,6 @@
         <item quantity="one">%s lytter</item>
         <item quantity="other">%s lyttere</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Språket vil endres etter at appen har startet på nytt</string>
     <string name="default_kiosk_page_summary">Standard kiosk</string>
     <string name="peertube_instance_url_title">PeerTube-instanser</string>
     <string name="local">Lokal</string>

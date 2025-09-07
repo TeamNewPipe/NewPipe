@@ -294,6 +294,7 @@
     <string name="show_channel_tabs_channels">show_channel_tabs_channels</string>
     <string name="show_channel_tabs_playlists">show_channel_tabs_playlists</string>
     <string name="show_channel_tabs_albums">show_channel_tabs_albums</string>
+    <string name="show_channel_tabs_likes">show_channel_tabs_likes</string>
     <string name="show_channel_tabs_about">show_channel_tabs_about</string>
     <string-array name="show_channel_tabs_value_list">
         <item>@string/show_channel_tabs_videos</item>
@@ -303,6 +304,7 @@
         <item>@string/show_channel_tabs_channels</item>
         <item>@string/show_channel_tabs_playlists</item>
         <item>@string/show_channel_tabs_albums</item>
+        <item>@string/show_channel_tabs_likes</item>
         <item>@string/show_channel_tabs_about</item>
     </string-array>
     <string-array name="show_channel_tabs_description_list">
@@ -313,6 +315,7 @@
         <item>@string/channel_tab_channels</item>
         <item>@string/channel_tab_playlists</item>
         <item>@string/channel_tab_albums</item>
+        <item>@string/channel_tab_likes</item>
         <item>@string/channel_tab_about</item>
     </string-array>
     <string name="show_search_suggestions_key">show_search_suggestions</string>
@@ -390,17 +393,20 @@
     <string name="fetch_channel_tabs_tracks">fetch_channel_tabs_tracks</string>
     <string name="fetch_channel_tabs_shorts">fetch_channel_tabs_shorts</string>
     <string name="fetch_channel_tabs_livestreams">fetch_channel_tabs_livestreams</string>
+    <string name="fetch_channel_tabs_likes">fetch_channel_tabs_likes</string>
     <string-array name="feed_fetch_channel_tabs_value_list">
         <item>@string/fetch_channel_tabs_videos</item>
         <item>@string/fetch_channel_tabs_tracks</item>
         <item>@string/fetch_channel_tabs_shorts</item>
         <item>@string/fetch_channel_tabs_livestreams</item>
+        <item>@string/fetch_channel_tabs_likes</item>
     </string-array>
     <string-array name="feed_fetch_channel_tabs_description_list">
         <item>@string/channel_tab_videos</item>
         <item>@string/channel_tab_tracks</item>
         <item>@string/channel_tab_shorts</item>
         <item>@string/channel_tab_livestreams</item>
+        <item>@string/channel_tab_likes</item>
     </string-array>
 
     <string name="import_export_data_path">import_export_data_path</string>
@@ -1186,6 +1192,8 @@
         <item>bn</item>
         <item>bn-bd</item>
         <item>bn-in</item>
+        <item>br</item>
+        <item>bs</item>
         <item>ca</item>
         <item>ckb</item>
         <item>cs</item>
@@ -1201,7 +1209,9 @@
         <item>fi</item>
         <item>fil</item>
         <item>fr</item>
+        <item>frc</item>
         <item>gl</item>
+        <item>gu</item>
         <item>he</item>
         <item>hi</item>
         <item>hr</item>
@@ -1213,23 +1223,31 @@
         <item>it</item>
         <item>ja</item>
         <item>jv</item>
+        <item>ka</item>
         <item>kab</item>
         <item>kmr</item>
+        <item>kn</item>
         <item>ko</item>
         <item>ku</item>
+        <item>la</item>
         <item>lt</item>
         <item>lv</item>
         <item>mk</item>
         <item>ml</item>
+        <item>mn</item>
+        <item>mr</item>
         <item>ms</item>
         <item>nb-no</item>
+        <item>nn</item>
         <item>ne</item>
         <item>nl</item>
         <item>nl-be</item>
+        <!-- nn is placed next to nb-no -->
         <item>nqo</item>
         <item>oc</item>
         <item>or</item>
         <item>pa</item>
+        <item>pa-pk</item>
         <item>pl</item>
         <item>pt</item>
         <item>pt-br</item>
@@ -1248,7 +1266,11 @@
         <item>ta</item>
         <item>te</item>
         <item>th</item>
+        <item>ti</item>
+        <item>tl</item>
+        <item>tok</item>
         <item>tr</item>
+        <item>tt</item>
         <item>tzm</item>
         <item>uk</item>
         <item>ur</item>
@@ -1271,6 +1293,8 @@
         <item>বাংলা</item>
         <item>বাংলা (বাংলাদেশ)</item>
         <item>বাংলা (भारत)</item>
+        <item>Brezhoneg</item>
+        <item>Босански</item>
         <item>Català</item>
         <item>کوردیی سۆرانی</item>
         <item>Čeština</item>
@@ -1286,7 +1310,9 @@
         <item>Suomen kieli</item>
         <item>Wikang Filipino</item>
         <item>Français</item>
+        <item>Français (Louisiana)</item>
         <item>Galego</item>
+        <item>ગુજરાતી</item>
         <item>עברית</item>
         <item>हिन्दी</item>
         <item>Hrvatski</item>
@@ -1298,23 +1324,31 @@
         <item>Italiano</item>
         <item>日本語</item>
         <item>ꦧꦱꦗꦮ</item>
+        <item>ქართული</item>
         <item>Taqbaylit</item>
         <item>Kurmancî</item>
+        <item>ಕನ್ನಡ</item>
         <item>한국어</item>
         <item>کوردی</item>
+        <item>Latina</item>
         <item>Lietuvių kalba</item>
         <item>latviski</item>
         <item>македонски јазик</item>
         <item>മലയാളം</item>
+        <item>Монгол хэл</item>
+        <item>मराठी</item>
         <item>Bahasa Melayu</item>
         <item>Norsk bokmål</item>
-        <item>Nनेपाली</item>
+        <item>Norsk Nynorsk</item>
+        <item>नेपाली</item>
         <item>Nederlands (NL)</item>
         <item>Nederlands (BE)</item>
+        <!-- nn is placed next to nb-no -->
         <item>ߒߞߏ</item>
         <item>Occitan</item>
         <item>ଓଡ଼ିଆ</item>
         <item>ਪੰਜਾਬੀ</item>
+        <item>ਪੰਜਾਬੀ (PK)</item>
         <item>Polski</item>
         <item>Português</item>
         <item>Português (BR)</item>
@@ -1333,7 +1367,11 @@
         <item>தமிழ்</item>
         <item>తెలుగు</item>
         <item>ไทย</item>
+        <item>ትግርኛ</item>
+        <item>Wikang Tagalog </item>
+        <item>Toki Pona</item>
         <item>Türkçe</item>
+        <item>Татар теле</item>
         <item>Tamaziɣt</item>
         <item>українська мова</item>
         <item>اردو</item>

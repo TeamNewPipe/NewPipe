@@ -216,8 +216,6 @@
     <string name="search_no_results">ᱡᱟᱦᱟᱱ ᱡᱤᱱᱤᱥ</string>
     <string name="empty_list_subtitle">ᱱᱚᱣᱟ ᱨᱮᱫᱚ ᱡᱟᱹᱥᱛᱤ ᱡᱟᱹᱥᱛᱤ ᱠᱨᱤᱠᱮᱴ ᱢᱮᱱᱟᱜᱼᱟ ᱾</string>
     <string name="video">ᱵᱷᱤᱰᱤᱭᱳ</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
     <string name="subscribers_count_not_available">ᱥᱮᱞᱮᱫᱤᱭᱟᱹ ᱠᱚᱣᱟᱜ ᱞᱮᱠᱷᱟ ᱵᱟᱭ ᱦᱟᱹᱴᱤᱧ ᱟᱠᱟᱱᱟ</string>
     <string name="no_views">ᱵᱟᱱᱩᱜ ᱧᱮᱞ</string>
     <string name="no_videos">ᱵᱷᱤᱰᱤᱭᱳ ᱵᱟᱹᱱᱩᱜᱼᱟ</string>
@@ -477,7 +475,6 @@
     <string name="detail_drag_description">ᱱᱟᱣᱟ ᱟᱹᱨᱡᱤ ᱞᱟᱹᱜᱤᱫ ᱟᱹᱪᱩᱨ ᱢᱮ</string>
     <string name="audio">ᱚᱰᱤᱭᱳ</string>
     <string name="retry">ᱟᱨᱦᱚᱸ ᱯᱟᱲᱦᱟᱣ ᱢᱮ</string>
-    <string name="short_billion">ᱵᱤ</string>
     <string name="drawer_header_description">ᱱᱤᱛᱚᱜ ᱵᱟᱪᱷᱟᱣ ᱟᱠᱟᱱ ᱴᱳᱜᱞ ᱥᱮᱵᱟ:</string>
     <string name="no_subscribers">ᱚᱵᱷᱤᱱᱮᱛᱟᱨ ᱵᱟᱹᱱᱩᱜᱼᱟ</string>
     <string name="no_one_watching">ᱚᱠᱚᱭ ᱦᱚᱸ ᱵᱟᱝ ᱧᱮᱞᱚᱜ ᱠᱟᱱᱟ</string>
@@ -519,7 +516,6 @@
     <string name="select_a_playlist">ᱢᱤᱫ ᱯᱷᱟᱤᱞᱤᱥᱴ ᱵᱟᱪᱷᱟᱣ ᱢᱮ</string>
     <string name="import_complete_toast">ᱤᱢᱯᱳᱨᱴ</string>
     <string name="no_playlist_bookmarked_yet">ᱱᱤᱛ ᱦᱟᱹᱵᱤᱡ playlist bookmarks ᱵᱟᱹᱱᱩᱜᱼᱟ</string>
-    <string name="localization_changes_requires_app_restart">ᱮᱯ ᱮᱦᱚᱵ ᱞᱮᱠᱷᱟᱱ ᱯᱟᱹᱨᱥᱤ ᱵᱚᱫᱚᱞᱚᱜ-ᱟ</string>
     <string name="export_complete_toast">ᱮᱥᱯᱟᱨᱴ ᱟᱠᱟᱱᱟ</string>
     <string name="trending">ᱴᱨᱮᱱᱰᱤᱝ</string>
     <string name="play_queue_audio_settings">ᱚᱰᱤᱭᱳ ᱥᱮᱴᱤᱝ</string>

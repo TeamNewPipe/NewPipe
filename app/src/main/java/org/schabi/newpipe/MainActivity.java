@@ -20,8 +20,6 @@
 
 package org.schabi.newpipe;
 
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -49,6 +47,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -77,6 +76,7 @@ import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.settings.UpdateSettingsFragment;
+import org.schabi.newpipe.settings.migration.MigrationManager;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.KioskTranslator;
@@ -137,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                     + "savedInstanceState = [" + savedInstanceState + "]");
         }
 
+        Localization.migrateAppLanguageSettingIfNecessary(getApplicationContext());
         ThemeHelper.setDayNightMode(this);
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
 
@@ -153,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPrefEditor = sharedPreferences.edit();
@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
             UpdateSettingsFragment.askForConsentToUpdateChecks(this);
         }
 
-        Localization.migrateAppLanguageSettingIfNecessary(getApplicationContext());
+        MigrationManager.showUserInfoIfPresent(this);
     }
 
     @Override
@@ -260,19 +260,6 @@ public class MainActivity extends AppCompatActivity {
      */
     private void addDrawerMenuForCurrentService() throws ExtractionException {
         //Tabs
-        final int currentServiceId = ServiceHelper.getSelectedServiceId(this);
-        final StreamingService service = NewPipe.getService(currentServiceId);
-
-        int kioskMenuItemId = 0;
-
-        for (final String ks : service.getKioskList().getAvailableKiosks()) {
-            drawerLayoutBinding.navigation.getMenu()
-                    .add(R.id.menu_tabs_group, kioskMenuItemId, 0, KioskTranslator
-                            .getTranslatedKioskName(ks, this))
-                    .setIcon(KioskTranslator.getKioskIcon(ks));
-            kioskMenuItemId++;
-        }
-
         drawerLayoutBinding.navigation.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_SUBSCRIPTIONS, ORDER,
                         R.string.tab_subscriptions)
@@ -289,6 +276,20 @@ public class MainActivity extends AppCompatActivity {
         drawerLayoutBinding.navigation.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_HISTORY, ORDER, R.string.action_history)
                 .setIcon(R.drawable.ic_history);
+
+        //Kiosks
+        final int currentServiceId = ServiceHelper.getSelectedServiceId(this);
+        final StreamingService service = NewPipe.getService(currentServiceId);
+
+        int kioskMenuItemId = 0;
+
+        for (final String ks : service.getKioskList().getAvailableKiosks()) {
+            drawerLayoutBinding.navigation.getMenu()
+                    .add(R.id.menu_kiosks_group, kioskMenuItemId, 0, KioskTranslator
+                            .getTranslatedKioskName(ks, this))
+                    .setIcon(KioskTranslator.getKioskIcon(ks));
+            kioskMenuItemId++;
+        }
 
         //Settings and About
         drawerLayoutBinding.navigation.getMenu()
@@ -309,10 +310,13 @@ public class MainActivity extends AppCompatActivity {
                 changeService(item);
                 break;
             case R.id.menu_tabs_group:
+                tabSelected(item);
+                break;
+            case R.id.menu_kiosks_group:
                 try {
-                    tabSelected(item);
+                    kioskSelected(item);
                 } catch (final Exception e) {
-                    ErrorUtil.showUiErrorSnackbar(this, "Selecting main page tab", e);
+                    ErrorUtil.showUiErrorSnackbar(this, "Selecting drawer kiosk", e);
                 }
                 break;
             case R.id.menu_options_about_group:
@@ -336,7 +340,7 @@ public class MainActivity extends AppCompatActivity {
                 .setChecked(true);
     }
 
-    private void tabSelected(final MenuItem item) throws ExtractionException {
+    private void tabSelected(final MenuItem item) {
         switch (item.getItemId()) {
             case ITEM_ID_SUBSCRIPTIONS:
                 NavigationHelper.openSubscriptionFragment(getSupportFragmentManager());
@@ -353,18 +357,19 @@ public class MainActivity extends AppCompatActivity {
             case ITEM_ID_HISTORY:
                 NavigationHelper.openStatisticFragment(getSupportFragmentManager());
                 break;
-            default:
-                final StreamingService currentService = ServiceHelper.getSelectedService(this);
-                int kioskMenuItemId = 0;
-                for (final String kioskId : currentService.getKioskList().getAvailableKiosks()) {
-                    if (kioskMenuItemId == item.getItemId()) {
-                        NavigationHelper.openKioskFragment(getSupportFragmentManager(),
-                                currentService.getServiceId(), kioskId);
-                        break;
-                    }
-                    kioskMenuItemId++;
-                }
+        }
+    }
+
+    private void kioskSelected(final MenuItem item) throws ExtractionException {
+        final StreamingService currentService = ServiceHelper.getSelectedService(this);
+        int kioskMenuItemId = 0;
+        for (final String kioskId : currentService.getKioskList().getAvailableKiosks()) {
+            if (kioskMenuItemId == item.getItemId()) {
+                NavigationHelper.openKioskFragment(getSupportFragmentManager(),
+                        currentService.getServiceId(), kioskId);
                 break;
+            }
+            kioskMenuItemId++;
         }
     }
 
@@ -405,6 +410,7 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayoutBinding.navigation.getMenu().removeGroup(R.id.menu_services_group);
         drawerLayoutBinding.navigation.getMenu().removeGroup(R.id.menu_tabs_group);
+        drawerLayoutBinding.navigation.getMenu().removeGroup(R.id.menu_kiosks_group);
         drawerLayoutBinding.navigation.getMenu().removeGroup(R.id.menu_options_about_group);
 
         // Show up or down arrow
@@ -498,9 +504,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        assureCorrectAppLanguage(this);
         // Change the date format to match the selected language on resume
-        Localization.initPrettyTime(Localization.resolvePrettyTime(getApplicationContext()));
+        Localization.initPrettyTime(Localization.resolvePrettyTime());
         super.onResume();
 
         // Close drawer on return, and don't show animation,
@@ -849,7 +854,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        if (PlayerHolder.getInstance().isPlayerOpen()) {
+        if (PlayerHolder.INSTANCE.isPlayerOpen()) {
             // if the player is already open, no need for a broadcast receiver
             openMiniPlayerIfMissing();
         } else {
@@ -859,7 +864,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onReceive(final Context context, final Intent intent) {
                     if (Objects.equals(intent.getAction(),
                             VideoDetailFragment.ACTION_PLAYER_STARTED)
-                            && PlayerHolder.getInstance().isPlayerOpen()) {
+                            && PlayerHolder.INSTANCE.isPlayerOpen()) {
                         openMiniPlayerIfMissing();
                         // At this point the player is added 100%, we can unregister. Other actions
                         // are useless since the fragment will not be removed after that.
@@ -870,11 +875,12 @@ public class MainActivity extends AppCompatActivity {
             };
             final IntentFilter intentFilter = new IntentFilter();
             intentFilter.addAction(VideoDetailFragment.ACTION_PLAYER_STARTED);
-            registerReceiver(broadcastReceiver, intentFilter);
+            ContextCompat.registerReceiver(this, broadcastReceiver, intentFilter,
+                    ContextCompat.RECEIVER_EXPORTED);
 
             // If the PlayerHolder is not bound yet, but the service is running, try to bind to it.
             // Once the connection is established, the ACTION_PLAYER_STARTED will be sent.
-            PlayerHolder.getInstance().tryBindIfNeeded(this);
+            PlayerHolder.INSTANCE.tryBindIfNeeded(this);
         }
     }
 

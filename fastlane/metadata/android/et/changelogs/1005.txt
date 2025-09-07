@@ -1,0 +1,17 @@
+Uus
+• Android Auto tugi
+• Meedivoogude grupid põhivaates
+• [YouTube] Jagamine ajutise esitusloendina
+• [SoundCloud] Meeldimiste kanali vahekaart
+
+Täiendatud
+• Paremad otsinguvihjed
+• Allalaadimise kuupäev vastavas vaates
+• Android 13 puhul rakendusekohane keel
+
+Parandatud
+• Tekstivärvid tumedas kujundused
+• [YouTube] Esitusloend ei laadinud üle 100 kirje
+• [YouTube] Puuduvad videosoovitused
+• Ajaloovaate kookujooksmine
+• Ajatemplid kommentaaride vastustes

@@ -82,9 +82,6 @@
     <string name="video">ভিডিও</string>
     <string name="audio">অডিও</string>
     <string name="retry">পুনরায় চেষ্টা করো</string>
-    <string name="short_thousand">হা</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">বি</string>
     <!-- Missions -->
     <string name="start">শুরু</string>
     <string name="pause">বিরতি</string>

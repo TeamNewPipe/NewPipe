@@ -97,9 +97,6 @@
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Pokušaj ponovo</string>
-    <string name="short_thousand">tis.</string>
-    <string name="short_million">mil</string>
-    <string name="short_billion">mlrd.</string>
     <string name="start">Počni</string>
     <string name="pause">Pauziraj</string>
     <string name="delete">Izbriši</string>
@@ -406,7 +403,6 @@
     <string name="delete_playback_states_alert">Izbrisati sve pozicije reprodukcije\?</string>
     <string name="no_one_watching">Nitko ne gleda</string>
     <string name="no_one_listening">Nitko ne sluša</string>
-    <string name="localization_changes_requires_app_restart">Jezik će se promijeniti nakon ponovnog pokretanja aplikcije</string>
     <string name="default_kiosk_page_summary">Standardni kiosk</string>
     <string name="peertube_instance_add_https_only">Podržani su samo HTTP URL-ovi</string>
     <string name="local">Lokalni</string>

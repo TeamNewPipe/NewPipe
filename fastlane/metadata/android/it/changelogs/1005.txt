@@ -1,0 +1,17 @@
+Novità
+• Ora NewPipe funziona su Android Auto
+• Aggiungi feed di gruppi di canali nella schermata principale
+• [YouTube] Condividi come playlist temporanea
+• [SoundCloud] Mi piace nei canali
+
+Migliorie
+• Indizi nella barra di ricerca
+• Mostrata la data di scaricamento nella relativa sezione
+• Uso della possibilità di scegliere la lingua dell'app, funzione nativa di Android 13
+
+Correzioni
+• Sistemati i colori del testo col tema scuro
+• [YouTube] Ora si caricano più di 100 video nelle playlist
+• [YouTube] Ripristinati i video consigliati
+• Sistemati i crash nella cronologia
+* Sistemato un errore nell'orario di inserimento di una risposta nei commenti

@@ -126,9 +126,6 @@
     <string name="video">वीडियो</string>
     <string name="audio">ऑडियो</string>
     <string name="retry">फिर से कोशिश करें</string>
-    <string name="short_thousand">हज़ार</string>
-    <string name="short_million">मिलियन</string>
-    <string name="short_billion">अरब</string>
     <string name="no_subscribers">कोई सब्सक्राइबर नहीं</string>
     <plurals name="subscribers">
         <item quantity="one">%s सब्सक्राइबर</item>
@@ -423,7 +420,6 @@
         <item quantity="one">%s श्रोता</item>
         <item quantity="other">%s श्रोता</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">ऐप के पुनः आरंभ होने के बाद भाषा बदल जाएगी</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">तेज मोड सक्षम करें</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">तेज मोड अक्षम करें</string>
     <string name="feed_use_dedicated_fetch_method_help_text">क्या आपको लगता है कि फीड लोडिंग बहुत धीमी है\? यदि ऐसा है, तो तेज़ लोडिंग को सक्षम करने का प्रयास करें (आप इसे सेटिंग्स में या नीचे दिए गए बटन को दबाकर बदल सकते हैं)।
@@ -823,4 +819,12 @@
     <string name="settings_category_backup_restore_title">बैकअप और रिस्टोर</string>
     <string name="import_settings_vulnerable_format">आयात किए जा रहे निर्यात में सेटिंग्स एक कमजोर प्रारूप का उपयोग करती हैं जिसे न्यूपाइप 0.27.0 के बाद से हटा दिया गया था। सुनिश्चित करें कि आयात किया जा रहा निर्यात किसी विश्वसनीय स्रोत से है, और भविष्य में केवल न्यूपाइप 0.27.0 या नए से प्राप्त निर्यात का उपयोग करना पसंद करें। इस असुरक्षित प्रारूप में सेटिंग्स आयात करने के लिए समर्थन जल्द ही पूरी तरह से हटा दिया जाएगा, और फिर न्यूपाइप के पुराने संस्करण अब नए संस्करणों से निर्यात की सेटिंग्स आयात नहीं कर पाएंगे।</string>
     <string name="audio_track_type_secondary">सेकेंडरी</string>
+    <string name="search_with_service_name">%1$s खोजें</string>
+    <string name="search_with_service_name_and_filter">%1$s (%2$s) खोजें</string>
+    <string name="tab_bookmarks_short">प्लेलिस्ट</string>
+    <string name="select_a_feed_group">कृपया एक फ़ीड समूह चुनें</string>
+    <string name="no_feed_group_created_yet">अभी तक कोई फ़ीड समूह नहीं बनाया गया है</string>
+    <string name="feed_group_page_summary">चैनल समूह पेज</string>
+    <string name="channel_tab_likes">पसंद</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">यूट्यूब अस्थायी प्लेलिस्ट के रूप में साझा करें</string>
 </resources>

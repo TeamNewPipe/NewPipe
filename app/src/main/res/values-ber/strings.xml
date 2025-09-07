@@ -45,9 +45,6 @@
     </plurals>
     <string name="infinite_videos">∞ ⵉⴼⵉⴷⵢⵓⵜⵏ</string>
     <string name="more_than_100_videos">100+ ⵉⴼⵉⴷⵢⵓⵜⵏ</string>
-    <string name="short_billion">ⴱ</string>
-    <string name="short_million">ⵎ</string>
-    <string name="short_thousand">ⴽ</string>
     <string name="audio">ⴰⵎⵙⵍⴰⵢ</string>
     <string name="video">ⴰⴼⵉⴷⵢⵓ</string>
     <string name="detail_likes_img_view_description">ⵉⵔⵉⵜⵏ</string>

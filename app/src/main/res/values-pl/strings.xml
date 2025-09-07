@@ -96,10 +96,7 @@
     <string name="all">Wszystkie</string>
     <string name="disabled">Wyłączone</string>
     <string name="clear">Wyczyść</string>
-    <string name="short_thousand">tys.</string>
-    <string name="short_million">mln</string>
-    <string name="short_billion">mld</string>
-    <string name="msg_popup_permission">To pozwolenie jest wymagane, aby 
+    <string name="msg_popup_permission">To pozwolenie jest wymagane, aby
 \notworzyć w trybie okienkowym</string>
     <string name="open_in_popup_mode">Otwórz w trybie okienkowym</string>
     <string name="controls_popup_title">Tryb okienkowy</string>
@@ -432,7 +429,6 @@
         <item quantity="few">%s słuchaczy</item>
         <item quantity="many">%s słuchaczy</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Język zmieni się po ponownym uruchomieniu aplikacji</string>
     <string name="seek_duration_title">Wielkość skoku przy przewijaniu</string>
     <string name="peertube_instance_url_title">Serwery PeerTube</string>
     <string name="peertube_instance_url_summary">Wybierz swoje ulubione serwery PeerTube</string>
@@ -846,4 +842,14 @@
 \nCzy chcesz to włączyć?</string>
     <string name="import_settings_vulnerable_format">Ustawienia w importowanym eksporcie korzystają z podatnego na ataki formatu, który został wycofany od wersji NewPipe 0.27.0. Upewnij się, że importowany eksport pochodzi z zaufanego źródła, i w przyszłości używaj wyłącznie eksportów uzyskanych z NewPipe 0.27.0 lub nowszego. Obsługa importowania ustawień w tym podatnym formacie zostanie wkrótce całkowicie usunięta, a wtedy starsze wersje NewPipe nie będą już mogły importować ustawień z eksportu z nowych wersji.</string>
     <string name="audio_track_type_secondary">dodatkowa</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Udostępnij jako tymczasową playlistę YouTube</string>
+    <string name="tab_bookmarks_short">Playlisty</string>
+    <string name="select_a_feed_group">Wybierz grupę kanałów</string>
+    <string name="feed_group_page_summary">Strona grupy kanałów</string>
+    <string name="no_feed_group_created_yet">Nie utworzono jeszcze grupy kanałów</string>
+    <string name="search_with_service_name">Szukaj %1$s</string>
+    <string name="search_with_service_name_and_filter">Szukaj %1$s (%2$s)</string>
+    <string name="channel_tab_likes">Polubienia</string>
+    <string name="migration_info_6_7_title">Usunięto stronę SoundCloud 50 najlepszych</string>
+    <string name="migration_info_6_7_message">SoundCloud wycofał oryginalną listę 50 najlepszych. Odpowiadająca karta została usunięta ze strony głównej.</string>
 </resources>

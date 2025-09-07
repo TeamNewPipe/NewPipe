@@ -1,0 +1,6 @@
+Corrigida a falha que ocorria ao reordenar grupos de canais.
+Corrigida a obtenção de mais vídeos do YouTube de canais e playlists.
+Corrigida a obtenção de comentários do YouTube.
+Adicionado suporte para subcaminhos /watch/, /v/ e /w/ em URLs do YouTube.
+Corrigida a extração do ID do cliente do SoundCloud e de conteúdo com restrição geográfica.
+Adicionada a localização para o Curdo do Norte.

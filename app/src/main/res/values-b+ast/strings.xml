@@ -43,9 +43,6 @@
     <string name="detail_dislikes_img_view_description">Tarrezmes</string>
     <string name="default_video_format_title">Formatu de videu predetermináu</string>
     <string name="black_theme_title">Prietu</string>
-    <string name="short_thousand">mil</string>
-    <string name="short_million">mill.</string>
-    <string name="short_billion">mil mill.</string>
     <string name="msg_popup_permission">Precísase esti permisu p\'abrir
 \nnel mou ventanu</string>
     <string name="title_activity_recaptcha">Retu de reCAPTCHA</string>
@@ -223,7 +220,6 @@
     <string name="privacy_policy_title">Política de privacidá de NewPipe</string>
     <string name="error_file_creation">El ficheru nun pue crease</string>
     <string name="error_http_no_content">El sirvidor nun unvia datos</string>
-    <string name="localization_changes_requires_app_restart">La llingua va camudar namás que se reanicie l\'aplicación.</string>
     <string name="search">Buscar</string>
     <string name="share_dialog_title">Compartir con</string>
     <string name="subscribed_button_title">Soscribiéstite</string>
