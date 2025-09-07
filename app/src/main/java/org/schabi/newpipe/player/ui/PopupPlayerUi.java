@@ -153,8 +153,8 @@ public final class PopupPlayerUi extends VideoPlayerUi {
 
     @Override
     protected void setupElementsVisibility() {
-        binding.fullScreenButton.setVisibility(View.VISIBLE);
-        binding.screenRotationButton.setVisibility(View.GONE);
+        binding.fullscreenToggleButtonSecondaryMenu.setVisibility(View.VISIBLE);
+        binding.fullscreenToggleButton.setVisibility(View.GONE);
         binding.resizeTextView.setVisibility(View.GONE);
         binding.getRoot().findViewById(R.id.metadataView).setVisibility(View.GONE);
         binding.queueButton.setVisibility(View.GONE);

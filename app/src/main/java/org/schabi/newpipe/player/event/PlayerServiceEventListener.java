@@ -10,7 +10,7 @@ public interface PlayerServiceEventListener extends PlayerEventListener {
 
     void onFullscreenStateChanged(boolean fullscreen);
 
-    void onScreenRotationButtonClicked();
+    void onFullscreenToggleButtonClicked();
 
     void onMoreOptionsLongClicked();
 
