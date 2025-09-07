@@ -4,7 +4,6 @@ import android.content.res.Configuration
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -12,7 +11,6 @@ import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
-import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
@@ -49,18 +47,10 @@ private fun PlaylistScreen(
             )
         }
 
-        is Resource.Loading -> {
-            LoadingIndicator()
-        }
+        is Resource.Loading -> LoadingIndicator()
 
-        is Resource.Error -> {
-            // TODO use error panel instead
-            EmptyStateComposable(
-                EmptyStateSpec.NoVideos.copy(
-                    descriptionText = { stringResource(R.string.error_unable_to_load_streams) },
-                )
-            )
-        }
+        // TODO use error panel instead
+        is Resource.Error -> EmptyStateComposable(EmptyStateSpec.ErrorLoadingItems)
     }
 }
 

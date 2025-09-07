@@ -871,7 +871,7 @@
     <string name="migration_info_6_7_message">SoundCloud has discontinued the original Top 50 charts. The corresponding tab has been removed from your main page.</string>
     <string name="auto_queue_description">Next</string>
     <string name="newpipe_extractor_description">NewPipeExtractor is a library for extracting things from streaming sites. It is a core component of NewPipe, but could be used independently.</string>
-    <string name="error_unable_to_load_streams">Could not load streams</string>
+    <string name="error_unable_to_load_items">Could not load items</string>
     <string name="playlist_uploader_icon_description">Playlist uploader icon</string>
     <plurals name="comments">
         <item quantity="one">%d comment</item>
