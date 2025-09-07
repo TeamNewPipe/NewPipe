@@ -95,8 +95,7 @@ public class SelectChannelFragment extends DialogFragment {
         progressBar = v.findViewById(R.id.progressBar);
         emptyView = v.findViewById(R.id.empty_state_view);
 
-        EmptyStateUtil.setEmptyStateComposable(emptyView,
-                EmptyStateSpec.Companion.getNoSubscriptions());
+        EmptyStateUtil.setEmptyStateComposable(emptyView, EmptyStateSpec.NoSubscriptions);
         progressBar.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
         emptyView.setVisibility(View.GONE);

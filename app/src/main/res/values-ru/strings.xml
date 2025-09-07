@@ -94,9 +94,6 @@
     <string name="show_search_suggestions_summary">Выберите отображаемые предложения поиска</string>
     <string name="disabled">Отключено</string>
     <string name="use_external_video_player_summary">Убирает звук в некоторых разрешениях</string>
-    <string name="short_million">млн</string>
-    <string name="short_billion">млрд</string>
-    <string name="short_thousand">тыс.</string>
     <string name="default_popup_resolution_title">Разрешение всплывающего окна</string>
     <string name="popup_remember_size_pos_summary">Помнить последние размер и позицию всплывающего окна</string>
     <string name="show_search_suggestions_title">Предложения поиска</string>
@@ -636,7 +633,6 @@
     <string name="feed_load_error_account_info">Не удалось загрузить подписку \'%s\'.</string>
     <string name="feed_load_error">Ошибка загрузки подписки</string>
     <string name="open_website_license">Открыть веб-сайт</string>
-    <string name="service_provides_reason">%s указывает следующую причину:</string>
     <string name="account_terminated">Аккаунт отключён</string>
     <string name="downloads_storage_use_saf_summary_api_29">Начиная с Android 10 поддерживается только «Storage Access Framework»</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Спрашивать, куда сохранять каждую загрузку</string>
@@ -846,4 +842,9 @@
     <string name="feed_group_page_summary">Страница группы каналов</string>
     <string name="select_a_feed_group">Выберите группу кормов</string>
     <string name="no_feed_group_created_yet">Группа кормов еще не создана</string>
+    <string name="search_with_service_name">Поиск %1$s</string>
+    <string name="search_with_service_name_and_filter">Поиск %1$s (%2$s)</string>
+    <string name="channel_tab_likes">Лайки</string>
+    <string name="migration_info_6_7_title">Страница SoundCloud Top 50 удалена</string>
+    <string name="migration_info_6_7_message">SoundCloud прекратил поддерживать оригинальные чарты Top 50. Соответствующая вкладка была удалена с вашей главной страницы.</string>
 </resources>

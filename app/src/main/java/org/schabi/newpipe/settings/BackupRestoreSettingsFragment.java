@@ -57,9 +57,7 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
     @Override
     public void onCreatePreferences(@Nullable final Bundle savedInstanceState,
                                     @Nullable final String rootKey) {
-        final var dbDir = requireContext().getDatabasePath(BackupFileLocator.FILE_NAME_DB).toPath()
-                .getParent();
-        manager = new ImportExportManager(new BackupFileLocator(dbDir));
+        manager = new ImportExportManager(new BackupFileLocator(requireContext()));
 
         importExportDataPathKey = getString(R.string.import_export_data_path);
 

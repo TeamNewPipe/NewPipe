@@ -84,9 +84,6 @@
     <string name="recaptcha_request_toast">reCAPTCHA-uitdaging gevraagd</string>
     <string name="open_in_popup_mode">Openen in pop-upmodus</string>
     <string name="all">Alles</string>
-    <string name="short_thousand">dznd.</string>
-    <string name="short_million">mln.</string>
-    <string name="short_billion">mld.</string>
     <string name="msg_popup_permission">Deze machtiging is vereist om te
 \nopenen in pop-upmodus</string>
     <string name="popup_playing_toast">Speelt af in pop-upmodus</string>
@@ -615,7 +612,6 @@
     <string name="on">Aan</string>
     <string name="tablet_mode_title">Tablet-modus</string>
     <string name="open_website_license">Website openen</string>
-    <string name="service_provides_reason">%s geeft de volgende reden:</string>
     <string name="account_terminated">Account getermineerd</string>
     <string name="feed_load_error_fast_unknown">De snelle feed mode levert hierover niet meer informatie.</string>
     <string name="feed_load_error_terminated">De account van de auteur is getermineerd.

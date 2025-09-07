@@ -775,7 +775,7 @@ class VideoDetailFragment :
                 },
                 { throwable ->
                     showError(
-                        ErrorInfo(throwable, UserAction.REQUESTED_STREAM, url ?: "no url", serviceId)
+                        ErrorInfo(throwable, UserAction.REQUESTED_STREAM, url ?: "no url", serviceId, url)
                     )
                 }
             )
@@ -1465,7 +1465,7 @@ class VideoDetailFragment :
 
             if (!info.errors.isEmpty()) {
                 showSnackBarError(
-                    ErrorInfo(info.errors, UserAction.REQUESTED_STREAM, info.url, info)
+                    ErrorInfo(info.errors, UserAction.REQUESTED_STREAM, "Some info not extracted: " + info.url, info)
                 )
             }
         }

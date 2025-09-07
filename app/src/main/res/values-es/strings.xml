@@ -81,9 +81,6 @@
     <string name="info_labels">Qué:\\nSolicitud:\\nIdioma del contenido:\\nPaís del contenido:\\nIdioma de la aplicación:\\nServicio:\\nMarca de tiempo:\\nPaquete:\\nVersión:\\nVersión del SO:</string>
     <string name="black_theme_title">Negro</string>
     <string name="all">Todo</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">MM</string>
     <string name="open_in_popup_mode">Abrir en modo emergente</string>
     <string name="msg_popup_permission">Se necesita este permiso
 \npara abrir en modo emergente</string>
@@ -614,7 +611,6 @@
     <string name="description_select_disable">Deshabilitar la selección de texto de la descripción</string>
     <string name="description_select_enable">Habilitar la selección de texto de la descripción</string>
     <string name="description_select_note">Ahora puede seleccionar el texto dentro de la descripción. Note que la página puede parpadear y los links no serán cliqueables mientras está en el modo de selección.</string>
-    <string name="service_provides_reason">%s da esta razón:</string>
     <string name="feed_load_error_account_info">No fue posible cargar el feed por \'%s\'.</string>
     <string name="account_terminated">Cuenta cancelada</string>
     <string name="feed_load_error_fast_unknown">El modo de muro rápido no arroja más información sobre esto.</string>

@@ -3,6 +3,7 @@ package org.schabi.newpipe.fragments.list.search;
 import static androidx.recyclerview.widget.ItemTouchHelper.Callback.makeMovementFlags;
 import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.ui.emptystate.EmptyStateUtil.setEmptyStateComposable;
 import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
 import static java.util.Arrays.asList;
 
@@ -54,6 +55,7 @@ import org.schabi.newpipe.extractor.MetaInfo;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.search.SearchExtractor;
 import org.schabi.newpipe.extractor.search.SearchInfo;
 import org.schabi.newpipe.extractor.services.peertube.linkHandler.PeertubeSearchQueryHandlerFactory;
@@ -65,7 +67,6 @@ import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.ui.emptystate.EmptyStateSpec;
-import org.schabi.newpipe.ui.emptystate.EmptyStateUtil;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -356,9 +357,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
 
-        EmptyStateUtil.setEmptyStateComposable(
-                searchBinding.emptyStateView,
-                EmptyStateSpec.Companion.getNoSearchResult());
+        setEmptyStateComposable(searchBinding.emptyStateView, EmptyStateSpec.NoSearchResult);
 
         searchBinding.suggestionsList.setAdapter(suggestionListAdapter);
         // animations are just strange and useless, since the suggestions keep changing too much
@@ -940,7 +939,21 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             infoListAdapter.clearStreamItemList();
             showEmptyState();
         } else {
-            showError(new ErrorInfo(exception, UserAction.SEARCHED, searchString, serviceId));
+            showError(new ErrorInfo(exception, UserAction.SEARCHED, searchString, serviceId,
+                    getOpenInBrowserUrlForErrors()));
+        }
+    }
+
+    @Nullable
+    private String getOpenInBrowserUrlForErrors() {
+        if (TextUtils.isEmpty(searchString)) {
+            return null;
+        }
+        try {
+            return service.getSearchQHFactory().getUrl(searchString,
+                    Arrays.asList(contentFilter), sortFilter);
+        } catch (final NullPointerException | ParsingException ignored) {
+            return null;
         }
     }
 
@@ -1028,7 +1041,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 && !(exceptions.size() == 1
                 && exceptions.get(0) instanceof SearchExtractor.NothingFoundException)) {
             showSnackBarError(new ErrorInfo(result.getErrors(), UserAction.SEARCHED,
-                    searchString, serviceId));
+                    searchString, serviceId, getOpenInBrowserUrlForErrors()));
         }
 
         searchSuggestion = result.getSearchSuggestion();
@@ -1095,15 +1108,26 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     public void handleNextItems(final ListExtractor.InfoItemsPage<?> result) {
         showListFooter(false);
         infoListAdapter.addInfoItemList(result.getItems());
-        nextPage = result.getNextPage();
 
-        if (!result.getErrors().isEmpty() && nextPage != null) {
-            showSnackBarError(new ErrorInfo(result.getErrors(), UserAction.SEARCHED,
-                    "\"" + searchString + "\" → pageUrl: " + nextPage.getUrl() + ", "
-                            + "pageIds: " + nextPage.getIds() + ", "
-                            + "pageCookies: " + nextPage.getCookies(),
-                    serviceId));
+        if (!result.getErrors().isEmpty()) {
+            // nextPage should be non-null at this point, because it refers to the page
+            // whose results are handled here, but let's check it anyway
+            if (nextPage == null) {
+                showSnackBarError(new ErrorInfo(result.getErrors(), UserAction.SEARCHED,
+                        "\"" + searchString + "\" → nextPage == null", serviceId,
+                        getOpenInBrowserUrlForErrors()));
+            } else {
+                showSnackBarError(new ErrorInfo(result.getErrors(), UserAction.SEARCHED,
+                        "\"" + searchString + "\" → pageUrl: " + nextPage.getUrl() + ", "
+                                + "pageIds: " + nextPage.getIds() + ", "
+                                + "pageCookies: " + nextPage.getCookies(),
+                        serviceId, getOpenInBrowserUrlForErrors()));
+            }
         }
+
+        // keep the reassignment of nextPage after the error handling to ensure that nextPage
+        // still holds the correct value during the error handling
+        nextPage = result.getNextPage();
         super.handleNextItems(result);
     }
 

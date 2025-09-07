@@ -87,8 +87,6 @@
     <string name="popup_playing_toast">Lecture en mode flottant</string>
     <string name="disabled">Désactivés</string>
     <string name="info_labels">Quoi :\\nRequest :\\nContent Language :\\nContent Country :\\nApp Language :\\nService :\\nGMT Time :\\nPackage :\\nVersion :\\nOS version :</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
     <string name="msg_popup_permission">Cette autorisation est nécessaire pour
 \nutiliser le mode flottant</string>
     <string name="controls_background_title">Arrière-plan</string>
@@ -100,7 +98,6 @@
     <string name="popup_remember_size_pos_title">Mémoriser les propriétés de la fenêtre flottante</string>
     <string name="popup_remember_size_pos_summary">Mémoriser les dernières taille et position de la fenêtre flottante</string>
     <string name="clear">Effacer</string>
-    <string name="short_billion">G</string>
     <string name="use_external_video_player_summary">Le son peut être absent à certaines définitions</string>
     <string name="show_search_suggestions_title">Suggestions de recherche</string>
     <string name="show_search_suggestions_summary">Sélectionner les suggestions à afficher lors d’une recherche</string>
@@ -164,7 +161,7 @@
     <string name="charset_most_special_characters">Caractères spéciaux</string>
     <string name="delete_item_search_history">Voulez-vous supprimer cet élément de l’historique de recherche \?</string>
     <string name="main_page_content">Contenu de la page principale</string>
-    <string name="blank_page_summary">Page vide</string>
+    <string name="blank_page_summary">Page blanche</string>
     <string name="channel_page_summary">Chaîne</string>
     <string name="select_a_channel">Sélectionner une chaîne</string>
     <string name="trending">Tendances</string>
@@ -623,7 +620,6 @@
     <string name="metadata_tags">Étiquettes</string>
     <string name="metadata_category">Catégorie</string>
     <string name="description_select_note">Vous pouvez maintenant sélectionner du texte à l’intérieur de la description. Notez que la page peut scintiller et que les liens peuvent ne pas être cliquables en mode sélection.</string>
-    <string name="service_provides_reason">%s indique le motif :</string>
     <string name="no_dir_yet">Aucun dossier de téléchargement n’est défini pour le moment, sélectionnez le dossier de téléchargement par défaut</string>
     <string name="open_website_license">Ouvrir le site web</string>
     <string name="account_terminated">Compte résilié</string>
@@ -846,4 +842,6 @@
     <string name="search_with_service_name">Rechercher %1$s</string>
     <string name="search_with_service_name_and_filter">Rechercher %1$s (%2$s)</string>
     <string name="channel_tab_likes">Likes</string>
+    <string name="migration_info_6_7_title">Page SoundCloud Top 50 supprimée</string>
+    <string name="migration_info_6_7_message">SoundCloud a abandonné le classement original du Top 50. L\'onglet correspondant a été supprimé de votre page d\'accueil.</string>
 </resources>

@@ -1,0 +1,18 @@
+Novinky
+• Pridaná podpora pre Android Auto
+• Možnosť nastaviť skupiny kanálov ako hlavné karty na obrazovke
+• [YouTube] Zdieľanie ako dočasný playlist
+
+• [SoundCloud] Karta „Páči sa“ kanál.
+
+Vylepšenia
+• Lepšia nápoveda v paneli vyhľadávania
+• Zobrazenie dátumu stiahnutia v sekcii „Stiahnuté”
+• Použitie jazyka Android 13 pre jednotlivé aplikácie
+
+Opravy
+• Oprava chybných farieb textu v tmavom režime
+• [YouTube] Oprava playlistov, ktoré nenačítavajú viac ako 100 položiek
+• [YouTube] Oprava chýbajúcich odporúčaných videí
+• Oprava pádov v zobrazení zoznamu histórie
+• Oprava časových značiek v odpovediach na komentáre.

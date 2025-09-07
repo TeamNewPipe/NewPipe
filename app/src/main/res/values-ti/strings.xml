@@ -4,8 +4,8 @@
     <string name="open_in_browser">ኣብ መርበብ-ሓበሬታ ክፉት</string>
     <string name="search_showing_result_for">ውጽኢት ናይ፦ %s</string>
     <string name="main_bg_subtitle">ንኽትጅምር ነቲ ምድላይ ምልክት ጠውቆ።</string>
-    <string name="upload_date_text">ኣብ %1$s ዝተሓትመ</string>
-    <string name="no_player_found">ናይ ዥረት ተጻዋታይ ኣይተረኽበን። VLC ኣውርድ፧</string>
+    <string name="upload_date_text">ዝተሓትመሉ ዕለት %1$s</string>
+    <string name="no_player_found">ናይ ዥረት ተጻዋታይ ኣይተረኽበን። VLC ይውርድ፧</string>
     <string name="ok">ሐራይ</string>
     <string name="settings">ቅጥዕታት</string>
     <string name="did_you_mean">\"%1$s\" ማለቱ ድዩ፧</string>
@@ -26,7 +26,7 @@
     <string name="subscribe_button_title">ሰዓበ</string>
     <string name="use_external_video_player_title">ናይ ደገ ቪድዮ ተጠቐም መጻወቲ</string>
     <string name="install">ምውራድ</string>
-    <string name="unsubscribe">ኣይትጽንበሩ</string>
+    <string name="unsubscribe">ምስዓብ ኣቋርጽ</string>
     <string name="notification_scale_to_square_image_summary">ነቲ ኣብ\'ቲ ምልክታ ዝተርኣየ ናይ ቪድዮ ምስሊ ካብ 16:9 ናብ 1:1 ርሕቐት ኣቀራርባ ቅረጽ</string>
     <string name="play_with_kodi_title">ምስ Kodi ተጻወት</string>
     <string name="controls_add_to_playlist_title">ድምር ምስ</string>
@@ -43,7 +43,7 @@
     <string name="use_external_audio_player_title">ናይ ደገ ድምጺ መጻወቲ ተጠቐም</string>
     <string name="notification_colorize_summary">Android ሕብሪ ናይቲ መተሓሳሰቢ ብመሰረት እቲ ኣብቲ ንእሽቶ ስእሊ ዘሎ ቀንዲ ሕብሪ ከም ዝጥዕሞ ግበር (እዚ ኣብ ኩሉ መሳርሒታት ከምዘይርከብ ኣስተውዕል)</string>
     <string name="default_popup_resolution_title">ትሑዝ ፖፕኣፕ ድንቀት</string>
-    <string name="notification_actions_summary">ነፍሲ ወከፍ መፍለጢ ተግባር ኣብ ታሕቲ ብምጥዋቕ ኣርትዖ። ኣብቲ ውህሉል መተሓሳሰቢ ንኽርአ ክሳብ ሰለስተ ካብኣቶም ምረጽ፡ ኣብ የማናይ ሸነኽ ዘሎ ሳጹናት ብምጥቃም</string>
+    <string name="notification_actions_summary">ነፍሲ ወከፍ መፍለጢ ተግባር ኣብ ታሕቲ ብምጥዋቕ ኣርትዖ። ኣብቲ ውህሉል መተሓሳሰቢ ንኽርአ ክሳብ ሰለስተ ካብኣቶም ምረጽ፡ ኣብ የማናይ ሸነኽ ዘሎ ሳጹናት ብምጥቃም።</string>
     <string name="controls_popup_title">ፖፕኣፕ</string>
     <string name="default_resolution_title">ትሑዝ ድንቀት</string>
     <string name="download_path_summary">ዝወረዱ ናይ ተንቃሳቀሴ-ምስሌ ፋይላት ኣብዚ ይኽዘኑ</string>
@@ -56,7 +56,7 @@
     <string name="download_path_audio_dialog_title">ናይ ድምጺ ፋይል ኣራግፍ ምረጽ</string>
     <string name="kore_not_found">ዝጎደለ ኮረ ኣፕፕ ኣውራድ፧</string>
     <string name="default_audio_format_title">ነባሪ ቅርጺ ድምጺ</string>
-    <string name="tab_subscriptions">ምዝገባ</string>
+    <string name="tab_subscriptions">እትስዕቦም</string>
     <string name="show_play_with_kodi_summary">Kodi ሚድያ ማእኸል ቪድዮ ንምጽዋት ዝሕግዝ ኣማራጺ</string>
     <string name="notification_actions_at_most_three">ኣብቲ ውሱን መፍለጢ ንምርኣይ እንተበዝሐ ሰለስተ ተግባራት ክትመርጽ ትኽእል ኢኻ!</string>
     <string name="download_path_title">ተንቃሳቀሴ-ምስሌ ፋይል ኣራግፍ</string>
@@ -70,7 +70,7 @@
     <string name="yes">እወ</string>
     <string name="no">ኣይፋልን</string>
     <string name="black_theme_title">ጸሊም</string>
-    <string name="theme_title">ቆርበት</string>
+    <string name="theme_title">ቆርበት ኣርእስቲ</string>
     <string name="night_theme_title">ለይታው ቆርበት</string>
     <string name="popup_remember_size_pos_title">ናይ ፖፕኣፕ ባህርያት ዘክር</string>
     <string name="popup_remember_size_pos_summary">ናይ ፖፕኣፕ ዝነበሮ ቦታ ዘክር</string>
@@ -88,7 +88,7 @@
     <string name="all">ኵሉ</string>
     <string name="channels">መስመርት</string>
     <string name="playlists">ዝርዝር-ጸወታ</string>
-    <string name="videos_string">ቅዳሒት</string>
+    <string name="videos_string">ቪዶ</string>
     <string name="users">ተጠቀምቲ</string>
     <string name="events">ፍጻመታት</string>
     <string name="songs">ደርፍታት</string>

@@ -19,7 +19,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.res.pluralStringResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
@@ -122,28 +121,23 @@ private fun CommentRepliesDialog(
 
                 if (comments.itemCount == 0) {
                     item {
-                        val refresh = comments.loadState.refresh
-                        if (refresh is LoadState.Loading) {
-                            LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
-                        } else if (refresh is LoadState.Error) {
-                            // TODO use error panel instead
-                            EmptyStateComposable(
-                                spec = EmptyStateSpec.DisabledComments.copy(
-                                    descriptionText = {
-                                        stringResource(R.string.error_unable_to_load_comments)
+                        when (val refresh = comments.loadState.refresh) {
+                            is LoadState.Loading -> {
+                                LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
+                            }
+                            else -> {
+                                // TODO use error panel instead
+                                EmptyStateComposable(
+                                    spec = if (refresh is LoadState.Error) {
+                                        EmptyStateSpec.ErrorLoadingComments
+                                    } else {
+                                        EmptyStateSpec.NoComments
                                     },
-                                ),
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .heightIn(min = 128.dp)
-                            )
-                        } else {
-                            EmptyStateComposable(
-                                spec = EmptyStateSpec.NoComments,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .heightIn(min = 128.dp)
-                            )
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .heightIn(min = 128.dp)
+                                )
+                            }
                         }
                     }
                 } else {

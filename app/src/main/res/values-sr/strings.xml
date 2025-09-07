@@ -83,9 +83,6 @@
     <string name="recaptcha_request_toast">Решите „reCAPTCHA“ задатак</string>
     <string name="black_theme_title">Црна</string>
     <string name="all">Све</string>
-    <string name="short_thousand">хиљ.</string>
-    <string name="short_million">мил.</string>
-    <string name="short_billion">млрд.</string>
     <string name="open_in_popup_mode">Отвори у искачућем облику</string>
     <string name="msg_popup_permission">Ова дозвола је потребна за
 \nотварање у искачућем режиму</string>
@@ -622,7 +619,6 @@
     <string name="description_select_enable">Омогући бирање текста унутар описа</string>
     <string name="description_select_disable">Онемогући бирање текста унутар описа</string>
     <string name="description_select_note">Сада можете изабрати текст унутар описа. Имајте на уму да страница може треперети и да се на линкове можда неће моћи кликнути док сте у режиму избора.</string>
-    <string name="service_provides_reason">%s даје овај разлог:</string>
     <string name="account_terminated">Налог укинут</string>
     <string name="feed_load_error_fast_unknown">Режим брзог фида не пружа више информација о овоме.</string>
     <string name="feed_load_error_terminated">Налог аутора је укинут.

@@ -1283,7 +1283,8 @@ public final class Player implements PlaybackListener, Listener {
                         UserAction.PLAY_STREAM,
                         "Loading failed for [" + currentMetadata.getTitle()
                                 + "]: " + currentMetadata.getStreamUrl(),
-                        currentMetadata.getServiceId());
+                        currentMetadata.getServiceId(),
+                        currentMetadata.getStreamUrl());
                 ErrorUtil.createNotification(context, errorInfo);
             }
 
@@ -1499,7 +1500,7 @@ public final class Player implements PlaybackListener, Listener {
             errorInfo = new ErrorInfo(error, UserAction.PLAY_STREAM,
                     "Player error[type=" + error.getErrorCodeName()
                             + "] occurred while playing " + currentMetadata.getStreamUrl(),
-                    currentMetadata.getServiceId());
+                    currentMetadata.getServiceId(), currentMetadata.getStreamUrl());
         }
         ErrorUtil.createNotification(context, errorInfo);
     }

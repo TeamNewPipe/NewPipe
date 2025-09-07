@@ -435,6 +435,7 @@
         </activity>
         <service
             android:name=".RouterActivity$FetcherService"
+            android:foregroundServiceType="dataSync"
             android:exported="false" />
 
         <!-- opting out of sending metrics to Google in Android System WebView -->

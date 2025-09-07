@@ -71,8 +71,6 @@
     <plurals name="views">
         <item quantity="other">%s 次观看</item>
     </plurals>
-    <string name="short_thousand">千</string>
-    <string name="short_million">百万</string>
     <string name="start">开始</string>
     <string name="pause">暂停</string>
     <string name="delete">删除</string>
@@ -153,7 +151,6 @@
     <string name="error_details_headline">详细信息：</string>
     <string name="detail_thumbnail_view_description">播放视频，时长：</string>
     <string name="detail_uploader_thumbnail_view_description">视频上传者的头像缩略图</string>
-    <string name="short_billion">十亿</string>
     <string name="msg_running">NewPipe 正在下载</string>
     <string name="no_available_dir">请稍后在设置中设定下载目录</string>
     <string name="msg_popup_permission">使用悬浮窗模式
@@ -198,7 +195,7 @@
     <string name="delete_item_search_history">是否删除此条搜索历史记录？</string>
     <string name="main_page_content">主页面的显示内容</string>
     <string name="blank_page_summary">空白页</string>
-    <string name="kiosk_page_summary">『时下流行』页-自定义</string>
+    <string name="kiosk_page_summary">Kiosk 页面</string>
     <string name="channel_page_summary">频道页</string>
     <string name="select_a_channel">选择一个频道</string>
     <string name="no_channel_subscribed_yet">尚未订阅频道</string>
@@ -602,7 +599,6 @@
     <string name="description_select_enable">启用简介中的文本选择功能</string>
     <string name="description_select_note">你现在可以选择简介中的文本，注意，在选择模式下，页面可能会闪烁，链接可能无法点击。</string>
     <string name="open_website_license">打开网站</string>
-    <string name="service_provides_reason">%s 提供这个原因：</string>
     <string name="account_terminated">账号被终止</string>
     <string name="feed_load_error_fast_unknown">快速 Feed 模式不提供关于这个的更多信息。</string>
     <string name="feed_load_error_terminated">作者账号已被终止。
@@ -814,4 +810,8 @@
     <string name="select_a_feed_group">选择一个订阅源组</string>
     <string name="no_feed_group_created_yet">尚未创建订阅源组</string>
     <string name="channel_tab_likes">赞</string>
+    <string name="search_with_service_name">搜索%1$s</string>
+    <string name="search_with_service_name_and_filter">搜索 %1$s （%2$s）</string>
+    <string name="migration_info_6_7_title">移除了 SoundCloud Top 50 页面</string>
+    <string name="migration_info_6_7_message">SoundCloud 已停止发布原创 Top 50 榜单。相应的标签页已从你的主页移除。</string>
 </resources>

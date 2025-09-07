@@ -146,9 +146,6 @@
     <string name="video">Видео</string>
     <string name="audio">Звук</string>
     <string name="retry">Пробај повторно</string>
-    <string name="short_thousand">илјади</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">милијарди</string>
     <string name="no_subscribers">Нема зачленети</string>
     <plurals name="subscribers">
         <item quantity="one">%s зачленет</item>
@@ -434,7 +431,6 @@
     <string name="feed_load_error_account_info">Неуспешно вчитување на новинска лента за „%s“.</string>
     <string name="feed_show_hide_streams">Прикажи / скриј стримови</string>
     <string name="private_content">Оваа содржина е приватна, така што не може да биде емитувана или преземена од страна на NewPipe.</string>
-    <string name="service_provides_reason">%s ја посочува следната причина:</string>
     <string name="featured">Истакнато</string>
     <string name="radio">Радио</string>
     <string name="auto_device_theme_title">Автоматски (режим на уредот)</string>

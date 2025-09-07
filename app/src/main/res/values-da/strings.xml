@@ -305,9 +305,6 @@
     <string name="stop">Stop</string>
     <string name="events">Hændelser</string>
     <string name="empty_list_subtitle">Ikke andet end fårekyllinger her</string>
-    <string name="short_thousand">t</string>
-    <string name="short_million">mio.</string>
-    <string name="short_billion">mia.</string>
     <plurals name="subscribers">
         <item quantity="one">%s abonnent</item>
         <item quantity="other">%s abonnenter</item>
@@ -556,7 +553,6 @@
     <string name="private_content">Dette indhold er privat, så det kan ikke streames eller hentes af NewPipe.</string>
     <string name="recently_added">Nyligt tilføjede</string>
     <string name="featured">Fremhævede</string>
-    <string name="service_provides_reason">%s giver denne grund:</string>
     <plurals name="listening">
         <item quantity="one">%s lytter</item>
         <item quantity="other">%s lyttere</item>
