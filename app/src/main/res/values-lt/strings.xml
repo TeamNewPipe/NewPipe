@@ -623,7 +623,6 @@
     <string name="description_select_enable">Įgalinti teksto pasirinkimą apraše</string>
     <string name="description_select_disable">Neleisti pasirinkti teksto apraše</string>
     <string name="description_select_note">Dabar apraše galite pasirinkti tekstą aprašyme. Atminkite, kad puslapis gali mirgėti, o nuorodos gali būti nespustelėjamos, kai veikia pasirinkimo režimas.</string>
-    <string name="service_provides_reason">%s pateikia šią priežastį:</string>
     <string name="account_terminated">Paskyra anuliuota</string>
     <string name="feed_load_error_fast_unknown">Greito srauto režimas nesuteikia daugiau informacijos apie tai.</string>
     <string name="feed_load_error_terminated">Autoriaus paskyra anuliuota.

@@ -639,7 +639,6 @@
     <string name="metadata_privacy_internal">Interno</string>
     <string name="metadata_privacy">Privatnost</string>
     <string name="description_select_note">Sada možeš odabrati tekst u opisu. Napomena: stranica će možda treperiti i možda nećeš moći kliknuti poveznice u načinu rada za odabir teksta.</string>
-    <string name="service_provides_reason">%s pruža ovaj razlog:</string>
     <string name="processing_may_take_a_moment">Obrada u tijeku … Može malo potrajati</string>
     <string name="main_page_content_swipe_remove">Za ukljanjanje stavki povuci ih</string>
     <plurals name="download_finished_notification">

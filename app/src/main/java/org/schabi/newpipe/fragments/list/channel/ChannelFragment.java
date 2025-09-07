@@ -3,6 +3,7 @@ package org.schabi.newpipe.fragments.list.channel;
 import static org.schabi.newpipe.ktx.TextViewUtils.animateTextColor;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateBackgroundColor;
+import static org.schabi.newpipe.ui.emptystate.EmptyStateUtil.setEmptyStateComposable;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -45,7 +46,6 @@ import org.schabi.newpipe.ktx.AnimationType;
 import org.schabi.newpipe.local.feed.notifications.NotificationHelper;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
 import org.schabi.newpipe.ui.emptystate.EmptyStateSpec;
-import org.schabi.newpipe.ui.emptystate.EmptyStateUtil;
 import org.schabi.newpipe.util.ChannelTabHelper;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -194,10 +194,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
         };
         activity.addMenuProvider(menuProvider, getViewLifecycleOwner());
 
-        EmptyStateUtil.setEmptyStateComposable(
-                binding.emptyStateView,
-                EmptyStateSpec.Companion.getContentNotSupported()
-        );
+        setEmptyStateComposable(binding.emptyStateView, EmptyStateSpec.ContentNotSupported);
 
         tabAdapter = new TabAdapter(getChildFragmentManager());
         binding.viewPager.setAdapter(tabAdapter);
@@ -568,7 +565,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
                     isLoading.set(false);
                     handleResult(result);
                 }, throwable -> showError(new ErrorInfo(throwable, UserAction.REQUESTED_CHANNEL,
-                        url == null ? "No URL" : url, serviceId)));
+                        url == null ? "No URL" : url, serviceId, url)));
     }
 
     @Override

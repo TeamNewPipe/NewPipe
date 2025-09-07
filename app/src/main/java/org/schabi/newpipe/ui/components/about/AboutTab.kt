@@ -1,12 +1,14 @@
 package org.schabi.newpipe.ui.components.about
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
@@ -16,7 +18,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -26,13 +27,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameterProvider
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat.getDrawable
-import coil3.compose.AsyncImage
 import my.nanihadesuka.compose.ColumnScrollbar
 import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.R
 import org.schabi.newpipe.ui.components.common.defaultThemedScrollbarSettings
 import org.schabi.newpipe.util.external_communication.ShareUtils
+import org.schabi.newpipe.util.image.NewPipeSquircleIcon
 
 private val ABOUT_ITEMS = listOf(
     AboutData(R.string.faq_title, R.string.faq_description, R.string.faq, R.string.faq_url),
@@ -83,12 +83,10 @@ fun AboutTab() {
                     .wrapContentSize(Alignment.Center),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                // note: the preview
-                val context = LocalContext.current
-                val launcherDrawable = remember { getDrawable(context, R.mipmap.ic_launcher) }
-                AsyncImage(
-                    model = launcherDrawable,
+                Image(
+                    imageVector = NewPipeSquircleIcon,
                     contentDescription = stringResource(R.string.app_name),
+                    modifier = Modifier.size(64.dp),
                 )
                 Spacer(Modifier.height(4.dp))
                 Text(

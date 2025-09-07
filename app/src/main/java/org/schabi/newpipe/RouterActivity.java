@@ -58,20 +58,10 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.StreamingService.LinkType;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
-import org.schabi.newpipe.extractor.exceptions.AgeRestrictedContentException;
-import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
-import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.extractor.exceptions.GeographicRestrictionException;
-import org.schabi.newpipe.extractor.exceptions.PaidContentException;
-import org.schabi.newpipe.extractor.exceptions.PrivateContentException;
-import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
-import org.schabi.newpipe.extractor.exceptions.SoundCloudGoPlusContentException;
-import org.schabi.newpipe.extractor.exceptions.YoutubeMusicPremiumContentException;
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.player.PlayerType;
 import org.schabi.newpipe.player.helper.PlayerHelper;
@@ -260,7 +250,8 @@ public class RouterActivity extends AppCompatActivity {
                         showUnsupportedUrlDialog(url);
                     }
                 }, throwable -> handleError(this, new ErrorInfo(throwable,
-                        UserAction.SHARE_TO_NEWPIPE, "Getting service from url: " + url))));
+                        UserAction.SHARE_TO_NEWPIPE, "Getting service from url: " + url,
+                        null, url))));
     }
 
     /**
@@ -269,40 +260,19 @@ public class RouterActivity extends AppCompatActivity {
      * @param errorInfo the error information
      */
     private static void handleError(final Context context, final ErrorInfo errorInfo) {
-        if (errorInfo.getThrowable() != null) {
-            errorInfo.getThrowable().printStackTrace();
-        }
-
-        if (errorInfo.getThrowable() instanceof ReCaptchaException) {
+        if (errorInfo.getRecaptchaUrl() != null) {
             Toast.makeText(context, R.string.recaptcha_request_toast, Toast.LENGTH_LONG).show();
             // Starting ReCaptcha Challenge Activity
             final Intent intent = new Intent(context, ReCaptchaActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra(ReCaptchaActivity.RECAPTCHA_URL_EXTRA, errorInfo.getRecaptchaUrl());
             context.startActivity(intent);
-        } else if (errorInfo.getThrowable() != null
-                && ExceptionUtils.isNetworkRelated(errorInfo.getThrowable())) {
-            Toast.makeText(context, R.string.network_error, Toast.LENGTH_LONG).show();
-        } else if (errorInfo.getThrowable() instanceof AgeRestrictedContentException) {
-            Toast.makeText(context, R.string.restricted_video_no_stream,
-                    Toast.LENGTH_LONG).show();
-        } else if (errorInfo.getThrowable() instanceof GeographicRestrictionException) {
-            Toast.makeText(context, R.string.georestricted_content, Toast.LENGTH_LONG).show();
-        } else if (errorInfo.getThrowable() instanceof PaidContentException) {
-            Toast.makeText(context, R.string.paid_content, Toast.LENGTH_LONG).show();
-        } else if (errorInfo.getThrowable() instanceof PrivateContentException) {
-            Toast.makeText(context, R.string.private_content, Toast.LENGTH_LONG).show();
-        } else if (errorInfo.getThrowable() instanceof SoundCloudGoPlusContentException) {
-            Toast.makeText(context, R.string.soundcloud_go_plus_content,
-                    Toast.LENGTH_LONG).show();
-        } else if (errorInfo.getThrowable() instanceof YoutubeMusicPremiumContentException) {
-            Toast.makeText(context, R.string.youtube_music_premium_content,
-                    Toast.LENGTH_LONG).show();
-        } else if (errorInfo.getThrowable() instanceof ContentNotAvailableException) {
-            Toast.makeText(context, R.string.content_not_available, Toast.LENGTH_LONG).show();
-        } else if (errorInfo.getThrowable() instanceof ContentNotSupportedException) {
-            Toast.makeText(context, R.string.content_not_supported, Toast.LENGTH_LONG).show();
-        } else {
+        } else if (errorInfo.isReportable()) {
             ErrorUtil.createNotification(context, errorInfo);
+        } else {
+            // this exception does not usually indicate a problem that should be reported,
+            // so just show a toast instead of the notification
+            Toast.makeText(context, errorInfo.getMessage(context), Toast.LENGTH_LONG).show();
         }
 
         if (context instanceof RouterActivity) {
@@ -665,7 +635,8 @@ public class RouterActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     }, throwable -> handleError(this, new ErrorInfo(throwable,
-                            UserAction.SHARE_TO_NEWPIPE, "Starting info activity: " + currentUrl)))
+                            UserAction.SHARE_TO_NEWPIPE, "Starting info activity: " + currentUrl,
+                            null, currentUrl)))
             );
             return;
         }
@@ -852,10 +823,10 @@ public class RouterActivity extends AppCompatActivity {
                                             })
                                     )),
                             throwable -> runOnVisible(ctx -> handleError(ctx, new ErrorInfo(
-                                    throwable,
-                                    UserAction.REQUESTED_STREAM,
+                                    throwable, UserAction.REQUESTED_STREAM,
                                     "Tried to add " + currentUrl + " to a playlist",
-                                    ((RouterActivity) ctx).currentService.getServiceId())
+                                    ((RouterActivity) ctx).currentService.getServiceId(),
+                                    currentUrl)
                             ))
                     )
             );
@@ -995,7 +966,7 @@ public class RouterActivity extends AppCompatActivity {
                             }
                         }, throwable -> handleError(this, new ErrorInfo(throwable, finalUserAction,
                                 choice.url + " opened with " + choice.playerChoice,
-                                choice.serviceId)));
+                                choice.serviceId, choice.url)));
             }
         }
 

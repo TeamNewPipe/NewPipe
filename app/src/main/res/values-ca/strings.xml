@@ -612,7 +612,6 @@
     <string name="select_night_theme_toast">Pot seleccionar el seu tema fosc favorit aqui sota</string>
     <string name="night_theme_summary">Selecciona el teu tema fosc favorit — %s</string>
     <string name="auto_device_theme_title">Automàtic (tema del dispositiu)</string>
-    <string name="service_provides_reason">%s dóna aquesta raó:</string>
     <string name="account_terminated">Usuari suspes</string>
     <string name="feed_load_error_terminated">El compte de l\'autor ha estat esborrat.
 \nNewPipe no serà capaç de carregar aquest fil en el futur.

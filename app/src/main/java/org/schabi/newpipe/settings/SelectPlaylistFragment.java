@@ -65,8 +65,7 @@ public class SelectPlaylistFragment extends DialogFragment {
         recyclerView = v.findViewById(R.id.items_list);
         emptyView = v.findViewById(R.id.empty_state_view);
 
-        EmptyStateUtil.setEmptyStateComposable(emptyView,
-                EmptyStateSpec.Companion.getNoBookmarkedPlaylist());
+        EmptyStateUtil.setEmptyStateComposable(emptyView, EmptyStateSpec.NoBookmarkedPlaylist);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         final SelectPlaylistAdapter playlistAdapter = new SelectPlaylistAdapter();
         recyclerView.setAdapter(playlistAdapter);
