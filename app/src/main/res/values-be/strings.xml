@@ -702,7 +702,6 @@
     <string name="private_content">Гэта змесціва з\'яўляецца прыватным, таму NewPipe не можа яго трансляваць або спампоўваць.</string>
     <string name="youtube_music_premium_content">Гэта відэа даступна толькі для падпісчыкаў YouTube Music Premium, таму NewPipe не можа яго трансляваць або спампоўваць.</string>
     <string name="account_terminated">Уліковы запіс спынены</string>
-    <string name="service_provides_reason">%s дае наступную прычыну:</string>
     <string name="featured">Вартае ўвагі</string>
     <string name="metadata_privacy_internal">Унутраная</string>
     <string name="feed_show_watched">Прагледжаныя цалкам</string>

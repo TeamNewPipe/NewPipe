@@ -584,7 +584,6 @@
     <string name="download_has_started">Hämtningen har startat</string>
     <string name="radio">Radio</string>
     <string name="paid_content">Detta innehåll är endast tillgängligt för användare som har betalat för det, så det kan inte strömmas eller hämtas av NewPipe.</string>
-    <string name="service_provides_reason">%s anger detta skäl:</string>
     <string name="account_terminated">Kontot avslutat</string>
     <string name="youtube_music_premium_content">Denna video är endast tillgänglig för YouTube Music Premium-medlemmar, så den kan inte strömmas eller hämtas av NewPipe.</string>
     <string name="private_content">Detta innehåll är privat, så det kan inte strömmas eller hämtas av NewPipe.</string>

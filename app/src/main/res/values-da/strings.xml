@@ -551,7 +551,6 @@
     <string name="private_content">Dette indhold er privat, så det kan ikke streames eller hentes af NewPipe.</string>
     <string name="recently_added">Nyligt tilføjede</string>
     <string name="featured">Fremhævede</string>
-    <string name="service_provides_reason">%s giver denne grund:</string>
     <plurals name="listening">
         <item quantity="one">%s lytter</item>
         <item quantity="other">%s lyttere</item>

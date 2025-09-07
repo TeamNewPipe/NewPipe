@@ -617,7 +617,6 @@
     <string name="description_select_enable">Attiva la selezione del testo nella descrizione</string>
     <string name="description_select_note">È possibile selezionare il testo all\'interno della descrizione. In modalità selezione la pagina potrebbe sfarfallare e i collegamenti potrebbero non essere cliccabili.</string>
     <string name="open_website_license">Visita il sito</string>
-    <string name="service_provides_reason">%s fornisce questa motivazione:</string>
     <string name="account_terminated">Account chiuso</string>
     <string name="feed_load_error_fast_unknown">Il recupero veloce dei feed non fornisce ulteriori informazioni al riguardo.</string>
     <string name="feed_load_error_terminated">L\'account dell\'autore è stato chiuso.

@@ -122,7 +122,7 @@ class ErrorUtil {
                 )
                     .setSmallIcon(R.drawable.ic_bug_report)
                     .setContentTitle(context.getString(R.string.error_report_notification_title))
-                    .setContentText(context.getString(errorInfo.messageStringId))
+                    .setContentText(errorInfo.getMessage(context))
                     .setAutoCancel(true)
                     .setContentIntent(
                         PendingIntentCompat.getActivity(
@@ -156,10 +156,10 @@ class ErrorUtil {
                 // fallback to showing a notification if no root view is available
                 createNotification(context, errorInfo)
             } else {
-                Snackbar.make(rootView, R.string.error_snackbar_message, Snackbar.LENGTH_LONG)
+                Snackbar.make(rootView, errorInfo.getMessage(context), Snackbar.LENGTH_LONG)
                     .setActionTextColor(Color.YELLOW)
                     .setAction(context.getString(R.string.error_snackbar_action).uppercase()) {
-                        openActivity(context, errorInfo)
+                        context.startActivity(getErrorActivityIntent(context, errorInfo))
                     }.show()
             }
         }

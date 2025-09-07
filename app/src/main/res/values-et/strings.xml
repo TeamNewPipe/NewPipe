@@ -560,7 +560,6 @@
     <string name="show_thumbnail_title">Näita pisipilte</string>
     <string name="show_thumbnail_summary">Kasuta pisipilti nii lukustusvaate kui teavituste taustana</string>
     <string name="account_terminated">Kasutajakonto on suletud</string>
-    <string name="service_provides_reason">%s toob põhjuseks:</string>
     <string name="description_select_enable">Võimalda valida kirjelduse teksti</string>
     <string name="description_select_disable">Ära võimalda valida kirjelduse teksti</string>
     <string name="metadata_category">Kategooria</string>

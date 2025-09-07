@@ -652,7 +652,6 @@
     <string name="disable_media_tunneling_title">मीडिया टनलिंग अक्षम करें</string>
     <string name="show_crash_the_player_title">\"क्रैश द प्लेयर\" दिखाएं</string>
     <string name="feed_subscription_not_loaded_count">लोड नहीं हुआ: %d</string>
-    <string name="service_provides_reason">%s इसका कारण प्रदान करता है:</string>
     <string name="metadata_tags">टैग</string>
     <string name="metadata_licence">लाइसेंस</string>
     <string name="faq_description">यदि आपको ऐप का उपयोग करने में परेशानी हो रही है, तो सामान्य प्रश्नों के इन उत्तरों को देखना सुनिश्चित करें!</string>

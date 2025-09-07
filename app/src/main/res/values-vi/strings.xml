@@ -600,7 +600,6 @@
     <string name="description_select_disable">Tắt chọn văn bản trong mô tả</string>
     <string name="description_select_enable">Bật chọn văn bản trong mô tả</string>
     <string name="description_select_note">Bây giờ bạn có thể chọn văn bản trong mô tả. Lưu ý rằng trang có thể nhấp nháy và các liên kết có thể không nhấn vào được trong khi ở chế độ chọn.</string>
-    <string name="service_provides_reason">%s cung cấp lý do này:</string>
     <string name="account_terminated">Tài khoản đã bị chấm dứt</string>
     <string name="feed_load_error_fast_unknown">Chế độ nạp nhanh không cung cấp thêm thông tin về điều này.</string>
     <string name="feed_load_error_terminated">Tài khoản của tác giả đã bị chấm dứt.

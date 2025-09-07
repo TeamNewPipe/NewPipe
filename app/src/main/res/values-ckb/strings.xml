@@ -593,7 +593,6 @@
     <string name="radio">ڕادیۆ</string>
     <string name="featured">تایبەتکراو</string>
     <string name="paid_content">ئه‌م بابه‌ته‌ ته‌نیا بۆ ئه‌و كه‌سانه‌ به‌رده‌سته‌ كه‌ پاره‌یان داوه‌ ، بۆیه‌ ناتوانرێت له‌ نیوپایپه‌وه‌ داببه‌زێنرێت.</string>
-    <string name="service_provides_reason">%s ئه‌م هۆكاره‌ دابین ده‌كات:</string>
     <string name="account_terminated">هه‌ژمار له‌ناوبراوه‌</string>
     <string name="youtube_music_premium_content">ئه‌م ڤیدیۆیه‌ ته‌نیا له‌ وه‌شانی نایابی یوتوب میوزیك به‌رده‌سته‌ ، بۆیه‌ ناتوانرێت له‌ نیوپایپه‌وه‌ داببه‌زێنرێت.</string>
     <string name="soundcloud_go_plus_content">ئه‌مه‌ تراكی SoundCloud Go+ ه‌ ، لانی كه‌م له‌ وڵاته‌كه‌ی تۆدا، ناتوانرێت له‌لایه‌ن نیوپایپه‌وه‌ داببه‌زێنرێت.</string>

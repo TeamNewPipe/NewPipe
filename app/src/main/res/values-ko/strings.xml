@@ -641,7 +641,6 @@
     <string name="chapters">챕터</string>
     <string name="recent">최근</string>
     <string name="account_terminated">계정이 해지됨</string>
-    <string name="service_provides_reason">%s은(는) 다음과 같은 이유를 제공:</string>
     <string name="soundcloud_go_plus_content">이것은 적어도 귀하의 국가에서 SoundCloud Go+ 트랙이므로 NewPipe에서 스트리밍하거나 다운로드할 수 없습니다.</string>
     <string name="auto_device_theme_title">자동 (장치 테마)</string>
     <string name="detail_pinned_comment_view_description">고정된 댓글</string>

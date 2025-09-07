@@ -617,7 +617,6 @@
     <string name="description_select_disable">Vypnout výběr textu v popisu</string>
     <string name="description_select_enable">Zapnout výběr textu v popisu</string>
     <string name="description_select_note">Nyní můžete vybrat v popisu text. Pamatujte, že v režimu výběru může stránka blikat a odkazy nemusí reagovat na kliknutí.</string>
-    <string name="service_provides_reason">%s udává teno důvod:</string>
     <string name="account_terminated">Účet uzavřen</string>
     <string name="feed_load_error_fast_unknown">Režim rychlého feedu o tom neposkytuje více informací.</string>
     <string name="feed_load_error_terminated">Autorův účet byl uzavřen.
