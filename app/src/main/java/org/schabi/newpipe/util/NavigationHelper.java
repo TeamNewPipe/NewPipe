@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Parcelable;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -70,6 +69,7 @@ import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.List;
+import java.util.Optional;
 
 public final class NavigationHelper {
     public static final String MAIN_FRAGMENT_TAG = "main_fragment_tag";
@@ -89,31 +89,22 @@ public final class NavigationHelper {
                                              @NonNull final Class<T> targetClazz,
                                              @Nullable final PlayQueue playQueue,
                                              @NonNull final PlayerIntentType playerIntentType) {
-        final Intent intent = new Intent(context, targetClazz);
-
-        if (playQueue != null) {
-            final String cacheKey = SerializedCache.getInstance().put(playQueue, PlayQueue.class);
-            if (cacheKey != null) {
-                intent.putExtra(Player.PLAY_QUEUE_KEY, cacheKey);
-            }
-        }
-        intent.putExtra(Player.PLAYER_TYPE, PlayerType.MAIN.valueForIntent());
-        intent.putExtra(PlayerService.SHOULD_START_FOREGROUND_EXTRA, true);
-        intent.putExtra(Player.PLAYER_INTENT_TYPE, (Parcelable) playerIntentType);
-
-        return intent;
+        final String cacheKey = Optional.ofNullable(playQueue)
+                .map(queue -> SerializedCache.getInstance().put(queue, PlayQueue.class))
+                .orElse(null);
+        return new Intent(context, targetClazz)
+                .putExtra(Player.PLAY_QUEUE_KEY, cacheKey)
+                .putExtra(Player.PLAYER_TYPE, PlayerType.MAIN)
+                .putExtra(PlayerService.SHOULD_START_FOREGROUND_EXTRA, true)
+                .putExtra(Player.PLAYER_INTENT_TYPE, playerIntentType);
     }
 
     @NonNull
     public static Intent getPlayerTimestampIntent(@NonNull final Context context,
-                                                   @NonNull final TimestampChangeData
-                                                           timestampChangeData) {
-        final Intent intent = new Intent(context, PlayerService.class);
-
-        intent.putExtra(Player.PLAYER_INTENT_TYPE, (Parcelable) PlayerIntentType.TimestampChange);
-        intent.putExtra(Player.PLAYER_INTENT_DATA, timestampChangeData);
-
-        return intent;
+                                                  @NonNull final TimestampChangeData data) {
+        return new Intent(context, PlayerService.class)
+                .putExtra(Player.PLAYER_INTENT_TYPE, PlayerIntentType.TimestampChange)
+                .putExtra(Player.PLAYER_INTENT_DATA, data);
     }
 
     @NonNull
@@ -156,9 +147,9 @@ public final class NavigationHelper {
 
         Toast.makeText(context, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
 
-        final Intent intent = getPlayerIntent(context, PlayerService.class, queue,
-                PlayerIntentType.AllOthers);
-        intent.putExtra(Player.PLAYER_TYPE, PlayerType.POPUP.valueForIntent())
+        final var intent = getPlayerIntent(context, PlayerService.class, queue,
+                PlayerIntentType.AllOthers)
+                .putExtra(Player.PLAYER_TYPE, PlayerType.POPUP)
                 .putExtra(Player.RESUME_PLAYBACK, resumePlayback);
         ContextCompat.startForegroundService(context, intent);
     }
@@ -170,9 +161,9 @@ public final class NavigationHelper {
                 .show();
 
         final Intent intent = getPlayerIntent(context, PlayerService.class, queue,
-                PlayerIntentType.AllOthers);
-        intent.putExtra(Player.PLAYER_TYPE, PlayerType.AUDIO.valueForIntent());
-        intent.putExtra(Player.RESUME_PLAYBACK, resumePlayback);
+                PlayerIntentType.AllOthers)
+                .putExtra(Player.PLAYER_TYPE, PlayerType.AUDIO)
+                .putExtra(Player.RESUME_PLAYBACK, resumePlayback);
         ContextCompat.startForegroundService(context, intent);
     }
 
@@ -195,9 +186,8 @@ public final class NavigationHelper {
         //   by long pressing the video detail fragment, playlist or channel controls
         final Intent intent = getPlayerIntent(context, PlayerService.class, queue,
                 PlayerIntentType.Enqueue)
-                .putExtra(Player.RESUME_PLAYBACK, false);
-
-        intent.putExtra(Player.PLAYER_TYPE, playerType.valueForIntent());
+                .putExtra(Player.RESUME_PLAYBACK, false)
+                .putExtra(Player.PLAYER_TYPE, playerType);
         ContextCompat.startForegroundService(context, intent);
     }
 
@@ -219,9 +209,8 @@ public final class NavigationHelper {
             playerType = PlayerType.AUDIO;
         }
         Toast.makeText(context, R.string.enqueued_next, Toast.LENGTH_SHORT).show();
-        final Intent intent = getPlayerEnqueueNextIntent(context, PlayerService.class, queue);
-
-        intent.putExtra(Player.PLAYER_TYPE, playerType.valueForIntent());
+        final Intent intent = getPlayerEnqueueNextIntent(context, PlayerService.class, queue)
+                .putExtra(Player.PLAYER_TYPE, playerType);
         ContextCompat.startForegroundService(context, intent);
     }
 
