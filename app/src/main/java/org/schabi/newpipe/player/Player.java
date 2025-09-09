@@ -61,6 +61,7 @@ import android.view.LayoutInflater;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.IntentCompat;
 import androidx.core.math.MathUtils;
 import androidx.preference.PreferenceManager;
 
@@ -127,6 +128,7 @@ import org.schabi.newpipe.util.StreamTypeUtil;
 import org.schabi.newpipe.util.image.PicassoHelper;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -351,25 +353,17 @@ public final class Player implements PlaybackListener, Listener {
 
     @SuppressWarnings("MethodLength")
     public void handleIntent(@NonNull final Intent intent) {
-
-        final PlayerIntentType playerIntentType = intent.getParcelableExtra(PLAYER_INTENT_TYPE);
+        final var playerIntentType = IntentCompat.getSerializableExtra(intent, PLAYER_INTENT_TYPE,
+                PlayerIntentType.class);
         if (playerIntentType == null) {
             return;
         }
-        final PlayerType newPlayerType;
         // TODO: this should be in the second switch below, but I’m not sure whether I
         // can move the initUIs stuff without breaking the setup for edge cases somehow.
-        switch (playerIntentType) {
-            case TimestampChange -> {
-                // when playing from a timestamp, keep the current player as-is.
-                newPlayerType = playerType;
-            }
-            default -> {
-                newPlayerType = PlayerType.retrieveFromIntent(intent);
-            }
+        // when playing from a timestamp, keep the current player as-is.
+        if (playerIntentType != PlayerIntentType.TimestampChange) {
+            playerType = IntentCompat.getSerializableExtra(intent, PLAYER_TYPE, PlayerType.class);
         }
-
-        playerType = newPlayerType;
         initUIsForCurrentPlayerType();
         isAudioOnly = audioPlayerSelected();
 
@@ -410,15 +404,15 @@ public final class Player implements PlaybackListener, Listener {
                 break;
             }
             case TimestampChange -> {
-                final TimestampChangeData dat = intent.getParcelableExtra(PLAYER_INTENT_DATA);
-                assert dat != null;
+                final var data = Objects.requireNonNull(IntentCompat.getParcelableExtra(intent,
+                        PLAYER_INTENT_DATA, TimestampChangeData.class));
                 final Single<StreamInfo> single =
-                        ExtractorHelper.getStreamInfo(dat.getServiceId(), dat.getUrl(), false);
+                        ExtractorHelper.getStreamInfo(data.getServiceId(), data.getUrl(), false);
                 streamItemDisposable.add(single.subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(info -> {
                             final @Nullable PlayQueue oldPlayQueue = playQueue;
-                            info.setStartPosition(dat.getSeconds());
+                            info.setStartPosition(data.getSeconds());
                             final PlayQueueItem playQueueItem = new PlayQueueItem(info);
 
                             // If the stream is already playing,
@@ -432,7 +426,7 @@ public final class Player implements PlaybackListener, Listener {
                                     simpleExoPlayer.prepare();
                                 }
                                 simpleExoPlayer.seekTo(oldPlayQueue.getIndex(),
-                                        dat.getSeconds() * 1000L);
+                                        data.getSeconds() * 1000L);
                                 simpleExoPlayer.setPlayWhenReady(playWhenReady);
 
                             } else {
@@ -456,9 +450,9 @@ public final class Player implements PlaybackListener, Listener {
                             // This will only show a snackbar if the passed context has a root view:
                             // otherwise it will resort to showing a notification, so we are safe
                             // here.
-                            ErrorUtil.createNotification(context,
-                                    new ErrorInfo(throwable, UserAction.PLAY_ON_POPUP, dat.getUrl(),
-                                            null, dat.getUrl()));
+                            final var info = new ErrorInfo(throwable, UserAction.PLAY_ON_POPUP,
+                                    data.getUrl(), null, data.getUrl());
+                            ErrorUtil.createNotification(context, info);
                         }));
                 return;
             }
