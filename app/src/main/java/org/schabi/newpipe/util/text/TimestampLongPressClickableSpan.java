@@ -46,7 +46,7 @@ final class TimestampLongPressClickableSpan extends LongPressClickableSpan {
     @Override
     public void onClick(@NonNull final View view) {
         playOnPopup(context, relatedStreamUrl, relatedInfoService,
-                timestampMatchDTO.seconds(), disposables);
+                timestampMatchDTO.seconds());
     }
 
     @Override

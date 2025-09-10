@@ -23,6 +23,7 @@ import androidx.core.content.ContextCompat;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.player.Player;
+import org.schabi.newpipe.player.PlayerIntentType;
 import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
 import org.schabi.newpipe.util.NavigationHelper;
 
@@ -254,7 +255,9 @@ public final class NotificationUtil {
         } else {
             // We are playing in fragment. Don't open another activity just show fragment. That's it
             final Intent intent = NavigationHelper.getPlayerIntent(
-                    player.getContext(), MainActivity.class, null, true);
+                    player.getContext(), MainActivity.class, null,
+                    PlayerIntentType.AllOthers);
+            intent.putExtra(Player.RESUME_PLAYBACK, true);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.setAction(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_LAUNCHER);
