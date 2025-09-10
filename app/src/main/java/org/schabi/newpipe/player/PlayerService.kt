@@ -151,7 +151,9 @@ class PlayerService : MediaBrowserServiceCompat() {
         }
 
         if (p != null) {
+            val oldPlayerType = p.playerType
             p.handleIntent(intent)
+            p.handleIntentPost(oldPlayerType)
             p.UIs().get(MediaSessionPlayerUi::class)
                 ?.handleMediaButtonIntent(intent)
         }

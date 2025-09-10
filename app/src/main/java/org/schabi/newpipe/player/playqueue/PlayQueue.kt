@@ -255,6 +255,22 @@ abstract class PlayQueue internal constructor(
     }
 
     /**
+     * Add the given item after the current stream.
+     *
+     * @param item item to add.
+     * @param skipIfSame if set, skip adding if the next stream is the same stream.
+     */
+    fun enqueueNext(item: PlayQueueItem, skipIfSame: Boolean) {
+        val currentIndex = index
+        // if the next item is the same item as the one we want to enqueue, skip if flag is true
+        if (skipIfSame && item == getItem(currentIndex + 1)) {
+            return
+        }
+        append(listOf(item))
+        move(size() - 1, currentIndex + 1)
+    }
+
+    /**
      * Removes the item at the given index from the play queue.
      *
      * The current playing index will decrement if it is greater than the index being removed.

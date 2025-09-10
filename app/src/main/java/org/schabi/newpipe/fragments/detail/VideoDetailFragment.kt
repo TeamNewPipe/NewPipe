@@ -88,6 +88,7 @@ import org.schabi.newpipe.local.dialog.PlaylistDialog
 import org.schabi.newpipe.local.history.HistoryRecordManager
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment
 import org.schabi.newpipe.player.Player
+import org.schabi.newpipe.player.PlayerIntentType
 import org.schabi.newpipe.player.PlayerService
 import org.schabi.newpipe.player.PlayerType
 import org.schabi.newpipe.player.event.OnKeyDownListener
@@ -1044,8 +1045,10 @@ class VideoDetailFragment :
         tryAddVideoPlayerView()
 
         val playerIntent = NavigationHelper.getPlayerIntent(
-            requireContext(), PlayerService::class.java, queue, true, autoPlayEnabled
+            requireContext(), PlayerService::class.java, queue, PlayerIntentType.AllOthers
         )
+            .putExtra(Player.PLAY_WHEN_READY, autoPlayEnabled)
+            .putExtra(Player.RESUME_PLAYBACK, true)
         ContextCompat.startForegroundService(activity, playerIntent)
     }
 
