@@ -292,6 +292,22 @@ public abstract class PlayQueue implements Serializable {
     }
 
     /**
+     * Add the given item after the current stream.
+     *
+     * @param item item to add.
+     * @param skipIfSame if set, skip adding if the next stream is the same stream.
+     */
+    public void enqueueNext(@NonNull final PlayQueueItem item, final boolean skipIfSame) {
+        final int currentIndex = getIndex();
+        // if the next item is the same item as the one we want to enqueue, skip if flag is true
+        if (skipIfSame && item.isSameItem(getItem(currentIndex + 1))) {
+            return;
+        }
+        append(List.of(item));
+        move(size() - 1, currentIndex + 1);
+    }
+
+    /**
      * Removes the item at the given index from the play queue.
      * <p>
      * The current playing index will decrement if it is greater than the index being removed.
@@ -529,8 +545,7 @@ public abstract class PlayQueue implements Serializable {
             final PlayQueueItem stream = streams.get(i);
             final PlayQueueItem otherStream = other.streams.get(i);
             // Check is based on serviceId and URL
-            if (stream.getServiceId() != otherStream.getServiceId()
-                    || !stream.getUrl().equals(otherStream.getUrl())) {
+            if (!stream.isSameItem(otherStream)) {
                 return false;
             }
         }
