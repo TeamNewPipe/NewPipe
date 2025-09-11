@@ -1,12 +1,16 @@
 package org.schabi.newpipe.local.holder;
 
+import static org.schabi.newpipe.util.ServiceHelper.getNameOfServiceById;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import androidx.core.i18n.MessageFormat;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
@@ -17,10 +21,11 @@ import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.DependentPreferenceHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.image.PicassoHelper;
-import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.views.AnimatedProgressBar;
 
-import java.time.format.DateTimeFormatter;
+import java.time.ZoneId;
+import java.util.GregorianCalendar;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /*
@@ -69,24 +74,24 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
         itemProgressView = itemView.findViewById(R.id.itemProgressView);
     }
 
-    private String getStreamInfoDetailLine(final StreamStatisticsEntry entry,
-                                           final DateTimeFormatter dateTimeFormatter) {
-        return Localization.concatenateStrings(
-                // watchCount
-                Localization.formatViewCount(itemBuilder.getContext(), entry.getWatchCount()),
-                dateTimeFormatter.format(entry.getLatestAccessDate()),
-                // serviceName
-                ServiceHelper.getNameOfServiceById(entry.getStreamEntity().getServiceId()));
+    @NonNull
+    private String getStreamInfoDetailLine(@NonNull final StreamStatisticsEntry entry) {
+        final var context = itemBuilder.getContext();
+        final var zdt = entry.getLatestAccessDate().atZoneSameInstant(ZoneId.systemDefault());
+        final Map<String, Object> args = Map.of(
+                "formatted_views", Localization.formatViewCount(context, entry.getWatchCount()),
+                "last_viewed_date", GregorianCalendar.from(zdt),
+                "service_name", getNameOfServiceById(entry.getStreamEntity().getServiceId())
+        );
+        return MessageFormat.format(context, R.string.history_detail_line, args);
     }
 
     @Override
     public void updateFromItem(final LocalItem localItem,
-                               final HistoryRecordManager historyRecordManager,
-                               final DateTimeFormatter dateTimeFormatter) {
-        if (!(localItem instanceof StreamStatisticsEntry)) {
+                               final HistoryRecordManager historyRecordManager) {
+        if (!(localItem instanceof StreamStatisticsEntry item)) {
             return;
         }
-        final StreamStatisticsEntry item = (StreamStatisticsEntry) localItem;
 
         itemVideoTitleView.setText(item.getStreamEntity().getTitle());
         itemUploaderView.setText(item.getStreamEntity().getUploader());
@@ -113,7 +118,7 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
         }
 
         if (itemAdditionalDetails != null) {
-            itemAdditionalDetails.setText(getStreamInfoDetailLine(item, dateTimeFormatter));
+            itemAdditionalDetails.setText(getStreamInfoDetailLine(item));
         }
 
         // Default thumbnail is shown on error, while loading and if the url is empty

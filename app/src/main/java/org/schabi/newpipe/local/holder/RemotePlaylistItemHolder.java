@@ -11,8 +11,6 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 
-import java.time.format.DateTimeFormatter;
-
 public class RemotePlaylistItemHolder extends PlaylistItemHolder {
 
     public RemotePlaylistItemHolder(final LocalItemBuilder infoItemBuilder,
@@ -27,8 +25,7 @@ public class RemotePlaylistItemHolder extends PlaylistItemHolder {
 
     @Override
     public void updateFromItem(final LocalItem localItem,
-                               final HistoryRecordManager historyRecordManager,
-                               final DateTimeFormatter dateTimeFormatter) {
+                               final HistoryRecordManager historyRecordManager) {
         if (!(localItem instanceof PlaylistRemoteEntity item)) {
             return;
         }
@@ -46,6 +43,6 @@ public class RemotePlaylistItemHolder extends PlaylistItemHolder {
 
         PicassoHelper.loadPlaylistThumbnail(item.getThumbnailUrl()).into(itemThumbnailView);
 
-        super.updateFromItem(localItem, historyRecordManager, dateTimeFormatter);
+        super.updateFromItem(localItem, historyRecordManager);
     }
 }

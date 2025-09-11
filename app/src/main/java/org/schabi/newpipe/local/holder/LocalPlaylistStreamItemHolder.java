@@ -20,7 +20,6 @@ import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.views.AnimatedProgressBar;
 
-import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
@@ -50,12 +49,10 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
 
     @Override
     public void updateFromItem(final LocalItem localItem,
-                               final HistoryRecordManager historyRecordManager,
-                               final DateTimeFormatter dateTimeFormatter) {
-        if (!(localItem instanceof PlaylistStreamEntry)) {
+                               final HistoryRecordManager historyRecordManager) {
+        if (!(localItem instanceof PlaylistStreamEntry item)) {
             return;
         }
-        final PlaylistStreamEntry item = (PlaylistStreamEntry) localItem;
 
         itemVideoTitleView.setText(item.getStreamEntity().getTitle());
         itemAdditionalDetailsView.setText(Localization
