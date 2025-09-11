@@ -8,10 +8,8 @@ import org.schabi.newpipe.database.playlist.PlaylistDuplicatesEntry;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.Localization;
-
-import java.time.format.DateTimeFormatter;
+import org.schabi.newpipe.util.image.PicassoHelper;
 
 public class LocalPlaylistItemHolder extends PlaylistItemHolder {
 
@@ -28,12 +26,10 @@ public class LocalPlaylistItemHolder extends PlaylistItemHolder {
 
     @Override
     public void updateFromItem(final LocalItem localItem,
-                               final HistoryRecordManager historyRecordManager,
-                               final DateTimeFormatter dateTimeFormatter) {
-        if (!(localItem instanceof PlaylistMetadataEntry)) {
+                               final HistoryRecordManager historyRecordManager) {
+        if (!(localItem instanceof PlaylistMetadataEntry item)) {
             return;
         }
-        final PlaylistMetadataEntry item = (PlaylistMetadataEntry) localItem;
 
         itemTitleView.setText(item.name);
         itemStreamCountView.setText(Localization.localizeStreamCountMini(
@@ -49,6 +45,6 @@ public class LocalPlaylistItemHolder extends PlaylistItemHolder {
             itemView.setAlpha(1.0f);
         }
 
-        super.updateFromItem(localItem, historyRecordManager, dateTimeFormatter);
+        super.updateFromItem(localItem, historyRecordManager);
     }
 }
