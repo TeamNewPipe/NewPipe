@@ -28,13 +28,6 @@ class FeedDatabaseManager(context: Context) {
     private val feedGroupTable = database.feedGroupDAO()
     private val streamTable = database.streamDAO()
 
-    companion object {
-        /**
-         * Only items that are newer than this will be saved.
-         */
-        val FEED_OLDEST_ALLOWED_DATE: LocalDate = LocalDate.now().minusWeeks(13)
-    }
-
     fun groups() = feedGroupTable.getAll()
 
     fun database() = database
@@ -79,11 +72,8 @@ class FeedDatabaseManager(context: Context) {
         return streamTable.exists(stream.serviceId, stream.url)
     }
 
-    fun upsertAll(
-        subscriptionId: Long,
-        items: List<StreamInfoItem>,
-        oldestAllowedDate: LocalDate = FEED_OLDEST_ALLOWED_DATE
-    ) {
+    fun upsertAll(subscriptionId: Long, items: List<StreamInfoItem>) {
+        val oldestAllowedDate = LocalDate.now().minusWeeks(13)
         val zoneId = ZoneId.systemDefault()
         val itemsToInsert = items.filter {
             val uploadDate = it.uploadDate?.let { LocalDate.ofInstant(it.instant, zoneId) }
@@ -107,7 +97,8 @@ class FeedDatabaseManager(context: Context) {
         )
     }
 
-    fun removeOrphansOrOlderStreams(oldestAllowedDate: LocalDate = FEED_OLDEST_ALLOWED_DATE) {
+    fun removeOrphansOrOlderStreams() {
+        val oldestAllowedDate = LocalDate.now().minusWeeks(13)
         val instant = oldestAllowedDate.atStartOfDay(ZoneId.systemDefault()).toInstant()
         feedTable.unlinkStreamsOlderThan(instant)
         streamTable.deleteOrphans()

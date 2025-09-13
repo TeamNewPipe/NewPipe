@@ -254,7 +254,7 @@ class FeedLoadManager(private val context: Context) {
      * Keep the feed and the stream tables small
      * to reduce loading times when trying to display the feed.
      * <br>
-     * Remove streams from the feed which are older than [FeedDatabaseManager.FEED_OLDEST_ALLOWED_DATE].
+     * Remove streams from the feed which are older than 13 weeks.
      * Remove streams from the database which are not linked / used by any table.
      */
     private fun postProcessFeed() = Completable.fromRunnable {
@@ -321,13 +321,13 @@ class FeedLoadManager(private val context: Context) {
 
         private fun filterNewStreams(list: List<StreamInfoItem>): List<StreamInfoItem> {
             val zoneId = ZoneId.systemDefault()
+            val oldestAllowedDate = LocalDate.now().minusWeeks(13)
             return list.filter {
                 // Streams older than this date are automatically removed from the feed.
                 // Therefore, streams which are not in the database,
                 // but older than this date, are considered old.
                 val date = it.uploadDate?.let { LocalDate.ofInstant(it.instant, zoneId) }
-                !feedDatabaseManager.doesStreamExist(it) &&
-                    date != null && date > FeedDatabaseManager.FEED_OLDEST_ALLOWED_DATE
+                !feedDatabaseManager.doesStreamExist(it) && date != null && date > oldestAllowedDate
             }
         }
     }
