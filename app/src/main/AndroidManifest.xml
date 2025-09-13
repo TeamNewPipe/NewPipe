@@ -1,462 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:installLocation="auto">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" /> <!-- Required only for Android 8.0 and below -->
+
+    <!-- For background audio playback -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
-    <!-- We need to be able to open links in the browser on API 30+ -->
-    <queries>
-        <intent>
-            <action android:name="android.intent.action.VIEW" />
-            <data android:scheme="http" />
-        </intent>
-    </queries>
+    <!-- Optional: Allow downloading files without storage permission on Android 10+ -->
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <!-- Only needed if targeting Android 11+ and using legacy storage access -->
 
-    <uses-feature
-        android:name="android.hardware.touchscreen"
-        android:required="false" />
-    <uses-feature
-        android:name="android.software.leanback"
-        android:required="false" />
+    <!-- For notification control -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
-        android:name=".App"
+        android:name=".NewPipeApp"
         android:allowBackup="true"
-        android:banner="@mipmap/newpipe_tv_banner"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:logo="@mipmap/ic_launcher"
+        android:theme="@style/Theme.NewPipe"
+        android:usesCleartextTraffic="true"
+        android:exported="true"
+        android:supportsRtl="true"
         android:resizeableActivity="true"
-        android:theme="@style/OpeningTheme"
-        tools:ignore="AllowBackup">
+        android:configChanges="keyboard|keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout|uiMode"
+        tools:targetApi="31">
+
+        <!-- Main Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:launchMode="singleTask">
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.NewPipe">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+            </intent-filter>
+
+            <!-- Handle deep links (YouTube URLs) -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="youtube.com" />
+                <data android:scheme="https" android:host="www.youtube.com" />
+                <data android:scheme="https" android:host="m.youtube.com" />
+                <data android:scheme="https" android:host="youtu.be" />
+                <data android:scheme="http" android:host="youtube.com" />
+                <data android:scheme="http" android:host="www.youtube.com" />
+                <data android:scheme="http" android:host="m.youtube.com" />
+                <data android:scheme="http" android:host="youtu.be" />
+            </intent-filter>
+
+            <!-- Handle YouTube Shorts deep links -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="youtube.com" android:pathPrefix="/shorts/" />
+                <data android:scheme="https" android:host="www.youtube.com" android:pathPrefix="/shorts/" />
+            </intent-filter>
+
+            <!-- Handle video IDs directly -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="vnd.youtube" />
             </intent-filter>
         </activity>
 
+        <!-- Player Activity -->
+        <activity
+            android:name=".player.PlayerActivity"
+            android:exported="false"
+            android:theme="@style/Theme.NewPipe.Player"
+            android:configChanges="orientation|screenSize|keyboardHidden|navigation|uiMode"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Search Activity -->
+        <activity
+            android:name=".search.SearchActivity"
+            android:exported="false"
+            android:theme="@style/Theme.NewPipe"
+            android:parentActivityName=".MainActivity" />
+
+        <!-- Settings Activity -->
+        <activity
+            android:name=".settings.SettingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.NewPipe.Settings"
+            android:parentActivityName=".MainActivity" />
+
+        <!-- Download Service -->
+        <service
+            android:name=".download.DownloadService"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback" />
+
+        <!-- Notification Service -->
+        <service
+            android:name=".notification.NotificationService"
+            android:exported="false" />
+
+        <!-- Boot Receiver (restart service after reboot) -->
         <receiver
-            android:name="androidx.media.session.MediaButtonReceiver"
+            android:name=".boot.BootReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Media Button Receiver (for headset controls) -->
+        <receiver android:name=".player.MediaButtonReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
         </receiver>
 
-        <service
-            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
-            android:enabled="false"
-            android:exported="false">
-            <meta-data
-                android:name="autoStoreLocales"
-                android:value="true" />
-        </service>
-
-        <service
-            android:name=".player.PlayerService"
-            android:exported="true"
-            android:foregroundServiceType="mediaPlayback">
-            <intent-filter>
-                <action android:name="android.intent.action.MEDIA_BUTTON" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.media.browse.MediaBrowserService"/>
-            </intent-filter>
-        </service>
-
-        <activity
-            android:name=".player.PlayQueueActivity"
-            android:exported="false"
-            android:label="@string/title_activity_play_queue"
-            android:launchMode="singleTask" />
-
-        <activity
-            android:name=".settings.SettingsActivity"
-            android:exported="false"
-            android:label="@string/settings" />
-
-        <activity
-            android:name=".about.AboutActivity"
-            android:exported="false"
-            android:label="@string/title_activity_about" />
-
-        <service
-            android:name=".local.subscription.services.SubscriptionsImportService"
-            android:foregroundServiceType="dataSync" />
-
-        <service
-            android:name=".local.subscription.services.SubscriptionsExportService"
-            android:foregroundServiceType="dataSync" />
-
-        <service
-            android:name=".local.feed.service.FeedLoadService"
-            android:foregroundServiceType="dataSync" />
-
-        <service
-            android:name="androidx.work.impl.foreground.SystemForegroundService"
-            android:foregroundServiceType="dataSync"
-            tools:node="merge" />
-
-        <activity
-            android:name=".PanicResponderActivity"
-            android:exported="true"
-            android:launchMode="singleInstance"
-            android:noHistory="true"
-            android:theme="@android:style/Theme.NoDisplay">
-            <intent-filter>
-                <action android:name="info.guardianproject.panic.action.TRIGGER" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".ExitActivity"
-            android:exported="false"
-            android:label="@string/general_error"
-            android:theme="@android:style/Theme.NoDisplay" />
-
-        <activity
-            android:name=".error.ErrorActivity"
-            android:exported="false" />
-
-        <!-- giga get related -->
-        <activity
-            android:name=".download.DownloadActivity"
-            android:exported="false"
-            android:label="@string/app_name"
-            android:launchMode="singleTask" />
-
-        <service android:name="us.shandian.giga.service.DownloadManagerService"
-            android:foregroundServiceType="dataSync" />
-
-        <activity
-            android:name=".util.FilePickerActivityHelper"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/FilePickerThemeDark">
-            <intent-filter>
-                <action android:name="android.intent.action.GET_CONTENT" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".error.ReCaptchaActivity"
-            android:exported="false"
-            android:label="@string/recaptcha" />
-
+        <!-- Content Provider for file sharing -->
         <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.provider"
+            android:name=".util.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
             android:exported="false"
-            android:grantUriPermissions="true">
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/nnf_provider_paths" />
+                android:resource="@xml/file_paths" />
         </provider>
 
-        <activity
-            android:name=".RouterActivity"
-            android:excludeFromRecents="true"
-            android:exported="true"
-            android:label="@string/preferred_open_action_share_menu_title"
-            android:taskAffinity=""
-            android:theme="@style/RouterActivityThemeDark">
-
-            <!-- Youtube filter -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="http" />
-                <data android:scheme="https" />
-                <data android:host="youtube.com" />
-                <data android:host="m.youtube.com" />
-                <data android:host="www.youtube.com" />
-                <data android:host="music.youtube.com" />
-                <!-- video prefix -->
-                <data android:pathPrefix="/v/" />
-                <data android:pathPrefix="/embed/" />
-                <data android:pathPrefix="/watch" />
-                <data android:pathPrefix="/attribution_link" />
-                <data android:pathPrefix="/shorts/" />
-                <data android:pathPrefix="/live/" />
-                <!-- channel prefix -->
-                <data android:pathPrefix="/channel/" />
-                <data android:pathPrefix="/user/" />
-                <data android:pathPrefix="/c/" />
-                <data android:pathPrefix="/@" />
-                <!-- playlist prefix -->
-                <data android:pathPrefix="/playlist" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="http" />
-                <data android:scheme="https" />
-                <data android:host="youtu.be" />
-                <data android:pathPrefix="/" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="http" />
-                <data android:scheme="https" />
-                <data android:host="www.youtube-nocookie.com" />
-                <data android:pathPrefix="/embed/" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="vnd.youtube" />
-                <data android:scheme="vnd.youtube.launch" />
-            </intent-filter>
-
-            <!-- Hooktube filter -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="http" />
-                <data android:scheme="https" />
-                <data android:host="hooktube.com" />
-                <data android:host="*.hooktube.com" />
-                <!-- video prefix -->
-                <data android:pathPrefix="/v/" />
-                <data android:pathPrefix="/embed/" />
-                <data android:pathPrefix="/watch" />
-                <!-- channel prefix -->
-                <data android:pathPrefix="/channel/" />
-                <data android:pathPrefix="/user/" />
-            </intent-filter>
-
-            <!-- Invidious filter -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="http" />
-                <data android:scheme="https" />
-                <data android:host="tubus.eduvid.org" />
-                <data android:host="invidio.us" />
-                <data android:host="dev.invidio.us" />
-                <data android:host="www.invidio.us" />
-                <data android:host="redirect.invidious.io" />
-                <data android:host="invidious.snopyta.org" />
-                <data android:host="yewtu.be" />
-                <data android:host="tube.connect.cafe" />
-                <data android:host="invidious.kavin.rocks" />
-                <data android:host="invidious-us.kavin.rocks" />
-                <data android:host="piped.kavin.rocks" />
-                <data android:host="invidious.site" />
-                <data android:host="vid.mint.lgbt" />
-                <data android:host="invidiou.site" />
-                <data android:host="invidious.fdn.fr" />
-                <data android:host="invidious.048596.xyz" />
-                <data android:host="invidious.zee.li" />
-                <data android:host="vid.puffyan.us" />
-                <data android:host="ytprivate.com" />
-                <data android:host="invidious.namazso.eu" />
-                <data android:host="invidious.silkky.cloud" />
-                <data android:host="invidious.exonip.de" />
-                <data android:host="inv.riverside.rocks" />
-                <data android:host="invidious.blamefran.net" />
-                <data android:host="invidious.moomoo.me" />
-                <data android:host="ytb.trom.tf" />
-                <data android:host="yt.cyberhost.uk" />
-                <data android:host="y.com.cm" />
-                <data android:pathPrefix="/" />
-            </intent-filter>
-
-            <!-- y2u.be filter -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="http" />
-                <data android:scheme="https" />
-                <data android:host="y2u.be" />
-                <data android:pathPrefix="/" />
-            </intent-filter>
-
-            <!-- Soundcloud filter -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="http" />
-                <data android:scheme="https" />
-                <data android:host="soundcloud.com" />
-                <data android:host="m.soundcloud.com" />
-                <data android:host="www.soundcloud.com" />
-                <data android:pathPrefix="/" />
-            </intent-filter>
-
-            <!-- Share filter -->
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="text/plain" />
-            </intent-filter>
-
-            <!-- media.ccc.de filter -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="http" />
-                <data android:scheme="https" />
-                <data android:host="media.ccc.de" />
-                <!-- video prefix -->
-                <data android:pathPrefix="/v/" />
-                <!-- channel prefix-->
-                <data android:pathPrefix="/c/" />
-                <data android:pathPrefix="/b/" />
-            </intent-filter>
-
-            <!-- PeerTube filter -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="http" />
-                <data android:scheme="https" />
-
-                <data android:host="eduvid.org" />
-                <data android:host="framatube.org" />
-                <data android:host="media.assassinate-you.net" />
-                <data android:host="media.fsfe.org" />
-                <data android:host="peertube.co.uk" />
-                <data android:host="peertube.cpy.re" />
-                <data android:host="peertube.fr" />
-                <data android:host="peertube.mastodon.host" />
-                <data android:host="peertube.stream" />
-                <data android:host="skeptikon.fr" />
-                <data android:host="tilvids.com" />
-                <data android:host="video.lqdn.fr" />
-                <data android:host="video.ploud.fr" />
-                <data android:host="subscribeto.me" />
-
-                <data android:pathPrefix="/videos/" /> <!-- it contains playlists -->
-                <data android:pathPrefix="/w/" /> <!-- short video URLs -->
-                <data android:pathPrefix="/w/p/" /> <!-- short playlist URLs -->
-                <data android:pathPrefix="/accounts/" />
-                <data android:pathPrefix="/a/" /> <!-- short account URLs -->
-                <data android:pathPrefix="/video-channels/" />
-                <data android:pathPrefix="/c/" /> <!-- short video-channels URLs -->
-            </intent-filter>
-
-            <!-- Bandcamp filter for tracks, albums and playlists -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="http" />
-                <data android:scheme="https" />
-                <data android:host="*.bandcamp.com" />
-            </intent-filter>
-
-            <!-- Bandcamp filter for radio -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="http" />
-                <data android:scheme="https" />
-                <data android:sspPattern="bandcamp.com/?show=*" />
-            </intent-filter>
-
-        </activity>
+        <!-- Adapters for accessibility -->
         <service
-            android:name=".RouterActivity$FetcherService"
-            android:foregroundServiceType="dataSync"
-            android:exported="false" />
+            android:name=".accessibility.NewPipeAccessibilityService"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
 
-        <!-- opting out of sending metrics to Google in Android System WebView -->
-        <meta-data
-            android:name="android.webkit.WebView.MetricsOptOut"
-            android:value="true" />
-        <!-- see https://github.com/TeamNewPipe/NewPipe/issues/3947 -->
-        <!-- Version < 3.0. DeX Mode and Screen Mirroring support -->
-        <meta-data
-            android:name="com.samsung.android.keepalive.density"
-            android:value="true" />
-        <!-- Version >= 3.0. DeX Dual Mode support -->
-        <meta-data
-            android:name="com.samsung.android.multidisplay.keep_process_alive"
-            android:value="true" />
-        <!-- Android Auto -->
-        <meta-data android:name="com.google.android.gms.car.application"
-            android:resource="@xml/automotive_app_desc" />
-        <meta-data android:name="com.google.android.gms.car.notification.SmallIcon"
-            android:resource="@mipmap/ic_launcher" />
     </application>
+
 </manifest>
