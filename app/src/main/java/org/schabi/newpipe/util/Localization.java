@@ -2,7 +2,6 @@ package org.schabi.newpipe.util;
 
 import static org.schabi.newpipe.MainActivity.DEBUG;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -34,7 +33,8 @@ import org.schabi.newpipe.extractor.stream.AudioTrackType;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
-import java.time.OffsetDateTime;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -130,16 +130,11 @@ public final class Localization {
         return NumberFormat.getInstance(getAppLocale()).format(number);
     }
 
-    public static String formatDate(@NonNull final OffsetDateTime offsetDateTime) {
-        return DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
-            .withLocale(getAppLocale())
-            .format(offsetDateTime.atZoneSameInstant(ZoneId.systemDefault()));
-    }
-
-    @SuppressLint("StringFormatInvalid")
-    public static String localizeUploadDate(@NonNull final Context context,
-                                            @NonNull final OffsetDateTime offsetDateTime) {
-        return context.getString(R.string.upload_date_text, formatDate(offsetDateTime));
+    @NonNull
+    public static String formatDate(@NonNull final DateWrapper dateWrapper) {
+        final var localDate = LocalDate.ofInstant(dateWrapper.getInstant(), ZoneId.systemDefault());
+        return DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).withLocale(getAppLocale())
+                .format(localDate);
     }
 
     public static String localizeViewCount(@NonNull final Context context, final long viewCount) {
@@ -379,8 +374,8 @@ public final class Localization {
         return new PrettyTime(getAppLocale());
     }
 
-    public static String relativeTime(@NonNull final OffsetDateTime offsetDateTime) {
-        return prettyTime.formatUnrounded(offsetDateTime);
+    public static String formatRelativeTime(@NonNull final Instant instant) {
+        return prettyTime.formatUnrounded(instant);
     }
 
     /**
@@ -389,23 +384,23 @@ public final class Localization {
      * @param parsed  the textual date or time ago parsed by NewPipeExtractor, or {@code null} if
      *                the extractor could not parse it
      * @param textual the original textual date or time ago string as provided by services
-     * @return {@link #relativeTime(OffsetDateTime)} is used if {@code parsed != null}, otherwise
+     * @return {@link #formatRelativeTime(Instant)} is used if {@code parsed != null}, otherwise
      *         {@code textual} is returned. If in debug mode, {@code context != null},
      *         {@code parsed != null} and the relevant setting is enabled, {@code textual} will
      *         be appended to the returned string for debugging purposes.
      */
     @Nullable
-    public static String relativeTimeOrTextual(@Nullable final Context context,
-                                               @Nullable final DateWrapper parsed,
-                                               @Nullable final String textual) {
+    public static String formatRelativeTimeOrTextual(@Nullable final Context context,
+                                                     @Nullable final DateWrapper parsed,
+                                                     @Nullable final String textual) {
         if (parsed == null) {
             return textual;
         } else if (DEBUG && context != null && PreferenceManager
                 .getDefaultSharedPreferences(context)
                 .getBoolean(context.getString(R.string.show_original_time_ago_key), false)) {
-            return relativeTime(parsed.offsetDateTime()) + " (" + textual + ")";
+            return formatRelativeTime(parsed.getInstant()) + " (" + textual + ")";
         } else {
-            return relativeTime(parsed.offsetDateTime());
+            return formatRelativeTime(parsed.getInstant());
         }
     }
 

@@ -15,7 +15,7 @@ import org.schabi.newpipe.database.stream.StreamWithState
 import org.schabi.newpipe.database.stream.model.StreamStateEntity
 import org.schabi.newpipe.database.subscription.NotificationMode
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
-import java.time.OffsetDateTime
+import java.time.Instant
 
 @Dao
 abstract class FeedDAO {
@@ -90,7 +90,7 @@ abstract class FeedDAO {
         groupId: Long,
         includePlayed: Boolean,
         includePartiallyPlayed: Boolean,
-        uploadDateBefore: OffsetDateTime?
+        uploadDateBefore: Instant?
     ): Maybe<List<StreamWithState>>
 
     /**
@@ -99,7 +99,7 @@ abstract class FeedDAO {
      *
      * One stream per uploader is kept because it is needed as reference
      * when fetching new streams to check if they are new or not.
-     * @param offsetDateTime the newest date to keep, older streams are removed
+     * @param instant the newest date to keep, older streams are removed
      */
     @Query(
         """
@@ -115,11 +115,11 @@ abstract class FeedDAO {
               INNER JOIN feed f
               ON s.uid = f.stream_id
         
-              WHERE s.upload_date < :offsetDateTime
+              WHERE s.upload_date < :instant
               AND   s.upload_date <> max_upload_date))
         """
     )
-    abstract fun unlinkStreamsOlderThan(offsetDateTime: OffsetDateTime)
+    abstract fun unlinkStreamsOlderThan(instant: Instant)
 
     @Query(
         """
@@ -168,13 +168,13 @@ abstract class FeedDAO {
         ON fgs.subscription_id = lu.subscription_id AND fgs.group_id = :groupId
         """
     )
-    abstract fun oldestSubscriptionUpdate(groupId: Long): Flowable<List<OffsetDateTime>>
+    abstract fun getOldestSubscriptionUpdate(groupId: Long): Flowable<List<Instant>>
 
     @Query("SELECT MIN(last_updated) FROM feed_last_updated")
-    abstract fun oldestSubscriptionUpdateFromAll(): Flowable<List<OffsetDateTime>>
+    abstract fun getOldestSubscriptionUpdateFromAll(): Flowable<List<Instant>>
 
     @Query("SELECT COUNT(*) FROM feed_last_updated WHERE last_updated IS NULL")
-    abstract fun notLoadedCount(): Flowable<Long>
+    abstract fun getNotLoadedCount(): Flowable<Long>
 
     @Query(
         """
@@ -189,7 +189,7 @@ abstract class FeedDAO {
         WHERE lu.last_updated IS NULL
         """
     )
-    abstract fun notLoadedCountForGroup(groupId: Long): Flowable<Long>
+    abstract fun getNotLoadedCountForGroup(groupId: Long): Flowable<Long>
 
     @Query(
         """
@@ -201,7 +201,7 @@ abstract class FeedDAO {
         WHERE lu.last_updated IS NULL OR lu.last_updated < :outdatedThreshold
         """
     )
-    abstract fun getAllOutdated(outdatedThreshold: OffsetDateTime): Flowable<List<SubscriptionEntity>>
+    abstract fun getAllOutdated(outdatedThreshold: Instant): Flowable<List<SubscriptionEntity>>
 
     @Query(
         """
@@ -216,7 +216,7 @@ abstract class FeedDAO {
         WHERE lu.last_updated IS NULL OR lu.last_updated < :outdatedThreshold
         """
     )
-    abstract fun getAllOutdatedForGroup(groupId: Long, outdatedThreshold: OffsetDateTime): Flowable<List<SubscriptionEntity>>
+    abstract fun getAllOutdatedForGroup(groupId: Long, outdatedThreshold: Instant): Flowable<List<SubscriptionEntity>>
 
     @Query(
         """
@@ -231,7 +231,7 @@ abstract class FeedDAO {
         """
     )
     abstract fun getOutdatedWithNotificationMode(
-        outdatedThreshold: OffsetDateTime,
+        outdatedThreshold: Instant,
         @NotificationMode notificationMode: Int
     ): Flowable<List<SubscriptionEntity>>
 }

@@ -47,8 +47,7 @@ import org.schabi.newpipe.local.feed.FeedViewModel;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.util.ExtractorHelper;
 
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,7 +95,7 @@ public class HistoryRecordManager {
             return Maybe.empty();
         }
 
-        final OffsetDateTime currentTime = OffsetDateTime.now(ZoneOffset.UTC);
+        final var currentTime = Instant.now();
         return Maybe.fromCallable(() -> database.runInTransaction(() -> {
             final long streamId;
             final long duration;
@@ -139,14 +138,14 @@ public class HistoryRecordManager {
             return Maybe.empty();
         }
 
-        final OffsetDateTime currentTime = OffsetDateTime.now(ZoneOffset.UTC);
+        final var currentTime = Instant.now();
         return Maybe.fromCallable(() -> database.runInTransaction(() -> {
             final long streamId = streamTable.upsert(new StreamEntity(info));
             final StreamHistoryEntity latestEntry = streamHistoryTable.getLatestEntry(streamId);
 
             if (latestEntry != null) {
                 streamHistoryTable.delete(latestEntry);
-                latestEntry.setAccessDate(currentTime);
+                latestEntry.setAccessInstant(currentTime);
                 latestEntry.setRepeatCount(latestEntry.getRepeatCount() + 1);
                 return streamHistoryTable.insert(latestEntry);
             } else {
@@ -194,13 +193,13 @@ public class HistoryRecordManager {
             return Maybe.empty();
         }
 
-        final OffsetDateTime currentTime = OffsetDateTime.now(ZoneOffset.UTC);
+        final var currentTime = Instant.now();
         final SearchHistoryEntry newEntry = new SearchHistoryEntry(currentTime, serviceId, search);
 
         return Maybe.fromCallable(() -> database.runInTransaction(() -> {
             final SearchHistoryEntry latestEntry = searchHistoryTable.getLatestEntry();
             if (latestEntry != null && latestEntry.hasEqualValues(newEntry)) {
-                latestEntry.setCreationDate(currentTime);
+                latestEntry.setCreationInstant(currentTime);
                 return (long) searchHistoryTable.update(latestEntry);
             } else {
                 return searchHistoryTable.insert(newEntry);

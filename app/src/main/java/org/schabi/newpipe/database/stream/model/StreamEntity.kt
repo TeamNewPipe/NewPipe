@@ -15,7 +15,7 @@ import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.player.playqueue.PlayQueueItem
 import org.schabi.newpipe.util.image.ImageStrategy
 import java.io.Serializable
-import java.time.OffsetDateTime
+import java.time.Instant
 
 @Entity(
     tableName = STREAM_TABLE,
@@ -59,7 +59,7 @@ data class StreamEntity(
     var textualUploadDate: String? = null,
 
     @ColumnInfo(name = STREAM_UPLOAD_DATE)
-    var uploadDate: OffsetDateTime? = null,
+    var uploadInstant: Instant? = null,
 
     @ColumnInfo(name = STREAM_IS_UPLOAD_DATE_APPROXIMATION)
     var isUploadDateApproximation: Boolean? = null
@@ -69,8 +69,9 @@ data class StreamEntity(
         serviceId = item.serviceId, url = item.url, title = item.name,
         streamType = item.streamType, duration = item.duration, uploader = item.uploaderName,
         uploaderUrl = item.uploaderUrl,
-        thumbnailUrl = ImageStrategy.imageListToDbUrl(item.thumbnails), viewCount = item.viewCount,
-        textualUploadDate = item.textualUploadDate, uploadDate = item.uploadDate?.offsetDateTime(),
+        thumbnailUrl = ImageStrategy.imageListToDbUrl(item.thumbnails),
+        viewCount = item.viewCount, textualUploadDate = item.textualUploadDate,
+        uploadInstant = item.uploadDate?.instant,
         isUploadDateApproximation = item.uploadDate?.isApproximation
     )
 
@@ -79,8 +80,9 @@ data class StreamEntity(
         serviceId = info.serviceId, url = info.url, title = info.name,
         streamType = info.streamType, duration = info.duration, uploader = info.uploaderName,
         uploaderUrl = info.uploaderUrl,
-        thumbnailUrl = ImageStrategy.imageListToDbUrl(info.thumbnails), viewCount = info.viewCount,
-        textualUploadDate = info.textualUploadDate, uploadDate = info.uploadDate?.offsetDateTime(),
+        thumbnailUrl = ImageStrategy.imageListToDbUrl(info.thumbnails),
+        viewCount = info.viewCount,
+        textualUploadDate = info.textualUploadDate, uploadInstant = info.uploadDate?.instant,
         isUploadDateApproximation = info.uploadDate?.isApproximation
     )
 
@@ -101,7 +103,7 @@ data class StreamEntity(
 
         if (viewCount != null) item.viewCount = viewCount as Long
         item.textualUploadDate = textualUploadDate
-        item.uploadDate = uploadDate?.let {
+        item.uploadDate = uploadInstant?.let {
             DateWrapper(it, isUploadDateApproximation ?: false)
         }
 

@@ -137,9 +137,9 @@ data class StreamItem(
     }
 
     private fun getFormattedRelativeUploadDate(context: Context): String? {
-        val uploadDate = stream.uploadDate
+        val uploadDate = stream.uploadInstant
         return if (uploadDate != null) {
-            var formattedRelativeTime = Localization.relativeTime(uploadDate)
+            var formattedRelativeTime = Localization.formatRelativeTime(uploadDate)
 
             if (MainActivity.DEBUG) {
                 val key = context.getString(R.string.show_original_time_ago_key)

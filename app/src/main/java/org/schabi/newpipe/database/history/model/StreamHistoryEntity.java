@@ -8,7 +8,7 @@ import androidx.room.Index;
 
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 
-import java.time.OffsetDateTime;
+import java.time.Instant;
 
 import static androidx.room.ForeignKey.CASCADE;
 import static org.schabi.newpipe.database.history.model.StreamHistoryEntity.JOIN_STREAM_ID;
@@ -36,21 +36,21 @@ public class StreamHistoryEntity {
 
     @NonNull
     @ColumnInfo(name = STREAM_ACCESS_DATE)
-    private OffsetDateTime accessDate;
+    private Instant accessInstant;
 
     @ColumnInfo(name = STREAM_REPEAT_COUNT)
     private long repeatCount;
 
     /**
      * @param streamUid the stream id this history item will refer to
-     * @param accessDate the last time the stream was accessed
+     * @param accessInstant the last time the stream was accessed
      * @param repeatCount the total number of views this stream received
      */
     public StreamHistoryEntity(final long streamUid,
-                               @NonNull final OffsetDateTime accessDate,
+                               @NonNull final Instant accessInstant,
                                final long repeatCount) {
         this.streamUid = streamUid;
-        this.accessDate = accessDate;
+        this.accessInstant = accessInstant;
         this.repeatCount = repeatCount;
     }
 
@@ -63,12 +63,12 @@ public class StreamHistoryEntity {
     }
 
     @NonNull
-    public OffsetDateTime getAccessDate() {
-        return accessDate;
+    public Instant getAccessInstant() {
+        return accessInstant;
     }
 
-    public void setAccessDate(@NonNull final OffsetDateTime accessDate) {
-        this.accessDate = accessDate;
+    public void setAccessInstant(@NonNull final Instant accessInstant) {
+        this.accessInstant = accessInstant;
     }
 
     public long getRepeatCount() {

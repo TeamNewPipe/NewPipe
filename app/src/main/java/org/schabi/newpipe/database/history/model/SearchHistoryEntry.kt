@@ -5,18 +5,16 @@ import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import java.time.OffsetDateTime
+import java.time.Instant
 
 @Entity(
     tableName = SearchHistoryEntry.TABLE_NAME,
     indices = [Index(value = [SearchHistoryEntry.SEARCH])]
 )
 data class SearchHistoryEntry(
-    @field:ColumnInfo(name = CREATION_DATE) var creationDate: OffsetDateTime?,
-    @field:ColumnInfo(
-        name = SERVICE_ID
-    ) var serviceId: Int,
-    @field:ColumnInfo(name = SEARCH) var search: String?
+    @ColumnInfo(name = CREATION_DATE) var creationInstant: Instant?,
+    @ColumnInfo(name = SERVICE_ID) var serviceId: Int,
+    @ColumnInfo(name = SEARCH) var search: String?
 ) {
     @ColumnInfo(name = ID)
     @PrimaryKey(autoGenerate = true)
@@ -24,10 +22,7 @@ data class SearchHistoryEntry(
 
     @Ignore
     fun hasEqualValues(otherEntry: SearchHistoryEntry): Boolean {
-        return (
-            serviceId == otherEntry.serviceId &&
-                search == otherEntry.search
-            )
+        return serviceId == otherEntry.serviceId && search == otherEntry.search
     }
 
     companion object {

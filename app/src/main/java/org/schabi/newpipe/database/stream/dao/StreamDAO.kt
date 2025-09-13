@@ -13,7 +13,7 @@ import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_ID
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.util.StreamTypeUtil
-import java.time.OffsetDateTime
+import java.time.Instant
 
 @Dao
 abstract class StreamDAO : BasicDAO<StreamEntity> {
@@ -95,9 +95,9 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
             // Use the existent upload date if the newer stream does not have a better precision
             // (i.e. is an approximation). This is done to prevent unnecessary changes.
             val hasBetterPrecision =
-                newerStream.uploadDate != null && newerStream.isUploadDateApproximation != true
-            if (existentMinimalStream.uploadDate != null && !hasBetterPrecision) {
-                newerStream.uploadDate = existentMinimalStream.uploadDate
+                newerStream.uploadInstant != null && newerStream.isUploadDateApproximation != true
+            if (existentMinimalStream.uploadInstant != null && !hasBetterPrecision) {
+                newerStream.uploadInstant = existentMinimalStream.uploadInstant
                 newerStream.textualUploadDate = existentMinimalStream.textualUploadDate
                 newerStream.isUploadDateApproximation = existentMinimalStream.isUploadDateApproximation
             }
@@ -138,7 +138,7 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
         var textualUploadDate: String? = null,
 
         @ColumnInfo(name = StreamEntity.STREAM_UPLOAD_DATE)
-        var uploadDate: OffsetDateTime? = null,
+        var uploadInstant: Instant? = null,
 
         @ColumnInfo(name = StreamEntity.STREAM_IS_UPLOAD_DATE_APPROXIMATION)
         var isUploadDateApproximation: Boolean? = null,

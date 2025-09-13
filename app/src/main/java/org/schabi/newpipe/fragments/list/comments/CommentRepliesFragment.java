@@ -90,7 +90,7 @@ public final class CommentRepliesFragment
 
             // setup author name and comment date
             binding.authorName.setText(item.getUploaderName());
-            binding.uploadDate.setText(Localization.relativeTimeOrTextual(
+            binding.uploadDate.setText(Localization.formatRelativeTimeOrTextual(
                     getContext(), item.getUploadDate(), item.getTextualUploadDate()));
             binding.authorTouchArea.setOnClickListener(
                     v -> NavigationHelper.openCommentAuthorIfPresent(requireActivity(), item));

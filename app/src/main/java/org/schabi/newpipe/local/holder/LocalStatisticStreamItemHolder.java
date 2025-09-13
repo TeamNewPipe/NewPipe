@@ -74,7 +74,7 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
         return Localization.concatenateStrings(
                 // watchCount
                 Localization.shortViewCount(itemBuilder.getContext(), entry.getWatchCount()),
-                dateTimeFormatter.format(entry.getLatestAccessDate()),
+                dateTimeFormatter.format(entry.latestAccessInstant()),
                 // serviceName
                 ServiceHelper.getNameOfServiceById(entry.getStreamEntity().getServiceId()));
     }

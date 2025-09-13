@@ -8,7 +8,7 @@ import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_PROGRESS_MILLIS
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.util.image.ImageStrategy
-import java.time.OffsetDateTime
+import java.time.Instant
 
 class StreamStatisticsEntry(
     @Embedded
@@ -21,7 +21,7 @@ class StreamStatisticsEntry(
     val streamId: Long,
 
     @ColumnInfo(name = STREAM_LATEST_DATE)
-    val latestAccessDate: OffsetDateTime,
+    val latestAccessInstant: Instant,
 
     @ColumnInfo(name = STREAM_WATCH_COUNT)
     val watchCount: Long
