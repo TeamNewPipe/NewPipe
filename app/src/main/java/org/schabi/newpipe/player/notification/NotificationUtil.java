@@ -5,7 +5,9 @@ import static androidx.media.app.NotificationCompat.MediaStyle;
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_CLOSE;
 
 import android.annotation.SuppressLint;
+import android.app.Notification;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ServiceInfo;
 import android.graphics.Bitmap;
@@ -24,6 +26,7 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.PlayerIntentType;
+import org.schabi.newpipe.player.PlayerService;
 import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
 import org.schabi.newpipe.util.NavigationHelper;
 
@@ -90,12 +93,9 @@ public final class NotificationUtil {
             Log.d(TAG, "createNotification()");
         }
         notificationManager = NotificationManagerCompat.from(player.getContext());
-        final NotificationCompat.Builder builder =
-                new NotificationCompat.Builder(player.getContext(),
-                player.getContext().getString(R.string.notification_channel_id));
-        final MediaStyle mediaStyle = new MediaStyle();
 
         // setup media style (compact notification slots and media session)
+        final MediaStyle mediaStyle = new MediaStyle();
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
             // notification actions are ignored on Android 13+, and are replaced by code in
             // MediaSessionPlayerUi
@@ -108,18 +108,9 @@ public final class NotificationUtil {
                 .ifPresent(mediaStyle::setMediaSession);
 
         // setup notification builder
-        builder.setStyle(mediaStyle)
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setCategory(NotificationCompat.CATEGORY_TRANSPORT)
-                .setShowWhen(false)
-                .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
-                .setColor(ContextCompat.getColor(player.getContext(),
-                        R.color.dark_background_color))
+        final var builder = setupNotificationBuilder(player.getContext(), mediaStyle)
                 .setColorized(player.getPrefs().getBoolean(
-                        player.getContext().getString(R.string.notification_colorize_key), true))
-                .setDeleteIntent(PendingIntentCompat.getBroadcast(player.getContext(),
-                        NOTIFICATION_ID, new Intent(ACTION_CLOSE), FLAG_UPDATE_CURRENT, false));
+                        player.getContext().getString(R.string.notification_colorize_key), true));
 
         // set the initial value for the video thumbnail, updatable with updateNotificationThumbnail
         setLargeIcon(builder);
@@ -168,17 +159,17 @@ public final class NotificationUtil {
                 && notificationBuilder.mActions.get(2).actionIntent != null);
     }
 
+    public static void startForegroundWithDummyNotification(final PlayerService service) {
+        final var builder = setupNotificationBuilder(service, new MediaStyle());
+        startForeground(service, builder.build());
+    }
+
     public void createNotificationAndStartForeground() {
         if (notificationBuilder == null) {
             notificationBuilder = createNotification();
         }
         updateNotification();
-
-        // ServiceInfo constants are not used below Android Q, so 0 is set here
-        final int serviceType = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
-                ? ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK : 0;
-        ServiceCompat.startForeground(player.getService(), NOTIFICATION_ID,
-                notificationBuilder.build(), serviceType);
+        startForeground(player.getService(), notificationBuilder.build());
     }
 
     public void cancelNotificationAndStopForeground() {
@@ -189,6 +180,34 @@ public final class NotificationUtil {
         }
         notificationManager = null;
         notificationBuilder = null;
+    }
+
+
+    /////////////////////////////////////////////////////
+    // STATIC FUNCTIONS IN COMMON BETWEEN DUMMY AND REAL NOTIFICATION
+    /////////////////////////////////////////////////////
+
+    private static NotificationCompat.Builder setupNotificationBuilder(final Context context,
+                                                                       final MediaStyle style) {
+        return new NotificationCompat.Builder(context,
+                context.getString(R.string.notification_channel_id))
+                .setStyle(style)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setCategory(NotificationCompat.CATEGORY_TRANSPORT)
+                .setShowWhen(false)
+                .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
+                .setColor(ContextCompat.getColor(context, R.color.dark_background_color))
+                .setDeleteIntent(PendingIntentCompat.getBroadcast(context,
+                        NOTIFICATION_ID, new Intent(ACTION_CLOSE), FLAG_UPDATE_CURRENT, false));
+    }
+
+    private static void startForeground(final PlayerService service,
+                                        final Notification notification) {
+        // ServiceInfo constants are not used below Android Q, so 0 is set here
+        final int serviceType = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
+                ? ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK : 0;
+        ServiceCompat.startForeground(service, NOTIFICATION_ID, notification, serviceType);
     }
 
 
