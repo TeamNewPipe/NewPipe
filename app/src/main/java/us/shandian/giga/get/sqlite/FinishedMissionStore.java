@@ -27,7 +27,7 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
     // TODO: use NewPipeSQLiteHelper ('s constants) when playlist branch is merged (?)
     private static final String DATABASE_NAME = "downloads.db";
 
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
 
     /**
      * The table name of download missions (old)
@@ -56,6 +56,12 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
 
     private static final String KEY_PATH = "path";
 
+    private static final String KEY_SERVICE_ID = "service_id";
+
+    private static final String KEY_STREAM_UID = "stream_uid";
+
+    private static final String KEY_QUALITY_LABEL = "quality_label";
+
     /**
      * The statement to create the table
      */
@@ -66,6 +72,9 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
                     KEY_DONE + " INTEGER NOT NULL, " +
                     KEY_TIMESTAMP + " INTEGER NOT NULL, " +
                     KEY_KIND + " TEXT NOT NULL, " +
+                    KEY_SERVICE_ID + " INTEGER NOT NULL DEFAULT -1, " +
+                    KEY_STREAM_UID + " INTEGER NOT NULL DEFAULT -1, " +
+                    KEY_QUALITY_LABEL + " TEXT, " +
                     " UNIQUE(" + KEY_TIMESTAMP + ", " + KEY_PATH + "));";
 
 
@@ -121,6 +130,17 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
 
             cursor.close();
             db.execSQL("DROP TABLE " + MISSIONS_TABLE_NAME_v2);
+            oldVersion++;
+        }
+
+        if (oldVersion == 4) {
+            db.execSQL("ALTER TABLE " + FINISHED_TABLE_NAME + " ADD COLUMN "
+                    + KEY_SERVICE_ID + " INTEGER NOT NULL DEFAULT -1");
+            db.execSQL("ALTER TABLE " + FINISHED_TABLE_NAME + " ADD COLUMN "
+                    + KEY_STREAM_UID + " INTEGER NOT NULL DEFAULT -1");
+            db.execSQL("ALTER TABLE " + FINISHED_TABLE_NAME + " ADD COLUMN "
+                    + KEY_QUALITY_LABEL + " TEXT");
+            oldVersion++;
         }
     }
 
@@ -137,6 +157,17 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
         values.put(KEY_DONE, downloadMission.length);
         values.put(KEY_TIMESTAMP, downloadMission.timestamp);
         values.put(KEY_KIND, String.valueOf(downloadMission.kind));
+        if (downloadMission instanceof DownloadMission) {
+            DownloadMission dm = (DownloadMission) downloadMission;
+            values.put(KEY_SERVICE_ID, dm.serviceId);
+            values.put(KEY_STREAM_UID, dm.streamUid);
+            values.put(KEY_QUALITY_LABEL, dm.qualityLabel);
+        } else if (downloadMission instanceof FinishedMission) {
+            FinishedMission fm = (FinishedMission) downloadMission;
+            values.put(KEY_SERVICE_ID, fm.serviceId);
+            values.put(KEY_STREAM_UID, fm.streamUid);
+            values.put(KEY_QUALITY_LABEL, fm.qualityLabel);
+        }
         return values;
     }
 
@@ -152,6 +183,9 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
         mission.length = cursor.getLong(cursor.getColumnIndexOrThrow(KEY_DONE));
         mission.timestamp = cursor.getLong(cursor.getColumnIndexOrThrow(KEY_TIMESTAMP));
         mission.kind = kind.charAt(0);
+        mission.serviceId = cursor.getInt(cursor.getColumnIndexOrThrow(KEY_SERVICE_ID));
+        mission.streamUid = cursor.getLong(cursor.getColumnIndexOrThrow(KEY_STREAM_UID));
+        mission.qualityLabel = cursor.getString(cursor.getColumnIndexOrThrow(KEY_QUALITY_LABEL));
 
         try {
             mission.storage = new StoredFileHelper(context,null, Uri.parse(path), "");
@@ -200,11 +234,10 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
                 database.delete(FINISHED_TABLE_NAME, KEY_TIMESTAMP + " = ?", new String[]{ts});
             } else {
                 database.delete(FINISHED_TABLE_NAME, KEY_TIMESTAMP + " = ? AND " + KEY_PATH + " = ?", new String[]{
-                        ts, mission.storage.getUri().toString()
-                });
+                        ts, mission.storage.getUri().toString()});
             }
         } else {
-            throw new UnsupportedOperationException("DownloadMission");
+            database.delete(FINISHED_TABLE_NAME, KEY_TIMESTAMP + " = ?", new String[]{ts});
         }
     }
 
@@ -217,11 +250,11 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
 
         if (mission instanceof FinishedMission) {
             if (mission.storage.isInvalid()) {
-                rowsAffected = database.update(FINISHED_TABLE_NAME, values, KEY_TIMESTAMP + " = ?", new String[]{ts});
+                rowsAffected = database.update(FINISHED_TABLE_NAME, values, KEY_TIMESTAMP + " = ?",
+                        new String[]{ts});
             } else {
-                rowsAffected = database.update(FINISHED_TABLE_NAME, values, KEY_PATH + " = ?", new String[]{
-                        mission.storage.getUri().toString()
-                });
+                rowsAffected = database.update(FINISHED_TABLE_NAME, values, KEY_PATH + " = ?",
+                        new String[]{mission.storage.getUri().toString()});
             }
         } else {
             throw new UnsupportedOperationException("DownloadMission");

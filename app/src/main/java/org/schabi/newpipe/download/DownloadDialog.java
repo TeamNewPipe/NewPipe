@@ -79,9 +79,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import us.shandian.giga.get.MissionRecoveryInfo;
 import us.shandian.giga.postprocessing.Postprocessing;
@@ -1135,50 +1133,27 @@ public class DownloadDialog extends DialogFragment
         }
 
         final String qualityLabel = buildQualityLabel(selectedStream);
-        final MediaFormat selectedFormat = selectedStream.getFormat();
-        final String resolvedMime = selectedFormat != null ? selectedFormat.getMimeType()
-                : storage.getType();
-        final Long durationMs = currentInfo.getDuration() > 0
-                ? TimeUnit.SECONDS.toMillis(currentInfo.getDuration()) : null;
-        final Long estimatedSize = nearLength > 0 ? nearLength : null;
 
-        final char missionKind = kind;
-        final int missionThreads = threads;
-        final String missionSourceUrl = currentInfo.getUrl();
-        final String missionPsName = psName;
-        final String[] missionPsArgs = psArgs;
-        final long missionNearLength = nearLength;
+        DownloadManagerService.startMission(
+                context,
+                urls,
+                storage,
+                kind,
+                threads,
+                currentInfo.getUrl(),
+                psName,
+                psArgs,
+                nearLength,
+                new ArrayList<>(recoveryInfo),
+                -1L,
+                currentInfo.getServiceId(),
+                qualityLabel
+        );
 
-        disposables.add(DownloadedStreamsRepository.INSTANCE
-                .upsertForEnqueued(requireContext(), currentInfo, storage, null, resolvedMime,
-                        qualityLabel, durationMs, estimatedSize)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(association -> {
-                            DownloadManagerService.startMission(
-                                    context,
-                                    urls,
-                                    storage,
-                                    missionKind,
-                                    missionThreads,
-                                    missionSourceUrl,
-                                    missionPsName,
-                                    missionPsArgs,
-                                    missionNearLength,
-                                    new ArrayList<>(recoveryInfo),
-                                    association.getStreamUid(),
-                                    association.getEntityId(),
-                                    currentInfo.getServiceId()
-                            );
+        Toast.makeText(context, getString(R.string.download_has_started),
+                Toast.LENGTH_SHORT).show();
 
-                            Toast.makeText(context, getString(R.string.download_has_started),
-                                    Toast.LENGTH_SHORT).show();
-
-                            dismiss();
-                        },
-                        throwable -> ErrorUtil.createNotification(requireContext(),
-                                new ErrorInfo(throwable, UserAction.DOWNLOAD_FAILED,
-                                        "Preparing download metadata", currentInfo))
-                ));
+        dismiss();
     }
 
     @Nullable

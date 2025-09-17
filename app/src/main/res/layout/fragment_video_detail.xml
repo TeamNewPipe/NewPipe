@@ -551,27 +551,21 @@
 
                     </LinearLayout>
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/detail_download_status_chip"
-                        style="@style/Widget.MaterialComponents.Chip.Action"
+                    <androidx.compose.ui.platform.ComposeView
+                        android:id="@+id/detail_download_status_compose"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/detail_control_panel"
                         android:layout_marginStart="12dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="12dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight.Bridge"
-                        android:visibility="gone"
-                        app:chipIconVisible="false"
-                        app:chipStrokeWidth="0dp"
-                        tools:text="Downloaded • 1080p"
-                        tools:visibility="visible" />
+                        android:visibility="visible" />
 
                     <View
                         android:id="@+id/detail_meta_info_separator"
                         android:layout_width="match_parent"
                         android:layout_height="1px"
-                        android:layout_below="@id/detail_download_status_chip"
+                        android:layout_below="@id/detail_download_status_compose"
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
                         android:background="?attr/separator_color" />

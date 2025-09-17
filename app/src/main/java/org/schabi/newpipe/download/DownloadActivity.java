@@ -82,14 +82,6 @@ public class DownloadActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        new Thread(() ->
-                DownloadMaintenance.revalidateAvailable(DownloadActivity.this, 10)
-        ).start();
-    }
-
-    @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:

@@ -135,8 +135,8 @@ public class DownloadMission extends Mission {
     public MissionRecoveryInfo[] recoveryInfo;
 
     public long streamUid = -1;
-    public long downloadedEntityId = -1;
     public int serviceId = -1;
+    public String qualityLabel = null;
 
     private transient int finishCount;
     public transient volatile boolean running;

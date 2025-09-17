@@ -25,10 +25,8 @@
     <string name="download_action_delete">Delete file</string>
     <string name="download_action_remove_link">Remove link</string>
     <string name="download_link_removed">Download link removed</string>
-    <string name="download_relinked">Download relinked</string>
     <string name="download_open_failed">Unable to open downloaded file</string>
     <string name="download_folder_open_failed">Unable to open folder</string>
-    <string name="download_relink_failed">Unable to relink file</string>
     <string name="download_delete_failed">Unable to delete downloaded file</string>
     <string name="download_deleted">Deleted downloaded file</string>
     <string name="search">Search</string>

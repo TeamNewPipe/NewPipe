@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.FinishedMission;
@@ -333,6 +334,16 @@ public class DownloadManager {
         return null;
     }
 
+    @Nullable
+    private DownloadMission getPendingMission(int serviceId, String url) {
+        for (DownloadMission mission : mMissionsPending) {
+            if (mission.serviceId == serviceId && Objects.equals(mission.source, url)) {
+                return mission;
+            }
+        }
+        return null;
+    }
+
     /**
      * Get the index into {@link #mMissionsFinished} of a finished mission by its path, return
      * {@code -1} if there is no such mission. This function also checks if the matched mission's
@@ -342,6 +353,26 @@ public class DownloadManager {
      * @param storage where the file would be stored
      * @return the mission index or -1 if no such mission exists
      */
+    @Nullable
+    private FinishedMission getFinishedMission(int serviceId, String url) {
+        for (FinishedMission mission : mMissionsFinished) {
+            if (mission.serviceId == serviceId && Objects.equals(mission.source, url)) {
+                return mission;
+            }
+        }
+        return null;
+    }
+
+    private boolean isFileAvailable(@NonNull FinishedMission mission) {
+        if (mission.storage == null || mission.storage.isInvalid()) {
+            return false;
+        }
+        if (!mission.storage.existsAsFile()) {
+            return false;
+        }
+        return mission.storage.length() > 0;
+    }
+
     private int getFinishedMissionIndex(StoredFileHelper storage) {
         for (int i = 0; i < mMissionsFinished.size(); i++) {
             if (mMissionsFinished.get(i).storage.equals(storage)) {
@@ -425,6 +456,50 @@ public class DownloadManager {
             mMissionsFinished.add(0, new FinishedMission(mission));
             mFinishedMissionStore.addFinishedMission(mission);
         }
+    }
+
+    public static final class DownloadStatusSnapshot {
+        public final MissionState state;
+        public final DownloadMission pendingMission;
+        public final FinishedMission finishedMission;
+        public final boolean fileExists;
+
+        DownloadStatusSnapshot(MissionState state, DownloadMission pendingMission,
+                FinishedMission finishedMission, boolean fileExists) {
+            this.state = state;
+            this.pendingMission = pendingMission;
+            this.finishedMission = finishedMission;
+            this.fileExists = fileExists;
+        }
+    }
+
+    DownloadStatusSnapshot getDownloadStatus(int serviceId, String url, boolean revalidateFile) {
+        synchronized (this) {
+            DownloadMission pending = getPendingMission(serviceId, url);
+            if (pending != null) {
+                MissionState state = pending.running
+                        ? MissionState.PendingRunning
+                        : MissionState.Pending;
+                return new DownloadStatusSnapshot(state, pending, null, true);
+            }
+
+            FinishedMission finished = getFinishedMission(serviceId, url);
+            if (finished != null) {
+                boolean available = !revalidateFile || isFileAvailable(finished);
+                return new DownloadStatusSnapshot(MissionState.Finished, null, finished, available);
+            }
+        }
+
+        return new DownloadStatusSnapshot(MissionState.None, null, null, false);
+    }
+
+    boolean deleteFinishedMission(int serviceId, String url, boolean deleteFile) {
+        FinishedMission mission = getFinishedMission(serviceId, url);
+        if (mission == null) {
+            return false;
+        }
+        deleteMission(mission, deleteFile);
+        return true;
     }
 
     /**
