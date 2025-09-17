@@ -27,6 +27,7 @@ public final class Migrations {
     public static final int DB_VER_7 = 7;
     public static final int DB_VER_8 = 8;
     public static final int DB_VER_9 = 9;
+    public static final int DB_VER_10 = 10;
 
     private static final String TAG = Migrations.class.getName();
     public static final boolean DEBUG = MainActivity.DEBUG;
@@ -299,6 +300,22 @@ public final class Migrations {
             } finally {
                 database.endTransaction();
             }
+        }
+    };
+
+    public static final Migration MIGRATION_9_10 = new Migration(DB_VER_9, DB_VER_10) {
+        @Override
+        public void migrate(@NonNull final SupportSQLiteDatabase database) {
+            database.execSQL("CREATE TABLE IF NOT EXISTS downloaded_streams "
+                    + "(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
+                    + "stream_uid INTEGER NOT NULL, service_id INTEGER NOT NULL, "
+                    + "url TEXT NOT NULL, file_uri TEXT NOT NULL, parent_uri TEXT, "
+                    + "display_name TEXT, mime TEXT, size_bytes INTEGER, quality_label TEXT, "
+                    + "duration_ms INTEGER, status INTEGER NOT NULL, added_at INTEGER NOT NULL, "
+                    + "last_checked_at INTEGER, missing_since INTEGER, FOREIGN KEY(stream_uid) "
+                    + "REFERENCES streams(uid) ON UPDATE CASCADE ON DELETE CASCADE)");
+            database.execSQL("CREATE UNIQUE INDEX index_downloaded_streams_stream_uid "
+                    + "ON downloaded_streams (stream_uid)");
         }
     };
 

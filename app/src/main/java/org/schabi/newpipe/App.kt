@@ -25,6 +25,7 @@ import io.reactivex.rxjava3.plugins.RxJavaPlugins
 import org.acra.ACRA.init
 import org.acra.ACRA.isACRASenderServiceProcess
 import org.acra.config.CoreConfigurationBuilder
+import org.schabi.newpipe.download.DownloadMaintenance
 import org.schabi.newpipe.error.ReCaptchaActivity
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.downloader.Downloader
@@ -120,6 +121,8 @@ open class App :
         configureRxJavaErrorHandler()
 
         YoutubeStreamExtractor.setPoTokenProvider(PoTokenProviderImpl)
+
+        DownloadMaintenance.schedule(this)
     }
 
     override fun newImageLoader(context: Context): ImageLoader =

@@ -39,6 +39,8 @@ import androidx.core.content.IntentCompat;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.download.DownloadedStreamsRepository;
+import org.schabi.newpipe.download.DownloadedStreamsRepository.DownloadAssociation;
 import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.player.helper.LockManager;
 import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
@@ -55,6 +57,8 @@ import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.MissionRecoveryInfo;
 import us.shandian.giga.postprocessing.Postprocessing;
 import us.shandian.giga.service.DownloadManager.NetworkState;
+
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class DownloadManagerService extends Service {
 
@@ -80,6 +84,9 @@ public class DownloadManagerService extends Service {
     private static final String EXTRA_PARENT_PATH = "DownloadManagerService.extra.storageParentPath";
     private static final String EXTRA_STORAGE_TAG = "DownloadManagerService.extra.storageTag";
     private static final String EXTRA_RECOVERY_INFO = "DownloadManagerService.extra.recoveryInfo";
+    private static final String EXTRA_STREAM_UID = "DownloadManagerService.extra.streamUid";
+    private static final String EXTRA_DOWNLOADED_ID = "DownloadManagerService.extra.downloadedId";
+    private static final String EXTRA_SERVICE_ID = "DownloadManagerService.extra.serviceId";
 
     private static final String ACTION_RESET_DOWNLOAD_FINISHED = APPLICATION_ID + ".reset_download_finished";
     private static final String ACTION_OPEN_DOWNLOADS_FINISHED = APPLICATION_ID + ".open_downloads_finished";
@@ -117,6 +124,8 @@ public class DownloadManagerService extends Service {
     private Bitmap icDownloadFailed;
 
     private PendingIntent mOpenDownloadList;
+
+    private final CompositeDisposable disposables = new CompositeDisposable();
 
     /**
      * notify media scanner on downloaded media file ...
@@ -244,6 +253,7 @@ public class DownloadManagerService extends Service {
         if (icLauncher != null) icLauncher.recycle();
 
         mHandler = null;
+        disposables.clear();
         mManager.pauseAllMissions(true);
     }
 
@@ -259,6 +269,18 @@ public class DownloadManagerService extends Service {
 
         switch (msg.what) {
             case MESSAGE_FINISHED:
+                if (mission.streamUid >= 0) {
+                    DownloadAssociation association =
+                            new DownloadAssociation(mission.streamUid, mission.downloadedEntityId);
+                    disposables.add(DownloadedStreamsRepository.INSTANCE
+                            .markFinished(this, association, mission.serviceId, mission.source,
+                                    mission.storage, null, null, null, null)
+                            .subscribe(
+                                    () -> { },
+                                    throwable -> Log.e(TAG,
+                                            "Failed to update downloaded stream entry", throwable)
+                            ));
+                }
                 notifyMediaScanner(mission.storage.getUri());
                 notifyFinishedDownload(mission.storage.getName());
                 mManager.setFinished(mission);
@@ -361,7 +383,8 @@ public class DownloadManagerService extends Service {
     public static void startMission(Context context, String[] urls, StoredFileHelper storage,
                                     char kind, int threads, String source, String psName,
                                     String[] psArgs, long nearLength,
-                                    ArrayList<MissionRecoveryInfo> recoveryInfo) {
+                                    ArrayList<MissionRecoveryInfo> recoveryInfo,
+                                    long streamUid, long downloadedEntityId, int serviceId) {
         final Intent intent = new Intent(context, DownloadManagerService.class)
                 .setAction(Intent.ACTION_RUN)
                 .putExtra(EXTRA_URLS, urls)
@@ -374,7 +397,10 @@ public class DownloadManagerService extends Service {
                 .putExtra(EXTRA_RECOVERY_INFO, recoveryInfo)
                 .putExtra(EXTRA_PARENT_PATH, storage.getParentUri())
                 .putExtra(EXTRA_PATH, storage.getUri())
-                .putExtra(EXTRA_STORAGE_TAG, storage.getTag());
+                .putExtra(EXTRA_STORAGE_TAG, storage.getTag())
+                .putExtra(EXTRA_STREAM_UID, streamUid)
+                .putExtra(EXTRA_DOWNLOADED_ID, downloadedEntityId)
+                .putExtra(EXTRA_SERVICE_ID, serviceId);
 
         context.startService(intent);
     }
@@ -390,6 +416,9 @@ public class DownloadManagerService extends Service {
         String source = intent.getStringExtra(EXTRA_SOURCE);
         long nearLength = intent.getLongExtra(EXTRA_NEAR_LENGTH, 0);
         String tag = intent.getStringExtra(EXTRA_STORAGE_TAG);
+        long streamUid = intent.getLongExtra(EXTRA_STREAM_UID, -1L);
+        long downloadedEntityId = intent.getLongExtra(EXTRA_DOWNLOADED_ID, -1L);
+        int serviceId = intent.getIntExtra(EXTRA_SERVICE_ID, -1);
         final var recovery = IntentCompat.getParcelableArrayListExtra(intent, EXTRA_RECOVERY_INFO,
                 MissionRecoveryInfo.class);
         Objects.requireNonNull(recovery);
@@ -412,6 +441,9 @@ public class DownloadManagerService extends Service {
         mission.source = source;
         mission.nearLength = nearLength;
         mission.recoveryInfo = recovery.toArray(new MissionRecoveryInfo[0]);
+        mission.streamUid = streamUid;
+        mission.downloadedEntityId = downloadedEntityId;
+        mission.serviceId = serviceId;
 
         if (ps != null)
             ps.setTemporalDir(DownloadManager.pickAvailableTemporalDir(this));

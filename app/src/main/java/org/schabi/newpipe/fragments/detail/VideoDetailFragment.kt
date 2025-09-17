@@ -4,6 +4,7 @@ import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.BroadcastReceiver
+import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
@@ -12,14 +13,17 @@ import android.content.pm.ActivityInfo
 import android.database.ContentObserver
 import android.graphics.Color
 import android.graphics.Rect
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.provider.DocumentsContract
 import android.provider.Settings
 import android.util.DisplayMetrics
 import android.util.Log
 import android.util.TypedValue
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -31,7 +35,9 @@ import android.view.WindowManager
 import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
 import android.widget.RelativeLayout
+import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.AttrRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
@@ -44,6 +50,7 @@ import androidx.core.net.toUri
 import androidx.core.os.postDelayed
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.documentfile.provider.DocumentFile
 import androidx.preference.PreferenceManager
 import coil3.util.CoilUtils
 import com.evernote.android.state.State
@@ -52,15 +59,22 @@ import com.google.android.exoplayer2.PlaybackParameters
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.App
 import org.schabi.newpipe.R
+import org.schabi.newpipe.database.download.DownloadedStreamEntity
+import org.schabi.newpipe.database.download.DownloadedStreamStatus
 import org.schabi.newpipe.database.stream.model.StreamEntity
+import org.schabi.newpipe.databinding.DownloadStatusSheetBinding
 import org.schabi.newpipe.databinding.FragmentVideoDetailBinding
+import org.schabi.newpipe.download.DownloadActivity
+import org.schabi.newpipe.download.DownloadAvailabilityChecker
 import org.schabi.newpipe.download.DownloadDialog
+import org.schabi.newpipe.download.DownloadedStreamsRepository
 import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.ErrorUtil.Companion.showSnackbar
 import org.schabi.newpipe.error.ErrorUtil.Companion.showUiErrorSnackbar
@@ -115,6 +129,7 @@ import org.schabi.newpipe.util.ThemeHelper
 import org.schabi.newpipe.util.external_communication.KoreUtils
 import org.schabi.newpipe.util.external_communication.ShareUtils
 import org.schabi.newpipe.util.image.CoilHelper
+import java.io.File
 import java.util.LinkedList
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
@@ -181,6 +196,17 @@ class VideoDetailFragment :
     private var currentWorker: Disposable? = null
     private val disposables = CompositeDisposable()
     private var positionSubscriber: Disposable? = null
+    private var downloadStatusDisposable: Disposable? = null
+    private var currentStreamUid: Long? = null
+    private var currentDownloadedStream: DownloadedStreamEntity? = null
+    private var pendingRelinkEntity: DownloadedStreamEntity? = null
+
+    private val relinkLauncher = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+        if (uri != null && pendingRelinkEntity != null) {
+            handleRelinkResult(pendingRelinkEntity!!, uri)
+        }
+        pendingRelinkEntity = null
+    }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service management
@@ -348,6 +374,13 @@ class VideoDetailFragment :
 
     override fun onDestroyView() {
         super.onDestroyView()
+        downloadStatusDisposable?.let {
+            disposables.remove(it)
+            it.dispose()
+        }
+        downloadStatusDisposable = null
+        currentDownloadedStream = null
+        currentStreamUid = null
         nullableBinding = null
     }
 
@@ -1366,6 +1399,9 @@ class VideoDetailFragment :
         currentInfo = info
         setInitialData(info.serviceId, info.originalUrl, info.name, playQueue)
 
+        updateDownloadChip(null)
+        observeDownloadStatus(info)
+
         updateTabs(info)
 
         binding.detailThumbnailPlayButton.animate(true, 200)
@@ -1542,6 +1578,269 @@ class VideoDetailFragment :
                 ErrorInfo(e, UserAction.DOWNLOAD_OPEN_DIALOG, "Showing download dialog", info)
             )
         }
+    }
+
+    private fun observeDownloadStatus(info: StreamInfo) {
+        val context = context ?: return
+        downloadStatusDisposable?.let {
+            disposables.remove(it)
+            it.dispose()
+        }
+
+        val disposable = DownloadedStreamsRepository.ensureStreamEntry(context, info)
+            .flatMapPublisher { streamUid: Long ->
+                currentStreamUid = streamUid
+                DownloadedStreamsRepository.observeByStreamUid(context, streamUid)
+            }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { entities: List<DownloadedStreamEntity> ->
+                    val entity = entities.firstOrNull()
+                    updateDownloadChip(entity)
+                },
+                { throwable ->
+                    if (DEBUG) {
+                        Log.e(TAG, "Failed to observe download state", throwable)
+                    }
+                    updateDownloadChip(null)
+                }
+            )
+
+        downloadStatusDisposable = disposable
+        disposables.add(disposable)
+    }
+
+    private fun updateDownloadChip(entity: DownloadedStreamEntity?) {
+        if (nullableBinding == null) return
+
+        currentDownloadedStream = entity
+        val chip = binding.detailDownloadStatusChip ?: return
+
+        if (entity == null || entity.status == DownloadedStreamStatus.UNLINKED) {
+            chip.isGone = true
+            chip.setOnClickListener(null)
+            return
+        }
+
+        chip.isVisible = true
+        when (entity.status) {
+            DownloadedStreamStatus.IN_PROGRESS -> {
+                chip.text = getString(R.string.download_status_downloading)
+                chip.setOnClickListener { openDownloadsActivity() }
+            }
+            DownloadedStreamStatus.AVAILABLE,
+            DownloadedStreamStatus.MISSING -> {
+                chip.text = buildDownloadedLabel(entity)
+                chip.setOnClickListener { showDownloadOptions(entity) }
+            }
+            DownloadedStreamStatus.UNLINKED -> {
+                chip.isGone = true
+                chip.setOnClickListener(null)
+            }
+        }
+    }
+
+    private fun buildDownloadedLabel(entity: DownloadedStreamEntity): String {
+        val quality = entity.qualityLabel?.takeIf { it.isNotBlank() }
+        return if (quality != null) {
+            getString(R.string.download_status_downloaded, quality)
+        } else {
+            getString(R.string.download_status_downloaded_simple)
+        }
+    }
+
+    private fun showDownloadOptions(entity: DownloadedStreamEntity) {
+        val baseContext = requireContext()
+        val dialogTheme = ThemeHelper.getDialogTheme(baseContext)
+        val themedContext = ContextThemeWrapper(baseContext, dialogTheme)
+        val sheetBinding = DownloadStatusSheetBinding.inflate(LayoutInflater.from(themedContext))
+        val dialog = BottomSheetDialog(themedContext)
+        dialog.setContentView(sheetBinding.root)
+
+        val primaryTextColor = ThemeHelper.resolveColorFromAttr(themedContext, android.R.attr.textColorPrimary)
+        val secondaryTextColor = ThemeHelper.resolveColorFromAttr(themedContext, android.R.attr.textColorSecondary)
+        val backgroundDrawable = ThemeHelper.resolveDrawable(themedContext, android.R.attr.windowBackground)
+        val rippleDrawable = ThemeHelper.resolveDrawable(themedContext, R.attr.selector)
+        val accentColor = ThemeHelper.resolveColorFromAttr(themedContext, androidx.appcompat.R.attr.colorAccent)
+
+        sheetBinding.root.background = backgroundDrawable
+        sheetBinding.downloadStatusTitle.setTextColor(primaryTextColor)
+        sheetBinding.downloadStatusSubtitle.setTextColor(secondaryTextColor)
+
+        fun styleAction(textView: TextView) {
+            textView.setTextColor(primaryTextColor)
+            textView.background = rippleDrawable
+        }
+
+        styleAction(sheetBinding.downloadStatusOpen)
+        styleAction(sheetBinding.downloadStatusDelete)
+        styleAction(sheetBinding.downloadStatusShowInFolder)
+        sheetBinding.downloadStatusRemoveLink.apply {
+            setTextColor(accentColor)
+            background = rippleDrawable
+        }
+
+        val fileAvailable = entity.fileUri.takeUnless { it.isBlank() }
+            ?.let { DownloadAvailabilityChecker.isReadable(baseContext, Uri.parse(it)) }
+            ?: false
+
+        val title = entity.displayName?.takeIf { it.isNotBlank() }
+            ?: currentInfo?.name
+            ?: getString(R.string.download)
+        sheetBinding.downloadStatusTitle.text = title
+
+        val subtitleParts = mutableListOf<String>()
+        entity.qualityLabel?.takeIf { it.isNotBlank() }?.let(subtitleParts::add)
+        if (!fileAvailable) {
+            subtitleParts.add(getString(R.string.download_status_missing))
+        }
+
+        if (subtitleParts.isEmpty()) {
+            sheetBinding.downloadStatusSubtitle.isGone = true
+        } else {
+            sheetBinding.downloadStatusSubtitle.isVisible = true
+            sheetBinding.downloadStatusSubtitle.text = subtitleParts.joinToString(" • ")
+        }
+
+        sheetBinding.downloadStatusOpen.text = getString(R.string.download_action_open)
+        sheetBinding.downloadStatusDelete.text = getString(R.string.download_action_delete)
+        sheetBinding.downloadStatusShowInFolder.text = getString(R.string.download_action_show_in_folder)
+        sheetBinding.downloadStatusRemoveLink.text = getString(R.string.download_action_remove_link)
+
+        sheetBinding.downloadStatusOpen.isVisible = fileAvailable
+        sheetBinding.downloadStatusDelete.isVisible = fileAvailable
+        sheetBinding.downloadStatusShowInFolder.isVisible = fileAvailable && !entity.parentUri.isNullOrBlank()
+        sheetBinding.downloadStatusRemoveLink.isVisible = true
+
+        sheetBinding.downloadStatusOpen.setOnClickListener {
+            dialog.dismiss()
+            openDownloaded(entity)
+        }
+
+        sheetBinding.downloadStatusDelete.setOnClickListener {
+            dialog.dismiss()
+            deleteDownloadedFile(entity)
+        }
+
+        sheetBinding.downloadStatusShowInFolder.setOnClickListener {
+            dialog.dismiss()
+            showInFolder(entity)
+        }
+
+        sheetBinding.downloadStatusRemoveLink.setOnClickListener {
+            dialog.dismiss()
+            removeDownloadAssociation(entity)
+        }
+
+        dialog.show()
+    }
+
+    private fun openDownloaded(entity: DownloadedStreamEntity) {
+        val uri = entity.fileUri.takeUnless { it.isBlank() }?.let(Uri::parse) ?: return
+        val intent = Intent(Intent.ACTION_VIEW).apply {
+            setDataAndType(uri, entity.mime ?: "*/*")
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
+
+        runCatching { startActivity(intent) }
+            .onFailure {
+                if (DEBUG) Log.e(TAG, "Failed to open downloaded file", it)
+                Toast.makeText(requireContext(), R.string.download_open_failed, Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun showInFolder(entity: DownloadedStreamEntity) {
+        val parent = entity.parentUri?.takeIf { it.isNotBlank() }?.let(Uri::parse)
+        if (parent == null) {
+            Toast.makeText(requireContext(), R.string.download_folder_open_failed, Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val intent = Intent(Intent.ACTION_VIEW).apply {
+            setDataAndType(parent, DocumentsContract.Document.MIME_TYPE_DIR)
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
+
+        runCatching { startActivity(intent) }
+            .onFailure {
+                val treeIntent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE).apply {
+                    putExtra(DocumentsContract.EXTRA_INITIAL_URI, parent)
+                    addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                }
+
+                runCatching { startActivity(treeIntent) }
+                    .onFailure { throwable ->
+                        if (DEBUG) Log.e(TAG, "Failed to open folder", throwable)
+                        Toast.makeText(requireContext(), R.string.download_folder_open_failed, Toast.LENGTH_SHORT).show()
+                    }
+            }
+    }
+
+    private fun removeDownloadAssociation(entity: DownloadedStreamEntity) {
+        val context = requireContext()
+        disposables.add(
+            DownloadedStreamsRepository.deleteByStreamUid(context, entity.streamUid)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    { Toast.makeText(context, R.string.download_link_removed, Toast.LENGTH_SHORT).show() },
+                    { throwable ->
+                        if (DEBUG) Log.e(TAG, "Failed to remove download link", throwable)
+                        showUiErrorSnackbar(this, "Removing download link", throwable)
+                    }
+                )
+        )
+    }
+
+    private fun deleteDownloadedFile(entity: DownloadedStreamEntity) {
+        val context = requireContext()
+        val uriString = entity.fileUri.takeUnless { it.isBlank() }
+        if (uriString.isNullOrBlank()) {
+            Toast.makeText(context, R.string.download_delete_failed, Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val uri = Uri.parse(uriString)
+        val deleted = when (uri.scheme?.lowercase()) {
+            ContentResolver.SCHEME_CONTENT -> DocumentFile.fromSingleUri(context, uri)?.delete() ?: false
+            ContentResolver.SCHEME_FILE -> uri.path?.let { File(it).delete() } ?: false
+            else -> runCatching { context.contentResolver.delete(uri, null, null) > 0 }.getOrDefault(false)
+        }
+
+        if (!deleted) {
+            Toast.makeText(context, R.string.download_delete_failed, Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        removeDownloadAssociation(entity)
+        Toast.makeText(context, R.string.download_deleted, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun handleRelinkResult(entity: DownloadedStreamEntity, uri: Uri) {
+        val context = requireContext()
+        runCatching {
+            context.contentResolver.takePersistableUriPermission(
+                uri,
+                Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+            )
+        }
+
+        disposables.add(
+            DownloadedStreamsRepository.relink(context, entity, uri)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    { Toast.makeText(context, R.string.download_relinked, Toast.LENGTH_SHORT).show() },
+                    { throwable ->
+                        if (DEBUG) Log.e(TAG, "Failed to relink download", throwable)
+                        Toast.makeText(context, R.string.download_relink_failed, Toast.LENGTH_SHORT).show()
+                    }
+                )
+        )
+    }
+
+    private fun openDownloadsActivity() {
+        val context = requireContext()
+        val intent = Intent(context, DownloadActivity::class.java)
+        runCatching { startActivity(intent) }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -2270,6 +2569,7 @@ class VideoDetailFragment :
 
         private const val MAX_OVERLAY_ALPHA = 0.9f
         private const val MAX_PLAYER_HEIGHT = 0.7f
+        private val AVAILABILITY_CHECK_INTERVAL_MS = TimeUnit.MINUTES.toMillis(5)
 
         const val ACTION_SHOW_MAIN_PLAYER: String =
             App.PACKAGE_NAME + ".VideoDetailFragment.ACTION_SHOW_MAIN_PLAYER"
