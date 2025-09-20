@@ -29,7 +29,6 @@ import org.schabi.newpipe.util.ExtractorHelper.getChannelTab
 import org.schabi.newpipe.util.ExtractorHelper.getMoreChannelTabItems
 import java.time.Instant
 import java.time.LocalDate
-import java.time.ZoneId
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -320,13 +319,12 @@ class FeedLoadManager(private val context: Context) {
         }
 
         private fun filterNewStreams(list: List<StreamInfoItem>): List<StreamInfoItem> {
-            val zoneId = ZoneId.systemDefault()
             val oldestAllowedDate = LocalDate.now().minusWeeks(13)
             return list.filter {
                 // Streams older than this date are automatically removed from the feed.
                 // Therefore, streams which are not in the database,
                 // but older than this date, are considered old.
-                val date = it.uploadDate?.let { LocalDate.ofInstant(it.instant, zoneId) }
+                val date = it.uploadDate?.localDateTime?.toLocalDate()
                 !feedDatabaseManager.doesStreamExist(it) && date != null && date > oldestAllowedDate
             }
         }

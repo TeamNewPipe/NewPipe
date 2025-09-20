@@ -74,9 +74,8 @@ class FeedDatabaseManager(context: Context) {
 
     fun upsertAll(subscriptionId: Long, items: List<StreamInfoItem>) {
         val oldestAllowedDate = LocalDate.now().minusWeeks(13)
-        val zoneId = ZoneId.systemDefault()
         val itemsToInsert = items.filter {
-            val uploadDate = it.uploadDate?.let { LocalDate.ofInstant(it.instant, zoneId) }
+            val uploadDate = it.uploadDate?.localDateTime?.toLocalDate()
 
             (uploadDate == null && it.streamType == StreamType.LIVE_STREAM) ||
                 (uploadDate != null && uploadDate >= oldestAllowedDate)

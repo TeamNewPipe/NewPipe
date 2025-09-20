@@ -34,15 +34,12 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
-
 
 /*
  * Created by chschtsch on 12/29/15.
@@ -132,9 +129,8 @@ public final class Localization {
 
     @NonNull
     public static String formatDate(@NonNull final DateWrapper dateWrapper) {
-        final var localDate = LocalDate.ofInstant(dateWrapper.getInstant(), ZoneId.systemDefault());
         return DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).withLocale(getAppLocale())
-                .format(localDate);
+                .format(dateWrapper.getLocalDateTime());
     }
 
     public static String localizeViewCount(@NonNull final Context context, final long viewCount) {
