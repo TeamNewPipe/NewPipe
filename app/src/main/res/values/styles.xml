@@ -1,158 +1,227 @@
 <resources>
 
     <!-- Opening Theme -->
-    <style name="Base.V21.OpeningTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="OpeningTheme" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@android:color/transparent</item>
         <item name="colorPrimaryDark">@android:color/transparent</item>
-        <item name="colorAccent">@android:color/transparent</item>
-
+        <item name="colorSurface">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
-    <style name="Base.OpeningTheme" parent="Base.V21.OpeningTheme">
-        <item name="android:navigationBarColor">@color/light_youtube_primary_color</item>
-    </style>
-    <style name="OpeningTheme" parent="Base.OpeningTheme" />
 
-    <!-- Base Theme -->
-    <style name="Base.V21" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="actionColor">@color/white</item>
-        <item name="floatingActionButtonStyle">@style/FloatingActionButtonTheme</item>
-        <item name="toolbarSearchColor">@color/white</item>
+    <style name="LightTheme" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Material 3 Color Attributes -->
+        <item name="colorPrimary">@color/m3_primary_light</item>
+        <item name="colorOnPrimary">@color/m3_on_primary_light</item>
+        <item name="colorPrimaryContainer">@color/m3_primary_container_light</item>
+        <item name="colorOnPrimaryContainer">@color/m3_on_primary_container_light</item>
+        <item name="colorSecondary">@color/m3_secondary_light</item>
+        <item name="colorOnSecondary">@color/m3_on_secondary_light</item>
+        <item name="colorSecondaryContainer">@color/m3_secondary_container_light</item>
+        <item name="colorOnSecondaryContainer">@color/m3_on_secondary_container_light</item>
+        <item name="colorTertiary">@color/m3_tertiary_light</item>
+        <item name="colorOnTertiary">@color/m3_on_tertiary_light</item>
+        <item name="colorTertiaryContainer">@color/m3_tertiary_container_light</item>
+        <item name="colorOnTertiaryContainer">@color/m3_on_tertiary_container_light</item>
+        <item name="colorError">@color/m3_error_light</item>
+        <item name="colorOnError">@color/m3_on_error_light</item>
+        <item name="colorErrorContainer">@color/m3_error_container_light</item>
+        <item name="colorOnErrorContainer">@color/m3_on_error_container_light</item>
+        <item name="android:colorBackground">@color/m3_background_light</item>
+        <item name="colorOnBackground">@color/m3_on_background_light</item>
+        <item name="colorSurface">@color/m3_surface_light</item>
+        <item name="colorOnSurface">@color/m3_on_surface_light</item>
+        <item name="colorSurfaceVariant">@color/m3_surface_variant_light</item>
+        <item name="colorOnSurfaceVariant">@color/m3_on_surface_variant_light</item>
+        <item name="colorOutline">@color/m3_outline_light</item>
+        <item name="colorOutlineVariant">@color/m3_outline_variant_light</item>
+        <item name="colorSurfaceInverse">@color/m3_inverse_surface_light</item>
+        <item name="colorOnSurfaceInverse">@color/m3_inverse_on_surface_light</item>
+        <item name="colorPrimaryInverse">@color/m3_inverse_primary_light</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:statusBarColor">?attr/colorSurface</item> <!-- Or colorPrimary, colorSurfaceContainer etc. -->
+        <item name="android:navigationBarColor">?attr/colorSurfaceContainer</item> <!-- M3 standard -->
+
+        <!-- AppCompat fallbacks if needed, M3 attributes are preferred -->
+        <item name="windowBackground">@color/m3_background_light</item> <!-- For AppCompat -->
+        <item name="colorAccent">?attr/colorPrimary</item> <!-- Deprecated, map to primary or secondary -->
+
+        <!-- Custom Attributes Mapping -->
+        <item name="actionColor">?attr/colorOnPrimary</item> <!-- Assuming toolbar uses colorPrimary -->
+        <item name="toolbarSearchColor">?attr/colorOnPrimary</item> <!-- Assuming toolbar uses colorPrimary -->
         <item name="colorControlActivated">?attr/colorPrimary</item>
-    </style>
-    <style name="Base" parent="Base.V21"/>
+        <item name="separator_color">?attr/colorOutlineVariant</item>
+        <item name="contrast_background_color">@color/m3_surface_container_highest_light</item>
+        <item name="card_item_background_color">@color/m3_surface_container_low_light</item>
+        <item name="card_item_contrast_color">?attr/colorOnSurface</item> <!-- Text on surfaceContainerLow -->
+        <item name="border_color">?attr/colorOutline</item>
 
-    <!-- Light Theme -->
-    <style name="Base.V21.LightTheme" parent="Base">
-        <item name="colorPrimary">@color/light_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/light_youtube_primary_color</item>
-        <item name="colorAccent">@color/light_youtube_accent_color</item>
-        <item name="android:windowBackground">@color/light_background_color</item>
-        <item name="windowBackground">@color/light_background_color</item>
+        <!-- Styles for components -->
+        <item name="floatingActionButtonStyle">@style/App.FloatingActionButton</item>
+        <item name="materialAlertDialogTheme">@style/App.MaterialAlertDialog.Light</item>
 
-        <item name="separator_color">@color/light_separator_color</item>
-        <item name="contrast_background_color">@color/light_contrast_background_color</item>
+        <!-- Existing Drawables (Review and Update for M3) -->
         <item name="checked_selector">@drawable/selector_checked_light</item>
         <item name="focused_selector">@drawable/selector_focused_light</item>
         <item name="toolbar_shadow">@drawable/toolbar_shadow_light</item>
         <item name="selector">@drawable/selector_light</item>
-        <item name="colorControlHighlight">@color/light_ripple_color</item>
         <item name="progress_horizontal_drawable">@drawable/progress_youtube_horizontal_light</item>
-        <item name="card_item_background_color">@color/light_card_item_background_color</item>
-        <item name="card_item_contrast_color">@color/light_card_item_contrast_color</item>
-        <item name="border_color">@color/light_border_color</item>
         <item name="dashed_border">@drawable/dashed_border_light</item>
     </style>
-    <style name="Base.LightTheme" parent="Base.V21.LightTheme" />
-    <style name="LightTheme" parent="Base.LightTheme"/>
 
-    <!-- Dark Theme -->
-    <style name="Base.V21.DarkTheme" parent="Base">
-        <item name="colorPrimary">@color/dark_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/dark_youtube_primary_color</item>
-        <item name="colorAccent">@color/dark_youtube_accent_color</item>
-        <item name="android:windowBackground">@color/dark_background_color</item>
-        <item name="windowBackground">@color/dark_background_color</item>
+    <style name="DarkTheme" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/m3_primary_dark</item>
+        <item name="colorOnPrimary">@color/m3_on_primary_dark</item>
+        <item name="colorPrimaryContainer">@color/m3_primary_container_dark</item>
+        <item name="colorOnPrimaryContainer">@color/m3_on_primary_container_dark</item>
+        <item name="colorSecondary">@color/m3_secondary_dark</item>
+        <item name="colorOnSecondary">@color/m3_on_secondary_dark</item>
+        <item name="colorSecondaryContainer">@color/m3_secondary_container_dark</item>
+        <item name="colorOnSecondaryContainer">@color/m3_on_secondary_container_dark</item>
+        <item name="colorTertiary">@color/m3_tertiary_dark</item>
+        <item name="colorOnTertiary">@color/m3_on_tertiary_dark</item>
+        <item name="colorTertiaryContainer">@color/m3_tertiary_container_dark</item>
+        <item name="colorOnTertiaryContainer">@color/m3_on_tertiary_container_dark</item>
+        <item name="colorError">@color/m3_error_dark</item>
+        <item name="colorOnError">@color/m3_on_error_dark</item>
+        <item name="colorErrorContainer">@color/m3_error_container_dark</item>
+        <item name="colorOnErrorContainer">@color/m3_on_error_container_dark</item>
+        <item name="android:colorBackground">@color/m3_background_dark</item>
+        <item name="colorOnBackground">@color/m3_on_background_dark</item>
+        <item name="colorSurface">@color/m3_surface_dark</item>
+        <item name="colorOnSurface">@color/m3_on_surface_dark</item>
+        <item name="colorSurfaceVariant">@color/m3_surface_variant_dark</item>
+        <item name="colorOnSurfaceVariant">@color/m3_on_surface_variant_dark</item>
+        <item name="colorOutline">@color/m3_outline_dark</item>
+        <item name="colorOutlineVariant">@color/m3_outline_variant_dark</item>
+        <item name="colorSurfaceInverse">@color/m3_inverse_surface_dark</item>
+        <item name="colorOnSurfaceInverse">@color/m3_inverse_on_surface_dark</item>
+        <item name="colorPrimaryInverse">@color/m3_inverse_primary_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:navigationBarColor">?attr/colorSurfaceContainer</item>
 
-        <item name="separator_color">@color/dark_separator_color</item>
-        <item name="contrast_background_color">@color/dark_contrast_background_color</item>
+        <!-- AppCompat fallbacks -->
+        <item name="windowBackground">@color/m3_background_dark</item>
+        <item name="colorAccent">?attr/colorPrimary</item>
+
+        <!-- Custom Attributes Mapping -->
+        <item name="actionColor">?attr/colorOnPrimary</item>
+        <item name="toolbarSearchColor">?attr/colorOnPrimary</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
+        <item name="separator_color">?attr/colorOutlineVariant</item>
+        <item name="contrast_background_color">@color/m3_surface_container_highest_dark</item>
+        <item name="card_item_background_color">@color/m3_surface_container_low_dark</item>
+        <item name="card_item_contrast_color">?attr/colorOnSurface</item>
+        <item name="border_color">?attr/colorOutline</item>
+
+        <!-- Styles for components -->
+        <item name="floatingActionButtonStyle">@style/App.FloatingActionButton</item>
+        <item name="materialAlertDialogTheme">@style/App.MaterialAlertDialog.Dark</item>
+
+        <!-- Existing Drawables (Review and Update for M3) -->
         <item name="checked_selector">@drawable/selector_checked_dark</item>
         <item name="focused_selector">@drawable/selector_focused_dark</item>
         <item name="toolbar_shadow">@drawable/toolbar_shadow_dark</item>
         <item name="selector">@drawable/selector_dark</item>
-        <item name="colorControlHighlight">@color/dark_ripple_color</item>
         <item name="progress_horizontal_drawable">@drawable/progress_youtube_horizontal_dark</item>
-        <item name="card_item_background_color">@color/dark_card_item_background_color</item>
-        <item name="card_item_contrast_color">@color/dark_card_item_contrast_color</item>
-        <item name="border_color">@color/dark_border_color</item>
         <item name="dashed_border">@drawable/dashed_border_dark</item>
     </style>
-    <style name="Base.DarkTheme" parent="Base.V21.DarkTheme" />
-    <style name="DarkTheme" parent="Base.DarkTheme"/>
 
     <!-- Black Theme -->
-    <style name="Base.V21.BlackTheme" parent="DarkTheme">
-        <item name="android:windowBackground">@color/black_background_color</item>
-        <item name="windowBackground">@color/black_background_color</item>
+    <style name="BlackTheme" parent="DarkTheme"> <!-- Inherits from M3 Dark Theme -->
+        <item name="android:colorBackground">@color/m3_surface_black</item>
+        <item name="colorSurface">@color/m3_surface_black</item>
+        <item name="windowBackground">@color/m3_surface_black</item> <!-- For AppCompat -->
 
-        <item name="separator_color">@color/black_separator_color</item>
-        <item name="contrast_background_color">@color/black_contrast_background_color</item>
+        <!-- Override specific custom attributes for true black if needed -->
+        <item name="contrast_background_color">@color/m3_surface_container_low_dark</item> <!-- A very dark gray -->
+        <item name="card_item_background_color">@color/m3_surface_black</item> <!-- Cards are also black -->
+        <item name="card_item_contrast_color">@color/m3_on_surface_dark</item> <!-- Text on black surface -->
 
-        <item name="card_item_background_color">@color/black_card_item_background_color</item>
-        <item name="card_item_contrast_color">@color/black_card_item_contrast_color</item>
-        <item name="border_color">@color/black_border_color</item>
-        <item name="dashed_border">@drawable/dashed_border_black</item>
-    </style>
-    <style name="Base.BlackTheme" parent="Base.V21.BlackTheme" />
-    <style name="BlackTheme" parent="Base.BlackTheme"/>
-
-    <!-- Dialogs -->
-    <style name="LightDialogTheme" parent="Theme.AppCompat.DayNight.Dialog">
-        <item name="colorPrimary">@color/light_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/light_youtube_primary_color</item>
-        <item name="colorAccent">@color/light_youtube_accent_color</item>
-        <item name="android:windowBackground">@color/light_dialog_background_color</item>
-        <item name="windowBackground">@color/light_dialog_background_color</item>
+        <!-- Other dark theme attributes are inherited, including drawables.
+             If specific black drawables are needed, override them here. e.g.
+             <item name="dashed_border">@drawable/dashed_border_black</item>
+        -->
     </style>
 
-    <style name="DarkDialogTheme" parent="Theme.AppCompat.DayNight.Dialog">
-        <item name="colorPrimary">@color/dark_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/dark_youtube_primary_color</item>
-        <item name="colorAccent">@color/dark_youtube_accent_color</item>
-        <item name="android:windowBackground">@color/dark_dialog_background_color</item>
-        <item name="windowBackground">@color/dark_dialog_background_color</item>
+    <!-- Component Styles -->
+    <style name="App.FloatingActionButton" parent="Widget.Material3.FloatingActionButton.Primary">
+        <!-- Example: customize if needed. By default, uses M3 theme colors.
+        <item name="containerColor">?attr/colorPrimaryContainer</item>
+        <item name="contentColor">?attr/colorOnPrimaryContainer</item>
+        -->
     </style>
 
-    <style name="LightDialogMinWidthTheme" parent="Theme.AppCompat.DayNight.Dialog.MinWidth">
-        <item name="colorPrimary">@color/light_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/light_youtube_primary_color</item>
-        <item name="colorAccent">@color/light_youtube_accent_color</item>
-        <item name="android:windowBackground">@color/light_dialog_background_color</item>
-        <item name="windowBackground">@color/light_dialog_background_color</item>
+    <!-- Dialog Themes -->
+    <style name="App.MaterialAlertDialog.Light" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorPrimary">@color/m3_primary_light</item>
+        <item name="colorSecondary">@color/m3_secondary_light</item>
+        <item name="colorSurface">@color/m3_surface_container_high_light</item> <!-- Dialog surface -->
+        <item name="colorOnSurface">@color/m3_on_surface_light</item>
+        <item name="alertDialogStyle">@style/MaterialAlertDialog.App.Light</item>
+    </style>
+    <style name="MaterialAlertDialog.App.Light" parent="MaterialAlertDialog.Material3">
+        <item name="shapeAppearance">@style/ShapeAppearance.Material3.Corner.ExtraLarge</item>
+        <item name="backgroundTint">?attr/colorSurfaceContainerHigh</item>
     </style>
 
-    <style name="DarkDialogMinWidthTheme" parent="Theme.AppCompat.DayNight.Dialog.MinWidth">
-        <item name="colorPrimary">@color/dark_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/dark_youtube_primary_color</item>
-        <item name="colorAccent">@color/dark_youtube_accent_color</item>
-        <item name="android:windowBackground">@color/dark_dialog_background_color</item>
-        <item name="windowBackground">@color/dark_dialog_background_color</item>
+    <style name="App.MaterialAlertDialog.Dark" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorPrimary">@color/m3_primary_dark</item>
+        <item name="colorSecondary">@color/m3_secondary_dark</item>
+        <item name="colorSurface">@color/m3_surface_container_high_dark</item> <!-- Dialog surface -->
+        <item name="colorOnSurface">@color/m3_on_surface_dark</item>
+        <item name="alertDialogStyle">@style/MaterialAlertDialog.App.Dark</item>
+    </style>
+     <style name="MaterialAlertDialog.App.Dark" parent="MaterialAlertDialog.Material3">
+        <item name="shapeAppearance">@style/ShapeAppearance.Material3.Corner.ExtraLarge</item>
+        <item name="backgroundTint">?attr/colorSurfaceContainerHigh</item>
     </style>
 
-    <!-- Settings -->
+    <!-- Retain existing dialog theme names by parenting them -->
+    <style name="LightDialogTheme" parent="App.MaterialAlertDialog.Light"/>
+    <style name="DarkDialogTheme" parent="App.MaterialAlertDialog.Dark"/>
+    <style name="LightDialogMinWidthTheme" parent="App.MaterialAlertDialog.Light"/> <!-- M3 Dialogs handle min width well -->
+    <style name="DarkDialogMinWidthTheme" parent="App.MaterialAlertDialog.Dark"/>
+
+    <!-- Settings Themes -->
+    <!-- For preferences, M3 components within preferences (like SwitchPreferenceCompat)
+         will typically use colorControlActivated (mapped to ?attr/colorPrimary)
+         and other theme colors automatically.
+         If 'settings_accent_color' was very specific, map it to colorPrimary or colorSecondary here.
+    -->
     <style name="LightSettingsTheme" parent="LightTheme">
-        <item name="colorAccent">@color/light_settings_accent_color</item>
+        <!-- If settings had a truly distinct accent, override colorPrimary or colorSecondary -->
+        <!-- <item name="colorPrimary">@color/your_specific_m3_settings_accent_light</item> -->
     </style>
 
     <style name="DarkSettingsTheme" parent="DarkTheme">
-        <item name="colorAccent">@color/dark_settings_accent_color</item>
+        <!-- <item name="colorPrimary">@color/your_specific_m3_settings_accent_dark</item> -->
     </style>
 
     <style name="BlackSettingsTheme" parent="BlackTheme">
-        <item name="colorAccent">@color/black_settings_accent_color</item>
+        <!-- <item name="colorPrimary">@color/your_specific_m3_settings_accent_black</item> -->
     </style>
 
-    <!-- Router Activity -->
-    <style name="Base.RouterActivityThemeLight" parent="LightTheme">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:colorBackgroundCacheHint">@null</item>
+    <!-- Router Activity Themes -->
+    <style name="RouterActivityThemeLight" parent="LightTheme">
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowAnimationStyle">@null</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-    </style>
-
-    <style name="RouterActivityThemeLight" parent="Base.RouterActivityThemeLight" />
-
-    <style name="Base.RouterActivityThemeDark" parent="DarkTheme">
-        <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
-        <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@null</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item> <!-- Or specific color -->
     </style>
 
-    <style name="RouterActivityThemeDark" parent="Base.RouterActivityThemeDark" />
-
+    <style name="RouterActivityThemeDark" parent="DarkTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:statusBarColor">@android:color/transparent</item> <!-- Or specific color -->
+    </style>
 </resources>
