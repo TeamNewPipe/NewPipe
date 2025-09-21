@@ -1,6 +1,5 @@
 package org.schabi.newpipe.settings;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,7 +18,6 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity;
 import org.schabi.newpipe.error.ErrorUtil;
-import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.List;
 import java.util.Vector;
@@ -52,10 +49,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
  */
 
 public class SelectFeedGroupFragment extends DialogFragment {
-
-    private OnSelectedListener onSelectedListener = null;
-    private OnCancelListener onCancelListener = null;
-
+    private OnSelectedListener onSelectedListener;
     private ProgressBar progressBar;
     private TextView emptyView;
     private RecyclerView recyclerView;
@@ -66,19 +60,9 @@ public class SelectFeedGroupFragment extends DialogFragment {
         onSelectedListener = listener;
     }
 
-    public void setOnCancelListener(final OnCancelListener listener) {
-        onCancelListener = listener;
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // Init
     //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    public void onCreate(@Nullable final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setStyle(STYLE_NO_TITLE, ThemeHelper.getMinWidthDialogTheme(requireContext()));
-    }
 
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container,
@@ -108,14 +92,6 @@ public class SelectFeedGroupFragment extends DialogFragment {
     /*//////////////////////////////////////////////////////////////////////////
     // Handle actions
     //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    public void onCancel(@NonNull final DialogInterface dialogInterface) {
-        super.onCancel(dialogInterface);
-        if (onCancelListener != null) {
-            onCancelListener.onCancel();
-        }
-    }
 
     private void clickedItem(final int position) {
         if (onSelectedListener != null) {

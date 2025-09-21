@@ -10,7 +10,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.compose.ui.platform.ComposeView;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,7 +21,6 @@ import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
 import org.schabi.newpipe.ui.emptystate.EmptyStateSpec;
 import org.schabi.newpipe.ui.emptystate.EmptyStateUtil;
-import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.image.CoilHelper;
 
 import java.util.List;
@@ -76,12 +74,6 @@ public class SelectChannelFragment extends DialogFragment {
     /*//////////////////////////////////////////////////////////////////////////
     // Init
     //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    public void onCreate(@Nullable final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setStyle(STYLE_NO_TITLE, ThemeHelper.getMinWidthDialogTheme(requireContext()));
-    }
 
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container,

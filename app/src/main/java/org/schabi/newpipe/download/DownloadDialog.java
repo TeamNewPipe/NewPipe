@@ -70,7 +70,6 @@ import org.schabi.newpipe.util.SecondaryStreamHelper;
 import org.schabi.newpipe.util.SimpleOnSeekBarChangeListener;
 import org.schabi.newpipe.util.StreamItemAdapter;
 import org.schabi.newpipe.util.StreamItemAdapter.StreamInfoWrapper;
-import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.File;
 import java.io.IOException;
@@ -212,7 +211,6 @@ public class DownloadDialog extends DialogFragment
         // dialog is being dismissed in onViewCreated()
         context = getContext();
 
-        setStyle(STYLE_NO_TITLE, ThemeHelper.getDialogTheme(context));
         Bridge.restoreInstanceState(this, savedInstanceState);
 
         this.audioTrackAdapter = new AudioTrackAdapter(wrappedAudioTracks);

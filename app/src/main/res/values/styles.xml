@@ -41,26 +41,21 @@
         <item name="colorPrimaryInverse">@color/m3_inverse_primary_light</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar">true</item>
-        <item name="android:statusBarColor">?attr/colorSurface</item> <!-- Or colorPrimary, colorSurfaceContainer etc. -->
-        <item name="android:navigationBarColor">?attr/colorSurfaceContainer</item> <!-- M3 standard -->
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:navigationBarColor">?attr/colorSurfaceContainer</item>
 
-        <!-- AppCompat fallbacks if needed, M3 attributes are preferred -->
         <item name="windowBackground">@color/m3_background_light</item> <!-- For AppCompat -->
-        <item name="colorAccent">?attr/colorPrimary</item> <!-- Deprecated, map to primary or secondary -->
+        <item name="colorAccent">?attr/colorPrimary</item>
+        <item name="alertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog</item>
 
-        <!-- Custom Attributes Mapping -->
-        <item name="actionColor">?attr/colorOnPrimary</item> <!-- Assuming toolbar uses colorPrimary -->
-        <item name="toolbarSearchColor">?attr/colorOnPrimary</item> <!-- Assuming toolbar uses colorPrimary -->
+        <item name="actionColor">?attr/colorOnPrimary</item>
+        <item name="toolbarSearchColor">?attr/colorOnPrimary</item>
         <item name="colorControlActivated">?attr/colorPrimary</item>
         <item name="separator_color">?attr/colorOutlineVariant</item>
         <item name="contrast_background_color">@color/m3_surface_container_highest_light</item>
         <item name="card_item_background_color">@color/m3_surface_container_low_light</item>
-        <item name="card_item_contrast_color">?attr/colorOnSurface</item> <!-- Text on surfaceContainerLow -->
+        <item name="card_item_contrast_color">?attr/colorOnSurface</item>
         <item name="border_color">?attr/colorOutline</item>
-
-        <!-- Styles for components -->
-        <item name="floatingActionButtonStyle">@style/App.FloatingActionButton</item>
-        <item name="materialAlertDialogTheme">@style/App.MaterialAlertDialog.Light</item>
 
         <!-- Existing Drawables (Review and Update for M3) -->
         <item name="checked_selector">@drawable/selector_checked_light</item>
@@ -104,11 +99,10 @@
         <item name="android:statusBarColor">?attr/colorSurface</item>
         <item name="android:navigationBarColor">?attr/colorSurfaceContainer</item>
 
-        <!-- AppCompat fallbacks -->
         <item name="windowBackground">@color/m3_background_dark</item>
         <item name="colorAccent">?attr/colorPrimary</item>
+        <item name="alertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog</item>
 
-        <!-- Custom Attributes Mapping -->
         <item name="actionColor">?attr/colorOnPrimary</item>
         <item name="toolbarSearchColor">?attr/colorOnPrimary</item>
         <item name="colorControlActivated">?attr/colorPrimary</item>
@@ -117,10 +111,6 @@
         <item name="card_item_background_color">@color/m3_surface_container_low_dark</item>
         <item name="card_item_contrast_color">?attr/colorOnSurface</item>
         <item name="border_color">?attr/colorOutline</item>
-
-        <!-- Styles for components -->
-        <item name="floatingActionButtonStyle">@style/App.FloatingActionButton</item>
-        <item name="materialAlertDialogTheme">@style/App.MaterialAlertDialog.Dark</item>
 
         <!-- Existing Drawables (Review and Update for M3) -->
         <item name="checked_selector">@drawable/selector_checked_dark</item>
