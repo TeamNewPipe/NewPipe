@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Opening Theme -->
     <style name="OpeningTheme" parent="Theme.Material3.DayNight.NoActionBar">
@@ -39,10 +39,6 @@
         <item name="colorSurfaceInverse">@color/m3_inverse_surface_light</item>
         <item name="colorOnSurfaceInverse">@color/m3_inverse_on_surface_light</item>
         <item name="colorPrimaryInverse">@color/m3_inverse_primary_light</item>
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:windowLightNavigationBar">true</item>
-        <item name="android:statusBarColor">?attr/colorSurface</item>
-        <item name="android:navigationBarColor">?attr/colorSurfaceContainer</item>
 
         <item name="windowBackground">@color/m3_background_light</item> <!-- For AppCompat -->
         <item name="colorAccent">?attr/colorPrimary</item>
@@ -64,6 +60,13 @@
         <item name="selector">@drawable/selector_light</item>
         <item name="progress_horizontal_drawable">@drawable/progress_youtube_horizontal_light</item>
         <item name="dashed_border">@drawable/dashed_border_light</item>
+
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:navigationBarColor">?attr/colorSurfaceContainer</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="29">false</item>
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
     </style>
 
     <style name="DarkTheme" parent="Theme.Material3.Dark.NoActionBar">
@@ -94,10 +97,6 @@
         <item name="colorSurfaceInverse">@color/m3_inverse_surface_dark</item>
         <item name="colorOnSurfaceInverse">@color/m3_inverse_on_surface_dark</item>
         <item name="colorPrimaryInverse">@color/m3_inverse_primary_dark</item>
-        <item name="android:windowLightStatusBar">false</item>
-        <item name="android:windowLightNavigationBar">false</item>
-        <item name="android:statusBarColor">?attr/colorSurface</item>
-        <item name="android:navigationBarColor">?attr/colorSurfaceContainer</item>
 
         <item name="windowBackground">@color/m3_background_dark</item>
         <item name="colorAccent">?attr/colorPrimary</item>
@@ -119,6 +118,13 @@
         <item name="selector">@drawable/selector_dark</item>
         <item name="progress_horizontal_drawable">@drawable/progress_youtube_horizontal_dark</item>
         <item name="dashed_border">@drawable/dashed_border_dark</item>
+
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:navigationBarColor">?attr/colorSurfaceContainer</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">false</item>
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="29">false</item>
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
     </style>
 
     <!-- Black Theme -->
