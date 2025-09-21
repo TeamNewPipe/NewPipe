@@ -116,7 +116,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/sub_channel_title_view"
                     tools:text="123,141,411 subscribers" />
 
-                <androidx.appcompat.widget.AppCompatButton
+                <Button
                     android:id="@+id/channel_subscribe_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
