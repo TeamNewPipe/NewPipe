@@ -127,21 +127,14 @@
         <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
     </style>
 
-    <!-- Black Theme -->
-    <style name="BlackTheme" parent="DarkTheme"> <!-- Inherits from M3 Dark Theme -->
+    <style name="BlackTheme" parent="DarkTheme">
         <item name="android:colorBackground">@color/m3_surface_black</item>
         <item name="colorSurface">@color/m3_surface_black</item>
-        <item name="windowBackground">@color/m3_surface_black</item> <!-- For AppCompat -->
+        <item name="windowBackground">@color/m3_surface_black</item>
 
-        <!-- Override specific custom attributes for true black if needed -->
-        <item name="contrast_background_color">@color/m3_surface_container_low_dark</item> <!-- A very dark gray -->
-        <item name="card_item_background_color">@color/m3_surface_black</item> <!-- Cards are also black -->
-        <item name="card_item_contrast_color">@color/m3_on_surface_dark</item> <!-- Text on black surface -->
-
-        <!-- Other dark theme attributes are inherited, including drawables.
-             If specific black drawables are needed, override them here. e.g.
-             <item name="dashed_border">@drawable/dashed_border_black</item>
-        -->
+        <item name="contrast_background_color">@color/m3_surface_container_low_dark</item>
+        <item name="card_item_background_color">@color/m3_surface_black</item>
+        <item name="card_item_contrast_color">@color/m3_on_surface_dark</item>
     </style>
 
     <!-- Component Styles -->
@@ -175,31 +168,6 @@
      <style name="MaterialAlertDialog.App.Dark" parent="MaterialAlertDialog.Material3">
         <item name="shapeAppearance">@style/ShapeAppearance.Material3.Corner.ExtraLarge</item>
         <item name="backgroundTint">?attr/colorSurfaceContainerHigh</item>
-    </style>
-
-    <!-- Retain existing dialog theme names by parenting them -->
-    <style name="LightDialogTheme" parent="App.MaterialAlertDialog.Light"/>
-    <style name="DarkDialogTheme" parent="App.MaterialAlertDialog.Dark"/>
-    <style name="LightDialogMinWidthTheme" parent="App.MaterialAlertDialog.Light"/> <!-- M3 Dialogs handle min width well -->
-    <style name="DarkDialogMinWidthTheme" parent="App.MaterialAlertDialog.Dark"/>
-
-    <!-- Settings Themes -->
-    <!-- For preferences, M3 components within preferences (like SwitchPreferenceCompat)
-         will typically use colorControlActivated (mapped to ?attr/colorPrimary)
-         and other theme colors automatically.
-         If 'settings_accent_color' was very specific, map it to colorPrimary or colorSecondary here.
-    -->
-    <style name="LightSettingsTheme" parent="LightTheme">
-        <!-- If settings had a truly distinct accent, override colorPrimary or colorSecondary -->
-        <!-- <item name="colorPrimary">@color/your_specific_m3_settings_accent_light</item> -->
-    </style>
-
-    <style name="DarkSettingsTheme" parent="DarkTheme">
-        <!-- <item name="colorPrimary">@color/your_specific_m3_settings_accent_dark</item> -->
-    </style>
-
-    <style name="BlackSettingsTheme" parent="BlackTheme">
-        <!-- <item name="colorPrimary">@color/your_specific_m3_settings_accent_black</item> -->
     </style>
 
     <!-- Router Activity Themes -->

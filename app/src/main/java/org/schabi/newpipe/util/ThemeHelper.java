@@ -158,35 +158,33 @@ public final class ThemeHelper {
     }
 
     @StyleRes
-    public static int getSettingsThemeStyle(final Context context) {
+    public static int getTheme(@NonNull final Context context) {
         final Resources res = context.getResources();
         final String lightTheme = res.getString(R.string.light_theme_key);
         final String blackTheme = res.getString(R.string.black_theme_key);
         final String automaticDeviceTheme = res.getString(R.string.auto_device_theme_key);
-
-
         final String selectedTheme = getSelectedThemeKey(context);
 
         if (selectedTheme.equals(lightTheme)) {
-            return R.style.LightSettingsTheme;
+            return R.style.LightTheme;
         } else if (selectedTheme.equals(blackTheme)) {
-            return R.style.BlackSettingsTheme;
+            return R.style.BlackTheme;
         } else if (selectedTheme.equals(automaticDeviceTheme)) {
             if (isDeviceDarkThemeEnabled(context)) {
                 // use the dark theme variant preferred by the user
                 final String selectedNightTheme = getSelectedNightThemeKey(context);
                 if (selectedNightTheme.equals(blackTheme)) {
-                    return R.style.BlackSettingsTheme;
+                    return R.style.BlackTheme;
                 } else {
-                    return R.style.DarkSettingsTheme;
+                    return R.style.DarkTheme;
                 }
             } else {
                 // there is only one day theme
-                return R.style.LightSettingsTheme;
+                return R.style.LightTheme;
             }
         } else {
             // default to dark theme
-            return R.style.DarkSettingsTheme;
+            return R.style.DarkTheme;
         }
     }
 
