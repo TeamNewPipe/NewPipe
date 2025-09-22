@@ -805,4 +805,59 @@
 \n%2$s</string>
     <string name="share_playlist">شارِك قائمة التشغيل</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
+    <!-- MessageFormat-style strings -->
+    <string name="subscribers">
+        {count, plural,
+        =-1 {عدد المشتركين غير متاح}
+        =0 {ليس هناك مشترِكون}
+        =1 {مٌشارِك واحد}
+        =2 {مُشارِكان}
+        few {{formatted_count} مشارِكين}
+        many {{formatted_count} مشارِكون}
+        other {{formatted_count} مشارك}
+        }
+    </string>
+    <string name="views">
+        {count, plural,
+        =0 {دون مشاهدات}
+        =1 {مشاهدة واحدة}
+        =2 {مُشاهَدتان}
+        few {{formatted_count} مُشاهَدات}
+        many {{formatted_count} مُشاهَدةً}
+        other {{formatted_count} مُشاهَدة}
+        }
+    </string>
+    <string name="watching">
+        {count, plural,
+        =0 {لا توجد مشاهدة}
+        =1 {مُشاهِد واحد}
+        =2 {مُشاهِدان}
+        few {{formatted_count} مُشاهِدين}
+        many {{formatted_count} مُشاهِدًا}
+        other {{formatted_count} مُشاهِد}
+        }
+    </string>
+    <string name="listening">
+        {count, plural,
+        =0 {لا أحد يستمع}
+        =1 {مُستَمِع واحد}
+        =2 {مُستمِعان}
+        few {{formatted_count} مُستَمِعين}
+        many {{formatted_count} مُستَمِعًا}
+        other {{formatted_count} مستمع}
+        }
+    </string>
+    <string name="videos">
+        {count, plural,
+        =-3 {+100 فيديو}
+        =-2 {∞ فيديو}
+        =-1 {Video count unavailable}
+        =0 {لاتوجد فيديوهات}
+        =1 {فيديو واحد}
+        =2 {فيديوهاتان}
+        few {{formatted_count} فيديوهات}
+        many {{formatted_count} فيديوهات}
+        other {{formatted_count} فيديو}
+        }
+    </string>
 </resources>

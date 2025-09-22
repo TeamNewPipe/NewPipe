@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">Prema na lupa para comezar.</string>
+    <string name="upload_date_text">Publicado o día %1$s</string>
     <string name="no_player_found">Non foi encontrado ningún reprodutor. Quere instalar o VLC\?</string>
     <string name="no_player_found_toast">Non se atopou ningún reprodutor de transmisión (podes instalar VLC para reproducilo).</string>
     <string name="install">Instalar</string>
@@ -163,6 +164,7 @@
     <string name="create">Crear</string>
     <string name="delete">Eliminar</string>
     <string name="checksum">Suma de comprobación</string>
+    <string name="dismiss">Descartar</string>
     <string name="rename">Renomear</string>
     <string name="ok">OK</string>
     <string name="msg_name">Nome do ficheiro</string>
@@ -641,6 +643,7 @@
     <string name="streams_notification_channel_description">Notificacións sobre novas emisións para subscricións</string>
     <string name="streams_notifications_interval_title">Frecuencia de verificación</string>
     <string name="streams_notifications_network_title">Conexión á rede necesaria</string>
+    <string name="enumeration_comma">,</string>
     <string name="toggle_all">Alternar todo</string>
     <plurals name="new_streams">
         <item quantity="one">%s nova emisión</item>
@@ -743,6 +746,10 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="show_more">Amosar máis</string>
+    <plurals name="replies">
+        <item quantity="one">%s resposta</item>
+        <item quantity="other">%s respostas</item>
+    </plurals>
     <string name="show_less">Amosar menos</string>
     <string name="notification_actions_summary_android13">Edite cada acción de notificación premendo nela. As primeiras tres accións (reproducir/pausar, anterior e seguinte) están definidas polo sistema e non é posíbel personalizalas.</string>
     <string name="metadata_subchannel_avatars">Avatar da subcanle</string>
@@ -781,4 +788,44 @@
     <string name="channel_tab_tracks">Pistas</string>
     <string name="feed_fetch_channel_tabs_summary">Lapelas a recuperar ao actualizar o feed. Esta opción non ten efecto se a canle se actualiza no modo rápido.</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">Esta solución alternativa libera os códecs de video e os re-instancia cando muda a máscara, no canto de configurar a máscara directamente no códec. ExoPlayer xa emprega esta configuración nalgúns dispositivos con este problema e só afecta a Android 6 e versións posteriores.\n\nActivar esta opción pode minimizar erros de reprodución ao mudar o reprodutor de video actual ou mudar ao modo de pantalla completa</string>
+    <!-- MessageFormat-style strings -->
+    <string name="subscribers">
+        {count, plural,
+        =-1 {Non hai dispoñible conta de subscritores}
+        =0 {Ningún subscrito}
+        =1 {1 subscrito}
+        other {{formatted_count} subscritos}
+        }
+    </string>
+    <string name="views">
+        {count, plural,
+        =0 {Ningunha visualización}
+        =1 {1 visualización}
+        other {{formatted_count} visualizacións}
+        }
+    </string>
+    <string name="watching">
+        {count, plural,
+        =0 {Ninguén está vendo}
+        =1 {1 vendo}
+        other {{formatted_count} vendoes}
+        }
+    </string>
+    <string name="listening">
+        {count, plural,
+        =0 {Ninguén está escoitando}
+        =1 {1 oínte}
+        other {{formatted_count} oíntes}
+        }
+    </string>
+    <string name="videos">
+        {count, plural,
+        =-3 {+100 vídeos}
+        =-2 {∞ videos}
+        =-1 {Video count unavailable}
+        =0 {Ningún vídeo}
+        =1 {1 video}
+        other {{formatted_count} videos}
+        }
+    </string>
 </resources>

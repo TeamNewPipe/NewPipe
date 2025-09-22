@@ -839,4 +839,59 @@
     <string name="search_with_service_name_and_filter">البحث %1$s (%2$s)</string>
     <string name="migration_info_6_7_title">تمت إزالة صفحة أفضل 50 من SoundCloud</string>
     <string name="migration_info_6_7_message">أوقفت SoundCloud صفحة أفضل 50 الأصلية. تمت إزالة علامة التبويب المقابلة من صفحتك الرئيسية.</string>
+    <!-- MessageFormat-style strings -->
+    <string name="subscribers">
+        {count, plural,
+        =-1 {عدد المشتركين غير متاح}
+        =0 {ليس هناك مشترِكون}
+        =1 {{formatted_count} مشارك}
+        =2 {{formatted_count} مشاركين}
+        few {{formatted_count} مشترك}
+        many {{formatted_count} مشترك}
+        other {{formatted_count} مشترك}
+        }
+    </string>
+    <string name="views">
+        {count, plural,
+        =0 {دون مشاهدات}
+        =1 {{formatted_count} مشارك}
+        =2 {{formatted_count} مشاركين}
+        few {{formatted_count} مشترك}
+        many {{formatted_count} مشترك}
+        other {{formatted_count} مشترك}
+        }
+    </string>
+    <string name="watching">
+        {count, plural,
+        =0 {لا توجد مشاهدة}
+        =1 {{formatted_count} مشاهدة}
+        =2 {{formatted_count} مشاهدة}
+        few {{formatted_count} مشاهدات}
+        many {{formatted_count} مشاهدات}
+        other {{formatted_count} مشاهدات}
+        }
+    </string>
+    <string name="listening">
+        {count, plural,
+        =0 {لا أحد يستمع}
+        =1 {{formatted_count} الاستماع}
+        =2 {{formatted_count} مستمعين}
+        few {{formatted_count} مستمعين}
+        many {{formatted_count} مستمعين}
+        other {{formatted_count} مستمعين}
+        }
+    </string>
+    <string name="videos">
+        {count, plural,
+        =-3 {+100 فيديو}
+        =-2 {∞ فيديو}
+        =-1 {Video count unavailable}
+        =0 {لاتوجد فيديوهات}
+        =1 {{formatted_count} أشرطة فيديو}
+        =2 {{formatted_count} أشرطة فيديو}
+        few {{formatted_count} أشرطة فيديو}
+        many {{formatted_count} أشرطة فيديو}
+        other {{formatted_count} أشرطة فيديو}
+        }
+    </string>
 </resources>

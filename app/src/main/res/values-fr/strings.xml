@@ -18,6 +18,7 @@
     <string name="share_dialog_title">Partager avec</string>
     <string name="show_play_with_kodi_summary">Afficher une option pour lire une vidéo via Kodi</string>
     <string name="show_play_with_kodi_title">Afficher l’option « Lire avec Kodi »</string>
+    <string name="upload_date_text">Publiée le %1$s</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Format audio par défaut</string>
     <string name="download_dialog_title">Télécharger</string>
@@ -201,6 +202,7 @@
     <string name="controls_add_to_playlist_title">Ajouter à</string>
     <string name="detail_drag_description">Glisser pour réordonner</string>
     <string name="create">Créer</string>
+    <string name="dismiss">Rejeter</string>
     <string name="rename">Renommer</string>
     <string name="title_last_played">Dernière lecture</string>
     <string name="title_most_played">Vidéos les plus vues</string>
@@ -668,6 +670,7 @@
     <string name="any_network">N\'importe quel réseau</string>
     <string name="streams_notifications_interval_title">Fréquence de vérification</string>
     <string name="enable_streams_notifications_summary">Notifications pour de nouveaux flux des abonnements</string>
+    <string name="enumeration_comma">,</string>
     <string name="toggle_all">Tout basculer</string>
     <string name="percent">Pourcent</string>
     <string name="semitone">Demi-ton</string>
@@ -780,6 +783,11 @@
     <string name="metadata_uploader_avatars">Avatars du téléverseur</string>
     <string name="image_quality_summary">Sélectionnez la qualité des images et si les images doivent être chargées, pour réduire l\'utilisation de la mémoire et de données. Les modifications vident à la fois le cache des images en mémoire et sur le disque — %s</string>
     <string name="play">Lire</string>
+    <plurals name="replies">
+        <item quantity="one">%s réponse</item>
+        <item quantity="many">%s réponses</item>
+        <item quantity="other">%s réponses</item>
+    </plurals>
     <string name="notification_actions_summary_android13">Modifiez chaque action de notification ci-dessous en appuyant dessus. Les trois premières actions (lire/pause, précédent, suivant) sont définies par le système et ne peuvent pas être personnalisées.</string>
     <string name="show_more">Voir plus</string>
     <string name="show_less">Afficher moins</string>
@@ -806,4 +814,49 @@
     <string name="channel_tab_likes">Likes</string>
     <string name="migration_info_6_7_title">Page SoundCloud Top 50 supprimée</string>
     <string name="migration_info_6_7_message">SoundCloud a abandonné le classement original du Top 50. L\'onglet correspondant a été supprimé de votre page d\'accueil.</string>
+    <!-- MessageFormat-style strings -->
+    <string name="subscribers">
+        {count, plural,
+        =-1 {Compteur du nombre d’abonnés indisponible}
+        =0 {Aucun abonné}
+        =1 {1 abonné}
+        many {{formatted_count} abonnés}
+        other {{formatted_count} abonnés}
+        }
+    </string>
+    <string name="views">
+        {count, plural,
+        =0 {Aucune vue}
+        =1 {1 vue}
+        many {{formatted_count} vues}
+        other {{formatted_count} vues}
+        }
+    </string>
+    <string name="watching">
+        {count, plural,
+        =0 {Personne ne regarde}
+        =1 {1 spectateur}
+        many {{formatted_count} spectateurs}
+        other {{formatted_count} spectateurs}
+        }
+    </string>
+    <string name="listening">
+        {count, plural,
+        =0 {Personne n’écoute}
+        =1 {1 auditeur}
+        many {{formatted_count} auditeurs}
+        other {{formatted_count} auditeurs}
+        }
+    </string>
+    <string name="videos">
+        {count, plural,
+        =-3 {100+ vidéos}
+        =-2 {∞ vidéos}
+        =-1 {Video count unavailable}
+        =0 {Aucune vidéo}
+        =1 {1 vidéo}
+        other {{formatted_count} vidéos}
+        other {{formatted_count} vidéos}
+        }
+    </string>
 </resources>
