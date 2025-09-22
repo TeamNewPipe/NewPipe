@@ -66,8 +66,6 @@
         <item name="tint">?attr/actionColor</item>
     </style>
 
-    <style name="DarkPopupMenu" parent="ThemeOverlay.Material3.Dark.ActionBar" />
-
     <style name="ToolbarTheme" parent="ThemeOverlay.Material3.Dark.ActionBar">
         <item name="popupTheme">@style/ToolbarPopupTheme</item>
         <item name="android:textColorPrimary">?attr/actionColor</item>
