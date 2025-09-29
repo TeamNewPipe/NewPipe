@@ -1,4 +1,4 @@
-package org.schabi.newpipe.ui.components.common
+package org.schabi.newpipe.error
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
@@ -7,14 +7,12 @@ import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.schabi.newpipe.R
-import org.schabi.newpipe.error.ErrorInfo
-import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
 import java.io.IOException
 import java.net.SocketTimeoutException
 
 @RunWith(AndroidJUnit4::class)
-class CommentSectionErrorTest {
+class ErrorInfoCommentsTest {
     private val context: Context by lazy { ApplicationProvider.getApplicationContext<Context>() }
     // Test 1: Network error on initial load (Resource.Error)
     @Test

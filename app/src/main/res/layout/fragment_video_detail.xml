@@ -214,15 +214,6 @@
                     android:layout_marginTop="@dimen/video_item_detail_error_panel_margin"
                     android:visibility="gone"
                     tools:visibility="gone" />
-                <androidx.compose.ui.platform.ComposeView
-                    android:id="@+id/compose_error_panel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/detail_title_root_layout"
-                    android:layout_marginTop="@dimen/video_item_detail_error_panel_margin"
-                    android:visibility="gone"
-                    />
-
                 <!--HIDING ROOT-->
                 <LinearLayout
                     android:id="@+id/detail_content_root_hiding"
