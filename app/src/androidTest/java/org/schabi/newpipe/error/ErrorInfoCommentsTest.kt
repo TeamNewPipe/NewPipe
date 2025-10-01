@@ -53,7 +53,7 @@ class ErrorInfoCommentsTest {
         )
         Assert.assertEquals(context.getString(R.string.recaptcha_request_toast), errorInfo.getMessage(context))
         Assert.assertEquals(url, errorInfo.recaptchaUrl)
-        Assert.assertTrue(errorInfo.isReportable)
+        Assert.assertFalse(errorInfo.isReportable)
         Assert.assertTrue(errorInfo.isRetryable)
     }
 }
