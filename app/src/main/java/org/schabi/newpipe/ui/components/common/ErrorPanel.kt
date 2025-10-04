@@ -1,6 +1,7 @@
 package org.schabi.newpipe.ui.components.common
 
 import android.content.Intent
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.MaterialTheme
@@ -86,7 +87,8 @@ fun ErrorPanel(
     }
 }
 
-@Preview(showBackground = true, widthDp = 360, heightDp = 640, backgroundColor = 0xffffffff)
+@Preview(name = "Light mode", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun ErrorPanelPreview() {
     AppTheme {
