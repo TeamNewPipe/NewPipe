@@ -38,6 +38,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.IntentCompat;
 import androidx.preference.PreferenceManager;
 
+import java.util.List;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.player.helper.LockManager;
@@ -601,8 +603,14 @@ public class DownloadManagerService extends Service {
             return mManager.getDownloadStatus(serviceId, source, revalidateFile);
         }
 
-        public boolean deleteFinishedMission(int serviceId, String source, boolean deleteFile) {
-            return mManager.deleteFinishedMission(serviceId, source, deleteFile);
+        public List<DownloadManager.DownloadStatusSnapshot> getDownloadStatuses(int serviceId,
+                String source, boolean revalidateFile) {
+            return mManager.getDownloadStatuses(serviceId, source, revalidateFile);
+        }
+
+        public boolean deleteFinishedMission(int serviceId, String source, @Nullable Uri storageUri,
+                long timestamp, boolean deleteFile) {
+            return mManager.deleteFinishedMission(serviceId, source, storageUri, timestamp, deleteFile);
         }
 
     }

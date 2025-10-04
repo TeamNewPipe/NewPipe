@@ -67,8 +67,8 @@ import org.schabi.newpipe.App
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.databinding.FragmentVideoDetailBinding
-import org.schabi.newpipe.download.CompletedDownload
 import org.schabi.newpipe.download.DownloadDialog
+import org.schabi.newpipe.download.DownloadEntry
 import org.schabi.newpipe.download.ui.DownloadStatusHost
 import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.ErrorUtil.Companion.showSnackbar
@@ -288,14 +288,12 @@ class VideoDetailFragment :
                     val composeContext = LocalContext.current
                     DownloadStatusHost(
                         state = uiState,
-                        onChipClick = {
-                            downloadStatusViewModel.onChipClicked(composeContext.applicationContext)
-                        },
+                        onChipClick = { entry -> downloadStatusViewModel.onChipSelected(entry) },
                         onDismissSheet = { downloadStatusViewModel.dismissSheet() },
-                        onOpenFile = { info -> openDownloaded(info) },
-                        onDeleteFile = { info -> deleteDownloadedFile(info) },
-                        onRemoveLink = { info -> removeDownloadLink(info) },
-                        onShowInFolder = { info -> showDownloadedInFolder(info) }
+                        onOpenFile = { entry -> openDownloaded(entry) },
+                        onDeleteFile = { entry -> deleteDownloadedFile(entry) },
+                        onRemoveLink = { entry -> removeDownloadLink(entry) },
+                        onShowInFolder = { entry -> showDownloadedInFolder(entry) }
                     )
                 }
             }
@@ -1578,29 +1576,29 @@ class VideoDetailFragment :
         }
     }
 
-    private fun openDownloaded(info: CompletedDownload) {
-        val uri = info.fileUri
+    private fun openDownloaded(entry: DownloadEntry) {
+        val uri = entry.fileUri
         if (uri == null) {
-            Toast.makeText(requireContext(), R.string.download_open_failed, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), R.string.missing_file, Toast.LENGTH_SHORT).show()
             return
         }
 
         val intent = Intent(Intent.ACTION_VIEW).apply {
-            setDataAndType(uri, info.mimeType ?: "*/*")
+            setDataAndType(uri, entry.mimeType ?: "*/*")
             addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         }
 
         runCatching { startActivity(intent) }
             .onFailure {
                 if (DEBUG) Log.e(TAG, "Failed to open downloaded file", it)
-                Toast.makeText(requireContext(), R.string.download_open_failed, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.missing_file, Toast.LENGTH_SHORT).show()
             }
     }
 
-    private fun showDownloadedInFolder(info: CompletedDownload) {
-        val parent = info.parentUri
+    private fun showDownloadedInFolder(entry: DownloadEntry) {
+        val parent = entry.parentUri
         if (parent == null) {
-            Toast.makeText(requireContext(), R.string.download_folder_open_failed, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), R.string.invalid_directory, Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -1619,37 +1617,29 @@ class VideoDetailFragment :
                 runCatching { startActivity(treeIntent) }
                     .onFailure { throwable ->
                         if (DEBUG) Log.e(TAG, "Failed to open folder", throwable)
-                        Toast.makeText(context, R.string.download_folder_open_failed, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, R.string.invalid_directory, Toast.LENGTH_SHORT).show()
                     }
             }
     }
 
-    private fun deleteDownloadedFile(info: CompletedDownload) {
-        if (!info.fileAvailable) {
-            Toast.makeText(requireContext(), R.string.download_delete_failed, Toast.LENGTH_SHORT).show()
+    private fun deleteDownloadedFile(entry: DownloadEntry) {
+        if (!entry.fileAvailable) {
+            Toast.makeText(requireContext(), R.string.general_error, Toast.LENGTH_SHORT).show()
             return
         }
         val appContext = requireContext().applicationContext
         viewLifecycleOwner.lifecycleScope.launch {
-            val success = downloadStatusViewModel.deleteFile(appContext)
-            val message = if (success) {
-                R.string.download_deleted
-            } else {
-                R.string.download_delete_failed
-            }
+            val success = downloadStatusViewModel.deleteFile(appContext, entry.handle)
+            val message = if (success) R.string.file_deleted else R.string.general_error
             Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun removeDownloadLink(@Suppress("UNUSED_PARAMETER") info: CompletedDownload) {
+    private fun removeDownloadLink(entry: DownloadEntry) {
         val appContext = requireContext().applicationContext
         viewLifecycleOwner.lifecycleScope.launch {
-            val success = downloadStatusViewModel.removeLink(appContext)
-            val message = if (success) {
-                R.string.download_link_removed
-            } else {
-                R.string.download_delete_failed
-            }
+            val success = downloadStatusViewModel.removeLink(appContext, entry.handle)
+            val message = if (success) R.string.entry_deleted else R.string.general_error
             Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
         }
     }

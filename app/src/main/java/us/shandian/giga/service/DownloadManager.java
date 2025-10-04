@@ -1,6 +1,7 @@
 package us.shandian.giga.service;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Handler;
 import android.util.Log;
 
@@ -363,6 +364,30 @@ public class DownloadManager {
         return null;
     }
 
+    @Nullable
+    private FinishedMission getFinishedMission(Uri storageUri) {
+        String uriString = storageUri.toString();
+        for (FinishedMission mission : mMissionsFinished) {
+            if (mission.storage != null && !mission.storage.isInvalid()) {
+                Uri missionUri = mission.storage.getUri();
+                if (missionUri != null && uriString.equals(missionUri.toString())) {
+                    return mission;
+                }
+            }
+        }
+        return null;
+    }
+
+    @Nullable
+    private FinishedMission getFinishedMission(long timestamp) {
+        for (FinishedMission mission : mMissionsFinished) {
+            if (mission.timestamp == timestamp) {
+                return mission;
+            }
+        }
+        return null;
+    }
+
     private boolean isFileAvailable(@NonNull FinishedMission mission) {
         if (mission.storage == null || mission.storage.isInvalid()) {
             return false;
@@ -474,27 +499,56 @@ public class DownloadManager {
     }
 
     DownloadStatusSnapshot getDownloadStatus(int serviceId, String url, boolean revalidateFile) {
+        List<DownloadStatusSnapshot> snapshots = getDownloadStatuses(serviceId, url, revalidateFile);
+        if (snapshots.isEmpty()) {
+            return new DownloadStatusSnapshot(MissionState.None, null, null, false);
+        }
+        return snapshots.get(0);
+    }
+
+    List<DownloadStatusSnapshot> getDownloadStatuses(int serviceId, String url, boolean revalidateFile) {
+        List<DownloadStatusSnapshot> result = new ArrayList<>();
         synchronized (this) {
-            DownloadMission pending = getPendingMission(serviceId, url);
-            if (pending != null) {
-                MissionState state = pending.running
-                        ? MissionState.PendingRunning
-                        : MissionState.Pending;
-                return new DownloadStatusSnapshot(state, pending, null, true);
+            for (DownloadMission mission : mMissionsPending) {
+                if (mission.serviceId == serviceId && Objects.equals(mission.source, url)) {
+                    MissionState state = mission.running
+                            ? MissionState.PendingRunning
+                            : MissionState.Pending;
+                    result.add(new DownloadStatusSnapshot(state, mission, null, true));
+                }
             }
 
-            FinishedMission finished = getFinishedMission(serviceId, url);
-            if (finished != null) {
-                boolean available = !revalidateFile || isFileAvailable(finished);
-                return new DownloadStatusSnapshot(MissionState.Finished, null, finished, available);
+            for (FinishedMission mission : mMissionsFinished) {
+                if (mission.serviceId == serviceId && Objects.equals(mission.source, url)) {
+                    boolean available = !revalidateFile || isFileAvailable(mission);
+                    result.add(new DownloadStatusSnapshot(MissionState.Finished, null, mission, available));
+                }
             }
         }
 
-        return new DownloadStatusSnapshot(MissionState.None, null, null, false);
+        if (result.isEmpty()) {
+            result.add(new DownloadStatusSnapshot(MissionState.None, null, null, false));
+        }
+        return result;
     }
 
+    @Deprecated
     boolean deleteFinishedMission(int serviceId, String url, boolean deleteFile) {
-        FinishedMission mission = getFinishedMission(serviceId, url);
+        return deleteFinishedMission(serviceId, url, null, -1L, deleteFile);
+    }
+
+    boolean deleteFinishedMission(int serviceId, String url, @Nullable Uri storageUri,
+            long timestamp, boolean deleteFile) {
+        FinishedMission mission = null;
+        if (storageUri != null) {
+            mission = getFinishedMission(storageUri);
+        }
+        if (mission == null && timestamp > 0) {
+            mission = getFinishedMission(timestamp);
+        }
+        if (mission == null) {
+            mission = getFinishedMission(serviceId, url);
+        }
         if (mission == null) {
             return false;
         }

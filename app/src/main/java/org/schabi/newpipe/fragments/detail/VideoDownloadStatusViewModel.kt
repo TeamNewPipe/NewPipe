@@ -9,8 +9,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import org.schabi.newpipe.download.CompletedDownload
-import org.schabi.newpipe.download.DownloadStatus
+import org.schabi.newpipe.download.DownloadEntry
+import org.schabi.newpipe.download.DownloadHandle
+import org.schabi.newpipe.download.DownloadStage
 import org.schabi.newpipe.download.DownloadStatusRepository
 
 class VideoDownloadStatusViewModel : ViewModel() {
@@ -44,76 +45,70 @@ class VideoDownloadStatusViewModel : ViewModel() {
 
         observeJob?.cancel()
         observeJob = viewModelScope.launch {
-            DownloadStatusRepository.observe(appContext, serviceId, normalizedUrl).collectLatest { status ->
-                _uiState.update { it.copy(chipState = status.toChipState()) }
-            }
+            DownloadStatusRepository.observe(appContext, serviceId, normalizedUrl)
+                .collectLatest { entries ->
+                    _uiState.update { current ->
+                        val selectedHandle = current.selected?.handle
+                        val newSelected = selectedHandle?.let { handle ->
+                            entries.firstOrNull { it.handle == handle }
+                        }
+                        current.copy(entries = entries, selected = newSelected)
+                    }
+                }
         }
     }
 
-    fun onChipClicked(context: Context) {
-        val url = currentUrl ?: return
-        val serviceId = currentServiceId
-        viewModelScope.launch {
-            val result = runCatching {
-                DownloadStatusRepository.refresh(context.applicationContext, serviceId, url)
-            }
-            result.getOrNull()?.let { status ->
-                _uiState.update {
-                    val chipState = status.toChipState()
-                    it.copy(
-                        chipState = chipState,
-                        isSheetVisible = chipState is DownloadChipState.Downloaded
-                    )
-                }
-            }
-            if (result.isFailure) {
-                _uiState.update { it.copy(isSheetVisible = false) }
-            }
-        }
+    fun onChipSelected(entry: DownloadEntry) {
+        _uiState.update { it.copy(selected = entry) }
     }
 
     fun dismissSheet() {
-        _uiState.update { it.copy(isSheetVisible = false) }
+        _uiState.update { it.copy(selected = null) }
     }
 
-    suspend fun deleteFile(context: Context): Boolean {
-        val url = currentUrl ?: return false
-        val serviceId = currentServiceId
+    suspend fun deleteFile(context: Context, handle: DownloadHandle): Boolean {
         val success = runCatching {
-            DownloadStatusRepository.deleteFile(context.applicationContext, serviceId, url)
+            DownloadStatusRepository.deleteFile(context.applicationContext, handle)
         }.getOrDefault(false)
         if (success) {
-            _uiState.update { it.copy(isSheetVisible = false) }
+            _uiState.update { state ->
+                state.copy(
+                    entries = state.entries.filterNot { it.handle == handle },
+                    selected = null
+                )
+            }
         }
         return success
     }
 
-    suspend fun removeLink(context: Context): Boolean {
-        val url = currentUrl ?: return false
-        val serviceId = currentServiceId
+    suspend fun removeLink(context: Context, handle: DownloadHandle): Boolean {
         val success = runCatching {
-            DownloadStatusRepository.removeLink(context.applicationContext, serviceId, url)
+            DownloadStatusRepository.removeLink(context.applicationContext, handle)
         }.getOrDefault(false)
         if (success) {
-            _uiState.update { it.copy(isSheetVisible = false) }
+            _uiState.update { state ->
+                state.copy(
+                    entries = state.entries.filterNot { it.handle == handle },
+                    selected = null
+                )
+            }
         }
         return success
-    }
-
-    private fun DownloadStatus.toChipState(): DownloadChipState = when (this) {
-        DownloadStatus.None -> DownloadChipState.Hidden
-        is DownloadStatus.InProgress -> DownloadChipState.Downloading
-        is DownloadStatus.Completed -> DownloadChipState.Downloaded(info)
     }
 }
 
 data class DownloadUiState(
-    val chipState: DownloadChipState = DownloadChipState.Hidden,
-    val isSheetVisible: Boolean = false
-)
-
-sealed interface DownloadChipState {
-    data object Hidden : DownloadChipState
-    data object Downloading : DownloadChipState
-    data class Downloaded(val info: CompletedDownload) : DownloadChipState
+    val entries: List<DownloadEntry> = emptyList(),
+    val selected: DownloadEntry? = null
+) {
+    val isSheetVisible: Boolean get() = selected != null
 }
+
+val DownloadEntry.isPending: Boolean
+    get() = when (stage) {
+        DownloadStage.Pending, DownloadStage.Running -> true
+        DownloadStage.Finished -> false
+    }
+
+val DownloadEntry.isRunning: Boolean
+    get() = stage == DownloadStage.Running
