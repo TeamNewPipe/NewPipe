@@ -1,0 +1,13 @@
+Vylepšené
+- Kliknutím na playlist sa zobrazí viac/menej obsahu
+- [PeerTube] Automatické spracovanie odkazov z `subscribeto.me`
+- Spustiť prehrávanie iba jednej položky v histórii
+
+Opravené
+- Viditeľnosť tlačidla RSS
+- Pády pri náhľadoch
+- Pridanie položky bez miniatúry do playlistu 
+- Zatváranie okna sťahovania pred jeho zobrazením
+- Vyskakovacie okno zoznamu súvisiacich položiek
+- Poradie v okne pridania do playlistu
+- Rozloženie položiek záložiek playlistu

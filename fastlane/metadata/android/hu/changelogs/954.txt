@@ -1,0 +1,9 @@
+• Új app workflow: videók lejátszása a részletes oldalon, és lehúzva minimalizálja a lejátszót
+• MediaStílus értesítések: testre szabható műveletek az értesítésekben, teljesítmény javítások
+• Alapvető átméretezés amikor a NewPipe mint asztali alkalmazás fut
+
+• Ablak szabad beállításokkal ha esetleg nem támogatott URL toast üzenet jelenik meg
+• Keresési ajánlatok feljavítása amikor a távoliak nem elérhetőek
+• Alap lejátszó minőség megemelve 720p60-re (belső lejátszó) és 480p-re (felugró lejátszó)
+
+• Egy tonna hibajavítás és egyéb

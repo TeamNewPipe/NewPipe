@@ -391,10 +391,6 @@ public class StatisticsPlaylistFragment
                             StreamDialogDefaultEntry.DELETE,
                             (f, i) -> deleteEntry(
                                     Math.max(itemListAdapter.getItemsList().indexOf(item), 0)))
-                    .setAction(
-                            StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND,
-                            (f, i) -> NavigationHelper.playOnBackgroundPlayer(
-                                    context, getPlayQueueStartingAt(item), true))
                     .create()
                     .show();
         } catch (final IllegalArgumentException e) {

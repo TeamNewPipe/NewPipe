@@ -56,7 +56,7 @@
     <string name="use_inexact_seek_title">Usar un salto inexacto mais inexacto</string>
     <string name="use_inexact_seek_summary">A busca inexacta permite ao reprodutor procurar posicións máis rápidas con precisión reducida. A busca de 5, 15 ou 25 segundos non funciona con isto</string>
     <string name="thumbnail_cache_wipe_complete_notice">A caché de imaxes foi limpada</string>
-    <string name="metadata_cache_wipe_title">Os metadatos da caché foron eliminados</string>
+    <string name="metadata_cache_wipe_title">Limpar metadatos da cache</string>
     <string name="metadata_cache_wipe_summary">Eliminar todos os datos de páxinas en caché</string>
     <string name="metadata_cache_wipe_complete_notice">Os metadatos da caché foron eliminados</string>
     <string name="auto_queue_title">Colocar a seguinte emisión na fila automaticamente</string>
@@ -158,9 +158,6 @@
     <string name="video">Vídeo</string>
     <string name="audio">Audio</string>
     <string name="retry">Tentar de novo</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">B</string>
     <string name="no_subscribers">Ningún subscrito</string>
     <plurals name="subscribers">
         <item quantity="one">%s subscrito</item>
@@ -339,7 +336,7 @@
     <string name="content_not_supported">NewPipe aínda non é compatible con este contido.
 \n
 \nCon toda esperanza será compatible cunha futura versión.</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Cres que a carga de alimentación é demasiado lenta\? En caso afirmativo, intente habilitar a carga rápida (pode cambiala na configuración ou premendo o botón a continuación).
+    <string name="feed_use_dedicated_fetch_method_help_text">Cres que a carga de contidos é demasiado lenta? En caso afirmativo, intente habilitar a carga rápida (pode cambiala na configuración ou premendo o botón a continuación).
 \n
 \nNewPipe ofrece dúas estratexias de carga de fontes:
 \n• Obtendo toda a canle de subscrición, que é lenta pero completa.
@@ -463,7 +460,6 @@
     <string name="conferences">Conferencias</string>
     <string name="most_liked">O que ten mais gústames</string>
     <string name="recently_added">Engadiuse recentemente</string>
-    <string name="localization_changes_requires_app_restart">O idioma cambiará unha vez que se reinicie o aplicativo</string>
     <string name="error_unable_to_load_comments">Non se puideron cargar os comentarios</string>
     <string name="no_playlist_bookmarked_yet">Aínda non hai marcadores nesta lista de reprodución</string>
     <string name="select_a_playlist">Seleccionar unha lista de reprodución</string>
@@ -558,7 +554,6 @@
     <string name="description_select_note">Agora pode seleccionar o texto na descrición. Teña en conta que a páxina pode cintilar e as ligazóns poden non ser clicábeis no modo selección.</string>
     <string name="auto_device_theme_title">Automático (Tema do dispositivo)</string>
     <string name="radio">Radio</string>
-    <string name="service_provides_reason">%s dá este motivo:</string>
     <string name="georestricted_content">Este contido non está dispoñíbel no seu país.</string>
     <string name="chapters">Capítulos</string>
     <string name="recent">Recentes</string>
@@ -639,7 +634,7 @@
     <string name="clear_queue_confirmation_description">A cola de reprodución activa será substituída</string>
     <string name="clear_queue_confirmation_summary">Cambiar dun reprodutor a outro pode substituír a súa cola</string>
     <string name="notification_action_shuffle">Barallar</string>
-    <string name="notification_actions_summary">Edite cada acción da notificación premendo nela. Seleccione ata tres delas para seren mostradas na notificación compacta usando as checkboxes da dereita</string>
+    <string name="notification_actions_summary">Edite cada acción da notificación premendo nela. Seleccione ata tres delas para seren mostradas na notificación compacta usando as checkboxes da dereita.</string>
     <string name="enqueue_next_stream">Enfileirar o seguinte vídeo</string>
     <string name="start_main_player_fullscreen_title">Inciar reprodutor principal en pantalla completa</string>
     <string name="start_main_player_fullscreen_summary">Non iniciar vídeos no reprodutor mini, mais cambiar a pantalla completa directamente, se a rotación estiver bloqueada. Aínda pode acceder o reprodutor mini ao saír da pantalla completa</string>
@@ -756,4 +751,66 @@
     <string name="main_tabs_position_title">Posición prinicipal das lapelas</string>
     <string name="disable_media_tunneling_automatic_info">A tunelización da multimedia foi deshabilitada por defecto, porque o seu modelo de dispositivo carece de soporte.</string>
     <string name="no_streams">Sen emisións</string>
+    <string name="no_live_streams">Sen emisións en directo</string>
+    <string name="metadata_thumbnails">Miniaturas</string>
+    <string name="metadata_uploader_avatars">Avatares do publicador</string>
+    <string name="metadata_avatars">Avatares</string>
+    <string name="channel_tab_videos">Vídeos</string>
+    <string name="toggle_fullscreen">Alternar a pantalla completa</string>
+    <string name="toggle_screen_orientation">Alternar a orientación da pantalla</string>
+    <string name="previous_stream">Emisión anterior</string>
+    <string name="next_stream">Seguinte emisión</string>
+    <string name="image_quality_title">Calidade da imaxe</string>
+    <string name="open_play_queue">Abrir ringleira de reprodución</string>
+    <string name="image_quality_none">Non carregar imaxes</string>
+    <string name="image_quality_low">Baixa calidade</string>
+    <string name="image_quality_medium">Calidade media</string>
+    <string name="share_playlist">Compartillar lista de reprodución</string>
+    <string name="share_playlist_with_titles">Compartillar os títulos</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="show_more">Amosar máis</string>
+    <plurals name="replies">
+        <item quantity="one">%s resposta</item>
+        <item quantity="other">%s respostas</item>
+    </plurals>
+    <string name="show_less">Amosar menos</string>
+    <string name="notification_actions_summary_android13">Edite cada acción de notificación premendo nela. As primeiras tres accións (reproducir/pausar, anterior e seguinte) están definidas polo sistema e non é posíbel personalizalas.</string>
+    <string name="metadata_subchannel_avatars">Avatar da subcanle</string>
+    <string name="metadata_subscribers">Subscritores</string>
+    <string name="loading_metadata_title">A cargar metadatos…</string>
+    <string name="settings_category_backup_restore_title">Copia de seguranza e restauración</string>
+    <string name="yes">Si</string>
+    <string name="no">Non</string>
+    <string name="auto_update_check_description">NewPipe pode revisar automaticamente por actualizacións periodicamente e notificalo unha vez estean dispoñíbeis.
+\nDesexa habilitar isto?</string>
+    <string name="reset_settings_title">Restaurar configuracións</string>
+    <string name="reset_settings_summary">Restabelecer todas as configuracións aos seus valores por defecto</string>
+    <string name="error_insufficient_storage">Non hai espazo suficiente no dispositivo</string>
+    <string name="channel_tab_shorts">Curtos</string>
+    <string name="channel_tab_livestreams">En directo</string>
+    <string name="channel_tab_channels">Canles</string>
+    <string name="channel_tab_playlists">Listas de reprodución</string>
+    <string name="channel_tab_albums">Álbums</string>
+    <string name="channel_tab_about">Sobre</string>
+    <string name="show_channel_tabs">Lapelas da canle</string>
+    <string name="play">Reproducir</string>
+    <string name="replay">Reproducir de novo</string>
+    <string name="more_options">Máis opcións</string>
+    <string name="duration">Duración</string>
+    <string name="rewind">Recuar</string>
+    <string name="forward">Avanzar</string>
+    <string name="image_quality_high">Calidade alta</string>
+    <string name="question_mark">\?</string>
+    <string name="reset_all_settings">Restablecer todos os axustes rexeitará todas as túas preferencias e reiniciará a aplicación.\n\nQueres continuar?</string>
+    <string name="feed_fetch_channel_tabs">Recuperar as lapelas da canle</string>
+    <string name="metadata_banners">Encabezados</string>
+    <string name="show_channel_tabs_summary">Lapelas a mostrar nas páxinas das canles</string>
+    <string name="image_quality_summary">Escolla da calidade das imaxes e se cargar as imaxes na súa totalidade, para reducir o uso de datos e memoria. Os cambios limpan a caché das imaxes na memoria e no disco - %s</string>
+    <string name="share_playlist_with_list">Compartir lista de URLs</string>
+    <string name="import_settings_vulnerable_format">A configuración da exportación a ser importada emprega un formato vulnerable que fica obsoleto dende NewPipe 0.27.0. Comprobe que a exportación que está a importar proveña dunha fonte fiable e preferibelmente empregue exportacións de NewPipe 0.27.0 ou posterior. A compatibilidade coa importación deste formato vulnerable será eliminada por completo próximamente e as versión antigas de NewPipe non poderán importar configuracións de exportacións dende novas versións.</string>
+    <string name="channel_tab_tracks">Pistas</string>
+    <string name="feed_fetch_channel_tabs_summary">Lapelas a recuperar ao actualizar o feed. Esta opción non ten efecto se a canle se actualiza no modo rápido.</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Esta solución alternativa libera os códecs de video e os re-instancia cando muda a máscara, no canto de configurar a máscara directamente no códec. ExoPlayer xa emprega esta configuración nalgúns dispositivos con este problema e só afecta a Android 6 e versións posteriores.\n\nActivar esta opción pode minimizar erros de reprodución ao mudar o reprodutor de video actual ou mudar ao modo de pantalla completa</string>
 </resources>

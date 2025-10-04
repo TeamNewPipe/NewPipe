@@ -1,8 +1,8 @@
 ### Fejlesztések
 - Lehetőség a videó minőségének korlátozására mobiladat-kapcsolaton #1339 
-- Az alkalmazás bezárásáig megjegyzi a fényerő-beállítást #1442 
-- Jobb letöltési teljesítmény gyengébb CPU-kon #1431 
-- médiamunkamenet (működő) támogatásának hozzáadása #1433
+- A munkamenet erejéig megjegyzi a fényerő-beállítást #1442 
+- Jobb letöltési teljesítmény gyengébb CPU esetén #1431 
+- (működő) médiamunkamenet támogatásának hozzáadása #1433
 
 ### Javítások
 - A letöltések megnyitásánál történő összeomlás javítása (a javítás mostantól érhető el a kiadási verziókban is) #1441

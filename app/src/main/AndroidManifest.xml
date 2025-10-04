@@ -9,6 +9,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
     <!-- We need to be able to open links in the browser on API 30+ -->
@@ -58,11 +60,23 @@
         </receiver>
 
         <service
+            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
+            android:enabled="false"
+            android:exported="false">
+            <meta-data
+                android:name="autoStoreLocales"
+                android:value="true" />
+        </service>
+
+        <service
             android:name=".player.PlayerService"
             android:exported="true"
             android:foregroundServiceType="mediaPlayback">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.browse.MediaBrowserService"/>
             </intent-filter>
         </service>
 
@@ -87,9 +101,14 @@
             android:exported="false"
             android:label="@string/title_activity_about" />
 
-        <service android:name=".local.subscription.services.SubscriptionsImportService" />
-        <service android:name=".local.subscription.services.SubscriptionsExportService" />
-        <service android:name=".local.feed.service.FeedLoadService" />
+        <service
+            android:name="androidx.work.impl.foreground.SystemForegroundService"
+            android:foregroundServiceType="dataSync"
+            tools:node="merge" />
+
+        <service
+            android:name=".local.feed.service.FeedLoadService"
+            android:foregroundServiceType="dataSync" />
 
         <activity
             android:name=".PanicResponderActivity"
@@ -121,7 +140,9 @@
             android:label="@string/app_name"
             android:launchMode="singleTask" />
 
-        <service android:name="us.shandian.giga.service.DownloadManagerService" />
+        <service
+            android:name="us.shandian.giga.service.DownloadManagerService"
+            android:foregroundServiceType="dataSync" />
 
         <activity
             android:name=".util.FilePickerActivityHelper"
@@ -414,6 +435,7 @@
         </activity>
         <service
             android:name=".RouterActivity$FetcherService"
+            android:foregroundServiceType="dataSync"
             android:exported="false" />
 
         <!-- opting out of sending metrics to Google in Android System WebView -->
@@ -429,5 +451,10 @@
         <meta-data
             android:name="com.samsung.android.multidisplay.keep_process_alive"
             android:value="true" />
+        <!-- Android Auto -->
+        <meta-data android:name="com.google.android.gms.car.application"
+            android:resource="@xml/automotive_app_desc" />
+        <meta-data android:name="com.google.android.gms.car.notification.SmallIcon"
+            android:resource="@mipmap/ic_launcher" />
     </application>
 </manifest>

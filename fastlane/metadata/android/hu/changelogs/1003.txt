@@ -1,0 +1,6 @@
+Ez egy azonnali kiadás, amely a YouTube hibáit javítja:
+• [YouTube] A videóinformációk betöltésének elmaradása, a videók lejátszása közben fellépő HTTP 403 hibák javítása és néhány korhatáros videó lejátszásának visszaállítása
+• A feliratméret váltásának javítása
+• Az információ kétszeri letöltésének javítása a stream megnyitásakor
+• [Soundcloud] A lejátszhatatlan DRM-védett streamek eltávolítása
+• Frissített fordítások

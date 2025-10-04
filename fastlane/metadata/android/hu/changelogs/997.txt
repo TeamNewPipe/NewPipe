@@ -1,0 +1,17 @@
+Új
+• Komment válaszok mutatása
+• Listák renderelésének engedélyezése
+• Listák leírásának és hosszának mutatása
+• Beállítások alaphelyzetbe állíthatóak
+
+Fejlesztések
+• [Android 13+] Egyéni értesítési műveletek visszaállítása
+• Engedély szükséges a frissítés ellenőrzéshez
+• Bufferelés közben lehet az értesítésen folytatni/szüneteltetni
+• Egyes beállítások újrarendezése
+
+Javítások
+• [YouTube] Kommentek betöltésének javítása, valamint más egyéb fejlesztések
+• Javítva egy beállítás import sérülékenység, átváltás JSON-ra
+• Különböző letöltési javítások
+• Keresési szöveg levágása

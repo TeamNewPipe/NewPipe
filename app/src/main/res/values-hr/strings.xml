@@ -97,9 +97,6 @@
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Pokušaj ponovo</string>
-    <string name="short_thousand">tis.</string>
-    <string name="short_million">mil</string>
-    <string name="short_billion">mlrd.</string>
     <string name="start">Počni</string>
     <string name="pause">Pauziraj</string>
     <string name="delete">Izbriši</string>
@@ -406,7 +403,6 @@
     <string name="delete_playback_states_alert">Izbrisati sve pozicije reprodukcije\?</string>
     <string name="no_one_watching">Nitko ne gleda</string>
     <string name="no_one_listening">Nitko ne sluša</string>
-    <string name="localization_changes_requires_app_restart">Jezik će se promijeniti nakon ponovnog pokretanja aplikcije</string>
     <string name="default_kiosk_page_summary">Standardni kiosk</string>
     <string name="peertube_instance_add_https_only">Podržani su samo HTTP URL-ovi</string>
     <string name="local">Lokalni</string>
@@ -424,8 +420,8 @@
     <string name="feed_group_dialog_delete_message">Želiš li izbrisati ovu grupu\?</string>
     <string name="feed_create_new_group_button_title">Nova</string>
     <string name="feed_update_threshold_option_always_update">Uvijek aktualiziraj</string>
-    <string name="feed_use_dedicated_fetch_method_enable_button">Uključi brzi način</string>
-    <string name="feed_use_dedicated_fetch_method_disable_button">Isključi brzi način</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Uključi brzi modus</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Isključi brzi modus</string>
     <string name="error_insufficient_storage_left">Memorija uređaja je popunjena</string>
     <string name="most_liked">Najomiljeniji</string>
     <string name="subtitle_activity_recaptcha">Pritisni „Gotovo” kad je riješeno</string>
@@ -639,11 +635,10 @@
     <string name="no_dir_yet">Mapa za preuzimanje još nije postavljena, odaberi standardnu mapu za preuzimanje</string>
     <string name="comments_are_disabled">Komentari su isključeni</string>
     <string name="mark_as_watched">Označi kao pogledano</string>
-    <string name="feed_load_error_fast_unknown">Način rada brzog feeda ne pruža više informacija o ovome.</string>
+    <string name="feed_load_error_fast_unknown">Brzi modus feeda ne pruža više informacija o ovome.</string>
     <string name="metadata_privacy_internal">Interno</string>
     <string name="metadata_privacy">Privatnost</string>
     <string name="description_select_note">Sada možeš odabrati tekst u opisu. Napomena: stranica će možda treperiti i možda nećeš moći kliknuti poveznice u načinu rada za odabir teksta.</string>
-    <string name="service_provides_reason">%s pruža ovaj razlog:</string>
     <string name="processing_may_take_a_moment">Obrada u tijeku … Može malo potrajati</string>
     <string name="main_page_content_swipe_remove">Za ukljanjanje stavki povuci ih</string>
     <plurals name="download_finished_notification">
@@ -798,7 +793,6 @@
     <string name="image_quality_medium">Srednja kvaliteta</string>
     <string name="image_quality_high">Visoka kvaliteta</string>
     <string name="question_mark">\?</string>
-    <string name="share_playlist_with_titles_message">Dijeli playlistu s detaljima kao što su ime playliste i naslovi videa ili kao jednostavan popis URL-ova videa</string>
     <string name="share_playlist_with_titles">Dijeli s naslovima</string>
     <string name="share_playlist_with_list">Dijeli popis URL-ova</string>
     <string name="video_details_list_item">– %1$s: %2$s</string>
@@ -831,4 +825,7 @@
     <string name="reset_all_settings">Obnavljanje svih postavki odbacit će sve tvoje postavljene postavke i aplikacija će se ponovo pokrenuti.
 \n
 \nStvarno želiš nastaviti?</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Uvijek koristi ExoPlayer postavku zaobilaženja videa za izlaznu površinu</string>
+    <string name="feed_fetch_channel_tabs_summary">Kartice za dohvaćanje prilikom aktualiziranja feeda. Ova opcija nema učinka ako se kanal aktualizira pomoću brzog modusa.</string>
+    <string name="audio_track_type_secondary">sekundarno</string>
 </resources>

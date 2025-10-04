@@ -1,0 +1,19 @@
+Novo
+- Pesquisa no YouTube Música
+- Suporte básico de TV Android
+
+Melhorado
+- Adicionada a capacidade de remover todos os vídeos vistos de uma lista de reprodução local
+- Mostrar mensagem quando o conteúdo ainda não é suportado, em vez de se chocar
+- Reprodutor popup melhorado redimensionado com gestos de beliscão
+- Enqueue streams em fundo e botões de popup no canal
+- Melhor manuseamento do tamanho do título do cabeçalho da gaveta
+
+Fixa
+- Definição de conteúdo com restrição de idade fixa não funciona
+- Fixação de certos tipos de reCAPTCHAs
+- Corrigido o crash ao abrir marcadores enquanto a lista de reprodução é "nula".
+- Deteção fixa de exceções relacionadas com a rede
+- Visibilidade fixa do botão de ordenação do grupo no fragmento de subscrições
+
+e mais

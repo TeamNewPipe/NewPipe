@@ -1,0 +1,6 @@
+Ditingkatkan
+- Selalu izinkan mengubah preferensi pemberitahuan pemain di Android 13+
+
+Diperbaiki
+- Memperbaiki mengekspor database/langganan tidak akan memotong file yang sudah ada, yang mungkin menyebabkan ekspor rusak
+- Memperbaiki pemutar yang melanjutkan dari awal saat mengklik stempel waktu

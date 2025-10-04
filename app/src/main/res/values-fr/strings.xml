@@ -5,7 +5,7 @@
     <string name="did_you_mean">Vouliez-vous dire « %1$s » \?</string>
     <string name="download">Télécharger</string>
     <string name="download_path_title">Dossier de téléchargement vidéo</string>
-    <string name="download_path_dialog_title">Choisissez le dossier de téléchargement des vidéos</string>
+    <string name="download_path_dialog_title">Choisissez le dossier de téléchargement pour les fichiers vidéos</string>
     <string name="download_path_summary">Les vidéos téléchargées sont stockées ici</string>
     <string name="install">Installer</string>
     <string name="kore_not_found">Installer l’application Kore manquante \?</string>
@@ -87,8 +87,6 @@
     <string name="popup_playing_toast">Lecture en mode flottant</string>
     <string name="disabled">Désactivés</string>
     <string name="info_labels">Quoi :\\nRequest :\\nContent Language :\\nContent Country :\\nApp Language :\\nService :\\nGMT Time :\\nPackage :\\nVersion :\\nOS version :</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
     <string name="msg_popup_permission">Cette autorisation est nécessaire pour
 \nutiliser le mode flottant</string>
     <string name="controls_background_title">Arrière-plan</string>
@@ -100,7 +98,6 @@
     <string name="popup_remember_size_pos_title">Mémoriser les propriétés de la fenêtre flottante</string>
     <string name="popup_remember_size_pos_summary">Mémoriser les dernières taille et position de la fenêtre flottante</string>
     <string name="clear">Effacer</string>
-    <string name="short_billion">G</string>
     <string name="use_external_video_player_summary">Le son peut être absent à certaines définitions</string>
     <string name="show_search_suggestions_title">Suggestions de recherche</string>
     <string name="show_search_suggestions_summary">Sélectionner les suggestions à afficher lors d’une recherche</string>
@@ -164,7 +161,7 @@
     <string name="charset_most_special_characters">Caractères spéciaux</string>
     <string name="delete_item_search_history">Voulez-vous supprimer cet élément de l’historique de recherche \?</string>
     <string name="main_page_content">Contenu de la page principale</string>
-    <string name="blank_page_summary">Page vide</string>
+    <string name="blank_page_summary">Page blanche</string>
     <string name="channel_page_summary">Chaîne</string>
     <string name="select_a_channel">Sélectionner une chaîne</string>
     <string name="trending">Tendances</string>
@@ -178,7 +175,7 @@
     <string name="play_queue_stream_detail">Détails</string>
     <string name="play_queue_audio_settings">Paramètres audios</string>
     <string name="show_hold_to_append_title">Afficher l\'astuce « Maintenir pour ajouter à la file »</string>
-    <string name="show_hold_to_append_summary">Affiche l’astuce lors de l’appui des boutons « Arrière-plan » ou « Flottant » sur la page de détails d’une vidéo</string>
+    <string name="show_hold_to_append_summary">Affiche l’astuce lors de l’appui des boutons « Arrière-plan » ou « Flottant » sur la page de détails d’une vidéo</string>
     <string name="unknown_content">[Inconnu]</string>
     <string name="player_recoverable_failure">Récupération depuis l’erreur du lecteur</string>
     <string name="kiosk_page_summary">Kiosque</string>
@@ -197,7 +194,7 @@
     <string name="switch_to_main">Basculer en principal</string>
     <string name="drawer_open">Ouvrir le menu</string>
     <string name="drawer_close">Fermer le menu</string>
-    <string name="no_player_found_toast">Aucun lecteur multimédia trouvé (vous pouvez installer VLC pour continuer).</string>
+    <string name="no_player_found_toast">Aucun lecteur de flux trouvé (vous pouvez installer VLC pour le lire).</string>
     <string name="always">Toujours</string>
     <string name="just_once">Une seule fois</string>
     <string name="external_player_unsupported_link_type">Les lecteurs externes ne prennent pas en charge ces types de liens</string>
@@ -428,7 +425,6 @@
         <item quantity="many">%s auditeurs</item>
         <item quantity="other">%s auditeurs</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">La langue changera une fois que l’application aura redémarré</string>
     <string name="seek_duration_title">Durée de l’avance et retour rapide</string>
     <string name="peertube_instance_url_title">Instances PeerTube</string>
     <string name="peertube_instance_url_summary">Veuillez choisir vos instances PeerTube préférées</string>
@@ -534,7 +530,7 @@
     <string name="channel_created_by">Créé par %s</string>
     <string name="show_original_time_ago_summary">Les textes originaux des services vont être visibles dans les items</string>
     <string name="show_original_time_ago_title">Afficher la date originelle sur les items</string>
-    <string name="youtube_restricted_mode_enabled_title">Activer le « Mode restreint » de YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">Activer le « Mode restreint » de YouTube</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Afficher uniquement les abonnements non groupés</string>
     <string name="playlist_page_summary">Page des listes de lecture</string>
     <string name="no_playlist_bookmarked_yet">Aucune liste de lecture encore enregistrée</string>
@@ -624,7 +620,6 @@
     <string name="metadata_tags">Étiquettes</string>
     <string name="metadata_category">Catégorie</string>
     <string name="description_select_note">Vous pouvez maintenant sélectionner du texte à l’intérieur de la description. Notez que la page peut scintiller et que les liens peuvent ne pas être cliquables en mode sélection.</string>
-    <string name="service_provides_reason">%s indique le motif :</string>
     <string name="no_dir_yet">Aucun dossier de téléchargement n’est défini pour le moment, sélectionnez le dossier de téléchargement par défaut</string>
     <string name="open_website_license">Ouvrir le site web</string>
     <string name="account_terminated">Compte résilié</string>
@@ -669,7 +664,7 @@
     <string name="check_for_updates">Vérifier les mises à jour</string>
     <string name="feed_new_items">Nouveaux éléments du flux</string>
     <string name="crash_the_player">Faire planter le lecteur</string>
-    <string name="show_crash_the_player_title">Afficher « Faire planter le lecteur »</string>
+    <string name="show_crash_the_player_title">Afficher « Faire planter le lecteur »</string>
     <string name="show_crash_the_player_summary">Montrer une option de plantage lors de l\'utilisation du lecteur</string>
     <string name="error_report_channel_name">Notification de rapport d\'erreur</string>
     <string name="error_report_channel_description">Notifications pour signaler les erreurs</string>
@@ -815,7 +810,6 @@
     <string name="forward">Avancer</string>
     <string name="rewind">Rembobiner</string>
     <string name="replay">Rejouer</string>
-    <string name="share_playlist_with_titles_message">Partager la liste de lecture avec des détails tel que son nom et le titre de ses vidéos ou simplement la liste des URLs des vidéos</string>
     <string name="metadata_uploader_avatars">Avatars du téléverseur</string>
     <string name="image_quality_summary">Sélectionnez la qualité des images et si les images doivent être chargées, pour réduire l\'utilisation de la mémoire et de données. Les modifications vident à la fois le cache des images en mémoire et sur le disque — %s</string>
     <string name="play">Lire</string>
@@ -825,7 +819,7 @@
         <item quantity="other">%s réponses</item>
     </plurals>
     <string name="notification_actions_summary_android13">Modifiez chaque action de notification ci-dessous en appuyant dessus. Les trois premières actions (lire/pause, précédent, suivant) sont définies par le système et ne peuvent pas être personnalisées.</string>
-    <string name="show_more">Afficher plus</string>
+    <string name="show_more">Voir plus</string>
     <string name="show_less">Afficher moins</string>
     <string name="reset_settings_summary">Réinitialiser tous les paramètres à leurs valeurs par défaut</string>
     <string name="no">Non</string>
@@ -838,4 +832,16 @@
 \nVoulez-vous activer cette vérification ?</string>
     <string name="reset_settings_title">Réinitialiser les paramètres</string>
     <string name="error_insufficient_storage">Pas assez d\'espace disponible sur l\'appareil</string>
+    <string name="import_settings_vulnerable_format">Les paramètres de l\'export en cours d\'importation utilisent un format vulnérable qui a été déprécié depuis NewPipe 0.27.0. Assurez-vous que l\'export en cours d\'importation provient d\'une source fiable. Privilégiez les exports obtenues à partir de NewPipe 0.27.0 ou des versions plus récentes à l\'avenir. Le support pour l\'importation des paramètres dans ce format vulnérable sera bientôt complètement supprimé et les anciennes versions de NewPipe ne pourront plus importer les paramètres des exports des nouvelles versions.</string>
+    <string name="audio_track_type_secondary">secondaire</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Partager comme liste de lecture YouTube temporaire</string>
+    <string name="tab_bookmarks_short">Listes de lecture</string>
+    <string name="select_a_feed_group">Sélectionnez un groupe de flux</string>
+    <string name="no_feed_group_created_yet">Aucun groupe de flux n\'a encore été créé</string>
+    <string name="feed_group_page_summary">Page du groupe de chaînes</string>
+    <string name="search_with_service_name">Rechercher %1$s</string>
+    <string name="search_with_service_name_and_filter">Rechercher %1$s (%2$s)</string>
+    <string name="channel_tab_likes">Likes</string>
+    <string name="migration_info_6_7_title">Page SoundCloud Top 50 supprimée</string>
+    <string name="migration_info_6_7_message">SoundCloud a abandonné le classement original du Top 50. L\'onglet correspondant a été supprimé de votre page d\'accueil.</string>
 </resources>

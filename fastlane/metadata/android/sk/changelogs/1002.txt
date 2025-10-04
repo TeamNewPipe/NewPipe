@@ -1,0 +1,4 @@
+Opravené prehrávanie videí.
+
+Toto vydanie rieši len najpálčivejšiu chybu, ktorá zabraňuje načítať detaily s videom.
+Sme si vedomí aj ďalších chýb a čoskoro vydáme ďalšie vydanie, ktoré ich bude riešiť.

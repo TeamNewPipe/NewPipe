@@ -1,0 +1,19 @@
+Nouveau
+• Recherche sur YouTube Music
+• Prise en charge Android TV de base
+
+Amélioré
+• Ajout de la possibilité de supprimer toutes les vidéos regardées d'une playlist locale
+• Afficher un message lorsque le contenu n'est pas encore pris en charge au lieu de planter
+• Redimensionnement amélioré du lecteur contextuel avec des gestes de pincement
+• Mettre les flux en file d'attente en appuyant longuement sur les boutons d'arrière-plan et contextuels dans la chaîne
+• Gestion améliorée de la taille du titre de l'en-tête du tiroir
+
+Corrigé
+• Correction du paramètre de contenu restreint par âge qui ne fonctionne pas
+• Correction de certains types de reCAPTCHA
+• Correction du crash lors de l'ouverture des signets alors que la playlist est « nulle »
+• Correction de la détection des exceptions liées au réseau
+• Correction de la visibilité du bouton de tri de groupe dans le fragment d'abonnements
+
+et plus

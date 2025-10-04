@@ -104,9 +104,6 @@
     <string name="no_videos">কোন ভিডিও নেই</string>
     <string name="no_views">কোন ভিউ নেই</string>
     <string name="no_subscribers">কোন সাবস্ক্রাইবার নেই</string>
-    <string name="short_billion">B</string>
-    <string name="short_million">M</string>
-    <string name="short_thousand">K</string>
     <string name="retry">পুনরায় চেষ্টা করো</string>
     <string name="audio">অডিও</string>
     <string name="video">ভিডিও</string>
@@ -534,7 +531,6 @@
     <string name="downloads_storage_ask_summary">প্রত্যেক ডাউনলোড কোথায় রাখা হবে তা জিজ্ঞেস করা হবে।
 \nমেমোরি কার্ডে ডাউনলোড করতে সিস্টেম ফোল্ডার পিকার (SAF) এনেবল করুন</string>
     <string name="download_already_running">এই নামের একটি ডাউনলোড চলমান</string>
-    <string name="localization_changes_requires_app_restart">অ্যাপ আবার শুরু হলে ভাষা পাল্টাবে</string>
     <string name="disable_media_tunneling_title">মিডিয়া সুরঙ্গকরণ অক্ষম</string>
     <string name="feed_load_error_fast_unknown">দ্রুত ফিড অবস্থা এ বিষয়ে এর বেশি তথ্য দেয় না।</string>
     <string name="no_dir_yet">কোনো ডাউনলোড ফোল্ডার নির্দিষ্ট করা হয়নি, এখনই একটা সহজাত ডাউনলোড ফোল্ডার নির্বাচন করো</string>
@@ -544,7 +540,6 @@
     <string name="feed_load_error_account_info">\'%s\' এর জন্য ফিড প্রক্রিয়া করা যাচ্ছে না।</string>
     <string name="description_select_disable">বর্ণনার লেখা নির্বাচন করা নিষ্ক্রিয় করো</string>
     <string name="description_select_enable">বর্ণনার লেখা নির্বাচন করা সক্ষম করো</string>
-    <string name="service_provides_reason">%s এই কারণ বলছে:</string>
     <string name="feed_load_error">প্রক্রিয়াকরণ ফিডে ত্রুটি</string>
     <string name="open_website_license">ওয়েবসাইট খুলুন</string>
     <string name="account_terminated">অ্যাকাউন্ট ধ্বংসকৃত</string>

@@ -1,0 +1,17 @@
+Berria
+• Gehitu erantzunak iruzkinei
+• Err. zerr. berrantolaketa
+• Erakutsi err. zerr. deskribapena eta iraupena
+• Ezarpenak berrezartzea
+
+Hobetuta
+• [Android 13+] jakinarazpen-ekintza pertsonalizatuak
+• Baimena eskatu eguneraketak egiaztatzeko
+• Errepr./pausatu jakinarazpenak bufferean
+• Ezarpen batzuk berrantolatu
+
+Konponduta
+• [YouTube] Konpondu iruzkinak ez kargatzea
+• Konpondu ahultasuna ezarpenen importazioan eta JSON-era aldatu
+• Konpondu hainbat deskarga
+• Moztu bilaketa-testua

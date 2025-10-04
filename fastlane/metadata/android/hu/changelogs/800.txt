@@ -1,0 +1,27 @@
+Új
+• P2P támogatás nélküli PeerTube támogatás (#2201) [Beta]:
+  ◦ Videó megtekintés és letöltés PeerTube munkamenetekből
+  ◦ Az egész PeerTube világ elérése egy opció menüből
+  ◦ Hiba léphet fel az SSL kézfogás során Anrdoid 4.4 és 7.1 esetén, amikor hálózati hibára fut a egyes munkamenetekhez való hozzáférésnél.
+
+• Letöltőt (#2679):
+  ◦ Hátralevő letöltési idő kalkulálása
+  ◦ Opus letöltése (webm fájlok) ogg-ként
+  ◦ Hosszas szüneteltetés után lejárt letöltési link helyreállítása
+
+Fejlesztések
+• Kioszkdarab tudomására hozni a preferált kontentországot, és teljesítményjavítás minden főlapon #2742
+• Új fordítások és letöltő implementációk a kivonatolóból #2713 
+• Az "Alap kioszk" sor lefordítható
+• Fekete navigációs bár a fekete témához #2569
+
+Javítások
+• Egy bug javítása, amely nem negedte a felugró lejátszó áthelyezését, ha véletlen másik ujjat is érzékelt #2772 
+• Feltöltő nélküli lejátszási listák engedélyezése, a #2724-es hibával kapcsolatos összeomlások javítása, TeamNewPipe/NewPipeExtractor#219
+• TLS1.1/1.2 bekapcsolása Android 4.4 eszközökön (API 19/KitKat) hogy fixálja a TLS kézfogást a MediaCCC-vel, és egyes PeerTube munkamenetekkel #2792
+• [SoundCloud] client_id extraction TeamNewPipe/NewPipeExtractor javítva #217
+• [SoundCloud] Audió sáv mentés javítása
+
+Frissítés
+• ExoPlayer frissítése 2.10.8 #2791-re #2816
+• Gradle frissítése 3.5.1-re, és Kotlin támogatás hozzáadása #2714

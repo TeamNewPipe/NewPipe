@@ -2,7 +2,6 @@ package org.schabi.newpipe.download;
 
 import static org.schabi.newpipe.extractor.stream.DeliveryMethod.PROGRESSIVE_HTTP;
 import static org.schabi.newpipe.util.ListHelper.getStreamsOfSpecifiedDelivery;
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 import android.app.Activity;
 import android.content.ComponentName;
@@ -390,8 +389,7 @@ public class DownloadDialog extends DialogFragment
                     }
                 }, throwable -> ErrorUtil.showSnackbar(context,
                         new ErrorInfo(throwable, UserAction.DOWNLOAD_OPEN_DIALOG,
-                                "Downloading video stream size",
-                                currentInfo.getServiceId()))));
+                                "Downloading video stream size", currentInfo))));
         disposables.add(StreamInfoWrapper.fetchMoreInfoForWrapper(getWrappedAudioStreams())
                 .subscribe(result -> {
                     if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()
@@ -400,8 +398,7 @@ public class DownloadDialog extends DialogFragment
                     }
                 }, throwable -> ErrorUtil.showSnackbar(context,
                         new ErrorInfo(throwable, UserAction.DOWNLOAD_OPEN_DIALOG,
-                                "Downloading audio stream size",
-                                currentInfo.getServiceId()))));
+                                "Downloading audio stream size", currentInfo))));
         disposables.add(StreamInfoWrapper.fetchMoreInfoForWrapper(wrappedSubtitleStreams)
                 .subscribe(result -> {
                     if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()
@@ -410,8 +407,7 @@ public class DownloadDialog extends DialogFragment
                     }
                 }, throwable -> ErrorUtil.showSnackbar(context,
                         new ErrorInfo(throwable, UserAction.DOWNLOAD_OPEN_DIALOG,
-                                "Downloading subtitle stream size",
-                                currentInfo.getServiceId()))));
+                                "Downloading subtitle stream size", currentInfo))));
     }
 
     private void setupAudioTrackSpinner() {
@@ -751,7 +747,6 @@ public class DownloadDialog extends DialogFragment
     }
 
     private void showFailedDialog(@StringRes final int msg) {
-        assureCorrectAppLanguage(requireContext());
         new AlertDialog.Builder(context)
                 .setTitle(R.string.general_error)
                 .setMessage(msg)

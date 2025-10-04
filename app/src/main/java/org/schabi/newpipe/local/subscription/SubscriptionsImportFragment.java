@@ -1,10 +1,6 @@
 package org.schabi.newpipe.local.subscription;
 
 import static org.schabi.newpipe.extractor.subscription.SubscriptionExtractor.ContentSource.CHANNEL_URL;
-import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.CHANNEL_URL_MODE;
-import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.INPUT_STREAM_MODE;
-import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_MODE;
-import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_VALUE;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -37,7 +33,7 @@ import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
-import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService;
+import org.schabi.newpipe.local.subscription.workers.SubscriptionImportInput;
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.Constants;
@@ -89,8 +85,8 @@ public class SubscriptionsImportFragment extends BaseFragment {
         if (supportedSources.isEmpty() && currentServiceId != Constants.NO_SERVICE_ID) {
             ErrorUtil.showSnackbar(activity,
                     new ErrorInfo(new String[]{}, UserAction.SUBSCRIPTION_IMPORT_EXPORT,
-                            ServiceHelper.getNameOfServiceById(currentServiceId),
                             "Service does not support importing subscriptions",
+                            currentServiceId,
                             R.string.general_error));
             activity.finish();
         }
@@ -168,10 +164,8 @@ public class SubscriptionsImportFragment extends BaseFragment {
     }
 
     public void onImportUrl(final String value) {
-        ImportConfirmationDialog.show(this, new Intent(activity, SubscriptionsImportService.class)
-                .putExtra(KEY_MODE, CHANNEL_URL_MODE)
-                .putExtra(KEY_VALUE, value)
-                .putExtra(Constants.KEY_SERVICE_ID, currentServiceId));
+        ImportConfirmationDialog.show(this,
+                new SubscriptionImportInput.ChannelUrlMode(currentServiceId, value));
     }
 
     public void onImportFile() {
@@ -186,16 +180,10 @@ public class SubscriptionsImportFragment extends BaseFragment {
     }
 
     private void requestImportFileResult(final ActivityResult result) {
-        if (result.getData() == null) {
-            return;
-        }
-
-        if (result.getResultCode() == Activity.RESULT_OK && result.getData().getData() != null) {
+        final String data = result.getData() != null ? result.getData().getDataString() : null;
+        if (result.getResultCode() == Activity.RESULT_OK && data != null) {
             ImportConfirmationDialog.show(this,
-                    new Intent(activity, SubscriptionsImportService.class)
-                            .putExtra(KEY_MODE, INPUT_STREAM_MODE)
-                            .putExtra(KEY_VALUE, result.getData().getData())
-                            .putExtra(Constants.KEY_SERVICE_ID, currentServiceId));
+                    new SubscriptionImportInput.InputStreamMode(currentServiceId, data));
         }
     }
 

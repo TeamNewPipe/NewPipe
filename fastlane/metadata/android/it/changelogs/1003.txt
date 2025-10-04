@@ -1,0 +1,6 @@
+Questa versione corregge gli errori di YouTube:
+• [YouTube] Corretto il problema del mancato caricamento delle informazioni video, degli errori HTTP 403 durante la riproduzione dei video e ripristinata la riproduzione di alcuni video con limiti di età
+• Corrette le dimensioni delle didascalie che non vengono modificate
+• Corretto il download delle informazioni due volte durante l'apertura di un flusso
+• [Soundcloud] Rimossi i flussi protetti da DRM non riproducibili
+• Traduzioni aggiornate

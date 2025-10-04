@@ -78,7 +78,7 @@ private fun StreamListItemPreview(
     @PreviewParameter(StreamItemPreviewProvider::class) stream: StreamInfoItem
 ) {
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
+        Surface {
             StreamListItem(stream, showProgress = false, isSelected = false)
         }
     }

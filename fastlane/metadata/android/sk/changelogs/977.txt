@@ -1,0 +1,10 @@
+• Added a "play next" button to the long press menu
+• Added YouTube shorts path prefix to intent filter
+• Fixed Settings import
+•  Swap seekbar position with player buttons in Queue screen
+• Various fixes related to MediasessionManager
+• Fixed seekbar not completed after video end
+• Disabled media tunneling on RealtekATV
+• Expanded minimized player buttons clickable area
+
+To see further changes, view the changelog (and blog post) from the Links tab below.

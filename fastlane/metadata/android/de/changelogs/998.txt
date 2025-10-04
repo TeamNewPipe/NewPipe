@@ -1,1 +1,4 @@
-Behoben, dass YouTube keinen Stream abspielte
+Behoben: YouTube spielt keinen Stream wegen HTTP-403-Fehlern ab.
+
+Gelegentliche HTTP-403-Fehler in der Mitte eines YouTube-Videos sind noch nicht behoben.
+Dieses Problem wird in einer weiteren Hotfix-Version so bald wie möglich behoben.

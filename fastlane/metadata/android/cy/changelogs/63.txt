@@ -1,0 +1,8 @@
+### Gwelliannau
+- Gosodiadau mewnforio/Allforio #1333 
+- Lleihau dros dynnu (gwelliant perfformiad) #1371 
+- Gwelliannau bychan cod #1375 
+- Ychwanegu popeth am y GDPR #1420
+
+### Trwsio
+- Llwythwr: Trwsio'r chwalu wrth lwytho llwythi i lawr heb eu gorffen o ffeiliau .giga #1407

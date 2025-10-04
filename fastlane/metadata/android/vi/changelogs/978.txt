@@ -1,0 +1,1 @@
+Đã sửa lỗi thực hiện kiểm tra phiên bản NewPipe mới. Kiểm tra này đôi khi được thực hiện quá sớm và do đó dẫn đến ứng dụng bị lỗi. Vấn đề này đã được sửa.

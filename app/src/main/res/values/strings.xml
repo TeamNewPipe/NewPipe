@@ -17,6 +17,8 @@
     <string name="download">Download</string>
     <string name="controls_download_desc">Download stream file</string>
     <string name="search">Search</string>
+    <string name="search_with_service_name">Search %1$s</string>
+    <string name="search_with_service_name_and_filter">Search %1$s (%2$s)</string>
     <string name="settings">Settings</string>
     <string name="did_you_mean">Did you mean \"%1$s\"?</string>
     <string name="search_showing_result_for">Showing results for: %s</string>
@@ -33,6 +35,7 @@
     <string name="show_info">Show info</string>
     <string name="tab_subscriptions">Subscriptions</string>
     <string name="tab_bookmarks">Bookmarked Playlists</string>
+    <string name="tab_bookmarks_short">Playlists</string>
     <string name="tab_choose">Choose Tab</string>
     <string name="controls_background_title">Background</string>
     <string name="controls_popup_title">Popup</string>
@@ -254,6 +257,8 @@
     <string name="restore_defaults">Restore defaults</string>
     <string name="restore_defaults_confirmation">Do you want to restore defaults?</string>
     <string name="permission_display_over_apps">Give permission to display over other apps</string>
+    <string name="permission_display_over_apps_message">In order to use the Popup Player, please select %1$s in the following Android settings menu and enable %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">“Allow display over other apps”</string>
     <!-- error activity -->
     <string name="error_report_notification_title">NewPipe encountered an error, tap to report</string>
     <string name="error_report_notification_toast">An error occurred, see the notification</string>
@@ -266,7 +271,7 @@
     <string name="error_snackbar_action">Report</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">What happened:</string>
-    <string name="info_labels">What:\\nRequest:\\nContent Language:\\nContent Country:\\nApp Language:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:</string>
+    <string name="info_labels">What:\\nRequest:\\nContent Language:\\nContent Country:\\nApp Language:\\nService:\\nTimestamp:\\nPackage:\\nVersion:\\nOS version:</string>
     <string name="your_comment">Your comment (in English):</string>
     <string name="error_details_headline">Details:</string>
     <!-- Content descriptions (for better accessibility) -->
@@ -284,9 +289,9 @@
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Retry</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">B</string>
+    <string name="short_thousand">%sK</string>
+    <string name="short_million">%sM</string>
+    <string name="short_billion">%sB</string>
     <string name="drawer_header_description">Toggle service, currently selected:</string>
     <!--Zero don't get selected (in some languages) as it is not a "special case" for android-->
     <string name="no_subscribers">No subscribers</string>
@@ -330,6 +335,8 @@
     <string name="pause">Pause</string>
     <string name="create">Create</string>
     <string name="delete">Delete</string>
+    <string name="delete_file">Delete file</string>
+    <string name="delete_entry">Delete entry</string>
     <string name="checksum">Checksum</string>
     <string name="dismiss">Dismiss</string>
     <string name="rename">Rename</string>
@@ -394,10 +401,10 @@
     <string name="main_page_content">Content of main page</string>
     <string name="main_page_content_summary">What tabs are shown on the main page</string>
     <string name="main_page_content_swipe_remove">Swipe items to remove them</string>
-    <string name="blank_page_summary">Blank Page</string>
-    <string name="kiosk_page_summary">Kiosk Page</string>
+    <string name="blank_page_summary">Blank page</string>
+    <string name="kiosk_page_summary">Kiosk page</string>
     <string name="default_kiosk_page_summary">Default Kiosk</string>
-    <string name="channel_page_summary">Channel Page</string>
+    <string name="channel_page_summary">Channel page</string>
     <string name="select_a_channel">Select a channel</string>
     <string name="no_channel_subscribed_yet">No channel subscriptions yet</string>
     <string name="select_a_playlist">Select a playlist</string>
@@ -410,7 +417,8 @@
     <string name="override_current_data">This will override your current setup.</string>
     <string name="import_settings">Do you want to also import settings?</string>
     <string name="error_unable_to_load_comments">Could not load comments</string>
-    <string name="localization_changes_requires_app_restart">The language will change once the app is restarted</string>
+    <string name="select_a_feed_group">Select a feed group</string>
+    <string name="no_feed_group_created_yet">No feed group created yet</string>
     <!-- Kiosk Names -->
     <string name="trending">Trending</string>
     <string name="top_50">Top 50</string>
@@ -685,6 +693,7 @@
     </plurals>
     <!-- Feed -->
     <string name="fragment_feed_title">What\'s New</string>
+    <string name="feed_group_page_summary">Channel group page</string>
     <string name="feed_groups_header_title">Channel groups</string>
     <string name="feed_oldest_subscription_update">Feed last updated: %s</string>
     <string name="feed_subscription_not_loaded_count">Not loaded: %d</string>
@@ -747,7 +756,7 @@
     <string name="private_content">This content is private, so it cannot be streamed or downloaded by NewPipe.</string>
     <string name="youtube_music_premium_content">This video is available only to YouTube Music Premium members, so it cannot be streamed or downloaded by NewPipe.</string>
     <string name="account_terminated">Account terminated</string>
-    <string name="service_provides_reason">%s provides this reason:</string>
+    <string name="account_terminated_service_provides_reason">Account terminated\n\n%1$s provides this reason: %2$s</string>
     <string name="paid_content">This content is only available to users who have paid, so it cannot be streamed or downloaded by NewPipe.</string>
     <string name="featured">Featured</string>
     <string name="radio">Radio</string>
@@ -815,6 +824,7 @@
     <string name="audio_track_type_original">original</string>
     <string name="audio_track_type_dubbed">dubbed</string>
     <string name="audio_track_type_descriptive">descriptive</string>
+    <string name="audio_track_type_secondary">secondary</string>
     <string name="channel_tab_videos">Videos</string>
     <string name="channel_tab_tracks">Tracks</string>
     <string name="channel_tab_shorts">Shorts</string>
@@ -822,6 +832,7 @@
     <string name="channel_tab_channels">Channels</string>
     <string name="channel_tab_playlists">Playlists</string>
     <string name="channel_tab_albums">Albums</string>
+    <string name="channel_tab_likes">Likes</string>
     <string name="channel_tab_about">About</string>
     <string name="show_channel_tabs">Channel tabs</string>
     <string name="show_channel_tabs_summary">What tabs are shown on the channel pages</string>
@@ -844,9 +855,9 @@
     <string name="image_quality_high">High quality</string>
     <string name="question_mark">\?</string>
     <string name="share_playlist">Share Playlist</string>
-    <string name="share_playlist_with_titles_message">Share playlist with details such as playlist name and video titles or as a simple list of video URLs</string>
     <string name="share_playlist_with_titles">Share with Titles</string>
     <string name="share_playlist_with_list">Share URL list</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Share as YouTube temporary playlist</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <string name="share_playlist_content_details">%1$s\n%2$s</string>
     <plurals name="replies">
@@ -856,9 +867,36 @@
     <string name="show_more">Show more</string>
     <string name="show_less">Show less</string>
     <string name="import_settings_vulnerable_format">The settings in the export being imported use a vulnerable format that was deprecated since NewPipe 0.27.0. Make sure the export being imported is from a trusted source, and prefer using only exports obtained from NewPipe 0.27.0 or newer in the future. Support for importing settings in this vulnerable format will soon be removed completely, and then old versions of NewPipe will not be able to import settings of exports from new versions anymore.</string>
+    <string name="migration_info_6_7_title">SoundCloud Top 50 page removed</string>
+    <string name="migration_info_6_7_message">SoundCloud has discontinued the original Top 50 charts. The corresponding tab has been removed from your main page.</string>
     <string name="auto_queue_description">Next</string>
+    <string name="newpipe_extractor_description">NewPipeExtractor is a library for extracting things from streaming sites. It is a core component of NewPipe, but could be used independently.</string>
     <plurals name="comments">
         <item quantity="one">%d comment</item>
         <item quantity="other">%d comments</item>
     </plurals>
+    <plurals name="export_subscriptions">
+        <item quantity="one">Exporting %d subscription…</item>
+        <item quantity="other">Exporting %d subscriptions…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">Loading %d subscription…</item>
+        <item quantity="other">Loading %d subscriptions…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">Importing %d subscription…</item>
+        <item quantity="other">Importing %d subscriptions…</item>
+    </plurals>
+    <string name="migration_info_7_8_title">YouTube combined trending removed</string>
+    <string name="migration_info_7_8_message">YouTube has discontinued the combined trending page as of 21st July 2025. NewPipe replaced the default trending page with the trending livestreams.\n\nYou can also select different trending pages in \"Settings > Content > Content of main page\".</string>
+    <string name="trending_gaming">Gaming trends</string>
+    <string name="trending_podcasts">Trending podcasts</string>
+    <string name="trending_movies">Trending movies and shows</string>
+    <string name="trending_music">Trending music</string>
+    <string name="entry_deleted">Entry deleted</string>
+    <string name="player_http_403">HTTP error 403 received from server while playing, likely caused by streaming URL expiration or an IP ban</string>
+    <string name="player_http_invalid_status">HTTP error %1$s received from server while playing</string>
+    <string name="youtube_player_http_403">HTTP error 403 received from server while playing, likely caused by an IP ban or streaming URL deobfuscation issues</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s refused to provide data, asking for a login to confirm the requester is not a bot.\n\nYour IP might have been temporarily banned by %1$s, you can wait some time or switch to a different IP (for example by turning on/off a VPN, or by switching from WiFi to mobile data).</string>
+    <string name="unsupported_content_in_country">This content is not available for the currently selected content country.\n\nChange your selection from \"Settings > Content > Default content country\".</string>
 </resources>

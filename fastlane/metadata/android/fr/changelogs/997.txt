@@ -1,0 +1,17 @@
+Nouveau
+• Ajouter des réponses aux commentaires
+• Autoriser la réorganisation des listes de lecture
+• Afficher la description et la durée de la liste de lecture
+• Autoriser la réinitialisation des paramètres
+
+Amélioré
+• [Android 13+] Restaurer les actions de notification personnalisées
+• Demander le consentement pour la vérification des mises à jour
+• Autoriser la lecture/pause des notifications pendant la mise en mémoire tampon
+• Réorganiser certains paramètres
+
+Corrigé
+• [YouTube] Correction des commentaires qui ne se chargent pas, ainsi que d'autres correctifs et améliorations
+• Résoudre la vulnérabilité dans l'importation des paramètres et passer à JSON
+• Divers correctifs de téléchargement
+• Couper le texte de recherche

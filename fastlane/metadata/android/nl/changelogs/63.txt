@@ -2,7 +2,7 @@
 - Instellingen importeren/exporteren #1333
 - Overdraw verminderen (prestatieverbetering) #1371
 - Kleine code verbeteringen #1375
-- Alles toevoegen over GDPR #1420
+- Alles toegevoegd over GDPR #1420
 
 ### Opgelost
-- Downloader: Een crash verholpen bij laden van onafgemaakte downloads van .giga bestanden #1407
+- Downloader: Een crash verholpen bij het laden van onafgemaakte downloads van .giga bestanden #1407

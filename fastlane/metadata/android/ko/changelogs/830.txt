@@ -1,0 +1,1 @@
+SoundCloud 문제를 해결하기 위해 SoundCloud client_id를 업데이트했습니다.

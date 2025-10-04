@@ -1,7 +1,5 @@
 package org.schabi.newpipe.error;
 
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
-
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -26,7 +24,7 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -67,10 +65,6 @@ public class ErrorActivity extends AppCompatActivity {
     public static final String ERROR_GITHUB_ISSUE_URL =
             "https://github.com/TeamNewPipe/NewPipe/issues";
 
-    public static final DateTimeFormatter CURRENT_TIMESTAMP_FORMATTER =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
-
     private ErrorInfo errorInfo;
     private String currentTimeStamp;
 
@@ -83,7 +77,6 @@ public class ErrorActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
-        assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
 
         ThemeHelper.setDayNightMode(this);
@@ -107,7 +100,9 @@ public class ErrorActivity extends AppCompatActivity {
 
         // important add guru meditation
         addGuruMeditation();
-        currentTimeStamp = CURRENT_TIMESTAMP_FORMATTER.format(LocalDateTime.now());
+        // print current time, as zoned ISO8601 timestamp
+        final ZonedDateTime now = ZonedDateTime.now();
+        currentTimeStamp = now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
 
         activityErrorBinding.errorReportEmailButton.setOnClickListener(v ->
                 openPrivacyPolicyDialog(this, "EMAIL"));
@@ -120,7 +115,7 @@ public class ErrorActivity extends AppCompatActivity {
 
         // normal bugreport
         buildInfo(errorInfo);
-        activityErrorBinding.errorMessageView.setText(errorInfo.getMessageStringId());
+        activityErrorBinding.errorMessageView.setText(errorInfo.getMessage(this));
         activityErrorBinding.errorView.setText(formErrorText(errorInfo.getStackTraces()));
 
         // print stack trace once again for debugging:
@@ -250,6 +245,9 @@ public class ErrorActivity extends AppCompatActivity {
                     .append("\n* __Content Language:__ ").append(getContentLanguageString())
                     .append("\n* __App Language:__ ").append(getAppLanguage())
                     .append("\n* __Service:__ ").append(errorInfo.getServiceName())
+                    .append("\n* __Timestamp:__ ").append(currentTimeStamp)
+                    .append("\n* __Package:__ ").append(getPackageName())
+                    .append("\n* __Service:__ ").append(errorInfo.getServiceName())
                     .append("\n* __Version:__ ").append(BuildConfig.VERSION_NAME)
                     .append("\n* __OS:__ ").append(getOsString()).append("\n");
 
@@ -305,7 +303,7 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     private String getAppLanguage() {
-        return Localization.getAppLocale(getApplicationContext()).toString();
+        return Localization.getAppLocale().toString();
     }
 
     private String getOsString() {

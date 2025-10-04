@@ -1,2 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="no_player_found_toast">တိုက်ရိုက်ကြည့်ရန် ပလေယာမရှိပါ(သင်VLCကိုသွင်းနိုင်ပါသည်။)</string>
+    <string name="install">ထည့်သွင်းမည်</string>
+    <string name="cancel">ပယ်ဖျက်ပါ</string>
+    <string name="ok">အဆင်ပြေသည်</string>
+    <string name="mark_as_watched">ကြည့်ပြီးပြီ</string>
+    <string name="open_in_popup_mode">popupပုံစံမှာဖွင့်ပါ</string>
+    <string name="download">ဒေါင်းလုဒ်</string>
+    <string name="controls_download_desc">တိုက်ရိုက်ဖိုင်ကို ဒေါင်းလုဒ်လုပ်မည်</string>
+    <string name="upload_date_text">တင်ခဲ့သည် %1$s</string>
+    <string name="no_player_found">တိုက်ရိုက်ကြည့်ရန် ပလေယာမရှိပါ။VLCသွင်းမလား။</string>
+    <string name="yes">ဟုတ်တယ်</string>
+    <string name="no">မဟုတ်ပါ</string>
+    <string name="open_in_browser">ဒီမီနူးအိုင်တမ်ကဝဘ်ဘရောက်ဇာထဲမှာဗီဒီယိုသို့မဟုတ်အသံဖိုင်ကိုဖွင့်မည်ဖြစ်သည်</string>
+    <string name="open_with">မည်သို့ ဖွင့်မည်ရွေးချယ်ပါ</string>
+    <string name="share">မျှဝေမည်</string>
+    <string name="search">ရှာဖွေရန်</string>
+    <string name="settings">ဆက်တင်များ</string>
+    <string name="did_you_mean">\"%1$s\" ကိုဆိုလိုသလား။</string>
+    <string name="main_bg_subtitle">စတင်ရန် ဖောက်ထွင်းမှန်ကိုထိပါ။</string>
+    <string name="share_dialog_title">ဖြင့် မျှဝေမည်</string>
+    <string name="use_external_video_player_title">အခြားဗီဒီယိုပလေယာ အားသုံးမည်</string>
+</resources>

@@ -18,11 +18,11 @@
     <string name="download_path_dialog_title">اختر مجلد التنزيل لملفات الفيديو</string>
     <string name="download_path_summary">يتم تخزين ملفات الفيديو التي تم تنزيلها هنا</string>
     <string name="download_path_title">مجلد تحميل الفيديو</string>
-    <string name="install">ثبت</string>
+    <string name="install">ثبيت</string>
     <string name="kore_not_found">تطبيق Kore غير موجود. هل تريد تثبيته؟</string>
     <string name="light_theme_title">فاتح</string>
     <string name="network_error">خطأ في الشبكة</string>
-    <string name="no_player_found">لم يتم العثور على مشغل بث. تثبيت VLC؟</string>
+    <string name="no_player_found">لم يتم العثور على مشغل بث. تود تثبيت VLC؟</string>
     <string name="open_in_browser">فتح في متصفح الويب</string>
     <string name="play_audio">الصوت</string>
     <string name="play_with_kodi_title">تشغيل بواسطة كودي</string>
@@ -37,7 +37,7 @@
     <string name="show_play_with_kodi_summary">اعرض خيار لتشغيل الفيديو عبر مركز وسائط Kodi</string>
     <string name="show_play_with_kodi_title">عرض خيار التشغيل بواسطة كودي</string>
     <string name="theme_title">السمة</string>
-    <string name="upload_date_text">تم النشر في %1$s</string>
+    <string name="upload_date_text">منشورة على %1$s</string>
     <string name="unsupported_url">رابط غير مدعوم</string>
     <string name="use_external_audio_player_title">استخدام مشغل صوت خارجي</string>
     <string name="use_external_video_player_title">استخدام مشغل فيديو خارجي</string>
@@ -45,7 +45,7 @@
     <string name="could_not_load_thumbnails">تعذر تحميل كافة الصور المصغرة</string>
     <string name="general_error">خطأ</string>
     <string name="parsing_error">تعذر تحليل الموقع</string>
-    <string name="main_bg_subtitle">اضغط على عدسة المكبرة للبدء.</string>
+    <string name="main_bg_subtitle">اضغط على العدسة المكبرة للبدء.</string>
     <string name="subscribe_button_title">اشتراك</string>
     <string name="subscribed_button_title">مشترك</string>
     <string name="tab_subscriptions">الاشتراكات</string>
@@ -83,7 +83,7 @@
     <string name="resume_on_audio_focus_gain_title">استئناف التشغيل</string>
     <string name="resume_on_audio_focus_gain_summary">متابعة التشغيل بعد المقاطعات (مثل المكالمات الهاتفية)</string>
     <string name="show_hold_to_append_title">إظهار تلميح \"اضغط للفتح\"</string>
-    <string name="show_hold_to_append_summary">عرض تلميح عند الضغط على زر استخدام المشغل الخلفي أو النافذة المنبثقة في صفحة تفاصيل الفديو</string>
+    <string name="show_hold_to_append_summary">إظهار التلميح عند الضغط على الخلفية أو الزر المنبثق في الفيديو \"التفاصيل:\"</string>
     <string name="settings_category_player_title">المشغل</string>
     <string name="settings_category_player_behavior_title">السلوك</string>
     <string name="popup_playing_toast">تشغيل في وضع منبثق</string>
@@ -116,9 +116,6 @@
     <string name="empty_list_subtitle">لا شيء هنا سوى الصراصير</string>
     <string name="audio">الصوت</string>
     <string name="retry">إعادة المحاولة</string>
-    <string name="short_thousand">ألف</string>
-    <string name="short_million">مليون</string>
-    <string name="short_billion">بليون</string>
     <string name="no_subscribers">ليس هناك مشترِكون</string>
     <plurals name="subscribers">
         <item quantity="zero">%s مشارك</item>
@@ -427,7 +424,6 @@
     <string name="default_kiosk_page_summary">الكشك الافتراضي</string>
     <string name="no_one_watching">لا توجد مشاهدة</string>
     <string name="no_one_listening">لا أحد يستمع</string>
-    <string name="localization_changes_requires_app_restart">ستتغير اللغة بمجرد إعادة تشغيل التطبيق</string>
     <plurals name="watching">
         <item quantity="zero">%s مشاهدة</item>
         <item quantity="one">%s مشاهدة</item>
@@ -538,7 +534,7 @@
         <item quantity="other">%d دقيقة</item>
     </plurals>
     <string name="new_seek_duration_toast">نظرا لقيود مشغل ExoPlayer مدة التقديم تم ضبطها الى %d ثانية</string>
-    <string name="unmute">غير صامت</string>
+    <string name="unmute">إلغاء الكتم</string>
     <string name="mute">كتم الصوت</string>
     <string name="content_not_supported">هذا المحتوى ليس مدعومًا من قبل NewPipe.
 \n
@@ -653,7 +649,6 @@
     <string name="description_select_enable">تمكين تحديد نص في الوصف</string>
     <string name="description_select_note">يمكنك الآن تحديد نص داخل الوصف. لاحظ أن الصفحة قد تومض وقد لا تكون الروابط قابلة للنقر أثناء وضع التحديد.</string>
     <string name="open_website_license">فتح الموقع</string>
-    <string name="service_provides_reason">%s يقدم هذا السبب:</string>
     <string name="account_terminated">تم إنهاء الحساب</string>
     <string name="feed_load_error_fast_unknown">لا يوفر وضع التغذية السريعة مزيدًا من المعلومات حول هذا الموضوع.</string>
     <string name="feed_load_error_terminated">حساب منشئ المحتوى قد تم إنهائه.
@@ -854,7 +849,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">مشاركة قائمة التشغيل</string>
-    <string name="share_playlist_with_titles_message">شارك تفاصيل قائمة التشغيل مثل اسم قائمة التشغيل وعناوين الفيديو أو كقائمة بسيطة من عناوين URL للفيديو</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <plurals name="replies">
         <item quantity="zero">رد %s</item>
@@ -878,4 +872,16 @@
     <string name="auto_update_check_description">يمكن لـ NewPipe البحث تلقائيًا عن الإصدارات الجديدة من وقت لآخر وإعلامك بمجرد توفرها.
 \nهل تريد تمكين هذا؟</string>
     <string name="no">لا</string>
+    <string name="import_settings_vulnerable_format">تستخدم الإعدادات الموجودة في عملية التصدير التي يتم استيرادها تنسيقًا عرضة للاختراق تم إهماله منذ NewPipe 0.27.0. تأكد من أن التصدير الذي يتم استيراده من مصدر موثوق به، ويفضل استخدام عمليات التصدير التي تم الحصول عليها من NewPipe 0.27.0 أو الأحدث في المستقبل فقط. سيتم قريبًا إزالة دعم استيراد الإعدادات بهذا التنسيق الضعيف تمامًا، وبعد ذلك لن تتمكن الإصدارات القديمة من NewPipe من استيراد إعدادات التصدير من الإصدارات الجديدة بعد الآن.</string>
+    <string name="audio_track_type_secondary">الثانوي</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">المشاركة كقائمة تشغيل مؤقتة على YouTube</string>
+    <string name="tab_bookmarks_short">قوائم التشغيل</string>
+    <string name="feed_group_page_summary">صفحة مجموعة القناة</string>
+    <string name="select_a_feed_group">حدد مجموعة المحتوى</string>
+    <string name="no_feed_group_created_yet">لم تنشئ مجموعة محتوى</string>
+    <string name="channel_tab_likes">الإعجابات</string>
+    <string name="search_with_service_name">البحث %1$s</string>
+    <string name="search_with_service_name_and_filter">البحث %1$s (%2$s)</string>
+    <string name="migration_info_6_7_title">تمت إزالة صفحة أفضل 50 من SoundCloud</string>
+    <string name="migration_info_6_7_message">أوقفت SoundCloud صفحة أفضل 50 الأصلية. تمت إزالة علامة التبويب المقابلة من صفحتك الرئيسية.</string>
 </resources>

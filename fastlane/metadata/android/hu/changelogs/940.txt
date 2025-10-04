@@ -1,0 +1,16 @@
+Új
+• SoundCloud kommentek támogatása
+• YouTube korlátolt beállítás hozzáadása
+• A PeerTube fő csatorna részletek mutatása
+
+Fejlesztések
+• Csak a támogatott szolgáltatásoknál jelenik meg a Kore gomb
+• A navigációssáv és a státuszsor területébe belelógó gesztus navigációk blokkolása
+• Újra próbálkozás és Feliratkozás gomb stílusának igazítása a szolgáltatásnak megfelelően
+
+Javítások
+• Letöltési felület fagyásának javítása
+• A böngészőben megnyitás valóban böngészőben nyitja meg a linket
+• A videó megnyitáskori összeomlás és a "Videó nem lejátszható" kiírás javítása
+
+és más egyéb

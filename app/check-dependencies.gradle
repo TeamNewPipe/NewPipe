@@ -1,0 +1,48 @@
+tasks.register('checkDependenciesOrder') {
+    group = 'verification'
+    description = 'Checks that each section in libs.versions.toml is sorted alphabetically'
+
+    def tomlFile = file('../gradle/libs.versions.toml')
+
+    doLast {
+        if (!tomlFile.exists()) {
+            throw new GradleException('TOML file not found')
+        }
+
+        def lines = tomlFile.readLines()
+        def nonSortedBlocks = []
+        def currentBlock = []
+        def prevLine = ''
+        def prevIndex = 0
+
+        lines.eachWithIndex { line, lineIndex ->
+            if (line.trim() && !line.startsWith('#')) {
+                if (line.startsWith('[')) {
+                    prevLine = ''
+                } else {
+                    def currIndex = lineIndex + 1
+                    if (prevLine > line) {
+                        if (currentBlock && currentBlock[-1] == "${prevIndex}: ${prevLine}") {
+                            currentBlock.add("${currIndex}: ${line}")
+                        } else {
+                            if (!currentBlock.isEmpty()) {
+                                nonSortedBlocks.add(currentBlock)
+                                currentBlock = []
+                            }
+                            currentBlock.add("${prevIndex}: ${prevLine}")
+                            currentBlock.add("${currIndex}: ${line}")
+                        }
+                    }
+                    prevLine = line
+                    prevIndex = lineIndex + 1
+                }
+            }
+        }
+
+        if (!currentBlock.isEmpty()) {
+            nonSortedBlocks.add(currentBlock)
+            throw new GradleException("The following lines were not sorted:\n" +
+                    nonSortedBlocks.collect { it.join("\n") }.join("\n\n"))
+        }
+    }
+}

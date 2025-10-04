@@ -1,0 +1,13 @@
+Geliştirmeler
+• Liste açıklamaları daha fazla/az göstermek için artık tıklanabilir
+• [PeerTube] `subscribeto.me` sunucu bağlantıları otomatik olarak işlenir
+• Geçmiş ekranında sadece tek bir item oynatılır
+
+Düzeltmeler
+• RSS buton görünürlüğü düzeltildi
+• Bar önizleme çökmeleri düzeltildi
+• Küçük resmi olmayan itemleri listeye ekleme düzeltildi
+• İndirme iletişim kutusu görünmeden önce çıkma düzeltildi
+• Listeye ekle diyalogundaki sıra düzeltildi
+• Liste yer imi öğe düzenini ayarlandı
+...

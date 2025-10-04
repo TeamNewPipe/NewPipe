@@ -189,6 +189,19 @@ public class StoredFileHelper implements Serializable {
         }
     }
 
+    public SharpStream openAndTruncateStream() throws IOException {
+        final SharpStream sharpStream = getStream();
+        try {
+            sharpStream.setLength(0);
+        } catch (final Throwable e) {
+            // we can't use try-with-resources here, since we only want to close the stream if an
+            // exception occurs, but leave it open if everything goes well
+            sharpStream.close();
+            throw e;
+        }
+        return sharpStream;
+    }
+
     /**
      * Indicates whether it's using the {@code java.io} API.
      *

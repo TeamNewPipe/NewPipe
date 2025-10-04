@@ -1,0 +1,6 @@
+Detta är en snabbkorrigeringsversion som fixar YouTube-fel:
+• [YouTube] Fixat att ingen videoinformation laddades, fixat HTTP 403 när videor spelas och återställde uppspelningen av några åldersbegränsade videor
+• Fixade att undertexts storleken inte ändrades
+• Fixade att information laddades ner två gånger vid öppning av en ström
+• [Soundcloud] Tog bort ospelbara DRM-skyddade strömmar
+• Uppdaterade översättningar

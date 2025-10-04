@@ -88,9 +88,6 @@
     <string name="disabled">Devre dışı</string>
     <string name="your_comment">Yorumunuz (İngilizce):</string>
     <string name="error_details_headline">Ayrıntılar:</string>
-    <string name="short_thousand">b</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">M</string>
     <string name="msg_popup_permission">Bu izin, açılır pencere kipinde
 \naçmak için gereklidir</string>
     <string name="title_activity_recaptcha">reCAPTCHA formu</string>
@@ -157,16 +154,16 @@
     <string name="action_history">Geçmiş</string>
     <string name="delete_item_search_history">Bu ögeyi arama geçmişinden silmek istiyor musunuz\?</string>
     <string name="show_hold_to_append_title">\"Basılı tutarak kuyruğa ekle\" ipucunu göster</string>
-    <string name="show_hold_to_append_summary">Video \"Ayrıntılar:\" sayfasında arka plan veya açılır pencere düğmesine basıldığında ipucu göster</string>
+    <string name="show_hold_to_append_summary">Video \"Ayrıntılar:\" sayfasında arka plan ya da açılır pencere düğmesine basıldığında ipucu göster</string>
     <string name="play_all">Tümünü Oynat</string>
     <string name="unknown_content">[Bilinmeyen]</string>
     <string name="player_stream_failure">Bu akış oynatılamadı</string>
     <string name="player_unrecoverable_failure">Kurtarılamayan oynatıcı hatası oluştu</string>
     <string name="player_recoverable_failure">Oynatıcı hatasından kurtarılıyor</string>
     <string name="main_page_content">Ana sayfanın içeriği</string>
-    <string name="blank_page_summary">Boş Sayfa</string>
-    <string name="kiosk_page_summary">Kiosk Sayfası</string>
-    <string name="channel_page_summary">Kanal Sayfası</string>
+    <string name="blank_page_summary">Boş sayfa</string>
+    <string name="kiosk_page_summary">Kiosk sayfası</string>
+    <string name="channel_page_summary">Kanal sayfası</string>
     <string name="select_a_channel">Kanal seçin</string>
     <string name="no_channel_subscribed_yet">Henüz kanal aboneliği yok</string>
     <string name="select_a_kiosk">Kiosk seçin</string>
@@ -212,7 +209,7 @@
     <string name="override_current_data">Bu, var olan kurulumunuzu geçersiz kılacaktır.</string>
     <string name="controls_download_desc">Akış dosyasını indir</string>
     <string name="show_info">Bilgi göster</string>
-    <string name="tab_bookmarks">İmlenen Çalma Listeleri</string>
+    <string name="tab_bookmarks">İmlenen Oynatma Listeleri</string>
     <string name="controls_add_to_playlist_title">Ekle</string>
     <string name="detail_drag_description">Yeniden düzenlemek için sürükleyin</string>
     <string name="create">Oluştur</string>
@@ -422,7 +419,6 @@
         <item quantity="one">%s dinleyici</item>
         <item quantity="other">%s dinleyici</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Uygulama yeniden başlatıldıktan sonra dil değişecektir</string>
     <string name="seek_duration_title">Hızlı ileri/geri atlama süresi</string>
     <string name="peertube_instance_url_title">PeerTube örnekleri</string>
     <string name="peertube_instance_url_summary">Favori PeerTube örneklerinizi seçin</string>
@@ -612,7 +608,6 @@
     <string name="description_select_enable">Açıklamadaki metni seçmeyi etkinleştir</string>
     <string name="description_select_note">Artık, açıklamadaki metni seçebilirsiniz. Seçim kipindeyken sayfanın titreyebileceğini ve bağlantıların tıklanamayacağını unutmayın.</string>
     <string name="open_website_license">Web sitesini aç</string>
-    <string name="service_provides_reason">%s şu nedeni sağlıyor:</string>
     <string name="account_terminated">Hesap sonlandırıldı</string>
     <string name="feed_load_error_fast_unknown">Hızlı besleme kipi bununla ilgili daha çok bilgi sağlamıyor.</string>
     <string name="feed_load_error_terminated">Yazarın hesabı sonlandırılmış.
@@ -646,8 +641,8 @@
     <string name="main_page_content_swipe_remove">Ögeleri kaldırmak için kaydır</string>
     <string name="start_main_player_fullscreen_summary">Videoları küçük oynatıcıda başlatma, kendiliğinden döndürme kilitliyse doğrudan tam ekran kipine geç. Tam ekrandan çıkarak küçük oynatıcıya erişebilirsiniz</string>
     <string name="start_main_player_fullscreen_title">Ana oynatıcıyı tam ekranda başlat</string>
-    <string name="enqueue_next_stream">Sonrakini sıraya ekle</string>
-    <string name="enqueued_next">Sonraki sıraya eklendi</string>
+    <string name="enqueue_next_stream">Bundan sonra oynat</string>
+    <string name="enqueued_next">Bundan sonra oynatılmak için sıraya eklendi</string>
     <string name="processing_may_take_a_moment">İşleniyor… Biraz zaman alabilir</string>
     <string name="check_for_updates">Güncellemeleri denetle</string>
     <string name="manual_update_description">Yeni sürümleri el ile denetleyin</string>
@@ -789,7 +784,6 @@
     <string name="rewind">Geri sar</string>
     <string name="replay">Yeniden oynat</string>
     <string name="feed_fetch_channel_tabs_summary">Besleme güncellenirken alınacak sekmeler. Hızlı kip kullanılırken kanal güncelleniyorsa bu seçeneğin etkisi yoktur.</string>
-    <string name="share_playlist_with_titles_message">Oynatma listesini, oynatma listesi adı ve video başlıkları gibi ayrıntılarla ya da video adreslerinin basit listesi olarak paylaş</string>
     <string name="image_quality_medium">Orta nitelik</string>
     <string name="metadata_uploader_avatars">Yükleyen avatarları</string>
     <string name="metadata_banners">Afişler</string>
@@ -822,4 +816,16 @@
     <string name="no">Hayır</string>
     <string name="auto_update_check_description">NewPipe zaman zaman yeni sürümleri kendiliğinden denetleyebilir ve kullanılabilir olduklarında sizi bilgilendirebilir.
 \nBunu etkinleştirmek istiyor musunuz?</string>
+    <string name="import_settings_vulnerable_format">İçe aktarılmakta olan dışa aktarımdaki ayarlar, NewPipe 0.27.0\'dan itibaren kullanımdan kaldırılan güvenlik açığı olan bir biçim kullanmaktadır. İçe aktarılmakta olan dışa aktarımın güvenilir bir kaynaktan alındığından emin olun ve gelecekte yalnızca NewPipe 0.27.0 veya daha yeni sürümlerden alınan dışa aktarımları kullanmayı tercih edin. Bu güvenlik açığı bulunan biçimdeki ayarları içe aktarma desteği yakında tamamen kaldırılacak ve ardından NewPipe\'ın eski sürümleri artık yeni sürümlerden dışa aktarılan ayarların içe aktarımını yapamayacaktır.</string>
+    <string name="audio_track_type_secondary">ikincil</string>
+    <string name="tab_bookmarks_short">Oynatma Listeleri</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">YouTube geçici oynatma listesi olarak paylaş</string>
+    <string name="select_a_feed_group">Besleme kümesi seç</string>
+    <string name="feed_group_page_summary">Kanal küme sayfası</string>
+    <string name="no_feed_group_created_yet">Besleme kümesi oluşturulmadı</string>
+    <string name="channel_tab_likes">Beğeni</string>
+    <string name="search_with_service_name">%1$s İle Ara</string>
+    <string name="search_with_service_name_and_filter">%1$s İle Ara (%2$s)</string>
+    <string name="migration_info_6_7_title">SoundCloud Top 50 sayfası kaldırıldı</string>
+    <string name="migration_info_6_7_message">SoundCloud, özgün Top 50 listesini artık yayınlamıyor. İlgili sekme ana sayfanızdan kaldırıldı.</string>
 </resources>

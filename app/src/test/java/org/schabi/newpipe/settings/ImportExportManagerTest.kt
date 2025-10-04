@@ -25,8 +25,15 @@ import org.schabi.newpipe.streams.io.StoredFileHelper
 import us.shandian.giga.io.FileStream
 import java.io.File
 import java.io.ObjectInputStream
-import java.nio.file.Files
+import java.nio.file.Paths
 import java.util.zip.ZipFile
+import kotlin.io.path.createTempDirectory
+import kotlin.io.path.createTempFile
+import kotlin.io.path.deleteIfExists
+import kotlin.io.path.div
+import kotlin.io.path.exists
+import kotlin.io.path.fileSize
+import kotlin.io.path.inputStream
 
 @RunWith(MockitoJUnitRunner::class)
 class ImportExportManagerTest {
@@ -46,7 +53,7 @@ class ImportExportManagerTest {
 
     @Test
     fun `The settings must be exported successfully in the correct format`() {
-        val db = File(classloader.getResource("settings/newpipe.db")!!.file)
+        val db = Paths.get(classloader.getResource("settings/newpipe.db")!!.toURI())
         `when`(fileLocator.db).thenReturn(db)
 
         val expectedPreferences = mapOf("such pref" to "much wow")
@@ -55,7 +62,7 @@ class ImportExportManagerTest {
         `when`(sharedPreferences.all).thenReturn(expectedPreferences)
 
         val output = File.createTempFile("newpipe_", "")
-        `when`(storedFileHelper.stream).thenReturn(FileStream(output))
+        `when`(storedFileHelper.openAndTruncateStream()).thenReturn(FileStream(output))
         ImportExportManager(fileLocator).exportDatabase(sharedPreferences, storedFileHelper)
 
         val zipFile = ZipFile(output)
@@ -81,29 +88,29 @@ class ImportExportManagerTest {
 
     @Test
     fun `Ensuring db directory existence must work`() {
-        val dir = Files.createTempDirectory("newpipe_").toFile()
-        Assume.assumeTrue(dir.delete())
-        `when`(fileLocator.dbDir).thenReturn(dir)
+        val path = createTempDirectory("newpipe_") / BackupFileLocator.FILE_NAME_DB
+        Assume.assumeTrue(path.parent.deleteIfExists())
+        `when`(fileLocator.db).thenReturn(path)
 
         ImportExportManager(fileLocator).ensureDbDirectoryExists()
-        assertTrue(dir.exists())
+        assertTrue(path.parent.exists())
     }
 
     @Test
     fun `Ensuring db directory existence must work when the directory already exists`() {
-        val dir = Files.createTempDirectory("newpipe_").toFile()
-        `when`(fileLocator.dbDir).thenReturn(dir)
+        val path = createTempDirectory("newpipe_") / BackupFileLocator.FILE_NAME_DB
+        `when`(fileLocator.db).thenReturn(path)
 
         ImportExportManager(fileLocator).ensureDbDirectoryExists()
-        assertTrue(dir.exists())
+        assertTrue(path.parent.exists())
     }
 
     @Test
     fun `The database must be extracted from the zip file`() {
-        val db = File.createTempFile("newpipe_", "")
-        val dbJournal = File.createTempFile("newpipe_", "")
-        val dbWal = File.createTempFile("newpipe_", "")
-        val dbShm = File.createTempFile("newpipe_", "")
+        val db = createTempFile("newpipe_", "")
+        val dbJournal = createTempFile("newpipe_", "")
+        val dbWal = createTempFile("newpipe_", "")
+        val dbShm = createTempFile("newpipe_", "")
         `when`(fileLocator.db).thenReturn(db)
         `when`(fileLocator.dbJournal).thenReturn(dbJournal)
         `when`(fileLocator.dbShm).thenReturn(dbShm)
@@ -117,15 +124,15 @@ class ImportExportManagerTest {
         assertFalse(dbJournal.exists())
         assertFalse(dbWal.exists())
         assertFalse(dbShm.exists())
-        assertTrue("database file size is zero", Files.size(db.toPath()) > 0)
+        assertTrue("database file size is zero", db.fileSize() > 0)
     }
 
     @Test
     fun `Extracting the database from an empty zip must not work`() {
-        val db = File.createTempFile("newpipe_", "")
-        val dbJournal = File.createTempFile("newpipe_", "")
-        val dbWal = File.createTempFile("newpipe_", "")
-        val dbShm = File.createTempFile("newpipe_", "")
+        val db = createTempFile("newpipe_", "")
+        val dbJournal = createTempFile("newpipe_", "")
+        val dbWal = createTempFile("newpipe_", "")
+        val dbShm = createTempFile("newpipe_", "")
         `when`(fileLocator.db).thenReturn(db)
 
         val emptyZip = File(classloader.getResource("settings/nodb_noser_nojson.zip")?.file!!)
@@ -136,7 +143,7 @@ class ImportExportManagerTest {
         assertTrue(dbJournal.exists())
         assertTrue(dbWal.exists())
         assertTrue(dbShm.exists())
-        assertEquals(0, Files.size(db.toPath()))
+        assertEquals(0, db.fileSize())
     }
 
     @Test

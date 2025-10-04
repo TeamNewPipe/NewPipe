@@ -1,0 +1,10 @@
+Unir ações específicas de enfileiramento
+Gesto 2 dedos p/ fechar APP
+Permitir limpeza de cookies reCAPTCHA
+Opção não colorir notific.
+Melhorar forma como os detalhes do vídeo são abertos p/ corrigir buffering infinito, comportamento errático ao compartilhar com NewPipe, etc
+Acelerar vídeos do YouTube e corrijir restrições etárias
+Corrigir falha no avanço/recuo rápido
+Não reorganizar listas ao arrastar miniaturas
+Lembrar sempre as propriedades pop-up
+Adicionar idioma Santali

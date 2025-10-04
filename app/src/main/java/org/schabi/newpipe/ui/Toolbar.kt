@@ -13,7 +13,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SearchBar
-import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -91,14 +90,7 @@ fun Toolbar(
                 active = true,
                 onActiveChange = {
                     isSearchActive = it
-                },
-                colors = SearchBarDefaults.colors(
-                    containerColor = MaterialTheme.colorScheme.background,
-                    inputFieldColors = SearchBarDefaults.inputFieldColors(
-                        focusedTextColor = MaterialTheme.colorScheme.onBackground,
-                        unfocusedTextColor = MaterialTheme.colorScheme.onBackground
-                    )
-                )
+                }
             ) {
                 onSearchQueryChange?.invoke(query)?.takeIf { it.isNotEmpty() }
                     ?.map { suggestionText -> SearchSuggestionItem(text = suggestionText) }

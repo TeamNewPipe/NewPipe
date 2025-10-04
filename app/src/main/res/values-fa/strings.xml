@@ -148,21 +148,18 @@
     <string name="error_occurred_detail">خطایی رخ داد: %1$s</string>
     <string name="no_streams_available_download">جریانی برای بارگیری در دسترس نیست</string>
     <string name="search_no_results">بدون نتیجه</string>
-    <string name="short_thousand">K</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">B</string>
     <plurals name="subscribers">
-        <item quantity="one">۱ مشترک</item>
+        <item quantity="one">%s مشترک</item>
         <item quantity="other">%s مشترک</item>
     </plurals>
     <string name="no_views">بدون بازدید</string>
     <plurals name="views">
-        <item quantity="one">۱ بازدید</item>
+        <item quantity="one">%s بازدید</item>
         <item quantity="other">%s بازدید</item>
     </plurals>
     <string name="no_videos">بدون ویدیو</string>
     <plurals name="videos">
-        <item quantity="one">۱ ویدیو</item>
+        <item quantity="one">%s ویدیو</item>
         <item quantity="other">%s ویدیو</item>
     </plurals>
     <string name="create">ایجاد</string>
@@ -429,7 +426,7 @@
     <string name="feed_create_new_group_button_title">جدید</string>
     <string name="feed_group_dialog_delete_message">می‌خواهید این گروه را پاک کنید؟</string>
     <plurals name="feed_group_dialog_selection_count">
-        <item quantity="one">۱ مورد گزیده</item>
+        <item quantity="one">%d مورد گزیده</item>
         <item quantity="other">%d مورد گزیده</item>
     </plurals>
     <string name="feed_processing_message">پردازش خوراک…</string>
@@ -437,19 +434,19 @@
     <string name="feed_subscription_not_loaded_count">بارگیری نشده: %d</string>
     <string name="feed_oldest_subscription_update">آخرین به‌روزرسانی خوراک: %s</string>
     <plurals name="days">
-        <item quantity="one">۱ روز</item>
+        <item quantity="one">%d روز</item>
         <item quantity="other">%d روز</item>
     </plurals>
     <plurals name="hours">
-        <item quantity="one">۱ ساعت</item>
+        <item quantity="one">%d ساعت</item>
         <item quantity="other">%d ساعت</item>
     </plurals>
     <plurals name="minutes">
-        <item quantity="one">۱ دقیقه</item>
+        <item quantity="one">%d دقیقه</item>
         <item quantity="other">%d دقیقه</item>
     </plurals>
     <plurals name="seconds">
-        <item quantity="one">۱ ثانیه</item>
+        <item quantity="one">%d ثانیه</item>
         <item quantity="other">%d ثانیه</item>
     </plurals>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">بله، و ویدیوهای ناقص دیده شده</string>
@@ -469,19 +466,18 @@
     <string name="most_liked">مورد پسندترین‌ها</string>
     <string name="recently_added">اخیرا اضافه شده</string>
     <string name="local">محلی</string>
-    <string name="localization_changes_requires_app_restart">با آغاز دوبارهٔ کاره، زبان تغییر خواهد کرد</string>
     <string name="default_kiosk_page_summary">کیوسک پیش‌فرض</string>
     <string name="done">انجام شد</string>
     <string name="subtitle_activity_recaptcha">وقتی انجام شد، «Done» یا «انجام شد» را بفشارید</string>
     <string name="infinite_videos">∞ ویدیو</string>
     <string name="more_than_100_videos">بیش از ۱۰۰ ویدیو</string>
     <plurals name="listening">
-        <item quantity="one">۱ شنونده</item>
+        <item quantity="one">%s شنونده</item>
         <item quantity="other">%s شنونده</item>
     </plurals>
     <string name="no_one_listening">کسی در حال شنیدن نیست</string>
     <plurals name="watching">
-        <item quantity="one">۱ بیننده</item>
+        <item quantity="one">%s بیننده</item>
         <item quantity="other">%s بیننده</item>
     </plurals>
     <string name="no_one_watching">کسی در حال مشاهده نیست</string>
@@ -541,7 +537,7 @@
     <string name="notification_action_shuffle">بُرزنی</string>
     <string name="notification_action_repeat">تکرار</string>
     <string name="notification_actions_at_most_three">می‌توانید تا سه کنش را برای نمایش در آگاهی فشرده برگزینید!</string>
-    <string name="notification_actions_summary">هر کنش آگاهی را با لمس کردنش ویرایش کنید. با استفاده از جعبه‌های تیک، تا سه کنش را برای نمایش در آگاهی فشرده بگزینید</string>
+    <string name="notification_actions_summary">هر کنش آگاهی را با لمس کردنش ویرایش کنید. با استفاده از جعبه‌های تیک، تا سه کنش را برای نمایش در آگاهی فشرده بگزینید.</string>
     <string name="notification_action_4_title">پنجمین دکمه کنشی</string>
     <string name="notification_action_3_title">چهارمین دکمه کنشی</string>
     <string name="notification_action_2_title">سومین دکمه کنشی</string>
@@ -619,7 +615,7 @@
     <string name="paid_content">این محتوا فقط برای کاربرانی که پول داده‌اند در دسترس است. پس نمی‌تواند به دست نیوپایپ جریان یافته یا بارگیری شود.</string>
     <string name="night_theme_summary">زمینهٔ شب محبوبتان را برگزینید — %s</string>
     <string name="select_night_theme_toast">در زیر می‌توانید زمینهٔ شب محبوبتان را برگزینید</string>
-    <string name="disable_media_tunneling_summary">اگر هنگام پخش ویدیو با صفحهٔ سیاه یا وقفه مواجه شدید، تونل‌زنی رسانه را از کار بیندازید</string>
+    <string name="disable_media_tunneling_summary">اگر هنگام پخش ویدیو با صفحهٔ سیاه یا وقفه مواجه شدید، تونل‌زنی رسانه را از کار بیندازید.</string>
     <string name="description_select_note">اکنون می‌توانید متن درون شرخ را برگزینید. به یاد داشته باشید که در حالت گزینش، ممکن است صفحه چشمک زده و پیوندها قابل کلیک نباشند.</string>
     <string name="no_dir_yet">هنوز شاخهٔ بارگیری‌ای تنظیم نشده. اکنون شاخهٔ بارگیری پیش‌گزیده را برگزینید</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">برای ذخیرهٔ هر بارگیری از شما پرسیده خواهد شد</string>
@@ -629,7 +625,6 @@
 \nنیوپایپ قادر به بار کردن این خوراک در آینده نیست.
 \nمی‌خواهید اشتراک این کانال را لغو کنید؟</string>
     <string name="feed_load_error_fast_unknown">حالت خوراک سریع، اطَلاعات بیش‌تری در این باره نمی‌دهد.</string>
-    <string name="service_provides_reason">%s این دلیل را آورد:</string>
     <string name="seekbar_preview_thumbnail_title">پیش‌نمایش بندانگشتی نوار جویش</string>
     <string name="detail_heart_img_view_description">قلب‌شده به دست ایجادگر</string>
     <string name="local_search_suggestions">پیشنهادهای جست‌وجوی محلّی</string>
@@ -678,7 +673,7 @@
     <string name="toggle_all">تغییر وضعیت همه</string>
     <string name="streams_notification_channel_name">جریان‌های جدید</string>
     <plurals name="new_streams">
-        <item quantity="one">۱ جریان جدید</item>
+        <item quantity="one">%s جریان جدید</item>
         <item quantity="other">%s جریان جدید</item>
     </plurals>
     <string name="settings_category_player_notification_summary">پیکربندی آگاهی جریان در حال پخش کنونی</string>
@@ -722,4 +717,101 @@
     <string name="feed_show_upcoming">پیش رو</string>
     <string name="feed_show_watched">کامل دیده شده</string>
     <string name="feed_show_partially_watched">نیمه دیده شده</string>
+    <string name="no_streams">بدون جریان</string>
+    <string name="play_queue_audio_track">صدا: %s</string>
+    <string name="forward">پیشروی</string>
+    <string name="settings_category_exoplayer_title">تنظیمات اگزوپلیر</string>
+    <string name="next_stream">جریان بعدی</string>
+    <string name="unknown_audio_track">ناشناخته</string>
+    <string name="audio_track_type_original">اصلی</string>
+    <string name="audio_track_type_dubbed">دوبله</string>
+    <string name="channel_tab_shorts">کوتاه‌ها</string>
+    <string name="channel_tab_livestreams">زنده</string>
+    <string name="progressive_load_interval_summary">تغییر اندازهٔ بازهٔ بار (هم‌اکنون %s). مقداری پایین‌تر، می‌تواند بار کردن نخستین ویدیو را سرعت بخشد</string>
+    <string name="loading_metadata_title">بار کردن فراداده…</string>
+    <string name="audio_track">قطعهٔ صوتی</string>
+    <string name="yes">بله</string>
+    <string name="no">نه</string>
+    <string name="brightness">روشنایی</string>
+    <string name="volume">حجم صدا</string>
+    <string name="none">هیچ‌کدام</string>
+    <string name="error_insufficient_storage">فضای آزاد ناکافی روی افزاره</string>
+    <string name="metadata_thumbnails">بندانگشتی‌ها</string>
+    <string name="metadata_avatars">چهرک‌ها</string>
+    <string name="metadata_banners">بیرق‌ها</string>
+    <string name="metadata_subscribers">مشترکان</string>
+    <string name="audio_track_type_descriptive">مشروح</string>
+    <string name="channel_tab_videos">ویدیوها</string>
+    <string name="channel_tab_tracks">قطعه‌ها</string>
+    <string name="channel_tab_channels">کانال‌ها</string>
+    <string name="channel_tab_playlists">سیاهه‌های پخش</string>
+    <string name="channel_tab_albums">آلبوم‌ها</string>
+    <string name="channel_tab_about">درباره</string>
+    <string name="play">پخش</string>
+    <string name="replay">بازپخش</string>
+    <string name="audio_track_name">%1$s%2$s</string>
+    <string name="show_channel_tabs">زبانهٔ کانال‌ها</string>
+    <string name="toggle_fullscreen">تغییر حالت تمام‌صفحه</string>
+    <string name="previous_stream">جریان پیشین</string>
+    <string name="more_options">گزینه‌های بیش‌تر</string>
+    <string name="duration">مدّت</string>
+    <string name="rewind">پسروی</string>
+    <string name="question_mark">؟</string>
+    <string name="settings_category_backup_restore_title">پشتیبان‌گیری و بازیابی</string>
+    <string name="no_live_streams">بدون جریان زنده</string>
+    <string name="image_quality_title">کیفیت تصویر</string>
+    <string name="image_quality_medium">کیفیت متوسّط</string>
+    <string name="image_quality_high">کیفیت زیاد</string>
+    <string name="prefer_original_audio_title">ترجیح صدای اصلی</string>
+    <string name="share_playlist">هم‌رسانی سیاههٔ پخش</string>
+    <string name="image_quality_low">کیفیت کم</string>
+    <string name="tab_bookmarks_short">سیاهه‌های پخش</string>
+    <string name="reset_settings_title">بازنشانی تنظیمات</string>
+    <string name="audio_track_type_secondary">ثانویه</string>
+    <string name="show_less">نمایش کم‌تر</string>
+    <string name="main_tabs_position_summary">جابه‌جایی گزینشگر زبانهٔ اصلی به پایین</string>
+    <string name="disable_media_tunneling_automatic_info">تونل زدن رسانه به صورت پیش‌گزیده روی افزاره‌تان از کار افتاده چرا که از آن پشتیبانی نمی‌کند.</string>
+    <string name="right_gesture_control_title">کنش ژست راست</string>
+    <string name="audio_track_present_in_video">قطعه‌ای صوتی باید از پیش در این جریان موجود باشد</string>
+    <string name="ignore_hardware_media_buttons_summary">برای نمونه اگر از گوشی‌ای با دکمه‌های خراب استفاده می‌کنید مفید است</string>
+    <string name="reset_all_settings">بازنشانی همهٔ تنظیمات همهٔ تنظیمات ترجیحیتان را دور اندعخته و کاره را دوباره آغاز می‌کند.\n\nمطمئنید که می‌خواهید ادامه دهید؟</string>
+    <string name="use_exoplayer_decoder_fallback_title">استفاده از ویژگی پشتیبان کدگشای اگزوپلیر</string>
+    <string name="show_channel_tabs_summary">زبانه‌های نشان داده شده روی صفحه‌های کانال</string>
+    <string name="toggle_screen_orientation">تغییر جهت صفحه</string>
+    <string name="image_quality_none">بار نکردن تصویرها</string>
+    <string name="share_playlist_with_list">هم‌رسانی سیاههٔ نشانی</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">هم‌رسانی به شکل سیاههٔ پخش موقّتی یوتوب</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="share_playlist_content_details">%1$s\n%2$s</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">استفادهٔ همیشگی از دور زدن تنظیمات سطح خروجی ویدیوی اگزوپلیر</string>
+    <string name="main_tabs_position_title">موقعیت زبانه‌های اصلی</string>
+    <string name="feed_fetch_channel_tabs">واکشی زبانه‌های کانال</string>
+    <string name="select_audio_track_external_players">گزینش قطعهٔ صوتی برای پخش کننده‌های خارجی</string>
+    <plurals name="replies">
+        <item quantity="one">%s پاسخ</item>
+        <item quantity="other">%s پاسخ</item>
+    </plurals>
+    <string name="share_playlist_with_titles">هم‌رسانی با عنوان‌ها</string>
+    <string name="prefer_descriptive_audio_summary">گزینش قطعهٔ صوتی با شرح برای افزار کم‌بینا در صورت وجود</string>
+    <string name="prefer_descriptive_audio_title">ترجیح صدای شرح دهنده</string>
+    <string name="right_gesture_control_summary">گزینش کنش ژست نیمهٔ راست صفحه</string>
+    <string name="playlist_add_stream_success_duplicate">تعداد %d بار تکرار شده</string>
+    <string name="metadata_uploader_avatars">چهرک‌های بارکننده</string>
+    <string name="metadata_subchannel_avatars">چهرک‌های زیرکانال</string>
+    <string name="left_gesture_control_title">کنش ژست چپ</string>
+    <string name="image_quality_summary">گزینش کیفیت تصویرها و این که اصلاً بار شوند یا نه، برای کاهش استفادهٔ حافظه و داده. تغییرات انبارهٔ تصویر حافظه و دیسک را پاک می‌کند — %s</string>
+    <string name="use_exoplayer_decoder_fallback_summary">اگر مشکل شروع رمزگشایی دارید ، این گزینه را فعال کنید ، که اگر رمزگشایی اولیه شکست بخورد ، به رمزگشایی های با اولویت پایین تر باز می گردد. این ممکن است منجر به عملکرد پخش ضعیف نسبت به هنگام استفاده از رمزگشایان اولیه شود</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">این روش دور زدن مشکل به جای تنظیم مستقیم سطح روی رمزینه، آن‌ها را هنگام تغییر سطح آزاد کرده و دوباره راه‌اندازی می‌کند. این تنظیم که از پیش روی برخی افزاره‌ها به دست اگزوپلیر استفاده می‌شد فقط روی اندروید ۶ و بالاتر تأثیر دارد\n\nبه کار انداختن این گزینه می‌تواند از خطاهای پخش هنگام تغییر پخش‌کنندهٔ ویدیوی کنونی یا تغییر به حالت تمام‌صفحه جلوگیری کند</string>
+    <string name="settings_category_exoplayer_summary">مدیریت برخی تنظیمات اگزوپلیر. اعمال این تغییرات نیازمند آغاز دوبارهٔ پخش‌کننده است</string>
+    <string name="duplicate_in_playlist">سیاهه‌های پخشی که خاکستری شده‌اند این مورد را از پیش دارند.</string>
+    <string name="notification_actions_summary_android13">ویرایش هر کنش آگاهی زیر با زدن رویش. سه کنش نخست (پخش/مکث، پیشین و بعدی) به دست سامانه تنظیم شده و قابل سفارشی سازی نیستند.</string>
+    <string name="left_gesture_control_summary">گزینش کنش ژست نیمهٔ چپ صفحه</string>
+    <string name="prefer_original_audio_summary">گزینش قطعهٔ صوتی اصلی فارغ از زبان</string>
+    <string name="auto_update_check_description">نیوپایپ می‌تواند گه‌گاه به صورت خودکار نگارش‌های جدید را بررسی کرده و از وجودشان آگاهتان کند.\nمی‌خواهید به کارش بیندازید؟</string>
+    <string name="reset_settings_summary">بازنشانی همهٔ تنظیمات به مقدارهای پیش‌گزیده‌شان</string>
+    <string name="show_more">نمایش بیش‌تر</string>
+    <string name="import_settings_vulnerable_format">تنظیمات داخل برون‌ریزی‌ از قالبی آسیب‌پذیر استفاده می‌کند که از نگارش ۰٫۲۷٫۰ منسوخ شده. مطمئن شوید برون‌ریزی از منبعی مطمئن آمده و ترجیحاً فقط از برون‌ریزی‌های آمده از نگارش ۰٫۲۷٫۰ به بعد استفاده کنید. پشتیبانی از درون‌ریزی تنظیمات به این قالب آسیب‌پذیر به زودی کاملاً‌برداشته خواهد شد و دیگر نگارش‌خای قدیمی‌تر قادر به درون ریزی تنظیمات از نگارش‌های جدید نخواهند بود.</string>
+    <string name="open_play_queue">گشودن صف پخش</string>
+    <string name="remove_duplicates_message">می‌خواهید همهٔ جریان‌های تکراری را در این سیاههٔ پخش بردارید؟</string>
+    <string name="feed_fetch_channel_tabs_summary">زبانه‌هایی که هنگام به‌روز رسانی خوراک واکشی می‌شوند. این گزینه تأثیری روی کانال‌هایی که با ساتفاده از حالت سریع به‌روز می‌شوند ندارد.</string>
 </resources>

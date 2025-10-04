@@ -1,0 +1,19 @@
+Új
+• Keresés YouTube Music-on
+• Alap Android TV támogatás
+
+Fejlesztések
+• Letörölhető minden megnézett videó a helyi lejátszási listából
+• Összeomlás helyett most már kiírja az app, hogy nem támogatott kontent
+• Kiugró lejátszó átméretezés csípéssel fejlesztve
+• Listához hozzáadja a videó a háttéren tartva azujjat, és megjelenít gombokat a csatornán
+• A főcímsáv méretezésének javítása
+
+Javítások
+• Korhatáros kontent beállítás javítása
+• Egyes reCAPTCHA-k javítása
+• Összeomlás ha a lejátszási lista `null` és megnyitásra kerül a könyvjelző javításra került
+• Hálózat orientált kivételek felismerésének javítása
+• A csoport rendező gomb láthatóságának javítása a feliratkozási mezőben
+
+és még sok más

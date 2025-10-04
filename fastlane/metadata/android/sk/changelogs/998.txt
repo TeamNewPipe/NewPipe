@@ -1,0 +1,4 @@
+Opravené neprehrávanie streamov v YouTube z dôvodu chýb HTTP 403.
+
+Občasné chyby HTTP 403 uprostred videa YouTube ešte nie sú opravené.
+Tento problém bude čo najskôr vyriešený v ďalšom opravnom vydaní.

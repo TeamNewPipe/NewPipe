@@ -1,0 +1,33 @@
+# Changelog de v0.13.7
+
+### Fixo
+- Fixar questões de filtro de ordenação da v0.13.6
+
+# Mudança do v0.13.6
+
+### Melhorias
+
+- Desactivar animação de ícones de burgermenu #1486 
+- anular a eliminação dos downloads #1472 
+- Opção de download no menu de partilha #1498
+- Adicionada a opção de partilha no menu de toque longo #1454 
+- Minimizar o jogador principal na saída #1354 
+- Actualização da versão da biblioteca e correcção da cópia de segurança da base de dados #1510 
+- ExoPlayer 2.8.2 Actualização #1392
+  - Reformulou o diálogo de controlo de velocidade de reprodução para suportar diferentes tamanhos de passos para uma mudança de velocidade mais rápida.
+  - Adicionada uma alternância para avançar rapidamente durante os silêncios no controlo de velocidade de reprodução. Isto deve ser útil para audiolivros e certos géneros musicais, e pode trazer uma verdadeira experiência sem falhas (e pode quebrar uma canção com muitos silêncios =\i1).  
+  - A resolução da fonte dos meios de comunicação foi refeita para permitir a passagem de metadados ao lado dos meios de comunicação internamente no leitor, em vez de o fazer manualmente. Agora temos uma única fonte de metadados e está directamente disponível quando a reprodução começa.
+  - Fixados os metadados da lista de reprodução remota que não são actualizados quando novos metadados estão disponíveis quando o fragmento da lista de reprodução é aberto.
+  - Várias correcções UI: #1383, a notificação do leitor de fundo controla agora sempre branco, mais fácil de desligar o leitor de pop-ups através do fling
+- Usar novo extractor com arquitectura refacturada para multiserviços
+
+### Correcções
+
+- Reparação #1440 Layout de Informação de Vídeo Partido #1491 
+- Ver histórico correcção #1497
+  - #1495, actualizando os metadados (miniatura, título e contagem de vídeo) assim que o utilizador aceda à lista de reprodução. 
+  - #1475, através do registo de uma vista na base de dados quando o utilizador inicia um vídeo no leitor externo sobre fragmento de detalhe.
+- Fixar tempo limite de creen em caso de modo popup. #1463 (Fixado #640)
+- Correcção principal do leitor de vídeo #1509 
+  - [#1412] Modo de repetição fixo causando NPE do jogador quando novas intenções são recebidas enquanto a actividade do jogador está em segundo plano.
+  - Fixa a minimização do jogador a popup não destrói o jogador quando não é concedida permissão de popup.

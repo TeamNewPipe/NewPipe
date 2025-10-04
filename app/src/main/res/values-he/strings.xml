@@ -105,16 +105,13 @@
     <string name="error_details_headline">פרטים:</string>
     <string name="detail_thumbnail_view_description">נגינת סרטון, משך:</string>
     <string name="detail_uploader_thumbnail_view_description">תמונה ייצוגית של המפרסם</string>
-    <string name="detail_likes_img_view_description">אהבו</string>
+    <string name="detail_likes_img_view_description">לייקים</string>
     <string name="detail_dislikes_img_view_description">לא אהבו</string>
     <string name="search_no_results">אין תוצאות</string>
     <string name="empty_list_subtitle">אין כאן כלום מלבד צרצרים</string>
     <string name="video">סרטון</string>
     <string name="audio">שמע</string>
     <string name="retry">ניסיון חוזר</string>
-    <string name="short_thousand">אלפ.</string>
-    <string name="short_million">מיל.</string>
-    <string name="short_billion">מיליארד</string>
     <string name="no_subscribers">אין מנויים</string>
     <plurals name="subscribers">
         <item quantity="one">מנוי אחד</item>
@@ -179,9 +176,9 @@
     <string name="action_history">היסטוריה</string>
     <string name="delete_item_search_history">למחוק את הפריט הזה מהיסטוריית החיפושים\?</string>
     <string name="main_page_content">תוכן הדף הראשי</string>
-    <string name="blank_page_summary">דף ריק</string>
-    <string name="kiosk_page_summary">דף גישה מזדמנת</string>
-    <string name="channel_page_summary">דף ערוצים</string>
+    <string name="blank_page_summary">עמוד ריק</string>
+    <string name="kiosk_page_summary">עמוד גישה מזדמנת</string>
+    <string name="channel_page_summary">עמוד הערוץ</string>
     <string name="select_a_channel">נא לבחור ערוץ</string>
     <string name="no_channel_subscribed_yet">אין עדיין מינויים לערוצים</string>
     <string name="select_a_kiosk">נא לבחור סוג גישה מזדמנת</string>
@@ -196,7 +193,7 @@
     <string name="start_here_on_popup">להתחיל לנגן בנגן צף</string>
     <string name="controls_download_desc">הורדת קובץ הזרמה</string>
     <string name="show_info">הצגת מידע</string>
-    <string name="tab_bookmarks">רשימות נגינה מסומנות</string>
+    <string name="tab_bookmarks">רשימות השמעה מסומנות</string>
     <string name="controls_add_to_playlist_title">הוספה אל</string>
     <string name="default_content_country_title">מדינת תוכן כברירת מחדל</string>
     <string name="settings_category_debug_title">ניפוי שגיאות</string>
@@ -432,7 +429,6 @@
         <item quantity="many">%s מאזינים</item>
         <item quantity="other">%s מאזינים</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">השפה תוחלף עם הפעלת היישומון מחדש</string>
     <string name="default_kiosk_page_summary">קיוסק ברירת מחדל</string>
     <string name="seek_duration_title">משך קפיצה מהירה קדימה/אחורה</string>
     <string name="peertube_instance_url_title">מופעים של PeerTube</string>
@@ -636,7 +632,6 @@
 \nל־NewPipe לא תהיה אפשרות להוריד את ההזנה הזאת בעתיד.
 \nלהסיר את המינוי מהערוץ הזה\?</string>
     <string name="open_website_license">פתיחת האתר</string>
-    <string name="service_provides_reason">%s מספק את הסיבה הבאה:</string>
     <string name="account_terminated">החשבון הושמד</string>
     <string name="feed_load_error_fast_unknown">מצב ההזנה המהירה לא מספק מידע נוסף על כך.</string>
     <string name="feed_load_error_account_info">לא ניתן לטעון את ההזנה עבור ‚%s’.</string>
@@ -828,7 +823,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">שיתוף רשימת נגינה</string>
-    <string name="share_playlist_with_titles_message">שיתוף רשימת נגינה עם פרטים כגון שם רשימת נגינה וכותרות סרטונים או כרשימה פשוטה של כתובות סרטונים</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <string name="show_more">להציג עוד</string>
     <string name="show_less">להציג פחות</string>
@@ -838,4 +832,25 @@
         <item quantity="other">%s תשובות</item>
     </plurals>
     <string name="notification_actions_summary_android13">אפשר לערוך כל פעולה בהתראה להלן על ידי נגיעה בה. שלוש הפעולות הראשונות (נגינה/השהיה, הקודם והבא) מוגדרות על ידי המערכת ונעולות לעריכה.</string>
+    <string name="auto_update_check_description">NewPipe יכול לבדוק אוטומטית אם יש גרסאות חדשות מעת לעת ולהודיע כאשר הן זמינות.
+\nלהפעיל את היכולת הזאת?</string>
+    <string name="reset_settings_title">איפוס הגדרות</string>
+    <string name="reset_settings_summary">איפוס כל ההגדרות לערכי ברירת המחדל שלהן</string>
+    <string name="yes">כן</string>
+    <string name="no">לא</string>
+    <string name="settings_category_backup_restore_title">גיבוי ושחזור</string>
+    <string name="reset_all_settings">איפוס כל ההגדרות ימחק את כל ההגדרות המועדפות שלך ויפעיל את היישומון מחדש.
+\n
+\nלהמשיך?</string>
+    <string name="error_insufficient_storage">אין מספיק מקום פנוי במכשיר</string>
+    <string name="import_settings_vulnerable_format">ההגדרות בייצוא המיובא משתמשות בתסדיר פגיע שהוצא משימוש מאז NewPipe 0.27.0. יש לוודא שהייצוא המיובא הוא ממקור מהימן, ועדיף להשתמש רק בייצוא שהושג מ־NewPipe 0.27.0 ומעלה בעתיד. תמיכה בייבוא הגדרות בתסדיר פגיע זה תוסר בקרוב לחלוטין, ואז גרסאות ישנות של NewPipe לא יוכלו לייבא עוד הגדרות של ייצוא מגרסאות חדשות.</string>
+    <string name="audio_track_type_secondary">משני</string>
+    <string name="tab_bookmarks_short">רשימות נגינה</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">שיתוף כרשימת נגינה זמנית של YouTube</string>
+    <string name="select_a_feed_group">הגדרת קבוצת ערוצי עדכונים</string>
+    <string name="no_feed_group_created_yet">לא נוצרו עדיין קבוצות ערוצי עדכונים</string>
+    <string name="feed_group_page_summary">עמוד קבוצת ערוצים</string>
+    <string name="search_with_service_name">חיפוש ב־%1$s</string>
+    <string name="search_with_service_name_and_filter">חיפוש ב־%1$s‏ (%2$s)</string>
+    <string name="channel_tab_likes">לייקים</string>
 </resources>

@@ -1,8 +1,8 @@
 ### Verbeteringen
-- Mogelijkheid toegevoegd om de videokwaliteit te beperken bij gebruik van mobiele data. #1339
+- Mogelijkheid toegevoegd om de videokwaliteit te beperken bij het  gebruik van mobiele data. #1339
 - Helderheid voor de sessie onthouden #1442
 - Downloadprestaties voor zwakkere CPU's verbeterd #1431
 - (werkende) ondersteuning voor mediasessie toegevoegd #1433
 
 ### Opgelost
-- Crash bij openen downloads verhelpen (fix nu beschikbaar voor release builds) #1441
+- Crash bij openen downloads verholpen (fix nu beschikbaar voor release builds) #1441

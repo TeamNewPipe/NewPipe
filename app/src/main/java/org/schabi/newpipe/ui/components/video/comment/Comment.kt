@@ -41,7 +41,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameterProvider
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+import coil3.compose.AsyncImage
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.Page
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
@@ -99,10 +99,12 @@ fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
                 }
 
                 val nameAndDate = remember(comment) {
-                    val date = Localization.relativeTimeOrTextual(
-                        context, comment.uploadDate, comment.textualUploadDate
+                    Localization.concatenateStrings(
+                        Localization.localizeUserName(comment.uploaderName),
+                        Localization.relativeTimeOrTextual(
+                            context, comment.uploadDate, comment.textualUploadDate
+                        )
                     )
-                    Localization.concatenateStrings(comment.uploaderName, date)
                 }
                 Text(
                     text = nameAndDate,
@@ -257,7 +259,7 @@ private fun CommentPreview(
     @PreviewParameter(CommentPreviewProvider::class) commentsInfoItem: CommentsInfoItem
 ) {
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
+        Surface {
             Comment(commentsInfoItem) {}
         }
     }
@@ -267,7 +269,7 @@ private fun CommentPreview(
 @Composable
 private fun CommentListPreview() {
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
+        Surface {
             Column {
                 for (comment in CommentPreviewProvider().values) {
                     Comment(comment) {}

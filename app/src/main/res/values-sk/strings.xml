@@ -13,12 +13,12 @@
     <string name="share_dialog_title">Zdieľať s</string>
     <string name="use_external_video_player_title">Použiť externý prehrávač videa</string>
     <string name="use_external_audio_player_title">Použiť externý prehrávač zvuku</string>
-    <string name="download_path_title">Prevzaté video ukladať do</string>
-    <string name="download_path_summary">Prevzaté video súbory sú uložené tu</string>
+    <string name="download_path_title">Adresár stiahnutých videí</string>
+    <string name="download_path_summary">Stiahnuté video súbory sú uložené tu</string>
     <string name="download_path_dialog_title">Vyberte priečinok pre stiahnuté video</string>
     <string name="download_path_audio_title">Priečinok pre stiahnuté audio</string>
     <string name="download_path_audio_dialog_title">Vyberte priečinok pre audio súbory</string>
-    <string name="download_path_audio_summary">Prevzaté zvukové súbory sú uložené tu</string>
+    <string name="download_path_audio_summary">Stiahnuté zvukové súbory sú uložené tu</string>
     <string name="default_resolution_title">Štandardné rozlíšenie</string>
     <string name="play_with_kodi_title">Prehrať cez Kodi</string>
     <string name="kore_not_found">Nainštalovať chýbajúcu aplikáciu Kore\?</string>
@@ -74,17 +74,14 @@
     <string name="msg_wait">Čakajte prosím…</string>
     <string name="msg_copied">Skopírované do schránky</string>
     <string name="no_available_dir">Priečinok na sťahovanie zadefinujte prosím neskôr v nastaveniach</string>
-    <string name="downloads">Prevzaté</string>
-    <string name="downloads_title">Prevzaté</string>
+    <string name="downloads">Sťahované súbory</string>
+    <string name="downloads_title">Stiahnuté</string>
     <string name="error_report_title">Hlásenie o chybe</string>
     <string name="app_ui_crash">Aplikácia/UP zlyhalo</string>
     <string name="info_labels">Čo:\\nPožiadavka:\\nJazyk obsahu:\\nKrajina Obsahu:\\nJazyk Aplikácie:\\nSlužba:\\nČas v GMT:\\nBalík:\\nVerzia:\\nOS:</string>
     <string name="title_activity_recaptcha">Výzva reCAPTCHA</string>
     <string name="black_theme_title">Čierna</string>
     <string name="all">Všetko</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">B</string>
     <string name="recaptcha_request_toast">Požiadavka reCAPTCHA</string>
     <string name="open_in_popup_mode">Otvoriť vo vyskakovacom okne</string>
     <string name="msg_popup_permission">Tieto práva sú potrebné pre
@@ -165,7 +162,7 @@
     <string name="no_player_found_toast">Nebol nájdený žiadny prehrávač pre stream (môžete si nainštalovať napr. VLC).</string>
     <string name="controls_download_desc">Stiahnuť súbor streamu</string>
     <string name="show_info">Zobraziť info</string>
-    <string name="tab_bookmarks">Uložené zoznamy</string>
+    <string name="tab_bookmarks">Uložené playlisty</string>
     <string name="controls_add_to_playlist_title">Pridať do</string>
     <string name="show_hold_to_append_title">Zobrazovať tip \"Pridať podržaním\"</string>
     <string name="show_hold_to_append_summary">Zobrazí tip pri stlačení tlačidiel pozadia alebo vyskakovacieho okna videa \"Podrobnosti:\"</string>
@@ -179,8 +176,8 @@
     <string name="switch_to_main">Prepnúť na Video</string>
     <string name="import_data_title">Importovať databázu</string>
     <string name="export_data_title">Exportovať databázu</string>
-    <string name="import_data_summary">Prepíše aktuálnu históriu, odbery, zoznamy skladieb a (voliteľne) nastavenia</string>
-    <string name="export_data_summary">Exportuje históriu, odbery, zoznamy skladieb a nastavenia</string>
+    <string name="import_data_summary">Prepíše aktuálnu históriu, odbery, playlisty a (voliteľne) nastavenia</string>
+    <string name="export_data_summary">Exportuje históriu, odbery, playlisty a nastavenia</string>
     <string name="player_stream_failure">Nepodarilo sa prehrať tento stream</string>
     <string name="player_unrecoverable_failure">Pri prehrávaní došlo k chybe a nemožno pokračovať</string>
     <string name="player_recoverable_failure">Zotavovanie po chybe v prehrávaní</string>
@@ -200,7 +197,7 @@
     <string name="title_last_played">Naposledy prehrávané</string>
     <string name="title_most_played">Najprehrávanejšie</string>
     <string name="main_page_content">Obsah na hlavnej stránke</string>
-    <string name="blank_page_summary">Prázdna strana</string>
+    <string name="blank_page_summary">Prázdna stránka</string>
     <string name="kiosk_page_summary">Kiosk</string>
     <string name="channel_page_summary">Kanál</string>
     <string name="select_a_channel">Vyberte si kanál</string>
@@ -228,17 +225,17 @@
     <string name="always_ask_open_action">Vždy sa opýtať</string>
     <string name="preferred_player_fetcher_notification_title">Získavajú sa informácie…</string>
     <string name="preferred_player_fetcher_notification_message">Načítanie požadované obsahu</string>
-    <string name="create_playlist">Nový zoznam skladieb</string>
+    <string name="create_playlist">Nový playlist</string>
     <string name="rename_playlist">Premenovať</string>
     <string name="name">Názov</string>
-    <string name="add_to_playlist">Pridať do zoznamu skladieb</string>
-    <string name="set_as_playlist_thumbnail">Nastaviť ako miniatúru zoznamu skladieb</string>
-    <string name="bookmark_playlist">Záložka zoznamu skladieb</string>
-    <string name="unbookmark_playlist">Odstrániť Záložku</string>
-    <string name="delete_playlist_prompt">Odstrániť tento zoznam skladieb\?</string>
-    <string name="playlist_creation_success">Zoznam skladieb vytvorený</string>
+    <string name="add_to_playlist">Pridať do playlistu</string>
+    <string name="set_as_playlist_thumbnail">Nastaviť ako miniatúru playlistu</string>
+    <string name="bookmark_playlist">Pridať playlist medzi záložky</string>
+    <string name="unbookmark_playlist">Odstrániť záložku</string>
+    <string name="delete_playlist_prompt">Odstrániť tento playlist?</string>
+    <string name="playlist_creation_success">Playlist bol vytvorený</string>
     <string name="playlist_add_stream_success">V playliste</string>
-    <string name="playlist_thumbnail_change_success">Miniatúra zoznamu skladieb bola zmenená.</string>
+    <string name="playlist_thumbnail_change_success">Miniatúra playlistu bola zmenená.</string>
     <string name="caption_none">Bez titulkov</string>
     <string name="resize_fit">Prispôsobiť</string>
     <string name="resize_fill">Vyplniť</string>
@@ -321,7 +318,7 @@
     <string name="limit_data_usage_none_description">Bez limitu</string>
     <string name="limit_mobile_data_usage_title">Limitovať rozlíšenie pri použití mobilných dát</string>
     <string name="channels">Kanály</string>
-    <string name="playlists">Zoznamy skladieb</string>
+    <string name="playlists">Playlisty</string>
     <string name="tracks">Skladby</string>
     <string name="users">Používatelia</string>
     <string name="skip_silence_checkbox">Pretáčať tiché pasáže</string>
@@ -428,7 +425,6 @@
         <item quantity="few">%s poslucháči</item>
         <item quantity="other">%s poslucháčov</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Zmena jazyka sa prejaví po reštarte aplikácie</string>
     <string name="seek_duration_title">Dĺžka rýchleho pretáčania</string>
     <string name="peertube_instance_url_title">Inštancie PeerTube</string>
     <string name="peertube_instance_url_summary">Vyberte si svoje obľúbené inštancie PeerTube</string>
@@ -514,8 +510,7 @@
 \n
 \nMožno v budúcnosti sa to zmení.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Áno aj čiastočne pozreté videá</string>
-    <string name="remove_watched_popup_warning">Pozreté videá, ktoré ste pozreli pred a po ich pridaní do zoznamu, budú odstránené.
-\nSte si istí ich odstránením zo zoznamu\? Táto operácia je nezvratná!</string>
+    <string name="remove_watched_popup_warning">Pozreté videá, ktoré ste pozreli pred a po ich pridaní do playlistu, budú odstránené. \nSte si istí ich odstránením z playlistu? Táto operácia je nezvratná!</string>
     <string name="remove_watched_popup_title">Odstrániť pozreté videá\?</string>
     <string name="remove_watched">Odstrániť pozreté</string>
     <string name="show_original_time_ago_summary">Pôvodné texty zo služieb budú viditeľné v položkách streamu</string>
@@ -535,14 +530,14 @@
     <string name="error_report_open_issue_button_text">Nahlásiť na GitHub-e</string>
     <string name="copy_for_github">Kopírovať formátované hlásenie</string>
     <string name="search_showing_result_for">Zobrazujú sa výsledky pre: %s</string>
-    <string name="playlist_page_summary">Zoznamy skladieb</string>
+    <string name="playlist_page_summary">Zoznam playlistov</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Zobraziť iba nezoskupené odbery</string>
     <string name="never">Nikdy</string>
     <string name="wifi_only">Iba na WiFi</string>
     <string name="autoplay_summary">Spustí automatické prehrávanie - %s</string>
     <string name="title_activity_play_queue">Prehrať zoznam</string>
-    <string name="no_playlist_bookmarked_yet">Zatiaľ bez záložiek zoznamu</string>
-    <string name="select_a_playlist">Vyberte zoznam skladieb</string>
+    <string name="no_playlist_bookmarked_yet">Žiadne záložky playlistov</string>
+    <string name="select_a_playlist">Vyberte playlist</string>
     <string name="error_report_open_github_notice">Skontrolujte prosím, či rovnaká chyba už nie je nahlásená. Vytváranie duplicitných hlásení komplikuje prácu vývojárov.</string>
     <string name="unsupported_url_dialog_message">Nemožno rozpoznať URL. Otvoriť pomocou inej aplikácie\?</string>
     <string name="auto_queue_toggle">Automatický rad</string>
@@ -623,7 +618,6 @@
     <string name="description_select_enable">Povolenie výberu textu v popise</string>
     <string name="description_select_note">Teraz môžete vybrať text vo vnútri popisu. Upozorňujeme, že stránka môže blikať a odkazy nemusia byť klikateľné, keď je v režime výberu.</string>
     <string name="open_website_license">Otvoriť webstránku</string>
-    <string name="service_provides_reason">%s uvádza tento dôvod:</string>
     <string name="account_terminated">Účet bol zrušený</string>
     <string name="feed_load_error_fast_unknown">Tento rýchly režim neposkytuje viac informácií.</string>
     <string name="feed_load_error_terminated">Účet autora bol zrušený.
@@ -668,7 +662,7 @@
     <string name="feed_new_items">Nové položky informačného kanála</string>
     <string name="no_appropriate_file_manager_message">Pre túto akciu sa nenašiel vhodný správca súborov.
 \nNainštalujte si správcu súborov alebo skúste vypnúť \'%s\' v nastaveniach sťahovania</string>
-    <string name="show_crash_the_player_title">Zobraziť „zlyhať prehrávač“</string>
+    <string name="show_crash_the_player_title">Zobraziť „Zhodiť prehrávač“</string>
     <string name="leak_canary_not_available">LeakCanary nie je k dispozícii</string>
     <string name="no_appropriate_file_manager_message_android_10">Pre túto akciu sa nenašiel vhodný správca súborov.
 \nNainštalujte správcu súborov kompatibilného s rozhraním Storage Access Framework</string>
@@ -721,7 +715,7 @@
     <string name="faq_description">Ak máte problémy s používaním aplikácie, určite si prečítajte tieto odpovede na časté otázky!</string>
     <string name="unset_playlist_thumbnail">Vypnutie trvalého náhľadu</string>
     <string name="msg_failed_to_copy">Kopírovanie do schránky zlyhalo</string>
-    <string name="duplicate_in_playlist">Zoznamy zobrazené šedou farbou už obsahujú danú položku.</string>
+    <string name="duplicate_in_playlist">Playlisty zobrazené šedou farbou už obsahujú danú položku.</string>
     <string name="card">Karta</string>
     <string name="app_update_available_notification_text">Dotykom stiahnite %s</string>
     <string name="playlist_add_stream_success_duplicate">Duplikát bol pridaný %d-krát</string>
@@ -748,7 +742,7 @@
     <string name="prefer_descriptive_audio_title">Preferovať prehrávanie popisu</string>
     <string name="play_queue_audio_track">Zvuk: %s</string>
     <string name="audio_track">Zvuková stopa</string>
-    <string name="remove_duplicates_message">Chcete odstrániť všetky duplikátne streamy z tohoto zoznamu\?</string>
+    <string name="remove_duplicates_message">Chcete odstrániť všetky duplikátne streamy z tohoto playlistu?</string>
     <string name="feed_hide_streams_title">Zobrazovať nasledovné streamy</string>
     <string name="audio_track_present_in_video">V tomto streame by už mala byť prítomná zvuková stopa</string>
     <string name="select_audio_track_external_players">Výber zvukovej stopy pre externé prehrávače</string>
@@ -787,7 +781,7 @@
     <string name="rewind">Dozadu</string>
     <string name="replay">Opäť prehrať</string>
     <string name="feed_fetch_channel_tabs_summary">Karty, ktoré sa majú načítať pri aktualizácii informačného kanála. Táto možnosť nemá žiadny účinok, ak je kanál aktualizovaný pomocou rýchleho režimu.</string>
-    <string name="channel_tab_playlists">Zoznamy skladieb</string>
+    <string name="channel_tab_playlists">Playlisty</string>
     <string name="main_tabs_position_summary">Presunie výber hlavnej karty do spodnej časti</string>
     <string name="no_live_streams">Žiadne živé prenosy</string>
     <string name="play">Prehrať</string>
@@ -821,7 +815,6 @@
         <item quantity="few">%s odpovede</item>
         <item quantity="other">%s odpovedí</item>
     </plurals>
-    <string name="share_playlist_with_titles_message">Zdieľajte playlist s podrobnosťami, ako je jeho názov a názvy videí, alebo ako jednoduchý zoznam URL adries videí</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
@@ -836,4 +829,16 @@
     <string name="yes">Áno</string>
     <string name="auto_update_check_description">NewPipe môže z času na čas automaticky kontrolovať nové verzie a upozorniť vás, keď budú k dispozícii.
 \nChcete to povoliť?</string>
+    <string name="import_settings_vulnerable_format">Nastavenia v importovanom exporte používajú zraniteľný formát, ktorý bol od verzie NewPipe 0.27.0 zrušený. Uistite sa, že importovaný export pochádza z dôveryhodného zdroja, a v budúcnosti radšej používajte len exporty získané z verzie NewPipe 0.27.0 alebo novšej. Podpora importu nastavení v tomto zraniteľnom formáte bude čoskoro úplne odstránená a potom už staré verzie programu NewPipe nebudú môcť importovať nastavenia exportov z nových verzií.</string>
+    <string name="audio_track_type_secondary">sekundárny</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Zdieľať ako dočasný playlist YouTube</string>
+    <string name="tab_bookmarks_short">Playlisty</string>
+    <string name="select_a_feed_group">Vybrať skupinu kanálov</string>
+    <string name="no_feed_group_created_yet">Skupina kanálov zatiaľ nie je vytvorená</string>
+    <string name="feed_group_page_summary">Stránka skupiny kanálov</string>
+    <string name="search_with_service_name_and_filter">Hľadať %1$s (%2$s)</string>
+    <string name="search_with_service_name">Hľadať %1$s</string>
+    <string name="channel_tab_likes">Páči sa</string>
+    <string name="migration_info_6_7_title">SoundCloud Top 50 stránka odstránená</string>
+    <string name="migration_info_6_7_message">SoundCloud prestal používať pôvodnú Top 50. Daná stránka bola odstránená z hlavnej stránky.</string>
 </resources>

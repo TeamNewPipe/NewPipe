@@ -14,7 +14,7 @@
 - Várias correções de interface do utilizador : #1383, controles de notificação do reprodutor em segundo plano agora sempre brancos, mais fácil de desligar o reprodutor pop-up por meio de arremesso
 - Use novo extrator com arquitetura ré fatorada para multisserviço
 
-### Conserta
+### Correções
 
 - Correção #1440 Layout de informações de vídeo quebrado #1491
 -Ver correção de histórico #1497

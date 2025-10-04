@@ -81,7 +81,6 @@
     <string name="new_and_hot">പുതിയതും ചൂടേറിയതും</string>
     <string name="top_50">മികച്ച 50</string>
     <string name="trending">ട്രെൻഡിങ്ങ്</string>
-    <string name="localization_changes_requires_app_restart">അപ്ലിക്കേഷൻ പുനരാരംഭിച്ചുകഴിഞ്ഞാൽ ഭാഷ മാറും</string>
     <string name="error_unable_to_load_comments">കമെന്റുകൾ ലോഡുചെയ്യാനായില്ല</string>
     <string name="import_settings">ക്രമീകരണങ്ങളും ഇമ്പോർട്ടുചെയ്യാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ\?</string>
     <string name="override_current_data">ഇത് നിങ്ങളുടെ നിലവിലെ സജ്ജീകരണത്തെ അസാധുവാക്കും.</string>
@@ -184,9 +183,6 @@
     </plurals>
     <string name="no_subscribers">സബ്ക്രൈബേഴ്സ് ഇല്ല</string>
     <string name="drawer_header_description">സേവനം മാറ്റുക, ഇപ്പോൾ തിരഞ്ഞെടുത്തത്:</string>
-    <string name="short_billion">B</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
     <string name="retry">വീണ്ടും ശ്രമിക്കുക</string>
     <string name="audio">ഓഡിയോ</string>
     <string name="video">വീഡിയോ</string>
@@ -616,7 +612,6 @@
     <string name="metadata_tags">ടാഗുക്കൾ</string>
     <string name="metadata_category">വിഭാഗം</string>
     <string name="description_select_note">താക്കൾക് ഇപ്പോൾ ഡിസ്ക്രിപ്ഷൻ ബോക്സിലെ ടെക്സ്റ്റ്‌ തിരഞ്ഞെടുക്കാൻ സാധിക്കും. ശ്രെദ്ധിക്കുക സെലെക്ഷൻ മോഡിൽ പേജ് ചിലപ്പോൾ മിന്നുകയും ലിങ്കുകൾ ക്ലിക്ക് ചെയ്യാനാകാതെയും വന്നേക്കാം.</string>
-    <string name="service_provides_reason">ഇതിന്റെ കാരണം %s നൽകും:</string>
     <string name="account_terminated">അക്കൗണ്ട് ഇല്ലാതായിരിക്കുന്നു</string>
     <string name="feed_load_error_fast_unknown">ഫാസ്റ്റ് ഫീഡ് മോഡ് കൂടുതൽ വിവരങ്ങൾ നൽകില്ല.</string>
     <string name="feed_load_error_terminated">സൃഷ്ടാവിന്റെ അക്കൗണ്ട് ഇല്ലാതായിരിക്കുന്നു.

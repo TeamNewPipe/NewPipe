@@ -1,1 +1,12 @@
-YouTube speelt geen stream af opgelost
+Deze hotfix-release lost HTTP 403-fouten op in het midden van YouTube-video's.
+
+Nieuw
+• [SoundCloud] Ondersteuning toegevoegd voor on.soundcloud.com-URL's
+
+Verbeterd
+• [Bandcamp] Extra info getoond in radio­kiosk
+
+Opgelost
+• [YouTube] Af en toe voorkomende HTTP 403-fouten opgelost aan het begin of in het midden van video's
+• [YouTube] Avatar en banner worden geëxtraheerd uit meer kanaal­header­typen
+• [Bandcamp] Verschillende bugs opgelost en HTTPS geforceerd

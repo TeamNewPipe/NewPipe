@@ -48,10 +48,12 @@ public final class ListHelper {
     private static final Set<String> HIGH_RESOLUTION_LIST = Set.of("1440p", "2160p");
     // Audio track types in order of priority. 0=lowest, n=highest
     private static final List<AudioTrackType> AUDIO_TRACK_TYPE_RANKING =
-            List.of(AudioTrackType.DESCRIPTIVE, AudioTrackType.DUBBED, AudioTrackType.ORIGINAL);
+            List.of(AudioTrackType.DESCRIPTIVE, AudioTrackType.SECONDARY, AudioTrackType.DUBBED,
+                    AudioTrackType.ORIGINAL);
     // Audio track types in order of priority when descriptive audio is preferred.
     private static final List<AudioTrackType> AUDIO_TRACK_TYPE_RANKING_DESCRIPTIVE =
-            List.of(AudioTrackType.ORIGINAL, AudioTrackType.DUBBED, AudioTrackType.DESCRIPTIVE);
+            List.of(AudioTrackType.SECONDARY, AudioTrackType.DUBBED, AudioTrackType.ORIGINAL,
+                    AudioTrackType.DESCRIPTIVE);
 
     /**
      * List of supported YouTube Itag ids.
@@ -320,7 +322,7 @@ public final class ListHelper {
         }
 
         // Sort collected streams by name
-        return collectedStreams.values().stream().sorted(getAudioTrackNameComparator(context))
+        return collectedStreams.values().stream().sorted(getAudioTrackNameComparator())
                 .collect(Collectors.toList());
     }
 
@@ -357,7 +359,7 @@ public final class ListHelper {
         }
 
         // Sort tracks alphabetically, sort track streams by quality
-        final Comparator<AudioStream> nameCmp = getAudioTrackNameComparator(context);
+        final Comparator<AudioStream> nameCmp = getAudioTrackNameComparator();
         final Comparator<AudioStream> formatCmp = getAudioFormatComparator(context);
 
         return collectedStreams.values().stream()
@@ -865,12 +867,10 @@ public final class ListHelper {
      * Get a {@link Comparator} to compare {@link AudioStream}s by their languages and track types
      * for alphabetical sorting.
      *
-     * @param context app context for localization
      * @return Comparator
      */
-    private static Comparator<AudioStream> getAudioTrackNameComparator(
-            @NonNull final Context context) {
-        final Locale appLoc = Localization.getAppLocale(context);
+    private static Comparator<AudioStream> getAudioTrackNameComparator() {
+        final Locale appLoc = Localization.getAppLocale();
 
         return Comparator.comparing(AudioStream::getAudioLocale, Comparator.nullsLast(
                         Comparator.comparing(locale -> locale.getDisplayName(appLoc))))

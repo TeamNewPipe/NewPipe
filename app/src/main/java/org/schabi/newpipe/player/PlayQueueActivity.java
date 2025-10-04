@@ -2,7 +2,6 @@ package org.schabi.newpipe.player;
 
 import static org.schabi.newpipe.QueueItemMenuUtil.openPopupMenu;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -84,7 +83,6 @@ public final class PlayQueueActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
-        assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
 
@@ -97,8 +95,48 @@ public final class PlayQueueActivity extends AppCompatActivity
             getSupportActionBar().setTitle(R.string.title_activity_play_queue);
         }
 
-        serviceConnection = getServiceConnection();
-        bind();
+        serviceConnection = new ServiceConnection() {
+            @Override
+            public void onServiceDisconnected(final ComponentName name) {
+                Log.d(TAG, "Player service is disconnected");
+            }
+
+            @Override
+            public void onServiceConnected(final ComponentName name, final IBinder binder) {
+                Log.d(TAG, "Player service is connected");
+
+                if (binder instanceof PlayerService.LocalBinder) {
+                    @Nullable final PlayerService s =
+                            ((PlayerService.LocalBinder) binder).getService();
+                    if (s == null) {
+                        throw new IllegalArgumentException(
+                                "PlayerService.LocalBinder.getService() must never be"
+                                        + "null after the service connects");
+                    }
+                    player = s.getPlayer();
+                }
+
+                if (player == null || player.getPlayQueue() == null || player.exoPlayerIsNull()) {
+                    unbind();
+                } else {
+                    onQueueUpdate(player.getPlayQueue());
+                    buildComponents();
+                    if (player != null) {
+                        player.setActivityListener(PlayQueueActivity.this);
+                    }
+                }
+            }
+        };
+
+        // Note: this code should not really exist, and PlayerHolder should be used instead, but
+        // it will be rewritten when NewPlayer will replace the current player.
+        final Intent bindIntent = new Intent(this, PlayerService.class);
+        bindIntent.setAction(PlayerService.BIND_PLAYER_HOLDER_ACTION);
+        final boolean success = bindService(bindIntent, serviceConnection, BIND_AUTO_CREATE);
+        if (!success) {
+            unbindService(serviceConnection);
+        }
+        serviceBound = success;
     }
 
     @Override
@@ -180,16 +218,6 @@ public final class PlayQueueActivity extends AppCompatActivity
 
     ////////////////////////////////////////////////////////////////////////////
     // Service Connection
-    ////////////////////////////////////////////////////////////////////////////
-
-    private void bind() {
-        final Intent bindIntent = new Intent(this, PlayerService.class);
-        final boolean success = bindService(bindIntent, serviceConnection, BIND_AUTO_CREATE);
-        if (!success) {
-            unbindService(serviceConnection);
-        }
-        serviceBound = success;
-    }
 
     private void unbind() {
         if (serviceBound) {
@@ -207,34 +235,6 @@ public final class PlayQueueActivity extends AppCompatActivity
             itemTouchHelper = null;
             player = null;
         }
-    }
-
-    private ServiceConnection getServiceConnection() {
-        return new ServiceConnection() {
-            @Override
-            public void onServiceDisconnected(final ComponentName name) {
-                Log.d(TAG, "Player service is disconnected");
-            }
-
-            @Override
-            public void onServiceConnected(final ComponentName name, final IBinder service) {
-                Log.d(TAG, "Player service is connected");
-
-                if (service instanceof PlayerService.LocalBinder) {
-                    player = ((PlayerService.LocalBinder) service).getPlayer();
-                }
-
-                if (player == null || player.getPlayQueue() == null || player.exoPlayerIsNull()) {
-                    unbind();
-                } else {
-                    onQueueUpdate(player.getPlayQueue());
-                    buildComponents();
-                    if (player != null) {
-                        player.setActivityListener(PlayQueueActivity.this);
-                    }
-                }
-            }
-        };
     }
 
     ////////////////////////////////////////////////////////////////////////////

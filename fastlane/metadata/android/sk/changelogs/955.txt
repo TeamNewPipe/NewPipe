@@ -1,0 +1,3 @@
+[YouTube] Fix search for some users
+[YouTube] Fix random decryption exceptions
+[SoundCloud] URLs that end with a slash are now parsed correctly

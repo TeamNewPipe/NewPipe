@@ -1,0 +1,2 @@
+Removed MediaParser support to fix failing playback resume after buffering on Android 11+.
+Disabled media tunneling on Philips QM16XE to fix playback problems.

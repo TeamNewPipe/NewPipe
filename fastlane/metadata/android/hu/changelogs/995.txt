@@ -1,0 +1,16 @@
+Új
+• Csatorna támogatói fülek
+• Kép minőség kiválasztása
+• URL minden képhez
+
+Fejlesztések
+• Lejátszó felület könnyebb használhatósága
+• Jobb hang kiválasztás a kizárólag videós letöltésekhez
+• A lista megosztásnál feltüntethető maga a lista és a videók neve is
+
+Javítások
+• [YouTube] Tetszés szám kinyerésének javítása
+• A felugró üzenetek immáron nem fagyasztják ki a lejátszót
+• A nyelv kiválasztónál többféle nem megfelelő nyelv jelent meg korábban
+• A lejátszó nem reagált a némításra eddig
+• A lista elem hozzáadás nem mindig működött

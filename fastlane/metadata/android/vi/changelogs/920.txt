@@ -1,0 +1,9 @@
+Cải thiện
+
+• Thêm ngày tải lên và số lượt xem vào các mục lưới phát trực tiếp.
+• Cải thiện bố cục tiêu đề ngăn kéo.
+
+Sửa lỗi
+
+• Sửa lỗi nút tắt tiếng gây treo trên API 19.
+• Sửa lỗi tải xuống video 1080p 60fps dài

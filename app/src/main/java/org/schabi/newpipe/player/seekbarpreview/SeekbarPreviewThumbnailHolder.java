@@ -133,17 +133,8 @@ public class SeekbarPreviewThumbnailHolder {
 
                 // Get the bounds where the frame is found
                 final int[] bounds = frameset.getFrameBoundsAt(currentPosMs);
-                generatedDataForUrl.put(currentPosMs, () -> {
-                    // It can happen, that the original bitmap could not be downloaded
-                    // In such a case - we don't want a NullPointer - simply return null
-                    if (srcBitMap == null) {
-                        return null;
-                    }
-
-                    // Cut out the corresponding bitmap form the "srcBitMap"
-                    return Bitmap.createBitmap(srcBitMap, bounds[1], bounds[2],
-                            frameset.getFrameWidth(), frameset.getFrameHeight());
-                });
+                generatedDataForUrl.put(currentPosMs,
+                                        createBitmapSupplier(srcBitMap, bounds, frameset));
 
                 currentPosMs += frameset.getDurationPerFrame();
                 pos++;
@@ -166,6 +157,45 @@ public class SeekbarPreviewThumbnailHolder {
         }
     }
 
+    private Supplier<Bitmap> createBitmapSupplier(final Bitmap srcBitMap,
+                                                  final int[] bounds,
+                                                  final Frameset frameset) {
+        return () -> {
+            // It can happen, that the original bitmap could not be downloaded
+            // (or it was recycled though that should not happen)
+            // In such a case - we don't want a NullPointer/
+            // "cannot use a recycled source in createBitmap" Exception -> simply return null
+            if (srcBitMap == null || srcBitMap.isRecycled()) {
+                return null;
+            }
+
+            // Under some rare circumstances the YouTube API returns slightly too small storyboards,
+            // (or not the matching frame width/height)
+            // This would lead to createBitmap cutting out a bitmap that is out of bounds,
+            // so we need to adjust the bounds accordingly
+            if (srcBitMap.getWidth() < bounds[1] + frameset.getFrameWidth()) {
+                bounds[1] = srcBitMap.getWidth() - frameset.getFrameWidth();
+            }
+
+            if (srcBitMap.getHeight() < bounds[2] + frameset.getFrameHeight()) {
+                bounds[2] = srcBitMap.getHeight() - frameset.getFrameHeight();
+            }
+
+            // Cut out the corresponding bitmap form the "srcBitMap"
+            final Bitmap cutOutBitmap = Bitmap.createBitmap(srcBitMap, bounds[1], bounds[2],
+                    frameset.getFrameWidth(), frameset.getFrameHeight());
+
+            // If the cut out bitmap is identical to its source,
+            // we need to copy the bitmap to create a new instance.
+            // createBitmap allows itself to return the original object that is was created with
+            // this leads to recycled bitmaps being returned (if they are identical)
+            // Reference: https://stackoverflow.com/a/23683075 + first comment
+            // Fixes: https://github.com/TeamNewPipe/NewPipe/issues/11461
+            return cutOutBitmap == srcBitMap
+                    ? cutOutBitmap.copy(cutOutBitmap.getConfig(), true) : cutOutBitmap;
+        };
+    }
+
     @Nullable
     private Bitmap getBitMapFrom(final String url) {
         if (url == null) {
@@ -179,7 +209,7 @@ public class SeekbarPreviewThumbnailHolder {
 
             // Gets the bitmap within the timeout of 15 seconds imposed by default by OkHttpClient
             // Ensure that you are not running on the main thread, otherwise this will hang
-            final var bitmap = CoilHelper.INSTANCE.loadBitmapBlocking(App.getApp(), url);
+            final var bitmap = CoilHelper.INSTANCE.loadBitmapBlocking(App.getInstance(), url);
 
             if (sw != null) {
                 Log.d(TAG, "Download of bitmap for seekbarPreview from '" + url + "' took "

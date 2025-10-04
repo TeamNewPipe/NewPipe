@@ -1,0 +1,4 @@
+Behoben: YouTube spielt keinen Stream ab.
+
+Diese Version behebt nur den dringendsten Fehler, der das Laden von YouTube-Videodetails verhindert.
+Wir sind uns bewusst, dass es andere Probleme gibt, und wir werden bald eine separate Version erstellen, um sie zu lösen.

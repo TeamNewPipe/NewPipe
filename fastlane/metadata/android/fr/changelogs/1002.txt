@@ -1,0 +1,4 @@
+Correction d'un problème empêchant YouTube de lire les vidéos en streaming.
+
+Cette version résout uniquement l'erreur la plus urgente qui empêche le chargement des détails des vidéos YouTube.
+Nous sommes conscients qu'il existe d'autres problèmes et nous publierons bientôt une version séparée pour les résoudre.

@@ -32,7 +32,10 @@ public enum UserAction {
     PREFERENCES_MIGRATION("migration of preferences"),
     SHARE_TO_NEWPIPE("share to newpipe"),
     CHECK_FOR_NEW_APP_VERSION("check for new app version"),
-    OPEN_INFO_ITEM_DIALOG("open info item dialog");
+    OPEN_INFO_ITEM_DIALOG("open info item dialog"),
+    GETTING_MAIN_SCREEN_TAB("getting main screen tab"),
+    PLAY_ON_POPUP("play on popup"),
+    SUBSCRIPTIONS("loading subscriptions");
 
     private final String message;
 

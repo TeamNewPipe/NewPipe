@@ -71,8 +71,6 @@
     <plurals name="views">
         <item quantity="other">%s 次观看</item>
     </plurals>
-    <string name="short_thousand">千</string>
-    <string name="short_million">百万</string>
     <string name="start">开始</string>
     <string name="pause">暂停</string>
     <string name="delete">删除</string>
@@ -153,7 +151,6 @@
     <string name="error_details_headline">详细信息：</string>
     <string name="detail_thumbnail_view_description">播放视频，时长：</string>
     <string name="detail_uploader_thumbnail_view_description">视频上传者的头像缩略图</string>
-    <string name="short_billion">十亿</string>
     <string name="msg_running">NewPipe 正在下载</string>
     <string name="no_available_dir">请稍后在设置中设定下载目录</string>
     <string name="msg_popup_permission">使用悬浮窗模式
@@ -198,7 +195,7 @@
     <string name="delete_item_search_history">是否删除此条搜索历史记录？</string>
     <string name="main_page_content">主页面的显示内容</string>
     <string name="blank_page_summary">空白页</string>
-    <string name="kiosk_page_summary">『时下流行』页-自定义</string>
+    <string name="kiosk_page_summary">Kiosk 页面</string>
     <string name="channel_page_summary">频道页</string>
     <string name="select_a_channel">选择一个频道</string>
     <string name="no_channel_subscribed_yet">尚未订阅频道</string>
@@ -207,7 +204,7 @@
     <string name="top_50">前 50</string>
     <string name="new_and_hot">最新与热门</string>
     <string name="show_hold_to_append_title">显示“长按加入播放队列”提示</string>
-    <string name="show_hold_to_append_summary">在视频详情页中，长按后台播放或悬浮窗播放按钮时显示提示</string>
+    <string name="show_hold_to_append_summary">在视频详情页中，按下后台播放或悬浮窗播放按钮时显示提示</string>
     <string name="player_stream_failure">无法播放此串流</string>
     <string name="player_unrecoverable_failure">发生无法处理的播放器错误</string>
     <string name="player_recoverable_failure">播放器错误 自动恢复</string>
@@ -418,7 +415,6 @@
     <plurals name="listening">
         <item quantity="other">%s 位听众</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">语言更改将在重启应用后生效</string>
     <string name="peertube_instance_url_title">PeerTube 服务器</string>
     <string name="peertube_instance_url_summary">设置自定义 PeerTube 服务器</string>
     <string name="peertube_instance_url_help">查找你需要的服务器 %s</string>
@@ -471,7 +467,7 @@
     <string name="feed_group_dialog_empty_name">清空组名</string>
     <string name="feed_group_dialog_delete_message">您要删除该组吗？</string>
     <string name="feed_create_new_group_button_title">新建</string>
-    <string name="settings_category_feed_title">Feed</string>
+    <string name="settings_category_feed_title">订阅</string>
     <string name="feed_update_threshold_title">Feed 更新阈值</string>
     <string name="feed_update_threshold_summary">上次更新后，订阅被视为过期的时间 — %s</string>
     <string name="feed_update_threshold_option_always_update">始终更新</string>
@@ -603,7 +599,6 @@
     <string name="description_select_enable">启用简介中的文本选择功能</string>
     <string name="description_select_note">你现在可以选择简介中的文本，注意，在选择模式下，页面可能会闪烁，链接可能无法点击。</string>
     <string name="open_website_license">打开网站</string>
-    <string name="service_provides_reason">%s 提供这个原因：</string>
     <string name="account_terminated">账号被终止</string>
     <string name="feed_load_error_fast_unknown">快速 Feed 模式不提供关于这个的更多信息。</string>
     <string name="feed_load_error_terminated">作者账号已被终止。
@@ -789,7 +784,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">分享播放列表</string>
-    <string name="share_playlist_with_titles_message">分享详细的播放列表（带名称和视频标题等信息）或只分享视频网址列表</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <plurals name="replies">
         <item quantity="other">%s 条回复</item>
@@ -808,4 +802,16 @@
     <string name="auto_update_check_description">NewPipe 可以自动时不时地检查新版本并在新版本可用时通知你。
 \n你想开启该功能吗？</string>
     <string name="yes">是</string>
+    <string name="import_settings_vulnerable_format">正导入的导出文件中的设置使用了有漏洞的格式，该格式已从 NewPipe 0.27.0 版本起被弃用。请确保导入的导出文件来自可信来源，今后最好只使用从 NewPipe 0.27.0 或更新版本获取的导出文件。不久后将完全不支持导入这一有漏洞格式的设置，到时旧版 NewPipe 再不能导入来自新版应用的设置导出文件。</string>
+    <string name="audio_track_type_secondary">第二</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">分享为 YouTube 临时播放列表</string>
+    <string name="tab_bookmarks_short">播放列表</string>
+    <string name="feed_group_page_summary">频道组页面</string>
+    <string name="select_a_feed_group">选择一个订阅源组</string>
+    <string name="no_feed_group_created_yet">尚未创建订阅源组</string>
+    <string name="channel_tab_likes">赞</string>
+    <string name="search_with_service_name">搜索%1$s</string>
+    <string name="search_with_service_name_and_filter">搜索 %1$s （%2$s）</string>
+    <string name="migration_info_6_7_title">移除了 SoundCloud Top 50 页面</string>
+    <string name="migration_info_6_7_message">SoundCloud 已停止发布原创 Top 50 榜单。相应的标签页已从你的主页移除。</string>
 </resources>

@@ -1,0 +1,6 @@
+Fixed crash which occurred when reordering channel groups.
+Fixed getting more YouTube videos from channels and playlists.
+Fixed getting YouTube comments.
+Added support for /watch/, /v/ and /w/ subpaths in YouTube URLs.
+Fixed extraction of SoundCloud client id and geo-restricted content.
+Added Northern Kurdish localization.

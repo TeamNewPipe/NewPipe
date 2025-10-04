@@ -1,0 +1,23 @@
+< H4 > melhorias< / h4>
+< ul>
+< li>tornar os links nos comentários clicáveis, aumentar o tamanho do texto< / li>
+< li>procurar ao clicar em links de carimbo de data/hora nos comentários< / li>
+< li>mostrar a guia preferida com base no estado selecionado recentemente< / li>
+< li>adicionar lista de reprodução à fila ao clicar longamente em & # 39;fundo& # 39; na janela da lista de reprodução< / li>
+< li>procurar texto partilhado quando não é um URL< / li>
+< li>adicionar o botão&quot;Partilhar no momento atual & quot; ao leitor de vídeo principal< / li>
+< li>adicionar botão fechar ao leitor principal quando terminar a fila de vídeo< / li>
+< li>Adicionar & quot;Reproduzir diretamente em segundo plano & quot; ao menu longpress para itens da lista de vídeos< / li>
+< li>melhorar as traduções em Inglês para comandos Play / Enqueue< / li>
+< li>pequenas melhorias de desempenho< / li>
+< li>remover ficheiros não utilizados < / li>
+< li>Atualizar o ExoPlayer para 2.9.6< / li>
+< li>adicionar suporte para links ofensivos< / li>
+< / ul>
+<h4>fixo < /h4>
+< ul>
+< li>rolagem fixa com comentários e fluxos relacionados desativados < / li>
+< li>Corrigido CheckForNewAppVersionTask sendo executado quando deveria & # 39; t< / li>
+< li>importação de assinatura fixa do youtube: ignore aqueles com url inválido e mantenha aqueles com título vazio< / li>
+< li>corrigir URL inválido do YouTube: o nome da marca de assinatura nem sempre é "Assinatura", impedindo o carregamento de fluxos< / li>
+< / ul>

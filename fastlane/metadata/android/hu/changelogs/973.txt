@@ -1,0 +1,4 @@
+Gyorsjavítás
+• Indexképek levágása rácsos nézetben fixálása, ami egy rossz kalkuláció eredménye volt
+• A megosztás menüből történő letöltésnél nem történik semmi, csak kiírásra kerül a letöltés fixálva
+• Külső tevékenységekkel kapcsolatos könyvtárak frissítése, mint például a Héttártár Hozzáférés Keretrendszer fájl kiválasztó

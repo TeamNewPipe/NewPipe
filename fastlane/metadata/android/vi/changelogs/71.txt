@@ -1,0 +1,10 @@
+### Cải thiện
+* Thêm thông báo cập nhật ứng dụng cho bản dựng GitHub (#1608 bởi @krtkush)
+* Nhiều cải tiến cho trình tải xuống (#1944 bởi @kapodamy):
+* Thêm biểu tượng trắng bị thiếu và sử dụng cách thức cố định để thay đổi màu biểu tượng
+* Kiểm tra xem trình lặp có được khởi tạo hay không (sửa lỗi #2031)
+* Cho phép tải xuống lại với lỗi "xử lý hậu kỳ thất bại" trong bộ ghép nối mới
+* Bộ ghép nối MPEG-4 mới sửa lỗi luồng video và âm thanh không đồng bộ (#2039)
+
+### Sửa lỗi
+* Luồng trực tiếp YouTube dừng phát sau một thời gian ngắn (#1996 bởi @yausername)

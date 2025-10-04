@@ -1,0 +1,12 @@
+Táto verzia opravuje chyby HTTP 403 uprostred videí YouTube.
+
+Nové
+- [SoundCloud] Pridanie podpory pre adresy URL on.soundcloud.com
+
+Vylepšené
+- [Bandcamp] Zobrazenie dodatočných informácií v rozhlasovom kiosku
+
+Opravené
+- [YouTube] Oprava občasných chýb HTTP 403 na začiatku alebo uprostred videí
+- YouTube] Extrahovanie avatara a banneru z viacerých typov hlavičiek kanálov
+- Bandcamp] Opravené rôzne chyby a vždy používaný protokol HTTPS

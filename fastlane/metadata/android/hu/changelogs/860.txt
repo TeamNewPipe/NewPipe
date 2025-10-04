@@ -1,0 +1,7 @@
+Fejlesztések
+• A tempó és hangszín állapotának mentése és visszaállítása
+• Kijelző kivágás támogatása a lejátszóban
+• Kerekített és sima feliratkozói számláló
+• Youtube optimalizálása, hogy kevesebb adatot használjon
+
+Több mint 15 YouTube orientált bug került fixálásra ebben a verzióban.

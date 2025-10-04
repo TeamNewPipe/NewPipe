@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="upload_date_text">Δημοσιεύθηκε στις %1$s</string>
-    <string name="no_player_found">Δε βρέθηκε πρόγραμμα αναπαραγωγής. Εγκατάσταση του VLC;</string>
+    <string name="no_player_found">Δε βρέθηκε αναπαραγωγός ροής δεδομένων. Εγκατάσταση του VLC;</string>
     <string name="install">Εγκατάσταση</string>
     <string name="cancel">Άκυρο</string>
     <string name="open_in_browser">Άνοιγμα σε πρόγραμμα περιήγησης</string>
@@ -9,7 +9,7 @@
     <string name="download">Λήψη</string>
     <string name="search">Αναζήτηση</string>
     <string name="settings">Ρυθμίσεις</string>
-    <string name="did_you_mean">Μήπως εννοείτε «%1$s»;</string>
+    <string name="did_you_mean">Μήπως εννοείτε \"%1$s\";</string>
     <string name="share_dialog_title">Κοινοποίηση με</string>
     <string name="use_external_video_player_title">Χρήση εξωτερικής εφαρμογής αναπαραγωγής βίντεο</string>
     <string name="use_external_audio_player_title">Χρήση εξωτερικής συσκευής αναπαραγωγής ήχου</string>
@@ -41,7 +41,6 @@
     <string name="detail_uploader_thumbnail_view_description">Μικρογραφία εικόνας προφίλ του χρήστη</string>
     <string name="detail_likes_img_view_description">Like</string>
     <string name="detail_dislikes_img_view_description">Dislike</string>
-    <string name="short_billion">δισ/ρια</string>
     <string name="open_in_popup_mode">Άνοιγμα σε αναδυόμενο παράθυρο</string>
     <string name="subscribe_button_title">Εγγραφή</string>
     <string name="subscribed_button_title">Εγγεγραμμένος</string>
@@ -71,7 +70,7 @@
     <string name="action_history">Ιστορικό</string>
     <string name="show_info">Εμφάνιση πληροφοριών</string>
     <string name="main_bg_subtitle">Πατήστε το μεγεθυντικό φακό για να ξεκινήσετε.</string>
-    <string name="no_player_found_toast">Δε βρέθηκε πρόγραμμα αναπαραγωγής ροής δεδομένων (μπορείτε να εγκαταστήσετε το VLC για να κάνετε αναπαραγωγή).</string>
+    <string name="no_player_found_toast">Δε βρέθηκε αναπαραγωγός ροής δεδομένων (μπορείτε να εγκαταστήσετε το VLC για να κάνετε αναπαραγωγή).</string>
     <string name="controls_download_desc">Λήψη του αρχείου ροής</string>
     <string name="use_external_video_player_summary">Αφαιρείται ο ήχος από κάποιες αναλύσεις</string>
     <string name="channel_unsubscribed">Το κανάλι διαγράφηκε</string>
@@ -103,7 +102,7 @@
     <string name="resume_on_audio_focus_gain_title">Ανάκτηση αναπαραγωγής</string>
     <string name="resume_on_audio_focus_gain_summary">Συνέχιση της αναπαραγωγής έπειτα από διακοπές (π.χ. κλήσεις)</string>
     <string name="show_hold_to_append_title">Εμφάνιση επεξήγησης του «Πιέστε παρατεταμένα για προσθήκη στην ουρά»</string>
-    <string name="show_hold_to_append_summary">Εμφάνιση υπόδειξης όταν πατηθεί το κουμπί παρασκηνίου ή αναδυόμενου παραθύρου στη σελίδα λεπτομερειών του βίντεο</string>
+    <string name="show_hold_to_append_summary">Εμφάνιση συμβουλής κατά το πάτημα του φόντου ή του αναδυόμενου κουμπιού στο βίντεο «Λεπτομέρειες:»</string>
     <string name="default_content_country_title">Προεπιλεγμένη χώρα περιεχομένου</string>
     <string name="settings_category_player_title">Αναπαραγωγός</string>
     <string name="settings_category_player_behavior_title">Συμπεριφορά</string>
@@ -169,8 +168,6 @@
     <string name="empty_list_subtitle">Δεν υπάρχει τίποτα εδώ</string>
     <string name="detail_drag_description">Σύρετε για ταξινόμηση</string>
     <string name="retry">Προσπάθεια εκ νέου</string>
-    <string name="short_thousand">χιλ.</string>
-    <string name="short_million">εκ/ρια</string>
     <string name="no_subscribers">Κανένας συνδρομητής</string>
     <plurals name="subscribers">
         <item quantity="one">%s συνδρομητής</item>
@@ -184,7 +181,7 @@
     <string name="no_videos">Κανένα βίντεο</string>
     <plurals name="videos">
         <item quantity="one">%s βίντεο</item>
-        <item quantity="other">%s βίντεο</item>
+        <item quantity="other">%s βίντεο(πολλά)</item>
     </plurals>
     <string name="start">Εκκίνηση</string>
     <string name="create">Δημιουργία</string>
@@ -422,7 +419,6 @@
         <item quantity="one">%s ακροατής</item>
         <item quantity="other">%s ακροατές</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Η γλώσσα θα αλλάξει αφού επανεκκινηθεί η εφαρμογή</string>
     <string name="default_kiosk_page_summary">Προεπιλεγμένο περίπτερο</string>
     <string name="peertube_instance_add_https_only">Μόνο HTTPS σύνδεσμοι υποστηρίζονται</string>
     <string name="local">Τοπικά</string>
@@ -472,7 +468,7 @@
     <string name="restricted_video">Αυτό το βίντεο έχει περιορισμό ηλικίας.
 \n
 \nΕνεργοποιήστε το «%1$s» στις ρυθμίσεις εάν θέλετε να το δείτε.</string>
-    <string name="youtube_restricted_mode_enabled_title">Λειτουργία περιορισμένης πρόσβασης του YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">Ενεργοποίηση \"Περιορισμένη Λειτουργία\" του YouTube</string>
     <string name="unsupported_url_dialog_message">Δεν ήταν δυνατή η αναγνώριση της διεύθυνσης URL. Άνοιγμα με άλλη εφαρμογή;</string>
     <string name="auto_queue_toggle">Αυτόματη προσθήκη στην ουρά</string>
     <string name="clear_queue_confirmation_description">Η ουρά του ενεργού αναπαραγωγού θα αντικατασταθεί</string>
@@ -612,7 +608,6 @@
     <string name="description_select_enable">Ενεργοποίηση επιλογής κειμένου στην περιγραφή</string>
     <string name="description_select_note">Τώρα μπορείτε να επιλέξετε κείμενο εντός της περιγραφής. Σημειώστε ότι, η σελίδα μπορεί να παρουσιάζει αστάθεια κατά τη διάρκεια της κατάστασης επιλογής κειμένου.</string>
     <string name="open_website_license">Ανοικτή ιστοσελίδα</string>
-    <string name="service_provides_reason">Το %s παρέχει αυτή την αιτία:</string>
     <string name="account_terminated">Ο λογαριασμός διαγράφηκε</string>
     <string name="feed_load_error_fast_unknown">Η κατάσταση γρήγορης τροφοδοσίας δεν παρέχει περισσότερες πληροφορίες.</string>
     <string name="feed_load_error_terminated">Ο λογαριασμός του δημιουργού έχει διαγραφεί.
@@ -654,7 +649,7 @@
     <string name="manual_update_description">Χειροκίνητος έλεγχος για νέα έκδοση</string>
     <string name="check_for_updates">Έλεγχος αναβάθμισης</string>
     <string name="feed_new_items">Νέα αντικείμενα τροφοδοσίας</string>
-    <string name="show_crash_the_player_title">Εμφάνιση «Κατάρρευσης αναπαραγωγέα»</string>
+    <string name="show_crash_the_player_title">Εμφάνιση \"Κατάρρευση αναπαραγωγέα\"</string>
     <string name="show_crash_the_player_summary">Εμφανίζει μια επιλογή κατάρρευσης κατά τη χρήση του αναπαραγωγέα</string>
     <string name="crash_the_player">Κατάρρευση αναπαραγωγέα</string>
     <string name="error_report_channel_name">Ειδοποίηση αναφοράς σφάλματος</string>
@@ -802,7 +797,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">Κοινοποίηση λίστας</string>
-    <string name="share_playlist_with_titles_message">Μοιραστείτε τη λίστα αναπαραγωγής με λεπτομέρειες όπως το όνομα της λίστας αναπαραγωγής και τους τίτλους βίντεο ή ως μια απλή λίστα διευθύνσεων URL βίντεο</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <plurals name="replies">
         <item quantity="one">%s απάντηση</item>
@@ -822,4 +816,16 @@
     <string name="reset_all_settings">Η επαναφορά όλων των ρυθμίσεων θα απορρίψει όλες τις τροποποιημένες ρυθμίσεις σας και θα επανεκκινήσει την εφαρμογή.
 \n
 \nΕίστε βέβαιοι ότι θέλετε να συνεχίσετε;</string>
+    <string name="import_settings_vulnerable_format">Οι ρυθμίσεις στην εξαγωγή που εισάγεται χρησιμοποιούν μια ευάλωτη μορφή που είχε καταργηθεί από το NewPipe 0.27.0. Βεβαιωθείτε ότι η εξαγωγή που εισάγεται προέρχεται από αξιόπιστη πηγή και προτιμήστε να χρησιμοποιείτε μόνο εξαγωγές που λαμβάνονται από το NewPipe 0.27.0 ή νεότερο στο μέλλον. Η υποστήριξη για εισαγωγή ρυθμίσεων σε αυτήν την ευάλωτη μορφή θα καταργηθεί σύντομα εντελώς και, στη συνέχεια, οι παλιές εκδόσεις του NewPipe δεν θα μπορούν πλέον να εισάγουν ρυθμίσεις εξαγωγών από νέες εκδόσεις.</string>
+    <string name="audio_track_type_secondary">δευτερεύων</string>
+    <string name="tab_bookmarks_short">Λίστες αναπαραγωγής</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Μοιραστείτε ως προσωρινή λίστα αναπαραγωγής στο YouTube</string>
+    <string name="select_a_feed_group">Επιλογή ομάδας τροφοδοσίας</string>
+    <string name="no_feed_group_created_yet">Δεν δημιουργήθηκε ομάδα τροφοδοσίας ακόμα</string>
+    <string name="feed_group_page_summary">Σελίδα καναλιού ομάδας</string>
+    <string name="search_with_service_name">Αναζήτηση %1$s</string>
+    <string name="search_with_service_name_and_filter">Αναζήτηση %1$s (%2$s)</string>
+    <string name="channel_tab_likes">Likes</string>
+    <string name="migration_info_6_7_title">Η σελίδα των SoundCloud Top 50 αφαιρέθηκε</string>
+    <string name="migration_info_6_7_message">Το SoundCloud έχει καταργήσει τα αρχικά charts με τα Top 50. Η αντίστοιχη καρτέλα έχει αφαιρεθεί από την κύρια σελίδα σας.</string>
 </resources>

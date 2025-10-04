@@ -1,0 +1,19 @@
+#### Novo
+- Eliminação de longa duração e partilha de subscrições #1516 
+- Tabela UI e esquema de lista de grelha #1617 
+
+### Melhorias
+- armazenar e recarregar a última relação de aspeto utilizada #1748 
+- Ativar a disposição linear na atividade de Downloads com nomes de vídeo completos #1771 
+- Apagar e partilhar subscrições diretamente do separador de subscrições #1516 
+- Enqueuing agora ativa a reprodução de vídeo se a fila de reprodução já tiver terminado #1783 
+- Configurações separadas para os gestos de volume e luminosidade #1644
+- Adicionar apoio à Localização #1792
+
+### Correções
+- Fixar a análise do tempo para . formato, para que NewPipe possa ser usado na Finlândia
+- Contagem fixa de assinaturas
+- Adicionar permissão de serviço em primeiro plano para dispositivos API 28+ #1830
+
+### Bugs conhecidos
+- O estado de reprodução não pode ser guardado no Android P

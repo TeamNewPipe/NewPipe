@@ -1,0 +1,10 @@
+• Added option to directly open player in fullscreen
+• Allow choosing which types of search suggestions to show
+• Dark theme now darker + dark splash screen added
+• Improved file picker to gray out unwanted files
+• Fixed importing YouTube subscriptions
+• Replaying a stream requires on tap on the replay button again
+• Fixed closing audio session
+• [Android TV] Fixed long seekbar jumps when using a DPad
+
+To see further changes, view the changelog (and blog post) from the Links tab below.

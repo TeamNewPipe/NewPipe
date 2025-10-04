@@ -1,0 +1,14 @@
+New
+Recognize timestamps and hashtags in description
+Added manual tablet mode setting
+Added ability to hide played items in a feed
+
+Improved
+Support Storage Access Framework properly
+Better error handling of unavailable and terminated channels
+The Android share sheet for Android 10+ users now shows the content title.
+Updated Invidious instances and support Piped links.
+
+Fixed
+[YouTube] Age restricted content
+Prevent leaked window Exception when opening choice dialog

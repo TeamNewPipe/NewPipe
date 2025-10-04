@@ -1,0 +1,6 @@
+Opravná verze, která opravuje chyby YouTube:
+- [YouTube] Oprava nenačítání informací o videu, oprava chyb HTTP 403 při přehrávání videí a obnovení přehrávání některých videí s věkovým omezením.
+- Oprava nezměněných velikostí titulků
+- Oprava dvojího stahování informací při otevření streamu
+- [Soundcloud] Odstranění nepřehratelných streamů chráněných DRM
+- Aktualizovány překlady

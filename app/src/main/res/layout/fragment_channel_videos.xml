@@ -20,36 +20,14 @@
         android:visibility="gone"
         tools:visibility="visible" />
 
-    <LinearLayout
+    <androidx.compose.ui.platform.ComposeView
         android:id="@+id/empty_state_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:orientation="vertical"
-        android:paddingTop="90dp"
         android:visibility="gone"
-        tools:visibility="visible">
-
-        <org.schabi.newpipe.views.NewPipeTextView
-            android:id="@+id/channel_kaomoji"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="monospace"
-            android:text="(╯°-°)╯"
-            android:textSize="35sp"
-            tools:ignore="HardcodedText,UnusedAttribute" />
-
-        <org.schabi.newpipe.views.NewPipeTextView
-            android:id="@+id/channel_no_videos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/empty_view_no_videos"
-            android:textSize="24sp" />
-
-    </LinearLayout>
+        tools:visibility="visible"
+        />
 
     <!--ERROR PANEL-->
     <include

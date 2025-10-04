@@ -1,0 +1,8 @@
+• Cho phép cài đặt trên bộ nhớ ngoài
+• [Bandcamp] Thêm hỗ trợ hiển thị ba bình luận đầu tiên trên một luồng
+• Chỉ hiển thị thông báo "tải xuống đã bắt đầu" khi tải xuống được bắt đầu
+• Không đặt cookie reCaptcha khi không có cookie nào được lưu trữ
+• [Trình phát] Cải thiện hiệu suất bộ nhớ cache
+• [Trình phát] Sửa lỗi trình phát không tự động phát
+• Loại bỏ Snackbars trước khi xóa tải xuống
+• Sửa lỗi cố gắng xóa đối tượng không có trong danh sách

@@ -21,7 +21,7 @@ object ReleaseVersionUtil {
         val certificates = mapOf(
             RELEASE_CERT_PUBLIC_KEY_SHA256.hexToByteArray() to PackageManager.CERT_INPUT_SHA256
         )
-        val app = App.getApp()
+        val app = App.instance
         try {
             PackageInfoCompat.hasSignatures(app.packageManager, app.packageName, certificates, false)
         } catch (e: PackageManager.NameNotFoundException) {

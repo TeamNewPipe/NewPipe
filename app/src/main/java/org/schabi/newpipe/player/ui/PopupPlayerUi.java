@@ -153,8 +153,8 @@ public final class PopupPlayerUi extends VideoPlayerUi {
 
     @Override
     protected void setupElementsVisibility() {
-        binding.fullScreenButton.setVisibility(View.VISIBLE);
-        binding.screenRotationButton.setVisibility(View.GONE);
+        binding.fullscreenToggleButtonSecondaryMenu.setVisibility(View.VISIBLE);
+        binding.fullscreenToggleButton.setVisibility(View.GONE);
         binding.resizeTextView.setVisibility(View.GONE);
         binding.getRoot().findViewById(R.id.metadataView).setVisibility(View.GONE);
         binding.queueButton.setVisibility(View.GONE);
@@ -382,7 +382,7 @@ public final class PopupPlayerUi extends VideoPlayerUi {
                     private void end() {
                         windowManager.removeView(closeOverlayBinding.getRoot());
                         closeOverlayBinding = null;
-                        player.getService().stopService();
+                        player.getService().destroyPlayerAndStopService();
                     }
                 }).start();
     }
@@ -424,9 +424,8 @@ public final class PopupPlayerUi extends VideoPlayerUi {
 
     @Override
     protected void setupSubtitleView(final float captionScale) {
-        final float captionRatio = (captionScale - 1.0f) / 5.0f + 1.0f;
         binding.subtitleView.setFractionalTextSize(
-                SubtitleView.DEFAULT_TEXT_SIZE_FRACTION * captionRatio);
+                SubtitleView.DEFAULT_TEXT_SIZE_FRACTION * captionScale);
     }
 
     @Override

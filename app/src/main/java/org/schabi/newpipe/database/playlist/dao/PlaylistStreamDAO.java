@@ -154,6 +154,6 @@ public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
             + " AND :streamUrl = :streamUrl"
 
             + " GROUP BY " + JOIN_PLAYLIST_ID
-            + " ORDER BY " + PLAYLIST_DISPLAY_INDEX)
+            + " ORDER BY " + PLAYLIST_DISPLAY_INDEX + ", " + PLAYLIST_NAME)
     Flowable<List<PlaylistDuplicatesEntry>> getPlaylistDuplicatesMetadata(String streamUrl);
 }

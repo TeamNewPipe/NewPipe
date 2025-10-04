@@ -83,9 +83,6 @@
     <string name="recaptcha_request_toast">reCAPTCHAようきゅうさびたん</string>
     <string name="black_theme_title">ブラック</string>
     <string name="all">まじり</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">B</string>
     <string name="open_in_popup_mode">ポップアップモードっしふぃらちゅん</string>
     <string name="msg_popup_permission">ポップアップモードっしふぃらちゅんがー
 \nきんぎんぬきょかがふぃちようでぃす</string>
@@ -423,7 +420,6 @@
         <item quantity="one">%sんかいんがちょうしゅちゅう</item>
         <item quantity="other">%sんかいんがちょうしゅちゅう</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">アプリさいきちゃーしーねー、ぎんぐがへいるかんさりやびーん</string>
     <string name="seek_duration_title">こうすくはやうくい/まきむどぅしかんかく</string>
     <string name="peertube_instance_url_title">PeerTubeインスタンス</string>
     <string name="peertube_instance_url_summary">PeerTubeインスタンスさんたくすん</string>
@@ -626,7 +622,6 @@
     <string name="off">オフ</string>
     <string name="on">オン</string>
     <string name="tablet_mode_title">タブレットモード</string>
-    <string name="service_provides_reason">%sやしがくぬりゆうていじ：</string>
     <string name="dont_show">ひょうじさん</string>
     <string name="low_quality_smaller">ていふぃんしち（しょう）</string>
     <string name="high_quality_larger">かんふぃんしち（だい）</string>
@@ -802,7 +797,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">プレイリストちゅーゆーいん</string>
-    <string name="share_playlist_with_titles_message">プレイリストめいてぃがろービデオタイトルんでーぬしょうさいくくむるプレイリスト、あらんでぃビデオURLぬみぬシンプルやるリストとぅしてぃプレイリストちゅーゆーいんさびーん</string>
     <string name="video_details_list_item">- %1$s： %2$s</string>
     <plurals name="replies">
         <item quantity="one">%sぬへんしん</item>
@@ -822,4 +816,5 @@
     <string name="reset_all_settings">まじりぬしっていリセットしーねー、ゆーいるしんしっていぬまじりはちされい、アプリぬさいきちゃーさびーん。
 \n
 \nずっこうさびーが？</string>
+    <string name="import_settings_vulnerable_format">インポートさりとーるエクスポートぬしってえー、NewPipe 0.27.0いこおーふぃするいしょうでぃあったけいしきしーようさびーん。 インポートさりとーるエクスポートーしんらいないるじょうほうぎんからでぃあり、しょうらいていちがーNewPipe 0.27.0がくりやかみーさるバージョンからいらりーるエクスポートぬみゆーいるしんししようさびーん。 くぬぜいじゃくやるけいしきっししっていインポートするたみぬたいおおーちゃーきかんじんにさくじょされい、みーさるバージョンからエクスポートぬしっていインポートすしぇーなやびらん。</string>
 </resources>

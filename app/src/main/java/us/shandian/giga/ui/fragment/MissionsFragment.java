@@ -22,6 +22,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.compose.ui.platform.ComposeView;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -34,6 +35,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
+import org.schabi.newpipe.ui.emptystate.EmptyStateUtil;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 
 import java.io.File;
@@ -108,7 +110,8 @@ public class MissionsFragment extends Fragment {
         mContext.bindService(new Intent(mContext, DownloadManagerService.class), mConnection, Context.BIND_AUTO_CREATE);
 
         // Views
-        mEmpty = v.findViewById(R.id.list_empty_view);
+        mEmpty = v.findViewById(R.id.empty_state_view);
+        EmptyStateUtil.setEmptyStateComposable((ComposeView) mEmpty);
         mList = v.findViewById(R.id.mission_recycler);
 
         // Init layouts managers

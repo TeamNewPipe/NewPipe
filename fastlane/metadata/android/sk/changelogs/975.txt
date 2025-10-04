@@ -1,0 +1,17 @@
+New
+• Show a thumbnail preview while seeking
+• Detect disabled comments
+• Allow marking a feed item as watched
+• Show comment hearts
+
+Improved
+• Improve metadata and tags layout
+• Apply service color to UI components
+
+Fixed
+• Fix thumbnail in mini player
+• Fix endless buffering on duplicate queue items
+• Some player fixes like rotation and faster closing
+• Fix ReCAPTCHA remaining loaded in background
+• Disable clicks while refreshing feed
+• Fix some downloader crashes

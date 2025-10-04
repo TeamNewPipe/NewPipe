@@ -23,6 +23,7 @@ import androidx.core.content.ContextCompat;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.player.Player;
+import org.schabi.newpipe.player.PlayerIntentType;
 import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
 import org.schabi.newpipe.util.NavigationHelper;
 
@@ -101,10 +102,10 @@ public final class NotificationUtil {
             final int[] compactSlots = initializeNotificationSlots();
             mediaStyle.setShowActionsInCompactView(compactSlots);
         }
-        player.UIs()
-                .get(MediaSessionPlayerUi.class)
-                .flatMap(MediaSessionPlayerUi::getSessionToken)
-                .ifPresent(mediaStyle::setMediaSession);
+        @Nullable final MediaSessionPlayerUi ui = player.UIs().get(MediaSessionPlayerUi.class);
+        if (ui != null) {
+            mediaStyle.setMediaSession(ui.getSessionToken());
+        }
 
         // setup notification builder
         builder.setStyle(mediaStyle)
@@ -167,19 +168,17 @@ public final class NotificationUtil {
                 && notificationBuilder.mActions.get(2).actionIntent != null);
     }
 
-
     public void createNotificationAndStartForeground() {
         if (notificationBuilder == null) {
             notificationBuilder = createNotification();
         }
         updateNotification();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            player.getService().startForeground(NOTIFICATION_ID, notificationBuilder.build(),
-                    ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
-        } else {
-            player.getService().startForeground(NOTIFICATION_ID, notificationBuilder.build());
-        }
+        // ServiceInfo constants are not used below Android Q, so 0 is set here
+        final int serviceType = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
+                ? ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK : 0;
+        ServiceCompat.startForeground(player.getService(), NOTIFICATION_ID,
+                notificationBuilder.build(), serviceType);
     }
 
     public void cancelNotificationAndStopForeground() {
@@ -256,7 +255,9 @@ public final class NotificationUtil {
         } else {
             // We are playing in fragment. Don't open another activity just show fragment. That's it
             final Intent intent = NavigationHelper.getPlayerIntent(
-                    player.getContext(), MainActivity.class, null, true);
+                    player.getContext(), MainActivity.class, null,
+                    PlayerIntentType.AllOthers);
+            intent.putExtra(Player.RESUME_PLAYBACK, true);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.setAction(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_LAUNCHER);

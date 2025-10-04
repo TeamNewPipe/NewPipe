@@ -28,7 +28,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+import coil3.compose.AsyncImage
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
@@ -81,12 +81,11 @@ fun CommentRepliesHeader(comment: CommentsInfoItem, onCommentAuthorOpened: () ->
                         style = MaterialTheme.typography.titleSmall,
                     )
 
-                    Text(
-                        text = Localization.relativeTimeOrTextual(
-                            context, comment.uploadDate, comment.textualUploadDate
-                        ),
-                        style = MaterialTheme.typography.bodySmall,
-                    )
+                    Localization.relativeTimeOrTextual(
+                        context, comment.uploadDate, comment.textualUploadDate
+                    )?.let {
+                        Text(text = it, style = MaterialTheme.typography.bodySmall)
+                    }
                 }
             }
 
@@ -143,7 +142,7 @@ fun CommentRepliesHeaderPreview() {
     )
 
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
+        Surface {
             CommentRepliesHeader(comment) {}
         }
     }

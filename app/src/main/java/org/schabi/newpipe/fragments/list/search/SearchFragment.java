@@ -3,6 +3,7 @@ package org.schabi.newpipe.fragments.list.search;
 import static androidx.recyclerview.widget.ItemTouchHelper.Callback.makeMovementFlags;
 import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.ui.emptystate.EmptyStateUtil.setEmptyStateComposable;
 import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
 import static java.util.Arrays.asList;
 
@@ -54,6 +55,7 @@ import org.schabi.newpipe.extractor.MetaInfo;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.search.SearchExtractor;
 import org.schabi.newpipe.extractor.search.SearchInfo;
 import org.schabi.newpipe.extractor.services.peertube.linkHandler.PeertubeSearchQueryHandlerFactory;
@@ -64,6 +66,7 @@ import org.schabi.newpipe.ktx.AnimationType;
 import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.settings.NewPipeSettings;
+import org.schabi.newpipe.ui.emptystate.EmptyStateSpec;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -144,6 +147,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     private final SparseArrayCompat<String> menuItemToFilterName = new SparseArrayCompat<>();
     private StreamingService service;
+    @Nullable
     private Page nextPage;
     private boolean showLocalSuggestions = true;
     private boolean showRemoteSuggestions = true;
@@ -219,6 +223,15 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     public void onViewCreated(@NonNull final View rootView, final Bundle savedInstanceState) {
         searchBinding = FragmentSearchBinding.bind(rootView);
         super.onViewCreated(rootView, savedInstanceState);
+
+        updateService();
+        // Add the service name to search string hint
+        // to make it more obvious which platform is being searched.
+        if (service != null) {
+            searchEditText.setHint(
+                    getString(R.string.search_with_service_name,
+                            service.getServiceInfo().getName()));
+        }
         showSearchOnStart();
         initSearchListeners();
     }
@@ -343,6 +356,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @Override
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
+
+        setEmptyStateComposable(searchBinding.emptyStateView, EmptyStateSpec.NoSearchResult);
 
         searchBinding.suggestionsList.setAdapter(suggestionListAdapter);
         // animations are just strange and useless, since the suggestions keep changing too much
@@ -924,7 +939,21 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             infoListAdapter.clearStreamItemList();
             showEmptyState();
         } else {
-            showError(new ErrorInfo(exception, UserAction.SEARCHED, searchString, serviceId));
+            showError(new ErrorInfo(exception, UserAction.SEARCHED, searchString, serviceId,
+                    getOpenInBrowserUrlForErrors()));
+        }
+    }
+
+    @Nullable
+    private String getOpenInBrowserUrlForErrors() {
+        if (TextUtils.isEmpty(searchString)) {
+            return null;
+        }
+        try {
+            return service.getSearchQHFactory().getUrl(searchString,
+                    Arrays.asList(contentFilter), sortFilter);
+        } catch (final NullPointerException | ParsingException ignored) {
+            return null;
         }
     }
 
@@ -935,6 +964,20 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     private void changeContentFilter(final MenuItem item, final List<String> theContentFilter) {
         filterItemCheckedId = item.getItemId();
         item.setChecked(true);
+
+        if (service != null) {
+            final boolean isNotFiltered = theContentFilter.isEmpty()
+                    || "all".equals(theContentFilter.get(0));
+            if (isNotFiltered) {
+                searchEditText.setHint(
+                        getString(R.string.search_with_service_name,
+                                service.getServiceInfo().getName()));
+            } else {
+                searchEditText.setHint(getString(R.string.search_with_service_name_and_filter,
+                        service.getServiceInfo().getName(),
+                        item.getTitle()));
+            }
+        }
 
         contentFilter = theContentFilter.toArray(new String[0]);
 
@@ -998,7 +1041,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 && !(exceptions.size() == 1
                 && exceptions.get(0) instanceof SearchExtractor.NothingFoundException)) {
             showSnackBarError(new ErrorInfo(result.getErrors(), UserAction.SEARCHED,
-                    searchString, serviceId));
+                    searchString, serviceId, getOpenInBrowserUrlForErrors()));
         }
 
         searchSuggestion = result.getSearchSuggestion();
@@ -1065,15 +1108,26 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     public void handleNextItems(final ListExtractor.InfoItemsPage<?> result) {
         showListFooter(false);
         infoListAdapter.addInfoItemList(result.getItems());
-        nextPage = result.getNextPage();
 
         if (!result.getErrors().isEmpty()) {
-            showSnackBarError(new ErrorInfo(result.getErrors(), UserAction.SEARCHED,
-                    "\"" + searchString + "\" → pageUrl: " + nextPage.getUrl() + ", "
-                            + "pageIds: " + nextPage.getIds() + ", "
-                            + "pageCookies: " + nextPage.getCookies(),
-                    serviceId));
+            // nextPage should be non-null at this point, because it refers to the page
+            // whose results are handled here, but let's check it anyway
+            if (nextPage == null) {
+                showSnackBarError(new ErrorInfo(result.getErrors(), UserAction.SEARCHED,
+                        "\"" + searchString + "\" → nextPage == null", serviceId,
+                        getOpenInBrowserUrlForErrors()));
+            } else {
+                showSnackBarError(new ErrorInfo(result.getErrors(), UserAction.SEARCHED,
+                        "\"" + searchString + "\" → pageUrl: " + nextPage.getUrl() + ", "
+                                + "pageIds: " + nextPage.getIds() + ", "
+                                + "pageCookies: " + nextPage.getCookies(),
+                        serviceId, getOpenInBrowserUrlForErrors()));
+            }
         }
+
+        // keep the reassignment of nextPage after the error handling to ensure that nextPage
+        // still holds the correct value during the error handling
+        nextPage = result.getNextPage();
         super.handleNextItems(result);
     }
 

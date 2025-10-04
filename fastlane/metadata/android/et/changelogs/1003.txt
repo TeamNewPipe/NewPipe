@@ -1,0 +1,6 @@
+See on kiirparandus, mis teeb korda need YouTube'i vead:
+• [YouTube] Parandasime vea, kus ühtegi meediavoogu ei õnnestunud esitada, parandasime HTTP 403-tüüpi vead videote esitamisel ja taastasime mõnede vanusepiirangutega videote esitamise
+• Parandasime vea, kus subtiitrite suurus ei muutunud
+• Parandasime vea, kus meediavoo avamisel laadisime tema teabe kaks korda alla
+• [Soundcloud] eemaldasime mitteesitatavad DRM-kaitsega meediavood
+• Uuendasime tõlkeid

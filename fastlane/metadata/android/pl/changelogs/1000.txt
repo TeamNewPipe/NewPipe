@@ -1,0 +1,13 @@
+Ulepszone
+• Możliwość naciskania opisu playlisty, aby wyśw. więcej/mniej treści
+• [PeerTube] Automat. obsługa linków instancji `subscribeto.me`
+• Rozpocz. odtwarzania tylko jednej pozycji na ekranie historii
+
+Naprawione
+• Widoczność przycisku RSS
+• Awarie podglądu paska przewijania
+• Dodaw. do playlisty elementu bez miniatury
+• Wychodzenie z okna pobierania przed jego wyśw.
+• Powiązane pozycje w oknie kolejki
+• Kolejność w oknie dodaw. do playlisty
+• Dostosowano układ ulubionych pozycji playlist

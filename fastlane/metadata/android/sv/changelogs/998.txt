@@ -1,1 +1,4 @@
-Åtgärdat att YouTube inte spelar någon stream
+Åtgärdat att YouTube inte spelar någon ström på grund av HTTP 403 fel.
+
+HTTP 403 fel som ibland uppstår mitt i en YouTube-video är inte åtgärdade ännu.
+Det problemet kommer att åtgärdas i en annan uppdatering så snart som möjligt.

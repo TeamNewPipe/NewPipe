@@ -1,1 +1,1 @@
-Un cliente de YouTube gratuito y liviano para Android.
+Un cliente de YouTube gratuito y ligero para Android.

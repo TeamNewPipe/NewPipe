@@ -1,0 +1,8 @@
+• Suporte para capítulos adicionado nos controles do player
+• [PeerTube] Busca Sépia adicionada
+• Botão de compartilhamento adicionado novamente na visualização de detalhes do vídeo e descrição da transmissão movida para o layout de abas
+• Desativação da restauração do brilho se o gesto de brilho estiver desativado
+• Item de lista adicionado para reproduzir vídeo no Kodi
+• Travamento corrigido quando nenhum navegador padrão está definido em alguns dispositivos e diálogos de compartilhamento aprimorados
+• Alternar reprodução/pausa com o botão de espaço físico no player em tela cheia
+• [media.ccc.de] Diversas correções e melhorias

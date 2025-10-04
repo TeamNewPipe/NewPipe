@@ -207,7 +207,6 @@
     <string name="new_and_hot">Të rejat dhe të nxehtat</string>
     <string name="top_50">Top 50</string>
     <string name="trending">E trendit</string>
-    <string name="localization_changes_requires_app_restart">Gjuha do të ndryshojë sapo aplikacioni të riniset</string>
     <string name="error_unable_to_load_comments">Nuk mundën të ngarkohen komentet</string>
     <string name="import_settings">A dëshironi që të importoni dhe aranzhimet gjithashtu\?</string>
     <string name="override_current_data">Kjo do të mbishkruajë strukturimin tuaj të tanishëm.</string>
@@ -296,9 +295,6 @@
     </plurals>
     <string name="no_subscribers">Nuk ka abonues</string>
     <string name="drawer_header_description">Aktivizoje shërbimin, momentalisht e zgjedhur:</string>
-    <string name="short_billion">B</string>
-    <string name="short_million">M</string>
-    <string name="short_thousand">k</string>
     <string name="retry">Riprovo</string>
     <string name="audio">Audio</string>
     <string name="video">Video</string>
@@ -602,7 +598,6 @@
     <string name="night_theme_summary">Zgjidhni temën tuaj të preferuar të natës - %s</string>
     <string name="auto_device_theme_title">Automatike (tema e pajisjes)</string>
     <string name="radio">Radio</string>
-    <string name="service_provides_reason">%s e jep këtë arsye:</string>
     <string name="account_terminated">Llogaria është mbyllur</string>
     <string name="private_content">Kjo përmbajtje është private, kështu që nuk mund të luhet apo shkarkohet nga NewPipe.</string>
     <string name="georestricted_content">Kjo përmbajtje nuk është e disponueshme në shtetin tuaj.</string>
@@ -651,4 +646,30 @@
     <string name="remove_duplicates">Hiq duplikatet</string>
     <string name="fast_mode">Modi i shpejtë</string>
     <string name="sort">Rradhit</string>
+    <string name="channel_tab_livestreams">Live</string>
+    <string name="channel_tab_albums">Albumet</string>
+    <string name="play">Luaj</string>
+    <string name="duration">Zgjatja</string>
+    <string name="rewind">Rikthe</string>
+    <string name="forward">Para</string>
+    <string name="no_streams">Nuk ka streams</string>
+    <string name="play_queue_audio_track">Audio: %s</string>
+    <string name="metadata_avatars">Avataret</string>
+    <string name="metadata_banners">Banerat</string>
+    <string name="channel_tab_channels">Kanalet</string>
+    <string name="channel_tab_videos">Videot</string>
+    <string name="question_mark">\?</string>
+    <string name="replay">Ri-luaj</string>
+    <string name="yes">Po</string>
+    <string name="no">Jo</string>
+    <string name="channel_tab_about">Rreth</string>
+    <string name="next_stream">Streami i rradhes</string>
+    <string name="notifications">Njoftimet</string>
+    <string name="remote_search_suggestions">Sugjerime jo-lokale për kërkim</string>
+    <string name="faq">Shikoje në faqen ueb</string>
+    <string name="faq_title">Pyetjet më të shpeshta</string>
+    <string name="prefer_original_audio_title">Prefero audion origjinale</string>
+    <string name="prefer_descriptive_audio_title">Prefero audio përshkruese</string>
+    <string name="none">Asnjë</string>
+    <string name="local_search_suggestions">Sugjerime lokale për kërkim</string>
 </resources>

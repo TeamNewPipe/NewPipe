@@ -1,1 +1,12 @@
-Arreglo en YouTube no reproduciendo flujos
+Esta versión corrige errores HTTP 403 en medio de los videos de YouTube.
+
+Nuevo
+• [SoundCloud] Agregar soporte para URL on.soundcloud.com
+
+Mejorado
+• [Bandcamp] Mostrar información adicional en el quiosco de radio
+
+Corregido
+• [YouTube] Se corrigen errores HTTP 403 ocasionales al principio o en el medio de los videos.
+• [YouTube] Extraer avatar y banner de más tipos de encabezado de canal
+• [Bandcamp] Corrige varios errores y usa siempre HTTPS

@@ -2,22 +2,29 @@
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">Una interfaz de streaming ligera y libre para Android.</h4>
 
-<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-es.svg" alt="Get it on F-Droid" height=80/></a></p>
+<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-es.svg" alt="Get it on F-Droid" width=206/></a></p>
 
 <p align="center">
 <a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="Lanzamientos GitHub"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
+<a href="https://github.com/TeamNewPipe/NewPipe-nightly/releases" alt="GitHub NewPipe nightly releases"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe-nightly.svg?labelColor=purple&label=dev%20nightly"></a>
+<a href="https://github.com/TeamNewPipe/NewPipe-refactor-nightly/releases" alt="GitHub NewPipe refactor nightly releases"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe-refactor-nightly.svg?labelColor=purple&label=refactor%20nightly"></a>
 <a href="https://www.gnu.org/licenses/gpl-3.0" alt="Licencia: GPLv3"><img src="https://img.shields.io/badge/Licencia-GPL%20v3-blue.svg"></a>
-<a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Estado del Build"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
+<a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Estado del Build"><img src="https://github.com/TeamNewPipe/NewPipe/actions/workflows/ci.yml/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/es/" alt="Estado de la Traducción"><img src="https://hosted.weblate.org/widgets/newpipe/es/svg-badge.svg"></a>
-<a href="https://web.libera.chat/#newpipe" alt="Canal de IRC: #newpipe"><img src="https://img.shields.io/badge/Canal%20de%20IRC%20-%23newpipe-brightgreen.svg"></a>
 </p>
+
+<p align="center">
+<a href="https://web.libera.chat/#newpipe" alt="Canal de IRC: #newpipe"><img src="https://img.shields.io/badge/Canal%20de%20IRC%20-%23newpipe-brightgreen.svg"></a>
+<a href="https://matrix.to/#/#newpipe:matrix.newpipe-ev.de" alt="Matrix channel: #newpipe"><img src="https://img.shields.io/badge/Matrix%20chat-%23newpipe-blue"></a>
+</p>
+
 <hr>
 
 <p align="center"><a href="#capturas-de-pantalla">Capturas de Pantalla</a> &bull; <a href="#descripción">Descripción</a> &bull; <a href="#características">Características</a> &bull; <a href="#instalación-y-actualizaciones">Instalación y Actualizaciones</a> &bull; <a href="#contribución">Contribución</a> &bull; <a href="#donar">Donar</a> &bull; <a href="#licencia">Licencia</a></p>
 <p align="center"><a href="https://newpipe.net">Sitio Web</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">Preguntas Frecuentes</a> &bull; <a href="https://newpipe.net/press/">Prensa</a></p>
 <hr>
 
-*Read this document in other languages: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md)*
+*Read this document in other languages: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md) , [العربية](README.ar.md)*
 
 > [!warning]
 > <b>ESTA ES UNA VERSIÓN BETA, POR LO TANTO, PUEDES ENCONTRAR BUGS. SI ENCUENTRAS UNO ABRA UN ISSUE A TRAVÉS DE NUESTRO REPOSITORIO DE GITHUB.</b>

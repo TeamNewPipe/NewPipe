@@ -1,6 +1,8 @@
 package org.schabi.newpipe.ui.components.video.comment
 
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -28,7 +30,8 @@ import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.ui.components.common.LazyColumnThemedScrollbar
 import org.schabi.newpipe.ui.components.common.LoadingIndicator
-import org.schabi.newpipe.ui.components.common.NoItemsMessage
+import org.schabi.newpipe.ui.emptystate.EmptyStateComposable
+import org.schabi.newpipe.ui.emptystate.EmptyStateSpec
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.viewmodels.CommentsViewModel
 import org.schabi.newpipe.viewmodels.util.Resource
@@ -66,11 +69,21 @@ private fun CommentSection(
 
                     if (commentInfo.isCommentsDisabled) {
                         item {
-                            NoItemsMessage(R.string.comments_are_disabled)
+                            EmptyStateComposable(
+                                spec = EmptyStateSpec.DisabledComments,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .heightIn(min = 128.dp)
+                            )
                         }
                     } else if (count == 0) {
                         item {
-                            NoItemsMessage(R.string.no_comments)
+                            EmptyStateComposable(
+                                spec = EmptyStateSpec.NoComments,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .heightIn(min = 128.dp)
+                            )
                         }
                     } else {
                         // do not show anything if the comment count is unknown
@@ -95,7 +108,8 @@ private fun CommentSection(
 
                             is LoadState.Error -> {
                                 item {
-                                    NoItemsMessage(R.string.error_unable_to_load_comments)
+                                    // TODO use error panel instead
+                                    EmptyStateComposable(EmptyStateSpec.ErrorLoadingComments)
                                 }
                             }
 
@@ -110,7 +124,13 @@ private fun CommentSection(
 
                 is Resource.Error -> {
                     item {
-                        NoItemsMessage(R.string.error_unable_to_load_comments)
+                        // TODO use error panel instead
+                        EmptyStateComposable(
+                            spec = EmptyStateSpec.ErrorLoadingComments,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .heightIn(min = 128.dp)
+                        )
                     }
                 }
             }
@@ -123,7 +143,7 @@ private fun CommentSection(
 @Composable
 private fun CommentSectionLoadingPreview() {
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
+        Surface {
             CommentSection(uiState = Resource.Loading, commentsFlow = flowOf())
         }
     }
@@ -151,7 +171,7 @@ private fun CommentSectionSuccessPreview() {
     }
 
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
+        Surface {
             CommentSection(
                 uiState = Resource.Success(
                     CommentInfo(
@@ -170,7 +190,7 @@ private fun CommentSectionSuccessPreview() {
 @Composable
 private fun CommentSectionErrorPreview() {
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
+        Surface {
             CommentSection(uiState = Resource.Error(RuntimeException()), commentsFlow = flowOf())
         }
     }

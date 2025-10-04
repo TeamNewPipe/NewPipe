@@ -237,9 +237,6 @@
     <string name="video">ვიდეო</string>
     <string name="audio">აუდიო</string>
     <string name="retry">ხელახლა სცადეთ</string>
-    <string name="short_thousand">ათასი</string>
-    <string name="short_million">მლნ</string>
-    <string name="short_billion">ბლნ</string>
     <string name="drawer_header_description">სერვისის გადართვა, ამჟამად არჩეულია:</string>
     <string name="no_subscribers">გამოწერები არ არის</string>
     <plurals name="subscribers">
@@ -333,7 +330,6 @@
     <string name="could_not_import_all_files">გაფრთხილება: ყველა ფაილის იმპორტი ვერ მოხერხდა.</string>
     <string name="override_current_data">ეს უგულებელყოფს თქვენს მიმდინარე პარამეტრს.</string>
     <string name="error_unable_to_load_comments">კომენტარების ჩატვირთვა ვერ მოხერხდა</string>
-    <string name="localization_changes_requires_app_restart">ენა შეიცვლება აპის გადატვირთვის შემდეგ</string>
     <string name="trending">ტრენდული</string>
     <string name="top_50">ტოპ 50</string>
     <string name="new_and_hot">ახალი და ცხელი</string>
@@ -548,7 +544,6 @@
     <string name="georestricted_content">ეს ხელმიუწვდომელია თქვენი ქვეყნიდან.</string>
     <string name="private_content">ეს მასალა პირადულია, ამიტომაც NewPipe-ს მისი არც მთლიანად და არც თანდათანობით ჩამოწერა არ შეუძლია.</string>
     <string name="account_terminated">ანგარიში შეწყვეტილია</string>
-    <string name="service_provides_reason">%s იძლევა ამ მიზეზს:</string>
     <string name="paid_content">ეს მასალა ხელმისაწვდომია მხოლოდ გადამხდელებისთვის, ამიტომაც NewPipe-ს მისი არც მთლიანად და არც თანდათანობით ჩამოწერა არ შეუძლია.</string>
     <string name="featured">გამორჩეული</string>
     <string name="radio">რადიო</string>

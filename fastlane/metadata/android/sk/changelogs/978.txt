@@ -1,0 +1,1 @@
+Fixed executing the check for a new NewPipe version. This check was executed too early sometimes and therefore lead to an app crash. That should be fixed now.

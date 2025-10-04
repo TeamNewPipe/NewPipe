@@ -160,7 +160,8 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
                 .subscribe(ignored -> {
                     successToast.show();
 
-                    if (playlist.thumbnailUrl.equals(PlaylistEntity.DEFAULT_THUMBNAIL)) {
+                    if (playlist.thumbnailUrl != null
+                            && playlist.thumbnailUrl.equals(PlaylistEntity.DEFAULT_THUMBNAIL)) {
                         playlistDisposables.add(manager
                                 .changePlaylistThumbnail(playlist.getUid(), streams.get(0).getUid(),
                                         false)

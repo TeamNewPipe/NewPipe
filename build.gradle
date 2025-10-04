@@ -1,15 +1,17 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '2.0.21'
     repositories {
         google()
         mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.7.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.51.1'
+        classpath libs.android.tools.build.gradle
+        classpath libs.kotlin.gradle.plugin
+        classpath libs.hilt.android.gradle.plugin
+        classpath libs.aboutlibraries.plugin
+        classpath libs.kotlinx.serialization
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

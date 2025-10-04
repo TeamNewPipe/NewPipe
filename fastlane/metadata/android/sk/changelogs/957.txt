@@ -1,0 +1,10 @@
+• Unify specific enqueue actions into one
+• Two finger gesture to close player
+• Allow clearing reCAPTCHA cookies
+• Option to not colorize notification
+• Improve how video details are opened to fix infinite buffering, buggy behaviour when sharing to NewPipe and other inconsistencies
+• Speed up YouTube videos and fix age restricted ones
+• Fix crash on fast forward/rewind
+• Don't rearrange lists by dragging thumbnails
+• Always remember popup properties
+• Add Santali language

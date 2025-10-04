@@ -17,6 +17,7 @@ import android.view.InputDevice;
 import android.view.KeyEvent;
 import android.view.WindowInsets;
 import android.view.WindowManager;
+import android.webkit.CookieManager;
 
 import androidx.annotation.Dimension;
 import androidx.annotation.NonNull;
@@ -130,7 +131,7 @@ public final class DeviceUtils {
         }
 
         isFireTV =
-                App.getApp().getPackageManager().hasSystemFeature(AMAZON_FEATURE_FIRE_TV);
+                App.getInstance().getPackageManager().hasSystemFeature(AMAZON_FEATURE_FIRE_TV);
         return isFireTV;
     }
 
@@ -139,7 +140,7 @@ public final class DeviceUtils {
             return isTV;
         }
 
-        final PackageManager pm = App.getApp().getPackageManager();
+        final PackageManager pm = App.getInstance().getPackageManager();
 
         // from doc: https://developer.android.com/training/tv/start/hardware.html#runtime-check
         boolean isTv = ContextCompat.getSystemService(context, UiModeManager.class)
@@ -334,5 +335,18 @@ public final class DeviceUtils {
                 && !PH7M_EU_5596
                 && !TX_50JXW834
                 && !HMB9213NW;
+    }
+
+    /**
+     * @return whether the device has support for WebView, see
+     * <a href="https://stackoverflow.com/a/69626735">https://stackoverflow.com/a/69626735</a>
+     */
+    public static boolean supportsWebView() {
+        try {
+            CookieManager.getInstance();
+            return true;
+        } catch (final Throwable ignored) {
+            return false;
+        }
     }
 }

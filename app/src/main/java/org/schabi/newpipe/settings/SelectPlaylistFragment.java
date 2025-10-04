@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.compose.ui.platform.ComposeView;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,6 +28,8 @@ import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
+import org.schabi.newpipe.ui.emptystate.EmptyStateSpec;
+import org.schabi.newpipe.ui.emptystate.EmptyStateUtil;
 import org.schabi.newpipe.util.image.CoilHelper;
 
 import java.util.List;
@@ -40,7 +43,7 @@ public class SelectPlaylistFragment extends DialogFragment {
     private OnSelectedListener onSelectedListener = null;
 
     private ProgressBar progressBar;
-    private TextView emptyView;
+    private ComposeView emptyView;
     private RecyclerView recyclerView;
     private Disposable disposable = null;
 
@@ -62,6 +65,7 @@ public class SelectPlaylistFragment extends DialogFragment {
         recyclerView = v.findViewById(R.id.items_list);
         emptyView = v.findViewById(R.id.empty_state_view);
 
+        EmptyStateUtil.setEmptyStateComposable(emptyView, EmptyStateSpec.NoBookmarkedPlaylist);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         final SelectPlaylistAdapter playlistAdapter = new SelectPlaylistAdapter();
         recyclerView.setAdapter(playlistAdapter);

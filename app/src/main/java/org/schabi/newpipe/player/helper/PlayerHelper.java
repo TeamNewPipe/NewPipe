@@ -1,8 +1,5 @@
 package org.schabi.newpipe.player.helper;
 
-import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
-import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
-import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_ALWAYS;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_NEVER;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_WIFI;
@@ -25,7 +22,6 @@ import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.exoplayer2.PlaybackParameters;
-import com.google.android.exoplayer2.Player.RepeatMode;
 import com.google.android.exoplayer2.SeekParameters;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
@@ -33,11 +29,9 @@ import com.google.android.exoplayer2.trackselection.ExoTrackSelection;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout.ResizeMode;
 import com.google.android.exoplayer2.ui.CaptionStyleCompat;
-import com.google.android.exoplayer2.util.MimeTypes;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
-import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
@@ -47,13 +41,14 @@ import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.util.ListHelper;
+import org.schabi.newpipe.util.Localization;
 
 import java.lang.annotation.Retention;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Formatter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -62,11 +57,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public final class PlayerHelper {
-    private static final StringBuilder STRING_BUILDER = new StringBuilder();
-    private static final Formatter STRING_FORMATTER =
-            new Formatter(STRING_BUILDER, Locale.getDefault());
-    private static final NumberFormat SPEED_FORMATTER = new DecimalFormat("0.##x");
-    private static final NumberFormat PITCH_FORMATTER = new DecimalFormat("##%");
+    private static final FormattersProvider FORMATTERS_PROVIDER = new FormattersProvider();
 
     @Retention(SOURCE)
     @IntDef({AUTOPLAY_TYPE_ALWAYS, AUTOPLAY_TYPE_WIFI,
@@ -89,9 +80,11 @@ public final class PlayerHelper {
     private PlayerHelper() {
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    // Exposed helpers
-    ////////////////////////////////////////////////////////////////////////////
+    // region Exposed helpers
+
+    public static void resetFormat() {
+        FORMATTERS_PROVIDER.reset();
+    }
 
     @NonNull
     public static String getTimeString(final int milliSeconds) {
@@ -100,35 +93,24 @@ public final class PlayerHelper {
         final int hours = (milliSeconds % 86400000) / 3600000;
         final int days = (milliSeconds % (86400000 * 7)) / 86400000;
 
-        STRING_BUILDER.setLength(0);
-        return (days > 0
-                ? STRING_FORMATTER.format("%d:%02d:%02d:%02d", days, hours, minutes, seconds)
-                : hours > 0
-                ? STRING_FORMATTER.format("%d:%02d:%02d", hours, minutes, seconds)
-                : STRING_FORMATTER.format("%02d:%02d", minutes, seconds)
-        ).toString();
+        final Formatters formatters = FORMATTERS_PROVIDER.formatters();
+        if (days > 0) {
+            return formatters.stringFormat("%d:%02d:%02d:%02d", days, hours, minutes, seconds);
+        }
+
+        return hours > 0
+            ? formatters.stringFormat("%d:%02d:%02d", hours, minutes, seconds)
+            : formatters.stringFormat("%02d:%02d", minutes, seconds);
     }
 
     @NonNull
     public static String formatSpeed(final double speed) {
-        return SPEED_FORMATTER.format(speed);
+        return FORMATTERS_PROVIDER.formatters().speed().format(speed);
     }
 
     @NonNull
     public static String formatPitch(final double pitch) {
-        return PITCH_FORMATTER.format(pitch);
-    }
-
-    @NonNull
-    public static String subtitleMimeTypesOf(@NonNull final MediaFormat format) {
-        switch (format) {
-            case VTT:
-                return MimeTypes.TEXT_VTT;
-            case TTML:
-                return MimeTypes.APPLICATION_TTML;
-            default:
-                throw new IllegalArgumentException("Unrecognized mime type: " + format.name());
-        }
+        return FORMATTERS_PROVIDER.formatters().pitch().format(pitch);
     }
 
     @NonNull
@@ -219,9 +201,8 @@ public final class PlayerHelper {
                 ? null : getAutoQueuedSinglePlayQueue(autoQueueItems.get(0));
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    // Settings Resolution
-    ////////////////////////////////////////////////////////////////////////////
+    // endregion
+    // region Resolution
 
     public static boolean isResumeAfterAudioFocusGain(@NonNull final Context context) {
         return getPreferences(context)
@@ -405,9 +386,8 @@ public final class PlayerHelper {
         return Integer.parseInt(preferredIntervalBytes) * 1024;
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    // Private helpers
-    ////////////////////////////////////////////////////////////////////////////
+    // endregion
+    // region Private helpers
 
     @NonNull
     private static SharedPreferences getPreferences(@NonNull final Context context) {
@@ -426,23 +406,8 @@ public final class PlayerHelper {
         return singlePlayQueue;
     }
 
-
-    ////////////////////////////////////////////////////////////////////////////
-    // Utils used by player
-    ////////////////////////////////////////////////////////////////////////////
-
-    @RepeatMode
-    public static int nextRepeatMode(@RepeatMode final int repeatMode) {
-        switch (repeatMode) {
-            case REPEAT_MODE_OFF:
-                return REPEAT_MODE_ONE;
-            case REPEAT_MODE_ONE:
-                return REPEAT_MODE_ALL;
-            case REPEAT_MODE_ALL:
-            default:
-                return REPEAT_MODE_OFF;
-        }
-    }
+    // endregion
+    // region Utils used by player
 
     @ResizeMode
     public static int retrieveResizeModeFromPrefs(final Player player) {
@@ -503,4 +468,43 @@ public final class PlayerHelper {
                 player.getContext().getString(R.string.seek_duration_key),
                 player.getContext().getString(R.string.seek_duration_default_value))));
     }
+
+    // endregion
+    // region Format
+
+    static class FormattersProvider {
+        private Formatters formatters;
+
+        public Formatters formatters() {
+            if (formatters == null) {
+                formatters = Formatters.create();
+            }
+            return formatters;
+        }
+
+        public void reset() {
+            formatters = null;
+        }
+    }
+
+    record Formatters(
+        Locale locale,
+        NumberFormat speed,
+        NumberFormat pitch) {
+
+        static Formatters create() {
+            final Locale locale = Localization.getAppLocale();
+            final DecimalFormatSymbols dfs = DecimalFormatSymbols.getInstance(locale);
+            return new Formatters(
+                locale,
+                new DecimalFormat("0.##x", dfs),
+                new DecimalFormat("##%", dfs));
+        }
+
+        String stringFormat(final String format, final Object... args) {
+            return String.format(locale, format, args);
+        }
+    }
+
+    // endregion
 }

@@ -32,12 +32,12 @@ module.exports = async ({github, context}) => {
     }
 
     // Regex for finding images (simple variant) ![ALT_TEXT](https://*.githubusercontent.com/<number>/<variousHexStringsAnd->.<fileExtension>)
-    const REGEX_USER_CONTENT_IMAGE_LOOKUP = /\!\[(.*)\]\((https:\/\/[-a-z0-9]+\.githubusercontent\.com\/\d+\/[-0-9a-f]{32,512}\.(jpg|gif|png))\)/gm;
-    const REGEX_ASSETS_IMAGE_LOCKUP = /\!\[(.*)\]\((https:\/\/github\.com\/[-\w\d]+\/[-\w\d]+\/assets\/\d+\/[\-0-9a-f]{32,512})\)/gm;
+    const REGEX_USER_CONTENT_IMAGE_LOOKUP = /\!\[([^\]]*)\]\((https:\/\/[-a-z0-9]+\.githubusercontent\.com\/\d+\/[-0-9a-f]{32,512}\.(jpg|gif|png))\)/gm;
+    const REGEX_ASSETS_IMAGE_LOOKUP = /\!\[([^\]]*)\]\((https:\/\/github\.com\/(?:user-attachments\/assets|[-\w\d]+\/[-\w\d]+\/assets\/\d+)\/[\-0-9a-f]{32,512})\)/gm;
 
     // Check if we found something
     let foundSimpleImages = REGEX_USER_CONTENT_IMAGE_LOOKUP.test(initialBody)
-        || REGEX_ASSETS_IMAGE_LOCKUP.test(initialBody);
+        || REGEX_ASSETS_IMAGE_LOOKUP.test(initialBody);
     if (!foundSimpleImages) {
         console.log('Found no simple images to process');
         return;
@@ -52,7 +52,7 @@ module.exports = async ({github, context}) => {
 
     // Try to find and replace the images with minimized ones
     let newBody = await replaceAsync(initialBody, REGEX_USER_CONTENT_IMAGE_LOOKUP, minimizeAsync);
-    newBody = await replaceAsync(newBody, REGEX_ASSETS_IMAGE_LOCKUP, minimizeAsync);
+    newBody = await replaceAsync(newBody, REGEX_ASSETS_IMAGE_LOOKUP, minimizeAsync);
     
     if (!wasMatchModified) {
         console.log('Nothing was modified. Skipping update');

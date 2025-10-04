@@ -1,0 +1,2 @@
+Ez egy gyorsfix verzió, hogy újra használható legyen a SoundCloud különösebb szenvedés nélkül.
+Immáron a SoundCloud v2-s API-ját használja a kivonatoló, és a hibás kliens azonosító kiszűrése is javításra került.

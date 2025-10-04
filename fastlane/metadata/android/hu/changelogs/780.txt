@@ -1,0 +1,12 @@
+Változások a 0.17.3-ban
+
+Fejlesztések
+• Opció a lejátszási státusz törlésére #2550
+• Rejtett mappák mutatása a fájl kiválasztónál #2591
+• `invidio.us` címek megnyitása NewPipe-al #2488 
+• `music.youtube.com` címek megnyitása TeamNewPipe/NewPipeExtractor#194
+
+Javítások
+• [YouTube] 'java.lang.IllegalArgumentException javítva #192
+• [YouTube] élő streamek immáron működnek TeamNewPipe/NewPipeExtractor#195
+• Videó letöltésénél Android Pie-nál teljesítménybeli probléma javítása #2592

@@ -1,0 +1,4 @@
+Opraveno nepřehrávání jakéhokoli streamu ve službě YouTube.
+
+Tato verze řeší pouze nejpalčivější chybu, která brání načtení detailů videa na YouTube.
+Jsme si vědomi, že existují i další problémy, a brzy připravíme samostatné vydání, které je vyřeší.

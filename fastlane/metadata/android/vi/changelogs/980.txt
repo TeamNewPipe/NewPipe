@@ -1,0 +1,13 @@
+Mới
+• Thêm tùy chọn "Thêm vào danh sách phát" vào menu chia sẻ
+• Thêm hỗ trợ cho y2u.be và PeerTube short links
+
+Cải tiến
+• Làm cho các điều khiển tốc độ phát lại nhỏ gọn hơn
+• Nguồn cấp dữ liệu hiện nay làm nổi bật các mục mới
+• Tùy chọn "Hiển thị các mục đã xem" trong nguồn cấp dữ liệu hiện được lưu
+
+Sửa lỗi
+• Sửa lỗi trích xuất thích và không thích của YouTube
+• Sửa lỗi phát lại tự động sau khi quay lại từ nền
+Và nhiều hơn nữa

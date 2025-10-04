@@ -1,0 +1,13 @@
+Miglioramenti
+• Rendi cliccabile la descrizione della playlist per mostrare più/meno contenuti
+• [PeerTube] Gestisci automaticamente i collegamenti alle istanze "subscribeto.me"
+• Inizia a riprodurre solo un singolo elemento nella schermata della cronologia
+
+Risolti
+• Fix visibilità pulsante RSS
+• Fix arresti anomali dell'anteprima della barra di ricerca
+• Fix mettere in playlist un elemento senza miniatura
+• Fix uscita finestra di dialogo di download prima che venga visualizzata
+• Fix popup di accodamento dell'elenco degli elementi correlati
+• Fix ordine nella finestra di dialogo Aggiungi alla playlist
+• Regola il layout degli elementi dei segnalibri della playlist

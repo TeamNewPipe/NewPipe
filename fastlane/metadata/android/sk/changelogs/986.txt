@@ -1,0 +1,16 @@
+New
+• Notifications for new streams
+• Seamless transition between background and video players
+• Change pitch by semitones
+• Append the main player queue to a playlist
+
+Improved
+• Remember speed/pitch step size
+• Mitigate initial long buffering in the video player
+• Improve player UI for Android TV
+• Confirm before deleting all downloaded files
+
+Fixed
+• Fix media button not hiding player controls
+• Fix playback reset on player type change
+• Fix rotating the playlist dialog

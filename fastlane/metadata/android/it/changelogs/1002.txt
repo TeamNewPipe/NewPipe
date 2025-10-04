@@ -1,0 +1,4 @@
+Risolto il problema per cui YouTube non riproduceva alcun flusso
+
+Questa versione risolve solo l'errore più urgente che impedisce il caricamento dei dettagli dei video di YouTube.
+Siamo consapevoli che ci sono altri problemi e presto pubblicheremo una versione separata per risolverli.

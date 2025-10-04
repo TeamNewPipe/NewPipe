@@ -1,0 +1,22 @@
+Novo
+- Adicionado o seletor de língua para alterar a língua da aplicação
+- Adicionado enviar para o botão Kodi ao menu desmontável do leitor
+- Capacidade adicional de copiar comentários sobre imprensa longa
+
+Melhorado
+- Fixar a actividade ReCaptcha e guardar corretamente os cookies obtidos
+- Removido o ponto-menu a favor da gaveta e botão esconder histórico quando o histórico do relógio não está ativado nas definições
+- Pedir permissão de visualização sobre outras aplicações em definições corretamente no Android 6 e posteriores
+- Renomear playlist local através de um clique longo em BookmarkFragment
+- Vários melhoramentos do PeerTube
+- Melhorou várias cadeias de caracteres em inglês
+
+Fixa
+- Jogador fixo a recomeçar, embora seja pausado quando a opção "minimizar no comutador da aplicação" é ativada e o NewPipe é minimizado
+- Fixar o valor de brilho inicial para o gesto
+- Downloads de subtítulos .srt fixos contendo nem todas as quebras de linha
+- Corrigido o download para cartão SD falhando porque alguns dispositivos Android 5 não são compatíveis com CTF
+- Descarregamento fixo no Android KitKat
+- Ficheiro fixo de vídeo corrupto .mp4 sendo reconhecido como ficheiro de áudio
+- Resolvidos problemas de localização múltipla, incluindo códigos de língua chinesa errados
+- Os carimbos temporais em descrição podem ser clicados novamente

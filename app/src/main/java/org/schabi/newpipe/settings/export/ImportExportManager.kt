@@ -12,6 +12,8 @@ import java.io.FileNotFoundException
 import java.io.IOException
 import java.io.ObjectOutputStream
 import java.util.zip.ZipOutputStream
+import kotlin.io.path.createParentDirectories
+import kotlin.io.path.deleteIfExists
 
 class ImportExportManager(private val fileLocator: BackupFileLocator) {
     companion object {
@@ -24,14 +26,12 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
      */
     @Throws(Exception::class)
     fun exportDatabase(preferences: SharedPreferences, file: StoredFileHelper) {
-        file.create()
-        ZipOutputStream(SharpOutputStream(file.stream).buffered()).use { outZip ->
+        // truncate the file before writing to it, otherwise if the new content is smaller than the
+        // previous file size, the file will retain part of the previous content and be corrupted
+        ZipOutputStream(SharpOutputStream(file.openAndTruncateStream()).buffered()).use { outZip ->
             // add the database
-            ZipHelper.addFileToZip(
-                outZip,
-                BackupFileLocator.FILE_NAME_DB,
-                fileLocator.db.path,
-            )
+            val name = BackupFileLocator.FILE_NAME_DB
+            ZipHelper.addFileToZip(outZip, name, fileLocator.db)
 
             // add the legacy vulnerable serialized preferences (will be removed in the future)
             ZipHelper.addFileToZip(
@@ -60,11 +60,10 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
 
     /**
      * Tries to create database directory if it does not exist.
-     *
-     * @return Whether the directory exists afterwards.
      */
-    fun ensureDbDirectoryExists(): Boolean {
-        return fileLocator.dbDir.exists() || fileLocator.dbDir.mkdir()
+    @Throws(IOException::class)
+    fun ensureDbDirectoryExists() {
+        fileLocator.db.createParentDirectories()
     }
 
     /**
@@ -74,16 +73,13 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
      * @return true if the database was successfully extracted, false otherwise
      */
     fun extractDb(file: StoredFileHelper): Boolean {
-        val success = ZipHelper.extractFileFromZip(
-            file,
-            BackupFileLocator.FILE_NAME_DB,
-            fileLocator.db.path,
-        )
+        val name = BackupFileLocator.FILE_NAME_DB
+        val success = ZipHelper.extractFileFromZip(file, name, fileLocator.db)
 
         if (success) {
-            fileLocator.dbJournal.delete()
-            fileLocator.dbWal.delete()
-            fileLocator.dbShm.delete()
+            fileLocator.dbJournal.deleteIfExists()
+            fileLocator.dbWal.deleteIfExists()
+            fileLocator.dbShm.deleteIfExists()
         }
 
         return success

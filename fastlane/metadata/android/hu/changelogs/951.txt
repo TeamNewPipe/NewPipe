@@ -1,0 +1,17 @@
+Új
+• Kereső hozzáadása a feliratkozás kiválasztóhoz a feed csoport panelhez
+• Filter hozzáadása a feed csoport panelhez, hogy csak csoporton kívüli feliratkozásokat is mutasson
+• Lejátszásilista fül hozzáadása a fő ablakhoz
+• Gyors ütemű előre/hátra csévélés a háttérben és kiugró lejátszóban
+• Keresés ajánlások mutatása: biztosan ezt értette-e & annak eredményei
+
+Fejlesztések
+• Nincs többé app metaadat írás a muxolt fájloknál
+• Ne törölje a sikertelenül lejátszott videókat a listákból
+• Státuszbár színének igazítása az eszközsáv színéhez
+
+Javítások
+• A Lebegőpontos összeg miatt keletkező hang/videó deszink javítása
+• [PeerTube] Törölt kommentek kezelése
+
+és még sok más

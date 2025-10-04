@@ -1,0 +1,9 @@
+• Aliran kerja aplikasi yang baharu: Mainkan video di laman butiran, leret ke bawah untuk mengecilkan pemain
+• Pemberitahuan MediaStyle: Tindakan boleh suai pada pemberitahuan, peningkatan prestasi
+• Ubah saiz asas apabila menggunakan NewPipe sebagai aplikasi atas meja
+
+• Tunjukkan dialog dengan pilihan terbuka sekiranya pemberitahuan URL tidak disokong
+• Tingkatkan pengalaman cadangan carian apabila yang jauh tidak dapat diambil
+• Tingkatkan mutu video lalai kepada 720p60 (pemain dalam aplikasi) dan 480p (pemain timbul)
+
+• Pelbagai pembaikan pepijat dan banyak lagi

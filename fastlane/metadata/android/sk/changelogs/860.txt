@@ -1,0 +1,7 @@
+Improved
+• Save and restore whether pitch and tempo are unhooked or not
+• Support display cutout in player
+• Round view and subscriber count
+• Optimized YouTube to use less data
+
+More than 15 YouTube-related bugs were fixed in this release.

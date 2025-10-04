@@ -6,5 +6,5 @@
 • YouTube Videos beschleunigen und Fehlerbehebung bei altersbeschränkten Videos
 • Fehlerbehebung beim Vor- und Zurückspulen
 • Listen werden beim Verschieben von Miniaturansichten nicht mehr umsortiert
-• Popup-Einstellungen werden immer gemerkt
+• Pop-up-Einstellungen werden immer gemerkt
 • Santali-Sprache hinzugefügt

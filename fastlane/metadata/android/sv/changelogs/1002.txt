@@ -1,0 +1,4 @@
+Åtgärdat att YouTube inte spelar någon stream.
+
+Den här versionen fixar enbart det mest brådskande felet som förhindrar att YouTube-videoinformation laddas.
+Vi är medvetna om att det finns andra problem, och vi kommer snart att göra en separat version för att lösa dem.

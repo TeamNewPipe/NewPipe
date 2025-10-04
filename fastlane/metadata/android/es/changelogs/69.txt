@@ -1,19 +1,11 @@
-### Nuevo
-- Mantén pulsado para borrar y/o compartir en Subscripciones #1516 
-- Interfaz de Tablet y listas en forma de cuadrícula #1617 
+- La puesta en cola ahora activa la reproducción de vídeo si la cola de reproducción ya terminó #1783 
+- Ajustes separados para los gestos de volumen y brillo #1644
+- Añadir soporte para la localización #1792
 
-### Mejoras
-- Guarda y usa la última relación de aspecto #1748 
-- Activa las listas lineares en las Descargas con los nombres completos #1771 
-- Guarda y comparte subscripciones directamente desde la pestaña de subscripciones #1516 
-- Poner en cola un video hace que empiece a reproducirse si la cola ya ha acabado #1783 
-- Ajustes para gestos separados del el brillo y el volumen #1644
-- Añadido soporte para traducciones #1792
+### Correcciones
+- Corregir parse en .format, para que NewPipe se pueda utilizar en Finlandia
+- Corregir el recuento de suscripciones
+- Añadir permiso de servicio en primer plano para dispositivos API 28+ #1830
 
-### Arreglos
-- Arreglada la obtención de fecha para el .format, de modo que NewPipe se puede usar en Finlandia.
-- Arreglado el contador de subscriptores
-- Añadido permiso para arrancar en primer plano para dispositivos con API +28 #1830
-
-### Bugs Conocidos
-- El estado de la reproducción no se puede guardar en Android P
+### Bugs conocidos
+- El estado de la reproducción no se guarda en Android P

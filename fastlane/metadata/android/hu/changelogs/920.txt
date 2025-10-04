@@ -1,0 +1,9 @@
+Fejlesztések
+
+• Feltöltési dátum és nézőszám megjelenítése a videó szélén levő infókhoz
+• A felső legördülő menü elrendezés fejlesztése
+
+Javítások
+
+• Némító gomb javítása ami a 19-es API-nál hibára fut
+• Hosszú 1080p 60fps videók letöltésének fixálása

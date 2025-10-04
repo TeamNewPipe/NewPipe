@@ -1,0 +1,4 @@
+Izmaiņas 0.17.2 versijā
+
+Salabots
+• Novērsta problēma, ka videoklips bija nepieejams

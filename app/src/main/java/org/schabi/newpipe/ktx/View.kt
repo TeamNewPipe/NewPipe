@@ -17,8 +17,10 @@ import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
-import org.schabi.newpipe.MainActivity
 
+// logs in this class are disabled by default since it's usually not useful,
+// you can enable them by setting this flag to MainActivity.DEBUG
+private const val DEBUG = false
 private const val TAG = "ViewUtils"
 
 /**
@@ -38,7 +40,7 @@ fun View.animate(
     delay: Long = 0,
     execOnEnd: Runnable? = null
 ) {
-    if (MainActivity.DEBUG) {
+    if (DEBUG) {
         val id = try {
             resources.getResourceEntryName(id)
         } catch (e: Exception) {
@@ -51,7 +53,7 @@ fun View.animate(
         Log.d(TAG, "animate(): $msg")
     }
     if (isVisible && enterOrExit) {
-        if (MainActivity.DEBUG) {
+        if (DEBUG) {
             Log.d(TAG, "animate(): view was already visible > view = [$this]")
         }
         animate().setListener(null).cancel()
@@ -60,7 +62,7 @@ fun View.animate(
         execOnEnd?.run()
         return
     } else if ((isGone || isInvisible) && !enterOrExit) {
-        if (MainActivity.DEBUG) {
+        if (DEBUG) {
             Log.d(TAG, "animate(): view was already gone > view = [$this]")
         }
         animate().setListener(null).cancel()
@@ -89,7 +91,7 @@ fun View.animate(
  * @param colorEnd   the background color to end with
  */
 fun View.animateBackgroundColor(duration: Long, @ColorInt colorStart: Int, @ColorInt colorEnd: Int) {
-    if (MainActivity.DEBUG) {
+    if (DEBUG) {
         Log.d(
             TAG,
             "animateBackgroundColor() called with: view = [$this], duration = [$duration], " +
@@ -109,7 +111,7 @@ fun View.animateBackgroundColor(duration: Long, @ColorInt colorStart: Int, @Colo
 }
 
 fun View.animateHeight(duration: Long, targetHeight: Int): ValueAnimator {
-    if (MainActivity.DEBUG) {
+    if (DEBUG) {
         Log.d(TAG, "animateHeight: duration = [$duration], from $height to → $targetHeight in: $this")
     }
     val animator = ValueAnimator.ofFloat(height.toFloat(), targetHeight.toFloat())
@@ -127,7 +129,7 @@ fun View.animateHeight(duration: Long, targetHeight: Int): ValueAnimator {
 }
 
 fun View.animateRotation(duration: Long, targetRotation: Int) {
-    if (MainActivity.DEBUG) {
+    if (DEBUG) {
         Log.d(TAG, "animateRotation: duration = [$duration], from $rotation to → $targetRotation in: $this")
     }
     animate().setListener(null).cancel()

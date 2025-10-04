@@ -16,6 +16,7 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 import static org.schabi.newpipe.player.helper.PlayerHelper.nextResizeModeAndSaveToPrefs;
 import static org.schabi.newpipe.player.helper.PlayerHelper.retrieveSeekDurationFromPreferences;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -233,7 +234,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
             ShareUtils.copyToClipboard(context, player.getVideoUrlAtCurrentTime());
             return true;
         });
-        binding.fullScreenButton.setOnClickListener(makeOnClickListener(() -> {
+        binding.fullscreenToggleButtonSecondaryMenu.setOnClickListener(makeOnClickListener(() -> {
             player.setRecovery();
             NavigationHelper.playOnMainPlayer(context,
                     Objects.requireNonNull(player.getPlayQueue()), true);
@@ -300,8 +301,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.moreOptionsButton.setOnLongClickListener(null);
         binding.share.setOnClickListener(null);
         binding.share.setOnLongClickListener(null);
-        binding.fullScreenButton.setOnClickListener(null);
-        binding.screenRotationButton.setOnClickListener(null);
+        binding.fullscreenToggleButtonSecondaryMenu.setOnClickListener(null);
+        binding.fullscreenToggleButton.setOnClickListener(null);
         binding.playWithKodi.setOnClickListener(null);
         binding.openInBrowser.setOnClickListener(null);
         binding.playerCloseButton.setOnClickListener(null);
@@ -761,7 +762,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     }
 
     /**
-     * Update the play/pause button ({@link R.id.playPauseButton}) to reflect the action
+     * Update the play/pause button (`R.id.playPauseButton`) to reflect the action
      * that will be performed when the button is clicked..
      * @param action the action that is performed when the play/pause button is clicked
      */
@@ -947,6 +948,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         player.toggleShuffleModeEnabled();
     }
 
+    // TODO: don’t reference internal exoplayer2 resources
+    @SuppressLint("PrivateResource")
     @Override
     public void onRepeatModeChanged(@RepeatMode final int repeatMode) {
         super.onRepeatModeChanged(repeatMode);
@@ -1414,6 +1417,10 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.subtitleView.setStyle(captionStyle);
     }
 
+    /**
+     *
+     * @param captionScale Value returned by {@link PlayerHelper#getCaptionScale}.
+     */
     protected abstract void setupSubtitleView(float captionScale);
     //endregion
 
@@ -1448,7 +1455,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                         if (player.getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible) {
                             if (v == binding.playPauseButton
                                     // Hide controls in fullscreen immediately
-                                    || (v == binding.screenRotationButton && isFullscreen())) {
+                                    || (v == binding.fullscreenToggleButton && isFullscreen())) {
                                 hideControls(0, 0);
                             } else {
                                 hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
