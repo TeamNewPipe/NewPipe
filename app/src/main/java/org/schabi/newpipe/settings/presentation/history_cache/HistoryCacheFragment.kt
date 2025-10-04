@@ -5,10 +5,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.compose.content
 import org.schabi.newpipe.fragments.list.comments.CommentsFragment
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.KEY_SERVICE_ID
@@ -19,14 +18,9 @@ class HistoryCacheFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ) = ComposeView(requireContext()).apply {
-        setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
-        setContent {
-            AppTheme {
-                HistoryCacheSettingsScreen(
-                    modifier = Modifier.fillMaxSize()
-                )
-            }
+    ) = content {
+        AppTheme {
+            HistoryCacheSettingsScreen(modifier = Modifier.fillMaxSize())
         }
     }
 
