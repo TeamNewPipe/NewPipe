@@ -1,5 +1,6 @@
 package org.schabi.newpipe.ui.components.common
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.wrapContentWidth
@@ -40,9 +41,10 @@ fun ServiceColoredButton(
     }
 }
 
-@Preview
+@Preview(name = "Light mode", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun ServiceColoredButtonPreview() {
+private fun ServiceColoredButtonPreview() {
     AppTheme {
         ServiceColoredButton(
             onClick = {},

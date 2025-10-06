@@ -122,7 +122,6 @@ private fun CommentSection(
                                     Box(
                                         modifier = Modifier
                                             .fillMaxWidth()
-
                                     ) {
                                         ErrorPanel(
                                             errorInfo = errorInfo,
