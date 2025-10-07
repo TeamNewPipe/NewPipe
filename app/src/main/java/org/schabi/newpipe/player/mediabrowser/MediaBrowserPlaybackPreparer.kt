@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.os.ResultReceiver
 import android.support.v4.media.session.PlaybackStateCompat
 import android.util.Log
-import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector.PlaybackPreparer
@@ -29,6 +28,7 @@ import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue
 import org.schabi.newpipe.util.ChannelTabHelper
 import org.schabi.newpipe.util.ExtractorHelper
+import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
 import java.util.function.BiConsumer
 import java.util.function.Consumer
@@ -111,7 +111,7 @@ class MediaBrowserPlaybackPreparer(
     //region Errors
     private fun onUnsupportedError() {
         setMediaSessionError.accept(
-            ContextCompat.getString(context, R.string.content_not_supported),
+            Localization.compatGetString(context, R.string.content_not_supported),
             PlaybackStateCompat.ERROR_CODE_NOT_SUPPORTED
         )
     }
