@@ -26,7 +26,8 @@ class DebugApp : App() {
     override fun getDownloader(): Downloader {
         val downloader = DownloaderImpl.init(
             OkHttpClient.Builder()
-                .addNetworkInterceptor(StethoInterceptor())
+                .addNetworkInterceptor(StethoInterceptor()),
+            this
         )
         setCookiesToDownloader(downloader)
         return downloader

@@ -23,6 +23,7 @@ import com.squareup.picasso.Transformation;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.Image;
+import org.schabi.newpipe.settings.ProxyManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,12 +50,17 @@ public final class PicassoHelper {
 
     public static void init(final Context context) {
         picassoCache = new LruCache(10 * 1024 * 1024);
-        picassoDownloaderClient = new OkHttpClient.Builder()
+        final ProxyManager proxyManager = new ProxyManager(context);
+        final OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .cache(new okhttp3.Cache(new File(context.getExternalCacheDir(), "picasso"),
                         50L * 1024L * 1024L))
                 // this should already be the default timeout in OkHttp3, but just to be sure...
-                .callTimeout(15, TimeUnit.SECONDS)
-                .build();
+                .callTimeout(15, TimeUnit.SECONDS);
+
+        if (proxyManager.isProxyEnabled()) {
+            builder.proxy(proxyManager.getProxy());
+        }
+        picassoDownloaderClient = builder.build();
 
         picassoInstance = new Picasso.Builder(context)
                 .memoryCache(picassoCache) // memory cache

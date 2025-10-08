@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:title="@string/proxy_settings_title">
+
+    <SwitchPreferenceCompat
+        app:key="use_proxy"
+        app:title="@string/use_proxy"
+        app:summary="@string/use_proxy_summary"
+        app:defaultValue="false" />
+
+    <ListPreference
+        app:key="proxy_type"
+        app:title="@string/proxy_type"
+        app:summary="%s"
+        app:entries="@array/proxy_type_entries"
+        app:entryValues="@array/proxy_type_values"
+        app:defaultValue="HTTP"
+        app:dependency="use_proxy" />
+
+    <EditTextPreference
+        app:key="proxy_host"
+        app:title="@string/proxy_host"
+        app:summary="@string/proxy_host_summary"
+        app:defaultValue="127.0.0.1"
+        app:dependency="use_proxy" />
+
+    <EditTextPreference
+        app:key="proxy_port"
+        app:title="@string/proxy_port"
+        app:summary="@string/proxy_port_summary"
+        app:defaultValue="1080"
+        app:dependency="use_proxy"
+        app:dialogMessage="@string/proxy_port_dialog_message"
+        android:inputType="number" />
+
+</PreferenceScreen>
