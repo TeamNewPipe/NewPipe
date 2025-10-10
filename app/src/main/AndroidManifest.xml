@@ -340,6 +340,7 @@
                 <data android:scheme="https" />
                 <data android:host="soundcloud.com" />
                 <data android:host="m.soundcloud.com" />
+                <data android:host="on.soundcloud.com" />
                 <data android:host="www.soundcloud.com" />
                 <data android:pathPrefix="/" />
             </intent-filter>
