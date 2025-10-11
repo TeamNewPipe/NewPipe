@@ -35,7 +35,6 @@ public final class SettingsResourceRegistry {
         add(ContentSettingsFragment.class, R.xml.content_settings);
         add(DebugSettingsFragment.class, R.xml.debug_settings).setSearchable(false);
         add(DownloadSettingsFragment.class, R.xml.download_settings);
-        add(HistorySettingsFragment.class, R.xml.history_settings);
         add(NotificationSettingsFragment.class, R.xml.notifications_settings);
         add(PlayerNotificationSettingsFragment.class, R.xml.player_notification_settings);
         add(UpdateSettingsFragment.class, R.xml.update_settings);
