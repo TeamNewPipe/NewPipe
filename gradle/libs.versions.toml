@@ -16,7 +16,7 @@ desugar-jdk-libs-nio = "2.0.4"
 documentFile = "1.0.1"
 exoplayer = "2.18.7"
 fragment-compose = "1.8.2"
-gradle = "8.7.1"
+gradle = "8.13.0"
 groupie = "2.10.1"
 hilt = "2.51.1"
 hiltCompiler = "1.2.0"
@@ -89,6 +89,8 @@ androidx-compose-adaptive = { group = "androidx.compose.material3.adaptive", nam
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "jetpack-compose" }
 androidx-compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-compose-ui-text = { group = "androidx.compose.ui", name = "ui-text" }
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
