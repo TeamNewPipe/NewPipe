@@ -312,9 +312,11 @@ dependencies {
     // Library loading for About screen
     implementation libs.aboutlibraries.compose.m3
 
-    // Hilt
+    // Hilt & Dagger
     implementation libs.hilt.android
     kapt(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+    kapt(libs.androidx.hilt.compiler)
 
     // Scroll
     implementation libs.lazycolumnscrollbar

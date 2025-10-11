@@ -23,7 +23,7 @@
         app:iconSpaceReserved="false" />
 
     <PreferenceScreen
-        android:fragment="org.schabi.newpipe.settings.HistorySettingsFragment"
+        android:fragment="org.schabi.newpipe.settings.presentation.history_cache.HistoryCacheFragment"
         android:icon="@drawable/ic_history"
         android:title="@string/settings_category_history_title"
         app:iconSpaceReserved="false" />

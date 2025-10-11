@@ -96,6 +96,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     @SuppressWarnings("ConstantConditions")

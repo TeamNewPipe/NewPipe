@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.viewbinding.ViewBinding;
 
 import com.evernote.android.state.State;
@@ -27,6 +28,7 @@ import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.PlaylistControlBinding;
 import org.schabi.newpipe.databinding.StatisticPlaylistControlBinding;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistControlViewHolder;
@@ -35,7 +37,6 @@ import org.schabi.newpipe.info_list.dialog.StreamDialogDefaultEntry;
 import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
-import org.schabi.newpipe.settings.HistorySettingsFragment;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.PlayButtonHelper;
@@ -161,12 +162,70 @@ public class StatisticsPlaylistFragment
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         if (item.getItemId() == R.id.action_history_clear) {
-            HistorySettingsFragment
-                    .openDeleteWatchHistoryDialog(requireContext(), recordManager, disposables);
+            openDeleteWatchHistoryDialog(requireContext(), recordManager, disposables);
         } else {
             return super.onOptionsItemSelected(item);
         }
         return true;
+    }
+
+    private static void openDeleteWatchHistoryDialog(
+            @NonNull final Context context,
+            final HistoryRecordManager recordManager,
+            final CompositeDisposable disposables
+    ) {
+        new AlertDialog.Builder(context)
+                .setTitle(R.string.delete_view_history_alert)
+                .setNegativeButton(R.string.cancel, ((dialog, which) -> dialog.dismiss()))
+                .setPositiveButton(R.string.delete, ((dialog, which) -> {
+                    disposables.add(getDeletePlaybackStatesDisposable(context, recordManager));
+                    disposables.add(getWholeStreamHistoryDisposable(context, recordManager));
+                    disposables.add(getRemoveOrphanedRecordsDisposable(context, recordManager));
+                }))
+                .show();
+    }
+
+    private static Disposable getDeletePlaybackStatesDisposable(
+            @NonNull final Context context,
+            final HistoryRecordManager recordManager
+    ) {
+        return recordManager.deleteCompleteStreamStateHistory()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        howManyDeleted -> Toast.makeText(context,
+                                R.string.watch_history_states_deleted, Toast.LENGTH_SHORT).show(),
+                        throwable -> ErrorUtil.openActivity(context,
+                                new ErrorInfo(throwable, UserAction.DELETE_FROM_HISTORY,
+                                        "Delete playback states"))
+                );
+    }
+
+    private static Disposable getWholeStreamHistoryDisposable(
+            @NonNull final Context context,
+            final HistoryRecordManager recordManager
+    ) {
+        return recordManager.deleteWholeStreamHistory()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        howManyDeleted -> Toast.makeText(context,
+                                R.string.watch_history_deleted, Toast.LENGTH_SHORT).show(),
+                        throwable -> ErrorUtil.openActivity(context,
+                                new ErrorInfo(throwable, UserAction.DELETE_FROM_HISTORY,
+                                        "Delete from history"))
+                );
+    }
+
+    private static Disposable getRemoveOrphanedRecordsDisposable(
+            @NonNull final Context context, final HistoryRecordManager recordManager) {
+        return recordManager.removeOrphanedRecords()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        howManyDeleted -> {
+                        },
+                        throwable -> ErrorUtil.openActivity(context,
+                                new ErrorInfo(throwable, UserAction.DELETE_FROM_HISTORY,
+                                        "Clear orphaned records"))
+                );
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -307,7 +366,7 @@ public class StatisticsPlaylistFragment
             sortMode = StatisticSortMode.LAST_PLAYED;
             setTitle(getString(R.string.title_last_played));
             headerBinding.sortButtonIcon.setImageResource(
-                R.drawable.ic_filter_list);
+                    R.drawable.ic_filter_list);
             headerBinding.sortButtonText.setText(R.string.title_most_played);
         }
         startLoading(true);

@@ -19,6 +19,7 @@ fragment-compose = "1.8.2"
 gradle = "8.13.0"
 groupie = "2.10.1"
 hilt = "2.51.1"
+hiltCompiler = "1.2.0"
 jetpack-compose = "2024.10.01"
 jsoup = "1.17.2"
 junit = "4.13.2"
@@ -97,6 +98,8 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 androidx-documentfile = { group = "androidx.documentfile", name = "documentfile", version.ref = "documentFile" }
 androidx-fragment-compose = { group = "androidx.fragment", name = "fragment-compose", version.ref = "fragment-compose" }
+androidx-hilt-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltCompiler" }
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltCompiler" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-junit" }
 androidx-lifecycle-livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }

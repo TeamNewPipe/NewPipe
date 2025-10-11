@@ -41,6 +41,9 @@ import org.schabi.newpipe.views.FocusOverlayView;
 
 import java.util.concurrent.TimeUnit;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+
 /*
  * Created by Christian Schabesberger on 31.08.15.
  *
@@ -61,6 +64,7 @@ import java.util.concurrent.TimeUnit;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@AndroidEntryPoint
 public class SettingsActivity extends AppCompatActivity implements
         PreferenceFragmentCompat.OnPreferenceStartFragmentCallback,
         PreferenceSearchResultListener {
