@@ -12,7 +12,6 @@ import org.schabi.newpipe.database.history.model.SearchHistoryEntry
 import org.schabi.newpipe.testUtil.TestDatabase
 import org.schabi.newpipe.testUtil.TrampolineSchedulerRule
 import java.time.LocalDateTime
-import java.time.OffsetDateTime
 import java.time.ZoneOffset
 
 class HistoryRecordManagerTest {
@@ -163,7 +162,7 @@ class HistoryRecordManagerTest {
     }
 
     companion object {
-        private val time = OffsetDateTime.of(LocalDateTime.of(2000, 1, 1, 1, 1), ZoneOffset.UTC)
+        private val time = LocalDateTime.of(2000, 1, 1, 1, 1).toInstant(ZoneOffset.UTC)
 
         private val RELATED_SEARCHES_ENTRIES = listOf(
             SearchHistoryEntry(time.minusSeconds(7), 2, "AC"),

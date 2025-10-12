@@ -12,8 +12,8 @@ import java.util.Locale
 class LocalizationTest {
     @Test(expected = NullPointerException::class)
     fun `formatRelativeTime() must fail without initializing pretty time`() {
-        val instant = Instant.now()
-        Localization.formatRelativeTime(instant)
+        Localization.resetPrettyTime()
+        Localization.formatRelativeTime(Instant.now())
     }
 
     @Test

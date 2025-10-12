@@ -366,6 +366,10 @@ public final class Localization {
         prettyTime.removeUnit(Decade.class);
     }
 
+    static void resetPrettyTime() {
+        prettyTime = null;
+    }
+
     public static PrettyTime resolvePrettyTime() {
         return new PrettyTime(getAppLocale());
     }
