@@ -158,21 +158,7 @@
     <string name="video">Vídeo</string>
     <string name="audio">Audio</string>
     <string name="retry">Tentar de novo</string>
-    <string name="no_subscribers">Ningún subscrito</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s subscrito</item>
-        <item quantity="other">%s subscritos</item>
-    </plurals>
-    <string name="no_views">Ningunha visualización</string>
-    <plurals name="views">
-        <item quantity="one">%s visualización</item>
-        <item quantity="other">%s visualizacións</item>
-    </plurals>
     <string name="no_videos">Ningún vídeo</string>
-    <plurals name="videos">
-        <item quantity="one">%s vídeo</item>
-        <item quantity="other">%s vídeos</item>
-    </plurals>
     <string name="start">Comezar</string>
     <string name="pause">Pausar</string>
     <string name="create">Crear</string>
@@ -468,19 +454,6 @@
     <string name="done">Feito</string>
     <string name="subtitle_activity_recaptcha">Prema \"Feito\" cando o resolva</string>
     <string name="no_comments">Ningún comentario</string>
-    <string name="infinite_videos">∞ vídeos</string>
-    <string name="more_than_100_videos">+100 vídeos</string>
-    <plurals name="listening">
-        <item quantity="one">%s oínte</item>
-        <item quantity="other">%s oíntes</item>
-    </plurals>
-    <string name="no_one_listening">Ninguén está escoitando</string>
-    <plurals name="watching">
-        <item quantity="one">%s vendo</item>
-        <item quantity="other">%s véndoos</item>
-    </plurals>
-    <string name="no_one_watching">Ninguén está vendo</string>
-    <string name="subscribers_count_not_available">Non hai dispoñible conta de subscritores</string>
     <string name="drawer_header_description">Cambiar o servizo actualmente seleccionado:</string>
     <string name="error_report_open_github_notice">Verifique se xa existe un problema que fala do seu fallo. Ao crear billetes duplicados, gasta o tempo que nós poderiamos gastar en solucionar o erro real.</string>
     <string name="error_report_open_issue_button_text">Reportar en GitHub</string>
@@ -815,4 +788,44 @@
     <string name="channel_tab_tracks">Pistas</string>
     <string name="feed_fetch_channel_tabs_summary">Lapelas a recuperar ao actualizar o feed. Esta opción non ten efecto se a canle se actualiza no modo rápido.</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">Esta solución alternativa libera os códecs de video e os re-instancia cando muda a máscara, no canto de configurar a máscara directamente no códec. ExoPlayer xa emprega esta configuración nalgúns dispositivos con este problema e só afecta a Android 6 e versións posteriores.\n\nActivar esta opción pode minimizar erros de reprodución ao mudar o reprodutor de video actual ou mudar ao modo de pantalla completa</string>
+    <!-- MessageFormat-style strings -->
+    <string name="subscribers">
+        {count, plural,
+        =-1 {Non hai dispoñible conta de subscritores}
+        =0 {Ningún subscrito}
+        =1 {1 subscrito}
+        other {{formatted_count} subscritos}
+        }
+    </string>
+    <string name="views">
+        {count, plural,
+        =0 {Ningunha visualización}
+        =1 {1 visualización}
+        other {{formatted_count} visualizacións}
+        }
+    </string>
+    <string name="watching">
+        {count, plural,
+        =0 {Ninguén está vendo}
+        =1 {1 vendo}
+        other {{formatted_count} vendoes}
+        }
+    </string>
+    <string name="listening">
+        {count, plural,
+        =0 {Ninguén está escoitando}
+        =1 {1 oínte}
+        other {{formatted_count} oíntes}
+        }
+    </string>
+    <string name="videos">
+        {count, plural,
+        =-3 {+100 vídeos}
+        =-2 {∞ videos}
+        =-1 {Video count unavailable}
+        =0 {Ningún vídeo}
+        =1 {1 video}
+        other {{formatted_count} videos}
+        }
+    </string>
 </resources>

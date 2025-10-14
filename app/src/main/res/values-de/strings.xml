@@ -139,21 +139,7 @@
     <string name="settings_category_history_title">Verlauf und Cache</string>
     <string name="undo">Rückgängig machen</string>
     <string name="search_no_results">Keine Ergebnisse</string>
-    <string name="no_subscribers">Keine Abonnenten</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s Abonnent</item>
-        <item quantity="other">%s Abonnenten</item>
-    </plurals>
-    <string name="no_views">Keine Aufrufe</string>
-    <plurals name="views">
-        <item quantity="one">%s Aufruf</item>
-        <item quantity="other">%s Aufrufe</item>
-    </plurals>
     <string name="no_videos">Keine Videos</string>
-    <plurals name="videos">
-        <item quantity="one">%s Video</item>
-        <item quantity="other">%s Videos</item>
-    </plurals>
     <string name="charset_most_special_characters">Die meisten Sonderzeichen</string>
     <string name="resume_on_audio_focus_gain_title">Wiedergabe fortsetzen</string>
     <string name="settings_category_player_title">Player</string>
@@ -341,7 +327,6 @@
     <string name="saved_tabs_invalid_json">Konnte gespeicherte Tabs nicht lesen, daher werden die Voreinstellungen genutzt</string>
     <string name="restore_defaults">Standardwerte wiederherstellen</string>
     <string name="restore_defaults_confirmation">Möchtest du die Standardwerte wiederherstellen\?</string>
-    <string name="subscribers_count_not_available">Abonnentenzahl nicht abrufbar</string>
     <string name="main_page_content_summary">Welche Tabs auf der Hauptseite angezeigt werden</string>
     <string name="updates_setting_title">Aktualisierungen</string>
     <string name="updates_setting_description">Per Benachrichtigung zur Aktualisierung der App auffordern, wenn eine neue Version verfügbar ist</string>
@@ -419,16 +404,6 @@
     <string name="delete_playback_states_alert">Alle Wiedergabepositionen löschen\?</string>
     <string name="drawer_header_description">Dienst umschalten, aktuell ausgewählt:</string>
     <string name="default_kiosk_page_summary">Standard-Kiosk</string>
-    <string name="no_one_watching">Niemand schaut zu</string>
-    <plurals name="watching">
-        <item quantity="one">%s Zuschauer</item>
-        <item quantity="other">%s Zuschauer</item>
-    </plurals>
-    <string name="no_one_listening">Niemand hört zu</string>
-    <plurals name="listening">
-        <item quantity="one">%s Zuhörer</item>
-        <item quantity="other">%s Zuhörer</item>
-    </plurals>
     <string name="peertube_instance_url_title">PeerTube-Instanzen</string>
     <string name="peertube_instance_url_help">Finde auf %s die Instanzen, die dir gefallen</string>
     <string name="peertube_instance_add_title">Instanz hinzufügen</string>
@@ -505,8 +480,6 @@
 \nYouTube ist ein Beispiel für einen Service, der mit seinem RSS-Feed diese schnelle Methode anbietet.
 \n
 \nDie Entscheidung läuft also darauf hinaus, was dir lieber ist: Tempo oder genaue Informationen.</string>
-    <string name="infinite_videos">∞ Videos</string>
-    <string name="more_than_100_videos">100+ Videos</string>
     <string name="artists">Künstler</string>
     <string name="albums">Alben</string>
     <string name="songs">Lieder</string>

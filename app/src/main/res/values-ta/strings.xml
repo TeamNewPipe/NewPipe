@@ -134,20 +134,6 @@
     <string name="what_happened_headline">என்ன நடந்தது:</string>
     <string name="your_comment">உங்கள் கருத்து:</string>
     <string name="detail_dislikes_img_view_description">வெறுப்புகள்</string>
-    <string name="no_subscribers">பின் தொடர்பவர்கள் இல்லை</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s பின் தொடர்பவர்</item>
-        <item quantity="other">%s பின் தொடர்பவர்கள்</item>
-    </plurals>
-    <string name="no_views">யாரும் பார்க்கவில்லை</string>
-    <plurals name="views">
-        <item quantity="one">%s பார்வை</item>
-        <item quantity="other">%s பார்வைகள்</item>
-    </plurals>
-    <plurals name="videos">
-        <item quantity="one">%s காணொளி</item>
-        <item quantity="other">%s காணொளிகள்</item>
-    </plurals>
     <string name="switch_to_main">முதற்பக்கத்துக்கு மாற்று</string>
     <string name="video_streams_empty">எந்த காணொலியும் இல்லை</string>
     <string name="audio_streams_empty">எந்த ஒலியோடையும் இல்லை</string>
@@ -161,7 +147,6 @@
     <string name="app_update_notification_channel_name">செயலி புதுப்பித்தல் அறிவிப்பு</string>
     <string name="app_update_notification_channel_description">புதிய NewPipe பதிப்புக்கான அறிவிப்புகள்</string>
     <string name="download_to_sdcard_error_title">வெளி சேமிப்பு இயலாது</string>
-    <string name="subscribers_count_not_available">சந்தாதாரர் எண்ணிக்கை கிடைக்கவில்லை</string>
     <string name="events">நிகழ்வுகள்</string>
     <string name="show_comments_title">கருத்துக்களைக் காண்பி</string>
     <string name="show_comments_summary">கருத்துக்களை மறைக்க அணை</string>
@@ -170,11 +155,6 @@
     <string name="enable_playback_state_lists_title">பட்டியலில் இடங்கள்</string>
     <string name="settings_category_clear_data_title">தரவை அழி</string>
     <string name="missing_file">கோப்பு மாற்ற அல்லது நீக்கப்பட்டது</string>
-    <string name="no_one_watching">யாரும் பார்க்கவில்லை</string>
-    <plurals name="watching">
-        <item quantity="one">%s பார்க்கிறார்</item>
-        <item quantity="other">%s பார்க்கிறார்கள்</item>
-    </plurals>
     <string name="seek_duration_title">வேகமாக முன்னோக்கி / திரும்பத் தேடும் காலம்</string>
     <string name="clear_queue_confirmation_title">வரிசையை அழிக்கும் முன் உறுதிப்படுத்தலைக் கேள்</string>
     <string name="confirm_prompt">உங்கள் பதிவிறக்க வரலாற்றை அழிக்க வேண்டுமா அ எல்லா பதிவிறக்கிய கோப்புகளையும் நீக்க வேண்டுமா\?</string>
@@ -383,7 +363,6 @@
     </plurals>
     <string name="feed_show_watched">முழுமையாகப் பார்த்தேன்</string>
     <string name="feed_notification_loading">ஏற்றுதல் தீவனம்…</string>
-    <string name="no_one_listening">யாரும் கேட்கவில்லை</string>
     <string name="recaptcha_solve">தீர்க்க</string>
     <string name="view_on_github">கிட்அப்பில் காண்க</string>
     <string name="donation_title">நன்கொடை</string>
@@ -511,10 +490,6 @@
     <string name="give_back">திருப்பித் தரவும்</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">ஆம், மற்றும் ஓரளவு பார்த்த வீடியோக்கள்</string>
     <string name="feed_oldest_subscription_update">கடைசியாக புதுப்பிக்கப்பட்டது: %s</string>
-    <plurals name="listening">
-        <item quantity="one">%s கேட்பவர்</item>
-        <item quantity="other">%s கேட்போர்</item>
-    </plurals>
     <string name="import_settings_vulnerable_format">ஏற்றுமதியில் இறக்குமதி செய்யப்படும் அமைப்புகள் பாதிக்கப்படக்கூடிய வடிவமைப்பைப் பயன்படுத்துகின்றன, இது நியூபைப் 0.27.0 முதல் நீக்கப்பட்டது. இறக்குமதி செய்யப்படும் ஏற்றுமதி நம்பகமான மூலத்திலிருந்து வந்தது என்பதை உறுதிப்படுத்திக் கொள்ளுங்கள், மேலும் நியூபைப் 0.27.0 அல்லது எதிர்காலத்தில் புதியதாக பெறப்பட்ட ஏற்றுமதியை மட்டுமே பயன்படுத்த விரும்புகிறது. இந்த பாதிக்கப்படக்கூடிய வடிவத்தில் அமைப்புகளை இறக்குமதி செய்வதற்கான உதவி விரைவில் முழுமையாக அகற்றப்படும், பின்னர் நியூபைப்பின் பழைய பதிப்புகள் புதிய பதிப்புகளிலிருந்து ஏற்றுமதியின் அமைப்புகளை இனி இறக்குமதி செய்ய முடியாது.</string>
     <plurals name="seconds">
         <item quantity="one">%d இரண்டாவது</item>
@@ -570,8 +545,6 @@
     <string name="main_tabs_position_title">முதன்மையான தாவல்கள் நிலை</string>
     <string name="error_report_open_github_notice">உங்கள் விபத்து பற்றி விவாதிக்கும் சிக்கல் ஏற்கனவே இருக்கிறதா என்று சரிபார்க்கவும். நகல் டிக்கெட்டுகளை உருவாக்கும்போது, உண்மையான பிழையை சரிசெய்ய நாங்கள் செலவழிக்கக்கூடிய எங்களிடமிருந்து நீங்கள் நேரத்தை எடுத்துக்கொள்கிறீர்கள்.</string>
     <string name="detail_uploader_thumbnail_view_description">பதிவேற்றியவரின் அவதார் சிறுபடம்</string>
-    <string name="more_than_100_videos">100+ வீடியோக்கள்</string>
-    <string name="infinite_videos">வீடியோக்கள்</string>
     <string name="no_comments">கருத்துகள் இல்லை</string>
     <string name="comments_are_disabled">கருத்துகள் முடக்கப்பட்டுள்ளன</string>
     <string name="no_streams">நீரோடைகள் இல்லை</string>

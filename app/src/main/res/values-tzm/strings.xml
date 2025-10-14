@@ -31,19 +31,13 @@
     <string name="settings_category_history_title">Amzruy d uffiren</string>
     <string name="enable_watch_history_title">Amzruy n wannay</string>
     <string name="enable_search_history_title">Rzu amzruy</string>
-    <plurals name="watching">
-        <item quantity="one">ittannay %s</item>
-        <item quantity="other">ttanayen %s</item>
-    </plurals>
     <plurals name="days">
         <item quantity="one">%d wass</item>
         <item quantity="other">%d wussan</item>
     </plurals>
     <string name="remove_watched_popup_title">Kkes ividyuten ittwannayen\?</string>
-    <string name="more_than_100_videos">100+ ividyuten</string>
     <string name="no_videos">walu ividyuten</string>
     <string name="video_detail_by">Sɣur %s</string>
-    <string name="infinite_videos">∞ ividyuten</string>
     <string name="your_comment">Axefawal-nnek (s tneglizt):</string>
     <plurals name="hours">
         <item quantity="one">%d Tsraget</item>
@@ -71,14 +65,6 @@
     <string name="kiosk_page_summary">Tasna n ukiyusk</string>
     <string name="delete_item_search_history">Is nit txsed ad tkksed aferdis-a seg umezruy n urezzu\?</string>
     <string name="view_on_github">Ẓeṛ g GitHub</string>
-    <plurals name="videos">
-        <item quantity="one">%s uvidyu</item>
-        <item quantity="other">%s ividyuten</item>
-    </plurals>
-    <plurals name="views">
-        <item quantity="one">%s Tannayt</item>
-        <item quantity="other">%s Tannayin</item>
-    </plurals>
     <string name="detail_thumbnail_view_description">Γer avidyu, azemz:</string>
     <string name="error_snackbar_action">Mel</string>
     <string name="error_report_open_issue_button_text">Mel g GitHub</string>
@@ -150,11 +136,6 @@
     <string name="blank_page_summary">Tasna ixwan</string>
     <string name="title_activity_about">Ɣef NewPipe</string>
     <string name="msg_wait">Ṛaja…</string>
-    <plurals name="listening">
-        <item quantity="one">%s umsflid</item>
-        <item quantity="other">%s imsfliden</item>
-    </plurals>
-    <string name="no_views">Walu tannayin</string>
     <string name="network_error">Azgal n uẓeṭṭa</string>
     <string name="just_once">Ɣas yat</string>
     <string name="radio">Aṛadyu</string>

@@ -110,20 +110,7 @@
     <string name="video">Видео</string>
     <string name="audio">Аудио</string>
     <string name="retry">Опитай отново</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s абонат</item>
-        <item quantity="other">%s абонати</item>
-    </plurals>
-    <string name="no_views">Няма гледания</string>
-    <plurals name="views">
-        <item quantity="one">%s гледане</item>
-        <item quantity="other">%s гледания</item>
-    </plurals>
     <string name="no_videos">Няма клипове</string>
-    <plurals name="videos">
-        <item quantity="one">%s видеоклип</item>
-        <item quantity="other">%s видеоклипове</item>
-    </plurals>
     <string name="pause">Пауза</string>
     <string name="delete">Изтрий</string>
     <string name="checksum">Контролна сума</string>
@@ -183,7 +170,6 @@
     <string name="file_name_empty_error">Името на файла не може да бъде празно</string>
     <string name="error_occurred_detail">Възникна грешка: %1$s</string>
     <string name="no_streams_available_download">Не са налични източници за изтегляне</string>
-    <string name="no_subscribers">Няма абонати</string>
     <string name="create">Създай</string>
     <string name="dismiss">Откажи</string>
     <string name="copyright" formatted="true">© %1$s от %2$s под лиценза %3$s</string>
@@ -325,16 +311,6 @@
     <string name="settings_category_clear_data_title">Изтрии данни</string>
     <string name="search_showing_result_for">Показване на резултати за: %s</string>
     <string name="no_comments">Няма коментари</string>
-    <plurals name="listening">
-        <item quantity="one">%s слушател</item>
-        <item quantity="other">%s слушатели</item>
-    </plurals>
-    <string name="no_one_listening">Няма слушатели</string>
-    <plurals name="watching">
-        <item quantity="one">%s зрител</item>
-        <item quantity="other">%s зрители</item>
-    </plurals>
-    <string name="no_one_watching">Няма зрители</string>
     <string name="clear_playback_states_summary">Изтрива всички позиции на възпроизвеждане</string>
     <string name="unsupported_url_dialog_message">URL адресът не можа да бъде разпознат. Да се отвори ли с друго приложение?</string>
     <string name="show_description_title">Покажи описание</string>
@@ -435,8 +411,6 @@
     <string name="videos_string">Видеа</string>
     <string name="error_report_open_issue_button_text">Доклад в GitHub</string>
     <string name="copy_for_github">Копиране във форматиран вид</string>
-    <string name="infinite_videos">∞ клипове</string>
-    <string name="more_than_100_videos">100+ видеа</string>
     <string name="recovering">възстановяване</string>
     <string name="video_detail_by">От %s</string>
     <string name="app_update_notification_channel_name">Известие за нова версия</string>
@@ -503,7 +477,6 @@
     <string name="youtube_music_premium_content">Това видео е достъпно за абонати на YouTube Music Premium, затова не може да бъде гледано или изтеглено с NewPipe.</string>
     <string name="remove_watched_popup_title">Премахни изгледаните видеа\?</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Да, както и само частично изгледаните видеа</string>
-    <string name="subscribers_count_not_available">Брой на абонати не е наличен</string>
     <string name="peertube_instance_add_exists">Инстанцията вече съществува</string>
     <string name="missing_file">Файлът е преместен или изтрит</string>
     <string name="app_update_notification_channel_description">Известие за нова версия на NewPipe</string>

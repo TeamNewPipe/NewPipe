@@ -159,27 +159,7 @@
     <string name="video">Відэа</string>
     <string name="audio">Аўдыя</string>
     <string name="retry">Паспрабаваць зноў</string>
-    <string name="no_subscribers">Няма падпісчыкаў</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s падпісчык</item>
-        <item quantity="few">%s падпісчыкі</item>
-        <item quantity="many">%s падпісчыкаў</item>
-        <item quantity="other">%s падпісчыкаў</item>
-    </plurals>
-    <string name="no_views">Няма праглядаў</string>
-    <plurals name="views">
-        <item quantity="one">%s прагляд</item>
-        <item quantity="few">%s прагляды</item>
-        <item quantity="many">%s праглядаў</item>
-        <item quantity="other">%s праглядаў</item>
-    </plurals>
     <string name="no_videos">Няма відэа</string>
-    <plurals name="videos">
-        <item quantity="one">%s відэа</item>
-        <item quantity="few">%s відэа</item>
-        <item quantity="many">%s відэа</item>
-        <item quantity="other">%s відэа</item>
-    </plurals>
     <string name="start">Пачаць</string>
     <string name="pause">Паўза</string>
     <string name="create">Стварыць</string>
@@ -327,7 +307,6 @@
     <string name="saved_tabs_invalid_json">Не ўдалося прачытаць захаваныя ўкладкі, таму выкарыстоўваюцца прадвызначаныя</string>
     <string name="restore_defaults">Аднавіць прадвызначаныя значэнні</string>
     <string name="restore_defaults_confirmation">Аднавіць прадвызначаныя значэнні?</string>
-    <string name="subscribers_count_not_available">Колькасць падпісчыкаў недаступна</string>
     <string name="main_page_content_summary">Укладкі, бачныя на галоўнай старонцы</string>
     <string name="updates_setting_title">Абнаўленні</string>
     <string name="updates_setting_description">Паказваць апавяшчэнне пры наяўнасці новай версіі</string>
@@ -437,8 +416,6 @@
     <string name="default_kiosk_page_summary">Прадвызначаны кіёск</string>
     <string name="done">Так</string>
     <string name="subtitle_activity_recaptcha">Па завяршэнні націсніце «Гатова»</string>
-    <string name="infinite_videos">∞ відэа</string>
-    <string name="more_than_100_videos">100+ відэа</string>
     <string name="error_report_open_issue_button_text">Паведаміць на GitHub</string>
     <string name="copy_for_github">Скапіяваць адфарматаваную справаздачу</string>
     <string name="permission_display_over_apps">Дайце дазвол на адлюстраванне паверх іншых праграм</string>
@@ -468,14 +445,7 @@
     <string name="streams_notification_channel_description">Апавяшчэнні пра новыя трансляцыі ў падпісках</string>
     <string name="description_tab_description">Апісанне</string>
     <string name="related_items_tab_description">Падобныя матэрыялы</string>
-    <string name="no_one_watching">Ніхто не праглядае</string>
     <string name="recovering">аднаўленне</string>
-    <plurals name="watching">
-        <item quantity="one">%s глядач</item>
-        <item quantity="few">%s гледачы</item>
-        <item quantity="many">%s гледачоў</item>
-        <item quantity="other">%s гледачоў</item>
-    </plurals>
     <string name="feed_group_dialog_empty_selection">Падпіскі не выбраны</string>
     <string name="feed_oldest_subscription_update">Апошняе абнаўленне: %s</string>
     <string name="auto_device_theme_title">Аўтаматычна (тэма прылады)</string>
@@ -509,12 +479,6 @@
     <string name="progressive_load_interval_title">Памер інтэрвалу загрузкі прайгравання</string>
     <string name="show_description_title">Паказваць апісанне</string>
     <string name="comments_are_disabled">Каментарыі адключаны</string>
-    <plurals name="listening">
-        <item quantity="one">%s слухач</item>
-        <item quantity="few">%s слухача</item>
-        <item quantity="many">%s слухачоў</item>
-        <item quantity="other">%s слухачоў</item>
-    </plurals>
     <plurals name="seconds">
         <item quantity="one">%d секунда</item>
         <item quantity="few">%d секунды</item>
@@ -534,7 +498,6 @@
         <item quantity="other">%d дзён</item>
     </plurals>
     <string name="clear_download_history">Ачысціць гісторыю спампоўвання</string>
-    <string name="no_one_listening">Ніхто не слухае</string>
     <string name="on">Уключыць</string>
     <string name="hash_channel_description">Апавяшчэнні пра ход відэахэшавання</string>
     <string name="create_error_notification">Стварыць паведамленне пра памылку</string>

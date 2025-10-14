@@ -29,7 +29,6 @@
     <string name="unhook_checkbox">Desvincular (pode causar distorção)</string>
     <string name="show_search_suggestions_summary">Escolha as sugestões a mostrar ao pesquisar</string>
     <string name="no_valid_zip_file">Ficheiro ZIP inválido</string>
-    <string name="no_views">Sem visualizações</string>
     <string name="light_theme_title">Claro</string>
     <string name="subscription_change_failed">Não foi possível alterar a subscrição</string>
     <string name="overwrite_finished_warning">Já existe um ficheiro descarregado com este nome</string>
@@ -42,16 +41,10 @@
     <string name="overwrite">Sobrescrever</string>
     <string name="mute">Sem som</string>
     <string name="enable_watch_history_title">Histórico de visualizações</string>
-    <plurals name="views">
-        <item quantity="one">%s visualização</item>
-        <item quantity="many">%s visualizações</item>
-        <item quantity="other">%s visualizações</item>
-    </plurals>
     <string name="confirm_prompt">Deseja limpar o histórico de descargas ou eliminar todos os ficheiros descarregados?</string>
     <string name="settings_category_history_title">Histórico e cache</string>
     <string name="resume_on_audio_focus_gain_summary">Continuar reprodução após interrupções (ex. chamadas)</string>
     <string name="controls_download_desc">Descarregar ficheiro de vídeo</string>
-    <string name="more_than_100_videos">+100 vídeos</string>
     <string name="resize_fit">Ajustar</string>
     <string name="feed_update_threshold_option_always_update">Atualizar sempre</string>
     <string name="play_all">Reproduzir tudo</string>
@@ -135,22 +128,15 @@
     <string name="error_http_not_found">Não encontrado</string>
     <string name="background_player_playing_toast">Reprodução em segundo plano</string>
     <string name="show_higher_resolutions_title">Mostrar resoluções mais altas</string>
-    <string name="no_subscribers">Sem subscritores</string>
     <string name="use_external_audio_player_title">Utilizar reprodutor de áudio externo</string>
     <string name="did_you_mean">Será que queria dizer \"%1$s\"\?</string>
     <string name="updates_setting_description">Mostrar uma notificação para pedir a atualização da aplicação se existir uma nova versão</string>
     <string name="enqueue">Enfileirar</string>
-    <string name="no_one_watching">Ninguém está a ver</string>
     <string name="delete_downloaded_files">Eliminar ficheiros descarregados</string>
     <string name="app_language_title">Idioma da aplicação</string>
     <string name="users">Utilizadores</string>
     <string name="remove_watched_popup_warning">Os vídeos que tenham sido vistos antes e depois de serem adicionados à lista de reprodução serão removidos.
 \nTem a certeza\? Esta ação não pode ser revertida!</string>
-    <plurals name="watching">
-        <item quantity="one">%s a ver</item>
-        <item quantity="many">%s a ver</item>
-        <item quantity="other">%s a ver</item>
-    </plurals>
     <string name="msg_wait">Por favor aguarde…</string>
     <string name="clear">Limpar</string>
     <string name="unsubscribe">Cancelar subscrição</string>
@@ -163,7 +149,6 @@
     <string name="create_playlist">Nova lista de reprodução</string>
     <string name="copyright">© %1$s de %2$s nos termos da %3$s</string>
     <string name="black_theme_title">Preto</string>
-    <string name="no_one_listening">Ninguém está a ouvir</string>
     <string name="playlist_thumbnail_change_success">Miniatura da lista de reprodução alterada.</string>
     <string name="error_unable_to_load_comments">Não foi possível carregar os comentários</string>
     <string name="default_content_country_title">País padrão para conteúdo</string>
@@ -230,11 +215,6 @@
     <string name="subscription_update_failed">Não foi possível atualizar a subscrição</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim e também os vídeos parcialmente vistos</string>
     <string name="no_playlist_bookmarked_yet">Ainda não há listas de reprodução favoritas</string>
-    <plurals name="listening">
-        <item quantity="one">%s ouvinte</item>
-        <item quantity="many">%s ouvintes</item>
-        <item quantity="other">%s ouvintes</item>
-    </plurals>
     <string name="delete_search_history_alert">Remover todo o histórico de pesquisas\?</string>
     <string name="error_report_button_text">Reportar por e-mail</string>
     <string name="tab_choose">Escolher separador</string>
@@ -253,11 +233,6 @@
     <string name="show_search_suggestions_title">Sugestões de pesquisa</string>
     <string name="set_as_playlist_thumbnail">Definir como miniatura da lista de reprodução</string>
     <string name="drawer_open">Abrir menu</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s subscritor</item>
-        <item quantity="many">%s subscritores</item>
-        <item quantity="other">%s subscritores</item>
-    </plurals>
     <string name="restore_defaults_confirmation">Deseja repor as predefinições\?</string>
     <string name="external_player_unsupported_link_type">Os reprodutores externos não suportam este tipo de hiperligações</string>
     <string name="rename">Mudar nome</string>
@@ -329,11 +304,6 @@
     <string name="subscriptions_export_unsuccessful">Não foi possível exportar as subscrições</string>
     <string name="enable_disposed_exceptions_summary">Forçar reporte de exceções Rx não entregáveis ocorrendo fora do fragmento ou ciclo de vida da atividade após eliminação</string>
     <string name="recently_added">Recentes</string>
-    <plurals name="videos">
-        <item quantity="one">%s vídeo</item>
-        <item quantity="many">%s vídeos</item>
-        <item quantity="other">%s vídeos</item>
-    </plurals>
     <string name="import_title">Importar</string>
     <string name="clear_views_history_summary">Remove o histórico dos vídeos reproduzidos e as posições de reprodução</string>
     <plurals name="days">
@@ -370,7 +340,6 @@
     <string name="delete_item_search_history">Deseja remover este item do histórico de pesquisas\?</string>
     <string name="resume_on_audio_focus_gain_title">Continuar reprodução</string>
     <string name="app_license">NewPipe é um software livre \"copyleft\": pode utilizar, estudar, partilhar e melhorar a aplicação. Especificamente, pode redistribuir e/ou modificar a aplicação nos termos da GNU General Public License, conforme publicada pela Free Software Foundation, tanto a versão 3 da licença ou (por opção) qualquer versão posterior.</string>
-    <string name="infinite_videos">∞ vídeos</string>
     <string name="export_ongoing">A exportar…</string>
     <string name="most_liked">Mais apreciados</string>
     <string name="downloads_storage_use_saf_title">Utilizar seletor de pastas do sistema (SAF)</string>
@@ -493,7 +462,6 @@
     <string name="subscribed_button_title">Subscrito</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache de imagens limpa</string>
     <string name="tab_about">Sobre e perguntas frequentes</string>
-    <string name="subscribers_count_not_available">Contagem de subscrições indisponível</string>
     <string name="preferred_open_action_settings_summary">Ação padrão ao abrir o conteúdo — %s</string>
     <string name="playback_reset">Repor</string>
     <string name="use_inexact_seek_title">Utilizar pesquisa rápida</string>

@@ -122,24 +122,7 @@
     <string name="notification_channel_description">Oznámení pro NewPipe přehrávač</string>
     <string name="search_no_results">Žádné výsledky</string>
     <string name="empty_list_subtitle">Je tu sranda jak v márnici</string>
-    <string name="no_subscribers">Žádní odběratelé</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s odběratel</item>
-        <item quantity="few">%s odběratelé</item>
-        <item quantity="other">%s odběratelů</item>
-    </plurals>
-    <string name="no_views">Žádná zhlédnutí</string>
-    <plurals name="views">
-        <item quantity="one">%s zhlédnutí</item>
-        <item quantity="few">%s zhlédnutí</item>
-        <item quantity="other">%s zhlédnutí</item>
-    </plurals>
     <string name="no_videos">Žádná videa</string>
-    <plurals name="videos">
-        <item quantity="one">%s video</item>
-        <item quantity="few">%s videa</item>
-        <item quantity="other">%s videí</item>
-    </plurals>
     <string name="settings_category_downloads_title">Stahování</string>
     <string name="settings_file_charset_title">Povolené znaky v názvech souborů</string>
     <string name="settings_file_replacement_character_summary">Neplatné znaky budou nahrazeny těmito</string>
@@ -339,7 +322,6 @@
     <string name="saved_tabs_invalid_json">Nelze načíst uložené karty, takže se použijí výchozí karty</string>
     <string name="restore_defaults">Obnovit do výchozího nastavení</string>
     <string name="restore_defaults_confirmation">Chcete obnovit výchozí nastavení\?</string>
-    <string name="subscribers_count_not_available">Počet odběratelů není k dispozici</string>
     <string name="main_page_content_summary">Karty, které jsou zobrazeny na hlavní stránce</string>
     <string name="updates_setting_title">Aktualizace</string>
     <string name="events">Události</string>
@@ -412,18 +394,6 @@
     <string name="clear_playback_states_summary">Vymaže všechny pozice přehrávání</string>
     <string name="delete_playback_states_alert">Vymazat všechny pozice přehrávání?</string>
     <string name="drawer_header_description">Přepnout službu, právě vybráno:</string>
-    <string name="no_one_watching">Nikdo nesleduje</string>
-    <plurals name="watching">
-        <item quantity="one">%s sleduje</item>
-        <item quantity="few">%s sledují</item>
-        <item quantity="other">%s sleduje</item>
-    </plurals>
-    <string name="no_one_listening">Nikdo neposlouchá</string>
-    <plurals name="listening">
-        <item quantity="one">%s posluchač</item>
-        <item quantity="few">%s posluchači</item>
-        <item quantity="other">%s posluchačů</item>
-    </plurals>
     <string name="default_kiosk_page_summary">Výchozí kiosek</string>
     <string name="seek_duration_title">Délka přetočení vpřed/zpět</string>
     <string name="peertube_instance_url_title">Instance PeerTube</string>
@@ -509,8 +479,6 @@
     <string name="content_not_supported">Tento obsah ještě není podporován NewPipe.
 \n
 \nSnad bude podporován v budoucnu.</string>
-    <string name="infinite_videos">∞ videí</string>
-    <string name="more_than_100_videos">100+ videí</string>
     <string name="artists">Umělci</string>
     <string name="albums">Alba</string>
     <string name="songs">Skladby</string>

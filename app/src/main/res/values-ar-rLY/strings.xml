@@ -79,7 +79,6 @@
     <string name="question_mark">؟</string>
     <string name="check_for_updates">التحقق من وجود تحديثات</string>
     <string name="peertube_instance_url_title">مثيلات خوادم پيرتيوب</string>
-    <string name="more_than_100_videos">+100 فيديو</string>
     <string name="peertube_instance_add_exists">مثيل الخادم موجود بالفعل</string>
     <string name="clear_queue_confirmation_title">طلب تأكيد قبل مسح قائمة الانتظار</string>
     <string name="metadata_subscribers">المشتركون</string>
@@ -115,14 +114,6 @@
     <string name="metadata_cache_wipe_summary">إزالة جميع بيانات صفحات الويب المخزنة مؤقّتًا</string>
     <string name="clear_search_history_title">محو سجل البحث</string>
     <string name="show_channel_details">إظهار تفاصيل القناة</string>
-    <plurals name="watching">
-        <item quantity="zero">لا مُشاهِد</item>
-        <item quantity="one">مُشاهِد واحد</item>
-        <item quantity="two">مُشاهِدان</item>
-        <item quantity="few">%s مُشاهِدين</item>
-        <item quantity="many">%s مُشاهِدًا</item>
-        <item quantity="other">%s مُشاهِد</item>
-    </plurals>
     <string name="show_hold_to_append_summary">عرض تلميح عند الضغط على زر استخدام المشغل الخلفي أو النافذة المنبثقة في صفحة تفاصيل الفديو</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">نعم، ومقاطع الفيديو التي تمت مشاهدتها جزئيًا</string>
     <string name="error_timeout">انتهى وقت الاتصال</string>
@@ -232,14 +223,6 @@
     <string name="all">كلها</string>
     <string name="feed_groups_header_title">مجموعات القنوات</string>
     <string name="feed_processing_message">جارٍ معالجة الموجز…</string>
-    <plurals name="videos">
-        <item quantity="zero">لا فيديو</item>
-        <item quantity="one">فيديو واحد</item>
-        <item quantity="two">فيديوهاتان</item>
-        <item quantity="few">%s فيديوهات</item>
-        <item quantity="many">%s فيديوهات</item>
-        <item quantity="other">%s فيديو</item>
-    </plurals>
     <string name="low_quality_smaller">جودة منخفضة (أصغر)</string>
     <string name="show_error">إظهار خطأ</string>
     <string name="show_higher_resolutions_title">عرض دقّات أعلى</string>
@@ -290,14 +273,6 @@
     <string name="auto_queue_summary">استمر عند إنهاء قائمة التشغيل (الغير المتكررة) من خلال إلحاق التدفق المرتبط</string>
     <string name="resize_fill">ملء الشاشة</string>
     <string name="feed_group_dialog_empty_selection">لم يُختر أي اشتراك</string>
-    <plurals name="subscribers">
-        <item quantity="zero">لا مشارك</item>
-        <item quantity="one">مٌشارِك واحد</item>
-        <item quantity="two">مُشارِكان</item>
-        <item quantity="few">%s مشارِكين</item>
-        <item quantity="many">%s مشارِكون</item>
-        <item quantity="other">%s مشارك</item>
-    </plurals>
     <string name="loading_metadata_title">جلب البيانات الوصفية…</string>
     <string name="show_image_indicators_title">إظهار مؤشرات الصور</string>
     <string name="app_update_available_notification_text">انقر للتنزيل %s</string>
@@ -370,7 +345,6 @@
     <string name="peertube_instance_url_help">ابحث عن مثيلات الخوادم التي تناسبك على %s</string>
     <string name="streams_notifications_network_title">مطلوب اتصال الشبكة</string>
     <string name="check_new_streams">تشغيل التحقق من وجود تدفقات جديدة</string>
-    <string name="no_views">دون مشاهدات</string>
     <string name="start_here_on_popup">بدأ التشغيل في نافذة منبثقة</string>
     <string name="auto_queue_toggle">قائمة انتظار تلقائيّة</string>
     <string name="feed_subscription_not_loaded_count">غير محمل: %d</string>
@@ -532,7 +506,6 @@
     <string name="website_title">موقع الويب</string>
     <string name="enable_search_history_title">سجل البحث</string>
     <string name="drawer_open">فتح الدرج</string>
-    <string name="infinite_videos">∞ فيديو</string>
     <string name="error_http_unsupported_range">الخادم لا يقبل التنزيل المتعدد، إعادة المحاولة مع @string/msg_threads = 1</string>
     <string name="playback_reset">إعادة تعيين</string>
     <string name="popup_remember_size_pos_summary">تذكر آخر مكان وحجم للنافذة المنبثقة</string>
@@ -544,14 +517,6 @@
     <string name="restore_defaults">استعادة الضبط الافتراضي</string>
     <string name="pause_downloads_on_mobile">المقاطعة على الشبكات المقيسة</string>
     <string name="override_current_data">هذا سوف يُزيل إعداداتك الحالية.</string>
-    <plurals name="views">
-        <item quantity="zero">لا مشاهدة</item>
-        <item quantity="one">مشاهدة واحدة</item>
-        <item quantity="two">مُشاهَدتان</item>
-        <item quantity="few">%s مُشاهَدات</item>
-        <item quantity="many">%s مُشاهَدةً</item>
-        <item quantity="other">%s مُشاهَدة</item>
-    </plurals>
     <string name="import_title">إستيراد</string>
     <string name="events">الأحداث</string>
     <string name="clear_playback_states_title">حذف مواقف التشغيل</string>
@@ -571,7 +536,6 @@
     <string name="notification_channel_name">تنبيهات NewPipe</string>
     <string name="delete_downloaded_files_confirm">محو جميع الملفات التي تم تنزيلها من القرص؟</string>
     <string name="subtitle_activity_recaptcha">اضغط على \"تم\" عند حلها</string>
-    <string name="no_one_listening">لا أحد يستمع</string>
     <string name="notification_action_repeat">تكرار</string>
     <string name="enqueue">إضافة إلى قائمة الانتظار</string>
     <string name="msg_running">يقوم نيوبايب بالتنزيل</string>
@@ -626,7 +590,6 @@
     <string name="settings_category_history_title">سجل المشاهَدة و ذاكرة التخزين المؤقتة</string>
     <string name="percent">النسبة المئوية</string>
     <string name="title_activity_recaptcha">تحدي الكابتشا</string>
-    <string name="no_subscribers">ليس هناك مشترِكون</string>
     <string name="paid_content">يتوفر هذا المحتوى فقط للمستخدمين الذين قاموا بالدفع، لذلك لا يمكن بثه أو تنزيله عبر NewPipe.</string>
     <string name="recent">حديثة</string>
     <string name="subscription_update_failed">تعذر تحديث الاشتراك</string>
@@ -652,7 +615,6 @@
     <string name="disabled">معطل</string>
     <string name="feed_load_error">خطأ في تحميل الخلاصة</string>
     <string name="streams_notification_channel_description">الإخطارات حول التدفقات الجديدة للاشتراكات</string>
-    <string name="no_one_watching">لا توجد مشاهدة</string>
     <string name="switch_to_background">الإنتقال إلى التشغيل في الخلفية</string>
     <string name="users">المستخدمين</string>
     <string name="list">القائمة</string>
@@ -686,7 +648,6 @@
     <string name="pause_downloads_on_mobile_desc">مفيد عند التبديل إلى بيانات الجوال، ولكن لا يمكن تعليق بعض التنزيلات</string>
     <string name="main_tabs_position_summary">انقل محدد اللسان الرئيسي إلى الأسفل</string>
     <string name="leak_canary_not_available">LeakCanary غير متوفر</string>
-    <string name="subscribers_count_not_available">عدد المشتركين غير متاح</string>
     <string name="feed_group_dialog_select_subscriptions">حدد الاشتراكات</string>
     <string name="tab_subscriptions">الاشتراكات</string>
     <string name="app_license">NewPipe هو برنامج مفتوح المصدر وبحقوق متروكة: يمكنك استخدام الكود ودراسته وتحسينه كما شئت. وعلى وجه التحديد يمكنك إعادة توزيعه / أو تعديله تحت شروط رخصة GNU العمومية والتي نشرتها مؤسسة البرمجيات الحرة، سواء الإصدار 3 من الرخصة، أو (باختيارك) أي إصدار أحدث.</string>
@@ -752,14 +713,6 @@
     <string name="error_http_not_found">غير موجود</string>
     <string name="night_theme_summary">حدد موضوعك الليلي المفضل — %s</string>
     <string name="kiosk_page_summary">صفحة الكشك</string>
-    <plurals name="listening">
-        <item quantity="zero">لا مُستمِع</item>
-        <item quantity="one">مُستَمِع واحد</item>
-        <item quantity="two">مُستمِعان</item>
-        <item quantity="few">%s مُستَمِعين</item>
-        <item quantity="many">%s مُستَمِعًا</item>
-        <item quantity="other">%s مستمع</item>
-    </plurals>
     <string name="metadata_privacy_unlisted">غير مدرج</string>
     <string name="conferences">المؤتمرات</string>
     <string name="import_file_title">إستيراد ملف</string>
@@ -852,4 +805,59 @@
 \n%2$s</string>
     <string name="share_playlist">شارِك قائمة التشغيل</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
+    <!-- MessageFormat-style strings -->
+    <string name="subscribers">
+        {count, plural,
+        =-1 {عدد المشتركين غير متاح}
+        =0 {ليس هناك مشترِكون}
+        =1 {مٌشارِك واحد}
+        =2 {مُشارِكان}
+        few {{formatted_count} مشارِكين}
+        many {{formatted_count} مشارِكون}
+        other {{formatted_count} مشارك}
+        }
+    </string>
+    <string name="views">
+        {count, plural,
+        =0 {دون مشاهدات}
+        =1 {مشاهدة واحدة}
+        =2 {مُشاهَدتان}
+        few {{formatted_count} مُشاهَدات}
+        many {{formatted_count} مُشاهَدةً}
+        other {{formatted_count} مُشاهَدة}
+        }
+    </string>
+    <string name="watching">
+        {count, plural,
+        =0 {لا توجد مشاهدة}
+        =1 {مُشاهِد واحد}
+        =2 {مُشاهِدان}
+        few {{formatted_count} مُشاهِدين}
+        many {{formatted_count} مُشاهِدًا}
+        other {{formatted_count} مُشاهِد}
+        }
+    </string>
+    <string name="listening">
+        {count, plural,
+        =0 {لا أحد يستمع}
+        =1 {مُستَمِع واحد}
+        =2 {مُستمِعان}
+        few {{formatted_count} مُستَمِعين}
+        many {{formatted_count} مُستَمِعًا}
+        other {{formatted_count} مستمع}
+        }
+    </string>
+    <string name="videos">
+        {count, plural,
+        =-3 {+100 فيديو}
+        =-2 {∞ فيديو}
+        =-1 {Video count unavailable}
+        =0 {لاتوجد فيديوهات}
+        =1 {فيديو واحد}
+        =2 {فيديوهاتان}
+        few {{formatted_count} فيديوهات}
+        many {{formatted_count} فيديوهات}
+        other {{formatted_count} فيديو}
+        }
+    </string>
 </resources>

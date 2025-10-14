@@ -139,24 +139,7 @@
     <string name="settings_category_history_title">Histórico e cache</string>
     <string name="undo">Desfazer</string>
     <string name="search_no_results">Sem resultados</string>
-    <string name="no_subscribers">Nenhum inscrito</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s inscrito</item>
-        <item quantity="many">%s inscritos</item>
-        <item quantity="other">%s inscritos</item>
-    </plurals>
-    <string name="no_views">Sem visualizações</string>
-    <plurals name="views">
-        <item quantity="one">%s visualização</item>
-        <item quantity="many">%s visualizações</item>
-        <item quantity="other">%s visualizações</item>
-    </plurals>
     <string name="no_videos">Nenhum vídeo</string>
-    <plurals name="videos">
-        <item quantity="one">%s vídeo</item>
-        <item quantity="many">%s vídeos</item>
-        <item quantity="other">%s vídeos</item>
-    </plurals>
     <string name="settings_category_player_title">Player</string>
     <string name="empty_list_subtitle">Nada aqui além de grilos</string>
     <string name="delete_item_search_history">Deseja excluir este item do histórico de busca\?</string>
@@ -341,7 +324,6 @@
     <string name="saved_tabs_invalid_json">Não foi possível carregar as guias salvas, portanto, usamos as guias padrão</string>
     <string name="restore_defaults">Restaurar configurações</string>
     <string name="restore_defaults_confirmation">Deseja restaurar os padrões?</string>
-    <string name="subscribers_count_not_available">Número de inscritos indisponível</string>
     <string name="main_page_content_summary">Quais guias são exibidas na tela inicial</string>
     <string name="conferences">Conferências</string>
     <string name="updates_setting_title">Atualizações</string>
@@ -413,18 +395,6 @@
     <string name="delete_playback_states_alert">Remover todas as posições de reprodução?</string>
     <string name="drawer_header_description">Alternar serviço, atualmente selecionado:</string>
     <string name="default_kiosk_page_summary">Kiosk padrão</string>
-    <string name="no_one_watching">Ninguém está assistindo</string>
-    <plurals name="watching">
-        <item quantity="one">%s assistindo</item>
-        <item quantity="many">%s assistindo</item>
-        <item quantity="other">%s assistindo</item>
-    </plurals>
-    <string name="no_one_listening">Ninguém está ouvindo</string>
-    <plurals name="listening">
-        <item quantity="one">%s ouvinte</item>
-        <item quantity="many">%s ouvintes</item>
-        <item quantity="other">%s ouvintes</item>
-    </plurals>
     <string name="seek_duration_title">Duração de avanço/retrocesso rápido</string>
     <string name="peertube_instance_url_title">Instâncias PeerTube</string>
     <string name="peertube_instance_url_summary">Selecione suas instâncias favoritas do PeerTube</string>
@@ -509,8 +479,6 @@
     <string name="content_not_supported">O NewPipe ainda não suporta esse conteúdo.
 \n
 \nEsperamos que terá suporte em uma versão futura.</string>
-    <string name="infinite_videos">∞ vídeos</string>
-    <string name="more_than_100_videos">+100 vídeos</string>
     <string name="artists">Artistas</string>
     <string name="albums">Álbuns</string>
     <string name="songs">Músicas</string>

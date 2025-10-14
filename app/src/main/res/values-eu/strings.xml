@@ -139,21 +139,7 @@
     <string name="notification_channel_description">NewPipe erreproduzigailuaren jakinarazpenak</string>
     <string name="search_no_results">Emaitzarik ez</string>
     <string name="empty_list_subtitle">Kilkerrak besterik ez daude hemen</string>
-    <string name="no_subscribers">Harpidedunik ez</string>
-    <plurals name="subscribers">
-        <item quantity="one">Harpidedun %s</item>
-        <item quantity="other">%s harpidedun</item>
-    </plurals>
-    <string name="no_views">Ikustaldirik ez</string>
-    <plurals name="views">
-        <item quantity="one">ikustaldi %s</item>
-        <item quantity="other">%s ikustaldi</item>
-    </plurals>
     <string name="no_videos">Bideorik ez</string>
-    <plurals name="videos">
-        <item quantity="one">Bideo %s</item>
-        <item quantity="other">%s bideo</item>
-    </plurals>
     <string name="title_activity_history">Historiala</string>
     <string name="action_history">Historiala</string>
     <string name="show_hold_to_append_title">Erakutsi \"mantendu eransteko\" aholkua</string>
@@ -338,7 +324,6 @@
     <string name="saved_tabs_invalid_json">Ezin izan dira gordetako fitxak irakurri, lehenetsitako fitxak erabiltzen</string>
     <string name="restore_defaults">Berrezarri lehenetsitakoak</string>
     <string name="restore_defaults_confirmation">Lehenetsiak berrezarri nahi dituzu\?</string>
-    <string name="subscribers_count_not_available">Harpidedun kopurua ez dago eskuragarri</string>
     <string name="main_page_content_summary">Orri nagusian ikusiko diren fitxak</string>
     <string name="conferences">Konferentziak</string>
     <string name="updates_setting_title">Eguneraketak</string>
@@ -403,16 +388,6 @@
     <string name="downloads_storage_ask_title">Galdetu non deskargatu</string>
     <string name="downloads_storage_ask_summary">Non gorde galdetuko zaizu deskarga bakoitzean.
 \nGaitu sistemaren karpeta hautatzailea (SAF) kanpoko SD txartel batera deskargatu nahi baduzu</string>
-    <string name="no_one_watching">Ez dago inor ikusten</string>
-    <plurals name="watching">
-        <item quantity="one">ikusle %s</item>
-        <item quantity="other">%s ikusle</item>
-    </plurals>
-    <string name="no_one_listening">Ez dago inor entzuten</string>
-    <plurals name="listening">
-        <item quantity="one">entzule %s</item>
-        <item quantity="other">%s entzule</item>
-    </plurals>
     <string name="downloads_storage_use_saf_title">Erabili sistemaren karpeta hautatzailea (SAF)</string>
     <string name="downloads_storage_use_saf_summary">\'Biltegiaren Sarrera Framework\'ak kanpoko SD txartel betera deskargatzea ahalbidetzen du</string>
     <string name="clear_playback_states_title">Ezabatu erreprodukziorako kokapenak</string>
@@ -499,8 +474,6 @@
     <string name="content_not_supported">Eduki hau ez dago oraindik NewPipengatik onatuta.
 \n
 \nEtorkizuneko bertsio batean onartua izatea espero da.</string>
-    <string name="infinite_videos">∞ bideo</string>
-    <string name="more_than_100_videos">100 bideo baino gehiago</string>
     <string name="artists">Artistak</string>
     <string name="albums">Albumak</string>
     <string name="songs">Abestiak</string>

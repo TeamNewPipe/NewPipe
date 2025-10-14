@@ -77,21 +77,7 @@
     <string name="video">వీడియో</string>
     <string name="audio">ఆడియో</string>
     <string name="retry">మళ్ళీ ప్రయత్నించు</string>
-    <string name="no_subscribers">సభ్యులు లేరు</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s సభ్యుడు</item>
-        <item quantity="other">%s సభ్యులు</item>
-    </plurals>
-    <string name="no_views">వీక్షణలు లేవు</string>
-    <plurals name="views">
-        <item quantity="one">%s వీక్షణ</item>
-        <item quantity="other">%s వీక్షణలు</item>
-    </plurals>
     <string name="no_videos">వీడియోలు లేవు</string>
-    <plurals name="videos">
-        <item quantity="one">%s వీడియో</item>
-        <item quantity="other">%s వీడియోలు</item>
-    </plurals>
     <string name="start">ప్రారంభం</string>
     <string name="pause">విరామం</string>
     <string name="delete">తొలగించు</string>
@@ -262,8 +248,6 @@
     <string name="checksum">చెక్సమ్</string>
     <string name="error_report_open_issue_button_text">GitHubపై నివేదించు</string>
     <string name="empty_list_subtitle">ఇక్కడ క్రికెట్‌లు తప్ప మరేమీ లేదు</string>
-    <string name="no_one_listening">ఎవరూ వినడం లేదు</string>
-    <string name="no_one_watching">ఎవరూ చూడటం లేదు</string>
     <string name="no_comments">వ్యాఖ్యలు లేవు</string>
     <string name="download_to_sdcard_error_message">బాహ్య SD కార్డ్‌కి డౌన్‌లోడ్ చేయడం సాధ్యం కాదు. డౌన్‌లోడ్ ఫోల్డర్ స్థానాన్ని రీసెట్ చేయాలా\?</string>
     <string name="create">సృష్టించు</string>
@@ -281,12 +265,6 @@
     <string name="copy_for_github">ఫార్మాట్ చేసిన నివేదికను కాపీ చేయండి</string>
     <string name="description_tab_description">వివరణ</string>
     <string name="drawer_header_description">టోగుల్ సేవ, ప్రస్తుతం ఎంపిక చేయబడింది:</string>
-    <plurals name="listening">
-        <item quantity="one">%s శ్రోత</item>
-        <item quantity="other">%s శ్రోతలు</item>
-    </plurals>
-    <string name="more_than_100_videos">100+ వీడియోలు</string>
-    <string name="infinite_videos">∞ వీడియోలు</string>
     <string name="comments_are_disabled">వ్యాఖ్యలు నిలిపివేయబడ్డాయి</string>
     <string name="clear_cookie_summary">మీరు reCAPTCHAని పరిష్కరించినప్పుడు NewPipe స్టోర్ చేసే కుక్కీలను క్లియర్ చేయండి</string>
     <string name="delete_playback_states_alert">అన్ని ప్లేబ్యాక్ స్థానాలను తొలగించాలా\?</string>
@@ -301,16 +279,11 @@
     <string name="error_report_open_github_notice">దయచేసి మీ క్రాష్‌ను చర్చిస్తున్న సమస్య ఇప్పటికే ఉందో లేదో తనిఖీ చేయండి. డూప్లికేట్ టిక్కెట్‌లను క్రియేట్ చేస్తున్నప్పుడు, అసలు బగ్‌ని పరిష్కరించడానికి మేము వెచ్చించే సమయాన్ని మీరు మా నుండి తీసుకుంటారు.</string>
     <string name="comments_tab_description">వ్యాఖ్యలు</string>
     <string name="related_items_tab_description">సంబంధిత అంశాలు</string>
-    <string name="subscribers_count_not_available">సభ్యుల సంఖ్య అందుబాటులో లేదు</string>
     <string name="player_unrecoverable_failure">ప్లేయర్లో కోలుకోలేని లోపం సంభవించింది</string>
     <string name="video_streams_empty">వీడియో స్ట్రీమ్‌లు ఏవీ కనుగొనబడలేదు</string>
     <string name="missing_file">ఫైల్ తరలించబడింది లేదా తొలగించబడింది</string>
     <string name="invalid_file">ఫైల్ ఉనికిలో లేదు లేదా దానిని చదవడానికి లేదా వ్రాయడానికి అనుమతి లేదు</string>
     <string name="error_occurred_detail">లోపం సంభవించింది: %1$s</string>
-    <plurals name="watching">
-        <item quantity="one">%s చూస్తున్నాడు</item>
-        <item quantity="other">%s చూస్తున్నారు</item>
-    </plurals>
     <string name="error_report_channel_description">లోపాలు నివేదించడానికి నోటిఫికేషన్‌లు</string>
     <string name="error_report_channel_name">లోపనివేదన నోటిఫికేషన్</string>
     <string name="undo">చెరుపు</string>

@@ -146,21 +146,7 @@
     <string name="video">Видео</string>
     <string name="audio">Звук</string>
     <string name="retry">Пробај повторно</string>
-    <string name="no_subscribers">Нема зачленети</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s зачленет</item>
-        <item quantity="other">%s зачленети</item>
-    </plurals>
-    <string name="no_views">Нула прегледи</string>
-    <plurals name="views">
-        <item quantity="one">%s преглед</item>
-        <item quantity="other">%s прегледи</item>
-    </plurals>
     <string name="no_videos">Нема видеа</string>
-    <plurals name="videos">
-        <item quantity="one">%s видео</item>
-        <item quantity="other">%s видеа</item>
-    </plurals>
     <string name="start">Започни</string>
     <string name="pause">Пауза</string>
     <string name="create">Создади</string>
@@ -330,7 +316,6 @@
     <string name="app_update_notification_channel_description">Известување за нова NewPipe верзија</string>
     <string name="download_to_sdcard_error_title">Надворешната меморија е недостапна</string>
     <string name="download_to_sdcard_error_message">Преземањето на SD картичка не е возможно. Да се ресетира локацијата на папката за преземања ?</string>
-    <string name="subscribers_count_not_available">Бројот на претплатници не е достапен</string>
     <string name="main_page_content_summary">Кои јазичиња се прикажани на главната страница</string>
     <string name="updates_setting_title">Ажурирања</string>
     <string name="updates_setting_description">Покажи известување за навремено ажурирање на апликацијата кога е достапна нова верзија</string>
@@ -398,20 +383,12 @@
     <string name="recent">Скорешни</string>
     <string name="enqueue_stream">Додај во редослед</string>
     <string name="feed_show_partially_watched">Делумно изгледани</string>
-    <plurals name="watching">
-        <item quantity="one">%s гледач</item>
-        <item quantity="other">%s гледачи</item>
-    </plurals>
     <string name="show_less">Прикажи помалку</string>
     <string name="main_tabs_position_summary">Премести ги основниот селектор на јазичиња најдолу</string>
     <string name="main_tabs_position_title">Позиција на основните јазичиња</string>
     <string name="show_channel_details">Прикажи информации за каналот</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Да, како и делумно изгледаните видеа</string>
     <string name="audio_track_present_in_video">Аудио снимка треба да е веќе присутна во овој стрим</string>
-    <plurals name="listening">
-        <item quantity="one">%s слушател</item>
-        <item quantity="other">%s слушатели</item>
-    </plurals>
     <string name="local">Местно</string>
     <string name="recently_added">Скоро додадено</string>
     <string name="error_insufficient_storage">Нема доволно слободна меморија на уредот</string>
@@ -497,7 +474,6 @@
     <string name="ignore_hardware_media_buttons_title">Игнорирај хардверски копчиња за медиуми</string>
     <string name="ignore_hardware_media_buttons_summary">Корисно, на пример, ако користите слушалки со скршени физички копчиња</string>
     <string name="start_main_player_fullscreen_title">Стартирајте го основниот плеер на цел екран</string>
-    <string name="infinite_videos">∞ видеа</string>
     <string name="notification_action_buffering">Буферирање</string>
     <string name="notification_action_nothing">Ништо</string>
     <string name="notification_colorize_title">Обој го известувањето</string>
@@ -670,10 +646,8 @@
     <string name="notification_actions_at_most_three">Можете да изберете најмногу три дејствија за да се прикажат во компактното известување!</string>
     <string name="no_live_streams">Нема стримови во живо</string>
     <string name="play_queue_audio_track">Аудио: %s</string>
-    <string name="more_than_100_videos">100+ видеа</string>
     <string name="audio_track">Аудио трака</string>
     <string name="enqueued">Додадено во редослед</string>
-    <string name="no_one_listening">Нема слушатели</string>
     <string name="error_report_notification_toast">Возникна грешка, погледнете го известувањето</string>
     <string name="error_report_open_issue_button_text">Пријави на GitHub</string>
     <plurals name="new_streams">
@@ -682,7 +656,6 @@
     </plurals>
     <string name="error_report_open_github_notice">Ве молиме, проверете дали веќе има дискусија за проблем како овој. Создадените дупликати ни одземаат од времето, коешто можеме да го посветиме на поправање на проблемот.</string>
     <string name="enqueue_next_stream">Додај го во редослед следното</string>
-    <string name="no_one_watching">Нема гледачи</string>
     <string name="done">Готово</string>
     <string name="no_dir_yet">Сѐ уште не е избрана папка за преземања, одберете ја стандардната папка за преземања сега</string>
     <string name="no_playlist_bookmarked_yet">Во моментов нема обележани плејлисти</string>

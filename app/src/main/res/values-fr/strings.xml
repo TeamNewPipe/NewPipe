@@ -140,24 +140,7 @@
     <string name="notification_channel_description">Notifications pour le lecteur de NewPipe</string>
     <string name="search_no_results">Aucun résultat</string>
     <string name="empty_list_subtitle">Aucun contenu</string>
-    <string name="no_subscribers">Aucun abonné</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s abonné</item>
-        <item quantity="many">%s abonnés</item>
-        <item quantity="other">%s abonnés</item>
-    </plurals>
-    <string name="no_views">Aucune vue</string>
-    <plurals name="views">
-        <item quantity="one">%s vue</item>
-        <item quantity="many">%s vues</item>
-        <item quantity="other">%s vues</item>
-    </plurals>
     <string name="no_videos">Aucune vidéo</string>
-    <plurals name="videos">
-        <item quantity="one">%s vidéo</item>
-        <item quantity="many">%s vidéos</item>
-        <item quantity="other">%s vidéos</item>
-    </plurals>
     <string name="charset_most_special_characters">Caractères spéciaux</string>
     <string name="delete_item_search_history">Voulez-vous supprimer cet élément de l’historique de recherche \?</string>
     <string name="main_page_content">Contenu de la page principale</string>
@@ -338,7 +321,6 @@
     <string name="download_to_sdcard_error_title">Stockage externe indisponible</string>
     <string name="restore_defaults">Restaurer les valeurs par défaut</string>
     <string name="restore_defaults_confirmation">Voulez-vous restaurer les valeurs par défaut \?</string>
-    <string name="subscribers_count_not_available">Compteur du nombre d’abonnés indisponible</string>
     <string name="stop">Arrêter</string>
     <string name="events">Évènements</string>
     <string name="download_to_sdcard_error_message">Impossible de télécharger dans la carte mémoire externe. Voulez-vous réinitialiser l’emplacement du dossier de téléchargement \?</string>
@@ -413,18 +395,6 @@
     <string name="delete_playback_states_alert">Voulez-vous supprimer toutes les positions de reprise de lecture \?</string>
     <string name="drawer_header_description">Basculer le service, actuellement sélectionné :</string>
     <string name="default_kiosk_page_summary">Kiosque par défaut</string>
-    <string name="no_one_watching">Personne ne regarde</string>
-    <plurals name="watching">
-        <item quantity="one">%s spectateur</item>
-        <item quantity="many">%s spectateurs</item>
-        <item quantity="other">%s spectateurs</item>
-    </plurals>
-    <string name="no_one_listening">Personne n’écoute</string>
-    <plurals name="listening">
-        <item quantity="one">%s auditeur</item>
-        <item quantity="many">%s auditeurs</item>
-        <item quantity="other">%s auditeurs</item>
-    </plurals>
     <string name="seek_duration_title">Durée de l’avance et retour rapide</string>
     <string name="peertube_instance_url_title">Instances PeerTube</string>
     <string name="peertube_instance_url_summary">Veuillez choisir vos instances PeerTube préférées</string>
@@ -513,8 +483,6 @@
 \n
 \nNous espérons qu’il le sera dans une future version.</string>
     <string name="albums">Albums</string>
-    <string name="infinite_videos">∞ vidéos</string>
-    <string name="more_than_100_videos">100+ vidéos</string>
     <string name="artists">Artistes</string>
     <string name="songs">Chansons</string>
     <string name="restricted_video">Cette vidéo dispose d’une limite d’âge.
@@ -846,4 +814,49 @@
     <string name="channel_tab_likes">Likes</string>
     <string name="migration_info_6_7_title">Page SoundCloud Top 50 supprimée</string>
     <string name="migration_info_6_7_message">SoundCloud a abandonné le classement original du Top 50. L\'onglet correspondant a été supprimé de votre page d\'accueil.</string>
+    <!-- MessageFormat-style strings -->
+    <string name="subscribers">
+        {count, plural,
+        =-1 {Compteur du nombre d’abonnés indisponible}
+        =0 {Aucun abonné}
+        =1 {1 abonné}
+        many {{formatted_count} abonnés}
+        other {{formatted_count} abonnés}
+        }
+    </string>
+    <string name="views">
+        {count, plural,
+        =0 {Aucune vue}
+        =1 {1 vue}
+        many {{formatted_count} vues}
+        other {{formatted_count} vues}
+        }
+    </string>
+    <string name="watching">
+        {count, plural,
+        =0 {Personne ne regarde}
+        =1 {1 spectateur}
+        many {{formatted_count} spectateurs}
+        other {{formatted_count} spectateurs}
+        }
+    </string>
+    <string name="listening">
+        {count, plural,
+        =0 {Personne n’écoute}
+        =1 {1 auditeur}
+        many {{formatted_count} auditeurs}
+        other {{formatted_count} auditeurs}
+        }
+    </string>
+    <string name="videos">
+        {count, plural,
+        =-3 {100+ vidéos}
+        =-2 {∞ vidéos}
+        =-1 {Video count unavailable}
+        =0 {Aucune vidéo}
+        =1 {1 vidéo}
+        other {{formatted_count} vidéos}
+        other {{formatted_count} vidéos}
+        }
+    </string>
 </resources>

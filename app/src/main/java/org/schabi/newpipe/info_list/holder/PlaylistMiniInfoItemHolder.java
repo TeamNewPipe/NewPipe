@@ -36,14 +36,13 @@ public class PlaylistMiniInfoItemHolder extends InfoItemHolder {
     @Override
     public void updateFromItem(final InfoItem infoItem,
                                final HistoryRecordManager historyRecordManager) {
-        if (!(infoItem instanceof PlaylistInfoItem)) {
+        if (!(infoItem instanceof PlaylistInfoItem item)) {
             return;
         }
-        final PlaylistInfoItem item = (PlaylistInfoItem) infoItem;
 
         itemTitleView.setText(item.getName());
         itemStreamCountView.setText(Localization
-                .localizeStreamCountMini(itemStreamCountView.getContext(), item.getStreamCount()));
+                .formatStreamCountMini(itemStreamCountView.getContext(), item.getStreamCount()));
         itemUploaderView.setText(item.getUploaderName());
 
         PicassoHelper.loadPlaylistThumbnail(item.getThumbnails()).into(itemThumbnailView);

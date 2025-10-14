@@ -11,8 +11,6 @@ import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.Localization;
 
-import java.time.format.DateTimeFormatter;
-
 public class LocalPlaylistItemHolder extends PlaylistItemHolder {
 
     private static final float GRAYED_OUT_ALPHA = 0.6f;
@@ -28,15 +26,13 @@ public class LocalPlaylistItemHolder extends PlaylistItemHolder {
 
     @Override
     public void updateFromItem(final LocalItem localItem,
-                               final HistoryRecordManager historyRecordManager,
-                               final DateTimeFormatter dateTimeFormatter) {
-        if (!(localItem instanceof PlaylistMetadataEntry)) {
+                               final HistoryRecordManager historyRecordManager) {
+        if (!(localItem instanceof PlaylistMetadataEntry item)) {
             return;
         }
-        final PlaylistMetadataEntry item = (PlaylistMetadataEntry) localItem;
 
         itemTitleView.setText(item.name);
-        itemStreamCountView.setText(Localization.localizeStreamCountMini(
+        itemStreamCountView.setText(Localization.formatStreamCountMini(
                 itemStreamCountView.getContext(), item.streamCount));
         itemUploaderView.setVisibility(View.INVISIBLE);
 
@@ -49,6 +45,6 @@ public class LocalPlaylistItemHolder extends PlaylistItemHolder {
             itemView.setAlpha(1.0f);
         }
 
-        super.updateFromItem(localItem, historyRecordManager, dateTimeFormatter);
+        super.updateFromItem(localItem, historyRecordManager);
     }
 }

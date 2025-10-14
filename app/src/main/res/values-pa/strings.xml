@@ -153,21 +153,7 @@
     <string name="video">ਵੀਡੀਓ</string>
     <string name="audio">ਆਡੀਓ</string>
     <string name="retry">ਦੋਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
-    <string name="no_subscribers">ਕੋਈ ਸਬਸਕ੍ਰਾਈਬਰ ਨਹੀਂ</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s ਸਬਸਕ੍ਰਾਈਬਰ</item>
-        <item quantity="other">%s ਸਬਸਕ੍ਰਾਈਬਰਸ</item>
-    </plurals>
-    <string name="no_views">ਕੋਈ ਵਿਊ ਨਹੀਂ</string>
-    <plurals name="views">
-        <item quantity="one">%s ਵਿਊ</item>
-        <item quantity="other">%s ਵਿਊਜ਼</item>
-    </plurals>
     <string name="no_videos">ਕੋਈ ਵੀਡੀਓ ਨਹੀਂ</string>
-    <plurals name="videos">
-        <item quantity="one">%s ਵੀਡੀਓ</item>
-        <item quantity="other">%s ਵੀਡੀਓਜ਼</item>
-    </plurals>
     <string name="start">ਸ਼ੁਰੂ ਕਰੋ</string>
     <string name="pause">ਰੋਕੋ</string>
     <string name="create">ਬਣਾਓ</string>
@@ -336,7 +322,6 @@
     <string name="saved_tabs_invalid_json">ਸਾਂਭੀਆਂ ਟੈਬਾਂ ਨਹੀਂ ਪੜ੍ਹ ਹੋਈਆਂ, ਇਸ ਲਈ ਡਿਫਾਲਟ ਟੈਬਾਂ ਦੀ ਵਰਤੋਂ ਹੋ ਰਹੀ ਹੈ</string>
     <string name="restore_defaults">ਡੀਫ਼ਾਲਟ ਮੁੜ-ਸਥਾਪਿਤ ਕਰੋ</string>
     <string name="restore_defaults_confirmation">ਕੀ ਤੁਸੀਂ ਡਿਫਾਲਟ ਮੁੜ-ਸਥਾਪਿਤ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ\?</string>
-    <string name="subscribers_count_not_available">ਸਬਸਕ੍ਰਾਈਬਰਾਂ ਦੀ ਗਿਣਤੀ ਅਣ-ਉਪਲਬਧ</string>
     <string name="main_page_content_summary">ਮੁੱਖ ਪੰਨੇ ਤੇ ਕਿਹੜੇ ਟੈਬ ਵਿਖਾਏ ਜਾਣਗੇ</string>
     <string name="updates_setting_title">ਅੱਪਡੇਟਾਂ</string>
     <string name="updates_setting_description">ਜਦੋਂ ਐਪ ਦੀ ਨਵੀਂ ਅੱਪਡੇਟ ਉਪਲੱਬਧ ਹੋਵੇ ਤਾਂ ਅੱਪਡੇਟ ਕਰਨ ਵਾਸਤੇ ਨੋਟੀਫਿਕੇਸ਼ਨ ਵਿਖਾਓ</string>
@@ -541,18 +526,6 @@
     <string name="recaptcha_solve">ਹੱਲ ਕਰੋ</string>
     <string name="subtitle_activity_recaptcha">ਹੱਲ ਹੋਣ \'ਤੇ \"ਹੋ ਗਿਆ\" ਨੱਪੋ</string>
     <string name="no_dir_yet">ਹਾਲੇ ਕੋਈ ਡਾਊਨਲੋਡ ਫੋਲਡਰ ਸੈੱਟ ਨਹੀਂ ਕੀਤਾ ਹੋਇਆ, ਹੁਣੇ ਡਿਫ਼ਾਲਟ ਡਾਊਨਲੋਡ ਫੋਲਡਰ ਚੁਣੋ</string>
-    <string name="infinite_videos">ਅਣਗਿਣਤ ਵੀਡੀਓਜ਼</string>
-    <string name="more_than_100_videos">100+ ਵੀਡੀਓਜ਼</string>
-    <plurals name="listening">
-        <item quantity="one">%s ਸਰੋਤਾ</item>
-        <item quantity="other">%s ਸਰੋਤੇ</item>
-    </plurals>
-    <plurals name="watching">
-        <item quantity="one">%s ਜਣਾ ਵੇਖ ਰਿਹਾ ਹੈ</item>
-        <item quantity="other">%s ਲੋਕ ਵੇਖ ਰਹੇ ਹਨ</item>
-    </plurals>
-    <string name="no_one_listening">ਕੋਈ ਸਰੋਤਾ ਨਹੀਂ ਸੁਣ ਰਿਹਾ</string>
-    <string name="no_one_watching">ਕੋਈ ਦਰਸ਼ਕ ਨਹੀਂ ਵੇਖ ਰਿਹਾ</string>
     <string name="description_tab_description">ਵੇਰਵਾ</string>
     <string name="related_items_tab_description">ਸਬੰਧਤ ਨਗ</string>
     <string name="comments_tab_description">ਟਿੱਪਣੀਆਂ</string>

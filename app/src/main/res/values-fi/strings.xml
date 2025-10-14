@@ -102,21 +102,6 @@
     <string name="video">Video</string>
     <string name="audio">Ääni</string>
     <string name="retry">Toista uudelleen</string>
-    <string name="no_subscribers">Ei tilaajia</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s tilaaja</item>
-        <item quantity="other">%s tilaajaa</item>
-    </plurals>
-    <string name="no_views">Ei katselukertoja</string>
-    <plurals name="views">
-        <item quantity="one">%s katselukerta</item>
-        <item quantity="other">%s katselukertaa</item>
-    </plurals>
-    <string name="no_videos">Ei videoita</string>
-    <plurals name="videos">
-        <item quantity="one">%s video</item>
-        <item quantity="other">%s videoita</item>
-    </plurals>
     <string name="start">Aloita</string>
     <string name="pause">Tauota</string>
     <string name="delete">Poista</string>
@@ -338,19 +323,6 @@
     <string name="main_page_content_summary">Mitkä välilehdet näytetään pääsivulla</string>
     <string name="done">Valmis</string>
     <string name="subtitle_activity_recaptcha">Paina ”Valmis”, kun ratkaistu</string>
-    <string name="infinite_videos">∞ videota</string>
-    <string name="more_than_100_videos">100+ videota</string>
-    <plurals name="watching">
-        <item quantity="one">%s katselija</item>
-        <item quantity="other">%s katselijaa</item>
-    </plurals>
-    <plurals name="listening">
-        <item quantity="one">%s kuuntelija</item>
-        <item quantity="other">%s kuuntelijaa</item>
-    </plurals>
-    <string name="no_one_listening">Ei kuuntelijoita</string>
-    <string name="no_one_watching">Ei katselijoita</string>
-    <string name="subscribers_count_not_available">Tilaajien lukumäärä ei saatavilla</string>
     <string name="drawer_header_description">Kytke palvelu, tällä hetkellä valittuna:</string>
     <string name="permission_display_over_apps">Myönnä käyttöoikeus näyttää muiden sovellusten päällä</string>
     <string name="restore_defaults_confirmation">Haluatko palauttaa oletusarvot\?</string>

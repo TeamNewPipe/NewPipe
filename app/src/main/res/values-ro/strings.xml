@@ -122,24 +122,7 @@
     <string name="notification_channel_description">Notificări pentru playerul NewPipe</string>
     <string name="search_no_results">Fără rezultate</string>
     <string name="empty_list_subtitle">Nimic aici în afară de sunetul greierilor</string>
-    <string name="no_subscribers">Fără abonați</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s abonat</item>
-        <item quantity="few">%s abonați</item>
-        <item quantity="other">%s de abonați</item>
-    </plurals>
-    <string name="no_views">Nicio vizionare</string>
-    <plurals name="views">
-        <item quantity="one">%s vizionare</item>
-        <item quantity="few">%s vizionări</item>
-        <item quantity="other">%s de vizionări</item>
-    </plurals>
     <string name="no_videos">Nu există videoclipuri</string>
-    <plurals name="videos">
-        <item quantity="one">%s videoclip</item>
-        <item quantity="few">%s videoclipuri</item>
-        <item quantity="other">%s de videoclipuri</item>
-    </plurals>
     <string name="settings_category_downloads_title">Descărcări</string>
     <string name="settings_file_charset_title">Caractere permise în numele fișierelor</string>
     <string name="settings_file_replacement_character_summary">Caracterele nevalabile sunt înlocuite cu această valoare</string>
@@ -303,7 +286,6 @@
     <string name="saved_tabs_invalid_json">Nu s-au putut citi filele salvate, deci se folosesc cele implicite</string>
     <string name="restore_defaults">Restaurați valorile implicite</string>
     <string name="restore_defaults_confirmation">Doriți să restaurați valorile implicite\?</string>
-    <string name="subscribers_count_not_available">Numărul de abonați nu este disponibil</string>
     <string name="main_page_content_summary">Ce file vor fi afișate pe pagina principală</string>
     <string name="conferences">Conferințe</string>
     <string name="show_comments_title">Arată comentariile</string>
@@ -560,20 +542,6 @@
     <string name="select_a_playlist">Selectați un playlist</string>
     <string name="default_kiosk_page_summary">Chioșc implicit</string>
     <string name="msg_calculating_hash">Se calculează hash-ul</string>
-    <string name="infinite_videos">∞ videoclipuri</string>
-    <string name="more_than_100_videos">Peste 100 de videoclipuri</string>
-    <plurals name="listening">
-        <item quantity="one">%s ascultător</item>
-        <item quantity="few">%s ascultători</item>
-        <item quantity="other">%s de ascultători</item>
-    </plurals>
-    <string name="no_one_listening">Nimeni nu ascultă</string>
-    <plurals name="watching">
-        <item quantity="one">%s spectator</item>
-        <item quantity="few">%s spectatori</item>
-        <item quantity="other">%s spectatori</item>
-    </plurals>
-    <string name="no_one_watching">Nimeni nu se uită</string>
     <string name="drawer_header_description">Comutare serviciu, selectat în prezent:</string>
     <string name="description_tab_description">Descriere</string>
     <string name="related_items_tab_description">Articole similare</string>

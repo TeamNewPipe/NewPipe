@@ -154,21 +154,7 @@
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Proovi uuesti</string>
-    <string name="no_subscribers">Tellijaid pole</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s tellija</item>
-        <item quantity="other">%s tellijat</item>
-    </plurals>
-    <string name="no_views">Pole vaadatud</string>
-    <plurals name="views">
-        <item quantity="one">%s vaatamine</item>
-        <item quantity="other">%s vaatamist</item>
-    </plurals>
     <string name="no_videos">Videoid pole</string>
-    <plurals name="videos">
-        <item quantity="one">%s video</item>
-        <item quantity="other">%s videot</item>
-    </plurals>
     <string name="start">Start</string>
     <string name="pause">Paus</string>
     <string name="create">Loo</string>
@@ -336,7 +322,6 @@
     <string name="saved_tabs_invalid_json">Tõrge salvestatud vahekaaride lugemisel; kasutatakse vaikeväärtusi</string>
     <string name="restore_defaults">Taasta vaikeväärtused</string>
     <string name="restore_defaults_confirmation">Kas soovid taastada vaikeväärtused\?</string>
-    <string name="subscribers_count_not_available">Tellijate arv pole saadaval</string>
     <string name="main_page_content_summary">Esilehel kuvatavad vahekaardid</string>
     <string name="conferences">Konverentsid</string>
     <string name="updates_setting_title">Uuendused</string>
@@ -437,16 +422,6 @@
     <string name="permission_display_over_apps">Luba rakendust kuvada teiste rakenduste peal</string>
     <string name="error_report_open_issue_button_text">Teata sellest GitHub\'is</string>
     <string name="comments_tab_description">Kommentaarid</string>
-    <string name="no_one_watching">Mitte keegi hetkel seda videot ei vaata</string>
-    <plurals name="watching">
-        <item quantity="one">%s vaataja</item>
-        <item quantity="other">%s vaatajat</item>
-    </plurals>
-    <string name="no_one_listening">Mitte keegi hetkel seda pala ei kuula</string>
-    <plurals name="listening">
-        <item quantity="one">%s kuulaja</item>
-        <item quantity="other">%s kuulajat</item>
-    </plurals>
     <string name="hash_channel_description">Teavitused video räsimise edenemise kohta</string>
     <string name="youtube_restricted_mode_enabled_title">Võta kasutusele YouTube\'i „Piiratud režiim“</string>
     <string name="missing_file">Faili asukoht on muutunud või on ta kustutatud</string>
@@ -491,8 +466,6 @@
     <string name="done">Valmis</string>
     <string name="subtitle_activity_recaptcha">Kui oled lõpetanud, siis vajuta „Valmis“ nuppu</string>
     <string name="no_comments">Kommentaare pole</string>
-    <string name="infinite_videos">∞ videot</string>
-    <string name="more_than_100_videos">100+ videot</string>
     <string name="close">Sulge</string>
     <string name="delete_downloaded_files">Kustuta allalaaditud failid</string>
     <string name="confirm_prompt">Kas sa soovid kustutada allalaadimiste ajaloo või allalaaditud failid\?</string>

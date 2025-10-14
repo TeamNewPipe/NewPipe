@@ -7,7 +7,6 @@ import android.widget.TextView;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.Localization;
@@ -54,40 +53,35 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
                                final HistoryRecordManager historyRecordManager) {
         super.updateFromItem(infoItem, historyRecordManager);
 
-        if (!(infoItem instanceof StreamInfoItem)) {
-            return;
+        if (infoItem instanceof StreamInfoItem item) {
+            itemAdditionalDetails.setText(getStreamInfoDetailLine(item));
         }
-        final StreamInfoItem item = (StreamInfoItem) infoItem;
-
-        itemAdditionalDetails.setText(getStreamInfoDetailLine(item));
     }
 
     private String getStreamInfoDetailLine(final StreamInfoItem infoItem) {
-        String viewsAndDate = "";
-        if (infoItem.getViewCount() >= 0) {
-            if (infoItem.getStreamType().equals(StreamType.AUDIO_LIVE_STREAM)) {
-                viewsAndDate = Localization
-                        .listeningCount(itemBuilder.getContext(), infoItem.getViewCount());
-            } else if (infoItem.getStreamType().equals(StreamType.LIVE_STREAM)) {
-                viewsAndDate = Localization
-                        .shortWatchingCount(itemBuilder.getContext(), infoItem.getViewCount());
-            } else {
-                viewsAndDate = Localization
-                        .shortViewCount(itemBuilder.getContext(), infoItem.getViewCount());
-            }
+        final var context = itemBuilder.getContext();
+        final long count = infoItem.getViewCount();
+        final String views;
+        if (count >= 0) {
+            views = switch (infoItem.getStreamType()) {
+                case LIVE_STREAM -> Localization.formatWatchingCount(context, count);
+                case AUDIO_LIVE_STREAM -> Localization.formatListeningCount(context, count);
+                default -> Localization.formatViewCount(context, count);
+            };
+        } else {
+            views = "";
         }
 
-        final String uploadDate = Localization.relativeTimeOrTextual(itemBuilder.getContext(),
-                infoItem.getUploadDate(),
+        final var uploadDate = Localization.relativeTimeOrTextual(context, infoItem.getUploadDate(),
                 infoItem.getTextualUploadDate());
         if (!TextUtils.isEmpty(uploadDate)) {
-            if (viewsAndDate.isEmpty()) {
+            if (views.isEmpty()) {
                 return uploadDate;
             }
 
-            return Localization.concatenateStrings(viewsAndDate, uploadDate);
+            return Localization.concatenateStrings(views, uploadDate);
         }
 
-        return viewsAndDate;
+        return views;
     }
 }

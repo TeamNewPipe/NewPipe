@@ -11,8 +11,6 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 
-import java.time.format.DateTimeFormatter;
-
 public class RemotePlaylistItemHolder extends PlaylistItemHolder {
 
     public RemotePlaylistItemHolder(final LocalItemBuilder infoItemBuilder,
@@ -27,15 +25,13 @@ public class RemotePlaylistItemHolder extends PlaylistItemHolder {
 
     @Override
     public void updateFromItem(final LocalItem localItem,
-                               final HistoryRecordManager historyRecordManager,
-                               final DateTimeFormatter dateTimeFormatter) {
-        if (!(localItem instanceof PlaylistRemoteEntity)) {
+                               final HistoryRecordManager historyRecordManager) {
+        if (!(localItem instanceof PlaylistRemoteEntity item)) {
             return;
         }
-        final PlaylistRemoteEntity item = (PlaylistRemoteEntity) localItem;
 
         itemTitleView.setText(item.getName());
-        itemStreamCountView.setText(Localization.localizeStreamCountMini(
+        itemStreamCountView.setText(Localization.formatStreamCountMini(
                 itemStreamCountView.getContext(), item.getStreamCount()));
         // Here is where the uploader name is set in the bookmarked playlists library
         if (!TextUtils.isEmpty(item.getUploader())) {
@@ -47,6 +43,6 @@ public class RemotePlaylistItemHolder extends PlaylistItemHolder {
 
         PicassoHelper.loadPlaylistThumbnail(item.getThumbnailUrl()).into(itemThumbnailView);
 
-        super.updateFromItem(localItem, historyRecordManager, dateTimeFormatter);
+        super.updateFromItem(localItem, historyRecordManager);
     }
 }

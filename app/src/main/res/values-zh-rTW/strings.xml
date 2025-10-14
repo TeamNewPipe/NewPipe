@@ -122,15 +122,6 @@
     <string name="notification_channel_description">NewPipe 播放器的通知</string>
     <string name="search_no_results">沒有結果</string>
     <string name="empty_list_subtitle">這裡空空如也</string>
-    <string name="no_subscribers">無訂閱者</string>
-    <plurals name="subscribers">
-        <item quantity="other">%s 位訂閱者</item>
-    </plurals>
-    <string name="no_views">無觀看次數</string>
-    <plurals name="views">
-        <item quantity="other">%s 次觀看</item>
-    </plurals>
-    <string name="no_videos">沒有影片</string>
     <string name="settings_category_downloads_title">下載</string>
     <string name="settings_file_charset_title">檔案名稱中允許的字元</string>
     <string name="settings_file_replacement_character_summary">不符合設定的字元將會被替換為此字串</string>
@@ -200,6 +191,7 @@
     <string name="donation_encouragement">NewPipe 由志願者所開發，他們花費他們的空閒時間務求為您帶來最佳的使用體驗。現在是時候回過頭來，讓我們的開發人員能夠在使 NewPipe 更臻完美的同時，享受一杯咖啡。</string>
     <string name="drawer_open">打開抽屜</string>
     <string name="drawer_close">關閉抽屜</string>
+    <string name="no_videos">無影片</string>
     <string name="video_player">影片播放器</string>
     <string name="background_player">背景播放器</string>
     <string name="popup_player">懸浮視窗播放器</string>
@@ -331,7 +323,6 @@
     <string name="saved_tabs_invalid_json">無法讀取已儲存的分頁，因此使用預設分頁</string>
     <string name="restore_defaults">恢復預設值</string>
     <string name="restore_defaults_confirmation">您想要恢復預設值嗎？</string>
-    <string name="subscribers_count_not_available">訂閱數不可用</string>
     <string name="main_page_content_summary">要在首頁顯示哪些分頁</string>
     <string name="updates_setting_title">更新</string>
     <string name="updates_setting_description">當有新版本可用時顯示通知以告知應用程式更新</string>
@@ -403,18 +394,6 @@
     <string name="clear_playback_states_summary">刪除所有播放位置</string>
     <string name="delete_playback_states_alert">刪除所有播放位置？</string>
     <string name="drawer_header_description">切換服務，目前已選取：</string>
-    <plurals name="videos">
-        <item quantity="other">%s 部影片</item>
-    </plurals>
-    <string name="default_kiosk_page_summary">預設 Kiosk</string>
-    <string name="no_one_watching">沒有人在看</string>
-    <plurals name="watching">
-        <item quantity="other">%s 個觀眾</item>
-    </plurals>
-    <string name="no_one_listening">沒有人正在聽</string>
-    <plurals name="listening">
-        <item quantity="other">%s 位聽眾</item>
-    </plurals>
     <string name="seek_duration_title">快轉／快退搜尋持續時間</string>
     <string name="peertube_instance_url_title">PeerTube 站臺</string>
     <string name="peertube_instance_url_summary">選取您最愛的 PeerTube 站臺</string>
@@ -489,8 +468,6 @@
     <string name="content_not_supported">NewPipe 尚未支援此內容。
 \n
 \n希望它會在未來的版本中支援。</string>
-    <string name="infinite_videos">∞ 部影片</string>
-    <string name="more_than_100_videos">超過 100 部影片</string>
     <string name="artists">演出者</string>
     <string name="albums">專輯</string>
     <string name="songs">歌曲</string>

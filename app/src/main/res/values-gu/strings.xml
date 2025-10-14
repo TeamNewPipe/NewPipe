@@ -66,7 +66,6 @@
     <string name="install">સ્થાપિત કરો</string>
     <string name="no_player_found_toast">કોઈ સ્ટ્રીમ પ્લેયર મળ્યો નથી (તમે તેને ચલાવવા માટે VLC ઇન્સ્ટોલ કરી શકો છો).</string>
     <string name="no_player_found">કોઈ સ્ટ્રીમ પ્લેયર મળ્યો નથી. વીએલસી સ્થાપિત કરીએ\?</string>
-    <string name="upload_date_text">%1$s પર પ્રકાશિત</string>
     <string name="main_bg_subtitle">પ્રારંભ કરવા માટે વિપુલ - દર્શક કાચને ટેપ કરો.</string>
     <string name="mark_as_watched">જોયેલું તરીકે ચિહ્નિત કરો</string>
     <string name="ok">ઠીક છે</string>
