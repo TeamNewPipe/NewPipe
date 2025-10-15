@@ -4,11 +4,11 @@
  */
 
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
-    id("kotlin-kapt")
-    id("kotlin-parcelize")
-    id("org.sonarqube")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.jetbrains.kotlin.kapt)
+    alias(libs.plugins.jetbrains.kotlin.parcelize)
+    alias(libs.plugins.sonarqube)
     checkstyle
 }
 
@@ -126,28 +126,14 @@ android {
     }
 }
 
-val checkstyleVersion = "10.12.1"
-
-val androidxLifecycleVersion = "2.6.2"
-val androidxRoomVersion = "2.6.1"
-val androidxWorkVersion = "2.8.1"
-
-val stateSaverVersion = "1.4.1"
-val exoPlayerVersion = "2.18.7"
-val googleAutoServiceVersion = "1.1.1"
-val groupieVersion = "2.10.1"
-val markwonVersion = "4.6.2"
-
-val leakCanaryVersion = "2.12"
-val stethoVersion = "1.6.0"
-
+// Custom dependency configuration for ktlint
 val ktlint by configurations.creating
 
 checkstyle {
     configDirectory = rootProject.file("checkstyle")
     isIgnoreFailures = false
     isShowViolations = true
-    toolVersion = checkstyleVersion
+    toolVersion = libs.versions.checkstyle.get()
 }
 
 tasks.register<Checkstyle>("runCheckstyle") {
@@ -208,113 +194,106 @@ sonar {
 
 dependencies {
     /** Desugaring **/
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs_nio:2.0.4")
+    coreLibraryDesugaring(libs.android.desugar)
 
     /** NewPipe libraries **/
-    implementation("com.github.TeamNewPipe:nanojson:e9d656ddb49a412a5a0a5d5ef20ca7ef09549996")
-    // WORKAROUND: if you get errors with the NewPipeExtractor dependency, replace `v0.24.3` with
-    // the corresponding commit hash, since JitPack sometimes deletes artifacts.
-    // If there’s already a git hash, just add more of it to the end (or remove a letter)
-    // to cause jitpack to regenerate the artifact.
-    implementation("com.github.TeamNewPipe:NewPipeExtractor:0023b22095a2d62a60cdfc87f4b5cd85c8b266c3")
-    implementation("com.github.TeamNewPipe:NoNonsense-FilePicker:5.0.0")
+    implementation(libs.newpipe.nanojson)
+    implementation(libs.newpipe.extractor)
+    implementation(libs.newpipe.filepicker)
 
     /** Checkstyle **/
-    checkstyle("com.puppycrawl.tools:checkstyle:$checkstyleVersion")
-    ktlint("com.pinterest:ktlint:0.45.2")
+    checkstyle(libs.puppycrawl.checkstyle)
+    ktlint(libs.pinterest.ktlint)
 
     /** AndroidX **/
-    implementation("androidx.appcompat:appcompat:1.7.1")
-    implementation("androidx.cardview:cardview:1.0.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.documentfile:documentfile:1.0.1")
-    implementation("androidx.fragment:fragment-ktx:1.6.2")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$androidxLifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$androidxLifecycleVersion")
-    implementation("androidx.localbroadcastmanager:localbroadcastmanager:1.1.0")
-    implementation("androidx.media:media:1.7.0")
-    implementation("androidx.preference:preference:1.2.1")
-    implementation("androidx.recyclerview:recyclerview:1.3.2")
-    implementation("androidx.room:room-runtime:$androidxRoomVersion")
-    implementation("androidx.room:room-rxjava3:$androidxRoomVersion")
-    kapt("androidx.room:room-compiler:$androidxRoomVersion")
-    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
-    // Newer version specified to prevent accessibility regressions with RecyclerView, see:
-    // https://developer.android.com/jetpack/androidx/releases/viewpager2#1.1.0-alpha01
-    implementation("androidx.viewpager2:viewpager2:1.1.0-beta02")
-    implementation("androidx.work:work-runtime-ktx:$androidxWorkVersion")
-    implementation("androidx.work:work-rxjava3:$androidxWorkVersion")
-    implementation("com.google.android.material:material:1.11.0")
-    implementation("androidx.webkit:webkit:1.9.0")
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.cardview)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.core)
+    implementation(libs.androidx.documentfile)
+    implementation(libs.androidx.fragment)
+    implementation(libs.androidx.lifecycle.livedata)
+    implementation(libs.androidx.lifecycle.viewmodel)
+    implementation(libs.androidx.localbroadcastmanager)
+    implementation(libs.androidx.media)
+    implementation(libs.androidx.preference)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.rxjava3)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.swiperefreshlayout)
+    implementation(libs.androidx.viewpager2)
+    implementation(libs.androidx.work.runtime)
+    implementation(libs.androidx.work.rxjava3)
+    implementation(libs.google.android.material)
+    implementation(libs.androidx.webkit)
 
     /** Third-party libraries **/
-    implementation("com.github.livefront:bridge:v2.0.2")
-    implementation("com.evernote:android-state:$stateSaverVersion")
-    kapt("com.evernote:android-state-processor:$stateSaverVersion")
+    implementation(libs.livefront.bridge)
+    implementation(libs.evernote.statesaver.core)
+    kapt(libs.evernote.statesaver.compiler)
 
     // HTML parser
-    implementation("org.jsoup:jsoup:1.17.2")
+    implementation(libs.jsoup)
 
     // HTTP client
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation(libs.squareup.okhttp)
 
     // Media player
-    implementation("com.google.android.exoplayer:exoplayer-core:$exoPlayerVersion")
-    implementation("com.google.android.exoplayer:exoplayer-dash:$exoPlayerVersion")
-    implementation("com.google.android.exoplayer:exoplayer-database:$exoPlayerVersion")
-    implementation("com.google.android.exoplayer:exoplayer-datasource:$exoPlayerVersion")
-    implementation("com.google.android.exoplayer:exoplayer-hls:$exoPlayerVersion")
-    implementation("com.google.android.exoplayer:exoplayer-smoothstreaming:$exoPlayerVersion")
-    implementation("com.google.android.exoplayer:exoplayer-ui:$exoPlayerVersion")
-    implementation("com.google.android.exoplayer:extension-mediasession:$exoPlayerVersion")
+    implementation(libs.google.exoplayer.core)
+    implementation(libs.google.exoplayer.dash)
+    implementation(libs.google.exoplayer.database)
+    implementation(libs.google.exoplayer.datasource)
+    implementation(libs.google.exoplayer.hls)
+    implementation(libs.google.exoplayer.mediasession)
+    implementation(libs.google.exoplayer.smoothstreaming)
+    implementation(libs.google.exoplayer.ui)
 
     // Metadata generator for service descriptors
-    compileOnly("com.google.auto.service:auto-service-annotations:$googleAutoServiceVersion")
-    kapt("com.google.auto.service:auto-service:$googleAutoServiceVersion")
+    compileOnly(libs.google.autoservice.annotations)
+    kapt(libs.google.autoservice.compiler)
 
     // Manager for complex RecyclerView layouts
-    implementation("com.github.lisawray.groupie:groupie:$groupieVersion")
-    implementation("com.github.lisawray.groupie:groupie-viewbinding:$groupieVersion")
+    implementation(libs.lisawray.groupie.core)
+    implementation(libs.lisawray.groupie.viewbinding)
 
     // Image loading
-    //noinspection NewerVersionAvailable,GradleDependency --> 2.8 is the last version, not 2.71828!
-    implementation("com.squareup.picasso:picasso:2.8")
+    implementation(libs.squareup.picasso)
 
     // Markdown library for Android
-    implementation("io.noties.markwon:core:$markwonVersion")
-    implementation("io.noties.markwon:linkify:$markwonVersion")
+    implementation(libs.noties.markwon.core)
+    implementation(libs.noties.markwon.linkify)
 
     // Crash reporting
-    implementation("ch.acra:acra-core:5.11.3")
+    implementation(libs.acra.core)
 
     // Properly restarting
-    implementation("com.jakewharton:process-phoenix:2.1.2")
+    implementation(libs.jakewharton.phoenix)
 
     // Reactive extensions for Java VM
-    implementation("io.reactivex.rxjava3:rxjava:3.1.8")
-    implementation("io.reactivex.rxjava3:rxandroid:3.0.2")
+    implementation(libs.reactivex.rxjava)
+    implementation(libs.reactivex.rxandroid)
     // RxJava binding APIs for Android UI widgets
-    implementation("com.jakewharton.rxbinding4:rxbinding:4.0.0")
+    implementation(libs.jakewharton.rxbinding)
 
     // Date and time formatting
-    implementation("org.ocpsoft.prettytime:prettytime:5.0.8.Final")
+    implementation(libs.ocpsoft.prettytime)
 
     /** Debugging **/
     // Memory leak detection
-    debugImplementation("com.squareup.leakcanary:leakcanary-object-watcher-android:$leakCanaryVersion")
-    debugImplementation("com.squareup.leakcanary:plumber-android:$leakCanaryVersion")
-    debugImplementation("com.squareup.leakcanary:leakcanary-android-core:$leakCanaryVersion")
+    debugImplementation(libs.squareup.leakcanary.watcher)
+    debugImplementation(libs.squareup.leakcanary.plumber)
+    debugImplementation(libs.squareup.leakcanary.core)
     // Debug bridge for Android
-    debugImplementation("com.facebook.stetho:stetho:$stethoVersion")
-    debugImplementation("com.facebook.stetho:stetho-okhttp3:$stethoVersion")
+    debugImplementation(libs.facebook.stetho.core)
+    debugImplementation(libs.facebook.stetho.okhttp3)
 
     /** Testing **/
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("org.mockito:mockito-core:5.6.0")
+    testImplementation(libs.junit)
+    testImplementation(libs.mockito.core)
 
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test:runner:1.5.2")
-    androidTestImplementation("androidx.room:room-testing:$androidxRoomVersion")
-    androidTestImplementation("org.assertj:assertj-core:3.24.2")
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.runner)
+    androidTestImplementation(libs.androidx.room.testing)
+    androidTestImplementation(libs.assertj.core)
 }
