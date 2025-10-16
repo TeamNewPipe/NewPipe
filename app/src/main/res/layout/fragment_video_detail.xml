@@ -704,4 +704,131 @@
 
     </RelativeLayout>
 
+    <!-- PINNED PLAYER OVERLAY (shown when pinned mode is enabled) -->
+    <LinearLayout
+        android:id="@+id/pinned_player_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:background="?attr/windowBackground">
+
+        <!-- PINNED PLAYER AREA -->
+        <FrameLayout
+            android:id="@+id/pinned_player_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@android:color/black" />
+
+        <!-- SCROLLABLE CONTENT BELOW PINNED PLAYER -->
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/pinned_content_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- TITLE -->
+                <org.schabi.newpipe.views.NewPipeTextView
+                    android:id="@+id/pinned_detail_title_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="16dp"
+                    tools:text="Video Title" />
+
+                <!-- UPLOADER INFO -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <ImageView
+                        android:id="@+id/pinned_detail_uploader_thumbnail_view"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/ic_person"
+                        android:contentDescription="@string/detail_uploader_thumbnail_view_description"
+                        android:scaleType="centerCrop"
+                        tools:src="@drawable/placeholder_thumbnail_channel" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <org.schabi.newpipe.views.NewPipeTextView
+                            android:id="@+id/pinned_detail_uploader_name_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="14sp"
+                            tools:text="Channel Name" />
+
+                        <org.schabi.newpipe.views.NewPipeTextView
+                            android:id="@+id/pinned_detail_uploader_subscriber_count_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="12sp"
+                            tools:text="1.2M subscribers" />
+
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/pinned_detail_subscribe_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/subscribe_button_title"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <!-- DESCRIPTION -->
+                <org.schabi.newpipe.views.NewPipeTextView
+                    android:id="@+id/pinned_detail_description_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="16dp"
+                    tools:text="Stream meta info with link" />
+
+                <!-- TAB CONTENT (Comments, Related, etc.) -->
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/pinned_view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <!-- TAB LAYOUT FOR PINNED MODE -->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/pinned_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="16dp"
+            app:tabBackground="?attr/windowBackground"
+            app:tabGravity="fill"
+            app:tabIconTint="?attr/colorAccent"
+            app:tabIndicatorGravity="top" />
+
+    </LinearLayout>
+
 </FrameLayout>

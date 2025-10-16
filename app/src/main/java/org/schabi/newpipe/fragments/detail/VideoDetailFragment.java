@@ -187,6 +187,8 @@ public final class VideoDetailFragment
                 } else if (getString(R.string.show_description_key).equals(key)) {
                     showDescription = sharedPreferences.getBoolean(key, true);
                     tabSettingsChanged = true;
+                } else if (getString(R.string.pinned_video_player_key).equals(key)) {
+                    setupPinnedPlayerMode();
                 }
             };
 
@@ -206,6 +208,9 @@ public final class VideoDetailFragment
     int lastStableBottomSheetState = BottomSheetBehavior.STATE_EXPANDED;
     @State
     protected boolean autoPlayEnabled = true;
+
+    // Pinned player fields
+    private boolean isPinnedPlayerEnabled = false;
 
     @Nullable
     private StreamInfo currentInfo = null;
@@ -626,6 +631,9 @@ public final class VideoDetailFragment
         binding.tabLayout.setupWithViewPager(binding.viewPager);
 
         binding.detailThumbnailRootLayout.requestFocus();
+
+        // Setup pinned player mode
+        setupPinnedPlayerMode();
 
         binding.detailControlsPlayWithKodi.setVisibility(
                 KoreUtils.shouldShowPlayWithKodi(requireContext(), serviceId)
@@ -1271,7 +1279,14 @@ public final class VideoDetailFragment
                 if (binding != null) {
                     // prevent from re-adding a view multiple times
                     playerUi.removeViewFromParent();
-                    binding.playerPlaceholder.addView(playerUi.getBinding().getRoot());
+
+                    // Add to appropriate placeholder based on pinned mode
+                    if (isPinnedPlayerEnabled) {
+                        binding.pinnedPlayerPlaceholder.addView(playerUi.getBinding().getRoot());
+                    } else {
+                        binding.playerPlaceholder.addView(playerUi.getBinding().getRoot());
+                    }
+
                     playerUi.setupVideoSurfaceIfNeeded();
                 }
             });
@@ -1293,6 +1308,85 @@ public final class VideoDetailFragment
 
         binding.playerPlaceholder.getLayoutParams().height = FrameLayout.LayoutParams.MATCH_PARENT;
         binding.playerPlaceholder.requestLayout();
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Pinned Player Methods
+    //////////////////////////////////////////////////////////////////////////*/
+
+    /**
+     * Check if pinned player mode is enabled in settings.
+     *
+     * @return true if pinned player mode is enabled, false otherwise
+     */
+    private boolean isPinnedPlayerEnabled() {
+        return PreferenceManager.getDefaultSharedPreferences(requireContext())
+                .getBoolean(getString(R.string.pinned_video_player_key), false);
+    }
+
+    /**
+     * Setup pinned player mode based on user preference.
+     */
+    private void setupPinnedPlayerMode() {
+        isPinnedPlayerEnabled = isPinnedPlayerEnabled();
+
+        if (binding == null) {
+            return;
+        }
+
+        if (isPinnedPlayerEnabled) {
+            // Show pinned overlay, hide original content
+            binding.pinnedPlayerOverlay.setVisibility(View.VISIBLE);
+            binding.detailMainContent.setVisibility(View.GONE);
+
+            // Copy data to pinned layout
+            copyDataToPinnedLayout();
+
+            // Setup tabs for pinned mode
+            setupPinnedTabs();
+        } else {
+            // Show original layout, hide pinned overlay
+            binding.pinnedPlayerOverlay.setVisibility(View.GONE);
+            binding.detailMainContent.setVisibility(View.VISIBLE);
+        }
+    }
+
+    /**
+     * Copy video data to pinned layout elements.
+     */
+    private void copyDataToPinnedLayout() {
+        if (currentInfo == null || binding == null) {
+            return;
+        }
+
+        // Copy title
+        binding.pinnedDetailTitleView.setText(currentInfo.getName());
+
+        // Copy uploader info
+        binding.pinnedDetailUploaderNameView.setText(currentInfo.getUploaderName());
+        // Note: Subscriber count and description methods may not be available
+        // binding.pinnedDetailUploaderSubscriberCountView.setText(
+        //         currentInfo.getSubscriberCount());
+        // binding.pinnedDetailDescriptionView.setText(currentInfo.getDescription());
+
+        // Load uploader thumbnail - check if method exists
+        // if (currentInfo.getUploaderAvatarUrl() != null) {
+        //     PicassoHelper.loadAvatarImage(currentInfo.getUploaderAvatarUrl())
+        //             .into(binding.pinnedDetailUploaderThumbnailView);
+        // }
+    }
+
+    /**
+     * Setup tabs for pinned mode (similar to original tabs).
+     */
+    private void setupPinnedTabs() {
+        if (binding == null || pageAdapter == null) {
+            return;
+        }
+
+        // Setup ViewPager and TabLayout for pinned mode
+        binding.pinnedViewPager.setAdapter(pageAdapter);
+        binding.pinnedTabLayout.setupWithViewPager(binding.pinnedViewPager);
     }
 
     private final ViewTreeObserver.OnPreDrawListener preDrawListener =
@@ -1498,6 +1592,9 @@ public final class VideoDetailFragment
         setInitialData(info.getServiceId(), info.getOriginalUrl(), info.getName(), playQueue);
 
         updateTabs(info);
+
+        // Update pinned player data when video info is loaded
+        copyDataToPinnedLayout();
 
         animate(binding.detailThumbnailPlayButton, true, 200);
         binding.detailVideoTitleView.setText(title);

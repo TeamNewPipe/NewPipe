@@ -91,6 +91,9 @@
     <string name="clear_queue_confirmation_description">The active player queue will be replaced</string>
     <string name="ignore_hardware_media_buttons_title">Ignore hardware media button events</string>
     <string name="ignore_hardware_media_buttons_summary">Useful, for instance, if you are using a headset with broken physical buttons</string>
+    <string name="pinned_video_player_key">pinned_video_player_key</string>
+    <string name="pinned_video_player_title">Pin video player at top</string>
+    <string name="pinned_video_player_summary">Keep the video player visible at the top while scrolling through comments and recommendations</string>
     <string name="show_comments_title">Show comments</string>
     <string name="show_comments_summary">Turn off to hide comments</string>
     <string name="show_next_and_similar_title">Show \'Next\' and \'Similar\' videos</string>
