@@ -18,6 +18,12 @@ val gitWorkingBranch = providers.exec {
     commandLine("git", "rev-parse", "--abbrev-ref", "HEAD")
 }.standardOutput.asText.map { it.trim() }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
 android {
     compileSdk = 36
     namespace = "org.schabi.newpipe"
@@ -87,14 +93,7 @@ android {
     compileOptions {
         // Flag to enable support for the new language APIs
         isCoreLibraryDesugaringEnabled = true
-
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
         encoding = "utf-8"
-    }
-
-    kotlinOptions {
-        jvmTarget = "17"
     }
 
     sourceSets {
