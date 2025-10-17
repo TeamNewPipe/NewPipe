@@ -205,6 +205,15 @@ public class SrtFromTtmlWriter {
         return srtSafeText;
     }
 
+    // Recursively process all child nodes to ensure text inside
+    // nested tags (e.g., <span>) is also extracted.
+    private void traverseChildNodesForNestedTags(final Node parent,
+                                                 final StringBuilder text) {
+        for (final Node child : parent.childNodes()) {
+            extractText(child, text);
+        }
+    }
+
     // CHECKSTYLE:OFF checkstyle:JavadocStyle
     // checkstyle does not understand that span tags are inside a code block
     /**
@@ -244,10 +253,8 @@ public class SrtFromTtmlWriter {
                 text.append(NEW_LINE);
             }
         }
-        // Recursively process child nodes
-        for (final Node child : node.childNodes()) {
-            extractText(child, text);
-        }
+
+        traverseChildNodesForNestedTags(node, text);
     }
     // CHECKSTYLE:ON
 
