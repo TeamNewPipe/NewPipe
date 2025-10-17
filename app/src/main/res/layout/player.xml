@@ -119,63 +119,78 @@
                         tools:ignore="RtlHardcoded" />
 
                     <LinearLayout
-                        android:id="@+id/metadataView"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:layout_marginEnd="8dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="top"
-                        android:orientation="vertical"
-                        tools:ignore="RtlHardcoded">
+                        android:orientation="horizontal">
 
-                        <org.schabi.newpipe.views.NewPipeTextView
-                            android:id="@+id/titleTextView"
-                            android:layout_width="match_parent"
+                        <LinearLayout
+                            android:id="@+id/metadataView"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:ellipsize="marquee"
-                            android:fadingEdge="horizontal"
-                            android:marqueeRepeatLimit="marquee_forever"
-                            android:scrollHorizontally="true"
-                            android:singleLine="true"
-                            android:textColor="@android:color/white"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            tools:ignore="RtlHardcoded"
-                            tools:text="The Video Title LONG very LONG" />
+                            android:layout_marginTop="6dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:gravity="top"
+                            android:orientation="vertical"
+                            tools:ignore="NestedWeights,RtlHardcoded">
 
-                        <org.schabi.newpipe.views.NewPipeTextView
-                            android:id="@+id/channelTextView"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="marquee"
-                            android:fadingEdge="horizontal"
-                            android:marqueeRepeatLimit="marquee_forever"
-                            android:scrollHorizontally="true"
-                            android:singleLine="true"
-                            android:textColor="@android:color/white"
-                            android:textSize="12sp"
-                            tools:text="The Video Artist  LONG very LONG very Long" />
+                            <org.schabi.newpipe.views.NewPipeTextView
+                                android:id="@+id/titleTextView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="marquee"
+                                android:fadingEdge="horizontal"
+                                android:marqueeRepeatLimit="marquee_forever"
+                                android:scrollHorizontally="true"
+                                android:singleLine="true"
+                                android:textColor="@android:color/white"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                tools:ignore="RtlHardcoded"
+                                tools:text="The Video Title LONG very LONG" />
+
+                            <org.schabi.newpipe.views.NewPipeTextView
+                                android:id="@+id/channelTextView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="marquee"
+                                android:fadingEdge="horizontal"
+                                android:marqueeRepeatLimit="marquee_forever"
+                                android:scrollHorizontally="true"
+                                android:singleLine="true"
+                                android:textColor="@android:color/white"
+                                android:textSize="12sp"
+                                tools:text="The Video Artist  LONG very LONG very Long" />
+
+                        </LinearLayout>
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                            <org.schabi.newpipe.views.NewPipeTextView
+                                android:id="@+id/audioTrackTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_gravity="right"
+                                android:layout_marginEnd="8dp"
+                                android:background="?attr/selectableItemBackground"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:minWidth="0dp"
+                                android:padding="@dimen/player_main_buttons_padding"
+                                android:singleLine="true"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold"
+                                android:visibility="gone"
+                                tools:ignore="HardcodedText,RtlHardcoded"
+                                tools:text="English (United States) original"
+                                tools:visibility="visible" />
+                        </FrameLayout>
+
                     </LinearLayout>
-
-                    <org.schabi.newpipe.views.NewPipeTextView
-                        android:id="@+id/audioTrackTextView"
-                        android:layout_width="0dp"
-                        android:layout_height="35dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="1"
-                        android:background="?attr/selectableItemBackground"
-                        android:ellipsize="end"
-                        android:gravity="center"
-                        android:minWidth="0dp"
-                        android:padding="@dimen/player_main_buttons_padding"
-                        android:singleLine="true"
-                        android:textColor="@android:color/white"
-                        android:textStyle="bold"
-                        android:visibility="gone"
-                        tools:ignore="HardcodedText,RtlHardcoded"
-                        tools:text="English (United States) original"
-                        tools:visibility="visible" />
 
                     <org.schabi.newpipe.views.NewPipeTextView
                         android:id="@+id/qualityTextView"
