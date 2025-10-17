@@ -177,6 +177,13 @@
                         tools:visibility="visible"
                         tools:text="English (Original)" />
 
+                    <View
+                        android:id="@+id/rightSpacer"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:visibility="gone"/>
+
                     <org.schabi.newpipe.views.NewPipeTextView
                         android:id="@+id/qualityTextView"
                         android:layout_width="wrap_content"

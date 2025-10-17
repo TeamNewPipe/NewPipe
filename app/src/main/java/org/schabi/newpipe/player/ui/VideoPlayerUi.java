@@ -1029,6 +1029,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
             binding.audioTrackTextView.setVisibility(View.GONE);
             binding.playbackSpeed.setVisibility(View.GONE);
 
+            onTopBarContentChanged();
+
             binding.playbackEndTime.setVisibility(View.GONE);
             binding.playbackLiveSync.setVisibility(View.GONE);
 
@@ -1135,6 +1137,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                 .ifPresent(s -> binding.audioTrackTextView.setText(
                         Localization.audioTrackName(context, s)));
         binding.audioTrackTextView.setVisibility(View.VISIBLE);
+        onTopBarContentChanged();
         audioTrackPopupMenu.setOnMenuItemClickListener(this);
         audioTrackPopupMenu.setOnDismissListener(this);
     }
@@ -1237,6 +1240,9 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     }
 
     protected abstract void onPlaybackSpeedClicked();
+
+    protected void onTopBarContentChanged() {
+    }
 
     private void onQualityClicked() {
         qualityPopupMenu.show();

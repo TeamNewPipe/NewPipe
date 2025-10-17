@@ -289,8 +289,10 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         binding.topControls.setClickable(true);
         binding.topControls.setFocusable(true);
 
+        binding.metadataView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
         binding.titleTextView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
         binding.channelTextView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
+        updateRightSpacerVisibility();
     }
 
     @Override
@@ -511,6 +513,19 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
                 && KoreUtils.shouldShowPlayWithKodi(context, playQueue.getItem().getServiceId())
                 ? View.VISIBLE : View.GONE);
     }
+
+    private void updateRightSpacerVisibility() {
+        final boolean hasAudio = binding.audioTrackTextView.getVisibility() != View.GONE;
+        final boolean hasMeta  = binding.metadataView.getVisibility() != View.GONE;
+        binding.rightSpacer.setVisibility(!hasAudio && !hasMeta
+                ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    protected void onTopBarContentChanged() {
+        updateRightSpacerVisibility();
+    }
+
     //endregion
 
 
@@ -934,9 +949,11 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         }
         fragmentListener.onFullscreenStateChanged(isFullscreen);
 
+        binding.metadataView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
         binding.titleTextView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
         binding.channelTextView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
         binding.playerCloseButton.setVisibility(isFullscreen ? View.GONE : View.VISIBLE);
+        updateRightSpacerVisibility();
         setupScreenRotationButton();
     }
 
