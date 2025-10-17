@@ -174,7 +174,7 @@
                         android:textStyle="bold"
                         android:visibility="gone"
                         tools:ignore="HardcodedText,RtlHardcoded"
-                        tools:text="English (Original)"
+                        tools:text="English (United States) original"
                         tools:visibility="visible" />
 
                     <org.schabi.newpipe.views.NewPipeTextView
