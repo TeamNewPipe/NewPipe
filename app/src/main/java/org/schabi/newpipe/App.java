@@ -66,10 +66,19 @@ public class App extends Application {
 
     private boolean isFirstRun = false;
     private static App app;
+    private boolean notificationsRequested = false;
 
     @NonNull
     public static App getApp() {
         return app;
+    }
+
+    public boolean getNotificationsRequested() {
+        return notificationsRequested;
+    }
+
+    public void setNotificationsRequested() {
+        notificationsRequested = true;
     }
 
     @Override
