@@ -37,7 +37,7 @@ data class LongPressable(
                 if (streamType == LIVE_STREAM || streamType == AUDIO_LIVE_STREAM) {
                     Live
                 } else {
-                    duration.takeIf { it >= 0 }?.let { Duration(it) }
+                    duration.takeIf { it > 0 }?.let { Duration(it) }
                 }
         }
     }
