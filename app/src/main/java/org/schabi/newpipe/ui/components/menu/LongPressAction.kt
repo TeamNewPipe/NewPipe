@@ -309,7 +309,7 @@ data class LongPressAction(
         ): List<LongPressAction> {
             return buildPlayerActionList { ChannelTabPlayQueue(item.serviceId, item.url) } +
                 buildShareActionList(item) +
-                listOf(
+                listOfNotNull(
                     Type.ShowChannelDetails.buildAction { context ->
                         NavigationHelper.openChannelFragment(
                             context.findFragmentActivity().supportFragmentManager,
@@ -318,14 +318,8 @@ data class LongPressAction(
                             item.name,
                         )
                     },
-                ) +
-                (
-                    onUnsubscribe
-                        ?.let { onUnsubscribe ->
-                            listOf(Type.Unsubscribe.buildAction { onUnsubscribe.run() })
-                        }
-                        ?: listOf()
-                    )
+                    onUnsubscribe?.let { r -> Type.Unsubscribe.buildAction { r.run() } }
+                )
         }
 
         @JvmStatic
