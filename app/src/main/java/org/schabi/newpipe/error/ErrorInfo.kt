@@ -3,7 +3,6 @@ package org.schabi.newpipe.error
 import android.content.Context
 import android.os.Parcelable
 import androidx.annotation.StringRes
-import androidx.core.content.ContextCompat
 import com.google.android.exoplayer2.ExoPlaybackException
 import com.google.android.exoplayer2.upstream.HttpDataSource
 import com.google.android.exoplayer2.upstream.Loader
@@ -28,6 +27,7 @@ import org.schabi.newpipe.extractor.exceptions.YoutubeMusicPremiumContentExcepti
 import org.schabi.newpipe.ktx.isNetworkRelated
 import org.schabi.newpipe.player.mediasource.FailedMediaSource
 import org.schabi.newpipe.player.resolver.PlaybackResolver
+import org.schabi.newpipe.util.Localization
 import java.net.UnknownHostException
 
 /**
@@ -147,13 +147,11 @@ class ErrorInfo private constructor(
             private vararg val formatArgs: String,
         ) : Parcelable {
             fun getString(context: Context): String {
+                // use Localization.compatGetString() just in case context is not AppCompatActivity
                 return if (formatArgs.isEmpty()) {
-                    // use ContextCompat.getString() just in case context is not AppCompatActivity
-                    ContextCompat.getString(context, stringRes)
+                    Localization.compatGetString(context, stringRes)
                 } else {
-                    // ContextCompat.getString() with formatArgs does not exist, so we just
-                    // replicate its source code but with formatArgs
-                    ContextCompat.getContextForLanguage(context).getString(stringRes, *formatArgs)
+                    Localization.compatGetString(context, stringRes, *formatArgs)
                 }
             }
         }
@@ -276,6 +274,9 @@ class ErrorInfo private constructor(
                 // we don't have an exception, so this is a manually built error, which likely
                 // indicates that it's important and is thus reportable
                 null -> true
+                // a recaptcha was detected, and the user needs to solve it, there is no use in
+                // letting users report it
+                is ReCaptchaException -> false
                 // the service explicitly said that content is not available (e.g. age restrictions,
                 // video deleted, etc.), there is no use in letting users report it
                 is ContentNotAvailableException -> false

@@ -1,5 +1,8 @@
 package org.schabi.newpipe.database.stream.dao;
 
+import static org.schabi.newpipe.database.stream.model.StreamStateEntity.JOIN_STREAM_ID;
+import static org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_STATE_TABLE;
+
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -12,9 +15,7 @@ import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Flowable;
-
-import static org.schabi.newpipe.database.stream.model.StreamStateEntity.JOIN_STREAM_ID;
-import static org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_STATE_TABLE;
+import io.reactivex.rxjava3.core.Maybe;
 
 @Dao
 public interface StreamStateDAO extends BasicDAO<StreamStateEntity> {
@@ -32,7 +33,7 @@ public interface StreamStateDAO extends BasicDAO<StreamStateEntity> {
     }
 
     @Query("SELECT * FROM " + STREAM_STATE_TABLE + " WHERE " + JOIN_STREAM_ID + " = :streamId")
-    Flowable<List<StreamStateEntity>> getState(long streamId);
+    Maybe<StreamStateEntity> getState(long streamId);
 
     @Query("DELETE FROM " + STREAM_STATE_TABLE + " WHERE " + JOIN_STREAM_ID + " = :streamId")
     int deleteState(long streamId);

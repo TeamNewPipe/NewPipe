@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.compose.ui.platform.ComposeView;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,7 +28,9 @@ import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
-import org.schabi.newpipe.util.image.PicassoHelper;
+import org.schabi.newpipe.ui.emptystate.EmptyStateSpec;
+import org.schabi.newpipe.ui.emptystate.EmptyStateUtil;
+import org.schabi.newpipe.util.image.CoilHelper;
 
 import java.util.List;
 import java.util.Vector;
@@ -40,7 +43,7 @@ public class SelectPlaylistFragment extends DialogFragment {
     private OnSelectedListener onSelectedListener = null;
 
     private ProgressBar progressBar;
-    private TextView emptyView;
+    private ComposeView emptyView;
     private RecyclerView recyclerView;
     private Disposable disposable = null;
 
@@ -62,6 +65,7 @@ public class SelectPlaylistFragment extends DialogFragment {
         recyclerView = v.findViewById(R.id.items_list);
         emptyView = v.findViewById(R.id.empty_state_view);
 
+        EmptyStateUtil.setEmptyStateComposable(emptyView, EmptyStateSpec.NoBookmarkedPlaylist);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         final SelectPlaylistAdapter playlistAdapter = new SelectPlaylistAdapter();
         recyclerView.setAdapter(playlistAdapter);
@@ -154,20 +158,15 @@ public class SelectPlaylistFragment extends DialogFragment {
                                      final int position) {
             final PlaylistLocalItem selectedItem = playlists.get(position);
 
-            if (selectedItem instanceof PlaylistMetadataEntry) {
-                final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
-
+            if (selectedItem instanceof PlaylistMetadataEntry entry) {
                 holder.titleView.setText(entry.name);
                 holder.view.setOnClickListener(view -> clickedItem(position));
-                PicassoHelper.loadPlaylistThumbnail(entry.thumbnailUrl).into(holder.thumbnailView);
-
-            } else if (selectedItem instanceof PlaylistRemoteEntity) {
-                final PlaylistRemoteEntity entry = ((PlaylistRemoteEntity) selectedItem);
-
+                CoilHelper.INSTANCE.loadPlaylistThumbnail(holder.thumbnailView, entry.thumbnailUrl);
+            } else if (selectedItem instanceof PlaylistRemoteEntity entry) {
                 holder.titleView.setText(entry.getName());
                 holder.view.setOnClickListener(view -> clickedItem(position));
-                PicassoHelper.loadPlaylistThumbnail(entry.getThumbnailUrl())
-                        .into(holder.thumbnailView);
+                CoilHelper.INSTANCE.loadPlaylistThumbnail(holder.thumbnailView,
+                        entry.getThumbnailUrl());
             }
         }
 

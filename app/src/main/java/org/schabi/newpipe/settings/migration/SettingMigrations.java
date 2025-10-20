@@ -251,7 +251,7 @@ public final class SettingMigrations {
         final int lastPrefVersion = sp.getInt(lastPrefVersionKey, 0);
 
         // no migration to run, already up to date
-        if (App.getApp().isFirstRun()) {
+        if (App.getInstance().isFirstRun()) {
             sp.edit().putInt(lastPrefVersionKey, VERSION).apply();
             return;
         } else if (lastPrefVersion == VERSION) {

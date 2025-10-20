@@ -16,8 +16,8 @@ import org.schabi.newpipe.ktx.ViewUtils;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.DependentPreferenceHelper;
 import org.schabi.newpipe.util.Localization;
-import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.StreamTypeUtil;
+import org.schabi.newpipe.util.image.CoilHelper;
 import org.schabi.newpipe.views.AnimatedProgressBar;
 
 import java.util.concurrent.TimeUnit;
@@ -64,8 +64,7 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
             StreamStateEntity state2 = null;
             if (DependentPreferenceHelper
                     .getPositionsInListsEnabled(itemProgressView.getContext())) {
-                state2 = historyRecordManager.loadStreamState(infoItem)
-                        .blockingGet()[0];
+                state2 = historyRecordManager.loadStreamState(infoItem).blockingGet();
             }
             if (state2 != null) {
                 itemProgressView.setVisibility(View.VISIBLE);
@@ -87,7 +86,7 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
         }
 
         // Default thumbnail is shown on error, while loading and if the url is empty
-        PicassoHelper.loadThumbnail(item.getThumbnails()).into(itemThumbnailView);
+        CoilHelper.INSTANCE.loadThumbnail(itemThumbnailView, item.getThumbnails());
 
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnStreamSelectedListener() != null) {
@@ -120,7 +119,7 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
         if (DependentPreferenceHelper.getPositionsInListsEnabled(itemProgressView.getContext())) {
             state = historyRecordManager
                     .loadStreamState(infoItem)
-                    .blockingGet()[0];
+                    .blockingGet();
         }
         if (state != null && item.getDuration() > 0
                 && !StreamTypeUtil.isLiveStream(item.getStreamType())) {

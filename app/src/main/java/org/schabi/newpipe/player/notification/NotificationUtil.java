@@ -102,10 +102,10 @@ public final class NotificationUtil {
             final int[] compactSlots = initializeNotificationSlots();
             mediaStyle.setShowActionsInCompactView(compactSlots);
         }
-        player.UIs()
-                .get(MediaSessionPlayerUi.class)
-                .flatMap(MediaSessionPlayerUi::getSessionToken)
-                .ifPresent(mediaStyle::setMediaSession);
+        @Nullable final MediaSessionPlayerUi ui = player.UIs().get(MediaSessionPlayerUi.class);
+        if (ui != null) {
+            mediaStyle.setMediaSession(ui.getSessionToken());
+        }
 
         // setup notification builder
         final var builder = setupNotificationBuilder(player.getContext(), mediaStyle)

@@ -9,6 +9,7 @@ const val DEFAULT_THROTTLE_TIMEOUT = 120L
 
 const val KEY_SERVICE_ID = "key_service_id"
 const val KEY_URL = "key_url"
+const val KEY_INFO = "info"
 const val KEY_TITLE = "key_title"
 const val KEY_LINK_TYPE = "key_link_type"
 const val KEY_OPEN_SEARCH = "key_open_search"

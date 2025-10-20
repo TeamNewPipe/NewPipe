@@ -77,7 +77,7 @@ object PoTokenProviderImpl : PoTokenProvider {
 
                     // create a new webPoTokenGenerator
                     webPoTokenGenerator = PoTokenWebView
-                        .newPoTokenGenerator(App.getApp()).blockingGet()
+                        .newPoTokenGenerator(App.instance).blockingGet()
 
                     // The streaming poToken needs to be generated exactly once before generating
                     // any other (player) tokens.

@@ -1,0 +1,318 @@
+package org.schabi.newpipe.player.helper
+
+import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
+import android.content.ServiceConnection
+import android.os.IBinder
+import android.util.Log
+import androidx.core.content.ContextCompat
+import com.google.android.exoplayer2.PlaybackException
+import com.google.android.exoplayer2.PlaybackParameters
+import org.schabi.newpipe.App
+import org.schabi.newpipe.MainActivity
+import org.schabi.newpipe.extractor.stream.StreamInfo
+import org.schabi.newpipe.player.Player
+import org.schabi.newpipe.player.PlayerService
+import org.schabi.newpipe.player.PlayerService.LocalBinder
+import org.schabi.newpipe.player.PlayerType
+import org.schabi.newpipe.player.event.PlayerServiceEventListener
+import org.schabi.newpipe.player.event.PlayerServiceExtendedEventListener
+import org.schabi.newpipe.player.playqueue.PlayQueue
+import org.schabi.newpipe.util.NavigationHelper
+
+private val DEBUG = MainActivity.DEBUG
+private val TAG: String = PlayerHolder::class.java.getSimpleName()
+
+/**
+ * Singleton that manages a `PlayerService`
+ * and can be used to control the player instance through the service.
+ */
+object PlayerHolder {
+    private var listener: PlayerServiceExtendedEventListener? = null
+
+    var isBound: Boolean = false
+        private set
+
+    private var playerService: PlayerService? = null
+
+    private val player: Player?
+        get() = playerService?.player
+
+    // player play queue might be null e.g. while player is starting
+    private val playQueue: PlayQueue?
+        get() = this.player?.playQueue
+
+    val type: PlayerType?
+        /**
+         * Returns the current [PlayerType] of the [PlayerService] service,
+         * otherwise `null` if no service is running.
+         *
+         * @return Current PlayerType
+         */
+        get() = this.player?.playerType
+
+    val isPlaying: Boolean
+        get() = this.player?.isPlaying == true
+
+    val isPlayerOpen: Boolean
+        get() = this.player != null
+
+    val isPlayQueueReady: Boolean
+        /**
+         * Use this method to only allow the user to manipulate the play queue (e.g. by enqueueing via
+         * the stream long press menu) when there actually is a play queue to manipulate.
+         * @return true only if the player is open and its play queue is ready (i.e. it is not null)
+         */
+        get() = this.playQueue != null
+
+    val queueSize: Int
+        get() = this.playQueue?.size() ?: 0
+
+    val queuePosition: Int
+        get() = this.playQueue?.index ?: 0
+
+    fun setListener(newListener: PlayerServiceExtendedEventListener?) {
+        listener = newListener
+
+        // Force reload data from service
+        newListener?.let { listener ->
+            playerService?.let { service ->
+                listener.onServiceConnected(service)
+                startPlayerListener()
+                // ^ will call listener.onPlayerConnected() down the line if there is an active player
+            }
+        }
+    }
+
+    private val commonContext: Context
+        // helper to handle context in common place as using the same
+        get() = App.instance
+
+    /**
+     * Connect to (and if needed start) the [PlayerService]
+     * and bind [PlayerServiceConnection] to it.
+     * If the service is already started, only set the listener.
+     * @param playAfterConnect If this holder’s service was already started,
+     * start playing immediately
+     * @param newListener set this listener
+     */
+    fun startService(
+        playAfterConnect: Boolean,
+        newListener: PlayerServiceExtendedEventListener?
+    ) {
+        if (DEBUG) {
+            Log.d(TAG, "startService() called with playAfterConnect=$playAfterConnect")
+        }
+        val context = this.commonContext
+        setListener(newListener)
+        if (this.isBound) {
+            return
+        }
+        // startService() can be called concurrently and it will give a random crashes
+        // and NullPointerExceptions inside the service because the service will be
+        // bound twice. Prevent it with unbinding first
+        unbind(context)
+        val intent = Intent(context, PlayerService::class.java)
+        intent.putExtra(PlayerService.SHOULD_START_FOREGROUND_EXTRA, true)
+        ContextCompat.startForegroundService(context, intent)
+        PlayerServiceConnection.doPlayAfterConnect(playAfterConnect)
+        bind(context)
+    }
+
+    fun stopService() {
+        if (DEBUG) {
+            Log.d(TAG, "stopService() called")
+        }
+        playerService?.destroyPlayerAndStopService()
+        val context = this.commonContext
+        unbind(context)
+        // destroyPlayerAndStopService() already runs the next line of code, but run it again just
+        // to make sure to stop the service even if playerService is null by any chance.
+        context.stopService(Intent(context, PlayerService::class.java))
+    }
+
+    internal object PlayerServiceConnection : ServiceConnection {
+        internal var playAfterConnect = false
+
+        /**
+         * @param playAfterConnection Sets the value of [playAfterConnect] to pass to the
+         * [PlayerServiceExtendedEventListener.onPlayerConnected] the next time it
+         * is called. The value of [playAfterConnect] will be reset to false after that.
+         */
+        fun doPlayAfterConnect(playAfterConnection: Boolean) {
+            this.playAfterConnect = playAfterConnection
+        }
+
+        override fun onServiceDisconnected(compName: ComponentName?) {
+            if (DEBUG) {
+                Log.d(TAG, "Player service is disconnected")
+            }
+
+            val context: Context = this@PlayerHolder.commonContext
+            unbind(context)
+        }
+
+        override fun onServiceConnected(compName: ComponentName?, service: IBinder?) {
+            if (DEBUG) {
+                Log.d(TAG, "Player service is connected")
+            }
+            val localBinder = service as LocalBinder
+
+            val s = localBinder.service
+            requireNotNull(s) {
+                "PlayerService.LocalBinder.getService() must never be" +
+                    "null after the service connects"
+            }
+            playerService = s
+            listener?.let { l ->
+                l.onServiceConnected(s)
+                player?.let { l.onPlayerConnected(it, playAfterConnect) }
+            }
+            startPlayerListener()
+            // ^ will call listener.onPlayerConnected() down the line if there is an active player
+
+            if (playerService != null && playerService?.player != null) {
+                // notify the main activity that binding the service has completed and that there is
+                // a player, so that it can open the bottom mini-player
+                NavigationHelper.sendPlayerStartedEvent(localBinder.service)
+            }
+        }
+    }
+
+    private fun bind(context: Context) {
+        if (DEBUG) {
+            Log.d(TAG, "bind() called")
+        }
+        // BIND_AUTO_CREATE starts the service if it's not already running
+        this.isBound = bind(context, Context.BIND_AUTO_CREATE)
+        if (!this.isBound) {
+            context.unbindService(PlayerServiceConnection)
+        }
+    }
+
+    fun tryBindIfNeeded(context: Context) {
+        if (!this.isBound) {
+            // flags=0 means the service will not be started if it does not already exist. In this
+            // case the return value is not useful, as a value of "true" does not really indicate
+            // that the service is going to be bound.
+            bind(context, 0)
+        }
+    }
+
+    private fun bind(context: Context, flags: Int): Boolean {
+        val serviceIntent = Intent(context, PlayerService::class.java)
+        serviceIntent.setAction(PlayerService.BIND_PLAYER_HOLDER_ACTION)
+        return context.bindService(serviceIntent, PlayerServiceConnection, flags)
+    }
+
+    private fun unbind(context: Context) {
+        if (DEBUG) {
+            Log.d(TAG, "unbind() called")
+        }
+
+        if (this.isBound) {
+            context.unbindService(PlayerServiceConnection)
+            this.isBound = false
+            stopPlayerListener()
+            playerService = null
+            listener?.onPlayerDisconnected()
+            listener?.onServiceDisconnected()
+        }
+    }
+
+    private fun startPlayerListener() {
+        // setting the player listener will take care of calling relevant callbacks if the
+        // player in the service is (not) already active, also see playerStateListener below
+        playerService?.setPlayerListener(playerStateListener)
+        this.player?.setFragmentListener(HolderPlayerServiceEventListener)
+    }
+
+    private fun stopPlayerListener() {
+        playerService?.setPlayerListener(null)
+        this.player?.removeFragmentListener(HolderPlayerServiceEventListener)
+    }
+
+    /**
+     * This listener will be held by the players created by [PlayerService].
+     */
+    private object HolderPlayerServiceEventListener : PlayerServiceEventListener {
+        override fun onViewCreated() {
+            listener?.onViewCreated()
+        }
+
+        override fun onFullscreenStateChanged(fullscreen: Boolean) {
+            listener?.onFullscreenStateChanged(fullscreen)
+        }
+
+        override fun onFullscreenToggleButtonClicked() {
+            listener?.onFullscreenToggleButtonClicked()
+        }
+
+        override fun onMoreOptionsLongClicked() {
+            listener?.onMoreOptionsLongClicked()
+        }
+
+        override fun onPlayerError(
+            error: PlaybackException?,
+            isCatchableException: Boolean
+        ) {
+            listener?.onPlayerError(error, isCatchableException)
+        }
+
+        override fun hideSystemUiIfNeeded() {
+            listener?.hideSystemUiIfNeeded()
+        }
+
+        override fun onQueueUpdate(queue: PlayQueue?) {
+            listener?.onQueueUpdate(queue)
+        }
+
+        override fun onPlaybackUpdate(
+            state: Int,
+            repeatMode: Int,
+            shuffled: Boolean,
+            parameters: PlaybackParameters?
+        ) {
+            listener?.onPlaybackUpdate(state, repeatMode, shuffled, parameters)
+        }
+
+        override fun onProgressUpdate(
+            currentProgress: Int,
+            duration: Int,
+            bufferPercent: Int
+        ) {
+            listener?.onProgressUpdate(currentProgress, duration, bufferPercent)
+        }
+
+        override fun onMetadataUpdate(info: StreamInfo?, queue: PlayQueue?) {
+            listener?.onMetadataUpdate(info, queue)
+        }
+
+        override fun onServiceStopped() {
+            listener?.onServiceStopped()
+            unbind(this@PlayerHolder.commonContext)
+        }
+    }
+
+    /**
+     * This listener will be held by bound [PlayerService]s to notify of the player starting
+     * or stopping. This is necessary since the service outlives the player e.g. to answer Android
+     * Auto media browser queries.
+     */
+    private val playerStateListener: (Player?) -> Unit = { player: Player? ->
+        listener?.let { l ->
+            if (player == null) {
+                // player.fragmentListener=null is already done by player.stopActivityBinding(),
+                // which is called by player.destroy(), which is in turn called by PlayerService
+                // before setting its player to null
+                l.onPlayerDisconnected()
+            } else {
+                l.onPlayerConnected(player, PlayerServiceConnection.playAfterConnect)
+                // reset the value of playAfterConnect: if it was true before, it is now "consumed"
+                PlayerServiceConnection.playAfterConnect = false
+                player.setFragmentListener(HolderPlayerServiceEventListener)
+            }
+        }
+    }
+}

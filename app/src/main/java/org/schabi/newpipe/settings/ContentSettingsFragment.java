@@ -19,11 +19,11 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.image.ImageStrategy;
-import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.image.PreferredImageQuality;
 
-import java.io.IOException;
 import java.util.Locale;
+
+import coil3.SingletonImageLoader;
 
 public class ContentSettingsFragment extends BasePreferenceFragment {
     private String youtubeRestrictedModeEnabledKey;
@@ -73,15 +73,14 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         requirePreference(R.string.image_quality_key).setOnPreferenceChangeListener(
             (preference, newValue) -> {
                 ImageStrategy.setPreferredImageQuality(PreferredImageQuality
-                    .fromPreferenceKey(requireContext(), (String) newValue));
-                try {
-                    PicassoHelper.clearCache(preference.getContext());
-                    Toast.makeText(preference.getContext(),
-                            R.string.thumbnail_cache_wipe_complete_notice, Toast.LENGTH_SHORT)
+                        .fromPreferenceKey(requireContext(), (String) newValue));
+                final var loader = SingletonImageLoader.get(preference.getContext());
+                loader.getMemoryCache().clear();
+                loader.getDiskCache().clear();
+                Toast.makeText(preference.getContext(),
+                                R.string.thumbnail_cache_wipe_complete_notice, Toast.LENGTH_SHORT)
                         .show();
-                } catch (final IOException e) {
-                    Log.e(TAG, "Unable to clear Picasso cache", e);
-                }
+
                 return true;
             });
     }

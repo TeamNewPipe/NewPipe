@@ -615,8 +615,6 @@
     <string name="detail_heart_img_view_description">Südamlik autor</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Kas sinu meelest on voo laadimine aeglane? Sel juhul proovi lubada kiire laadimine (seda saad muuta seadetes või vajutades allolevat nuppu). \n \nNewPipe pakub kahte voo laadimise strateegiat: \n• Tellitud kanali täielik, kuid aeglane hankimine. \n• Teenuse spetsiaalse otspunkti kasutamine, mis on kiire, kuid tavaliselt mittetäielik. \n \nErinevus nende kahe vahel seisneb selles, et kiirel puudub tavaliselt teave, näiteks üksuse pikkus või tüüp (ei saa eristada reaalajas videoid tavalistest) ja see võib tagastada vähem üksusi. \n \nYouTube on näide teenusest, mis pakub seda kiirmeetodit oma RSS-vooga. \n \nNii et valik taandub sellele, mida eelistad: kiirus või täpne teave.</string>
     <string name="mark_as_watched">Märgi vaadatuks</string>
-    <string name="show_image_indicators_summary">Näita piltide kohal Picasso värvides riba, mis märgib pildi allikat: punane tähistab võrku, sinine kohalikku andmekandjat ja roheline kohalikku mälu</string>
-    <string name="show_image_indicators_title">Näita piltide allikat</string>
     <string name="remote_search_suggestions">Kaugotsingu soovitused</string>
     <string name="local_search_suggestions">Kohaliku otsingu soovitused</string>
     <string name="main_page_content_swipe_remove">Üksuse eemaldamiseks viipa</string>

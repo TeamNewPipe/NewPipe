@@ -641,7 +641,6 @@
     <string name="description_select_note">Sada možeš odabrati tekst u opisu. Napomena: stranica će možda treperiti i možda nećeš moći kliknuti poveznice u načinu rada za odabir teksta.</string>
     <string name="processing_may_take_a_moment">Obrada u tijeku … Može malo potrajati</string>
     <string name="main_page_content_swipe_remove">Za ukljanjanje stavki povuci ih</string>
-    <string name="show_image_indicators_title">Prikaži indikatore slike</string>
     <plurals name="download_finished_notification">
         <item quantity="one">Preuzimanje je gotovo</item>
         <item quantity="few">%s preuzimanja su gotova</item>
@@ -650,7 +649,6 @@
     <string name="start_main_player_fullscreen_title">Pokreni glavni player u cjeloekranskom prikazu</string>
     <string name="enqueue_next_stream">Dodaj u popis kao sljedeći</string>
     <string name="enqueued_next">Dodano u popis kao sljedeći</string>
-    <string name="show_image_indicators_summary">Prikaži Picassove vrpce u boji na slikama koje označavaju njihov izvor: crvena za mrežu, plava za disk i zelena za memoriju</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">Izbrisano %1$s preuzimanje</item>
         <item quantity="few">Izbrisana %1$s preuzimanja</item>

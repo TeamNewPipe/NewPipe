@@ -252,7 +252,7 @@ public final class InfoItemDialog {
          * @return the current {@link Builder} instance
          */
         public Builder addEnqueueEntriesIfNeeded() {
-            final PlayerHolder holder = PlayerHolder.getInstance();
+            final PlayerHolder holder = PlayerHolder.INSTANCE;
             if (holder.isPlayQueueReady()) {
                 addEntry(StreamDialogDefaultEntry.ENQUEUE);
 
@@ -346,7 +346,7 @@ public final class InfoItemDialog {
 
         public static void reportErrorDuringInitialization(final Throwable throwable,
                                                            final InfoItem item) {
-            ErrorUtil.showSnackbar(App.getApp().getBaseContext(), new ErrorInfo(
+            ErrorUtil.showSnackbar(App.getInstance().getBaseContext(), new ErrorInfo(
                     throwable,
                     UserAction.OPEN_INFO_ITEM_DIALOG,
                     "none",

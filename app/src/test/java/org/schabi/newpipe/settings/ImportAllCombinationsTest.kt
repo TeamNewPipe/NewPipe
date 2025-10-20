@@ -10,7 +10,9 @@ import org.schabi.newpipe.streams.io.StoredFileHelper
 import us.shandian.giga.io.FileStream
 import java.io.File
 import java.io.IOException
-import java.nio.file.Files
+import kotlin.io.path.createTempFile
+import kotlin.io.path.exists
+import kotlin.io.path.fileSize
 
 class ImportAllCombinationsTest {
 
@@ -47,10 +49,10 @@ class ImportAllCombinationsTest {
             BackupFileLocator::class.java,
             Mockito.withSettings().stubOnly()
         )
-        val db = File.createTempFile("newpipe_", "")
-        val dbJournal = File.createTempFile("newpipe_", "")
-        val dbWal = File.createTempFile("newpipe_", "")
-        val dbShm = File.createTempFile("newpipe_", "")
+        val db = createTempFile("newpipe_", "")
+        val dbJournal = createTempFile("newpipe_", "")
+        val dbWal = createTempFile("newpipe_", "")
+        val dbShm = createTempFile("newpipe_", "")
         Mockito.`when`(fileLocator.db).thenReturn(db)
         Mockito.`when`(fileLocator.dbJournal).thenReturn(dbJournal)
         Mockito.`when`(fileLocator.dbShm).thenReturn(dbShm)
@@ -62,7 +64,7 @@ class ImportAllCombinationsTest {
                 Assert.assertFalse(dbJournal.exists())
                 Assert.assertFalse(dbWal.exists())
                 Assert.assertFalse(dbShm.exists())
-                Assert.assertTrue("database file size is zero", Files.size(db.toPath()) > 0)
+                Assert.assertTrue("database file size is zero", db.fileSize() > 0)
             }
         } else {
             runTest {
@@ -70,7 +72,7 @@ class ImportAllCombinationsTest {
                 Assert.assertTrue(dbJournal.exists())
                 Assert.assertTrue(dbWal.exists())
                 Assert.assertTrue(dbShm.exists())
-                Assert.assertEquals(0, Files.size(db.toPath()))
+                Assert.assertEquals(0, db.fileSize())
             }
         }
 

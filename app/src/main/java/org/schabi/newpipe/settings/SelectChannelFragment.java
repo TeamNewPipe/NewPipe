@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.compose.ui.platform.ComposeView;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,8 +20,10 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
-import org.schabi.newpipe.util.image.PicassoHelper;
+import org.schabi.newpipe.ui.emptystate.EmptyStateSpec;
+import org.schabi.newpipe.ui.emptystate.EmptyStateUtil;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.image.CoilHelper;
 
 import java.util.List;
 import java.util.Vector;
@@ -57,7 +60,7 @@ public class SelectChannelFragment extends DialogFragment {
     private OnCancelListener onCancelListener = null;
 
     private ProgressBar progressBar;
-    private TextView emptyView;
+    private ComposeView emptyView;
     private RecyclerView recyclerView;
 
     private List<SubscriptionEntity> subscriptions = new Vector<>();
@@ -91,6 +94,8 @@ public class SelectChannelFragment extends DialogFragment {
 
         progressBar = v.findViewById(R.id.progressBar);
         emptyView = v.findViewById(R.id.empty_state_view);
+
+        EmptyStateUtil.setEmptyStateComposable(emptyView, EmptyStateSpec.NoSubscriptions);
         progressBar.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
         emptyView.setVisibility(View.GONE);
@@ -190,7 +195,7 @@ public class SelectChannelFragment extends DialogFragment {
             final SubscriptionEntity entry = subscriptions.get(position);
             holder.titleView.setText(entry.getName());
             holder.view.setOnClickListener(view -> clickedItem(position));
-            PicassoHelper.loadAvatar(entry.getAvatarUrl()).into(holder.thumbnailView);
+            CoilHelper.INSTANCE.loadAvatar(holder.thumbnailView, entry.getAvatarUrl());
         }
 
         @Override

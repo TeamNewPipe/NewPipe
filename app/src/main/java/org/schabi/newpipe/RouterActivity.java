@@ -670,7 +670,7 @@ public class RouterActivity extends AppCompatActivity {
         }
 
         // ...the player is not running or in normal Video-mode/type
-        final PlayerType playerType = PlayerHolder.getInstance().getType();
+        final PlayerType playerType = PlayerHolder.INSTANCE.getType();
         return playerType == null || playerType == PlayerType.MAIN;
     }
 

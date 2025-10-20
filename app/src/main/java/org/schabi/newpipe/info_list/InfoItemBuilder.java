@@ -13,7 +13,6 @@ import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.info_list.holder.ChannelInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelMiniInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.CommentInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.InfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistMiniInfoItemHolder;
@@ -75,21 +74,16 @@ public class InfoItemBuilder {
     private InfoItemHolder holderFromInfoType(@NonNull final ViewGroup parent,
                                               @NonNull final InfoItem.InfoType infoType,
                                               final boolean useMiniVariant) {
-        switch (infoType) {
-            case STREAM:
-                return useMiniVariant ? new StreamMiniInfoItemHolder(this, parent)
-                        : new StreamInfoItemHolder(this, parent);
-            case CHANNEL:
-                return useMiniVariant ? new ChannelMiniInfoItemHolder(this, parent)
-                        : new ChannelInfoItemHolder(this, parent);
-            case PLAYLIST:
-                return useMiniVariant ? new PlaylistMiniInfoItemHolder(this, parent)
-                        : new PlaylistInfoItemHolder(this, parent);
-            case COMMENT:
-                return new CommentInfoItemHolder(this, parent);
-            default:
-                throw new RuntimeException("InfoType not expected = " + infoType.name());
-        }
+        return switch (infoType) {
+            case STREAM -> useMiniVariant ? new StreamMiniInfoItemHolder(this, parent)
+                    : new StreamInfoItemHolder(this, parent);
+            case CHANNEL -> useMiniVariant ? new ChannelMiniInfoItemHolder(this, parent)
+                    : new ChannelInfoItemHolder(this, parent);
+            case PLAYLIST -> useMiniVariant ? new PlaylistMiniInfoItemHolder(this, parent)
+                    : new PlaylistInfoItemHolder(this, parent);
+            case COMMENT ->
+                    throw new IllegalArgumentException("Comments should be rendered using Compose");
+        };
     }
 
     public Context getContext() {

@@ -92,26 +92,23 @@
             android:label="@string/settings" />
 
         <activity
+            android:name=".settings.SettingsV2Activity"
+            android:exported="true"
+            android:label="@string/settings" />
+
+        <activity
             android:name=".about.AboutActivity"
             android:exported="false"
             android:label="@string/title_activity_about" />
 
         <service
-            android:name=".local.subscription.services.SubscriptionsImportService"
-            android:foregroundServiceType="dataSync" />
-
-        <service
-            android:name=".local.subscription.services.SubscriptionsExportService"
-            android:foregroundServiceType="dataSync" />
+            android:name="androidx.work.impl.foreground.SystemForegroundService"
+            android:foregroundServiceType="dataSync"
+            tools:node="merge" />
 
         <service
             android:name=".local.feed.service.FeedLoadService"
             android:foregroundServiceType="dataSync" />
-
-        <service
-            android:name="androidx.work.impl.foreground.SystemForegroundService"
-            android:foregroundServiceType="dataSync"
-            tools:node="merge" />
 
         <activity
             android:name=".PanicResponderActivity"
@@ -143,7 +140,8 @@
             android:label="@string/app_name"
             android:launchMode="singleTask" />
 
-        <service android:name="us.shandian.giga.service.DownloadManagerService"
+        <service
+            android:name="us.shandian.giga.service.DownloadManagerService"
             android:foregroundServiceType="dataSync" />
 
         <activity

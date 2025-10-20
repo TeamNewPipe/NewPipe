@@ -3,7 +3,6 @@ package org.schabi.newpipe.local.subscription
 import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
@@ -50,13 +49,11 @@ import org.schabi.newpipe.local.subscription.item.FeedGroupCarouselItem
 import org.schabi.newpipe.local.subscription.item.GroupsHeader
 import org.schabi.newpipe.local.subscription.item.Header
 import org.schabi.newpipe.local.subscription.item.ImportSubscriptionsHintPlaceholderItem
-import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService
-import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService
-import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_MODE
-import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_VALUE
-import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.PREVIOUS_EXPORT_MODE
+import org.schabi.newpipe.local.subscription.workers.SubscriptionExportWorker
+import org.schabi.newpipe.local.subscription.workers.SubscriptionImportInput
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard
 import org.schabi.newpipe.streams.io.StoredFileHelper
+import org.schabi.newpipe.ui.emptystate.setEmptyStateComposable
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.OnClickGesture
 import org.schabi.newpipe.util.ServiceHelper
@@ -130,6 +127,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     // Menu
     // ////////////////////////////////////////////////////////////////////////
 
+    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
 
@@ -223,21 +221,17 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     }
 
     private fun requestExportResult(result: ActivityResult) {
-        if (result.data != null && result.resultCode == Activity.RESULT_OK) {
-            activity.startService(
-                Intent(activity, SubscriptionsExportService::class.java)
-                    .putExtra(SubscriptionsExportService.KEY_FILE_PATH, result.data?.data)
-            )
+        val data = result.data?.data
+        if (data != null && result.resultCode == Activity.RESULT_OK) {
+            SubscriptionExportWorker.schedule(activity, data)
         }
     }
 
     private fun requestImportResult(result: ActivityResult) {
-        if (result.data != null && result.resultCode == Activity.RESULT_OK) {
+        val data = result.data?.dataString
+        if (data != null && result.resultCode == Activity.RESULT_OK) {
             ImportConfirmationDialog.show(
-                this,
-                Intent(activity, SubscriptionsImportService::class.java)
-                    .putExtra(KEY_MODE, PREVIOUS_EXPORT_MODE)
-                    .putExtra(KEY_VALUE, result.data?.data)
+                this, SubscriptionImportInput.PreviousExportMode(data)
             )
         }
     }
@@ -256,6 +250,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         }
         binding.itemsList.adapter = groupAdapter
         binding.itemsList.itemAnimator = null
+
+        binding.emptyStateView.setEmptyStateComposable()
 
         viewModel = ViewModelProvider(this)[SubscriptionViewModel::class.java]
         viewModel.stateLiveData.observe(viewLifecycleOwner) { it?.let(this::handleResult) }

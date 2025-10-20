@@ -5,6 +5,7 @@ import com.google.android.exoplayer2.PlaybackParameters;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 
+/** Player-specific events like queue or progress updates. */
 public interface PlayerEventListener {
     void onQueueUpdate(PlayQueue queue);
     void onPlaybackUpdate(int state, int repeatMode, boolean shuffled,

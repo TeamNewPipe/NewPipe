@@ -21,6 +21,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.preference.PreferenceManager;
 
 import com.jakewharton.processphoenix.ProcessPhoenix;
 
@@ -45,10 +46,10 @@ import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
-import org.schabi.newpipe.fragments.list.comments.CommentRepliesFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
+import org.schabi.newpipe.ktx.ContextKt;
 import org.schabi.newpipe.local.bookmark.BookmarkFragment;
 import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
@@ -66,6 +67,7 @@ import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.settings.SettingsActivity;
+import org.schabi.newpipe.settings.SettingsV2Activity;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.List;
@@ -192,7 +194,7 @@ public final class NavigationHelper {
     }
 
     public static void enqueueOnPlayer(final Context context, final PlayQueue queue) {
-        PlayerType playerType = PlayerHolder.getInstance().getType();
+        PlayerType playerType = PlayerHolder.INSTANCE.getType();
         if (playerType == null) {
             Log.e(TAG, "Enqueueing but no player is open; defaulting to background player");
             playerType = PlayerType.AUDIO;
@@ -203,7 +205,7 @@ public final class NavigationHelper {
 
     /* ENQUEUE NEXT */
     public static void enqueueNextOnPlayer(final Context context, final PlayQueue queue) {
-        PlayerType playerType = PlayerHolder.getInstance().getType();
+        PlayerType playerType = PlayerHolder.INSTANCE.getType();
         if (playerType == null) {
             Log.e(TAG, "Enqueueing next but no player is open; defaulting to background player");
             playerType = PlayerType.AUDIO;
@@ -412,13 +414,13 @@ public final class NavigationHelper {
                                                final boolean switchingPlayers) {
 
         final boolean autoPlay;
-        @Nullable final PlayerType playerType = PlayerHolder.getInstance().getType();
+        @Nullable final PlayerType playerType = PlayerHolder.INSTANCE.getType();
         if (playerType == null) {
             // no player open
             autoPlay = PlayerHelper.isAutoplayAllowedByUser(context);
         } else if (switchingPlayers) {
             // switching player to main player
-            autoPlay = PlayerHolder.getInstance().isPlaying(); // keep play/pause state
+            autoPlay = PlayerHolder.INSTANCE.isPlaying(); // keep play/pause state
         } else if (playerType == PlayerType.MAIN) {
             // opening new stream while already playing in main player
             autoPlay = PlayerHelper.isAutoplayAllowedByUser(context);
@@ -470,42 +472,33 @@ public final class NavigationHelper {
                 .commit();
     }
 
-    public static void openChannelFragment(@NonNull final Fragment fragment,
+    public static void openChannelFragment(@NonNull final FragmentActivity activity,
                                            @NonNull final StreamInfoItem item,
                                            final String uploaderUrl) {
         // For some reason `getParentFragmentManager()` doesn't work, but this does.
-        openChannelFragment(
-                fragment.requireActivity().getSupportFragmentManager(),
-                item.getServiceId(), uploaderUrl, item.getUploaderName());
+        openChannelFragment(activity.getSupportFragmentManager(), item.getServiceId(), uploaderUrl,
+                item.getUploaderName());
     }
 
     /**
      * Opens the comment author channel fragment, if the {@link CommentsInfoItem#getUploaderUrl()}
      * of {@code comment} is non-null. Shows a UI-error snackbar if something goes wrong.
      *
-     * @param activity the activity with the fragment manager and in which to show the snackbar
+     * @param context the context to use for opening the fragment
      * @param comment the comment whose uploader/author will be opened
      */
-    public static void openCommentAuthorIfPresent(@NonNull final FragmentActivity activity,
+    public static void openCommentAuthorIfPresent(@NonNull final Context context,
                                                   @NonNull final CommentsInfoItem comment) {
         if (isEmpty(comment.getUploaderUrl())) {
             return;
         }
         try {
+            final var activity = ContextKt.findFragmentActivity(context);
             openChannelFragment(activity.getSupportFragmentManager(), comment.getServiceId(),
                     comment.getUploaderUrl(), comment.getUploaderName());
         } catch (final Exception e) {
-            ErrorUtil.showUiErrorSnackbar(activity, "Opening channel fragment", e);
+            ErrorUtil.showUiErrorSnackbar(context, "Opening channel fragment", e);
         }
-    }
-
-    public static void openCommentRepliesFragment(@NonNull final FragmentActivity activity,
-                                                  @NonNull final CommentsInfoItem comment) {
-        defaultTransaction(activity.getSupportFragmentManager())
-                .replace(R.id.fragment_holder, new CommentRepliesFragment(comment),
-                        CommentRepliesFragment.TAG)
-                .addToBackStack(CommentRepliesFragment.TAG)
-                .commit();
     }
 
     public static void openPlaylistFragment(final FragmentManager fragmentManager,
@@ -647,7 +640,12 @@ public final class NavigationHelper {
     }
 
     public static void openSettings(final Context context) {
-        final Intent intent = new Intent(context, SettingsActivity.class);
+        final Class<?> settingsClass = PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(Localization.compatGetString(context,
+                                R.string.settings_layout_redesign_key), false)
+                ? SettingsV2Activity.class : SettingsActivity.class;
+
+        final Intent intent = new Intent(context, settingsClass);
         context.startActivity(intent);
     }
 

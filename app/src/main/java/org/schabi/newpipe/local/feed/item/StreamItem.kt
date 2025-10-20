@@ -19,7 +19,7 @@ import org.schabi.newpipe.extractor.stream.StreamType.POST_LIVE_STREAM
 import org.schabi.newpipe.extractor.stream.StreamType.VIDEO_STREAM
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.StreamTypeUtil
-import org.schabi.newpipe.util.image.PicassoHelper
+import org.schabi.newpipe.util.image.CoilHelper
 import java.util.concurrent.TimeUnit
 import java.util.function.Consumer
 
@@ -101,7 +101,7 @@ data class StreamItem(
             viewBinding.itemProgressView.visibility = View.GONE
         }
 
-        PicassoHelper.loadThumbnail(stream.thumbnailUrl).into(viewBinding.itemThumbnailView)
+        CoilHelper.loadThumbnail(viewBinding.itemThumbnailView, stream.thumbnailUrl)
 
         if (itemVersion != ItemVersion.MINI) {
             viewBinding.itemAdditionalDetails.text =

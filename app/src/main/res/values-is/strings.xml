@@ -640,9 +640,7 @@
     <string name="show_original_time_ago_summary">Upprunalegir textar frá þjónustu verða sýnilegir í streymisatriðum</string>
     <string name="disable_media_tunneling_title">Slökkva á margmiðlagöngum</string>
     <string name="disable_media_tunneling_summary">Slökktu á margmiðlunargöngum (media tunneling) ef vart verður við svartan skjá eða hökt við spilun myndskeiða.</string>
-    <string name="show_image_indicators_title">Sýna myndvísa</string>
-    <string name="show_image_indicators_summary">Sýna Picasso litaða borða ofan á myndum sem gefa til kynna uppruna þeirra: rauðan fyrir netið, bláan fyrir disk og grænan fyrir minni</string>
-    <string name="show_crash_the_player_title">Sýna „Láta spilara hrynja\"</string>
+    <string name="show_crash_the_player_title">Sýna „Láta spilara hrynja\\</string>
     <string name="show_crash_the_player_summary">Sýna valkost til að hrynja spilara</string>
     <string name="crash_the_app">Hrynja forrit</string>
     <string name="create_error_notification">Búа til villutilkynningu</string>
