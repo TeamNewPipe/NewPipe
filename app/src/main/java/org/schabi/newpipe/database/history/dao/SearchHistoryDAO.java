@@ -49,4 +49,11 @@ public interface SearchHistoryDAO extends HistoryDAO<SearchHistoryEntry> {
     @Query("SELECT " + SEARCH + " FROM " + TABLE_NAME + " WHERE " + SEARCH + " LIKE :query || '%'"
             + " GROUP BY " + SEARCH + ORDER_BY_MAX_CREATION_DATE + " LIMIT :limit")
     Flowable<List<String>> getSimilarEntries(String query, int limit);
+
+
+    @Query("SELECT * FROM " + TABLE_NAME + ORDER_BY_CREATION_DATE)
+    List<SearchHistoryEntry> getAllEntries();
+
+    @androidx.room.Delete
+    void delete(SearchHistoryEntry entry);
 }

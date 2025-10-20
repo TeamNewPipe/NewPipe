@@ -203,10 +203,26 @@ public class HistoryRecordManager {
                 latestEntry.setCreationDate(currentTime);
                 return (long) searchHistoryTable.update(latestEntry);
             } else {
-                return searchHistoryTable.insert(newEntry);
+                final long insertedId = searchHistoryTable.insert(newEntry);
+
+                //New
+                final boolean infiniteEnabled = sharedPreferences.getBoolean(
+                        "infinite_search_history", false
+                );
+                if (!infiniteEnabled) {
+                    final List<SearchHistoryEntry> allEntries = searchHistoryTable.getAllEntries();
+                    final int maxSize = 25;
+                    if (allEntries.size() > maxSize) {
+                        for (int i = maxSize; i < allEntries.size(); i++) {
+                            searchHistoryTable.delete(allEntries.get(i));
+                        }
+                    }
+                }
+                return insertedId;
             }
         })).subscribeOn(Schedulers.io());
     }
+
 
     public Single<Integer> deleteSearchHistory(final String search) {
         return Single.fromCallable(() -> searchHistoryTable.deleteAllWhereQuery(search))
@@ -218,12 +234,22 @@ public class HistoryRecordManager {
                 .subscribeOn(Schedulers.io());
     }
 
-    public Flowable<List<String>> getRelatedSearches(final String query,
-                                                     final int similarQueryLimit,
-                                                     final int uniqueQueryLimit) {
+    public Flowable<List<String>> getRelatedSearches(
+            final String query,
+            final int similarQueryLimit,
+            final int uniqueQueryLimit
+    ) {
+        final boolean infiniteEnabled = sharedPreferences.getBoolean(
+                "infinite_search_history", false
+        );
+        final int largeLimit = 100000;
+
+        final int sLimit = infiniteEnabled ? largeLimit : similarQueryLimit;
+        final int uLimit = infiniteEnabled ? largeLimit : uniqueQueryLimit;
+
         return query.length() > 0
-                ? searchHistoryTable.getSimilarEntries(query, similarQueryLimit)
-                : searchHistoryTable.getUniqueEntries(uniqueQueryLimit);
+                ? searchHistoryTable.getSimilarEntries(query, sLimit)
+                : searchHistoryTable.getUniqueEntries(uLimit);
     }
 
     private boolean isSearchHistoryEnabled() {
