@@ -37,8 +37,9 @@ fun TextAction(text: String, modifier: Modifier = Modifier) {
 @Composable
 fun NavigationIcon() {
     Icon(
-        imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back",
-        modifier = Modifier.padding(horizontal = SizeTokens.SpacingExtraSmall)
+        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+        contentDescription = stringResource(R.string.back),
+        modifier = Modifier.padding(horizontal = SizeTokens.SpacingExtraSmall),
     )
 }
 
