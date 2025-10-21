@@ -20,7 +20,9 @@ package org.schabi.newpipe.ui.components.menu
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
@@ -50,6 +52,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
@@ -69,6 +72,7 @@ import org.schabi.newpipe.util.text.FixedHeightCenteredText
 
 private const val ItemNotFound = -1
 
+// TODO implement accessibility for this, to allow using this with a DPAD (e.g. Android TV)
 @Composable
 fun LongPressMenuEditor() {
     // We get the current arrangement once and do not observe on purpose
@@ -135,8 +139,8 @@ fun LongPressMenuEditor() {
         }
     }
 
-    fun beginDragGesture(pos: IntOffset): Boolean {
-        val item = findItemForOffsetOrClosestInRow(pos) ?: return false
+    fun beginDragGesture(pos: IntOffset) {
+        val item = findItemForOffsetOrClosestInRow(pos) ?: return
         val i = item.index
         val enabledActionIndex = indexOfEnabledAction(i)
         val hiddenActionIndex = indexOfHiddenAction(i)
@@ -149,15 +153,18 @@ fun LongPressMenuEditor() {
             activeDragAction = hiddenActions[hiddenActionIndex]
             hiddenActions[hiddenActionIndex] = ActionOrMarker.DragMarker
         } else {
-            return false
+            return
         }
         activeDragPosition = pos
         activeDragSize = item.size
-        return true
     }
 
-    fun handleDragGestureChange(pos: IntOffset) {
-        if (activeDragAction == null) return
+    fun handleDragGestureChange(pos: IntOffset, posChange: Offset) {
+        if (activeDragAction == null) {
+            // when the user clicks outside of any draggable item, let the list be scrolled
+            gridState.dispatchRawDelta(-posChange.y)
+            return
+        }
         activeDragPosition = pos
         val item = findItemForOffsetOrClosestInRow(pos) ?: return
         val i = item.index
@@ -223,6 +230,7 @@ fun LongPressMenuEditor() {
             ),
         // same width as the LongPressMenu
         columns = GridCells.Adaptive(MinButtonWidth),
+        userScrollEnabled = false,
         state = gridState,
     ) {
         item(span = { GridItemSpan(maxLineSpan) }) {
@@ -266,6 +274,11 @@ fun LongPressMenuEditor() {
         }
         itemsIndexed(hiddenActions, key = { _, action -> action.stableUniqueKey() }) { _, action ->
             ActionOrMarkerUi(modifier = Modifier.animateItem(), action = action)
+        }
+        item {
+            // make the grid size a bit bigger to let items be dragged at the bottom and to give
+            // the view some space to resizing without jumping up and down
+            Spacer(modifier = Modifier.height(MinButtonWidth))
         }
     }
     if (activeDragAction != null) {

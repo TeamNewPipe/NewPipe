@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -37,16 +38,15 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.SheetState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
-import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -73,6 +73,7 @@ import coil3.compose.AsyncImage
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.ktx.popFirst
+import org.schabi.newpipe.ui.components.common.ScaffoldWithToolbar
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.EnqueueNext
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.ShowChannelDetails
 import org.schabi.newpipe.ui.theme.AppTheme
@@ -119,100 +120,127 @@ fun LongPressMenu(
     longPressable: LongPressable,
     longPressActions: List<LongPressAction>,
     onDismissRequest: () -> Unit,
-    onEditActions: () -> Unit = {}, // TODO handle this menu
-    sheetState: SheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
 ) {
-    ModalBottomSheet(
-        onDismissRequest,
-        sheetState = sheetState,
-        dragHandle = { LongPressMenuDragHandle(onEditActions) },
-    ) {
-        BoxWithConstraints(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 6.dp, end = 6.dp, bottom = 16.dp)
+    var showEditor by rememberSaveable(key = longPressable.url) { mutableStateOf(false) }
+    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+
+    if (showEditor) {
+        // we can't put the editor in a bottom sheet, because it relies on dragging gestures
+        ScaffoldWithToolbar(
+            title = stringResource(R.string.long_press_menu_actions_editor),
+            onBackClick = { showEditor = false },
+        ) { paddingValues ->
+            Box(modifier = Modifier.padding(paddingValues)) {
+                LongPressMenuEditor()
+            }
+            BackHandler { showEditor = false }
+        }
+    } else {
+        ModalBottomSheet(
+            sheetState = sheetState,
+            onDismissRequest = onDismissRequest,
+            dragHandle = { LongPressMenuDragHandle(onEditActions = { showEditor = true }) },
         ) {
-            val buttonHeight = MinButtonWidth // landscape aspect ratio, square in the limit
-            val headerWidthInButtons = 5 // the header is 5 times as wide as the buttons
-            val buttonsPerRow = (this.maxWidth / MinButtonWidth).toInt()
+            LongPressMenuContent(
+                longPressable = longPressable,
+                longPressActions = longPressActions,
+                onDismissRequest = onDismissRequest,
+            )
+        }
+    }
+}
 
-            // the channel icon goes in the menu header, so do not show a button for it
-            val actions = longPressActions.toMutableList()
-            val ctx = LocalContext.current
-            val onUploaderClick = actions.popFirst { it.type == ShowChannelDetails }
-                ?.let { showChannelDetailsAction ->
-                    {
-                        showChannelDetailsAction.action(ctx)
-                        onDismissRequest()
-                    }
+@Composable
+private fun LongPressMenuContent(
+    longPressable: LongPressable,
+    longPressActions: List<LongPressAction>,
+    onDismissRequest: () -> Unit,
+) {
+    BoxWithConstraints(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 6.dp, end = 6.dp, bottom = 16.dp)
+    ) {
+        val buttonHeight = MinButtonWidth // landscape aspect ratio, square in the limit
+        val headerWidthInButtons = 5 // the header is 5 times as wide as the buttons
+        val buttonsPerRow = (this.maxWidth / MinButtonWidth).toInt()
+
+        // the channel icon goes in the menu header, so do not show a button for it
+        val actions = longPressActions.toMutableList()
+        val ctx = LocalContext.current
+        val onUploaderClick = actions.popFirst { it.type == ShowChannelDetails }
+            ?.let { showChannelDetailsAction ->
+                {
+                    showChannelDetailsAction.action(ctx)
+                    onDismissRequest()
                 }
+            }
 
-            Column {
-                var actionIndex = -1 // -1 indicates the header
-                while (actionIndex < actions.size) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.fillMaxWidth(),
-                    ) {
-                        var rowIndex = 0
-                        while (rowIndex < buttonsPerRow) {
-                            if (actionIndex >= actions.size) {
-                                // no more buttons to show, fill the rest of the row with a
-                                // spacer that has the same weight as the missing buttons, so that
-                                // the other buttons don't grow too wide
-                                Spacer(
-                                    modifier = Modifier
-                                        .height(buttonHeight)
-                                        .fillMaxWidth()
-                                        .weight((buttonsPerRow - rowIndex).toFloat()),
-                                )
-                                break
-                            } else if (actionIndex >= 0) {
-                                val action = actions[actionIndex]
-                                LongPressMenuButton(
-                                    icon = action.type.icon,
-                                    text = stringResource(action.type.label),
-                                    onClick = {
-                                        action.action(ctx)
-                                        onDismissRequest()
-                                    },
-                                    enabled = action.enabled(false),
-                                    modifier = Modifier
-                                        .height(buttonHeight)
-                                        .fillMaxWidth()
-                                        .weight(1F),
-                                )
-                                rowIndex += 1
-                            } else if (headerWidthInButtons >= buttonsPerRow) {
-                                // this branch is taken if the header is going to fit on one line
-                                // (i.e. on phones in portrait)
-                                LongPressMenuHeader(
-                                    item = longPressable,
-                                    onUploaderClick = onUploaderClick,
-                                    modifier = Modifier
-                                        // leave the height as small as possible, since it's the
-                                        // only item on the row anyway
-                                        .padding(start = 6.dp, end = 6.dp, bottom = 6.dp)
-                                        .fillMaxWidth()
-                                        .weight(headerWidthInButtons.toFloat()),
-                                )
-                                rowIndex += headerWidthInButtons
-                            } else {
-                                // this branch is taken if the header will have some buttons to its
-                                // right (i.e. on tablets or on phones in landscape)
-                                LongPressMenuHeader(
-                                    item = longPressable,
-                                    onUploaderClick = onUploaderClick,
-                                    modifier = Modifier
-                                        .padding(6.dp)
-                                        .heightIn(min = 70.dp)
-                                        .fillMaxWidth()
-                                        .weight(headerWidthInButtons.toFloat()),
-                                )
-                                rowIndex += headerWidthInButtons
-                            }
-                            actionIndex += 1
+        Column {
+            var actionIndex = -1 // -1 indicates the header
+            while (actionIndex < actions.size) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    var rowIndex = 0
+                    while (rowIndex < buttonsPerRow) {
+                        if (actionIndex >= actions.size) {
+                            // no more buttons to show, fill the rest of the row with a
+                            // spacer that has the same weight as the missing buttons, so that
+                            // the other buttons don't grow too wide
+                            Spacer(
+                                modifier = Modifier
+                                    .height(buttonHeight)
+                                    .fillMaxWidth()
+                                    .weight((buttonsPerRow - rowIndex).toFloat()),
+                            )
+                            break
+                        } else if (actionIndex >= 0) {
+                            val action = actions[actionIndex]
+                            LongPressMenuButton(
+                                icon = action.type.icon,
+                                text = stringResource(action.type.label),
+                                onClick = {
+                                    action.action(ctx)
+                                    onDismissRequest()
+                                },
+                                enabled = action.enabled(false),
+                                modifier = Modifier
+                                    .height(buttonHeight)
+                                    .fillMaxWidth()
+                                    .weight(1F),
+                            )
+                            rowIndex += 1
+                        } else if (headerWidthInButtons >= buttonsPerRow) {
+                            // this branch is taken if the header is going to fit on one line
+                            // (i.e. on phones in portrait)
+                            LongPressMenuHeader(
+                                item = longPressable,
+                                onUploaderClick = onUploaderClick,
+                                modifier = Modifier
+                                    // leave the height as small as possible, since it's the
+                                    // only item on the row anyway
+                                    .padding(start = 6.dp, end = 6.dp, bottom = 6.dp)
+                                    .fillMaxWidth()
+                                    .weight(headerWidthInButtons.toFloat()),
+                            )
+                            rowIndex += headerWidthInButtons
+                        } else {
+                            // this branch is taken if the header will have some buttons to its
+                            // right (i.e. on tablets or on phones in landscape)
+                            LongPressMenuHeader(
+                                item = longPressable,
+                                onUploaderClick = onUploaderClick,
+                                modifier = Modifier
+                                    .padding(6.dp)
+                                    .heightIn(min = 70.dp)
+                                    .fillMaxWidth()
+                                    .weight(headerWidthInButtons.toFloat()),
+                            )
+                            rowIndex += headerWidthInButtons
                         }
+                        actionIndex += 1
                     }
                 }
             }
@@ -619,14 +647,12 @@ private fun LongPressMenuPreview(
     AppTheme(useDarkTheme = useDarkTheme) {
         // longPressable is null when running the preview in an emulator for some reason...
         @Suppress("USELESS_ELVIS")
-        LongPressMenu(
+        LongPressMenuContent(
             longPressable = longPressable ?: LongPressablePreviews().values.first(),
-            onDismissRequest = {},
             longPressActions = LongPressAction.Type.entries
                 // disable Enqueue actions just to show it off
                 .map { t -> t.buildAction({ t != EnqueueNext }) { } },
-            onEditActions = { useDarkTheme = !useDarkTheme },
-            sheetState = rememberStandardBottomSheetState(), // makes it start out as open
+            onDismissRequest = {},
         )
     }
 }
