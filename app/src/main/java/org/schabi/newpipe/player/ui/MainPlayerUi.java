@@ -290,6 +290,9 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         binding.topControls.setFocusable(true);
 
         binding.metadataView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
+
+        // Reset workaround changes from popup player
+        binding.audioTrackTextView.setMaxWidth(Integer.MAX_VALUE);
     }
 
     @Override
