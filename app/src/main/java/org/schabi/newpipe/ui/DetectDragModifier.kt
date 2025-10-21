@@ -5,6 +5,7 @@ import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.input.pointer.positionChange
 import androidx.compose.ui.unit.IntOffset
 
 /**
@@ -15,31 +16,31 @@ import androidx.compose.ui.unit.IntOffset
  * [androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress].
  *
  * @param beginDragGesture called when the user first touches the screen (down event) with the
- * pointer position, should return `true` if the receiver wants to handle this gesture, `false`
- * otherwise.
- * @param handleDragGestureChange called with the current pointer position, every time the user
- * moves the finger after [beginDragGesture] has returned `true`.
- * @param endDragGesture called when the drag gesture finishes after [beginDragGesture] has returned
- * `true`.
+ * pointer position.
+ * @param handleDragGestureChange called with the current pointer position and the difference from
+ * the last position, every time the user moves the finger after [beginDragGesture] has been called.
+ * @param endDragGesture called when the drag gesture finishes, after [beginDragGesture] has been
+ * called.
  */
 fun Modifier.detectDragGestures(
-    beginDragGesture: (IntOffset) -> Boolean,
-    handleDragGestureChange: (IntOffset) -> Unit,
+    beginDragGesture: (position: IntOffset) -> Unit,
+    handleDragGestureChange: (position: IntOffset, positionChange: Offset) -> Unit,
     endDragGesture: () -> Unit
 ): Modifier {
     return this.pointerInput(Unit) {
         awaitEachGesture {
             val down = awaitFirstDown()
             val pointerId = down.id
-            if (!beginDragGesture(down.position.toIntOffset())) {
-                return@awaitEachGesture
-            }
+            beginDragGesture(down.position.toIntOffset())
             while (true) {
                 val change = awaitPointerEvent().changes.find { it.id == pointerId }
                 if (change == null || !change.pressed) {
                     break
                 }
-                handleDragGestureChange(change.position.toIntOffset())
+                handleDragGestureChange(
+                    change.position.toIntOffset(),
+                    change.positionChange(),
+                )
                 change.consume()
             }
             endDragGesture()
