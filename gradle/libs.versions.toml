@@ -11,17 +11,15 @@ assertj = "3.24.2"
 autoservice = "1.1.1"
 bridge = "v2.0.2"
 cardview = "1.0.0"
-checkstyle = "10.12.1"
+checkstyle = "10.26.1"
 constraintlayout = "2.1.4"
 core = "1.12.0"
 desugar = "2.0.4"
 documentfile = "1.0.1"
 exoplayer = "2.18.7"
-extractor = "0023b22095a2d62a60cdfc87f4b5cd85c8b266c3"
-filepicker = "5.0.0"
 fragment = "1.6.2"
 groupie = "2.10.1"
-jsoup = "1.17.2"
+jsoup = "1.21.2"
 junit = "4.13.2"
 junit-ext = "1.1.5"
 kotlin = "1.9.25"
@@ -31,9 +29,8 @@ lifecycle = "2.6.2"
 localbroadcastmanager = "1.1.0"
 markwon = "4.6.2"
 material = "1.11.0"
-media = "1.7.0"
+media = "1.7.1"
 mockitoCore = "5.6.0"
-nanojson = "e9d656ddb49a412a5a0a5d5ef20ca7ef09549996"
 okhttp = "4.12.0"
 phoenix = "2.1.2"
 #noinspection NewerVersionAvailable,GradleDependency --> 2.8 is the last version, not 2.71828!
@@ -45,14 +42,23 @@ room = "2.6.1"
 runner = "1.5.2"
 rxandroid = "3.0.2"
 rxbinding = "4.0.0"
-rxjava = "3.1.8"
+rxjava = "3.1.12"
 sonarqube = "4.0.0.2929"
 statesaver = "1.4.1"
 stetho = "1.6.0"
 swiperefreshlayout = "1.1.0"
-# Newer version specified to prevent accessibility regressions with RecyclerView
-# see: https://developer.android.com/jetpack/androidx/releases/viewpager2#1.1.0-alpha01
-viewpager2 = "1.1.0-beta02"
+# You can use a local version by uncommenting a few lines in settings.gradle
+# Or you can use a commit you pushed to GitHub by just replacing TeamNewPipe with your GitHub
+# name and the commit hash with the commit hash of the (pushed) commit you want to test
+# This works thanks to JitPack: https://jitpack.io/
+teamnewpipe-filepicker = "5.0.0"
+teamnewpipe-nanojson = "e9d656ddb49a412a5a0a5d5ef20ca7ef09549996"
+# WORKAROUND: if you get errors with the NewPipeExtractor dependency, replace `v0.XX.Y` with
+# the corresponding commit hash, since JitPack sometimes deletes artifacts.
+# If there’s already a git hash, just add more of it to the end (or remove a letter)
+# to cause jitpack to regenerate the artifact.
+teamnewpipe-newpipe-extractor = "3af73262cc60cf555fd5f1d691f6c58e2db38ef5"
+viewpager2 = "1.1.0"
 webkit = "1.9.0"
 work = "2.8.1"
 
@@ -106,9 +112,9 @@ lisawray-groupie-core = { module = "com.github.lisawray.groupie:groupie", versio
 lisawray-groupie-viewbinding = { module = "com.github.lisawray.groupie:groupie-viewbinding", version.ref = "groupie" }
 livefront-bridge = { module = "com.github.livefront:bridge", version.ref = "bridge" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
-newpipe-extractor = { module = "com.github.TeamNewPipe:NewPipeExtractor", version.ref = "extractor" }
-newpipe-filepicker = { module = "com.github.TeamNewPipe:NoNonsense-FilePicker", version.ref = "filepicker" }
-newpipe-nanojson = { module = "com.github.TeamNewPipe:nanojson", version.ref = "nanojson" }
+newpipe-extractor = { module = "com.github.TeamNewPipe:NewPipeExtractor", version.ref = "teamnewpipe-newpipe-extractor" }
+newpipe-filepicker = { module = "com.github.TeamNewPipe:NoNonsense-FilePicker", version.ref = "teamnewpipe-filepicker" }
+newpipe-nanojson = { module = "com.github.TeamNewPipe:nanojson", version.ref = "teamnewpipe-nanojson" }
 noties-markwon-core = { module = "io.noties.markwon:core", version.ref = "markwon" }
 noties-markwon-linkify = { module = "io.noties.markwon:linkify", version.ref = "markwon" }
 ocpsoft-prettytime = { module = "org.ocpsoft.prettytime:prettytime", version.ref = "prettytime" }
