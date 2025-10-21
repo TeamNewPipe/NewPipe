@@ -38,8 +38,8 @@ fun TextAction(text: String, modifier: Modifier = Modifier) {
 fun NavigationIcon() {
     Icon(
         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-        contentDescription = "Back",
-        modifier = Modifier.padding(horizontal = SizeTokens.SpacingExtraSmall)
+        contentDescription = stringResource(R.string.back),
+        modifier = Modifier.padding(horizontal = SizeTokens.SpacingExtraSmall),
     )
 }
 
