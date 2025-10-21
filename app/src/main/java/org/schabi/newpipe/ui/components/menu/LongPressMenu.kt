@@ -62,7 +62,6 @@ import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -80,6 +79,7 @@ import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.ui.theme.customColors
 import org.schabi.newpipe.util.Either
 import org.schabi.newpipe.util.Localization
+import org.schabi.newpipe.util.text.FixedHeightCenteredText
 import org.schabi.newpipe.util.text.fadedMarquee
 import java.time.OffsetDateTime
 
@@ -112,6 +112,8 @@ fun getLongPressMenuView(
     }
 }
 
+internal val MinButtonWidth = 86.dp
+
 @Composable
 fun LongPressMenu(
     longPressable: LongPressable,
@@ -130,10 +132,9 @@ fun LongPressMenu(
                 .fillMaxWidth()
                 .padding(start = 6.dp, end = 6.dp, bottom = 16.dp)
         ) {
-            val minButtonWidth = 86.dp
-            val buttonHeight = 86.dp
+            val buttonHeight = MinButtonWidth // landscape aspect ratio, square in the limit
             val headerWidthInButtons = 5 // the header is 5 times as wide as the buttons
-            val buttonsPerRow = (this.maxWidth / minButtonWidth).toInt()
+            val buttonsPerRow = (this.maxWidth / MinButtonWidth).toInt()
 
             // the channel icon goes in the menu header, so do not show a button for it
             val actions = longPressActions.toMutableList()
@@ -498,22 +499,11 @@ fun LongPressMenuButton(
                 contentDescription = null,
                 modifier = Modifier.size(32.dp),
             )
-            Box {
-                // this allows making the box always the same height (i.e. the height of two text
-                // lines), while making the text appear centered if it is just a single line
-                Text(
-                    text = "",
-                    style = MaterialTheme.typography.bodySmall,
-                    minLines = 2,
-                )
-                Text(
-                    text = text,
-                    style = MaterialTheme.typography.bodySmall,
-                    maxLines = 2,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.align(Alignment.Center)
-                )
-            }
+            FixedHeightCenteredText(
+                text = text,
+                lines = 2,
+                style = MaterialTheme.typography.bodySmall,
+            )
         }
     }
 }
