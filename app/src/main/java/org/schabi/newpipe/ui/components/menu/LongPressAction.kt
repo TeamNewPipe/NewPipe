@@ -63,10 +63,10 @@ data class LongPressAction(
         Enqueue(R.string.enqueue, Icons.Default.AddToQueue),
         EnqueueNext(R.string.enqueue_next_stream, Icons.Default.QueuePlayNext),
         Background(R.string.controls_background_title, Icons.Default.Headset),
-        BackgroundFromHere(R.string.background_from_here, Icons.Default.BackgroundFromHere),
         Popup(R.string.controls_popup_title, Icons.Default.PictureInPicture),
-        PopupFromHere(R.string.popup_from_here, Icons.Default.PopupFromHere),
         Play(R.string.play, Icons.Default.PlayArrow),
+        BackgroundFromHere(R.string.background_from_here, Icons.Default.BackgroundFromHere),
+        PopupFromHere(R.string.popup_from_here, Icons.Default.PopupFromHere),
         PlayFromHere(R.string.play_from_here, Icons.Default.PlayFromHere),
         PlayWithKodi(R.string.play_with_kodi_title, Icons.Default.Cast),
         Download(R.string.download, Icons.Default.Download),
@@ -89,6 +89,16 @@ data class LongPressAction(
             enabled: (isPlayerRunning: Boolean) -> Boolean = { true },
             action: (context: Context) -> Unit,
         ) = LongPressAction(this, action, enabled)
+
+        companion object {
+            // ShowChannelDetails is not enabled by default, since navigating to channel details can
+            // also be done by clicking on the uploader name in the long press menu header
+            val DefaultEnabledActions: Array<Type> = arrayOf(
+                Enqueue, EnqueueNext, Background, Popup, BackgroundFromHere, Download,
+                AddToPlaylist, Share, OpenInBrowser, MarkAsWatched, Delete,
+                Rename, SetAsPlaylistThumbnail, UnsetPlaylistThumbnail, Unsubscribe
+            )
+        }
     }
 
     companion object {
