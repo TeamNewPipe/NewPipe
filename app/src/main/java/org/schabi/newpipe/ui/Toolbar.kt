@@ -21,7 +21,6 @@ import androidx.compose.material3.SearchBar
 import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -82,10 +81,6 @@ fun Toolbar(
         TopAppBar(
             title = { Text(text = title) },
             modifier = modifier,
-            colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = MaterialTheme.colorScheme.primary,
-                titleContentColor = MaterialTheme.colorScheme.onPrimary,
-            ),
             navigationIcon = {
                 onNavigateBack?.let { NavigationIcon(onNavigateBack) }
             },
