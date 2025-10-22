@@ -909,5 +909,5 @@
     <string name="long_press_menu_hidden_actions_description">Drag the header or the actions to this section to hide them</string>
     <string name="header">Header</string>
     <string name="back">Back</string>
-    <string name="long_press_menu_actions_editor">Reorder and disable actions</string>
+    <string name="long_press_menu_actions_editor">Reorder and hide actions</string>
 </resources>
