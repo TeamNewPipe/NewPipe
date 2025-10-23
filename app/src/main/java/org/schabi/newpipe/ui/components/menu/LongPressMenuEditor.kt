@@ -21,6 +21,7 @@ package org.schabi.newpipe.ui.components.menu
 import androidx.annotation.StringRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
@@ -54,9 +55,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.focusTarget
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onKeyEvent
+import androidx.compose.ui.input.key.type
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
@@ -69,18 +76,21 @@ import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import org.schabi.newpipe.R
+import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.Companion.DefaultEnabledActions
 import org.schabi.newpipe.ui.detectDragGestures
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.text.FixedHeightCenteredText
+import kotlin.math.floor
 import kotlin.math.min
 
-// TODO implement accessibility for this, to allow using this with a DPAD (e.g. Android TV)
+// TODO padding doesn't seem to work as expected when the list becomes scrollable?
+// TODO does Android TV auto-scroll to the selected item when the list becomes scrollable?
 @Composable
-fun LongPressMenuEditor() {
+fun LongPressMenuEditor(modifier: Modifier = Modifier) {
     // We get the current arrangement once and do not observe on purpose
     // TODO load from settings
-    val headerEnabled = remember { false } // true }
-    val actionArrangement = remember { LongPressAction.Type.entries } // DefaultEnabledActions }
+    val headerEnabled = remember { true }
+    val actionArrangement = remember { DefaultEnabledActions }
     val items = remember(headerEnabled, actionArrangement) {
         sequence {
             yield(ItemInList.EnabledCaption)
@@ -127,8 +137,8 @@ fun LongPressMenuEditor() {
         return closestItemInRow
     }
 
-    fun beginDragGesture(pos: IntOffset) {
-        val rawItem = findItemForOffsetOrClosestInRow(pos) ?: return
+    fun beginDragGesture(pos: IntOffset, rawItem: LazyGridItemInfo) {
+        if (activeDragItem != null) return
         val item = items.getOrNull(rawItem.index) ?: return
         if (item.isDraggable) {
             items[rawItem.index] = ItemInList.DragMarker(item.columnSpan)
@@ -138,15 +148,14 @@ fun LongPressMenuEditor() {
         }
     }
 
-    fun handleDragGestureChange(pos: IntOffset, posChange: Offset) {
-        val dragItem = activeDragItem
-        if (dragItem == null) {
-            // when the user clicks outside of any draggable item, let the list be scrolled
-            gridState.dispatchRawDelta(-posChange.y)
-            return
-        }
-        activeDragPosition = pos
+    fun beginDragGesture(pos: IntOffset) {
         val rawItem = findItemForOffsetOrClosestInRow(pos) ?: return
+        beginDragGesture(pos, rawItem)
+    }
+
+    fun handleDragGestureChange(dragItem: ItemInList, rawItem: LazyGridItemInfo) {
+        val prevDragMarkerIndex = items.indexOfFirst { it is ItemInList.DragMarker }
+            .takeIf { it >= 0 } ?: return // impossible situation, DragMarker is always in the list
 
         // compute where the DragMarker will go (we need to do special logic to make sure the
         // HeaderBox always sticks right after EnabledCaption or HiddenCaption)
@@ -154,19 +163,27 @@ fun LongPressMenuEditor() {
             val hiddenCaptionIndex = items.indexOf(ItemInList.HiddenCaption)
             if (rawItem.index < hiddenCaptionIndex) {
                 1 // i.e. right after the EnabledCaption
+            } else if (prevDragMarkerIndex < hiddenCaptionIndex) {
+                hiddenCaptionIndex // i.e. right after the HiddenCaption
             } else {
                 hiddenCaptionIndex + 1 // i.e. right after the HiddenCaption
             }
         } else {
             var i = rawItem.index
             // make sure it is not possible to move items in between a *Caption and a HeaderBox
-            if (!items[i].isDraggable) i += 1
-            if (items[i] == ItemInList.HeaderBox) i += 1
+            val offsetForRemovingPrev = if (prevDragMarkerIndex < rawItem.index) 1 else 0
+            if (!items[i - offsetForRemovingPrev].isDraggable) i += 1
+            if (items[i - offsetForRemovingPrev] == ItemInList.HeaderBox) i += 1
             i
         }
 
+        // no need to do anything if the DragMarker is already at the right place
+        if (prevDragMarkerIndex == nextDragMarkerIndex) {
+            return
+        }
+
         // adjust the position of the DragMarker
-        items.removeIf { it is ItemInList.DragMarker }
+        items.removeAt(prevDragMarkerIndex)
         items.add(min(nextDragMarkerIndex, items.size), ItemInList.DragMarker(dragItem.columnSpan))
 
         // add or remove NoneMarkers as needed
@@ -177,6 +194,18 @@ fun LongPressMenuEditor() {
         } else if (hiddenCaptionIndex == 1) {
             items.add(1, ItemInList.NoneMarker)
         }
+    }
+
+    fun handleDragGestureChange(pos: IntOffset, posChangeForScrolling: Offset) {
+        val dragItem = activeDragItem
+        if (dragItem == null) {
+            // when the user clicks outside of any draggable item, let the list be scrolled
+            gridState.dispatchRawDelta(-posChangeForScrolling.y)
+            return
+        }
+        activeDragPosition = pos
+        val rawItem = findItemForOffsetOrClosestInRow(pos) ?: return
+        handleDragGestureChange(dragItem, rawItem)
     }
 
     fun completeDragGestureAndCleanUp() {
@@ -199,43 +228,152 @@ fun LongPressMenuEditor() {
         }
     }
 
-    LazyVerticalGrid(
-        modifier = Modifier
-            .safeDrawingPadding()
-            .detectDragGestures(
-                beginDragGesture = ::beginDragGesture,
-                handleDragGestureChange = ::handleDragGestureChange,
-                endDragGesture = ::completeDragGestureAndCleanUp,
-            ),
-        // same width as the LongPressMenu
-        columns = GridCells.Adaptive(MinButtonWidth),
-        userScrollEnabled = false,
-        state = gridState,
-    ) {
-        itemsIndexed(
-            items,
-            key = { _, item -> item.stableUniqueKey() },
-            span = { _, item -> GridItemSpan(item.columnSpan ?: maxLineSpan) },
-        ) { i, item ->
+    BoxWithConstraints(modifier) {
+        // otherwise we wouldn't know the amount of columns to handle the Up/Down key events
+        val columns = maxOf(1, floor(this.maxWidth / MinButtonWidth).toInt())
+        LazyVerticalGrid(
+            modifier = Modifier
+                .safeDrawingPadding()
+                .detectDragGestures(
+                    beginDragGesture = ::beginDragGesture,
+                    handleDragGestureChange = ::handleDragGestureChange,
+                    endDragGesture = ::completeDragGestureAndCleanUp,
+                )
+                .focusTarget()
+                .onKeyEvent { event ->
+                    if (event.type != KeyEventType.KeyDown) {
+                        if (event.type == KeyEventType.KeyUp &&
+                            event.key == Key.DirectionDown &&
+                            currentlyFocusedItem < 0
+                        ) {
+                            //
+                            currentlyFocusedItem = 0
+                        }
+                        return@onKeyEvent false
+                    }
+                    var focusedItem = currentlyFocusedItem
+                    when (event.key) {
+                        Key.DirectionUp -> {
+                            if (focusedItem < 0) {
+                                return@onKeyEvent false
+                            } else if (items[focusedItem].columnSpan == null) {
+                                focusedItem -= 1
+                            } else {
+                                var remaining = columns
+                                while (true) {
+                                    focusedItem -= 1
+                                    if (focusedItem < 0) {
+                                        break
+                                    }
+                                    remaining -= items[focusedItem].columnSpan ?: columns
+                                    if (remaining <= 0) {
+                                        break
+                                    }
+                                }
+                            }
+                        }
+
+                        Key.DirectionDown -> {
+                            if (focusedItem >= items.size - 1) {
+                                return@onKeyEvent false
+                            } else if (items[focusedItem].columnSpan == null) {
+                                focusedItem += 1
+                            } else {
+                                var remaining = columns
+                                while (true) {
+                                    focusedItem += 1
+                                    if (focusedItem >= items.size - 1) {
+                                        break
+                                    }
+                                    remaining -= items[focusedItem].columnSpan ?: columns
+                                    if (remaining <= 0) {
+                                        break
+                                    }
+                                }
+                            }
+                        }
+
+                        Key.DirectionLeft -> {
+                            if (focusedItem < 0) {
+                                return@onKeyEvent false
+                            } else {
+                                focusedItem -= 1
+                            }
+                        }
+
+                        Key.DirectionRight -> {
+                            if (focusedItem >= items.size - 1) {
+                                return@onKeyEvent false
+                            } else {
+                                focusedItem += 1
+                            }
+                        }
+
+                        Key.Enter, Key.NumPadEnter, Key.DirectionCenter -> if (activeDragItem == null) {
+                            val rawItem = gridState.layoutInfo.visibleItemsInfo
+                                .firstOrNull { it.index == focusedItem }
+                                ?: return@onKeyEvent false
+                            beginDragGesture(rawItem.offset, rawItem)
+                            return@onKeyEvent true
+                        } else {
+                            completeDragGestureAndCleanUp()
+                            return@onKeyEvent true
+                        }
+
+                        else -> return@onKeyEvent false
+                    }
+
+                    currentlyFocusedItem = focusedItem
+                    if (focusedItem < 0) {
+                        // not checking for focusedItem>=items.size because it's impossible for it
+                        // to reach that value, and that's because we assume that there is nothing
+                        // else focusable *after* this view. This way we don't need to cleanup the
+                        // drag gestures when the user reaches the end, which would be confusing as
+                        // then there would be no indication of the current cursor position at all.
+                        completeDragGestureAndCleanUp()
+                        return@onKeyEvent false
+                    }
+
+                    val dragItem = activeDragItem
+                    if (dragItem != null) {
+                        val rawItem = gridState.layoutInfo.visibleItemsInfo
+                            .firstOrNull { it.index == focusedItem }
+                            ?: return@onKeyEvent false
+                        activeDragPosition = rawItem.offset
+                        handleDragGestureChange(dragItem, rawItem)
+                    }
+                    return@onKeyEvent true
+                },
+            // same width as the LongPressMenu
+            columns = GridCells.Adaptive(MinButtonWidth),
+            userScrollEnabled = false,
+            state = gridState,
+        ) {
+            itemsIndexed(
+                items,
+                key = { _, item -> item.stableUniqueKey() },
+                span = { _, item -> GridItemSpan(item.columnSpan ?: maxLineSpan) },
+            ) { i, item ->
+                ItemInListUi(
+                    item = item,
+                    selected = currentlyFocusedItem == i,
+                    modifier = Modifier.animateItem()
+                )
+            }
+        }
+        if (activeDragItem != null) {
+            val size = with(LocalDensity.current) {
+                remember(activeDragSize) { activeDragSize.toSize().toDpSize() }
+            }
             ItemInListUi(
-                item = item,
-                selected = currentlyFocusedItem == i,
-                modifier = Modifier.animateItem()
+                item = activeDragItem!!,
+                selected = false,
+                modifier = Modifier
+                    .size(size)
+                    .offset { activeDragPosition }
+                    .offset(-size.width / 2, -size.height / 2),
             )
         }
-    }
-    if (activeDragItem != null) {
-        val size = with(LocalDensity.current) {
-            remember(activeDragSize) { activeDragSize.toSize().toDpSize() }
-        }
-        ItemInListUi(
-            item = activeDragItem!!,
-            selected = true,
-            modifier = Modifier
-                .size(size)
-                .offset { activeDragPosition }
-                .offset(-size.width / 2, -size.height / 2),
-        )
     }
 }
 
@@ -306,7 +444,7 @@ private fun ActionOrHeaderBox(
         color = backgroundColor,
         contentColor = contentColor,
         shape = MaterialTheme.shapes.large,
-        border = BorderStroke(2.dp, contentColor).takeIf { selected },
+        border = BorderStroke(2.dp, contentColor.copy(alpha = 1f)).takeIf { selected },
         modifier = modifier.padding(
             horizontal = horizontalPadding,
             vertical = 5.dp,
