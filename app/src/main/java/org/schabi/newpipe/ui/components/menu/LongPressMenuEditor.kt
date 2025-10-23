@@ -171,9 +171,9 @@ fun LongPressMenuEditor(modifier: Modifier = Modifier) {
         } else {
             var i = rawItem.index
             // make sure it is not possible to move items in between a *Caption and a HeaderBox
-            val offsetForRemovingPrev = if (prevDragMarkerIndex < rawItem.index) 1 else 0
-            if (!items[i - offsetForRemovingPrev].isDraggable) i += 1
-            if (items[i - offsetForRemovingPrev] == ItemInList.HeaderBox) i += 1
+            if (!items[i].isDraggable) i += 1
+            if (i < items.size && items[i] == ItemInList.HeaderBox) i += 1
+            if (i > rawItem.index && prevDragMarkerIndex < rawItem.index) i -= 1
             i
         }
 
