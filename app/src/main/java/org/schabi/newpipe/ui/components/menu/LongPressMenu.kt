@@ -7,7 +7,6 @@ import android.content.Context
 import android.content.res.Configuration
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -69,6 +68,8 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameterProvider
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import coil3.compose.AsyncImage
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamType
@@ -126,14 +127,16 @@ fun LongPressMenu(
 
     if (showEditor) {
         // we can't put the editor in a bottom sheet, because it relies on dragging gestures
-        ScaffoldWithToolbar(
-            title = stringResource(R.string.long_press_menu_actions_editor),
-            onBackClick = { showEditor = false },
-        ) { paddingValues ->
-            Box(modifier = Modifier.padding(paddingValues)) {
-                LongPressMenuEditor()
+        Dialog(
+            onDismissRequest = { showEditor = false },
+            properties = DialogProperties(usePlatformDefaultWidth = false)
+        ) {
+            ScaffoldWithToolbar(
+                title = stringResource(R.string.long_press_menu_actions_editor),
+                onBackClick = { showEditor = false },
+            ) { paddingValues ->
+                LongPressMenuEditor(modifier = Modifier.padding(paddingValues))
             }
-            BackHandler { showEditor = false }
         }
     } else {
         ModalBottomSheet(
