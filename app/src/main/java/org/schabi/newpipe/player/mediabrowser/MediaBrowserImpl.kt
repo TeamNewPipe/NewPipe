@@ -257,6 +257,31 @@ class MediaBrowserImpl(
             .build().toString()
     }
 
+    private fun createShuffleAndPlayMediaItem(
+        isRemote: Boolean,
+        playlistId: Long
+    ): MediaBrowserCompat.MediaItem {
+        val resources = context.resources
+
+        val builder = MediaDescriptionCompat.Builder()
+            .setMediaId(createMediaIdForPlaylistShuffle(isRemote, playlistId))
+            .setTitle(resources.getString(R.string.shuffle_and_play))
+
+        @DrawableRes val iconResId = R.drawable.ic_shuffle_white
+        builder.setIconUri(
+            Uri.Builder()
+                .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
+                .authority(resources.getResourcePackageName(iconResId))
+                .appendPath(resources.getResourceTypeName(iconResId))
+                .appendPath(resources.getResourceEntryName(iconResId))
+                .build()
+        )
+
+        return MediaBrowserCompat.MediaItem(
+            builder.build(), MediaBrowserCompat.MediaItem.FLAG_PLAYABLE
+        )
+    }
+
     private fun createLocalPlaylistStreamMediaItem(
         playlistId: Long,
         item: PlaylistStreamEntry,
@@ -298,6 +323,15 @@ class MediaBrowserImpl(
     ): String {
         return buildLocalPlaylistItemMediaId(isRemote, playlistId)
             .appendPath(index.toString())
+            .build().toString()
+    }
+
+    private fun createMediaIdForPlaylistShuffle(
+        isRemote: Boolean,
+        playlistId: Long,
+    ): String {
+        return buildLocalPlaylistItemMediaId(isRemote, playlistId)
+            .appendPath(ID_SHUFFLE)
             .build().toString()
     }
 
@@ -346,7 +380,10 @@ class MediaBrowserImpl(
     private fun populateLocalPlaylist(playlistId: Long): Single<List<MediaBrowserCompat.MediaItem>> {
         val playlist = LocalPlaylistManager(database).getPlaylistStreams(playlistId).firstOrError()
         return playlist.map { items ->
-            items.mapIndexed { index, item ->
+            val quickActions = if (items.isEmpty()) emptyList() else listOf(
+                createShuffleAndPlayMediaItem(false, playlistId)
+            )
+            quickActions + items.mapIndexed { index, item ->
                 createLocalPlaylistStreamMediaItem(playlistId, item, index)
             }
         }
@@ -356,9 +393,12 @@ class MediaBrowserImpl(
         return RemotePlaylistManager(database).getPlaylist(playlistId).firstOrError()
             .flatMap { ExtractorHelper.getPlaylistInfo(it.serviceId, it.url, false) }
             .map {
+                val quickActions = if (it.relatedItems.isEmpty()) emptyList() else listOf(
+                    createShuffleAndPlayMediaItem(true, playlistId)
+                )
                 // ignore it.errors, i.e. ignore errors about specific items, since there would
                 // be no way to show the error properly in Android Auto anyway
-                it.relatedItems.mapIndexed { index, item ->
+                quickActions + it.relatedItems.mapIndexed { index, item ->
                     createRemotePlaylistStreamMediaItem(playlistId, item, index)
                 }
             }

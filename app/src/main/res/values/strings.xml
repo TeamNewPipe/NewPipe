@@ -666,6 +666,7 @@
     <string name="app_language_title">App language</string>
     <string name="systems_language">System default</string>
     <string name="remove_watched">Remove watched</string>
+    <string name="shuffle_and_play">Shuffle and play</string>
     <string name="remove_watched_popup_title">Remove watched videos?</string>
     <string name="remove_duplicates">Remove duplicates</string>
     <string name="remove_duplicates_title">Remove duplicates?</string>

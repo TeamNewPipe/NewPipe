@@ -17,6 +17,8 @@ internal const val ID_STREAM = "stream"
 internal const val ID_PLAYLIST = "playlist"
 internal const val ID_CHANNEL = "channel"
 
+internal const val ID_SHUFFLE = "ID_SHUFFLE"
+
 internal fun infoItemTypeToString(type: InfoType): String {
     return when (type) {
         InfoType.STREAM -> ID_STREAM

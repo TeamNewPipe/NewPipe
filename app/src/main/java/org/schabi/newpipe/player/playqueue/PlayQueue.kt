@@ -399,17 +399,21 @@ abstract class PlayQueue internal constructor(
     /**
      * Shuffles the current play queue
      *
-     * This method first backs up the existing play queue and item being played. Then a newly
-     * shuffled play queue will be generated along with currently playing item placed at the
-     * beginning of the queue. This item will also be added to the history.
+     * This method first backs up the existing play queue. By default, the currently playing item
+     * is preserved at the beginning of the queue, with the remaining items shuffled.
+     * If [shuffleAll] is true, all items in the queue will be shuffled without preserving the
+     * currently playing item at the head of the queue.
      *
-     * Will emit a [ReorderEvent] if shuffled.
+     * When the currently playing item is preserved, it will also be added to the history and will
+     * emit a [ReorderEvent] if the currently playing item position changes.
      *
+     * @param shuffleAll whether to shuffle all items in the queue or preserve the currently
+     * playing item at the head
      * @implNote Does nothing if the queue has a size <= 2 (the currently playing video must stay on
      * top, so shuffling a size-2 list does nothing)
      */
     @Synchronized
-    fun shuffle() {
+    fun shuffle(shuffleAll: Boolean = false) {
         // Create a backup if it doesn't already exist
         // Note: The backup-list has to be created at all cost (even when size <= 2).
         // Otherwise it's not possible to enter shuffle-mode!
@@ -421,13 +425,18 @@ abstract class PlayQueue internal constructor(
             return
         }
 
+        if (shuffleAll) {
+            streams.shuffle()
+            return
+        }
+
         val originalIndex = this.index
-        val currentItem = this.item
+        val currentItem = this.item!!
 
         streams.shuffle()
 
         // Move currentItem to the head of the queue
-        streams.remove(currentItem!!)
+        streams.remove(currentItem)
         streams.add(0, currentItem)
         queueIndex.set(0)
 

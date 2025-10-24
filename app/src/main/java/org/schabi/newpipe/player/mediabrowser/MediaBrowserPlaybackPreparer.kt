@@ -138,6 +138,17 @@ class MediaBrowserPlaybackPreparer(
             .map { info -> PlaylistPlayQueue(info, index) }
     }
 
+    private fun extractShufflePlayQueue(isRemote: Boolean, playlistId: Long): Single<PlayQueue> {
+        return if (isRemote) {
+            extractRemotePlayQueue(playlistId, 0)
+        } else {
+            extractLocalPlayQueue(playlistId, 0)
+        }.map { playQueue ->
+            playQueue.shuffle(true)
+            playQueue
+        }
+    }
+
     private fun extractPlayQueueFromMediaId(mediaId: String): Single<PlayQueue> {
         try {
             val mediaIdUri = mediaId.toUri()
@@ -184,6 +195,10 @@ class MediaBrowserPlaybackPreparer(
                     throw parseError(mediaId)
                 }
                 val playlistId = path[0].toLong()
+                if (ID_SHUFFLE == path[1]) {
+                    return extractShufflePlayQueue(playlistType == ID_REMOTE, playlistId)
+                }
+
                 val index = path[1].toInt()
                 return if (playlistType == ID_LOCAL)
                     extractLocalPlayQueue(playlistId, index)

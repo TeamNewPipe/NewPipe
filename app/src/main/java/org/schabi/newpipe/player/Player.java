@@ -1298,7 +1298,7 @@ public final class Player implements PlaybackListener, Listener {
 
         if (playQueue != null) {
             if (shuffleModeEnabled) {
-                playQueue.shuffle();
+                playQueue.shuffle(false);
             } else {
                 playQueue.unshuffle();
             }
