@@ -65,8 +65,9 @@ public class App extends Application {
     private static final String TAG = App.class.toString();
 
     private boolean isFirstRun = false;
-    private static App app;
     private boolean notificationsRequested = false;
+
+    private static App app;
 
     @NonNull
     public static App getApp() {
