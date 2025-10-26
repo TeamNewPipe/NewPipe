@@ -72,8 +72,13 @@ class FeedDAOTest {
     private val allStreams = listOf(stream1, stream2, stream3, stream4, stream5, stream6, stream7)
 
     private fun createStreamEntity(
-        uid: Long, url: String, title: String, type: StreamType = StreamType.VIDEO_STREAM,
-        uploader: String, uploaderUrl: String, date: LocalDate,
+        uid: Long,
+        url: String,
+        title: String,
+        type: StreamType = StreamType.VIDEO_STREAM,
+        uploader: String,
+        uploaderUrl: String,
+        date: LocalDate,
     ) = StreamEntity(
         uid, serviceId, url, title, type, duration = 1000, uploader, uploaderUrl,
         thumbnailUrl = "https://i.ytimg.com/vi/1/hqdefault.jpg", viewCount = 100, textualUploadDate = date.toString(),
