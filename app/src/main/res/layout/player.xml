@@ -109,70 +109,88 @@
                         android:layout_marginEnd="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
+                        android:contentDescription="@string/close"
                         android:focusable="true"
                         android:padding="@dimen/player_main_buttons_padding"
                         android:scaleType="fitXY"
                         android:src="@drawable/ic_close"
                         android:visibility="gone"
                         app:tint="@color/white"
-                        android:contentDescription="@string/close"
                         tools:ignore="RtlHardcoded" />
 
                     <LinearLayout
-                        android:id="@+id/metadataView"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:layout_marginRight="8dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="top"
-                        android:orientation="vertical"
-                        tools:ignore="RtlHardcoded">
+                        android:orientation="horizontal">
 
-                        <org.schabi.newpipe.views.NewPipeTextView
-                            android:id="@+id/titleTextView"
-                            android:layout_width="match_parent"
+                        <LinearLayout
+                            android:id="@+id/metadataView"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:ellipsize="marquee"
-                            android:fadingEdge="horizontal"
-                            android:marqueeRepeatLimit="marquee_forever"
-                            android:scrollHorizontally="true"
-                            android:singleLine="true"
-                            android:textColor="@android:color/white"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            tools:ignore="RtlHardcoded"
-                            tools:text="The Video Title LONG very LONG" />
+                            android:layout_marginTop="6dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:gravity="top"
+                            android:orientation="vertical"
+                            tools:ignore="NestedWeights,RtlHardcoded">
 
-                        <org.schabi.newpipe.views.NewPipeTextView
-                            android:id="@+id/channelTextView"
-                            android:layout_width="match_parent"
+                            <org.schabi.newpipe.views.NewPipeTextView
+                                android:id="@+id/titleTextView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="marquee"
+                                android:fadingEdge="horizontal"
+                                android:marqueeRepeatLimit="marquee_forever"
+                                android:scrollHorizontally="true"
+                                android:singleLine="true"
+                                android:textColor="@android:color/white"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                tools:ignore="RtlHardcoded"
+                                tools:text="The Video Title LONG very LONG" />
+
+                            <org.schabi.newpipe.views.NewPipeTextView
+                                android:id="@+id/channelTextView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="marquee"
+                                android:fadingEdge="horizontal"
+                                android:marqueeRepeatLimit="marquee_forever"
+                                android:scrollHorizontally="true"
+                                android:singleLine="true"
+                                android:textColor="@android:color/white"
+                                android:textSize="12sp"
+                                tools:text="The Video Artist  LONG very LONG very Long" />
+
+                        </LinearLayout>
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:ellipsize="marquee"
-                            android:fadingEdge="horizontal"
-                            android:marqueeRepeatLimit="marquee_forever"
-                            android:scrollHorizontally="true"
-                            android:singleLine="true"
-                            android:textColor="@android:color/white"
-                            android:textSize="12sp"
-                            tools:text="The Video Artist  LONG very LONG very Long" />
+                            android:layout_weight="1">
+
+                            <org.schabi.newpipe.views.NewPipeTextView
+                                android:id="@+id/audioTrackTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_gravity="right"
+                                android:layout_marginEnd="8dp"
+                                android:background="?attr/selectableItemBackground"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:minWidth="0dp"
+                                android:padding="@dimen/player_main_buttons_padding"
+                                android:singleLine="true"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold"
+                                android:visibility="gone"
+                                tools:ignore="HardcodedText,RtlHardcoded"
+                                tools:text="English (United States) original"
+                                tools:visibility="visible" />
+                        </FrameLayout>
+
                     </LinearLayout>
-
-                    <org.schabi.newpipe.views.NewPipeTextView
-                        android:id="@+id/audioTrackTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:layout_marginEnd="8dp"
-                        android:background="?attr/selectableItemBackground"
-                        android:gravity="center"
-                        android:minWidth="0dp"
-                        android:padding="@dimen/player_main_buttons_padding"
-                        android:textColor="@android:color/white"
-                        android:textStyle="bold"
-                        android:visibility="gone"
-                        tools:ignore="HardcodedText,RtlHardcoded"
-                        tools:visibility="visible"
-                        tools:text="English (Original)" />
 
                     <org.schabi.newpipe.views.NewPipeTextView
                         android:id="@+id/qualityTextView"
@@ -209,6 +227,7 @@
                         android:layout_marginEnd="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
+                        android:contentDescription="@string/open_play_queue"
                         android:focusable="true"
                         android:paddingStart="3dp"
                         android:paddingTop="5dp"
@@ -218,7 +237,6 @@
                         android:src="@drawable/ic_list"
                         android:visibility="gone"
                         app:tint="@color/white"
-                        android:contentDescription="@string/open_play_queue"
                         tools:ignore="RtlHardcoded" />
 
                     <androidx.appcompat.widget.AppCompatImageButton
@@ -228,16 +246,16 @@
                         android:layout_marginEnd="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
+                        android:contentDescription="@string/chapters"
                         android:focusable="true"
                         android:paddingStart="6dp"
+                        android:paddingTop="3dp"
                         android:paddingEnd="6dp"
                         android:paddingBottom="3dp"
-                        android:paddingTop="3dp"
                         android:scaleType="fitCenter"
                         android:src="@drawable/ic_menu_book"
                         android:visibility="gone"
                         app:tint="@color/white"
-                        android:contentDescription="@string/chapters"
                         tools:ignore="RtlHardcoded" />
 
                     <androidx.appcompat.widget.AppCompatImageButton
@@ -246,12 +264,12 @@
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
+                        android:contentDescription="@string/more_options"
                         android:focusable="true"
                         android:padding="@dimen/player_main_buttons_padding"
                         android:scaleType="fitXY"
                         android:src="@drawable/ic_expand_more"
                         app:tint="@color/white"
-                        android:contentDescription="@string/more_options"
                         tools:ignore="RtlHardcoded" />
 
                 </LinearLayout>
@@ -368,11 +386,11 @@
                         android:layout_height="40dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
+                        android:contentDescription="@string/toggle_fullscreen"
                         android:focusable="true"
                         android:padding="@dimen/player_main_buttons_padding"
                         android:scaleType="fitCenter"
                         android:src="@drawable/ic_fullscreen"
-                        android:contentDescription="@string/toggle_fullscreen"
                         android:visibility="gone"
                         app:tint="@color/white"
                         tools:ignore="RtlHardcoded"
@@ -492,13 +510,13 @@
                     android:layout_marginStart="4dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
+                    android:contentDescription="@string/toggle_screen_orientation"
                     android:focusable="true"
                     android:nextFocusUp="@id/playbackSeekBar"
                     android:padding="@dimen/player_main_buttons_padding"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_fullscreen"
                     android:visibility="gone"
-                    android:contentDescription="@string/toggle_screen_orientation"
                     app:tint="@color/white"
                     tools:ignore="RtlHardcoded"
                     tools:visibility="visible" />
@@ -520,10 +538,10 @@
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
+                android:contentDescription="@string/previous_stream"
                 android:focusable="true"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_previous"
-                android:contentDescription="@string/previous_stream"
                 app:tint="@color/white" />
 
 
@@ -533,9 +551,9 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/pause"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_pause"
-                android:contentDescription="@string/pause"
                 app:tint="@color/white" />
 
             <androidx.appcompat.widget.AppCompatImageButton
@@ -546,10 +564,10 @@
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
+                android:contentDescription="@string/next_stream"
                 android:focusable="true"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_next"
-                android:contentDescription="@string/next_stream"
                 app:tint="@color/white" />
 
         </LinearLayout>
@@ -596,12 +614,12 @@
                 android:layout_marginLeft="40dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
+                android:contentDescription="@string/notification_action_repeat"
                 android:focusable="true"
                 android:padding="10dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/exo_controls_repeat_off"
                 android:tint="?attr/colorAccent"
-                android:contentDescription="@string/notification_action_repeat"
                 tools:ignore="RtlHardcoded" />
 
             <androidx.appcompat.widget.AppCompatImageButton
@@ -612,12 +630,12 @@
                 android:layout_toRightOf="@id/repeatButton"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
+                android:contentDescription="@string/notification_action_shuffle"
                 android:focusable="true"
                 android:padding="10dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_shuffle"
                 android:tint="?attr/colorAccent"
-                android:contentDescription="@string/notification_action_shuffle"
                 tools:ignore="RtlHardcoded" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -639,12 +657,12 @@
                 android:layout_toLeftOf="@+id/itemsListClose"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
+                android:contentDescription="@string/add_to_playlist"
                 android:focusable="true"
                 android:padding="10dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_playlist_add"
                 android:tint="?attr/colorAccent"
-                android:contentDescription="@string/add_to_playlist"
                 tools:ignore="RtlHardcoded" />
 
             <androidx.appcompat.widget.AppCompatImageButton

@@ -138,7 +138,7 @@ public class SelectPlaylistFragment extends DialogFragment {
         void onRemotePlaylistSelected(int serviceId, String url, String name);
     }
 
-    private class SelectPlaylistAdapter
+    private final class SelectPlaylistAdapter
             extends RecyclerView.Adapter<SelectPlaylistAdapter.SelectPlaylistItemHolder> {
         @NonNull
         @Override

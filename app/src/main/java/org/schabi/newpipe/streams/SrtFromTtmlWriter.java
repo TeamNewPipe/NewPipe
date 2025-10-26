@@ -24,7 +24,11 @@ public class SrtFromTtmlWriter {
     private final boolean ignoreEmptyFrames;
     private final Charset charset = StandardCharsets.UTF_8;
 
-    private int frameIndex = 0;
+    // According to the SubRip (.srt) specification, subtitle
+    // numbering must start from 1.
+    // Some players accept 0 or even negative indices,
+    // but to ensure compliance we start at 1.
+    private int frameIndex = 1;
 
     public SrtFromTtmlWriter(final SharpStream out, final boolean ignoreEmptyFrames) {
         this.out = out;
@@ -39,7 +43,8 @@ public class SrtFromTtmlWriter {
 
     private void writeFrame(final String begin, final String end, final StringBuilder text)
             throws IOException {
-        writeString(String.valueOf(frameIndex++));
+        writeString(String.valueOf(frameIndex));
+        frameIndex += 1;
         writeString(NEW_LINE);
         writeString(begin);
         writeString(" --> ");

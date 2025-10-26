@@ -296,10 +296,6 @@ public final class PlayerHelper {
                 AdaptiveTrackSelection.DEFAULT_BANDWIDTH_FRACTION);
     }
 
-    public static boolean isUsingDSP() {
-        return true;
-    }
-
     @NonNull
     public static CaptionStyleCompat getCaptionStyle(@NonNull final Context context) {
         final CaptioningManager captioningManager = ContextCompat.getSystemService(context,
