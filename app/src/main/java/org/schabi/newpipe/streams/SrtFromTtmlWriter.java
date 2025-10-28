@@ -99,8 +99,8 @@ public class SrtFromTtmlWriter {
     }
 
     /**
-     * Handle rare XML entity characters like LF: &#xA;(`\n`)
-     * , CR: &#xD;(`\r`) and CRLF: (`\r\n`).
+     * Handle rare XML entity characters like LF: &#xA;(`\n`),
+     * CR: &#xD;(`\r`) and CRLF: (`\r\n`).
      *
      * These are technically valid in TTML (XML allows them)
      * but unusual in practice, since most TTML line breaks
