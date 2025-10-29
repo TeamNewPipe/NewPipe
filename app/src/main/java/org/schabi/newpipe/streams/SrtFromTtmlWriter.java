@@ -98,8 +98,7 @@ public class SrtFromTtmlWriter {
      *         actual (literal) characters.
      */
     private String decodeXmlEntities(final String encodedEntities) {
-        final String decoded = Parser.unescapeEntities(encodedEntities, true);
-        return decoded;
+        return Parser.unescapeEntities(encodedEntities, true);
     }
 
     /**
