@@ -15,7 +15,11 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 /**
- * @author kapodamy
+ * Converts TTML subtitles to SRT format.
+ *
+ * References:
+ *  - TTML 2.0 (W3C): https://www.w3.org/TR/ttml2/
+ *  - SRT format: https://en.wikipedia.org/wiki/SubRip
  */
 public class SrtFromTtmlWriter {
     private static final String NEW_LINE = "\r\n";
@@ -135,20 +139,37 @@ public class SrtFromTtmlWriter {
     private String normalizeForSrt(final String actualText) {
         String cleaned = actualText;
 
-        // Replace non-breaking space (\u00A0) with regular space ' '(\u0020).
+        // Replace NBSP "non-breaking space" (\u00A0) with regular space ' '(\u0020).
+        //
+        // Why:
+        // - Some viewers render NBSP(\u00A0) incorrectly:
+        //   * MPlayer 1.5: shown as “??”
+        //   * Linux command `cat -A`: displayed as control-like markers
+        //     (M-BM-)
+        //   * Acode (Android editor): displayed as visible replacement
+        //     glyphs (red dots)
+        // - Other viewers show it as a normal space (e.g., VS Code 1.104.0,
+        //   vlc 3.0.20, mpv 0.37.0, Totem 43.0)
+        // → Mixed rendering creates inconsistency and may confuse users.
+        //
+        // Details:
         // - YouTube TTML subtitles use both regular spaces (\u0020)
         //   and non-breaking spaces (\u00A0).
         // - SRT subtitles only support regular spaces (\u0020),
         //   so \u00A0 may cause display issues.
         // - \u00A0 and \u0020 are visually identical (i.e., they both
         //   appear as spaces ' '), but they differ in Unicode encoding,
-        //   leading to test failures (e.g., ComparisonFailure).
-        // - Convert \u00A0 to \u0020 to ensure consistency in subtitle
-        //   formatting.
-        // - References:
-        //   - Unicode General Punctuation: https://unicode.org/charts/PDF/U2000.pdf
-        //   - TTML Spec: https://www.w3.org/TR/ttml2/
-        //   - SRT Format: https://en.wikipedia.org/wiki/SubRip
+        //   and NBSP (\u00A0) renders differently in different viewers.
+        // - SRT is a plain-text format and does not interpret
+        //   "non-breaking" behavior.
+        //
+        // Conclusion:
+        // - Ensure uniform behavior, so replace it to a regular space
+        //   without "non-breaking" behavior.
+        //
+        // References:
+        //   - Unicode U+00A0 NBSP (Latin-1 Supplement):
+        //     https://unicode.org/charts/PDF/U0080.pdf
         cleaned = cleaned.replace('\u00A0', ' ') // Non-breaking space
                  .replace('\u202F', ' ') // Narrow no-break space
                  .replace('\u205F', ' ') // Medium mathematical space
