@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Modern Player Dimensions -->
+    <dimen name="player_modern_button_min_width">60dp</dimen>
+    <dimen name="player_modern_top_padding">20dp</dimen>
+    <dimen name="player_modern_controls_padding">16dp</dimen>
+    <dimen name="player_modern_buttons_padding">12dp</dimen>
+    
+    <!-- Button Sizes -->
+    <dimen name="player_modern_button_small">40dp</dimen>
+    <dimen name="player_modern_button_medium">48dp</dimen>
+    <dimen name="player_modern_button_large">64dp</dimen>
+    <dimen name="player_modern_button_extra_large">80dp</dimen>
+    
+    <!-- Spacing -->
+    <dimen name="player_modern_spacing_small">8dp</dimen>
+    <dimen name="player_modern_spacing_medium">16dp</dimen>
+    <dimen name="player_modern_spacing_large">24dp</dimen>
+    
+    <!-- Control Bar Heights -->
+    <dimen name="player_modern_top_controls_height">72dp</dimen>
+    <dimen name="player_modern_bottom_controls_height">80dp</dimen>
+    
+    <!-- Seekbar -->
+    <dimen name="player_modern_seekbar_height">6dp</dimen>
+    <dimen name="player_modern_seekbar_thumb_size">18dp</dimen>
+    
+    <!-- Corner Radius -->
+    <dimen name="player_modern_corner_radius_small">8dp</dimen>
+    <dimen name="player_modern_corner_radius_medium">12dp</dimen>
+    <dimen name="player_modern_corner_radius_large">20dp</dimen>
+</resources>
