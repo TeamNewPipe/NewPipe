@@ -5,7 +5,7 @@
 
 [versions]
 acra = "5.11.3"
-agp = "8.13.0"
+agp = "8.7.0"  # Downgraded from 8.13.0 for better Java 17 compatibility
 appcompat = "1.7.1"
 assertj = "3.24.2"
 autoservice = "1.1.1"
@@ -55,7 +55,7 @@ teamnewpipe-filepicker = "5.0.0"
 teamnewpipe-nanojson = "e9d656ddb49a412a5a0a5d5ef20ca7ef09549996"
 # WORKAROUND: if you get errors with the NewPipeExtractor dependency, replace `v0.XX.Y` with
 # the corresponding commit hash, since JitPack sometimes deletes artifacts.
-# If there’s already a git hash, just add more of it to the end (or remove a letter)
+# If there's already a git hash, just add more of it to the end (or remove a letter)
 # to cause jitpack to regenerate the artifact.
 teamnewpipe-newpipe-extractor = "3af73262cc60cf555fd5f1d691f6c58e2db38ef5"
 viewpager2 = "1.1.0"
