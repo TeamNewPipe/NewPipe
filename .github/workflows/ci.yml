@@ -31,6 +31,10 @@ on:
       - '.github/FUNDING.yml'
       - '.github/ISSUE_TEMPLATE/**'
 
+env:
+  JAVA_VERSION: '17'
+  GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2
+
 jobs:
   build-and-test-jvm:
     runs-on: ubuntu-latest
@@ -39,8 +43,11 @@ jobs:
       contents: read
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: gradle/wrapper-validation-action@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v2
 
       - name: create and checkout branch
         # push events already checked out the branch
@@ -49,30 +56,51 @@ jobs:
           BRANCH: ${{ github.head_ref }}
         run: git checkout -B "$BRANCH"
 
-      - name: set up JDK 17
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          java-version: 17  # Changed from 21 to 17 (minimum required for AGP 8.13.0)
-          distribution: "temurin"
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
           cache: 'gradle'
 
-      - name: Validate Gradle Wrapper
-        run: ./gradlew wrapper --gradle-version=8.10
+      - name: Verify Java version
+        run: |
+          echo "Java version:"
+          java -version
+          echo "JAVA_HOME: $JAVA_HOME"
+          echo "PATH: $PATH"
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v3
+        with:
+          gradle-version: wrapper
 
       - name: Build debug APK and run jvm tests
-        run: ./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint
+        run: |
+          export JAVA_HOME=$JAVA_HOME_17_X64
+          ./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint --no-daemon
         env:
           JAVA_HOME: ${{ env.JAVA_HOME_17_X64 }}
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
+        if: success()
         with:
-          name: app
+          name: app-debug
           path: app/build/outputs/apk/debug/*.apk
+
+      - name: Upload build reports
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: build-reports
+          path: |
+            app/build/reports/
+            build/reports/
 
   test-android:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     strategy:
       matrix:
         include:
@@ -87,7 +115,8 @@ jobs:
       contents: read
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Enable KVM
         run: |
@@ -95,12 +124,17 @@ jobs:
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
 
-      - name: set up JDK 17
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          java-version: 17  # Changed from 21 to 17
-          distribution: "temurin"
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
           cache: 'gradle'
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v3
+        with:
+          gradle-version: wrapper
 
       - name: Run android tests
         uses: reactivecircus/android-emulator-runner@v2
@@ -108,11 +142,13 @@ jobs:
           api-level: ${{ matrix.api-level }}
           target: ${{ matrix.target }}
           arch: ${{ matrix.arch }}
-          script: ./gradlew connectedCheck --stacktrace
+          script: |
+            export JAVA_HOME=$JAVA_HOME_17_X64
+            ./gradlew connectedCheck --stacktrace --no-daemon
         env:
           JAVA_HOME: ${{ env.JAVA_HOME_17_X64 }}
 
-      - name: Upload test report when tests fail # because the printed out stacktrace (console) is too short, see also #7553
+      - name: Upload test report when tests fail
         uses: actions/upload-artifact@v4
         if: failure()
         with:
@@ -134,8 +170,8 @@ jobs:
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          java-version: 17  # Changed from 21 to 17
-          distribution: "temurin"
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
           cache: 'gradle'
 
       - name: Cache SonarCloud packages
@@ -145,9 +181,16 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v3
+        with:
+          gradle-version: wrapper
+
       - name: Build and analyze
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           JAVA_HOME: ${{ env.JAVA_HOME_17_X64 }}
-        run: ./gradlew build sonar --info
+        run: |
+          export JAVA_HOME=$JAVA_HOME_17_X64
+          ./gradlew build sonar --info --no-daemon
