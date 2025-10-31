@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Modern Player Colors -->
+    <color name="black_50">#80000000</color>
     <color name="black_60">#99000000</color>
     <color name="black_70">#B3000000</color>
     <color name="black_80">#CC000000</color>
     
+    <color name="white_05">#0DFFFFFF</color>
     <color name="white_10">#1AFFFFFF</color>
     <color name="white_15">#26FFFFFF</color>
     <color name="white_20">#33FFFFFF</color>
