@@ -1,0 +1,801 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:gravity="center"
+    android:theme="@style/WhiteTintTheme">
+
+    <org.schabi.newpipe.views.ExpandableSurfaceView
+        android:id="@+id/surfaceView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true" />
+
+    <View
+        android:id="@+id/surfaceForeground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/surfaceView"
+        android:background="@android:color/black" />
+
+    <com.google.android.exoplayer2.ui.SubtitleView
+        android:id="@+id/subtitleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center" />
+
+    <!-- Modern gradient overlays -->
+    <View
+        android:id="@+id/playerTopGradient"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/gradient_top_overlay"
+        android:visibility="gone" />
+
+    <View
+        android:id="@+id/playerBottomGradient"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/gradient_bottom_overlay"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/endScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        tools:background="@android:color/white"
+        tools:ignore="ContentDescription"
+        tools:visibility="visible" />
+
+    <View
+        android:id="@+id/playbackControlsShadow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/playbackControlRoot"
+        android:background="@color/video_overlay_color"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <!-- Modern Control Root -->
+    <RelativeLayout
+        android:id="@+id/playbackControlRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent_background_color"
+        android:fitsSystemWindows="true"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <!-- Top Controls Bar -->
+        <LinearLayout
+            android:id="@+id/topControlsBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/top_controls_background"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="16dp"
+            android:gravity="center_vertical">
+
+            <!-- Back/Close Button -->
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/playerCloseButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/circular_button_background"
+                android:clickable="true"
+                android:contentDescription="@string/close"
+                android:focusable="true"
+                android:padding="12dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_arrow_back"
+                android:visibility="gone"
+                app:tint="@color/white" />
+
+            <!-- Title and Channel Info -->
+            <LinearLayout
+                android:id="@+id/metadataContainer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="vertical">
+
+                <org.schabi.newpipe.views.NewPipeTextView
+                    android:id="@+id/titleTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="marquee"
+                    android:fadingEdge="horizontal"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/roboto_medium"
+                    tools:text="Video Title Here" />
+
+                <org.schabi.newpipe.views.NewPipeTextView
+                    android:id="@+id/channelTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:ellipsize="marquee"
+                    android:fadingEdge="horizontal"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:textColor="@color/white_70"
+                    android:textSize="14sp"
+                    tools:text="Channel Name" />
+
+            </LinearLayout>
+
+            <!-- Top Right Controls -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <!-- Audio Track -->
+                <org.schabi.newpipe.views.NewPipeTextView
+                    android:id="@+id/audioTrackTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/rounded_button_background"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    tools:text="ENG"
+                    tools:visibility="visible" />
+
+                <!-- Quality -->
+                <org.schabi.newpipe.views.NewPipeTextView
+                    android:id="@+id/qualityTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/rounded_button_background"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:text="1080p" />
+
+                <!-- More Options -->
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/moreOptionsButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/circular_button_background"
+                    android:clickable="true"
+                    android:contentDescription="@string/more_options"
+                    android:focusable="true"
+                    android:padding="12dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_more_vert"
+                    app:tint="@color/white" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Secondary Controls (shown when more options clicked) -->
+        <LinearLayout
+            android:id="@+id/secondaryControls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/topControlsBar"
+            android:background="@drawable/secondary_controls_background"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="12dp"
+            android:gravity="center_vertical"
+            android:visibility="invisible"
+            tools:visibility="visible">
+
+            <!-- Playback Speed -->
+            <org.schabi.newpipe.views.NewPipeTextView
+                android:id="@+id/playbackSpeed"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/rounded_button_background"
+                android:gravity="center"
+                android:minWidth="60dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="1.25x" />
+
+            <!-- Resize Mode -->
+            <org.schabi.newpipe.views.NewPipeTextView
+                android:id="@+id/resizeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/rounded_button_background"
+                android:gravity="center"
+                android:minWidth="60dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="FIT" />
+
+            <!-- Caption -->
+            <org.schabi.newpipe.views.NewPipeTextView
+                android:id="@+id/captionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/rounded_button_background"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lines="1"
+                android:minWidth="60dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="CC" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <!-- Action Buttons -->
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/playWithKodi"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/circular_button_background_small"
+                android:clickable="true"
+                android:contentDescription="@string/play_with_kodi_title"
+                android:focusable="true"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_cast"
+                app:tint="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/openInBrowser"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/circular_button_background_small"
+                android:clickable="true"
+                android:contentDescription="@string/open_in_browser"
+                android:focusable="true"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_language"
+                app:tint="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/share"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/circular_button_background_small"
+                android:clickable="true"
+                android:contentDescription="@string/share"
+                android:focusable="true"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_share"
+                app:tint="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/switchMute"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/circular_button_background_small"
+                android:clickable="true"
+                android:contentDescription="@string/mute"
+                android:focusable="true"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_volume_off"
+                app:tint="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/fullScreenButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/circular_button_background_small"
+                android:clickable="true"
+                android:contentDescription="@string/toggle_fullscreen"
+                android:focusable="true"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_fullscreen"
+                android:visibility="gone"
+                app:tint="@color/white"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+        <!-- Center Play Controls -->
+        <LinearLayout
+            android:id="@+id/centerPlayControls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <!-- Previous Button -->
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/playPreviousButton"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/large_circular_button_background"
+                android:clickable="true"
+                android:contentDescription="@string/previous_stream"
+                android:focusable="true"
+                android:padding="16dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_skip_previous"
+                app:tint="@color/white" />
+
+            <!-- Play/Pause Button -->
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/playPauseButton"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/extra_large_circular_button_background"
+                android:contentDescription="@string/pause"
+                android:padding="20dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_pause"
+                app:tint="@color/white" />
+
+            <!-- Next Button -->
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/playNextButton"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginStart="24dp"
+                android:background="@drawable/large_circular_button_background"
+                android:clickable="true"
+                android:contentDescription="@string/next_stream"
+                android:focusable="true"
+                android:padding="16dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_skip_next"
+                app:tint="@color/white" />
+
+        </LinearLayout>
+
+        <!-- Bottom Controls -->
+        <LinearLayout
+            android:id="@+id/bottomControls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bottom_controls_background"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="20dp">
+
+            <!-- Seekbar Preview Container -->
+            <LinearLayout
+                android:id="@+id/seekbarPreviewContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <org.schabi.newpipe.views.NewPipeTextView
+                    android:id="@+id/currentDisplaySeek"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/seekbar_preview_time_background"
+                    android:paddingStart="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="4dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:text="1:06:29" />
+
+                <ImageView
+                    android:id="@+id/currentSeekbarPreviewThumbnail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/thumbnail_border"
+                    android:src="@drawable/placeholder_thumbnail_video" />
+
+            </LinearLayout>
+
+            <!-- Time and Seekbar Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <!-- Current Time -->
+                <org.schabi.newpipe.views.NewPipeTextView
+                    android:id="@+id/playbackCurrentTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="60dp"
+                    android:text="-:--:--"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    tools:text="1:06" />
+
+                <!-- Modern Seekbar -->
+                <org.schabi.newpipe.views.FocusAwareSeekBar
+                    android:id="@+id/playbackSeekBar"
+                    style="@style/ModernSeekBar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:nextFocusDown="@id/screenRotationButton"
+                    tools:progress="25"
+                    tools:secondaryProgress="50" />
+
+                <!-- End Time -->
+                <org.schabi.newpipe.views.NewPipeTextView
+                    android:id="@+id/playbackEndTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="60dp"
+                    android:text="-:--:--"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    tools:text="23:49" />
+
+                <!-- Live Sync -->
+                <org.schabi.newpipe.views.NewPipeTextView
+                    android:id="@+id/playbackLiveSync"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/live_indicator_background"
+                    android:gravity="center"
+                    android:paddingStart="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="4dp"
+                    android:text="@string/duration_live"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <!-- Screen Rotation Button -->
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/screenRotationButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/circular_button_background"
+                    android:clickable="true"
+                    android:contentDescription="@string/toggle_screen_orientation"
+                    android:focusable="true"
+                    android:nextFocusUp="@id/playbackSeekBar"
+                    android:padding="12dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_screen_rotation"
+                    android:visibility="gone"
+                    app:tint="@color/white"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <!-- Queue Panel (unchanged structure but improved styling) -->
+    <RelativeLayout
+        android:id="@+id/itemsListPanel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/queue_panel_background"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <RelativeLayout
+            android:id="@+id/itemsListControl"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:background="@drawable/queue_header_background"
+            android:elevation="4dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/itemsListHeaderTitle"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@id/itemsListClose"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="60dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@string/chapters"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <!-- Queue Control Buttons -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/repeatButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/circular_button_background"
+                    android:clickable="true"
+                    android:contentDescription="@string/notification_action_repeat"
+                    android:focusable="true"
+                    android:padding="12dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/exo_controls_repeat_off"
+                    android:tint="?attr/colorAccent" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/shuffleButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/circular_button_background"
+                    android:clickable="true"
+                    android:contentDescription="@string/notification_action_shuffle"
+                    android:focusable="true"
+                    android:padding="12dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_shuffle"
+                    android:tint="?attr/colorAccent" />
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/itemsListHeaderDuration"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/addToPlaylistButton"
+                android:layout_toEndOf="@id/shuffleButton"
+                android:gravity="center"
+                android:textColor="@color/white_70"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/addToPlaylistButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/circular_button_background"
+                    android:clickable="true"
+                    android:contentDescription="@string/add_to_playlist"
+                    android:focusable="true"
+                    android:padding="12dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_playlist_add"
+                    android:tint="?attr/colorAccent" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/itemsListClose"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/circular_button_background"
+                    android:clickable="true"
+                    android:contentDescription="@string/close"
+                    android:focusable="true"
+                    android:padding="12dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_close"
+                    app:tint="@color/white" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/itemsList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/itemsListControl"
+            android:scrollbars="vertical"
+            android:theme="@style/PlayQueueItemTextTheme"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/play_queue_item" />
+
+    </RelativeLayout>
+
+    <!-- Player Overlays -->
+    <RelativeLayout
+        android:id="@+id/player_overlays"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Loading Panel -->
+        <RelativeLayout
+            android:id="@+id/loading_panel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"
+            tools:visibility="gone">
+
+            <ProgressBar
+                android:id="@+id/progressBarLoadingPanel"
+                style="?android:attr/progressBarStyleLargeInverse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:indeterminate="true" />
+        </RelativeLayout>
+
+        <!-- Volume/Brightness Overlays -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <!-- Volume Overlay -->
+            <RelativeLayout
+                android:id="@+id/volumeRelativeLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/modern_overlay_background"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <ProgressBar
+                    android:id="@+id/volumeProgressBar"
+                    style="?android:progressBarStyleHorizontal"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:indeterminate="false"
+                    android:progressDrawable="@drawable/progress_circular_modern" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/volumeImageView"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerInParent="true"
+                    app:tint="@color/white"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/ic_volume_up" />
+            </RelativeLayout>
+
+            <!-- Brightness Overlay -->
+            <RelativeLayout
+                android:id="@+id/brightnessRelativeLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/modern_overlay_background"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <ProgressBar
+                    android:id="@+id/brightnessProgressBar"
+                    style="?android:progressBarStyleHorizontal"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:indeterminate="false"
+                    android:progressDrawable="@drawable/progress_circular_modern" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/brightnessImageView"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerInParent="true"
+                    app:tint="@color/white"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/ic_brightness_high" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <!-- Closing Overlay -->
+    <View
+        android:id="@+id/closingOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#AAFF0000"
+        android:visibility="gone" />
+
+    <!-- Close Button -->
+    <Button
+        android:id="@+id/closeButton"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/modern_close_button_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/close"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <!-- Fast Seek Overlay -->
+    <org.schabi.newpipe.views.player.PlayerFastSeekOverlay
+        android:id="@+id/fast_seek_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        android:visibility="invisible" />
+
+</RelativeLayout>
