@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Modern Player Colors -->
+    <color name="black_60">#99000000</color>
+    <color name="black_70">#B3000000</color>
+    <color name="black_80">#CC000000</color>
+    
+    <color name="white_10">#1AFFFFFF</color>
+    <color name="white_15">#26FFFFFF</color>
+    <color name="white_20">#33FFFFFF</color>
+    <color name="white_30">#4DFFFFFF</color>
+    <color name="white_40">#66FFFFFF</color>
+    <color name="white_70">#B3FFFFFF</color>
+    
+    <!-- Accent Colors -->
+    <color name="modern_accent">#FF4081</color>
+    <color name="modern_accent_light">#FF79A7</color>
+    <color name="modern_accent_dark">#C60055</color>
+    
+    <!-- Background Colors -->
+    <color name="modern_background">#121212</color>
+    <color name="modern_surface">#1E1E1E</color>
+    <color name="modern_surface_variant">#2D2D2D</color>
+</resources>
