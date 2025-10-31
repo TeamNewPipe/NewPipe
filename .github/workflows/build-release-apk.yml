@@ -14,11 +14,13 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '21'
+          java-version: '17'  # Changed from 21 to 17
           cache: 'gradle'
 
       - name: "Build release APK"
         run: ./gradlew assembleRelease --stacktrace
+        env:
+          JAVA_HOME: ${{ env.JAVA_HOME_17_X64 }}
 
       - name: "Rename APK"
         run: |
