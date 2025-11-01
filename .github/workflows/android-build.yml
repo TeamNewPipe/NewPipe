@@ -1,0 +1,41 @@
+name: Android Build
+
+on:
+  push:
+    branches:
+      - feature/mx-like-external-player
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: 17
+        cache: gradle
+
+    - name: Download Android SDK command-line tools
+      uses: android-actions/setup-android@v2
+      with:
+        api-level: 33
+        target: android-33
+        arch: x64
+        cache: true
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    - name: Build Debug APK
+      run: ./gradlew assembleDebug
+
+    - name: Upload APK artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: NewPipe-ExternalPlayer-APK
+        path: external-player/build/outputs/apk/debug/external-player-debug.apk
