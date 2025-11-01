@@ -30,12 +30,33 @@
         android:visibility="gone"
         android:layout_gravity="center" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp">
+
+        <Button
+            android:id="@+id/speedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1.0x"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/subToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SUB"/>
+    </LinearLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/enterPipButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@android:drawable/ic_media_pause"
         android:layout_margin="16dp"
-        android:layout_gravity="bottom|end" />
+        android:layout_gravity="bottom|start" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
