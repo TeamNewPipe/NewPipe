@@ -19,6 +19,10 @@ class ExternalPlayerActivity : AppCompatActivity() {
     private val speeds = floatArrayOf(1.0f, 1.25f, 1.5f, 2.0f, 0.5f)
     private var speedIndex = 0
 
+    private lateinit var gestureDetector: GestureDetector
+    private val holdSpeed = 2.0f  // Speed to set on hold
+    private val normalSpeed = 1.0f // Normal playback speed
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityExternalPlayerBinding.inflate(layoutInflater)
@@ -42,14 +46,19 @@ class ExternalPlayerActivity : AppCompatActivity() {
             binding.subToggle.text = newText
         }
 
-        val gestureDetector = GestureDetector(this, object : GestureDetector.SimpleOnGestureListener() {
-            override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float): Boolean {
-                return super.onScroll(e1, e2, distanceX, distanceY)
+        gestureDetector = GestureDetector(this, object : GestureDetector.SimpleOnGestureListener() {
+            override fun onLongPress(e: MotionEvent?) {
+                setPlaybackSpeed(holdSpeed)
             }
         })
 
         binding.playerView.setOnTouchListener { _, event ->
             gestureDetector.onTouchEvent(event)
+
+            if (event.action == MotionEvent.ACTION_UP || event.action == MotionEvent.ACTION_CANCEL) {
+                setPlaybackSpeed(normalSpeed)
+            }
+
             false
         }
     }
@@ -100,5 +109,14 @@ class ExternalPlayerActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             enterPip()
         }
+    }
+
+    private fun setPlaybackSpeed(speed: Float) {
+        val intent = Intent(this, PlayerService::class.java).apply {
+            action = PlayerService.ACTION_PLAY
+            putExtra("speed", speed)
+        }
+        ContextCompat.startForegroundService(this, intent)
+        binding.speedButton.text = "${speed}x"
     }
 }
