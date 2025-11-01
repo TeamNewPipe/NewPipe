@@ -17,6 +17,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.NewPipeSettings;
 
@@ -89,9 +90,12 @@ public final class PermissionHelper {
                 && ContextCompat.checkSelfPermission(activity,
                 Manifest.permission.POST_NOTIFICATIONS)
                 != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity,
-                    new String[] {Manifest.permission.POST_NOTIFICATIONS}, requestCode);
-            return false;
+            if (!App.getApp().getNotificationsRequested()) {
+                ActivityCompat.requestPermissions(activity,
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS}, requestCode);
+                App.getApp().setNotificationsRequested();
+                return false;
+            }
         }
         return true;
     }
