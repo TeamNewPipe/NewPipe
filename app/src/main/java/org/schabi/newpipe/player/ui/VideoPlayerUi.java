@@ -11,9 +11,9 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
     // Call this after binding and player are ready
     private void setupHoldNXGesture() {
-        GestureDetector.SimpleOnGestureListener gestureListener = new GestureDetector.SimpleOnGestureListener() {
+        final GestureDetector.SimpleOnGestureListener gestureListener = new GestureDetector.SimpleOnGestureListener() {
             @Override
-            public void onLongPress(MotionEvent e) {
+            public void onLongPress(final MotionEvent e) {
                 if (!isHolding) {
                     lastNonHoldSpeed = player.getPlaybackSpeed();
                     // No hardcoded default: use the value already set in Tempo dialog
@@ -22,7 +22,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                 }
             }
         };
-        GestureDetector gestureDetector = new GestureDetector(context, gestureListener);
+        final GestureDetector gestureDetector = new GestureDetector(context, gestureListener);
         binding.getRoot().setOnTouchListener((v, event) -> {
             gestureDetector.onTouchEvent(event);
             if ((event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) && isHolding) {
