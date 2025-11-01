@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 33
@@ -8,7 +9,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 33
         versionCode 1
-        versionName "1.0"
+        versionName "1.1"
     }
 
     buildTypes {
@@ -21,12 +22,30 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.8.22'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'com.google.android.exoplayer:exoplayer:2.19.0'
     implementation 'androidx.media:media:1.6.0'
+    implementation 'androidx.lifecycle:lifecycle-service:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
+    implementation 'androidx.media:media-session:1.2.0'
+    implementation 'androidx.activity:activity-ktx:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
+    implementation 'androidx.vectordrawable:vectordrawable:1.2.0'
+    implementation 'androidx.core:core:1.10.1'
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
 }
