@@ -22,20 +22,15 @@ jobs:
 
     - name: Download Android SDK command-line tools
       uses: android-actions/setup-android@v2
-      with:
-        api-level: 33
-        target: android-33
-        arch: x64
-        cache: true
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
-    - name: Build Debug APK
+    - name: Build Debug APK for full project
       run: ./gradlew assembleDebug
 
     - name: Upload APK artifact
       uses: actions/upload-artifact@v4
       with:
-        name: NewPipe-ExternalPlayer-APK
-        path: external-player/build/outputs/apk/debug/external-player-debug.apk
+        name: NewPipe-Debug-APK
+        path: app/build/outputs/apk/debug/app-debug.apk
