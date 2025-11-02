@@ -4,31 +4,27 @@ import androidx.room.TypeConverter
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.local.subscription.FeedGroupIcon
 import java.time.Instant
-import java.time.OffsetDateTime
-import java.time.ZoneOffset
 
 class Converters {
     /**
-     * Convert a long value to a [OffsetDateTime].
+     * Convert a long value to an [Instant].
      *
      * @param value the long value
-     * @return the `OffsetDateTime`
+     * @return the `Instant`
      */
     @TypeConverter
-    fun offsetDateTimeFromTimestamp(value: Long?): OffsetDateTime? {
-        return value?.let { OffsetDateTime.ofInstant(Instant.ofEpochMilli(it), ZoneOffset.UTC) }
+    fun timestampToInstant(value: Long?): Instant? {
+        return value?.let { Instant.ofEpochMilli(it) }
     }
 
     /**
-     * Convert a [OffsetDateTime] to a long value.
+     * Convert an [Instant] to a long value.
      *
-     * @param offsetDateTime the `OffsetDateTime`
+     * @param instant the `Instant`
      * @return the long value
      */
     @TypeConverter
-    fun offsetDateTimeToTimestamp(offsetDateTime: OffsetDateTime?): Long? {
-        return offsetDateTime?.withOffsetSameInstant(ZoneOffset.UTC)?.toInstant()?.toEpochMilli()
-    }
+    fun instantToTimestamp(instant: Instant?) = instant?.toEpochMilli()
 
     @TypeConverter
     fun streamTypeOf(value: String): StreamType {

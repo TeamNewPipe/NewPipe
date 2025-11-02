@@ -208,6 +208,7 @@ dependencies {
     implementation(libs.androidx.cardview)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core)
+    implementation(libs.androidx.core.i18n)
     implementation(libs.androidx.documentfile)
     implementation(libs.androidx.fragment)
     implementation(libs.androidx.lifecycle.livedata)

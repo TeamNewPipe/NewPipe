@@ -14,6 +14,7 @@ cardview = "1.0.0"
 checkstyle = "10.26.1"
 constraintlayout = "2.1.4"
 core = "1.12.0"
+coreI18n = "1.0.0"
 desugar = "2.0.4"
 documentfile = "1.0.1"
 exoplayer = "2.18.7"
@@ -69,6 +70,7 @@ androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "a
 androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 androidx-core = { module = "androidx.core:core-ktx", version.ref = "core" }
+androidx-core-i18n = { module = "androidx.core:core-i18n", version.ref = "coreI18n" }
 androidx-documentfile = { module = "androidx.documentfile:documentfile", version.ref = "documentfile" }
 androidx-fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment" }
 androidx-junit = { module = "androidx.test.ext:junit", version.ref = "junit-ext" }

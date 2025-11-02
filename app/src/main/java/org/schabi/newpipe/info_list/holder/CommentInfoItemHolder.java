@@ -82,11 +82,9 @@ public class CommentInfoItemHolder extends InfoItemHolder {
     @Override
     public void updateFromItem(final InfoItem infoItem,
                                final HistoryRecordManager historyRecordManager) {
-        if (!(infoItem instanceof CommentsInfoItem)) {
+        if (!(infoItem instanceof CommentsInfoItem item)) {
             return;
         }
-        final CommentsInfoItem item = (CommentsInfoItem) infoItem;
-
 
         // load the author avatar
         PicassoHelper.loadAvatar(item.getUploaderAvatars()).into(itemThumbnailView);
@@ -104,12 +102,9 @@ public class CommentInfoItemHolder extends InfoItemHolder {
         // setup the top row, with pinned icon, author name and comment date
         itemPinnedView.setVisibility(item.isPinned() ? View.VISIBLE : View.GONE);
         final String uploaderName = Localization.localizeUserName(item.getUploaderName());
-        itemTitleView.setText(Localization.concatenateStrings(
-                uploaderName,
-                Localization.relativeTimeOrTextual(
-                        itemBuilder.getContext(),
-                        item.getUploadDate(),
-                        item.getTextualUploadDate())));
+        final String relativeTime = Localization.formatRelativeTimeOrTextual(
+                itemBuilder.getContext(), item.getUploadDate(), item.getTextualUploadDate());
+        itemTitleView.setText(Localization.concatenateStrings(uploaderName, relativeTime));
 
         // setup bottom row, with likes, heart and replies button
         itemLikesCountView.setText(

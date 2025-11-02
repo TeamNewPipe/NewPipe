@@ -30,11 +30,8 @@ import org.schabi.newpipe.local.holder.RemotePlaylistCardItemHolder;
 import org.schabi.newpipe.local.holder.RemotePlaylistGridItemHolder;
 import org.schabi.newpipe.local.holder.RemotePlaylistItemHolder;
 import org.schabi.newpipe.util.FallbackViewHolder;
-import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.OnClickGesture;
 
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,7 +82,6 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     private final LocalItemBuilder localItemBuilder;
     private final ArrayList<LocalItem> localItems;
     private final HistoryRecordManager recordManager;
-    private final DateTimeFormatter dateTimeFormatter;
 
     private boolean showFooter = false;
     private View header = null;
@@ -97,8 +93,6 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         recordManager = new HistoryRecordManager(context);
         localItemBuilder = new LocalItemBuilder(context);
         localItems = new ArrayList<>();
-        dateTimeFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
-                .withLocale(Localization.getPreferredLocale(context));
     }
 
     public void setSelectedListener(final OnClickGesture<LocalItem> listener) {
@@ -364,19 +358,19 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
                     + "position = [" + position + "]");
         }
 
-        if (holder instanceof LocalItemHolder) {
+        if (holder instanceof LocalItemHolder localItemHolder) {
             // If header isn't null, offset the items by -1
             if (header != null) {
                 position--;
             }
 
-            ((LocalItemHolder) holder)
-                    .updateFromItem(localItems.get(position), recordManager, dateTimeFormatter);
-        } else if (holder instanceof HeaderFooterHolder && position == 0 && header != null) {
-            ((HeaderFooterHolder) holder).view = header;
-        } else if (holder instanceof HeaderFooterHolder && position == sizeConsideringHeader()
-                && footer != null && showFooter) {
-            ((HeaderFooterHolder) holder).view = footer;
+            localItemHolder.updateFromItem(localItems.get(position), recordManager);
+        } else if (holder instanceof HeaderFooterHolder headerFooterHolder) {
+            if (position == 0 && header != null) {
+                headerFooterHolder.view = header;
+            } else if (footer != null && showFooter) {
+                headerFooterHolder.view = footer;
+            }
         }
     }
 

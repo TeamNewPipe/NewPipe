@@ -65,11 +65,12 @@ public class DescriptionFragment extends BaseDescriptionFragment {
     }
 
     @Override
-    protected void setupMetadata(final LayoutInflater inflater,
-                                 final LinearLayout layout) {
-        if (streamInfo != null && streamInfo.getUploadDate() != null) {
-            binding.detailUploadDateView.setText(Localization
-                    .localizeUploadDate(activity, streamInfo.getUploadDate().offsetDateTime()));
+    protected void setupMetadata(final LayoutInflater inflater, final LinearLayout layout) {
+        final var uploadDate = streamInfo != null ? streamInfo.getUploadDate() : null;
+        if (uploadDate != null) {
+            final String formattedDate = activity.getString(R.string.upload_date_text,
+                    Localization.formatDate(uploadDate));
+            binding.detailUploadDateView.setText(formattedDate);
         } else {
             binding.detailUploadDateView.setVisibility(View.GONE);
         }
