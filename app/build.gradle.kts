@@ -23,6 +23,15 @@ java {
     }
 }
 
+kotlin {
+    compilerOptions {
+        // TODO: Drop annotation default target when it is stable
+        freeCompilerArgs.addAll(
+            "-Xannotation-default-target=param-property"
+        )
+    }
+}
+
 android {
     compileSdk = 36
     namespace = "org.schabi.newpipe"
