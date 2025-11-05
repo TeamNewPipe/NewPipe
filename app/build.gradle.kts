@@ -13,8 +13,6 @@ plugins {
     checkstyle
 }
 
-apply(from = "check-dependencies.gradle.kts")
-
 val gitWorkingBranch = providers.exec {
     commandLine("git", "rev-parse", "--abbrev-ref", "HEAD")
 }.standardOutput.asText.map { it.trim() }
@@ -171,6 +169,10 @@ tasks.register<JavaExec>("formatKtlint") {
     classpath = configurations.getByName("ktlint")
     args = listOf("-F", "src/**/*.kt")
     jvmArgs = listOf("--add-opens", "java.base/java.lang=ALL-UNNAMED")
+}
+
+tasks.register<CheckDependenciesOrder>("checkDependenciesOrder") {
+    tomlFile = layout.projectDirectory.file("../gradle/libs.versions.toml")
 }
 
 afterEvaluate {
