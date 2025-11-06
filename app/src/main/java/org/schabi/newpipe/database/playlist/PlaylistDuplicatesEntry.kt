@@ -7,6 +7,7 @@
 package org.schabi.newpipe.database.playlist
 
 import androidx.room.ColumnInfo
+import org.schabi.newpipe.database.playlist.model.PlaylistEntity
 
 /**
  * This class adds a field to [PlaylistMetadataEntry] that contains an integer representing
@@ -15,12 +16,25 @@ import androidx.room.ColumnInfo
  * @see org.schabi.newpipe.local.playlist.LocalPlaylistManager.getPlaylistDuplicates
  */
 data class PlaylistDuplicatesEntry(
+    @ColumnInfo(name = PlaylistEntity.PLAYLIST_ID)
     override val uid: Long,
+
+    @ColumnInfo(name = PlaylistEntity.PLAYLIST_THUMBNAIL_URL)
     override val thumbnailUrl: String?,
+
+    @ColumnInfo(name = PlaylistEntity.PLAYLIST_THUMBNAIL_PERMANENT)
     override val isThumbnailPermanent: Boolean?,
+
+    @ColumnInfo(name = PlaylistEntity.PLAYLIST_THUMBNAIL_STREAM_ID)
     override val thumbnailStreamId: Long?,
+
+    @ColumnInfo(name = PlaylistEntity.PLAYLIST_DISPLAY_INDEX)
     override var displayIndex: Long?,
+
+    @ColumnInfo(name = PLAYLIST_STREAM_COUNT)
     override val streamCount: Long,
+
+    @ColumnInfo(name = PlaylistEntity.PLAYLIST_NAME)
     override val orderingName: String?,
 
     @ColumnInfo(name = PLAYLIST_TIMES_STREAM_IS_CONTAINED)

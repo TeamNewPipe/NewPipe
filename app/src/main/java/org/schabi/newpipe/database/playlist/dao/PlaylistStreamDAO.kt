@@ -103,7 +103,6 @@ interface PlaylistStreamDAO : BasicDAO<PlaylistStreamEntity> {
     )
     fun getStreamsWithoutDuplicates(playlistId: Long): Flowable<MutableList<PlaylistStreamEntry>>
 
-    @RewriteQueriesToDropUnusedColumns
     @Transaction
     @Query(
         """
