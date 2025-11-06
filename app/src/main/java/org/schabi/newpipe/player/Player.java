@@ -306,10 +306,11 @@ public final class Player implements PlaybackListener, Listener {
         final int maxSilenceDurationMillis = prefs.getInt(
                 context.getString(R.string.max_silence_duration_key),
                 Integer.parseInt(context.getString(R.string.max_silence_duration_value)));
+        final long maxSilenceDurationMicros = MILLISECONDS.toMicros(maxSilenceDurationMillis);
         final SilenceSkippingAudioProcessor silenceSkippingAudioProcessor =
                 new SilenceSkippingAudioProcessor(
-                        MILLISECONDS.toMicros(maxSilenceDurationMillis),
-                        MILLISECONDS.toMicros(maxSilenceDurationMillis),
+                        maxSilenceDurationMicros,
+                        maxSilenceDurationMicros,
                         SilenceSkippingAudioProcessor.DEFAULT_SILENCE_THRESHOLD_LEVEL);
         renderFactory = new CustomRenderersFactory(
                 context, alwaysUseExoplayerSetOutputSurfaceWorkaround,
