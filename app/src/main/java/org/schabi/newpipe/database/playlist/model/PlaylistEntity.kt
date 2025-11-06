@@ -10,7 +10,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
-import org.schabi.newpipe.R
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry
 
 @Entity(tableName = PlaylistEntity.Companion.PLAYLIST_TABLE)
@@ -42,9 +41,6 @@ data class PlaylistEntity @JvmOverloads constructor(
     )
 
     companion object {
-        @JvmField
-        val DEFAULT_THUMBNAIL = "drawable://" + R.drawable.placeholder_thumbnail_playlist
-
         const val DEFAULT_THUMBNAIL_ID = -1L
 
         const val PLAYLIST_TABLE = "playlists"

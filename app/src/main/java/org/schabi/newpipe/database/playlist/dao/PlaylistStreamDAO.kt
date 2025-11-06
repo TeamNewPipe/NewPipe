@@ -15,7 +15,6 @@ import org.schabi.newpipe.database.BasicDAO
 import org.schabi.newpipe.database.playlist.PlaylistDuplicatesEntry
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry
-import org.schabi.newpipe.database.playlist.model.PlaylistEntity.Companion.DEFAULT_THUMBNAIL
 import org.schabi.newpipe.database.playlist.model.PlaylistEntity.Companion.DEFAULT_THUMBNAIL_ID
 import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity
 
@@ -73,11 +72,7 @@ interface PlaylistStreamDAO : BasicDAO<PlaylistStreamEntity> {
     @Query(
         """
         SELECT uid, name, is_thumbnail_permanent, thumbnail_stream_id, display_index,
-
-        CASE WHEN thumbnail_stream_id = $DEFAULT_THUMBNAIL_ID
-        THEN :defaultThumbnail
-        ELSE (SELECT thumbnail_url FROM streams WHERE streams.uid = thumbnail_stream_id)
-        END AS thumbnail_url,
+        (SELECT thumbnail_url FROM streams WHERE streams.uid = thumbnail_stream_id) AS thumbnail_url,
 
         COALESCE(COUNT(playlist_id), 0) AS streamCount FROM playlists
 
@@ -88,12 +83,7 @@ interface PlaylistStreamDAO : BasicDAO<PlaylistStreamEntity> {
         ORDER BY display_index
         """
     )
-    fun getPlaylistMetadata(defaultThumbnail: String): Flowable<MutableList<PlaylistMetadataEntry>>
-
-    // TODO: Remove on migrating classes to Kotlin
-    fun getPlaylistMetadata(): Flowable<MutableList<PlaylistMetadataEntry>> {
-        return getPlaylistMetadata(DEFAULT_THUMBNAIL)
-    }
+    fun getPlaylistMetadata(): Flowable<MutableList<PlaylistMetadataEntry>>
 
     @RewriteQueriesToDropUnusedColumns
     @Transaction
@@ -118,11 +108,7 @@ interface PlaylistStreamDAO : BasicDAO<PlaylistStreamEntity> {
     @Query(
         """
         SELECT playlists.uid, name, is_thumbnail_permanent, thumbnail_stream_id, display_index,
-
-        CASE WHEN thumbnail_stream_id = $DEFAULT_THUMBNAIL_ID
-        THEN :defaultThumbnail
-        ELSE (SELECT thumbnail_url FROM streams WHERE streams.uid = thumbnail_stream_id )
-        END AS thumbnail_url,
+        (SELECT thumbnail_url FROM streams WHERE streams.uid = thumbnail_stream_id) AS thumbnail_url,
 
         COALESCE(COUNT(playlist_id), 0) AS streamCount,
         COALESCE(SUM(url = :streamUrl), 0) AS timesStreamIsContained FROM playlists
@@ -137,15 +123,5 @@ interface PlaylistStreamDAO : BasicDAO<PlaylistStreamEntity> {
         ORDER BY display_index, name
         """
     )
-    fun getPlaylistDuplicatesMetadata(
-        streamUrl: String,
-        defaultThumbnail: String
-    ): Flowable<MutableList<PlaylistDuplicatesEntry>>
-
-    // TODO: Remove on migrating classes to Kotlin
-    fun getPlaylistDuplicatesMetadata(
-        streamUrl: String
-    ): Flowable<MutableList<PlaylistDuplicatesEntry>> {
-        return getPlaylistDuplicatesMetadata(streamUrl, DEFAULT_THUMBNAIL)
-    }
+    fun getPlaylistDuplicatesMetadata(streamUrl: String): Flowable<MutableList<PlaylistDuplicatesEntry>>
 }
