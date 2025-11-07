@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2020-2023 NewPipe contributors <https://newpipe.net>
+ * SPDX-FileCopyrightText: 2025 NewPipe e.V. <https://newpipe-ev.de>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
 package org.schabi.newpipe.database.playlist
 
 import androidx.room.ColumnInfo
@@ -23,18 +29,21 @@ data class PlaylistStreamEntry(
     val joinIndex: Int
 ) : LocalItem {
 
+    override val localItemType: LocalItem.LocalItemType
+        get() = LocalItem.LocalItemType.PLAYLIST_STREAM_ITEM
+
     @Throws(IllegalArgumentException::class)
     fun toStreamInfoItem(): StreamInfoItem {
-        val item = StreamInfoItem(streamEntity.serviceId, streamEntity.url, streamEntity.title, streamEntity.streamType)
-        item.duration = streamEntity.duration
-        item.uploaderName = streamEntity.uploader
-        item.uploaderUrl = streamEntity.uploaderUrl
-        item.thumbnails = ImageStrategy.dbUrlToImageList(streamEntity.thumbnailUrl)
-
-        return item
-    }
-
-    override fun getLocalItemType(): LocalItem.LocalItemType {
-        return LocalItem.LocalItemType.PLAYLIST_STREAM_ITEM
+        return StreamInfoItem(
+            streamEntity.serviceId,
+            streamEntity.url,
+            streamEntity.title,
+            streamEntity.streamType
+        ).apply {
+            duration = streamEntity.duration
+            uploaderName = streamEntity.uploader
+            uploaderUrl = streamEntity.uploaderUrl
+            thumbnails = ImageStrategy.dbUrlToImageList(streamEntity.thumbnailUrl)
+        }
     }
 }

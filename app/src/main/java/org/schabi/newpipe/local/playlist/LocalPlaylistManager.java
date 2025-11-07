@@ -148,7 +148,7 @@ public class LocalPlaylistManager {
 
     public boolean getIsPlaylistThumbnailPermanent(final long playlistId) {
         return playlistTable.getPlaylist(playlistId).blockingFirst().get(0)
-                .getIsThumbnailPermanent();
+                .isThumbnailPermanent();
     }
 
     public long getAutomaticPlaylistThumbnailStreamId(final long playlistId) {
@@ -174,7 +174,7 @@ public class LocalPlaylistManager {
                     }
                     if (thumbnailStreamId != THUMBNAIL_ID_LEAVE_UNCHANGED) {
                         playlist.setThumbnailStreamId(thumbnailStreamId);
-                        playlist.setIsThumbnailPermanent(isPermanent);
+                        playlist.setThumbnailPermanent(isPermanent);
                     }
                     return playlistTable.update(playlist);
                 }).subscribeOn(Schedulers.io());

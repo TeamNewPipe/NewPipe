@@ -177,7 +177,7 @@ class FeedDatabaseManager(context: Context) {
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun oldestSubscriptionUpdate(groupId: Long): Flowable<List<OffsetDateTime>> {
+    fun oldestSubscriptionUpdate(groupId: Long): Flowable<List<OffsetDateTime?>> {
         return when (groupId) {
             FeedGroupEntity.GROUP_ALL_ID -> feedTable.oldestSubscriptionUpdateFromAll()
             else -> feedTable.oldestSubscriptionUpdate(groupId)

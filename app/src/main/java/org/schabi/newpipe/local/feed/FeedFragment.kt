@@ -507,7 +507,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             .setTitle(R.string.feed_load_error)
             .setPositiveButton(R.string.unsubscribe) { _, _ ->
                 SubscriptionManager(requireContext())
-                    .deleteSubscription(subscriptionEntity.serviceId, subscriptionEntity.url)
+                    .deleteSubscription(subscriptionEntity.serviceId, subscriptionEntity.url!!)
                     .subscribe()
                 handleItemsErrors(nextItemsErrors)
             }

@@ -118,12 +118,12 @@ public class SelectPlaylistFragment extends DialogFragment {
 
             if (selectedItem instanceof PlaylistMetadataEntry) {
                 final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
-                onSelectedListener.onLocalPlaylistSelected(entry.getUid(), entry.name);
+                onSelectedListener.onLocalPlaylistSelected(entry.getUid(), entry.getOrderingName());
 
             } else if (selectedItem instanceof PlaylistRemoteEntity) {
                 final PlaylistRemoteEntity entry = ((PlaylistRemoteEntity) selectedItem);
                 onSelectedListener.onRemotePlaylistSelected(
-                        entry.getServiceId(), entry.getUrl(), entry.getName());
+                        entry.getServiceId(), entry.getUrl(), entry.getOrderingName());
             }
         }
         dismiss();
@@ -157,14 +157,15 @@ public class SelectPlaylistFragment extends DialogFragment {
             if (selectedItem instanceof PlaylistMetadataEntry) {
                 final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
 
-                holder.titleView.setText(entry.name);
+                holder.titleView.setText(entry.getOrderingName());
                 holder.view.setOnClickListener(view -> clickedItem(position));
-                PicassoHelper.loadPlaylistThumbnail(entry.thumbnailUrl).into(holder.thumbnailView);
+                PicassoHelper.loadPlaylistThumbnail(entry.getThumbnailUrl())
+                        .into(holder.thumbnailView);
 
             } else if (selectedItem instanceof PlaylistRemoteEntity) {
                 final PlaylistRemoteEntity entry = ((PlaylistRemoteEntity) selectedItem);
 
-                holder.titleView.setText(entry.getName());
+                holder.titleView.setText(entry.getOrderingName());
                 holder.view.setOnClickListener(view -> clickedItem(position));
                 PicassoHelper.loadPlaylistThumbnail(entry.getThumbnailUrl())
                         .into(holder.thumbnailView);

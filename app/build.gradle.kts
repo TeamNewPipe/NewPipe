@@ -6,7 +6,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.jetbrains.kotlin.kapt)
+    alias(libs.plugins.google.ksp)
     alias(libs.plugins.jetbrains.kotlin.parcelize)
     alias(libs.plugins.sonarqube)
     checkstyle
@@ -40,12 +40,6 @@ android {
         System.getProperty("versionNameSuffix")?.let { versionNameSuffix = it }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments["room.schemaLocation"] = "$projectDir/schemas"
-            }
-        }
     }
 
     buildTypes {
@@ -123,6 +117,11 @@ android {
         }
     }
 }
+
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
+}
+
 
 // Custom dependency configuration for ktlint
 val ktlint by configurations.creating
@@ -218,7 +217,7 @@ dependencies {
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.rxjava3)
-    kapt(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.swiperefreshlayout)
     implementation(libs.androidx.viewpager2)
     implementation(libs.androidx.work.runtime)
@@ -229,7 +228,7 @@ dependencies {
     /** Third-party libraries **/
     implementation(libs.livefront.bridge)
     implementation(libs.evernote.statesaver.core)
-    kapt(libs.evernote.statesaver.compiler)
+    ksp(libs.evernote.statesaver.compiler)
 
     // HTML parser
     implementation(libs.jsoup)
@@ -249,7 +248,7 @@ dependencies {
 
     // Metadata generator for service descriptors
     compileOnly(libs.google.autoservice.annotations)
-    kapt(libs.google.autoservice.compiler)
+    ksp(libs.google.autoservice.compiler)
 
     // Manager for complex RecyclerView layouts
     implementation(libs.lisawray.groupie.core)
