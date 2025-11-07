@@ -24,7 +24,7 @@ junit = "4.13.2"
 junit-ext = "1.3.0"
 kotlin = "2.2.21"
 ksp = "2.3.2"
-ktlint = "0.45.2"
+ktlint = "1.8.0"
 leakcanary = "2.14"
 lifecycle = "2.9.4" # Newer versions require minSdk >= 23
 localbroadcastmanager = "1.1.0"
@@ -119,7 +119,7 @@ newpipe-nanojson = { module = "com.github.TeamNewPipe:nanojson", version.ref = "
 noties-markwon-core = { module = "io.noties.markwon:core", version.ref = "markwon" }
 noties-markwon-linkify = { module = "io.noties.markwon:linkify", version.ref = "markwon" }
 ocpsoft-prettytime = { module = "org.ocpsoft.prettytime:prettytime", version.ref = "prettytime" }
-pinterest-ktlint = { module = "com.pinterest:ktlint", version.ref = "ktlint" }
+pinterest-ktlint = { module = "com.pinterest.ktlint:ktlint-cli", version.ref = "ktlint" }
 puppycrawl-checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checkstyle" }
 reactivex-rxandroid = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxandroid" }
 reactivex-rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
