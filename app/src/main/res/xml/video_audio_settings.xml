@@ -77,17 +77,6 @@
         app:singleLineTitle="false"
         app:iconSpaceReserved="false"/>
 
-    <SeekBarPreference
-        android:defaultValue="@string/max_silence_duration_value"
-        app:min="@string/max_silence_duration_min"
-        android:max="@string/max_silence_duration_max"
-        android:key="@string/max_silence_duration_key"
-        android:title="@string/max_silence_duration_title"
-        app:singleLineTitle="false"
-        app:iconSpaceReserved="false"
-        app:useSimpleSummaryProvider="true"
-        app:showSeekBarValue="true" />
-
     <PreferenceScreen
         android:fragment="org.schabi.newpipe.settings.ExoPlayerSettingsFragment"
         android:key="@string/exoplayer_settings_key"
