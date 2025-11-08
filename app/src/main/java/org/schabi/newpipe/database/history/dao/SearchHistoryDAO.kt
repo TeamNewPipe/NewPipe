@@ -15,7 +15,7 @@ import org.schabi.newpipe.database.history.model.SearchHistoryEntry
 interface SearchHistoryDAO : HistoryDAO<SearchHistoryEntry> {
 
     @get:Query("SELECT * FROM search_history WHERE id = (SELECT MAX(id) FROM search_history)")
-    override val latestEntry: SearchHistoryEntry
+    override val latestEntry: SearchHistoryEntry?
 
     @Query("DELETE FROM search_history")
     override fun deleteAll(): Int
