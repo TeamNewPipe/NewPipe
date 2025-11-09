@@ -206,6 +206,8 @@ public final class VideoDetailFragment
     int lastStableBottomSheetState = BottomSheetBehavior.STATE_EXPANDED;
     @State
     protected boolean autoPlayEnabled = true;
+    @State
+    private int originalOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
 
     @Nullable
     private StreamInfo currentInfo = null;
@@ -1900,22 +1902,29 @@ public final class VideoDetailFragment
 
     @Override
     public void onScreenRotationButtonClicked() {
-        // In tablet user experience will be better if screen will not be rotated
-        // from landscape to portrait every time.
-        // Just turn on fullscreen mode in landscape orientation
-        // or portrait & unlocked global orientation
-        final boolean isLandscape = DeviceUtils.isLandscape(requireContext());
-        if (DeviceUtils.isTablet(activity)
-                && (!globalScreenOrientationLocked(activity) || isLandscape)) {
-            player.UIs().get(MainPlayerUi.class).ifPresent(MainPlayerUi::toggleFullscreen);
+        final Optional<MainPlayerUi> playerUi = player != null
+                ? player.UIs().get(MainPlayerUi.class)
+                : Optional.empty();
+        if (playerUi.isEmpty()) {
             return;
         }
 
-        final int newOrientation = isLandscape
-                ? ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-                : ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
+        // On tablets, just toggle fullscreen UI without orientation change.
+        if (DeviceUtils.isTablet(activity)) {
+            playerUi.get().toggleFullscreen();
+            return;
+        }
 
-        activity.setRequestedOrientation(newOrientation);
+        if (playerUi.get().isFullscreen()) {
+            // EXITING FULLSCREEN
+            playerUi.get().toggleFullscreen();
+            activity.setRequestedOrientation(originalOrientation);
+        } else {
+            // ENTERING FULLSCREEN
+            originalOrientation = activity.getRequestedOrientation();
+            playerUi.get().toggleFullscreen();
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+        }
     }
 
     /*
