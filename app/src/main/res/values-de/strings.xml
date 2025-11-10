@@ -118,6 +118,8 @@
     <string name="settings_file_charset_title">Erlaubte Zeichen im Dateinamen</string>
     <string name="settings_file_replacement_character_summary">Ungültige Zeichen werden durch dieses Zeichen ersetzt</string>
     <string name="settings_file_replacement_character_title">Ersetzungszeichen</string>
+    <string name="settings_file_name_include_uploader_key_summary">Name des Uploaders an den Dateinamen anhängen</string>
+    <string name="settings_file_name_include_uploader_key_title">Uploader im Dateinamen</string>
     <string name="charset_letters_and_digits">Buchstaben und Zahlen</string>
     <string name="subscribe_button_title">Abonnieren</string>
     <string name="subscribed_button_title">Abonniert</string>
