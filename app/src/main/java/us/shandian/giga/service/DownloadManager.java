@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+ import java.util.Locale;
 
 import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.FinishedMission;
@@ -600,10 +601,23 @@ public class DownloadManager {
 
         boolean hasFinished = false;
 
+        private boolean filteringEnabled = false;
+        private String currentFilter = "";
+
         private MissionIterator() {
             hidden = new ArrayList<>(2);
             current = null;
             snapshot = getSpecialItems();
+        }
+
+        public void filter(String query) {
+            currentFilter = query.trim().toLowerCase(Locale.getDefault());
+            filteringEnabled = !currentFilter.isEmpty();
+        }
+
+        public void clearFilter() {
+            currentFilter = "";
+            filteringEnabled = false;
         }
 
         private ArrayList<Object> getSpecialItems() {
@@ -619,6 +633,11 @@ public class DownloadManager {
                     }
                     return pending.remove(mission) || finished.remove(mission);
                 });
+
+                if (filteringEnabled && currentFilter != null && !currentFilter.isEmpty()) {
+                    pending.removeIf(m -> !matchesFilter(m, currentFilter));
+                    finished.removeIf(m -> !matchesFilter(m, currentFilter));
+                }
 
                 int fakeTotal = pending.size();
                 if (fakeTotal > 0) fakeTotal++;
@@ -640,6 +659,11 @@ public class DownloadManager {
 
                 return list;
             }
+        }
+
+        private boolean matchesFilter(Mission mission, String query) {
+            String name = mission.storage.getName().toLowerCase(Locale.getDefault());
+            return name.contains(query);
         }
 
         public MissionItem getItem(int position) {
@@ -728,6 +752,10 @@ public class DownloadManager {
         public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
             Object x = snapshot.get(oldItemPosition);
             Object y = current.get(newItemPosition);
+
+            // Necessary to avoid flickering of headers when filtering
+            if (x == PENDING && y == PENDING) return true;
+            if (x == FINISHED && y == FINISHED) return true;
 
             if (x instanceof Mission && y instanceof Mission) {
                 return ((Mission) x).storage.equals(((Mission) y).storage);
