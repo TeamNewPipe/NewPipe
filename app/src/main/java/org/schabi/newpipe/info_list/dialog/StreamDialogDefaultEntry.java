@@ -10,12 +10,15 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
+import org.schabi.newpipe.util.BlockedChannelsManager;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
@@ -135,7 +138,34 @@ public enum StreamDialogDefaultEntry {
                 .onErrorComplete()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe()
-    );
+    ),
+
+    BLOCK_CHANNEL(R.string.block_channel, (fragment, item) -> {
+        final String uploaderUrl = item.getUploaderUrl();
+        final String uploaderName = item.getUploaderName();
+
+        if (uploaderUrl != null && !uploaderUrl.isEmpty()) {
+            // Block the channel
+            BlockedChannelsManager.INSTANCE.blockChannel(
+                    fragment.requireContext(), uploaderUrl, uploaderName);
+
+            // Show snackbar with undo action
+            final Snackbar snackbar = Snackbar.make(
+                    fragment.requireActivity().findViewById(android.R.id.content),
+                    fragment.getString(R.string.channel_blocked,
+                            uploaderName != null ? uploaderName : ""),
+                    Snackbar.LENGTH_LONG
+            );
+
+            snackbar.setAction(R.string.undo, v -> {
+                // Unblock the channel
+                BlockedChannelsManager.INSTANCE.unblockChannel(
+                        fragment.requireContext(), uploaderUrl);
+            });
+
+            snackbar.show();
+        }
+    });
 
 
     @StringRes
