@@ -816,4 +816,24 @@
     <string name="search_with_service_name_and_filter">搜索 %1$s （%2$s）</string>
     <string name="migration_info_6_7_title">移除了 SoundCloud Top 50 页面</string>
     <string name="migration_info_6_7_message">SoundCloud 已停止发布原创 Top 50 榜单。相应的标签页已从你的主页移除。</string>
+    <string name="migration_info_7_8_title">移除了 Youtube 合并的“时下流行”标签页</string>
+    <string name="migration_info_7_8_message">自 2025.7.21 起， Youtube 下线了合并的“时下流行”标签页。Newpipe 用“时下流行”的直播替代了默认的“时下流行”页。\n\n你也可以在 “设置 &gt; 内容&gt; 主页内容”中选择不同的“时下流行”页。</string>
+    <string name="trending_gaming">“时下流行”的游戏视频</string>
+    <string name="trending_podcasts">“时下流行”的播客</string>
+    <string name="trending_movies">“时下流行”的电影和娱乐节目</string>
+    <string name="trending_music">“时下流行”的音乐</string>
+    <string name="short_thousand">%s千</string>
+    <string name="short_million">%s百万</string>
+    <string name="short_billion">%s十亿</string>
+    <string name="permission_display_over_apps_message">要使用弹窗播放器，请在接下来的安卓设置中选择 %1$s 并开启 %2$s。</string>
+    <string name="permission_display_over_apps_permission_name">“允许显示在其他应用上方”</string>
+    <string name="delete_file">删除文件</string>
+    <string name="delete_entry">删除条目</string>
+    <string name="entry_deleted">删除了条目</string>
+    <string name="account_terminated_service_provides_reason">账户终止\n\n%1$s 提供了这个原因：%2$s</string>
+    <string name="player_http_403">播放时从服务器收到 HTTP 403 错误，可能因串流 URL 过期或 IP 封锁导致</string>
+    <string name="player_http_invalid_status">播放时从服务器收到 HTTP %1$s 错误</string>
+    <string name="youtube_player_http_403">播放时从服务器收到 HTTP 403 错误，可能因 IP 封锁或串流 URL 解密问题导致</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s 拒绝提供数据， 要求登录确认请求方不是机器人。\n\n你的 IP 可能已经暂时被 %1$s 封禁，你可以等待一段时间或切换到不同 IP （比如开/关 VPN, 或者从 WiFi 连接切换到移动数据）。</string>
+    <string name="unsupported_content_in_country">此内容对当前选中的内容地区不可用。\n\n要更改选择，请前往 “设置 &gt; 内容 &gt; 默认内容地区”。</string>
 </resources>

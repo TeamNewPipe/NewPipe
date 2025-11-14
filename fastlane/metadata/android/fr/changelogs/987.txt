@@ -1,6 +1,6 @@
 Nouveautés
-• Prise en charge d'autres méthodes de diffusion que le HTTP progressif : temps de chargement plus rapide, corrections pour PeerTube et SoundCloud, lecture des nouveaux flux en directs de YouTube
-• Bouton pour ajouter une liste de lecture distante à une locale
+• Prise en charge d'autres méthodes de diffusion que le HTTP progressif : temps de chargement plus rapide, corrections pour PeerTube et SoundCloud, lecture des nouveaux flux en directs de YouTube
+• Bouton pour ajouter une playlist distante à une locale
 • Prévisualisation d'images lors d'un partage pour Andoid 10+
 
 Améliorations

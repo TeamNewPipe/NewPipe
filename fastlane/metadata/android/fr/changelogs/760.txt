@@ -5,7 +5,7 @@ Nouveauté
 
 
 Améliorations
-• Ajout de l'action "Commencer à jouer ici" dans les menus qui s'appuient longuement pour les listes de lecture #2518
+• Ajout de l'action "Commencer à jouer ici" dans les menus qui s'appuient longuement pour les playlists #2518
 • Ajout d'un commutateur pour le sélecteur de fichiers SAF / hérité #2521
 
 Corrections
@@ -13,7 +13,7 @@ Corrections
 • Correction de la position de lecture qui est enregistrée même si l'historique de visionnage est désactivé
 • Correction des performances réduites causées par la position de lecture dans les vues de liste #2517
 • [Extractor] Correction de ReCaptchaActivity #2527, TeamNewPipe/NewPipeExtractor#186
-• [Extractor] [YouTube] Correction de l'erreur de recherche occasionnelle lorsque les listes de lecture sont dans les résultats TeamNewPipe/NewPipeExtractor#185
+• [Extractor] [YouTube] Correction de l'erreur de recherche occasionnelle lorsque les playlists sont dans les résultats TeamNewPipe/NewPipeExtractor#185
 
 
 
@@ -39,5 +39,5 @@ Corrections
 • Ne plante pas lorsque la vérification de la mise à jour de l'application échoue (version GitHub) #2423
 • Correction des téléchargements bloqués à 99,9 % #2440
 • Mise à jour des métadonnées de la file de lecture #2453
-• [SoundCloud] Correction du plantage lors du chargement des listes de lecture TeamNewPipe/NewPipeExtractor#170
+• [SoundCloud] Correction du plantage lors du chargement des playlists TeamNewPipe/NewPipeExtractor#170
 • [YouTube] Correction de la durée qui ne peut pas être analysée TeamNewPipe/NewPipeExtractor#177

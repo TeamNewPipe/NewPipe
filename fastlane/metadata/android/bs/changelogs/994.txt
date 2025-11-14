@@ -1,0 +1,15 @@
+Novo
+• Podrška za više audio zapisa/jezika
+• Omogućeno podešavanje jačine zvuka i svjetline gestama sa bilo koje strane ekrana
+• Podrška za prikaz glavnih kartica na dnu ekrana
+
+Poboljšano
+• [Bandcamp] Rukovanje zapisima iza paywalla
+
+Ispravljeno
+• [YouTube] 403 HTTP greške za tokove
+• Crni plejer pri prelasku na glavni plejer sa prikaza liste za reprodukciju
+• Curenje memorije servisa plejera
+• [PeerTube] Avatari za uploader i podkanal su zamijenjeni
+
+i više

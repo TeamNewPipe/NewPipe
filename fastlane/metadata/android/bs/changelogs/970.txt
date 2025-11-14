@@ -1,0 +1,11 @@
+Novo
+• Prikaz metapodataka sadržaja (oznake, kategorije, licenca, ...) ispod opisa
+• Dodana opcija "Prikaži detalje kanala" u udaljenim (nelokalnim) listama za reprodukciju
+• Dodana opcija "Otvori u pregledniku" u meni s dugim pritiskom
+
+Ispravljeno
+• Ispravljen pad sistema prilikom rotacije na stranici s detaljima videa
+• Ispravljeno dugme "Reproduciraj s Kodijem" u playeru koje uvijek traži instalaciju Kore-a
+• Ispravljeno i poboljšano podešavanje putanja uvoza i izvoza
+• [YouTube] Ispravljen broj lajkova za komentare
+I još mnogo toga
