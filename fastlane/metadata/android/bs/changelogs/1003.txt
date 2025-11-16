@@ -1,0 +1,6 @@
+Ovo je hitna ispravka koja ispravlja greške na YouTubeu:
+• [YouTube] Ispravljeno neučitavanje informacija o videozapisu, ispravljene greške HTTP 403 prilikom reprodukcije videozapisa i vraćanje reprodukcije nekih videozapisa s ograničenjem za uzrast
+• Ispravljena veličina titlova koja se nije mijenjala
+• Ispravljeno dvostruko preuzimanje informacija prilikom otvaranja toka
+• [Soundcloud] Uklonjeni nereproducirani tokovi zaštićeni DRM-om
+• Ažurirani prijevodi

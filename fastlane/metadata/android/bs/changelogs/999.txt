@@ -1,0 +1,12 @@
+Ovo izdanje hitne ispravke ispravlja HTTP 403 greške usred YouTube videa.
+
+Novo
+• [SoundCloud] Dodata podrška za on.soundcloud.com URL-ove
+
+Poboljšano
+• [Bandcamp] Prikaz dodatnih informacija u radio kiosku
+
+Ispravljeno
+• [YouTube] Ispravljene povremene HTTP 403 greške na početku ili usred videa
+• [YouTube] Izdvajanje avatara i banera iz više tipova zaglavlja kanala
+• [Bandcamp] Ispravljene razne greške i uvijek korištenje HTTPS-a

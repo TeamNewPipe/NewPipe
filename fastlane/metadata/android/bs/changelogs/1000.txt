@@ -1,0 +1,13 @@
+Poboljšano
+• Opis liste za reprodukciju učinite klikom za prikaz više/manje sadržaja
+• [PeerTube] Automatski obrađuje linkove instanci `subscribeto.me`
+• Pokreni reprodukciju samo jedne stavke na ekranu historije
+
+Ispravljeno
+• Ispravljena vidljivost RSS dugmeta
+• Ispravljeno rušenje pregleda trake za pretraživanje
+• Ispravljena stavka bez sličice prilikom dodavanja na listu za reprodukciju
+• Ispravljeno izlaženje iz dijaloga za preuzimanje prije nego što se pojavi
+• Ispravljen skočni prozor za dodavanje u red čekanja za povezane stavke
+• Ispravljen redoslijed u dijalogu za dodavanje na listu za reprodukciju
+• Prilagodite raspored stavki označenih na listi za reprodukciju

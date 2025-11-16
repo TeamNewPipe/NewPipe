@@ -1,0 +1,1 @@
+Ispravljen je problem sa neispravnim radom YouTubea u EU. Uzrok tome je bio novi sistem za pristanak na kolačiće i privatnost koji zahtijeva da NewPipe postavi kolačić PRISTANAK.

@@ -1,0 +1,4 @@
+Ispravljena greška zbog koje YouTube nije reproducirao nijedan tok.
+
+Ovo izdanje rješava samo najhitniju grešku koja sprječava učitavanje detalja YouTube videa.
+Svjesni smo da postoje i drugi problemi i uskoro ćemo objaviti zasebno izdanje kako bismo ih riješili.

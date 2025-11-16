@@ -1,0 +1,7 @@
+Poboljšano
+• Spremanje i vraćanje bez obzira da li su visina tona i tempo otkačeni ili ne
+• Podrška za izrezivanje ekrana u playeru
+• Kružni prikaz i broj pretplatnika
+• Optimizovan YouTube za korištenje manje podataka
+
+U ovom izdanju ispravljeno je više od 15 grešaka povezanih s YouTubeom.

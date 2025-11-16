@@ -1,0 +1,10 @@
+• Ujedinite specifične radnje stavljanja u red u jednu
+• Gesta dva prsta za zatvaranje playera
+• Omogućite brisanje reCAPTCHA kolačića
+• Opcija da se obavještenja ne oboje
+• Poboljšajte način otvaranja detalja videa kako biste riješili beskonačno baferovanje, greške prilikom dijeljenja na NewPipe i druge nedosljednosti
+• Ubrzajte YouTube videozapise i ispravite one s ograničenjem po uzrastu
+• Ispravite pad sistema prilikom premotavanja unaprijed/unazad
+• Nemojte preuređivati liste povlačenjem sličica
+• Uvijek pamtite svojstva skočnih prozora
+• Dodan je santalski jezik

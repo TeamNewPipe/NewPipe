@@ -849,4 +849,24 @@
     <string name="channel_tab_likes">Лайки</string>
     <string name="migration_info_6_7_title">Страница SoundCloud Top 50 удалена</string>
     <string name="migration_info_6_7_message">SoundCloud прекратил поддерживать оригинальные чарты Top 50. Соответствующая вкладка была удалена с вашей главной страницы.</string>
+    <string name="short_thousand">%sК</string>
+    <string name="short_million">%sмлн</string>
+    <string name="short_billion">%sмлрд</string>
+    <string name="trending_gaming">Игровые тренды</string>
+    <string name="migration_info_7_8_title">Удалены объединённые тренды YouTube</string>
+    <string name="migration_info_7_8_message">YouTube прекратил поддержку объединённой страницы трендов 21 июля 2025 года. NewPipe заменил страницу трендов по умолчанию на тренды в прямых трансляциях.\n\nВы также можете выбрать другие страницы трендов в \"Настройки &gt; Контент &gt; Главная страница\".</string>
+    <string name="trending_podcasts">Тренды в подкастах</string>
+    <string name="trending_movies">Тренды в фильмах и шоу</string>
+    <string name="trending_music">Тренды в музыке</string>
+    <string name="permission_display_over_apps_message">Чтобы использовать Popup Player, выберите %1$s в следующем меню настроек Android и включите %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">«Разрешить отображение поверх других приложений»</string>
+    <string name="delete_file">Удалить файл</string>
+    <string name="delete_entry">Удалить запись</string>
+    <string name="account_terminated_service_provides_reason">Учётная запись закрыта\n\n%1$s указал причину: %2$s</string>
+    <string name="entry_deleted">Запись удалена</string>
+    <string name="player_http_403">Во время воспроизведения получена ошибка HTTP 403 от сервера, вероятно, вызванная истечением срока действия URL-адреса потоковой передачи или блокировкой IP-адреса</string>
+    <string name="player_http_invalid_status">Ошибка HTTP %1$s получена от сервера во время воспроизведения</string>
+    <string name="youtube_player_http_403">Во время воспроизведения получена ошибка HTTP 403 от сервера, вероятно, вызванная блокировкой IP-адреса или проблемами деобфускации URL-адреса потоковой передачи</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s отказался предоставить данные, запросив логин для подтверждения, что запросчик не бот.\n\nВозможно, ваш IP-адрес временно заблокирован %1$s. Вы можете подождать некоторое время или переключиться на другой IP-адрес (например, включив/выключив VPN или переключившись с Wi-Fi на мобильный интернет).</string>
+    <string name="unsupported_content_in_country">Этот контент недоступен для выбранной страны контента.\n\nИзмените свой выбор в разделе «Настройки &gt; Контент &gt; Страна контента по умолчанию».</string>
 </resources>

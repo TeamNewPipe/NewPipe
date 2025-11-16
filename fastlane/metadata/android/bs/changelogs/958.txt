@@ -1,0 +1,15 @@
+Novo i poboljšano:
+• Ponovno dodana opcija za skrivanje sličice na zaključanom ekranu
+• Povlačenje za osvježavanje feeda
+• Poboljšane performanse prilikom preuzimanja lokalnih lista
+
+Ispravljeno:
+• Ispravljen pad sistema prilikom pokretanja NewPipe-a nakon što je uklonjen iz RAM-a
+• Ispravljen pad sistema prilikom pokretanja kada nema internet veze
+• Ispravljeno u vezi s postavkama gestova za svjetlinu i jačinu zvuka
+• [YouTube] Ispravljene duge liste reprodukcije
+
+Ostalo:
+• Čišćenje koda i nekoliko internih poboljšanja
+• Ažuriranja zavisnosti
+• Ažuriranja prevoda

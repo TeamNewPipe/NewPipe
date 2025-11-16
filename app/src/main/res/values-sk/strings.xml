@@ -486,7 +486,7 @@
     </plurals>
     <string name="feed_group_dialog_empty_name">Bez názvu skupiny</string>
     <string name="feed_group_dialog_delete_message">Chcete zmazať vybranú skupinu\?</string>
-    <string name="feed_create_new_group_button_title">Nová</string>
+    <string name="feed_create_new_group_button_title">Nový</string>
     <string name="settings_category_feed_title">Zdroj</string>
     <string name="feed_update_threshold_title">Interval obnovy zdroja</string>
     <string name="feed_update_threshold_summary">Čas od poslednej aktualizácie, kedy sa odber považuje za neaktuálny - %s</string>
@@ -724,7 +724,7 @@
     <string name="app_update_unavailable_toast">Používate najnovšiu verziu NewPipe</string>
     <string name="night_theme_available">Táto možnosť je dostupná len pre motív %s</string>
     <string name="fast_mode">Rýchly režim</string>
-    <string name="import_subscriptions_hint">Import alebo export odberov z 3-bodkovej ponuky</string>
+    <string name="import_subscriptions_hint">Importujte alebo exportujte odbery v menu s 3-mi bodkami</string>
     <string name="left_gesture_control_title">Akcia gesta vľavo</string>
     <string name="right_gesture_control_summary">Vyberte gesto pre pravú polovicu obrazovky prehrávača</string>
     <string name="right_gesture_control_title">Akcia gesta vpravo</string>
@@ -843,4 +843,24 @@
     <string name="channel_tab_likes">Páči sa</string>
     <string name="migration_info_6_7_title">SoundCloud Top 50 stránka odstránená</string>
     <string name="migration_info_6_7_message">SoundCloud prestal používať pôvodnú Top 50. Daná stránka bola odstránená z hlavnej stránky.</string>
+    <string name="migration_info_7_8_title">Odstránené kombinované trendy na YouTube</string>
+    <string name="migration_info_7_8_message">YouTube ukončil prevádzku kombinovanej stránky s trendmi k 21. júlu 2025. NewPipe nahradil predvolenú stránku s trendmi stránkou s trendovými živými prenosmi.\n\nV nastaveniach „Nastavenia &gt; Obsah &gt; Obsah hlavnej stránky“ môžete vybrať aj iné stránky s trendmi.</string>
+    <string name="trending_gaming">Ttendy v hrách</string>
+    <string name="trending_podcasts">Trendové podcasty</string>
+    <string name="trending_movies">Trendové filmy a seriály</string>
+    <string name="trending_music">Trendová hudba</string>
+    <string name="short_thousand">%stis.</string>
+    <string name="short_million">%smil.</string>
+    <string name="short_billion">%smld.</string>
+    <string name="entry_deleted">Položka vymazaná</string>
+    <string name="delete_entry">Vymazať položku</string>
+    <string name="permission_display_over_apps_permission_name">\"Povoliť zobrazenie cez iné aplikácie\"</string>
+    <string name="delete_file">Vymazať súbor</string>
+    <string name="permission_display_over_apps_message">Ak chcete používať Popup Player, vyberte %1$s v nasledujúcej ponuke nastavení Androidu a povoľte %2$s.</string>
+    <string name="account_terminated_service_provides_reason">Účet bol zrušený\n\n%1$s uvádza tento dôvod: %2$s</string>
+    <string name="player_http_403">Počas prehrávania bola zo servera prijatá chyba HTTP 403, pravdepodobne spôsobená vypršaním platnosti streamingovej adresy URL alebo zákazom IP adresy</string>
+    <string name="player_http_invalid_status">Chyba HTTP %1$s prijatá zo servera počas prehrávania</string>
+    <string name="youtube_player_http_403">Chyba HTTP 403 prijatá zo servera počas prehrávania, pravdepodobne spôsobená zákazom IP adresy alebo problémami s deobfuskáciou streamingovej URL adresy</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s odmietol poskytnúť údaje, žiada o prihlásenie na potvrdenie, že žiadateľ nie je bot.\n\nVaša IP adresa mohla byť dočasne zakázaná %1$s, môžete nejaký čas počkať alebo prejsť na inú IP adresu (napríklad zapnutím/vypnutím VPN alebo prepnutím z WiFi na mobilné dáta).</string>
+    <string name="unsupported_content_in_country">Tento obsah nie je dostupný pre aktuálne zvolenú krajinu obsahu.\n\nZmeňte výber v ponuke \"Nastavenia &gt; Obsah &gt; Predvolená krajina obsahu\".</string>
 </resources>
