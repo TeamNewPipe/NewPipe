@@ -9,13 +9,14 @@ package org.schabi.newpipe.database.history.dao
 import androidx.room.Dao
 import androidx.room.Query
 import io.reactivex.rxjava3.core.Flowable
+import org.schabi.newpipe.database.BasicDAO
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry
 
 @Dao
-interface SearchHistoryDAO : HistoryDAO<SearchHistoryEntry> {
+interface SearchHistoryDAO : BasicDAO<SearchHistoryEntry> {
 
     @get:Query("SELECT * FROM search_history WHERE id = (SELECT MAX(id) FROM search_history)")
-    override val latestEntry: SearchHistoryEntry
+    val latestEntry: SearchHistoryEntry?
 
     @Query("DELETE FROM search_history")
     override fun deleteAll(): Int

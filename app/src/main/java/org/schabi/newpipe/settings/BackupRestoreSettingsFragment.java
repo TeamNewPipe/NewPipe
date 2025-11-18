@@ -40,6 +40,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
 
@@ -155,9 +157,9 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
     }
 
     private void exportDatabase(final StoredFileHelper file, final Uri exportDataUri) {
-        try {
+        try (ExecutorService executor = Executors.newSingleThreadExecutor()) {
             //checkpoint before export
-            NewPipeDatabase.checkpoint();
+            executor.submit(NewPipeDatabase::checkpoint).get();
 
             final SharedPreferences preferences = PreferenceManager
                     .getDefaultSharedPreferences(requireContext());
