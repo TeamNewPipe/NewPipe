@@ -45,7 +45,7 @@ rxandroid = "3.0.2"
 rxbinding = "4.0.0"
 rxjava = "3.1.12"
 sonarqube = "4.0.0.2929"
-statesaver = "1.4.1"
+statesaver = "1.4.1" # TODO: Drop because it is deprecated and incompatible with KSP2
 stetho = "1.6.0"
 swiperefreshlayout = "1.1.0"
 # You can use a local version by uncommenting a few lines in settings.gradle
@@ -133,5 +133,6 @@ squareup-picasso = { module = "com.squareup.picasso:picasso", version.ref = "pic
 android-application = { id = "com.android.application", version.ref = "agp" }
 google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" } # Needed for statesaver
 jetbrains-kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
