@@ -1,0 +1,16 @@
+Novo
+• Dodana podrška za komentare na SoundCloudu
+• Dodana postavka ograničenog načina rada na YouTubeu
+• Prikaz detalja nadređenog kanala na PeerTubeu
+
+Poboljšano
+• Prikaz dugmeta Kore samo za podržane usluge
+• Blokiranje gestova igrača koji počinju na navigacijskoj traci ili statusnoj traci
+• Promjena boje pozadine dugmadi za ponovni pokušaj i pretplatu na osnovu boje usluge
+
+Ispravljeno
+• Ispravljeno zamrzavanje dijaloga za preuzimanje
+• Dugme "Otvori u pregledniku" sada se zaista otvara u pregledniku
+• Ispravljeno rušenje sistema pri otvaranju videa i "Nije moguće reproducirati ovaj tok"
+
+i još mnogo toga

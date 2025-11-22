@@ -1,0 +1,17 @@
+New
+• Suporte adicionado para Android Auto
+• Permitir configuração de grupos de feed como abas da tela principal
+• [YouTube] Compartilhe como playlist temporária
+• [SoundCloud] Aba de curtidas do canal
+
+Melhorado
+• Melhor sugestão na barra de busca
+• Mostra data do download em Downloads
+• Usar idioma por aplicativo no Android 13
+
+Consertado
+• Texto no modo escuro consertado
+• [YouTube] Conserta playlists não carregando mais do que 100 itens
+• [YouTube] Conserta videos recomendados faltando
+• Conserta lista de visualização do histórico
+• Conserta registro de tempo na resposta de comentários

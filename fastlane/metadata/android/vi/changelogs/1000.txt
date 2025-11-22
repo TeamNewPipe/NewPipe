@@ -1,4 +1,4 @@
-Đã cải thiện
+Những cải thiện
 • Làm cho mô tả của danh sách phát có thể nhấp vào để hiển thị nhiều / ít nội dung hơn
 • [PeerTube] Tự động xử lý các liên kết như 'subscribeto.me'
 • Chỉ bắt đầu phát một mục trong màn hình lịch sử

@@ -1,0 +1,15 @@
+Novo
+• Adicionado apoio para Android Auto
+• Permite definir grupos de feeds como guias do ecrã principal
+• [YouTube] Partilhar como lista de reprodução temporária
+• [SoundCloud] Separador de gostos do canal
+
+Melhorado
+• Melhores sugestões na barra de pesquisa
+• Mostrar data da descarga em descargas
+• Usar idioma por app do Android 13
+
+Corrigido
+• Corrigir cores de texto incorretas no modo escuro
+• [YouTube] Corrigir listas de reprodução que não carregam mais de 100 elementos
+...

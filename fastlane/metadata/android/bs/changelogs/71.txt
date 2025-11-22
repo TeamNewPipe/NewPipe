@@ -1,0 +1,10 @@
+### Poboljšanja
+* Dodana obavijest o ažuriranju aplikacije za GitHub verziju (#1608 od @krtkush)
+* Različita poboljšanja programa za preuzimanje (#1944 od @kapodamy):
+* dodane nedostajuće bijele ikone i korištenje ugrađenog načina za promjenu boja ikona
+* provjera da li je iterator inicijaliziran (ispravke #2031)
+* omogućava ponovni pokušaj preuzimanja s greškom "naknadna obrada nije uspjela" u novom multiplekseru
+* novi MPEG-4 multiplekser ispravlja nesinhrone video i audio tokove (#2039)
+
+### Ispravljeno
+* YouTube tokovi uživo prestaju s reprodukcijom nakon kratkog vremena (#1996 od @yausername)

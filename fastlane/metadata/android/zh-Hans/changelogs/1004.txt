@@ -1,1 +1,3 @@
-修复YouTube无法播放任何视频
+此版本修复 YouTube 只提供 360p 串流的问题。
+
+注意此版本部署的解决方案可能是临时性的，长期来看需要使用 SABR 视频协议，但 Newpipe 团队成员目前没空，我们十分感谢任何帮助！https://github.com/TeamNewPipe/NewPipe/issues/12248

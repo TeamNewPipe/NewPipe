@@ -1,0 +1,17 @@
+Nytt
+• Stöd för Android Auto
+• Flödesgrupper kan ställas in som flikar på huvudskärmen
+• [YouTube] Dela som tillfällig spellista
+• [SoundCloud] Gilla-kanalflik
+
+Förbättrat
+• Bättre tips för sökfältet
+• Visa hämtningsdatum i Hämtningar
+• Använd Android 13 per- app språk
+
+Fixat
+• Fixade textfärger i mörkt läge
+• [YouTube] Fixade att spellistor inte laddade mer än 100 objekt
+• [YouTube] Fixade saknade rekommenderade videor
+• Fixade krascher i historiklistvyn
+• Fixade tidsstämplar i kommentarsvar

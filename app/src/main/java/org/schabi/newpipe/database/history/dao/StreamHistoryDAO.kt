@@ -10,15 +10,13 @@ import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.RewriteQueriesToDropUnusedColumns
 import io.reactivex.rxjava3.core.Flowable
+import org.schabi.newpipe.database.BasicDAO
 import org.schabi.newpipe.database.history.model.StreamHistoryEntity
 import org.schabi.newpipe.database.history.model.StreamHistoryEntry
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry
 
 @Dao
-abstract class StreamHistoryDAO : HistoryDAO<StreamHistoryEntity> {
-
-    @get:Query("SELECT * FROM stream_history WHERE access_date = (SELECT MAX(access_date) FROM stream_history)")
-    abstract override val latestEntry: StreamHistoryEntity
+abstract class StreamHistoryDAO : BasicDAO<StreamHistoryEntity> {
 
     @Query("SELECT * FROM stream_history")
     abstract override fun getAll(): Flowable<List<StreamHistoryEntity>>

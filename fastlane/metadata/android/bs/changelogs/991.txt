@@ -1,0 +1,14 @@
+Novo
+• Dodano dugme "Otvori u pregledniku" u panelu s greškama
+• Dodana opcija za prikaz grupa kanala kao liste
+• [YouTube] Dugi klik na segmente toka za dijeljenje URL-a vremenske oznake
+• Dodano dugme za red čekanja za reprodukciju u mini player
+
+Poboljšano
+
+• Dodana lokalizacija za islandski jezik i ažurirani mnogi drugi prijevodi
+• Mnoga interna poboljšanja
+
+Ispravljeno
+• Ispravljeno višestruko rušenje sistema
+• [YouTube] Ispravljeno učitavanje kanala, nenamjenski feed i zaobilazno rješenje problema s reprodukcijom u nekim zemljama

@@ -6,6 +6,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.jetbrains.kotlin.kapt)
     alias(libs.plugins.google.ksp)
     alias(libs.plugins.jetbrains.kotlin.parcelize)
     alias(libs.plugins.sonarqube)
@@ -228,7 +229,7 @@ dependencies {
     /** Third-party libraries **/
     implementation(libs.livefront.bridge)
     implementation(libs.evernote.statesaver.core)
-    ksp(libs.evernote.statesaver.compiler)
+    kapt(libs.evernote.statesaver.compiler)
 
     // HTML parser
     implementation(libs.jsoup)

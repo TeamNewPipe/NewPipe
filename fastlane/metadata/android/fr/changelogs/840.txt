@@ -7,7 +7,7 @@ Amélioré
 • Corriger l'activité ReCaptcha et enregistrer correctement les cookies obtenus
 • Suppression du menu à points au profit du tiroir et du bouton Masquer l'historique lorsque l'historique de visionnage n'est pas activé dans les paramètres
 • Demander correctement l'autorisation d'affichage sur d'autres applications dans les paramètres sur Android 6 et versions ultérieures
-• Renommer la liste de lecture locale en cliquant longuement dans BookmarkFragment
+• Renommer la playlist locale en cliquant longuement dans BookmarkFragment
 • Diverses améliorations de PeerTube
 • Amélioration de plusieurs chaînes sources en anglais
 
