@@ -13,8 +13,6 @@ plugins {
     checkstyle
 }
 
-apply(from = "check-dependencies.gradle.kts")
-
 val gitWorkingBranch = providers.exec {
     commandLine("git", "rev-parse", "--abbrev-ref", "HEAD")
 }.standardOutput.asText.map { it.trim() }
@@ -22,6 +20,15 @@ val gitWorkingBranch = providers.exec {
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+kotlin {
+    compilerOptions {
+        // TODO: Drop annotation default target when it is stable
+        freeCompilerArgs.addAll(
+            "-Xannotation-default-target=param-property"
+        )
     }
 }
 
@@ -160,7 +167,7 @@ tasks.register<JavaExec>("runKtlint") {
     outputs.dir(outputDir)
     mainClass.set("com.pinterest.ktlint.Main")
     classpath = configurations.getByName("ktlint")
-    args = listOf("src/**/*.kt")
+    args = listOf("--editorconfig=../.editorconfig", "src/**/*.kt")
     jvmArgs = listOf("--add-opens", "java.base/java.lang=ALL-UNNAMED")
 }
 
@@ -169,8 +176,12 @@ tasks.register<JavaExec>("formatKtlint") {
     outputs.dir(outputDir)
     mainClass.set("com.pinterest.ktlint.Main")
     classpath = configurations.getByName("ktlint")
-    args = listOf("-F", "src/**/*.kt")
+    args = listOf("--editorconfig=../.editorconfig", "-F", "src/**/*.kt")
     jvmArgs = listOf("--add-opens", "java.base/java.lang=ALL-UNNAMED")
+}
+
+tasks.register<CheckDependenciesOrder>("checkDependenciesOrder") {
+    tomlFile = layout.projectDirectory.file("../gradle/libs.versions.toml")
 }
 
 afterEvaluate {

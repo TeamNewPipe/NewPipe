@@ -4,47 +4,47 @@
 #
 
 [versions]
-acra = "5.11.3"
-agp = "8.13.0"
+acra = "5.13.1"
+agp = "8.13.1"
 appcompat = "1.7.1"
-assertj = "3.24.2"
+assertj = "3.27.6"
 autoservice = "1.1.1"
 bridge = "v2.0.2"
 cardview = "1.0.0"
-checkstyle = "10.26.1"
-constraintlayout = "2.1.4"
-core = "1.12.0"
-desugar = "2.0.4"
-documentfile = "1.0.1"
-exoplayer = "2.18.7"
-fragment = "1.6.2"
+checkstyle = "12.1.2"
+constraintlayout = "2.2.1"
+core = "1.17.0"
+desugar = "2.1.5"
+documentfile = "1.1.0"
+exoplayer = "2.19.1"
+fragment = "1.8.9"
 groupie = "2.10.1"
 jsoup = "1.21.2"
 junit = "4.13.2"
-junit-ext = "1.1.5"
-kotlin = "1.9.25"
-ksp = "1.9.25-1.0.20"
-ktlint = "0.45.2"
-leakcanary = "2.12"
-lifecycle = "2.6.2"
+junit-ext = "1.3.0"
+kotlin = "2.2.21"
+ksp = "2.3.2"
+ktlint = "1.8.0"
+leakcanary = "2.14"
+lifecycle = "2.9.4" # Newer versions require minSdk >= 23
 localbroadcastmanager = "1.1.0"
 markwon = "4.6.2"
-material = "1.11.0"
+material = "1.13.0"
 media = "1.7.1"
-mockitoCore = "5.6.0"
-okhttp = "4.12.0"
-phoenix = "2.1.2"
+mockitoCore = "5.20.0"
+okhttp = "5.3.2"
+phoenix = "3.0.0"
 #noinspection NewerVersionAvailable,GradleDependency --> 2.8 is the last version, not 2.71828!
 picasso = "2.8"
 preference = "1.2.1"
 prettytime = "5.0.8.Final"
-recyclerview = "1.3.2"
-room = "2.6.1"
-runner = "1.5.2"
+recyclerview = "1.4.0"
+room = "2.7.2" # Newer versions require minSdk >= 23
+runner = "1.7.0"
 rxandroid = "3.0.2"
 rxbinding = "4.0.0"
 rxjava = "3.1.12"
-sonarqube = "4.0.0.2929"
+sonarqube = "7.0.1.6134"
 statesaver = "1.4.1" # TODO: Drop because it is deprecated and incompatible with KSP2
 stetho = "1.6.0"
 swiperefreshlayout = "1.1.0"
@@ -60,8 +60,8 @@ teamnewpipe-nanojson = "e9d656ddb49a412a5a0a5d5ef20ca7ef09549996"
 # to cause jitpack to regenerate the artifact.
 teamnewpipe-newpipe-extractor = "3af73262cc60cf555fd5f1d691f6c58e2db38ef5"
 viewpager2 = "1.1.0"
-webkit = "1.9.0"
-work = "2.8.1"
+webkit = "1.14.0"
+work = "2.10.5"  # Newer versions require minSdk >= 23
 
 [libraries]
 acra-core = { module = "ch.acra:acra-core", version.ref = "acra" }
@@ -87,7 +87,7 @@ androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
 androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
 androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }
 androidx-webkit = { module = "androidx.webkit:webkit", version.ref = "webkit" }
-androidx-work-runtime = { module = "androidx.work:work-runtime-ktx", version.ref = "work" }
+androidx-work-runtime = { module = "androidx.work:work-runtime", version.ref = "work" }
 androidx-work-rxjava3 = { module = "androidx.work:work-rxjava3", version.ref = "work" }
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
 evernote-statesaver-compiler = { module = "com.evernote:android-state-processor", version.ref = "statesaver" }
@@ -119,7 +119,7 @@ newpipe-nanojson = { module = "com.github.TeamNewPipe:nanojson", version.ref = "
 noties-markwon-core = { module = "io.noties.markwon:core", version.ref = "markwon" }
 noties-markwon-linkify = { module = "io.noties.markwon:linkify", version.ref = "markwon" }
 ocpsoft-prettytime = { module = "org.ocpsoft.prettytime:prettytime", version.ref = "prettytime" }
-pinterest-ktlint = { module = "com.pinterest:ktlint", version.ref = "ktlint" }
+pinterest-ktlint = { module = "com.pinterest.ktlint:ktlint-cli", version.ref = "ktlint" }
 puppycrawl-checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checkstyle" }
 reactivex-rxandroid = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxandroid" }
 reactivex-rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
