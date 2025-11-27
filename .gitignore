@@ -11,6 +11,7 @@ captures/
 *.class
 app/debug/
 app/release/
+checkouts/
 
 # vscode / eclipse files
 *.classpath
