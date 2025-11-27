@@ -206,9 +206,9 @@ dependencies {
     coreLibraryDesugaring(libs.android.desugar)
 
     /** NewPipe libraries **/
-    implementation(libs.newpipe.nanojson)
-    implementation(libs.newpipe.extractor)
-    implementation(libs.newpipe.filepicker)
+    implementation(libs.teamnewpipe.nanojson)
+    implementation(libs.teamnewpipe.extractor)
+    implementation(libs.teamnewpipe.filepicker)
 
     /** Checkstyle **/
     checkstyle(libs.puppycrawl.checkstyle)
