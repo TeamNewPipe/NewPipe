@@ -1,0 +1,8 @@
+• Dozvoljena instalacija na eksternu memoriju
+• [Bandcamp] Dodata podrška za prikaz prva tri komentara na toku
+• Prikaži samo obavijest 'preuzimanje je počelo' kada je preuzimanje pokrenuto
+• Ne postavljaj reCaptcha kolačić kada nema pohranjenih kolačića
+• [Player] Poboljšane performanse keša
+• [Player] Ispravljena greška u reprodukciji u plejeru
+• Odbaci prethodne Snackbarove prilikom brisanja preuzimanja
+• Ispravljen pokušaj brisanja objekta koji nije na listi

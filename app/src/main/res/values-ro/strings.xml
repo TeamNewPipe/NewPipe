@@ -842,4 +842,8 @@
     <string name="channel_tab_likes">Aprecieri</string>
     <string name="migration_info_6_7_title">Pagina SoundCloud Top 50 a fost eliminată</string>
     <string name="migration_info_6_7_message">SoundCloud a eliminat Top 50. Fila corespunzătoare a fost eliminată din pagina principală.</string>
+    <string name="permission_display_over_apps_permission_name">„Permite afișarea deasupra altor aplicații”</string>
+    <string name="short_thousand">%s mii</string>
+    <string name="short_million">%s mil.</string>
+    <string name="short_billion">%s mld.</string>
 </resources>

@@ -65,6 +65,12 @@ open class App :
     SingletonImageLoader.Factory {
     var isFirstRun = false
         private set
+    var notificationsRequested = false
+        private set
+
+    fun setNotificationsRequested() {
+        notificationsRequested = true
+    }
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)

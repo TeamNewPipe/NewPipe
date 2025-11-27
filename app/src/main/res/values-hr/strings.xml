@@ -2,7 +2,7 @@
 <resources>
     <string name="main_bg_subtitle">Počni dodirom na povećalo.</string>
     <string name="upload_date_text">Objavljeno %1$s</string>
-    <string name="no_player_found">Nije pronađen nijedan player streamova. Želiš li instalirati VLC\?</string>
+    <string name="no_player_found">Nije pronađen nijedan player tokova. Želiš li instalirati VLC?</string>
     <string name="install">Instaliraj</string>
     <string name="cancel">Odustani</string>
     <string name="open_in_browser">Otvori u pregledniku</string>
@@ -125,7 +125,7 @@
     <string name="copyright" formatted="true">© %1$s od %2$s pod %3$s</string>
     <string name="tab_about">O aplikaciji i ČPP</string>
     <string name="tab_licenses">Licence</string>
-    <string name="app_description">Slobodan i mali streaming na Android uređaju.</string>
+    <string name="app_description">Slobodan i mali tok na Android uređaju.</string>
     <string name="view_on_github">Pogledaj na GitHubu</string>
     <string name="app_license_title">NewPipe licenca</string>
     <string name="contribution_encouragement">Ako imate ideja za prijevod, promjene u dizajnu, čišćenje koda ili neke veće promjene u kodu, pomoć je uvijek dobro došla. Što više radimo, to bolji postajemo!</string>
@@ -160,7 +160,7 @@
         <item quantity="other">%s videa</item>
     </plurals>
     <string name="play_all">Reproduciraj sve</string>
-    <string name="player_stream_failure">Nije bilo moguće reproducirati ovaj stream</string>
+    <string name="player_stream_failure">Nije bilo moguće reproducirati ovaj tok</string>
     <string name="player_unrecoverable_failure">Dogodila se neoporavljiva greška playera</string>
     <string name="player_recoverable_failure">Oporavljanje od greške playera</string>
     <string name="show_hold_to_append_title">Prikaži savjet za držanje</string>
@@ -231,7 +231,7 @@
     <string name="import_data_summary">Poništava tvoju trenutačnu povijest, pretplate, playliste i (opcionalno) postavke</string>
     <string name="export_data_summary">Izvezi povijest, pretplate, playliste i postavke</string>
     <string name="clear_views_history_title">Izbriši povijest gledanja</string>
-    <string name="clear_views_history_summary">Briše povijest reproduciranih streamova i pozicije reprodukcije</string>
+    <string name="clear_views_history_summary">Briše povijest reproduciranih tokova i pozicije reprodukcije</string>
     <string name="delete_view_history_alert">Izbrisati cijelu povijest gledanja\?</string>
     <string name="watch_history_deleted">Povijest gledanja je izbrisana</string>
     <string name="clear_search_history_title">Izbriši povijest pretraživanja</string>
@@ -288,8 +288,8 @@
     <string name="limit_data_usage_none_description">Bez ograničenja</string>
     <string name="limit_mobile_data_usage_title">Ograniči rezoluciju tijekom korištenja mobilnih podataka</string>
     <string name="minimize_on_exit_none_description">Nijedan</string>
-    <string name="no_player_found_toast">Nije pronađen nijedan player streamova (možeš instalirati VLC za reprodukciju).</string>
-    <string name="controls_download_desc">Preuzmi datoteku streama</string>
+    <string name="no_player_found_toast">Nije pronađen nijedan player tokova (možeš instalirati VLC za reprodukciju).</string>
+    <string name="controls_download_desc">Preuzmi datoteku toka</string>
     <string name="use_inexact_seek_title">Koristi brzo netočno premotavanje</string>
     <string name="use_inexact_seek_summary">Netočno premotavanje omogućuje playeru brže premotavanje uz manju točnost. Premotavanje od 5, 15 ili 25 sekundi s ovime ne radi</string>
     <string name="unsubscribe">Otkaži pretplatu</string>
@@ -309,8 +309,8 @@
     <string name="show_error">Prikaži pogrešku</string>
     <string name="metadata_cache_wipe_summary">Izbriši sve podatke web-stranica iz predmemorije</string>
     <string name="metadata_cache_wipe_complete_notice">Metapodaci su izbrisani</string>
-    <string name="auto_queue_title">Automatski dodaj sljedeći stream u popisa izvođenja</string>
-    <string name="auto_queue_summary">Nastavi završavati (ne ponavljajući) popis reprodukcija dodavanjem povezanog streama</string>
+    <string name="auto_queue_title">Automatski dodaj sljedeći tok u popisa izvođenja</string>
+    <string name="auto_queue_summary">Nastavi završavati (ne ponavljajući) popis reprodukcija dodavanjem povezanog toka</string>
     <string name="default_content_country_title">Zadana zemlja sadržaja</string>
     <string name="settings_category_debug_title">Otkrivanje grešaka</string>
     <string name="app_update_notification_channel_name">Obavijest o novoj verziji aplikacije</string>
@@ -574,7 +574,7 @@
     <string name="hash_channel_name">Obavijest šifriranja videa</string>
     <string name="hash_channel_description">Obavijesti o napretku šifriranja videa</string>
     <string name="recent">Nedavni</string>
-    <string name="show_meta_info_summary">Isključi za skrivanje polja metapodataka s dodatnim podacima o autoru streama, sadržaju streama ili zahtjevu za pretraživanje</string>
+    <string name="show_meta_info_summary">Isključi za skrivanje polja metapodataka s dodatnim podacima o autoru toka, sadržaju toka ili zahtjevu za pretraživanje</string>
     <string name="show_meta_info_title">Prikaži metapodatke</string>
     <string name="related_items_tab_description">Povezane stavke</string>
     <string name="no_app_to_open_intent">Nijedna aplikacija na tvom uređaju ovo ne može otvoriti</string>
@@ -642,9 +642,9 @@
     <string name="processing_may_take_a_moment">Obrada u tijeku … Može malo potrajati</string>
     <string name="main_page_content_swipe_remove">Za ukljanjanje stavki povuci ih</string>
     <plurals name="download_finished_notification">
-        <item quantity="one">Preuzimanje je gotovo</item>
+        <item quantity="one">%s preuzimanje je gotovo</item>
         <item quantity="few">%s preuzimanja su gotova</item>
-        <item quantity="other">%s preuzimanja su gotova</item>
+        <item quantity="other">%s preuzimanja je gotovo</item>
     </plurals>
     <string name="start_main_player_fullscreen_title">Pokreni glavni player u cjeloekranskom prikazu</string>
     <string name="enqueue_next_stream">Dodaj u popis kao sljedeći</string>
@@ -668,23 +668,23 @@
     <string name="error_report_notification_toast">Došlo je do greške, pogledaj obavijest</string>
     <string name="crash_the_player">Prekini rad playera</string>
     <string name="settings_category_player_notification_title">Obavijest playera</string>
-    <string name="settings_category_player_notification_summary">Konfiguriraj obavijest trenutačno reproduciranog streama</string>
+    <string name="settings_category_player_notification_summary">Konfiguriraj obavijest trenutačno reproduciranog toka</string>
     <string name="notifications">Obavijesti</string>
     <string name="streams_notification_channel_name">Novi videozapisi</string>
-    <string name="enable_streams_notifications_summary">Obavijesti novih streamova od pretplaćenih kanala</string>
+    <string name="enable_streams_notifications_summary">Obavijesti novih tokova od pretplaćenih kanala</string>
     <string name="delete_downloaded_files_confirm">Želiš li izbrisati sve preuzete datoteke\?</string>
     <string name="notifications_disabled">Obavijesti su isljučene</string>
     <string name="you_successfully_subscribed">Pretplatio/la si se na ovaj kanal</string>
     <string name="enumeration_comma">,</string>
     <string name="toggle_all">Uključi/isključi sve</string>
     <string name="any_network">Bilo kakva mreža</string>
-    <string name="streams_notification_channel_description">Obavijesti novih streamova pretplaćenih kanala</string>
+    <string name="streams_notification_channel_description">Obavijesti novih tokova pretplaćenih kanala</string>
     <string name="show_error_snackbar">Prikaži kratku poruku greške</string>
-    <string name="loading_stream_details">Učitavanje pojedinosti streama …</string>
-    <string name="check_new_streams">Pokreni traženje novih streamova</string>
+    <string name="loading_stream_details">Učitavanje pojedinosti toka …</string>
+    <string name="check_new_streams">Pokreni traženje novih tokova</string>
     <string name="streams_notifications_interval_title">Prvjeravanje učestalosti</string>
     <string name="leak_canary_not_available">Biblioteka „LeakCanary” nije dostupna</string>
-    <string name="enable_streams_notifications_title">Obavijesti o novim streamovima</string>
+    <string name="enable_streams_notifications_title">Obavijesti o novim tokovima</string>
     <string name="streams_notifications_network_title">Potrebna mrežna veza</string>
     <string name="get_notified">Primaj obavijesti</string>
     <string name="no_appropriate_file_manager_message">Za ovu radnju nije pronađen odgovarajući upravljač datoteka.
@@ -696,12 +696,12 @@
     <string name="percent">Posto</string>
     <string name="semitone">Poluton</string>
     <string name="streams_not_yet_supported_removed">Streamovi koje aplikacija za preuzimanje još ne podržava se ne prikazuju</string>
-    <string name="selected_stream_external_player_not_supported">Eksterni playeri ne podržavaju odabrani stream</string>
+    <string name="selected_stream_external_player_not_supported">Eksterni playeri ne podržavaju odabrani tok</string>
     <string name="progressive_load_interval_summary">Promijenite veličinu intervala učitavanja progresivnog sadržaja (trenutno %s). Niža vrijednost može ubrzati učitavanje</string>
     <plurals name="new_streams">
-        <item quantity="one">%s novi stream</item>
-        <item quantity="few">%s nova streama</item>
-        <item quantity="other">%s novih streamova</item>
+        <item quantity="one">%s novi tok</item>
+        <item quantity="few">%s nova toka</item>
+        <item quantity="other">%s novih tokova</item>
     </plurals>
     <string name="progressive_load_interval_title">Veličina intervala učitavanja reprodukcije</string>
     <string name="unknown_format">Nepoznat format</string>
@@ -828,4 +828,36 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Uvijek koristi ExoPlayer postavku zaobilaženja videa za izlaznu površinu</string>
     <string name="feed_fetch_channel_tabs_summary">Kartice za dohvaćanje prilikom aktualiziranja feeda. Ova opcija nema učinka ako se kanal aktualizira pomoću brzog modusa.</string>
     <string name="audio_track_type_secondary">sekundarno</string>
+    <string name="search_with_service_name">Pretraži %1$s</string>
+    <string name="search_with_service_name_and_filter">Pretraži %1$s (%2$s)</string>
+    <string name="tab_bookmarks_short">Popisi izvođenja</string>
+    <string name="permission_display_over_apps_message">Da biste koristili Popup Player, odaberite %1$s u sljedećem izborniku postavki Androida i omogućite %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">\"Dopusti prikaz preko drugih aplikacija\"</string>
+    <string name="short_thousand">%sK</string>
+    <string name="short_million">%sM</string>
+    <string name="short_billion">%sB</string>
+    <string name="delete_file">Izbriši datoteku</string>
+    <string name="delete_entry">Obriši unos</string>
+    <string name="select_a_feed_group">Odaberite grupu feedova</string>
+    <string name="no_feed_group_created_yet">Još nije stvorena nijedna grupa feedova</string>
+    <string name="feed_group_page_summary">Stranica grupe kanala</string>
+    <string name="account_terminated_service_provides_reason">Račun ukinut\n\n%1$s navodi ovaj razlog: %2$s</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Ovo zaobilazno rješenje oslobađa i ponovno instancira video kodeke kada dođe do promjene površine, umjesto da se površina izravno postavlja na kodek. Već se koristi od strane ExoPlayera na nekim uređajima s ovim problemom, ova postavka ima učinak samo na Androidu 6 i novijim verzijama.\n\nOmogućavanje ove opcije može spriječiti pogreške reprodukcije prilikom prebacivanja trenutnog video playera ili prebacivanja na cijeli zaslon</string>
+    <string name="channel_tab_likes">Lajkovi</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Podijeli kao privremenu playlistu na YouTubeu</string>
+    <string name="import_settings_vulnerable_format">Postavke u izvozu koji se uvozi koriste ranjivi format koji je zastario od verzije NewPipe 0.27.0. Provjerite je li izvoz koji se uvozi iz pouzdanog izvora i u budućnosti radije koristite samo izvoze dobivene iz NewPipe 0.27.0 ili novije verzije. Podrška za uvoz postavki u ovom ranjivom formatu uskoro će biti potpuno uklonjena, a zatim stare verzije NewPipea više neće moći uvoziti postavke izvoza iz novih verzija.</string>
+    <string name="migration_info_6_7_title">Stranica SoundCloud Top 50 uklonjena</string>
+    <string name="migration_info_6_7_message">SoundCloud je ukinuo originalne Top 50 ljestvice. Odgovarajuća kartica je uklonjena s vaše glavne stranice.</string>
+    <string name="migration_info_7_8_title">Uklonjeni kombinirani trendovi na YouTubeu</string>
+    <string name="migration_info_7_8_message">YouTube je ukinuo kombiniranu stranicu s trendovima od 21. srpnja 2025. NewPipe je zamijenio zadanu stranicu s trendovima s trendovima prijenosa uživo.\n\nTakođer možete odabrati različite stranice s trendovima u \"Postavke &gt; Sadržaj &gt; Sadržaj glavne stranice\".</string>
+    <string name="trending_gaming">Trendovi u igrama</string>
+    <string name="trending_podcasts">Trendovi podcasti</string>
+    <string name="trending_movies">Trendovi u filmovima i serijama</string>
+    <string name="trending_music">Glazba u trendu</string>
+    <string name="entry_deleted">Unos izbrisan</string>
+    <string name="player_http_403">HTTP greška 403 primljena od poslužitelja tijekom reprodukcije, vjerojatno uzrokovana istekom URL-a za streaming ili zabranom IP adrese</string>
+    <string name="player_http_invalid_status">HTTP greška %1$s primljena od poslužitelja tijekom reprodukcije</string>
+    <string name="youtube_player_http_403">HTTP greška 403 primljena od poslužitelja tijekom reprodukcije, vjerojatno uzrokovana zabranom IP adrese ili problemima s deobfuskacijom URL-a za streaming</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s je odbio dati podatke, tražeći prijavu kako bi potvrdio da podnositelj zahtjeva nije bot.\n\nVašu IP adresu je možda privremeno zabranio %1$s, možete pričekati neko vrijeme ili se prebaciti na drugu IP adresu (na primjer uključivanjem/isključivanjem VPN-a ili prebacivanjem s WiFi-ja na mobilne podatke).</string>
+    <string name="unsupported_content_in_country">Ovaj sadržaj nije dostupan za trenutno odabranu zemlju sadržaja.\n\nPromijenite odabir u \"Postavke &gt; Sadržaj &gt; Zadana zemlja sadržaja\".</string>
 </resources>

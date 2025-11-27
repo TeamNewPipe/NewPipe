@@ -595,7 +595,7 @@
     <string name="open_with">פתיחה באמצעות</string>
     <string name="no_app_to_open_intent">אין יישומון על המכשיר שלך שיכול לפתוח את זה</string>
     <string name="crash_the_app">להקריס את היישומון</string>
-    <string name="paid_content">תוכן זה זמין רק למשתמשים ששילמו, לכן לא ניתן להזרים או להוריד אותו עם NewPipe.</string>
+    <string name="paid_content">התוכן הזה זמין רק למשתמשים ששילמו, לכן לא ניתן להזרים או להוריד אותו עם NewPipe.</string>
     <string name="youtube_music_premium_content">סרטון זה זמין רק למנויי YouTube Music Premium, לכן לא ניתן להזרים או להוריד אותו עם NewPipe.</string>
     <string name="private_content">זה תוכן פרטי, לכן לא ניתן להזרים או להוריד אותו עם NewPipe.</string>
     <string name="soundcloud_go_plus_content">רצועה זו של SoundCloud Go+‎ מוגבלת, לפחות במדינה שלך, לכן לא ניתן להזרים או להוריד אותה עם NewPipe.</string>
@@ -853,4 +853,26 @@
     <string name="search_with_service_name">חיפוש ב־%1$s</string>
     <string name="search_with_service_name_and_filter">חיפוש ב־%1$s‏ (%2$s)</string>
     <string name="channel_tab_likes">לייקים</string>
+    <string name="account_terminated_service_provides_reason">חשבון הושמד\n\n%1$s מספק את הסיבה הבאה: %2$s</string>
+    <string name="permission_display_over_apps_message">כדי להשתמש בנגן צף, נא לבחור ב־%1$s בתפריט ההגדרות הבא של Android ולהפעיל את %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">„תמיד להציג מעל יישומונים אחרים”</string>
+    <string name="short_thousand">%s אלף</string>
+    <string name="short_million">%s מיליון</string>
+    <string name="short_billion">%s מיליארד</string>
+    <string name="migration_info_7_8_title">המובילים המשולבים של YouTube הוסרו</string>
+    <string name="delete_file">מחיקת קובץ</string>
+    <string name="delete_entry">מחיקת רשומה</string>
+    <string name="migration_info_6_7_title">עמוד 50 המובילים ב־SoundCloud הוסר</string>
+    <string name="trending_gaming">מגמות במשחקים</string>
+    <string name="trending_podcasts">פודקאסטים מובילים</string>
+    <string name="trending_movies">סרטים וסדרות מובילים</string>
+    <string name="trending_music">מוזיקה מובילה</string>
+    <string name="entry_deleted">הרשומה נמחקה</string>
+    <string name="migration_info_6_7_message">SoundCloud הפסיקו את מצעדי 50 הלהיטים המקוריים. הלשונית התואמת הוסרה מהעמוד הראשי שלך.</string>
+    <string name="migration_info_7_8_message">ב־YouTube הושבת עמוד המובילים המשולב החל מ־21 ביולי 2025. NewPipe החליפה את עמוד המובילים המוגדר כברירת מחדל בשידורים חיים מובילים.\n\nניתן גם לבחור עמודי מובילים שונים תחת „הגדרות &gt; תוכן &gt; תוכן הדף הראשי”.</string>
+    <string name="player_http_403">שגיאת HTTP 403 שהתקבלה מהשרת בזמן השמעה, ככל הנראה נגרמת עקב פקיעת כתובת URL של סטרימינג או חסימת IP</string>
+    <string name="player_http_invalid_status">שגיאת HTTP %1$s התקבלה מהשרת בזמן הניגון</string>
+    <string name="youtube_player_http_403">שגיאת HTTP‏ 403 שהתקבלה מהשרת בזמן הניגון, ככל הנראה נגרמה עקב חסימת IP או בעיות בהסרת ערפול כתובת תזרים</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s סירב לספק נתונים, וביקש התחברות כדי לאשר שהמבקש אינו בוט.\n\nכנראה שה־IP שלך נחסם זמנית על ידי %1$s, ניתן להמתין זמן מה או לעבור ל־IP אחר (לדוגמה על ידי הפעלה/כיבוי של VPN, או על ידי מעבר מרשת אלחוטית לתקשורת נתונים סלולרית).</string>
+    <string name="unsupported_content_in_country">תוכן זה אינו זמין עבור מדינת התוכן שנבחרה כעת.\n\nניתן לשנות את בחירתך דרך „הגדרות &gt; תוכן &gt; מדינת תוכן ברירת מחדל”.</string>
 </resources>

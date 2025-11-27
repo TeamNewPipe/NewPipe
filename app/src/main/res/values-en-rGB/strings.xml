@@ -84,4 +84,14 @@
     <string name="ok">Okay</string>
     <string name="open_in_browser">Open in browser</string>
     <string name="no_player_found_toast">No stream player found (you can install VLC to play it).</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="mark_as_watched">Mark as watched</string>
+    <string name="open_in_popup_mode">Open in popup mode</string>
+    <string name="open_with">Open with</string>
+    <string name="share">Share</string>
+    <string name="download">Download</string>
+    <string name="controls_download_desc">Download stream file</string>
+    <string name="search">Search</string>
+    <string name="settings">Settings</string>
 </resources>

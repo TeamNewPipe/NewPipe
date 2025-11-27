@@ -1,0 +1,2 @@
+Ispravljen je NullPointerException prilikom otvaranja kanala/konferencije u media.ccc.de.
+Grinch je pokušao da vam pokvari naš božićni poklon, ali smo ga ispravili.

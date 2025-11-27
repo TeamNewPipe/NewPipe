@@ -11,6 +11,7 @@ import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NO_SERVICE_ID
 import java.util.concurrent.TimeUnit
 
+@Suppress("ktlint:standard:function-naming")
 fun StreamInfoItem(
     serviceId: Int = NO_SERVICE_ID,
     url: String = "",

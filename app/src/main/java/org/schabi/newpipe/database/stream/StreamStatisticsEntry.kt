@@ -1,16 +1,23 @@
+/*
+ * SPDX-FileCopyrightText: 2020-2023 NewPipe contributors <https://newpipe.net>
+ * SPDX-FileCopyrightText: 2025 NewPipe e.V. <https://newpipe-ev.de>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
 package org.schabi.newpipe.database.stream
 
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
+import androidx.room.Ignore
 import org.schabi.newpipe.database.LocalItem
 import org.schabi.newpipe.database.history.model.StreamHistoryEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity
-import org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_PROGRESS_MILLIS
+import org.schabi.newpipe.database.stream.model.StreamStateEntity.Companion.STREAM_PROGRESS_MILLIS
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.util.image.ImageStrategy
 import java.time.OffsetDateTime
 
-class StreamStatisticsEntry(
+data class StreamStatisticsEntry(
     @Embedded
     val streamEntity: StreamEntity,
 
@@ -26,18 +33,23 @@ class StreamStatisticsEntry(
     @ColumnInfo(name = STREAM_WATCH_COUNT)
     val watchCount: Long
 ) : LocalItem {
+
+    override val localItemType: LocalItem.LocalItemType
+        get() = LocalItem.LocalItemType.STATISTIC_STREAM_ITEM
+
+    @Ignore
     fun toStreamInfoItem(): StreamInfoItem {
-        val item = StreamInfoItem(streamEntity.serviceId, streamEntity.url, streamEntity.title, streamEntity.streamType)
-        item.duration = streamEntity.duration
-        item.uploaderName = streamEntity.uploader
-        item.uploaderUrl = streamEntity.uploaderUrl
-        item.thumbnails = ImageStrategy.dbUrlToImageList(streamEntity.thumbnailUrl)
-
-        return item
-    }
-
-    override fun getLocalItemType(): LocalItem.LocalItemType {
-        return LocalItem.LocalItemType.STATISTIC_STREAM_ITEM
+        return StreamInfoItem(
+            streamEntity.serviceId,
+            streamEntity.url,
+            streamEntity.title,
+            streamEntity.streamType
+        ).apply {
+            duration = streamEntity.duration
+            uploaderName = streamEntity.uploader
+            uploaderUrl = streamEntity.uploaderUrl
+            thumbnails = ImageStrategy.dbUrlToImageList(streamEntity.thumbnailUrl)
+        }
     }
 
     companion object {

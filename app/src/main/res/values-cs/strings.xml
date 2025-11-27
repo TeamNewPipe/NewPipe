@@ -486,7 +486,7 @@
     </plurals>
     <string name="feed_group_dialog_empty_name">Prázdné jméno skupiny</string>
     <string name="feed_group_dialog_delete_message">Přejete si odstranit tuto skupinu?</string>
-    <string name="feed_create_new_group_button_title">Nová</string>
+    <string name="feed_create_new_group_button_title">Nový</string>
     <string name="settings_category_feed_title">Novinky</string>
     <string name="feed_update_threshold_title">Limit aktualizace novinek</string>
     <string name="feed_update_threshold_summary">Doba po poslední aktualizaci, po níž je odběr považován za zastaralý — %s</string>
@@ -717,7 +717,7 @@
     <string name="app_update_available_notification_text">Klepnutím stáhnete %s</string>
     <string name="fast_mode">Rychlý režim</string>
     <string name="app_update_unavailable_toast">Používáte nejnovější verzi NewPipe</string>
-    <string name="import_subscriptions_hint">Import nebo export odběrů z 3-tečkové nabídky</string>
+    <string name="import_subscriptions_hint">Importujte nebo exportujte odběry z 3tečkové nabídky</string>
     <string name="night_theme_available">Tato možnost je dostupná pouze při vybraném motivu %s</string>
     <string name="unset_playlist_thumbnail">Zrušení nastavení trvalého náhledu</string>
     <string name="card">Karta</string>
@@ -842,4 +842,24 @@
     <string name="channel_tab_likes">Líbí se</string>
     <string name="migration_info_6_7_title">Stránka SoundCloud Top 50 odstraněna</string>
     <string name="migration_info_6_7_message">SoundCloud zrušil původní žebříčky Top 50. Příslušná karta byla odstraněna z vaší hlavní stránky.</string>
+    <string name="migration_info_7_8_title">YouTube kombinované trendy odstraněny</string>
+    <string name="migration_info_7_8_message">YouTube ukončil provoz kombinované stránky s trendy k 21. červenci 2025. NewPipe nahradil výchozí stránku s trendy stránkou s trendy živými přenosy.\n\nMůžete také vybrat různé stránky s trendy v části „Nastavení &gt; Obsah &gt; Obsah úvodní stránky“.</string>
+    <string name="trending_gaming">Populární hry</string>
+    <string name="trending_podcasts">Populární podcasty</string>
+    <string name="trending_movies">Populární filmy a seriály</string>
+    <string name="trending_music">Populární hudba</string>
+    <string name="short_thousand">%s tis.</string>
+    <string name="short_million">%s mil.</string>
+    <string name="short_billion">%s mld.</string>
+    <string name="permission_display_over_apps_message">Pro používání Popup Playeru vyberte v následující nabídce nastavení Androidu možnost %1$s a povolte %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">\"Povolit zobrazení přes jiné aplikace\"</string>
+    <string name="delete_file">Vymazat soubor</string>
+    <string name="delete_entry">Vymazat položku</string>
+    <string name="entry_deleted">Položka vymazána</string>
+    <string name="account_terminated_service_provides_reason">Ukončení účtu\n\n%1$s uvádí tento důvod: %2$s</string>
+    <string name="player_http_403">Během přehrávání byla ze serveru přijata chyba HTTP 403, pravděpodobně způsobená vypršením platnosti streamingové adresy URL nebo zákazem IP adresy</string>
+    <string name="player_http_invalid_status">Chyba HTTP %1$s obdržená ze serveru během přehrávání</string>
+    <string name="youtube_player_http_403">Chyba HTTP 403 obdržená od serveru během přehrávání, pravděpodobně způsobená zákazem IP adresy nebo problémy s deobfuskací streamovací adresy URL</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s odmítl poskytnout data, žádá o přihlášení k potvrzení, že žadatel není bot.\n\nVaše IP adresa mohla být dočasně zakázána %1$s, můžete nějakou dobu počkat nebo přepnout na jinou IP adresu (například zapnutím/vypnutím VPN nebo přepnutím z WiFi na mobilní data).</string>
+    <string name="unsupported_content_in_country">Tento obsah není pro aktuálně vybranou zemi obsahu dostupný.\n\nZměňte výběr v nabídce \"Nastavení &gt; Obsah &gt; Výchozí země obsahu\".</string>
 </resources>

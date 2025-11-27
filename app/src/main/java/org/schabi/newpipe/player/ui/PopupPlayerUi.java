@@ -40,6 +40,7 @@ import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.gesture.BasePlayerGestureListener;
 import org.schabi.newpipe.player.gesture.PopupPlayerGestureListener;
 import org.schabi.newpipe.player.helper.PlayerHelper;
+import org.schabi.newpipe.util.DeviceUtils;
 
 public final class PopupPlayerUi extends VideoPlayerUi {
     private static final String TAG = PopupPlayerUi.class.getSimpleName();
@@ -174,6 +175,8 @@ public final class PopupPlayerUi extends VideoPlayerUi {
         binding.topControls.setClickable(false);
         binding.topControls.setFocusable(false);
         binding.bottomControls.bringToFront();
+        // Workaround that UI elements are pushed off screen
+        binding.audioTrackTextView.setMaxWidth(DeviceUtils.dpToPx(48, context));
         super.setupElementsVisibility();
     }
 
