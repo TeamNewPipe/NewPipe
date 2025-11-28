@@ -25,6 +25,8 @@
     <string name="clear_queue_confirmation_key">clear_queue_confirmation_key</string>
     <string name="ignore_hardware_media_buttons_key">ignore_hardware_media_buttons_key</string>
 
+    <string name="hold_to_fast_forward_key">hold_to_fast_forward_key</string>
+
     <string name="popup_saved_width_key">popup_saved_width</string>
     <string name="popup_saved_x_key">popup_saved_x</string>
     <string name="popup_saved_y_key">popup_saved_y</string>

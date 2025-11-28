@@ -809,4 +809,40 @@
         android:alpha="0"
         android:visibility="invisible" /> <!-- Required for the first appearance fading correctly -->
 
+    <!-- Hold to fast forward indicator -->
+    <LinearLayout
+        android:id="@+id/holdToFastForwardOverlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/background_oval_black_transparent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="12dp"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_fast_forward"
+            app:tint="@color/white"
+            tools:ignore="ContentDescription" />
+
+        <org.schabi.newpipe.views.NewPipeTextView
+            android:id="@+id/holdToFastForwardText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hold_to_fast_forward_indicator"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
 </RelativeLayout>
