@@ -448,10 +448,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
     /**
      * Called when hold-to-fast-forward is activated (long press detected).
-     * Shows the visual indicator overlay.
      */
     public void onHoldToFastForwardStart() {
-        animate(binding.holdToFastForwardOverlay, true, DEFAULT_CONTROLS_DURATION);
         // Hide controls while fast forwarding
         if (isControlsVisible()) {
             hideControls(DEFAULT_CONTROLS_DURATION, 0);
@@ -460,10 +458,9 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
     /**
      * Called when hold-to-fast-forward is deactivated (finger released).
-     * Hides the visual indicator overlay.
      */
     public void onHoldToFastForwardEnd() {
-        animate(binding.holdToFastForwardOverlay, false, DEFAULT_CONTROLS_DURATION);
+        // No visual indicator to hide
     }
     //endregion
 

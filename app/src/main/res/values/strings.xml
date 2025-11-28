@@ -93,7 +93,6 @@
     <string name="ignore_hardware_media_buttons_summary">Useful, for instance, if you are using a headset with broken physical buttons</string>
     <string name="hold_to_fast_forward_title">Hold to fast forward</string>
     <string name="hold_to_fast_forward_summary">Tap and hold on the video to play at 2x speed while held</string>
-    <string name="hold_to_fast_forward_indicator">2x Speed</string>
     <string name="show_comments_title">Show comments</string>
     <string name="show_comments_summary">Turn off to hide comments</string>
     <string name="show_next_and_similar_title">Show \'Next\' and \'Similar\' videos</string>
