@@ -36,9 +36,19 @@ android {
     compileSdk = 36
     namespace = "org.schabi.newpipe"
 
+    signingConfigs {
+        create("release") {
+            // Use debug keystore for unsigned releases that can be installed
+            storeFile = file("${System.getProperty("user.home")}/.android/debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
+    }
+
     defaultConfig {
-        applicationId = "org.schabi.newpipe"
-        resValue("string", "app_name", "NewPipe")
+        applicationId = "org.schabi.newpipe.scrolling"
+        resValue("string", "app_name", "NewPipe Scrolling")
         minSdk = 21
         targetSdk = 35
 
@@ -72,9 +82,10 @@ android {
         }
 
         release {
+            signingConfig = signingConfigs.getByName("release")
             System.getProperty("packageSuffix")?.let { suffix ->
                 applicationIdSuffix = suffix
-                resValue("string", "app_name", "NewPipe $suffix")
+                resValue("string", "app_name", "NewPipe Scrolling $suffix")
             }
             isMinifyEnabled = true
             isShrinkResources = false // disabled to fix F-Droid"s reproducible build

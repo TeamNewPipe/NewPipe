@@ -24,6 +24,11 @@ jobs:
           java-version: '21'
           cache: 'gradle'
 
+      - name: "Create debug keystore for signing"
+        run: |
+          mkdir -p ~/.android
+          keytool -genkey -v -keystore ~/.android/debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
+
       - name: "Build release APK"
         run: ./gradlew assembleRelease --stacktrace
 
@@ -40,7 +45,7 @@ jobs:
 
       - name: "Rename APK"
         run: |
-          mv app/build/outputs/apk/release/*.apk "app/build/outputs/apk/release/NewPipe_v${{ steps.version.outputs.version }}.apk"
+          mv app/build/outputs/apk/release/*.apk "app/build/outputs/apk/release/NewPipeScrolling_v${{ steps.version.outputs.version }}.apk"
 
       - name: "Upload APK as artifact"
         uses: actions/upload-artifact@v4
@@ -52,16 +57,20 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: v${{ steps.version.outputs.version }}-${{ github.run_number }}
-          name: Release v${{ steps.version.outputs.version }}
+          name: NewPipe Scrolling v${{ steps.version.outputs.version }}
           body: |
-            ## NewPipe Release v${{ steps.version.outputs.version }}
+            ## NewPipe Scrolling v${{ steps.version.outputs.version }}
+            
+            This is a modified version of NewPipe that can be installed alongside the original app.
             
             ### New Features
             - **Hold to Fast-Forward**: Hold anywhere on the player to increase playback speed to 2x. Release to return to normal speed.
             - New setting in Video & Audio settings to enable/disable this feature.
             
-            ### Download
-            Download the APK below and install it on your Android device.
+            ### Installation
+            1. Download the APK below
+            2. Install on your Android device (enable "Install from unknown sources" if needed)
+            3. This app will appear as "NewPipe Scrolling" and can coexist with the original NewPipe
           files: app/build/outputs/apk/release/*.apk
           draft: false
           prerelease: false
