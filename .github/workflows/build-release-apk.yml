@@ -1,15 +1,21 @@
-name: "Build unsigned release APK on master"
+name: "Build and Release APK"
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - master
+      - main
+    tags:
+      - 'v*'
 
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: 'master'
 
       - uses: actions/setup-java@v4
         with:
@@ -20,19 +26,43 @@ jobs:
       - name: "Build release APK"
         run: ./gradlew assembleRelease --stacktrace
 
-      - name: "Rename APK"
+      - name: "Get version name"
+        id: version
         run: |
           VERSION_NAME="$(jq -r ".elements[0].versionName" "app/build/outputs/apk/release/output-metadata.json")"
+          echo "version=$VERSION_NAME" >> "$GITHUB_OUTPUT"
           echo "Version name: $VERSION_NAME" >> "$GITHUB_STEP_SUMMARY"
           echo '```json' >> "$GITHUB_STEP_SUMMARY"
           cat "app/build/outputs/apk/release/output-metadata.json" >> "$GITHUB_STEP_SUMMARY"
           echo >> "$GITHUB_STEP_SUMMARY"
           echo '```' >> "$GITHUB_STEP_SUMMARY"
-          # assume there is only one APK in that folder
-          mv app/build/outputs/apk/release/*.apk "app/build/outputs/apk/release/NewPipe_v$VERSION_NAME.apk"
 
-      - name: "Upload APK"
+      - name: "Rename APK"
+        run: |
+          mv app/build/outputs/apk/release/*.apk "app/build/outputs/apk/release/NewPipe_v${{ steps.version.outputs.version }}.apk"
+
+      - name: "Upload APK as artifact"
         uses: actions/upload-artifact@v4
         with:
           name: app
           path: app/build/outputs/apk/release/*.apk
+
+      - name: "Create Release"
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.version.outputs.version }}-${{ github.run_number }}
+          name: Release v${{ steps.version.outputs.version }}
+          body: |
+            ## NewPipe Release v${{ steps.version.outputs.version }}
+            
+            ### New Features
+            - **Hold to Fast-Forward**: Hold anywhere on the player to increase playback speed to 2x. Release to return to normal speed.
+            - New setting in Video & Audio settings to enable/disable this feature.
+            
+            ### Download
+            Download the APK below and install it on your Android device.
+          files: app/build/outputs/apk/release/*.apk
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

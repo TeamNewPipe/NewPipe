@@ -9,6 +9,7 @@ import android.view.View
 import androidx.core.os.postDelayed
 import org.schabi.newpipe.databinding.PlayerBinding
 import org.schabi.newpipe.player.Player
+import org.schabi.newpipe.player.helper.PlayerHelper
 import org.schabi.newpipe.player.ui.VideoPlayerUi
 
 /**
@@ -24,8 +25,59 @@ abstract class BasePlayerGestureListener(
     protected val player: Player = playerUi.player
     protected val binding: PlayerBinding = playerUi.binding
 
+    // ///////////////////////////////////////////////////////////////////
+    // Long press (hold) to fast-forward
+    // ///////////////////////////////////////////////////////////////////
+
+    private var isHoldingForFastForward = false
+    private var originalPlaybackSpeed = 1.0f
+    private val longPressHandler: Handler = Handler(Looper.getMainLooper())
+    private val longPressRunnable = Runnable {
+        if (PlayerHelper.isHoldToFastForwardEnabled(player.context) &&
+            player.currentState == Player.STATE_PLAYING &&
+            !playerUi.isSomePopupMenuVisible
+        ) {
+            startFastForward()
+        }
+    }
+
+    private fun startFastForward() {
+        if (!isHoldingForFastForward) {
+            if (DEBUG) {
+                Log.d(TAG, "startFastForward called")
+            }
+            isHoldingForFastForward = true
+            originalPlaybackSpeed = player.playbackSpeed
+            player.setPlaybackSpeed(2.0f)
+        }
+    }
+
+    private fun stopFastForward() {
+        if (isHoldingForFastForward) {
+            if (DEBUG) {
+                Log.d(TAG, "stopFastForward called, restoring speed to $originalPlaybackSpeed")
+            }
+            isHoldingForFastForward = false
+            player.setPlaybackSpeed(originalPlaybackSpeed)
+        }
+        longPressHandler.removeCallbacks(longPressRunnable)
+    }
+
     override fun onTouch(v: View, event: MotionEvent): Boolean {
         playerUi.gestureDetector.onTouchEvent(event)
+
+        // Handle long press for fast-forward
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+                // Start timer for long press detection
+                longPressHandler.postDelayed(longPressRunnable, LONG_PRESS_DELAY)
+            }
+            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                // Stop fast-forward when finger is lifted
+                stopFastForward()
+            }
+        }
+
         return false
     }
 
@@ -184,5 +236,6 @@ abstract class BasePlayerGestureListener(
 
         private const val DOUBLE_TAP = "doubleTap"
         private const val DOUBLE_TAP_DELAY = 550L
+        private const val LONG_PRESS_DELAY = 500L
     }
 }

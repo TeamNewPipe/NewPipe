@@ -226,6 +226,11 @@ public final class PlayerHelper {
                 .getBoolean(context.getString(R.string.start_main_player_fullscreen_key), false);
     }
 
+    public static boolean isHoldToFastForwardEnabled(@NonNull final Context context) {
+        return getPreferences(context)
+                .getBoolean(context.getString(R.string.hold_to_fast_forward_key), true);
+    }
+
     public static boolean isAutoQueueEnabled(@NonNull final Context context) {
         return getPreferences(context)
                 .getBoolean(context.getString(R.string.auto_queue_key), false);
