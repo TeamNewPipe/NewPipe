@@ -6,6 +6,7 @@ on:
     branches:
       - master
       - main
+      - dev
     tags:
       - 'v*'
 
