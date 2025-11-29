@@ -148,8 +148,8 @@ class PlayerService : MediaBrowserServiceCompat() {
             // a (dummy) foreground notification, otherwise we'd incur in
             // "Context.startForegroundService() did not then call Service.startForeground()". Then
             // we stop the service again.
-            Log.d(TAG, "onStartCommand() got a useless intent, closing the service");
-            NotificationUtil.startForegroundWithDummyNotification(this);
+            Log.d(TAG, "onStartCommand() got a useless intent, closing the service")
+            NotificationUtil.startForegroundWithDummyNotification(this)
             return START_NOT_STICKY
         }
 
