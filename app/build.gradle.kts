@@ -260,7 +260,7 @@ dependencies {
 
     // Metadata generator for service descriptors
     compileOnly(libs.google.autoservice.annotations)
-    ksp(libs.google.autoservice.compiler)
+    ksp(libs.zacsweers.autoservice.compiler)
 
     // Manager for complex RecyclerView layouts
     implementation(libs.lisawray.groupie.core)
