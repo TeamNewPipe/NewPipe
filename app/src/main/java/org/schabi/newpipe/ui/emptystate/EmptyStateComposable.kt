@@ -96,6 +96,10 @@ enum class EmptyStateSpec(
         emojiText = "¯\\_(╹x╹)_/¯",
         descriptionText = R.string.error_unable_to_load_comments,
     ),
+    ErrorLoadingItems(
+        emojiText = "¯\\_(╹x╹)_/¯",
+        descriptionText = R.string.error_unable_to_load_items,
+    ),
     NoSearchResult(
         emojiText = "╰(°●°╰)",
         descriptionText = R.string.search_no_results,

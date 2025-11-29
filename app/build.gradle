@@ -230,7 +230,7 @@ dependencies {
     implementation libs.androidx.media
     implementation libs.androidx.preference
     implementation libs.androidx.recyclerview
-    implementation libs.androidx.room.runtime
+    implementation libs.androidx.room.ktx
     implementation libs.androidx.room.rxjava3
     kapt libs.androidx.room.compiler
     implementation libs.androidx.swiperefreshlayout
