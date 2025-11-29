@@ -258,10 +258,6 @@ dependencies {
     implementation(libs.google.exoplayer.smoothstreaming)
     implementation(libs.google.exoplayer.ui)
 
-    // Metadata generator for service descriptors
-    compileOnly(libs.google.autoservice.annotations)
-    ksp(libs.zacsweers.autoservice.compiler)
-
     // Manager for complex RecyclerView layouts
     implementation(libs.lisawray.groupie.core)
     implementation(libs.lisawray.groupie.viewbinding)
@@ -275,6 +271,8 @@ dependencies {
 
     // Crash reporting
     implementation(libs.acra.core)
+    compileOnly(libs.google.autoservice.annotations)
+    ksp(libs.zacsweers.autoservice.compiler)
 
     // Properly restarting
     implementation(libs.jakewharton.phoenix)
