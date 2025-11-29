@@ -458,7 +458,7 @@
             "notNull": true
           },
           {
-            "fieldPath": "name",
+            "fieldPath": "orderingName",
             "columnName": "name",
             "affinity": "TEXT",
             "notNull": false

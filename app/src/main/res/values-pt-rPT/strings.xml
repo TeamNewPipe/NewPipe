@@ -839,4 +839,27 @@
     <string name="feed_group_page_summary">Página do grupo do canal</string>
     <string name="search_with_service_name">Pesquisar %1$s</string>
     <string name="search_with_service_name_and_filter">Pesquisar %1$s (%2$s)</string>
+    <string name="channel_tab_likes">Gostos</string>
+    <string name="migration_info_6_7_title">Página Top 50 do SoundCloud removida</string>
+    <string name="migration_info_6_7_message">O SoundCloud descontinuou os gráficos originais do Top 50. A guia correspondente foi removida da sua página principal.</string>
+    <string name="migration_info_7_8_title">Tendência combinada do YouTube removida</string>
+    <string name="migration_info_7_8_message">O YouTube descontinuou a página de tendência combinada a partir de 21 de julho de 2025. O NewPipe substituiu a página de tendência predefinida com as streams ao vivo de tendência.\n\nTambém pode escolher páginas de tendência diferentes em \"Definições &gt; Conteúdo &gt; Conteúdo da página principal\".</string>
+    <string name="trending_gaming">Tendências de jogos</string>
+    <string name="trending_podcasts">Tendências de podcasts</string>
+    <string name="trending_movies">Tendências de filmes e shows</string>
+    <string name="trending_music">Tendências de música</string>
+    <string name="short_thousand">%sK</string>
+    <string name="short_million">%sM</string>
+    <string name="short_billion">%sB</string>
+    <string name="permission_display_over_apps_message">Para usar o reprodutor pop-up, escolhe %1$s no menu seguinte de configurações do Android e ative %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">“Permitir exibição sobre outras apps”</string>
+    <string name="delete_file">Apagar ficheiro</string>
+    <string name="delete_entry">Apagar entrada</string>
+    <string name="entry_deleted">Entrada apagada</string>
+    <string name="account_terminated_service_provides_reason">Conta terminada\n\n%1$s fornece esta razão: %2$s</string>
+    <string name="player_http_invalid_status">Erro HTTP %1$s recebido do servidor ao reproduzir</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s recusou fornecer dados, pedindo por um login para confirmar que o solicitante não é um bot.\n\nO seu IP pode ter sido temporariamente banido por %1$s, pode esperar algum tempo ou mudar para um IP diferente (por exemplo, a ligar / desligar uma VPN, ou a alternar de Wi-Fi para dados móveis).</string>
+    <string name="unsupported_content_in_country">Este conteúdo não está disponível para o país de conteúdo atualmente selecionado.\n\nAltere a sua seleção de \"Configurações &gt; Conteúdo &gt; País predefinido de conteúdo\".</string>
+    <string name="player_http_403">Erro HTTP 403 recebido do servidor durante a reprodução, provavelmente causado pela URL de streaming expirado ou IP banido</string>
+    <string name="youtube_player_http_403">Erro HTTP 403 recebido do servidor durante a reprodução, provavelmente causado por um bloqueio de IP ou problemas de desofuscação da URL de streaming</string>
 </resources>

@@ -1,0 +1,1 @@
+Ispravljen je regularni izraz naziva funkcije dešifriranja koji je YouTube činio neupotrebljivim.

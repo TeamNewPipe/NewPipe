@@ -122,12 +122,12 @@ public class SelectPlaylistFragment extends DialogFragment {
 
             if (selectedItem instanceof PlaylistMetadataEntry) {
                 final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
-                onSelectedListener.onLocalPlaylistSelected(entry.getUid(), entry.name);
+                onSelectedListener.onLocalPlaylistSelected(entry.getUid(), entry.getOrderingName());
 
             } else if (selectedItem instanceof PlaylistRemoteEntity) {
                 final PlaylistRemoteEntity entry = ((PlaylistRemoteEntity) selectedItem);
                 onSelectedListener.onRemotePlaylistSelected(
-                        entry.getServiceId(), entry.getUrl(), entry.getName());
+                        entry.getServiceId(), entry.getUrl(), entry.getOrderingName());
             }
         }
         dismiss();
@@ -142,7 +142,7 @@ public class SelectPlaylistFragment extends DialogFragment {
         void onRemotePlaylistSelected(int serviceId, String url, String name);
     }
 
-    private class SelectPlaylistAdapter
+    private final class SelectPlaylistAdapter
             extends RecyclerView.Adapter<SelectPlaylistAdapter.SelectPlaylistItemHolder> {
         @NonNull
         @Override
@@ -159,11 +159,13 @@ public class SelectPlaylistFragment extends DialogFragment {
             final PlaylistLocalItem selectedItem = playlists.get(position);
 
             if (selectedItem instanceof PlaylistMetadataEntry entry) {
-                holder.titleView.setText(entry.name);
+                holder.titleView.setText(entry.getOrderingName());
                 holder.view.setOnClickListener(view -> clickedItem(position));
-                CoilHelper.INSTANCE.loadPlaylistThumbnail(holder.thumbnailView, entry.thumbnailUrl);
+                CoilHelper.INSTANCE.loadPlaylistThumbnail(holder.thumbnailView,
+                        entry.getThumbnailUrl());
+
             } else if (selectedItem instanceof PlaylistRemoteEntity entry) {
-                holder.titleView.setText(entry.getName());
+                holder.titleView.setText(entry.getOrderingName());
                 holder.view.setOnClickListener(view -> clickedItem(position));
                 CoilHelper.INSTANCE.loadPlaylistThumbnail(holder.thumbnailView,
                         entry.getThumbnailUrl());

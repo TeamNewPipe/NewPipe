@@ -289,8 +289,10 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         binding.topControls.setClickable(true);
         binding.topControls.setFocusable(true);
 
-        binding.titleTextView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
-        binding.channelTextView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
+        binding.metadataView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
+
+        // Reset workaround changes from popup player
+        binding.audioTrackTextView.setMaxWidth(Integer.MAX_VALUE);
     }
 
     @Override
@@ -960,8 +962,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     }
 
     private void setupFullscreenButtons(final boolean fullscreen) {
-        binding.titleTextView.setVisibility(fullscreen ? View.VISIBLE : View.GONE);
-        binding.channelTextView.setVisibility(fullscreen ? View.VISIBLE : View.GONE);
+        binding.metadataView.setVisibility(fullscreen ? View.VISIBLE : View.GONE);
         binding.playerCloseButton.setVisibility(fullscreen ? View.GONE : View.VISIBLE);
         setupScreenRotationButton();
     }

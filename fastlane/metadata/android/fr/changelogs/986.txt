@@ -2,7 +2,7 @@ Ajouts
 • Notifications pour les nouveaux flux
 • Transition fluide entre les lecteurs vidéo et en arrière-plan
 • Modification de la hauteur de son par demi-tons
-• Ajout de la file du lecteur principal dans une liste de lecture
+• Ajout de la file du lecteur principal dans une playlist 
 
 Améliorations
 • Enregistrement du pas de la vitesse et de la hauteur audios

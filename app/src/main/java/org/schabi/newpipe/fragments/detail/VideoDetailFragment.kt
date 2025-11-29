@@ -1561,7 +1561,8 @@ class VideoDetailFragment :
             .subscribe(
                 { state -> updatePlaybackProgress(state.progressMillis, info.duration * 1000) },
                 { throwable -> /* impossible due to the onErrorComplete() */ },
-                { /* onComplete */
+                {
+                    /* onComplete */
                     binding.positionView.visibility = View.GONE
                     binding.detailPositionView.visibility = View.GONE
                 }

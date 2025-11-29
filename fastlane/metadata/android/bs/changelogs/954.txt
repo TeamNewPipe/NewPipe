@@ -1,0 +1,10 @@
+• novi tijek rada aplikacije: reproducirajte videozapise na stranici s detaljima, prevucite prema dolje da biste minimizirali player
+
+• MediaStyle obavještenja: prilagodljive radnje u obavještenjima, poboljšanja performansi
+• osnovna promjena veličine pri korištenju NewPipe-a kao desktop aplikacije
+
+• prikaži dijalog s otvorenim opcijama u slučaju nepodržanog URL tosta
+• Poboljšano iskustvo prijedloga za pretraživanje kada se udaljeni URL-ovi ne mogu dohvatiti
+• Povećan zadani kvalitet videozapisa na 720p60 (player u aplikaciji) i 480p (skočni player)
+
+• mnoštvo ispravki grešaka i još mnogo toga

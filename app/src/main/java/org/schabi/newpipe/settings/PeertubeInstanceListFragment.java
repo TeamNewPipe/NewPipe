@@ -396,7 +396,8 @@ public class PeertubeInstanceListFragment extends Fragment {
         }
     }
 
-    private static class PeertubeInstanceCallback extends DiffUtil.ItemCallback<PeertubeInstance> {
+    private static final class PeertubeInstanceCallback
+            extends DiffUtil.ItemCallback<PeertubeInstance> {
         @Override
         public boolean areItemsTheSame(@NonNull final PeertubeInstance oldItem,
                                        @NonNull final PeertubeInstance newItem) {
