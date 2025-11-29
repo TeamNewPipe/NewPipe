@@ -4,18 +4,27 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-tasks.register("checkDependenciesOrder") {
-    group = "verification"
-    description = "Checks that each section in libs.versions.toml is sorted alphabetically"
+import org.gradle.api.DefaultTask
+import org.gradle.api.file.RegularFileProperty
+import org.gradle.api.tasks.InputFile
+import org.gradle.api.tasks.TaskAction
 
-    val tomlFile = file("../gradle/libs.versions.toml")
+abstract class CheckDependenciesOrder : DefaultTask() {
 
-    doLast {
-        if (!tomlFile.exists()) {
-            throw GradleException("TOML file not found")
-        }
+    @get:InputFile
+    abstract val tomlFile: RegularFileProperty
 
-        val lines = tomlFile.readLines()
+    init {
+        group = "verification"
+        description = "Checks that each section in libs.versions.toml is sorted alphabetically"
+    }
+
+    @TaskAction
+    fun run() {
+        val file = tomlFile.get().asFile
+        if (!file.exists()) error("TOML file not found")
+
+        val lines = file.readLines()
         val nonSortedBlocks = mutableListOf<List<String>>()
         var currentBlock = mutableListOf<String>()
         var prevLine = ""
@@ -50,7 +59,7 @@ tasks.register("checkDependenciesOrder") {
         }
 
         if (nonSortedBlocks.isNotEmpty()) {
-            throw GradleException(
+            error(
                 "The following lines were not sorted:\n" +
                         nonSortedBlocks.joinToString("\n\n") { it.joinToString("\n") }
             )

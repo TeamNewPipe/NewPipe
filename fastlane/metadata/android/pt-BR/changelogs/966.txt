@@ -1,0 +1,14 @@
+Novo:
+- Acrescentado um novo serviço: Bandcamp
+
+Melhorado:
+- Adicionada uma opção para que a aplicação siga o tema do dispositivo
+- Previne alguns travamentos mostrando um painel de erros melhorado
+- Mostra mais informações sobre as causas da indisponibilidade do conteúdo
+- A tecla de espaço de hardware ativa play/pausa
+- Mostra "Download iniciado"
+
+Resolvido:
+- Miniaturas muito pequenas em detalhes de vídeo enquanto se reproduz em fundo
+- Corrige título vazio em tocador minimizado
+- O último modo de redimensionamento do tamanho não estava sendo restaurado corretamente

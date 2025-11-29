@@ -1,10 +1,10 @@
 Nouveau
-- Support de PeerTube sans P2P (#2201) [Beta] :
+- Support de PeerTube sans P2P (#2201) [Beta] :
   ◦ Regarder et télécharger des vidéos depuis des instances PeerTube
   ◦ Ajouter des instances dans les paramètres pour accéder à l'ensemble du monde PeerTube
   ◦ Il peut y avoir des problèmes avec les handshakes SSL sur Android 4.4 et 7.1 lors de l'accès à certaines instances, ce qui entraîne une erreur de réseau.
 
-- Téléchargeur (#2679) :
+- Téléchargeur (#2679) :
   ◦ Calculer l'heure d'arrivée du téléchargement
   ◦ Télécharger les opus (fichiers webm) en ogg
   ◦ Récupération des liens de téléchargement expirés pour reprendre les téléchargements après une longue pause
@@ -17,7 +17,7 @@ Amélioré
 
 Correction
 - Correction d'un bogue qui ne permettait pas de déplacer le lecteur popup si un autre doigt était placé pendant le déplacement du lecteur popup #2772 
-- Autorise les listes de lecture sans uploader et corrige les crashs liés à ce problème #2724, TeamNewPipe/NewPipeExtractor#219
+- Autorise les playlists sans uploader et corrige les crashs liés à ce problème #2724, TeamNewPipe/NewPipeExtractor#219
 - Activation de TLS1.1/1.2 sur les appareils Android 4.4 (API 19/KitKat) pour corriger le handshake TLS avec MediaCCC et certaines instances PeerTube #2792
 - SoundCloud] Correction de l'extraction de l'identifiant client TeamNewPipe/NewPipeExtractor#217
 - [SoundCloud] Correction de l'extraction du flux audio

@@ -4,48 +4,49 @@
 #
 
 [versions]
-acra = "5.11.3"
-agp = "8.13.0"
+acra = "5.13.1"
+agp = "8.13.1"
 appcompat = "1.7.1"
-assertj = "3.24.2"
-autoservice = "1.1.1"
+assertj = "3.27.6"
+autoservice-google = "1.1.1"
+autoservice-zacsweers = "1.2.0"
 bridge = "v2.0.2"
 cardview = "1.0.0"
-checkstyle = "10.26.1"
-constraintlayout = "2.1.4"
-core = "1.12.0"
-desugar = "2.0.4"
-documentfile = "1.0.1"
-exoplayer = "2.18.7"
-fragment = "1.6.2"
+checkstyle = "12.1.2"
+constraintlayout = "2.2.1"
+core = "1.17.0"
+desugar = "2.1.5"
+documentfile = "1.1.0"
+exoplayer = "2.19.1"
+fragment = "1.8.9"
 groupie = "2.10.1"
 jsoup = "1.21.2"
 junit = "4.13.2"
-junit-ext = "1.1.5"
-kotlin = "1.9.25"
-ksp = "1.9.25-1.0.20"
-ktlint = "0.45.2"
-leakcanary = "2.12"
-lifecycle = "2.6.2"
+junit-ext = "1.3.0"
+kotlin = "2.2.21"
+ksp = "2.3.2"
+ktlint = "1.8.0"
+leakcanary = "2.14"
+lifecycle = "2.9.4" # Newer versions require minSdk >= 23
 localbroadcastmanager = "1.1.0"
 markwon = "4.6.2"
-material = "1.11.0"
+material = "1.13.0"
 media = "1.7.1"
-mockitoCore = "5.6.0"
-okhttp = "4.12.0"
-phoenix = "2.1.2"
+mockitoCore = "5.20.0"
+okhttp = "5.3.2"
+phoenix = "3.0.0"
 #noinspection NewerVersionAvailable,GradleDependency --> 2.8 is the last version, not 2.71828!
 picasso = "2.8"
 preference = "1.2.1"
 prettytime = "5.0.8.Final"
-recyclerview = "1.3.2"
-room = "2.6.1"
-runner = "1.5.2"
+recyclerview = "1.4.0"
+room = "2.7.2" # Newer versions require minSdk >= 23
+runner = "1.7.0"
 rxandroid = "3.0.2"
 rxbinding = "4.0.0"
 rxjava = "3.1.12"
-sonarqube = "4.0.0.2929"
-statesaver = "1.4.1"
+sonarqube = "7.0.1.6134"
+statesaver = "1.4.1" # TODO: Drop because it is deprecated and incompatible with KSP2
 stetho = "1.6.0"
 swiperefreshlayout = "1.1.0"
 # You can use a local version by uncommenting a few lines in settings.gradle
@@ -58,10 +59,10 @@ teamnewpipe-nanojson = "e9d656ddb49a412a5a0a5d5ef20ca7ef09549996"
 # the corresponding commit hash, since JitPack sometimes deletes artifacts.
 # If there’s already a git hash, just add more of it to the end (or remove a letter)
 # to cause jitpack to regenerate the artifact.
-teamnewpipe-newpipe-extractor = "3af73262cc60cf555fd5f1d691f6c58e2db38ef5"
+teamnewpipe-newpipe-extractor = "76eb2008cab3fbbbe547135e7bfa3d2e8e32a7d1"
 viewpager2 = "1.1.0"
-webkit = "1.9.0"
-work = "2.8.1"
+webkit = "1.14.0"
+work = "2.10.5"  # Newer versions require minSdk >= 23
 
 [libraries]
 acra-core = { module = "ch.acra:acra-core", version.ref = "acra" }
@@ -87,7 +88,7 @@ androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
 androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
 androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }
 androidx-webkit = { module = "androidx.webkit:webkit", version.ref = "webkit" }
-androidx-work-runtime = { module = "androidx.work:work-runtime-ktx", version.ref = "work" }
+androidx-work-runtime = { module = "androidx.work:work-runtime", version.ref = "work" }
 androidx-work-rxjava3 = { module = "androidx.work:work-rxjava3", version.ref = "work" }
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
 evernote-statesaver-compiler = { module = "com.evernote:android-state-processor", version.ref = "statesaver" }
@@ -95,8 +96,7 @@ evernote-statesaver-core = { module = "com.evernote:android-state", version.ref 
 facebook-stetho-core = { module = "com.facebook.stetho:stetho", version.ref = "stetho" }
 facebook-stetho-okhttp3 = { module = "com.facebook.stetho:stetho-okhttp3", version.ref = "stetho" }
 google-android-material = { module = "com.google.android.material:material", version.ref = "material" }
-google-autoservice-annotations = { module = "com.google.auto.service:auto-service-annotations", version.ref = "autoservice" }
-google-autoservice-compiler = { module = "com.google.auto.service:auto-service", version.ref = "autoservice" }
+google-autoservice-annotations = { module = "com.google.auto.service:auto-service-annotations", version.ref = "autoservice-google" }
 google-exoplayer-core = { module = "com.google.android.exoplayer:exoplayer-core", version.ref = "exoplayer" }
 google-exoplayer-dash = { module = "com.google.android.exoplayer:exoplayer-dash", version.ref = "exoplayer" }
 google-exoplayer-database = { module = "com.google.android.exoplayer:exoplayer-database", version.ref = "exoplayer" }
@@ -119,7 +119,7 @@ newpipe-nanojson = { module = "com.github.TeamNewPipe:nanojson", version.ref = "
 noties-markwon-core = { module = "io.noties.markwon:core", version.ref = "markwon" }
 noties-markwon-linkify = { module = "io.noties.markwon:linkify", version.ref = "markwon" }
 ocpsoft-prettytime = { module = "org.ocpsoft.prettytime:prettytime", version.ref = "prettytime" }
-pinterest-ktlint = { module = "com.pinterest:ktlint", version.ref = "ktlint" }
+pinterest-ktlint = { module = "com.pinterest.ktlint:ktlint-cli", version.ref = "ktlint" }
 puppycrawl-checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checkstyle" }
 reactivex-rxandroid = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxandroid" }
 reactivex-rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
@@ -128,10 +128,12 @@ squareup-leakcanary-plumber = { module = "com.squareup.leakcanary:plumber-androi
 squareup-leakcanary-watcher = { module = "com.squareup.leakcanary:leakcanary-object-watcher-android", version.ref = "leakcanary" }
 squareup-okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 squareup-picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
+zacsweers-autoservice-compiler = { module = "dev.zacsweers.autoservice:auto-service-ksp", version.ref = "autoservice-zacsweers" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" } # Needed for statesaver
 jetbrains-kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }

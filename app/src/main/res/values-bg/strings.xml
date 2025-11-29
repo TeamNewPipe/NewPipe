@@ -163,8 +163,8 @@
     <string name="just_once">Само веднъж</string>
     <string name="file">Файл</string>
     <string name="switch_to_background">Мини във фонов режим</string>
-    <string name="switch_to_popup">Мини към нов прозорец</string>
-    <string name="switch_to_main">Мини в основен режим</string>
+    <string name="switch_to_popup">Мини в нов прозорец</string>
+    <string name="switch_to_main">Мини към основен режим</string>
     <string name="import_data_title">Внасяне на база данни</string>
     <string name="export_data_title">Изнасяне на база данни</string>
     <string name="import_data_summary">Замества текущата ви история, абонаменти, списъци за възпроизвеждане и (по избор) настройки</string>
@@ -258,7 +258,7 @@
     <string name="create_playlist">Нов Плейлист</string>
     <string name="rename_playlist">Преименувай</string>
     <string name="name">Име</string>
-    <string name="add_to_playlist">Добави Към Плейлист</string>
+    <string name="add_to_playlist">Добави към плейлист</string>
     <string name="set_as_playlist_thumbnail">Задай като миниатюра на плейлиста</string>
     <string name="bookmark_playlist">Миниатюрата на плейлиста е сменена</string>
     <string name="unbookmark_playlist">Премахни отметката</string>
@@ -277,7 +277,7 @@
     <string name="enable_disposed_exceptions_title">Докладвай за извънредни грешки</string>
     <string name="import_title">Внасяне</string>
     <string name="import_from">Внасяне от</string>
-    <string name="export_to">Изнеси в</string>
+    <string name="export_to">Изнасяне във</string>
     <string name="import_ongoing">Внасяне…</string>
     <string name="export_ongoing">Изнасяне…</string>
     <string name="import_file_title">Файл с данни за внасяне</string>
@@ -660,7 +660,7 @@
     <string name="peertube_instance_add_help">Въведете URL адреса на инстанцията</string>
     <string name="play_queue_audio_track">Аудио: %s</string>
     <string name="show_channel_details">Покажи информация за канала</string>
-    <string name="playlist_no_uploader">Автоматично генерирани (не е намерен ъплоудер)</string>
+    <string name="playlist_no_uploader">Авто-генерирани (не е намерен ъплоудер)</string>
     <string name="create_error_notification">Създай известие за грешка</string>
     <string name="auto_update_check_description">NewPipe може автоматично да проверява за нови версии от време на време и да ви известява при наличие.
 \nИскате ли да го включите?</string>
@@ -815,4 +815,24 @@
     <string name="channel_tab_likes">Харесвания</string>
     <string name="migration_info_6_7_title">Страница SoundCloud Top 50 е премахната</string>
     <string name="migration_info_6_7_message">SoundCloud преустанови оригиналните класации Топ 50. Съответният раздел е премахнат от главната ви страница.</string>
+    <string name="migration_info_7_8_message">YouTube преустанови комбинираната страница с популярни от 21 юли 2025 г. NewPipe замени стандартната страница с популярни с популярни предавания на живо.\n\nМожете също да изберете различни популярни страници в „Настройки &gt; Съдържание &gt; Съдържание на главната страница“.</string>
+    <string name="migration_info_7_8_title">YouTube комбинирани популярни са премахнати</string>
+    <string name="trending_gaming">Популярни игри</string>
+    <string name="trending_podcasts">Популярни подкасти</string>
+    <string name="trending_movies">Популярни филми и сериали</string>
+    <string name="trending_music">Популярна музика</string>
+    <string name="short_thousand">%s хил.</string>
+    <string name="short_million">%s млн.</string>
+    <string name="short_billion">%s млрд.</string>
+    <string name="permission_display_over_apps_message">За да използвате изскачащия плейър, моля, изберете %1$s в следното меню с настройки на Android и активирайте %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">“Разреши показване върху други приложения”</string>
+    <string name="delete_file">Изтриване на файл</string>
+    <string name="delete_entry">Изтриване на запис</string>
+    <string name="entry_deleted">Записът е изтрит</string>
+    <string name="account_terminated_service_provides_reason">Профилът е прекратен\n\n%1$s предоставя тази причина: %2$s</string>
+    <string name="player_http_403">HTTP грешка 403, получена от сървъра по време на възпроизвеждане, вероятно причинена от изтичане на URL адреса за стрийминг или забрана на IP адреса</string>
+    <string name="player_http_invalid_status">HTTP грешка %1$s получена от сървъра по време на възпроизвеждане</string>
+    <string name="youtube_player_http_403">HTTP грешка 403, получена от сървъра по време на възпроизвеждане, вероятно причинена от забрана на IP адреса или проблеми с деобфускацията на URL адреси за стрийминг</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s отказа да предостави данни, като поиска вход, за да потвърди, че заявителят не е бот.\n\nВашият IP адрес може да е временно забранен от %1$s. Можете да изчакате известно време или да превключите към друг IP адрес (например като включите/изключите VPN или като превключите от WiFi към мобилни данни).</string>
+    <string name="unsupported_content_in_country">Това съдържание не е налично за текущо избраната държава на съдържанието.\n\nПроменете избора си от \"Настройки &gt; Съдържание &gt; Държава на съдържанието по подразбиране\".</string>
 </resources>

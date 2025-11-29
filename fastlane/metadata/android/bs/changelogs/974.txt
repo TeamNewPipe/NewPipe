@@ -1,0 +1,5 @@
+Hitna ispravka
+• Ispravljeni problemi s baferovanjem uzrokovani ograničavanjem YouTubea
+• Ispravljeno izdvajanje komentara na YouTubeu i rušenja aplikacije s onemogućenim komentarima
+• Ispravljena pretraga muzike na YouTubeu
+• Ispravljeni prenosi uživo na PeerTubeu

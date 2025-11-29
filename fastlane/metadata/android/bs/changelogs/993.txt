@@ -1,0 +1,12 @@
+Novo
+• Dodano upozorenje prilikom dodavanja duplikata liste za reprodukciju i dodavanje dugmeta za njihovo uklanjanje
+• Omogućeno ignorisanje hardverskih dugmadi
+• Omogućeno skrivanje djelomično pregledanih videa u feedu
+
+Poboljšano
+• Koristiti više kolona mreže na velikim ekranima
+• Usaglasiti indikatore napretka s postavkama
+
+Ispravljeno
+• Ispravljeno otvaranje URL-ova preglednika, preuzimanja i vanjskih playera na Androidu 11+
+• Ispravljena interakcija s cijelim ekranom koja zahtijeva dva dodira na MIUI-ju

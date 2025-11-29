@@ -844,4 +844,24 @@
     <string name="channel_tab_likes">Mi piace</string>
     <string name="migration_info_6_7_title">Pagina Top 50 di SoundCloud rimossa</string>
     <string name="migration_info_6_7_message">SoundCloud ha dismesso i grafici Top 50 originali. La scheda relativa è stata rimossa dalla pagina principale.</string>
+    <string name="short_thousand">%sK</string>
+    <string name="short_million">%sMilio.</string>
+    <string name="short_billion">%sMilia.</string>
+    <string name="migration_info_7_8_title">Rimosse tendenze combinate YouTube</string>
+    <string name="migration_info_7_8_message">YouTube ha interrotto la pagina di tendenza combinata il 21 luglio 2025. NewPipe ha sostituito la pagina di tendenza predefinita con le dirette in tendenza.\n\nPuoi anche selezionare diverse pagine di tendenza in \"Impostazioni &gt; Contenuto &gt; Contenuto della pagina principale\".</string>
+    <string name="trending_gaming">Giochi in tendenza</string>
+    <string name="trending_podcasts">Podcast in tendenza</string>
+    <string name="trending_movies">Film e spettacoli in tendenza</string>
+    <string name="trending_music">Musica in tendenza</string>
+    <string name="permission_display_over_apps_message">Per usare il riproduttore popup, seleziona %1$s nel seguente menu delle impostazioni Android e attiva %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">“Consenti la visualizzazione sopra altre app”</string>
+    <string name="delete_file">Elimina file</string>
+    <string name="delete_entry">Elimina voce</string>
+    <string name="account_terminated_service_provides_reason">Account eliminato\n\n%1$s fornisce questa motivazione: %2$s</string>
+    <string name="entry_deleted">Voce eliminata</string>
+    <string name="player_http_403">Errore HTTP 403 ricevuto dal server durante la riproduzione, probabilmente causato dalla scadenza dell\'URL in streaming o da un divieto dell\'IP</string>
+    <string name="player_http_invalid_status">Errore HTTP %1$s ricevuto dal server durante la riproduzione</string>
+    <string name="youtube_player_http_403">Errore HTTP 403 ricevuto dal server durante la riproduzione, probabilmente causato da un divieto dell\'IP o problemi di de-offuscamento dell\'URL in streaming</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s ha rifiutato di fornire i dati, chiedendo un accesso per confermare che il richiedente non sia un bot.\n\nIl tuo IP potrebbe essere stato temporaneamente vietato da %1$s, puoi aspettare un po\' di tempo o passare ad un IP diverso (ad esempio accendendo/spegnendo una VPN, o passando dal WiFi ai dati mobili).</string>
+    <string name="unsupported_content_in_country">Questo contenuto non è disponibile per il Paese dei contenuti attualmente selezionato.\n\nModifica la selezione da \"Impostazioni &gt; Contenuti &gt; Paese dei contenuti predefinito\".</string>
 </resources>

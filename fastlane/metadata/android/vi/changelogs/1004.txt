@@ -1,1 +1,3 @@
-Đã sửa lỗi YouTube không phát bất kỳ luồng nào
+Bản phát hành này khắc phục lỗi YouTube chỉ cung cấp luồng 360p.
+
+Lưu ý rằng giải pháp được sử dụng trong phiên bản này có thể chỉ là tạm thời, và về lâu dài, giao thức video SABR cần được triển khai, nhưng hiện tại các thành viên TeamNewPipe đang rất bận rộn nên chúng tôi rất mong nhận được sự giúp đỡ! https://github.com/TeamNewPipe/NewPipe/issues/12248
