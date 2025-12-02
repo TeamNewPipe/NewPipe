@@ -160,7 +160,7 @@
     <string name="popup_playing_toast">在悬浮窗中播放</string>
     <string name="default_popup_resolution_title">悬浮窗默认分辨率</string>
     <string name="show_higher_resolutions_title">使用更高的分辨率</string>
-    <string name="show_higher_resolutions_summary">仅部分设备支持播放 2K 或 4K 视频</string>
+    <string name="show_higher_resolutions_summary">仅部分设备支持播放 2.5K 或 4K 视频</string>
     <string name="clear">清除</string>
     <string name="popup_remember_size_pos_title">记住悬浮窗属性（大小与位置）</string>
     <string name="popup_remember_size_pos_summary">记住上一次使用悬浮窗的大小和位置</string>

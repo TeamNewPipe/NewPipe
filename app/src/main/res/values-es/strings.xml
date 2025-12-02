@@ -90,7 +90,7 @@
     <string name="default_video_format_title">Formato de vídeo predefinido</string>
     <string name="disabled">Deshabilitado</string>
     <string name="show_higher_resolutions_title">Mostrar resoluciones más altas</string>
-    <string name="show_higher_resolutions_summary">Solo algunos dispositivos pueden reproducir vídeos en 2K / 4K</string>
+    <string name="show_higher_resolutions_summary">Solo algunos dispositivos pueden reproducir vídeos en 2.5K / 4K</string>
     <string name="default_popup_resolution_title">Resolución predefinida de emergente</string>
     <string name="controls_background_title">Segundo plano</string>
     <string name="controls_popup_title">Emergente</string>
@@ -664,7 +664,7 @@
     <string name="create_error_notification">Crear una notificación de error</string>
     <string name="show_error_snackbar">Mostrar una barra de error</string>
     <string name="no_appropriate_file_manager_message">No se ha encontrado un gestor de archivos apropiado para esta acción. \nPor favor, instala un gestor de archivos o intenta deshabilitarlo \'%s\' en los ajustes de la descarga</string>
-    <string name="no_appropriate_file_manager_message_android_10">No se encontró ningún administrador de archivos apropiado para esta acción. 
+    <string name="no_appropriate_file_manager_message_android_10">No se encontró ningún administrador de archivos apropiado para esta acción.
 \n Instale un administrador de archivos compatible con Storage Access Framework</string>
     <string name="detail_pinned_comment_view_description">Comentario fijado</string>
     <string name="leak_canary_not_available">LeakCanary no está disponible</string>

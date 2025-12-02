@@ -82,7 +82,7 @@
     <string name="recaptcha_request_toast">reCAPTCHA চ্যালেঞ্জ অনুরোধ করা হয়েছে</string>
     <string name="title_activity_recaptcha">reCAPTCHA চ্যালেঞ্জ</string>
     <string name="one_item_deleted">একটি আইটেম ডিলিট হয়েছে।</string>
-    <string name="msg_popup_permission">এই অনুমতিটি 
+    <string name="msg_popup_permission">এই অনুমতিটি
 \nপপআপ মোডে খুলতে প্রয়োজন</string>
     <string name="no_available_dir">অনুগ্রহ করে একটি উপলব্ধ ডাউনলোড ডিরেক্টরি নির্বাচন করো</string>
     <string name="msg_copied">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>
@@ -243,7 +243,7 @@
     <string name="show_play_with_kodi_title">\"Kodi-তে প্লে করুন\" দেখান</string>
     <string name="kore_not_found">Kodi ইনস্টল করবেন?</string>
     <string name="play_with_kodi_title">Kodi-তে প্লে করুন</string>
-    <string name="show_higher_resolutions_summary">শুধুমাত্র কিছু ডিভাইস 2K/4K ভিডিও চালাতে পারে</string>
+    <string name="show_higher_resolutions_summary">শুধুমাত্র কিছু ডিভাইস 2.5K/4K ভিডিও চালাতে পারে</string>
     <string name="show_higher_resolutions_title">উচ্চতর রেজুলেশন দেখান</string>
     <string name="default_popup_resolution_title">স্বাভাবিক পপ-আপ রেজুলেশন</string>
     <string name="default_resolution_title">স্বাভাবিক রেজুলেশন</string>

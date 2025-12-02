@@ -61,8 +61,8 @@
     <string name="pause_downloads_on_mobile">Interromper em redes limitadas</string>
     <string name="detail_thumbnail_view_description">Reproduzir vídeo, duração:</string>
     <string name="feed_create_new_group_button_title">Novo</string>
-    <string name="content_not_supported">Este conteúdo ainda não é suportado pelo NewPipe. 
-\n 
+    <string name="content_not_supported">Este conteúdo ainda não é suportado pelo NewPipe.
+\n
 \nEsperamos que seja suportado numa versão futura.</string>
     <string name="minimize_on_exit_none_description">Nenhuma</string>
     <string name="download_path_dialog_title">Escolha a pasta para colocar os ficheiros de vídeo</string>
@@ -485,7 +485,7 @@
     <string name="trending">Tendências</string>
     <string name="always_ask_open_action">Perguntar sempre</string>
     <string name="error_timeout">Ligação expirada</string>
-    <string name="show_higher_resolutions_summary">Apenas alguns dispositivos conseguem reproduzir vídeos em 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Apenas alguns dispositivos conseguem reproduzir vídeos em 2.5K/4K</string>
     <string name="settings_category_appearance_title">Aparência</string>
     <string name="donation_title">Doar</string>
     <string name="error_report_open_github_notice">Verifique se o seu erro já foi reportado. A criação de erros em duplicado tira-nos tempo que pode ser utilizado para corrigir os erros.</string>

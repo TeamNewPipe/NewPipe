@@ -85,7 +85,7 @@
     <string name="open_in_popup_mode">Abrir no modo Popup</string>
     <string name="default_popup_resolution_title">Resolução padrão do Popup</string>
     <string name="show_higher_resolutions_title">Mostrar resoluções mais altas</string>
-    <string name="show_higher_resolutions_summary">Apenas alguns dispositivos suportam vídeos em 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Apenas alguns dispositivos suportam vídeos em 2.5K/4K</string>
     <string name="default_video_format_title">Formato de vídeo padrão</string>
     <string name="popup_playing_toast">Reproduzindo em modo Popup</string>
     <string name="all">Todos</string>

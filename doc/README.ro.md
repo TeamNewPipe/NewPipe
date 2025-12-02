@@ -1,4 +1,4 @@
-<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p> 
+<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p>
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">Un front-end de streaming „uşor” liber, pentru Android.</h4>
 
@@ -68,7 +68,7 @@ NewPipe nu foloseşte nici-o bibliotecă Google framework sau API-ul Youtube. We
 * Căutarea canalelor
 * Vizionarea videoclipurilor dintr-un canal
 * Suport Orbot/Tor (încă nu direct)
-* Suport 1080p/2K/4K
+* Suport 1080p/2.5K/4K
 * Vizionarea istoricului
 * Abonarea la canale
 * Căutarea în istoric
@@ -135,7 +135,7 @@ Proiectul NewPipe îşi propune să furnizeze o experienţă privată şi anonim
 Prin urmare, aplicaţia nu colectează niciun fel de informaţii fără acordul dumneavoastră. Politica de confidențialitate a NewPipe explică în detaliu ce date sunt trimise și stocate atunci când trimiteți un raport de blocare sau comentați pe blogul nostru. Puteți găsi documentul [aici](https://newpipe.net/legal/privacy/).
 
 ## Licenţă
-[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
+[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 NewPipe este Software Gratuit: Îl puteţi folosi şi împărtăşi cum doriţi. Mai exact, îl puteți redistribui și / sau modifica în conformitate cu termenii
 [GNU General Public License](https://www.gnu.org/licenses/gpl.html) aşa cum a fost publicat de Free Software Foundation, fie versiunea 3 a Licenței, fie

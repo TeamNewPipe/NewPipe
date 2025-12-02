@@ -55,7 +55,7 @@
     <string name="error_report_notification_title">NewPipe rakst á villu, ýttu til að tilkynna hana</string>
     <string name="tab_about">Um okkur og algengar spurningar</string>
     <string name="subscribe_button_title">Gerast áskrifandi</string>
-    <string name="show_higher_resolutions_summary">Aðeins sum tæki geta spilað 2K/4K myndskeið</string>
+    <string name="show_higher_resolutions_summary">Aðeins sum tæki geta spilað 2.5K/4K myndskeið</string>
     <string name="play_with_kodi_title">Spila með Kodi</string>
     <string name="show_play_with_kodi_summary">Birta hnapp til að spila myndskeið í gegnum Kodi margmiðlunarmiðstöð</string>
     <string name="crash_the_player">Láta spilarann hrynja</string>

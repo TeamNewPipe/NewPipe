@@ -1,4 +1,4 @@
-<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p> 
+<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p>
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">自由で軽量な Android 向けストリーミングフロントエンド</h4>
 
@@ -70,7 +70,7 @@
 * チャンネルの検索
 * チャンネルからの動画の視聴
 * Orbot/Tor 対応 (直接的なものは未実装)
-* 1080p/2K/4K 対応
+* 1080p/2.5K/4K 対応
 * 履歴の表示
 * チャンネルの登録
 * 履歴の検索
@@ -140,7 +140,7 @@ NewPipe プロジェクトはメディアウェブサービスを使用する上
 
 <span id="license"></span>
 ## ライセンス
-[![GNU GPLv3 のロゴ](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
+[![GNU GPLv3 のロゴ](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 NewPipe はフリーソフトウェアなので、あなたはあなたの望むように使用、習得、共有、改善を行えます。
 具体的には、フリーソフトウェア財団により公開された [GNU General Public License](https://www.gnu.org/licenses/gpl.html) のバージョン3のライセンスもしくは、(あなたの選択で) いずれかの後継バージョンの規約の元で配布または改変を行うことができます。

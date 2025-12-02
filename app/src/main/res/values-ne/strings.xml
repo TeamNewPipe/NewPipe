@@ -40,7 +40,7 @@
     <string name="default_resolution_title">पूर्वनिर्धारित रेजोलुसन</string>
     <string name="default_popup_resolution_title">पूर्वनिर्धारित पपअप रेजोलुसन</string>
     <string name="show_higher_resolutions_title">उच्च रेजोलुसन देखाउनु</string>
-    <string name="show_higher_resolutions_summary">केवल केही डिभाइसहरू मात्र 2k/4K भिडियो चलाउन सक्छन्</string>
+    <string name="show_higher_resolutions_summary">केवल केही डिभाइसहरू मात्र 2.5k/4K भिडियो चलाउन सक्छन्</string>
     <string name="play_with_kodi_title">Kodi सँग चलाउनुहोस्</string>
     <string name="kore_not_found">\'Kore\' एप छैन, इन्स्टल गर्न चाहनुहुन्छ\?</string>
     <string name="show_play_with_kodi_title">\"Kodi सँग प्ले\" विकल्प देखाउनु</string>
@@ -306,10 +306,10 @@
     <string name="previous_export">अघिल्लो निर्यात</string>
     <string name="subscriptions_import_unsuccessful">सदस्यताहरु आयात गर्न सकिएन</string>
     <string name="subscriptions_export_unsuccessful">सदस्यताहरु निर्यात गर्न सकेन</string>
-    <string name="import_youtube_instructions">निर्यात फाइल डाउनलोड गरेर यूट्यूब सदस्यताहरू आयात गर्नुहोस्: 
-\n 
-\n1. जानुहोस् यो URL:%1$s 
-\n2. सोधिएको बेलामा लग इन गर्नुहोस् 
+    <string name="import_youtube_instructions">निर्यात फाइल डाउनलोड गरेर यूट्यूब सदस्यताहरू आयात गर्नुहोस्:
+\n
+\n1. जानुहोस् यो URL:%1$s
+\n2. सोधिएको बेलामा लग इन गर्नुहोस्
 \n3. एउटा डाउनलोड सुरु हुनुपर्दछ (त्यो निर्यात फाईल हो)</string>
     <string name="import_soundcloud_instructions">या त URL वा तपाईंको ID टाइप गरेर साउन्डक्लाउड(SoundCloud) प्रोफाइल आयात गर्नुहोस्:
 \n
@@ -511,8 +511,8 @@
     <string name="youtube_restricted_mode_enabled_title">यूट्यूब प्रतिबन्धित मोड</string>
     <string name="video_detail_by">%s द्वारा</string>
     <string name="channel_created_by">%s द्वारा सिर्जना गरिएको</string>
-    <string name="content_not_supported">यो सामग्री अझै NewPipeमा समर्थित छैन। 
-\n… 
+    <string name="content_not_supported">यो सामग्री अझै NewPipeमा समर्थित छैन।
+\n…
 \nआशा छ कि भविष्यको संस्करणमा समर्थित हुनेछ।</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">हो र आंशिक रूपमा हेरिएको भिडियोहरू</string>
     <string name="notification_colorize_title">सूचना पाटी रंगिन बनाउनु</string>

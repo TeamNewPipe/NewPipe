@@ -27,7 +27,7 @@
     <string name="default_resolution_title">Numatytoji raiška</string>
     <string name="default_popup_resolution_title">Numatytoji išokančiojo lango raiška</string>
     <string name="show_higher_resolutions_title">Rodyti didesnes raiškas</string>
-    <string name="show_higher_resolutions_summary">Tik kai kurie įrenginiai palaiko 2K/4K vaizdo įrašų peržiūrą</string>
+    <string name="show_higher_resolutions_summary">Tik kai kurie įrenginiai palaiko 2.5K/4K vaizdo įrašų peržiūrą</string>
     <string name="play_with_kodi_title">Groti su Kodi</string>
     <string name="kore_not_found">Įdiegti nereastą Kode programėlę\?</string>
     <string name="show_play_with_kodi_title">Rodyti „Peržiūra su Kodi“ pasirinkimą</string>
@@ -665,7 +665,7 @@
     <string name="show_crash_the_player_summary">Naudojant grotuvą rodo lūžio parinkty</string>
     <string name="show_error_snackbar">Rodyti klaidos juostą</string>
     <string name="detail_pinned_comment_view_description">Prisegtas komentaras</string>
-    <string name="no_appropriate_file_manager_message_android_10">Nerasta tinkama failų tvarkyklė. 
+    <string name="no_appropriate_file_manager_message_android_10">Nerasta tinkama failų tvarkyklė.
 \nĮdiekite „Storage Access Framework“ suderinamą su šia failų tvarkykle</string>
     <string name="error_report_channel_description">Pranešimai pranešimui apie klaidas</string>
     <string name="show_crash_the_player_title">Rodyti „Grotuvas užlūžo“</string>

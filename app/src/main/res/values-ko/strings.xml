@@ -80,7 +80,7 @@
     <string name="controls_popup_title">팝업</string>
     <string name="default_popup_resolution_title">기본 팝업 해상도</string>
     <string name="show_higher_resolutions_title">높은 해상도 표시</string>
-    <string name="show_higher_resolutions_summary">일부 기기에서만 2K/4K 해상도 재생이 지원됩니다</string>
+    <string name="show_higher_resolutions_summary">일부 기기에서만 2.5K/4K 해상도 재생이 지원됩니다</string>
     <string name="default_video_format_title">기본 비디오 형식</string>
     <string name="black_theme_title">블랙 테마</string>
     <string name="popup_remember_size_pos_title">팝업 크기 및 위치 기억</string>
@@ -265,14 +265,14 @@
 \n6. 아래의 \"파일 가져오기\"를 클릭하고 다운로드한 .zip 파일을 선택합니다
 \n7. [.zip 파일 가져오기를 실패한 경우] .csv 파일(일반적으로 \"YouTube 및 YouTube Music/구독정보/구독정보.csv\")을 압축해제한 다음, 아래의 \"파일 가져오기\"를 클릭한 후 압축해제한 csv 파일을 선택합니다</string>
     <string name="import_soundcloud_instructions">URL 또는 ID를 입력하여 SoundCloud 프로필을 가져옵니다:
-\n 
+\n
 \n1. 웹 브라우저에서 \"데스크톱 모드\"를 활성화합니다(모바일 장치에서는 사이트를 사용할 수 없습니다)
 \n2. 다음 URL로 이동: %1$s
 \n3. 요청 시 로그인
 \n4. 리디렉션된 프로필 URL을 복사합니다.</string>
     <string name="import_soundcloud_instructions_hint">프로필ID, soundcloud.com/프로필ID</string>
-    <string name="import_network_expensive_warning">경고: 데이터가 많이 소모될 수 있습니다. 
-\n 
+    <string name="import_network_expensive_warning">경고: 데이터가 많이 소모될 수 있습니다.
+\n
 \n계속하시겠습니까\?</string>
     <string name="thumbnail_cache_wipe_complete_notice">이미지 캐시 지워짐</string>
     <string name="metadata_cache_wipe_title">캐시된 메타데이터 지우기</string>
@@ -298,7 +298,7 @@
     <string name="delete_search_history_alert">모든 검색 기록을 삭제하시겠습니까\?</string>
     <string name="search_history_deleted">검색 기록이 삭제되었습니다</string>
     <string name="privacy_policy_title">NewPipe 개인정보 보호 정책</string>
-    <string name="privacy_policy_encouragement">NewPipe 프로젝트는 사용자의 개인 정보 보호를 최우선으로 생각하며, 동의 없이 어떠한 정보도 수집하지 않습니다. 
+    <string name="privacy_policy_encouragement">NewPipe 프로젝트는 사용자의 개인 정보 보호를 최우선으로 생각하며, 동의 없이 어떠한 정보도 수집하지 않습니다.
 \nNewPipe 개인정보 보호 정책에서는 오류 보고 시 어떠한 정보가 수집되고 저장되는지 자세히 명시되어 있습니다.</string>
     <string name="read_privacy_policy">개인정보 보호 정책 읽기</string>
     <string name="app_license">NewPipe는 카피레프트 자유 소프트웨어입니다: 마음대로 사용하고, 연구하고, 공유하고, 개선할 수 있습니다. 특히 자유 소프트웨어 재단에서 발행한 GNU 일반 공중 사용 라이센스의 조건에 따라 라이센스 버전 3 또는 (귀하의 선택에 따라) 이후 버전을 재배포 및/또는 수정할 수 있습니다.</string>

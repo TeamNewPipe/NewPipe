@@ -93,7 +93,7 @@
     <string name="show_info">További információ</string>
     <string name="default_popup_resolution_title">Felugró ablak alapértelmezett felbontása</string>
     <string name="show_higher_resolutions_title">Magasabb felbontások megjelenítése</string>
-    <string name="show_higher_resolutions_summary">Csak bizonyos eszközök tudnak 2K/4K-s videókat lejátszani</string>
+    <string name="show_higher_resolutions_summary">Csak bizonyos eszközök tudnak 2.5K/4K-s videókat lejátszani</string>
     <string name="default_video_format_title">Alapértelmezett videóformátum</string>
     <string name="black_theme_title">Fekete</string>
     <string name="popup_remember_size_pos_title">Felugró ablak tulajdonságainak megjegyzése</string>

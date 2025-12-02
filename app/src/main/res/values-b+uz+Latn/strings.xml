@@ -56,7 +56,7 @@
     <string name="show_play_with_kodi_title">\"Kodi bilan ijro etish\" parametrini ko\'rsatish</string>
     <string name="kore_not_found">missing Kore dasturini o\'rnatasizmi\?</string>
     <string name="play_with_kodi_title">Kodi bilan ijro etish</string>
-    <string name="show_higher_resolutions_summary">Faqat ba\'zi qurilmalar 2K / 4K videolarni ijro etishi mumkin</string>
+    <string name="show_higher_resolutions_summary">Faqat ba\'zi qurilmalar 2.5K / 4K videolarni ijro etishi mumkin</string>
     <string name="show_higher_resolutions_title">Yuqori o\'lchamlarni ko\'rsatish</string>
     <string name="default_popup_resolution_title">Standart pop-up o\'lchamlari</string>
     <string name="default_resolution_title">Standart o\'lchamlari</string>

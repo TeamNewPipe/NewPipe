@@ -85,7 +85,7 @@
     <string name="controls_background_title">W tle</string>
     <string name="default_popup_resolution_title">Domyślna rozdzielczość trybu okienkowego</string>
     <string name="show_higher_resolutions_title">Pokazuj wyższe rozdzielczości</string>
-    <string name="show_higher_resolutions_summary">Tylko niektóre urządzenia mogą odtwarzać wideo w 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Tylko niektóre urządzenia mogą odtwarzać wideo w 2.5K/4K</string>
     <string name="default_video_format_title">Domyślny format wideo</string>
     <string name="black_theme_title">Czarny</string>
     <string name="popup_remember_size_pos_title">Pamiętaj właściwości trybu okienkowego</string>

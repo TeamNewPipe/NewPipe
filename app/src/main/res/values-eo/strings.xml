@@ -73,7 +73,7 @@
     <string name="controls_add_to_playlist_title">Aldonu al</string>
     <string name="default_popup_resolution_title">Komenca distingumo de la ŝprucfenestra ludilo</string>
     <string name="show_higher_resolutions_title">Montri pli altajn distingumojn</string>
-    <string name="show_higher_resolutions_summary">Nur kelkaj aparatoj povas ludi filmetojn je distingumoj 2K / 4K</string>
+    <string name="show_higher_resolutions_summary">Nur kelkaj aparatoj povas ludi filmetojn je distingumoj 2.5K / 4K</string>
     <string name="default_video_format_title">Preferata filma dosierformo</string>
     <string name="popup_remember_size_pos_title">Memori ecojn de ŝprucfenestro</string>
     <string name="popup_remember_size_pos_summary">Memori lastan grandon kaj pozicion de ŝprucfenestro</string>
@@ -174,10 +174,10 @@
 \n5. Click on the \"Download\" button after it appears and
 \n6. From the downloaded takeout zip extract the .json file (usually under \"YouTube and YouTube Music/subscriptions/subscriptions.json\") and import it here.</string>
     <string name="import_soundcloud_instructions">Importu Soundcloud-n profilon tajpante ĉu la ligilon, ĉu vian ID :
-\n 
+\n
 \n1. Ebligu komputilon modon en retumilon (la retejo malhaveblas por poŝtelefonoj)
 \n2. Iru tien: %1$s
-\n3. Ensalutu kiam oni petas vin 
+\n3. Ensalutu kiam oni petas vin
 \n4. Kopiu la ligilon de profilo ke oni kondikis vin.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bildokaŝmemoro vakigis</string>
     <string name="metadata_cache_wipe_title">Vakigi kaŝmemorigitajn metadatumojn</string>

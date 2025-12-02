@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">Gusa kioo la kukuza ili kuanza.</string>
-    <string name="show_higher_resolutions_summary">Ni baadhi ya vifaa vingine pekee vinavyoweza kucheza video za 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Ni baadhi ya vifaa vingine pekee vinavyoweza kucheza video za 2.5K/4K</string>
     <string name="play_with_kodi_title">Cheza na Kodi</string>
     <string name="show_play_with_kodi_title">Onyesha chaguo la \"Cheza na Kodi\"</string>
     <string name="show_play_with_kodi_summary">Onyesha chaguo la kucheza video kupitia kituo cha media cha Kodi</string>

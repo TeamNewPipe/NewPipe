@@ -1,4 +1,4 @@
-<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p> 
+<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p>
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">じゆーいっしけいりょうなAndroidんきーストリーミングフロントエンド</h4>
 
@@ -70,7 +70,7 @@
 * チャンネルぬきんさく
 * チャンネルからぬちゃーしがぬしちょう
 * Orbot/Torたいおう（ちょくしちてぃきなむぬはみじっそう）
-* 1080p/2K/4Kたいおう
+* 1080p/2.5K/4Kたいおう
 * りりきぬひょうじ
 * チャンネルぬとぅうるく
 * りりきぬきんさく
@@ -140,7 +140,7 @@ NewPipeプロジェクトーメディアウェブサービスしようするう�
 
 <span id="license"></span>
 ## ライセンス
-[![GNU GPLv3ぬロゴ](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
+[![GNU GPLv3ぬロゴ](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 NewPipeーフリーソフトウェアやくとぅ、うんじょーうんじゅがぬじゅむるぐとぅさ、しゅうとぅく、きょうゆう、かいじんうくねーやびーん。
 ぐたちちーがー、フリーソフトウェアじぇーやんんにゆりかんかいさったん [GNU General Public License](https://www.gnu.org/licenses/gpl.html) ぬバージョン3ぬライセンスあらんでぃ、（うんじゅがしんたくでぃ）いじりがぬこうけいバージョンぬきやくぬむとぅっしはいふあらんでぃかいんかいんうくないるくとぅがなやびーん。

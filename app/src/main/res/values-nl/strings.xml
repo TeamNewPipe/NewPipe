@@ -91,7 +91,7 @@
     <string name="disabled">Uitgeschakeld</string>
     <string name="default_popup_resolution_title">Standaardresolutie van pop-up</string>
     <string name="show_higher_resolutions_title">Hogere resoluties tonen</string>
-    <string name="show_higher_resolutions_summary">Slechts enkele toestellen kunnen 2K-/4K-video\'s afspelen</string>
+    <string name="show_higher_resolutions_summary">Slechts enkele toestellen kunnen 2.5K-/4K-video\'s afspelen</string>
     <string name="controls_background_title">Achtergrond</string>
     <string name="controls_popup_title">Pop-up</string>
     <string name="clear">Wissen</string>
@@ -277,8 +277,8 @@
 \n3. Log in op je account
 \n4. Kopieer de koppeling van de pagina waar je op terechtkomt (dat is je profiel-URL).</string>
     <string name="import_soundcloud_instructions_hint">jouwID, soundcloud.com/jouwid</string>
-    <string name="import_network_expensive_warning">Let op: deze actie kan veel MB’s van je mobiele netwerk gebruiken. 
-\n 
+    <string name="import_network_expensive_warning">Let op: deze actie kan veel MB’s van je mobiele netwerk gebruiken.
+\n
 \nWil je doorgaan?</string>
     <string name="thumbnail_cache_wipe_complete_notice">Afbeeldingscache gewist</string>
     <string name="metadata_cache_wipe_title">Gecachete metagegevens wissen</string>
@@ -305,10 +305,10 @@
     <string name="app_license">NewPipe is vrije software: je kan het gebruiken, bestuderen, delen en verbeteren zoveel je maar wilt. Je kan het opnieuw uitgeven en/of aanpassen volgens de voorwaarden van de GNU General Public License, gepubliceerd door de Free Software Foundation, versie 3 van de licentie, of (indien gewenst) om het even welke latere versie.</string>
     <string name="import_settings">Wil je ook de instellingen importeren?</string>
     <string name="privacy_policy_title">NewPipe\'s privacybeleid</string>
-    <string name="privacy_policy_encouragement">Het NewPipe-project neemt privacy serieus. Daarom verzamelt de app geen gegevens zonder jouw toestemming. 
+    <string name="privacy_policy_encouragement">Het NewPipe-project neemt privacy serieus. Daarom verzamelt de app geen gegevens zonder jouw toestemming.
 \nNewPipe\'s privacybeleid legt gedetailleerd uit welke gegevens verstuurd en opgeslagen worden als je een crashrapport verstuurt.</string>
     <string name="read_privacy_policy">Privacybeleid lezen</string>
-    <string name="start_accept_privacy_policy">Om de Europese Algemene Verordening Gegevensbescherming (ook wel: AVG of GDPR) na te leven, wijzen we je op het nieuwe privacybeleid van NewPipe. Lees dit zorgvuldig. 
+    <string name="start_accept_privacy_policy">Om de Europese Algemene Verordening Gegevensbescherming (ook wel: AVG of GDPR) na te leven, wijzen we je op het nieuwe privacybeleid van NewPipe. Lees dit zorgvuldig.
 \nJe moet het beleid accepteren om ons het foutrapport te kunnen sturen.</string>
     <string name="accept">Accepteren</string>
     <string name="decline">Weigeren</string>

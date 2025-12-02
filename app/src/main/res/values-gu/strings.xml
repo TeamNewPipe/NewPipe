@@ -25,7 +25,7 @@
     <string name="notification_scale_to_square_image_title">થંબનેલને ૧:૧ સાપેક્ષ ગુણોત્તરમાં કાપો</string>
     <string name="show_play_with_kodi_summary">કોડિ મીડિયા સેન્ટર દ્વારા વિડિઓ ચલાવવાનો વિકલ્પ દર્શાવો</string>
     <string name="kore_not_found">અનુપસ્થિત Kore અનુપ્રયોગ સ્થાપિત કરીએ?</string>
-    <string name="show_higher_resolutions_summary">ફક્ત થોડા ઉપકરણો 2K / 4K વિડિઓઝ ચલાવી શકે છે</string>
+    <string name="show_higher_resolutions_summary">ફક્ત થોડા ઉપકરણો 2.5K / 4K વિડિઓઝ ચલાવી શકે છે</string>
     <string name="show_higher_resolutions_title">ઉચ્ચ રીઝોલ્યુશન બતાવો</string>
     <string name="default_popup_resolution_title">ડિફોલ્ટ પોપઅપ રીઝોલ્યુશન</string>
     <string name="default_resolution_title">ડિફોલ્ટ રીઝોલ્યુશન</string>

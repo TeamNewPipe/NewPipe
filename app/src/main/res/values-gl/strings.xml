@@ -39,7 +39,7 @@
     <string name="default_resolution_title">Resolución predeterminada</string>
     <string name="default_popup_resolution_title">Resolución predeterminada do popup</string>
     <string name="show_higher_resolutions_title">Mostrar resolucións máis altas</string>
-    <string name="show_higher_resolutions_summary">Só algúns dispositivos poden reproducir vídeos en 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Só algúns dispositivos poden reproducir vídeos en 2.5K/4K</string>
     <string name="play_with_kodi_title">Reproducir co Kodi</string>
     <string name="kore_not_found">Quere instalar o aplicativo Kore que falta\?</string>
     <string name="show_play_with_kodi_title">Mostrar a opción «Reproducir co Kodi»</string>
@@ -639,9 +639,9 @@
     <string name="start_main_player_fullscreen_title">Inciar reprodutor principal en pantalla completa</string>
     <string name="start_main_player_fullscreen_summary">Non iniciar vídeos no reprodutor mini, mais cambiar a pantalla completa directamente, se a rotación estiver bloqueada. Aínda pode acceder o reprodutor mini ao saír da pantalla completa</string>
     <string name="main_page_content_swipe_remove">Deslice os elementos para removelos</string>
-    <string name="no_appropriate_file_manager_message">Non se atopou ningún xestor de ficheiros axeitado para esta acción. 
+    <string name="no_appropriate_file_manager_message">Non se atopou ningún xestor de ficheiros axeitado para esta acción.
 \nPor favor instala un xestor de ficheiros ou intenta desactivar \'%s\' na configuración de descarga</string>
-    <string name="no_appropriate_file_manager_message_android_10">Non se atopou ningún xestor de ficheiros axeitado para esta acción. 
+    <string name="no_appropriate_file_manager_message_android_10">Non se atopou ningún xestor de ficheiros axeitado para esta acción.
 \nPor favor instala un xestor de ficheiros compatible con Storage Access Framework</string>
     <string name="detail_heart_img_view_description">Valorado polo creador</string>
     <string name="error_report_notification_toast">Ocorreu un erro, vexa a notificación</string>

@@ -25,7 +25,7 @@
     <string name="show_play_with_kodi_title">Soodhig istikhyaarka \"Ku fur Kodi\"</string>
     <string name="kore_not_found">Kushub appka maqan ee Kore\?</string>
     <string name="play_with_kodi_title">Ku fur Kodi</string>
-    <string name="show_higher_resolutions_summary">Aalladaha qaar kaliya ayaa furi kara muuqaalada 2K/4K ga ah</string>
+    <string name="show_higher_resolutions_summary">Aalladaha qaar kaliya ayaa furi kara muuqaalada 2.5K/4K ga ah</string>
     <string name="show_higher_resolutions_title">Tus tayooyinka kasii sareeeya</string>
     <string name="default_popup_resolution_title">Tayada muuqaalka daaqada</string>
     <string name="default_resolution_title">Tayada muuqaalka</string>
@@ -547,7 +547,7 @@
 \n
 \n1. Fur nidaamka \"Desktop mode\" browser-kaaga dhexdiisa (sababtoo ah websitekan moobilada kuma shaqaynayo)
 \n2. Booqo tixraacan %1$s
-\n3. Gali akoonkaaga marka lagu waydiiyo 
+\n3. Gali akoonkaaga marka lagu waydiiyo
 \n4. Koobiyee tixraaca boga ee lagugu xawilay.</string>
     <string name="import_youtube_instructions">Soo gali rukumada YouTube-ka:
 \n

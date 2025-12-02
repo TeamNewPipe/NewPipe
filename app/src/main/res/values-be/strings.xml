@@ -39,7 +39,7 @@
     <string name="default_resolution_title">Прадвызначаная раздзяляльнасць</string>
     <string name="default_popup_resolution_title">Раздзяляльнасць у аконным рэжыме</string>
     <string name="show_higher_resolutions_title">Паказваць высокія раздзяляльнасці</string>
-    <string name="show_higher_resolutions_summary">Толькі некаторыя прылады могуць прайграваць відэа ў 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Толькі некаторыя прылады могуць прайграваць відэа ў 2.5K/4K</string>
     <string name="play_with_kodi_title">Прайграць у Kodi</string>
     <string name="kore_not_found">Усталяваць адсутную праграму Kore?</string>
     <string name="show_play_with_kodi_title">Паказваць пункт «Прайграць у Kodi»</string>
@@ -296,8 +296,8 @@
     <string name="import_youtube_instructions">Імпарт падпісак YouTube з Google Takeout: \n \n1. Перайдзіце па гэтым URL: %1$s \n2. Увайдзіце, калі вас папросяць \n3. Націсніце на «Усе даныя ўключаны», затым на «Зняць выбар з усіх», затым выберыце толькі «падпіскі» і націсніце «ОК» \n4. Націсніце «Наступны крок», а затым «Стварыць экспарт» \n5. Націсніце на кнопку «Спампаваць» пасля таго, як яна з\'явіцца \n6. Ніжэй націсніце на ІМПАРТАВАЦЬ ФАЙЛ і выберыце спампаваны файл .zip \n7. [Калі не ўдаецца імпартаваць .zip] Трэба выняць файл .csv (звычайна ў раздзеле «YouTube і YouTube Music/subscriptions/subscriptions.csv»), ніжэй націсніце ІМПАРТАВАЦЬ ФАЙЛ і выберыце выняты файл CSV</string>
     <string name="import_soundcloud_instructions">Каб імпартаваць профіль SoundCloud, увядзіце URL або свой ID:\n\n1. Уключыце «Версія для ПК» у браўзеры (сайт не падтрымліваецца мабільнымі прыладамі) \n2. Перайдзіце на: %1$s \n3. Увайдзіце, калі неабходна \n4. Скапіруйце URL-адрас профілю, на які вас перанакіравала.</string>
     <string name="import_soundcloud_instructions_hint">вашID, soundcloud.com/вашID</string>
-    <string name="import_network_expensive_warning">Гэтае дзеянне можа выклікаць вялікі расход трафіку. 
-\n 
+    <string name="import_network_expensive_warning">Гэтае дзеянне можа выклікаць вялікі расход трафіку.
+\n
 \nПрацягнуць?</string>
     <string name="playback_speed_control">Кіраванне хуткасцю прайгравання</string>
     <string name="playback_tempo">Тэмп</string>

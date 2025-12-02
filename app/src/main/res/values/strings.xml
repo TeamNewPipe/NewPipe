@@ -49,7 +49,7 @@
     <string name="default_resolution_title">Default resolution</string>
     <string name="default_popup_resolution_title">Default popup resolution</string>
     <string name="show_higher_resolutions_title">Show higher resolutions</string>
-    <string name="show_higher_resolutions_summary">Only some devices can play 2K/4K videos</string>
+    <string name="show_higher_resolutions_summary">Only some devices can play 2.5K/4K videos</string>
     <string name="play_with_kodi_title">Play with Kodi</string>
     <string name="kore_not_found">Install missing Kore app\?</string>
     <string name="show_play_with_kodi_title">Show \"Play with Kodi\" option</string>
