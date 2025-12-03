@@ -1230,7 +1230,13 @@ public final class VideoDetailFragment
         disposables.add(recordManager.onViewed(info).onErrorComplete()
                 .subscribe(
                         ignored -> { /* successful */ },
-                        error -> Log.e(TAG, "Register view failure: ", error)
+                        error -> showSnackBarError(
+                                new ErrorInfo(
+                                        error,
+                                        UserAction.PLAY_STREAM,
+                                        "Got an error when modifying history on viewed"
+                                )
+                        )
                 ));
     }
 
