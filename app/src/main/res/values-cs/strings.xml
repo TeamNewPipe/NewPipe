@@ -88,7 +88,7 @@
 \npro otevření ve vyskakovacím okně</string>
     <string name="use_external_video_player_summary">Odstraňuje zvuk v některých rozlišeních</string>
     <string name="show_higher_resolutions_title">Zobrazovat vyšší rozlišení</string>
-    <string name="show_higher_resolutions_summary">Pouze některá zařízení dokáží přehrát 2.5K/4K videa</string>
+    <string name="show_higher_resolutions_summary">Pouze některá zařízení dokáží přehrát 1440p/4K videa</string>
     <string name="default_video_format_title">Výchozí formát videa</string>
     <string name="popup_remember_size_pos_title">Pamatovat si vlastnosti vyskakovacího okna</string>
     <string name="popup_remember_size_pos_summary">Pamatovat si poslední velikost a pozici vyskakovacího okna</string>

@@ -67,7 +67,7 @@ NewPipe herhangi bir Google çerçeve kütüphanesini, ya da YouTube API hizmetl
 * Kanal arama
 * Bir kanaldaki videoları izleme
 * Orbot/Tor desteği (henüz direkt olarak değil)
-* 1080p/2.5K/4K desteği
+* 1080p/1440p/4K desteği
 * Geçmişi görme
 * Kanallara abone olma
 * Geçmişte arama

@@ -36,7 +36,7 @@
     <string name="no_player_found">प्लेअर सापडले नाही. VLC प्लेअर इंस्टॉल करू इच्छिता का\?</string>
     <string name="main_bg_subtitle">प्रारंभ करण्यासाठी मॅग्निफाइंग ग्लासवर टॅप करा.</string>
     <string name="play_with_kodi_title">कोडी वापरून चालवा</string>
-    <string name="show_higher_resolutions_summary">फक्त काही उपकरणे 2.5k/4k व्हिडिओ चालवू शकतात</string>
+    <string name="show_higher_resolutions_summary">फक्त काही उपकरणे 1440p/4k व्हिडिओ चालवू शकतात</string>
     <string name="show_higher_resolutions_title">वरचे रेसॉल्युशन दाखवा</string>
     <string name="default_popup_resolution_title">डिफॉल्ट पॉप अप रेसिल्युशन</string>
     <string name="default_resolution_title">डीफॉल्ट रेसोल्युशन निवडा</string>

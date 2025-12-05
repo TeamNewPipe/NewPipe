@@ -21,7 +21,7 @@ public class PreferenceSearchItem {
     @NonNull
     private final String title;
     /**
-     * Summary of the setting, e.g. '480p' or 'Only some devices can play 2.5k/4k'.
+     * Summary of the setting, e.g. '480p' or 'Only some devices can play 1440p/4k'.
      */
     @NonNull
     private final String summary;

@@ -39,7 +39,7 @@
     <string name="default_resolution_title">Standaard resolutie</string>
     <string name="default_popup_resolution_title">Standaard resolutie voor pop-up</string>
     <string name="show_higher_resolutions_title">Hogere resoluties weergeven</string>
-    <string name="show_higher_resolutions_summary">Slechts enkele toestellen kunnen 2.5K- en 4K-video\'s afspelen</string>
+    <string name="show_higher_resolutions_summary">Slechts enkele toestellen kunnen 1440p- en 4K-video\'s afspelen</string>
     <string name="play_with_kodi_title">Afspelen met Kodi</string>
     <string name="kore_not_found">Wilt u de missende Kore-app installeren\?</string>
     <string name="show_play_with_kodi_title">Toon “Afspelen met Kodi”-optie</string>

@@ -69,7 +69,7 @@ NewPipe no usa ninguna librería del framework de Google, ni la API de YouTube. 
 * Buscador de canales
 * Mirar videos de un canal
 * Soporte Orbot/Tor (todavía no directamente)
-* Soporte para videos en 1080p/2.5K/4K
+* Soporte para videos en 1080p/1440p/4K
 * Historial de videos vistos
 * Suscripción a canales
 * Historial de búsquedas

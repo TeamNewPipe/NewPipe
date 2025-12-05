@@ -485,7 +485,7 @@
     <string name="trending">Tendências</string>
     <string name="always_ask_open_action">Perguntar sempre</string>
     <string name="error_timeout">Ligação expirada</string>
-    <string name="show_higher_resolutions_summary">Apenas alguns dispositivos conseguem reproduzir vídeos em 2.5K/4K</string>
+    <string name="show_higher_resolutions_summary">Apenas alguns dispositivos conseguem reproduzir vídeos em 1440p/4K</string>
     <string name="settings_category_appearance_title">Aparência</string>
     <string name="donation_title">Doar</string>
     <string name="error_report_open_github_notice">Verifique se o seu erro já foi reportado. A criação de erros em duplicado tira-nos tempo que pode ser utilizado para corrigir os erros.</string>

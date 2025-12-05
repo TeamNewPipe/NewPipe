@@ -39,7 +39,7 @@
     <string name="play_audio">ድምጺ</string>
     <string name="download_path_audio_summary">ድምጺ ምውራድ ማህደር ፋይላት ኣብዚ ይኽዘኑ</string>
     <string name="notification_action_nothing">ዋላ-ሓንቲ</string>
-    <string name="show_higher_resolutions_summary">ገለ መሳርሒታት ጥራይ እዮም 2.5K/4K ተንቃሳቀሴ-ምስሌ ክጻወቱ ዝኽእሉ</string>
+    <string name="show_higher_resolutions_summary">ገለ መሳርሒታት ጥራይ እዮም 1440p/4K ተንቃሳቀሴ-ምስሌ ክጻወቱ ዝኽእሉ</string>
     <string name="use_external_audio_player_title">ናይ ደገ ድምጺ መጻወቲ ተጠቐም</string>
     <string name="notification_colorize_summary">Android ሕብሪ ናይቲ መተሓሳሰቢ ብመሰረት እቲ ኣብቲ ንእሽቶ ስእሊ ዘሎ ቀንዲ ሕብሪ ከም ዝጥዕሞ ግበር (እዚ ኣብ ኩሉ መሳርሒታት ከምዘይርከብ ኣስተውዕል)</string>
     <string name="default_popup_resolution_title">ትሑዝ ፖፕኣፕ ድንቀት</string>

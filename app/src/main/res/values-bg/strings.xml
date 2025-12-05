@@ -34,7 +34,7 @@
     <string name="default_resolution_title">Резолюция по подразбиране</string>
     <string name="default_popup_resolution_title">Резолюция по подразбиране на прозореца</string>
     <string name="show_higher_resolutions_title">Покажи по-високи резолюции</string>
-    <string name="show_higher_resolutions_summary">Само някои устройства могат да възпроизвеждат 2.5K/4K видео</string>
+    <string name="show_higher_resolutions_summary">Само някои устройства могат да възпроизвеждат 1440p/4K видео</string>
     <string name="play_with_kodi_title">Въпроизвеждане с Kodi</string>
     <string name="kore_not_found">Инсталиране на липсващо приложение Kore?</string>
     <string name="show_play_with_kodi_title">Покажи „Възпроизвеждане с Kodi“</string>

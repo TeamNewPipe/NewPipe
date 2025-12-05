@@ -39,7 +39,7 @@
     <string name="default_resolution_title">Resolución predeterminada</string>
     <string name="default_popup_resolution_title">Resolución predeterminada do popup</string>
     <string name="show_higher_resolutions_title">Mostrar resolucións máis altas</string>
-    <string name="show_higher_resolutions_summary">Só algúns dispositivos poden reproducir vídeos en 2.5K/4K</string>
+    <string name="show_higher_resolutions_summary">Só algúns dispositivos poden reproducir vídeos en 1440p/4K</string>
     <string name="play_with_kodi_title">Reproducir co Kodi</string>
     <string name="kore_not_found">Quere instalar o aplicativo Kore que falta\?</string>
     <string name="show_play_with_kodi_title">Mostrar a opción «Reproducir co Kodi»</string>

@@ -344,7 +344,7 @@
     <string name="show_play_with_kodi_title">\"Kodi ഉപയോഗിച്ച് പ്ലേ ചെയ്യുക\" ഓപ്ഷൻ കാണിക്കുക</string>
     <string name="kore_not_found">Kore ഇൻസ്റ്റാൾ ചെയ്യട്ടെയോ\?</string>
     <string name="play_with_kodi_title">Kodi ഉപയോഗിച്ച് പ്ലേ ചെയ്യുക</string>
-    <string name="show_higher_resolutions_summary">ചില ഉപകരണങ്ങളിൽ മാത്രമേ 2.5K/4K വീഡിയോകൾ കാണാൻ സാധിക്കുകയുള്ളൂ</string>
+    <string name="show_higher_resolutions_summary">ചില ഉപകരണങ്ങളിൽ മാത്രമേ 1440p/4K വീഡിയോകൾ കാണാൻ സാധിക്കുകയുള്ളൂ</string>
     <string name="show_higher_resolutions_title">ഉയർന്ന റിസല്യൂഷനുകൾ കാണിക്കുക</string>
     <string name="default_popup_resolution_title">സ്ഥിര പോപ്പപ്പ് റിസല്യൂഷൻ</string>
     <string name="default_resolution_title">സ്ഥിര റിസല്യൂഷൻ</string>

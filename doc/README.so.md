@@ -67,7 +67,7 @@ NewPipe ma isticmalo nidaamka wada shaqaynta Google, ama API-ga YouTube. Kaliya 
 * Raadi kanaalo
 * Daawo muuqaalada kanaal
 * Taageerida Orbot/Tor (wali toos ma aha)
-* Taageerida muuqaalada 1080p/2.5K/4K
+* Taageerida muuqaalada 1080p/1440p/4K
 * Kaydka wixii hore [aad u daawatay]
 * Inaad rukumato kanaalada
 * Kaydinta waxaad raadisay

@@ -32,7 +32,7 @@
     <string name="download_path_dialog_title">Vel hentemappe for videofiler</string>
     <string name="download_path_audio_title">Hentemappe for ljod</string>
     <string name="show_higher_resolutions_title">Vis høgare oppløysingar</string>
-    <string name="show_higher_resolutions_summary">Berre somme einingar kan spela av 2.5K-/4K-videoar</string>
+    <string name="show_higher_resolutions_summary">Berre somme einingar kan spela av 1440p-/4K-videoar</string>
     <string name="play_with_kodi_title">Spel av med Kodi</string>
     <string name="show_play_with_kodi_title">Vis \"Spela av med Kodi\"-val</string>
     <string name="download">Hent</string>

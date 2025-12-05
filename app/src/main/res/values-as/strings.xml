@@ -37,7 +37,7 @@
     <string name="default_resolution_title">স্থায়ী ৰিজ\'লিউচন</string>
     <string name="default_popup_resolution_title">স্থায়ী পপআপ ৰিজোলিউচন</string>
     <string name="show_higher_resolutions_title">উচ্চ ৰিজ\'লিউচন দেখুৱাওক</string>
-    <string name="show_higher_resolutions_summary">কেৱল কিছুমান ডিভাইচেহে 2.5K/4K ভিডিঅ’ বজাব পাৰে</string>
+    <string name="show_higher_resolutions_summary">কেৱল কিছুমান ডিভাইচেহে 1440p/4K ভিডিঅ’ বজাব পাৰে</string>
     <string name="play_with_kodi_title">Kodi ৰ সৈতে বজাওক</string>
     <string name="kore_not_found">Kode এপ ইনষ্টল\?</string>
     <string name="show_play_with_kodi_title">\"Kodi ৰ সৈতে খোলক\" বিকল্প দেখুৱাওক</string>

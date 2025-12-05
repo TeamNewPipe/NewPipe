@@ -41,7 +41,7 @@
     <string name="default_resolution_title">Resolucion per defaut</string>
     <string name="default_popup_resolution_title">Resolucion per defaut dels fenestrons</string>
     <string name="show_higher_resolutions_title">Afichar de resolucions mai nautas</string>
-    <string name="show_higher_resolutions_summary">Totes los dispositius pòdon pas legir de vidèos 2.5K/4K</string>
+    <string name="show_higher_resolutions_summary">Totes los dispositius pòdon pas legir de vidèos 1440p/4K</string>
     <string name="play_with_kodi_title">Jogar amb Kodi</string>
     <string name="kore_not_found">Trobam pas l\'aplicacion Kore. La volètz installar\?</string>
     <string name="show_play_with_kodi_title">Afichar l\'opcion \"Legir amb Kodi\"</string>

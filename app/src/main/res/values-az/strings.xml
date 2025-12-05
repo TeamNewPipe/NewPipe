@@ -84,7 +84,7 @@
     <string name="notification_action_2_title">Üçüncü fəaliyyət düyməsi</string>
     <string name="notification_action_1_title">İkinci fəaliyyət düyməsi</string>
     <string name="notification_action_0_title">Birinci fəaliyyət düyməsi</string>
-    <string name="show_higher_resolutions_summary">Yalnız bəzi cihazlar 2.5K/4K videoları oynada bilir</string>
+    <string name="show_higher_resolutions_summary">Yalnız bəzi cihazlar 1440p/4K videoları oynada bilir</string>
     <string name="default_popup_resolution_title">Standart ani görüntü formatı</string>
     <string name="controls_add_to_playlist_title">Əlavə Et</string>
     <string name="controls_popup_title">Ani Görüntü</string>

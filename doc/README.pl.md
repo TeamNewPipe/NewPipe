@@ -68,7 +68,7 @@ NewPipe nie używa żadnych bibliotek Google ani API YouTube. Strony są jedynie
 * Wyszukiwanie kanałów
 * Oglądanie filmów ze strony kanału
 * Wsparcie dla Orbot/Tor (Jeszcze nie bezpośrednio)
-* Wsparcie dla 1080p/2.5K/4K
+* Wsparcie dla 1080p/1440p/4K
 * Historia oglądania
 * Subskrybowanie kanałów
 * Historia wyszukiwania

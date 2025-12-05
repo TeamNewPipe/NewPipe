@@ -204,7 +204,7 @@
     <string name="show_info">ସୂଚନା ଦେଖାଅ</string>
     <string name="controls_add_to_playlist_title">ଏଥିରେ ଯୋଡ଼ିବା</string>
     <string name="default_popup_resolution_title">ଡିଫଲ୍ଟ ପପ୍ଅପ୍ ରେଜୋଲୁସନ</string>
-    <string name="show_higher_resolutions_summary">କେବଳ କିଛି ଡିଭାଇସ୍ 2.5K / 4K ଭିଡିଓ ଚଲାଇ ପାରିବେ</string>
+    <string name="show_higher_resolutions_summary">କେବଳ କିଛି ଡିଭାଇସ୍ 1440p / 4K ଭିଡିଓ ଚଲାଇ ପାରିବେ</string>
     <string name="kore_not_found">ନିଖୋଜ କୋର ଆପ୍ ସଂସ୍ଥାପନ କରିବେ\?</string>
     <string name="notification_scale_to_square_image_title">ଥମ୍ୱନେଲ କୁ 1:1 ଅନୁପାତରେ କ୍ରୋପ୍ କରନ୍ତୁ</string>
     <string name="notification_action_0_title">ପ୍ରଥମ କୃତ୍ୟ ବଟନ୍</string>

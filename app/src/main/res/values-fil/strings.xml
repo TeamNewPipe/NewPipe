@@ -96,7 +96,7 @@
     <string name="crash_the_player">I-crash ang player</string>
     <string name="popup_remember_size_pos_title">Tandaan ang mga property ng popup</string>
     <string name="default_popup_resolution_title">Panimulang linaw ng popup</string>
-    <string name="show_higher_resolutions_summary">Mape-play lang ng ilang device ang mga video na 2.5K/4K</string>
+    <string name="show_higher_resolutions_summary">Mape-play lang ng ilang device ang mga video na 1440p/4K</string>
     <string name="kore_not_found">I-install ang nawawalang Kode app\?</string>
     <string name="notification_scale_to_square_image_title">I-scale ang thumbnail sa 1:1 aspect ratio</string>
     <string name="notification_scale_to_square_image_summary">I-scale ang thumbnail ng video sa abiso mula 16:9 papuntang 1:1 aspect ratio (pwedeng magkaroon ng distortion)</string>

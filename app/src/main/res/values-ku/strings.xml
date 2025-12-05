@@ -39,7 +39,7 @@
     <string name="default_resolution_title">قەبارەی بنەڕەت</string>
     <string name="default_popup_resolution_title">قەبارەی بنەڕەتی په‌نجه‌ره‌</string>
     <string name="show_higher_resolutions_title">پیشاندانی قەبارەی به‌رزتر</string>
-    <string name="show_higher_resolutions_summary">تەنها چەند مۆبایلێک پشتگیری لێدانی ڤیدیۆی 2.5K/4K دەکەن</string>
+    <string name="show_higher_resolutions_summary">تەنها چەند مۆبایلێک پشتگیری لێدانی ڤیدیۆی 1440p/4K دەکەن</string>
     <string name="play_with_kodi_title">لێدان لە Kodi</string>
     <string name="kore_not_found">ئەپەکە نه‌دۆزرایه‌وه‌. دابمه‌زرێت؟</string>
     <string name="show_play_with_kodi_title">بژاردەی ”لێدان بە Kodi“ پیشانبدرێت</string>

@@ -93,7 +93,7 @@
 \nÖffnen im Pop-up-Modus erforderlich</string>
     <string name="default_popup_resolution_title">Standardauflösung des Pop-ups</string>
     <string name="show_higher_resolutions_title">Höhere Auflösungen anzeigen</string>
-    <string name="show_higher_resolutions_summary">Nur manche Geräte können Videos in 2.5K/4K abspielen</string>
+    <string name="show_higher_resolutions_summary">Nur manche Geräte können Videos in 1440p/4K abspielen</string>
     <string name="controls_background_title">Hintergrund</string>
     <string name="controls_popup_title">Pop-up</string>
     <string name="popup_remember_size_pos_title">Eigenschaften des Pop-ups merken</string>

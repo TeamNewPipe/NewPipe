@@ -84,7 +84,7 @@
     <string name="recaptcha_request_toast">Provocare reCAPTCHA solicitată</string>
     <string name="default_popup_resolution_title">Rezoluția implicită a ferestrei pop-up</string>
     <string name="show_higher_resolutions_title">Afișează rezoluții mai mari</string>
-    <string name="show_higher_resolutions_summary">Doar anumite dispozitive suportă redarea videoclipurilor 2.5K/4K</string>
+    <string name="show_higher_resolutions_summary">Doar anumite dispozitive suportă redarea videoclipurilor 1440p/4K</string>
     <string name="default_video_format_title">Format video implicit</string>
     <string name="black_theme_title">Negru</string>
     <string name="popup_playing_toast">Redare în mod pop-up</string>

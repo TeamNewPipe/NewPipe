@@ -68,7 +68,7 @@ NewPipe nu foloseşte nici-o bibliotecă Google framework sau API-ul Youtube. We
 * Căutarea canalelor
 * Vizionarea videoclipurilor dintr-un canal
 * Suport Orbot/Tor (încă nu direct)
-* Suport 1080p/2.5K/4K
+* Suport 1080p/1440p/4K
 * Vizionarea istoricului
 * Abonarea la canale
 * Căutarea în istoric

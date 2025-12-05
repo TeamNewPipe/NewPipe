@@ -40,7 +40,7 @@
     <string name="default_resolution_title">पूर्वनिर्धारित रेजोलुसन</string>
     <string name="default_popup_resolution_title">पूर्वनिर्धारित पपअप रेजोलुसन</string>
     <string name="show_higher_resolutions_title">उच्च रेजोलुसन देखाउनु</string>
-    <string name="show_higher_resolutions_summary">केवल केही डिभाइसहरू मात्र 2.5k/4K भिडियो चलाउन सक्छन्</string>
+    <string name="show_higher_resolutions_summary">केवल केही डिभाइसहरू मात्र 1440p/4K भिडियो चलाउन सक्छन्</string>
     <string name="play_with_kodi_title">Kodi सँग चलाउनुहोस्</string>
     <string name="kore_not_found">\'Kore\' एप छैन, इन्स्टल गर्न चाहनुहुन्छ\?</string>
     <string name="show_play_with_kodi_title">\"Kodi सँग प्ले\" विकल्प देखाउनु</string>

@@ -40,7 +40,7 @@
     <string name="default_resolution_title">ความละเอียดเริ่มต้น</string>
     <string name="default_popup_resolution_title">ความละเอียดเริ่มต้นในโหมดพ็อปอัพ</string>
     <string name="show_higher_resolutions_title">แสดงความละเอียดที่สูงขึ้น</string>
-    <string name="show_higher_resolutions_summary">เฉพาะบางอุปกรณ์ที่รองรับการเล่นวิดีโอ 2.5K/4K</string>
+    <string name="show_higher_resolutions_summary">เฉพาะบางอุปกรณ์ที่รองรับการเล่นวิดีโอ 1440p/4K</string>
     <string name="play_with_kodi_title">เปิดด้วย Kodi</string>
     <string name="kore_not_found">ไม่พบแอป Kore จะติดตั้งหรือไม่\?</string>
     <string name="show_play_with_kodi_title">แสดงตัวเลือก \"เปิดด้วย Kodi\"</string>

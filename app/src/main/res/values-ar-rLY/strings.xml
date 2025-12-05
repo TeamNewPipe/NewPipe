@@ -324,7 +324,7 @@
     <string name="skip_silence_checkbox">تسريع إلى الأمام أثناء الصمت</string>
     <string name="settings_category_exoplayer_summary">إدارة بعض إعدادات ExoPlayer. تتطلب هذه التغييرات إعادة تشغيل المشغل لتصبح سارية المفعول</string>
     <string name="playlist_add_stream_success_duplicate">تمت إضافة وقت (أوقات) مكررة %d</string>
-    <string name="show_higher_resolutions_summary">فقط بعض الأجهزة تدعم تشغيل مقاطع فيديو 2.5K/4K</string>
+    <string name="show_higher_resolutions_summary">فقط بعض الأجهزة تدعم تشغيل مقاطع فيديو 1440p/4K</string>
     <string name="import_data_title">استيراد قاعدة البيانات</string>
     <string name="image_quality_low">جودة منخفضة</string>
     <string name="main_tabs_position_title">موضع الألسنة الرئيسية</string>

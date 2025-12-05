@@ -39,7 +39,7 @@
     <string name="default_resolution_title">Прадвызначаная раздзяляльнасць</string>
     <string name="default_popup_resolution_title">Раздзяляльнасць у аконным рэжыме</string>
     <string name="show_higher_resolutions_title">Паказваць высокія раздзяляльнасці</string>
-    <string name="show_higher_resolutions_summary">Толькі некаторыя прылады могуць прайграваць відэа ў 2.5K/4K</string>
+    <string name="show_higher_resolutions_summary">Толькі некаторыя прылады могуць прайграваць відэа ў 1440p/4K</string>
     <string name="play_with_kodi_title">Прайграць у Kodi</string>
     <string name="kore_not_found">Усталяваць адсутную праграму Kore?</string>
     <string name="show_play_with_kodi_title">Паказваць пункт «Прайграць у Kodi»</string>

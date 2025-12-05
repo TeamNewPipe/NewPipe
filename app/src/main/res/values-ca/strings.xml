@@ -113,7 +113,7 @@
     <string name="download_path_audio_dialog_title">Trieu la carpeta de baixada per als fitxers d\'àudio</string>
     <string name="default_popup_resolution_title">Resolució per defecte del mode emergent</string>
     <string name="show_higher_resolutions_title">Mostra resolucions superiors</string>
-    <string name="show_higher_resolutions_summary">Només alguns dispositius poden reproduir vídeos en 2.5K/4K</string>
+    <string name="show_higher_resolutions_summary">Només alguns dispositius poden reproduir vídeos en 1440p/4K</string>
     <string name="play_with_kodi_title">Reprodueix amb el Kodi</string>
     <string name="kore_not_found">No s\'ha trobat l\'aplicació Kore. Voleu instal·lar-la\?</string>
     <string name="show_play_with_kodi_title">Mostra «Reprodueix amb el Kodi»</string>
