@@ -1909,8 +1909,8 @@ public final class VideoDetailFragment
             return;
         }
 
-        // On tablets, just toggle fullscreen UI without orientation change.
-        if (DeviceUtils.isTablet(activity)) {
+        // On tablets and TVs, just toggle fullscreen UI without orientation change.
+        if (DeviceUtils.isTablet(activity) || DeviceUtils.isTv(activity)) {
             playerUi.get().toggleFullscreen();
             return;
         }
