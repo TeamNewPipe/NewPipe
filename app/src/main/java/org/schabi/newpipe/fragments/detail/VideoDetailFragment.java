@@ -207,7 +207,7 @@ public final class VideoDetailFragment
     @State
     protected boolean autoPlayEnabled = true;
     @State
-    private int originalOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
+    protected int originalOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
 
     @Nullable
     private StreamInfo currentInfo = null;
