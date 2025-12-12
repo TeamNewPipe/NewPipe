@@ -168,10 +168,10 @@ abstract class FeedDAO {
         ON fgs.subscription_id = lu.subscription_id AND fgs.group_id = :groupId
         """
     )
-    abstract fun oldestSubscriptionUpdate(groupId: Long): Flowable<List<OffsetDateTime>>
+    abstract fun oldestSubscriptionUpdate(groupId: Long): Flowable<List<OffsetDateTime?>>
 
     @Query("SELECT MIN(last_updated) FROM feed_last_updated")
-    abstract fun oldestSubscriptionUpdateFromAll(): Flowable<List<OffsetDateTime>>
+    abstract fun oldestSubscriptionUpdateFromAll(): Flowable<List<OffsetDateTime?>>
 
     @Query("SELECT COUNT(*) FROM feed_last_updated WHERE last_updated IS NULL")
     abstract fun notLoadedCount(): Flowable<Long>

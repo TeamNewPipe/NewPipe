@@ -213,7 +213,7 @@
     <string name="playback_speed_control">Controls de la velocitat de reproducció</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">To</string>
-    <string name="main_bg_subtitle">Toca \"Cerca\" per començar.</string>
+    <string name="main_bg_subtitle">Toqueu la lupa per començar.</string>
     <string name="use_external_video_player_summary">Elimina l\'àudio en algunes resolucions</string>
     <string name="use_external_audio_player_title">Reproductor d\'àudio extern</string>
     <string name="enable_search_history_summary">Emmagatzema les cerques localment</string>

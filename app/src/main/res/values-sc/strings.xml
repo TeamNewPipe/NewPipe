@@ -818,4 +818,18 @@
     <string name="tab_bookmarks_short">Iscalitas</string>
     <string name="share_playlist_as_youtube_temporary_playlist">Cumpartzi comente un\'iscalita temporànea de YouTube</string>
     <string name="audio_track_type_secondary">segundàriu</string>
+    <string name="search_with_service_name">Chirca in %1$s</string>
+    <string name="search_with_service_name_and_filter">Chirca %1$s (%2$s)</string>
+    <string name="select_a_feed_group">Seletziona unu grupu de flussos</string>
+    <string name="no_feed_group_created_yet">Galu perunu grupu de flussos creadu</string>
+    <string name="feed_group_page_summary">Pàgina de grupu de canales</string>
+    <string name="channel_tab_likes">Agradessimentos</string>
+    <string name="migration_info_6_7_title">Pàgina Top 50 de SoundCloud bogada</string>
+    <string name="migration_info_6_7_message">SoundCloud at abbandonadu sos gràficos Top 50 originales. S\'ischeda currispondente est istada bogada dae sa pàgina printzipale tua.</string>
+    <string name="migration_info_7_8_title">Tendèntzias cumbinadas de YouTube bogadas</string>
+    <string name="migration_info_7_8_message">YouTube at abbandonadu sa pàgina de sas tendèntzias cumbinadas in su 21 de trìulas de su 2025. NewPipe at sostituidu sa pàgina de sas tendèntzias printzipales cun sas diretas de tendèntzia.\n\nPodes fintzas seletzionare pàginas de sas tendèntzias diferentes in \"Impostatziones &gt; Cuntenutos &gt; Cuntenutu de sa pàgina printzipale\".</string>
+    <string name="trending_gaming">Giogos de tendèntzia</string>
+    <string name="trending_podcasts">Podcasts de tendèntzia</string>
+    <string name="trending_movies">Films e programmas de tendèntzia</string>
+    <string name="trending_music">Mùsica de tendèntzia</string>
 </resources>

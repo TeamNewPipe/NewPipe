@@ -1,0 +1,19 @@
+### Novo
+- Dugi dodir za brisanje i dijeljenje u pretplatama #1516
+- Korisnički interfejs tableta i raspored mreže #1617
+
+### Poboljšanja
+- pohranjivanje i ponovno učitavanje posljednjeg korištenog omjera širine i visine #1748
+- Omogućavanje linearnog rasporeda u aktivnosti preuzimanja s punim nazivima videozapisa #1771
+- Brisanje i dijeljenje pretplata direktno iz kartice pretplata #1516
+- Stavljanje u red čekanja sada pokreće reprodukciju videozapisa ako je red čekanja za reprodukciju već završen #1783
+- Odvojene postavke za geste jačine zvuka i svjetline #1644
+- Dodana podrška za lokalizaciju #1792
+
+### Ispravke
+- Ispravljeno raščlanjivanje vremena za . format, tako da se NewPipe može koristiti u Finskoj
+- Ispravljen broj pretplata
+- Dodana dozvola za uslugu u prvom planu za API 28+ uređaje #1830
+
+### Poznate greške
+- Stanje reprodukcije se ne može sačuvati na Android P

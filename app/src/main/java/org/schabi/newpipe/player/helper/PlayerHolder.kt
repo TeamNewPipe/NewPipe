@@ -172,9 +172,11 @@ object PlayerHolder {
             startPlayerListener()
             // ^ will call listener.onPlayerConnected() down the line if there is an active player
 
-            // notify the main activity that binding the service has completed, so that it can
-            // open the bottom mini-player
-            NavigationHelper.sendPlayerStartedEvent(s)
+            if (playerService != null && playerService?.player != null) {
+                // notify the main activity that binding the service has completed and that there is
+                // a player, so that it can open the bottom mini-player
+                NavigationHelper.sendPlayerStartedEvent(localBinder.service)
+            }
         }
     }
 
@@ -243,8 +245,8 @@ object PlayerHolder {
             listener?.onFullscreenStateChanged(fullscreen)
         }
 
-        override fun onScreenRotationButtonClicked() {
-            listener?.onScreenRotationButtonClicked()
+        override fun onFullscreenToggleButtonClicked() {
+            listener?.onFullscreenToggleButtonClicked()
         }
 
         override fun onMoreOptionsLongClicked() {

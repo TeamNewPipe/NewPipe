@@ -1,0 +1,17 @@
+Novo
+• Obavještenja za nove tokove
+• Besprijekoran prijelaz između pozadinskog i video playera
+• Promjena visine tona za polutone
+• Dodavanje reda čekanja glavnog playera na listu za reprodukciju
+
+Poboljšano
+
+• Zapamti brzinu/veličinu koraka visine tona
+• Ublaži početno dugo baferovanje u video playeru
+• Poboljšan korisnički interfejs playera za Android TV
+• Potvrdi prije brisanja svih preuzetih datoteka
+
+Ispravljeno
+• Ispravljeno dugme za medije koje nije skrivalo kontrole playera
+• Ispravljeno resetovanje reprodukcije pri promjeni tipa playera
+• Ispravljeno rotiranje dijaloga liste za reprodukciju

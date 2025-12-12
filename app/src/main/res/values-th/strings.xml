@@ -407,4 +407,23 @@
     <string name="notification_action_nothing">ไม่มี</string>
     <string name="no">ไม่</string>
     <string name="yes">ใช่/ตกลง</string>
+    <string name="videos_string">วิดีโอ</string>
+    <string name="mute">ปิดเสียง</string>
+    <string name="unmute">เลิกปิดเสียง</string>
+    <string name="feed_create_new_group_button_title">ใหม่</string>
+    <string name="settings_category_feed_title">ฟีด</string>
+    <string name="songs">เพลง</string>
+    <string name="albums">อัลบั้ม</string>
+    <string name="never">ไม่ต้อง</string>
+    <string name="recent">ล่าสุด</string>
+    <string name="comments_tab_description">ความคิดเห็น</string>
+    <string name="description_tab_description">คำอธิบาย</string>
+    <string name="featured">แนะนำ</string>
+    <string name="metadata_category">หมวดหมู่</string>
+    <string name="metadata_tags">แท็ก</string>
+    <string name="metadata_licence">ลิขสิทธิ์</string>
+    <string name="metadata_language">ภาษา</string>
+    <string name="sort">จัดเรียง</string>
+    <string name="card">การ์ด</string>
+    <string name="feed_show_upcoming">กำลังจะมา</string>
 </resources>

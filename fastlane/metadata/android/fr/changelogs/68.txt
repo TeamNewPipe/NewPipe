@@ -17,7 +17,7 @@
 ### Corrections
 - Erreur lorsque le nombre d'abonnements n'est pas disponible. Ferme #1649.
   - Affiche "le nombre d'abonnés non disponible" dans ces cas.
-- NPE lorsqu'une liste de lecture YouTube est vide.
+- NPE lorsqu'une playlist YouTube est vide.
 - Kiosques dans SoundCloud
 - Refactor et correction du bug #1623 
 - Résultat de recherche cyclique #1562

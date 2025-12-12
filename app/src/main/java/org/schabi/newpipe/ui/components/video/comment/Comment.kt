@@ -188,6 +188,7 @@ fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
     }
 }
 
+@Suppress("ktlint:standard:function-naming")
 fun CommentsInfoItem(
     serviceId: Int = 1,
     url: String = "",

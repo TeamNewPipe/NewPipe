@@ -76,7 +76,8 @@ public class SuggestionListAdapter
         }
     }
 
-    private static class SuggestionItemCallback extends DiffUtil.ItemCallback<SuggestionItem> {
+    private static final class SuggestionItemCallback
+            extends DiffUtil.ItemCallback<SuggestionItem> {
         @Override
         public boolean areItemsTheSame(@NonNull final SuggestionItem oldItem,
                                        @NonNull final SuggestionItem newItem) {

@@ -37,9 +37,9 @@ class SubscriptionExportWorker(
             val uri = inputData.getString(EXPORT_PATH)!!.toUri()
             val table = NewPipeDatabase.getInstance(applicationContext).subscriptionDAO()
             val subscriptions =
-                table.all
+                table.getAll()
                     .awaitFirst()
-                    .map { SubscriptionItem(it.serviceId, it.url, it.name) }
+                    .map { SubscriptionItem(it.serviceId, it.url ?: "", it.name ?: "") }
 
             val qty = subscriptions.size
             val title = applicationContext.resources.getQuantityString(R.plurals.export_subscriptions, qty, qty)

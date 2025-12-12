@@ -234,7 +234,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
             ShareUtils.copyToClipboard(context, player.getVideoUrlAtCurrentTime());
             return true;
         });
-        binding.fullScreenButton.setOnClickListener(makeOnClickListener(() -> {
+        binding.fullscreenToggleButtonSecondaryMenu.setOnClickListener(makeOnClickListener(() -> {
             player.setRecovery();
             NavigationHelper.playOnMainPlayer(context,
                     Objects.requireNonNull(player.getPlayQueue()), true);
@@ -301,8 +301,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.moreOptionsButton.setOnLongClickListener(null);
         binding.share.setOnClickListener(null);
         binding.share.setOnLongClickListener(null);
-        binding.fullScreenButton.setOnClickListener(null);
-        binding.screenRotationButton.setOnClickListener(null);
+        binding.fullscreenToggleButtonSecondaryMenu.setOnClickListener(null);
+        binding.fullscreenToggleButton.setOnClickListener(null);
         binding.playWithKodi.setOnClickListener(null);
         binding.openInBrowser.setOnClickListener(null);
         binding.playerCloseButton.setOnClickListener(null);
@@ -1455,7 +1455,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                         if (player.getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible) {
                             if (v == binding.playPauseButton
                                     // Hide controls in fullscreen immediately
-                                    || (v == binding.screenRotationButton && isFullscreen())) {
+                                    || (v == binding.fullscreenToggleButton && isFullscreen())) {
                                 hideControls(0, 0);
                             } else {
                                 hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);

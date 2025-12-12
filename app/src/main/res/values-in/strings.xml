@@ -812,4 +812,24 @@
     <string name="channel_tab_likes">Suka</string>
     <string name="migration_info_6_7_title">Halaman Top 50 SoundCloud dihapus</string>
     <string name="migration_info_6_7_message">SoundCloud telah menghentikan dukungan tangga lagu Top 50. Tab terkait telah dihapus dari halaman utama Anda.</string>
+    <string name="permission_display_over_apps_message">Untuk menggunakan Pemutar Sembul, silakan pilih %1$s dalam menu pengaturan Android berikut dan aktifkan %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">\"Izinkan menampilkan di atas aplikasi\"</string>
+    <string name="delete_file">Hapus berkas</string>
+    <string name="delete_entry">Hapus entri</string>
+    <string name="account_terminated_service_provides_reason">Akun dihapus\n\n%1$s menyediakan alasan ini: %2$s</string>
+    <string name="migration_info_7_8_title">Tren terpadu YouTube dihilangkan</string>
+    <string name="migration_info_7_8_message">YouTube telah mengakhiri halaman tren terpadu pada 21 Juli 2025. NewPipe mengganti halaman tren bawaan dengan tren siaran langsung.\n\nAnda juga dapat memilih halaman tren berbeda dalam \"Pengaturan &gt; Konten &gt; Konten di halaman utama\".</string>
+    <string name="trending_gaming">Tren permainan</string>
+    <string name="trending_podcasts">Tren siniar</string>
+    <string name="trending_movies">Tren film dan acara</string>
+    <string name="trending_music">Tren musik</string>
+    <string name="entry_deleted">Entri dihapus</string>
+    <string name="player_http_403">Kesalahan HTTP 403 diterima dari server saat memutar, dapat disebabkan oleh URL streaming kedaluwarsa atau pemblokiran IP</string>
+    <string name="player_http_invalid_status">Kesalahan HTTP %1$s diterima dari server saat memutar</string>
+    <string name="youtube_player_http_403">Kesalahan HTTP 403 diterima dari server saat memutar, dapat disebabkan oleh pemblokiran IP atau masalah deobfuskasi URL streaming</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s menolak memberikan data, meminta login untuk memastikan peminta bukan bot.\n\nAlamat IP Anda mungkin telah diblokir sementara oleh %1$s, Anda dapat menunggu beberapa saat atau beralih ke alamat IP yang berbeda (misalnya dengan mengaktifkan/menonaktifkan VPN, atau beralih dari WiFi ke data seluler).</string>
+    <string name="unsupported_content_in_country">Konten ini tidak tersedia untuk negara konten yang saat ini dipilih.\n\nUbah pilihan Anda dari “Pengaturan &gt; Konten &gt; Negara konten bawaan”.</string>
+    <string name="short_thousand">%sK</string>
+    <string name="short_million">%sM</string>
+    <string name="short_billion">%sB</string>
 </resources>

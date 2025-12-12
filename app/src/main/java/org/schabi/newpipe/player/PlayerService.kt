@@ -34,6 +34,7 @@ import org.schabi.newpipe.player.mediabrowser.MediaBrowserImpl
 import org.schabi.newpipe.player.mediabrowser.MediaBrowserPlaybackPreparer
 import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi
 import org.schabi.newpipe.player.notification.NotificationPlayerUi
+import org.schabi.newpipe.player.notification.NotificationUtil
 import org.schabi.newpipe.util.ThemeHelper
 import java.lang.ref.WeakReference
 import java.util.function.Consumer
@@ -140,21 +141,23 @@ class PlayerService : MediaBrowserServiceCompat() {
             }
         }
 
-        val p = player
-        if (Intent.ACTION_MEDIA_BUTTON == intent.action && p?.playQueue == null) {
-            // No need to process media button's actions if the player is not working, otherwise
-            // the player service would strangely start with nothing to play
-            // Stop the service in this case, which will be removed from the foreground and its
-            // notification cancelled in its destruction
-            destroyPlayerAndStopService()
+        if (player == null) {
+            // No need to process media button's actions or other system intents if the player is
+            // not running. However, since the current intent might have been issued by the system
+            // with `startForegroundService()` (for unknown reasons), we need to ensure that we post
+            // a (dummy) foreground notification, otherwise we'd incur in
+            // "Context.startForegroundService() did not then call Service.startForeground()". Then
+            // we stop the service again.
+            Log.d(TAG, "onStartCommand() got a useless intent, closing the service")
+            NotificationUtil.startForegroundWithDummyNotification(this)
             return START_NOT_STICKY
         }
 
-        if (p != null) {
-            p.handleIntent(intent)
-            p.UIs().get(MediaSessionPlayerUi::class)
-                ?.handleMediaButtonIntent(intent)
-        }
+        val oldPlayerType = player?.playerType
+        player?.handleIntent(intent)
+        player?.handleIntentPost(oldPlayerType)
+        player?.UIs()?.get(MediaSessionPlayerUi::class.java)
+            ?.handleMediaButtonIntent(intent)
 
         return START_NOT_STICKY
     }

@@ -145,7 +145,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 if (selectedItem instanceof PlaylistMetadataEntry) {
                     final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
                     NavigationHelper.openLocalPlaylistFragment(fragmentManager, entry.getUid(),
-                            entry.name);
+                            entry.getOrderingName());
 
                 } else if (selectedItem instanceof PlaylistRemoteEntity) {
                     final PlaylistRemoteEntity entry = ((PlaylistRemoteEntity) selectedItem);
@@ -153,7 +153,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                             fragmentManager,
                             entry.getServiceId(),
                             entry.getUrl(),
-                            entry.getName());
+                            entry.getOrderingName());
                 }
             }
 
@@ -383,11 +383,11 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
             if (item instanceof PlaylistMetadataEntry
                     && ((PlaylistMetadataEntry) item).getDisplayIndex() != i) {
-                ((PlaylistMetadataEntry) item).setDisplayIndex(i);
+                ((PlaylistMetadataEntry) item).setDisplayIndex((long) i);
                 localItemsUpdate.add((PlaylistMetadataEntry) item);
             } else if (item instanceof PlaylistRemoteEntity
                     && ((PlaylistRemoteEntity) item).getDisplayIndex() != i) {
-                ((PlaylistRemoteEntity) item).setDisplayIndex(i);
+                ((PlaylistRemoteEntity) item).setDisplayIndex((long) i);
                 remoteItemsUpdate.add((PlaylistRemoteEntity) item);
             }
         }
@@ -492,7 +492,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     ///////////////////////////////////////////////////////////////////////////
 
     private void showRemoteDeleteDialog(final PlaylistRemoteEntity item) {
-        showDeleteDialog(item.getName(), item);
+        showDeleteDialog(item.getOrderingName(), item);
     }
 
     private void showLocalDialog(final PlaylistMetadataEntry selectedItem) {
@@ -513,7 +513,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             if (items.get(index).equals(rename)) {
                 showRenameDialog(selectedItem);
             } else if (items.get(index).equals(delete)) {
-                showDeleteDialog(selectedItem.name, selectedItem);
+                showDeleteDialog(selectedItem.getOrderingName(), selectedItem);
             } else if (isThumbnailPermanent && items.get(index).equals(unsetThumbnail)) {
                 final long thumbnailStreamId = localPlaylistManager
                         .getAutomaticPlaylistThumbnailStreamId(selectedItem.getUid());
@@ -534,7 +534,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 DialogEditTextBinding.inflate(getLayoutInflater());
         dialogBinding.dialogEditText.setHint(R.string.name);
         dialogBinding.dialogEditText.setInputType(InputType.TYPE_CLASS_TEXT);
-        dialogBinding.dialogEditText.setText(selectedItem.name);
+        dialogBinding.dialogEditText.setText(selectedItem.getOrderingName());
 
         new AlertDialog.Builder(activity)
                 .setView(dialogBinding.getRoot())

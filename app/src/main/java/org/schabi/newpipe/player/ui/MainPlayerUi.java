@@ -122,7 +122,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
                 && DeviceUtils.isTablet(player.getService())
                 && PlayerHelper.globalScreenOrientationLocked(player.getService())) {
             player.getFragmentListener().ifPresent(
-                    PlayerServiceEventListener::onScreenRotationButtonClicked);
+                    PlayerServiceEventListener::onFullscreenToggleButtonClicked);
         }
     }
 
@@ -154,12 +154,12 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     protected void initListeners() {
         super.initListeners();
 
-        binding.screenRotationButton.setOnClickListener(makeOnClickListener(() -> {
+        binding.fullscreenToggleButton.setOnClickListener(makeOnClickListener(() -> {
             // Only if it's not a vertical video or vertical video but in landscape with locked
             // orientation a screen orientation can be changed automatically
             if (!isVerticalVideo || (isLandscape() && globalScreenOrientationLocked(context))) {
                 player.getFragmentListener()
-                        .ifPresent(PlayerServiceEventListener::onScreenRotationButtonClicked);
+                        .ifPresent(PlayerServiceEventListener::onFullscreenToggleButtonClicked);
             } else {
                 toggleFullscreen();
             }
@@ -233,7 +233,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
 
         // Exit from fullscreen when user closes the player via notification
         if (isFullscreen) {
-            toggleFullscreen();
+            exitFullscreen();
         }
 
         removeViewFromParent();
@@ -270,7 +270,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
 
         closeItemsList();
         showHideKodiButton();
-        binding.fullScreenButton.setVisibility(View.GONE);
+        binding.fullscreenToggleButtonSecondaryMenu.setVisibility(View.GONE);
         setupScreenRotationButton();
         binding.resizeTextView.setVisibility(View.VISIBLE);
         binding.getRoot().findViewById(R.id.metadataView).setVisibility(View.VISIBLE);
@@ -289,8 +289,10 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         binding.topControls.setClickable(true);
         binding.topControls.setFocusable(true);
 
-        binding.titleTextView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
-        binding.channelTextView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
+        binding.metadataView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
+
+        // Reset workaround changes from popup player
+        binding.audioTrackTextView.setMaxWidth(Integer.MAX_VALUE);
     }
 
     @Override
@@ -414,7 +416,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     public void onCompleted() {
         super.onCompleted();
         if (isFullscreen) {
-            toggleFullscreen();
+            exitFullscreen();
         }
     }
     //endregion
@@ -885,10 +887,10 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     //region Video size, orientation, fullscreen
 
     private void setupScreenRotationButton() {
-        binding.screenRotationButton.setVisibility(globalScreenOrientationLocked(context)
+        binding.fullscreenToggleButton.setVisibility(globalScreenOrientationLocked(context)
                 || isVerticalVideo || DeviceUtils.isTablet(context)
                 ? View.VISIBLE : View.GONE);
-        binding.screenRotationButton.setImageDrawable(AppCompatResources.getDrawable(context,
+        binding.fullscreenToggleButton.setImageDrawable(AppCompatResources.getDrawable(context,
                 isFullscreen ? R.drawable.ic_fullscreen_exit
                         : R.drawable.ic_fullscreen));
     }
@@ -905,7 +907,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
                 && !DeviceUtils.isTablet(context)) {
             // set correct orientation
             player.getFragmentListener().ifPresent(
-                    PlayerServiceEventListener::onScreenRotationButtonClicked);
+                    PlayerServiceEventListener::onFullscreenToggleButtonClicked);
         }
 
         setupScreenRotationButton();
@@ -915,28 +917,53 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         if (DEBUG) {
             Log.d(TAG, "toggleFullscreen() called");
         }
+
+        if (isFullscreen) {
+            exitFullscreen();
+        } else {
+            enterFullscreen();
+        }
+
+    }
+
+    public void enterFullscreen() {
+        if (DEBUG) {
+            Log.d(TAG, "enterFullscreen() called");
+        }
         final PlayerServiceEventListener fragmentListener = player.getFragmentListener()
                 .orElse(null);
         if (fragmentListener == null || player.exoPlayerIsNull()) {
             return;
         }
+        isFullscreen = true;
+        // Android needs tens milliseconds to send new insets but a user is able to see
+        // how controls changes it's position from `0` to `nav bar height` padding.
+        // So just hide the controls to hide this visual inconsistency
+        hideControls(0, 0);
+        fragmentListener.onFullscreenStateChanged(true);
+        setupFullscreenButtons(true);
+    }
 
-        isFullscreen = !isFullscreen;
-        if (isFullscreen) {
-            // Android needs tens milliseconds to send new insets but a user is able to see
-            // how controls changes it's position from `0` to `nav bar height` padding.
-            // So just hide the controls to hide this visual inconsistency
-            hideControls(0, 0);
-        } else {
-            // Apply window insets because Android will not do it when orientation changes
-            // from landscape to portrait (open vertical video to reproduce)
-            binding.playbackControlRoot.setPadding(0, 0, 0, 0);
+    public void exitFullscreen() {
+        if (DEBUG) {
+            Log.d(TAG, "exitFullscreen() called");
         }
-        fragmentListener.onFullscreenStateChanged(isFullscreen);
+        final PlayerServiceEventListener fragmentListener = player.getFragmentListener()
+                .orElse(null);
+        if (fragmentListener == null || player.exoPlayerIsNull()) {
+            return;
+        }
+        isFullscreen = false;
+        // Apply window insets because Android will not do it when orientation changes
+        // from landscape to portrait (open vertical video to reproduce)
+        binding.playbackControlRoot.setPadding(0, 0, 0, 0);
+        fragmentListener.onFullscreenStateChanged(false);
+        setupFullscreenButtons(false);
+    }
 
-        binding.titleTextView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
-        binding.channelTextView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
-        binding.playerCloseButton.setVisibility(isFullscreen ? View.GONE : View.VISIBLE);
+    private void setupFullscreenButtons(final boolean fullscreen) {
+        binding.metadataView.setVisibility(fullscreen ? View.VISIBLE : View.GONE);
+        binding.playerCloseButton.setVisibility(fullscreen ? View.GONE : View.VISIBLE);
         setupScreenRotationButton();
     }
 
@@ -951,7 +978,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         if (videoInLandscapeButNotInFullscreen
                 && notPaused
                 && !DeviceUtils.isTablet(context)) {
-            toggleFullscreen();
+            enterFullscreen();
         }
     }
     //endregion

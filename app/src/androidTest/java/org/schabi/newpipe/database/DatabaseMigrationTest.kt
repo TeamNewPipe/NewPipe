@@ -217,7 +217,7 @@ class DatabaseMigrationTest {
         )
 
         val migratedDatabaseV8 = getMigratedDatabase()
-        val listFromDB = migratedDatabaseV8.searchHistoryDAO().all.blockingFirst()
+        val listFromDB = migratedDatabaseV8.searchHistoryDAO().getAll().blockingFirst()
 
         assertEquals(2, listFromDB.size)
         assertEquals("abc", listFromDB[0].search)
@@ -283,8 +283,8 @@ class DatabaseMigrationTest {
         )
 
         val migratedDatabaseV9 = getMigratedDatabase()
-        var localListFromDB = migratedDatabaseV9.playlistDAO().all.blockingFirst()
-        var remoteListFromDB = migratedDatabaseV9.playlistRemoteDAO().all.blockingFirst()
+        var localListFromDB = migratedDatabaseV9.playlistDAO().getAll().blockingFirst()
+        var remoteListFromDB = migratedDatabaseV9.playlistRemoteDAO().getAll().blockingFirst()
 
         assertEquals(1, localListFromDB.size)
         assertEquals(localUid2, localListFromDB[0].uid)
@@ -294,17 +294,27 @@ class DatabaseMigrationTest {
         assertEquals(-1, remoteListFromDB[0].displayIndex)
 
         val localUid3 = migratedDatabaseV9.playlistDAO().insert(
-            PlaylistEntity(DEFAULT_NAME + "3", false, -1, -1)
+            PlaylistEntity(
+                name = "${DEFAULT_NAME}3",
+                isThumbnailPermanent = false,
+                thumbnailStreamId = -1,
+                displayIndex = -1
+            )
         )
         val remoteUid3 = migratedDatabaseV9.playlistRemoteDAO().insert(
             PlaylistRemoteEntity(
-                DEFAULT_THIRD_SERVICE_ID, DEFAULT_NAME, DEFAULT_THIRD_URL,
-                DEFAULT_THUMBNAIL, DEFAULT_UPLOADER_NAME, -1, 10
+                serviceId = DEFAULT_THIRD_SERVICE_ID,
+                orderingName = DEFAULT_NAME,
+                url = DEFAULT_THIRD_URL,
+                thumbnailUrl = DEFAULT_THUMBNAIL,
+                uploader = DEFAULT_UPLOADER_NAME,
+                displayIndex = -1,
+                streamCount = 10
             )
         )
 
-        localListFromDB = migratedDatabaseV9.playlistDAO().all.blockingFirst()
-        remoteListFromDB = migratedDatabaseV9.playlistRemoteDAO().all.blockingFirst()
+        localListFromDB = migratedDatabaseV9.playlistDAO().getAll().blockingFirst()
+        remoteListFromDB = migratedDatabaseV9.playlistRemoteDAO().getAll().blockingFirst()
         assertEquals(2, localListFromDB.size)
         assertEquals(localUid3, localListFromDB[1].uid)
         assertEquals(-1, localListFromDB[1].displayIndex)

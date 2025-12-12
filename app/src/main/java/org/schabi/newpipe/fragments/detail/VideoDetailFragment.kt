@@ -88,6 +88,7 @@ import org.schabi.newpipe.local.dialog.PlaylistDialog
 import org.schabi.newpipe.local.history.HistoryRecordManager
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment
 import org.schabi.newpipe.player.Player
+import org.schabi.newpipe.player.PlayerIntentType
 import org.schabi.newpipe.player.PlayerService
 import org.schabi.newpipe.player.PlayerType
 import org.schabi.newpipe.player.event.OnKeyDownListener
@@ -991,7 +992,7 @@ class VideoDetailFragment :
             // restored (i.e. bottomSheetState) to STATE_EXPANDED.
             updateBottomSheetState(BottomSheetBehavior.STATE_EXPANDED)
             // toggle landscape in order to open directly in fullscreen
-            onScreenRotationButtonClicked()
+            onFullscreenToggleButtonClicked()
         }
 
         if (PreferenceManager.getDefaultSharedPreferences(activity)
@@ -1044,8 +1045,10 @@ class VideoDetailFragment :
         tryAddVideoPlayerView()
 
         val playerIntent = NavigationHelper.getPlayerIntent(
-            requireContext(), PlayerService::class.java, queue, true, autoPlayEnabled
+            requireContext(), PlayerService::class.java, queue, PlayerIntentType.AllOthers
         )
+            .putExtra(Player.PLAY_WHEN_READY, autoPlayEnabled)
+            .putExtra(Player.RESUME_PLAYBACK, true)
         ContextCompat.startForegroundService(activity, playerIntent)
     }
 
@@ -1291,9 +1294,8 @@ class VideoDetailFragment :
                             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED)
                         }
                         // Rebound to the service if it was closed via notification or mini player
-                        if (!PlayerHolder.isBound) {
-                            PlayerHolder.startService(false, this@VideoDetailFragment)
-                        }
+                        PlayerHolder.setListener(this@VideoDetailFragment)
+                        PlayerHolder.tryBindIfNeeded(requireContext())
                     }
                 }
             }
@@ -1559,7 +1561,8 @@ class VideoDetailFragment :
             .subscribe(
                 { state -> updatePlaybackProgress(state.progressMillis, info.duration * 1000) },
                 { throwable -> /* impossible due to the onErrorComplete() */ },
-                { /* onComplete */
+                {
+                    /* onComplete */
                     binding.positionView.visibility = View.GONE
                     binding.detailPositionView.visibility = View.GONE
                 }
@@ -1726,7 +1729,7 @@ class VideoDetailFragment :
         tryAddVideoPlayerView()
     }
 
-    override fun onScreenRotationButtonClicked() {
+    override fun onFullscreenToggleButtonClicked() {
         // In tablet user experience will be better if screen will not be rotated
         // from landscape to portrait every time.
         // Just turn on fullscreen mode in landscape orientation

@@ -1,0 +1,14 @@
+Novo
+Prepoznavanje vremenskih oznaka i hashtagova u opisu
+Dodano ručno podešavanje tablet režima
+Dodana mogućnost skrivanja reprodukovanih stavki u feedu
+
+Poboljšano
+Ispravno podržavanje okvira za pristup pohrani
+Bolje rukovanje greškama nedostupnih i prekinutih kanala
+Android tabela za dijeljenje za korisnike Androida 10+ sada prikazuje naslov sadržaja.
+Ažurirane su Invidious instance i podrška za preusmjerene linkove.
+
+Ispravljeno
+[YouTube] Sadržaj ograničen prema dobi
+Spriječen izuzetak curenja prozora prilikom otvaranja dijaloga za izbor

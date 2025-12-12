@@ -6,7 +6,7 @@
     <string name="install">Cài đặt</string>
     <string name="cancel">Hủy</string>
     <string name="open_in_browser">Mở trong trình duyệt</string>
-    <string name="open_in_popup_mode">Mở trong chế độ bật lên</string>
+    <string name="open_in_popup_mode">Mở trong cửa sổ bật lên</string>
     <string name="share">Chia sẻ</string>
     <string name="download">Tải xuống</string>
     <string name="search">Tìm kiếm</string>
@@ -120,7 +120,7 @@
     <string name="channel_unsubscribed">Đã hủy đăng ký kênh</string>
     <string name="subscription_change_failed">Không thể thay đổi tình trạng đăng ký</string>
     <string name="subscription_update_failed">Không thể cập nhật tình trạng đăng ký</string>
-    <string name="no_player_found_toast">Không tìm thấy trình phát trực tuyến nào (bạn có thể cài đặt VLC để phát nó).</string>
+    <string name="no_player_found_toast">Không tìm thấy trình phát trực tuyến nào (bạn có thể cài đặt VLC để phát).</string>
     <string name="controls_download_desc">Tải tệp luồng về</string>
     <string name="show_info">Hiện thông tin</string>
     <string name="tab_subscriptions">Kênh đăng ký</string>
@@ -801,4 +801,24 @@
 \nBạn có muốn kích hoạt tính năng này không?</string>
     <string name="yes">Có</string>
     <string name="import_settings_vulnerable_format">Cài đặt trong xuất đang được nhập sử dụng định dạng dễ bị tấn công và không được dùng nữa kể từ NewPipe 0.27.0. Đảm bảo rằng bản xuất đang được nhập là từ một nguồn đáng tin cậy và chỉ ưu tiên sử dụng các bản xuất lấy từ NewPipe 0.27.0 hoặc mới hơn trong tương lai. Hỗ trợ nhập cài đặt ở định dạng dễ bị tấn công này sẽ sớm bị xóa hoàn toàn và khi đó các phiên bản cũ của NewPipe sẽ không thể nhập cài đặt xuất từ phiên bản mới nữa.</string>
+    <string name="search_with_service_name">Tìm kiếm %1$s</string>
+    <string name="search_with_service_name_and_filter">Tìm kiếm %1$s (%2$s)</string>
+    <string name="tab_bookmarks_short">Danh sách phát</string>
+    <string name="short_thousand">%sN</string>
+    <string name="short_million">%sTr</string>
+    <string name="short_billion">%sTỷ</string>
+    <string name="select_a_feed_group">Chọn một nhóm nguồn cấp dữ liệu</string>
+    <string name="no_feed_group_created_yet">Chưa có nhóm nguồn cấp dữ liệu nào được tạo</string>
+    <string name="feed_group_page_summary">Trang nhóm kênh</string>
+    <string name="audio_track_type_secondary">phụ</string>
+    <string name="channel_tab_likes">Thích</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Chia sẻ dưới dạng danh sách phát tạm thời của YouTube</string>
+    <string name="migration_info_6_7_title">SoundCloud 50 trang hàng đầu đã xóa</string>
+    <string name="migration_info_6_7_message">SoundCloud đã ngừng hiển thị bảng xếp hạng Top 50 ban đầu. Tab tương ứng đã bị xóa khỏi trang chính của bạn.</string>
+    <string name="migration_info_7_8_title">Đã xóa kết hợp đang thịnh hành của YouTube</string>
+    <string name="migration_info_7_8_message">YouTube đã ngừng cung cấp trang thịnh hành kết hợp kể từ ngày 21 tháng 7 năm 2025. NewPipe đã thay thế trang xu hướng mặc định bằng các buổi phát trực tiếp theo thịnh hành.\n\nBạn cũng có thể chọn các trang thịnh hành khác nhau trong \"Cài đặt &gt; Nội dung &gt; Nội dung của trang chính\".</string>
+    <string name="trending_gaming">Trò chơi thịnh hành</string>
+    <string name="trending_podcasts">Podcasts đang thịnh hành</string>
+    <string name="trending_movies">Phim và chương trình đang thịnh hành</string>
+    <string name="trending_music">Âm nhạc đang thịnh hành</string>
 </resources>
