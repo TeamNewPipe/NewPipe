@@ -9,7 +9,8 @@ acra = "5.13.1"
 agp = "8.13.1"
 appcompat = "1.7.1"
 assertj = "3.27.6"
-autoservice = "1.1.1"
+autoservice-google = "1.1.1"
+autoservice-zacsweers = "1.2.0"
 bridge = "v2.0.2"
 cardview = "1.0.0"
 checkstyle = "12.1.2"
@@ -114,8 +115,7 @@ evernote-statesaver-core = { module = "com.evernote:android-state", version.ref 
 facebook-stetho-core = { module = "com.facebook.stetho:stetho", version.ref = "stetho" }
 facebook-stetho-okhttp3 = { module = "com.facebook.stetho:stetho-okhttp3", version.ref = "stetho" }
 google-android-material = { module = "com.google.android.material:material", version.ref = "material" }
-google-autoservice-annotations = { module = "com.google.auto.service:auto-service-annotations", version.ref = "autoservice" }
-google-autoservice-compiler = { module = "com.google.auto.service:auto-service", version.ref = "autoservice" }
+google-autoservice-annotations = { module = "com.google.auto.service:auto-service-annotations", version.ref = "autoservice-google" }
 google-exoplayer-core = { module = "com.google.android.exoplayer:exoplayer-core", version.ref = "exoplayer" }
 google-exoplayer-dash = { module = "com.google.android.exoplayer:exoplayer-dash", version.ref = "exoplayer" }
 google-exoplayer-database = { module = "com.google.android.exoplayer:exoplayer-database", version.ref = "exoplayer" }
@@ -152,6 +152,7 @@ squareup-leakcanary-core = { module = "com.squareup.leakcanary:leakcanary-androi
 squareup-leakcanary-plumber = { module = "com.squareup.leakcanary:plumber-android", version.ref = "leakcanary" }
 squareup-leakcanary-watcher = { module = "com.squareup.leakcanary:leakcanary-object-watcher-android", version.ref = "leakcanary" }
 squareup-okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+zacsweers-autoservice-compiler = { module = "dev.zacsweers.autoservice:auto-service-ksp", version.ref = "autoservice-zacsweers" }
 
 [plugins]
 about-libraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "about-libraries" }

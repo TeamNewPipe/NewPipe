@@ -1730,12 +1730,13 @@ class VideoDetailFragment :
     }
 
     override fun onFullscreenToggleButtonClicked() {
+        // On Android TV screen rotation is not supported
         // In tablet user experience will be better if screen will not be rotated
         // from landscape to portrait every time.
         // Just turn on fullscreen mode in landscape orientation
         // or portrait & unlocked global orientation
         val isLandscape = DeviceUtils.isLandscape(requireContext())
-        if (DeviceUtils.isTablet(activity) &&
+        if (DeviceUtils.isTv(activity) || DeviceUtils.isTablet(activity) &&
             (!PlayerHelper.globalScreenOrientationLocked(activity) || isLandscape)
         ) {
             player!!.UIs().get(MainPlayerUi::class)?.toggleFullscreen()
