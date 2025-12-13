@@ -5,14 +5,14 @@
 
 [versions]
 acra = "5.13.1"
-agp = "8.13.1"
+agp = "8.13.2"
 appcompat = "1.7.1"
 assertj = "3.27.6"
 autoservice-google = "1.1.1"
 autoservice-zacsweers = "1.2.0"
 bridge = "v2.0.2"
 cardview = "1.0.0"
-checkstyle = "12.1.2"
+checkstyle = "12.2.0"
 constraintlayout = "2.2.1"
 core = "1.17.0"
 desugar = "2.1.5"
@@ -32,7 +32,7 @@ localbroadcastmanager = "1.1.0"
 markwon = "4.6.2"
 material = "1.13.0"
 media = "1.7.1"
-mockitoCore = "5.20.0"
+mockitoCore = "5.21.0"
 okhttp = "5.3.2"
 phoenix = "3.0.0"
 #noinspection NewerVersionAvailable,GradleDependency --> 2.8 is the last version, not 2.71828!
@@ -45,10 +45,10 @@ runner = "1.7.0"
 rxandroid = "3.0.2"
 rxbinding = "4.0.0"
 rxjava = "3.1.12"
-sonarqube = "7.0.1.6134"
+sonarqube = "7.2.1.6560"
 statesaver = "1.4.1" # TODO: Drop because it is deprecated and incompatible with KSP2
 stetho = "1.6.0"
-swiperefreshlayout = "1.1.0"
+swiperefreshlayout = "1.2.0"
 # You can use a local version by uncommenting a few lines in settings.gradle
 # Or you can use a commit you pushed to GitHub by just replacing TeamNewPipe with your GitHub
 # name and the commit hash with the commit hash of the (pushed) commit you want to test
