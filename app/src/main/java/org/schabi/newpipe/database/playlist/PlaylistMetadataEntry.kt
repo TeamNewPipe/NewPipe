@@ -29,6 +29,9 @@ open class PlaylistMetadataEntry(
     @ColumnInfo(name = PlaylistEntity.PLAYLIST_THUMBNAIL_STREAM_ID)
     open val thumbnailStreamId: Long?,
 
+    @ColumnInfo(name = PlaylistEntity.PLAYLIST_FOLDER_ID)
+    open val folderId: Long?,
+
     @ColumnInfo(name = PLAYLIST_STREAM_COUNT)
     open val streamCount: Long
 ) : PlaylistLocalItem {

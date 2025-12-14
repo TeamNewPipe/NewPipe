@@ -30,6 +30,7 @@ object Migrations {
     const val DB_VER_7 = 7
     const val DB_VER_8 = 8
     const val DB_VER_9 = 9
+    const val DB_VER_10 = 10
 
     private val TAG = Migrations::class.java.getName()
     private val isDebug = MainActivity.DEBUG
@@ -365,4 +366,33 @@ object Migrations {
             }
         }
     }
+
+    val MIGRATION_9_10 = object : Migration(DB_VER_9, DB_VER_10) {
+        override fun migrate(db: SupportSQLiteDatabase) {
+            // Add folder table and folder_id column to playlists
+            db.execSQL(
+                "CREATE TABLE IF NOT EXISTS `playlist_folders` (" +
+                    "`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+                    "`name` TEXT NOT NULL, " +
+                    "`sort_order` INTEGER NOT NULL DEFAULT 0)"
+            )
+
+            // Add nullable folder_id column to playlists
+            db.execSQL(
+                "ALTER TABLE `playlists` ADD COLUMN `folder_id` INTEGER"
+            )
+        }
+    }
+
+    val ALL_MIGRATIONS = arrayOf(
+        MIGRATION_1_2,
+        MIGRATION_2_3,
+        MIGRATION_3_4,
+        MIGRATION_4_5,
+        MIGRATION_5_6,
+        MIGRATION_6_7,
+        MIGRATION_7_8,
+        MIGRATION_8_9,
+        MIGRATION_9_10
+    )
 }

@@ -6,9 +6,22 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/folder_bar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:scrollbars="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layoutManager_orientation="horizontal"
+        tools:listitem="@layout/list_folder_item" />
+
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/items_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/folder_bar"
         android:scrollbars="vertical"
         app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/list_playlist_mini_item" />
@@ -39,5 +52,15 @@
         android:layout_height="4dp"
         android:layout_alignParentTop="true"
         android:background="?attr/toolbar_shadow" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/create_folder_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"
+        android:contentDescription="Create folder"
+        app:srcCompat="@drawable/ic_playlist_add" />
 
 </RelativeLayout>

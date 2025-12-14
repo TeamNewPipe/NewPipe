@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/folder_name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp"
+    android:background="?attr/selectableItemBackground"
+    android:foreground="?attr/selectableItemBackground"
+    android:backgroundTint="?attr/colorSurface"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:ellipsize="end"
+    android:maxLines="1" />
