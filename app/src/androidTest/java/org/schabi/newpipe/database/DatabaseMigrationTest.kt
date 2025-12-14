@@ -323,6 +323,42 @@ class DatabaseMigrationTest {
         assertEquals(-1, remoteListFromDB[1].displayIndex)
     }
 
+    @Test
+    fun migrateDatabaseFrom9to10() {
+        val databaseInV9 = testHelper.createDatabase(AppDatabase.DATABASE_NAME, Migrations.DB_VER_9)
+
+        val localUid1: Long
+        databaseInV9.run {
+            localUid1 = insert(
+                "playlists", SQLiteDatabase.CONFLICT_FAIL,
+                ContentValues().apply {
+                    put("name", DEFAULT_NAME + "1")
+                    put("is_thumbnail_permanent", false)
+                    put("thumbnail_stream_id", -1)
+                    put("display_index", -1)
+                }
+            )
+            close()
+        }
+
+        testHelper.runMigrationsAndValidate(
+            AppDatabase.DATABASE_NAME,
+            Migrations.DB_VER_10,
+            true,
+            Migrations.MIGRATION_9_10
+        )
+
+        val migratedDatabaseV10 = getMigratedDatabase()
+        val localListFromDB = migratedDatabaseV10.playlistDAO().getAll().blockingFirst()
+
+        assertEquals(1, localListFromDB.size)
+        // folderId should exist and be null for existing playlists
+        assertNull(localListFromDB[0].folderId)
+
+        val foldersFromDB = migratedDatabaseV10.playlistFolderDAO().getAll().blockingFirst()
+        assertEquals(0, foldersFromDB.size)
+    }
+
     private fun getMigratedDatabase(): AppDatabase {
         val database: AppDatabase = Room.databaseBuilder(
             ApplicationProvider.getApplicationContext(),
