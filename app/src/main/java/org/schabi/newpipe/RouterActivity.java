@@ -531,7 +531,7 @@ public class RouterActivity extends AppCompatActivity {
         final List<StreamingService.ServiceInfo.MediaCapability> capabilities =
                 service.getServiceInfo().getMediaCapabilities();
 
-        if (linkType == LinkType.STREAM) {
+        if (linkType == LinkType.STREAM || linkType == LinkType.PLAYLIST) {
             if (capabilities.contains(VIDEO)) {
                 returnedItems.add(videoPlayer);
                 returnedItems.add(popupPlayer);
@@ -539,20 +539,28 @@ public class RouterActivity extends AppCompatActivity {
             if (capabilities.contains(AUDIO)) {
                 returnedItems.add(backgroundPlayer);
             }
-            // download is redundant for linkType CHANNEL AND PLAYLIST (till playlist downloading is
-            // not supported )
-            returnedItems.add(new AdapterChoiceItem(getString(R.string.download_key),
-                    getString(R.string.download),
-                    R.drawable.ic_file_download));
 
-            // Add to playlist is not necessary for CHANNEL and PLAYLIST linkType since those can
-            // not be added to a playlist
-            returnedItems.add(new AdapterChoiceItem(getString(R.string.add_to_playlist_key),
-                    getString(R.string.add_to_playlist),
-                    R.drawable.ic_playlist_add));
+            // Enqueue is only shown if the current queue is not empty.
+            // However, if the playqueue or the player is cleared after this item was chosen and
+            // while the item is extracted, it will automatically fall back to background player.
+            if (PlayerHolder.INSTANCE.getQueueSize() > 0) {
+                returnedItems.add(new AdapterChoiceItem(getString(R.string.enqueue_key),
+                        getString(R.string.enqueue_stream), R.drawable.ic_add));
+            }
 
-            returnedItems.add(new AdapterChoiceItem(getString(R.string.enqueue_key),
-                    getString(R.string.enqueue_stream), R.drawable.ic_add));
+            if (linkType == LinkType.STREAM) {
+                // download is redundant for linkType CHANNEL AND PLAYLIST
+                // (till playlist downloading is not supported )
+                returnedItems.add(new AdapterChoiceItem(getString(R.string.download_key),
+                        getString(R.string.download),
+                        R.drawable.ic_file_download));
+
+                // Add to playlist is not necessary for CHANNEL and PLAYLIST linkType
+                // since those can not be added to a playlist
+                returnedItems.add(new AdapterChoiceItem(getString(R.string.add_to_playlist_key),
+                        getString(R.string.add_to_playlist),
+                        R.drawable.ic_playlist_add));
+            }
         } else {
             // LinkType.NONE is never present because it's filtered out before
             // channels and playlist can be played as they contain a list of videos
