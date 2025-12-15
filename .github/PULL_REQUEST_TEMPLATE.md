@@ -32,3 +32,5 @@ The APK can be found by going to the "Checks" tab below the title. On the left p
 
 #### Due diligence
 - [ ] I read the [contribution guidelines](https://github.com/TeamNewPipe/NewPipe/blob/HEAD/.github/CONTRIBUTING.md).
+- [ ] The proposed changes follow the [AI policy](https://github.com/TeamNewPipe/NewPipe/blob/HEAD/.github/CONTRIBUTING.md#ai-policy).
+- [ ] I tested the changes using an emulator or a physical device.
