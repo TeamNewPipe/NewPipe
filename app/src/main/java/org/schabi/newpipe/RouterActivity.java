@@ -543,7 +543,7 @@ public class RouterActivity extends AppCompatActivity {
             // Enqueue is only shown if the current queue is not empty.
             // However, if the playqueue or the player is cleared after this item was chosen and
             // while the item is extracted, it will automatically fall back to background player.
-            if (PlayerHolder.INSTANCE.getQueueSize() > 0) {
+            if (PlayerHolder.getInstance().getQueueSize() > 0) {
                 returnedItems.add(new AdapterChoiceItem(getString(R.string.enqueue_key),
                         getString(R.string.enqueue_stream), R.drawable.ic_add));
             }
