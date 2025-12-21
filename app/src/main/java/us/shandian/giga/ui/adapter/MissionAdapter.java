@@ -2,6 +2,7 @@ package us.shandian.giga.ui.adapter;
 
 import static android.content.Intent.FLAG_GRANT_PREFIX_URI_PERMISSION;
 import static android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION;
+import static android.content.Intent.createChooser;
 import static us.shandian.giga.get.DownloadMission.ERROR_CONNECT_HOST;
 import static us.shandian.giga.get.DownloadMission.ERROR_FILE_CREATION;
 import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_NO_CONTENT;
@@ -349,11 +350,15 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         if (BuildConfig.DEBUG)
             Log.v(TAG, "Mime: " + mimeType + " package: " + BuildConfig.APPLICATION_ID + ".provider");
 
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setDataAndType(resolveShareableUri(mission), mimeType);
-        intent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
-        intent.addFlags(FLAG_GRANT_PREFIX_URI_PERMISSION);
-        ShareUtils.openIntentInApp(mContext, intent);
+        Intent viewIntent = new Intent(Intent.ACTION_VIEW);
+        viewIntent.setDataAndType(resolveShareableUri(mission), mimeType);
+        viewIntent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
+        viewIntent.addFlags(FLAG_GRANT_PREFIX_URI_PERMISSION);
+
+        Intent chooserIntent = createChooser(viewIntent, null);
+        chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_GRANT_READ_URI_PERMISSION);
+
+        ShareUtils.openIntentInApp(mContext, chooserIntent);
     }
 
     private void shareFile(Mission mission) {
@@ -364,8 +369,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         shareIntent.putExtra(Intent.EXTRA_STREAM, resolveShareableUri(mission));
         shareIntent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
 
-        final Intent intent = new Intent(Intent.ACTION_CHOOSER);
-        intent.putExtra(Intent.EXTRA_INTENT, shareIntent);
+        final Intent intent = createChooser(shareIntent, null);
         // unneeded to set a title to the chooser on Android P and higher because the system
         // ignores this title on these versions
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.O_MR1) {
