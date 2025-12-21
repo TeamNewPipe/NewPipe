@@ -1,5 +1,7 @@
 package org.schabi.newpipe.local.playlist;
 
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static org.schabi.newpipe.error.ErrorUtil.showUiErrorSnackbar;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.local.playlist.ExportPlaylistKt.export;
@@ -23,6 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -367,30 +370,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             createRenameDialog();
         } else if (item.getItemId() == R.id.menu_item_remove_watched) {
             if (!isRewritingPlaylist) {
-                final android.widget.CheckBox removePartiallyWatchedCheckbox =
-                        new android.widget.CheckBox(requireContext());
-                removePartiallyWatchedCheckbox.setText(
-                        R.string.remove_watched_popup_partially_watched_streams);
-
-                // Wrap the checkbox in a container with dialog-like horizontal padding
-                // so it aligns with the dialog title/message on the start side.
-                final LinearLayout checkboxContainer = new LinearLayout(requireContext());
-                checkboxContainer.setOrientation(LinearLayout.VERTICAL);
-                final int padding = DeviceUtils.dpToPx(20, requireContext());
-                checkboxContainer.setPadding(padding, padding, padding, 0);
-                checkboxContainer.addView(removePartiallyWatchedCheckbox,
-                        new android.widget.LinearLayout.LayoutParams(
-                                ViewGroup.LayoutParams.MATCH_PARENT,
-                                ViewGroup.LayoutParams.WRAP_CONTENT));
-
-                new AlertDialog.Builder(requireContext())
-                        .setMessage(R.string.remove_watched_popup_warning)
-                        .setTitle(R.string.remove_watched_popup_title)
-                        .setView(checkboxContainer)
-                        .setPositiveButton(R.string.yes, (d, id) ->
-                                removeWatchedStreams(removePartiallyWatchedCheckbox.isChecked()))
-                        .setNegativeButton(R.string.cancel, (d, id) -> d.cancel())
-                        .show();
+                openRemoveWatchedConfirmationDialog();
             }
         } else if (item.getItemId() == R.id.menu_item_remove_duplicates) {
             if (!isRewritingPlaylist) {
@@ -905,6 +885,35 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 .setNegativeButton(R.string.share_playlist_with_list, (dialog, which) ->
                     sharePlaylist(JUST_URLS)
                 )
+                .show();
+    }
+
+    /**
+     * Opens a confirmation dialog to remove watched streams from the playlist.
+     * The user can also choose to remove partially watched streams.
+     */
+    private void openRemoveWatchedConfirmationDialog() {
+        final android.widget.CheckBox removePartiallyWatchedCheckbox =
+                new android.widget.CheckBox(requireContext());
+        removePartiallyWatchedCheckbox.setText(
+                R.string.remove_watched_popup_partially_watched_streams);
+
+        // Wrap the checkbox in a container with dialog-like horizontal padding
+        // so it aligns with the dialog title and message on the start side.
+        final LinearLayout checkboxContainer = new LinearLayout(requireContext());
+        checkboxContainer.setOrientation(LinearLayout.VERTICAL);
+        final int padding = DeviceUtils.dpToPx(20, requireContext());
+        checkboxContainer.setPadding(padding, padding, padding, 0);
+        checkboxContainer.addView(removePartiallyWatchedCheckbox,
+                new LayoutParams(MATCH_PARENT, WRAP_CONTENT));
+
+        new AlertDialog.Builder(requireContext())
+                .setMessage(R.string.remove_watched_popup_warning)
+                .setTitle(R.string.remove_watched_popup_title)
+                .setView(checkboxContainer)
+                .setPositiveButton(R.string.yes, (d, id) ->
+                        removeWatchedStreams(removePartiallyWatchedCheckbox.isChecked()))
+                .setNegativeButton(R.string.cancel, (d, id) -> d.cancel())
                 .show();
     }
 
