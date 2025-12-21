@@ -42,9 +42,9 @@ android {
         minSdk = 21
         targetSdk = 35
 
-        versionCode = System.getProperty("versionCodeOverride")?.toInt() ?: 1005
+        versionCode = System.getProperty("versionCodeOverride")?.toInt() ?: 1006
 
-        versionName = "0.28.0"
+        versionName = "0.28.1"
         System.getProperty("versionNameSuffix")?.let { versionNameSuffix = it }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
