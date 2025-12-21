@@ -447,39 +447,28 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                             .getIsPlaylistThumbnailPermanent(playlistId);
                     boolean thumbnailVideoRemoved = false;
 
-                    if (removePartiallyWatched) {
-                        for (final var playlistItem : playlist) {
-                            final int indexInHistory = Collections.binarySearch(historyStreamIds,
-                                    playlistItem.getStreamId());
+                    final var streamStates = recordManager
+                            .loadLocalStreamStateBatch(playlist).blockingGet();
 
-                            if (indexInHistory < 0) {
-                                itemsToKeep.add(playlistItem);
-                            } else if (!isThumbnailPermanent && !thumbnailVideoRemoved
-                                    && playlistManager.getPlaylistThumbnailStreamId(playlistId)
-                                    == playlistItem.getStreamEntity().getUid()) {
-                                thumbnailVideoRemoved = true;
-                            }
-                        }
-                    } else {
-                        final var streamStates = recordManager
-                                .loadLocalStreamStateBatch(playlist).blockingGet();
+                    for (int i = 0; i < playlist.size(); i++) {
+                        final var playlistItem = playlist.get(i);
+                        final var streamStateEntity = streamStates.get(i);
+                        final int indexInHistory = Collections.binarySearch(historyStreamIds,
+                                playlistItem.getStreamId());
+                        final long duration = playlistItem.toStreamInfoItem().getDuration();
 
-                        for (int i = 0; i < playlist.size(); i++) {
-                            final var playlistItem = playlist.get(i);
-                            final var streamStateEntity = streamStates.get(i);
-
-                            final int indexInHistory = Collections.binarySearch(historyStreamIds,
-                                    playlistItem.getStreamId());
-                            final long duration = playlistItem.toStreamInfoItem().getDuration();
-
-                            if (indexInHistory < 0 || (streamStateEntity != null
-                                    && !streamStateEntity.isFinished(duration))) {
-                                itemsToKeep.add(playlistItem);
-                            } else if (!isThumbnailPermanent && !thumbnailVideoRemoved
-                                    && playlistManager.getPlaylistThumbnailStreamId(playlistId)
-                                    == playlistItem.getStreamEntity().getUid()) {
-                                thumbnailVideoRemoved = true;
-                            }
+                        if (indexInHistory < 0 // stream is not in history
+                                // stream is in history but the streamStateEntity is null
+                                // if the stream was played for less than 5 seconds, see
+                                // StreamStateEntity#PLAYBACK_SAVE_THRESHOLD_START_MILLISECONDS
+                                || streamStateEntity == null
+                                || (!streamStateEntity.isFinished(duration)
+                                        && !removePartiallyWatched)) {
+                            itemsToKeep.add(playlistItem);
+                        } else if (!isThumbnailPermanent && !thumbnailVideoRemoved
+                                && playlistManager.getPlaylistThumbnailStreamId(playlistId)
+                                == playlistItem.getStreamEntity().getUid()) {
+                            thumbnailVideoRemoved = true;
                         }
                     }
 
