@@ -22,6 +22,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -54,6 +55,7 @@ import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
@@ -365,16 +367,29 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             createRenameDialog();
         } else if (item.getItemId() == R.id.menu_item_remove_watched) {
             if (!isRewritingPlaylist) {
+                final android.widget.CheckBox removePartiallyWatchedCheckbox =
+                        new android.widget.CheckBox(requireContext());
+                removePartiallyWatchedCheckbox.setText(
+                        R.string.remove_watched_popup_yes_and_partially_watched_videos);
+
+                // Wrap the checkbox in a container with dialog-like horizontal padding
+                // so it aligns with the dialog title/message on the start side.
+                final LinearLayout checkboxContainer = new LinearLayout(requireContext());
+                checkboxContainer.setOrientation(LinearLayout.VERTICAL);
+                final int padding = DeviceUtils.dpToPx(20, requireContext());
+                checkboxContainer.setPadding(padding, padding, padding, 0);
+                checkboxContainer.addView(removePartiallyWatchedCheckbox,
+                        new android.widget.LinearLayout.LayoutParams(
+                                ViewGroup.LayoutParams.MATCH_PARENT,
+                                ViewGroup.LayoutParams.WRAP_CONTENT));
+
                 new AlertDialog.Builder(requireContext())
                         .setMessage(R.string.remove_watched_popup_warning)
                         .setTitle(R.string.remove_watched_popup_title)
-                        .setPositiveButton(R.string.ok, (d, id) ->
-                                removeWatchedStreams(false))
-                        .setNeutralButton(
-                                R.string.remove_watched_popup_yes_and_partially_watched_videos,
-                                (d, id) -> removeWatchedStreams(true))
-                        .setNegativeButton(R.string.cancel,
-                                (d, id) -> d.cancel())
+                        .setView(checkboxContainer)
+                        .setPositiveButton(R.string.yes, (d, id) ->
+                                removeWatchedStreams(removePartiallyWatchedCheckbox.isChecked()))
+                        .setNegativeButton(R.string.cancel, (d, id) -> d.cancel())
                         .show();
             }
         } else if (item.getItemId() == R.id.menu_item_remove_duplicates) {
