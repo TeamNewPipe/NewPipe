@@ -355,7 +355,7 @@
         <item quantity="other">%d çirkeyan</item>
     </plurals>
     <string name="new_seek_duration_toast">Ji ber astengiyên ExoPlayer dema lêgerînê li %d çirkeyan hate saz kirin</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Erê, û bi qismî vîdyoyan temaşe kir</string>
+    <string name="remove_watched_popup_partially_watched_streams">Erê, û bi qismî vîdyoyan temaşe kir</string>
     <string name="remove_watched_popup_warning">Vîdyoyên ku berî û piştî ku li lîsteya lîsteyê hatine zêdekirin hatine temaşekirin, dê werin rakirin.
 \nPiştrastin\? Ev nayê betal kirin!</string>
     <string name="remove_watched_popup_title">Vîdyoyên temaşekirî rakin\?</string>

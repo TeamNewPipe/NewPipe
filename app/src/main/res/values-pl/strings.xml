@@ -522,7 +522,7 @@
     <string name="restricted_video">To wideo jest objęte ograniczeniem wiekowym.
 \n
 \nWłącz „%1$s” w ustawieniach, jeśli chcesz je zobaczyć.</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Tak, i częściowo obejrzane wideo</string>
+    <string name="remove_watched_popup_partially_watched_streams">Tak, i częściowo obejrzane wideo</string>
     <string name="remove_watched_popup_warning">Wideo, które zostały obejrzane przed i po dodaniu do playlisty, zostaną usunięte.
 \nCzy na pewno\? Tego nie da się cofnąć!</string>
     <string name="remove_watched_popup_title">Czy usunąć obejrzane wideo\?</string>

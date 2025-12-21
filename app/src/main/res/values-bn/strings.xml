@@ -337,7 +337,7 @@
     <string name="player_unrecoverable_failure">অপুনরুদ্ধারযোগ্য প্লেয়ার ত্রুটি ঘটেছে</string>
     <string name="peertube_instance_add_fail">ইন্সট্যান্সটি যাচাই করা যায়নি</string>
     <string name="recaptcha_cookies_cleared">রিক্যাপচা কুকিগুলো পরিষ্কার করা হয়েছে</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">হ্যাঁ, এবং আংশিকভাবে দেখা ভিডিও</string>
+    <string name="remove_watched_popup_partially_watched_streams">হ্যাঁ, এবং আংশিকভাবে দেখা ভিডিও</string>
     <string name="permission_denied">ব্যবস্থা দ্বারা ক্রিয়া অস্বীকার করা হয়েছে</string>
     <string name="autoplay_summary">স্বয়ংক্রিয়ভাবে প্লেব্যাক শুরু করো %s — তে</string>
     <string name="start_here_on_popup">একটি পপ-আপে প্লে শুরু করো</string>

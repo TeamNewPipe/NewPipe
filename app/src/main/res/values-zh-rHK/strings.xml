@@ -538,7 +538,7 @@
     <string name="crash_the_app">令個 app 閃退</string>
     <string name="show_error_snackbar">顯示一則錯誤橫條</string>
     <string name="create_error_notification">建立一則出現錯誤通知</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">好，包括埋睇過但未睇晒嘅影片</string>
+    <string name="remove_watched_popup_partially_watched_streams">好，包括埋睇過但未睇晒嘅影片</string>
     <string name="new_seek_duration_toast">礙於 ExoPlayer 所限，快轉長度經已改為 %d 秒</string>
     <string name="hash_channel_name">影片雜湊通知</string>
     <string name="enqueued">排咗去隊尾</string>

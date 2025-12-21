@@ -124,7 +124,7 @@
         <item quantity="other">%s مُشاهِد</item>
     </plurals>
     <string name="show_hold_to_append_summary">عرض تلميح عند الضغط على زر استخدام المشغل الخلفي أو النافذة المنبثقة في صفحة تفاصيل الفديو</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">نعم، ومقاطع الفيديو التي تمت مشاهدتها جزئيًا</string>
+    <string name="remove_watched_popup_partially_watched_streams">نعم، ومقاطع الفيديو التي تمت مشاهدتها جزئيًا</string>
     <string name="error_timeout">انتهى وقت الاتصال</string>
     <string name="unknown_audio_track">غير معروف</string>
     <string name="autoplay_title">تشغيل تلقائي</string>

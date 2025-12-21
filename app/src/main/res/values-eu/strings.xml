@@ -512,7 +512,7 @@
     <string name="channel_created_by">%s-k sortua</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanalaren avatar-earen miniatura</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Erakutsi agrupatuta ez dauden harpidetzak bakarrik</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Bai, partzialki ikusitako bideoak ere bai</string>
+    <string name="remove_watched_popup_partially_watched_streams">Bai, partzialki ikusitako bideoak ere bai</string>
     <string name="remove_watched_popup_warning">Jada ikusi eta gero erreprodukzio zerrendara gehitu diren bideoak ezabatuak izango dira.
 \nJarraitu nahi duzu\? Ekintza hau ezin da desegin!</string>
     <string name="remove_watched_popup_title">Ikusitako bideoak ezabatu\?</string>

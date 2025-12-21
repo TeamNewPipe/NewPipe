@@ -508,7 +508,7 @@
 \nGörmek istiyorsanız ayarlarda \"%1$s\" seçeneğini açın.</string>
     <string name="remove_watched_popup_warning">Oynatma listesine eklendikten önce ve sonra izlenen videolar kaldırılacak.
 \nEmin misiniz\? Bu geri döndürülemez!</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Evet ve kısmen izlenmiş videolar</string>
+    <string name="remove_watched_popup_partially_watched_streams">Evet ve kısmen izlenmiş videolar</string>
     <string name="remove_watched_popup_title">İzlenen videoları kaldır\?</string>
     <string name="remove_watched">İzleneni kaldır</string>
     <string name="show_original_time_ago_summary">Akış ögelerinde hizmetlerden alınan özgün metinler görünecektir</string>

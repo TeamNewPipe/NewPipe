@@ -486,7 +486,7 @@
     <string name="content_not_supported">Konten ini belum didukung oleh NewPipe.
 \n
 \nSemoga akan didukung pada versi berikutnya.</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Iya, dan video yang ditonton sebagian</string>
+    <string name="remove_watched_popup_partially_watched_streams">Iya, dan video yang ditonton sebagian</string>
     <string name="remove_watched_popup_warning">Video yang sudah ditonton sebelum dan sesudah ditambahkan ke daftar putar akan dibuang.
 \nApakah Anda yakin\? Ini tidak bisa diurungkan!</string>
     <string name="unmute">Batal bisukan</string>

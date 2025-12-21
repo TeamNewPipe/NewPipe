@@ -422,7 +422,7 @@
     <plurals name="seconds">
         <item quantity="other">%d giây</item>
     </plurals>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Có, và video đã xem một phần</string>
+    <string name="remove_watched_popup_partially_watched_streams">Có, và video đã xem một phần</string>
     <string name="remove_watched_popup_warning">Những video đã xem trước và sau khi thêm vào danh sách phát sẽ bị loại bỏ.
 \nBạn có chắc không? Điều này không thể được hoàn tác!</string>
     <string name="remove_watched_popup_title">Xóa các video đã xem?</string>
