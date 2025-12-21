@@ -370,7 +370,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 final android.widget.CheckBox removePartiallyWatchedCheckbox =
                         new android.widget.CheckBox(requireContext());
                 removePartiallyWatchedCheckbox.setText(
-                        R.string.remove_watched_popup_yes_and_partially_watched_videos);
+                        R.string.remove_watched_popup_partially_watched_streams);
 
                 // Wrap the checkbox in a container with dialog-like horizontal padding
                 // so it aligns with the dialog title/message on the start side.

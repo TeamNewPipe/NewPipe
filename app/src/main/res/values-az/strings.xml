@@ -652,7 +652,7 @@
     <string name="playback_speed_control">Oynatma Sürəti Nizamlamaları</string>
     <string name="unhook_checkbox">Ayır (pozuntuya səbəb ola bilər)</string>
     <string name="show_error">Xətanı göstər</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Bəli və qismən baxılmış videolar</string>
+    <string name="remove_watched_popup_partially_watched_streams">Bəli və qismən baxılmış videolar</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s endirməsi silindi</item>
         <item quantity="other">%1$s endirmə silindi</item>

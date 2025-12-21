@@ -338,7 +338,7 @@
         <item quantity="other">%d sekundes</item>
     </plurals>
     <string name="new_seek_duration_toast">ExoPlayer ierobežojumu dēļ meklēšanas ilgums tika iestatīts uz %d sekundēm</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Jā, un daļēji skatītos videoklipus</string>
+    <string name="remove_watched_popup_partially_watched_streams">Jā, un daļēji skatītos videoklipus</string>
     <string name="remove_watched_popup_warning">Videoklipi, kas ir skatīti pirms un pēc pievienošanas atskaņošanas sarakstam, tiks noņemti.
 \nVai tu esi pārliecināts\? To nevar atsaukt!</string>
     <string name="remove_watched_popup_title">Vai noņemt skatītos videoklipus\?</string>

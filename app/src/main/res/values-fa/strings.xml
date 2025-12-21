@@ -449,7 +449,7 @@
         <item quantity="one">%d ثانیه</item>
         <item quantity="other">%d ثانیه</item>
     </plurals>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">بله، و ویدیوهای ناقص دیده شده</string>
+    <string name="remove_watched_popup_partially_watched_streams">بله، و ویدیوهای ناقص دیده شده</string>
     <string name="remove_watched_popup_title">برداشتن ویدیوهای دیده شده؟</string>
     <string name="remove_watched">پاک کردن دیده شده‌ها</string>
     <string name="systems_language">پیش‌فرض دستگاه</string>

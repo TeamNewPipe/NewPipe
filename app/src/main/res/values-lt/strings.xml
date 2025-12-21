@@ -409,7 +409,7 @@
     <string name="error_ssl_exception">Užmegzti saugaus ryšio nepavyko</string>
     <string name="limit_mobile_data_usage_title">Riboti raišką naudojant mobilius duomenis</string>
     <string name="autoplay_summary">Automatiškai atkurti — %s</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Taip ir iš dalies žiūrėtus vaizdo įrašus</string>
+    <string name="remove_watched_popup_partially_watched_streams">Taip ir iš dalies žiūrėtus vaizdo įrašus</string>
     <string name="error_download_resource_gone">Atstatyti parsiuntimo nepavyko</string>
     <string name="pause_downloads_on_mobile">Pertraukti matuojamuose tinkluose</string>
     <string name="minimize_on_exit_popup_description">Sumažinti iki iššokančio lango grotuvo</string>
