@@ -8,6 +8,7 @@ import android.content.res.Configuration
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -50,6 +51,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.ComposeView
@@ -122,7 +124,7 @@ fun LongPressMenu(
     longPressActions: List<LongPressAction>,
     onDismissRequest: () -> Unit,
 ) {
-    var showEditor by rememberSaveable(key = longPressable.url) { mutableStateOf(false) }
+    var showEditor by rememberSaveable { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
     if (showEditor) {
@@ -253,9 +255,22 @@ private fun LongPressMenuContent(
 
 @Composable
 fun LongPressMenuDragHandle(onEditActions: () -> Unit) {
+    var showFocusTrap by remember { mutableStateOf(true) }
+
     Box(
         modifier = Modifier.fillMaxWidth()
     ) {
+        if (showFocusTrap) {
+            // Just a focus trap to make sure the button below (onEditActions) is not the button
+            // that is first focused when opening the view. That would be a problem on Android TVs
+            // with DPAD, where the long press menu is opened by long pressing on stuff, and the UP
+            // event of the long press would click the button below if it were the first focused.
+            // This way we create a focus trap which disappears as soon as it is focused, leaving
+            // the focus to "nothing focused". Ideally it would be great to focus the first item in
+            // the long press menu, but then there would need to be a way to ignore the UP from the
+            // DPAD after an externally-triggered long press.
+            Box(Modifier.size(1.dp).focusable().onFocusChanged { showFocusTrap = !it.isFocused })
+        }
         BottomSheetDefaults.DragHandle(
             modifier = Modifier.align(Alignment.Center)
         )
