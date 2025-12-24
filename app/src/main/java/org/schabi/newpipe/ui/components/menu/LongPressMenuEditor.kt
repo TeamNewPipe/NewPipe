@@ -22,6 +22,7 @@ import android.util.Log
 import androidx.annotation.StringRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
+import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -33,6 +34,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridItemInfo
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
@@ -49,6 +51,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -77,6 +80,9 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import org.schabi.newpipe.R
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.Companion.DefaultEnabledActions
@@ -85,6 +91,7 @@ import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.text.FixedHeightCenteredText
 import kotlin.math.abs
 import kotlin.math.floor
+import kotlin.math.max
 import kotlin.math.min
 
 const val TAG = "LongPressMenuEditor"
@@ -120,12 +127,15 @@ fun LongPressMenuEditor(modifier: Modifier = Modifier) {
         }.toList().toMutableStateList()
     }
 
-    val coroutineScope = rememberCoroutineScope()
+    // variables for handling drag, focus, and autoscrolling when finger is at top/bottom
     val gridState = rememberLazyGridState()
     var activeDragItem by remember { mutableStateOf<ItemInList?>(null) }
     var activeDragPosition by remember { mutableStateOf(IntOffset.Zero) }
     var activeDragSize by remember { mutableStateOf(IntSize.Zero) }
     var currentlyFocusedItem by remember { mutableIntStateOf(-1) }
+    val coroutineScope = rememberCoroutineScope()
+    var autoScrollJob by remember { mutableStateOf<Job?>(null) }
+    var autoScrollSpeed by remember { mutableFloatStateOf(0f) } // -1, 0 or 1
 
     fun findItemForOffsetOrClosestInRow(offset: IntOffset): LazyGridItemInfo? {
         var closestItemInRow: LazyGridItemInfo? = null
@@ -143,6 +153,7 @@ fun LongPressMenuEditor(modifier: Modifier = Modifier) {
         return closestItemInRow
     }
 
+    // called not just for drag gestures initiated by moving the finger, but also with DPAD's Enter
     fun beginDragGesture(pos: IntOffset, rawItem: LazyGridItemInfo) {
         if (activeDragItem != null) return
         val item = items.getOrNull(rawItem.index) ?: return
@@ -154,11 +165,22 @@ fun LongPressMenuEditor(modifier: Modifier = Modifier) {
         }
     }
 
+    // this beginDragGesture() overload is only called when moving the finger (not on DPAD's Enter)
     fun beginDragGesture(pos: IntOffset) {
         val rawItem = findItemForOffsetOrClosestInRow(pos) ?: return
         beginDragGesture(pos, rawItem)
+        autoScrollSpeed = 0f
+        autoScrollJob = coroutineScope.launch {
+            while (isActive) {
+                if (autoScrollSpeed != 0f) {
+                    gridState.scrollBy(autoScrollSpeed)
+                }
+                delay(16L) // roughly 60 FPS
+            }
+        }
     }
 
+    // called not just for drag gestures by moving the finger, but also with DPAD's events
     fun handleDragGestureChange(dragItem: ItemInList, rawItem: LazyGridItemInfo) {
         val prevDragMarkerIndex = items.indexOfFirst { it is ItemInList.DragMarker }
             .takeIf { it >= 0 } ?: return // impossible situation, DragMarker is always in the list
@@ -202,6 +224,8 @@ fun LongPressMenuEditor(modifier: Modifier = Modifier) {
         }
     }
 
+    // this handleDragGestureChange() overload is only called when moving the finger
+    // (not on DPAD's events)
     fun handleDragGestureChange(pos: IntOffset, posChangeForScrolling: Offset) {
         val dragItem = activeDragItem
         if (dragItem == null) {
@@ -209,12 +233,18 @@ fun LongPressMenuEditor(modifier: Modifier = Modifier) {
             gridState.dispatchRawDelta(-posChangeForScrolling.y)
             return
         }
+        autoScrollSpeed = autoScrollSpeedFromTouchPos(pos, gridState)
         activeDragPosition = pos
         val rawItem = findItemForOffsetOrClosestInRow(pos) ?: return
         handleDragGestureChange(dragItem, rawItem)
     }
 
+    // called in multiple places both, e.g. when the finger stops touching, or with DPAD events
     fun completeDragGestureAndCleanUp() {
+        autoScrollJob?.cancel()
+        autoScrollJob = null
+        autoScrollSpeed = 0f
+
         val dragItem = activeDragItem
         if (dragItem != null) {
             val dragMarkerIndex = items.indexOfFirst { it is ItemInList.DragMarker }
@@ -408,6 +438,27 @@ fun LongPressMenuEditor(modifier: Modifier = Modifier) {
             )
         }
     }
+}
+
+fun autoScrollSpeedFromTouchPos(
+    touchPos: IntOffset,
+    gridState: LazyGridState,
+    maxSpeed: Float = 20f,
+    scrollIfCloseToBorderPercent: Float = 0.1f,
+): Float {
+    val heightPosRatio = touchPos.y.toFloat() /
+            (gridState.layoutInfo.viewportEndOffset - gridState.layoutInfo.viewportStartOffset)
+    // just a linear piecewise function, sets higher speeds the closer the finger is to the border
+    return maxSpeed * max(
+        // proportionally positive speed when close to the bottom border
+        (heightPosRatio - 1) / scrollIfCloseToBorderPercent + 1,
+        min(
+            // proportionally negative speed when close to the top border
+            heightPosRatio / scrollIfCloseToBorderPercent - 1,
+            // don't scroll at all if not close to any border
+            0f
+        )
+    )
 }
 
 sealed class ItemInList(val isDraggable: Boolean, open val columnSpan: Int? = 1) {
