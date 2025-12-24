@@ -18,6 +18,7 @@
 
 package org.schabi.newpipe.ui.components.menu
 
+import android.util.Log
 import androidx.annotation.StringRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
@@ -51,6 +52,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
@@ -75,16 +77,19 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
+import kotlinx.coroutines.launch
 import org.schabi.newpipe.R
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.Companion.DefaultEnabledActions
 import org.schabi.newpipe.ui.detectDragGestures
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.text.FixedHeightCenteredText
+import kotlin.math.abs
 import kotlin.math.floor
 import kotlin.math.min
 
+const val TAG = "LongPressMenuEditor"
+
 // TODO padding doesn't seem to work as expected when the list becomes scrollable?
-// TODO does Android TV auto-scroll to the selected item when the list becomes scrollable?
 @Composable
 fun LongPressMenuEditor(modifier: Modifier = Modifier) {
     // We get the current arrangement once and do not observe on purpose
@@ -115,6 +120,7 @@ fun LongPressMenuEditor(modifier: Modifier = Modifier) {
         }.toList().toMutableStateList()
     }
 
+    val coroutineScope = rememberCoroutineScope()
     val gridState = rememberLazyGridState()
     var activeDragItem by remember { mutableStateOf<ItemInList?>(null) }
     var activeDragPosition by remember { mutableStateOf(IntOffset.Zero) }
@@ -173,7 +179,7 @@ fun LongPressMenuEditor(modifier: Modifier = Modifier) {
             // make sure it is not possible to move items in between a *Caption and a HeaderBox
             if (!items[i].isDraggable) i += 1
             if (i < items.size && items[i] == ItemInList.HeaderBox) i += 1
-            if (i > rawItem.index && prevDragMarkerIndex < rawItem.index) i -= 1
+            if (rawItem.index in (prevDragMarkerIndex + 1)..<i) i -= 1
             i
         }
 
@@ -228,9 +234,11 @@ fun LongPressMenuEditor(modifier: Modifier = Modifier) {
         }
     }
 
+    // test scrolling on Android TV by adding `.padding(horizontal = 350.dp)` here
     BoxWithConstraints(modifier) {
         // otherwise we wouldn't know the amount of columns to handle the Up/Down key events
         val columns = maxOf(1, floor(this.maxWidth / MinButtonWidth).toInt())
+
         LazyVerticalGrid(
             modifier = Modifier
                 .safeDrawingPadding()
@@ -239,6 +247,7 @@ fun LongPressMenuEditor(modifier: Modifier = Modifier) {
                     handleDragGestureChange = ::handleDragGestureChange,
                     endDragGesture = ::completeDragGestureAndCleanUp,
                 )
+                // this huge .focusTarget().onKeyEvent() block just handles DPAD on Android TVs
                 .focusTarget()
                 .onKeyEvent { event ->
                     if (event.type != KeyEventType.KeyDown) {
@@ -246,7 +255,6 @@ fun LongPressMenuEditor(modifier: Modifier = Modifier) {
                             event.key == Key.DirectionDown &&
                             currentlyFocusedItem < 0
                         ) {
-                            //
                             currentlyFocusedItem = 0
                         }
                         return@onKeyEvent false
@@ -259,6 +267,7 @@ fun LongPressMenuEditor(modifier: Modifier = Modifier) {
                             } else if (items[focusedItem].columnSpan == null) {
                                 focusedItem -= 1
                             } else {
+                                // go to the previous line
                                 var remaining = columns
                                 while (true) {
                                     focusedItem -= 1
@@ -276,9 +285,10 @@ fun LongPressMenuEditor(modifier: Modifier = Modifier) {
                         Key.DirectionDown -> {
                             if (focusedItem >= items.size - 1) {
                                 return@onKeyEvent false
-                            } else if (items[focusedItem].columnSpan == null) {
+                            } else if (focusedItem < 0 || items[focusedItem].columnSpan == null) {
                                 focusedItem += 1
                             } else {
+                                // go to the next line
                                 var remaining = columns
                                 while (true) {
                                     focusedItem += 1
@@ -332,13 +342,36 @@ fun LongPressMenuEditor(modifier: Modifier = Modifier) {
                         // then there would be no indication of the current cursor position at all.
                         completeDragGestureAndCleanUp()
                         return@onKeyEvent false
+                    } else if (focusedItem >= items.size) {
+                        Log.w(TAG, "Invalid focusedItem $focusedItem: >= items size ${items.size}")
+                    }
+
+                    val rawItem = gridState.layoutInfo.visibleItemsInfo
+                        .minByOrNull { abs(it.index - focusedItem) }
+                        ?: return@onKeyEvent false // no item is visible at all, impossible case
+
+                    // If the item we are going to focus is not visible or is close to the boundary,
+                    // scroll to it. Note that this will cause the "drag item" to appear misplaced,
+                    // since the drag item's position is set to the position of the focused item
+                    // before scrolling. However, it's not worth overcomplicating the logic just for
+                    // correcting the position of a drag hint on Android TVs.
+                    val h = rawItem.size.height
+                    if (rawItem.index != focusedItem ||
+                        rawItem.offset.y <= gridState.layoutInfo.viewportStartOffset + 0.8 * h ||
+                        rawItem.offset.y + 1.8 * h >= gridState.layoutInfo.viewportEndOffset
+                    ) {
+                        coroutineScope.launch {
+                            gridState.scrollToItem(focusedItem, -(0.8 * h).toInt())
+                        }
                     }
 
                     val dragItem = activeDragItem
                     if (dragItem != null) {
-                        val rawItem = gridState.layoutInfo.visibleItemsInfo
-                            .firstOrNull { it.index == focusedItem }
-                            ?: return@onKeyEvent false
+                        // This will mostly bring the drag item to the right position, but will
+                        // misplace it if the view just scrolled (see above), or if the DragMarker's
+                        // position is moved past HiddenCaption by handleDragGestureChange() below.
+                        // However, it's not worth overcomplicating the logic just for correcting
+                        // the position of a drag hint on Android TVs.
                         activeDragPosition = rawItem.offset
                         handleDragGestureChange(dragItem, rawItem)
                     }
