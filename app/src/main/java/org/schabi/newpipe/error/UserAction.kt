@@ -1,9 +1,9 @@
-package org.schabi.newpipe.error;
+package org.schabi.newpipe.error
 
 /**
  * The user actions that can cause an error.
  */
-public enum UserAction {
+enum class UserAction(val message: String) {
     USER_REPORT("user report"),
     UI_ERROR("ui error"),
     DATABASE_IMPORT_EXPORT("database import or export"),
@@ -36,14 +36,4 @@ public enum UserAction {
     GETTING_MAIN_SCREEN_TAB("getting main screen tab"),
     PLAY_ON_POPUP("play on popup"),
     SUBSCRIPTIONS("loading subscriptions");
-
-    private final String message;
-
-    UserAction(final String message) {
-        this.message = message;
-    }
-
-    public String getMessage() {
-        return message;
-    }
 }
