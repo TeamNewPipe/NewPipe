@@ -100,7 +100,7 @@ public class ExpandableSurfaceView extends SurfaceView {
     }
 
     public void setAspectRatio(final float aspectRatio) {
-        if (videoAspectRatio == aspectRatio) {
+        if (videoAspectRatio == aspectRatio || aspectRatio == 0 || !Float.isFinite(aspectRatio)) {
             return;
         }
 
