@@ -35,12 +35,12 @@ public class ExpandableSurfaceView extends SurfaceView {
                 && resizeMode != RESIZE_MODE_FIT
                 && verticalVideo ? maxHeight : baseHeight;
 
-        if (height == 0) {
+        if (width == 0 || height == 0) {
             return;
         }
 
         final float viewAspectRatio = width / ((float) height);
-        final float aspectDeformation = videoAspectRatio / viewAspectRatio - 1;
+        final float aspectDeformation = (videoAspectRatio / viewAspectRatio) - 1;
         scaleX = 1.0f;
         scaleY = 1.0f;
 
