@@ -54,30 +54,6 @@ public final class TimestampExtractor {
         return new TimestampMatchDTO(timestampStart, timestampEnd, seconds);
     }
 
-    public static class TimestampMatchDTO {
-        private final int timestampStart;
-        private final int timestampEnd;
-        private final int seconds;
-
-        public TimestampMatchDTO(
-                final int timestampStart,
-                final int timestampEnd,
-                final int seconds) {
-            this.timestampStart = timestampStart;
-            this.timestampEnd = timestampEnd;
-            this.seconds = seconds;
-        }
-
-        public int timestampStart() {
-            return timestampStart;
-        }
-
-        public int timestampEnd() {
-            return timestampEnd;
-        }
-
-        public int seconds() {
-            return seconds;
-        }
+    public record TimestampMatchDTO(int timestampStart, int timestampEnd, int seconds) {
     }
 }
