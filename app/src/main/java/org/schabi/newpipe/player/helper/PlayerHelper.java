@@ -141,11 +141,11 @@ public final class PlayerHelper {
                                       @ResizeMode final int resizeMode) {
         switch (resizeMode) {
             case AspectRatioFrameLayout.RESIZE_MODE_FIT:
-                return context.getResources().getString(R.string.resize_fit);
+                return context.getString(R.string.resize_fit);
             case AspectRatioFrameLayout.RESIZE_MODE_FILL:
-                return context.getResources().getString(R.string.resize_fill);
+                return context.getString(R.string.resize_fill);
             case AspectRatioFrameLayout.RESIZE_MODE_ZOOM:
-                return context.getResources().getString(R.string.resize_zoom);
+                return context.getString(R.string.resize_zoom);
             case AspectRatioFrameLayout.RESIZE_MODE_FIXED_HEIGHT:
             case AspectRatioFrameLayout.RESIZE_MODE_FIXED_WIDTH:
             default:

@@ -194,9 +194,9 @@ public final class Localization {
             case (int) ListExtractor.ITEM_COUNT_UNKNOWN:
                 return "";
             case (int) ListExtractor.ITEM_COUNT_INFINITE:
-                return context.getResources().getString(R.string.infinite_videos);
+                return context.getString(R.string.infinite_videos);
             case (int) ListExtractor.ITEM_COUNT_MORE_THAN_100:
-                return context.getResources().getString(R.string.more_than_100_videos);
+                return context.getString(R.string.more_than_100_videos);
             default:
                 return getQuantity(context, R.plurals.videos, R.string.no_videos, streamCount,
                         localizeNumber(streamCount));
@@ -209,9 +209,9 @@ public final class Localization {
             case (int) ListExtractor.ITEM_COUNT_UNKNOWN:
                 return "";
             case (int) ListExtractor.ITEM_COUNT_INFINITE:
-                return context.getResources().getString(R.string.infinite_videos_mini);
+                return context.getString(R.string.infinite_videos_mini);
             case (int) ListExtractor.ITEM_COUNT_MORE_THAN_100:
-                return context.getResources().getString(R.string.more_than_100_videos_mini);
+                return context.getString(R.string.more_than_100_videos_mini);
             default:
                 return String.valueOf(streamCount);
         }
