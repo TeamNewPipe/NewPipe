@@ -56,8 +56,8 @@
                         android:layout_gravity="center"
                         android:background="@android:color/transparent"
                         android:src="@drawable/ic_play_arrow_shadow"
+                        android:contentDescription="@string/play"
                         android:visibility="invisible"
-                        tools:ignore="ContentDescription"
                         tools:visibility="visible" />
 
                     <org.schabi.newpipe.views.NewPipeTextView
@@ -188,7 +188,7 @@
                         android:layout_marginTop="11dp"
                         android:layout_marginEnd="10dp"
                         android:src="@drawable/ic_expand_more"
-                        tools:ignore="ContentDescription" />
+                        android:contentDescription="@string/show_more" />
 
                 </FrameLayout>
 
@@ -614,7 +614,7 @@
             android:paddingLeft="@dimen/video_item_search_padding"
             android:paddingRight="@dimen/video_item_search_padding"
             android:scaleType="fitCenter"
-            tools:ignore="ContentDescription" />
+            android:contentDescription="@string/switch_to_main" />
 
         <LinearLayout
             android:id="@+id/overlay_metadata_layout"
