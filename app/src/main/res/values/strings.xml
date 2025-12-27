@@ -576,6 +576,7 @@
     <string name="minimize_on_exit_none_description">None</string>
     <string name="minimize_on_exit_background_description">Minimize to background player</string>
     <string name="minimize_on_exit_popup_description">Minimize to popup player</string>
+    <string name="select_icon">Select icon</string>
     <!-- Autoplay behavior -->
     <string name="autoplay_summary">Start playback automatically — %s</string>
     <string name="wifi_only">Only on Wi-Fi</string>
