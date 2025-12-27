@@ -246,7 +246,8 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
                 if (context instanceof AppCompatActivity) {
                     info.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(
                             R.id.accessibility_action_channel_details,
-                            context.getString(R.string.show_channel_details)));
+                            context.getString(R.string.accessibility_show_channel_details,
+                                    item.getUploaderName())));
                 }
 
                 info.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(
