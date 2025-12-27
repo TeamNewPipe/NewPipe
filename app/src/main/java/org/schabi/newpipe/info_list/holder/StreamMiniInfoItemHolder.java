@@ -1,13 +1,13 @@
 package org.schabi.newpipe.info_list.holder;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.AccessibilityDelegateCompat;
@@ -17,34 +17,22 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
-import org.schabi.newpipe.download.DownloadDialog;
-import org.schabi.newpipe.error.ErrorInfo;
-import org.schabi.newpipe.error.ErrorUtil;
-import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.info_list.dialog.StreamDialogDefaultEntry;
 import org.schabi.newpipe.ktx.ViewUtils;
-import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
-import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.util.DependentPreferenceHelper;
 import org.schabi.newpipe.util.Localization;
-import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.SparseItemUtil;
 import org.schabi.newpipe.util.StreamTypeUtil;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
-import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.image.CoilHelper;
 import org.schabi.newpipe.views.AnimatedProgressBar;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
 public class StreamMiniInfoItemHolder extends InfoItemHolder {
     public final ImageView itemThumbnailView;
@@ -178,8 +166,9 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
     private void updateAccessibilityActions(final StreamInfoItem item) {
         ViewCompat.setAccessibilityDelegate(itemView, new AccessibilityDelegateCompat() {
             @Override
-            public void onInitializeAccessibilityNodeInfo(final View host,
-                                                          final AccessibilityNodeInfoCompat info) {
+            public void onInitializeAccessibilityNodeInfo(
+                    @NonNull final View host,
+                    @NonNull final AccessibilityNodeInfoCompat info) {
                 super.onInitializeAccessibilityNodeInfo(host, info);
 
                 final Context context = itemBuilder.getContext();
@@ -256,99 +245,54 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
             }
 
             @Override
-            public boolean performAccessibilityAction(final View host, final int action,
+            public boolean performAccessibilityAction(@NonNull final View host, final int action,
                                                       final Bundle args) {
                 final Context context = itemBuilder.getContext();
+                final FragmentActivity fActivity = ((FragmentActivity) context);
+
                 if (context == null) {
                     return super.performAccessibilityAction(host, action, args);
                 }
 
                 if (action == R.id.accessibility_action_show_options) {
+                    // display stream dialog
                     if (itemBuilder.getOnStreamSelectedListener() != null) {
                         itemBuilder.getOnStreamSelectedListener().held(item);
                     }
                     return true;
                 } else if (action == R.id.accessibility_action_enqueue) {
-                    SparseItemUtil.fetchItemInfoIfSparse(context, item,
-                            singlePlayQueue -> NavigationHelper.enqueueOnPlayer(
-                                    context, singlePlayQueue));
+                    StreamDialogDefaultEntry.ENQUEUE.action.onClick(fActivity, item);
                     return true;
                 } else if (action == R.id.accessibility_action_enqueue_next) {
-                    SparseItemUtil.fetchItemInfoIfSparse(context, item,
-                            singlePlayQueue -> NavigationHelper.enqueueNextOnPlayer(
-                                    context, singlePlayQueue));
+                    StreamDialogDefaultEntry.ENQUEUE_NEXT.action.onClick(fActivity, item);
                     return true;
                 } else if (action == R.id.accessibility_action_background) {
-                    SparseItemUtil.fetchItemInfoIfSparse(context, item, singlePlayQueue ->
-                            NavigationHelper.playOnBackgroundPlayer(
-                                    context, singlePlayQueue, true));
+                    StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND.action.onClick(
+                            fActivity, item);
                     return true;
                 } else if (action == R.id.accessibility_action_popup) {
-                    SparseItemUtil.fetchItemInfoIfSparse(context, item, singlePlayQueue ->
-                            NavigationHelper.playOnPopupPlayer(
-                                    context, singlePlayQueue, true));
+                    StreamDialogDefaultEntry.START_HERE_ON_POPUP.action.onClick(fActivity, item);
                     return true;
                 } else if (action == R.id.accessibility_action_download) {
-                    SparseItemUtil.fetchStreamInfoAndSaveToDatabase(context,
-                            item.getServiceId(),
-                            item.getUrl(), info -> {
-                                final FragmentActivity activity = (FragmentActivity) context;
-                                if (!activity.isFinishing() && !activity.isDestroyed()) {
-                                    final DownloadDialog downloadDialog =
-                                            new DownloadDialog(context, info);
-                                    downloadDialog.show(activity.getSupportFragmentManager(),
-                                            "downloadDialog");
-                                }
-                            });
+                    StreamDialogDefaultEntry.DOWNLOAD.action.onClick(fActivity, item);
                     return true;
                 } else if (action == R.id.accessibility_action_playlist) {
-                    final FragmentActivity activity = (FragmentActivity) context;
-                    PlaylistDialog.createCorrespondingDialog(
-                            context,
-                            List.of(new StreamEntity(item)),
-                            dialog -> dialog.show(
-                                    activity.getSupportFragmentManager(),
-                                    "StreamDialogEntry@"
-                                            + (dialog instanceof PlaylistAppendDialog
-                                            ? "append" : "create")
-                                            + "_playlist"
-                            )
-                    );
+                    StreamDialogDefaultEntry.APPEND_PLAYLIST.action.onClick(fActivity, item);
                     return true;
                 } else if (action == R.id.accessibility_action_share) {
-                    ShareUtils.shareText(context, item.getName(),
-                            item.getUrl(), item.getThumbnails());
+                    StreamDialogDefaultEntry.SHARE.action.onClick(fActivity, item);
                     return true;
                 } else if (action == R.id.accessibility_action_browser) {
-                    ShareUtils.openUrlInBrowser(context, item.getUrl());
+                    StreamDialogDefaultEntry.OPEN_IN_BROWSER.action.onClick(fActivity, item);
                     return true;
                 } else if (action == R.id.accessibility_action_kodi) {
-                    KoreUtils.playWithKore(context, Uri.parse(item.getUrl()));
+                    StreamDialogDefaultEntry.PLAY_WITH_KODI.action.onClick(fActivity, item);
                     return true;
                 } else if (action == R.id.accessibility_action_mark_watched) {
-                    new HistoryRecordManager(context)
-                            .markAsWatched(item)
-                            .doOnError(error -> {
-                                ErrorUtil.showSnackbar(
-                                        context,
-                                        new ErrorInfo(
-                                                error,
-                                                UserAction.OPEN_INFO_ITEM_DIALOG,
-                                                "Got an error when trying to mark as watched"
-                                        )
-                                );
-                            })
-                            .onErrorComplete()
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe();
+                    StreamDialogDefaultEntry.MARK_AS_WATCHED.action.onClick(fActivity, item);
                     return true;
                 } else if (action == R.id.accessibility_action_channel_details) {
-                    SparseItemUtil.fetchUploaderUrlIfSparse((AppCompatActivity) context,
-                            item.getServiceId(), item.getUrl(),
-                            item.getUploaderUrl(),
-                            url -> NavigationHelper.openChannelFragment(
-                                    ((AppCompatActivity) context).getSupportFragmentManager(),
-                                    item.getServiceId(), url, item.getUploaderName()));
+                    StreamDialogDefaultEntry.SHOW_CHANNEL_DETAILS.action.onClick(fActivity, item);
                     return true;
                 }
 
