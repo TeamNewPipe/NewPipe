@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.App;
@@ -73,7 +74,7 @@ public final class InfoItemDialog {
 
         // Call an entry's action / onClick method when the entry is selected.
         final DialogInterface.OnClickListener action = (d, index) ->
-            entries.get(index).action.onClick(fragment, info);
+            entries.get(index).action.onClick((FragmentActivity) activity, info);
 
         dialog = new AlertDialog.Builder(activity)
                 .setCustomTitle(bannerView)
