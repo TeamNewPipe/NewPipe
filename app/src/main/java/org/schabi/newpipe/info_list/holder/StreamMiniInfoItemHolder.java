@@ -259,44 +259,34 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
                     if (itemBuilder.getOnStreamSelectedListener() != null) {
                         itemBuilder.getOnStreamSelectedListener().held(item);
                     }
-                    return true;
                 } else if (action == R.id.accessibility_action_enqueue) {
                     StreamDialogDefaultEntry.ENQUEUE.action.onClick(fActivity, item);
-                    return true;
                 } else if (action == R.id.accessibility_action_enqueue_next) {
                     StreamDialogDefaultEntry.ENQUEUE_NEXT.action.onClick(fActivity, item);
-                    return true;
                 } else if (action == R.id.accessibility_action_background) {
                     StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND.action.onClick(
                             fActivity, item);
-                    return true;
                 } else if (action == R.id.accessibility_action_popup) {
                     StreamDialogDefaultEntry.START_HERE_ON_POPUP.action.onClick(fActivity, item);
-                    return true;
                 } else if (action == R.id.accessibility_action_download) {
                     StreamDialogDefaultEntry.DOWNLOAD.action.onClick(fActivity, item);
-                    return true;
                 } else if (action == R.id.accessibility_action_playlist) {
                     StreamDialogDefaultEntry.APPEND_PLAYLIST.action.onClick(fActivity, item);
-                    return true;
                 } else if (action == R.id.accessibility_action_share) {
                     StreamDialogDefaultEntry.SHARE.action.onClick(fActivity, item);
-                    return true;
                 } else if (action == R.id.accessibility_action_browser) {
                     StreamDialogDefaultEntry.OPEN_IN_BROWSER.action.onClick(fActivity, item);
-                    return true;
                 } else if (action == R.id.accessibility_action_kodi) {
                     StreamDialogDefaultEntry.PLAY_WITH_KODI.action.onClick(fActivity, item);
-                    return true;
                 } else if (action == R.id.accessibility_action_mark_watched) {
                     StreamDialogDefaultEntry.MARK_AS_WATCHED.action.onClick(fActivity, item);
-                    return true;
                 } else if (action == R.id.accessibility_action_channel_details) {
                     StreamDialogDefaultEntry.SHOW_CHANNEL_DETAILS.action.onClick(fActivity, item);
-                    return true;
+                } else {
+                    return super.performAccessibilityAction(host, action, args);
                 }
-
-                return super.performAccessibilityAction(host, action, args);
+                // return true if the action was handled
+                return true;
             }
         });
     }
