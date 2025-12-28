@@ -32,52 +32,31 @@ public final class ServiceHelper {
 
     @DrawableRes
     public static int getIcon(final int serviceId) {
-        switch (serviceId) {
-            case 0:
-                return R.drawable.ic_smart_display;
-            case 1:
-                return R.drawable.ic_cloud;
-            case 2:
-                return R.drawable.ic_placeholder_media_ccc;
-            case 3:
-                return R.drawable.ic_placeholder_peertube;
-            case 4:
-                return R.drawable.ic_placeholder_bandcamp;
-            default:
-                return R.drawable.ic_circle;
-        }
+        return switch (serviceId) {
+            case 0 -> R.drawable.ic_smart_display;
+            case 1 -> R.drawable.ic_cloud;
+            case 2 -> R.drawable.ic_placeholder_media_ccc;
+            case 3 -> R.drawable.ic_placeholder_peertube;
+            case 4 -> R.drawable.ic_placeholder_bandcamp;
+            default -> R.drawable.ic_circle;
+        };
     }
 
     public static String getTranslatedFilterString(final String filter, final Context c) {
-        switch (filter) {
-            case "all":
-                return c.getString(R.string.all);
-            case "videos":
-            case "sepia_videos":
-            case "music_videos":
-                return c.getString(R.string.videos_string);
-            case "channels":
-                return c.getString(R.string.channels);
-            case "playlists":
-            case "music_playlists":
-                return c.getString(R.string.playlists);
-            case "tracks":
-                return c.getString(R.string.tracks);
-            case "users":
-                return c.getString(R.string.users);
-            case "conferences":
-                return c.getString(R.string.conferences);
-            case "events":
-                return c.getString(R.string.events);
-            case "music_songs":
-                return c.getString(R.string.songs);
-            case "music_albums":
-                return c.getString(R.string.albums);
-            case "music_artists":
-                return c.getString(R.string.artists);
-            default:
-                return filter;
-        }
+        return switch (filter) {
+            case "all" -> c.getString(R.string.all);
+            case "videos", "sepia_videos", "music_videos" -> c.getString(R.string.videos_string);
+            case "channels" -> c.getString(R.string.channels);
+            case "playlists", "music_playlists" -> c.getString(R.string.playlists);
+            case "tracks" -> c.getString(R.string.tracks);
+            case "users" -> c.getString(R.string.users);
+            case "conferences" -> c.getString(R.string.conferences);
+            case "events" -> c.getString(R.string.events);
+            case "music_songs" -> c.getString(R.string.songs);
+            case "music_albums" -> c.getString(R.string.albums);
+            case "music_artists" -> c.getString(R.string.artists);
+            default -> filter;
+        };
     }
 
     /**
@@ -88,14 +67,11 @@ public final class ServiceHelper {
      */
     @StringRes
     public static int getImportInstructions(final int serviceId) {
-        switch (serviceId) {
-            case 0:
-                return R.string.import_youtube_instructions;
-            case 1:
-                return R.string.import_soundcloud_instructions;
-            default:
-                return -1;
-        }
+        return switch (serviceId) {
+            case 0 -> R.string.import_youtube_instructions;
+            case 1 -> R.string.import_soundcloud_instructions;
+            default -> -1;
+        };
     }
 
     /**
@@ -107,12 +83,10 @@ public final class ServiceHelper {
      */
     @StringRes
     public static int getImportInstructionsHint(final int serviceId) {
-        switch (serviceId) {
-            case 1:
-                return R.string.import_soundcloud_instructions_hint;
-            default:
-                return -1;
-        }
+        return switch (serviceId) {
+            case 1 -> R.string.import_soundcloud_instructions_hint;
+            default -> -1;
+        };
     }
 
     public static int getSelectedServiceId(final Context context) {
