@@ -828,4 +828,10 @@
     <string name="no_feed_group_created_yet">ਅਜੇ ਤੱਕ ਕੋਈ ਫੀਡ ਗਰੁੱਪ ਨਹੀਂ ਬਣਾਇਆ ਗਿਆ</string>
     <string name="feed_group_page_summary">ਚੈਨਲ ਗਰੁੱਪ ਪੰਨਾ</string>
     <string name="channel_tab_likes">ਪਸੰਦ</string>
+    <string name="permission_display_over_apps_message"></string>
+    <string name="permission_display_over_apps_permission_name"></string>
+    <string name="delete_file">ਫ਼ਾਈਲ ਮਿਟਾਓ</string>
+    <string name="delete_entry">ਐਂਟਰੀ ਮਿਟਾਓ</string>
+    <string name="account_terminated_service_provides_reason">ਖ਼ਾਤਾ ਬੰਦ ਕੀਤਾ ਗਿਆ\n\n%1$s ਇਹ ਕਾਰਨ ਪ੍ਰਦਾਨ ਕਰਦਾ ਹੈ: %2$s</string>
+    <string name="entry_deleted">ਐਂਟਰੀ ਮਿਟਾ ਦਿੱਤੀ ਗਈ</string>
 </resources>
