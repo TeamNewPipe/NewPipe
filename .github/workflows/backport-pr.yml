@@ -1,0 +1,50 @@
+name: Backport merged pull request
+on:
+  issue_comment:
+    types: [created]
+permissions:
+  contents: write # for comment creation on original PR
+  pull-requests: write
+jobs:
+  backport:
+    name: Backport pull request
+    runs-on: ubuntu-latest
+
+    # Only run when the comment starts with the `/backport` command on a PR and
+    # the commenter has write access to the repository. We do not want to allow
+    # everybody to trigger backports and create branches in our repository.
+    if: >
+        github.event.issue.pull_request &&
+        startsWith(github.event.comment.body, '/backport') &&
+        (
+        github.event.comment.author_association == 'OWNER' ||
+        github.event.comment.author_association == 'COLLABORATOR' ||
+        github.event.comment.author_association == 'MEMBER'
+        )
+    steps:
+      - uses: actions/checkout@v4
+      - name: Get backport metadata
+        # the target branch is the first argument after `/backport`
+        run: |
+          set -euo pipefail
+          body="${{ github.event.comment.body }}"
+          labels_json='${{ toJSON(github.event.pull_request.labels || github.event.issue.labels) }}'
+          target=$(echo "$body" | sed -n 's/.*\/backport[[:space:]]\+\([^[:space:]]\+\).*/\1/p')
+
+          if [ -z "$target" ]; then
+            echo "No backport target found in comment." >&2
+            exit 1
+          fi
+          echo "BACKPORT_TARGET=$target" >> $GITHUB_ENV
+
+          labels=$(echo "$labels_json" | jq -r 'if . == null then "" else map(.name) | join(",") end')
+          if [ -z "$labels" ]; then
+            echo "BACKPORT_PR_LABELS=backport" >> $GITHUB_ENV
+          else
+            echo "BACKPORT_PR_LABELS=backport,$labels" >> $GITHUB_ENV
+          fi
+      - name: Create backport pull request
+        uses: korthout/backport-action@v4
+        with:
+          add_labels: ${{ env.BACKPORT_PR_LABELS }}
+          target_branches: ${{ env.BACKPORT_TARGET }}
