@@ -1,15 +1,15 @@
 Neu
-Playback Lebenslauf #2288
-• Resume Streams, wo Sie letztes Mal aufgehört haben
-Downloader Verbesserungen #2149
-
+Wiedergabe fortsetzen #2288
+Downloader-Verbesserungen #2149 
 
 Verbessert
-• Gemaketten entfernen #2295
-• Handle (auto)Rotationsänderungen während des Aktivitätszyklus #2444
+• GEMA-Strings entfernt #2295
+• (Automatische) Rotationsänderungen #2444
+• Menüs bei langem Drücken #2368
 
 Behoben
-• Fixed Downloads bei 99,9% #2440
-• Aktualisieren der Spielwarteschlange Metadaten #2453
-• [SoundCloud] Fester Absturz beim Laden von Wiedergabelisten TeamNewPipe/NewPipeExtractor#170
-• [YouTube] Feste Dauer kann nicht paresd TeamNewPipe/NewPipeExtractor#177
+• Untertitelnamenanzeige #2394
+• Absturz, wenn die Überprüfung auf App-Updates fehlschlägt (GitHub-Version) #2423 
+• Downloads, die bei 99,9 % hängen bleiben #2440
+• Metadaten der Wiedergabeliste aktualisieren #2453 
+• [SoundCloud] Absturz beim Laden von Wiedergabelisten TeamNewPipe/NewPipeExtractor#170

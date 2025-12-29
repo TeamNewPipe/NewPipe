@@ -1,0 +1,16 @@
+# Verbesserungen
+Aktuellen Player beim Klick auf Zeitstempel beibehalten
+Wiederherstellen ausstehender Downloadaufträge
+Downloads löschen, ohne gleichzeitiges Löschen der Datei
+Overlay-Berechtigung: Erklärendes Dialogfeld für Android > R
+Unterstützung von on.soundcloud-Links
+Viele kleine Verbesserungen und Optimierungen
+
+# Behoben
+Kurzformatierung für Android-Versionen unter 7
+Geisterbenachrichtigungen
+SRT-Untertiteldateien
+Zahlreiche Abstürze
+
+# Entwicklung
+Modernisierung des internen Codes
