@@ -6,14 +6,14 @@
 [versions]
 about-libraries = "11.2.3"
 acra = "5.13.1"
-agp = "8.13.1"
+agp = "8.13.2"
 appcompat = "1.7.1"
 assertj = "3.27.6"
 autoservice-google = "1.1.1"
 autoservice-zacsweers = "1.2.0"
 bridge = "v2.0.2"
 cardview = "1.0.0"
-checkstyle = "12.1.2"
+checkstyle = "12.2.0"
 coil = "3.0.4"
 compose-bom = "2024.10.01"
 constraintlayout = "2.2.1"
@@ -38,7 +38,7 @@ lifecycle = "2.9.4" # Newer versions require minSdk >= 23
 markwon = "4.6.2"
 material = "1.13.0"
 media = "1.7.1"
-mockitoCore = "5.20.0"
+mockitoCore = "5.21.0"
 navigation-compose = "2.8.3"
 okhttp = "5.3.2"
 paging-compose = "3.3.2"
@@ -51,10 +51,10 @@ runner = "1.7.0"
 rxandroid = "3.0.2"
 rxbinding = "4.0.0"
 rxjava = "3.1.12"
-sonarqube = "7.0.1.6134"
+sonarqube = "7.2.1.6560"
 statesaver = "1.4.1" # TODO: Drop because it is deprecated and incompatible with KSP2
 stetho = "1.6.0"
-swiperefreshlayout = "1.1.0"
+swiperefreshlayout = "1.2.0"
 # You can use a local version by uncommenting a few lines in settings.gradle
 # Or you can use a commit you pushed to GitHub by just replacing TeamNewPipe with your GitHub
 # name and the commit hash with the commit hash of the (pushed) commit you want to test
@@ -65,7 +65,7 @@ teamnewpipe-nanojson = "e9d656ddb49a412a5a0a5d5ef20ca7ef09549996"
 # the corresponding commit hash, since JitPack sometimes deletes artifacts.
 # If there’s already a git hash, just add more of it to the end (or remove a letter)
 # to cause jitpack to regenerate the artifact.
-teamnewpipe-newpipe-extractor = "76eb2008cab3fbbbe547135e7bfa3d2e8e32a7d1"
+teamnewpipe-newpipe-extractor = "05e0e4ced7b6ff05f3d68d831efed8bdf588f9ac"
 webkit = "1.14.0"
 work = "2.10.5"  # Newer versions require minSdk >= 23
 

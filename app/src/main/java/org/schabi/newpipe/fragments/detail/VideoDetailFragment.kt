@@ -136,6 +136,7 @@ class VideoDetailFragment :
     // player objects
     private var playQueue: PlayQueue? = null
     @JvmField @State var autoPlayEnabled: Boolean = true
+    @JvmField @State var originalOrientation: Int = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
     private var playerService: PlayerService? = null
     private var player: Player? = null
 
@@ -1730,25 +1731,24 @@ class VideoDetailFragment :
     }
 
     override fun onFullscreenToggleButtonClicked() {
-        // On Android TV screen rotation is not supported
-        // In tablet user experience will be better if screen will not be rotated
-        // from landscape to portrait every time.
-        // Just turn on fullscreen mode in landscape orientation
-        // or portrait & unlocked global orientation
-        val isLandscape = DeviceUtils.isLandscape(requireContext())
-        if (DeviceUtils.isTv(activity) || DeviceUtils.isTablet(activity) &&
-            (!PlayerHelper.globalScreenOrientationLocked(activity) || isLandscape)
-        ) {
-            player!!.UIs().get(MainPlayerUi::class)?.toggleFullscreen()
+        val playerUi: MainPlayerUi = player?.UIs()?.get(MainPlayerUi::class.java) ?: return
+
+        // On tablets and TVs, just toggle fullscreen UI without orientation change.
+        if (DeviceUtils.isTablet(activity) || DeviceUtils.isTv(activity)) {
+            playerUi.toggleFullscreen()
             return
         }
 
-        val newOrientation = if (isLandscape)
-            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        else
-            ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
-
-        activity.setRequestedOrientation(newOrientation)
+        if (playerUi.isFullscreen) {
+            // EXITING FULLSCREEN
+            playerUi.toggleFullscreen()
+            activity.setRequestedOrientation(originalOrientation)
+        } else {
+            // ENTERING FULLSCREEN
+            originalOrientation = activity.getRequestedOrientation()
+            playerUi.toggleFullscreen()
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE)
+        }
     }
 
     /*
