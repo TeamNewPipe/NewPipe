@@ -204,7 +204,7 @@ fun LongPressMenuEditor(modifier: Modifier = Modifier) {
         } else {
             var i = rawItem.index
             // make sure it is not possible to move items in between a *Caption and a HeaderBox
-            if (!items[i].isDraggable) i += 1
+            if (items[i].isCaption) i += 1
             if (i < items.size && items[i] == ItemInList.HeaderBox) i += 1
             if (rawItem.index in (prevDragMarkerIndex + 1)..<i) i -= 1
             i
@@ -467,18 +467,22 @@ fun autoScrollSpeedFromTouchPos(
     )
 }
 
-sealed class ItemInList(val isDraggable: Boolean, open val columnSpan: Int? = 1) {
+sealed class ItemInList(
+    val isDraggable: Boolean = false,
+    val isCaption: Boolean = false,
+    open val columnSpan: Int? = 1,
+) {
     // decoration items (i.e. text subheaders)
-    object EnabledCaption : ItemInList(isDraggable = false, columnSpan = null /* i.e. all line */)
-    object HiddenCaption : ItemInList(isDraggable = false, columnSpan = null /* i.e. all line */)
+    object EnabledCaption : ItemInList(isCaption = true, columnSpan = null /* i.e. all line */)
+    object HiddenCaption : ItemInList(isCaption = true, columnSpan = null /* i.e. all line */)
 
     // actual draggable actions (+ a header)
     object HeaderBox : ItemInList(isDraggable = true, columnSpan = 2)
     data class Action(val type: LongPressAction.Type) : ItemInList(isDraggable = true)
 
     // markers
-    object NoneMarker : ItemInList(isDraggable = false)
-    data class DragMarker(override val columnSpan: Int?) : ItemInList(isDraggable = false)
+    object NoneMarker : ItemInList()
+    data class DragMarker(override val columnSpan: Int?) : ItemInList()
 
     fun stableUniqueKey(): Int {
         return when (this) {
