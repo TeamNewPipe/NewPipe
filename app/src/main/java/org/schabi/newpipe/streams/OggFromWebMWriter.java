@@ -1,8 +1,12 @@
 package org.schabi.newpipe.streams;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.schabi.newpipe.BuildConfig;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.streams.WebMReader.Cluster;
 import org.schabi.newpipe.streams.WebMReader.Segment;
 import org.schabi.newpipe.streams.WebMReader.SimpleBlock;
@@ -14,6 +18,8 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.stream.Collectors;
 
 /**
  * @author kapodamy
@@ -53,8 +59,10 @@ public class OggFromWebMWriter implements Closeable {
     private long segmentTableNextTimestamp = TIME_SCALE_NS;
 
     private final int[] crc32Table = new int[256];
+    private final StreamInfo streamInfo;
 
-    public OggFromWebMWriter(@NonNull final SharpStream source, @NonNull final SharpStream target) {
+    public OggFromWebMWriter(@NonNull final SharpStream source, @NonNull final SharpStream target,
+                             @Nullable final StreamInfo streamInfo) {
         if (!source.canRead() || !source.canRewind()) {
             throw new IllegalArgumentException("source stream must be readable and allows seeking");
         }
@@ -64,6 +72,7 @@ public class OggFromWebMWriter implements Closeable {
 
         this.source = source;
         this.output = target;
+        this.streamInfo = streamInfo;
 
         this.streamId = (int) System.currentTimeMillis();
 
@@ -272,25 +281,29 @@ public class OggFromWebMWriter implements Closeable {
 
     @Nullable
     private byte[] makeMetadata() {
+        Log.d("OggFromWebMWriter", "Downloading media with codec ID " + webmTrack.codecId);
+
         if ("A_OPUS".equals(webmTrack.codecId)) {
-            final var commentFormat = "COMMENT=Downloaded using NewPipe on %s";
-            final var commentStr = String.format(commentFormat, OffsetDateTime.now().toString());
-            final var comment = commentStr.getBytes();
-            final var head = ByteBuffer.allocate(20 + comment.length);
-            head.order(ByteOrder.LITTLE_ENDIAN);
-            head.put(new byte[]{
-                    // Byte order is LE, i.e. LSB first
-                    0x4F, 0x70, 0x75, 0x73, 0x54, 0x61, 0x67, 0x73, // "OpusTags" binary string
-                    0x00, 0x00, 0x00, 0x00, // vendor string of length 0
-                    0x01, 0x00, 0x00, 0x00, // additional tags count
+            var metadata = "";
+            metadata += String.format("COMMENT=Downloaded using NewPipe %s on %s\n",
+                    BuildConfig.VERSION_NAME,
+                    OffsetDateTime.now().toString());
+            if (streamInfo != null) {
+                metadata += String.format("COMMENT=URL: %s\n", streamInfo.getUrl());
+                metadata += String.format("GENRE=%s\n", streamInfo.getCategory());
+                metadata += String.format("ARTIST=%s\n", streamInfo.getUploaderName());
+                metadata += String.format("TITLE=%s\n", streamInfo.getName());
+                metadata += String.format("DATE=%s\n",
+                        streamInfo
+                                .getUploadDate()
+                                .getLocalDateTime()
+                                .format(DateTimeFormatter.ISO_DATE));
+            }
 
-                    // + 4 bytes for the comment string length
-                    // + N bytes for the comment string itself
-            });
-            head.putInt(comment.length);
-            head.put(comment);
+            Log.d("OggFromWebMWriter", "Creating metadata header with this data:");
+            Log.d("OggFromWebMWriter", metadata);
 
-            return head.array();
+            return makeOpusTagsHeader(metadata);
         } else if ("A_VORBIS".equals(webmTrack.codecId)) {
             return new byte[]{
                     0x03, // ¿¿¿???
@@ -302,6 +315,64 @@ public class OggFromWebMWriter implements Closeable {
 
         // not implemented for the desired codec
         return null;
+    }
+
+    /**
+     * This creates a single metadata tag for use in opus metadata headers. It contains the four
+     * byte string length field and includes the string as-is. This cannot be used independently,
+     * but must follow a proper "OpusTags" header.
+     *
+     * @param keyValue A key-value pair in the format "KEY=some value"
+     * @return The binary data of the encoded metadata tag
+     */
+    private static byte[] makeOpusMetadataTag(final String keyValue) {
+        // Ensure the key is uppercase
+        final var delimiterIndex = keyValue.indexOf('=');
+        final var key = keyValue.substring(0, delimiterIndex).toUpperCase();
+        final var value = keyValue.substring(delimiterIndex + 1);
+        final var reconstructedKeyValue = key + "=" + value;
+
+        final var bytes = reconstructedKeyValue.getBytes();
+        final var buf = ByteBuffer.allocate(4 + bytes.length);
+        buf.order(ByteOrder.LITTLE_ENDIAN);
+        buf.putInt(bytes.length);
+        buf.put(bytes);
+        return buf.array();
+    }
+
+    /**
+     * This returns a complete "OpusTags" header, created from the provided tags string.
+     * <p>
+     * You probably want to use makeOpusMetadata(), which uses this function to create
+     * a header with sensible metadata filled in.
+     *
+     * @param keyValueLines A multiline string with each line containing a key-value pair
+     *                      in the format "KEY=some value". This may also be a blank string.
+     * @return The binary header
+     */
+    private static byte[] makeOpusTagsHeader(@NonNull final String keyValueLines) {
+        final var tags = keyValueLines
+                .lines()
+                .map(String::trim)
+                .filter(s -> !s.isBlank())
+                .map(OggFromWebMWriter::makeOpusMetadataTag)
+                .collect(Collectors.toUnmodifiableList());
+
+        final var tagsBytes = tags.stream().collect(Collectors.summingInt(arr -> arr.length));
+
+        // Fixed header fields + dynamic fields
+        final var byteCount = 16 + tagsBytes;
+
+        final var head = ByteBuffer.allocate(byteCount);
+        head.order(ByteOrder.LITTLE_ENDIAN);
+        head.put(new byte[]{
+                0x4F, 0x70, 0x75, 0x73, 0x54, 0x61, 0x67, 0x73, // "OpusTags" binary string
+                0x00, 0x00, 0x00, 0x00, // vendor (aka. Encoder) string of length 0
+        });
+        head.putInt(tags.size()); // 4 bytes for tag count
+        tags.forEach(head::put); // dynamic amount of tag bytes
+
+        return head.array();
     }
 
     private void write(final ByteBuffer buffer) throws IOException {
