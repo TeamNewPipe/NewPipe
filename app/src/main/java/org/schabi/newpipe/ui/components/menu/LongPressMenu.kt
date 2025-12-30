@@ -62,8 +62,6 @@ import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -117,6 +115,7 @@ fun getLongPressMenuView(
 }
 
 internal val MinButtonWidth = 86.dp
+internal val ThumbnailHeight = 60.dp
 
 @Composable
 fun LongPressMenu(
@@ -166,8 +165,12 @@ private fun LongPressMenuContent(
             .fillMaxWidth()
             .padding(start = 6.dp, end = 6.dp, bottom = 16.dp)
     ) {
-        val buttonHeight = MinButtonWidth // landscape aspect ratio, square in the limit
-        val headerWidthInButtons = 5 // the header is 5 times as wide as the buttons
+        // landscape aspect ratio, 1:1 square in the limit
+        val buttonHeight = MinButtonWidth
+        // max width for the portrait/full-width header, measured in button widths
+        val maxHeaderWidthInButtonsFullSpan = 5
+        // width for the landscape/reduced header, measured in button widths
+        val headerWidthInButtonsReducedSpan = 4
         val buttonsPerRow = (this.maxWidth / MinButtonWidth).toInt()
 
         // the channel icon goes in the menu header, so do not show a button for it
@@ -217,33 +220,36 @@ private fun LongPressMenuContent(
                                     .weight(1F),
                             )
                             rowIndex += 1
-                        } else if (headerWidthInButtons >= buttonsPerRow) {
-                            // this branch is taken if the header is going to fit on one line
-                            // (i.e. on phones in portrait)
+                        } else if (maxHeaderWidthInButtonsFullSpan >= buttonsPerRow) {
+                            // this branch is taken if the full-span header is going to fit on one
+                            // line (i.e. on phones in portrait)
                             LongPressMenuHeader(
                                 item = longPressable,
                                 onUploaderClick = onUploaderClick,
                                 modifier = Modifier
+                                    .padding(start = 6.dp, end = 6.dp, bottom = 6.dp)
                                     // leave the height as small as possible, since it's the
                                     // only item on the row anyway
-                                    .padding(start = 6.dp, end = 6.dp, bottom = 6.dp)
                                     .fillMaxWidth()
-                                    .weight(headerWidthInButtons.toFloat()),
+                                    .weight(maxHeaderWidthInButtonsFullSpan.toFloat()),
                             )
-                            rowIndex += headerWidthInButtons
+                            rowIndex += maxHeaderWidthInButtonsFullSpan
                         } else {
                             // this branch is taken if the header will have some buttons to its
-                            // right (i.e. on tablets or on phones in landscape)
+                            // right (i.e. on tablets, or on phones in landscape), and we have the
+                            // header's reduced span be less than its full span so that when this
+                            // branch is taken, at least two buttons will be on the right side of
+                            // the header (just one button would look off).
                             LongPressMenuHeader(
                                 item = longPressable,
                                 onUploaderClick = onUploaderClick,
                                 modifier = Modifier
-                                    .padding(6.dp)
-                                    .heightIn(min = 70.dp)
+                                    .padding(start = 8.dp, top = 11.dp, bottom = 11.dp)
+                                    .heightIn(min = ThumbnailHeight)
                                     .fillMaxWidth()
-                                    .weight(headerWidthInButtons.toFloat()),
+                                    .weight(headerWidthInButtonsReducedSpan.toFloat()),
                             )
-                            rowIndex += headerWidthInButtons
+                            rowIndex += headerWidthInButtonsReducedSpan
                         }
                         actionIndex += 1
                     }
@@ -313,7 +319,7 @@ fun LongPressMenuHeader(
     val ctx = LocalContext.current
 
     Surface(
-        color = MaterialTheme.colorScheme.surfaceVariant,
+        color = MaterialTheme.colorScheme.surfaceContainer,
         contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
         shape = MaterialTheme.shapes.large,
         modifier = modifier,
@@ -327,8 +333,8 @@ fun LongPressMenuHeader(
                         placeholder = painterResource(R.drawable.placeholder_thumbnail_video),
                         error = painterResource(R.drawable.placeholder_thumbnail_video),
                         modifier = Modifier
-                            .height(70.dp)
-                            .widthIn(max = 125.dp) // 16:9 thumbnail at most
+                            .height(ThumbnailHeight)
+                            .widthIn(max = ThumbnailHeight * 16 / 9) // 16:9 thumbnail at most
                             .clip(MaterialTheme.shapes.large)
                     )
                 }
@@ -380,7 +386,7 @@ fun LongPressMenuHeader(
                             contentColor = Color.White,
                             modifier = Modifier
                                 .align(Alignment.TopEnd)
-                                .size(width = 40.dp, height = 70.dp)
+                                .size(width = 40.dp, height = ThumbnailHeight)
                                 .clip(MaterialTheme.shapes.large),
                         ) {
                             Column(
@@ -409,7 +415,7 @@ fun LongPressMenuHeader(
             }
 
             Column(
-                modifier = Modifier.padding(vertical = 12.dp),
+                modifier = Modifier.padding(vertical = 8.dp),
             ) {
                 Text(
                     text = item.title,
@@ -657,14 +663,16 @@ private fun LongPressMenuPreview(
     var useDarkTheme by remember { mutableStateOf(initialUseDarkTheme) }
 
     AppTheme(useDarkTheme = useDarkTheme) {
-        // longPressable is null when running the preview in an emulator for some reason...
-        @Suppress("USELESS_ELVIS")
-        LongPressMenuContent(
-            longPressable = longPressable ?: LongPressablePreviews().values.first(),
-            longPressActions = LongPressAction.Type.entries
-                // disable Enqueue actions just to show it off
-                .map { t -> t.buildAction({ t != EnqueueNext }) { } },
-            onDismissRequest = {},
-        )
+        Surface(color = MaterialTheme.colorScheme.surfaceContainerLow) {
+            // longPressable is null when running the preview in an emulator for some reason...
+            @Suppress("USELESS_ELVIS")
+            LongPressMenuContent(
+                longPressable = longPressable ?: LongPressablePreviews().values.first(),
+                longPressActions = LongPressAction.Type.entries
+                    // disable Enqueue actions just to show it off
+                    .map { t -> t.buildAction({ t != EnqueueNext }) { } },
+                onDismissRequest = {},
+            )
+        }
     }
 }

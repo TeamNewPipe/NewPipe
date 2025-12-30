@@ -450,7 +450,7 @@ fun autoScrollSpeedFromTouchPos(
     touchPos: IntOffset,
     gridState: LazyGridState,
     maxSpeed: Float = 20f,
-    scrollIfCloseToBorderPercent: Float = 0.1f,
+    scrollIfCloseToBorderPercent: Float = 0.2f,
 ): Float {
     val heightPosRatio = touchPos.y.toFloat() /
             (gridState.layoutInfo.viewportEndOffset - gridState.layoutInfo.viewportStartOffset)
