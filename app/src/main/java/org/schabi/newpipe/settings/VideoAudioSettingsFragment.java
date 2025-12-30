@@ -90,12 +90,12 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
                 showHigherResolutions);
 
         // get resolution preferences
-        final ListPreference defaultResolution = findPreference(
-                getString(R.string.default_resolution_key));
-        final ListPreference defaultPopupResolution = findPreference(
-                getString(R.string.default_popup_resolution_key));
-        final ListPreference mobileDataResolution = findPreference(
-                getString(R.string.limit_mobile_data_usage_key));
+        final ListPreference defaultResolution = requirePreference(
+                R.string.default_resolution_key);
+        final ListPreference defaultPopupResolution = requirePreference(
+                R.string.default_popup_resolution_key);
+        final ListPreference mobileDataResolution = requirePreference(
+                R.string.limit_mobile_data_usage_key);
 
         // update resolution preferences with new resolutions, entries & values for each
         defaultResolution.setEntries(resolutionListDescriptions.toArray(new String[0]));
@@ -161,8 +161,7 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
             }
         }
 
-        final ListPreference durations = findPreference(
-                getString(R.string.seek_duration_key));
+        final ListPreference durations = requirePreference(R.string.seek_duration_key);
         durations.setEntryValues(displayedDurationValues.toArray(new CharSequence[0]));
         durations.setEntries(displayedDescriptionValues.toArray(new CharSequence[0]));
         final int selectedDuration = Integer.parseInt(durations.getValue());
