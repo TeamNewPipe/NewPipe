@@ -13,6 +13,7 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.time.OffsetDateTime;
 
 /**
  * @author kapodamy
@@ -272,11 +273,24 @@ public class OggFromWebMWriter implements Closeable {
     @Nullable
     private byte[] makeMetadata() {
         if ("A_OPUS".equals(webmTrack.codecId)) {
-            return new byte[]{
+            final var commentFormat = "COMMENT=Downloaded using NewPipe on %s";
+            final var commentStr = String.format(commentFormat, OffsetDateTime.now().toString());
+            final var comment = commentStr.getBytes();
+            final var head = ByteBuffer.allocate(20 + comment.length);
+            head.order(ByteOrder.LITTLE_ENDIAN);
+            head.put(new byte[]{
+                    // Byte order is LE, i.e. LSB first
                     0x4F, 0x70, 0x75, 0x73, 0x54, 0x61, 0x67, 0x73, // "OpusTags" binary string
-                    0x00, 0x00, 0x00, 0x00, // writing application string size (not present)
-                    0x00, 0x00, 0x00, 0x00 // additional tags count (zero means no tags)
-            };
+                    0x00, 0x00, 0x00, 0x00, // vendor string of length 0
+                    0x01, 0x00, 0x00, 0x00, // additional tags count
+
+                    // + 4 bytes for the comment string length
+                    // + N bytes for the comment string itself
+            });
+            head.putInt(comment.length);
+            head.put(comment);
+
+            return head.array();
         } else if ("A_VORBIS".equals(webmTrack.codecId)) {
             return new byte[]{
                     0x03, // ¿¿¿???
