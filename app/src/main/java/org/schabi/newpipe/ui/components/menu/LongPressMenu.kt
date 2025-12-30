@@ -455,13 +455,7 @@ fun getSubtitleAnnotatedString(
 ) = buildAnnotatedString {
     var shouldAddSeparator = false
     if (showLink) {
-        withStyle(
-            SpanStyle(
-                fontWeight = FontWeight.Bold,
-                color = linkColor,
-                textDecoration = TextDecoration.Underline
-            )
-        ) {
+        withStyle(SpanStyle(color = linkColor)) {
             if (item.uploader.isNullOrBlank()) {
                 append(ctx.getString(R.string.show_channel_details))
             } else {
