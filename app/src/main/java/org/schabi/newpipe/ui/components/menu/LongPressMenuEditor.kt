@@ -94,7 +94,7 @@ import kotlin.math.floor
 import kotlin.math.max
 import kotlin.math.min
 
-const val TAG = "LongPressMenuEditor"
+internal const val TAG = "LongPressMenuEditor"
 
 // TODO padding doesn't seem to work as expected when the list becomes scrollable?
 @Composable
@@ -166,7 +166,12 @@ fun LongPressMenuEditor(modifier: Modifier = Modifier) {
     }
 
     // this beginDragGesture() overload is only called when moving the finger (not on DPAD's Enter)
-    fun beginDragGesture(pos: IntOffset) {
+    fun beginDragGesture(pos: IntOffset, wasLongPressed: Boolean) {
+        if (!wasLongPressed) {
+            // items can be dragged around only if they are long-pressed;
+            // use the drag as scroll otherwise
+            return
+        }
         val rawItem = findItemForOffsetOrClosestInRow(pos) ?: return
         beginDragGesture(pos, rawItem)
         autoScrollSpeed = 0f
@@ -229,7 +234,8 @@ fun LongPressMenuEditor(modifier: Modifier = Modifier) {
     fun handleDragGestureChange(pos: IntOffset, posChangeForScrolling: Offset) {
         val dragItem = activeDragItem
         if (dragItem == null) {
-            // when the user clicks outside of any draggable item, let the list be scrolled
+            // when the user clicks outside of any draggable item, or if the user did not long-press
+            // on an item to begin with, let the list be scrolled
             gridState.dispatchRawDelta(-posChangeForScrolling.y)
             return
         }
