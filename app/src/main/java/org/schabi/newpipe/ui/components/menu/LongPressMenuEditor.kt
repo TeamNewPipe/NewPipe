@@ -21,6 +21,7 @@ package org.schabi.newpipe.ui.components.menu
 import android.util.Log
 import androidx.annotation.StringRes
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -431,16 +432,18 @@ fun LongPressMenuEditor(modifier: Modifier = Modifier) {
             }
         }
         if (activeDragItem != null) {
+            // draw it the same size as the selected item,
             val size = with(LocalDensity.current) {
                 remember(activeDragSize) { activeDragSize.toSize().toDpSize() }
             }
             ItemInListUi(
                 item = activeDragItem!!,
-                selected = false,
+                selected = true,
                 modifier = Modifier
                     .size(size)
                     .offset { activeDragPosition }
-                    .offset(-size.width / 2, -size.height / 2),
+                    .offset(-size.width / 2, -size.height / 2)
+                    .offset((-24).dp, (-24).dp),
             )
         }
     }
