@@ -1,50 +1,33 @@
+/*
+ * SPDX-FileCopyrightText: 2017-2025 NewPipe contributors <https://newpipe.net>
+ * SPDX-FileCopyrightText: 2025 NewPipe e.V. <https://newpipe-ev.de>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
 package org.schabi.newpipe.util
 
 import android.content.Context
 import org.schabi.newpipe.R
 
-/**
- * Created by Christian Schabesberger on 28.09.17.
- * KioskTranslator.java is part of NewPipe.
- *
- *
- * NewPipe is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- *
- *
- * NewPipe is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- *
- *
- * You should have received a copy of the GNU General Public License
- * along with NewPipe.  If not, see <http:></http:>//www.gnu.org/licenses/>.
- *
- */
 object KioskTranslator {
     @JvmStatic
-    fun getTranslatedKioskName(kioskId: String, c: Context): String {
+    fun getTranslatedKioskName(kioskId: String, context: Context): String {
         return when (kioskId) {
-            "Trending" -> c.getString(R.string.trending)
-            "Top 50" -> c.getString(R.string.top_50)
-            "New & hot" -> c.getString(R.string.new_and_hot)
-            "Local" -> c.getString(R.string.local)
-            "Recently added" -> c.getString(R.string.recently_added)
-            "Most liked" -> c.getString(R.string.most_liked)
-            "conferences" -> c.getString(R.string.conferences)
-            "recent" -> c.getString(R.string.recent)
-            "live" -> c.getString(R.string.duration_live)
-            "Featured" -> c.getString(R.string.featured)
-            "Radio" -> c.getString(R.string.radio)
-            "trending_gaming" -> c.getString(R.string.trending_gaming)
-            "trending_music" -> c.getString(R.string.trending_music)
-            "trending_movies_and_shows" -> c.getString(R.string.trending_movies)
-            "trending_podcasts_episodes" -> c.getString(R.string.trending_podcasts)
+            "Trending" -> context.getString(R.string.trending)
+            "Top 50" -> context.getString(R.string.top_50)
+            "New & hot" -> context.getString(R.string.new_and_hot)
+            "Local" -> context.getString(R.string.local)
+            "Recently added" -> context.getString(R.string.recently_added)
+            "Most liked" -> context.getString(R.string.most_liked)
+            "conferences" -> context.getString(R.string.conferences)
+            "recent" -> context.getString(R.string.recent)
+            "live" -> context.getString(R.string.duration_live)
+            "Featured" -> context.getString(R.string.featured)
+            "Radio" -> context.getString(R.string.radio)
+            "trending_gaming" -> context.getString(R.string.trending_gaming)
+            "trending_music" -> context.getString(R.string.trending_music)
+            "trending_movies_and_shows" -> context.getString(R.string.trending_movies)
+            "trending_podcasts_episodes" -> context.getString(R.string.trending_podcasts)
             else -> kioskId
         }
     }
