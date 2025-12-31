@@ -1,3 +1,8 @@
+/*
+ * SPDX-FileCopyrightText: 2025 NewPipe contributors <https://newpipe.net>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
 package org.schabi.newpipe.local.playlist
 
 import android.content.Context
@@ -21,11 +26,7 @@ fun export(
     }
 }
 
-fun exportWithTitles(
-    playlist: List<PlaylistStreamEntry>,
-    context: Context
-): String {
-
+private fun exportWithTitles(playlist: List<PlaylistStreamEntry>, context: Context): String {
     return playlist.asSequence()
         .map { it.streamEntity }
         .map { entity ->
@@ -38,18 +39,14 @@ fun exportWithTitles(
         .joinToString(separator = "\n")
 }
 
-fun exportJustUrls(playlist: List<PlaylistStreamEntry>): String {
-
-    return playlist.asSequence()
-        .map { it.streamEntity.url }
-        .joinToString(separator = "\n")
+private fun exportJustUrls(playlist: List<PlaylistStreamEntry>): String {
+    return playlist.joinToString(separator = "\n") { it.streamEntity.url }
 }
 
-fun exportAsYoutubeTempPlaylist(playlist: List<PlaylistStreamEntry>): String {
+private fun exportAsYoutubeTempPlaylist(playlist: List<PlaylistStreamEntry>): String {
 
     val videoIDs = playlist.asReversed().asSequence()
-        .map { it.streamEntity.url }
-        .mapNotNull(::getYouTubeId)
+        .mapNotNull { getYouTubeId(it.streamEntity.url) }
         .take(50) // YouTube limitation: temp playlists can't have more than 50 items
         .toList()
         .asReversed()
@@ -58,7 +55,7 @@ fun exportAsYoutubeTempPlaylist(playlist: List<PlaylistStreamEntry>): String {
     return "https://www.youtube.com/watch_videos?video_ids=$videoIDs"
 }
 
-val linkHandler: YoutubeStreamLinkHandlerFactory = YoutubeStreamLinkHandlerFactory.getInstance()
+private val linkHandler: YoutubeStreamLinkHandlerFactory = YoutubeStreamLinkHandlerFactory.getInstance()
 
 /**
  * Gets the video id from a YouTube URL.
@@ -66,7 +63,7 @@ val linkHandler: YoutubeStreamLinkHandlerFactory = YoutubeStreamLinkHandlerFacto
  * @param url YouTube URL
  * @return the video id
  */
-fun getYouTubeId(url: String): String? {
+private fun getYouTubeId(url: String): String? {
 
     return try { linkHandler.getId(url) } catch (e: ParsingException) { null }
 }
