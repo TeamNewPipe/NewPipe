@@ -361,15 +361,9 @@ public class RouterActivity extends AppCompatActivity {
         // Default / Ask always
         final List<AdapterChoiceItem> availableChoices = choiceChecker.getAvailableChoices();
         switch (availableChoices.size()) {
-            case 1:
-                handleChoice(availableChoices.get(0).key);
-                break;
-            case 0:
-                handleChoice(getString(R.string.show_info_key));
-                break;
-            default:
-                showDialog(availableChoices);
-                break;
+            case 1 -> handleChoice(availableChoices.get(0).key);
+            case 0 -> handleChoice(getString(R.string.show_info_key));
+            default -> showDialog(availableChoices);
         }
     }
 
