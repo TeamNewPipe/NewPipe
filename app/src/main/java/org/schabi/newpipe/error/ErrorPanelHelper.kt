@@ -22,23 +22,40 @@ class ErrorPanelHelper(
     rootView: View,
     onRetry: Runnable?,
 ) {
-    private val context: Context = rootView.context!!
+    private var _context: Context? = null
+    private var _errorPanelRoot: View? = null
+    private var _errorTextView: TextView? = null
+    private var _errorServiceInfoTextView: TextView? = null
+    private var _errorServiceExplanationTextView: TextView? = null
+    private var _errorActionButton: Button? = null
+    private var _errorRetryButton: Button? = null
+    private var _errorOpenInBrowserButton: Button? = null
 
-    private val errorPanelRoot: View = rootView.findViewById(R.id.error_panel)
+    // These all are valid till dispose()
+    private val context: Context get() = _context!!
+    private val errorPanelRoot: View get() = _errorPanelRoot!!
+    private val errorTextView: TextView get() = _errorTextView!! // the only element that is visible by default
+    private val errorServiceInfoTextView: TextView get() = _errorServiceInfoTextView!!
+    private val errorServiceExplanationTextView: TextView get() = _errorServiceExplanationTextView!!
+    private val errorActionButton: Button get() = _errorActionButton!!
+    private val errorRetryButton: Button get() = _errorRetryButton!!
+    private val errorOpenInBrowserButton: Button get() = _errorOpenInBrowserButton!!
 
-    // the only element that is visible by default
-    private val errorTextView: TextView =
-        errorPanelRoot.findViewById(R.id.error_message_view)
-    private val errorServiceInfoTextView: TextView =
-        errorPanelRoot.findViewById(R.id.error_message_service_info_view)
-    private val errorServiceExplanationTextView: TextView =
-        errorPanelRoot.findViewById(R.id.error_message_service_explanation_view)
-    private val errorActionButton: Button =
-        errorPanelRoot.findViewById(R.id.error_action_button)
-    private val errorRetryButton: Button =
-        errorPanelRoot.findViewById(R.id.error_retry_button)
-    private val errorOpenInBrowserButton: Button =
-        errorPanelRoot.findViewById(R.id.error_open_in_browser)
+    init {
+        _context = rootView.context!!
+        _errorPanelRoot = rootView.findViewById(R.id.error_panel)
+
+        _errorTextView =
+            errorPanelRoot.findViewById(R.id.error_message_view)
+        _errorServiceInfoTextView =
+            errorPanelRoot.findViewById(R.id.error_message_service_info_view)
+        _errorServiceExplanationTextView =
+            errorPanelRoot.findViewById(R.id.error_message_service_explanation_view)
+
+        _errorActionButton = errorPanelRoot.findViewById(R.id.error_action_button)
+        _errorRetryButton = errorPanelRoot.findViewById(R.id.error_retry_button)
+        _errorOpenInBrowserButton = errorPanelRoot.findViewById(R.id.error_open_in_browser)
+    }
 
     private var errorDisposable: Disposable? = null
     private var retryShouldBeShown: Boolean = (onRetry != null)
@@ -131,6 +148,17 @@ class ErrorPanelHelper(
         errorActionButton.setOnClickListener(null)
         errorRetryButton.setOnClickListener(null)
         errorDisposable?.dispose()
+
+        _errorActionButton = null
+        _errorRetryButton = null
+        _errorOpenInBrowserButton = null
+
+        _errorTextView = null
+        _errorServiceInfoTextView = null
+        _errorServiceExplanationTextView = null
+
+        _context = null
+        _errorPanelRoot = null
     }
 
     companion object {
