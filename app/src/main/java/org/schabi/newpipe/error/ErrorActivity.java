@@ -10,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.IntentCompat;
@@ -85,11 +84,11 @@ public class ErrorActivity extends AppCompatActivity {
         activityErrorBinding = ActivityErrorBinding.inflate(getLayoutInflater());
         setContentView(activityErrorBinding.getRoot());
 
-        final Intent intent = getIntent();
+        final var intent = getIntent();
 
         setSupportActionBar(activityErrorBinding.toolbarLayout.toolbar);
 
-        final ActionBar actionBar = getSupportActionBar();
+        final var actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle(R.string.error_report_title);
@@ -157,7 +156,7 @@ public class ErrorActivity extends AppCompatActivity {
                                 context.getString(R.string.privacy_policy_url)))
                 .setPositiveButton(R.string.accept, (dialog, which) -> {
                     if (action.equals("EMAIL")) { // send on email
-                        final Intent i = new Intent(Intent.ACTION_SENDTO)
+                        final var i = new Intent(Intent.ACTION_SENDTO)
                                 .setData(Uri.parse("mailto:")) // only email apps should handle this
                                 .putExtra(Intent.EXTRA_EMAIL, new String[]{ERROR_EMAIL_ADDRESS})
                                 .putExtra(Intent.EXTRA_SUBJECT, ERROR_EMAIL_SUBJECT

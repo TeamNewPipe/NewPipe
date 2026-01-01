@@ -30,7 +30,6 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.content.res.AppCompatResources;
@@ -221,7 +220,7 @@ public final class ThemeHelper {
      * @return the color
      */
     public static int resolveColorFromAttr(final Context context, @AttrRes final int attrColor) {
-        final TypedValue value = new TypedValue();
+        final var value = new TypedValue();
         context.getTheme().resolveAttribute(attrColor, value, true);
 
         if (value.resourceId != 0) {
@@ -240,7 +239,7 @@ public final class ThemeHelper {
      */
     public static Drawable resolveDrawable(@NonNull final Context context,
                                            @AttrRes final int attrResId) {
-        final TypedValue typedValue = new TypedValue();
+        final var typedValue = new TypedValue();
         context.getTheme().resolveAttribute(attrResId, typedValue, true);
         return AppCompatResources.getDrawable(context, typedValue.resourceId);
     }
@@ -286,7 +285,7 @@ public final class ThemeHelper {
     public static void setTitleToAppCompatActivity(@Nullable final Activity activity,
                                                    final CharSequence title) {
         if (activity instanceof AppCompatActivity) {
-            final ActionBar actionBar = ((AppCompatActivity) activity).getSupportActionBar();
+            final var actionBar = ((AppCompatActivity) activity).getSupportActionBar();
             if (actionBar != null) {
                 actionBar.setTitle(title);
             }

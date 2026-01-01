@@ -80,12 +80,12 @@ public final class ZipHelper {
                                     final String nameInZip,
                                     final OutputStreamConsumer streamConsumer) throws IOException {
         final byte[] bytes;
-        try (ByteArrayOutputStream byteOutput = new ByteArrayOutputStream()) {
+        try (var byteOutput = new ByteArrayOutputStream()) {
             streamConsumer.acceptStream(byteOutput);
             bytes = byteOutput.toByteArray();
         }
 
-        try (ByteArrayInputStream byteInput = new ByteArrayInputStream(bytes)) {
+        try (var byteInput = new ByteArrayInputStream(bytes)) {
             ZipHelper.addFileToZip(outZip, nameInZip, byteInput);
         }
     }
@@ -101,9 +101,8 @@ public final class ZipHelper {
                                     final String nameInZip,
                                     final InputStream inputStream) throws IOException {
         final byte[] data = new byte[BUFFER_SIZE];
-        try (BufferedInputStream bufferedInputStream =
-                     new BufferedInputStream(inputStream, BUFFER_SIZE)) {
-            final ZipEntry entry = new ZipEntry(nameInZip);
+        try (var bufferedInputStream = new BufferedInputStream(inputStream, BUFFER_SIZE)) {
+            final var entry = new ZipEntry(nameInZip);
             outZip.putNextEntry(entry);
             int count;
             while ((count = bufferedInputStream.read(data, 0, BUFFER_SIZE)) != -1) {
@@ -125,7 +124,7 @@ public final class ZipHelper {
                                              final String fileOnDisk) throws IOException {
         return extractFileFromZip(zipFile, nameInZip, input -> {
             // delete old file first
-            final File oldFile = new File(fileOnDisk);
+            final var oldFile = new File(fileOnDisk);
             if (oldFile.exists()) {
                 if (!oldFile.delete()) {
                     throw new IOException("Could not delete " + fileOnDisk);
@@ -133,7 +132,7 @@ public final class ZipHelper {
             }
 
             final byte[] data = new byte[BUFFER_SIZE];
-            try (FileOutputStream outFile = new FileOutputStream(fileOnDisk)) {
+            try (var outFile = new FileOutputStream(fileOnDisk)) {
                 int count;
                 while ((count = input.read(data)) != -1) {
                     outFile.write(data, 0, count);
@@ -154,7 +153,7 @@ public final class ZipHelper {
                                              final String nameInZip,
                                              final InputStreamConsumer streamConsumer)
             throws IOException {
-        try (ZipInputStream inZip = new ZipInputStream(new BufferedInputStream(
+        try (var inZip = new ZipInputStream(new BufferedInputStream(
                 new SharpInputStream(zipFile.getStream())))) {
             ZipEntry ze;
             while ((ze = inZip.getNextEntry()) != null) {
@@ -175,7 +174,7 @@ public final class ZipHelper {
      */
     public static boolean zipContainsFile(final StoredFileHelper zipFile, final String fileInZip)
             throws Exception {
-        try (ZipInputStream inZip = new ZipInputStream(new BufferedInputStream(
+        try (var inZip = new ZipInputStream(new BufferedInputStream(
                 new SharpInputStream(zipFile.getStream())))) {
             ZipEntry ze;
 
@@ -189,7 +188,7 @@ public final class ZipHelper {
     }
 
     public static boolean isValidZipFile(final StoredFileHelper file) {
-        try (ZipInputStream ignored = new ZipInputStream(new BufferedInputStream(
+        try (var ignored = new ZipInputStream(new BufferedInputStream(
                 new SharpInputStream(file.getStream())))) {
             return true;
         } catch (final IOException ioe) {

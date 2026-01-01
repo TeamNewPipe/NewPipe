@@ -154,7 +154,7 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, An
         notifyAudioSessionUpdate(true, audioSessionId);
     }
     private void notifyAudioSessionUpdate(final boolean active, final int audioSessionId) {
-        final Intent intent = new Intent(active
+        final var intent = new Intent(active
                 ? AudioEffect.ACTION_OPEN_AUDIO_EFFECT_CONTROL_SESSION
                 : AudioEffect.ACTION_CLOSE_AUDIO_EFFECT_CONTROL_SESSION);
         intent.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, audioSessionId);

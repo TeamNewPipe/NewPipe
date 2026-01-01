@@ -120,7 +120,7 @@ public final class PermissionHelper {
     public static boolean checkSystemAlertWindowPermission(final Context context) {
         if (!Settings.canDrawOverlays(context)) {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
-                final Intent i = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                final var i = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                         Uri.parse("package:" + context.getPackageName()));
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 try {
@@ -148,7 +148,7 @@ public final class PermissionHelper {
                         .setMessage(Html.fromHtml(message, Html.FROM_HTML_MODE_COMPACT))
                         .setPositiveButton("OK", (dialog, which) -> {
                             // we don’t need the package name here, since it won’t do anything on >R
-                            final Intent intent =
+                            final var intent =
                                     new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
                             try {
                                 context.startActivity(intent);

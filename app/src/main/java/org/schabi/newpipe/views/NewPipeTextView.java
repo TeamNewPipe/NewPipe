@@ -1,7 +1,6 @@
 package org.schabi.newpipe.views;
 
 import android.content.Context;
-import android.text.method.MovementMethod;
 import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
@@ -42,7 +41,7 @@ public class NewPipeTextView extends AppCompatTextView {
         // We need to set again the movement method after a text change because Android resets the
         // movement method to the default one in the case where the text cannot be selected and
         // text links are clickable (which is the default case in NewPipe).
-        final MovementMethod movementMethod = this.getMovementMethod();
+        final var movementMethod = this.getMovementMethod();
         super.setText(text, type);
         setMovementMethod(movementMethod);
     }

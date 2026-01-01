@@ -31,7 +31,7 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
 
     public static CommentsFragment getInstance(final int serviceId, final String url,
                                                final String name) {
-        final CommentsFragment instance = new CommentsFragment();
+        final var instance = new CommentsFragment();
         instance.setInitialData(serviceId, url, name);
         return instance;
     }

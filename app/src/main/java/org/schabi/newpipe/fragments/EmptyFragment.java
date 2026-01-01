@@ -14,7 +14,7 @@ public class EmptyFragment extends BaseFragment {
     private static final String SHOW_MESSAGE = "SHOW_MESSAGE";
 
     public static final EmptyFragment newInstance(final boolean showMessage) {
-        final EmptyFragment emptyFragment = new EmptyFragment();
+        final var emptyFragment = new EmptyFragment();
         final Bundle bundle = new Bundle(1);
         bundle.putBoolean(SHOW_MESSAGE, showMessage);
         emptyFragment.setArguments(bundle);

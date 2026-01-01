@@ -160,7 +160,7 @@ public final class NavigationHelper {
         Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT)
                 .show();
 
-        final Intent intent = getPlayerIntent(context, PlayerService.class, queue,
+        final var intent = getPlayerIntent(context, PlayerService.class, queue,
                 PlayerIntentType.AllOthers)
                 .putExtra(Player.PLAYER_TYPE, PlayerType.AUDIO)
                 .putExtra(Player.RESUME_PLAYBACK, resumePlayback);
@@ -184,7 +184,7 @@ public final class NavigationHelper {
         //   slightly different behaviour than the normal play action: the latter resumes playback,
         //   the former doesn't. (note that enqueue can be triggered when nothing is playing only
         //   by long pressing the video detail fragment, playlist or channel controls
-        final Intent intent = getPlayerIntent(context, PlayerService.class, queue,
+        final var intent = getPlayerIntent(context, PlayerService.class, queue,
                 PlayerIntentType.Enqueue)
                 .putExtra(Player.RESUME_PLAYBACK, false)
                 .putExtra(Player.PLAYER_TYPE, playerType);
@@ -307,7 +307,7 @@ public final class NavigationHelper {
                 mimeType = "";
         }
 
-        final Intent intent = new Intent();
+        final var intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         intent.setDataAndType(Uri.parse(stream.getContent()), mimeType);
         intent.putExtra(Intent.EXTRA_TITLE, name);
@@ -392,7 +392,7 @@ public final class NavigationHelper {
     }
 
     public static void showMiniPlayer(final FragmentManager fragmentManager) {
-        final VideoDetailFragment instance = VideoDetailFragment.getInstanceInCollapsedState();
+        final var instance = VideoDetailFragment.getInstanceInCollapsedState();
         defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_player_holder, instance)
                 .runOnCommit(() -> sendPlayerStartedEvent(instance.requireActivity()))
@@ -450,7 +450,7 @@ public final class NavigationHelper {
             // stream automatically if it's the first time it is being opened, but then
             // onVideoDetailFragmentReady will kick in and start another loading process.
             // See VideoDetailFragment.wasCleared() and its usage in doInitialLoadLogic().
-            final VideoDetailFragment instance = VideoDetailFragment
+            final var instance = VideoDetailFragment
                     .getInstance(serviceId, null, title, playQueue);
             instance.setAutoPlay(autoPlay);
 
@@ -581,7 +581,7 @@ public final class NavigationHelper {
 
     public static void openSearch(final Context context, final int serviceId,
                                   final String searchString) {
-        final Intent mIntent = new Intent(context, MainActivity.class);
+        final var mIntent = new Intent(context, MainActivity.class);
         mIntent.putExtra(Constants.KEY_SERVICE_ID, serviceId);
         mIntent.putExtra(Constants.KEY_SEARCH_STRING, searchString);
         mIntent.putExtra(Constants.KEY_OPEN_SEARCH, true);
@@ -595,7 +595,7 @@ public final class NavigationHelper {
                                        @Nullable final PlayQueue playQueue,
                                        final boolean switchingPlayers) {
 
-        final Intent intent = getStreamIntent(context, serviceId, url, title)
+        final var intent = getStreamIntent(context, serviceId, url, title)
                 .putExtra(VideoDetailFragment.KEY_SWITCHING_PLAYERS, switchingPlayers);
 
         if (playQueue != null) {
@@ -620,7 +620,7 @@ public final class NavigationHelper {
                                                       final int serviceId,
                                                       final String url,
                                                       @NonNull final String title) {
-        final Intent intent = getOpenIntent(context, url, serviceId,
+        final var intent = getOpenIntent(context, url, serviceId,
                 StreamingService.LinkType.CHANNEL);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(Constants.KEY_TITLE, title);
@@ -629,38 +629,38 @@ public final class NavigationHelper {
     }
 
     public static void openMainActivity(final Context context) {
-        final Intent mIntent = new Intent(context, MainActivity.class);
+        final var mIntent = new Intent(context, MainActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(mIntent);
     }
 
     public static void openRouterActivity(final Context context, final String url) {
-        final Intent mIntent = new Intent(context, RouterActivity.class);
+        final var mIntent = new Intent(context, RouterActivity.class);
         mIntent.setData(Uri.parse(url));
         context.startActivity(mIntent);
     }
 
     public static void openAbout(final Context context) {
-        final Intent intent = new Intent(context, AboutActivity.class);
+        final var intent = new Intent(context, AboutActivity.class);
         context.startActivity(intent);
     }
 
     public static void openSettings(final Context context) {
-        final Intent intent = new Intent(context, SettingsActivity.class);
+        final var intent = new Intent(context, SettingsActivity.class);
         context.startActivity(intent);
     }
 
     public static void openDownloads(final Activity activity) {
         if (PermissionHelper.checkStoragePermissions(
                 activity, PermissionHelper.DOWNLOADS_REQUEST_CODE)) {
-            final Intent intent = new Intent(activity, DownloadActivity.class);
+            final var intent = new Intent(activity, DownloadActivity.class);
             activity.startActivity(intent);
         }
     }
 
     public static Intent getPlayQueueActivityIntent(final Context context) {
-        final Intent intent = new Intent(context, PlayQueueActivity.class);
+        final var intent = new Intent(context, PlayQueueActivity.class);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
@@ -668,7 +668,7 @@ public final class NavigationHelper {
     }
 
     public static void openPlayQueue(final Context context) {
-        final Intent intent = new Intent(context, PlayQueueActivity.class);
+        final var intent = new Intent(context, PlayQueueActivity.class);
         context.startActivity(intent);
     }
 
@@ -678,7 +678,7 @@ public final class NavigationHelper {
 
     private static Intent getOpenIntent(final Context context, final String url,
                                         final int serviceId, final StreamingService.LinkType type) {
-        final Intent mIntent = new Intent(context, MainActivity.class);
+        final var mIntent = new Intent(context, MainActivity.class);
         mIntent.putExtra(Constants.KEY_SERVICE_ID, serviceId);
         mIntent.putExtra(Constants.KEY_URL, url);
         mIntent.putExtra(Constants.KEY_LINK_TYPE, type);

@@ -140,7 +140,7 @@ public final class ImportExportJsonHelper {
         writer.value(JSON_APP_VERSION_INT_KEY, BuildConfig.VERSION_CODE);
 
         writer.array(JSON_SUBSCRIPTIONS_ARRAY_KEY);
-        for (final SubscriptionItem item : items) {
+        for (final var item : items) {
             writer.object();
             writer.value(JSON_SERVICE_ID_KEY, item.getServiceId());
             writer.value(JSON_URL_KEY, item.getUrl());

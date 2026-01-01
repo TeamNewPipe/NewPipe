@@ -94,7 +94,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
 
     public static PlaylistFragment getInstance(final int serviceId, final String url,
                                                final String name) {
-        final PlaylistFragment instance = new PlaylistFragment();
+        final var instance = new PlaylistFragment();
         instance.setInitialData(serviceId, url, name);
         return instance;
     }

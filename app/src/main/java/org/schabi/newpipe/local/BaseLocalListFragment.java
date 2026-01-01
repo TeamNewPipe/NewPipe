@@ -113,7 +113,7 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
         int width = resources.getDimensionPixelSize(R.dimen.video_item_grid_thumbnail_image_width);
         width += (24 * resources.getDisplayMetrics().density);
         final int spanCount = Math.floorDiv(resources.getDisplayMetrics().widthPixels, width);
-        final GridLayoutManager lm = new GridLayoutManager(activity, spanCount);
+        final var lm = new GridLayoutManager(activity, spanCount);
         lm.setSpanSizeLookup(itemListAdapter.getSpanSizeLookup(spanCount));
         return lm;
     }

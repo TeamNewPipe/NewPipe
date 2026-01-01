@@ -132,7 +132,7 @@ public class DownloadMissionRecover extends Thread {
 
         switch (mRecovery.getKind()) {
             case 'a':
-                for (final AudioStream audio : mExtractor.getAudioStreams()) {
+                for (final var audio : mExtractor.getAudioStreams()) {
                     if (audio.getAverageBitrate() == mRecovery.getDesiredBitrate()
                             && audio.getFormat() == mRecovery.getFormat()
                             && audio.getDeliveryMethod() == DeliveryMethod.PROGRESSIVE_HTTP) {
@@ -147,7 +147,7 @@ public class DownloadMissionRecover extends Thread {
                     videoStreams = mExtractor.getVideoOnlyStreams();
                 else
                     videoStreams = mExtractor.getVideoStreams();
-                for (final VideoStream video : videoStreams) {
+                for (final var video : videoStreams) {
                     if (video.getResolution().equals(mRecovery.getDesired())
                             && video.getFormat() == mRecovery.getFormat()
                             && video.getDeliveryMethod() == DeliveryMethod.PROGRESSIVE_HTTP) {

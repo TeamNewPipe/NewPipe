@@ -165,7 +165,7 @@ public class StoredFileHelper implements Serializable {
             return new StoredFileHelper(treeUri, storage.srcName, storage.srcType, storage.tag);
         }
 
-        final StoredFileHelper instance = new StoredFileHelper(context, treeUri,
+        final var instance = new StoredFileHelper(context, treeUri,
                 Uri.parse(storage.source), storage.tag);
 
         // under SAF, if the target document is deleted, conserve the filename and mime

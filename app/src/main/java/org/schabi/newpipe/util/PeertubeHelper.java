@@ -1,7 +1,6 @@
 package org.schabi.newpipe.util;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import androidx.preference.PreferenceManager;
 
@@ -23,8 +22,7 @@ public final class PeertubeHelper {
     private PeertubeHelper() { }
 
     public static List<PeertubeInstance> getInstanceList(final Context context) {
-        final SharedPreferences sharedPreferences = PreferenceManager
-                .getDefaultSharedPreferences(context);
+        final var sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         final String savedInstanceListKey = context.getString(R.string.peertube_instance_list_key);
         final String savedJson = sharedPreferences.getString(savedInstanceListKey, null);
         if (null == savedJson) {
@@ -50,8 +48,7 @@ public final class PeertubeHelper {
 
     public static PeertubeInstance selectInstance(final PeertubeInstance instance,
                                                   final Context context) {
-        final SharedPreferences sharedPreferences = PreferenceManager
-                .getDefaultSharedPreferences(context);
+        final var sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         final String selectedInstanceKey =
                 context.getString(R.string.peertube_selected_instance_key);
         final JsonStringWriter jsonWriter = JsonWriter.string().object();

@@ -9,7 +9,6 @@ import static java.util.Arrays.asList;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
@@ -203,7 +202,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     public void onAttach(@NonNull final Context context) {
         super.onAttach(context);
 
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        final var prefs = PreferenceManager.getDefaultSharedPreferences(activity);
         showLocalSuggestions = NewPipeSettings.showLocalSearchSuggestions(activity, prefs);
         showRemoteSuggestions = NewPipeSettings.showRemoteSearchSuggestions(activity, prefs);
 

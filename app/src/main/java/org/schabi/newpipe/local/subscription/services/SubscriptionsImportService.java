@@ -292,9 +292,9 @@ public class SubscriptionsImportService extends BaseImportExportService {
         return notificationList -> {
             final List<Pair<ChannelInfo, List<ChannelTabInfo>>> infoList =
                     new ArrayList<>(notificationList.size());
-            for (final Notification<Pair<ChannelInfo, List<ChannelTabInfo>>> n : notificationList) {
-                if (n.isOnNext()) {
-                    infoList.add(n.getValue());
+            for (final var notification : notificationList) {
+                if (notification.isOnNext()) {
+                    infoList.add(notification.getValue());
                 }
             }
 

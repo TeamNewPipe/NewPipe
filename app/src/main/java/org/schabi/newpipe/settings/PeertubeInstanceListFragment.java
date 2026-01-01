@@ -206,7 +206,7 @@ public class PeertubeInstanceListFragment extends Fragment {
         }
         binding.loadingProgressBar.setVisibility(View.VISIBLE);
         final Disposable disposable = Single.fromCallable(() -> {
-            final PeertubeInstance instance = new PeertubeInstance(cleanUrl);
+            final var instance = new PeertubeInstance(cleanUrl);
             instance.fetchInstanceMetaData();
             return instance;
         }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())

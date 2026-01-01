@@ -8,7 +8,6 @@ import android.app.IntentService;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -263,7 +262,7 @@ public class RouterActivity extends AppCompatActivity {
         if (errorInfo.getRecaptchaUrl() != null) {
             Toast.makeText(context, R.string.recaptcha_request_toast, Toast.LENGTH_LONG).show();
             // Starting ReCaptcha Challenge Activity
-            final Intent intent = new Intent(context, ReCaptchaActivity.class);
+            final var intent = new Intent(context, ReCaptchaActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra(ReCaptchaActivity.RECAPTCHA_URL_EXTRA, errorInfo.getRecaptchaUrl());
             context.startActivity(intent);
@@ -281,7 +280,7 @@ public class RouterActivity extends AppCompatActivity {
     }
 
     protected void showUnsupportedUrlDialog(final String url) {
-        final Context context = getThemeWrapperContext();
+        final var context = getThemeWrapperContext();
         new AlertDialog.Builder(context)
                 .setTitle(R.string.unsupported_url)
                 .setMessage(R.string.unsupported_url_dialog_message)
@@ -296,10 +295,9 @@ public class RouterActivity extends AppCompatActivity {
     }
 
     protected void onSuccess() {
-        final SharedPreferences preferences = PreferenceManager
-                .getDefaultSharedPreferences(this);
+        final var preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        final ChoiceAvailabilityChecker choiceChecker = new ChoiceAvailabilityChecker(
+        final var choiceChecker = new ChoiceAvailabilityChecker(
                 getChoicesForService(currentService, currentLinkType),
                 preferences.getString(getString(R.string.preferred_open_action_key),
                         getString(R.string.preferred_open_action_default)));
@@ -411,7 +409,7 @@ public class RouterActivity extends AppCompatActivity {
     }
 
     private void showDialog(final List<AdapterChoiceItem> choices) {
-        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        final var preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         final Context themeWrapperContext = getThemeWrapperContext();
         final LayoutInflater layoutInflater = LayoutInflater.from(themeWrapperContext);
@@ -564,8 +562,7 @@ public class RouterActivity extends AppCompatActivity {
         } else {
             // LinkType.NONE is never present because it's filtered out before
             // channels and playlist can be played as they contain a list of videos
-            final SharedPreferences preferences = PreferenceManager
-                    .getDefaultSharedPreferences(this);
+            final var preferences = PreferenceManager.getDefaultSharedPreferences(this);
             final boolean isExtVideoEnabled = preferences.getBoolean(
                     getString(R.string.use_external_video_player_key), false);
             final boolean isExtAudioEnabled = preferences.getBoolean(
@@ -602,7 +599,7 @@ public class RouterActivity extends AppCompatActivity {
     private void handleText() {
         final String searchString = getIntent().getStringExtra(Intent.EXTRA_TEXT);
         final int serviceId = getIntent().getIntExtra(Constants.KEY_SERVICE_ID, 0);
-        final Intent intent = new Intent(getThemeWrapperContext(), MainActivity.class);
+        final var intent = new Intent(getThemeWrapperContext(), MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         NavigationHelper.openSearch(getThemeWrapperContext(), serviceId, searchString);
@@ -657,8 +654,8 @@ public class RouterActivity extends AppCompatActivity {
             return;
         }
 
-        final Intent intent = new Intent(this, FetcherService.class);
-        final Choice choice = new Choice(currentService.getServiceId(), currentLinkType,
+        final var intent = new Intent(this, FetcherService.class);
+        final var choice = new Choice(currentService.getServiceId(), currentLinkType,
                 currentUrl, selectedChoiceKey);
         intent.putExtra(FetcherService.KEY_CHOICE, choice);
         startService(intent);
@@ -772,7 +769,7 @@ public class RouterActivity extends AppCompatActivity {
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q
                             && !context.isChangingConfigurations()) {
                         // try to bring the activity back to front if minimised
-                        final Intent i = new Intent(context, RouterActivity.class);
+                        final var i = new Intent(context, RouterActivity.class);
                         i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(i);
                     }
@@ -946,7 +943,7 @@ public class RouterActivity extends AppCompatActivity {
             if (!(serializable instanceof Choice)) {
                 return;
             }
-            final Choice playerChoice = (Choice) serializable;
+            final var playerChoice = (Choice) serializable;
             handleChoice(playerChoice);
         }
 
@@ -992,8 +989,7 @@ public class RouterActivity extends AppCompatActivity {
                 final String backgroundPlayerKey = getString(R.string.background_player_key);
                 final String popupPlayerKey = getString(R.string.popup_player_key);
 
-                final SharedPreferences preferences = PreferenceManager
-                        .getDefaultSharedPreferences(this);
+                final var preferences = PreferenceManager.getDefaultSharedPreferences(this);
                 final boolean isExtVideoEnabled = preferences.getBoolean(
                         getString(R.string.use_external_video_player_key), false);
                 final boolean isExtAudioEnabled = preferences.getBoolean(

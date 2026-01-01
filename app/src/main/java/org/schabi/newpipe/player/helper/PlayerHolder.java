@@ -134,7 +134,7 @@ public final class PlayerHolder {
         // and NullPointerExceptions inside the service because the service will be
         // bound twice. Prevent it with unbinding first
         unbind(context);
-        final Intent intent = new Intent(context, PlayerService.class);
+        final var intent = new Intent(context, PlayerService.class);
         intent.putExtra(PlayerService.SHOULD_START_FOREGROUND_EXTRA, true);
         ContextCompat.startForegroundService(context, intent);
         serviceConnection.doPlayAfterConnect(playAfterConnect);
@@ -221,7 +221,7 @@ public final class PlayerHolder {
     }
 
     private boolean bind(final Context context, final int flags) {
-        final Intent serviceIntent = new Intent(context, PlayerService.class);
+        final var serviceIntent = new Intent(context, PlayerService.class);
         serviceIntent.setAction(PlayerService.BIND_PLAYER_HOLDER_ACTION);
         return context.bindService(serviceIntent, serviceConnection, flags);
     }

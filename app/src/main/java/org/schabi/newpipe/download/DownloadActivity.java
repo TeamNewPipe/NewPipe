@@ -3,7 +3,6 @@ package org.schabi.newpipe.download;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.ViewTreeObserver;
 
@@ -27,7 +26,7 @@ public class DownloadActivity extends AppCompatActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         // Service
-        final Intent i = new Intent();
+        final var i = new Intent();
         i.setClass(this, DownloadManagerService.class);
         startService(i);
 
@@ -74,7 +73,7 @@ public class DownloadActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
         super.onCreateOptionsMenu(menu);
-        final MenuInflater inflater = getMenuInflater();
+        final var inflater = getMenuInflater();
 
         inflater.inflate(R.menu.download_menu, menu);
 

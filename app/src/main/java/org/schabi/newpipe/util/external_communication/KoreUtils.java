@@ -55,7 +55,7 @@ public final class KoreUtils {
      * @param streamUrl the url to the stream to play
      */
     public static void playWithKore(final Context context, final Uri streamUrl) {
-        final Intent intent = new Intent(Intent.ACTION_VIEW)
+        final var intent = new Intent(Intent.ACTION_VIEW)
                 .setPackage(context.getString(R.string.kore_package))
                 .setData(streamUrl)
                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -105,26 +105,26 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 // Do nothing.
                 break;
             case SELECT:
-                final SelectEvent selectEvent = (SelectEvent) message;
+                final var selectEvent = (SelectEvent) message;
                 notifyItemChanged(selectEvent.getOldIndex());
                 notifyItemChanged(selectEvent.getNewIndex());
                 break;
             case APPEND:
-                final AppendEvent appendEvent = (AppendEvent) message;
+                final var appendEvent = (AppendEvent) message;
                 notifyItemRangeInserted(playQueue.size(), appendEvent.getAmount());
                 break;
             case ERROR:
-                final ErrorEvent errorEvent = (ErrorEvent) message;
+                final var errorEvent = (ErrorEvent) message;
                 notifyItemChanged(errorEvent.getErrorIndex());
                 notifyItemChanged(errorEvent.getQueueIndex());
                 break;
             case REMOVE:
-                final RemoveEvent removeEvent = (RemoveEvent) message;
+                final var removeEvent = (RemoveEvent) message;
                 notifyItemRemoved(removeEvent.getRemoveIndex());
                 notifyItemChanged(removeEvent.getQueueIndex());
                 break;
             case MOVE:
-                final MoveEvent moveEvent = (MoveEvent) message;
+                final var moveEvent = (MoveEvent) message;
                 notifyItemMoved(moveEvent.getFromIndex(), moveEvent.getToIndex());
                 break;
             case INIT:

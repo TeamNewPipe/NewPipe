@@ -82,7 +82,7 @@ public final class SuperScrollLayoutManager extends LinearLayoutManager {
         // Fortunately we can intercept focus search and implement our own logic, based purely
         // on position along the LinearLayoutManager axis
 
-        final ViewGroup recycler = (ViewGroup) focusedItem.getParent();
+        final var recycler = (ViewGroup) focusedItem.getParent();
 
         final int sourcePosition = getPosition(focusedItem);
         if (sourcePosition == 0 && listDirection < 0) {

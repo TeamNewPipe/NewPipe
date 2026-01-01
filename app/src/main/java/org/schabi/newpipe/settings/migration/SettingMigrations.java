@@ -260,7 +260,7 @@ public final class SettingMigrations {
 
         // run migrations
         int currentVersion = lastPrefVersion;
-        for (final Migration currentMigration : SETTING_MIGRATIONS) {
+        for (final var currentMigration : SETTING_MIGRATIONS) {
             try {
                 if (currentMigration.shouldMigrate(currentVersion)) {
                     if (DEBUG) {

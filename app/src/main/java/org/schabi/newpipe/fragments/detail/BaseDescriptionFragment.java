@@ -206,7 +206,7 @@ public abstract class BaseDescriptionFragment extends BaseFragment {
         itemBinding.metadataTypeView.setText(type);
 
         final SpannableStringBuilder urls = new SpannableStringBuilder();
-        for (final Image image : images) {
+        for (final var image : images) {
             if (urls.length() != 0) {
                 urls.append(", ");
             }
@@ -255,7 +255,7 @@ public abstract class BaseDescriptionFragment extends BaseFragment {
             final var itemBinding = ItemMetadataTagsBinding.inflate(inflater, layout, false);
 
             tags.stream().sorted(String.CASE_INSENSITIVE_ORDER).forEach(tag -> {
-                final Chip chip = (Chip) inflater.inflate(R.layout.chip,
+                final var chip = (Chip) inflater.inflate(R.layout.chip,
                         itemBinding.metadataTagsChips, false);
                 chip.setText(tag);
                 chip.setOnClickListener(this::onTagClick);

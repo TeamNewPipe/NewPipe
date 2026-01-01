@@ -2,7 +2,6 @@ package org.schabi.newpipe;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -121,7 +120,7 @@ public class App extends Application {
         ServiceHelper.initServices(this);
 
         // Initialize image loader
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        final var prefs = PreferenceManager.getDefaultSharedPreferences(this);
         PicassoHelper.init(this);
         ImageStrategy.setPreferredImageQuality(PreferredImageQuality.fromPreferenceKey(this,
                 prefs.getString(getString(R.string.image_quality_key),
@@ -147,8 +146,7 @@ public class App extends Application {
     }
 
     protected void setCookiesToDownloader(final DownloaderImpl downloader) {
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
-                getApplicationContext());
+        final var prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         final String key = getApplicationContext().getString(R.string.recaptcha_cookies_key);
         downloader.setCookie(ReCaptchaActivity.RECAPTCHA_COOKIES_KEY, prefs.getString(key, null));
         downloader.updateYoutubeRestrictedModeCookies(getApplicationContext());
@@ -178,7 +176,7 @@ public class App extends Application {
                     errors = List.of(actualThrowable);
                 }
 
-                for (final Throwable error : errors) {
+                for (final var error : errors) {
                     if (isThrowableIgnored(error)) {
                         return;
                     }

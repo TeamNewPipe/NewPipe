@@ -62,7 +62,7 @@ public class FilePickerActivityHelper extends com.nononsenseapps.filepicker.File
                                                            final boolean allowCreateDir,
                                                            final boolean allowExistingFile,
                                                            final boolean singleClick) {
-        final CustomFilePickerFragment fragment = new CustomFilePickerFragment();
+        final var fragment = new CustomFilePickerFragment();
         fragment.setArgs(startPath != null ? startPath
                         : Environment.getExternalStorageDirectory().getPath(),
                 mode, allowMultiple, allowCreateDir, allowExistingFile, singleClick);

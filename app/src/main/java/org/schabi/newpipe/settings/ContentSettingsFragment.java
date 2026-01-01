@@ -1,6 +1,5 @@
 package org.schabi.newpipe.settings;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -51,7 +50,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 return loc != null ? loc.getDisplayName() : getString(R.string.systems_language);
             });
             newAppLanguagePref.setOnPreferenceClickListener(preference -> {
-                final Intent intent = new Intent(Settings.ACTION_APP_LOCALE_SETTINGS)
+                final var intent = new Intent(Settings.ACTION_APP_LOCALE_SETTINGS)
                         .setData(Uri.fromParts("package", requireContext().getPackageName(), null));
                 startActivity(intent);
                 return true;
@@ -89,7 +88,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     @Override
     public boolean onPreferenceTreeClick(final Preference preference) {
         if (preference.getKey().equals(youtubeRestrictedModeEnabledKey)) {
-            final Context context = getContext();
+            final var context = getContext();
             if (context != null) {
                 DownloaderImpl.getInstance().updateYoutubeRestrictedModeCookies(context);
             } else {
@@ -104,7 +103,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     public void onDestroy() {
         super.onDestroy();
 
-        final Context context = requireContext();
+        final var context = requireContext();
         NewPipe.setupLocalization(
             Localization.getPreferredLocalization(context),
             Localization.getPreferredContentCountry(context));

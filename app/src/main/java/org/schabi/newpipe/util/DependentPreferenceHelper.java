@@ -1,7 +1,6 @@
 package org.schabi.newpipe.util;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import androidx.preference.PreferenceManager;
 
@@ -25,7 +24,7 @@ public final class DependentPreferenceHelper {
      * @return returns true if `Resume playback` and `Watch history` are both enabled
      */
     public static boolean getResumePlaybackEnabled(final Context context) {
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        final var prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
         return prefs.getBoolean(context.getString(
                         R.string.enable_watch_history_key), true)
@@ -41,7 +40,7 @@ public final class DependentPreferenceHelper {
      * @return returns true if `Positions in lists` and `Watch history` are both enabled
      */
     public static boolean getPositionsInListsEnabled(final Context context) {
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        final var prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
         return prefs.getBoolean(context.getString(
                         R.string.enable_watch_history_key), true)

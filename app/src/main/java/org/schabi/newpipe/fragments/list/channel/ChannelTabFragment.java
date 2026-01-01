@@ -51,7 +51,7 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
     public static ChannelTabFragment getInstance(final int serviceId,
                                                  final ListLinkHandler tabHandler,
                                                  final String channelName) {
-        final ChannelTabFragment instance = new ChannelTabFragment();
+        final var instance = new ChannelTabFragment();
         instance.serviceId = serviceId;
         instance.tabHandler = tabHandler;
         instance.channelName = channelName;

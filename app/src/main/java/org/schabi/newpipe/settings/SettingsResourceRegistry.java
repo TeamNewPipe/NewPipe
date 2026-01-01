@@ -139,7 +139,7 @@ public final class SettingsResourceRegistry {
             if (o == null || getClass() != o.getClass()) {
                 return false;
             }
-            final SettingRegistryEntry that = (SettingRegistryEntry) o;
+            final var that = (SettingRegistryEntry) o;
             return getPreferencesResId() == that.getPreferencesResId()
                     && getFragmentClass().equals(that.getFragmentClass());
         }

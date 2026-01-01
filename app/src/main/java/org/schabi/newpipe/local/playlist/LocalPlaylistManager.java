@@ -94,14 +94,14 @@ public class LocalPlaylistManager {
     public Completable updatePlaylists(final List<PlaylistMetadataEntry> updateItems,
                                        final List<Long> deletedItems) {
         final List<PlaylistEntity> items = new ArrayList<>(updateItems.size());
-        for (final PlaylistMetadataEntry item : updateItems) {
+        for (final var item : updateItems) {
             items.add(new PlaylistEntity(item));
         }
         return Completable.fromRunnable(() -> database.runInTransaction(() -> {
             for (final Long uid : deletedItems) {
                 playlistTable.deletePlaylist(uid);
             }
-            for (final PlaylistEntity item : items) {
+            for (final var item : items) {
                 playlistTable.upsertPlaylist(item);
             }
         })).subscribeOn(Schedulers.io());

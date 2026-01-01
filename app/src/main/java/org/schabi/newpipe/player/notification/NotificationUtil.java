@@ -273,7 +273,7 @@ public final class NotificationUtil {
             return NavigationHelper.getPlayQueueActivityIntent(player.getContext());
         } else {
             // We are playing in fragment. Don't open another activity just show fragment. That's it
-            final Intent intent = NavigationHelper.getPlayerIntent(
+            final var intent = NavigationHelper.getPlayerIntent(
                     player.getContext(), MainActivity.class, null,
                     PlayerIntentType.AllOthers);
             intent.putExtra(Player.RESUME_PLAYBACK, true);

@@ -3,7 +3,6 @@ package org.schabi.newpipe.util;
 import static org.schabi.newpipe.extractor.ServiceList.YouTube;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
 
@@ -148,7 +147,7 @@ public final class ListHelper {
                                           @Nullable final String trackId) {
         if (trackId != null) {
             for (int i = 0; i < audioStreams.size(); i++) {
-                final AudioStream s = audioStreams.get(i);
+                final var s = audioStreams.get(i);
                 if (s.getAudioTrackId() != null
                         && s.getAudioTrackId().equals(trackId)) {
                     return i;
@@ -235,8 +234,7 @@ public final class ListHelper {
             @Nullable final List<VideoStream> videoOnlyStreams,
             final boolean ascendingOrder,
             final boolean preferVideoOnlyStreams) {
-        final SharedPreferences preferences =
-                PreferenceManager.getDefaultSharedPreferences(context);
+        final var preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         final boolean showHigherResolutions = preferences.getBoolean(
                 context.getString(R.string.show_higher_resolutions_key), false);
@@ -301,7 +299,7 @@ public final class ListHelper {
 
         final Comparator<AudioStream> cmp = getAudioFormatComparator(context);
 
-        for (final AudioStream stream : audioStreams) {
+        for (final var stream : audioStreams) {
             if (stream.getDeliveryMethod() == DeliveryMethod.TORRENT
                     || (stream.getDeliveryMethod() == DeliveryMethod.HLS
                     && stream.getFormat() == MediaFormat.OPUS)) {
@@ -342,7 +340,7 @@ public final class ListHelper {
 
         final HashMap<String, List<AudioStream>> collectedStreams = new HashMap<>();
 
-        for (final AudioStream stream : audioStreams) {
+        for (final var stream : audioStreams) {
             final String trackId = Objects.toString(stream.getAudioTrackId(), "");
             if (collectedStreams.containsKey(trackId)) {
                 collectedStreams.get(trackId).add(stream);
@@ -394,8 +392,7 @@ public final class ListHelper {
 
     private static String computeDefaultResolution(@NonNull final Context context, final int key,
                                                    final int value) {
-        final SharedPreferences preferences =
-                PreferenceManager.getDefaultSharedPreferences(context);
+        final var preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         // Load the preferred resolution otherwise the best available
         String resolution = preferences != null
@@ -488,12 +485,12 @@ public final class ListHelper {
 
         final HashMap<String, VideoStream> hashMap = new HashMap<>();
         // Add all to the hashmap
-        for (final VideoStream videoStream : allInitialStreams) {
+        for (final var videoStream : allInitialStreams) {
             hashMap.put(videoStream.getResolution(), videoStream);
         }
 
         // Override the values when the key == resolution, with the defaultFormat
-        for (final VideoStream videoStream : allInitialStreams) {
+        for (final var videoStream : allInitialStreams) {
             if (videoStream.getFormat() == defaultFormat) {
                 hashMap.put(videoStream.getResolution(), videoStream);
             }
@@ -649,8 +646,7 @@ public final class ListHelper {
     private static MediaFormat getDefaultFormat(@NonNull final Context context,
                                                 @StringRes final int defaultFormatKey,
                                                 @StringRes final int defaultFormatValueKey) {
-        final SharedPreferences preferences =
-                PreferenceManager.getDefaultSharedPreferences(context);
+        final var preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         final String defaultFormat = context.getString(defaultFormatValueKey);
         final String defaultFormatString = preferences.getString(
@@ -708,8 +704,7 @@ public final class ListHelper {
     private static String getResolutionLimit(@NonNull final Context context) {
         String resolutionLimit = null;
         if (isMeteredNetwork(context)) {
-            final SharedPreferences preferences =
-                    PreferenceManager.getDefaultSharedPreferences(context);
+            final var preferences = PreferenceManager.getDefaultSharedPreferences(context);
             final String defValue = context.getString(R.string.limit_data_usage_none_key);
             final String value = preferences.getString(
                     context.getString(R.string.limit_mobile_data_usage_key), defValue);
@@ -801,8 +796,7 @@ public final class ListHelper {
      */
     private static Comparator<AudioStream> getAudioTrackComparator(
             @NonNull final Context context) {
-        final SharedPreferences preferences =
-                PreferenceManager.getDefaultSharedPreferences(context);
+        final var preferences = PreferenceManager.getDefaultSharedPreferences(context);
         final Locale preferredLanguage = Localization.getPreferredLocale(context);
         final boolean preferOriginalAudio =
                 preferences.getBoolean(context.getString(R.string.prefer_original_audio_key),

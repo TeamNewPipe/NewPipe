@@ -137,7 +137,7 @@ public class ImageStrategyTest {
 
     @Test
     public void testChoosePreferredImageMixed() {
-        for (final ResolutionLevel resolutionLevel : RESOLUTION_LEVELS) {
+        for (final var resolutionLevel : RESOLUTION_LEVELS) {
             assertChoosePreferredImage("d", "b", "c", List.of(
                     img("a", ResolutionLevel.UNKNOWN),
                     img("b", 200, 100, resolutionLevel),
@@ -146,7 +146,7 @@ public class ImageStrategyTest {
                     img("e", resolutionLevel)
             ));
         }
-        for (final ResolutionLevel resolutionLevel : RESOLUTION_LEVELS) {
+        for (final var resolutionLevel : RESOLUTION_LEVELS) {
             assertChoosePreferredImage("b", "b", "b", List.of(
                     img("a", ResolutionLevel.UNKNOWN),
                     img("b", 200, 100, resolutionLevel),

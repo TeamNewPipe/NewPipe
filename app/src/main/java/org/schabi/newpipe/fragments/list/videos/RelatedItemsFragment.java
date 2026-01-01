@@ -43,7 +43,7 @@ public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, Related
     private RelatedItemsHeaderBinding headerBinding;
 
     public static RelatedItemsFragment getInstance(final StreamInfo info) {
-        final RelatedItemsFragment instance = new RelatedItemsFragment();
+        final var instance = new RelatedItemsFragment();
         instance.setInitialData(info);
         return instance;
     }
@@ -78,8 +78,7 @@ public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, Related
         headerBinding = RelatedItemsHeaderBinding
                 .inflate(activity.getLayoutInflater(), itemsList, false);
 
-        final SharedPreferences pref = PreferenceManager
-                .getDefaultSharedPreferences(requireContext());
+        final var pref = PreferenceManager.getDefaultSharedPreferences(requireContext());
         final boolean autoplay = pref.getBoolean(getString(R.string.auto_queue_key), false);
         headerBinding.autoplaySwitch.setChecked(autoplay);
         headerBinding.autoplaySwitch.setOnCheckedChangeListener((compoundButton, b) ->

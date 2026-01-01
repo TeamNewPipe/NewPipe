@@ -148,10 +148,10 @@ public class NewPipeRecyclerView extends RecyclerView {
             return false;
         }
 
-        final FocusFinder finder = FocusFinder.getInstance();
+        final var finder = FocusFinder.getInstance();
 
         // try to use FocusFinder instead of adapter
-        final ViewGroup root = (ViewGroup) getRootView();
+        final var root = (ViewGroup) getRootView();
 
         tempFocus.set(focusRect);
 
@@ -165,7 +165,7 @@ public class NewPipeRecyclerView extends RecyclerView {
 
         // look for focus in our ancestors, increasing search scope with each failure
         // this provides much better locality than using FocusFinder with root
-        ViewGroup parent = (ViewGroup) getParent();
+        var parent = (ViewGroup) getParent();
 
         while (parent != root) {
             tempFocus.set(focusRect);

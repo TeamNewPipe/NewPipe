@@ -80,7 +80,7 @@ public final class NewPipeSettings {
     private static void saveDefaultDirectory(final Context context, final int keyID,
                                              final String defaultDirectoryName) {
         if (!useStorageAccessFramework(context)) {
-            final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+            final var prefs = PreferenceManager.getDefaultSharedPreferences(context);
             final String key = context.getString(keyID);
             final String downloadPath = prefs.getString(key, null);
             if (!isNullOrEmpty(downloadPath)) {
@@ -112,7 +112,7 @@ public final class NewPipeSettings {
         }
 
         final String key = context.getString(R.string.storage_use_saf);
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        final var prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
         return prefs.getBoolean(key, true);
     }
@@ -143,7 +143,7 @@ public final class NewPipeSettings {
     }
 
     private static void disableMediaTunnelingIfNecessary(@NonNull final Context context) {
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        final var prefs = PreferenceManager.getDefaultSharedPreferences(context);
         final String disabledTunnelingKey = context.getString(R.string.disable_media_tunneling_key);
         final String disabledTunnelingAutomaticallyKey =
                 context.getString(R.string.disabled_media_tunneling_automatically_key);
@@ -170,7 +170,7 @@ public final class NewPipeSettings {
      * @param context
      */
     public static void setMediaTunneling(@NonNull final Context context) {
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        final var prefs = PreferenceManager.getDefaultSharedPreferences(context);
         if (!DeviceUtils.shouldSupportMediaTunneling()) {
             prefs.edit()
                     .putBoolean(context.getString(R.string.disable_media_tunneling_key), true)

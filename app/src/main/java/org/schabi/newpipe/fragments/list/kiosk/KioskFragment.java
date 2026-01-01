@@ -75,7 +75,7 @@ public class KioskFragment extends BaseListInfoFragment<StreamInfoItem, KioskInf
 
     public static KioskFragment getInstance(final int serviceId, final String kioskId)
             throws ExtractionException {
-        final KioskFragment instance = new KioskFragment();
+        final var instance = new KioskFragment();
         final StreamingService service = NewPipe.getService(serviceId);
         final ListLinkHandlerFactory kioskLinkHandlerFactory = service.getKioskList()
                 .getListLinkHandlerFactoryByType(kioskId);

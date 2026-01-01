@@ -299,13 +299,13 @@ public final class VideoDetailFragment
                                                   @Nullable final String url,
                                                   @NonNull final String name,
                                                   @Nullable final PlayQueue queue) {
-        final VideoDetailFragment instance = new VideoDetailFragment();
+        final var instance = new VideoDetailFragment();
         instance.setInitialData(serviceId, url, name, queue);
         return instance;
     }
 
     public static VideoDetailFragment getInstanceInCollapsedState() {
-        final VideoDetailFragment instance = new VideoDetailFragment();
+        final var instance = new VideoDetailFragment();
         instance.updateBottomSheetState(BottomSheetBehavior.STATE_COLLAPSED);
         return instance;
     }
@@ -319,7 +319,7 @@ public final class VideoDetailFragment
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        final var prefs = PreferenceManager.getDefaultSharedPreferences(activity);
         showComments = prefs.getBoolean(getString(R.string.show_comments_key), true);
         showRelatedItems = prefs.getBoolean(getString(R.string.show_next_video_key), true);
         showDescription = prefs.getBoolean(getString(R.string.show_description_key), true);
@@ -851,7 +851,7 @@ public final class VideoDetailFragment
     }
 
     private void runWorker(final boolean forceLoad, final boolean addToBackStack) {
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        final var prefs = PreferenceManager.getDefaultSharedPreferences(activity);
         currentWorker = ExtractorHelper.getStreamInfo(serviceId, url, forceLoad)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -1170,7 +1170,7 @@ public final class VideoDetailFragment
         tryAddVideoPlayerView();
 
         final Context context = requireContext();
-        final Intent playerIntent =
+        final var playerIntent =
                 NavigationHelper.getPlayerIntent(context, PlayerService.class, queue,
                                 PlayerIntentType.AllOthers)
                         .putExtra(Player.PLAY_WHEN_READY, autoPlayEnabled)
@@ -1430,7 +1430,7 @@ public final class VideoDetailFragment
                 }
             }
         };
-        final IntentFilter intentFilter = new IntentFilter();
+        final var intentFilter = new IntentFilter();
         intentFilter.addAction(ACTION_SHOW_MAIN_PLAYER);
         intentFilter.addAction(ACTION_HIDE_MAIN_PLAYER);
         intentFilter.addAction(ACTION_PLAYER_STARTED);
@@ -1596,7 +1596,7 @@ public final class VideoDetailFragment
         if (!info.getErrors().isEmpty()) {
             // Bandcamp fan pages are not yet supported and thus a ContentNotAvailableException is
             // thrown. This is not an error and thus should not be shown to the user.
-            for (final Throwable throwable : info.getErrors()) {
+            for (final var throwable : info.getErrors()) {
                 if (throwable instanceof ContentNotSupportedException
                         && "Fan pages are not supported".equals(throwable.getMessage())) {
                     info.getErrors().remove(throwable);

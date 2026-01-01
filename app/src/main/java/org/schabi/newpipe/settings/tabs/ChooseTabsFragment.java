@@ -176,19 +176,19 @@ public class ChooseTabsFragment extends Fragment {
 
         switch (type) {
             case KIOSK:
-                final SelectKioskFragment selectKioskFragment = new SelectKioskFragment();
+                final var selectKioskFragment = new SelectKioskFragment();
                 selectKioskFragment.setOnSelectedListener((serviceId, kioskId, kioskName) ->
                         addTab(new Tab.KioskTab(serviceId, kioskId)));
                 selectKioskFragment.show(getParentFragmentManager(), "select_kiosk");
                 return;
             case CHANNEL:
-                final SelectChannelFragment selectChannelFragment = new SelectChannelFragment();
+                final var selectChannelFragment = new SelectChannelFragment();
                 selectChannelFragment.setOnSelectedListener((serviceId, url, name) ->
                         addTab(new Tab.ChannelTab(serviceId, url, name)));
                 selectChannelFragment.show(getParentFragmentManager(), "select_channel");
                 return;
             case PLAYLIST:
-                final SelectPlaylistFragment selectPlaylistFragment = new SelectPlaylistFragment();
+                final var selectPlaylistFragment = new SelectPlaylistFragment();
                 selectPlaylistFragment.setOnSelectedListener(
                         new SelectPlaylistFragment.OnSelectedListener() {
                             @Override
@@ -205,8 +205,7 @@ public class ChooseTabsFragment extends Fragment {
                 selectPlaylistFragment.show(getParentFragmentManager(), "select_playlist");
                 return;
             case FEEDGROUP:
-                final SelectFeedGroupFragment selectFeedGroupFragment =
-                        new SelectFeedGroupFragment();
+                final var selectFeedGroupFragment = new SelectFeedGroupFragment();
                 selectFeedGroupFragment.setOnSelectedListener(
                         (groupId, name, iconId) ->
                                 addTab(new Tab.FeedGroupTab(groupId, name, iconId)));

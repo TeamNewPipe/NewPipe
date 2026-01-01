@@ -1,6 +1,5 @@
 package org.schabi.newpipe.settings;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -92,8 +91,7 @@ public class SettingsActivity extends AppCompatActivity implements
         Bridge.restoreInstanceState(this, savedInstanceBundle);
         final boolean restored = savedInstanceBundle != null;
 
-        final SettingsLayoutBinding settingsLayoutBinding =
-                SettingsLayoutBinding.inflate(getLayoutInflater());
+        final var settingsLayoutBinding = SettingsLayoutBinding.inflate(getLayoutInflater());
         setContentView(settingsLayoutBinding.getRoot());
         initSearch(settingsLayoutBinding, restored);
 
@@ -224,9 +222,9 @@ public class SettingsActivity extends AppCompatActivity implements
 
 
         // Build search items
-        final Context searchContext = getApplicationContext();
-        final PreferenceParser parser = new PreferenceParser(searchContext, config);
-        final PreferenceSearcher searcher = new PreferenceSearcher(config);
+        final var searchContext = getApplicationContext();
+        final var parser = new PreferenceParser(searchContext, config);
+        final var searcher = new PreferenceSearcher(config);
 
         // Find all searchable SettingsResourceRegistry fragments
         SettingsResourceRegistry.getInstance().getAllEntries().stream()

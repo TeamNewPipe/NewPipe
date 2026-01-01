@@ -172,7 +172,7 @@ public final class DeviceUtils {
     public static boolean isDesktopMode(@NonNull final Context context) {
         // Adapted from https://stackoverflow.com/a/64615568
         // to check for all input devices that have an active cursor
-        final InputManager im = (InputManager) context.getSystemService(INPUT_SERVICE);
+        final var im = (InputManager) context.getSystemService(INPUT_SERVICE);
         for (final int id : im.getInputDeviceIds()) {
             final InputDevice inputDevice = im.getInputDevice(id);
             if (inputDevice.supportsSource(InputDevice.SOURCE_BLUETOOTH_STYLUS)

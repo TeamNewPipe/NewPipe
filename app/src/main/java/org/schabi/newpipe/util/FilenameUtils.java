@@ -1,7 +1,6 @@
 package org.schabi.newpipe.util;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import androidx.preference.PreferenceManager;
 
@@ -24,8 +23,7 @@ public final class FilenameUtils {
      * @return the filename
      */
     public static String createFilename(final Context context, final String title) {
-        final SharedPreferences sharedPreferences = PreferenceManager
-                .getDefaultSharedPreferences(context);
+        final var sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         final String charsetLd = context.getString(R.string.charset_letters_and_digits_value);
         final String charsetMs = context.getString(R.string.charset_most_special_value);

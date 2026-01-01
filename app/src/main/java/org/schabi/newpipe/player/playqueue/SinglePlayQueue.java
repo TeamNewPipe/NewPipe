@@ -30,7 +30,7 @@ public final class SinglePlayQueue extends PlayQueue {
 
     private static List<PlayQueueItem> playQueueItemsOf(@NonNull final List<StreamInfoItem> items) {
         final List<PlayQueueItem> playQueueItems = new ArrayList<>(items.size());
-        for (final StreamInfoItem item : items) {
+        for (final var item : items) {
             playQueueItems.add(new PlayQueueItem(item));
         }
         return playQueueItems;

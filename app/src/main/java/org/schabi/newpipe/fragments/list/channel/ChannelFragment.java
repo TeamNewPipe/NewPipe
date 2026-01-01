@@ -5,7 +5,6 @@ import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateBackgroundColor;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -39,7 +38,6 @@ import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
-import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.detail.TabAdapter;
 import org.schabi.newpipe.ktx.AnimationType;
@@ -104,7 +102,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
 
     public static ChannelFragment getInstance(final int serviceId, final String url,
                                               final String name) {
-        final ChannelFragment instance = new ChannelFragment();
+        final var instance = new ChannelFragment();
         instance.setInitialData(serviceId, url, name);
         return instance;
     }
@@ -358,7 +356,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
                 if (DEBUG) {
                     Log.d(TAG, "No subscription to this channel!");
                 }
-                final SubscriptionEntity channel = new SubscriptionEntity();
+                final var channel = new SubscriptionEntity();
                 channel.setServiceId(info.getServiceId());
                 channel.setUrl(info.getUrl());
                 channel.setName(info.getName());
@@ -470,11 +468,10 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
         tabAdapter.clearAllItems();
 
         if (currentInfo != null && !channelContentNotSupported) {
-            final Context context = requireContext();
-            final SharedPreferences preferences = PreferenceManager
-                    .getDefaultSharedPreferences(context);
+            final var context = requireContext();
+            final var preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
-            for (final ListLinkHandler linkHandler : currentInfo.getTabs()) {
+            for (final var linkHandler : currentInfo.getTabs()) {
                 final String tab = linkHandler.getContentFilters().get(0);
                 if (ChannelTabHelper.showChannelTab(context, preferences, tab)) {
                     final ChannelTabFragment channelTabFragment =
@@ -627,7 +624,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
         updateRssButton();
 
         channelContentNotSupported = false;
-        for (final Throwable throwable : result.getErrors()) {
+        for (final var throwable : result.getErrors()) {
             if (throwable instanceof ContentNotSupportedException) {
                 channelContentNotSupported = true;
                 showContentNotSupportedIfNeeded();

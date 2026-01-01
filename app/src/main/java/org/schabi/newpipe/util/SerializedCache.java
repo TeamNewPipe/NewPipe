@@ -98,8 +98,8 @@ public final class SerializedCache {
     @NonNull
     private <T extends Serializable> T clone(@NonNull final T item,
                                              @NonNull final Class<T> type) throws Exception {
-        final ByteArrayOutputStream bytesOutput = new ByteArrayOutputStream();
-        try (ObjectOutputStream objectOutput = new ObjectOutputStream(bytesOutput)) {
+        final var bytesOutput = new ByteArrayOutputStream();
+        try (var objectOutput = new ObjectOutputStream(bytesOutput)) {
             objectOutput.writeObject(item);
             objectOutput.flush();
         }

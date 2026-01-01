@@ -22,7 +22,6 @@ package org.schabi.newpipe.util;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 import static org.schabi.newpipe.util.text.TextLinkifier.SET_LINK_MOVEMENT_METHOD;
 
-import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -300,7 +299,7 @@ public final class ExtractorHelper {
                                               final TextView metaInfoTextView,
                                               final View metaInfoSeparator,
                                               final CompositeDisposable disposables) {
-        final Context context = metaInfoTextView.getContext();
+        final var context = metaInfoTextView.getContext();
         if (metaInfos == null || metaInfos.isEmpty()
                 || !PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
                 context.getString(R.string.show_meta_info_key), true)) {

@@ -52,7 +52,7 @@ public final class ShareUtils {
      */
     public static void installApp(@NonNull final Context context, final String packageId) {
         // Try market scheme
-        final Intent marketSchemeIntent = new Intent(Intent.ACTION_VIEW,
+        final var marketSchemeIntent = new Intent(Intent.ACTION_VIEW,
                 Uri.parse("market://details?id=" + packageId))
                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (!tryOpenIntentInApp(context, marketSchemeIntent)) {
@@ -80,9 +80,9 @@ public final class ShareUtils {
     public static void openUrlInBrowser(@NonNull final Context context, final String url) {
         // Target a generic http://, so we are sure to get a browser and not e.g. the yt app.
         // Note that this requires the `http` schema to be added to `<queries>` in the manifest.
-        final Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://"));
+        final var browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://"));
 
-        final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        final var intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url))
                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         // See https://stackoverflow.com/a/58801285 and `setSelector` documentation
@@ -166,7 +166,7 @@ public final class ShareUtils {
     private static void openAppChooser(@NonNull final Context context,
                                        @NonNull final Intent intent,
                                        final boolean setTitleChooser) {
-        final Intent chooserIntent = new Intent(Intent.ACTION_CHOOSER);
+        final var chooserIntent = new Intent(Intent.ACTION_CHOOSER);
         chooserIntent.putExtra(Intent.EXTRA_INTENT, intent);
         chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (setTitleChooser) {
@@ -233,7 +233,7 @@ public final class ShareUtils {
                                  @NonNull final String title,
                                  final String content,
                                  final String imagePreviewUrl) {
-        final Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        final var shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
         shareIntent.putExtra(Intent.EXTRA_TEXT, content);
         if (!TextUtils.isEmpty(title)) {

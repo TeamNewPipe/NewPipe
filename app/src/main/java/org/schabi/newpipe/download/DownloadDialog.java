@@ -219,7 +219,7 @@ public class DownloadDialog extends DialogFragment
         this.subtitleStreamsAdapter = new StreamItemAdapter<>(wrappedSubtitleStreams);
         updateSecondaryStreams();
 
-        final Intent intent = new Intent(context, DownloadManagerService.class);
+        final var intent = new Intent(context, DownloadManagerService.class);
         context.startService(intent);
 
         context.bindService(intent, new ServiceConnection() {
@@ -248,16 +248,16 @@ public class DownloadDialog extends DialogFragment
      * Update the displayed video streams based on the selected audio track.
      */
     private void updateSecondaryStreams() {
-        final StreamInfoWrapper<AudioStream> audioStreams = getWrappedAudioStreams();
+        final var audioStreams = getWrappedAudioStreams();
         final var secondaryStreams = new SparseArrayCompat<SecondaryStreamHelper<AudioStream>>(4);
-        final List<VideoStream> videoStreams = wrappedVideoStreams.getStreamsList();
+        final var videoStreams = wrappedVideoStreams.getStreamsList();
         wrappedVideoStreams.resetInfo();
 
         for (int i = 0; i < videoStreams.size(); i++) {
             if (!videoStreams.get(i).isVideoOnly()) {
                 continue;
             }
-            final AudioStream audioStream = SecondaryStreamHelper.getAudioStreamFor(
+            final var audioStream = SecondaryStreamHelper.getAudioStreamFor(
                     context, audioStreams.getStreamsList(), videoStreams.get(i));
 
             if (audioStream != null) {
@@ -717,7 +717,7 @@ public class DownloadDialog extends DialogFragment
 
         int candidate = 0;
         for (int i = 0; i < streams.size(); i++) {
-            final Locale streamLocale = streams.get(i).getLocale();
+            final var streamLocale = streams.get(i).getLocale();
 
             final boolean languageEquals = streamLocale.getLanguage() != null
                     && preferredLocalization.getLanguageCode() != null
@@ -860,8 +860,7 @@ public class DownloadDialog extends DialogFragment
             Toast.makeText(context, getString(R.
                     string.error_insufficient_storage), Toast.LENGTH_LONG).show();
             // move the user to storage setting tab
-            final Intent storageSettingsIntent = new Intent(Settings.
-                    ACTION_INTERNAL_STORAGE_SETTINGS);
+            final var storageSettingsIntent = new Intent(Settings.ACTION_INTERNAL_STORAGE_SETTINGS);
             if (storageSettingsIntent.resolveActivity(context.getPackageManager())
                     != null) {
                 startActivity(storageSettingsIntent);

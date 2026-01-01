@@ -28,7 +28,7 @@ import org.schabi.newpipe.util.NavigationHelper;
 public class ExitActivity extends Activity {
 
     public static void exitAndRemoveFromRecentApps(final Activity activity) {
-        final Intent intent = new Intent(activity, ExitActivity.class);
+        final var intent = new Intent(activity, ExitActivity.class);
 
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                 | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS

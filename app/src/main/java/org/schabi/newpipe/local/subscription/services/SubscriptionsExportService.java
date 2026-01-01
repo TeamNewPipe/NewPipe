@@ -32,7 +32,6 @@ import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.subscription.SubscriptionItem;
 import org.schabi.newpipe.streams.io.SharpOutputStream;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
@@ -115,7 +114,7 @@ public class SubscriptionsExportService extends BaseImportExportService {
                 .map(subscriptionEntities -> {
                     final List<SubscriptionItem> result =
                             new ArrayList<>(subscriptionEntities.size());
-                    for (final SubscriptionEntity entity : subscriptionEntities) {
+                    for (final var entity : subscriptionEntities) {
                         result.add(new SubscriptionItem(entity.getServiceId(), entity.getUrl(),
                                 entity.getName()));
                     }

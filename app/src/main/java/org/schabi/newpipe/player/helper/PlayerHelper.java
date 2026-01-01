@@ -175,7 +175,7 @@ public final class PlayerHelper {
     public static PlayQueue autoQueueOf(@NonNull final StreamInfo info,
                                         @NonNull final List<PlayQueueItem> existingItems) {
         final Set<String> urls = new HashSet<>(existingItems.size());
-        for (final PlayQueueItem item : existingItems) {
+        for (final var item : existingItems) {
             urls.add(item.getUrl());
         }
 

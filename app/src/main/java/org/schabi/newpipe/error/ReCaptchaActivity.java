@@ -2,7 +2,6 @@ package org.schabi.newpipe.error;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -148,7 +147,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
 
         if (!foundCookies.isEmpty()) {
             // save cookies to preferences
-            final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
+            final var prefs = PreferenceManager.getDefaultSharedPreferences(
                     getApplicationContext());
             final String key = getApplicationContext().getString(R.string.recaptcha_cookies_key);
             prefs.edit().putString(key, foundCookies).apply();
@@ -161,7 +160,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
         // Navigate to blank page (unloads youtube to prevent background playback)
         recaptchaBinding.reCaptchaWebView.loadUrl("about:blank");
 
-        final Intent intent = new Intent(this, org.schabi.newpipe.MainActivity.class);
+        final var intent = new Intent(this, org.schabi.newpipe.MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         NavUtils.navigateUpTo(this, intent);
     }

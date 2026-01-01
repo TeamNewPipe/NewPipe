@@ -3,7 +3,6 @@ package org.schabi.newpipe.util;
 import static org.schabi.newpipe.extractor.ServiceList.SoundCloud;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
@@ -184,8 +183,7 @@ public final class ServiceHelper {
 
     public static void initService(final Context context, final int serviceId) {
         if (serviceId == ServiceList.PeerTube.getServiceId()) {
-            final SharedPreferences sharedPreferences = PreferenceManager
-                    .getDefaultSharedPreferences(context);
+            final var sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
             final String json = sharedPreferences.getString(context.getString(
                     R.string.peertube_selected_instance_key), null);
             if (null == json) {
@@ -198,9 +196,9 @@ public final class ServiceHelper {
             } catch (final JsonParserException e) {
                 return;
             }
-            final String name = jsonObject.getString("name");
-            final String url = jsonObject.getString("url");
-            final PeertubeInstance instance = new PeertubeInstance(url, name);
+            final var name = jsonObject.getString("name");
+            final var url = jsonObject.getString("url");
+            final var instance = new PeertubeInstance(url, name);
             ServiceList.PeerTube.setInstance(instance);
         }
     }

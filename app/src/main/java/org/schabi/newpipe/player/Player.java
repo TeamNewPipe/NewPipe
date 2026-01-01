@@ -413,7 +413,7 @@ public final class Player implements PlaybackListener, Listener {
                         .subscribe(info -> {
                             final @Nullable PlayQueue oldPlayQueue = playQueue;
                             info.setStartPosition(data.getSeconds());
-                            final PlayQueueItem playQueueItem = new PlayQueueItem(info);
+                            final var playQueueItem = new PlayQueueItem(info);
 
                             // If the stream is already playing,
                             // we can just seek to the appropriate timestamp

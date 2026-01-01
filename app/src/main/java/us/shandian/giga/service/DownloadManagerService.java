@@ -362,7 +362,7 @@ public class DownloadManagerService extends Service {
                                     char kind, int threads, String source, String psName,
                                     String[] psArgs, long nearLength,
                                     ArrayList<MissionRecoveryInfo> recoveryInfo) {
-        final Intent intent = new Intent(context, DownloadManagerService.class)
+        final var intent = new Intent(context, DownloadManagerService.class)
                 .setAction(Intent.ACTION_RUN)
                 .putExtra(EXTRA_URLS, urls)
                 .putExtra(EXTRA_KIND, kind)

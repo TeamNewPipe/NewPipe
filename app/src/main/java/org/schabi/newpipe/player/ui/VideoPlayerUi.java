@@ -728,7 +728,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     }
 
     protected void showOrHideButtons() {
-        @Nullable final PlayQueue playQueue = player.getPlayQueue();
+        @Nullable final var playQueue = player.getPlayQueue();
         if (playQueue == null) {
             return;
         }
@@ -1309,7 +1309,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
         final MediaItemTag.AudioTrack audioTrack =
                 currentMetadata.getMaybeAudioTrack().get();
-        final List<AudioStream> availableStreams = audioTrack.getAudioStreams();
+        final var availableStreams = audioTrack.getAudioStreams();
         final int selectedStreamIndex = audioTrack.getSelectedAudioStreamIndex();
         if (selectedStreamIndex == menuItemIndex || availableStreams.size() <= menuItemIndex) {
             return;

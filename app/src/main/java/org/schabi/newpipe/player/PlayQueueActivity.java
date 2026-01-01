@@ -183,7 +183,7 @@ public final class PlayQueueActivity extends AppCompatActivity
     private void bind() {
         // Note: this code should not really exist, and PlayerHolder should be used instead, but
         // it will be rewritten when NewPlayer will replace the current player.
-        final Intent bindIntent = new Intent(this, PlayerService.class);
+        final var bindIntent = new Intent(this, PlayerService.class);
         bindIntent.setAction(PlayerService.BIND_PLAYER_HOLDER_ACTION);
         final boolean success = bindService(bindIntent, serviceConnection, BIND_AUTO_CREATE);
         if (!success) {

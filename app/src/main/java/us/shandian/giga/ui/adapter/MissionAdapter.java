@@ -364,12 +364,12 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
     private void shareFile(Mission mission) {
         if (checkInvalidFile(mission)) return;
 
-        final Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        final var shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType(resolveMimeType(mission));
         shareIntent.putExtra(Intent.EXTRA_STREAM, resolveShareableUri(mission));
         shareIntent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
 
-        final Intent intent = createChooser(shareIntent, null);
+        final var intent = createChooser(shareIntent, null);
         // unneeded to set a title to the chooser on Android P and higher because the system
         // ignores this title on these versions
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.O_MR1) {

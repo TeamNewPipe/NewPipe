@@ -229,11 +229,10 @@ public final class TextLinkifier {
                                           @NonNull final CompositeDisposable disposables,
                                           @Nullable final Consumer<TextView> onCompletion) {
         disposables.add(Single.fromCallable(() -> {
-                    final Context context = textView.getContext();
+                    final var context = textView.getContext();
 
                     // add custom click actions on web links
-                    final SpannableStringBuilder textBlockLinked =
-                            new SpannableStringBuilder(chars);
+                    final var textBlockLinked = new SpannableStringBuilder(chars);
                     final URLSpan[] urls = textBlockLinked.getSpans(0, chars.length(),
                             URLSpan.class);
 

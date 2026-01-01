@@ -236,17 +236,17 @@ public class MediaSourceManager {
                 maybeRenewCurrentIndex();
                 break;
             case REMOVE:
-                final RemoveEvent removeEvent = (RemoveEvent) event;
+                final var removeEvent = (RemoveEvent) event;
                 playlist.remove(removeEvent.getRemoveIndex());
                 break;
             case MOVE:
-                final MoveEvent moveEvent = (MoveEvent) event;
+                final var moveEvent = (MoveEvent) event;
                 playlist.move(moveEvent.getFromIndex(), moveEvent.getToIndex());
                 break;
             case REORDER:
                 // Need to move to ensure the playing index from play queue matches that of
                 // the source timeline, and then window correction can take care of the rest
-                final ReorderEvent reorderEvent = (ReorderEvent) event;
+                final var reorderEvent = (ReorderEvent) event;
                 playlist.move(reorderEvent.getFromSelectedIndex(),
                         reorderEvent.getToSelectedIndex());
                 break;

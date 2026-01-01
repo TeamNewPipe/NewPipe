@@ -108,9 +108,8 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
             builder.setCancelable(true);
             builder.setPositiveButton(R.string.ok, (dialogInterface, i) -> {
                 // Deletes all shared preferences xml files.
-                final SharedPreferences sharedPreferences =
-                        PreferenceManager.getDefaultSharedPreferences(requireContext());
-                sharedPreferences.edit().clear().apply();
+                final var prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
+                prefs.edit().clear().apply();
                 // Restarts the app
                 if (getActivity() == null) {
                     return;
@@ -160,8 +159,7 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
             //checkpoint before export
             executor.submit(NewPipeDatabase::checkpoint).get();
 
-            final SharedPreferences preferences = PreferenceManager
-                    .getDefaultSharedPreferences(requireContext());
+            final var preferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
             manager.exportDatabase(preferences, file);
 
             saveLastImportExportDataUri(exportDataUri); // save export path only on success
@@ -206,8 +204,8 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
                         })
                         .setPositiveButton(R.string.ok, (dialog, which) -> {
                             dialog.dismiss();
-                            final Context context = requireContext();
-                            final SharedPreferences prefs = PreferenceManager
+                            final var context = requireContext();
+                            final var prefs = PreferenceManager
                                     .getDefaultSharedPreferences(context);
                             try {
                                 if (hasJsonPrefs) {

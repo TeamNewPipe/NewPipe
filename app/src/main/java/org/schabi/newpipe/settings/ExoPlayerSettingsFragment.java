@@ -1,6 +1,5 @@
 package org.schabi.newpipe.settings;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -21,8 +20,7 @@ public class ExoPlayerSettingsFragment extends BasePreferenceFragment {
                 getString(R.string.disabled_media_tunneling_automatically_key);
         final SwitchPreferenceCompat disableMediaTunnelingPref =
                 (SwitchPreferenceCompat) requirePreference(R.string.disable_media_tunneling_key);
-        final SharedPreferences prefs = PreferenceManager
-                .getDefaultSharedPreferences(requireContext());
+        final var prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
         final boolean mediaTunnelingAutomaticallyDisabled =
                 prefs.getInt(disabledMediaTunnelingAutomaticallyKey, -1) == 1;
         final String summaryText = getString(R.string.disable_media_tunneling_summary);

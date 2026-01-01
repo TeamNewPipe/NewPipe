@@ -46,7 +46,7 @@ public class RemotePlaylistManager {
             for (final Long uid: deletedItems) {
                 playlistRemoteTable.deletePlaylist(uid);
             }
-            for (final PlaylistRemoteEntity item: updateItems) {
+            for (final var item: updateItems) {
                 playlistRemoteTable.upsert(item);
             }
         })).subscribeOn(Schedulers.io());
@@ -54,7 +54,7 @@ public class RemotePlaylistManager {
 
     public Single<Long> onBookmark(final PlaylistInfo playlistInfo) {
         return Single.fromCallable(() -> {
-            final PlaylistRemoteEntity playlist = new PlaylistRemoteEntity(playlistInfo);
+            final var playlist = new PlaylistRemoteEntity(playlistInfo);
             return playlistRemoteTable.upsert(playlist);
         }).subscribeOn(Schedulers.io());
     }

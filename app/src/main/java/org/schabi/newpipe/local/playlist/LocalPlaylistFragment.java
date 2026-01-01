@@ -111,7 +111,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private MainFragment.SelectedTabsPagerAdapter tabsPagerAdapter = null;
 
     public static LocalPlaylistFragment getInstance(final long playlistId, final String name) {
-        final LocalPlaylistFragment instance = new LocalPlaylistFragment();
+        final var instance = new LocalPlaylistFragment();
         instance.setInitialData(playlistId, name);
         return instance;
     }
@@ -707,7 +707,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         final List<LocalItem> items = itemListAdapter.getItemsList();
         final List<Long> streamIds = new ArrayList<>(items.size());
-        for (final LocalItem item : items) {
+        for (final var item : items) {
             if (item instanceof PlaylistStreamEntry) {
                 streamIds.add(((PlaylistStreamEntry) item).getStreamId());
             }
@@ -867,7 +867,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         final List<LocalItem> infoItems = itemListAdapter.getItemsList();
         final List<StreamInfoItem> streamInfoItems = new ArrayList<>(infoItems.size());
-        for (final LocalItem item : infoItems) {
+        for (final var item : infoItems) {
             if (item instanceof PlaylistStreamEntry) {
                 streamInfoItems.add(((PlaylistStreamEntry) item).toStreamInfoItem());
             }

@@ -4,7 +4,6 @@ import static org.schabi.newpipe.MainActivity.DEBUG;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.icu.text.CompactDecimalFormat;
 import android.os.Build;
@@ -411,7 +410,7 @@ public final class Localization {
 
     private static Locale getLocaleFromPrefs(@NonNull final Context context,
                                              @StringRes final int prefKey) {
-        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        final var sp = PreferenceManager.getDefaultSharedPreferences(context);
         final String defaultKey = context.getString(R.string.default_localization_key);
         final String languageCode = sp.getString(context.getString(prefKey), defaultKey);
 
@@ -450,7 +449,7 @@ public final class Localization {
     // For reference, see
     // https://android-developers.googleblog.com/2022/11/per-app-language-preferences-part-1.html
     public static void migrateAppLanguageSettingIfNecessary(@NonNull final Context context) {
-        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        final var sp = PreferenceManager.getDefaultSharedPreferences(context);
         final String appLanguageKey = context.getString(R.string.app_language_key);
         final String appLanguageValue = sp.getString(appLanguageKey, null);
         if (appLanguageValue != null) {

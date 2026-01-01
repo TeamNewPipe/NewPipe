@@ -104,7 +104,7 @@ public final class VideoDetailPlayerCrasher {
                 .setNegativeButton(R.string.cancel, null)
                 .create();
 
-        for (final Pair<String, Supplier<ExoPlaybackException>> entry : AVAILABLE_EXCEPTION_TYPES) {
+        for (final var entry : AVAILABLE_EXCEPTION_TYPES) {
             final RadioButton radioButton = ListRadioIconItemBinding.inflate(inflater).getRoot();
             radioButton.setText(entry.first);
             radioButton.setChecked(false);

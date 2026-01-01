@@ -117,10 +117,7 @@ public class HistoryRecordManager {
             }
 
             // Update the stream progress to the full duration of the video
-            final StreamStateEntity entity = new StreamStateEntity(
-                    streamId,
-                    duration * 1000
-            );
+            final var entity = new StreamStateEntity(streamId, duration * 1000);
             streamStateTable.upsert(entity);
 
             // Add a history entry
@@ -194,8 +191,8 @@ public class HistoryRecordManager {
             return Maybe.empty();
         }
 
-        final OffsetDateTime currentTime = OffsetDateTime.now(ZoneOffset.UTC);
-        final SearchHistoryEntry newEntry = new SearchHistoryEntry(currentTime, serviceId, search);
+        final var currentTime = OffsetDateTime.now(ZoneOffset.UTC);
+        final var newEntry = new SearchHistoryEntry(currentTime, serviceId, search);
 
         return Maybe.fromCallable(() -> database.runInTransaction(() -> {
             final SearchHistoryEntry latestEntry = searchHistoryTable.getLatestEntry();
@@ -283,7 +280,7 @@ public class HistoryRecordManager {
             final List<? extends LocalItem> items) {
         return Single.fromCallable(() -> {
             final List<StreamStateEntity> result = new ArrayList<>(items.size());
-            for (final LocalItem item : items) {
+            for (final var item : items) {
                 final long streamId;
                 if (item instanceof StreamStatisticsEntry) {
                     streamId = ((StreamStatisticsEntry) item).getStreamId();

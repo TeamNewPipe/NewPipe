@@ -120,8 +120,7 @@ public class SelectPlaylistFragment extends DialogFragment {
                 final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
                 onSelectedListener.onLocalPlaylistSelected(entry.getUid(), entry.getOrderingName());
 
-            } else if (selectedItem instanceof PlaylistRemoteEntity) {
-                final PlaylistRemoteEntity entry = ((PlaylistRemoteEntity) selectedItem);
+            } else if (selectedItem instanceof PlaylistRemoteEntity entry) {
                 onSelectedListener.onRemotePlaylistSelected(
                         entry.getServiceId(), entry.getUrl(), entry.getOrderingName());
             }

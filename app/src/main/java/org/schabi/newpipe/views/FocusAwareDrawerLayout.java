@@ -85,8 +85,7 @@ public final class FocusAwareDrawerLayout extends DrawerLayout {
         for (int i = 0; i < getChildCount(); ++i) {
             final View child = getChildAt(i);
 
-            final DrawerLayout.LayoutParams lp =
-                    (DrawerLayout.LayoutParams) child.getLayoutParams();
+            final var lp = (DrawerLayout.LayoutParams) child.getLayoutParams();
 
             if (lp.gravity == 0) {
                 content = child;

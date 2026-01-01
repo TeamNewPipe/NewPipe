@@ -451,14 +451,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void enhancePeertubeMenu(final MenuItem menuItem) {
-        final PeertubeInstance currentInstance = PeertubeHelper.getCurrentInstance();
+        final var currentInstance = PeertubeHelper.getCurrentInstance();
         menuItem.setTitle(currentInstance.getName());
         final Spinner spinner = InstanceSpinnerLayoutBinding.inflate(LayoutInflater.from(this))
                 .getRoot();
         final List<PeertubeInstance> instances = PeertubeHelper.getInstanceList(this);
         final List<String> items = new ArrayList<>();
         int defaultSelect = 0;
-        for (final PeertubeInstance instance : instances) {
+        for (final var instance : instances) {
             items.add(instance.getName());
             if (instance.getUrl().equals(currentInstance.getUrl())) {
                 defaultSelect = items.size() - 1;
@@ -895,7 +895,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             };
-            final IntentFilter intentFilter = new IntentFilter();
+            final var intentFilter = new IntentFilter();
             intentFilter.addAction(VideoDetailFragment.ACTION_PLAYER_STARTED);
             ContextCompat.registerReceiver(this, broadcastReceiver, intentFilter,
                     ContextCompat.RECEIVER_EXPORTED);

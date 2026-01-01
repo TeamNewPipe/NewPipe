@@ -68,7 +68,7 @@ public class SubscriptionsImportFragment extends BaseFragment {
             registerForActivityResult(new StartActivityForResult(), this::requestImportFileResult);
 
     public static SubscriptionsImportFragment getInstance(final int serviceId) {
-        final SubscriptionsImportFragment instance = new SubscriptionsImportFragment();
+        final var instance = new SubscriptionsImportFragment();
         instance.setInitialData(serviceId);
         return instance;
     }

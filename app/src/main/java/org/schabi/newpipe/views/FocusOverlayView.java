@@ -192,7 +192,7 @@ public final class FocusOverlayView extends Drawable implements
         final View decor = window.getDecorView();
         decor.getWindowVisibleDisplayFrame(displayRect);
 
-        final FocusOverlayView overlay = new FocusOverlayView(dialog.getContext());
+        final var overlay = new FocusOverlayView(dialog.getContext());
         overlay.setBounds(0, 0, displayRect.width(), displayRect.height());
 
         setupOverlay(window, overlay);
@@ -205,19 +205,19 @@ public final class FocusOverlayView extends Drawable implements
         final View decor = window.getDecorView();
         decor.getWindowVisibleDisplayFrame(displayRect);
 
-        final FocusOverlayView overlay = new FocusOverlayView(activity);
+        final var overlay = new FocusOverlayView(activity);
         overlay.setBounds(0, 0, displayRect.width(), displayRect.height());
 
         setupOverlay(window, overlay);
     }
 
     private static void setupOverlay(final Window window, final FocusOverlayView overlay) {
-        final ViewGroup decor = (ViewGroup) window.getDecorView();
+        final var decor = (ViewGroup) window.getDecorView();
         decor.getOverlay().add(overlay);
 
         fixFocusHierarchy(decor);
 
-        final ViewTreeObserver observer = decor.getViewTreeObserver();
+        final var observer = decor.getViewTreeObserver();
         observer.addOnScrollChangedListener(overlay);
         observer.addOnGlobalFocusChangeListener(overlay);
         observer.addOnGlobalLayoutListener(overlay);
