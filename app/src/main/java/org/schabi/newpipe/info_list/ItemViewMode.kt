@@ -1,9 +1,14 @@
-package org.schabi.newpipe.info_list;
+/*
+ * SPDX-FileCopyrightText: 2023-2026 NewPipe contributors <https://newpipe.net>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+package org.schabi.newpipe.info_list
 
 /**
  * Item view mode for streams & playlist listing screens.
  */
-public enum ItemViewMode {
+enum class ItemViewMode {
     /**
      * Default mode.
      */
