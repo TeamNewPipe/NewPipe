@@ -75,7 +75,6 @@ public class DownloadManagerService extends Service {
     private static final String EXTRA_THREADS = "DownloadManagerService.extra.threads";
     private static final String EXTRA_POSTPROCESSING_NAME = "DownloadManagerService.extra.postprocessingName";
     private static final String EXTRA_POSTPROCESSING_ARGS = "DownloadManagerService.extra.postprocessingArgs";
-    private static final String EXTRA_SOURCE = "DownloadManagerService.extra.source";
     private static final String EXTRA_NEAR_LENGTH = "DownloadManagerService.extra.nearLength";
     private static final String EXTRA_PATH = "DownloadManagerService.extra.storagePath";
     private static final String EXTRA_PARENT_PATH = "DownloadManagerService.extra.storageParentPath";
@@ -369,7 +368,6 @@ public class DownloadManagerService extends Service {
                 .putExtra(EXTRA_URLS, urls)
                 .putExtra(EXTRA_KIND, kind)
                 .putExtra(EXTRA_THREADS, threads)
-                .putExtra(EXTRA_SOURCE, streamInfo.getUrl())
                 .putExtra(EXTRA_POSTPROCESSING_NAME, psName)
                 .putExtra(EXTRA_POSTPROCESSING_ARGS, psArgs)
                 .putExtra(EXTRA_NEAR_LENGTH, nearLength)
@@ -390,7 +388,6 @@ public class DownloadManagerService extends Service {
         char kind = intent.getCharExtra(EXTRA_KIND, '?');
         String psName = intent.getStringExtra(EXTRA_POSTPROCESSING_NAME);
         String[] psArgs = intent.getStringArrayExtra(EXTRA_POSTPROCESSING_ARGS);
-        String source = intent.getStringExtra(EXTRA_SOURCE);
         long nearLength = intent.getLongExtra(EXTRA_NEAR_LENGTH, 0);
         String tag = intent.getStringExtra(EXTRA_STORAGE_TAG);
         StreamInfo streamInfo = (StreamInfo)intent.getSerializableExtra(EXTRA_STREAM_INFO);
@@ -413,7 +410,7 @@ public class DownloadManagerService extends Service {
 
         final DownloadMission mission = new DownloadMission(urls, storage, kind, ps);
         mission.threadCount = threads;
-        mission.source = source;
+        mission.source = streamInfo.getUrl();
         mission.nearLength = nearLength;
         mission.recoveryInfo = recovery.toArray(new MissionRecoveryInfo[0]);
 
