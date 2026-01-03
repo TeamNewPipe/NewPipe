@@ -303,9 +303,7 @@ public class OggFromWebMWriter implements Closeable {
 
             if (DEBUG) {
                 Log.d("OggFromWebMWriter", "Creating metadata header with this data:");
-                metadata.forEach(p -> {
-                    Log.d("OggFromWebMWriter", p.first + "=" + p.second);
-                });
+                metadata.forEach(p -> Log.d("OggFromWebMWriter", p.first + "=" + p.second));
             }
 
             return makeOpusTagsHeader(metadata);
