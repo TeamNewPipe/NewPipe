@@ -1,5 +1,7 @@
 package org.schabi.newpipe.streams;
 
+import android.graphics.Bitmap;
+
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.streams.Mp4DashReader.Hdlr;
 import org.schabi.newpipe.streams.Mp4DashReader.Mdia;
@@ -10,13 +12,20 @@ import org.schabi.newpipe.streams.Mp4DashReader.TrackKind;
 import org.schabi.newpipe.streams.Mp4DashReader.TrunEntry;
 import org.schabi.newpipe.streams.io.SharpStream;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 /**
+ * MP4 muxer that builds a standard MP4 file from DASH fragmented MP4 sources.
+ *
  * @author kapodamy
+ *
+ * @implNote See <a href="https://atomicparsley.sourceforge.net/mpeg-4files.html">
+ *     https://atomicparsley.sourceforge.net/mpeg-4files.html</a> for information on
+ *     the MP4 file format and its specification.
  */
 public class Mp4FromDashWriter {
     private static final int EPOCH_OFFSET = 2082844800;
@@ -53,8 +62,10 @@ public class Mp4FromDashWriter {
     private final ArrayList<Integer> compatibleBrands = new ArrayList<>(5);
 
     private final StreamInfo streamInfo;
+    private final Bitmap thumbnail;
 
     public Mp4FromDashWriter(final StreamInfo streamInfo,
+                             final Bitmap thumbnail,
                              final SharpStream... sources) throws IOException {
         for (final SharpStream src : sources) {
             if (!src.canRewind() && !src.canRead()) {
@@ -63,6 +74,7 @@ public class Mp4FromDashWriter {
         }
 
         this.streamInfo = streamInfo;
+        this.thumbnail = thumbnail;
         sourceTracks = sources;
         readers = new Mp4DashReader[sourceTracks.length];
         readersChunks = new Mp4DashChunk[readers.length];
@@ -946,10 +958,23 @@ public class Mp4FromDashWriter {
             writeMetaItem("©day", date);
         }
 
+
+
+        if (thumbnail != null) {
+            final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            thumbnail.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            final byte[] imgBytes = baos.toByteArray();
+            baos.close();
+            // 0x0000000E = PNG type indicator for 'data' box (0x0D = JPEG)
+            writeMetaCover(imgBytes, 0x0000000E);
+
+        }
+
         // fix lengths
         lengthFor(startIlst);
         lengthFor(startMeta);
         lengthFor(startUdta);
+
     }
 
     /**
@@ -997,9 +1022,9 @@ public class Mp4FromDashWriter {
     /**
      * Create a minimal hdlr box for the meta container.
      * The boxsize is fixed (33 bytes) as no name is provided.
+     * @return byte array with the hdlr box
      */
     private byte[] makeMetaHdlr() {
-
         final ByteBuffer buf = ByteBuffer.allocate(33);
         buf.putInt(33);
         buf.putInt(0x68646C72); // "hdlr"
@@ -1010,6 +1035,52 @@ public class Mp4FromDashWriter {
         buf.put((byte) 0x00);   // name (empty, null-terminated)
         return buf.array();
     }
+
+    /**
+     * Helper to write cover image inside the 'udta' box.
+     *
+     * <pre>
+     *     [size][key] [data_box]
+     *     data_box = [size]["data"][type(4bytes)][locale(4bytes)=0][payload]
+     * </pre>
+     *
+     * @param imageData image byte data
+     * @param dataType  type indicator: 0x0000000E = PNG, 0x0000000D = JPEG
+     * @throws IOException
+     */
+    private void writeMetaCover(final byte[] imageData, final int dataType) throws IOException {
+        if (imageData == null || imageData.length == 0) {
+            return;
+        }
+
+        final byte[] keyBytes = "covr".getBytes(StandardCharsets.ISO_8859_1);
+
+        // data box: 4(size) + 4("data") + 4(type) + 4(locale) + payload
+        final int dataBoxSize = 16 + imageData.length;
+        final int itemBoxSize = 8 + dataBoxSize;
+
+        final ByteBuffer buf = ByteBuffer.allocate(itemBoxSize);
+        buf.putInt(itemBoxSize);
+
+        // key (4 chars)
+        if (keyBytes.length == 4) {
+            buf.put(keyBytes);
+        } else {
+            final byte[] kb = new byte[4];
+            System.arraycopy(keyBytes, 0, kb, 0, Math.min(keyBytes.length, 4));
+            buf.put(kb);
+        }
+
+        // data box
+        buf.putInt(dataBoxSize);
+        buf.putInt(0x64617461); // "data"
+        buf.putInt(dataType);   // type indicator: 0x0000000E = PNG, 0x0000000D = JPEG
+        buf.putInt(0x00000000); // locale
+        buf.put(imageData);
+
+        auxWrite(buf.array());
+    }
+
 
     static class TablesInfo {
         int stts;
