@@ -38,6 +38,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.IntentCompat;
 import androidx.preference.PreferenceManager;
 
+import java.util.List;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.player.helper.LockManager;
@@ -80,6 +82,9 @@ public class DownloadManagerService extends Service {
     private static final String EXTRA_PARENT_PATH = "DownloadManagerService.extra.storageParentPath";
     private static final String EXTRA_STORAGE_TAG = "DownloadManagerService.extra.storageTag";
     private static final String EXTRA_RECOVERY_INFO = "DownloadManagerService.extra.recoveryInfo";
+    private static final String EXTRA_STREAM_UID = "DownloadManagerService.extra.streamUid";
+    private static final String EXTRA_SERVICE_ID = "DownloadManagerService.extra.serviceId";
+    private static final String EXTRA_QUALITY_LABEL = "DownloadManagerService.extra.qualityLabel";
 
     private static final String ACTION_RESET_DOWNLOAD_FINISHED = APPLICATION_ID + ".reset_download_finished";
     private static final String ACTION_OPEN_DOWNLOADS_FINISHED = APPLICATION_ID + ".open_downloads_finished";
@@ -361,7 +366,8 @@ public class DownloadManagerService extends Service {
     public static void startMission(Context context, String[] urls, StoredFileHelper storage,
                                     char kind, int threads, String source, String psName,
                                     String[] psArgs, long nearLength,
-                                    ArrayList<MissionRecoveryInfo> recoveryInfo) {
+                                    ArrayList<MissionRecoveryInfo> recoveryInfo,
+                                    long streamUid, int serviceId, String qualityLabel) {
         final Intent intent = new Intent(context, DownloadManagerService.class)
                 .setAction(Intent.ACTION_RUN)
                 .putExtra(EXTRA_URLS, urls)
@@ -374,7 +380,10 @@ public class DownloadManagerService extends Service {
                 .putExtra(EXTRA_RECOVERY_INFO, recoveryInfo)
                 .putExtra(EXTRA_PARENT_PATH, storage.getParentUri())
                 .putExtra(EXTRA_PATH, storage.getUri())
-                .putExtra(EXTRA_STORAGE_TAG, storage.getTag());
+                .putExtra(EXTRA_STORAGE_TAG, storage.getTag())
+                .putExtra(EXTRA_STREAM_UID, streamUid)
+                .putExtra(EXTRA_SERVICE_ID, serviceId)
+                .putExtra(EXTRA_QUALITY_LABEL, qualityLabel);
 
         context.startService(intent);
     }
@@ -390,6 +399,9 @@ public class DownloadManagerService extends Service {
         String source = intent.getStringExtra(EXTRA_SOURCE);
         long nearLength = intent.getLongExtra(EXTRA_NEAR_LENGTH, 0);
         String tag = intent.getStringExtra(EXTRA_STORAGE_TAG);
+        long streamUid = intent.getLongExtra(EXTRA_STREAM_UID, -1L);
+        int serviceId = intent.getIntExtra(EXTRA_SERVICE_ID, -1);
+        String qualityLabel = intent.getStringExtra(EXTRA_QUALITY_LABEL);
         final var recovery = IntentCompat.getParcelableArrayListExtra(intent, EXTRA_RECOVERY_INFO,
                 MissionRecoveryInfo.class);
         Objects.requireNonNull(recovery);
@@ -412,6 +424,9 @@ public class DownloadManagerService extends Service {
         mission.source = source;
         mission.nearLength = nearLength;
         mission.recoveryInfo = recovery.toArray(new MissionRecoveryInfo[0]);
+        mission.streamUid = streamUid;
+        mission.serviceId = serviceId;
+        mission.qualityLabel = qualityLabel;
 
         if (ps != null)
             ps.setTemporalDir(DownloadManager.pickAvailableTemporalDir(this));
@@ -581,6 +596,21 @@ public class DownloadManagerService extends Service {
 
         public void enableNotifications(boolean enable) {
             mDownloadNotificationEnable = enable;
+        }
+
+        public DownloadManager.DownloadStatusSnapshot getDownloadStatus(int serviceId, String source,
+                boolean revalidateFile) {
+            return mManager.getDownloadStatus(serviceId, source, revalidateFile);
+        }
+
+        public List<DownloadManager.DownloadStatusSnapshot> getDownloadStatuses(int serviceId,
+                String source, boolean revalidateFile) {
+            return mManager.getDownloadStatuses(serviceId, source, revalidateFile);
+        }
+
+        public boolean deleteFinishedMission(int serviceId, String source, @Nullable Uri storageUri,
+                long timestamp, boolean deleteFile) {
+            return mManager.deleteFinishedMission(serviceId, source, storageUri, timestamp, deleteFile);
         }
 
     }

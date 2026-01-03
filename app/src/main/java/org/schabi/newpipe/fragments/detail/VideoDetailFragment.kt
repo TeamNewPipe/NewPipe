@@ -16,6 +16,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.provider.DocumentsContract
 import android.provider.Settings
 import android.util.DisplayMetrics
 import android.util.Log
@@ -37,6 +38,8 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
@@ -44,6 +47,9 @@ import androidx.core.net.toUri
 import androidx.core.os.postDelayed
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceManager
 import coil3.util.CoilUtils
 import com.evernote.android.state.State
@@ -56,11 +62,14 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.launch
 import org.schabi.newpipe.App
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.databinding.FragmentVideoDetailBinding
 import org.schabi.newpipe.download.DownloadDialog
+import org.schabi.newpipe.download.DownloadEntry
+import org.schabi.newpipe.download.ui.DownloadStatusHost
 import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.ErrorUtil.Companion.showSnackbar
 import org.schabi.newpipe.error.ErrorUtil.Companion.showUiErrorSnackbar
@@ -99,6 +108,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueue
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue
 import org.schabi.newpipe.player.ui.MainPlayerUi
 import org.schabi.newpipe.player.ui.VideoPlayerUi
+import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.DependentPreferenceHelper
 import org.schabi.newpipe.util.DeviceUtils
 import org.schabi.newpipe.util.ExtractorHelper
@@ -144,6 +154,7 @@ class VideoDetailFragment :
     // can't make this lateinit because it needs to be set to null when the view is destroyed
     private var nullableBinding: FragmentVideoDetailBinding? = null
     private val binding: FragmentVideoDetailBinding get() = nullableBinding!!
+    private val downloadStatusViewModel: VideoDownloadStatusViewModel by viewModels()
     private lateinit var pageAdapter: TabAdapter
     private var settingsContentObserver: ContentObserver? = null
 
@@ -270,6 +281,24 @@ class VideoDetailFragment :
     ): View {
         val newBinding = FragmentVideoDetailBinding.inflate(inflater, container, false)
         nullableBinding = newBinding
+        newBinding.detailDownloadStatusCompose?.apply {
+            setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+            setContent {
+                AppTheme {
+                    val uiState = downloadStatusViewModel.uiState.collectAsStateWithLifecycle().value
+                    val composeContext = LocalContext.current
+                    DownloadStatusHost(
+                        state = uiState,
+                        onChipClick = { entry -> downloadStatusViewModel.onChipSelected(entry) },
+                        onDismissSheet = { downloadStatusViewModel.dismissSheet() },
+                        onOpenFile = { entry -> openDownloaded(entry) },
+                        onDeleteFile = { entry -> deleteDownloadedFile(entry) },
+                        onRemoveLink = { entry -> removeDownloadLink(entry) },
+                        onShowInFolder = { entry -> showDownloadedInFolder(entry) }
+                    )
+                }
+            }
+        }
         return newBinding.getRoot()
     }
 
@@ -1366,6 +1395,9 @@ class VideoDetailFragment :
         currentInfo = info
         setInitialData(info.serviceId, info.originalUrl, info.name, playQueue)
 
+        downloadStatusViewModel.dismissSheet()
+        downloadStatusViewModel.setStream(requireContext().applicationContext, info.serviceId, info.url)
+
         updateTabs(info)
 
         binding.detailThumbnailPlayButton.animate(true, 200)
@@ -1541,6 +1573,74 @@ class VideoDetailFragment :
                 activity,
                 ErrorInfo(e, UserAction.DOWNLOAD_OPEN_DIALOG, "Showing download dialog", info)
             )
+        }
+    }
+
+    private fun openDownloaded(entry: DownloadEntry) {
+        val uri = entry.fileUri
+        if (uri == null) {
+            Toast.makeText(requireContext(), R.string.missing_file, Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val intent = Intent(Intent.ACTION_VIEW).apply {
+            setDataAndType(uri, entry.mimeType ?: "*/*")
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
+
+        runCatching { startActivity(intent) }
+            .onFailure {
+                if (DEBUG) Log.e(TAG, "Failed to open downloaded file", it)
+                Toast.makeText(requireContext(), R.string.missing_file, Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun showDownloadedInFolder(entry: DownloadEntry) {
+        val parent = entry.parentUri
+        if (parent == null) {
+            Toast.makeText(requireContext(), R.string.invalid_directory, Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val context = requireContext()
+        val viewIntent = Intent(Intent.ACTION_VIEW).apply {
+            setDataAndType(parent, DocumentsContract.Document.MIME_TYPE_DIR)
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
+
+        runCatching { startActivity(viewIntent) }
+            .onFailure {
+                val treeIntent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE).apply {
+                    putExtra(DocumentsContract.EXTRA_INITIAL_URI, parent)
+                    addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                }
+                runCatching { startActivity(treeIntent) }
+                    .onFailure { throwable ->
+                        if (DEBUG) Log.e(TAG, "Failed to open folder", throwable)
+                        Toast.makeText(context, R.string.invalid_directory, Toast.LENGTH_SHORT).show()
+                    }
+            }
+    }
+
+    private fun deleteDownloadedFile(entry: DownloadEntry) {
+        if (!entry.fileAvailable) {
+            Toast.makeText(requireContext(), R.string.general_error, Toast.LENGTH_SHORT).show()
+            return
+        }
+        val appContext = requireContext().applicationContext
+        viewLifecycleOwner.lifecycleScope.launch {
+            val success = downloadStatusViewModel.deleteFile(appContext, entry.handle)
+            val message = if (success) R.string.file_deleted else R.string.general_error
+            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun removeDownloadLink(entry: DownloadEntry) {
+        val appContext = requireContext().applicationContext
+        viewLifecycleOwner.lifecycleScope.launch {
+            val success = downloadStatusViewModel.removeLink(appContext, entry.handle)
+            val message = if (success) R.string.entry_deleted else R.string.general_error
+            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -2271,6 +2371,7 @@ class VideoDetailFragment :
 
         private const val MAX_OVERLAY_ALPHA = 0.9f
         private const val MAX_PLAYER_HEIGHT = 0.7f
+        private val AVAILABILITY_CHECK_INTERVAL_MS = TimeUnit.MINUTES.toMillis(5)
 
         const val ACTION_SHOW_MAIN_PLAYER: String =
             App.PACKAGE_NAME + ".VideoDetailFragment.ACTION_SHOW_MAIN_PLAYER"
