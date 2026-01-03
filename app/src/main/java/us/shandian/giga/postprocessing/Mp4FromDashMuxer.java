@@ -16,7 +16,7 @@ class Mp4FromDashMuxer extends Postprocessing {
 
     @Override
     int process(SharpStream out, SharpStream... sources) throws IOException {
-        Mp4FromDashWriter muxer = new Mp4FromDashWriter(sources);
+        Mp4FromDashWriter muxer = new Mp4FromDashWriter(this.streamInfo, sources);
         muxer.parseSources();
         muxer.selectTracks(0, 0);
         muxer.build(out);
