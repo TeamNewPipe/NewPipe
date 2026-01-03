@@ -2,6 +2,7 @@ package org.schabi.newpipe.streams;
 
 import static org.schabi.newpipe.MainActivity.DEBUG;
 
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.util.Pair;
 
@@ -15,12 +16,15 @@ import org.schabi.newpipe.streams.WebMReader.SimpleBlock;
 import org.schabi.newpipe.streams.WebMReader.WebMTrack;
 import org.schabi.newpipe.streams.io.SharpStream;
 
+import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.nio.charset.StandardCharsets;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -63,9 +67,19 @@ public class OggFromWebMWriter implements Closeable {
 
     private final int[] crc32Table = new int[256];
     private final StreamInfo streamInfo;
+    private final Bitmap thumbnail;
 
-    public OggFromWebMWriter(@NonNull final SharpStream source, @NonNull final SharpStream target,
-                             @Nullable final StreamInfo streamInfo) {
+    /**
+     * Constructor of OggFromWebMWriter.
+     * @param source
+     * @param target
+     * @param streamInfo the stream info
+     * @param thumbnail the thumbnail bitmap used as cover art
+     */
+    public OggFromWebMWriter(@NonNull final SharpStream source,
+                             @NonNull final SharpStream target,
+                             @Nullable final StreamInfo streamInfo,
+                             @Nullable final Bitmap thumbnail) {
         if (!source.canRead() || !source.canRewind()) {
             throw new IllegalArgumentException("source stream must be readable and allows seeking");
         }
@@ -76,6 +90,7 @@ public class OggFromWebMWriter implements Closeable {
         this.source = source;
         this.output = target;
         this.streamInfo = streamInfo;
+        this.thumbnail = thumbnail;
 
         this.streamId = (int) System.currentTimeMillis();
 
@@ -299,6 +314,9 @@ public class OggFromWebMWriter implements Closeable {
                         .getUploadDate()
                         .getLocalDateTime()
                         .format(DateTimeFormatter.ISO_DATE)));
+                 if (thumbnail != null) {
+                     metadata.add(makeOpusPictureTag(thumbnail));
+                 }
             }
 
             if (DEBUG) {
@@ -309,7 +327,7 @@ public class OggFromWebMWriter implements Closeable {
             return makeOpusTagsHeader(metadata);
         } else if ("A_VORBIS".equals(webmTrack.codecId)) {
             return new byte[]{
-                    0x03, // ¿¿¿???
+                    0x03, // ???
                     0x76, 0x6f, 0x72, 0x62, 0x69, 0x73, // "vorbis" binary string
                     0x00, 0x00, 0x00, 0x00, // writing application string size (not present)
                     0x00, 0x00, 0x00, 0x00 // additional tags count (zero means no tags)
@@ -337,6 +355,56 @@ public class OggFromWebMWriter implements Closeable {
         buf.putInt(bytes.length);
         buf.put(bytes);
         return buf.array();
+    }
+
+    /**
+     * Adds the {@code METADATA_BLOCK_PICTURE} tag to the Opus metadata,
+     * containing the provided bitmap as cover art.
+     *
+     * <p>
+     *     One could also use the COVERART tag instead, but it is not as widely supported
+     *     as METADATA_BLOCK_PICTURE.
+     * </p>
+     *
+     * @param bitmap The bitmap to use as cover art
+     * @return The key-value pair representing the tag
+     */
+    private static Pair<String, String> makeOpusPictureTag(final Bitmap bitmap) {
+        // FLAC picture block format (big-endian):
+        // uint32 picture_type
+        // uint32 mime_length, mime_string
+        // uint32 desc_length, desc_string
+        // uint32 width
+        // uint32 height
+        // uint32 color_depth
+        // uint32 colors_indexed
+        // uint32 data_length, data_bytes
+
+        final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+
+        final byte[] imageData = baos.toByteArray();
+        final byte[] mimeBytes = "image/jpeg".getBytes(StandardCharsets.UTF_8);
+        final byte[] descBytes = new byte[0]; // optional description
+        // fixed ints + mime + desc
+        final int headerSize = 4 * 8 + mimeBytes.length + descBytes.length;
+        final ByteBuffer buf = ByteBuffer.allocate(headerSize + imageData.length);
+        buf.putInt(3); // picture type: 3 = Cover (front)
+        buf.putInt(mimeBytes.length);
+        buf.put(mimeBytes);
+        buf.putInt(descBytes.length);
+        // no description
+        if (descBytes.length > 0) {
+            buf.put(descBytes);
+        }
+        buf.putInt(bitmap.getWidth()); // width (unknown)
+        buf.putInt(bitmap.getHeight()); // height (unknown)
+        buf.putInt(0); // color depth
+        buf.putInt(0); // colors indexed
+        buf.putInt(imageData.length);
+        buf.put(imageData);
+        final String b64 = Base64.getEncoder().encodeToString(buf.array());
+        return Pair.create("METADATA_BLOCK_PICTURE", b64);
     }
 
     /**
@@ -447,7 +515,8 @@ public class OggFromWebMWriter implements Closeable {
 
     private boolean addPacketSegment(final int size) {
         if (size > 65025) {
-            throw new UnsupportedOperationException("page size cannot be larger than 65025");
+            throw new UnsupportedOperationException(
+                    String.format("page size is %s but cannot be larger than 65025", size));
         }
 
         int available = (segmentTable.length - segmentTableSize) * 255;

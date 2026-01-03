@@ -1,5 +1,6 @@
 package us.shandian.giga.postprocessing;
 
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -80,6 +81,7 @@ public abstract class Postprocessing implements Serializable {
 
     private String[] args;
     protected StreamInfo streamInfo;
+    protected Bitmap thumbnail;
 
     private transient DownloadMission mission;
 
@@ -105,6 +107,10 @@ public abstract class Postprocessing implements Serializable {
                 // nothing to do
             }
         }
+    }
+
+    public void setThumbnail(Bitmap thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
 
