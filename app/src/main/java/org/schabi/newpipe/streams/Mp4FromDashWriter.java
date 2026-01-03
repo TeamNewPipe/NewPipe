@@ -1,5 +1,6 @@
 package org.schabi.newpipe.streams;
 
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.streams.Mp4DashReader.Hdlr;
 import org.schabi.newpipe.streams.Mp4DashReader.Mdia;
 import org.schabi.newpipe.streams.Mp4DashReader.Mp4DashChunk;
@@ -11,6 +12,7 @@ import org.schabi.newpipe.streams.io.SharpStream;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 /**
@@ -50,13 +52,17 @@ public class Mp4FromDashWriter {
 
     private final ArrayList<Integer> compatibleBrands = new ArrayList<>(5);
 
-    public Mp4FromDashWriter(final SharpStream... sources) throws IOException {
+    private final StreamInfo streamInfo;
+
+    public Mp4FromDashWriter(final StreamInfo streamInfo,
+                             final SharpStream... sources) throws IOException {
         for (final SharpStream src : sources) {
             if (!src.canRewind() && !src.canRead()) {
                 throw new IOException("All sources must be readable and allow rewind");
             }
         }
 
+        this.streamInfo = streamInfo;
         sourceTracks = sources;
         readers = new Mp4DashReader[sourceTracks.length];
         readersChunks = new Mp4DashChunk[readers.length];
@@ -712,10 +718,12 @@ public class Mp4FromDashWriter {
 
         makeMvhd(longestTrack);
 
+        makeUdta();
+
         for (int i = 0; i < tracks.length; i++) {
             if (tracks[i].trak.tkhd.matrix.length != 36) {
-                throw
-                    new RuntimeException("bad track matrix length (expected 36) in track n°" + i);
+                throw new RuntimeException(
+                        "bad track matrix length (expected 36) in track n°" + i);
             }
             makeTrak(i, durations[i], defaultMediaTime[i], tablesInfo[i], is64);
         }
@@ -896,6 +904,111 @@ public class Mp4FromDashWriter {
         });
 
         return buffer.array();
+    }
+
+
+    /**
+     * Create the 'udta' box with metadata fields.
+     * @throws IOException
+     */
+    private void makeUdta() throws IOException {
+        if (streamInfo == null) {
+            return;
+        }
+
+        final String title = streamInfo.getName();
+        final String artist = streamInfo.getUploaderName();
+        final String date = streamInfo.getUploadDate().getLocalDateTime().toLocalDate().toString();
+
+        // udta
+        final int startUdta = auxOffset();
+        auxWrite(ByteBuffer.allocate(8).putInt(0).putInt(0x75647461).array()); // "udta"
+
+        // meta (full box: type + version/flags)
+        final int startMeta = auxOffset();
+        auxWrite(ByteBuffer.allocate(8).putInt(0).putInt(0x6D657461).array()); // "meta"
+        auxWrite(ByteBuffer.allocate(4).putInt(0).array()); // version & flags = 0
+
+        // hdlr inside meta
+        auxWrite(makeMetaHdlr());
+
+        // ilst container
+        final int startIlst = auxOffset();
+        auxWrite(ByteBuffer.allocate(8).putInt(0).putInt(0x696C7374).array()); // "ilst"
+
+        if (title != null && !title.isEmpty()) {
+            writeMetaItem("©nam", title);
+        }
+        if (artist != null && !artist.isEmpty()) {
+            writeMetaItem("©ART", artist);
+        }
+        if (date != null && !date.isEmpty()) {
+            writeMetaItem("©day", date);
+        }
+
+        // fix lengths
+        lengthFor(startIlst);
+        lengthFor(startMeta);
+        lengthFor(startUdta);
+    }
+
+    /**
+     * Helper to write a metadata item inside the 'ilst' box.
+     *
+     * <pre>
+     *     [size][key] [data_box]
+     *     data_box = [size]["data"][type(4bytes)=1][locale(4bytes)=0][payload]
+     * </pre>
+     *
+     * @param keyStr 4-char metadata key
+     * @param value the metadata value
+     * @throws IOException
+     */
+    //
+    private void writeMetaItem(final String keyStr, final String value) throws IOException {
+        final byte[] valBytes = value.getBytes(StandardCharsets.UTF_8);
+        final byte[] keyBytes = keyStr.getBytes(StandardCharsets.ISO_8859_1);
+
+        final int dataBoxSize = 16 + valBytes.length; // 4(size)+4("data")+4(type/locale)+payload
+        final int itemBoxSize = 8 + dataBoxSize; // 4(size)+4(key)+dataBox
+
+        final ByteBuffer buf = ByteBuffer.allocate(itemBoxSize);
+        buf.putInt(itemBoxSize);
+        // key (4 bytes)
+        if (keyBytes.length == 4) {
+            buf.put(keyBytes);
+        } else {
+            // fallback: pad or truncate
+            final byte[] kb = new byte[4];
+            System.arraycopy(keyBytes, 0, kb, 0, Math.min(keyBytes.length, 4));
+            buf.put(kb);
+        }
+
+        // data box
+        buf.putInt(dataBoxSize);
+        buf.putInt(0x64617461); // "data"
+        buf.putInt(0x00000001); // well-known type indicator (UTF-8)
+        buf.putInt(0x00000000); // locale
+        buf.put(valBytes);
+
+        auxWrite(buf.array());
+    }
+
+    /**
+     * Create a minimal hdlr box for the meta container.
+     * The boxsize is fixed (33 bytes) as no name is provided.
+     */
+    private byte[] makeMetaHdlr() {
+
+        final ByteBuffer buf = ByteBuffer.allocate(33);
+        buf.putInt(33);
+        buf.putInt(0x68646C72); // "hdlr"
+        buf.putInt(0x00000000); // pre-defined
+        buf.putInt(0x6D646972); // "mdir" handler_type (metadata directory)
+        buf.putInt(0x00000000); // subtype / reserved
+        buf.put(new byte[12]);  // reserved
+        buf.put((byte) 0x00);   // name (empty, null-terminated)
+        return buf.array();
     }
 
     static class TablesInfo {
