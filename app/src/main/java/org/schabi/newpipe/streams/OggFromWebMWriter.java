@@ -1,5 +1,7 @@
 package org.schabi.newpipe.streams;
 
+import static org.schabi.newpipe.MainActivity.DEBUG;
+
 import android.util.Log;
 import android.util.Pair;
 
@@ -282,7 +284,9 @@ public class OggFromWebMWriter implements Closeable {
 
     @Nullable
     private byte[] makeMetadata() {
-        Log.d("OggFromWebMWriter", "Downloading media with codec ID " + webmTrack.codecId);
+        if (DEBUG) {
+            Log.d("OggFromWebMWriter", "Downloading media with codec ID " + webmTrack.codecId);
+        }
 
         if ("A_OPUS".equals(webmTrack.codecId)) {
             final var metadata = new ArrayList<Pair<String, String>>();
@@ -297,10 +301,12 @@ public class OggFromWebMWriter implements Closeable {
                         .format(DateTimeFormatter.ISO_DATE)));
             }
 
-            Log.d("OggFromWebMWriter", "Creating metadata header with this data:");
-            metadata.forEach(p -> {
-                Log.d("OggFromWebMWriter", p.first + "=" + p.second);
-            });
+            if (DEBUG) {
+                Log.d("OggFromWebMWriter", "Creating metadata header with this data:");
+                metadata.forEach(p -> {
+                    Log.d("OggFromWebMWriter", p.first + "=" + p.second);
+                });
+            }
 
             return makeOpusTagsHeader(metadata);
         } else if ("A_VORBIS".equals(webmTrack.codecId)) {
