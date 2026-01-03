@@ -41,7 +41,7 @@
     <string name="default_resolution_title">Standardopløsning</string>
     <string name="default_popup_resolution_title">Standardopløsning til popup</string>
     <string name="show_higher_resolutions_title">Vis højere opløsninger</string>
-    <string name="show_higher_resolutions_summary">Kun nogle enheder kan afspille 2K-/4K-videoer</string>
+    <string name="show_higher_resolutions_summary">Kun nogle enheder kan afspille 1440p-/4K-videoer</string>
     <string name="play_with_kodi_title">Afspil med Kodi</string>
     <string name="kore_not_found">Installer manglende Kore-app?</string>
     <string name="show_play_with_kodi_title">Vis valgmuligheden \"Afspil med Kodi\"</string>

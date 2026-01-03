@@ -83,7 +83,7 @@
     <string name="open_in_popup_mode">Åpne i oppsprettsmodus</string>
     <string name="default_popup_resolution_title">Forvalgt oppsprettsoppløsning</string>
     <string name="show_higher_resolutions_title">Vis høyere oppløsninger</string>
-    <string name="show_higher_resolutions_summary">Det er bare noen enheter som kan spille 2K-/4K-videoer</string>
+    <string name="show_higher_resolutions_summary">Det er bare noen enheter som kan spille 1440p-/4K-videoer</string>
     <string name="default_video_format_title">Forvalgt videoformat</string>
     <string name="black_theme_title">Svart</string>
     <string name="popup_playing_toast">Spiller av i oppsprettsmodus</string>

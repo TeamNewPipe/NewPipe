@@ -39,7 +39,7 @@
     <string name="default_resolution_title">طے شدہ ریزولوشن</string>
     <string name="default_popup_resolution_title">طے شدہ پوپ اپ ریزولوشن</string>
     <string name="show_higher_resolutions_title">اعلیٰ معیارات دکھائیں</string>
-    <string name="show_higher_resolutions_summary">صرف کچھ آلات 2K / 4K ویڈیوز چلانے کے قابل ہوتے ہیں.</string>
+    <string name="show_higher_resolutions_summary">صرف کچھ آلات 1440p / 4K ویڈیوز چلانے کے قابل ہوتے ہیں.</string>
     <string name="play_with_kodi_title">کوڈی کے ساتھ استعمال کریں</string>
     <string name="kore_not_found">لاپتہ کوری ایپ کو انسٹال کریں؟</string>
     <string name="show_play_with_kodi_title">\"کودی کے ساتھ چلائیں\" آپشن دکھائیں</string>
@@ -265,18 +265,18 @@
     <string name="previous_export">پچھلی بر آمد</string>
     <string name="subscriptions_import_unsuccessful">رکنیتوں کو در آمد نہیں کیا جا سکا</string>
     <string name="subscriptions_export_unsuccessful">رکنیتوں بر آمد نہیں کر سکا</string>
-    <string name="import_youtube_instructions">برآمد فائل کو ڈاؤن لوڈ کرکے YouTube کی رکنیت کو درآمد کریں: 
-\n 
+    <string name="import_youtube_instructions">برآمد فائل کو ڈاؤن لوڈ کرکے YouTube کی رکنیت کو درآمد کریں:
+\n
 \n1. اس URL پر جائیں:
-\n%1$s 
-\n2. جب پوچھا جائے تو لاگ ان کریں 
+\n%1$s
+\n2. جب پوچھا جائے تو لاگ ان کریں
 \n3. ڈاؤن لوڈ شروع ہونا چاہئے (یہ برآمد فائل ہے)</string>
-    <string name="import_soundcloud_instructions">۔URL یا آپ کی ID ٹائپ کرکے ایک SoundCloud پروفائل درآمد کریں: 
-\n 
-\n1. ویب براؤزر میں \"ڈیسک ٹاپ موڈ\" کو فعال کریں (یہ سائٹ موبائل آلات کے لئے دستیاب نہیں ہے) 
+    <string name="import_soundcloud_instructions">۔URL یا آپ کی ID ٹائپ کرکے ایک SoundCloud پروفائل درآمد کریں:
+\n
+\n1. ویب براؤزر میں \"ڈیسک ٹاپ موڈ\" کو فعال کریں (یہ سائٹ موبائل آلات کے لئے دستیاب نہیں ہے)
 \n2. اس URL پر جائیں:
-\n%1$s 
-\n3. جب پوچھا جائے تو لاگ ان کریں 
+\n%1$s
+\n3. جب پوچھا جائے تو لاگ ان کریں
 \n4. پروفائل URL کاپی کریں جہاں تک آپ کی رہنمائی کی گئی تھی۔</string>
     <string name="import_soundcloud_instructions_hint">آپ کی آئی ڈی، soundcloud.com/yourid</string>
     <string name="import_network_expensive_warning">اس بات کو ذہن میں رکھیں کہ اس عملیہ کا نیٹ ورک مہنگا ہو سکتا ہے۔
@@ -301,7 +301,7 @@
     <string name="privacy_policy_title">نیو پائپ کی رازداری کی پالیسی</string>
     <string name="privacy_policy_encouragement">نیو پائپ منصوبہ آپ کی رازداری کو بہت سنجیدگی سے لیتا ہے. لہذا، ایپلی کیشن آپ کی رضامندی کے بغیر کسی بھی ڈیٹا کو جمع نہیں کرتا./nنیو پائپ کی رازداری پالیسی تفصیل سے وضاحت کرتی ہے کہ آپ کے کریش رپورٹ بھیجنے پر کیا ڈیٹا بھیجا جاتا ہے اور ذخیرہ کیا جاتا ہے ۔</string>
     <string name="read_privacy_policy">رازداری کی پالیسی پڑھیں</string>
-    <string name="start_accept_privacy_policy">یورپی جنرل ڈیٹا پروٹیکشن ریگولیشن (جی ڈی پی آر) کی تعمیل کرنے کیلئے، ہم آپ کی توجہ نیو پائپ کی رازداری کی پالیسی کی طرف مبذول کراتے ہیں۔ برائے مہربانی اسے غور سے پڑھیں۔ 
+    <string name="start_accept_privacy_policy">یورپی جنرل ڈیٹا پروٹیکشن ریگولیشن (جی ڈی پی آر) کی تعمیل کرنے کیلئے، ہم آپ کی توجہ نیو پائپ کی رازداری کی پالیسی کی طرف مبذول کراتے ہیں۔ برائے مہربانی اسے غور سے پڑھیں۔
 \nہمیں بگ رپورٹ بھیجنے کے لیے آپ کو اسے قبول کرنا ضروری ہے۔</string>
     <string name="accept">قبول</string>
     <string name="decline">رد</string>

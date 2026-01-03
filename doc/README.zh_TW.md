@@ -1,4 +1,4 @@
-<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p> 
+<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p>
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">輕巧的 Android 串流前端</h4>
 
@@ -70,8 +70,8 @@ NewPipe 不使用任何 Google 架構的函式庫或 Youtube API。因為只解�
 * 顯示頻道資訊
 * 搜索頻道
 * 觀看頻道影片
-* 支援 Orbot/Tor （目前未直接實裝） 
-* 支援 1080p/2K/4K 
+* 支援 Orbot/Tor （目前未直接實裝）
+* 支援 1080p/1440p/4K
 * 觀看歷史
 * 訂閱頻道
 * 搜尋歷史
@@ -140,7 +140,7 @@ NewPipe 專案旨在提供私人與匿名的網路媒體使用體驗。
 
 <span id="license"></span>
 ## 授權條款
-[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
+[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 NewPipe 是自由軟體：可以任意使用、研究、分享或更改。在自由軟體基金會發布的[ GPL 通用公眾授權條款]（第三或更新的版本）下可以重新散佈與/或修改。
 

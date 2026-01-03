@@ -91,7 +91,7 @@
     <string name="did_you_mean">کیہ تہاڈے مطلب سی ”%1$s“؟</string>
     <string name="controls_background_title">پچھوکڑ</string>
     <string name="show_higher_resolutions_title">وڈیاں ریزولوشن دِکھاؤ</string>
-    <string name="show_higher_resolutions_summary">صرف کجھ ہی ڈِوائیس «2k/4k» ویڈیو نوں چلا سکدے ہن</string>
+    <string name="show_higher_resolutions_summary">صرف کجھ ہی ڈِوائیس «1440p/4k» ویڈیو نوں چلا سکدے ہن</string>
     <string name="kore_not_found">کورے اَیپ اینسٹال نہیں اے؟</string>
     <string name="notification_action_4_title">پنجواں کاروائی بٹن</string>
     <string name="use_external_audio_player_title">باہری آڈیو پلیئر ورتو</string>

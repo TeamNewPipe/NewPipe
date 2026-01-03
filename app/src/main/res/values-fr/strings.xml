@@ -93,7 +93,7 @@
     <string name="controls_popup_title">Flottant</string>
     <string name="default_popup_resolution_title">Définition par défaut de la fenêtre flottante</string>
     <string name="show_higher_resolutions_title">Afficher des définitions plus élevées</string>
-    <string name="show_higher_resolutions_summary">Seuls certains appareils peuvent lire des vidéos 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Seuls certains appareils peuvent lire des vidéos 1440pp/4K</string>
     <string name="default_video_format_title">Format vidéo par défaut</string>
     <string name="popup_remember_size_pos_title">Mémoriser les propriétés de la fenêtre flottante</string>
     <string name="popup_remember_size_pos_summary">Mémoriser les dernières taille et position de la fenêtre flottante</string>
@@ -278,14 +278,14 @@
 \n6.Cliquez sur IMPORTER LE FICHIER en dessous et sélectionnez le fichier zip téléchargé
 \n7. [Si l\'importation à échoué] Extrayez le fichier .csv (généralement sous « YouTube and YouTube Music/subscriptions/subscriptions.csv »), cliquez sur IMPORTER LE FICHIER en dessous et sélectionnez le ficher csv extrait</string>
     <string name="import_soundcloud_instructions">Veuillez importer un profil SoundCloud en saisissant l’URL de votre profil ou votre identifiant.
-\n 
+\n
 \n1. Activez le « mode bureau » dans votre navigateur Web (le site n’est pas disponible pour les appareils mobiles).
 \n2. Suivez ce lien : %1$s.
 \n3. Connectez-vous à votre compte.
 \n4. Copiez le lien du profil vers lequel vous venez d’être redirigé.</string>
     <string name="import_soundcloud_instructions_hint">votre identifiant, soundcloud.com/votreidentifiant</string>
     <string name="import_network_expensive_warning">Cette opération peut charger énormément la connexion réseau.
-\n 
+\n
 \nVoulez-vous continuer \?</string>
     <string name="playback_speed_control">Contrôles de vitesse de lecture</string>
     <string name="playback_tempo">Cadence</string>

@@ -14,7 +14,7 @@
     <string name="download_path_audio_dialog_title">აირჩიეთ ჩამოტვირთვის საქაღალდე აუდიო ფაილებისთვის</string>
     <string name="default_resolution_title">ნაგულისხმევი რეზოლუცია</string>
     <string name="default_popup_resolution_title">ამომხტარი ფანჯრის ნაგულისხმევი რეზოლუცია</string>
-    <string name="show_higher_resolutions_summary">მხოლოდ ზოგიერთ მოწყობილობას შეუძლია 2K/4K ვიდეოების დაკვრა</string>
+    <string name="show_higher_resolutions_summary">მხოლოდ ზოგიერთ მოწყობილობას შეუძლია 1440p/4K ვიდეოების დაკვრა</string>
     <string name="crash_the_player">დაარტყა დამკვრელი</string>
     <string name="notification_scale_to_square_image_title">ესკიზის ჩამოჭრა ასპექტის თანაფარდობაზე 1:1</string>
     <string name="notification_actions_at_most_three">თქვენ შეგიძლიათ აირჩიოთ მაქსიმუმ სამი მოქმედება კომპაქტურ შეტყობინებაში საჩვენებლად!</string>

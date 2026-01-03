@@ -1,4 +1,4 @@
-<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p> 
+<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p>
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">App bilaash ah oo fudud looguna talagalay in Android-ka wax loogu daawado.</h4>
 
@@ -67,7 +67,7 @@ NewPipe ma isticmalo nidaamka wada shaqaynta Google, ama API-ga YouTube. Kaliya 
 * Raadi kanaalo
 * Daawo muuqaalada kanaal
 * Taageerida Orbot/Tor (wali toos ma aha)
-* Taageerida muuqaalada 1080p/2K/4K 
+* Taageerida muuqaalada 1080p/1440p/4K
 * Kaydka wixii hore [aad u daawatay]
 * Inaad rukumato kanaalada
 * Kaydinta waxaad raadisay
@@ -130,6 +130,6 @@ Mashruuca NewPipe waxay ujeedadiisu tahay inuu bixiyo wax kuu gaar ah, oo adoon 
 Sidaa darteed, app-ku wax xog ah ma uruuriyo fasaxaaga la'aantii. Siyaasada Sirdhawrka NewPipe ayaa si faahfaahsan u sharaxda waxii xog ah ee la diro markaad cillad wariso, ama aad bogganaga faallo ka dhiibato. Warqada waxaad ka heli kartaa [halkan](https://newpipe.net/legal/privacy/).
 
 ## Laysinka
-[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
+[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
-NewPipe waa barnaamij bilaash ah oon lahayn xuquuqda daabacaada: Waad isticmaali kartaa, waad wadaagi kartaa waadna hormarin kartaa hadaad rabto. Gaar ahaan waad sii daabici kartaa ama wax baad ka badali kartaa ayadoo la raacayo shuruudaha sharciga guud ee [GNU](https://www.gnu.org/licenses/gpl.html) sida ay soosaareen Ururka Barnaamijyada Bilaashka ah, soosaarista 3aad ee laysinka, ama (hadaad doonto) nooc walba oo kasii dambeeyay laysinkii 3aad. 
+NewPipe waa barnaamij bilaash ah oon lahayn xuquuqda daabacaada: Waad isticmaali kartaa, waad wadaagi kartaa waadna hormarin kartaa hadaad rabto. Gaar ahaan waad sii daabici kartaa ama wax baad ka badali kartaa ayadoo la raacayo shuruudaha sharciga guud ee [GNU](https://www.gnu.org/licenses/gpl.html) sida ay soosaareen Ururka Barnaamijyada Bilaashka ah, soosaarista 3aad ee laysinka, ama (hadaad doonto) nooc walba oo kasii dambeeyay laysinkii 3aad.

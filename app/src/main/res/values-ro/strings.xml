@@ -78,13 +78,13 @@
     <string name="msg_copied">Copiat în clipboard</string>
     <string name="no_available_dir">Vă rugăm să definiți un folder de descărcare mai târziu în setări</string>
     <string name="open_in_popup_mode">Deschidere în modul popup</string>
-    <string name="msg_popup_permission">Această permisiune este necesară pentru a 
+    <string name="msg_popup_permission">Această permisiune este necesară pentru a
 \ndeschide în mod pop-up</string>
     <string name="title_activity_recaptcha">Provocare reCAPTCHA</string>
     <string name="recaptcha_request_toast">Provocare reCAPTCHA solicitată</string>
     <string name="default_popup_resolution_title">Rezoluția implicită a ferestrei pop-up</string>
     <string name="show_higher_resolutions_title">Afișează rezoluții mai mari</string>
-    <string name="show_higher_resolutions_summary">Doar anumite dispozitive suportă redarea videoclipurilor 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Doar anumite dispozitive suportă redarea videoclipurilor 1440p/4K</string>
     <string name="default_video_format_title">Format video implicit</string>
     <string name="black_theme_title">Negru</string>
     <string name="popup_playing_toast">Redare în mod pop-up</string>

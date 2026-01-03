@@ -88,7 +88,7 @@
 \npro otevření ve vyskakovacím okně</string>
     <string name="use_external_video_player_summary">Odstraňuje zvuk v některých rozlišeních</string>
     <string name="show_higher_resolutions_title">Zobrazovat vyšší rozlišení</string>
-    <string name="show_higher_resolutions_summary">Pouze některá zařízení dokáží přehrát 2K/4K videa</string>
+    <string name="show_higher_resolutions_summary">Pouze některá zařízení dokáží přehrát 1440p/4K videa</string>
     <string name="default_video_format_title">Výchozí formát videa</string>
     <string name="popup_remember_size_pos_title">Pamatovat si vlastnosti vyskakovacího okna</string>
     <string name="popup_remember_size_pos_summary">Pamatovat si poslední velikost a pozici vyskakovacího okna</string>
@@ -284,8 +284,8 @@
 \n3. Při požádání se přihlaste
 \n4. Zkopírujte URL adresu profilu, na kterou jste byli přesměrováni.</string>
     <string name="import_soundcloud_instructions_hint">vašeID, soundcloud.com/yourid</string>
-    <string name="import_network_expensive_warning">Pamatujte, že tato operace může být náročná na data. 
-\n 
+    <string name="import_network_expensive_warning">Pamatujte, že tato operace může být náročná na data.
+\n
 \nChcete pokračovat?</string>
     <string name="playback_speed_control">Ovládání rychlosti přehrávání</string>
     <string name="playback_tempo">Tempo</string>
@@ -495,16 +495,16 @@
     <string name="feed_use_dedicated_fetch_method_summary">K dispozici na některých zařízeních, je obvykle mnohem rychlejší, ale může vrátit omezený počet položek a často neúplné informace (např. bez trvání, typu položky, skutečného stavu)</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Zapnout rychlý režim</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Vypnout rychlý režim</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Zdá se vám načítání příliš pomalé\? Pokud ano, zkuste zapnout rychlé načítání (lze změnit v nastavení nebo stiskem tlačítka níže). 
-\n 
+    <string name="feed_use_dedicated_fetch_method_help_text">Zdá se vám načítání příliš pomalé\? Pokud ano, zkuste zapnout rychlé načítání (lze změnit v nastavení nebo stiskem tlačítka níže).
+\n
 \nNewPipe nabízí dvě strategie načítání seznamu novinek
 \n• Stažení celého kanálu vašich odběrů, což je pomalé, ale spolehlivé.
-\n• Použití služby k tomu určené, což je rychlé, ale obvykle neobsahuje všechny potřebné informace. 
-\n 
-\nRozdíl mezi těmi dvěma je, že rychlému způsobu obvykle chybí nějaká informace, např. délka videa nebo typ (nemůže rozlišit mezi živým a normálním videem) a patrně vrátí méně položek. 
-\n 
-\nYouTube je příklad služby, která nabízí tuto rychlou metodu pomocí RSS přísunu. 
-\n 
+\n• Použití služby k tomu určené, což je rychlé, ale obvykle neobsahuje všechny potřebné informace.
+\n
+\nRozdíl mezi těmi dvěma je, že rychlému způsobu obvykle chybí nějaká informace, např. délka videa nebo typ (nemůže rozlišit mezi živým a normálním videem) a patrně vrátí méně položek.
+\n
+\nYouTube je příklad služby, která nabízí tuto rychlou metodu pomocí RSS přísunu.
+\n
 \nVýběr je vposledku určen tím, čemu dáte přednost: rychlosti nebo přesnosti informací.</string>
     <string name="content_not_supported">Tento obsah ještě není podporován NewPipe.
 \n

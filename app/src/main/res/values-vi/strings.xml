@@ -26,7 +26,7 @@
     <string name="default_resolution_title">Độ phân giải mặc định</string>
     <string name="default_popup_resolution_title">Độ phân giải cửa sổ bật lên mặc định</string>
     <string name="show_higher_resolutions_title">Hiện độ phân giải cao hơn</string>
-    <string name="show_higher_resolutions_summary">Chỉ một số thiết bị có thể phát video 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Chỉ một số thiết bị có thể phát video 1440p/4K</string>
     <string name="play_with_kodi_title">Phát với Kodi</string>
     <string name="kore_not_found">Cài đặt ứng dụng Kore bị thiếu\?</string>
     <string name="show_play_with_kodi_title">Hiển thị tùy chọn \"Phát với Kodi\"</string>

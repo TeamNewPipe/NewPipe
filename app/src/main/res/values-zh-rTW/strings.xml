@@ -47,7 +47,7 @@
     <string name="controls_background_title">背景播放</string>
     <string name="default_popup_resolution_title">懸浮視窗預設解析度</string>
     <string name="show_higher_resolutions_title">顯示更高的解析度</string>
-    <string name="show_higher_resolutions_summary">僅部份裝置可播放 2K/4K 影片</string>
+    <string name="show_higher_resolutions_summary">僅部份裝置可播放 1440p/4K 影片</string>
     <string name="default_video_format_title">預設影片格式</string>
     <string name="black_theme_title">黑色</string>
     <string name="popup_remember_size_pos_title">記住懸浮視窗屬性</string>
@@ -257,14 +257,14 @@
     <string name="invalid_file">檔案不存在或缺少讀寫檔案的權限</string>
     <string name="import_youtube_instructions">從 Google Takeout 匯入您的 YouTube 訂閱： \n \n1. 移至此網址：%1$s \n2. 當被提示時登入帳號 \n3. 按一下「包含所有資料」，接著「取消選取全部」，然後僅勾選「訂閱」並按一下「確定」 \n4. 按一下「下一步」然後「建立匯出」 \n5. 在「下載」按鈕出現後按一下它 \n6. 點擊下方的「匯入檔案」並選取已下載的 zip 檔案 \n7. [若 zip 匯入失敗] 擷取 .csv 檔案 (通常位於「YouTube 與 YouTube Music/訂閱/訂閱.csv」)，按一下下方的「匯入檔案」並選取擷取的 csv 檔案</string>
     <string name="import_soundcloud_instructions_hint">您的 ID, soundcloud.com/yourid</string>
-    <string name="import_network_expensive_warning">請記住，此操作可造成昂貴網路花費。 
-\n 
+    <string name="import_network_expensive_warning">請記住，此操作可造成昂貴網路花費。
+\n
 \n您是否希望繼續？</string>
-    <string name="import_soundcloud_instructions">透過輸入 URL 或您的 ID 來匯入 SoundCloud 個人設定檔： 
-\n 
-\n1. 在瀏覽器中啟用「桌面模式」(該網站不適用於行動裝置) 
-\n2. 移至此網址： %1$s 
-\n3. 當被提示時登入帳號 
+    <string name="import_soundcloud_instructions">透過輸入 URL 或您的 ID 來匯入 SoundCloud 個人設定檔：
+\n
+\n1. 在瀏覽器中啟用「桌面模式」(該網站不適用於行動裝置)
+\n2. 移至此網址： %1$s
+\n3. 當被提示時登入帳號
 \n4. 複製您被重新導向到的個人設定檔網址。</string>
     <string name="thumbnail_cache_wipe_complete_notice">已清除圖片快取</string>
     <string name="metadata_cache_wipe_title">清除已快取的詮釋資料</string>
@@ -291,10 +291,10 @@
     <string name="app_license">NewPipe 是一個 Copyleft 的自由軟體：您可以隨意使用、研究、分享並改進它。在遵守由自由軟體基金會所發佈的 GNU 通用公共授權條款的狀況下，您可以自由地再散佈及／或修改它；授權條款預設使用第三版，但您也可以選擇更新的版本。</string>
     <string name="import_settings">您是否要同時匯入設定？</string>
     <string name="privacy_policy_title">NewPipe 的隱私政策</string>
-    <string name="privacy_policy_encouragement">NewPipe 專案非常重視您的隱私。因此，未經您同意此程式不會收集任何資料。 
+    <string name="privacy_policy_encouragement">NewPipe 專案非常重視您的隱私。因此，未經您同意此程式不會收集任何資料。
 \nNewPipe 的隱私權政策詳細說明了當您發送錯誤回報時，什麼資料會被傳送及儲存。</string>
     <string name="read_privacy_policy">閱讀隱私政策</string>
-    <string name="start_accept_privacy_policy">為配合歐洲通用資料保護條例 ( GDPR ) ，我們在此請您注意 NewPipe 的隱私政策。請務必仔細閱讀。 
+    <string name="start_accept_privacy_policy">為配合歐洲通用資料保護條例 ( GDPR ) ，我們在此請您注意 NewPipe 的隱私政策。請務必仔細閱讀。
 \n您必須接受它才能向我們發送錯誤報告。</string>
     <string name="accept">接受</string>
     <string name="decline">拒絕</string>

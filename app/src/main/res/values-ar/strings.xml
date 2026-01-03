@@ -71,7 +71,7 @@
     <string name="controls_popup_title">نافذة منبثقة</string>
     <string name="default_popup_resolution_title">الدقة الافتراضية للنوافذ المنبثقة</string>
     <string name="show_higher_resolutions_title">عرض دقّات أعلى</string>
-    <string name="show_higher_resolutions_summary">فقط بعض الأجهزة تدعم تشغيل مقاطع فيديو 2K/4K</string>
+    <string name="show_higher_resolutions_summary">فقط بعض الأجهزة تدعم تشغيل مقاطع فيديو 1440p/4K</string>
     <string name="default_video_format_title">صيغة الفيديو الافتراضية</string>
     <string name="popup_remember_size_pos_title">تذكر خصائص النوافذ المنبثقة</string>
     <string name="popup_remember_size_pos_summary">تذكر آخر مكان وحجم للنافذة المنبثقة</string>
@@ -302,14 +302,14 @@
 \n5. انقر على زر \"تحميل\" بعد ظهوره
 \n6. انقر على IMPORT FILE أدناه وحدد الملف البريدي تحميلها
 \n7. [إذا فشل استيراد الرمز البريدي] استخراج ملف .csv (عادة تحت عنوان \"يوتيوب ويوتيوب الموسيقى / الاشتراكات / الاشتراكات.csv\")، انقر على IMPORT FILE أدناه وحدد ملف csv المستخرج</string>
-    <string name="import_soundcloud_instructions">قم باستيراد ملف تعريف SoundCloud عن طريق كتابة عنوان URL أو معرفك: 
-\n 
-\n1. تمكين \"وضع سطح المكتب\" في متصفح الويب (الموقع غير متاح للأجهزة المحمولة) 
-\n2. انتقل إلى عنوان URL هذا: %1$s 
+    <string name="import_soundcloud_instructions">قم باستيراد ملف تعريف SoundCloud عن طريق كتابة عنوان URL أو معرفك:
+\n
+\n1. تمكين \"وضع سطح المكتب\" في متصفح الويب (الموقع غير متاح للأجهزة المحمولة)
+\n2. انتقل إلى عنوان URL هذا: %1$s
 \n3. تسجيل الدخول عندما يطلب منك
 \n4. انسخ عنوان URL للملف الشخصي الذي تمت إعادة توجيهك إليه.</string>
-    <string name="import_network_expensive_warning">ضع في اعتبارك أن هذه العملية يمكن أن تكون مكلفة اذا كنت تستخدم بيانات اشتراك انترنت. 
-\n 
+    <string name="import_network_expensive_warning">ضع في اعتبارك أن هذه العملية يمكن أن تكون مكلفة اذا كنت تستخدم بيانات اشتراك انترنت.
+\n
 \nهل تريد الاستمرار؟</string>
     <string name="playback_speed_control">ضوابط سرعة التشغيل</string>
     <string name="playback_tempo">سرعة الأداء</string>

@@ -26,7 +26,7 @@
     <string name="default_resolution_title">ডিফল্ট রেজ্যুলেশন</string>
     <string name="default_popup_resolution_title">ডিফল্ট পপআপ রেজ্যুলেশন</string>
     <string name="show_higher_resolutions_title">উচ্চ রেজ্যুলেশন দেখাও</string>
-    <string name="show_higher_resolutions_summary">শুধু কিছু ডিভাইস 2K/4K ভিডিও চালাতে পারে</string>
+    <string name="show_higher_resolutions_summary">শুধু কিছু ডিভাইস 1440p/4K ভিডিও চালাতে পারে</string>
     <string name="play_with_kodi_title">Kodi এর মাধ্যমে চালাও</string>
     <string name="kore_not_found">হারানো কোর ইনস্টল করবেন\?</string>
     <string name="show_play_with_kodi_title">\"Kodi দিয়ে চালাও\" অপশন দেখাও</string>

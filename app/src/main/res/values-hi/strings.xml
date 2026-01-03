@@ -56,7 +56,7 @@
     <string name="default_resolution_title">डिफ़ॉल्ट रिजॉल्युशन</string>
     <string name="default_popup_resolution_title">पॉपअप का डिफ़ॉल्ट रिजॉल्युशन</string>
     <string name="show_higher_resolutions_title">उच्च रिजॉल्युशन दिखाएं</string>
-    <string name="show_higher_resolutions_summary">केवल कुछ ही डिवाईस 2K/4K में वीडियो चला सकते हैं</string>
+    <string name="show_higher_resolutions_summary">केवल कुछ ही डिवाईस 1440p/4K में वीडियो चला सकते हैं</string>
     <string name="play_with_kodi_title">Kodi में चलाएं</string>
     <string name="kore_not_found">गैर- मौजूदा Kore ऐप इंस्टॉल करें\?</string>
     <string name="show_play_with_kodi_title">\"Kodi में चलाएं\" वाला विकल्प दिखाएँ</string>

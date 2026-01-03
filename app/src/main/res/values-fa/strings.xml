@@ -92,7 +92,7 @@
     <string name="controls_background_title">پس‌زمینه</string>
     <string name="controls_add_to_playlist_title">افزودن به</string>
     <string name="show_higher_resolutions_title">نمایش وضوح‌های بالاتر</string>
-    <string name="show_higher_resolutions_summary">تنها برخی دستگاه‌ها توانایی پخش ویدیوهای 2K و 4K را دارند</string>
+    <string name="show_higher_resolutions_summary">تنها برخی دستگاه‌ها توانایی پخش ویدیوهای 1440p و 4K را دارند</string>
     <string name="default_video_format_title">قالب ویدیویی پیش‌گزیده</string>
     <string name="black_theme_title">سیاه</string>
     <string name="auto_queue_title">قرار دادن خودکار جریان بعدی در صف</string>

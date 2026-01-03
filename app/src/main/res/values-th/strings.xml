@@ -40,7 +40,7 @@
     <string name="default_resolution_title">ความละเอียดเริ่มต้น</string>
     <string name="default_popup_resolution_title">ความละเอียดเริ่มต้นในโหมดพ็อปอัพ</string>
     <string name="show_higher_resolutions_title">แสดงความละเอียดที่สูงขึ้น</string>
-    <string name="show_higher_resolutions_summary">เฉพาะบางอุปกรณ์ที่รองรับการเล่นวิดีโอ 2K/4K</string>
+    <string name="show_higher_resolutions_summary">เฉพาะบางอุปกรณ์ที่รองรับการเล่นวิดีโอ 1440p/4K</string>
     <string name="play_with_kodi_title">เปิดด้วย Kodi</string>
     <string name="kore_not_found">ไม่พบแอป Kore จะติดตั้งหรือไม่\?</string>
     <string name="show_play_with_kodi_title">แสดงตัวเลือก \"เปิดด้วย Kodi\"</string>
@@ -282,16 +282,16 @@
     <string name="previous_export">การส่งออกก่อนหน้านี้</string>
     <string name="subscriptions_import_unsuccessful">ไม่สามารถนำเข้าการสมัครรับข้อมูล</string>
     <string name="subscriptions_export_unsuccessful">ไม่สามารถส่งออกการสมัครรับข้อมูล</string>
-    <string name="import_youtube_instructions">นำเข้ารายการช่องที่บอกรับใน YouTube โดยการดาวน์โหลดไฟล์การส่งออก: 
-\n 
-\n1. ไปที่ URL นี้: %1$s 
-\n2. เข้าสู่ระบบเมื่อระบบถาม 
+    <string name="import_youtube_instructions">นำเข้ารายการช่องที่บอกรับใน YouTube โดยการดาวน์โหลดไฟล์การส่งออก:
+\n
+\n1. ไปที่ URL นี้: %1$s
+\n2. เข้าสู่ระบบเมื่อระบบถาม
 \n3. การดาวน์โหลดควรเริ่มต้น (นั่นคือไฟล์ที่ส่งออก)</string>
-    <string name="import_soundcloud_instructions">นำเข้าโปรไฟล์ SoundCloud โดยการพิมพ์ URL หรือรหัสไอดีผู้ใช้ของคุณ: 
-\n 
-\n1. เปิดใช้งาน \"โหมดเดสก์ท็อป\" ในเว็บเบราว์เซอร์ (เว็บไซต์ไม่สามารถใช้ได้สำหรับอุปกรณ์มือถือ) 
-\n2. ไปที่ URL นี้: %1$s 
-\n3. เข้าสู่ระบบเมื่อระบบถาม 
+    <string name="import_soundcloud_instructions">นำเข้าโปรไฟล์ SoundCloud โดยการพิมพ์ URL หรือรหัสไอดีผู้ใช้ของคุณ:
+\n
+\n1. เปิดใช้งาน \"โหมดเดสก์ท็อป\" ในเว็บเบราว์เซอร์ (เว็บไซต์ไม่สามารถใช้ได้สำหรับอุปกรณ์มือถือ)
+\n2. ไปที่ URL นี้: %1$s
+\n3. เข้าสู่ระบบเมื่อระบบถาม
 \n4. คัดลอก URL ของโปรไฟล์ที่คุณถูกเปลี่ยนเส้นทางไป</string>
     <string name="import_network_expensive_warning">โปรดทราบว่าการดำเนินการนี้อาจใช้งานข้อมูลมือถือที่มีค่าใช้จ่าย
 \n

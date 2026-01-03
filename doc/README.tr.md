@@ -1,4 +1,4 @@
-<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p> 
+<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p>
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">Android için hafif ve özgür bir akış arayüzü.</h4>
 
@@ -67,7 +67,7 @@ NewPipe herhangi bir Google çerçeve kütüphanesini, ya da YouTube API hizmetl
 * Kanal arama
 * Bir kanaldaki videoları izleme
 * Orbot/Tor desteği (henüz direkt olarak değil)
-* 1080p/2K/4K desteği
+* 1080p/1440p/4K desteği
 * Geçmişi görme
 * Kanallara abone olma
 * Geçmişte arama
@@ -134,7 +134,7 @@ NewPipe projesi, çevrimiçi akış hizmetlerini kullanmak için özel, özgür 
 Bu doğrultuda, uygulama sizin izniniz olmadan herhangi bir veri toplamaz. NewPipe'ın Gizlilik Politikası, bir çökme raporu gönderdiğinizde veya blogumuzda yorum yaptığınızda hangi verilerin gönderildiğini ve saklandığını ayrıntılı olarak açıklar. İlgili belgeyi [burada](https://newpipe.net/legal/privacy/) bulabilirsiniz.
 
 ## Lisans
-[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
+[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 NewPipe özgür bir yazılımdır. Kendi başınıza kullanabilir, öğrenebilir, paylaşabilir
 ve geliştirebilirsiniz. Free Software Foundation tarafından yayınlanan GNU Genel Kamu Lisansı,

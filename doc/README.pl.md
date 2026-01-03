@@ -1,4 +1,4 @@
-<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p> 
+<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p>
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">Wolny, lekki streamingowy frontend na Androida.</h4>
 
@@ -68,7 +68,7 @@ NewPipe nie używa żadnych bibliotek Google ani API YouTube. Strony są jedynie
 * Wyszukiwanie kanałów
 * Oglądanie filmów ze strony kanału
 * Wsparcie dla Orbot/Tor (Jeszcze nie bezpośrednio)
-* Wsparcie dla 1080p/2K/4K
+* Wsparcie dla 1080p/1440p/4K
 * Historia oglądania
 * Subskrybowanie kanałów
 * Historia wyszukiwania
@@ -128,14 +128,14 @@ Jeśli podoba Ci się NewPipe, bardzo ucieszylibyśmy się z dotacji. Możesz wy
 
 ## Polityka prywatności
 
-Założeniem projektu NewPipe jest dostarczanie prywatnego, anonimowego dostępu do zasobów i usług internetowych. 
+Założeniem projektu NewPipe jest dostarczanie prywatnego, anonimowego dostępu do zasobów i usług internetowych.
 Dlatego też, ta aplikacja nie zbiera żadnych informacji bez twojej zgody. Polityka prywatności NewPipe dokładnie wyjaśnia jakie dane są wysyłane i przechowywane, gdy wyślesz raport awarii lub komentarz na naszym blogu. Możesz znaleźć ten dokument [tutaj](https://newpipe.net/legal/privacy/).
 
 ## Licencja
-[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
+[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
-NewPipe to wolne oprogramowanie: Możesz używać, uczyć się, udostępniać i ulepszać je do woli. 
+NewPipe to wolne oprogramowanie: Możesz używać, uczyć się, udostępniać i ulepszać je do woli.
 Możesz udostępniać i/lub modyfikować je na zasadach licencji
-[GNU General Public License](https://www.gnu.org/licenses/gpl.html) 
+[GNU General Public License](https://www.gnu.org/licenses/gpl.html)
 publikowaną przez Free Software Foundation, wersję 3 Licencji, lub
-(twój wybór) każdną nowszą wersję.  
+(twój wybór) każdną nowszą wersję.

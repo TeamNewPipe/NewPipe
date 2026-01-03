@@ -80,7 +80,7 @@
     <string name="open_in_popup_mode">Açılır pencere modunda aç</string>
     <string name="default_popup_resolution_title">Varsayılan açılır pencere çözünürlüğü</string>
     <string name="show_higher_resolutions_title">Yüksek çözünürlükleri göster</string>
-    <string name="show_higher_resolutions_summary">Yalnızca bazı aygıtlar 2K/4K videoları oynatabilir</string>
+    <string name="show_higher_resolutions_summary">Yalnızca bazı aygıtlar 1440p/4K videoları oynatabilir</string>
     <string name="default_video_format_title">Varsayılan video biçimi</string>
     <string name="black_theme_title">Siyah</string>
     <string name="popup_playing_toast">Açılır pencere kipinde oynatılıyor</string>

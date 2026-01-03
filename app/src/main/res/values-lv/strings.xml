@@ -545,7 +545,7 @@
     <string name="show_play_with_kodi_title">Rādīt \"Atskaņot ar Kodi\" opciju</string>
     <string name="kore_not_found">Uzstādīt trūkstošo Kore lietotni?</string>
     <string name="play_with_kodi_title">Atskaņot ar Kodi</string>
-    <string name="show_higher_resolutions_summary">Tikai dažas ierīcas var atskaņot 2K/4K videoklipus</string>
+    <string name="show_higher_resolutions_summary">Tikai dažas ierīcas var atskaņot 1440p/4K videoklipus</string>
     <string name="show_higher_resolutions_title">Rādīt augstākas izšķirtspējas</string>
     <string name="default_resolution_title">Noklusējuma izšķirtspēja</string>
     <string name="download_path_audio_dialog_title">Izvēlieties lejupielādes mapi priekš audio failiem</string>

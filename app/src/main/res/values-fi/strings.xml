@@ -34,7 +34,7 @@
     <string name="default_resolution_title">Oletusresoluutio</string>
     <string name="default_popup_resolution_title">Ponnahdusikkunan oletusresoluutio</string>
     <string name="show_higher_resolutions_title">Näytä korkeammat resoluutiot</string>
-    <string name="show_higher_resolutions_summary">Vain jotkin laitteet voivat toistaa 2K/4K-videota</string>
+    <string name="show_higher_resolutions_summary">Vain jotkin laitteet voivat toistaa 1440p/4K-videota</string>
     <string name="play_with_kodi_title">Toista Kodissa</string>
     <string name="kore_not_found">Asennetaanko puuttuva Kore-sovellus\?</string>
     <string name="show_play_with_kodi_title">Näytä ”Toista Kodissa”-vaihtoehto</string>
@@ -305,7 +305,7 @@
 \n3. Kirjaudu sisään kysyttäessä.
 \n4. Kopioi se nettiosoite johon sinut ohjattiin.</string>
     <string name="import_soundcloud_instructions_hint">sinun käyttäjänimesi, soundcloud.com/&lt;sinun käyttäjänimesi&gt;</string>
-    <string name="import_network_expensive_warning">Ota huomioon että tämä operaatio voi käyttää paljon dataa. 
+    <string name="import_network_expensive_warning">Ota huomioon että tämä operaatio voi käyttää paljon dataa.
 \n
 \nHaluatko jatkaa\?</string>
     <string name="playback_speed_control">Toistonopeuden säätimet</string>

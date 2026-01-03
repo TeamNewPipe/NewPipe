@@ -229,7 +229,7 @@
     <string name="error_http_no_content">ڕاژەکە هیچ داتایەک نانێرێت</string>
     <string name="watch_history_states_deleted">شوێنی کارپێکراوەکان سڕانەوە</string>
     <string name="app_update_notification_channel_description">پەیامەکانی وەشانە نوێیەکانی نیوپایپ</string>
-    <string name="show_higher_resolutions_summary">تەنها چەند مۆبایلێک پشتگیری لێدانی ڤیدیۆی 2K/4K دەکەن</string>
+    <string name="show_higher_resolutions_summary">تەنها چەند مۆبایلێک پشتگیری لێدانی ڤیدیۆی 1440p/4K دەکەن</string>
     <string name="notification_channel_description">پەیامەکانی لێدەری نیوپایپ</string>
     <string name="feed_use_dedicated_fetch_method_summary">لەهەندێ خزمەتگوزاریدا بەردەستە، بەزۆری خێراترینە بەڵام ڕەنگە هەندێک لە بابەتەکان زانیارییەکانیان ناتەواو بێت (وەک نەبوونی ماوە، جۆری بابەت ، نەبوونی پەخش)</string>
     <plurals name="seconds">
@@ -294,8 +294,8 @@
     <string name="detail_likes_img_view_description">بەدڵه‌كان</string>
     <string name="popup_remember_size_pos_summary">بیرهاتنه‌وه‌ی كۆتا قه‌باره‌ و شوێنی په‌نجه‌ره‌</string>
     <string name="create">سازکردن</string>
-    <string name="import_network_expensive_warning">ئەوە بزانە ئەم کردارە پێویستی بە هێڵێکی گران هەیە. 
-\n 
+    <string name="import_network_expensive_warning">ئەوە بزانە ئەم کردارە پێویستی بە هێڵێکی گران هەیە.
+\n
 \nدەتەوێ بەردەوامبیت؟</string>
     <string name="all">گشتی</string>
     <string name="close">داخستن</string>
@@ -507,11 +507,11 @@
     <string name="could_not_setup_download_menu">ناتوانرێ لیستی دابه‌زاندن دابنرێت</string>
     <string name="app_update_available_notification_title">وەشانی نوێی نیوپایپ بەردەستە!</string>
     <string name="playlist_thumbnail_change_success">وێنۆچکەی خشتەلێدان گۆڕدرا.</string>
-    <string name="import_soundcloud_instructions">هێنانەوەی پەڕەی کەسی SoundCloud بەدانانی بەستەر یاخوود ئایدی: 
-\n 
-\n1. دۆخی ”Desktop mode” لە وێبگەرەکەتدا چالاک بکە (ئەم ماڵپەڕە بۆ وێبگەری مۆبایلەکان بەردەست نییە) 
-\n2. ئەم بەستەرە بکەرەوە : %1$s 
-\n3. بچۆرە ژوورەوە گەر داواکرا 
+    <string name="import_soundcloud_instructions">هێنانەوەی پەڕەی کەسی SoundCloud بەدانانی بەستەر یاخوود ئایدی:
+\n
+\n1. دۆخی ”Desktop mode” لە وێبگەرەکەتدا چالاک بکە (ئەم ماڵپەڕە بۆ وێبگەری مۆبایلەکان بەردەست نییە)
+\n2. ئەم بەستەرە بکەرەوە : %1$s
+\n3. بچۆرە ژوورەوە گەر داواکرا
 \n4. بەستەری پەڕەی کەسییەکەت دابنێ.</string>
     <string name="charset_letters_and_digits">پیت و ژمارەکان</string>
     <string name="default_content_country_title">بابەتی وڵاتی بنەڕەتی</string>

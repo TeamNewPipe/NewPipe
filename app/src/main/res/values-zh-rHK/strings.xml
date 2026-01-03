@@ -80,7 +80,7 @@
     <string name="open_in_popup_mode">以浮面模式開啟</string>
     <string name="default_popup_resolution_title">預設浮面播放器嘅解像度</string>
     <string name="show_higher_resolutions_title">顯示更高解像度</string>
-    <string name="show_higher_resolutions_summary">得某啲機先播到 2K/4K 影片</string>
+    <string name="show_higher_resolutions_summary">得某啲機先播到 1440p/4K 影片</string>
     <string name="default_video_format_title">預設嘅影片檔案格式</string>
     <string name="black_theme_title">紅日降</string>
     <string name="popup_playing_toast">浮面播緊</string>
