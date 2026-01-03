@@ -157,8 +157,6 @@
     <string name="blank_page_summary">Bog Madhan</string>
     <string name="main_page_content_summary">Daaqadaha lasoobandhigo bogga guud</string>
     <string name="main_page_content">Bogga guud</string>
-    <string name="title_most_played">Badanaa La Daawado</string>
-    <string name="title_last_played">U Dambeeyay ee La Daawaday</string>
     <string name="delete_item_search_history">Ma rabtaa inaad ka saarto shaygan kaydka wixii la raadiyay\?</string>
     <string name="action_history">Wixii Hore</string>
     <string name="read_full_license">Akhri laysinka</string>

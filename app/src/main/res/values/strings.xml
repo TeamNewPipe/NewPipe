@@ -218,6 +218,7 @@
     <string name="clear_views_history_title">Clear watch history</string>
     <string name="clear_views_history_summary">Deletes the history of played streams and the playback positions</string>
     <string name="delete_view_history_alert">Delete entire watch history?</string>
+    <string name="delete_view_history_description">Your watching history will be permanently erased</string>
     <string name="watch_history_deleted">Watch history deleted</string>
     <string name="clear_playback_states_title">Delete playback positions</string>
     <string name="clear_playback_states_summary">Deletes all playback positions</string>
@@ -395,8 +396,8 @@
     <string name="title_activity_history">History</string>
     <string name="action_history">History</string>
     <string name="delete_item_search_history">Do you want to delete this item from search history?</string>
-    <string name="title_last_played">Last Played</string>
-    <string name="title_most_played">Most Played</string>
+    <string name="history_sort_date">Date</string>
+    <string name="history_sort_views">Views</string>
     <!-- Content -->
     <string name="main_page_content">Content of main page</string>
     <string name="main_page_content_summary">What tabs are shown on the main page</string>
@@ -871,6 +872,10 @@
     <string name="migration_info_6_7_message">SoundCloud has discontinued the original Top 50 charts. The corresponding tab has been removed from your main page.</string>
     <string name="auto_queue_description">Next</string>
     <string name="newpipe_extractor_description">NewPipeExtractor is a library for extracting things from streaming sites. It is a core component of NewPipe, but could be used independently.</string>
+    <string name="history_sort_label">Sort by</string>
+    <string name="clear_history_description">Button to clear watch history</string>
+    <string name="playlist_content_description">Thumbnail for playlist %1$s</string>
+    <string name="stream_content_description">Thumbnail for stream %1$s</string>
     <plurals name="comments">
         <item quantity="one">%d comment</item>
         <item quantity="other">%d comments</item>

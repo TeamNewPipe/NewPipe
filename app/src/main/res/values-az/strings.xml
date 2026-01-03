@@ -332,8 +332,6 @@
     <string name="app_license_title">NewPipe Lisenziyası</string>
     <string name="action_history">Tarixçə</string>
     <string name="delete_item_search_history">Bu elementi axtarış tarixçəsindən silmək istəyirsiniz\?</string>
-    <string name="title_last_played">Son Oynadılan</string>
-    <string name="title_most_played">Ən Çox Oynadılan</string>
     <string name="select_a_kiosk">Bölmə seç</string>
     <string name="import_complete_toast">İdxal edildi</string>
     <string name="no_valid_zip_file">Etibarlı ZIP faylı yoxdur</string>

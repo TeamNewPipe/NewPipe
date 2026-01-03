@@ -220,8 +220,6 @@
     <string name="create">Criar</string>
     <string name="dismiss">Descartar</string>
     <string name="rename">Renomear</string>
-    <string name="title_last_played">Última reprodução</string>
-    <string name="title_most_played">Mais assistidos</string>
     <string name="always_ask_open_action">Sempre perguntar</string>
     <string name="create_playlist">Nova playlist</string>
     <string name="rename_playlist">Renomear</string>

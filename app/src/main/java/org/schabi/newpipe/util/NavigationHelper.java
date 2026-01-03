@@ -15,7 +15,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -52,7 +51,7 @@ import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.ktx.ContextKt;
 import org.schabi.newpipe.local.bookmark.BookmarkFragment;
 import org.schabi.newpipe.local.feed.FeedFragment;
-import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
+import org.schabi.newpipe.local.history.HistoryFragment;
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionsImportFragment;
@@ -119,7 +118,7 @@ public final class NavigationHelper {
     }
 
     /* PLAY */
-    public static void playOnMainPlayer(final AppCompatActivity activity,
+    public static void playOnMainPlayer(final FragmentActivity activity,
                                         @NonNull final PlayQueue playQueue) {
         final PlayQueueItem item = playQueue.getItem();
         if (item != null) {
@@ -555,7 +554,7 @@ public final class NavigationHelper {
 
     public static void openStatisticFragment(final FragmentManager fragmentManager) {
         defaultTransaction(fragmentManager)
-                .replace(R.id.fragment_holder, new StatisticsPlaylistFragment())
+                .replace(R.id.fragment_holder, HistoryFragment.class, null, null)
                 .addToBackStack(null)
                 .commit();
     }

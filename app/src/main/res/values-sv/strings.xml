@@ -241,8 +241,6 @@
 \nNewPipes sekretesspolicy förklarar i detalj vad för data som skickas och lagras när du skickar en kraschrapport.</string>
     <string name="read_privacy_policy">Läs sekretesspolicy</string>
     <string name="app_license">NewPipe är copyleft fri programvara: Du kan använda, studera, dela och förbättra den som du vill. Specifikt kan du distribuera och/eller modifiera det under villkoren för GNU General Public License som publicerats av Free Software Foundation, antingen version 3 av licensen, eller (om du så önskar) en senare version.</string>
-    <string name="title_last_played">Senast spelade</string>
-    <string name="title_most_played">Mest spelade</string>
     <string name="export_complete_toast">Exporterad</string>
     <string name="import_complete_toast">Importerad</string>
     <string name="no_valid_zip_file">Ogiltig ZIP-fil</string>

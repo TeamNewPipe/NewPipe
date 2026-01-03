@@ -222,8 +222,6 @@
     <string name="create">Crear</string>
     <string name="dismiss">Descartar</string>
     <string name="rename">Cambiar nombre</string>
-    <string name="title_last_played">Última reproducción</string>
-    <string name="title_most_played">Más reproducido</string>
     <string name="always_ask_open_action">Preguntar siempre</string>
     <string name="create_playlist">Lista de reproducción nueva</string>
     <string name="rename_playlist">Cambiar nombre</string>
