@@ -49,12 +49,10 @@ public class ImportConfirmationDialog extends DialogFragment {
     @Override
     public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Bridge.restoreInstanceState(this, savedInstanceState);
         if (resultServiceIntent == null) {
             throw new IllegalStateException("Result intent is null");
         }
-
-        Bridge.restoreInstanceState(this, savedInstanceState);
     }
 
     @Override
