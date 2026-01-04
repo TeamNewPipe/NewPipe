@@ -18,7 +18,7 @@ import org.schabi.newpipe.R;
 public class ImportConfirmationDialog extends DialogFragment {
     @State
     protected Intent resultServiceIntent;
-    static final String EXTRA_RESULT_SERVICE_INTENT = "extra_result_service_intent";
+    private static final String EXTRA_RESULT_SERVICE_INTENT = "extra_result_service_intent";
 
     public static void show(@NonNull final Fragment fragment,
                             @NonNull final Intent resultServiceIntent) {
@@ -49,13 +49,7 @@ public class ImportConfirmationDialog extends DialogFragment {
     public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments() != null) {
-            resultServiceIntent = getArguments().getParcelable(EXTRA_RESULT_SERVICE_INTENT);
-        }
-
-        if (resultServiceIntent == null) {
-            throw new IllegalStateException("Result intent is null");
-        }
+        resultServiceIntent = requireArguments().getParcelable(EXTRA_RESULT_SERVICE_INTENT);
 
         Bridge.restoreInstanceState(this, savedInstanceState);
     }
