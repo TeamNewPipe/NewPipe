@@ -366,6 +366,9 @@
 
     <string name="show_thumbnail_key">show_thumbnail_key</string>
 
+    <string name="long_press_menu_action_arrangement_key">long_press_menu_action_arrangement</string>
+    <string name="long_press_menu_is_header_enabled_key">long_press_menu_is_header_enabled</string>
+
     <!-- Values will be localized in runtime -->
     <string-array name="feed_update_threshold_options">
         <item>@string/feed_update_threshold_option_always_update</item>
