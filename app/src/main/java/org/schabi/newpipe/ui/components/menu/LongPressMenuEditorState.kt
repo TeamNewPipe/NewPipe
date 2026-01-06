@@ -1,5 +1,6 @@
 package org.schabi.newpipe.ui.components.menu
 
+import android.content.Context
 import android.util.Log
 import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.lazy.grid.LazyGridItemInfo
@@ -24,10 +25,11 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.Companion.DefaultEnabledActions
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
+
+private const val TAG = "LongPressMenuEditorStat"
 
 /**
  * This class is very tied to [LongPressMenuEditor] and interacts with the UI layer through
@@ -39,33 +41,33 @@ import kotlin.math.min
  */
 @Stable
 class LongPressMenuEditorState(
+    context: Context,
     val gridState: LazyGridState,
     val coroutineScope: CoroutineScope,
 ) {
-    // We get the current arrangement once and do not observe on purpose
     val items = run {
-        // TODO load from settings
-        val headerEnabled = true
-        val actionArrangement = DefaultEnabledActions
+        // We get the current arrangement once and do not observe on purpose.
+        val isHeaderEnabled = loadIsHeaderEnabledFromSettings(context)
+        val actionArrangement = loadLongPressActionArrangementFromSettings(context)
         sequence {
             yield(ItemInList.EnabledCaption)
-            if (headerEnabled) {
+            if (isHeaderEnabled) {
                 yield(ItemInList.HeaderBox)
             }
             yieldAll(
                 actionArrangement
                     .map { ItemInList.Action(it) }
-                    .ifEmpty { if (headerEnabled) listOf() else listOf(ItemInList.NoneMarker) }
+                    .ifEmpty { if (isHeaderEnabled) listOf() else listOf(ItemInList.NoneMarker) }
             )
             yield(ItemInList.HiddenCaption)
-            if (!headerEnabled) {
+            if (!isHeaderEnabled) {
                 yield(ItemInList.HeaderBox)
             }
             yieldAll(
                 LongPressAction.Type.entries
                     .filter { !actionArrangement.contains(it) }
                     .map { ItemInList.Action(it) }
-                    .ifEmpty { if (headerEnabled) listOf(ItemInList.NoneMarker) else listOf() }
+                    .ifEmpty { if (isHeaderEnabled) listOf(ItemInList.NoneMarker) else listOf() }
             )
         }.toList().toMutableStateList()
     }
@@ -365,9 +367,23 @@ class LongPressMenuEditorState(
         return true
     }
 
-    fun onDispose() {
+    fun onDispose(context: Context) {
         completeDragGestureAndCleanUp()
-        // TODO save to settings
+
+        var isHeaderEnabled = false
+        val actionArrangement = ArrayList<LongPressAction.Type>()
+        // All of the items before the HiddenCaption are enabled.
+        for (item in items) {
+            when (item) {
+                is ItemInList.Action -> actionArrangement.add(item.type)
+                ItemInList.HeaderBox -> isHeaderEnabled = true
+                ItemInList.HiddenCaption -> break
+                else -> {}
+            }
+        }
+
+        storeIsHeaderEnabledToSettings(context, isHeaderEnabled)
+        storeLongPressActionArrangementToSettings(context, actionArrangement)
     }
 }
 

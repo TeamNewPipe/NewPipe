@@ -57,29 +57,34 @@ data class LongPressAction(
     val enabled: (isPlayerRunning: Boolean) -> Boolean = { true },
 ) {
     enum class Type(
+        /**
+         * A unique ID that allows saving and restoring a list of action types from settings.
+         * MUST NOT CHANGE ACROSS APP VERSIONS!
+         */
+        val id: Int,
         @StringRes val label: Int,
         val icon: ImageVector,
     ) {
-        Enqueue(R.string.enqueue, Icons.Default.AddToQueue),
-        EnqueueNext(R.string.enqueue_next_stream, Icons.Default.QueuePlayNext),
-        Background(R.string.controls_background_title, Icons.Default.Headset),
-        Popup(R.string.controls_popup_title, Icons.Default.PictureInPicture),
-        Play(R.string.play, Icons.Default.PlayArrow),
-        BackgroundFromHere(R.string.background_from_here, Icons.Default.BackgroundFromHere),
-        PopupFromHere(R.string.popup_from_here, Icons.Default.PopupFromHere),
-        PlayFromHere(R.string.play_from_here, Icons.Default.PlayFromHere),
-        PlayWithKodi(R.string.play_with_kodi_title, Icons.Default.Cast),
-        Download(R.string.download, Icons.Default.Download),
-        AddToPlaylist(R.string.add_to_playlist, Icons.AutoMirrored.Default.PlaylistAdd),
-        Share(R.string.share, Icons.Default.Share),
-        OpenInBrowser(R.string.open_in_browser, Icons.Default.OpenInBrowser),
-        ShowChannelDetails(R.string.show_channel_details, Icons.Default.Person),
-        MarkAsWatched(R.string.mark_as_watched, Icons.Default.Done),
-        Delete(R.string.delete, Icons.Default.Delete),
-        Rename(R.string.rename, Icons.Default.Edit),
-        SetAsPlaylistThumbnail(R.string.set_as_playlist_thumbnail, Icons.Default.Image),
-        UnsetPlaylistThumbnail(R.string.unset_playlist_thumbnail, Icons.Default.HideImage),
-        Unsubscribe(R.string.unsubscribe, Icons.Default.Delete),
+        Enqueue(0, R.string.enqueue, Icons.Default.AddToQueue),
+        EnqueueNext(1, R.string.enqueue_next_stream, Icons.Default.QueuePlayNext),
+        Background(2, R.string.controls_background_title, Icons.Default.Headset),
+        Popup(3, R.string.controls_popup_title, Icons.Default.PictureInPicture),
+        Play(4, R.string.play, Icons.Default.PlayArrow),
+        BackgroundFromHere(5, R.string.background_from_here, Icons.Default.BackgroundFromHere),
+        PopupFromHere(6, R.string.popup_from_here, Icons.Default.PopupFromHere),
+        PlayFromHere(7, R.string.play_from_here, Icons.Default.PlayFromHere),
+        PlayWithKodi(8, R.string.play_with_kodi_title, Icons.Default.Cast),
+        Download(9, R.string.download, Icons.Default.Download),
+        AddToPlaylist(10, R.string.add_to_playlist, Icons.AutoMirrored.Default.PlaylistAdd),
+        Share(11, R.string.share, Icons.Default.Share),
+        OpenInBrowser(12, R.string.open_in_browser, Icons.Default.OpenInBrowser),
+        ShowChannelDetails(13, R.string.show_channel_details, Icons.Default.Person),
+        MarkAsWatched(14, R.string.mark_as_watched, Icons.Default.Done),
+        Delete(15, R.string.delete, Icons.Default.Delete),
+        Rename(16, R.string.rename, Icons.Default.Edit),
+        SetAsPlaylistThumbnail(17, R.string.set_as_playlist_thumbnail, Icons.Default.Image),
+        UnsetPlaylistThumbnail(18, R.string.unset_playlist_thumbnail, Icons.Default.HideImage),
+        Unsubscribe(19, R.string.unsubscribe, Icons.Default.Delete),
         ;
 
         // TODO allow actions to return disposables
@@ -93,7 +98,7 @@ data class LongPressAction(
         companion object {
             // ShowChannelDetails is not enabled by default, since navigating to channel details can
             // also be done by clicking on the uploader name in the long press menu header
-            val DefaultEnabledActions: Array<Type> = arrayOf(
+            val DefaultEnabledActions: List<Type> = listOf(
                 Enqueue, EnqueueNext, Background, Popup, BackgroundFromHere, Download,
                 AddToPlaylist, Share, OpenInBrowser, MarkAsWatched, Delete,
                 Rename, SetAsPlaylistThumbnail, UnsetPlaylistThumbnail, Unsubscribe
