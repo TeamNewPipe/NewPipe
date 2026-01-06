@@ -85,6 +85,7 @@ public class DownloadRunnableFallback extends Thread {
             if (mMission.unknownLength || mConn.getResponseCode() == 200) {
                 // restart amount of bytes downloaded
                 mMission.done = mMission.offsets[mMission.current] - mMission.offsets[0];
+                start = 0; // reset position to avoid writing at wrong offset
             }
 
             mF = mMission.storage.getStream();
