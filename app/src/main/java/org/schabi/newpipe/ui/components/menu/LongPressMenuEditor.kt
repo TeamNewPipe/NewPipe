@@ -21,7 +21,6 @@ package org.schabi.newpipe.ui.components.menu
 import android.util.Log
 import androidx.annotation.StringRes
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -97,7 +96,20 @@ import kotlin.math.min
 
 internal const val TAG = "LongPressMenuEditor"
 
-// TODO padding doesn't seem to work as expected when the list becomes scrollable?
+/**
+ * When making changes to this composable, make sure to test the following use cases still work:
+ * - both the actions and the header can be dragged around
+ * - the header can only be dragged to the first position in each section
+ * - when a section is empty the None marker will appear
+ * - actions and header are loaded from and stored to settings properly
+ * - it is possible to move items around using DPAD on Android TVs, and there are no strange bugs
+ * - when dragging items around, a Drag marker appears at the would-be position of the item being
+ *   dragged, and the item being dragged is "picked up" and shown below the user's finger (at an
+ *   offset to ensure the user can see the thing being dragged under their finger)
+ * - when the view does not fit the page, it is possible to scroll without moving any item, and
+ *   dragging an item towards the top/bottom of the page scrolls up/down
+ * @author This composable was originally copied from FlorisBoard.
+ */
 @Composable
 fun LongPressMenuEditor(modifier: Modifier = Modifier) {
     // We get the current arrangement once and do not observe on purpose
@@ -604,9 +616,9 @@ private fun ItemInListUi(
                 modifier = modifier,
                 selected = selected,
                 icon = Icons.Default.ArtTrack,
-                text = R.string.header,
+                text = R.string.long_press_menu_header,
                 contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
+                backgroundColor = MaterialTheme.colorScheme.surfaceContainer,
                 horizontalPadding = 12.dp,
             )
         }
@@ -633,6 +645,7 @@ private fun ItemInListUi(
 }
 
 @Preview
+@Preview(device = "spec:width=1080px,height=1000px,dpi=440")
 @Composable
 private fun LongPressMenuEditorPreview() {
     AppTheme {

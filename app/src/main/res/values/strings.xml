@@ -904,10 +904,10 @@
     <string name="popup_from_here">Popup\nfrom here</string>
     <string name="play_from_here">Play\nfrom here</string>
     <string name="long_press_menu_enabled_actions">Enabled actions:</string>
-    <string name="long_press_menu_enabled_actions_description">Reorder the actions by long pressing and then dragging them around</string>
+    <string name="long_press_menu_enabled_actions_description">Reorder the actions by long pressing them and then dragging them around</string>
     <string name="long_press_menu_hidden_actions">Hidden actions:</string>
     <string name="long_press_menu_hidden_actions_description">Drag the header or the actions to this section to hide them</string>
-    <string name="header">Header</string>
+    <string name="long_press_menu_header">Header with title, thumbnail, and clickable channel</string>
     <string name="back">Back</string>
     <string name="long_press_menu_actions_editor">Reorder and hide actions</string>
 </resources>
