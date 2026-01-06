@@ -54,6 +54,7 @@ import androidx.compose.ui.focus.focusTarget
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.key.onKeyEvent
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
@@ -69,8 +70,6 @@ import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.letIf
 import org.schabi.newpipe.util.text.FixedHeightCenteredText
 import kotlin.math.floor
-
-internal const val TAG = "LongPressMenuEditor"
 
 /**
  * When making changes to this composable and to [LongPressMenuEditorState], make sure to test the
@@ -89,15 +88,16 @@ internal const val TAG = "LongPressMenuEditor"
  */
 @Composable
 fun LongPressMenuEditor(modifier: Modifier = Modifier) {
+    val context = LocalContext.current
     val gridState = rememberLazyGridState()
     val coroutineScope = rememberCoroutineScope()
     val state = remember(gridState, coroutineScope) {
-        LongPressMenuEditorState(gridState, coroutineScope)
+        LongPressMenuEditorState(context, gridState, coroutineScope)
     }
 
     DisposableEffect(Unit) {
         onDispose {
-            state.onDispose()
+            state.onDispose(context)
         }
     }
 
