@@ -55,7 +55,7 @@ public abstract class HistoryEntryAdapter<E, VH extends RecyclerView.ViewHolder>
     }
 
     protected String getFormattedViewString(final long viewCount) {
-        return Localization.shortViewCount(mContext, viewCount);
+        return Localization.localizeWatchCount(mContext, viewCount);
     }
 
     @Override
