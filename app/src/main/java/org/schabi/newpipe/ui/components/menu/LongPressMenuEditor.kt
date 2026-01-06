@@ -427,7 +427,12 @@ fun LongPressMenuEditor(modifier: Modifier = Modifier) {
                 ItemInListUi(
                     item = item,
                     selected = currentlyFocusedItem == i,
-                    modifier = Modifier.animateItem()
+                    // We only want placement animations: fade in/out animations interfere with
+                    // items being replaced by a drag marker while being dragged around, and a fade
+                    // in/out animation there does not make sense as the item was just "picked up".
+                    // Furthermore there are strange moving animation artifacts when moving and
+                    // releasing items quickly before their fade-out animation finishes.
+                    modifier = Modifier.animateItem(fadeInSpec = null, fadeOutSpec = null)
                 )
             }
         }
