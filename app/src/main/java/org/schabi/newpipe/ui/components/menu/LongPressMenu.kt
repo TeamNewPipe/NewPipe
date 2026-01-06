@@ -43,6 +43,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -70,10 +72,10 @@ import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamType
-import org.schabi.newpipe.ktx.popFirst
 import org.schabi.newpipe.ui.components.common.ScaffoldWithToolbar
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.EnqueueNext
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.ShowChannelDetails
@@ -123,6 +125,9 @@ fun LongPressMenu(
     longPressActions: List<LongPressAction>,
     onDismissRequest: () -> Unit,
 ) {
+    val viewModel: LongPressMenuViewModel = viewModel()
+    val isHeaderEnabled by viewModel.isHeaderEnabled.collectAsState()
+    val actionArrangement by viewModel.actionArrangement.collectAsState()
     var showEditor by rememberSaveable { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
@@ -140,14 +145,39 @@ fun LongPressMenu(
             }
         }
     } else {
+        val enabledLongPressActions by remember {
+            derivedStateOf {
+                actionArrangement.mapNotNull { type ->
+                    longPressActions.firstOrNull { it.type == type }
+                }
+            }
+        }
+
+        // show a clickable uploader in the header if an uploader action is available and the
+        // "show channel details" action is not enabled as a standalone action
+        val ctx = LocalContext.current
+        val onUploaderClick by remember {
+            derivedStateOf {
+                longPressActions.firstOrNull { it.type == ShowChannelDetails }
+                    ?.takeIf { !actionArrangement.contains(ShowChannelDetails) }
+                    ?.let { showChannelDetailsAction ->
+                        {
+                            showChannelDetailsAction.action(ctx)
+                            onDismissRequest()
+                        }
+                    }
+            }
+        }
+
         ModalBottomSheet(
             sheetState = sheetState,
             onDismissRequest = onDismissRequest,
             dragHandle = { LongPressMenuDragHandle(onEditActions = { showEditor = true }) },
         ) {
             LongPressMenuContent(
-                longPressable = longPressable,
-                longPressActions = longPressActions,
+                header = longPressable.takeIf { isHeaderEnabled },
+                onUploaderClick = onUploaderClick,
+                actions = enabledLongPressActions,
                 onDismissRequest = onDismissRequest,
             )
         }
@@ -156,8 +186,9 @@ fun LongPressMenu(
 
 @Composable
 private fun LongPressMenuContent(
-    longPressable: LongPressable,
-    longPressActions: List<LongPressAction>,
+    header: LongPressable?,
+    onUploaderClick: (() -> Unit)?,
+    actions: List<LongPressAction>,
     onDismissRequest: () -> Unit,
 ) {
     BoxWithConstraints(
@@ -172,20 +203,10 @@ private fun LongPressMenuContent(
         // width for the landscape/reduced header, measured in button widths
         val headerWidthInButtonsReducedSpan = 4
         val buttonsPerRow = (this.maxWidth / MinButtonWidth).toInt()
-
-        // the channel icon goes in the menu header, so do not show a button for it
-        val actions = longPressActions.toMutableList()
         val ctx = LocalContext.current
-        val onUploaderClick = actions.popFirst { it.type == ShowChannelDetails }
-            ?.let { showChannelDetailsAction ->
-                {
-                    showChannelDetailsAction.action(ctx)
-                    onDismissRequest()
-                }
-            }
 
         Column {
-            var actionIndex = -1 // -1 indicates the header
+            var actionIndex = if (header != null) -1 else 0 // -1 indicates the header
             while (actionIndex < actions.size) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -224,7 +245,7 @@ private fun LongPressMenuContent(
                             // this branch is taken if the full-span header is going to fit on one
                             // line (i.e. on phones in portrait)
                             LongPressMenuHeader(
-                                item = longPressable,
+                                item = header!!, // surely not null since actionIndex < 0
                                 onUploaderClick = onUploaderClick,
                                 modifier = Modifier
                                     .padding(start = 6.dp, end = 6.dp, bottom = 6.dp)
@@ -241,7 +262,7 @@ private fun LongPressMenuContent(
                             // branch is taken, at least two buttons will be on the right side of
                             // the header (just one button would look off).
                             LongPressMenuHeader(
-                                item = longPressable,
+                                item = header!!, // surely not null since actionIndex < 0
                                 onUploaderClick = onUploaderClick,
                                 modifier = Modifier
                                     .padding(start = 8.dp, top = 11.dp, bottom = 11.dp)
@@ -667,8 +688,9 @@ private fun LongPressMenuPreview(
             // longPressable is null when running the preview in an emulator for some reason...
             @Suppress("USELESS_ELVIS")
             LongPressMenuContent(
-                longPressable = longPressable ?: LongPressablePreviews().values.first(),
-                longPressActions = LongPressAction.Type.entries
+                header = longPressable ?: LongPressablePreviews().values.first(),
+                onUploaderClick = {},
+                actions = LongPressAction.Type.entries
                     // disable Enqueue actions just to show it off
                     .map { t -> t.buildAction({ t != EnqueueNext }) { } },
                 onDismissRequest = {},

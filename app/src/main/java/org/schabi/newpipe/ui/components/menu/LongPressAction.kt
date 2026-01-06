@@ -1,6 +1,7 @@
 package org.schabi.newpipe.ui.components.menu
 
 import android.content.Context
+import android.net.Uri
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
@@ -21,6 +22,7 @@ import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.QueuePlayNext
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.core.net.toUri
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry
@@ -49,6 +51,7 @@ import org.schabi.newpipe.ui.components.menu.icons.PlayFromHere
 import org.schabi.newpipe.ui.components.menu.icons.PopupFromHere
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.SparseItemUtil
+import org.schabi.newpipe.util.external_communication.KoreUtils
 import org.schabi.newpipe.util.external_communication.ShareUtils
 
 data class LongPressAction(
@@ -228,13 +231,10 @@ data class LongPressAction(
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe()
                     },
+                    Type.PlayWithKodi.buildAction { context ->
+                        KoreUtils.playWithKore(context, item.url.toUri())
+                    },
                 )
-            /* TODO handle kodi
-            + if (isKodiEnabled) listOf(
-                Type.PlayWithKodi.buildAction { context ->
-                    KoreUtils.playWithKore(context, Uri.parse(item.url))
-                },
-            ) else listOf()*/
         }
 
         @JvmStatic
