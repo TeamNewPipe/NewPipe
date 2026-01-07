@@ -6,7 +6,6 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLA
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_BACKGROUND;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_NONE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_POPUP;
-import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -15,7 +14,6 @@ import android.content.pm.PackageManager;
 import android.provider.Settings;
 import android.view.accessibility.CaptioningManager;
 
-import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -43,7 +41,6 @@ import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
 
-import java.lang.annotation.Retention;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
@@ -59,13 +56,10 @@ import java.util.concurrent.TimeUnit;
 public final class PlayerHelper {
     private static final FormattersProvider FORMATTERS_PROVIDER = new FormattersProvider();
 
-    @Retention(SOURCE)
-    @IntDef({AUTOPLAY_TYPE_ALWAYS, AUTOPLAY_TYPE_WIFI,
-            AUTOPLAY_TYPE_NEVER})
-    public @interface AutoplayType {
-        int AUTOPLAY_TYPE_ALWAYS = 0;
-        int AUTOPLAY_TYPE_WIFI = 1;
-        int AUTOPLAY_TYPE_NEVER = 2;
+    public enum AutoplayType {
+        AUTOPLAY_TYPE_ALWAYS,
+        AUTOPLAY_TYPE_WIFI,
+        AUTOPLAY_TYPE_NEVER
     }
 
     public enum MinimizeMode {
@@ -245,8 +239,8 @@ public final class PlayerHelper {
         }
     }
 
-    @AutoplayType
-    public static int getAutoplayType(@NonNull final Context context) {
+
+    public static AutoplayType getAutoplayType(@NonNull final Context context) {
         final String type = getPreferences(context).getString(
                 context.getString(R.string.autoplay_key), "");
         if (type.equals(context.getString(R.string.autoplay_always_key))) {
@@ -259,15 +253,11 @@ public final class PlayerHelper {
     }
 
     public static boolean isAutoplayAllowedByUser(@NonNull final Context context) {
-        switch (PlayerHelper.getAutoplayType(context)) {
-            case PlayerHelper.AutoplayType.AUTOPLAY_TYPE_NEVER:
-                return false;
-            case PlayerHelper.AutoplayType.AUTOPLAY_TYPE_WIFI:
-                return !ListHelper.isMeteredNetwork(context);
-            case PlayerHelper.AutoplayType.AUTOPLAY_TYPE_ALWAYS:
-            default:
-                return true;
-        }
+        return switch (PlayerHelper.getAutoplayType(context)) {
+            case AUTOPLAY_TYPE_NEVER -> false;
+            case AUTOPLAY_TYPE_WIFI -> !ListHelper.isMeteredNetwork(context);
+            case AUTOPLAY_TYPE_ALWAYS -> true;
+        };
     }
 
     @NonNull
