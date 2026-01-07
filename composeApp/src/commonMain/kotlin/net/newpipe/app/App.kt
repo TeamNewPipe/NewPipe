@@ -6,13 +6,22 @@
 package net.newpipe.app
 
 import androidx.compose.runtime.Composable
+import net.newpipe.app.module.appModules
 import net.newpipe.app.theme.AppTheme
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.koin.compose.KoinMultiplatformApplication
+import org.koin.core.annotation.KoinExperimentalAPI
+import org.koin.dsl.koinConfiguration
 
+@OptIn(KoinExperimentalAPI::class)
 @Composable
-@Preview
 fun App() {
-    AppTheme {
+    KoinMultiplatformApplication(
+        config = koinConfiguration {
+            modules(appModules)
+        }
+    ) {
+        AppTheme {
 
+        }
     }
 }

@@ -26,6 +26,8 @@ hotreload = "1.0.0"
 jsoup = "1.21.2"
 junit = "4.13.2"
 junit-ext = "1.3.0"
+koin-annotations = "2.3.1"
+koin-bom = "4.1.1"
 kotlin = "2.2.21"
 ksp = "2.3.2"
 ktlint = "1.8.0"
@@ -117,6 +119,13 @@ jetbrains-kotlinx-coroutinesSwing = { module = "org.jetbrains.kotlinx:kotlinx-co
 jetbrains-lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle-jetbrains" }
 jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
 junit = { module = "junit:junit", version.ref = "junit" }
+koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koin-annotations" }
+koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin-bom" }
+koin-compiler = { module = "io.insert-koin:koin-ksp-compiler", version.ref = "koin-annotations" }
+koin-compose = { module = "io.insert-koin:koin-compose" }
+koin-core = { module = "io.insert-koin:koin-core" }
+koin-test = { module = "io.insert-koin:koin-test" }
+koin-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 lisawray-groupie-core = { module = "com.github.lisawray.groupie:groupie", version.ref = "groupie" }
 lisawray-groupie-viewbinding = { module = "com.github.lisawray.groupie:groupie-viewbinding", version.ref = "groupie" }

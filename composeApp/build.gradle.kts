@@ -44,10 +44,23 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
+
+            // Lifecycle
             implementation(libs.jetbrains.lifecycle.viewmodel)
+
+            // Koin
+            implementation(project.dependencies.platform(libs.koin.bom))
+            api(libs.koin.annotations)
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.viewmodel)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+
+            // Koin
+            implementation(project.dependencies.platform(libs.koin.bom))
+            implementation(libs.koin.test)
         }
         androidMain.dependencies {
             implementation(compose.preview)
@@ -58,7 +71,23 @@ kotlin {
             implementation(libs.jetbrains.kotlinx.coroutinesSwing)
         }
     }
+
+    // Koin
+    sourceSets.named("commonMain").configure {
+        kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
+    }
 }
+
+// Koin
+dependencies {
+    add("kspCommonMainMetadata", libs.koin.annotations)
+    add("kspAndroid", libs.koin.compiler)
+    add("kspIosArm64", libs.koin.compiler)
+    add("kspIosSimulatorArm64", libs.koin.compiler)
+}
+
+tasks.matching { it.name.startsWith("ksp") && it.name != "kspCommonMainKotlinMetadata" }
+    .configureEach { dependsOn("kspCommonMainKotlinMetadata") }
 
 compose.desktop {
     application {
