@@ -4,9 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Html;
 import android.text.InputType;
 import android.text.method.LinkMovementMethod;
+
+import androidx.core.text.HtmlCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -89,7 +90,8 @@ public class PeertubeInstanceListFragment extends Fragment {
         final String instanceListUrl = getString(R.string.peertube_instance_list_url);
         final String helpText = getString(R.string.peertube_instance_url_help,
                 "<a href=\"" + instanceListUrl + "\">" + instanceListUrl + "</a>");
-        binding.instanceHelpTV.setText(Html.fromHtml(helpText, Html.FROM_HTML_MODE_LEGACY));
+        binding.instanceHelpTV.setText(HtmlCompat.fromHtml(helpText,
+                HtmlCompat.FROM_HTML_MODE_LEGACY));
         binding.instanceHelpTV.setMovementMethod(LinkMovementMethod.getInstance());
 
         binding.addInstanceButton.setOnClickListener(v -> showAddItemDialog(requireContext()));
