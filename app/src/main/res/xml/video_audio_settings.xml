@@ -62,7 +62,7 @@
         app:useSimpleSummaryProvider="true" />
 
     <SwitchPreferenceCompat
-        android:defaultValue="false"
+        android:defaultValue="true"
         android:key="@string/prefer_original_audio_key"
         android:summary="@string/prefer_original_audio_summary"
         android:title="@string/prefer_original_audio_title"
