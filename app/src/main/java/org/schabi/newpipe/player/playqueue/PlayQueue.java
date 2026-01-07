@@ -23,7 +23,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.BackpressureStrategy;
 import io.reactivex.rxjava3.core.Flowable;
-import io.reactivex.rxjava3.subjects.BehaviorSubject;
+import io.reactivex.rxjava3.subjects.PublishSubject;
 
 /**
  * PlayQueue is responsible for keeping track of a list of streams and the index of
@@ -46,7 +46,7 @@ public abstract class PlayQueue implements Serializable {
     private List<PlayQueueItem> backup;
     private List<PlayQueueItem> streams;
 
-    private transient BehaviorSubject<PlayQueueEvent> eventBroadcast;
+    private transient PublishSubject<PlayQueueEvent> eventBroadcast;
     private transient Flowable<PlayQueueEvent> broadcastReceiver;
     private transient boolean disposed = false;
 
@@ -71,7 +71,7 @@ public abstract class PlayQueue implements Serializable {
      * </p>
      */
     public void init() {
-        eventBroadcast = BehaviorSubject.create();
+        eventBroadcast = PublishSubject.create();
 
         broadcastReceiver = eventBroadcast.toFlowable(BackpressureStrategy.BUFFER)
                 .observeOn(AndroidSchedulers.mainThread())
