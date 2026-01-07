@@ -5,6 +5,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.URLSpan;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -84,8 +88,22 @@ public class PeertubeInstanceListFragment extends Fragment {
                               @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
 
-        binding.instanceHelpTV.setText(getString(R.string.peertube_instance_url_help,
-                getString(R.string.peertube_instance_list_url)));
+        final String instanceListUrl = getString(R.string.peertube_instance_list_url);
+        final String helpText = getString(R.string.peertube_instance_url_help, instanceListUrl);
+        final SpannableString spannableString = new SpannableString(helpText);
+        
+        final int urlStart = helpText.indexOf(instanceListUrl);
+        if (urlStart != -1) {
+            spannableString.setSpan(
+                    new URLSpan(instanceListUrl),
+                    urlStart,
+                    urlStart + instanceListUrl.length(),
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            );
+        }
+        
+        binding.instanceHelpTV.setText(spannableString);
+        binding.instanceHelpTV.setMovementMethod(LinkMovementMethod.getInstance());
         binding.addInstanceButton.setOnClickListener(v -> showAddItemDialog(requireContext()));
         binding.instances.setLayoutManager(new LinearLayoutManager(requireContext()));
 
