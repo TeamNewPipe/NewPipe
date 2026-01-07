@@ -5,6 +5,7 @@
 
 [versions]
 acra = "5.13.1"
+activity = "1.12.2"
 agp = "8.13.2"
 appcompat = "1.7.1"
 assertj = "3.27.6"
@@ -15,11 +16,13 @@ cardview = "1.0.0"
 checkstyle = "12.2.0"
 constraintlayout = "2.2.1"
 core = "1.17.0"
+coroutines = "1.10.2"
 desugar = "2.1.5"
 documentfile = "1.1.0"
 exoplayer = "2.19.1"
 fragment = "1.8.9"
 groupie = "2.10.1"
+hotreload = "1.0.0"
 jsoup = "1.21.2"
 junit = "4.13.2"
 junit-ext = "1.3.0"
@@ -28,11 +31,13 @@ ksp = "2.3.2"
 ktlint = "1.8.0"
 leakcanary = "2.14"
 lifecycle = "2.9.4" # Newer versions require minSdk >= 23
+lifecycle-jetbrains = "2.9.6"
 localbroadcastmanager = "1.1.0"
 markwon = "4.6.2"
 material = "1.11.0" # TODO: update to newer version after bug is fixed. See https://github.com/TeamNewPipe/NewPipe/pull/13018
 media = "1.7.1"
 mockitoCore = "5.21.0"
+multiplatform = "1.9.3"
 okhttp = "5.3.2"
 phoenix = "3.0.0"
 #noinspection NewerVersionAvailable,GradleDependency --> 2.8 is the last version, not 2.71828!
@@ -67,6 +72,7 @@ work = "2.10.5"  # Newer versions require minSdk >= 23
 [libraries]
 acra-core = { module = "ch.acra:acra-core", version.ref = "acra" }
 android-desugar = { module = "com.android.tools:desugar_jdk_libs_nio", version.ref = "desugar" }
+androidx-activity = { module = "androidx.activity:activity-compose", version.ref = "activity" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
@@ -107,8 +113,11 @@ google-exoplayer-smoothstreaming = { module = "com.google.android.exoplayer:exop
 google-exoplayer-ui = { module = "com.google.android.exoplayer:exoplayer-ui", version.ref = "exoplayer" }
 jakewharton-phoenix = { module = "com.jakewharton:process-phoenix", version.ref = "phoenix" }
 jakewharton-rxbinding = { module = "com.jakewharton.rxbinding4:rxbinding", version.ref = "rxbinding" }
+jetbrains-kotlinx-coroutinesSwing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "coroutines" }
+jetbrains-lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle-jetbrains" }
 jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
 junit = { module = "junit:junit", version.ref = "junit" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 lisawray-groupie-core = { module = "com.github.lisawray.groupie:groupie", version.ref = "groupie" }
 lisawray-groupie-viewbinding = { module = "com.github.lisawray.groupie:groupie-viewbinding", version.ref = "groupie" }
 livefront-bridge = { module = "com.github.livefront:bridge", version.ref = "bridge" }
@@ -132,8 +141,13 @@ zacsweers-autoservice-compiler = { module = "dev.zacsweers.autoservice:auto-serv
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+jetbrains-compose-hotreload = { id = "org.jetbrains.compose.hot-reload", version.ref = "hotreload" }
+jetbrains-compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "multiplatform" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+jetbrains-kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" } # Needed for statesaver
+jetbrains-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 jetbrains-kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
