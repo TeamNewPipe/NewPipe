@@ -68,13 +68,10 @@ public final class PlayerHelper {
         int AUTOPLAY_TYPE_NEVER = 2;
     }
 
-    @Retention(SOURCE)
-    @IntDef({MINIMIZE_ON_EXIT_MODE_NONE, MINIMIZE_ON_EXIT_MODE_BACKGROUND,
-            MINIMIZE_ON_EXIT_MODE_POPUP})
-    public @interface MinimizeMode {
-        int MINIMIZE_ON_EXIT_MODE_NONE = 0;
-        int MINIMIZE_ON_EXIT_MODE_BACKGROUND = 1;
-        int MINIMIZE_ON_EXIT_MODE_POPUP = 2;
+    public enum MinimizeMode {
+        MINIMIZE_ON_EXIT_MODE_NONE,
+        MINIMIZE_ON_EXIT_MODE_BACKGROUND,
+        MINIMIZE_ON_EXIT_MODE_POPUP
     }
 
     private PlayerHelper() {
@@ -236,8 +233,7 @@ public final class PlayerHelper {
                 .getBoolean(context.getString(R.string.clear_queue_confirmation_key), false);
     }
 
-    @MinimizeMode
-    public static int getMinimizeOnExitAction(@NonNull final Context context) {
+    public static MinimizeMode getMinimizeOnExitAction(@NonNull final Context context) {
         final String action = getPreferences(context)
                 .getString(context.getString(R.string.minimize_on_exit_key), "");
         if (action.equals(context.getString(R.string.minimize_on_exit_popup_key))) {
