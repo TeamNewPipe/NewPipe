@@ -91,7 +91,7 @@ public class PeertubeInstanceListFragment extends Fragment {
                 "<a href=\"" + instanceListUrl + "\">" + instanceListUrl + "</a>");
         binding.instanceHelpTV.setText(Html.fromHtml(helpText, Html.FROM_HTML_MODE_LEGACY));
         binding.instanceHelpTV.setMovementMethod(LinkMovementMethod.getInstance());
-        
+
         binding.addInstanceButton.setOnClickListener(v -> showAddItemDialog(requireContext()));
         binding.instances.setLayoutManager(new LinearLayoutManager(requireContext()));
 
