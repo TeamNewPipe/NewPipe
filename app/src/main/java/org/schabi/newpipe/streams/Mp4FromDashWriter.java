@@ -21,11 +21,13 @@ import java.util.ArrayList;
 /**
  * MP4 muxer that builds a standard MP4 file from DASH fragmented MP4 sources.
  *
- * @author kapodamy
+ * <p>
+ * See <a href="https://atomicparsley.sourceforge.net/mpeg-4files.html">
+ * https://atomicparsley.sourceforge.net/mpeg-4files.html</a> for information on
+ * the MP4 file format and its specification.
+ * </p>
  *
- * @implNote See <a href="https://atomicparsley.sourceforge.net/mpeg-4files.html">
- *     https://atomicparsley.sourceforge.net/mpeg-4files.html</a> for information on
- *     the MP4 file format and its specification.
+ * @author kapodamy
  */
 public class Mp4FromDashWriter {
     private static final int EPOCH_OFFSET = 2082844800;
@@ -783,7 +785,7 @@ public class Mp4FromDashWriter {
         final int mediaTime;
 
         if (tracks[index].trak.edstElst == null) {
-            // is a audio track ¿is edst/elst optional for audio tracks?
+            // is an audio track; is edst/elst optional for audio tracks?
             mediaTime = 0x00; // ffmpeg set this value as zero, instead of defaultMediaTime
             bMediaRate = 0x00010000;
         } else {
@@ -891,28 +893,35 @@ public class Mp4FromDashWriter {
         return offset + 0x14;
     }
 
+    /**
+     * Creates a Sample Group Description Box.
+     *
+     * <p>
+     * What does it do?
+     * <br>
+     * The table inside of this box gives information about the
+     * characteristics of sample groups. The descriptive information is any other
+     * information needed to define or characterize the sample group.
+     * </p>
+     *
+     * <p>
+     * ¿is replicable this box?
+     * <br>
+     * NO due lacks of documentation about this box but...
+     * most of m4a encoders and ffmpeg uses this box with dummy values (same values)
+     * </p>
+     *
+     * @return byte array with the 'sgpd' box
+     */
     private byte[] makeSgpd() {
-        /*
-         * Sample Group Description Box
-         *
-         * ¿whats does?
-         * the table inside of this box gives information about the
-         * characteristics of sample groups. The descriptive information is any other
-         * information needed to define or characterize the sample group.
-         *
-         * ¿is replicable this box?
-         * NO due lacks of documentation about this box but...
-         * most of m4a encoders and ffmpeg uses this box with dummy values (same values)
-         */
-
         final ByteBuffer buffer = ByteBuffer.wrap(new byte[] {
                 0x00, 0x00, 0x00, 0x1A, // box size
                 0x73, 0x67, 0x70, 0x64, // "sgpd"
                 0x01, 0x00, 0x00, 0x00, // box flags (unknown flag sets)
-                0x72, 0x6F, 0x6C, 0x6C, // ¿¿group type??
-                0x00, 0x00, 0x00, 0x02, // ¿¿??
-                0x00, 0x00, 0x00, 0x01, // ¿¿??
-                (byte) 0xFF, (byte) 0xFF // ¿¿??
+                0x72, 0x6F, 0x6C, 0x6C, // group type??
+                0x00, 0x00, 0x00, 0x02, // ??
+                0x00, 0x00, 0x00, 0x01, // ??
+                (byte) 0xFF, (byte) 0xFF // ??
         });
 
         return buffer.array();
@@ -955,6 +964,7 @@ public class Mp4FromDashWriter {
             writeMetaItem("©ART", artist);
         }
         if (date != null && !date.isEmpty()) {
+            // this means 'year' in mp4 metadata, who the hell thought that?
             writeMetaItem("©day", date);
         }
 
@@ -1037,8 +1047,11 @@ public class Mp4FromDashWriter {
     }
 
     /**
-     * Helper to write cover image inside the 'udta' box.
-     *
+     * Helper to add cover image inside the 'udta' box.
+     * <p>
+     * This method writes the 'covr' metadata item which contains the cover image.
+     * The cover image is displayed as thumbnail in many media players and file managers.
+     * </p>
      * <pre>
      *     [size][key] [data_box]
      *     data_box = [size]["data"][type(4bytes)][locale(4bytes)=0][payload]

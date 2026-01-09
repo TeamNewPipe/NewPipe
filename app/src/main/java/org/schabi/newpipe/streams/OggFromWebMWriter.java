@@ -29,18 +29,64 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
+ * <p>
+ *     This class is used to convert a WebM stream containing Opus or Vorbis audio
+ *     into an Ogg stream.
+ * </p>
+ *
+ * <p>
+ *     The following specifications are used for the implementation:
+ * </p>
+ * <ul>
+ *     <li>FLAC: <a href="https://www.rfc-editor.org/rfc/rfc9639">RFC 9639</a></li>
+ *     <li>Opus: All specs can be found at <a href="https://opus-codec.org/docs/">
+ *         https://opus-codec.org/docs/</a>.
+ *         <a href="https://datatracker.ietf.org/doc/html/rfc7845.html">RFC7845</a>
+ *         defines the Ogg encapsulation for Opus streams, i.e.the container format and metadata.
+ *     </li>
+ *     <li>Vorbis: <a href="https://www.xiph.org/vorbis/doc/Vorbis_I_spec.html">Vorbis I</a></li>
+ * </ul>
+ *
  * @author kapodamy
+ * @author tobigr
  */
 public class OggFromWebMWriter implements Closeable {
+    private static final String TAG = OggFromWebMWriter.class.getSimpleName();
+
+    /**
+     * No flags set.
+     */
     private static final byte FLAG_UNSET = 0x00;
-    //private static final byte FLAG_CONTINUED = 0x01;
+    /**
+     * The packet is continued from previous the previous page.
+     */
+    private static final byte FLAG_CONTINUED = 0x01;
+    /**
+     * BOS (beginning of stream).
+     */
     private static final byte FLAG_FIRST = 0x02;
-    private static final byte FLAG_LAST = 0x04;
+    /**
+     * EOS (end of stream).
+     */
+    private static final byte FLAG_LAST = 0x04;;
 
     private static final byte HEADER_CHECKSUM_OFFSET = 22;
     private static final byte HEADER_SIZE = 27;
 
-    private static final int TIME_SCALE_NS = 1000000000;
+    private static final int TIME_SCALE_NS = 1_000_000_000;
+
+    /**
+     * The maximum size of a segment in the Ogg page, in bytes.
+     * This is a fixed value defined by the Ogg specification.
+     */
+    private static final int OGG_SEGMENT_SIZE = 255;
+
+    /**
+     * The maximum size of the Opus packet in bytes, to be included in the Ogg page.
+     * @see <a href="https://datatracker.ietf.org/doc/html/rfc7845.html#section-6">
+     *     RFC7845 6. Packet Size Limits</a>
+     */
+    private static final int OPUS_MAX_PACKETS_PAGE_SIZE = 65_025;
 
     private boolean done = false;
     private boolean parsed = false;
@@ -62,7 +108,7 @@ public class OggFromWebMWriter implements Closeable {
     private long webmBlockNearDuration = 0;
 
     private short segmentTableSize = 0;
-    private final byte[] segmentTable = new byte[255];
+    private final byte[] segmentTable = new byte[OGG_SEGMENT_SIZE];
     private long segmentTableNextTimestamp = TIME_SCALE_NS;
 
     private final int[] crc32Table = new int[256];
@@ -203,16 +249,16 @@ public class OggFromWebMWriter implements Closeable {
         /* step 2: create packet with code init data */
         if (webmTrack.codecPrivate != null) {
             addPacketSegment(webmTrack.codecPrivate.length);
-            makePacketheader(0x00, header, webmTrack.codecPrivate);
+            makePacketHeader(0x00, header, webmTrack.codecPrivate);
             write(header);
             output.write(webmTrack.codecPrivate);
         }
 
         /* step 3: create packet with metadata */
-        final byte[] buffer = makeMetadata();
+        final byte[] buffer = makeCommentHeader();
         if (buffer != null) {
             addPacketSegment(buffer.length);
-            makePacketheader(0x00, header, buffer);
+            makePacketHeader(0x00, header, buffer);
             write(header);
             output.write(buffer);
         }
@@ -251,7 +297,7 @@ public class OggFromWebMWriter implements Closeable {
             elapsedNs = Math.ceil(elapsedNs * resolution);
 
             // create header and calculate page checksum
-            int checksum = makePacketheader((long) elapsedNs, header, null);
+            int checksum = makePacketHeader((long) elapsedNs, header, null);
             checksum = calcCrc32(checksum, page.array(), page.position());
 
             header.putInt(HEADER_CHECKSUM_OFFSET, checksum);
@@ -264,7 +310,7 @@ public class OggFromWebMWriter implements Closeable {
         }
     }
 
-    private int makePacketheader(final long granPos, @NonNull final ByteBuffer buffer,
+    private int makePacketHeader(final long granPos, @NonNull final ByteBuffer buffer,
                                  final byte[] immediatePage) {
         short length = HEADER_SIZE;
 
@@ -297,10 +343,24 @@ public class OggFromWebMWriter implements Closeable {
         return checksumCrc32;
     }
 
+    /**
+     * Creates the metadata header for the selected codec (Opus or Vorbis).
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/rfc7845.html#section-5.2">
+     *     RFC7845 5.2. Comment Header</a> for OPUS metadata header format
+     * @see <a href="https://xiph.org/vorbis/doc/Vorbis_I_spec.html#x1-610004.2">
+     *     Vorbis I 4.2. Header decode and decode setup</a> and
+     *     <a href="https://xiph.org/vorbis/doc/Vorbis_I_spec.html#x1-820005">
+     *     Vorbis 5. comment field and header specification</a>
+     *     for VORBIS metadata header format
+     *
+     * @return the metadata header as a byte array, or null if the codec is not supported
+     * for metadata generation
+     */
     @Nullable
-    private byte[] makeMetadata() {
+    private byte[] makeCommentHeader() {
         if (DEBUG) {
-            Log.d("OggFromWebMWriter", "Downloading media with codec ID " + webmTrack.codecId);
+            Log.d(TAG, "Downloading media with codec ID " + webmTrack.codecId);
         }
 
         if ("A_OPUS".equals(webmTrack.codecId)) {
@@ -315,19 +375,22 @@ public class OggFromWebMWriter implements Closeable {
                         .getLocalDateTime()
                         .format(DateTimeFormatter.ISO_DATE)));
                  if (thumbnail != null) {
-                     metadata.add(makeOpusPictureTag(thumbnail));
+                     metadata.add(makeFlacPictureTag(thumbnail));
                  }
             }
 
             if (DEBUG) {
-                Log.d("OggFromWebMWriter", "Creating metadata header with this data:");
-                metadata.forEach(p -> Log.d("OggFromWebMWriter", p.first + "=" + p.second));
+                Log.d(TAG, "Creating metadata header with this data:");
+                metadata.forEach(p -> Log.d(TAG, p.first + "=" + p.second));
             }
 
             return makeOpusTagsHeader(metadata);
         } else if ("A_VORBIS".equals(webmTrack.codecId)) {
+            // See https://xiph.org/vorbis/doc/Vorbis_I_spec.html#x1-610004.2
+            // for the Vorbis comment header format
+            // TODO: add Vorbis metadata: same as Opus, but with the Vorbis comment header format
             return new byte[]{
-                    0x03, // ???
+                    0x03, // packet type for Vorbis comment header
                     0x76, 0x6f, 0x72, 0x62, 0x69, 0x73, // "vorbis" binary string
                     0x00, 0x00, 0x00, 0x00, // writing application string size (not present)
                     0x00, 0x00, 0x00, 0x00 // additional tags count (zero means no tags)
@@ -358,27 +421,37 @@ public class OggFromWebMWriter implements Closeable {
     }
 
     /**
-     * Adds the {@code METADATA_BLOCK_PICTURE} tag to the Opus metadata,
-     * containing the provided bitmap as cover art.
+     * Generates a FLAC picture block for the provided bitmap.
      *
      * <p>
-     *     One could also use the COVERART tag instead, but it is not as widely supported
-     *     as METADATA_BLOCK_PICTURE.
+     *     The {@code METADATA_BLOCK_PICTURE} tag is defined in the FLAC specification (RFC 9639)
+     *     and is supported by Opus and Vorbis metadata headers.
+     *     The picture block contains the image data which is converted to JPEG
+     *     and associated metadata such as picture type, dimensions, and color depth.
+     *     The image data is Base64-encoded as per specification.
      * </p>
      *
-     * @param bitmap The bitmap to use as cover art
-     * @return The key-value pair representing the tag
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9639.html#section-8.8">
+     *     RFC 9639 8.8 Picture</a>
+     *
+     * @param bitmap The bitmap to use for the picture block
+     * @return The key-value pair representing the tag.
+     * The key is {@code METADATA_BLOCK_PICTURE}
+     * and the value is the Base64-encoded FLAC picture block.
      */
-    private static Pair<String, String> makeOpusPictureTag(final Bitmap bitmap) {
+    private static Pair<String, String> makeFlacPictureTag(final Bitmap bitmap) {
         // FLAC picture block format (big-endian):
         // uint32 picture_type
-        // uint32 mime_length, mime_string
-        // uint32 desc_length, desc_string
+        // uint32 mime_length,
+        //        mime_string
+        // uint32 desc_length,
+        //        desc_string
         // uint32 width
         // uint32 height
         // uint32 color_depth
         // uint32 colors_indexed
-        // uint32 data_length, data_bytes
+        // uint32 data_length,
+        //        data_bytes
 
         final ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -389,7 +462,11 @@ public class OggFromWebMWriter implements Closeable {
         // fixed ints + mime + desc
         final int headerSize = 4 * 8 + mimeBytes.length + descBytes.length;
         final ByteBuffer buf = ByteBuffer.allocate(headerSize + imageData.length);
-        buf.putInt(3); // picture type: 3 = Cover (front)
+        // See https://www.rfc-editor.org/rfc/rfc9639.html#table-13 for the complete list
+        // of picture types
+        // TODO: allow specifying other picture types, i.e. cover (front) for music albums;
+        //       but this info needs to be provided by the extractor first.
+        buf.putInt(3); // picture type: 0 = Other, 2 = Cover (front)
         buf.putInt(mimeBytes.length);
         buf.put(mimeBytes);
         buf.putInt(descBytes.length);
@@ -397,10 +474,10 @@ public class OggFromWebMWriter implements Closeable {
         if (descBytes.length > 0) {
             buf.put(descBytes);
         }
-        buf.putInt(bitmap.getWidth()); // width (unknown)
-        buf.putInt(bitmap.getHeight()); // height (unknown)
-        buf.putInt(0); // color depth
-        buf.putInt(0); // colors indexed
+        buf.putInt(bitmap.getWidth());
+        buf.putInt(bitmap.getHeight());
+        buf.putInt(24); // color depth for JPEG and PNG is usually 24 bits
+        buf.putInt(0); // colors indexed (0 for non-indexed images like JPEG)
         buf.putInt(imageData.length);
         buf.put(imageData);
         final String b64 = Base64.getEncoder().encodeToString(buf.array());
@@ -412,6 +489,9 @@ public class OggFromWebMWriter implements Closeable {
      * <p>
      * You probably want to use makeOpusMetadata(), which uses this function to create
      * a header with sensible metadata filled in.
+     *
+     * @ImplNote See <a href="https://datatracker.ietf.org/doc/html/rfc7845.html#section-5.2">
+     *     RFC7845 5.2</a>
      *
      * @param keyValueLines A list of pairs of the tags. This can also be though of as a mapping
      *                      from one key to multiple values.
@@ -431,6 +511,7 @@ public class OggFromWebMWriter implements Closeable {
 
         final var head = ByteBuffer.allocate(byteCount);
         head.order(ByteOrder.LITTLE_ENDIAN);
+        // See RFC7845 5.2: https://datatracker.ietf.org/doc/html/rfc7845.html#section-5.2
         head.put(new byte[]{
                 0x4F, 0x70, 0x75, 0x73, 0x54, 0x61, 0x67, 0x73, // "OpusTags" binary string
                 0x00, 0x00, 0x00, 0x00, // vendor (aka. Encoder) string of length 0
@@ -514,18 +595,19 @@ public class OggFromWebMWriter implements Closeable {
     }
 
     private boolean addPacketSegment(final int size) {
-        if (size > 65025) {
-            throw new UnsupportedOperationException(
-                    String.format("page size is %s but cannot be larger than 65025", size));
+        if (size > OPUS_MAX_PACKETS_PAGE_SIZE) {
+            throw new UnsupportedOperationException(String.format(
+                    "page size is %s but cannot be larger than %s",
+                    size, OPUS_MAX_PACKETS_PAGE_SIZE));
         }
 
-        int available = (segmentTable.length - segmentTableSize) * 255;
-        final boolean extra = (size % 255) == 0;
+        int available = (segmentTable.length - segmentTableSize) * OGG_SEGMENT_SIZE;
+        final boolean extra = (size % OGG_SEGMENT_SIZE) == 0;
 
         if (extra) {
             // add a zero byte entry in the table
-            // required to indicate the sample size is multiple of 255
-            available -= 255;
+            // required to indicate the sample size is multiple of OGG_SEGMENT_SIZE
+            available -= OGG_SEGMENT_SIZE;
         }
 
         // check if possible add the segment, without overflow the table
@@ -533,8 +615,8 @@ public class OggFromWebMWriter implements Closeable {
             return false; // not enough space on the page
         }
 
-        for (int seg = size; seg > 0; seg -= 255) {
-            segmentTable[segmentTableSize++] = (byte) Math.min(seg, 255);
+        for (int seg = size; seg > 0; seg -= OGG_SEGMENT_SIZE) {
+            segmentTable[segmentTableSize++] = (byte) Math.min(seg, OGG_SEGMENT_SIZE);
         }
 
         if (extra) {
