@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.streams.io.SharpStream;
@@ -33,7 +34,7 @@ public abstract class Postprocessing implements Serializable {
     public transient static final String ALGORITHM_OGG_FROM_WEBM_DEMUXER = "webm-ogg-d";
 
     public static Postprocessing getAlgorithm(@NonNull String algorithmName, String[] args,
-                                              StreamInfo streamInfo) {
+                                              @NonNull StreamInfo streamInfo) {
         Postprocessing instance;
 
         switch (algorithmName) {
@@ -80,7 +81,18 @@ public abstract class Postprocessing implements Serializable {
     private final String name;
 
     private String[] args;
+
+    /**
+     * StreamInfo object related to the current download
+     */
+    @NonNull
     protected StreamInfo streamInfo;
+
+    /**
+     * The thumbnail / cover art bitmap associated with the current download.
+     * May be null.
+     */
+    @Nullable
     protected Bitmap thumbnail;
 
     private transient DownloadMission mission;
