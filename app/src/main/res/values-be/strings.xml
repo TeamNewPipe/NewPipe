@@ -831,4 +831,5 @@
     <string name="trending_movies">Трэнды – фільмы і перадачы</string>
     <string name="unsupported_content_in_country">Гэты кантэнт недаступны для цяперашняй краіны кантэнту.\n\nЯе можна змяніць праз «Налады &gt; Кантэнт &gt; Прадвызначаная краіна кантэнту».</string>
     <string name="migration_info_7_8_message">21 ліпеня 2025 года YouTube спыніў падтрымку аб\'яднанай старонкі трэндаў. NewPipe замяніў старонку трэндаў на трэнды трансляцый.\n\nТаксама можна выбраць іншыя старонкі трэндаў праз «Налады &gt; Кантэнт &gt; Змесціва галоўнай старонкі».</string>
+    <string name="migration_info_7_8_title">Аб\'яднаныя трэнды YouTube выдалены</string>
 </resources>

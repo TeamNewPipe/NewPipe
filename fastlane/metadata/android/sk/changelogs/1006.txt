@@ -1,16 +1,16 @@
-# Vylepšené
-Aktuálny prehrávač zostane zachovaný pri kliknutí na časové značky
-Ak je to možné, pokúsi sa obnoviť čakajúce úlohy sťahovania
-Pridaná možnosť odstrániť sťahovanie bez odstránenia súboru
-Oprávnenie zobrazenia cez ostatné aplikácie: zobrazí vysvetlenie pre Android > R
-Podpora otvárania odkazov on.soundcloud
-Množstvo malých vylepšení a optimalizácií
+# Improved
+Keep current player when clicking on timestamps
+Try to recover pending download missions when possible
+Add option to delete a download without also deleting file
+Overlay Permission: display explanatory dialog for Android > R
+Support on.soundcloud link opening
+A lot of small improvements and optimizations
 
-# Opravené
-Oprava formátovania krátkeho počítania pre verzie Androidu nižšie ako 7
-Oprava klamných oznámení
-Oprava súborov titulkov SRT
-Oprava množstva zlyhaní
+# Fixed
+Fix short count formatting for Android versions below 7
+Fix ghost notifications
+Fixes for SRT subtitle files
+Fixed tons of crashes
 
-# Vývoj
-Modernizácia interného kódu
+# Development
+Internal code modernization
