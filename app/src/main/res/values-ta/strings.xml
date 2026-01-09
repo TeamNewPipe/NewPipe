@@ -509,7 +509,7 @@
     <string name="feed_show_hide_streams">ச்ட்ரீம்களைக் காட்டு/மறைக்க</string>
     <string name="georestricted_content">இந்த உள்ளடக்கம் உங்கள் நாட்டில் கிடைக்கவில்லை.</string>
     <string name="give_back">திருப்பித் தரவும்</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">ஆம், மற்றும் ஓரளவு பார்த்த வீடியோக்கள்</string>
+    <string name="remove_watched_popup_partially_watched_streams">ஆம், மற்றும் ஓரளவு பார்த்த வீடியோக்கள்</string>
     <string name="feed_oldest_subscription_update">கடைசியாக புதுப்பிக்கப்பட்டது: %s</string>
     <plurals name="listening">
         <item quantity="one">%s கேட்பவர்</item>

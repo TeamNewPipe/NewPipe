@@ -384,7 +384,7 @@
         <item quantity="other">%d sekondlar</item>
     </plurals>
     <string name="new_seek_duration_toast">ExoPlayer cheklovlari tufayli qidiruv davomiyligi %d soniya qilib belgilandi</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ha, va qisman videolarni tomosha qildim</string>
+    <string name="remove_watched_popup_partially_watched_streams">Ha, va qisman videolarni tomosha qildim</string>
     <string name="remove_watched_popup_warning">Pleylistga qo\'shilishdan oldin va keyin ko\'rilgan videolar o\'chiriladi.
 \nIshonchingiz komilmi\? Buni qaytarib bo\'lmaydi!</string>
     <string name="remove_watched_popup_title">Ko\'rilgan videolar olib tashlansinmi\?</string>

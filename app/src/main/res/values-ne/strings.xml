@@ -514,7 +514,7 @@
     <string name="content_not_supported">यो सामग्री अझै NewPipeमा समर्थित छैन। 
 \n… 
 \nआशा छ कि भविष्यको संस्करणमा समर्थित हुनेछ।</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">हो र आंशिक रूपमा हेरिएको भिडियोहरू</string>
+    <string name="remove_watched_popup_partially_watched_streams">हो र आंशिक रूपमा हेरिएको भिडियोहरू</string>
     <string name="notification_colorize_title">सूचना पाटी रंगिन बनाउनु</string>
     <string name="notification_action_nothing">केहि छैन</string>
     <string name="notification_action_buffering">Buffering हुँदै</string>

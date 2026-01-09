@@ -502,7 +502,7 @@
     <string name="feed_processing_message">Obrada feeda u tijeku …</string>
     <string name="feed_oldest_subscription_update">Zadnje aktualiziranje feeda: %s</string>
     <string name="feed_groups_header_title">Grupe kanala</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Da, i djelomično pogledana videa</string>
+    <string name="remove_watched_popup_partially_watched_streams">Da, i djelomično pogledana videa</string>
     <string name="choose_instance_prompt">Odaberi jednu instancu</string>
     <string name="downloads_storage_ask_summary">Aplikacija će te pitati kamo spremati preuzimanja.
 \nUključi sustavksi birač mapa (SAF) ako želiš preuzeti na eksternu SD karticu</string>

@@ -228,7 +228,7 @@
     <string name="feed_update_threshold_title">Limite de atualização da fonte</string>
     <string name="ok">OK</string>
     <string name="subscription_update_failed">Não foi possível atualizar a subscrição</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim e também os vídeos parcialmente vistos</string>
+    <string name="remove_watched_popup_partially_watched_streams">Sim e também os vídeos parcialmente vistos</string>
     <string name="no_playlist_bookmarked_yet">Ainda não há listas de reprodução favoritas</string>
     <plurals name="listening">
         <item quantity="one">%s ouvinte</item>
