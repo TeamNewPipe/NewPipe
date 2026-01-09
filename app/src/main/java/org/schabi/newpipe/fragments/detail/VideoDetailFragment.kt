@@ -9,8 +9,8 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.content.pm.ActivityInfo
+import android.content.res.ColorStateList
 import android.database.ContentObserver
-import android.graphics.Color
 import android.graphics.Rect
 import android.os.Build
 import android.os.Bundle
@@ -44,6 +44,7 @@ import androidx.core.net.toUri
 import androidx.core.os.postDelayed
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.core.widget.ImageViewCompat
 import androidx.preference.PreferenceManager
 import coil3.util.CoilUtils
 import com.evernote.android.state.State
@@ -270,7 +271,7 @@ class VideoDetailFragment :
     ): View {
         val newBinding = FragmentVideoDetailBinding.inflate(inflater, container, false)
         nullableBinding = newBinding
-        return newBinding.getRoot()
+        return newBinding.root
     }
 
     override fun onPause() {
@@ -555,6 +556,13 @@ class VideoDetailFragment :
         pageAdapter = TabAdapter(getChildFragmentManager())
         binding.viewPager.setAdapter(pageAdapter)
         binding.tabLayout.setupWithViewPager(binding.viewPager)
+
+        val controlTint = ColorStateList.valueOf(
+            ThemeHelper.resolveColorFromAttr(activity, android.R.attr.colorPrimary)
+        )
+        ImageViewCompat.setImageTintList(binding.overlayPlayPauseButton, controlTint)
+        ImageViewCompat.setImageTintList(binding.overlayPlayQueueButton, controlTint)
+        ImageViewCompat.setImageTintList(binding.overlayCloseButton, controlTint)
 
         binding.detailThumbnailRootLayout.requestFocus()
 
@@ -1786,9 +1794,6 @@ class VideoDetailFragment :
         }
         activity.window.decorView.systemUiVisibility = 0
         activity.window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        activity.window.statusBarColor = ThemeHelper.resolveColorFromAttr(
-            requireContext(), android.R.attr.colorPrimary
-        )
     }
 
     private fun hideSystemUi() {
@@ -1820,11 +1825,6 @@ class VideoDetailFragment :
             visibility = visibility or View.SYSTEM_UI_FLAG_FULLSCREEN
         }
         activity.window.decorView.systemUiVisibility = visibility
-
-        if (isInMultiWindow || this.isFullscreen) {
-            activity.window.statusBarColor = Color.TRANSPARENT
-            activity.window.navigationBarColor = Color.TRANSPARENT
-        }
         activity.window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 

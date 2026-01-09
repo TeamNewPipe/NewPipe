@@ -4,7 +4,6 @@ import static org.schabi.newpipe.util.SparseItemUtil.fetchStreamInfoAndSaveToDat
 import static org.schabi.newpipe.util.external_communication.ShareUtils.shareText;
 
 import android.content.Context;
-import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.PopupMenu;
 
@@ -30,10 +29,7 @@ public final class QueueItemMenuUtil {
                                      final boolean hideDetails,
                                      final FragmentManager fragmentManager,
                                      final Context context) {
-        final ContextThemeWrapper themeWrapper =
-                new ContextThemeWrapper(context, R.style.DarkPopupMenu);
-
-        final PopupMenu popupMenu = new PopupMenu(themeWrapper, view);
+        final PopupMenu popupMenu = new PopupMenu(context, view);
         popupMenu.inflate(R.menu.menu_play_queue_item);
 
         if (hideDetails) {
