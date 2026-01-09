@@ -11,6 +11,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+import com.russhwolf.settings.Settings
+import org.koin.compose.koinInject
 
 private val lightScheme = lightColorScheme(
     primary = primaryLight,
@@ -88,12 +91,25 @@ private val darkScheme = darkColorScheme(
     surfaceContainerHighest = surfaceContainerHighestDark,
 )
 
+private val blackScheme = darkScheme.copy(surface = Color.Black)
+
 @Composable
-fun AppTheme(useDarkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+fun AppTheme(
+    useDarkTheme: Boolean = isSystemInDarkTheme(),
+    settings: Settings = koinInject(),
+    content: @Composable () -> Unit
+) {
+    val nightScheme = when(settings.getString("night_theme", "dark_theme")) {
+        "black_theme" -> blackScheme
+        else -> darkScheme
+    }
+
     MaterialTheme(
-        colorScheme = when {
-            !useDarkTheme -> lightScheme
-            else -> darkScheme
+        colorScheme = when(settings.getString("theme", "auto_device_theme")) {
+            "light_theme" -> lightScheme
+            "dark_theme" -> darkScheme
+            "black_theme" -> blackScheme
+            else -> if (!useDarkTheme) lightScheme else nightScheme
         },
         content = content
     )

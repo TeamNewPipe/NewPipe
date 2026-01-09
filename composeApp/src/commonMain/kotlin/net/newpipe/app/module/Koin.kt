@@ -5,8 +5,9 @@
 
 package net.newpipe.app.module
 
-import org.koin.dsl.module
+import org.koin.core.module.Module
 
-val appModules = module {
-
-}
+/**
+ * Contains platform specific module; See actual implementation for more details
+ */
+expect val platformModule: Module
