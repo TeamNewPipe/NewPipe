@@ -817,7 +817,7 @@
     <string name="entry_deleted">Bejegyzés törölve</string>
     <string name="account_terminated_service_provides_reason">Fiók megszüntetve\n\n%1$s az alábbi ok miatt: %2$s</string>
     <string name="player_http_403">A lejátszás közben a kiszolgáló 403-as HTTP-hibát adott vissza, valószínűleg a közvetítési hivatkozás érvényessége lejárt vagy a IP-tiltás miatt</string>
-    <string name="player_http_invalid_status">HTTP-hiba %1$s érkezett a kiszolgáltól a lejátszás közben</string>
+    <string name="player_http_invalid_status">HTTP-hiba (%1$s) érkezett a kiszolgálótól a lejátszás során</string>
     <string name="youtube_player_http_403">HTTP 403-as hiba érkezett a kiszolgálótól a lejátszás közben, valószínűleg IP-tiltás vagy a közvetítési hivatkozás feloldási problémák miatt</string>
     <string name="sign_in_confirm_not_bot_error">%1$s visszautasította az adatok szolgáltatását, és bejelentkezést kér annak megerősítésére, hogy a kérés nem robot által érkezik.\n\nElőfordulhat, hogy az IP-címét ideiglenesen letiltotta %1$s, várhat egy keveset, vagy váltson egy másik IP-címre (például VPN be-/kikapcsolásával, vagy Wi-Fi-ről mobiladat-forgalomra váltva).</string>
     <string name="unsupported_content_in_country">Ez a tartalom a jelenleg kiválasztott tartalom országában nem elérhető.\n\nVáltoztassa meg a „Beállítások &gt; Tartalom &gt;Tartalom alapértelmezett országa” menüpontban.</string>
