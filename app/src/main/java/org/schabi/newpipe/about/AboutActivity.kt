@@ -92,7 +92,7 @@ class AboutActivity : AppCompatActivity() {
             return when (position) {
                 posAbout -> AboutFragment()
                 posLicense -> LicenseFragment.newInstance(SOFTWARE_COMPONENTS)
-                else -> throw IllegalArgumentException("Unknown position for ViewPager2")
+                else -> error("Unknown position for ViewPager2")
             }
         }
 
@@ -105,7 +105,7 @@ class AboutActivity : AppCompatActivity() {
             return when (position) {
                 posAbout -> R.string.tab_about
                 posLicense -> R.string.tab_licenses
-                else -> throw IllegalArgumentException("Unknown position for ViewPager2")
+                else -> error("Unknown position for ViewPager2")
             }
         }
     }
