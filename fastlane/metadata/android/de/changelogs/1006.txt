@@ -11,6 +11,3 @@ Kurzformatierung für Android-Versionen unter 7
 Geisterbenachrichtigungen
 SRT-Untertiteldateien
 Zahlreiche Abstürze
-
-# Entwicklung
-Modernisierung des internen Codes

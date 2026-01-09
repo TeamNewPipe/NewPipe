@@ -11,6 +11,3 @@ Naprawione
 - Puste powiadomienia
 - Pliki napisów SRT
 - Mnóstwo awarii
-
-Rozwój
-- Modernizacja wewnętrznego kodu

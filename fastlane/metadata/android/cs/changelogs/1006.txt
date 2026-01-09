@@ -4,13 +4,9 @@ Pokus o obnovení čekajících stahování, pokud to jde
 Možnost odstranění stahování bez smazání souboru
 Oprávnění Zobrazení přes ostatní aplikace: zobrazení vysvětlení pro Android > R
 Podpora odkazů on.soundcloud
-Spousta malých vylepšení a optimalizací
 
 # Opravy
 Oprava formátování pro verze Androidu nižší než 7
 Oprava falešných oznámení
 Opravy souborů titulků SRT
 Oprava spousty pádů
-
-# Vývoj
-Interní modernizace kódu
