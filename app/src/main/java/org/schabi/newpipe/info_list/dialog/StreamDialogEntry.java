@@ -4,7 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 
@@ -26,6 +26,6 @@ public class StreamDialogEntry {
     }
 
     public interface StreamDialogEntryAction {
-        void onClick(Fragment fragment, StreamInfoItem infoItem);
+        void onClick(FragmentActivity fragmentActivity, StreamInfoItem infoItem);
     }
 }

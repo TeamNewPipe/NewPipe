@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="accessibility_action_show_options" type="id"/>
+    <item name="accessibility_action_enqueue" type="id"/>
+    <item name="accessibility_action_enqueue_next" type="id"/>
+    <item name="accessibility_action_background" type="id"/>
+    <item name="accessibility_action_popup" type="id"/>
+    <item name="accessibility_action_download" type="id"/>
+    <item name="accessibility_action_playlist" type="id"/>
+    <item name="accessibility_action_share" type="id"/>
+    <item name="accessibility_action_browser" type="id"/>
+    <item name="accessibility_action_kodi" type="id"/>
+    <item name="accessibility_action_mark_watched" type="id"/>
+    <item name="accessibility_action_channel_details" type="id"/>
+</resources>
