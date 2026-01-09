@@ -65,6 +65,8 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     private CompositeDisposable disposables = new CompositeDisposable();
     private LocalPlaylistManager localPlaylistManager;
     private RemotePlaylistManager remotePlaylistManager;
+    private org.schabi.newpipe.local.playlist.PlaylistFolderManager playlistFolderManager;
+    private org.schabi.newpipe.local.bookmark.PlaylistFoldersAdapter foldersAdapter;
     private ItemTouchHelper itemTouchHelper;
 
     /* Have the bookmarked playlists been fully loaded from db */
@@ -89,6 +91,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         final AppDatabase database = NewPipeDatabase.getInstance(activity);
         localPlaylistManager = new LocalPlaylistManager(database);
         remotePlaylistManager = new RemotePlaylistManager(database);
+        playlistFolderManager = new org.schabi.newpipe.local.playlist.PlaylistFolderManager(database);
         disposables = new CompositeDisposable();
 
         isLoadingComplete = new AtomicBoolean();
@@ -128,6 +131,53 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         itemListAdapter.setUseItemHandle(true);
         final ComposeView emptyView = rootView.findViewById(R.id.empty_state_view);
         EmptyStateUtil.setEmptyStateComposable(emptyView, EmptyStateSpec.NoBookmarkedPlaylist);
+
+        final androidx.recyclerview.widget.RecyclerView folderBar = rootView.findViewById(R.id.folder_bar);
+        foldersAdapter = new PlaylistFoldersAdapter(new PlaylistFoldersAdapter.Listener() {
+            @Override
+            public void onFolderSelected(Long folderId) {
+                // reload playlists for selected folder
+                startLoading(true);
+            }
+
+            @Override
+            public void onFolderLongPressed(Long folderId, String name, int position) {
+                // rename / delete dialog
+                showFolderOptions(folderId, name);
+            }
+        });
+        folderBar.setAdapter(foldersAdapter);
+        // Observe folders and populate adapter (add virtual "All" and "Ungrouped")
+        disposables.add(playlistFolderManager.getFolders()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(folders -> {
+                java.util.List<org.schabi.newpipe.database.playlist.model.PlaylistFolderEntity> shown = new java.util.ArrayList<>();
+                // virtual 'All'
+                shown.add(new org.schabi.newpipe.database.playlist.model.PlaylistFolderEntity(-2, getString(R.string.tab_bookmarks), 0));
+                // actual folders
+                if (folders != null) shown.addAll(folders);
+                // virtual 'Ungrouped'
+                shown.add(new org.schabi.newpipe.database.playlist.model.PlaylistFolderEntity(-1, getString(R.string.no_playlist_bookmarked_yet), Long.MAX_VALUE));
+                foldersAdapter.setFolders(shown);
+            }, throwable -> showError(new ErrorInfo(throwable, UserAction.REQUESTED_BOOKMARK, "Loading folders"))));
+
+        final com.google.android.material.floatingactionbutton.FloatingActionButton fab =
+            rootView.findViewById(R.id.create_folder_fab);
+        fab.setOnClickListener(v -> {
+            final org.schabi.newpipe.databinding.DialogEditTextBinding dialogBinding =
+                org.schabi.newpipe.databinding.DialogEditTextBinding.inflate(getLayoutInflater());
+            dialogBinding.dialogEditText.setHint(R.string.name);
+            new AlertDialog.Builder(activity)
+                .setView(dialogBinding.getRoot())
+                .setPositiveButton(R.string.create_playlist, (d, w) -> {
+                final String name = dialogBinding.dialogEditText.getText().toString();
+                disposables.add(playlistFolderManager.createFolder(name)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(id -> { }, throwable -> showError(new ErrorInfo(throwable, UserAction.REQUESTED_BOOKMARK, "Creating folder"))));
+                })
+                .setNegativeButton(R.string.cancel, null)
+                .show();
+        });
     }
 
     @Override
@@ -190,10 +240,25 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         }
         isLoadingComplete.set(false);
 
-        getMergedOrderedPlaylists(localPlaylistManager, remotePlaylistManager)
+        // Use current folder selection from adapter (if any), else null meaning All
+        Long selectedFolderId = foldersAdapter == null ? null : foldersAdapter.getSelectedFolderId();
+
+        io.reactivex.rxjava3.core.Flowable<java.util.List<org.schabi.newpipe.database.playlist.PlaylistLocalItem>> localFlowable =
+                localPlaylistManager.getPlaylistsForFolder(selectedFolderId == null ? null : selectedFolderId)
                 .onBackpressureLatest()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getPlaylistsSubscriber());
+                .observeOn(AndroidSchedulers.mainThread());
+
+        io.reactivex.rxjava3.core.Flowable<java.util.List<org.schabi.newpipe.database.playlist.PlaylistLocalItem>> remoteFlowable =
+            remotePlaylistManager.getPlaylists()
+                .onBackpressureLatest()
+                .observeOn(AndroidSchedulers.mainThread());
+
+        io.reactivex.rxjava3.core.Flowable.combineLatest(
+            localFlowable,
+            remoteFlowable,
+            (local, remote) -> org.schabi.newpipe.local.bookmark.MergedPlaylistManager.merge((java.util.List)local, (java.util.List)remote)
+        ).subscribe(getPlaylistsSubscriber());
+        
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -504,7 +569,9 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
         final ArrayList<String> items = new ArrayList<>();
         items.add(rename);
+        final String assign = getString(R.string.add_to_playlist);
         items.add(delete);
+        items.add(assign);
         if (isThumbnailPermanent) {
             items.add(unsetThumbnail);
         }
@@ -514,6 +581,48 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 showRenameDialog(selectedItem);
             } else if (items.get(index).equals(delete)) {
                 showDeleteDialog(selectedItem.getOrderingName(), selectedItem);
+            } else if (items.get(index).equals(assign)) {
+                // Show folder choice dialog
+                final java.util.List<org.schabi.newpipe.database.playlist.model.PlaylistFolderEntity> folders = foldersAdapter == null ? new java.util.ArrayList<>() : foldersAdapter.getFolders();
+                final java.util.List<String> names = new java.util.ArrayList<>();
+                names.add(getString(R.string.tab_bookmarks)); // All
+                for (org.schabi.newpipe.database.playlist.model.PlaylistFolderEntity f : folders) {
+                    // skip virtual entries if any
+                    if (f.getUid() >= 0) names.add(f.getName());
+                }
+                names.add(getString(R.string.no_playlist_bookmarked_yet)); // Ungrouped
+
+                final String[] arr = names.toArray(new String[0]);
+                new AlertDialog.Builder(activity)
+                        .setTitle(R.string.add_to_playlist)
+                        .setItems(arr, (dialog, which) -> {
+                            Long chosenFolderId = null;
+                            if (which == 0) {
+                                chosenFolderId = null; // All
+                            } else if (which == arr.length - 1) {
+                                chosenFolderId = -1L; // ungrouped (NULL)
+                            } else {
+                                // map to folders list (skip virtual All entry)
+                                int idx = which - 1;
+                                // find nth real folder
+                                int count = 0;
+                                for (org.schabi.newpipe.database.playlist.model.PlaylistFolderEntity f : folders) {
+                                    if (f.getUid() >= 0) {
+                                        if (count == idx) {
+                                            chosenFolderId = f.getUid();
+                                            break;
+                                        }
+                                        count++;
+                                    }
+                                }
+                            }
+                            // set folder on playlist (null means no filtering/all)
+                            Long dbFolderId = chosenFolderId != null && chosenFolderId.equals(-1L) ? null : chosenFolderId;
+                            disposables.add(localPlaylistManager.setPlaylistFolder(selectedItem.getUid(), dbFolderId)
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(() -> { }, throwable -> showError(new ErrorInfo(throwable, UserAction.REQUESTED_BOOKMARK, "Assigning folder"))));
+                        })
+                        .show();
             } else if (isThumbnailPermanent && items.get(index).equals(unsetThumbnail)) {
                 final long thumbnailStreamId = localPlaylistManager
                         .getAutomaticPlaylistThumbnailStreamId(selectedItem.getUid());
@@ -557,6 +666,40 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 .setCancelable(true)
                 .setPositiveButton(R.string.delete, (dialog, i) -> deleteItem(item))
                 .setNegativeButton(R.string.cancel, null)
+                .show();
+    }
+
+    private void showFolderOptions(final Long folderId, final String folderName) {
+        final String rename = getString(R.string.rename);
+        final String delete = getString(R.string.delete);
+
+        final String[] items = new String[] { rename, delete };
+
+        new AlertDialog.Builder(activity)
+                .setTitle(folderName)
+                .setItems(items, (d, index) -> {
+                    if (items[index].equals(rename)) {
+                        // rename dialog
+                        final org.schabi.newpipe.databinding.DialogEditTextBinding dialogBinding =
+                                org.schabi.newpipe.databinding.DialogEditTextBinding.inflate(getLayoutInflater());
+                        dialogBinding.dialogEditText.setText(folderName);
+                        new AlertDialog.Builder(activity)
+                                .setView(dialogBinding.getRoot())
+                                .setPositiveButton(R.string.rename, (dd, w) -> {
+                                    final String newName = dialogBinding.dialogEditText.getText().toString();
+                                    final org.schabi.newpipe.database.playlist.model.PlaylistFolderEntity folder = new org.schabi.newpipe.database.playlist.model.PlaylistFolderEntity(folderId, newName, 0);
+                                    disposables.add(playlistFolderManager.updateFolder(folder)
+                                            .observeOn(AndroidSchedulers.mainThread())
+                                            .subscribe(() -> { }, throwable -> showError(new ErrorInfo(throwable, UserAction.REQUESTED_BOOKMARK, "Renaming folder"))));
+                                })
+                                .setNegativeButton(R.string.cancel, null)
+                                .show();
+                    } else if (items[index].equals(delete)) {
+                        disposables.add(playlistFolderManager.deleteFolder(folderId)
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(() -> { }, throwable -> showError(new ErrorInfo(throwable, UserAction.REQUESTED_BOOKMARK, "Deleting folder"))));
+                    }
+                })
                 .show();
     }
 }

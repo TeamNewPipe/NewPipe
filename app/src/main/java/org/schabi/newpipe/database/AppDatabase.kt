@@ -34,7 +34,7 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity
 
 @TypeConverters(Converters::class)
 @Database(
-    version = Migrations.DB_VER_9,
+    version = Migrations.DB_VER_10,
     entities = [
         SubscriptionEntity::class,
         SearchHistoryEntry::class,
@@ -44,6 +44,7 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity
         PlaylistEntity::class,
         PlaylistStreamEntity::class,
         PlaylistRemoteEntity::class,
+        org.schabi.newpipe.database.playlist.model.PlaylistFolderEntity::class,
         FeedEntity::class,
         FeedGroupEntity::class,
         FeedGroupSubscriptionEntity::class,
@@ -56,6 +57,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun playlistDAO(): PlaylistDAO
     abstract fun playlistRemoteDAO(): PlaylistRemoteDAO
     abstract fun playlistStreamDAO(): PlaylistStreamDAO
+    abstract fun playlistFolderDAO(): org.schabi.newpipe.database.playlist.dao.PlaylistFolderDAO
     abstract fun searchHistoryDAO(): SearchHistoryDAO
     abstract fun streamDAO(): StreamDAO
     abstract fun streamHistoryDAO(): StreamHistoryDAO

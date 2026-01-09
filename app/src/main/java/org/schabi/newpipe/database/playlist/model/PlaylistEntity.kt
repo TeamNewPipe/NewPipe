@@ -26,9 +26,13 @@ data class PlaylistEntity @JvmOverloads constructor(
 
     @ColumnInfo(name = PLAYLIST_THUMBNAIL_STREAM_ID)
     var thumbnailStreamId: Long,
-
+    
+    @ColumnInfo(name = PLAYLIST_FOLDER_ID)
     @ColumnInfo(name = PLAYLIST_DISPLAY_INDEX)
-    var displayIndex: Long
+    var displayIndex: Long,
+
+    @ColumnInfo(name = PLAYLIST_FOLDER_ID)
+    var folderId: Long? = null,
 ) {
 
     @Ignore
@@ -46,6 +50,7 @@ data class PlaylistEntity @JvmOverloads constructor(
         const val PLAYLIST_TABLE = "playlists"
         const val PLAYLIST_ID = "uid"
         const val PLAYLIST_NAME = "name"
+        const val PLAYLIST_FOLDER_ID = "folder_id"
         const val PLAYLIST_THUMBNAIL_URL = "thumbnail_url"
         const val PLAYLIST_DISPLAY_INDEX = "display_index"
         const val PLAYLIST_THUMBNAIL_PERMANENT = "is_thumbnail_permanent"

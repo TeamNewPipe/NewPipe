@@ -71,9 +71,9 @@ interface PlaylistStreamDAO : BasicDAO<PlaylistStreamEntity> {
     @Transaction
     @Query(
         """
-        SELECT uid, name, is_thumbnail_permanent, thumbnail_stream_id, display_index,
+        SELECT uid, name,
         (SELECT thumbnail_url FROM streams WHERE streams.uid = thumbnail_stream_id) AS thumbnail_url,
-
+        display_index, is_thumbnail_permanent, thumbnail_stream_id, folder_id,
         COALESCE(COUNT(playlist_id), 0) AS streamCount FROM playlists
 
         LEFT JOIN playlist_stream_join
@@ -106,8 +106,9 @@ interface PlaylistStreamDAO : BasicDAO<PlaylistStreamEntity> {
     @Transaction
     @Query(
         """
-        SELECT playlists.uid, name, is_thumbnail_permanent, thumbnail_stream_id, display_index,
+        SELECT playlists.uid, name,
         (SELECT thumbnail_url FROM streams WHERE streams.uid = thumbnail_stream_id) AS thumbnail_url,
+        display_index, is_thumbnail_permanent, thumbnail_stream_id, folder_id,
 
         COALESCE(COUNT(playlist_id), 0) AS streamCount,
         COALESCE(SUM(url = :streamUrl), 0) AS timesStreamIsContained FROM playlists
