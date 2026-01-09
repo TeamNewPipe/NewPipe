@@ -36,7 +36,7 @@ lazy-column-scrollbar = "2.2.0"
 leakcanary = "2.14"
 lifecycle = "2.9.4" # Newer versions require minSdk >= 23
 markwon = "4.6.2"
-material = "1.13.0"
+material = "1.11.0" # TODO: update to newer version after bug is fixed. See https://github.com/TeamNewPipe/NewPipe/pull/13018
 media = "1.7.1"
 mockitoCore = "5.21.0"
 navigation-compose = "2.8.3"

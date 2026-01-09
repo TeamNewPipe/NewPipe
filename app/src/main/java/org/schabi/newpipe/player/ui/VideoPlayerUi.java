@@ -1557,6 +1557,11 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     @Override
     public void onVideoSizeChanged(@NonNull final VideoSize videoSize) {
         super.onVideoSizeChanged(videoSize);
+        // Starting with ExoPlayer 2.19.0, the VideoSize will report a width and height of 0
+        // if the renderer is disabled. In that case, we skip updating the aspect ratio.
+        if (videoSize.width == 0 || videoSize.height == 0) {
+            return;
+        }
         binding.surfaceView.setAspectRatio(((float) videoSize.width) / videoSize.height);
     }
     //endregion
