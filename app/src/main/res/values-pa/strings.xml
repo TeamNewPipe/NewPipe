@@ -803,8 +803,8 @@
     <string name="audio_track_type_secondary">ਸੈਕੰਡਰੀ</string>
     <string name="share_playlist_as_youtube_temporary_playlist">ਅਸਥਾਈ ਯੂਟਿਊਬ ਪਲੇਲਿਸਟ ਵਜੋਂ ਸਾਂਝਾ ਕਰੋ</string>
     <string name="tab_bookmarks_short">ਪਲੇਲਿਸਟਾਂ</string>
-    <string name="search_with_service_name">%1$s ਦੀ ਖੋਜ ਕਰੋ</string>
-    <string name="search_with_service_name_and_filter">%1$s (%2$s) ٪1$s ਦੀ ਖੋਜ ਕਰੋ</string>
+    <string name="search_with_service_name">%1$s ਖੋਜੋ</string>
+    <string name="search_with_service_name_and_filter">%1$s (%2$s) ਖੋਜੋ</string>
     <string name="select_a_feed_group">ਫੀਡ ਗਰੁੱਪ ਚੁਣੋ</string>
     <string name="no_feed_group_created_yet">ਅਜੇ ਤੱਕ ਕੋਈ ਫੀਡ ਗਰੁੱਪ ਨਹੀਂ ਬਣਾਇਆ ਗਿਆ</string>
     <string name="feed_group_page_summary">ਚੈਨਲ ਗਰੁੱਪ ਪੰਨਾ</string>
