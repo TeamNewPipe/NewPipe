@@ -163,7 +163,7 @@ class ErrorInfo private constructor(
         private fun getServiceName(serviceId: Int?) =
             // not using getNameOfServiceById since we want to accept a nullable serviceId and we
             // want to default to SERVICE_NONE
-            ServiceList.all()?.firstOrNull { it.serviceId == serviceId }?.serviceInfo?.name
+            ServiceList.all().firstOrNull { it.serviceId == serviceId }?.serviceInfo?.name
                 ?: SERVICE_NONE
 
         fun throwableToStringList(throwable: Throwable) = arrayOf(throwable.stackTraceToString())
