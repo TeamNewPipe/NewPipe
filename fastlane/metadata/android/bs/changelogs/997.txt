@@ -1,0 +1,17 @@
+Novo
+• Dodajte odgovore na komentare
+• Omogućite promjenu redoslijeda lista za reprodukciju
+• Prikažite opis i trajanje liste za reprodukciju
+• Omogućite resetiranje postavki
+
+Poboljšano
+• [Android 13+] Vratite prilagođene radnje obavještenja
+• Zatražite saglasnost za provjeru ažuriranja
+• Omogućite reprodukciju/pauziranje obavještenja tokom učitavanja u međuspremnik
+• Promijenite redoslijed nekih postavki
+
+Ispravljeno
+• [YouTube] Ispravljen komentari koji se ne učitavaju, plus druge ispravke i poboljšanja
+• Rješite ranjivost u uvozu postavki i prebacite se na JSON
+• Razne ispravke preuzimanja
+• Skratite tekst pretrage

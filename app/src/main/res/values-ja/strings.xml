@@ -83,9 +83,6 @@
     <string name="recaptcha_request_toast">reCAPTCHA を要求しました</string>
     <string name="black_theme_title">ブラック</string>
     <string name="all">すべて</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">B</string>
     <string name="open_in_popup_mode">ポップアップモードで開く</string>
     <string name="msg_popup_permission">ポップアップモードで開くには
 \n権限の許可が必要です</string>
@@ -615,7 +612,6 @@
     <string name="off">オフ</string>
     <string name="on">オン</string>
     <string name="tablet_mode_title">タブレットモード</string>
-    <string name="service_provides_reason">%s がこの理由を提示:</string>
     <string name="dont_show">表示しない</string>
     <string name="low_quality_smaller">低品質 (小)</string>
     <string name="high_quality_larger">高品質 (大)</string>

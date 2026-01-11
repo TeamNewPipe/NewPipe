@@ -1,8 +1,5 @@
 package org.schabi.newpipe.player.helper;
 
-import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
-import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
-import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_ALWAYS;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_NEVER;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_WIFI;
@@ -25,7 +22,6 @@ import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.exoplayer2.PlaybackParameters;
-import com.google.android.exoplayer2.Player.RepeatMode;
 import com.google.android.exoplayer2.SeekParameters;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
@@ -145,11 +141,11 @@ public final class PlayerHelper {
                                       @ResizeMode final int resizeMode) {
         switch (resizeMode) {
             case AspectRatioFrameLayout.RESIZE_MODE_FIT:
-                return context.getResources().getString(R.string.resize_fit);
+                return context.getString(R.string.resize_fit);
             case AspectRatioFrameLayout.RESIZE_MODE_FILL:
-                return context.getResources().getString(R.string.resize_fill);
+                return context.getString(R.string.resize_fill);
             case AspectRatioFrameLayout.RESIZE_MODE_ZOOM:
-                return context.getResources().getString(R.string.resize_zoom);
+                return context.getString(R.string.resize_zoom);
             case AspectRatioFrameLayout.RESIZE_MODE_FIXED_HEIGHT:
             case AspectRatioFrameLayout.RESIZE_MODE_FIXED_WIDTH:
             default:
@@ -300,10 +296,6 @@ public final class PlayerHelper {
                 AdaptiveTrackSelection.DEFAULT_BANDWIDTH_FRACTION);
     }
 
-    public static boolean isUsingDSP() {
-        return true;
-    }
-
     @NonNull
     public static CaptionStyleCompat getCaptionStyle(@NonNull final Context context) {
         final CaptioningManager captioningManager = ContextCompat.getSystemService(context,
@@ -410,22 +402,8 @@ public final class PlayerHelper {
         return singlePlayQueue;
     }
 
-
     // endregion
     // region Utils used by player
-
-    @RepeatMode
-    public static int nextRepeatMode(@RepeatMode final int repeatMode) {
-        switch (repeatMode) {
-            case REPEAT_MODE_OFF:
-                return REPEAT_MODE_ONE;
-            case REPEAT_MODE_ONE:
-                return REPEAT_MODE_ALL;
-            case REPEAT_MODE_ALL:
-            default:
-                return REPEAT_MODE_OFF;
-        }
-    }
 
     @ResizeMode
     public static int retrieveResizeModeFromPrefs(final Player player) {

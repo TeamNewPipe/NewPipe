@@ -1,0 +1,17 @@
+Baru
+• Dukungan untuk Android Auto
+• Grup umpan sebagai tab layar utama
+• [YouTube] Bagikan sebagai daftar putar sementara
+• [SoundCloud] Tab saluran suka
+
+Ditingkatkan
+• Petunjuk bilah pencarian lebih baik
+• Tanggal unduhan di Unduhan
+• Bahasa per aplikasi Android 13
+
+Diperbaiki
+• Warna teks rusak di mode gelap
+• [YouTube] Daftar putar tidak lebih dari 100 item
+• [YouTube] Video rekomendasi hilang
+• Kerusakan di tampilan Riwayat
+• Cap waktu dalam balasan komentar

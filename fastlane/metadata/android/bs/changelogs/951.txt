@@ -1,0 +1,17 @@
+Novo
+• Dodan je alat za odabir pretplata u dijalogu grupe feedova
+• Dodan je filter u dijalog grupe feedova kako bi se prikazale samo negrupirane pretplate
+• Dodana je kartica liste za reprodukciju na glavnu stranicu
+• Premotavanje naprijed/nazad u pozadini/u redu čekanja playera
+• Prikaz prijedloga za pretragu: da li ste mislili na & prikaz rezultata za
+
+Poboljšano
+• Izostavljanje metapodataka aplikacije za pisanje u multipliciranim datotekama
+• Ne uklanjanje neuspjelih tokova iz reda čekanja
+• Ažuriranje boje statusne trake da odgovara boji alatne trake
+
+Ispravljeno
+• Ispravljena je desinkronizacija zvuka/videa uzrokovana kumulativnim greškama s pomičnim zarezom
+• [PeerTube] Obrada izbrisanih komentara
+
+i više

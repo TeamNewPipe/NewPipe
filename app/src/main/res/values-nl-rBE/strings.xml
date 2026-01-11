@@ -147,9 +147,6 @@
     <string name="video">Video</string>
     <string name="audio">Geluid</string>
     <string name="retry">Opnieuw proberen</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">mld.</string>
     <string name="no_subscribers">Geen abonnees</string>
     <plurals name="subscribers">
         <item quantity="one">%s abonnee</item>
@@ -638,4 +635,6 @@
     <string name="prefer_descriptive_audio_title">Verkies beschrijvende audio</string>
     <string name="prefer_original_audio_title">Verkies originele audio</string>
     <string name="prefer_original_audio_summary">Selecteer het oorspronkelijke audiospoor, ongeacht de taal</string>
+    <string name="search_with_service_name">Zoeken%1$s</string>
+    <string name="search_with_service_name_and_filter">Zoeken%1$s(%2$s)</string>
 </resources>

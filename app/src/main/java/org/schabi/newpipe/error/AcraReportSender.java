@@ -36,8 +36,8 @@ public class AcraReportSender implements ReportSender {
         ErrorUtil.openActivity(context, new ErrorInfo(
                 new String[]{report.getString(ReportField.STACK_TRACE)},
                 UserAction.UI_ERROR,
-                ErrorInfo.SERVICE_NONE,
                 "ACRA report",
+                null,
                 R.string.app_ui_crash));
     }
 }

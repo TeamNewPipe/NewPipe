@@ -9,12 +9,15 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+import android.text.Html;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.NewPipeSettings;
 
@@ -87,9 +90,12 @@ public final class PermissionHelper {
                 && ContextCompat.checkSelfPermission(activity,
                 Manifest.permission.POST_NOTIFICATIONS)
                 != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity,
-                    new String[] {Manifest.permission.POST_NOTIFICATIONS}, requestCode);
-            return false;
+            if (!App.getApp().getNotificationsRequested()) {
+                ActivityCompat.requestPermissions(activity,
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS}, requestCode);
+                App.getApp().setNotificationsRequested();
+                return false;
+            }
         }
         return true;
     }
@@ -113,14 +119,47 @@ public final class PermissionHelper {
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static boolean checkSystemAlertWindowPermission(final Context context) {
         if (!Settings.canDrawOverlays(context)) {
-            final Intent i = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                    Uri.parse("package:" + context.getPackageName()));
-            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            try {
-                context.startActivity(i);
-            } catch (final ActivityNotFoundException ignored) {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+                final Intent i = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:" + context.getPackageName()));
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                try {
+                    context.startActivity(i);
+                } catch (final ActivityNotFoundException ignored) {
+                }
+                return false;
+            // from Android R the ACTION_MANAGE_OVERLAY_PERMISSION will only point to the menu,
+            // so let’s add a dialog that points the user to the right setting.
+            } else {
+                final String appName = context.getApplicationInfo()
+                        .loadLabel(context.getPackageManager()).toString();
+                final String title = context.getString(R.string.permission_display_over_apps);
+                final String permissionName =
+                        context.getString(R.string.permission_display_over_apps_permission_name);
+                final String appNameItalic = "<i>" + appName + "</i>";
+                final String permissionNameItalic = "<i>" + permissionName + "</i>";
+                final String message =
+                        context.getString(R.string.permission_display_over_apps_message,
+                                appNameItalic,
+                                permissionNameItalic
+                        );
+                new AlertDialog.Builder(context)
+                        .setTitle(title)
+                        .setMessage(Html.fromHtml(message, Html.FROM_HTML_MODE_COMPACT))
+                        .setPositiveButton("OK", (dialog, which) -> {
+                            // we don’t need the package name here, since it won’t do anything on >R
+                            final Intent intent =
+                                    new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+                            try {
+                                context.startActivity(intent);
+                            } catch (final ActivityNotFoundException ignored) {
+                            }
+                        })
+                        .setCancelable(true)
+                        .show();
+                return false;
             }
-            return false;
+
         } else {
             return true;
         }

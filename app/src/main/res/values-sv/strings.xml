@@ -112,9 +112,6 @@
     <string name="video">Video</string>
     <string name="audio">Ljud</string>
     <string name="retry">Försök igen</string>
-    <string name="short_thousand">t</string>
-    <string name="short_million">mn</string>
-    <string name="short_billion">md</string>
     <string name="no_subscribers">Inga prenumeranter</string>
     <plurals name="subscribers">
         <item quantity="one">%s prenumerant</item>
@@ -147,7 +144,7 @@
 \nöppna i popup-läge</string>
     <string name="title_activity_recaptcha">reCAPTCHA utmaning</string>
     <string name="recaptcha_request_toast">reCAPTCHA utmaning begärd</string>
-    <string name="settings_category_downloads_title">Hämta</string>
+    <string name="settings_category_downloads_title">Hämtning</string>
     <string name="settings_file_charset_title">Tillåtna tecken i filnamn</string>
     <string name="settings_file_replacement_character_summary">Ogiltiga tecken ersätts med detta värde</string>
     <string name="settings_file_replacement_character_title">Ersättningstecken</string>
@@ -169,8 +166,8 @@
     <string name="delete_item_search_history">Vill du ta bort det här objektet från sökhistoriken?</string>
     <string name="main_page_content">Huvudsidans innehåll</string>
     <string name="blank_page_summary">Tom sida</string>
-    <string name="kiosk_page_summary">Kiosk sida</string>
-    <string name="channel_page_summary">Kanal-sida</string>
+    <string name="kiosk_page_summary">Kiosksida</string>
+    <string name="channel_page_summary">Kanalsida</string>
     <string name="select_a_channel">Välj en kanal</string>
     <string name="no_channel_subscribed_yet">Inga kanal prenumerationer ännu</string>
     <string name="select_a_kiosk">Välj en kiosk</string>
@@ -589,7 +586,6 @@
     <string name="download_has_started">Hämtningen har startat</string>
     <string name="radio">Radio</string>
     <string name="paid_content">Detta innehåll är endast tillgängligt för användare som har betalat för det, så det kan inte strömmas eller hämtas av NewPipe.</string>
-    <string name="service_provides_reason">%s anger detta skäl:</string>
     <string name="account_terminated">Kontot avslutat</string>
     <string name="youtube_music_premium_content">Denna video är endast tillgänglig för YouTube Music Premium-medlemmar, så den kan inte strömmas eller hämtas av NewPipe.</string>
     <string name="private_content">Detta innehåll är privat, så det kan inte strömmas eller hämtas av NewPipe.</string>
@@ -829,4 +825,29 @@
     <string name="select_a_feed_group">Välj en flödesgrupp</string>
     <string name="no_feed_group_created_yet">Ingen flödesgrupp har skapats ännu</string>
     <string name="feed_group_page_summary">Kanalgruppsida</string>
+    <string name="search_with_service_name">Sök %1$s</string>
+    <string name="search_with_service_name_and_filter">Sök %1$s (%2$s)</string>
+    <string name="short_thousand">%sK</string>
+    <string name="short_million">%sM</string>
+    <string name="short_billion">%sB</string>
+    <string name="channel_tab_likes">Gillar</string>
+    <string name="migration_info_6_7_title">SoundCloud Topp 50-sida borttagen</string>
+    <string name="migration_info_6_7_message">SoundCloud har lagt ner de ursprungliga topp 50-listorna. Motsvarande flik har tagits bort från din startsida.</string>
+    <string name="migration_info_7_8_title">YouTubes kombinerade trender har tagits bort</string>
+    <string name="migration_info_7_8_message">YouTube har upphört med den kombinerade trendsidan från och med den 21 juli 2025. NewPipe ersatte standardtrendsidan med trendiga livestreams.\n\nDu kan också välja olika trendsidor i \"Inställningar &gt; Innehåll &gt; Innehåll på huvudsidan\".</string>
+    <string name="trending_gaming">Speltrender</string>
+    <string name="trending_podcasts">Trendiga poddar</string>
+    <string name="trending_movies">Trendiga filmer och serier</string>
+    <string name="trending_music">Trendig musik</string>
+    <string name="permission_display_over_apps_message">För att använda Popup Player, välj %1$s i följande Android-inställningsmeny och aktivera %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">\"Tillåt visning över andra appar\"</string>
+    <string name="delete_file">Ta bort fil</string>
+    <string name="delete_entry">Ta bort post</string>
+    <string name="account_terminated_service_provides_reason">Konto avslutat\n\n%1$s anger denna anledning: %2$s</string>
+    <string name="entry_deleted">Posten borttagen</string>
+    <string name="player_http_403">HTTP-fel 403 mottogs från servern under uppspelning, troligen orsakat av att streaming-URL:en har löpt ut eller att en IP-adress har blockerats</string>
+    <string name="player_http_invalid_status">HTTP-fel %1$s mottogs från servern under spelning</string>
+    <string name="youtube_player_http_403">HTTP-fel 403 mottogs från servern under spelning, troligen orsakat av en IP-avstängning eller problem med deobfuskering av streaming-URL:er</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s vägrade att tillhandahålla data och bad om en inloggning för att bekräfta att den som begärde detta inte är en bot.\n\nDin IP-adress kan ha blivit tillfälligt avstängd av %1$s. Du kan vänta en stund eller byta till en annan IP-adress (till exempel genom att slå på/av ett VPN eller genom att byta från WiFi till mobildata).</string>
+    <string name="unsupported_content_in_country">Detta innehåll är inte tillgängligt för det valda innehållslandet.\n\nÄndra ditt val från \"Inställningar &gt; Innehåll &gt; Standardinnehållsland\".</string>
 </resources>

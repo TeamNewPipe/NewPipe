@@ -104,9 +104,6 @@
     <string name="no_videos">কোন ভিডিও নেই</string>
     <string name="no_views">কোন ভিউ নেই</string>
     <string name="no_subscribers">কোন সাবস্ক্রাইবার নেই</string>
-    <string name="short_billion">B</string>
-    <string name="short_million">M</string>
-    <string name="short_thousand">K</string>
     <string name="retry">পুনরায় চেষ্টা করো</string>
     <string name="audio">অডিও</string>
     <string name="video">ভিডিও</string>
@@ -299,7 +296,7 @@
     <string name="clear_queue_confirmation_summary">এক প্লেয়ার থেকে অন্য প্লেয়ারে পরিবর্তন করলে তোমার সারি প্রতিস্থাপিত হতে পারে</string>
     <string name="clear_queue_confirmation_title">কিউ মোছার আগে নিশ্চিত করো</string>
     <string name="notification_actions_at_most_three">কমপ্যাক্ট বিজ্ঞপ্তিতে প্রদর্শন করতে তুমি সর্বাধিক তিনটি ক্রিয়া নির্বাচন করতে পারো!</string>
-    <string name="notification_actions_summary">নিচের প্রতিটি প্রজ্ঞাপন ক্রিয়া সম্পাদনা করো। ডান দিকের চেকবাক্স ব্যবহার করে কম্প্যাক্ট নোটিফিকেশনে দেখানোর জন্য তিনটি পর্যন্ত নির্বাচন করো</string>
+    <string name="notification_actions_summary">নিচের প্রতিটি প্রজ্ঞাপন ক্রিয়া সম্পাদনা করুন । ডান দিকের চেকবাক্স ব্যবহার করে কম্প্যাক্ট নোটিফিকেশনে দেখানোর জন্য তিনটি পর্যন্ত নির্বাচন করুন ।</string>
     <string name="notification_scale_to_square_image_summary">প্রদর্শিত ভিডিও থাম্বনেইল ১৬:৯ থেকে ১:১অনুপাতে পরিবর্তন করো</string>
     <string name="settings_category_feed_title">ফিড</string>
     <string name="overwrite">ওভাররাইট</string>
@@ -543,7 +540,6 @@
     <string name="feed_load_error_account_info">\'%s\' এর জন্য ফিড প্রক্রিয়া করা যাচ্ছে না।</string>
     <string name="description_select_disable">বর্ণনার লেখা নির্বাচন করা নিষ্ক্রিয় করো</string>
     <string name="description_select_enable">বর্ণনার লেখা নির্বাচন করা সক্ষম করো</string>
-    <string name="service_provides_reason">%s এই কারণ বলছে:</string>
     <string name="feed_load_error">প্রক্রিয়াকরণ ফিডে ত্রুটি</string>
     <string name="open_website_license">ওয়েবসাইট খুলুন</string>
     <string name="account_terminated">অ্যাকাউন্ট ধ্বংসকৃত</string>
@@ -632,4 +628,8 @@
     <string name="main_page_content_swipe_remove">ভুক্তি মুছতে ডানে-বামে সরাও</string>
     <string name="loading_stream_details">সম্প্রচার বিষয়ক তথ্য প্রক্রিয়ারত…</string>
     <string name="progressive_load_interval_title">প্লেব্যাক লোড বিরতির আকার</string>
+    <string name="yes">হ্যা</string>
+    <string name="no">না</string>
+    <string name="tab_bookmarks_short">প্লেলিস্ট</string>
+    <string name="ignore_hardware_media_buttons_summary">উদাহরণস্বরূপ, যদি আপনি ভাঙা ফিজিক্যাল বোতাম সহ একটি হেডসেট ব্যবহার করেন তবে এটি কার্যকর</string>
 </resources>

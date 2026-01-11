@@ -148,9 +148,6 @@
     <string name="error_occurred_detail">خطایی رخ داد: %1$s</string>
     <string name="no_streams_available_download">جریانی برای بارگیری در دسترس نیست</string>
     <string name="search_no_results">بدون نتیجه</string>
-    <string name="short_thousand">K</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">B</string>
     <plurals name="subscribers">
         <item quantity="one">%s مشترک</item>
         <item quantity="other">%s مشترک</item>
@@ -629,7 +626,6 @@
 \nنیوپایپ قادر به بار کردن این خوراک در آینده نیست.
 \nمی‌خواهید اشتراک این کانال را لغو کنید؟</string>
     <string name="feed_load_error_fast_unknown">حالت خوراک سریع، اطَلاعات بیش‌تری در این باره نمی‌دهد.</string>
-    <string name="service_provides_reason">%s این دلیل را آورد:</string>
     <string name="seekbar_preview_thumbnail_title">پیش‌نمایش بندانگشتی نوار جویش</string>
     <string name="detail_heart_img_view_description">قلب‌شده به دست ایجادگر</string>
     <string name="local_search_suggestions">پیشنهادهای جست‌وجوی محلّی</string>

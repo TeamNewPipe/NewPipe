@@ -1,31 +1,44 @@
-# Modifications v0.14.1
+# Modifications de la v0.14.1
 
-### Corrections
-- Échec du décryptage de l'URL vidéo #1659 
-- Lien de description, ne s'extrayait pas bien #1657
+### Corrigé
+- Correction du problème de décryptage de l'URL vidéo (#1659)
+- Correction du problème d'extraction du lien de description (#1657)
 
-# Modifications v0.14.0
+# Modifications de la v0.14.0
 
-### Nouveautés
-- Design du dossier #1461
-- Page d'accueil personnalisable #1461
+### Nouveau
+- Nouveau design du tiroir (#1461)
+- Nouvelle page d'accueil personnalisable (#1461)
 
 ### Améliorations
-- Contrôles gestuels retravaillés #1604
-- Nouvelle façon de fermer le lecteur popup #1597
+- Refonte des commandes gestuelles (#1604)
+- Nouvelle méthode pour fermer le lecteur pop-up (#1597)
 
-### Corrections
-- Erreur lorsque le nombre d'abonnements n'est pas disponible. Ferme #1649.
-  - Affiche "le nombre d'abonnés non disponible" dans ces cas.
-- NPE lorsqu'une liste de lecture YouTube est vide.
-- Kiosques dans SoundCloud
-- Refactor et correction du bug #1623 
-- Résultat de recherche cyclique #1562
-- Barre de recherche qui n'est pas mise en page de manière statique
-- Vidéos YT Premium qui ne sont pas bloquées correctement
-- Vidéos qui ne se chargent pas toujours (à cause du parsing DASH)
-- Liens dans la description des vidéos
-- Afficher un avertissement lorsque quelqu'un essaie de télécharger vers une carte SD externe
-- Exception "rien indiqué" qui déclenche un rapport
-- La vignette ne s'affiche pas dans le lecteur de fond pour Android 8.1 [voir ici](https://github.com/TeamNewPipe/NewPipe/issues/943)
-- Enregistrement du récepteur de diffusion. Ferme le dossier #1641.
+### Corrigé
+- Correction d'une erreur lorsque le nombre d'abonnements n'est pas disponible. Résout le problème n° 1649.
+
+ - Afficher « Nombre d'abonnés indisponible » dans ces cas
+
+- Correction d'une exception NPE lorsqu'une playlist YouTube est vide
+
+- Correction rapide pour les bornes interactives sur SoundCloud
+
+- Refactorisation et correction du bug n° 1623
+
+- Correction du résultat de recherche cyclique n° 1562
+
+- Correction de la barre de progression (position statique)
+
+- Correction du blocage incorrect des vidéos YouTube Premium
+
+- Correction du chargement intempestif des vidéos (dû à l'analyse DASH)
+
+- Correction des liens dans la description des vidéos
+
+- Afficher un avertissement lors d'une tentative de téléchargement sur carte SD externe
+
+- Correction d'une exception déclenchant un rapport en cas d'absence d'affichage
+
+- Correction de l'affichage des miniatures dans le lecteur en arrière-plan sous Android 8.1 [voir ici](https://github.com/TeamNewPipe/NewPipe/issues/943)
+
+- Correction de l'enregistrement du récepteur de diffusion. Résout le problème n° 1641.

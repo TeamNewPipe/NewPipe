@@ -17,6 +17,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.R
+import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.extractor.InfoItem.InfoType
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler
@@ -84,7 +85,7 @@ class MediaBrowserPlaybackPreparer(
                 },
                 { throwable ->
                     Log.e(TAG, "Failed to start playback of media ID [$mediaId]", throwable)
-                    onPrepareError()
+                    onPrepareError(throwable)
                 }
             )
     }
@@ -115,9 +116,9 @@ class MediaBrowserPlaybackPreparer(
         )
     }
 
-    private fun onPrepareError() {
+    private fun onPrepareError(throwable: Throwable) {
         setMediaSessionError.accept(
-            ContextCompat.getString(context, R.string.error_snackbar_message),
+            ErrorInfo.getMessage(throwable, null, null).getString(context),
             PlaybackStateCompat.ERROR_CODE_APP_ERROR
         )
     }
@@ -214,7 +215,7 @@ class MediaBrowserPlaybackPreparer(
         }
 
         val streamId = path[0].toLong()
-        return database.streamHistoryDAO().getHistory()
+        return database.streamHistoryDAO().history
             .firstOrError()
             .map { items ->
                 val infoItems = items

@@ -41,7 +41,6 @@
     <string name="detail_uploader_thumbnail_view_description">Μικρογραφία εικόνας προφίλ του χρήστη</string>
     <string name="detail_likes_img_view_description">Like</string>
     <string name="detail_dislikes_img_view_description">Dislike</string>
-    <string name="short_billion">δισ/ρια</string>
     <string name="open_in_popup_mode">Άνοιγμα σε αναδυόμενο παράθυρο</string>
     <string name="subscribe_button_title">Εγγραφή</string>
     <string name="subscribed_button_title">Εγγεγραμμένος</string>
@@ -169,8 +168,6 @@
     <string name="empty_list_subtitle">Δεν υπάρχει τίποτα εδώ</string>
     <string name="detail_drag_description">Σύρετε για ταξινόμηση</string>
     <string name="retry">Προσπάθεια εκ νέου</string>
-    <string name="short_thousand">χιλ.</string>
-    <string name="short_million">εκ/ρια</string>
     <string name="no_subscribers">Κανένας συνδρομητής</string>
     <plurals name="subscribers">
         <item quantity="one">%s συνδρομητής</item>
@@ -611,7 +608,6 @@
     <string name="description_select_enable">Ενεργοποίηση επιλογής κειμένου στην περιγραφή</string>
     <string name="description_select_note">Τώρα μπορείτε να επιλέξετε κείμενο εντός της περιγραφής. Σημειώστε ότι, η σελίδα μπορεί να παρουσιάζει αστάθεια κατά τη διάρκεια της κατάστασης επιλογής κειμένου.</string>
     <string name="open_website_license">Ανοικτή ιστοσελίδα</string>
-    <string name="service_provides_reason">Το %s παρέχει αυτή την αιτία:</string>
     <string name="account_terminated">Ο λογαριασμός διαγράφηκε</string>
     <string name="feed_load_error_fast_unknown">Η κατάσταση γρήγορης τροφοδοσίας δεν παρέχει περισσότερες πληροφορίες.</string>
     <string name="feed_load_error_terminated">Ο λογαριασμός του δημιουργού έχει διαγραφεί.
@@ -831,7 +827,27 @@
     <string name="feed_group_page_summary">Σελίδα καναλιού ομάδας</string>
     <string name="search_with_service_name">Αναζήτηση %1$s</string>
     <string name="search_with_service_name_and_filter">Αναζήτηση %1$s (%2$s)</string>
-    <string name="channel_tab_likes">Likes</string>
+    <string name="channel_tab_likes">Μου αρέσει</string>
     <string name="migration_info_6_7_title">Η σελίδα των SoundCloud Top 50 αφαιρέθηκε</string>
     <string name="migration_info_6_7_message">Το SoundCloud έχει καταργήσει τα αρχικά charts με τα Top 50. Η αντίστοιχη καρτέλα έχει αφαιρεθεί από την κύρια σελίδα σας.</string>
+    <string name="migration_info_7_8_title">Οι συνδυασμένες τάσεις στο YouTube καταργήθηκαν</string>
+    <string name="migration_info_7_8_message">Το YouTube έχει καταργήσει τη συνδυασμένη σελίδα με τάσεις από την 21 Ιουλίου 2025. Το NewPipe αντικατέστησε την προεπιλεγμένη σελίδα τάσεων με τις ζωντανές ροές τάσεων.\n\nΜπορείτε επίσης να επιλέξετε διαφορετικές σελίδες με τάσεις στις \"Ρυθμίσεις &gt; Περιεχόμενο &gt; Περιεχόμενο κύριας σελίδας\".</string>
+    <string name="trending_gaming">Τάσεις παιχνιδιών</string>
+    <string name="trending_podcasts">Τάσεις podcasts</string>
+    <string name="trending_movies">Τάσεις ταινιών και εκπομπών</string>
+    <string name="trending_music">Μουσικές τάσεις</string>
+    <string name="short_thousand">%sK</string>
+    <string name="short_million">%sM</string>
+    <string name="short_billion">%sB</string>
+    <string name="permission_display_over_apps_message">Για να χρησιμοποιήσετε το Αναδυόμενο Πρόγραμμα Αναπαραγωγής, επιλέξτε %1$s στο ακόλουθο μενού ρυθμίσεων Android και ενεργοποιήστε το %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">«Να επιτρέπεται η εμφάνιση πάνω από άλλες εφαρμογές»</string>
+    <string name="delete_file">Διαγραφή αρχείου</string>
+    <string name="delete_entry">Διαγραφή καταχώρησης</string>
+    <string name="entry_deleted">Η καταχώρηση διαγράφηκε</string>
+    <string name="account_terminated_service_provides_reason">Ο λογαριασμός έκλεισε\n\n%1$s παρέχει αυτήν την αιτία: %2$s</string>
+    <string name="player_http_403">Σφάλμα HTTP 403 που ελήφθη από τον διακομιστή κατά την αναπαραγωγή, πιθανώς λόγω λήξης διεύθυνσης URL ροής ή αποκλεισμού IP</string>
+    <string name="player_http_invalid_status">Σφάλμα HTTP %1$s ελήφθη από τον διακομιστή κατά την αναπαραγωγή</string>
+    <string name="youtube_player_http_403">Σφάλμα HTTP 403 ελήφθη από τον διακομιστή κατά την αναπαραγωγή, πιθανώς λόγω αποκλεισμού IP ή προβλημάτων απεμπλοκής URL ροής</string>
+    <string name="sign_in_confirm_not_bot_error">Ο %1$s αρνήθηκε να παράσχει δεδομένα, ζητώντας σύνδεση για να επιβεβαιώσει ότι ο αιτών δεν είναι bot.\n\nΗ IP σας ενδέχεται να έχει αποκλειστεί προσωρινά από τον %1$s. Μπορείτε να περιμένετε λίγο ή να αλλάξετε IP (για παράδειγμα, ενεργοποιώντας/απενεργοποιώντας ένα VPN ή αλλάζοντας από WiFi σε δεδομένα κινητής τηλεφωνίας).</string>
+    <string name="unsupported_content_in_country">Αυτό το περιεχόμενο δεν είναι διαθέσιμο για την τρέχουσα επιλεγμένη χώρα περιεχομένου.\n\nΑλλάξτε την επιλογή σας από \"Ρυθμίσεις &gt; Περιεχόμενο &gt; Προεπιλεγμένη χώρα περιεχομένου\".</string>
 </resources>

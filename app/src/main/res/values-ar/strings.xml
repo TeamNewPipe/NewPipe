@@ -116,9 +116,6 @@
     <string name="empty_list_subtitle">لا شيء هنا سوى الصراصير</string>
     <string name="audio">الصوت</string>
     <string name="retry">إعادة المحاولة</string>
-    <string name="short_thousand">ألف</string>
-    <string name="short_million">مليون</string>
-    <string name="short_billion">بليون</string>
     <string name="no_subscribers">ليس هناك مشترِكون</string>
     <plurals name="subscribers">
         <item quantity="zero">%s مشارك</item>
@@ -652,7 +649,6 @@
     <string name="description_select_enable">تمكين تحديد نص في الوصف</string>
     <string name="description_select_note">يمكنك الآن تحديد نص داخل الوصف. لاحظ أن الصفحة قد تومض وقد لا تكون الروابط قابلة للنقر أثناء وضع التحديد.</string>
     <string name="open_website_license">فتح الموقع</string>
-    <string name="service_provides_reason">%s يقدم هذا السبب:</string>
     <string name="account_terminated">تم إنهاء الحساب</string>
     <string name="feed_load_error_fast_unknown">لا يوفر وضع التغذية السريعة مزيدًا من المعلومات حول هذا الموضوع.</string>
     <string name="feed_load_error_terminated">حساب منشئ المحتوى قد تم إنهائه.
@@ -890,4 +886,24 @@
     <string name="search_with_service_name_and_filter">البحث %1$s (%2$s)</string>
     <string name="migration_info_6_7_title">تمت إزالة صفحة أفضل 50 من SoundCloud</string>
     <string name="migration_info_6_7_message">أوقفت SoundCloud صفحة أفضل 50 الأصلية. تمت إزالة علامة التبويب المقابلة من صفحتك الرئيسية.</string>
+    <string name="migration_info_7_8_title">تمت إزالة تريندات YouTube المجمعة</string>
+    <string name="migration_info_7_8_message">أوقف YouTube صفحة الترند المدمجة اعتبارًا من 21 يوليو 2025. استبدلت NewPipe صفحة الموضوعات المتداولة الافتراضية بصفحة الموضوعات المتداولة الشائعة مع البث المباشر المتداول.\n\nيمكنك أيضًا تحديد صفحات رائجة مختلفة في \"الإعدادات &gt; المحتوى &gt; محتوى الصفحة الرئيسية\".</string>
+    <string name="trending_gaming">توجهات الألعاب</string>
+    <string name="trending_podcasts">توجهات البث الصوتي</string>
+    <string name="trending_movies">الأفلام والعروض الأكثر رواجاً</string>
+    <string name="trending_music">الموسيقى الرائجة</string>
+    <string name="short_thousand">%s الف</string>
+    <string name="short_million">%s مليون</string>
+    <string name="short_billion">%sمليار</string>
+    <string name="permission_display_over_apps_message">لاستخدام المشغل المنبثق، يرجى تحديد %1$s في قائمة إعدادات اندرويد التالية وتمكين %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">“السماح بالعرض فوق التطبيقات الاخرى”</string>
+    <string name="delete_file">حذف ملف</string>
+    <string name="delete_entry">حذف المدخلات</string>
+    <string name="account_terminated_service_provides_reason">تم إنهاء الحساب\n\n%1$s يقدم هذا السبب: %2$s</string>
+    <string name="entry_deleted">تم حذف المدخلات</string>
+    <string name="player_http_403">تم تلقي خطأ HTTP 403 من الخادم أثناء التشغيل، ويرجح أن يكون السبب هو انتهاء صلاحية عنوان URL للبث أو حظر عنوان IP</string>
+    <string name="player_http_invalid_status">حدث خطأ HTTP %1$s من الخادم أثناء التشغيل</string>
+    <string name="youtube_player_http_403">تم تلقي خطأ HTTP 403 من الخادم أثناء التشغيل، ويرجح أن يكون السبب هو حظر عنوان IP أو مشكلات في إزالة التعتيم عن عنوان URL للبث</string>
+    <string name="sign_in_confirm_not_bot_error">رفض %1$s تقديم البيانات، وطلب تسجيل الدخول للتأكد من أن الطالب ليس روبوتًا.\n\nربما تم حظر عنوان IP الخاص بك مؤقتًا من قبل %1$s، يمكنك الانتظار بعض الوقت أو التبديل إلى عنوان IP مختلف (على سبيل المثال عن طريق تشغيل/إيقاف تشغيل VPN، أو التبديل من WiFi إلى بيانات الهاتف المحمول).</string>
+    <string name="unsupported_content_in_country">هذا المحتوى غير متاح للبلد المحدد حاليًا.\n\nقم بتغيير اختيارك من ”الإعدادات &gt; المحتوى &gt; البلد الافتراضي للمحتوى“.</string>
 </resources>

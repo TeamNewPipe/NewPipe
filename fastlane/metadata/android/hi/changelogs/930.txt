@@ -1,19 +1,13 @@
-New
-• Search on YouTube Music
-• Basic Android TV support
+नया
+• YouTube Music पर सर्च करें
+• बेसिक Android TV सपोर्ट
 
-Improved
-• Added the ability to remove all watched videos from a local playlist
-• Show message when content isn't supported yet instead of crashing
-• Improved popup player resize with pinch gestures
-• Enqueue streams on long press on background and popup buttons in channel
-• Improved size handling of the drawer header title
+बेहतर
+• लोकल प्लेलिस्ट से सभी देखे गए वीडियो हटाने की सुविधा जोड़ी गई
+• जब कंटेंट अभी सपोर्टेड न हो, तो क्रैश होने के बजाय मैसेज दिखाएं
 
-Fixed
-• Fixed age restricted content setting not working
-• Fixed certain kinds of reCAPTCHAs
-• Fixed crash when opening bookmarks while playlist is `null`
-• Fixed detection of network related exceptions
-• Fixed visibility of group sort button in the subscriptions fragment
+फिकसड
+• उम्र पर रोक वाली कंटेंट सेटिंग काम नहीं कर रही थी, इसे ठीक किया गया
+• कुछ तरह के reCAPTCHA को ठीक किया गया
 
-and more
+और भी बहुत कुछ

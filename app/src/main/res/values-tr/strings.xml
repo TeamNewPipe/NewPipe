@@ -88,9 +88,6 @@
     <string name="disabled">Devre dışı</string>
     <string name="your_comment">Yorumunuz (İngilizce):</string>
     <string name="error_details_headline">Ayrıntılar:</string>
-    <string name="short_thousand">b</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">M</string>
     <string name="msg_popup_permission">Bu izin, açılır pencere kipinde
 \naçmak için gereklidir</string>
     <string name="title_activity_recaptcha">reCAPTCHA formu</string>
@@ -611,7 +608,6 @@
     <string name="description_select_enable">Açıklamadaki metni seçmeyi etkinleştir</string>
     <string name="description_select_note">Artık, açıklamadaki metni seçebilirsiniz. Seçim kipindeyken sayfanın titreyebileceğini ve bağlantıların tıklanamayacağını unutmayın.</string>
     <string name="open_website_license">Web sitesini aç</string>
-    <string name="service_provides_reason">%s şu nedeni sağlıyor:</string>
     <string name="account_terminated">Hesap sonlandırıldı</string>
     <string name="feed_load_error_fast_unknown">Hızlı besleme kipi bununla ilgili daha çok bilgi sağlamıyor.</string>
     <string name="feed_load_error_terminated">Yazarın hesabı sonlandırılmış.
@@ -834,4 +830,24 @@
     <string name="search_with_service_name_and_filter">%1$s İle Ara (%2$s)</string>
     <string name="migration_info_6_7_title">SoundCloud Top 50 sayfası kaldırıldı</string>
     <string name="migration_info_6_7_message">SoundCloud, özgün Top 50 listesini artık yayınlamıyor. İlgili sekme ana sayfanızdan kaldırıldı.</string>
+    <string name="short_thousand">%sK</string>
+    <string name="short_million">%sM</string>
+    <string name="short_billion">%sB</string>
+    <string name="migration_info_7_8_title">YouTube birleşik trendler kaldırıldı</string>
+    <string name="migration_info_7_8_message">YouTube, 21 Temmuz 2025\'ten sonra birleşik trendler sayfasını kaldırdı. NewPipe, öntanımlı trendler sayfasını trend canlı akışlarla değiştirdi.\n\n\"Ayarlar &gt; İçerik &gt; Ana sayfanın içeriği\"nden başka trend sayfalar seçebilirsiniz.</string>
+    <string name="trending_gaming">Oyun trendleri</string>
+    <string name="trending_podcasts">Trend podcastler</string>
+    <string name="trending_movies">Trend film ve gösteriler</string>
+    <string name="trending_music">Trend müzik</string>
+    <string name="permission_display_over_apps_message">Açılır Oynatıcıyı kullanmak için Android ayarlar menüsünden %1$s seçilmeli ve %2$s etkinleştirilmeli.</string>
+    <string name="permission_display_over_apps_permission_name">“Diğer uygulamaların üstünde göstermeye izin ver”</string>
+    <string name="delete_file">Dosyayı sil</string>
+    <string name="delete_entry">Girdiyi sil</string>
+    <string name="entry_deleted">Girdi silindi</string>
+    <string name="account_terminated_service_provides_reason">Hesap sonlandırıldı\n\n%1$s şu nedeni sağladı: %2$s</string>
+    <string name="player_http_403">Oynatırken sunucudan HTTP 403 hatası alındı, akış URL’si bitmiş ya da IP engellenmiş olabilir</string>
+    <string name="player_http_invalid_status">Oynatırken sunucudan HTTP %1$s hatası alındı</string>
+    <string name="youtube_player_http_403">Oynatırken sunucudan HTTP 403 hatası alındı, IP engeli ya da akış URL’si çözme sorunları olabilir</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s veri sağlamayı geri çevirdi, istekçinin robot olmadığını doğrulaması için oturum açmasını istiyor.\n\n%1$s, IP adresinizi geçici olarak engellemiş olabilir, bir süre bekleyebilir ya da başka IP\'ye geçebilirsiniz (örneğin VPN\'i açıp/kapatarak ya da WiFi\'den mobil veriye geçerek).</string>
+    <string name="unsupported_content_in_country">Bu içerik şu anda seçili içerik ülkesinde kullanılamıyor.\n\nSeçiminizi \"Ayarlar &gt; İçerik &gt; Öntanımlı içerik ülkesi\"nden değiştirin.</string>
 </resources>

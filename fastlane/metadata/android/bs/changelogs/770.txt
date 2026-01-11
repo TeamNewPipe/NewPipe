@@ -1,0 +1,4 @@
+Promjene u verziji 0.17.2
+
+Ispravka
+• Ispravka da nijedan video nije bio dostupan

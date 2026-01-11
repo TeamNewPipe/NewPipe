@@ -139,9 +139,6 @@
     <string name="player_recoverable_failure">Atstatoma po grotuvo klaidos</string>
     <string name="search_no_results">Nėra rezultatų</string>
     <string name="empty_list_subtitle">Čia nieko nėra išskyrus svirplius</string>
-    <string name="short_thousand">Tūkst.</string>
-    <string name="short_million">Mln.</string>
-    <string name="short_billion">Mlrd.</string>
     <string name="no_subscribers">Nėra prenumeratorių</string>
     <string name="no_views">Nėra peržiūrų</string>
     <plurals name="views">
@@ -626,7 +623,6 @@
     <string name="description_select_enable">Įgalinti teksto pasirinkimą apraše</string>
     <string name="description_select_disable">Neleisti pasirinkti teksto apraše</string>
     <string name="description_select_note">Dabar apraše galite pasirinkti tekstą aprašyme. Atminkite, kad puslapis gali mirgėti, o nuorodos gali būti nespustelėjamos, kai veikia pasirinkimo režimas.</string>
-    <string name="service_provides_reason">%s pateikia šią priežastį:</string>
     <string name="account_terminated">Paskyra anuliuota</string>
     <string name="feed_load_error_fast_unknown">Greito srauto režimas nesuteikia daugiau informacijos apie tai.</string>
     <string name="feed_load_error_terminated">Autoriaus paskyra anuliuota.
@@ -840,4 +836,26 @@
     <string name="tab_bookmarks_short">Grojaraščiai</string>
     <string name="audio_track_type_secondary">Antrinis</string>
     <string name="share_playlist_as_youtube_temporary_playlist">Dalintis kaip laikinuoju youtube grojaraščiu</string>
+    <string name="search_with_service_name">Ieškoti %1$s</string>
+    <string name="search_with_service_name_and_filter">Ieškoti %1$s (%2$s)</string>
+    <string name="permission_display_over_apps_message">Norėdami įjungti \"Popup Grotuvą\" pasirinkite Android nustatymų meniu pasirinkite %1$s ir įjunkite %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">\"Leisti piešti virš kitų langų\"</string>
+    <string name="short_thousand">%sK</string>
+    <string name="short_million">%sM</string>
+    <string name="short_billion">%sB</string>
+    <string name="delete_file">Pašalinti failą</string>
+    <string name="delete_entry">Ištrinti įrašą</string>
+    <string name="select_a_feed_group">Pasirinkite kanalo grupę</string>
+    <string name="no_feed_group_created_yet">Dar nėra kanalo grupės</string>
+    <string name="feed_group_page_summary">Kanalo grupės puslapis</string>
+    <string name="account_terminated_service_provides_reason">Paskyra pašalinta\n\n%1$s dėl šios priežasties: %2$s</string>
+    <string name="channel_tab_likes">Mėgsta</string>
+    <string name="migration_info_6_7_title">SoundCloud Top 50 puslapis pašalintas</string>
+    <string name="migration_info_6_7_message">SoundCloud nebeteikia Top 50. Šis puslapis pašalintas iš jūsų pagrindinio puslapio.</string>
+    <string name="migration_info_7_8_title">YouTube sujungti rekomenduojami pašalinti</string>
+    <string name="trending_gaming">Žaidimų pasiūlymai</string>
+    <string name="trending_podcasts">Mėgstami podcasts</string>
+    <string name="trending_movies">Mėgstami filmai ir laidos</string>
+    <string name="trending_music">Mėgstama muzika</string>
+    <string name="entry_deleted">Įrašas pašalintas</string>
 </resources>

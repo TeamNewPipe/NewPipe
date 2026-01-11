@@ -1,0 +1,17 @@
+Mới
+• Hỗ trợ cho Android Auto
+• Cho phép đặt nhóm nguồn cấp dữ liệu làm tab màn hình chính
+• [YouTube] Chia sẻ dưới dạng danh sách phát tạm thời
+• [SoundCloud] Tab kênh thích
+
+Cải thiện
+• Gợi ý thanh tìm kiếm tốt hơn
+• Hiển thị ngày tải xuống trong mục Tải xuống
+• Sử dụng cài đặt ngôn ngữ cho từng ứng dụng (Android 13+)
+
+Đã sửa
+• Màu chữ bị hỏng ở chế độ tối
+• [YouTube] Danh sách phát không tải được hơn 100 mục
+• [YouTube] Thiếu video được đề xuất
+• Sập trong Lịch sử
+• Dấu thời gian trong phần trả lời bình luận

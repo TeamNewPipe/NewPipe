@@ -154,9 +154,6 @@
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Proovi uuesti</string>
-    <string name="short_thousand">tuh</string>
-    <string name="short_million">mln</string>
-    <string name="short_billion">mld</string>
     <string name="no_subscribers">Tellijaid pole</string>
     <plurals name="subscribers">
         <item quantity="one">%s tellija</item>
@@ -565,7 +562,6 @@
     <string name="show_thumbnail_title">Näita pisipilte</string>
     <string name="show_thumbnail_summary">Kasuta pisipilti nii lukustusvaate kui teavituste taustana</string>
     <string name="account_terminated">Kasutajakonto on suletud</string>
-    <string name="service_provides_reason">%s toob põhjuseks:</string>
     <string name="description_select_enable">Võimalda valida kirjelduse teksti</string>
     <string name="description_select_disable">Ära võimalda valida kirjelduse teksti</string>
     <string name="metadata_category">Kategooria</string>
@@ -607,7 +603,7 @@
     <string name="feed_use_dedicated_fetch_method_title">Hangi võimalusel spetsiaalsest voost</string>
     <string name="feed_load_error_fast_unknown">Kiirvoo režiim ei paku selle kohta täiendavat teavet.</string>
     <string name="feed_load_error_terminated">Autori konto on suletud. \nTulevikus ei saa NewPipe seda meediavoogu laadida. \nKas soovid tühistada selle kanali tellimuse?</string>
-    <string name="feed_load_error_account_info">Voo \'%s\' laadimine nurjus.</string>
+    <string name="feed_load_error_account_info">Voo \'%s\' laadimine ei õnnestnud.</string>
     <string name="feed_load_error">Via voo laadimisel</string>
     <string name="feed_update_threshold_option_always_update">Värskenda alati</string>
     <string name="feed_update_threshold_summary">Aeg pärast viimast värskendust, mille möödudes loetakse tellimus aegunuks — %s</string>
@@ -819,4 +815,24 @@
     <string name="channel_tab_likes">Meeldimisi</string>
     <string name="migration_info_6_7_title">SoundCloudi „Top 50“ leht on eemaldatud</string>
     <string name="migration_info_6_7_message">SoundCloud on lõpetanud oma algse „Top 50“ edetabeli pidamise. Seega on ka vastav vahekaart meie rakenduse põhivaatest eemaldatud.</string>
+    <string name="migration_info_7_8_title">YouTube\'i kombineeritud populaarsust koguvad videovoog on eemaldatud</string>
+    <string name="migration_info_7_8_message">YouTube on alates 21.07.25 lõpetanud ühendatud populaarsust koguvate videote lehe kasutamise. Mistõttu ka NewPipe on asendanud vaikimisi populaarsust koguvate videote lehe sarnase otse-eetri lehega.\n\n„Seadistused -&gt; Sisu -&gt; Avalehe sisu“ alt saad ka muid sarnaseid lehti seadistada.</string>
+    <string name="trending_podcasts">Populaarsust koguvad taskuhäälingud</string>
+    <string name="trending_movies">Populaarsust koguvad filmid ja telesarjad</string>
+    <string name="trending_music">Populaarsust koguv muusika</string>
+    <string name="trending_gaming">Populaarsust koguvad mängud</string>
+    <string name="short_thousand">%s tuh</string>
+    <string name="short_million">%s mln</string>
+    <string name="short_billion">%s mld</string>
+    <string name="permission_display_over_apps_message">Kasutamaks meediaesitajat hüpikaknas palun vali järgnevast Androidi seadistuste valikust „%1$s“ ja lülita sisse „%2$s“.</string>
+    <string name="permission_display_over_apps_permission_name">Luba kuvamine teiste rakenduste peal</string>
+    <string name="delete_file">Kustuta fail</string>
+    <string name="delete_entry">Kustuta kirje</string>
+    <string name="entry_deleted">Kirje on kustutatud</string>
+    <string name="account_terminated_service_provides_reason">Kasutajakonto on suletud\n\n%1$s on märkinud põhjuseks: %2$s</string>
+    <string name="player_http_403">Esitamise ajal lisas server andmevoogu HTTP oleku 403 ning tavaliselt tähendab see, et voogedastuse võrguaadress on aegunud või sinu seadme IP-aadress on keelatud</string>
+    <string name="player_http_invalid_status">Esitamise ajal lisas server andmevoogu HTTP oleku %1$s</string>
+    <string name="youtube_player_http_403">Esitamise ajal lisas server andmevoogu HTTP oleku 403 ning tavaliselt tähendab see, et sinu seadme IP-aadress on keelatud või voogedastuse võrguaadressi hägustamisvastastes meetmetes on viga</string>
+    <string name="unsupported_content_in_country">See sisu pole saadaval hetkel kehtvas riigis.\n\nRiiki saad muuta: Seadistused &gt; Sisu &gt; Sisu vaikimisi riik.</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s keeldus andmete edastamisest ning eeldab sisselogimist tuvastamaks, et tegemist pole robotiga.\n\nLisaks võib olla juhtunud, et %1$s on lisanud sinu seadme ip-aadressi ajutisse keelunimekirja. Sa võid oodata natuke aega või vahetada võrguühendus viisi (näiteks lülitades VPN sisse/välja või kasutades WiFi asemel mobiilset internetiühendust).</string>
 </resources>

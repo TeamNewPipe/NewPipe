@@ -89,9 +89,6 @@
     <string name="popup_playing_toast">Spiller av i oppsprettsmodus</string>
     <string name="all">Alle</string>
     <string name="disabled">Avskrudd</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">Mrd.</string>
     <string name="msg_popup_permission">Denne tilgangen trengs for
 \nåpning i oppsprettsmodus</string>
     <string name="recaptcha_request_toast">reCAPTCHA-oppgave forespurt</string>
@@ -603,7 +600,6 @@
 \nØnsker du å oppheve ditt abonnement på denne kanalen\?</string>
     <string name="description_select_disable">Skru av merking av tekst i beskrivelsen</string>
     <string name="description_select_enable">Skru på merking av tekst i beskrivelsen</string>
-    <string name="service_provides_reason">%s oppgav denne grunnen:</string>
     <string name="account_terminated">Konto terminert</string>
     <string name="feed_load_error_account_info">Kunne ikke laste inn informasjonskanal for «%s».</string>
     <string name="feed_load_error">Kunne ikke laste inn informasjonskanal</string>

@@ -90,9 +90,6 @@
     <string name="popup_playing_toast">Reproduzindo em modo Popup</string>
     <string name="all">Todos</string>
     <string name="disabled">Desativado</string>
-    <string name="short_thousand">mil</string>
-    <string name="short_million">mi</string>
-    <string name="short_billion">bi</string>
     <string name="msg_popup_permission">Essa permissão é necessária
 \npara abrir em modo Popup</string>
     <string name="clear">Limpar</string>
@@ -622,7 +619,6 @@
     <string name="description_select_enable">Ativar seleção de texto na descrição</string>
     <string name="description_select_note">Agora você pode selecionar o texto dentro da descrição. Note que a página pode piscar e os URL podem não ser clicáveis no modo de seleção.</string>
     <string name="open_website_license">Abrir site</string>
-    <string name="service_provides_reason">%s fornece este motivo:</string>
     <string name="account_terminated">Conta encerrada</string>
     <string name="feed_load_error_fast_unknown">O modo feed rápido não fornece mais informações sobre isso.</string>
     <string name="feed_load_error_terminated">A conta do autor foi encerrada.
@@ -843,9 +839,29 @@
     <string name="select_a_feed_group">Selecione um grupo de feeds</string>
     <string name="no_feed_group_created_yet">Nenhum grupo de feeds criado ainda</string>
     <string name="feed_group_page_summary">Página do grupo do canal</string>
-    <string name="search_with_service_name">Pesquisar %1$s</string>
-    <string name="search_with_service_name_and_filter">Pesquisar %1$s (%2$s)</string>
+    <string name="search_with_service_name">Buscar %1$s</string>
+    <string name="search_with_service_name_and_filter">Buscar %1$s (%2$s)</string>
     <string name="channel_tab_likes">Curtidas</string>
     <string name="migration_info_6_7_title">Página Top 50 do SoundCloud removida</string>
     <string name="migration_info_6_7_message">O SoundCloud descontinuou as paradas originais do Top 50. A aba correspondente foi removida da sua página principal.</string>
+    <string name="permission_display_over_apps_message">Para usar o Popup Player, selecione %1$s no seguinte menu de configurações do Android e ative %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">“Permitir exibição sobre outros aplicativos”</string>
+    <string name="short_thousand">%sK</string>
+    <string name="short_million">%sM</string>
+    <string name="short_billion">%sB</string>
+    <string name="delete_file">Excluir arquivo</string>
+    <string name="delete_entry">Excluir entrada</string>
+    <string name="migration_info_7_8_title">Tendências combinadas do YouTube removidas</string>
+    <string name="migration_info_7_8_message">O YouTube descontinuou a página de tendências combinadas em 21 de julho de 2025. O NewPipe substituiu a página de tendências padrão pelas transmissões ao vivo em alta.\n\nVocê também pode selecionar páginas de tendências diferentes em \"Configurações &gt; Conteúdo &gt; Conteúdo da página principal\".</string>
+    <string name="trending_gaming">Jogos em alta</string>
+    <string name="trending_podcasts">Podcasts em alta</string>
+    <string name="trending_movies">Filmes e programas em alta</string>
+    <string name="trending_music">Músicas em alta</string>
+    <string name="entry_deleted">Entrada excluída</string>
+    <string name="account_terminated_service_provides_reason">Conta encerrada\n\n%1$s informa este motivo: %2$s</string>
+    <string name="player_http_403">Erro HTTP 403 recebido do servidor durante a reprodução, provavelmente causado por URL de streaming expirado ou IP banido</string>
+    <string name="player_http_invalid_status">Erro HTTP %1$s recebido do servidor durante reprodução</string>
+    <string name="youtube_player_http_403">Erro HTTP 403 recebido do servidor durante a reprodução, provavelmente causado por um banimento de IP ou problemas de desofuscação de URL de streaming</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s se recusou a fornecer dados, solicitando um login para confirmar que o solicitante não é um bot.\n\nSeu IP pode ter sido temporariamente banido por %1$s. Você pode esperar um pouco ou mudar para um IP diferente (por exemplo, ativando/desativando uma VPN ou alternando de Wi-Fi para dados móveis).</string>
+    <string name="unsupported_content_in_country">Este conteúdo não está disponível para o país selecionado atualmente.\n\nAltere sua seleção acessando “Configurações &gt; Conteúdo &gt; País padrão do conteúdo”.</string>
 </resources>

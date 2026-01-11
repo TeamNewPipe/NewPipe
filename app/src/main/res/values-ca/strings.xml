@@ -215,7 +215,7 @@
     <string name="playback_speed_control">Controls de la velocitat de reproducció</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">To</string>
-    <string name="main_bg_subtitle">Toca \"Cerca\" per començar.</string>
+    <string name="main_bg_subtitle">Toqueu la lupa per començar.</string>
     <string name="use_external_video_player_summary">Elimina l\'àudio en algunes resolucions</string>
     <string name="use_external_audio_player_title">Reproductor d\'àudio extern</string>
     <string name="enable_search_history_summary">Emmagatzema les cerques localment</string>
@@ -231,9 +231,6 @@
     <string name="player_recoverable_failure">S\'està recuperant el reproductor després de l\'error</string>
     <string name="sorry_string">Bé, és lamentable.</string>
     <string name="detail_drag_description">Arrossegueu per reordenar la llista</string>
-    <string name="short_thousand">mil</string>
-    <string name="short_million">milions</string>
-    <string name="short_billion">mil milions</string>
     <string name="start">Inicia</string>
     <string name="msg_running_detail">Feu un toc aquí per a més detalls</string>
     <string name="no_available_dir">Defineix una carpeta de baixades més endavant als paràmetres</string>
@@ -615,7 +612,6 @@
     <string name="select_night_theme_toast">Pot seleccionar el seu tema fosc favorit aqui sota</string>
     <string name="night_theme_summary">Selecciona el teu tema fosc favorit — %s</string>
     <string name="auto_device_theme_title">Automàtic (tema del dispositiu)</string>
-    <string name="service_provides_reason">%s dóna aquesta raó:</string>
     <string name="account_terminated">Usuari suspes</string>
     <string name="feed_load_error_terminated">El compte de l\'autor ha estat esborrat.
 \nNewPipe no serà capaç de carregar aquest fil en el futur.

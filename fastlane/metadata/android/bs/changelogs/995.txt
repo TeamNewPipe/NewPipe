@@ -1,0 +1,16 @@
+Novo
+• Podrška za kartice kanala
+• Odabir kvalitete slike
+• Dobijanje URL-ova za sve slike
+
+Poboljšano
+• Pristupačnost interfejsa playera
+• Bolji odabir zvuka za preuzimanja samo videozapisa
+• Opcija za uključivanje naziva popisa za reprodukciju i videozapisa u dijeljeni sadržaj popisa za reprodukciju
+
+Ispravljeno
+• [YouTube] Ispravljeno dobijanje broja lajkova
+• Ispravljeni skočni prozori i padovi sustava koji ne reagiraju na player
+• Odabir pogrešnih jezika u biraču jezika
+• Fokus zvuka playera nije poštovao zvuk
+• Dodavanje stavki popisa za reprodukciju povremeno nije radilo

@@ -232,7 +232,7 @@
     <string name="title_most_played">Mest Afspillet</string>
     <string name="main_page_content">Indhold af hovedside</string>
     <string name="main_page_content_summary">Hvilke faner vises på hovedsiden</string>
-    <string name="blank_page_summary">Tom Side</string>
+    <string name="blank_page_summary">Tom side</string>
     <string name="kiosk_page_summary">Kioskside</string>
     <string name="channel_page_summary">Kanalside</string>
     <string name="select_a_channel">Vælg en kanal</string>
@@ -305,9 +305,6 @@
     <string name="stop">Stop</string>
     <string name="events">Hændelser</string>
     <string name="empty_list_subtitle">Ikke andet end fårekyllinger her</string>
-    <string name="short_thousand">t</string>
-    <string name="short_million">mio.</string>
-    <string name="short_billion">mia.</string>
     <plurals name="subscribers">
         <item quantity="one">%s abonnent</item>
         <item quantity="other">%s abonnenter</item>
@@ -557,7 +554,6 @@
     <string name="private_content">Dette indhold er privat, så det kan ikke streames eller hentes af NewPipe.</string>
     <string name="recently_added">Nyligt tilføjede</string>
     <string name="featured">Fremhævede</string>
-    <string name="service_provides_reason">%s giver denne grund:</string>
     <plurals name="listening">
         <item quantity="one">%s lytter</item>
         <item quantity="other">%s lyttere</item>
@@ -829,4 +825,20 @@
     <string name="feed_group_page_summary">Kanalgruppeside</string>
     <string name="select_a_feed_group">Vælg en feed-gruppe</string>
     <string name="no_feed_group_created_yet">Ingen feed-gruppe oprettet endnu</string>
+    <string name="search_with_service_name">Søg %1$s</string>
+    <string name="search_with_service_name_and_filter">Søg %1$s (%2$s)</string>
+    <string name="permission_display_over_apps_message">For at kunne bruge pop op-afspilleren skal du vælge %1$s i følgende Android-indstillingsmenu og aktivere %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">“Tillad visning over andre apps”</string>
+    <string name="short_thousand">%sK</string>
+    <string name="short_million">%sM</string>
+    <string name="short_billion">%sB</string>
+    <string name="delete_file">Slet fil</string>
+    <string name="account_terminated_service_provides_reason">Kontoen er blevet lukket\n\n%1$s angiver følgende årsag: %2$s</string>
+    <string name="channel_tab_likes">Likes</string>
+    <string name="migration_info_6_7_title">SoundCloud Top 50-siden fjernet</string>
+    <string name="migration_info_6_7_message">SoundCloud har udfaset de oprindelige Top 50-hitlister. Den tilhørende fane er blevet fjernet fra din hovedside.</string>
+    <string name="migration_info_7_8_title">YouTube kombineret trending fjernet</string>
+    <string name="migration_info_7_8_message">YouTube har udfaset den kombinerede trending-side pr. 21. juli 2025. NewPipe har erstattet standardsiden for trending med trending livestreams.\n\nDu kan også vælge andre trending-sider under \"Indstillinger &gt; Indhold &gt; Indhold på hovedsiden\".</string>
+    <string name="trending_gaming">Gaming-trends</string>
+    <string name="trending_podcasts">Trending podcasts</string>
 </resources>

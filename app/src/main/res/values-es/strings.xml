@@ -81,9 +81,6 @@
     <string name="info_labels">Qué:\\nSolicitud:\\nIdioma del contenido:\\nPaís del contenido:\\nIdioma de la aplicación:\\nServicio:\\nMarca de tiempo:\\nPaquete:\\nVersión:\\nVersión del SO:</string>
     <string name="black_theme_title">Negro</string>
     <string name="all">Todo</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">MM</string>
     <string name="open_in_popup_mode">Abrir en modo emergente</string>
     <string name="msg_popup_permission">Se necesita este permiso
 \npara abrir en modo emergente</string>
@@ -614,7 +611,6 @@
     <string name="description_select_disable">Deshabilitar la selección de texto de la descripción</string>
     <string name="description_select_enable">Habilitar la selección de texto de la descripción</string>
     <string name="description_select_note">Ahora puede seleccionar el texto dentro de la descripción. Note que la página puede parpadear y los links no serán cliqueables mientras está en el modo de selección.</string>
-    <string name="service_provides_reason">%s da esta razón:</string>
     <string name="feed_load_error_account_info">No fue posible cargar el feed por \'%s\'.</string>
     <string name="account_terminated">Cuenta cancelada</string>
     <string name="feed_load_error_fast_unknown">El modo de muro rápido no arroja más información sobre esto.</string>
@@ -833,4 +829,29 @@
     <string name="select_a_feed_group">Selecciona un grupo de feed</string>
     <string name="no_feed_group_created_yet">Aún no se ha creado ningún grupo de feed</string>
     <string name="feed_group_page_summary">Página de grupo de canales</string>
+    <string name="search_with_service_name">Buscar %1$s</string>
+    <string name="search_with_service_name_and_filter">Buscar %1$s (%2$s)</string>
+    <string name="channel_tab_likes">Me gusta</string>
+    <string name="migration_info_6_7_title">Página Top 50 de SoundCloud eliminada</string>
+    <string name="migration_info_6_7_message">SoundCloud ha descontinuado las listas originales del Top 50. La pestaña correspondiente se ha eliminado de la página principal.</string>
+    <string name="migration_info_7_8_title">YouTube tendencias combinadas eliminado</string>
+    <string name="migration_info_7_8_message">YouTube ha descontinuado la página de tendencias combinadas a partir del 21 de julio de 2025. NewPipe reemplazó la página de tendencias predeterminada con tendencias en directo.\n\nTambién puedes seleccionar diferentes páginas de tendencias en \"Ajustes &gt; Contenido &gt; Contenido de la página principal\".</string>
+    <string name="trending_gaming">Tendencias videojuegos</string>
+    <string name="trending_podcasts">Tendencias pódcasts</string>
+    <string name="trending_movies">Tendencias películas y programas</string>
+    <string name="trending_music">Tendencias música</string>
+    <string name="permission_display_over_apps_permission_name">“Permitir mostrar sobre otras aplicaciones”</string>
+    <string name="delete_file">Eliminar archivo</string>
+    <string name="short_thousand">%sM</string>
+    <string name="short_million">%sM</string>
+    <string name="delete_entry">Eliminar entrada</string>
+    <string name="account_terminated_service_provides_reason">Cuenta cancelada\n\n%1$s proporciona esta razón: %2$s</string>
+    <string name="entry_deleted">Entrada eliminada</string>
+    <string name="player_http_403">Error HTTP 403 recibido del servidor durante la reproducción, probablemente causado por la expiración de la URL de transmisión o una prohibición de IP</string>
+    <string name="player_http_invalid_status">Error HTTP %1$s recibido del servidor durante la reproducción</string>
+    <string name="youtube_player_http_403">Error HTTP 403 recibido del servidor durante la reproducción, probablemente causado por una prohibición de IP o problemas de desofuscación de la URL de transmisión</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s se negó a proporcionar datos y solicitó un inicio de sesión para confirmar que el solicitante no es un bot.\n\nEs posible que tu IP haya sido bloqueada temporalmente por %1$s. Puedes esperar un tiempo o cambiar a una IP diferente (por ejemplo, habilitando o deshabilitando una VPN, o cambiando de WiFi a datos móviles).</string>
+    <string name="short_billion">%sMM</string>
+    <string name="unsupported_content_in_country">Este contenido no está disponible para el país seleccionado actualmente.\n\nCambia tu selección en «Ajustes &gt; Contenido &gt; País predefinido del contenido».</string>
+    <string name="permission_display_over_apps_message">Para usar el reproductor emergente, seleccione %1$s en el siguiente menú de la configuración de Android y habilite %2$s.</string>
 </resources>

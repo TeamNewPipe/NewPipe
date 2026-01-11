@@ -295,9 +295,6 @@
     </plurals>
     <string name="no_subscribers">Nuk ka abonues</string>
     <string name="drawer_header_description">Aktivizoje shërbimin, momentalisht e zgjedhur:</string>
-    <string name="short_billion">B</string>
-    <string name="short_million">M</string>
-    <string name="short_thousand">k</string>
     <string name="retry">Riprovo</string>
     <string name="audio">Audio</string>
     <string name="video">Video</string>
@@ -601,7 +598,6 @@
     <string name="night_theme_summary">Zgjidhni temën tuaj të preferuar të natës - %s</string>
     <string name="auto_device_theme_title">Automatike (tema e pajisjes)</string>
     <string name="radio">Radio</string>
-    <string name="service_provides_reason">%s e jep këtë arsye:</string>
     <string name="account_terminated">Llogaria është mbyllur</string>
     <string name="private_content">Kjo përmbajtje është private, kështu që nuk mund të luhet apo shkarkohet nga NewPipe.</string>
     <string name="georestricted_content">Kjo përmbajtje nuk është e disponueshme në shtetin tuaj.</string>

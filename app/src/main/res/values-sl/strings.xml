@@ -83,9 +83,6 @@
     <string name="info_labels">Predmet:\\nZahteva:\\nJezik vsebine:\\nDržava vsebine:\\nJezik aplikacije:\\nStoritev:\\nČas v GMT:\\nPaket:\\nRazličica:\\nRazličica OS:</string>
     <string name="black_theme_title">Črna</string>
     <string name="all">Vse</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">mio</string>
-    <string name="short_billion">mrd</string>
     <string name="open_in_popup_mode">Odpri v pojavnem načinu</string>
     <string name="msg_popup_permission">To dovoljenje je potrebno za odpiranje 
 \nv pojavnem načinu</string>
@@ -264,7 +261,7 @@
     <string name="privacy_policy_title">NewPipe-ovi pravilnik zasebnosti</string>
     <string name="website_encouragement">Obiščite spletno mesto od NewPipe za več informacij in novic.</string>
     <string name="done">Končano</string>
-    <string name="no_comments">Ni komantarjev</string>
+    <string name="no_comments">Ni komentarjev</string>
     <string name="no_one_listening">Nobeden ne posluša</string>
     <string name="no_one_watching">Nobeden ne gleda</string>
     <string name="error_occurred_detail">Zgodila se je napaka: %1$s</string>

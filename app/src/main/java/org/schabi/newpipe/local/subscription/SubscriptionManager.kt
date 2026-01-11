@@ -26,7 +26,7 @@ class SubscriptionManager(context: Context) {
     private val feedDatabaseManager = FeedDatabaseManager(context)
 
     fun subscriptionTable(): SubscriptionDAO = subscriptionTable
-    fun subscriptions() = subscriptionTable.all
+    fun subscriptions() = subscriptionTable.getAll()
 
     fun getSubscriptions(
         currentGroupId: Long = FeedGroupEntity.GROUP_ALL_ID,
@@ -44,7 +44,7 @@ class SubscriptionManager(context: Context) {
                 }
             }
             showOnlyUngrouped -> subscriptionTable.getSubscriptionsOnlyUngrouped(currentGroupId)
-            else -> subscriptionTable.all
+            else -> subscriptionTable.getAll()
         }
     }
 
@@ -71,12 +71,12 @@ class SubscriptionManager(context: Context) {
         subscriptionTable.getSubscription(info.serviceId, info.url)
             .flatMapCompletable {
                 Completable.fromRunnable {
-                    it.setData(
-                        info.name,
-                        ImageStrategy.imageListToDbUrl(info.avatars),
-                        info.description,
-                        info.subscriberCount
-                    )
+                    it.apply {
+                        name = info.name
+                        avatarUrl = ImageStrategy.imageListToDbUrl(info.avatars)
+                        description = info.description
+                        subscriberCount = info.subscriberCount
+                    }
                     subscriptionTable.update(it)
                 }
             }

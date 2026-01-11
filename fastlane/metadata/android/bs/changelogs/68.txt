@@ -1,0 +1,31 @@
+# promjene v0.14.1
+
+### Ispravljeno
+- Ispravljeno neuspješno dešifriranje URL-a videa #1659
+- Ispravljeno nije dobro izdvajanje linka opisa #1657
+
+# promjene v0.14.0
+
+### Novo
+- Novi dizajn ladice #1461
+- Nova prilagodljiva početna stranica #1461
+
+### Poboljšanja
+- Prerađene kontrole gestikulacije #1604
+- Novi način zatvaranja iskačućeg playera #1597
+
+### Ispravljeno
+- Ispravljena greška kada broj pretplata nije dostupan. Zatvara se #1649.
+- Prikaži "Broj pretplatnika nije dostupan" u tim slučajevima
+- Ispravljen NPE kada je YouTube lista za reprodukciju prazna
+- Brzo rješenje za kioske u SoundCloudu
+- Refaktoriranje i ispravka greške #1623
+- Ispravljen ciklički rezultat pretrage #1562
+- Ispravljena traka za pretraživanje koja nije statički postavljena
+- Ispravljeno YT Premium videozapisi nisu ispravno blokirani
+- Ispravljeno videozapisi koji se ponekad ne učitavaju (zbog DASH parsiranja)
+- Ispravljeni linkovi u opisu videozapisa
+- Prikaži upozorenje kada neko pokuša preuzeti na eksternu sd karticu
+- ispravljen izuzetak koji se ne prikazuje, a pokreće izvještaj
+- sličica se ne prikazuje u pozadinskom playeru za Android 8.1 [pogledajte ovdje](https://github.com/TeamNewPipe/NewPipe/issues/943)
+- Ispravljeno registracija prijemnika emitiranja. Zatvoreno #1641.
