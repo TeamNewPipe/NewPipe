@@ -768,9 +768,15 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 final boolean isSwapped = itemListAdapter.swapItems(sourceIndex, targetIndex);
                 if (isSwapped) {
                     debounceSaver.setHasChangesToSave();
-                    saveImmediate();
                 }
                 return isSwapped;
+            }
+
+            @Override
+            public void clearView(@NonNull final RecyclerView recyclerView,
+                                  @NonNull final RecyclerView.ViewHolder viewHolder) {
+                super.clearView(recyclerView, viewHolder);
+                saveImmediate();
             }
 
             @Override
