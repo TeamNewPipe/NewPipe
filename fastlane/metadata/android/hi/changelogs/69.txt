@@ -1,19 +1,15 @@
-### New
-- Long-tap delete and share in subscriptions #1516 
-- Tablet UI and grid list layout #1617 
+### नया
+- सब्सक्रिप्शन में लंबे समय तक टैप करके डिलीट और शेयर करें #1516
+- टैबलेट UI और ग्रिड लिस्ट लेआउट #1617
 
-### Improvements
-- store and reload the last used aspect ratio #1748 
-- Enable linear layout in Downloads activity with full video names #1771 
-- Delete and share subscriptions directly from within the subscriptions tab #1516 
-- Enqueuing now triggers video playing if the play queue has already ended #1783 
-- Separate settings for volume and brightness gestures #1644
-- Add support for Localization #1792
+### सुधार
+- वॉल्यूम और ब्राइटनेस जेस्चर के लिए अलग सेटिंग्स #1644
+- लोकलाइज़ेशन के लिए सपोर्ट जोड़ें #1792
 
-### Fixes
-- Fix time parsing for . format, so NewPipe can be used in Finland
-- Fix subscription count
-- Add foreground service permission for API 28+ devices #1830
+### सुधार
+- . फ़ॉर्मेट के लिए टाइम पार्सिंग ठीक करें, ताकि फ़िनलैंड में NewPipe का इस्तेमाल किया जा सके
+- सब्सक्रिप्शन काउंट ठीक करें
+- API 28+ डिवाइस के लिए फ़ोरग्राउंड सर्विस परमिशन जोड़ें #1830
 
-### Known Bugs
-- Playback state can not be saved on Android P
+### जाने-पहचाने बग
+- Android P पर प्लेबैक स्टेट सेव नहीं किया जा सकता

@@ -806,7 +806,7 @@ public final class ListHelper {
         final Locale preferredLanguage = Localization.getPreferredLocale(context);
         final boolean preferOriginalAudio =
                 preferences.getBoolean(context.getString(R.string.prefer_original_audio_key),
-                        false);
+                        true);
         final boolean preferDescriptiveAudio =
                 preferences.getBoolean(context.getString(R.string.prefer_descriptive_audio_key),
                         false);

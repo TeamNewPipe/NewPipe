@@ -111,7 +111,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private MainFragment.SelectedTabsPagerAdapter tabsPagerAdapter = null;
 
     public static LocalPlaylistFragment getInstance(final long playlistId, final String name) {
-        final LocalPlaylistFragment instance = new LocalPlaylistFragment();
+        final var instance = new LocalPlaylistFragment();
         instance.setInitialData(playlistId, name);
         return instance;
     }
@@ -180,9 +180,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         itemListAdapter.setSelectedListener(new OnClickGesture<>() {
             @Override
             public void selected(final LocalItem selectedItem) {
-                if (selectedItem instanceof PlaylistStreamEntry) {
-                    final StreamEntity item =
-                            ((PlaylistStreamEntry) selectedItem).getStreamEntity();
+                if (selectedItem instanceof PlaylistStreamEntry entry) {
+                    final StreamEntity item = entry.getStreamEntity();
                     NavigationHelper.openVideoDetailFragment(requireContext(), getFM(),
                             item.getServiceId(), item.getUrl(), item.getTitle(), null, false);
                 }
@@ -496,6 +495,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     itemListAdapter.clearStreamItemList();
                     itemListAdapter.addItems(itemsToKeep);
                     debounceSaver.setHasChangesToSave();
+                    saveImmediate();
 
                     if (thumbnailVideoRemoved) {
                         updateThumbnailUrl();
@@ -560,8 +560,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             return;
         }
 
-        final DialogEditTextBinding dialogBinding =
-                DialogEditTextBinding.inflate(getLayoutInflater());
+        final var dialogBinding = DialogEditTextBinding.inflate(getLayoutInflater());
         dialogBinding.dialogEditText.setHint(R.string.name);
         dialogBinding.dialogEditText.setInputType(InputType.TYPE_CLASS_TEXT);
         dialogBinding.dialogEditText.setSelection(dialogBinding.dialogEditText.getText().length());
@@ -667,6 +666,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     itemListAdapter.addItems(itemsToKeep);
                     setStreamCountAndOverallDuration(itemListAdapter.getItemsList());
                     debounceSaver.setHasChangesToSave();
+                    saveImmediate();
 
                     hideLoading();
                     isRewritingPlaylist = false;
@@ -686,6 +686,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         setStreamCountAndOverallDuration(itemListAdapter.getItemsList());
         debounceSaver.setHasChangesToSave();
+        saveImmediate();
     }
 
     /**
@@ -708,8 +709,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         final List<LocalItem> items = itemListAdapter.getItemsList();
         final List<Long> streamIds = new ArrayList<>(items.size());
         for (final LocalItem item : items) {
-            if (item instanceof PlaylistStreamEntry) {
-                streamIds.add(((PlaylistStreamEntry) item).getStreamId());
+            if (item instanceof PlaylistStreamEntry entry) {
+                streamIds.add(entry.getStreamId());
             }
         }
 
@@ -769,6 +770,13 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     debounceSaver.setHasChangesToSave();
                 }
                 return isSwapped;
+            }
+
+            @Override
+            public void clearView(@NonNull final RecyclerView recyclerView,
+                                  @NonNull final RecyclerView.ViewHolder viewHolder) {
+                super.clearView(recyclerView, viewHolder);
+                saveImmediate();
             }
 
             @Override
