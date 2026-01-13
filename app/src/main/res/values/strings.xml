@@ -154,11 +154,15 @@
     <string name="settings_category_video_audio_title">Video and audio</string>
     <string name="settings_category_history_title">History and cache</string>
     <string name="settings_category_appearance_title">Appearance</string>
+    <string name="settings_category_look_and_feel_title">Look and feel</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="settings_category_updates_title">Updates</string>
     <string name="settings_category_player_notification_title">Player notification</string>
     <string name="settings_category_player_notification_summary">Configure current playing stream notification</string>
     <string name="settings_category_backup_restore_title">Backup and restore</string>
+    <string name="settings_category_content_title">Content</string>
+    <string name="settings_category_services_title">Services</string>
+    <string name="settings_category_language_title">Language</string>
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="content">Content</string>

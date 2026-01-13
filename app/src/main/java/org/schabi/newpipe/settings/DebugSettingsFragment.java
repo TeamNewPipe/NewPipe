@@ -1,6 +1,5 @@
 package org.schabi.newpipe.settings;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.preference.Preference;
@@ -87,16 +86,5 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
         } catch (final Exception e) {
             return Optional.empty();
         }
-    }
-
-    /**
-     * Build variant dependent (BVD) leak canary API for this fragment.
-     * Why is LeakCanary not used directly? Because it can't be assured
-     */
-    public interface DebugSettingsBVDLeakCanaryAPI {
-        String IMPL_CLASS =
-                "org.schabi.newpipe.settings.DebugSettingsBVDLeakCanary";
-
-        Intent getNewLeakDisplayActivityIntent();
     }
 }
