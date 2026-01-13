@@ -775,14 +775,14 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
                     if (showLocalSuggestions && shallShowRemoteSuggestionsNow) {
                         return Observable.zip(
-                                getLocalSuggestionsObservable(query, 3),
-                                getRemoteSuggestionsObservable(query),
-                                (local, remote) -> {
-                                    remote.removeIf(remoteItem -> local.stream().anyMatch(
-                                            localItem -> localItem.equals(remoteItem)));
-                                    local.addAll(remote);
-                                    return local;
-                                })
+                                        getLocalSuggestionsObservable(query, 3),
+                                        getRemoteSuggestionsObservable(query),
+                                        (local, remote) -> {
+                                            remote.removeIf(remoteItem -> local.stream().anyMatch(
+                                                    localItem -> localItem.equals(remoteItem)));
+                                            local.addAll(remote);
+                                            return local;
+                                        })
                                 .materialize();
                     } else if (showLocalSuggestions) {
                         return getLocalSuggestionsObservable(query, 25)
@@ -887,9 +887,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             searchDisposable.dispose();
         }
         searchDisposable = ExtractorHelper.searchFor(serviceId,
-                searchString,
-                Arrays.asList(contentFilter),
-                sortFilter)
+                        searchString,
+                        Arrays.asList(contentFilter),
+                        sortFilter)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEvent((searchResult, throwable) -> isLoading.set(false))
@@ -908,11 +908,11 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             searchDisposable.dispose();
         }
         searchDisposable = ExtractorHelper.getMoreSearchItems(
-                serviceId,
-                searchString,
-                asList(contentFilter),
-                sortFilter,
-                nextPage)
+                        serviceId,
+                        searchString,
+                        asList(contentFilter),
+                        sortFilter,
+                        nextPage)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEvent((nextItemsResult, throwable) -> isLoading.set(false))
