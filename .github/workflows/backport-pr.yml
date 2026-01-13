@@ -25,9 +25,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Get backport metadata
         # the target branch is the first argument after `/backport`
+        env:
+          COMMENT_BODY: ${{ github.event.comment.body }}
         run: |
           set -euo pipefail
-          body="${{ github.event.comment.body }}"
+          body="$COMMENT_BODY"
           
           line=${body%%$'\n'*} # Get the first line
           if [[ $line =~ ^/backport[[:space:]]+([^[:space:]]+) ]]; then
