@@ -48,6 +48,10 @@ android {
         System.getProperty("versionNameSuffix")?.let { versionNameSuffix = it }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // Move public API key to BuildConfig to avoid direct exposure in source code
+        val googleApiKey = System.getenv("NEWPIPE_GOOGLE_API_KEY") ?: "AIzaSyDyT5W0Jh49F30Pqqtyfdf7pDLFKLJoAnw"
+        buildConfigField("String", "GOOGLE_API_KEY", "\"$googleApiKey\"")
     }
 
     buildTypes {
