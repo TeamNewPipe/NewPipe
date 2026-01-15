@@ -436,6 +436,15 @@
     <string name="audio_track">Audio track</string>
     <string name="hold_to_append">Hold to enqueue</string>
     <string name="show_channel_details">Show channel details</string>
+    <string name="block_channel">Block channel</string>
+    <string name="unblock_channel">Unblock channel</string>
+    <string name="unblock_channel_confirmation">Are you sure you want to unblock this channel?</string>
+    <string name="channel_blocked">Channel blocked: %s</string>
+    <string name="channel_unblocked">Channel unblocked</string>
+    <string name="blocked_channels">Blocked channels</string>
+    <string name="blocked_channels_title">Blocked channels</string>
+    <string name="blocked_channels_summary">Manage blocked channels</string>
+    <string name="no_blocked_channels">No blocked channels</string>
     <string name="enqueue_stream">Enqueue</string>
     <string name="enqueued">Enqueued</string>
     <string name="enqueue_next_stream">Enqueue next</string>
