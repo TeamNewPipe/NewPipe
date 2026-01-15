@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/switch_mode"
         android:icon="@drawable/ic_apps"
         android:title="@string/grid"

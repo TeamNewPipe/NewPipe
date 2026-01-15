@@ -365,6 +365,8 @@
     <string name="settings_file_charset_title">Allowed characters in filenames</string>
     <string name="settings_file_replacement_character_summary">Invalid characters are replaced with this value</string>
     <string name="settings_file_replacement_character_title">Replacement character</string>
+    <string name="settings_file_name_include_uploader_key_summary">Append uploader name to filename</string>
+    <string name="settings_file_name_include_uploader_key_title">Uploader in filename</string>
     <string name="charset_letters_and_digits">Letters and digits</string>
     <string name="charset_most_special_characters">Most special characters</string>
     <!-- About -->
