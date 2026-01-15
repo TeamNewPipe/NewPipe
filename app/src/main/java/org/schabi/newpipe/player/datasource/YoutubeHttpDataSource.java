@@ -22,6 +22,7 @@ import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper
 import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper.isWebEmbeddedPlayerStreamingUrl;
 import static java.lang.Math.min;
 
+import android.content.Context;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
@@ -47,6 +48,7 @@ import com.google.common.collect.Sets;
 import com.google.common.net.HttpHeaders;
 
 import org.schabi.newpipe.DownloaderImpl;
+import org.schabi.newpipe.settings.ProxyManager;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -56,6 +58,7 @@ import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.NoRouteToHostException;
+import java.net.Proxy;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
@@ -86,6 +89,7 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
      */
     public static final class Factory implements HttpDataSource.Factory {
 
+        private final Context context;
         private final RequestProperties defaultRequestProperties;
 
         @Nullable
@@ -102,8 +106,10 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
 
         /**
          * Creates an instance.
+         * @param context the context to use
          */
-        public Factory() {
+        public Factory(final Context context) {
+            this.context = context;
             defaultRequestProperties = new RequestProperties();
             connectTimeoutMs = DEFAULT_CONNECT_TIMEOUT_MILLIS;
             readTimeoutMs = DEFAULT_READ_TIMEOUT_MILLIS;
@@ -222,7 +228,6 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
          * <p>The default is {@code null}.
          *
          * <p>See {@link DataSource#addTransferListener(TransferListener)}.
-         *
          * @param transferListenerToUse The listener that will be used.
          * @return This factory.
          */
@@ -249,6 +254,7 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
         @Override
         public YoutubeHttpDataSource createDataSource() {
             final YoutubeHttpDataSource dataSource = new YoutubeHttpDataSource(
+                    context,
                     connectTimeoutMs,
                     readTimeoutMs,
                     allowCrossProtocolRedirects,
@@ -274,6 +280,7 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
     private static final String YOUTUBE_BASE_URL = "https://www.youtube.com";
     private static final byte[] POST_BODY = new byte[] {0x78, 0};
 
+    private final Context context;
     private final boolean allowCrossProtocolRedirects;
     private final boolean rangeParameterEnabled;
     private final boolean rnParameterEnabled;
@@ -301,7 +308,8 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
     private long requestNumber;
 
     @SuppressWarnings("checkstyle:ParameterNumber")
-    private YoutubeHttpDataSource(final int connectTimeoutMillis,
+    private YoutubeHttpDataSource(final Context context,
+                                  final int connectTimeoutMillis,
                                   final int readTimeoutMillis,
                                   final boolean allowCrossProtocolRedirects,
                                   final boolean rangeParameterEnabled,
@@ -310,6 +318,7 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
                                   @Nullable final Predicate<String> contentTypePredicate,
                                   final boolean keepPostFor302Redirects) {
         super(true);
+        this.context = context;
         this.connectTimeoutMillis = connectTimeoutMillis;
         this.readTimeoutMillis = readTimeoutMillis;
         this.allowCrossProtocolRedirects = allowCrossProtocolRedirects;
@@ -716,6 +725,11 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
      * @return an {@link HttpURLConnection} created with the {@code url}
      */
     private HttpURLConnection openConnection(@NonNull final URL url) throws IOException {
+        final ProxyManager proxyManager = new ProxyManager(context);
+        final Proxy proxy = proxyManager.getProxy();
+        if (proxy != null) {
+            return (HttpURLConnection) url.openConnection(proxy);
+        }
         return (HttpURLConnection) url.openConnection();
     }
 
@@ -1014,4 +1028,3 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
         }
     }
 }
-
