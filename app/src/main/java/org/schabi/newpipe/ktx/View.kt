@@ -41,11 +41,7 @@ fun View.animate(
     execOnEnd: Runnable? = null
 ) {
     if (DEBUG) {
-        val id = try {
-            resources.getResourceEntryName(id)
-        } catch (e: Exception) {
-            id.toString()
-        }
+        val id = runCatching { resources.getResourceEntryName(id) }.getOrDefault(id.toString())
         val msg = String.format(
             "%8s →  [%s:%s] [%s %s:%s] execOnEnd=%s", enterOrExit,
             javaClass.simpleName, id, animationType, duration, delay, execOnEnd

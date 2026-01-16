@@ -22,7 +22,6 @@ import org.schabi.newpipe.extractor.channel.ChannelInfo
 import org.schabi.newpipe.extractor.stream.StreamType
 import java.io.IOException
 import java.time.OffsetDateTime
-import kotlin.streams.toList
 
 class FeedDAOTest {
     private lateinit var db: AppDatabase
