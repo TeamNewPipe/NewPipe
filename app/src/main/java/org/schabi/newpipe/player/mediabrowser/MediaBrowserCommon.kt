@@ -22,7 +22,7 @@ internal fun infoItemTypeToString(type: InfoType): String {
         InfoType.STREAM -> ID_STREAM
         InfoType.PLAYLIST -> ID_PLAYLIST
         InfoType.CHANNEL -> ID_CHANNEL
-        else -> throw IllegalStateException("Unexpected value: $type")
+        else -> error("Unexpected value: $type")
     }
 }
 
@@ -31,7 +31,7 @@ internal fun infoItemTypeFromString(type: String): InfoType {
         ID_STREAM -> InfoType.STREAM
         ID_PLAYLIST -> InfoType.PLAYLIST
         ID_CHANNEL -> InfoType.CHANNEL
-        else -> throw IllegalStateException("Unexpected value: $type")
+        else -> error("Unexpected value: $type")
     }
 }
 
