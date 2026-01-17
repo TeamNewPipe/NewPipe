@@ -5,4 +5,8 @@
   -->
 <resources>
     <string name="app_name">NewPipe</string>
+
+    <!-- AboutScreen -->
+    <string name="tab_about">About \u0026 FAQ</string>
+    <string name="tab_licenses">Licenses</string>
 </resources>

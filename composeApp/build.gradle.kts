@@ -12,7 +12,7 @@ plugins {
     alias(libs.plugins.jetbrains.compose.multiplatform)
     alias(libs.plugins.jetbrains.compose.hotreload)
     alias(libs.plugins.google.ksp)
-    alias(libs.plugins.jetbrains.kotlin.parcelize)
+    alias(libs.plugins.jetbrains.kotlin.serialization)
 }
 
 kotlin {
@@ -56,6 +56,10 @@ kotlin {
 
             // Settings
             implementation(libs.russhwolf.settings)
+
+            // Navigation
+            implementation(libs.jetbrains.navigation3.ui)
+            implementation(libs.jetbrains.serialization.json)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -68,7 +72,7 @@ kotlin {
         }
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
-            implementation(libs.jetbrains.kotlinx.coroutinesSwing)
+            implementation(libs.jetbrains.coroutines.swing)
         }
     }
 

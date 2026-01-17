@@ -40,6 +40,7 @@ material = "1.11.0" # TODO: update to newer version after bug is fixed. See http
 media = "1.7.1"
 mockitoCore = "5.21.0"
 multiplatform = "1.9.3"
+navigation3 = "1.0.0-alpha06"
 okhttp = "5.3.2"
 phoenix = "3.0.0"
 #noinspection NewerVersionAvailable,GradleDependency --> 2.8 is the last version, not 2.71828!
@@ -52,6 +53,7 @@ runner = "1.7.0"
 rxandroid = "3.0.2"
 rxbinding = "4.0.0"
 rxjava = "3.1.12"
+serialization = "1.9.0"
 settings = "1.3.0"
 sonarqube = "7.2.1.6560"
 statesaver = "1.4.1" # TODO: Drop because it is deprecated and incompatible with KSP2
@@ -116,8 +118,10 @@ google-exoplayer-smoothstreaming = { module = "com.google.android.exoplayer:exop
 google-exoplayer-ui = { module = "com.google.android.exoplayer:exoplayer-ui", version.ref = "exoplayer" }
 jakewharton-phoenix = { module = "com.jakewharton:process-phoenix", version.ref = "phoenix" }
 jakewharton-rxbinding = { module = "com.jakewharton.rxbinding4:rxbinding", version.ref = "rxbinding" }
-jetbrains-kotlinx-coroutinesSwing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "coroutines" }
+jetbrains-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "coroutines" }
 jetbrains-lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle-jetbrains" }
+jetbrains-navigation3-ui = { module = "org.jetbrains.androidx.navigation3:navigation3-ui", version.ref = "navigation3" }
+jetbrains-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
 junit = { module = "junit:junit", version.ref = "junit" }
 koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koin-annotations" }
@@ -160,4 +164,5 @@ jetbrains-kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version
 jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" } # Needed for statesaver
 jetbrains-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 jetbrains-kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
