@@ -78,7 +78,10 @@ android {
             }
             isMinifyEnabled = true
             isShrinkResources = false // disabled to fix F-Droid"s reproducible build
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 
