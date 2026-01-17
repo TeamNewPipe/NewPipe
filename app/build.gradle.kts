@@ -5,8 +5,7 @@
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.jetbrains.kotlin.kapt)
+    alias(libs.plugins.android.legacy.kapt)
     alias(libs.plugins.google.ksp)
     alias(libs.plugins.jetbrains.kotlin.parcelize)
     alias(libs.plugins.sonarqube)
