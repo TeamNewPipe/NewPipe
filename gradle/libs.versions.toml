@@ -24,7 +24,7 @@ jsoup = "1.21.2"
 junit = "4.13.2"
 junit-ext = "1.3.0"
 kotlin = "2.2.10"
-ksp = "2.3.2"
+ksp = "2.3.4"
 ktlint = "1.8.0"
 leakcanary = "2.14"
 lifecycle = "2.9.4" # Newer versions require minSdk >= 23
