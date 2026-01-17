@@ -5,7 +5,7 @@
 
 [versions]
 acra = "5.13.1"
-agp = "8.13.2"
+agp = "9.0.0"
 appcompat = "1.7.1"
 assertj = "3.27.6"
 autoservice-google = "1.1.1"
