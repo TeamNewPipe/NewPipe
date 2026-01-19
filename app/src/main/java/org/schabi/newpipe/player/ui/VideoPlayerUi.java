@@ -24,7 +24,6 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -1587,19 +1586,15 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
             // make sure there is nothing left over from previous calls
             clearVideoSurface();
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { // >=API23
-                surfaceHolderCallback = new SurfaceHolderCallback(context, player.getExoPlayer());
-                binding.surfaceView.getHolder().addCallback(surfaceHolderCallback);
+            surfaceHolderCallback = new SurfaceHolderCallback(context, player.getExoPlayer());
+            binding.surfaceView.getHolder().addCallback(surfaceHolderCallback);
 
-                // ensure player is using an unreleased surface, which the surfaceView might not be
-                // when starting playback on background or during player switching
-                if (binding.surfaceView.getHolder().getSurface().isValid()) {
-                    // initially set the surface manually otherwise
-                    // onRenderedFirstFrame() will not be called
-                    player.getExoPlayer().setVideoSurfaceHolder(binding.surfaceView.getHolder());
-                }
-            } else {
-                player.getExoPlayer().setVideoSurfaceView(binding.surfaceView);
+            // ensure player is using an unreleased surface, which the surfaceView might not be
+            // when starting playback on background or during player switching
+            if (binding.surfaceView.getHolder().getSurface().isValid()) {
+                // initially set the surface manually otherwise
+                // onRenderedFirstFrame() will not be called
+                player.getExoPlayer().setVideoSurfaceHolder(binding.surfaceView.getHolder());
             }
 
             surfaceIsSetup = true;
@@ -1607,8 +1602,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     }
 
     private void clearVideoSurface() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M // >=API23
-                && surfaceHolderCallback != null) {
+        if (surfaceHolderCallback != null) {
             binding.surfaceView.getHolder().removeCallback(surfaceHolderCallback);
             surfaceHolderCallback.release();
             surfaceHolderCallback = null;
