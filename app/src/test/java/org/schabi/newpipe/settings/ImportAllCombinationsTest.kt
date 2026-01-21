@@ -152,7 +152,7 @@ class ImportAllCombinationsTest {
             for (containsSer in Ser.entries) {
                 for (containsJson in listOf(true, false)) {
                     val filename = "settings/${if (containsDb) "db" else "nodb"}_${
-                    containsSer.id}_${if (containsJson) "json" else "nojson"}.zip"
+                        containsSer.id}_${if (containsJson) "json" else "nojson"}.zip"
                     testZipCombination(containsDb, containsSer, containsJson, filename) { test ->
                         try {
                             test()
@@ -173,7 +173,7 @@ class ImportAllCombinationsTest {
             for (a in failedAssertions) {
                 println(
                     "Assertion failed with containsDb=${a.containsDb}, containsSer=${
-                    a.containsSer}, containsJson=${a.containsJson}, filename=${a.filename}:"
+                        a.containsSer}, containsJson=${a.containsJson}, filename=${a.filename}:"
                 )
                 a.throwable.printStackTrace()
                 println()

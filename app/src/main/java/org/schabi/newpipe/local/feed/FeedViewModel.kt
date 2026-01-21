@@ -65,7 +65,7 @@ class FeedViewModel(
             feedDatabaseManager.oldestSubscriptionUpdate(groupId),
 
             Function6 { t1: FeedEventManager.Event, t2: Boolean, t3: Boolean, t4: Boolean,
-                t5: Long, t6: List<OffsetDateTime?> ->
+                        t5: Long, t6: List<OffsetDateTime?> ->
                 return@Function6 CombineResultEventHolder(t1, t2, t3, t4, t5, t6.firstOrNull())
             }
         )

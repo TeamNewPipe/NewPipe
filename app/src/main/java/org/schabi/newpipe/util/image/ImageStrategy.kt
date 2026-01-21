@@ -68,7 +68,7 @@ object ImageStrategy {
         val initialComparator =
             Comparator // the first step splits the images into groups of resolution levels
                 .comparingInt { i: Image ->
-                   return@comparingInt when (i.estimatedResolutionLevel) {
+                    return@comparingInt when (i.estimatedResolutionLevel) {
                         // avoid unknowns as much as possible
                         ResolutionLevel.UNKNOWN -> 3
 
