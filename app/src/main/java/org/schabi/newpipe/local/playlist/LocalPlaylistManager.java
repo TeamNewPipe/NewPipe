@@ -128,12 +128,40 @@ public class LocalPlaylistManager {
         return playlistStreamTable.getPlaylistMetadata().subscribeOn(Schedulers.io());
     }
 
+    public Flowable<List<PlaylistMetadataEntry>> getPlaylistsForFolder(final Long folderId) {
+        return playlistStreamTable.getPlaylistMetadata()
+                .map(list -> {
+                    if (folderId == null) return list;
+                    java.util.List<PlaylistMetadataEntry> filtered = new java.util.ArrayList<>();
+                    for (PlaylistMetadataEntry e : list) {
+                        if (e.folderId == null && folderId == -1L) {
+                            // treat -1 as ungrouped
+                            filtered.add(e);
+                        } else if (e.folderId != null && e.folderId.equals(folderId)) {
+                            filtered.add(e);
+                        }
+                    }
+                    return filtered;
+                }).subscribeOn(Schedulers.io());
+    }
+
     public Flowable<List<PlaylistStreamEntry>> getPlaylistStreams(final long playlistId) {
         return playlistStreamTable.getOrderedStreamsOf(playlistId).subscribeOn(Schedulers.io());
     }
 
     public Maybe<Integer> renamePlaylist(final long playlistId, final String name) {
         return modifyPlaylist(playlistId, name, THUMBNAIL_ID_LEAVE_UNCHANGED, false);
+    }
+
+    public Maybe<Integer> setPlaylistFolder(final long playlistId, final Long folderId) {
+        return playlistTable.getPlaylist(playlistId)
+                .firstElement()
+                .filter(playlistEntities -> !playlistEntities.isEmpty())
+                .map(playlistEntities -> {
+                    final PlaylistEntity playlist = playlistEntities.get(0);
+                    playlist.setFolderId(folderId);
+                    return playlistTable.update(playlist);
+                }).subscribeOn(Schedulers.io());
     }
 
     public Maybe<Integer> changePlaylistThumbnail(final long playlistId,
