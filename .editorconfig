@@ -22,7 +22,6 @@ ktlint_standard_function-expression-body = disabled
 ktlint_standard_function-literal = disabled
 ktlint_standard_function-signature = disabled
 ktlint_standard_indent = disabled
-ktlint_standard_kdoc = disabled
 ktlint_standard_max-line-length = disabled
 ktlint_standard_mixed-condition-operators = disabled
 ktlint_standard_no-empty-first-line-in-class-body = disabled
