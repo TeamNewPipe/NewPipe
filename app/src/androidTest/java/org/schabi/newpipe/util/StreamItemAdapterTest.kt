@@ -292,7 +292,7 @@ class StreamItemAdapterTest {
             Assert.assertEquals(
                 "normal visibility (pos=[$position]) is not correct",
                 findViewById<View>(R.id.wo_sound_icon).visibility,
-                normalVisibility,
+                normalVisibility
             )
         }
         spinner.adapter.getDropDownView(position, null, spinner).run {

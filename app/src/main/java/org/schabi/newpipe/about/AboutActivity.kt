@@ -195,7 +195,7 @@ class AboutActivity : AppCompatActivity() {
             SoftwareComponent(
                 "SearchPreference", "2018", "ByteHamster",
                 "https://github.com/ByteHamster/SearchPreference", StandardLicenses.MIT
-            ),
+            )
         )
     }
 }

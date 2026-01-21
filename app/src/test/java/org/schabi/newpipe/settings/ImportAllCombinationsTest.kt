@@ -29,7 +29,7 @@ class ImportAllCombinationsTest {
         val containsSer: Ser,
         val containsJson: Boolean,
         val filename: String,
-        val throwable: Throwable,
+        val throwable: Throwable
     )
 
     private fun testZipCombination(
@@ -37,7 +37,7 @@ class ImportAllCombinationsTest {
         containsSer: Ser,
         containsJson: Boolean,
         filename: String,
-        runTest: (test: () -> Unit) -> Unit,
+        runTest: (test: () -> Unit) -> Unit
     ) {
         val zipFile = File(classloader.getResource(filename)?.file!!)
         val zip = Mockito.mock(StoredFileHelper::class.java, Mockito.withSettings().stubOnly())

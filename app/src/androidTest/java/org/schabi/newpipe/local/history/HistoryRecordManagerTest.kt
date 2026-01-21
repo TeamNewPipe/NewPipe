@@ -54,7 +54,7 @@ class HistoryRecordManagerTest {
             SearchHistoryEntry(creationDate = time.minusSeconds(1), serviceId = 0, search = "A"),
             SearchHistoryEntry(creationDate = time.minusSeconds(2), serviceId = 2, search = "A"),
             SearchHistoryEntry(creationDate = time.minusSeconds(3), serviceId = 1, search = "B"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(4), serviceId = 0, search = "B"),
+            SearchHistoryEntry(creationDate = time.minusSeconds(4), serviceId = 0, search = "B")
         )
 
         // make sure all 4 were inserted
@@ -85,7 +85,7 @@ class HistoryRecordManagerTest {
         val entries = listOf(
             SearchHistoryEntry(creationDate = time.minusSeconds(1), serviceId = 1, search = "A"),
             SearchHistoryEntry(creationDate = time.minusSeconds(2), serviceId = 2, search = "B"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(3), serviceId = 0, search = "C"),
+            SearchHistoryEntry(creationDate = time.minusSeconds(3), serviceId = 0, search = "C")
         )
 
         // make sure all 3 were inserted
@@ -121,7 +121,7 @@ class HistoryRecordManagerTest {
             RELATED_SEARCHES_ENTRIES[6].search, // A (even if in two places)
             RELATED_SEARCHES_ENTRIES[4].search, // B
             RELATED_SEARCHES_ENTRIES[5].search, // AA
-            RELATED_SEARCHES_ENTRIES[2].search, // BA
+            RELATED_SEARCHES_ENTRIES[2].search // BA
         )
     }
 
@@ -136,7 +136,7 @@ class HistoryRecordManagerTest {
             SearchHistoryEntry(creationDate = time.minusSeconds(4), serviceId = 3, search = "A"),
             SearchHistoryEntry(creationDate = time.minusSeconds(3), serviceId = 3, search = "A"),
             SearchHistoryEntry(creationDate = time.minusSeconds(2), serviceId = 0, search = "A"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(1), serviceId = 2, search = "AA"),
+            SearchHistoryEntry(creationDate = time.minusSeconds(1), serviceId = 2, search = "AA")
         )
         insertShuffledRelatedSearches(relatedSearches)
 
@@ -153,7 +153,7 @@ class HistoryRecordManagerTest {
         assertThat(searches).containsExactly(
             RELATED_SEARCHES_ENTRIES[6].search, // A (even if in two places)
             RELATED_SEARCHES_ENTRIES[5].search, // AA
-            RELATED_SEARCHES_ENTRIES[1].search, // BA
+            RELATED_SEARCHES_ENTRIES[1].search // BA
         )
 
         // also make sure that the string comparison is case insensitive
@@ -171,7 +171,7 @@ class HistoryRecordManagerTest {
             SearchHistoryEntry(creationDate = time.minusSeconds(4), serviceId = 3, search = "A"),
             SearchHistoryEntry(creationDate = time.minusSeconds(2), serviceId = 0, search = "B"),
             SearchHistoryEntry(creationDate = time.minusSeconds(3), serviceId = 2, search = "AA"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(1), serviceId = 1, search = "A"),
+            SearchHistoryEntry(creationDate = time.minusSeconds(1), serviceId = 1, search = "A")
         )
     }
 }

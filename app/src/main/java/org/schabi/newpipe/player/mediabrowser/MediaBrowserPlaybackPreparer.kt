@@ -51,7 +51,7 @@ class MediaBrowserPlaybackPreparer(
     private val context: Context,
     private val setMediaSessionError: BiConsumer<String, Int>, // error string, error code
     private val clearMediaSessionError: Runnable,
-    private val onPrepare: Consumer<Boolean>,
+    private val onPrepare: Consumer<Boolean>
 ) : PlaybackPreparer {
     private val database = NewPipeDatabase.getInstance(context)
     private var disposable: Disposable? = null
@@ -172,7 +172,7 @@ class MediaBrowserPlaybackPreparer(
     private fun extractPlayQueueFromPlaylistMediaId(
         mediaId: String,
         path: MutableList<String>,
-        url: String?,
+        url: String?
     ): Single<PlayQueue> {
         if (path.isEmpty()) {
             throw parseError(mediaId)
@@ -209,7 +209,7 @@ class MediaBrowserPlaybackPreparer(
     @Throws(ContentNotAvailableException::class)
     private fun extractPlayQueueFromHistoryMediaId(
         mediaId: String,
-        path: List<String>,
+        path: List<String>
     ): Single<PlayQueue> {
         if (path.size != 1) {
             throw parseError(mediaId)
@@ -230,7 +230,7 @@ class MediaBrowserPlaybackPreparer(
     private fun extractPlayQueueFromInfoItemMediaId(
         mediaId: String,
         path: List<String>,
-        url: String,
+        url: String
     ): Single<PlayQueue> {
         if (path.size != 2) {
             throw parseError(mediaId)

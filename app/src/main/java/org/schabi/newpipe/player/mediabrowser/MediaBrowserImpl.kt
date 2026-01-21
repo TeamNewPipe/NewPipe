@@ -47,7 +47,7 @@ import org.schabi.newpipe.util.image.ImageStrategy
  */
 class MediaBrowserImpl(
     private val context: Context,
-    notifyChildrenChanged: Consumer<String>, // parentId
+    notifyChildrenChanged: Consumer<String> // parentId
 ) {
     private val packageValidator = PackageValidator(context)
     private val database = NewPipeDatabase.getInstance(context)
@@ -204,12 +204,12 @@ class MediaBrowserImpl(
         val extras = Bundle()
         extras.putString(
             MediaConstants.DESCRIPTION_EXTRAS_KEY_CONTENT_STYLE_GROUP_TITLE,
-            context.resources.getString(R.string.tab_bookmarks),
+            context.resources.getString(R.string.tab_bookmarks)
         )
         builder.setExtras(extras)
         return MediaBrowserCompat.MediaItem(
             builder.build(),
-            MediaBrowserCompat.MediaItem.FLAG_BROWSABLE,
+            MediaBrowserCompat.MediaItem.FLAG_BROWSABLE
         )
     }
 
@@ -266,7 +266,7 @@ class MediaBrowserImpl(
     private fun createLocalPlaylistStreamMediaItem(
         playlistId: Long,
         item: PlaylistStreamEntry,
-        index: Int,
+        index: Int
     ): MediaBrowserCompat.MediaItem {
         val builder = MediaDescriptionCompat.Builder()
         builder.setMediaId(createMediaIdForPlaylistIndex(false, playlistId, index))
@@ -283,7 +283,7 @@ class MediaBrowserImpl(
     private fun createRemotePlaylistStreamMediaItem(
         playlistId: Long,
         item: StreamInfoItem,
-        index: Int,
+        index: Int
     ): MediaBrowserCompat.MediaItem {
         val builder = MediaDescriptionCompat.Builder()
         builder.setMediaId(createMediaIdForPlaylistIndex(true, playlistId, index))
@@ -303,7 +303,7 @@ class MediaBrowserImpl(
     private fun createMediaIdForPlaylistIndex(
         isRemote: Boolean,
         playlistId: Long,
-        index: Int,
+        index: Int
     ): String {
         return buildLocalPlaylistItemMediaId(isRemote, playlistId)
             .appendPath(index.toString())

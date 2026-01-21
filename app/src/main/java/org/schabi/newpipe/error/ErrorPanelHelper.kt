@@ -20,7 +20,7 @@ import org.schabi.newpipe.util.external_communication.ShareUtils
 class ErrorPanelHelper(
     private val fragment: Fragment,
     rootView: View,
-    onRetry: Runnable?,
+    onRetry: Runnable?
 ) {
     private val context: Context = rootView.context!!
 

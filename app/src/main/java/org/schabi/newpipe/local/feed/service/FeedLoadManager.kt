@@ -60,7 +60,7 @@ class FeedLoadManager(private val context: Context) {
      */
     fun startLoading(
         groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
-        ignoreOutdatedThreshold: Boolean = false,
+        ignoreOutdatedThreshold: Boolean = false
     ): Single<List<Notification<FeedUpdateInfo>>> {
         val defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         val useFeedExtractor = defaultSharedPreferences.getBoolean(
@@ -234,7 +234,7 @@ class FeedLoadManager(private val context: Context) {
                     subscriptionEntity,
                     originalInfo!!,
                     streams!!,
-                    errors,
+                    errors
                 )
             )
         } catch (e: Throwable) {

@@ -31,7 +31,7 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
             ZipHelper.addFileToZip(
                 outZip,
                 BackupFileLocator.FILE_NAME_DB,
-                fileLocator.db.path,
+                fileLocator.db.path
             )
 
             // add the legacy vulnerable serialized preferences (will be removed in the future)
@@ -78,7 +78,7 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
         val success = ZipHelper.extractFileFromZip(
             file,
             BackupFileLocator.FILE_NAME_DB,
-            fileLocator.db.path,
+            fileLocator.db.path
         )
 
         if (success) {

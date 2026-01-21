@@ -111,7 +111,7 @@ class FeedDAOTest {
                 SubscriptionEntity.from(ChannelInfo(serviceId, "1", "https://youtube.com/channel/1", "https://youtube.com/channel/1", "channel-1")),
                 SubscriptionEntity.from(ChannelInfo(serviceId, "2", "https://youtube.com/channel/2", "https://youtube.com/channel/2", "channel-2")),
                 SubscriptionEntity.from(ChannelInfo(serviceId, "3", "https://youtube.com/channel/3", "https://youtube.com/channel/3", "channel-3")),
-                SubscriptionEntity.from(ChannelInfo(serviceId, "4", "https://youtube.com/channel/4", "https://youtube.com/channel/4", "channel-4")),
+                SubscriptionEntity.from(ChannelInfo(serviceId, "4", "https://youtube.com/channel/4", "https://youtube.com/channel/4", "channel-4"))
             )
         )
         feedDAO.insertAll(
@@ -122,7 +122,7 @@ class FeedDAOTest {
                 FeedEntity(4, 2),
                 FeedEntity(5, 2),
                 FeedEntity(6, 3),
-                FeedEntity(7, 4),
+                FeedEntity(7, 4)
             )
         )
     }

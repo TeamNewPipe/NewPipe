@@ -309,7 +309,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 title = getString(R.string.feed_groups_header_title),
                 onSortClicked = ::openReorderDialog,
                 onToggleListViewModeClicked = ::toggleListViewMode,
-                listViewMode = viewModel.getListViewMode(),
+                listViewMode = viewModel.getListViewMode()
             )
 
             add(Section(feedGroupsSortMenuItem, listOf(feedGroupsCarousel)))

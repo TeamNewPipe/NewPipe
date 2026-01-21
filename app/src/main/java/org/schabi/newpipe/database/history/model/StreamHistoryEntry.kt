@@ -35,7 +35,7 @@ data class StreamHistoryEntry(
             streamEntity.serviceId,
             streamEntity.url,
             streamEntity.title,
-            streamEntity.streamType,
+            streamEntity.streamType
         ).apply {
             duration = streamEntity.duration
             uploaderName = streamEntity.uploader

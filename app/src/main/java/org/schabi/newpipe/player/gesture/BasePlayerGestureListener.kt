@@ -18,7 +18,7 @@ import org.schabi.newpipe.player.ui.VideoPlayerUi
  * and provides some abstract methods to make it easier separating the logic from the UI.
  */
 abstract class BasePlayerGestureListener(
-    private val playerUi: VideoPlayerUi,
+    private val playerUi: VideoPlayerUi
 ) : GestureDetector.SimpleOnGestureListener(), View.OnTouchListener {
 
     protected val player: Player = playerUi.player

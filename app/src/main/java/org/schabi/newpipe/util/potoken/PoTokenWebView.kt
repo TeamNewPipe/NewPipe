@@ -23,7 +23,7 @@ import org.schabi.newpipe.DownloaderImpl
 class PoTokenWebView private constructor(
     context: Context,
     // to be used exactly once only during initialization!
-    private val generatorEmitter: SingleEmitter<PoTokenGenerator>,
+    private val generatorEmitter: SingleEmitter<PoTokenGenerator>
 ) : PoTokenGenerator {
     private val webView = WebView(context)
     private val disposables = CompositeDisposable() // used only during initialization
@@ -93,7 +93,7 @@ class PoTokenWebView private constructor(
                             ),
                             "text/html",
                             "utf-8",
-                            null,
+                            null
                         )
                     },
                     this::onInitializationErrorCloseAndCancel
@@ -113,7 +113,7 @@ class PoTokenWebView private constructor(
 
         makeBotguardServiceRequest(
             "https://www.youtube.com/api/jnn/v1/Create",
-            "[ \"$REQUEST_KEY\" ]",
+            "[ \"$REQUEST_KEY\" ]"
         ) { responseBody ->
             val parsedChallengeData = parseChallengeData(responseBody)
             webView.evaluateJavascript(
@@ -156,7 +156,7 @@ class PoTokenWebView private constructor(
         }
         makeBotguardServiceRequest(
             "https://www.youtube.com/api/jnn/v1/GenerateIT",
-            "[ \"$REQUEST_KEY\", \"$botguardResponse\" ]",
+            "[ \"$REQUEST_KEY\", \"$botguardResponse\" ]"
         ) { responseBody ->
             if (BuildConfig.DEBUG) {
                 Log.d(TAG, "GenerateIT response: $responseBody")
@@ -200,7 +200,7 @@ class PoTokenWebView private constructor(
                         $JS_INTERFACE.onObtainPoTokenResult(identifier, poTokenU8String)
                     } catch (error) {
                         $JS_INTERFACE.onObtainPoTokenError(identifier, error + "\n" + error.stack)
-                    }""",
+                    }"""
                 ) {}
             }
         }
@@ -294,7 +294,7 @@ class PoTokenWebView private constructor(
     private fun makeBotguardServiceRequest(
         url: String,
         data: String,
-        handleResponseBody: (String) -> Unit,
+        handleResponseBody: (String) -> Unit
     ) {
         disposables.add(
             Single.fromCallable {
@@ -306,7 +306,7 @@ class PoTokenWebView private constructor(
                         "Accept" to listOf("application/json"),
                         "Content-Type" to listOf("application/json+protobuf"),
                         "x-goog-api-key" to listOf(GOOGLE_API_KEY),
-                        "x-user-agent" to listOf("grpc-web-javascript/0.1"),
+                        "x-user-agent" to listOf("grpc-web-javascript/0.1")
                     ),
                     data.toByteArray()
                 )
@@ -385,7 +385,7 @@ class PoTokenWebView private constructor(
          */
         private fun runOnMainThread(
             emitterIfPostFails: SingleEmitter<out Any>,
-            runnable: Runnable,
+            runnable: Runnable
         ) {
             if (!Handler(Looper.getMainLooper()).post(runnable)) {
                 emitterIfPostFails.onError(PoTokenException("Could not run on main thread"))

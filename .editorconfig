@@ -38,5 +38,3 @@ ktlint_standard_spacing-between-declarations-with-annotations = disabled
 ktlint_standard_spacing-between-declarations-with-comments = disabled
 ktlint_standard_statement-wrapping = disabled
 ktlint_standard_string-template-indent = disabled
-ktlint_standard_trailing-comma-on-call-site = disabled
-ktlint_standard_trailing-comma-on-declaration-site = disabled

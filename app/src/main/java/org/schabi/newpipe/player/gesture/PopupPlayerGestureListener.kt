@@ -15,7 +15,7 @@ import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.player.ui.PopupPlayerUi
 
 class PopupPlayerGestureListener(
-    private val playerUi: PopupPlayerUi,
+    private val playerUi: PopupPlayerUi
 ) : BasePlayerGestureListener(playerUi) {
 
     private var isMoving = false

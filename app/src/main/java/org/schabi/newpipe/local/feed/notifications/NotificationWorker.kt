@@ -31,7 +31,7 @@ import org.schabi.newpipe.local.feed.service.FeedLoadService
  */
 class NotificationWorker(
     appContext: Context,
-    workerParams: WorkerParameters,
+    workerParams: WorkerParameters
 ) : RxWorker(appContext, workerParams) {
 
     private val notificationHelper by lazy {

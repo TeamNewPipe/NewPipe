@@ -59,7 +59,7 @@ class ErrorInfo private constructor(
      * If present, this resource can alternatively be opened in browser (useful if NewPipe is
      * badly broken).
      */
-    val openInBrowserUrl: String?,
+    val openInBrowserUrl: String?
 ) : Parcelable {
 
     @JvmOverloads
@@ -68,7 +68,7 @@ class ErrorInfo private constructor(
         userAction: UserAction,
         request: String,
         serviceId: Int? = null,
-        openInBrowserUrl: String? = null,
+        openInBrowserUrl: String? = null
     ) : this(
         throwableToStringList(throwable),
         userAction,
@@ -78,7 +78,7 @@ class ErrorInfo private constructor(
         isReportable(throwable),
         isRetryable(throwable),
         (throwable as? ReCaptchaException)?.url,
-        openInBrowserUrl,
+        openInBrowserUrl
     )
 
     @JvmOverloads
@@ -87,7 +87,7 @@ class ErrorInfo private constructor(
         userAction: UserAction,
         request: String,
         serviceId: Int? = null,
-        openInBrowserUrl: String? = null,
+        openInBrowserUrl: String? = null
     ) : this(
         throwableListToStringList(throwables),
         userAction,
@@ -97,7 +97,7 @@ class ErrorInfo private constructor(
         throwables.any(::isReportable),
         throwables.isEmpty() || throwables.any(::isRetryable),
         throwables.firstNotNullOfOrNull { it as? ReCaptchaException }?.url,
-        openInBrowserUrl,
+        openInBrowserUrl
     )
 
     // constructor to manually build ErrorInfo when no throwable is available
@@ -118,7 +118,7 @@ class ErrorInfo private constructor(
         throwable: Throwable,
         userAction: UserAction,
         request: String,
-        info: Info?,
+        info: Info?
     ) :
         this(throwable, userAction, request, info?.serviceId, info?.url)
 
@@ -127,7 +127,7 @@ class ErrorInfo private constructor(
         throwables: List<Throwable>,
         userAction: UserAction,
         request: String,
-        info: Info?,
+        info: Info?
     ) :
         this(throwables, userAction, request, info?.serviceId, info?.url)
 
@@ -144,7 +144,7 @@ class ErrorInfo private constructor(
         class ErrorMessage(
             @StringRes
             private val stringRes: Int,
-            private vararg val formatArgs: String,
+            private vararg val formatArgs: String
         ) : Parcelable {
             fun getString(context: Context): String {
                 return if (formatArgs.isEmpty()) {
@@ -174,7 +174,7 @@ class ErrorInfo private constructor(
         fun getMessage(
             throwable: Throwable?,
             action: UserAction?,
-            serviceId: Int?,
+            serviceId: Int?
         ): ErrorMessage {
             return when {
                 // player exceptions
