@@ -126,6 +126,7 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
     interface PerformListener {
         fun onDoubleTap()
         fun onDoubleTapEnd()
+
         /**
          * Determines if the playback should forward/rewind or do nothing.
          */

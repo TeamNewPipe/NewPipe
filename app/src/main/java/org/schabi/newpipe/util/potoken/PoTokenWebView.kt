@@ -245,6 +245,7 @@ class PoTokenWebView private constructor(
     //endregion
 
     //region Handling multiple emitters
+
     /**
      * Adds the ([identifier], [emitter]) pair to the [poTokenEmitters] list. This makes it so that
      * multiple poToken requests can be generated invparallel, and the results will be notified to
@@ -283,6 +284,7 @@ class PoTokenWebView private constructor(
     //endregion
 
     //region Utils
+
     /**
      * Makes a POST request to [url] with the given [data] by setting the correct headers. Calls
      * [onInitializationErrorCloseAndCancel] in case of any network errors and also if the response
@@ -363,6 +365,7 @@ class PoTokenWebView private constructor(
 
     companion object : PoTokenGenerator.Factory {
         private val TAG = PoTokenWebView::class.simpleName
+
         // Public API key used by BotGuard, which has been got by looking at BotGuard requests
         private const val GOOGLE_API_KEY = "AIzaSyDyT5W0Jh49F30Pqqtyfdf7pDLFKLJoAnw" // NOSONAR
         private const val REQUEST_KEY = "O43z0dpjhgX20SCx4KAo"
