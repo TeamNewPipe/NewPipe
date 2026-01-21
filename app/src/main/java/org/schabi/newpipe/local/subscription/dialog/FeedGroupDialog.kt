@@ -39,7 +39,6 @@ import org.schabi.newpipe.local.subscription.item.ImportSubscriptionsHintPlaceho
 import org.schabi.newpipe.local.subscription.item.PickerIconItem
 import org.schabi.newpipe.local.subscription.item.PickerSubscriptionItem
 import org.schabi.newpipe.util.DeviceUtils
-import org.schabi.newpipe.util.ThemeHelper
 import java.io.Serializable
 
 class FeedGroupDialog : DialogFragment(), BackPressable {
@@ -80,7 +79,6 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         super.onCreate(savedInstanceState)
         Bridge.restoreInstanceState(this, savedInstanceState)
 
-        setStyle(STYLE_NO_TITLE, ThemeHelper.getMinWidthDialogTheme(requireContext()))
         groupId = arguments?.getLong(KEY_GROUP_ID, NO_GROUP_SELECTED) ?: NO_GROUP_SELECTED
     }
 

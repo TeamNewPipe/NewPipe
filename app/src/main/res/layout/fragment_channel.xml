@@ -5,13 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- since ToolbarTheme sets the tint to icons, it would make images all white,
-    therefore app:tint="@null" is used to undo that setting -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/ToolbarTheme"
         app:elevation="0dp">
 
         <org.schabi.newpipe.views.CustomCollapsingToolbarLayout
@@ -37,7 +34,6 @@
                     android:scaleType="fitCenter"
                     android:src="@drawable/placeholder_channel_banner"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@null"
                     tools:ignore="ContentDescription" />
 
                 <com.google.android.material.imageview.ShapeableImageView
@@ -54,8 +50,7 @@
                     app:layout_constraintVertical_bias="1.0"
                     app:shapeAppearance="@style/CircularImageView"
                     app:strokeColor="#ffffff"
-                    app:strokeWidth="2dp"
-                    app:tint="@null" />
+                    app:strokeWidth="2dp" />
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/sub_channel_avatar_view"
@@ -69,7 +64,6 @@
                     app:shapeAppearance="@style/CircularImageView"
                     app:strokeColor="#ffffff"
                     app:strokeWidth="2dp"
-                    app:tint="@null"
                     tools:visibility="visible" />
 
                 <org.schabi.newpipe.views.NewPipeTextView
@@ -122,7 +116,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/sub_channel_title_view"
                     tools:text="123,141,411 subscribers" />
 
-                <androidx.appcompat.widget.AppCompatButton
+                <Button
                     android:id="@+id/channel_subscribe_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -146,12 +140,8 @@
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
             app:tabGravity="fill"
-            app:tabIndicatorColor="@color/white"
-            app:tabMode="scrollable"
-            app:tabRippleColor="@color/white"
-            app:tabTextColor="@color/white" />
+            app:tabMode="scrollable" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager"
@@ -174,8 +164,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:visibility="gone"
-            tools:visibility="visible"
-            />
+            tools:visibility="visible" />
 
         <!--ERROR PANEL-->
         <include

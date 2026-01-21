@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Light Theme Colors from Color.kt -->
+    <color name="m3_primary_light">#904A45</color>
+    <color name="m3_on_primary_light">#FFFFFF</color>
+    <color name="m3_primary_container_light">#FFDAD6</color>
+    <color name="m3_on_primary_container_light">#3B0908</color>
+    <color name="m3_secondary_light">#775653</color>
+    <color name="m3_on_secondary_light">#FFFFFF</color>
+    <color name="m3_secondary_container_light">#FFDAD6</color>
+    <color name="m3_on_secondary_container_light">#2C1513</color>
+    <color name="m3_tertiary_light">#725B2E</color>
+    <color name="m3_on_tertiary_light">#FFFFFF</color>
+    <color name="m3_tertiary_container_light">#FEDEA6</color>
+    <color name="m3_on_tertiary_container_light">#261900</color>
+    <color name="m3_error_light">#BA1A1A</color>
+    <color name="m3_on_error_light">#FFFFFF</color>
+    <color name="m3_error_container_light">#FFDAD6</color>
+    <color name="m3_on_error_container_light">#410002</color>
+    <color name="m3_background_light">#FFF8F7</color>
+    <color name="m3_on_background_light">#231918</color>
+    <color name="m3_surface_light">#FFF8F7</color>
+    <color name="m3_on_surface_light">#231918</color>
+    <color name="m3_surface_variant_light">#F5DDDB</color>
+    <color name="m3_on_surface_variant_light">#534342</color>
+    <color name="m3_outline_light">#857371</color>
+    <color name="m3_outline_variant_light">#D8C2BF</color>
+    <color name="m3_scrim_light">#000000</color>
+    <color name="m3_inverse_surface_light">#392E2D</color>
+    <color name="m3_inverse_on_surface_light">#FFEDEB</color>
+    <color name="m3_inverse_primary_light">#FFB3AC</color>
+    <color name="m3_surface_dim_light">#E8D6D4</color>
+    <color name="m3_surface_bright_light">#FFF8F7</color>
+    <color name="m3_surface_container_lowest_light">#FFFFFF</color>
+    <color name="m3_surface_container_low_light">#FFF0EF</color>
+    <color name="m3_surface_container_light">#FCEAE8</color>
+    <color name="m3_surface_container_high_light">#F6E4E2</color>
+    <color name="m3_surface_container_highest_light">#F1DEDC</color>
+
+    <!-- Dark Theme Colors from Color.kt -->
+    <color name="m3_primary_dark">#FFB3AC</color>
+    <color name="m3_on_primary_dark">#571E1B</color>
+    <color name="m3_primary_container_dark">#73332F</color>
+    <color name="m3_on_primary_container_dark">#FFDAD6</color>
+    <color name="m3_secondary_dark">#E7BDB8</color>
+    <color name="m3_on_secondary_dark">#442927</color>
+    <color name="m3_secondary_container_dark">#5D3F3C</color>
+    <color name="m3_on_secondary_container_dark">#FFDAD6</color>
+    <color name="m3_tertiary_dark">#E1C38C</color>
+    <color name="m3_on_tertiary_dark">#402D04</color>
+    <color name="m3_tertiary_container_dark">#584419</color>
+    <color name="m3_on_tertiary_container_dark">#FEDEA6</color>
+    <color name="m3_error_dark">#FFB4AB</color>
+    <color name="m3_on_error_dark">#690005</color>
+    <color name="m3_error_container_dark">#93000A</color>
+    <color name="m3_on_error_container_dark">#FFDAD6</color>
+    <color name="m3_background_dark">#1A1110</color>
+    <color name="m3_on_background_dark">#F1DEDC</color>
+    <color name="m3_surface_dark">#1A1110</color>
+    <color name="m3_on_surface_dark">#F1DEDC</color>
+    <color name="m3_surface_variant_dark">#534342</color>
+    <color name="m3_on_surface_variant_dark">#D8C2BF</color>
+    <color name="m3_outline_dark">#A08C8A</color>
+    <color name="m3_outline_variant_dark">#534342</color>
+    <color name="m3_scrim_dark">#000000</color>
+    <color name="m3_inverse_surface_dark">#F1DEDC</color>
+    <color name="m3_inverse_on_surface_dark">#392E2D</color>
+    <color name="m3_inverse_primary_dark">#904A45</color>
+    <color name="m3_surface_dim_dark">#1A1110</color>
+    <color name="m3_surface_bright_dark">#423735</color>
+    <color name="m3_surface_container_lowest_dark">#140C0B</color>
+    <color name="m3_surface_container_low_dark">#231918</color>
+    <color name="m3_surface_container_dark">#271D1C</color>
+    <color name="m3_surface_container_high_dark">#322827</color>
+    <color name="m3_surface_container_highest_dark">#3D3231</color>
+
+    <!-- Black Theme Specific (surface is black, others from dark) -->
+    <color name="m3_surface_black">#000000</color>
+</resources>

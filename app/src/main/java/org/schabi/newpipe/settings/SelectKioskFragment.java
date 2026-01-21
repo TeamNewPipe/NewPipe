@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,7 +19,6 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.ServiceHelper;
-import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.List;
 import java.util.Vector;
@@ -58,12 +56,6 @@ public class SelectKioskFragment extends DialogFragment {
     /*//////////////////////////////////////////////////////////////////////////
     // Init
     //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    public void onCreate(@Nullable final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setStyle(STYLE_NO_TITLE, ThemeHelper.getMinWidthDialogTheme(requireContext()));
-    }
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
