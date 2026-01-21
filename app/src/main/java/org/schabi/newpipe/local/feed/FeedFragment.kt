@@ -152,7 +152,6 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE &&
                     !recyclerView.canScrollVertically(-1)
                 ) {
-
                     if (tryGetNewItemsLoadedButton()?.isVisible == true) {
                         hideNewItemsLoaded(true)
                     }

@@ -98,7 +98,6 @@ class HistoryRecordManagerTest {
     }
 
     private fun insertShuffledRelatedSearches(relatedSearches: Collection<SearchHistoryEntry>) {
-
         // shuffle to make sure the order of items returned by queries depends only on
         // SearchHistoryEntry.creationDate, not on the actual insertion time, so that we can
         // verify that the `ORDER BY` clause does its job

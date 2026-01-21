@@ -91,7 +91,6 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
         newerStream.uid = existentMinimalStream.uid
 
         if (!StreamTypeUtil.isLiveStream(newerStream.streamType)) {
-
             // Use the existent upload date if the newer stream does not have a better precision
             // (i.e. is an approximation). This is done to prevent unnecessary changes.
             val hasBetterPrecision =

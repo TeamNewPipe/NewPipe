@@ -60,7 +60,6 @@ object PoTokenProviderImpl : PoTokenProvider {
                     webPoTokenGenerator!!.isExpired()
 
                 if (shouldRecreate) {
-
                     val innertubeClientRequestInfo = InnertubeClientRequestInfo.ofWebClient()
                     innertubeClientRequestInfo.clientInfo.clientVersion =
                         YoutubeParsingHelper.getClientVersion()
