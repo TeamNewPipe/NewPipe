@@ -287,5 +287,9 @@ private class HideAndExecOnEndListener(private val view: View, execOnEnd: Runnab
 }
 
 enum class AnimationType {
-    ALPHA, SCALE_AND_ALPHA, LIGHT_SCALE_AND_ALPHA, SLIDE_AND_ALPHA, LIGHT_SLIDE_AND_ALPHA
+    ALPHA,
+    SCALE_AND_ALPHA,
+    LIGHT_SCALE_AND_ALPHA,
+    SLIDE_AND_ALPHA,
+    LIGHT_SLIDE_AND_ALPHA
 }
