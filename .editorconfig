@@ -18,6 +18,5 @@ ktlint_standard_function-literal = disabled
 ktlint_standard_function-signature = disabled
 ktlint_standard_max-line-length = disabled
 ktlint_standard_mixed-condition-operators = disabled
-ktlint_standard_no-empty-first-line-in-class-body = disabled
 ktlint_standard_package-name = disabled
 ktlint_standard_property-naming = disabled
