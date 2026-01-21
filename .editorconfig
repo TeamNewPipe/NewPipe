@@ -33,4 +33,3 @@ ktlint_standard_no-single-line-block-comment = disabled
 ktlint_standard_package-name = disabled
 ktlint_standard_parameter-list-wrapping = disabled
 ktlint_standard_property-naming = disabled
-ktlint_standard_spacing-between-declarations-with-annotations = disabled
