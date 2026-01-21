@@ -61,16 +61,41 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         data object DeleteScreen : ScreenState()
     }
 
-    @State @JvmField var selectedIcon: FeedGroupIcon? = null
-    @State @JvmField var selectedSubscriptions: HashSet<Long> = HashSet()
-    @State @JvmField var wasSubscriptionSelectionChanged: Boolean = false
-    @State @JvmField var currentScreen: ScreenState = InitialScreen
+    @State
+    @JvmField
+    var selectedIcon: FeedGroupIcon? = null
 
-    @State @JvmField var subscriptionsListState: Parcelable? = null
-    @State @JvmField var iconsListState: Parcelable? = null
-    @State @JvmField var wasSearchSubscriptionsVisible = false
-    @State @JvmField var subscriptionsCurrentSearchQuery = ""
-    @State @JvmField var subscriptionsShowOnlyUngrouped = false
+    @State
+    @JvmField
+    var selectedSubscriptions: HashSet<Long> = HashSet()
+
+    @State
+    @JvmField
+    var wasSubscriptionSelectionChanged: Boolean = false
+
+    @State
+    @JvmField
+    var currentScreen: ScreenState = InitialScreen
+
+    @State
+    @JvmField
+    var subscriptionsListState: Parcelable? = null
+
+    @State
+    @JvmField
+    var iconsListState: Parcelable? = null
+
+    @State
+    @JvmField
+    var wasSearchSubscriptionsVisible = false
+
+    @State
+    @JvmField
+    var subscriptionsCurrentSearchQuery = ""
+
+    @State
+    @JvmField
+    var subscriptionsShowOnlyUngrouped = false
 
     private val subscriptionMainSection = Section()
     private val subscriptionEmptyFooter = Section()

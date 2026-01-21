@@ -91,7 +91,10 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     private val disposables = CompositeDisposable()
 
     private lateinit var viewModel: FeedViewModel
-    @State @JvmField var listState: Parcelable? = null
+
+    @State
+    @JvmField
+    var listState: Parcelable? = null
 
     private var groupId = FeedGroupEntity.GROUP_ALL_ID
     private var groupName = ""
