@@ -36,13 +36,13 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.functions.Function
+import java.util.concurrent.TimeUnit
 import org.schabi.newpipe.App
 import org.schabi.newpipe.MainActivity.DEBUG
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.ErrorResultEvent
 import org.schabi.newpipe.local.feed.service.FeedEventManager.postEvent
-import java.util.concurrent.TimeUnit
 
 class FeedLoadService : Service() {
     companion object {

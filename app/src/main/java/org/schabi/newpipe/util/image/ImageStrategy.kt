@@ -5,9 +5,9 @@
 
 package org.schabi.newpipe.util.image
 
+import kotlin.math.abs
 import org.schabi.newpipe.extractor.Image
 import org.schabi.newpipe.extractor.Image.ResolutionLevel
-import kotlin.math.abs
 
 object ImageStrategy {
     // when preferredImageQuality is LOW or MEDIUM, images are sorted by how close their preferred

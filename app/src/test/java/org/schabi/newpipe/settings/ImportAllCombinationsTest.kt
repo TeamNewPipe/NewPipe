@@ -1,6 +1,9 @@
 package org.schabi.newpipe.settings
 
 import android.content.SharedPreferences
+import java.io.File
+import java.io.IOException
+import java.nio.file.Files
 import org.junit.Assert
 import org.junit.Test
 import org.mockito.Mockito
@@ -8,9 +11,6 @@ import org.schabi.newpipe.settings.export.BackupFileLocator
 import org.schabi.newpipe.settings.export.ImportExportManager
 import org.schabi.newpipe.streams.io.StoredFileHelper
 import us.shandian.giga.io.FileStream
-import java.io.File
-import java.io.IOException
-import java.nio.file.Files
 
 class ImportAllCombinationsTest {
 

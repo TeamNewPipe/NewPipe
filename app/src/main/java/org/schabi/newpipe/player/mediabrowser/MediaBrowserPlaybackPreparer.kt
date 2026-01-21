@@ -14,6 +14,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.function.BiConsumer
+import java.util.function.Consumer
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.R
@@ -30,8 +32,6 @@ import org.schabi.newpipe.player.playqueue.SinglePlayQueue
 import org.schabi.newpipe.util.ChannelTabHelper
 import org.schabi.newpipe.util.ExtractorHelper
 import org.schabi.newpipe.util.NavigationHelper
-import java.util.function.BiConsumer
-import java.util.function.Consumer
 
 /**
  * This class is used to cleanly separate the Service implementation (in

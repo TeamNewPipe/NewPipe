@@ -18,10 +18,10 @@ import androidx.work.WorkerParameters
 import androidx.work.workDataOf
 import com.grack.nanojson.JsonParser
 import com.grack.nanojson.JsonParserException
+import java.io.IOException
 import org.schabi.newpipe.extractor.downloader.Response
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
 import org.schabi.newpipe.util.ReleaseVersionUtil
-import java.io.IOException
 
 class NewVersionWorker(
     context: Context,

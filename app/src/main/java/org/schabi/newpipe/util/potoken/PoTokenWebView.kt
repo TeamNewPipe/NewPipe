@@ -16,9 +16,9 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.core.SingleEmitter
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.time.Instant
 import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.DownloaderImpl
-import java.time.Instant
 
 class PoTokenWebView private constructor(
     context: Context,

@@ -1,9 +1,9 @@
 package org.schabi.newpipe.about
 
 import android.content.Context
+import java.io.IOException
 import org.schabi.newpipe.R
 import org.schabi.newpipe.util.ThemeHelper
-import java.io.IOException
 
 /**
  * @param context the context to use

@@ -8,6 +8,7 @@ import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
+import kotlin.math.abs
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 import org.schabi.newpipe.ktx.AnimationType
@@ -17,7 +18,6 @@ import org.schabi.newpipe.player.helper.AudioReactor
 import org.schabi.newpipe.player.helper.PlayerHelper
 import org.schabi.newpipe.player.ui.MainPlayerUi
 import org.schabi.newpipe.util.ThemeHelper.getAndroidDimenPx
-import kotlin.math.abs
 
 /**
  * GestureListener for the player

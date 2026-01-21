@@ -14,6 +14,8 @@ import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.functions.Function6
 import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.time.OffsetDateTime
+import java.util.concurrent.TimeUnit
 import org.schabi.newpipe.App
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
@@ -25,8 +27,6 @@ import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.IdleEvent
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.ProgressEvent
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.SuccessResultEvent
 import org.schabi.newpipe.util.DEFAULT_THROTTLE_TIMEOUT
-import java.time.OffsetDateTime
-import java.util.concurrent.TimeUnit
 
 class FeedViewModel(
     private val application: Application,

@@ -53,6 +53,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.time.OffsetDateTime
+import java.util.function.Consumer
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
@@ -81,8 +83,6 @@ import org.schabi.newpipe.util.ThemeHelper.getGridSpanCountStreams
 import org.schabi.newpipe.util.ThemeHelper.getItemViewMode
 import org.schabi.newpipe.util.ThemeHelper.resolveDrawable
 import org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout
-import java.time.OffsetDateTime
-import java.util.function.Consumer
 
 class FeedFragment : BaseStateFragment<FeedState>() {
     private var _feedBinding: FragmentFeedBinding? = null

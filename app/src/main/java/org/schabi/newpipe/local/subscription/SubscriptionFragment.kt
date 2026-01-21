@@ -27,6 +27,9 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.viewbinding.GroupieViewHolder
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity.Companion.GROUP_ALL_ID
 import org.schabi.newpipe.databinding.DialogTitleBinding
@@ -62,9 +65,6 @@ import org.schabi.newpipe.util.OnClickGesture
 import org.schabi.newpipe.util.ServiceHelper
 import org.schabi.newpipe.util.ThemeHelper.getGridSpanCountChannels
 import org.schabi.newpipe.util.external_communication.ShareUtils
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private var _binding: FragmentSubscriptionBinding? = null

@@ -3,8 +3,8 @@ package org.schabi.newpipe.local.feed.service
 import androidx.annotation.StringRes
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.processors.BehaviorProcessor
-import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.IdleEvent
 import java.util.concurrent.atomic.AtomicBoolean
+import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.IdleEvent
 
 object FeedEventManager {
     private var processor: BehaviorProcessor<Event> = BehaviorProcessor.create()

@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import com.google.android.exoplayer2.ExoPlaybackException
 import com.google.android.exoplayer2.upstream.HttpDataSource
 import com.google.android.exoplayer2.upstream.Loader
+import java.net.UnknownHostException
 import kotlinx.parcelize.Parcelize
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.Info
@@ -28,7 +29,6 @@ import org.schabi.newpipe.extractor.exceptions.YoutubeMusicPremiumContentExcepti
 import org.schabi.newpipe.ktx.isNetworkRelated
 import org.schabi.newpipe.player.mediasource.FailedMediaSource
 import org.schabi.newpipe.player.resolver.PlaybackResolver
-import java.net.UnknownHostException
 
 /**
  * An error has occurred in the app. This class contains plain old parcelable data that can be used

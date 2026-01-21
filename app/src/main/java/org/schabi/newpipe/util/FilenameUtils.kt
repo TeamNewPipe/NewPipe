@@ -7,9 +7,9 @@ package org.schabi.newpipe.util
 
 import android.content.Context
 import androidx.preference.PreferenceManager
+import java.util.regex.Matcher
 import org.schabi.newpipe.R
 import org.schabi.newpipe.ktx.getStringSafe
-import java.util.regex.Matcher
 
 object FilenameUtils {
     private const val CHARSET_MOST_SPECIAL = "[\\n\\r|?*<\":\\\\>/']+"

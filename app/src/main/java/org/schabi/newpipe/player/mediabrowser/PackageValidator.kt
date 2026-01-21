@@ -30,9 +30,9 @@ import android.support.v4.media.session.MediaSessionCompat
 import android.util.Log
 import androidx.core.app.NotificationManagerCompat
 import androidx.media.MediaBrowserServiceCompat
-import org.schabi.newpipe.BuildConfig
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
+import org.schabi.newpipe.BuildConfig
 
 /**
  * Validates that the calling package is authorized to browse a [MediaBrowserServiceCompat].

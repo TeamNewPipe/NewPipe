@@ -5,14 +5,14 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
 import androidx.core.view.isVisible
-import org.schabi.newpipe.MainActivity
-import org.schabi.newpipe.ktx.AnimationType
-import org.schabi.newpipe.ktx.animate
-import org.schabi.newpipe.player.ui.PopupPlayerUi
 import kotlin.math.abs
 import kotlin.math.hypot
 import kotlin.math.max
 import kotlin.math.min
+import org.schabi.newpipe.MainActivity
+import org.schabi.newpipe.ktx.AnimationType
+import org.schabi.newpipe.ktx.animate
+import org.schabi.newpipe.player.ui.PopupPlayerUi
 
 class PopupPlayerGestureListener(
     private val playerUi: PopupPlayerUi,

@@ -23,6 +23,7 @@ import com.livefront.bridge.Bridge
 import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.OnItemClickListener
 import com.xwray.groupie.Section
+import java.io.Serializable
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.databinding.DialogFeedGroupCreateBinding
@@ -40,7 +41,6 @@ import org.schabi.newpipe.local.subscription.item.PickerIconItem
 import org.schabi.newpipe.local.subscription.item.PickerSubscriptionItem
 import org.schabi.newpipe.util.DeviceUtils
 import org.schabi.newpipe.util.ThemeHelper
-import java.io.Serializable
 
 class FeedGroupDialog : DialogFragment(), BackPressable {
     private var _feedGroupCreateBinding: DialogFeedGroupCreateBinding? = null

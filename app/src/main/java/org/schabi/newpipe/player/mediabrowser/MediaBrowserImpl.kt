@@ -17,6 +17,7 @@ import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.function.Consumer
 import org.schabi.newpipe.MainActivity.DEBUG
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.R
@@ -37,7 +38,6 @@ import org.schabi.newpipe.local.playlist.RemotePlaylistManager
 import org.schabi.newpipe.util.ExtractorHelper
 import org.schabi.newpipe.util.ServiceHelper
 import org.schabi.newpipe.util.image.ImageStrategy
-import java.util.function.Consumer
 
 /**
  * This class is used to cleanly separate the Service implementation (in

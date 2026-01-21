@@ -2,9 +2,9 @@ package org.schabi.newpipe.local.feed.notifications
 
 import android.content.Context
 import androidx.preference.PreferenceManager
+import java.util.concurrent.TimeUnit
 import org.schabi.newpipe.R
 import org.schabi.newpipe.ktx.getStringSafe
-import java.util.concurrent.TimeUnit
 
 /**
  * Information for the Scheduler which checks for new streams.
