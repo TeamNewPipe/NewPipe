@@ -138,7 +138,7 @@ class MediaBrowserImpl(
                 )
             }
 
-            when (/*val uriType = */path.removeAt(0)) {
+            when (path.removeAt(0)) {
                 ID_BOOKMARKS -> {
                     if (path.isEmpty()) {
                         return populateBookmarks()

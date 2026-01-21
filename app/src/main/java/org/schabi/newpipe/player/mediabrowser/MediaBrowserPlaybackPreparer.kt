@@ -146,7 +146,7 @@ class MediaBrowserPlaybackPreparer(
                 throw parseError(mediaId)
             }
 
-            return when (/*val uriType = */path.removeAt(0)) {
+            return when (path.removeAt(0)) {
                 ID_BOOKMARKS -> extractPlayQueueFromPlaylistMediaId(
                     mediaId,
                     path,
@@ -237,7 +237,7 @@ class MediaBrowserPlaybackPreparer(
         }
 
         val serviceId = path[1].toInt()
-        return when (/*val infoItemType = */infoItemTypeFromString(path[0])) {
+        return when (infoItemTypeFromString(path[0])) {
             InfoType.STREAM -> ExtractorHelper.getStreamInfo(serviceId, url, false)
                 .map { SinglePlayQueue(it) }
 
