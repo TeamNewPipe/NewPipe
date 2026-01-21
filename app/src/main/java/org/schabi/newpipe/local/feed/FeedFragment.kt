@@ -390,8 +390,13 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             if (item is StreamItem && !isRefreshing) {
                 val stream = item.streamWithState.stream
                 NavigationHelper.openVideoDetailFragment(
-                    requireContext(), fm,
-                    stream.serviceId, stream.url, stream.title, null, false
+                    requireContext(),
+                    fm,
+                    stream.serviceId,
+                    stream.url,
+                    stream.title,
+                    null,
+                    false
                 )
             }
         }
@@ -503,7 +508,8 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     ) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val isFastFeedModeEnabled = sharedPreferences.getBoolean(
-            getString(R.string.feed_use_dedicated_fetch_method_key), false
+            getString(R.string.feed_use_dedicated_fetch_method_key),
+            false
         )
 
         val builder = AlertDialog.Builder(requireContext())
@@ -538,7 +544,8 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     private fun updateRelativeTimeViews() {
         updateRefreshViewState()
         groupAdapter.notifyItemRangeChanged(
-            0, groupAdapter.itemCount,
+            0,
+            groupAdapter.itemCount,
             StreamItem.UPDATE_RELATIVE_TIME
         )
     }

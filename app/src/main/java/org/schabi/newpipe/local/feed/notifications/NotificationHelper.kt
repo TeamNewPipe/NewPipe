@@ -42,7 +42,9 @@ class NotificationHelper(val context: Context) {
     fun displayNewStreamsNotifications(data: FeedUpdateInfo) {
         val newStreams = data.newStreams
         val summary = context.resources.getQuantityString(
-            R.plurals.new_streams, newStreams.size, newStreams.size
+            R.plurals.new_streams,
+            newStreams.size,
+            newStreams.size
         )
         val summaryBuilder = NotificationCompat.Builder(
             context,

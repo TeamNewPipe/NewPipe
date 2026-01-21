@@ -115,8 +115,10 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
             clone(rootConstraintLayout)
             clear(secondsView.id, if (forward) START else END)
             connect(
-                secondsView.id, if (forward) END else START,
-                PARENT_ID, if (forward) END else START
+                secondsView.id,
+                if (forward) END else START,
+                PARENT_ID,
+                if (forward) END else START
             )
             secondsView.startAnimation()
             applyTo(rootConstraintLayout)

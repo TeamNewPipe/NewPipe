@@ -16,7 +16,9 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity
             entity = SubscriptionEntity::class,
             parentColumns = [SubscriptionEntity.SUBSCRIPTION_UID],
             childColumns = [SUBSCRIPTION_ID],
-            onDelete = ForeignKey.CASCADE, onUpdate = ForeignKey.CASCADE, deferred = true
+            onDelete = ForeignKey.CASCADE,
+            onUpdate = ForeignKey.CASCADE,
+            deferred = true
         )
     ]
 )

@@ -86,8 +86,12 @@ data class StreamEntity(
 
     @Ignore
     constructor(item: PlayQueueItem) : this(
-        serviceId = item.serviceId, url = item.url, title = item.title,
-        streamType = item.streamType, duration = item.duration, uploader = item.uploader,
+        serviceId = item.serviceId,
+        url = item.url,
+        title = item.title,
+        streamType = item.streamType,
+        duration = item.duration,
+        uploader = item.uploader,
         uploaderUrl = item.uploaderUrl,
         thumbnailUrl = ImageStrategy.imageListToDbUrl(item.thumbnails)
     )

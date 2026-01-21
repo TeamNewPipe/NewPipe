@@ -161,8 +161,11 @@ class ImportAllCombinationsTest {
                         } catch (e: Throwable) {
                             failedAssertions.add(
                                 FailData(
-                                    containsDb, containsSer, containsJson,
-                                    filename, e
+                                    containsDb,
+                                    containsSer,
+                                    containsJson,
+                                    filename,
+                                    e
                                 )
                             )
                         }

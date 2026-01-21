@@ -37,7 +37,8 @@ class SubscriptionManager(context: Context) {
             filterQuery.isNotEmpty() -> {
                 return if (showOnlyUngrouped) {
                     subscriptionTable.getSubscriptionsOnlyUngroupedFiltered(
-                        currentGroupId, filterQuery
+                        currentGroupId,
+                        filterQuery
                     )
                 } else {
                     subscriptionTable.getSubscriptionsFiltered(filterQuery)

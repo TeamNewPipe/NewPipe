@@ -178,8 +178,10 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
             itemAnimator = null
             adapter = subscriptionGroupAdapter
             layoutManager = GridLayoutManager(
-                requireContext(), subscriptionGroupAdapter.spanCount,
-                RecyclerView.VERTICAL, false
+                requireContext(),
+                subscriptionGroupAdapter.spanCount,
+                RecyclerView.VERTICAL,
+                false
             ).apply {
                 spanSizeLookup = subscriptionGroupAdapter.spanSizeLookup
             }
@@ -387,7 +389,8 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         val selectedCount = this.selectedSubscriptions.size
         val selectedCountText = resources.getQuantityString(
             R.plurals.feed_group_dialog_selection_count,
-            selectedCount, selectedCount
+            selectedCount,
+            selectedCount
         )
         feedGroupCreateBinding.selectedSubscriptionCountView.text = selectedCountText
         feedGroupCreateBinding.subscriptionsHeaderInfo.text = selectedCountText

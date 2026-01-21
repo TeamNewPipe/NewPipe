@@ -346,7 +346,10 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         val actions = DialogInterface.OnClickListener { _, i ->
             when (i) {
                 0 -> ShareUtils.shareText(
-                    requireContext(), selectedItem.name, selectedItem.url, selectedItem.thumbnails
+                    requireContext(),
+                    selectedItem.name,
+                    selectedItem.url,
+                    selectedItem.thumbnails
                 )
 
                 1 -> ShareUtils.openUrlInBrowser(requireContext(), selectedItem.url)
@@ -380,7 +383,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private val listenerChannelItem = object : OnClickGesture<ChannelInfoItem> {
         override fun selected(selectedItem: ChannelInfoItem) = NavigationHelper.openChannelFragment(
             fm,
-            selectedItem.serviceId, selectedItem.url, selectedItem.name
+            selectedItem.serviceId,
+            selectedItem.url,
+            selectedItem.name
         )
 
         override fun held(selectedItem: ChannelInfoItem) = showLongTapDialog(selectedItem)

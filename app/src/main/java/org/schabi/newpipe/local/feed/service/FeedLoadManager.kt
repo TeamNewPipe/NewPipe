@@ -87,7 +87,8 @@ class FeedLoadManager(private val context: Context) {
             )
 
             GROUP_NOTIFICATION_ENABLED -> feedDatabaseManager.outdatedSubscriptionsWithNotificationMode(
-                outdatedThreshold, NotificationMode.ENABLED
+                outdatedThreshold,
+                NotificationMode.ENABLED
             )
 
             else -> feedDatabaseManager.outdatedSubscriptionsForGroup(groupId, outdatedThreshold)
@@ -188,7 +189,8 @@ class FeedLoadManager(private val context: Context) {
 
                 val channelInfo = getChannelInfo(
                     subscriptionEntity.serviceId,
-                    subscriptionEntity.url, true
+                    subscriptionEntity.url,
+                    true
                 )
                     .onErrorReturn(storeOriginalErrorAndRethrow)
                     .blockingGet()
@@ -218,7 +220,8 @@ class FeedLoadManager(private val context: Context) {
                         ) {
                             val infoItemsPage = getMoreChannelTabItems(
                                 subscriptionEntity.serviceId,
-                                linkHandler, channelTabInfo.nextPage
+                                linkHandler,
+                                channelTabInfo.nextPage
                             )
                                 .blockingGet()
 

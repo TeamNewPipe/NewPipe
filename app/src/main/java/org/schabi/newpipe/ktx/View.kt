@@ -43,8 +43,14 @@ fun View.animate(
     if (DEBUG) {
         val id = runCatching { resources.getResourceEntryName(id) }.getOrDefault(id.toString())
         val msg = String.format(
-            "%8s →  [%s:%s] [%s %s:%s] execOnEnd=%s", enterOrExit,
-            javaClass.simpleName, id, animationType, duration, delay, execOnEnd
+            "%8s →  [%s:%s] [%s %s:%s] execOnEnd=%s",
+            enterOrExit,
+            javaClass.simpleName,
+            id,
+            animationType,
+            duration,
+            delay,
+            execOnEnd
         )
         Log.d(TAG, "animate(): $msg")
     }

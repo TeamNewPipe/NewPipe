@@ -90,7 +90,8 @@ class MediaBrowserImpl(
 
         val extras = Bundle()
         extras.putBoolean(
-            MediaConstants.BROWSER_SERVICE_EXTRAS_KEY_SEARCH_SUPPORTED, true
+            MediaConstants.BROWSER_SERVICE_EXTRAS_KEY_SEARCH_SUPPORTED,
+            true
         )
         return MediaBrowserServiceCompat.BrowserRoot(ID_ROOT, extras)
     }

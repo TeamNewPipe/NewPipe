@@ -156,41 +156,51 @@ class StreamItemAdapterTest {
 
         helper.assertInvalidResponse(getResponse(mapOf(Pair("content-length", "mp3"))), 0)
         helper.assertInvalidResponse(
-            getResponse(mapOf(Pair("Content-Disposition", "filename=\"train.png\""))), 1
+            getResponse(mapOf(Pair("Content-Disposition", "filename=\"train.png\""))),
+            1
         )
         helper.assertInvalidResponse(
-            getResponse(mapOf(Pair("Content-Disposition", "form-data; name=\"data.csv\""))), 2
+            getResponse(mapOf(Pair("Content-Disposition", "form-data; name=\"data.csv\""))),
+            2
         )
         helper.assertInvalidResponse(
-            getResponse(mapOf(Pair("Content-Disposition", "form-data; filename=\"data.csv\""))), 3
+            getResponse(mapOf(Pair("Content-Disposition", "form-data; filename=\"data.csv\""))),
+            3
         )
         helper.assertInvalidResponse(
-            getResponse(mapOf(Pair("Content-Disposition", "form-data; name=\"fieldName\"; filename*=\"filename.jpg\""))), 4
+            getResponse(mapOf(Pair("Content-Disposition", "form-data; name=\"fieldName\"; filename*=\"filename.jpg\""))),
+            4
         )
 
         helper.assertValidResponse(
             getResponse(mapOf(Pair("Content-Disposition", "filename=\"train.ogg\""))),
-            5, MediaFormat.OGG
+            5,
+            MediaFormat.OGG
         )
         helper.assertValidResponse(
             getResponse(mapOf(Pair("Content-Disposition", "some-form-data; filename=\"audio.flac\""))),
-            6, MediaFormat.FLAC
+            6,
+            MediaFormat.FLAC
         )
         helper.assertValidResponse(
             getResponse(mapOf(Pair("Content-Disposition", "form-data; name=\"audio.aiff\"; filename=\"audio.aiff\""))),
-            7, MediaFormat.AIFF
+            7,
+            MediaFormat.AIFF
         )
         helper.assertValidResponse(
             getResponse(mapOf(Pair("Content-Disposition", "form-data; name=\"alien?\"; filename*=UTF-8''%CE%B1%CE%BB%CE%B9%CF%B5%CE%BD.m4a"))),
-            8, MediaFormat.M4A
+            8,
+            MediaFormat.M4A
         )
         helper.assertValidResponse(
             getResponse(mapOf(Pair("Content-Disposition", "form-data; name=\"audio.mp3\"; filename=\"audio.opus\"; filename*=UTF-8''alien.opus"))),
-            9, MediaFormat.OPUS
+            9,
+            MediaFormat.OPUS
         )
         helper.assertValidResponse(
             getResponse(mapOf(Pair("Content-Disposition", "form-data; name=\"audio.mp3\"; filename=\"audio.opus\"; filename*=\"UTF-8''alien.opus\""))),
-            10, MediaFormat.OPUS
+            10,
+            MediaFormat.OPUS
         )
     }
 
@@ -213,16 +223,24 @@ class StreamItemAdapterTest {
         helper.assertInvalidResponse(getResponse(mapOf()), 7)
 
         helper.assertValidResponse(
-            getResponse(mapOf(Pair("Content-Type", "audio/flac"))), 8, MediaFormat.FLAC
+            getResponse(mapOf(Pair("Content-Type", "audio/flac"))),
+            8,
+            MediaFormat.FLAC
         )
         helper.assertValidResponse(
-            getResponse(mapOf(Pair("Content-Type", "audio/wav"))), 9, MediaFormat.WAV
+            getResponse(mapOf(Pair("Content-Type", "audio/wav"))),
+            9,
+            MediaFormat.WAV
         )
         helper.assertValidResponse(
-            getResponse(mapOf(Pair("Content-Type", "audio/opus"))), 10, MediaFormat.OPUS
+            getResponse(mapOf(Pair("Content-Type", "audio/opus"))),
+            10,
+            MediaFormat.OPUS
         )
         helper.assertValidResponse(
-            getResponse(mapOf(Pair("Content-Type", "audio/aiff"))), 11, MediaFormat.AIFF
+            getResponse(mapOf(Pair("Content-Type", "audio/aiff"))),
+            11,
+            MediaFormat.AIFF
         )
     }
 
@@ -345,7 +363,8 @@ class StreamItemAdapterTest {
             index: Int
         ) {
             assertFalse(
-                "invalid header returns valid value", retrieveMediaFormat(streams[index], response)
+                "invalid header returns valid value",
+                retrieveMediaFormat(streams[index], response)
             )
             assertNull("Media format extracted although stated otherwise", wrapper.getFormat(index))
         }
@@ -359,7 +378,8 @@ class StreamItemAdapterTest {
             format: MediaFormat
         ) {
             assertTrue(
-                "header was not recognized", retrieveMediaFormat(streams[index], response)
+                "header was not recognized",
+                retrieveMediaFormat(streams[index], response)
             )
             assertEquals("Wrong media format extracted", format, wrapper.getFormat(index))
         }
