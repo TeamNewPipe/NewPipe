@@ -179,16 +179,15 @@ class PoTokenWebView private constructor(
     //endregion
 
     //region Obtaining poTokens
-    override fun generatePoToken(identifier: String): Single<String> =
-        Single.create { emitter ->
-            if (BuildConfig.DEBUG) {
-                Log.d(TAG, "generatePoToken() called with identifier $identifier")
-            }
-            runOnMainThread(emitter) {
-                addPoTokenEmitter(identifier, emitter)
-                val u8Identifier = stringToU8(identifier)
-                webView.evaluateJavascript(
-                    """try {
+    override fun generatePoToken(identifier: String): Single<String> = Single.create { emitter ->
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "generatePoToken() called with identifier $identifier")
+        }
+        runOnMainThread(emitter) {
+            addPoTokenEmitter(identifier, emitter)
+            val u8Identifier = stringToU8(identifier)
+            webView.evaluateJavascript(
+                """try {
                         identifier = "$identifier"
                         u8Identifier = $u8Identifier
                         poTokenU8 = obtainPoToken(webPoSignalOutput, integrityToken, u8Identifier)
@@ -201,9 +200,9 @@ class PoTokenWebView private constructor(
                     } catch (error) {
                         $JS_INTERFACE.onObtainPoTokenError(identifier, error + "\n" + error.stack)
                     }"""
-                ) {}
-            }
+            ) {}
         }
+    }
 
     /**
      * Called by the JavaScript snippet from [generatePoToken] when an error occurs in calling the
@@ -373,14 +372,13 @@ class PoTokenWebView private constructor(
             "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.3"
         private const val JS_INTERFACE = "PoTokenWebView"
 
-        override fun newPoTokenGenerator(context: Context): Single<PoTokenGenerator> =
-            Single.create { emitter ->
-                runOnMainThread(emitter) {
-                    val potWv = PoTokenWebView(context, emitter)
-                    potWv.loadHtmlAndObtainBotguard(context)
-                    emitter.setDisposable(potWv.disposables)
-                }
+        override fun newPoTokenGenerator(context: Context): Single<PoTokenGenerator> = Single.create { emitter ->
+            runOnMainThread(emitter) {
+                val potWv = PoTokenWebView(context, emitter)
+                potWv.loadHtmlAndObtainBotguard(context)
+                emitter.setDisposable(potWv.disposables)
             }
+        }
 
         /**
          * Runs [runnable] on the main thread using `Handler(Looper.getMainLooper()).post()`, and

@@ -248,39 +248,37 @@ class StreamItemAdapterTest {
      * @return a list of video streams, in which their video only property mirrors the provided
      * [videoOnly] vararg.
      */
-    private fun getVideoStreams(vararg videoOnly: Boolean) =
-        StreamItemAdapter.StreamInfoWrapper(
-            videoOnly.map {
-                VideoStream.Builder()
-                    .setId(Stream.ID_UNKNOWN)
-                    .setContent("https://example.com", true)
-                    .setMediaFormat(MediaFormat.MPEG_4)
-                    .setResolution("720p")
-                    .setIsVideoOnly(it)
-                    .build()
-            },
-            context
-        )
+    private fun getVideoStreams(vararg videoOnly: Boolean) = StreamInfoWrapper(
+        videoOnly.map {
+            VideoStream.Builder()
+                .setId(Stream.ID_UNKNOWN)
+                .setContent("https://example.com", true)
+                .setMediaFormat(MediaFormat.MPEG_4)
+                .setResolution("720p")
+                .setIsVideoOnly(it)
+                .build()
+        },
+        context
+    )
 
     /**
      * @return a list of audio streams, containing valid and null elements mirroring the provided
      * [shouldBeValid] vararg.
      */
-    private fun getAudioStreams(vararg shouldBeValid: Boolean) =
-        getSecondaryStreamsFromList(
-            shouldBeValid.map {
-                if (it) {
-                    AudioStream.Builder()
-                        .setId(Stream.ID_UNKNOWN)
-                        .setContent("https://example.com", true)
-                        .setMediaFormat(MediaFormat.OPUS)
-                        .setAverageBitrate(192)
-                        .build()
-                } else {
-                    null
-                }
+    private fun getAudioStreams(vararg shouldBeValid: Boolean) = getSecondaryStreamsFromList(
+        shouldBeValid.map {
+            if (it) {
+                AudioStream.Builder()
+                    .setId(Stream.ID_UNKNOWN)
+                    .setContent("https://example.com", true)
+                    .setMediaFormat(MediaFormat.OPUS)
+                    .setAverageBitrate(192)
+                    .build()
+            } else {
+                null
             }
-        )
+        }
+    )
 
     private fun getIncompleteAudioStreams(size: Int): List<AudioStream> {
         val list = ArrayList<AudioStream>(size)
@@ -325,18 +323,17 @@ class StreamItemAdapterTest {
     /**
      * Helper function that builds a secondary stream list.
      */
-    private fun <T : Stream> getSecondaryStreamsFromList(streams: List<T?>) =
-        SparseArrayCompat<SecondaryStreamHelper<T>?>(streams.size).apply {
-            streams.forEachIndexed { index, stream ->
-                val secondaryStreamHelper: SecondaryStreamHelper<T>? = stream?.let {
-                    SecondaryStreamHelper(
-                        StreamItemAdapter.StreamInfoWrapper(streams, context),
-                        it
-                    )
-                }
-                put(index, secondaryStreamHelper)
+    private fun <T : Stream> getSecondaryStreamsFromList(streams: List<T?>) = SparseArrayCompat<SecondaryStreamHelper<T>?>(streams.size).apply {
+        streams.forEachIndexed { index, stream ->
+            val secondaryStreamHelper: SecondaryStreamHelper<T>? = stream?.let {
+                SecondaryStreamHelper(
+                    StreamItemAdapter.StreamInfoWrapper(streams, context),
+                    it
+                )
             }
+            put(index, secondaryStreamHelper)
         }
+    }
 
     private fun getResponse(headers: Map<String, String>): Response {
         val listHeaders = HashMap<String, List<String>>()

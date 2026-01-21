@@ -70,19 +70,18 @@ class SubscriptionManager(context: Context) {
         return listEntities
     }
 
-    fun updateChannelInfo(info: ChannelInfo): Completable =
-        subscriptionTable.getSubscription(info.serviceId, info.url)
-            .flatMapCompletable {
-                Completable.fromRunnable {
-                    it.apply {
-                        name = info.name
-                        avatarUrl = ImageStrategy.imageListToDbUrl(info.avatars)
-                        description = info.description
-                        subscriberCount = info.subscriberCount
-                    }
-                    subscriptionTable.update(it)
+    fun updateChannelInfo(info: ChannelInfo): Completable = subscriptionTable.getSubscription(info.serviceId, info.url)
+        .flatMapCompletable {
+            Completable.fromRunnable {
+                it.apply {
+                    name = info.name
+                    avatarUrl = ImageStrategy.imageListToDbUrl(info.avatars)
+                    description = info.description
+                    subscriberCount = info.subscriberCount
                 }
+                subscriptionTable.update(it)
             }
+        }
 
     fun updateNotificationMode(serviceId: Int, url: String, @NotificationMode mode: Int): Completable {
         return subscriptionTable().getSubscription(serviceId, url)

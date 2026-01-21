@@ -160,16 +160,14 @@ class ErrorInfo private constructor(
 
         const val SERVICE_NONE = "<unknown_service>"
 
-        private fun getServiceName(serviceId: Int?) =
-            // not using getNameOfServiceById since we want to accept a nullable serviceId and we
+        private fun getServiceName(serviceId: Int?) = // not using getNameOfServiceById since we want to accept a nullable serviceId and we
             // want to default to SERVICE_NONE
             ServiceList.all().firstOrNull { it.serviceId == serviceId }?.serviceInfo?.name
                 ?: SERVICE_NONE
 
         fun throwableToStringList(throwable: Throwable) = arrayOf(throwable.stackTraceToString())
 
-        fun throwableListToStringList(throwableList: List<Throwable>) =
-            throwableList.map { it.stackTraceToString() }.toTypedArray()
+        fun throwableListToStringList(throwableList: List<Throwable>) = throwableList.map { it.stackTraceToString() }.toTypedArray()
 
         fun getMessage(
             throwable: Throwable?,

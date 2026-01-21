@@ -95,9 +95,8 @@ class NotificationWorker(
         private val TAG = NotificationWorker::class.java.simpleName
         private const val WORK_TAG = App.PACKAGE_NAME + "_streams_notifications"
 
-        private fun areNotificationsEnabled(context: Context) =
-            NotificationHelper.areNewStreamsNotificationsEnabled(context) &&
-                NotificationHelper.areNotificationsEnabledOnDevice(context)
+        private fun areNotificationsEnabled(context: Context) = NotificationHelper.areNewStreamsNotificationsEnabled(context) &&
+            NotificationHelper.areNotificationsEnabledOnDevice(context)
 
         /**
          * Schedules a task for the [NotificationWorker]
