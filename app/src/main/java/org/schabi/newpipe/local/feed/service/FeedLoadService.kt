@@ -94,7 +94,8 @@ class FeedLoadService : Service() {
             .doOnSubscribe {
                 startForeground(NOTIFICATION_ID, notificationBuilder.build())
             }
-            .subscribe { _, error: Throwable? -> // explicitly mark error as nullable
+            .subscribe { _, error: Throwable? ->
+                // explicitly mark error as nullable
                 if (error != null) {
                     Log.e(TAG, "Error while storing result", error)
                     handleError(error)
