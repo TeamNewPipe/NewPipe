@@ -52,8 +52,9 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
     private var initTap: Boolean = false
 
     override fun onDoubleTapStarted(portion: DisplayPortion) {
-        if (DEBUG)
+        if (DEBUG) {
             Log.d(TAG, "onDoubleTapStarted called with portion = [$portion]")
+        }
 
         initTap = false
 
@@ -64,7 +65,7 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
         val shouldForward: Boolean =
             performListener?.getFastSeekDirection(portion)?.directionAsBoolean ?: return
 
-        if (DEBUG)
+        if (DEBUG) {
             Log.d(
                 TAG,
                 "onDoubleTapProgressDown called with " +
@@ -72,6 +73,7 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
                     "wasForwarding = [$wasForwarding], " +
                     "initTap = [$initTap], "
             )
+        }
 
         /*
          * Check if a initial tap occurred or if direction was switched
@@ -97,8 +99,9 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
     }
 
     override fun onDoubleTapFinished() {
-        if (DEBUG)
+        if (DEBUG) {
             Log.d(TAG, "onDoubleTapFinished called with initTap = [$initTap]")
+        }
 
         if (initTap) performListener?.onDoubleTapEnd()
         initTap = false

@@ -73,12 +73,13 @@ class FeedViewModel(
         .subscribeOn(Schedulers.io())
         .observeOn(Schedulers.io())
         .map { (event, showPlayedItems, showPartiallyPlayedItems, showFutureItems, notLoadedCount, oldestUpdate) ->
-            val streamItems = if (event is SuccessResultEvent || event is IdleEvent)
+            val streamItems = if (event is SuccessResultEvent || event is IdleEvent) {
                 feedDatabaseManager
                     .getStreams(groupId, showPlayedItems, showPartiallyPlayedItems, showFutureItems)
                     .blockingGet(arrayListOf())
-            else
+            } else {
                 arrayListOf()
+            }
 
             CombineResultDataHolder(event, streamItems, notLoadedCount, oldestUpdate)
         }

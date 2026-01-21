@@ -205,13 +205,16 @@ class PopupPlayerGestureListener(
     }
 
     override fun onSingleTapConfirmed(e: MotionEvent): Boolean {
-        if (DEBUG)
+        if (DEBUG) {
             Log.d(TAG, "onSingleTapConfirmed() called with: e = [$e]")
+        }
 
-        if (isDoubleTapping)
+        if (isDoubleTapping) {
             return true
-        if (player.exoPlayerIsNull())
+        }
+        if (player.exoPlayerIsNull()) {
             return false
+        }
 
         onSingleTap()
         return true

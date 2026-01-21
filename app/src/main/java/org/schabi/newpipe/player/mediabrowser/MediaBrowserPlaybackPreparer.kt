@@ -185,10 +185,11 @@ class MediaBrowserPlaybackPreparer(
                 }
                 val playlistId = path[0].toLong()
                 val index = path[1].toInt()
-                return if (playlistType == ID_LOCAL)
+                return if (playlistType == ID_LOCAL) {
                     extractLocalPlayQueue(playlistId, index)
-                else
+                } else {
                     extractRemotePlayQueue(playlistId, index)
+                }
             }
 
             ID_URL -> {

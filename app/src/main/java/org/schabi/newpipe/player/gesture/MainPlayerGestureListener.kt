@@ -51,15 +51,18 @@ class MainPlayerGestureListener(
     }
 
     override fun onSingleTapConfirmed(e: MotionEvent): Boolean {
-        if (DEBUG)
+        if (DEBUG) {
             Log.d(TAG, "onSingleTapConfirmed() called with: e = [$e]")
+        }
 
-        if (isDoubleTapping)
+        if (isDoubleTapping) {
             return true
+        }
         super.onSingleTapConfirmed(e)
 
-        if (player.currentState != Player.STATE_BLOCKED)
+        if (player.currentState != Player.STATE_BLOCKED) {
             onSingleTap()
+        }
         return true
     }
 
