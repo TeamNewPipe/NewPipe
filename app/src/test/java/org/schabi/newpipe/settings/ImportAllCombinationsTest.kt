@@ -21,7 +21,7 @@ class ImportAllCombinationsTest {
     private enum class Ser(val id: String) {
         YES("ser"),
         VULNERABLE("vulnser"),
-        NO("noser");
+        NO("noser")
     }
 
     private data class FailData(

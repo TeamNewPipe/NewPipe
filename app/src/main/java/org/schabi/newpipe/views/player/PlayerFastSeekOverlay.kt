@@ -135,7 +135,7 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
         enum class FastSeekDirection(val directionAsBoolean: Boolean?) {
             NONE(null),
             FORWARD(true),
-            BACKWARD(false);
+            BACKWARD(false)
         }
     }
 
