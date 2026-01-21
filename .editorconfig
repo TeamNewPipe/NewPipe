@@ -36,4 +36,3 @@ ktlint_standard_property-naming = disabled
 ktlint_standard_spacing-between-declarations-with-annotations = disabled
 ktlint_standard_spacing-between-declarations-with-comments = disabled
 ktlint_standard_statement-wrapping = disabled
-ktlint_standard_string-template-indent = disabled
