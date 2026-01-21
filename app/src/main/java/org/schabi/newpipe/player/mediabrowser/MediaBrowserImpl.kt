@@ -47,7 +47,8 @@ import org.schabi.newpipe.util.image.ImageStrategy
  */
 class MediaBrowserImpl(
     private val context: Context,
-    notifyChildrenChanged: Consumer<String> // parentId
+    // parentId
+    notifyChildrenChanged: Consumer<String>
 ) {
     private val packageValidator = PackageValidator(context)
     private val database = NewPipeDatabase.getInstance(context)

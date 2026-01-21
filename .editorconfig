@@ -26,7 +26,6 @@ ktlint_standard_kdoc = disabled
 ktlint_standard_max-line-length = disabled
 ktlint_standard_mixed-condition-operators = disabled
 ktlint_standard_multiline-expression-wrapping = disabled
-ktlint_standard_no-blank-line-in-list = disabled
 ktlint_standard_no-consecutive-comments = disabled
 ktlint_standard_no-empty-first-line-in-class-body = disabled
 ktlint_standard_no-empty-first-line-in-method-block = disabled
