@@ -93,6 +93,7 @@ class ImportAllCombinationsTest {
                 Mockito.verify(editor, Mockito.atLeastOnce())
                     .putInt(Mockito.anyString(), Mockito.anyInt())
             }
+
             Ser.VULNERABLE -> runTest {
                 Assert.assertTrue(ImportExportManager(fileLocator).exportHasSerializedPrefs(zip))
                 Assert.assertThrows(ClassNotFoundException::class.java) {
@@ -102,6 +103,7 @@ class ImportAllCombinationsTest {
                 Mockito.verify(editor, Mockito.never()).clear()
                 Mockito.verify(editor, Mockito.never()).commit()
             }
+
             Ser.NO -> runTest {
                 Assert.assertFalse(ImportExportManager(fileLocator).exportHasSerializedPrefs(zip))
                 Assert.assertThrows(IOException::class.java) {

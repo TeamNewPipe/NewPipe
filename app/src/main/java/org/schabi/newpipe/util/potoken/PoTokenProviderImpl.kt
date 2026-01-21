@@ -37,7 +37,9 @@ object PoTokenProviderImpl : PoTokenProvider {
                     webViewBadImpl = true
                     return null
                 }
+
                 null -> throw e
+
                 else -> throw cause // includes PoTokenException
             }
         }

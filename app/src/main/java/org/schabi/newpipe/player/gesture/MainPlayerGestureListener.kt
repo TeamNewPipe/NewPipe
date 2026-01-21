@@ -42,10 +42,12 @@ class MainPlayerGestureListener(
                 v.parent?.requestDisallowInterceptTouchEvent(playerUi.isFullscreen)
                 true
             }
+
             MotionEvent.ACTION_UP -> {
                 v.parent?.requestDisallowInterceptTouchEvent(false)
                 false
             }
+
             else -> true
         }
     }
@@ -198,6 +200,7 @@ class MainPlayerGestureListener(
             when (PlayerHelper.getActionForRightGestureSide(player.context)) {
                 player.context.getString(R.string.volume_control_key) ->
                     onScrollVolume(distanceY)
+
                 player.context.getString(R.string.brightness_control_key) ->
                     onScrollBrightness(distanceY)
             }
@@ -205,6 +208,7 @@ class MainPlayerGestureListener(
             when (PlayerHelper.getActionForLeftGestureSide(player.context)) {
                 player.context.getString(R.string.volume_control_key) ->
                     onScrollVolume(distanceY)
+
                 player.context.getString(R.string.brightness_control_key) ->
                     onScrollBrightness(distanceY)
             }

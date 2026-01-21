@@ -43,7 +43,9 @@ class SubscriptionManager(context: Context) {
                     subscriptionTable.getSubscriptionsFiltered(filterQuery)
                 }
             }
+
             showOnlyUngrouped -> subscriptionTable.getSubscriptionsOnlyUngrouped(currentGroupId)
+
             else -> subscriptionTable.getAll()
         }
     }

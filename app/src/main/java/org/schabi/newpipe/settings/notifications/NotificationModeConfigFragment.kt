@@ -88,6 +88,7 @@ class NotificationModeConfigFragment : Fragment() {
                 toggleAll()
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }

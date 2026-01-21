@@ -85,9 +85,11 @@ class FeedLoadManager(private val context: Context) {
             FeedGroupEntity.GROUP_ALL_ID -> feedDatabaseManager.outdatedSubscriptions(
                 outdatedThreshold
             )
+
             GROUP_NOTIFICATION_ENABLED -> feedDatabaseManager.outdatedSubscriptionsWithNotificationMode(
                 outdatedThreshold, NotificationMode.ENABLED
             )
+
             else -> feedDatabaseManager.outdatedSubscriptionsForGroup(groupId, outdatedThreshold)
         }
 
@@ -305,6 +307,7 @@ class FeedLoadManager(private val context: Context) {
                                 feedDatabaseManager.markAsOutdated(info.uid)
                             }
                         }
+
                         notification.isOnError -> {
                             val error = notification.error
                             feedResultsHolder.addError(error!!)

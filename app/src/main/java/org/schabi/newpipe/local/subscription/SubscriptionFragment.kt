@@ -276,10 +276,13 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 when (item) {
                     is FeedGroupCardItem ->
                         NavigationHelper.openFeedFragment(fm, item.groupId, item.name)
+
                     is FeedGroupCardGridItem ->
                         NavigationHelper.openFeedFragment(fm, item.groupId, item.name)
+
                     is FeedGroupAddNewItem ->
                         FeedGroupDialog.newInstance().show(fm, null)
+
                     is FeedGroupAddNewGridItem ->
                         FeedGroupDialog.newInstance().show(fm, null)
                 }
@@ -294,6 +297,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 when (item) {
                     is FeedGroupCardItem ->
                         FeedGroupDialog.newInstance(item.groupId).show(fm, null)
+
                     is FeedGroupCardGridItem ->
                         FeedGroupDialog.newInstance(item.groupId).show(fm, null)
                 }
@@ -344,7 +348,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 0 -> ShareUtils.shareText(
                     requireContext(), selectedItem.name, selectedItem.url, selectedItem.thumbnails
                 )
+
                 1 -> ShareUtils.openUrlInBrowser(requireContext(), selectedItem.url)
+
                 2 -> deleteChannel(selectedItem)
             }
         }
@@ -404,6 +410,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                     itemsListState = null
                 }
             }
+
             is SubscriptionState.ErrorState -> {
                 result.error?.let {
                     showError(ErrorInfo(result.error, UserAction.SOMETHING_ELSE, "Subscriptions"))

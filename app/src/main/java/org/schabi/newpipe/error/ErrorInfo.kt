@@ -193,18 +193,24 @@ class ErrorInfo private constructor(
                                 ErrorMessage(R.string.player_http_invalid_status, cause.responseCode.toString())
                             }
                         }
+
                         cause is Loader.UnexpectedLoaderException && cause.cause is ExtractionException ->
                             getMessage(throwable, action, serviceId)
+
                         throwable.type == ExoPlaybackException.TYPE_SOURCE ->
                             ErrorMessage(R.string.player_stream_failure)
+
                         throwable.type == ExoPlaybackException.TYPE_UNEXPECTED ->
                             ErrorMessage(R.string.player_recoverable_failure)
+
                         else ->
                             ErrorMessage(R.string.player_unrecoverable_failure)
                     }
                 }
+
                 throwable is FailedMediaSource.FailedMediaSourceException ->
                     getMessage(throwable.cause, action, serviceId)
+
                 throwable is PlaybackResolver.ResolverException ->
                     ErrorMessage(R.string.player_stream_failure)
 
@@ -220,34 +226,46 @@ class ErrorInfo private constructor(
                             )
                         }
                         ?: ErrorMessage(R.string.account_terminated)
+
                 throwable is AgeRestrictedContentException ->
                     ErrorMessage(R.string.restricted_video_no_stream)
+
                 throwable is GeographicRestrictionException ->
                     ErrorMessage(R.string.georestricted_content)
+
                 throwable is PaidContentException ->
                     ErrorMessage(R.string.paid_content)
+
                 throwable is PrivateContentException ->
                     ErrorMessage(R.string.private_content)
+
                 throwable is SoundCloudGoPlusContentException ->
                     ErrorMessage(R.string.soundcloud_go_plus_content)
+
                 throwable is UnsupportedContentInCountryException ->
                     ErrorMessage(R.string.unsupported_content_in_country)
+
                 throwable is YoutubeMusicPremiumContentException ->
                     ErrorMessage(R.string.youtube_music_premium_content)
+
                 throwable is SignInConfirmNotBotException ->
                     ErrorMessage(R.string.sign_in_confirm_not_bot_error, getServiceName(serviceId))
+
                 throwable is ContentNotAvailableException ->
                     ErrorMessage(R.string.content_not_available)
 
                 // other extractor exceptions
                 throwable is ContentNotSupportedException ->
                     ErrorMessage(R.string.content_not_supported)
+
                 // ReCaptchas will be handled in a special way anyway
                 throwable is ReCaptchaException ->
                     ErrorMessage(R.string.recaptcha_request_toast)
+
                 // test this at the end as many exceptions could be a subclass of IOException
                 throwable != null && throwable.isNetworkRelated ->
                     ErrorMessage(R.string.network_error)
+
                 // an extraction exception unrelated to the network
                 // is likely an issue with parsing the website
                 throwable is ExtractionException ->
@@ -256,16 +274,22 @@ class ErrorInfo private constructor(
                 // user actions (in case the exception is null or unrecognizable)
                 action == UserAction.UI_ERROR ->
                     ErrorMessage(R.string.app_ui_crash)
+
                 action == UserAction.REQUESTED_COMMENTS ->
                     ErrorMessage(R.string.error_unable_to_load_comments)
+
                 action == UserAction.SUBSCRIPTION_CHANGE ->
                     ErrorMessage(R.string.subscription_change_failed)
+
                 action == UserAction.SUBSCRIPTION_UPDATE ->
                     ErrorMessage(R.string.subscription_update_failed)
+
                 action == UserAction.LOAD_IMAGE ->
                     ErrorMessage(R.string.could_not_load_thumbnails)
+
                 action == UserAction.DOWNLOAD_OPEN_DIALOG ->
                     ErrorMessage(R.string.could_not_setup_download_menu)
+
                 else ->
                     ErrorMessage(R.string.error_snackbar_message)
             }
@@ -276,15 +300,19 @@ class ErrorInfo private constructor(
                 // we don't have an exception, so this is a manually built error, which likely
                 // indicates that it's important and is thus reportable
                 null -> true
+
                 // the service explicitly said that content is not available (e.g. age restrictions,
                 // video deleted, etc.), there is no use in letting users report it
                 is ContentNotAvailableException -> false
+
                 // we know the content is not supported, no need to let the user report it
                 is ContentNotSupportedException -> false
+
                 // happens often when there is no internet connection; we don't use
                 // `throwable.isNetworkRelated` since any `IOException` would make that function
                 // return true, but not all `IOException`s are network related
                 is UnknownHostException -> false
+
                 // by default, this is an unexpected exception, which the user could report
                 else -> true
             }
@@ -294,8 +322,10 @@ class ErrorInfo private constructor(
             return when (throwable) {
                 // we know the content is not available, retrying won't help
                 is ContentNotAvailableException -> false
+
                 // we know the content is not supported, retrying won't help
                 is ContentNotSupportedException -> false
+
                 // by default (including if throwable is null), enable retrying (though the retry
                 // button will be shown only if a way to perform the retry is implemented)
                 else -> true

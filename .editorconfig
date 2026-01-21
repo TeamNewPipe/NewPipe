@@ -12,8 +12,6 @@ ktlint_function_naming_ignore_when_annotated_with = Composable
 
 ktlint_standard_argument-list-wrapping = disabled
 ktlint_standard_backing-property-naming = disabled
-ktlint_standard_blank-line-before-declaration = disabled
-ktlint_standard_blank-line-between-when-conditions = disabled
 ktlint_standard_chain-method-continuation = disabled
 ktlint_standard_class-signature = disabled
 ktlint_standard_function-expression-body = disabled

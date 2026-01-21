@@ -132,6 +132,7 @@ data class StreamItem(
                 viewsAndDate.isEmpty() -> uploadDate!!
                 else -> Localization.concatenateStrings(viewsAndDate, uploadDate)
             }
+
             else -> viewsAndDate
         }
     }

@@ -92,6 +92,7 @@ object ImageStrategy {
         // the same number for those.
         val finalComparator = when (nonNoneQuality) {
             PreferredImageQuality.NONE -> initialComparator
+
             PreferredImageQuality.LOW -> initialComparator.thenComparingDouble { image ->
                 val pixelCount = estimatePixelCount(image, widthOverHeight)
                 abs(pixelCount - BEST_LOW_H * BEST_LOW_H * widthOverHeight)

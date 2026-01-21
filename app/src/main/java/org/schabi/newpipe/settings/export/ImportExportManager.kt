@@ -122,10 +122,15 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
                 for ((key, value) in entries) {
                     when (value) {
                         is Boolean -> editor.putBoolean(key, value)
+
                         is Float -> editor.putFloat(key, value)
+
                         is Int -> editor.putInt(key, value)
+
                         is Long -> editor.putLong(key, value)
+
                         is String -> editor.putString(key, value)
+
                         is Set<*> -> {
                             // There are currently only Sets with type String possible
                             @Suppress("UNCHECKED_CAST")
@@ -159,10 +164,15 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
             for ((key, value) in jsonObject) {
                 when (value) {
                     is Boolean -> editor.putBoolean(key, value)
+
                     is Float -> editor.putFloat(key, value)
+
                     is Int -> editor.putInt(key, value)
+
                     is Long -> editor.putLong(key, value)
+
                     is String -> editor.putString(key, value)
+
                     is JsonArray -> {
                         editor.putStringSet(key, value.mapNotNull { e -> e as? String }.toSet())
                     }

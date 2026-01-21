@@ -94,10 +94,13 @@ internal class PackageValidator(context: Context) {
         val isCallerKnown = when {
             // If it's our own app making the call, allow it.
             callingUid == Process.myUid() -> true
+
             // If the system is making the call, allow it.
             callingUid == Process.SYSTEM_UID -> true
+
             // If the app was signed by the same certificate as the platform itself, also allow it.
             callerSignature == platformSignature -> true
+
             /*
              * [MEDIA_CONTENT_CONTROL] permission is only available to system applications, and
              * while it isn't required to allow these apps to connect to a
@@ -105,6 +108,7 @@ internal class PackageValidator(context: Context) {
              * such as Android TV and the Google Assistant.
              */
             callerPackageInfo.permissions.contains(MEDIA_CONTENT_CONTROL) -> true
+
             /*
              * If the calling app has a notification listener it is able to retrieve notifications
              * and can connect to an active [MediaSessionCompat].
