@@ -41,9 +41,12 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import androidx.core.net.toUri
+import androidx.core.os.bundleOf
 import androidx.core.os.postDelayed
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import androidx.preference.PreferenceManager
 import coil3.util.CoilUtils
 import com.evernote.android.state.State
@@ -79,8 +82,8 @@ import org.schabi.newpipe.fragments.BackPressable
 import org.schabi.newpipe.fragments.BaseStateFragment
 import org.schabi.newpipe.fragments.EmptyFragment
 import org.schabi.newpipe.fragments.MainFragment
-import org.schabi.newpipe.fragments.list.comments.CommentsFragment.Companion.getInstance
-import org.schabi.newpipe.fragments.list.videos.RelatedItemsFragment.Companion.getInstance
+import org.schabi.newpipe.fragments.list.comments.CommentsFragment
+import org.schabi.newpipe.fragments.list.videos.RelatedItemsFragment
 import org.schabi.newpipe.ktx.AnimationType
 import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.ktx.animateRotation
@@ -103,6 +106,7 @@ import org.schabi.newpipe.util.DependentPreferenceHelper
 import org.schabi.newpipe.util.DeviceUtils
 import org.schabi.newpipe.util.ExtractorHelper
 import org.schabi.newpipe.util.InfoCache
+import org.schabi.newpipe.util.KEY_INFO
 import org.schabi.newpipe.util.ListHelper
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NO_SERVICE_ID
@@ -791,7 +795,7 @@ class VideoDetailFragment :
         tabContentDescriptions.clear()
 
         if (shouldShowComments()) {
-            pageAdapter.addFragment(getInstance(serviceId, url), COMMENTS_TAB_TAG)
+            pageAdapter.addFragment(CommentsFragment.getInstance(serviceId, url), COMMENTS_TAB_TAG)
             tabIcons.add(R.drawable.ic_comment)
             tabContentDescriptions.add(R.string.comments_tab_description)
         }
@@ -845,18 +849,19 @@ class VideoDetailFragment :
     private fun updateTabs(info: StreamInfo) {
         if (showRelatedItems) {
             when (val relatedItemsLayout = binding.relatedItemsLayout) {
-                null -> pageAdapter.updateItem(RELATED_TAB_TAG, getInstance(info)) // phone
+                null -> pageAdapter.updateItem(RELATED_TAB_TAG, RelatedItemsFragment.getInstance(info)) // phone
                 else -> { // tablet + TV
-                    getChildFragmentManager().beginTransaction()
-                        .replace(R.id.relatedItemsLayout, getInstance(info))
-                        .commitAllowingStateLoss()
+                    childFragmentManager.commit(allowStateLoss = true) {
+                        val args = bundleOf(KEY_INFO to info)
+                        replace<RelatedItemsFragment>(R.id.relatedItemsLayout, args = args)
+                    }
                     relatedItemsLayout.isVisible = !this.isFullscreen
                 }
             }
         }
 
         if (showDescription) {
-            pageAdapter.updateItem(DESCRIPTION_TAB_TAG, DescriptionFragment(info))
+            pageAdapter.updateItem(DESCRIPTION_TAB_TAG, DescriptionFragment.getInstance(info))
         }
 
         binding.viewPager.visibility = View.VISIBLE
