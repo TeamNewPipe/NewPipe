@@ -134,6 +134,13 @@ ksp {
 // Custom dependency configuration for ktlint
 val ktlint by configurations.creating
 
+// https://checkstyle.org/#JRE_and_JDK
+tasks.withType<Checkstyle>().configureEach {
+    javaLauncher = javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
 checkstyle {
     configDirectory = rootProject.file("checkstyle")
     isIgnoreFailures = false
