@@ -87,7 +87,7 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
 
     private fun compareAndUpdateStream(newerStream: StreamEntity) {
         val existentMinimalStream = getMinimalStreamForCompare(newerStream.serviceId, newerStream.url)
-            ?: throw IllegalStateException("Stream cannot be null just after insertion.")
+            ?: error("Stream cannot be null just after insertion.")
         newerStream.uid = existentMinimalStream.uid
 
         if (!StreamTypeUtil.isLiveStream(newerStream.streamType)) {

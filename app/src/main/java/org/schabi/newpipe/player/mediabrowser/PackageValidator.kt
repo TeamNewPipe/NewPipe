@@ -82,11 +82,11 @@ internal class PackageValidator(context: Context) {
 
         // Build the caller info for the rest of the checks here.
         val callerPackageInfo = buildCallerInfo(callingPackage)
-            ?: throw IllegalStateException("Caller wasn't found in the system?")
+            ?: error("Caller wasn't found in the system?")
 
         // Verify that things aren't ... broken. (This test should always pass.)
-        if (callerPackageInfo.uid != callingUid) {
-            throw IllegalStateException("Caller's package UID doesn't match caller's actual UID?")
+        check(callerPackageInfo.uid != callingUid) {
+            "Caller's package UID doesn't match caller's actual UID?"
         }
 
         val callerSignature = callerPackageInfo.signature
@@ -201,7 +201,7 @@ internal class PackageValidator(context: Context) {
     private fun getSystemSignature(): String =
         getPackageInfo(ANDROID_PLATFORM)?.let { platformInfo ->
             getSignature(platformInfo)
-        } ?: throw IllegalStateException("Platform signature not found")
+        } ?: error("Platform signature not found")
 
     /**
      * Creates a SHA-256 signature given a certificate byte array.
