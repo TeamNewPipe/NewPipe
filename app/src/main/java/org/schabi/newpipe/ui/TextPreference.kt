@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2017-2025 NewPipe contributors <https://newpipe.net>
+ * SPDX-FileCopyrightText: 2025-2026 NewPipe e.V. <https://newpipe-ev.de>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
 package org.schabi.newpipe.ui
 
 import androidx.annotation.DrawableRes
@@ -13,13 +19,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import org.schabi.newpipe.ui.theme.SizeTokens
 
 @Composable
@@ -29,38 +33,27 @@ fun TextPreference(
     @DrawableRes icon: Int? = null,
     @StringRes summary: Int? = null,
     onClick: () -> Unit,
+    enabled: Boolean = true
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween,
+        horizontalArrangement = Arrangement.Start,
         modifier = modifier
             .fillMaxWidth()
             .padding(SizeTokens.SpacingSmall)
             .defaultMinSize(minHeight = SizeTokens.SpaceMinSize)
-            .clickable { onClick() }
+            .clickable(enabled = enabled) { onClick() }
     ) {
         icon?.let {
             Icon(
                 painter = painterResource(id = icon),
-                contentDescription = "icon for $title preference"
+                contentDescription = "icon for $title preference",
+                tint = if (enabled) Color.Unspecified else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
             )
             Spacer(modifier = Modifier.width(SizeTokens.SpacingSmall))
         }
         Column {
-            Text(
-                text = stringResource(id = title),
-                modifier = Modifier.padding(SizeTokens.SpacingExtraSmall),
-                style = MaterialTheme.typography.titleSmall,
-                textAlign = TextAlign.Start,
-            )
-            summary?.let {
-                Text(
-                    text = stringResource(id = summary),
-                    modifier = Modifier.padding(SizeTokens.SpacingExtraSmall),
-                    style = MaterialTheme.typography.bodySmall,
-                    textAlign = TextAlign.Start,
-                )
-            }
+            TextBase(title = title, summary = summary, enabled = enabled)
         }
     }
 }

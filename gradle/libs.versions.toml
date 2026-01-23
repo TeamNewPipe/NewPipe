@@ -24,6 +24,7 @@ exoplayer = "2.19.1"
 fragment-compose = "1.8.9"
 groupie = "2.10.1"
 hilt = "2.57.2"
+hilt-navigation-compose = "1.3.0"
 jsoup = "1.21.2"
 junit = "4.13.2"
 junit-ext = "1.3.0"
@@ -39,7 +40,7 @@ markwon = "4.6.2"
 material = "1.11.0" # TODO: update to newer version after bug is fixed. See https://github.com/TeamNewPipe/NewPipe/pull/13018
 media = "1.7.1"
 mockitoCore = "5.21.0"
-navigation-compose = "2.8.3"
+nav3Core = "1.0.0"
 okhttp = "5.3.2"
 paging-compose = "3.3.2"
 phoenix = "3.0.0"
@@ -89,12 +90,15 @@ androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayo
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "core" }
 androidx-documentfile = { module = "androidx.documentfile:documentfile", version.ref = "documentfile" }
 androidx-fragment-compose = { module = "androidx.fragment:fragment-compose", version.ref = "fragment-compose" }
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
 androidx-junit = { module = "androidx.test.ext:junit", version.ref = "junit-ext" }
 androidx-lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 androidx-media = { module = "androidx.media:media", version.ref = "media" }
-androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation-compose" }
+androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
+androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
+androidx-navigation3-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3" }
 androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging-compose" }
 androidx-preference = { module = "androidx.preference:preference", version.ref = "preference" }
 androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }

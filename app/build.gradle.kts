@@ -262,9 +262,14 @@ dependencies {
     implementation(libs.androidx.compose.ui.text) // Needed for parsing HTML to AnnotatedString
     implementation(libs.androidx.compose.material.icons.extended)
 
+    // Jetpack navigatio3
+    implementation(libs.androidx.navigation3.ui)
+    implementation(libs.androidx.navigation3.runtime)
+    implementation(libs.androidx.navigation3.viewmodel)
+
     // Jetpack Compose related dependencies
     implementation(libs.androidx.paging.compose)
-    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     // Coroutines interop
     implementation(libs.kotlinx.coroutines.rx3)
