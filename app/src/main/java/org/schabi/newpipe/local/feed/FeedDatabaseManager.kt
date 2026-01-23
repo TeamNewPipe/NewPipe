@@ -85,14 +85,13 @@ class FeedDatabaseManager(context: Context) {
         items: List<StreamInfoItem>,
         oldestAllowedDate: OffsetDateTime = FEED_OLDEST_ALLOWED_DATE
     ) {
-        val itemsToInsert = ArrayList<StreamInfoItem>()
-        loop@ for (streamItem in items) {
-            val uploadDate = streamItem.uploadDate
+        val itemsToInsert = items.mapNotNull { stream ->
+            val uploadDate = stream.uploadDate
 
-            itemsToInsert += when {
-                uploadDate == null && streamItem.streamType == StreamType.LIVE_STREAM -> streamItem
-                uploadDate != null && uploadDate.offsetDateTime() >= oldestAllowedDate -> streamItem
-                else -> continue@loop
+            when {
+                uploadDate == null && stream.streamType == StreamType.LIVE_STREAM -> stream
+                uploadDate != null && uploadDate.offsetDateTime() >= oldestAllowedDate -> stream
+                else -> null
             }
         }
 

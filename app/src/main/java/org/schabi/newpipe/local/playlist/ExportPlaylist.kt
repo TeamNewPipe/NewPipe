@@ -65,5 +65,5 @@ private val linkHandler: YoutubeStreamLinkHandlerFactory = YoutubeStreamLinkHand
  */
 private fun getYouTubeId(url: String): String? {
 
-    return try { linkHandler.getId(url) } catch (e: ParsingException) { null }
+    return runCatching { linkHandler.getId(url) }.getOrNull()
 }
