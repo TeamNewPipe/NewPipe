@@ -97,7 +97,8 @@ class LicenseFragment : Fragment() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { formattedLicense ->
                     val webViewData = Base64.encodeToString(
-                        formattedLicense.toByteArray(), Base64.NO_PADDING
+                        formattedLicense.toByteArray(),
+                        Base64.NO_PADDING
                     )
                     val webView = WebView(context)
                     webView.loadData(webViewData, "text/html; charset=UTF-8", "base64")

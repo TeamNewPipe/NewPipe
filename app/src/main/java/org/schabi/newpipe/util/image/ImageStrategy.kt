@@ -5,9 +5,9 @@
 
 package org.schabi.newpipe.util.image
 
+import kotlin.math.abs
 import org.schabi.newpipe.extractor.Image
 import org.schabi.newpipe.extractor.Image.ResolutionLevel
-import kotlin.math.abs
 
 object ImageStrategy {
     // when preferredImageQuality is LOW or MEDIUM, images are sorted by how close their preferred
@@ -68,7 +68,7 @@ object ImageStrategy {
         val initialComparator =
             Comparator // the first step splits the images into groups of resolution levels
                 .comparingInt { i: Image ->
-                   return@comparingInt when (i.estimatedResolutionLevel) {
+                    return@comparingInt when (i.estimatedResolutionLevel) {
                         // avoid unknowns as much as possible
                         ResolutionLevel.UNKNOWN -> 3
 
@@ -92,6 +92,7 @@ object ImageStrategy {
         // the same number for those.
         val finalComparator = when (nonNoneQuality) {
             PreferredImageQuality.NONE -> initialComparator
+
             PreferredImageQuality.LOW -> initialComparator.thenComparingDouble { image ->
                 val pixelCount = estimatePixelCount(image, widthOverHeight)
                 abs(pixelCount - BEST_LOW_H * BEST_LOW_H * widthOverHeight)

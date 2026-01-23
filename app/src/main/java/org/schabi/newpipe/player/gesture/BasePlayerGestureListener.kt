@@ -18,7 +18,7 @@ import org.schabi.newpipe.player.ui.VideoPlayerUi
  * and provides some abstract methods to make it easier separating the logic from the UI.
  */
 abstract class BasePlayerGestureListener(
-    private val playerUi: VideoPlayerUi,
+    private val playerUi: VideoPlayerUi
 ) : GestureDetector.SimpleOnGestureListener(), View.OnTouchListener {
 
     protected val player: Player = playerUi.player
@@ -86,8 +86,9 @@ abstract class BasePlayerGestureListener(
     // ///////////////////////////////////////////////////////////////////
 
     override fun onDown(e: MotionEvent): Boolean {
-        if (DEBUG)
+        if (DEBUG) {
             Log.d(TAG, "onDown called with e = [$e]")
+        }
 
         if (isDoubleTapping && isDoubleTapEnabled) {
             doubleTapControls?.onDoubleTapProgressDown(getDisplayPortion(e))
@@ -108,8 +109,9 @@ abstract class BasePlayerGestureListener(
     }
 
     override fun onDoubleTap(e: MotionEvent): Boolean {
-        if (DEBUG)
+        if (DEBUG) {
             Log.d(TAG, "onDoubleTap called with e = [$e]")
+        }
 
         onDoubleTap(e, getDisplayPortion(e))
         return true
@@ -136,8 +138,9 @@ abstract class BasePlayerGestureListener(
 
     private fun startMultiDoubleTap(e: MotionEvent) {
         if (!isDoubleTapping) {
-            if (DEBUG)
+            if (DEBUG) {
                 Log.d(TAG, "startMultiDoubleTap called with e = [$e]")
+            }
 
             keepInDoubleTapMode()
             doubleTapControls?.onDoubleTapStarted(getDisplayPortion(e))
@@ -145,8 +148,9 @@ abstract class BasePlayerGestureListener(
     }
 
     fun keepInDoubleTapMode() {
-        if (DEBUG)
+        if (DEBUG) {
             Log.d(TAG, "keepInDoubleTapMode called")
+        }
 
         isDoubleTapping = true
         doubleTapHandler.removeCallbacksAndMessages(DOUBLE_TAP)
@@ -161,8 +165,9 @@ abstract class BasePlayerGestureListener(
     }
 
     fun endMultiDoubleTap() {
-        if (DEBUG)
+        if (DEBUG) {
             Log.d(TAG, "endMultiDoubleTap called")
+        }
 
         isDoubleTapping = false
         doubleTapHandler.removeCallbacksAndMessages(DOUBLE_TAP)

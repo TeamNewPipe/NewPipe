@@ -14,6 +14,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.function.BiConsumer
+import java.util.function.Consumer
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.R
@@ -30,8 +32,6 @@ import org.schabi.newpipe.player.playqueue.SinglePlayQueue
 import org.schabi.newpipe.util.ChannelTabHelper
 import org.schabi.newpipe.util.ExtractorHelper
 import org.schabi.newpipe.util.NavigationHelper
-import java.util.function.BiConsumer
-import java.util.function.Consumer
 
 /**
  * This class is used to cleanly separate the Service implementation (in
@@ -51,7 +51,7 @@ class MediaBrowserPlaybackPreparer(
     private val context: Context,
     private val setMediaSessionError: BiConsumer<String, Int>, // error string, error code
     private val clearMediaSessionError: Runnable,
-    private val onPrepare: Consumer<Boolean>,
+    private val onPrepare: Consumer<Boolean>
 ) : PlaybackPreparer {
     private val database = NewPipeDatabase.getInstance(context)
     private var disposable: Disposable? = null
@@ -146,7 +146,7 @@ class MediaBrowserPlaybackPreparer(
                 throw parseError(mediaId)
             }
 
-            return when (/*val uriType = */path.removeAt(0)) {
+            return when (path.removeAt(0)) {
                 ID_BOOKMARKS -> extractPlayQueueFromPlaylistMediaId(
                     mediaId,
                     path,
@@ -172,7 +172,7 @@ class MediaBrowserPlaybackPreparer(
     private fun extractPlayQueueFromPlaylistMediaId(
         mediaId: String,
         path: MutableList<String>,
-        url: String?,
+        url: String?
     ): Single<PlayQueue> {
         if (path.isEmpty()) {
             throw parseError(mediaId)
@@ -185,10 +185,11 @@ class MediaBrowserPlaybackPreparer(
                 }
                 val playlistId = path[0].toLong()
                 val index = path[1].toInt()
-                return if (playlistType == ID_LOCAL)
+                return if (playlistType == ID_LOCAL) {
                     extractLocalPlayQueue(playlistId, index)
-                else
+                } else {
                     extractRemotePlayQueue(playlistId, index)
+                }
             }
 
             ID_URL -> {
@@ -208,7 +209,7 @@ class MediaBrowserPlaybackPreparer(
     @Throws(ContentNotAvailableException::class)
     private fun extractPlayQueueFromHistoryMediaId(
         mediaId: String,
-        path: List<String>,
+        path: List<String>
     ): Single<PlayQueue> {
         if (path.size != 1) {
             throw parseError(mediaId)
@@ -229,14 +230,14 @@ class MediaBrowserPlaybackPreparer(
     private fun extractPlayQueueFromInfoItemMediaId(
         mediaId: String,
         path: List<String>,
-        url: String,
+        url: String
     ): Single<PlayQueue> {
         if (path.size != 2) {
             throw parseError(mediaId)
         }
 
         val serviceId = path[1].toInt()
-        return when (/*val infoItemType = */infoItemTypeFromString(path[0])) {
+        return when (infoItemTypeFromString(path[0])) {
             InfoType.STREAM -> ExtractorHelper.getStreamInfo(serviceId, url, false)
                 .map { SinglePlayQueue(it) }
 

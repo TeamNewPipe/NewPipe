@@ -43,8 +43,14 @@ fun View.animate(
     if (DEBUG) {
         val id = runCatching { resources.getResourceEntryName(id) }.getOrDefault(id.toString())
         val msg = String.format(
-            "%8s →  [%s:%s] [%s %s:%s] execOnEnd=%s", enterOrExit,
-            javaClass.simpleName, id, animationType, duration, delay, execOnEnd
+            "%8s →  [%s:%s] [%s %s:%s] execOnEnd=%s",
+            enterOrExit,
+            javaClass.simpleName,
+            id,
+            animationType,
+            duration,
+            delay,
+            execOnEnd
         )
         Log.d(TAG, "animate(): $msg")
     }
@@ -287,5 +293,9 @@ private class HideAndExecOnEndListener(private val view: View, execOnEnd: Runnab
 }
 
 enum class AnimationType {
-    ALPHA, SCALE_AND_ALPHA, LIGHT_SCALE_AND_ALPHA, SLIDE_AND_ALPHA, LIGHT_SLIDE_AND_ALPHA
+    ALPHA,
+    SCALE_AND_ALPHA,
+    LIGHT_SCALE_AND_ALPHA,
+    SLIDE_AND_ALPHA,
+    LIGHT_SLIDE_AND_ALPHA
 }

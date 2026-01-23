@@ -1,8 +1,8 @@
 package org.schabi.newpipe.local.feed
 
 import androidx.annotation.StringRes
-import org.schabi.newpipe.local.feed.item.StreamItem
 import java.time.OffsetDateTime
+import org.schabi.newpipe.local.feed.item.StreamItem
 
 sealed class FeedState {
     data class ProgressState(

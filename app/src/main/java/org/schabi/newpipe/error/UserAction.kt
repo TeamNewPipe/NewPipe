@@ -40,5 +40,5 @@ enum class UserAction(val message: String) {
     OPEN_INFO_ITEM_DIALOG("open info item dialog"),
     GETTING_MAIN_SCREEN_TAB("getting main screen tab"),
     PLAY_ON_POPUP("play on popup"),
-    SUBSCRIPTIONS("loading subscriptions");
+    SUBSCRIPTIONS("loading subscriptions")
 }
