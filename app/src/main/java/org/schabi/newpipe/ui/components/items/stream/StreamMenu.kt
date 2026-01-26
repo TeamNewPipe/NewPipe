@@ -77,7 +77,9 @@ fun StreamMenu(
             onClick = {
                 onDismissRequest()
                 SparseItemUtil.fetchStreamInfoAndSaveToDatabase(
-                    context, stream.serviceId, stream.url
+                    context,
+                    stream.serviceId,
+                    stream.url
                 ) { info ->
                     // TODO: Use an AlertDialog composable instead.
                     val downloadDialog = DownloadDialog(context, info)
@@ -126,7 +128,10 @@ fun StreamMenu(
             onClick = {
                 onDismissRequest()
                 SparseItemUtil.fetchUploaderUrlIfSparse(
-                    context, stream.serviceId, stream.url, stream.uploaderUrl
+                    context,
+                    stream.serviceId,
+                    stream.url,
+                    stream.uploaderUrl
                 ) { url ->
                     val activity = context.findFragmentActivity()
                     NavigationHelper.openChannelFragment(activity, stream, url)

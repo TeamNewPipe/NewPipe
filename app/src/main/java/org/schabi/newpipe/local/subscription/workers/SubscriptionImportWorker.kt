@@ -31,7 +31,7 @@ import org.schabi.newpipe.util.ExtractorHelper
 
 class SubscriptionImportWorker(
     appContext: Context,
-    params: WorkerParameters,
+    params: WorkerParameters
 ) : CoroutineWorker(appContext, params) {
     // This is needed for API levels < 31 (Android S).
     override suspend fun getForegroundInfo(): ForegroundInfo {
@@ -139,7 +139,7 @@ class SubscriptionImportWorker(
         title: String,
         text: String?,
         currentProgress: Int,
-        maxProgress: Int,
+        maxProgress: Int
     ): ForegroundInfo {
         val notification =
             NotificationCompat
@@ -154,7 +154,7 @@ class SubscriptionImportWorker(
                 .addAction(
                     R.drawable.ic_close,
                     applicationContext.getString(R.string.cancel),
-                    WorkManager.getInstance(applicationContext).createCancelPendingIntent(id),
+                    WorkManager.getInstance(applicationContext).createCancelPendingIntent(id)
                 ).apply {
                     if (currentProgress > 0 && maxProgress > 0) {
                         val progressText = "$currentProgress/$maxProgress"
@@ -187,8 +187,10 @@ class SubscriptionImportWorker(
 sealed class SubscriptionImportInput : Parcelable {
     @Parcelize
     data class ChannelUrlMode(val serviceId: Int, val url: String) : SubscriptionImportInput()
+
     @Parcelize
     data class InputStreamMode(val serviceId: Int, val url: String) : SubscriptionImportInput()
+
     @Parcelize
     data class PreviousExportMode(val url: String) : SubscriptionImportInput()
 
@@ -218,6 +220,7 @@ sealed class SubscriptionImportInput : Parcelable {
                     val url = data.getString("url")!!
                     return ChannelUrlMode(serviceId, url)
                 }
+
                 INPUT_STREAM_MODE -> {
                     val serviceId = data.getInt("service_id", -1)
                     if (serviceId == -1) {
@@ -226,10 +229,12 @@ sealed class SubscriptionImportInput : Parcelable {
                     val url = data.getString("url")!!
                     return InputStreamMode(serviceId, url)
                 }
+
                 PREVIOUS_EXPORT_MODE -> {
                     val url = data.getString("url")!!
                     return PreviousExportMode(url)
                 }
+
                 else -> throw IllegalArgumentException("Unknown mode: $mode")
             }
         }

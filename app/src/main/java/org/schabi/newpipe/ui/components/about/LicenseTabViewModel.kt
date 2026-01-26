@@ -45,7 +45,7 @@ class LicenseTabViewModel : ViewModel() {
         _state.update {
             it.copy(
                 firstPartyLibraries = firstParty,
-                thirdPartyLibraries = allThirdParty,
+                thirdPartyLibraries = allThirdParty
             )
         }
     }
@@ -77,6 +77,6 @@ class LicenseTabViewModel : ViewModel() {
         val firstPartyLibraries: List<Library>?,
         val thirdPartyLibraries: List<Library>?,
         // null if dialog closed, empty if loading, otherwise license HTML content
-        val licenseDialogHtml: AnnotatedString?,
+        val licenseDialogHtml: AnnotatedString?
     )
 }

@@ -32,7 +32,7 @@ fun LicenseTab(viewModel: LicenseTabViewModel = viewModel()) {
 
     LazyColumnThemedScrollbar(state = lazyListState) {
         LazyColumn(
-            state = lazyListState,
+            state = lazyListState
         ) {
             item {
                 Text(
@@ -43,7 +43,7 @@ fun LicenseTab(viewModel: LicenseTabViewModel = viewModel()) {
                         top = 16.dp,
                         end = 16.dp,
                         bottom = 8.dp
-                    ),
+                    )
                 )
             }
             item {
@@ -54,7 +54,7 @@ fun LicenseTab(viewModel: LicenseTabViewModel = viewModel()) {
                         start = 16.dp,
                         end = 16.dp,
                         bottom = 8.dp
-                    ),
+                    )
                 )
             }
             if (state.firstPartyLibraries == null) {
@@ -67,7 +67,7 @@ fun LicenseTab(viewModel: LicenseTabViewModel = viewModel()) {
                         Library(
                             library = library,
                             showLicenseDialog = viewModel::showLicenseDialog,
-                            descriptionMaxLines = Int.MAX_VALUE,
+                            descriptionMaxLines = Int.MAX_VALUE
                         )
                     }
                 }
@@ -82,7 +82,7 @@ fun LicenseTab(viewModel: LicenseTabViewModel = viewModel()) {
                         top = 16.dp,
                         end = 16.dp,
                         bottom = 8.dp
-                    ),
+                    )
                 )
             }
             if (state.thirdPartyLibraries == null) {
@@ -95,7 +95,7 @@ fun LicenseTab(viewModel: LicenseTabViewModel = viewModel()) {
                         Library(
                             library = library,
                             showLicenseDialog = viewModel::showLicenseDialog,
-                            descriptionMaxLines = 2,
+                            descriptionMaxLines = 2
                         )
                     }
                 }

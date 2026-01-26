@@ -2,13 +2,13 @@ package org.schabi.newpipe.player.playqueue
 
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.io.Serializable
+import java.util.Objects
 import org.schabi.newpipe.extractor.Image
 import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.util.ExtractorHelper
-import java.io.Serializable
-import java.util.Objects
 
 class PlayQueueItem private constructor(
     val title: String,
@@ -18,7 +18,7 @@ class PlayQueueItem private constructor(
     val thumbnails: List<Image>,
     val uploader: String,
     val uploaderUrl: String?,
-    val streamType: StreamType,
+    val streamType: StreamType
 ) : Serializable {
     //
     // ////////////////////////////////////////////////////////////////////// */
@@ -40,7 +40,7 @@ class PlayQueueItem private constructor(
         info.thumbnails,
         info.uploaderName.orEmpty(),
         info.uploaderUrl,
-        info.streamType,
+        info.streamType
     ) {
         if (info.startPosition > 0) {
             this.recoveryPosition = info.startPosition * 1000
@@ -55,7 +55,7 @@ class PlayQueueItem private constructor(
         item.thumbnails,
         item.uploaderName.orEmpty(),
         item.uploaderUrl,
-        item.streamType,
+        item.streamType
     )
 
     val stream: Single<StreamInfo>

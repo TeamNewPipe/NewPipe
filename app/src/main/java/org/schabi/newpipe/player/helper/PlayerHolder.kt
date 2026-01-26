@@ -43,13 +43,13 @@ object PlayerHolder {
     private val playQueue: PlayQueue?
         get() = this.player?.playQueue
 
+    /**
+     * Returns the current [PlayerType] of the [PlayerService] service,
+     * otherwise `null` if no service is running.
+     *
+     * @return Current PlayerType
+     */
     val type: PlayerType?
-        /**
-         * Returns the current [PlayerType] of the [PlayerService] service,
-         * otherwise `null` if no service is running.
-         *
-         * @return Current PlayerType
-         */
         get() = this.player?.playerType
 
     val isPlaying: Boolean
@@ -58,12 +58,12 @@ object PlayerHolder {
     val isPlayerOpen: Boolean
         get() = this.player != null
 
+    /**
+     * Use this method to only allow the user to manipulate the play queue (e.g. by enqueueing via
+     * the stream long press menu) when there actually is a play queue to manipulate.
+     * @return true only if the player is open and its play queue is ready (i.e. it is not null)
+     */
     val isPlayQueueReady: Boolean
-        /**
-         * Use this method to only allow the user to manipulate the play queue (e.g. by enqueueing via
-         * the stream long press menu) when there actually is a play queue to manipulate.
-         * @return true only if the player is open and its play queue is ready (i.e. it is not null)
-         */
         get() = this.playQueue != null
 
     val queueSize: Int

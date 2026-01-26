@@ -231,7 +231,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         val data = result.data?.dataString
         if (data != null && result.resultCode == Activity.RESULT_OK) {
             ImportConfirmationDialog.show(
-                this, SubscriptionImportInput.PreviousExportMode(data)
+                this,
+                SubscriptionImportInput.PreviousExportMode(data)
             )
         }
     }

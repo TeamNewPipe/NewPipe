@@ -66,7 +66,7 @@ fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
             .animateContentSize()
             .combinedClickable(
                 onLongClick = copyToClipboardCallback { parsedDescription },
-                onClick = { isExpanded = !isExpanded },
+                onClick = { isExpanded = !isExpanded }
             )
             .padding(start = 8.dp, top = 10.dp, end = 8.dp, bottom = 4.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -102,7 +102,9 @@ fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
                     Localization.concatenateStrings(
                         Localization.localizeUserName(comment.uploaderName),
                         Localization.relativeTimeOrTextual(
-                            context, comment.uploadDate, comment.textualUploadDate
+                            context,
+                            comment.uploadDate,
+                            comment.textualUploadDate
                         )
                     )
                 }
@@ -110,7 +112,7 @@ fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
                     text = nameAndDate,
                     style = MaterialTheme.typography.titleSmall,
                     maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
 
@@ -127,7 +129,7 @@ fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -140,7 +142,7 @@ fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
                             contentDescription = stringResource(R.string.detail_likes_img_view_description),
                             modifier = Modifier
                                 .padding(end = 4.dp)
-                                .size(20.dp),
+                                .size(20.dp)
                         )
                         Text(
                             text = Localization.likeCount(context, comment.likeCount),
@@ -155,7 +157,7 @@ fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
                             imageVector = Icons.Default.Favorite,
                             contentDescription = stringResource(R.string.detail_heart_img_view_description),
                             tint = MaterialTheme.colorScheme.primary,
-                            modifier = Modifier.size(20.dp),
+                            modifier = Modifier.size(20.dp)
                         )
                     }
                 }
@@ -169,7 +171,9 @@ fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
                             modifier = Modifier.padding(end = 2.dp)
                         ) {
                             val text = pluralStringResource(
-                                R.plurals.replies, comment.replyCount, comment.replyCount.toString()
+                                R.plurals.replies,
+                                comment.replyCount,
+                                comment.replyCount.toString()
                             )
                             Text(text = text)
                         }
@@ -183,7 +187,7 @@ fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
         CommentRepliesDialog(
             parentComment = comment,
             onDismissRequest = { showReplies = false },
-            onCommentAuthorOpened = onCommentAuthorOpened,
+            onCommentAuthorOpened = onCommentAuthorOpened
         )
     }
 }
@@ -200,7 +204,7 @@ fun CommentsInfoItem(
     isHeartedByUploader: Boolean = false,
     isPinned: Boolean = false,
     replies: Page? = null,
-    replyCount: Int = 0,
+    replyCount: Int = 0
 ) = CommentsInfoItem(serviceId, url, name).apply {
     this.commentText = commentText
     this.uploaderName = uploaderName
@@ -249,7 +253,7 @@ private class CommentPreviewProvider : CollectionPreviewParameterProvider<Commen
             isHeartedByUploader = false,
             replies = Page(""),
             replyCount = 4283
-        ),
+        )
     )
 )
 

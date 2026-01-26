@@ -4,6 +4,9 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.subjects.PublishSubject
+import java.io.Serializable
+import java.util.Collections
+import java.util.concurrent.atomic.AtomicInteger
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.AppendEvent
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.ErrorEvent
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.InitEvent
@@ -12,9 +15,6 @@ import org.schabi.newpipe.player.playqueue.PlayQueueEvent.RecoveryEvent
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.RemoveEvent
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.ReorderEvent
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.SelectEvent
-import java.io.Serializable
-import java.util.Collections
-import java.util.concurrent.atomic.AtomicInteger
 
 /**
  * PlayQueue is responsible for keeping track of a list of streams and the index of
@@ -28,7 +28,7 @@ import java.util.concurrent.atomic.AtomicInteger
  */
 abstract class PlayQueue internal constructor(
     index: Int,
-    startWith: List<PlayQueueItem>,
+    startWith: List<PlayQueueItem>
 ) : Serializable {
     private val queueIndex = AtomicInteger(index)
     private val history = mutableListOf<PlayQueueItem>()
@@ -105,22 +105,20 @@ abstract class PlayQueue internal constructor(
     /*//////////////////////////////////////////////////////////////////////////
     // Readonly ops
     ////////////////////////////////////////////////////////////////////////// */
+
+    /**
+     * Changes the current playing index to a new index.
+     *
+     * This method is guarded using in a circular manner for index exceeding the play queue size.
+     *
+     * Will emit a [SelectEvent] if the index is not the current playing index.
+     *
+     * @param index the index to be set
+     * @return the current index that should be played
+     */
     @set:Synchronized
     var index: Int = 0
-        /**
-         * @return the current index that should be played
-         */
         get() = queueIndex.get()
-
-        /**
-         * Changes the current playing index to a new index.
-         *
-         * This method is guarded using in a circular manner for index exceeding the play queue size.
-         *
-         * Will emit a [SelectEvent] if the index is not the current playing index.
-         *
-         * @param index the index to be set
-         */
         set(index) {
             val oldIndex = field
 
@@ -340,7 +338,7 @@ abstract class PlayQueue internal constructor(
     @Synchronized
     fun move(
         source: Int,
-        target: Int,
+        target: Int
     ) {
         if (source < 0 || target < 0) {
             return
@@ -375,7 +373,7 @@ abstract class PlayQueue internal constructor(
     @Synchronized
     fun setRecovery(
         index: Int,
-        position: Long,
+        position: Long
     ) {
         streams.getOrNull(index)?.let {
             it.recoveryPosition = position

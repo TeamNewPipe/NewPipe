@@ -17,11 +17,11 @@ import coil3.size.Size
 import coil3.target.Target
 import coil3.toBitmap
 import coil3.transform.Transformation
+import kotlin.math.min
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.Image
 import org.schabi.newpipe.ktx.scale
-import kotlin.math.min
 
 object CoilHelper {
     private val TAG = CoilHelper::class.java.simpleName
@@ -30,37 +30,36 @@ object CoilHelper {
     fun loadBitmapBlocking(
         context: Context,
         url: String?,
-        @DrawableRes placeholderResId: Int = 0,
-    ): Bitmap? =
-        context.imageLoader
-            .executeBlocking(getImageRequest(context, url, placeholderResId).build())
-            .image
-            ?.toBitmap()
+        @DrawableRes placeholderResId: Int = 0
+    ): Bitmap? = context.imageLoader
+        .executeBlocking(getImageRequest(context, url, placeholderResId).build())
+        .image
+        ?.toBitmap()
 
     fun loadAvatar(
         target: ImageView,
-        images: List<Image>,
+        images: List<Image>
     ) {
         loadImageDefault(target, images, R.drawable.placeholder_person)
     }
 
     fun loadAvatar(
         target: ImageView,
-        url: String?,
+        url: String?
     ) {
         loadImageDefault(target, url, R.drawable.placeholder_person)
     }
 
     fun loadThumbnail(
         target: ImageView,
-        images: List<Image>,
+        images: List<Image>
     ) {
         loadImageDefault(target, images, R.drawable.placeholder_thumbnail_video)
     }
 
     fun loadThumbnail(
         target: ImageView,
-        url: String?,
+        url: String?
     ) {
         loadImageDefault(target, url, R.drawable.placeholder_thumbnail_video)
     }
@@ -68,7 +67,7 @@ object CoilHelper {
     fun loadScaledDownThumbnail(
         context: Context,
         images: List<Image>,
-        target: Target,
+        target: Target
     ): Disposable {
         val url = ImageStrategy.choosePreferredImage(images)
         val request =
@@ -80,7 +79,7 @@ object CoilHelper {
 
                         override suspend fun transform(
                             input: Bitmap,
-                            size: Size,
+                            size: Size
                         ): Bitmap {
                             if (MainActivity.DEBUG) {
                                 Log.d(TAG, "Thumbnail - transform() called")
@@ -89,7 +88,7 @@ object CoilHelper {
                             val notificationThumbnailWidth =
                                 min(
                                     context.resources.getDimension(R.dimen.player_notification_thumbnail_width),
-                                    input.width.toFloat(),
+                                    input.width.toFloat()
                                 ).toInt()
 
                             var newHeight = input.height / (input.width / notificationThumbnailWidth)
@@ -104,7 +103,7 @@ object CoilHelper {
                                 result
                             }
                         }
-                    },
+                    }
                 ).build()
 
         return context.imageLoader.enqueue(request)
@@ -112,7 +111,7 @@ object CoilHelper {
 
     fun loadDetailsThumbnail(
         target: ImageView,
-        images: List<Image>,
+        images: List<Image>
     ) {
         val url = ImageStrategy.choosePreferredImage(images)
         loadImageDefault(target, url, R.drawable.placeholder_thumbnail_video, false)
@@ -120,21 +119,21 @@ object CoilHelper {
 
     fun loadBanner(
         target: ImageView,
-        images: List<Image>,
+        images: List<Image>
     ) {
         loadImageDefault(target, images, R.drawable.placeholder_channel_banner)
     }
 
     fun loadPlaylistThumbnail(
         target: ImageView,
-        images: List<Image>,
+        images: List<Image>
     ) {
         loadImageDefault(target, images, R.drawable.placeholder_thumbnail_playlist)
     }
 
     fun loadPlaylistThumbnail(
         target: ImageView,
-        url: String?,
+        url: String?
     ) {
         loadImageDefault(target, url, R.drawable.placeholder_thumbnail_playlist)
     }
@@ -142,7 +141,7 @@ object CoilHelper {
     private fun loadImageDefault(
         target: ImageView,
         images: List<Image>,
-        @DrawableRes placeholderResId: Int,
+        @DrawableRes placeholderResId: Int
     ) {
         loadImageDefault(target, ImageStrategy.choosePreferredImage(images), placeholderResId)
     }
@@ -151,7 +150,7 @@ object CoilHelper {
         target: ImageView,
         url: String?,
         @DrawableRes placeholderResId: Int,
-        showPlaceholder: Boolean = true,
+        showPlaceholder: Boolean = true
     ) {
         val request =
             getImageRequest(target.context, url, placeholderResId, showPlaceholder)
@@ -164,7 +163,7 @@ object CoilHelper {
         context: Context,
         url: String?,
         @DrawableRes placeholderResId: Int,
-        showPlaceholderWhileLoading: Boolean = true,
+        showPlaceholderWhileLoading: Boolean = true
     ): ImageRequest.Builder {
         // if the URL was chosen with `choosePreferredImage` it will be null, but check again
         // `shouldLoadImages` in case the URL was chosen with `imageListToDbUrl` (which is the case

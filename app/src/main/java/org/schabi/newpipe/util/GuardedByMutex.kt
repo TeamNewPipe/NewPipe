@@ -10,7 +10,7 @@ import kotlinx.coroutines.sync.withLock
  * */
 class GuardedByMutex<T>(
     private var data: T,
-    private val lock: Mutex = Mutex(locked = false),
+    private val lock: Mutex = Mutex(locked = false)
 ) {
 
     /** Lock the mutex and access the data, blocking the current thread.
@@ -18,20 +18,18 @@ class GuardedByMutex<T>(
      * */
     fun <Y> runWithLockSync(
         action: MutexData<T>.() -> Y
-    ) =
-        runBlocking {
-            lock.withLock {
-                MutexData(data, { d -> data = d }).action()
-            }
+    ) = runBlocking {
+        lock.withLock {
+            MutexData(data, { d -> data = d }).action()
         }
+    }
 
     /** Lock the mutex and access the data, suspending the coroutine.
      * @param action to run with locked mutex
      * */
-    suspend fun <Y> runWithLock(action: MutexData<T>.() -> Y) =
-        lock.withLock {
-            MutexData(data, { d -> data = d }).action()
-        }
+    suspend fun <Y> runWithLock(action: MutexData<T>.() -> Y) = lock.withLock {
+        MutexData(data, { d -> data = d }).action()
+    }
 }
 
 /** The data inside a [GuardedByMutex], which can be accessed via [lockData].

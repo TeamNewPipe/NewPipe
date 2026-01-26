@@ -36,14 +36,14 @@ fun SwitchPreference(
                 text = stringResource(id = title),
                 modifier = Modifier.padding(SizeTokens.SpacingExtraSmall),
                 style = MaterialTheme.typography.titleSmall,
-                textAlign = TextAlign.Start,
+                textAlign = TextAlign.Start
             )
             summary?.let {
                 Text(
                     text = stringResource(id = summary),
                     modifier = Modifier.padding(SizeTokens.SpacingExtraSmall),
                     style = MaterialTheme.typography.bodySmall,
-                    textAlign = TextAlign.Start,
+                    textAlign = TextAlign.Start
                 )
             }
         }

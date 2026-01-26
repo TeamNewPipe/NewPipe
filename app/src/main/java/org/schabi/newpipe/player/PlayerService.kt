@@ -29,6 +29,8 @@ import android.util.Log
 import androidx.core.app.ServiceCompat
 import androidx.media.MediaBrowserServiceCompat
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector
+import java.lang.ref.WeakReference
+import java.util.function.Consumer
 import org.schabi.newpipe.ktx.toDebugString
 import org.schabi.newpipe.player.mediabrowser.MediaBrowserImpl
 import org.schabi.newpipe.player.mediabrowser.MediaBrowserPlaybackPreparer
@@ -36,8 +38,6 @@ import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi
 import org.schabi.newpipe.player.notification.NotificationPlayerUi
 import org.schabi.newpipe.player.notification.NotificationUtil
 import org.schabi.newpipe.util.ThemeHelper
-import java.lang.ref.WeakReference
-import java.util.function.Consumer
 
 /**
  * One service for all players.
@@ -110,7 +110,7 @@ class PlayerService : MediaBrowserServiceCompat() {
             Log.d(
                 TAG,
                 "onStartCommand() called with: intent = [$intent], extras = [${
-                intent.extras.toDebugString()}], flags = [$flags], startId = [$startId]"
+                    intent.extras.toDebugString()}], flags = [$flags], startId = [$startId]"
             )
         }
 
@@ -251,7 +251,7 @@ class PlayerService : MediaBrowserServiceCompat() {
             Log.d(
                 TAG,
                 "onBind() called with: intent = [$intent], extras = [${
-                intent.extras.toDebugString()}]"
+                    intent.extras.toDebugString()}]"
             )
         }
 

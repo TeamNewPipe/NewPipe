@@ -25,7 +25,7 @@ import org.schabi.newpipe.util.NO_SERVICE_ID
 @Composable
 fun PlaylistListItem(
     playlist: PlaylistInfoItem,
-    onClick: (InfoItem) -> Unit = {},
+    onClick: (InfoItem) -> Unit = {}
 ) {
     Row(
         modifier = Modifier
