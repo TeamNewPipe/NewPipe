@@ -2,8 +2,8 @@ package org.schabi.newpipe.info_list
 
 import android.util.Log
 import com.xwray.groupie.GroupieAdapter
-import org.schabi.newpipe.extractor.stream.StreamInfo
 import kotlin.math.max
+import org.schabi.newpipe.extractor.stream.StreamInfo
 
 /**
  * Custom RecyclerView.Adapter/GroupieAdapter for [StreamSegmentItem] for handling selection state.

@@ -1,23 +1,12 @@
-<h4>Improvements</h4>
+<h4>सुधार</h4>
 <ul>
-<li>make links in comments clickable, increase text size</li>
-<li>seek on clicking timestamp links in comments</li>
-<li>show preferred tab based on recently selected state</li>
-<li>add playlist to queue when long clicking on &#39;Background&#39; in playlist window</li>
-<li>search for shared text when it is not an URL</li>
-<li>add &quot;share at current time&quot; button to the main video player</li>
-<li>add close button to main player when video queue is finished</li>
-<li>add &quot;Play directly in Background&quot; to longpress menu for video list items</li>
-<li>improve English translations for Play/Enqueue commands</li>
-<li>small performance improvements</li>
-<li>remove unused files</li>
-<li>update ExoPlayer to 2.9.6</li>
-<li>add support for Invidious links</li>
-</ul>
-<h4>Fixed</h4>
+<li>कमेंट्स में लिंक को क्लिक करने लायक बनाएं, टेक्स्ट का साइज़ बढ़ाएं</li>
+<li>कमेंट्स में टाइमस्टैम्प लिंक पर क्लिक करने पर खोजें</li>
+<li>जब शेयर किया गया टेक्स्ट URL न हो तो उसे खोजें</li>
+<li>मेन वीडियो प्लेयर में "अभी के समय शेयर करें" बटन जोड़ें</li>
+<li>ExoPlayer को 2.9.6 पर अपडेट करना</li>
+<h4>फिकसड</h4>
+
 <ul>
-<li>fixed scroll w/ comments and related streams disabled</li>
-<li>fixed CheckForNewAppVersionTask being executed when it shouldn&#39;t</li>
-<li>fixed youtube subscription import: ignore ones with invalid url and keep ones with empty title</li>
-<li>fix invalid YouTube url: signature tag name is not always "signature" preventing streams from loading</li>
+<li>गलत YouTube URL ठीक करें: सिग्नेचर टैग का नाम हमेशा "सिग्नेचर" नहीं होता, जिससे स्ट्रीम लोड नहीं हो पातीं</li>
 </ul>

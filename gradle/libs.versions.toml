@@ -13,7 +13,7 @@ autoservice-google = "1.1.1"
 autoservice-zacsweers = "1.2.0"
 bridge = "v2.0.2"
 cardview = "1.0.0"
-checkstyle = "12.2.0"
+checkstyle = "13.0.0"
 coil = "3.0.4"
 compose-bom = "2024.10.01"
 constraintlayout = "2.2.1"
@@ -30,7 +30,7 @@ junit-ext = "1.3.0"
 kotlin = "2.2.21"
 kotlinx-coroutines-rx3 = "1.8.1"
 kotlinx-serialization-json = "1.7.3"
-ksp = "2.3.2"
+ksp = "2.3.4"
 ktlint = "1.8.0"
 lazy-column-scrollbar = "2.2.0"
 leakcanary = "2.14"
@@ -51,7 +51,7 @@ runner = "1.7.0"
 rxandroid = "3.0.2"
 rxbinding = "4.0.0"
 rxjava = "3.1.12"
-sonarqube = "7.2.1.6560"
+sonarqube = "7.2.2.6593"
 statesaver = "1.4.1" # TODO: Drop because it is deprecated and incompatible with KSP2
 stetho = "1.6.0"
 swiperefreshlayout = "1.2.0"
@@ -65,8 +65,8 @@ teamnewpipe-nanojson = "e9d656ddb49a412a5a0a5d5ef20ca7ef09549996"
 # the corresponding commit hash, since JitPack sometimes deletes artifacts.
 # If there’s already a git hash, just add more of it to the end (or remove a letter)
 # to cause jitpack to regenerate the artifact.
-teamnewpipe-newpipe-extractor = "05e0e4ced7b6ff05f3d68d831efed8bdf588f9ac"
-webkit = "1.14.0"
+teamnewpipe-newpipe-extractor = "v0.25.0"
+webkit = "1.14.0" # Newer versions require minSdk >= 23
 work = "2.10.5"  # Newer versions require minSdk >= 23
 
 [libraries]

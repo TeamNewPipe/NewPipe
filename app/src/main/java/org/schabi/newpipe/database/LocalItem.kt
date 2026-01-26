@@ -14,6 +14,6 @@ interface LocalItem {
         PLAYLIST_REMOTE_ITEM,
 
         PLAYLIST_STREAM_ITEM,
-        STATISTIC_STREAM_ITEM,
+        STATISTIC_STREAM_ITEM
     }
 }

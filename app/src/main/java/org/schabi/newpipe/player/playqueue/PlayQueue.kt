@@ -3,7 +3,7 @@ package org.schabi.newpipe.player.playqueue
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.subjects.BehaviorSubject
+import io.reactivex.rxjava3.subjects.PublishSubject
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.AppendEvent
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.ErrorEvent
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.InitEvent
@@ -36,7 +36,7 @@ abstract class PlayQueue internal constructor(
     private var streams = startWith.toMutableList()
 
     @Transient
-    private var eventBroadcast: BehaviorSubject<PlayQueueEvent>? = null
+    private var eventBroadcast: PublishSubject<PlayQueueEvent>? = null
 
     /**
      * Returns the play queue's update broadcast.
@@ -68,7 +68,7 @@ abstract class PlayQueue internal constructor(
      * Also starts a self reporter for logging if debug mode is enabled.
      */
     fun init() {
-        eventBroadcast = BehaviorSubject.create()
+        eventBroadcast = PublishSubject.create()
 
         broadcastReceiver =
             eventBroadcast!!

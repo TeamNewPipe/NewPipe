@@ -74,7 +74,7 @@
     <string name="enable_watch_history_summary">देखे गए वीडियोज़ की सूची रखें</string>
     <string name="resume_on_audio_focus_gain_title">प्लेबैक फिर से शुरू करें</string>
     <string name="resume_on_audio_focus_gain_summary">रुकावटें (जैसे कि फ़ोन कॉल) खत्म होने के बाद वीडियो प्ले जारी रखें</string>
-    <string name="show_next_and_similar_title">\'अगले\' और \'सबंधित\' वीडियो दिखाएं</string>
+    <string name="show_next_and_similar_title">\'अगला\' और \'संबंधित\' वीडियो दिखाएं</string>
     <string name="show_hold_to_append_title">\"कतार में जोड़ने के लिए स्पर्श बनाये रखें\" दिखाएं</string>
     <string name="show_hold_to_append_summary">जब बैकग्राउंड और पॉपअप बटन वीडियो के विवरण पन्ने में दबाई जाए तो सलाह दिखाएं</string>
     <string name="unsupported_url">असमर्थित URL</string>
@@ -93,7 +93,7 @@
     <string name="disabled">बंद किया</string>
     <string name="clear">साफ करें</string>
     <string name="best_resolution">उत्तम रिजॉल्युशन</string>
-    <string name="undo">वापिस</string>
+    <string name="undo">अन-डू करें</string>
     <string name="play_all">सभी प्ले करें</string>
     <string name="notification_channel_name">न्यूपाइप की नोटीफिकेशन</string>
     <string name="notification_channel_description">न्यूपाइप के प्लेयर के लिए नोटीफिकेशन</string>
@@ -104,7 +104,7 @@
     <string name="parsing_error">वैबसाइट parse नहीं हो सकी</string>
     <string name="content_not_available">विषय वस्तु उपलब्ध नहीं है</string>
     <string name="could_not_setup_download_menu">डाउनलोड मेनू स्थापित नहीं किया जा सका</string>
-    <string name="app_ui_crash">APP/UI करैश हो गई</string>
+    <string name="app_ui_crash">ऐप/UI करैश हो गई</string>
     <string name="player_stream_failure">इस वीडियो को चलाने में असफल हुए</string>
     <string name="player_unrecoverable_failure">अनचाही वीडियो प्लेयर त्रुटी आयी है</string>
     <string name="player_recoverable_failure">वीडियो प्लेयर त्रुटी से ठीक हो रहा है</string>
@@ -391,7 +391,7 @@
     <string name="clear_playback_states_title">प्लेबैक स्थानों को मिटाएं</string>
     <string name="clear_playback_states_summary">सारे प्लेबैक स्थानों को मिटाता है</string>
     <string name="delete_playback_states_alert">सारे प्लेबैक स्थानों को मिटाएं\?</string>
-    <string name="enable_disposed_exceptions_summary">निपटान के बाद खंड या गतिविधि जीवन चक्र के बाहर अविभाज्य आरएक्स अपवादों की रिपोर्टिंग को बलपूर्वक लागू करें</string>
+    <string name="enable_disposed_exceptions_summary">हैंडलिंग के बाद फ्रैगमेंट या एक्टिविटी लूप के बाहर अनहैंडल्ड Rx एक्सेप्शन की रिपोर्टिंग को बलपूर्वक लागू करें</string>
     <string name="import_soundcloud_instructions">साउंडक्लाउड प्रोफाइल निर्यात करने के लिए आईडी या युआरएल दीजिये:
 \n
 \n1. अपने वेब ब्राउज़र में \"डेस्कटॉप मोड\" चालू करें (वेबसाइट मोबाइल उपकरणों के लिए उपलब्ध नहीं है)
@@ -406,7 +406,7 @@
     <string name="grid">ग्रिड</string>
     <string name="auto">ऑटो</string>
     <string name="show_error">त्रुटि दिखाएं</string>
-    <string name="error_http_unsupported_range">सर्वर मल्टी थ्रेडेड डाउनलोड स्वीकार नहीं करता, पुनः कोशिश करे @string/msg_threads = 1 के साथ</string>
+    <string name="error_http_unsupported_range">सर्वर मल्टी थ्रेडेड डाउनलोड स्वीकार नहीं करता, @string/msg_threads = 1 के साथ पुनः कोशिश करें</string>
     <string name="downloads_storage_use_saf_summary">\'स्टोरेज एक्सेस फ्रेमवर्क\' आपको बाहरी एसडी कार्ड पर डाउनलोड करने देता है</string>
     <string name="drawer_header_description">सेवा चुनें, वर्तमान चुनाव :</string>
     <string name="default_kiosk_page_summary">डिफ़ॉल्ट कियोस्क</string>
@@ -502,7 +502,7 @@
     <string name="infinite_videos">अनगिनत विडीओज़</string>
     <string name="more_than_100_videos">100+ विडीओज़</string>
     <string name="description_tab_description">विवरण</string>
-    <string name="related_items_tab_description">संबंधित स्ट्रीमस</string>
+    <string name="related_items_tab_description">संबंधित आइटम्स</string>
     <string name="comments_tab_description">टिप्पणियाँ</string>
     <string name="error_report_open_github_notice">कृपया जांचें लें कि क्या आपके क्रैश पर चर्चा करने वाला मुद्दा पहले से मौजूद है। डुप्लिकेट टिकट बनाते समय, आप हमसे समय लेते हैं जो हम वास्तविक बग को ठीक करने के लिए खर्च कर सकते हैं।</string>
     <string name="error_report_open_issue_button_text">गिटहब पर रिपोर्ट करें</string>
@@ -826,4 +826,26 @@
     <string name="feed_group_page_summary">चैनल समूह पेज</string>
     <string name="channel_tab_likes">पसंद</string>
     <string name="share_playlist_as_youtube_temporary_playlist">यूट्यूब अस्थायी प्लेलिस्ट के रूप में साझा करें</string>
+    <string name="entry_deleted">एंटरी मिटा दी गई</string>
+    <string name="delete_file">फाईल डिलीट करें</string>
+    <string name="delete_entry">एंटरी मिटाऐं</string>
+    <string name="short_thousand">%sहज़ार</string>
+    <string name="permission_display_over_apps_message">पॉपअप प्लेयर इस्तेमाल करने के लिए, कृपया नीचे दिए गए Android सेटिंग्स मेनू में %1$s चुनें और %2$s चालू करें।</string>
+    <string name="permission_display_over_apps_permission_name">“अन्य ऐप्स पर डिस्प्ले की अनुमति दें”</string>
+    <string name="short_million">%sमिलीअन</string>
+    <string name="short_billion">%sअरब</string>
+    <string name="account_terminated_service_provides_reason">अकाउंट बंद कर दिया गया\n\n%1$s यह कारण बताता है: %2$s</string>
+    <string name="migration_info_6_7_title">साउंडक्लाउड टॉप 50 पेज हटा दिया गया</string>
+    <string name="migration_info_6_7_message">साउंडक्लाउड ने ओरिजिनल टॉप 50 चार्ट बंद कर दिए हैं। इससे जुड़ा टैब आपके मेन पेज से हटा दिया गया है।</string>
+    <string name="migration_info_7_8_title">YouTube कंबाइंड ट्रेंडिंग हटा दी गई</string>
+    <string name="migration_info_7_8_message">YouTube ने 21 जुलाई 2025 से कंबाइंड ट्रेंडिंग पेज बंद कर दिया है। NewPipe ने डिफ़ॉल्ट ट्रेंडिंग पेज को ट्रेंडिंग लाइवस्ट्रीम से बदल दिया है।\n\nआप \"सेटिंग्स &gt; कंटेंट &gt; मेन पेज कंटेंट\" में अलग-अलग ट्रेंडिंग पेज भी चुन सकते हैं।</string>
+    <string name="trending_gaming">गेमिंग ट्रेंडस</string>
+    <string name="trending_podcasts">ट्रेंडिंग पॉडकास्ट</string>
+    <string name="trending_movies">ट्रेंडिंग फिल्में और शो</string>
+    <string name="trending_music">ट्रेंडिंग संगीत</string>
+    <string name="player_http_403">पले करते समय सर्वर से HTTP error 403 मिला, शायद स्ट्रीमिंग URL एक्सपायर होने या IP बैन की वजह से हुआ</string>
+    <string name="player_http_invalid_status">पले करते समय सर्वर से HTTP error %1$s मिला</string>
+    <string name="youtube_player_http_403">पले करते समय सर्वर से HTTP error 403 मिला, जो शायद IP बैन या स्ट्रीमिंग URL डीओबफस्केशन की दिक्कतों की वजह से हुआ है</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s ने डेटा देने से मना कर दिया, और यह कन्फर्म करने के लिए लॉगिन मांगा कि रिक्वेस्ट करने वाला बोट नहीं है।\n\nहो सकता है कि %1$s ने आपके IP को कुछ समय के लिए बैन कर दिया हो, आप कुछ समय इंतज़ार कर सकते हैं या किसी दूसरे IP पर स्विच कर सकते हैं (जैसे VPN ऑन/ऑफ करके, या WiFi से मोबाइल डेटा पर स्विच करके)।</string>
+    <string name="unsupported_content_in_country">यह कंटेंट अभी चुने गए देश के कंटेंट के लिए उपलब्ध नहीं है।\n\n\"सेटिंग्स &gt; कंटेंट &gt; डिफ़ॉल्ट कंटेंट देश\" से अपना चुनाव बदलें।</string>
 </resources>
