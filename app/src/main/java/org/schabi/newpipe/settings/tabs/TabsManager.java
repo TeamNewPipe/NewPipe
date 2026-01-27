@@ -28,7 +28,7 @@ public final class TabsManager {
     }
 
     public List<Tab> getTabs() {
-        final String savedJson = sharedPreferences.getString(savedTabsKey, null);
+        final String savedJson = sharedPreferences.getString(savedTabsKey, "");
         try {
             return TabsJsonHelper.getTabsFromJson(savedJson);
         } catch (final TabsJsonHelper.InvalidJsonException e) {
