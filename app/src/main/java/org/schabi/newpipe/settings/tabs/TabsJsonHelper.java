@@ -9,8 +9,9 @@ import com.grack.nanojson.JsonParserException;
 import com.grack.nanojson.JsonStringWriter;
 import com.grack.nanojson.JsonWriter;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Class to get a JSON representation of a list of tabs, and the other way around.
@@ -44,39 +45,25 @@ public final class TabsJsonHelper {
             return getDefaultTabs();
         }
 
-        final List<Tab> returnTabs = new ArrayList<>();
-
-        final JsonObject outerJsonObject;
         try {
-            outerJsonObject = JsonParser.object().from(tabsJson);
+            final JsonObject outerJsonObject = JsonParser.object().from(tabsJson);
 
             if (!outerJsonObject.has(JSON_TABS_ARRAY_KEY)) {
                 throw new InvalidJsonException("JSON doesn't contain \"" + JSON_TABS_ARRAY_KEY
                         + "\" array");
             }
 
-            final JsonArray tabsArray = outerJsonObject.getArray(JSON_TABS_ARRAY_KEY);
+            final JsonArray tabsArray = outerJsonObject.getArray(JSON_TABS_ARRAY_KEY, null);
 
-            for (final Object o : tabsArray) {
-                if (!(o instanceof JsonObject)) {
-                    continue;
-                }
+            final var returnTabs = tabsArray.streamAsJsonObjects()
+                    .map(Tab::from)
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toUnmodifiableList());
 
-                final Tab tab = Tab.from((JsonObject) o);
-
-                if (tab != null) {
-                    returnTabs.add(tab);
-                }
-            }
+            return returnTabs.isEmpty() ? getDefaultTabs() : returnTabs;
         } catch (final JsonParserException e) {
             throw new InvalidJsonException(e);
         }
-
-        if (returnTabs.isEmpty()) {
-            return getDefaultTabs();
-        }
-
-        return returnTabs;
     }
 
     /**
