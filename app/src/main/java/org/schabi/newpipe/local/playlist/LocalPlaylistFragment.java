@@ -457,8 +457,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                                 // if the stream was played for less than 5 seconds, see
                                 // StreamStateEntity#PLAYBACK_SAVE_THRESHOLD_START_MILLISECONDS
                                 || streamStateEntity == null
-                                || (!streamStateEntity.isFinished(duration)
-                                        && !removePartiallyWatched)) {
+                                || (!removePartiallyWatched
+                                        && !streamStateEntity.isFinished(duration))) {
                             itemsToKeep.add(playlistItem);
                         } else if (!isThumbnailPermanent && !thumbnailVideoRemoved
                                 && playlistManager.getPlaylistThumbnailStreamId(playlistId)
