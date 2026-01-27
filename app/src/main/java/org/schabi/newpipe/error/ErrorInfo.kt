@@ -299,9 +299,9 @@ class ErrorInfo private constructor(
                 // indicates that it's important and is thus reportable
                 null -> true
 
-                // the service explicitly said that content is not available (e.g. age restrictions,
-                // video deleted, etc.), there is no use in letting users report it
-                is ContentNotAvailableException -> false
+                // if the service explicitly said that content is not available (e.g. age
+                // restrictions, video deleted, etc.), there is no use in letting users report it
+                is ContentNotAvailableException -> !isContentSurelyNotAvailable(throwable)
 
                 // we know the content is not supported, no need to let the user report it
                 is ContentNotSupportedException -> false
@@ -318,8 +318,8 @@ class ErrorInfo private constructor(
 
         fun isRetryable(throwable: Throwable?): Boolean {
             return when (throwable) {
-                // we know the content is not available, retrying won't help
-                is ContentNotAvailableException -> false
+                // if we know the content is surely not available, retrying won't help
+                is ContentNotAvailableException -> !isContentSurelyNotAvailable(throwable)
 
                 // we know the content is not supported, retrying won't help
                 is ContentNotSupportedException -> false
@@ -327,6 +327,29 @@ class ErrorInfo private constructor(
                 // by default (including if throwable is null), enable retrying (though the retry
                 // button will be shown only if a way to perform the retry is implemented)
                 else -> true
+            }
+        }
+
+        /**
+         * Unfortunately sometimes [ContentNotAvailableException] may not indicate that the content
+         * is blocked/deleted/paid, but may just indicate that we could not extract it. This is an
+         * inconsistency in the exceptions thrown by the extractor, but until it is fixed, this
+         * function will distinguish between the two types.
+         * @return `true` if the content is not available because of a limitation imposed by the
+         * service or the owner, `false` if the extractor could not extract info about it
+         */
+        fun isContentSurelyNotAvailable(e: ContentNotAvailableException): Boolean {
+            return when (e) {
+                is AccountTerminatedException,
+                is AgeRestrictedContentException,
+                is GeographicRestrictionException,
+                is PaidContentException,
+                is PrivateContentException,
+                is SoundCloudGoPlusContentException,
+                is UnsupportedContentInCountryException,
+                is YoutubeMusicPremiumContentException -> true
+
+                else -> false
             }
         }
     }
