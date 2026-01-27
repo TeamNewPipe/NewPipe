@@ -675,7 +675,7 @@
     <string name="max_retry_desc">Fjöldi tilrauna áður en hætt er við niðurhal</string>
     <string name="remove_watched_popup_warning">Myndskeiðum sem skoðuð voru áður eða eftir að þeim var bætt við spilunarlistann verður eytt.
 \nErtu viss? Það er ekki hægt að afturkalla þetta!</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Já og skoðuð að hluta</string>
+    <string name="remove_watched_popup_partially_watched_streams">Já og skoðuð að hluta</string>
     <string name="feed_use_dedicated_fetch_method_title">Nota RSS ef tiltækt</string>
     <string name="detail_heart_img_view_description">Hjartað af höfunda</string>
     <string name="notifications_disabled">Slökkt er á tilkynningum</string>

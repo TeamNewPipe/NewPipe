@@ -595,7 +595,7 @@
     <string name="overwrite_finished_warning">ଏହି ନାମ ସହିତ ଏକ ଡାଉନଲୋଡ୍ ଫାଇଲ୍ ପୂର୍ବରୁ ବିଦ୍ୟମାନ ଅଛି</string>
     <string name="delete_downloaded_files">ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଫାଇଲଗୁଡିକ ଡିଲିଟ୍ କରନ୍ତୁ</string>
     <string name="downloads_storage_use_saf_title">ସିଷ୍ଟମ୍ ଫୋଲ୍ଡର୍ ପିକର୍ (SAF) ବ୍ୟବହାର କରନ୍ତୁ</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">ହଁ, ଏବଂ ଆଂଶିକ ଦେଖାଯାଇଥିବା ଭିଡିଓଗୁଡିକ</string>
+    <string name="remove_watched_popup_partially_watched_streams">ହଁ, ଏବଂ ଆଂଶିକ ଦେଖାଯାଇଥିବା ଭିଡିଓଗୁଡିକ</string>
     <string name="feed_group_dialog_empty_name">ଗୋଷ୍ଠୀ ନାମ ଖାଲି ଅଛି</string>
     <string name="feed_use_dedicated_fetch_method_title">ଉପଲବ୍ଧ ଥିବାବେଳେ ଉତ୍ସର୍ଗୀକୃତ ଫିଡରୁ ଆଣ</string>
     <string name="list">ତାଲିକା</string>

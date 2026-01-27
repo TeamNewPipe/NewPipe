@@ -517,7 +517,7 @@
     <string name="restricted_video">Questo video ha restrizioni di età.
 \n
 \nAttivare «%1$s» nelle Impostazioni per poterlo vedere.</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sì, anche quelli visualizzati parzialmente</string>
+    <string name="remove_watched_popup_partially_watched_streams">Sì, anche quelli visualizzati parzialmente</string>
     <string name="remove_watched_popup_warning">I video che sono stati visti prima e dopo essere stati aggiunti alla playlist verranno rimossi.
 \nProcedere\? L\'azione è irreversibile!</string>
     <string name="remove_watched_popup_title">Rimuovere i video già visti\?</string>

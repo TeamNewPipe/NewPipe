@@ -517,7 +517,7 @@
     <string name="restricted_video">Toto video má věkové omezení.
 \n
 \nPokud jej chcete vidět, povolte „%1$s“ v nastavení.</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ano, i zčásti zhlédnutá videa</string>
+    <string name="remove_watched_popup_partially_watched_streams">Ano, i zčásti zhlédnutá videa</string>
     <string name="remove_watched_popup_title">Odstranit zhlédnutá videa?</string>
     <string name="remove_watched">Odstranit zhlédnutá</string>
     <string name="remove_watched_popup_warning">Videa, která jste zhlédli před a po jejich přidání do playlistu, budou odstraněna.

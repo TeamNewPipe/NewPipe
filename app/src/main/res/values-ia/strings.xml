@@ -165,7 +165,7 @@
     <string name="import_data_summary">Reimplaciar tu chronologia, subscriptiones e (optionalmente) configurationes currente</string>
     <string name="remove_watched_popup_warning">Le videos jam observate ante e post de esser addite al lista de reproduction essera removite.
 \nSecur que tu vole\? Isto non pote disfacer se!</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Si, e le videos partialmente observate</string>
+    <string name="remove_watched_popup_partially_watched_streams">Si, e le videos partialmente observate</string>
     <string name="remove_watched_popup_title">Deler le videos observate\?</string>
     <string name="remove_watched">Deler le videos observate</string>
     <plurals name="watching">

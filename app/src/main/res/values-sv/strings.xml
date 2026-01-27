@@ -473,7 +473,7 @@
         <item quantity="other">%d sekunder</item>
     </plurals>
     <string name="new_seek_duration_toast">På grund av ExoPlayer-begränsningar sattes söktiden till %d sekunder</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, och delvis tittade videor</string>
+    <string name="remove_watched_popup_partially_watched_streams">Ja, och delvis tittade videor</string>
     <string name="remove_watched_popup_warning">Videor som har spelats före och efter att de har lagts till i spellistan kommer att tas bort.
 \nÄr du säker\? Detta kan inte ångras!</string>
     <string name="remove_watched_popup_title">Ta bort tittade videor\?</string>

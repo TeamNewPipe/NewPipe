@@ -502,7 +502,7 @@
     <string name="content_not_supported">Deze inhoud wordt nog niet ondersteund door NewPipe.
 \n
 \nHopelijk zal dit bij een toekomstige versie ondersteund worden.</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, en deels bekeken video\'s</string>
+    <string name="remove_watched_popup_partially_watched_streams">Ja, en deels bekeken video\'s</string>
     <string name="remove_watched_popup_warning">Video\'s die zijn bekeken voor, en na ze werden toegevoegd aan de afspeellijst worden verwijderd.
 \nWeet u dit zeker\? Deze actie kan niet ongedaan gemaakt worden!</string>
     <string name="remove_watched_popup_title">Bekeken video\'s verwijderen\?</string>

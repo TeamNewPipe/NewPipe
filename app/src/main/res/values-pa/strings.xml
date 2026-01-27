@@ -493,7 +493,7 @@
         <item quantity="one">%d ਸਕਿੰਟ</item>
         <item quantity="other">%d ਸਕਿੰਟ</item>
     </plurals>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">ਹਾਂ, ਅਤੇ ਅੱਧ-ਪਚੱਧੀਆਂ ਵੇਖੀਆਂ ਹੋਈਆਂ ਵੀ</string>
+    <string name="remove_watched_popup_partially_watched_streams">ਹਾਂ, ਅਤੇ ਅੱਧ-ਪਚੱਧੀਆਂ ਵੇਖੀਆਂ ਹੋਈਆਂ ਵੀ</string>
     <string name="remove_watched_popup_warning">ਪਲੇਲਿਸਟ ਵਿੱਚ ਸ਼ਾਮਿਲ ਪਹਿਲਾਂ ਤੇ ਬਾਅਦ ਵਿੱਚ ਵੇਖੇ ਜਾ ਚੁੱਕੇ ਵੀਡੀਓ ਹਟਾ ਦਿੱਤੇ ਜਾਣਗੇ। \nਕੀ ਵਾਕਿਆ ਹੀ ਤੁਸੀਂ ਇਹਨਾਂ ਨੂੰ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ? ਇਸ ਕਾਰਵਾਈ ਨੂੰ ਵਾਪਸ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਣਾ!</string>
     <string name="remove_watched_popup_title">ਵੇਖੇ ਹੋਏ ਵੀਡੀਓ ਹਟਾ ਦੇਈਏ\?</string>
     <string name="remove_watched">ਵੇਖੇ ਹੋਏ ਨੂੰ ਹਟਾਓ</string>
