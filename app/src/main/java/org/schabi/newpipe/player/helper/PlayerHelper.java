@@ -87,11 +87,11 @@ public final class PlayerHelper {
     }
 
     @NonNull
-    public static String getTimeString(final int milliSeconds) {
-        final int seconds = (milliSeconds % 60000) / 1000;
-        final int minutes = (milliSeconds % 3600000) / 60000;
-        final int hours = (milliSeconds % 86400000) / 3600000;
-        final int days = (milliSeconds % (86400000 * 7)) / 86400000;
+    public static String getTimeString(final long milliSeconds) {
+        final long seconds = (milliSeconds % 60000) / 1000;
+        final long minutes = (milliSeconds % 3600000) / 60000;
+        final long hours = (milliSeconds % 86400000) / 3600000;
+        final long days = (milliSeconds % (86400000 * 7)) / 86400000;
 
         final Formatters formatters = FORMATTERS_PROVIDER.formatters();
         if (days > 0) {
