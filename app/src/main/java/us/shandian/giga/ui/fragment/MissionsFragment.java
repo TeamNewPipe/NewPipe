@@ -10,24 +10,36 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.text.style.CharacterStyle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.TooltipCompat;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.evernote.android.state.State;
+import com.livefront.bridge.Bridge;
 import com.nononsenseapps.filepicker.Utils;
 
 import org.schabi.newpipe.R;
@@ -35,6 +47,7 @@ import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
+import org.schabi.newpipe.util.KeyboardUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -52,6 +65,7 @@ public class MissionsFragment extends Fragment {
 
     private SharedPreferences mPrefs;
     private boolean mLinear;
+    private MenuItem mSearch;
     private MenuItem mSwitch;
     private MenuItem mClear = null;
     private MenuItem mStart = null;
@@ -64,8 +78,18 @@ public class MissionsFragment extends Fragment {
     private LinearLayoutManager mLinearManager;
     private Context mContext;
 
+    private View searchToolbarContainer;
+    private EditText searchEditText;
+    private View searchClear;
+    private TextWatcher textWatcher;
+
     private DownloadManagerBinder mBinder;
     private boolean mForceUpdate;
+
+    @State
+    String searchString;
+    @State
+    boolean wasSearchActive;
 
     private DownloadMission unsafeMissionTarget = null;
     private final ActivityResultLauncher<Intent> requestDownloadSaveAsLauncher =
@@ -87,6 +111,11 @@ public class MissionsFragment extends Fragment {
             mBinder.enableNotifications(false);
 
             updateList();
+
+            if (isSearchActive()) {
+                mAdapter.hideMenuButtons();
+                mAdapter.filter(getSearchEditString());
+            }
         }
 
         @Override
@@ -132,6 +161,48 @@ public class MissionsFragment extends Fragment {
         return v;
     }
 
+    @Override
+    public void onViewCreated(@NonNull final View rootView, final Bundle savedInstanceState) {
+        super.onViewCreated(rootView, savedInstanceState);
+        initSearchViews();
+        initSearchListeners();
+
+        Bridge.restoreInstanceState(this, savedInstanceState);
+        if (savedInstanceState != null) {
+            if (wasSearchActive) {
+                searchEditText.setText(searchString);
+                showSearch();
+            }
+        }
+
+        requireActivity().getOnBackPressedDispatcher().addCallback(
+                getViewLifecycleOwner(),
+                new OnBackPressedCallback(true) {
+                    @Override
+                    public void handleOnBackPressed() {
+                        if (isSearchActive() && !TextUtils.isEmpty(getSearchEditString())) {
+                            hideSearch();
+                        } else {
+                            setEnabled(false);
+                            hideKeyboardSearch();
+                            requireActivity().onBackPressed();
+                        }
+                    }
+                }
+        );
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull final Bundle bundle) {
+        if (searchEditText != null) {
+            searchString = getSearchEditString();
+            wasSearchActive = isSearchActive();
+        }
+
+        super.onSaveInstanceState(bundle);
+        Bridge.saveInstanceState(this, bundle);
+    }
+
     /**
      * Added in API level 23.
      */
@@ -174,12 +245,14 @@ public class MissionsFragment extends Fragment {
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
+        mSearch = menu.findItem(R.id.action_search);
         mSwitch = menu.findItem(R.id.switch_mode);
         mClear = menu.findItem(R.id.clear_list);
         mStart = menu.findItem(R.id.start_downloads);
         mPause = menu.findItem(R.id.pause_downloads);
 
         if (mAdapter != null) setAdapterButtons();
+        if (mSearch != null) mSearch.setVisible(!isSearchActive());
 
         super.onPrepareOptionsMenu(menu);
     }
@@ -200,6 +273,10 @@ public class MissionsFragment extends Fragment {
             case R.id.pause_downloads:
                 mBinder.getDownloadManager().pauseAllMissions(false);
                 mAdapter.refreshMissionItems();// update items view
+                return true;
+            case R.id.action_search:
+                showSearch();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -246,8 +323,8 @@ public class MissionsFragment extends Fragment {
 
         if (mSwitch != null) {
             mSwitch.setIcon(mLinear
-                            ? R.drawable.ic_apps
-                            : R.drawable.ic_list);
+                    ? R.drawable.ic_apps
+                    : R.drawable.ic_list);
             mSwitch.setTitle(mLinear ? R.string.grid : R.string.list);
             mPrefs.edit().putBoolean("linear", mLinear).apply();
         }
@@ -338,4 +415,110 @@ public class MissionsFragment extends Fragment {
             Toast.makeText(mContext, R.string.general_error, Toast.LENGTH_LONG).show();
         }
     }
+
+    private void initSearchViews() {
+        searchToolbarContainer = requireActivity().findViewById(R.id.toolbar_search_container);
+        searchEditText = searchToolbarContainer.findViewById(R.id.toolbar_search_edit_text);
+        searchClear = searchToolbarContainer.findViewById(R.id.toolbar_search_clear);
+    }
+
+    private void initSearchListeners() {
+        searchClear.setOnClickListener(v -> {
+            if (TextUtils.isEmpty(getSearchEditString())) {
+                hideSearch();
+                return;
+            }
+            searchEditText.setText("");
+            showKeyboardSearch();
+        });
+
+        TooltipCompat.setTooltipText(searchClear, getString(R.string.clear));
+
+        if (textWatcher != null) {
+            searchEditText.removeTextChangedListener(textWatcher);
+        }
+        textWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(final CharSequence s, final int start,
+                                          final int count, final int after) {
+                // Do nothing, old text is already clean
+            }
+
+            @Override
+            public void onTextChanged(final CharSequence s, final int start,
+                                      final int before, final int count) {
+                // Changes are handled in afterTextChanged; CharSequence cannot be changed here.
+            }
+
+            @Override
+            public void afterTextChanged(final Editable s) {
+                // Remove rich text formatting
+                for (final CharacterStyle span : s.getSpans(0, s.length(), CharacterStyle.class)) {
+                    s.removeSpan(span);
+                }
+
+                if (mAdapter != null) mAdapter.filter(s.toString());
+            }
+        };
+        searchEditText.addTextChangedListener(textWatcher);
+
+        searchEditText.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH ||
+                    (event != null
+                            && event.getKeyCode() == KeyEvent.KEYCODE_ENTER
+                            && event.getAction() == KeyEvent.ACTION_DOWN)) {
+                hideKeyboardSearch();
+                return true;
+            }
+            return false;
+        });
+    }
+
+    private void showSearch() {
+        if (mSearch != null) mSearch.setVisible(false);
+        if (mAdapter != null) mAdapter.hideMenuButtons();
+
+        showKeyboardSearch();
+
+        if (TextUtils.isEmpty(getSearchEditString())) {
+            searchToolbarContainer.setTranslationX(100);
+            searchToolbarContainer.setAlpha(0.0f);
+            searchToolbarContainer.setVisibility(View.VISIBLE);
+            searchToolbarContainer.animate()
+                    .translationX(0)
+                    .alpha(1.0f)
+                    .setDuration(200)
+                    .setInterpolator(new DecelerateInterpolator()).start();
+        } else {
+            searchToolbarContainer.setTranslationX(0);
+            searchToolbarContainer.setAlpha(1.0f);
+            searchToolbarContainer.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void hideSearch() {
+        hideKeyboardSearch();
+        searchToolbarContainer.setVisibility(View.GONE);
+        if (!TextUtils.isEmpty(getSearchEditString())) searchEditText.setText("");
+
+        if (mSearch != null) mSearch.setVisible(true);
+        if (mAdapter != null) mAdapter.showMenuButtons();
+    }
+
+    private boolean isSearchActive() {
+        return searchToolbarContainer.getVisibility() == View.VISIBLE;
+    }
+
+    private String getSearchEditString() {
+        return searchEditText.getText().toString();
+    }
+
+    private void showKeyboardSearch() {
+        KeyboardUtil.showKeyboard(requireActivity(), searchEditText);
+    }
+
+    private void hideKeyboardSearch() {
+        KeyboardUtil.hideKeyboard(requireActivity(), searchEditText);
+    }
+
 }

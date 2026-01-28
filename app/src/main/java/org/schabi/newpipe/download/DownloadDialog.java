@@ -299,7 +299,7 @@ public class DownloadDialog extends DialogFragment
         }
 
         dialogBinding.fileName.setText(FilenameUtils.createFilename(getContext(),
-                currentInfo.getName()));
+                  getFileName()));
         selectedAudioIndex = ListHelper.getDefaultAudioFormat(getContext(),
                 getWrappedAudioStreams().getStreamsList());
 
@@ -612,7 +612,7 @@ public class DownloadDialog extends DialogFragment
     }
 
     private void onItemSelectedSetFileName() {
-        final String fileName = FilenameUtils.createFilename(getContext(), currentInfo.getName());
+        final String fileName = FilenameUtils.createFilename(getContext(), getFileName());
         final String prevFileName = Optional.ofNullable(dialogBinding.fileName.getText())
                 .map(Object::toString)
                 .orElse("");
@@ -743,7 +743,24 @@ public class DownloadDialog extends DialogFragment
         final String str = Objects.requireNonNull(dialogBinding.fileName.getText()).toString()
                 .trim();
 
-        return FilenameUtils.createFilename(context, str.isEmpty() ? currentInfo.getName() : str);
+        return FilenameUtils.createFilename(context, str.isEmpty() ? getFileName() : str);
+    }
+
+    private String getFileName() {
+        final SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+
+        final boolean includeUploader = sharedPreferences.getBoolean(
+                context.getString(R.string.settings_file_name_include_uploader_key), false);
+
+        final String name = currentInfo.getName();
+        if (includeUploader) {
+            final String uploader = currentInfo.getUploaderName();
+            if (uploader != null && !uploader.isEmpty()) {
+                return name + " - " + uploader;
+            }
+        }
+        return name;
     }
 
     private void showFailedDialog(@StringRes final int msg) {

@@ -117,6 +117,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
     private final View mView;
     private final ArrayList<Mission> mHidden;
     private Snackbar mSnackbar;
+    private boolean showButtons = true;
 
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
@@ -186,7 +187,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 str = R.string.missions_header_pending;
             } else {
                 str = R.string.missions_header_finished;
-                if (mClear != null) mClear.setVisible(true);
+                if (mClear != null) mClear.setVisible(showButtons);
             }
 
             ((ViewHolderHeader) view).header.setText(str);
@@ -731,13 +732,25 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         }
     }
 
+    public void filter(String query) {
+        if (query == null) return;
+
+        String currentFilter = query.trim();
+        if (currentFilter.isEmpty()) {
+            mIterator.clearFilter();
+        } else {
+            mIterator.filter(currentFilter);
+        }
+        applyChanges();
+    }
+
     public void applyChanges() {
         mIterator.start();
         DiffUtil.calculateDiff(mIterator, true).dispatchUpdatesTo(this);
         mIterator.end();
 
         checkEmptyMessageVisibility();
-        if (mClear != null) mClear.setVisible(mIterator.hasFinishedMissions());
+        if (mClear != null) mClear.setVisible(showButtons && mIterator.hasFinishedMissions());
     }
 
     public void forceUpdate() {
@@ -757,7 +770,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
 
     public void setClearButton(MenuItem clearButton) {
         if (mClear == null)
-            clearButton.setVisible(mIterator.hasFinishedMissions());
+            clearButton.setVisible(showButtons && mIterator.hasFinishedMissions());
 
         mClear = clearButton;
     }
@@ -771,6 +784,18 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         if (init) checkMasterButtonsVisibility();
     }
 
+    public void showMenuButtons() {
+        showButtons = true;
+        if (mClear != null) mClear.setVisible(mIterator.hasFinishedMissions());
+        checkMasterButtonsVisibility();
+    }
+
+    public void hideMenuButtons() {
+        showButtons = false;
+        if (mClear != null) mClear.setVisible(false);
+        checkMasterButtonsVisibility();
+    }
+
     private void checkEmptyMessageVisibility() {
         int flag = mIterator.getOldListSize() > 0 ? View.GONE : View.VISIBLE;
         if (mEmptyMessage.getVisibility() != flag) mEmptyMessage.setVisibility(flag);
@@ -779,12 +804,12 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
     public void checkMasterButtonsVisibility() {
         boolean[] state = mIterator.hasValidPendingMissions();
         Log.d(TAG, "checkMasterButtonsVisibility() running=" + state[0] + " paused=" + state[1]);
-        setButtonVisible(mPauseButton, state[0]);
-        setButtonVisible(mStartButton, state[1]);
+        setButtonVisible(mPauseButton, showButtons && state[0]);
+        setButtonVisible(mStartButton, showButtons && state[1]);
     }
 
     private static void setButtonVisible(MenuItem button, boolean visible) {
-        if (button.isVisible() != visible)
+        if (button != null && button.isVisible() != visible)
             button.setVisible(visible);
     }
 
