@@ -874,9 +874,9 @@ class VideoDetailFragment :
     private fun updateTabs(info: StreamInfo) {
         if (showRelatedItems) {
             when (val relatedItemsLayout = binding.relatedItemsLayout) {
+                // phone
                 null -> pageAdapter.updateItem(RELATED_TAB_TAG, getInstance(info))
 
-                // phone
                 else -> { // tablet + TV
                     getChildFragmentManager().beginTransaction()
                         .replace(R.id.relatedItemsLayout, getInstance(info))
