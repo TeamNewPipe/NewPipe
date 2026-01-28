@@ -1,0 +1,8 @@
+• Kanpoko biltegiratzean instalazioa baimendu
+• [Bandcamp] Erreprodukzio bateko lehen hiru iruzkinak bistaratzeko laguntza gehitu da
+• Deskargatzen hasten denean bakarrik erakutsi "deskarga hasi da" menua
+• Ez ezarri reCaptcha cookierik cookierik gordeta ez dagoenean
+• Cachearen errendimendua hobetu
+• Jokalaria automatikoki ez jokatzea konpondu da
+• Deskargak ezabatzean, baztertu aurreko Snackbar-ak
+• Zerrendan ez zegoen objektua ezabatzen saiatzean izandako arazoa konpondu da

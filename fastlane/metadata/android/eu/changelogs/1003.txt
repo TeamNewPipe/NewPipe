@@ -1,0 +1,6 @@
+YouTube-ko akatsak zuzentzen dituen zuzenketa-bertsio bat da hau:
+• [YouTube] Bideoen informaziorik kargatzen ez zen arazoa konpondu, bideoak erreproduzitzean HTTP 403 erroreak konpondu eta adin-murrizketak dituzten bideo batzuen erreprodukzioa leheneratu
+• Konpondu aldatzen ez ziren azpitituluen tamainak
+• Konpondu informazioa bi aldiz deskargatzea erreprodukzio bat irekitzean
+• [Soundcloud] Kendu erreproduziezinak diren DRM bidez babestutako erreprodukzioak
+• Itzulpen eguneratuak

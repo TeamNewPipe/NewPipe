@@ -1,0 +1,4 @@
+Konpondu da YouTube-k ez zuela inolako stream-ik erreproduzitzen.
+
+Bertsio honek YouTube bideoen xehetasunak kargatzea eragozten duen errore larriena baino ez du konpontzen.
+Badakigu beste arazo batzuk ere badaudela, eta laster beste argitalpen bat kaleratuko dugu horiek konpontzeko.

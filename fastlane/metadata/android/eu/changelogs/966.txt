@@ -1,0 +1,14 @@
+Berria:
+• Zerbitzu berria gehitu: Bandcamp
+
+Hobetua:
+• Aplikazioak gailuaren gaiari jarraitzeko aukera
+• Errore-panel bat erakutsi hutsegiteak saihesteko
+• Edukia erabilgarri ez dagoenaren informazio gehiago
+• Hardware espazio botoiak erreproduzitu/pausatu aktibatzen du
+• "Deskargatzen hasita" mezua erakutsi
+
+Konpondua:
+• Miniatura txikiak atzeko planoan erreproduzitzen
+• Erreproduzitzaile minimizatuan izenburu hutsa
+• Tamaina aldatzeko modua leheneratzen ez zena

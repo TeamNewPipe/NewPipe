@@ -1,0 +1,16 @@
+# Hobetua
+Erreproduzitzailea denbora-zigiluetan mantendu
+Deskarga misioak berreskuratu
+Ezabatu deskarga fitxategia gorde
+Gainjartze baimena Android > R
+.soundcloud estekak ireki
+Hobekuntza txikiak
+
+# Konpondua
+Android <7 zenbaketa laburrak
+Mamu jakinarazpenak
+SRT azpititulu fitxategiak
+Istripu tona
+
+# Garapena
+Kodearen modernizazioa
