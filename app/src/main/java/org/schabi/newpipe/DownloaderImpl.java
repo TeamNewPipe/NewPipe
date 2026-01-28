@@ -166,9 +166,7 @@ public final class DownloaderImpl extends Downloader {
 
             String responseBodyToReturn = null;
             try (ResponseBody body = response.body()) {
-                if (body != null) {
-                    responseBodyToReturn = body.string();
-                }
+                responseBodyToReturn = body.string();
             }
 
             final String latestUrl = response.request().url().toString();

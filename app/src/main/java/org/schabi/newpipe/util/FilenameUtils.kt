@@ -7,9 +7,9 @@ package org.schabi.newpipe.util
 
 import android.content.Context
 import androidx.preference.PreferenceManager
+import java.util.regex.Matcher
 import org.schabi.newpipe.R
 import org.schabi.newpipe.ktx.getStringSafe
-import java.util.regex.Matcher
 
 object FilenameUtils {
     private const val CHARSET_MOST_SPECIAL = "[\\n\\r|?*<\":\\\\>/']+"
@@ -31,10 +31,12 @@ object FilenameUtils {
         val defaultCharset = context.getString(R.string.default_file_charset_value)
 
         val replacementChar = sharedPreferences.getStringSafe(
-            context.getString(R.string.settings_file_replacement_character_key), "_"
+            context.getString(R.string.settings_file_replacement_character_key),
+            "_"
         )
         val selectedCharset = sharedPreferences.getStringSafe(
-            context.getString(R.string.settings_file_charset_key), ""
+            context.getString(R.string.settings_file_charset_key),
+            ""
         ).ifEmpty { defaultCharset }
 
         val charset = when (selectedCharset) {

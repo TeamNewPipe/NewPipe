@@ -25,7 +25,7 @@ import org.schabi.newpipe.R
 
 class SubscriptionExportWorker(
     appContext: Context,
-    params: WorkerParameters,
+    params: WorkerParameters
 ) : CoroutineWorker(appContext, params) {
     // This is needed for API levels < 31 (Android S).
     override suspend fun getForegroundInfo(): ForegroundInfo {
@@ -102,7 +102,7 @@ class SubscriptionExportWorker(
 
         fun schedule(
             context: Context,
-            uri: Uri,
+            uri: Uri
         ) {
             val data = workDataOf(EXPORT_PATH to uri.toString())
             val workRequest =

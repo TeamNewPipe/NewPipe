@@ -22,6 +22,9 @@ import io.reactivex.rxjava3.exceptions.OnErrorNotImplementedException
 import io.reactivex.rxjava3.exceptions.UndeliverableException
 import io.reactivex.rxjava3.functions.Consumer
 import io.reactivex.rxjava3.plugins.RxJavaPlugins
+import java.io.IOException
+import java.io.InterruptedIOException
+import java.net.SocketException
 import org.acra.ACRA.init
 import org.acra.ACRA.isACRASenderServiceProcess
 import org.acra.config.CoreConfigurationBuilder
@@ -38,9 +41,6 @@ import org.schabi.newpipe.util.StateSaver
 import org.schabi.newpipe.util.image.ImageStrategy
 import org.schabi.newpipe.util.image.PreferredImageQuality
 import org.schabi.newpipe.util.potoken.PoTokenProviderImpl
-import java.io.IOException
-import java.io.InterruptedIOException
-import java.net.SocketException
 
 /*
  * Copyright (C) Hans-Christoph Steiner 2016 <hans@eds.org>
@@ -101,7 +101,7 @@ open class App :
         NewPipe.init(
             getDownloader(),
             Localization.getPreferredLocalization(this),
-            Localization.getPreferredContentCountry(this),
+            Localization.getPreferredContentCountry(this)
         )
         Localization.initPrettyTime(Localization.resolvePrettyTime())
 
@@ -118,9 +118,9 @@ open class App :
                 this,
                 prefs.getString(
                     getString(R.string.image_quality_key),
-                    getString(R.string.image_quality_default),
-                ),
-            ),
+                    getString(R.string.image_quality_default)
+                )
+            )
         )
 
         configureRxJavaErrorHandler()
@@ -128,15 +128,14 @@ open class App :
         YoutubeStreamExtractor.setPoTokenProvider(PoTokenProviderImpl)
     }
 
-    override fun newImageLoader(context: Context): ImageLoader =
-        ImageLoader
-            .Builder(this)
-            .logger(if (BuildConfig.DEBUG) DebugLogger() else null)
-            .allowRgb565(getSystemService<ActivityManager>()!!.isLowRamDevice)
-            .crossfade(true)
-            .components {
-                add(OkHttpNetworkFetcherFactory(callFactory = DownloaderImpl.getInstance().client))
-            }.build()
+    override fun newImageLoader(context: Context): ImageLoader = ImageLoader
+        .Builder(this)
+        .logger(if (BuildConfig.DEBUG) DebugLogger() else null)
+        .allowRgb565(getSystemService<ActivityManager>()!!.isLowRamDevice)
+        .crossfade(true)
+        .components {
+            add(OkHttpNetworkFetcherFactory(callFactory = DownloaderImpl.getInstance().client))
+        }.build()
 
     protected open fun getDownloader(): Downloader {
         val downloader = DownloaderImpl.init(null)
@@ -190,7 +189,7 @@ open class App :
                             IOException::class.java,
                             SocketException::class.java, // blocking code disposed
                             InterruptedException::class.java,
-                            InterruptedIOException::class.java,
+                            InterruptedIOException::class.java
                         )
                 }
 
@@ -204,7 +203,7 @@ open class App :
                             OnErrorNotImplementedException::class.java,
                             MissingBackpressureException::class.java,
                             // bug in operator
-                            IllegalStateException::class.java,
+                            IllegalStateException::class.java
                         )
                 }
 
@@ -215,7 +214,7 @@ open class App :
                         .uncaughtExceptionHandler
                         .uncaughtException(Thread.currentThread(), throwable)
                 }
-            },
+            }
         )
     }
 
@@ -241,7 +240,7 @@ open class App :
             NotificationChannelCompat
                 .Builder(
                     getString(R.string.notification_channel_id),
-                    NotificationManagerCompat.IMPORTANCE_LOW,
+                    NotificationManagerCompat.IMPORTANCE_LOW
                 ).setName(getString(R.string.notification_channel_name))
                 .setDescription(getString(R.string.notification_channel_description))
                 .build()
@@ -249,7 +248,7 @@ open class App :
             NotificationChannelCompat
                 .Builder(
                     getString(R.string.app_update_notification_channel_id),
-                    NotificationManagerCompat.IMPORTANCE_LOW,
+                    NotificationManagerCompat.IMPORTANCE_LOW
                 ).setName(getString(R.string.app_update_notification_channel_name))
                 .setDescription(getString(R.string.app_update_notification_channel_description))
                 .build()
@@ -257,7 +256,7 @@ open class App :
             NotificationChannelCompat
                 .Builder(
                     getString(R.string.hash_channel_id),
-                    NotificationManagerCompat.IMPORTANCE_HIGH,
+                    NotificationManagerCompat.IMPORTANCE_HIGH
                 ).setName(getString(R.string.hash_channel_name))
                 .setDescription(getString(R.string.hash_channel_description))
                 .build()
@@ -265,7 +264,7 @@ open class App :
             NotificationChannelCompat
                 .Builder(
                     getString(R.string.error_report_channel_id),
-                    NotificationManagerCompat.IMPORTANCE_LOW,
+                    NotificationManagerCompat.IMPORTANCE_LOW
                 ).setName(getString(R.string.error_report_channel_name))
                 .setDescription(getString(R.string.error_report_channel_description))
                 .build()
@@ -273,7 +272,7 @@ open class App :
             NotificationChannelCompat
                 .Builder(
                     getString(R.string.streams_notification_channel_id),
-                    NotificationManagerCompat.IMPORTANCE_DEFAULT,
+                    NotificationManagerCompat.IMPORTANCE_DEFAULT
                 ).setName(getString(R.string.streams_notification_channel_name))
                 .setDescription(getString(R.string.streams_notification_channel_description))
                 .build()

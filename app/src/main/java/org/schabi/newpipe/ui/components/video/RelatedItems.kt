@@ -52,7 +52,7 @@ fun RelatedItems(info: StreamInfo) {
                         .fillMaxWidth()
                         .padding(start = 12.dp, end = 12.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(text = stringResource(R.string.auto_queue_description))
 
@@ -95,7 +95,7 @@ private fun RelatedItemsPreview() {
     info.relatedItems = listOf(
         StreamInfoItem(streamType = StreamType.NONE),
         StreamInfoItem(streamType = StreamType.LIVE_STREAM),
-        StreamInfoItem(streamType = StreamType.AUDIO_LIVE_STREAM),
+        StreamInfoItem(streamType = StreamType.AUDIO_LIVE_STREAM)
     )
 
     AppTheme {

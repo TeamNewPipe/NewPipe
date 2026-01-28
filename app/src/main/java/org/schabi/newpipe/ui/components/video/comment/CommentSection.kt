@@ -111,6 +111,7 @@ private fun CommentSection(
                                     LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
                                 }
                             }
+
                             is LoadState.Error -> {
                                 val errorInfo = ErrorInfo(
                                     throwable = refresh.error,
@@ -131,6 +132,7 @@ private fun CommentSection(
                                     }
                                 }
                             }
+
                             else -> {
                                 items(comments.itemCount) {
                                     Comment(comment = comments[it]!!) {}
@@ -139,6 +141,7 @@ private fun CommentSection(
                         }
                     }
                 }
+
                 is Resource.Error -> {
                     val errorInfo = ErrorInfo(
                         throwable = uiState.throwable,
@@ -201,8 +204,12 @@ private fun CommentSectionSuccessPreview() {
             CommentSection(
                 uiState = Resource.Success(
                     CommentInfo(
-                        serviceId = 1, url = "", comments = comments, nextPage = null,
-                        commentCount = 10, isCommentsDisabled = false
+                        serviceId = 1,
+                        url = "",
+                        comments = comments,
+                        nextPage = null,
+                        commentCount = 10,
+                        isCommentsDisabled = false
                     )
                 ),
                 commentsFlow = flowOf(PagingData.from(comments))

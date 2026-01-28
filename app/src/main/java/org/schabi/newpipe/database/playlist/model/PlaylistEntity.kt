@@ -37,7 +37,7 @@ data class PlaylistEntity @JvmOverloads constructor(
         name = item.orderingName,
         isThumbnailPermanent = item.isThumbnailPermanent!!,
         thumbnailStreamId = item.thumbnailStreamId!!,
-        displayIndex = item.displayIndex!!,
+        displayIndex = item.displayIndex!!
     )
 
     companion object {

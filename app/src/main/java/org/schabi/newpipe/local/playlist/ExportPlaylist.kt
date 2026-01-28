@@ -44,7 +44,6 @@ private fun exportJustUrls(playlist: List<PlaylistStreamEntry>): String {
 }
 
 private fun exportAsYoutubeTempPlaylist(playlist: List<PlaylistStreamEntry>): String {
-
     val videoIDs = playlist.asReversed().asSequence()
         .mapNotNull { getYouTubeId(it.streamEntity.url) }
         .take(50) // YouTube limitation: temp playlists can't have more than 50 items
@@ -64,6 +63,5 @@ private val linkHandler: YoutubeStreamLinkHandlerFactory = YoutubeStreamLinkHand
  * @return the video id
  */
 private fun getYouTubeId(url: String): String? {
-
-    return try { linkHandler.getId(url) } catch (e: ParsingException) { null }
+    return runCatching { linkHandler.getId(url) }.getOrNull()
 }

@@ -10,7 +10,7 @@ import my.nanihadesuka.compose.ScrollbarSettings
 @Composable
 fun defaultThemedScrollbarSettings(): ScrollbarSettings = ScrollbarSettings.Default.copy(
     thumbUnselectedColor = MaterialTheme.colorScheme.primary,
-    thumbSelectedColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.75f),
+    thumbSelectedColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.75f)
 )
 
 @Composable
@@ -26,6 +26,6 @@ fun LazyColumnThemedScrollbar(
         modifier = modifier,
         settings = settings,
         indicatorContent = indicatorContent,
-        content = content,
+        content = content
     )
 }

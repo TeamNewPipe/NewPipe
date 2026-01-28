@@ -583,7 +583,7 @@
     <string name="peertube_instance_add_fail">Serveri təsdiqləmək mümkün olmadı</string>
     <string name="peertube_instance_url_help">%s-də bəyəndiyiniz serverləri tapın</string>
     <string name="show_hold_to_append_summary">Video \"Təfsilatlar\" səhifəsində fon və ya ani görüntü düyməsin basarkən ipucu göstər</string>
-    <string name="caption_setting_description">Oynadıcı titr mətn miqyasını və arxa fon üslublarını dəyişdir. Effektiv olması üçün tətbiqi yenidən başlatmaq tələb olunur</string>
+    <string name="caption_setting_description">Oynadıcı titr mətn miqyasını və arxa plan üslublarını dəyişdir. Effektiv olması üçün tətbiqi yenidən başlatmaq tələb olunur</string>
     <string name="error_occurred_detail">Xəta baş verdi: %1$s</string>
     <string name="invalid_file">Fayl mövcud deyil, yaxud oxumaq və ya yazmaq icazəsi yoxdur</string>
     <string name="parsing_error">Veb saytı təhlil etmək alınmadı</string>

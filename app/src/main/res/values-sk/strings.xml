@@ -45,7 +45,7 @@
     <string name="detail_uploader_thumbnail_view_description">Náhľad avataru uploadera</string>
     <string name="detail_likes_img_view_description">Lajky</string>
     <string name="detail_dislikes_img_view_description">Dislajky</string>
-    <string name="main_bg_subtitle">Začnite klepnutím na lupu.</string>
+    <string name="main_bg_subtitle">Začnite ťuknutím na lupu.</string>
     <string name="content">Obsah</string>
     <string name="show_age_restricted_content_title">Zobraziť vekovo obmedzený obsah</string>
     <string name="duration_live">Naživo</string>
@@ -74,7 +74,7 @@
     <string name="msg_wait">Čakajte prosím…</string>
     <string name="msg_copied">Skopírované do schránky</string>
     <string name="no_available_dir">Priečinok na sťahovanie zadefinujte prosím neskôr v nastaveniach</string>
-    <string name="downloads">Sťahované súbory</string>
+    <string name="downloads">Stiahnuté súbory</string>
     <string name="downloads_title">Stiahnuté</string>
     <string name="error_report_title">Hlásenie o chybe</string>
     <string name="app_ui_crash">Aplikácia/UP zlyhalo</string>
@@ -208,7 +208,7 @@
     <string name="no_valid_zip_file">Neplatný ZIP súbor</string>
     <string name="could_not_import_all_files">Upozornenie: Nemožno importovať všetky súbory.</string>
     <string name="override_current_data">Toto prepíše vaše aktuálne nastavenie.</string>
-    <string name="trending">Trendy</string>
+    <string name="trending">Populárne</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Nové a horúce</string>
     <string name="play_queue_remove">Odstrániť</string>
@@ -473,7 +473,7 @@
         <item quantity="other">%d dní</item>
     </plurals>
     <string name="feed_groups_header_title">Skupiny kanálov</string>
-    <string name="feed_oldest_subscription_update">Zdroj naposledy aktualizovaný: %s</string>
+    <string name="feed_oldest_subscription_update">Zdroj aktualizovaný: %s</string>
     <string name="feed_subscription_not_loaded_count">Nenačítané: %d</string>
     <string name="feed_notification_loading">Načítavanie zdroja…</string>
     <string name="feed_processing_message">Spracovávanie zdroja…</string>
@@ -843,10 +843,10 @@
     <string name="migration_info_6_7_message">SoundCloud prestal používať pôvodnú Top 50. Daná stránka bola odstránená z hlavnej stránky.</string>
     <string name="migration_info_7_8_title">Odstránené kombinované trendy na YouTube</string>
     <string name="migration_info_7_8_message">YouTube ukončil prevádzku kombinovanej stránky s trendmi k 21. júlu 2025. NewPipe nahradil predvolenú stránku s trendmi stránkou s trendovými živými prenosmi.\n\nV nastaveniach „Nastavenia &gt; Obsah &gt; Obsah hlavnej stránky“ môžete vybrať aj iné stránky s trendmi.</string>
-    <string name="trending_gaming">Ttendy v hrách</string>
-    <string name="trending_podcasts">Trendové podcasty</string>
-    <string name="trending_movies">Trendové filmy a seriály</string>
-    <string name="trending_music">Trendová hudba</string>
+    <string name="trending_gaming">Populárne hry</string>
+    <string name="trending_podcasts">Populárne podcasty</string>
+    <string name="trending_movies">Populárne filmy a seriály</string>
+    <string name="trending_music">Populárna hudba</string>
     <string name="short_thousand">%stis.</string>
     <string name="short_million">%smil.</string>
     <string name="short_billion">%smld.</string>

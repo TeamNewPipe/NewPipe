@@ -18,14 +18,18 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity
             entity = FeedGroupEntity::class,
             parentColumns = [FeedGroupEntity.ID],
             childColumns = [GROUP_ID],
-            onDelete = ForeignKey.CASCADE, onUpdate = ForeignKey.CASCADE, deferred = true
+            onDelete = ForeignKey.CASCADE,
+            onUpdate = ForeignKey.CASCADE,
+            deferred = true
         ),
 
         ForeignKey(
             entity = SubscriptionEntity::class,
             parentColumns = [SubscriptionEntity.SUBSCRIPTION_UID],
             childColumns = [SUBSCRIPTION_ID],
-            onDelete = ForeignKey.CASCADE, onUpdate = ForeignKey.CASCADE, deferred = true
+            onDelete = ForeignKey.CASCADE,
+            onUpdate = ForeignKey.CASCADE,
+            deferred = true
         )
     ]
 )

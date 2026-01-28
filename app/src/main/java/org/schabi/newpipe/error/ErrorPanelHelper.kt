@@ -11,16 +11,16 @@ import androidx.fragment.app.Fragment
 import com.jakewharton.rxbinding4.view.clicks
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
+import java.util.concurrent.TimeUnit
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.util.external_communication.ShareUtils
-import java.util.concurrent.TimeUnit
 
 class ErrorPanelHelper(
     private val fragment: Fragment,
     rootView: View,
-    onRetry: Runnable?,
+    onRetry: Runnable?
 ) {
     private val context: Context = rootView.context!!
 

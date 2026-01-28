@@ -8,7 +8,6 @@ package org.schabi.newpipe.database
 
 import android.util.Log
 import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
 import org.schabi.newpipe.MainActivity
 
 object Migrations {

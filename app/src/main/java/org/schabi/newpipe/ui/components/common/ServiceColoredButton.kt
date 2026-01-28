@@ -21,7 +21,7 @@ import org.schabi.newpipe.ui.theme.SizeTokens.SpacingSmall
 fun ServiceColoredButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    content: @Composable() RowScope.() -> Unit,
+    content: @Composable RowScope.() -> Unit
 ) {
     Button(
         onClick = onClick,
@@ -33,9 +33,9 @@ fun ServiceColoredButton(
         contentPadding = PaddingValues(horizontal = SpacingMedium, vertical = SpacingSmall),
         shape = RectangleShape,
         elevation = ButtonDefaults.buttonElevation(
-            defaultElevation = 8.dp,
+            defaultElevation = 8.dp
 
-        ),
+        )
     ) {
         content()
     }

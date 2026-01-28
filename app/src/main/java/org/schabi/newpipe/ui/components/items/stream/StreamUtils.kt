@@ -4,12 +4,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
+import java.util.concurrent.TimeUnit
 import org.schabi.newpipe.extractor.Image
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NO_SERVICE_ID
-import java.util.concurrent.TimeUnit
 
 @Suppress("ktlint:standard:function-naming")
 fun StreamInfoItem(
@@ -64,6 +64,6 @@ internal class StreamItemPreviewProvider : PreviewParameterProvider<StreamInfoIt
     override val values = sequenceOf(
         StreamInfoItem(streamType = StreamType.NONE),
         StreamInfoItem(streamType = StreamType.LIVE_STREAM),
-        StreamInfoItem(streamType = StreamType.AUDIO_LIVE_STREAM),
+        StreamInfoItem(streamType = StreamType.AUDIO_LIVE_STREAM)
     )
 }

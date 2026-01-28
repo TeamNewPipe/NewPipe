@@ -39,7 +39,7 @@ import org.schabi.newpipe.util.external_communication.ShareUtils
 fun Library(
     @PreviewParameter(LibraryProvider::class) library: Library,
     showLicenseDialog: (licenseFilename: String) -> Unit,
-    descriptionMaxLines: Int,
+    descriptionMaxLines: Int
 ) {
     val spdxLicense = library.licenses.firstOrNull()?.spdxId?.takeIf { it.isNotBlank() }
     val licenseAssetPath = spdxLicense?.let { SPDX_ID_TO_ASSET_PATH[it] }
@@ -63,14 +63,14 @@ fun Library(
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
                 text = library.name,
                 modifier = Modifier.weight(0.75f),
                 style = MaterialTheme.typography.titleMedium,
                 maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
+                overflow = TextOverflow.Ellipsis
             )
             val version = library.artifactVersion
             if (!version.isNullOrBlank()) {
@@ -85,7 +85,7 @@ fun Library(
                     }.padding(start = 8.dp),
                     style = MaterialTheme.typography.labelMedium,
                     maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
         }
@@ -95,7 +95,7 @@ fun Library(
                 text = author,
                 style = MaterialTheme.typography.bodyMedium,
                 maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
+                overflow = TextOverflow.Ellipsis
             )
         }
         val description = library.description
@@ -105,14 +105,14 @@ fun Library(
                 text = description,
                 style = MaterialTheme.typography.bodySmall,
                 maxLines = descriptionMaxLines,
-                overflow = TextOverflow.Ellipsis,
+                overflow = TextOverflow.Ellipsis
             )
         }
         if (library.licenses.isNotEmpty()) {
             FlowRow(
                 modifier = Modifier.padding(top = 6.dp, bottom = 4.dp),
                 horizontalArrangement = Arrangement.spacedBy(4.dp),
-                verticalArrangement = Arrangement.spacedBy(4.dp),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 library.licenses.forEach {
                     Badge {
