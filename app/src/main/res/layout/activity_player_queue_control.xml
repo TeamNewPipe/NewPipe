@@ -176,7 +176,7 @@
             android:scaleType="fitXY"
             android:src="@drawable/ic_repeat"
             android:tint="?attr/colorAccent"
-            tools:ignore="ContentDescription" />
+            android:contentDescription="@string/notification_action_repeat" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/control_backward"
@@ -191,7 +191,7 @@
             android:scaleType="fitCenter"
             android:src="@drawable/ic_previous"
             android:tint="?attr/colorAccent"
-            tools:ignore="ContentDescription" />
+            android:contentDescription="@string/previous_stream" />
 
         <ImageButton
             android:id="@+id/control_fast_rewind"
@@ -205,7 +205,8 @@
             android:focusable="true"
             android:scaleType="fitCenter"
             android:src="@drawable/exo_controls_rewind"
-            android:tint="?attr/colorAccent" />
+            android:tint="?attr/colorAccent"
+            android:contentDescription="@string/rewind" />
 
         <ImageButton
             android:id="@+id/control_play_pause"
@@ -221,7 +222,7 @@
             android:scaleType="fitCenter"
             android:src="@drawable/ic_pause"
             android:tint="?attr/colorAccent"
-            tools:ignore="ContentDescription" />
+            android:contentDescription="@string/play" />
 
         <ProgressBar
             android:id="@+id/control_progress_bar"
@@ -255,7 +256,8 @@
             android:focusable="true"
             android:scaleType="fitCenter"
             android:src="@drawable/exo_controls_fastforward"
-            android:tint="?attr/colorAccent" />
+            android:tint="?attr/colorAccent"
+            android:contentDescription="@string/forward" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/control_forward"
@@ -270,7 +272,7 @@
             android:scaleType="fitCenter"
             android:src="@drawable/ic_next"
             android:tint="?attr/colorAccent"
-            tools:ignore="ContentDescription" />
+            android:contentDescription="@string/next_stream" />
 
         <ImageButton
             android:id="@+id/control_shuffle"
@@ -286,7 +288,7 @@
             android:scaleType="fitXY"
             android:src="@drawable/ic_shuffle"
             android:tint="?attr/colorAccent"
-            tools:ignore="ContentDescription" />
+            android:contentDescription="@string/notification_action_shuffle" />
 
     </RelativeLayout>
 </RelativeLayout>
