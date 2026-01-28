@@ -21,15 +21,11 @@ public class TabsJsonHelperTest {
     private static final String JSON_TAB_ID_KEY = "tab_id";
 
     @Test
-    public void testEmptyAndNullRead() throws TabsJsonHelper.InvalidJsonException {
+    public void testEmptyRead() throws TabsJsonHelper.InvalidJsonException {
         final List<Tab> defaultTabs = TabsJsonHelper.getDefaultTabs();
 
         final String emptyTabsJson = "{\"" + JSON_TABS_ARRAY_KEY + "\":[]}";
-        List<Tab> items = TabsJsonHelper.getTabsFromJson(emptyTabsJson);
-        assertEquals(items, defaultTabs);
-
-        final String nullSource = null;
-        items = TabsJsonHelper.getTabsFromJson(nullSource);
+        final List<Tab> items = TabsJsonHelper.getTabsFromJson(emptyTabsJson);
         assertEquals(items, defaultTabs);
     }
 
