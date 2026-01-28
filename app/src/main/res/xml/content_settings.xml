@@ -82,6 +82,14 @@
         app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
+    <PreferenceScreen
+        android:fragment="org.schabi.newpipe.settings.BlockedChannelsFragment"
+        android:key="blocked_channels"
+        android:summary="@string/blocked_channels_summary"
+        android:title="@string/blocked_channels_title"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
     <MultiSelectListPreference
         android:key="@string/show_search_suggestions_key"
         android:summary="@string/show_search_suggestions_summary"
