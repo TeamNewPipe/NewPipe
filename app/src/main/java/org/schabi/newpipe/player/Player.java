@@ -2219,7 +2219,7 @@ public final class Player implements PlaybackListener, Listener {
             final SourceType sourceType = videoResolver.getStreamSourceType()
                     .orElse(SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY);
 
-            setRecovery();
+            setRecovery(); // making sure to save playback position before reloadPlayQueueManager()
 
             if (playQueueManagerReloadingNeeded(sourceType, info, getVideoRendererIndex())) {
                 reloadPlayQueueManager();
@@ -2227,12 +2227,12 @@ public final class Player implements PlaybackListener, Listener {
         }, () -> {
             /*
             The current metadata may be null sometimes (for e.g. when using an unstable connection
-            in livestreams) so we will be not able to execute the block below
+            in livestreams) so we will be not able to execute the block above
 
             Reload the play queue manager in this case, which is the behavior when we don't know the
             index of the video renderer or playQueueManagerReloadingNeeded returns true
             */
-            setRecovery();
+            setRecovery(); // making sure to save playback position before reloadPlayQueueManager()
             reloadPlayQueueManager();
         });
 

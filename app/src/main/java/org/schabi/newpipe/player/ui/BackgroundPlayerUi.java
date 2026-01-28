@@ -5,8 +5,8 @@ import androidx.annotation.NonNull;
 import org.schabi.newpipe.player.Player;
 
 /**
- * This is not a real UI for the background player, it used to disable fetching video and text
- * tracks with it.
+ * This is not a "graphical" UI for the background player, but it is used to disable fetching video
+ * and text tracks with it.
  *
  * <p>
  * This allows reducing data usage for manifest sources with demuxed audio and video,

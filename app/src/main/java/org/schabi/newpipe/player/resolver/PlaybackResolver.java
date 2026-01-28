@@ -201,6 +201,8 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
 
         try {
             final StreamInfoTag tag = StreamInfoTag.of(info);
+            // Prefer DASH over HLS because of an exoPlayer bug that causes the background player to
+            // also fetch the video stream even if it is supposed to just fetch the audio stream.
             if (!info.getDashMpdUrl().isEmpty()) {
                 return buildLiveMediaSource(
                         dataSource, info.getDashMpdUrl(), C.CONTENT_TYPE_DASH, tag);
