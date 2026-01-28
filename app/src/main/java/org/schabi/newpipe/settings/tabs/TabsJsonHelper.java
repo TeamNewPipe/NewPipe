@@ -50,7 +50,7 @@ public final class TabsJsonHelper {
             final JsonObject outerJsonObject = JsonParser.object().from(tabsJson);
 
             final JsonArray tabsArray = outerJsonObject.getArray(JSON_TABS_ARRAY_KEY, null);
-            if (tabsArray == null) {
+            if (tabsArray.isEmpty()) {
                 throw new InvalidJsonException("JSON doesn't contain \"" + JSON_TABS_ARRAY_KEY
                         + "\" array");
             }
