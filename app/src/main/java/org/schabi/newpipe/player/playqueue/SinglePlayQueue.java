@@ -5,8 +5,8 @@ import androidx.annotation.NonNull;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public final class SinglePlayQueue extends PlayQueue {
     public SinglePlayQueue(final StreamInfoItem item) {
@@ -29,11 +29,7 @@ public final class SinglePlayQueue extends PlayQueue {
     }
 
     private static List<PlayQueueItem> playQueueItemsOf(@NonNull final List<StreamInfoItem> items) {
-        final List<PlayQueueItem> playQueueItems = new ArrayList<>(items.size());
-        for (final StreamInfoItem item : items) {
-            playQueueItems.add(new PlayQueueItem(item));
-        }
-        return playQueueItems;
+        return items.stream().map(PlayQueueItem::new).collect(Collectors.toList());
     }
 
     @Override
