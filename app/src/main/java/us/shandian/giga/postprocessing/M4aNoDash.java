@@ -30,7 +30,8 @@ class M4aNoDash extends Postprocessing {
 
     @Override
     int process(SharpStream out, SharpStream... sources) throws IOException {
-        Mp4FromDashWriter muxer = new Mp4FromDashWriter(sources[0]);
+        Mp4FromDashWriter muxer = new Mp4FromDashWriter(
+                this.streamInfo, this.thumbnail, sources[0]);
         muxer.setMainBrand(0x4D344120);// binary string "M4A "
         muxer.parseSources();
         muxer.selectTracks(0);
