@@ -576,6 +576,7 @@ public final class Player implements PlaybackListener, Listener {
 
     private void initUIsForCurrentPlayerType() {
         if ((UIs.get(MainPlayerUi.class).isPresent() && playerType == PlayerType.MAIN)
+                || (UIs.get(BackgroundPlayerUi.class).isPresent() && playerType == PlayerType.AUDIO)
                 || (UIs.get(PopupPlayerUi.class).isPresent() && playerType == PlayerType.POPUP)) {
             // correct UI already in place
             return;
@@ -603,7 +604,7 @@ public final class Player implements PlaybackListener, Listener {
                 UIs.addAndPrepare(new PopupPlayerUi(this, binding));
                 break;
             case AUDIO:
-                UIs.destroyAll(VideoPlayerUi.class);
+                UIs.destroyAll(VideoPlayerUi.class); // destroys both MainPlayerUi and PopupPlayerUi
                 UIs.addAndPrepare(new BackgroundPlayerUi(this));
                 break;
         }
