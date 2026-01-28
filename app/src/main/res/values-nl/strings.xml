@@ -503,9 +503,8 @@
 \n
 \nHopelijk zal dit bij een toekomstige versie ondersteund worden.</string>
     <string name="remove_watched_popup_partially_watched_streams">Ja, en deels bekeken video\'s</string>
-    <string name="remove_watched_popup_warning">Video\'s die zijn bekeken voor, en na ze werden toegevoegd aan de afspeellijst worden verwijderd.
-\nWeet u dit zeker\? Deze actie kan niet ongedaan gemaakt worden!</string>
-    <string name="remove_watched_popup_title">Bekeken video\'s verwijderen\?</string>
+    <string name="remove_watched_popup_warning">Video\'s die zijn bekeken voor, en na ze werden toegevoegd aan de afspeellijst worden verwijderd. \nWeet u dit zeker? Deze actie kan niet ongedaan gemaakt worden!</string>
+    <string name="remove_watched_popup_title">Bekeken video\'s verwijderen?</string>
     <string name="infinite_videos">∞ video\'s</string>
     <string name="more_than_100_videos">100+ video\'s</string>
     <string name="restricted_video">Deze video heeft een leeftijdsbeperking.

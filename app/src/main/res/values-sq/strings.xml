@@ -507,9 +507,8 @@
     <string name="download_path_summary">Skedarët video të shkarkuara ruhen këtu</string>
     <string name="no_player_found_toast">Nuk u gjend lexues për stream (ju mund të instaloni VLC për ta lexuar).</string>
     <string name="remove_watched_popup_partially_watched_streams">Po, dhe videot e shikuara pjesërisht</string>
-    <string name="remove_watched_popup_warning">Videot që janë shikuar më parë dhe pasi janë shtuar në listën e luajtjes do të hiqen.
-\nA jeni të sigurt\? Kjo nuk mund të zhbëhet!</string>
-    <string name="remove_watched_popup_title">Dëshironi t\'i hiqni videot e para\?</string>
+    <string name="remove_watched_popup_warning">Videot që janë shikuar më parë dhe pasi janë shtuar në listën e luajtjes do të hiqen. \nA jeni të sigurt? Kjo nuk mund të zhbëhet!</string>
+    <string name="remove_watched_popup_title">Dëshironi t\'i hiqni videot e para?</string>
     <string name="remove_watched">Hiq të parat</string>
     <string name="show_original_time_ago_summary">Tekstet origjinale nga shërbimet do shihen në produktet e luajtshme</string>
     <string name="show_original_time_ago_title">Shfaq titullin origjinal \"kohë më parë\" në objekte</string>

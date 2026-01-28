@@ -522,8 +522,8 @@
 \nActivez « %1$s » dans les paramètres si vous voulez la voir.</string>
     <string name="remove_watched">Supprimer les vidéos visionnées</string>
     <string name="remove_watched_popup_partially_watched_streams">Oui ainsi que les vidéos partiellement visionnées</string>
-    <string name="remove_watched_popup_warning">Les vidéos qui ont été visionnées avant et après avoir été ajoutées à la playlist seront supprimées. \nÊtes-vous certain(e) ? Cette action est irréversible !</string>
-    <string name="remove_watched_popup_title">Supprimer les vidéos visionnées \?</string>
+    <string name="remove_watched_popup_warning">Les vidéos qui ont été visionnées avant et après avoir été ajoutées à la playlist seront supprimées. \nÊtes-vous certain(e) ? Cette action est irréversible !</string>
+    <string name="remove_watched_popup_title">Supprimer les vidéos visionnées ?</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniature de l\'avatar de la chaine</string>
     <string name="video_detail_by">De %s</string>
     <string name="channel_created_by">Créé par %s</string>

@@ -519,8 +519,7 @@
     <string name="start_accept_privacy_policy">Siekdami laikytis Europos bendrojo duomenų apsaugos reglamento (GDPR), atkreipiame jūsų dėmesį į NewPipe privatumo politiką. Prašome atidžiai ją perskaityti.
 \nNorėdami išsiųsti mums pranešimą apie klaidą, turite su ja sutikti.</string>
     <string name="feed_use_dedicated_fetch_method_summary">Prieinama kai kuriose tarnybose, paprastai yra daug greitesnė, tačiau gali grąžinti ribotą kiekį elementų ir dažnai neišsamią informaciją (pvz., nėra trukmės, elemento tipo, nėra tiesioginės būsenos)</string>
-    <string name="remove_watched_popup_warning">Vaizdo įrašai, kurie buvo peržiūrėti prieš juos įtraukiant į grojaraštį ir po to, kai jie buvo įtraukti į grojaraštį, bus pašalinti.
-\nAr tikrai\? To negalima atšaukti!</string>
+    <string name="remove_watched_popup_warning">Vaizdo įrašai, kurie buvo peržiūrėti prieš juos įtraukiant į grojaraštį ir po to, kai jie buvo įtraukti į grojaraštį, bus pašalinti. \nAr tikrai? To negalima atšaukti!</string>
     <string name="soundcloud_go_plus_content">Tai \"SoundCloud Go+\" kūrinys, bent jau jūsų šalyje, todėl jo negalima transliuoti ar atsisiųsti per \"NewPipe\".</string>
     <string name="content_not_supported">Šio turinio \"NewPipe\" dar nepalaiko.
 \n
@@ -564,7 +563,7 @@
     <string name="auto_device_theme_title">Automatinis (įrenginio tema)</string>
     <string name="crash_the_app">Programa nulūžo</string>
     <string name="channel_created_by">Sukūrė %s</string>
-    <string name="remove_watched_popup_title">Pašalinti žiūrėtus video\?</string>
+    <string name="remove_watched_popup_title">Pašalinti žiūrėtus video?</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Įjungti greitą režimą</string>
     <string name="feed_update_threshold_title">Kanalo atnaujinimo slenkstis</string>
     <string name="feed_group_dialog_empty_name">Tuščias grupės pavadinimas</string>

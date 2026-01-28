@@ -500,8 +500,7 @@
     <string name="feed_group_show_only_ungrouped_subscriptions">نمایش اشتراک های دسته بندی نشده</string>
     <string name="detail_sub_channel_thumbnail_view_description">آواتار بندانگشتی کانال</string>
     <string name="playlist_page_summary">صفحه فهرست پخش</string>
-    <string name="remove_watched_popup_warning">ویدیوهایی که پیش و‌ پس از افزوده شدن به سیاههٔ پخش دیده شده‌اند حذف خواهند شد.
-\nمطمئنید؟ این کار قابل بازگشت نیست!</string>
+    <string name="remove_watched_popup_warning">ویدیوهایی که پیش و‌ پس از افزوده شدن به سیاههٔ پخش دیده شده‌اند حذف خواهند شد. \nمطمئنید؟ این کار قابل بازگشت نیست!</string>
     <string name="enable_disposed_exceptions_summary">گزارش اجباری خطاهای Rx غیرقابل تحویل خارج از چرخه حیات فعالیت یا بخش پس از اتمام</string>
     <string name="feed_use_dedicated_fetch_method_help_text">فکر می‌کنید دریافت خوراک بیش از حد آهسته است؟ اگر چنین است، بارگیری سریع را فعالی کنید (می‌توانید آن را در تنظیمات یا با فشردن دکمه زیر تغییر دهید)
 \n

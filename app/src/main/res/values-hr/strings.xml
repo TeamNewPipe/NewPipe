@@ -437,7 +437,7 @@
     <string name="enable_queue_limit">Ograniči popis preuzimanja</string>
     <string name="downloads_storage_use_saf_title">Koristi sustavksi birač mapa (SAF)</string>
     <string name="remove_watched">Ukloni pregledano</string>
-    <string name="remove_watched_popup_title">Ukloni pogledana videa\?</string>
+    <string name="remove_watched_popup_title">Ukloni pogledana videa?</string>
     <plurals name="seconds">
         <item quantity="one">%d sekunda</item>
         <item quantity="few">%d sekunde</item>
@@ -510,8 +510,7 @@
     <string name="error_progress_lost">Napredak je izgubljen, jer je datoteka izbrisana</string>
     <string name="error_postprocessing_stopped">NewPipe se zatvorio tijekom rada s datotekom</string>
     <string name="playlist_page_summary">Stranica playliste</string>
-    <string name="remove_watched_popup_warning">Videa koji su gledani prije i nakon dodavanja u playlistu će se ukloniti.
-\nStvarno ih želiš ukloniti\? Ovo je nepovratna radnja!</string>
+    <string name="remove_watched_popup_warning">Videa koji su gledani prije i nakon dodavanja u playlistu će se ukloniti. \nStvarno ih želiš ukloniti? Ovo je nepovratna radnja!</string>
     <string name="no_playlist_bookmarked_yet">Još nema zabilježenih playlista</string>
     <string name="select_a_playlist">Odaberi playlistu</string>
     <string name="recovering">obnavljanje</string>

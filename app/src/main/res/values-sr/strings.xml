@@ -206,9 +206,8 @@
     <string name="show_comments_summary">Искључите да бисте сакрили коментаре</string>
     <string name="new_seek_duration_toast">Због ограничења ExoPlayer-а, премотавање је постављено на %d секунди</string>
     <string name="remove_watched_popup_partially_watched_streams">Да, и делимично одгледани видео снимци</string>
-    <string name="remove_watched_popup_warning">Видео снимци који су одгледани пре и после додавања на плејлисту биће уклоњени.
-\nЈесте ли сигурни\? Ово се не може поништити!</string>
-    <string name="remove_watched_popup_title">Уклонити одгледане видео снимке\?</string>
+    <string name="remove_watched_popup_warning">Видео снимци који су одгледани пре и после додавања на плејлисту биће уклоњени. \nЈесте ли сигурни? Ово се не може поништити!</string>
+    <string name="remove_watched_popup_title">Уклонити одгледане видео снимке?</string>
     <string name="remove_watched">Уклони одгледано</string>
     <string name="systems_language">Системски подразумевано</string>
     <string name="app_language_title">Језик апликације</string>

@@ -191,8 +191,7 @@
     <string name="top_50">باشترین ٥٠</string>
     <string name="peertube_instance_add_https_only">تەنها بەستەرەکانی https پشتگیریکراون</string>
     <string name="error_ssl_exception">پەیوەستبوونی پارێزراو هه‌ره‌سی هێنا</string>
-    <string name="remove_watched_popup_warning">ئەو ڤیدیۆیانەی پێشتر سەیرت کردوون و دواتر زیادت کردوون بۆ خشتەلێدان لادەدرێن.
-\nئایا دڵنیایت؟ ئەمە ناگەڕێنرێتەوە!</string>
+    <string name="remove_watched_popup_warning">ئەو ڤیدیۆیانەی پێشتر سەیرت کردوون و دواتر زیادت کردوون بۆ خشتەلێدان لادەدرێن. \nئایا دڵنیایت؟ ئەمە ناگەڕێنرێتەوە!</string>
     <string name="detail_sub_channel_thumbnail_view_description">وێنۆچکەی سه‌روێنه‌ی کەناڵ</string>
     <string name="import_settings">دەتەوێت ڕێکخستنەکانیش هاوردە بكرینه‌وه‌؟</string>
     <string name="no_player_found">هیچ لێدەرێکی ڤیدیۆیی نه‌دۆزرایه‌وه‌. ده‌ته‌وێت VLC دابمەزرێنیت؟</string>

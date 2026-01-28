@@ -511,7 +511,7 @@
 \nMožno v budúcnosti sa to zmení.</string>
     <string name="remove_watched_popup_partially_watched_streams">Áno aj čiastočne pozreté videá</string>
     <string name="remove_watched_popup_warning">Pozreté videá, ktoré ste pozreli pred a po ich pridaní do playlistu, budú odstránené. \nSte si istí ich odstránením z playlistu? Táto operácia je nezvratná!</string>
-    <string name="remove_watched_popup_title">Odstrániť pozreté videá\?</string>
+    <string name="remove_watched_popup_title">Odstrániť pozreté videá?</string>
     <string name="remove_watched">Odstrániť pozreté</string>
     <string name="show_original_time_ago_summary">Pôvodné texty zo služieb budú viditeľné v položkách streamu</string>
     <string name="show_original_time_ago_title">Zobrazovať pôvodný čas</string>

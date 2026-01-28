@@ -526,9 +526,8 @@
     <string name="albums">Альбомы</string>
     <string name="remove_watched">Удалить просмотренные</string>
     <string name="remove_watched_popup_partially_watched_streams">Да, и частично просмотренные</string>
-    <string name="remove_watched_popup_warning">Видео, просмотренные до или после добавления в плейлист, будут удалены.
-\nПродолжить\? Не может быть отменено!</string>
-    <string name="remove_watched_popup_title">Удалить просмотренные видео\?</string>
+    <string name="remove_watched_popup_warning">Видео, просмотренные до или после добавления в плейлист, будут удалены. \nПродолжить? Не может быть отменено!</string>
+    <string name="remove_watched_popup_title">Удалить просмотренные видео?</string>
     <string name="show_original_time_ago_summary">Отображать сообщённое сервисом время с момента публикации</string>
     <string name="show_original_time_ago_title">Исходное время публикации</string>
     <string name="youtube_restricted_mode_enabled_title">Включить \"Ограниченный режим\" YouTube</string>

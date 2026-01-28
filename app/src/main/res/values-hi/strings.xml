@@ -483,7 +483,7 @@
         <item quantity="one">%d सेकेंड</item>
         <item quantity="other">%d सेकंड्स</item>
     </plurals>
-    <string name="remove_watched_popup_title">देखे गए वीडियो हटायें\?</string>
+    <string name="remove_watched_popup_title">देखे गए वीडियो हटायें?</string>
     <string name="remove_watched">देखे गए को हटा दें</string>
     <string name="systems_language">सिस्टम डिफ़ॉल्ट</string>
     <string name="app_language_title">ऐप की भाषा</string>
@@ -671,8 +671,7 @@
     <string name="show_channel_details">चैनल विवरण दिखाएं</string>
     <string name="show_original_time_ago_title">आइटम्स का असल अपलोड समय दिखाएं</string>
     <string name="show_original_time_ago_summary">सेवाओं से मूल पाठ स्ट्रीम आइटम में दिखाई देंगे</string>
-    <string name="remove_watched_popup_warning">प्लेलिस्ट में शामिल, पहले और बाद में देखे जा चुके वीडियो हटा दिए जाएंगे।
-\nक्या यक़ीनन आप ऐसा चाह्ते हैं\? इसे असंपादित नहीं किया जा सकेगा!</string>
+    <string name="remove_watched_popup_warning">प्लेलिस्ट में शामिल, पहले और बाद में देखे जा चुके वीडियो हटा दिए जाएंगे। \nक्या यक़ीनन आप ऐसा चाह्ते हैं? इसे असंपादित नहीं किया जा सकेगा!</string>
     <plurals name="minutes">
         <item quantity="one">%d मिनट</item>
         <item quantity="other">%d मिनट्स</item>

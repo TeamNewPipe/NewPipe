@@ -548,8 +548,7 @@
 \n
 \nقم بتشغيل \"%1$s\" في الإعدادات إذا كنت تريد رؤيته.</string>
     <string name="remove_watched_popup_partially_watched_streams">نعم، ومقاطع الفيديو التي تمت مشاهدتها جزئيًا</string>
-    <string name="remove_watched_popup_warning">ستتم إزالة مقاطع الفيديو التي تمت مشاهدتها قبل وبعد إضافتها إلى قائمة التشغيل.
-\nهل أنت واثق؟ لا يمكن التراجع عن هذا!</string>
+    <string name="remove_watched_popup_warning">ستتم إزالة مقاطع الفيديو التي تمت مشاهدتها قبل وبعد إضافتها إلى قائمة التشغيل. \nهل أنت واثق؟ لا يمكن التراجع عن هذا!</string>
     <string name="remove_watched_popup_title">إزالة مقاطع الفيديو التي تمت مشاهدتها؟</string>
     <string name="remove_watched">إزالة ما تمت مشاهدته</string>
     <string name="show_original_time_ago_summary">ستكون النصوص الأصلية من الخدمات مرئية في عناصر البث</string>

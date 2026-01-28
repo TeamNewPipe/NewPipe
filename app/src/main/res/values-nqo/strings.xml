@@ -592,8 +592,7 @@
     <string name="systems_language">ߞߊ߲ߞߋ ߟߊ߫ ߖߏߣߡߊ</string>
     <string name="remove_watched_popup_title">ߞߊ߬ ߖߌ߬ߦߊ߬ߖߟߎ߬ ߦߋߣߍ߲ ߠߎ߫ ߖߏ߬ߛߌ߫ ؟</string>
     <string name="remove_watched">ߞߊ߬ ߖߌ߬ߦߊ߬ߖߟߎ߬ ߦߋߣߍ߲ ߠߎ߫ ߖߏ߬ߛߌ߫</string>
-    <string name="remove_watched_popup_warning">ߦߋߡߍ߲ߕߊ ߟߎ߫ ߖߏ߬ߛߌ߬ߕߐ߫ ߟߋ߬߸ ߡߍ߲ ߠߎ߬ ߡߊߝߍߣߍ߲ߣߍ߲߫ ߊ߬ߟߎ߫ ߝߊ߬ߙߊ ߢߍ߫ ߥߊߟߴߊ߬ߟߎ߫ ߝߊ߬ߙߊ ߞߐ߫ ߕߏߟߏ߲߫ ߛߙߍߘߍ ߟߊ߫.
-\nߌ ߟߊߣߍ߲߫ ߊ߬ ߟߊ߫ ؟ ߊ߬ ߕߍߣߊ߬ ߛߋ߫ ߟߊ߫ ߟߊߛߊ߬ߦߌ߬ ߟߊ߫߹</string>
+    <string name="remove_watched_popup_warning">ߦߋߡߍ߲ߕߊ ߟߎ߫ ߖߏ߬ߛߌ߬ߕߐ߫ ߟߋ߬߸ ߡߍ߲ ߠߎ߬ ߡߊߝߍߣߍ߲ߣߍ߲߫ ߊ߬ߟߎ߫ ߝߊ߬ߙߊ ߢߍ߫ ߥߊߟߴߊ߬ߟߎ߫ ߝߊ߬ߙߊ ߞߐ߫ ߕߏߟߏ߲߫ ߛߙߍߘߍ ߟߊ߫. \nߌ ߟߊߣߍ߲߫ ߊ߬ ߟߊ߫ ؟ ߊ߬ ߕߍߣߊ߬ ߛߋ߫ ߟߊ߫ ߟߊߛߊ߬ߦߌ߬ ߟߊ߫߹</string>
     <string name="remove_watched_popup_partially_watched_streams">ߐ߬ߤߐ߲߫߸ ߊ߬ߣߌ߫ ߘߏ߫ ߡߊߝߍߣߍ߲ߣߍ߲߫ ߖߌ߬ߦߊ߬ߖߟߎ ߡߍ߲ ߠߎ߬ ߘߐ߫</string>
     <string name="new_seek_duration_toast">ߞߵߊ߬ ߓߍ߲߬ ExoPlayer ߟߊ߫ ߛߙߊߕߌ߫ ߛߌ߰ߣߍ߲ ߠߎ߫ ߡߊ߬߸ ߓߐߒߣߐ߬ߘߐ ߛߋ߲߬ߕߊ ߓߘߊ߬ ߞߍ߫ ߝߌ߬ߟߊ߲߬ %d ߘߌ߫</string>
     <plurals name="minutes">

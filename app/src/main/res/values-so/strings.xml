@@ -491,9 +491,8 @@
     </plurals>
     <string name="new_seek_duration_toast">Ayadooy ugu wacantahay xayiraad xaga ExoPlayer-ka ah xadka dhaaf-dhaafinta waa %d ilbiriqsi</string>
     <string name="remove_watched_popup_partially_watched_streams">Haa, sidoo kale ku dar muuqaalada qayb laga daawaday</string>
-    <string name="remove_watched_popup_warning">Muuqaalada la daawaday kahor iyo kadib markii xulka lagu daray waa la saari doonaa.
-\nMa hubtaa\? Arrinkan dib looma soocelin karo!</string>
-    <string name="remove_watched_popup_title">Saar muuqaalada la daawaday\?</string>
+    <string name="remove_watched_popup_warning">Muuqaalada la daawaday kahor iyo kadib markii xulka lagu daray waa la saari doonaa. \nMa hubtaa? Arrinkan dib looma soocelin karo!</string>
+    <string name="remove_watched_popup_title">Saar muuqaalada la daawaday?</string>
     <string name="remove_watched">Saar kuwa la daawaday</string>
     <string name="systems_language">Aaladu saytahay</string>
     <string name="app_language_title">Luuqada Appka</string>

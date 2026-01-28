@@ -462,9 +462,8 @@
     </plurals>
     <string name="new_seek_duration_toast">എക്സോപ്ലെയർ പരിമിതികൾ കാരണം തിരയൽ ദൈർഘ്യം %d സെക്കൻഡിലേക്ക് സജ്ജമാക്കി</string>
     <string name="remove_watched_popup_partially_watched_streams">അതെ, അതിന്റെകൂടെ ഭാഗികമായി കണ്ട വീഡിയോകളും</string>
-    <string name="remove_watched_popup_warning">പ്ലേലിസ്റ്റിലേക്ക് ചേർക്കുന്നതിന് മുമ്പും ശേഷവും കണ്ട വീഡിയോകൾ നീക്കംചെയ്യും.
-\nനിങ്ങൾക്ക് ഉറപ്പാണോ\? ഇത് പഴയപടിയാക്കാൻ കഴിയില്ല!</string>
-    <string name="remove_watched_popup_title">കണ്ട വീഡിയോകൾ നീക്കംചെയ്യണോ\?</string>
+    <string name="remove_watched_popup_warning">പ്ലേലിസ്റ്റിലേക്ക് ചേർക്കുന്നതിന് മുമ്പും ശേഷവും കണ്ട വീഡിയോകൾ നീക്കംചെയ്യും. \nനിങ്ങൾക്ക് ഉറപ്പാണോ? ഇത് പഴയപടിയാക്കാൻ കഴിയില്ല!</string>
+    <string name="remove_watched_popup_title">കണ്ട വീഡിയോകൾ നീക്കംചെയ്യണോ?</string>
     <string name="remove_watched">കണ്ടത് നീക്കംചെയ്യുക</string>
     <string name="systems_language">സിസ്റ്റം ഡിഫോൾട്ട്</string>
     <string name="app_language_title">അപ്ലിക്കേഷൻ ഭാഷ</string>

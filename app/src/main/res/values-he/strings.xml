@@ -528,10 +528,9 @@
 \n
 \nיש להפעיל את „%1$s” בהגדרות כדי לצפות בו.</string>
     <string name="remove_watched_popup_partially_watched_streams">כן, לרבות סרטונים שהפסקתי באמצע</string>
-    <string name="remove_watched_popup_warning">סרטונים שלאחר שצפית בהם מופיע לרשימת הנגינה יוסרו.
-\nלהמשיך\? זאת פעולה בלתי הפיכה!</string>
+    <string name="remove_watched_popup_warning">סרטונים שלאחר שצפית בהם מופיע לרשימת הנגינה יוסרו. \nלהמשיך? זאת פעולה בלתי הפיכה!</string>
     <string name="remove_watched">הסרת נצפו</string>
-    <string name="remove_watched_popup_title">להסיר סרטונים שנצפו\?</string>
+    <string name="remove_watched_popup_title">להסיר סרטונים שנצפו?</string>
     <string name="show_original_time_ago_summary">הטקסט המקורי משירותים יופיע בפריטי התזרים</string>
     <string name="show_original_time_ago_title">הצגת לפני כמה זמן מקורי על פריטים</string>
     <string name="youtube_restricted_mode_enabled_title">הפעלת „מצב מוגבל” של YouTube</string>

@@ -513,9 +513,8 @@
     <string name="songs">Canciones</string>
     <string name="restricted_video">Este vídeo tiene restricción de edad. \n \nHabilitar \"%1$s\" en los ajustes si quieres verlo.</string>
     <string name="remove_watched_popup_partially_watched_streams">Sí, y también vídeos vistos parcialmente</string>
-    <string name="remove_watched_popup_warning">Los vídeos que ya se hayan visto luego de añadidos a la lista de reproducción, serán quitados.
-\n¿Estás seguro\? ¡Esta acción no se puede deshacer!</string>
-    <string name="remove_watched_popup_title">¿Quitar vídeos ya vistos\?</string>
+    <string name="remove_watched_popup_warning">Los vídeos que ya se hayan visto luego de añadidos a la lista de reproducción, serán quitados. \n¿Estás seguro? ¡Esta acción no se puede deshacer!</string>
+    <string name="remove_watched_popup_title">¿Quitar vídeos ya vistos?</string>
     <string name="remove_watched">Quitar vídeos ya vistos</string>
     <string name="video_detail_by">Por %s</string>
     <string name="channel_created_by">Creado por %s</string>

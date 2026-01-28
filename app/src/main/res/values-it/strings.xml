@@ -518,9 +518,8 @@
 \n
 \nAttivare «%1$s» nelle Impostazioni per poterlo vedere.</string>
     <string name="remove_watched_popup_partially_watched_streams">Sì, anche quelli visualizzati parzialmente</string>
-    <string name="remove_watched_popup_warning">I video che sono stati visti prima e dopo essere stati aggiunti alla playlist verranno rimossi.
-\nProcedere\? L\'azione è irreversibile!</string>
-    <string name="remove_watched_popup_title">Rimuovere i video già visti\?</string>
+    <string name="remove_watched_popup_warning">I video che sono stati visti prima e dopo essere stati aggiunti alla playlist verranno rimossi. \nProcedere? L\'azione è irreversibile!</string>
+    <string name="remove_watched_popup_title">Rimuovere i video già visti?</string>
     <string name="remove_watched">Rimuovi elementi visti</string>
     <string name="youtube_restricted_mode_enabled_title">Attiva la \"Modalità con restrizioni\" di YouTube</string>
     <string name="show_original_time_ago_summary">I testi originali dei servizi saranno visibili negli elementi video</string>

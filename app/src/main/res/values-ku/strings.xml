@@ -500,8 +500,7 @@
     <string name="albums">ئەلبوومەکان</string>
     <string name="songs">گۆرانییەکان</string>
     <string name="remove_watched_popup_partially_watched_streams">بەڵێ، لەگەڵ ڤیدیۆ تەماشاکراوەکانەوە</string>
-    <string name="remove_watched_popup_warning">ئەو ڤیدیۆیانەی پێشتر سەیرت کردوون و دواتر زیادت کردوون بۆ لیستەلێدان دەسڕێنەوە.
-\nئایا دڵنیایت؟ ئەمە ناگەڕێنرێتەوە!</string>
+    <string name="remove_watched_popup_warning">ئەو ڤیدیۆیانەی پێشتر سەیرت کردوون و دواتر زیادت کردوون بۆ لیستەلێدان دەسڕێنەوە. \nئایا دڵنیایت؟ ئەمە ناگەڕێنرێتەوە!</string>
     <string name="remove_watched_popup_title">ڤیدیۆ تەماشاکراوەکان بسڕێنەوە؟</string>
     <string name="remove_watched">سڕینەوەی تەماشاکراوەکان</string>
     <string name="show_original_time_ago_summary">دەقە بنچینەییەکان لە خزمەتگوزارییەکانەوە لە بابەتی پەخشەکاندا دیار دەبن</string>

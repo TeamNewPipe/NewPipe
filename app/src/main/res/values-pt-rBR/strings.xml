@@ -518,8 +518,7 @@
 \n
 \nAtive \"%1$s\" nas configurações se quiser vê-lo.</string>
     <string name="remove_watched_popup_partially_watched_streams">Sim, e vídeos parcialmente assistidos</string>
-    <string name="remove_watched_popup_warning">Os vídeos que foram assistidos antes e depois de terem sidos adicionados à playlist serão removidos.
-\nTem certeza? Esta ação não pode ser desfeita!</string>
+    <string name="remove_watched_popup_warning">Os vídeos que foram assistidos antes e depois de terem sidos adicionados à playlist serão removidos. \nTem certeza? Esta ação não pode ser desfeita!</string>
     <string name="remove_watched_popup_title">Remover vídeos assistidos?</string>
     <string name="remove_watched">Remover assistidos</string>
     <string name="show_original_time_ago_summary">Textos originais dos serviços serão visíveis nos itens de transmissão</string>

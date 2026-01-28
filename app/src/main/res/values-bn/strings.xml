@@ -434,7 +434,7 @@
     <string name="feed_group_dialog_empty_name">খালি গ্রুপ নাম</string>
     <string name="feed_group_dialog_empty_selection">কোনো সদস্যতা নির্বাচিত হয়নি</string>
     <string name="feed_subscription_not_loaded_count">%d: লোড হয়নি</string>
-    <string name="remove_watched_popup_title">দেখা ভিডিওগুলো সরাও\?</string>
+    <string name="remove_watched_popup_title">দেখা ভিডিওগুলো সরাও?</string>
     <string name="choose_instance_prompt">একটি ইন্সট্যান্স নাও</string>
     <string name="enable_queue_limit">ডাউনলোড সারি সীমিত করো</string>
     <string name="generate_unique_name">অনন্য নাম বানাও</string>

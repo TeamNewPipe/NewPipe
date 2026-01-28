@@ -433,9 +433,8 @@
     </plurals>
     <string name="new_seek_duration_toast">Datorită constrângerilor ExoPlayer, durata de căutare a fost setată la %d secunde</string>
     <string name="remove_watched_popup_partially_watched_streams">Da, și videoclipuri vizionate parțial</string>
-    <string name="remove_watched_popup_warning">Videoclipurile care au fost vizionate înainte și după ce au fost adăugate la lista de redare vor fi eliminate.
-\nSunteți sigur\? Acest lucru nu poate fi anulat!</string>
-    <string name="remove_watched_popup_title">Eliminați videoclipurile vizionate\?</string>
+    <string name="remove_watched_popup_warning">Videoclipurile care au fost vizionate înainte și după ce au fost adăugate la lista de redare vor fi eliminate. \nSunteți sigur? Acest lucru nu poate fi anulat!</string>
+    <string name="remove_watched_popup_title">Eliminați videoclipurile vizionate?</string>
     <string name="remove_watched">Eliminare cele urmărite</string>
     <string name="systems_language">Prestabilită de sistem</string>
     <string name="app_language_title">Limba aplicației</string>

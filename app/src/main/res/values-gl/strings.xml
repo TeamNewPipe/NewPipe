@@ -388,9 +388,8 @@
     </plurals>
     <string name="new_seek_duration_toast">Debido ás restricións de ExoPlayer, a duración da busca estableceuse en %d segundos</string>
     <string name="remove_watched_popup_partially_watched_streams">Si, e visualizou parcialmente estes vídeos</string>
-    <string name="remove_watched_popup_warning">Eliminaranse os vídeos vistos antes e despois de seren engadidos á lista de reprodución.
-\nEstás seguro\? Isto non se pode desfacer.!</string>
-    <string name="remove_watched_popup_title">Borrar todos os vídeos vistos\?</string>
+    <string name="remove_watched_popup_warning">Eliminaranse os vídeos vistos antes e despois de seren engadidos á lista de reprodución. \nEstás seguro? Isto non se pode desfacer.!</string>
+    <string name="remove_watched_popup_title">Borrar todos os vídeos vistos?</string>
     <string name="remove_watched">Eliminar o visto</string>
     <string name="systems_language">Sistema predeterminado</string>
     <string name="app_language_title">Lingua do aplicativo</string>

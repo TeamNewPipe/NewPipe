@@ -285,9 +285,8 @@
     </plurals>
     <string name="new_seek_duration_toast">Pro more de sos lìmites de ExoPlayer sa longària de s\'iscostiamentu lestru est istada impostada a %d segundos</string>
     <string name="remove_watched_popup_partially_watched_streams">Eja, e fintzas sos vìdeos pompiados in parte</string>
-    <string name="remove_watched_popup_warning">Sos vìdeos pompiados in antis e a pustis de los àere annànghidos a s\'iscalita ant a èssere bogados.
-\n Seguru ses\? Custu no est reversìbile!</string>
-    <string name="remove_watched_popup_title">Bogare sos elementos pompiados\?</string>
+    <string name="remove_watched_popup_warning">Sos vìdeos pompiados in antis e a pustis de los àere annànghidos a s\'iscalita ant a èssere bogados. \n Seguru ses? Custu no est reversìbile!</string>
+    <string name="remove_watched_popup_title">Bogare sos elementos pompiados?</string>
     <string name="remove_watched">Boga sos elementos pompiados</string>
     <string name="systems_language">Predefinida de su sistema</string>
     <string name="app_language_title">Limba de s\'aplicatzione</string>

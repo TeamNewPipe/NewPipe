@@ -516,11 +516,10 @@
     <string name="restricted_video">Dieses Video ist altersbeschränkt.
 \n
 \nAktiviere in den Einstellungen „%1$s“, falls du diese sehen möchtest.</string>
-    <string name="remove_watched_popup_warning">Videos, die vor und nach dem Hinzufügen zur Wiedergabeliste angeschaut wurden, werden entfernt.
-\nBist du sicher\? Dies kann nicht rückgängig gemacht werden!</string>
+    <string name="remove_watched_popup_warning">Videos, die vor und nach dem Hinzufügen zur Wiedergabeliste angeschaut wurden, werden entfernt. \nBist du sicher? Dies kann nicht rückgängig gemacht werden!</string>
     <string name="remove_watched_popup_partially_watched_streams">Ja, und teilweise gesehene Videos</string>
     <string name="remove_watched">Gesehene entfernen</string>
-    <string name="remove_watched_popup_title">Gesehene Videos entfernen\?</string>
+    <string name="remove_watched_popup_title">Gesehene Videos entfernen?</string>
     <string name="show_original_time_ago_title">Originalzeit vor Elementen anzeigen</string>
     <string name="show_original_time_ago_summary">Originaltexte von Diensten werden in Stream-Elementen sichtbar sein</string>
     <string name="youtube_restricted_mode_enabled_title">YouTubes „Eingeschränkten Modus“ aktivieren</string>
