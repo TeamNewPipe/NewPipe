@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="proxy_settings_title">Настройки прокси</string>
+    <string name="use_proxy">Использовать прокси</string>
+    <string name="use_proxy_summary">Перенаправлять трафик через прокси</string>
+    <string name="proxy_host">Хост прокси</string>
+    <string name="proxy_host_summary">Имя хоста или IP-адрес прокси</string>
+    <string name="proxy_port">Порт прокси</string>
+    <string name="proxy_port_summary">Номер порта прокси</string>
+    <string name="proxy_port_dialog_message">Введите номер порта прокси</string>
+</resources>
