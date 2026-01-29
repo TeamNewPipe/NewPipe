@@ -124,7 +124,7 @@
         <item quantity="other">%s مُشاهِد</item>
     </plurals>
     <string name="show_hold_to_append_summary">عرض تلميح عند الضغط على زر استخدام المشغل الخلفي أو النافذة المنبثقة في صفحة تفاصيل الفديو</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">نعم، ومقاطع الفيديو التي تمت مشاهدتها جزئيًا</string>
+    <string name="remove_watched_popup_partially_watched_streams">نعم، ومقاطع الفيديو التي تمت مشاهدتها جزئيًا</string>
     <string name="error_timeout">انتهى وقت الاتصال</string>
     <string name="unknown_audio_track">غير معروف</string>
     <string name="autoplay_title">تشغيل تلقائي</string>
@@ -427,8 +427,7 @@
     <string name="msg_popup_permission">هذا الإذن مطلوب
 \nللفتح في وضع النافذة المنبثقة</string>
     <string name="settings_category_feed_title">الموجز</string>
-    <string name="remove_watched_popup_warning">ستتم إزالة مقاطع الفيديو التي تمت مشاهدتها قبل وبعد إضافتها إلى قائمة التشغيل.
-\nهل أنت واثق؟ لا يمكن التراجع عن هذا!</string>
+    <string name="remove_watched_popup_warning">ستتم إزالة مقاطع الفيديو التي تمت مشاهدتها قبل وبعد إضافتها إلى قائمة التشغيل. \nهل أنت واثق؟ لا يمكن التراجع عن هذا!</string>
     <string name="detail_dislikes_img_view_description">عدم الإعجاب</string>
     <string name="faq">مشاهدة على الموقع</string>
     <string name="night_theme_available">هذا الخيار متاح فقط إذا تم تحديد %s للسمة</string>

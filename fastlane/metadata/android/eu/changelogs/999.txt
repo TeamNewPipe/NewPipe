@@ -1,0 +1,12 @@
+Bertsio honek YouTube bideoen erdian dauden HTTP 403 erroreak konpontzen ditu.
+
+Berria
+• [SoundCloud] Gehitu URLaren euskarria on.soundcloud.com webgunean
+
+Hobetua
+• [Bandcamp] Erakutsi informazio gehigarria irrati-kioskoan
+
+Zuzenduta
+• [YouTube] Bideoen hasieran edo erdian noizbehinkako HTTP 403 erroreak konpondu dira.
+• [YouTube] Atera avatarra eta bannerra kanal goiburu mota gehiagotatik
+• [Bandcamp] Hainbat akats konpontzen ditu eta beti HTTPS erabiltzen du

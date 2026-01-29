@@ -1,0 +1,16 @@
+Berria
+• Erreprodukzio berrien jakinarazpenak
+• Trantsizio hobetua atzeko planoa/bideo artean
+• Tonua erdi-tonuz aldatu
+• Ilara erreprodukzio-zerrenda bati erantsi
+
+Hobetua
+• Abiadura/tonu urratsaren tamaina gogoratu
+• Hasierako buffering luzea arintu
+• Android TV interfazea hobetu
+• Fitxategi guztiak ezabatu aurretik berretsi
+
+Konpondua
+• Multimedia botoiak kontrolak ezkutatzen ez zituen
+• Erreprodukzioa berrezartzea mota aldatzean
+• Erreprodukzio-zerrenda elkarrizketa biratzea

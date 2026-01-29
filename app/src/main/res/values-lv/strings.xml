@@ -39,13 +39,13 @@
     <string name="no_playlist_bookmarked_yet">Nav atskaņošanas sarakstu pagaidām</string>
     <string name="select_a_playlist">Izvēlaties atskaņošanas sarakstu</string>
     <string name="no_channel_subscribed_yet">Nav kanālu abonamentu pagaidām</string>
-    <string name="select_a_channel">Izvēlaties kanālu</string>
-    <string name="channel_page_summary">Kanālu lapa</string>
+    <string name="select_a_channel">Atlasiet kanālu</string>
+    <string name="channel_page_summary">Kanāls</string>
     <string name="default_kiosk_page_summary">Noklusējuma Kiosks</string>
-    <string name="kiosk_page_summary">Kioska Lapa</string>
-    <string name="blank_page_summary">Tukša Lapa</string>
-    <string name="main_page_content_summary">Kuras cilnes rāda galvenajā lapā</string>
-    <string name="main_page_content">Galvenās lapas saturs</string>
+    <string name="kiosk_page_summary">Kioska lapa</string>
+    <string name="blank_page_summary">Tukša lapa</string>
+    <string name="main_page_content_summary">Kādas cilnes rādīt galvenajā lapā</string>
+    <string name="main_page_content">Galvenā lapa</string>
     <string name="title_most_played">Visvairāk Atskaņotais</string>
     <string name="title_last_played">Pēdējais Atskaņotais</string>
     <string name="delete_item_search_history">Vai jūs vēlaties izdzēst šo lietu no meklēšanas vēstures\?</string>
@@ -95,7 +95,7 @@
     <string name="msg_name">Faila nosaukums</string>
     <string name="ok">Labi</string>
     <string name="rename">Pārsaukt</string>
-    <string name="dismiss">Atcelt</string>
+    <string name="dismiss">Noraidīt</string>
     <string name="checksum">Kontrolsumma</string>
     <string name="delete">Izdzēst</string>
     <string name="create">Radīt</string>
@@ -338,10 +338,9 @@
         <item quantity="other">%d sekundes</item>
     </plurals>
     <string name="new_seek_duration_toast">ExoPlayer ierobežojumu dēļ meklēšanas ilgums tika iestatīts uz %d sekundēm</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Jā, un daļēji skatītos videoklipus</string>
-    <string name="remove_watched_popup_warning">Videoklipi, kas ir skatīti pirms un pēc pievienošanas atskaņošanas sarakstam, tiks noņemti.
-\nVai tu esi pārliecināts\? To nevar atsaukt!</string>
-    <string name="remove_watched_popup_title">Vai noņemt skatītos videoklipus\?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Jā, un daļēji skatītos video</string>
+    <string name="remove_watched_popup_warning">Video, kas skatīti pirms un pēc pievienošanas atskaņošanas sarakstam, tiks noņemti. \nVai tiešām turpināt? Šo darbību nevarēs atsaukt!</string>
+    <string name="remove_watched_popup_title">Vai tiešām noņemt skatītos video?</string>
     <string name="remove_watched">Noņemt skatīto</string>
     <string name="systems_language">System default</string>
     <string name="app_language_title">Lietotnes valoda</string>
@@ -479,7 +478,7 @@
     <string name="download_dialog_title">Lejupielādēt</string>
     <string name="resume_on_audio_focus_gain_summary">Turpināt atskaņošanu pēc pārtraukumiem (piemēram, telefona zvana)</string>
     <string name="resume_on_audio_focus_gain_title">Turpināt atskaņošanu</string>
-    <string name="enable_watch_history_summary">Saglabājiet skatītos videoklipus</string>
+    <string name="enable_watch_history_summary">Uzglabāt skatīto video vēsturi</string>
     <string name="settings_category_clear_data_title">Dzēst datus</string>
     <string name="enable_playback_state_lists_summary">Rādīt atskaņošanas pozīcijas indikatoru sarakstos</string>
     <string name="enable_playback_state_lists_title">Atskaņošanas pozīcija sarakstos</string>
@@ -494,7 +493,7 @@
     <string name="auto_queue_summary">Turpināt atskaņot videoklipus, automātiski pievienojot līdzīgus videoklipus</string>
     <string name="auto_queue_title">Automātiski atskaņot nākošo videoklipu</string>
     <string name="metadata_cache_wipe_complete_notice">Kešatmiņas metadati notīrīti</string>
-    <string name="metadata_cache_wipe_summary">Izdzēst visus kešatmiņā glabātos mājaslapu datus</string>
+    <string name="metadata_cache_wipe_summary">Izdzēš visus kešatmiņā glabātos vietnes datus</string>
     <string name="metadata_cache_wipe_title">Notīrīt kešatmiņas metadatus</string>
     <string name="thumbnail_cache_wipe_complete_notice">Attēlu kešatmiņa notīrīta</string>
     <string name="show_meta_info_summary">Izslēdziet, lai paslēptu papildus informācijas laukus par video autoru, video saturu vai meklēšanas vaicājuma rezultātu</string>
@@ -552,7 +551,7 @@
     <string name="download_path_audio_summary">Lejupielādētie audio faili tiek glabāti šeit</string>
     <string name="download_path_audio_title">Audio lejupielādes mape</string>
     <string name="download_path_dialog_title">Izvēlaties lejupielādes mapi priekš video failiem</string>
-    <string name="download_path_summary">Lejupielādētie video faili tiek glabāti šeit</string>
+    <string name="download_path_summary">Lejupielādētās video datnes tiek glabātas šeit</string>
     <string name="download_path_title">Video lejupielādes mape</string>
     <string name="controls_add_to_playlist_title">Pievienot</string>
     <string name="controls_background_title">Fonā</string>
@@ -615,7 +614,7 @@
     <string name="disable_media_tunneling_summary">Izslēdziet multivides tuneļošanu, ja jums video atskaņošanas laikā parādās melns ekrāns vai aizķeršanās.</string>
     <string name="description_select_enable">Ieslēgt teksta atlasīšanu video aprakstā</string>
     <string name="no_dir_yet">Lejupielādes mape vēl nav iestatīta, izvēlieties noklusējuma lejupielādes mapi</string>
-    <string name="main_page_content_swipe_remove">Pārvelciet objektus, lai tos noņemtu</string>
+    <string name="main_page_content_swipe_remove">Pavelciet atlasīto elementu pa kreisi vai labi, lai to aizvāktu</string>
     <string name="local_search_suggestions">Lokālie meklēšanas ieteikumi</string>
     <string name="high_quality_larger">Augstas kvalitātes (lielāks)</string>
     <string name="check_for_updates">Pārbaudīt atjauninājumus</string>
@@ -625,9 +624,7 @@
     <string name="downloads_storage_use_saf_summary_api_29">Sākot ar Android 10, tikai“Krātuves Piekļuves Sistēma” ir atbalstīta</string>
     <string name="feed_load_error_account_info">Nevarēja ielādēt straumi priekš \'%s\'.</string>
     <string name="feed_load_error">Kļūda lādējot plūsmu</string>
-    <string name="feed_load_error_terminated">Autora konts tika slēgts.
-\nNewPipe turpmāk nevarēs ielādēt šo plūsmu.
-\nVai vēlaties atteikties no šī kanāla abonēšanas\?</string>
+    <string name="feed_load_error_terminated">Autora konts tika slēgts.\nNewPipe turpmāk vairs nevarēs ielādēt šī kanāla plūsmas saturu.\nVai tiešām atteikties no šī kanāla abonēšanas?</string>
     <string name="feed_load_error_fast_unknown">Ātrās straumes režīms nesniedz vairāk informācijas par šo.</string>
     <string name="description_select_disable">Izslēgt teksta atlasīšanu video aprakstā</string>
     <string name="metadata_privacy_internal">Iekšeji</string>
@@ -639,7 +636,7 @@
     <string name="metadata_privacy_unlisted">Sarakstā neiekļauts</string>
     <string name="metadata_host">Uzņēmums</string>
     <string name="remote_search_suggestions">Servera meklēšanas ieteikumi</string>
-    <string name="mark_as_watched">Atzīmēt kā skatītu</string>
+    <string name="mark_as_watched">Atzīmēt kā noskatītu</string>
     <string name="processing_may_take_a_moment">Apstrādā... Var aizņemt kādu laiku</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="zero">Izdzēsa %1$s lejupielāžu</item>
@@ -723,7 +720,7 @@
     <string name="loading_metadata_title">Metadatu ielādēšana…</string>
     <string name="main_tabs_position_title">Galvenās cilnes pozīcija</string>
     <string name="unknown_format">Nepazīstams formāts</string>
-    <string name="feed_show_partially_watched">Daļēji noskatīti</string>
+    <string name="feed_show_partially_watched">Daļēji skatīti</string>
     <string name="no_streams">Nav tiešraides</string>
     <string name="error_insufficient_storage">Nav pietiekami daudz brīvās vietas uz ierīces</string>
     <string name="channel_tab_about">Par</string>
@@ -824,4 +821,14 @@
     <string name="tab_bookmarks_short">Atskaņošanas saraksti</string>
     <string name="share_playlist_as_youtube_temporary_playlist">Kopīgot kā pagaidu YouTube atskaņošanas sarakstu</string>
     <string name="audio_track_type_secondary">sekundārais</string>
+    <string name="short_thousand">%s tūkst.</string>
+    <string name="short_million">%s milj.</string>
+    <string name="short_billion">%s mljrd.</string>
+    <string name="channel_tab_likes">Patīk</string>
+    <string name="trending_music">Pašlaik populāra mūzika</string>
+    <string name="trending_movies">Pašlaik populāras filmas un TV raidījumi</string>
+    <string name="trending_podcasts">Pašlaik populāri raidieraksti</string>
+    <string name="trending_gaming">Pašlaik populārs spēļu nozarē</string>
+    <string name="migration_info_7_8_message">YouTube pārtrauca piedāvāt apvienoto pašlaik populārs lapu kopš 2025. gada 21. jūlija. NewPipe aizstāja noklusējuma pašlaik populārs lapu ar pašlaik populāras tiešraides.\n\nJūs variet atlasīt arī citas pašlaik populārs lapas zem \"Iestatījumi &gt; Saturs &gt; Galvenā lapa\".</string>
+    <string name="delete_file">Dzēst datni</string>
 </resources>

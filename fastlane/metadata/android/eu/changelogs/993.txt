@@ -1,0 +1,12 @@
+Berria
+• Gehitu abisua erreprodukzio-zerrenda bikoiztuak gehitzean eta gehitu botoia kentzeko
+• Hardware botoiak baztertzea baimendu
+• Jarioan partzialki ikusitako bideoak ezkutatzea baimendu
+
+Hobetua
+• Erabili sareta-zutabe gehiago pantaila handietan
+• Aurrerapen adierazleak ezarpenekin bat etorriz egin
+
+Konpondua
+• Konpondu arakatzailearen URLak, deskargak eta kanpoko erreproduzitzaileak irekitzeko arazoak Android 11+-n
+• MIUI-n bi ukitu behar izatearen pantaila osoko interakzioa konpondu

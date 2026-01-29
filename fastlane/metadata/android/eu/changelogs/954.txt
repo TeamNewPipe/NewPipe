@@ -1,0 +1,9 @@
+• Ezaugarri berria: Ikusi bideoak xehetasunen orrian, irristatu behera erreproduzitzailea minimizatzeko
+• MediaStyle jakinarazpenak: ekintza pertsonalizagarriak, errendimendu hobekuntzak
+• Aldatu bideoaren tamaina NewPipe mahaigaineko aplikazio gisa erabiltzean
+
+• URL bateraezin baten kasuan aukerekin elkarrizketa-koadroa
+• Bilaketa-iradokizunak hobetu dira emaitzak urrunetik lortu ezin direnean
+• Bideoaren kalitatea 720p60ra (aplikazioan) eta 480p-ra (miniaturan) igo da
+
+• Akats asko konponduak

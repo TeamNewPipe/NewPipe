@@ -1,0 +1,11 @@
+This hotfix release fixes the "Content not available" error: YouTube videos can now be played again!
+
+It also fixes a few bugs introduced in 0.28.1:
+• Playlist items dragging to only neighbor positions
+• Title/comments flickering between current and previous video
+• "Start main player in fullscreen" option not working
+
+Other improvements:
+• [YouTube] Allow rewinding livestreams up to 4 hours again
+• Don't load livestream video when playing in background
+• New UI for "Remove watched"
