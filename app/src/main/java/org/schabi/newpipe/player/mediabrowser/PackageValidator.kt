@@ -30,9 +30,9 @@ import android.support.v4.media.session.MediaSessionCompat
 import android.util.Log
 import androidx.core.app.NotificationManagerCompat
 import androidx.media.MediaBrowserServiceCompat
-import org.schabi.newpipe.BuildConfig
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
+import org.schabi.newpipe.BuildConfig
 
 /**
  * Validates that the calling package is authorized to browse a [MediaBrowserServiceCompat].
@@ -94,18 +94,22 @@ internal class PackageValidator(context: Context) {
         val isCallerKnown = when {
             // If it's our own app making the call, allow it.
             callingUid == Process.myUid() -> true
+
             // If the system is making the call, allow it.
             callingUid == Process.SYSTEM_UID -> true
+
             // If the app was signed by the same certificate as the platform itself, also allow it.
             callerSignature == platformSignature -> true
-            /**
+
+            /*
              * [MEDIA_CONTENT_CONTROL] permission is only available to system applications, and
              * while it isn't required to allow these apps to connect to a
              * [MediaBrowserServiceCompat], allowing this ensures optimal compatability with apps
              * such as Android TV and the Google Assistant.
              */
             callerPackageInfo.permissions.contains(MEDIA_CONTENT_CONTROL) -> true
-            /**
+
+            /*
              * If the calling app has a notification listener it is able to retrieve notifications
              * and can connect to an active [MediaSessionCompat].
              *
@@ -169,11 +173,10 @@ internal class PackageValidator(context: Context) {
      */
     @Suppress("deprecation")
     @SuppressLint("PackageManagerGetSignatures")
-    private fun getPackageInfo(callingPackage: String): PackageInfo? =
-        packageManager.getPackageInfo(
-            callingPackage,
-            PackageManager.GET_SIGNATURES or PackageManager.GET_PERMISSIONS
-        )
+    private fun getPackageInfo(callingPackage: String): PackageInfo? = packageManager.getPackageInfo(
+        callingPackage,
+        PackageManager.GET_SIGNATURES or PackageManager.GET_PERMISSIONS
+    )
 
     /**
      * Gets the signature of a given package's [PackageInfo].
@@ -185,23 +188,21 @@ internal class PackageValidator(context: Context) {
      * returns `null` as the signature.
      */
     @Suppress("deprecation")
-    private fun getSignature(packageInfo: PackageInfo): String? =
-        if (packageInfo.signatures == null || packageInfo.signatures!!.size != 1) {
-            // Security best practices dictate that an app should be signed with exactly one (1)
-            // signature. Because of this, if there are multiple signatures, reject it.
-            null
-        } else {
-            val certificate = packageInfo.signatures!![0].toByteArray()
-            getSignatureSha256(certificate)
-        }
+    private fun getSignature(packageInfo: PackageInfo): String? = if (packageInfo.signatures == null || packageInfo.signatures!!.size != 1) {
+        // Security best practices dictate that an app should be signed with exactly one (1)
+        // signature. Because of this, if there are multiple signatures, reject it.
+        null
+    } else {
+        val certificate = packageInfo.signatures!![0].toByteArray()
+        getSignatureSha256(certificate)
+    }
 
     /**
      * Finds the Android platform signing key signature. This key is never null.
      */
-    private fun getSystemSignature(): String =
-        getPackageInfo(ANDROID_PLATFORM)?.let { platformInfo ->
-            getSignature(platformInfo)
-        } ?: throw IllegalStateException("Platform signature not found")
+    private fun getSystemSignature(): String = getPackageInfo(ANDROID_PLATFORM)?.let { platformInfo ->
+        getSignature(platformInfo)
+    } ?: throw IllegalStateException("Platform signature not found")
 
     /**
      * Creates a SHA-256 signature given a certificate byte array.

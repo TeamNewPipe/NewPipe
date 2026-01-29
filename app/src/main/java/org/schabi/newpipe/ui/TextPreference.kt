@@ -28,7 +28,7 @@ fun TextPreference(
     @StringRes title: Int,
     @DrawableRes icon: Int? = null,
     @StringRes summary: Int? = null,
-    onClick: () -> Unit,
+    onClick: () -> Unit
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -51,14 +51,14 @@ fun TextPreference(
                 text = stringResource(id = title),
                 modifier = Modifier.padding(SizeTokens.SpacingExtraSmall),
                 style = MaterialTheme.typography.titleSmall,
-                textAlign = TextAlign.Start,
+                textAlign = TextAlign.Start
             )
             summary?.let {
                 Text(
                     text = stringResource(id = summary),
                     modifier = Modifier.padding(SizeTokens.SpacingExtraSmall),
                     style = MaterialTheme.typography.bodySmall,
-                    textAlign = TextAlign.Start,
+                    textAlign = TextAlign.Start
                 )
             }
         }

@@ -305,4 +305,8 @@
     <string name="notification_scale_to_square_image_summary">বিজ্ঞপ্তিতে প্রদর্শিত ভিডিও থাম্বনেল 16:9 থেকে 1:1 অনুপাতের করুন (বিকৃতি দেখা যেতে পারে)</string>
     <string name="notification_action_shuffle">অদলবদল</string>
     <string name="notification_action_nothing">কিছু না</string>
+    <string name="yes">হ্যাঁ</string>
+    <string name="no">না</string>
+    <string name="search_with_service_name">সার্চ</string>
+    <string name="search_with_service_name_and_filter">খুঁজুন</string>
 </resources>

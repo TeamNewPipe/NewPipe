@@ -23,6 +23,7 @@ import com.livefront.bridge.Bridge
 import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.OnItemClickListener
 import com.xwray.groupie.Section
+import java.io.Serializable
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.databinding.DialogFeedGroupCreateBinding
@@ -40,7 +41,6 @@ import org.schabi.newpipe.local.subscription.item.PickerIconItem
 import org.schabi.newpipe.local.subscription.item.PickerSubscriptionItem
 import org.schabi.newpipe.util.DeviceUtils
 import org.schabi.newpipe.util.ThemeHelper
-import java.io.Serializable
 
 class FeedGroupDialog : DialogFragment(), BackPressable {
     private var _feedGroupCreateBinding: DialogFeedGroupCreateBinding? = null
@@ -61,16 +61,41 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         data object DeleteScreen : ScreenState()
     }
 
-    @State @JvmField var selectedIcon: FeedGroupIcon? = null
-    @State @JvmField var selectedSubscriptions: HashSet<Long> = HashSet()
-    @State @JvmField var wasSubscriptionSelectionChanged: Boolean = false
-    @State @JvmField var currentScreen: ScreenState = InitialScreen
+    @State
+    @JvmField
+    var selectedIcon: FeedGroupIcon? = null
 
-    @State @JvmField var subscriptionsListState: Parcelable? = null
-    @State @JvmField var iconsListState: Parcelable? = null
-    @State @JvmField var wasSearchSubscriptionsVisible = false
-    @State @JvmField var subscriptionsCurrentSearchQuery = ""
-    @State @JvmField var subscriptionsShowOnlyUngrouped = false
+    @State
+    @JvmField
+    var selectedSubscriptions: HashSet<Long> = HashSet()
+
+    @State
+    @JvmField
+    var wasSubscriptionSelectionChanged: Boolean = false
+
+    @State
+    @JvmField
+    var currentScreen: ScreenState = InitialScreen
+
+    @State
+    @JvmField
+    var subscriptionsListState: Parcelable? = null
+
+    @State
+    @JvmField
+    var iconsListState: Parcelable? = null
+
+    @State
+    @JvmField
+    var wasSearchSubscriptionsVisible = false
+
+    @State
+    @JvmField
+    var subscriptionsCurrentSearchQuery = ""
+
+    @State
+    @JvmField
+    var subscriptionsShowOnlyUngrouped = false
 
     private val subscriptionMainSection = Section()
     private val subscriptionEmptyFooter = Section()
@@ -154,8 +179,10 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
             itemAnimator = null
             adapter = subscriptionGroupAdapter
             layoutManager = GridLayoutManager(
-                requireContext(), subscriptionGroupAdapter.spanCount,
-                RecyclerView.VERTICAL, false
+                requireContext(),
+                subscriptionGroupAdapter.spanCount,
+                RecyclerView.VERTICAL,
+                false
             ).apply {
                 spanSizeLookup = subscriptionGroupAdapter.spanSizeLookup
             }
@@ -363,7 +390,8 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         val selectedCount = this.selectedSubscriptions.size
         val selectedCountText = resources.getQuantityString(
             R.plurals.feed_group_dialog_selection_count,
-            selectedCount, selectedCount
+            selectedCount,
+            selectedCount
         )
         feedGroupCreateBinding.selectedSubscriptionCountView.text = selectedCountText
         feedGroupCreateBinding.subscriptionsHeaderInfo.text = selectedCountText

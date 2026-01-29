@@ -29,7 +29,7 @@ import org.schabi.newpipe.util.external_communication.ShareUtils
 fun ErrorPanel(
     errorInfo: ErrorInfo,
     modifier: Modifier = Modifier,
-    onRetry: (() -> Unit)? = null,
+    onRetry: (() -> Unit)? = null
 ) {
     val context = LocalContext.current
     val isPreview = LocalInspectionMode.current
@@ -42,7 +42,7 @@ fun ErrorPanel(
     Column(
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier,
+        modifier = modifier
     ) {
         Text(
             text = messageText,
@@ -97,9 +97,9 @@ private fun ErrorPanelPreview() {
                 throwable = ReCaptchaException("An error", "https://example.com"),
                 userAction = UserAction.REQUESTED_STREAM,
                 request = "Preview request",
-                openInBrowserUrl = "https://example.com",
+                openInBrowserUrl = "https://example.com"
             ),
-            onRetry = {},
+            onRetry = {}
         )
     }
 }

@@ -10,7 +10,7 @@ import org.schabi.newpipe.extractor.comments.CommentsInfo
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 
 class CommentRepliesSource(
-    private val commentInfo: CommentsInfoItem,
+    private val commentInfo: CommentsInfoItem
 ) : PagingSource<Page, CommentsInfoItem>() {
     private val service = NewPipe.getService(commentInfo.serviceId)
 

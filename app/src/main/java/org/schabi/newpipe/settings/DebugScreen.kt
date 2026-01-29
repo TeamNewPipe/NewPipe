@@ -13,7 +13,6 @@ import org.schabi.newpipe.ui.theme.SizeTokens
 
 @Composable
 fun DebugScreen(viewModel: SettingsViewModel, modifier: Modifier = Modifier) {
-
     val settingsLayoutRedesign by viewModel.settingsLayoutRedesign.collectAsState()
 
     Column(modifier = modifier) {

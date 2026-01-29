@@ -20,18 +20,25 @@ fun LicenseDialog(licenseHtml: AnnotatedString, onDismissRequest: () -> Unit) {
     val lazyListState = rememberLazyListState()
 
     ModalBottomSheet(onDismissRequest) {
-        LazyColumnThemedScrollbar(state = lazyListState) {
-            LazyColumn(
-                state = lazyListState
-            ) {
-                item {
-                    if (licenseHtml.isEmpty()) {
-                        LoadingIndicator(modifier = Modifier.padding(32.dp))
-                    } else {
-                        Text(
-                            text = licenseHtml,
-                            modifier = Modifier.padding(horizontal = 12.dp),
-                        )
+        CompositionLocalProvider(
+            // contentColorFor(MaterialTheme.colorScheme.containerColor), i.e. ModalBottomSheet's
+            // default background color, does not resolve correctly, so need to manually set the
+            // content color for MaterialTheme.colorScheme.background instead
+            LocalContentColor provides contentColorFor(MaterialTheme.colorScheme.background)
+        ) {
+            LazyColumnThemedScrollbar(state = lazyListState) {
+                LazyColumn(
+                    state = lazyListState
+                ) {
+                    item {
+                        if (licenseHtml.isEmpty()) {
+                            LoadingIndicator(modifier = Modifier.padding(32.dp))
+                        } else {
+                            Text(
+                                text = licenseHtml,
+                                modifier = Modifier.padding(horizontal = 12.dp)
+                            )
+                        }
                     }
                 }
             }

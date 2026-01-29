@@ -6,6 +6,9 @@ import androidx.test.core.app.ApplicationProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.rx3.await
+import io.reactivex.rxjava3.core.Single
+import java.io.IOException
+import java.time.OffsetDateTime
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
@@ -42,14 +45,21 @@ class FeedDAOTest {
     private val stream7 = StreamEntity(7, serviceId, "https://youtube.com/watch?v=7", "stream 7", StreamType.VIDEO_STREAM, 1000, "channel-4", "https://youtube.com/channel/4", "https://i.ytimg.com/vi/1/hqdefault.jpg", 100, "2023-08-10", OffsetDateTime.parse("2023-08-10T00:00:00Z"))
 
     private val allStreams = listOf(
-        stream1, stream2, stream3, stream4, stream5, stream6, stream7
+        stream1,
+        stream2,
+        stream3,
+        stream4,
+        stream5,
+        stream6,
+        stream7
     )
 
     @Before
     fun createDb() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         db = Room.inMemoryDatabaseBuilder(
-            context, AppDatabase::class.java
+            context,
+            AppDatabase::class.java
         ).build()
         feedDAO = db.feedDAO()
         streamDAO = db.streamDAO()
@@ -66,7 +76,10 @@ class FeedDAOTest {
     fun testUnlinkStreamsOlderThan_KeepOne() {
         setupUnlinkDelete("2023-08-15T00:00:00Z")
         val streams = feedDAO.getStreams(
-            FeedGroupEntity.GROUP_ALL_ID, includePlayed = true, includePartiallyPlayed = true, null
+            FeedGroupEntity.GROUP_ALL_ID,
+            includePlayed = true,
+            includePartiallyPlayed = true,
+            null
         )
             .blockingGet()
         val allowedStreams = listOf(stream3, stream5, stream6, stream7)
@@ -77,7 +90,10 @@ class FeedDAOTest {
     fun testUnlinkStreamsOlderThan_KeepMultiple() {
         setupUnlinkDelete("2023-08-01T00:00:00Z")
         val streams = feedDAO.getStreams(
-            FeedGroupEntity.GROUP_ALL_ID, includePlayed = true, includePartiallyPlayed = true, null
+            FeedGroupEntity.GROUP_ALL_ID,
+            includePlayed = true,
+            includePartiallyPlayed = true,
+            null
         )
             .blockingGet()
         val allowedStreams = listOf(stream3, stream4, stream5, stream6, stream7)
@@ -109,7 +125,7 @@ class FeedDAOTest {
                 SubscriptionEntity.from(ChannelInfo(serviceId, "1", "https://youtube.com/channel/1", "https://youtube.com/channel/1", "channel-1")),
                 SubscriptionEntity.from(ChannelInfo(serviceId, "2", "https://youtube.com/channel/2", "https://youtube.com/channel/2", "channel-2")),
                 SubscriptionEntity.from(ChannelInfo(serviceId, "3", "https://youtube.com/channel/3", "https://youtube.com/channel/3", "channel-3")),
-                SubscriptionEntity.from(ChannelInfo(serviceId, "4", "https://youtube.com/channel/4", "https://youtube.com/channel/4", "channel-4")),
+                SubscriptionEntity.from(ChannelInfo(serviceId, "4", "https://youtube.com/channel/4", "https://youtube.com/channel/4", "channel-4"))
             )
         )
         feedDAO.insertAll(
@@ -120,7 +136,7 @@ class FeedDAOTest {
                 FeedEntity(4, 2),
                 FeedEntity(5, 2),
                 FeedEntity(6, 3),
-                FeedEntity(7, 4),
+                FeedEntity(7, 4)
             )
         )
     }

@@ -263,7 +263,7 @@ public final class ThemeHelper {
 
     private static String getSelectedThemeKey(final Context context) {
         final String themeKey = context.getString(R.string.theme_key);
-        final String defaultTheme = context.getResources().getString(R.string.default_theme_value);
+        final String defaultTheme = context.getString(R.string.default_theme_value);
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(themeKey, defaultTheme);
     }

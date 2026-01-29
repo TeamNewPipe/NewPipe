@@ -6,6 +6,10 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.time.LocalDate
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
+import org.schabi.newpipe.MainActivity.DEBUG
 import kotlinx.coroutines.rx3.await
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.database.feed.model.FeedEntity
@@ -17,9 +21,6 @@ import org.schabi.newpipe.database.subscription.NotificationMode
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.local.subscription.FeedGroupIcon
-import java.time.LocalDate
-import java.time.OffsetDateTime
-import java.time.ZoneOffset
 
 class FeedDatabaseManager(context: Context) {
     private val database = NewPipeDatabase.getInstance(context)
@@ -84,14 +85,13 @@ class FeedDatabaseManager(context: Context) {
         items: List<StreamInfoItem>,
         oldestAllowedDate: OffsetDateTime = FEED_OLDEST_ALLOWED_DATE
     ) {
-        val itemsToInsert = ArrayList<StreamInfoItem>()
-        loop@ for (streamItem in items) {
-            val uploadDate = streamItem.uploadDate
+        val itemsToInsert = items.mapNotNull { stream ->
+            val uploadDate = stream.uploadDate
 
-            itemsToInsert += when {
-                uploadDate == null && streamItem.streamType == StreamType.LIVE_STREAM -> streamItem
-                uploadDate != null && uploadDate.offsetDateTime() >= oldestAllowedDate -> streamItem
-                else -> continue@loop
+            when {
+                uploadDate == null && stream.streamType == StreamType.LIVE_STREAM -> stream
+                uploadDate != null && uploadDate.offsetDateTime() >= oldestAllowedDate -> stream
+                else -> null
             }
         }
 

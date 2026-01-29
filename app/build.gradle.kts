@@ -44,12 +44,12 @@ android {
     defaultConfig {
         applicationId = "org.schabi.newpipe"
         resValue("string", "app_name", "NewPipe")
-        minSdk = 21
+        minSdk = 23
         targetSdk = 35
 
-        versionCode = System.getProperty("versionCodeOverride")?.toInt() ?: 1005
+        versionCode = System.getProperty("versionCodeOverride")?.toInt() ?: 1006
 
-        versionName = "0.28.0"
+        versionName = "0.28.1"
         System.getProperty("versionNameSuffix")?.let { versionNameSuffix = it }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -139,6 +139,13 @@ ksp {
 
 // Custom dependency configuration for ktlint
 val ktlint by configurations.creating
+
+// https://checkstyle.org/#JRE_and_JDK
+tasks.withType<Checkstyle>().configureEach {
+    javaLauncher = javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
 
 checkstyle {
     configDirectory = rootProject.file("checkstyle")
@@ -304,10 +311,6 @@ dependencies {
     implementation(libs.google.exoplayer.smoothstreaming)
     implementation(libs.google.exoplayer.ui)
 
-    // Metadata generator for service descriptors
-    compileOnly(libs.google.autoservice.annotations)
-    ksp(libs.google.autoservice.compiler)
-
     // Manager for complex RecyclerView layouts
     implementation(libs.lisawray.groupie.core)
     implementation(libs.lisawray.groupie.viewbinding)
@@ -322,6 +325,8 @@ dependencies {
 
     // Crash reporting
     implementation(libs.acra.core)
+    compileOnly(libs.google.autoservice.annotations)
+    ksp(libs.zacsweers.autoservice.compiler)
 
     // Properly restarting
     implementation(libs.jakewharton.phoenix)

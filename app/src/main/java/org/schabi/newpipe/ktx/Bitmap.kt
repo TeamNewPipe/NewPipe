@@ -9,5 +9,5 @@ inline fun Bitmap.scale(
     width: Int,
     height: Int,
     srcRect: Rect? = null,
-    scaleInLinearSpace: Boolean = true,
+    scaleInLinearSpace: Boolean = true
 ) = BitmapCompat.createScaledBitmap(this, width, height, srcRect, scaleInLinearSpace)

@@ -68,6 +68,11 @@ interface PlaylistStreamDAO : BasicDAO<PlaylistStreamEntity> {
     )
     fun getOrderedStreamsOf(playlistId: Long): Flowable<MutableList<PlaylistStreamEntry>>
 
+    // If a playlist has no streams, there won’t be any rows in the **playlist_stream_join** table
+    // that have a foreign key to that playlist. Thus, the **playlist_id** will not have a
+    // corresponding value in any rows of the join table. So, if you group by the **playlist_id**,
+    // only playlists that contain videos are grouped and displayed. Look at #9642 #13055
+
     @Transaction
     @Query(
         """
@@ -103,6 +108,11 @@ interface PlaylistStreamDAO : BasicDAO<PlaylistStreamEntity> {
     )
     fun getStreamsWithoutDuplicates(playlistId: Long): Flowable<MutableList<PlaylistStreamEntry>>
 
+    // If a playlist has no streams, there won’t be any rows in the **playlist_stream_join** table
+    // that have a foreign key to that playlist. Thus, the **playlist_id** will not have a
+    // corresponding value in any rows of the join table. So, if you group by the **playlist_id**,
+    // only playlists that contain videos are grouped and displayed. Look at #9642 #13055
+
     @Transaction
     @Query(
         """
@@ -118,7 +128,7 @@ interface PlaylistStreamDAO : BasicDAO<PlaylistStreamEntity> {
         LEFT JOIN streams
         ON streams.uid = stream_id AND :streamUrl = :streamUrl
 
-        GROUP BY playlist_id
+        GROUP BY playlists.uid
         ORDER BY display_index, name
         """
     )

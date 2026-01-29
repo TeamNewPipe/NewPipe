@@ -8,6 +8,7 @@ import androidx.room.Transaction
 import androidx.room.Update
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Maybe
+import java.time.OffsetDateTime
 import org.schabi.newpipe.database.feed.model.FeedEntity
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.feed.model.FeedLastUpdatedEntity
@@ -15,7 +16,6 @@ import org.schabi.newpipe.database.stream.StreamWithState
 import org.schabi.newpipe.database.stream.model.StreamStateEntity
 import org.schabi.newpipe.database.subscription.NotificationMode
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
-import java.time.OffsetDateTime
 
 @Dao
 abstract class FeedDAO {

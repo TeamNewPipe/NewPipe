@@ -840,4 +840,14 @@
     <string name="delete_file">Eliminar archivo</string>
     <string name="short_thousand">%sM</string>
     <string name="short_million">%sM</string>
+    <string name="delete_entry">Eliminar entrada</string>
+    <string name="account_terminated_service_provides_reason">Cuenta cancelada\n\n%1$s proporciona esta razón: %2$s</string>
+    <string name="entry_deleted">Entrada eliminada</string>
+    <string name="player_http_403">Error HTTP 403 recibido del servidor durante la reproducción, probablemente causado por la expiración de la URL de transmisión o una prohibición de IP</string>
+    <string name="player_http_invalid_status">Error HTTP %1$s recibido del servidor durante la reproducción</string>
+    <string name="youtube_player_http_403">Error HTTP 403 recibido del servidor durante la reproducción, probablemente causado por una prohibición de IP o problemas de desofuscación de la URL de transmisión</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s se negó a proporcionar datos y solicitó un inicio de sesión para confirmar que el solicitante no es un bot.\n\nEs posible que tu IP haya sido bloqueada temporalmente por %1$s. Puedes esperar un tiempo o cambiar a una IP diferente (por ejemplo, habilitando o deshabilitando una VPN, o cambiando de WiFi a datos móviles).</string>
+    <string name="short_billion">%sMM</string>
+    <string name="unsupported_content_in_country">Este contenido no está disponible para el país seleccionado actualmente.\n\nCambia tu selección en «Ajustes &gt; Contenido &gt; País predefinido del contenido».</string>
+    <string name="permission_display_over_apps_message">Para usar el reproductor emergente, seleccione %1$s en el siguiente menú de la configuración de Android y habilite %2$s.</string>
 </resources>

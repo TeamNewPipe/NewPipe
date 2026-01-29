@@ -830,4 +830,11 @@
     <string name="short_billion">%sB</string>
     <string name="delete_file">Slet fil</string>
     <string name="account_terminated_service_provides_reason">Kontoen er blevet lukket\n\n%1$s angiver følgende årsag: %2$s</string>
+    <string name="channel_tab_likes">Likes</string>
+    <string name="migration_info_6_7_title">SoundCloud Top 50-siden fjernet</string>
+    <string name="migration_info_6_7_message">SoundCloud har udfaset de oprindelige Top 50-hitlister. Den tilhørende fane er blevet fjernet fra din hovedside.</string>
+    <string name="migration_info_7_8_title">YouTube kombineret trending fjernet</string>
+    <string name="migration_info_7_8_message">YouTube har udfaset den kombinerede trending-side pr. 21. juli 2025. NewPipe har erstattet standardsiden for trending med trending livestreams.\n\nDu kan også vælge andre trending-sider under \"Indstillinger &gt; Indhold &gt; Indhold på hovedsiden\".</string>
+    <string name="trending_gaming">Gaming-trends</string>
+    <string name="trending_podcasts">Trending podcasts</string>
 </resources>

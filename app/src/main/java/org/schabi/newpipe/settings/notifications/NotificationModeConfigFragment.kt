@@ -45,7 +45,7 @@ class NotificationModeConfigFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentChannelsNotificationsBinding.inflate(inflater, container, false)
         return binding.root
@@ -90,6 +90,7 @@ class NotificationModeConfigFragment : Fragment() {
                 toggleAll()
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }

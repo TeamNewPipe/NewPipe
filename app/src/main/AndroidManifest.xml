@@ -383,6 +383,7 @@
 
                 <data android:host="eduvid.org" />
                 <data android:host="framatube.org" />
+                <data android:host="indymotion.fr" />
                 <data android:host="media.assassinate-you.net" />
                 <data android:host="media.fsfe.org" />
                 <data android:host="peertube.co.uk" />

@@ -53,6 +53,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.time.OffsetDateTime
+import java.util.function.Consumer
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
@@ -82,8 +84,6 @@ import org.schabi.newpipe.util.ThemeHelper.getGridSpanCountStreams
 import org.schabi.newpipe.util.ThemeHelper.getItemViewMode
 import org.schabi.newpipe.util.ThemeHelper.resolveDrawable
 import org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout
-import java.time.OffsetDateTime
-import java.util.function.Consumer
 
 class FeedFragment : BaseStateFragment<FeedState>() {
     private var _feedBinding: FragmentFeedBinding? = null
@@ -92,7 +92,10 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     private val disposables = CompositeDisposable()
 
     private lateinit var viewModel: FeedViewModel
-    @State @JvmField var listState: Parcelable? = null
+
+    @State
+    @JvmField
+    var listState: Parcelable? = null
 
     private var groupId = FeedGroupEntity.GROUP_ALL_ID
     private var groupName = ""
@@ -151,7 +154,6 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE &&
                     !recyclerView.canScrollVertically(-1)
                 ) {
-
                     if (tryGetNewItemsLoadedButton()?.isVisible == true) {
                         hideNewItemsLoaded(true)
                     }
@@ -392,8 +394,13 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             if (item is StreamItem && !isRefreshing) {
                 val stream = item.streamWithState.stream
                 NavigationHelper.openVideoDetailFragment(
-                    requireContext(), fm,
-                    stream.serviceId, stream.url, stream.title, null, false
+                    requireContext(),
+                    fm,
+                    stream.serviceId,
+                    stream.url,
+                    stream.title,
+                    null,
+                    false
                 )
             }
         }
@@ -505,7 +512,8 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     ) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val isFastFeedModeEnabled = sharedPreferences.getBoolean(
-            getString(R.string.feed_use_dedicated_fetch_method_key), false
+            getString(R.string.feed_use_dedicated_fetch_method_key),
+            false
         )
 
         val builder = AlertDialog.Builder(requireContext())
@@ -540,7 +548,8 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     private fun updateRelativeTimeViews() {
         updateRefreshViewState()
         groupAdapter.notifyItemRangeChanged(
-            0, groupAdapter.itemCount,
+            0,
+            groupAdapter.itemCount,
             StreamItem.UPDATE_RELATIVE_TIME
         )
     }

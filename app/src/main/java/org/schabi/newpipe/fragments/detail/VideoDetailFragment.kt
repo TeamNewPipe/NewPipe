@@ -56,6 +56,11 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.LinkedList
+import java.util.concurrent.TimeUnit
+import kotlin.math.abs
+import kotlin.math.max
+import kotlin.math.min
 import org.schabi.newpipe.App
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.stream.model.StreamEntity
@@ -115,11 +120,6 @@ import org.schabi.newpipe.util.ThemeHelper
 import org.schabi.newpipe.util.external_communication.KoreUtils
 import org.schabi.newpipe.util.external_communication.ShareUtils
 import org.schabi.newpipe.util.image.CoilHelper
-import java.util.LinkedList
-import java.util.concurrent.TimeUnit
-import kotlin.math.abs
-import kotlin.math.max
-import kotlin.math.min
 
 class VideoDetailFragment :
     BaseStateFragment<StreamInfo>(),
@@ -128,14 +128,29 @@ class VideoDetailFragment :
     OnKeyDownListener {
 
     // stream info
-    @JvmField @State var serviceId: Int = NO_SERVICE_ID
-    @JvmField @State var title: String = ""
-    @JvmField @State var url: String? = null
+    @JvmField
+    @State
+    var serviceId: Int = NO_SERVICE_ID
+
+    @JvmField
+    @State
+    var title: String = ""
+
+    @JvmField
+    @State
+    var url: String? = null
     private var currentInfo: StreamInfo? = null
 
     // player objects
     private var playQueue: PlayQueue? = null
-    @JvmField @State var autoPlayEnabled: Boolean = true
+
+    @JvmField
+    @State
+    var autoPlayEnabled: Boolean = true
+
+    @JvmField
+    @State
+    var originalOrientation: Int = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
     private var playerService: PlayerService? = null
     private var player: Player? = null
 
@@ -151,7 +166,9 @@ class VideoDetailFragment :
     private var showRelatedItems = false
     private var showDescription = false
     private lateinit var selectedTabTag: String
+
     @AttrRes val tabIcons = ArrayList<Int>()
+
     @StringRes val tabContentDescriptions = ArrayList<Int>()
     private var tabSettingsChanged = false
     private var lastAppBarVerticalOffset = Int.Companion.MAX_VALUE // prevents useless updates
@@ -171,8 +188,13 @@ class VideoDetailFragment :
         }
 
     // bottom sheet
-    @JvmField @State var bottomSheetState: Int = BottomSheetBehavior.STATE_EXPANDED
-    @JvmField @State var lastStableBottomSheetState: Int = BottomSheetBehavior.STATE_EXPANDED
+    @JvmField
+    @State
+    var bottomSheetState: Int = BottomSheetBehavior.STATE_EXPANDED
+
+    @JvmField
+    @State
+    var lastStableBottomSheetState: Int = BottomSheetBehavior.STATE_EXPANDED
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<FrameLayout?>
     private lateinit var bottomSheetCallback: BottomSheetCallback
     private lateinit var broadcastReceiver: BroadcastReceiver
@@ -243,7 +265,8 @@ class VideoDetailFragment :
         showRelatedItems = prefs.getBoolean(getString(R.string.show_next_video_key), true)
         showDescription = prefs.getBoolean(getString(R.string.show_description_key), true)
         selectedTabTag = prefs.getString(
-            getString(R.string.stream_info_selected_tab_key), COMMENTS_TAB_TAG
+            getString(R.string.stream_info_selected_tab_key),
+            COMMENTS_TAB_TAG
         )!!
         prefs.registerOnSharedPreferenceChangeListener(preferenceChangeListener)
 
@@ -257,7 +280,8 @@ class VideoDetailFragment :
             }
         }
         activity.contentResolver.registerContentObserver(
-            Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION), false,
+            Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION),
+            false,
             settingsContentObserver!!
         )
     }
@@ -356,7 +380,13 @@ class VideoDetailFragment :
         if (requestCode == ReCaptchaActivity.RECAPTCHA_REQUEST) {
             if (resultCode == Activity.RESULT_OK) {
                 NavigationHelper.openVideoDetailFragment(
-                    requireContext(), getFM(), serviceId, url, title, null, false
+                    requireContext(),
+                    getFM(),
+                    serviceId,
+                    url,
+                    title,
+                    null,
+                    false
                 )
             } else {
                 Log.e(TAG, "ReCaptcha failed")
@@ -561,7 +591,7 @@ class VideoDetailFragment :
             KoreUtils.shouldShowPlayWithKodi(requireContext(), serviceId)
         binding.detailControlsCrashThePlayer.isVisible =
             DEBUG && PreferenceManager.getDefaultSharedPreferences(requireContext())
-            .getBoolean(getString(R.string.show_crash_the_player_key), false)
+                .getBoolean(getString(R.string.show_crash_the_player_key), false)
 
         accommodateForTvAndDesktopMode()
     }
@@ -844,7 +874,9 @@ class VideoDetailFragment :
     private fun updateTabs(info: StreamInfo) {
         if (showRelatedItems) {
             when (val relatedItemsLayout = binding.relatedItemsLayout) {
-                null -> pageAdapter.updateItem(RELATED_TAB_TAG, getInstance(info)) // phone
+                // phone
+                null -> pageAdapter.updateItem(RELATED_TAB_TAG, getInstance(info))
+
                 else -> { // tablet + TV
                     getChildFragmentManager().beginTransaction()
                         .replace(R.id.relatedItemsLayout, getInstance(info))
@@ -895,7 +927,9 @@ class VideoDetailFragment :
                     val viewPagerVisibleHeight = height - pagerHitRect.top
                     // see TabLayout.DEFAULT_HEIGHT, which is equal to 48dp
                     val tabLayoutHeight = TypedValue.applyDimension(
-                        TypedValue.COMPLEX_UNIT_DIP, 48f, resources.displayMetrics
+                        TypedValue.COMPLEX_UNIT_DIP,
+                        48f,
+                        resources.displayMetrics
                     )
 
                     if (viewPagerVisibleHeight > tabLayoutHeight * 2) {
@@ -996,7 +1030,7 @@ class VideoDetailFragment :
         }
 
         if (PreferenceManager.getDefaultSharedPreferences(activity)
-            .getBoolean(this.getString(R.string.use_external_video_player_key), false)
+                .getBoolean(this.getString(R.string.use_external_video_player_key), false)
         ) {
             showExternalVideoPlaybackDialog()
         } else {
@@ -1045,7 +1079,10 @@ class VideoDetailFragment :
         tryAddVideoPlayerView()
 
         val playerIntent = NavigationHelper.getPlayerIntent(
-            requireContext(), PlayerService::class.java, queue, PlayerIntentType.AllOthers
+            requireContext(),
+            PlayerService::class.java,
+            queue,
+            PlayerIntentType.AllOthers
         )
             .putExtra(Player.PLAY_WHEN_READY, autoPlayEnabled)
             .putExtra(Player.RESUME_PLAYBACK, true)
@@ -1101,7 +1138,10 @@ class VideoDetailFragment :
         selectedStream: Stream
     ) {
         NavigationHelper.playOnExternalPlayer(
-            context, info.name, info.subChannelName, selectedStream
+            context,
+            info.name,
+            info.subChannelName,
+            selectedStream
         )
 
         val recordManager = HistoryRecordManager(requireContext())
@@ -1172,10 +1212,11 @@ class VideoDetailFragment :
 
     private val preDrawListener: OnPreDrawListener = OnPreDrawListener {
         view?.let { view ->
-            val decorView = if (DeviceUtils.isInMultiWindow(activity))
+            val decorView = if (DeviceUtils.isInMultiWindow(activity)) {
                 view
-            else
+            } else {
                 activity.window.decorView
+            }
             setHeightThumbnail(decorView.height, resources.displayMetrics)
             view.getViewTreeObserver().removeOnPreDrawListener(preDrawListener)
         }
@@ -1195,10 +1236,11 @@ class VideoDetailFragment :
 
         if (this.isFullscreen) {
             val height = (
-                if (DeviceUtils.isInMultiWindow(activity))
+                if (DeviceUtils.isInMultiWindow(activity)) {
                     requireView()
-                else
+                } else {
                     activity.window.decorView
+                }
                 ).height
             // Height is zero when the view is not yet displayed like after orientation change
             if (height != 0) {
@@ -1209,10 +1251,11 @@ class VideoDetailFragment :
         } else {
             val isPortrait = metrics.heightPixels > metrics.widthPixels
             val height = (
-                if (isPortrait)
+                if (isPortrait) {
                     metrics.widthPixels / (16.0f / 9.0f)
-                else
+                } else {
                     metrics.heightPixels / 2.0f
+                }
                 ).toInt()
             setHeightThumbnail(height, metrics)
         }
@@ -1287,7 +1330,9 @@ class VideoDetailFragment :
             override fun onReceive(context: Context?, intent: Intent) {
                 when (intent.action) {
                     ACTION_SHOW_MAIN_PLAYER -> bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED)
+
                     ACTION_HIDE_MAIN_PLAYER -> bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN)
+
                     ACTION_PLAYER_STARTED -> {
                         // If the state is not hidden we don't need to show the mini player
                         if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN) {
@@ -1445,8 +1490,10 @@ class VideoDetailFragment :
         checkUpdateProgressInfo(info)
         CoilHelper.loadDetailsThumbnail(binding.detailThumbnailImageView, info.thumbnails)
         ExtractorHelper.showMetaInfoInTextView(
-            info.metaInfo, binding.detailMetaInfoTextView,
-            binding.detailMetaInfoSeparator, disposables
+            info.metaInfo,
+            binding.detailMetaInfoTextView,
+            binding.detailMetaInfoSeparator,
+            disposables
         )
 
         if (playerIsStopped) {
@@ -1560,7 +1607,9 @@ class VideoDetailFragment :
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { state -> updatePlaybackProgress(state.progressMillis, info.duration * 1000) },
-                { throwable -> /* impossible due to the onErrorComplete() */ },
+                { throwable ->
+                    /* impossible due to the onErrorComplete() */
+                },
                 {
                     /* onComplete */
                     binding.positionView.visibility = View.GONE
@@ -1606,7 +1655,7 @@ class VideoDetailFragment :
             Log.d(
                 TAG,
                 "onQueueUpdate() called with: serviceId = [$serviceId], url = [${
-                url}], name = [$title], playQueue = [$playQueue]"
+                    url}], name = [$title], playQueue = [$playQueue]"
             )
         }
 
@@ -1730,24 +1779,24 @@ class VideoDetailFragment :
     }
 
     override fun onFullscreenToggleButtonClicked() {
-        // In tablet user experience will be better if screen will not be rotated
-        // from landscape to portrait every time.
-        // Just turn on fullscreen mode in landscape orientation
-        // or portrait & unlocked global orientation
-        val isLandscape = DeviceUtils.isLandscape(requireContext())
-        if (DeviceUtils.isTablet(activity) &&
-            (!PlayerHelper.globalScreenOrientationLocked(activity) || isLandscape)
-        ) {
-            player!!.UIs().get(MainPlayerUi::class)?.toggleFullscreen()
+        val playerUi: MainPlayerUi = player?.UIs()?.get(MainPlayerUi::class.java) ?: return
+
+        // On tablets and TVs, just toggle fullscreen UI without orientation change.
+        if (DeviceUtils.isTablet(activity) || DeviceUtils.isTv(activity)) {
+            playerUi.toggleFullscreen()
             return
         }
 
-        val newOrientation = if (isLandscape)
-            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        else
-            ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
-
-        activity.setRequestedOrientation(newOrientation)
+        if (playerUi.isFullscreen) {
+            // EXITING FULLSCREEN
+            playerUi.toggleFullscreen()
+            activity.setRequestedOrientation(originalOrientation)
+        } else {
+            // ENTERING FULLSCREEN
+            originalOrientation = activity.getRequestedOrientation()
+            playerUi.toggleFullscreen()
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE)
+        }
     }
 
     /*
@@ -1786,7 +1835,8 @@ class VideoDetailFragment :
         activity.window.decorView.systemUiVisibility = 0
         activity.window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         activity.window.statusBarColor = ThemeHelper.resolveColorFromAttr(
-            requireContext(), android.R.attr.colorPrimary
+            requireContext(),
+            android.R.attr.colorPrimary
         )
     }
 
@@ -2012,7 +2062,8 @@ class VideoDetailFragment :
 
         if (audioTracks.isEmpty()) {
             Toast.makeText(
-                activity, R.string.no_audio_streams_available_for_external_players,
+                activity,
+                R.string.no_audio_streams_available_for_external_players,
                 Toast.LENGTH_SHORT
             ).show()
         } else if (audioTracks.size == 1) {
@@ -2052,6 +2103,7 @@ class VideoDetailFragment :
     /*//////////////////////////////////////////////////////////////////////////
     // Bottom mini player
     ////////////////////////////////////////////////////////////////////////// */
+
     /**
      * That's for Android TV support. Move focus from main fragment to the player or back
      * based on what is currently selected
@@ -2310,6 +2362,7 @@ class VideoDetailFragment :
         /*//////////////////////////////////////////////////////////////////////////
         // OwnStack
         ////////////////////////////////////////////////////////////////////////// */
+
         /**
          * Stack that contains the "navigation history".<br></br>
          * The peek is the current video.

@@ -55,8 +55,8 @@ data class SubscriptionEntity(
     fun toChannelInfoItem(): ChannelInfoItem {
         return ChannelInfoItem(this.serviceId, this.url, this.name).apply {
             thumbnails = ImageStrategy.dbUrlToImageList(this@SubscriptionEntity.avatarUrl)
-            subscriberCount = this.subscriberCount
-            description = this.description
+            subscriberCount = this@SubscriptionEntity.subscriberCount ?: -1
+            description = this@SubscriptionEntity.description
         }
     }
 

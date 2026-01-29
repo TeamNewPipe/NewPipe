@@ -26,6 +26,9 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.viewbinding.GroupieViewHolder
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity.Companion.GROUP_ALL_ID
 import org.schabi.newpipe.databinding.DialogTitleBinding
@@ -59,9 +62,6 @@ import org.schabi.newpipe.util.OnClickGesture
 import org.schabi.newpipe.util.ServiceHelper
 import org.schabi.newpipe.util.ThemeHelper.getGridSpanCountChannels
 import org.schabi.newpipe.util.external_communication.ShareUtils
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private var _binding: FragmentSubscriptionBinding? = null
@@ -231,7 +231,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         val data = result.data?.dataString
         if (data != null && result.resultCode == Activity.RESULT_OK) {
             ImportConfirmationDialog.show(
-                this, SubscriptionImportInput.PreviousExportMode(data)
+                this,
+                SubscriptionImportInput.PreviousExportMode(data)
             )
         }
     }
@@ -272,10 +273,13 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 when (item) {
                     is FeedGroupCardItem ->
                         NavigationHelper.openFeedFragment(fm, item.groupId, item.name)
+
                     is FeedGroupCardGridItem ->
                         NavigationHelper.openFeedFragment(fm, item.groupId, item.name)
+
                     is FeedGroupAddNewItem ->
                         FeedGroupDialog.newInstance().show(fm, null)
+
                     is FeedGroupAddNewGridItem ->
                         FeedGroupDialog.newInstance().show(fm, null)
                 }
@@ -290,6 +294,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 when (item) {
                     is FeedGroupCardItem ->
                         FeedGroupDialog.newInstance(item.groupId).show(fm, null)
+
                     is FeedGroupCardGridItem ->
                         FeedGroupDialog.newInstance(item.groupId).show(fm, null)
                 }
@@ -305,7 +310,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 title = getString(R.string.feed_groups_header_title),
                 onSortClicked = ::openReorderDialog,
                 onToggleListViewModeClicked = ::toggleListViewMode,
-                listViewMode = viewModel.getListViewMode(),
+                listViewMode = viewModel.getListViewMode()
             )
 
             add(Section(feedGroupsSortMenuItem, listOf(feedGroupsCarousel)))
@@ -338,9 +343,14 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         val actions = DialogInterface.OnClickListener { _, i ->
             when (i) {
                 0 -> ShareUtils.shareText(
-                    requireContext(), selectedItem.name, selectedItem.url, selectedItem.thumbnails
+                    requireContext(),
+                    selectedItem.name,
+                    selectedItem.url,
+                    selectedItem.thumbnails
                 )
+
                 1 -> ShareUtils.openUrlInBrowser(requireContext(), selectedItem.url)
+
                 2 -> deleteChannel(selectedItem)
             }
         }
@@ -370,7 +380,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private val listenerChannelItem = object : OnClickGesture<ChannelInfoItem> {
         override fun selected(selectedItem: ChannelInfoItem) = NavigationHelper.openChannelFragment(
             fm,
-            selectedItem.serviceId, selectedItem.url, selectedItem.name
+            selectedItem.serviceId,
+            selectedItem.url,
+            selectedItem.name
         )
 
         override fun held(selectedItem: ChannelInfoItem) = showLongTapDialog(selectedItem)
@@ -400,6 +412,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                     itemsListState = null
                 }
             }
+
             is SubscriptionState.ErrorState -> {
                 result.error?.let {
                     showError(ErrorInfo(result.error, UserAction.SOMETHING_ELSE, "Subscriptions"))

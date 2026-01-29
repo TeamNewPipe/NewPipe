@@ -58,15 +58,16 @@ fun RelatedItems(info: StreamInfo) {
     ItemList(
         items = flowOf(PagingData.from(displayItems)).collectAsLazyPagingItems(),
         mode = ItemViewMode.LIST,
-        header = {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 12.dp, end = 12.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Text(text = stringResource(R.string.auto_queue_description))
+        listHeader = {
+            item {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 12.dp, end = 12.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(text = stringResource(R.string.auto_queue_description))
 
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(4.dp),
@@ -116,7 +117,7 @@ private fun RelatedItemsPreview() {
     info.relatedItems = listOf(
         StreamInfoItem(streamType = StreamType.NONE),
         StreamInfoItem(streamType = StreamType.LIVE_STREAM),
-        StreamInfoItem(streamType = StreamType.AUDIO_LIVE_STREAM),
+        StreamInfoItem(streamType = StreamType.AUDIO_LIVE_STREAM)
     )
 
     AppTheme {

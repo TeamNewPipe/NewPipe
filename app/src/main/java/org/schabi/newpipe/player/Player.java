@@ -391,7 +391,7 @@ public final class Player implements PlaybackListener, Listener {
                         return;
                     }
                     final PlayQueueItem newItem = newQueue.getStreams().get(0);
-                    newQueue.enqueueNext(newItem, false);
+                    playQueue.enqueueNext(newItem, false);
                     return;
                 }
 

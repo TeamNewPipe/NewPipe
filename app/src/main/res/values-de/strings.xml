@@ -833,7 +833,7 @@
     <string name="trending_movies">Beliebte Filme und Shows</string>
     <string name="trending_music">Beliebte Musik</string>
     <string name="trending_podcasts">Beliebte Podcasts</string>
-    <string name="migration_info_7_8_title">YouTube hat den geteilten Feed entfernt</string>
+    <string name="migration_info_7_8_title">YouTube hat die kombinierten „beliebten Seiten“ entfernt</string>
     <string name="migration_info_7_8_message">YouTube hat die kombinierte Trending-Seite ab dem 21. Juli 2025 eingestellt. NewPipe hat die Standard-Trending-Seite durch die Trending-Livestreams ersetzt.\n\nDu kannst auch verschiedene Trendseiten unter „Einstellungen &gt; Inhalt &gt; Inhalt der Hauptseite“ auswählen.</string>
     <string name="permission_display_over_apps_message">Um den Pop-up-Player zu verwenden, bitte in den folgenden Android-Einstellungen %1$s auswählen und %2$s aktivieren.</string>
     <string name="permission_display_over_apps_permission_name">„Über anderen Apps einblenden“</string>

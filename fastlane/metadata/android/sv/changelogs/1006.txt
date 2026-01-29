@@ -1,0 +1,9 @@
+# Förbättrat
+Behåll aktuell spelare när du klickar på tidsstämplar
+Försök att återställa väntande nedladdningsuppdrag när det är möjligt
+Lägg till alternativ för att ta bort en nedladdning utan att också ta bort filen
+Överläggsbehörighet: visa förklarande dialogruta för Android > R
+Stöd för att öppna on.soundcloud-länkar
+Åtgärdade formatering av korta antal för Android-versioner under 7
+Åtgärdade Ghost Notifications
+Åtgärdade för SRT-undertextfiler

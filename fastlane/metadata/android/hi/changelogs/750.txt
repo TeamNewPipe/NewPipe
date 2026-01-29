@@ -1,22 +1,13 @@
-New
-Playback resume #2288
-• Resume streams where you stopped last time
-Downloader Enhancements #2149 
-• Use Storage Access Framework to store downloads on external SD-cards
-• New mp4 muxer
-• Optionally change the download directory before starting a download
-• Respect metered networks 
+नया
+प्लेबैक फिर से शुरू करें #2288
+• स्ट्रीम वहीं से फिर से शुरू करें जहाँ आपने पिछली बार रोका था
+डाउनलोडर एन्हांसमेंट #2149
+• एक्सटर्नल SD-कार्ड पर डाउनलोड स्टोर करने के लिए स्टोरेज एक्सेस फ्रेमवर्क का इस्तेमाल करें
 
+बेहतर
+• एक्टिविटी लाइफसाइकल के दौरान (ऑटो) रोटेशन में बदलाव को हैंडल करें #2444
+• लॉन्ग-प्रेस मेनू को एक जैसा बनाएं #2368
 
-Improved
-• Removed gema strings #2295
-• Handle (auto)rotation changes during activity lifecycle #2444
-• Make long-press menus consistent #2368
-
-Fixed
-• Fixed selected subtitle track name not being shown #2394
-• Do not crash when check for app update fails (GitHub version) #2423 
-• Fixed downloads stuck at 99.9% #2440
-• Update play queue metadata #2453 
-• [SoundCloud] Fixed crash when loading playlists TeamNewPipe/NewPipeExtractor#170
-• [YouTube] Fixed duration can not be paresd TeamNewPipe/NewPipeExtractor#177
+ठीक किया गया
+• चुने हुए सबटाइटल ट्रैक का नाम नहीं दिखना ठीक किया गया #2394
+• 99.9% पर अटके डाउनलोड को ठीक किया गया #2440

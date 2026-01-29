@@ -34,6 +34,7 @@ import androidx.paging.LoadState
 import androidx.paging.LoadStates
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
+import java.net.UnknownHostException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -54,7 +55,6 @@ import org.schabi.newpipe.ui.emptystate.EmptyStateComposable
 import org.schabi.newpipe.ui.emptystate.EmptyStateSpec
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.viewmodels.util.Resource
-import java.net.UnknownHostException
 
 class CommentSectionInstrumentedTest {
 
@@ -277,6 +277,7 @@ private fun TestCommentSection(
                 is Resource.Loading -> item {
                     LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
                 }
+
                 is Resource.Success -> {
                     val commentInfo = (uiState as Resource.Success<CommentInfo>).data
                     val count = commentInfo.commentCount
@@ -290,6 +291,7 @@ private fun TestCommentSection(
                                     .heightIn(min = 128.dp)
                             )
                         }
+
                         count == 0 -> item {
                             EmptyStateComposable(
                                 spec = EmptyStateSpec.NoComments,
@@ -298,6 +300,7 @@ private fun TestCommentSection(
                                     .heightIn(min = 128.dp)
                             )
                         }
+
                         else -> {
                             if (count >= 0) {
                                 item {
@@ -314,6 +317,7 @@ private fun TestCommentSection(
                                 is LoadState.Loading -> item {
                                     LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
                                 }
+
                                 is LoadState.Error -> item {
                                     Box(
                                         modifier = Modifier.fillMaxWidth()
@@ -329,6 +333,7 @@ private fun TestCommentSection(
                                         )
                                     }
                                 }
+
                                 else -> items(comments.itemCount) { index ->
                                     Comment(comment = comments[index]!!) {}
                                 }
@@ -336,6 +341,7 @@ private fun TestCommentSection(
                         }
                     }
                 }
+
                 is Resource.Error -> item {
                     Box(
                         modifier = Modifier.fillMaxSize(),
