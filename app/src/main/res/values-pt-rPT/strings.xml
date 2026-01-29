@@ -264,7 +264,6 @@
     <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' permite transferências para um cartão SD externo</string>
     <string name="seek_duration_title">Duração da pesquisa de avanço/recuo rápido</string>
     <string name="missing_file">Ficheiro movido ou eliminado</string>
-    <string name="title_last_played">Última reprodução</string>
     <string name="website_encouragement">Visite o site NewPipe para obter mais informação e novidades.</string>
     <string name="import_soundcloud_instructions">Importe o seu perfil SoundCloud digitando o URL ou a ID.:
 \n
@@ -315,7 +314,6 @@
     <string name="settings_category_feed_title">Fonte</string>
     <string name="playlist_page_summary">Página da lista de reprodução</string>
     <string name="settings">Definições</string>
-    <string name="title_most_played">Mais reproduzido</string>
     <string name="search_showing_result_for">A mostrar resultados para: %s</string>
     <string name="switch_to_background">Mudar para segundo plano</string>
     <string name="albums">Álbuns</string>

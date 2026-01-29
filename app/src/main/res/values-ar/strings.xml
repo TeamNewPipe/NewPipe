@@ -283,8 +283,6 @@
     <string name="no_streams_available_download">لا يوجد بث متاح للتنزيل</string>
     <string name="one_item_deleted">تم حذف عنصر واحد.</string>
     <string name="app_license">NewPipe هو برنامج مفتوح المصدر وبحقوق متروكة: يمكنك استخدام الكود ودراسته وتحسينه كما شئت. وعلى وجه التحديد يمكنك إعادة توزيعه / أو تعديله تحت شروط رخصة GNU العمومية والتي نشرتها مؤسسة البرمجيات الحرة، سواء الإصدار 3 من الرخصة، أو (باختيارك) أي إصدار أحدث.</string>
-    <string name="title_last_played">آخر ما تم تشغيله</string>
-    <string name="title_most_played">الأكثر تشغيلا</string>
     <string name="override_current_data">هذا سوف يُزيل إعداداتك الحالية.</string>
     <string name="preferred_open_action_settings_title">طريقة \'التشغيل\' المفضلة</string>
     <string name="preferred_open_action_settings_summary">الإجراء الافتراضي عند فتح المحتوى — %s</string>
@@ -568,7 +566,6 @@
     <string name="search_showing_result_for">عرض نتائج ل: %s</string>
     <string name="never">أبدا</string>
     <string name="wifi_only">فقط على شبكة Wi-Fi</string>
-    <string name="autoplay_summary">بدء التشغيل تلقائياً — %s</string>
     <string name="title_activity_play_queue">تشغيل قائمة الانتظار</string>
     <string name="unsupported_url_dialog_message">تعذر التعرف على الرابط. فتح باستخدام تطبيق آخر؟</string>
     <string name="auto_queue_toggle">قائمة انتظار تلقائيّة</string>

@@ -239,8 +239,6 @@
     <string name="title_activity_history">इतिहास</string>
     <string name="action_history">इतिहास</string>
     <string name="delete_item_search_history">तपाईं खोज इतिहासबाट यो वस्तु मेटाउन चाहनुहुन्छ\?</string>
-    <string name="title_last_played">पछिल्लो पालि खोलिएको</string>
-    <string name="title_most_played">धेरै हेरिएको</string>
     <string name="main_page_content">मुख्य पृष्ठको सामग्री</string>
     <string name="main_page_content_summary">मुख्य पृष्ठ मा कुनकुन ट्याबहरू देखाइन्छ</string>
     <string name="blank_page_summary">खाली पृष्ठ</string>

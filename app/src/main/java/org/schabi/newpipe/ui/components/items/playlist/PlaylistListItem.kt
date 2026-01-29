@@ -17,15 +17,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import org.schabi.newpipe.extractor.InfoItem
-import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem
+import org.schabi.newpipe.ui.components.items.Playlist
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.NO_SERVICE_ID
 
 @Composable
 fun PlaylistListItem(
-    playlist: PlaylistInfoItem,
-    onClick: (InfoItem) -> Unit = {}
+    playlist: Playlist,
+    onClick: (Playlist) -> Unit = {},
 ) {
     Row(
         modifier = Modifier
@@ -49,7 +48,7 @@ fun PlaylistListItem(
             )
 
             Text(
-                text = playlist.uploaderName.orEmpty(),
+                text = playlist.uploaderName,
                 style = MaterialTheme.typography.bodySmall
             )
         }
@@ -60,8 +59,7 @@ fun PlaylistListItem(
 @Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun PlaylistListItemPreview() {
-    val playlist = PlaylistInfoItem(NO_SERVICE_ID, "", "Playlist")
-    playlist.uploaderName = "Uploader"
+    val playlist = Playlist(NO_SERVICE_ID, "", "Playlist", uploaderName = "Uploader")
 
     AppTheme {
         Surface {

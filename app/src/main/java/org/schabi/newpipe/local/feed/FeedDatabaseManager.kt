@@ -1,7 +1,6 @@
 package org.schabi.newpipe.local.feed
 
 import android.content.Context
-import android.util.Log
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
@@ -11,6 +10,7 @@ import java.time.LocalDate
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import org.schabi.newpipe.MainActivity.DEBUG
+import kotlinx.coroutines.rx3.await
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.database.feed.model.FeedEntity
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
@@ -110,20 +110,9 @@ class FeedDatabaseManager(context: Context) {
         )
     }
 
-    fun removeOrphansOrOlderStreams(oldestAllowedDate: OffsetDateTime = FEED_OLDEST_ALLOWED_DATE) {
+    suspend fun removeOrphansOrOlderStreams(oldestAllowedDate: OffsetDateTime = FEED_OLDEST_ALLOWED_DATE) {
         feedTable.unlinkStreamsOlderThan(oldestAllowedDate)
-        streamTable.deleteOrphans()
-    }
-
-    fun clear() {
-        feedTable.deleteAll()
-        val deletedOrphans = streamTable.deleteOrphans()
-        if (DEBUG) {
-            Log.d(
-                this::class.java.simpleName,
-                "clear() → streamTable.deleteOrphans() → $deletedOrphans"
-            )
-        }
+        streamTable.deleteOrphans().await()
     }
 
     // /////////////////////////////////////////////////////////////////////////

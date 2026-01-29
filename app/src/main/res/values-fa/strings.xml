@@ -186,8 +186,6 @@
     <string name="title_activity_history">تاریخچه</string>
     <string name="action_history">تاریخچه</string>
     <string name="delete_item_search_history">می‌خواهید این مورد را از تاریخچه جستجو پاک کنید؟</string>
-    <string name="title_last_played">آخرین پخش‌شده</string>
-    <string name="title_most_played">بیشترین پخش‌شده</string>
     <string name="main_page_content">محتوای صفحه اصلی</string>
     <string name="blank_page_summary">صفحه خالی</string>
     <string name="kiosk_page_summary">صفحه کیوسک</string>

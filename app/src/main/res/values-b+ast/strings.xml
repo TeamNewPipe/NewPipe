@@ -408,8 +408,6 @@
     <string name="channel_page_summary">Páxina d\'una canal</string>
     <string name="default_kiosk_page_summary">Quioscu predetermináu</string>
     <string name="kiosk_page_summary">Páxina de quioscu</string>
-    <string name="title_most_played">Lo más reproducío</string>
-    <string name="title_last_played">Lo último reproducío</string>
     <string name="app_license">NewPipe ye software copyleft: pues usalu, estudialu, compartilu y ameyoralu como quieras. N\'especial, pues redistribuyilu y/o modificalu baxo los términos de la GNU General Public License según espublizó la Free Software Foundation, quier la versión 3 de la llicencia quier (na to opinión) cualesquier versión posterior.</string>
     <string name="privacy_policy_encouragement">El proyeutu de NewPipe toma mui en serio la privacidá. Poro, l\'aplicación nun recueye nengún datu ensin el to consentimientu.
 \nLa política de privacidá de NewPipe desplica en detalle los datos que s\'unvien y atroxen cuando unvies un informe de casque.</string>

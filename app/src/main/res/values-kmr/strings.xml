@@ -154,8 +154,6 @@
     <string name="blank_page_summary">Rûpelê Vala</string>
     <string name="main_page_content_summary">Kîjan tabî di rûpelê sereke de têne nîşandin</string>
     <string name="main_page_content">Naveroka rûpelê sereke</string>
-    <string name="title_most_played">Pir lîstin</string>
-    <string name="title_last_played">Lîstika dawîn</string>
     <string name="delete_item_search_history">Ma hûn dixwazin vî tiştî ji dîroka lêgerînê paqij bikin\?</string>
     <string name="action_history">Dîrok</string>
     <string name="title_activity_history">Dîrok</string>

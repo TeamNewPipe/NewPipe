@@ -119,7 +119,7 @@ abstract class FeedDAO {
               AND   s.upload_date <> max_upload_date))
         """
     )
-    abstract fun unlinkStreamsOlderThan(offsetDateTime: OffsetDateTime)
+    abstract suspend fun unlinkStreamsOlderThan(offsetDateTime: OffsetDateTime)
 
     @Query(
         """

@@ -22,9 +22,6 @@ import org.schabi.newpipe.local.holder.LocalPlaylistItemHolder;
 import org.schabi.newpipe.local.holder.LocalPlaylistStreamCardItemHolder;
 import org.schabi.newpipe.local.holder.LocalPlaylistStreamGridItemHolder;
 import org.schabi.newpipe.local.holder.LocalPlaylistStreamItemHolder;
-import org.schabi.newpipe.local.holder.LocalStatisticStreamCardItemHolder;
-import org.schabi.newpipe.local.holder.LocalStatisticStreamGridItemHolder;
-import org.schabi.newpipe.local.holder.LocalStatisticStreamItemHolder;
 import org.schabi.newpipe.local.holder.RemoteBookmarkPlaylistItemHolder;
 import org.schabi.newpipe.local.holder.RemotePlaylistCardItemHolder;
 import org.schabi.newpipe.local.holder.RemotePlaylistGridItemHolder;
@@ -65,10 +62,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     private static final int HEADER_TYPE = 0;
     private static final int FOOTER_TYPE = 1;
 
-    private static final int STREAM_STATISTICS_HOLDER_TYPE = 0x1000;
     private static final int STREAM_PLAYLIST_HOLDER_TYPE = 0x1001;
-    private static final int STREAM_STATISTICS_GRID_HOLDER_TYPE = 0x1002;
-    private static final int STREAM_STATISTICS_CARD_HOLDER_TYPE = 0x1003;
     private static final int STREAM_PLAYLIST_GRID_HOLDER_TYPE = 0x1004;
     private static final int STREAM_PLAYLIST_CARD_HOLDER_TYPE = 0x1005;
 
@@ -293,14 +287,6 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
                 } else {
                     return STREAM_PLAYLIST_HOLDER_TYPE;
                 }
-            case STATISTIC_STREAM_ITEM:
-                if (itemViewMode == ItemViewMode.CARD) {
-                    return STREAM_STATISTICS_CARD_HOLDER_TYPE;
-                } else if (itemViewMode == ItemViewMode.GRID) {
-                    return STREAM_STATISTICS_GRID_HOLDER_TYPE;
-                } else {
-                    return STREAM_STATISTICS_HOLDER_TYPE;
-                }
             default:
                 Log.e(TAG, "No holder type has been considered for item: ["
                         + item.getLocalItemType() + "]");
@@ -316,43 +302,36 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
             Log.d(TAG, "onCreateViewHolder() called with: "
                     + "parent = [" + parent + "], type = [" + type + "]");
         }
-        switch (type) {
-            case HEADER_TYPE:
-                return new HeaderFooterHolder(header);
-            case FOOTER_TYPE:
-                return new HeaderFooterHolder(footer);
-            case LOCAL_PLAYLIST_HOLDER_TYPE:
-                return new LocalPlaylistItemHolder(localItemBuilder, parent);
-            case LOCAL_PLAYLIST_GRID_HOLDER_TYPE:
-                return new LocalPlaylistGridItemHolder(localItemBuilder, parent);
-            case LOCAL_PLAYLIST_CARD_HOLDER_TYPE:
-                return new LocalPlaylistCardItemHolder(localItemBuilder, parent);
-            case LOCAL_BOOKMARK_PLAYLIST_HOLDER_TYPE:
-                return new LocalBookmarkPlaylistItemHolder(localItemBuilder, parent);
-            case REMOTE_PLAYLIST_HOLDER_TYPE:
-                return new RemotePlaylistItemHolder(localItemBuilder, parent);
-            case REMOTE_PLAYLIST_GRID_HOLDER_TYPE:
-                return new RemotePlaylistGridItemHolder(localItemBuilder, parent);
-            case REMOTE_PLAYLIST_CARD_HOLDER_TYPE:
-                return new RemotePlaylistCardItemHolder(localItemBuilder, parent);
-            case REMOTE_BOOKMARK_PLAYLIST_HOLDER_TYPE:
-                return new RemoteBookmarkPlaylistItemHolder(localItemBuilder, parent);
-            case STREAM_PLAYLIST_HOLDER_TYPE:
-                return new LocalPlaylistStreamItemHolder(localItemBuilder, parent);
-            case STREAM_PLAYLIST_GRID_HOLDER_TYPE:
-                return new LocalPlaylistStreamGridItemHolder(localItemBuilder, parent);
-            case STREAM_PLAYLIST_CARD_HOLDER_TYPE:
-                return new LocalPlaylistStreamCardItemHolder(localItemBuilder, parent);
-            case STREAM_STATISTICS_HOLDER_TYPE:
-                return new LocalStatisticStreamItemHolder(localItemBuilder, parent);
-            case STREAM_STATISTICS_GRID_HOLDER_TYPE:
-                return new LocalStatisticStreamGridItemHolder(localItemBuilder, parent);
-            case STREAM_STATISTICS_CARD_HOLDER_TYPE:
-                return new LocalStatisticStreamCardItemHolder(localItemBuilder, parent);
-            default:
+        return switch (type) {
+            case HEADER_TYPE -> new HeaderFooterHolder(header);
+            case FOOTER_TYPE -> new HeaderFooterHolder(footer);
+            case LOCAL_PLAYLIST_HOLDER_TYPE ->
+                    new LocalPlaylistItemHolder(localItemBuilder, parent);
+            case LOCAL_PLAYLIST_GRID_HOLDER_TYPE ->
+                    new LocalPlaylistGridItemHolder(localItemBuilder, parent);
+            case LOCAL_PLAYLIST_CARD_HOLDER_TYPE ->
+                    new LocalPlaylistCardItemHolder(localItemBuilder, parent);
+            case LOCAL_BOOKMARK_PLAYLIST_HOLDER_TYPE ->
+                    new LocalBookmarkPlaylistItemHolder(localItemBuilder, parent);
+            case REMOTE_PLAYLIST_HOLDER_TYPE ->
+                    new RemotePlaylistItemHolder(localItemBuilder, parent);
+            case REMOTE_PLAYLIST_GRID_HOLDER_TYPE ->
+                    new RemotePlaylistGridItemHolder(localItemBuilder, parent);
+            case REMOTE_PLAYLIST_CARD_HOLDER_TYPE ->
+                    new RemotePlaylistCardItemHolder(localItemBuilder, parent);
+            case REMOTE_BOOKMARK_PLAYLIST_HOLDER_TYPE ->
+                    new RemoteBookmarkPlaylistItemHolder(localItemBuilder, parent);
+            case STREAM_PLAYLIST_HOLDER_TYPE ->
+                    new LocalPlaylistStreamItemHolder(localItemBuilder, parent);
+            case STREAM_PLAYLIST_GRID_HOLDER_TYPE ->
+                    new LocalPlaylistStreamGridItemHolder(localItemBuilder, parent);
+            case STREAM_PLAYLIST_CARD_HOLDER_TYPE ->
+                    new LocalPlaylistStreamCardItemHolder(localItemBuilder, parent);
+            default -> {
                 Log.e(TAG, "No view type has been considered for holder: [" + type + "]");
-                return new FallbackViewHolder(new View(parent.getContext()));
-        }
+                yield new FallbackViewHolder(new View(parent.getContext()));
+            }
+        };
     }
 
     @SuppressWarnings("FinalParameters")

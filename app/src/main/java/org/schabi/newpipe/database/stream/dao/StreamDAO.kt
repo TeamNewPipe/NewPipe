@@ -30,9 +30,6 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
     @Query("SELECT * FROM streams WHERE url = :url AND service_id = :serviceId")
     abstract fun getStream(serviceId: Long, url: String): Maybe<StreamEntity>
 
-    @Query("UPDATE streams SET uploader_url = :uploaderUrl WHERE url = :url AND service_id = :serviceId")
-    abstract fun setUploaderUrl(serviceId: Long, url: String, uploaderUrl: String): Completable
-
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     internal abstract fun silentInsertInternal(stream: StreamEntity): Long
 
@@ -122,7 +119,7 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
         WHERE f.stream_id = streams.uid)
         """
     )
-    abstract fun deleteOrphans(): Int
+    abstract fun deleteOrphans(): Completable
 
     /**
      * Minimal entry class used when comparing/updating an existent stream.

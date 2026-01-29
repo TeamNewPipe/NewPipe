@@ -3,6 +3,9 @@ package org.schabi.newpipe.database
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.rx3.await
 import io.reactivex.rxjava3.core.Single
 import java.io.IOException
 import java.time.OffsetDateTime
@@ -22,6 +25,8 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.extractor.ServiceList
 import org.schabi.newpipe.extractor.channel.ChannelInfo
 import org.schabi.newpipe.extractor.stream.StreamType
+import java.io.IOException
+import java.time.OffsetDateTime
 
 class FeedDAOTest {
     private lateinit var db: AppDatabase
@@ -106,14 +111,10 @@ class FeedDAOTest {
         )
     }
 
-    private fun setupUnlinkDelete(time: String) {
+    private fun setupUnlinkDelete(time: String) = runBlocking(Dispatchers.IO) {
         clearAndFillTables()
-        Single.fromCallable {
-            feedDAO.unlinkStreamsOlderThan(OffsetDateTime.parse(time))
-        }.blockingSubscribe()
-        Single.fromCallable {
-            streamDAO.deleteOrphans()
-        }.blockingSubscribe()
+        feedDAO.unlinkStreamsOlderThan(OffsetDateTime.parse(time))
+        streamDAO.deleteOrphans().await()
     }
 
     private fun clearAndFillTables() {

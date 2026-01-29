@@ -224,8 +224,6 @@
     <string name="title_activity_history">Historial</string>
     <string name="action_history">Historial</string>
     <string name="delete_item_search_history">Desexa eliminar este elemento do historial de procura?</string>
-    <string name="title_last_played">Última reprodución</string>
-    <string name="title_most_played">Máis reproducido</string>
     <string name="main_page_content">Contido da páxina principal</string>
     <string name="blank_page_summary">Páxina en branco</string>
     <string name="kiosk_page_summary">Páxina do «kiosk»</string>
