@@ -480,7 +480,7 @@
     <plurals name="seconds">
         <item quantity="other">%d초</item>
     </plurals>
-    <string name="remove_watched_popup_title">시청 기록을 지우겠습니까\?</string>
+    <string name="remove_watched_popup_title">시청 기록을 지우겠습니까?</string>
     <string name="remove_watched">시청 기록 지우기</string>
     <string name="title_activity_play_queue">재생목록 실행</string>
     <string name="unsupported_url_dialog_message">URL을 인식할 수 없습니다. 다른 앱으로 여시겠습니까\?</string>
@@ -587,7 +587,7 @@
         <item quantity="other">%s 다운로드 완료</item>
     </plurals>
     <string name="app_language_title">앱 언어</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">예, 부분적으로 본 비디오</string>
+    <string name="remove_watched_popup_partially_watched_streams">예, 부분적으로 본 비디오</string>
     <string name="metadata_category">카테고리</string>
     <string name="video_detail_by">%s에 의해</string>
     <string name="select_night_theme_toast">아래에서 선호하는 어두운 테마를 선택할 수 있습니다</string>
@@ -657,8 +657,7 @@
     <string name="feed_group_dialog_select_subscriptions">구독 선택</string>
     <string name="feed_use_dedicated_fetch_method_summary">일부 서비스에서 사용할 수 있으며 일반적으로 훨씬 빠르지만 제한된 양의 항목과 종종 불완전한 정보를 반환할 수 있습니다 (예: 기간 없음, 항목 유형, 라이브 상태 없음)</string>
     <string name="downloads_storage_use_saf_summary_api_29">안드로이드 10부터 \'저장영역 접속 프레임워크\'만 지원됩니다</string>
-    <string name="remove_watched_popup_warning">재생 목록에 추가되기 전과 후에 시청한 동영상은 제거됩니다.
-\n확실합니까\? 이것은 취소 할 수 없습니다!</string>
+    <string name="remove_watched_popup_warning">재생 목록에 추가되기 전과 후에 시청한 동영상은 제거됩니다. \n확실합니까? 이것은 취소 할 수 없습니다!</string>
     <string name="start_main_player_fullscreen_summary">화면 자동 회전이 잠겨 있는 경우 미니 플레이어에서 동영상을 시작하지 말고 바로 전체 화면 모드로 재생하세요. 전체 화면을 종료해서 미니 플레이어를 이용할 수도 있습니다</string>
     <string name="metadata_privacy_public">공식</string>
     <string name="radio">라디오</string>

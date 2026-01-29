@@ -481,8 +481,8 @@
     <string name="app_language_title">აპლიკაციის ენა</string>
     <string name="systems_language">სისტემის ნაგულისხმევი</string>
     <string name="remove_watched">ნანახის ამოღება</string>
-    <string name="remove_watched_popup_title">წაშალოთ ნანახი ვიდეოები\?</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">დიახ, და ნაწილობრივ ნანახი ვიდეოები</string>
+    <string name="remove_watched_popup_title">წაშალოთ ნანახი ვიდეოები?</string>
+    <string name="remove_watched_popup_partially_watched_streams">დიახ, და ნაწილობრივ ნანახი ვიდეოები</string>
     <string name="new_seek_duration_toast">ExoPlayer-ის შეზღუდვების გამო ძიების ხანგრძლივობა დაყენდა %d წამზე</string>
     <plurals name="seconds">
         <item quantity="one">%d წამი</item>
@@ -654,8 +654,7 @@
     <string name="downloads_storage_ask_title">იკითხეთ, სად უნდა ჩამოტვირთოთ</string>
     <string name="downloads_storage_ask_summary">თქვენ მოგეთხოვებათ სად შეინახოთ თითოეული ჩამოტვირთვა.
 \n ჩართეთ სისტემის საქაღალდის ამომრჩევი (SAF), თუ გსურთ ჩამოტვირთოთ გარე SD ბარათზე</string>
-    <string name="remove_watched_popup_warning">ვიდეოები, რომლებიც უყურეთ დასაკრავ სიაში დამატებამდე და მის შემდეგ, წაიშლება.
-\n დარწმუნებული ხართ\? ამის გაუქმება შეუძლებელია!</string>
+    <string name="remove_watched_popup_warning">ვიდეოები, რომლებიც უყურეთ დასაკრავ სიაში დამატებამდე და მის შემდეგ, წაიშლება. \n დარწმუნებული ხართ? ამის გაუქმება შეუძლებელია!</string>
     <string name="app_license">NewPipe არის copyleft უფასო პროგრამული უზრუნველყოფა: თქვენ შეგიძლიათ გამოიყენოთ, შეისწავლოთ, გააზიაროთ და გააუმჯობესოთ იგი სურვილისამებრ. კონკრეტულად თქვენ შეგიძლიათ გადაანაწილოთ და/ან შეცვალოთ იგი GNU-ს ზოგადი საჯარო ლიცენზიის პირობებით, როგორც ეს გამოქვეყნებულია თავისუფალი პროგრამული უზრუნველყოფის ფონდის მიერ, ლიცენზიის მე-3 ვერსიით, ან (თქვენი სურვილისამებრ) ნებისმიერი შემდგომი ვერსიით.</string>
     <string name="auto">ავტო</string>
     <string name="blank_page_summary">ცარიელი გვერდი</string>

@@ -530,10 +530,9 @@
         <item quantity="one">%d sekund</item>
         <item quantity="other">%d sekundit</item>
     </plurals>
-    <string name="remove_watched_popup_warning">Sellega eemaldame vaadatud videod ja esitusloendisse lisatud videod.
-\nKas sa oled kindel\? Seda tegevust ei saa hiljem tagasi pöörata!</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Jah, sealhulgas videod, mille vaatmine jäi pooleli</string>
-    <string name="remove_watched_popup_title">Kas eemaldame vaadatud videod\?</string>
+    <string name="remove_watched_popup_warning">Sellega eemaldame vaadatud videod ja esitusloendisse lisatud videod. \nKas sa oled kindel? Seda tegevust ei saa hiljem tagasi pöörata!</string>
+    <string name="remove_watched_popup_partially_watched_streams">Jah, sealhulgas videod, mille vaatmine jäi pooleli</string>
+    <string name="remove_watched_popup_title">Kas eemaldame vaadatud videod?</string>
     <string name="remove_watched">Eemalda vaadatud videod</string>
     <string name="systems_language">Kasuta süsteemi keelt</string>
     <string name="app_language_title">Rakenduse keel</string>

@@ -479,7 +479,7 @@
     <string name="restricted_video">此影片設有年齡限制。
 \n
 \n如果您想要觀看，請在設定中開啟「%1$s」。</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">是的，包括已部份觀看的影片</string>
+    <string name="remove_watched_popup_partially_watched_streams">是的，包括已部份觀看的影片</string>
     <string name="remove_watched_popup_warning">已觀看過的影片在加入播放清單後將被移除。\n您確定嗎？此動作無法復原！</string>
     <string name="remove_watched_popup_title">移除已觀看的影片？</string>
     <string name="remove_watched">移除已觀看的影片</string>

@@ -524,9 +524,8 @@
         <item quantity="other">%d δευτερόλεπτα</item>
     </plurals>
     <string name="new_seek_duration_toast">Λόγω περιορισμών του ExoPlayer, η διάρκεια αναζήτησης ορίστηκε στα %d δευτερόλεπτα</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ναι. Και τα μερικώς θεαθέντα βίντεο</string>
-    <string name="remove_watched_popup_warning">Τα βίντεο που εθεάθησαν πριν και αφού προστέθηκαν στη λίστα αναπαραγωγής θα απομακρυνθούν
-\nΕίστε σίγουρος; Δεν μπορεί να αναιρεθεί!</string>
+    <string name="remove_watched_popup_partially_watched_streams">Ναι. Και τα μερικώς θεαθέντα βίντεο</string>
+    <string name="remove_watched_popup_warning">Τα βίντεο που εθεάθησαν πριν και αφού προστέθηκαν στη λίστα αναπαραγωγής θα απομακρυνθούν \nΕίστε σίγουρος; Δεν μπορεί να αναιρεθεί!</string>
     <string name="remove_watched_popup_title">Απομάκρυνση θεαθέντων βίντεο;</string>
     <string name="remove_watched">Απομάκρυνση όσων θεάθησαν</string>
     <string name="app_language_title">Γλώσσα εφαρμογής</string>

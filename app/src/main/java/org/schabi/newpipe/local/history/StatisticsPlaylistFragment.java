@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.viewbinding.ViewBinding;
 
 import com.evernote.android.state.State;
 import com.google.android.material.snackbar.Snackbar;
@@ -45,6 +44,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Supplier;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -126,12 +126,12 @@ public class StatisticsPlaylistFragment
     }
 
     @Override
-    protected ViewBinding getListHeader() {
+    protected Supplier<View> getListHeaderSupplier() {
         headerBinding = StatisticPlaylistControlBinding.inflate(activity.getLayoutInflater(),
                 itemsList, false);
         playlistControlBinding = headerBinding.playlistControl;
 
-        return headerBinding;
+        return headerBinding::getRoot;
     }
 
     @Override

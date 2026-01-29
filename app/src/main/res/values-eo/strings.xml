@@ -612,5 +612,5 @@
     <string name="channel_tab_videos">Filmetoj</string>
     <string name="remove_watched_popup_warning">Filmetoj kiuj spektiĝis antaŭ aŭ post sia aldoniĝo al la ludlisto foriĝus.. \nĈu vi certas? Ĉi tio nemalfareblus!</string>
     <string name="reset_settings_summary">Restarigi implicitajn agordojn</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Jes, kaj ankaŭ parte spektitajn filmetojn</string>
+    <string name="remove_watched_popup_partially_watched_streams">Jes, kaj ankaŭ parte spektitajn filmetojn</string>
 </resources>

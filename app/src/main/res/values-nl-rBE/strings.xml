@@ -440,10 +440,9 @@
         <item quantity="other">%d seconden</item>
     </plurals>
     <string name="new_seek_duration_toast">Door beperkingen van ExoPlayer is de zoekduur ingesteld op %d seconden</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, en deels bekeken video\'s</string>
-    <string name="remove_watched_popup_warning">Video\'s die zijn bekeken voor, en na, ze werden toegevoegd aan de afspeellijst worden verwijderd.
-\nBent u zeker\? Dit kan niet ongedaan gemaakt worden!</string>
-    <string name="remove_watched_popup_title">Verwijder bekeken video\'s\?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Ja, en deels bekeken video\'s</string>
+    <string name="remove_watched_popup_warning">Video\'s die zijn bekeken voor, en na, ze werden toegevoegd aan de afspeellijst worden verwijderd. \nBent u zeker? Dit kan niet ongedaan gemaakt worden!</string>
+    <string name="remove_watched_popup_title">Verwijder bekeken video\'s?</string>
     <string name="remove_watched">Verwijder bekeken</string>
     <string name="systems_language">Systeem standaard</string>
     <string name="app_language_title">App taal</string>

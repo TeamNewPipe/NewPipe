@@ -39,7 +39,7 @@
         <item quantity="one">%d wass</item>
         <item quantity="other">%d wussan</item>
     </plurals>
-    <string name="remove_watched_popup_title">Kkes ividyuten ittwannayen\?</string>
+    <string name="remove_watched_popup_title">Kkes ividyuten ittwannayen?</string>
     <string name="more_than_100_videos">100+ ividyuten</string>
     <string name="no_videos">walu ividyuten</string>
     <string name="video_detail_by">Sɣur %s</string>

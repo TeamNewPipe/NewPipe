@@ -616,8 +616,8 @@
     <string name="feed_processing_message">Апрацоўка стужкі…</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Пры кожным спампоўванні вам будзе прапанавана выбраць месца захавання</string>
     <string name="feed_notification_loading">Загрузка канала…</string>
-    <string name="remove_watched_popup_title">Выдаліць прагледжаныя відэа\?</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Так, часткова прагледжаныя відэа таксама</string>
+    <string name="remove_watched_popup_title">Выдаліць прагледжаныя відэа?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Так, часткова прагледжаныя відэа таксама</string>
     <string name="percent">Працэнт</string>
     <string name="remove_watched_popup_warning">Відэа, якія прагледжаны перад дадаваннем і пасля дадавання ў спіс прайгравання, будуць выдалены. \nВы ўпэўнены? Гэта дзеянне немагчыма скасаваць!</string>
     <string name="show_crash_the_player_summary">Паказвае варыянт збою пры выкарыстанні плэера</string>

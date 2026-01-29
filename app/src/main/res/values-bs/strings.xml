@@ -579,7 +579,7 @@
     <string name="remove_duplicates_title">Ukloniti duplikate?</string>
     <string name="remove_duplicates_message">Želite li ukloniti sve duplikatne tokove na ovoj listi za reprodukciju?</string>
     <string name="remove_watched_popup_warning">Videozapisi koji su pregledani prije i poslije dodavanja na listu za reprodukciju bit će uklonjeni.\nJeste li sigurni? Ovo se ne može poništiti!</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Da, i djelimično odgledani videozapisi</string>
+    <string name="remove_watched_popup_partially_watched_streams">Da, i djelimično odgledani videozapisi</string>
     <string name="new_seek_duration_toast">Zbog ograničenja ExoPlayera, trajanje pretraživanja je postavljeno na %d sekundi</string>
     <string name="fragment_feed_title">Šta je novo</string>
     <string name="feed_group_page_summary">Stranica grupe kanala</string>

@@ -1,0 +1,7 @@
+Kanalaren xehetasunen aukera gehitu da sakatuta edukitzeko menuan.
+Erreprodukzio-zerrendaren izena erreprodukzio-zerrendaren interfazetik aldatzeko funtzionalitatea gehitu da.
+Utzi erabiltzaileari bideoa bufferrean gordetzen ari den bitartean pausatzen.
+Gai zuria leundu da.
+Letra-tamaina handiagoa erabiltzean gainjarritako letra-tipoak konpondu dira.
+Formuler eta Zephier gailuetan bideorik ez egotea konpondu da.
+Hainbat hutsegite konpondu.

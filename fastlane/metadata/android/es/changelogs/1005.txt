@@ -1,4 +1,4 @@
-New
+Nuevo
 Añadido soporte a Android Auto  
 Pemitir configurar grupos de feeds como pestaña en la pantalla principal  
 [YouTube] Compartir como playlist temporal  

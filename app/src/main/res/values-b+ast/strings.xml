@@ -312,10 +312,9 @@
     <string name="feed_oldest_subscription_update">Últimu anovamientu del feed: %s</string>
     <string name="feed_groups_header_title">Grupos de canales</string>
     <string name="new_seek_duration_toast">Pola mor de les torgues d\'ExoPlayer la duración afitóse en %d segundos</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sí, y tamién los vistos parcialmente</string>
-    <string name="remove_watched_popup_warning">Van desaniciase los vídeos que se vieren enantes y dempués d\'amestase a la llista de reproducción.
-\n¿De xuru\? ¡Esto nun pue desfacese!</string>
-    <string name="remove_watched_popup_title">¿Desaniciar los vídeos vistos\?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Sí, y tamién los vistos parcialmente</string>
+    <string name="remove_watched_popup_warning">Van desaniciase los vídeos que se vieren enantes y dempués d\'amestase a la llista de reproducción. \n¿De xuru? ¡Esto nun pue desfacese!</string>
+    <string name="remove_watched_popup_title">¿Desaniciar los vídeos vistos?</string>
     <string name="remove_watched">Desaniciar lo visto</string>
     <string name="choose_instance_prompt">Escoyeta d\'una instancia</string>
     <string name="downloads_storage_use_saf_summary">El «Storage Access Framework» permite les descargues nuna tarxeta SD esterna.

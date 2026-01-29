@@ -517,11 +517,10 @@
     <string name="restricted_video">Toto video má věkové omezení.
 \n
 \nPokud jej chcete vidět, povolte „%1$s“ v nastavení.</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ano, i zčásti zhlédnutá videa</string>
+    <string name="remove_watched_popup_partially_watched_streams">Ano, i zčásti zhlédnutá videa</string>
     <string name="remove_watched_popup_title">Odstranit zhlédnutá videa?</string>
     <string name="remove_watched">Odstranit zhlédnutá</string>
-    <string name="remove_watched_popup_warning">Videa, která jste zhlédli před a po jejich přidání do playlistu, budou odstraněna.
-\nJste se jisti? Tato akce je nevratná!</string>
+    <string name="remove_watched_popup_warning">Videa, která jste zhlédli před a po jejich přidání do playlistu, budou odstraněna. \nJste se jisti? Tato akce je nevratná!</string>
     <string name="show_original_time_ago_summary">Původní texty služeb budou viditelné u položek streamů</string>
     <string name="show_original_time_ago_title">U položek zobrazit původní čas</string>
     <string name="youtube_restricted_mode_enabled_title">Zapnout „Omezený režim“ YouTube</string>

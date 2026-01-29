@@ -508,10 +508,9 @@
         <item quantity="other">%d segons</item>
     </plurals>
     <string name="new_seek_duration_toast">A causa de les limitacions d\'ExoPlayer, la durada de cerca és de %d segons</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sí, i també els vídeos vistos parcialment</string>
-    <string name="remove_watched_popup_warning">Els vídeos que ja heu vist tant abans com després d\'haver estat afegits a la llista de reproducció seran suprimits.
-\nN\'esteu segurs\? Aquesta acció no pot desfer-se!</string>
-    <string name="remove_watched_popup_title">Esborrar els vídeos ja vistos\?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Sí, i també els vídeos vistos parcialment</string>
+    <string name="remove_watched_popup_warning">Els vídeos que ja heu vist tant abans com després d\'haver estat afegits a la llista de reproducció seran suprimits. \nN\'esteu segurs? Aquesta acció no pot desfer-se!</string>
+    <string name="remove_watched_popup_title">Esborrar els vídeos ja vistos?</string>
     <string name="remove_watched">Esborra els ja vistos</string>
     <string name="systems_language">Valors per defecte</string>
     <string name="app_language_title">Llengua de l\'aplicació</string>

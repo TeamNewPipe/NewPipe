@@ -1,0 +1,10 @@
+• Erreproduzitzailea pantaila osoan zuzenean ireki
+• Bilaketa-iradokizun motak aukeratu
+• Gai iluna ilunagoa + pantaila-aurreikuspen iluna
+• Fitxategi-hautatzailea: nahi ez direnak gris koloreztatu
+• YouTubeko harpidetzak inportatzea konpondu
+• Berriro erreproduzitzeko botoia sakatu behar da
+• Amaierako audio saioa konpondu
+• [Android TV] Bilaketa-barraren jauzi luzeak DPad-ekin konpondu
+
+Aldaketa gehiago ikusteko, ikusi aldaketa-erregistroa beheko Estekak fitxan.

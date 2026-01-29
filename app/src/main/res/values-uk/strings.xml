@@ -509,10 +509,9 @@
     <string name="feed_subscription_not_loaded_count">Не завантажено: %d</string>
     <string name="feed_oldest_subscription_update">Останнє оновлення: %s</string>
     <string name="new_seek_duration_toast">Через обмеження ExoPlayer точність перемотування становить %d секунд</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Так, а також частково переглянуті відео</string>
-    <string name="remove_watched_popup_warning">Відео, які Ви переглядали до та після додавання в добірку, вилучатимуться.
-\nВи впевнені\? Це незворотна дія!</string>
-    <string name="remove_watched_popup_title">Видалити переглянуті відео\?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Так, а також частково переглянуті відео</string>
+    <string name="remove_watched_popup_warning">Відео, які Ви переглядали до та після додавання в добірку, вилучатимуться. \nВи впевнені? Це незворотна дія!</string>
+    <string name="remove_watched_popup_title">Видалити переглянуті відео?</string>
     <string name="remove_watched">Видалити переглянуті</string>
     <string name="playlist_no_uploader">Створено автоматично (автора не знайдено)</string>
     <string name="infinite_videos">∞ вiдео</string>

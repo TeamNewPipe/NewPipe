@@ -1,0 +1,7 @@
+Hobetua
+• Gorde eta leheneratu tonua eta tempoa deskonektatuta dauden ala ez
+• Erreproduzitzailean pantailaren mozketa onartzen du
+• Txanda-ikuspenak eta harpidedun kopurua
+• YouTube optimizatu da datu gutxiago erabiltzeko
+
+Bertsio honetan YouTube-rekin lotutako 15 akats baino gehiago konpondu dira.
