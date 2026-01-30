@@ -23,7 +23,7 @@ import com.squareup.picasso.Transformation;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.Image;
-import org.schabi.newpipe.settings.ProxyManager;
+import org.schabi.newpipe.util.ProxyManager;
 
 import java.io.File;
 import java.io.IOException;

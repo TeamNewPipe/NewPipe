@@ -34,6 +34,14 @@
     <string name="use_external_video_player_title">Внешний видеоплеер</string>
     <string name="use_external_audio_player_title">Внешний аудиоплеер</string>
     <string name="background_player_playing_toast">Воспроизведение в фоновом режиме</string>
+    <string name="proxy_settings_title">Настройки прокси</string>
+    <string name="use_proxy">Использовать прокси</string>
+    <string name="use_proxy_summary">Перенаправлять трафик через прокси</string>
+    <string name="proxy_host">Хост прокси</string>
+    <string name="proxy_host_summary">Имя хоста или IP-адрес прокси</string>
+    <string name="proxy_port">Порт прокси</string>
+    <string name="proxy_port_summary">Номер порта прокси</string>
+    <string name="proxy_port_dialog_message">Введите номер порта прокси</string>
     <string name="theme_title">Тема</string>
     <string name="dark_theme_title">Тёмная</string>
     <string name="light_theme_title">Светлая</string>
@@ -868,4 +876,6 @@
     <string name="youtube_player_http_403">Во время воспроизведения получена ошибка HTTP 403 от сервера, вероятно, вызванная блокировкой IP-адреса или проблемами деобфускации URL-адреса потоковой передачи</string>
     <string name="sign_in_confirm_not_bot_error">%1$s отказался предоставить данные, запросив логин для подтверждения, что запросчик не бот.\n\nВозможно, ваш IP-адрес временно заблокирован %1$s. Вы можете подождать некоторое время или переключиться на другой IP-адрес (например, включив/выключив VPN или переключившись с Wi-Fi на мобильный интернет).</string>
     <string name="unsupported_content_in_country">Этот контент недоступен для выбранной страны контента.\n\nИзмените свой выбор в разделе «Настройки &gt; Контент &gt; Страна контента по умолчанию».</string>
+    <string name="restart_app_title">Перезапуск приложения</string>
+    <string name="restart_app_message">Настройки прокси изменены. Для применения изменений требуется перезапуск приложения.</string>
 </resources>

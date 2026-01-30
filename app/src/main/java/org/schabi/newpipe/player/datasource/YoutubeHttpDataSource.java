@@ -46,7 +46,7 @@ import com.google.common.collect.Sets;
 import com.google.common.net.HttpHeaders;
 
 import org.schabi.newpipe.DownloaderImpl;
-import org.schabi.newpipe.settings.ProxyManager;
+import org.schabi.newpipe.util.ProxyManager;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -11,7 +11,7 @@ import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.extractor.downloader.Request;
 import org.schabi.newpipe.extractor.downloader.Response;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
-import org.schabi.newpipe.settings.ProxyManager;
+import org.schabi.newpipe.util.ProxyManager;
 import org.schabi.newpipe.util.InfoCache;
 
 import java.io.IOException;

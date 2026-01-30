@@ -1,4 +1,4 @@
-package org.schabi.newpipe.settings;
+package org.schabi.newpipe.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
