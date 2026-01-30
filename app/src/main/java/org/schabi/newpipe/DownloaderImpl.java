@@ -11,6 +11,7 @@ import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.extractor.downloader.Request;
 import org.schabi.newpipe.extractor.downloader.Response;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
+import org.schabi.newpipe.util.ProxyManager;
 import org.schabi.newpipe.util.InfoCache;
 
 import java.io.IOException;
@@ -52,11 +53,18 @@ public final class DownloaderImpl extends Downloader {
      * It's recommended to call exactly once in the entire lifetime of the application.
      *
      * @param builder if null, default builder will be used
+     * @param context the context to use
      * @return a new instance of {@link DownloaderImpl}
      */
-    public static DownloaderImpl init(@Nullable final OkHttpClient.Builder builder) {
-        instance = new DownloaderImpl(
-                builder != null ? builder : new OkHttpClient.Builder());
+    public static DownloaderImpl init(@Nullable final OkHttpClient.Builder builder,
+                                      final Context context) {
+        final OkHttpClient.Builder builderToUse = builder != null ? builder
+                : new OkHttpClient.Builder();
+        final ProxyManager proxyManager = new ProxyManager(context);
+        if (proxyManager.isProxyEnabled()) {
+            builderToUse.proxy(proxyManager.getProxy());
+        }
+        instance = new DownloaderImpl(builderToUse);
         return instance;
     }
 

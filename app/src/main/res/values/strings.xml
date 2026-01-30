@@ -159,6 +159,23 @@
     <string name="settings_category_player_notification_title">Player notification</string>
     <string name="settings_category_player_notification_summary">Configure current playing stream notification</string>
     <string name="settings_category_backup_restore_title">Backup and restore</string>
+    <string name="proxy_settings_title">Proxy Settings</string>
+    <string name="use_proxy">Use proxy</string>
+    <string name="use_proxy_summary">Redirect traffic through a proxy</string>
+    <string name="proxy_host">Proxy host</string>
+    <string name="proxy_host_summary">Hostname or IP address of the proxy</string>
+    <string name="proxy_port">Proxy port</string>
+    <string name="proxy_port_summary">Port number of the proxy</string>
+    <string name="proxy_port_dialog_message">Enter the proxy port number</string>
+    <string name="proxy_type">Proxy type</string>
+    <string-array name="proxy_type_entries">
+        <item>HTTP</item>
+        <item>SOCKS</item>
+    </string-array>
+    <string-array name="proxy_type_values">
+        <item>HTTP</item>
+        <item>SOCKS</item>
+    </string-array>
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="content">Content</string>
@@ -882,4 +899,6 @@
     <string name="youtube_player_http_403">HTTP error 403 received from server while playing, likely caused by an IP ban or streaming URL deobfuscation issues</string>
     <string name="sign_in_confirm_not_bot_error">%1$s refused to provide data, asking for a login to confirm the requester is not a bot.\n\nYour IP might have been temporarily banned by %1$s, you can wait some time or switch to a different IP (for example by turning on/off a VPN, or by switching from WiFi to mobile data).</string>
     <string name="unsupported_content_in_country">This content is not available for the currently selected content country.\n\nChange your selection from \"Settings > Content > Default content country\".</string>
+    <string name="restart_app_title">Restart application</string>
+    <string name="restart_app_message">The proxy settings have been changed. A restart of the application is required for the changes to take effect.</string>
 </resources>
