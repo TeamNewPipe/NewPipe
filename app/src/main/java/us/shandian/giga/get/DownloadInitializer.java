@@ -11,11 +11,15 @@ import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.net.HttpURLConnection;
 import java.nio.channels.ClosedByInterruptException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 
 import us.shandian.giga.util.Utility;
 
 import static org.schabi.newpipe.BuildConfig.DEBUG;
 import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_FORBIDDEN;
+import org.schabi.newpipe.extractor.utils.SubtitleDeduplicator;
 
 public class DownloadInitializer extends Thread {
     private static final String TAG = "DownloadInitializer";
@@ -46,6 +50,23 @@ public class DownloadInitializer extends Thread {
         int retryCount = 0;
         int httpCode = 204;
 
+        //process local file URI (file://)
+        for (int i = 0; i < mMission.urls.length && mMission.running; i++) {
+            String currentUrl = mMission.urls[i];
+
+            if (true == islocalSubtitleUri(currentUrl)) {
+                LocalSubtitleConverter.convertLocalTtmlToVtt(currentUrl, mMission);
+
+                // Subtitle download missions always contain exactly one URL.
+                // Once the local subtitle is converted, the mission is
+                // considered finished.
+                // Do not replace this with `continue` unless subtitle missions
+                // support multiple URLs in the future.
+                return;
+            }
+        }
+
+        // process remote, for example: http:// or https://
         while (true) {
             try {
                 if (mMission.blocks == null && mMission.current == 0) {
@@ -54,6 +75,7 @@ public class DownloadInitializer extends Thread {
                     long lowestSize = Long.MAX_VALUE;
 
                     for (int i = 0; i < mMission.urls.length && mMission.running; i++) {
+
                         mConn = mMission.openConnection(mMission.urls[i], true, 0, 0);
                         mMission.establishConnection(mId, mConn);
                         dispose();
@@ -205,4 +227,34 @@ public class DownloadInitializer extends Thread {
         super.interrupt();
         if (mConn != null) dispose();
     }
+
+    private boolean isLocalUri(String url) {
+        String URL_PREFIX = SubtitleDeduplicator.LOCAL_SUBTITLE_URL_PREFIX;
+
+        if (url.startsWith(URL_PREFIX)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean isSubtitleDownloadMission() {
+        char downloadKind = mMission.kind;
+        if ('s' == downloadKind) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean islocalSubtitleUri(String url) {
+        if (true == isSubtitleDownloadMission()) {
+            if (true == isLocalUri(url)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }

@@ -31,6 +31,7 @@ import androidx.core.os.BundleCompat;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
+import org.schabi.newpipe.extractor.utils.SubtitleDeduplicator;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -70,6 +71,8 @@ public final class StateSaver {
         if (TextUtils.isEmpty(cacheDirPath)) {
             cacheDirPath = context.getCacheDir().getAbsolutePath();
         }
+
+        SubtitleDeduplicator.setCacheDirPath(cacheDirPath);
     }
 
     /**
