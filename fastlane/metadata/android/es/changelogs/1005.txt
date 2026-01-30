@@ -1,0 +1,17 @@
+Nuevo
+Añadido soporte a Android Auto  
+Pemitir configurar grupos de feeds como pestaña en la pantalla principal  
+[YouTube] Compartir como playlist temporal  
+[SoundCloud] Pestaña de likes en el canal  
+ 
+Mejoras
+Mejores sugerencias en la barra de busqueda  
+Mostrar la fecha de descargas en Descargas  
+Usar el idioma por aplicacion en Android 13  
+  
+Arreglos
+Arreglado texto de colores rotos en el modo oscuro  
+[YouTube] Solucionado el problema que las playlist con mas de 100 elementos no cargaban
+[YouTube] Solucionado problema de no mostrar los videos recomendados
+Solucionado cierres inesperados en vista de listas en Historial
+Arreglado marcas de tiempo en respuestas de comentarios

@@ -43,7 +43,10 @@ class ChannelItem(
 
         gesturesListener?.run {
             viewHolder.root.setOnClickListener { selected(infoItem) }
-            viewHolder.root.setOnLongClickListener { held(infoItem); true }
+            viewHolder.root.setOnLongClickListener {
+                held(infoItem)
+                true
+            }
         }
     }
 

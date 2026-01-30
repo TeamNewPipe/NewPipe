@@ -16,6 +16,7 @@ import androidx.work.WorkerParameters
 import androidx.work.rxjava3.RxWorker
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
+import java.util.concurrent.TimeUnit
 import org.schabi.newpipe.App
 import org.schabi.newpipe.R
 import org.schabi.newpipe.error.ErrorInfo
@@ -23,7 +24,6 @@ import org.schabi.newpipe.error.ErrorUtil
 import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.local.feed.service.FeedLoadManager
 import org.schabi.newpipe.local.feed.service.FeedLoadService
-import java.util.concurrent.TimeUnit
 
 /*
  * Worker which checks for new streams of subscribed channels
@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit
  */
 class NotificationWorker(
     appContext: Context,
-    workerParams: WorkerParameters,
+    workerParams: WorkerParameters
 ) : RxWorker(appContext, workerParams) {
 
     private val notificationHelper by lazy {
@@ -95,9 +95,8 @@ class NotificationWorker(
         private val TAG = NotificationWorker::class.java.simpleName
         private const val WORK_TAG = App.PACKAGE_NAME + "_streams_notifications"
 
-        private fun areNotificationsEnabled(context: Context) =
-            NotificationHelper.areNewStreamsNotificationsEnabled(context) &&
-                NotificationHelper.areNotificationsEnabledOnDevice(context)
+        private fun areNotificationsEnabled(context: Context) = NotificationHelper.areNewStreamsNotificationsEnabled(context) &&
+            NotificationHelper.areNotificationsEnabledOnDevice(context)
 
         /**
          * Schedules a task for the [NotificationWorker]

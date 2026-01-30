@@ -1,17 +1,17 @@
-Novinky
-• Přidána podpora pro Android Auto.
-• Možnost nastavit skupiny kanálů jako záložky na hlavní obrazovce.
-• [YouTube] Sdílení jako dočasný seznam skladeb.
-• [SoundCloud] Záložka Oblíbené kanály
+Nově
+• Podpora pro Android Auto
+• Možnost nastavit skupiny zdrojů jako záložky
+• [YouTube] Sdílení jako dočasný playlist
+• [SoundCloud] Záložka Oblíbené u kanálů
 
 Vylepšeno
-• Lepší nápověda pro vyhledávací lištu
-• Zobrazení data stažení v sekci Stažené soubory
-• Použití jazyka Android 13 pro jednotlivé aplikace
+• Lepší našeptávač vyhledávače
+• Zobrazení data stažení ve Stažených
+• Použití individuálního jazyka
 
 Opraveno
 • Oprava chybných barev textu v tmavém režimu
-• [YouTube] Oprava seznamů skladeb, které nenačtou více než 100 položek
+• [YouTube] Oprava nenačtení více než 100 položek v playlistech
 • [YouTube] Oprava chybějících doporučených videí
-• Oprava pádů v zobrazení seznamu historie
-• Oprava časových značek v odpovědích na komentáře
+• Oprava pádů v Historii
+• Oprava časů v odpovědích

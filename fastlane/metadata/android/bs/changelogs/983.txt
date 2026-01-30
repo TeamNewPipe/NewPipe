@@ -1,0 +1,9 @@
+Dodati novi korisnički interfejs i ponašanje za pretraživanje dvostrukim dodirom
+Omogućiti pretraživanje postavki
+Istaknuti zakačene komentare kao takve
+Dodati podršku za otvaranje s aplikacijom za FSFE-ovu PeerTube instancu
+Dodati obavještenja o greškama
+Ispraviti ponavljanje prve stavke reda čekanja pri promjeni igrača
+Duže čekati prilikom učitavanja u međuspremniku tokom prijenosa uživo prije nego što dođe do greške
+Ispraviti redoslijed lokalnih rezultata pretrage
+Ispraviti prazna polja stavki u redu čekanja za reprodukciju

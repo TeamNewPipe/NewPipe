@@ -1,0 +1,22 @@
+# 0.13.7 bertsioaren aldaketa-erregistroa
+### Konpondua
+- Ordenazio-iragazkiak
+
+# 0.13.6 bertsioaren aldaketa-erregistroa
+### Hobekuntzak
+- Hanburgesa animazioa desgaitu
+- Deskargak ezabaketa desegin
+- Partekatu menuan deskarga
+- Jokalaria minimizatu
+- ExoPlayer 2.8.2
+- Abiadura kontrolak hobetuak
+- Isilune saltoa
+- Metadatu egitura berria
+- UI konponketak
+
+### Konponketak
+
+- Bideoaren informazio diseinua
+- Ikusi historia eguneraketa
+- Pantaila denbora-muga leiho-moduan
+- Jokalari NPE konpondua

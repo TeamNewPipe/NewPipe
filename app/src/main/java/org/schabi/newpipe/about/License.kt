@@ -1,8 +1,8 @@
 package org.schabi.newpipe.about
 
 import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
 import java.io.Serializable
+import kotlinx.parcelize.Parcelize
 
 /**
  * Class for storing information about a software license.

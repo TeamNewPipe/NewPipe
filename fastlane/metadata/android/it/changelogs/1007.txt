@@ -1,0 +1,11 @@
+Risolto l’errore "Contenuto non disponibile": i video YouTube ora funzionano di nuovo!
+
+Risolti vari bug introdotti nella 0.28.1:
+• Trascinamento elementi playlist limitato a posizioni adiacenti
+• Titoli/commenti si alternano tra video corrente e precedente
+• Opzione "Avvia riproduzione a schermo intero" non funzionante
+
+Altri miglioramenti:
+• [YouTube] Riavvolgimento dirette fino a 4 ore
+• Non caricare il video delle dirette riprodotte in background
+• Nuova UI per "Rimuovi visti"

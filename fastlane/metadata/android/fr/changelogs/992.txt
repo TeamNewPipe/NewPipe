@@ -1,7 +1,7 @@
 Nouveau
 • Nombre d'abonnés dans les détails de la vidéo
 • Télécharger depuis la file d'attente
-• Définir de manière permanente une miniature de liste de lecture
+• Définir de manière permanente une miniature de playlist 
 • Hashtags et liens à appui long
 • Mode d'affichage de la carte
 

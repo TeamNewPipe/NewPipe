@@ -406,7 +406,7 @@
     <string name="main_tabs_position_summary">Премести ги основниот селектор на јазичиња најдолу</string>
     <string name="main_tabs_position_title">Позиција на основните јазичиња</string>
     <string name="show_channel_details">Прикажи информации за каналот</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Да, како и делумно изгледаните видеа</string>
+    <string name="remove_watched_popup_partially_watched_streams">Да, како и делумно изгледаните видеа</string>
     <string name="audio_track_present_in_video">Аудио снимка треба да е веќе присутна во овој стрим</string>
     <plurals name="listening">
         <item quantity="one">%s слушател</item>

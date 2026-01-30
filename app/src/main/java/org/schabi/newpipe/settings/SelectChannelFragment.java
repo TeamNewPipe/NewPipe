@@ -174,7 +174,7 @@ public class SelectChannelFragment extends DialogFragment {
         void onCancel();
     }
 
-    private class SelectChannelAdapter
+    private final class SelectChannelAdapter
             extends RecyclerView.Adapter<SelectChannelAdapter.SelectChannelItemHolder> {
         @NonNull
         @Override

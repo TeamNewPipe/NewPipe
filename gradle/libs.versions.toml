@@ -1,0 +1,139 @@
+#
+# SPDX-FileCopyrightText: 2025 NewPipe e.V. <https://newpipe-ev.de>
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+
+[versions]
+acra = "5.13.1"
+agp = "8.13.2"
+appcompat = "1.7.1"
+assertj = "3.27.6"
+autoservice-google = "1.1.1"
+autoservice-zacsweers = "1.2.0"
+bridge = "v2.0.2"
+cardview = "1.0.0"
+checkstyle = "13.0.0"
+constraintlayout = "2.2.1"
+core = "1.17.0"
+desugar = "2.1.5"
+documentfile = "1.1.0"
+exoplayer = "2.19.1"
+fragment = "1.8.9"
+groupie = "2.10.1"
+jsoup = "1.22.1"
+junit = "4.13.2"
+junit-ext = "1.3.0"
+kotlin = "2.2.21"
+ksp = "2.3.4"
+ktlint = "1.8.0"
+leakcanary = "2.14"
+lifecycle = "2.9.4" # Newer versions require minSdk >= 23
+localbroadcastmanager = "1.1.0"
+markwon = "4.6.2"
+material = "1.11.0" # TODO: update to newer version after bug is fixed. See https://github.com/TeamNewPipe/NewPipe/pull/13018
+media = "1.7.1"
+mockitoCore = "5.21.0"
+okhttp = "5.3.2"
+phoenix = "3.0.0"
+#noinspection NewerVersionAvailable,GradleDependency --> 2.8 is the last version, not 2.71828!
+picasso = "2.8"
+preference = "1.2.1"
+prettytime = "5.0.8.Final"
+recyclerview = "1.4.0"
+room = "2.7.2" # Newer versions require minSdk >= 23
+runner = "1.7.0"
+rxandroid = "3.0.2"
+rxbinding = "4.0.0"
+rxjava = "3.1.12"
+sonarqube = "7.2.2.6593"
+statesaver = "1.4.1" # TODO: Drop because it is deprecated and incompatible with KSP2
+stetho = "1.6.0"
+swiperefreshlayout = "1.2.0"
+# You can use a local version by uncommenting a few lines in settings.gradle
+# Or you can use a commit you pushed to GitHub by just replacing TeamNewPipe with your GitHub
+# name and the commit hash with the commit hash of the (pushed) commit you want to test
+# This works thanks to JitPack: https://jitpack.io/
+teamnewpipe-filepicker = "5.0.0"
+teamnewpipe-nanojson = "e9d656ddb49a412a5a0a5d5ef20ca7ef09549996"
+# WORKAROUND: if you get errors with the NewPipeExtractor dependency, replace `v0.XX.Y` with
+# the corresponding commit hash, since JitPack sometimes deletes artifacts.
+# If there’s already a git hash, just add more of it to the end (or remove a letter)
+# to cause jitpack to regenerate the artifact.
+teamnewpipe-newpipe-extractor = "v0.25.1"
+viewpager2 = "1.1.0"
+webkit = "1.14.0" # Newer versions require minSdk >= 23
+work = "2.10.5"  # Newer versions require minSdk >= 23
+
+[libraries]
+acra-core = { module = "ch.acra:acra-core", version.ref = "acra" }
+android-desugar = { module = "com.android.tools:desugar_jdk_libs_nio", version.ref = "desugar" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+androidx-core = { module = "androidx.core:core-ktx", version.ref = "core" }
+androidx-documentfile = { module = "androidx.documentfile:documentfile", version.ref = "documentfile" }
+androidx-fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment" }
+androidx-junit = { module = "androidx.test.ext:junit", version.ref = "junit-ext" }
+androidx-lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+androidx-localbroadcastmanager = { module = "androidx.localbroadcastmanager:localbroadcastmanager", version.ref = "localbroadcastmanager" }
+androidx-media = { module = "androidx.media:media", version.ref = "media" }
+androidx-preference = { module = "androidx.preference:preference", version.ref = "preference" }
+androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+androidx-room-rxjava3 = { module = "androidx.room:room-rxjava3", version.ref = "room" }
+androidx-room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
+androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
+androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
+androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }
+androidx-webkit = { module = "androidx.webkit:webkit", version.ref = "webkit" }
+androidx-work-runtime = { module = "androidx.work:work-runtime", version.ref = "work" }
+androidx-work-rxjava3 = { module = "androidx.work:work-rxjava3", version.ref = "work" }
+assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+evernote-statesaver-compiler = { module = "com.evernote:android-state-processor", version.ref = "statesaver" }
+evernote-statesaver-core = { module = "com.evernote:android-state", version.ref = "statesaver" }
+facebook-stetho-core = { module = "com.facebook.stetho:stetho", version.ref = "stetho" }
+facebook-stetho-okhttp3 = { module = "com.facebook.stetho:stetho-okhttp3", version.ref = "stetho" }
+google-android-material = { module = "com.google.android.material:material", version.ref = "material" }
+google-autoservice-annotations = { module = "com.google.auto.service:auto-service-annotations", version.ref = "autoservice-google" }
+google-exoplayer-core = { module = "com.google.android.exoplayer:exoplayer-core", version.ref = "exoplayer" }
+google-exoplayer-dash = { module = "com.google.android.exoplayer:exoplayer-dash", version.ref = "exoplayer" }
+google-exoplayer-database = { module = "com.google.android.exoplayer:exoplayer-database", version.ref = "exoplayer" }
+google-exoplayer-datasource = { module = "com.google.android.exoplayer:exoplayer-datasource", version.ref = "exoplayer" }
+google-exoplayer-hls = { module = "com.google.android.exoplayer:exoplayer-hls", version.ref = "exoplayer" }
+google-exoplayer-mediasession = { module = "com.google.android.exoplayer:extension-mediasession", version.ref = "exoplayer" }
+google-exoplayer-smoothstreaming = { module = "com.google.android.exoplayer:exoplayer-smoothstreaming", version.ref = "exoplayer" }
+google-exoplayer-ui = { module = "com.google.android.exoplayer:exoplayer-ui", version.ref = "exoplayer" }
+jakewharton-phoenix = { module = "com.jakewharton:process-phoenix", version.ref = "phoenix" }
+jakewharton-rxbinding = { module = "com.jakewharton.rxbinding4:rxbinding", version.ref = "rxbinding" }
+jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
+junit = { module = "junit:junit", version.ref = "junit" }
+lisawray-groupie-core = { module = "com.github.lisawray.groupie:groupie", version.ref = "groupie" }
+lisawray-groupie-viewbinding = { module = "com.github.lisawray.groupie:groupie-viewbinding", version.ref = "groupie" }
+livefront-bridge = { module = "com.github.livefront:bridge", version.ref = "bridge" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
+newpipe-extractor = { module = "com.github.TeamNewPipe:NewPipeExtractor", version.ref = "teamnewpipe-newpipe-extractor" }
+newpipe-filepicker = { module = "com.github.TeamNewPipe:NoNonsense-FilePicker", version.ref = "teamnewpipe-filepicker" }
+newpipe-nanojson = { module = "com.github.TeamNewPipe:nanojson", version.ref = "teamnewpipe-nanojson" }
+noties-markwon-core = { module = "io.noties.markwon:core", version.ref = "markwon" }
+noties-markwon-linkify = { module = "io.noties.markwon:linkify", version.ref = "markwon" }
+ocpsoft-prettytime = { module = "org.ocpsoft.prettytime:prettytime", version.ref = "prettytime" }
+pinterest-ktlint = { module = "com.pinterest.ktlint:ktlint-cli", version.ref = "ktlint" }
+puppycrawl-checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checkstyle" }
+reactivex-rxandroid = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxandroid" }
+reactivex-rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
+squareup-leakcanary-core = { module = "com.squareup.leakcanary:leakcanary-android-core", version.ref = "leakcanary" }
+squareup-leakcanary-plumber = { module = "com.squareup.leakcanary:plumber-android", version.ref = "leakcanary" }
+squareup-leakcanary-watcher = { module = "com.squareup.leakcanary:leakcanary-object-watcher-android", version.ref = "leakcanary" }
+squareup-okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+squareup-picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
+zacsweers-autoservice-compiler = { module = "dev.zacsweers.autoservice:auto-service-ksp", version.ref = "autoservice-zacsweers" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" } # Needed for statesaver
+jetbrains-kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }

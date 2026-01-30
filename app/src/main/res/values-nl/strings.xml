@@ -502,10 +502,9 @@
     <string name="content_not_supported">Deze inhoud wordt nog niet ondersteund door NewPipe.
 \n
 \nHopelijk zal dit bij een toekomstige versie ondersteund worden.</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, en deels bekeken video\'s</string>
-    <string name="remove_watched_popup_warning">Video\'s die zijn bekeken voor, en na ze werden toegevoegd aan de afspeellijst worden verwijderd.
-\nWeet u dit zeker\? Deze actie kan niet ongedaan gemaakt worden!</string>
-    <string name="remove_watched_popup_title">Bekeken video\'s verwijderen\?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Ja, en deels bekeken video\'s</string>
+    <string name="remove_watched_popup_warning">Video\'s die zijn bekeken voor, en na ze werden toegevoegd aan de afspeellijst worden verwijderd. \nWeet u dit zeker? Deze actie kan niet ongedaan gemaakt worden!</string>
+    <string name="remove_watched_popup_title">Bekeken video\'s verwijderen?</string>
     <string name="infinite_videos">∞ video\'s</string>
     <string name="more_than_100_videos">100+ video\'s</string>
     <string name="restricted_video">Deze video heeft een leeftijdsbeperking.
@@ -825,4 +824,29 @@
     <string name="select_a_feed_group">Selecteer een feedgroep</string>
     <string name="feed_group_page_summary">Kanaalgroep­pagina</string>
     <string name="no_feed_group_created_yet">Nog geen feedgroep geselecteerd</string>
+    <string name="search_with_service_name">Zoeken met %1$s</string>
+    <string name="search_with_service_name_and_filter">Zoeken met %1$s (%2$s)</string>
+    <string name="channel_tab_likes">Vind-ik-leuks</string>
+    <string name="trending_podcasts">Trending podcasts</string>
+    <string name="trending_gaming">Trending games</string>
+    <string name="trending_movies">Trending films en series</string>
+    <string name="trending_music">Trending muziek</string>
+    <string name="migration_info_6_7_title">‘SoundCloud Top 50’-pagina verwĳderd</string>
+    <string name="migration_info_6_7_message">SoundCloud heeft de originele Top 50-hitlĳsten stopgezet. Het bĳbehorende tabblad is van uw hoofdpagina verwĳderd.</string>
+    <string name="migration_info_7_8_title">YouTube gecombineerde trending verwĳderd</string>
+    <string name="migration_info_7_8_message">YouTube heeft de gecombineerde trending­pagina per 21 juli 2025 stopgezet. NewPipe heeft de standaard­trendingpagina vervangen door de trending livestreams.\n\nU kunt ook andere trending­pagina\'s selecteren via \'Instellingen &gt; Inhoud &gt; Inhoud van de hoofdpagina\'.</string>
+    <string name="short_thousand">%s dznd.</string>
+    <string name="short_million">%s mln.</string>
+    <string name="short_billion">%s mld.</string>
+    <string name="delete_file">Bestand verwĳderen</string>
+    <string name="delete_entry">Item verwĳderen</string>
+    <string name="entry_deleted">Item verwĳderd</string>
+    <string name="permission_display_over_apps_message">Om de Pop-up-speler te gebruiken, selecteert u %1$s in het volgende Android-instellingenmenu en schakelt u %2$s in.</string>
+    <string name="permission_display_over_apps_permission_name">‘Weergeven vóór andere apps toestaan’</string>
+    <string name="account_terminated_service_provides_reason">Account beëindigd\n\n%1$s geeft de volgende reden: %2$s</string>
+    <string name="player_http_403">HTTP-fout 403 ontvangen van de server tĳdens het afspelen, waarschĳnlĳk veroorzaakt door het verlopen van de streaming-url of een ip-blokkade</string>
+    <string name="player_http_invalid_status">HTTP-fout %1$s ontvangen van de server tĳdens het afspelen</string>
+    <string name="youtube_player_http_403">HTTP-fout 403 ontvangen van de server tĳdens het afspelen, waarschĳnlĳk veroorzaakt door een ip-blokkade of problemen met de deobfuscatie van de streaming-url</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s weigerde gegevens te verstrekken en vroeg om een login om te bevestigen dat de aanvrager geen bot is.\n\nUw ip-adres is mogelĳk tĳdelĳk geblokkeerd door %1$s. U kunt even wachten of overschakelen naar een ander ip-adres (bĳvoorbeeld door een vpn in of uit te schakelen, of door over te schakelen van wifi naar mobiele data).</string>
+    <string name="unsupported_content_in_country">Deze inhoud is niet beschikbaar voor het momenteel geselecteerde inhouds­land.\n\nWijzig uw selectie via ‘Instellingen &gt; Inhoud &gt; Standaard­land voor inhoud’.</string>
 </resources>

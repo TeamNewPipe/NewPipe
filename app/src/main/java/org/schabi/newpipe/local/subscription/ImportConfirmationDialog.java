@@ -10,24 +10,21 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
-import com.evernote.android.state.State;
 import com.livefront.bridge.Bridge;
 
 import org.schabi.newpipe.R;
 
 public class ImportConfirmationDialog extends DialogFragment {
-    @State
     protected Intent resultServiceIntent;
+    private static final String EXTRA_RESULT_SERVICE_INTENT = "extra_result_service_intent";
 
     public static void show(@NonNull final Fragment fragment,
                             @NonNull final Intent resultServiceIntent) {
         final ImportConfirmationDialog confirmationDialog = new ImportConfirmationDialog();
-        confirmationDialog.setResultServiceIntent(resultServiceIntent);
+        final Bundle args = new Bundle();
+        args.putParcelable(EXTRA_RESULT_SERVICE_INTENT, resultServiceIntent);
+        confirmationDialog.setArguments(args);
         confirmationDialog.show(fragment.getParentFragmentManager(), null);
-    }
-
-    public void setResultServiceIntent(final Intent resultServiceIntent) {
-        this.resultServiceIntent = resultServiceIntent;
     }
 
     @NonNull
@@ -38,9 +35,7 @@ public class ImportConfirmationDialog extends DialogFragment {
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, null)
                 .setPositiveButton(R.string.ok, (dialogInterface, i) -> {
-                    if (resultServiceIntent != null && getContext() != null) {
-                        getContext().startService(resultServiceIntent);
-                    }
+                    requireContext().startService(resultServiceIntent);
                     dismiss();
                 })
                 .create();
@@ -50,11 +45,7 @@ public class ImportConfirmationDialog extends DialogFragment {
     public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (resultServiceIntent == null) {
-            throw new IllegalStateException("Result intent is null");
-        }
-
-        Bridge.restoreInstanceState(this, savedInstanceState);
+        resultServiceIntent = requireArguments().getParcelable(EXTRA_RESULT_SERVICE_INTENT);
     }
 
     @Override

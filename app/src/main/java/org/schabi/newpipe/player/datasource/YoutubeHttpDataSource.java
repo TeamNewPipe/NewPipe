@@ -14,10 +14,8 @@ import static com.google.android.exoplayer2.util.Assertions.checkNotNull;
 import static com.google.android.exoplayer2.util.Util.castNonNull;
 import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper.getAndroidUserAgent;
 import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper.getIosUserAgent;
-import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper.getTvHtml5UserAgent;
 import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper.isAndroidStreamingUrl;
 import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper.isIosStreamingUrl;
-import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper.isTvHtml5StreamingUrl;
 import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper.isWebStreamingUrl;
 import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper.isWebEmbeddedPlayerStreamingUrl;
 import static java.lang.Math.min;
@@ -670,10 +668,7 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
             }
         }
 
-        final boolean isTvHtml5StreamingUrl = isTvHtml5StreamingUrl(requestUrl);
-
         if (isWebStreamingUrl(requestUrl)
-                || isTvHtml5StreamingUrl
                 || isWebEmbeddedPlayerStreamingUrl(requestUrl)) {
             httpURLConnection.setRequestProperty(HttpHeaders.ORIGIN, YOUTUBE_BASE_URL);
             httpURLConnection.setRequestProperty(HttpHeaders.REFERER, YOUTUBE_BASE_URL);
@@ -694,9 +689,6 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
         } else if (isIosStreamingUrl) {
             httpURLConnection.setRequestProperty(HttpHeaders.USER_AGENT,
                     getIosUserAgent(null));
-        } else if (isTvHtml5StreamingUrl) {
-            httpURLConnection.setRequestProperty(HttpHeaders.USER_AGENT,
-                    getTvHtml5UserAgent());
         } else {
             // non-mobile user agent
             httpURLConnection.setRequestProperty(HttpHeaders.USER_AGENT, DownloaderImpl.USER_AGENT);

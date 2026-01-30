@@ -17,6 +17,7 @@ import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.function.Consumer
 import org.schabi.newpipe.MainActivity.DEBUG
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.R
@@ -37,7 +38,6 @@ import org.schabi.newpipe.local.playlist.RemotePlaylistManager
 import org.schabi.newpipe.util.ExtractorHelper
 import org.schabi.newpipe.util.ServiceHelper
 import org.schabi.newpipe.util.image.ImageStrategy
-import java.util.function.Consumer
 
 /**
  * This class is used to cleanly separate the Service implementation (in
@@ -47,7 +47,8 @@ import java.util.function.Consumer
  */
 class MediaBrowserImpl(
     private val context: Context,
-    notifyChildrenChanged: Consumer<String>, // parentId
+    // parentId
+    notifyChildrenChanged: Consumer<String>
 ) {
     private val packageValidator = PackageValidator(context)
     private val database = NewPipeDatabase.getInstance(context)
@@ -89,7 +90,8 @@ class MediaBrowserImpl(
 
         val extras = Bundle()
         extras.putBoolean(
-            MediaConstants.BROWSER_SERVICE_EXTRAS_KEY_SEARCH_SUPPORTED, true
+            MediaConstants.BROWSER_SERVICE_EXTRAS_KEY_SEARCH_SUPPORTED,
+            true
         )
         return MediaBrowserServiceCompat.BrowserRoot(ID_ROOT, extras)
     }
@@ -137,7 +139,7 @@ class MediaBrowserImpl(
                 )
             }
 
-            when (/*val uriType = */path.removeAt(0)) {
+            when (path.removeAt(0)) {
                 ID_BOOKMARKS -> {
                     if (path.isEmpty()) {
                         return populateBookmarks()
@@ -204,12 +206,12 @@ class MediaBrowserImpl(
         val extras = Bundle()
         extras.putString(
             MediaConstants.DESCRIPTION_EXTRAS_KEY_CONTENT_STYLE_GROUP_TITLE,
-            context.resources.getString(R.string.tab_bookmarks),
+            context.resources.getString(R.string.tab_bookmarks)
         )
         builder.setExtras(extras)
         return MediaBrowserCompat.MediaItem(
             builder.build(),
-            MediaBrowserCompat.MediaItem.FLAG_BROWSABLE,
+            MediaBrowserCompat.MediaItem.FLAG_BROWSABLE
         )
     }
 
@@ -266,7 +268,7 @@ class MediaBrowserImpl(
     private fun createLocalPlaylistStreamMediaItem(
         playlistId: Long,
         item: PlaylistStreamEntry,
-        index: Int,
+        index: Int
     ): MediaBrowserCompat.MediaItem {
         val builder = MediaDescriptionCompat.Builder()
         builder.setMediaId(createMediaIdForPlaylistIndex(false, playlistId, index))
@@ -283,7 +285,7 @@ class MediaBrowserImpl(
     private fun createRemotePlaylistStreamMediaItem(
         playlistId: Long,
         item: StreamInfoItem,
-        index: Int,
+        index: Int
     ): MediaBrowserCompat.MediaItem {
         val builder = MediaDescriptionCompat.Builder()
         builder.setMediaId(createMediaIdForPlaylistIndex(true, playlistId, index))
@@ -303,7 +305,7 @@ class MediaBrowserImpl(
     private fun createMediaIdForPlaylistIndex(
         isRemote: Boolean,
         playlistId: Long,
-        index: Int,
+        index: Int
     ): String {
         return buildLocalPlaylistItemMediaId(isRemote, playlistId)
             .appendPath(index.toString())
@@ -315,7 +317,7 @@ class MediaBrowserImpl(
     }
 
     private fun populateHistory(): Single<List<MediaBrowserCompat.MediaItem>> {
-        val history = database.streamHistoryDAO().getHistory().firstOrError()
+        val history = database.streamHistoryDAO().history.firstOrError()
         return history.map { items ->
             items.map { this.createHistoryMediaItem(it) }
         }

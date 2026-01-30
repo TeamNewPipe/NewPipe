@@ -522,10 +522,9 @@
     <string name="restricted_video">To wideo jest objęte ograniczeniem wiekowym.
 \n
 \nWłącz „%1$s” w ustawieniach, jeśli chcesz je zobaczyć.</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Tak, i częściowo obejrzane wideo</string>
-    <string name="remove_watched_popup_warning">Wideo, które zostały obejrzane przed i po dodaniu do playlisty, zostaną usunięte.
-\nCzy na pewno\? Tego nie da się cofnąć!</string>
-    <string name="remove_watched_popup_title">Czy usunąć obejrzane wideo\?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Tak, i częściowo obejrzane wideo</string>
+    <string name="remove_watched_popup_warning">Wideo, które zostały obejrzane przed i po dodaniu do playlisty, zostaną usunięte. \nCzy na pewno? Tego nie da się cofnąć!</string>
+    <string name="remove_watched_popup_title">Czy usunąć obejrzane wideo?</string>
     <string name="remove_watched">Usuń obejrzane</string>
     <string name="show_original_time_ago_summary">Oryginalne teksty z usług będą widoczne w strumieniowanych pozycjach</string>
     <string name="show_original_time_ago_title">Pokazuj oryginalny czas na pozycjach</string>
@@ -592,8 +591,8 @@
     <string name="crash_the_app">Zepsuj aplikację</string>
     <string name="paid_content">Ta treść dostępna jest tylko dla użytkowników, którzy za nią zapłacili. Nie może być strumieniowana ani pobierana przez NewPipe.</string>
     <string name="youtube_music_premium_content">To wideo dostępne jest tylko dla subskrybentów usługi YouTube Music Premium. Nie może być strumieniowane ani pobierane przez NewPipe.</string>
-    <string name="private_content">Ta treść jest prywatna, więc nie może być strumieniowana ani pobierana przez NewPipe</string>
-    <string name="georestricted_content">Ta treść nie jest dostępna w Twoim kraju</string>
+    <string name="private_content">Ta treść jest prywatna, więc nie może być strumieniowana ani pobierana przez NewPipe.</string>
+    <string name="georestricted_content">Ta treść nie jest dostępna w Twoim kraju.</string>
     <string name="restricted_video_no_stream">To wideo jest objęte ograniczeniem wiekowym.
 \nZe względu na nowe zasady YouTube dotyczące wideo z ograniczeniami wiekowymi NewPipe nie może uzyskać dostępu do żadnego z jego strumieni wideo i dlatego nie jest w stanie go odtworzyć.</string>
     <string name="soundcloud_go_plus_content">To jest utwór SoundCloud Go+ (przynajmniej w Twoim kraju). Nie może być strumieniowany ani pobierany przez NewPipe.</string>
@@ -623,7 +622,7 @@
     <string name="metadata_category">Kategoria</string>
     <string name="open_website_license">Otwórz stronę</string>
     <string name="description_select_note">Teraz możesz zaznaczyć tekst wewnątrz opisu. Pamiętaj, że w trybie zaznaczania strona może migotać i linki nie będą klikalne.</string>
-    <string name="account_terminated">Konto zamknięte</string>
+    <string name="account_terminated">Konto zamknięte.</string>
     <string name="feed_load_error_fast_unknown">Tryb szybki dla ładowania kanału nie dostarcza więcej informacji na ten temat.</string>
     <string name="feed_load_error_terminated">Konto autora zostało zawieszone.
 \nNewPipe nie będzie w stanie załadować tego kanału w przyszłości.
@@ -853,4 +852,24 @@
     <string name="channel_tab_likes">Polubienia</string>
     <string name="migration_info_6_7_title">Usunięto stronę SoundCloud 50 najlepszych</string>
     <string name="migration_info_6_7_message">SoundCloud wycofał oryginalną listę 50 najlepszych. Odpowiadająca karta została usunięta ze strony głównej.</string>
+    <string name="migration_info_7_8_title">Usunięto połączone Na czasie YouTube</string>
+    <string name="migration_info_7_8_message">Od 21 lipca 2025 r. YouTube zaprzestał korzystania z połączonego Na czasie. NewPipe zastąpił domyślną stronę Na czasie popularnymi transmisjami na żywo.\n\nMożesz także wybrać różne strony Na czasie w „Ustawienia &gt; Zawartość &gt; Zawartość strony głównej”.</string>
+    <string name="trending_gaming">Gry na czasie</string>
+    <string name="trending_podcasts">Podcasty na czasie</string>
+    <string name="trending_movies">Filmy i programy na czasie</string>
+    <string name="trending_music">Muzyka na czasie</string>
+    <string name="short_thousand">%stys.</string>
+    <string name="short_million">%smln</string>
+    <string name="short_billion">%smld</string>
+    <string name="delete_file">Usuń plik</string>
+    <string name="delete_entry">Usuń wpis</string>
+    <string name="entry_deleted">Usunięto wpis</string>
+    <string name="permission_display_over_apps_message">Aby korzystać z odtwarzacza w trybie okienkowym, wybierz %1$s w następującym menu ustawień Androida i włącz %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">„Zezwól na wyświetlanie nad innymi aplikacjami”</string>
+    <string name="account_terminated_service_provides_reason">Konto zamknięte.\n\n%1$s podaje następujący powód: %2$s</string>
+    <string name="player_http_403">Podczas odtwarzania otrzymano od serwera błąd HTTP 403, prawdopodobnie spowodowany wygaśnięciem adresu URL strumienia lub blokadą adresu IP.</string>
+    <string name="player_http_invalid_status">Podczas odtwarzania otrzymano od serwera błąd HTTP %1$s.</string>
+    <string name="youtube_player_http_403">Podczas odtwarzania otrzymano od serwera błąd HTTP 403, prawdopodobnie spowodowany blokadą adresu IP lub problemami z odszyfrowaniem adresu URL strumienia.</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s odmówił dostarczenia danych, prosząc o zalogowanie się w celu potwierdzenia, że nie jest się botem.\n\nTwoje IP mogło zostać tymczasowo zablokowane przez %1$s. Możesz chwilę poczekać lub zmienić adres IP (na przykład włączając/wyłączając VPN lub przełączając się z sieci Wi-Fi na dane komórkowe).</string>
+    <string name="unsupported_content_in_country">Ta treść nie jest dostępna dla aktualnie wybranego kraju treści.\n\nZmień swój wybór w „Ustawienia &gt; Zawartość &gt; Domyślny kraj treści”.</string>
 </resources>

@@ -1,0 +1,9 @@
+Hobetua
+
+• Gehitu dira igoera data eta ikustaldi kopurua erreprodukzio-sareko elementuetan
+• Tiraderaren goiburuaren diseinuaren hobekuntzak
+
+Konpondua
+
+• API 19an huts egiteak eragiten zuen isilarazteko botoia konpondu da
+• 1080p 60 fps-ko bideo luzeen deskarga konpondu da

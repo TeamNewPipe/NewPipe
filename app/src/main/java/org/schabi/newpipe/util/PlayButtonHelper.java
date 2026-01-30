@@ -50,6 +50,10 @@ public final class PlayButtonHelper {
         });
 
         // long click listener
+        playlistControlBinding.playlistCtrlPlayAllButton.setOnLongClickListener(view -> {
+            NavigationHelper.enqueueOnPlayer(activity, fragment.getPlayQueue(), PlayerType.MAIN);
+            return true;
+        });
         playlistControlBinding.playlistCtrlPlayPopupButton.setOnLongClickListener(view -> {
             NavigationHelper.enqueueOnPlayer(activity, fragment.getPlayQueue(), PlayerType.POPUP);
             return true;

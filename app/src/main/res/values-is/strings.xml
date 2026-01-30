@@ -673,9 +673,8 @@
         <item quantity="other">%1$s sóttum skrám eytt</item>
     </plurals>
     <string name="max_retry_desc">Fjöldi tilrauna áður en hætt er við niðurhal</string>
-    <string name="remove_watched_popup_warning">Myndskeiðum sem skoðuð voru áður eða eftir að þeim var bætt við spilunarlistann verður eytt.
-\nErtu viss? Það er ekki hægt að afturkalla þetta!</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Já og skoðuð að hluta</string>
+    <string name="remove_watched_popup_warning">Myndskeiðum sem skoðuð voru áður eða eftir að þeim var bætt við spilunarlistann verður eytt. \nErtu viss? Það er ekki hægt að afturkalla þetta!</string>
+    <string name="remove_watched_popup_partially_watched_streams">Já og skoðuð að hluta</string>
     <string name="feed_use_dedicated_fetch_method_title">Nota RSS ef tiltækt</string>
     <string name="detail_heart_img_view_description">Hjartað af höfunda</string>
     <string name="notifications_disabled">Slökkt er á tilkynningum</string>
@@ -809,4 +808,16 @@
     <string name="channel_tab_likes">Líkar við</string>
     <string name="migration_info_6_7_title">Topp 50 síða SoundCloud fjarlægð</string>
     <string name="migration_info_6_7_message">SoundCloud er hætt með Topp 50 vinsældalistann. Viðkomandi flipi hefur verið fjarlægður af aðalsíðunni þinni.</string>
+    <string name="short_thousand">%sK</string>
+    <string name="short_million">%sM</string>
+    <string name="short_billion">%sB</string>
+    <string name="trending_gaming">Vinsælir leikir</string>
+    <string name="trending_podcasts">Vinsæl hlaðvörp</string>
+    <string name="trending_movies">Vinsælar kvikmyndir og þættir</string>
+    <string name="trending_music">Vinsæl tónlist</string>
+    <string name="permission_display_over_apps_permission_name">\"Leyfa birtingu ofan á öðrum forritum\"</string>
+    <string name="delete_file">Eyða skrá</string>
+    <string name="delete_entry">Eyða færslu</string>
+    <string name="account_terminated_service_provides_reason">Aðgangi lokað\n\n%1$s gefur þessa ástæðu: %2$s</string>
+    <string name="entry_deleted">Færslu eytt</string>
 </resources>

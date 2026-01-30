@@ -1,0 +1,33 @@
+# Dnevnik promjena v0.13.7
+
+### Ispravljeno
+- Ispravljeni problemi sa filterom sortiranja iz v0.13.6
+
+# Dnevnik promjena v0.13.6
+
+### Poboljšanja
+
+- Onemogućena animacija ikone burger menija #1486
+- poništavanje brisanja preuzimanja #1472
+- Opcija preuzimanja u meniju za dijeljenje #1498
+- Dodata opcija dijeljenja u meni dugog dodira #1454
+- Minimiziranje glavnog playera pri izlasku #1354
+- Ispravka ažuriranja verzije biblioteke i sigurnosne kopije baze podataka #1510
+- Ažuriranje ExoPlayera 2.8.2 #1392
+- Prerađen dijalog za kontrolu brzine reprodukcije kako bi se podržale različite veličine koraka za bržu promjenu brzine.
+- Dodan je prekidač za premotavanje unaprijed tokom tišina u kontroli brzine reprodukcije. Ovo bi trebalo biti korisno za audio knjige i određene muzičke žanrove i može donijeti zaista besprijekorno iskustvo (i može prekinuti pjesmu s puno tišina =\\). 
+- Refaktorisana rezolucija izvora medija kako bi se omogućilo interno prosljeđivanje metapodataka zajedno s medijima u playeru, umjesto ručnog. Sada imamo jedan izvor metapodataka i on je direktno dostupan kada počne reprodukcija.
+- Ispravljeni metapodaci udaljene liste za reprodukciju koji se nisu ažurirali kada su novi metapodaci dostupni prilikom otvaranja fragmenta liste za reprodukciju.
+- Razne ispravke korisničkog interfejsa: #1383, kontrole obavještenja u pozadini playera sada su uvijek bijele, lakše je isključiti iskačući player prebacivanjem.
+- Koristi se novi ekstraktor s refaktorisanom arhitekturom za više servisa.
+
+### Ispravke
+
+- Ispravka #1440 Neispravan raspored informacija o videu #1491
+- Ispravka historije pregleda #1497
+- #1495, ažuriranjem metapodataka (sličica, naslov i broj videa) čim korisnik pristupi listi za reprodukciju.
+- #1475, registracijom pregleda u bazi podataka kada korisnik pokrene video na vanjskom playeru na fragmentu detalja.
+- Ispravljeno vremensko ograničenje ekrana u slučaju iskačućeg načina rada. #1463 (Ispravljeno #640)
+- Ispravka glavnog video plejera #1509
+- [#1412] Ispravljen je način ponavljanja koji je uzrokovao NPE plejera kada se primi nova namjera dok je aktivnost plejera u pozadini.
+- Ispravljeno je minimiziranje plejera u skočni prozor koje nije uništilo plejer kada nije odobrena dozvola za skočni prozor.

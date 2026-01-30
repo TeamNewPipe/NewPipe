@@ -26,7 +26,7 @@ class SubscriptionManager(context: Context) {
     private val feedDatabaseManager = FeedDatabaseManager(context)
 
     fun subscriptionTable(): SubscriptionDAO = subscriptionTable
-    fun subscriptions() = subscriptionTable.all
+    fun subscriptions() = subscriptionTable.getAll()
 
     fun getSubscriptions(
         currentGroupId: Long = FeedGroupEntity.GROUP_ALL_ID,
@@ -37,14 +37,17 @@ class SubscriptionManager(context: Context) {
             filterQuery.isNotEmpty() -> {
                 return if (showOnlyUngrouped) {
                     subscriptionTable.getSubscriptionsOnlyUngroupedFiltered(
-                        currentGroupId, filterQuery
+                        currentGroupId,
+                        filterQuery
                     )
                 } else {
                     subscriptionTable.getSubscriptionsFiltered(filterQuery)
                 }
             }
+
             showOnlyUngrouped -> subscriptionTable.getSubscriptionsOnlyUngrouped(currentGroupId)
-            else -> subscriptionTable.all
+
+            else -> subscriptionTable.getAll()
         }
     }
 
@@ -67,19 +70,18 @@ class SubscriptionManager(context: Context) {
         return listEntities
     }
 
-    fun updateChannelInfo(info: ChannelInfo): Completable =
-        subscriptionTable.getSubscription(info.serviceId, info.url)
-            .flatMapCompletable {
-                Completable.fromRunnable {
-                    it.setData(
-                        info.name,
-                        ImageStrategy.imageListToDbUrl(info.avatars),
-                        info.description,
-                        info.subscriberCount
-                    )
-                    subscriptionTable.update(it)
+    fun updateChannelInfo(info: ChannelInfo): Completable = subscriptionTable.getSubscription(info.serviceId, info.url)
+        .flatMapCompletable {
+            Completable.fromRunnable {
+                it.apply {
+                    name = info.name
+                    avatarUrl = ImageStrategy.imageListToDbUrl(info.avatars)
+                    description = info.description
+                    subscriberCount = info.subscriberCount
                 }
+                subscriptionTable.update(it)
             }
+        }
 
     fun updateNotificationMode(serviceId: Int, url: String, @NotificationMode mode: Int): Completable {
         return subscriptionTable().getSubscription(serviceId, url)

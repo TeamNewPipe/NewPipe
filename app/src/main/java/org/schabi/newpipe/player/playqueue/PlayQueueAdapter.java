@@ -10,12 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.player.playqueue.events.AppendEvent;
-import org.schabi.newpipe.player.playqueue.events.ErrorEvent;
-import org.schabi.newpipe.player.playqueue.events.MoveEvent;
-import org.schabi.newpipe.player.playqueue.events.PlayQueueEvent;
-import org.schabi.newpipe.player.playqueue.events.RemoveEvent;
-import org.schabi.newpipe.player.playqueue.events.SelectEvent;
+import org.schabi.newpipe.player.playqueue.PlayQueueEvent.AppendEvent;
+import org.schabi.newpipe.player.playqueue.PlayQueueEvent.ErrorEvent;
+import org.schabi.newpipe.player.playqueue.PlayQueueEvent.MoveEvent;
+import org.schabi.newpipe.player.playqueue.PlayQueueEvent.RemoveEvent;
+import org.schabi.newpipe.player.playqueue.PlayQueueEvent.SelectEvent;
 import org.schabi.newpipe.util.FallbackViewHolder;
 
 import java.util.List;

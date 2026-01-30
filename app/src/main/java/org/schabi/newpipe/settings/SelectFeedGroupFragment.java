@@ -175,7 +175,7 @@ public class SelectFeedGroupFragment extends DialogFragment {
         void onCancel();
     }
 
-    private class SelectFeedGroupAdapter
+    private final class SelectFeedGroupAdapter
             extends RecyclerView.Adapter<SelectFeedGroupAdapter.SelectFeedGroupItemHolder> {
         @NonNull
         @Override

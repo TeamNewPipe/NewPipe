@@ -1,0 +1,18 @@
+#
+# SPDX-FileCopyrightText: 2025 NewPipe e.V. <https://newpipe-ev.de>
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+
+root = true
+
+[*.{kt,kts}]
+ktlint_code_style = android_studio
+# https://pinterest.github.io/ktlint/latest/rules/standard/#function-naming
+ktlint_function_naming_ignore_when_annotated_with = Composable
+
+ktlint_standard_class-signature = disabled
+ktlint_standard_function-expression-body = disabled
+ktlint_standard_max-line-length = disabled
+ktlint_standard_mixed-condition-operators = disabled
+ktlint_standard_package-name = disabled
+ktlint_standard_property-naming = disabled

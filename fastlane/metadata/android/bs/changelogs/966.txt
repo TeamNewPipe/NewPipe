@@ -1,0 +1,14 @@
+Novo:
+• Dodana nova usluga: Bandcamp
+
+Poboljšano:
+• Dodana opcija da aplikacija prati temu uređaja
+• Spriječeni su neki rušenji prikazivanjem poboljšane ploče s greškama
+• Prikaz više informacija o tome zašto sadržaj nije dostupan
+• Dugme za razmak na hardveru pokreće reprodukciju/pauzu
+• Prikaz tosta "Preuzimanje započeto"
+
+Ispravljeno:
+• Ispravljena je vrlo mala sličica u detaljima videa tokom reprodukcije u pozadini
+• Ispravljen je prazan naslov u minimiziranom playeru
+• Ispravljena je greška zbog koje se posljednji način promjene veličine nije ispravno vraćao

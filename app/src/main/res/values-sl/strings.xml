@@ -261,7 +261,7 @@
     <string name="privacy_policy_title">NewPipe-ovi pravilnik zasebnosti</string>
     <string name="website_encouragement">Obiščite spletno mesto od NewPipe za več informacij in novic.</string>
     <string name="done">Končano</string>
-    <string name="no_comments">Ni komantarjev</string>
+    <string name="no_comments">Ni komentarjev</string>
     <string name="no_one_listening">Nobeden ne posluša</string>
     <string name="no_one_watching">Nobeden ne gleda</string>
     <string name="error_occurred_detail">Zgodila se je napaka: %1$s</string>

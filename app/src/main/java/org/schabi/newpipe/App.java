@@ -65,11 +65,21 @@ public class App extends Application {
     private static final String TAG = App.class.toString();
 
     private boolean isFirstRun = false;
+    private boolean notificationsRequested = false;
+
     private static App app;
 
     @NonNull
     public static App getApp() {
         return app;
+    }
+
+    public boolean getNotificationsRequested() {
+        return notificationsRequested;
+    }
+
+    public void setNotificationsRequested() {
+        notificationsRequested = true;
     }
 
     @Override

@@ -1,0 +1,9 @@
+Gehitu bi aldiz sakatuta bilatzeko interfazea eta portaera berriak
+Egin ezarpenak bilagarri
+Nabarmendu finkatutako iruzkinak horrela
+Gehitu aplikazioarekin irekitzeko euskarria FSFEren PeerTube instantziarako
+Gehitu errore-jakinarazpenak
+Konpondu jokalaria aldatzean lehenengo ilarako elementuaren errepikapena
+Itxaron denbora gehiago zuzeneko erreprodukzioetan bufferrean gordetzean huts egin aurretik
+Tokiko bilaketa-emaitzen ordena konpondu
+Konpondu erreprodukzio-ilarako elementu-eremu hutsak

@@ -1,0 +1,15 @@
+Ovo izdanje ukida podršku za Android 4.4 KitKat, sada je minimalna verzija Android 5 Lollipop!
+
+Novo
+• Preuzimanje iz menija s dugim pritiskom
+• Skrivanje budućih videa u feedu
+• Dijeljenje lokalnih lista za reprodukciju
+
+Poboljšano
+• Refaktorisanje koda playera u male komponente: manje RAM-a se koristi, manje grešaka
+• Poboljšan način skaliranja sličica
+• Vektorska konverzija rezerviranih mjesta za slike
+
+Ispravljeno
+• Ispravljeni razni problemi s obavještenjima playera: zastarjele/nedostajuće informacije o medijima, iskrivljena sličica
+• Ispravljen prikaz preko cijelog ekrana koristeći 1/4 ekrana

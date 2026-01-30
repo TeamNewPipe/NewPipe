@@ -229,9 +229,9 @@
     <string name="name">Nom</string>
     <string name="add_to_playlist">Ajouter à la liste de lecture</string>
     <string name="set_as_playlist_thumbnail">Définir comme miniature de la liste de lecture</string>
-    <string name="bookmark_playlist">Enregister la liste de lecture</string>
+    <string name="bookmark_playlist">Enregistrer la liste de lecture</string>
     <string name="unbookmark_playlist">Supprimer le signet</string>
-    <string name="delete_playlist_prompt">Voulez-vous supprimer cette liste de lecture \?</string>
+    <string name="delete_playlist_prompt">Voulez-vous supprimer cette liste de lecture ?</string>
     <string name="playlist_creation_success">Liste de lecture créée</string>
     <string name="playlist_add_stream_success">Ajouté à la liste de lecture</string>
     <string name="playlist_thumbnail_change_success">Miniature de la liste de lecture changée.</string>
@@ -386,7 +386,7 @@
     <string name="no_comments">Aucun commentaire</string>
     <string name="error_unable_to_load_comments">Impossible de charger les commentaires</string>
     <string name="close">Fermer</string>
-    <string name="enable_playback_resume_title">Reprendre la liste de lecture</string>
+    <string name="enable_playback_resume_title">Reprendre la lecture</string>
     <string name="settings_category_clear_data_title">Effacer les données</string>
     <string name="missing_file">Fichier déplacé ou supprimé</string>
     <string name="overwrite_failed">impossible d’écraser le fichier</string>
@@ -521,10 +521,9 @@
 \n
 \nActivez « %1$s » dans les paramètres si vous voulez la voir.</string>
     <string name="remove_watched">Supprimer les vidéos visionnées</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Oui ainsi que les vidéos partiellement visionnées</string>
-    <string name="remove_watched_popup_warning">Les vidéos qui ont été visionnées avant et après avoir été ajoutées à la liste de lecture seront supprimées.
-\nÊtes-vous certain(e)  \? Cette action est irréversible !</string>
-    <string name="remove_watched_popup_title">Supprimer les vidéos visionnées \?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Oui ainsi que les vidéos partiellement visionnées</string>
+    <string name="remove_watched_popup_warning">Les vidéos qui ont été visionnées avant et après avoir été ajoutées à la playlist seront supprimées. \nÊtes-vous certain(e) ? Cette action est irréversible !</string>
+    <string name="remove_watched_popup_title">Supprimer les vidéos visionnées ?</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniature de l\'avatar de la chaine</string>
     <string name="video_detail_by">De %s</string>
     <string name="channel_created_by">Créé par %s</string>
@@ -532,7 +531,7 @@
     <string name="show_original_time_ago_title">Afficher la date originelle sur les items</string>
     <string name="youtube_restricted_mode_enabled_title">Activer le « Mode restreint » de YouTube</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Afficher uniquement les abonnements non groupés</string>
-    <string name="playlist_page_summary">Page des listes de lecture</string>
+    <string name="playlist_page_summary">Page des playlists</string>
     <string name="no_playlist_bookmarked_yet">Aucune liste de lecture encore enregistrée</string>
     <string name="select_a_playlist">Sélectionner une liste de lecture</string>
     <string name="error_report_open_github_notice">Veuillez vérifier si un ticket concernant votre problème existe déjà. Lorsque vous créez des tickets dupliqués, cela nous prend du temps que nous pourrions passer à résoudre effectivement le problème.</string>
@@ -839,11 +838,31 @@
     <string name="share_playlist_as_youtube_temporary_playlist">Partager comme liste de lecture YouTube temporaire</string>
     <string name="tab_bookmarks_short">Listes de lecture</string>
     <string name="select_a_feed_group">Sélectionnez un groupe de flux</string>
-    <string name="no_feed_group_created_yet">Aucun groupe de flux n\'a encore été créé</string>
+    <string name="no_feed_group_created_yet">Encore aucun groupe de flux créé</string>
     <string name="feed_group_page_summary">Page du groupe de chaînes</string>
     <string name="search_with_service_name">Rechercher %1$s</string>
     <string name="search_with_service_name_and_filter">Rechercher %1$s (%2$s)</string>
-    <string name="channel_tab_likes">Likes</string>
+    <string name="channel_tab_likes">J’aime</string>
     <string name="migration_info_6_7_title">Page SoundCloud Top 50 supprimée</string>
     <string name="migration_info_6_7_message">SoundCloud a abandonné le classement original du Top 50. L\'onglet correspondant a été supprimé de votre page d\'accueil.</string>
+    <string name="migration_info_7_8_title">Suppression des tendances combinées sur YouTube</string>
+    <string name="migration_info_7_8_message">YouTube a supprimé la page des tendances combinées depuis le 21 juillet 2025. NewPipe a remplacé la page des tendances par défaut par les diffusions en direct les plus populaires.\n\nVous pouvez également sélectionner différentes pages de tendances dans « Paramètres &gt; Contenu &gt; Contenu de la page principale ».</string>
+    <string name="trending_gaming">Tendances jeu vidéo</string>
+    <string name="trending_podcasts">Tendances podcasts</string>
+    <string name="trending_movies">Tendances films et séries</string>
+    <string name="trending_music">Tendances musique</string>
+    <string name="short_thousand">%sK</string>
+    <string name="short_million">%sM</string>
+    <string name="short_billion">%sB</string>
+    <string name="permission_display_over_apps_message">Pour utiliser le lecteur contextuel, veuillez sélectionner %1$s dans le menu des paramètres Android suivant et activer %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">« Autoriser l\'affichage sur d\'autres applications »</string>
+    <string name="delete_file">Supprimer le fichier</string>
+    <string name="delete_entry">Supprimer l\'entrée</string>
+    <string name="entry_deleted">Entrée supprimée</string>
+    <string name="account_terminated_service_provides_reason">Compte fermé\n\n%1$s fournit la raison suivante : %2$s</string>
+    <string name="player_http_403">Erreur HTTP 403 reçue du serveur pendant la lecture, probablement causée par l\'expiration de l\'URL de streaming ou une interdiction d\'IP</string>
+    <string name="player_http_invalid_status">Erreur HTTP %1$s reçue du serveur pendant la lecture</string>
+    <string name="youtube_player_http_403">Erreur HTTP 403 reçue du serveur pendant la lecture, probablement causée par un bannissement d\'IP ou des problèmes de désobfuscation de l\'URL de streaming</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s a refusé de fournir des données et a demandé un identifiant pour confirmer que le demandeur n\'est pas un robot.\n\nVotre adresse IP a peut-être été temporairement bannie par %1$s. Vous pouvez patienter un peu ou changer d\'adresse IP (par exemple en activant/désactivant un VPN, ou en passant du Wi-Fi aux données mobiles).</string>
+    <string name="unsupported_content_in_country">Ce contenu n\'est pas disponible pour le pays actuellement sélectionné.\n\nModifiez votre sélection dans « Paramètres &gt; Contenu &gt; Pays par défaut ».</string>
 </resources>

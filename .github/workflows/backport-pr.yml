@@ -1,0 +1,48 @@
+name: Backport merged pull request
+on:
+  issue_comment:
+    types: [created]
+permissions:
+  contents: write # for comment creation on original PR
+  pull-requests: write
+jobs:
+  backport:
+    name: Backport pull request
+    runs-on: ubuntu-latest
+
+    # Only run when the comment starts with the `/backport` command on a PR and
+    # the commenter has write access to the repository. We do not want to allow
+    # everybody to trigger backports and create branches in our repository.
+    if: >
+        github.event.issue.pull_request &&
+        startsWith(github.event.comment.body, '/backport ') &&
+        (
+        github.event.comment.author_association == 'OWNER' ||
+        github.event.comment.author_association == 'COLLABORATOR' ||
+        github.event.comment.author_association == 'MEMBER'
+        )
+    steps:
+      - uses: actions/checkout@v6
+      - name: Get backport metadata
+        # the target branch is the first argument after `/backport`
+        env:
+          COMMENT_BODY: ${{ github.event.comment.body }}
+        run: |
+          set -euo pipefail
+          body="$COMMENT_BODY"
+          
+          line=${body%%$'\n'*} # Get the first line
+          if [[ $line =~ ^/backport[[:space:]]+([^[:space:]]+) ]]; then
+            echo "BACKPORT_TARGET=${BASH_REMATCH[1]}" >> "$GITHUB_ENV"
+          else
+            echo "Usage: /backport <target-branch>" >&2
+            exit 1
+          fi
+
+      - name: Create backport pull request
+        uses: korthout/backport-action@v4
+        with:
+          add_labels: 'backport'
+          copy_labels_pattern: '.*'
+          label_pattern: ''
+          target_branches: ${{ env.BACKPORT_TARGET }}

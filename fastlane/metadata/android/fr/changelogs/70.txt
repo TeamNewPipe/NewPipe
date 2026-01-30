@@ -1,4 +1,4 @@
-ATTENTION : Cette version est probablement un festival de bugs, tout comme la dernière. Cependant, en raison de la fermeture complète depuis la 17. une version cassée est mieux que pas de version. N'est-ce pas ? ¯\_(ツ)_/¯
+ATTENTION : Cette version est probablement un festival de bugs, tout comme la dernière. Cependant, en raison de la fermeture complète depuis la 17. une version cassée est mieux que pas de version. N'est-ce pas ? ¯\_(ツ)_/¯
 
 ### Améliorations
 * Les fichiers téléchargés peuvent maintenant être ouverts en un seul clic. 

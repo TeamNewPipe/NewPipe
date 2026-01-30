@@ -1,0 +1,14 @@
+Poboljšano
+• Dodavanje više naslova radi poboljšanja pristupačnosti za slijepe osobe #2655
+• Učiniti jezik postavki mape za preuzimanje konzistentnijim i manje dvosmislenim #2637
+
+Ispravljeno
+• Provjera da li je posljednji bajt u bloku preuzet #2646
+• Ispravljeno pomicanje u fragmentu detalja videa #2672
+• Uklanjanje dvostrukih animacija okvira za brisanje pretrage u jednu #2695
+• [SoundCloud] Ispravljanje ekstrakcije client_id-a #2745
+
+Razvoj
+• Dodavanje nedostajućih zavisnosti naslijeđenih iz NewPipeExtractor-a u NewPipe #2535
+• Migracija na AndroidX #2685
+• Ažuriranje na ExoPlayer 2.10.6 #2697, #2736

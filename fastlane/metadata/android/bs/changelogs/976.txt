@@ -1,0 +1,10 @@
+• Dodana je opcija za direktno otvaranje playera preko cijelog ekrana
+• Omogućen je odabir vrsta prijedloga za pretragu koji će se prikazivati
+• Tamna tema je sada tamnija + dodan je tamniji početni ekran
+• Poboljšan birač datoteka za sivo označavanje neželjenih datoteka
+• Ispravljen uvoz YouTube pretplata
+• Ponovna reprodukcija toka zahtijeva ponovni dodir dugmeta za reprodukciju
+• Ispravljeno zatvaranje audio sesije
+• [Android TV] Ispravljeni su dugi skokovi na traci za pretraživanje prilikom korištenja DPad-a
+
+Da biste vidjeli daljnje promjene, pogledajte dnevnik promjena (i objavu na blogu) na kartici Linkovi ispod.

@@ -5,6 +5,8 @@ import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import java.io.Serializable
+import java.time.OffsetDateTime
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_SERVICE_ID
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_TABLE
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_URL
@@ -14,8 +16,6 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.player.playqueue.PlayQueueItem
 import org.schabi.newpipe.util.image.ImageStrategy
-import java.io.Serializable
-import java.time.OffsetDateTime
 
 @Entity(
     tableName = STREAM_TABLE,
@@ -86,8 +86,12 @@ data class StreamEntity(
 
     @Ignore
     constructor(item: PlayQueueItem) : this(
-        serviceId = item.serviceId, url = item.url, title = item.title,
-        streamType = item.streamType, duration = item.duration, uploader = item.uploader,
+        serviceId = item.serviceId,
+        url = item.url,
+        title = item.title,
+        streamType = item.streamType,
+        duration = item.duration,
+        uploader = item.uploader,
         uploaderUrl = item.uploaderUrl,
         thumbnailUrl = ImageStrategy.imageListToDbUrl(item.thumbnails)
     )

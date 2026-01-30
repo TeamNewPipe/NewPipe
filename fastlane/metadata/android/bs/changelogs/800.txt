@@ -1,0 +1,27 @@
+Novo
+• Podrška za PeerTube bez P2P-a (#2201) [Beta]:
+◦ Gledajte i preuzimajte videozapise s PeerTube instanci
+◦ Dodajte instance u postavkama za pristup cijelom PeerTube svijetu
+◦ Moguće je da postoje problemi s SSL handshake-ovima na Androidu 4.4 i 7.1 prilikom pristupa određenim instancama, što rezultira mrežnom greškom.
+
+• Downloader (#2679):
+◦ Izračunaj etalon preuzimanja (ETA)
+◦ Preuzmi opus (webm datoteke) kao ogg
+◦ Oporavi istekle linkove za preuzimanje kako bi se nastavilo preuzimanje nakon duge pauze
+
+Poboljšano
+• Učini KioskFragment svjesnim promjena u željenoj zemlji sadržaja i poboljšaj performanse svih glavnih kartica #2742
+• Koristi nove implementacije lokalizacije i downloadera iz ekstraktora #2713
+• Učini niz "Default kiosk" prevodivim
+• Crna navigacijska traka za crnu temu #2569
+
+Ispravljeno
+• Ispravljena greška koja nije mogla pomicati popup player ako je drugi prst postavljen tokom pomicanja popup playera #2772
+• Omogući liste za reprodukciju kojima nedostaje uploader i ispravi padove povezane s ovim problemom #2724, TeamNewPipe/NewPipeExtractor#219
+• Omogući TLS1.1/1.2 na Android 4.4 uređajima (API 19/KitKat) za ispravljanje TLS rukovanja s MediaCCC i nekim PeerTube instance #2792
+• [SoundCloud] Ispravljena ekstrakcija client_id-a TeamNewPipe/NewPipeExtractor #217
+• [SoundCloud] Ispravljena ekstrakcija audio toka
+
+Razvoj
+• Ažuriranje ExoPlayera na 2.10.8 #2791, #2816
+• Ažuriranje Gradlea na 3.5.1 i dodavanje podrške za Kotlin #2714

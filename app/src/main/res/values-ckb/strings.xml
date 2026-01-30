@@ -191,8 +191,7 @@
     <string name="top_50">باشترین ٥٠</string>
     <string name="peertube_instance_add_https_only">تەنها بەستەرەکانی https پشتگیریکراون</string>
     <string name="error_ssl_exception">پەیوەستبوونی پارێزراو هه‌ره‌سی هێنا</string>
-    <string name="remove_watched_popup_warning">ئەو ڤیدیۆیانەی پێشتر سەیرت کردوون و دواتر زیادت کردوون بۆ خشتەلێدان لادەدرێن.
-\nئایا دڵنیایت؟ ئەمە ناگەڕێنرێتەوە!</string>
+    <string name="remove_watched_popup_warning">ئەو ڤیدیۆیانەی پێشتر سەیرت کردوون و دواتر زیادت کردوون بۆ خشتەلێدان لادەدرێن. \nئایا دڵنیایت؟ ئەمە ناگەڕێنرێتەوە!</string>
     <string name="detail_sub_channel_thumbnail_view_description">وێنۆچکەی سه‌روێنه‌ی کەناڵ</string>
     <string name="import_settings">دەتەوێت ڕێکخستنەکانیش هاوردە بكرینه‌وه‌؟</string>
     <string name="no_player_found">هیچ لێدەرێکی ڤیدیۆیی نه‌دۆزرایه‌وه‌. ده‌ته‌وێت VLC دابمەزرێنیت؟</string>
@@ -350,7 +349,7 @@
     <string name="hold_to_append">په‌نجه‌ڕاگرتن له‌سه‌ری بۆ نۆبه‌ت نه‌بوون</string>
     <string name="max_retry_desc">زۆرترین ژمارەی هەوڵدان پێش پاشگەزبوونەوە لە دابەزاندنەکە</string>
     <string name="general_error">هەڵه‌</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">بەڵێ، لەگەڵ ڤیدیۆ سەیر کراوەکانەوە</string>
+    <string name="remove_watched_popup_partially_watched_streams">بەڵێ، لەگەڵ ڤیدیۆ سەیر کراوەکانەوە</string>
     <string name="start_here_on_popup">دەستپێکردنی لێدان لە پەنجەرەوه‌</string>
     <string name="detail_dislikes_img_view_description">نابەدڵه‌كان</string>
     <string name="title_activity_history">مێژوو</string>

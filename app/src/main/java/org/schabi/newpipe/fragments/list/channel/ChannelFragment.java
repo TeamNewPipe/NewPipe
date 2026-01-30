@@ -361,10 +361,10 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
                 final SubscriptionEntity channel = new SubscriptionEntity();
                 channel.setServiceId(info.getServiceId());
                 channel.setUrl(info.getUrl());
-                channel.setData(info.getName(),
-                        ImageStrategy.imageListToDbUrl(info.getAvatars()),
-                        info.getDescription(),
-                        info.getSubscriberCount());
+                channel.setName(info.getName());
+                channel.setAvatarUrl(ImageStrategy.imageListToDbUrl(info.getAvatars()));
+                channel.setDescription(info.getDescription());
+                channel.setSubscriberCount(info.getSubscriberCount());
                 channelSubscription = null;
                 updateNotifyButton(null);
                 subscribeButtonMonitor = monitorSubscribeButton(mapOnSubscribe(channel));

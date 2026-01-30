@@ -1230,7 +1230,13 @@ public final class VideoDetailFragment
         disposables.add(recordManager.onViewed(info).onErrorComplete()
                 .subscribe(
                         ignored -> { /* successful */ },
-                        error -> Log.e(TAG, "Register view failure: ", error)
+                        error -> showSnackBarError(
+                                new ErrorInfo(
+                                        error,
+                                        UserAction.PLAY_STREAM,
+                                        "Got an error when modifying history on viewed"
+                                )
+                        )
                 ));
     }
 
@@ -1416,8 +1422,10 @@ public final class VideoDetailFragment
                             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                         }
                         // Rebound to the service if it was closed via notification or mini player
-                        playerHolder.setListener(VideoDetailFragment.this);
-                        playerHolder.tryBindIfNeeded(context);
+                        if (!playerHolder.isBound()) {
+                            playerHolder.startService(
+                                    false, VideoDetailFragment.this);
+                        }
                         break;
                 }
             }
@@ -1900,12 +1908,13 @@ public final class VideoDetailFragment
 
     @Override
     public void onScreenRotationButtonClicked() {
+        // On Android TV screen rotation is not supported
         // In tablet user experience will be better if screen will not be rotated
         // from landscape to portrait every time.
         // Just turn on fullscreen mode in landscape orientation
         // or portrait & unlocked global orientation
         final boolean isLandscape = DeviceUtils.isLandscape(requireContext());
-        if (DeviceUtils.isTablet(activity)
+        if (DeviceUtils.isTv(activity) || DeviceUtils.isTablet(activity)
                 && (!globalScreenOrientationLocked(activity) || isLandscape)) {
             player.UIs().get(MainPlayerUi.class).ifPresent(MainPlayerUi::toggleFullscreen);
             return;

@@ -1,0 +1,16 @@
+Ulepszone
+- Utrzymyw. bieżącego odtwarzacza przy naciskaniu znaczników czasu
+- Próba odzysk. oczekuj. pobierań, jeśli to możliwe
+- Dodano opcję usuwania pobierania bez usuwania pliku
+- Uprawnienie na nakładkę: wyświetl. okna z objaśnieniami dla Androida powyżej R
+- Obsługa otw. linków on.soundcloud
+- Wiele drobnych ulepszeń i optymal.
+
+Naprawione
+- Formatow. krótkich liczb na Androidzie poniżej 7
+- Puste powiadomienia
+- Pliki napisów SRT
+- Mnóstwo awarii
+
+Rozwój
+- Modernizacja wewnętrznego kodu

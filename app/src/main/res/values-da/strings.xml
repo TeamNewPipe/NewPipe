@@ -232,7 +232,7 @@
     <string name="title_most_played">Mest Afspillet</string>
     <string name="main_page_content">Indhold af hovedside</string>
     <string name="main_page_content_summary">Hvilke faner vises på hovedsiden</string>
-    <string name="blank_page_summary">Tom Side</string>
+    <string name="blank_page_summary">Tom side</string>
     <string name="kiosk_page_summary">Kioskside</string>
     <string name="channel_page_summary">Kanalside</string>
     <string name="select_a_channel">Vælg en kanal</string>
@@ -523,7 +523,7 @@
     <string name="recovering">gendanner</string>
     <string name="feed_load_error_fast_unknown">\"Hurtig feed\"-tilstand oplyser ikke mere info om dette.</string>
     <string name="check_for_updates">Tjek efter opdateringer</string>
-    <string name="remove_watched_popup_title">Fjern sete videoer\?</string>
+    <string name="remove_watched_popup_title">Fjern sete videoer?</string>
     <string name="disable_media_tunneling_summary">Deaktivér medietunneling, hvis du oplever en sort skærm eller hakken ved videoafspilning.</string>
     <string name="error_report_open_github_notice">Tjek venligst, om der allerede findes et problem, der diskuterer dit nedbrud. Når du opretter flere tickets, tager du tid fra os, som vi kunne bruge på at løse den faktiske fejl.</string>
     <string name="check_new_streams">Tjek efter nye streams</string>
@@ -541,8 +541,7 @@
     <string name="feed_group_dialog_select_subscriptions">Vælg abonnementer</string>
     <string name="georestricted_content">Dette indhold er ikke tilgængeligt i dit land.</string>
     <string name="video_detail_by">Af %s</string>
-    <string name="remove_watched_popup_warning">Videoer, der er blevet set før og efter tilføjelse til playlisten, vil blive fjernet.
-\nEr du sikker? Dette kan ikke fortrydes!</string>
+    <string name="remove_watched_popup_warning">Videoer, der er blevet set før og efter tilføjelse til playlisten, vil blive fjernet. \nEr du sikker? Dette kan ikke fortrydes!</string>
     <string name="show_thumbnail_title">Vis miniaturebillede</string>
     <string name="metadata_tags">Tags</string>
     <string name="metadata_age_limit">Aldersbegrænsning</string>
@@ -630,7 +629,7 @@
     <string name="no_app_to_open_intent">Ingen app på din enhed kan åbne dette</string>
     <string name="error_insufficient_storage_left">Ingen ledig plads på enheden</string>
     <string name="app_language_title">App-sprog</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, og delvist sete videoer</string>
+    <string name="remove_watched_popup_partially_watched_streams">Ja, og delvist sete videoer</string>
     <string name="feed_load_error">Fejl ved indlæsning af feed</string>
     <string name="feed_load_error_account_info">Kunne ikke indlæse feed for \'%s\'.</string>
     <string name="show_crash_the_player_title">Vis \"Crash afspilleren\"</string>
@@ -825,4 +824,20 @@
     <string name="feed_group_page_summary">Kanalgruppeside</string>
     <string name="select_a_feed_group">Vælg en feed-gruppe</string>
     <string name="no_feed_group_created_yet">Ingen feed-gruppe oprettet endnu</string>
+    <string name="search_with_service_name">Søg %1$s</string>
+    <string name="search_with_service_name_and_filter">Søg %1$s (%2$s)</string>
+    <string name="permission_display_over_apps_message">For at kunne bruge pop op-afspilleren skal du vælge %1$s i følgende Android-indstillingsmenu og aktivere %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">“Tillad visning over andre apps”</string>
+    <string name="short_thousand">%sK</string>
+    <string name="short_million">%sM</string>
+    <string name="short_billion">%sB</string>
+    <string name="delete_file">Slet fil</string>
+    <string name="account_terminated_service_provides_reason">Kontoen er blevet lukket\n\n%1$s angiver følgende årsag: %2$s</string>
+    <string name="channel_tab_likes">Likes</string>
+    <string name="migration_info_6_7_title">SoundCloud Top 50-siden fjernet</string>
+    <string name="migration_info_6_7_message">SoundCloud har udfaset de oprindelige Top 50-hitlister. Den tilhørende fane er blevet fjernet fra din hovedside.</string>
+    <string name="migration_info_7_8_title">YouTube kombineret trending fjernet</string>
+    <string name="migration_info_7_8_message">YouTube har udfaset den kombinerede trending-side pr. 21. juli 2025. NewPipe har erstattet standardsiden for trending med trending livestreams.\n\nDu kan også vælge andre trending-sider under \"Indstillinger &gt; Indhold &gt; Indhold på hovedsiden\".</string>
+    <string name="trending_gaming">Gaming-trends</string>
+    <string name="trending_podcasts">Trending podcasts</string>
 </resources>

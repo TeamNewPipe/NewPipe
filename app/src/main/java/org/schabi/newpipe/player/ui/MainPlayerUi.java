@@ -216,6 +216,10 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         playQueueAdapter = new PlayQueueAdapter(context,
                 Objects.requireNonNull(player.getPlayQueue()));
         segmentAdapter = new StreamSegmentAdapter(getStreamSegmentListener());
+
+        // Make sure video and text tracks are enabled if the user is in the app, in the case user
+        // switched from background player to main player
+        player.useVideoAndSubtitles(fragmentIsVisible);
     }
 
     @Override
@@ -289,8 +293,10 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         binding.topControls.setClickable(true);
         binding.topControls.setFocusable(true);
 
-        binding.titleTextView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
-        binding.channelTextView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
+        binding.metadataView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
+
+        // Reset workaround changes from popup player
+        binding.audioTrackTextView.setMaxWidth(Integer.MAX_VALUE);
     }
 
     @Override
@@ -329,7 +335,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         } else if (VideoDetailFragment.ACTION_VIDEO_FRAGMENT_RESUMED.equals(intent.getAction())) {
             // Restore video source when user returns to the fragment
             fragmentIsVisible = true;
-            player.useVideoSource(true);
+            player.useVideoAndSubtitles(true);
 
             // When a user returns from background, the system UI will always be shown even if
             // controls are invisible: hide it in that case
@@ -368,7 +374,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         if (player.isPlaying() || player.isLoading()) {
             switch (getMinimizeOnExitAction(context)) {
                 case MINIMIZE_ON_EXIT_MODE_BACKGROUND:
-                    player.useVideoSource(false);
+                    player.useVideoAndSubtitles(false);
                     break;
                 case MINIMIZE_ON_EXIT_MODE_POPUP:
                     getParentActivity().ifPresent(activity -> {
@@ -934,8 +940,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         }
         fragmentListener.onFullscreenStateChanged(isFullscreen);
 
-        binding.titleTextView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
-        binding.channelTextView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
+        binding.metadataView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
         binding.playerCloseButton.setVisibility(isFullscreen ? View.GONE : View.VISIBLE);
         setupScreenRotationButton();
     }
