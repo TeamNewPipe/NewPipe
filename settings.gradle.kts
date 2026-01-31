@@ -31,3 +31,4 @@ include(":app")
 //            .using(project(":extractor"))
 //    }
 // }
+// gradle.extra["extractorIncluded"] = true
