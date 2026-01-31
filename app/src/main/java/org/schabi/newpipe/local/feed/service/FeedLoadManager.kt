@@ -111,7 +111,7 @@ class FeedLoadManager(private val context: Context) {
                 broadcastProgress()
             }
             .observeOn(Schedulers.io())
-            .flatMap { Flowable.fromIterable(it) }
+            .flatMap { Flowable.fromIterable(it.shuffled()) }
             .takeWhile { !cancelSignal.get() }
             .doOnNext { subscriptionEntity ->
                 // throttle YouTube extractions once every BATCH_SIZE to avoid being rate limited
