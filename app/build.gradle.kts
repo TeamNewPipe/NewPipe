@@ -130,7 +130,6 @@ ksp {
     arg("room.schemaLocation", "$projectDir/schemas")
 }
 
-
 // Custom dependency configuration for ktlint
 val ktlint by configurations.creating
 
@@ -163,6 +162,11 @@ tasks.register<Checkstyle>("runCheckstyle") {
     reports {
         xml.required = true
         html.required = true
+    }
+
+    // run checkstyle for extractor when it is built from source
+    if (gradle.extra.has("extractorIncluded")) {
+        dependsOn(gradle.includedBuild("NewPipeExtractor").task(":extractor:checkstyleMain"))
     }
 }
 
