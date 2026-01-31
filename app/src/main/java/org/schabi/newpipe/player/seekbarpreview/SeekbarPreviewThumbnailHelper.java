@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.graphics.BitmapCompat;
@@ -16,10 +15,8 @@ import androidx.preference.PreferenceManager;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.DeviceUtils;
 
-import java.lang.annotation.Retention;
 import java.util.function.IntSupplier;
 
-import static java.lang.annotation.RetentionPolicy.SOURCE;
 import static org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHelper.SeekbarPreviewThumbnailType.HIGH_QUALITY;
 import static org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHelper.SeekbarPreviewThumbnailType.LOW_QUALITY;
 import static org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHelper.SeekbarPreviewThumbnailType.NONE;
@@ -38,21 +35,19 @@ public final class SeekbarPreviewThumbnailHelper {
         // No impl pls
     }
 
-    @Retention(SOURCE)
-    @IntDef({HIGH_QUALITY, LOW_QUALITY,
-            NONE})
-    public @interface SeekbarPreviewThumbnailType {
-        int HIGH_QUALITY = 0;
-        int LOW_QUALITY = 1;
-        int NONE = 2;
+
+    public enum SeekbarPreviewThumbnailType {
+        HIGH_QUALITY,
+        LOW_QUALITY,
+        NONE,
     }
 
     ////////////////////////////////////////////////////////////////////////////
     // Settings Resolution
     ///////////////////////////////////////////////////////////////////////////
 
-    @SeekbarPreviewThumbnailType
-    public static int getSeekbarPreviewThumbnailType(@NonNull final Context context) {
+    public static SeekbarPreviewThumbnailType getSeekbarPreviewThumbnailType(
+            @NonNull final Context context) {
         final String type = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 context.getString(R.string.seekbar_preview_thumbnail_key), "");
         if (type.equals(context.getString(R.string.seekbar_preview_thumbnail_none))) {
