@@ -182,6 +182,8 @@ public final class Player implements PlaybackListener, Listener {
 
     public static final int RENDERER_UNAVAILABLE = -1;
     private static final String PICASSO_PLAYER_THUMBNAIL_TAG = "PICASSO_PLAYER_THUMBNAIL_TAG";
+    private static final String PREF_KEY_SHUFFLE_ENABLED = "player_shuffle_enabled";
+    private static final String PREF_KEY_REPEAT_MODE = "player_repeat_mode";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Playback
@@ -622,6 +624,22 @@ public final class Player implements PlaybackListener, Listener {
         playQueue = queue;
         playQueue.init();
         reloadPlayQueueManager();
+
+        final int persistedRepeat = loadRepeatFromPrefs();
+        final boolean persistedShuffle = loadShuffleFromPrefs();
+
+        simpleExoPlayer.setRepeatMode(persistedRepeat);
+        simpleExoPlayer.setShuffleModeEnabled(persistedShuffle);
+
+        if (persistedShuffle && !playQueue.isShuffled()) {
+            playQueue.shuffle();
+        } else if (!persistedShuffle && playQueue.isShuffled()) {
+            playQueue.unshuffle();
+        }
+
+        UIs.call(ui -> ui.onRepeatModeChanged(persistedRepeat));
+        UIs.call(ui -> ui.onShuffleModeEnabledChanged(persistedShuffle));
+        notifyPlaybackUpdateToListeners();
 
         UIs.call(PlayerUi::initPlayback);
 
@@ -1275,6 +1293,23 @@ public final class Player implements PlaybackListener, Listener {
     //////////////////////////////////////////////////////////////////////////*/
     //region Repeat and shuffle
 
+    private void saveShuffleToPrefs(final boolean enabled) {
+        prefs.edit().putBoolean(PREF_KEY_SHUFFLE_ENABLED, enabled).apply();
+    }
+
+    private void saveRepeatToPrefs(@RepeatMode final int repeatMode) {
+        prefs.edit().putInt(PREF_KEY_REPEAT_MODE, repeatMode).apply();
+    }
+
+    private boolean loadShuffleFromPrefs() {
+        return prefs.getBoolean(PREF_KEY_SHUFFLE_ENABLED, false);
+    }
+
+    @RepeatMode
+    private int loadRepeatFromPrefs() {
+        return prefs.getInt(PREF_KEY_REPEAT_MODE, REPEAT_MODE_OFF);
+    }
+
     @RepeatMode
     public int getRepeatMode() {
         return exoPlayerIsNull() ? REPEAT_MODE_OFF : simpleExoPlayer.getRepeatMode();
@@ -1305,6 +1340,9 @@ public final class Player implements PlaybackListener, Listener {
             Log.d(TAG, "ExoPlayer - onRepeatModeChanged() called with: "
                     + "repeatMode = [" + repeatMode + "]");
         }
+
+        saveRepeatToPrefs(repeatMode);
+
         UIs.call(playerUi -> playerUi.onRepeatModeChanged(repeatMode));
         notifyPlaybackUpdateToListeners();
     }
@@ -1315,6 +1353,8 @@ public final class Player implements PlaybackListener, Listener {
             Log.d(TAG, "ExoPlayer - onShuffleModeEnabledChanged() called with: "
                     + "mode = [" + shuffleModeEnabled + "]");
         }
+
+        saveShuffleToPrefs(shuffleModeEnabled);
 
         if (playQueue != null) {
             if (shuffleModeEnabled) {
