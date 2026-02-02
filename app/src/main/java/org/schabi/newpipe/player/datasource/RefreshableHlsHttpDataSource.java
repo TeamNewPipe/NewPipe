@@ -62,10 +62,18 @@ public class RefreshableHlsHttpDataSource extends LoggingHttpDataSource {
         }
 
         if (!url.contains(refreshableStream.playlistId())) {
-            // TODO: throw error or no?
             if (DEBUG) {
                 Log.e(TAG, "Playlist id does not match");
             }
+
+            final var errorMsg = String.format("""
+                                          HLS m3u8 playlist does not contain expected playlist id.
+                                          Expected: %s
+                                          Actual url: %s""",
+                                          refreshableStream.playlistId(),
+                                          url);
+
+            throw new IllegalStateException(errorMsg);
         }
         return chunkUrlMap.isEmpty()
                 ? openInternal(dataSpec)
