@@ -79,7 +79,7 @@ fun Modifier.detectDragGestures(
                 }
                 handleDragGestureChange(
                     change.position.toIntOffset(),
-                    change.positionChange(),
+                    change.positionChange()
                 )
                 change.consume()
             }

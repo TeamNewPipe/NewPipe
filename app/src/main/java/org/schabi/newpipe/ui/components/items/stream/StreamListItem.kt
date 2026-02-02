@@ -36,7 +36,7 @@ import org.schabi.newpipe.ui.theme.AppTheme
 fun StreamListItem(
     stream: StreamInfoItem,
     showProgress: Boolean,
-    onClick: (StreamInfoItem) -> Unit = {},
+    onClick: (StreamInfoItem) -> Unit = {}
 ) {
     var showLongPressMenu by rememberSaveable { mutableStateOf(false) }
 
@@ -81,7 +81,7 @@ fun StreamListItem(
                 longPressable = LongPressable.fromStreamInfoItem(stream),
                 // TODO queueFromHere: allow playing the whole list starting from one stream
                 longPressActions = LongPressAction.fromStreamInfoItem(stream, null),
-                onDismissRequest = { showLongPressMenu = false },
+                onDismissRequest = { showLongPressMenu = false }
             )
         }
     }

@@ -122,6 +122,6 @@ private fun PlayFromHerePreview() {
     Icon(
         imageVector = Icons.Filled.PlayFromHere,
         contentDescription = null,
-        modifier = Modifier.size(240.dp),
+        modifier = Modifier.size(240.dp)
     )
 }

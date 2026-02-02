@@ -33,7 +33,7 @@ import org.schabi.newpipe.util.StreamTypeUtil
 @MainThread
 suspend fun fetchItemInfoIfSparse(
     context: Context,
-    item: StreamInfoItem,
+    item: StreamInfoItem
 ): SinglePlayQueue {
     if ((StreamTypeUtil.isLiveStream(item.streamType) || item.duration >= 0) &&
         !Utils.isNullOrEmpty(item.uploaderUrl)
@@ -66,7 +66,7 @@ suspend fun fetchUploaderUrlIfSparse(
     context: Context,
     serviceId: Int,
     url: String,
-    uploaderUrl: String?,
+    uploaderUrl: String?
 ): String? {
     if (!uploaderUrl.isNullOrEmpty()) {
         return uploaderUrl
@@ -89,7 +89,7 @@ suspend fun fetchUploaderUrlIfSparse(
 suspend fun fetchStreamInfoAndSaveToDatabase(
     context: Context,
     serviceId: Int,
-    url: String,
+    url: String
 ): StreamInfo {
     Toast.makeText(context, R.string.loading_stream_details, Toast.LENGTH_SHORT).show()
 

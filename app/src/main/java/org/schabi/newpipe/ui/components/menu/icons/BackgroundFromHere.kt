@@ -146,6 +146,6 @@ private fun BackgroundFromHerePreview() {
     Icon(
         imageVector = Icons.Filled.BackgroundFromHere,
         contentDescription = null,
-        modifier = Modifier.size(240.dp),
+        modifier = Modifier.size(240.dp)
     )
 }

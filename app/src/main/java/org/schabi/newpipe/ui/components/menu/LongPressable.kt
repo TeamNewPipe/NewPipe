@@ -1,6 +1,7 @@
 package org.schabi.newpipe.ui.components.menu
 
 import androidx.compose.runtime.Stable
+import java.time.OffsetDateTime
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity
@@ -14,7 +15,6 @@ import org.schabi.newpipe.extractor.stream.StreamType.LIVE_STREAM
 import org.schabi.newpipe.player.playqueue.PlayQueueItem
 import org.schabi.newpipe.util.Either
 import org.schabi.newpipe.util.image.ImageStrategy
-import java.time.OffsetDateTime
 
 @Stable
 data class LongPressable(
@@ -26,7 +26,7 @@ data class LongPressable(
     val viewCount: Long?,
     val streamType: StreamType?, // only used to format the view count properly
     val uploadDate: Either<String, OffsetDateTime>?,
-    val decoration: Decoration?,
+    val decoration: Decoration?
 ) {
     sealed interface Decoration {
         data class Duration(val duration: Long) : Decoration
@@ -34,12 +34,11 @@ data class LongPressable(
         data class Playlist(val itemCount: Long) : Decoration
 
         companion object {
-            internal fun from(streamType: StreamType, duration: Long) =
-                if (streamType == LIVE_STREAM || streamType == AUDIO_LIVE_STREAM) {
-                    Live
-                } else {
-                    duration.takeIf { it > 0 }?.let { Duration(it) }
-                }
+            internal fun from(streamType: StreamType, duration: Long) = if (streamType == LIVE_STREAM || streamType == AUDIO_LIVE_STREAM) {
+                Live
+            } else {
+                duration.takeIf { it > 0 }?.let { Duration(it) }
+            }
         }
     }
 
@@ -55,7 +54,7 @@ data class LongPressable(
             streamType = item.streamType,
             uploadDate = item.uploadDate?.let { Either.right(it.offsetDateTime()) }
                 ?: item.textualUploadDate?.let { Either.left(it) },
-            decoration = Decoration.from(item.streamType, item.duration),
+            decoration = Decoration.from(item.streamType, item.duration)
         )
 
         @JvmStatic
@@ -69,7 +68,7 @@ data class LongPressable(
             streamType = item.streamType,
             uploadDate = item.uploadDate?.let { Either.right(it) }
                 ?: item.textualUploadDate?.let { Either.left(it) },
-            decoration = Decoration.from(item.streamType, item.duration),
+            decoration = Decoration.from(item.streamType, item.duration)
         )
 
         @JvmStatic
@@ -82,7 +81,7 @@ data class LongPressable(
             viewCount = null,
             streamType = item.streamType,
             uploadDate = null,
-            decoration = Decoration.from(item.streamType, item.duration),
+            decoration = Decoration.from(item.streamType, item.duration)
         )
 
         @JvmStatic
@@ -96,7 +95,7 @@ data class LongPressable(
             viewCount = null,
             streamType = null,
             uploadDate = null,
-            decoration = Decoration.Playlist(item.streamCount),
+            decoration = Decoration.Playlist(item.streamCount)
         )
 
         @JvmStatic
@@ -111,7 +110,7 @@ data class LongPressable(
             uploadDate = null,
             decoration = Decoration.Playlist(
                 item.streamCount ?: ListExtractor.ITEM_COUNT_UNKNOWN
-            ),
+            )
         )
 
         @JvmStatic
@@ -124,7 +123,7 @@ data class LongPressable(
             viewCount = null,
             streamType = null,
             uploadDate = null,
-            decoration = null,
+            decoration = null
         )
 
         @JvmStatic
@@ -137,7 +136,7 @@ data class LongPressable(
             viewCount = null,
             streamType = null,
             uploadDate = null,
-            decoration = Decoration.Playlist(item.streamCount),
+            decoration = Decoration.Playlist(item.streamCount)
         )
     }
 }

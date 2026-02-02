@@ -79,6 +79,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
+import java.time.OffsetDateTime
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -97,12 +98,11 @@ import org.schabi.newpipe.util.Either
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.text.FixedHeightCenteredText
 import org.schabi.newpipe.util.text.fadedMarquee
-import java.time.OffsetDateTime
 
 fun openLongPressMenuInActivity(
     activity: Activity,
     longPressable: LongPressable,
-    longPressActions: List<LongPressAction>,
+    longPressActions: List<LongPressAction>
 ) {
     activity.addContentView(
         getLongPressMenuView(activity, longPressable, longPressActions),
@@ -113,7 +113,7 @@ fun openLongPressMenuInActivity(
 fun getLongPressMenuView(
     context: Context,
     longPressable: LongPressable,
-    longPressActions: List<LongPressAction>,
+    longPressActions: List<LongPressAction>
 ): ComposeView {
     return ComposeView(context).apply {
         setContent {
@@ -121,7 +121,7 @@ fun getLongPressMenuView(
                 LongPressMenu(
                     longPressable = longPressable,
                     longPressActions = longPressActions,
-                    onDismissRequest = { (this.parent as ViewGroup).removeView(this) },
+                    onDismissRequest = { (this.parent as ViewGroup).removeView(this) }
                 )
             }
         }
@@ -135,7 +135,7 @@ internal val ThumbnailHeight = 60.dp
 fun LongPressMenu(
     longPressable: LongPressable,
     longPressActions: List<LongPressAction>,
-    onDismissRequest: () -> Unit,
+    onDismissRequest: () -> Unit
 ) {
     val viewModel: LongPressMenuViewModel = viewModel()
     val isHeaderEnabled by viewModel.isHeaderEnabled.collectAsState()
@@ -152,7 +152,7 @@ fun LongPressMenu(
         ) {
             ScaffoldWithToolbar(
                 title = stringResource(R.string.long_press_menu_actions_editor),
-                onBackClick = { showEditor = false },
+                onBackClick = { showEditor = false }
             ) { paddingValues ->
                 LongPressMenuEditor(modifier = Modifier.padding(paddingValues))
             }
@@ -179,7 +179,8 @@ fun LongPressMenu(
                     action.action(ctx)
                 } catch (t: Throwable) {
                     ErrorUtil.showSnackbar(
-                        ctx, ErrorInfo(t, LONG_PRESS_MENU_ACTION, "Running action ${action.type}")
+                        ctx,
+                        ErrorInfo(t, LONG_PRESS_MENU_ACTION, "Running action ${action.type}")
                     )
                 }
                 onDismissRequest()
@@ -199,14 +200,14 @@ fun LongPressMenu(
         ModalBottomSheet(
             sheetState = sheetState,
             onDismissRequest = onDismissRequest,
-            dragHandle = { LongPressMenuDragHandle(onEditActions = { showEditor = true }) },
+            dragHandle = { LongPressMenuDragHandle(onEditActions = { showEditor = true }) }
         ) {
             Box(modifier = Modifier.discardAllTouchesIf(isLoading)) {
                 LongPressMenuContent(
                     header = longPressable.takeIf { isHeaderEnabled },
                     onUploaderClick = onUploaderClick,
                     actions = enabledLongPressActions,
-                    runActionAndDismiss = ::runActionAndDismiss,
+                    runActionAndDismiss = ::runActionAndDismiss
                 )
                 // importing makes the ColumnScope overload be resolved, so we use qualified path...
                 androidx.compose.animation.AnimatedVisibility(
@@ -215,7 +216,7 @@ fun LongPressMenu(
                     exit = fadeOut(),
                     modifier = Modifier
                         .matchParentSize()
-                        .background(MaterialTheme.colorScheme.surfaceContainerLow),
+                        .background(MaterialTheme.colorScheme.surfaceContainerLow)
                 ) {
                     Box(contentAlignment = Alignment.Center) {
                         CircularProgressIndicator()
@@ -231,7 +232,7 @@ private fun LongPressMenuContent(
     header: LongPressable?,
     onUploaderClick: (() -> Unit)?,
     actions: List<LongPressAction>,
-    runActionAndDismiss: (LongPressAction) -> Unit,
+    runActionAndDismiss: (LongPressAction) -> Unit
 ) {
     BoxWithConstraints(
         modifier = Modifier
@@ -251,7 +252,7 @@ private fun LongPressMenuContent(
             while (actionIndex < actions.size) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth()
                 ) {
                     var rowIndex = 0
                     while (rowIndex < buttonsPerRow) {
@@ -263,7 +264,7 @@ private fun LongPressMenuContent(
                                 modifier = Modifier
                                     .height(buttonHeight)
                                     .fillMaxWidth()
-                                    .weight((buttonsPerRow - rowIndex).toFloat()),
+                                    .weight((buttonsPerRow - rowIndex).toFloat())
                             )
                             break
                         } else if (actionIndex >= 0) {
@@ -276,7 +277,7 @@ private fun LongPressMenuContent(
                                 modifier = Modifier
                                     .height(buttonHeight)
                                     .fillMaxWidth()
-                                    .weight(1F),
+                                    .weight(1F)
                             )
                             rowIndex += 1
                         } else if (maxHeaderWidthInButtonsFullSpan >= buttonsPerRow) {
@@ -290,7 +291,7 @@ private fun LongPressMenuContent(
                                     // leave the height as small as possible, since it's the
                                     // only item on the row anyway
                                     .fillMaxWidth()
-                                    .weight(maxHeaderWidthInButtonsFullSpan.toFloat()),
+                                    .weight(maxHeaderWidthInButtonsFullSpan.toFloat())
                             )
                             rowIndex += maxHeaderWidthInButtonsFullSpan
                         } else {
@@ -306,7 +307,7 @@ private fun LongPressMenuContent(
                                     .padding(start = 8.dp, top = 11.dp, bottom = 11.dp)
                                     .heightIn(min = ThumbnailHeight)
                                     .fillMaxWidth()
-                                    .weight(headerWidthInButtonsReducedSpan.toFloat()),
+                                    .weight(headerWidthInButtonsReducedSpan.toFloat())
                             )
                             rowIndex += headerWidthInButtonsReducedSpan
                         }
@@ -357,7 +358,7 @@ fun LongPressMenuDragHandle(onEditActions: () -> Unit) {
                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier
                     .padding(2.dp)
-                    .size(16.dp),
+                    .size(16.dp)
             )
         }
     }
@@ -378,7 +379,7 @@ private fun LongPressMenuDragHandlePreview() {
 fun LongPressMenuHeader(
     item: LongPressable,
     onUploaderClick: (() -> Unit)?,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     val ctx = LocalContext.current
 
@@ -386,7 +387,7 @@ fun LongPressMenuHeader(
         color = MaterialTheme.colorScheme.surfaceContainer,
         contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
         shape = MaterialTheme.shapes.large,
-        modifier = modifier,
+        modifier = modifier
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Box {
@@ -413,12 +414,12 @@ fun LongPressMenuHeader(
                                 modifier = Modifier
                                     .align(Alignment.BottomEnd)
                                     .padding(4.dp)
-                                    .clip(MaterialTheme.shapes.medium),
+                                    .clip(MaterialTheme.shapes.medium)
                             ) {
                                 Text(
                                     text = Localization.getDurationString(decoration.duration),
                                     style = MaterialTheme.typography.bodySmall,
-                                    modifier = Modifier.padding(vertical = 2.dp, horizontal = 4.dp),
+                                    modifier = Modifier.padding(vertical = 2.dp, horizontal = 4.dp)
                                 )
                             }
                         }
@@ -433,7 +434,7 @@ fun LongPressMenuHeader(
                                 modifier = Modifier
                                     .align(Alignment.BottomEnd)
                                     .padding(4.dp)
-                                    .clip(MaterialTheme.shapes.medium),
+                                    .clip(MaterialTheme.shapes.medium)
                             ) {
                                 Text(
                                     text = stringResource(R.string.duration_live).uppercase(),
@@ -451,16 +452,16 @@ fun LongPressMenuHeader(
                             modifier = Modifier
                                 .align(Alignment.TopEnd)
                                 .size(width = 40.dp, height = ThumbnailHeight)
-                                .clip(MaterialTheme.shapes.large),
+                                .clip(MaterialTheme.shapes.large)
                         ) {
                             Column(
                                 verticalArrangement = Arrangement.Center,
                                 horizontalAlignment = Alignment.CenterHorizontally,
-                                modifier = Modifier.fillMaxWidth(),
+                                modifier = Modifier.fillMaxWidth()
                             ) {
                                 Icon(
                                     Icons.AutoMirrored.Default.PlaylistPlay,
-                                    contentDescription = null,
+                                    contentDescription = null
                                 )
                                 Text(
                                     text = Localization.localizeStreamCountMini(
@@ -468,7 +469,7 @@ fun LongPressMenuHeader(
                                         decoration.itemCount
                                     ),
                                     style = MaterialTheme.typography.labelMedium,
-                                    maxLines = 1,
+                                    maxLines = 1
                                 )
                             }
                         }
@@ -479,7 +480,7 @@ fun LongPressMenuHeader(
             }
 
             Column(
-                modifier = Modifier.padding(vertical = 8.dp),
+                modifier = Modifier.padding(vertical = 8.dp)
             ) {
                 Text(
                     text = item.title,
@@ -487,14 +488,14 @@ fun LongPressMenuHeader(
                     maxLines = 1,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .fadedMarquee(edgeWidth = 12.dp),
+                        .fadedMarquee(edgeWidth = 12.dp)
                 )
 
                 val subtitle = getSubtitleAnnotatedString(
                     item = item,
                     showLink = onUploaderClick != null,
                     linkColor = MaterialTheme.customColors.onSurfaceVariantLink,
-                    ctx = ctx,
+                    ctx = ctx
                 )
                 if (subtitle.isNotBlank()) {
                     Spacer(Modifier.height(1.dp))
@@ -509,7 +510,7 @@ fun LongPressMenuHeader(
                             Modifier.clickable(onClick = onUploaderClick)
                         }
                             .fillMaxWidth()
-                            .fadedMarquee(edgeWidth = 12.dp),
+                            .fadedMarquee(edgeWidth = 12.dp)
                     )
                 }
             }
@@ -521,7 +522,7 @@ fun getSubtitleAnnotatedString(
     item: LongPressable,
     showLink: Boolean,
     linkColor: Color,
-    ctx: Context,
+    ctx: Context
 ) = buildAnnotatedString {
     var shouldAddSeparator = false
     if (showLink) {
@@ -574,13 +575,13 @@ fun getSubtitleInlineContent() = mapOf(
         placeholder = Placeholder(
             width = MaterialTheme.typography.bodyMedium.fontSize,
             height = MaterialTheme.typography.bodyMedium.fontSize,
-            placeholderVerticalAlign = PlaceholderVerticalAlign.Center,
+            placeholderVerticalAlign = PlaceholderVerticalAlign.Center
         )
     ) {
         Icon(
             imageVector = Icons.AutoMirrored.Filled.OpenInNew,
             contentDescription = null,
-            tint = MaterialTheme.customColors.onSurfaceVariantLink,
+            tint = MaterialTheme.customColors.onSurfaceVariantLink
         )
     }
 )
@@ -591,7 +592,7 @@ fun LongPressMenuButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    enabled: Boolean = true,
+    enabled: Boolean = true
 ) {
     // TODO possibly make it so that when you long-press on the button, the label appears on-screen
     //  as a small popup, so in case the label text is cut off the users can still read it in full
@@ -601,18 +602,18 @@ fun LongPressMenuButton(
         shape = MaterialTheme.shapes.large,
         contentPadding = PaddingValues(start = 3.dp, top = 8.dp, end = 3.dp, bottom = 2.dp),
         border = null,
-        modifier = modifier,
+        modifier = modifier
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Icon(
                 imageVector = icon,
                 contentDescription = null,
-                modifier = Modifier.size(32.dp),
+                modifier = Modifier.size(32.dp)
             )
             FixedHeightCenteredText(
                 text = text,
                 lines = 2,
-                style = MaterialTheme.typography.bodySmall,
+                style = MaterialTheme.typography.bodySmall
             )
         }
     }
@@ -650,7 +651,7 @@ private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPre
             viewCount = 8765432,
             streamType = null,
             uploadDate = Either.left("16 years ago"),
-            decoration = LongPressable.Decoration.Playlist(12),
+            decoration = LongPressable.Decoration.Playlist(12)
         ),
         LongPressable(
             title = LoremIpsum().values.first(),
@@ -661,7 +662,7 @@ private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPre
             viewCount = 8765432,
             streamType = StreamType.VIDEO_STREAM,
             uploadDate = Either.left("16 years ago"),
-            decoration = LongPressable.Decoration.Duration(500),
+            decoration = LongPressable.Decoration.Duration(500)
         ),
         LongPressable(
             title = LoremIpsum().values.first(),
@@ -672,7 +673,7 @@ private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPre
             viewCount = null,
             streamType = null,
             uploadDate = null,
-            decoration = null,
+            decoration = null
         ),
         LongPressable(
             title = LoremIpsum().values.first(),
@@ -683,7 +684,7 @@ private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPre
             viewCount = null,
             streamType = StreamType.AUDIO_STREAM,
             uploadDate = null,
-            decoration = LongPressable.Decoration.Duration(500),
+            decoration = LongPressable.Decoration.Duration(500)
         ),
         LongPressable(
             title = LoremIpsum().values.first(),
@@ -694,7 +695,7 @@ private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPre
             viewCount = null,
             streamType = StreamType.LIVE_STREAM,
             uploadDate = null,
-            decoration = LongPressable.Decoration.Live,
+            decoration = LongPressable.Decoration.Live
         ),
         LongPressable(
             title = LoremIpsum().values.first(),
@@ -705,8 +706,8 @@ private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPre
             viewCount = null,
             streamType = StreamType.AUDIO_LIVE_STREAM,
             uploadDate = Either.right(OffsetDateTime.now().minusSeconds(12)),
-            decoration = LongPressable.Decoration.Playlist(1500),
-        ),
+            decoration = LongPressable.Decoration.Playlist(1500)
+        )
     )
 )
 
@@ -736,7 +737,7 @@ private fun LongPressMenuPreview(
                 actions = LongPressAction.Type.entries
                     // disable Enqueue actions just to show it off
                     .map { t -> t.buildAction({ t != EnqueueNext }) { } },
-                runActionAndDismiss = {},
+                runActionAndDismiss = {}
             )
         }
     }

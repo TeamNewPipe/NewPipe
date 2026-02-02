@@ -9,7 +9,7 @@ import androidx.compose.ui.graphics.Color
 
 @Immutable
 data class CustomColors(
-    val onSurfaceVariantLink: Color = Color.Unspecified,
+    val onSurfaceVariantLink: Color = Color.Unspecified
 )
 
 val onSurfaceVariantLinkLight = Color(0xFF5060B0)

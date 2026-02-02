@@ -42,7 +42,7 @@ fun ScaffoldWithToolbar(
                     IconButton(onClick = onBackClick) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.back),
+                            contentDescription = stringResource(R.string.back)
                         )
                     }
                 },

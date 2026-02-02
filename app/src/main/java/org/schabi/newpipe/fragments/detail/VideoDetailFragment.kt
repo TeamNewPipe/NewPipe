@@ -1425,7 +1425,10 @@ class VideoDetailFragment :
 
         if (info.viewCount >= 0) {
             binding.detailViewCountView.text = Localization.localizeViewCount(
-                activity, false, info.streamType, info.viewCount
+                activity,
+                false,
+                info.streamType,
+                info.viewCount
             )
             binding.detailViewCountView.visibility = View.VISIBLE
         } else {
