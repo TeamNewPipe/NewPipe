@@ -439,7 +439,7 @@ class VideoDetailFragment :
                         PlaylistDialog.createCorrespondingDialog(
                             requireContext(),
                             listOf(StreamEntity(info))
-                        ) { dialog -> dialog.show(getParentFragmentManager(), TAG) }
+                        ).subscribe { dialog -> dialog.show(getParentFragmentManager(), TAG) }
                     )
                 }
             }

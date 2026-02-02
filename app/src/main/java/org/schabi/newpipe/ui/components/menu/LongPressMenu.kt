@@ -7,6 +7,9 @@ import android.content.Context
 import android.content.res.Configuration
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -32,6 +35,7 @@ import androidx.compose.material.icons.automirrored.filled.OpenInNew
 import androidx.compose.material.icons.automirrored.filled.PlaylistPlay
 import androidx.compose.material.icons.filled.Tune
 import androidx.compose.material3.BottomSheetDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -48,6 +52,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -74,11 +79,18 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.schabi.newpipe.R
+import org.schabi.newpipe.error.ErrorInfo
+import org.schabi.newpipe.error.ErrorUtil
+import org.schabi.newpipe.error.UserAction.LONG_PRESS_MENU_ACTION
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.ui.components.common.ScaffoldWithToolbar
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.EnqueueNext
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.ShowChannelDetails
+import org.schabi.newpipe.ui.discardAllTouchesIf
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.ui.theme.customColors
 import org.schabi.newpipe.util.Either
@@ -129,9 +141,10 @@ fun LongPressMenu(
     val isHeaderEnabled by viewModel.isHeaderEnabled.collectAsState()
     val actionArrangement by viewModel.actionArrangement.collectAsState()
     var showEditor by rememberSaveable { mutableStateOf(false) }
+    var isLoading by remember { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
-    if (showEditor) {
+    if (showEditor && !isLoading) {
         // we can't put the editor in a bottom sheet, because it relies on dragging gestures
         Dialog(
             onDismissRequest = { showEditor = false },
@@ -153,19 +166,33 @@ fun LongPressMenu(
             }
         }
 
+        val ctx = LocalContext.current
+        // run actions on the main thread!
+        val coroutineScope = rememberCoroutineScope { Dispatchers.Main }
+        fun runActionAndDismiss(action: LongPressAction) {
+            if (isLoading) {
+                return
+            }
+            isLoading = true
+            coroutineScope.launch {
+                try {
+                    action.action(ctx)
+                } catch (t: Throwable) {
+                    ErrorUtil.showSnackbar(
+                        ctx, ErrorInfo(t, LONG_PRESS_MENU_ACTION, "Running action ${action.type}")
+                    )
+                }
+                onDismissRequest()
+            }
+        }
+
         // show a clickable uploader in the header if an uploader action is available and the
         // "show channel details" action is not enabled as a standalone action
-        val ctx = LocalContext.current
         val onUploaderClick by remember {
             derivedStateOf {
                 longPressActions.firstOrNull { it.type == ShowChannelDetails }
                     ?.takeIf { !actionArrangement.contains(ShowChannelDetails) }
-                    ?.let { showChannelDetailsAction ->
-                        {
-                            showChannelDetailsAction.action(ctx)
-                            onDismissRequest()
-                        }
-                    }
+                    ?.let { showChannelAction -> { runActionAndDismiss(showChannelAction) } }
             }
         }
 
@@ -174,12 +201,27 @@ fun LongPressMenu(
             onDismissRequest = onDismissRequest,
             dragHandle = { LongPressMenuDragHandle(onEditActions = { showEditor = true }) },
         ) {
-            LongPressMenuContent(
-                header = longPressable.takeIf { isHeaderEnabled },
-                onUploaderClick = onUploaderClick,
-                actions = enabledLongPressActions,
-                onDismissRequest = onDismissRequest,
-            )
+            Box(modifier = Modifier.discardAllTouchesIf(isLoading)) {
+                LongPressMenuContent(
+                    header = longPressable.takeIf { isHeaderEnabled },
+                    onUploaderClick = onUploaderClick,
+                    actions = enabledLongPressActions,
+                    runActionAndDismiss = ::runActionAndDismiss,
+                )
+                // importing makes the ColumnScope overload be resolved, so we use qualified path...
+                androidx.compose.animation.AnimatedVisibility(
+                    visible = isLoading,
+                    enter = fadeIn(),
+                    exit = fadeOut(),
+                    modifier = Modifier
+                        .matchParentSize()
+                        .background(MaterialTheme.colorScheme.surfaceContainerLow),
+                ) {
+                    Box(contentAlignment = Alignment.Center) {
+                        CircularProgressIndicator()
+                    }
+                }
+            }
         }
     }
 }
@@ -189,7 +231,7 @@ private fun LongPressMenuContent(
     header: LongPressable?,
     onUploaderClick: (() -> Unit)?,
     actions: List<LongPressAction>,
-    onDismissRequest: () -> Unit,
+    runActionAndDismiss: (LongPressAction) -> Unit,
 ) {
     BoxWithConstraints(
         modifier = Modifier
@@ -203,7 +245,6 @@ private fun LongPressMenuContent(
         // width for the landscape/reduced header, measured in button widths
         val headerWidthInButtonsReducedSpan = 4
         val buttonsPerRow = (this.maxWidth / MinButtonWidth).toInt()
-        val ctx = LocalContext.current
 
         Column {
             var actionIndex = if (header != null) -1 else 0 // -1 indicates the header
@@ -230,10 +271,7 @@ private fun LongPressMenuContent(
                             LongPressMenuButton(
                                 icon = action.type.icon,
                                 text = stringResource(action.type.label),
-                                onClick = {
-                                    action.action(ctx)
-                                    onDismissRequest()
-                                },
+                                onClick = { runActionAndDismiss(action) },
                                 enabled = action.enabled(false),
                                 modifier = Modifier
                                     .height(buttonHeight)
@@ -296,7 +334,12 @@ fun LongPressMenuDragHandle(onEditActions: () -> Unit) {
             // the focus to "nothing focused". Ideally it would be great to focus the first item in
             // the long press menu, but then there would need to be a way to ignore the UP from the
             // DPAD after an externally-triggered long press.
-            Box(Modifier.size(1.dp).focusable().onFocusChanged { showFocusTrap = !it.isFocused })
+            Box(
+                Modifier
+                    .size(1.dp)
+                    .focusable()
+                    .onFocusChanged { showFocusTrap = !it.isFocused }
+            )
         }
         BottomSheetDefaults.DragHandle(
             modifier = Modifier.align(Alignment.Center)
@@ -693,7 +736,7 @@ private fun LongPressMenuPreview(
                 actions = LongPressAction.Type.entries
                     // disable Enqueue actions just to show it off
                     .map { t -> t.buildAction({ t != EnqueueNext }) { } },
-                onDismissRequest = {},
+                runActionAndDismiss = {},
             )
         }
     }

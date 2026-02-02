@@ -5,7 +5,9 @@ import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.input.pointer.PointerEventTimeoutCancellationException
+import androidx.compose.ui.input.pointer.PointerInputChange
 import androidx.compose.ui.input.pointer.changedToUp
 import androidx.compose.ui.input.pointer.isOutOfBounds
 import androidx.compose.ui.input.pointer.pointerInput
@@ -87,3 +89,22 @@ fun Modifier.detectDragGestures(
 }
 
 private fun Offset.toIntOffset() = IntOffset(this.x.toInt(), this.y.toInt())
+
+/**
+ * Discards all touches on child composables. See https://stackoverflow.com/a/69146178.
+ * @param doDiscard whether this Modifier is active (touches discarded) or not (no effect).
+ */
+fun Modifier.discardAllTouchesIf(doDiscard: Boolean) = if (doDiscard) {
+    pointerInput(Unit) {
+        awaitPointerEventScope {
+            // we should wait for all new pointer events
+            while (true) {
+                awaitPointerEvent(pass = PointerEventPass.Initial)
+                    .changes
+                    .forEach(PointerInputChange::consume)
+            }
+        }
+    }
+} else {
+    this
+}

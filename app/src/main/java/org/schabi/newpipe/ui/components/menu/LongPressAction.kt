@@ -1,8 +1,8 @@
 package org.schabi.newpipe.ui.components.menu
 
 import android.content.Context
-import android.net.Uri
 import android.widget.Toast
+import androidx.annotation.MainThread
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.PlaylistAdd
@@ -15,6 +15,7 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Headset
 import androidx.compose.material.icons.filled.HideImage
 import androidx.compose.material.icons.filled.Image
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.OpenInBrowser
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PictureInPicture
@@ -23,7 +24,11 @@ import androidx.compose.material.icons.filled.QueuePlayNext
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.core.net.toUri
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.rx3.await
+import kotlinx.coroutines.rx3.awaitSingle
+import kotlinx.coroutines.withContext
+import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry
@@ -31,9 +36,6 @@ import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.download.DownloadDialog
-import org.schabi.newpipe.error.ErrorInfo
-import org.schabi.newpipe.error.ErrorUtil
-import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.extractor.InfoItem
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem
@@ -42,21 +44,22 @@ import org.schabi.newpipe.ktx.findFragmentActivity
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog
 import org.schabi.newpipe.local.dialog.PlaylistDialog
 import org.schabi.newpipe.local.history.HistoryRecordManager
+import org.schabi.newpipe.local.playlist.LocalPlaylistManager
 import org.schabi.newpipe.player.playqueue.ChannelTabPlayQueue
 import org.schabi.newpipe.player.playqueue.PlayQueue
+import org.schabi.newpipe.player.playqueue.PlayQueueItem
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue
-import org.schabi.newpipe.player.playqueue.SinglePlayQueue
 import org.schabi.newpipe.ui.components.menu.icons.BackgroundFromHere
 import org.schabi.newpipe.ui.components.menu.icons.PlayFromHere
 import org.schabi.newpipe.ui.components.menu.icons.PopupFromHere
 import org.schabi.newpipe.util.NavigationHelper
-import org.schabi.newpipe.util.SparseItemUtil
 import org.schabi.newpipe.util.external_communication.KoreUtils
 import org.schabi.newpipe.util.external_communication.ShareUtils
 
 data class LongPressAction(
     val type: Type,
-    val action: (context: Context) -> Unit,
+    @MainThread
+    val action: suspend (context: Context) -> Unit,
     val enabled: (isPlayerRunning: Boolean) -> Boolean = { true },
 ) {
     enum class Type(
@@ -88,6 +91,8 @@ data class LongPressAction(
         SetAsPlaylistThumbnail(17, R.string.set_as_playlist_thumbnail, Icons.Default.Image),
         UnsetPlaylistThumbnail(18, R.string.unset_playlist_thumbnail, Icons.Default.HideImage),
         Unsubscribe(19, R.string.unsubscribe, Icons.Default.Delete),
+        ShowDetails(20, R.string.play_queue_stream_detail, Icons.Default.Info),
+        Remove(21, R.string.play_queue_remove, Icons.Default.Delete),
         ;
 
         // TODO allow actions to return disposables
@@ -95,37 +100,39 @@ data class LongPressAction(
 
         fun buildAction(
             enabled: (isPlayerRunning: Boolean) -> Boolean = { true },
-            action: (context: Context) -> Unit,
+            action: suspend (context: Context) -> Unit,
         ) = LongPressAction(this, action, enabled)
 
         companion object {
             // ShowChannelDetails is not enabled by default, since navigating to channel details can
             // also be done by clicking on the uploader name in the long press menu header
             val DefaultEnabledActions: List<Type> = listOf(
-                Enqueue, EnqueueNext, Background, Popup, BackgroundFromHere, Download,
+                ShowDetails, Enqueue, EnqueueNext, Background, Popup, BackgroundFromHere, Download,
                 AddToPlaylist, Share, OpenInBrowser, MarkAsWatched, Delete,
-                Rename, SetAsPlaylistThumbnail, UnsetPlaylistThumbnail, Unsubscribe
+                Rename, SetAsPlaylistThumbnail, UnsetPlaylistThumbnail, Unsubscribe, Remove,
             )
         }
     }
 
     companion object {
-        private fun buildPlayerActionList(queue: () -> PlayQueue): List<LongPressAction> {
+        private fun buildPlayerActionList(
+            queue: suspend (Context) -> PlayQueue
+        ): List<LongPressAction> {
             return listOf(
                 Type.Enqueue.buildAction({ isPlayerRunning -> isPlayerRunning }) { context ->
-                    NavigationHelper.enqueueOnPlayer(context, queue())
+                    NavigationHelper.enqueueOnPlayer(context, queue(context))
                 },
                 Type.EnqueueNext.buildAction({ isPlayerRunning -> isPlayerRunning }) { context ->
-                    NavigationHelper.enqueueNextOnPlayer(context, queue())
+                    NavigationHelper.enqueueNextOnPlayer(context, queue(context))
                 },
                 Type.Background.buildAction { context ->
-                    NavigationHelper.playOnBackgroundPlayer(context, queue(), true)
+                    NavigationHelper.playOnBackgroundPlayer(context, queue(context), true)
                 },
                 Type.Popup.buildAction { context ->
-                    NavigationHelper.playOnPopupPlayer(context, queue(), true)
+                    NavigationHelper.playOnPopupPlayer(context, queue(context), true)
                 },
                 Type.Play.buildAction { context ->
-                    NavigationHelper.playOnMainPlayer(context, queue(), false)
+                    NavigationHelper.playOnMainPlayer(context, queue(context), false)
                 },
             )
         }
@@ -166,6 +173,53 @@ data class LongPressAction(
             )
         }
 
+        private fun buildAdditionalStreamActionList(item: StreamInfoItem): List<LongPressAction> {
+            return listOf(
+                Type.Download.buildAction { context ->
+                    val info = fetchStreamInfoAndSaveToDatabase(context, item.serviceId, item.url)
+                    val downloadDialog = DownloadDialog(context, info)
+                    val fragmentManager = context.findFragmentActivity()
+                        .supportFragmentManager
+                    downloadDialog.show(fragmentManager, "downloadDialog")
+                },
+                Type.AddToPlaylist.buildAction { context ->
+                    LocalPlaylistManager(NewPipeDatabase.getInstance(context))
+                        .hasPlaylists()
+                    val dialog = withContext(Dispatchers.IO) {
+                        PlaylistDialog.createCorrespondingDialog(
+                            context,
+                            listOf(StreamEntity(item))
+                        )
+                            .awaitSingle()
+                    }
+                    val tag = if (dialog is PlaylistAppendDialog) "append" else "create"
+                    dialog.show(
+                        context.findFragmentActivity().supportFragmentManager,
+                        "StreamDialogEntry@${tag}_playlist"
+                    )
+                },
+                Type.ShowChannelDetails.buildAction { context ->
+                    val uploaderUrl = fetchUploaderUrlIfSparse(
+                        context, item.serviceId, item.url, item.uploaderUrl
+                    )
+                    NavigationHelper.openChannelFragment(
+                        context.findFragmentActivity().supportFragmentManager,
+                        item.serviceId,
+                        uploaderUrl,
+                        item.uploaderName,
+                    )
+                },
+                Type.MarkAsWatched.buildAction { context ->
+                    withContext(Dispatchers.IO) {
+                        HistoryRecordManager(context).markAsWatched(item).await()
+                    }
+                },
+                Type.PlayWithKodi.buildAction { context ->
+                    KoreUtils.playWithKore(context, item.url.toUri())
+                },
+            )
+        }
+
         /**
          * @param queueFromHere returns a play queue for the list that contains [item], with the
          * queue index pointing to [item], used to build actions like "Play playlist from here".
@@ -176,65 +230,10 @@ data class LongPressAction(
             queueFromHere: (() -> PlayQueue)?,
             /* TODO isKodiEnabled: Boolean, */
         ): List<LongPressAction> {
-            return buildPlayerActionList { SinglePlayQueue(item) } +
+            return buildPlayerActionList { context -> fetchItemInfoIfSparse(context, item) } +
                 (queueFromHere?.let { buildPlayerFromHereActionList(queueFromHere) } ?: listOf()) +
                 buildShareActionList(item) +
-                listOf(
-                    Type.Download.buildAction { context ->
-                        SparseItemUtil.fetchStreamInfoAndSaveToDatabase(
-                            context, item.serviceId, item.url
-                        ) { info ->
-                            val downloadDialog = DownloadDialog(context, info)
-                            val fragmentManager = context.findFragmentActivity()
-                                .supportFragmentManager
-                            downloadDialog.show(fragmentManager, "downloadDialog")
-                        }
-                    },
-                    Type.AddToPlaylist.buildAction { context ->
-                        PlaylistDialog.createCorrespondingDialog(
-                            context,
-                            listOf(StreamEntity(item))
-                        ) { dialog: PlaylistDialog ->
-                            val tag = if (dialog is PlaylistAppendDialog) "append" else "create"
-                            dialog.show(
-                                context.findFragmentActivity().supportFragmentManager,
-                                "StreamDialogEntry@${tag}_playlist"
-                            )
-                        }
-                    },
-                    Type.ShowChannelDetails.buildAction { context ->
-                        SparseItemUtil.fetchUploaderUrlIfSparse(
-                            context, item.serviceId, item.url, item.uploaderUrl
-                        ) { url: String ->
-                            NavigationHelper.openChannelFragment(
-                                context.findFragmentActivity().supportFragmentManager,
-                                item.serviceId,
-                                url,
-                                item.uploaderName,
-                            )
-                        }
-                    },
-                    Type.MarkAsWatched.buildAction { context ->
-                        HistoryRecordManager(context)
-                            .markAsWatched(item)
-                            .doOnError { error ->
-                                ErrorUtil.showSnackbar(
-                                        context,
-                                        ErrorInfo(
-                                            error,
-                                            UserAction.OPEN_INFO_ITEM_DIALOG,
-                                            "Got an error when trying to mark as watched"
-                                        )
-                                )
-                            }
-                            .onErrorComplete()
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe()
-                    },
-                    Type.PlayWithKodi.buildAction { context ->
-                        KoreUtils.playWithKore(context, item.url.toUri())
-                    },
-                )
+                buildAdditionalStreamActionList(item)
         }
 
         @JvmStatic
@@ -249,6 +248,38 @@ data class LongPressAction(
         }
 
         @JvmStatic
+        fun fromPlayQueueItem(
+            item: PlayQueueItem,
+            playQueueFromWhichToDelete: PlayQueue,
+            showDetails: Boolean,
+        ): List<LongPressAction> {
+            // TODO decide if it's fine to just convert to StreamInfoItem here (it poses an
+            //  unnecessary dependency on the extractor, when we want to just look at data; maybe
+            //  using something like LongPressable would work)
+            val streamInfoItem = item.toStreamInfoItem()
+            return buildShareActionList(streamInfoItem) +
+                    buildAdditionalStreamActionList(streamInfoItem) +
+                    if (showDetails) {
+                        listOf(
+                            Type.ShowDetails.buildAction { context ->
+                                // playQueue is null since we don't want any queue change
+                                NavigationHelper.openVideoDetail(
+                                    context, item.serviceId, item.url, item.title, null, false
+                                )
+                            }
+                        )
+                    } else {
+                        listOf()
+                    } +
+                    listOf(
+                        Type.Remove.buildAction {
+                            val index = playQueueFromWhichToDelete.indexOf(item)
+                            playQueueFromWhichToDelete.remove(index)
+                        }
+                    )
+        }
+
+        @JvmStatic
         fun fromStreamStatisticsEntry(
             item: StreamStatisticsEntry,
             queueFromHere: (() -> PlayQueue)?,
@@ -256,16 +287,13 @@ data class LongPressAction(
             return fromStreamEntity(item.streamEntity, queueFromHere) +
                 listOf(
                     Type.Delete.buildAction { context ->
-                        HistoryRecordManager(context)
-                            .deleteStreamHistoryAndState(item.streamId)
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe {
-                                Toast.makeText(
-                                    context,
-                                    R.string.one_item_deleted,
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
+                        withContext(Dispatchers.IO) {
+                            HistoryRecordManager(context)
+                                .deleteStreamHistoryAndState(item.streamId)
+                                .await()
+                        }
+                        Toast.makeText(context, R.string.one_item_deleted, Toast.LENGTH_SHORT)
+                            .show()
                     }
                 )
         }

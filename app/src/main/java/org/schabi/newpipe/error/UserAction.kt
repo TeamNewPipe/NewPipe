@@ -37,8 +37,8 @@ enum class UserAction(val message: String) {
     PREFERENCES_MIGRATION("migration of preferences"),
     SHARE_TO_NEWPIPE("share to newpipe"),
     CHECK_FOR_NEW_APP_VERSION("check for new app version"),
-    OPEN_INFO_ITEM_DIALOG("open info item dialog"),
     GETTING_MAIN_SCREEN_TAB("getting main screen tab"),
     PLAY_ON_POPUP("play on popup"),
-    SUBSCRIPTIONS("loading subscriptions")
+    SUBSCRIPTIONS("loading subscriptions"),
+    LONG_PRESS_MENU_ACTION("long press menu action"),
 }
