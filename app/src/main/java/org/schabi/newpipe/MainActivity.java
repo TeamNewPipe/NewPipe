@@ -147,8 +147,22 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 @Override
+                public void debug(final String tag,
+                                  final String message,
+                                  final Throwable throwable) {
+                    Log.d(tag, message, throwable);
+                }
+
+                @Override
                 public void warn(final String tag, final String message) {
                     Log.w(tag, message);
+                }
+
+                @Override
+                public void warn(final String tag,
+                                 final String message,
+                                 final Throwable throwable) {
+                    Log.w(tag, message, throwable);
                 }
 
                 @Override
