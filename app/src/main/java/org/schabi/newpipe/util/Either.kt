@@ -9,7 +9,7 @@ import kotlin.reflect.safeCast
 data class Either<A : Any, B : Any>(
     val value: Any,
     val classA: KClass<A>,
-    val classB: KClass<B>,
+    val classB: KClass<B>
 ) {
     inline fun <R> match(ifLeft: (A) -> R, ifRight: (B) -> R): R {
         return classA.safeCast(value)?.let { ifLeft(it) }
@@ -17,9 +17,7 @@ data class Either<A : Any, B : Any>(
     }
 
     companion object {
-        inline fun <reified A : Any, reified B : Any> left(a: A): Either<A, B> =
-            Either(a, A::class, B::class)
-        inline fun <reified A : Any, reified B : Any> right(b: B): Either<A, B> =
-            Either(b, A::class, B::class)
+        inline fun <reified A : Any, reified B : Any> left(a: A): Either<A, B> = Either(a, A::class, B::class)
+        inline fun <reified A : Any, reified B : Any> right(b: B): Either<A, B> = Either(b, A::class, B::class)
     }
 }

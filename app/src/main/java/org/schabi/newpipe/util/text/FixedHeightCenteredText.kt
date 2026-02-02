@@ -18,7 +18,7 @@ fun FixedHeightCenteredText(
     text: String,
     lines: Int,
     modifier: Modifier = Modifier,
-    style: TextStyle = LocalTextStyle.current,
+    style: TextStyle = LocalTextStyle.current
 ) {
     Box(modifier = modifier) {
         // this allows making the box always the same height (i.e. the height of [lines] text
@@ -26,7 +26,7 @@ fun FixedHeightCenteredText(
         Text(
             text = "",
             style = style,
-            minLines = lines,
+            minLines = lines
         )
         Text(
             text = text,

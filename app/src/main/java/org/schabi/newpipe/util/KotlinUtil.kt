@@ -8,5 +8,4 @@ package org.schabi.newpipe.util
  *     .letIf(someCondition) { padding(right = 4.dp) }
  * ```
  */
-inline fun <T> T.letIf(condition: Boolean, block: T.() -> T): T =
-    if (condition) block(this) else this
+inline fun <T> T.letIf(condition: Boolean, block: T.() -> T): T = if (condition) block(this) else this

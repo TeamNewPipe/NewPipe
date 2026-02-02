@@ -60,7 +60,7 @@ data class LongPressAction(
     val type: Type,
     @MainThread
     val action: suspend (context: Context) -> Unit,
-    val enabled: (isPlayerRunning: Boolean) -> Boolean = { true },
+    val enabled: (isPlayerRunning: Boolean) -> Boolean = { true }
 ) {
     enum class Type(
         /**
@@ -69,7 +69,7 @@ data class LongPressAction(
          */
         val id: Int,
         @StringRes val label: Int,
-        val icon: ImageVector,
+        val icon: ImageVector
     ) {
         Enqueue(0, R.string.enqueue, Icons.Default.AddToQueue),
         EnqueueNext(1, R.string.enqueue_next_stream, Icons.Default.QueuePlayNext),
@@ -92,7 +92,7 @@ data class LongPressAction(
         UnsetPlaylistThumbnail(18, R.string.unset_playlist_thumbnail, Icons.Default.HideImage),
         Unsubscribe(19, R.string.unsubscribe, Icons.Default.Delete),
         ShowDetails(20, R.string.play_queue_stream_detail, Icons.Default.Info),
-        Remove(21, R.string.play_queue_remove, Icons.Default.Delete),
+        Remove(21, R.string.play_queue_remove, Icons.Default.Delete)
         ;
 
         // TODO allow actions to return disposables
@@ -100,7 +100,7 @@ data class LongPressAction(
 
         fun buildAction(
             enabled: (isPlayerRunning: Boolean) -> Boolean = { true },
-            action: suspend (context: Context) -> Unit,
+            action: suspend (context: Context) -> Unit
         ) = LongPressAction(this, action, enabled)
 
         companion object {
@@ -109,7 +109,7 @@ data class LongPressAction(
             val DefaultEnabledActions: List<Type> = listOf(
                 ShowDetails, Enqueue, EnqueueNext, Background, Popup, BackgroundFromHere, Download,
                 AddToPlaylist, Share, OpenInBrowser, MarkAsWatched, Delete,
-                Rename, SetAsPlaylistThumbnail, UnsetPlaylistThumbnail, Unsubscribe, Remove,
+                Rename, SetAsPlaylistThumbnail, UnsetPlaylistThumbnail, Unsubscribe, Remove
             )
         }
     }
@@ -133,7 +133,7 @@ data class LongPressAction(
                 },
                 Type.Play.buildAction { context ->
                     NavigationHelper.playOnMainPlayer(context, queue(context), false)
-                },
+                }
             )
         }
 
@@ -147,7 +147,7 @@ data class LongPressAction(
                 },
                 Type.PlayFromHere.buildAction { context ->
                     NavigationHelper.playOnMainPlayer(context, queueFromHere(), false)
-                },
+                }
             )
         }
 
@@ -158,7 +158,7 @@ data class LongPressAction(
                 },
                 Type.OpenInBrowser.buildAction { context ->
                     ShareUtils.openUrlInBrowser(context, item.url)
-                },
+                }
             )
         }
 
@@ -169,7 +169,7 @@ data class LongPressAction(
                 },
                 Type.OpenInBrowser.buildAction { context ->
                     ShareUtils.openUrlInBrowser(context, url)
-                },
+                }
             )
         }
 
@@ -200,13 +200,16 @@ data class LongPressAction(
                 },
                 Type.ShowChannelDetails.buildAction { context ->
                     val uploaderUrl = fetchUploaderUrlIfSparse(
-                        context, item.serviceId, item.url, item.uploaderUrl
+                        context,
+                        item.serviceId,
+                        item.url,
+                        item.uploaderUrl
                     )
                     NavigationHelper.openChannelFragment(
                         context.findFragmentActivity().supportFragmentManager,
                         item.serviceId,
                         uploaderUrl,
-                        item.uploaderName,
+                        item.uploaderName
                     )
                 },
                 Type.MarkAsWatched.buildAction { context ->
@@ -216,7 +219,7 @@ data class LongPressAction(
                 },
                 Type.PlayWithKodi.buildAction { context ->
                     KoreUtils.playWithKore(context, item.url.toUri())
-                },
+                }
             )
         }
 
@@ -227,7 +230,7 @@ data class LongPressAction(
         @JvmStatic
         fun fromStreamInfoItem(
             item: StreamInfoItem,
-            queueFromHere: (() -> PlayQueue)?,
+            queueFromHere: (() -> PlayQueue)?
             /* TODO isKodiEnabled: Boolean, */
         ): List<LongPressAction> {
             return buildPlayerActionList { context -> fetchItemInfoIfSparse(context, item) } +
@@ -239,7 +242,7 @@ data class LongPressAction(
         @JvmStatic
         fun fromStreamEntity(
             item: StreamEntity,
-            queueFromHere: (() -> PlayQueue)?,
+            queueFromHere: (() -> PlayQueue)?
         ): List<LongPressAction> {
             // TODO decide if it's fine to just convert to StreamInfoItem here (it poses an
             //  unnecessary dependency on the extractor, when we want to just look at data; maybe
@@ -251,38 +254,43 @@ data class LongPressAction(
         fun fromPlayQueueItem(
             item: PlayQueueItem,
             playQueueFromWhichToDelete: PlayQueue,
-            showDetails: Boolean,
+            showDetails: Boolean
         ): List<LongPressAction> {
             // TODO decide if it's fine to just convert to StreamInfoItem here (it poses an
             //  unnecessary dependency on the extractor, when we want to just look at data; maybe
             //  using something like LongPressable would work)
             val streamInfoItem = item.toStreamInfoItem()
             return buildShareActionList(streamInfoItem) +
-                    buildAdditionalStreamActionList(streamInfoItem) +
-                    if (showDetails) {
-                        listOf(
-                            Type.ShowDetails.buildAction { context ->
-                                // playQueue is null since we don't want any queue change
-                                NavigationHelper.openVideoDetail(
-                                    context, item.serviceId, item.url, item.title, null, false
-                                )
-                            }
-                        )
-                    } else {
-                        listOf()
-                    } +
+                buildAdditionalStreamActionList(streamInfoItem) +
+                if (showDetails) {
                     listOf(
-                        Type.Remove.buildAction {
-                            val index = playQueueFromWhichToDelete.indexOf(item)
-                            playQueueFromWhichToDelete.remove(index)
+                        Type.ShowDetails.buildAction { context ->
+                            // playQueue is null since we don't want any queue change
+                            NavigationHelper.openVideoDetail(
+                                context,
+                                item.serviceId,
+                                item.url,
+                                item.title,
+                                null,
+                                false
+                            )
                         }
                     )
+                } else {
+                    listOf()
+                } +
+                listOf(
+                    Type.Remove.buildAction {
+                        val index = playQueueFromWhichToDelete.indexOf(item)
+                        playQueueFromWhichToDelete.remove(index)
+                    }
+                )
         }
 
         @JvmStatic
         fun fromStreamStatisticsEntry(
             item: StreamStatisticsEntry,
-            queueFromHere: (() -> PlayQueue)?,
+            queueFromHere: (() -> PlayQueue)?
         ): List<LongPressAction> {
             return fromStreamEntity(item.streamEntity, queueFromHere) +
                 listOf(
@@ -304,7 +312,7 @@ data class LongPressAction(
             queueFromHere: (() -> PlayQueue)?,
             // TODO possibly embed these two actions here
             onDelete: Runnable,
-            onSetAsPlaylistThumbnail: Runnable,
+            onSetAsPlaylistThumbnail: Runnable
         ): List<LongPressAction> {
             return fromStreamEntity(item.streamEntity, queueFromHere) +
                 listOf(
@@ -318,7 +326,7 @@ data class LongPressAction(
             item: PlaylistMetadataEntry,
             onRename: Runnable,
             onDelete: Runnable,
-            unsetPlaylistThumbnail: Runnable?,
+            unsetPlaylistThumbnail: Runnable?
         ): List<LongPressAction> {
             return listOf(
                 Type.Rename.buildAction { onRename.run() },
@@ -332,7 +340,7 @@ data class LongPressAction(
         @JvmStatic
         fun fromPlaylistRemoteEntity(
             item: PlaylistRemoteEntity,
-            onDelete: Runnable,
+            onDelete: Runnable
         ): List<LongPressAction> {
             return buildPlayerActionList { PlaylistPlayQueue(item.serviceId, item.url) } +
                 buildShareActionList(
@@ -341,14 +349,14 @@ data class LongPressAction(
                     item.thumbnailUrl
                 ) +
                 listOf(
-                    Type.Delete.buildAction { onDelete.run() },
+                    Type.Delete.buildAction { onDelete.run() }
                 )
         }
 
         @JvmStatic
         fun fromChannelInfoItem(
             item: ChannelInfoItem,
-            onUnsubscribe: Runnable?,
+            onUnsubscribe: Runnable?
         ): List<LongPressAction> {
             return buildPlayerActionList { ChannelTabPlayQueue(item.serviceId, item.url) } +
                 buildShareActionList(item) +
@@ -358,7 +366,7 @@ data class LongPressAction(
                             context.findFragmentActivity().supportFragmentManager,
                             item.serviceId,
                             item.url,
-                            item.name,
+                            item.name
                         )
                     },
                     onUnsubscribe?.let { r -> Type.Unsubscribe.buildAction { r.run() } }

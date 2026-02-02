@@ -39,7 +39,7 @@ fun NavigationIcon() {
     Icon(
         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
         contentDescription = stringResource(R.string.back),
-        modifier = Modifier.padding(horizontal = SizeTokens.SpacingExtraSmall),
+        modifier = Modifier.padding(horizontal = SizeTokens.SpacingExtraSmall)
     )
 }
 

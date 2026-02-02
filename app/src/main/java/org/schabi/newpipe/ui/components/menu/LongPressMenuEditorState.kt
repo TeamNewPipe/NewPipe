@@ -20,14 +20,14 @@ import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.type
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
+import kotlin.math.abs
+import kotlin.math.max
+import kotlin.math.min
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import kotlin.math.abs
-import kotlin.math.max
-import kotlin.math.min
 
 private const val TAG = "LongPressMenuEditorStat"
 
@@ -43,7 +43,7 @@ private const val TAG = "LongPressMenuEditorStat"
 class LongPressMenuEditorState(
     context: Context,
     val gridState: LazyGridState,
-    val coroutineScope: CoroutineScope,
+    val coroutineScope: CoroutineScope
 ) {
     val items = run {
         // We get the current arrangement once and do not observe on purpose.
@@ -99,10 +99,10 @@ class LongPressMenuEditorState(
     private fun autoScrollSpeedFromTouchPos(
         touchPos: IntOffset,
         maxSpeed: Float = 20f,
-        scrollIfCloseToBorderPercent: Float = 0.2f,
+        scrollIfCloseToBorderPercent: Float = 0.2f
     ): Float {
         val heightPosRatio = touchPos.y.toFloat() /
-                (gridState.layoutInfo.viewportEndOffset - gridState.layoutInfo.viewportStartOffset)
+            (gridState.layoutInfo.viewportEndOffset - gridState.layoutInfo.viewportStartOffset)
         // just a linear piecewise function, sets higher speeds the closer the finger is to the border
         return maxSpeed * max(
             // proportionally positive speed when close to the bottom border
@@ -390,11 +390,12 @@ class LongPressMenuEditorState(
 sealed class ItemInList(
     val isDraggable: Boolean = false,
     val isCaption: Boolean = false,
-    open val columnSpan: Int? = 1,
+    // if null, then the item will occupy all of the line
+    open val columnSpan: Int? = 1
 ) {
     // decoration items (i.e. text subheaders)
-    object EnabledCaption : ItemInList(isCaption = true, columnSpan = null /* i.e. all line */)
-    object HiddenCaption : ItemInList(isCaption = true, columnSpan = null /* i.e. all line */)
+    object EnabledCaption : ItemInList(isCaption = true, columnSpan = null) // i.e. span all line
+    object HiddenCaption : ItemInList(isCaption = true, columnSpan = null) // i.e. span all line
 
     // actual draggable actions (+ a header)
     object HeaderBox : ItemInList(isDraggable = true, columnSpan = 2)

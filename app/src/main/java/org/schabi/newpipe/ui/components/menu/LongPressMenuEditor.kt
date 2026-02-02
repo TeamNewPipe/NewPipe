@@ -64,12 +64,12 @@ import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
+import kotlin.math.floor
 import org.schabi.newpipe.R
 import org.schabi.newpipe.ui.detectDragGestures
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.letIf
 import org.schabi.newpipe.util.text.FixedHeightCenteredText
-import kotlin.math.floor
 
 /**
  * When making changes to this composable and to [LongPressMenuEditorState], make sure to test the
@@ -112,7 +112,7 @@ fun LongPressMenuEditor(modifier: Modifier = Modifier) {
                 .detectDragGestures(
                     beginDragGesture = state::beginDragGesture,
                     handleDragGestureChange = state::handleDragGestureChange,
-                    endDragGesture = state::completeDragGestureAndCleanUp,
+                    endDragGesture = state::completeDragGestureAndCleanUp
                 )
                 // `.focusTarget().onKeyEvent()` handles DPAD on Android TVs
                 .focusTarget()
@@ -120,12 +120,12 @@ fun LongPressMenuEditor(modifier: Modifier = Modifier) {
             // same width as the LongPressMenu
             columns = GridCells.Adaptive(MinButtonWidth),
             userScrollEnabled = false,
-            state = gridState,
+            state = gridState
         ) {
             itemsIndexed(
                 state.items,
                 key = { _, item -> item.stableUniqueKey() },
-                span = { _, item -> GridItemSpan(item.columnSpan ?: maxLineSpan) },
+                span = { _, item -> GridItemSpan(item.columnSpan ?: maxLineSpan) }
             ) { i, item ->
                 ItemInListUi(
                     item = item,
@@ -151,7 +151,7 @@ fun LongPressMenuEditor(modifier: Modifier = Modifier) {
                     .size(size)
                     .offset { state.activeDragPosition }
                     .offset(-size.width / 2, -size.height / 2)
-                    .offset((-24).dp, (-24).dp),
+                    .offset((-24).dp, (-24).dp)
             )
         }
     }
@@ -162,7 +162,7 @@ private fun Subheader(
     selected: Boolean,
     @StringRes title: Int,
     @StringRes description: Int,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier
@@ -177,7 +177,7 @@ private fun Subheader(
         Text(
             text = stringResource(description),
             fontStyle = FontStyle.Italic,
-            style = MaterialTheme.typography.bodyMedium,
+            style = MaterialTheme.typography.bodyMedium
         )
     }
 }
@@ -190,7 +190,7 @@ private fun ActionOrHeaderBox(
     contentColor: Color,
     modifier: Modifier = Modifier,
     backgroundColor: Color = Color.Transparent,
-    horizontalPadding: Dp = 3.dp,
+    horizontalPadding: Dp = 3.dp
 ) {
     Surface(
         color = backgroundColor,
@@ -199,19 +199,19 @@ private fun ActionOrHeaderBox(
         border = BorderStroke(2.dp, contentColor.copy(alpha = 1f)).takeIf { selected },
         modifier = modifier.padding(
             horizontal = horizontalPadding,
-            vertical = 5.dp,
-        ),
+            vertical = 5.dp
+        )
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Icon(
                 imageVector = icon,
                 contentDescription = null,
-                modifier = Modifier.size(32.dp),
+                modifier = Modifier.size(32.dp)
             )
             FixedHeightCenteredText(
                 text = stringResource(text),
                 lines = 2,
-                style = MaterialTheme.typography.bodySmall,
+                style = MaterialTheme.typography.bodySmall
             )
         }
     }
@@ -221,7 +221,7 @@ private fun ActionOrHeaderBox(
 private fun ItemInListUi(
     item: ItemInList,
     selected: Boolean,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     when (item) {
         ItemInList.EnabledCaption -> {
@@ -229,26 +229,29 @@ private fun ItemInListUi(
                 modifier = modifier,
                 selected = selected,
                 title = R.string.long_press_menu_enabled_actions,
-                description = R.string.long_press_menu_enabled_actions_description,
+                description = R.string.long_press_menu_enabled_actions_description
             )
         }
+
         ItemInList.HiddenCaption -> {
             Subheader(
                 modifier = modifier,
                 selected = selected,
                 title = R.string.long_press_menu_hidden_actions,
-                description = R.string.long_press_menu_hidden_actions_description,
+                description = R.string.long_press_menu_hidden_actions_description
             )
         }
+
         is ItemInList.Action -> {
             ActionOrHeaderBox(
                 modifier = modifier,
                 selected = selected,
                 icon = item.type.icon,
                 text = item.type.label,
-                contentColor = MaterialTheme.colorScheme.onSurface,
+                contentColor = MaterialTheme.colorScheme.onSurface
             )
         }
+
         ItemInList.HeaderBox -> {
             ActionOrHeaderBox(
                 modifier = modifier,
@@ -257,9 +260,10 @@ private fun ItemInListUi(
                 text = R.string.long_press_menu_header,
                 contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
                 backgroundColor = MaterialTheme.colorScheme.surfaceContainer,
-                horizontalPadding = 12.dp,
+                horizontalPadding = 12.dp
             )
         }
+
         ItemInList.NoneMarker -> {
             ActionOrHeaderBox(
                 modifier = modifier,
@@ -267,16 +271,17 @@ private fun ItemInListUi(
                 icon = Icons.Default.Close,
                 text = R.string.none,
                 // 0.38f is the same alpha that the Material3 library applies for disabled buttons
-                contentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f),
+                contentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
             )
         }
+
         is ItemInList.DragMarker -> {
             ActionOrHeaderBox(
                 modifier = modifier,
                 selected = selected,
                 icon = Icons.Default.DragHandle,
                 text = R.string.detail_drag_description,
-                contentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f),
+                contentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f)
             )
         }
     }

@@ -425,8 +425,8 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                             // just in case
                             Log.w(TAG, "Could not get full list of items on long press")
                             return@fromStreamEntity SinglePlayQueue(item.stream.toStreamInfoItem())
-                        },
-                    ),
+                        }
+                    )
                 )
                 return true
             }

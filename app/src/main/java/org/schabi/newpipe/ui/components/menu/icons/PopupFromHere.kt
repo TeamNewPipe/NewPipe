@@ -158,6 +158,6 @@ private fun PopupFromHerePreview() {
     Icon(
         imageVector = Icons.Filled.PopupFromHere,
         contentDescription = null,
-        modifier = Modifier.size(240.dp),
+        modifier = Modifier.size(240.dp)
     )
 }
