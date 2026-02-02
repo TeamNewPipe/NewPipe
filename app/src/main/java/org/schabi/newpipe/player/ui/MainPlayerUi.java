@@ -235,6 +235,11 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     public void destroy() {
         super.destroy();
 
+        if (DEBUG) {
+            Log.d(TAG, "Destroyed called trhrough notification kill");
+        }
+
+
         // Exit from fullscreen when user closes the player via notification
         if (isFullscreen) {
             toggleFullscreen();
@@ -943,6 +948,15 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         binding.metadataView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
         binding.playerCloseButton.setVisibility(isFullscreen ? View.GONE : View.VISIBLE);
         setupScreenRotationButton();
+
+        // When the video ends, the player exits fullscreen mode but remains in landscape mode.
+        // This corrects the orientation. See #13057.
+        if (player.getCurrentState() == STATE_COMPLETED) {
+            player.getFragmentListener()
+                    .ifPresent(PlayerServiceEventListener::onScreenRotationButtonClicked);
+        }
+
+
     }
 
     public void checkLandscape() {
