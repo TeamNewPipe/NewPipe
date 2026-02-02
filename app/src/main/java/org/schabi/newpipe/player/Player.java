@@ -570,9 +570,9 @@ public final class Player implements PlaybackListener, Listener {
     }
 
     private void initUIsForCurrentPlayerType() {
-        if ((UIs.get(MainPlayerUi.class).isPresent() && playerType == PlayerType.MAIN)
-                || (UIs.get(BackgroundPlayerUi.class).isPresent() && playerType == PlayerType.AUDIO)
-                || (UIs.get(PopupPlayerUi.class).isPresent() && playerType == PlayerType.POPUP)) {
+        if ((UIs.get(MainPlayerUi.class) != null && playerType == PlayerType.MAIN)
+                || (UIs.get(BackgroundPlayerUi.class) != null && playerType == PlayerType.AUDIO)
+                || (UIs.get(PopupPlayerUi.class) != null && playerType == PlayerType.POPUP)) {
             // correct UI already in place
             return;
         }
@@ -590,17 +590,18 @@ public final class Player implements PlaybackListener, Listener {
 
         switch (playerType) {
             case MAIN:
-                UIs.destroyAll(PopupPlayerUi.class);
-                UIs.destroyAll(BackgroundPlayerUi.class);
+                UIs.destroyAllOfType(PopupPlayerUi.class);
+                UIs.destroyAllOfType(BackgroundPlayerUi.class);
                 UIs.addAndPrepare(new MainPlayerUi(this, binding));
                 break;
             case POPUP:
-                UIs.destroyAll(MainPlayerUi.class);
-                UIs.destroyAll(BackgroundPlayerUi.class);
+                UIs.destroyAllOfType(MainPlayerUi.class);
+                UIs.destroyAllOfType(BackgroundPlayerUi.class);
                 UIs.addAndPrepare(new PopupPlayerUi(this, binding));
                 break;
             case AUDIO:
-                UIs.destroyAll(VideoPlayerUi.class); // destroys both MainPlayerUi and PopupPlayerUi
+                // destroys both MainPlayerUi and PopupPlayerUi
+                UIs.destroyAllOfType(VideoPlayerUi.class);
                 UIs.addAndPrepare(new BackgroundPlayerUi(this));
                 break;
         }
