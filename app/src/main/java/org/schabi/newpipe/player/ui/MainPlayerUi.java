@@ -234,12 +234,6 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     @Override
     public void destroy() {
         super.destroy();
-
-        if (DEBUG) {
-            Log.d(TAG, "Destroyed called trhrough notification kill");
-        }
-
-
         // Exit from fullscreen when user closes the player via notification
         if (isFullscreen) {
             toggleFullscreen();
