@@ -11,6 +11,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.extractor.stream.StreamType.AUDIO_LIVE_STREAM
 import org.schabi.newpipe.extractor.stream.StreamType.LIVE_STREAM
+import org.schabi.newpipe.player.playqueue.PlayQueueItem
 import org.schabi.newpipe.util.Either
 import org.schabi.newpipe.util.image.ImageStrategy
 import java.time.OffsetDateTime
@@ -72,6 +73,19 @@ data class LongPressable(
         )
 
         @JvmStatic
+        fun fromPlayQueueItem(item: PlayQueueItem) = LongPressable(
+            title = item.title,
+            url = item.url.takeIf { it.isNotBlank() },
+            thumbnailUrl = ImageStrategy.choosePreferredImage(item.thumbnails),
+            uploader = item.uploader.takeIf { it.isNotBlank() },
+            uploaderUrl = item.uploaderUrl?.takeIf { it.isNotBlank() },
+            viewCount = null,
+            streamType = item.streamType,
+            uploadDate = null,
+            decoration = Decoration.from(item.streamType, item.duration),
+        )
+
+        @JvmStatic
         fun fromPlaylistMetadataEntry(item: PlaylistMetadataEntry) = LongPressable(
             // many fields are null because this is a local playlist
             title = item.orderingName ?: "",
@@ -118,7 +132,7 @@ data class LongPressable(
             title = item.name,
             url = item.url?.takeIf { it.isNotBlank() },
             thumbnailUrl = ImageStrategy.choosePreferredImage(item.thumbnails),
-            uploader = item.uploaderName.takeIf { it.isNotBlank() },
+            uploader = item.uploaderName?.takeIf { it.isNotBlank() },
             uploaderUrl = item.uploaderUrl?.takeIf { it.isNotBlank() },
             viewCount = null,
             streamType = null,

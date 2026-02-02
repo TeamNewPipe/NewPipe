@@ -20,11 +20,11 @@ import org.schabi.newpipe.util.StateSaver;
 import java.util.List;
 import java.util.Objects;
 import java.util.Queue;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 public abstract class PlaylistDialog extends DialogFragment implements StateSaver.WriteRead {
@@ -135,22 +135,18 @@ public abstract class PlaylistDialog extends DialogFragment implements StateSave
      *
      * @param context        context used for accessing the database
      * @param streamEntities used for crating the dialog
-     * @param onExec         execution that should occur after a dialog got created, e.g. showing it
-     * @return the disposable that was created
+     * @return the {@link Maybe} to subscribe to to obtain the correct {@link PlaylistDialog}
      */
-    public static Disposable createCorrespondingDialog(
+    public static Maybe<PlaylistDialog> createCorrespondingDialog(
             final Context context,
-            final List<StreamEntity> streamEntities,
-            final Consumer<PlaylistDialog> onExec) {
+            final List<StreamEntity> streamEntities) {
 
         return new LocalPlaylistManager(NewPipeDatabase.getInstance(context))
                 .hasPlaylists()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(hasPlaylists ->
-                        onExec.accept(hasPlaylists
-                                ? PlaylistAppendDialog.newInstance(streamEntities)
-                                : PlaylistCreationDialog.newInstance(streamEntities))
-                );
+                .map(hasPlaylists -> hasPlaylists
+                    ? PlaylistAppendDialog.newInstance(streamEntities)
+                    : PlaylistCreationDialog.newInstance(streamEntities))
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     /**
@@ -175,7 +171,7 @@ public abstract class PlaylistDialog extends DialogFragment implements StateSave
             return Disposable.empty();
         }
 
-        return PlaylistDialog.createCorrespondingDialog(player.getContext(), streamEntities,
-                dialog -> dialog.show(fragmentManager, "PlaylistDialog"));
+        return PlaylistDialog.createCorrespondingDialog(player.getContext(), streamEntities)
+                .subscribe(dialog -> dialog.show(fragmentManager, "PlaylistDialog"));
     }
 }

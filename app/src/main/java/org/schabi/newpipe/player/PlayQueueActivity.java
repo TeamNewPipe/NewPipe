@@ -1,7 +1,7 @@
 package org.schabi.newpipe.player;
 
-import static org.schabi.newpipe.QueueItemMenuUtil.openPopupMenu;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
+import static org.schabi.newpipe.ui.components.menu.LongPressMenuKt.openLongPressMenuInActivity;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -41,6 +41,8 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemBuilder;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
+import org.schabi.newpipe.ui.components.menu.LongPressAction;
+import org.schabi.newpipe.ui.components.menu.LongPressable;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
@@ -328,8 +330,11 @@ public final class PlayQueueActivity extends AppCompatActivity
             @Override
             public void held(final PlayQueueItem item, final View view) {
                 if (player != null && player.getPlayQueue().indexOf(item) != -1) {
-                    openPopupMenu(player.getPlayQueue(), item, view, false,
-                            getSupportFragmentManager(), PlayQueueActivity.this);
+                    openLongPressMenuInActivity(
+                            PlayQueueActivity.this,
+                            LongPressable.fromPlayQueueItem(item),
+                            LongPressAction.fromPlayQueueItem(item, player.getPlayQueue(), true)
+                    );
                 }
             }
 

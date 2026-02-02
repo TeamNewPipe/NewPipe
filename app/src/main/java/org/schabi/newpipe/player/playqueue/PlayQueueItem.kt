@@ -65,6 +65,15 @@ class PlayQueueItem private constructor(
                 .subscribeOn(Schedulers.io())
                 .doOnError { throwable -> error = throwable }
 
+    fun toStreamInfoItem(): StreamInfoItem {
+        val item = StreamInfoItem(serviceId, url, title, streamType)
+        item.duration = duration
+        item.thumbnails = thumbnails
+        item.uploaderName = uploader
+        item.uploaderUrl = uploaderUrl
+        return item
+    }
+
     override fun equals(o: Any?) = o is PlayQueueItem && serviceId == o.serviceId && url == o.url
 
     override fun hashCode() = Objects.hash(url, serviceId)
