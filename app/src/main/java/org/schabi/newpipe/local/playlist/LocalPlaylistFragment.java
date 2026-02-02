@@ -1,5 +1,7 @@
 package org.schabi.newpipe.local.playlist;
 
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static org.schabi.newpipe.error.ErrorUtil.showUiErrorSnackbar;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.local.playlist.ExportPlaylistKt.export;
@@ -22,6 +24,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,7 +33,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewbinding.ViewBinding;
 
 import com.evernote.android.state.State;
 import org.reactivestreams.Subscriber;
@@ -55,6 +58,7 @@ import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
@@ -67,6 +71,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -158,14 +163,14 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     @Override
-    protected ViewBinding getListHeader() {
+    protected Supplier<View> getListHeaderSupplier() {
         headerBinding = LocalPlaylistHeaderBinding.inflate(activity.getLayoutInflater(), itemsList,
-                false);
+            false);
         playlistControlBinding = headerBinding.playlistControl;
 
         headerBinding.playlistTitleView.setSelected(true);
 
-        return headerBinding;
+        return headerBinding::getRoot;
     }
 
     @Override
@@ -365,17 +370,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             createRenameDialog();
         } else if (item.getItemId() == R.id.menu_item_remove_watched) {
             if (!isRewritingPlaylist) {
-                new AlertDialog.Builder(requireContext())
-                        .setMessage(R.string.remove_watched_popup_warning)
-                        .setTitle(R.string.remove_watched_popup_title)
-                        .setPositiveButton(R.string.ok, (d, id) ->
-                                removeWatchedStreams(false))
-                        .setNeutralButton(
-                                R.string.remove_watched_popup_yes_and_partially_watched_videos,
-                                (d, id) -> removeWatchedStreams(true))
-                        .setNegativeButton(R.string.cancel,
-                                (d, id) -> d.cancel())
-                        .show();
+                openRemoveWatchedConfirmationDialog();
             }
         } else if (item.getItemId() == R.id.menu_item_remove_duplicates) {
             if (!isRewritingPlaylist) {
@@ -447,39 +442,28 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                             .getIsPlaylistThumbnailPermanent(playlistId);
                     boolean thumbnailVideoRemoved = false;
 
-                    if (removePartiallyWatched) {
-                        for (final var playlistItem : playlist) {
-                            final int indexInHistory = Collections.binarySearch(historyStreamIds,
-                                    playlistItem.getStreamId());
+                    final var streamStates = recordManager
+                            .loadLocalStreamStateBatch(playlist).blockingGet();
 
-                            if (indexInHistory < 0) {
-                                itemsToKeep.add(playlistItem);
-                            } else if (!isThumbnailPermanent && !thumbnailVideoRemoved
-                                    && playlistManager.getPlaylistThumbnailStreamId(playlistId)
-                                    == playlistItem.getStreamEntity().getUid()) {
-                                thumbnailVideoRemoved = true;
-                            }
-                        }
-                    } else {
-                        final var streamStates = recordManager
-                                .loadLocalStreamStateBatch(playlist).blockingGet();
+                    for (int i = 0; i < playlist.size(); i++) {
+                        final var playlistItem = playlist.get(i);
+                        final var streamStateEntity = streamStates.get(i);
+                        final int indexInHistory = Collections.binarySearch(historyStreamIds,
+                                playlistItem.getStreamId());
+                        final long duration = playlistItem.toStreamInfoItem().getDuration();
 
-                        for (int i = 0; i < playlist.size(); i++) {
-                            final var playlistItem = playlist.get(i);
-                            final var streamStateEntity = streamStates.get(i);
-
-                            final int indexInHistory = Collections.binarySearch(historyStreamIds,
-                                    playlistItem.getStreamId());
-                            final long duration = playlistItem.toStreamInfoItem().getDuration();
-
-                            if (indexInHistory < 0 || (streamStateEntity != null
-                                    && !streamStateEntity.isFinished(duration))) {
-                                itemsToKeep.add(playlistItem);
-                            } else if (!isThumbnailPermanent && !thumbnailVideoRemoved
-                                    && playlistManager.getPlaylistThumbnailStreamId(playlistId)
-                                    == playlistItem.getStreamEntity().getUid()) {
-                                thumbnailVideoRemoved = true;
-                            }
+                        if (indexInHistory < 0 // stream is not in history
+                                // stream is in history but the streamStateEntity is null
+                                // if the stream was played for less than 5 seconds, see
+                                // StreamStateEntity#PLAYBACK_SAVE_THRESHOLD_START_MILLISECONDS
+                                || streamStateEntity == null
+                                || (!removePartiallyWatched
+                                        && !streamStateEntity.isFinished(duration))) {
+                            itemsToKeep.add(playlistItem);
+                        } else if (!isThumbnailPermanent && !thumbnailVideoRemoved
+                                && playlistManager.getPlaylistThumbnailStreamId(playlistId)
+                                == playlistItem.getStreamEntity().getUid()) {
+                            thumbnailVideoRemoved = true;
                         }
                     }
 
@@ -901,6 +885,35 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 .setNegativeButton(R.string.share_playlist_with_list, (dialog, which) ->
                     sharePlaylist(JUST_URLS)
                 )
+                .show();
+    }
+
+    /**
+     * Opens a confirmation dialog to remove watched streams from the playlist.
+     * The user can also choose to remove partially watched streams.
+     */
+    private void openRemoveWatchedConfirmationDialog() {
+        final android.widget.CheckBox removePartiallyWatchedCheckbox =
+                new android.widget.CheckBox(requireContext());
+        removePartiallyWatchedCheckbox.setText(
+                R.string.remove_watched_popup_partially_watched_streams);
+
+        // Wrap the checkbox in a container with dialog-like horizontal padding
+        // so it aligns with the dialog title and message on the start side.
+        final LinearLayout checkboxContainer = new LinearLayout(requireContext());
+        checkboxContainer.setOrientation(LinearLayout.VERTICAL);
+        final int padding = DeviceUtils.dpToPx(20, requireContext());
+        checkboxContainer.setPadding(padding, padding, padding, 0);
+        checkboxContainer.addView(removePartiallyWatchedCheckbox,
+                new LayoutParams(MATCH_PARENT, WRAP_CONTENT));
+
+        new AlertDialog.Builder(requireContext())
+                .setMessage(R.string.remove_watched_popup_warning)
+                .setTitle(R.string.remove_watched_popup_title)
+                .setView(checkboxContainer)
+                .setPositiveButton(R.string.yes, (d, id) ->
+                        removeWatchedStreams(removePartiallyWatchedCheckbox.isChecked()))
+                .setNegativeButton(R.string.cancel, (d, id) -> d.cancel())
                 .show();
     }
 

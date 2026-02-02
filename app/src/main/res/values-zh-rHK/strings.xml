@@ -538,7 +538,7 @@
     <string name="crash_the_app">令個 app 閃退</string>
     <string name="show_error_snackbar">顯示一則錯誤橫條</string>
     <string name="create_error_notification">建立一則出現錯誤通知</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">好，包括埋睇過但未睇晒嘅影片</string>
+    <string name="remove_watched_popup_partially_watched_streams">好，包括埋睇過但未睇晒嘅影片</string>
     <string name="new_seek_duration_toast">礙於 ExoPlayer 所限，快轉長度經已改為 %d 秒</string>
     <string name="hash_channel_name">影片雜湊通知</string>
     <string name="enqueued">排咗去隊尾</string>
@@ -555,8 +555,7 @@
     <string name="downloads_storage_ask_summary">每次下載都會問你要儲存去邊。
 \n如果你想儲存落外置 SD 卡入面，請啟用系統資料夾揀選器 (SAF)</string>
     <string name="downloads_storage_use_saf_title">用系統資料夾揀選器 (SAF)</string>
-    <string name="remove_watched_popup_warning">加入去播放清單之前或之後睇過嘅影片都會剷走個囉喎。
-\n你肯定？剷走咗冇得掹個囉喎！</string>
+    <string name="remove_watched_popup_warning">加入去播放清單之前或之後睇過嘅影片都會剷走個囉喎。 \n你肯定？剷走咗冇得掹個囉喎！</string>
     <string name="downloads_storage_use_saf_summary">「儲存空間存取框架」係畀你下載落外置 SD 卡嗰度</string>
     <string name="downloads_storage_use_saf_summary_api_29">Android 10 打上，局住要用「儲存空間存取框架」</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer 預設值</string>

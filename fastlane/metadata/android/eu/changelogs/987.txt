@@ -1,0 +1,12 @@
+Berria
+• Beste bidalketa-metodoak: karga azkarragoa, PeerTube/SoundCloud konponketak, YouTube zuzeneko emankizunak
+• Urruneko zerrenda tokikora gehitu botoia
+• Irudi aurrebista Android 10+ partekatze-orrian
+
+Hobetua
+• Erreprodukzio-parametroen elkarrizketa hobetu
+• Harpidetza botoiak hiru puntuko menura eraman
+
+Konpondua
+• Ikusitako bideoak kentzea zerrendatik
+• Partekatzeko menuaren gaia eta zerrenda sarrera

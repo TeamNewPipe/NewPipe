@@ -1,0 +1,4 @@
+Konponketa
+• Konpondu sareta-diseinuan moztutako miniaturak eta izenburuak, errenkada batean zenbat bideo sartu daitezkeen gaizki kalkulatzeagatik.
+• Konpondu deskargatzeko elkarrizketa-koadroa ezer egin gabe desagertzea partekatzeko menutik irekitzean
+• Kanpoko jarduerak irekitzearekin lotutako liburutegi bat eguneratu, hala nola Storage Access Framework fitxategi hautatzailea

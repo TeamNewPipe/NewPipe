@@ -422,9 +422,8 @@
     <plurals name="seconds">
         <item quantity="other">%d giây</item>
     </plurals>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Có, và video đã xem một phần</string>
-    <string name="remove_watched_popup_warning">Những video đã xem trước và sau khi thêm vào danh sách phát sẽ bị loại bỏ.
-\nBạn có chắc không? Điều này không thể được hoàn tác!</string>
+    <string name="remove_watched_popup_partially_watched_streams">Có, và video đã xem một phần</string>
+    <string name="remove_watched_popup_warning">Những video đã xem trước và sau khi thêm vào danh sách phát sẽ bị loại bỏ. \nBạn có chắc không? Điều này không thể được hoàn tác!</string>
     <string name="remove_watched_popup_title">Xóa các video đã xem?</string>
     <string name="remove_watched">Loại bỏ đã xem</string>
     <string name="systems_language">Mặc định hệ thống</string>
@@ -795,9 +794,7 @@
     <string name="settings_category_backup_restore_title">Sao lưu và khôi phục</string>
     <string name="reset_settings_title">Đặt lại cài đặt</string>
     <string name="reset_settings_summary">Đặt lại tất cả cài đặt về giá trị mặc định</string>
-    <string name="reset_all_settings">Việc đặt lại tất cả cài đặt sẽ loại bỏ tất cả các cài đặt ưa thích của bạn và khởi động lại ứng dụng.
-\n
-\nBạn có chắc muốn tiếp tục?</string>
+    <string name="reset_all_settings">Việc đặt lại tất cả cài đặt sẽ loại bỏ tất cả các cài đặt mà bạn đã đặt và khởi động lại ứng dụng. \n \nBạn có chắc muốn tiếp tục?</string>
     <string name="no">Không</string>
     <string name="auto_update_check_description">NewPipe có thể tự động kiểm tra các phiên bản mới theo thời gian và thông báo cho bạn khi chúng có sẵn.
 \nBạn có muốn kích hoạt tính năng này không?</string>
@@ -823,4 +820,15 @@
     <string name="trending_podcasts">Podcasts đang thịnh hành</string>
     <string name="trending_movies">Phim và chương trình đang thịnh hành</string>
     <string name="trending_music">Âm nhạc đang thịnh hành</string>
+    <string name="player_http_403">Đã xảy ra lỗi HTTP 403 trong khi phát, có thể do URL phát sóng đã hết hạn hoặc bị ban IP</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s đã từ chối cung cấp dữ liệu, cần phải đăng nhập để xác nhận yêu cầu viên ko phải là bot.\n\nIP này có vẻ đã bị ban tạm thời bởi %1$s, bạn có thể đợi một lúc hoặc chuyển sang IP khác (ví dụ như việc tắt / bật lại VPN, hoặc là chuyển mạng từ WIFI sang 4G/5G).</string>
+    <string name="unsupported_content_in_country">Nội dung này không được hỗ trợ tại quốc gia mà bạn chọn.\n\nHãy đổi quốc gia trong phần \"Cài đặt &gt; Nội dung &gt; Nội dung quốc gia mặc định\".</string>
+    <string name="permission_display_over_apps_message">Để sử dụng tính năng phát video nổi, hãy chọn %1$s trong Cài đặt Android và bật tính năng %2$s.</string>
+    <string name="youtube_player_http_403">Đã xảy ra lỗi HTTP 403 trong khi phát, có thể IP này đã bị ban hoặc vấn đề phát URL deobfuscation</string>
+    <string name="permission_display_over_apps_permission_name">\"Cho phép hiển thị trên ứng dụng khác\"</string>
+    <string name="delete_file">Xóa file</string>
+    <string name="delete_entry">Xóa entry</string>
+    <string name="account_terminated_service_provides_reason">Tài khoản bị vô hiệu hóa. \n\n%1$s cung cấp lý do này: %2$s</string>
+    <string name="entry_deleted">Entry đã xóa</string>
+    <string name="player_http_invalid_status">Đã xảy ra lỗi HTTP %1$s trong khi phát</string>
 </resources>

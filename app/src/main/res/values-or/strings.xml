@@ -190,8 +190,7 @@
     <string name="use_external_video_player_summary">କିଛି ରେଜୋଲୁସନରେ ଅଡିଓ ଅପସାରଣ କରେ</string>
     <string name="show_higher_resolutions_title">ଉଚ୍ଚ ରେଜୋଲୁସନ ଦେଖାନ୍ତୁ</string>
     <string name="show_play_with_kodi_title">\"କୋଡି ସହିତ ଖୋଲନ୍ତୁ\" ବିକଳ୍ପ ଦେଖାନ୍ତୁ</string>
-    <string name="remove_watched_popup_warning">ପ୍ଲେ ଲିଷ୍ଟରେ ଯୋଡାଯିବା ପୂର୍ବରୁ ଏବଂ ପରେ ଦେଖାଯାଇଥିବା ଭିଡିଓଗୁଡିକ ଅପସାରିତ ହେବ ।
-\nତମେ ନିଶ୍ଚିତ କି\? ଏହାକୁ ପୂର୍ବବତ୍ କରାଯାଇପାରିବ ନାହିଁ!</string>
+    <string name="remove_watched_popup_warning">ପ୍ଲେ ଲିଷ୍ଟରେ ଯୋଡାଯିବା ପୂର୍ବରୁ ଏବଂ ପରେ ଦେଖାଯାଇଥିବା ଭିଡିଓଗୁଡିକ ଅପସାରିତ ହେବ । \nତମେ ନିଶ୍ଚିତ କି? ଏହାକୁ ପୂର୍ବବତ୍ କରାଯାଇପାରିବ ନାହିଁ!</string>
     <string name="crash_the_player">ପ୍ଲେୟାରକୁ କ୍ରାସ୍ କରନ୍ତୁ</string>
     <string name="default_audio_format_title">ଡିଫଲ୍ଟ ଅଡିଓ ଫର୍ମାଟ୍</string>
     <string name="use_inexact_seek_summary">ଅକ୍ଷୟ ସନ୍ଧାନ ପ୍ଲେୟାରକୁ ହ୍ରାସ ହୋଇଥିବା ସଠିକତା ସହିତ ଶୀଘ୍ର ପଦବୀ ଖୋଜିବାକୁ ଅନୁମତି ଦିଏ । 5, 15 କିମ୍ବା 25 ସେକେଣ୍ଡ ଖୋଜିବା ଏହା ସହିତ କାମ କରେ ନାହିଁ</string>
@@ -411,7 +410,7 @@
     <string name="check_for_updates">ଅଦ୍ୟତନ ପାଇଁ ଯାଞ୍ଚ କରନ୍ତୁ</string>
     <string name="manual_update_description">ନୂତନ ସଂସ୍କରଣଗୁଡ଼ିକ ପାଇଁ ମାନୁଆଲ ଯାଞ୍ଚ କରନ୍ତୁ</string>
     <string name="missions_header_pending">ବିଚାରାଧୀନ ଅଛି</string>
-    <string name="remove_watched_popup_title">ଦେଖାଯାଇଥିବା ଭିଡିଓଗୁଡିକ ଅପସାରଣ କରିବେ କି\?</string>
+    <string name="remove_watched_popup_title">ଦେଖାଯାଇଥିବା ଭିଡିଓଗୁଡିକ ଅପସାରଣ କରିବେ କି?</string>
     <string name="description_select_disable">ବର୍ଣ୍ଣନାରେ ପାଠ ବାଛିବା ଅକ୍ଷମ କରନ୍ତୁ</string>
     <string name="error_ssl_exception">ଏକ ସୁରକ୍ଷିତ ସଂଯୋଗ ସ୍ଥାପନ କରିପାରିଲା ନାହିଁ</string>
     <string name="drawer_header_description">ଟୋଗଲ୍ ସେବା, ବର୍ତ୍ତମାନ ମନୋନୀତ:</string>
@@ -594,7 +593,7 @@
     <string name="overwrite_finished_warning">ଏହି ନାମ ସହିତ ଏକ ଡାଉନଲୋଡ୍ ଫାଇଲ୍ ପୂର୍ବରୁ ବିଦ୍ୟମାନ ଅଛି</string>
     <string name="delete_downloaded_files">ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଫାଇଲଗୁଡିକ ଡିଲିଟ୍ କରନ୍ତୁ</string>
     <string name="downloads_storage_use_saf_title">ସିଷ୍ଟମ୍ ଫୋଲ୍ଡର୍ ପିକର୍ (SAF) ବ୍ୟବହାର କରନ୍ତୁ</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">ହଁ, ଏବଂ ଆଂଶିକ ଦେଖାଯାଇଥିବା ଭିଡିଓଗୁଡିକ</string>
+    <string name="remove_watched_popup_partially_watched_streams">ହଁ, ଏବଂ ଆଂଶିକ ଦେଖାଯାଇଥିବା ଭିଡିଓଗୁଡିକ</string>
     <string name="feed_group_dialog_empty_name">ଗୋଷ୍ଠୀ ନାମ ଖାଲି ଅଛି</string>
     <string name="feed_use_dedicated_fetch_method_title">ଉପଲବ୍ଧ ଥିବାବେଳେ ଉତ୍ସର୍ଗୀକୃତ ଫିଡରୁ ଆଣ</string>
     <string name="list">ତାଲିକା</string>

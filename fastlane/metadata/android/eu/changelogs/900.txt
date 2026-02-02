@@ -1,0 +1,14 @@
+Berria
+• Harpidetza taldeak eta ordenatutako jarioak
+• Isilarazteko botoia erreproduzitzaileetan
+
+Hobetua
+• music.youtube.com eta media.ccc.de estekak irekitzeko aukera eman
+• Bi ezarpen Itxuratik Edukira lekuz aldatu
+• Ezkutatu 5, 15, 25 segundoko bilaketa aukerak bilaketa zehatza gaituta badago
+
+Konpondua
+• WebM bideo batzuk ezin dira bilatu
+• datu-basearen babeskopia Android P-n
+• Deskargatutako fitxategi bat partekatzean huts egitea
+• YouTube erauzketa arazo mordoa eta gehiago ...

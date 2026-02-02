@@ -1,0 +1,15 @@
+Berria
+• Harpidetzak bilatu jario-taldeetan
+• Iragazkiak harpidetza taldekatu gabeak erakusteko
+• Hasierako orrialdeko erreprodukzio-zerrenden fitxa
+• Aurrera eta atzera egin atzeko planoan eta miniaturazko ilaran
+• Bilaketa-iradokizunak
+
+Hobetua
+• Aplikazioaren metadatuak ez dira idazten elkartutako fitxategietan
+• Huts egindako erreprodukzioak ez dira ilaratik ezabatzen
+• Egoera-barraren kolorea eguneratu da
+
+Konpondua
+• Audio eta bideo desinkronizazioa
+• [PeerTube] Ezabatutako iruzkinak

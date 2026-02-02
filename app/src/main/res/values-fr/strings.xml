@@ -207,15 +207,15 @@
     <string name="preferred_player_fetcher_notification_message">Chargement du contenu demandé</string>
     <string name="import_data_title">Importer la base de données</string>
     <string name="export_data_title">Exporter la base de données</string>
-    <string name="import_data_summary">Remplace votre historique, vos abonnements, vos playlists et (en option) vos paramètres</string>
-    <string name="export_data_summary">Exporte l’historique, les abonnements, les playlists et les paramètres</string>
+    <string name="import_data_summary">Remplace votre historique, vos abonnements, vos listes de lecture et (en option) vos paramètres</string>
+    <string name="export_data_summary">Exporte l’historique, les abonnements, les listes de lecture et les paramètres</string>
     <string name="export_complete_toast">Exporté</string>
     <string name="import_complete_toast">Importé</string>
     <string name="no_valid_zip_file">Fichier ZIP non valide</string>
     <string name="could_not_import_all_files">Avertissement : impossible d’importer tous les fichiers.</string>
     <string name="override_current_data">Cela effacera vos paramètres actuels.</string>
     <string name="show_info">Afficher les informations</string>
-    <string name="tab_bookmarks">Playlists enregistrées</string>
+    <string name="tab_bookmarks">Listes de lecture enregistrées</string>
     <string name="controls_add_to_playlist_title">Ajouter à</string>
     <string name="detail_drag_description">Glisser pour réordonner</string>
     <string name="create">Créer</string>
@@ -224,17 +224,17 @@
     <string name="title_last_played">Dernière lecture</string>
     <string name="title_most_played">Vidéos les plus vues</string>
     <string name="always_ask_open_action">Toujours demander</string>
-    <string name="create_playlist">Nouvelle playlist</string>
+    <string name="create_playlist">Nouvelle liste de lecture</string>
     <string name="rename_playlist">Renommer</string>
     <string name="name">Nom</string>
-    <string name="add_to_playlist">Ajouter à la playlist</string>
-    <string name="set_as_playlist_thumbnail">Définir comme miniature de la playlist</string>
-    <string name="bookmark_playlist">Enregister la playlist</string>
+    <string name="add_to_playlist">Ajouter à la liste de lecture</string>
+    <string name="set_as_playlist_thumbnail">Définir comme miniature de la liste de lecture</string>
+    <string name="bookmark_playlist">Enregistrer la liste de lecture</string>
     <string name="unbookmark_playlist">Supprimer le signet</string>
-    <string name="delete_playlist_prompt">Voulez-vous supprimer cette playlist ?</string>
-    <string name="playlist_creation_success">Playlist créée</string>
-    <string name="playlist_add_stream_success">Ajouté à la playlist</string>
-    <string name="playlist_thumbnail_change_success">Miniature de la playlist changée.</string>
+    <string name="delete_playlist_prompt">Voulez-vous supprimer cette liste de lecture ?</string>
+    <string name="playlist_creation_success">Liste de lecture créée</string>
+    <string name="playlist_add_stream_success">Ajouté à la liste de lecture</string>
+    <string name="playlist_thumbnail_change_success">Miniature de la liste de lecture changée.</string>
     <string name="caption_none">Aucun sous-titre</string>
     <string name="resize_fit">Ajuster</string>
     <string name="resize_zoom">Zoomer</string>
@@ -318,7 +318,7 @@
     <string name="limit_data_usage_none_description">Aucune limite</string>
     <string name="limit_mobile_data_usage_title">Limiter la définition lors de l’utilisation des données mobiles</string>
     <string name="channels">Chaînes</string>
-    <string name="playlists">Playlists</string>
+    <string name="playlists">Listes de lecture</string>
     <string name="tracks">Morceaux</string>
     <string name="users">Utilisateurs</string>
     <string name="skip_silence_checkbox">Accélérer pendant les silences</string>
@@ -355,7 +355,7 @@
     <string name="download_failed">Téléchargement échoué</string>
     <string name="error_timeout">Délai de connexion expiré</string>
     <string name="conferences">Conférences</string>
-    <string name="queued">ajouté à la playlist</string>
+    <string name="queued">ajouté à la liste de lecture</string>
     <string name="generate_unique_name">Générer un nom unique</string>
     <string name="overwrite">Écraser</string>
     <string name="overwrite_unrelated_warning">Un fichier avec ce nom existe déjà</string>
@@ -386,7 +386,7 @@
     <string name="no_comments">Aucun commentaire</string>
     <string name="error_unable_to_load_comments">Impossible de charger les commentaires</string>
     <string name="close">Fermer</string>
-    <string name="enable_playback_resume_title">Reprendre la playlist</string>
+    <string name="enable_playback_resume_title">Reprendre la lecture</string>
     <string name="settings_category_clear_data_title">Effacer les données</string>
     <string name="missing_file">Fichier déplacé ou supprimé</string>
     <string name="overwrite_failed">impossible d’écraser le fichier</string>
@@ -521,9 +521,9 @@
 \n
 \nActivez « %1$s » dans les paramètres si vous voulez la voir.</string>
     <string name="remove_watched">Supprimer les vidéos visionnées</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Oui ainsi que les vidéos partiellement visionnées</string>
-    <string name="remove_watched_popup_warning">Les vidéos qui ont été visionnées avant et après avoir été ajoutées à la playlist seront supprimées. \nÊtes-vous certain(e) ? Cette action est irréversible !</string>
-    <string name="remove_watched_popup_title">Supprimer les vidéos visionnées \?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Oui ainsi que les vidéos partiellement visionnées</string>
+    <string name="remove_watched_popup_warning">Les vidéos qui ont été visionnées avant et après avoir été ajoutées à la playlist seront supprimées. \nÊtes-vous certain(e) ? Cette action est irréversible !</string>
+    <string name="remove_watched_popup_title">Supprimer les vidéos visionnées ?</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniature de l\'avatar de la chaine</string>
     <string name="video_detail_by">De %s</string>
     <string name="channel_created_by">Créé par %s</string>
@@ -532,8 +532,8 @@
     <string name="youtube_restricted_mode_enabled_title">Activer le « Mode restreint » de YouTube</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Afficher uniquement les abonnements non groupés</string>
     <string name="playlist_page_summary">Page des playlists</string>
-    <string name="no_playlist_bookmarked_yet">Aucune playlist encore enregistrée</string>
-    <string name="select_a_playlist">Sélectionner une playlist</string>
+    <string name="no_playlist_bookmarked_yet">Aucune liste de lecture encore enregistrée</string>
+    <string name="select_a_playlist">Sélectionner une liste de lecture</string>
     <string name="error_report_open_github_notice">Veuillez vérifier si un ticket concernant votre problème existe déjà. Lorsque vous créez des tickets dupliqués, cela nous prend du temps que nous pourrions passer à résoudre effectivement le problème.</string>
     <string name="error_report_open_issue_button_text">Signaler sur GitHub</string>
     <string name="copy_for_github">Copier le rapport formaté</string>
@@ -721,7 +721,7 @@
     <string name="app_update_available_notification_text">Appuyez pour télécharger %s</string>
     <string name="msg_failed_to_copy">Échec de la copie dans le presse-papiers</string>
     <string name="night_theme_available">Cette option est disponible seulement si %s est sélectionné pour le thème</string>
-    <string name="duplicate_in_playlist">Les playlists grisées contiennent déjà cet élément.</string>
+    <string name="duplicate_in_playlist">Les listes de lecture grisées contiennent déjà cet élément.</string>
     <string name="card">Carte</string>
     <string name="ignore_hardware_media_buttons_summary">Utile si, par exemple, vous utilisez un casque avec des boutons dysfonctionnels</string>
     <string name="remove_duplicates">Effacer les doublons</string>
@@ -782,7 +782,7 @@
     <string name="channel_tab_albums">Albums</string>
     <string name="image_quality_medium">Qualité moyenne</string>
     <string name="metadata_banners">Bannières</string>
-    <string name="channel_tab_playlists">Playlists</string>
+    <string name="channel_tab_playlists">Listes de lecture</string>
     <string name="more_options">Plus d’options</string>
     <string name="metadata_thumbnails">Miniatures</string>
     <string name="channel_tab_tracks">Pistes</string>
@@ -798,7 +798,7 @@
     <string name="share_playlist_with_list">Partager une liste d\'URLs</string>
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
-    <string name="share_playlist">Partager la playlist</string>
+    <string name="share_playlist">Partager la liste de lecture</string>
     <string name="video_details_list_item">- %1$s : %2$s</string>
     <string name="show_channel_tabs_summary">Choisir quels onglets seront visibles sur les pages de chaîne</string>
     <string name="toggle_screen_orientation">Changer l’orientation de l’écran</string>
@@ -833,8 +833,8 @@
     <string name="error_insufficient_storage">Pas assez d\'espace disponible sur l\'appareil</string>
     <string name="import_settings_vulnerable_format">Les paramètres de l\'export en cours d\'importation utilisent un format vulnérable qui a été déprécié depuis NewPipe 0.27.0. Assurez-vous que l\'export en cours d\'importation provient d\'une source fiable. Privilégiez les exports obtenues à partir de NewPipe 0.27.0 ou des versions plus récentes à l\'avenir. Le support pour l\'importation des paramètres dans ce format vulnérable sera bientôt complètement supprimé et les anciennes versions de NewPipe ne pourront plus importer les paramètres des exports des nouvelles versions.</string>
     <string name="audio_track_type_secondary">secondaire</string>
-    <string name="share_playlist_as_youtube_temporary_playlist">Partager comme playlist YouTube temporaire</string>
-    <string name="tab_bookmarks_short">Playlists</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Partager comme liste de lecture YouTube temporaire</string>
+    <string name="tab_bookmarks_short">Listes de lecture</string>
     <string name="select_a_feed_group">Sélectionnez un groupe de flux</string>
     <string name="no_feed_group_created_yet">Encore aucun groupe de flux créé</string>
     <string name="feed_group_page_summary">Page du groupe de chaînes</string>

@@ -1,0 +1,1 @@
+YouTube EBn behar bezala ez funtzionatzea konpondu da. Hau cookie eta pribatutasun baimen sistema berri batek eragin zuen, eta horrek NewPipe-k CONSENT cookie bat ezartzea eskatzen du.

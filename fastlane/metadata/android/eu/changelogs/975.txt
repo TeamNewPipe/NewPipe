@@ -1,0 +1,16 @@
+Berria
+• Miniatura erakutsi bilatzen ari den bitartean
+• Desgaitutako iruzkinak detektatu
+• Jarioko elementua ikusita gisa markatu
+• Bihotz-formako iruzkinak erakutsi
+
+Hobetua
+• Metadatuen eta etiketen diseinua
+• Zerbitzuaren kolorea UI osagai guztiei aplikatu
+
+Zuzenduta
+• Mini erreproduzitzailean miniaturak konpondu
+• Elementu bikoiztuen buffering infinitua konpondu
+• Jokalarien zuzenketak: errotazioa eta itxiera
+• ReCAPTCHA atzeko planoan kargatu
+• Beste zuzenketa batzuk

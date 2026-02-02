@@ -522,7 +522,7 @@
     <string name="recovering">gendanner</string>
     <string name="feed_load_error_fast_unknown">\"Hurtig feed\"-tilstand oplyser ikke mere info om dette.</string>
     <string name="check_for_updates">Tjek efter opdateringer</string>
-    <string name="remove_watched_popup_title">Fjern sete videoer\?</string>
+    <string name="remove_watched_popup_title">Fjern sete videoer?</string>
     <string name="disable_media_tunneling_summary">Deaktivér medietunneling, hvis du oplever en sort skærm eller hakken ved videoafspilning.</string>
     <string name="error_report_open_github_notice">Tjek venligst, om der allerede findes et problem, der diskuterer dit nedbrud. Når du opretter flere tickets, tager du tid fra os, som vi kunne bruge på at løse den faktiske fejl.</string>
     <string name="check_new_streams">Tjek efter nye streams</string>
@@ -540,8 +540,7 @@
     <string name="feed_group_dialog_select_subscriptions">Vælg abonnementer</string>
     <string name="georestricted_content">Dette indhold er ikke tilgængeligt i dit land.</string>
     <string name="video_detail_by">Af %s</string>
-    <string name="remove_watched_popup_warning">Videoer, der er blevet set før og efter tilføjelse til playlisten, vil blive fjernet.
-\nEr du sikker? Dette kan ikke fortrydes!</string>
+    <string name="remove_watched_popup_warning">Videoer, der er blevet set før og efter tilføjelse til playlisten, vil blive fjernet. \nEr du sikker? Dette kan ikke fortrydes!</string>
     <string name="show_thumbnail_title">Vis miniaturebillede</string>
     <string name="metadata_tags">Tags</string>
     <string name="metadata_age_limit">Aldersbegrænsning</string>
@@ -629,7 +628,7 @@
     <string name="no_app_to_open_intent">Ingen app på din enhed kan åbne dette</string>
     <string name="error_insufficient_storage_left">Ingen ledig plads på enheden</string>
     <string name="app_language_title">App-sprog</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, og delvist sete videoer</string>
+    <string name="remove_watched_popup_partially_watched_streams">Ja, og delvist sete videoer</string>
     <string name="feed_load_error">Fejl ved indlæsning af feed</string>
     <string name="feed_load_error_account_info">Kunne ikke indlæse feed for \'%s\'.</string>
     <string name="show_crash_the_player_title">Vis \"Crash afspilleren\"</string>

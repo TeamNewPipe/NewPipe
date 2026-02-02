@@ -483,7 +483,7 @@
         <item quantity="one">%d सेकेंड</item>
         <item quantity="other">%d सेकंड्स</item>
     </plurals>
-    <string name="remove_watched_popup_title">देखे गए वीडियो हटायें\?</string>
+    <string name="remove_watched_popup_title">देखे गए वीडियो हटायें?</string>
     <string name="remove_watched">देखे गए को हटा दें</string>
     <string name="systems_language">सिस्टम डिफ़ॉल्ट</string>
     <string name="app_language_title">ऐप की भाषा</string>
@@ -583,7 +583,7 @@
     <string name="delete_downloaded_files_confirm">डिस्क से सभी डाउनलोड की गई फ़ाइलें मिटाएं\?</string>
     <string name="downloads_storage_use_saf_summary_api_29">एंड्रॉइड 10 से शुरू होकर केवल \'स्टोरेज एक्सेस फ्रेमवर्क\' समर्थित है</string>
     <string name="choose_instance_prompt">एक इंस्टेंस चुनें</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">हां, और आंशिक रूप से देखे गए वीडियो भी</string>
+    <string name="remove_watched_popup_partially_watched_streams">हां, और आंशिक रूप से देखे गए वीडियो भी</string>
     <string name="feed_notification_loading">फ़ीड लोड हो रही है…</string>
     <string name="feed_update_threshold_title">फ़ीड अपडेट चरणसीमा</string>
     <string name="feed_load_error">फ़ीड लोड करने में त्रुटि हूई</string>
@@ -669,8 +669,7 @@
     <string name="show_channel_details">चैनल विवरण दिखाएं</string>
     <string name="show_original_time_ago_title">आइटम्स का असल अपलोड समय दिखाएं</string>
     <string name="show_original_time_ago_summary">सेवाओं से मूल पाठ स्ट्रीम आइटम में दिखाई देंगे</string>
-    <string name="remove_watched_popup_warning">प्लेलिस्ट में शामिल, पहले और बाद में देखे जा चुके वीडियो हटा दिए जाएंगे।
-\nक्या यक़ीनन आप ऐसा चाह्ते हैं\? इसे असंपादित नहीं किया जा सकेगा!</string>
+    <string name="remove_watched_popup_warning">प्लेलिस्ट में शामिल, पहले और बाद में देखे जा चुके वीडियो हटा दिए जाएंगे। \nक्या यक़ीनन आप ऐसा चाह्ते हैं? इसे असंपादित नहीं किया जा सकेगा!</string>
     <plurals name="minutes">
         <item quantity="one">%d मिनट</item>
         <item quantity="other">%d मिनट्स</item>

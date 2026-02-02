@@ -153,6 +153,14 @@ public final class PopupPlayerUi extends VideoPlayerUi {
     }
 
     @Override
+    public void initPlayback() {
+        super.initPlayback();
+        // Make sure video and text tracks are enabled if the screen is turned on (which should
+        // always be the case), in the case user switched from background player to popup player
+        player.useVideoAndSubtitles(player.isScreenOn());
+    }
+
+    @Override
     protected void setupElementsVisibility() {
         binding.fullscreenToggleButtonSecondaryMenu.setVisibility(View.VISIBLE);
         binding.fullscreenToggleButton.setVisibility(View.GONE);
@@ -219,10 +227,10 @@ public final class PopupPlayerUi extends VideoPlayerUi {
         } else if (player.isPlaying() || player.isLoading()) {
             if (Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) {
                 // Use only audio source when screen turns off while popup player is playing
-                player.useVideoSource(false);
+                player.useVideoAndSubtitles(false);
             } else if (Intent.ACTION_SCREEN_ON.equals(intent.getAction())) {
                 // Restore video source when screen turns on and user was watching video in popup
-                player.useVideoSource(true);
+                player.useVideoAndSubtitles(true);
             }
         }
     }
