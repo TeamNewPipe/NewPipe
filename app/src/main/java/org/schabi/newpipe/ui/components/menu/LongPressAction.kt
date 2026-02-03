@@ -25,6 +25,7 @@ import androidx.compose.material.icons.filled.Share
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.core.net.toUri
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.reactive.awaitFirst
 import kotlinx.coroutines.rx3.await
 import kotlinx.coroutines.rx3.awaitSingle
 import kotlinx.coroutines.withContext
@@ -47,6 +48,7 @@ import org.schabi.newpipe.local.history.HistoryRecordManager
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager
 import org.schabi.newpipe.player.helper.PlayerHolder
 import org.schabi.newpipe.player.playqueue.ChannelTabPlayQueue
+import org.schabi.newpipe.player.playqueue.LocalPlaylistPlayQueue
 import org.schabi.newpipe.player.playqueue.PlayQueue
 import org.schabi.newpipe.player.playqueue.PlayQueueItem
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue
@@ -93,10 +95,7 @@ data class LongPressAction(
         UnsetPlaylistThumbnail(18, R.string.unset_playlist_thumbnail, Icons.Default.HideImage),
         Unsubscribe(19, R.string.unsubscribe, Icons.Default.Delete),
         ShowDetails(20, R.string.play_queue_stream_detail, Icons.Default.Info),
-        Remove(21, R.string.play_queue_remove, Icons.Default.Delete)
-        ;
-
-        // TODO add actions that use the whole list the item belongs to (see wholeListQueue)
+        Remove(21, R.string.play_queue_remove, Icons.Default.Delete);
 
         fun buildAction(
             enabled: () -> Boolean = { true },
@@ -338,13 +337,14 @@ data class LongPressAction(
             onDelete: Runnable,
             unsetPlaylistThumbnail: Runnable?
         ): List<LongPressAction> {
-            return listOf(
-                Type.Rename.buildAction { onRename.run() },
-                Type.Delete.buildAction { onDelete.run() },
-                Type.UnsetPlaylistThumbnail.buildAction(
-                    enabled = { unsetPlaylistThumbnail != null }
-                ) { unsetPlaylistThumbnail?.run() }
-            )
+            return buildPlayerActionList { LocalPlaylistPlayQueue(item) } +
+                listOf(
+                    Type.Rename.buildAction { onRename.run() },
+                    Type.Delete.buildAction { onDelete.run() },
+                    Type.UnsetPlaylistThumbnail.buildAction(
+                        enabled = { unsetPlaylistThumbnail != null }
+                    ) { unsetPlaylistThumbnail?.run() }
+                )
         }
 
         @JvmStatic
