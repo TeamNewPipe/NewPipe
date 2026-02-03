@@ -25,7 +25,6 @@ import androidx.compose.material.icons.filled.Share
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.core.net.toUri
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.reactive.awaitFirst
 import kotlinx.coroutines.rx3.await
 import kotlinx.coroutines.rx3.awaitSingle
 import kotlinx.coroutines.withContext
@@ -214,8 +213,8 @@ data class LongPressAction(
                         item.url,
                         item.uploaderUrl
                     )
-                    NavigationHelper.openChannelFragment(
-                        context.findFragmentActivity().supportFragmentManager,
+                    NavigationHelper.openChannelFragmentUsingIntent(
+                        context,
                         item.serviceId,
                         uploaderUrl,
                         item.uploaderName
@@ -372,8 +371,8 @@ data class LongPressAction(
                 buildShareActionList(item) +
                 listOfNotNull(
                     Type.ShowChannelDetails.buildAction { context ->
-                        NavigationHelper.openChannelFragment(
-                            context.findFragmentActivity().supportFragmentManager,
+                        NavigationHelper.openChannelFragmentUsingIntent(
+                            context,
                             item.serviceId,
                             item.url,
                             item.name
