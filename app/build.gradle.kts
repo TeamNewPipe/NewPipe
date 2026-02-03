@@ -130,7 +130,6 @@ ksp {
     arg("room.schemaLocation", "$projectDir/schemas")
 }
 
-
 // Custom dependency configuration for ktlint
 val ktlint by configurations.creating
 
@@ -254,6 +253,7 @@ dependencies {
 
     // HTTP client
     implementation(libs.squareup.okhttp)
+    implementation(libs.squareup.okhttp.brotli)
 
     // Media player
     implementation(libs.google.exoplayer.core)
