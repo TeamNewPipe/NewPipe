@@ -88,6 +88,7 @@ import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.ErrorUtil
 import org.schabi.newpipe.error.UserAction.LONG_PRESS_MENU_ACTION
 import org.schabi.newpipe.extractor.stream.StreamType
+import org.schabi.newpipe.player.helper.PlayerHolder
 import org.schabi.newpipe.ui.components.common.ScaffoldWithToolbar
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.EnqueueNext
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.ShowChannelDetails
@@ -273,7 +274,7 @@ private fun LongPressMenuContent(
                                 icon = action.type.icon,
                                 text = stringResource(action.type.label),
                                 onClick = { runActionAndDismiss(action) },
-                                enabled = action.enabled(false),
+                                enabled = action.enabled(),
                                 modifier = Modifier
                                     .height(buttonHeight)
                                     .fillMaxWidth()

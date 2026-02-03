@@ -45,6 +45,7 @@ import org.schabi.newpipe.local.dialog.PlaylistAppendDialog
 import org.schabi.newpipe.local.dialog.PlaylistDialog
 import org.schabi.newpipe.local.history.HistoryRecordManager
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager
+import org.schabi.newpipe.player.helper.PlayerHolder
 import org.schabi.newpipe.player.playqueue.ChannelTabPlayQueue
 import org.schabi.newpipe.player.playqueue.PlayQueue
 import org.schabi.newpipe.player.playqueue.PlayQueueItem
@@ -60,7 +61,7 @@ data class LongPressAction(
     val type: Type,
     @MainThread
     val action: suspend (context: Context) -> Unit,
-    val enabled: (isPlayerRunning: Boolean) -> Boolean = { true }
+    val enabled: () -> Boolean = { true }
 ) {
     enum class Type(
         /**
@@ -95,11 +96,10 @@ data class LongPressAction(
         Remove(21, R.string.play_queue_remove, Icons.Default.Delete)
         ;
 
-        // TODO allow actions to return disposables
         // TODO add actions that use the whole list the item belongs to (see wholeListQueue)
 
         fun buildAction(
-            enabled: (isPlayerRunning: Boolean) -> Boolean = { true },
+            enabled: () -> Boolean = { true },
             action: suspend (context: Context) -> Unit
         ) = LongPressAction(this, action, enabled)
 
@@ -119,10 +119,20 @@ data class LongPressAction(
             queue: suspend (Context) -> PlayQueue
         ): List<LongPressAction> {
             return listOf(
-                Type.Enqueue.buildAction({ isPlayerRunning -> isPlayerRunning }) { context ->
+                // TODO once NewPlayer will be used, make it so that the enabled states of Enqueue
+                //  and EnqueueNext are a State<> that changes realtime based on the actual evolving
+                //  player state
+                Type.Enqueue.buildAction(
+                    enabled = { PlayerHolder.isPlayQueueReady }
+                ) { context ->
                     NavigationHelper.enqueueOnPlayer(context, queue(context))
                 },
-                Type.EnqueueNext.buildAction({ isPlayerRunning -> isPlayerRunning }) { context ->
+                Type.EnqueueNext.buildAction(
+                    enabled = {
+                        PlayerHolder.isPlayQueueReady &&
+                            (PlayerHolder.queuePosition < PlayerHolder.queueSize - 1)
+                    }
+                ) { context ->
                     NavigationHelper.enqueueNextOnPlayer(context, queue(context))
                 },
                 Type.Background.buildAction { context ->
