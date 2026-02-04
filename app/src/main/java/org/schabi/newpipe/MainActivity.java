@@ -309,25 +309,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean drawerItemSelected(final MenuItem item) {
-        switch (item.getGroupId()) {
-            case R.id.menu_services_group:
-                changeService(item);
-                break;
-            case R.id.menu_tabs_group:
-                tabSelected(item);
-                break;
-            case R.id.menu_kiosks_group:
-                try {
-                    kioskSelected(item);
-                } catch (final Exception e) {
-                    ErrorUtil.showUiErrorSnackbar(this, "Selecting drawer kiosk", e);
-                }
-                break;
-            case R.id.menu_options_about_group:
-                optionsAboutSelected(item);
-                break;
-            default:
-                return false;
+        final int groupId = item.getGroupId();
+        if (groupId == R.id.menu_services_group) {
+            changeService(item);
+        } else if (groupId == R.id.menu_tabs_group) {
+            tabSelected(item);
+        } else if (groupId == R.id.menu_kiosks_group) {
+            try {
+                kioskSelected(item);
+            } catch (final Exception e) {
+                ErrorUtil.showUiErrorSnackbar(this, "Selecting drawer kiosk", e);
+            }
+        } else if (groupId == R.id.menu_options_about_group) {
+            optionsAboutSelected(item);
+        } else {
+            return false;
         }
 
         mainBinding.getRoot().closeDrawers();

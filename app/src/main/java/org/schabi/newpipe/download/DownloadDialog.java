@@ -558,17 +558,13 @@ public class DownloadDialog extends DialogFragment
         }
         boolean flag = true;
 
-        switch (checkedId) {
-            case R.id.audio_button:
-                setupAudioSpinner();
-                break;
-            case R.id.video_button:
-                setupVideoSpinner();
-                break;
-            case R.id.subtitle_button:
-                setupSubtitleSpinner();
-                flag = false;
-                break;
+        if (checkedId == R.id.audio_button) {
+            setupAudioSpinner();
+        } else if (checkedId == R.id.video_button) {
+            setupVideoSpinner();
+        } else if (checkedId == R.id.subtitle_button) {
+            setupSubtitleSpinner();
+            flag = false;
         }
 
         dialogBinding.threads.setEnabled(flag);
@@ -585,29 +581,26 @@ public class DownloadDialog extends DialogFragment
                     + "position = [" + position + "], id = [" + id + "]");
         }
 
-        switch (parent.getId()) {
-            case R.id.quality_spinner:
-                switch (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()) {
-                    case R.id.video_button:
-                        selectedVideoIndex = position;
-                        onVideoStreamSelected();
-                        break;
-                    case R.id.subtitle_button:
-                        selectedSubtitleIndex = position;
-                        break;
-                }
-                onItemSelectedSetFileName();
-                break;
-            case R.id.audio_track_spinner:
-                final boolean trackChanged = selectedAudioTrackIndex != position;
-                selectedAudioTrackIndex = position;
-                if (trackChanged) {
-                    updateSecondaryStreams();
-                    fetchStreamsSize();
-                }
-                break;
-            case R.id.audio_stream_spinner:
-                selectedAudioIndex = position;
+        final int parentId = parent.getId();
+        if (parentId == R.id.quality_spinner) {
+            final int checkedRadioButtonId = dialogBinding.videoAudioGroup
+                    .getCheckedRadioButtonId();
+            if (checkedRadioButtonId == R.id.video_button) {
+                selectedVideoIndex = position;
+                onVideoStreamSelected();
+            } else if (checkedRadioButtonId == R.id.subtitle_button) {
+                selectedSubtitleIndex = position;
+            }
+            onItemSelectedSetFileName();
+        } else if (parentId == R.id.audio_track_spinner) {
+            final boolean trackChanged = selectedAudioTrackIndex != position;
+            selectedAudioTrackIndex = position;
+            if (trackChanged) {
+                updateSecondaryStreams();
+                fetchStreamsSize();
+            }
+        } else if (parentId == R.id.audio_stream_spinner) {
+            selectedAudioIndex = position;
         }
     }
 
@@ -622,23 +615,20 @@ public class DownloadDialog extends DialogFragment
                 || prevFileName.startsWith(getString(R.string.caption_file_name, fileName, ""))) {
             // only update the file name field if it was not edited by the user
 
-            switch (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()) {
-                case R.id.audio_button:
-                case R.id.video_button:
-                    if (!prevFileName.equals(fileName)) {
-                        // since the user might have switched between audio and video, the correct
-                        // text might already be in place, so avoid resetting the cursor position
-                        dialogBinding.fileName.setText(fileName);
-                    }
-                    break;
-
-                case R.id.subtitle_button:
-                    final String setSubtitleLanguageCode = subtitleStreamsAdapter
-                            .getItem(selectedSubtitleIndex).getLanguageTag();
-                    // this will reset the cursor position, which is bad UX, but it can't be avoided
-                    dialogBinding.fileName.setText(getString(
-                            R.string.caption_file_name, fileName, setSubtitleLanguageCode));
-                    break;
+            final int radioButtonId = dialogBinding.videoAudioGroup
+                    .getCheckedRadioButtonId();
+            if (radioButtonId == R.id.audio_button || radioButtonId == R.id.video_button) {
+                if (!prevFileName.equals(fileName)) {
+                    // since the user might have switched between audio and video, the correct
+                    // text might already be in place, so avoid resetting the cursor position
+                    dialogBinding.fileName.setText(fileName);
+                }
+            } else if (radioButtonId == R.id.subtitle_button) {
+                final String setSubtitleLanguageCode = subtitleStreamsAdapter
+                        .getItem(selectedSubtitleIndex).getLanguageTag();
+                // this will reset the cursor position, which is bad UX, but it can't be avoided
+                dialogBinding.fileName.setText(getString(
+                        R.string.caption_file_name, fileName, setSubtitleLanguageCode));
             }
         }
     }
@@ -770,47 +760,44 @@ public class DownloadDialog extends DialogFragment
 
         filenameTmp = getNameEditText().concat(".");
 
-        switch (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()) {
-            case R.id.audio_button:
-                selectedMediaType = getString(R.string.last_download_type_audio_key);
-                mainStorage = mainStorageAudio;
-                format = audioStreamsAdapter.getItem(selectedAudioIndex).getFormat();
-                size = getWrappedAudioStreams().getSizeInBytes(selectedAudioIndex);
-                if (format == MediaFormat.WEBMA_OPUS) {
-                    mimeTmp = "audio/ogg";
-                    filenameTmp += "opus";
-                } else if (format != null) {
-                    mimeTmp = format.mimeType;
-                    filenameTmp += format.getSuffix();
-                }
-                break;
-            case R.id.video_button:
-                selectedMediaType = getString(R.string.last_download_type_video_key);
-                mainStorage = mainStorageVideo;
-                format = videoStreamsAdapter.getItem(selectedVideoIndex).getFormat();
-                size = wrappedVideoStreams.getSizeInBytes(selectedVideoIndex);
-                if (format != null) {
-                    mimeTmp = format.mimeType;
-                    filenameTmp += format.getSuffix();
-                }
-                break;
-            case R.id.subtitle_button:
-                selectedMediaType = getString(R.string.last_download_type_subtitle_key);
-                mainStorage = mainStorageVideo; // subtitle & video files go together
-                format = subtitleStreamsAdapter.getItem(selectedSubtitleIndex).getFormat();
-                size = wrappedSubtitleStreams.getSizeInBytes(selectedSubtitleIndex);
-                if (format != null) {
-                    mimeTmp = format.mimeType;
-                }
+        final int checkedRadioButtonId = dialogBinding.videoAudioGroup.getCheckedRadioButtonId();
+        if (checkedRadioButtonId == R.id.audio_button) {
+            selectedMediaType = getString(R.string.last_download_type_audio_key);
+            mainStorage = mainStorageAudio;
+            format = audioStreamsAdapter.getItem(selectedAudioIndex).getFormat();
+            size = getWrappedAudioStreams().getSizeInBytes(selectedAudioIndex);
+            if (format == MediaFormat.WEBMA_OPUS) {
+                mimeTmp = "audio/ogg";
+                filenameTmp += "opus";
+            } else if (format != null) {
+                mimeTmp = format.mimeType;
+                filenameTmp += format.getSuffix();
+            }
+        } else if (checkedRadioButtonId == R.id.video_button) {
+            selectedMediaType = getString(R.string.last_download_type_video_key);
+            mainStorage = mainStorageVideo;
+            format = videoStreamsAdapter.getItem(selectedVideoIndex).getFormat();
+            size = wrappedVideoStreams.getSizeInBytes(selectedVideoIndex);
+            if (format != null) {
+                mimeTmp = format.mimeType;
+                filenameTmp += format.getSuffix();
+            }
+        } else if (checkedRadioButtonId == R.id.subtitle_button) {
+            selectedMediaType = getString(R.string.last_download_type_subtitle_key);
+            mainStorage = mainStorageVideo; // subtitle & video files go together
+            format = subtitleStreamsAdapter.getItem(selectedSubtitleIndex).getFormat();
+            size = wrappedSubtitleStreams.getSizeInBytes(selectedSubtitleIndex);
+            if (format != null) {
+                mimeTmp = format.mimeType;
+            }
 
-                if (format == MediaFormat.TTML) {
-                    filenameTmp += MediaFormat.SRT.getSuffix();
-                } else if (format != null) {
-                    filenameTmp += format.getSuffix();
-                }
-                break;
-            default:
-                throw new RuntimeException("No stream selected");
+            if (format == MediaFormat.TTML) {
+                filenameTmp += MediaFormat.SRT.getSuffix();
+            } else if (format != null) {
+                filenameTmp += format.getSuffix();
+            }
+        } else {
+            throw new RuntimeException("No stream selected");
         }
 
         if (!askForSavePath && (mainStorage == null
@@ -1057,59 +1044,56 @@ public class DownloadDialog extends DialogFragment
         long nearLength = 0;
 
         // more download logic: select muxer, subtitle converter, etc.
-        switch (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()) {
-            case R.id.audio_button:
-                kind = 'a';
-                selectedStream = audioStreamsAdapter.getItem(selectedAudioIndex);
+        final int checkedRadioButtonId = dialogBinding.videoAudioGroup.getCheckedRadioButtonId();
+        if (checkedRadioButtonId == R.id.audio_button) {
+            kind = 'a';
+            selectedStream = audioStreamsAdapter.getItem(selectedAudioIndex);
 
-                if (selectedStream.getFormat() == MediaFormat.M4A) {
-                    psName = Postprocessing.ALGORITHM_M4A_NO_DASH;
-                } else if (selectedStream.getFormat() == MediaFormat.WEBMA_OPUS) {
-                    psName = Postprocessing.ALGORITHM_OGG_FROM_WEBM_DEMUXER;
+            if (selectedStream.getFormat() == MediaFormat.M4A) {
+                psName = Postprocessing.ALGORITHM_M4A_NO_DASH;
+            } else if (selectedStream.getFormat() == MediaFormat.WEBMA_OPUS) {
+                psName = Postprocessing.ALGORITHM_OGG_FROM_WEBM_DEMUXER;
+            }
+        } else if (checkedRadioButtonId == R.id.video_button) {
+            kind = 'v';
+            selectedStream = videoStreamsAdapter.getItem(selectedVideoIndex);
+
+            final SecondaryStreamHelper<AudioStream> secondary = videoStreamsAdapter
+                    .getAllSecondary()
+                    .get(wrappedVideoStreams.getStreamsList().indexOf(selectedStream));
+
+            if (secondary != null) {
+                secondaryStream = secondary.getStream();
+
+                if (selectedStream.getFormat() == MediaFormat.MPEG_4) {
+                    psName = Postprocessing.ALGORITHM_MP4_FROM_DASH_MUXER;
+                } else {
+                    psName = Postprocessing.ALGORITHM_WEBM_MUXER;
                 }
-                break;
-            case R.id.video_button:
-                kind = 'v';
-                selectedStream = videoStreamsAdapter.getItem(selectedVideoIndex);
 
-                final SecondaryStreamHelper<AudioStream> secondary = videoStreamsAdapter
-                        .getAllSecondary()
-                        .get(wrappedVideoStreams.getStreamsList().indexOf(selectedStream));
+                final long videoSize = wrappedVideoStreams.getSizeInBytes(
+                        (VideoStream) selectedStream);
 
-                if (secondary != null) {
-                    secondaryStream = secondary.getStream();
-
-                    if (selectedStream.getFormat() == MediaFormat.MPEG_4) {
-                        psName = Postprocessing.ALGORITHM_MP4_FROM_DASH_MUXER;
-                    } else {
-                        psName = Postprocessing.ALGORITHM_WEBM_MUXER;
-                    }
-
-                    final long videoSize = wrappedVideoStreams.getSizeInBytes(
-                            (VideoStream) selectedStream);
-
-                    // set nearLength, only, if both sizes are fetched or known. This probably
-                    // does not work on slow networks but is later updated in the downloader
-                    if (secondary.getSizeInBytes() > 0 && videoSize > 0) {
-                        nearLength = secondary.getSizeInBytes() + videoSize;
-                    }
+                // set nearLength, only, if both sizes are fetched or known. This probably
+                // does not work on slow networks but is later updated in the downloader
+                if (secondary.getSizeInBytes() > 0 && videoSize > 0) {
+                    nearLength = secondary.getSizeInBytes() + videoSize;
                 }
-                break;
-            case R.id.subtitle_button:
-                threads = 1; // use unique thread for subtitles due small file size
-                kind = 's';
-                selectedStream = subtitleStreamsAdapter.getItem(selectedSubtitleIndex);
+            }
+        } else if (checkedRadioButtonId == R.id.subtitle_button) {
+            threads = 1; // use unique thread for subtitles due small file size
+            kind = 's';
+            selectedStream = subtitleStreamsAdapter.getItem(selectedSubtitleIndex);
 
-                if (selectedStream.getFormat() == MediaFormat.TTML) {
-                    psName = Postprocessing.ALGORITHM_TTML_CONVERTER;
-                    psArgs = new String[] {
-                            selectedStream.getFormat().getSuffix(),
-                            "false" // ignore empty frames
-                    };
-                }
-                break;
-            default:
-                return;
+            if (selectedStream.getFormat() == MediaFormat.TTML) {
+                psName = Postprocessing.ALGORITHM_TTML_CONVERTER;
+                psArgs = new String[]{
+                        selectedStream.getFormat().getSuffix(),
+                        "false" // ignore empty frames
+                };
+            }
+        } else {
+            return;
         }
 
         if (secondaryStream == null) {
