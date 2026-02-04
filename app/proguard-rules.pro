@@ -39,3 +39,8 @@
 
 ## For some reason NotificationModeConfigFragment wasn't kept (only referenced in a preference xml)
 -keep class org.schabi.newpipe.settings.notifications.** { *; }
+
+# Prevent R8 from stripping or renaming Protobuf internal fields
+-keepclassmembers class * extends com.google.protobuf.GeneratedMessageLite {
+    <fields>;
+}
