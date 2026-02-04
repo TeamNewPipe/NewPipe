@@ -232,35 +232,30 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                NavigationHelper.openSettings(requireContext());
-                break;
-            case R.id.menu_item_openInBrowser:
-                ShareUtils.openUrlInBrowser(requireContext(), url);
-                break;
-            case R.id.menu_item_share:
-                ShareUtils.shareText(requireContext(), name, url,
-                        currentInfo == null ? List.of() : currentInfo.getThumbnails());
-                break;
-            case R.id.menu_item_bookmark:
-                onBookmarkClicked();
-                break;
-            case R.id.menu_item_append_playlist:
-                if (currentInfo != null) {
-                    disposables.add(PlaylistDialog.createCorrespondingDialog(
-                            getContext(),
-                            getPlayQueue()
-                                    .getStreams()
-                                    .stream()
-                                    .map(StreamEntity::new)
-                                    .collect(Collectors.toList()),
-                            dialog -> dialog.show(getFM(), TAG)
-                    ));
-                }
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
+        final int itemId = item.getItemId();
+        if (itemId == R.id.action_settings) {
+            NavigationHelper.openSettings(requireContext());
+        } else if (itemId == R.id.menu_item_openInBrowser) {
+            ShareUtils.openUrlInBrowser(requireContext(), url);
+        } else if (itemId == R.id.menu_item_share) {
+            ShareUtils.shareText(requireContext(), name, url,
+                    currentInfo == null ? List.of() : currentInfo.getThumbnails());
+        } else if (itemId == R.id.menu_item_bookmark) {
+            onBookmarkClicked();
+        } else if (itemId == R.id.menu_item_append_playlist) {
+            if (currentInfo != null) {
+                disposables.add(PlaylistDialog.createCorrespondingDialog(
+                        getContext(),
+                        getPlayQueue()
+                                .getStreams()
+                                .stream()
+                                .map(StreamEntity::new)
+                                .collect(Collectors.toList()),
+                        dialog -> dialog.show(getFM(), TAG)
+                ));
+            }
+        } else {
+            return super.onOptionsItemSelected(item);
         }
         return true;
     }
