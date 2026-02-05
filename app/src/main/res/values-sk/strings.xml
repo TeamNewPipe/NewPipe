@@ -110,8 +110,8 @@
     <string name="fragment_feed_title">Čo je nové</string>
     <string name="enable_search_history_title">Hľadať v histórií</string>
     <string name="enable_search_history_summary">Hľadané výrazy uloží lokálne</string>
-    <string name="enable_watch_history_title">História pozretí</string>
-    <string name="enable_watch_history_summary">Uloží históriu pozretých videí</string>
+    <string name="enable_watch_history_title">História pozerania</string>
+    <string name="enable_watch_history_summary">Uloží históriu pozeraných videí</string>
     <string name="resume_on_audio_focus_gain_title">Pokračovať v prehrávaní</string>
     <string name="resume_on_audio_focus_gain_summary">Pokračouje v prehrávaní po prerušení (napr. po telefonáte)</string>
     <string name="notification_channel_name">NewPipe oznámenia</string>
@@ -147,11 +147,12 @@
         <item quantity="few">%s odberatelia</item>
         <item quantity="other">%s odberateľov</item>
     </plurals>
-    <string name="no_views">Žiadne pozretia</string>
+    <string name="no_views">Žiadne zobrazenia</string>
     <plurals name="views">
-        <item quantity="one">%s pozriete</item>
-        <item quantity="few">%s pozretia</item>
-        <item quantity="other">%s pozretí</item>
+        <item quantity="one">%s zobrazenie</item>
+        <item quantity="few">%s zobrazenia</item>
+        <item quantity="many">%s zobrazení</item>
+        <item quantity="other">%s zobrazení</item>
     </plurals>
     <string name="no_videos">Žiadne videá</string>
     <plurals name="videos">
@@ -296,10 +297,10 @@
     <string name="playback_tempo">Rýchlosť</string>
     <string name="playback_pitch">Výška</string>
     <string name="unhook_checkbox">Spraviť nezávislými (môže spôsobovať skreslenie)</string>
-    <string name="clear_views_history_title">Vymazať históriu pozretí</string>
+    <string name="clear_views_history_title">Vymazať históriu pozerania</string>
     <string name="clear_views_history_summary">Odstráni históriu a pozície prehrávaných streamov</string>
-    <string name="delete_view_history_alert">Vymazať celú históriu pozretí\?</string>
-    <string name="watch_history_deleted">História pozretí bola vymazaná</string>
+    <string name="delete_view_history_alert">Vymazať celú históriu pozerania?</string>
+    <string name="watch_history_deleted">História pozerania bola vymazaná</string>
     <string name="clear_search_history_title">Vymazať históriu vyhľadávania</string>
     <string name="clear_search_history_summary">Odstráni históriu vyhľadávania kľúčových slov</string>
     <string name="delete_search_history_alert">Vymazať celú históriu vyhľadávania\?</string>
@@ -510,9 +511,9 @@
 \n
 \nMožno v budúcnosti sa to zmení.</string>
     <string name="remove_watched_popup_partially_watched_streams">Áno aj čiastočne pozreté videá</string>
-    <string name="remove_watched_popup_warning">Pozreté videá, ktoré ste pozreli pred a po ich pridaní do playlistu, budú odstránené. \nSte si istí ich odstránením z playlistu? Táto operácia je nezvratná!</string>
-    <string name="remove_watched_popup_title">Odstrániť pozreté videá?</string>
-    <string name="remove_watched">Odstrániť pozreté</string>
+    <string name="remove_watched_popup_warning">Videá, ktoré ste sledovali pred a po pridaní do playlistu, budú odstránené. \nNaozaj to chcete urobiť?</string>
+    <string name="remove_watched_popup_title">Odstrániť pozerané videá?</string>
+    <string name="remove_watched">Odstrániť pozerané</string>
     <string name="show_original_time_ago_summary">Pôvodné texty zo služieb budú viditeľné v položkách streamu</string>
     <string name="show_original_time_ago_title">Zobrazovať pôvodný čas</string>
     <string name="infinite_videos">∞ videí</string>

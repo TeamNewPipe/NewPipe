@@ -525,8 +525,8 @@
     </plurals>
     <string name="new_seek_duration_toast">Λόγω περιορισμών του ExoPlayer, η διάρκεια αναζήτησης ορίστηκε στα %d δευτερόλεπτα</string>
     <string name="remove_watched_popup_partially_watched_streams">Ναι. Και τα μερικώς θεαθέντα βίντεο</string>
-    <string name="remove_watched_popup_warning">Τα βίντεο που εθεάθησαν πριν και αφού προστέθηκαν στη λίστα αναπαραγωγής θα απομακρυνθούν \nΕίστε σίγουρος; Δεν μπορεί να αναιρεθεί!</string>
-    <string name="remove_watched_popup_title">Απομάκρυνση θεαθέντων βίντεο;</string>
+    <string name="remove_watched_popup_warning">Οι ροές που εθεάθησαν πριν και αφού προστέθηκαν στη λίστα αναπαραγωγής θα απομακρυνθούν \nΕίστε σίγουρος;</string>
+    <string name="remove_watched_popup_title">Απομάκρυνση θεαθέντων ροών;</string>
     <string name="remove_watched">Απομάκρυνση όσων θεάθησαν</string>
     <string name="app_language_title">Γλώσσα εφαρμογής</string>
     <string name="choose_instance_prompt">Επιλογή μιας instance</string>
@@ -614,7 +614,7 @@
 \nΘέλετε να απεγγραφείτε από αυτό το κανάλι;</string>
     <string name="feed_load_error_account_info">Αδυναμία φόρτωσης τροφοδοσίας για \'%s\'.</string>
     <string name="feed_load_error">Σφάλμα φόρτωσης τροφοδοσίας</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Από το Android 10 και μετά, μόνο το SAF υποστηρίζεται</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Από το Android 10 και μετά, μόνο το Πλαίσιο Πρόσβασης Αποθήκευσης υποστηρίζεται</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Θα ερωτηθείτε πού να αποθηκεύσετε κάθε λήψη</string>
     <string name="no_dir_yet">Δεν έχει ορισθεί φάκελος λήψεων ακόμα, eπιλέξτε τον προεπιλεγμένο φάκελο τώρα</string>
     <string name="metadata_host">Host</string>
