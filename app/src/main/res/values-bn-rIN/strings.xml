@@ -309,6 +309,6 @@
     <string name="notification_action_nothing">কিছু না</string>
     <string name="yes">হ্যাঁ</string>
     <string name="no">না</string>
-    <string name="search_with_service_name">সার্চ</string>
-    <string name="search_with_service_name_and_filter">খুঁজুন</string>
+    <string name="search_with_service_name">সার্চ %1$s</string>
+    <string name="search_with_service_name_and_filter">খুঁজুন %1$s (%2$s)</string>
 </resources>
