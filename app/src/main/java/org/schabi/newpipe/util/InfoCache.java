@@ -27,8 +27,11 @@ import androidx.collection.LruCache;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.extractor.Info;
+import org.schabi.newpipe.extractor.StreamingServiceId;
 
-import java.util.Map;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 public final class InfoCache {
     private final String TAG = getClass().getSimpleName();
@@ -71,23 +74,23 @@ public final class InfoCache {
     }
 
     private static void removeStaleCache() {
-        for (final Map.Entry<String, CacheData> entry : InfoCache.LRU_CACHE.snapshot().entrySet()) {
+        for (final var entry : LRU_CACHE.snapshot().entrySet()) {
             final CacheData data = entry.getValue();
             if (data != null && data.isExpired()) {
-                InfoCache.LRU_CACHE.remove(entry.getKey());
+                LRU_CACHE.remove(entry.getKey());
             }
         }
     }
 
     @Nullable
     private static Info getInfo(@NonNull final String key) {
-        final CacheData data = InfoCache.LRU_CACHE.get(key);
+        final CacheData data = LRU_CACHE.get(key);
         if (data == null) {
             return null;
         }
 
         if (data.isExpired()) {
-            InfoCache.LRU_CACHE.remove(key);
+            LRU_CACHE.remove(key);
             return null;
         }
 
@@ -100,22 +103,29 @@ public final class InfoCache {
                            @NonNull final Type cacheType) {
         if (DEBUG) {
             Log.d(TAG, "getFromKey() called with: "
-                    + "serviceId = [" + serviceId + "], url = [" + url + "]");
+                    + StreamingServiceId.nameFromId(serviceId) + "[" + url + "]");
         }
         synchronized (LRU_CACHE) {
             return getInfo(keyOf(serviceId, url, cacheType));
         }
     }
 
+    @SuppressWarnings("checkStyle:linelength")
     public void putInfo(final int serviceId,
                         @NonNull final String url,
                         @NonNull final Info info,
                         @NonNull final Type cacheType) {
+        final long expirationMillis = ServiceHelper.getCacheExpirationMillis(info.getServiceId());
         if (DEBUG) {
-            Log.d(TAG, "putInfo() called with: info = [" + info + "]");
+            final var expiryDateInstant = Instant.now().plusMillis(expirationMillis);
+            final var expiryDate = LocalDateTime.ofInstant(expiryDateInstant,
+                                                           ZoneId.systemDefault());
+            Log.d(TAG, "putInfo(): add to cache " + StreamingServiceId.nameFromId(serviceId) + " "
+                    + cacheType.name()
+                    + " expires on " + expiryDate
+                    + " " + info);
         }
 
-        final long expirationMillis = ServiceHelper.getCacheExpirationMillis(info.getServiceId());
         synchronized (LRU_CACHE) {
             final CacheData data = new CacheData(info, expirationMillis);
             LRU_CACHE.put(keyOf(serviceId, url, cacheType), data);

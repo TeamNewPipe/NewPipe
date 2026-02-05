@@ -728,7 +728,9 @@ public final class Player implements PlaybackListener, Listener {
         }
 
         if (DEBUG) {
-            Log.d(TAG, "Setting recovery, queue: " + queuePos + ", pos: " + windowPos);
+            final var currentTitle = currentItem != null ? currentItem.getTitle() : "";
+            Log.d(TAG, "Setting recovery, queue: "
+                       + queuePos + "[" + currentTitle + "], pos: " + windowPos);
         }
         playQueue.setRecovery(queuePos, windowPos);
     }
@@ -1049,6 +1051,34 @@ public final class Player implements PlaybackListener, Listener {
 
     //endregion
 
+    public static String exoplayerStateToString(final int playbackState) {
+        return switch (playbackState) {
+            case com.google.android.exoplayer2.Player.STATE_IDLE -> // 1
+                    "STATE_IDLE";
+            case com.google.android.exoplayer2.Player.STATE_BUFFERING -> // 2
+                    "STATE_BUFFERING";
+            case com.google.android.exoplayer2.Player.STATE_READY -> //3
+                    "STATE_READY";
+            case com.google.android.exoplayer2.Player.STATE_ENDED -> // 4
+                    "STATE_ENDED";
+            default ->
+                    throw new IllegalArgumentException("Unknown playback state " + playbackState);
+        };
+    }
+
+    public static String stateToString(final int state) {
+        return switch (state) {
+            case STATE_PREFLIGHT -> "STATE_PREFLIGHT";
+            case STATE_BLOCKED -> "STATE_BLOCKED";
+            case STATE_PLAYING -> "STATE_PLAYING";
+            case STATE_BUFFERING -> "STATE_BUFFERING";
+            case STATE_PAUSED -> "STATE_PAUSED";
+            case STATE_PAUSED_SEEK -> "STATE_PAUSED_SEEK";
+            case STATE_COMPLETED -> "STATE_COMPLETED";
+            default -> throw new IllegalArgumentException("Unknown playback state " + state);
+        };
+    }
+
 
     /*//////////////////////////////////////////////////////////////////////////
     // Playback states
@@ -1071,7 +1101,7 @@ public final class Player implements PlaybackListener, Listener {
     public void onPlaybackStateChanged(final int playbackState) {
         if (DEBUG) {
             Log.d(TAG, "ExoPlayer - onPlaybackStateChanged() called with: "
-                    + "playbackState = [" + playbackState + "]");
+                    + "playbackState = [" + exoplayerStateToString(playbackState) + "]");
         }
         updatePlaybackState(getPlayWhenReady(), playbackState);
     }
@@ -1080,7 +1110,7 @@ public final class Player implements PlaybackListener, Listener {
         if (DEBUG) {
             Log.d(TAG, "ExoPlayer - updatePlaybackState() called with: "
                     + "playWhenReady = [" + playWhenReady + "], "
-                    + "playbackState = [" + playbackState + "]");
+                    + "playbackState = [" + exoplayerStateToString(playbackState) + "]");
         }
 
         if (currentState == STATE_PAUSED_SEEK) {
@@ -1158,7 +1188,8 @@ public final class Player implements PlaybackListener, Listener {
 
     public void changeState(final int state) {
         if (DEBUG) {
-            Log.d(TAG, "changeState() called with: state = [" + state + "]");
+            Log.d(TAG,
+                  "changeState() called with: state = [" + stateToString(state) + "]");
         }
         currentState = state;
         switch (state) {
@@ -1878,7 +1909,7 @@ public final class Player implements PlaybackListener, Listener {
                     .observeOn(AndroidSchedulers.mainThread())
                     .doOnError(e -> {
                         if (DEBUG) {
-                            e.printStackTrace();
+                            Log.e(TAG, "Error saving stream state", e);
                         }
                     })
                     .onErrorComplete()

@@ -32,7 +32,7 @@ public final class SparseItemUtil {
     }
 
     /**
-     * Use this to certainly obtain an single play queue with all of the data filled in when the
+     * Use this to certainly obtain a single play queue with all of the data filled in when the
      * stream info item you are handling might be sparse, e.g. because it was fetched via a {@link
      * org.schabi.newpipe.extractor.feed.FeedExtractor}. FeedExtractors provide a fast and
      * lightweight method to fetch info, but the info might be incomplete (see

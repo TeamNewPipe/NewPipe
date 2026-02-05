@@ -70,6 +70,8 @@
 
     <module name="SuppressWarningsFilter" />
 
+    <module name="SuppressWithPlainTextCommentFilter"/>
+
     <module name="TreeWalker">
         <module name="SuppressionCommentFilter"/>
 
