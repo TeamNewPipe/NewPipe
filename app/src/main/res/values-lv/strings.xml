@@ -6,7 +6,7 @@
     <string name="delete_playlist_prompt">Dzēst atskaņošanas sarakstu\?</string>
     <string name="set_as_playlist_thumbnail">Iestatīt, kā atskaņošanas saraksta attēlu</string>
     <string name="add_to_playlist">Pievienot atskaņošanas sarakstam</string>
-    <string name="name">Vārds</string>
+    <string name="name">Nosaukums</string>
     <string name="rename_playlist">Pārsaukt</string>
     <string name="create_playlist">Jauns Atskaņošanas Saraksts</string>
     <string name="preferred_player_fetcher_notification_message">Ielādē prasīto saturu</string>
@@ -29,15 +29,15 @@
     <string name="new_and_hot">Jauns un populārs</string>
     <string name="top_50">Top 50</string>
     <string name="error_unable_to_load_comments">Nevarēja ielādēt komentārus</string>
-    <string name="import_settings">Vai jūs vēlaties arī importēt iestatījumus\?</string>
+    <string name="import_settings">Vai jūs vēlaties ievietot arī iestatījumus?</string>
     <string name="override_current_data">Šis pārrakstīt jūsu tagadējo uzstādījumu.</string>
-    <string name="could_not_import_all_files">Brīdinājums: Nevarēja importēt visus failus.</string>
+    <string name="could_not_import_all_files">Uzmanību: Ne visas datnes varēja ievietot.</string>
     <string name="no_valid_zip_file">Nav derīgs ZIP fails</string>
-    <string name="import_complete_toast">Importēts</string>
+    <string name="import_complete_toast">Ievietošana pabeigta</string>
     <string name="export_complete_toast">Eksportēts</string>
-    <string name="select_a_kiosk">Izvēlaties kiosku</string>
+    <string name="select_a_kiosk">Atlasiet kiosku</string>
     <string name="no_playlist_bookmarked_yet">Nav atskaņošanas sarakstu pagaidām</string>
-    <string name="select_a_playlist">Izvēlaties atskaņošanas sarakstu</string>
+    <string name="select_a_playlist">Atlasiet atskaņošanas sarakstu</string>
     <string name="no_channel_subscribed_yet">Nav kanālu abonamentu pagaidām</string>
     <string name="select_a_channel">Atlasiet kanālu</string>
     <string name="channel_page_summary">Kanāls</string>
@@ -128,13 +128,13 @@
         <item quantity="other">%s skatījumi</item>
     </plurals>
     <string name="no_views">Nav skatījumu</string>
-    <string name="subscribers_count_not_available">Abonamentu skaits nav pieejams</string>
+    <string name="subscribers_count_not_available">Abonentu skaits nav pieejams</string>
     <plurals name="subscribers">
-        <item quantity="zero">%s abonamentu</item>
-        <item quantity="one">%s abonaments</item>
-        <item quantity="other">%s abonamenti</item>
+        <item quantity="zero">%s abonenti</item>
+        <item quantity="one">%s abonents</item>
+        <item quantity="other">%s abonenti</item>
     </plurals>
-    <string name="no_subscribers">Nav abonamentu</string>
+    <string name="no_subscribers">Nav abonentu</string>
     <string name="drawer_header_description">Izvēlaties pakalpojumu, šobrīd izvēlēts:</string>
     <string name="retry">Atkārtot</string>
     <string name="audio">Audio</string>
@@ -208,11 +208,11 @@
     <string name="clear_views_history_title">Notīrīt skatīšanās vēsturi</string>
     <string name="clear_cookie_summary">Notīrīt sīkfailus , kurus NewPipe saglabā, kad jūs atrisinat reCAPTCHA</string>
     <string name="export_data_summary">Eksportēt vēsturi, abonementus, atskaņošanas sarakstus un iestatījumus</string>
-    <string name="import_data_summary">Pārrakstīt jūsu tagadējo vēsturi, abonementus, atskaņošanas sarakstus un (pēc izvēles) iestatījumus</string>
+    <string name="import_data_summary">Aizstās jūsu pašreizējo vēsturi, abonementus, atskaņošanas sarakstus un (pēc izvēles) iestatījumus</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA sīkfaili tika izdzēsti</string>
     <string name="clear_cookie_title">Izdzēst reCAPTCHA sīkfailus</string>
     <string name="export_data_title">Eksportēt datubāzi</string>
-    <string name="import_data_title">Importēt datubāzi</string>
+    <string name="import_data_title">Ievietot datubāzi</string>
     <string name="switch_to_main">Pārslēgt uz Galveno</string>
     <string name="switch_to_popup">Pārslēgt uz Popup</string>
     <string name="switch_to_background">Pārslēgt uz Fonu</string>
@@ -267,7 +267,7 @@
     <string name="peertube_instance_add_help">Ievadīt instances saites URL</string>
     <string name="peertube_instance_add_title">Pievienot instanci</string>
     <string name="peertube_instance_url_help">Atrodiet instances, kas jums patīk ar %s</string>
-    <string name="peertube_instance_url_summary">Izvēlaties jūsu mīļākās PeerTube instances</string>
+    <string name="peertube_instance_url_summary">Atlasiet savas iecienītākās PeerTube instances</string>
     <string name="peertube_instance_url_title">PeerTube serveri (instances)</string>
     <string name="no_app_to_open_intent">Neviena lietotne jūsu ierīcē nevar šo atvērt</string>
     <string name="chapters">Nodaļas</string>
@@ -300,9 +300,9 @@
     <string name="feed_update_threshold_summary">Laiks pēc pēdējās atjaunināšanas, pirms abonements tiek uzskatīts par novecojušu — %s</string>
     <string name="feed_update_threshold_title">Plūsmas atjaunināšanas biežuma slieksnis</string>
     <string name="settings_category_feed_title">Straume</string>
-    <string name="feed_group_show_only_ungrouped_subscriptions">Rādīt tikai nesagrupētus abonementus</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Rādīt tikai nepievienotus grupai abonementus</string>
     <string name="feed_create_new_group_button_title">Jauna</string>
-    <string name="feed_group_dialog_delete_message">Vai vēlaties izdzēst šo grupu\?</string>
+    <string name="feed_group_dialog_delete_message">Vai tiešām vēlaties izdzēst šo grupu?</string>
     <string name="feed_group_dialog_empty_name">Tukšs grupas nosaukums</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="zero">%d atlasīti</item>
@@ -310,12 +310,12 @@
         <item quantity="other">%d atlasīti</item>
     </plurals>
     <string name="feed_group_dialog_empty_selection">Nav atlasīts neviens abonements</string>
-    <string name="feed_group_dialog_select_subscriptions">Atlasiet abonementus</string>
+    <string name="feed_group_dialog_select_subscriptions">Atlasīt abonementus</string>
     <string name="feed_processing_message">Notiek plūsmas apstrāde …</string>
     <string name="feed_notification_loading">Notiek plūsmas ielāde…</string>
     <string name="feed_subscription_not_loaded_count">Nav ielādēts: %d</string>
     <string name="feed_oldest_subscription_update">Plūsma pēdējoreiz atjaunināta: %s</string>
-    <string name="feed_groups_header_title">Kanālu grupas</string>
+    <string name="feed_groups_header_title">Abonementu grupas</string>
     <string name="fragment_feed_title">Kas jauns</string>
     <plurals name="days">
         <item quantity="zero">%d dienas</item>
@@ -457,10 +457,10 @@
     <string name="previous_export">Pagājušais eksports</string>
     <string name="import_file_title">Importēt failu</string>
     <string name="export_ongoing">Eksportē…</string>
-    <string name="import_ongoing">Importē…</string>
+    <string name="import_ongoing">Ievieto…</string>
     <string name="export_to">Eksportēt uz</string>
-    <string name="import_from">Importēt no</string>
-    <string name="import_title">Importēt</string>
+    <string name="import_from">Ievietot no</string>
+    <string name="import_title">Ievietot</string>
     <string name="show_original_time_ago_title">Rādīt oriģinālo laiku uz lietām</string>
     <string name="show_memory_leaks">Rādīt atmiņas noplūdes</string>
     <string name="caption_setting_title">Subtitri</string>
@@ -681,12 +681,12 @@
     <string name="any_network">Jebkurš tīkls</string>
     <string name="app_update_unavailable_toast">Jums ir jaunākā NewPipe versija</string>
     <string name="ignore_hardware_media_buttons_summary">Noderīgi, piemēram, lietojot austiņas ar bojātām pogām</string>
-    <string name="prefer_descriptive_audio_summary">Izvēlēties skaņu celiņu ar audio aprakstu cilvēkiem ar redzes traucējumiem, ja tāds ir pieejams</string>
+    <string name="prefer_descriptive_audio_summary">Atskaņos skaņu celiņu ar audio aprakstiem vājredzīgajiem, ja tāds ir pieejams</string>
     <string name="ignore_hardware_media_buttons_title">Ignorēt ierīces multimēdiju pogas</string>
     <string name="delete_downloaded_files_confirm">Izdzēst visus lejupielādētos failus\?</string>
     <string name="feed_new_items">Jaunumi kanālā</string>
     <string name="prefer_original_audio_title">Dot priekšroku oriģinālajai skaņai</string>
-    <string name="prefer_original_audio_summary">Izvēlēties oriģinālo skaņu celiņu neatkarīgi no valodas</string>
+    <string name="prefer_original_audio_summary">Atskaņos oriģinālo skaņu celiņu neatkarīgi no valodas</string>
     <string name="prefer_descriptive_audio_title">Dot priekšroku skaņu celiņam ar audio aprakstu</string>
     <string name="left_gesture_control_summary">Izvēlēties žestu kreisajai atskaņotāja ekrāna pusei</string>
     <string name="right_gesture_control_summary">Izvēlēties žestu labajai atskaņotāja ekrāna pusei</string>
@@ -694,7 +694,7 @@
     <string name="brightness">Spilgtums</string>
     <string name="volume">Skaļums</string>
     <string name="none">Nekā</string>
-    <string name="import_subscriptions_hint">Importējiet vai eksportējiet abonementus 3-punktu izvēlnē</string>
+    <string name="import_subscriptions_hint">Abonementus var ievietot vai izgūt, izmantojot 3-punktoto izvēlni augšējā labajā ekrāna stūrī</string>
     <string name="faq_description">Ja Jums rodas problēmas ar lietotni, noteikti apskatiet šīs atbildes bieži uzdotiem jautājumiem!</string>
     <string name="faq">Skatīt tīkla vietnē</string>
     <string name="play_queue_audio_track">Skaņa: %s</string>
@@ -833,4 +833,10 @@
     <string name="trending_gaming">Pašlaik populārs spēļu nozarē</string>
     <string name="migration_info_7_8_message">YouTube pārtrauca piedāvāt apvienoto pašlaik populārs lapu kopš 2025. gada 21. jūlija. NewPipe aizstāja noklusējuma pašlaik populārs lapu ar pašlaik populāras tiešraides.\n\nJūs variet atlasīt arī citas pašlaik populārs lapas zem \"Iestatījumi &gt; Saturs &gt; Galvenā lapa\".</string>
     <string name="delete_file">Dzēst datni</string>
+    <string name="delete_entry">Dzēst ierakstu</string>
+    <string name="entry_deleted">Ieraksts dzēsts</string>
+    <string name="feed_group_page_summary">Abonementu grupu</string>
+    <string name="select_a_feed_group">Atlasiet abonementu grupu</string>
+    <string name="migration_info_7_8_title">YouTube likvidēja apvienoto pašlaik populārs</string>
+    <string name="permission_display_over_apps_permission_name">“Ļaut rādīt virs citām lietotnēm”</string>
 </resources>
