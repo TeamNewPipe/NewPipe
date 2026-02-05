@@ -2037,7 +2037,7 @@ public final class Player implements PlaybackListener, Listener {
         // resolver was called when the app was in background, the app will only stream audio when
         // the user come back to the app and will never fetch the video stream.
         // Note that the video is not fetched when the app is in background because the video
-        // renderer is fully disabled (see useVideoSource method), except for HLS streams
+        // renderer is fully disabled (see useVideoAndSubtitles method), except for HLS streams
         // (see https://github.com/google/ExoPlayer/issues/9282).
         return videoResolver.resolve(info);
     }
