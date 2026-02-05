@@ -706,7 +706,7 @@
     <string name="metadata_subscribers">Harpidedunak</string>
     <string name="unknown_audio_track">Ezezaguna</string>
     <string name="volume">Bolumena</string>
-    <string name="use_exoplayer_decoder_fallback_title">Erabili ExoPlayer-en deskodetzailearen ordezko eginbidea</string>
+    <string name="use_exoplayer_decoder_fallback_title">Erabili ExoPlayer-en deskodetzailearen ordezko ezaugarria</string>
     <string name="none">Bat ere ez</string>
     <string name="loading_metadata_title">Metadatuak kargatzen…</string>
     <string name="settings_category_exoplayer_summary">Kudeatu ExoPlayer-en ezarpen batzuk. Aldaketa hauek eragina izan dezaten, erreproduzitzailea berrabiarazi behar da</string>

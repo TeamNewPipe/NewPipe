@@ -260,8 +260,8 @@
     <string name="give_back">Gefa</string>
     <string name="website_title">Vefsíða</string>
     <string name="read_privacy_policy">Lesa persónuverndarstefnu</string>
-    <string name="title_activity_history">Ferill</string>
-    <string name="action_history">Ferill</string>
+    <string name="title_activity_history">Áhorf</string>
+    <string name="action_history">Áhorf</string>
     <string name="read_full_license">Lesa leyfi</string>
     <string name="title_last_played">Nýlega spilað</string>
     <string name="title_most_played">Mest spilað</string>
@@ -296,8 +296,7 @@
     <string name="caption_setting_title">Skýringartexti</string>
     <string name="import_title">Flytja inn</string>
     <string name="import_ongoing">Flytur inn…</string>
-    <string name="start_accept_privacy_policy">Í samræmi við almenna persónuverndarreglugerðin ESB vekjum við athygli þína á persónuverndarstefnu NewPipe. Vinsamlegast lestu hana vandlega.
-\nÞú verður að samþykkja hana til að senda okkur villuskýrsluna.</string>
+    <string name="start_accept_privacy_policy">Í samræmi við almenna persónuverndarreglugerðin ESB vekjum við athygli þína á persónuverndarstefnu NewPipe. Lestu hana vandlega. \nÞú verður að samþykkja hana til að senda okkur villuskýrsluna.</string>
     <string name="playback_tempo">Hraði</string>
     <string name="playback_pitch">Tónhæð</string>
     <string name="playback_step">Skref</string>
@@ -533,7 +532,7 @@
         <item quantity="one">%s nýtt streymi</item>
         <item quantity="other">%s ný streymi</item>
     </plurals>
-    <string name="no_available_dir">Vinsamlega veldu niðurhalsmöppu síðar í stillingunum</string>
+    <string name="no_available_dir">Skilgreindu niðurhalsmöppu síðar í stillingunum</string>
     <string name="no_dir_yet">Engin niðurhalsmappa er stillt ennþá. Veldu sjálfgefna niðurhalsmöppu núna</string>
     <string name="msg_popup_permission">Þessa heimildar þarfnast til að
 \nopna í sprettiglugga</string>
@@ -549,7 +548,7 @@
 \nVirkjaðu kerfismöppuval (SAF) ef þú vilt nota ytra SD-kort</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Þú verður spurð(ur) hvert ætti að sækja skrár í hvert skipti</string>
     <string name="downloads_storage_use_saf_title">Virkja kerfismöppuval (SAF)</string>
-    <string name="remove_watched_popup_title">Fjarlægja áhorfð myndskeið?</string>
+    <string name="remove_watched_popup_title">Fjarlægja streymi sem búið er að horfa á?</string>
     <string name="feed_oldest_subscription_update">Streymi síðast uppfært %s</string>
     <string name="feed_subscription_not_loaded_count">Ekki hlaðið: %d</string>
     <string name="feed_new_items">Ný atriði í streymi</string>
@@ -568,10 +567,8 @@
     <string name="channel_created_by">Skapað af %s</string>
     <string name="show_thumbnail_summary">Nota smámynd fyrir tilkynningar og bakgrunn lásskjás</string>
     <string name="no_app_to_open_intent">Ekkert forrit í tækinu þínu getur opnað þetta</string>
-    <string name="no_appropriate_file_manager_message">Enginn viðeigandi skráarstjóri fannst fyrir þessa aðgerð.
-\nVinsamlegast settu upp skráastjóra eða reyndu að slökkva á ‚%s‘ í niðurhalsstillingunum</string>
-    <string name="no_appropriate_file_manager_message_android_10">Enginn viðeigandi skráarstjóri fannst fyrir þessa aðgerð.
-\nVinsamlegast settu upp skráarstjóra sem styður Geymsluaðgangsramma (SAF)</string>
+    <string name="no_appropriate_file_manager_message">Enginn viðeigandi skráastjóri fannst fyrir þessa aðgerð. \nEndilega settu upp skráastjóra eða reyndu að slökkva á \'%s\' í niðurhalsstillingunum</string>
+    <string name="no_appropriate_file_manager_message_android_10">Enginn viðeigandi skráastjóri fannst fyrir þessa aðgerð. \nSettu upp skráastjóra sem styður Storage Access Framework</string>
     <string name="georestricted_content">Þetta efni er ekki fáanlegt í þínu landi.</string>
     <string name="paid_content">Þetta efni er aðeins í boði fyrir notendur sem hafa greitt — það er ekki hægt að streyma því eða sækja með NewPipe.</string>
     <string name="auto_device_theme_title">Sjálfvirk (þema tækis)</string>
@@ -673,9 +670,9 @@
         <item quantity="other">%1$s sóttum skrám eytt</item>
     </plurals>
     <string name="max_retry_desc">Fjöldi tilrauna áður en hætt er við niðurhal</string>
-    <string name="remove_watched_popup_warning">Myndskeiðum sem skoðuð voru áður eða eftir að þeim var bætt við spilunarlistann verður eytt. \nErtu viss? Það er ekki hægt að afturkalla þetta!</string>
+    <string name="remove_watched_popup_warning">Myndskeiðum sem skoðuð voru áður eða eftir að þeim var bætt við spilunarlistann verður eytt. \nErtu viss?</string>
     <string name="remove_watched_popup_partially_watched_streams">Já og skoðuð að hluta</string>
-    <string name="feed_use_dedicated_fetch_method_title">Nota RSS ef tiltækt</string>
+    <string name="feed_use_dedicated_fetch_method_title">Sækja úr tileinkuðu streymi þegar það er tiltækt</string>
     <string name="detail_heart_img_view_description">Hjartað af höfunda</string>
     <string name="notifications_disabled">Slökkt er á tilkynningum</string>
     <string name="you_successfully_subscribed">Þú ert nú áskrifandi</string>
