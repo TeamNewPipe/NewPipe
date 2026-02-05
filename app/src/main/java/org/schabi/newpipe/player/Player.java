@@ -2223,7 +2223,6 @@ public final class Player implements PlaybackListener, Listener {
             final SourceType sourceType = videoResolver.getStreamSourceType()
                     .orElse(SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY);
 
-            setRecovery(); // making sure to save playback position before reloadPlayQueueManager()
             if (hasTimeline || !hasPendingRecovery) {
                 // making sure to save playback position before reloadPlayQueueManager()
                 setRecovery();
@@ -2240,7 +2239,6 @@ public final class Player implements PlaybackListener, Listener {
             Reload the play queue manager in this case, which is the behavior when we don't know the
             index of the video renderer or playQueueManagerReloadingNeeded returns true
             */
-            setRecovery(); // making sure to save playback position before reloadPlayQueueManager()
             if (hasTimeline || !hasPendingRecovery) {
                 // making sure to save playback position before reloadPlayQueueManager()
                 setRecovery();
