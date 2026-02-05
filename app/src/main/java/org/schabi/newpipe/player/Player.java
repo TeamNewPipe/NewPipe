@@ -2210,6 +2210,13 @@ public final class Player implements PlaybackListener, Listener {
 
         isAudioOnly = !videoAndSubtitlesEnabled;
 
+        final var item = playQueue.getItem();
+        final boolean hasPendingRecovery =
+                item != null && item.getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET;
+        final boolean hasTimeline =
+                !exoPlayerIsNull() && !simpleExoPlayer.getCurrentTimeline().isEmpty();
+
+
         getCurrentStreamInfo().ifPresentOrElse(info -> {
             // In case we don't know the source type, fall back to either video-with-audio, or
             // audio-only source type
@@ -2217,6 +2224,10 @@ public final class Player implements PlaybackListener, Listener {
                     .orElse(SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY);
 
             setRecovery(); // making sure to save playback position before reloadPlayQueueManager()
+            if (hasTimeline || !hasPendingRecovery) {
+                // making sure to save playback position before reloadPlayQueueManager()
+                setRecovery();
+            }
 
             if (playQueueManagerReloadingNeeded(sourceType, info, getVideoRendererIndex())) {
                 reloadPlayQueueManager();
@@ -2230,6 +2241,10 @@ public final class Player implements PlaybackListener, Listener {
             index of the video renderer or playQueueManagerReloadingNeeded returns true
             */
             setRecovery(); // making sure to save playback position before reloadPlayQueueManager()
+            if (hasTimeline || !hasPendingRecovery) {
+                // making sure to save playback position before reloadPlayQueueManager()
+                setRecovery();
+            }
             reloadPlayQueueManager();
         });
 
