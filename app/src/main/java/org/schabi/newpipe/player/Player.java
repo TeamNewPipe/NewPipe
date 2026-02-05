@@ -567,11 +567,7 @@ public final class Player implements PlaybackListener, Listener {
         if (queueCache == null) {
             return null;
         }
-        final PlayQueue newQueue = SerializedCache.getInstance().take(queueCache, PlayQueue.class);
-        if (newQueue == null) {
-            return null;
-        }
-        return newQueue;
+        return SerializedCache.getInstance().take(queueCache, PlayQueue.class);
     }
 
     private void initUIsForCurrentPlayerType() {
