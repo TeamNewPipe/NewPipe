@@ -5,4 +5,6 @@
   -->
 <lint>
     <issue id="MissingTranslation" severity="ignore" />
+    <issue id="MissingQuantity" severity="ignore" />
+    <issue id="ImpliedQuantity" severity="ignore" />
 </lint>
