@@ -16,6 +16,7 @@ import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -31,7 +32,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.view.menu.ActionMenuItemView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.collection.SparseArrayCompat;
 import androidx.documentfile.provider.DocumentFile;
@@ -113,7 +113,7 @@ public class DownloadDialog extends DialogFragment
     private StoredDirectoryHelper mainStorageAudio = null;
     private StoredDirectoryHelper mainStorageVideo = null;
     private DownloadManager downloadManager = null;
-    private ActionMenuItemView okButton = null;
+    private MenuItem okButton = null;
     private Context context = null;
     private boolean askForSavePath;
 
