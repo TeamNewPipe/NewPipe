@@ -646,6 +646,12 @@ public final class VideoDetailFragment
     protected void initListeners() {
         super.initListeners();
 
+        // Workaround for #5600
+        // Forcefully catch click events uncaught by children because otherwise
+        // they will be caught by underlying view and "click through" will happen
+        binding.getRoot().setOnClickListener(v -> { });
+        binding.getRoot().setOnLongClickListener(v -> true);
+
         setOnClickListeners();
         setOnLongClickListeners();
 
