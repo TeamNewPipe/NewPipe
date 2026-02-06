@@ -864,7 +864,7 @@ public class DownloadMission extends Mission {
             // Alternative approaches are to either downscale a high res image or
             // to download the correct size depending on the chosen post-processing algorithm.
             final String thumbnailUrl = ImageStrategy.choosePreferredImage(
-                    images, PreferredImageQuality.MEDIUM);
+                    images, PreferredImageQuality.HIGH);
             // TODO: get context from somewhere else
             thumbnail = CoilHelper.INSTANCE.loadBitmapBlocking(App.getInstance(), thumbnailUrl);
             thumbnailFetched = true;
