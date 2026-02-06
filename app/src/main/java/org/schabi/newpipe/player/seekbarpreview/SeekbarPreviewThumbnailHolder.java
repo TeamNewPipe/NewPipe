@@ -41,7 +41,7 @@ public class SeekbarPreviewThumbnailHolder {
     private UUID currentUpdateRequestIdentifier = UUID.randomUUID();
 
     public void resetFrom(@NonNull final Context context, final List<Frameset> framesets) {
-        final int seekbarPreviewType = getSeekbarPreviewThumbnailType(context);
+        final var seekbarPreviewType = getSeekbarPreviewThumbnailType(context);
 
         final UUID updateRequestIdentifier = UUID.randomUUID();
         this.currentUpdateRequestIdentifier = updateRequestIdentifier;
@@ -59,7 +59,8 @@ public class SeekbarPreviewThumbnailHolder {
         executorService.shutdown();
     }
 
-    private void resetFromAsync(final int seekbarPreviewType, final List<Frameset> framesets,
+    private void resetFromAsync(final SeekbarPreviewThumbnailType seekbarPreviewType,
+                                final List<Frameset> framesets,
                                 final UUID updateRequestIdentifier) {
         Log.d(TAG, "Clearing seekbarPreviewData");
         synchronized (seekbarPreviewData) {
@@ -90,7 +91,7 @@ public class SeekbarPreviewThumbnailHolder {
     }
 
     private Frameset getFrameSetForType(final List<Frameset> framesets,
-                                        final int seekbarPreviewType) {
+                                        final SeekbarPreviewThumbnailType seekbarPreviewType) {
         if (seekbarPreviewType == SeekbarPreviewThumbnailType.HIGH_QUALITY) {
             Log.d(TAG, "Strategy for seekbarPreviewData: high quality");
             return framesets.stream()
