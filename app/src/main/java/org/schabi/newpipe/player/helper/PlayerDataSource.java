@@ -18,12 +18,10 @@ import com.google.android.exoplayer2.source.smoothstreaming.DefaultSsChunkSource
 import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSource;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
 import com.google.android.exoplayer2.upstream.TransferListener;
 import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor;
 import com.google.android.exoplayer2.upstream.cache.SimpleCache;
 
-import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubeOtfDashManifestCreator;
 import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubePostLiveStreamDvrDashManifestCreator;
 import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubeProgressiveDashManifestCreator;
@@ -86,20 +84,22 @@ public class PlayerDataSource {
         // make sure the static cache was created: needed by CacheFactories below
         instantiateCacheIfNeeded(context);
 
-        // generic data source factories use DefaultHttpDataSource.Factory
+        // generic data source factories now use YoutubeHttpDataSource.Factory to support proxies
+        final YoutubeHttpDataSource.Factory youtubeHttpDataSourceFactory =
+                getYoutubeHttpDataSourceFactory(context, false, false);
         cachelessDataSourceFactory = new DefaultDataSource.Factory(context,
-                new DefaultHttpDataSource.Factory().setUserAgent(DownloaderImpl.USER_AGENT))
+                youtubeHttpDataSourceFactory)
                 .setTransferListener(transferListener);
         cacheDataSourceFactory = new CacheFactory(context, transferListener, cache,
-                new DefaultHttpDataSource.Factory().setUserAgent(DownloaderImpl.USER_AGENT));
+                youtubeHttpDataSourceFactory);
 
         // YouTube-specific data source factories use getYoutubeHttpDataSourceFactory()
         ytHlsCacheDataSourceFactory = new CacheFactory(context, transferListener, cache,
-                getYoutubeHttpDataSourceFactory(false, false));
+                getYoutubeHttpDataSourceFactory(context, false, false));
         ytDashCacheDataSourceFactory = new CacheFactory(context, transferListener, cache,
-                getYoutubeHttpDataSourceFactory(true, true));
+                getYoutubeHttpDataSourceFactory(context, true, true));
         ytProgressiveDashCacheDataSourceFactory = new CacheFactory(context, transferListener, cache,
-                getYoutubeHttpDataSourceFactory(false, true));
+                getYoutubeHttpDataSourceFactory(context, false, true));
 
         // set the maximum size to manifest creators
         YoutubeProgressiveDashManifestCreator.getCache().setMaximumSize(MAX_MANIFEST_CACHE_SIZE);
@@ -198,9 +198,10 @@ public class PlayerDataSource {
     }
 
     private static YoutubeHttpDataSource.Factory getYoutubeHttpDataSourceFactory(
+            final Context context,
             final boolean rangeParameterEnabled,
             final boolean rnParameterEnabled) {
-        return new YoutubeHttpDataSource.Factory()
+        return new YoutubeHttpDataSource.Factory(context)
                 .setRangeParameterEnabled(rangeParameterEnabled)
                 .setRnParameterEnabled(rnParameterEnabled);
     }
