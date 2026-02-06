@@ -47,6 +47,9 @@ abstract class BasePlayerGestureListener(
             startMultiDoubleTap(event)
         } else if (portion === DisplayPortion.MIDDLE) {
             player.playPause()
+            if (player.isPlaying()) {
+                playerUi.hideControls(0, 0)
+            }
         }
     }
 
