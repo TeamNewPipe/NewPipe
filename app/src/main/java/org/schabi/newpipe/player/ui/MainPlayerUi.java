@@ -77,6 +77,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutChangeListener {
     private static final String TAG = MainPlayerUi.class.getSimpleName();
@@ -749,13 +750,13 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     }
 
     private int getNearestStreamSegmentPosition(final long playbackPosition) {
-        int nearestPosition = 0;
         final List<StreamSegment> segments = player.getCurrentStreamInfo()
                 .map(StreamInfo::getStreamSegments)
                 .orElse(Collections.emptyList());
 
-        for (int i = 0; i < segments.size(); i++) {
-            if (segments.get(i).getStartTimeSeconds() * 1000L > playbackPosition) {
+        int nearestPosition = 0;
+        for (final var segment : segments) {
+            if (segment.getStartTimeSeconds() * 1000L > playbackPosition) {
                 break;
             }
             nearestPosition++;
@@ -816,22 +817,13 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         }
 
         final int currentStream = playQueue.getIndex();
-        int before = 0;
-        int after = 0;
-
         final List<PlayQueueItem> streams = playQueue.getStreams();
-        final int nStreams = streams.size();
 
-        for (int i = 0; i < nStreams; i++) {
-            if (i < currentStream) {
-                before += streams.get(i).getDuration();
-            } else {
-                after += streams.get(i).getDuration();
-            }
-        }
+        final long before = streams.subList(0, currentStream).stream()
+                .collect(Collectors.summingLong(PlayQueueItem::getDuration)) * 1000;
 
-        before *= 1000;
-        after *= 1000;
+        final long after = streams.subList(currentStream, streams.size()).stream()
+                .collect(Collectors.summingLong(PlayQueueItem::getDuration)) * 1000;
 
         binding.itemsListHeaderDuration.setText(
                 String.format("%s/%s",
