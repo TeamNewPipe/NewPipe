@@ -562,11 +562,7 @@ public final class Player implements PlaybackListener, Listener {
         if (queueCache == null) {
             return null;
         }
-        final PlayQueue newQueue = SerializedCache.getInstance().take(queueCache, PlayQueue.class);
-        if (newQueue == null) {
-            return null;
-        }
-        return newQueue;
+        return SerializedCache.getInstance().take(queueCache, PlayQueue.class);
     }
 
     private void initUIsForCurrentPlayerType() {
@@ -2033,7 +2029,7 @@ public final class Player implements PlaybackListener, Listener {
         // resolver was called when the app was in background, the app will only stream audio when
         // the user come back to the app and will never fetch the video stream.
         // Note that the video is not fetched when the app is in background because the video
-        // renderer is fully disabled (see useVideoSource method), except for HLS streams
+        // renderer is fully disabled (see useVideoAndSubtitles method), except for HLS streams
         // (see https://github.com/google/ExoPlayer/issues/9282).
         return videoResolver.resolve(info);
     }
@@ -2214,13 +2210,23 @@ public final class Player implements PlaybackListener, Listener {
 
         isAudioOnly = !videoAndSubtitlesEnabled;
 
+        final var item = playQueue.getItem();
+        final boolean hasPendingRecovery =
+                item != null && item.getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET;
+        final boolean hasTimeline =
+                !exoPlayerIsNull() && !simpleExoPlayer.getCurrentTimeline().isEmpty();
+
+
         getCurrentStreamInfo().ifPresentOrElse(info -> {
             // In case we don't know the source type, fall back to either video-with-audio, or
             // audio-only source type
             final SourceType sourceType = videoResolver.getStreamSourceType()
                     .orElse(SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY);
 
-            setRecovery(); // making sure to save playback position before reloadPlayQueueManager()
+            if (hasTimeline || !hasPendingRecovery) {
+                // making sure to save playback position before reloadPlayQueueManager()
+                setRecovery();
+            }
 
             if (playQueueManagerReloadingNeeded(sourceType, info, getVideoRendererIndex())) {
                 reloadPlayQueueManager();
@@ -2233,7 +2239,10 @@ public final class Player implements PlaybackListener, Listener {
             Reload the play queue manager in this case, which is the behavior when we don't know the
             index of the video renderer or playQueueManagerReloadingNeeded returns true
             */
-            setRecovery(); // making sure to save playback position before reloadPlayQueueManager()
+            if (hasTimeline || !hasPendingRecovery) {
+                // making sure to save playback position before reloadPlayQueueManager()
+                setRecovery();
+            }
             reloadPlayQueueManager();
         });
 

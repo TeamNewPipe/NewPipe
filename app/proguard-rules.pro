@@ -54,3 +54,8 @@
 -keepclasseswithmembers class org.schabi.newpipe.** {
     kotlinx.serialization.KSerializer serializer(...);
 }
+
+# Prevent R8 from stripping or renaming Protobuf internal fields
+-keepclassmembers class * extends com.google.protobuf.GeneratedMessageLite {
+    <fields>;
+}

@@ -4,6 +4,8 @@
  */
 import com.mikepenz.aboutlibraries.plugin.DuplicateMode
 
+import com.android.build.api.dsl.ApplicationExtension
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -37,7 +39,7 @@ kotlin {
     }
 }
 
-android {
+configure<ApplicationExtension> {
     compileSdk = 36
     namespace = "org.schabi.newpipe"
 
@@ -47,9 +49,9 @@ android {
         minSdk = 23
         targetSdk = 35
 
-        versionCode = System.getProperty("versionCodeOverride")?.toInt() ?: 1007
+        versionCode = System.getProperty("versionCodeOverride")?.toInt() ?: 1008
 
-        versionName = "0.28.2"
+        versionName = "0.28.3"
         System.getProperty("versionNameSuffix")?.let { versionNameSuffix = it }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -83,7 +85,10 @@ android {
             }
             isMinifyEnabled = true
             isShrinkResources = false // disabled to fix F-Droid"s reproducible build
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 
@@ -105,7 +110,7 @@ android {
 
     sourceSets {
         getByName("androidTest") {
-            assets.srcDir("$projectDir/schemas")
+            assets.directories += "$projectDir/schemas"
         }
     }
 
@@ -117,6 +122,7 @@ android {
         viewBinding = true
         compose = true
         buildConfig = true
+        resValues = true
     }
 
     packaging {
