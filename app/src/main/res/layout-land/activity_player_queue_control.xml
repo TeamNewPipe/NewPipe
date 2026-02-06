@@ -122,8 +122,8 @@
                 android:focusable="true"
                 android:scaleType="fitCenter"
                 android:src="@drawable/exo_controls_rewind"
-                android:tint="?attr/colorAccent"
-                android:contentDescription="@string/rewind" />
+                android:contentDescription="@string/rewind"
+                app:tint="?attr/colorAccent" />
 
             <ImageButton
                 android:id="@+id/control_play_pause"
@@ -139,8 +139,8 @@
                 android:focusable="true"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_pause"
-                android:tint="?attr/colorAccent"
-                android:contentDescription="@string/pause" />
+                android:contentDescription="@string/pause"
+                app:tint="?attr/colorAccent" />
 
             <ProgressBar
                 android:id="@+id/control_progress_bar"
@@ -172,8 +172,8 @@
                 android:focusable="true"
                 android:scaleType="fitCenter"
                 android:src="@drawable/exo_controls_fastforward"
-                android:tint="?attr/colorAccent"
-                android:contentDescription="@string/forward" />
+                android:contentDescription="@string/forward"
+                app:tint="?attr/colorAccent" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -215,8 +215,8 @@
                 android:focusable="true"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_repeat"
-                android:tint="?attr/colorAccent"
-                android:contentDescription="@string/notification_action_repeat" />
+                android:contentDescription="@string/notification_action_repeat"
+                app:tint="?attr/colorAccent" />
 
             <View
                 android:id="@+id/anchor"
@@ -236,8 +236,8 @@
                 android:focusable="true"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_shuffle"
-                android:tint="?attr/colorAccent"
-                android:contentDescription="@string/notification_action_shuffle" />
+                android:contentDescription="@string/notification_action_shuffle"
+                app:tint="?attr/colorAccent" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/control_forward"

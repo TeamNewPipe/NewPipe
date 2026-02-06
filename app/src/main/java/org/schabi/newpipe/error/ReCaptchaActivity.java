@@ -127,6 +127,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         saveCookiesAndFinish();
     }
 

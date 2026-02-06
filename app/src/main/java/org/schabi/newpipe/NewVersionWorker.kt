@@ -82,7 +82,9 @@ class NewVersionWorker(
             )
 
         val notificationManager = NotificationManagerCompat.from(applicationContext)
-        notificationManager.notify(2000, notificationBuilder.build())
+        if (notificationManager.areNotificationsEnabled()) {
+            notificationManager.notify(2000, notificationBuilder.build())
+        }
     }
 
     @Throws(IOException::class, ReCaptchaException::class)

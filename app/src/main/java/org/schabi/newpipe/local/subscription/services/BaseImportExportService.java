@@ -144,7 +144,9 @@ public abstract class BaseImportExportService extends Service {
             notificationBuilder.setContentText(text);
         }
 
-        notificationManager.notify(getNotificationId(), notificationBuilder.build());
+        if (notificationManager.areNotificationsEnabled()) {
+            notificationManager.notify(getNotificationId(), notificationBuilder.build());
+        }
     }
 
     protected void stopService() {
@@ -174,7 +176,10 @@ public abstract class BaseImportExportService extends Service {
                 .setContentTitle(title)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(textOrEmpty))
                 .setContentText(textOrEmpty);
-        notificationManager.notify(getNotificationId(), notificationBuilder.build());
+
+        if (notificationManager.areNotificationsEnabled()) {
+            notificationManager.notify(getNotificationId(), notificationBuilder.build());
+        }
     }
 
     protected NotificationCompat.Builder createNotification() {

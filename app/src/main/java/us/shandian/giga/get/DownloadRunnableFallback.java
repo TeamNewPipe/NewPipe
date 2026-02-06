@@ -21,7 +21,7 @@ import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_FORBIDDEN;
  * Single-threaded fallback mode
  */
 public class DownloadRunnableFallback extends Thread {
-    private static final String TAG = "DownloadRunnableFallback";
+    private static final String TAG = DownloadRunnableFallback.class.getSimpleName();
 
     private final DownloadMission mMission;
 

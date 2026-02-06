@@ -48,7 +48,7 @@ public final class KeyboardUtil {
         final InputMethodManager imm = ContextCompat.getSystemService(activity,
                 InputMethodManager.class);
         imm.hideSoftInputFromWindow(editText.getWindowToken(),
-                InputMethodManager.RESULT_UNCHANGED_SHOWN);
+                InputMethodManager.HIDE_NOT_ALWAYS);
 
         editText.clearFocus();
     }

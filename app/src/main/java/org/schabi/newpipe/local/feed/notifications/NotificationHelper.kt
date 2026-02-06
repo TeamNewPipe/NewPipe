@@ -92,8 +92,10 @@ class NotificationHelper(val context: Context) {
                 // Show individual stream notifications, set channel icon only if there is actually
                 // one
                 showStreamNotifications(newStreams, data.serviceId, data.url, bitmap)
-                // Show summary notification
-                manager.notify(data.pseudoId, summaryBuilder.build())
+                // Show summary notification if enabled
+                if (manager.areNotificationsEnabled()) {
+                    manager.notify(data.pseudoId, summaryBuilder.build())
+                }
 
                 iconLoadingTargets.remove(this) // allow it to be garbage-collected
             }
@@ -101,8 +103,10 @@ class NotificationHelper(val context: Context) {
             override fun onBitmapFailed(e: Exception, errorDrawable: Drawable) {
                 // Show individual stream notifications
                 showStreamNotifications(newStreams, data.serviceId, data.url, null)
-                // Show summary notification
-                manager.notify(data.pseudoId, summaryBuilder.build())
+                // Show summary notification if enabled
+                if (manager.areNotificationsEnabled()) {
+                    manager.notify(data.pseudoId, summaryBuilder.build())
+                }
                 iconLoadingTargets.remove(this) // allow it to be garbage-collected
             }
 
@@ -126,7 +130,9 @@ class NotificationHelper(val context: Context) {
     ) {
         for (stream in newStreams) {
             val notification = createStreamNotification(stream, serviceId, channelUrl, channelIcon)
-            manager.notify(stream.url.hashCode(), notification)
+            if (manager.areNotificationsEnabled()) {
+                manager.notify(stream.url.hashCode(), notification)
+            }
         }
     }
 
