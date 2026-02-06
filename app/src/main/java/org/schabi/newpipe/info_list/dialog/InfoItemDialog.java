@@ -329,6 +329,7 @@ public final class InfoItemDialog {
             );
             addPlayWithKodiEntryIfNeeded();
             addMarkAsWatchedEntryIfNeeded();
+            addEntry(StreamDialogDefaultEntry.BLOCK_CHANNEL);
             addEntry(StreamDialogDefaultEntry.SHOW_CHANNEL_DETAILS);
             return this;
         }
