@@ -15,6 +15,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueEvent.RecoveryEvent
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.RemoveEvent
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.ReorderEvent
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.SelectEvent
+import org.schabi.newpipe.player.playqueue.PlayQueueItem
 
 /**
  * PlayQueue is responsible for keeping track of a list of streams and the index of
@@ -390,7 +391,7 @@ abstract class PlayQueue internal constructor(
      */
     @Synchronized
     fun unsetRecovery(index: Int) {
-        setRecovery(index, Long.Companion.MIN_VALUE)
+        setRecovery(index, PlayQueueItem.RECOVERY_UNSET)
     }
 
     /**

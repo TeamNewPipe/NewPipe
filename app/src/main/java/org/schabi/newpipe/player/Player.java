@@ -480,7 +480,7 @@ public final class Player implements PlaybackListener, Listener {
                 && newQueue.size() == 1 && newQueue.getItem() != null
                 && playQueue != null && playQueue.size() == 1 && playQueue.getItem() != null
                 && newQueue.getItem().equals(playQueue.getItem())
-                && newQueue.getItem().getRecoveryPosition() != Long.MIN_VALUE) {
+                && newQueue.getItem().getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET) {
             // Player can have state = IDLE when playback is stopped or failed
             // and we should retry in this case
             if (simpleExoPlayer.getPlaybackState()
@@ -509,7 +509,7 @@ public final class Player implements PlaybackListener, Listener {
                 && (playQueue == null || !playQueue.equalStreamsAndIndex(newQueue))
                 && !newQueue.isEmpty()
                 && newQueue.getItem() != null
-                && newQueue.getItem().getRecoveryPosition() == Long.MIN_VALUE) {
+                && newQueue.getItem().getRecoveryPosition() == PlayQueueItem.RECOVERY_UNSET) {
             databaseUpdateDisposable.add(recordManager.loadStreamState(newQueue.getItem())
                     .observeOn(AndroidSchedulers.mainThread())
                     // Do not place initPlayback() in doFinally() because
@@ -1700,7 +1700,7 @@ public final class Player implements PlaybackListener, Listener {
             }
 
             // sync the player index with the queue index, and seek to the correct position
-            if (item.getRecoveryPosition() != Long.MIN_VALUE) {
+            if (item.getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET) {
                 simpleExoPlayer.seekTo(playQueueIndex, item.getRecoveryPosition());
                 playQueue.unsetRecovery(playQueueIndex);
             } else {
