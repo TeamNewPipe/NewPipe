@@ -151,12 +151,7 @@ fun LongPressMenu(
             onDismissRequest = { showEditor = false },
             properties = DialogProperties(usePlatformDefaultWidth = false)
         ) {
-            ScaffoldWithToolbar(
-                title = stringResource(R.string.long_press_menu_actions_editor),
-                onBackClick = { showEditor = false }
-            ) { paddingValues ->
-                LongPressMenuEditor(modifier = Modifier.padding(paddingValues))
-            }
+            LongPressMenuEditorPage { showEditor = false }
         }
     } else {
         val enabledLongPressActions by remember {
