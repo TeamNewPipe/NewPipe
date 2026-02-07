@@ -611,6 +611,8 @@ public final class Player implements PlaybackListener, Listener {
                 R.string.playback_skip_silence_key), getPlaybackSkipSilence());
         final PlaybackParameters savedParameters = retrievePlaybackParametersFromPrefs(this);
         setPlaybackParameters(savedParameters.speed, savedParameters.pitch, playbackSkipSilence);
+        // synchronize the player shuffled state with the queue state
+        simpleExoPlayer.setShuffleModeEnabled(queue.isShuffled());
 
         playQueue = queue;
         playQueue.init();

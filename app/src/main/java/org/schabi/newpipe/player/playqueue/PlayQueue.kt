@@ -7,6 +7,7 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import java.io.Serializable
 import java.util.Collections
 import java.util.concurrent.atomic.AtomicInteger
+import kotlinx.coroutines.reactive.awaitFirst
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.AppendEvent
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.ErrorEvent
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.InitEvent
@@ -432,6 +433,59 @@ abstract class PlayQueue internal constructor(
         history.add(currentItem)
 
         broadcast(ReorderEvent(originalIndex, 0))
+    }
+
+    /**
+     * Repeatedly calls [fetch] until [isComplete] is `true` or some error happens, then shuffles
+     * the whole queue without preserving [index]. [fetch] will be called at most 10 times to avoid
+     * infinite loops, e.g. in case the playlist being fetched is infinite. This must be called only
+     * to initialize the queue in an already shuffled state, and must not be called when the queue
+     * is already being used e.g. by the player. The preconditions, which are also maintained as
+     * postconditions, are thus that the queue is in a disposed / uninitialized state, and that
+     * [index] is 0.
+     */
+    suspend fun fetchAllAndShuffle() {
+        if (eventBroadcast != null || this.index != 0) {
+            throw UnsupportedOperationException(
+                "Can call fetchAllAndShuffle() only on an uninitialized PlayQueue"
+            )
+        }
+
+        if (!isComplete) {
+            init()
+            var fetchCount = 0
+            while (!isComplete) {
+                if (fetchCount >= 10) {
+                    // Maybe the playlist is infinite, and anyway we don't want to overload the
+                    // servers by making too many requests. For reference, making 10 fetch requests
+                    // will mean fetching at most 1000 items on YouTube playlists, though this
+                    // changes among services.
+                    break
+                }
+                fetchCount += 1
+
+                fetch()
+
+                // Since `fetch()` does not return a Completable we can listen on, we have to wait
+                // for events in `broadcastReceiver` produced by `fetch()`. This works reliably
+                // because all `fetch()` implementations are supposed to notify all events (both
+                // completion and errors) to `broadcastReceiver`.
+                val event = broadcastReceiver!!
+                    .filter { !InitEvent::class.isInstance(it) }
+                    .awaitFirst()
+                if (event !is AppendEvent || event.amount <= 0) {
+                    break // an AppendEvent with amount 0 indicates that an error occurred
+                }
+            }
+            dispose()
+        }
+
+        // Can't shuffle a list that's empty or only has one element
+        if (size() <= 2) {
+            return
+        }
+        backup = streams.toMutableList()
+        streams.shuffle()
     }
 
     /**

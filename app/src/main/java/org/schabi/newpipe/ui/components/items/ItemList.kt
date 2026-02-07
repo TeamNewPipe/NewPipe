@@ -5,10 +5,7 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
@@ -59,20 +56,6 @@ fun ItemList(
         }
     }
 
-    // Handle long clicks for stream items
-    // TODO: Adjust the menu display depending on where it was triggered
-    var selectedStream by remember { mutableStateOf<StreamInfoItem?>(null) }
-    val onLongClick = remember {
-        { stream: StreamInfoItem ->
-            selectedStream = stream
-        }
-    }
-    val onDismissPopup = remember {
-        {
-            selectedStream = null
-        }
-    }
-
     val showProgress = DependentPreferenceHelper.getPositionsInListsEnabled(context)
     val nestedScrollModifier = Modifier.nestedScroll(rememberNestedScrollInteropConnection())
 
@@ -89,15 +72,7 @@ fun ItemList(
                     val item = items[it]
 
                     if (item is StreamInfoItem) {
-                        val isSelected = selectedStream == item
-                        StreamListItem(
-                            item,
-                            showProgress,
-                            isSelected,
-                            onClick,
-                            onLongClick,
-                            onDismissPopup
-                        )
+                        StreamListItem(item, showProgress, onClick)
                     } else if (item is PlaylistInfoItem) {
                         PlaylistListItem(item, onClick)
                     }

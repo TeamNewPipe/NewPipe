@@ -3,9 +3,9 @@ package org.schabi.newpipe.fragments.list.playlist;
 import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
+import static org.schabi.newpipe.ui.components.menu.LongPressMenuKt.openLongPressMenuInActivity;
 import static org.schabi.newpipe.util.ServiceHelper.getServiceById;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -42,12 +42,12 @@ import org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper;
 import org.schabi.newpipe.extractor.stream.Description;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
-import org.schabi.newpipe.info_list.dialog.InfoItemDialog;
-import org.schabi.newpipe.info_list.dialog.StreamDialogDefaultEntry;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
+import org.schabi.newpipe.ui.components.menu.LongPressAction;
+import org.schabi.newpipe.ui.components.menu.LongPressable;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -150,21 +150,11 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
 
     @Override
     protected void showInfoItemDialog(final StreamInfoItem item) {
-        final Context context = getContext();
-        try {
-            final InfoItemDialog.Builder dialogBuilder =
-                    new InfoItemDialog.Builder(getActivity(), context, this, item);
-
-            dialogBuilder
-                    .setAction(
-                            StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND,
-                            (f, infoItem) -> NavigationHelper.playOnBackgroundPlayer(
-                                    context, getPlayQueueStartingAt(infoItem), true))
-                    .create()
-                    .show();
-        } catch (final IllegalArgumentException e) {
-            InfoItemDialog.Builder.reportErrorDuringInitialization(e, item);
-        }
+        openLongPressMenuInActivity(
+            activity,
+            LongPressable.fromStreamInfoItem(item),
+            LongPressAction.fromStreamInfoItem(item, () -> getPlayQueueStartingAt(item))
+        );
     }
 
     @Override
@@ -247,15 +237,15 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
                 break;
             case R.id.menu_item_append_playlist:
                 if (currentInfo != null) {
-                    disposables.add(PlaylistDialog.createCorrespondingDialog(
-                            getContext(),
-                            getPlayQueue()
-                                    .getStreams()
-                                    .stream()
-                                    .map(StreamEntity::new)
-                                    .collect(Collectors.toList()),
-                            dialog -> dialog.show(getFM(), TAG)
-                    ));
+                    disposables.add(
+                            PlaylistDialog.createCorrespondingDialog(
+                                    getContext(),
+                                    getPlayQueue()
+                                            .getStreams()
+                                            .stream()
+                                            .map(StreamEntity::new)
+                                            .collect(Collectors.toList())
+                            ).subscribe(dialog -> dialog.show(getFM(), TAG)));
                 }
                 break;
             default:
