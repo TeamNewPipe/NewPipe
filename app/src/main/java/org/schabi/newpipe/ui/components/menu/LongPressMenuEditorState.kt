@@ -20,6 +20,7 @@ import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.type
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
+import kotlin.collections.ifEmpty
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
@@ -49,7 +50,22 @@ class LongPressMenuEditorState(
         // We get the current arrangement once and do not observe on purpose.
         val isHeaderEnabled = loadIsHeaderEnabledFromSettings(context)
         val actionArrangement = loadLongPressActionArrangementFromSettings(context)
-        sequence {
+        return@run buildItemsInList(isHeaderEnabled, actionArrangement).toMutableStateList()
+    }
+
+    // variables for handling drag, focus, and autoscrolling when finger is at top/bottom
+    var activeDragItem by mutableStateOf<ItemInList?>(null)
+    var activeDragPosition by mutableStateOf(IntOffset.Zero)
+    var activeDragSize by mutableStateOf(IntSize.Zero)
+    var currentlyFocusedItem by mutableIntStateOf(-1)
+    var autoScrollJob by mutableStateOf<Job?>(null)
+    var autoScrollSpeed by mutableFloatStateOf(0f)
+
+    private fun buildItemsInList(
+        isHeaderEnabled: Boolean,
+        actionArrangement: List<LongPressAction.Type>
+    ): List<ItemInList> {
+        return sequence {
             yield(ItemInList.EnabledCaption)
             if (isHeaderEnabled) {
                 yield(ItemInList.HeaderBox)
@@ -69,16 +85,13 @@ class LongPressMenuEditorState(
                     .map { ItemInList.Action(it) }
                     .ifEmpty { if (isHeaderEnabled) listOf(ItemInList.NoneMarker) else listOf() }
             )
-        }.toList().toMutableStateList()
+        }.toList()
     }
 
-    // variables for handling drag, focus, and autoscrolling when finger is at top/bottom
-    var activeDragItem by mutableStateOf<ItemInList?>(null)
-    var activeDragPosition by mutableStateOf(IntOffset.Zero)
-    var activeDragSize by mutableStateOf(IntSize.Zero)
-    var currentlyFocusedItem by mutableIntStateOf(-1)
-    var autoScrollJob by mutableStateOf<Job?>(null)
-    var autoScrollSpeed by mutableFloatStateOf(0f)
+    fun resetToDefaults() {
+        items.clear()
+        items.addAll(buildItemsInList(true, LongPressAction.Type.DefaultEnabledActions))
+    }
 
     private fun findItemForOffsetOrClosestInRow(offset: IntOffset): LazyGridItemInfo? {
         var closestItemInRow: LazyGridItemInfo? = null

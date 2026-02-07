@@ -38,16 +38,24 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArtTrack
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.DragHandle
+import androidx.compose.material.icons.filled.RestartAlt
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.focusTarget
@@ -66,6 +74,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import kotlin.math.floor
 import org.schabi.newpipe.R
+import org.schabi.newpipe.ui.components.common.ScaffoldWithToolbar
 import org.schabi.newpipe.ui.detectDragGestures
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.letIf
@@ -87,7 +96,7 @@ import org.schabi.newpipe.util.text.FixedHeightCenteredText
  * @author This composable was originally copied from FlorisBoard.
  */
 @Composable
-fun LongPressMenuEditor(modifier: Modifier = Modifier) {
+fun LongPressMenuEditorPage(onBackClick: () -> Unit) {
     val context = LocalContext.current
     val gridState = rememberLazyGridState()
     val coroutineScope = rememberCoroutineScope()
@@ -101,59 +110,100 @@ fun LongPressMenuEditor(modifier: Modifier = Modifier) {
         }
     }
 
-    // test scrolling on Android TV by adding `.padding(horizontal = 350.dp)` here
-    BoxWithConstraints(modifier) {
-        // otherwise we wouldn't know the amount of columns to handle the Up/Down key events
-        val columns = maxOf(1, floor(this.maxWidth / MinButtonWidth).toInt())
+    ScaffoldWithToolbar(
+        title = stringResource(R.string.long_press_menu_actions_editor),
+        onBackClick = onBackClick,
+        actions = {
+            ResetToDefaultsButton(state::resetToDefaults)
+        }
+    ) { paddingValues ->
+        // test scrolling on Android TV by adding `.padding(horizontal = 350.dp)` here
+        BoxWithConstraints(Modifier.padding(paddingValues)) {
+            // otherwise we wouldn't know the amount of columns to handle the Up/Down key events
+            val columns = maxOf(1, floor(this.maxWidth / MinButtonWidth).toInt())
 
-        LazyVerticalGrid(
-            modifier = Modifier
-                .safeDrawingPadding()
-                .detectDragGestures(
-                    beginDragGesture = state::beginDragGesture,
-                    handleDragGestureChange = state::handleDragGestureChange,
-                    endDragGesture = state::completeDragGestureAndCleanUp
-                )
-                // `.focusTarget().onKeyEvent()` handles DPAD on Android TVs
-                .focusTarget()
-                .onKeyEvent { event -> state.onKeyEvent(event, columns) },
-            // same width as the LongPressMenu
-            columns = GridCells.Adaptive(MinButtonWidth),
-            userScrollEnabled = false,
-            state = gridState
-        ) {
-            itemsIndexed(
-                state.items,
-                key = { _, item -> item.stableUniqueKey() },
-                span = { _, item -> GridItemSpan(item.columnSpan ?: maxLineSpan) }
-            ) { i, item ->
-                ItemInListUi(
-                    item = item,
-                    selected = state.currentlyFocusedItem == i,
-                    // We only want placement animations: fade in/out animations interfere with
-                    // items being replaced by a drag marker while being dragged around, and a fade
-                    // in/out animation there does not make sense as the item was just "picked up".
-                    // Furthermore there are strange moving animation artifacts when moving and
-                    // releasing items quickly before their fade-out animation finishes.
-                    modifier = Modifier.animateItem(fadeInSpec = null, fadeOutSpec = null)
-                )
-            }
-        }
-        state.activeDragItem?.let { activeDragItem ->
-            // draw it the same size as the selected item,
-            val size = with(LocalDensity.current) {
-                remember(state.activeDragSize) { state.activeDragSize.toSize().toDpSize() }
-            }
-            ItemInListUi(
-                item = activeDragItem,
-                selected = true,
+            LazyVerticalGrid(
                 modifier = Modifier
-                    .size(size)
-                    .offset { state.activeDragPosition }
-                    .offset(-size.width / 2, -size.height / 2)
-                    .offset((-24).dp, (-24).dp)
-            )
+                    .safeDrawingPadding()
+                    .detectDragGestures(
+                        beginDragGesture = state::beginDragGesture,
+                        handleDragGestureChange = state::handleDragGestureChange,
+                        endDragGesture = state::completeDragGestureAndCleanUp
+                    )
+                    // `.focusTarget().onKeyEvent()` handles DPAD on Android TVs
+                    .focusTarget()
+                    .onKeyEvent { event -> state.onKeyEvent(event, columns) },
+                // same width as the LongPressMenu
+                columns = GridCells.Adaptive(MinButtonWidth),
+                userScrollEnabled = false,
+                state = gridState
+            ) {
+                itemsIndexed(
+                    state.items,
+                    key = { _, item -> item.stableUniqueKey() },
+                    span = { _, item -> GridItemSpan(item.columnSpan ?: maxLineSpan) }
+                ) { i, item ->
+                    ItemInListUi(
+                        item = item,
+                        selected = state.currentlyFocusedItem == i,
+                        // We only want placement animations: fade in/out animations interfere with
+                        // items being replaced by a drag marker while being dragged around, and a
+                        // fade in/out animation there does not make sense as the item was just
+                        // "picked up". Furthermore there are strange moving animation artifacts
+                        // when moving and releasing items quickly before their fade-out animation
+                        // finishes.
+                        modifier = Modifier.animateItem(fadeInSpec = null, fadeOutSpec = null)
+                    )
+                }
+            }
+            state.activeDragItem?.let { activeDragItem ->
+                // draw it the same size as the selected item,
+                val size = with(LocalDensity.current) {
+                    remember(state.activeDragSize) { state.activeDragSize.toSize().toDpSize() }
+                }
+                ItemInListUi(
+                    item = activeDragItem,
+                    selected = true,
+                    modifier = Modifier
+                        .size(size)
+                        .offset { state.activeDragPosition }
+                        .offset(-size.width / 2, -size.height / 2)
+                        .offset((-24).dp, (-24).dp)
+                )
+            }
         }
+    }
+}
+
+@Composable
+private fun ResetToDefaultsButton(onClick: () -> Unit) {
+    var showDialog by rememberSaveable { mutableStateOf(false) }
+
+    if (showDialog) {
+        AlertDialog(
+            onDismissRequest = { showDialog = false },
+            text = { Text(stringResource(R.string.long_press_menu_reset_to_defaults_confirm)) },
+            confirmButton = {
+                TextButton(onClick = {
+                    onClick()
+                    showDialog = false
+                }) {
+                    Text(stringResource(R.string.ok))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showDialog = false }) {
+                    Text(stringResource(R.string.cancel))
+                }
+            }
+        )
+    }
+
+    IconButton(onClick = { showDialog = true }) {
+        Icon(
+            imageVector = Icons.Default.RestartAlt,
+            contentDescription = stringResource(R.string.playback_reset)
+        )
     }
 }
 
@@ -290,11 +340,9 @@ private fun ItemInListUi(
 @Preview
 @Preview(device = "spec:width=1080px,height=1000px,dpi=440")
 @Composable
-private fun LongPressMenuEditorPreview() {
+private fun LongPressMenuEditorPagePreview() {
     AppTheme {
-        Surface {
-            LongPressMenuEditor()
-        }
+        LongPressMenuEditorPage { }
     }
 }
 
@@ -313,7 +361,7 @@ private fun QuickActionButtonPreview(
             ItemInListUi(
                 item = itemInList,
                 selected = itemInList.stableUniqueKey() % 2 == 0,
-                modifier = Modifier.width(MinButtonWidth)
+                modifier = Modifier.width(MinButtonWidth * (itemInList.columnSpan ?: 4))
             )
         }
     }
