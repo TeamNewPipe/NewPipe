@@ -1,5 +1,8 @@
 package org.schabi.newpipe.streams;
 
+import android.graphics.Bitmap;
+
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.streams.Mp4DashReader.Hdlr;
 import org.schabi.newpipe.streams.Mp4DashReader.Mdia;
 import org.schabi.newpipe.streams.Mp4DashReader.Mp4DashChunk;
@@ -9,11 +12,21 @@ import org.schabi.newpipe.streams.Mp4DashReader.TrackKind;
 import org.schabi.newpipe.streams.Mp4DashReader.TrunEntry;
 import org.schabi.newpipe.streams.io.SharpStream;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 /**
+ * MP4 muxer that builds a standard MP4 file from DASH fragmented MP4 sources.
+ *
+ * <p>
+ * See <a href="https://atomicparsley.sourceforge.net/mpeg-4files.html">
+ * https://atomicparsley.sourceforge.net/mpeg-4files.html</a> for information on
+ * the MP4 file format and its specification.
+ * </p>
+ *
  * @author kapodamy
  */
 public class Mp4FromDashWriter {
@@ -50,13 +63,20 @@ public class Mp4FromDashWriter {
 
     private final ArrayList<Integer> compatibleBrands = new ArrayList<>(5);
 
-    public Mp4FromDashWriter(final SharpStream... sources) throws IOException {
+    private final StreamInfo streamInfo;
+    private final Bitmap thumbnail;
+
+    public Mp4FromDashWriter(final StreamInfo streamInfo,
+                             final Bitmap thumbnail,
+                             final SharpStream... sources) throws IOException {
         for (final SharpStream src : sources) {
             if (!src.canRewind() && !src.canRead()) {
                 throw new IOException("All sources must be readable and allow rewind");
             }
         }
 
+        this.streamInfo = streamInfo;
+        this.thumbnail = thumbnail;
         sourceTracks = sources;
         readers = new Mp4DashReader[sourceTracks.length];
         readersChunks = new Mp4DashChunk[readers.length];
@@ -712,10 +732,12 @@ public class Mp4FromDashWriter {
 
         makeMvhd(longestTrack);
 
+        makeUdta();
+
         for (int i = 0; i < tracks.length; i++) {
             if (tracks[i].trak.tkhd.matrix.length != 36) {
-                throw
-                    new RuntimeException("bad track matrix length (expected 36) in track n°" + i);
+                throw new RuntimeException(
+                        "bad track matrix length (expected 36) in track n°" + i);
             }
             makeTrak(i, durations[i], defaultMediaTime[i], tablesInfo[i], is64);
         }
@@ -763,7 +785,7 @@ public class Mp4FromDashWriter {
         final int mediaTime;
 
         if (tracks[index].trak.edstElst == null) {
-            // is a audio track ¿is edst/elst optional for audio tracks?
+            // is an audio track; is edst/elst optional for audio tracks?
             mediaTime = 0x00; // ffmpeg set this value as zero, instead of defaultMediaTime
             bMediaRate = 0x00010000;
         } else {
@@ -871,32 +893,207 @@ public class Mp4FromDashWriter {
         return offset + 0x14;
     }
 
+    /**
+     * Creates a Sample Group Description Box.
+     *
+     * <p>
+     * What does it do?
+     * <br>
+     * The table inside of this box gives information about the
+     * characteristics of sample groups. The descriptive information is any other
+     * information needed to define or characterize the sample group.
+     * </p>
+     *
+     * <p>
+     * ¿is replicable this box?
+     * <br>
+     * NO due lacks of documentation about this box but...
+     * most of m4a encoders and ffmpeg uses this box with dummy values (same values)
+     * </p>
+     *
+     * @return byte array with the 'sgpd' box
+     */
     private byte[] makeSgpd() {
-        /*
-         * Sample Group Description Box
-         *
-         * ¿whats does?
-         * the table inside of this box gives information about the
-         * characteristics of sample groups. The descriptive information is any other
-         * information needed to define or characterize the sample group.
-         *
-         * ¿is replicable this box?
-         * NO due lacks of documentation about this box but...
-         * most of m4a encoders and ffmpeg uses this box with dummy values (same values)
-         */
-
         final ByteBuffer buffer = ByteBuffer.wrap(new byte[] {
                 0x00, 0x00, 0x00, 0x1A, // box size
                 0x73, 0x67, 0x70, 0x64, // "sgpd"
                 0x01, 0x00, 0x00, 0x00, // box flags (unknown flag sets)
-                0x72, 0x6F, 0x6C, 0x6C, // ¿¿group type??
-                0x00, 0x00, 0x00, 0x02, // ¿¿??
-                0x00, 0x00, 0x00, 0x01, // ¿¿??
-                (byte) 0xFF, (byte) 0xFF // ¿¿??
+                0x72, 0x6F, 0x6C, 0x6C, // group type??
+                0x00, 0x00, 0x00, 0x02, // ??
+                0x00, 0x00, 0x00, 0x01, // ??
+                (byte) 0xFF, (byte) 0xFF // ??
         });
 
         return buffer.array();
     }
+
+
+    /**
+     * Create the 'udta' box with metadata fields.
+     * @throws IOException
+     */
+    private void makeUdta() throws IOException {
+        if (streamInfo == null) {
+            return;
+        }
+
+        final String title = streamInfo.getName();
+        final String artist = streamInfo.getUploaderName();
+        final String date = streamInfo.getUploadDate().getLocalDateTime().toLocalDate().toString();
+
+        // udta
+        final int startUdta = auxOffset();
+        auxWrite(ByteBuffer.allocate(8).putInt(0).putInt(0x75647461).array()); // "udta"
+
+        // meta (full box: type + version/flags)
+        final int startMeta = auxOffset();
+        auxWrite(ByteBuffer.allocate(8).putInt(0).putInt(0x6D657461).array()); // "meta"
+        auxWrite(ByteBuffer.allocate(4).putInt(0).array()); // version & flags = 0
+
+        // hdlr inside meta
+        auxWrite(makeMetaHdlr());
+
+        // ilst container
+        final int startIlst = auxOffset();
+        auxWrite(ByteBuffer.allocate(8).putInt(0).putInt(0x696C7374).array()); // "ilst"
+
+        if (title != null && !title.isEmpty()) {
+            writeMetaItem("©nam", title);
+        }
+        if (artist != null && !artist.isEmpty()) {
+            writeMetaItem("©ART", artist);
+        }
+        if (date != null && !date.isEmpty()) {
+            // this means 'year' in mp4 metadata, who the hell thought that?
+            writeMetaItem("©day", date);
+        }
+
+
+
+        if (thumbnail != null) {
+            final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            thumbnail.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            final byte[] imgBytes = baos.toByteArray();
+            baos.close();
+            // 0x0000000E = PNG type indicator for 'data' box (0x0D = JPEG)
+            writeMetaCover(imgBytes, 0x0000000E);
+
+        }
+
+        // fix lengths
+        lengthFor(startIlst);
+        lengthFor(startMeta);
+        lengthFor(startUdta);
+
+    }
+
+    /**
+     * Helper to write a metadata item inside the 'ilst' box.
+     *
+     * <pre>
+     *     [size][key] [data_box]
+     *     data_box = [size]["data"][type(4bytes)=1][locale(4bytes)=0][payload]
+     * </pre>
+     *
+     * @param keyStr 4-char metadata key
+     * @param value the metadata value
+     * @throws IOException
+     */
+    //
+    private void writeMetaItem(final String keyStr, final String value) throws IOException {
+        final byte[] valBytes = value.getBytes(StandardCharsets.UTF_8);
+        final byte[] keyBytes = keyStr.getBytes(StandardCharsets.ISO_8859_1);
+
+        final int dataBoxSize = 16 + valBytes.length; // 4(size)+4("data")+4(type/locale)+payload
+        final int itemBoxSize = 8 + dataBoxSize; // 4(size)+4(key)+dataBox
+
+        final ByteBuffer buf = ByteBuffer.allocate(itemBoxSize);
+        buf.putInt(itemBoxSize);
+        // key (4 bytes)
+        if (keyBytes.length == 4) {
+            buf.put(keyBytes);
+        } else {
+            // fallback: pad or truncate
+            final byte[] kb = new byte[4];
+            System.arraycopy(keyBytes, 0, kb, 0, Math.min(keyBytes.length, 4));
+            buf.put(kb);
+        }
+
+        // data box
+        buf.putInt(dataBoxSize);
+        buf.putInt(0x64617461); // "data"
+        buf.putInt(0x00000001); // well-known type indicator (UTF-8)
+        buf.putInt(0x00000000); // locale
+        buf.put(valBytes);
+
+        auxWrite(buf.array());
+    }
+
+    /**
+     * Create a minimal hdlr box for the meta container.
+     * The boxsize is fixed (33 bytes) as no name is provided.
+     * @return byte array with the hdlr box
+     */
+    private byte[] makeMetaHdlr() {
+        final ByteBuffer buf = ByteBuffer.allocate(33);
+        buf.putInt(33);
+        buf.putInt(0x68646C72); // "hdlr"
+        buf.putInt(0x00000000); // pre-defined
+        buf.putInt(0x6D646972); // "mdir" handler_type (metadata directory)
+        buf.putInt(0x00000000); // subtype / reserved
+        buf.put(new byte[12]);  // reserved
+        buf.put((byte) 0x00);   // name (empty, null-terminated)
+        return buf.array();
+    }
+
+    /**
+     * Helper to add cover image inside the 'udta' box.
+     * <p>
+     * This method writes the 'covr' metadata item which contains the cover image.
+     * The cover image is displayed as thumbnail in many media players and file managers.
+     * </p>
+     * <pre>
+     *     [size][key] [data_box]
+     *     data_box = [size]["data"][type(4bytes)][locale(4bytes)=0][payload]
+     * </pre>
+     *
+     * @param imageData image byte data
+     * @param dataType  type indicator: 0x0000000E = PNG, 0x0000000D = JPEG
+     * @throws IOException
+     */
+    private void writeMetaCover(final byte[] imageData, final int dataType) throws IOException {
+        if (imageData == null || imageData.length == 0) {
+            return;
+        }
+
+        final byte[] keyBytes = "covr".getBytes(StandardCharsets.ISO_8859_1);
+
+        // data box: 4(size) + 4("data") + 4(type) + 4(locale) + payload
+        final int dataBoxSize = 16 + imageData.length;
+        final int itemBoxSize = 8 + dataBoxSize;
+
+        final ByteBuffer buf = ByteBuffer.allocate(itemBoxSize);
+        buf.putInt(itemBoxSize);
+
+        // key (4 chars)
+        if (keyBytes.length == 4) {
+            buf.put(keyBytes);
+        } else {
+            final byte[] kb = new byte[4];
+            System.arraycopy(keyBytes, 0, kb, 0, Math.min(keyBytes.length, 4));
+            buf.put(kb);
+        }
+
+        // data box
+        buf.putInt(dataBoxSize);
+        buf.putInt(0x64617461); // "data"
+        buf.putInt(dataType);   // type indicator: 0x0000000E = PNG, 0x0000000D = JPEG
+        buf.putInt(0x00000000); // locale
+        buf.put(imageData);
+
+        auxWrite(buf.array());
+    }
+
 
     static class TablesInfo {
         int stts;

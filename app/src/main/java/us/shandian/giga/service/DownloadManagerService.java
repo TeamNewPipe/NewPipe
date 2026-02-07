@@ -40,6 +40,7 @@ import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.download.DownloadActivity;
+import org.schabi.newpipe.extractor.Image;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.helper.LockManager;
 import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
@@ -408,7 +409,8 @@ public class DownloadManagerService extends Service {
         else
             ps = Postprocessing.getAlgorithm(psName, psArgs, streamInfo);
 
-        final DownloadMission mission = new DownloadMission(urls, storage, kind, ps);
+        final DownloadMission mission = new DownloadMission(
+                urls, storage, kind, ps, streamInfo, getApplicationContext());
         mission.threadCount = threads;
         mission.source = streamInfo.getUrl();
         mission.nearLength = nearLength;
@@ -417,7 +419,18 @@ public class DownloadManagerService extends Service {
         if (ps != null)
             ps.setTemporalDir(DownloadManager.pickAvailableTemporalDir(this));
 
-        handleConnectivityState(true);// first check the actual network status
+        if (streamInfo != null) {
+            new Thread(() -> {
+                try {
+                    mission.fetchThumbnail(streamInfo.getThumbnails());
+                } catch (Exception e) {
+                    Log.w(TAG, "failed to fetch thumbnail for mission: "
+                            + mission.storage.getName(), e);
+                }
+            }, "ThumbnailFetcher").start();
+        }
+
+        handleConnectivityState(true); // first check the actual network status
 
         mManager.startMission(mission);
     }

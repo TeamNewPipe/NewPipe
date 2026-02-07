@@ -65,7 +65,7 @@ teamnewpipe-nanojson = "e9d656ddb49a412a5a0a5d5ef20ca7ef09549996"
 # the corresponding commit hash, since JitPack sometimes deletes artifacts.
 # If there’s already a git hash, just add more of it to the end (or remove a letter)
 # to cause jitpack to regenerate the artifact.
-teamnewpipe-newpipe-extractor = "v0.25.2"
+teamnewpipe-newpipe-extractor = "1799852c25679026e3ff41a4b87993eaf4c748af"
 webkit = "1.14.0" # Newer versions require minSdk >= 23
 work = "2.10.5"  # Newer versions require minSdk >= 23
 
@@ -138,7 +138,7 @@ lisawray-groupie-core = { module = "com.github.lisawray.groupie:groupie", versio
 lisawray-groupie-viewbinding = { module = "com.github.lisawray.groupie:groupie-viewbinding", version.ref = "groupie" }
 livefront-bridge = { module = "com.github.livefront:bridge", version.ref = "bridge" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
-newpipe-extractor = { module = "com.github.TeamNewPipe:NewPipeExtractor", version.ref = "teamnewpipe-newpipe-extractor" }
+newpipe-extractor = { module = "com.github.tobigr:NewPipeExtractor", version.ref = "teamnewpipe-newpipe-extractor" }
 newpipe-filepicker = { module = "com.github.TeamNewPipe:NoNonsense-FilePicker", version.ref = "teamnewpipe-filepicker" }
 newpipe-nanojson = { module = "com.github.TeamNewPipe:nanojson", version.ref = "teamnewpipe-nanojson" }
 noties-markwon-core = { module = "io.noties.markwon:core", version.ref = "markwon" }
