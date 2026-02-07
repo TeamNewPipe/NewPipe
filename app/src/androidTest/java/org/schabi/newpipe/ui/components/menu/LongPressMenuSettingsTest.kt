@@ -1,14 +1,14 @@
 package org.schabi.newpipe.ui.components.menu
 
-import android.content.Context
-import androidx.annotation.StringRes
-import androidx.preference.PreferenceManager
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.schabi.newpipe.R
+import org.schabi.newpipe.clearPrefs
+import org.schabi.newpipe.ctx
+import org.schabi.newpipe.putBooleanInPrefs
+import org.schabi.newpipe.putStringInPrefs
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.Background
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.Enqueue
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.EnqueueNext
@@ -19,23 +19,6 @@ import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.ShowDetails
 
 @RunWith(AndroidJUnit4::class)
 class LongPressMenuSettingsTest {
-
-    val ctx: Context = ApplicationProvider.getApplicationContext<Context>()
-
-    private fun putBooleanInPrefs(@StringRes key: Int, value: Boolean) {
-        PreferenceManager.getDefaultSharedPreferences(ctx)
-            .edit().putBoolean(ctx.getString(key), value).apply()
-    }
-
-    private fun putStringInPrefs(@StringRes key: Int, value: String) {
-        PreferenceManager.getDefaultSharedPreferences(ctx)
-            .edit().putString(ctx.getString(key), value).apply()
-    }
-
-    private fun clearPrefs() {
-        PreferenceManager.getDefaultSharedPreferences(ctx)
-            .edit().clear().apply()
-    }
 
     @Test
     fun testStoringAndLoadingPreservesIsHeaderEnabled() {
