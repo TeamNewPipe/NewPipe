@@ -85,6 +85,8 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.observers.DisposableMaybeObserver;
+import io.reactivex.rxjava3.observers.DisposableSingleObserver;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.reactivex.rxjava3.subjects.PublishSubject;
 
@@ -707,12 +709,20 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 .setPositiveButton(R.string.delete, (dialog, which) -> {
                     final Disposable onDelete = historyRecordManager.deleteSearchHistory(query)
                             .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(
-                                    howManyDeleted -> suggestionPublisher
-                                            .onNext(getSearchEditString()),
-                                    throwable -> showSnackBarError(new ErrorInfo(throwable,
+                            .subscribeWith(new DisposableSingleObserver<Integer>() {
+                                @Override
+                                public void onSuccess(final Integer howManyDeleted) {
+                                    suggestionPublisher.onNext(getSearchEditString());
+                                }
+
+                                @Override
+                                public void onError(final Throwable e) {
+                                    showSnackBarError(new ErrorInfo(e,
                                             UserAction.DELETE_FROM_HISTORY,
-                                            "Deleting item failed")));
+                                            "Deleting item failed"));
+                                }
+                            });
+
                     disposables.add(onDelete);
                 })
                 .show();
@@ -865,13 +875,24 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         hideKeyboardSearch();
 
         // store search query if search history is enabled
+
         disposables.add(historyRecordManager.onSearched(serviceId, theSearchString)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        ignored -> {
-                        },
-                        throwable -> showSnackBarError(new ErrorInfo(throwable, UserAction.SEARCHED,
-                                theSearchString, serviceId))
+                .subscribeWith(new DisposableMaybeObserver<Long>() {
+                       @Override
+                       public void onError(final Throwable throwable) {
+                           showSnackBarError(new ErrorInfo(throwable, UserAction.SEARCHED,
+                                   theSearchString, serviceId));
+                       }
+
+                       @Override
+                       public void onComplete() {
+                       }
+
+                       @Override
+                       public void onSuccess(final Long ignored) {
+                       }
+                }
                 ));
 
         // load search results
@@ -1154,11 +1175,18 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         final String query = suggestionListAdapter.getCurrentList().get(position).query;
         final Disposable onDelete = historyRecordManager.deleteSearchHistory(query)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        howManyDeleted -> suggestionPublisher
-                                .onNext(getSearchEditString()),
-                        throwable -> showSnackBarError(new ErrorInfo(throwable,
-                                UserAction.DELETE_FROM_HISTORY, "Deleting item failed")));
+                .subscribeWith(new DisposableSingleObserver<Integer>() {
+                    @Override
+                    public void onSuccess(final Integer howManyDeleted) {
+                        suggestionPublisher.onNext(getSearchEditString());
+                    }
+
+                    @Override
+                    public void onError(final Throwable e) {
+                        showSnackBarError(new ErrorInfo(e,
+                                UserAction.DELETE_FROM_HISTORY, "Deleting item failed"));
+                    }
+                });
         disposables.add(onDelete);
     }
 }
