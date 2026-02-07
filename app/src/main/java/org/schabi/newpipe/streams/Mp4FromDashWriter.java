@@ -11,6 +11,7 @@ import org.schabi.newpipe.streams.Mp4DashReader.Mp4Track;
 import org.schabi.newpipe.streams.Mp4DashReader.TrackKind;
 import org.schabi.newpipe.streams.Mp4DashReader.TrunEntry;
 import org.schabi.newpipe.streams.io.SharpStream;
+import org.schabi.newpipe.util.StreamInfoMetadataHelper;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -930,16 +931,20 @@ public class Mp4FromDashWriter {
 
     /**
      * Create the 'udta' box with metadata fields.
+     * {@code udta} is a user data box that can contain various types of metadata,
+     * including title, artist, date, and cover art.
+     * @see <a href="https://developer.apple.com/documentation/quicktime-file-format/
+     * user_data_atoms">Apple Quick Time Format Specification for user data atoms</a>
+     * @see <a href="https://wiki.multimedia.cx/index.php?title=FFmpeg_Metadata
+     * #QuickTime/MOV/MP4/M4A/et_al.">Multimedia Wiki FFmpeg Metadata</a>
+     * @see <a href="https://atomicparsley.sourceforge.net/mpeg-4files.html">atomicparsley docs</a>
+     * for a short and understandable reference about metadata keys and values
      * @throws IOException
      */
     private void makeUdta() throws IOException {
         if (streamInfo == null) {
             return;
         }
-
-        final String title = streamInfo.getName();
-        final String artist = streamInfo.getUploaderName();
-        final String date = streamInfo.getUploadDate().getLocalDateTime().toLocalDate().toString();
 
         // udta
         final int startUdta = auxOffset();
@@ -957,6 +962,16 @@ public class Mp4FromDashWriter {
         final int startIlst = auxOffset();
         auxWrite(ByteBuffer.allocate(8).putInt(0).putInt(0x696C7374).array()); // "ilst"
 
+        // write metadata items
+
+        final var metaHelper = new StreamInfoMetadataHelper(streamInfo);
+        final String title = metaHelper.getTitle();
+        final String artist = metaHelper.getArtist();
+        final String date = metaHelper.getReleaseDate().getLocalDateTime()
+                .toLocalDate().toString();
+        final String recordLabel = metaHelper.getRecordLabel();
+        final String copyright = metaHelper.getCopyright();
+
         if (title != null && !title.isEmpty()) {
             writeMetaItem("©nam", title);
         }
@@ -967,8 +982,12 @@ public class Mp4FromDashWriter {
             // this means 'year' in mp4 metadata, who the hell thought that?
             writeMetaItem("©day", date);
         }
-
-
+        if (recordLabel != null && !recordLabel.isEmpty()) {
+            writeMetaItem("©lab", recordLabel);
+        }
+        if (copyright != null && !copyright.isEmpty()) {
+            writeMetaItem("©cpy", copyright);
+        }
 
         if (thumbnail != null) {
             final ByteArrayOutputStream baos = new ByteArrayOutputStream();
