@@ -1,5 +1,7 @@
 package org.schabi.newpipe.settings;
 
+import static org.schabi.newpipe.ui.components.menu.LongPressMenuSettingsKt.addOrRemoveKodiLongPressAction;
+
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -49,6 +51,8 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
                 updateSeekOptions();
             } else if (getString(R.string.show_higher_resolutions_key).equals(key)) {
                 updateResolutionOptions();
+            } else if (getString(R.string.show_play_with_kodi_key).equals(key)) {
+                addOrRemoveKodiLongPressAction(requireContext());
             }
         };
     }

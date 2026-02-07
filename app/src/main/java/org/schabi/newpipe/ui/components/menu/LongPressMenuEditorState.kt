@@ -88,9 +88,9 @@ class LongPressMenuEditorState(
         }.toList()
     }
 
-    fun resetToDefaults() {
+    fun resetToDefaults(context: Context) {
         items.clear()
-        items.addAll(buildItemsInList(true, LongPressAction.Type.DefaultEnabledActions))
+        items.addAll(buildItemsInList(true, getDefaultEnabledLongPressActions(context)))
     }
 
     private fun findItemForOffsetOrClosestInRow(offset: IntOffset): LazyGridItemInfo? {

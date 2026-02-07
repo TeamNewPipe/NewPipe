@@ -114,7 +114,7 @@ fun LongPressMenuEditorPage(onBackClick: () -> Unit) {
         title = stringResource(R.string.long_press_menu_actions_editor),
         onBackClick = onBackClick,
         actions = {
-            ResetToDefaultsButton(state::resetToDefaults)
+            ResetToDefaultsButton { state.resetToDefaults(context) }
         }
     ) { paddingValues ->
         // test scrolling on Android TV by adding `.padding(horizontal = 350.dp)` here
