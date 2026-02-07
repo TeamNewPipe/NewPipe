@@ -52,8 +52,11 @@ import org.schabi.newpipe.player.playqueue.PlayQueue
 import org.schabi.newpipe.player.playqueue.PlayQueueItem
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue
 import org.schabi.newpipe.ui.components.menu.icons.BackgroundFromHere
+import org.schabi.newpipe.ui.components.menu.icons.BackgroundShuffled
 import org.schabi.newpipe.ui.components.menu.icons.PlayFromHere
+import org.schabi.newpipe.ui.components.menu.icons.PlayShuffled
 import org.schabi.newpipe.ui.components.menu.icons.PopupFromHere
+import org.schabi.newpipe.ui.components.menu.icons.PopupShuffled
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.external_communication.KoreUtils
 import org.schabi.newpipe.util.external_communication.ShareUtils
@@ -73,28 +76,31 @@ data class LongPressAction(
         @StringRes val label: Int,
         val icon: ImageVector
     ) {
-        Enqueue(0, R.string.enqueue, Icons.Default.AddToQueue),
-        EnqueueNext(1, R.string.enqueue_next_stream, Icons.Default.QueuePlayNext),
-        Background(2, R.string.controls_background_title, Icons.Default.Headset),
-        Popup(3, R.string.controls_popup_title, Icons.Default.PictureInPicture),
-        Play(4, R.string.play, Icons.Default.PlayArrow),
-        BackgroundFromHere(5, R.string.background_from_here, Icons.Default.BackgroundFromHere),
-        PopupFromHere(6, R.string.popup_from_here, Icons.Default.PopupFromHere),
-        PlayFromHere(7, R.string.play_from_here, Icons.Default.PlayFromHere),
-        PlayWithKodi(8, R.string.play_with_kodi_title, Icons.Default.Cast),
-        Download(9, R.string.download, Icons.Default.Download),
-        AddToPlaylist(10, R.string.add_to_playlist, Icons.AutoMirrored.Default.PlaylistAdd),
-        Share(11, R.string.share, Icons.Default.Share),
-        OpenInBrowser(12, R.string.open_in_browser, Icons.Default.OpenInBrowser),
-        ShowChannelDetails(13, R.string.show_channel_details, Icons.Default.Person),
-        MarkAsWatched(14, R.string.mark_as_watched, Icons.Default.Done),
-        Delete(15, R.string.delete, Icons.Default.Delete),
-        Rename(16, R.string.rename, Icons.Default.Edit),
-        SetAsPlaylistThumbnail(17, R.string.set_as_playlist_thumbnail, Icons.Default.Image),
-        UnsetPlaylistThumbnail(18, R.string.unset_playlist_thumbnail, Icons.Default.HideImage),
-        Unsubscribe(19, R.string.unsubscribe, Icons.Default.Delete),
-        ShowDetails(20, R.string.play_queue_stream_detail, Icons.Default.Info),
-        Remove(21, R.string.play_queue_remove, Icons.Default.Delete);
+        ShowDetails(0, R.string.play_queue_stream_detail, Icons.Default.Info),
+        Enqueue(1, R.string.enqueue, Icons.Default.AddToQueue),
+        EnqueueNext(2, R.string.enqueue_next_stream, Icons.Default.QueuePlayNext),
+        Background(3, R.string.controls_background_title, Icons.Default.Headset),
+        Popup(4, R.string.controls_popup_title, Icons.Default.PictureInPicture),
+        Play(5, R.string.play, Icons.Default.PlayArrow),
+        BackgroundFromHere(6, R.string.background_from_here, Icons.Default.BackgroundFromHere),
+        PopupFromHere(7, R.string.popup_from_here, Icons.Default.PopupFromHere),
+        PlayFromHere(8, R.string.play_from_here, Icons.Default.PlayFromHere),
+        BackgroundShuffled(9, R.string.background_shuffled, Icons.Default.BackgroundShuffled),
+        PopupShuffled(10, R.string.popup_shuffled, Icons.Default.PopupShuffled),
+        PlayShuffled(11, R.string.play_shuffled, Icons.Default.PlayShuffled),
+        PlayWithKodi(12, R.string.play_with_kodi_title, Icons.Default.Cast),
+        Download(13, R.string.download, Icons.Default.Download),
+        AddToPlaylist(14, R.string.add_to_playlist, Icons.AutoMirrored.Default.PlaylistAdd),
+        Share(15, R.string.share, Icons.Default.Share),
+        OpenInBrowser(16, R.string.open_in_browser, Icons.Default.OpenInBrowser),
+        ShowChannelDetails(17, R.string.show_channel_details, Icons.Default.Person),
+        MarkAsWatched(18, R.string.mark_as_watched, Icons.Default.Done),
+        Rename(19, R.string.rename, Icons.Default.Edit),
+        SetAsPlaylistThumbnail(20, R.string.set_as_playlist_thumbnail, Icons.Default.Image),
+        UnsetPlaylistThumbnail(21, R.string.unset_playlist_thumbnail, Icons.Default.HideImage),
+        Delete(22, R.string.delete, Icons.Default.Delete),
+        Unsubscribe(23, R.string.unsubscribe, Icons.Default.Delete),
+        Remove(24, R.string.play_queue_remove, Icons.Default.Delete);
 
         fun buildAction(
             enabled: () -> Boolean = { true },
@@ -105,9 +111,9 @@ data class LongPressAction(
             // ShowChannelDetails is not enabled by default, since navigating to channel details can
             // also be done by clicking on the uploader name in the long press menu header
             val DefaultEnabledActions: List<Type> = listOf(
-                ShowDetails, Enqueue, EnqueueNext, Background, Popup, BackgroundFromHere, Download,
-                AddToPlaylist, Share, OpenInBrowser, MarkAsWatched, Delete,
-                Rename, SetAsPlaylistThumbnail, UnsetPlaylistThumbnail, Unsubscribe, Remove
+                ShowDetails, Enqueue, EnqueueNext, Background, Popup, BackgroundFromHere,
+                BackgroundShuffled, Download, AddToPlaylist, Share, OpenInBrowser, MarkAsWatched,
+                Rename, SetAsPlaylistThumbnail, UnsetPlaylistThumbnail, Delete, Unsubscribe, Remove
             )
         }
     }
@@ -155,6 +161,25 @@ data class LongPressAction(
                 },
                 Type.PlayFromHere.buildAction { context ->
                     NavigationHelper.playOnMainPlayer(context, queueFromHere(), false)
+                }
+            )
+        }
+
+        private fun buildPlayerShuffledActionList(queue: suspend (Context) -> PlayQueue): List<LongPressAction> {
+            val shuffledQueue: suspend (Context) -> PlayQueue = { context ->
+                val q = queue(context)
+                q.fetchAllAndShuffle()
+                q
+            }
+            return listOf(
+                Type.BackgroundShuffled.buildAction { context ->
+                    NavigationHelper.playOnBackgroundPlayer(context, shuffledQueue(context), true)
+                },
+                Type.PopupShuffled.buildAction { context ->
+                    NavigationHelper.playOnPopupPlayer(context, shuffledQueue(context), true)
+                },
+                Type.PlayShuffled.buildAction { context ->
+                    NavigationHelper.playOnMainPlayer(context, shuffledQueue(context), false)
                 }
             )
         }
@@ -337,6 +362,7 @@ data class LongPressAction(
             unsetPlaylistThumbnail: Runnable?
         ): List<LongPressAction> {
             return buildPlayerActionList { LocalPlaylistPlayQueue(item) } +
+                buildPlayerShuffledActionList { LocalPlaylistPlayQueue(item) } +
                 listOf(
                     Type.Rename.buildAction { onRename.run() },
                     Type.Delete.buildAction { onDelete.run() },
@@ -352,6 +378,7 @@ data class LongPressAction(
             onDelete: Runnable
         ): List<LongPressAction> {
             return buildPlayerActionList { PlaylistPlayQueue(item.serviceId, item.url) } +
+                buildPlayerShuffledActionList { PlaylistPlayQueue(item.serviceId, item.url) } +
                 buildShareActionList(
                     item.orderingName ?: "",
                     item.orderingName ?: "",
@@ -368,6 +395,7 @@ data class LongPressAction(
             onUnsubscribe: Runnable?
         ): List<LongPressAction> {
             return buildPlayerActionList { ChannelTabPlayQueue(item.serviceId, item.url) } +
+                buildPlayerShuffledActionList { ChannelTabPlayQueue(item.serviceId, item.url) } +
                 buildShareActionList(item) +
                 listOfNotNull(
                     Type.ShowChannelDetails.buildAction { context ->
@@ -385,6 +413,7 @@ data class LongPressAction(
         @JvmStatic
         fun fromPlaylistInfoItem(item: PlaylistInfoItem): List<LongPressAction> {
             return buildPlayerActionList { PlaylistPlayQueue(item.serviceId, item.url) } +
+                buildPlayerShuffledActionList { PlaylistPlayQueue(item.serviceId, item.url) } +
                 buildShareActionList(item)
         }
     }
