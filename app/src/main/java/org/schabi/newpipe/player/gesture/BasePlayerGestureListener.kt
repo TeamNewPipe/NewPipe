@@ -9,6 +9,7 @@ import android.view.View
 import androidx.core.os.postDelayed
 import org.schabi.newpipe.databinding.PlayerBinding
 import org.schabi.newpipe.player.Player
+import org.schabi.newpipe.player.helper.PlayerHelper
 import org.schabi.newpipe.player.ui.VideoPlayerUi
 
 /**
@@ -24,9 +25,85 @@ abstract class BasePlayerGestureListener(
     protected val player: Player = playerUi.player
     protected val binding: PlayerBinding = playerUi.binding
 
+    // ///////////////////////////////////////////////////////////////////
+    // Hold to fast forward (2x speed)
+    // ///////////////////////////////////////////////////////////////////
+
+    private var isHoldingForFastForward = false
+    private var originalPlaybackSpeed = 1.0f
+    private val fastForwardSpeed = 2.0f
+
     override fun onTouch(v: View, event: MotionEvent): Boolean {
         playerUi.gestureDetector.onTouchEvent(event)
+
+        // Handle touch up to restore original speed when hold-to-fast-forward is active
+        if (event.action == MotionEvent.ACTION_UP || event.action == MotionEvent.ACTION_CANCEL) {
+            if (isHoldingForFastForward) {
+                stopHoldToFastForward()
+            }
+        }
+
         return false
+    }
+
+    override fun onLongPress(e: MotionEvent) {
+        if (DEBUG) {
+            Log.d(TAG, "onLongPress called with e = [$e]")
+        }
+
+        // Check if hold-to-fast-forward is enabled in settings
+        if (!PlayerHelper.isHoldToFastForwardEnabled(player.context)) {
+            return
+        }
+
+        // Only activate if player is playing and not in a popup menu
+        if (player.currentState != Player.STATE_PLAYING || playerUi.isSomePopupMenuVisible) {
+            return
+        }
+
+        // Don't activate during double tap mode
+        if (isDoubleTapping) {
+            return
+        }
+
+        startHoldToFastForward()
+    }
+
+    private fun startHoldToFastForward() {
+        if (isHoldingForFastForward) {
+            return
+        }
+
+        if (DEBUG) {
+            Log.d(TAG, "startHoldToFastForward: activating 2x speed")
+        }
+
+        isHoldingForFastForward = true
+        originalPlaybackSpeed = player.playbackSpeed
+
+        // Set playback speed to 2x
+        player.setPlaybackSpeed(fastForwardSpeed)
+
+        // Show visual feedback
+        playerUi.onHoldToFastForwardStart()
+    }
+
+    private fun stopHoldToFastForward() {
+        if (!isHoldingForFastForward) {
+            return
+        }
+
+        if (DEBUG) {
+            Log.d(TAG, "stopHoldToFastForward: restoring original speed $originalPlaybackSpeed")
+        }
+
+        isHoldingForFastForward = false
+
+        // Restore original playback speed
+        player.setPlaybackSpeed(originalPlaybackSpeed)
+
+        // Hide visual feedback
+        playerUi.onHoldToFastForwardEnd()
     }
 
     private fun onDoubleTap(
