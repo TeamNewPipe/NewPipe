@@ -1,0 +1,4 @@
+∙ Fixed resuming streams at the last playback position
+∙ [YouTube] Added support for more channel URL formats
+∙ [YouTube] Added support for more video metainfo formats
+∙ Updated translations

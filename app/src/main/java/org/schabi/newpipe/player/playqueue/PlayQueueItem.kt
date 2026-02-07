@@ -28,7 +28,7 @@ class PlayQueueItem private constructor(
     var isAutoQueued: Boolean = false
 
     // package-private
-    var recoveryPosition = Long.Companion.MIN_VALUE
+    var recoveryPosition = RECOVERY_UNSET
     var error: Throwable? = null
         private set
 
@@ -68,4 +68,8 @@ class PlayQueueItem private constructor(
     override fun equals(o: Any?) = o is PlayQueueItem && serviceId == o.serviceId && url == o.url
 
     override fun hashCode() = Objects.hash(url, serviceId)
+
+    companion object {
+        const val RECOVERY_UNSET = Long.MIN_VALUE
+    }
 }

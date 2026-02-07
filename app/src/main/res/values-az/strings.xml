@@ -397,7 +397,7 @@
     <string name="error_http_unsupported_range">Server çox iş parçalı endirmələri qəbul etmir, @string/msg_threads = 1 ilə yenidən cəhd edin</string>
     <string name="delete_downloaded_files_confirm">Bütün endirilmiş fayllar diskdən silinsin\?</string>
     <string name="max_retry_msg">Maksimum təkrar cəhdlər</string>
-    <string name="remove_watched_popup_warning">Pleylistə əlavə olunandan əvvəl və sonrakı baxılmış videolar silinəcək. \nSiz əminsiniz? Bu geri qaytarıla bilməz!</string>
+    <string name="remove_watched_popup_warning">Pleylistə əlavə olunandan əvvəl və sonrakı baxılan yayımlar silinəcək. \nSiz əminsiniz?</string>
     <string name="feed_groups_header_title">Kanal qrupları</string>
     <string name="feed_new_items">Yeni axın elementləri</string>
     <string name="feed_update_threshold_summary">Abunəlik köhnəlmiş hesab edilənə qədərki son yeniləmədən sonrakı vaxt — %s</string>
@@ -526,7 +526,7 @@
     </plurals>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer standartı</string>
     <string name="feed_use_dedicated_fetch_method_title">Mövcud olduqda xüsusi axından al</string>
-    <string name="remove_watched_popup_title">Baxılmış videolar silinsin?</string>
+    <string name="remove_watched_popup_title">Baxılan yayımlar silinsin?</string>
     <string name="remove_watched">İzləniləni sil</string>
     <string name="downloads_storage_use_saf_title">Sistem qovluğu seçicisini (SAF) istifadə et</string>
     <string name="error_timeout">Bağlantı fasiləsi</string>

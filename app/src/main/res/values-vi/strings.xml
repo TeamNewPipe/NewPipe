@@ -62,7 +62,7 @@
     <string name="general_error">Lỗi</string>
     <string name="network_error">Lỗi kết nối mạng</string>
     <string name="could_not_load_thumbnails">Không thể tải tất cả hình thu nhỏ</string>
-    <string name="parsing_error">Không thể phân tích cú pháp trang web</string>
+    <string name="parsing_error">Không thể phân tích cú pháp trang web vì trang này đã ngừng hoạt động vào 21/07/2025.</string>
     <string name="content_not_available">Nội dung không khả dụng</string>
     <string name="could_not_setup_download_menu">Không thể thiết lập menu tải về</string>
     <string name="app_ui_crash">Ứng dụng/Giao diện người dùng bị lỗi</string>
