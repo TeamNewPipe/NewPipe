@@ -912,4 +912,7 @@
     <string name="reset_to_defaults">Reset to defaults</string>
     <string name="long_press_menu_reset_to_defaults_confirm">Are you sure you want to reset to the default actions?</string>
     <string name="long_press_menu_actions_editor">Reorder and hide actions</string>
+    <string name="background_shuffled">Background\nshuffled</string>
+    <string name="popup_shuffled">Popup\nshuffled</string>
+    <string name="play_shuffled">Play\nshuffled</string>
 </resources>
