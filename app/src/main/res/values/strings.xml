@@ -436,6 +436,7 @@
     <string name="audio_track">Audio track</string>
     <string name="hold_to_append">Hold to enqueue</string>
     <string name="show_channel_details">Show channel details</string>
+    <string name="accessibility_show_channel_details">Show channel details for %1$s</string>
     <string name="enqueue_stream">Enqueue</string>
     <string name="enqueued">Enqueued</string>
     <string name="enqueue_next_stream">Enqueue next</string>
@@ -576,6 +577,7 @@
     <string name="minimize_on_exit_none_description">None</string>
     <string name="minimize_on_exit_background_description">Minimize to background player</string>
     <string name="minimize_on_exit_popup_description">Minimize to popup player</string>
+    <string name="select_icon">Select icon</string>
     <!-- Autoplay behavior -->
     <string name="autoplay_summary">Start playback automatically — %s</string>
     <string name="wifi_only">Only on Wi-Fi</string>

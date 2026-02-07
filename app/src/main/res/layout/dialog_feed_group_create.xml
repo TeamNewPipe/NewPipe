@@ -28,7 +28,7 @@
                 android:scaleType="centerInside"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription"
+                android:contentDescription="@string/select_icon"
                 tools:src="@drawable/ic_asterisk" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -195,7 +195,7 @@
             android:scaleType="centerInside"
             android:src="@drawable/ic_delete"
             android:visibility="gone"
-            tools:ignore="ContentDescription"
+            android:contentDescription="@string/delete"
             tools:visibility="visible" />
 
         <Button
