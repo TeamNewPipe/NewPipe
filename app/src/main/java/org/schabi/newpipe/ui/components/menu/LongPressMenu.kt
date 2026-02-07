@@ -80,16 +80,14 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
 import java.time.OffsetDateTime
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.schabi.newpipe.R
 import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.ErrorUtil
 import org.schabi.newpipe.error.UserAction.LONG_PRESS_MENU_ACTION
 import org.schabi.newpipe.extractor.stream.StreamType
-import org.schabi.newpipe.player.helper.PlayerHolder
-import org.schabi.newpipe.ui.components.common.ScaffoldWithToolbar
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.EnqueueNext
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.ShowChannelDetails
 import org.schabi.newpipe.ui.discardAllTouchesIf
@@ -122,7 +120,7 @@ fun getLongPressMenuView(
                 LongPressMenu(
                     longPressable = longPressable,
                     longPressActions = longPressActions,
-                    onDismissRequest = { (this.parent as ViewGroup).removeView(this) }
+                    onDismissRequest = { (this.parent as? ViewGroup)?.removeView(this) }
                 )
             }
         }
@@ -173,6 +171,8 @@ fun LongPressMenu(
             coroutineScope.launch {
                 try {
                     action.action(ctx)
+                } catch (_: CancellationException) {
+                    // the user canceled the action, e.g. by dismissing the dialog while loading
                 } catch (t: Throwable) {
                     ErrorUtil.showSnackbar(
                         ctx,
