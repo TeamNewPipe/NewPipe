@@ -386,6 +386,7 @@ fun LongPressMenuHeader(
         modifier = modifier
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
+            // thumbnail and decorations
             Box {
                 if (item.thumbnailUrl != null) {
                     AsyncImage(
@@ -475,6 +476,7 @@ fun LongPressMenuHeader(
                 }
             }
 
+            // title, channel and other textual information
             Column(
                 modifier = Modifier.padding(vertical = 8.dp)
             ) {
@@ -503,7 +505,14 @@ fun LongPressMenuHeader(
                         modifier = if (onUploaderClick == null) {
                             Modifier
                         } else {
-                            Modifier.clickable(onClick = onUploaderClick)
+                            Modifier.clickable(
+                                onClick = onUploaderClick,
+                                onClickLabel = if (item.uploader != null) {
+                                    stringResource(R.string.show_channel_details_for, item.uploader)
+                                } else {
+                                    stringResource(R.string.show_channel_details)
+                                }
+                            )
                         }
                             .fillMaxWidth()
                             .fadedMarquee(edgeWidth = 12.dp)
