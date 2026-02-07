@@ -106,16 +106,6 @@ data class LongPressAction(
             enabled: () -> Boolean = { true },
             action: suspend (context: Context) -> Unit
         ) = LongPressAction(this, action, enabled)
-
-        companion object {
-            // ShowChannelDetails is not enabled by default, since navigating to channel details can
-            // also be done by clicking on the uploader name in the long press menu header
-            val DefaultEnabledActions: List<Type> = listOf(
-                ShowDetails, Enqueue, EnqueueNext, Background, Popup, BackgroundFromHere,
-                BackgroundShuffled, Download, AddToPlaylist, Share, OpenInBrowser, MarkAsWatched,
-                Rename, SetAsPlaylistThumbnail, UnsetPlaylistThumbnail, Delete, Unsubscribe, Remove
-            )
-        }
     }
 
     companion object {
@@ -249,11 +239,17 @@ data class LongPressAction(
                     withContext(Dispatchers.IO) {
                         HistoryRecordManager(context).markAsWatched(item).await()
                     }
-                },
-                Type.PlayWithKodi.buildAction { context ->
-                    KoreUtils.playWithKore(context, item.url.toUri())
                 }
-            )
+            ) +
+                if (KoreUtils.isServiceSupportedByKore(item.serviceId)) {
+                    listOf(
+                        Type.PlayWithKodi.buildAction(
+                            enabled = { KoreUtils.isServiceSupportedByKore(item.serviceId) }
+                        ) { context -> KoreUtils.playWithKore(context, item.url.toUri()) }
+                    )
+                } else {
+                    listOf()
+                }
         }
 
         /**
@@ -264,7 +260,6 @@ data class LongPressAction(
         fun fromStreamInfoItem(
             item: StreamInfoItem,
             queueFromHere: (() -> PlayQueue)?
-            /* TODO isKodiEnabled: Boolean, */
         ): List<LongPressAction> {
             return buildPlayerActionList { context -> fetchItemInfoIfSparse(context, item) } +
                 (queueFromHere?.let { buildPlayerFromHereActionList(queueFromHere) } ?: listOf()) +
