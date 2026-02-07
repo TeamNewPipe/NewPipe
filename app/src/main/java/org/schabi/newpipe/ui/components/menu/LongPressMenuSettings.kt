@@ -64,17 +64,19 @@ fun getDefaultEnabledLongPressActions(context: Context): List<LongPressAction.Ty
 
 fun loadLongPressActionArrangementFromSettings(context: Context): List<LongPressAction.Type> {
     val key = context.getString(R.string.long_press_menu_action_arrangement_key)
-    val items = PreferenceManager.getDefaultSharedPreferences(context)
+    val ids = PreferenceManager.getDefaultSharedPreferences(context)
         .getString(key, null)
-    if (items == null) {
+    if (ids == null) {
         return getDefaultEnabledLongPressActions(context)
+    } else if (ids.isEmpty()) {
+        return emptyList() // apparently the user has disabled all buttons
     }
 
     try {
-        val actions = items.split(',')
-            .map { item ->
+        val actions = ids.split(',')
+            .map { id ->
                 LongPressAction.Type.entries.first { entry ->
-                    entry.id.toString() == item
+                    entry.id.toString() == id
                 }
             }
 
