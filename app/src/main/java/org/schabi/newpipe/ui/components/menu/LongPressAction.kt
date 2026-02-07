@@ -158,7 +158,9 @@ data class LongPressAction(
         private fun buildPlayerShuffledActionList(queue: suspend (Context) -> PlayQueue): List<LongPressAction> {
             val shuffledQueue: suspend (Context) -> PlayQueue = { context ->
                 val q = queue(context)
-                q.fetchAllAndShuffle()
+                withContext(Dispatchers.IO) {
+                    q.fetchAllAndShuffle()
+                }
                 q
             }
             return listOf(
