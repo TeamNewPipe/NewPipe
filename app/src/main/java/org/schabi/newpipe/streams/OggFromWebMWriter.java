@@ -1,6 +1,7 @@
 package org.schabi.newpipe.streams;
 
 import static org.schabi.newpipe.MainActivity.DEBUG;
+import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 
 import android.graphics.Bitmap;
 import android.util.Log;
@@ -9,6 +10,8 @@ import android.util.Pair;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.schabi.newpipe.extractor.localization.DateWrapper;
+import org.schabi.newpipe.extractor.stream.SongMetadata;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.streams.WebMReader.Cluster;
 import org.schabi.newpipe.streams.WebMReader.Segment;
@@ -40,12 +43,18 @@ import java.util.Arrays;
  * </p>
  * <ul>
  *     <li>FLAC: <a href="https://www.rfc-editor.org/rfc/rfc9639">RFC 9639</a></li>
+ *     <li>
+ *         Vorbis: <a href="https://www.xiph.org/vorbis/doc/Vorbis_I_spec.html">Vorbis I</a>.
+ *         <br>
+ *         Vorbis uses FLAC picture blocks for embedding cover art in the metadata.
+ *     </li>
  *     <li>Opus: All specs can be found at <a href="https://opus-codec.org/docs/">
  *         https://opus-codec.org/docs/</a>.
  *         <a href="https://datatracker.ietf.org/doc/html/rfc7845.html">RFC7845</a>
  *         defines the Ogg encapsulation for Opus streams, i.e.the container format and metadata.
+ *         <br>
+ *         Opus uses multiple Vorbis I features, e.g. the comment header format for metadata.
  *     </li>
- *     <li>Vorbis: <a href="https://www.xiph.org/vorbis/doc/Vorbis_I_spec.html">Vorbis I</a></li>
  * </ul>
  *
  * @author kapodamy
@@ -352,8 +361,8 @@ public class OggFromWebMWriter implements Closeable {
      * @see <a href="https://xiph.org/vorbis/doc/Vorbis_I_spec.html#x1-610004.2">
      *     Vorbis I 4.2. Header decode and decode setup</a> and
      *     <a href="https://xiph.org/vorbis/doc/Vorbis_I_spec.html#x1-820005">
-     *     Vorbis 5. comment field and header specification</a>
-     *     for VORBIS metadata header format
+     *     Vorbis I 5. comment field and header specification</a>
+     *     for VORBIS metadata header format. Vorbis I 5. lists all the possible metadata tags.
      *
      * @return the metadata header as a byte array, or null if the codec is not supported
      * for metadata generation
@@ -364,38 +373,62 @@ public class OggFromWebMWriter implements Closeable {
             Log.d(TAG, "Downloading media with codec ID " + webmTrack.codecId);
         }
 
+        final var metadata = new ArrayList<Pair<String, String>>();
+        if (streamInfo != null) {
+            final SongMetadata songMetadata = streamInfo.getSongMetadata();
+            // metadata that can be present in the stream info and the song metadata.
+            // Use the song metadata if available, otherwise fallback to stream info.
+            metadata.add(Pair.create("COMMENT", streamInfo.getUrl()));
+            metadata.add(Pair.create("GENRE", streamInfo.getCategory()));
+            final String artist = songMetadata != null && !isNullOrEmpty(songMetadata.artist)
+                    ? songMetadata.artist : streamInfo.getUploaderName();
+            metadata.add(Pair.create("ARTIST", artist));
+            final String title = songMetadata != null && !isNullOrEmpty(songMetadata.title)
+                    ? songMetadata.title : streamInfo.getName();
+            metadata.add(Pair.create("TITLE", title));
+            final DateWrapper date = songMetadata != null && songMetadata.releaseDate != null
+                    ? songMetadata.releaseDate : streamInfo.getUploadDate();
+            metadata.add(Pair.create("DATE", date.getLocalDateTime()
+                    .format(DateTimeFormatter.ISO_DATE)));
+            // Additional metadata that is only present in the song metadata
+            if (songMetadata != null) {
+                metadata.add(Pair.create("ALBUM", songMetadata.album));
+                if (songMetadata.track != SongMetadata.TRACK_UNKNOWN) {
+                    // TRACKNUMBER is suggested in Vorbis spec,
+                    // but TRACK is more commonly used in practice
+                    metadata.add(Pair.create("TRACKNUMBER", String.valueOf(songMetadata.track)));
+                    metadata.add(Pair.create("TRACK", String.valueOf(songMetadata.track)));
+                }
+                metadata.add(Pair.create("PERFORMER", String.join(", ", songMetadata.performer)));
+                metadata.add(Pair.create("ORGANIZATION", songMetadata.label));
+                metadata.add(Pair.create("COPYRIGHT", songMetadata.copyright));
+            }
+            // Add thumbnail as cover art at the end because it is the largest metadata entry
+            if (thumbnail != null) {
+                metadata.add(makeFlacPictureTag(thumbnail));
+            }
+        }
+
+        if (DEBUG) {
+            Log.d(TAG, "Creating metadata header with this data:");
+            metadata.forEach(p -> Log.d(TAG, p.first + "=" + p.second));
+        }
+
         if ("A_OPUS".equals(webmTrack.codecId)) {
-            final var metadata = new ArrayList<Pair<String, String>>();
-            if (streamInfo != null) {
-                metadata.add(Pair.create("COMMENT", streamInfo.getUrl()));
-                metadata.add(Pair.create("GENRE", streamInfo.getCategory()));
-                metadata.add(Pair.create("ARTIST", streamInfo.getUploaderName()));
-                metadata.add(Pair.create("TITLE", streamInfo.getName()));
-                metadata.add(Pair.create("DATE", streamInfo
-                        .getUploadDate()
-                        .getLocalDateTime()
-                        .format(DateTimeFormatter.ISO_DATE)));
-                 if (thumbnail != null) {
-                     metadata.add(makeFlacPictureTag(thumbnail));
-                 }
-            }
-
-            if (DEBUG) {
-                Log.d(TAG, "Creating metadata header with this data:");
-                metadata.forEach(p -> Log.d(TAG, p.first + "=" + p.second));
-            }
-
-            return makeOpusTagsHeader(metadata);
+            // See RFC7845 5.2: https://datatracker.ietf.org/doc/html/rfc7845.html#section-5.2
+            final byte[] identificationHeader = new byte[]{
+                    0x4F, 0x70, 0x75, 0x73, 0x54, 0x61, 0x67, 0x73, // "OpusTags" binary string
+                    0x00, 0x00, 0x00, 0x00, // vendor (aka. Encoder) string of length 0
+            };
+            return makeCommentHeader(metadata, identificationHeader);
         } else if ("A_VORBIS".equals(webmTrack.codecId)) {
             // See https://xiph.org/vorbis/doc/Vorbis_I_spec.html#x1-610004.2
-            // for the Vorbis comment header format
-            // TODO: add Vorbis metadata: same as Opus, but with the Vorbis comment header format
-            return new byte[]{
+            final byte[] identificationHeader = new byte[]{
                     0x03, // packet type for Vorbis comment header
                     0x76, 0x6f, 0x72, 0x62, 0x69, 0x73, // "vorbis" binary string
-                    0x00, 0x00, 0x00, 0x00, // writing application string size (not present)
-                    0x00, 0x00, 0x00, 0x00 // additional tags count (zero means no tags)
+                    0x00, 0x00, 0x00, 0x00, // vendor (aka. Encoder) string of length 0
             };
+            return makeCommentHeader(metadata, identificationHeader);
         }
 
         // not implemented for the desired codec
@@ -405,12 +438,12 @@ public class OggFromWebMWriter implements Closeable {
     /**
      * This creates a single metadata tag for use in opus metadata headers. It contains the four
      * byte string length field and includes the string as-is. This cannot be used independently,
-     * but must follow a proper "OpusTags" header.
+     * but must follow a proper Comment header.
      *
      * @param pair A key-value pair in the format "KEY=some value"
      * @return The binary data of the encoded metadata tag
      */
-    private static byte[] makeOpusMetadataTag(final Pair<String, String> pair) {
+    private static byte[] makeVorbisMetadataTag(final Pair<String, String> pair) {
         final var keyValue = pair.first.toUpperCase() + "=" + pair.second.trim();
 
         final var bytes = keyValue.getBytes();
@@ -486,24 +519,21 @@ public class OggFromWebMWriter implements Closeable {
     }
 
     /**
-     * This returns a complete "OpusTags" header, created from the provided metadata tags.
-     * <p>
-     * You probably want to use makeOpusMetadata(), which uses this function to create
-     * a header with sensible metadata filled in.
-     *
-     * @ImplNote See <a href="https://datatracker.ietf.org/doc/html/rfc7845.html#section-5.2">
-     *     RFC7845 5.2</a>
+     * This returns a complete Comment header, created from the provided metadata tags.
      *
      * @param keyValueLines A list of pairs of the tags. This can also be though of as a mapping
      *                      from one key to multiple values.
+     * @param identificationHeader the identification header for the codec,
+     *                             which is required to be prefixed to the comment header.
      * @return The binary header
      */
-    private static byte[] makeOpusTagsHeader(final List<Pair<String, String>> keyValueLines) {
+    private static byte[] makeCommentHeader(final List<Pair<String, String>> keyValueLines,
+                                            final byte[] identificationHeader) {
         final var tags = keyValueLines
                 .stream()
-                .filter(p -> !p.second.isBlank())
-                .map(OggFromWebMWriter::makeOpusMetadataTag)
-                .collect(Collectors.toUnmodifiableList());
+                .filter(p -> p.second != null && !p.second.isBlank())
+                .map(OggFromWebMWriter::makeVorbisMetadataTag)
+                .toList();
 
         final var tagsBytes = tags.stream().collect(Collectors.summingInt(arr -> arr.length));
 
@@ -512,11 +542,7 @@ public class OggFromWebMWriter implements Closeable {
 
         final var head = ByteBuffer.allocate(byteCount);
         head.order(ByteOrder.LITTLE_ENDIAN);
-        // See RFC7845 5.2: https://datatracker.ietf.org/doc/html/rfc7845.html#section-5.2
-        head.put(new byte[]{
-                0x4F, 0x70, 0x75, 0x73, 0x54, 0x61, 0x67, 0x73, // "OpusTags" binary string
-                0x00, 0x00, 0x00, 0x00, // vendor (aka. Encoder) string of length 0
-        });
+        head.put(identificationHeader);
         head.putInt(tags.size()); // 4 bytes for tag count
         tags.forEach(head::put); // dynamic amount of tag bytes
 
