@@ -65,8 +65,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.SpanStyle
@@ -249,12 +252,15 @@ private fun LongPressMenuContent(
         Column(
             modifier = Modifier
                 .verticalScroll(scrollState)
+                .testTag("LongPressMenuGrid")
         ) {
             var actionIndex = if (header != null) -1 else 0 // -1 indicates the header
             while (actionIndex < actions.size) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("LongPressMenuGridRow")
                 ) {
                     var rowIndex = 0
                     while (rowIndex < buttonsPerRow) {
@@ -294,6 +300,7 @@ private fun LongPressMenuContent(
                                     // only item on the row anyway
                                     .fillMaxWidth()
                                     .weight(maxHeaderWidthInButtonsFullSpan.toFloat())
+                                    .testTag("LongPressMenuHeader")
                             )
                             rowIndex += maxHeaderWidthInButtonsFullSpan
                         } else {
@@ -310,6 +317,7 @@ private fun LongPressMenuContent(
                                     .heightIn(min = ThumbnailHeight)
                                     .fillMaxWidth()
                                     .weight(headerWidthInButtonsReducedSpan.toFloat())
+                                    .testTag("LongPressMenuHeader")
                             )
                             rowIndex += headerWidthInButtonsReducedSpan
                         }
@@ -404,6 +412,7 @@ fun LongPressMenuHeader(
                             .height(ThumbnailHeight)
                             .widthIn(max = ThumbnailHeight * 16 / 9) // 16:9 thumbnail at most
                             .clip(MaterialTheme.shapes.large)
+                            .testTag("LongPressMenuHeaderThumbnail")
                     )
                 }
 
@@ -461,6 +470,12 @@ fun LongPressMenuHeader(
                                 verticalArrangement = Arrangement.Center,
                                 horizontalAlignment = Alignment.CenterHorizontally,
                                 modifier = Modifier.fillMaxWidth()
+                                    .semantics(mergeDescendants = true) {
+                                        contentDescription = ctx.getString(
+                                            R.string.items_in_playlist,
+                                            decoration.itemCount
+                                        )
+                                    }
                             ) {
                                 Icon(
                                     Icons.AutoMirrored.Default.PlaylistPlay,
@@ -522,6 +537,7 @@ fun LongPressMenuHeader(
                         }
                             .fillMaxWidth()
                             .fadedMarquee(edgeWidth = 12.dp)
+                            .testTag("ShowChannelDetails")
                     )
                 }
             }

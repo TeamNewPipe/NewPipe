@@ -916,4 +916,5 @@
     <string name="background_shuffled">Background\nshuffled</string>
     <string name="popup_shuffled">Popup\nshuffled</string>
     <string name="play_shuffled">Play\nshuffled</string>
+    <string name="items_in_playlist">%d items in playlist</string>
 </resources>
