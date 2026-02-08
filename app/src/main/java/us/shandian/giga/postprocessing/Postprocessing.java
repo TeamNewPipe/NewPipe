@@ -25,13 +25,13 @@ import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING_HOLD;
 
 public abstract class Postprocessing implements Serializable {
 
-    static transient final byte OK_RESULT = ERROR_NOTHING;
+    static final byte OK_RESULT = ERROR_NOTHING;
 
-    public transient static final String ALGORITHM_TTML_CONVERTER = "ttml";
-    public transient static final String ALGORITHM_WEBM_MUXER = "webm";
-    public transient static final String ALGORITHM_MP4_FROM_DASH_MUXER = "mp4D-mp4";
-    public transient static final String ALGORITHM_M4A_NO_DASH = "mp4D-m4a";
-    public transient static final String ALGORITHM_OGG_FROM_WEBM_DEMUXER = "webm-ogg-d";
+    public static final String ALGORITHM_TTML_CONVERTER = "ttml";
+    public static final String ALGORITHM_WEBM_MUXER = "webm";
+    public static final String ALGORITHM_MP4_FROM_DASH_MUXER = "mp4D-mp4";
+    public static final String ALGORITHM_M4A_NO_DASH = "mp4D-m4a";
+    public static final String ALGORITHM_OGG_FROM_WEBM_DEMUXER = "webm-ogg-d";
 
     public static Postprocessing getAlgorithm(@NonNull String algorithmName, String[] args,
                                               @NonNull StreamInfo streamInfo) {
@@ -53,8 +53,6 @@ public abstract class Postprocessing implements Serializable {
             case ALGORITHM_OGG_FROM_WEBM_DEMUXER:
                 instance = new OggFromWebmDemuxer();
                 break;
-            /*case "example-algorithm":
-                instance = new ExampleAlgorithm();*/
             default:
                 throw new UnsupportedOperationException("Unimplemented post-processing algorithm: " + algorithmName);
         }
