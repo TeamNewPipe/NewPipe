@@ -1,5 +1,6 @@
 package org.schabi.newpipe.ui.components.menu
 
+import android.os.Build
 import androidx.activity.ComponentActivity
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -37,6 +38,7 @@ import androidx.test.espresso.device.sizeclass.WidthSizeClass
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.SdkSuppress
 import java.time.OffsetDateTime
 import java.time.temporal.ChronoUnit
 import kotlinx.coroutines.delay
@@ -44,6 +46,8 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Rule
 import org.junit.Test
+import org.junit.rules.RuleChain
+import org.junit.rules.TestRule
 import org.junit.runner.RunWith
 import org.schabi.newpipe.R
 import org.schabi.newpipe.assertInRange
@@ -69,7 +73,12 @@ class LongPressMenuTest {
     // Test rule for restoring device to its starting display size when a test case finishes.
     // See https://developer.android.com/training/testing/different-screens/tools#resize-displays.
     @get:Rule(order = 2)
-    val displaySizeRule: DisplaySizeRule = DisplaySizeRule()
+    val displaySizeRule: TestRule =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            DisplaySizeRule()
+        } else {
+            RuleChain.emptyRuleChain()
+        }
 
     private fun getLongPressable(
         title: String = "title",
@@ -382,6 +391,7 @@ class LongPressMenuTest {
     }
 
     @Test
+    @SdkSuppress(minSdkVersion = Build.VERSION_CODES.N)
     fun testHeaderSpansAllWidthIfSmallScreen() {
         onDevice().setDisplaySize(
             widthSizeClass = WidthSizeClass.COMPACT,
@@ -401,6 +411,7 @@ class LongPressMenuTest {
     }
 
     @Test
+    @SdkSuppress(minSdkVersion = Build.VERSION_CODES.N)
     fun testHeaderIsNotFullWidthIfLargeScreen() {
         onDevice().setDisplaySize(
             widthSizeClass = WidthSizeClass.EXPANDED,
@@ -549,6 +560,7 @@ class LongPressMenuTest {
     }
 
     @Test
+    @SdkSuppress(minSdkVersion = Build.VERSION_CODES.N)
     fun testAllActionsOnSmallScreenAreScrollable() {
         onDevice().setDisplaySize(
             widthSizeClass = WidthSizeClass.COMPACT,
