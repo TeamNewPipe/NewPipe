@@ -41,6 +41,7 @@ import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.util.Utility;
 
 import static org.schabi.newpipe.BuildConfig.DEBUG;
+import static org.schabi.newpipe.extractor.ServiceList.YouTube;
 
 public class DownloadMission extends Mission {
     private static final long serialVersionUID = 6L;// last bump: 07 october 2019
@@ -866,12 +867,25 @@ public class DownloadMission extends Mission {
             final String thumbnailUrl = ImageStrategy.choosePreferredImage(
                     images, PreferredImageQuality.HIGH);
             // TODO: get context from somewhere else
-            thumbnail = CoilHelper.INSTANCE.loadBitmapBlocking(App.getInstance(), thumbnailUrl);
+            Bitmap originalThumbnail = CoilHelper.INSTANCE.loadBitmapBlocking(
+                    App.getInstance(), thumbnailUrl);
+
+            // YouTube Music streams have non square thumbnails to fit the player aspect ratio
+            // of 16:9. We can safely crop the thumbnail to a square because the squared thumbnail
+            // is padded with bars on the sides.
+            if (originalThumbnail != null && streamInfo.getService().equals(YouTube)
+                    && streamInfo.getSongMetadata() != null // i.e. YT Music stream
+                    && originalThumbnail.getWidth() > originalThumbnail.getHeight()) {
+                int cropSize = Math.min(originalThumbnail.getWidth(), originalThumbnail.getHeight());
+                int xOffset = (originalThumbnail.getWidth() - cropSize) / 2;
+                originalThumbnail = Bitmap.createBitmap(originalThumbnail, xOffset, 0,
+                        cropSize, cropSize);
+            }
+            this.thumbnail = originalThumbnail;
             thumbnailFetched = true;
         } catch (final Exception e) {
             Log.w(TAG, "fetchThumbnail: failed to load thumbnail", e);
             thumbnailFetched = true;
-            return;
         }
     }
 
