@@ -55,6 +55,12 @@ configure<ApplicationExtension> {
         System.getProperty("versionNameSuffix")?.let { versionNameSuffix = it }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments["disableAnalytics"] = "true"
+        testOptions {
+            emulatorControl {
+                enable = true
+            }
+        }
     }
 
     buildTypes {
@@ -363,7 +369,10 @@ dependencies {
     testImplementation(libs.mockito.core)
 
     androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.runner)
+    androidTestImplementation(libs.androidx.test.espresso)
+    androidTestImplementation(libs.androidx.test.espresso.device)
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.test.rules)
     androidTestImplementation(libs.androidx.room.testing)
     androidTestImplementation(libs.assertj.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
