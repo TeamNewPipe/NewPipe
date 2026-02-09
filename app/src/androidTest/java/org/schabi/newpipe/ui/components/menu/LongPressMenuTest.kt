@@ -162,14 +162,18 @@ class LongPressMenuTest {
         var dismissedCount = 0
         setLongPressMenu(
             onDismissRequest = { dismissedCount += 1 },
-            longPressable = getLongPressable(uploader = "A", uploaderUrl = "https://example.com"),
+            longPressable = getLongPressable(uploader = "UpLoAdEr"),
             longPressActions = listOf(ShowChannelDetails.buildAction { pressedCount += 1 }),
             actionArrangement = listOf()
         )
 
+        // although ShowChannelDetails is not in the actionArrangement set in user settings (and
+        // thus the action will not appear in the menu), the LongPressMenu "knows" how to open a
+        // channel because the longPressActions that can be performed contain ShowChannelDetails,
+        // therefore the channel name is made clickable in the header
         composeRule.onNodeWithText(R.string.show_channel_details, substring = true)
             .assertDoesNotExist()
-        composeRule.onNodeWithText("A", substring = true)
+        composeRule.onNodeWithText("UpLoAdEr", substring = true)
             .assertIsDisplayed()
         composeRule.onNodeWithTag("ShowChannelDetails")
             .performClick()
@@ -183,11 +187,13 @@ class LongPressMenuTest {
         var dismissedCount = 0
         setLongPressMenu(
             onDismissRequest = { dismissedCount += 1 },
-            longPressable = getLongPressable(uploader = null, uploaderUrl = "https://example.com"),
+            longPressable = getLongPressable(uploader = null),
             longPressActions = listOf(ShowChannelDetails.buildAction { pressedCount += 1 }),
             actionArrangement = listOf()
         )
 
+        // if the uploader name is not present, we use "Show channel details" as the text for the
+        // channel opening link in the header
         composeRule.onNodeWithText(R.string.show_channel_details, substring = true)
             .assertIsDisplayed()
         composeRule.onNodeWithTag("ShowChannelDetails")
@@ -198,41 +204,26 @@ class LongPressMenuTest {
 
     @Test
     fun testShowChannelDetails3() {
-        var pressedCount = 0
-        var dismissedCount = 0
         setLongPressMenu(
-            onDismissRequest = { dismissedCount += 1 },
-            longPressable = getLongPressable(uploader = null, uploaderUrl = null),
-            longPressActions = listOf(ShowChannelDetails.buildAction { pressedCount += 1 }),
-            actionArrangement = listOf()
-        )
-
-        composeRule.onNodeWithText(R.string.show_channel_details, substring = true)
-            .assertIsDisplayed()
-        composeRule.onNodeWithTag("ShowChannelDetails")
-            .performClick()
-        composeRule.waitUntil { dismissedCount == 1 }
-        assertEquals(1, pressedCount)
-    }
-
-    @Test
-    fun testShowChannelDetails4() {
-        setLongPressMenu(
-            longPressable = getLongPressable(uploader = "A", uploaderUrl = "https://example.com"),
+            longPressable = getLongPressable(uploader = "UpLoAdEr"),
             longPressActions = listOf(),
             actionArrangement = listOf()
         )
+        // the longPressActions that can be performed do not contain ShowChannelDetails, so the
+        // LongPressMenu cannot "know" how to open channel details
         composeRule.onNodeWithTag("ShowChannelDetails")
             .assertHasNoClickAction()
     }
 
     @Test
-    fun testShowChannelDetails5() {
+    fun testShowChannelDetails4() {
         setLongPressMenu(
-            longPressable = getLongPressable(uploader = "A", uploaderUrl = "https://example.com"),
+            longPressable = getLongPressable(uploader = "UpLoAdEr"),
             longPressActions = listOf(ShowChannelDetails.buildAction {}),
             actionArrangement = listOf(ShowChannelDetails)
         )
+        // a ShowChannelDetails button is already present among the actions,
+        // so the channel name isn't clickable in the header
         composeRule.onNodeWithTag("ShowChannelDetails")
             .assertHasNoClickAction()
     }
