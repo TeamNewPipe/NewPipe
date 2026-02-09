@@ -72,6 +72,20 @@
         tools:visibility="visible" />
 
     <Button
+        android:id="@+id/error_check_for_updates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/check_for_updates"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="16sp"
+        android:theme="@style/ServiceColoredButton"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <Button
         android:id="@+id/error_open_in_browser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
