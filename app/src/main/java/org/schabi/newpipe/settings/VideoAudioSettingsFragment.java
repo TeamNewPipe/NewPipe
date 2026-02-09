@@ -52,6 +52,8 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
             } else if (getString(R.string.show_higher_resolutions_key).equals(key)) {
                 updateResolutionOptions();
             } else if (getString(R.string.show_play_with_kodi_key).equals(key)) {
+                // Adds or removes the kodi action from the long press menu (but the user may still
+                // remove/add it again independently of the show_play_with_kodi_key setting).
                 addOrRemoveKodiLongPressAction(requireContext());
             }
         };

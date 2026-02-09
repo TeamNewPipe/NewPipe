@@ -295,6 +295,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
 
             @Override
             public void held(final ChannelInfoItem item) {
+                // Note: this does a blocking I/O call to the database. Use coroutines when
+                // migrating to Kotlin/Compose instead.
                 final boolean isSubscribed = new SubscriptionManager(requireContext())
                         .blockingIsSubscribed(item.getServiceId(), item.getUrl());
 
@@ -338,9 +340,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
 
     /**
      * @param item an item in the list, from which the built queue should start
-     * @return a builder for a queue containing all of the items in this list, with the queue index
-     * set to the item passed as parameter; return {@code null} if no "start playing from here"
-     * options should be shown
+     * @return a builder for a queue containing all of the streams items in this list, with the
+     * queue index set to the stream item passed as parameter; return {@code null} if no "start
+     * playing from here" options should be shown
      */
     @Nullable
     protected Function0<PlayQueue> getPlayQueueStartingAt(@NonNull final StreamInfoItem item) {

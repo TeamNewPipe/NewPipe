@@ -584,6 +584,11 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         disposables.add(disposable);
     }
 
+    /**
+     * Changes the playlist's non-permanent thumbnail to the one of the stream entity with the
+     * provided ID, but only does so if the user did not set a permanent thumbnail themselves.
+     * @param thumbnailStreamId the ID of the stream entity whose thumbnail will be displayed
+     */
     private void changeThumbnailStreamIdIfNotPermanent(final long thumbnailStreamId) {
         if (playlistManager == null
                 || playlistManager.getIsPlaylistThumbnailPermanent(playlistId)) {

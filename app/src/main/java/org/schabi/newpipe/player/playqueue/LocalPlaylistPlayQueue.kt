@@ -9,6 +9,9 @@ import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager
 
+/**
+ * A play queue that fetches all of the items in a local playlist.
+ */
 class LocalPlaylistPlayQueue(info: PlaylistMetadataEntry) : PlayQueue(0, listOf()) {
     private val playlistId: Long = info.uid
     private var fetchDisposable: Disposable? = null

@@ -917,4 +917,5 @@
     <string name="popup_shuffled">Popup\nshuffled</string>
     <string name="play_shuffled">Play\nshuffled</string>
     <string name="items_in_playlist">%d items in playlist</string>
+    <string name="queue_fetching_stopped_early">Stopped loading after %1$d pages and %2$d items to avoid rate limits</string>
 </resources>

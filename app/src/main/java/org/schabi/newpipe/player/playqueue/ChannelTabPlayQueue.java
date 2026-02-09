@@ -19,16 +19,20 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public final class ChannelTabPlayQueue extends AbstractInfoPlayQueue<ChannelTabInfo> {
 
+    /**
+     * The channel tab link handler.
+     * If null, it indicates that we have yet to fetch the channel info and choose a tab from it.
+     */
     @Nullable
-    ListLinkHandler linkHandler;
+    ListLinkHandler tabHandler;
 
     public ChannelTabPlayQueue(final int serviceId,
-                               final ListLinkHandler linkHandler,
+                               final ListLinkHandler tabHandler,
                                final Page nextPage,
                                final List<StreamInfoItem> streams,
                                final int index) {
-        super(serviceId, linkHandler.getUrl(), nextPage, streams, index);
-        this.linkHandler = linkHandler;
+        super(serviceId, tabHandler.getUrl(), nextPage, streams, index);
+        this.tabHandler = tabHandler;
     }
 
     public ChannelTabPlayQueue(final int serviceId,
@@ -36,11 +40,16 @@ public final class ChannelTabPlayQueue extends AbstractInfoPlayQueue<ChannelTabI
         this(serviceId, linkHandler, null, Collections.emptyList(), 0);
     }
 
-    // Plays the first
+    /**
+     * Plays the streams in the channel tab where {@link ChannelTabHelper#isStreamsTab} returns
+     * true, choosing the first such tab among the ones returned by {@code ChannelInfo.getTabs()}.
+     * @param serviceId the service ID of the channel
+     * @param channelUrl the channel URL
+     */
     public ChannelTabPlayQueue(final int serviceId,
                                final String channelUrl) {
         super(serviceId, channelUrl, null, Collections.emptyList(), 0);
-        linkHandler = null;
+        tabHandler = null;
     }
 
     @Override
@@ -51,10 +60,11 @@ public final class ChannelTabPlayQueue extends AbstractInfoPlayQueue<ChannelTabI
     @Override
     public void fetch() {
         if (isInitial) {
-            if (linkHandler == null) {
+            if (tabHandler == null) {
+                // we still have not chosen a tab, so we need to fetch the channel
                 ExtractorHelper.getChannelInfo(this.serviceId, this.baseUrl, false)
                         .flatMap(channelInfo -> {
-                            linkHandler = channelInfo.getTabs()
+                            tabHandler = channelInfo.getTabs()
                                     .stream()
                                     .filter(ChannelTabHelper::isStreamsTab)
                                     .findFirst()
@@ -62,20 +72,22 @@ public final class ChannelTabPlayQueue extends AbstractInfoPlayQueue<ChannelTabI
                                             "No playable channel tab found"));
 
                             return ExtractorHelper
-                                    .getChannelTab(this.serviceId, this.linkHandler, false);
+                                    .getChannelTab(this.serviceId, this.tabHandler, false);
                         })
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(getHeadListObserver());
 
             } else {
-                ExtractorHelper.getChannelTab(this.serviceId, this.linkHandler, false)
+                // fetch the initial page of the channel tab
+                ExtractorHelper.getChannelTab(this.serviceId, this.tabHandler, false)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(getHeadListObserver());
             }
         } else {
-            ExtractorHelper.getMoreChannelTabItems(this.serviceId, this.linkHandler, this.nextPage)
+            // fetch the successive page of the channel tab
+            ExtractorHelper.getMoreChannelTabItems(this.serviceId, this.tabHandler, this.nextPage)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(getNextPageObserver());

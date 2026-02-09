@@ -491,6 +491,8 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 LongPressable.fromPlaylistMetadataEntry(selectedItem),
                 LongPressAction.fromPlaylistMetadataEntry(
                         selectedItem,
+                        // Note: this does a blocking I/O call to the database. Use coroutines when
+                        // migrating to Kotlin/Compose instead.
                         localPlaylistManager.getIsPlaylistThumbnailPermanent(selectedItem.getUid()),
                         // TODO passing this parameter is bad and should be fixed when migrating the
                         //  bookmark fragment to Compose, for more info see method javadoc

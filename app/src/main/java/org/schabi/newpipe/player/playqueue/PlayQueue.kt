@@ -1,5 +1,9 @@
 package org.schabi.newpipe.player.playqueue
 
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
+import android.widget.Toast
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Flowable
@@ -8,6 +12,9 @@ import java.io.Serializable
 import java.util.Collections
 import java.util.concurrent.atomic.AtomicInteger
 import kotlinx.coroutines.reactive.awaitFirst
+import org.schabi.newpipe.App
+import org.schabi.newpipe.BuildConfig
+import org.schabi.newpipe.R
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.AppendEvent
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.ErrorEvent
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.InitEvent
@@ -16,7 +23,6 @@ import org.schabi.newpipe.player.playqueue.PlayQueueEvent.RecoveryEvent
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.RemoveEvent
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.ReorderEvent
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.SelectEvent
-import org.schabi.newpipe.player.playqueue.PlayQueueItem
 
 /**
  * PlayQueue is responsible for keeping track of a list of streams and the index of
@@ -460,10 +466,29 @@ abstract class PlayQueue internal constructor(
                     // servers by making too many requests. For reference, making 10 fetch requests
                     // will mean fetching at most 1000 items on YouTube playlists, though this
                     // changes among services.
+                    Log.w(
+                        TAG,
+                        "Stopped after $MAX_FETCHES_BEFORE_SHUFFLING calls to fetch() " +
+                            "(for a total of ${streams.size} streams) to avoid rate limits"
+                    )
+                    Handler(Looper.getMainLooper()).post {
+                        Toast.makeText(
+                            App.instance,
+                            App.instance.getString(
+                                R.string.queue_fetching_stopped_early,
+                                MAX_FETCHES_BEFORE_SHUFFLING,
+                                streams.size
+                            ),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                     break
                 }
                 fetchCount += 1
 
+                if (BuildConfig.DEBUG) {
+                    Log.d(TAG, "fetchAllAndShuffle(): fetching a page, current stream count ${streams.size}")
+                }
                 fetch()
 
                 // Since `fetch()` does not return a Completable we can listen on, we have to wait
@@ -561,5 +586,10 @@ abstract class PlayQueue internal constructor(
      ////////////////////////////////////////////////////////////////////////// */
     private fun broadcast(event: PlayQueueEvent) {
         eventBroadcast?.onNext(event)
+    }
+
+    companion object {
+        val TAG: String = PlayQueue::class.java.simpleName
+        const val MAX_FETCHES_BEFORE_SHUFFLING = 10
     }
 }

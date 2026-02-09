@@ -119,6 +119,11 @@ class SubscriptionManager(context: Context) {
         subscriptionTable.delete(subscriptionEntity)
     }
 
+    /**
+     * Checks if the user is subscribed to a channel, in a blocking manner. Since the data being
+     * loaded from the database is very little, this should be fine. However once the migration to
+     * Kotlin coroutines will be finished, the blocking computation should be removed.
+     */
     fun blockingIsSubscribed(serviceId: Int, url: String): Boolean {
         return !subscriptionTable.getSubscription(serviceId, url).isEmpty.blockingGet()
     }
