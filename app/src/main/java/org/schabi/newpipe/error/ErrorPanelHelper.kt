@@ -13,8 +13,10 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
 import java.util.concurrent.TimeUnit
 import org.schabi.newpipe.MainActivity
+import org.schabi.newpipe.NewVersionWorker.Companion.enqueueNewVersionCheckingWork
 import org.schabi.newpipe.R
 import org.schabi.newpipe.ktx.animate
+import org.schabi.newpipe.util.ReleaseVersionUtil
 import org.schabi.newpipe.util.external_communication.ShareUtils
 
 class ErrorPanelHelper(
@@ -39,6 +41,8 @@ class ErrorPanelHelper(
         errorPanelRoot.findViewById(R.id.error_retry_button)
     private val errorOpenInBrowserButton: Button =
         errorPanelRoot.findViewById(R.id.error_open_in_browser)
+    private val errorCheckForUpdatesButton: Button =
+        errorPanelRoot.findViewById(R.id.error_check_for_updates)
 
     private var errorDisposable: Disposable? = null
     private var retryShouldBeShown: Boolean = (onRetry != null)
@@ -60,6 +64,7 @@ class ErrorPanelHelper(
         errorActionButton.isVisible = false
         errorRetryButton.isVisible = false
         errorOpenInBrowserButton.isVisible = false
+        errorCheckForUpdatesButton.isVisible = false
     }
 
     fun showError(errorInfo: ErrorInfo) {
@@ -77,6 +82,14 @@ class ErrorPanelHelper(
         } else if (errorInfo.isReportable) {
             showAndSetErrorButtonAction(R.string.error_snackbar_action) {
                 ErrorUtil.openActivity(context, errorInfo)
+            }
+            if (ReleaseVersionUtil.isReleaseApk) {
+                errorCheckForUpdatesButton.isVisible = true
+                errorCheckForUpdatesButton.setOnClickListener {
+                    enqueueNewVersionCheckingWork(context, true)
+                    errorCheckForUpdatesButton.isEnabled = false
+                    errorCheckForUpdatesButton.isVisible = false
+                }
             }
         }
 
