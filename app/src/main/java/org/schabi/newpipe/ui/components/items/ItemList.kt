@@ -18,7 +18,7 @@ import org.schabi.newpipe.extractor.InfoItem
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.info_list.ItemViewMode
-import org.schabi.newpipe.ktx.findFragmentActivity
+import org.schabi.newpipe.ktx.findFragmentManager
 import org.schabi.newpipe.player.playqueue.PlayQueue
 import org.schabi.newpipe.ui.components.common.LazyColumnThemedScrollbar
 import org.schabi.newpipe.ui.components.items.playlist.PlaylistListItem
@@ -41,11 +41,10 @@ fun ItemList(
     val context = LocalContext.current
     val onClick = remember {
         { item: InfoItem ->
-            val fragmentManager = context.findFragmentActivity().supportFragmentManager
             if (item is StreamInfoItem) {
                 NavigationHelper.openVideoDetailFragment(
                     context,
-                    fragmentManager,
+                    context.findFragmentManager(),
                     item.serviceId,
                     item.url,
                     item.name,
@@ -54,7 +53,7 @@ fun ItemList(
                 )
             } else if (item is PlaylistInfoItem) {
                 NavigationHelper.openPlaylistFragment(
-                    fragmentManager,
+                    context.findFragmentManager(),
                     item.serviceId,
                     item.url,
                     item.name

@@ -50,7 +50,7 @@ import org.schabi.newpipe.extractor.channel.ChannelInfoItem
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.ktx.findFragmentActivity
-import org.schabi.newpipe.local.dialog.PlaylistAppendDialog
+import org.schabi.newpipe.ktx.findFragmentManager
 import org.schabi.newpipe.local.dialog.PlaylistDialog
 import org.schabi.newpipe.local.history.HistoryRecordManager
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager
@@ -240,9 +240,7 @@ data class LongPressAction(
             addAction(Type.Download) { context ->
                 val info = fetchStreamInfoAndSaveToDatabase(context, item.serviceId, item.url)
                 val downloadDialog = DownloadDialog(context, info)
-                val fragmentManager = context.findFragmentActivity()
-                    .supportFragmentManager
-                downloadDialog.show(fragmentManager, "downloadDialog")
+                downloadDialog.show(context.findFragmentManager(), "downloadDialog")
             }
             addAction(Type.AddToPlaylist) { context ->
                 LocalPlaylistManager(NewPipeDatabase.getInstance(context))
@@ -251,11 +249,7 @@ data class LongPressAction(
                     PlaylistDialog.createCorrespondingDialog(context, listOf(StreamEntity(item)))
                         .awaitSingle()
                 }
-                val tag = if (dialog is PlaylistAppendDialog) "append" else "create"
-                dialog.show(
-                    context.findFragmentActivity().supportFragmentManager,
-                    "StreamDialogEntry@${tag}_playlist"
-                )
+                dialog.show(context.findFragmentManager(), "addToPlaylistDialog")
             }
             addAction(Type.ShowChannelDetails) { context ->
                 val uploaderUrl = fetchUploaderUrlIfSparse(
