@@ -1049,11 +1049,12 @@ public class DownloadDialog extends DialogFragment
             kind = 'a';
             selectedStream = audioStreamsAdapter.getItem(selectedAudioIndex);
 
-            if (selectedStream.getFormat() == MediaFormat.M4A) {
-                psName = Postprocessing.ALGORITHM_M4A_NO_DASH;
-            } else if (selectedStream.getFormat() == MediaFormat.WEBMA_OPUS) {
-                psName = Postprocessing.ALGORITHM_OGG_FROM_WEBM_DEMUXER;
-            }
+            psName = switch (selectedStream.getFormat()) {
+                case M4A -> Postprocessing.ALGORITHM_M4A_NO_DASH;
+                case WEBMA_OPUS -> Postprocessing.ALGORITHM_OGG_FROM_WEBM_DEMUXER;
+                case MP3 -> Postprocessing.ALGORITHM_MP3_METADATA;
+                default -> null;
+            };
         } else if (checkedRadioButtonId == R.id.video_button) {
             kind = 'v';
             selectedStream = videoStreamsAdapter.getItem(selectedVideoIndex);

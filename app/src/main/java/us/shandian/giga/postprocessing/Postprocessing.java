@@ -29,6 +29,7 @@ public abstract class Postprocessing implements Serializable {
 
     public static final String ALGORITHM_TTML_CONVERTER = "ttml";
     public static final String ALGORITHM_WEBM_MUXER = "webm";
+    public static final String ALGORITHM_MP3_METADATA = "mp3-metadata";
     public static final String ALGORITHM_MP4_METADATA = "mp4-metadata";
     public static final String ALGORITHM_MP4_FROM_DASH_MUXER = "mp4D-mp4";
     public static final String ALGORITHM_M4A_NO_DASH = "mp4D-m4a";
@@ -44,6 +45,9 @@ public abstract class Postprocessing implements Serializable {
                 break;
             case ALGORITHM_WEBM_MUXER:
                 instance = new WebMMuxer();
+                break;
+            case ALGORITHM_MP3_METADATA:
+                instance = new Mp3Metadata();
                 break;
             case ALGORITHM_MP4_METADATA:
                 instance = new Mp4Metadata();
