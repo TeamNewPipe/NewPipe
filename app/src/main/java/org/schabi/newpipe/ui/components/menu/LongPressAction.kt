@@ -1,9 +1,11 @@
 package org.schabi.newpipe.ui.components.menu
 
 import android.content.Context
+import android.text.InputType
 import android.widget.Toast
 import androidx.annotation.MainThread
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.PlaylistAdd
 import androidx.compose.material.icons.filled.AddToQueue
@@ -24,7 +26,10 @@ import androidx.compose.material.icons.filled.QueuePlayNext
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.core.net.toUri
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.reactive.awaitFirst
 import kotlinx.coroutines.rx3.await
 import kotlinx.coroutines.rx3.awaitSingle
 import kotlinx.coroutines.withContext
@@ -35,6 +40,7 @@ import org.schabi.newpipe.database.playlist.PlaylistStreamEntry
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry
 import org.schabi.newpipe.database.stream.model.StreamEntity
+import org.schabi.newpipe.databinding.DialogEditTextBinding
 import org.schabi.newpipe.download.DownloadDialog
 import org.schabi.newpipe.extractor.InfoItem
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
@@ -45,6 +51,7 @@ import org.schabi.newpipe.local.dialog.PlaylistAppendDialog
 import org.schabi.newpipe.local.dialog.PlaylistDialog
 import org.schabi.newpipe.local.history.HistoryRecordManager
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager
+import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.player.helper.PlayerHolder
 import org.schabi.newpipe.player.playqueue.ChannelTabPlayQueue
 import org.schabi.newpipe.player.playqueue.LocalPlaylistPlayQueue
@@ -147,7 +154,7 @@ data class LongPressAction(
          *  that was long-pressed, and take care of searching through the list to find the item
          *  index, and finally take care of building the queue. It would deduplicate some code in
          *  fragments, but it's probably not possible to do because of all the different types of
-         *  the items involved.
+         *  the items involved. But this should be reconsidered if the types will be unified.
          */
         private fun buildPlayerFromHereActionList(queueFromHere: () -> PlayQueue): List<LongPressAction> {
             return listOf(
@@ -330,7 +337,7 @@ data class LongPressAction(
             item: StreamStatisticsEntry,
             queueFromHere: (() -> PlayQueue)?
         ): List<LongPressAction> {
-            return fromStreamEntity(item.streamEntity, queueFromHere) +
+            return fromStreamInfoItem(item.streamEntity.toStreamInfoItem(), queueFromHere) +
                 listOf(
                     Type.Delete.buildAction { context ->
                         withContext(Dispatchers.IO) {
@@ -344,39 +351,100 @@ data class LongPressAction(
                 )
         }
 
+        /**
+         * TODO [onDelete] is still passed externally to allow the calling fragment to debounce
+         *  many deletions into a single database transaction, improving performance. This is
+         *  however a bad pattern (which has already led to many bugs in NewPipe). Once we migrate
+         *  the playlist fragment to Compose, we should make the database updates immediately, and
+         *  use `collectAsLazyPagingItems()` to load data in chunks and thus avoid slowdowns.
+         */
         @JvmStatic
         fun fromPlaylistStreamEntry(
             item: PlaylistStreamEntry,
             queueFromHere: (() -> PlayQueue)?,
-            // TODO possibly embed these two actions here
-            onDelete: Runnable,
-            onSetAsPlaylistThumbnail: Runnable
+            playlistId: Long,
+            onDelete: Runnable
         ): List<LongPressAction> {
-            return fromStreamEntity(item.streamEntity, queueFromHere) +
+            return fromStreamInfoItem(item.streamEntity.toStreamInfoItem(), queueFromHere) +
                 listOf(
-                    Type.Delete.buildAction { onDelete.run() },
-                    Type.SetAsPlaylistThumbnail.buildAction { onSetAsPlaylistThumbnail.run() }
+                    Type.SetAsPlaylistThumbnail.buildAction { context ->
+                        withContext(Dispatchers.IO) {
+                            LocalPlaylistManager(NewPipeDatabase.getInstance(context))
+                                .changePlaylistThumbnail(playlistId, item.streamEntity.uid, true)
+                                .awaitSingle()
+                        }
+                        Toast.makeText(
+                            context,
+                            R.string.playlist_thumbnail_change_success,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    },
+                    Type.Delete.buildAction { onDelete.run() }
                 )
         }
 
+        /**
+         * TODO see [fromPlaylistStreamEntry] for why [onDelete] is here and why it's bad
+         */
         @JvmStatic
         fun fromPlaylistMetadataEntry(
             item: PlaylistMetadataEntry,
-            onRename: Runnable,
-            onDelete: Runnable,
-            unsetPlaylistThumbnail: Runnable?
+            isThumbnailPermanent: Boolean,
+            onDelete: Runnable
         ): List<LongPressAction> {
             return buildPlayerActionList { LocalPlaylistPlayQueue(item) } +
                 buildPlayerShuffledActionList { LocalPlaylistPlayQueue(item) } +
                 listOf(
-                    Type.Rename.buildAction { onRename.run() },
-                    Type.Delete.buildAction { onDelete.run() },
+                    Type.Rename.buildAction { context ->
+                        // open the dialog and wait for its completion in the coroutine
+                        val newName = suspendCoroutine<String?> { continuation ->
+                            val dialogBinding = DialogEditTextBinding.inflate(
+                                context.findFragmentActivity().layoutInflater
+                            )
+                            dialogBinding.dialogEditText.setHint(R.string.name)
+                            dialogBinding.dialogEditText.setInputType(InputType.TYPE_CLASS_TEXT)
+                            dialogBinding.dialogEditText.setText(item.orderingName)
+                            AlertDialog.Builder(context)
+                                .setView(dialogBinding.getRoot())
+                                .setPositiveButton(R.string.rename_playlist) { _, _ ->
+                                    continuation.resume(dialogBinding.dialogEditText.getText().toString())
+                                }
+                                .setNegativeButton(R.string.cancel) { _, _ ->
+                                    continuation.resume(null)
+                                }
+                                .setOnCancelListener {
+                                    continuation.resume(null)
+                                }
+                                .show()
+                        } ?: return@buildAction
+
+                        withContext(Dispatchers.IO) {
+                            LocalPlaylistManager(NewPipeDatabase.getInstance(context))
+                                .renamePlaylist(item.uid, newName)
+                                .awaitSingle()
+                        }
+                    },
                     Type.UnsetPlaylistThumbnail.buildAction(
-                        enabled = { unsetPlaylistThumbnail != null }
-                    ) { unsetPlaylistThumbnail?.run() }
+                        enabled = { isThumbnailPermanent }
+                    ) { context ->
+                        withContext(Dispatchers.IO) {
+                            val localPlaylistManager =
+                                LocalPlaylistManager(NewPipeDatabase.getInstance(context))
+                            val thumbnailStreamId = localPlaylistManager
+                                .getAutomaticPlaylistThumbnailStreamId(item.uid)
+                                .awaitFirst()
+                            localPlaylistManager
+                                .changePlaylistThumbnail(item.uid, thumbnailStreamId, false)
+                                .awaitSingle()
+                        }
+                    },
+                    Type.Delete.buildAction { onDelete.run() }
                 )
         }
 
+        /**
+         * TODO see [fromPlaylistStreamEntry] for why [onDelete] is here and why it's bad
+         */
         @JvmStatic
         fun fromPlaylistRemoteEntity(
             item: PlaylistRemoteEntity,
@@ -397,12 +465,12 @@ data class LongPressAction(
         @JvmStatic
         fun fromChannelInfoItem(
             item: ChannelInfoItem,
-            onUnsubscribe: Runnable?
+            showUnsubscribe: Boolean
         ): List<LongPressAction> {
             return buildPlayerActionList { ChannelTabPlayQueue(item.serviceId, item.url) } +
                 buildPlayerShuffledActionList { ChannelTabPlayQueue(item.serviceId, item.url) } +
                 buildShareActionList(item) +
-                listOfNotNull(
+                listOf(
                     Type.ShowChannelDetails.buildAction { context ->
                         NavigationHelper.openChannelFragmentUsingIntent(
                             context,
@@ -410,9 +478,26 @@ data class LongPressAction(
                             item.url,
                             item.name
                         )
-                    },
-                    onUnsubscribe?.let { r -> Type.Unsubscribe.buildAction { r.run() } }
-                )
+                    }
+                ) +
+                if (showUnsubscribe) {
+                    listOf(
+                        Type.Unsubscribe.buildAction { context ->
+                            withContext(Dispatchers.IO) {
+                                SubscriptionManager(context)
+                                    .deleteSubscription(item.serviceId, item.url)
+                                    .await()
+                            }
+                            Toast.makeText(
+                                context,
+                                context.getString(R.string.channel_unsubscribed),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    )
+                } else {
+                    listOf()
+                }
         }
 
         @JvmStatic

@@ -37,21 +37,6 @@ data class StreamStatisticsEntry(
     override val localItemType: LocalItem.LocalItemType
         get() = LocalItem.LocalItemType.STATISTIC_STREAM_ITEM
 
-    @Ignore
-    fun toStreamInfoItem(): StreamInfoItem {
-        return StreamInfoItem(
-            streamEntity.serviceId,
-            streamEntity.url,
-            streamEntity.title,
-            streamEntity.streamType
-        ).apply {
-            duration = streamEntity.duration
-            uploaderName = streamEntity.uploader
-            uploaderUrl = streamEntity.uploaderUrl
-            thumbnails = ImageStrategy.dbUrlToImageList(streamEntity.thumbnailUrl)
-        }
-    }
-
     companion object {
         const val STREAM_LATEST_DATE = "latestAccess"
         const val STREAM_WATCH_COUNT = "watchCount"

@@ -451,7 +451,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                         final var streamStateEntity = streamStates.get(i);
                         final int indexInHistory = Collections.binarySearch(historyStreamIds,
                                 playlistItem.getStreamId());
-                        final long duration = playlistItem.toStreamInfoItem().getDuration();
+                        final long duration = playlistItem.getStreamEntity()
+                                .toStreamInfoItem()
+                                .getDuration();
 
                         if (indexInHistory < 0 // stream is not in history
                                 // stream is in history but the streamStateEntity is null
@@ -582,9 +584,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         disposables.add(disposable);
     }
 
-    private void changeThumbnailStreamId(final long thumbnailStreamId, final boolean isPermanent) {
-        if (playlistManager == null || (!isPermanent && playlistManager
-                .getIsPlaylistThumbnailPermanent(playlistId))) {
+    private void changeThumbnailStreamIdIfNotPermanent(final long thumbnailStreamId) {
+        if (playlistManager == null
+                || playlistManager.getIsPlaylistThumbnailPermanent(playlistId)) {
             return;
         }
 
@@ -598,7 +600,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
 
         final Disposable disposable = playlistManager
-                .changePlaylistThumbnail(playlistId, thumbnailStreamId, isPermanent)
+                .changePlaylistThumbnail(playlistId, thumbnailStreamId, false)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ignore -> successToast.show(), throwable ->
                         showError(new ErrorInfo(throwable, UserAction.REQUESTED_BOOKMARK,
@@ -620,7 +622,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             thumbnailStreamId = PlaylistEntity.DEFAULT_THUMBNAIL_ID;
         }
 
-        changeThumbnailStreamId(thumbnailStreamId, false);
+        changeThumbnailStreamIdIfNotPermanent(thumbnailStreamId);
     }
 
     private void openRemoveDuplicatesDialog() {
@@ -796,8 +798,10 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 LongPressAction.fromPlaylistStreamEntry(
                         item,
                         () -> getPlayQueueStartingAt(item),
-                        () -> deleteItem(item),
-                        () -> changeThumbnailStreamId(item.getStreamEntity().getUid(), true)
+                        playlistId,
+                        // TODO passing this parameter is bad and should be fixed when migrating the
+                        //  local playlist fragment to Compose, for more info see method javadoc
+                        () -> deleteItem(item)
                 )
         );
     }
@@ -838,8 +842,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         final List<LocalItem> infoItems = itemListAdapter.getItemsList();
         final List<StreamInfoItem> streamInfoItems = new ArrayList<>(infoItems.size());
         for (final LocalItem item : infoItems) {
-            if (item instanceof PlaylistStreamEntry) {
-                streamInfoItems.add(((PlaylistStreamEntry) item).toStreamInfoItem());
+            if (item instanceof PlaylistStreamEntry playlistStreamEntry) {
+                streamInfoItems.add(playlistStreamEntry.getStreamEntity().toStreamInfoItem());
             }
         }
         return new SinglePlayQueue(streamInfoItems, index);

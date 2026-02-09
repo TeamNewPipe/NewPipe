@@ -127,7 +127,9 @@ class MediaBrowserPlaybackPreparer(
     //region Building play queues from playlists and history
     private fun extractLocalPlayQueue(playlistId: Long, index: Int): Single<PlayQueue> {
         return LocalPlaylistManager(database).getPlaylistStreams(playlistId).firstOrError()
-            .map { items -> SinglePlayQueue(items.map { it.toStreamInfoItem() }, index) }
+            .map { items ->
+                SinglePlayQueue(items.map { it.streamEntity.toStreamInfoItem() }, index)
+            }
     }
 
     private fun extractRemotePlayQueue(playlistId: Long, index: Int): Single<PlayQueue> {

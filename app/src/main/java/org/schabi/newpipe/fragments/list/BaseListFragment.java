@@ -297,7 +297,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
                 openLongPressMenuInActivity(
                         requireActivity(),
                         LongPressable.fromChannelInfoItem(selectedItem),
-                        LongPressAction.fromChannelInfoItem(selectedItem, null)
+                        LongPressAction.fromChannelInfoItem(selectedItem, false)
                 );
             }
         });

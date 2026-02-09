@@ -28,7 +28,7 @@ class LocalPlaylistPlayQueue(info: PlaylistMetadataEntry) : PlayQueue(0, listOf(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { streamEntries ->
-                    append(streamEntries.map { PlayQueueItem(it.toStreamInfoItem()) })
+                    append(streamEntries.map { PlayQueueItem(it.streamEntity.toStreamInfoItem()) })
                 },
                 { e ->
                     Log.e(TAG, "Error fetching local playlist", e)

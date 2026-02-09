@@ -6,8 +6,6 @@ import static org.schabi.newpipe.ui.components.menu.LongPressMenuKt.openLongPres
 
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.text.InputType;
-import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +30,6 @@ import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
-import org.schabi.newpipe.databinding.DialogEditTextBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.BaseLocalListFragment;
@@ -55,7 +52,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.disposables.Disposable;
 
 public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistLocalItem>, Void>
         implements DebounceSavable {
@@ -323,25 +319,6 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     // Playlist Metadata Manipulation
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void changeLocalPlaylistName(final long id, final String name) {
-        if (localPlaylistManager == null) {
-            return;
-        }
-
-        if (DEBUG) {
-            Log.d(TAG, "Updating playlist id=[" + id + "] "
-                    + "with new name=[" + name + "] items");
-        }
-
-        final Disposable disposable = localPlaylistManager.renamePlaylist(id, name)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(longs -> { /*Do nothing on success*/ }, throwable -> showError(
-                        new ErrorInfo(throwable,
-                                UserAction.REQUESTED_BOOKMARK,
-                                "Changing playlist name")));
-        disposables.add(disposable);
-    }
-
     private void deleteItem(final PlaylistLocalItem item) {
         if (itemListAdapter == null) {
             return;
@@ -501,42 +478,25 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 LongPressable.fromPlaylistRemoteEntity(item),
                 LongPressAction.fromPlaylistRemoteEntity(
                         item,
+                        // TODO passing this parameter is bad and should be fixed when migrating the
+                        //  bookmark fragment to Compose, for more info see method javadoc
                         () -> showDeleteDialog(item.getOrderingName(), item)
                 )
         );
     }
 
     private void showLocalDialog(final PlaylistMetadataEntry selectedItem) {
-        final boolean isThumbnailPermanent = localPlaylistManager
-                .getIsPlaylistThumbnailPermanent(selectedItem.getUid());
-
         openLongPressMenuInActivity(
                 requireActivity(),
                 LongPressable.fromPlaylistMetadataEntry(selectedItem),
                 LongPressAction.fromPlaylistMetadataEntry(
                         selectedItem,
-                        () -> showRenameDialog(selectedItem),
-                        () -> showDeleteDialog(selectedItem.getOrderingName(), selectedItem),
-                        isThumbnailPermanent ? () -> unsetPermanentThumbnail(selectedItem) : null
+                        localPlaylistManager.getIsPlaylistThumbnailPermanent(selectedItem.getUid()),
+                        // TODO passing this parameter is bad and should be fixed when migrating the
+                        //  bookmark fragment to Compose, for more info see method javadoc
+                        () -> showDeleteDialog(selectedItem.getOrderingName(), selectedItem)
                 )
         );
-    }
-
-    private void showRenameDialog(final PlaylistMetadataEntry selectedItem) {
-        final DialogEditTextBinding dialogBinding =
-                DialogEditTextBinding.inflate(getLayoutInflater());
-        dialogBinding.dialogEditText.setHint(R.string.name);
-        dialogBinding.dialogEditText.setInputType(InputType.TYPE_CLASS_TEXT);
-        dialogBinding.dialogEditText.setText(selectedItem.getOrderingName());
-
-        new AlertDialog.Builder(activity)
-                .setView(dialogBinding.getRoot())
-                .setPositiveButton(R.string.rename_playlist, (dialog, which) ->
-                        changeLocalPlaylistName(
-                                selectedItem.getUid(),
-                                dialogBinding.dialogEditText.getText().toString()))
-                .setNegativeButton(R.string.cancel, null)
-                .show();
     }
 
     private void showDeleteDialog(final String name, final PlaylistLocalItem item) {
@@ -551,14 +511,5 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 .setPositiveButton(R.string.delete, (dialog, i) -> deleteItem(item))
                 .setNegativeButton(R.string.cancel, null)
                 .show();
-    }
-
-    private void unsetPermanentThumbnail(final PlaylistMetadataEntry item) {
-        final long thumbnailStreamId = localPlaylistManager
-                .getAutomaticPlaylistThumbnailStreamId(item.getUid());
-        localPlaylistManager
-                .changePlaylistThumbnail(item.getUid(), thumbnailStreamId, false)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe();
     }
 }

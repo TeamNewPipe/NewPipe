@@ -31,19 +31,4 @@ data class PlaylistStreamEntry(
 
     override val localItemType: LocalItem.LocalItemType
         get() = LocalItem.LocalItemType.PLAYLIST_STREAM_ITEM
-
-    @Throws(IllegalArgumentException::class)
-    fun toStreamInfoItem(): StreamInfoItem {
-        return StreamInfoItem(
-            streamEntity.serviceId,
-            streamEntity.url,
-            streamEntity.title,
-            streamEntity.streamType
-        ).apply {
-            duration = streamEntity.duration
-            uploaderName = streamEntity.uploader
-            uploaderUrl = streamEntity.uploaderUrl
-            thumbnails = ImageStrategy.dbUrlToImageList(streamEntity.thumbnailUrl)
-        }
-    }
 }

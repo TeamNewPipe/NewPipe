@@ -336,18 +336,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         openLongPressMenuInActivity(
             requireActivity(),
             LongPressable.fromChannelInfoItem(selectedItem),
-            LongPressAction.fromChannelInfoItem(
-                item = selectedItem,
-                onUnsubscribe = { deleteChannel(selectedItem) }
-            )
-        )
-    }
-
-    private fun deleteChannel(selectedItem: ChannelInfoItem) {
-        disposables.add(
-            subscriptionManager.deleteSubscription(selectedItem.serviceId, selectedItem.url).subscribe {
-                Toast.makeText(requireContext(), getString(R.string.channel_unsubscribed), Toast.LENGTH_SHORT).show()
-            }
+            LongPressAction.fromChannelInfoItem(selectedItem, true)
         )
     }
 
