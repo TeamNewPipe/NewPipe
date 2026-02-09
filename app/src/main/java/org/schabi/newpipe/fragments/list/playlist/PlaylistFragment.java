@@ -3,7 +3,6 @@ package org.schabi.newpipe.fragments.list.playlist;
 import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
-import static org.schabi.newpipe.ui.components.menu.LongPressMenuKt.openLongPressMenuInActivity;
 import static org.schabi.newpipe.util.ServiceHelper.getServiceById;
 
 import android.os.Bundle;
@@ -46,8 +45,6 @@ import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
-import org.schabi.newpipe.ui.components.menu.LongPressAction;
-import org.schabi.newpipe.ui.components.menu.LongPressable;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -68,6 +65,7 @@ import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
+import kotlin.jvm.functions.Function0;
 
 public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, PlaylistInfo>
         implements PlaylistControlViewHolder {
@@ -142,19 +140,6 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
         // Is mini variant still relevant?
         // Only the remote playlist screen uses it now
         infoListAdapter.setUseMiniVariant(true);
-    }
-
-    private PlayQueue getPlayQueueStartingAt(final StreamInfoItem infoItem) {
-        return getPlayQueue(Math.max(infoListAdapter.getItemsList().indexOf(infoItem), 0));
-    }
-
-    @Override
-    protected void showInfoItemDialog(final StreamInfoItem item) {
-        openLongPressMenuInActivity(
-            activity,
-            LongPressable.fromStreamInfoItem(item),
-            LongPressAction.fromStreamInfoItem(item, () -> getPlayQueueStartingAt(item))
-        );
     }
 
     @Override
@@ -361,10 +346,6 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
         PlayButtonHelper.initPlaylistControlClickListener(activity, playlistControlBinding, this);
     }
 
-    public PlayQueue getPlayQueue() {
-        return getPlayQueue(0);
-    }
-
     private PlayQueue getPlayQueue(final int index) {
         final List<StreamInfoItem> infoItems = new ArrayList<>();
         for (final InfoItem i : infoListAdapter.getItemsList()) {
@@ -379,6 +360,17 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
                 infoItems,
                 index
         );
+    }
+
+    @Override
+    public PlayQueue getPlayQueue() {
+        return getPlayQueue(0);
+    }
+
+    @Nullable
+    @Override
+    protected Function0<PlayQueue> getPlayQueueStartingAt(@NonNull final StreamInfoItem item) {
+        return () -> getPlayQueue(Math.max(infoListAdapter.getItemsList().indexOf(item), 0));
     }
 
     /*//////////////////////////////////////////////////////////////////////////

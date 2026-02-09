@@ -141,6 +141,14 @@ data class LongPressAction(
             )
         }
 
+        /**
+         * Instead of queueFromHere, this function could possibly take a
+         *  `() -> List<StreamInfoItem/StreamEntity/...>` plus the `StreamInfoItem/StreamEntity/...`
+         *  that was long-pressed, and take care of searching through the list to find the item
+         *  index, and finally take care of building the queue. It would deduplicate some code in
+         *  fragments, but it's probably not possible to do because of all the different types of
+         *  the items involved.
+         */
         private fun buildPlayerFromHereActionList(queueFromHere: () -> PlayQueue): List<LongPressAction> {
             return listOf(
                 Type.BackgroundFromHere.buildAction { context ->

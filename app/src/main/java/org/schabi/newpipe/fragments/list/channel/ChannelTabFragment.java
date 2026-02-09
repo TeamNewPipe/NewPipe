@@ -1,7 +1,5 @@
 package org.schabi.newpipe.fragments.list.channel;
 
-import static org.schabi.newpipe.ui.components.menu.LongPressMenuKt.openLongPressMenuInActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,8 +26,6 @@ import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistControlViewHolder;
 import org.schabi.newpipe.player.playqueue.ChannelTabPlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
-import org.schabi.newpipe.ui.components.menu.LongPressAction;
-import org.schabi.newpipe.ui.components.menu.LongPressable;
 import org.schabi.newpipe.ui.emptystate.EmptyStateUtil;
 import org.schabi.newpipe.util.ChannelTabHelper;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -41,6 +37,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.Single;
+import kotlin.jvm.functions.Function0;
 
 public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTabInfo>
         implements PlaylistControlViewHolder {
@@ -169,19 +166,6 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
         }
     }
 
-    @Override
-    protected void showInfoItemDialog(final StreamInfoItem item) {
-        openLongPressMenuInActivity(
-                requireActivity(),
-                LongPressable.fromStreamInfoItem(item),
-                LongPressAction.fromStreamInfoItem(item, () -> getPlayQueueStartingAt(item))
-        );
-    }
-
-    private PlayQueue getPlayQueueStartingAt(final StreamInfoItem infoItem) {
-        return getPlayQueue(streamItems -> Math.max(streamItems.indexOf(infoItem), 0));
-    }
-
     public PlayQueue getPlayQueue(final Function<List<StreamInfoItem>, Integer> index) {
         final List<StreamInfoItem> streamItems = infoListAdapter.getItemsList().stream()
                 .filter(StreamInfoItem.class::isInstance)
@@ -195,5 +179,11 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
     @Override
     public PlayQueue getPlayQueue() {
         return getPlayQueue(streamItems -> 0);
+    }
+
+    @Nullable
+    @Override
+    protected Function0<PlayQueue> getPlayQueueStartingAt(@NonNull final StreamInfoItem item) {
+        return () -> getPlayQueue(streamItems -> Math.max(streamItems.indexOf(item), 0));
     }
 }

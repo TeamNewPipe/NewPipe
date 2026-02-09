@@ -30,6 +30,7 @@ import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.info_list.ItemViewMode;
+import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.ui.components.menu.LongPressAction;
 import org.schabi.newpipe.ui.components.menu.LongPressable;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -41,6 +42,8 @@ import org.schabi.newpipe.views.SuperScrollLayoutManager;
 import java.util.List;
 import java.util.Queue;
 import java.util.function.Supplier;
+
+import kotlin.jvm.functions.Function0;
 
 public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         implements ListViewContract<I, N>, StateSaver.WriteRead,
@@ -267,8 +270,12 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             }
 
             @Override
-            public void held(final StreamInfoItem selectedItem) {
-                showInfoItemDialog(selectedItem);
+            public void held(final StreamInfoItem item) {
+                openLongPressMenuInActivity(
+                        requireActivity(),
+                        LongPressable.fromStreamInfoItem(item),
+                        LongPressAction.fromStreamInfoItem(item, getPlayQueueStartingAt(item))
+                );
             }
         });
 
@@ -325,13 +332,15 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         useNormalItemListScrollListener();
     }
 
-    protected void showInfoItemDialog(final StreamInfoItem item) {
-        openLongPressMenuInActivity(
-                requireActivity(),
-                LongPressable.fromStreamInfoItem(item),
-                // TODO generalize obtaining queue from here when fully migrating to Compose
-                LongPressAction.fromStreamInfoItem(item, null)
-        );
+    /**
+     * @param item an item in the list, from which the built queue should start
+     * @return a builder for a queue containing all of the items in this list, with the queue index
+     * set to the item passed as parameter; return {@code null} if no "start playing from here"
+     * options should be shown
+     */
+    @Nullable
+    protected Function0<PlayQueue> getPlayQueueStartingAt(@NonNull final StreamInfoItem item) {
+        return null; // disable "play from here" options by default (e.g. in search, kiosks)
     }
 
     /**
