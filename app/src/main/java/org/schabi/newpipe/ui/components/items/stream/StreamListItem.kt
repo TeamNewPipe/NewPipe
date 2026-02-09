@@ -26,16 +26,23 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
+import org.schabi.newpipe.player.playqueue.PlayQueue
 import org.schabi.newpipe.ui.components.menu.LongPressAction
 import org.schabi.newpipe.ui.components.menu.LongPressMenu
 import org.schabi.newpipe.ui.components.menu.LongPressable
 import org.schabi.newpipe.ui.theme.AppTheme
 
+/**
+ * @param getPlayQueueStartingAt a builder for a queue containing all of the items in this list,
+ * with the queue index set to the item passed as parameter; return `null` if no "start playing from
+ * here" options should be shown in the long press menu
+ */
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun StreamListItem(
     stream: StreamInfoItem,
     showProgress: Boolean,
+    getPlayQueueStartingAt: ((item: StreamInfoItem) -> PlayQueue)? = null,
     onClick: (StreamInfoItem) -> Unit = {}
 ) {
     var showLongPressMenu by rememberSaveable { mutableStateOf(false) }
@@ -79,8 +86,10 @@ fun StreamListItem(
         if (showLongPressMenu) {
             LongPressMenu(
                 longPressable = LongPressable.fromStreamInfoItem(stream),
-                // TODO queueFromHere: allow playing the whole list starting from one stream
-                longPressActions = LongPressAction.fromStreamInfoItem(stream, null),
+                longPressActions = LongPressAction.fromStreamInfoItem(
+                    stream,
+                    getPlayQueueStartingAt?.let { { it(stream) } }
+                ),
                 onDismissRequest = { showLongPressMenu = false }
             )
         }

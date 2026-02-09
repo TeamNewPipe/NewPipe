@@ -19,15 +19,22 @@ import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.info_list.ItemViewMode
 import org.schabi.newpipe.ktx.findFragmentActivity
+import org.schabi.newpipe.player.playqueue.PlayQueue
 import org.schabi.newpipe.ui.components.common.LazyColumnThemedScrollbar
 import org.schabi.newpipe.ui.components.items.playlist.PlaylistListItem
 import org.schabi.newpipe.ui.components.items.stream.StreamListItem
 import org.schabi.newpipe.util.DependentPreferenceHelper
 import org.schabi.newpipe.util.NavigationHelper
 
+/**
+ * @param getPlayQueueStartingAt a builder for a queue containing all of the items in this list,
+ * with the queue index set to the item passed as parameter; return `null` if no "start playing from
+ * here" options should be shown in the long press menu
+ */
 @Composable
 fun ItemList(
     items: List<InfoItem>,
+    getPlayQueueStartingAt: ((item: StreamInfoItem) -> PlayQueue)? = null,
     mode: ItemViewMode = determineItemViewMode(),
     listHeader: LazyListScope.() -> Unit = {}
 ) {
@@ -72,7 +79,7 @@ fun ItemList(
                     val item = items[it]
 
                     if (item is StreamInfoItem) {
-                        StreamListItem(item, showProgress, onClick)
+                        StreamListItem(item, showProgress, getPlayQueueStartingAt, onClick)
                     } else if (item is PlaylistInfoItem) {
                         PlaylistListItem(item, onClick)
                     }
