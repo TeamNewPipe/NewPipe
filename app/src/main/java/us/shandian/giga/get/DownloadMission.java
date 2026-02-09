@@ -70,7 +70,7 @@ public class DownloadMission extends Mission {
     static final int ERROR_HTTP_FORBIDDEN = 403;
 
     private StreamInfo streamInfo;
-    protected volatile Bitmap thumbnail;
+    protected transient volatile Bitmap thumbnail;
     protected volatile boolean thumbnailFetched = false;
 
     /**
