@@ -135,7 +135,8 @@ public abstract class PlaylistDialog extends DialogFragment implements StateSave
      *
      * @param context        context used for accessing the database
      * @param streamEntities used for crating the dialog
-     * @return the {@link Maybe} to subscribe to to obtain the correct {@link PlaylistDialog}
+     * @return the {@link Maybe} to subscribe to to obtain the correct {@link PlaylistDialog}; the
+     * function inside the subscribe() will be called on the main thread
      */
     public static Maybe<PlaylistDialog> createCorrespondingDialog(
             final Context context,

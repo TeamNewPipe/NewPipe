@@ -10,6 +10,9 @@ import androidx.preference.PreferenceManager
 import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert.fail
 
+/**
+ * Use this instead of passing contexts around in instrumented tests.
+ */
 val ctx: Context
     get() = InstrumentationRegistry.getInstrumentation().targetContext
 
@@ -52,6 +55,9 @@ fun SemanticsNodeInteractionsProvider.onNodeWithContentDescription(
     return this.onNodeWithContentDescription(ctx.getString(text), substring, ignoreCase, useUnmergedTree)
 }
 
+/**
+ * Asserts that [value] is in the range [[l], [r]] (both extremes included).
+ */
 fun <T : Comparable<T>> assertInRange(l: T, r: T, value: T) {
     if (l > r) {
         fail("Invalid range passed to `assertInRange`: [$l, $r]")
@@ -61,6 +67,9 @@ fun <T : Comparable<T>> assertInRange(l: T, r: T, value: T) {
     }
 }
 
+/**
+ * Asserts that [value] is NOT in the range [[l], [r]] (both extremes included).
+ */
 fun <T : Comparable<T>> assertNotInRange(l: T, r: T, value: T) {
     if (l > r) {
         fail("Invalid range passed to `assertInRange`: [$l, $r]")

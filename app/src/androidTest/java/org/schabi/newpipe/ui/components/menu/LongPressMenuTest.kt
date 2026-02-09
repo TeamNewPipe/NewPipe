@@ -80,18 +80,24 @@ class LongPressMenuTest {
             RuleChain.emptyRuleChain()
         }
 
+    /**
+     * Utility to build a [LongPressable] with dummy data for testing.
+     */
     private fun getLongPressable(
         title: String = "title",
         url: String? = "https://example.com",
         thumbnailUrl: String? = "android.resource://${ctx.packageName}/${R.drawable.placeholder_thumbnail_video}",
         uploader: String? = "uploader",
-        uploaderUrl: String? = "https://example.com",
         viewCount: Long? = 42,
         streamType: StreamType? = StreamType.VIDEO_STREAM,
         uploadDate: Either<String, OffsetDateTime>? = Either.left("2026"),
         decoration: LongPressable.Decoration? = LongPressable.Decoration.Duration(9478)
-    ) = LongPressable(title, url, thumbnailUrl, uploader, uploaderUrl, viewCount, streamType, uploadDate, decoration)
+    ) = LongPressable(title, url, thumbnailUrl, uploader, viewCount, streamType, uploadDate, decoration)
 
+    /**
+     * Sets up the [LongPressMenu] in the [composeRule] Compose content for running tests. Handles
+     * setting dialog settings via shared preferences, and closing the dialog when it is dismissed.
+     */
     private fun setLongPressMenu(
         longPressable: LongPressable = getLongPressable(),
         longPressActions: List<LongPressAction> = LongPressAction.Type.entries.map { it.buildAction { } },
@@ -114,8 +120,10 @@ class LongPressMenuTest {
         }
     }
 
-    // the three tests below all call this function to ensure that the editor button is shown
-    // independently of the long press menu contents
+    /**
+     * The three tests below all call this function to ensure that the editor button is shown
+     * independently of the long press menu contents.
+     */
     private fun assertEditorIsEnteredAndExitedProperly() {
         composeRule.onNodeWithContentDescription(R.string.long_press_menu_enabled_actions_description)
             .assertDoesNotExist()
@@ -256,6 +264,8 @@ class LongPressMenuTest {
 
     @Test
     fun testHeaderUploadDate1() {
+        // here the upload date is an unparsed String we have to use as-is
+        // (e.g. the extractor could not parse it)
         setLongPressMenu(getLongPressable(uploadDate = Either.left("abcd")))
         composeRule.onNodeWithText("abcd", substring = true)
             .assertIsDisplayed()
@@ -263,6 +273,7 @@ class LongPressMenuTest {
 
     @Test
     fun testHeaderUploadDate2() {
+        // here the upload date is a proper OffsetDateTime that can be formatted properly
         val date = OffsetDateTime.now()
             .minus(2, ChronoUnit.HOURS)
             .minus(50, ChronoUnit.MILLIS)
@@ -382,7 +393,7 @@ class LongPressMenuTest {
     }
 
     @Test
-    @SdkSuppress(minSdkVersion = Build.VERSION_CODES.N)
+    @SdkSuppress(minSdkVersion = Build.VERSION_CODES.N) // setDisplaySize not available on API < 24
     fun testHeaderSpansAllWidthIfSmallScreen() {
         onDevice().setDisplaySize(
             widthSizeClass = WidthSizeClass.COMPACT,
@@ -397,12 +408,13 @@ class LongPressMenuTest {
         val header = composeRule.onNodeWithTag("LongPressMenuHeader")
             .fetchSemanticsNode()
             .boundsInRoot
+        // checks that the header is roughly as large as the row that contains it
         assertInRange(row.left, row.left + 24.dp.value, header.left)
         assertInRange(row.right - 24.dp.value, row.right, header.right)
     }
 
     @Test
-    @SdkSuppress(minSdkVersion = Build.VERSION_CODES.N)
+    @SdkSuppress(minSdkVersion = Build.VERSION_CODES.N) // setDisplaySize not available on API < 24
     fun testHeaderIsNotFullWidthIfLargeScreen() {
         onDevice().setDisplaySize(
             widthSizeClass = WidthSizeClass.EXPANDED,
@@ -417,12 +429,15 @@ class LongPressMenuTest {
         val header = composeRule.onNodeWithTag("LongPressMenuHeader")
             .fetchSemanticsNode()
             .boundsInRoot
+        // checks that the header is definitely smaller than the row that contains it
         assertInRange(row.left, row.left + 24.dp.value, header.left)
-        assertNotInRange(row.right - 24.dp.value, row.right, header.right)
+        assertNotInRange(row.right - 24.dp.value, Float.MAX_VALUE, header.right)
     }
 
-    // the tests below all call this function to test, under different conditions, that the shown
-    // actions are the intersection between the available and the enabled actions
+    /**
+     * The tests below all call this function to test, under different conditions, that the shown
+     * actions are the intersection between the available and the enabled actions.
+     */
     fun assertOnlyAndAllArrangedActionsDisplayed(
         availableActions: List<LongPressAction.Type>,
         actionArrangement: List<LongPressAction.Type>,
@@ -430,7 +445,9 @@ class LongPressMenuTest {
     ) {
         setLongPressMenu(
             longPressActions = availableActions.map { it.buildAction {} },
-            isHeaderEnabled = ((availableActions.size + actionArrangement.size) % 2) == 0,
+            // whether the header is enabled or not shouldn't influence the result, so enable it
+            // at random (but still deterministically)
+            isHeaderEnabled = ((expectedShownActions + availableActions).sumOf { it.id } % 2) == 0,
             actionArrangement = actionArrangement
         )
         for (type in LongPressAction.Type.entries) {
@@ -551,7 +568,7 @@ class LongPressMenuTest {
     }
 
     @Test
-    @SdkSuppress(minSdkVersion = Build.VERSION_CODES.N)
+    @SdkSuppress(minSdkVersion = Build.VERSION_CODES.N) // setDisplaySize not available on API < 24
     fun testAllActionsOnSmallScreenAreScrollable() {
         onDevice().setDisplaySize(
             widthSizeClass = WidthSizeClass.COMPACT,
@@ -620,6 +637,9 @@ class LongPressMenuTest {
             longPressActions = listOf(BackgroundShuffled.buildAction { delay(500) })
         )
 
+        // test that the loading circle appears while the action is being performed; note that there
+        // is no way to test that the long press menu contents disappear, because in the current
+        // implementation they just become hidden below the loading circle (with touches suppressed)
         composeRule.onNode(SemanticsMatcher.keyIsDefined(ProgressBarRangeInfo))
             .assertDoesNotExist()
         composeRule.onNodeWithText(BackgroundShuffled.label)
@@ -643,6 +663,8 @@ class LongPressMenuTest {
             )
         )
 
+        // make sure that a snackbar is shown after the dialog gets dismissed,
+        // see https://stackoverflow.com/a/33245290
         onView(withId(com.google.android.material.R.id.snackbar_text))
             .check(doesNotExist())
         composeRule.onNodeWithText(BackgroundShuffled.label)
