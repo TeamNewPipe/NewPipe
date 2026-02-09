@@ -100,7 +100,7 @@ class LongPressMenuTest {
      */
     private fun setLongPressMenu(
         longPressable: LongPressable = getLongPressable(),
-        longPressActions: List<LongPressAction> = LongPressAction.Type.entries.map { it.buildAction { } },
+        longPressActions: List<LongPressAction> = LongPressAction.Type.entries.map { LongPressAction(it) { } },
         onDismissRequest: () -> Unit = {},
         isHeaderEnabled: Boolean = true,
         actionArrangement: List<LongPressAction.Type> = LongPressAction.Type.entries
@@ -171,7 +171,7 @@ class LongPressMenuTest {
         setLongPressMenu(
             onDismissRequest = { dismissedCount += 1 },
             longPressable = getLongPressable(uploader = "UpLoAdEr"),
-            longPressActions = listOf(ShowChannelDetails.buildAction { pressedCount += 1 }),
+            longPressActions = listOf(LongPressAction(ShowChannelDetails) { pressedCount += 1 }),
             actionArrangement = listOf()
         )
 
@@ -196,7 +196,7 @@ class LongPressMenuTest {
         setLongPressMenu(
             onDismissRequest = { dismissedCount += 1 },
             longPressable = getLongPressable(uploader = null),
-            longPressActions = listOf(ShowChannelDetails.buildAction { pressedCount += 1 }),
+            longPressActions = listOf(LongPressAction(ShowChannelDetails) { pressedCount += 1 }),
             actionArrangement = listOf()
         )
 
@@ -227,7 +227,7 @@ class LongPressMenuTest {
     fun testShowChannelDetails4() {
         setLongPressMenu(
             longPressable = getLongPressable(uploader = "UpLoAdEr"),
-            longPressActions = listOf(ShowChannelDetails.buildAction {}),
+            longPressActions = listOf(LongPressAction(ShowChannelDetails) {}),
             actionArrangement = listOf(ShowChannelDetails)
         )
         // a ShowChannelDetails button is already present among the actions,
@@ -444,7 +444,7 @@ class LongPressMenuTest {
         expectedShownActions: List<LongPressAction.Type>
     ) {
         setLongPressMenu(
-            longPressActions = availableActions.map { it.buildAction {} },
+            longPressActions = availableActions.map { LongPressAction(it) {} },
             // whether the header is enabled or not shouldn't influence the result, so enable it
             // at random (but still deterministically)
             isHeaderEnabled = ((expectedShownActions + availableActions).sumOf { it.id } % 2) == 0,
@@ -603,8 +603,8 @@ class LongPressMenuTest {
     fun testEnabledDisabledActions() {
         setLongPressMenu(
             longPressActions = listOf(
-                ShowDetails.buildAction(enabled = { true }) {},
-                Enqueue.buildAction(enabled = { false }) {}
+                LongPressAction(ShowDetails, enabled = { true }) {},
+                LongPressAction(Enqueue, enabled = { false }) {}
             )
         )
         composeRule.onNodeWithText(ShowDetails.label)
@@ -620,7 +620,7 @@ class LongPressMenuTest {
         var dismissedCount = 0
         setLongPressMenu(
             onDismissRequest = { dismissedCount += 1 },
-            longPressActions = listOf(PlayWithKodi.buildAction { pressedCount += 1 })
+            longPressActions = listOf(LongPressAction(PlayWithKodi) { pressedCount += 1 })
         )
 
         composeRule.onNodeWithText(PlayWithKodi.label)
@@ -634,7 +634,7 @@ class LongPressMenuTest {
         var dismissedCount = 0
         setLongPressMenu(
             onDismissRequest = { dismissedCount += 1 },
-            longPressActions = listOf(BackgroundShuffled.buildAction { delay(500) })
+            longPressActions = listOf(LongPressAction(BackgroundShuffled) { delay(500) })
         )
 
         // test that the loading circle appears while the action is being performed; note that there
@@ -659,7 +659,7 @@ class LongPressMenuTest {
         setLongPressMenu(
             onDismissRequest = { dismissedCount += 1 },
             longPressActions = listOf(
-                BackgroundShuffled.buildAction { throw Throwable("Whatever") }
+                LongPressAction(BackgroundShuffled) { throw Throwable("Whatever") }
             )
         )
 

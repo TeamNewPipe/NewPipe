@@ -757,7 +757,7 @@ private fun LongPressMenuPreview(
                 onUploaderClick = {},
                 actions = LongPressAction.Type.entries
                     // disable Enqueue actions just to show it off
-                    .map { t -> t.buildAction({ t != EnqueueNext }) { } },
+                    .map { t -> LongPressAction(t, { t != EnqueueNext }) {} },
                 runActionAndDismiss = {}
             )
         }
