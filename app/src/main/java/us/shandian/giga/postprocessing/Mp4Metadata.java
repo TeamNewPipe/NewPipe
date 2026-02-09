@@ -32,6 +32,9 @@ public class Mp4Metadata extends Postprocessing {
 
     @Override
     boolean test(SharpStream... sources) throws IOException {
+        // nothing to do if metadata should not be embedded
+        if (!embedMetadata) return false;
+
         // quick check: ensure there's at least one source and it looks like an MP4,
         // i.e. the file has a 'moov' box near the beginning.
         // THe 'udta' box is inserted inside 'moov', so if there's no 'moov' we can't do anything.

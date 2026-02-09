@@ -51,6 +51,11 @@ public class Mp3Metadata extends Postprocessing {
     }
 
     @Override
+    boolean test(SharpStream... sources) {
+        return this.embedMetadata;
+    }
+
+    @Override
     int process(SharpStream out, SharpStream... sources) throws IOException {
         if (sources == null || sources.length == 0 || sources[0] == null) {
             // nothing to do

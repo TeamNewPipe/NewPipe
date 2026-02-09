@@ -121,6 +121,7 @@ public class OggFromWebMWriter implements Closeable {
     private long segmentTableNextTimestamp = TIME_SCALE_NS;
 
     private final int[] crc32Table = new int[256];
+    private final boolean embedMetadata;
     private final StreamInfo streamInfo;
     private final Bitmap thumbnail;
 
@@ -128,11 +129,13 @@ public class OggFromWebMWriter implements Closeable {
      * Constructor of OggFromWebMWriter.
      * @param source
      * @param target
+     * @param embedMetadata whether to embed metadata in the output Ogg stream
      * @param streamInfo the stream info
      * @param thumbnail the thumbnail bitmap used as cover art
      */
     public OggFromWebMWriter(@NonNull final SharpStream source,
                              @NonNull final SharpStream target,
+                             final boolean embedMetadata,
                              @Nullable final StreamInfo streamInfo,
                              @Nullable final Bitmap thumbnail) {
         if (!source.canRead() || !source.canRewind()) {
@@ -144,6 +147,7 @@ public class OggFromWebMWriter implements Closeable {
 
         this.source = source;
         this.output = target;
+        this.embedMetadata = embedMetadata;
         this.streamInfo = streamInfo;
         this.thumbnail = thumbnail;
 
@@ -264,9 +268,11 @@ public class OggFromWebMWriter implements Closeable {
         }
 
         /* step 3: create packet with metadata */
-        final byte[] buffer = makeCommentHeader();
-        if (buffer != null) {
-            addPacketSegmentMultiPage(buffer, header);
+        if (embedMetadata) {
+            final byte[] buffer = makeCommentHeader();
+            if (buffer != null) {
+                addPacketSegmentMultiPage(buffer, header);
+            }
         }
 
         /* step 4: calculate amount of packets */

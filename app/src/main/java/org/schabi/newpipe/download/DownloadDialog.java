@@ -1036,6 +1036,7 @@ public class DownloadDialog extends DialogFragment
         final Stream selectedStream;
         Stream secondaryStream = null;
         final char kind;
+        final boolean embedMetadata = dialogBinding.metadataSwitch.isChecked();
         int threads = dialogBinding.threads.getProgress() + 1;
         final String[] urls;
         final List<MissionRecoveryInfo> recoveryInfo;
@@ -1119,8 +1120,8 @@ public class DownloadDialog extends DialogFragment
             );
         }
 
-        DownloadManagerService.startMission(context, urls, storage, kind, threads,
-                currentInfo, psName, psArgs, nearLength, new ArrayList<>(recoveryInfo));
+        DownloadManagerService.startMission(context, urls, storage, kind, threads, currentInfo,
+                psName, embedMetadata, psArgs, nearLength, new ArrayList<>(recoveryInfo));
 
         Toast.makeText(context, getString(R.string.download_has_started),
                 Toast.LENGTH_SHORT).show();

@@ -35,7 +35,9 @@ public abstract class Postprocessing implements Serializable {
     public static final String ALGORITHM_M4A_NO_DASH = "mp4D-m4a";
     public static final String ALGORITHM_OGG_FROM_WEBM_DEMUXER = "webm-ogg-d";
 
-    public static Postprocessing getAlgorithm(@NonNull String algorithmName, String[] args,
+    public static Postprocessing getAlgorithm(@NonNull String algorithmName,
+                                              boolean embedMetadata,
+                                              String[] args,
                                               @NonNull StreamInfo streamInfo) {
         Postprocessing instance;
 
@@ -67,6 +69,7 @@ public abstract class Postprocessing implements Serializable {
 
         instance.args = args;
         instance.streamInfo = streamInfo;
+        instance.embedMetadata = embedMetadata;
         return instance;
     }
 
@@ -87,6 +90,11 @@ public abstract class Postprocessing implements Serializable {
     private final String name;
 
     private String[] args;
+
+    /**
+     * Indicates whether the metadata should be embedded in the file or not.
+     */
+    boolean embedMetadata;
 
     /**
      * StreamInfo object related to the current download

@@ -64,9 +64,11 @@ public class Mp4FromDashWriter {
     private final ArrayList<Integer> compatibleBrands = new ArrayList<>(5);
 
 
+    private final boolean embedMetadata;
     private final Mp4MetadataHelper metadataHelper;
 
-    public Mp4FromDashWriter(final StreamInfo streamInfo,
+    public Mp4FromDashWriter(final boolean embedMetadata,
+                             final StreamInfo streamInfo,
                              final Bitmap thumbnail,
                              final SharpStream... sources) throws IOException {
         for (final SharpStream src : sources) {
@@ -75,6 +77,7 @@ public class Mp4FromDashWriter {
             }
         }
 
+        this.embedMetadata = embedMetadata;
         this.metadataHelper = new Mp4MetadataHelper(
                 this::auxOffset,
                 buffer -> {
@@ -750,7 +753,9 @@ public class Mp4FromDashWriter {
 
         makeMvhd(longestTrack);
 
-        metadataHelper.makeUdta();
+        if (embedMetadata) {
+            metadataHelper.makeUdta();
+        }
 
         for (int i = 0; i < tracks.length; i++) {
             if (tracks[i].trak.tkhd.matrix.length != 36) {
