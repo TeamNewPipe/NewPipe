@@ -119,6 +119,10 @@ class SubscriptionManager(context: Context) {
         subscriptionTable.delete(subscriptionEntity)
     }
 
+    fun blockingIsSubscribed(serviceId: Int, url: String): Boolean {
+        return !subscriptionTable.getSubscription(serviceId, url).isEmpty.blockingGet()
+    }
+
     /**
      * Fetches the list of videos for the provided channel and saves them in the database, so that
      * they will be considered as "old"/"already seen" streams and the user will never be notified

@@ -30,6 +30,7 @@ import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.info_list.ItemViewMode;
+import org.schabi.newpipe.local.subscription.SubscriptionManager;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.ui.components.menu.LongPressAction;
 import org.schabi.newpipe.ui.components.menu.LongPressable;
@@ -293,11 +294,14 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             }
 
             @Override
-            public void held(final ChannelInfoItem selectedItem) {
+            public void held(final ChannelInfoItem item) {
+                final boolean isSubscribed = new SubscriptionManager(requireContext())
+                        .blockingIsSubscribed(item.getServiceId(), item.getUrl());
+
                 openLongPressMenuInActivity(
                         requireActivity(),
-                        LongPressable.fromChannelInfoItem(selectedItem),
-                        LongPressAction.fromChannelInfoItem(selectedItem, false)
+                        LongPressable.fromChannelInfoItem(item),
+                        LongPressAction.fromChannelInfoItem(item, isSubscribed)
                 );
             }
         });

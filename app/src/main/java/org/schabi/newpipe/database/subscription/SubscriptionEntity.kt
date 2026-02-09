@@ -83,5 +83,17 @@ data class SubscriptionEntity(
                 subscriberCount = info.subscriberCount
             )
         }
+
+        @Ignore
+        fun from(info: ChannelInfoItem): SubscriptionEntity {
+            return SubscriptionEntity(
+                serviceId = info.serviceId,
+                url = info.url,
+                name = info.name,
+                avatarUrl = ImageStrategy.imageListToDbUrl(info.thumbnails),
+                description = info.description,
+                subscriberCount = info.subscriberCount
+            )
+        }
     }
 }

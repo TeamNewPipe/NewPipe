@@ -8,6 +8,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.PlaylistAdd
+import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.AddToQueue
 import androidx.compose.material.icons.filled.Cast
 import androidx.compose.material.icons.filled.Delete
@@ -23,6 +24,7 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PictureInPicture
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.QueuePlayNext
+import androidx.compose.material.icons.filled.RemoveCircle
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.core.net.toUri
@@ -40,6 +42,7 @@ import org.schabi.newpipe.database.playlist.PlaylistStreamEntry
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry
 import org.schabi.newpipe.database.stream.model.StreamEntity
+import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.databinding.DialogEditTextBinding
 import org.schabi.newpipe.download.DownloadDialog
 import org.schabi.newpipe.extractor.InfoItem
@@ -105,9 +108,10 @@ data class LongPressAction(
         Rename(19, R.string.rename, Icons.Default.Edit),
         SetAsPlaylistThumbnail(20, R.string.set_as_playlist_thumbnail, Icons.Default.Image),
         UnsetPlaylistThumbnail(21, R.string.unset_playlist_thumbnail, Icons.Default.HideImage),
-        Delete(22, R.string.delete, Icons.Default.Delete),
-        Unsubscribe(23, R.string.unsubscribe, Icons.Default.Delete),
-        Remove(24, R.string.play_queue_remove, Icons.Default.Delete);
+        Subscribe(22, R.string.subscribe_button_title, Icons.Default.AddCircle),
+        Unsubscribe(23, R.string.unsubscribe, Icons.Default.RemoveCircle),
+        Delete(24, R.string.delete, Icons.Default.Delete),
+        Remove(25, R.string.play_queue_remove, Icons.Default.Delete);
 
         fun buildAction(
             enabled: () -> Boolean = { true },
@@ -465,7 +469,7 @@ data class LongPressAction(
         @JvmStatic
         fun fromChannelInfoItem(
             item: ChannelInfoItem,
-            showUnsubscribe: Boolean
+            isSubscribed: Boolean
         ): List<LongPressAction> {
             return buildPlayerActionList { ChannelTabPlayQueue(item.serviceId, item.url) } +
                 buildPlayerShuffledActionList { ChannelTabPlayQueue(item.serviceId, item.url) } +
@@ -480,7 +484,7 @@ data class LongPressAction(
                         )
                     }
                 ) +
-                if (showUnsubscribe) {
+                if (isSubscribed) {
                     listOf(
                         Type.Unsubscribe.buildAction { context ->
                             withContext(Dispatchers.IO) {
@@ -496,7 +500,19 @@ data class LongPressAction(
                         }
                     )
                 } else {
-                    listOf()
+                    listOf(
+                        Type.Subscribe.buildAction { context ->
+                            withContext(Dispatchers.IO) {
+                                SubscriptionManager(context)
+                                    .insertSubscription(SubscriptionEntity.from(item))
+                            }
+                            Toast.makeText(
+                                context,
+                                context.getString(R.string.subscribed_button_title),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    )
                 }
         }
 

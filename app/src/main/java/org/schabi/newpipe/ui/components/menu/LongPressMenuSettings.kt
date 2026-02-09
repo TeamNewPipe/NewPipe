@@ -22,6 +22,7 @@ import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.Rename
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.SetAsPlaylistThumbnail
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.Share
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.ShowDetails
+import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.Subscribe
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.UnsetPlaylistThumbnail
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.Unsubscribe
 
@@ -43,9 +44,9 @@ fun storeIsHeaderEnabledToSettings(context: Context, enabled: Boolean) {
 // also be done by clicking on the uploader name in the long press menu header.
 // PlayWithKodi is only added by default if it is enabled in settings.
 private val DefaultEnabledActions: List<LongPressAction.Type> = listOf(
-    ShowDetails, Enqueue, EnqueueNext, Background, Popup, BackgroundFromHere,
-    BackgroundShuffled, Download, AddToPlaylist, Share, OpenInBrowser, MarkAsWatched,
-    Rename, SetAsPlaylistThumbnail, UnsetPlaylistThumbnail, Delete, Unsubscribe, Remove
+    ShowDetails, Enqueue, EnqueueNext, Background, Popup, BackgroundFromHere, BackgroundShuffled,
+    Download, AddToPlaylist, Share, OpenInBrowser, MarkAsWatched, Rename, SetAsPlaylistThumbnail,
+    UnsetPlaylistThumbnail, Subscribe, Unsubscribe, Delete, Remove
 )
 
 private fun getShowPlayWithKodi(context: Context): Boolean {
