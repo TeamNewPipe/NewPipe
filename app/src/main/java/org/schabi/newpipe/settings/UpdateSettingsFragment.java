@@ -3,7 +3,6 @@ package org.schabi.newpipe.settings;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
@@ -25,7 +24,6 @@ public class UpdateSettingsFragment extends BasePreferenceFragment {
     };
 
     private final Preference.OnPreferenceClickListener manualUpdateClick = preference -> {
-        Toast.makeText(getContext(), R.string.checking_updates_toast, Toast.LENGTH_SHORT).show();
         NewVersionWorker.enqueueNewVersionCheckingWork(requireContext(), true);
         return true;
     };

@@ -175,6 +175,15 @@ class NewVersionWorker(
          */
         @JvmStatic
         fun enqueueNewVersionCheckingWork(context: Context, isManual: Boolean) {
+            if (isManual) {
+                ContextCompat.getMainExecutor(context).execute {
+                    Toast.makeText(
+                        context,
+                        R.string.checking_updates_toast,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
             val workRequest = OneTimeWorkRequestBuilder<NewVersionWorker>()
                 .setInputData(workDataOf(IS_MANUAL to isManual))
                 .build()
