@@ -21,11 +21,10 @@ import androidx.compose.ui.test.isNotDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onFirst
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import androidx.compose.ui.test.performTouchInput
-import androidx.compose.ui.test.swipeUp
 import androidx.compose.ui.unit.dp
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
@@ -44,19 +43,23 @@ import java.time.OffsetDateTime
 import java.time.temporal.ChronoUnit
 import kotlinx.coroutines.delay
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotEquals
+import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.RuleChain
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
 import org.schabi.newpipe.R
+import org.schabi.newpipe.assertDidNotMove
 import org.schabi.newpipe.assertInRange
+import org.schabi.newpipe.assertMoved
 import org.schabi.newpipe.assertNotInRange
 import org.schabi.newpipe.ctx
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.onNodeWithContentDescription
 import org.schabi.newpipe.onNodeWithText
+import org.schabi.newpipe.scrollVerticallyAndGetOriginalAndFinalY
+import org.schabi.newpipe.tapAtAbsoluteXY
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.BackgroundShuffled
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.Enqueue
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.PlayWithKodi
@@ -135,7 +138,8 @@ class LongPressMenuTest {
                 .isDisplayed()
         }
 
-        Espresso.pressBack()
+        composeRule.onNodeWithContentDescription(R.string.back)
+            .performClick()
         composeRule.waitUntil {
             composeRule.onNodeWithText(R.string.long_press_menu_enabled_actions_description)
                 .isNotDisplayed()
@@ -458,14 +462,16 @@ class LongPressMenuTest {
     fun assertOnlyAndAllArrangedActionsDisplayed(
         availableActions: List<LongPressAction.Type>,
         actionArrangement: List<LongPressAction.Type>,
-        expectedShownActions: List<LongPressAction.Type>
+        expectedShownActions: List<LongPressAction.Type>,
+        onDismissRequest: () -> Unit = {}
     ) {
         setLongPressMenu(
             longPressActions = availableActions.map { LongPressAction(it) {} },
             // whether the header is enabled or not shouldn't influence the result, so enable it
             // at random (but still deterministically)
             isHeaderEnabled = ((expectedShownActions + availableActions).sumOf { it.id } % 2) == 0,
-            actionArrangement = actionArrangement
+            actionArrangement = actionArrangement,
+            onDismissRequest = onDismissRequest
         )
         for (type in LongPressAction.Type.entries) {
             composeRule.onNodeWithText(type.label)
@@ -563,54 +569,58 @@ class LongPressMenuTest {
 
     @Test
     fun testFewActionsOnNormalScreenAreNotScrollable() {
+        var dismissedCount = 0
         assertOnlyAndAllArrangedActionsDisplayed(
             availableActions = listOf(ShowDetails, ShowChannelDetails),
             actionArrangement = listOf(ShowDetails, ShowChannelDetails),
-            expectedShownActions = listOf(ShowDetails, ShowChannelDetails)
+            expectedShownActions = listOf(ShowDetails, ShowChannelDetails),
+            onDismissRequest = { dismissedCount += 1 }
         )
 
         // try to scroll and confirm that items don't move because the menu is not overflowing the
         // screen height
         composeRule.onNodeWithTag("LongPressMenuGrid")
             .assert(hasScrollAction())
-        val originalPosition = composeRule.onNodeWithText(ShowDetails.label)
-            .fetchSemanticsNode()
-            .positionOnScreen
-        composeRule.onNodeWithTag("LongPressMenuGrid")
-            .performTouchInput { swipeUp() }
-        val finalPosition = composeRule.onNodeWithText(ShowDetails.label)
-            .fetchSemanticsNode()
-            .positionOnScreen
-        assertEquals(originalPosition, finalPosition)
+            .scrollVerticallyAndGetOriginalAndFinalY(composeRule.onNodeWithText(ShowDetails.label))
+            .assertDidNotMove()
+
+        // also test that clicking on the top of the screen does not close the dialog because it
+        // spans all of the screen
+        tapAtAbsoluteXY(100f, 100f)
+        composeRule.waitUntil { dismissedCount == 1 }
     }
 
     @Test
     @SdkSuppress(minSdkVersion = Build.VERSION_CODES.N) // setDisplaySize not available on API < 24
     fun testAllActionsOnSmallScreenAreScrollable() {
         onDevice().setDisplaySize(WidthSizeClass.COMPACT, HeightSizeClass.COMPACT)
+        var dismissedCount = 0
         assertOnlyAndAllArrangedActionsDisplayed(
             availableActions = LongPressAction.Type.entries,
             actionArrangement = LongPressAction.Type.entries,
-            expectedShownActions = LongPressAction.Type.entries
+            expectedShownActions = LongPressAction.Type.entries,
+            onDismissRequest = { dismissedCount += 1 }
         )
 
         val anItemIsNotVisible = LongPressAction.Type.entries.any {
             composeRule.onNodeWithText(it.label).isNotDisplayed()
         }
-        assertEquals(true, anItemIsNotVisible)
+        assertTrue(anItemIsNotVisible)
 
         // try to scroll and confirm that items move
         composeRule.onNodeWithTag("LongPressMenuGrid")
             .assert(hasScrollAction())
-        val originalPosition = composeRule.onNodeWithText(Enqueue.label)
+            .scrollVerticallyAndGetOriginalAndFinalY(composeRule.onNodeWithText(Enqueue.label))
+            .assertMoved()
+
+        // also test that clicking on the top of the screen does not close the dialog because it
+        // spans all of the screen (tap just above the grid bounds on the drag handle, to avoid
+        // clicking on an action that would close the dialog)
+        val gridBounds = composeRule.onNodeWithTag("LongPressMenuGrid")
             .fetchSemanticsNode()
-            .positionOnScreen
-        composeRule.onNodeWithTag("LongPressMenuGrid")
-            .performTouchInput { swipeUp() }
-        val finalPosition = composeRule.onNodeWithText(Enqueue.label)
-            .fetchSemanticsNode()
-            .positionOnScreen
-        assertNotEquals(originalPosition, finalPosition)
+            .boundsInWindow
+        tapAtAbsoluteXY(gridBounds.center.x, gridBounds.top - 1)
+        assertTrue(composeRule.runCatching { waitUntil { dismissedCount == 1 } }.isFailure)
     }
 
     @Test

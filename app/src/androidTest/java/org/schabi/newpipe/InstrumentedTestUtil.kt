@@ -1,14 +1,30 @@
 package org.schabi.newpipe
 
+import android.app.Instrumentation
 import android.content.Context
+import android.os.SystemClock
+import android.view.MotionEvent
 import androidx.annotation.StringRes
 import androidx.compose.ui.test.SemanticsNodeInteraction
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
+import androidx.compose.ui.test.TouchInjectionScope
+import androidx.compose.ui.test.assert
+import androidx.compose.ui.test.hasScrollAction
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performTouchInput
+import androidx.compose.ui.test.swipeUp
 import androidx.preference.PreferenceManager
 import androidx.test.platform.app.InstrumentationRegistry
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotEquals
 import org.junit.Assert.fail
+
+/**
+ * Use this instead of calling `InstrumentationRegistry.getInstrumentation()` every time.
+ */
+val inst: Instrumentation
+    get() = InstrumentationRegistry.getInstrumentation()
 
 /**
  * Use this instead of passing contexts around in instrumented tests.
@@ -29,6 +45,15 @@ fun putStringInPrefs(@StringRes key: Int, value: String) {
 fun clearPrefs() {
     PreferenceManager.getDefaultSharedPreferences(ctx)
         .edit().clear().apply()
+}
+
+/**
+ * E.g. useful to tap outside dialogs to see whether they close.
+ */
+fun tapAtAbsoluteXY(x: Float, y: Float) {
+    val t = SystemClock.uptimeMillis()
+    inst.sendPointerSync(MotionEvent.obtain(t, t, MotionEvent.ACTION_DOWN, x, y, 0))
+    inst.sendPointerSync(MotionEvent.obtain(t, t + 50, MotionEvent.ACTION_UP, x, y, 0))
 }
 
 /**
@@ -56,6 +81,11 @@ fun SemanticsNodeInteractionsProvider.onNodeWithContentDescription(
 }
 
 /**
+ * Shorthand for `.fetchSemanticsNode().positionOnScreen`.
+ */
+fun SemanticsNodeInteraction.fetchPosOnScreen() = fetchSemanticsNode().positionOnScreen
+
+/**
  * Asserts that [value] is in the range [[l], [r]] (both extremes included).
  */
 fun <T : Comparable<T>> assertInRange(l: T, r: T, value: T) {
@@ -77,4 +107,37 @@ fun <T : Comparable<T>> assertNotInRange(l: T, r: T, value: T) {
     if (value in l..r) {
         fail("Expected $value to NOT be in range [$l, $r]")
     }
+}
+
+/**
+ * Tries to scroll vertically in the container [this] and uses [itemInsideScrollingContainer] to
+ * compute how much the container actually scrolled. Useful in tandem with [assertMoved] or
+ * [assertDidNotMove].
+ */
+fun SemanticsNodeInteraction.scrollVerticallyAndGetOriginalAndFinalY(
+    itemInsideScrollingContainer: SemanticsNodeInteraction,
+    startY: TouchInjectionScope.() -> Float = { bottom },
+    endY: TouchInjectionScope.() -> Float = { top }
+): Pair<Float, Float> {
+    val originalPosition = itemInsideScrollingContainer.fetchPosOnScreen()
+    this.performTouchInput { swipeUp(startY = startY(), endY = endY()) }
+    val finalPosition = itemInsideScrollingContainer.fetchPosOnScreen()
+    assertEquals(originalPosition.x, finalPosition.x)
+    return Pair(originalPosition.y, finalPosition.y)
+}
+
+/**
+ * Simple assert on results from [scrollVerticallyAndGetOriginalAndFinalY].
+ */
+fun Pair<Float, Float>.assertMoved() {
+    val (originalY, finalY) = this
+    assertNotEquals(originalY, finalY)
+}
+
+/**
+ * Simple assert on results from [scrollVerticallyAndGetOriginalAndFinalY].
+ */
+fun Pair<Float, Float>.assertDidNotMove() {
+    val (originalY, finalY) = this
+    assertEquals(originalY, finalY)
 }

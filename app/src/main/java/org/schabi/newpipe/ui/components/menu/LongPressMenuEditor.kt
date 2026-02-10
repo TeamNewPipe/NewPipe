@@ -63,6 +63,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -132,7 +133,8 @@ fun LongPressMenuEditorPage(onBackClick: () -> Unit) {
                     )
                     // `.focusTarget().onKeyEvent()` handles DPAD on Android TVs
                     .focusTarget()
-                    .onKeyEvent { event -> state.onKeyEvent(event, columns) },
+                    .onKeyEvent { event -> state.onKeyEvent(event, columns) }
+                    .testTag("LongPressMenuEditorGrid"),
                 // same width as the LongPressMenu
                 columns = GridCells.Adaptive(MinButtonWidth),
                 userScrollEnabled = false,
@@ -202,7 +204,7 @@ private fun ResetToDefaultsButton(onClick: () -> Unit) {
     TooltipIconButton(
         onClick = { showDialog = true },
         icon = Icons.Default.RestartAlt,
-        contentDescription = stringResource(R.string.playback_reset)
+        contentDescription = stringResource(R.string.reset_to_defaults)
     )
 }
 
