@@ -8,9 +8,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
@@ -26,6 +26,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import org.schabi.newpipe.R
+import org.schabi.newpipe.ui.components.common.TooltipIconButton
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.ui.theme.SizeTokens
 
@@ -70,13 +71,12 @@ fun Toolbar(
             actions = {
                 actions()
                 if (hasSearch) {
-                    IconButton(onClick = { isSearchActive = true }) {
-                        Icon(
-                            painterResource(id = R.drawable.ic_search),
-                            contentDescription = stringResource(id = R.string.search),
-                            tint = MaterialTheme.colorScheme.onSurface
-                        )
-                    }
+                    TooltipIconButton(
+                        onClick = { isSearchActive = true },
+                        icon = Icons.Default.Search,
+                        contentDescription = stringResource(id = R.string.search),
+                        tint = MaterialTheme.colorScheme.onSurface
+                    )
                 }
             }
         )

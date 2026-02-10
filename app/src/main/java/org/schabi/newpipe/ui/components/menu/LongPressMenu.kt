@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
@@ -40,7 +41,6 @@ import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedButton
@@ -70,6 +70,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.SpanStyle
@@ -93,6 +94,8 @@ import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.ErrorUtil
 import org.schabi.newpipe.error.UserAction.LONG_PRESS_MENU_ACTION
 import org.schabi.newpipe.extractor.stream.StreamType
+import org.schabi.newpipe.ui.components.common.SimpleTooltipBox
+import org.schabi.newpipe.ui.components.common.TooltipIconButton
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.EnqueueNext
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.ShowChannelDetails
 import org.schabi.newpipe.ui.discardAllTouchesIf
@@ -284,7 +287,6 @@ private fun LongPressMenuContent(
                                 enabled = action.enabled(),
                                 modifier = Modifier
                                     .height(buttonHeight)
-                                    .fillMaxWidth()
                                     .weight(1F)
                             )
                             rowIndex += 1
@@ -355,22 +357,19 @@ fun LongPressMenuDragHandle(onEditActions: () -> Unit) {
         BottomSheetDefaults.DragHandle(
             modifier = Modifier.align(Alignment.Center)
         )
-        IconButton(
+
+        // show a small button here, it's not an important button and it shouldn't
+        // capture the user attention
+        TooltipIconButton(
             onClick = onEditActions,
-            modifier = Modifier.align(Alignment.CenterEnd)
-        ) {
-            // show a small button here, it's not an important button and it shouldn't
-            // capture the user attention
-            Icon(
-                imageVector = Icons.Default.Tune,
-                contentDescription = stringResource(R.string.edit),
-                // same color and height as the DragHandle
-                tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier
-                    .padding(2.dp)
-                    .size(16.dp)
-            )
-        }
+            icon = Icons.Default.Tune,
+            contentDescription = stringResource(R.string.long_press_menu_actions_editor),
+            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.align(Alignment.CenterEnd),
+            iconModifier = Modifier
+                .padding(2.dp)
+                .size(16.dp)
+        )
     }
 }
 
@@ -519,30 +518,40 @@ fun LongPressMenuHeader(
                 if (subtitle.isNotBlank()) {
                     Spacer(Modifier.height(1.dp))
 
-                    Text(
-                        text = subtitle,
-                        style = MaterialTheme.typography.bodyMedium,
-                        inlineContent = getSubtitleInlineContent(),
-                        modifier = if (onUploaderClick == null) {
-                            Modifier
+                    if (onUploaderClick == null) {
+                        LongPressMenuHeaderSubtitle(subtitle)
+                    } else {
+                        val label = if (item.uploader != null) {
+                            stringResource(R.string.show_channel_details_for, item.uploader)
                         } else {
-                            Modifier.clickable(
-                                onClick = onUploaderClick,
-                                onClickLabel = if (item.uploader != null) {
-                                    stringResource(R.string.show_channel_details_for, item.uploader)
-                                } else {
-                                    stringResource(R.string.show_channel_details)
-                                }
+                            stringResource(R.string.show_channel_details)
+                        }
+                        SimpleTooltipBox(
+                            text = label
+                        ) {
+                            LongPressMenuHeaderSubtitle(
+                                subtitle,
+                                Modifier.clickable(onClick = onUploaderClick, onClickLabel = label)
                             )
                         }
-                            .fillMaxWidth()
-                            .fadedMarquee(edgeWidth = 12.dp)
-                            .testTag("ShowChannelDetails")
-                    )
+                    }
                 }
             }
         }
     }
+}
+
+@Composable
+private fun LongPressMenuHeaderSubtitle(subtitle: AnnotatedString, modifier: Modifier = Modifier) {
+    Text(
+        text = subtitle,
+        style = MaterialTheme.typography.bodyMedium,
+        inlineContent = getSubtitleInlineContent(),
+        modifier = modifier
+            .fillMaxWidth()
+            .fadedMarquee(edgeWidth = 12.dp)
+            .testTag("ShowChannelDetails")
+    )
 }
 
 fun getSubtitleAnnotatedString(
@@ -618,30 +627,33 @@ fun LongPressMenuButton(
     icon: ImageVector,
     text: String,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true
+    enabled: Boolean,
+    modifier: Modifier = Modifier
 ) {
-    // TODO possibly make it so that when you long-press on the button, the label appears on-screen
-    //  as a small popup, so in case the label text is cut off the users can still read it in full
-    OutlinedButton(
-        onClick = onClick,
-        enabled = enabled,
-        shape = MaterialTheme.shapes.large,
-        contentPadding = PaddingValues(start = 3.dp, top = 8.dp, end = 3.dp, bottom = 2.dp),
-        border = null,
+    SimpleTooltipBox(
+        text = text,
         modifier = modifier
     ) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Icon(
-                imageVector = icon,
-                contentDescription = null,
-                modifier = Modifier.size(32.dp)
-            )
-            FixedHeightCenteredText(
-                text = text,
-                lines = 2,
-                style = MaterialTheme.typography.bodySmall
-            )
+        OutlinedButton(
+            onClick = onClick,
+            enabled = enabled,
+            shape = MaterialTheme.shapes.large,
+            contentPadding = PaddingValues(start = 3.dp, top = 8.dp, end = 3.dp, bottom = 2.dp),
+            border = null,
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Icon(
+                    imageVector = icon,
+                    contentDescription = null,
+                    modifier = Modifier.size(32.dp)
+                )
+                FixedHeightCenteredText(
+                    text = text,
+                    lines = 2,
+                    style = MaterialTheme.typography.bodySmall
+                )
+            }
         }
     }
 }
@@ -659,6 +671,7 @@ private fun LongPressMenuButtonPreviews() {
                         icon = entry.icon,
                         text = stringResource(entry.label),
                         onClick = { },
+                        enabled = true,
                         modifier = Modifier.size(86.dp)
                     )
                 }

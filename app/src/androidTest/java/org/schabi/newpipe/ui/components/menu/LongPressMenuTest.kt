@@ -127,18 +127,18 @@ class LongPressMenuTest {
     private fun assertEditorIsEnteredAndExitedProperly() {
         composeRule.onNodeWithContentDescription(R.string.long_press_menu_enabled_actions_description)
             .assertDoesNotExist()
-        composeRule.onNodeWithContentDescription(R.string.edit)
+        composeRule.onNodeWithContentDescription(R.string.long_press_menu_actions_editor)
             .performClick()
         composeRule.waitUntil {
             composeRule.onNodeWithText(R.string.long_press_menu_enabled_actions)
                 .isDisplayed()
         }
 
-        composeRule.onNodeWithContentDescription(R.string.edit)
+        composeRule.onNodeWithContentDescription(R.string.long_press_menu_actions_editor)
             .assertDoesNotExist()
         Espresso.pressBack()
         composeRule.waitUntil {
-            composeRule.onNodeWithContentDescription(R.string.edit)
+            composeRule.onNodeWithContentDescription(R.string.long_press_menu_actions_editor)
                 .isDisplayed()
         }
 

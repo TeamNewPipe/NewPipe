@@ -42,7 +42,6 @@ import androidx.compose.material.icons.filled.RestartAlt
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -76,6 +75,7 @@ import kotlin.math.floor
 import org.schabi.newpipe.R
 import org.schabi.newpipe.ktx.letIf
 import org.schabi.newpipe.ui.components.common.ScaffoldWithToolbar
+import org.schabi.newpipe.ui.components.common.TooltipIconButton
 import org.schabi.newpipe.ui.detectDragGestures
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.text.FixedHeightCenteredText
@@ -199,12 +199,11 @@ private fun ResetToDefaultsButton(onClick: () -> Unit) {
         )
     }
 
-    IconButton(onClick = { showDialog = true }) {
-        Icon(
-            imageVector = Icons.Default.RestartAlt,
-            contentDescription = stringResource(R.string.playback_reset)
-        )
-    }
+    TooltipIconButton(
+        onClick = { showDialog = true },
+        icon = Icons.Default.RestartAlt,
+        contentDescription = stringResource(R.string.playback_reset)
+    )
 }
 
 @Composable
