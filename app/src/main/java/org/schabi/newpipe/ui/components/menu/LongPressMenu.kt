@@ -5,6 +5,7 @@ package org.schabi.newpipe.ui.components.menu
 import android.app.Activity
 import android.content.Context
 import android.content.res.Configuration
+import android.util.Log
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
 import androidx.compose.animation.fadeIn
@@ -89,6 +90,7 @@ import java.time.OffsetDateTime
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.R
 import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.ErrorUtil
@@ -106,44 +108,56 @@ import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.text.FixedHeightCenteredText
 import org.schabi.newpipe.util.text.fadedMarquee
 
+internal val MinButtonWidth = 86.dp
+internal val ThumbnailHeight = 60.dp
+private const val TAG = "LongPressMenu"
+
+/**
+ * Opens the long press menu from a View UI. From a Compose UI, use [LongPressMenu] directly.
+ */
 fun openLongPressMenuInActivity(
     activity: Activity,
     longPressable: LongPressable,
     longPressActions: List<LongPressAction>
 ) {
+    val composeView = ComposeView(activity)
+    composeView.setContent {
+        AppTheme {
+            LongPressMenu(
+                longPressable = longPressable,
+                longPressActions = longPressActions,
+                onDismissRequest = { (composeView.parent as? ViewGroup)?.removeView(composeView) }
+            )
+        }
+    }
     activity.addContentView(
-        getLongPressMenuView(activity, longPressable, longPressActions),
+        composeView,
         LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
     )
 }
 
-fun getLongPressMenuView(
-    context: Context,
-    longPressable: LongPressable,
-    longPressActions: List<LongPressAction>
-): ComposeView {
-    return ComposeView(context).apply {
-        setContent {
-            AppTheme {
-                LongPressMenu(
-                    longPressable = longPressable,
-                    longPressActions = longPressActions,
-                    onDismissRequest = { (this.parent as? ViewGroup)?.removeView(this) }
-                )
-            }
-        }
-    }
-}
-
-internal val MinButtonWidth = 86.dp
-internal val ThumbnailHeight = 60.dp
-
+/**
+ * Shows a bottom sheet menu containing a small header with the information in [longPressable], and
+ * then a list of actions that the user can perform on that item.
+ *
+ * @param longPressable contains information about the item that was just long-pressed, this
+ * information will be shown in a small header at the top of the menu, unless the user disabled it
+ * @param longPressActions should contain a list of all *applicable* actions for the item, and this
+ * composable's implementation will take care of filtering out the actions that the user has not
+ * disabled in settings. For more info see [LongPressAction]
+ * @param onDismissRequest called when the [LongPressMenu] should be closed, because the user either
+ * dismissed it or chose an action
+ */
 @Composable
 fun LongPressMenu(
     longPressable: LongPressable,
     longPressActions: List<LongPressAction>,
     onDismissRequest: () -> Unit
 ) {
+    // there are three possible states for the long press menu:
+    // - the starting state, with the menu shown
+    // - the loading state, after a user presses on an action that takes some time to be performed
+    // - the editor state, after the user clicks on the editor button in the top right
     val viewModel: LongPressMenuViewModel = viewModel()
     val isHeaderEnabled by viewModel.isHeaderEnabled.collectAsState()
     val actionArrangement by viewModel.actionArrangement.collectAsState()
@@ -151,86 +165,111 @@ fun LongPressMenu(
     var isLoading by remember { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
+    // intersection between applicable actions (longPressActions) and actions that the user
+    // enabled in settings (actionArrangement)
+    val enabledLongPressActions by remember {
+        derivedStateOf {
+            actionArrangement.mapNotNull { type ->
+                longPressActions.firstOrNull { it.type == type }
+            }
+        }
+    }
+
+    val ctx = LocalContext.current
+    // run actions on the main thread!
+    val coroutineScope = rememberCoroutineScope { Dispatchers.Main }
+    fun runActionAndDismiss(action: LongPressAction) {
+        if (isLoading) {
+            return // shouldn't be reachable, but just in case, prevent running two actions
+        }
+        isLoading = true
+        coroutineScope.launch {
+            try {
+                action.action(ctx)
+            } catch (_: CancellationException) {
+                // the user canceled the action, e.g. by dismissing the dialog while loading
+                if (BuildConfig.DEBUG) {
+                    Log.d(TAG, "Got CancellationException while running action ${action.type}")
+                }
+            } catch (t: Throwable) {
+                ErrorUtil.showSnackbar(
+                    ctx,
+                    ErrorInfo(t, LONG_PRESS_MENU_ACTION, "Running action ${action.type}")
+                )
+            }
+            onDismissRequest()
+        }
+    }
+
+    // show a clickable uploader in the header if an uploader action is available and the
+    // "show channel details" action is not enabled as a standalone action
+    val onUploaderClick by remember {
+        derivedStateOf {
+            longPressActions.firstOrNull { it.type == ShowChannelDetails }
+                ?.takeIf { !actionArrangement.contains(ShowChannelDetails) }
+                ?.let { showChannelAction -> { runActionAndDismiss(showChannelAction) } }
+        }
+    }
+
+    // takes care of showing either the actions or a loading indicator in a bottom sheet
+    ModalBottomSheet(
+        sheetState = sheetState,
+        onDismissRequest = onDismissRequest,
+        dragHandle = { LongPressMenuDragHandle(onEditActions = { showEditor = true }) }
+    ) {
+        // this Box and the .matchParentSize() below make sure that once the loading starts, the
+        // bottom sheet menu size remains the same and the loading button is shown in the middle
+        Box(modifier = Modifier.discardAllTouchesIf(isLoading)) {
+            LongPressMenuContent(
+                header = longPressable.takeIf { isHeaderEnabled },
+                onUploaderClick = onUploaderClick,
+                actions = enabledLongPressActions,
+                runActionAndDismiss = ::runActionAndDismiss
+            )
+            // importing makes the ColumnScope overload be resolved, so we use qualified path...
+            androidx.compose.animation.AnimatedVisibility(
+                visible = isLoading,
+                enter = fadeIn(),
+                exit = fadeOut(),
+                modifier = Modifier
+                    .matchParentSize()
+                    .background(MaterialTheme.colorScheme.surfaceContainerLow)
+            ) {
+                Box(contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator()
+                }
+            }
+        }
+    }
+
+    // takes care of showing the editor screen
     if (showEditor && !isLoading) {
-        // we can't put the editor in a bottom sheet, because it relies on dragging gestures
+        // we can't put the editor in a bottom sheet, because it relies on dragging gestures and it
+        // benefits from a bigger screen, so we use a fullscreen dialog instead
         Dialog(
             onDismissRequest = { showEditor = false },
             properties = DialogProperties(usePlatformDefaultWidth = false)
         ) {
             LongPressMenuEditorPage { showEditor = false }
         }
-    } else {
-        val enabledLongPressActions by remember {
-            derivedStateOf {
-                actionArrangement.mapNotNull { type ->
-                    longPressActions.firstOrNull { it.type == type }
-                }
-            }
-        }
-
-        val ctx = LocalContext.current
-        // run actions on the main thread!
-        val coroutineScope = rememberCoroutineScope { Dispatchers.Main }
-        fun runActionAndDismiss(action: LongPressAction) {
-            if (isLoading) {
-                return
-            }
-            isLoading = true
-            coroutineScope.launch {
-                try {
-                    action.action(ctx)
-                } catch (_: CancellationException) {
-                    // the user canceled the action, e.g. by dismissing the dialog while loading
-                } catch (t: Throwable) {
-                    ErrorUtil.showSnackbar(
-                        ctx,
-                        ErrorInfo(t, LONG_PRESS_MENU_ACTION, "Running action ${action.type}")
-                    )
-                }
-                onDismissRequest()
-            }
-        }
-
-        // show a clickable uploader in the header if an uploader action is available and the
-        // "show channel details" action is not enabled as a standalone action
-        val onUploaderClick by remember {
-            derivedStateOf {
-                longPressActions.firstOrNull { it.type == ShowChannelDetails }
-                    ?.takeIf { !actionArrangement.contains(ShowChannelDetails) }
-                    ?.let { showChannelAction -> { runActionAndDismiss(showChannelAction) } }
-            }
-        }
-
-        ModalBottomSheet(
-            sheetState = sheetState,
-            onDismissRequest = onDismissRequest,
-            dragHandle = { LongPressMenuDragHandle(onEditActions = { showEditor = true }) }
-        ) {
-            Box(modifier = Modifier.discardAllTouchesIf(isLoading)) {
-                LongPressMenuContent(
-                    header = longPressable.takeIf { isHeaderEnabled },
-                    onUploaderClick = onUploaderClick,
-                    actions = enabledLongPressActions,
-                    runActionAndDismiss = ::runActionAndDismiss
-                )
-                // importing makes the ColumnScope overload be resolved, so we use qualified path...
-                androidx.compose.animation.AnimatedVisibility(
-                    visible = isLoading,
-                    enter = fadeIn(),
-                    exit = fadeOut(),
-                    modifier = Modifier
-                        .matchParentSize()
-                        .background(MaterialTheme.colorScheme.surfaceContainerLow)
-                ) {
-                    Box(contentAlignment = Alignment.Center) {
-                        CircularProgressIndicator()
-                    }
-                }
-            }
-        }
     }
 }
 
+/**
+ * Arranges the header and the buttons in a grid according to the following constraints:
+ * - buttons have a minimum width, and all buttons should be exactly the same size
+ * - as many buttons as possible should fit in a row, with no space between them, so misclicks can
+ * still be caught and to leave more space for the button label text
+ * - the header is exactly as large as `headerWidthInButtonsReducedSpan=4` buttons, but
+ * `maxHeaderWidthInButtonsFullSpan=5` buttons wouldn't fit in a row then the header uses a full row
+ * - if the header is not using a full row, then more buttons should fit with it on the same row,
+ * so that the space is used efficiently e.g. in landscape or large screens
+ * - the menu should be vertically scrollable if there are too many actions to fit on the screen
+ *
+ * Unfortunately all these requirements mean we can't simply use a [FlowRow] but have to build a
+ * custom layout with [Row]s inside a [Column]. To make each item in the row have the appropriate
+ * size, we use [androidx.compose.foundation.layout.RowScope.weight].
+ */
 @Composable
 private fun LongPressMenuContent(
     header: LongPressable?,
@@ -288,6 +327,7 @@ private fun LongPressMenuContent(
                                 modifier = Modifier
                                     .height(buttonHeight)
                                     .weight(1F)
+                                    .testTag("LongPressMenuButton")
                             )
                             rowIndex += 1
                         } else if (maxHeaderWidthInButtonsFullSpan >= buttonsPerRow) {
@@ -331,8 +371,12 @@ private fun LongPressMenuContent(
     }
 }
 
+/**
+ * A custom [BottomSheetDefaults.DragHandle] that also shows a small button on the right, that opens
+ * the long press menu settings editor.
+ */
 @Composable
-fun LongPressMenuDragHandle(onEditActions: () -> Unit) {
+private fun LongPressMenuDragHandle(onEditActions: () -> Unit) {
     var showFocusTrap by remember { mutableStateOf(true) }
 
     Box(
@@ -358,7 +402,7 @@ fun LongPressMenuDragHandle(onEditActions: () -> Unit) {
             modifier = Modifier.align(Alignment.Center)
         )
 
-        // show a small button here, it's not an important button and it shouldn't
+        // show a small button to open the editor, it's not an important button and it shouldn't
         // capture the user attention
         TooltipIconButton(
             onClick = onEditActions,
@@ -384,8 +428,16 @@ private fun LongPressMenuDragHandlePreview() {
     }
 }
 
+/**
+ * A box that displays information about [item]: thumbnail, playlist item count, video duration,
+ * title, channel, date, view count.
+ *
+ * @param item the item that was long pressed and whose info should be shown
+ * @param onUploaderClick if not `null`, the [Text] containing the uploader will be made clickable
+ * (even if `item.uploader` is `null`, in which case a placeholder uploader text will be shown)
+ */
 @Composable
-fun LongPressMenuHeader(
+private fun LongPressMenuHeader(
     item: LongPressable,
     onUploaderClick: (() -> Unit)?,
     modifier: Modifier = Modifier
@@ -500,6 +552,7 @@ fun LongPressMenuHeader(
             Column(
                 modifier = Modifier.padding(vertical = 8.dp)
             ) {
+                // title
                 Text(
                     text = item.title,
                     style = MaterialTheme.typography.titleMedium,
@@ -509,6 +562,8 @@ fun LongPressMenuHeader(
                         .fadedMarquee(edgeWidth = 12.dp)
                 )
 
+                // subtitle; see the javadocs of `getSubtitleAnnotatedString` and
+                // `LongPressMenuHeaderSubtitle` to understand what is happening here
                 val subtitle = getSubtitleAnnotatedString(
                     item = item,
                     showLink = onUploaderClick != null,
@@ -521,6 +576,7 @@ fun LongPressMenuHeader(
                     if (onUploaderClick == null) {
                         LongPressMenuHeaderSubtitle(subtitle)
                     } else {
+                        // only show the tooltip if the menu is actually clickable
                         val label = if (item.uploader != null) {
                             stringResource(R.string.show_channel_details_for, item.uploader)
                         } else {
@@ -541,6 +597,10 @@ fun LongPressMenuHeader(
     }
 }
 
+/**
+ * Works in tandem with [getSubtitleAnnotatedString] and [getSubtitleInlineContent] to show the
+ * subtitle line with a small material icon next to the uploader link.
+ */
 @Composable
 private fun LongPressMenuHeaderSubtitle(subtitle: AnnotatedString, modifier: Modifier = Modifier) {
     Text(
@@ -554,13 +614,21 @@ private fun LongPressMenuHeaderSubtitle(subtitle: AnnotatedString, modifier: Mod
     )
 }
 
-fun getSubtitleAnnotatedString(
+/**
+ * @param item information fields are from here and concatenated in a single string
+ * @param showLink if true, a small material icon next to the uploader link; requires the [Text] to
+ * use [getSubtitleInlineContent] later
+ * @param linkColor which color to make the uploader link
+ */
+private fun getSubtitleAnnotatedString(
     item: LongPressable,
     showLink: Boolean,
     linkColor: Color,
     ctx: Context
 ) = buildAnnotatedString {
     var shouldAddSeparator = false
+
+    // uploader (possibly with link)
     if (showLink) {
         withStyle(SpanStyle(color = linkColor)) {
             if (item.uploader.isNullOrBlank()) {
@@ -578,6 +646,7 @@ fun getSubtitleAnnotatedString(
         shouldAddSeparator = true
     }
 
+    // localized upload date
     val uploadDate = item.uploadDate?.match<String>(
         { it },
         { Localization.relativeTime(it) }
@@ -590,6 +659,7 @@ fun getSubtitleAnnotatedString(
         append(uploadDate)
     }
 
+    // localized view count
     val viewCount = item.viewCount?.let {
         Localization.localizeViewCount(ctx, true, item.streamType, it)
     }
@@ -606,7 +676,7 @@ fun getSubtitleAnnotatedString(
  * provide it to [Text] through its `inlineContent` parameter.
  */
 @Composable
-fun getSubtitleInlineContent() = mapOf(
+private fun getSubtitleInlineContent() = mapOf(
     "open_in_new" to InlineTextContent(
         placeholder = Placeholder(
             width = MaterialTheme.typography.bodyMedium.fontSize,
@@ -622,8 +692,13 @@ fun getSubtitleInlineContent() = mapOf(
     }
 )
 
+/**
+ * A button to show in the long press menu with an [icon] and a label [text]. When pressed,
+ * [onClick] will be called, and when long pressed a tooltip will appear with the full [text]. If
+ * the button should appear disabled, make sure to set [enabled]`=false`.
+ */
 @Composable
-fun LongPressMenuButton(
+private fun LongPressMenuButton(
     icon: ImageVector,
     text: String,
     onClick: () -> Unit,

@@ -102,6 +102,12 @@ data class LongPressAction(
     val action: suspend (context: Context) -> Unit
 ) {
     /**
+     * When adding a new action, make sure to pick a unique [id] for it. Also, if the newly added
+     * action is to be considered a default action, add it to
+     * `LongPressMenuSettings.DefaultEnabledActions`, and create a settings migration to add it to
+     * the user's actions (otherwise the action will be disabled by default and the user will never
+     * find out about it).
+     *
      * @param id a unique ID that allows saving and restoring a list of action types from settings.
      * **MUST NOT CHANGE ACROSS APP VERSIONS!**
      * @param label a string label to show in the action's button
@@ -138,6 +144,7 @@ data class LongPressAction(
         Unsubscribe(23, R.string.unsubscribe, Icons.Default.RemoveCircle),
         Delete(24, R.string.delete, Icons.Default.Delete),
         Remove(25, R.string.play_queue_remove, Icons.Default.Delete)
+        // READ THE Type ENUM JAVADOC BEFORE ADDING OR CHANGING ACTIONS!
     }
 
     companion object {

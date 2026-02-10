@@ -6,6 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.semantics.SemanticsProperties.ProgressBarRangeInfo
 import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.assert
@@ -130,20 +131,17 @@ class LongPressMenuTest {
         composeRule.onNodeWithContentDescription(R.string.long_press_menu_actions_editor)
             .performClick()
         composeRule.waitUntil {
-            composeRule.onNodeWithText(R.string.long_press_menu_enabled_actions)
+            composeRule.onNodeWithText(R.string.long_press_menu_enabled_actions_description)
                 .isDisplayed()
         }
 
-        composeRule.onNodeWithContentDescription(R.string.long_press_menu_actions_editor)
-            .assertDoesNotExist()
         Espresso.pressBack()
         composeRule.waitUntil {
-            composeRule.onNodeWithContentDescription(R.string.long_press_menu_actions_editor)
-                .isDisplayed()
+            composeRule.onNodeWithText(R.string.long_press_menu_enabled_actions_description)
+                .isNotDisplayed()
         }
-
-        composeRule.onNodeWithText(R.string.long_press_menu_enabled_actions)
-            .assertDoesNotExist()
+        composeRule.onNodeWithContentDescription(R.string.long_press_menu_actions_editor)
+            .assertIsDisplayed()
     }
 
     @Test
@@ -392,14 +390,7 @@ class LongPressMenuTest {
             .assertIsDisplayed()
     }
 
-    @Test
-    @SdkSuppress(minSdkVersion = Build.VERSION_CODES.N) // setDisplaySize not available on API < 24
-    fun testHeaderSpansAllWidthIfSmallScreen() {
-        onDevice().setDisplaySize(
-            widthSizeClass = WidthSizeClass.COMPACT,
-            heightSizeClass = HeightSizeClass.MEDIUM
-        )
-        setLongPressMenu()
+    private fun getFirstRowAndHeaderBounds(): Pair<Rect, Rect> {
         val row = composeRule
             .onAllNodesWithTag("LongPressMenuGridRow")
             .onFirst()
@@ -408,7 +399,26 @@ class LongPressMenuTest {
         val header = composeRule.onNodeWithTag("LongPressMenuHeader")
             .fetchSemanticsNode()
             .boundsInRoot
+        return Pair(row, header)
+    }
+
+    private fun assertAllButtonsSameSize() {
+        composeRule.onAllNodesWithTag("LongPressMenuButton")
+            .fetchSemanticsNodes()
+            .reduce { prev, curr ->
+                assertInRange(prev.size.height - 1, prev.size.height + 1, curr.size.height)
+                assertInRange(prev.size.width - 1, prev.size.width + 1, curr.size.width)
+                return@reduce curr
+            }
+    }
+
+    @Test
+    @SdkSuppress(minSdkVersion = Build.VERSION_CODES.N) // setDisplaySize not available on API < 24
+    fun testHeaderSpansAllWidthIfSmallScreen() {
+        onDevice().setDisplaySize(WidthSizeClass.COMPACT, HeightSizeClass.MEDIUM)
+        setLongPressMenu()
         // checks that the header is roughly as large as the row that contains it
+        val (row, header) = getFirstRowAndHeaderBounds()
         assertInRange(row.left, row.left + 24.dp.value, header.left)
         assertInRange(row.right - 24.dp.value, row.right, header.right)
     }
@@ -416,22 +426,29 @@ class LongPressMenuTest {
     @Test
     @SdkSuppress(minSdkVersion = Build.VERSION_CODES.N) // setDisplaySize not available on API < 24
     fun testHeaderIsNotFullWidthIfLargeScreen() {
-        onDevice().setDisplaySize(
-            widthSizeClass = WidthSizeClass.EXPANDED,
-            heightSizeClass = HeightSizeClass.MEDIUM
-        )
+        onDevice().setDisplaySize(WidthSizeClass.EXPANDED, HeightSizeClass.MEDIUM)
         setLongPressMenu()
-        val row = composeRule
-            .onAllNodesWithTag("LongPressMenuGridRow")
-            .onFirst()
-            .fetchSemanticsNode()
-            .boundsInRoot
-        val header = composeRule.onNodeWithTag("LongPressMenuHeader")
-            .fetchSemanticsNode()
-            .boundsInRoot
+
         // checks that the header is definitely smaller than the row that contains it
+        val (row, header) = getFirstRowAndHeaderBounds()
         assertInRange(row.left, row.left + 24.dp.value, header.left)
         assertNotInRange(row.right - 24.dp.value, Float.MAX_VALUE, header.right)
+    }
+
+    @Test
+    @SdkSuppress(minSdkVersion = Build.VERSION_CODES.N) // setDisplaySize not available on API < 24
+    fun testAllButtonsSameSizeSmallScreen() {
+        onDevice().setDisplaySize(WidthSizeClass.COMPACT, HeightSizeClass.MEDIUM)
+        setLongPressMenu()
+        assertAllButtonsSameSize()
+    }
+
+    @Test
+    @SdkSuppress(minSdkVersion = Build.VERSION_CODES.N) // setDisplaySize not available on API < 24
+    fun testAllButtonsSameSizeLargeScreen() {
+        onDevice().setDisplaySize(WidthSizeClass.EXPANDED, HeightSizeClass.MEDIUM)
+        setLongPressMenu()
+        assertAllButtonsSameSize()
     }
 
     /**
@@ -545,7 +562,7 @@ class LongPressMenuTest {
     }
 
     @Test
-    fun testFewActionsOnLargeScreenAreNotScrollable() {
+    fun testFewActionsOnNormalScreenAreNotScrollable() {
         assertOnlyAndAllArrangedActionsDisplayed(
             availableActions = listOf(ShowDetails, ShowChannelDetails),
             actionArrangement = listOf(ShowDetails, ShowChannelDetails),
@@ -570,10 +587,7 @@ class LongPressMenuTest {
     @Test
     @SdkSuppress(minSdkVersion = Build.VERSION_CODES.N) // setDisplaySize not available on API < 24
     fun testAllActionsOnSmallScreenAreScrollable() {
-        onDevice().setDisplaySize(
-            widthSizeClass = WidthSizeClass.COMPACT,
-            heightSizeClass = HeightSizeClass.COMPACT
-        )
+        onDevice().setDisplaySize(WidthSizeClass.COMPACT, HeightSizeClass.COMPACT)
         assertOnlyAndAllArrangedActionsDisplayed(
             availableActions = LongPressAction.Type.entries,
             actionArrangement = LongPressAction.Type.entries,
