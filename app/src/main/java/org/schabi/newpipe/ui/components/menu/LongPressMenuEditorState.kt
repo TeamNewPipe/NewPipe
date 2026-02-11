@@ -33,12 +33,18 @@ import kotlinx.coroutines.launch
 private const val TAG = "LongPressMenuEditorStat"
 
 /**
- * This class is very tied to [LongPressMenuEditor] and interacts with the UI layer through
+ * Holds a list of items (from a fixed set of items, see [ItemInList]) to show in a `LazyGrid`, and
+ * allows performing drag operations on this list, both via touch and via DPAD (e.g. Android TVs).
+ * Loads the list state (composed of whether the header is enabled and of the action arrangement)
+ * from settings upon initialization, and only persists changes back to settings when [onDispose] is
+ * called.
+ *
+ * This class is very tied to [LongPressMenuEditorPage] and interacts with the UI layer through
  * [gridState]. Therefore it's not a view model but rather a state holder class, see
  * https://developer.android.com/topic/architecture/ui-layer/stateholders#ui-logic.
  *
- * See the javadoc of [LongPressMenuEditor] to understand which behaviors you should test for when
- * changing this class.
+ * See the javadoc of [LongPressMenuEditorPage] to understand which behaviors you should test for
+ * when changing this class.
  */
 @Stable
 class LongPressMenuEditorState(
@@ -53,14 +59,54 @@ class LongPressMenuEditorState(
         return@run buildItemsInList(isHeaderEnabled, actionArrangement).toMutableStateList()
     }
 
-    // variables for handling drag, focus, and autoscrolling when finger is at top/bottom
-    var activeDragItem by mutableStateOf<ItemInList?>(null)
-    var activeDragPosition by mutableStateOf(IntOffset.Zero)
-    var activeDragSize by mutableStateOf(IntSize.Zero)
-    var currentlyFocusedItem by mutableIntStateOf(-1)
-    var autoScrollJob by mutableStateOf<Job?>(null)
-    var autoScrollSpeed by mutableFloatStateOf(0f)
+    // variables for handling drag, DPAD focus, and autoscrolling when finger is at top/bottom
 
+    /** If not null, the [ItemInList] that the user picked up and is dragging around. */
+    var activeDragItem by mutableStateOf<ItemInList?>(null)
+        private set
+
+    /** If [activeDragItem]`!=null`, contains the user's finger position. */
+    var activeDragPosition by mutableStateOf(IntOffset.Zero)
+        private set
+
+    /** If [activeDragItem]`!=null`, the size it had in the list before being picked up. */
+    var activeDragSize by mutableStateOf(IntSize.Zero)
+        private set
+
+    /** If `>=0`, the index of the list item currently focused via DPAD (e.g. on Android TVs). */
+    var currentlyFocusedItem by mutableIntStateOf(-1)
+        private set
+
+    /**
+     * It is `!=null` only when the user is dragging something via touch, and is used to scroll
+     * up/down if the user's finger is close to the top/bottom of the list.
+     */
+    private var autoScrollJob by mutableStateOf<Job?>(null)
+
+    /**
+     * A value in range `[0, maxSpeed]`, computed with [autoScrollSpeedFromTouchPos], and used by
+     * [autoScrollJob] to scroll faster or slower depending on how close the finger is to the
+     * top/bottom of the list.
+     */
+    private var autoScrollSpeed by mutableFloatStateOf(0f)
+
+    /**
+     * Build the initial list of [ItemInList] given the [isHeaderEnabled] and [actionArrangement]
+     * loaded from settings. A "hidden actions" caption will separate the enabled actions (at the
+     * beginning of the list) from the disabled ones (at the end).
+     *
+     * @param isHeaderEnabled whether the header should come before or after the "hidden actions"
+     * caption in the list
+     * @param actionArrangement a list of **distinct** [LongPressAction.Type]s to show before the
+     * "hidden actions"; items must be distinct because it wouldn't make sense to enable an action
+     * twice, but also because the [LongPressAction.Type]`.ordinal`s are used as `LazyGrid` IDs in
+     * the UI (see [ItemInList.stableUniqueKey]), which requires them to be unique, so any duplicate
+     * items will be removed
+     * @return a list with [ItemInList.Action]s of all [LongPressAction.Type]s, with a header, and
+     * with two textual captions in between to distinguish between enabled and disabled items, for a
+     * total of `#(`[LongPressAction.Type]`) + 3` items (`+ 1` if a [ItemInList.NoneMarker] is also
+     * needed to indicate that no items are enabled or disabled)
+     */
     private fun buildItemsInList(
         isHeaderEnabled: Boolean,
         actionArrangement: List<LongPressAction.Type>
@@ -72,6 +118,7 @@ class LongPressMenuEditorState(
             }
             yieldAll(
                 actionArrangement
+                    .distinct() // see in the javadoc why this is important
                     .map { ItemInList.Action(it) }
                     .ifEmpty { if (isHeaderEnabled) listOf() else listOf(ItemInList.NoneMarker) }
             )
@@ -80,6 +127,7 @@ class LongPressMenuEditorState(
                 yield(ItemInList.HeaderBox)
             }
             yieldAll(
+                // these are trivially all distinct, so no need for distinct() here
                 LongPressAction.Type.entries
                     .filter { !actionArrangement.contains(it) }
                     .map { ItemInList.Action(it) }
@@ -88,11 +136,21 @@ class LongPressMenuEditorState(
         }.toList()
     }
 
+    /**
+     * Rebuilds the list state given the default action arrangement and header enabled status. Note
+     * that this does not save anything to settings, but only changes the list shown in the UI, as
+     * per the class javadoc.
+     */
     fun resetToDefaults(context: Context) {
         items.clear()
-        items.addAll(buildItemsInList(true, getDefaultEnabledLongPressActions(context)))
+        items.addAll(buildItemsInList(true, getDefaultLongPressActionArrangement(context)))
     }
 
+    /**
+     * @return the [ItemInList] at the position [offset] (relative to the start of the lazy grid),
+     * or the closest item along the row of the grid intersecting with [offset], or `null` if no
+     * such item exists
+     */
     private fun findItemForOffsetOrClosestInRow(offset: IntOffset): LazyGridItemInfo? {
         var closestItemInRow: LazyGridItemInfo? = null
         // Using manual for loop with indices instead of firstOrNull() because this method gets
@@ -109,6 +167,12 @@ class LongPressMenuEditorState(
         return closestItemInRow
     }
 
+    /**
+     * @return a number between 0 and [maxSpeed] indicating how fast the view should auto-scroll
+     * up/down while dragging an item, depending on how close the finger is to the top/bottom; uses
+     * this piecewise linear function, where `x=`[touchPos]`.y/height`:
+     * `f(x) = maxSpeed * max((x-1)/borderPercent + 1, min(x/borderPercent - 1, 0))`
+     */
     private fun autoScrollSpeedFromTouchPos(
         touchPos: IntOffset,
         maxSpeed: Float = 20f,
@@ -130,47 +194,72 @@ class LongPressMenuEditorState(
     }
 
     /**
-     * Called not just for drag gestures initiated by moving the finger, but also with DPAD's Enter.
+     * Prepares the list state because user wants to pick up an item, by putting the selected item
+     * in [activeDragItem] and replacing it in the view with a [ItemInList.DragMarker]. Called not
+     * just for drag gestures initiated by moving the finger, but also with DPAD's Enter.
+     * @param pos the touch position (for touch dragging), or the focus position (for DPAD moving)
+     * @param rawItem the `LazyGrid` item the user selected (it's a parameter because it's
+     * determined differently for touch and for DPAD)
+     * @return `true` if the dragging could be initiated correctly, `false` otherwise (e.g. if the
+     * item is not supposed to be draggable)
      */
-    private fun beginDragGesture(pos: IntOffset, rawItem: LazyGridItemInfo) {
-        if (activeDragItem != null) return
-        val item = items.getOrNull(rawItem.index) ?: return
-        if (item.isDraggable) {
-            items[rawItem.index] = ItemInList.DragMarker(item.columnSpan)
-            activeDragItem = item
-            activeDragPosition = pos
-            activeDragSize = rawItem.size
-        }
+    private fun beginDrag(pos: IntOffset, rawItem: LazyGridItemInfo): Boolean {
+        if (activeDragItem != null) return false
+        val item = items.getOrNull(rawItem.index) ?: return false
+        if (!item.isDraggable) return false
+
+        items[rawItem.index] = ItemInList.DragMarker(item.columnSpan)
+        activeDragItem = item
+        activeDragPosition = pos
+        activeDragSize = rawItem.size
+        return true
     }
 
     /**
-     * This beginDragGesture() overload is only called when moving the finger (not on DPAD's Enter).
+     * Finds the item under the user's touch, and then just delegates to [beginDrag], and if that's
+     * successful starts [autoScrollJob]. Only called on touch input, and not on DPAD input. Will
+     * not do anything if [wasLongPressed] is `false`, because only long-press-then-move should be
+     * used for moving items, note that however the touch events will still be forwarded to
+     * [handleDragChangeTouch] to handle scrolling.
      */
-    fun beginDragGesture(pos: IntOffset, wasLongPressed: Boolean) {
+    fun beginDragTouch(pos: IntOffset, wasLongPressed: Boolean) {
         if (!wasLongPressed) {
             // items can be dragged around only if they are long-pressed;
             // use the drag as scroll otherwise
             return
         }
         val rawItem = findItemForOffsetOrClosestInRow(pos) ?: return
-        beginDragGesture(pos, rawItem)
-        autoScrollSpeed = 0f
-        autoScrollJob = coroutineScope.launch {
-            while (isActive) {
-                if (autoScrollSpeed != 0f) {
-                    gridState.scrollBy(autoScrollSpeed)
+        if (beginDrag(pos, rawItem)) {
+            // only start the job if `beginDragGesture` was successful
+            autoScrollSpeed = 0f
+            autoScrollJob?.cancel() // just in case
+            autoScrollJob = coroutineScope.launch {
+                while (isActive) {
+                    if (autoScrollSpeed != 0f) {
+                        gridState.scrollBy(autoScrollSpeed)
+                    }
+                    delay(16L) // roughly 60 FPS
                 }
-                delay(16L) // roughly 60 FPS
             }
         }
     }
 
     /**
-     * Called not just for drag gestures by moving the finger, but also with DPAD's events.
+     * Called when the user's finger, or the DPAD focus, moves over a new item while a drag is
+     * active (i.e. [activeDragItem]`!=null`). Moves the [ItemInList.DragMarker] in the list to be
+     * at the current position of [rawItem]/[dragItem], and adds/removes [ItemInList.NoneMarker] if
+     * needed.
+     * @param dragItem the same as [activeDragItem], but `!= null`
+     * @param rawItem the raw `LazyGrid` state of the [ItemInList] that the user is currently
+     * passing over with touch or focus
      */
-    private fun handleDragGestureChange(dragItem: ItemInList, rawItem: LazyGridItemInfo) {
+    private fun handleDragChange(dragItem: ItemInList, rawItem: LazyGridItemInfo) {
         val prevDragMarkerIndex = items.indexOfFirst { it is ItemInList.DragMarker }
-            .takeIf { it >= 0 } ?: return // impossible situation, DragMarker is always in the list
+            .takeIf { it >= 0 }
+        if (prevDragMarkerIndex == null) {
+            Log.w(TAG, "DragMarker not being in the list should be impossible")
+            return
+        }
 
         // compute where the DragMarker will go (we need to do special logic to make sure the
         // HeaderBox always sticks right after EnabledCaption or HiddenCaption)
@@ -212,10 +301,12 @@ class LongPressMenuEditorState(
     }
 
     /**
-     * This handleDragGestureChange() overload is only called when moving the finger
-     * (not on DPAD's events).
+     * Handles touch gesture movements, and scrolls the `LazyGrid` if no item is being actively
+     * dragged, or otherwise delegates to [handleDragChange]. Also updates [activeDragPosition] (so
+     * the dragged item can be shown at that offset in the UI) and [autoScrollSpeed]. This is only
+     * called on touch input, and not on DPAD input.
      */
-    fun handleDragGestureChange(pos: IntOffset, posChangeForScrolling: Offset) {
+    fun handleDragChangeTouch(pos: IntOffset, posChangeForScrolling: Offset) {
         val dragItem = activeDragItem
         if (dragItem == null) {
             // when the user clicks outside of any draggable item, or if the user did not long-press
@@ -226,17 +317,22 @@ class LongPressMenuEditorState(
         autoScrollSpeed = autoScrollSpeedFromTouchPos(pos)
         activeDragPosition = pos
         val rawItem = findItemForOffsetOrClosestInRow(pos) ?: return
-        handleDragGestureChange(dragItem, rawItem)
+        handleDragChange(dragItem, rawItem)
     }
 
     /**
-     * Called in multiple places, e.g. when the finger stops touching, or with DPAD events.
+     * Concludes the touch/DPAD drag, stops the [autoScrollJob] if any, and most importantly
+     * "releases" the [activeDragItem] by putting it back in the list, replacing the
+     * [ItemInList.DragMarker]. This function is called in multiple places, e.g. when the finger
+     * stops touching, or with DPAD events.
      */
-    fun completeDragGestureAndCleanUp() {
+    fun completeDragAndCleanUp() {
         autoScrollJob?.cancel()
         autoScrollJob = null
         autoScrollSpeed = 0f
 
+        // activeDragItem could be null if the user did not long-press any item but is just
+        // scrolling the view, see `beginDragTouch()` and `handleDragChangeTouch()`
         activeDragItem?.let { dragItem ->
             val dragMarkerIndex = items.indexOfFirst { it is ItemInList.DragMarker }
             if (dragMarkerIndex >= 0) {
@@ -249,27 +345,43 @@ class LongPressMenuEditorState(
     }
 
     /**
-     * Handles DPAD events on Android TVs.
+     * Handles DPAD events on Android TVs (right, left, up, down, center). Items can be focused by
+     * navigating with arrows and can be selected (thus initiating a drag) with center. Once
+     * selected, arrow button presses will move the item around in the list, and pressing center
+     * will release the item at the new position. When focusing or moving an item outside of the
+     * screen, the `LazyGrid` will scroll to it.
+     *
+     * @param event the event to process
+     * @param columns the number of columns in the `LazyGrid`, needed to correctly go one line
+     * up/down when receiving the up/down events
+     * @return `true` if the event was handled, `false` if it wasn't (if this function returns
+     * `false`, the event is supposed to be handled by the focus mechanism of some external view,
+     * e.g. to give focus back to views other than the `LazyGrid`)
      */
     fun onKeyEvent(event: KeyEvent, columns: Int): Boolean {
-        if (event.type != KeyEventType.KeyDown) {
-            if (event.type == KeyEventType.KeyUp &&
-                event.key == Key.DirectionDown &&
+        // generally we only care about [KeyEventType.KeyDown] events, as is common on Android TVs,
+        // but in the special case where the user has an external view in focus (i.e. a button in
+        // the toolbar) and then presses the down-arrow to enter the `LazyGrid`, we will only
+        // receive [KeyEventType.KeyUp] here, and we need to handle it
+        if (event.type != KeyEventType.KeyDown) { // KeyDown means that the button was pressed
+            if (event.type == KeyEventType.KeyUp && // KeyDown means that the button was released
+                event.key == Key.DirectionDown && // DirectionDown indicates the down-arrow button
                 currentlyFocusedItem < 0
             ) {
                 currentlyFocusedItem = 0
             }
             return false
         }
-        var focusedItem = currentlyFocusedItem
+
+        var focusedItem = currentlyFocusedItem // do operations on a local variable
         when (event.key) {
             Key.DirectionUp -> {
                 if (focusedItem < 0) {
-                    return false
+                    return false // already at the beginning,
                 } else if (items[focusedItem].columnSpan == null) {
-                    focusedItem -= 1
+                    focusedItem -= 1 // this item uses the whole line, just go to the previous item
                 } else {
-                    // go to the previous line
+                    // go to the item in the same column on the previous line
                     var remaining = columns
                     while (true) {
                         focusedItem -= 1
@@ -286,11 +398,11 @@ class LongPressMenuEditorState(
 
             Key.DirectionDown -> {
                 if (focusedItem >= items.size - 1) {
-                    return false
+                    return false // already at the end
                 } else if (focusedItem < 0 || items[focusedItem].columnSpan == null) {
-                    focusedItem += 1
+                    focusedItem += 1 // this item uses the whole line, just go to the next item
                 } else {
-                    // go to the next line
+                    // go to the item in the same column on the next line
                     var remaining = columns
                     while (true) {
                         focusedItem += 1
@@ -307,7 +419,7 @@ class LongPressMenuEditorState(
 
             Key.DirectionLeft -> {
                 if (focusedItem < 0) {
-                    return false
+                    return false // already at the beginning
                 } else {
                     focusedItem -= 1
                 }
@@ -315,39 +427,41 @@ class LongPressMenuEditorState(
 
             Key.DirectionRight -> {
                 if (focusedItem >= items.size - 1) {
-                    return false
+                    return false // already at the end
                 } else {
                     focusedItem += 1
                 }
             }
 
+            // when pressing enter/center, either start a drag or complete the current one
             Key.Enter, Key.NumPadEnter, Key.DirectionCenter -> if (activeDragItem == null) {
                 val rawItem = gridState.layoutInfo.visibleItemsInfo
                     .firstOrNull { it.index == focusedItem }
                     ?: return false
-                beginDragGesture(rawItem.offset, rawItem)
+                beginDrag(rawItem.offset, rawItem)
                 return true
             } else {
-                completeDragGestureAndCleanUp()
+                completeDragAndCleanUp()
                 return true
             }
 
-            else -> return false
+            else -> return false // we don't need this event
         }
 
         currentlyFocusedItem = focusedItem
         if (focusedItem < 0) {
-            // not checking for focusedItem>=items.size because it's impossible for it
+            // there is no `if (focusedItem >= items.size)` because it's impossible for it
             // to reach that value, and that's because we assume that there is nothing
             // else focusable *after* this view. This way we don't need to cleanup the
             // drag gestures when the user reaches the end, which would be confusing as
             // then there would be no indication of the current cursor position at all.
-            completeDragGestureAndCleanUp()
+            completeDragAndCleanUp()
             return false
         } else if (focusedItem >= items.size) {
             Log.w(TAG, "Invalid focusedItem $focusedItem: >= items size ${items.size}")
         }
 
+        // find the item with the closest index to handle `focusedItem < 0` or `>= items.size` cases
         val rawItem = gridState.layoutInfo.visibleItemsInfo
             .minByOrNull { abs(it.index - focusedItem) }
             ?: return false // no item is visible at all, impossible case
@@ -356,7 +470,7 @@ class LongPressMenuEditorState(
         // scroll to it. Note that this will cause the "drag item" to appear misplaced,
         // since the drag item's position is set to the position of the focused item
         // before scrolling. However, it's not worth overcomplicating the logic just for
-        // correcting the position of a drag hint on Android TVs.
+        // correcting the UI position of a drag hint on Android TVs.
         val h = rawItem.size.height
         if (rawItem.index != focusedItem ||
             rawItem.offset.y <= gridState.layoutInfo.viewportStartOffset + 0.8 * h ||
@@ -367,21 +481,24 @@ class LongPressMenuEditorState(
             }
         }
 
-        val dragItem = activeDragItem
-        if (dragItem != null) {
+        activeDragItem?.let { dragItem ->
             // This will mostly bring the drag item to the right position, but will
             // misplace it if the view just scrolled (see above), or if the DragMarker's
             // position is moved past HiddenCaption by handleDragGestureChange() below.
             // However, it's not worth overcomplicating the logic just for correcting
-            // the position of a drag hint on Android TVs.
+            // the UI position of a drag hint on Android TVs.
             activeDragPosition = rawItem.offset
-            handleDragGestureChange(dragItem, rawItem)
+            handleDragChange(dragItem, rawItem)
         }
         return true
     }
 
+    /**
+     * Stops any currently active drag, and saves to settings the action arrangement and whether the
+     * header is enabled.
+     */
     fun onDispose(context: Context) {
-        completeDragGestureAndCleanUp()
+        completeDragAndCleanUp()
 
         var isHeaderEnabled = false
         val actionArrangement = ArrayList<LongPressAction.Type>()
@@ -418,6 +535,9 @@ sealed class ItemInList(
     object NoneMarker : ItemInList()
     data class DragMarker(override val columnSpan: Int?) : ItemInList()
 
+    /**
+     * @return a unique key for each [ItemInList], which can be used as a key for `Lazy` containers
+     */
     fun stableUniqueKey(): Int {
         return when (this) {
             is Action -> this.type.ordinal

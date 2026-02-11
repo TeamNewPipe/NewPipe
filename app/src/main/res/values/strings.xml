@@ -903,6 +903,9 @@
     <string name="background_from_here">Background\nfrom here</string>
     <string name="popup_from_here">Popup\nfrom here</string>
     <string name="play_from_here">Play\nfrom here</string>
+    <string name="background_shuffled">Background\nshuffled</string>
+    <string name="popup_shuffled">Popup\nshuffled</string>
+    <string name="play_shuffled">Play\nshuffled</string>
     <string name="long_press_menu_enabled_actions">Enabled actions:</string>
     <string name="long_press_menu_enabled_actions_description">Reorder the actions by long pressing them and then dragging them around</string>
     <string name="long_press_menu_hidden_actions">Hidden actions:</string>
@@ -912,9 +915,6 @@
     <string name="reset_to_defaults">Reset to defaults</string>
     <string name="long_press_menu_reset_to_defaults_confirm">Are you sure you want to reset to the default actions?</string>
     <string name="long_press_menu_actions_editor">Reorder and hide actions</string>
-    <string name="background_shuffled">Background\nshuffled</string>
-    <string name="popup_shuffled">Popup\nshuffled</string>
-    <string name="play_shuffled">Play\nshuffled</string>
     <string name="items_in_playlist">%d items in playlist</string>
     <string name="queue_fetching_stopped_early">Stopped loading after %1$d pages and %2$d items to avoid rate limits</string>
 </resources>

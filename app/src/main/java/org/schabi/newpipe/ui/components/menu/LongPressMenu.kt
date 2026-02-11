@@ -832,11 +832,7 @@ private fun LongPressMenuPreview(
         onDispose {}
     }
 
-    // the incorrect theme is set when running the preview in an emulator for some reason...
-    val initialUseDarkTheme = isSystemInDarkTheme()
-    var useDarkTheme by remember { mutableStateOf(initialUseDarkTheme) }
-
-    AppTheme(useDarkTheme = useDarkTheme) {
+    AppTheme {
         Surface(color = MaterialTheme.colorScheme.surfaceContainerLow) {
             // longPressable is null when running the preview in an emulator for some reason...
             @Suppress("USELESS_ELVIS")

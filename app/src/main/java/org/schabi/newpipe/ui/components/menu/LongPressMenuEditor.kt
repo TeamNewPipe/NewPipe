@@ -1,17 +1,7 @@
 /*
- * Copyright (C) 2022-2025 The FlorisBoard Contributors
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * SPDX-FileCopyrightText: 2022-2025 The FlorisBoard Contributors <https://florisboard.org>
+ * SPDX-FileCopyrightText: 2026 NewPipe e.V. <https://newpipe-ev.de>
+ * SPDX-License-Identifier: Apache-2.0 AND GPL-3.0-or-later
  */
 
 @file:OptIn(ExperimentalMaterial3Api::class)
@@ -82,6 +72,10 @@ import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.text.FixedHeightCenteredText
 
 /**
+ * An editor for the actions shown in the [LongPressMenu], that also allows enabling or disabling
+ * the header. It allows the user to arrange the actions in any way, and to disable them by dragging
+ * them to a disabled section.
+ *
  * When making changes to this composable and to [LongPressMenuEditorState], make sure to test the
  * following use cases, and check that they still work:
  * - both the actions and the header can be dragged around
@@ -94,7 +88,8 @@ import org.schabi.newpipe.util.text.FixedHeightCenteredText
  *   offset to ensure the user can see the thing being dragged under their finger)
  * - when the view does not fit the page, it is possible to scroll without moving any item, and
  *   dragging an item towards the top/bottom of the page scrolls up/down
- * @author This composable was originally copied from FlorisBoard.
+ *
+ * @author This composable was originally copied from FlorisBoard, but was modified significantly.
  */
 @Composable
 fun LongPressMenuEditorPage(onBackClick: () -> Unit) {
@@ -107,6 +102,7 @@ fun LongPressMenuEditorPage(onBackClick: () -> Unit) {
 
     DisposableEffect(Unit) {
         onDispose {
+            // saves to settings the action arrangement and whether the header is enabled
             state.onDispose(context)
         }
     }
@@ -118,7 +114,8 @@ fun LongPressMenuEditorPage(onBackClick: () -> Unit) {
             ResetToDefaultsButton { state.resetToDefaults(context) }
         }
     ) { paddingValues ->
-        // test scrolling on Android TV by adding `.padding(horizontal = 350.dp)` here
+        // if you want to forcefully "make the screen smaller" to test scrolling on Android TVs with
+        // DPAD, add `.padding(horizontal = 350.dp)` here
         BoxWithConstraints(Modifier.padding(paddingValues)) {
             // otherwise we wouldn't know the amount of columns to handle the Up/Down key events
             val columns = maxOf(1, floor(this.maxWidth / MinButtonWidth).toInt())
@@ -126,10 +123,11 @@ fun LongPressMenuEditorPage(onBackClick: () -> Unit) {
             LazyVerticalGrid(
                 modifier = Modifier
                     .safeDrawingPadding()
+                    // `.detectDragGestures()` handles touch gestures on phones/tablets
                     .detectDragGestures(
-                        beginDragGesture = state::beginDragGesture,
-                        handleDragGestureChange = state::handleDragGestureChange,
-                        endDragGesture = state::completeDragGestureAndCleanUp
+                        beginDragGesture = state::beginDragTouch,
+                        handleDragGestureChange = state::handleDragChangeTouch,
+                        endDragGesture = state::completeDragAndCleanUp
                     )
                     // `.focusTarget().onKeyEvent()` handles DPAD on Android TVs
                     .focusTarget()
@@ -137,6 +135,9 @@ fun LongPressMenuEditorPage(onBackClick: () -> Unit) {
                     .testTag("LongPressMenuEditorGrid"),
                 // same width as the LongPressMenu
                 columns = GridCells.Adaptive(MinButtonWidth),
+                // Scrolling is handled manually through `.detectDragGestures` above: if the user
+                // long-presses an item and then moves the finger, the item itself moves; otherwise,
+                // if the click is too short or the user didn't click on an item, the view scrolls.
                 userScrollEnabled = false,
                 state = gridState
             ) {
@@ -147,25 +148,26 @@ fun LongPressMenuEditorPage(onBackClick: () -> Unit) {
                 ) { i, item ->
                     ItemInListUi(
                         item = item,
-                        selected = state.currentlyFocusedItem == i,
+                        focused = state.currentlyFocusedItem == i,
                         // We only want placement animations: fade in/out animations interfere with
                         // items being replaced by a drag marker while being dragged around, and a
                         // fade in/out animation there does not make sense as the item was just
-                        // "picked up". Furthermore there are strange moving animation artifacts
+                        // "picked up". Furthermore there were strange moving animation artifacts
                         // when moving and releasing items quickly before their fade-out animation
-                        // finishes.
+                        // finishes, so it looks much more polished without fade in/out animations.
                         modifier = Modifier.animateItem(fadeInSpec = null, fadeOutSpec = null)
                     )
                 }
             }
             state.activeDragItem?.let { activeDragItem ->
-                // draw it the same size as the selected item,
+                // draw it the same size as the selected item, so it properly appears that the user
+                // picked up the item and is controlling it with their finger
                 val size = with(LocalDensity.current) {
                     remember(state.activeDragSize) { state.activeDragSize.toSize().toDpSize() }
                 }
                 ItemInListUi(
                     item = activeDragItem,
-                    selected = true,
+                    focused = true,
                     modifier = Modifier
                         .size(size)
                         .offset { state.activeDragPosition }
@@ -177,8 +179,12 @@ fun LongPressMenuEditorPage(onBackClick: () -> Unit) {
     }
 }
 
+/**
+ * A button that when clicked opens a confirmation dialog, and then calls [doReset] to reset the
+ * actions arrangement and whether the header is enabled to their default values.
+ */
 @Composable
-private fun ResetToDefaultsButton(onClick: () -> Unit) {
+private fun ResetToDefaultsButton(doReset: () -> Unit) {
     var showDialog by rememberSaveable { mutableStateOf(false) }
 
     if (showDialog) {
@@ -187,7 +193,7 @@ private fun ResetToDefaultsButton(onClick: () -> Unit) {
             text = { Text(stringResource(R.string.long_press_menu_reset_to_defaults_confirm)) },
             confirmButton = {
                 TextButton(onClick = {
-                    onClick()
+                    doReset()
                     showDialog = false
                 }) {
                     Text(stringResource(R.string.ok))
@@ -208,9 +214,13 @@ private fun ResetToDefaultsButton(onClick: () -> Unit) {
     )
 }
 
+/**
+ * Renders either [ItemInList.EnabledCaption] or [ItemInList.HiddenCaption], i.e. the full-width
+ * captions separating enabled and hidden items in the list.
+ */
 @Composable
-private fun Subheader(
-    selected: Boolean,
+private fun Caption(
+    focused: Boolean,
     @StringRes title: Int,
     @StringRes description: Int,
     modifier: Modifier = Modifier
@@ -219,7 +229,7 @@ private fun Subheader(
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 12.dp)
-            .letIf(selected) { border(2.dp, LocalContentColor.current) }
+            .letIf(focused) { border(2.dp, LocalContentColor.current) }
     ) {
         Text(
             text = stringResource(title),
@@ -233,9 +243,13 @@ private fun Subheader(
     }
 }
 
+/**
+ * Renders all [ItemInList] except captions, that is, all items using a slot of the grid (or two
+ * horizontal slots in case of the header).
+ */
 @Composable
 private fun ActionOrHeaderBox(
-    selected: Boolean,
+    focused: Boolean,
     icon: ImageVector,
     @StringRes text: Int,
     contentColor: Color,
@@ -247,7 +261,7 @@ private fun ActionOrHeaderBox(
         color = backgroundColor,
         contentColor = contentColor,
         shape = MaterialTheme.shapes.large,
-        border = BorderStroke(2.dp, contentColor.copy(alpha = 1f)).takeIf { selected },
+        border = BorderStroke(2.dp, contentColor.copy(alpha = 1f)).takeIf { focused },
         modifier = modifier.padding(
             horizontal = horizontalPadding,
             vertical = 5.dp
@@ -268,26 +282,32 @@ private fun ActionOrHeaderBox(
     }
 }
 
+/**
+ * @param item the [ItemInList] to render using either [Caption] or [ActionOrHeaderBox] with
+ * different parameters
+ * @param focused if `true`, a box will be drawn around the item to indicate that it is focused
+ * (this will only ever be `true` when the user is navigating with DPAD, e.g. on Android TVs)
+ */
 @Composable
 private fun ItemInListUi(
     item: ItemInList,
-    selected: Boolean,
+    focused: Boolean,
     modifier: Modifier = Modifier
 ) {
     when (item) {
         ItemInList.EnabledCaption -> {
-            Subheader(
+            Caption(
                 modifier = modifier,
-                selected = selected,
+                focused = focused,
                 title = R.string.long_press_menu_enabled_actions,
                 description = R.string.long_press_menu_enabled_actions_description
             )
         }
 
         ItemInList.HiddenCaption -> {
-            Subheader(
+            Caption(
                 modifier = modifier,
-                selected = selected,
+                focused = focused,
                 title = R.string.long_press_menu_hidden_actions,
                 description = R.string.long_press_menu_hidden_actions_description
             )
@@ -296,7 +316,7 @@ private fun ItemInListUi(
         is ItemInList.Action -> {
             ActionOrHeaderBox(
                 modifier = modifier,
-                selected = selected,
+                focused = focused,
                 icon = item.type.icon,
                 text = item.type.label,
                 contentColor = MaterialTheme.colorScheme.onSurface
@@ -306,7 +326,7 @@ private fun ItemInListUi(
         ItemInList.HeaderBox -> {
             ActionOrHeaderBox(
                 modifier = modifier,
-                selected = selected,
+                focused = focused,
                 icon = Icons.Default.ArtTrack,
                 text = R.string.long_press_menu_header,
                 contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -318,7 +338,7 @@ private fun ItemInListUi(
         ItemInList.NoneMarker -> {
             ActionOrHeaderBox(
                 modifier = modifier,
-                selected = selected,
+                focused = focused,
                 icon = Icons.Default.Close,
                 text = R.string.none,
                 // 0.38f is the same alpha that the Material3 library applies for disabled buttons
@@ -329,9 +349,11 @@ private fun ItemInListUi(
         is ItemInList.DragMarker -> {
             ActionOrHeaderBox(
                 modifier = modifier,
-                selected = selected,
+                focused = focused,
                 icon = Icons.Default.DragHandle,
                 text = R.string.detail_drag_description,
+                // this should be just barely visible, we could even decide to hide it completely
+                // at some point, since it doesn't provide much of a useful hint
                 contentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f)
             )
         }
@@ -361,7 +383,7 @@ private fun QuickActionButtonPreview(
         Surface {
             ItemInListUi(
                 item = itemInList,
-                selected = itemInList.stableUniqueKey() % 2 == 0,
+                focused = itemInList.stableUniqueKey() % 2 == 0,
                 modifier = Modifier.width(MinButtonWidth * (itemInList.columnSpan ?: 4))
             )
         }

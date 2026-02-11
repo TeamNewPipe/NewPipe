@@ -261,7 +261,7 @@ class LongPressMenuEditorTest {
         assertActionEnabledStatus(label = Enqueue.label, expectedEnabled = true)
         assertActionEnabledStatus(label = EnqueueNext.label, expectedEnabled = true)
         assertActionEnabledStatus(label = R.string.long_press_menu_header, expectedEnabled = true)
-        closeEditorAndAssertNewSettings(isHeaderEnabled = true, actionArrangement = getDefaultEnabledLongPressActions(ctx))
+        closeEditorAndAssertNewSettings(isHeaderEnabled = true, actionArrangement = getDefaultLongPressActionArrangement(ctx))
     }
 
     @Test

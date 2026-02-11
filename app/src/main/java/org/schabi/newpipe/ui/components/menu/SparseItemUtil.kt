@@ -20,11 +20,12 @@ import org.schabi.newpipe.util.StreamTypeUtil
 // Utilities for fetching additional data for stream items when needed.
 
 /**
- * Use this to certainly obtain an single play queue with all of the data filled in when the
+ * Use this to certainly obtain a single play queue with all of the data filled in when the
  * stream info item you are handling might be sparse, e.g. because it was fetched via a
  * [org.schabi.newpipe.extractor.feed.FeedExtractor]. FeedExtractors provide a fast and
  * lightweight method to fetch info, but the info might be incomplete (see
- * [org.schabi.newpipe.local.feed.service.FeedLoadService] for more details).
+ * [org.schabi.newpipe.local.feed.service.FeedLoadService] for more details). A toast is shown if
+ * loading details is required, so this needs to be called on the main thread.
  *
  * @param context  Android context
  * @param item     item which is checked and eventually loaded completely
@@ -52,7 +53,7 @@ suspend fun fetchItemInfoIfSparse(
  * Use this to certainly obtain an uploader url when the stream info item or play queue item you
  * are handling might not have the uploader url (e.g. because it was fetched with
  * [org.schabi.newpipe.extractor.feed.FeedExtractor]). A toast is shown if loading details is
- * required.
+ * required, so this needs to be called on the main thread.
  *
  * @param context     Android context
  * @param serviceId   serviceId of the item

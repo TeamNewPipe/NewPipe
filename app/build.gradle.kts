@@ -55,7 +55,9 @@ configure<ApplicationExtension> {
         System.getProperty("versionNameSuffix")?.let { versionNameSuffix = it }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        // https://blog.grobox.de/2019/disable-google-android-instrumentation-test-tracking/
         testInstrumentationRunnerArguments["disableAnalytics"] = "true"
+        // https://developer.android.com/studio/test/espresso-api#set_up_your_project_for_the_espresso_device_api
         testOptions {
             emulatorControl {
                 enable = true

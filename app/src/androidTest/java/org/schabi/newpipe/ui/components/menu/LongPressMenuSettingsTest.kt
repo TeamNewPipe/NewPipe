@@ -44,13 +44,13 @@ class LongPressMenuSettingsTest {
     @Test
     fun testLoadingActionArrangementUnset() {
         clearPrefs()
-        assertEquals(getDefaultEnabledLongPressActions(ctx), loadLongPressActionArrangementFromSettings(ctx))
+        assertEquals(getDefaultLongPressActionArrangement(ctx), loadLongPressActionArrangementFromSettings(ctx))
     }
 
     @Test
     fun testLoadingActionArrangementInvalid() {
         putStringInPrefs(R.string.long_press_menu_action_arrangement_key, "0,1,whatever,3")
-        assertEquals(getDefaultEnabledLongPressActions(ctx), loadLongPressActionArrangementFromSettings(ctx))
+        assertEquals(getDefaultLongPressActionArrangement(ctx), loadLongPressActionArrangementFromSettings(ctx))
     }
 
     @Test
@@ -73,7 +73,7 @@ class LongPressMenuSettingsTest {
     fun testDefaultActionsIncludeKodiIffShowKodiEnabled() {
         for (enabled in arrayOf(false, true)) {
             putBooleanInPrefs(R.string.show_play_with_kodi_key, enabled)
-            val actions = getDefaultEnabledLongPressActions(ctx)
+            val actions = getDefaultLongPressActionArrangement(ctx)
             assertEquals(enabled, actions.contains(PlayWithKodi))
         }
     }
@@ -85,7 +85,7 @@ class LongPressMenuSettingsTest {
             for (actions in listOf(listOf(Enqueue), listOf(Enqueue, PlayWithKodi))) {
                 storeLongPressActionArrangementToSettings(ctx, actions)
                 addOrRemoveKodiLongPressAction(ctx)
-                val newActions = getDefaultEnabledLongPressActions(ctx)
+                val newActions = getDefaultLongPressActionArrangement(ctx)
                 assertEquals(enabled, newActions.contains(PlayWithKodi))
             }
         }

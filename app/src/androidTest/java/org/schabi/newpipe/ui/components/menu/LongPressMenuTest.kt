@@ -21,12 +21,10 @@ import androidx.compose.ui.test.isNotDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onFirst
-import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.unit.dp
-import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -508,8 +506,8 @@ class LongPressMenuTest {
     fun testOnlyAndAllArrangedActionsDisplayed3() {
         assertOnlyAndAllArrangedActionsDisplayed(
             availableActions = LongPressAction.Type.entries,
-            actionArrangement = getDefaultEnabledLongPressActions(ctx),
-            expectedShownActions = getDefaultEnabledLongPressActions(ctx)
+            actionArrangement = getDefaultLongPressActionArrangement(ctx),
+            expectedShownActions = getDefaultLongPressActionArrangement(ctx)
         )
     }
 
@@ -534,9 +532,9 @@ class LongPressMenuTest {
     @Test
     fun testOnlyAndAllAvailableActionsDisplayed3() {
         assertOnlyAndAllArrangedActionsDisplayed(
-            availableActions = getDefaultEnabledLongPressActions(ctx),
+            availableActions = getDefaultLongPressActionArrangement(ctx),
             actionArrangement = LongPressAction.Type.entries,
-            expectedShownActions = getDefaultEnabledLongPressActions(ctx)
+            expectedShownActions = getDefaultLongPressActionArrangement(ctx)
         )
     }
 

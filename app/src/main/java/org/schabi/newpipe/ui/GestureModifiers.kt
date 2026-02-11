@@ -67,15 +67,17 @@ fun Modifier.detectDragGestures(
                     return@withTimeout false
                 }
             } catch (_: PointerEventTimeoutCancellationException) {
-                true
+                true // the timeout fired, so the "press" is indeed "long"
             }
 
             val pointerId = down.id
+            // importantly, tell `beginDragGesture` whether the drag begun with a long press
             beginDragGesture(down.position.toIntOffset(), wasLongPressed)
             while (true) {
+                // go through all events of this gesture and feed them to `handleDragGestureChange`
                 val change = awaitPointerEvent().changes.find { it.id == pointerId }
                 if (change == null || !change.pressed) {
-                    break
+                    break // the gesture finished
                 }
                 handleDragGestureChange(
                     change.position.toIntOffset(),
@@ -97,7 +99,7 @@ private fun Offset.toIntOffset() = IntOffset(this.x.toInt(), this.y.toInt())
 fun Modifier.discardAllTouchesIf(doDiscard: Boolean) = if (doDiscard) {
     pointerInput(Unit) {
         awaitPointerEventScope {
-            // we should wait for all new pointer events
+            // we should wait for all new pointer events and ignore them all
             while (true) {
                 awaitPointerEvent(pass = PointerEventPass.Initial)
                     .changes

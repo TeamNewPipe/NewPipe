@@ -54,7 +54,12 @@ private fun getShowPlayWithKodi(context: Context): Boolean {
         .getBoolean(context.getString(R.string.show_play_with_kodi_key), false)
 }
 
-fun getDefaultEnabledLongPressActions(context: Context): List<LongPressAction.Type> {
+/**
+ * Returns the default arrangement of actions in the long press menu. Includes [PlayWithKodi] only
+ * if the user enabled Kodi in settings. Note however that this does not prevent the user from
+ * adding/removing [PlayWithKodi] anyway, via the long press menu editor.
+ */
+fun getDefaultLongPressActionArrangement(context: Context): List<LongPressAction.Type> {
     return if (getShowPlayWithKodi(context)) {
         // only include Kodi in the default actions if it is enabled in settings
         DefaultEnabledActions + listOf(PlayWithKodi)
@@ -63,12 +68,16 @@ fun getDefaultEnabledLongPressActions(context: Context): List<LongPressAction.Ty
     }
 }
 
+/**
+ * Loads the arrangement of actions in the long press menu from settings, and handles corner cases
+ * by returning [getDefaultLongPressActionArrangement]`()`. The returned list is distinct.
+ */
 fun loadLongPressActionArrangementFromSettings(context: Context): List<LongPressAction.Type> {
     val key = context.getString(R.string.long_press_menu_action_arrangement_key)
     val ids = PreferenceManager.getDefaultSharedPreferences(context)
         .getString(key, null)
     if (ids == null) {
-        return getDefaultEnabledLongPressActions(context)
+        return getDefaultLongPressActionArrangement(context)
     } else if (ids.isEmpty()) {
         return emptyList() // apparently the user has disabled all buttons
     }
@@ -90,10 +99,14 @@ fun loadLongPressActionArrangementFromSettings(context: Context): List<LongPress
         return actionsDistinct
     } catch (e: NoSuchElementException) {
         Log.e(TAG, "Invalid action in settings", e)
-        return getDefaultEnabledLongPressActions(context)
+        return getDefaultLongPressActionArrangement(context)
     }
 }
 
+/**
+ * Stores the arrangement of actions in the long press menu to settings, as a comma-separated string
+ * of [LongPressAction.Type.id]s.
+ */
 fun storeLongPressActionArrangementToSettings(context: Context, actions: List<LongPressAction.Type>) {
     val items = actions.joinToString(separator = ",") { it.id.toString() }
     val key = context.getString(R.string.long_press_menu_action_arrangement_key)
@@ -102,6 +115,10 @@ fun storeLongPressActionArrangementToSettings(context: Context, actions: List<Lo
     }
 }
 
+/**
+ * Adds or removes the kodi action from the long press menu. Note however that this does not prevent
+ * the user from adding/removing [PlayWithKodi] anyway, via the long press menu editor.
+ */
 fun addOrRemoveKodiLongPressAction(context: Context) {
     val actions = loadLongPressActionArrangementFromSettings(context).toMutableList()
     if (getShowPlayWithKodi(context)) {

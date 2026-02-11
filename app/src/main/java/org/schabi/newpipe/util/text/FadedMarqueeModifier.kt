@@ -16,21 +16,25 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.Dp
 
 /**
+ * A Modifier to be applied to [androidx.compose.material3.Text]. If the text is too large, this
+ * fades out the left and right edges of the text, and makes the text scroll horizontally, so the
+ * user can read it all.
+ *
  * Note: the values in [basicMarquee] are hardcoded, but feel free to expose them as parameters
  * in case that will be needed in the future.
  *
  * Taken from sample [androidx.compose.foundation.samples.BasicMarqueeWithFadedEdgesSample].
  */
 fun Modifier.fadedMarquee(edgeWidth: Dp): Modifier {
-    fun ContentDrawScope.drawFadedEdge(leftEdge: Boolean) {
+    fun ContentDrawScope.drawFadedEdge(leftOrRightEdge: Boolean) { // left = true, right = false
         val edgeWidthPx = edgeWidth.toPx()
         drawRect(
-            topLeft = Offset(if (leftEdge) 0f else size.width - edgeWidthPx, 0f),
+            topLeft = Offset(if (leftOrRightEdge) 0f else size.width - edgeWidthPx, 0f),
             size = Size(edgeWidthPx, size.height),
             brush = Brush.horizontalGradient(
                 colors = listOf(Color.Transparent, Color.Black),
-                startX = if (leftEdge) 0f else size.width,
-                endX = if (leftEdge) edgeWidthPx else size.width - edgeWidthPx
+                startX = if (leftOrRightEdge) 0f else size.width,
+                endX = if (leftOrRightEdge) edgeWidthPx else size.width - edgeWidthPx
             ),
             blendMode = BlendMode.DstIn
         )
@@ -40,8 +44,8 @@ fun Modifier.fadedMarquee(edgeWidth: Dp): Modifier {
         .graphicsLayer { compositingStrategy = CompositingStrategy.Offscreen }
         .drawWithContent {
             drawContent()
-            drawFadedEdge(leftEdge = true)
-            drawFadedEdge(leftEdge = false)
+            drawFadedEdge(leftOrRightEdge = true)
+            drawFadedEdge(leftOrRightEdge = false)
         }
         .basicMarquee(
             repeatDelayMillis = 2000,
