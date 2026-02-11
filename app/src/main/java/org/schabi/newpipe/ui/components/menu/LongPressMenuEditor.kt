@@ -149,6 +149,7 @@ fun LongPressMenuEditorPage(onBackClick: () -> Unit) {
                     ItemInListUi(
                         item = item,
                         focused = state.currentlyFocusedItem == i,
+                        beingDragged = false,
                         // We only want placement animations: fade in/out animations interfere with
                         // items being replaced by a drag marker while being dragged around, and a
                         // fade in/out animation there does not make sense as the item was just
@@ -167,7 +168,8 @@ fun LongPressMenuEditorPage(onBackClick: () -> Unit) {
                 }
                 ItemInListUi(
                     item = activeDragItem,
-                    focused = true,
+                    focused = false,
+                    beingDragged = true,
                     modifier = Modifier
                         .size(size)
                         .offset { state.activeDragPosition }
@@ -287,12 +289,15 @@ private fun ActionOrHeaderBox(
  * different parameters
  * @param focused if `true`, a box will be drawn around the item to indicate that it is focused
  * (this will only ever be `true` when the user is navigating with DPAD, e.g. on Android TVs)
+ * @param beingDragged if `true`, draw a semi-transparent background to show that the item is being
+ * dragged
  */
 @Composable
 private fun ItemInListUi(
     item: ItemInList,
     focused: Boolean,
-    modifier: Modifier = Modifier
+    beingDragged: Boolean,
+    modifier: Modifier
 ) {
     when (item) {
         ItemInList.EnabledCaption -> {
@@ -319,7 +324,9 @@ private fun ItemInListUi(
                 focused = focused,
                 icon = item.type.icon,
                 text = item.type.label,
-                contentColor = MaterialTheme.colorScheme.onSurface
+                contentColor = MaterialTheme.colorScheme.onSurface,
+                backgroundColor = MaterialTheme.colorScheme.surface
+                    .letIf(beingDragged) { copy(alpha = 0.7f) }
             )
         }
 
@@ -330,7 +337,8 @@ private fun ItemInListUi(
                 icon = Icons.Default.ArtTrack,
                 text = R.string.long_press_menu_header,
                 contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                backgroundColor = MaterialTheme.colorScheme.surfaceContainer,
+                backgroundColor = MaterialTheme.colorScheme.surfaceContainer
+                    .letIf(beingDragged) { copy(alpha = 0.85f) },
                 horizontalPadding = 12.dp
             )
         }
@@ -384,6 +392,7 @@ private fun QuickActionButtonPreview(
             ItemInListUi(
                 item = itemInList,
                 focused = itemInList.stableUniqueKey() % 2 == 0,
+                beingDragged = false,
                 modifier = Modifier.width(MinButtonWidth * (itemInList.columnSpan ?: 4))
             )
         }

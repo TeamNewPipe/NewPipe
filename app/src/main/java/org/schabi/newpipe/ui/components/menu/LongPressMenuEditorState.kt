@@ -438,7 +438,7 @@ class LongPressMenuEditorState(
                 val rawItem = gridState.layoutInfo.visibleItemsInfo
                     .firstOrNull { it.index == focusedItem }
                     ?: return false
-                beginDrag(rawItem.offset, rawItem)
+                beginDrag(rawItem.center(), rawItem)
                 return true
             } else {
                 completeDragAndCleanUp()
@@ -487,7 +487,7 @@ class LongPressMenuEditorState(
             // position is moved past HiddenCaption by handleDragGestureChange() below.
             // However, it's not worth overcomplicating the logic just for correcting
             // the UI position of a drag hint on Android TVs.
-            activeDragPosition = rawItem.offset
+            activeDragPosition = rawItem.center()
             handleDragChange(dragItem, rawItem)
         }
         return true
@@ -548,4 +548,8 @@ sealed class ItemInList(
             is DragMarker -> LongPressAction.Type.entries.size + 4 + (this.columnSpan ?: 0)
         }
     }
+}
+
+fun LazyGridItemInfo.center(): IntOffset {
+    return offset + IntOffset(size.width / 2, size.height / 2)
 }
