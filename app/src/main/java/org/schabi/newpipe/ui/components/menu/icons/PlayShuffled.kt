@@ -15,7 +15,9 @@ import androidx.compose.ui.unit.dp
 
 /**
  * Obtained by combining [androidx.compose.material.icons.filled.PlayArrow]
- * and the tiny arrow in [androidx.compose.material.icons.filled.ContentPasteGo].
+ * and [androidx.compose.material.icons.filled.Shuffle].
+ * Some iterations were made before obtaining this icon, if you want to see them, search through git
+ * history the commit "Remove previous versions of custom PlayShuffled/FromHere icons".
  */
 val Icons.Filled.PlayShuffled: ImageVector by lazy {
     materialIcon(name = "Filled.PlayShuffled") {

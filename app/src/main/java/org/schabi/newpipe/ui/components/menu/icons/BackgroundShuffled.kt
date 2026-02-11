@@ -15,7 +15,9 @@ import androidx.compose.ui.unit.dp
 
 /**
  * Obtained by combining [androidx.compose.material.icons.filled.Headset]
- * and the tiny arrow in [androidx.compose.material.icons.filled.ContentPasteGo].
+ * and [androidx.compose.material.icons.filled.Shuffle].
+ * Some iterations were made before obtaining this icon, if you want to see them, search through git
+ * history the commit "Remove previous versions of custom PlayShuffled/FromHere icons".
  */
 val Icons.Filled.BackgroundShuffled: ImageVector by lazy {
     materialIcon(name = "Filled.BackgroundShuffled") {
@@ -58,33 +60,6 @@ val Icons.Filled.BackgroundShuffled: ImageVector by lazy {
             lineToRelative(-1.170f, 1.170f)
             close()
         }
-        /*
-        val thickness = 0.15f
-        materialPath {
-            moveTo(13f, 12f)
-            moveToRelative(3.295f - thickness, 2.585f - 3 * thickness)
-            lineToRelative(-2.590f + 3 * thickness, -2.585f + 3 * thickness)
-            lineToRelative(-0.705f - 2 * thickness, 0.705f + 2 * thickness)
-            lineToRelative(2.585f - 3 * thickness, 2.585f - 3 * thickness)
-            close()
-            moveToRelative(1.955f - 3 * thickness, -2.585f + 3 * thickness)
-            lineToRelative(1.020f + thickness, 1.020f + thickness)
-            lineToRelative(-6.270f + 3 * thickness, 6.265f - 3 * thickness)
-            lineToRelative(0.705f + 2 * thickness, 0.705f + 2 * thickness)
-            lineToRelative(6.275f - 3 * thickness, -6.270f + 3 * thickness)
-            lineToRelative(1.020f + thickness, 1.020f + thickness)
-            lineToRelative(0f, -2.74f - 4 * thickness)
-            close()
-            moveToRelative(0.165f + 7 * thickness, 4.705f + thickness)
-            lineToRelative(-0.705f - 2 * thickness, 0.705f + 2 * thickness)
-            lineToRelative(1.565f - 4 * thickness, 1.565f - 4 * thickness)
-            lineToRelative(-1.025f - thickness, 1.025f + thickness)
-            lineToRelative(2.750f + 4 * thickness, 0f)
-            lineToRelative(0f, -2.750f - 4 * thickness)
-            lineToRelative(-1.020f - thickness, 1.020f + thickness)
-            close()
-        }
-         */
     }
 }
 
