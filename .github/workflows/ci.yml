@@ -101,6 +101,9 @@ jobs:
           api-level: ${{ matrix.api-level }}
           target: ${{ matrix.target }}
           arch: ${{ matrix.arch }}
+          # the default emulator options from https://github.com/ReactiveCircus/android-emulator-runner#configurations
+          # plus `-grpc 8554 -grpc-use-jwt` to allow Espresso device control for instrumented tests
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -grpc 8554 -grpc-use-jwt
           script: ./gradlew connectedCheck --stacktrace
 
       - name: Upload test report when tests fail # because the printed out stacktrace (console) is too short, see also #7553

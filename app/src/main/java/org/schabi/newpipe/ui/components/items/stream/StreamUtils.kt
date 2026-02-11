@@ -37,16 +37,10 @@ internal fun getStreamInfoDetail(stream: StreamInfoItem): String {
     val context = LocalContext.current
 
     return rememberSaveable(stream) {
-        val count = stream.viewCount
-        val views = if (count >= 0) {
-            when (stream.streamType) {
-                StreamType.AUDIO_LIVE_STREAM -> Localization.listeningCount(context, count)
-                StreamType.LIVE_STREAM -> Localization.shortWatchingCount(context, count)
-                else -> Localization.shortViewCount(context, count)
-            }
-        } else {
-            ""
-        }
+        val views = stream.viewCount
+            .takeIf { it >= 0 }
+            ?.let { Localization.localizeViewCount(context, true, stream.streamType, it) }
+            ?: ""
         val date =
             Localization.relativeTimeOrTextual(context, stream.uploadDate, stream.textualUploadDate)
 

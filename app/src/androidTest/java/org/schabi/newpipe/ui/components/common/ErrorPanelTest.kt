@@ -1,10 +1,8 @@
 package org.schabi.newpipe.ui.components.common
 
 import androidx.activity.ComponentActivity
-import androidx.annotation.StringRes
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import java.net.UnknownHostException
@@ -16,6 +14,7 @@ import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
 import org.schabi.newpipe.extractor.exceptions.UnsupportedContentInCountryException
+import org.schabi.newpipe.onNodeWithText
 import org.schabi.newpipe.ui.theme.AppTheme
 
 @RunWith(AndroidJUnit4::class)
@@ -30,7 +29,6 @@ class ErrorPanelTest {
             }
         }
     }
-    private fun text(@StringRes id: Int) = composeRule.activity.getString(id)
 
     /**
      * Test Network Error
@@ -44,11 +42,11 @@ class ErrorPanelTest {
         )
 
         setErrorPanel(networkErrorInfo, onRetry = {})
-        composeRule.onNodeWithText(text(R.string.network_error)).assertIsDisplayed()
-        composeRule.onNodeWithText(text(R.string.retry), ignoreCase = true).assertIsDisplayed()
-        composeRule.onNodeWithText(text(R.string.error_snackbar_action), ignoreCase = true)
+        composeRule.onNodeWithText(R.string.network_error).assertIsDisplayed()
+        composeRule.onNodeWithText(R.string.retry, ignoreCase = true).assertIsDisplayed()
+        composeRule.onNodeWithText(R.string.error_snackbar_action, ignoreCase = true)
             .assertDoesNotExist()
-        composeRule.onNodeWithText(text(R.string.recaptcha_solve), ignoreCase = true)
+        composeRule.onNodeWithText(R.string.recaptcha_solve, ignoreCase = true)
             .assertDoesNotExist()
     }
 
@@ -64,9 +62,9 @@ class ErrorPanelTest {
         )
 
         setErrorPanel(unexpectedErrorInfo, onRetry = {})
-        composeRule.onNodeWithText(text(R.string.error_snackbar_message)).assertIsDisplayed()
-        composeRule.onNodeWithText(text(R.string.retry), ignoreCase = true).assertIsDisplayed()
-        composeRule.onNodeWithText(text(R.string.error_snackbar_action), ignoreCase = true)
+        composeRule.onNodeWithText(R.string.error_snackbar_message).assertIsDisplayed()
+        composeRule.onNodeWithText(R.string.retry, ignoreCase = true).assertIsDisplayed()
+        composeRule.onNodeWithText(R.string.error_snackbar_action, ignoreCase = true)
             .assertIsDisplayed()
     }
 
@@ -91,14 +89,14 @@ class ErrorPanelTest {
             onRetry = { retryClicked = true }
 
         )
-        composeRule.onNodeWithText(text(R.string.recaptcha_solve), ignoreCase = true)
+        composeRule.onNodeWithText(R.string.recaptcha_solve, ignoreCase = true)
             .assertIsDisplayed()
-        composeRule.onNodeWithText(text(R.string.retry), ignoreCase = true)
+        composeRule.onNodeWithText(R.string.retry, ignoreCase = true)
             .assertIsDisplayed()
             .performClick()
-        composeRule.onNodeWithText(text(R.string.open_in_browser), ignoreCase = true)
+        composeRule.onNodeWithText(R.string.open_in_browser, ignoreCase = true)
             .assertIsDisplayed()
-        composeRule.onNodeWithText(text(R.string.error_snackbar_action), ignoreCase = true)
+        composeRule.onNodeWithText(R.string.error_snackbar_action, ignoreCase = true)
             .assertIsDisplayed()
         assert(retryClicked) { "onRetry callback should have been invoked" }
     }
@@ -116,11 +114,11 @@ class ErrorPanelTest {
 
         setErrorPanel(contentNotAvailable)
 
-        composeRule.onNodeWithText(text(R.string.unsupported_content_in_country))
+        composeRule.onNodeWithText(R.string.unsupported_content_in_country)
             .assertIsDisplayed()
-        composeRule.onNodeWithText(text(R.string.retry), ignoreCase = true)
+        composeRule.onNodeWithText(R.string.retry, ignoreCase = true)
             .assertDoesNotExist()
-        composeRule.onNodeWithText(text(R.string.error_snackbar_action), ignoreCase = true)
+        composeRule.onNodeWithText(R.string.error_snackbar_action, ignoreCase = true)
             .assertDoesNotExist()
     }
 }

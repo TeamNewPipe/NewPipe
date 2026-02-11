@@ -2,7 +2,6 @@ package org.schabi.newpipe.player.ui;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static org.schabi.newpipe.MainActivity.DEBUG;
-import static org.schabi.newpipe.QueueItemMenuUtil.openPopupMenu;
 import static org.schabi.newpipe.extractor.ServiceList.YouTube;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.player.Player.STATE_COMPLETED;
@@ -14,6 +13,7 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.getMinimizeOnExitAct
 import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 import static org.schabi.newpipe.player.helper.PlayerHelper.globalScreenOrientationLocked;
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_PLAY_PAUSE;
+import static org.schabi.newpipe.ui.components.menu.LongPressMenuKt.openLongPressMenuInActivity;
 
 import android.app.Activity;
 import android.content.Context;
@@ -68,6 +68,8 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemBuilder;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
+import org.schabi.newpipe.ui.components.menu.LongPressAction;
+import org.schabi.newpipe.ui.components.menu.LongPressable;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
@@ -795,8 +797,11 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
                 @Nullable final PlayQueue playQueue = player.getPlayQueue();
                 @Nullable final AppCompatActivity parentActivity = getParentActivity().orElse(null);
                 if (playQueue != null && parentActivity != null && playQueue.indexOf(item) != -1) {
-                    openPopupMenu(player.getPlayQueue(), item, view, true,
-                            parentActivity.getSupportFragmentManager(), context);
+                    openLongPressMenuInActivity(
+                            parentActivity,
+                            LongPressable.fromPlayQueueItem(item),
+                            LongPressAction.fromPlayQueueItem(item, playQueue, false)
+                    );
                 }
             }
 

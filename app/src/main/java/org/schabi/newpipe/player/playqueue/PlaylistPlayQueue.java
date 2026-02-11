@@ -5,6 +5,7 @@ import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.util.ExtractorHelper;
 
+import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -26,6 +27,11 @@ public final class PlaylistPlayQueue extends AbstractInfoPlayQueue<PlaylistInfo>
                              final List<StreamInfoItem> streams,
                              final int index) {
         super(serviceId, url, nextPage, streams, index);
+    }
+
+    public PlaylistPlayQueue(final int serviceId,
+                             final String url) {
+        this(serviceId, url, null, Collections.emptyList(), 0);
     }
 
     @Override

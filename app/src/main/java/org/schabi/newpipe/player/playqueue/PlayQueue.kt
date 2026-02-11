@@ -1,5 +1,9 @@
 package org.schabi.newpipe.player.playqueue
 
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
+import android.widget.Toast
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Flowable
@@ -7,6 +11,10 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import java.io.Serializable
 import java.util.Collections
 import java.util.concurrent.atomic.AtomicInteger
+import kotlinx.coroutines.reactive.awaitFirst
+import org.schabi.newpipe.App
+import org.schabi.newpipe.BuildConfig
+import org.schabi.newpipe.R
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.AppendEvent
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.ErrorEvent
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.InitEvent
@@ -15,7 +23,6 @@ import org.schabi.newpipe.player.playqueue.PlayQueueEvent.RecoveryEvent
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.RemoveEvent
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.ReorderEvent
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.SelectEvent
-import org.schabi.newpipe.player.playqueue.PlayQueueItem
 
 /**
  * PlayQueue is responsible for keeping track of a list of streams and the index of
@@ -435,6 +442,78 @@ abstract class PlayQueue internal constructor(
     }
 
     /**
+     * Repeatedly calls [fetch] until [isComplete] is `true` or some error happens, then shuffles
+     * the whole queue without preserving [index]. [fetch] will be called at most 10 times to avoid
+     * infinite loops, e.g. in case the playlist being fetched is infinite. This must be called only
+     * to initialize the queue in an already shuffled state, and must not be called when the queue
+     * is already being used e.g. by the player. The preconditions, which are also maintained as
+     * postconditions, are thus that the queue is in a disposed / uninitialized state, and that
+     * [index] is 0.
+     */
+    suspend fun fetchAllAndShuffle() {
+        if (eventBroadcast != null || this.index != 0) {
+            throw UnsupportedOperationException(
+                "Can call fetchAllAndShuffle() only on an uninitialized PlayQueue"
+            )
+        }
+
+        if (!isComplete) {
+            init()
+            var fetchCount = 0
+            while (!isComplete) {
+                if (fetchCount >= 10) {
+                    // Maybe the playlist is infinite, and anyway we don't want to overload the
+                    // servers by making too many requests. For reference, making 10 fetch requests
+                    // will mean fetching at most 1000 items on YouTube playlists, though this
+                    // changes among services.
+                    Log.w(
+                        TAG,
+                        "Stopped after $MAX_FETCHES_BEFORE_SHUFFLING calls to fetch() " +
+                            "(for a total of ${streams.size} streams) to avoid rate limits"
+                    )
+                    Handler(Looper.getMainLooper()).post {
+                        Toast.makeText(
+                            App.instance,
+                            App.instance.getString(
+                                R.string.queue_fetching_stopped_early,
+                                MAX_FETCHES_BEFORE_SHUFFLING,
+                                streams.size
+                            ),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    break
+                }
+                fetchCount += 1
+
+                if (BuildConfig.DEBUG) {
+                    Log.d(TAG, "fetchAllAndShuffle(): fetching a page, current stream count ${streams.size}")
+                }
+                fetch()
+
+                // Since `fetch()` does not return a Completable we can listen on, we have to wait
+                // for events in `broadcastReceiver` produced by `fetch()`. This works reliably
+                // because all `fetch()` implementations are supposed to notify all events (both
+                // completion and errors) to `broadcastReceiver`.
+                val event = broadcastReceiver!!
+                    .filter { !InitEvent::class.isInstance(it) }
+                    .awaitFirst()
+                if (event !is AppendEvent || event.amount <= 0) {
+                    break // an AppendEvent with amount 0 indicates that an error occurred
+                }
+            }
+            dispose()
+        }
+
+        // Can't shuffle a list that's empty or only has one element
+        if (size() <= 2) {
+            return
+        }
+        backup = streams.toMutableList()
+        streams.shuffle()
+    }
+
+    /**
      * Unshuffles the current play queue if a backup play queue exists.
      *
      * This method undoes shuffling and index will be set to the previously playing item if found,
@@ -507,5 +586,10 @@ abstract class PlayQueue internal constructor(
      ////////////////////////////////////////////////////////////////////////// */
     private fun broadcast(event: PlayQueueEvent) {
         eventBroadcast?.onNext(event)
+    }
+
+    companion object {
+        val TAG: String = PlayQueue::class.java.simpleName
+        const val MAX_FETCHES_BEFORE_SHUFFLING = 10
     }
 }

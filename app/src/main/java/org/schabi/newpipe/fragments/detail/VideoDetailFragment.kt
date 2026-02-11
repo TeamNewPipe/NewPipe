@@ -439,7 +439,7 @@ class VideoDetailFragment :
                         PlaylistDialog.createCorrespondingDialog(
                             requireContext(),
                             listOf(StreamEntity(info))
-                        ) { dialog -> dialog.show(getParentFragmentManager(), TAG) }
+                        ).subscribe { dialog -> dialog.show(getParentFragmentManager(), TAG) }
                     )
                 }
             }
@@ -1424,14 +1424,12 @@ class VideoDetailFragment :
         }
 
         if (info.viewCount >= 0) {
-            binding.detailViewCountView.text =
-                if (info.streamType == StreamType.AUDIO_LIVE_STREAM) {
-                    Localization.listeningCount(activity, info.viewCount)
-                } else if (info.streamType == StreamType.LIVE_STREAM) {
-                    Localization.localizeWatchingCount(activity, info.viewCount)
-                } else {
-                    Localization.localizeViewCount(activity, info.viewCount)
-                }
+            binding.detailViewCountView.text = Localization.localizeViewCount(
+                activity,
+                false,
+                info.streamType,
+                info.viewCount
+            )
             binding.detailViewCountView.visibility = View.VISIBLE
         } else {
             binding.detailViewCountView.visibility = View.GONE

@@ -55,6 +55,14 @@ configure<ApplicationExtension> {
         System.getProperty("versionNameSuffix")?.let { versionNameSuffix = it }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        // https://blog.grobox.de/2019/disable-google-android-instrumentation-test-tracking/
+        testInstrumentationRunnerArguments["disableAnalytics"] = "true"
+        // https://developer.android.com/studio/test/espresso-api#set_up_your_project_for_the_espresso_device_api
+        testOptions {
+            emulatorControl {
+                enable = true
+            }
+        }
     }
 
     buildTypes {
@@ -363,7 +371,10 @@ dependencies {
     testImplementation(libs.mockito.core)
 
     androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.runner)
+    androidTestImplementation(libs.androidx.test.espresso)
+    androidTestImplementation(libs.androidx.test.espresso.device)
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.test.rules)
     androidTestImplementation(libs.androidx.room.testing)
     androidTestImplementation(libs.assertj.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))

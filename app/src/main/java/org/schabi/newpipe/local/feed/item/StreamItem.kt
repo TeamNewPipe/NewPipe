@@ -1,7 +1,6 @@
 package org.schabi.newpipe.local.feed.item
 
 import android.content.Context
-import android.text.TextUtils
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
@@ -31,7 +30,7 @@ data class StreamItem(
         const val UPDATE_RELATIVE_TIME = 1
     }
 
-    private val stream: StreamEntity = streamWithState.stream
+    val stream: StreamEntity = streamWithState.stream
     private val stateProgressTime: Long? = streamWithState.stateProgressMillis
 
     /**
@@ -117,23 +116,16 @@ data class StreamItem(
     }
 
     private fun getStreamInfoDetailLine(context: Context): String {
-        var viewsAndDate = ""
-        val viewCount = stream.viewCount
-        if (viewCount != null && viewCount >= 0) {
-            viewsAndDate = when (stream.streamType) {
-                AUDIO_LIVE_STREAM -> Localization.listeningCount(context, viewCount)
-                LIVE_STREAM -> Localization.shortWatchingCount(context, viewCount)
-                else -> Localization.shortViewCount(context, viewCount)
-            }
-        }
+        val views = stream.viewCount
+            ?.takeIf { it >= 0 }
+            ?.let { Localization.localizeViewCount(context, true, stream.streamType, it) }
+            ?: ""
+
         val uploadDate = getFormattedRelativeUploadDate(context)
         return when {
-            !TextUtils.isEmpty(uploadDate) -> when {
-                viewsAndDate.isEmpty() -> uploadDate!!
-                else -> Localization.concatenateStrings(viewsAndDate, uploadDate)
-            }
-
-            else -> viewsAndDate
+            uploadDate.isNullOrEmpty() -> views
+            views.isEmpty() -> uploadDate
+            else -> Localization.concatenateStrings(views, uploadDate)
         }
     }
 

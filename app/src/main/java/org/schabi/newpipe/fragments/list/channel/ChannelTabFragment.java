@@ -32,10 +32,12 @@ import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.PlayButtonHelper;
 
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.Single;
+import kotlin.jvm.functions.Function0;
 
 public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTabInfo>
         implements PlaylistControlViewHolder {
@@ -164,14 +166,24 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
         }
     }
 
-    @Override
-    public PlayQueue getPlayQueue() {
+    public PlayQueue getPlayQueue(final Function<List<StreamInfoItem>, Integer> index) {
         final List<StreamInfoItem> streamItems = infoListAdapter.getItemsList().stream()
                 .filter(StreamInfoItem.class::isInstance)
                 .map(StreamInfoItem.class::cast)
                 .collect(Collectors.toList());
 
         return new ChannelTabPlayQueue(currentInfo.getServiceId(), tabHandler,
-                currentInfo.getNextPage(), streamItems, 0);
+                currentInfo.getNextPage(), streamItems, index.apply(streamItems));
+    }
+
+    @Override
+    public PlayQueue getPlayQueue() {
+        return getPlayQueue(streamItems -> 0);
+    }
+
+    @Nullable
+    @Override
+    protected Function0<PlayQueue> getPlayQueueStartingAt(@NonNull final StreamInfoItem item) {
+        return () -> getPlayQueue(streamItems -> Math.max(streamItems.indexOf(item), 0));
     }
 }

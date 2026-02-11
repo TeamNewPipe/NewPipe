@@ -493,8 +493,7 @@ public final class NavigationHelper {
             return;
         }
         try {
-            final var activity = ContextKt.findFragmentActivity(context);
-            openChannelFragment(activity.getSupportFragmentManager(), comment.getServiceId(),
+            openChannelFragment(ContextKt.findFragmentManager(context), comment.getServiceId(),
                     comment.getUploaderUrl(), comment.getUploaderName());
         } catch (final Exception e) {
             ErrorUtil.showUiErrorSnackbar(context, "Opening channel fragment", e);

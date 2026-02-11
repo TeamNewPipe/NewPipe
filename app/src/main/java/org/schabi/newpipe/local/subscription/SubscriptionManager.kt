@@ -120,6 +120,15 @@ class SubscriptionManager(context: Context) {
     }
 
     /**
+     * Checks if the user is subscribed to a channel, in a blocking manner. Since the data being
+     * loaded from the database is very little, this should be fine. However once the migration to
+     * Kotlin coroutines will be finished, the blocking computation should be removed.
+     */
+    fun blockingIsSubscribed(serviceId: Int, url: String): Boolean {
+        return !subscriptionTable.getSubscription(serviceId, url).isEmpty.blockingGet()
+    }
+
+    /**
      * Fetches the list of videos for the provided channel and saves them in the database, so that
      * they will be considered as "old"/"already seen" streams and the user will never be notified
      * about any one of them.

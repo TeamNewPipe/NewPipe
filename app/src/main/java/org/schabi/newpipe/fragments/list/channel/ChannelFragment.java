@@ -361,13 +361,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
                 if (DEBUG) {
                     Log.d(TAG, "No subscription to this channel!");
                 }
-                final SubscriptionEntity channel = new SubscriptionEntity();
-                channel.setServiceId(info.getServiceId());
-                channel.setUrl(info.getUrl());
-                channel.setName(info.getName());
-                channel.setAvatarUrl(ImageStrategy.imageListToDbUrl(info.getAvatars()));
-                channel.setDescription(info.getDescription());
-                channel.setSubscriberCount(info.getSubscriberCount());
+                final SubscriptionEntity channel = SubscriptionEntity.from(info);
                 channelSubscription = null;
                 updateNotifyButton(null);
                 subscribeButtonMonitor = monitorSubscribeButton(mapOnSubscribe(channel));

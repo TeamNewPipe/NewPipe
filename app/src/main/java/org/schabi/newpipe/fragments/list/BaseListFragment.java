@@ -2,6 +2,7 @@ package org.schabi.newpipe.fragments.list;
 
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
+import static org.schabi.newpipe.ui.components.menu.LongPressMenuKt.openLongPressMenuInActivity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -22,12 +23,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.extractor.InfoItem;
+import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
+import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.info_list.ItemViewMode;
-import org.schabi.newpipe.info_list.dialog.InfoItemDialog;
+import org.schabi.newpipe.local.subscription.SubscriptionManager;
+import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.ui.components.menu.LongPressAction;
+import org.schabi.newpipe.ui.components.menu.LongPressable;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StateSaver;
@@ -37,6 +43,8 @@ import org.schabi.newpipe.views.SuperScrollLayoutManager;
 import java.util.List;
 import java.util.Queue;
 import java.util.function.Supplier;
+
+import kotlin.jvm.functions.Function0;
 
 public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         implements ListViewContract<I, N>, StateSaver.WriteRead,
@@ -256,32 +264,71 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         infoListAdapter.setOnStreamSelectedListener(new OnClickGesture<>() {
             @Override
             public void selected(final StreamInfoItem selectedItem) {
-                onStreamSelected(selectedItem);
+                onItemSelected(selectedItem);
+                NavigationHelper.openVideoDetailFragment(requireContext(), getFM(),
+                        selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName(),
+                        null, false);
             }
 
             @Override
-            public void held(final StreamInfoItem selectedItem) {
-                showInfoItemDialog(selectedItem);
+            public void held(final StreamInfoItem item) {
+                openLongPressMenuInActivity(
+                        requireActivity(),
+                        LongPressable.fromStreamInfoItem(item),
+                        LongPressAction.fromStreamInfoItem(item, getPlayQueueStartingAt(item))
+                );
             }
         });
 
-        infoListAdapter.setOnChannelSelectedListener(selectedItem -> {
-            try {
-                onItemSelected(selectedItem);
-                NavigationHelper.openChannelFragment(getFM(), selectedItem.getServiceId(),
-                        selectedItem.getUrl(), selectedItem.getName());
-            } catch (final Exception e) {
-                ErrorUtil.showUiErrorSnackbar(this, "Opening channel fragment", e);
+        infoListAdapter.setOnChannelSelectedListener(new OnClickGesture<>() {
+            @Override
+            public void selected(final ChannelInfoItem selectedItem) {
+                try {
+                    onItemSelected(selectedItem);
+                    NavigationHelper.openChannelFragment(getFM(), selectedItem.getServiceId(),
+                            selectedItem.getUrl(), selectedItem.getName());
+                } catch (final Exception e) {
+                    ErrorUtil.showUiErrorSnackbar(BaseListFragment.this, "Opening channel fragment",
+                            e);
+                }
+            }
+
+            @Override
+            public void held(final ChannelInfoItem item) {
+                // Note: this does a blocking I/O call to the database. Use coroutines when
+                // migrating to Kotlin/Compose instead.
+                final boolean isSubscribed = new SubscriptionManager(requireContext())
+                        .blockingIsSubscribed(item.getServiceId(), item.getUrl());
+
+                openLongPressMenuInActivity(
+                        requireActivity(),
+                        LongPressable.fromChannelInfoItem(item),
+                        LongPressAction.fromChannelInfoItem(item, isSubscribed)
+                );
             }
         });
 
-        infoListAdapter.setOnPlaylistSelectedListener(selectedItem -> {
-            try {
-                onItemSelected(selectedItem);
-                NavigationHelper.openPlaylistFragment(getFM(), selectedItem.getServiceId(),
-                        selectedItem.getUrl(), selectedItem.getName());
-            } catch (final Exception e) {
-                ErrorUtil.showUiErrorSnackbar(this, "Opening playlist fragment", e);
+        infoListAdapter.setOnPlaylistSelectedListener(new OnClickGesture<>() {
+            @Override
+            public void selected(final PlaylistInfoItem selectedItem) {
+                try {
+                    BaseListFragment.this.onItemSelected(selectedItem);
+                    NavigationHelper.openPlaylistFragment(BaseListFragment.this.getFM(),
+                            selectedItem.getServiceId(),
+                            selectedItem.getUrl(), selectedItem.getName());
+                } catch (final Exception e) {
+                    ErrorUtil.showUiErrorSnackbar(BaseListFragment.this,
+                            "Opening playlist fragment", e);
+                }
+            }
+
+            @Override
+            public void held(final PlaylistInfoItem selectedItem) {
+                openLongPressMenuInActivity(
+                        requireActivity(),
+                        LongPressable.fromPlaylistInfoItem(selectedItem),
+                        LongPressAction.fromPlaylistInfoItem(selectedItem)
+                );
             }
         });
 
@@ -289,6 +336,17 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
 
         // Ensure that there is always a scroll listener (e.g. when rotating the device)
         useNormalItemListScrollListener();
+    }
+
+    /**
+     * @param item an item in the list, from which the built queue should start
+     * @return a builder for a queue containing all of the streams items in this list, with the
+     * queue index set to the stream item passed as parameter; return {@code null} if no "start
+     * playing from here" options should be shown
+     */
+    @Nullable
+    protected Function0<PlayQueue> getPlayQueueStartingAt(@NonNull final StreamInfoItem item) {
+        return null; // disable "play from here" options by default (e.g. in search, kiosks)
     }
 
     /**
@@ -373,24 +431,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         }
     }
 
-    private void onStreamSelected(final StreamInfoItem selectedItem) {
-        onItemSelected(selectedItem);
-        NavigationHelper.openVideoDetailFragment(requireContext(), getFM(),
-                selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName(),
-                null, false);
-    }
-
     protected void onScrollToBottom() {
         if (hasMoreItems() && !isLoading.get()) {
             loadMoreItems();
-        }
-    }
-
-    protected void showInfoItemDialog(final StreamInfoItem item) {
-        try {
-            new InfoItemDialog.Builder(getActivity(), getContext(), this, item).create().show();
-        } catch (final IllegalArgumentException e) {
-            InfoItemDialog.Builder.reportErrorDuringInitialization(e, item);
         }
     }
 

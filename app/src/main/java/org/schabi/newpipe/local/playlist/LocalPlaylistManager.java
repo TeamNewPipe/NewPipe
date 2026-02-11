@@ -151,13 +151,9 @@ public class LocalPlaylistManager {
                 .isThumbnailPermanent();
     }
 
-    public long getAutomaticPlaylistThumbnailStreamId(final long playlistId) {
-        final long streamId = playlistStreamTable.getAutomaticThumbnailStreamId(playlistId)
-                .blockingFirst();
-        if (streamId < 0) {
-            return PlaylistEntity.DEFAULT_THUMBNAIL_ID;
-        }
-        return streamId;
+    public Flowable<Long> getAutomaticPlaylistThumbnailStreamId(final long playlistId) {
+        return playlistStreamTable.getAutomaticThumbnailStreamId(playlistId)
+                .map(streamId -> (streamId >= 0 ? streamId : PlaylistEntity.DEFAULT_THUMBNAIL_ID));
     }
 
     private Maybe<Integer> modifyPlaylist(final long playlistId,

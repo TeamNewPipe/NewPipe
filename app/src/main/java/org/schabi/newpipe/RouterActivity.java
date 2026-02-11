@@ -823,15 +823,15 @@ public class RouterActivity extends AppCompatActivity {
                     .compose(this::pleaseWait)
                     .subscribe(
                             info -> getActivityContext().ifPresent(context ->
-                                    PlaylistDialog.createCorrespondingDialog(context,
-                                            List.of(new StreamEntity(info)),
-                                            playlistDialog -> runOnVisible(ctx -> {
-                                                // dismiss listener to be handled by FragmentManager
-                                                final FragmentManager fm =
-                                                        ctx.getSupportFragmentManager();
-                                                playlistDialog.show(fm, "addToPlaylistDialog");
-                                            })
-                                    )),
+                                    disposables.add(
+                                            PlaylistDialog.createCorrespondingDialog(context,
+                                            List.of(new StreamEntity(info)))
+                                                    .subscribe(dialog -> runOnVisible(ctx -> {
+                                        // dismiss listener to be handled by FragmentManager
+                                        final FragmentManager fm =
+                                                ctx.getSupportFragmentManager();
+                                        dialog.show(fm, "addToPlaylistDialog");
+                                    })))),
                             throwable -> runOnVisible(ctx -> handleError(ctx, new ErrorInfo(
                                     throwable, UserAction.REQUESTED_STREAM,
                                     "Tried to add " + currentUrl + " to a playlist",

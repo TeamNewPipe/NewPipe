@@ -5,7 +5,6 @@ import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
 import static org.schabi.newpipe.util.ServiceHelper.getServiceById;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -42,8 +41,6 @@ import org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper;
 import org.schabi.newpipe.extractor.stream.Description;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
-import org.schabi.newpipe.info_list.dialog.InfoItemDialog;
-import org.schabi.newpipe.info_list.dialog.StreamDialogDefaultEntry;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -68,6 +65,7 @@ import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
+import kotlin.jvm.functions.Function0;
 
 public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, PlaylistInfo>
         implements PlaylistControlViewHolder {
@@ -142,29 +140,6 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
         // Is mini variant still relevant?
         // Only the remote playlist screen uses it now
         infoListAdapter.setUseMiniVariant(true);
-    }
-
-    private PlayQueue getPlayQueueStartingAt(final StreamInfoItem infoItem) {
-        return getPlayQueue(Math.max(infoListAdapter.getItemsList().indexOf(infoItem), 0));
-    }
-
-    @Override
-    protected void showInfoItemDialog(final StreamInfoItem item) {
-        final Context context = getContext();
-        try {
-            final InfoItemDialog.Builder dialogBuilder =
-                    new InfoItemDialog.Builder(getActivity(), context, this, item);
-
-            dialogBuilder
-                    .setAction(
-                            StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND,
-                            (f, infoItem) -> NavigationHelper.playOnBackgroundPlayer(
-                                    context, getPlayQueueStartingAt(infoItem), true))
-                    .create()
-                    .show();
-        } catch (final IllegalArgumentException e) {
-            InfoItemDialog.Builder.reportErrorDuringInitialization(e, item);
-        }
     }
 
     @Override
@@ -247,15 +222,15 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
                 break;
             case R.id.menu_item_append_playlist:
                 if (currentInfo != null) {
-                    disposables.add(PlaylistDialog.createCorrespondingDialog(
-                            getContext(),
-                            getPlayQueue()
-                                    .getStreams()
-                                    .stream()
-                                    .map(StreamEntity::new)
-                                    .collect(Collectors.toList()),
-                            dialog -> dialog.show(getFM(), TAG)
-                    ));
+                    disposables.add(
+                            PlaylistDialog.createCorrespondingDialog(
+                                    getContext(),
+                                    getPlayQueue()
+                                            .getStreams()
+                                            .stream()
+                                            .map(StreamEntity::new)
+                                            .collect(Collectors.toList())
+                            ).subscribe(dialog -> dialog.show(getFM(), TAG)));
                 }
                 break;
             default:
@@ -371,10 +346,6 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
         PlayButtonHelper.initPlaylistControlClickListener(activity, playlistControlBinding, this);
     }
 
-    public PlayQueue getPlayQueue() {
-        return getPlayQueue(0);
-    }
-
     private PlayQueue getPlayQueue(final int index) {
         final List<StreamInfoItem> infoItems = new ArrayList<>();
         for (final InfoItem i : infoListAdapter.getItemsList()) {
@@ -389,6 +360,17 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
                 infoItems,
                 index
         );
+    }
+
+    @Override
+    public PlayQueue getPlayQueue() {
+        return getPlayQueue(0);
+    }
+
+    @Nullable
+    @Override
+    protected Function0<PlayQueue> getPlayQueueStartingAt(@NonNull final StreamInfoItem item) {
+        return () -> getPlayQueue(Math.max(infoListAdapter.getItemsList().indexOf(item), 0));
     }
 
     /*//////////////////////////////////////////////////////////////////////////

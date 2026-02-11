@@ -8,6 +8,7 @@ import static org.schabi.newpipe.local.playlist.ExportPlaylistKt.export;
 import static org.schabi.newpipe.local.playlist.PlayListShareMode.JUST_URLS;
 import static org.schabi.newpipe.local.playlist.PlayListShareMode.WITH_TITLES;
 import static org.schabi.newpipe.local.playlist.PlayListShareMode.YOUTUBE_TEMP_PLAYLIST;
+import static org.schabi.newpipe.ui.components.menu.LongPressMenuKt.openLongPressMenuInActivity;
 import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
 
 
@@ -52,13 +53,13 @@ import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistControlViewHolder;
-import org.schabi.newpipe.info_list.dialog.InfoItemDialog;
-import org.schabi.newpipe.info_list.dialog.StreamDialogDefaultEntry;
 import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.util.DeviceUtils;
+import org.schabi.newpipe.ui.components.menu.LongPressAction;
+import org.schabi.newpipe.ui.components.menu.LongPressable;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
@@ -450,7 +451,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                         final var streamStateEntity = streamStates.get(i);
                         final int indexInHistory = Collections.binarySearch(historyStreamIds,
                                 playlistItem.getStreamId());
-                        final long duration = playlistItem.toStreamInfoItem().getDuration();
+                        final long duration = playlistItem.getStreamEntity()
+                                .toStreamInfoItem()
+                                .getDuration();
 
                         if (indexInHistory < 0 // stream is not in history
                                 // stream is in history but the streamStateEntity is null
@@ -581,9 +584,14 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         disposables.add(disposable);
     }
 
-    private void changeThumbnailStreamId(final long thumbnailStreamId, final boolean isPermanent) {
-        if (playlistManager == null || (!isPermanent && playlistManager
-                .getIsPlaylistThumbnailPermanent(playlistId))) {
+    /**
+     * Changes the playlist's non-permanent thumbnail to the one of the stream entity with the
+     * provided ID, but only does so if the user did not set a permanent thumbnail themselves.
+     * @param thumbnailStreamId the ID of the stream entity whose thumbnail will be displayed
+     */
+    private void changeThumbnailStreamIdIfNotPermanent(final long thumbnailStreamId) {
+        if (playlistManager == null
+                || playlistManager.getIsPlaylistThumbnailPermanent(playlistId)) {
             return;
         }
 
@@ -597,7 +605,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
 
         final Disposable disposable = playlistManager
-                .changePlaylistThumbnail(playlistId, thumbnailStreamId, isPermanent)
+                .changePlaylistThumbnail(playlistId, thumbnailStreamId, false)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ignore -> successToast.show(), throwable ->
                         showError(new ErrorInfo(throwable, UserAction.REQUESTED_BOOKMARK,
@@ -619,7 +627,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             thumbnailStreamId = PlaylistEntity.DEFAULT_THUMBNAIL_ID;
         }
 
-        changeThumbnailStreamId(thumbnailStreamId, false);
+        changeThumbnailStreamIdIfNotPermanent(thumbnailStreamId);
     }
 
     private void openRemoveDuplicatesDialog() {
@@ -789,39 +797,18 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     protected void showInfoItemDialog(final PlaylistStreamEntry item) {
-        final StreamInfoItem infoItem = item.toStreamInfoItem();
-
-        try {
-            final Context context = getContext();
-            final InfoItemDialog.Builder dialogBuilder =
-                    new InfoItemDialog.Builder(getActivity(), context, this, infoItem);
-
-            // add entries in the middle
-            dialogBuilder.addAllEntries(
-                    StreamDialogDefaultEntry.SET_AS_PLAYLIST_THUMBNAIL,
-                    StreamDialogDefaultEntry.DELETE
-            );
-
-            // set custom actions
-            // all entries modified below have already been added within the builder
-            dialogBuilder
-                    .setAction(
-                            StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND,
-                            (f, i) -> NavigationHelper.playOnBackgroundPlayer(
-                                    context, getPlayQueueStartingAt(item), true))
-                    .setAction(
-                            StreamDialogDefaultEntry.SET_AS_PLAYLIST_THUMBNAIL,
-                            (f, i) ->
-                                    changeThumbnailStreamId(item.getStreamEntity().getUid(),
-                                            true))
-                    .setAction(
-                            StreamDialogDefaultEntry.DELETE,
-                            (f, i) -> deleteItem(item))
-                    .create()
-                    .show();
-        } catch (final IllegalArgumentException e) {
-            InfoItemDialog.Builder.reportErrorDuringInitialization(e, infoItem);
-        }
+        openLongPressMenuInActivity(
+                requireActivity(),
+                LongPressable.fromStreamEntity(item.getStreamEntity()),
+                LongPressAction.fromPlaylistStreamEntry(
+                        item,
+                        () -> getPlayQueueStartingAt(item),
+                        playlistId,
+                        // TODO passing this parameter is bad and should be fixed when migrating the
+                        //  local playlist fragment to Compose, for more info see method javadoc
+                        () -> deleteItem(item)
+                )
+        );
     }
 
     private void setInitialData(final long pid, final String title) {
@@ -860,8 +847,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         final List<LocalItem> infoItems = itemListAdapter.getItemsList();
         final List<StreamInfoItem> streamInfoItems = new ArrayList<>(infoItems.size());
         for (final LocalItem item : infoItems) {
-            if (item instanceof PlaylistStreamEntry) {
-                streamInfoItems.add(((PlaylistStreamEntry) item).toStreamInfoItem());
+            if (item instanceof PlaylistStreamEntry playlistStreamEntry) {
+                streamInfoItems.add(playlistStreamEntry.getStreamEntity().toStreamInfoItem());
             }
         }
         return new SinglePlayQueue(streamInfoItems, index);

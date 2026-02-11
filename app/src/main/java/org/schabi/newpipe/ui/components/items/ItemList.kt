@@ -5,10 +5,7 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
@@ -21,27 +18,33 @@ import org.schabi.newpipe.extractor.InfoItem
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.info_list.ItemViewMode
-import org.schabi.newpipe.ktx.findFragmentActivity
+import org.schabi.newpipe.ktx.findFragmentManager
+import org.schabi.newpipe.player.playqueue.PlayQueue
 import org.schabi.newpipe.ui.components.common.LazyColumnThemedScrollbar
 import org.schabi.newpipe.ui.components.items.playlist.PlaylistListItem
 import org.schabi.newpipe.ui.components.items.stream.StreamListItem
 import org.schabi.newpipe.util.DependentPreferenceHelper
 import org.schabi.newpipe.util.NavigationHelper
 
+/**
+ * @param getPlayQueueStartingAt a builder for a queue containing all of the items in this list,
+ * with the queue index set to the item passed as parameter; return `null` if no "start playing from
+ * here" options should be shown in the long press menu
+ */
 @Composable
 fun ItemList(
     items: List<InfoItem>,
+    getPlayQueueStartingAt: ((item: StreamInfoItem) -> PlayQueue)? = null,
     mode: ItemViewMode = determineItemViewMode(),
     listHeader: LazyListScope.() -> Unit = {}
 ) {
     val context = LocalContext.current
     val onClick = remember {
         { item: InfoItem ->
-            val fragmentManager = context.findFragmentActivity().supportFragmentManager
             if (item is StreamInfoItem) {
                 NavigationHelper.openVideoDetailFragment(
                     context,
-                    fragmentManager,
+                    context.findFragmentManager(),
                     item.serviceId,
                     item.url,
                     item.name,
@@ -50,26 +53,12 @@ fun ItemList(
                 )
             } else if (item is PlaylistInfoItem) {
                 NavigationHelper.openPlaylistFragment(
-                    fragmentManager,
+                    context.findFragmentManager(),
                     item.serviceId,
                     item.url,
                     item.name
                 )
             }
-        }
-    }
-
-    // Handle long clicks for stream items
-    // TODO: Adjust the menu display depending on where it was triggered
-    var selectedStream by remember { mutableStateOf<StreamInfoItem?>(null) }
-    val onLongClick = remember {
-        { stream: StreamInfoItem ->
-            selectedStream = stream
-        }
-    }
-    val onDismissPopup = remember {
-        {
-            selectedStream = null
         }
     }
 
@@ -89,15 +78,7 @@ fun ItemList(
                     val item = items[it]
 
                     if (item is StreamInfoItem) {
-                        val isSelected = selectedStream == item
-                        StreamListItem(
-                            item,
-                            showProgress,
-                            isSelected,
-                            onClick,
-                            onLongClick,
-                            onDismissPopup
-                        )
+                        StreamListItem(item, showProgress, getPlayQueueStartingAt, onClick)
                     } else if (item is PlaylistInfoItem) {
                         PlaylistListItem(item, onClick)
                     }

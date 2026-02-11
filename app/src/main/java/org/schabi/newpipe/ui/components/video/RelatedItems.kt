@@ -44,6 +44,7 @@ fun RelatedItems(info: StreamInfo) {
 
     ItemList(
         items = info.relatedItems,
+        getPlayQueueStartingAt = null, // it does not make sense to play related items "from here"
         mode = ItemViewMode.LIST,
         listHeader = {
             item {

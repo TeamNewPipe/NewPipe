@@ -7,6 +7,7 @@
 about-libraries = "11.2.3"
 acra = "5.13.1"
 agp = "8.13.2"
+androidx-test = "1.7.0"
 appcompat = "1.7.1"
 assertj = "3.27.6"
 autoservice-google = "1.1.1"
@@ -20,6 +21,8 @@ constraintlayout = "2.2.1"
 core = "1.17.0"
 desugar = "2.1.5"
 documentfile = "1.1.0"
+espresso = "3.7.0"
+espresso-device = "1.1.0"
 exoplayer = "2.19.1"
 fragment-compose = "1.8.9"
 groupie = "2.10.1"
@@ -47,7 +50,6 @@ preference = "1.2.1"
 prettytime = "5.0.8.Final"
 recyclerview = "1.4.0"
 room = "2.7.2" # Newer versions require minSdk >= 23
-runner = "1.7.0"
 rxandroid = "3.0.2"
 rxbinding = "4.0.0"
 rxjava = "3.1.12"
@@ -102,8 +104,11 @@ androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref =
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 androidx-room-rxjava3 = { module = "androidx.room:room-rxjava3", version.ref = "room" }
 androidx-room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
-androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
 androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
+androidx-test-espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
+androidx-test-espresso-device = { module = "androidx.test.espresso:espresso-device", version.ref = "espresso-device" }
+androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidx-test" }
+androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidx-test" }
 androidx-webkit = { module = "androidx.webkit:webkit", version.ref = "webkit" }
 androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "work" }
 androidx-work-rxjava3 = { module = "androidx.work:work-rxjava3", version.ref = "work" }
