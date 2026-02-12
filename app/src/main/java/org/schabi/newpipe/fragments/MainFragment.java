@@ -26,12 +26,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapterMenuWorkaround;
 import androidx.preference.PreferenceManager;
-import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
@@ -106,11 +106,17 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
         binding = FragmentMainBinding.bind(rootView);
 
-        binding.mainTabLayout.setupWithViewPager(binding.pager);
-        binding.mainTabLayout.addOnTabSelectedListener(this);
-
         setupTabs();
         updateTabLayoutPosition();
+
+        binding.pager.setAdapter(pagerAdapter);
+        new TabLayoutMediator(binding.mainTabLayout, binding.pager,
+                (tab, position) -> {
+                    tab.setIcon(tabsList.get(position).getTabIconRes(requireContext()));
+                    tab.setContentDescription(tabsList.get(position).getTabName(requireContext()));
+                }
+        ).attach();
+        binding.mainTabLayout.addOnTabSelectedListener(this);
     }
 
     @Override
@@ -189,29 +195,16 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         tabsList.clear();
         tabsList.addAll(tabsManager.getTabs());
 
-        if (pagerAdapter == null || !pagerAdapter.sameTabs(tabsList)) {
-            pagerAdapter = new SelectedTabsPagerAdapter(requireContext(),
-                    getChildFragmentManager(), tabsList);
+        if (pagerAdapter == null) {
+            pagerAdapter = new SelectedTabsPagerAdapter(requireContext(), this, tabsList);
+            binding.pager.setAdapter(pagerAdapter);
+        } else if (!pagerAdapter.sameTabs(tabsList)) {
+            pagerAdapter.updateTabs(tabsList);
         }
 
-        binding.pager.setAdapter(null);
-        binding.pager.setAdapter(pagerAdapter);
-
-        updateTabsIconAndDescription();
         updateTitleForTab(binding.pager.getCurrentItem());
 
         hasTabsChanged = false;
-    }
-
-    private void updateTabsIconAndDescription() {
-        for (int i = 0; i < tabsList.size(); i++) {
-            final TabLayout.Tab tabToSet = binding.mainTabLayout.getTabAt(i);
-            if (tabToSet != null) {
-                final Tab tab = tabsList.get(i);
-                tabToSet.setIcon(tab.getTabIconRes(requireContext()));
-                tabToSet.setContentDescription(tab.getTabName(requireContext()));
-            }
-        }
     }
 
     private void updateTitleForTab(final int tabPosition) {
@@ -226,7 +219,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
     private void updateTabLayoutPosition() {
         final ScrollableTabLayout tabLayout = binding.mainTabLayout;
-        final ViewPager viewPager = binding.pager;
+        final ViewPager2 viewPager = binding.pager;
         final boolean bottom = mainTabsPositionBottom;
 
         // change layout params to make the tab layout appear either at the top or at the bottom
@@ -275,8 +268,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         updateTitleForTab(tab.getPosition());
     }
 
-    public static final class SelectedTabsPagerAdapter
-            extends FragmentStatePagerAdapterMenuWorkaround {
+    public static final class SelectedTabsPagerAdapter extends FragmentStateAdapter {
         private final Context context;
         private final List<Tab> internalTabsList;
         /**
@@ -289,16 +281,21 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         private final List<LocalPlaylistFragment> localPlaylistFragments = new ArrayList<>();
 
         private SelectedTabsPagerAdapter(final Context context,
-                                         final FragmentManager fragmentManager,
+                                         final Fragment fragment,
                                          final List<Tab> tabsList) {
-            super(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+            super(fragment);
             this.context = context;
             this.internalTabsList = new ArrayList<>(tabsList);
         }
 
+        public void updateTabs(final List<Tab> tabsList) {
+            internalTabsList.clear();
+            internalTabsList.addAll(tabsList);
+            notifyDataSetChanged();
+        }
         @NonNull
         @Override
-        public Fragment getItem(final int position) {
+        public Fragment createFragment(final int position) {
             final Tab tab = internalTabsList.get(position);
 
             final Fragment fragment;
@@ -325,14 +322,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         }
 
         @Override
-        public int getItemPosition(@NonNull final Object object) {
-            // Causes adapter to reload all Fragments when
-            // notifyDataSetChanged is called
-            return POSITION_NONE;
-        }
-
-        @Override
-        public int getCount() {
+        public int getItemCount() {
             return internalTabsList.size();
         }
 
