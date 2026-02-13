@@ -412,6 +412,8 @@
     <string name="import_export_data_path">import_export_data_path</string>
     <string name="import_data">import_data</string>
     <string name="export_data">export_data</string>
+    <string name="import_subscriptions_key">import_subscriptions_key</string>
+    <string name="export_subscriptions_key">export_subscriptions_key</string>
 
     <string name="clear_cookie_key">clear_cookie</string>
 
