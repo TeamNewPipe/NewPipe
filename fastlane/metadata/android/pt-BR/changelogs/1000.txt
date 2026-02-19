@@ -1,13 +1,13 @@
-Melhorias
-• Tornar a descrição da lista de reprodução clicável para mostrar mais/menos conteúdo
-• [PeerTube] Lidar automaticamente com links de instâncias do `subscribeto.me`
-• Iniciar a reprodução de apenas um item na tela de histórico
+Improved
+• Make playlist description clickable to show more / less content
+• [PeerTube] Handle `subscribeto.me` instance links automatically
+• Only start playing single item in history screen
 
-Corrigido
-• Corrigir a visibilidade do botão RSS
-• Corrigir falhas na pré-visualização da barra de busca
-• Corrigir a inclusão de um item sem miniatura na lista de reprodução
-• Corrigir o fechamento da caixa de diálogo de download antes de ela aparecer
-• Corrigir o pop-up de enfileiramento da lista de itens relacionados
-• Corrigir a ordem na caixa de diálogo de adicionar à lista de reprodução
-• Ajustar o layout do item de marcador da lista de reprodução
+Fixed
+• Fix RSS button visibility
+• Fix seekbar preview crashes
+• Fix playlisting a thumbnail-less item
+• Fix exiting the download dialog before it appears
+• Fix related items list enqueue popup
+• Fix order in add to playlist dialog
+• Adjust the playlist bookmark item layout

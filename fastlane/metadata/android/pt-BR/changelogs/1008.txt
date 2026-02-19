@@ -1,0 +1,4 @@
+∙ Corrigido o retomar de streams na última posição de reprodução
+∙ [YouTube] Adicionado suporte a mais formatos de URL de canal
+∙ [YouTube] Adicionado suporte a mais formatos de metadados de vídeo
+∙ Traduções atualizadas

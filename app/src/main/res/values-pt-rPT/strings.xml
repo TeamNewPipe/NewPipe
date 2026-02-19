@@ -280,7 +280,7 @@
     <string name="app_update_notification_channel_description">Notificações para novas versões do NewPipe</string>
     <string name="action_history">Histórico</string>
     <string name="list">Lista</string>
-    <string name="remove_watched_popup_title">Remover vídeos visualizados?</string>
+    <string name="remove_watched_popup_title">Remover transmissões vistas?</string>
     <plurals name="minutes">
         <item quantity="one">%d minuto</item>
         <item quantity="many">%d minutos</item>

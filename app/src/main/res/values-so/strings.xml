@@ -633,4 +633,8 @@
     <string name="local_search_suggestions">Soojeedinada raadinta gudaha</string>
     <string name="progressive_load_interval_title">Cabirka soodaarida udhexeeya</string>
     <string name="crash_the_player">Jabi Daareha</string>
+    <string name="yes">Haa</string>
+    <string name="no">Maya</string>
+    <string name="search_with_service_name">Raadi %1$s</string>
+    <string name="search_with_service_name_and_filter">Raadi %1$s (%2$s)</string>
 </resources>

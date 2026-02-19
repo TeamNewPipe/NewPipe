@@ -1,1 +1,6 @@
-Corrigido YouTube não reproduzir qualquer transmissão
+Esta é uma versão de correção que corrige erros do YouTube:
+• [YouTube] Corrige o não carregamento de informações de vídeo, corrige erros HTTP 403 durante a reprodução de vídeos e restaura a reprodução de alguns vídeos com restrição de idade
+• Corrige o tamanho das legendas que não era alterado
+• Corrige o download de informações duas vezes ao abrir uma transmissão.
+• [Soundcloud] Remove transmissões protegidas por DRM que não podem ser reproduzidas
+• Traduções atualizadas

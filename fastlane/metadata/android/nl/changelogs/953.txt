@@ -1,1 +1,1 @@
-Herstel de extractie van de decoderingsfunctie van YouTube.
+Extractie van YouTube's decryptiefunctie opgelost.
