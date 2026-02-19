@@ -228,24 +228,26 @@ class ErrorActivity : AppCompatActivity() {
 
                 // Collapse all logs to a single paragraph when there are more than one
                 // to keep the GitHub issue clean.
-                if (errorInfo.stackTraces.isNotEmpty()) {
+                if (errorInfo.stackTraces.size > 1) {
                     append("<details><summary><b>Exceptions (")
                     append(errorInfo.stackTraces.size)
                     append(")</b></summary><p>\n")
+                }
 
-                    // add the logs
-                    errorInfo.stackTraces.forEachIndexed { index, stacktrace ->
-                        append("<details><summary><b>Crash log ")
-                        if (errorInfo.stackTraces.isNotEmpty()) {
-                            append(index + 1)
-                        }
-                        append("</b>")
-                        append("</summary><p>\n")
-                        append("\n```\n${stacktrace}\n```\n")
-                        append("</details>\n")
+                // add the logs
+                errorInfo.stackTraces.forEachIndexed { index, stacktrace ->
+                    append("<details><summary><b>Crash log ")
+                    if (errorInfo.stackTraces.size > 1) {
+                        append(index + 1)
                     }
+                    append("</b>")
+                    append("</summary><p>\n")
+                    append("\n```\n${stacktrace}\n```\n")
+                    append("</details>\n")
+                }
 
-                    // make sure to close everything
+                // make sure to close everything
+                if (errorInfo.stackTraces.size > 1) {
                     append("</p></details>\n")
                 }
 
