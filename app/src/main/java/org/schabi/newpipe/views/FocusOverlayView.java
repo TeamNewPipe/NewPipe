@@ -40,7 +40,6 @@ import android.view.Window;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.view.WindowCallbackWrapper;
 
 import org.schabi.newpipe.R;
 
@@ -232,7 +231,7 @@ public final class FocusOverlayView extends Drawable implements
         // Unfortunately many such forms of "scrolling" do not count as scrolling for purpose
         // of dispatching ViewTreeObserver callbacks, so we have to intercept them by directly
         // receiving keys from Window.
-        window.setCallback(new WindowCallbackWrapper(window.getCallback()) {
+        window.setCallback(new SimpleWindowCallback(window.getCallback()) {
             @Override
             public boolean dispatchKeyEvent(final KeyEvent event) {
                 final boolean res = super.dispatchKeyEvent(event);

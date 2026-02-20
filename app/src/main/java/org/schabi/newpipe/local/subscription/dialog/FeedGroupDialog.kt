@@ -506,7 +506,7 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
     private fun hideKeyboardSearch() {
         inputMethodManager.hideSoftInputFromWindow(
             searchLayoutBinding.toolbarSearchEditText.windowToken,
-            InputMethodManager.RESULT_UNCHANGED_SHOWN
+            InputMethodManager.HIDE_NOT_ALWAYS
         )
         searchLayoutBinding.toolbarSearchEditText.clearFocus()
     }
@@ -523,7 +523,7 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
     private fun hideKeyboard() {
         inputMethodManager.hideSoftInputFromWindow(
             feedGroupCreateBinding.groupNameInput.windowToken,
-            InputMethodManager.RESULT_UNCHANGED_SHOWN
+            InputMethodManager.HIDE_NOT_ALWAYS
         )
         feedGroupCreateBinding.groupNameInput.clearFocus()
     }
