@@ -207,10 +207,10 @@ class AboutActivity : AppCompatActivity() {
                 StandardLicenses.APACHE2
             ),
             SoftwareComponent(
-                "Picasso",
-                "2013",
-                "Square, Inc.",
-                "https://square.github.io/picasso/",
+                "Coil",
+                "2023",
+                "Coil Contributors",
+                "https://coil-kt.github.io/coil/",
                 StandardLicenses.APACHE2
             ),
             SoftwareComponent(

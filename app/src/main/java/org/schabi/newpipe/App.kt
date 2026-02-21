@@ -1,11 +1,19 @@
 package org.schabi.newpipe
 
+import android.app.ActivityManager
 import android.app.Application
 import android.content.Context
 import android.util.Log
 import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.getSystemService
 import androidx.preference.PreferenceManager
+import coil3.ImageLoader
+import coil3.SingletonImageLoader
+import coil3.network.okhttp.OkHttpNetworkFetcherFactory
+import coil3.request.allowRgb565
+import coil3.request.crossfade
+import coil3.util.DebugLogger
 import com.jakewharton.processphoenix.ProcessPhoenix
 import io.reactivex.rxjava3.exceptions.CompositeException
 import io.reactivex.rxjava3.exceptions.MissingBackpressureException
@@ -29,9 +37,8 @@ import org.schabi.newpipe.util.BridgeStateSaverInitializer
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.ServiceHelper
 import org.schabi.newpipe.util.StateSaver
-import org.schabi.newpipe.util.image.ImageStrategy.setPreferredImageQuality
-import org.schabi.newpipe.util.image.PicassoHelper
-import org.schabi.newpipe.util.image.PreferredImageQuality.Companion.fromPreferenceKey
+import org.schabi.newpipe.util.image.ImageStrategy
+import org.schabi.newpipe.util.image.PreferredImageQuality
 import org.schabi.newpipe.util.potoken.PoTokenProviderImpl
 
 /*
@@ -51,7 +58,9 @@ import org.schabi.newpipe.util.potoken.PoTokenProviderImpl
  * You should have received a copy of the GNU General Public License
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
-open class App : Application() {
+open class App :
+    Application(),
+    SingletonImageLoader.Factory {
     var isFirstRun = false
         private set
     var notificationsRequested = false
@@ -102,9 +111,8 @@ open class App : Application() {
 
         // Initialize image loader
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
-        PicassoHelper.init(this)
-        setPreferredImageQuality(
-            fromPreferenceKey(
+        ImageStrategy.setPreferredImageQuality(
+            PreferredImageQuality.fromPreferenceKey(
                 this,
                 prefs.getString(
                     getString(R.string.image_quality_key),
@@ -112,20 +120,20 @@ open class App : Application() {
                 )
             )
         )
-        PicassoHelper.setIndicatorsEnabled(
-            MainActivity.DEBUG &&
-                prefs.getBoolean(getString(R.string.show_image_indicators_key), false)
-        )
 
         configureRxJavaErrorHandler()
 
         YoutubeStreamExtractor.setPoTokenProvider(PoTokenProviderImpl)
     }
 
-    override fun onTerminate() {
-        super.onTerminate()
-        PicassoHelper.terminate()
-    }
+    override fun newImageLoader(context: Context): ImageLoader = ImageLoader
+        .Builder(this)
+        .logger(if (BuildConfig.DEBUG) DebugLogger() else null)
+        .allowRgb565(getSystemService<ActivityManager>()!!.isLowRamDevice)
+        .crossfade(true)
+        .components {
+            add(OkHttpNetworkFetcherFactory(callFactory = DownloaderImpl.getInstance().client))
+        }.build()
 
     protected open fun getDownloader(): Downloader {
         val downloader = DownloaderImpl.init(null)
