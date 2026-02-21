@@ -57,6 +57,7 @@ public class StatisticsPlaylistFragment
     @State
     Parcelable itemsListState;
     private StatisticSortMode sortMode = StatisticSortMode.LAST_PLAYED;
+    private boolean includeFullyWatched = true;
 
     private StatisticPlaylistControlBinding headerBinding;
     private PlaylistControlBinding playlistControlBinding;
@@ -78,6 +79,14 @@ public class StatisticsPlaylistFragment
                 return null;
         }
         Collections.sort(results, comparator.reversed());
+
+        // Filter Fully Watched
+        if (!includeFullyWatched) {
+            return results.stream()
+                    .filter(e -> e.getStreamEntity().getDuration() != e.getProgressMillis() / 1000)
+                    .toList();
+        }
+
         return results;
     }
 
@@ -277,6 +286,8 @@ public class StatisticsPlaylistFragment
         PlayButtonHelper.initPlaylistControlClickListener(activity, playlistControlBinding, this);
 
         headerBinding.sortButton.setOnClickListener(view -> toggleSortMode());
+        headerBinding.fullyWatchedFilterButtonCheckBox
+                    .setOnClickListener(view -> toggleIncludeFullyWatched());
 
         hideLoading();
     }
@@ -310,6 +321,11 @@ public class StatisticsPlaylistFragment
                 R.drawable.ic_filter_list);
             headerBinding.sortButtonText.setText(R.string.title_most_played);
         }
+        startLoading(true);
+    }
+
+    private void toggleIncludeFullyWatched() {
+        includeFullyWatched = !includeFullyWatched;
         startLoading(true);
     }
 
