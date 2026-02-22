@@ -55,7 +55,7 @@
     <string name="error_snackbar_action">Bildir</string>
     <string name="what_device_headline">Bilgi:</string>
     <string name="what_happened_headline">Ne oldu:</string>
-    <string name="info_labels">Ne:\\nİstek:\\nİçerik Dili:\\nİçerik Ülkesi:\\nUygulama Dili:\\nHizmet:\\nGMT Zamanı:\\nPaket:\\nSürüm:\\nİşletim sistemi sürümü:</string>
+    <string name="info_labels">Ne:\nİstek:\nİçerik Dili:\nİçerik Ülkesi:\nUygulama Dili:\nHizmet:\nGMT Zamanı:\nPaket:\nSürüm:\nİşletim sistemi sürümü:</string>
     <string name="detail_thumbnail_view_description">Videoyu oynat, süre:</string>
     <string name="detail_uploader_thumbnail_view_description">Yükleyenin avatar küçük resmi</string>
     <string name="detail_likes_img_view_description">Beğeni</string>

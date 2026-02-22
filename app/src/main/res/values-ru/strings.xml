@@ -87,7 +87,7 @@
     <string name="popup_playing_toast">Воспроизведение во всплывающем окне</string>
     <string name="clear">Очистить</string>
     <string name="all">Всё</string>
-    <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСтрана контента:\\nЯзык приложения:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия пакета:\\nВерсия ОС:</string>
+    <string name="info_labels">Что:\nЗапрос:\nЯзык контента:\nСтрана контента:\nЯзык приложения:\nСервис:\nВремя по Гринвичу:\nПакет:\nВерсия пакета:\nВерсия ОС:</string>
     <string name="msg_popup_permission">Это разрешение нужно для
 \nвоспроизведения в окне</string>
     <string name="open_in_popup_mode">Открыть во всплывающем окне</string>
@@ -345,7 +345,7 @@
     <string name="grid">Сетка</string>
     <string name="auto">Автоматически</string>
     <string name="download_to_sdcard_error_message">Загрузка на SD-карту невозможна. Сбросить расположение папки загрузки\?</string>
-    <string name="download_to_sdcard_error_title">SD-карта недоступна</string>
+    <string name="download_to_sdcard_error_title">Внешнее хранилище недоступно</string>
     <string name="main_page_content_summary">Вкладки, видимые на главной странице</string>
     <string name="restore_defaults">Значения по умолчанию</string>
     <string name="restore_defaults_confirmation">Восстановить значения по умолчанию\?</string>
@@ -510,7 +510,7 @@
 \nКак пример, YouTube поддерживает быстрое обновление.
 \n
 \nВыбор за вами: скорость или точность.</string>
-    <string name="feed_use_dedicated_fetch_method_title">Обновление по RSS, если доступно</string>
+    <string name="feed_use_dedicated_fetch_method_title">Получать из выделенной ленты, когда доступно</string>
     <string name="feed_use_dedicated_fetch_method_summary">Доступно для некоторых сервисов, быстрое, может возвращать не всё содержимое канала и не содержать часть сведений (длительность, статус трансляции)</string>
     <string name="feed_update_threshold_summary">Период актуальности подписок после обновления — %s</string>
     <string name="restricted_video">Это видео имеет возрастное ограничение.
@@ -526,8 +526,8 @@
     <string name="albums">Альбомы</string>
     <string name="remove_watched">Удалить просмотренные</string>
     <string name="remove_watched_popup_partially_watched_streams">Да, и частично просмотренные</string>
-    <string name="remove_watched_popup_warning">Видео, просмотренные до или после добавления в плейлист, будут удалены. \nПродолжить? Не может быть отменено!</string>
-    <string name="remove_watched_popup_title">Удалить просмотренные видео?</string>
+    <string name="remove_watched_popup_warning">Трансляции, просмотренные до или после добавления в плейлист, будут удалены. \nВы уверены?</string>
+    <string name="remove_watched_popup_title">Удалить просмотренные трансляции?</string>
     <string name="show_original_time_ago_summary">Отображать сообщённое сервисом время с момента публикации</string>
     <string name="show_original_time_ago_title">Исходное время публикации</string>
     <string name="youtube_restricted_mode_enabled_title">Включить \"Ограниченный режим\" YouTube</string>

@@ -224,7 +224,7 @@
     <string name="export_ongoing">Esportende…</string>
     <string name="msg_popup_permission">B\'at bisòngiu de custu permissu pro
 \nabèrrere sa modalidade ventanedda</string>
-    <string name="info_labels">Ite:\\nRechesta:\\nLimba de su cuntenutu\\nIstadu de su cuntenutu:\\nLimba de s\'aplicatzione:\\nServìtziu:\\nOràriu GMT:\\nPachete:\\nVersione:\\nVersione SO:</string>
+    <string name="info_labels">Ite:\nRechesta:\nLimba de su cuntenutu\nIstadu de su cuntenutu:\nLimba de s\'aplicatzione:\nServìtziu:\nOràriu GMT:\nPachete:\nVersione:\nVersione SO:</string>
     <string name="error_snackbar_message">A dolu mannu b\'at àpidu carchi problema.</string>
     <string name="search_history_deleted">Cronologia de chirca iscantzellada</string>
     <string name="restricted_video">Custu vìdeu tenet unu lìmite de edade.

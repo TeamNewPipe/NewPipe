@@ -1,0 +1,3 @@
+Correção rápida
+• Aumentado o buffer para reprodução após rebuffer
+• Corrigido travamento em tablets e TVs ao clicar no ícone da fila de reprodução no player

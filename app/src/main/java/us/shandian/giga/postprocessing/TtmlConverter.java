@@ -29,9 +29,12 @@ class TtmlConverter extends Postprocessing {
 
             try {
                 writer.build(sources[0]);
+            } catch (IOException err) {
+                Log.e(TAG, "subtitle conversion failed due to I/O error", err);
+                throw err;
             } catch (Exception err) {
-                Log.e(TAG, "subtitle parse failed", err);
-                return err instanceof IOException ? 1 : 8;
+                Log.e(TAG, "subtitle conversion failed", err);
+                throw new IOException("TTML to SRT conversion failed", err);
             }
 
             return OK_RESULT;

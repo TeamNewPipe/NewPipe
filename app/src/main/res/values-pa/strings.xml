@@ -140,7 +140,7 @@
     <string name="error_snackbar_action">ਇਤਲਾਹ ਕਰੋ</string>
     <string name="what_device_headline">ਜਾਣਕਾਰੀ:</string>
     <string name="what_happened_headline">ਕੀ ਹੋਇਆ ਹੈ:</string>
-    <string name="info_labels">ਕੀ:\\nRequest:\\nContent ਭਾਸ਼ਾ/ਬੋਲੀ:\\nContent Country:\\nApp ਭਾਸ਼ਾ/ਬੋਲੀ:\\nService:\\nGMT ਸਮਾਂ:\\nPackage:\\nVersion:\\nOS version:</string>
+    <string name="info_labels">ਕੀ:\nRequest:\nContent ਭਾਸ਼ਾ/ਬੋਲੀ:\nContent Country:\nApp ਭਾਸ਼ਾ/ਬੋਲੀ:\nService:\nGMT ਸਮਾਂ:\nPackage:\nVersion:\nOS version:</string>
     <string name="your_comment">ਤੁਹਾਡੀ ਟਿੱਪਣੀ (ਅੰਗਰੇਜ਼ੀ ਵਿਚ):</string>
     <string name="error_details_headline">ਵੇਰਵੇ:</string>
     <string name="detail_thumbnail_view_description">ਵੀਡੀਓ ਚਲਾਓ, ਮਿਆਦ:</string>

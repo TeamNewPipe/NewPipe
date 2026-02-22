@@ -129,8 +129,7 @@ class FeedViewModel(
     fun setSaveShowPlayedItems(showPlayedItems: Boolean) {
         this.showPlayedItems.onNext(showPlayedItems)
         PreferenceManager.getDefaultSharedPreferences(application).edit {
-            this.putBoolean(application.getString(R.string.feed_show_watched_items_key), showPlayedItems)
-            this.apply()
+            putBoolean(application.getString(R.string.feed_show_watched_items_key), showPlayedItems)
         }
     }
 
@@ -139,8 +138,7 @@ class FeedViewModel(
     fun setSaveShowPartiallyPlayedItems(showPartiallyPlayedItems: Boolean) {
         this.showPartiallyPlayedItems.onNext(showPartiallyPlayedItems)
         PreferenceManager.getDefaultSharedPreferences(application).edit {
-            this.putBoolean(application.getString(R.string.feed_show_partially_watched_items_key), showPartiallyPlayedItems)
-            this.apply()
+            putBoolean(application.getString(R.string.feed_show_partially_watched_items_key), showPartiallyPlayedItems)
         }
     }
 
@@ -149,8 +147,7 @@ class FeedViewModel(
     fun setSaveShowFutureItems(showFutureItems: Boolean) {
         this.showFutureItems.onNext(showFutureItems)
         PreferenceManager.getDefaultSharedPreferences(application).edit {
-            this.putBoolean(application.getString(R.string.feed_show_future_items_key), showFutureItems)
-            this.apply()
+            putBoolean(application.getString(R.string.feed_show_future_items_key), showFutureItems)
         }
     }
 

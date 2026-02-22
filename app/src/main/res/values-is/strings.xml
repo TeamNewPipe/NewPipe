@@ -212,7 +212,7 @@
     <string name="error_snackbar_message">Því miður fór eitthvað úrskeiðis.</string>
     <string name="detail_likes_img_view_description">Líkar við</string>
     <string name="what_happened_headline">Það sem gerðist:</string>
-    <string name="info_labels">Hvað:\\nBeiðni:\\nTungumál Efnis:\\nLand Efnis:\\nTungumál forrits:\\nÞjónusta:\\nGMT Tími:\\nPakki:\\nÚtgáfa:\\nÚtgáfu Stýrikerfis:</string>
+    <string name="info_labels">Hvað:\nBeiðni:\nTungumál efnis:\nLandsvæði efnis:\nTungumál forrits:\nÞjónusta:\nTímastimpill:\nPakki:\nÚtgáfa:\nÚtgáfa stýrikerfis:</string>
     <string name="your_comment">Athugasemd þín (á ensku):</string>
     <string name="search_no_results">Engar niðurstöður</string>
     <string name="video">Myndskeið</string>
@@ -369,7 +369,7 @@
     <string name="remote_search_suggestions">Fjarleitar leitartillögur</string>
     <string name="resume_on_audio_focus_gain_title">Halda áfram</string>
     <string name="unsupported_url">Óstudd vefslóð</string>
-    <string name="default_content_country_title">Sjálfgefið efnisland</string>
+    <string name="default_content_country_title">Sjálfgefið landsvæði efnis</string>
     <string name="peertube_instance_url_title">PeerTube þjónar</string>
     <string name="peertube_instance_add_title">Bæta við</string>
     <string name="peertube_instance_add_help">Sláðu inn slóð tilviks</string>
@@ -637,7 +637,7 @@
     <string name="show_original_time_ago_summary">Upprunalegir textar frá þjónustu verða sýnilegir í streymisatriðum</string>
     <string name="disable_media_tunneling_title">Slökkva á margmiðlagöngum</string>
     <string name="disable_media_tunneling_summary">Slökktu á margmiðlunargöngum (media tunneling) ef vart verður við svartan skjá eða hökt við spilun myndskeiða.</string>
-    <string name="show_crash_the_player_title">Sýna „Láta spilara hrynja\\</string>
+    <string name="show_crash_the_player_title">Sýna „Láta spilara hrynja\"</string>
     <string name="show_crash_the_player_summary">Sýna valkost til að hrynja spilara</string>
     <string name="crash_the_app">Hrynja forrit</string>
     <string name="create_error_notification">Búа til villutilkynningu</string>
@@ -815,4 +815,10 @@
     <string name="delete_entry">Eyða færslu</string>
     <string name="account_terminated_service_provides_reason">Aðgangi lokað\n\n%1$s gefur þessa ástæðu: %2$s</string>
     <string name="entry_deleted">Færslu eytt</string>
+    <string name="migration_info_7_8_title">Samsettur vinsældalisti YouTube fjarlægður</string>
+    <string name="migration_info_7_8_message">YouTube hætti með samsetta vinsældalistann sinn frá og með 21. júlí 2025. NewPipe skipti út sjálfgefna vinsældalistanum fyrir vinsæl streymi í beinni útsendingu.\n\nÞú getur líka valið annað vinsælt efni með því að fara í \"Stillingar &gt; Efni &gt; Efni aðalsíðu\".</string>
+    <string name="player_http_403">Tók við HTTP-villu 403 frá þjóni á meðan afspilun stóð, líklega vegna útrunninar URL-slóðar streymis eða banns á IP-vistfang</string>
+    <string name="player_http_invalid_status">Tók við HTTP-villu %1$s frá þjóni á meðan afspilun stóð</string>
+    <string name="youtube_player_http_403">Tók við HTTP-villu 403 frá þjóni á meðan afspilun stóð, líklega vegna banns á IP-vistfang eða vandamála með afkóðun URL-slóðar streymis</string>
+    <string name="unsupported_content_in_country">Þetta efni er ekki í boði fyrir valið landsvæði efnis.\n\nBreyttu valinu með því að fara í \"Stillingar &gt; Efni &gt; Sjálfgefið landsvæði efnis\".</string>
 </resources>

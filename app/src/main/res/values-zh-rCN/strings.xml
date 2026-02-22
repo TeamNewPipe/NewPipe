@@ -146,7 +146,7 @@
     <string name="error_snackbar_action">反馈</string>
     <string name="what_device_headline">信息：</string>
     <string name="what_happened_headline">发生了什么：</string>
-    <string name="info_labels">详情：\\n请求：\\n内容语言：\\n内容国家：\\n客户端语言：\\n服务：\\nGMT时间：\\n包名：\\n版本：\\n操作系统版本：</string>
+    <string name="info_labels">详情：\n请求：\n内容语言：\n内容国家：\n客户端语言：\n服务：\nGMT时间：\n包名：\n版本：\n操作系统版本：</string>
     <string name="your_comment">您的附加说明（请用英文）：</string>
     <string name="error_details_headline">详细信息：</string>
     <string name="detail_thumbnail_view_description">播放视频，时长：</string>

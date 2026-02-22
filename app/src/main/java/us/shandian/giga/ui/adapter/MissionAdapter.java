@@ -632,103 +632,95 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         DownloadMission mission = h.item.mission instanceof DownloadMission ? (DownloadMission) h.item.mission : null;
 
         if (mission != null) {
-            switch (id) {
-                case R.id.start:
-                    h.status.setText(UNDEFINED_PROGRESS);
-                    mDownloadManager.resumeMission(mission);
-                    return true;
-                case R.id.pause:
-                    mDownloadManager.pauseMission(mission);
-                    return true;
-                case R.id.error_message_view:
-                    showError(mission);
-                    return true;
-                case R.id.queue:
-                    boolean flag = !h.queue.isChecked();
-                    h.queue.setChecked(flag);
-                    mission.setEnqueued(flag);
-                    updateProgress(h);
-                    return true;
-                case R.id.retry:
-                    if (mission.isPsRunning()) {
-                        mission.psContinue(true);
-                    } else {
-                        mDownloadManager.tryRecover(mission);
-                        if (mission.storage.isInvalid())
-                            mRecover.tryRecover(mission);
-                        else
-                            recoverMission(mission);
-                    }
-                    return true;
-                case R.id.cancel:
-                    mission.psContinue(false);
-                    return false;
+            if (id == R.id.start) {
+                h.status.setText(UNDEFINED_PROGRESS);
+                mDownloadManager.resumeMission(mission);
+                return true;
+            } else if (id == R.id.pause) {
+                mDownloadManager.pauseMission(mission);
+                return true;
+            } else if (id == R.id.error_message_view) {
+                showError(mission);
+                return true;
+            } else if (id == R.id.queue) {
+                boolean flag = !h.queue.isChecked();
+                h.queue.setChecked(flag);
+                mission.setEnqueued(flag);
+                updateProgress(h);
+                return true;
+            } else if (id == R.id.retry) {
+                if (mission.isPsRunning()) {
+                    mission.psContinue(true);
+                } else {
+                    mDownloadManager.tryRecover(mission);
+                    if (mission.storage.isInvalid())
+                        mRecover.tryRecover(mission);
+                    else
+                        recoverMission(mission);
+                }
+                return true;
+            } else if (id == R.id.cancel) {
+                mission.psContinue(false);
+                return false;
             }
         }
 
-        switch (id) {
-            case R.id.menu_item_share:
-                shareFile(h.item.mission);
-                return true;
-            case R.id.delete:
-                // delete the entry and the file
+        if (id == R.id.menu_item_share) {
+            shareFile(h.item.mission);
+            return true;
+        } else if (id == R.id.delete) {// delete the entry and the file
+            mDeleter.append(h.item.mission, true);
+            applyChanges();
+            checkMasterButtonsVisibility();
+            return true;
+        } else if (id == R.id.delete_entry) {// just delete the entry
+            mDeleter.append(h.item.mission, false);
+            applyChanges();
+            checkMasterButtonsVisibility();
+            return true;
+        } else if (id == R.id.md5 || id == R.id.sha1) {
+            final StoredFileHelper storage = h.item.mission.storage;
+            if (!storage.existsAsFile()) {
+                Toast.makeText(mContext, R.string.missing_file, Toast.LENGTH_SHORT).show();
                 mDeleter.append(h.item.mission, true);
                 applyChanges();
-                checkMasterButtonsVisibility();
                 return true;
-            case R.id.delete_entry:
-                // just delete the entry
-                mDeleter.append(h.item.mission, false);
-                applyChanges();
-                checkMasterButtonsVisibility();
-                return true;
-            case R.id.md5:
-            case R.id.sha1:
-                final StoredFileHelper storage = h.item.mission.storage;
-                if (!storage.existsAsFile()) {
-                    Toast.makeText(mContext, R.string.missing_file, Toast.LENGTH_SHORT).show();
-                    mDeleter.append(h.item.mission, true);
-                    applyChanges();
-                    return true;
-                }
-                final NotificationManager notificationManager
-                        = ContextCompat.getSystemService(mContext, NotificationManager.class);
-                final NotificationCompat.Builder progressNotificationBuilder
-                        = new NotificationCompat.Builder(mContext,
-                        mContext.getString(R.string.hash_channel_id))
-                        .setPriority(NotificationCompat.PRIORITY_HIGH)
-                        .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
-                        .setContentTitle(mContext.getString(R.string.msg_calculating_hash))
-                        .setContentText(mContext.getString(R.string.msg_wait))
-                        .setProgress(0, 0, true)
-                        .setOngoing(true);
+            }
+            final NotificationManager notificationManager
+                    = ContextCompat.getSystemService(mContext, NotificationManager.class);
+            final NotificationCompat.Builder progressNotificationBuilder
+                    = new NotificationCompat.Builder(mContext,
+                    mContext.getString(R.string.hash_channel_id))
+                    .setPriority(NotificationCompat.PRIORITY_HIGH)
+                    .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
+                    .setContentTitle(mContext.getString(R.string.msg_calculating_hash))
+                    .setContentText(mContext.getString(R.string.msg_wait))
+                    .setProgress(0, 0, true)
+                    .setOngoing(true);
 
-                notificationManager.notify(HASH_NOTIFICATION_ID, progressNotificationBuilder
-                        .build());
-                compositeDisposable.add(
-                        Observable.fromCallable(() -> Utility.checksum(storage, id))
-                                .subscribeOn(Schedulers.computation())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(result -> {
-                                    ShareUtils.copyToClipboard(mContext, result);
-                                    notificationManager.cancel(HASH_NOTIFICATION_ID);
-                                })
-                );
-                return true;
-            case R.id.source:
-                /*Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(h.item.mission.source));
-                mContext.startActivity(intent);*/
-                try {
-                    Intent intent = NavigationHelper.getIntentByLink(mContext, h.item.mission.source);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
-                    mContext.startActivity(intent);
-                } catch (Exception e) {
-                    Log.w(TAG, "Selected item has a invalid source", e);
-                }
-                return true;
-            default:
-                return false;
+            notificationManager.notify(HASH_NOTIFICATION_ID, progressNotificationBuilder
+                    .build());
+            compositeDisposable.add(
+                    Observable.fromCallable(() -> Utility.checksum(storage, id))
+                            .subscribeOn(Schedulers.computation())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(result -> {
+                                ShareUtils.copyToClipboard(mContext, result);
+                                notificationManager.cancel(HASH_NOTIFICATION_ID);
+                            })
+            );
+            return true;
+        } else if (id == R.id.source) {
+            try {
+                Intent intent = NavigationHelper.getIntentByLink(mContext, h.item.mission.source);
+                intent.addFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
+                mContext.startActivity(intent);
+            } catch (Exception e) {
+                Log.w(TAG, "Selected item has a invalid source", e);
+            }
+            return true;
         }
+        return false;
     }
 
     public void applyChanges() {

@@ -1,0 +1,9 @@
+• Foi adicionada a opção de abrir o reprodutor em tela cheia sem clicar novamente.
+• Você pode escolher quais sugestões de pesquisa exibir.
+• Tema escuro e tela de abertura com preto AMOLED.
+• Arquivos incompatíveis aparecem como cinza.
+• Importação de inscrições do YouTube corrigida.
+• O botão de repetir o vídeo exige apenas um toque.
+• Sessão de áudio fecha corretamente.
+• [Android TV] Saltos na barra de pesquisa pelo controle remoto corrigidos.
+Confira as alterações na aba de links abaixo.

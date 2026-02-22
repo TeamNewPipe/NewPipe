@@ -114,7 +114,7 @@
     <string name="error_snackbar_action">रिपोर्ट करें</string>
     <string name="what_device_headline">जानकारी:</string>
     <string name="what_happened_headline">क्या हुआ:</string>
-    <string name="info_labels">क्या:\\nअनुरोध:\\nसामग्री भाषा:\\nसामग्री देश:\\nऐप भाषा:\\nसेवा:\\nजीएमटी समय:\\nपैकेज:\\nसंस्करण:\\nOS संस्करण:</string>
+    <string name="info_labels">क्या:\nअनुरोध:\nसामग्री भाषा:\nसामग्री देश:\nऐप भाषा:\nसेवा:\nजीएमटी समय:\nपैकेज:\nसंस्करण:\nOS संस्करण:</string>
     <string name="your_comment">आपकी टिप्पणी(अंग्रेजी में):</string>
     <string name="error_details_headline">विवरण:</string>
     <string name="detail_thumbnail_view_description">वीडियो चलाएं, अवधि :</string>

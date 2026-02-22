@@ -603,7 +603,7 @@
     <string name="external_player_unsupported_link_type">გარე დამკვრელს არ აქვთ ამ ტიპის ბმულების მხარდაჭერა</string>
     <string name="invalid_file">ფაილი არ არსებობს ან მასზე წაკითხვის ან ჩაწერის ნებართვა აკლია</string>
     <string name="saved_tabs_invalid_json">შენახული ჩანართების წაკითხვა ვერ მოხერხდა, ამიტომ გამოიყენეთ ნაგულისხმევი ჩანართები</string>
-    <string name="info_labels">რა:\\nმოითხოვეთ:\\nშემცველობის ენა:\\nშემცველობის ქვეყანა:\\nაპლიკაციის ენა:\\nსერვისი:\\nGMT დრო:\\nპაკეტი:\\nვერსია:\\nOS ვერსია:</string>
+    <string name="info_labels">რა:\nმოითხოვეთ:\nშემცველობის ენა:\nშემცველობის ქვეყანა:\nაპლიკაციის ენა:\nსერვისი:\nGMT დრო:\nპაკეტი:\nვერსია:\nOS ვერსია:</string>
     <string name="detail_uploader_thumbnail_view_description">ამტვირთველის ავატარის ესკიზი</string>
     <string name="comments_are_disabled">კომენტარები გამორთულია</string>
     <string name="create">Შექმნა</string>

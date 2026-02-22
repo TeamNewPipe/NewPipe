@@ -166,7 +166,7 @@
     <string name="error_snackbar_message">ߘߌ߬ߢߍ߬߸ ߞߏ߫ ߘߏ߫ ߡߊ߫ ߕߊ߬ߡߌ߲߬ ߞߏߢߊ߬.</string>
     <string name="what_device_headline">ߟߌ߬ߤߟߊ:</string>
     <string name="what_happened_headline">ߡߎ߲߬ ߞߍߣߍ߲߫:</string>
-    <string name="info_labels">ߡߎ߲߬:\\nRequest:\\nContent Language:\\nContent Country:\\nApp Language:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:</string>
+    <string name="info_labels">ߡߎ߲߬:\nRequest:\nContent Language:\nContent Country:\nApp Language:\nService:\nGMT Time:\nPackage:\nVersion:\nOS version:</string>
     <string name="your_comment">ߌ ߟߊ߫ ߞߊ߲߬ߞߎߡߊ (ߊ߲߬ߞߌ߬ߟߍ߬ ߞߊ߲ ߘߐ߫):</string>
     <string name="error_details_headline">ߕߐ߬ߝߍ߬ߦߊ ߟߎ߬:</string>
     <string name="detail_thumbnail_view_description">ߦߋߡߍ߲ߕߊ ߘߐߞߊ߬ߙߊ߲߸ ߥߎ߬ߛߎ:</string>

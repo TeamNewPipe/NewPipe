@@ -134,7 +134,7 @@
     <string name="error_snackbar_action">Melden</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Wat er is gebeurd:</string>
-    <string name="info_labels">Wat:\\nVerzoek:\\nTaal van inhoud:\\nLand:\\nTaal van applicatie:\\nDienst:\\nGMT tijd:\\nPakket:\\nVersie:\\nVersie van besturingssysteem:</string>
+    <string name="info_labels">Wat:\nVerzoek:\nTaal van inhoud:\nLand:\nTaal van applicatie:\nDienst:\nGMT tijd:\nPakket:\nVersie:\nVersie van besturingssysteem:</string>
     <string name="your_comment">Uw opmerking (in het Engels):</string>
     <string name="error_details_headline">Details:</string>
     <string name="detail_thumbnail_view_description">Speel video, tijd:</string>

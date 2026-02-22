@@ -78,7 +78,7 @@
     <string name="msg_copied">Copiato negli appunti</string>
     <string name="no_available_dir">Seleziona una cartella per i file scaricati</string>
     <string name="app_ui_crash">L\'app/UI si è interrotta</string>
-    <string name="info_labels">Cosa:\\nRichiesta:\\nLingua contenuti:\\nPaese contenuti\\nLingua app:\\nServizio:\\nOrario GMT:\\nPacchetto:\\nVersione:\\nVersione SO:</string>
+    <string name="info_labels">Cosa:\nRichiesta:\nLingua contenuti:\nPaese contenuti\nLingua app:\nServizio:\nOrario GMT:\nPacchetto:\nVersione:\nVersione SO:</string>
     <string name="title_activity_recaptcha">Risoluzione reCAPTCHA</string>
     <string name="black_theme_title">Nero</string>
     <string name="all">Tutto</string>

@@ -170,7 +170,7 @@
     <string name="show_hold_to_append_summary">Показувати підказку під час натискання фонової або спливної кнопки у відео \"Деталі:\"</string>
     <string name="player_unrecoverable_failure">Сталася невиправна помилка програвача</string>
     <string name="external_player_unsupported_link_type">Зовнішні програвачі не підтримують такі види посилань</string>
-    <string name="info_labels">Що:\\nЗапит:\\nМова вмісту:\\nКраїна вмісту:\\nМова застосунку:\\nСлужба:\\nЧас GMT:\\nПакунок:\\nВерсія:\\nВерсія ОС:</string>
+    <string name="info_labels">Що:\nЗапит:\nМова вмісту:\nКраїна вмісту:\nМова застосунку:\nСлужба:\nЧас GMT:\nПакунок:\nВерсія:\nВерсія ОС:</string>
     <string name="detail_uploader_thumbnail_view_description">Мініатюрний аватар завантажувача відео</string>
     <string name="detail_likes_img_view_description">Вподобані</string>
     <string name="detail_dislikes_img_view_description">Не сподобалося</string>

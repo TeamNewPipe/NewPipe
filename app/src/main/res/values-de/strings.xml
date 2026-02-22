@@ -54,7 +54,7 @@
     <string name="error_snackbar_action">Melden</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Dies ist passiert:</string>
-    <string name="info_labels">Was:\\nAnfrage:\\nSprache des Inhalts:\\nLand des Inhalts:\\nSprache der App:\\nDienst:\\nZeit (GMT):\\nPaket:\\nVersion:\\nOS-Version:</string>
+    <string name="info_labels">Was:\nAnfrage:\nSprache des Inhalts:\nLand des Inhalts:\nSprache der App:\nDienst:\nZeit (GMT):\nPaket:\nVersion:\nOS-Version:</string>
     <string name="error_details_headline">Details:</string>
     <string name="video">Video</string>
     <string name="audio">Audio</string>

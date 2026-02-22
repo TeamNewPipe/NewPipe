@@ -141,7 +141,7 @@
     <string name="error_snackbar_action">Teata</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Mis juhtus:</string>
-    <string name="info_labels">Mis:\\nPäring:\\nSisu keel:\\nSisu maa:\\nRakenduse keel:\\nTeenus:\\nGMT aeg:\\nPakett:\\nVersioon:\\nOS versioon:</string>
+    <string name="info_labels">Mis:\nPäring:\nSisu keel:\nSisu maa:\nRakenduse keel:\nTeenus:\nGMT aeg:\nPakett:\nVersioon:\nOS versioon:</string>
     <string name="your_comment">Oma kommentaar (inglise keeles):</string>
     <string name="error_details_headline">Üksikasjad:</string>
     <string name="detail_thumbnail_view_description">Esita video, kestus:</string>
