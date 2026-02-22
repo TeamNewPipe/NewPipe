@@ -861,4 +861,7 @@
     <string name="youtube_player_http_403">Errore HTTP 403 ricevuto dal server durante la riproduzione, probabilmente causato da un divieto dell\'IP o problemi di de-offuscamento dell\'URL in streaming</string>
     <string name="sign_in_confirm_not_bot_error">%1$s ha rifiutato di fornire i dati, chiedendo un accesso per confermare che il richiedente non sia un bot.\n\nIl tuo IP potrebbe essere stato temporaneamente vietato da %1$s, puoi aspettare un po\' di tempo o passare ad un IP diverso (ad esempio accendendo/spegnendo una VPN, o passando dal WiFi ai dati mobili).</string>
     <string name="unsupported_content_in_country">Questo contenuto non è disponibile per il Paese dei contenuti attualmente selezionato.\n\nModifica la selezione da \"Impostazioni &gt; Contenuti &gt; Paese dei contenuti predefinito\".</string>
+    <string name="kao_dialog_warning">Google ha annunciato che, a partire dal 2026/2027, tutte le app sui dispositivi Android certificati richiederanno agli sviluppatori di fornire i propri dati personali di identità direttamente a Google. Poiché gli sviluppatori di questa app non accettano tale requisito, l’app smetterà di funzionare sui dispositivi Android certificati dopo quella data.</string>
+    <string name="kao_dialog_more_info">Dettagli</string>
+    <string name="kao_solution">Soluzione</string>
 </resources>

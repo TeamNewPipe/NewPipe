@@ -863,4 +863,7 @@
     <string name="youtube_player_http_403">Erreur HTTP 403 reçue du serveur pendant la lecture, probablement causée par un bannissement d\'IP ou des problèmes de désobfuscation de l\'URL de streaming</string>
     <string name="sign_in_confirm_not_bot_error">%1$s a refusé de fournir des données et a demandé un identifiant pour confirmer que le demandeur n\'est pas un robot.\n\nVotre adresse IP a peut-être été temporairement bannie par %1$s. Vous pouvez patienter un peu ou changer d\'adresse IP (par exemple en activant/désactivant un VPN, ou en passant du Wi-Fi aux données mobiles).</string>
     <string name="unsupported_content_in_country">Ce contenu n\'est pas disponible pour le pays actuellement sélectionné.\n\nModifiez votre sélection dans « Paramètres &gt; Contenu &gt; Pays par défaut ».</string>
+    <string name="kao_dialog_warning">Google a annoncé qu’à partir de 2026/2027, toutes les applications sur les appareils Android certifiés exigeront que les développeurs transmettent leurs informations d’identité personnelles directement à Google. Comme les développeurs de cette application n’acceptent pas cette exigence, l’application cessera de fonctionner sur les appareils Android certifiés après cette date.</string>
+    <string name="kao_dialog_more_info">Détails</string>
+    <string name="kao_solution">Solution</string>
 </resources>

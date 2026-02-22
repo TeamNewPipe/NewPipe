@@ -847,4 +847,7 @@
     <string name="youtube_player_http_403">HTTP-fel 403 mottogs från servern under spelning, troligen orsakat av en IP-avstängning eller problem med deobfuskering av streaming-URL:er</string>
     <string name="sign_in_confirm_not_bot_error">%1$s vägrade att tillhandahålla data och bad om en inloggning för att bekräfta att den som begärde detta inte är en bot.\n\nDin IP-adress kan ha blivit tillfälligt avstängd av %1$s. Du kan vänta en stund eller byta till en annan IP-adress (till exempel genom att slå på/av ett VPN eller genom att byta från WiFi till mobildata).</string>
     <string name="unsupported_content_in_country">Detta innehåll är inte tillgängligt för det valda innehållslandet.\n\nÄndra ditt val från \"Inställningar &gt; Innehåll &gt; Standardinnehållsland\".</string>
+    <string name="kao_dialog_warning">Google har meddelat att från och med 2026/2027 kommer alla appar på certifierade Android-enheter att kräva att utvecklarna lämnar sina personliga identitetsuppgifter direkt till Google. Eftersom utvecklarna av denna app inte accepterar detta krav kommer appen inte längre att fungera på certifierade Android-enheter efter den tiden.</string>
+    <string name="kao_dialog_more_info">Detaljer</string>
+    <string name="kao_solution">Lösning</string>
 </resources>
