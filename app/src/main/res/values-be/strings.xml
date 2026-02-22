@@ -611,8 +611,6 @@
     <string name="faq">Перайсці на вэб-сайт</string>
     <string name="main_page_content_swipe_remove">Каб выдаліць элемент, змахніце яго ўбок</string>
     <string name="unset_playlist_thumbnail">Прыбраць пастаянную мініяцюру</string>
-    <string name="show_image_indicators_title">Паказваць на відарысах указальнікі</string>
-    <string name="show_image_indicators_summary">Паказваць на відарысах каляровыя меткі Picasso, якія абазначаюць яго крыніцу: чырвоная — сетка, сіняя — дыск, зялёная — памяць</string>
     <string name="feed_processing_message">Апрацоўка стужкі…</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Пры кожным спампоўванні вам будзе прапанавана выбраць месца захавання</string>
     <string name="feed_notification_loading">Загрузка канала…</string>

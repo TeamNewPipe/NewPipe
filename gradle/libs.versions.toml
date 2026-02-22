@@ -13,6 +13,7 @@ autoservice-zacsweers = "1.2.0"
 bridge = "v2.0.2"
 cardview = "1.0.0"
 checkstyle = "13.0.0"
+coil = "3.0.4"
 constraintlayout = "2.2.1"
 core = "1.17.0"
 desugar = "2.1.5"
@@ -35,8 +36,6 @@ media = "1.7.1"
 mockitoCore = "5.21.0"
 okhttp = "5.3.2"
 phoenix = "3.0.0"
-#noinspection NewerVersionAvailable,GradleDependency --> 2.8 is the last version, not 2.71828!
-picasso = "2.8"
 preference = "1.2.1"
 prettytime = "5.0.8.Final"
 recyclerview = "1.4.0"
@@ -91,6 +90,8 @@ androidx-webkit = { module = "androidx.webkit:webkit", version.ref = "webkit" }
 androidx-work-runtime = { module = "androidx.work:work-runtime", version.ref = "work" }
 androidx-work-rxjava3 = { module = "androidx.work:work-rxjava3", version.ref = "work" }
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
 evernote-statesaver-compiler = { module = "com.evernote:android-state-processor", version.ref = "statesaver" }
 evernote-statesaver-core = { module = "com.evernote:android-state", version.ref = "statesaver" }
 facebook-stetho-core = { module = "com.facebook.stetho:stetho", version.ref = "stetho" }
@@ -127,7 +128,6 @@ squareup-leakcanary-core = { module = "com.squareup.leakcanary:leakcanary-androi
 squareup-leakcanary-plumber = { module = "com.squareup.leakcanary:plumber-android", version.ref = "leakcanary" }
 squareup-leakcanary-watcher = { module = "com.squareup.leakcanary:leakcanary-object-watcher-android", version.ref = "leakcanary" }
 squareup-okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
-squareup-picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
 zacsweers-autoservice-compiler = { module = "dev.zacsweers.autoservice:auto-service-ksp", version.ref = "autoservice-zacsweers" }
 
 [plugins]
