@@ -145,7 +145,7 @@
     <string name="error_snackbar_action">Informe</string>
     <string name="what_device_headline">Información:</string>
     <string name="what_happened_headline">Que ocorreu:</string>
-    <string name="info_labels">Que: \\n Solicitar: \\n Idioma de contido: \\n País de contido: \\n Idioma do aplicativo: \\nServicio: \\n Tempo GMT: \\n Paquete: \\n Versión: \\n versión de nOS:</string>
+    <string name="info_labels">Que: \n Solicitar: \n Idioma de contido: \n País de contido: \n Idioma do aplicativo: \nServicio: \n Tempo GMT: \n Paquete: \n Versión: \n versión de nOS:</string>
     <string name="your_comment">O teu comentario (en inglés):</string>
     <string name="error_details_headline">Detalles:</string>
     <string name="detail_thumbnail_view_description">Reproducir o vídeo, duración:</string>

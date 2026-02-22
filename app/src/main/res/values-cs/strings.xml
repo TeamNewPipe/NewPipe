@@ -81,7 +81,7 @@
     <string name="black_theme_title">Černé</string>
     <string name="checksum">Kontrolní součet</string>
     <string name="no_available_dir">Určete prosím složku pro stahování později v nastavení</string>
-    <string name="info_labels">Co:\\nŽádost:\\nJazyk obsahu:\\nZemě obsahu:\\nJazyk aplikace:\\nSlužba:\\nČas GMT:\\nBalíček:\\nVerze:\\nVerze OS:</string>
+    <string name="info_labels">Co:\nŽádost:\nJazyk obsahu:\nZemě obsahu:\nJazyk aplikace:\nSlužba:\nČas GMT:\nBalíček:\nVerze:\nVerze OS:</string>
     <string name="all">Vše</string>
     <string name="open_in_popup_mode">Otevřít ve vyskakovacím okně</string>
     <string name="msg_popup_permission">Toto oprávnění je vyžadováno

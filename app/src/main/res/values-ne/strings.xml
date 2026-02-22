@@ -163,7 +163,7 @@
     <string name="error_snackbar_action">रिपोर्ट</string>
     <string name="what_device_headline">जानकारी:</string>
     <string name="what_happened_headline">के भयो:</string>
-    <string name="info_labels">के:\\nअनुरोध:\\nसामग्री भाषा: \\nसेवा:\\nGMT समय:\\nप्याकेज:\\nसंस्करण: \\nOS संस्करण:</string>
+    <string name="info_labels">के:\nअनुरोध:\nसामग्री भाषा: \nसेवा:\nGMT समय:\nप्याकेज:\nसंस्करण: \nOS संस्करण:</string>
     <string name="your_comment">तपाईंको टिप्पणी (अंग्रेजी मा):</string>
     <string name="error_details_headline">विवरण:</string>
     <string name="detail_thumbnail_view_description">प्ले भिडियो, अवधि:</string>

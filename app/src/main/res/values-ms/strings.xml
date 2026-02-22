@@ -158,7 +158,7 @@
     <string name="error_snackbar_action">Lapor</string>
     <string name="what_device_headline">Maklumat:</string>
     <string name="what_happened_headline">Apa yang berlaku:</string>
-    <string name="info_labels">Apa:\\nPermintaan:\\nBahasa Kandungan:\\nNegara Kandungan:\\nBahasa Aplikasi:\\nPerkhidmatan:\\nWaktu GMT:\\nPakej:\\nVersi:\\nVersi OS:</string>
+    <string name="info_labels">Apa:\nPermintaan:\nBahasa Kandungan:\nNegara Kandungan:\nBahasa Aplikasi:\nPerkhidmatan:\nWaktu GMT:\nPakej:\nVersi:\nVersi OS:</string>
     <string name="your_comment">Ulasan anda (dalam bahasa Inggeris):</string>
     <string name="error_details_headline">Butiran:</string>
     <string name="detail_thumbnail_view_description">Main video, tempoh masa:</string>

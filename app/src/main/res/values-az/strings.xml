@@ -575,7 +575,7 @@
     </plurals>
     <string name="audio">Səs</string>
     <string name="error_details_headline">Təfərrüatlar:</string>
-    <string name="info_labels">Nə:\\nSorğu:\\nMəzmun Dili:\\nMəzmun Ölkəsi:\\nTətbiq Dili:\\nXidmət:\\nGMT Saatı:\\nPaket:\\nVersiya:\\nƏS versiyası:</string>
+    <string name="info_labels">Nə:\nSorğu:\nMəzmun Dili:\nMəzmun Ölkəsi:\nTətbiq Dili:\nXidmət:\nGMT Saatı:\nPaket:\nVersiya:\nƏS versiyası:</string>
     <string name="error_snackbar_message">Bağışlayın, nəsə səhv oldu.</string>
     <string name="copy_for_github">Formatlanmış hesabatı köçür</string>
     <string name="peertube_instance_add_help">Server URL\'sini daxil et</string>

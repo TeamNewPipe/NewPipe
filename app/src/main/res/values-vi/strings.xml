@@ -72,7 +72,7 @@
     <string name="error_snackbar_action">Báo cáo</string>
     <string name="what_device_headline">Thông tin:</string>
     <string name="what_happened_headline">Chuyện gì đã xảy ra:</string>
-    <string name="info_labels">Loại lỗi:\\nYêu cầu:\\nNgôn ngữ của nội dung:\\nVùng miền (quốc gia) của nội dung:\\nNgôn ngữ của ứng dụng:\\nDịch vụ:\\nThời gian GMT:\\nTên gói:\\nPhiên bản:\\nPhiên bản hệ điều hành:</string>
+    <string name="info_labels">Loại lỗi:\nYêu cầu:\nNgôn ngữ của nội dung:\nVùng miền (quốc gia) của nội dung:\nNgôn ngữ của ứng dụng:\nDịch vụ:\nThời gian GMT:\nTên gói:\nPhiên bản:\nPhiên bản hệ điều hành:</string>
     <string name="your_comment">Nhận xét của bạn (bằng tiếng Anh):</string>
     <string name="error_details_headline">Chi tiết:</string>
     <string name="detail_thumbnail_view_description">Phát video, thời lượng:</string>

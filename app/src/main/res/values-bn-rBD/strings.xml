@@ -103,7 +103,7 @@
     <string name="title_activity_recaptcha">reCAPTCHA চ্যালেঞ্জ</string>
     <string name="recaptcha_request_toast">reCAPTCHA চ্যালেঞ্জ অনুরোধ করা হয়েছে</string>
     <!-- End of GigaGet's Strings -->
-    <string name="info_labels">কি:\\nঅনুরোধ:\\nকন্টেন্ট ভাষা:\\nসার্ভিস:\\nসময়(GMT এ):\\nপ্যাকেজ:\\nসংস্করণ:\\nওএস সংস্করণ:\\nআইপি পরিসর:</string>
+    <string name="info_labels">কি:\nঅনুরোধ:\nকন্টেন্ট ভাষা:\nসার্ভিস:\nসময়(GMT এ):\nপ্যাকেজ:\nসংস্করণ:\nওএস সংস্করণ:\nআইপি পরিসর:</string>
     <string name="controls_download_desc">স্ট্রিম ফাইল ডাউনলোড করুন</string>
     <string name="show_info">তথ্য দেখাও</string>
     <string name="fragment_feed_title">নতুন যা কিছু</string>

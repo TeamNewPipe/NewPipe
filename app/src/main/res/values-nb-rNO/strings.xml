@@ -76,7 +76,7 @@
     <string name="msg_running_detail">Trykk for detaljer</string>
     <string name="msg_wait">Vent…</string>
     <string name="msg_copied">Kopiert til utklippstavle</string>
-    <string name="info_labels">Hva:\\nForespørsel:\\nInnholdsspråk:\\nInnholdsland:\\nAppspråk:\\nTjeneste:\\nGMT-tid:\\nPakke:\\nVersjon:\\nOS-versjon:</string>
+    <string name="info_labels">Hva:\nForespørsel:\nInnholdsspråk:\nInnholdsland:\nAppspråk:\nTjeneste:\nGMT-tid:\nPakke:\nVersjon:\nOS-versjon:</string>
     <string name="start">Start</string>
     <string name="no_available_dir">Definer en nedlastingsmappe senere i innstillingene</string>
     <string name="title_activity_recaptcha">reCAPTCHA-oppgave</string>

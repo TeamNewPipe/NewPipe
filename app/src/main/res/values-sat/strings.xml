@@ -209,7 +209,7 @@
     <string name="error_report_notification_toast">ᱢᱤᱫ ᱵᱷᱩᱞ ᱦᱩᱭ ᱞᱮᱱᱟ, ᱱᱤᱴᱤᱯᱷᱤᱠᱮᱥᱚᱱ ᱧᱮᱞ ᱢᱮ</string>
     <string name="error_report_open_issue_button_text">GitHub ᱨᱮ ᱚᱱᱚᱞ</string>
     <string name="error_snackbar_action">ᱨᱤᱯᱚᱨᱴ</string>
-    <string name="info_labels">What:\\nRequest:\\nContent Language:\\nContent ᱫᱤᱥᱚᱢ:\\nApp Language:\\nService:\\nGMT ᱚᱠᱛᱚ:\\nPackage:\\nVersion:\\nOS version:</string>
+    <string name="info_labels">What:\nRequest:\nContent Language:\nContent ᱫᱤᱥᱚᱢ:\nApp Language:\nService:\nGMT ᱚᱠᱛᱚ:\nPackage:\nVersion:\nOS version:</string>
     <string name="your_comment">ᱟᱢᱟᱜ ᱯᱟᱹᱛᱭᱟᱹᱣ (ᱤᱝᱞᱤᱥ ᱛᱮ):</string>
     <string name="detail_uploader_thumbnail_view_description">ᱚᱯᱞᱚᱰᱟᱨᱟᱜ ᱟᱵᱟᱛᱟᱨ ᱛᱷᱩᱱᱤᱠᱟ</string>
     <string name="detail_likes_img_view_description">ᱞᱟᱭᱠ</string>

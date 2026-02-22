@@ -1,5 +1,5 @@
 ### Verbeteringen
-- Mogelijkheid toegevoegd om de videokwaliteit te beperken bij het  gebruik van mobiele data. #1339
+- Mogelijkheid toegevoegd om de videokwaliteit te beperken bij het gebruik van mobiele data. #1339
 - Helderheid voor de sessie onthouden #1442
 - Downloadprestaties voor zwakkere CPU's verbeterd #1431
 - (werkende) ondersteuning voor mediasessie toegevoegd #1433

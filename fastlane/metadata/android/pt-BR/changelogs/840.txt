@@ -1,22 +1,22 @@
-Novo
-- Adicionado o seletor de língua para alterar a língua da aplicação
-- Adicionado enviar para o botão Kodi ao menu desmontável do leitor
-- Capacidade adicional de copiar comentários sobre imprensa longa
+New
+• Added language selector to change the app language
+• Added send to Kodi button to player collapsible menu
+• Added ability to copy comments on long press
 
-Melhorado
-- Fixar a actividade ReCaptcha e guardar corretamente os cookies obtidos
-- Removido o ponto-menu a favor da gaveta e botão esconder histórico quando o histórico do relógio não está ativado nas definições
-- Pedir permissão de visualização sobre outras aplicações em definições corretamente no Android 6 e posteriores
-- Renomear playlist local através de um clique longo em BookmarkFragment
-- Vários melhoramentos do PeerTube
-- Melhorou várias cadeias de caracteres em inglês
+Improved
+• Fix ReCaptcha activity and correctly save obtained cookies
+• Removed dot-menu in favour of drawer and hide history button when watch history is not enabled in settings
+• Ask for display over other apps permission in settings correctly on Android 6 and later
+• Rename local playlist by long-clicking in BookmarkFragment
+• Various PeerTube improvements
+• Improved several English source strings
 
-Fixa
-- Jogador fixo a recomeçar, embora seja pausado quando a opção "minimizar no comutador da aplicação" é ativada e o NewPipe é minimizado
-- Fixar o valor de brilho inicial para o gesto
-- Downloads de subtítulos .srt fixos contendo nem todas as quebras de linha
-- Corrigido o download para cartão SD falhando porque alguns dispositivos Android 5 não são compatíveis com CTF
-- Descarregamento fixo no Android KitKat
-- Ficheiro fixo de vídeo corrupto .mp4 sendo reconhecido como ficheiro de áudio
-- Resolvidos problemas de localização múltipla, incluindo códigos de língua chinesa errados
-- Os carimbos temporais em descrição podem ser clicados novamente
+Fixed
+• Fixed player starting again although it is paused when option "minimize on app switch" enabled and NewPipe is minimized
+• Fix initial brightness value for gesture
+• Fixed .srt subtitle downloads containing not all line breaks
+• Fixed download to SD card failing because some Android 5 devices are not CTF compliant
+• Fixed downloading on Android KitKat
+• Fixed corrupt video .mp4 file being recognized as audio file
+• Fixed multiple localization problems, including wrong Chinese language codes
+• [YouTube] Timestamps in description are clickable again

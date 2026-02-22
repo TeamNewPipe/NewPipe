@@ -78,7 +78,7 @@
     <string name="downloads_title">ダウンロード</string>
     <string name="error_report_title">ふぐあいほうくーく</string>
     <string name="app_ui_crash">アプリ（UI）やしがクラッシュさびたん</string>
-    <string name="info_labels">ちゃーるむんだい：\\nリクエスト：\\nコンテンツぬぎんぐ：\\nコンテンツぬくに：\\nアプリぬぎんぐ：\\nサービス：\\nGMTじかん：\\nパッケージ：\\nバージョン：\\nOSぬバージョン：</string>
+    <string name="info_labels">ちゃーるむんだい：\nリクエスト：\nコンテンツぬぎんぐ：\nコンテンツぬくに：\nアプリぬぎんぐ：\nサービス：\nGMTじかん：\nパッケージ：\nバージョン：\nOSぬバージョン：</string>
     <string name="title_activity_recaptcha">reCAPTCHAぬようきゅう</string>
     <string name="recaptcha_request_toast">reCAPTCHAようきゅうさびたん</string>
     <string name="black_theme_title">ブラック</string>

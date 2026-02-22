@@ -82,7 +82,9 @@ class NotificationHelper(val context: Context) {
         // Show individual stream notifications, set channel icon only if there is actually one
         showStreamNotifications(newStreams, data.serviceId, avatarIcon)
         // Show summary notification
-        manager.notify(data.pseudoId, summaryBuilder.build())
+        if (manager.areNotificationsEnabled()) {
+            manager.notify(data.pseudoId, summaryBuilder.build())
+        }
     }
 
     private fun showStreamNotifications(
@@ -90,9 +92,12 @@ class NotificationHelper(val context: Context) {
         serviceId: Int,
         channelIcon: Bitmap?
     ) {
-        for (stream in newStreams) {
-            val notification = createStreamNotification(stream, serviceId, channelIcon)
-            manager.notify(stream.url.hashCode(), notification)
+        if (manager.areNotificationsEnabled()) {
+            newStreams.forEach { stream ->
+                val notification =
+                    createStreamNotification(stream, serviceId, channelIcon)
+                manager.notify(stream.url.hashCode(), notification)
+            }
         }
     }
 

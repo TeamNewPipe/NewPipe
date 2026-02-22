@@ -78,7 +78,7 @@
     <string name="downloads_title">ダウンロード</string>
     <string name="error_report_title">不具合報告</string>
     <string name="app_ui_crash">アプリ(UI)がクラッシュしました</string>
-    <string name="info_labels">どんな問題:\\nリクエスト:\\nコンテンツ言語:\\nコンテンツ国:\\nアプリ言語:\\nサービス:\\nGMT 時間:\\nパッケージ:\\nバージョン:\\nOSバージョン:</string>
+    <string name="info_labels">どんな問題:\nリクエスト:\nコンテンツ言語:\nコンテンツ国:\nアプリ言語:\nサービス:\nGMT 時間:\nパッケージ:\nバージョン:\nOSバージョン:</string>
     <string name="title_activity_recaptcha">reCAPTCHA の要求</string>
     <string name="recaptcha_request_toast">reCAPTCHA を要求しました</string>
     <string name="black_theme_title">ブラック</string>

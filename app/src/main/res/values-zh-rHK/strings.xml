@@ -86,7 +86,7 @@
     <string name="popup_playing_toast">浮面播緊</string>
     <string name="all">全部嘢</string>
     <string name="app_ui_crash">App/界面閃退</string>
-    <string name="info_labels">經過：\\n請求：\\n內容語言：\\n內容國家：\\nApp 語言：\\n服務：\\nGMT 時間：\\n封裝：\\n版本：\\nOS 版本：</string>
+    <string name="info_labels">經過：\n請求：\n內容語言：\n內容國家：\nApp 語言：\n服務：\nGMT 時間：\n封裝：\n版本：\nOS 版本：</string>
     <string name="title_activity_recaptcha">reCAPTCHA 考驗</string>
     <string name="msg_popup_permission">以浮面模式開啟
 \n有呢個權限至得</string>

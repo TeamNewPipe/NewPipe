@@ -204,7 +204,7 @@
     <string name="clear_views_history_summary">Изтрива историята на възпроизвежданите стриймове и позицията на възпроизвеждането</string>
     <string name="video_streams_empty">Не са намерени видео стриймове</string>
     <string name="audio_streams_empty">Не са намерени аудио стриймове</string>
-    <string name="info_labels">Какво:\\nЗаявка:\\nЕзик на съдържанието:\\nДържава на съдържанието:\\nЕзик на приложението:\\nУслуга:\\nGMT Време:\\nПакет:\\nВерсия:\\nВерсия на ОС:</string>
+    <string name="info_labels">Какво:\nЗаявка:\nЕзик на съдържанието:\nДържава на съдържанието:\nЕзик на приложението:\nУслуга:\nGMT Време:\nПакет:\nВерсия:\nВерсия на ОС:</string>
     <string name="detail_drag_description">Пренареди чрез плъзгане</string>
     <string name="start">Начало</string>
     <string name="rename">Преименувай</string>
@@ -787,7 +787,6 @@
     <string name="error_report_notification_title">NewPipe откри грешка, докоснете, за да докладвате</string>
     <string name="no_streams">Няма потоци</string>
     <string name="disable_media_tunneling_title">Деактивиране на медийното тунелиране</string>
-    <string name="show_image_indicators_title">Покажи индикатори за изображения</string>
     <string name="missions_header_pending">В очакване</string>
     <string name="error_postprocessing_failed">Неуспешна последваща обработка</string>
     <string name="pause_downloads_on_mobile">Прекъсване на мрежи с измерване</string>

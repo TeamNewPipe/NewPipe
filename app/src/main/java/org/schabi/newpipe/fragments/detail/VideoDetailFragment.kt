@@ -600,6 +600,12 @@ class VideoDetailFragment :
     override fun initListeners() {
         super.initListeners()
 
+        // Workaround for #5600
+        // Forcefully catch click events uncaught by children because otherwise
+        // they will be caught by underlying view and "click through" will happen
+        binding.root.setOnClickListener { _ -> }
+        binding.root.setOnLongClickListener { _ -> true }
+
         setOnClickListeners()
         setOnLongClickListeners()
 

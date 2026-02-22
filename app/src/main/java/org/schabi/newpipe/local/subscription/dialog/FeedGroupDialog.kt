@@ -328,7 +328,7 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         groupIcon = feedGroupEntity?.icon
         groupSortOrder = feedGroupEntity?.sortOrder ?: -1
 
-        val feedGroupIcon = if (selectedIcon == null) icon else selectedIcon!!
+        val feedGroupIcon = selectedIcon ?: icon
         feedGroupCreateBinding.iconPreview.setImageResource(feedGroupIcon.getDrawableRes())
 
         if (feedGroupCreateBinding.groupNameInput.text.isNullOrBlank()) {
@@ -507,7 +507,7 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
     private fun hideKeyboardSearch() {
         inputMethodManager.hideSoftInputFromWindow(
             searchLayoutBinding.toolbarSearchEditText.windowToken,
-            InputMethodManager.RESULT_UNCHANGED_SHOWN
+            InputMethodManager.HIDE_NOT_ALWAYS
         )
         searchLayoutBinding.toolbarSearchEditText.clearFocus()
     }
@@ -524,7 +524,7 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
     private fun hideKeyboard() {
         inputMethodManager.hideSoftInputFromWindow(
             feedGroupCreateBinding.groupNameInput.windowToken,
-            InputMethodManager.RESULT_UNCHANGED_SHOWN
+            InputMethodManager.HIDE_NOT_ALWAYS
         )
         feedGroupCreateBinding.groupNameInput.clearFocus()
     }

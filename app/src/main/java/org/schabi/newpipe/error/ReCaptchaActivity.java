@@ -126,6 +126,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
     }
 
     @Override
+    @SuppressLint("MissingSuperCall") // saveCookiesAndFinish method handles back navigation
     public void onBackPressed() {
         saveCookiesAndFinish();
     }

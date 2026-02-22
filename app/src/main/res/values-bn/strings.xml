@@ -114,7 +114,7 @@
     <string name="detail_thumbnail_view_description">ভিডিও চালাও, সময়ঃ</string>
     <string name="error_details_headline">বর্ণনা:</string>
     <string name="your_comment">তোমার মন্তব্য (ইংরেজিতে):</string>
-    <string name="info_labels">কি:\\nঅনুরোধ:\\nকন্টেন্ট ভাষা:\\nসার্ভিস:\\nসময়(GMT এ):\\nপ্যাকেজ:\\nসংস্করণ:\\nওএস সংস্করণ:\\nআইপি পরিসর:</string>
+    <string name="info_labels">কি:\nঅনুরোধ:\nকন্টেন্ট ভাষা:\nসার্ভিস:\nসময়(GMT এ):\nপ্যাকেজ:\nসংস্করণ:\nওএস সংস্করণ:\nআইপি পরিসর:</string>
     <string name="what_happened_headline">কি হয়েছিল:</string>
     <string name="what_device_headline">তথ্য:</string>
     <string name="error_snackbar_action">প্রতিবেদন</string>

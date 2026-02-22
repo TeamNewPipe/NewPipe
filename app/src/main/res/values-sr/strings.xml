@@ -78,7 +78,7 @@
     <string name="downloads_title">Преузимања</string>
     <string name="error_report_title">Извештај о грешци</string>
     <string name="app_ui_crash">Програм је отказао</string>
-    <string name="info_labels">Шта:\\nЗахтев:\\nЈезик садржаја:\\nДржава садржаја:\\nЈезик апликације:\\nУслуга:\\nGMT време:\\nПакет:\\nВерзија:\\nВерзија ОС-а:</string>
+    <string name="info_labels">Шта:\nЗахтев:\nЈезик садржаја:\nДржава садржаја:\nЈезик апликације:\nУслуга:\nGMT време:\nПакет:\nВерзија:\nВерзија ОС-а:</string>
     <string name="title_activity_recaptcha">„reCAPTCHA“ задатак</string>
     <string name="recaptcha_request_toast">Решите „reCAPTCHA“ задатак</string>
     <string name="black_theme_title">Црна</string>

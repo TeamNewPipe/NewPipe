@@ -317,7 +317,7 @@
     <string name="start_here_on_popup">Start afspilning i et popup</string>
     <string name="drawer_open">Åbn Skuffe</string>
     <string name="drawer_close">Luk Skuffe</string>
-    <string name="info_labels">Hvad:\\nForespørgsel:\\nIndholdssprog:\\nIndholdsland:\\nApp-sprog:\\nTjeneste:\\nGMT-tid:\\nPakke:\\nVersion:\\nOS-version:</string>
+    <string name="info_labels">Hvad:\nForespørgsel:\nIndholdssprog:\nIndholdsland:\nApp-sprog:\nTjeneste:\nGMT-tid:\nPakke:\nVersion:\nOS-version:</string>
     <string name="preferred_open_action_settings_summary">Standardhandling ved åbning af indhold — %s</string>
     <string name="set_as_playlist_thumbnail">Anvend som playlistens miniaturebillede</string>
     <string name="bookmark_playlist">Bogmærk Playliste</string>
