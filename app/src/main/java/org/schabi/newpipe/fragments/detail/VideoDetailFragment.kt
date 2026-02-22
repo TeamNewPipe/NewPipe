@@ -1779,7 +1779,7 @@ class VideoDetailFragment :
             showSystemUi()
         }
 
-        binding.relatedItemsLayout?.isVisible = !fullscreen
+        binding.relatedItemsLayout?.isVisible = if (showRelatedItems) !fullscreen else false
         scrollToTop()
 
         tryAddVideoPlayerView()
