@@ -1,5 +1,7 @@
 package us.shandian.giga.get;
 
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Handler;
 import android.system.ErrnoException;
 import android.system.OsConstants;
@@ -8,6 +10,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.DownloaderImpl;
 
 import java.io.File;
@@ -21,16 +24,24 @@ import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.nio.channels.ClosedByInterruptException;
+import java.util.List;
 import java.util.Objects;
 
 import javax.net.ssl.SSLException;
 
+import org.schabi.newpipe.extractor.Image;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
+import org.schabi.newpipe.util.image.CoilHelper;
+import org.schabi.newpipe.util.image.ImageStrategy;
+import org.schabi.newpipe.util.image.PreferredImageQuality;
+
 import us.shandian.giga.postprocessing.Postprocessing;
 import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.util.Utility;
 
 import static org.schabi.newpipe.BuildConfig.DEBUG;
+import static org.schabi.newpipe.extractor.ServiceList.YouTube;
 
 public class DownloadMission extends Mission {
     private static final long serialVersionUID = 6L;// last bump: 07 october 2019
@@ -57,6 +68,10 @@ public class DownloadMission extends Mission {
     public static final int ERROR_RESOURCE_GONE = 1013;
     public static final int ERROR_HTTP_NO_CONTENT = 204;
     static final int ERROR_HTTP_FORBIDDEN = 403;
+
+    private StreamInfo streamInfo;
+    protected transient volatile Bitmap thumbnail;
+    protected volatile boolean thumbnailFetched = false;
 
     /**
      * The urls of the file to download
@@ -153,7 +168,8 @@ public class DownloadMission extends Mission {
     public transient Thread[] threads = new Thread[0];
     public transient Thread init = null;
 
-    public DownloadMission(String[] urls, StoredFileHelper storage, char kind, Postprocessing psInstance) {
+    public DownloadMission(String[] urls, StoredFileHelper storage, char kind,
+                           Postprocessing psInstance, StreamInfo streamInfo, Context context) {
         if (Objects.requireNonNull(urls).length < 1)
             throw new IllegalArgumentException("urls array is empty");
         this.urls = urls;
@@ -163,6 +179,7 @@ public class DownloadMission extends Mission {
         this.maxRetry = 3;
         this.storage = storage;
         this.psAlgorithm = psInstance;
+        this.streamInfo = streamInfo;
 
         if (DEBUG && psInstance == null && urls.length > 1) {
             Log.w(TAG, "mission created with multiple urls ¿missing post-processing algorithm?");
@@ -698,6 +715,7 @@ public class DownloadMission extends Mission {
         Exception exception = null;
 
         try {
+            psAlgorithm.setThumbnail(thumbnail);
             psAlgorithm.run(this);
         } catch (Exception err) {
             Log.e(TAG, "Post-processing failed. " + psAlgorithm.toString(), err);
@@ -829,6 +847,47 @@ public class DownloadMission extends Mission {
         }
     }
 
+    /**
+     * Loads the thumbnail / cover art from a list of thumbnails.
+     * The highest quality is selected.
+     *
+     * @param images the list of thumbnails
+     */
+    public void fetchThumbnail(@NonNull final List<Image> images) {
+        if (images.isEmpty()) {
+            thumbnailFetched = true;
+            return;
+        }
+
+        try {
+            // Some containers have a limited size for embedded images / metadata.
+            // To avoid problems, we download a medium quality image.
+            // Alternative approaches are to either downscale a high res image or
+            // to download the correct size depending on the chosen post-processing algorithm.
+            final String thumbnailUrl = ImageStrategy.choosePreferredImage(
+                    images, PreferredImageQuality.HIGH);
+            // TODO: get context from somewhere else
+            Bitmap originalThumbnail = CoilHelper.INSTANCE.loadBitmapBlocking(
+                    App.getInstance(), thumbnailUrl);
+
+            // YouTube Music streams have non square thumbnails to fit the player aspect ratio
+            // of 16:9. We can safely crop the thumbnail to a square because the squared thumbnail
+            // is padded with bars on the sides.
+            if (originalThumbnail != null && streamInfo.getService().equals(YouTube)
+                    && streamInfo.getSongMetadata() != null // i.e. YT Music stream
+                    && originalThumbnail.getWidth() > originalThumbnail.getHeight()) {
+                int cropSize = Math.min(originalThumbnail.getWidth(), originalThumbnail.getHeight());
+                int xOffset = (originalThumbnail.getWidth() - cropSize) / 2;
+                originalThumbnail = Bitmap.createBitmap(originalThumbnail, xOffset, 0,
+                        cropSize, cropSize);
+            }
+            this.thumbnail = originalThumbnail;
+            thumbnailFetched = true;
+        } catch (final Exception e) {
+            Log.w(TAG, "fetchThumbnail: failed to load thumbnail", e);
+            thumbnailFetched = true;
+        }
+    }
 
     static class HttpError extends Exception {
         final int statusCode;

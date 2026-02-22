@@ -216,9 +216,9 @@ public abstract class BaseDescriptionFragment extends BaseFragment {
                     || image.getWidth() != Image.WIDTH_UNKNOWN
                     // if even the resolution level is unknown, ?x? will be shown
                     || image.getEstimatedResolutionLevel() == Image.ResolutionLevel.UNKNOWN) {
-                urls.append(imageSizeToText(image.getHeight()));
-                urls.append('x');
                 urls.append(imageSizeToText(image.getWidth()));
+                urls.append('x');
+                urls.append(imageSizeToText(image.getHeight()));
             } else {
                 switch (image.getEstimatedResolutionLevel()) {
                     case LOW -> urls.append(getString(R.string.image_quality_low));
