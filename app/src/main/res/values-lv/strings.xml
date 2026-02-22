@@ -48,7 +48,7 @@
     <string name="main_page_content">Galvenā lapa</string>
     <string name="title_most_played">Visvairāk Atskaņotais</string>
     <string name="title_last_played">Pēdējais Atskaņotais</string>
-    <string name="delete_item_search_history">Vai jūs vēlaties izdzēst šo lietu no meklēšanas vēstures\?</string>
+    <string name="delete_item_search_history">Vai jūs tiešām vēlaties izdzēst šo meklējumu no vēstures?</string>
     <string name="action_history">Vēsture</string>
     <string name="title_activity_history">Vēsture</string>
     <string name="read_full_license">Izlasīt licenci</string>
@@ -195,9 +195,9 @@
     <string name="download_to_sdcard_error_title">Ārējā krātuve nepieejama</string>
     <string name="general_error">Kļūda</string>
     <string name="search_history_deleted">Meklēšanas vēsture izdzēsta</string>
-    <string name="delete_search_history_alert">Izdzēsy visu meklēšanas vēsturi\?</string>
+    <string name="delete_search_history_alert">Vai tiešām izdzēst visu meklēšanas vēsturi?</string>
     <string name="clear_search_history_summary">Izdzēš meklēto vārdu vēsturi</string>
-    <string name="clear_search_history_title">Izdzēst skatīšanās vēsturi</string>
+    <string name="clear_search_history_title">Notīrīt meklēšanas vēsturi</string>
     <string name="watch_history_states_deleted">Atskaņošanas pozīcikas izdzēstas</string>
     <string name="delete_playback_states_alert">Izdzēst visas atskaņošanas pozīcijas\?</string>
     <string name="clear_playback_states_summary">Izdzēš visas atskaņošanas pozīcijas</string>
@@ -836,4 +836,7 @@
     <string name="select_a_feed_group">Atlasiet abonementu grupu</string>
     <string name="migration_info_7_8_title">YouTube likvidēja apvienoto pašlaik populārs</string>
     <string name="permission_display_over_apps_permission_name">“Ļaut rādīt virs citām lietotnēm”</string>
+    <string name="search_with_service_name">Meklēt %1$s</string>
+    <string name="search_with_service_name_and_filter">Meklēt %1$s (%2$s)</string>
+    <string name="migration_info_6_7_title">SoundCloud Top 50 lapa noņemta</string>
 </resources>
