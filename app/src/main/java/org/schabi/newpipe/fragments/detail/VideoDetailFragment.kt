@@ -84,6 +84,7 @@ import org.schabi.newpipe.fragments.BackPressable
 import org.schabi.newpipe.fragments.BaseStateFragment
 import org.schabi.newpipe.fragments.EmptyFragment
 import org.schabi.newpipe.fragments.MainFragment
+import org.schabi.newpipe.fragments.detail.ViewAndThumbsFragment
 import org.schabi.newpipe.fragments.list.comments.CommentsFragment.Companion.getInstance
 import org.schabi.newpipe.fragments.list.videos.RelatedItemsFragment.Companion.getInstance
 import org.schabi.newpipe.ktx.AnimationType
@@ -1430,48 +1431,9 @@ class VideoDetailFragment :
             displayBothUploaderAndSubChannel(info)
         }
 
-        if (info.viewCount >= 0) {
-            binding.detailViewCountView.text =
-                if (info.streamType == StreamType.AUDIO_LIVE_STREAM) {
-                    Localization.listeningCount(activity, info.viewCount)
-                } else if (info.streamType == StreamType.LIVE_STREAM) {
-                    Localization.localizeWatchingCount(activity, info.viewCount)
-                } else {
-                    Localization.localizeViewCount(activity, info.viewCount)
-                }
-            binding.detailViewCountView.visibility = View.VISIBLE
-        } else {
-            binding.detailViewCountView.visibility = View.GONE
-        }
-
-        if (info.dislikeCount == -1L && info.likeCount == -1L) {
-            binding.detailThumbsDownImgView.visibility = View.VISIBLE
-            binding.detailThumbsUpImgView.visibility = View.VISIBLE
-            binding.detailThumbsUpCountView.visibility = View.GONE
-            binding.detailThumbsDownCountView.visibility = View.GONE
-            binding.detailThumbsDisabledView.visibility = View.VISIBLE
-        } else {
-            if (info.dislikeCount >= 0) {
-                binding.detailThumbsDownCountView.text =
-                    Localization.shortCount(activity, info.dislikeCount)
-                binding.detailThumbsDownCountView.visibility = View.VISIBLE
-                binding.detailThumbsDownImgView.visibility = View.VISIBLE
-            } else {
-                binding.detailThumbsDownCountView.visibility = View.GONE
-                binding.detailThumbsDownImgView.visibility = View.GONE
-            }
-
-            if (info.likeCount >= 0) {
-                binding.detailThumbsUpCountView.text =
-                    Localization.shortCount(activity, info.likeCount)
-                binding.detailThumbsUpCountView.visibility = View.VISIBLE
-                binding.detailThumbsUpImgView.visibility = View.VISIBLE
-            } else {
-                binding.detailThumbsUpCountView.visibility = View.GONE
-                binding.detailThumbsUpImgView.visibility = View.GONE
-            }
-            binding.detailThumbsDisabledView.visibility = View.GONE
-        }
+        getChildFragmentManager().beginTransaction()
+            .replace(R.id.details_panel, ViewAndThumbsFragment.getInstance(info))
+            .commitAllowingStateLoss()
 
         if (info.duration > 0) {
             binding.detailDurationView.text = Localization.getDurationString(info.duration)
