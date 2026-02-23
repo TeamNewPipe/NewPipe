@@ -441,6 +441,30 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
 
     /*//////////////////////////////////////////////////////////////////////////
+    // Hold to fast forward
+    //////////////////////////////////////////////////////////////////////////*/
+    //region Hold to fast forward
+
+    /**
+     * Called when hold-to-fast-forward is activated (long press detected).
+     */
+    public void onHoldToFastForwardStart() {
+        // Hide controls while fast forwarding
+        if (isControlsVisible()) {
+            hideControls(DEFAULT_CONTROLS_DURATION, 0);
+        }
+    }
+
+    /**
+     * Called when hold-to-fast-forward is deactivated (finger released).
+     */
+    public void onHoldToFastForwardEnd() {
+        // No visual indicator to hide
+    }
+    //endregion
+
+
+    /*//////////////////////////////////////////////////////////////////////////
     // Broadcast receiver
     //////////////////////////////////////////////////////////////////////////*/
     //region Broadcast receiver
