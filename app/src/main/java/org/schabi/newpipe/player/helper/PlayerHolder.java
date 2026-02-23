@@ -117,7 +117,7 @@ public final class PlayerHolder {
     // helper to handle context in common place as using the same
     // context to bind/unbind a service is crucial
     private Context getCommonContext() {
-        return App.getApp();
+        return App.getInstance();
     }
 
     public void startService(final boolean playAfterConnect,

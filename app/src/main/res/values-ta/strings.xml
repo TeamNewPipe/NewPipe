@@ -641,8 +641,6 @@
     <string name="disable_media_tunneling_title">மீடியா சுரங்கப்பாதையை முடக்கு</string>
     <string name="disable_media_tunneling_summary">நீங்கள் ஒரு கருப்பு திரை அனுபவித்தால் அல்லது வீடியோ பிளேபேக்கில் திணறினால் மீடியா சுரங்கப்பாதையை முடக்கு.</string>
     <string name="disable_media_tunneling_automatic_info">உங்கள் சாதனத்தில் முன்னிருப்பாக மீடியா சுரங்கப்பாதை முடக்கப்பட்டது, ஏனெனில் உங்கள் சாதன மாதிரி அதை ஆதரிக்காது என்று அறியப்படுகிறது.</string>
-    <string name="show_image_indicators_title">பட குறிகாட்டிகளைக் காட்டு</string>
-    <string name="show_image_indicators_summary">அவற்றின் மூலத்தைக் குறிக்கும் படங்களின் மேல் பிக்காசோ வண்ண ரிப்பன்களைக் காட்டு: நெட்வொர்க்கிற்கு சிவப்பு, வட்டுக்கு நீலம் மற்றும் நினைவகத்திற்கு பச்சை</string>
     <string name="show_crash_the_player_title">\"வீரரை செயலிழக்க\" காட்டு</string>
     <string name="show_crash_the_player_summary">பிளேயரைப் பயன்படுத்தும் போது செயலிழப்பு விருப்பத்தைக் காட்டுகிறது</string>
     <string name="check_new_streams">புதிய நீரோடைகளுக்கு காசோலை இயக்கவும்</string>
