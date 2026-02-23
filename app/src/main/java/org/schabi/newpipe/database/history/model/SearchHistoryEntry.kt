@@ -29,7 +29,7 @@ data class SearchHistoryEntry @JvmOverloads constructor(
 
     @ColumnInfo(name = ID)
     @PrimaryKey(autoGenerate = true)
-    val id: Long = 0,
+    val id: Long = 0
 ) {
 
     @Ignore

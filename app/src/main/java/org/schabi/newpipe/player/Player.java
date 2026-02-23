@@ -46,13 +46,14 @@ import static org.schabi.newpipe.util.ListHelper.getPopupResolutionIndex;
 import static org.schabi.newpipe.util.ListHelper.getResolutionIndex;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
+import static coil3.Image_androidKt.toBitmap;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
@@ -80,8 +81,6 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.video.VideoSize;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
@@ -114,6 +113,7 @@ import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver.SourceType;
+import org.schabi.newpipe.player.ui.BackgroundPlayerUi;
 import org.schabi.newpipe.player.ui.MainPlayerUi;
 import org.schabi.newpipe.player.ui.PlayerUi;
 import org.schabi.newpipe.player.ui.PlayerUiList;
@@ -125,13 +125,14 @@ import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.StreamTypeUtil;
-import org.schabi.newpipe.util.image.PicassoHelper;
+import org.schabi.newpipe.util.image.CoilHelper;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
+import coil3.target.Target;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
@@ -180,7 +181,6 @@ public final class Player implements PlaybackListener, Listener {
     //////////////////////////////////////////////////////////////////////////*/
 
     public static final int RENDERER_UNAVAILABLE = -1;
-    private static final String PICASSO_PLAYER_THUMBNAIL_TAG = "PICASSO_PLAYER_THUMBNAIL_TAG";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Playback
@@ -199,6 +199,8 @@ public final class Player implements PlaybackListener, Listener {
     private MediaItemTag currentMetadata;
     @Nullable
     private Bitmap currentThumbnail;
+    @Nullable
+    private coil3.request.Disposable thumbnailDisposable;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Player
@@ -254,12 +256,6 @@ public final class Player implements PlaybackListener, Listener {
     @NonNull
     private final CompositeDisposable streamItemDisposable = new CompositeDisposable();
 
-    // This is the only listener we need for thumbnail loading, since there is always at most only
-    // one thumbnail being loaded at a time. This field is also here to maintain a strong reference,
-    // which would otherwise be garbage collected since Picasso holds weak references to targets.
-    @NonNull
-    private final Target currentThumbnailTarget;
-
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
@@ -271,6 +267,7 @@ public final class Player implements PlaybackListener, Listener {
     @NonNull
     private final HistoryRecordManager recordManager;
 
+    private boolean screenOn = true;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Constructor
@@ -311,8 +308,6 @@ public final class Player implements PlaybackListener, Listener {
 
         videoResolver = new VideoPlaybackResolver(context, dataSource, getQualityResolver());
         audioResolver = new AudioPlaybackResolver(context, dataSource);
-
-        currentThumbnailTarget = getCurrentThumbnailTarget();
 
         // The UIs added here should always be present. They will be initialized when the player
         // reaches the initialization step. Make sure the media session ui is before the
@@ -395,7 +390,7 @@ public final class Player implements PlaybackListener, Listener {
                         return;
                     }
                     final PlayQueueItem newItem = newQueue.getStreams().get(0);
-                    newQueue.enqueueNext(newItem, false);
+                    playQueue.enqueueNext(newItem, false);
                     return;
                 }
 
@@ -565,15 +560,12 @@ public final class Player implements PlaybackListener, Listener {
         if (queueCache == null) {
             return null;
         }
-        final PlayQueue newQueue = SerializedCache.getInstance().take(queueCache, PlayQueue.class);
-        if (newQueue == null) {
-            return null;
-        }
-        return newQueue;
+        return SerializedCache.getInstance().take(queueCache, PlayQueue.class);
     }
 
     private void initUIsForCurrentPlayerType() {
         if ((UIs.get(MainPlayerUi.class).isPresent() && playerType == PlayerType.MAIN)
+                || (UIs.get(BackgroundPlayerUi.class).isPresent() && playerType == PlayerType.AUDIO)
                 || (UIs.get(PopupPlayerUi.class).isPresent() && playerType == PlayerType.POPUP)) {
             // correct UI already in place
             return;
@@ -592,14 +584,17 @@ public final class Player implements PlaybackListener, Listener {
         switch (playerType) {
             case MAIN:
                 UIs.destroyAll(PopupPlayerUi.class);
+                UIs.destroyAll(BackgroundPlayerUi.class);
                 UIs.addAndPrepare(new MainPlayerUi(this, binding));
                 break;
             case POPUP:
                 UIs.destroyAll(MainPlayerUi.class);
+                UIs.destroyAll(BackgroundPlayerUi.class);
                 UIs.addAndPrepare(new PopupPlayerUi(this, binding));
                 break;
             case AUDIO:
-                UIs.destroyAll(VideoPlayerUi.class);
+                UIs.destroyAll(VideoPlayerUi.class); // destroys both MainPlayerUi and PopupPlayerUi
+                UIs.addAndPrepare(new BackgroundPlayerUi(this));
                 break;
         }
     }
@@ -702,7 +697,6 @@ public final class Player implements PlaybackListener, Listener {
         databaseUpdateDisposable.clear();
         progressUpdateDisposable.set(null);
         streamItemDisposable.clear();
-        cancelLoadingCurrentThumbnail();
 
         UIs.destroyAll(Object.class); // destroy every UI: obviously every UI extends Object
     }
@@ -842,6 +836,12 @@ public final class Player implements PlaybackListener, Listener {
             case ACTION_SHUFFLE:
                 toggleShuffleModeEnabled();
                 break;
+            case Intent.ACTION_SCREEN_OFF:
+                screenOn = false;
+                break;
+            case Intent.ACTION_SCREEN_ON:
+                screenOn = true;
+                break;
             case Intent.ACTION_CONFIGURATION_CHANGED:
                 if (DEBUG) {
                     Log.d(TAG, "ACTION_CONFIGURATION_CHANGED received");
@@ -876,67 +876,58 @@ public final class Player implements PlaybackListener, Listener {
     //////////////////////////////////////////////////////////////////////////*/
     //region Thumbnail loading
 
-    private Target getCurrentThumbnailTarget() {
-        // a Picasso target is just a listener for thumbnail loading events
-        return new Target() {
-            @Override
-            public void onBitmapLoaded(final Bitmap bitmap, final Picasso.LoadedFrom from) {
-                if (DEBUG) {
-                    Log.d(TAG, "Thumbnail - onBitmapLoaded() called with: bitmap = [" + bitmap
-                            + " -> " + bitmap.getWidth() + "x" + bitmap.getHeight() + "], from = ["
-                            + from + "]");
-                }
-                // there is a new thumbnail, so e.g. the end screen thumbnail needs to change, too.
-                onThumbnailLoaded(bitmap);
-            }
-
-            @Override
-            public void onBitmapFailed(final Exception e, final Drawable errorDrawable) {
-                Log.e(TAG, "Thumbnail - onBitmapFailed() called", e);
-                // there is a new thumbnail, so e.g. the end screen thumbnail needs to change, too.
-                onThumbnailLoaded(null);
-            }
-
-            @Override
-            public void onPrepareLoad(final Drawable placeHolderDrawable) {
-                if (DEBUG) {
-                    Log.d(TAG, "Thumbnail - onPrepareLoad() called");
-                }
-            }
-        };
-    }
-
     private void loadCurrentThumbnail(final List<Image> thumbnails) {
         if (DEBUG) {
             Log.d(TAG, "Thumbnail - loadCurrentThumbnail() called with thumbnails = ["
                     + thumbnails.size() + "]");
         }
 
-        // first cancel any previous loading
-        cancelLoadingCurrentThumbnail();
+        // Cancel any ongoing image loading
+        if (thumbnailDisposable != null) {
+            thumbnailDisposable.dispose();
+        }
 
         // Unset currentThumbnail, since it is now outdated. This ensures it is not used in media
-        // session metadata while the new thumbnail is being loaded by Picasso.
+        // session metadata while the new thumbnail is being loaded by Coil.
         onThumbnailLoaded(null);
         if (thumbnails.isEmpty()) {
             return;
         }
 
         // scale down the notification thumbnail for performance
-        PicassoHelper.loadScaledDownThumbnail(context, thumbnails)
-                .tag(PICASSO_PLAYER_THUMBNAIL_TAG)
-                .into(currentThumbnailTarget);
+        final var thumbnailTarget = new Target() {
+            @Override
+            public void onError(@Nullable final coil3.Image error) {
+                Log.e(TAG, "Thumbnail - onError() called");
+                // there is a new thumbnail, so e.g. the end screen thumbnail needs to change, too.
+                onThumbnailLoaded(null);
+            }
+
+            @Override
+            public void onStart(@Nullable final coil3.Image placeholder) {
+                if (DEBUG) {
+                    Log.d(TAG, "Thumbnail - onStart() called");
+                }
+            }
+
+            @Override
+            public void onSuccess(@NonNull final coil3.Image result) {
+                if (DEBUG) {
+                    Log.d(TAG, "Thumbnail - onSuccess() called with: drawable = [" + result + "]");
+                }
+                // there is a new thumbnail, so e.g. the end screen thumbnail needs to change, too.
+                onThumbnailLoaded(toBitmap(result));
+            }
+        };
+        thumbnailDisposable = CoilHelper.INSTANCE
+                .loadScaledDownThumbnail(context, thumbnails, thumbnailTarget);
     }
 
-    private void cancelLoadingCurrentThumbnail() {
-        // cancel the Picasso job associated with the player thumbnail, if any
-        PicassoHelper.cancelTag(PICASSO_PLAYER_THUMBNAIL_TAG);
-    }
 
     private void onThumbnailLoaded(@Nullable final Bitmap bitmap) {
         // Avoid useless thumbnail updates, if the thumbnail has not actually changed. Based on the
         // thumbnail loading code, this if would be skipped only when both bitmaps are `null`, since
-        // onThumbnailLoaded won't be called twice with the same nonnull bitmap by Picasso's target.
+        // onThumbnailLoaded won't be called twice with the same nonnull bitmap by Coil's target.
         if (currentThumbnail != bitmap) {
             currentThumbnail = bitmap;
             UIs.call(playerUi -> playerUi.onThumbnailLoaded(bitmap));
@@ -2029,7 +2020,7 @@ public final class Player implements PlaybackListener, Listener {
         // resolver was called when the app was in background, the app will only stream audio when
         // the user come back to the app and will never fetch the video stream.
         // Note that the video is not fetched when the app is in background because the video
-        // renderer is fully disabled (see useVideoSource method), except for HLS streams
+        // renderer is fully disabled (see useVideoAndSubtitles method), except for HLS streams
         // (see https://github.com/google/ExoPlayer/issues/9282).
         return videoResolver.resolve(info);
     }
@@ -2195,12 +2186,19 @@ public final class Player implements PlaybackListener, Listener {
         }
     }
 
-    public void useVideoSource(final boolean videoEnabled) {
-        if (playQueue == null || audioPlayerSelected()) {
+    public void useVideoAndSubtitles(final boolean videoAndSubtitlesEnabled) {
+        if (playQueue == null) {
             return;
         }
 
-        isAudioOnly = !videoEnabled;
+        isAudioOnly = !videoAndSubtitlesEnabled;
+
+        final var item = playQueue.getItem();
+        final boolean hasPendingRecovery =
+                item != null && item.getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET;
+        final boolean hasTimeline =
+                !exoPlayerIsNull() && !simpleExoPlayer.getCurrentTimeline().isEmpty();
+
 
         getCurrentStreamInfo().ifPresentOrElse(info -> {
             // In case we don't know the source type, fall back to either video-with-audio, or
@@ -2208,27 +2206,34 @@ public final class Player implements PlaybackListener, Listener {
             final SourceType sourceType = videoResolver.getStreamSourceType()
                     .orElse(SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY);
 
+            if (hasTimeline || !hasPendingRecovery) {
+                // making sure to save playback position before reloadPlayQueueManager()
+                setRecovery();
+            }
+
             if (playQueueManagerReloadingNeeded(sourceType, info, getVideoRendererIndex())) {
                 reloadPlayQueueManager();
             }
-
-            setRecovery();
-
-            // Disable or enable video and subtitles renderers depending of the videoEnabled value
-            trackSelector.setParameters(trackSelector.buildUponParameters()
-                    .setTrackTypeDisabled(C.TRACK_TYPE_TEXT, !videoEnabled)
-                    .setTrackTypeDisabled(C.TRACK_TYPE_VIDEO, !videoEnabled));
         }, () -> {
             /*
             The current metadata may be null sometimes (for e.g. when using an unstable connection
-            in livestreams) so we will be not able to execute the block below
+            in livestreams) so we will be not able to execute the block above
 
             Reload the play queue manager in this case, which is the behavior when we don't know the
             index of the video renderer or playQueueManagerReloadingNeeded returns true
             */
+            if (hasTimeline || !hasPendingRecovery) {
+                // making sure to save playback position before reloadPlayQueueManager()
+                setRecovery();
+            }
             reloadPlayQueueManager();
-            setRecovery();
         });
+
+        // Disable or enable video and subtitles renderers depending of the
+        // videoAndSubtitlesEnabled value
+        trackSelector.setParameters(trackSelector.buildUponParameters()
+                .setTrackTypeDisabled(C.TRACK_TYPE_TEXT, !videoAndSubtitlesEnabled)
+                .setTrackTypeDisabled(C.TRACK_TYPE_VIDEO, !videoAndSubtitlesEnabled));
     }
 
     /**
@@ -2461,4 +2466,11 @@ public final class Player implements PlaybackListener, Listener {
                 .orElse(RENDERER_UNAVAILABLE);
     }
     //endregion
+
+    /**
+     * @return whether the device screen is turned on.
+     */
+    public boolean isScreenOn() {
+        return screenOn;
+    }
 }

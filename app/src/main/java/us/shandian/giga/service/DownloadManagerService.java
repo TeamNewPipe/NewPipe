@@ -40,6 +40,7 @@ import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.download.DownloadActivity;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.helper.LockManager;
 import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
@@ -74,12 +75,12 @@ public class DownloadManagerService extends Service {
     private static final String EXTRA_THREADS = "DownloadManagerService.extra.threads";
     private static final String EXTRA_POSTPROCESSING_NAME = "DownloadManagerService.extra.postprocessingName";
     private static final String EXTRA_POSTPROCESSING_ARGS = "DownloadManagerService.extra.postprocessingArgs";
-    private static final String EXTRA_SOURCE = "DownloadManagerService.extra.source";
     private static final String EXTRA_NEAR_LENGTH = "DownloadManagerService.extra.nearLength";
     private static final String EXTRA_PATH = "DownloadManagerService.extra.storagePath";
     private static final String EXTRA_PARENT_PATH = "DownloadManagerService.extra.storageParentPath";
     private static final String EXTRA_STORAGE_TAG = "DownloadManagerService.extra.storageTag";
     private static final String EXTRA_RECOVERY_INFO = "DownloadManagerService.extra.recoveryInfo";
+    private static final String EXTRA_STREAM_INFO = "DownloadManagerService.extra.streamInfo";
 
     private static final String ACTION_RESET_DOWNLOAD_FINISHED = APPLICATION_ID + ".reset_download_finished";
     private static final String ACTION_OPEN_DOWNLOADS_FINISHED = APPLICATION_ID + ".open_downloads_finished";
@@ -353,13 +354,13 @@ public class DownloadManagerService extends Service {
      * @param kind         type of file (a: audio  v: video  s: subtitle ?: file-extension defined)
      * @param threads      the number of threads maximal used to download chunks of the file.
      * @param psName       the name of the required post-processing algorithm, or {@code null} to ignore.
-     * @param source       source url of the resource
+     * @param streamInfo   stream metadata that may be written into the downloaded file.
      * @param psArgs       the arguments for the post-processing algorithm.
      * @param nearLength   the approximated final length of the file
      * @param recoveryInfo array of MissionRecoveryInfo, in case is required recover the download
      */
     public static void startMission(Context context, String[] urls, StoredFileHelper storage,
-                                    char kind, int threads, String source, String psName,
+                                    char kind, int threads, StreamInfo streamInfo, String psName,
                                     String[] psArgs, long nearLength,
                                     ArrayList<MissionRecoveryInfo> recoveryInfo) {
         final Intent intent = new Intent(context, DownloadManagerService.class)
@@ -367,14 +368,14 @@ public class DownloadManagerService extends Service {
                 .putExtra(EXTRA_URLS, urls)
                 .putExtra(EXTRA_KIND, kind)
                 .putExtra(EXTRA_THREADS, threads)
-                .putExtra(EXTRA_SOURCE, source)
                 .putExtra(EXTRA_POSTPROCESSING_NAME, psName)
                 .putExtra(EXTRA_POSTPROCESSING_ARGS, psArgs)
                 .putExtra(EXTRA_NEAR_LENGTH, nearLength)
                 .putExtra(EXTRA_RECOVERY_INFO, recoveryInfo)
                 .putExtra(EXTRA_PARENT_PATH, storage.getParentUri())
                 .putExtra(EXTRA_PATH, storage.getUri())
-                .putExtra(EXTRA_STORAGE_TAG, storage.getTag());
+                .putExtra(EXTRA_STORAGE_TAG, storage.getTag())
+                .putExtra(EXTRA_STREAM_INFO, streamInfo);
 
         context.startService(intent);
     }
@@ -387,9 +388,9 @@ public class DownloadManagerService extends Service {
         char kind = intent.getCharExtra(EXTRA_KIND, '?');
         String psName = intent.getStringExtra(EXTRA_POSTPROCESSING_NAME);
         String[] psArgs = intent.getStringArrayExtra(EXTRA_POSTPROCESSING_ARGS);
-        String source = intent.getStringExtra(EXTRA_SOURCE);
         long nearLength = intent.getLongExtra(EXTRA_NEAR_LENGTH, 0);
         String tag = intent.getStringExtra(EXTRA_STORAGE_TAG);
+        StreamInfo streamInfo = (StreamInfo)intent.getSerializableExtra(EXTRA_STREAM_INFO);
         final var recovery = IntentCompat.getParcelableArrayListExtra(intent, EXTRA_RECOVERY_INFO,
                 MissionRecoveryInfo.class);
         Objects.requireNonNull(recovery);
@@ -405,11 +406,11 @@ public class DownloadManagerService extends Service {
         if (psName == null)
             ps = null;
         else
-            ps = Postprocessing.getAlgorithm(psName, psArgs);
+            ps = Postprocessing.getAlgorithm(psName, psArgs, streamInfo);
 
         final DownloadMission mission = new DownloadMission(urls, storage, kind, ps);
         mission.threadCount = threads;
-        mission.source = source;
+        mission.source = streamInfo.getUrl();
         mission.nearLength = nearLength;
         mission.recoveryInfo = recovery.toArray(new MissionRecoveryInfo[0]);
 

@@ -35,7 +35,7 @@ abstract class StreamHistoryDAO : BasicDAO<StreamHistoryEntity> {
     abstract val historySortedById: Flowable<MutableList<StreamHistoryEntry>>
 
     @Query("SELECT * FROM stream_history WHERE stream_id = :streamId ORDER BY access_date DESC LIMIT 1")
-    abstract fun getLatestEntry(streamId: Long): StreamHistoryEntity
+    abstract fun getLatestEntry(streamId: Long): StreamHistoryEntity?
 
     @Query("DELETE FROM stream_history WHERE stream_id = :streamId")
     abstract fun deleteStreamHistory(streamId: Long): Int

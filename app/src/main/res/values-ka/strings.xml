@@ -37,7 +37,7 @@
     <string name="default_audio_format_title">ნაგულისხმევი აუდიო ფორმატი</string>
     <string name="peertube_instance_url_summary">აირჩიეთ თქვენი საყვარელი PeerTube ეგზემპლარები</string>
     <string name="progressive_load_interval_title">დაკვრის დატვირთვის ინტერვალის ზომა</string>
-    <string name="progressive_load_interval_summary">შეცვალეთ დატვირთვის ინტერვალის ზომა (ამჟამად %s). დაბალმა მნიშვნელობამ შეიძლება დააჩქაროს საწყისი ვიდეოს ჩატვირთვა. ცვლილებები მოითხოვს მოთამაშის გადატვირთვას</string>
+    <string name="progressive_load_interval_summary">შეცვალეთ დატვირთვის ინტერვალის ზომა (ამჟამად %s). დაბალმა მნიშვნელობამ შეიძლება დააჩქაროს საწყისი ვიდეოს ჩატვირთვა.</string>
     <string name="clear_queue_confirmation_title">მოითხოვეთ დადასტურება რიგის გასუფთავებამდე</string>
     <string name="use_inexact_seek_summary">არაზუსტი ძიება საშუალებას აძლევს მოთამაშეს უფრო სწრაფად მოიძიოს პოზიციები შემცირებული სიზუსტით. 5, 15 ან 25 წამის ძიება ამით არ მუშაობს</string>
     <string name="seek_duration_title">სწრაფი წინსვლა/-გადახვევა ძიების ხანგრძლივობა</string>
@@ -100,7 +100,7 @@
     <string name="notification_action_shuffle">არევა</string>
     <string name="notification_action_buffering">Ბუფერიზაცია</string>
     <string name="play_audio">აუდიო</string>
-    <string name="night_theme_title">ღამის თემა</string>
+    <string name="night_theme_title">მუქი თემა</string>
     <string name="light_theme_title">ღია</string>
     <string name="dark_theme_title">მუქი</string>
     <string name="black_theme_title">შავი</string>
@@ -380,7 +380,6 @@
     <string name="show_original_time_ago_summary">ორიგინალური ტექსტები სერვისებიდან ხილული იქნება ნაკადის ერთეულებში</string>
     <string name="disable_media_tunneling_title">მედია გვირაბის გათიშვა</string>
     <string name="disable_media_tunneling_summary">გამორთეთ მედია გვირაბი, თუ ვიდეოს დაკვრისას შავი ეკრანი ან ჭუჭყი გაქვთ</string>
-    <string name="show_image_indicators_title">გამოსახულების ინდიკატორების ჩვენება</string>
     <string name="show_crash_the_player_title">აჩვენე \"დამკვრელის დამსხვრევა\"</string>
     <string name="show_crash_the_player_summary">აჩვენებს ავარიის ვარიანტს დამკვრელის გამოყენებისას</string>
     <string name="check_new_streams">გაუშვით შემოწმება ახალი ნაკადებისთვის</string>
@@ -482,8 +481,8 @@
     <string name="app_language_title">აპლიკაციის ენა</string>
     <string name="systems_language">სისტემის ნაგულისხმევი</string>
     <string name="remove_watched">ნანახის ამოღება</string>
-    <string name="remove_watched_popup_title">წაშალოთ ნანახი ვიდეოები\?</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">დიახ, და ნაწილობრივ ნანახი ვიდეოები</string>
+    <string name="remove_watched_popup_title">წაშალოთ ნანახი ვიდეოები?</string>
+    <string name="remove_watched_popup_partially_watched_streams">დიახ, და ნაწილობრივ ნანახი ვიდეოები</string>
     <string name="new_seek_duration_toast">ExoPlayer-ის შეზღუდვების გამო ძიების ხანგრძლივობა დაყენდა %d წამზე</string>
     <plurals name="seconds">
         <item quantity="one">%d წამი</item>
@@ -604,7 +603,7 @@
     <string name="external_player_unsupported_link_type">გარე დამკვრელს არ აქვთ ამ ტიპის ბმულების მხარდაჭერა</string>
     <string name="invalid_file">ფაილი არ არსებობს ან მასზე წაკითხვის ან ჩაწერის ნებართვა აკლია</string>
     <string name="saved_tabs_invalid_json">შენახული ჩანართების წაკითხვა ვერ მოხერხდა, ამიტომ გამოიყენეთ ნაგულისხმევი ჩანართები</string>
-    <string name="info_labels">რა:\\nმოითხოვეთ:\\nშემცველობის ენა:\\nშემცველობის ქვეყანა:\\nაპლიკაციის ენა:\\nსერვისი:\\nGMT დრო:\\nპაკეტი:\\nვერსია:\\nOS ვერსია:</string>
+    <string name="info_labels">რა:\nმოითხოვეთ:\nშემცველობის ენა:\nშემცველობის ქვეყანა:\nაპლიკაციის ენა:\nსერვისი:\nGMT დრო:\nპაკეტი:\nვერსია:\nOS ვერსია:</string>
     <string name="detail_uploader_thumbnail_view_description">ამტვირთველის ავატარის ესკიზი</string>
     <string name="comments_are_disabled">კომენტარები გამორთულია</string>
     <string name="create">Შექმნა</string>
@@ -655,8 +654,7 @@
     <string name="downloads_storage_ask_title">იკითხეთ, სად უნდა ჩამოტვირთოთ</string>
     <string name="downloads_storage_ask_summary">თქვენ მოგეთხოვებათ სად შეინახოთ თითოეული ჩამოტვირთვა.
 \n ჩართეთ სისტემის საქაღალდის ამომრჩევი (SAF), თუ გსურთ ჩამოტვირთოთ გარე SD ბარათზე</string>
-    <string name="remove_watched_popup_warning">ვიდეოები, რომლებიც უყურეთ დასაკრავ სიაში დამატებამდე და მის შემდეგ, წაიშლება.
-\n დარწმუნებული ხართ\? ამის გაუქმება შეუძლებელია!</string>
+    <string name="remove_watched_popup_warning">ვიდეოები, რომლებიც უყურეთ დასაკრავ სიაში დამატებამდე და მის შემდეგ, წაიშლება. \n დარწმუნებული ხართ?</string>
     <string name="app_license">NewPipe არის copyleft უფასო პროგრამული უზრუნველყოფა: თქვენ შეგიძლიათ გამოიყენოთ, შეისწავლოთ, გააზიაროთ და გააუმჯობესოთ იგი სურვილისამებრ. კონკრეტულად თქვენ შეგიძლიათ გადაანაწილოთ და/ან შეცვალოთ იგი GNU-ს ზოგადი საჯარო ლიცენზიის პირობებით, როგორც ეს გამოქვეყნებულია თავისუფალი პროგრამული უზრუნველყოფის ფონდის მიერ, ლიცენზიის მე-3 ვერსიით, ან (თქვენი სურვილისამებრ) ნებისმიერი შემდგომი ვერსიით.</string>
     <string name="auto">ავტო</string>
     <string name="blank_page_summary">ცარიელი გვერდი</string>
@@ -678,7 +676,6 @@
     <string name="subscriptions_import_unsuccessful">გამოწერების იმპორტი ვერ მოხერხდა</string>
     <string name="enable_disposed_exceptions_title">შეატყობინეთ სასიცოცხლო ციკლის შეცდომებს</string>
     <string name="enable_disposed_exceptions_summary">იძულებითი მოხსენება შეუსაბამო Rx გამონაკლისების შესახებ ფრაგმენტის ან აქტივობის სასიცოცხლო ციკლის გარეთ განკარგვის შემდეგ</string>
-    <string name="show_image_indicators_summary">აჩვენეთ პიკასოს ფერადი ლენტები სურათების თავზე, სადაც მითითებულია მათი წყარო: წითელი ქსელისთვის, ლურჯი დისკისთვის და მწვანე მეხსიერებისთვის</string>
     <string name="feed_load_error_fast_unknown">სწრაფი კვების რეჟიმი ამაზე მეტ ინფორმაციას არ იძლევა.</string>
     <string name="feed_load_error_account_info">„%s“-ის არხის ჩატვირთვა ვერ მოხერხდა.</string>
     <string name="feed_use_dedicated_fetch_method_summary">ხელმისაწვდომია ზოგიერთ სერვისში, როგორც წესი, ბევრად უფრო სწრაფია, მაგრამ შეიძლება დააბრუნოს შეზღუდული რაოდენობის ელემენტი და ხშირად არასრული ინფორმაცია (მაგ. ხანგრძლივობის გარეშე, ელემენტის ტიპი, არ არის ლაივის სტატუსი)</string>
@@ -793,4 +790,33 @@
     <string name="youtube_player_http_403">დაკვრის დროს სერვერიდან მიღებული HTTP შეცდომა 403, სავარაუდოდ, გამოწვეულია IP აკრძალვით ან სტრიმინგის URL-ის დებფუსკაციის პრობლემებით.</string>
     <string name="sign_in_confirm_not_bot_error">%1$s-მა უარი თქვა მონაცემების მიწოდებაზე და ითხოვა შესვლა იმის დასადასტურებლად, რომ მომთხოვნი რობოტი არ არის.\n\nშესაძლოა, თქვენი IP მისამართი დროებით აიკრძალა %1$s-ის მიერ, შეგიძლიათ დაელოდოთ ცოტა ხანს ან გადახვიდეთ სხვა IP მისამართზე (მაგალითად, VPN-ის ჩართვით/გამორთვით, ან WiFi-დან მობილურ მონაცემებზე გადართვით).</string>
     <string name="unsupported_content_in_country">ეს კონტენტი ამჟამად არჩეული კონტენტის ქვეყნისთვის მიუწვდომელია.\n\nშეცვალეთ თქვენი არჩევანი „პარამეტრები &gt; კონტენტი &gt; ნაგულისხმევი კონტენტის ქვეყანა“-დან.</string>
+    <string name="audio_track_name">%1$s %2$s</string>
+    <string name="audio_track_type_original">ორიგინალი</string>
+    <string name="audio_track_type_dubbed">გახმოვანებული</string>
+    <string name="audio_track_type_descriptive">აღწერითი</string>
+    <string name="audio_track_type_secondary">მეორადი</string>
+    <string name="channel_tab_videos">ვიდეოები</string>
+    <string name="channel_tab_tracks">ტრეკები</string>
+    <string name="channel_tab_shorts">მოკლე ვიდეოები</string>
+    <string name="channel_tab_livestreams">ლაივი</string>
+    <string name="channel_tab_channels">არხები</string>
+    <string name="channel_tab_playlists">დასაკრავი სიები</string>
+    <string name="channel_tab_albums">ალბომები</string>
+    <string name="channel_tab_likes">მოწონებები</string>
+    <string name="channel_tab_about">შესახებ</string>
+    <string name="show_channel_tabs">არხის ჩანართები</string>
+    <string name="show_channel_tabs_summary">რომელი ჩანართებია ნაჩვენები არხის გვერდებზე</string>
+    <string name="open_play_queue">დაკვრის რიგის გახსნა</string>
+    <string name="toggle_fullscreen">სრულეკრანიან რეჟიმზე გადართვა</string>
+    <plurals name="replies">
+        <item quantity="one">%s პასუხი</item>
+        <item quantity="other">%s პასუხები</item>
+    </plurals>
+    <string name="show_more">მეტის ჩვენება</string>
+    <string name="show_less">ნაკლების ჩვენება</string>
+    <string name="import_settings_vulnerable_format">იმპორტირებული ექსპორტის პარამეტრები იყენებს დაუცველ ფორმატს, რომელიც მოძველებულია NewPipe 0.27.0 ვერსიიდან. დარწმუნდით, რომ იმპორტირებული ექსპორტი სანდო წყაროდან არის და მომავალში უპირატესობა მიანიჭეთ მხოლოდ NewPipe 0.27.0 ან უფრო ახალი ვერსიიდან მიღებული ექსპორტირებული პარამეტრების გამოყენებას. ამ დაუცველ ფორმატში პარამეტრების იმპორტის მხარდაჭერა მალე მთლიანად გაუქმდება და შემდეგ NewPipe-ის ძველი ვერსიები ვეღარ შეძლებენ ექსპორტირებული პარამეტრების იმპორტირებას ახალი ვერსიებიდან.</string>
+    <string name="migration_info_6_7_title">SoundCloud-ის ტოპ 50 გვერდი წაიშალა</string>
+    <string name="migration_info_6_7_message">SoundCloud-მა შეწყვიტა ორიგინალი ტოპ 50 ჩარტების გამოშვება. შესაბამისი ჩანართი წაიშალა თქვენი მთავარი გვერდიდან.</string>
+    <string name="migration_info_7_8_title">YouTube-ის კომბინირებული ტრენდული გვერდი წაშლილია</string>
+    <string name="migration_info_7_8_message">YouTube-მა 2025 წლის 21 ივლისიდან შეწყვიტა კომბინირებული ტრენდული გვერდის არსებობა. NewPipe-მა ნაგულისხმევი ტრენდული გვერდი ტრენდული პირდაპირი ტრანსლაციებით ჩაანაცვლა.\n\nასევე შეგიძლიათ აირჩიოთ სხვადასხვა ტრენდული გვერდები „პარამეტრები &gt; მასალა &gt; მთავარი გვერდის შინაარსი“-ში.</string>
 </resources>

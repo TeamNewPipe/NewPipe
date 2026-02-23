@@ -134,7 +134,7 @@
     <string name="error_snackbar_action">Melden</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Wat er is gebeurd:</string>
-    <string name="info_labels">Wat:\\nVerzoek:\\nTaal van inhoud:\\nLand:\\nTaal van applicatie:\\nDienst:\\nGMT tijd:\\nPakket:\\nVersie:\\nVersie van besturingssysteem:</string>
+    <string name="info_labels">Wat:\nVerzoek:\nTaal van inhoud:\nLand:\nTaal van applicatie:\nDienst:\nGMT tijd:\nPakket:\nVersie:\nVersie van besturingssysteem:</string>
     <string name="your_comment">Uw opmerking (in het Engels):</string>
     <string name="error_details_headline">Details:</string>
     <string name="detail_thumbnail_view_description">Speel video, tijd:</string>
@@ -440,10 +440,9 @@
         <item quantity="other">%d seconden</item>
     </plurals>
     <string name="new_seek_duration_toast">Door beperkingen van ExoPlayer is de zoekduur ingesteld op %d seconden</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, en deels bekeken video\'s</string>
-    <string name="remove_watched_popup_warning">Video\'s die zijn bekeken voor, en na, ze werden toegevoegd aan de afspeellijst worden verwijderd.
-\nBent u zeker\? Dit kan niet ongedaan gemaakt worden!</string>
-    <string name="remove_watched_popup_title">Verwijder bekeken video\'s\?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Ja, en deels bekeken video\'s</string>
+    <string name="remove_watched_popup_warning">Video\'s die zijn bekeken voor, en na, ze werden toegevoegd aan de afspeellijst worden verwijderd. \nBent u zeker? Dit kan niet ongedaan gemaakt worden!</string>
+    <string name="remove_watched_popup_title">Verwijder bekeken video\'s?</string>
     <string name="remove_watched">Verwijder bekeken</string>
     <string name="systems_language">Systeem standaard</string>
     <string name="app_language_title">App taal</string>
@@ -607,7 +606,6 @@
     <string name="no_dir_yet">Geen download map ingesteld, kies nu de standaard download map</string>
     <string name="dont_show">Niet tonen</string>
     <string name="comments_are_disabled">Reacties zijn uitgeschakeld</string>
-    <string name="show_image_indicators_title">Toon afbeeldingsindicatoren</string>
     <string name="settings_category_player_notification_title">Speler melding</string>
     <string name="settings_category_player_notification_summary">Configureer actieve stream melding</string>
     <string name="notifications">Meldingen</string>

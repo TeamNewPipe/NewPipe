@@ -259,27 +259,26 @@ public class MissionsFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.switch_mode:
-                mLinear = !mLinear;
-                updateList();
-                return true;
-            case R.id.clear_list:
-                showClearDownloadHistoryPrompt();
-                return true;
-            case R.id.start_downloads:
-                mBinder.getDownloadManager().startAllMissions();
-                return true;
-            case R.id.pause_downloads:
-                mBinder.getDownloadManager().pauseAllMissions(false);
-                mAdapter.refreshMissionItems();// update items view
-                return true;
-            case R.id.action_search:
-                showSearch();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        int itemId = item.getItemId();
+        if (itemId == R.id.switch_mode) {
+            mLinear = !mLinear;
+            updateList();
+            return true;
+        } else if (itemId == R.id.clear_list) {
+            showClearDownloadHistoryPrompt();
+            return true;
+        } else if (itemId == R.id.start_downloads) {
+            mBinder.getDownloadManager().startAllMissions();
+            return true;
+        } else if (itemId == R.id.pause_downloads) {
+            mBinder.getDownloadManager().pauseAllMissions(false);
+            mAdapter.refreshMissionItems();// update items view
+            return true;
+        } else if (itemId == R.id.action_search) {
+            showSearch();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     public void showClearDownloadHistoryPrompt() {

@@ -124,7 +124,7 @@
         <item quantity="other">%s مُشاهِد</item>
     </plurals>
     <string name="show_hold_to_append_summary">عرض تلميح عند الضغط على زر استخدام المشغل الخلفي أو النافذة المنبثقة في صفحة تفاصيل الفديو</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">نعم، ومقاطع الفيديو التي تمت مشاهدتها جزئيًا</string>
+    <string name="remove_watched_popup_partially_watched_streams">نعم، ومقاطع الفيديو التي تمت مشاهدتها جزئيًا</string>
     <string name="error_timeout">انتهى وقت الاتصال</string>
     <string name="unknown_audio_track">غير معروف</string>
     <string name="autoplay_title">تشغيل تلقائي</string>
@@ -299,7 +299,6 @@
         <item quantity="other">%s مشارك</item>
     </plurals>
     <string name="loading_metadata_title">جلب البيانات الوصفية…</string>
-    <string name="show_image_indicators_title">إظهار مؤشرات الصور</string>
     <string name="app_update_available_notification_text">انقر للتنزيل %s</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">تعطيل الوضع السريع</string>
     <string name="enumeration_comma">,</string>
@@ -381,7 +380,7 @@
     <string name="channels">القنوات</string>
     <string name="dont_show">لا تظهر</string>
     <string name="peertube_instance_add_help">أدخل عنوان للمثيل</string>
-    <string name="info_labels">ماذا:\\nطلب:\\nلغة المحتوى:\\nبلد المحتوى:\\nلغة التطبيق:\\nالخدمات:\\nتوقيت جرينتش:\\nالحزمة:\\nالإصدار:\\nOS نسخة:</string>
+    <string name="info_labels">ماذا:\nطلب:\nلغة المحتوى:\nبلد المحتوى:\nلغة التطبيق:\nالخدمات:\nتوقيت جرينتش:\nالحزمة:\nالإصدار:\nOS نسخة:</string>
     <string name="use_external_video_player_summary">يزيل الصوت في بعض الجودات</string>
     <string name="feed_fetch_channel_tabs">جلب ألسنة القنوات</string>
     <string name="high_quality_larger">جودة عالية (أكبر)</string>
@@ -428,8 +427,7 @@
     <string name="msg_popup_permission">هذا الإذن مطلوب
 \nللفتح في وضع النافذة المنبثقة</string>
     <string name="settings_category_feed_title">الموجز</string>
-    <string name="remove_watched_popup_warning">ستتم إزالة مقاطع الفيديو التي تمت مشاهدتها قبل وبعد إضافتها إلى قائمة التشغيل.
-\nهل أنت واثق؟ لا يمكن التراجع عن هذا!</string>
+    <string name="remove_watched_popup_warning">ستتم إزالة مقاطع الفيديو التي تمت مشاهدتها قبل وبعد إضافتها إلى قائمة التشغيل. \nهل أنت واثق؟ لا يمكن التراجع عن هذا!</string>
     <string name="detail_dislikes_img_view_description">عدم الإعجاب</string>
     <string name="faq">مشاهدة على الموقع</string>
     <string name="night_theme_available">هذا الخيار متاح فقط إذا تم تحديد %s للسمة</string>
@@ -825,7 +823,6 @@
     <string name="you_successfully_subscribed">لقد اشتركت الآن في هذه القناة</string>
     <string name="downloads_storage_use_saf_summary_api_29">بدءًا من Android 10، يتم دعم \"Storage Access Framework\" فقط</string>
     <string name="generate_unique_name">إنشاء اسم فريد</string>
-    <string name="show_image_indicators_summary">أظهر أشرطة ملونة لبيكاسو أعلى الصور تشير إلى مصدرها: الأحمر للشبكة والأزرق للقرص والأخضر للذاكرة</string>
     <string name="error_ssl_exception">فشل الاتصال الآمن</string>
     <string name="youtube_music_premium_content">يتوفر هذا الفيديو فقط لأعضاء YouTube Music Premium، لذلك لا يمكن بثه أو تنزيله من قبل NewPipe.</string>
     <string name="previous_stream">البث السابق</string>

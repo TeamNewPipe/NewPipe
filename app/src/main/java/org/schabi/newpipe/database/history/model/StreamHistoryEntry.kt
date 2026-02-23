@@ -2,10 +2,10 @@ package org.schabi.newpipe.database.history.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
+import java.time.OffsetDateTime
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.util.image.ImageStrategy
-import java.time.OffsetDateTime
 
 data class StreamHistoryEntry(
     @Embedded
@@ -30,16 +30,15 @@ data class StreamHistoryEntry(
             accessDate.isEqual(other.accessDate)
     }
 
-    fun toStreamInfoItem(): StreamInfoItem =
-        StreamInfoItem(
-            streamEntity.serviceId,
-            streamEntity.url,
-            streamEntity.title,
-            streamEntity.streamType,
-        ).apply {
-            duration = streamEntity.duration
-            uploaderName = streamEntity.uploader
-            uploaderUrl = streamEntity.uploaderUrl
-            thumbnails = ImageStrategy.dbUrlToImageList(streamEntity.thumbnailUrl)
-        }
+    fun toStreamInfoItem(): StreamInfoItem = StreamInfoItem(
+        streamEntity.serviceId,
+        streamEntity.url,
+        streamEntity.title,
+        streamEntity.streamType
+    ).apply {
+        duration = streamEntity.duration
+        uploaderName = streamEntity.uploader
+        uploaderUrl = streamEntity.uploaderUrl
+        thumbnails = ImageStrategy.dbUrlToImageList(streamEntity.thumbnailUrl)
+    }
 }

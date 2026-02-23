@@ -104,7 +104,7 @@
     <string name="player_unrecoverable_failure">Allvarligt spelarfel inträffade</string>
     <string name="player_recoverable_failure">Återhämtar sig från spelarfel</string>
     <string name="error_report_button_text">Rapportera via e-post</string>
-    <string name="info_labels">Vad:\\nBegäran:\\nInnehållsspråk:\\nInnehållsland:\\nApp-språk:\\nTjänst:\\nGMT-tid:\\nPaket:\\nVersion:\\nOS-version:</string>
+    <string name="info_labels">Vad:\nBegäran:\nInnehållsspråk:\nInnehållsland:\nApp-språk:\nTjänst:\nGMT-tid:\nPaket:\nVersion:\nOS-version:</string>
     <string name="detail_thumbnail_view_description">Spela video, längd:</string>
     <string name="detail_uploader_thumbnail_view_description">Uppladdarens avatar-miniatyrbild</string>
     <string name="search_no_results">Inga resultat</string>
@@ -473,10 +473,9 @@
         <item quantity="other">%d sekunder</item>
     </plurals>
     <string name="new_seek_duration_toast">På grund av ExoPlayer-begränsningar sattes söktiden till %d sekunder</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, och delvis tittade videor</string>
-    <string name="remove_watched_popup_warning">Videor som har spelats före och efter att de har lagts till i spellistan kommer att tas bort.
-\nÄr du säker\? Detta kan inte ångras!</string>
-    <string name="remove_watched_popup_title">Ta bort tittade videor\?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Ja, och delvis tittade videor</string>
+    <string name="remove_watched_popup_warning">Strömningar som har spelats före och efter att de har lagts till i spellistan kommer att tas bort. \nÄr du säker?</string>
+    <string name="remove_watched_popup_title">Ta bort tittade strömningar?</string>
     <string name="remove_watched">Ta bort tittade</string>
     <string name="systems_language">Systemstandard</string>
     <string name="app_language_title">Appspråk</string>
@@ -628,7 +627,6 @@
     <string name="select_night_theme_toast">Du kan välja det natt-tema du föredrar nedan</string>
     <string name="night_theme_summary">Välj det natt-tema du föredrar — %s</string>
     <string name="seekbar_preview_thumbnail_title">Sökradens förhandsvisningsminiatyr</string>
-    <string name="show_image_indicators_title">Visa bildindikatorer</string>
     <string name="local_search_suggestions">Lokala sökningsförslag</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">Tog bort %1$s nedladdning</item>
@@ -646,7 +644,6 @@
     <string name="main_page_content_swipe_remove">Svep objekt för att ta bort dem</string>
     <string name="remote_search_suggestions">Förslag via fjärrsökning</string>
     <string name="start_main_player_fullscreen_summary">Starta inte videor i minispelaren, utan byt till helskärmsläge direkt, om automatisk rotation är låst. Du kan fortfarande komma åt minispelaren genom att gå ut ur helskärmsläge</string>
-    <string name="show_image_indicators_summary">Visa Picasso färgade band ovanpå bilderna som anger deras källa: rött för nätverk, blått för disk och grönt för minne</string>
     <string name="check_for_updates">Sök efter uppdateringar</string>
     <string name="manual_update_description">Kolla manuellt efter nya versioner</string>
     <string name="checking_updates_toast">Söker efter uppdateringar…</string>

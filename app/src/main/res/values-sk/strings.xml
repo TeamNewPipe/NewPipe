@@ -45,7 +45,7 @@
     <string name="detail_uploader_thumbnail_view_description">Náhľad avataru uploadera</string>
     <string name="detail_likes_img_view_description">Lajky</string>
     <string name="detail_dislikes_img_view_description">Dislajky</string>
-    <string name="main_bg_subtitle">Začnite klepnutím na lupu.</string>
+    <string name="main_bg_subtitle">Začnite ťuknutím na lupu.</string>
     <string name="content">Obsah</string>
     <string name="show_age_restricted_content_title">Zobraziť vekovo obmedzený obsah</string>
     <string name="duration_live">Naživo</string>
@@ -74,11 +74,11 @@
     <string name="msg_wait">Čakajte prosím…</string>
     <string name="msg_copied">Skopírované do schránky</string>
     <string name="no_available_dir">Priečinok na sťahovanie zadefinujte prosím neskôr v nastaveniach</string>
-    <string name="downloads">Sťahované súbory</string>
+    <string name="downloads">Stiahnuté súbory</string>
     <string name="downloads_title">Stiahnuté</string>
     <string name="error_report_title">Hlásenie o chybe</string>
     <string name="app_ui_crash">Aplikácia/UP zlyhalo</string>
-    <string name="info_labels">Čo:\\nPožiadavka:\\nJazyk obsahu:\\nKrajina Obsahu:\\nJazyk Aplikácie:\\nSlužba:\\nČas v GMT:\\nBalík:\\nVerzia:\\nOS:</string>
+    <string name="info_labels">Čo:\nPožiadavka:\nJazyk obsahu:\nKrajina Obsahu:\nJazyk Aplikácie:\nSlužba:\nČas v GMT:\nBalík:\nVerzia:\nOS:</string>
     <string name="title_activity_recaptcha">Výzva reCAPTCHA</string>
     <string name="black_theme_title">Čierna</string>
     <string name="all">Všetko</string>
@@ -110,8 +110,8 @@
     <string name="fragment_feed_title">Čo je nové</string>
     <string name="enable_search_history_title">Hľadať v histórií</string>
     <string name="enable_search_history_summary">Hľadané výrazy uloží lokálne</string>
-    <string name="enable_watch_history_title">História pozretí</string>
-    <string name="enable_watch_history_summary">Uloží históriu pozretých videí</string>
+    <string name="enable_watch_history_title">História pozerania</string>
+    <string name="enable_watch_history_summary">Uloží históriu pozeraných videí</string>
     <string name="resume_on_audio_focus_gain_title">Pokračovať v prehrávaní</string>
     <string name="resume_on_audio_focus_gain_summary">Pokračouje v prehrávaní po prerušení (napr. po telefonáte)</string>
     <string name="notification_channel_name">NewPipe oznámenia</string>
@@ -147,11 +147,12 @@
         <item quantity="few">%s odberatelia</item>
         <item quantity="other">%s odberateľov</item>
     </plurals>
-    <string name="no_views">Žiadne pozretia</string>
+    <string name="no_views">Žiadne zobrazenia</string>
     <plurals name="views">
-        <item quantity="one">%s pozriete</item>
-        <item quantity="few">%s pozretia</item>
-        <item quantity="other">%s pozretí</item>
+        <item quantity="one">%s zobrazenie</item>
+        <item quantity="few">%s zobrazenia</item>
+        <item quantity="many">%s zobrazení</item>
+        <item quantity="other">%s zobrazení</item>
     </plurals>
     <string name="no_videos">Žiadne videá</string>
     <plurals name="videos">
@@ -208,7 +209,7 @@
     <string name="no_valid_zip_file">Neplatný ZIP súbor</string>
     <string name="could_not_import_all_files">Upozornenie: Nemožno importovať všetky súbory.</string>
     <string name="override_current_data">Toto prepíše vaše aktuálne nastavenie.</string>
-    <string name="trending">Trendy</string>
+    <string name="trending">Populárne</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Nové a horúce</string>
     <string name="play_queue_remove">Odstrániť</string>
@@ -296,10 +297,10 @@
     <string name="playback_tempo">Rýchlosť</string>
     <string name="playback_pitch">Výška</string>
     <string name="unhook_checkbox">Spraviť nezávislými (môže spôsobovať skreslenie)</string>
-    <string name="clear_views_history_title">Vymazať históriu pozretí</string>
+    <string name="clear_views_history_title">Vymazať históriu pozerania</string>
     <string name="clear_views_history_summary">Odstráni históriu a pozície prehrávaných streamov</string>
-    <string name="delete_view_history_alert">Vymazať celú históriu pozretí\?</string>
-    <string name="watch_history_deleted">História pozretí bola vymazaná</string>
+    <string name="delete_view_history_alert">Vymazať celú históriu pozerania?</string>
+    <string name="watch_history_deleted">História pozerania bola vymazaná</string>
     <string name="clear_search_history_title">Vymazať históriu vyhľadávania</string>
     <string name="clear_search_history_summary">Odstráni históriu vyhľadávania kľúčových slov</string>
     <string name="delete_search_history_alert">Vymazať celú históriu vyhľadávania\?</string>
@@ -473,7 +474,7 @@
         <item quantity="other">%d dní</item>
     </plurals>
     <string name="feed_groups_header_title">Skupiny kanálov</string>
-    <string name="feed_oldest_subscription_update">Zdroj naposledy aktualizovaný: %s</string>
+    <string name="feed_oldest_subscription_update">Zdroj aktualizovaný: %s</string>
     <string name="feed_subscription_not_loaded_count">Nenačítané: %d</string>
     <string name="feed_notification_loading">Načítavanie zdroja…</string>
     <string name="feed_processing_message">Spracovávanie zdroja…</string>
@@ -509,10 +510,10 @@
     <string name="content_not_supported">Tento obsah ešte nie je podporovaný v NwPipe.
 \n
 \nMožno v budúcnosti sa to zmení.</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Áno aj čiastočne pozreté videá</string>
-    <string name="remove_watched_popup_warning">Pozreté videá, ktoré ste pozreli pred a po ich pridaní do playlistu, budú odstránené. \nSte si istí ich odstránením z playlistu? Táto operácia je nezvratná!</string>
-    <string name="remove_watched_popup_title">Odstrániť pozreté videá\?</string>
-    <string name="remove_watched">Odstrániť pozreté</string>
+    <string name="remove_watched_popup_partially_watched_streams">Áno aj čiastočne pozreté videá</string>
+    <string name="remove_watched_popup_warning">Videá, ktoré ste sledovali pred a po pridaní do playlistu, budú odstránené. \nNaozaj to chcete urobiť?</string>
+    <string name="remove_watched_popup_title">Odstrániť pozerané videá?</string>
+    <string name="remove_watched">Odstrániť pozerané</string>
     <string name="show_original_time_ago_summary">Pôvodné texty zo služieb budú viditeľné v položkách streamu</string>
     <string name="show_original_time_ago_title">Zobrazovať pôvodný čas</string>
     <string name="infinite_videos">∞ videí</string>
@@ -647,8 +648,6 @@
     <string name="low_quality_smaller">Nízka kvalita (menšie)</string>
     <string name="high_quality_larger">Vysoká kvalita (väčšie)</string>
     <string name="seekbar_preview_thumbnail_title">Náhľad miniatúry pri vyhľadávaní</string>
-    <string name="show_image_indicators_summary">Zobrazí farebné pásiky Picasso na obrázkoch podľa ich zdroja: červený pre sieť, modrý pre disk a zelený pre pamäť</string>
-    <string name="show_image_indicators_title">Zobraziť indikátory obrázka</string>
     <string name="main_page_content_swipe_remove">Potiahnutím vymazať</string>
     <string name="comments_are_disabled">Komentáre sú zakázané</string>
     <string name="start_main_player_fullscreen_summary">Ak je automatické otáčanie zablokované, nespustí videá v miniprehrávači, ale prepne sa do celoobrazovkového režimu. Do miniprehrávača sa dostanete po ukončení režimu celej obrazovky</string>
@@ -845,10 +844,10 @@
     <string name="migration_info_6_7_message">SoundCloud prestal používať pôvodnú Top 50. Daná stránka bola odstránená z hlavnej stránky.</string>
     <string name="migration_info_7_8_title">Odstránené kombinované trendy na YouTube</string>
     <string name="migration_info_7_8_message">YouTube ukončil prevádzku kombinovanej stránky s trendmi k 21. júlu 2025. NewPipe nahradil predvolenú stránku s trendmi stránkou s trendovými živými prenosmi.\n\nV nastaveniach „Nastavenia &gt; Obsah &gt; Obsah hlavnej stránky“ môžete vybrať aj iné stránky s trendmi.</string>
-    <string name="trending_gaming">Ttendy v hrách</string>
-    <string name="trending_podcasts">Trendové podcasty</string>
-    <string name="trending_movies">Trendové filmy a seriály</string>
-    <string name="trending_music">Trendová hudba</string>
+    <string name="trending_gaming">Populárne hry</string>
+    <string name="trending_podcasts">Populárne podcasty</string>
+    <string name="trending_movies">Populárne filmy a seriály</string>
+    <string name="trending_music">Populárna hudba</string>
     <string name="short_thousand">%stis.</string>
     <string name="short_million">%smil.</string>
     <string name="short_billion">%smld.</string>

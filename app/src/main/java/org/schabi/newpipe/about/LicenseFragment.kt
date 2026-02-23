@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import androidx.appcompat.app.AlertDialog
+import androidx.core.os.BundleCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -33,7 +34,9 @@ class LicenseFragment : Fragment() {
         super.onCreate(savedInstanceState)
         softwareComponents = arguments?.parcelableArrayList<SoftwareComponent>(ARG_COMPONENTS)!!
             .sortedBy { it.name } // Sort components by name
-        activeSoftwareComponent = savedInstanceState?.getSerializable(SOFTWARE_COMPONENT_KEY) as? SoftwareComponent
+        activeSoftwareComponent = savedInstanceState?.let {
+            BundleCompat.getSerializable(it, SOFTWARE_COMPONENT_KEY, SoftwareComponent::class.java)
+        }
     }
 
     override fun onDestroy() {
@@ -94,7 +97,8 @@ class LicenseFragment : Fragment() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { formattedLicense ->
                     val webViewData = Base64.encodeToString(
-                        formattedLicense.toByteArray(), Base64.NO_PADDING
+                        formattedLicense.toByteArray(),
+                        Base64.NO_PADDING
                     )
                     val webView = WebView(context)
                     webView.loadData(webViewData, "text/html; charset=UTF-8", "base64")

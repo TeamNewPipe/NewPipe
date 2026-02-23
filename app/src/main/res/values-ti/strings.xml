@@ -170,4 +170,19 @@
     <string name="dismiss">ሰሩዞ</string>
     <string name="rename">ስም ቀያር</string>
     <string name="msg_error">ስሕተት</string>
+    <string name="metadata_tags">መፍለዪ</string>
+    <string name="metadata_privacy_public">ህዝባዊ</string>
+    <string name="metadata_privacy">ብሕትነት</string>
+    <string name="tab_licenses">ፍቓድታት</string>
+    <string name="read_full_license">ፍቓድ ኣንብብ</string>
+    <string name="metadata_category">ምድብ</string>
+    <string name="metadata_licence">ፍቓድ</string>
+    <string name="settings_category_updates_title">እዋናዊታት</string>
+    <string name="metadata_avatars">ኣቫታራት</string>
+    <string name="metadata_banners">ባነራት</string>
+    <string name="metadata_privacy_unlisted">ዘይተዘርዘረ</string>
+    <string name="metadata_privacy_private">ብሕታዊ</string>
+    <string name="metadata_privacy_internal">ውሽጣዊ</string>
+    <string name="metadata_subscribers">ተኸታተልቲ</string>
+    <string name="open_website_license">መርበብ-ቦታ ክፈት</string>
 </resources>

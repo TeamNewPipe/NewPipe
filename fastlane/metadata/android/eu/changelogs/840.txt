@@ -1,0 +1,21 @@
+Berria
+• Hizkuntza hautatzailea
+• Kodira bidali botoia
+• Iruzkinak kopiatu
+
+Hobetua
+• ReCaptcha eta cookieak
+• Puntu-menua kendu
+• Bistaratu baimena eskatu
+• Zerrenda izena aldatu
+• PeerTube hobekuntzak
+
+Konpondua
+• Erreproduzitzailea abiarazi minimizatuta
+• Keinu distira
+• .srt lerro-jauziak
+• SD txartel deskargak
+• Android KitKat deskargak
+• .mp4 ezagutza
+• Lokalizazio arazoak
+• [YouTube] Denbora-zigiluak

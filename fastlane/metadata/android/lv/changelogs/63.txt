@@ -1,8 +1,8 @@
 ### Uzlabojumi
-- Iestatījumu importēšana/eksportēšana #1333
+- Ievietot/izgūt iestatījumus #1333
 - Samazināts pārzīmēšanas skaits (veiktspējas uzlabojums) #1371
 - Nelieli koda uzlabojumi #1375
-- Pievienots viss par GDPR #1420
+- Pievienota visa informācija par GDPR #1420
 
 ### Salabots
-- Lejupielādētājs: Salabota lietotnes nobrukšana turpinot lejupielādēt nepabeigtās .giga failu lejupielādes #1407
+- Lejupielādētājs: Salabota lietotnes nobrukšana ielādējot nepabeigtās .giga datņu lejupielādes #1407

@@ -55,7 +55,7 @@
     <string name="error_snackbar_action">Bildir</string>
     <string name="what_device_headline">Bilgi:</string>
     <string name="what_happened_headline">Ne oldu:</string>
-    <string name="info_labels">Ne:\\nİstek:\\nİçerik Dili:\\nİçerik Ülkesi:\\nUygulama Dili:\\nHizmet:\\nGMT Zamanı:\\nPaket:\\nSürüm:\\nİşletim sistemi sürümü:</string>
+    <string name="info_labels">Ne:\nİstek:\nİçerik Dili:\nİçerik Ülkesi:\nUygulama Dili:\nHizmet:\nGMT Zamanı:\nPaket:\nSürüm:\nİşletim sistemi sürümü:</string>
     <string name="detail_thumbnail_view_description">Videoyu oynat, süre:</string>
     <string name="detail_uploader_thumbnail_view_description">Yükleyenin avatar küçük resmi</string>
     <string name="detail_likes_img_view_description">Beğeni</string>
@@ -506,10 +506,9 @@
     <string name="restricted_video">Bu video yaş kısıtlıdır.
 \n
 \nGörmek istiyorsanız ayarlarda \"%1$s\" seçeneğini açın.</string>
-    <string name="remove_watched_popup_warning">Oynatma listesine eklendikten önce ve sonra izlenen videolar kaldırılacak.
-\nEmin misiniz\? Bu geri döndürülemez!</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Evet ve kısmen izlenmiş videolar</string>
-    <string name="remove_watched_popup_title">İzlenen videoları kaldır\?</string>
+    <string name="remove_watched_popup_warning">Oynatma listesine eklenmeden önce ve sonra izlenen yayınlar kaldırılacaktır. \nEmin misiniz?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Evet ve kısmen izlenmiş videolar</string>
+    <string name="remove_watched_popup_title">İzlenen yayınları kaldır?</string>
     <string name="remove_watched">İzleneni kaldır</string>
     <string name="show_original_time_ago_summary">Akış ögelerinde hizmetlerden alınan özgün metinler görünecektir</string>
     <string name="show_original_time_ago_title">Ögelerde özgün \'… önce\'yi göster</string>
@@ -628,8 +627,6 @@
     <string name="comments_are_disabled">Yorumlar devre dışı</string>
     <string name="detail_heart_img_view_description">Yaratıcısınca kalplendi</string>
     <string name="mark_as_watched">İzlendi olarak işaretle</string>
-    <string name="show_image_indicators_summary">Resimlerin üzerinde kaynaklarını gösteren Picasso renkli şeritler göster: ağ için kırmızı, disk için mavi ve bellek için yeşil</string>
-    <string name="show_image_indicators_title">Resim göstergelerini göster</string>
     <string name="remote_search_suggestions">Uzak arama önerileri</string>
     <string name="local_search_suggestions">Yerel arama önerileri</string>
     <plurals name="deleted_downloads_toast">

@@ -98,10 +98,9 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
             return true;
         });
 
-        final Preference resetSettings = findPreference(getString(R.string.reset_settings));
+        final Preference resetSettings = requirePreference(R.string.reset_settings);
         // Resets all settings by deleting shared preference and restarting the app
         // A dialogue will pop up to confirm if user intends to reset all settings
-        assert resetSettings != null;
         resetSettings.setOnPreferenceClickListener(preference -> {
             // Show Alert Dialogue
             final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

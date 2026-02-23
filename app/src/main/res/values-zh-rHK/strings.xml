@@ -86,7 +86,7 @@
     <string name="popup_playing_toast">浮面播緊</string>
     <string name="all">全部嘢</string>
     <string name="app_ui_crash">App/界面閃退</string>
-    <string name="info_labels">經過：\\n請求：\\n內容語言：\\n內容國家：\\nApp 語言：\\n服務：\\nGMT 時間：\\n封裝：\\n版本：\\nOS 版本：</string>
+    <string name="info_labels">經過：\n請求：\n內容語言：\n內容國家：\nApp 語言：\n服務：\nGMT 時間：\n封裝：\n版本：\nOS 版本：</string>
     <string name="title_activity_recaptcha">reCAPTCHA 考驗</string>
     <string name="msg_popup_permission">以浮面模式開啟
 \n有呢個權限至得</string>
@@ -538,7 +538,7 @@
     <string name="crash_the_app">令個 app 閃退</string>
     <string name="show_error_snackbar">顯示一則錯誤橫條</string>
     <string name="create_error_notification">建立一則出現錯誤通知</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">好，包括埋睇過但未睇晒嘅影片</string>
+    <string name="remove_watched_popup_partially_watched_streams">好，包括埋睇過但未睇晒嘅影片</string>
     <string name="new_seek_duration_toast">礙於 ExoPlayer 所限，快轉長度經已改為 %d 秒</string>
     <string name="hash_channel_name">影片雜湊通知</string>
     <string name="enqueued">排咗去隊尾</string>
@@ -555,8 +555,7 @@
     <string name="downloads_storage_ask_summary">每次下載都會問你要儲存去邊。
 \n如果你想儲存落外置 SD 卡入面，請啟用系統資料夾揀選器 (SAF)</string>
     <string name="downloads_storage_use_saf_title">用系統資料夾揀選器 (SAF)</string>
-    <string name="remove_watched_popup_warning">加入去播放清單之前或之後睇過嘅影片都會剷走個囉喎。
-\n你肯定？剷走咗冇得掹個囉喎！</string>
+    <string name="remove_watched_popup_warning">加入去播放清單之前或之後睇過嘅影片都會剷走個囉喎。 \n你肯定？剷走咗冇得掹個囉喎！</string>
     <string name="downloads_storage_use_saf_summary">「儲存空間存取框架」係畀你下載落外置 SD 卡嗰度</string>
     <string name="downloads_storage_use_saf_summary_api_29">Android 10 打上，局住要用「儲存空間存取框架」</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer 預設值</string>
@@ -663,9 +662,7 @@
     <string name="feed_create_new_group_button_title">新</string>
     <string name="feed_group_dialog_delete_message">你係咪要刪除呢個谷？</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">淨係顯示未成谷嘅訂閱</string>
-    <string name="show_image_indicators_summary">啲圖都要騷 Picasso 三色碼顯示源頭：紅碼係網絡上高落嚟，藍碼係儲存喺磁碟本地，綠碼係潛伏喺記憶體中</string>
     <string name="show_original_time_ago_summary">服務原本嘅字會騷返喺串流項目上面</string>
-    <string name="show_image_indicators_title">影像要推三色碼</string>
     <string name="disable_media_tunneling_summary">若果播片嘅時候窒下窒下或者黑畫面，就停用多媒體隧道啦。</string>
     <string name="import_youtube_instructions">點樣用 Google 匯出嚟匯入 YouTube 訂閱：
 \n

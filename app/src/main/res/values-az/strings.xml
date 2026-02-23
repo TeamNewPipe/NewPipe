@@ -397,8 +397,7 @@
     <string name="error_http_unsupported_range">Server çox iş parçalı endirmələri qəbul etmir, @string/msg_threads = 1 ilə yenidən cəhd edin</string>
     <string name="delete_downloaded_files_confirm">Bütün endirilmiş fayllar diskdən silinsin\?</string>
     <string name="max_retry_msg">Maksimum təkrar cəhdlər</string>
-    <string name="remove_watched_popup_warning">Pleylistə əlavə olunandan əvvəl və sonrakı baxılmış videolar silinəcək.
-\nSiz əminsiniz? Bu geri qaytarıla bilməz!</string>
+    <string name="remove_watched_popup_warning">Pleylistə əlavə olunandan əvvəl və sonrakı baxılan yayımlar silinəcək. \nSiz əminsiniz?</string>
     <string name="feed_groups_header_title">Kanal qrupları</string>
     <string name="feed_new_items">Yeni axın elementləri</string>
     <string name="feed_update_threshold_summary">Abunəlik köhnəlmiş hesab edilənə qədərki son yeniləmədən sonrakı vaxt — %s</string>
@@ -491,8 +490,6 @@
     <string name="preferred_player_fetcher_notification_title">Məlumat əldə edilir…</string>
     <string name="show_original_time_ago_title">Elementlərdə orijinal, əvvəlki vaxtı göstər</string>
     <string name="enable_disposed_exceptions_title">Yaşam dövrəsi xaricindəki xətaları bildir</string>
-    <string name="show_image_indicators_title">Şəkil göstəricilərini göstər</string>
-    <string name="show_image_indicators_summary">Şəkillərin üzərində mənbəsini göstərən Picasso rəngli lentləri göstər: şəbəkə üçün qırmızı, disk üçün mavi və yaddaş üçün yaşıl</string>
     <string name="pause_downloads_on_mobile_desc">Bəzi endirmələri dayandırmaq mümkün olmasa da, mobil dataya keçərkən faydalıdır</string>
     <string name="close">Bağla</string>
     <string name="error_progress_lost">Fayl silindiyi üçün irəliləyiş itirildi</string>
@@ -529,7 +526,7 @@
     </plurals>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer standartı</string>
     <string name="feed_use_dedicated_fetch_method_title">Mövcud olduqda xüsusi axından al</string>
-    <string name="remove_watched_popup_title">Baxılmış videolar silinsin\?</string>
+    <string name="remove_watched_popup_title">Baxılan yayımlar silinsin?</string>
     <string name="remove_watched">İzləniləni sil</string>
     <string name="downloads_storage_use_saf_title">Sistem qovluğu seçicisini (SAF) istifadə et</string>
     <string name="error_timeout">Bağlantı fasiləsi</string>
@@ -578,14 +575,14 @@
     </plurals>
     <string name="audio">Səs</string>
     <string name="error_details_headline">Təfərrüatlar:</string>
-    <string name="info_labels">Nə:\\nSorğu:\\nMəzmun Dili:\\nMəzmun Ölkəsi:\\nTətbiq Dili:\\nXidmət:\\nGMT Saatı:\\nPaket:\\nVersiya:\\nƏS versiyası:</string>
+    <string name="info_labels">Nə:\nSorğu:\nMəzmun Dili:\nMəzmun Ölkəsi:\nTətbiq Dili:\nXidmət:\nGMT Saatı:\nPaket:\nVersiya:\nƏS versiyası:</string>
     <string name="error_snackbar_message">Bağışlayın, nəsə səhv oldu.</string>
     <string name="copy_for_github">Formatlanmış hesabatı köçür</string>
     <string name="peertube_instance_add_help">Server URL\'sini daxil et</string>
     <string name="peertube_instance_add_fail">Serveri təsdiqləmək mümkün olmadı</string>
     <string name="peertube_instance_url_help">%s-də bəyəndiyiniz serverləri tapın</string>
     <string name="show_hold_to_append_summary">Video \"Təfsilatlar\" səhifəsində fon və ya ani görüntü düyməsin basarkən ipucu göstər</string>
-    <string name="caption_setting_description">Oynadıcı titr mətn miqyasını və arxa fon üslublarını dəyişdir. Effektiv olması üçün tətbiqi yenidən başlatmaq tələb olunur</string>
+    <string name="caption_setting_description">Oynadıcı titr mətn miqyasını və arxa plan üslublarını dəyişdir. Effektiv olması üçün tətbiqi yenidən başlatmaq tələb olunur</string>
     <string name="error_occurred_detail">Xəta baş verdi: %1$s</string>
     <string name="invalid_file">Fayl mövcud deyil, yaxud oxumaq və ya yazmaq icazəsi yoxdur</string>
     <string name="parsing_error">Veb saytı təhlil etmək alınmadı</string>
@@ -652,7 +649,7 @@
     <string name="playback_speed_control">Oynatma Sürəti Nizamlamaları</string>
     <string name="unhook_checkbox">Ayır (pozuntuya səbəb ola bilər)</string>
     <string name="show_error">Xətanı göstər</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Bəli və qismən baxılmış videolar</string>
+    <string name="remove_watched_popup_partially_watched_streams">Bəli və qismən baxılmış videolar</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s endirməsi silindi</item>
         <item quantity="other">%1$s endirmə silindi</item>

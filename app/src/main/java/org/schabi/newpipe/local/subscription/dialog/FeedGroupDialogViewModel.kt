@@ -55,7 +55,8 @@ class FeedGroupDialogViewModel(
 
     private var subscriptionsDisposable = Flowable
         .combineLatest(
-            subscriptionsFlowable, feedDatabaseManager.subscriptionIdsForGroup(groupId)
+            subscriptionsFlowable,
+            feedDatabaseManager.subscriptionIdsForGroup(groupId)
         ) { t1: List<PickerSubscriptionItem>, t2: List<Long> -> t1 to t2.toSet() }
         .subscribeOn(Schedulers.io())
         .subscribe(mutableSubscriptionsLiveData::postValue)
@@ -125,7 +126,10 @@ class FeedGroupDialogViewModel(
         ) = viewModelFactory {
             initializer {
                 FeedGroupDialogViewModel(
-                    context.applicationContext, groupId, initialQuery, initialShowOnlyUngrouped
+                    context.applicationContext,
+                    groupId,
+                    initialQuery,
+                    initialShowOnlyUngrouped
                 )
             }
         }

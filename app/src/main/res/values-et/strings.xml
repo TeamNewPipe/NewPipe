@@ -141,7 +141,7 @@
     <string name="error_snackbar_action">Teata</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Mis juhtus:</string>
-    <string name="info_labels">Mis:\\nPäring:\\nSisu keel:\\nSisu maa:\\nRakenduse keel:\\nTeenus:\\nGMT aeg:\\nPakett:\\nVersioon:\\nOS versioon:</string>
+    <string name="info_labels">Mis:\nPäring:\nSisu keel:\nSisu maa:\nRakenduse keel:\nTeenus:\nGMT aeg:\nPakett:\nVersioon:\nOS versioon:</string>
     <string name="your_comment">Oma kommentaar (inglise keeles):</string>
     <string name="error_details_headline">Üksikasjad:</string>
     <string name="detail_thumbnail_view_description">Esita video, kestus:</string>
@@ -530,10 +530,9 @@
         <item quantity="one">%d sekund</item>
         <item quantity="other">%d sekundit</item>
     </plurals>
-    <string name="remove_watched_popup_warning">Sellega eemaldame vaadatud videod ja esitusloendisse lisatud videod.
-\nKas sa oled kindel\? Seda tegevust ei saa hiljem tagasi pöörata!</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Jah, sealhulgas videod, mille vaatmine jäi pooleli</string>
-    <string name="remove_watched_popup_title">Kas eemaldame vaadatud videod\?</string>
+    <string name="remove_watched_popup_warning">Sellega eemaldame vaadatud meediavood ja esitusloendisse lisatud sisu. \nKas sa oled kindel?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Jah, sealhulgas videod, mille vaatmine jäi pooleli</string>
+    <string name="remove_watched_popup_title">Kas eemaldame vaadatud meediavood?</string>
     <string name="remove_watched">Eemalda vaadatud videod</string>
     <string name="systems_language">Kasuta süsteemi keelt</string>
     <string name="app_language_title">Rakenduse keel</string>
@@ -615,8 +614,6 @@
     <string name="detail_heart_img_view_description">Südamlik autor</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Kas sinu meelest on voo laadimine aeglane? Sel juhul proovi lubada kiire laadimine (seda saad muuta seadetes või vajutades allolevat nuppu). \n \nNewPipe pakub kahte voo laadimise strateegiat: \n• Tellitud kanali täielik, kuid aeglane hankimine. \n• Teenuse spetsiaalse otspunkti kasutamine, mis on kiire, kuid tavaliselt mittetäielik. \n \nErinevus nende kahe vahel seisneb selles, et kiirel puudub tavaliselt teave, näiteks üksuse pikkus või tüüp (ei saa eristada reaalajas videoid tavalistest) ja see võib tagastada vähem üksusi. \n \nYouTube on näide teenusest, mis pakub seda kiirmeetodit oma RSS-vooga. \n \nNii et valik taandub sellele, mida eelistad: kiirus või täpne teave.</string>
     <string name="mark_as_watched">Märgi vaadatuks</string>
-    <string name="show_image_indicators_summary">Näita piltide kohal Picasso värvides riba, mis märgib pildi allikat: punane tähistab võrku, sinine kohalikku andmekandjat ja roheline kohalikku mälu</string>
-    <string name="show_image_indicators_title">Näita piltide allikat</string>
     <string name="remote_search_suggestions">Kaugotsingu soovitused</string>
     <string name="local_search_suggestions">Kohaliku otsingu soovitused</string>
     <string name="main_page_content_swipe_remove">Üksuse eemaldamiseks viipa</string>

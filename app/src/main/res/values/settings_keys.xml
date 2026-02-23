@@ -241,7 +241,6 @@
     <string name="show_memory_leaks_key">show_memory_leaks_key</string>
     <string name="allow_disposed_exceptions_key">allow_disposed_exceptions_key</string>
     <string name="show_original_time_ago_key">show_original_time_ago_key</string>
-    <string name="show_image_indicators_key">show_image_indicators_key</string>
     <string name="show_crash_the_player_key">show_crash_the_player_key</string>
     <string name="check_new_streams_key">check_new_streams</string>
     <string name="crash_the_app_key">crash_the_app_key</string>
@@ -480,6 +479,7 @@
     <string name="popup_player_key">popup_player</string>
     <string name="download_key">download</string>
     <string name="add_to_playlist_key">add_to_playlist</string>
+    <string name="enqueue_key">enqueue</string>
     <string name="always_ask_open_action_key">always_ask_player</string>
 
     <string-array name="preferred_open_action_description_list">
@@ -489,6 +489,7 @@
         <item>@string/popup_player</item>
         <item>@string/download</item>
         <item>@string/add_to_playlist</item>
+        <item>@string/enqueue_stream</item>
         <item>@string/always_ask_open_action</item>
     </string-array>
     <string-array name="preferred_open_action_values_list">
@@ -499,6 +500,7 @@
         <item>@string/download_key</item>
         <item>@string/add_to_playlist_key</item>
         <item>@string/always_ask_open_action_key</item>
+        <item>@string/enqueue_key</item>
     </string-array>
 
     <!-- Updates -->

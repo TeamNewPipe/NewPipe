@@ -1,0 +1,4 @@
+Konpondu da YouTube-k ez zuela inolako erreprodukziorik erreproduzitzen HTTP 403 erroreengatik.
+
+YouTube bideo baten erdian noizbehinkako HTTP 403 erroreak ez dira oraindik konpondu.
+Arazo hori ahalik eta azkarren konponduko da beste hotfix bertsio batean.

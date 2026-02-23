@@ -1,0 +1,13 @@
+# Továbbfejlesztve
+Az aktuális lejátszó megmarad időbélyegre kattintáskor
+Függőben lévő letöltések helyreállításának megkísérlése
+Letöltés törlése a fájl megtartásával
+Overlay engedélyhez magyarázó párbeszédablak (Android 11+)
+on.soundcloud hivatkozások támogatása
+Sok kisebb fejlesztés és optimalizálás
+
+# Javítva
+Számozás javítása Android 7 alatt
+Szellem értesítések javítása
+SRT felirat javítások
+Sok összeomlás javítva

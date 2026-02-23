@@ -1,0 +1,1 @@
+NewPipe al drœva nissuna libreria framework del Google o l'API del YouTube. Al scandiss domà el sit web per ciapar su i informazione de qe n'ha bisogn. Per qella rexon qì qell'aplicazion qì la pœl vesser doperada ind aparecc senza i Servizi Google installad. G'è nanca bisogn d'haver-g un cunt YouTube per doperar NewPipe e a l'è FLOSS.

@@ -3,6 +3,19 @@
 NewPipe contribution guidelines
 ===============================
 
+## AI policy
+
+* Using generative AI to develop new features or making larger code changes is generally prohibited. Please refrain from contributions which are heavily depending on AI generated source code because they are usually lacking a fundamental understanding of the overall project structure and thus come with poor quality. However, you are allowed to use gen. AI if you
+  * are aware of the project structure,
+  * ensure that the generated code follows the project structure,
+  * fully understand the generated code, and
+  * review the generated code completely.
+* Using AI to find the root cause of bugs and generating small fixes might be acceptable. However, gen. AI often does not fix the underlying problem but is trying to fix the symptoms. If you are using AI to fix bugs, ensure that the root cause is tackled.
+* The use of AI to generate documentation is allowed. We ask you to thoroughly check the quality of generated documentation – wrong, misleading or uninformative documentation is useless and wastes the reader's time. Ensure that reasoning is documented.
+* Using generative AI to write or fill in PR or issue templates is prohibited. Those texts are often lengthy and miss critical information.
+* PRs and issues that do not follow this AI policy can be closed without further explanation.
+
+
 ## Crash reporting
 
 Report crashes through the **automated crash report system** of NewPipe.

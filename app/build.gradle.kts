@@ -3,6 +3,8 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
+import com.android.build.api.dsl.ApplicationExtension
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -12,8 +14,6 @@ plugins {
     alias(libs.plugins.sonarqube)
     checkstyle
 }
-
-apply(from = "check-dependencies.gradle.kts")
 
 val gitWorkingBranch = providers.exec {
     commandLine("git", "rev-parse", "--abbrev-ref", "HEAD")
@@ -25,7 +25,16 @@ java {
     }
 }
 
-android {
+kotlin {
+    compilerOptions {
+        // TODO: Drop annotation default target when it is stable
+        freeCompilerArgs.addAll(
+            "-Xannotation-default-target=param-property"
+        )
+    }
+}
+
+configure<ApplicationExtension> {
     compileSdk = 36
     namespace = "org.schabi.newpipe"
 
@@ -35,9 +44,9 @@ android {
         minSdk = 21
         targetSdk = 35
 
-        versionCode = System.getProperty("versionCodeOverride")?.toInt() ?: 1005
+        versionCode = System.getProperty("versionCodeOverride")?.toInt() ?: 1008
 
-        versionName = "0.28.0"
+        versionName = "0.28.3"
         System.getProperty("versionNameSuffix")?.let { versionNameSuffix = it }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -70,19 +79,18 @@ android {
                 resValue("string", "app_name", "NewPipe $suffix")
             }
             isMinifyEnabled = true
-            isShrinkResources = false // disabled to fix F-Droid"s reproducible build
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 
     lint {
-        checkReleaseBuilds = false
-        // Or, if you prefer, you can continue to check for errors in release builds,
-        // but continue the build even when errors are found:
+        lintConfig = file("lint.xml")
+        // Continue the debug build even when errors are found
         abortOnError = false
-        // suppress false warning ("Resource IDs will be non-final in Android Gradle Plugin version
-        // 5.0, avoid using them in switch case statements"), which affects only library projects
-        disable += "NonConstantResourceId"
     }
 
     compileOptions {
@@ -93,7 +101,7 @@ android {
 
     sourceSets {
         getByName("androidTest") {
-            assets.srcDir("$projectDir/schemas")
+            assets.directories += "$projectDir/schemas"
         }
     }
 
@@ -104,6 +112,7 @@ android {
     buildFeatures {
         viewBinding = true
         buildConfig = true
+        resValues = true
     }
 
     packaging {
@@ -126,6 +135,13 @@ ksp {
 
 // Custom dependency configuration for ktlint
 val ktlint by configurations.creating
+
+// https://checkstyle.org/#JRE_and_JDK
+tasks.withType<Checkstyle>().configureEach {
+    javaLauncher = javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
 
 checkstyle {
     configDirectory = rootProject.file("checkstyle")
@@ -160,7 +176,7 @@ tasks.register<JavaExec>("runKtlint") {
     outputs.dir(outputDir)
     mainClass.set("com.pinterest.ktlint.Main")
     classpath = configurations.getByName("ktlint")
-    args = listOf("src/**/*.kt")
+    args = listOf("--editorconfig=../.editorconfig", "src/**/*.kt")
     jvmArgs = listOf("--add-opens", "java.base/java.lang=ALL-UNNAMED")
 }
 
@@ -169,8 +185,12 @@ tasks.register<JavaExec>("formatKtlint") {
     outputs.dir(outputDir)
     mainClass.set("com.pinterest.ktlint.Main")
     classpath = configurations.getByName("ktlint")
-    args = listOf("-F", "src/**/*.kt")
+    args = listOf("--editorconfig=../.editorconfig", "-F", "src/**/*.kt")
     jvmArgs = listOf("--add-opens", "java.base/java.lang=ALL-UNNAMED")
+}
+
+tasks.register<CheckDependenciesOrder>("checkDependenciesOrder") {
+    tomlFile = layout.projectDirectory.file("../gradle/libs.versions.toml")
 }
 
 afterEvaluate {
@@ -247,16 +267,13 @@ dependencies {
     implementation(libs.google.exoplayer.smoothstreaming)
     implementation(libs.google.exoplayer.ui)
 
-    // Metadata generator for service descriptors
-    compileOnly(libs.google.autoservice.annotations)
-    ksp(libs.google.autoservice.compiler)
-
     // Manager for complex RecyclerView layouts
     implementation(libs.lisawray.groupie.core)
     implementation(libs.lisawray.groupie.viewbinding)
 
     // Image loading
-    implementation(libs.squareup.picasso)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
 
     // Markdown library for Android
     implementation(libs.noties.markwon.core)
@@ -264,6 +281,8 @@ dependencies {
 
     // Crash reporting
     implementation(libs.acra.core)
+    compileOnly(libs.google.autoservice.annotations)
+    ksp(libs.zacsweers.autoservice.compiler)
 
     // Properly restarting
     implementation(libs.jakewharton.phoenix)

@@ -6,7 +6,6 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
@@ -15,21 +14,19 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.app.PendingIntentCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
+import androidx.core.net.toUri
 import androidx.preference.PreferenceManager
-import com.squareup.picasso.Picasso
-import com.squareup.picasso.Target
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.service.FeedUpdateInfo
 import org.schabi.newpipe.util.NavigationHelper
-import org.schabi.newpipe.util.image.PicassoHelper
+import org.schabi.newpipe.util.image.CoilHelper
 
 /**
  * Helper for everything related to show notifications about new streams to the user.
  */
 class NotificationHelper(val context: Context) {
     private val manager = NotificationManagerCompat.from(context)
-    private val iconLoadingTargets = ArrayList<Target>()
 
     /**
      * Show notifications for new streams from a single channel. The individual notifications are
@@ -41,7 +38,9 @@ class NotificationHelper(val context: Context) {
     fun displayNewStreamsNotifications(data: FeedUpdateInfo) {
         val newStreams = data.newStreams
         val summary = context.resources.getQuantityString(
-            R.plurals.new_streams, newStreams.size, newStreams.size
+            R.plurals.new_streams,
+            newStreams.size,
+            newStreams.size
         )
         val summaryBuilder = NotificationCompat.Builder(
             context,
@@ -68,69 +67,42 @@ class NotificationHelper(val context: Context) {
         summaryBuilder.setStyle(style)
 
         // open the channel page when clicking on the summary notification
+        val intent = NavigationHelper
+            .getChannelIntent(context, data.serviceId, data.url)
+            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         summaryBuilder.setContentIntent(
-            PendingIntentCompat.getActivity(
-                context,
-                data.pseudoId,
-                NavigationHelper
-                    .getChannelIntent(context, data.serviceId, data.url)
-                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
-                0,
-                false
-            )
+            PendingIntentCompat.getActivity(context, data.pseudoId, intent, 0, false)
         )
 
-        // a Target is like a listener for image loading events
-        val target = object : Target {
-            override fun onBitmapLoaded(bitmap: Bitmap, from: Picasso.LoadedFrom) {
-                // set channel icon only if there is actually one (for Android versions < 7.0)
-                summaryBuilder.setLargeIcon(bitmap)
+        val avatarIcon =
+            CoilHelper.loadBitmapBlocking(context, data.avatarUrl, R.drawable.ic_newpipe_triangle_white)
+        summaryBuilder.setLargeIcon(avatarIcon)
 
-                // Show individual stream notifications, set channel icon only if there is actually
-                // one
-                showStreamNotifications(newStreams, data.serviceId, data.url, bitmap)
-                // Show summary notification
-                manager.notify(data.pseudoId, summaryBuilder.build())
-
-                iconLoadingTargets.remove(this) // allow it to be garbage-collected
-            }
-
-            override fun onBitmapFailed(e: Exception, errorDrawable: Drawable) {
-                // Show individual stream notifications
-                showStreamNotifications(newStreams, data.serviceId, data.url, null)
-                // Show summary notification
-                manager.notify(data.pseudoId, summaryBuilder.build())
-                iconLoadingTargets.remove(this) // allow it to be garbage-collected
-            }
-
-            override fun onPrepareLoad(placeHolderDrawable: Drawable) {
-                // Nothing to do
-            }
+        // Show individual stream notifications, set channel icon only if there is actually one
+        showStreamNotifications(newStreams, data.serviceId, avatarIcon)
+        // Show summary notification
+        if (manager.areNotificationsEnabled()) {
+            manager.notify(data.pseudoId, summaryBuilder.build())
         }
-
-        // add the target to the list to hold a strong reference and prevent it from being garbage
-        // collected, since Picasso only holds weak references to targets
-        iconLoadingTargets.add(target)
-
-        PicassoHelper.loadNotificationIcon(data.avatarUrl).into(target)
     }
 
     private fun showStreamNotifications(
         newStreams: List<StreamInfoItem>,
         serviceId: Int,
-        channelUrl: String,
         channelIcon: Bitmap?
     ) {
-        for (stream in newStreams) {
-            val notification = createStreamNotification(stream, serviceId, channelUrl, channelIcon)
-            manager.notify(stream.url.hashCode(), notification)
+        if (manager.areNotificationsEnabled()) {
+            newStreams.forEach { stream ->
+                val notification =
+                    createStreamNotification(stream, serviceId, channelIcon)
+                manager.notify(stream.url.hashCode(), notification)
+            }
         }
     }
 
     private fun createStreamNotification(
         item: StreamInfoItem,
         serviceId: Int,
-        channelUrl: String,
         channelIcon: Bitmap?
     ): Notification {
         return NotificationCompat.Builder(
@@ -141,7 +113,7 @@ class NotificationHelper(val context: Context) {
             .setLargeIcon(channelIcon)
             .setContentTitle(item.name)
             .setContentText(item.uploaderName)
-            .setGroup(channelUrl)
+            .setGroup(item.uploaderUrl)
             .setColor(ContextCompat.getColor(context, R.color.ic_launcher_background))
             .setColorized(true)
             .setAutoCancel(true)
@@ -181,8 +153,7 @@ class NotificationHelper(val context: Context) {
                 val manager = context.getSystemService<NotificationManager>()!!
                 val enabled = manager.areNotificationsEnabled()
                 val channel = manager.getNotificationChannel(channelId)
-                val importance = channel?.importance
-                enabled && channel != null && importance != NotificationManager.IMPORTANCE_NONE
+                enabled && channel?.importance != NotificationManager.IMPORTANCE_NONE
             } else {
                 NotificationManagerCompat.from(context).areNotificationsEnabled()
             }
@@ -212,7 +183,7 @@ class NotificationHelper(val context: Context) {
                 context.startActivity(intent)
             } else {
                 val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                intent.data = Uri.parse("package:" + context.packageName)
+                intent.data = "package:${context.packageName}".toUri()
                 context.startActivity(intent)
             }
         }

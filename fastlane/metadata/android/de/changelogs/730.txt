@@ -1,2 +1,2 @@
 # Behoben
-- erneuter Hotfix des Entschlüsselungsfunktionsfehlers.
+- Fehler bei der Entschlüsselungsfunktion erneut behoben.

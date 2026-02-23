@@ -1,0 +1,3 @@
+Konponketa
+• Bufferra handitu erreprodukziorako rebuffer-aren ondoren
+• Tabletetan eta telebistetan erreproduzitzailearen erreprodukzio-ilararen ikonoan klik egitean gertatzen zen hutsegitea konpondu da

@@ -1,6 +1,9 @@
 package org.schabi.newpipe.local.history
 
 import androidx.test.core.app.ApplicationProvider
+import java.time.LocalDateTime
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -11,9 +14,6 @@ import org.schabi.newpipe.database.AppDatabase
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry
 import org.schabi.newpipe.testUtil.TestDatabase
 import org.schabi.newpipe.testUtil.TrampolineSchedulerRule
-import java.time.LocalDateTime
-import java.time.OffsetDateTime
-import java.time.ZoneOffset
 
 class HistoryRecordManagerTest {
 
@@ -54,7 +54,7 @@ class HistoryRecordManagerTest {
             SearchHistoryEntry(creationDate = time.minusSeconds(1), serviceId = 0, search = "A"),
             SearchHistoryEntry(creationDate = time.minusSeconds(2), serviceId = 2, search = "A"),
             SearchHistoryEntry(creationDate = time.minusSeconds(3), serviceId = 1, search = "B"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(4), serviceId = 0, search = "B"),
+            SearchHistoryEntry(creationDate = time.minusSeconds(4), serviceId = 0, search = "B")
         )
 
         // make sure all 4 were inserted
@@ -85,7 +85,7 @@ class HistoryRecordManagerTest {
         val entries = listOf(
             SearchHistoryEntry(creationDate = time.minusSeconds(1), serviceId = 1, search = "A"),
             SearchHistoryEntry(creationDate = time.minusSeconds(2), serviceId = 2, search = "B"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(3), serviceId = 0, search = "C"),
+            SearchHistoryEntry(creationDate = time.minusSeconds(3), serviceId = 0, search = "C")
         )
 
         // make sure all 3 were inserted
@@ -98,7 +98,6 @@ class HistoryRecordManagerTest {
     }
 
     private fun insertShuffledRelatedSearches(relatedSearches: Collection<SearchHistoryEntry>) {
-
         // shuffle to make sure the order of items returned by queries depends only on
         // SearchHistoryEntry.creationDate, not on the actual insertion time, so that we can
         // verify that the `ORDER BY` clause does its job
@@ -121,7 +120,7 @@ class HistoryRecordManagerTest {
             RELATED_SEARCHES_ENTRIES[6].search, // A (even if in two places)
             RELATED_SEARCHES_ENTRIES[4].search, // B
             RELATED_SEARCHES_ENTRIES[5].search, // AA
-            RELATED_SEARCHES_ENTRIES[2].search, // BA
+            RELATED_SEARCHES_ENTRIES[2].search // BA
         )
     }
 
@@ -136,7 +135,7 @@ class HistoryRecordManagerTest {
             SearchHistoryEntry(creationDate = time.minusSeconds(4), serviceId = 3, search = "A"),
             SearchHistoryEntry(creationDate = time.minusSeconds(3), serviceId = 3, search = "A"),
             SearchHistoryEntry(creationDate = time.minusSeconds(2), serviceId = 0, search = "A"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(1), serviceId = 2, search = "AA"),
+            SearchHistoryEntry(creationDate = time.minusSeconds(1), serviceId = 2, search = "AA")
         )
         insertShuffledRelatedSearches(relatedSearches)
 
@@ -153,7 +152,7 @@ class HistoryRecordManagerTest {
         assertThat(searches).containsExactly(
             RELATED_SEARCHES_ENTRIES[6].search, // A (even if in two places)
             RELATED_SEARCHES_ENTRIES[5].search, // AA
-            RELATED_SEARCHES_ENTRIES[1].search, // BA
+            RELATED_SEARCHES_ENTRIES[1].search // BA
         )
 
         // also make sure that the string comparison is case insensitive
@@ -171,7 +170,7 @@ class HistoryRecordManagerTest {
             SearchHistoryEntry(creationDate = time.minusSeconds(4), serviceId = 3, search = "A"),
             SearchHistoryEntry(creationDate = time.minusSeconds(2), serviceId = 0, search = "B"),
             SearchHistoryEntry(creationDate = time.minusSeconds(3), serviceId = 2, search = "AA"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(1), serviceId = 1, search = "A"),
+            SearchHistoryEntry(creationDate = time.minusSeconds(1), serviceId = 1, search = "A")
         )
     }
 }

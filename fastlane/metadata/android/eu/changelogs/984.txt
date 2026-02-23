@@ -1,0 +1,7 @@
+Kargatu elementu nahikoa pantaila betetzeko eta tableta/telebista korritzea konpondu
+Zerrendetan mugitzeko ausazko hutsegiteak konpondu
+Bilaketa azkarraren gainjartze-arkua sistemaren azpian jarri
+Leiho anitzetan mozketen aldaketak leheneratu (kokapen okerreko atzerakada)
+compileSdk 30etik 31ra handitu
+Erroreen liburutegia eguneratu
+Erreproduzitzailearen kodea berregituratu

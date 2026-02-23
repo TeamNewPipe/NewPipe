@@ -8,6 +8,7 @@ import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
+import kotlin.math.abs
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 import org.schabi.newpipe.ktx.AnimationType
@@ -17,7 +18,6 @@ import org.schabi.newpipe.player.helper.AudioReactor
 import org.schabi.newpipe.player.helper.PlayerHelper
 import org.schabi.newpipe.player.ui.MainPlayerUi
 import org.schabi.newpipe.util.ThemeHelper.getAndroidDimenPx
-import kotlin.math.abs
 
 /**
  * GestureListener for the player
@@ -42,24 +42,29 @@ class MainPlayerGestureListener(
                 v.parent?.requestDisallowInterceptTouchEvent(playerUi.isFullscreen)
                 true
             }
+
             MotionEvent.ACTION_UP -> {
                 v.parent?.requestDisallowInterceptTouchEvent(false)
                 false
             }
+
             else -> true
         }
     }
 
     override fun onSingleTapConfirmed(e: MotionEvent): Boolean {
-        if (DEBUG)
+        if (DEBUG) {
             Log.d(TAG, "onSingleTapConfirmed() called with: e = [$e]")
+        }
 
-        if (isDoubleTapping)
+        if (isDoubleTapping) {
             return true
+        }
         super.onSingleTapConfirmed(e)
 
-        if (player.currentState != Player.STATE_BLOCKED)
+        if (player.currentState != Player.STATE_BLOCKED) {
             onSingleTap()
+        }
         return true
     }
 
@@ -195,6 +200,7 @@ class MainPlayerGestureListener(
             when (PlayerHelper.getActionForRightGestureSide(player.context)) {
                 player.context.getString(R.string.volume_control_key) ->
                     onScrollVolume(distanceY)
+
                 player.context.getString(R.string.brightness_control_key) ->
                     onScrollBrightness(distanceY)
             }
@@ -202,6 +208,7 @@ class MainPlayerGestureListener(
             when (PlayerHelper.getActionForLeftGestureSide(player.context)) {
                 player.context.getString(R.string.volume_control_key) ->
                     onScrollVolume(distanceY)
+
                 player.context.getString(R.string.brightness_control_key) ->
                     onScrollBrightness(distanceY)
             }

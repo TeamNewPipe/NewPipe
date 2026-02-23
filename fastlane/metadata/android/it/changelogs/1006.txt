@@ -1,0 +1,16 @@
+# Migliorie
+Tieni il player attuale se si cliccano le marche temporali
+Recupera i download in sospeso se possibile
+Opzione per eliminare un download senza anche eliminare il file
+Autorizzazione di sovrapposizione: mostra finestra esplicativa per Android > R
+Supporto per link on.soundcloud
+Tanti piccoli miglioramenti e ottimizzazioni
+
+# Correzioni
+Formattazione breve del conto per Android < 7
+Notifiche fantasma
+File di sottotitoli SRT
+Crash vari
+
+# Sviluppo
+Ammodernamento del codice interno

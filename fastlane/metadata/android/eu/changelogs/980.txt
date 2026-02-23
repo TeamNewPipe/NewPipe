@@ -1,0 +1,13 @@
+Berria
+- "Gehitu erreprodukzio-zerrendara" aukera gehitu da partekatzeko menuan
+- y2u.be eta PeerTube esteka laburretarako laguntza gehitu da
+
+Hobetua
+- Erreprodukzio-abiaduraren kontrol trinkoagoak
+- Jarioak elementu berriak nabarmentzen ditu orain
+- "Erakutsi ikusitako elementuak" aukera orain jarioan gordeta dago
+
+Zuzenduta
+- YouTube-tik "atsegin dut" eta "ez dut" mezuen erauzketa konpondu da
+- Errepikapen automatikoa konpondu da atzeko planotik itzuli ondoren
+Eta askoz gehiago

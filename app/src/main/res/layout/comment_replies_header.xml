@@ -24,6 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_goneMarginStart="16dp"
         android:ellipsize="end"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -31,22 +33,21 @@
         app:layout_constraintBottom_toTopOf="@+id/uploadDate"
         app:layout_constraintEnd_toStartOf="@+id/thumbsUpImage"
         app:layout_constraintStart_toEndOf="@+id/authorAvatar"
-        app:layout_constraintTop_toTopOf="@+id/authorAvatar"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="@tools:sample/lorem/random" />
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/uploadDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:ellipsize="end"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/authorAvatar"
+        app:layout_constraintBottom_toBottomOf="@+id/authorName"
         app:layout_constraintEnd_toStartOf="@+id/thumbsUpImage"
-        app:layout_constraintStart_toEndOf="@+id/authorAvatar"
+        app:layout_constraintStart_toStartOf="@+id/authorName"
         app:layout_constraintTop_toBottomOf="@+id/authorName"
         tools:text="5 months ago" />
 
@@ -57,9 +58,9 @@
         android:layout_marginEnd="@dimen/video_item_detail_like_margin"
         android:contentDescription="@string/detail_likes_img_view_description"
         android:src="@drawable/ic_thumb_up"
-        app:layout_constraintBottom_toBottomOf="@+id/authorAvatar"
+        app:layout_constraintBottom_toBottomOf="@+id/uploadDate"
         app:layout_constraintEnd_toStartOf="@+id/thumbsUpCount"
-        app:layout_constraintTop_toTopOf="@+id/authorAvatar" />
+        app:layout_constraintTop_toTopOf="@+id/authorName" />
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/thumbsUpCount"
@@ -70,9 +71,9 @@
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/authorAvatar"
+        app:layout_constraintBottom_toBottomOf="@+id/uploadDate"
         app:layout_constraintEnd_toStartOf="@+id/heartImage"
-        app:layout_constraintTop_toTopOf="@+id/authorAvatar"
+        app:layout_constraintTop_toTopOf="@+id/authorName"
         tools:text="12M" />
 
     <ImageView
@@ -82,9 +83,9 @@
         android:layout_marginEnd="4dp"
         android:contentDescription="@string/detail_heart_img_view_description"
         android:src="@drawable/ic_heart"
-        app:layout_constraintBottom_toBottomOf="@+id/authorAvatar"
+        app:layout_constraintBottom_toBottomOf="@+id/uploadDate"
         app:layout_constraintEnd_toStartOf="@+id/pinnedImage"
-        app:layout_constraintTop_toTopOf="@+id/authorAvatar"
+        app:layout_constraintTop_toTopOf="@+id/authorName"
         app:layout_goneMarginEnd="16dp" />
 
     <View
@@ -105,9 +106,9 @@
         android:layout_marginEnd="16dp"
         android:contentDescription="@string/detail_pinned_comment_view_description"
         android:src="@drawable/ic_pin"
-        app:layout_constraintBottom_toBottomOf="@+id/authorAvatar"
+        app:layout_constraintBottom_toBottomOf="@+id/uploadDate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/authorAvatar" />
+        app:layout_constraintTop_toTopOf="@+id/authorName" />
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/commentContent"
@@ -120,7 +121,7 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/authorAvatar"
+        app:layout_constraintTop_toBottomOf="@+id/uploadDate"
         tools:text="@tools:sample/lorem/random[10]" />
 
     <View

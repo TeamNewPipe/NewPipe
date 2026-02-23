@@ -1,0 +1,10 @@
+• "Hurrengoa erreproduzitu" botoia sakatuta edukitzeko menuan
+• YouTubeko bideo labur bide-aurrizkia asmo-iragazkian
+• Ezarpen finkoak inportatu
+• Bilaketa-barra eta jokalari botoiak trukatu Ilara-pantailan
+• MediasessionManager konponketak
+• Bilaketa-barra bideoa amaitu ondoren ez amaitzea konpondu
+• RealtekATV multimedia tunela desgaituta
+• Jokalari botoien klik eremua handitu
+
+Aldaketa gehiago ikusteko, ikusi aldaketa-erregistroa beheko Estekak fitxan.

@@ -1,18 +1,17 @@
-Novinky
-• Pridaná podpora pre Android Auto
-• Možnosť nastaviť skupiny kanálov ako hlavné karty na obrazovke
-• [YouTube] Zdieľanie ako dočasný playlist
+New
+• Add support for Android Auto
+• Allow setting feed groups as main screen tabs
+• [YouTube] Share as temporary playlist
+• [SoundCloud] Likes channel tab
 
-• [SoundCloud] Karta „Páči sa“ kanál.
+Improved
+• Better search bar hints
+• Show download date in Downloads
+• Use Android 13 per-app language
 
-Vylepšenia
-• Lepšia nápoveda v paneli vyhľadávania
-• Zobrazenie dátumu stiahnutia v sekcii „Stiahnuté”
-• Použitie jazyka Android 13 pre jednotlivé aplikácie
-
-Opravy
-• Oprava chybných farieb textu v tmavom režime
-• [YouTube] Oprava playlistov, ktoré nenačítavajú viac ako 100 položiek
-• [YouTube] Oprava chýbajúcich odporúčaných videí
-• Oprava pádov v zobrazení zoznamu histórie
-• Oprava časových značiek v odpovediach na komentáre.
+Fixed
+• Fix broken text colors in dark mode
+• [YouTube] Fix playlists not loading more than 100 items
+• [YouTube] Fix missing recommended videos
+• Fix crashes in History list view
+• Fix timestamps in comment replies

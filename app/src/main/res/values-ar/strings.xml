@@ -109,7 +109,7 @@
     <string name="error_snackbar_action">أبلِغ</string>
     <string name="what_device_headline">معلومات:</string>
     <string name="what_happened_headline">ماذا حدث:</string>
-    <string name="info_labels">ماذا:\\nطلب:\\nلغة المحتوى:\\nبلد المحتوى:\\nلغة التطبيق:\\nالخدمات:\\nتوقيت جرينتش:\\nالحزمة:\\nالإصدار:\\nOS نسخة:</string>
+    <string name="info_labels">ماذا:\nطلب:\nلغة المحتوى:\nبلد المحتوى:\nلغة التطبيق:\nالخدمات:\nتوقيت جرينتش:\nالحزمة:\nالإصدار:\nOS نسخة:</string>
     <string name="your_comment">تعليقك (باللغة الإنجليزية):</string>
     <string name="error_details_headline">التفاصيل:</string>
     <string name="search_no_results">لم يتم العثور على نتائج</string>
@@ -547,9 +547,8 @@
     <string name="restricted_video">هذا الفيديو مقيد بالفئة العمرية.
 \n
 \nقم بتشغيل \"%1$s\" في الإعدادات إذا كنت تريد رؤيته.</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">نعم، ومقاطع الفيديو التي تمت مشاهدتها جزئيًا</string>
-    <string name="remove_watched_popup_warning">ستتم إزالة مقاطع الفيديو التي تمت مشاهدتها قبل وبعد إضافتها إلى قائمة التشغيل.
-\nهل أنت واثق؟ لا يمكن التراجع عن هذا!</string>
+    <string name="remove_watched_popup_partially_watched_streams">نعم، ومقاطع الفيديو التي تمت مشاهدتها جزئيًا</string>
+    <string name="remove_watched_popup_warning">ستتم إزالة مقاطع الفيديو التي تمت مشاهدتها قبل وبعد إضافتها إلى قائمة التشغيل. \nهل أنت واثق؟ لا يمكن التراجع عن هذا!</string>
     <string name="remove_watched_popup_title">إزالة مقاطع الفيديو التي تمت مشاهدتها؟</string>
     <string name="remove_watched">إزالة ما تمت مشاهدته</string>
     <string name="show_original_time_ago_summary">ستكون النصوص الأصلية من الخدمات مرئية في عناصر البث</string>
@@ -669,8 +668,6 @@
     <string name="seekbar_preview_thumbnail_title">معاينة مصغرة على شريط التمرير</string>
     <string name="mark_as_watched">وضع علامة على تمت مشاهدته</string>
     <string name="detail_heart_img_view_description">أُعجب بها منشئ المحتوى</string>
-    <string name="show_image_indicators_summary">أظهر أشرطة ملونة لبيكاسو أعلى الصور تشير إلى مصدرها: الأحمر للشبكة والأزرق للقرص والأخضر للذاكرة</string>
-    <string name="show_image_indicators_title">إظهار مؤشرات الصور</string>
     <string name="remote_search_suggestions">اقتراحات البحث عن بعد</string>
     <string name="local_search_suggestions">اقتراحات البحث المحلية</string>
     <string name="main_page_content_swipe_remove">اسحب العناصر لإزالتها</string>

@@ -69,20 +69,20 @@
     <string name="download_path_summary">Vídeos baixados são salvos aqui</string>
     <string name="download_path_title">Pasta para vídeos baixados</string>
     <string name="kore_not_found">Instalar Kore?</string>
-    <string name="main_bg_subtitle">Toque na lupa para começar.</string>
+    <string name="main_bg_subtitle">Toque no ícone de lupa para iniciar sua busca.</string>
     <string name="msg_threads">Processos</string>
     <string name="no_available_dir">Por favor, defina uma pasta de download depois nas configurações</string>
-    <string name="no_player_found">Player de vídeo não encontrado. Instalar VLC?</string>
+    <string name="no_player_found">O player de video não foi encontrado, mas você pode instalar o VLC. Deseja fazer isso?</string>
     <string name="parsing_error">O site não pôde ser analisado</string>
     <string name="play_audio">Áudio</string>
     <string name="play_with_kodi_title">Reproduzir no Kodi</string>
     <string name="search">Buscar</string>
     <string name="show_play_with_kodi_summary">Mostrar opção para reproduzir o vídeo no Kodi</string>
     <string name="use_external_audio_player_title">Usar player de áudio externo</string>
-    <string name="use_external_video_player_title">Usar player de vídeo externo</string>
+    <string name="use_external_video_player_title">Usar um player de vídeo alternativo</string>
     <string name="show_play_with_kodi_title">Mostrar opção \"Reproduzir no Kodi\"</string>
-    <string name="info_labels">O que aconteceu:\\nPedido:\\nIdioma do conteúdo:\\nPaís do conteúdo:\\nIdioma do aplicativo:\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão do SO:</string>
-    <string name="open_in_popup_mode">Abrir no modo Popup</string>
+    <string name="info_labels">O que aconteceu:\nPedido:\nIdioma do conteúdo:\nPaís do conteúdo:\nIdioma do aplicativo:\nServiço:\nHora GMT:\nPacote:\nVersão:\nVersão do SO:</string>
+    <string name="open_in_popup_mode">Reproduzir no modo flutuante</string>
     <string name="default_popup_resolution_title">Resolução padrão do Popup</string>
     <string name="show_higher_resolutions_title">Mostrar resoluções mais altas</string>
     <string name="show_higher_resolutions_summary">Apenas alguns dispositivos suportam vídeos em 2K/4K</string>
@@ -97,7 +97,7 @@
     <string name="controls_background_title">Segundo plano</string>
     <string name="popup_remember_size_pos_title">Lembrar propriedades do Popup</string>
     <string name="popup_remember_size_pos_summary">Lembrar último tamanho e posição do Popup</string>
-    <string name="use_external_video_player_summary">Remove áudio em algumas resoluções</string>
+    <string name="use_external_video_player_summary">Atenção: o áudio pode não funcionar em certas resoluções</string>
     <string name="show_search_suggestions_title">Sugestões de busca</string>
     <string name="show_search_suggestions_summary">Escolha as sugestões a serem exibidas enquanto estiver buscando</string>
     <string name="best_resolution">Melhor resolução</string>
@@ -129,7 +129,7 @@
     <string name="resume_on_audio_focus_gain_summary">Continuar a reprodução após interrupções (por exemplo, chamadas telefônicas)</string>
     <string name="enable_search_history_title">Histórico de busca</string>
     <string name="enable_search_history_summary">Armazena o histórico de busca localmente</string>
-    <string name="enable_watch_history_title">Histórico de exibição</string>
+    <string name="enable_watch_history_title">Histórico de reprodução</string>
     <string name="enable_watch_history_summary">Mantenha o controle dos vídeos assistidos</string>
     <string name="title_activity_history">Histórico</string>
     <string name="action_history">Histórico</string>
@@ -188,7 +188,7 @@
     <string name="give_back">Retribuir</string>
     <string name="website_title">Site oficial</string>
     <string name="website_encouragement">Visite o site do NewPipe para mais informações e novidades.</string>
-    <string name="no_player_found_toast">Player de vídeo não encontrado (você pode instalar o VLC para reproduzi-lo).</string>
+    <string name="no_player_found_toast">O player de vídeo não foi encontrado, mas você pode instalar o VLC para tentar reproduzi-lo.</string>
     <string name="default_content_country_title">País padrão do conteúdo</string>
     <string name="always">Sempre</string>
     <string name="just_once">Apenas uma vez</string>
@@ -212,7 +212,7 @@
     <string name="no_valid_zip_file">Nenhum arquivo ZIP válido</string>
     <string name="could_not_import_all_files">Aviso: Não foi possível importar todos os arquivos.</string>
     <string name="override_current_data">Isso irá sobrescrever suas configurações atuais.</string>
-    <string name="controls_download_desc">Baixar arquivo</string>
+    <string name="controls_download_desc">Salvar arquivo para reprodução sem internet</string>
     <string name="show_info">Mostrar informação</string>
     <string name="tab_bookmarks">Playlists favoritas</string>
     <string name="controls_add_to_playlist_title">Adicionar a</string>
@@ -295,10 +295,10 @@
     <string name="drawer_close">Fechar gaveta</string>
     <string name="caption_setting_title">Legendas</string>
     <string name="caption_setting_description">Mudar tamanho da legenda e estilos de plano de fundo. Requer reiniciar o aplicativo para ter efeito</string>
-    <string name="clear_views_history_title">Remover histórico de exibição</string>
+    <string name="clear_views_history_title">Remover histórico de reprodução</string>
     <string name="clear_views_history_summary">Remove o histórico de vídeos assistidos e as posições de reprodução</string>
-    <string name="delete_view_history_alert">Remover todo o histórico de exibição?</string>
-    <string name="watch_history_deleted">Histórico de exibição removido</string>
+    <string name="delete_view_history_alert">Remover todo o histórico de reprodução?</string>
+    <string name="watch_history_deleted">Histórico de reprodução removido</string>
     <string name="clear_search_history_title">Remover histórico de buscas</string>
     <string name="clear_search_history_summary">Remove o histórico de buscas</string>
     <string name="delete_search_history_alert">Remover todo o histórico de buscas?</string>
@@ -517,9 +517,8 @@
     <string name="restricted_video">Este vídeo tem restrição de idade.
 \n
 \nAtive \"%1$s\" nas configurações se quiser vê-lo.</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim, e vídeos parcialmente assistidos</string>
-    <string name="remove_watched_popup_warning">Os vídeos que foram assistidos antes e depois de terem sidos adicionados à playlist serão removidos.
-\nTem certeza? Esta ação não pode ser desfeita!</string>
+    <string name="remove_watched_popup_partially_watched_streams">Sim, e vídeos parcialmente assistidos</string>
+    <string name="remove_watched_popup_warning">Os vídeos que foram assistidos antes e depois de terem sidos adicionados à playlist serão removidos. \nTem certeza?</string>
     <string name="remove_watched_popup_title">Remover vídeos assistidos?</string>
     <string name="remove_watched">Remover assistidos</string>
     <string name="show_original_time_ago_summary">Textos originais dos serviços serão visíveis nos itens de transmissão</string>
@@ -582,7 +581,7 @@
     <string name="comments_tab_description">Comentários</string>
     <string name="show_description_summary">Desative para ocultar a descrição do vídeo e informações adicionais</string>
     <string name="show_description_title">Mostrar descrição</string>
-    <string name="open_with">Abrir com</string>
+    <string name="open_with">Reproduzir com</string>
     <string name="no_app_to_open_intent">Nenhum aplicativo em seu dispositivo pode abrir isso</string>
     <string name="crash_the_app">O aplicativo parou</string>
     <string name="paid_content">Este conteúdo está disponível apenas para usuários que pagaram, portanto não pode ser transmitido ou baixado pelo NewPipe.</string>
@@ -639,7 +638,6 @@
     <string name="comments_are_disabled">Os comentários estão desabilitados</string>
     <string name="mark_as_watched">Marcar como assistido</string>
     <string name="detail_heart_img_view_description">Curtido pelo criador</string>
-    <string name="show_image_indicators_summary">Exibir fitas coloridas no topo das imagens indicando sua fonte: vermelho para rede, azul para disco e verde para memória</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s download excluído</item>
         <item quantity="many">%1$s downloads excluídos</item>
@@ -650,7 +648,6 @@
         <item quantity="many">%s downloads concluídos</item>
         <item quantity="other">%s downloads concluídos</item>
     </plurals>
-    <string name="show_image_indicators_title">Mostrar indicadores de imagem</string>
     <string name="enqueued_next">Adicionado na próxima posição da fila</string>
     <string name="enqueue_next_stream">Enfileira a próxima</string>
     <string name="main_page_content_swipe_remove">Deslize os itens para remove-los</string>

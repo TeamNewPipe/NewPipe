@@ -13,6 +13,9 @@ import androidx.annotation.StringRes;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.download.DownloadDialog;
+import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
+import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
@@ -132,6 +135,16 @@ public enum StreamDialogDefaultEntry {
     MARK_AS_WATCHED(R.string.mark_as_watched, (fragment, item) ->
         new HistoryRecordManager(fragment.getContext())
                 .markAsWatched(item)
+                .doOnError(error -> {
+                    ErrorUtil.showSnackbar(
+                            fragment.requireContext(),
+                            new ErrorInfo(
+                                    error,
+                                    UserAction.OPEN_INFO_ITEM_DIALOG,
+                                    "Got an error when trying to mark as watched"
+                            )
+                    );
+                })
                 .onErrorComplete()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe()

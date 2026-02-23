@@ -1,17 +1,17 @@
 Yeni
 • Android Auto desteği eklendi
-• Akış gruplarını ana ekran sekmeleri olarak ayarlama özelliği eklendi
-• [YouTube] Geçici oynatma listesi olarak paylaşma özelliği eklendi
-• [SoundCloud] Beğeniler kanalı sekmesi eklendi
+• Akış gruplarının ana ekran sekmeleri olarak ayarlanmasına izin verme
+• [YouTube] Geçici oynatma listesi olarak paylaşma
+• [SoundCloud] Beğenilen kanal sekmesi
 
 Geliştirildi
-• Arama çubuğu ipuçları iyileştirildi
-• İndirilenler bölümünde indirme tarihi gösteriliyor
-• Android 13 uygulama başına dil ayarı desteği eklendi
+• Daha iyi arama çubuğu önerileri
+• İndirilenler'de indirme tarihini gösterimi
+• Android 13 uygulama başı dil kullanma
 
 Düzeltildi
 • Karanlık modda bozuk metin renkleri düzeltildi
-• [YouTube] 100’den fazla öğe yüklenmeyen oynatma listeleri sorunu giderildi
+• [YouTube] 100'den fazla öğeyi yüklemeyen oynatma listeleri düzeltildi
 • [YouTube] Eksik önerilen videolar düzeltildi
-• Geçmiş liste görünümünde oluşan çökme sorunu giderildi
+• Geçmiş listesi görünümündeki çökmeler düzeltildi
 • Yorum yanıtlarındaki zaman damgaları düzeltildi

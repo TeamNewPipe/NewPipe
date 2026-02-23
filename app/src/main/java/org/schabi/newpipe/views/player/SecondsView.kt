@@ -29,7 +29,9 @@ class SecondsView(context: Context, attrs: AttributeSet?) : LinearLayout(context
     var seconds: Int = 0
         set(value) {
             binding.tvSeconds.text = context.resources.getQuantityString(
-                R.plurals.seconds, value, value
+                R.plurals.seconds,
+                value,
+                value
             )
             field = value
         }

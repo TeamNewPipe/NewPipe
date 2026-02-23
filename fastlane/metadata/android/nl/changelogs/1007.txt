@@ -1,0 +1,11 @@
+Deze hotfix verhelpt de foutmelding "Inhoud niet beschikbaar": YouTube-video's kunnen nu weer worden afgespeeld!
+
+Het lost ook een aantal bugs op die in versie 0.28.1 zijn geïntroduceerd:
+• Playlist-items konden alleen naar aangrenzende posities worden gesleept
+• Titel/opmerkingen flikkerden tussen de huidige en vorige video
+• De optie "Start de hoofdspeler in volledig scherm" werkte niet
+
+Andere verbeteringen:
+• [YouTube] Het is weer mogelijk om livestreams tot 4 uur terug te spoelen
+• Livestreamvideo's worden niet geladen wanneer ze op de achtergrond worden afgespeeld
+• Nieuwe gebruikersinterface voor "Verwijder bekeken"

@@ -1,8 +1,14 @@
 package org.schabi.newpipe.streams;
 
+import static org.schabi.newpipe.MainActivity.DEBUG;
+
+import android.util.Log;
+import android.util.Pair;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.streams.WebMReader.Cluster;
 import org.schabi.newpipe.streams.WebMReader.Segment;
 import org.schabi.newpipe.streams.WebMReader.SimpleBlock;
@@ -13,6 +19,10 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author kapodamy
@@ -52,8 +62,10 @@ public class OggFromWebMWriter implements Closeable {
     private long segmentTableNextTimestamp = TIME_SCALE_NS;
 
     private final int[] crc32Table = new int[256];
+    private final StreamInfo streamInfo;
 
-    public OggFromWebMWriter(@NonNull final SharpStream source, @NonNull final SharpStream target) {
+    public OggFromWebMWriter(@NonNull final SharpStream source, @NonNull final SharpStream target,
+                             @Nullable final StreamInfo streamInfo) {
         if (!source.canRead() || !source.canRewind()) {
             throw new IllegalArgumentException("source stream must be readable and allows seeking");
         }
@@ -63,6 +75,7 @@ public class OggFromWebMWriter implements Closeable {
 
         this.source = source;
         this.output = target;
+        this.streamInfo = streamInfo;
 
         this.streamId = (int) System.currentTimeMillis();
 
@@ -271,12 +284,31 @@ public class OggFromWebMWriter implements Closeable {
 
     @Nullable
     private byte[] makeMetadata() {
+        if (DEBUG) {
+            Log.d("OggFromWebMWriter", "Downloading media with codec ID " + webmTrack.codecId);
+        }
+
         if ("A_OPUS".equals(webmTrack.codecId)) {
-            return new byte[]{
-                    0x4F, 0x70, 0x75, 0x73, 0x54, 0x61, 0x67, 0x73, // "OpusTags" binary string
-                    0x00, 0x00, 0x00, 0x00, // writing application string size (not present)
-                    0x00, 0x00, 0x00, 0x00 // additional tags count (zero means no tags)
-            };
+            final var metadata = new ArrayList<Pair<String, String>>();
+            if (streamInfo != null) {
+                metadata.add(Pair.create("COMMENT", streamInfo.getUrl()));
+                metadata.add(Pair.create("GENRE", streamInfo.getCategory()));
+                metadata.add(Pair.create("ARTIST", streamInfo.getUploaderName()));
+                metadata.add(Pair.create("TITLE", streamInfo.getName()));
+                metadata.add(Pair.create("DATE", streamInfo
+                        .getUploadDate()
+                        .getLocalDateTime()
+                        .format(DateTimeFormatter.ISO_DATE)));
+            }
+
+            if (DEBUG) {
+                Log.d("OggFromWebMWriter", "Creating metadata header with this data:");
+                metadata.forEach(p -> {
+                    Log.d("OggFromWebMWriter", p.first + "=" + p.second);
+                });
+            }
+
+            return makeOpusTagsHeader(metadata);
         } else if ("A_VORBIS".equals(webmTrack.codecId)) {
             return new byte[]{
                     0x03, // ¿¿¿???
@@ -288,6 +320,59 @@ public class OggFromWebMWriter implements Closeable {
 
         // not implemented for the desired codec
         return null;
+    }
+
+    /**
+     * This creates a single metadata tag for use in opus metadata headers. It contains the four
+     * byte string length field and includes the string as-is. This cannot be used independently,
+     * but must follow a proper "OpusTags" header.
+     *
+     * @param pair A key-value pair in the format "KEY=some value"
+     * @return The binary data of the encoded metadata tag
+     */
+    private static byte[] makeOpusMetadataTag(final Pair<String, String> pair) {
+        final var keyValue = pair.first.toUpperCase() + "=" + pair.second.trim();
+
+        final var bytes = keyValue.getBytes();
+        final var buf = ByteBuffer.allocate(4 + bytes.length);
+        buf.order(ByteOrder.LITTLE_ENDIAN);
+        buf.putInt(bytes.length);
+        buf.put(bytes);
+        return buf.array();
+    }
+
+    /**
+     * This returns a complete "OpusTags" header, created from the provided metadata tags.
+     * <p>
+     * You probably want to use makeOpusMetadata(), which uses this function to create
+     * a header with sensible metadata filled in.
+     *
+     * @param keyValueLines A list of pairs of the tags. This can also be though of as a mapping
+     *                      from one key to multiple values.
+     * @return The binary header
+     */
+    private static byte[] makeOpusTagsHeader(final List<Pair<String, String>> keyValueLines) {
+        final var tags = keyValueLines
+                .stream()
+                .filter(p -> !p.second.isBlank())
+                .map(OggFromWebMWriter::makeOpusMetadataTag)
+                .collect(Collectors.toUnmodifiableList());
+
+        final var tagsBytes = tags.stream().collect(Collectors.summingInt(arr -> arr.length));
+
+        // Fixed header fields + dynamic fields
+        final var byteCount = 16 + tagsBytes;
+
+        final var head = ByteBuffer.allocate(byteCount);
+        head.order(ByteOrder.LITTLE_ENDIAN);
+        head.put(new byte[]{
+                0x4F, 0x70, 0x75, 0x73, 0x54, 0x61, 0x67, 0x73, // "OpusTags" binary string
+                0x00, 0x00, 0x00, 0x00, // vendor (aka. Encoder) string of length 0
+        });
+        head.putInt(tags.size()); // 4 bytes for tag count
+        tags.forEach(head::put); // dynamic amount of tag bytes
+
+        return head.array();
     }
 
     private void write(final ByteBuffer buffer) throws IOException {

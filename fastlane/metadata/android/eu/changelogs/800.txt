@@ -1,0 +1,24 @@
+Berria
+• PeerTube euskarria P2P gabe
+  ◦ Instantziak gehitu
+  ◦  PeerTube instantziak ikusi eta deskargatu
+Deskargak
+  ◦ Deskarga ETA kalkulatu
+  ◦ Opus ogg gisa
+  ◦ Estekak berreskuratu
+
+Hobetua
+• Fitxen errendimendua eta lokalizazioa
+• Lokalizazio berriak
+• Nabigazio barra beltza
+
+Konpondua
+• Popup hatz-mugimendua
+• Igotzailerik gabeko zerrendak
+• TLS Android 4.4
+• [SoundCloud] Client_id
+• Audio-jarioa
+
+Garapena
+• ExoPlayer 2.10.8
+• Gradle 3.5.1 eta Kotlin onartu

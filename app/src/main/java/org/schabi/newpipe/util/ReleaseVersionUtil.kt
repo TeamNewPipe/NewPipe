@@ -2,13 +2,13 @@ package org.schabi.newpipe.util
 
 import android.content.pm.PackageManager
 import androidx.core.content.pm.PackageInfoCompat
+import java.time.Instant
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 import org.schabi.newpipe.App
 import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.ErrorUtil.Companion.createNotification
 import org.schabi.newpipe.error.UserAction
-import java.time.Instant
-import java.time.ZonedDateTime
-import java.time.format.DateTimeFormatter
 
 object ReleaseVersionUtil {
     // Public key of the certificate that is used in NewPipe release versions
@@ -21,12 +21,13 @@ object ReleaseVersionUtil {
         val certificates = mapOf(
             RELEASE_CERT_PUBLIC_KEY_SHA256.hexToByteArray() to PackageManager.CERT_INPUT_SHA256
         )
-        val app = App.getApp()
+        val app = App.instance
         try {
             PackageInfoCompat.hasSignatures(app.packageManager, app.packageName, certificates, false)
         } catch (e: PackageManager.NameNotFoundException) {
             createNotification(
-                app, ErrorInfo(e, UserAction.CHECK_FOR_NEW_APP_VERSION, "Could not find package info")
+                app,
+                ErrorInfo(e, UserAction.CHECK_FOR_NEW_APP_VERSION, "Could not find package info")
             )
             false
         }

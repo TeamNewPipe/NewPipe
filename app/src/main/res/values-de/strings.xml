@@ -54,7 +54,7 @@
     <string name="error_snackbar_action">Melden</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Dies ist passiert:</string>
-    <string name="info_labels">Was:\\nAnfrage:\\nSprache des Inhalts:\\nLand des Inhalts:\\nSprache der App:\\nDienst:\\nZeit (GMT):\\nPaket:\\nVersion:\\nOS-Version:</string>
+    <string name="info_labels">Was:\nAnfrage:\nSprache des Inhalts:\nLand des Inhalts:\nSprache der App:\nDienst:\nZeit (GMT):\nPaket:\nVersion:\nOS-Version:</string>
     <string name="error_details_headline">Details:</string>
     <string name="video">Video</string>
     <string name="audio">Audio</string>
@@ -518,11 +518,10 @@
     <string name="restricted_video">Dieses Video ist altersbeschränkt.
 \n
 \nAktiviere in den Einstellungen „%1$s“, falls du diese sehen möchtest.</string>
-    <string name="remove_watched_popup_warning">Videos, die vor und nach dem Hinzufügen zur Wiedergabeliste angeschaut wurden, werden entfernt.
-\nBist du sicher\? Dies kann nicht rückgängig gemacht werden!</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, und teilweise gesehene Videos</string>
+    <string name="remove_watched_popup_warning">Streams, die vor und nach dem Hinzufügen zur Wiedergabeliste angeschaut wurden, werden entfernt. \nBist du sicher?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Teilweise angesehene Streams entfernen</string>
     <string name="remove_watched">Gesehene entfernen</string>
-    <string name="remove_watched_popup_title">Gesehene Videos entfernen\?</string>
+    <string name="remove_watched_popup_title">Gesehene Streams entfernen?</string>
     <string name="show_original_time_ago_title">Originalzeit vor Elementen anzeigen</string>
     <string name="show_original_time_ago_summary">Originaltexte von Diensten werden in Stream-Elementen sichtbar sein</string>
     <string name="youtube_restricted_mode_enabled_title">YouTubes „Eingeschränkten Modus“ aktivieren</string>
@@ -634,8 +633,6 @@
     <string name="off">Aus</string>
     <string name="mark_as_watched">Als gesehen markieren</string>
     <string name="detail_heart_img_view_description">Vom Ersteller mit Herz versehen</string>
-    <string name="show_image_indicators_summary">Farbige Picasso-Bänder über den Bildern anzeigen, die deren Quelle angeben: rot für Netzwerk, blau für Festplatte und grün für Speicher</string>
-    <string name="show_image_indicators_title">Bildindikatoren anzeigen</string>
     <string name="remote_search_suggestions">Entfernte Suchvorschläge</string>
     <string name="local_search_suggestions">Lokale Suchvorschläge</string>
     <plurals name="deleted_downloads_toast">
@@ -839,7 +836,7 @@
     <string name="trending_movies">Beliebte Filme und Shows</string>
     <string name="trending_music">Beliebte Musik</string>
     <string name="trending_podcasts">Beliebte Podcasts</string>
-    <string name="migration_info_7_8_title">YouTube hat den geteilten Feed entfernt</string>
+    <string name="migration_info_7_8_title">YouTube hat die kombinierten „beliebten Seiten“ entfernt</string>
     <string name="migration_info_7_8_message">YouTube hat die kombinierte Trending-Seite ab dem 21. Juli 2025 eingestellt. NewPipe hat die Standard-Trending-Seite durch die Trending-Livestreams ersetzt.\n\nDu kannst auch verschiedene Trendseiten unter „Einstellungen &gt; Inhalt &gt; Inhalt der Hauptseite“ auswählen.</string>
     <string name="permission_display_over_apps_message">Um den Pop-up-Player zu verwenden, bitte in den folgenden Android-Einstellungen %1$s auswählen und %2$s aktivieren.</string>
     <string name="permission_display_over_apps_permission_name">„Über anderen Apps einblenden“</string>

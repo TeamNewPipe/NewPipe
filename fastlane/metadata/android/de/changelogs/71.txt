@@ -1,8 +1,10 @@
 ### Verbesserungen
-* App-Update-Benachrichtigung für GitHub build hinzufügen (#1608 von @krtkush)
-* Verschiedene Verbesserungen des Downloaders (#1944 von @kapodamy):
-* Fügen Sie fehlende weiße Icons hinzu und verwenden Sie hardcored Weg, um die Icon Farben zu ändern
-* neue MPEG-4 muxer fixieren nicht-synchrone Video- und Audiostreams (#2039)
+* Benachrichtigung über App-Updates für GitHub-Build (#1608 von @krtkush)
+* Verschiedene Verbesserungen am Downloader (#1944 von @kapodamy):
+  * Weiße Symbole und Hardcoded-Methode zum Ändern der Symbolfarben
+  * Überprüfung, ob der Iterator initialisiert ist (behebt #2031)
+  * Erlaubt erneute Downloads mit dem Fehler „Nachbearbeitung fehlgeschlagen“ im neuen Muxer
+  * Neuer MPEG-4-Muxer (#2039)
 
-### Fixed
-* YouTube Live-Streams spielen nach kurzer Zeit (#1996 von @yausername)
+### Behoben
+* YouTube-Livestreams werden nicht abgespielt (#1996 von @yausername)

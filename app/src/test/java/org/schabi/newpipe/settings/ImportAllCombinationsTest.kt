@@ -1,6 +1,9 @@
 package org.schabi.newpipe.settings
 
 import android.content.SharedPreferences
+import java.io.File
+import java.io.IOException
+import java.nio.file.Files
 import org.junit.Assert
 import org.junit.Test
 import org.mockito.Mockito
@@ -8,9 +11,6 @@ import org.schabi.newpipe.settings.export.BackupFileLocator
 import org.schabi.newpipe.settings.export.ImportExportManager
 import org.schabi.newpipe.streams.io.StoredFileHelper
 import us.shandian.giga.io.FileStream
-import java.io.File
-import java.io.IOException
-import java.nio.file.Files
 
 class ImportAllCombinationsTest {
 
@@ -21,7 +21,7 @@ class ImportAllCombinationsTest {
     private enum class Ser(val id: String) {
         YES("ser"),
         VULNERABLE("vulnser"),
-        NO("noser");
+        NO("noser")
     }
 
     private data class FailData(
@@ -29,7 +29,7 @@ class ImportAllCombinationsTest {
         val containsSer: Ser,
         val containsJson: Boolean,
         val filename: String,
-        val throwable: Throwable,
+        val throwable: Throwable
     )
 
     private fun testZipCombination(
@@ -37,7 +37,7 @@ class ImportAllCombinationsTest {
         containsSer: Ser,
         containsJson: Boolean,
         filename: String,
-        runTest: (test: () -> Unit) -> Unit,
+        runTest: (test: () -> Unit) -> Unit
     ) {
         val zipFile = File(classloader.getResource(filename)?.file!!)
         val zip = Mockito.mock(StoredFileHelper::class.java, Mockito.withSettings().stubOnly())
@@ -93,6 +93,7 @@ class ImportAllCombinationsTest {
                 Mockito.verify(editor, Mockito.atLeastOnce())
                     .putInt(Mockito.anyString(), Mockito.anyInt())
             }
+
             Ser.VULNERABLE -> runTest {
                 Assert.assertTrue(ImportExportManager(fileLocator).exportHasSerializedPrefs(zip))
                 Assert.assertThrows(ClassNotFoundException::class.java) {
@@ -102,6 +103,7 @@ class ImportAllCombinationsTest {
                 Mockito.verify(editor, Mockito.never()).clear()
                 Mockito.verify(editor, Mockito.never()).commit()
             }
+
             Ser.NO -> runTest {
                 Assert.assertFalse(ImportExportManager(fileLocator).exportHasSerializedPrefs(zip))
                 Assert.assertThrows(IOException::class.java) {
@@ -152,15 +154,18 @@ class ImportAllCombinationsTest {
             for (containsSer in Ser.entries) {
                 for (containsJson in listOf(true, false)) {
                     val filename = "settings/${if (containsDb) "db" else "nodb"}_${
-                    containsSer.id}_${if (containsJson) "json" else "nojson"}.zip"
+                        containsSer.id}_${if (containsJson) "json" else "nojson"}.zip"
                     testZipCombination(containsDb, containsSer, containsJson, filename) { test ->
                         try {
                             test()
                         } catch (e: Throwable) {
                             failedAssertions.add(
                                 FailData(
-                                    containsDb, containsSer, containsJson,
-                                    filename, e
+                                    containsDb,
+                                    containsSer,
+                                    containsJson,
+                                    filename,
+                                    e
                                 )
                             )
                         }
@@ -173,7 +178,7 @@ class ImportAllCombinationsTest {
             for (a in failedAssertions) {
                 println(
                     "Assertion failed with containsDb=${a.containsDb}, containsSer=${
-                    a.containsSer}, containsJson=${a.containsJson}, filename=${a.filename}:"
+                        a.containsSer}, containsJson=${a.containsJson}, filename=${a.filename}:"
                 )
                 a.throwable.printStackTrace()
                 println()

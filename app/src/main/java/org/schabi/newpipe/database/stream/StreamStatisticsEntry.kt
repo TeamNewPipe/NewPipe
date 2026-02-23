@@ -9,13 +9,13 @@ package org.schabi.newpipe.database.stream
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Ignore
+import java.time.OffsetDateTime
 import org.schabi.newpipe.database.LocalItem
 import org.schabi.newpipe.database.history.model.StreamHistoryEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.stream.model.StreamStateEntity.Companion.STREAM_PROGRESS_MILLIS
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.util.image.ImageStrategy
-import java.time.OffsetDateTime
 
 data class StreamStatisticsEntry(
     @Embedded

@@ -1,0 +1,16 @@
+Berria
+• Kanal fitxak laguntza
+• Hautatu irudiaren kalitatea
+• Irudi guztien URLak lortu
+
+Hobetua
+• Jokalarien interfazeen irisgarritasuna
+• Bideo-deskargetarako audio-hautaketa hobea
+• Partekatutako zerrendetan izenak sartzeko aukera
+
+Konpondua
+• [YouTube] Atsegin dut kopurua lortzea
+• Erreproduzitzaileak erantzuten ez duen leihoak eta kraskadurak
+• Hizkuntza hautatzailean hizkuntza okerrak hautatzea
+• Audioaren fokuak isilaraztea errespetatu
+• Zerrendako elementuen gehikuntzak

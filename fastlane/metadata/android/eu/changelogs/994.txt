@@ -1,0 +1,15 @@
+Berria
+• Audio pista eta hizkuntza anitz onartzen ditu
+• Bolumen eta distira keinuak pantailaren edozein aldetan ezarri
+• Fitxa nagusiak pantailaren behealdean bistaratzeko laguntza
+
+Hobetua
+• [Bandcamp] Ordainpeko hormaren atzean dauden abestiak kudeatu
+
+Konpondua
+• [YouTube] 403 HTTP erroreak erreprodukzioetarako
+• Jokalari beltza zerrendaren ikuspegitik nagusira aldatzean
+• Jokalarien zerbitzuaren memoria-ihesa
+• [PeerTube] Igotzailearen eta azpikanalaren avatarrak trukatu
+
+eta gehiago

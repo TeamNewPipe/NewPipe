@@ -78,7 +78,7 @@
     <string name="msg_threads">Processos</string>
     <string name="msg_running">Descarga NewPipe</string>
     <string name="app_ui_crash">Aplicação terminou em erro</string>
-    <string name="info_labels">O quê:\\nPedido:\\nIdioma do conteúdo:\\nPaís do conteúdo\\nIdioma da aplicação\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nSO Versão:</string>
+    <string name="info_labels">O quê:\nPedido:\nIdioma do conteúdo:\nPaís do conteúdo\nIdioma da aplicação\nServiço:\nHora GMT:\nPacote:\nVersão:\nSO Versão:</string>
     <string name="open_in_popup_mode">Abrir no modo popup</string>
     <string name="black_theme_title">Preto</string>
     <string name="all">Tudo</string>
@@ -517,10 +517,9 @@
     <string name="restricted_video">Este vídeo está restringido a adultos.
 \n
 \nPara o poder ver, tem que ativar \"%1$s\" nas definições.</string>
-    <string name="remove_watched_popup_warning">Os vídeos que tenham sido vistos antes e depois de serem adicionados à lista de reprodução serão removidos.
-\nTem a certeza\? Esta ação não pode ser revertida!</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim e também os vídeos parcialmente vistos</string>
-    <string name="remove_watched_popup_title">Remover vídeos visualizados\?</string>
+    <string name="remove_watched_popup_warning">Os vídeos que tenham sido vistos antes e depois de serem adicionados à lista de reprodução serão removidos. \nTem a certeza? Esta ação não pode ser revertida!</string>
+    <string name="remove_watched_popup_partially_watched_streams">Sim e também os vídeos parcialmente vistos</string>
+    <string name="remove_watched_popup_title">Remover transmissões vistas?</string>
     <string name="remove_watched">Remover visualizados</string>
     <string name="show_original_time_ago_summary">Os textos originais dos serviços serão visíveis nos itens do vídeo</string>
     <string name="show_original_time_ago_title">Mostrar antiguidade nos itens</string>
@@ -639,8 +638,6 @@
     <string name="low_quality_smaller">Baixa qualidade (menor)</string>
     <string name="high_quality_larger">Alta qualidade (maior)</string>
     <string name="comments_are_disabled">Os comentários estão desativados</string>
-    <string name="show_image_indicators_summary">Mostrar fitas coloridas de Picasso em cima das imagens que indicam a sua fonte: vermelho para rede, azul para disco e verde para memória</string>
-    <string name="show_image_indicators_title">Mostrar indicadores de imagem</string>
     <string name="remote_search_suggestions">Sugestões de pesquisa remotas</string>
     <string name="local_search_suggestions">Sugestões de pesquisa locais</string>
     <plurals name="deleted_downloads_toast">

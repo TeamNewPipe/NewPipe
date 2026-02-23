@@ -267,7 +267,7 @@
     <string name="metadata_cache_wipe_title">Llimpiar los metadatos de la caché</string>
     <string name="thumbnail_cache_wipe_complete_notice">Llimpióse la caché d\'imáxenes</string>
     <string name="kore_not_found">¿Instalar Kode\?</string>
-    <string name="info_labels">Qué asocedió:\\nSolicitú:\\nLlingua del conteníu:\\nPaís del conteníu:\\nLlingua de l\'aplicación:\\nServiciu:\\nHora en GMT:\\nPaquete:\\nVersión de l\'aplicación:\\nVersión del SO:</string>
+    <string name="info_labels">Qué asocedió:\nSolicitú:\nLlingua del conteníu:\nPaís del conteníu:\nLlingua de l\'aplicación:\nServiciu:\nHora en GMT:\nPaquete:\nVersión de l\'aplicación:\nVersión del SO:</string>
     <string name="no_player_found_toast">Nun s\'atopó nengún reproductor de fluxos (pues instalar VLC pa reproducilos).</string>
     <string name="show_thumbnail_summary">Amuesa una miniatura nel fondu de la pantalla de bloquéu y dientro de los avisos</string>
     <string name="show_thumbnail_title">Amosar una miniatura</string>
@@ -312,10 +312,9 @@
     <string name="feed_oldest_subscription_update">Últimu anovamientu del feed: %s</string>
     <string name="feed_groups_header_title">Grupos de canales</string>
     <string name="new_seek_duration_toast">Pola mor de les torgues d\'ExoPlayer la duración afitóse en %d segundos</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sí, y tamién los vistos parcialmente</string>
-    <string name="remove_watched_popup_warning">Van desaniciase los vídeos que se vieren enantes y dempués d\'amestase a la llista de reproducción.
-\n¿De xuru\? ¡Esto nun pue desfacese!</string>
-    <string name="remove_watched_popup_title">¿Desaniciar los vídeos vistos\?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Sí, y tamién los vistos parcialmente</string>
+    <string name="remove_watched_popup_warning">Van desaniciase los vídeos que se vieren enantes y dempués d\'amestase a la llista de reproducción. \n¿De xuru? ¡Esto nun pue desfacese!</string>
+    <string name="remove_watched_popup_title">¿Desaniciar los vídeos vistos?</string>
     <string name="remove_watched">Desaniciar lo visto</string>
     <string name="choose_instance_prompt">Escoyeta d\'una instancia</string>
     <string name="downloads_storage_use_saf_summary">El «Storage Access Framework» permite les descargues nuna tarxeta SD esterna.

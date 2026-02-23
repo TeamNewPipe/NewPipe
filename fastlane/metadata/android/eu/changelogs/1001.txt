@@ -1,0 +1,6 @@
+Hobetua
+• Onartu beti jokalarien jakinarazpenen hobespenak aldatzea Android 13+-n
+
+Konpondua
+• Konpondu datu-basea/harpidetzak esportatzeak lehendik zegoen fitxategi bat ez mozten zuelako, eta horrek esportazio bat hondatzea eragin zezakeelako
+• Denbora-zigilu batean klik egitean jokalaria hasieratik jarraitzea konpondu

@@ -37,7 +37,9 @@ object PoTokenProviderImpl : PoTokenProvider {
                     webViewBadImpl = true
                     return null
                 }
+
                 null -> throw e
+
                 else -> throw cause // includes PoTokenException
             }
         }
@@ -58,7 +60,6 @@ object PoTokenProviderImpl : PoTokenProvider {
                     webPoTokenGenerator!!.isExpired()
 
                 if (shouldRecreate) {
-
                     val innertubeClientRequestInfo = InnertubeClientRequestInfo.ofWebClient()
                     innertubeClientRequestInfo.clientInfo.clientVersion =
                         YoutubeParsingHelper.getClientVersion()
@@ -77,7 +78,7 @@ object PoTokenProviderImpl : PoTokenProvider {
 
                     // create a new webPoTokenGenerator
                     webPoTokenGenerator = PoTokenWebView
-                        .newPoTokenGenerator(App.getApp()).blockingGet()
+                        .newPoTokenGenerator(App.instance).blockingGet()
 
                     // The streaming poToken needs to be generated exactly once before generating
                     // any other (player) tokens.

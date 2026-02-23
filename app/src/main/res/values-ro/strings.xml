@@ -91,7 +91,7 @@
     <string name="all">Toate</string>
     <string name="disabled">Dezactivat</string>
     <string name="app_ui_crash">Aplicația/UI s-a oprit</string>
-    <string name="info_labels">Ce:\\nSolicitare:\\nLimba conținutului:\\nȚara conținutului:\\nLimba aplicației:\\nServiciu:\\nOra GMT:\\nPachet:\\nVersiune:\\nVersiune SO:</string>
+    <string name="info_labels">Ce:\nSolicitare:\nLimba conținutului:\nȚara conținutului:\nLimba aplicației:\nServiciu:\nOra GMT:\nPachet:\nVersiune:\nVersiune SO:</string>
     <string name="use_external_video_player_summary">Elimină sunetul audio la anumite rezoluții</string>
     <string name="controls_background_title">Fundal</string>
     <string name="controls_popup_title">Pop-up</string>
@@ -432,10 +432,9 @@
         <item quantity="other">%d de secunde</item>
     </plurals>
     <string name="new_seek_duration_toast">Datorită constrângerilor ExoPlayer, durata de căutare a fost setată la %d secunde</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Da, și videoclipuri vizionate parțial</string>
-    <string name="remove_watched_popup_warning">Videoclipurile care au fost vizionate înainte și după ce au fost adăugate la lista de redare vor fi eliminate.
-\nSunteți sigur\? Acest lucru nu poate fi anulat!</string>
-    <string name="remove_watched_popup_title">Eliminați videoclipurile vizionate\?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Da, și videoclipuri vizionate parțial</string>
+    <string name="remove_watched_popup_warning">Videoclipurile care au fost vizionate înainte și după ce au fost adăugate la lista de redare vor fi eliminate. \nSunteți sigur? Acest lucru nu poate fi anulat!</string>
+    <string name="remove_watched_popup_title">Eliminați videoclipurile vizionate?</string>
     <string name="remove_watched">Eliminare cele urmărite</string>
     <string name="systems_language">Prestabilită de sistem</string>
     <string name="app_language_title">Limba aplicației</string>
@@ -655,8 +654,6 @@
     <string name="low_quality_smaller">Calitate scăzută (mai mică)</string>
     <string name="high_quality_larger">Calitate înaltă (mai mare)</string>
     <string name="seekbar_preview_thumbnail_title">Miniatură de previzualizare în bara de derulare</string>
-    <string name="show_image_indicators_summary">Afișați panglici colorate de Picasso deasupra imaginilor, indicând sursa acestora: roșu pentru rețea, albastru pentru disc și verde pentru memorie</string>
-    <string name="show_image_indicators_title">Afișați indicatorii de imagine</string>
     <string name="disable_media_tunneling_summary">Dezactivați tunelarea media dacă întâmpinați un ecran negru sau blocaje la redarea video.</string>
     <string name="processing_may_take_a_moment">Procesarea.. Poate dura un moment</string>
     <string name="check_for_updates">Verifică dacă există actualizări</string>

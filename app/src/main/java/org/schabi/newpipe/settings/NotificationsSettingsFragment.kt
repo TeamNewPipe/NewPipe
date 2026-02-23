@@ -29,8 +29,7 @@ class NotificationsSettingsFragment : BasePreferenceFragment(), OnSharedPreferen
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.notifications_settings)
-        streamsNotificationsPreference =
-            findPreference(getString(R.string.enable_streams_notifications))
+        streamsNotificationsPreference = requirePreference(R.string.enable_streams_notifications)
 
         // main check is done in onResume, but also do it here to prevent flickering
         updateEnabledState(NotificationHelper.areNotificationsEnabledOnDevice(requireContext()))
@@ -125,8 +124,8 @@ class NotificationsSettingsFragment : BasePreferenceFragment(), OnSharedPreferen
 
     private fun updateSubscriptions(subscriptions: List<SubscriptionEntity>) {
         val notified = subscriptions.count { it.notificationMode != NotificationMode.DISABLED }
-        val preference = findPreference<Preference>(getString(R.string.streams_notifications_channels_key))
-        preference?.apply { summary = "$notified/${subscriptions.size}" }
+        val preference = requirePreference<Preference>(R.string.streams_notifications_channels_key)
+        preference.summary = "$notified/${subscriptions.size}"
     }
 
     private fun onError(e: Throwable) {

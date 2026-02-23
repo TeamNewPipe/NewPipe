@@ -76,7 +76,7 @@
     <string name="msg_running_detail">Trykk for detaljer</string>
     <string name="msg_wait">Vent…</string>
     <string name="msg_copied">Kopiert til utklippstavle</string>
-    <string name="info_labels">Hva:\\nForespørsel:\\nInnholdsspråk:\\nInnholdsland:\\nAppspråk:\\nTjeneste:\\nGMT-tid:\\nPakke:\\nVersjon:\\nOS-versjon:</string>
+    <string name="info_labels">Hva:\nForespørsel:\nInnholdsspråk:\nInnholdsland:\nAppspråk:\nTjeneste:\nGMT-tid:\nPakke:\nVersjon:\nOS-versjon:</string>
     <string name="start">Start</string>
     <string name="no_available_dir">Definer en nedlastingsmappe senere i innstillingene</string>
     <string name="title_activity_recaptcha">reCAPTCHA-oppgave</string>
@@ -488,8 +488,8 @@
     <string name="artists">Artister</string>
     <string name="albums">Album</string>
     <string name="songs">Sanger</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, og delvist sette videoer</string>
-    <string name="remove_watched_popup_title">Fjern sette videoer\?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Ja, og delvist sette videoer</string>
+    <string name="remove_watched_popup_title">Fjern sette videoer?</string>
     <string name="remove_watched">Fjern sette</string>
     <string name="channel_created_by">Opprettet av %s</string>
     <string name="video_detail_by">Av %s</string>
@@ -526,8 +526,7 @@
     <string name="feed_use_dedicated_fetch_method_title">Hent fra dedikert strøm når tilgjengelig</string>
     <string name="feed_update_threshold_summary">Tid siden siste oppdatering før et abonnement vurderes utdatert — %s</string>
     <string name="new_seek_duration_toast">Som følge av begrensninger i ExoPlayer er blafringsdistansen kun %d sekunder</string>
-    <string name="remove_watched_popup_warning">Videoer som har blitt sett før og etter at de er lagt til spillelisten, vil bli fjernet.
-\nEr du sikker\? Dette kan ikke angres!</string>
+    <string name="remove_watched_popup_warning">Videoer som har blitt sett før og etter at de er lagt til spillelisten, vil bli fjernet. \nEr du sikker? Dette kan ikke angres!</string>
     <string name="autoplay_summary">Start avspilling automatisk — %s</string>
     <string name="unsupported_url_dialog_message">Kunne ikke gjenkjenne angitt nettadresse. Åpne den med et annet program\?</string>
     <string name="content_not_supported">Innholdet støttes ikke enda av NewPipe.
@@ -639,9 +638,7 @@
     <string name="local_search_suggestions">Lokale søkeforslag</string>
     <string name="mark_as_watched">Marker som sett</string>
     <string name="start_main_player_fullscreen_summary">Ikke start videoer i minispilleren, men bytt til fullskjermsmodus direkte dersom auto-rotering er låst. Du har fremdeles tilgang til minispilleren ved å avslutte fullskjermsvisningen</string>
-    <string name="show_image_indicators_summary">Vis Picasso-fargede bånd på toppen av bilder for å indikere kilde: Rød for nettverk, blå for disk, og grønn for minne</string>
     <string name="detail_heart_img_view_description">Hjertemerket av skaperen</string>
-    <string name="show_image_indicators_title">Vis bildeindikatorer</string>
     <string name="main_page_content_swipe_remove">Dra elementer for å fjerne dem</string>
     <string name="start_main_player_fullscreen_title">Start hovedspiller i fullskjerm</string>
     <string name="enqueue_next_stream">Still i kø neste</string>
