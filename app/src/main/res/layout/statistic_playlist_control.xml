@@ -8,6 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:baselineAligned="false"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -66,7 +67,7 @@
                 android:layout_height="50dp"
                 android:layout_toEndOf="@id/fullyWatchedFilterButtonCheckBox"
                 android:gravity="start|center_vertical"
-                android:text="@string/title_fully_watched"
+                android:text="@string/title_hide_watched"
                 android:textSize="15sp"
                 android:textStyle="bold" />
         </RelativeLayout>

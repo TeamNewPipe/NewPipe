@@ -83,7 +83,7 @@ public class StatisticsPlaylistFragment
         // Filter Fully Watched
         if (!includeFullyWatched) {
             return results.stream()
-                    .filter(e -> e.getStreamEntity().getDuration() != e.getProgressMillis() / 1000)
+                    .filter(e -> !e.isFinished())
                     .toList();
         }
 
