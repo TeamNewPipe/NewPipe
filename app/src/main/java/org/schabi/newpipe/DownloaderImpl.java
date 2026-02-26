@@ -1,6 +1,8 @@
 package org.schabi.newpipe;
 
 import android.content.Context;
+import android.system.Os;
+import android.system.OsConstants;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,13 +45,20 @@ public final class DownloaderImpl extends Downloader {
     private final OkHttpClient client;
 
     private DownloaderImpl(final OkHttpClient.Builder builder) {
+        final CompressionInterceptor compressionInterceptor;
+        if (Os.sysconf(OsConstants._SC_NPROCESSORS_CONF) > 2) {
+            compressionInterceptor = new CompressionInterceptor(
+                    Brotli.INSTANCE,
+                    Gzip.INSTANCE);
+        } else {
+            compressionInterceptor = new CompressionInterceptor(
+                    Gzip.INSTANCE);
+        }
         this.client = builder
                 .readTimeout(30, TimeUnit.SECONDS)
 //                .cache(new Cache(new File(context.getExternalCacheDir(), "okhttp"),
 //                        16 * 1024 * 1024))
-                .addInterceptor(new CompressionInterceptor(
-                        Brotli.INSTANCE,
-                        Gzip.INSTANCE))
+                .addInterceptor(compressionInterceptor)
                 .build();
         this.mCookies = new HashMap<>();
     }
