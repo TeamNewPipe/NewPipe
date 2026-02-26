@@ -847,4 +847,7 @@
     <string name="youtube_player_http_403">Oynatırken sunucudan HTTP 403 hatası alındı, IP engeli ya da akış URL’si çözme sorunları olabilir</string>
     <string name="sign_in_confirm_not_bot_error">%1$s veri sağlamayı geri çevirdi, istekçinin robot olmadığını doğrulaması için oturum açmasını istiyor.\n\n%1$s, IP adresinizi geçici olarak engellemiş olabilir, bir süre bekleyebilir ya da başka IP\'ye geçebilirsiniz (örneğin VPN\'i açıp/kapatarak ya da WiFi\'den mobil veriye geçerek).</string>
     <string name="unsupported_content_in_country">Bu içerik şu anda seçili içerik ülkesinde kullanılamıyor.\n\nSeçiminizi \"Ayarlar &gt; İçerik &gt; Öntanımlı içerik ülkesi\"nden değiştirin.</string>
+    <string name="kao_dialog_warning">Google, 2026/2027 yılından itibaren sertifikalı Android cihazlardaki tüm uygulamaların, geliştiricilerin kişisel kimlik bilgilerini doğrudan Google’a göndermesini gerektireceğini duyurdu. Bu uygulamanın geliştiricileri bu gerekliliği kabul etmediğinden, uygulama bu tarihten sonra sertifikalı Android cihazlarda çalışmayacaktır.</string>
+    <string name="kao_dialog_more_info">Detaylar</string>
+    <string name="kao_solution">Çözüm</string>
 </resources>

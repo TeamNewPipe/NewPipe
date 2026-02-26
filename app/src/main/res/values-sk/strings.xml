@@ -862,4 +862,7 @@
     <string name="youtube_player_http_403">Chyba HTTP 403 prijatá zo servera počas prehrávania, pravdepodobne spôsobená zákazom IP adresy alebo problémami s deobfuskáciou streamingovej URL adresy</string>
     <string name="sign_in_confirm_not_bot_error">%1$s odmietol poskytnúť údaje, žiada o prihlásenie na potvrdenie, že žiadateľ nie je bot.\n\nVaša IP adresa mohla byť dočasne zakázaná %1$s, môžete nejaký čas počkať alebo prejsť na inú IP adresu (napríklad zapnutím/vypnutím VPN alebo prepnutím z WiFi na mobilné dáta).</string>
     <string name="unsupported_content_in_country">Tento obsah nie je dostupný pre aktuálne zvolenú krajinu obsahu.\n\nZmeňte výber v ponuke \"Nastavenia &gt; Obsah &gt; Predvolená krajina obsahu\".</string>
+    <string name="kao_dialog_warning">Google oznámil, že od roku 2026/2027 budú všetky aplikácie na certifikovaných zariadeniach s Androidom vyžadovať, aby vývojári odovzdali svoje osobné identifikačné údaje priamo Googlu. Keďže vývojári tejto aplikácie s touto požiadavkou nesúhlasia, aplikácia po tomto termíne na certifikovaných zariadeniach s Androidom prestane fungovať.</string>
+    <string name="kao_dialog_more_info">Podrobnosti</string>
+    <string name="kao_solution">Riešenie</string>
 </resources>

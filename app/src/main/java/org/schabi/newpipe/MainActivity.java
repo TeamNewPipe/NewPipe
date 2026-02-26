@@ -20,12 +20,14 @@
 
 package org.schabi.newpipe;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -96,6 +98,8 @@ import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.views.FocusOverlayView;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -195,6 +199,8 @@ public class MainActivity extends AppCompatActivity {
                 && ReleaseVersionUtil.INSTANCE.isReleaseApk()) {
             UpdateSettingsFragment.askForConsentToUpdateChecks(this);
         }
+
+        showKeepAndroidDialog();
 
         MigrationManager.showUserInfoIfPresent(this);
     }
@@ -973,4 +979,58 @@ public class MainActivity extends AppCompatActivity {
                 || sheetState == BottomSheetBehavior.STATE_COLLAPSED;
     }
 
+    private void showKeepAndroidDialog() {
+        final var prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        final var now = Instant.now();
+        final var kaoLastCheck = Instant.ofEpochMilli(prefs.getLong(
+                getString(R.string.kao_last_checked_key),
+                0
+        ));
+
+        final var supportedLannguages = List.of("fr", "de", "ca", "es", "id", "it", "pl",
+                "pt", "cs", "sk", "fa", "ar", "tr", "el", "th", "ru", "uk", "ko", "zh", "ja");
+        final var locale = Localization.getAppLocale();
+        final String kaoBaseUrl = "https://keepandroidopen.org/";
+        final String kaoURIString;
+        if (supportedLannguages.contains(locale.getLanguage())) {
+            if ("zh".equals(locale.getLanguage())) {
+                kaoURIString = kaoBaseUrl + ("TW".equals(locale.getCountry()) ? "zh-TW" : "zh-CN");
+            } else {
+                kaoURIString = kaoBaseUrl + locale.getLanguage();
+            }
+        } else {
+            kaoURIString = kaoBaseUrl;
+        }
+        final var kaoURI = Uri.parse(kaoURIString);
+        final var solutionURI = Uri.parse(
+                "https://github.com/woheller69/FreeDroidWarn?tab=readme-ov-file#solutions");
+
+        if (kaoLastCheck.plus(30, ChronoUnit.DAYS).isBefore(now)) {
+            final var dialog = new AlertDialog.Builder(this)
+                    .setTitle("Keep Android Open")
+                    .setCancelable(false)
+                    .setMessage(this.getString(R.string.kao_dialog_warning))
+                    .setPositiveButton(this.getString(android.R.string.ok), (d, w) -> {
+                        prefs.edit()
+                                .putLong(
+                                        getString(R.string.kao_last_checked_key),
+                                        now.toEpochMilli()
+                                )
+                                .apply();
+                    })
+                    .setNeutralButton(this.getString(R.string.kao_solution), null)
+                    .setNegativeButton(this.getString(R.string.kao_dialog_more_info), null)
+                    .show();
+
+            // If we use setNeutralButton and etc. dialog will close after pressing the buttons,
+            // but we want it to close only when positive button is pressed
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(v ->
+                    this.startActivity(new Intent(Intent.ACTION_VIEW, kaoURI))
+            );
+            dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(v ->
+                    this.startActivity(new Intent(Intent.ACTION_VIEW, solutionURI))
+            );
+        }
+    }
 }

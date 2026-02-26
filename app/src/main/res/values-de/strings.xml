@@ -847,4 +847,7 @@
     <string name="youtube_player_http_403">HTTP-Fehler 403 vom Server während der Wiedergabe erhalten, wahrscheinlich verursacht durch eine IP-Sperre oder Probleme beim Entschlüsseln der Streaming-URL</string>
     <string name="sign_in_confirm_not_bot_error">%1$s hat die Datenbereitstellung verweigert und verlangt eine Anmeldung, um zu bestätigen, dass es sich bei dem Anfragenden nicht um einen Bot handelt.\n\nDeine IP-Adresse wurde möglicherweise vorübergehend von %1$s gesperrt. Du kannst einige Zeit warten oder zu einer anderen IP-Adresse wechseln (z. B. durch Ein- und Ausschalten eines VPNs oder durch Wechseln von WLAN zu mobilen Daten).</string>
     <string name="unsupported_content_in_country">Dieser Inhalt ist für das aktuell ausgewählte Land des Inhalts nicht verfügbar.\n\nÄndere die Auswahl unter „Einstellungen &gt; Inhalt &gt; Bevorzugtes Land des Inhalts“.</string>
+    <string name="kao_dialog_warning">Google hat angekündigt, dass ab 2026/2027 alle Apps auf zertifizierten Android-Geräten nur noch funktionieren, wenn die Entwickler ihre persönlichen Identitätsdaten direkt an Google übermitteln. Da die Entwickler dieser App dieser Anforderung nicht zustimmen, wird diese App ab diesem Zeitpunkt auf zertifizierten Android-Geräten nicht mehr funktionieren.</string>
+    <string name="kao_dialog_more_info">Details</string>
+    <string name="kao_solution">Lösung</string>
 </resources>
