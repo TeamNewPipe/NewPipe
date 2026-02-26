@@ -988,7 +988,21 @@ public class MainActivity extends AppCompatActivity {
                 0
         ));
 
-        final var kaoURI = Uri.parse("https://keepandroidopen.org");
+        final var supportedLannguages = List.of("fr", "de", "ca", "es", "id", "it", "pl",
+                "pt", "cs", "sk", "fa", "ar", "tr", "el", "th", "ru", "uk", "ko", "zh", "ja");
+        final var locale = Localization.getAppLocale();
+        final String kaoBaseUrl = "https://keepandroidopen.org/";
+        final String kaoURIString;
+        if (supportedLannguages.contains(locale.getLanguage())) {
+            if ("zh".equals(locale.getLanguage())) {
+                kaoURIString = kaoBaseUrl + ("TW".equals(locale.getCountry()) ? "zh-TW" : "zh-CN");
+            } else {
+                kaoURIString = kaoBaseUrl + locale.getLanguage();
+            }
+        } else {
+            kaoURIString = kaoBaseUrl;
+        }
+        final var kaoURI = Uri.parse(kaoURIString);
         final var solutionURI = Uri.parse(
                 "https://github.com/woheller69/FreeDroidWarn?tab=readme-ov-file#solutions");
 
@@ -1009,7 +1023,7 @@ public class MainActivity extends AppCompatActivity {
                     .setNegativeButton(this.getString(R.string.kao_dialog_more_info), null)
                     .show();
 
-            // If we use setNeutralButton and etc. dialog will close after pressing the buttons
+            // If we use setNeutralButton and etc. dialog will close after pressing the buttons,
             // but we want it to close only when positive button is pressed
             dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(v ->
                     this.startActivity(new Intent(Intent.ACTION_VIEW, kaoURI))
