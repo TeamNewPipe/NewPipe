@@ -200,7 +200,11 @@ public class MainActivity extends AppCompatActivity {
             UpdateSettingsFragment.askForConsentToUpdateChecks(this);
         }
 
-        showKeepAndroidDialog();
+        // ReleaseVersionUtil.INSTANCE.isReleaseApk() will be true only for main official build
+        // We want every release build (nightly, nightly-refactor) to show the popup
+        if (!DEBUG) {
+            showKeepAndroidDialog();
+        }
 
         MigrationManager.showUserInfoIfPresent(this);
     }
