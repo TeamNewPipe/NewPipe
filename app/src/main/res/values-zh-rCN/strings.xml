@@ -833,4 +833,7 @@
     <string name="youtube_player_http_403">播放时从服务器收到 HTTP 403 错误，可能因 IP 封锁或串流 URL 解密问题导致</string>
     <string name="sign_in_confirm_not_bot_error">%1$s 拒绝提供数据， 要求登录确认请求方不是机器人。\n\n你的 IP 可能已经暂时被 %1$s 封禁，你可以等待一段时间或切换到不同 IP （比如开/关 VPN, 或者从 WiFi 连接切换到移动数据）。</string>
     <string name="unsupported_content_in_country">此内容对当前选中的内容地区不可用。\n\n要更改选择，请前往 “设置 &gt; 内容 &gt; 默认内容地区”。</string>
+    <string name="kao_dialog_warning">2025 年 8 月，Google 宣布自 2026 年 9 月起，在已认证设备上安装所有安卓应用都需要开发者验证身份，包括在 Play 商店之外安装的应用。由于 NewPipe 开发者反对此要求，NewPipe 在此时间点后不会再在已认证设备上工作。</string>
+    <string name="kao_dialog_more_info">详情</string>
+    <string name="kao_solution">解决方案</string>
 </resources>

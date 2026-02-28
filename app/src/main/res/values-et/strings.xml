@@ -832,4 +832,7 @@
     <string name="youtube_player_http_403">Esitamise ajal lisas server andmevoogu HTTP oleku 403 ning tavaliselt tähendab see, et sinu seadme IP-aadress on keelatud või voogedastuse võrguaadressi hägustamisvastastes meetmetes on viga</string>
     <string name="unsupported_content_in_country">See sisu pole saadaval hetkel kehtvas riigis.\n\nRiiki saad muuta: Seadistused &gt; Sisu &gt; Sisu vaikimisi riik.</string>
     <string name="sign_in_confirm_not_bot_error">%1$s keeldus andmete edastamisest ning eeldab sisselogimist tuvastamaks, et tegemist pole robotiga.\n\nLisaks võib olla juhtunud, et %1$s on lisanud sinu seadme ip-aadressi ajutisse keelunimekirja. Sa võid oodata natuke aega või vahetada võrguühendus viisi (näiteks lülitades VPN sisse/välja või kasutades WiFi asemel mobiilset internetiühendust).</string>
+    <string name="kao_dialog_warning">2025. aasta augustis teatas Google, et alates septembrist 2026 uute rakenduste paigaldamine kõikides uutes Androidi seadmetes eeldab arendajate verifitseerimist, sealhulgas juhtudel, kui selline rakendus on paigaldatud väljastpoolt Google Play rakendustepoodi. Kuna NewPipe\'i arendajad pole sellise nõudmisega nõus, siis sellise aja saabumisel NewPipe enam ei toimi sertifitseeritud Androidi seadmetes.</string>
+    <string name="kao_dialog_more_info">Üksikasjad</string>
+    <string name="kao_solution">Lahendus</string>
 </resources>

@@ -861,4 +861,7 @@
     <string name="youtube_player_http_403">Erro HTTP 403 recebido do servidor durante a reprodução, provavelmente causado por um banimento de IP ou problemas de desofuscação de URL de streaming</string>
     <string name="sign_in_confirm_not_bot_error">%1$s se recusou a fornecer dados, solicitando um login para confirmar que o solicitante não é um bot.\n\nSeu IP pode ter sido temporariamente banido por %1$s. Você pode esperar um pouco ou mudar para um IP diferente (por exemplo, ativando/desativando uma VPN ou alternando de Wi-Fi para dados móveis).</string>
     <string name="unsupported_content_in_country">Este conteúdo não está disponível para o país selecionado atualmente.\n\nAltere sua seleção acessando “Configurações &gt; Conteúdo &gt; País padrão do conteúdo”.</string>
+    <string name="kao_dialog_warning">Em agosto de 2025, o Google anunciou que, a partir de setembro de 2026, a instalação de aplicativos exigirá a verificação do desenvolvedor para todos os aplicativos Android em dispositivos certificados, incluindo aqueles instalados fora da Play Store. Como os desenvolvedores do NewPipe não concordam com esse requisito, o NewPipe não funcionará mais em dispositivos Android certificados após essa data.</string>
+    <string name="kao_dialog_more_info">Detalhes</string>
+    <string name="kao_solution">Solução</string>
 </resources>
