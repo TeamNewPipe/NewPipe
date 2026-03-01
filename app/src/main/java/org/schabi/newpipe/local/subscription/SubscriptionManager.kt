@@ -16,10 +16,12 @@ import org.schabi.newpipe.extractor.channel.tabs.ChannelTabInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.local.feed.service.FeedUpdateInfo
+import org.schabi.newpipe.local.nostr.NostrSyncManager
 import org.schabi.newpipe.util.ExtractorHelper
 import org.schabi.newpipe.util.image.ImageStrategy
 
 class SubscriptionManager(context: Context) {
+    private val appContext = context.applicationContext
     private val database = NewPipeDatabase.getInstance(context)
     private val subscriptionTable = database.subscriptionDAO()
     private val feedDatabaseManager = FeedDatabaseManager(context)
@@ -60,6 +62,8 @@ class SubscriptionManager(context: Context) {
                 feedDatabaseManager.upsertAll(listEntities[index].uid, streams)
             }
         }
+
+        NostrSyncManager.requestSync(appContext)
     }
 
     fun updateChannelInfo(info: ChannelInfo): Completable = subscriptionTable.getSubscription(info.serviceId, info.url)
@@ -73,7 +77,7 @@ class SubscriptionManager(context: Context) {
                 }
                 subscriptionTable.update(it)
             }
-        }
+        }.doOnComplete { NostrSyncManager.requestSync(appContext) }
 
     fun updateNotificationMode(serviceId: Int, url: String, @NotificationMode mode: Int): Completable {
         return subscriptionTable().getSubscription(serviceId, url)
@@ -109,14 +113,17 @@ class SubscriptionManager(context: Context) {
         return Completable.fromCallable { subscriptionTable.deleteSubscription(serviceId, url) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnComplete { NostrSyncManager.requestSync(appContext) }
     }
 
     fun insertSubscription(subscriptionEntity: SubscriptionEntity) {
         subscriptionTable.insert(subscriptionEntity)
+        NostrSyncManager.requestSync(appContext)
     }
 
     fun deleteSubscription(subscriptionEntity: SubscriptionEntity) {
         subscriptionTable.delete(subscriptionEntity)
+        NostrSyncManager.requestSync(appContext)
     }
 
     /**

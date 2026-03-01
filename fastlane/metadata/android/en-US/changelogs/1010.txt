@@ -1,0 +1,14 @@
+New
+Implement private sync for history+subs via kind 30078 (NIP-78) + NIP-44 encryption
+• CRDT-style merge: history=max ts/repeats; subscriptions=field/group union
+• Watch history now syncs resume position (`stream_state.progress_time`) across devices
+• Sign in via NIP-55 (Amber), local keygen, or nsec import
+• Identity dialog: copy npub/nsec, QR codes, clear identity
+• Pull-to-sync in History and Subs
+• DAO: blocking snapshot reads for sync in
+    - StreamHistoryDAO.getHistorySortedByIdBlocking
+    - StreamStateDAO.getAllBlocking
+    - StreamStateDAO.getStateBlocking
+    - SubscriptionDAO.getAllBlocking
+    - FeedGroupDAO.getAllBlocking
+    - FeedGroupDAO.getSubscriptionIdsForBlocking

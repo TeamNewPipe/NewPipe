@@ -25,6 +25,7 @@ import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 import androidx.collection.LongLongPair;
+import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.NewPipeDatabase;
@@ -47,6 +48,7 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.local.feed.FeedViewModel;
+import org.schabi.newpipe.local.nostr.NostrSyncManager;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 
 import java.time.OffsetDateTime;
@@ -61,6 +63,9 @@ import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class HistoryRecordManager {
+    private static final long NOSTR_PROGRESS_SYNC_DELTA_MILLIS = 15_000L;
+
+    private final Context appContext;
     private final AppDatabase database;
     private final StreamDAO streamTable;
     private final StreamHistoryDAO streamHistoryTable;
@@ -71,6 +76,7 @@ public class HistoryRecordManager {
     private final String streamHistoryKey;
 
     public HistoryRecordManager(final Context context) {
+        appContext = context.getApplicationContext();
         database = NewPipeDatabase.getInstance(context);
         streamTable = database.streamDAO();
         streamHistoryTable = database.streamHistoryDAO();
@@ -125,6 +131,7 @@ public class HistoryRecordManager {
                         streamHistoryTable.insert(entry);
                     }
                 }))
+                .doOnComplete(() -> NostrSyncManager.requestSync(appContext))
                 .subscribeOn(Schedulers.io());
     }
 
@@ -147,7 +154,8 @@ public class HistoryRecordManager {
                 // just viewed for the first time: set 1 view
                 return streamHistoryTable.insert(new StreamHistoryEntity(streamId, currentTime, 1));
             }
-        })).subscribeOn(Schedulers.io());
+        })).doOnSuccess(id -> NostrSyncManager.requestSync(appContext))
+                .subscribeOn(Schedulers.io());
     }
 
     public Completable deleteStreamHistoryAndState(final long streamId) {
@@ -242,13 +250,28 @@ public class HistoryRecordManager {
     }
 
     public Completable saveStreamState(@NonNull final StreamInfo info, final long progressMillis) {
-        return Completable.fromAction(() -> database.runInTransaction(() -> {
-            final long streamId = streamTable.upsert(new StreamEntity(info));
-            final var state = new StreamStateEntity(streamId, progressMillis);
-            if (state.isValid(info.getDuration())) {
+        return Completable.fromAction(() -> {
+            final boolean[] shouldRequestSync = {false};
+            database.runInTransaction(() -> {
+                final long streamId = streamTable.upsert(new StreamEntity(info));
+                final var state = new StreamStateEntity(streamId, progressMillis);
+                if (!state.isValid(info.getDuration())) {
+                    return;
+                }
+
+                final var previousState = streamStateTable.getStateBlocking(streamId);
                 streamStateTable.upsert(state);
+                shouldRequestSync[0] = shouldSyncProgressState(
+                        previousState,
+                        state,
+                        info.getDuration()
+                );
+            });
+
+            if (shouldRequestSync[0]) {
+                NostrSyncManager.requestSync(appContext);
             }
-        })).subscribeOn(Schedulers.io());
+        }).subscribeOn(Schedulers.io());
     }
 
     public Maybe<StreamStateEntity> loadStreamState(final InfoItem info) {
@@ -285,6 +308,24 @@ public class HistoryRecordManager {
 
     public Single<Integer> removeOrphanedRecords() {
         return Single.fromCallable(streamTable::deleteOrphans).subscribeOn(Schedulers.io());
+    }
+
+    private static boolean shouldSyncProgressState(@Nullable final StreamStateEntity previousState,
+                                                   @NonNull final StreamStateEntity state,
+                                                   final long durationInSeconds) {
+        if (previousState == null) {
+            return true;
+        }
+
+        if (Math.abs(state.getProgressMillis() - previousState.getProgressMillis())
+                >= NOSTR_PROGRESS_SYNC_DELTA_MILLIS) {
+            return true;
+        }
+
+        if (durationInSeconds <= 0) {
+            return false;
+        }
+        return previousState.isFinished(durationInSeconds) != state.isFinished(durationInSeconds);
     }
 
 }

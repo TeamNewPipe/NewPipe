@@ -53,6 +53,7 @@ import org.schabi.newpipe.ktx.ContextKt;
 import org.schabi.newpipe.local.bookmark.BookmarkFragment;
 import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
+import org.schabi.newpipe.local.nostr.NostrSyncFragment;
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionsImportFragment;
@@ -556,6 +557,13 @@ public final class NavigationHelper {
     public static void openStatisticFragment(final FragmentManager fragmentManager) {
         defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, new StatisticsPlaylistFragment())
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public static void openNostrSyncFragment(final FragmentManager fragmentManager) {
+        defaultTransaction(fragmentManager)
+                .replace(R.id.fragment_holder, new NostrSyncFragment())
                 .addToBackStack(null)
                 .commit();
     }

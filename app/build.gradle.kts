@@ -293,7 +293,9 @@ dependencies {
 
     /** Third-party libraries **/
     // Instance state boilerplate elimination
+    implementation(libs.bouncycastle.bcprov)
     implementation(libs.livefront.bridge)
+    implementation(libs.journeyapps.zxing.android.embedded)
     implementation(libs.evernote.statesaver.core)
     kapt(libs.evernote.statesaver.compiler)
 

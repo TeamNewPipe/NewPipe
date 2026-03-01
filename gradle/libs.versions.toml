@@ -11,6 +11,7 @@ appcompat = "1.7.1"
 assertj = "3.27.7"
 autoservice-google = "1.1.1"
 autoservice-zacsweers = "1.2.0"
+bcprov = "1.82"
 bridge = "v2.0.2"
 cardview = "1.0.0"
 checkstyle = "13.2.0"
@@ -68,6 +69,7 @@ teamnewpipe-nanojson = "e9d656ddb49a412a5a0a5d5ef20ca7ef09549996"
 teamnewpipe-newpipe-extractor = "824486dfdf4e9ba0fbe820bc2938f9101ae739a6"
 webkit = "1.14.0" # Newer versions require minSdk >= 23
 work = "2.10.5"  # Newer versions require minSdk >= 23
+zxing-android-embedded = "4.3.0"
 
 [libraries]
 about-libraries-compose-m3 = { group = "com.mikepenz", name = "aboutlibraries-compose-m3", version.ref = "about-libraries" }
@@ -108,6 +110,7 @@ androidx-webkit = { module = "androidx.webkit:webkit", version.ref = "webkit" }
 androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "work" }
 androidx-work-rxjava3 = { module = "androidx.work:work-rxjava3", version.ref = "work" }
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+bouncycastle-bcprov = { module = "org.bouncycastle:bcprov-jdk18on", version.ref = "bcprov" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
 evernote-statesaver-compiler = { module = "com.evernote:android-state-processor", version.ref = "statesaver" }
@@ -128,6 +131,7 @@ hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt"
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 jakewharton-phoenix = { module = "com.jakewharton:process-phoenix", version.ref = "phoenix" }
 jakewharton-rxbinding = { module = "com.jakewharton.rxbinding4:rxbinding", version.ref = "rxbinding" }
+journeyapps-zxing-android-embedded = { module = "com.journeyapps:zxing-android-embedded", version.ref = "zxing-android-embedded" }
 jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
 junit = { module = "junit:junit", version.ref = "junit" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }

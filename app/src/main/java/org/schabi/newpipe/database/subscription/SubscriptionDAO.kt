@@ -21,6 +21,9 @@ abstract class SubscriptionDAO : BasicDAO<SubscriptionEntity> {
     @Query("SELECT * FROM subscriptions ORDER BY name COLLATE NOCASE ASC")
     abstract override fun getAll(): Flowable<List<SubscriptionEntity>>
 
+    @Query("SELECT * FROM subscriptions ORDER BY name COLLATE NOCASE ASC")
+    abstract fun getAllBlocking(): List<SubscriptionEntity>
+
     @Query(
         """
         SELECT * FROM subscriptions

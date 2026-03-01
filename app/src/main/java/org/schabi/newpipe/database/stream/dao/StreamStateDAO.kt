@@ -22,6 +22,9 @@ interface StreamStateDAO : BasicDAO<StreamStateEntity> {
     @Query("SELECT * FROM " + StreamStateEntity.STREAM_STATE_TABLE)
     override fun getAll(): Flowable<List<StreamStateEntity>>
 
+    @Query("SELECT * FROM " + StreamStateEntity.STREAM_STATE_TABLE)
+    fun getAllBlocking(): List<StreamStateEntity>
+
     @Query("DELETE FROM " + StreamStateEntity.STREAM_STATE_TABLE)
     override fun deleteAll(): Int
 
@@ -31,6 +34,12 @@ interface StreamStateDAO : BasicDAO<StreamStateEntity> {
 
     @Query("SELECT * FROM " + StreamStateEntity.STREAM_STATE_TABLE + " WHERE " + StreamStateEntity.JOIN_STREAM_ID + " = :streamId")
     fun getState(streamId: Long): Maybe<StreamStateEntity>
+
+    @Query(
+        "SELECT * FROM " + StreamStateEntity.STREAM_STATE_TABLE +
+            " WHERE " + StreamStateEntity.JOIN_STREAM_ID + " = :streamId LIMIT 1"
+    )
+    fun getStateBlocking(streamId: Long): StreamStateEntity?
 
     @Query("DELETE FROM " + StreamStateEntity.STREAM_STATE_TABLE + " WHERE " + StreamStateEntity.JOIN_STREAM_ID + " = :streamId")
     fun deleteState(streamId: Long): Int

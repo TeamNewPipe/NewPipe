@@ -19,6 +19,12 @@
             <action android:name="android.intent.action.VIEW" />
             <data android:scheme="http" />
         </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="nostrsigner" />
+        </intent>
+        <package android:name="com.greenart7c3.nostrsigner" />
     </queries>
 
     <uses-feature
@@ -100,6 +106,11 @@
             android:name=".about.AboutActivity"
             android:exported="false"
             android:label="@string/title_activity_about" />
+
+        <activity
+            android:name=".local.nostr.PortraitCaptureActivity"
+            android:screenOrientation="portrait"
+            android:stateNotNeeded="true" />
 
         <service
             android:name="androidx.work.impl.foreground.SystemForegroundService"

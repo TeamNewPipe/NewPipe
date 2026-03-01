@@ -17,6 +17,9 @@ abstract class FeedGroupDAO {
     @Query("SELECT * FROM feed_group ORDER BY sort_order ASC")
     abstract fun getAll(): Flowable<List<FeedGroupEntity>>
 
+    @Query("SELECT * FROM feed_group ORDER BY sort_order ASC")
+    abstract fun getAllBlocking(): List<FeedGroupEntity>
+
     @Query("SELECT * FROM feed_group WHERE uid = :groupId")
     abstract fun getGroup(groupId: Long): Maybe<FeedGroupEntity>
 
@@ -38,6 +41,9 @@ abstract class FeedGroupDAO {
 
     @Query("SELECT subscription_id FROM feed_group_subscription_join WHERE group_id = :groupId")
     abstract fun getSubscriptionIdsFor(groupId: Long): Flowable<List<Long>>
+
+    @Query("SELECT subscription_id FROM feed_group_subscription_join WHERE group_id = :groupId")
+    abstract fun getSubscriptionIdsForBlocking(groupId: Long): List<Long>
 
     @Query("DELETE FROM feed_group_subscription_join WHERE group_id = :groupId")
     abstract fun deleteSubscriptionsFromGroup(groupId: Long): Int

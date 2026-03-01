@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.evernote.android.state.State;
 import com.google.android.material.snackbar.Snackbar;
@@ -34,6 +35,7 @@ import org.schabi.newpipe.info_list.dialog.StreamDialogDefaultEntry;
 import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
+import org.schabi.newpipe.local.nostr.NostrSyncManager;
 import org.schabi.newpipe.settings.HistorySettingsFragment;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
@@ -53,6 +55,8 @@ import io.reactivex.rxjava3.disposables.Disposable;
 public class StatisticsPlaylistFragment
         extends BaseLocalListFragment<List<StreamStatisticsEntry>, Void>
         implements PlaylistControlViewHolder {
+    private static final long PULL_REFRESH_POLL_DELAY_MS = 250L;
+
     private final CompositeDisposable disposables = new CompositeDisposable();
     @State
     Parcelable itemsListState;
@@ -60,10 +64,13 @@ public class StatisticsPlaylistFragment
 
     private StatisticPlaylistControlBinding headerBinding;
     private PlaylistControlBinding playlistControlBinding;
+    @Nullable
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     /* Used for independent events */
     private Subscription databaseSubscription;
     private HistoryRecordManager recordManager;
+    private final Runnable syncPollRunnable = this::pollSyncCompletion;
 
     private List<StreamStatisticsEntry> processResult(final List<StreamStatisticsEntry> results) {
         final Comparator<StreamStatisticsEntry> comparator;
@@ -95,7 +102,7 @@ public class StatisticsPlaylistFragment
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_playlist, container, false);
+        return inflater.inflate(R.layout.fragment_history_playlist, container, false);
     }
 
     @Override
@@ -103,6 +110,9 @@ public class StatisticsPlaylistFragment
         super.onResume();
         if (activity != null) {
             setTitle(activity.getString(R.string.title_activity_history));
+            if (activity.getSupportActionBar() != null) {
+                activity.getSupportActionBar().setSubtitle(null);
+            }
         }
     }
 
@@ -111,6 +121,9 @@ public class StatisticsPlaylistFragment
                                     @NonNull final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_history, menu);
+        if (activity != null && activity.getSupportActionBar() != null) {
+            activity.getSupportActionBar().setSubtitle(null);
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -120,6 +133,7 @@ public class StatisticsPlaylistFragment
     @Override
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
+        swipeRefreshLayout = rootView.findViewById(R.id.history_swipe_refresh_layout);
         if (!useAsFrontPage) {
             setTitle(getString(R.string.title_last_played));
         }
@@ -137,6 +151,9 @@ public class StatisticsPlaylistFragment
     @Override
     protected void initListeners() {
         super.initListeners();
+        if (swipeRefreshLayout != null) {
+            swipeRefreshLayout.setOnRefreshListener(this::triggerNostrPullRefresh);
+        }
 
         itemListAdapter.setSelectedListener(new OnClickGesture<>() {
             @Override
@@ -193,6 +210,13 @@ public class StatisticsPlaylistFragment
 
     @Override
     public void onDestroyView() {
+        if (itemsList != null) {
+            itemsList.removeCallbacks(syncPollRunnable);
+        }
+        if (swipeRefreshLayout != null) {
+            swipeRefreshLayout.setOnRefreshListener(null);
+            swipeRefreshLayout.setRefreshing(false);
+        }
         super.onDestroyView();
 
         if (itemListAdapter != null) {
@@ -201,6 +225,7 @@ public class StatisticsPlaylistFragment
 
         headerBinding = null;
         playlistControlBinding = null;
+        swipeRefreshLayout = null;
 
         if (databaseSubscription != null) {
             databaseSubscription.cancel();
@@ -223,7 +248,9 @@ public class StatisticsPlaylistFragment
         return new Subscriber<List<StreamStatisticsEntry>>() {
             @Override
             public void onSubscribe(final Subscription s) {
-                showLoading();
+                if (swipeRefreshLayout == null || !swipeRefreshLayout.isRefreshing()) {
+                    showLoading();
+                }
 
                 if (databaseSubscription != null) {
                     databaseSubscription.cancel();
@@ -235,6 +262,7 @@ public class StatisticsPlaylistFragment
             @Override
             public void onNext(final List<StreamStatisticsEntry> streams) {
                 handleResult(streams);
+                stopPullRefresh();
                 if (databaseSubscription != null) {
                     databaseSubscription.request(1);
                 }
@@ -242,6 +270,7 @@ public class StatisticsPlaylistFragment
 
             @Override
             public void onError(final Throwable exception) {
+                stopPullRefresh();
                 showError(
                         new ErrorInfo(exception, UserAction.SOMETHING_ELSE, "History Statistics"));
             }
@@ -311,6 +340,41 @@ public class StatisticsPlaylistFragment
             headerBinding.sortButtonText.setText(R.string.title_most_played);
         }
         startLoading(true);
+    }
+
+    private void triggerNostrPullRefresh() {
+        NostrSyncManager.requestSync(requireContext());
+        if (itemsList != null) {
+            itemsList.removeCallbacks(syncPollRunnable);
+            itemsList.postDelayed(syncPollRunnable, PULL_REFRESH_POLL_DELAY_MS);
+        } else {
+            stopPullRefresh();
+        }
+    }
+
+    private void pollSyncCompletion() {
+        if (swipeRefreshLayout == null) {
+            return;
+        }
+        if (!NostrSyncManager.isSyncRunning()) {
+            stopPullRefresh();
+            return;
+        }
+        if (itemsList != null) {
+            itemsList.postDelayed(syncPollRunnable, PULL_REFRESH_POLL_DELAY_MS);
+        }
+    }
+
+    private void stopPullRefresh() {
+        if (swipeRefreshLayout == null) {
+            return;
+        }
+        if (itemsList != null) {
+            itemsList.removeCallbacks(syncPollRunnable);
+        }
+        if (swipeRefreshLayout.isRefreshing()) {
+            swipeRefreshLayout.setRefreshing(false);
+        }
     }
 
     private PlayQueue getPlayQueueStartingAt(final StreamStatisticsEntry infoItem) {
@@ -389,4 +453,3 @@ public class StatisticsPlaylistFragment
         MOST_PLAYED,
     }
 }
-

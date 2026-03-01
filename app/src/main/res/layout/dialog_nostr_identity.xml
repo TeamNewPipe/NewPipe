@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/nostr_profile_image"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/nostr_profile_picture"
+            android:src="@drawable/placeholder_person" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="@string/nostr_npub_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/nostr_npub_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="monospace"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textIsSelectable="true"
+                android:textSize="11sp" />
+
+            <ImageButton
+                android:id="@+id/nostr_npub_copy_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/nostr_copy_npub"
+                android:src="@drawable/ic_content_copy" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/nostr_npub_qr"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:contentDescription="@string/nostr_npub_qr_code" />
+
+        <TextView
+            android:id="@+id/nostr_nsec_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:text="@string/nostr_nsec_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+        <TextView
+            android:id="@+id/nostr_signer_managed_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nostr_nsec_managed_by_signer"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/nostr_nsec_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="top"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/nostr_nsec_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="monospace"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textIsSelectable="true"
+                android:textSize="11sp" />
+
+            <ImageButton
+                android:id="@+id/nostr_nsec_visibility_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/nostr_toggle_nsec_visibility"
+                android:src="@drawable/ic_visibility_off" />
+
+            <ImageButton
+                android:id="@+id/nostr_nsec_copy_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/nostr_copy_nsec"
+                android:src="@drawable/ic_content_copy" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/nostr_nsec_qr"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:contentDescription="@string/nostr_nsec_qr_code" />
+    </LinearLayout>
+</ScrollView>

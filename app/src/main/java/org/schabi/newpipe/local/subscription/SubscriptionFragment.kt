@@ -34,6 +34,7 @@ import org.schabi.newpipe.extractor.ServiceList
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
 import org.schabi.newpipe.fragments.BaseStateFragment
 import org.schabi.newpipe.ktx.animate
+import org.schabi.newpipe.local.nostr.NostrSyncManager
 import org.schabi.newpipe.local.subscription.SubscriptionViewModel.SubscriptionState
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialog
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupReorderDialog
@@ -68,6 +69,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private lateinit var feedGroupsSortMenuItem: GroupsHeader
     private val subscriptionsSection = Section()
 
+    private val syncPollRunnable = Runnable { pollSyncCompletion() }
+
     @State
     @JvmField
     var itemsListState: Parcelable? = null
@@ -101,6 +104,11 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     }
 
     override fun onDestroyView() {
+        if (_binding != null) {
+            binding.itemsList.removeCallbacks(syncPollRunnable)
+            binding.subscriptionSwipeRefreshLayout.setOnRefreshListener(null)
+            binding.subscriptionSwipeRefreshLayout.isRefreshing = false
+        }
         super.onDestroyView()
         _binding = null
     }
@@ -193,6 +201,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     override fun initViews(rootView: View, savedInstanceState: Bundle?) {
         super.initViews(rootView, savedInstanceState)
         _binding = FragmentSubscriptionBinding.bind(rootView)
+        binding.subscriptionSwipeRefreshLayout.setOnRefreshListener { requestNostrSyncFromPull() }
 
         groupAdapter.spanCount = if (SubscriptionViewModel.shouldUseGridForSubscription(requireContext())) getGridSpanCountChannels(context) else 1
         binding.itemsList.layoutManager = GridLayoutManager(requireContext(), groupAdapter.spanCount).apply {
@@ -342,6 +351,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
 
         when (result) {
             is SubscriptionState.LoadedState -> {
+                stopPullToRefresh()
                 result.subscriptions.forEach {
                     if (it is ChannelItem) {
                         it.gesturesListener = listenerChannelItem
@@ -363,6 +373,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
             }
 
             is SubscriptionState.ErrorState -> {
+                stopPullToRefresh()
                 result.error?.let {
                     showError(ErrorInfo(result.error, UserAction.SOMETHING_ELSE, "Subscriptions"))
                 }
@@ -418,7 +429,32 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         binding.itemsList.animate(true, 200)
     }
 
+    private fun requestNostrSyncFromPull() {
+        NostrSyncManager.requestSync(requireContext())
+        binding.itemsList.removeCallbacks(syncPollRunnable)
+        binding.itemsList.postDelayed(syncPollRunnable, PULL_REFRESH_POLL_DELAY_MS)
+    }
+
+    private fun pollSyncCompletion() {
+        val viewBinding = _binding ?: return
+        if (!NostrSyncManager.isSyncRunning()) {
+            stopPullToRefresh()
+            return
+        }
+        viewBinding.itemsList.postDelayed(syncPollRunnable, PULL_REFRESH_POLL_DELAY_MS)
+    }
+
+    private fun stopPullToRefresh() {
+        val viewBinding = _binding ?: return
+        viewBinding.itemsList.removeCallbacks(syncPollRunnable)
+        if (viewBinding.subscriptionSwipeRefreshLayout.isRefreshing) {
+            viewBinding.subscriptionSwipeRefreshLayout.isRefreshing = false
+        }
+    }
+
     companion object {
+        private const val PULL_REFRESH_POLL_DELAY_MS = 250L
+
         val JSON_MIME_TYPE = MimeTypeMap.getSingleton()
             .getMimeTypeFromExtension("json") ?: "application/octet-stream"
     }
