@@ -27,7 +27,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -996,19 +995,18 @@ public class MainActivity extends AppCompatActivity {
                 "pt", "cs", "sk", "fa", "ar", "tr", "el", "th", "ru", "uk", "ko", "zh", "ja");
         final var locale = Localization.getAppLocale();
         final String kaoBaseUrl = "https://keepandroidopen.org/";
-        final String kaoURIString;
+        final String kaoURI;
         if (supportedLannguages.contains(locale.getLanguage())) {
             if ("zh".equals(locale.getLanguage())) {
-                kaoURIString = kaoBaseUrl + ("TW".equals(locale.getCountry()) ? "zh-TW" : "zh-CN");
+                kaoURI = kaoBaseUrl + ("TW".equals(locale.getCountry()) ? "zh-TW" : "zh-CN");
             } else {
-                kaoURIString = kaoBaseUrl + locale.getLanguage();
+                kaoURI = kaoBaseUrl + locale.getLanguage();
             }
         } else {
-            kaoURIString = kaoBaseUrl;
+            kaoURI = kaoBaseUrl;
         }
-        final var kaoURI = Uri.parse(kaoURIString);
-        final var solutionURI = Uri.parse(
-                "https://github.com/woheller69/FreeDroidWarn?tab=readme-ov-file#solutions");
+        final var solutionURI =
+                "https://github.com/woheller69/FreeDroidWarn?tab=readme-ov-file#solutions";
 
         if (kaoLastCheck.plus(30, ChronoUnit.DAYS).isBefore(now)) {
             final var dialog = new AlertDialog.Builder(this)
@@ -1030,10 +1028,10 @@ public class MainActivity extends AppCompatActivity {
             // If we use setNeutralButton and etc. dialog will close after pressing the buttons,
             // but we want it to close only when positive button is pressed
             dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(v ->
-                    this.startActivity(new Intent(Intent.ACTION_VIEW, kaoURI))
+                    ShareUtils.openUrlInBrowser(this, kaoURI)
             );
             dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(v ->
-                    this.startActivity(new Intent(Intent.ACTION_VIEW, solutionURI))
+                    ShareUtils.openUrlInBrowser(this, solutionURI)
             );
         }
     }
