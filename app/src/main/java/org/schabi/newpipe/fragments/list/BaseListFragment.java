@@ -46,6 +46,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
 
     private boolean useDefaultStateSaving = true;
     private int updateFlags = 0;
+    @Nullable
+    private String listViewModeKey;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -72,6 +74,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        listViewModeKey = getString(R.string.list_view_mode_key);
         PreferenceManager.getDefaultSharedPreferences(activity)
                 .registerOnSharedPreferenceChangeListener(this);
     }
@@ -474,7 +477,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     @Override
     public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences,
                                           final String key) {
-        if (getString(R.string.list_view_mode_key).equals(key)) {
+        if (listViewModeKey != null && listViewModeKey.equals(key)) {
             updateFlags |= LIST_MODE_UPDATE_FLAG;
         }
     }
