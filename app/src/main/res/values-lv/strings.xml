@@ -15,7 +15,7 @@
     <string name="popup_player">Popup atskaņotājs</string>
     <string name="background_player">Fona atskaņotājs</string>
     <string name="start_here_on_popup">Sākt atskaņot ar popup</string>
-    <string name="start_here_on_background">Sākt atskaņot fonā</string>
+    <string name="start_here_on_background">Klausīties fonā šo</string>
     <string name="enqueued">Ielikts rindā</string>
     <string name="enqueue_stream">Ielikt rindā</string>
     <string name="hold_to_append">Turiet, lai ieliktu atskaņošanas rindā</string>
@@ -48,7 +48,7 @@
     <string name="main_page_content">Galvenā lapa</string>
     <string name="title_most_played">Visvairāk Atskaņotais</string>
     <string name="title_last_played">Pēdējais Atskaņotais</string>
-    <string name="delete_item_search_history">Vai jūs vēlaties izdzēst šo lietu no meklēšanas vēstures\?</string>
+    <string name="delete_item_search_history">Vai jūs tiešām vēlaties izdzēst šo meklējumu no vēstures?</string>
     <string name="action_history">Vēsture</string>
     <string name="title_activity_history">Vēsture</string>
     <string name="read_full_license">Izlasīt licenci</string>
@@ -123,7 +123,7 @@
     </plurals>
     <string name="no_one_watching">Neviens neskatās</string>
     <plurals name="views">
-        <item quantity="zero">%s skatījumu</item>
+        <item quantity="zero">%s skatījumi</item>
         <item quantity="one">%s skatījums</item>
         <item quantity="other">%s skatījumi</item>
     </plurals>
@@ -151,7 +151,7 @@
     <string name="detail_thumbnail_view_description">Atskaņot video, ilgums:</string>
     <string name="error_details_headline">Detaļas:</string>
     <string name="your_comment">Jūsu komentārs (Angliski):</string>
-    <string name="info_labels">Kas:\\nRequest:\\nContent Valoda:\\nContent Valsts:\\nApp Valoda:\\nService:\\nGMT Laiks:\\nPackage:\\nVersion:\\nOS versija:</string>
+    <string name="info_labels">Kas:\nRequest:\nContent Valoda:\nContent Valsts:\nApp Valoda:\nService:\nGMT Laiks:\nPackage:\nVersion:\nOS versija:</string>
     <string name="hash_channel_description">Paziņojumi video apstrādes progresam</string>
     <string name="hash_channel_name">Video haša paziņojums</string>
     <string name="popup_remember_size_pos_summary">Atcerēties pēdējo uznirstošā loga izmēru un pozīciju</string>
@@ -195,9 +195,9 @@
     <string name="download_to_sdcard_error_title">Ārējā krātuve nepieejama</string>
     <string name="general_error">Kļūda</string>
     <string name="search_history_deleted">Meklēšanas vēsture izdzēsta</string>
-    <string name="delete_search_history_alert">Izdzēsy visu meklēšanas vēsturi\?</string>
+    <string name="delete_search_history_alert">Vai tiešām izdzēst visu meklēšanas vēsturi?</string>
     <string name="clear_search_history_summary">Izdzēš meklēto vārdu vēsturi</string>
-    <string name="clear_search_history_title">Izdzēst skatīšanās vēsturi</string>
+    <string name="clear_search_history_title">Notīrīt meklēšanas vēsturi</string>
     <string name="watch_history_states_deleted">Atskaņošanas pozīcikas izdzēstas</string>
     <string name="delete_playback_states_alert">Izdzēst visas atskaņošanas pozīcijas\?</string>
     <string name="clear_playback_states_summary">Izdzēš visas atskaņošanas pozīcijas</string>
@@ -301,7 +301,7 @@
     <string name="feed_update_threshold_title">Plūsmas atjaunināšanas biežuma slieksnis</string>
     <string name="settings_category_feed_title">Straume</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Rādīt tikai nepievienotus grupai abonementus</string>
-    <string name="feed_create_new_group_button_title">Jauna</string>
+    <string name="feed_create_new_group_button_title">Izveidot jaunu grupu</string>
     <string name="feed_group_dialog_delete_message">Vai tiešām vēlaties izdzēst šo grupu?</string>
     <string name="feed_group_dialog_empty_name">Tukšs grupas nosaukums</string>
     <plurals name="feed_group_dialog_selection_count">
@@ -339,8 +339,8 @@
     </plurals>
     <string name="new_seek_duration_toast">ExoPlayer ierobežojumu dēļ meklēšanas ilgums tika iestatīts uz %d sekundēm</string>
     <string name="remove_watched_popup_partially_watched_streams">Jā, un daļēji skatītos video</string>
-    <string name="remove_watched_popup_warning">Video, kas skatīti pirms un pēc pievienošanas atskaņošanas sarakstam, tiks noņemti. \nVai tiešām turpināt? Šo darbību nevarēs atsaukt!</string>
-    <string name="remove_watched_popup_title">Vai tiešām noņemt skatītos video?</string>
+    <string name="remove_watched_popup_warning">Tiešraides, kas pirms tam skatītas un pēc tam pievienotas atskaņošanas sarakstam, tiks noņemtas. \nVai tiešām turpināt?</string>
+    <string name="remove_watched_popup_title">Vai tiešām noņemt skatītās tiešraides?</string>
     <string name="remove_watched">Noņemt skatīto</string>
     <string name="systems_language">System default</string>
     <string name="app_language_title">Lietotnes valoda</string>
@@ -440,7 +440,7 @@
     <string name="minimize_on_exit_popup_description">Minimizēt uz popup atskaņotāju</string>
     <string name="minimize_on_exit_background_description">Minimizēt uz fona atskaņotāju</string>
     <string name="minimize_on_exit_none_description">Nav</string>
-    <string name="updates_setting_description">Rādīt paziņojumu, kad ir pieejama jauna aplikācijas versija</string>
+    <string name="updates_setting_description">Rādīt paziņojumu, ja pieejama jauna lietotnes versija</string>
     <string name="updates_setting_title">Atjauninājumi</string>
     <string name="limit_mobile_data_usage_title">Ierobežots izšķirtspēju, izmantojot mobilos datus</string>
     <string name="limit_data_usage_none_description">Nav ierobežojuma</string>
@@ -554,7 +554,7 @@
     <string name="download_path_summary">Lejupielādētās video datnes tiek glabātas šeit</string>
     <string name="download_path_title">Video lejupielādes mape</string>
     <string name="controls_add_to_playlist_title">Pievienot</string>
-    <string name="controls_background_title">Fonā</string>
+    <string name="controls_background_title">Klausīties fonā</string>
     <string name="tab_choose">Atlasiet cilni</string>
     <string name="tab_bookmarks">Saglabātie saraksti</string>
     <string name="tab_subscriptions">Abonementi</string>
@@ -612,15 +612,13 @@
     <string name="start_main_player_fullscreen_summary">Nesākt video atskaņošanu samazinātā režīmā, bet pilnekrāna režīmā, ja automātiskā rotācija ir izslēgta</string>
     <string name="disable_media_tunneling_title">Izslēgt multivides tuneļošanu</string>
     <string name="disable_media_tunneling_summary">Izslēdziet multivides tuneļošanu, ja jums video atskaņošanas laikā parādās melns ekrāns vai aizķeršanās.</string>
-    <string name="show_image_indicators_summary">Rādīt krāsainas lentes virs attēliem, norādot to avotu: sarkana - tīkls, zila - disks, zaļa - atmiņa</string>
     <string name="description_select_enable">Ieslēgt teksta atlasīšanu video aprakstā</string>
     <string name="no_dir_yet">Lejupielādes mape vēl nav iestatīta, izvēlieties noklusējuma lejupielādes mapi</string>
     <string name="main_page_content_swipe_remove">Pavelciet atlasīto elementu pa kreisi vai labi, lai to aizvāktu</string>
     <string name="local_search_suggestions">Lokālie meklēšanas ieteikumi</string>
-    <string name="show_image_indicators_title">Rādīt attēlu indikatorus</string>
     <string name="high_quality_larger">Augstas kvalitātes (lielāks)</string>
     <string name="check_for_updates">Pārbaudīt atjauninājumus</string>
-    <string name="manual_update_description">Manuāli pārbaudīt, vai ir jaunas versijas</string>
+    <string name="manual_update_description">Pašrocīgi pārbaudīt jaunas versijas pieejamību</string>
     <string name="seekbar_preview_thumbnail_title">Video atskaņošanas joslas sīktēla priekšskatījums</string>
     <string name="checking_updates_toast">Pārbauda, vai ir atjauninājumi…</string>
     <string name="downloads_storage_use_saf_summary_api_29">Sākot ar Android 10, tikai“Krātuves Piekļuves Sistēma” ir atbalstīta</string>
@@ -658,7 +656,7 @@
     <string name="streams_notification_channel_name">Jaunās tiešraides</string>
     <string name="error_report_notification_toast">Radās kļūda, detalizētāku informāciju skatiet paziņojumā</string>
     <plurals name="new_streams">
-        <item quantity="zero">%s jauna tiešraide</item>
+        <item quantity="zero">%s jaunas tiešraides</item>
         <item quantity="one">%s jauna tiešraide</item>
         <item quantity="other">%s jaunas tiešraides</item>
     </plurals>
@@ -728,8 +726,7 @@
     <string name="channel_tab_about">Par</string>
     <string name="metadata_thumbnails">Sīkattēli</string>
     <string name="sort">Kārtot</string>
-    <string name="auto_update_check_description">NewPipe var automātiski pārbaudīt, vai ir jaunas versijas laiku pa laikam un paziņot jūs, kad tās ir pieejamas.
-\nVai jūs gribat šo ieslēgt?</string>
+    <string name="auto_update_check_description">NewPipe var pati automātiski pārbaudīt jaunas versijas pieejamību laiku pa laikam un informēt jūs, kad tā ir pieejama.\nVai jūs tiešām gribiet ieslēgt šo funkciju?</string>
     <string name="no_appropriate_file_manager_message">Netika atrasts atbilstošs failu pārvaldnieks šai darbībai.
 \nLūdzu instalējiet failu pārvaldnieku vai pamēģiniet atspējot \'%s\' lejuplādēšanas iestatījumos</string>
     <string name="audio_track_type_original">oriģinālais</string>
@@ -839,4 +836,7 @@
     <string name="select_a_feed_group">Atlasiet abonementu grupu</string>
     <string name="migration_info_7_8_title">YouTube likvidēja apvienoto pašlaik populārs</string>
     <string name="permission_display_over_apps_permission_name">“Ļaut rādīt virs citām lietotnēm”</string>
+    <string name="search_with_service_name">Meklēt %1$s</string>
+    <string name="search_with_service_name_and_filter">Meklēt %1$s (%2$s)</string>
+    <string name="migration_info_6_7_title">SoundCloud Top 50 lapa noņemta</string>
 </resources>

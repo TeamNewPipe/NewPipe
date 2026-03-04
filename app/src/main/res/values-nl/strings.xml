@@ -65,7 +65,7 @@
     <string name="downloads_title">Downloads</string>
     <string name="error_report_title">Foutrapport</string>
     <string name="app_ui_crash">App/UI gecrasht</string>
-    <string name="info_labels">Wat:\\nVerzoek:\\nInhoudstaal:\\nInhoudsland:\\nApp-taal:\\nDienst:\\nGMT-tijd:\\nPakket:\\nVersie:\\nVersie van besturingssysteem:</string>
+    <string name="info_labels">Wat:\nVerzoek:\nInhoudstaal:\nInhoudsland:\nApp-taal:\nDienst:\nGMT-tijd:\nPakket:\nVersie:\nVersie van besturingssysteem:</string>
     <string name="start">Starten</string>
     <string name="pause">Pauzeren</string>
     <string name="delete">Verwĳderen</string>
@@ -213,7 +213,7 @@
     <string name="override_current_data">Dit overschrijft je huidige configuratie.</string>
     <string name="controls_download_desc">Streambestand downloaden</string>
     <string name="show_info">Informatie tonen</string>
-    <string name="tab_bookmarks">Bĳgehouden afspeellĳsten</string>
+    <string name="tab_bookmarks">Afspeellĳsten</string>
     <string name="controls_add_to_playlist_title">Toevoegen aan</string>
     <string name="detail_drag_description">Versleep om de volgorde te wijzigen</string>
     <string name="create">Aanmaken</string>
@@ -503,8 +503,8 @@
 \n
 \nHopelijk zal dit bij een toekomstige versie ondersteund worden.</string>
     <string name="remove_watched_popup_partially_watched_streams">Ja, en deels bekeken video\'s</string>
-    <string name="remove_watched_popup_warning">Video\'s die zijn bekeken voor, en na ze werden toegevoegd aan de afspeellijst worden verwijderd. \nWeet u dit zeker? Deze actie kan niet ongedaan gemaakt worden!</string>
-    <string name="remove_watched_popup_title">Bekeken video\'s verwijderen?</string>
+    <string name="remove_watched_popup_warning">Streams die zijn bekeken voor, en na ze werden toegevoegd aan de afspeellijst worden verwijderd. \nWeet u dit zeker?</string>
+    <string name="remove_watched_popup_title">Bekeken streams verwĳderen?</string>
     <string name="infinite_videos">∞ video\'s</string>
     <string name="more_than_100_videos">100+ video\'s</string>
     <string name="restricted_video">Deze video heeft een leeftijdsbeperking.
@@ -626,8 +626,6 @@
     <string name="low_quality_smaller">Lage kwaliteit (kleiner)</string>
     <string name="high_quality_larger">Hoge kwaliteit (groter)</string>
     <string name="seekbar_preview_thumbnail_title">Zoekbalk miniatuurafbeelding voorbeeld</string>
-    <string name="show_image_indicators_summary">Toon Picasso-gekleurde linten bovenop afbeeldingen die hun bron aangeven: rood voor netwerk, blauw voor schijf en groen voor geheugen</string>
-    <string name="show_image_indicators_title">Afbeeldings­indicatoren tonen</string>
     <string name="comments_are_disabled">Reacties zijn uitgeschakeld</string>
     <string name="remote_search_suggestions">Zoeksuggesties op afstand</string>
     <string name="local_search_suggestions">Lokale zoeksuggesties</string>

@@ -279,7 +279,7 @@
     <string name="detail_thumbnail_view_description">Videoni ijro etish muddati, davomiyligi:</string>
     <string name="error_details_headline">Detallar:</string>
     <string name="your_comment">Sizning sharhingiz (ingliz tilida):</string>
-    <string name="info_labels">Nima: \\n So\'rov: \\nTarkib tili: \\nTarkib mamlakati: \\nIlova tili: \\ nXizmat: \\ nGMT vaqti: \\ nPaket: \\ nVersion: \\ nOS versiyasi:</string>
+    <string name="info_labels">Nima: \n So\'rov: \nTarkib tili: \nTarkib mamlakati: \nIlova tili: \\ nXizmat: \\ nGMT vaqti: \\ nPaket: \\ nVersion: \\ nOS versiyasi:</string>
     <string name="what_happened_headline">Nima sodir bo\'ldi:</string>
     <string name="what_device_headline">Info:</string>
     <string name="error_snackbar_action">Hisobot</string>

@@ -109,7 +109,7 @@
     <string name="error_snackbar_action">أبلِغ</string>
     <string name="what_device_headline">معلومات:</string>
     <string name="what_happened_headline">ماذا حدث:</string>
-    <string name="info_labels">ماذا:\\nطلب:\\nلغة المحتوى:\\nبلد المحتوى:\\nلغة التطبيق:\\nالخدمات:\\nتوقيت جرينتش:\\nالحزمة:\\nالإصدار:\\nOS نسخة:</string>
+    <string name="info_labels">ماذا:\nطلب:\nلغة المحتوى:\nبلد المحتوى:\nلغة التطبيق:\nالخدمات:\nتوقيت جرينتش:\nالحزمة:\nالإصدار:\nOS نسخة:</string>
     <string name="your_comment">تعليقك (باللغة الإنجليزية):</string>
     <string name="error_details_headline">التفاصيل:</string>
     <string name="search_no_results">لم يتم العثور على نتائج</string>
@@ -668,8 +668,6 @@
     <string name="seekbar_preview_thumbnail_title">معاينة مصغرة على شريط التمرير</string>
     <string name="mark_as_watched">وضع علامة على تمت مشاهدته</string>
     <string name="detail_heart_img_view_description">أُعجب بها منشئ المحتوى</string>
-    <string name="show_image_indicators_summary">أظهر أشرطة ملونة لبيكاسو أعلى الصور تشير إلى مصدرها: الأحمر للشبكة والأزرق للقرص والأخضر للذاكرة</string>
-    <string name="show_image_indicators_title">إظهار مؤشرات الصور</string>
     <string name="remote_search_suggestions">اقتراحات البحث عن بعد</string>
     <string name="local_search_suggestions">اقتراحات البحث المحلية</string>
     <string name="main_page_content_swipe_remove">اسحب العناصر لإزالتها</string>
@@ -905,4 +903,7 @@
     <string name="youtube_player_http_403">تم تلقي خطأ HTTP 403 من الخادم أثناء التشغيل، ويرجح أن يكون السبب هو حظر عنوان IP أو مشكلات في إزالة التعتيم عن عنوان URL للبث</string>
     <string name="sign_in_confirm_not_bot_error">رفض %1$s تقديم البيانات، وطلب تسجيل الدخول للتأكد من أن الطالب ليس روبوتًا.\n\nربما تم حظر عنوان IP الخاص بك مؤقتًا من قبل %1$s، يمكنك الانتظار بعض الوقت أو التبديل إلى عنوان IP مختلف (على سبيل المثال عن طريق تشغيل/إيقاف تشغيل VPN، أو التبديل من WiFi إلى بيانات الهاتف المحمول).</string>
     <string name="unsupported_content_in_country">هذا المحتوى غير متاح للبلد المحدد حاليًا.\n\nقم بتغيير اختيارك من ”الإعدادات &gt; المحتوى &gt; البلد الافتراضي للمحتوى“.</string>
+    <string name="kao_dialog_warning">أعلنت Google أنه ابتداءً من عام 2026/2027، ستتطلب جميع التطبيقات على الأجهزة المعتمدة من Android من المطورين تقديم معلومات هويتهم الشخصية مباشرةً إلى Google. بما أن مطوري هذا التطبيق لا يوافقون على هذا الشرط، فلن يعمل هذا التطبيق على أجهزة Android المعتمدة بعد ذلك الوقت.</string>
+    <string name="kao_dialog_more_info">تفاصيل</string>
+    <string name="kao_solution">حل</string>
 </resources>

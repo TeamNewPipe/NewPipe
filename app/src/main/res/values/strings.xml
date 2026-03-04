@@ -271,7 +271,7 @@
     <string name="error_snackbar_action">Report</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">What happened:</string>
-    <string name="info_labels">What:\\nRequest:\\nContent Language:\\nContent Country:\\nApp Language:\\nService:\\nTimestamp:\\nPackage:\\nVersion:\\nOS version:</string>
+    <string name="info_labels">What:\nRequest:\nContent Language:\nContent Country:\nApp Language:\nService:\nTimestamp:\nPackage:\nVersion:\nOS version:</string>
     <string name="your_comment">Your comment (in English):</string>
     <string name="error_details_headline">Details:</string>
     <!-- Content descriptions (for better accessibility) -->
@@ -495,8 +495,6 @@
     <string name="disable_media_tunneling_title">Disable media tunneling</string>
     <string name="disable_media_tunneling_summary">Disable media tunneling if you experience a black screen or stuttering on video playback.</string>
     <string name="disable_media_tunneling_automatic_info">Media tunneling was disabled by default on your device because your device model is known to not support it.</string>
-    <string name="show_image_indicators_title">Show image indicators</string>
-    <string name="show_image_indicators_summary">Show Picasso colored ribbons on top of images indicating their source: red for network, blue for disk and green for memory</string>
     <string name="show_crash_the_player_title">Show \"Crash the player\"</string>
     <string name="show_crash_the_player_summary">Shows a crash option when using the player</string>
     <string name="check_new_streams">Run check for new streams</string>
@@ -883,4 +881,7 @@
     <string name="youtube_player_http_403">HTTP error 403 received from server while playing, likely caused by an IP ban or streaming URL deobfuscation issues</string>
     <string name="sign_in_confirm_not_bot_error">%1$s refused to provide data, asking for a login to confirm the requester is not a bot.\n\nYour IP might have been temporarily banned by %1$s, you can wait some time or switch to a different IP (for example by turning on/off a VPN, or by switching from WiFi to mobile data).</string>
     <string name="unsupported_content_in_country">This content is not available for the currently selected content country.\n\nChange your selection from \"Settings > Content > Default content country\".</string>
+    <string name="kao_dialog_warning">In August 2025, Google announced that as of September 2026, installing apps will require developer verification for all Android apps on certified devices, including those installed outside of the Play Store. Since the developers of NewPipe do not agree to this requirement, NewPipe will no longer work on certified Android devices after that time.</string>
+    <string name="kao_dialog_more_info">Details</string>
+    <string name="kao_solution">Solution</string>
 </resources>

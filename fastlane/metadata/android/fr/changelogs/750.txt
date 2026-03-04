@@ -1,36 +1,10 @@
 Nouveautés
-
-Reprise de la lecture #2288
-
-• Reprise des flux là où vous les avez interrompus
-Améliorations du téléchargeur #2149
-
 • Utilisation de Storage Access Framework pour stocker les téléchargements sur des cartes SD externes
-
-• Nouveau multiplexeur mp4
-
 • Possibilité de modifier le répertoire de téléchargement avant de lancer un téléchargement
 
-• Respect des réseaux limités
-
 Améliorations
-
 • Suppression des chaînes gema #2295
-
 • Gestion des changements de rotation (automatique) pendant le cycle de vie de l'activité #2444
 
-• Harmonisation des menus accessibles par appui long #2368
-
 Corrections
-
-• Correction de l'affichage du nom de la piste de sous-titres sélectionnée #2394
-
-• Correction du plantage en cas d'échec de la vérification des mises à jour de l'application (version GitHub) #2423
-
 • Correction du blocage des téléchargements à 99,9 % #2440
-
-• Mise à jour des métadonnées de la file d'attente de lecture #2453
-
-• [SoundCloud] Correction du plantage lors du chargement des playlists TeamNewPipe/NewPipeExtractor#170
-
-• [YouTube] Correction de l'impossibilité d'afficher la durée  paresd TeamNewPipe/NewPipeExtractor#177

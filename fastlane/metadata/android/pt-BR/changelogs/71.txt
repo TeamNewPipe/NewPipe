@@ -1,10 +1,10 @@
-### Melhoria
-* Adicionar notificação de atualização do aplicativo para compilação do GitHub (#1608 por @ krtkush)
-* Várias melhorias para o downloader(# 1944 por @kapodamy):
-  * * adicione ícones brancos ausentes e use o modo hardcore para alterar as cores dos ícones
-  * verifique se o iterador foi inicializado (correções #2031)
-  * * permitir novas tentativas de downloads com erro "Falha no pós-processamento" no novo mixer
-  * novo muxer MPEG - 4 que fixa fluxos de vídeo e áudio não síncronos (#2039)
+### Improvements
+* Add app update notification for GitHub build (#1608 by @krtkush)
+* Various improvements to the downloader (#1944 by @kapodamy):
+  * add missing white icons and use hardcored way for change the icon colors
+  * check if the iterator is initialized (fixes #2031)
+  * allow retry downloads with "post-processing failed" error in the new muxer
+  * new MPEG-4 muxer fixing non-synchronous video and audio streams (#2039)
 
-### Corrigido
-* * As transmissões ao vivo do YouTube param de ser reproduzidas após um curto período de tempo(# 1996 por @username)
+### Fixed
+* YouTube live streams stop playing after a short time (#1996 by @yausername)

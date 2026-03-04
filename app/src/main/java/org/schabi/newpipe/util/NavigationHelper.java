@@ -501,11 +501,47 @@ public final class NavigationHelper {
 
     public static void openCommentRepliesFragment(@NonNull final FragmentActivity activity,
                                                   @NonNull final CommentsInfoItem comment) {
+        closeCommentRepliesFragments(activity);
         defaultTransaction(activity.getSupportFragmentManager())
                 .replace(R.id.fragment_holder, new CommentRepliesFragment(comment),
                         CommentRepliesFragment.TAG)
                 .addToBackStack(CommentRepliesFragment.TAG)
                 .commit();
+    }
+
+    /**
+     * Closes all open {@link CommentRepliesFragment}s in {@code activity},
+     * including those that are not at the top of the back stack.
+     * This is needed to prevent multiple open CommentRepliesFragments
+     * Ideally there should only be one since we remove existing before opening a new one.
+     * @param activity the activity in which to close the CommentRepliesFragments
+     */
+    public static void closeCommentRepliesFragments(@NonNull final FragmentActivity activity) {
+        final FragmentManager fm = activity.getSupportFragmentManager();
+
+        // Remove all existing fragment instances tagged as CommentRepliesFragment
+        final FragmentTransaction tx = defaultTransaction(fm);
+        boolean removed = false;
+        for (final Fragment fragment : fm.getFragments()) {
+            if (fragment != null && CommentRepliesFragment.TAG.equals(fragment.getTag())) {
+                tx.remove(fragment);
+                removed = true;
+            }
+        }
+        if (removed) {
+            tx.commit();
+        }
+
+        // Only pop back stack entries named CommentRepliesFragment.TAG if they are at the top.
+        while (fm.getBackStackEntryCount() > 0
+                && CommentRepliesFragment.TAG.equals(
+                        fm.getBackStackEntryAt(fm.getBackStackEntryCount() - 1).getName()
+                    )
+        ) {
+            fm.popBackStackImmediate(CommentRepliesFragment.TAG,
+                    FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
+
     }
 
     public static void openPlaylistFragment(final FragmentManager fragmentManager,

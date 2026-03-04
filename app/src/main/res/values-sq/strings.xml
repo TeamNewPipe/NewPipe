@@ -307,7 +307,7 @@
     <string name="detail_thumbnail_view_description">Luaje videon, kohëzgjatja:</string>
     <string name="error_details_headline">Detajet:</string>
     <string name="your_comment">Komenti juaj (në Anglisht):</string>
-    <string name="info_labels">Çfarë:\\nKërkesa:\\nGjuha e përmbajtjes:\\nShteti i pëmbajtjes:\\nGjuha e aplikacionit:\\nShërbimi:\\nKoha në GMT:\\nPaketa:\\nVersioni:\\nVersioni i sistemit operativ:</string>
+    <string name="info_labels">Çfarë:\nKërkesa:\nGjuha e përmbajtjes:\nShteti i pëmbajtjes:\nGjuha e aplikacionit:\nShërbimi:\nKoha në GMT:\nPaketa:\nVersioni:\nVersioni i sistemit operativ:</string>
     <string name="what_happened_headline">Çfarë ndodhi:</string>
     <string name="what_device_headline">Informacion:</string>
     <string name="error_snackbar_action">Raporto</string>

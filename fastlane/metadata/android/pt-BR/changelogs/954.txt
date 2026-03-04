@@ -1,7 +1,7 @@
-• Novo recurso: veja vídeos na página de detalhes, deslize para baixo para minimizar o vídeo
-• Notificações MediaStyle: ações personalizáveis em notificações, melhorias de desempenho
-• redimensionamento básico ao usar NewPipe como aplicativo de computador
-• diálogo com opções abertas se URL não for suportado
-• Melhor experiência de sugestão de pesquisa quando não pode ser buscada
+• Novidade: toque mídia na página de detalhes e deslize para baixo para minimizar o reprodutor.
+• Notificações de mídia: ações personalizáveis nas e melhorias de desempenho
+• Redimensionar ao usar o NewPipe como aplicativo de computador
+• Diálogo com opções extras se a URL não for suportada
+• Melhor experiência de sugestão de pesquisa quando ocorrer erro de interpretação do servidor
 • Maior qualidade do vídeo padrão para 720p60 no reprodutor interno e 480p no Pop-up
-• correções de falhas e mais (?)
+• Correções de falhas etc

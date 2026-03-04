@@ -92,7 +92,7 @@ class AboutActivity : AppCompatActivity() {
             return when (position) {
                 posAbout -> AboutFragment()
                 posLicense -> LicenseFragment.newInstance(SOFTWARE_COMPONENTS)
-                else -> throw IllegalArgumentException("Unknown position for ViewPager2")
+                else -> error("Unknown position for ViewPager2")
             }
         }
 
@@ -105,7 +105,7 @@ class AboutActivity : AppCompatActivity() {
             return when (position) {
                 posAbout -> R.string.tab_about
                 posLicense -> R.string.tab_licenses
-                else -> throw IllegalArgumentException("Unknown position for ViewPager2")
+                else -> error("Unknown position for ViewPager2")
             }
         }
     }
@@ -207,10 +207,10 @@ class AboutActivity : AppCompatActivity() {
                 StandardLicenses.APACHE2
             ),
             SoftwareComponent(
-                "Picasso",
-                "2013",
-                "Square, Inc.",
-                "https://square.github.io/picasso/",
+                "Coil",
+                "2023",
+                "Coil Contributors",
+                "https://coil-kt.github.io/coil/",
                 StandardLicenses.APACHE2
             ),
             SoftwareComponent(
@@ -254,6 +254,13 @@ class AboutActivity : AppCompatActivity() {
                 "ByteHamster",
                 "https://github.com/ByteHamster/SearchPreference",
                 StandardLicenses.MIT
+            ),
+            SoftwareComponent(
+                "FreeDroidWarn",
+                "2026",
+                "woheller69",
+                "https://github.com/woheller69/FreeDroidWarn",
+                StandardLicenses.APACHE2
             )
         )
     }

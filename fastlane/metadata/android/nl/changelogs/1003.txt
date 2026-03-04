@@ -1,1 +1,6 @@
-YouTube speelt geen stream af opgelost
+Dit is een hotfix-release die YouTube-fouten verhelpt:
+• [YouTube] Probleem opgelost waarbij geen video-informatie werd geladen, HTTP 403-fouten tijdens het afspelen van video's werden verholpen en de weergave van sommige video's met leeftijdsbeperking werd hersteld
+• Probleem opgelost waarbij de ondertitelgrootte niet werd aangepast
+• Probleem opgelost waarbij informatie twee keer werd gedownload bij het openen van een stream
+• [Soundcloud] Niet-afspeelbare DRM-beveiligde streams verwijderd
+• Vertalingen bijgewerkt

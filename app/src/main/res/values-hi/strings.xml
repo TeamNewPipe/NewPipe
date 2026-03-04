@@ -114,7 +114,7 @@
     <string name="error_snackbar_action">रिपोर्ट करें</string>
     <string name="what_device_headline">जानकारी:</string>
     <string name="what_happened_headline">क्या हुआ:</string>
-    <string name="info_labels">क्या:\\nअनुरोध:\\nसामग्री भाषा:\\nसामग्री देश:\\nऐप भाषा:\\nसेवा:\\nजीएमटी समय:\\nपैकेज:\\nसंस्करण:\\nOS संस्करण:</string>
+    <string name="info_labels">क्या:\nअनुरोध:\nसामग्री भाषा:\nसामग्री देश:\nऐप भाषा:\nसेवा:\nजीएमटी समय:\nपैकेज:\nसंस्करण:\nOS संस्करण:</string>
     <string name="your_comment">आपकी टिप्पणी(अंग्रेजी में):</string>
     <string name="error_details_headline">विवरण:</string>
     <string name="detail_thumbnail_view_description">वीडियो चलाएं, अवधि :</string>
@@ -566,7 +566,6 @@
     <string name="enqueued">कतारबद्ध हुआ</string>
     <string name="loading_stream_details">स्ट्रीम विवरण लोड हो रहे हैं…</string>
     <string name="processing_may_take_a_moment">प्रोसेस हो रहा है… कुछ समय लग सकता है</string>
-    <string name="show_image_indicators_title">छवि संकेतक दिखाएं</string>
     <string name="show_crash_the_player_summary">प्लेयर का उपयोग करते समय क्रैश विकल्प दिखाता है</string>
     <string name="check_new_streams">नई स्ट्रीमों के लिए जांच चलाएं</string>
     <string name="show_error_snackbar">एक त्रुटि स्नैकबार दिखाएं</string>
@@ -663,7 +662,6 @@
     <string name="leak_canary_not_available">लीक-कैनरी उपलब्ध नहीं है</string>
     <string name="error_report_notification_toast">एक त्रुटी हुई है, नोटीफिकेशन देखें</string>
     <string name="disable_media_tunneling_summary">यदि वीडियो प्लेबैक पर आप काली स्क्रीन या रुक-रुक कर वीडियो चलने का अनुभव करते हैं तो मीडिया टनलिंग को अक्षम करें।</string>
-    <string name="show_image_indicators_summary">छवियों के शीर्ष पर पिकासो रंगीन रिबन दिखाएँ जो उनके स्रोत को दर्शाता है: नेटवर्क के लिए लाल, डिस्क के लिए नीला और मेमोरी के लिए हरा</string>
     <string name="create_error_notification">त्रुटी की नोटीफिकेशन बनाएं</string>
     <string name="error_download_resource_gone">इस डाउनलोड को पुनर्प्राप्त नहीं किया जा सकता</string>
     <string name="no_dir_yet">अभी तक कोई डाउनलोड फ़ोल्डर सेट नहीं किया गया है, अब डिफ़ॉल्ट डाउनलोड फ़ोल्डर चुनें</string>
@@ -849,4 +847,7 @@
     <string name="youtube_player_http_403">पले करते समय सर्वर से HTTP error 403 मिला, जो शायद IP बैन या स्ट्रीमिंग URL डीओबफस्केशन की दिक्कतों की वजह से हुआ है</string>
     <string name="sign_in_confirm_not_bot_error">%1$s ने डेटा देने से मना कर दिया, और यह कन्फर्म करने के लिए लॉगिन मांगा कि रिक्वेस्ट करने वाला बोट नहीं है।\n\nहो सकता है कि %1$s ने आपके IP को कुछ समय के लिए बैन कर दिया हो, आप कुछ समय इंतज़ार कर सकते हैं या किसी दूसरे IP पर स्विच कर सकते हैं (जैसे VPN ऑन/ऑफ करके, या WiFi से मोबाइल डेटा पर स्विच करके)।</string>
     <string name="unsupported_content_in_country">यह कंटेंट अभी चुने गए देश के कंटेंट के लिए उपलब्ध नहीं है।\n\n\"सेटिंग्स &gt; कंटेंट &gt; डिफ़ॉल्ट कंटेंट देश\" से अपना चुनाव बदलें।</string>
+    <string name="kao_dialog_warning">Google ने घोषणा की है कि 2026/2027 से, प्रमाणित Android डिवाइसों पर सभी ऐप्स के लिए डेवलपर्स को अपनी व्यक्तिगत पहचान संबंधी जानकारी सीधे Google को जमा करनी होगी। चूँकि इस ऐप के डेवलपर्स इस आवश्यकता से सहमत नहीं हैं, यह ऐप उस समय के बाद प्रमाणित Android डिवाइसों पर काम नहीं करेगा।</string>
+    <string name="kao_dialog_more_info">विवरण</string>
+    <string name="kao_solution">समाधान</string>
 </resources>

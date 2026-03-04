@@ -9,4 +9,3 @@ Amélioré
 
 Corrigé
 • Correction de l'ouverture des URL du navigateur, des téléchargements et des lecteurs externes sur Android 11+
-• Correction de l'interaction avec le plein écran nécessitant deux appuis sur MIUI
