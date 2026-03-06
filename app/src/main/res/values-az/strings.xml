@@ -825,4 +825,7 @@
     <string name="youtube_player_http_403">HTTP xətası 403 oynadarkən serverdən alındı, ehtimal ki, IP qadağası və ya yayım URL-nin deobfuscation problemləri ilə bağlıdır</string>
     <string name="sign_in_confirm_not_bot_error">%1$s sorğuçunun bot olmadığını təsdiqləmək üçün giriş tələb edərək data təmin etməkdən imtina etdi.\n\nIP-niz %1$s tərəfindən müvəqqəti şəkildə qadağan oluna bilər, bir müddət gözləyə və ya başqa IP-yə keçə bilərsiniz (məsələn, VPN-i açıb/qapatmaqla və ya WiFi-dan mobil dataya keçməklə).</string>
     <string name="unsupported_content_in_country">Bu məzmun hazırda seçilən məzmun ölkəsi üçün əlçatan deyil. \n\nSeçiminizi \"Tənzimləmələr &gt; Məzmun &gt; İlkin məzmun ölkəsi\"- dən dəyişin.</string>
+    <string name="kao_dialog_warning">2025 avqustunda, Google 2026-cı ilin sentyabrından etibarən tətbiqlərin quraşdırılması Play Store xaricində quraşdırılanlar daxil olmaqla, sertifikatlaşdırılan cihazlardakı bütün Android tətbiqləri üçün tərtibatçı təsdiqlənməsini tələb edəcək deyə bəyan etdi. NewPipe tərtibatçıları bu tələblə razılaşmadığı üçün NewPipe bu vaxtdan sonra artıq sertifikatlaşdırılan Android cihazlarında işləməyəcək.</string>
+    <string name="kao_dialog_more_info">Təfərrüatlar</string>
+    <string name="kao_solution">Həll olunma</string>
 </resources>

@@ -517,7 +517,7 @@
     <string name="restricted_video">Este vídeo está restringido a adultos.
 \n
 \nPara o poder ver, tem que ativar \"%1$s\" nas definições.</string>
-    <string name="remove_watched_popup_warning">Os vídeos que tenham sido vistos antes e depois de serem adicionados à lista de reprodução serão removidos. \nTem a certeza? Esta ação não pode ser revertida!</string>
+    <string name="remove_watched_popup_warning">Os vídeos que tenham sido vistos antes e após serem adicionados à lista de reprodução serão removidos. \nTem a certeza?</string>
     <string name="remove_watched_popup_partially_watched_streams">Sim e também os vídeos parcialmente vistos</string>
     <string name="remove_watched_popup_title">Remover transmissões vistas?</string>
     <string name="remove_watched">Remover visualizados</string>
@@ -861,7 +861,7 @@
     <string name="unsupported_content_in_country">Este conteúdo não está disponível para o país de conteúdo atualmente selecionado.\n\nAltere a sua seleção de \"Configurações &gt; Conteúdo &gt; País predefinido de conteúdo\".</string>
     <string name="player_http_403">Erro HTTP 403 recebido do servidor durante a reprodução, provavelmente causado pela URL de streaming expirado ou IP banido</string>
     <string name="youtube_player_http_403">Erro HTTP 403 recebido do servidor durante a reprodução, provavelmente causado por um bloqueio de IP ou problemas de desofuscação da URL de streaming</string>
-    <string name="kao_dialog_warning">O Google anunciou que, a partir de 2026/2027, todos os aplicativos em dispositivos Android certificados exigirão que os desenvolvedores forneçam seus dados pessoais de identidade diretamente ao Google. Como os desenvolvedores deste aplicativo não concordam com esse requisito, o aplicativo deixará de funcionar em dispositivos Android certificados após essa data.</string>
+    <string name="kao_dialog_warning">Em agosto de 2025, o Google anunciou que, a partir de setembro de 2026, a instalação de apps exigirá a verificação do programador para todas as apps Android em dispositivos certificados, incluindo aqueles instalados fora da Play Store. Como os programadores do NewPipe não concordam com este requisito, o NewPipe já não funcionará em dispositivos Android certificados após essa data.</string>
     <string name="kao_dialog_more_info">Detalhes</string>
     <string name="kao_solution">Solução</string>
 </resources>

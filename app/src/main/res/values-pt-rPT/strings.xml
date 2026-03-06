@@ -144,7 +144,7 @@
     <string name="delete_downloaded_files">Eliminar ficheiros descarregados</string>
     <string name="app_language_title">Idioma da aplicação</string>
     <string name="users">Utilizadores</string>
-    <string name="remove_watched_popup_warning">Os vídeos que tenham sido vistos antes e depois de serem adicionados à lista de reprodução serão removidos. \nTem a certeza? Esta ação não pode ser revertida!</string>
+    <string name="remove_watched_popup_warning">Os vídeos que tenham sido vistos antes e após serem adicionados à lista de reprodução serão removidos. \nTem a certeza?</string>
     <plurals name="watching">
         <item quantity="one">%s a ver</item>
         <item quantity="many">%s a ver</item>
@@ -861,4 +861,7 @@
     <string name="unsupported_content_in_country">Este conteúdo não está disponível para o país de conteúdo atualmente selecionado.\n\nAltere a sua seleção de \"Configurações &gt; Conteúdo &gt; País predefinido de conteúdo\".</string>
     <string name="player_http_403">Erro HTTP 403 recebido do servidor durante a reprodução, provavelmente causado pela URL de streaming expirado ou IP banido</string>
     <string name="youtube_player_http_403">Erro HTTP 403 recebido do servidor durante a reprodução, provavelmente causado por um bloqueio de IP ou problemas de desofuscação da URL de streaming</string>
+    <string name="kao_dialog_warning">Em agosto de 2025, o Google anunciou que, a partir de setembro de 2026, a instalação de apps exigirá a verificação do programador para todas as apps Android em dispositivos certificados, incluindo aqueles instalados fora da Play Store. Como os programadores do NewPipe não concordam com este requisito, o NewPipe já não funcionará em dispositivos Android certificados após essa data.</string>
+    <string name="kao_dialog_more_info">Pormenores</string>
+    <string name="kao_solution">Solução</string>
 </resources>
