@@ -25,6 +25,7 @@ import org.schabi.newpipe.databinding.ActivityErrorBinding
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.ThemeHelper
 import org.schabi.newpipe.util.external_communication.ShareUtils
+import org.schabi.newpipe.util.text.setTextWithLinks
 
 /**
  * This activity is used to show error details and allow reporting them in various ways.
@@ -100,7 +101,7 @@ class ErrorActivity : AppCompatActivity() {
 
         // normal bugreport
         buildInfo(errorInfo)
-        binding.errorMessageView.text = errorInfo.getMessage(this)
+        binding.errorMessageView.setTextWithLinks(errorInfo.getMessage(this))
         binding.errorView.text = formErrorText(errorInfo.stackTraces)
 
         // print stack trace once again for debugging:
