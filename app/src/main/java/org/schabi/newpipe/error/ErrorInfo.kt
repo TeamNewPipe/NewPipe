@@ -251,9 +251,11 @@ class ErrorInfo private constructor(
                     ErrorMessage(R.string.youtube_music_premium_content)
 
                 throwable is SignInConfirmNotBotException ->
-                    ErrorMessage(R.string.sign_in_confirm_not_bot_error,
+                    ErrorMessage(
+                        R.string.sign_in_confirm_not_bot_error,
                         getServiceName(serviceId),
-                        SIGN_IN_CONFIRM_NOT_BOT_ISSUE_URL)
+                        SIGN_IN_CONFIRM_NOT_BOT_ISSUE_URL
+                    )
 
                 throwable is ContentNotAvailableException ->
                     ErrorMessage(R.string.content_not_available)
