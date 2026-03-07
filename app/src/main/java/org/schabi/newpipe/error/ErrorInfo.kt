@@ -162,7 +162,7 @@ class ErrorInfo private constructor(
 
         const val SERVICE_NONE = "<unknown_service>"
 
-        const val SIGN_IN_CONFIRM_NOT_BOT_ISSUE_URL = "https://github.com/TeamNewPipe/NewPipe/issues/11139"
+        const val YOUTUBE_IP_BAN_FAQ_URL = "https://newpipe.net/FAQ/#ip-banned-youtube"
 
         private fun getServiceName(serviceId: Int?) = // not using getNameOfServiceById since we want to accept a nullable serviceId and we
             // want to default to SERVICE_NONE
@@ -254,7 +254,7 @@ class ErrorInfo private constructor(
                     ErrorMessage(
                         R.string.sign_in_confirm_not_bot_error,
                         getServiceName(serviceId),
-                        SIGN_IN_CONFIRM_NOT_BOT_ISSUE_URL
+                        YOUTUBE_IP_BAN_FAQ_URL
                     )
 
                 throwable is ContentNotAvailableException ->
