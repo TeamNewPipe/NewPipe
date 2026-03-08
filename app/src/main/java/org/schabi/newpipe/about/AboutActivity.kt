@@ -254,13 +254,6 @@ class AboutActivity : AppCompatActivity() {
                 "ByteHamster",
                 "https://github.com/ByteHamster/SearchPreference",
                 StandardLicenses.MIT
-            ),
-            SoftwareComponent(
-                "FreeDroidWarn",
-                "2026",
-                "woheller69",
-                "https://github.com/woheller69/FreeDroidWarn",
-                StandardLicenses.APACHE2
             )
         )
     }
