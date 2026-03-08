@@ -186,7 +186,15 @@ object ImageStrategy {
     fun dbUrlToImageList(url: String?): List<Image> {
         return when (url) {
             null -> listOf()
-            else -> listOf(Image(url, -1, -1, ResolutionLevel.UNKNOWN))
+
+            else -> listOf(
+                Image(
+                    url,
+                    Image.HEIGHT_UNKNOWN,
+                    Image.WIDTH_UNKNOWN,
+                    ResolutionLevel.UNKNOWN
+                )
+            )
         }
     }
 }
