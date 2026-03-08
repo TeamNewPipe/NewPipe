@@ -328,7 +328,7 @@
     <string name="player_recoverable_failure">گێڕانەوەی کارپێکەر بۆکاتی پێش کێشە</string>
     <string name="invalid_directory">هەمان فۆڵدەر بوونی نییە</string>
     <string name="invalid_source">هەمان فایل/بابەت بوونی نییە</string>
-    <string name="info_labels">چی:\\nداواکراو:\\nناوەڕۆک:\\nلانگ:\\nخزمەتگوزاری:\\nGMT:\\nکات:\\nپاکێج:\\nوەشان:\\nوەشانی سیستەم:</string>
+    <string name="info_labels">چی:\nداواکراو:\nناوەڕۆک:\nلانگ:\nخزمەتگوزاری:\nGMT:\nکات:\nپاکێج:\nوەشان:\nوەشانی سیستەم:</string>
     <string name="settings_file_charset_title">هێما ڕێگەپێدراوەکان لە فایلێکی ناویدا</string>
     <string name="settings_file_replacement_character_summary">هێما نادروستەکان بەم بەهایە جێگۆڕکێ دەکرێن</string>
     <string name="settings_file_replacement_character_title">هێمای جێگۆڕین</string>

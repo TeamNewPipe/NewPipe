@@ -53,7 +53,7 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PlayButtonHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
-import org.schabi.newpipe.util.image.PicassoHelper;
+import org.schabi.newpipe.util.image.CoilHelper;
 import org.schabi.newpipe.util.text.TextEllipsizer;
 
 import java.util.ArrayList;
@@ -62,6 +62,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import coil3.util.CoilUtils;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Single;
@@ -70,8 +71,6 @@ import io.reactivex.rxjava3.disposables.Disposable;
 
 public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, PlaylistInfo>
         implements PlaylistControlViewHolder {
-
-    private static final String PICASSO_PLAYLIST_TAG = "PICASSO_PLAYLIST_TAG";
 
     private CompositeDisposable disposables;
     private Subscription bookmarkReactor;
@@ -232,35 +231,30 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                NavigationHelper.openSettings(requireContext());
-                break;
-            case R.id.menu_item_openInBrowser:
-                ShareUtils.openUrlInBrowser(requireContext(), url);
-                break;
-            case R.id.menu_item_share:
-                ShareUtils.shareText(requireContext(), name, url,
-                        currentInfo == null ? List.of() : currentInfo.getThumbnails());
-                break;
-            case R.id.menu_item_bookmark:
-                onBookmarkClicked();
-                break;
-            case R.id.menu_item_append_playlist:
-                if (currentInfo != null) {
-                    disposables.add(PlaylistDialog.createCorrespondingDialog(
-                            getContext(),
-                            getPlayQueue()
-                                    .getStreams()
-                                    .stream()
-                                    .map(StreamEntity::new)
-                                    .collect(Collectors.toList()),
-                            dialog -> dialog.show(getFM(), TAG)
-                    ));
-                }
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
+        final int itemId = item.getItemId();
+        if (itemId == R.id.action_settings) {
+            NavigationHelper.openSettings(requireContext());
+        } else if (itemId == R.id.menu_item_openInBrowser) {
+            ShareUtils.openUrlInBrowser(requireContext(), url);
+        } else if (itemId == R.id.menu_item_share) {
+            ShareUtils.shareText(requireContext(), name, url,
+                    currentInfo == null ? List.of() : currentInfo.getThumbnails());
+        } else if (itemId == R.id.menu_item_bookmark) {
+            onBookmarkClicked();
+        } else if (itemId == R.id.menu_item_append_playlist) {
+            if (currentInfo != null) {
+                disposables.add(PlaylistDialog.createCorrespondingDialog(
+                        getContext(),
+                        getPlayQueue()
+                                .getStreams()
+                                .stream()
+                                .map(StreamEntity::new)
+                                .collect(Collectors.toList()),
+                        dialog -> dialog.show(getFM(), TAG)
+                ));
+            }
+        } else {
+            return super.onOptionsItemSelected(item);
         }
         return true;
     }
@@ -276,7 +270,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
         animate(headerBinding.getRoot(), false, 200);
         animateHideRecyclerViewAllowingScrolling(itemsList);
 
-        PicassoHelper.cancelTag(PICASSO_PLAYLIST_TAG);
+        CoilUtils.dispose(headerBinding.uploaderAvatarView);
         animate(headerBinding.uploaderLayout, false, 200);
     }
 
@@ -327,8 +321,8 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
                     R.drawable.ic_radio)
             );
         } else {
-            PicassoHelper.loadAvatar(result.getUploaderAvatars()).tag(PICASSO_PLAYLIST_TAG)
-                    .into(headerBinding.uploaderAvatarView);
+            CoilHelper.INSTANCE.loadAvatar(headerBinding.uploaderAvatarView,
+                    result.getUploaderAvatars());
         }
 
         streamCount = result.getStreamCount();

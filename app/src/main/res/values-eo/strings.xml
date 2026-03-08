@@ -242,7 +242,7 @@
     <string name="sorry_string">Pardonu, eraro okazis.</string>
     <string name="error_snackbar_message">Pardonon, io mizokasis.</string>
     <string name="what_happened_headline">Kio okazis:</string>
-    <string name="info_labels">Kio:\\nPeto:\\nEnhavlingvo:\\nEnhavlando:\\nAplingvo:\\nServo:\\nGMT Horo:\\nPako:\\nVersio:\\nOperaciumo versio:</string>
+    <string name="info_labels">Kio:\nPeto:\nEnhavlingvo:\nEnhavlando:\nAplingvo:\nServo:\nGMT Horo:\nPako:\nVersio:\nOperaciumo versio:</string>
     <string name="audio">Aŭdio</string>
     <string name="start">Komenci</string>
     <string name="pause">Paŭzigi</string>

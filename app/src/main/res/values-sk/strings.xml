@@ -78,7 +78,7 @@
     <string name="downloads_title">Stiahnuté</string>
     <string name="error_report_title">Hlásenie o chybe</string>
     <string name="app_ui_crash">Aplikácia/UP zlyhalo</string>
-    <string name="info_labels">Čo:\\nPožiadavka:\\nJazyk obsahu:\\nKrajina Obsahu:\\nJazyk Aplikácie:\\nSlužba:\\nČas v GMT:\\nBalík:\\nVerzia:\\nOS:</string>
+    <string name="info_labels">Čo:\nPožiadavka:\nJazyk obsahu:\nKrajina Obsahu:\nJazyk Aplikácie:\nSlužba:\nČas v GMT:\nBalík:\nVerzia:\nOS:</string>
     <string name="title_activity_recaptcha">Výzva reCAPTCHA</string>
     <string name="black_theme_title">Čierna</string>
     <string name="all">Všetko</string>
@@ -648,8 +648,6 @@
     <string name="low_quality_smaller">Nízka kvalita (menšie)</string>
     <string name="high_quality_larger">Vysoká kvalita (väčšie)</string>
     <string name="seekbar_preview_thumbnail_title">Náhľad miniatúry pri vyhľadávaní</string>
-    <string name="show_image_indicators_summary">Zobrazí farebné pásiky Picasso na obrázkoch podľa ich zdroja: červený pre sieť, modrý pre disk a zelený pre pamäť</string>
-    <string name="show_image_indicators_title">Zobraziť indikátory obrázka</string>
     <string name="main_page_content_swipe_remove">Potiahnutím vymazať</string>
     <string name="comments_are_disabled">Komentáre sú zakázané</string>
     <string name="start_main_player_fullscreen_summary">Ak je automatické otáčanie zablokované, nespustí videá v miniprehrávači, ale prepne sa do celoobrazovkového režimu. Do miniprehrávača sa dostanete po ukončení režimu celej obrazovky</string>
@@ -864,4 +862,7 @@
     <string name="youtube_player_http_403">Chyba HTTP 403 prijatá zo servera počas prehrávania, pravdepodobne spôsobená zákazom IP adresy alebo problémami s deobfuskáciou streamingovej URL adresy</string>
     <string name="sign_in_confirm_not_bot_error">%1$s odmietol poskytnúť údaje, žiada o prihlásenie na potvrdenie, že žiadateľ nie je bot.\n\nVaša IP adresa mohla byť dočasne zakázaná %1$s, môžete nejaký čas počkať alebo prejsť na inú IP adresu (napríklad zapnutím/vypnutím VPN alebo prepnutím z WiFi na mobilné dáta).</string>
     <string name="unsupported_content_in_country">Tento obsah nie je dostupný pre aktuálne zvolenú krajinu obsahu.\n\nZmeňte výber v ponuke \"Nastavenia &gt; Obsah &gt; Predvolená krajina obsahu\".</string>
+    <string name="kao_dialog_warning">V auguste 2025 spoločnosť Google oznámila, že od septembra 2026 bude inštalácia aplikácií vyžadovať overenie vývojára pre všetky aplikácie Android na certifikovaných zariadeniach, vrátane tých, ktoré sú inštalované mimo obchodu Play Store. Keďže vývojári NewPipe s touto požiadavkou nesúhlasia, NewPipe po tomto termíne nebude na certifikovaných zariadeniach Android fungovať.</string>
+    <string name="kao_dialog_more_info">Podrobnosti</string>
+    <string name="kao_solution">Riešenie</string>
 </resources>

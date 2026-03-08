@@ -343,8 +343,7 @@ public class RouterActivity extends AppCompatActivity {
                 return;
             }
 
-            final List<StreamingService.ServiceInfo.MediaCapability> capabilities =
-                    currentService.getServiceInfo().getMediaCapabilities();
+            final var capabilities = currentService.getServiceInfo().getMediaCapabilities();
 
             // Check if the service supports the choice
             if ((isVideoPlayerSelected && capabilities.contains(VIDEO))
@@ -528,8 +527,7 @@ public class RouterActivity extends AppCompatActivity {
         final List<AdapterChoiceItem> returnedItems = new ArrayList<>();
         returnedItems.add(showInfo); // Always present
 
-        final List<StreamingService.ServiceInfo.MediaCapability> capabilities =
-                service.getServiceInfo().getMediaCapabilities();
+        final var capabilities = service.getServiceInfo().getMediaCapabilities();
 
         if (linkType == LinkType.STREAM || linkType == LinkType.PLAYLIST) {
             if (capabilities.contains(VIDEO)) {

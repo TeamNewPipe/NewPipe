@@ -1,0 +1,4 @@
+∙ Åtgärdade återupptagning av strömmar vid senaste uppspelningsposition
+∙ [YouTube] Lade till stöd för fler kanal-URL-format
+∙ [YouTube] Lade till stöd för fler videometainfo-format
+∙ Uppdaterade översättningar

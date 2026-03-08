@@ -155,7 +155,7 @@
     <string name="delete_item_search_history">Haluatko poistaa tämän hakuhistoriasta?</string>
     <string name="resume_on_audio_focus_gain_title">Jatka toistoa</string>
     <string name="what_device_headline">Info:</string>
-    <string name="info_labels">Mikä:\\nPyyntö:\\nSisällön kieli:\\nSisällön maa:\\n:Sovelluksen kieli:\\nPalvelu:\\nGMT Aika:\\nPaketti:\\nVersio:\\nOS versio:</string>
+    <string name="info_labels">Mikä:\nPyyntö:\nSisällön kieli:\nSisällön maa:\n:Sovelluksen kieli:\nPalvelu:\nGMT Aika:\nPaketti:\nVersio:\nOS versio:</string>
     <string name="copyright" formatted="true">© %1$s %2$s %3$s alla</string>
     <string name="main_page_content">Pääsivun sisältö</string>
     <string name="blank_page_summary">Tyhjä sivu</string>
@@ -628,8 +628,6 @@
     <string name="no_dir_yet">Latauskansiota ei vielä asetettu, valitse ensin oletuslatauskansio</string>
     <string name="comments_are_disabled">Kommentit poistettu käytöstä</string>
     <string name="mark_as_watched">Merkitse katsotuksi</string>
-    <string name="show_image_indicators_summary">Näytä Picasso-värjätyt nauhat kuvien päällä osoittaakseen lähteen: punainen tarkoittaa verkkoa, sininen tarkoittaa levytilaa ja vihreä tarkoittaa muistia</string>
-    <string name="show_image_indicators_title">Näytä kuvailmaisimet</string>
     <string name="remote_search_suggestions">Etähakuehdotukset</string>
     <string name="local_search_suggestions">Paikalliset hakuehdotukset</string>
     <string name="enqueue_next_stream">Lisää seuraavaksi</string>

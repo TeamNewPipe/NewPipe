@@ -90,10 +90,10 @@ public final class PermissionHelper {
                 && ContextCompat.checkSelfPermission(activity,
                 Manifest.permission.POST_NOTIFICATIONS)
                 != PackageManager.PERMISSION_GRANTED) {
-            if (!App.getApp().getNotificationsRequested()) {
+            if (!App.getInstance().getNotificationsRequested()) {
                 ActivityCompat.requestPermissions(activity,
                         new String[]{Manifest.permission.POST_NOTIFICATIONS}, requestCode);
-                App.getApp().setNotificationsRequested();
+                App.getInstance().setNotificationsRequested();
                 return false;
             }
         }

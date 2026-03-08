@@ -1,1 +1,11 @@
-Behoben, dass YouTube keinen Stream abspielte
+Dieser Hotfix behebt „Inhalt nicht verfügbar“: YouTube-Videos können nun wieder abgespielt werden!
+
+Einige in 0.28.1 aufgetretene Fehler behoben:
+• Wiedergabelisten-Elemente können nur auf benachbarte Pos. gezogen werden
+• Titel/Kommentare flackern zwischen aktuellem und vorherigem Video
+• „Hauptplayer im Vollbildmodus starten“
+
+Weitere Verbesserungen:
+• [YouTube] Livestreams bis zu 4 Stunden zurückspulen
+• Livestreams bei Wiedergabe im Hintergrund nicht laden
+• Neue UI für „Gesehene entfernen“

@@ -78,7 +78,7 @@
     <string name="downloads_title">Преузимања</string>
     <string name="error_report_title">Извештај о грешци</string>
     <string name="app_ui_crash">Програм је отказао</string>
-    <string name="info_labels">Шта:\\nЗахтев:\\nЈезик садржаја:\\nДржава садржаја:\\nЈезик апликације:\\nУслуга:\\nGMT време:\\nПакет:\\nВерзија:\\nВерзија ОС-а:</string>
+    <string name="info_labels">Шта:\nЗахтев:\nЈезик садржаја:\nДржава садржаја:\nЈезик апликације:\nУслуга:\nGMT време:\nПакет:\nВерзија:\nВерзија ОС-а:</string>
     <string name="title_activity_recaptcha">„reCAPTCHA“ задатак</string>
     <string name="recaptcha_request_toast">Решите „reCAPTCHA“ задатак</string>
     <string name="black_theme_title">Црна</string>
@@ -638,7 +638,6 @@
     <string name="mark_as_watched">Означи као одгледано</string>
     <string name="comments_are_disabled">Коментари су онемогућени</string>
     <string name="processing_may_take_a_moment">Обрађивање… Може потрајати пар тренутака</string>
-    <string name="show_image_indicators_title">Прикажи индикаторе слике</string>
     <string name="start_main_player_fullscreen_summary">Не покрећите видео снимке у мини-плејеру, већ директно пређите на режим целог екрана, ако је аутоматска ротација закључана. И даље можете приступити мини-плејеру тако што ћете изаћи из целог екрана</string>
     <string name="start_main_player_fullscreen_title">Покрени главни плејер преко целог екрана</string>
     <string name="crash_the_player">Срушите плејер</string>
@@ -734,7 +733,6 @@
     <string name="error_report_channel_description">Обавештења за пријаву грешака</string>
     <string name="import_subscriptions_hint">Увезите или извезите праћења из менија са 3 тачке</string>
     <string name="audio_track">Аудио снимак</string>
-    <string name="show_image_indicators_summary">Прикажите Picasso обојене траке на врху слика које указују на њихов извор: црвена за мрежу, плава за диск и зелена за меморију</string>
     <string name="create_error_notification">Направите обавештење о грешци</string>
     <string name="percent">Проценат</string>
     <string name="app_update_unavailable_toast">Користите најновију верзију NewPipe-а</string>

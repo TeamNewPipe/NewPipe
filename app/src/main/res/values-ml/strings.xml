@@ -112,7 +112,7 @@
     <string name="website_encouragement">കൂടുതൽ വിവരങ്ങൾക്കും വാർത്തകൾക്കും ന്യൂപൈപ്പിന്റെ വെബ്സൈറ്റ് സന്ദർശിക്കുക.</string>
     <string name="website_title">വെബ്സൈറ്റ്</string>
     <string name="give_back">തിരികെ നൽകുക</string>
-    <string name="info_labels">എന്താണ്:\\nഅപേക്ഷ:\\nഉള്ളടക്കത്തിന്റെ ഭാഷ:\\nഉള്ളടക്കത്തിന്റെ രാജ്യം:\\n അപ്ലിക്കേഷന്റെ ഭാഷ:\\nസേവനം:\\nGMT സമയം:\\nപാക്കേജ്:\\nപതിപ്പ്:\\nOS ന്റെ പതിപ്പ്:</string>
+    <string name="info_labels">എന്താണ്:\nഅപേക്ഷ:\nഉള്ളടക്കത്തിന്റെ ഭാഷ:\nഉള്ളടക്കത്തിന്റെ രാജ്യം:\n അപ്ലിക്കേഷന്റെ ഭാഷ:\nസേവനം:\nGMT സമയം:\nപാക്കേജ്:\nപതിപ്പ്:\nOS ന്റെ പതിപ്പ്:</string>
     <string name="donation_encouragement">നിങ്ങൾക്ക് മികച്ച ഉപഭോക്തൃ അനുഭവം നൽകാനായി പ്രയത്‌നിക്കുന്ന ലോകമെമ്പാടുമുള്ള വൊളന്റിയർമാരാണ് ന്യൂപൈപ്പിന്റെ ശക്തി. ന്യൂപൈപ്പിനെ ഇനിയും മികവുറ്റതാക്കാൻ നിങ്ങൾക്ക് കഴിയും, നിങ്ങളുടെ സംഭാവനയിലൂടെ.</string>
     <string name="donation_title">സംഭാവന ചെയ്യുക</string>
     <string name="view_on_github">ജിറ്റ്ഹബിൽ കാണുക</string>
@@ -590,7 +590,6 @@
     <string name="notification_action_1_title">രണ്ടാം പ്രവർത്തന ബട്ടൺ</string>
     <string name="notification_action_0_title">ആദ്യ പ്രവർത്തന ബട്ടൺ</string>
     <string name="disable_media_tunneling_summary">വീഡിയോ കാണുമ്പോൾ കറുത്ത സ്ക്രീൻ, അവ്യക്തത അനുഭവിക്കുന്നു എങ്കിൽ മീഡിയ ട്യൂൺലിങ് പ്രവർത്തനരഹിതമാക്കുക</string>
-    <string name="show_image_indicators_summary">ഉറവിടം തിരിച്ചറിയാൻ പിക്കാസോ കളർഡ് റിബൺ ചിത്രങ്ങളുടെ മുകളിൽ കാണിക്കുക: നെറ്റ്‌വർക്കിന് ചുവപ്പ്, ഡിസ്കിനു നീല, മെമ്മറിയിക്ക് പച്ച</string>
     <string name="seekbar_preview_thumbnail_title">സീക്ബാർ ചെറുചിത്രം പ്രദർശനം</string>
     <string name="detail_heart_img_view_description">സ്നേഹത്തോടെ സൃഷ്ടാവ്</string>
     <string name="description_select_disable">ഡിസ്ക്രിപ്ഷനിലെ ടെക്സ്റ്റ്‌ സെലക്ട്‌ ചെയ്യുവാൻ അനുവദിക്കാതെ ഇരിക്കുക</string>
@@ -624,7 +623,6 @@
     <string name="dont_show">കാണിക്കരുത്</string>
     <string name="low_quality_smaller">കുറഞ്ഞ നിലവാരം (ചെറുത് )</string>
     <string name="high_quality_larger">ഉയർന്ന നിലവാരം (വലിയത് )</string>
-    <string name="show_image_indicators_title">ഇമേജ് ഇൻഡിക്കേറ്ററുകൾ കാണിക്കുക</string>
     <string name="disable_media_tunneling_title">മീഡിയ ട്യൂൺലിങ് പ്രവർത്തനരഹിതമാക്കുക</string>
     <string name="no_dir_yet">ഡൌൺലോഡ് ഫോൾഡർ ഇത് വരെയും സെറ്റ് ചെയ്തിട്ടില്ല, സ്ഥിര ഡൌൺലോഡ് ഫോൾഡർ ഇപ്പോൾ തിരഞ്ഞെക്കുക</string>
     <string name="comments_are_disabled">അഭിപ്രായങ്ങൾ പ്രവർത്തനരഹിതമായിരിക്കുന്നു</string>

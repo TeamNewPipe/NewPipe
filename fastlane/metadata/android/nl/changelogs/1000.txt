@@ -1,0 +1,13 @@
+Verbeterd:
+• Maak de beschrijving van de afspeellijst klikbaar om meer/minder content te tonen
+• [PeerTube] Verwerk `subscribeto.me`-instantiekoppelingen automatisch
+• Begin alleen met het afspelen van één item in het geschiedenisscherm
+Opgelost:
+
+• Herstel de zichtbaarheid van de RSS-knop
+• Herstel crashes van de zoekbalkvoorvertoning
+• Herstel het afspelen van een item zonder miniatuur
+• Herstel het afsluiten van het downloaddialoogvenster voordat het verschijnt
+• Herstel de pop-up van de lijst met gerelateerde items enqueue
+• Herstel de volgorde in het dialoogvenster Toevoegen aan afspeellijst
+• Pas de lay-out van het bladwijzeritem van de afspeellijst aan

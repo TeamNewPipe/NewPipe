@@ -76,7 +76,7 @@
     <string name="no_available_dir">Silakan pilih folder unduhan di pengaturan</string>
     <string name="no_player_found">Pemutar penjaliran tidak ditemukan. Pasang VLC?</string>
     <string name="app_ui_crash">App/UI rusak</string>
-    <string name="info_labels">Apa:\\nPermintaan:\\nBahasa Konten:\\nNegara Konten:\\nBahasa Apl:\\nLayanan:\\nWaktu GMT:\\nPaket:\\nVersi:\\nVersi OS:</string>
+    <string name="info_labels">Apa:\nPermintaan:\nBahasa Konten:\nNegara Konten:\nBahasa Apl:\nLayanan:\nWaktu GMT:\nPaket:\nVersi:\nVersi OS:</string>
     <string name="msg_threads">Thread</string>
     <string name="title_activity_recaptcha">Tantangan reCAPTCHA</string>
     <string name="recaptcha_request_toast">Meminta kode reCAPTCHA</string>
@@ -625,13 +625,11 @@
     <string name="detail_heart_img_view_description">Disukai oleh kreator</string>
     <string name="local_search_suggestions">Saran pencarian lokal</string>
     <string name="remote_search_suggestions">Saran pencarian remote</string>
-    <string name="show_image_indicators_title">Tampilkan indikator gambar</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="other">Menghapus %1$s unduhan</item>
     </plurals>
     <string name="enqueue_next_stream">tambahkan ke selanjutnya</string>
     <string name="enqueued_next">telah ditambahkan ke selanjutnya</string>
-    <string name="show_image_indicators_summary">Tampilkan Ribon bewarna Picasso di atas gambar yang mengindikasikan asalnya: merah untuk jaringan, biru untuk disk dan hijau untuk memori</string>
     <string name="start_main_player_fullscreen_summary">Jangan memulai memutar video di mini player, tapi nyalakan langsung di mode layar penuh, jika rotasi otomatis terkunci. Anda tetap dapat mengakses mini player dengan keluar dari layar penuh</string>
     <string name="processing_may_take_a_moment">Memproses… Mungkin butuh waktu sebentar</string>
     <string name="check_for_updates">Periksa Pembaruan</string>

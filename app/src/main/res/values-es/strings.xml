@@ -78,7 +78,7 @@
     <string name="msg_copied">Copiado al portapapeles</string>
     <string name="no_available_dir">Defina una carpeta de descargas más tarde en los ajustes</string>
     <string name="app_ui_crash">La interfaz de la aplicación dejó de funcionar</string>
-    <string name="info_labels">Qué:\\nSolicitud:\\nIdioma del contenido:\\nPaís del contenido:\\nIdioma de la aplicación:\\nServicio:\\nMarca de tiempo:\\nPaquete:\\nVersión:\\nVersión del SO:</string>
+    <string name="info_labels">Qué:\nSolicitud:\nIdioma del contenido:\nPaís del contenido:\nIdioma de la aplicación:\nServicio:\nMarca de tiempo:\nPaquete:\nVersión:\nVersión del SO:</string>
     <string name="black_theme_title">Negro</string>
     <string name="all">Todo</string>
     <string name="open_in_popup_mode">Abrir en modo emergente</string>
@@ -513,8 +513,8 @@
     <string name="songs">Canciones</string>
     <string name="restricted_video">Este vídeo tiene restricción de edad. \n \nHabilitar \"%1$s\" en los ajustes si quieres verlo.</string>
     <string name="remove_watched_popup_partially_watched_streams">Sí, y también vídeos vistos parcialmente</string>
-    <string name="remove_watched_popup_warning">Los vídeos que ya se hayan visto luego de añadidos a la lista de reproducción, serán quitados. \n¿Estás seguro? ¡Esta acción no se puede deshacer!</string>
-    <string name="remove_watched_popup_title">¿Quitar vídeos ya vistos?</string>
+    <string name="remove_watched_popup_warning">Los vídeos que ya se hayan visto antes y después de ser añadidos a la lista de reproducción serán quitados. \n¿Estás seguro?</string>
+    <string name="remove_watched_popup_title">¿Quitar streams ya vistos?</string>
     <string name="remove_watched">Quitar vídeos ya vistos</string>
     <string name="video_detail_by">Por %s</string>
     <string name="channel_created_by">Creado por %s</string>
@@ -631,8 +631,6 @@
     <string name="comments_are_disabled">Los comentarios están deshabilitados</string>
     <string name="detail_heart_img_view_description">De corazón por el creador</string>
     <string name="mark_as_watched">Marcar como visto</string>
-    <string name="show_image_indicators_summary">Mostrar cintas de colores Picasso encima de las imágenes indicando su origen: rojo para la red, azul para el disco y verde para la memoria</string>
-    <string name="show_image_indicators_title">Mostrar indicadores de imagen</string>
     <string name="remote_search_suggestions">Sugerencias de búsqueda remota</string>
     <string name="local_search_suggestions">Sugerencias de búsqueda local</string>
     <plurals name="deleted_downloads_toast">
@@ -853,4 +851,7 @@
     <string name="short_billion">%sMM</string>
     <string name="unsupported_content_in_country">Este contenido no está disponible para el país seleccionado actualmente.\n\nCambia tu selección en «Ajustes &gt; Contenido &gt; País predefinido del contenido».</string>
     <string name="permission_display_over_apps_message">Para usar el reproductor emergente, seleccione %1$s en el siguiente menú de la configuración de Android y habilite %2$s.</string>
+    <string name="kao_dialog_warning">En Agosto de 2025, Google ha anunciado que, a partir de 2026/2027, todas las aplicaciones en dispositivos Android certificados requerirán que los desarrolladores envíen sus datos personales de identidad directamente a Google. Como los desarrolladores de NewPipe no están de acuerdo con este requisito, la aplicación dejará de funcionar en dispositivos Android certificados después de esa fecha.</string>
+    <string name="kao_dialog_more_info">Detalles</string>
+    <string name="kao_solution">Solución</string>
 </resources>

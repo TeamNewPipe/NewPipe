@@ -133,7 +133,7 @@
     <string name="error_snackbar_action">Извештај</string>
     <string name="what_device_headline">Инфо:</string>
     <string name="what_happened_headline">Што се случи:</string>
-    <string name="info_labels">What:\\nRequest:\\nContent Language:\\nContent Country:\\nApp Language:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:</string>
+    <string name="info_labels">What:\nRequest:\nContent Language:\nContent Country:\nApp Language:\nService:\nGMT Time:\nPackage:\nVersion:\nOS version:</string>
     <string name="your_comment">Ваш коментар (на Англиски):</string>
     <string name="error_details_headline">Детали:</string>
     <string name="detail_thumbnail_view_description">Емитување на видео, времетраење</string>

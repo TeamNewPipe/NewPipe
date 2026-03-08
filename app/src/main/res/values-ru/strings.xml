@@ -87,7 +87,7 @@
     <string name="popup_playing_toast">Воспроизведение во всплывающем окне</string>
     <string name="clear">Очистить</string>
     <string name="all">Всё</string>
-    <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСтрана контента:\\nЯзык приложения:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия пакета:\\nВерсия ОС:</string>
+    <string name="info_labels">Что:\nЗапрос:\nЯзык контента:\nСтрана контента:\nЯзык приложения:\nСервис:\nВремя по Гринвичу:\nПакет:\nВерсия пакета:\nВерсия ОС:</string>
     <string name="msg_popup_permission">Это разрешение нужно для
 \nвоспроизведения в окне</string>
     <string name="open_in_popup_mode">Открыть во всплывающем окне</string>
@@ -345,7 +345,7 @@
     <string name="grid">Сетка</string>
     <string name="auto">Автоматически</string>
     <string name="download_to_sdcard_error_message">Загрузка на SD-карту невозможна. Сбросить расположение папки загрузки\?</string>
-    <string name="download_to_sdcard_error_title">SD-карта недоступна</string>
+    <string name="download_to_sdcard_error_title">Внешнее хранилище недоступно</string>
     <string name="main_page_content_summary">Вкладки, видимые на главной странице</string>
     <string name="restore_defaults">Значения по умолчанию</string>
     <string name="restore_defaults_confirmation">Восстановить значения по умолчанию\?</string>
@@ -510,7 +510,7 @@
 \nКак пример, YouTube поддерживает быстрое обновление.
 \n
 \nВыбор за вами: скорость или точность.</string>
-    <string name="feed_use_dedicated_fetch_method_title">Обновление по RSS, если доступно</string>
+    <string name="feed_use_dedicated_fetch_method_title">Получать из выделенной ленты, когда доступно</string>
     <string name="feed_use_dedicated_fetch_method_summary">Доступно для некоторых сервисов, быстрое, может возвращать не всё содержимое канала и не содержать часть сведений (длительность, статус трансляции)</string>
     <string name="feed_update_threshold_summary">Период актуальности подписок после обновления — %s</string>
     <string name="restricted_video">Это видео имеет возрастное ограничение.
@@ -526,8 +526,8 @@
     <string name="albums">Альбомы</string>
     <string name="remove_watched">Удалить просмотренные</string>
     <string name="remove_watched_popup_partially_watched_streams">Да, и частично просмотренные</string>
-    <string name="remove_watched_popup_warning">Видео, просмотренные до или после добавления в плейлист, будут удалены. \nПродолжить? Не может быть отменено!</string>
-    <string name="remove_watched_popup_title">Удалить просмотренные видео?</string>
+    <string name="remove_watched_popup_warning">Трансляции, просмотренные до или после добавления в плейлист, будут удалены. \nВы уверены?</string>
+    <string name="remove_watched_popup_title">Удалить просмотренные трансляции?</string>
     <string name="show_original_time_ago_summary">Отображать сообщённое сервисом время с момента публикации</string>
     <string name="show_original_time_ago_title">Исходное время публикации</string>
     <string name="youtube_restricted_mode_enabled_title">Включить \"Ограниченный режим\" YouTube</string>
@@ -633,7 +633,7 @@
     <string name="feed_load_error">Ошибка загрузки подписки</string>
     <string name="open_website_license">Открыть веб-сайт</string>
     <string name="account_terminated">Аккаунт отключён</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Начиная с Android 10 поддерживается только «Storage Access Framework»</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Начиная с Android 10, поддерживается только \"Storage Access Framework\"</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Спрашивать, куда сохранять каждую загрузку</string>
     <string name="no_dir_yet">Папка для загрузки ещё не выбрана, укажите папку для загрузки сейчас</string>
     <string name="off">Отключить</string>
@@ -646,8 +646,6 @@
     <string name="seekbar_preview_thumbnail_title">Миниатюра над полосой прокрутки</string>
     <string name="detail_heart_img_view_description">Автору видео понравилось это</string>
     <string name="mark_as_watched">Пометить проигранным</string>
-    <string name="show_image_indicators_summary">Picasso: указать цветом источник изображений (красный — сеть, синий — диск, зелёный — память)</string>
-    <string name="show_image_indicators_title">Цветные метки на изображениях</string>
     <string name="remote_search_suggestions">Серверные предложения поиска</string>
     <string name="local_search_suggestions">Локальные предложения поиска</string>
     <plurals name="deleted_downloads_toast">
@@ -868,4 +866,7 @@
     <string name="youtube_player_http_403">Во время воспроизведения получена ошибка HTTP 403 от сервера, вероятно, вызванная блокировкой IP-адреса или проблемами деобфускации URL-адреса потоковой передачи</string>
     <string name="sign_in_confirm_not_bot_error">%1$s отказался предоставить данные, запросив логин для подтверждения, что запросчик не бот.\n\nВозможно, ваш IP-адрес временно заблокирован %1$s. Вы можете подождать некоторое время или переключиться на другой IP-адрес (например, включив/выключив VPN или переключившись с Wi-Fi на мобильный интернет).</string>
     <string name="unsupported_content_in_country">Этот контент недоступен для выбранной страны контента.\n\nИзмените свой выбор в разделе «Настройки &gt; Контент &gt; Страна контента по умолчанию».</string>
+    <string name="kao_dialog_warning">В августе 2025 года, Google анонсировала, что с сентября 2026 года, установка приложений потребует верификации разработчика для всех Android приложений на сертифицированных устройствах, включая те, которые были установлены не через Play Store. Поскольку разработчики NewPipe не согласны с этим требованием, NewPipe перестанет работать на сертифицированных Android устройствах после этой даты.</string>
+    <string name="kao_dialog_more_info">Подробнее</string>
+    <string name="kao_solution">Решение</string>
 </resources>

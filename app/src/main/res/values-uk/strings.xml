@@ -170,7 +170,7 @@
     <string name="show_hold_to_append_summary">Показувати підказку під час натискання фонової або спливної кнопки у відео \"Деталі:\"</string>
     <string name="player_unrecoverable_failure">Сталася невиправна помилка програвача</string>
     <string name="external_player_unsupported_link_type">Зовнішні програвачі не підтримують такі види посилань</string>
-    <string name="info_labels">Що:\\nЗапит:\\nМова вмісту:\\nКраїна вмісту:\\nМова застосунку:\\nСлужба:\\nЧас GMT:\\nПакунок:\\nВерсія:\\nВерсія ОС:</string>
+    <string name="info_labels">Що:\nЗапит:\nМова вмісту:\nКраїна вмісту:\nМова застосунку:\nСлужба:\nЧас GMT:\nПакунок:\nВерсія:\nВерсія ОС:</string>
     <string name="detail_uploader_thumbnail_view_description">Мініатюрний аватар завантажувача відео</string>
     <string name="detail_likes_img_view_description">Вподобані</string>
     <string name="detail_dislikes_img_view_description">Не сподобалося</string>
@@ -491,7 +491,7 @@
     <string name="feed_use_dedicated_fetch_method_disable_button">Звичайний режим</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Швидкий режим</string>
     <string name="feed_use_dedicated_fetch_method_summary">Доступно для деяких служб, швидке, але може повертати не весь вміст каналу і часто неповну інформацію (тривалість, тип елемента, статус трансляції)</string>
-    <string name="feed_use_dedicated_fetch_method_title">Оновлення з RSS, коли воно є</string>
+    <string name="feed_use_dedicated_fetch_method_title">Отримувати з виділеної стрічки, коли доступно</string>
     <string name="feed_update_threshold_option_always_update">Оновлювати постійно</string>
     <string name="feed_update_threshold_summary">Період актуальності підписок після поновлення — %s</string>
     <string name="feed_update_threshold_title">Поріг оновлення підписок</string>
@@ -510,8 +510,8 @@
     <string name="feed_oldest_subscription_update">Останнє оновлення: %s</string>
     <string name="new_seek_duration_toast">Через обмеження ExoPlayer точність перемотування становить %d секунд</string>
     <string name="remove_watched_popup_partially_watched_streams">Так, а також частково переглянуті відео</string>
-    <string name="remove_watched_popup_warning">Відео, які Ви переглядали до та після додавання в добірку, вилучатимуться. \nВи впевнені? Це незворотна дія!</string>
-    <string name="remove_watched_popup_title">Видалити переглянуті відео?</string>
+    <string name="remove_watched_popup_warning">Потоки, які були переглянуті до та після додавання в добірку, будуть видалені. \nВи впевнені?</string>
+    <string name="remove_watched_popup_title">Видалити переглянуті потоки?</string>
     <string name="remove_watched">Видалити переглянуті</string>
     <string name="playlist_no_uploader">Створено автоматично (автора не знайдено)</string>
     <string name="infinite_videos">∞ вiдео</string>
@@ -604,7 +604,7 @@
     <string name="notification_scale_to_square_image_summary">Обрізати мініатюру відео показувану в сповіщенні з пропорцій 16: 9 до 1:1</string>
     <string name="disable_media_tunneling_summary">Вимкнення тунелювання медіаданих за наявності чорного екрана або гальмування під час відтворення відео.</string>
     <string name="disable_media_tunneling_title">Вимкнути тунелювання медіа</string>
-    <string name="downloads_storage_use_saf_summary_api_29">«Фреймворк доступу до сховища» (SAF) підтримується лише починаючи з Android 10</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Починаючи з Android 10, підтримується тільки \"Storage Access Framework\"</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Вас питатиме, куди зберігати кожне завантаження</string>
     <string name="no_dir_yet">Не вказано теки завантаження, оберіть типову теку завантаження зараз</string>
     <string name="open_website_license">Відкрити вебсайт</string>
@@ -640,8 +640,6 @@
     <string name="seekbar_preview_thumbnail_title">Мініатюра з попереднім переглядом на повзунку поступу</string>
     <string name="detail_heart_img_view_description">Вподобано автором</string>
     <string name="mark_as_watched">Позначити переглянутим</string>
-    <string name="show_image_indicators_summary">Показувати кольорові стрічки Пікассо поверх зображень із зазначенням їх джерела: червоний для мережі, синій для диска та зелений для пам’яті</string>
-    <string name="show_image_indicators_title">Показати індикатори зображень</string>
     <string name="remote_search_suggestions">Віддалені пропозиції пошуку</string>
     <string name="local_search_suggestions">Локальні пошукові пропозиції</string>
     <plurals name="deleted_downloads_toast">
@@ -868,4 +866,7 @@
     <string name="youtube_player_http_403">Під час відтворення від сервера отримано помилку HTTP 403, ймовірно, через заборону IP-адреси або проблеми з деобфускацією URL-адреси потокової передачі</string>
     <string name="sign_in_confirm_not_bot_error">%1$s відмовився надати дані, запитуючи логін для підтвердження того, що запитувач не є ботом.\n\nВаша IP-адреса могла бути тимчасово заблокована %1$s. Ви можете почекати деякий час або перейти на іншу IP-адресу (наприклад, увімкнувши/вимкнувши VPN або переключившись з Wi-Fi на мобільні дані).</string>
     <string name="unsupported_content_in_country">Цей контент недоступний для вибраної країни контенту.\n\nЗмініть свій вибір у розділі \"Налаштування &gt; Контент &gt; Країна контенту за замовчуванням\".</string>
+    <string name="kao_dialog_warning">У серпні 2025 року, Google анонсувала, що з вересня 2026 року, для встановлення застосунків буде потрібна верифікація розробника для всіх Android застосунків на сертифікованих пристроях, включаючи ті, що були встановлені не через Play Store. Оскільки розробники NewPipe не згодні з цією вимогою, NewPipe перестане працювати на сертифікованих Android пристроях після цієї дати.</string>
+    <string name="kao_dialog_more_info">Детальніше</string>
+    <string name="kao_solution">Вирішення</string>
 </resources>

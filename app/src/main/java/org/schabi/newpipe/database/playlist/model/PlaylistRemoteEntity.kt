@@ -62,11 +62,7 @@ data class PlaylistRemoteEntity(
         orderingName = playlistInfo.name,
         url = playlistInfo.url,
         thumbnailUrl = ImageStrategy.imageListToDbUrl(
-            if (playlistInfo.thumbnails.isEmpty()) {
-                playlistInfo.uploaderAvatars
-            } else {
-                playlistInfo.thumbnails
-            }
+            playlistInfo.thumbnails.ifEmpty { playlistInfo.uploaderAvatars }
         ),
         uploader = playlistInfo.uploaderName,
         streamCount = playlistInfo.streamCount

@@ -20,6 +20,7 @@
 
 package org.schabi.newpipe;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -96,6 +97,8 @@ import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.views.FocusOverlayView;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -191,9 +194,15 @@ public class MainActivity extends AppCompatActivity {
             NotificationWorker.initialize(this);
         }
         if (!UpdateSettingsFragment.wasUserAskedForConsent(this)
-                && !App.getApp().isFirstRun()
+                && !App.getInstance().isFirstRun()
                 && ReleaseVersionUtil.INSTANCE.isReleaseApk()) {
             UpdateSettingsFragment.askForConsentToUpdateChecks(this);
+        }
+
+        // ReleaseVersionUtil.INSTANCE.isReleaseApk() will be true only for main official build
+        // We want every release build (nightly, nightly-refactor) to show the popup
+        if (!DEBUG) {
+            showKeepAndroidDialog();
         }
 
         MigrationManager.showUserInfoIfPresent(this);
@@ -203,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPostCreate(final Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        final App app = App.getApp();
+        final App app = App.getInstance();
 
         if (sharedPreferences.getBoolean(app.getString(R.string.update_app_key), false)
                 && sharedPreferences
@@ -309,25 +318,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean drawerItemSelected(final MenuItem item) {
-        switch (item.getGroupId()) {
-            case R.id.menu_services_group:
-                changeService(item);
-                break;
-            case R.id.menu_tabs_group:
-                tabSelected(item);
-                break;
-            case R.id.menu_kiosks_group:
-                try {
-                    kioskSelected(item);
-                } catch (final Exception e) {
-                    ErrorUtil.showUiErrorSnackbar(this, "Selecting drawer kiosk", e);
-                }
-                break;
-            case R.id.menu_options_about_group:
-                optionsAboutSelected(item);
-                break;
-            default:
-                return false;
+        final int groupId = item.getGroupId();
+        if (groupId == R.id.menu_services_group) {
+            changeService(item);
+        } else if (groupId == R.id.menu_tabs_group) {
+            tabSelected(item);
+        } else if (groupId == R.id.menu_kiosks_group) {
+            try {
+                kioskSelected(item);
+            } catch (final Exception e) {
+                ErrorUtil.showUiErrorSnackbar(this, "Selecting drawer kiosk", e);
+            }
+        } else if (groupId == R.id.menu_options_about_group) {
+            optionsAboutSelected(item);
+        } else {
+            return false;
         }
 
         mainBinding.getRoot().closeDrawers();
@@ -977,4 +982,57 @@ public class MainActivity extends AppCompatActivity {
                 || sheetState == BottomSheetBehavior.STATE_COLLAPSED;
     }
 
+    private void showKeepAndroidDialog() {
+        final var prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        final var now = Instant.now();
+        final var kaoLastCheck = Instant.ofEpochMilli(prefs.getLong(
+                getString(R.string.kao_last_checked_key),
+                0
+        ));
+
+        final var supportedLannguages = List.of("fr", "de", "ca", "es", "id", "it", "pl",
+                "pt", "cs", "sk", "fa", "ar", "tr", "el", "th", "ru", "uk", "ko", "zh", "ja");
+        final var locale = Localization.getAppLocale();
+        final String kaoBaseUrl = "https://keepandroidopen.org/";
+        final String kaoURI;
+        if (supportedLannguages.contains(locale.getLanguage())) {
+            if ("zh".equals(locale.getLanguage())) {
+                kaoURI = kaoBaseUrl + ("TW".equals(locale.getCountry()) ? "zh-TW" : "zh-CN");
+            } else {
+                kaoURI = kaoBaseUrl + locale.getLanguage();
+            }
+        } else {
+            kaoURI = kaoBaseUrl;
+        }
+        final var solutionURI =
+                "https://github.com/woheller69/FreeDroidWarn?tab=readme-ov-file#solutions";
+
+        if (kaoLastCheck.plus(30, ChronoUnit.DAYS).isBefore(now)) {
+            final var dialog = new AlertDialog.Builder(this)
+                    .setTitle("Keep Android Open")
+                    .setCancelable(false)
+                    .setMessage(this.getString(R.string.kao_dialog_warning))
+                    .setPositiveButton(this.getString(android.R.string.ok), (d, w) -> {
+                        prefs.edit()
+                                .putLong(
+                                        getString(R.string.kao_last_checked_key),
+                                        now.toEpochMilli()
+                                )
+                                .apply();
+                    })
+                    .setNeutralButton(this.getString(R.string.kao_solution), null)
+                    .setNegativeButton(this.getString(R.string.kao_dialog_more_info), null)
+                    .show();
+
+            // If we use setNeutralButton and etc. dialog will close after pressing the buttons,
+            // but we want it to close only when positive button is pressed
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(v ->
+                    ShareUtils.openUrlInBrowser(this, kaoURI)
+            );
+            dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(v ->
+                    ShareUtils.openUrlInBrowser(this, solutionURI)
+            );
+        }
+    }
 }
