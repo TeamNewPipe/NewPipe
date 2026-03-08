@@ -17,6 +17,11 @@ dependencyResolutionManagement {
         mavenCentral()
         maven(url = "https://jitpack.io")
         maven(url = "https://repo.clojars.org")
+        maven(url = "https://central.sonatype.com/repository/maven-snapshots/") {
+            content {
+                includeGroup("net.newpipe")
+            }
+        }
     }
 }
 include (":app")
