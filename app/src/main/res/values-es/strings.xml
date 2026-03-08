@@ -851,7 +851,7 @@
     <string name="short_billion">%sMM</string>
     <string name="unsupported_content_in_country">Este contenido no está disponible para el país seleccionado actualmente.\n\nCambia tu selección en «Ajustes &gt; Contenido &gt; País predefinido del contenido».</string>
     <string name="permission_display_over_apps_message">Para usar el reproductor emergente, seleccione %1$s en el siguiente menú de la configuración de Android y habilite %2$s.</string>
-    <string name="kao_dialog_warning">Google ha anunciado que, a partir de 2026/2027, todas las aplicaciones en dispositivos Android certificados requerirán que los desarrolladores envíen sus datos personales de identidad directamente a Google. Como los desarrolladores de esta aplicación no están de acuerdo con este requisito, la aplicación dejará de funcionar en dispositivos Android certificados después de esa fecha.</string>
+    <string name="kao_dialog_warning">En Agosto de 2025, Google ha anunciado que, a partir de 2026/2027, todas las aplicaciones en dispositivos Android certificados requerirán que los desarrolladores envíen sus datos personales de identidad directamente a Google. Como los desarrolladores de NewPipe no están de acuerdo con este requisito, la aplicación dejará de funcionar en dispositivos Android certificados después de esa fecha.</string>
     <string name="kao_dialog_more_info">Detalles</string>
     <string name="kao_solution">Solución</string>
 </resources>
