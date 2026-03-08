@@ -1,6 +1,8 @@
 package org.schabi.newpipe;
 
 import android.content.Context;
+import android.system.Os;
+import android.system.OsConstants;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,9 +25,12 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import okhttp3.CompressionInterceptor;
+import okhttp3.Gzip;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
+import okhttp3.brotli.Brotli;
 
 public final class DownloaderImpl extends Downloader {
     public static final String USER_AGENT =
@@ -40,10 +45,20 @@ public final class DownloaderImpl extends Downloader {
     private final OkHttpClient client;
 
     private DownloaderImpl(final OkHttpClient.Builder builder) {
+        final CompressionInterceptor compressionInterceptor;
+        if (Os.sysconf(OsConstants._SC_NPROCESSORS_CONF) > 2) {
+            compressionInterceptor = new CompressionInterceptor(
+                    Brotli.INSTANCE,
+                    Gzip.INSTANCE);
+        } else {
+            compressionInterceptor = new CompressionInterceptor(
+                    Gzip.INSTANCE);
+        }
         this.client = builder
                 .readTimeout(30, TimeUnit.SECONDS)
 //                .cache(new Cache(new File(context.getExternalCacheDir(), "okhttp"),
 //                        16 * 1024 * 1024))
+                .addInterceptor(compressionInterceptor)
                 .build();
         this.mCookies = new HashMap<>();
     }
