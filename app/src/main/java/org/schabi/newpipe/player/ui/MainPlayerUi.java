@@ -87,6 +87,8 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     private static final int DETAIL_TITLE_TEXT_SIZE_TV = 16; // sp
     private static final int DETAIL_TITLE_TEXT_SIZE_TABLET = 15; // sp
 
+    private boolean portraitBefore = false;
+    private boolean isOnScreenRotationButtonClicked = false;
     private boolean isFullscreen = false;
     private boolean isVerticalVideo = false;
     private boolean fragmentIsVisible = false;
@@ -138,6 +140,9 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         // Android TV: without it focus will frame the whole player
         binding.playPauseButton.requestFocus();
 
+        // Tracks the orientation if it's portrait. See #13057
+        portraitBefore =  !isLandscape();
+
         // Note: This is for automatically playing (when "Resume playback" is off), see #6179
         if (player.getPlayWhenReady()) {
             player.play();
@@ -158,6 +163,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         binding.screenRotationButton.setOnClickListener(makeOnClickListener(() -> {
             // Only if it's not a vertical video or vertical video but in landscape with locked
             // orientation a screen orientation can be changed automatically
+            isOnScreenRotationButtonClicked = true;
             if (!isVerticalVideo || (isLandscape() && globalScreenOrientationLocked(context))) {
                 player.getFragmentListener()
                         .ifPresent(PlayerServiceEventListener::onScreenRotationButtonClicked);
@@ -235,7 +241,6 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     @Override
     public void destroy() {
         super.destroy();
-
         // Exit from fullscreen when user closes the player via notification
         if (isFullscreen) {
             toggleFullscreen();
@@ -920,6 +925,18 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         }
 
         isFullscreen = !isFullscreen;
+
+        // If toggleFullscreen was called without the fullscreen button clicked,
+        // then it means the user changed the orientation of the device to landscape,
+        // and portraitBefore should be false.
+        // If the fullscreen button was clicked and it's no longer in fullscreen,
+        // then portraitBefore should be set depending on the orientation.
+        // See #13057 and below.
+        if ((!isOnScreenRotationButtonClicked || !isFullscreen)
+                && player.getCurrentState() != STATE_COMPLETED) {
+            portraitBefore = !isLandscape();
+        }
+
         if (isFullscreen) {
             // Android needs tens milliseconds to send new insets but a user is able to see
             // how controls changes it's position from `0` to `nav bar height` padding.
@@ -930,11 +947,27 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
             // from landscape to portrait (open vertical video to reproduce)
             binding.playbackControlRoot.setPadding(0, 0, 0, 0);
         }
+
+        // When the video ends, the orientation remains in landscape
+        // although it was in portrait when fullscreen was clicked.
+        // This corrects the orientation back to portrait. See #13057.
+        if (player.getCurrentState() == STATE_COMPLETED
+                && !DeviceUtils.isTablet(context)
+                && !DeviceUtils.isTv(context)
+                && portraitBefore
+                && !isVerticalVideo
+                && isLandscape()
+                && globalScreenOrientationLocked(context)) {
+            fragmentListener.onScreenRotationButtonClicked();
+        }
+
         fragmentListener.onFullscreenStateChanged(isFullscreen);
 
         binding.metadataView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
         binding.playerCloseButton.setVisibility(isFullscreen ? View.GONE : View.VISIBLE);
         setupScreenRotationButton();
+
+        isOnScreenRotationButtonClicked = false;
     }
 
     public void checkLandscape() {
