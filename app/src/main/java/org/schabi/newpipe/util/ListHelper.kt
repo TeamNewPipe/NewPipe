@@ -11,6 +11,7 @@ import java.util.Locale
 import java.util.Objects
 import java.util.function.Predicate
 import java.util.stream.Collectors
+import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.MediaFormat
 import org.schabi.newpipe.extractor.ServiceList
@@ -34,7 +35,7 @@ object ListHelper {
         listOf(MediaFormat.MP3, MediaFormat.M4A, MediaFormat.WEBMA)
 
     // Use a Set for better performance
-    private val HIGH_RESOLUTION_LIST = setOf("1440p", "2160p")
+    private val HIGH_RESOLUTION_LIST = setOf(1440, 2160)
 
     // Audio track types in order of priority. 0=lowest, n=highest
     private val AUDIO_TRACK_TYPE_RANKING =
@@ -446,13 +447,16 @@ object ListHelper {
     ): String {
         val preferences =
             PreferenceManager.getDefaultSharedPreferences(context)
+        val bestResolutionKey = context.getString(R.string.best_resolution_key)
+
         // Load the preferred resolution otherwise the best available
         var resolution = preferences?.getString(context.getString(key), context.getString(value))
-            ?: context.getString(R.string.best_resolution_key)
+            ?: bestResolutionKey
+
         val maxResolution = getResolutionLimit(context)
         if (maxResolution != null &&
             (
-                resolution == context.getString(R.string.best_resolution_key) ||
+                resolution == bestResolutionKey ||
                     compareVideoStreamResolution(maxResolution, resolution) < 1
                 )
         ) {
@@ -464,6 +468,14 @@ object ListHelper {
     /**
      * Return the index of the default stream in the list, that will be sorted in the process, based
      * on the parameters defaultResolution and defaultFormat.
+     *
+     * The method performs the following steps:
+     *
+     * 1. Validate that streams exist
+     * 2. Sort the streams by quality
+     * 3. Handle the special case where the user requested the "best" resolution
+     * 4. Use the matching algorithm to find the best candidate
+     * 5. Fallback to index 0 if no match was found
      *
      * @param defaultResolution the default resolution to look for
      * @param bestResolutionKey key of the best resolution
@@ -479,21 +491,29 @@ object ListHelper {
         defaultFormat: MediaFormat?,
         videoStreams: MutableList<VideoStream>?
     ): Int {
-        if (videoStreams.isNullOrEmpty()) {
-            return -1
-        }
-        sortStreamList(videoStreams, false)
-        if (defaultResolution == bestResolutionKey) {
-            return 0
-        }
-        val defaultStreamIndex =
-            getVideoStreamIndex(defaultResolution, defaultFormat, videoStreams)
-        // this is actually an error,
-        // but maybe there is really no stream fitting to the default value.
-        if (defaultStreamIndex == -1) {
-            return 0
-        }
-        return defaultStreamIndex
+        if (videoStreams.isNullOrEmpty()) return -1
+
+        val streamsWithParsedQuality = videoStreams.wrapWithQuality().toMutableList()
+
+        // Ensure streams are sorted by quality before selecting one.
+        sortStreamList(streamsWithParsedQuality, false)
+        videoStreams.clear()
+        videoStreams.addAll(streamsWithParsedQuality.map { it.stream })
+
+        // If the user explicitly requested the "best" resolution,
+        // simply return the first stream since the list is already sorted.
+        if (defaultResolution == bestResolutionKey) return 0
+
+        // Find the index of the best matching stream
+        val defaultStreamIndex = internalGetVideoStreamIndex(
+            defaultResolution,
+            defaultFormat,
+            streamsWithParsedQuality
+        )
+
+        // If no suitable match was found, fall back to the first stream
+        // (which is the best available due to sorting).
+        return if (defaultStreamIndex == -1) 0 else defaultStreamIndex
     }
 
     /**
@@ -520,58 +540,60 @@ object ListHelper {
     ): MutableList<VideoStream> {
         // Determine order of streams
         // The last added list is preferred
-        val videoStreamsOrdered =
-            if (preferVideoOnlyStreams) {
-                listOf(videoStreams, videoOnlyStreams)
-            } else {
-                listOf(videoOnlyStreams, videoStreams)
-            }
-        val allInitialStreams = videoStreamsOrdered.stream()
+        val videoStreamListsInPreferredOrder = if (preferVideoOnlyStreams) {
+            mutableListOf(videoStreams, videoOnlyStreams)
+        } else {
+            mutableListOf(videoOnlyStreams, videoStreams)
+        }
+
+        val allInitialStreams = videoStreamListsInPreferredOrder
             // Ignore lists that are null
-            .filter(Objects::nonNull)
-            .flatMap { it!!.stream() }
+            .filterNotNull()
+            .flatten()
+            .wrapWithQuality()
             // Filter out higher resolutions (or not if high resolutions should always be shown)
             .filter { stream ->
-                showHigherResolutions ||
-                    !HIGH_RESOLUTION_LIST.contains(
-                        stream.getResolution()
-                            // Replace any frame rate with nothing
-                            .replace("p\\d+$".toRegex(), "p")
-                    )
+                showHigherResolutions || !HIGH_RESOLUTION_LIST.contains(
+                    stream.quality.resolution
+                )
             }
-            .collect(Collectors.toList())
-        val hashMap: HashMap<String, VideoStream> = HashMap()
-        // Add all to the hashmap
-        for (videoStream in allInitialStreams) {
-            hashMap[videoStream.getResolution()] = videoStream
+            .toMutableList()
+
+        val streamsWithDefaultFormatPreferred = mutableMapOf<String, VideoStreamWithQuality>()
+
+        // add all streams based on key [ListHelper.qualityKeyOf] to [streamsWithDefaultFormatPreferred]
+        allInitialStreams
+            .forEach { streamsWithDefaultFormatPreferred[qualityKeyOf(it)] = it }
+
+        // Ensure that streams with 'defaultFormat' are included in streamMap as they are
+        // preferred. They might have been overridden if allInitialStreams has more than one stream
+        // for the same resolution key but a none 'defaultFormat' stream was added later.
+        // See 'qualityKeyOf'.
+        defaultFormat?.let { defaultFormat ->
+            allInitialStreams.filter { it.stream.format == defaultFormat }
+                .forEach { streamsWithDefaultFormatPreferred[qualityKeyOf(it)] = it }
         }
-        // Override the values when the key == resolution, with the defaultFormat
-        for (videoStream in allInitialStreams) {
-            if (videoStream.format == defaultFormat) {
-                hashMap[videoStream.getResolution()] = videoStream
-            }
-        }
-        // Return the sorted list
-        return sortStreamList(ArrayList(hashMap.values), ascendingOrder)
+
+        return sortStreamList(
+            streamsWithDefaultFormatPreferred.values.toMutableList(),
+            ascendingOrder
+        )
+            .map { it.stream }
+            .toMutableList()
     }
+
+    /**
+     * Here we create a key based on resolution, frame rate and bitrate
+     */
+    private fun qualityKeyOf(item: VideoStreamWithQuality) = "${item.quality.resolution}p${item.quality.fps}@${item.quality.bitrate}"
 
     /**
      * Sort the streams list depending on the parameter ascendingOrder;
      *
-     * It works like that:
-     * - Take a string resolution, remove the letters,
-     * - replace "0p60" (for 60fps videos) with "1"
-     * - and sort by the greatest
-     *
+     * It uses [ListHelper.getVideoStreamQualityComparator] and produces results like this:
      * ```
-     *      720p     ->  720
-     *      720p60   ->  721
-     *      360p     ->  360
-     *      1080p    ->  1080
-     *      1080p60  ->  1081
-     *
-     * ascendingOrder  ? 360 < 720 < 721 < 1080 < 1081
-     * !ascendingOrder ? 1081 < 1080 < 721 < 720 < 360
+     * ascendingOrder  ? 360p < 720p < 720p60 < 1080p < 1080p@60
+     * !ascendingOrder ? 1080p60 < 1080p < 720p60 < 720p < 360p
      * ```
      *
      * @param videoStreams   list that the sorting will be applied
@@ -579,21 +601,19 @@ object ListHelper {
      * @return The sorted list (same reference as parameter videoStreams)
      */
     private fun sortStreamList(
-        videoStreams: MutableList<VideoStream>,
+        videoStreams: MutableList<VideoStreamWithQuality>,
         ascendingOrder: Boolean
-    ): MutableList<VideoStream> {
-        // Compares the quality of two video streams.
-        val comparator = Comparator.nullsLast<VideoStream>(
-            Comparator
-                .comparing(
-                    { it: VideoStream -> it.getResolution() },
-                    ListHelper::compareVideoStreamResolution
-                )
-                .thenComparingInt { s -> VIDEO_FORMAT_QUALITY_RANKING.indexOf(s.format) }
-        )
+    ): MutableList<VideoStreamWithQuality> {
+        val comparator = getVideoStreamQualityComparator()
         videoStreams.sortWith(if (ascendingOrder) comparator else comparator.reversed())
         return videoStreams
     }
+
+    private fun getVideoStreamQualityComparator() = compareBy<VideoStreamWithQuality>
+        { it.quality.resolution }
+        .thenBy { it.quality.fps }
+        .thenBy { it.quality.formatRank }
+        .thenBy { it.quality.bitrate }
 
     /**
      * Get the audio-stream from the list with the highest rank, depending on the comparator.
@@ -616,18 +636,28 @@ object ListHelper {
     }
 
     /**
-     * Locates a possible match for the given resolution and format in the provided list.
+     * Locate the best matching video stream for a requested resolution and format in the provided list.
      *
-     * In this order:
+     * The algorithm iterates over all available streams and assigns each one
+     * a "priority class". Lower numbers represent a better match.
      *
-     * 1. Find a format and resolution match
-     * 2. Find a format and resolution match and ignore the refresh
-     * 3. Find a resolution match
-     * 4. Find a resolution match and ignore the refresh
-     * 5. Find a resolution just below the requested resolution and ignore the refresh
-     * 6. Give up
+     * Matching priority (best → worst):
      *
-     * @param targetResolution the resolution to look for
+     * 1. Format + resolution + fps + exact bitrate
+     * 2. Format + resolution + fps
+     * 3. Format + resolution
+     * 4. Resolution + fps + the closest bitrate
+     * 5. Resolution + fps
+     * 6. Resolution
+     * 7. Next lower resolution
+     * 8. Give up
+     *
+     * If multiple streams fall into the same priority class,
+     * the stream with the closest bitrate to the requested one is preferred.
+     *
+     * The list of streams is expected to already be sorted by [ListHelper.sortStreamList]
+     *
+     * @param targetResolution the resolution to look for. E.g.: "720p", "720p60", "720p60@123k", or "720p@2m"
      * @param targetFormat     the format to look for
      * @param videoStreams     the available video streams
      * @return the index of the preferred video stream
@@ -638,55 +668,95 @@ object ListHelper {
         targetFormat: MediaFormat?,
         videoStreams: List<VideoStream>
     ): Int {
-        var fullMatchIndex = -1
-        var fullMatchNoRefreshIndex = -1
-        var resMatchOnlyIndex = -1
-        var resMatchOnlyNoRefreshIndex = -1
-        var lowerResMatchNoRefreshIndex = -1
-        val targetResolutionNoRefresh = targetResolution.replace("p\\d+$".toRegex(), "p")
-        for (idx in videoStreams.indices) {
-            val format = if (targetFormat == null) {
-                null
+        return internalGetVideoStreamIndex(
+            targetResolution,
+            targetFormat,
+            videoStreams.wrapWithQuality()
+        )
+    }
+
+    private fun internalGetVideoStreamIndex(
+        targetResolution: String,
+        targetFormat: MediaFormat?,
+        videoStreams: List<VideoStreamWithQuality>
+    ): Int {
+        val target = parseQuality(targetResolution)
+
+        /**
+         * Internal helper representing a candidate stream.
+         *
+         * index       -> index in the original stream list
+         * priority    -> matching class (lower = better)
+         * bitrateDiff -> distance to the requested bitrate
+         */
+        data class Candidate(
+            val index: Int,
+            val priority: Int,
+            val bitrateDiff: Long
+        )
+
+        val candidateComparator =
+            compareBy<Candidate> { it.priority }
+                .thenBy { it.bitrateDiff }
+                // use lower bitrate to save bandwidth
+                .thenBy { videoStreams[it.index].quality.bitrate }
+
+        var best: Candidate? = null
+
+        for ((index, item) in videoStreams.withIndex()) {
+            val (stream, quality) = item
+
+            // Check individual match criteria
+            val isFormatMatch = targetFormat != null && stream.format == targetFormat
+            val isResMatch = quality.resolution == target.resolution
+            val isFpsMatch = quality.fps == target.fps
+
+            // Compute bitrate difference only if both bitrates exist
+            val bitrateDiff = if (target.bitrate > 0 && quality.bitrate > 0) {
+                kotlin.math.abs(quality.bitrate - target.bitrate)
             } else {
-                videoStreams[idx].format
+                Long.MAX_VALUE
             }
-            val resolution = videoStreams[idx].getResolution()
-            val resolutionNoRefresh = resolution.replace("p\\d+$".toRegex(), "p")
-            if (format == targetFormat && resolution == targetResolution) {
-                fullMatchIndex = idx
+
+            /**
+             * Determine the matching priority of this stream.
+             *
+             * The "when" block classifies the stream into a priority group.
+             * Lower numbers mean better matches.
+             */
+            val priority = when {
+                // Perfect match
+                isFormatMatch && isResMatch && isFpsMatch && bitrateDiff == 0L -> 1
+
+                isFormatMatch && isResMatch && isFpsMatch -> 2
+
+                isFormatMatch && isResMatch -> 3
+
+                isResMatch && isFpsMatch -> 4
+
+                isResMatch -> 5
+
+                // Accept lower resolutions as fallback
+                quality.resolution < target.resolution -> 6
+
+                // If none of the matching conditions apply,
+                // this stream is not considered a valid candidate.
+                else -> continue
             }
-            if (format == targetFormat && resolutionNoRefresh == targetResolutionNoRefresh) {
-                fullMatchNoRefreshIndex = idx
-            }
-            if (resMatchOnlyIndex == -1 && resolution == targetResolution) {
-                resMatchOnlyIndex = idx
-            }
-            if (resMatchOnlyNoRefreshIndex == -1 &&
-                resolutionNoRefresh == targetResolutionNoRefresh
-            ) {
-                resMatchOnlyNoRefreshIndex = idx
-            }
-            if (lowerResMatchNoRefreshIndex == -1 && compareVideoStreamResolution(
-                    resolutionNoRefresh,
-                    targetResolutionNoRefresh
-                ) < 0
-            ) {
-                lowerResMatchNoRefreshIndex = idx
+
+            val candidate = Candidate(index, priority, bitrateDiff)
+
+            if (best == null || candidateComparator.compare(candidate, best) < 0) {
+                best = candidate
+                if (best.priority == 1) {
+                    // perfect match, stop searching
+                    break
+                }
             }
         }
-        if (fullMatchIndex != -1) {
-            return fullMatchIndex
-        }
-        if (fullMatchNoRefreshIndex != -1) {
-            return fullMatchNoRefreshIndex
-        }
-        if (resMatchOnlyIndex != -1) {
-            return resMatchOnlyIndex
-        }
-        if (resMatchOnlyNoRefreshIndex != -1) {
-            return resMatchOnlyNoRefreshIndex
-        }
-        return lowerResMatchNoRefreshIndex
+
+        // Return the index of the best matching stream, or -1 if none was found
+        return best?.index ?: -1
     }
 
     /**
@@ -764,22 +834,14 @@ object ListHelper {
         r1: String,
         r2: String
     ): Int {
-        return try {
-            val res1 = Integer.parseInt(
-                r1.replace("0p\\d+$".toRegex(), "1")
-                    .replace("[^\\d.]".toRegex(), "")
-            )
-            val res2 = Integer.parseInt(
-                r2.replace("0p\\d+$".toRegex(), "1")
-                    .replace("[^\\d.]".toRegex(), "")
-            )
-            res1 - res2
-        } catch (e: NumberFormatException) {
-            // Consider the first one greater because we don't know if the two streams are
-            // different or not (a NumberFormatException was thrown so we don't know the resolution
-            // of one stream or of all streams)
-            1
-        }
+        val r1Quality = parseQuality(r1)
+        val r2Quality = parseQuality(r2)
+
+        val comparator =
+            compareBy<VideoQuality>
+                { it.resolution }
+                .thenBy { it.fps }
+        return comparator.compare(r2Quality, r1Quality)
     }
 
     @JvmStatic
@@ -1002,5 +1064,90 @@ object ListHelper {
                     Comparator.naturalOrder<AudioTrackType>()
                 )
             )
+    }
+
+    // ------Extensions--------
+    fun VideoStream.toQuality(): VideoQuality {
+        return parseQuality(getResolution(), format)
+    }
+
+    /**
+     * Extension on Iterable<VideoStream> that maps each VideoStream
+     * to a [VideoStreamWithQuality] using its toQuality() function.
+     * This avoids repeatedly parsing the quality string during matching.
+     */
+    fun Iterable<VideoStream>.wrapWithQuality(): List<VideoStreamWithQuality> {
+        return this.map { stream -> VideoStreamWithQuality(stream, stream.toQuality()) }
+    }
+
+    // --------data classes----------
+
+    /**
+     *  containing the stream and its parsed [VideoQuality] information
+     */
+    data class VideoStreamWithQuality(
+        val stream: VideoStream,
+        val quality: VideoQuality
+    )
+
+    data class VideoQuality(
+        val resolution: Int,
+        val fps: Int,
+        val bitrate: Long,
+        val formatRank: Int
+    )
+
+    // -------- helper ------------
+
+    val QUALITY_REGEX = Regex("""^(\d+)p(\d+)?(?:@(\d+)([km])?)?$""", RegexOption.IGNORE_CASE)
+
+    /**
+     * Parses a video quality string into a [VideoQuality] object.
+     *
+     * Supports strings like: `"720p"`, `"720p60"`, `"720p60@1500k"` or `"1080p@2m"`.
+     * The components represent resolution, optional fps, and optional bitrate.
+     * Bitrate units `k` and `m` are interpreted as ×1000 and ×1_000_000 respectively.
+     *
+     * @param resFpsBitrate string to parse for quality information (e.g. `"720p60@1500k"`), may be null
+     * @param format        optional media format used to determine the format rank
+     * @return the parsed [VideoQuality] or a zero-quality fallback if parsing fails
+     *         or [resFpsBitrate] was null
+     */
+    private fun parseQuality(
+        resFpsBitrate: String?,
+        format: MediaFormat? = null
+    ): VideoQuality {
+        val resFpsBitrateStr = resFpsBitrate?.trim() ?: return VideoQuality(0, 0, 0L, -1)
+
+        val match = QUALITY_REGEX.matchEntire(resFpsBitrateStr)
+            ?: run {
+                if (MainActivity.DEBUG) println("QualityParser" + "Cannot parse: \"$resFpsBitrateStr\"")
+                return VideoQuality(0, 0, 0L, -1)
+            }
+
+        val resolution = match.groupValues[1].toInt()
+        val fps = match.groupValues[2].toIntOrNull() ?: 0
+
+        var bitrate = match.groupValues[3].toLongOrNull() ?: 0L
+        val bitrateUnit = match.groupValues[4].lowercase()
+        if (bitrate > 0 && bitrateUnit.isNotEmpty()) {
+            try {
+                bitrate = when (bitrateUnit) {
+                    "k" -> Math.multiplyExact(bitrate, 1000L)
+                    "m" -> Math.multiplyExact(bitrate, 1_000_000L)
+                    else -> bitrate
+                }
+            } catch (e: ArithmeticException) {
+                if (MainActivity.DEBUG) println("QualityParser" + "Bitrate overflow in \"$resFpsBitrateStr\"")
+                bitrate = 0L
+            }
+        }
+
+        return VideoQuality(
+            resolution,
+            fps,
+            bitrate,
+            format?.let { VIDEO_FORMAT_QUALITY_RANKING.indexOf(it) } ?: -1
+        )
     }
 }
