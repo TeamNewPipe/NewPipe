@@ -27,10 +27,14 @@ object ServiceHelper {
     fun getIcon(serviceId: Int): Int {
         return when (serviceId) {
             0 -> R.drawable.ic_smart_display
+
             1 -> R.drawable.ic_cloud
-            2 -> R.drawable.ic_placeholder_media_ccc
+
+            //            2 -> R.drawable.ic_placeholder_media_ccc
             3 -> R.drawable.ic_placeholder_peertube
+
             4 -> R.drawable.ic_placeholder_bandcamp
+
             else -> R.drawable.ic_circle
         }
     }

@@ -439,6 +439,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void showServices() {
         for (final StreamingService s : NewPipe.getServices()) {
+            // Skip media.ccc.de
+            if (s.getServiceId() == 2) {
+                continue;
+            }
             final String title = s.getServiceInfo().getName();
 
             final MenuItem menuItem = drawerLayoutBinding.navigation.getMenu()

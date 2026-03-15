@@ -57,24 +57,24 @@
         <item name="colorAccent">@color/dark_peertube_accent_color</item>
     </style>
 
-    <!-- media.ccc.de -->
-    <style name="LightTheme.media.ccc.de" parent="LightTheme" tools:keep="@style/LightTheme_media_ccc_de">
-        <item name="colorPrimary">@color/light_media_ccc_primary_color</item>
-        <item name="colorPrimaryDark">@color/light_media_ccc_primary_color</item>
-        <item name="colorAccent">@color/light_media_ccc_accent_color</item>
-    </style>
+<!--    &lt;!&ndash; media.ccc.de &ndash;&gt;-->
+<!--    <style name="LightTheme.media.ccc.de" parent="LightTheme" tools:keep="@style/LightTheme_media_ccc_de">-->
+<!--        <item name="colorPrimary">@color/light_media_ccc_primary_color</item>-->
+<!--        <item name="colorPrimaryDark">@color/light_media_ccc_primary_color</item>-->
+<!--        <item name="colorAccent">@color/light_media_ccc_accent_color</item>-->
+<!--    </style>-->
 
-    <style name="DarkTheme.media.ccc.de" parent="DarkTheme" tools:keep="@style/DarkTheme_media_ccc_de">
-        <item name="colorPrimary">@color/dark_media_ccc_primary_color</item>
-        <item name="colorPrimaryDark">@color/dark_media_ccc_primary_color</item>
-        <item name="colorAccent">@color/dark_media_ccc_accent_color</item>
-    </style>
+<!--    <style name="DarkTheme.media.ccc.de" parent="DarkTheme" tools:keep="@style/DarkTheme_media_ccc_de">-->
+<!--        <item name="colorPrimary">@color/dark_media_ccc_primary_color</item>-->
+<!--        <item name="colorPrimaryDark">@color/dark_media_ccc_primary_color</item>-->
+<!--        <item name="colorAccent">@color/dark_media_ccc_accent_color</item>-->
+<!--    </style>-->
 
-    <style name="BlackTheme.media.ccc.de" parent="BlackTheme" tools:keep="@style/BlackTheme_media_ccc_de">
-        <item name="colorPrimary">@color/dark_media_ccc_primary_color</item>
-        <item name="colorPrimaryDark">@color/dark_media_ccc_primary_color</item>
-        <item name="colorAccent">@color/dark_media_ccc_accent_color</item>
-    </style>
+<!--    <style name="BlackTheme.media.ccc.de" parent="BlackTheme" tools:keep="@style/BlackTheme_media_ccc_de">-->
+<!--        <item name="colorPrimary">@color/dark_media_ccc_primary_color</item>-->
+<!--        <item name="colorPrimaryDark">@color/dark_media_ccc_primary_color</item>-->
+<!--        <item name="colorAccent">@color/dark_media_ccc_accent_color</item>-->
+<!--    </style>-->
 
     <!-- Bandcamp -->
     <style name="LightTheme.Bandcamp" parent="LightTheme" tools:keep="@style/LightTheme_Bandcamp">

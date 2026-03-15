@@ -353,23 +353,14 @@
             </intent-filter>
 
             <!-- media.ccc.de filter -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="http" />
-                <data android:scheme="https" />
-                <data android:host="media.ccc.de" />
-                <!-- video prefix -->
-                <data android:pathPrefix="/v/" />
-                <!-- channel prefix-->
-                <data android:pathPrefix="/c/" />
-                <data android:pathPrefix="/b/" />
-            </intent-filter>
+<!--            <intent-filter android:autoVerify="true">-->
+<!--                <action android:name="android.intent.action.VIEW" />-->
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
+<!--                <data android:scheme="http" />-->
+<!--                <data android:scheme="https" />-->
+<!--                <data android:host="media.ccc.de" />-->
+<!--            </intent-filter>-->
 
             <!-- PeerTube filter -->
             <intent-filter>
