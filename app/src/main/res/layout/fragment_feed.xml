@@ -122,11 +122,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="∞/∞"
+            android:text=""
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textSize="16sp"
             android:visibility="gone"
             tools:text="1/120"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/cancel_feed_reloading_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:text="@string/cancel"
+            android:textSize="12sp"
+            android:theme="@style/Base"
+            android:visibility="gone"
             tools:visibility="visible" />
     </LinearLayout>
 
