@@ -30,7 +30,6 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.app.PendingIntentCompat
-import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
@@ -101,7 +100,7 @@ class FeedLoadService : Service() {
                     handleError(error)
                     return@subscribe
                 }
-                stopService()
+                stopSelf()
             }
         return START_NOT_STICKY
     }
@@ -112,10 +111,8 @@ class FeedLoadService : Service() {
         notificationDisposable?.dispose()
     }
 
-    private fun stopService() {
+    override fun onDestroy() {
         disposeAll()
-        ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE)
-        stopSelf()
     }
 
     override fun onBind(intent: Intent): IBinder? {
@@ -213,6 +210,6 @@ class FeedLoadService : Service() {
 
     private fun handleError(error: Throwable) {
         postEvent(ErrorResultEvent(error))
-        stopService()
+        stopSelf()
     }
 }

@@ -39,6 +39,7 @@ class FeedLoadManager(private val context: Context) {
 
     private val notificationUpdater = PublishProcessor.create<String>()
     private val currentProgress = AtomicInteger(-1)
+    private var currentProgressDescription = ""
     private val maxProgress = AtomicInteger(-1)
     private val cancelSignal = AtomicBoolean()
     private val feedResultsHolder = FeedResultsHolder()
@@ -148,7 +149,8 @@ class FeedLoadManager(private val context: Context) {
         FeedEventManager.postEvent(
             FeedEventManager.Event.ProgressEvent(
                 currentProgress.get(),
-                maxProgress.get()
+                maxProgress.get(),
+                progressDescription = currentProgressDescription
             )
         )
     }
@@ -278,7 +280,8 @@ class FeedLoadManager(private val context: Context) {
     private inner class NotificationConsumer : Consumer<Notification<FeedUpdateInfo>> {
         override fun accept(item: Notification<FeedUpdateInfo>) {
             currentProgress.incrementAndGet()
-            notificationUpdater.onNext(item.value?.name.orEmpty())
+            currentProgressDescription = item.value?.name.orEmpty()
+            notificationUpdater.onNext(currentProgressDescription)
 
             broadcastProgress()
         }
