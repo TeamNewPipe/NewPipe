@@ -105,11 +105,21 @@
         android:text="@string/audio_track_present_in_video"
         android:textSize="12sp" />
 
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/metadata_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/audio_track_present_in_video_text"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="12dp"
+        android:text="@string/download_embed_metadata" />
+
     <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/threads_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/audio_track_present_in_video_text"
+        android:layout_below="@+id/metadata_switch"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
         android:layout_marginBottom="6dp"

@@ -1036,6 +1036,7 @@ public class DownloadDialog extends DialogFragment
         final Stream selectedStream;
         Stream secondaryStream = null;
         final char kind;
+        final boolean embedMetadata = dialogBinding.metadataSwitch.isChecked();
         int threads = dialogBinding.threads.getProgress() + 1;
         final String[] urls;
         final List<MissionRecoveryInfo> recoveryInfo;
@@ -1049,11 +1050,12 @@ public class DownloadDialog extends DialogFragment
             kind = 'a';
             selectedStream = audioStreamsAdapter.getItem(selectedAudioIndex);
 
-            if (selectedStream.getFormat() == MediaFormat.M4A) {
-                psName = Postprocessing.ALGORITHM_M4A_NO_DASH;
-            } else if (selectedStream.getFormat() == MediaFormat.WEBMA_OPUS) {
-                psName = Postprocessing.ALGORITHM_OGG_FROM_WEBM_DEMUXER;
-            }
+            psName = switch (selectedStream.getFormat()) {
+                case M4A -> Postprocessing.ALGORITHM_M4A_NO_DASH;
+                case WEBMA_OPUS -> Postprocessing.ALGORITHM_OGG_FROM_WEBM_DEMUXER;
+                case MP3 -> Postprocessing.ALGORITHM_MP3_METADATA;
+                default -> null;
+            };
         } else if (checkedRadioButtonId == R.id.video_button) {
             kind = 'v';
             selectedStream = videoStreamsAdapter.getItem(selectedVideoIndex);
@@ -1079,6 +1081,8 @@ public class DownloadDialog extends DialogFragment
                 if (secondary.getSizeInBytes() > 0 && videoSize > 0) {
                     nearLength = secondary.getSizeInBytes() + videoSize;
                 }
+            } else if (selectedStream.getFormat() == MediaFormat.MPEG_4) {
+                psName = Postprocessing.ALGORITHM_MP4_METADATA;
             }
         } else if (checkedRadioButtonId == R.id.subtitle_button) {
             threads = 1; // use unique thread for subtitles due small file size
@@ -1116,8 +1120,8 @@ public class DownloadDialog extends DialogFragment
             );
         }
 
-        DownloadManagerService.startMission(context, urls, storage, kind, threads,
-                currentInfo, psName, psArgs, nearLength, new ArrayList<>(recoveryInfo));
+        DownloadManagerService.startMission(context, urls, storage, kind, threads, currentInfo,
+                psName, embedMetadata, psArgs, nearLength, new ArrayList<>(recoveryInfo));
 
         Toast.makeText(context, getString(R.string.download_has_started),
                 Toast.LENGTH_SHORT).show();

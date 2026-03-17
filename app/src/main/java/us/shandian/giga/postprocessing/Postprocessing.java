@@ -1,8 +1,10 @@
 package us.shandian.giga.postprocessing;
 
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.streams.io.SharpStream;
@@ -23,16 +25,20 @@ import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING_HOLD;
 
 public abstract class Postprocessing implements Serializable {
 
-    static transient final byte OK_RESULT = ERROR_NOTHING;
+    static final byte OK_RESULT = ERROR_NOTHING;
 
-    public transient static final String ALGORITHM_TTML_CONVERTER = "ttml";
-    public transient static final String ALGORITHM_WEBM_MUXER = "webm";
-    public transient static final String ALGORITHM_MP4_FROM_DASH_MUXER = "mp4D-mp4";
-    public transient static final String ALGORITHM_M4A_NO_DASH = "mp4D-m4a";
-    public transient static final String ALGORITHM_OGG_FROM_WEBM_DEMUXER = "webm-ogg-d";
+    public static final String ALGORITHM_TTML_CONVERTER = "ttml";
+    public static final String ALGORITHM_WEBM_MUXER = "webm";
+    public static final String ALGORITHM_MP3_METADATA = "mp3-metadata";
+    public static final String ALGORITHM_MP4_METADATA = "mp4-metadata";
+    public static final String ALGORITHM_MP4_FROM_DASH_MUXER = "mp4D-mp4";
+    public static final String ALGORITHM_M4A_NO_DASH = "mp4D-m4a";
+    public static final String ALGORITHM_OGG_FROM_WEBM_DEMUXER = "webm-ogg-d";
 
-    public static Postprocessing getAlgorithm(@NonNull String algorithmName, String[] args,
-                                              StreamInfo streamInfo) {
+    public static Postprocessing getAlgorithm(@NonNull String algorithmName,
+                                              boolean embedMetadata,
+                                              String[] args,
+                                              @NonNull StreamInfo streamInfo) {
         Postprocessing instance;
 
         switch (algorithmName) {
@@ -41,6 +47,12 @@ public abstract class Postprocessing implements Serializable {
                 break;
             case ALGORITHM_WEBM_MUXER:
                 instance = new WebMMuxer();
+                break;
+            case ALGORITHM_MP3_METADATA:
+                instance = new Mp3Metadata();
+                break;
+            case ALGORITHM_MP4_METADATA:
+                instance = new Mp4Metadata();
                 break;
             case ALGORITHM_MP4_FROM_DASH_MUXER:
                 instance = new Mp4FromDashMuxer();
@@ -51,14 +63,13 @@ public abstract class Postprocessing implements Serializable {
             case ALGORITHM_OGG_FROM_WEBM_DEMUXER:
                 instance = new OggFromWebmDemuxer();
                 break;
-            /*case "example-algorithm":
-                instance = new ExampleAlgorithm();*/
             default:
                 throw new UnsupportedOperationException("Unimplemented post-processing algorithm: " + algorithmName);
         }
 
         instance.args = args;
         instance.streamInfo = streamInfo;
+        instance.embedMetadata = embedMetadata;
         return instance;
     }
 
@@ -79,7 +90,24 @@ public abstract class Postprocessing implements Serializable {
     private final String name;
 
     private String[] args;
+
+    /**
+     * Indicates whether the metadata should be embedded in the file or not.
+     */
+    boolean embedMetadata;
+
+    /**
+     * StreamInfo object related to the current download
+     */
+    @NonNull
     protected StreamInfo streamInfo;
+
+    /**
+     * The thumbnail / cover art bitmap associated with the current download.
+     * May be null.
+     */
+    @Nullable
+    protected Bitmap thumbnail;
 
     private transient DownloadMission mission;
 
@@ -105,6 +133,10 @@ public abstract class Postprocessing implements Serializable {
                 // nothing to do
             }
         }
+    }
+
+    public void setThumbnail(Bitmap thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
 

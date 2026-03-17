@@ -1,5 +1,8 @@
 package org.schabi.newpipe.streams;
 
+import android.graphics.Bitmap;
+
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.streams.Mp4DashReader.Hdlr;
 import org.schabi.newpipe.streams.Mp4DashReader.Mdia;
 import org.schabi.newpipe.streams.Mp4DashReader.Mp4DashChunk;
@@ -13,7 +16,17 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 
+import us.shandian.giga.postprocessing.Mp4MetadataHelper;
+
 /**
+ * MP4 muxer that builds a standard MP4 file from DASH fragmented MP4 sources.
+ *
+ * @see <a href="https://atomicparsley.sourceforge.net/mpeg-4files.html">
+ * https://atomicparsley.sourceforge.net/mpeg-4files.html</a> for a quick summary on
+ * the MP4 file format and its specification.
+ * @see <a href="https://developer.apple.com/documentation/quicktime-file-format/">
+ *     Apple Quick Time Format Specification</a> which is the basis for MP4 file format
+ *     and contains detailed information about the structure of MP4 files.
  * @author kapodamy
  */
 public class Mp4FromDashWriter {
@@ -50,12 +63,40 @@ public class Mp4FromDashWriter {
 
     private final ArrayList<Integer> compatibleBrands = new ArrayList<>(5);
 
-    public Mp4FromDashWriter(final SharpStream... sources) throws IOException {
+
+    private final boolean embedMetadata;
+    private final Mp4MetadataHelper metadataHelper;
+
+    public Mp4FromDashWriter(final boolean embedMetadata,
+                             final StreamInfo streamInfo,
+                             final Bitmap thumbnail,
+                             final SharpStream... sources) throws IOException {
         for (final SharpStream src : sources) {
             if (!src.canRewind() && !src.canRead()) {
                 throw new IOException("All sources must be readable and allow rewind");
             }
         }
+
+        this.embedMetadata = embedMetadata;
+        this.metadataHelper = new Mp4MetadataHelper(
+                this::auxOffset,
+                buffer -> {
+                    try {
+                        auxWrite(buffer);
+                    } catch (final IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                },
+                offset -> {
+                    try {
+                        return lengthFor(offset);
+                    } catch (final IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                },
+                streamInfo,
+                thumbnail
+        );
 
         sourceTracks = sources;
         readers = new Mp4DashReader[sourceTracks.length];
@@ -712,10 +753,14 @@ public class Mp4FromDashWriter {
 
         makeMvhd(longestTrack);
 
+        if (embedMetadata) {
+            metadataHelper.makeUdta();
+        }
+
         for (int i = 0; i < tracks.length; i++) {
             if (tracks[i].trak.tkhd.matrix.length != 36) {
-                throw
-                    new RuntimeException("bad track matrix length (expected 36) in track n°" + i);
+                throw new RuntimeException(
+                        "bad track matrix length (expected 36) in track n°" + i);
             }
             makeTrak(i, durations[i], defaultMediaTime[i], tablesInfo[i], is64);
         }
@@ -763,7 +808,7 @@ public class Mp4FromDashWriter {
         final int mediaTime;
 
         if (tracks[index].trak.edstElst == null) {
-            // is a audio track ¿is edst/elst optional for audio tracks?
+            // is an audio track; is edst/elst optional for audio tracks?
             mediaTime = 0x00; // ffmpeg set this value as zero, instead of defaultMediaTime
             bMediaRate = 0x00010000;
         } else {
@@ -871,32 +916,40 @@ public class Mp4FromDashWriter {
         return offset + 0x14;
     }
 
+    /**
+     * Creates a Sample Group Description Box.
+     *
+     * <p>
+     * What does it do?
+     * <br>
+     * The table inside of this box gives information about the
+     * characteristics of sample groups. The descriptive information is any other
+     * information needed to define or characterize the sample group.
+     * </p>
+     *
+     * <p>
+     * ¿is replicable this box?
+     * <br>
+     * NO due lacks of documentation about this box but...
+     * most of m4a encoders and ffmpeg uses this box with dummy values (same values)
+     * </p>
+     *
+     * @return byte array with the 'sgpd' box
+     */
     private byte[] makeSgpd() {
-        /*
-         * Sample Group Description Box
-         *
-         * ¿whats does?
-         * the table inside of this box gives information about the
-         * characteristics of sample groups. The descriptive information is any other
-         * information needed to define or characterize the sample group.
-         *
-         * ¿is replicable this box?
-         * NO due lacks of documentation about this box but...
-         * most of m4a encoders and ffmpeg uses this box with dummy values (same values)
-         */
-
         final ByteBuffer buffer = ByteBuffer.wrap(new byte[] {
                 0x00, 0x00, 0x00, 0x1A, // box size
                 0x73, 0x67, 0x70, 0x64, // "sgpd"
                 0x01, 0x00, 0x00, 0x00, // box flags (unknown flag sets)
-                0x72, 0x6F, 0x6C, 0x6C, // ¿¿group type??
-                0x00, 0x00, 0x00, 0x02, // ¿¿??
-                0x00, 0x00, 0x00, 0x01, // ¿¿??
-                (byte) 0xFF, (byte) 0xFF // ¿¿??
+                0x72, 0x6F, 0x6C, 0x6C, // group type??
+                0x00, 0x00, 0x00, 0x02, // ??
+                0x00, 0x00, 0x00, 0x01, // ??
+                (byte) 0xFF, (byte) 0xFF // ??
         });
 
         return buffer.array();
     }
+
 
     static class TablesInfo {
         int stts;
