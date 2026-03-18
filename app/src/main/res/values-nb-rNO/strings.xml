@@ -76,7 +76,7 @@
     <string name="msg_running_detail">Trykk for detaljer</string>
     <string name="msg_wait">Vent…</string>
     <string name="msg_copied">Kopiert til utklippstavle</string>
-    <string name="info_labels">Hva:\\nForespørsel:\\nInnholdsspråk:\\nInnholdsland:\\nAppspråk:\\nTjeneste:\\nGMT-tid:\\nPakke:\\nVersjon:\\nOS-versjon:</string>
+    <string name="info_labels">Hva:\nForespørsel:\nInnholdsspråk:\nInnholdsland:\nAppspråk:\nTjeneste:\nGMT-tid:\nPakke:\nVersjon:\nOS-versjon:</string>
     <string name="start">Start</string>
     <string name="no_available_dir">Definer en nedlastingsmappe senere i innstillingene</string>
     <string name="title_activity_recaptcha">reCAPTCHA-oppgave</string>
@@ -638,9 +638,7 @@
     <string name="local_search_suggestions">Lokale søkeforslag</string>
     <string name="mark_as_watched">Marker som sett</string>
     <string name="start_main_player_fullscreen_summary">Ikke start videoer i minispilleren, men bytt til fullskjermsmodus direkte dersom auto-rotering er låst. Du har fremdeles tilgang til minispilleren ved å avslutte fullskjermsvisningen</string>
-    <string name="show_image_indicators_summary">Vis Picasso-fargede bånd på toppen av bilder for å indikere kilde: Rød for nettverk, blå for disk, og grønn for minne</string>
     <string name="detail_heart_img_view_description">Hjertemerket av skaperen</string>
-    <string name="show_image_indicators_title">Vis bildeindikatorer</string>
     <string name="main_page_content_swipe_remove">Dra elementer for å fjerne dem</string>
     <string name="start_main_player_fullscreen_title">Start hovedspiller i fullskjerm</string>
     <string name="enqueue_next_stream">Still i kø neste</string>

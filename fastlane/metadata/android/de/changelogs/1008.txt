@@ -1,0 +1,4 @@
+∙ Fortsetzen von Streams an der letzten Wiedergabeposition korrigiert
+∙ [YouTube] Unterstützung für weitere Kanal-URL-Formate
+∙ [YouTube] Unterstützung für weitere Video-Metainfo-Formate
+∙ Übersetzungen aktualisiert

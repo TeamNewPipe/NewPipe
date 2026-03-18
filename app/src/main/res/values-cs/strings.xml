@@ -81,7 +81,7 @@
     <string name="black_theme_title">Černé</string>
     <string name="checksum">Kontrolní součet</string>
     <string name="no_available_dir">Určete prosím složku pro stahování později v nastavení</string>
-    <string name="info_labels">Co:\\nŽádost:\\nJazyk obsahu:\\nZemě obsahu:\\nJazyk aplikace:\\nSlužba:\\nČas GMT:\\nBalíček:\\nVerze:\\nVerze OS:</string>
+    <string name="info_labels">Co:\nŽádost:\nJazyk obsahu:\nZemě obsahu:\nJazyk aplikace:\nSlužba:\nČas GMT:\nBalíček:\nVerze:\nVerze OS:</string>
     <string name="all">Vše</string>
     <string name="open_in_popup_mode">Otevřít ve vyskakovacím okně</string>
     <string name="msg_popup_permission">Toto oprávnění je vyžadováno
@@ -518,9 +518,9 @@
 \n
 \nPokud jej chcete vidět, povolte „%1$s“ v nastavení.</string>
     <string name="remove_watched_popup_partially_watched_streams">Ano, i zčásti zhlédnutá videa</string>
-    <string name="remove_watched_popup_title">Odstranit zhlédnutá videa?</string>
-    <string name="remove_watched">Odstranit zhlédnutá</string>
-    <string name="remove_watched_popup_warning">Videa, která jste zhlédli před a po jejich přidání do playlistu, budou odstraněna. \nJste se jisti? Tato akce je nevratná!</string>
+    <string name="remove_watched_popup_title">Odstranit zhlédnuté streamy?</string>
+    <string name="remove_watched">Odstranit zhlédnuté</string>
+    <string name="remove_watched_popup_warning">Streamy, které jste zhlédli před a po jejich přidání do playlistu, budou odstraněny. \nJste se jisti?</string>
     <string name="show_original_time_ago_summary">Původní texty služeb budou viditelné u položek streamů</string>
     <string name="show_original_time_ago_title">U položek zobrazit původní čas</string>
     <string name="youtube_restricted_mode_enabled_title">Zapnout „Omezený režim“ YouTube</string>
@@ -648,8 +648,6 @@
         <item quantity="few">%s stahování dokončena</item>
         <item quantity="other">%s stahováních dokončeno</item>
     </plurals>
-    <string name="show_image_indicators_summary">Zobrazit barevné pásky Picasso na obrázcích označujících jejich zdroj: červená pro síť, modrá pro disk a zelená pro paměť</string>
-    <string name="show_image_indicators_title">Zobrazit indikátory obrázků</string>
     <string name="remote_search_suggestions">Vzdálené návrhy vyhledávání</string>
     <string name="local_search_suggestions">Lokální návrhy vyhledávání</string>
     <string name="start_main_player_fullscreen_summary">Pokud je vypnuté automatické otáčení, nespouštět video v mini přehrávači, ale přepnout se přímo do režimu celé obrazovky. Do mini přehrávače se lze i nadále dostat ukončením režimu celé obrazovky</string>
@@ -863,4 +861,7 @@
     <string name="youtube_player_http_403">Chyba HTTP 403 obdržená od serveru během přehrávání, pravděpodobně způsobená zákazem IP adresy nebo problémy s deobfuskací streamovací adresy URL</string>
     <string name="sign_in_confirm_not_bot_error">%1$s odmítl poskytnout data, žádá o přihlášení k potvrzení, že žadatel není bot.\n\nVaše IP adresa mohla být dočasně zakázána %1$s, můžete nějakou dobu počkat nebo přepnout na jinou IP adresu (například zapnutím/vypnutím VPN nebo přepnutím z WiFi na mobilní data).</string>
     <string name="unsupported_content_in_country">Tento obsah není pro aktuálně vybranou zemi obsahu dostupný.\n\nZměňte výběr v nabídce \"Nastavení &gt; Obsah &gt; Výchozí země obsahu\".</string>
+    <string name="kao_dialog_warning">Společnost Google oznámila, že od roku 2026/2027 budou všechny aplikace na certifikovaných zařízeních Android vyžadovat, aby vývojář odeslal své osobní identifikační údaje přímo společnosti Google. Jelikož vývojáři této aplikace s tímto požadavkem nesouhlasí, aplikace po tomto datu přestane na certifikovaných zařízeních Android fungovat.</string>
+    <string name="kao_dialog_more_info">Podrobnosti</string>
+    <string name="kao_solution">Řešení</string>
 </resources>

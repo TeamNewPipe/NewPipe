@@ -73,7 +73,7 @@
     <string name="error_snackbar_action">דיווח</string>
     <string name="what_device_headline">מידע:</string>
     <string name="what_happened_headline">מה קרה:</string>
-    <string name="info_labels">מה:\\nבקשה:\\nשפת התוכן:\\nמדינת התוכן:\\nשפת היישומון:\\nשירות:\\nשעון גריניץ׳:\\nחבילה:\\nגרסה:\\nגרסת מערכת ההפעלה:</string>
+    <string name="info_labels">מה:\nבקשה:\nשפת התוכן:\nמדינת התוכן:\nשפת היישומון:\nשירות:\nשעון גריניץ׳:\nחבילה:\nגרסה:\nגרסת מערכת ההפעלה:</string>
     <string name="subscribe_button_title">רישום למינוי</string>
     <string name="subscribed_button_title">נרשמת</string>
     <string name="channel_unsubscribed">ביטול מינוי לערוץ</string>
@@ -528,9 +528,9 @@
 \n
 \nיש להפעיל את „%1$s” בהגדרות כדי לצפות בו.</string>
     <string name="remove_watched_popup_partially_watched_streams">כן, לרבות סרטונים שהפסקתי באמצע</string>
-    <string name="remove_watched_popup_warning">סרטונים שלאחר שצפית בהם מופיע לרשימת הנגינה יוסרו. \nלהמשיך? זאת פעולה בלתי הפיכה!</string>
+    <string name="remove_watched_popup_warning">תזרימים שלאחר שצפית בהם לפני ואחרי שנוספו לרשימת הנגינה יוסרו. \nלהמשיך?</string>
     <string name="remove_watched">הסרת נצפו</string>
-    <string name="remove_watched_popup_title">להסיר סרטונים שנצפו?</string>
+    <string name="remove_watched_popup_title">להסיר תזרימים שנצפו?</string>
     <string name="show_original_time_ago_summary">הטקסט המקורי משירותים יופיע בפריטי התזרים</string>
     <string name="show_original_time_ago_title">הצגת לפני כמה זמן מקורי על פריטים</string>
     <string name="youtube_restricted_mode_enabled_title">הפעלת „מצב מוגבל” של YouTube</string>
@@ -648,8 +648,6 @@
     <string name="seekbar_preview_thumbnail_title">תמונה מוקטנת בסרגל הנגינה</string>
     <string name="detail_heart_img_view_description">סומן בלב על ידי היוצר</string>
     <string name="mark_as_watched">סימון כנצפה</string>
-    <string name="show_image_indicators_summary">הצגת סרטים בסגנון פיקאסו בראש התמונות לציון המקור שלהם: אדום זה מהרשת, כחול מהכונן וירוק מהזיכרון</string>
-    <string name="show_image_indicators_title">הצגת מחווני תמונות</string>
     <string name="remote_search_suggestions">הצעות חיפוש מרוחקות</string>
     <string name="local_search_suggestions">הצעות חיפוש מקומיות</string>
     <plurals name="deleted_downloads_toast">

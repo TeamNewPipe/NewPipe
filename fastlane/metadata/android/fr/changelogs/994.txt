@@ -8,8 +8,5 @@ Amélioré
 
 Corrigé
 • [YouTube] Erreurs HTTP 403 pour les flux
-• Lecteur noir lors du passage au lecteur principal depuis la vue playlist
 • Fuite de mémoire du service de lecture
 • [PeerTube] Les avatars du téléchargeur et du sous-canal ont été échangés
-
-et plus

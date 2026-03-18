@@ -86,7 +86,7 @@
     <string name="open_in_popup_mode">Ouvrir en mode flottant</string>
     <string name="popup_playing_toast">Lecture en mode flottant</string>
     <string name="disabled">Désactivés</string>
-    <string name="info_labels">Quoi :\\nRequest :\\nContent Language :\\nContent Country :\\nApp Language :\\nService :\\nGMT Time :\\nPackage :\\nVersion :\\nOS version :</string>
+    <string name="info_labels">Quoi :\nRequest :\nContent Language :\nContent Country :\nApp Language :\nService :\nGMT Time :\nPackage :\nVersion :\nOS version :</string>
     <string name="msg_popup_permission">Cette autorisation est nécessaire pour
 \nutiliser le mode flottant</string>
     <string name="controls_background_title">Arrière-plan</string>
@@ -207,15 +207,15 @@
     <string name="preferred_player_fetcher_notification_message">Chargement du contenu demandé</string>
     <string name="import_data_title">Importer la base de données</string>
     <string name="export_data_title">Exporter la base de données</string>
-    <string name="import_data_summary">Remplace votre historique, vos abonnements, vos listes de lecture et (en option) vos paramètres</string>
-    <string name="export_data_summary">Exporte l’historique, les abonnements, les listes de lecture et les paramètres</string>
+    <string name="import_data_summary">Remplace votre historique actuel, vos abonnements, vos playlists et (éventuellement) vos paramètres.</string>
+    <string name="export_data_summary">Historique des exportations, abonnements, playlists et paramètres</string>
     <string name="export_complete_toast">Exporté</string>
     <string name="import_complete_toast">Importé</string>
     <string name="no_valid_zip_file">Fichier ZIP non valide</string>
     <string name="could_not_import_all_files">Avertissement : impossible d’importer tous les fichiers.</string>
     <string name="override_current_data">Cela effacera vos paramètres actuels.</string>
     <string name="show_info">Afficher les informations</string>
-    <string name="tab_bookmarks">Listes de lecture enregistrées</string>
+    <string name="tab_bookmarks">Playlists enregistrées</string>
     <string name="controls_add_to_playlist_title">Ajouter à</string>
     <string name="detail_drag_description">Glisser pour réordonner</string>
     <string name="create">Créer</string>
@@ -318,7 +318,7 @@
     <string name="limit_data_usage_none_description">Aucune limite</string>
     <string name="limit_mobile_data_usage_title">Limiter la définition lors de l’utilisation des données mobiles</string>
     <string name="channels">Chaînes</string>
-    <string name="playlists">Listes de lecture</string>
+    <string name="playlists">Playlists</string>
     <string name="tracks">Morceaux</string>
     <string name="users">Utilisateurs</string>
     <string name="skip_silence_checkbox">Accélérer pendant les silences</string>
@@ -404,7 +404,7 @@
 \nAutorisez le sélecteur de dossier système si vous voulez télécharger vers une carte SD externe</string>
     <string name="enable_playback_resume_summary">Reprend la lecture à la dernière position</string>
     <string name="enable_playback_state_lists_title">Positions dans les listes</string>
-    <string name="enable_playback_state_lists_summary">Affiche les indicateurs de position de lecture dans les listes</string>
+    <string name="enable_playback_state_lists_summary">Afficher les indicateurs de position de lecture dans les listes</string>
     <string name="watch_history_states_deleted">Positions de reprise de lecture supprimées</string>
     <string name="downloads_storage_use_saf_title">Utiliser le sélecteur de dossier système</string>
     <string name="downloads_storage_use_saf_summary">L’« Infrastructure d’accès au stockage » permet le téléchargement sur une carte mémoire SD externe</string>
@@ -522,8 +522,8 @@
 \nActivez « %1$s » dans les paramètres si vous voulez la voir.</string>
     <string name="remove_watched">Supprimer les vidéos visionnées</string>
     <string name="remove_watched_popup_partially_watched_streams">Oui ainsi que les vidéos partiellement visionnées</string>
-    <string name="remove_watched_popup_warning">Les vidéos qui ont été visionnées avant et après avoir été ajoutées à la playlist seront supprimées. \nÊtes-vous certain(e) ? Cette action est irréversible !</string>
-    <string name="remove_watched_popup_title">Supprimer les vidéos visionnées ?</string>
+    <string name="remove_watched_popup_warning">Les flux visionnés avant et après leur ajout à la playlist seront supprimés.\nÊtes-vous sûr ?</string>
+    <string name="remove_watched_popup_title">Supprimer les flux visionnés ?</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniature de l\'avatar de la chaine</string>
     <string name="video_detail_by">De %s</string>
     <string name="channel_created_by">Créé par %s</string>
@@ -640,10 +640,8 @@
     <string name="seekbar_preview_thumbnail_title">Prévisualisation de la barre de progression sur la miniature</string>
     <string name="mark_as_watched">Marquer comme visionné</string>
     <string name="detail_heart_img_view_description">Apprécié par le créateur</string>
-    <string name="show_image_indicators_title">Afficher les indicateurs d’image</string>
     <string name="remote_search_suggestions">Suggestions de recherche distante</string>
     <string name="local_search_suggestions">Suggestions de recherche locale</string>
-    <string name="show_image_indicators_summary">Affiche les rubans colorés de Picasso au-dessus des images indiquant leur source : rouge pour le réseau, bleu pour le disque et vert pour la mémoire</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s téléchargement supprimé</item>
         <item quantity="many">%1$s téléchargements supprimés</item>
@@ -723,7 +721,7 @@
     <string name="app_update_available_notification_text">Appuyez pour télécharger %s</string>
     <string name="msg_failed_to_copy">Échec de la copie dans le presse-papiers</string>
     <string name="night_theme_available">Cette option est disponible seulement si %s est sélectionné pour le thème</string>
-    <string name="duplicate_in_playlist">Les listes de lecture grisées contiennent déjà cet élément.</string>
+    <string name="duplicate_in_playlist">Les playlists grisées contiennent déjà cet élément.</string>
     <string name="card">Carte</string>
     <string name="ignore_hardware_media_buttons_summary">Utile si, par exemple, vous utilisez un casque avec des boutons dysfonctionnels</string>
     <string name="remove_duplicates">Effacer les doublons</string>
@@ -784,7 +782,7 @@
     <string name="channel_tab_albums">Albums</string>
     <string name="image_quality_medium">Qualité moyenne</string>
     <string name="metadata_banners">Bannières</string>
-    <string name="channel_tab_playlists">Listes de lecture</string>
+    <string name="channel_tab_playlists">Playlists</string>
     <string name="more_options">Plus d’options</string>
     <string name="metadata_thumbnails">Miniatures</string>
     <string name="channel_tab_tracks">Pistes</string>
@@ -836,7 +834,7 @@
     <string name="import_settings_vulnerable_format">Les paramètres de l\'export en cours d\'importation utilisent un format vulnérable qui a été déprécié depuis NewPipe 0.27.0. Assurez-vous que l\'export en cours d\'importation provient d\'une source fiable. Privilégiez les exports obtenues à partir de NewPipe 0.27.0 ou des versions plus récentes à l\'avenir. Le support pour l\'importation des paramètres dans ce format vulnérable sera bientôt complètement supprimé et les anciennes versions de NewPipe ne pourront plus importer les paramètres des exports des nouvelles versions.</string>
     <string name="audio_track_type_secondary">secondaire</string>
     <string name="share_playlist_as_youtube_temporary_playlist">Partager comme liste de lecture YouTube temporaire</string>
-    <string name="tab_bookmarks_short">Listes de lecture</string>
+    <string name="tab_bookmarks_short">Playlists</string>
     <string name="select_a_feed_group">Sélectionnez un groupe de flux</string>
     <string name="no_feed_group_created_yet">Encore aucun groupe de flux créé</string>
     <string name="feed_group_page_summary">Page du groupe de chaînes</string>
@@ -865,4 +863,7 @@
     <string name="youtube_player_http_403">Erreur HTTP 403 reçue du serveur pendant la lecture, probablement causée par un bannissement d\'IP ou des problèmes de désobfuscation de l\'URL de streaming</string>
     <string name="sign_in_confirm_not_bot_error">%1$s a refusé de fournir des données et a demandé un identifiant pour confirmer que le demandeur n\'est pas un robot.\n\nVotre adresse IP a peut-être été temporairement bannie par %1$s. Vous pouvez patienter un peu ou changer d\'adresse IP (par exemple en activant/désactivant un VPN, ou en passant du Wi-Fi aux données mobiles).</string>
     <string name="unsupported_content_in_country">Ce contenu n\'est pas disponible pour le pays actuellement sélectionné.\n\nModifiez votre sélection dans « Paramètres &gt; Contenu &gt; Pays par défaut ».</string>
+    <string name="kao_dialog_warning">En août 2025, Google a annoncé qu\'à compter de septembre 2026, l\'installation d\'applications nécessiterait une vérification par le développeur pour toutes les applications Android sur les appareils certifiés, y compris celles installées en dehors du Play Store. Les développeurs de NewPipe refusant cette exigence, NewPipe ne fonctionnera plus sur les appareils Android certifiés après cette date.</string>
+    <string name="kao_dialog_more_info">Détails</string>
+    <string name="kao_solution">Solution</string>
 </resources>

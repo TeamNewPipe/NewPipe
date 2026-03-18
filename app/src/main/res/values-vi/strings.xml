@@ -62,7 +62,7 @@
     <string name="general_error">Lỗi</string>
     <string name="network_error">Lỗi kết nối mạng</string>
     <string name="could_not_load_thumbnails">Không thể tải tất cả hình thu nhỏ</string>
-    <string name="parsing_error">Không thể phân tích cú pháp trang web</string>
+    <string name="parsing_error">Không thể phân tích cú pháp trang web vì trang này đã ngừng hoạt động vào 21/07/2025.</string>
     <string name="content_not_available">Nội dung không khả dụng</string>
     <string name="could_not_setup_download_menu">Không thể thiết lập menu tải về</string>
     <string name="app_ui_crash">Ứng dụng/Giao diện người dùng bị lỗi</string>
@@ -72,7 +72,7 @@
     <string name="error_snackbar_action">Báo cáo</string>
     <string name="what_device_headline">Thông tin:</string>
     <string name="what_happened_headline">Chuyện gì đã xảy ra:</string>
-    <string name="info_labels">Loại lỗi:\\nYêu cầu:\\nNgôn ngữ của nội dung:\\nVùng miền (quốc gia) của nội dung:\\nNgôn ngữ của ứng dụng:\\nDịch vụ:\\nThời gian GMT:\\nTên gói:\\nPhiên bản:\\nPhiên bản hệ điều hành:</string>
+    <string name="info_labels">Loại lỗi:\nYêu cầu:\nNgôn ngữ của nội dung:\nVùng miền (quốc gia) của nội dung:\nNgôn ngữ của ứng dụng:\nDịch vụ:\nThời gian GMT:\nTên gói:\nPhiên bản:\nPhiên bản hệ điều hành:</string>
     <string name="your_comment">Nhận xét của bạn (bằng tiếng Anh):</string>
     <string name="error_details_headline">Chi tiết:</string>
     <string name="detail_thumbnail_view_description">Phát video, thời lượng:</string>
@@ -618,8 +618,6 @@
     <string name="comments_are_disabled">Bình luận đã bị tắt</string>
     <string name="detail_heart_img_view_description">Đã được chủ kênh thả \"thính\"</string>
     <string name="mark_as_watched">Đánh dấu là đã xem</string>
-    <string name="show_image_indicators_summary">Hiển thị các dải băng màu Picasso trên đầu các hình ảnh cho biết nguồn của chúng: màu đỏ cho mạng, màu lam cho đĩa và màu lục cho bộ nhớ</string>
-    <string name="show_image_indicators_title">Hiện dấu chỉ hình ảnh</string>
     <string name="remote_search_suggestions">Đề xuất tìm kiếm trên mạng</string>
     <string name="local_search_suggestions">Đề xuất tìm kiếm cục bộ</string>
     <plurals name="deleted_downloads_toast">

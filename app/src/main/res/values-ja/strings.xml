@@ -78,7 +78,7 @@
     <string name="downloads_title">ダウンロード</string>
     <string name="error_report_title">不具合報告</string>
     <string name="app_ui_crash">アプリ(UI)がクラッシュしました</string>
-    <string name="info_labels">どんな問題:\\nリクエスト:\\nコンテンツ言語:\\nコンテンツ国:\\nアプリ言語:\\nサービス:\\nGMT 時間:\\nパッケージ:\\nバージョン:\\nOSバージョン:</string>
+    <string name="info_labels">どんな問題:\nリクエスト:\nコンテンツ言語:\nコンテンツ国:\nアプリ言語:\nサービス:\nGMT 時間:\nパッケージ:\nバージョン:\nOSバージョン:</string>
     <string name="title_activity_recaptcha">reCAPTCHA の要求</string>
     <string name="recaptcha_request_toast">reCAPTCHA を要求しました</string>
     <string name="black_theme_title">ブラック</string>
@@ -628,8 +628,6 @@
     <plurals name="download_finished_notification">
         <item quantity="other">%s 個のダウンロードが完了しました</item>
     </plurals>
-    <string name="show_image_indicators_summary">ピカソは、画像の上に、画像の出所を識別する色彩記章を表示します: 赤はネットワーク、青はディスク、緑はメモリ</string>
-    <string name="show_image_indicators_title">画像に標識を表示</string>
     <string name="processing_may_take_a_moment">処理中… 少し時間がかかるかもしれません</string>
     <string name="manual_update_description">新しいバージョンを手動で確認します</string>
     <string name="checking_updates_toast">アップデートを確認中…</string>
@@ -806,4 +804,8 @@
     <string name="import_settings_vulnerable_format">インポートされているエクスポートの設定は、NewPipe 0.27.0以降は非推奨であった脆弱な形式を使用します。 インポートされているエクスポートは信頼できる情報源からであり、将来的にはNewPipe 0.27.0かこれより新しいバージョンから得られるエクスポートのみを優先して使用します。 この脆弱な形式で設定をインポートするための対応はすぐに完全に削除され、新しいバージョンからエクスポートの設定をインポートすることは出来ません。</string>
     <string name="share_playlist_as_youtube_temporary_playlist">YouTubeの一時的なプレイリストとして共有</string>
     <string name="audio_track_type_secondary">二次的</string>
+    <string name="kao_dialog_warning">Google は、2026/2027 年から、認定 Android デバイス上のすべてのアプリについて、開発者が個人の身元情報を直接 Google に提出することを必須にすると発表しました。本アプリの開発者はこの要件に同意していないため、このアプリはその時点以降、認定 Android デバイス上で動作しなくなります。</string>
+    <string name="kao_dialog_more_info">詳細</string>
+    <string name="kao_solution">解決</string>
+    <string name="short_billion">%sB</string>
 </resources>

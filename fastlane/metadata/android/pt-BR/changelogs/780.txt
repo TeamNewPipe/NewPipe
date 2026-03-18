@@ -1,12 +1,12 @@
-Alterações em 0.17.3
+Changes in 0.17.3
 
-Melhorado
-- Adicionada opção para limpar estados de reprodução #2550
-- Mostrar diretórios ocultos no seletor de ficheiros #2591
-- URLs de apoio de instâncias `invidio.us` a serem abertas com NewPipe #2488 
-- Adicionar suporte para `music.youtube.com` URLs TeamNewPipe/NewPipeExtractor#194
+Improved
+• Added option to clear playback states #2550
+• Show hidden directories in the file picker #2591
+• Support URLs from `invidio.us` instances to be opened with NewPipe  #2488 
+• Add support for `music.youtube.com` URLs TeamNewPipe/NewPipeExtractor#194
 
-Corrigido
-- [YouTube] Fixo 'java.lang.IllegalArgumentException #192
-- [YouTube] Fluxos fixos ao vivo não funcionam TeamNewPipe/NewPipeExtractor#195
-- Resolvido problema de desempenho em torta de android ao descarregar um fluxo #2592
+Fixed
+• [YouTube] Fixed 'java.lang.IllegalArgumentException #192
+• [YouTube] Fixed live streams not working TeamNewPipe/NewPipeExtractor#195
+• Fixed performance problem in android pie when downloading a stream #2592

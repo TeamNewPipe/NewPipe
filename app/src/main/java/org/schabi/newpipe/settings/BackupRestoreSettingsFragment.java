@@ -16,7 +16,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 
@@ -27,6 +26,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.local.subscription.SubscriptionsImportExportHelper;
 import org.schabi.newpipe.settings.export.BackupFileLocator;
 import org.schabi.newpipe.settings.export.ImportExportManager;
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
@@ -34,12 +34,10 @@ import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ZipHelper;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -57,17 +55,21 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
     private final ActivityResultLauncher<Intent> requestExportPathLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                     this::requestExportPathResult);
+    private SubscriptionsImportExportHelper importExportHelper;
 
+
+    @Override
+    public void onAttach(@NonNull final Context context) {
+        super.onAttach(context);
+        importExportHelper = new SubscriptionsImportExportHelper(this);
+    }
 
     @Override
     public void onCreatePreferences(@Nullable final Bundle savedInstanceState,
                                     @Nullable final String rootKey) {
-        final File homeDir = ContextCompat.getDataDir(requireContext());
-        Objects.requireNonNull(homeDir);
-        manager = new ImportExportManager(new BackupFileLocator(homeDir));
+        manager = new ImportExportManager(new BackupFileLocator(requireContext()));
 
         importExportDataPathKey = getString(R.string.import_export_data_path);
-
 
         addPreferencesFromResourceRegistry();
 
@@ -123,6 +125,21 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
             alertDialog.show();
             return true;
         });
+
+        final Preference exportSubsPreference =
+                requirePreference(R.string.export_subscriptions_key);
+        exportSubsPreference.setOnPreferenceClickListener(reference -> {
+            importExportHelper.onExportSelected();
+            return true;
+        });
+
+        final Preference importSubsPreference =
+                requirePreference(R.string.import_subscriptions_key);
+        importSubsPreference.setOnPreferenceClickListener(preference -> {
+            importExportHelper.onImportPreviousSelected();
+            return true;
+        });
+
     }
 
     private void requestExportPathResult(final ActivityResult result) {
@@ -181,9 +198,7 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
         }
 
         try {
-            if (!manager.ensureDbDirectoryExists()) {
-                throw new IOException("Could not create databases dir");
-            }
+            manager.ensureDbDirectoryExists();
 
             // replace the current database
             if (!manager.extractDb(file)) {

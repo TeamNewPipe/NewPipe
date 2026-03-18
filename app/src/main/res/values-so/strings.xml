@@ -252,7 +252,7 @@
     <string name="detail_likes_img_view_description">inta ka heshay</string>
     <string name="detail_uploader_thumbnail_view_description">Sawirka u saaran soosaareha</string>
     <string name="detail_thumbnail_view_description">Daar muuqaalka, intuu socdo:</string>
-    <string name="info_labels">Shayga:\\nCodsiga:\\nLuuqada Shayga:\\nWadanka Shayga:\\nLuuqada Appka:\\nAdeega:\\nWakhtiga oo GMT ah:\\nXidhmada:\\nTirsiga Appka:\\nTirsiga Nooca Barnaamijka:</string>
+    <string name="info_labels">Shayga:\nCodsiga:\nLuuqada Shayga:\nWadanka Shayga:\nLuuqada Appka:\nAdeega:\nWakhtiga oo GMT ah:\nXidhmada:\nTirsiga Appka:\nTirsiga Nooca Barnaamijka:</string>
     <string name="error_details_headline">Faahfaahin:</string>
     <string name="your_comment">Faalladaada (oo Ingiriis ah):</string>
     <string name="what_happened_headline">Waxa dhacay:</string>
@@ -627,10 +627,12 @@
     <string name="comments_are_disabled">Fallooyinka waa laxidhay</string>
     <string name="detail_heart_img_view_description">Kahelay soosaaraha</string>
     <string name="mark_as_watched">Waan daawaday</string>
-    <string name="show_image_indicators_summary">Soo bandhig shaambado midabka Picasso leh sawirrada dushooda oo tilmaamaya isha laga keenay: guduud waa khadka, buluug waa kaydka gudaha, cagaar waa kaydka K/G</string>
-    <string name="show_image_indicators_title">Tus tilmaamayaasha sawirka</string>
     <string name="remote_search_suggestions">Soojeedinada raadinta banaanka</string>
     <string name="local_search_suggestions">Soojeedinada raadinta gudaha</string>
     <string name="progressive_load_interval_title">Cabirka soodaarida udhexeeya</string>
     <string name="crash_the_player">Jabi Daareha</string>
+    <string name="yes">Haa</string>
+    <string name="no">Maya</string>
+    <string name="search_with_service_name">Raadi %1$s</string>
+    <string name="search_with_service_name_and_filter">Raadi %1$s (%2$s)</string>
 </resources>

@@ -1,0 +1,14 @@
+新增
+Keep Android Open 运动的重要信息及采取行动的请求：https://www.keepandroidopen.org/
+
+改进
+[Feed] 打乱过期订阅更新顺序
+不堆叠评论页
+单击视频详情页时不把单击事件传递到底层视图。
+
+修复
+评论回复标题布局没有头像图
+多个播放器相关 UI 修复
+[SoundCloud] 修福长 ID 音频流
+
+以及更多修复和改进！

@@ -49,12 +49,12 @@ import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public final class PlayerHelper {
     private static final FormattersProvider FORMATTERS_PROVIDER = new FormattersProvider();
@@ -87,11 +87,11 @@ public final class PlayerHelper {
     }
 
     @NonNull
-    public static String getTimeString(final int milliSeconds) {
-        final int seconds = (milliSeconds % 60000) / 1000;
-        final int minutes = (milliSeconds % 3600000) / 60000;
-        final int hours = (milliSeconds % 86400000) / 3600000;
-        final int days = (milliSeconds % (86400000 * 7)) / 86400000;
+    public static String getTimeString(final long milliSeconds) {
+        final long seconds = (milliSeconds % 60000) / 1000;
+        final long minutes = (milliSeconds % 3600000) / 60000;
+        final long hours = (milliSeconds % 86400000) / 3600000;
+        final long days = (milliSeconds % (86400000 * 7)) / 86400000;
 
         final Formatters formatters = FORMATTERS_PROVIDER.formatters();
         if (days > 0) {
@@ -174,10 +174,9 @@ public final class PlayerHelper {
     @Nullable
     public static PlayQueue autoQueueOf(@NonNull final StreamInfo info,
                                         @NonNull final List<PlayQueueItem> existingItems) {
-        final Set<String> urls = new HashSet<>(existingItems.size());
-        for (final PlayQueueItem item : existingItems) {
-            urls.add(item.getUrl());
-        }
+        final Set<String> urls = existingItems.stream()
+                .map(PlayQueueItem::getUrl)
+                .collect(Collectors.toUnmodifiableSet());
 
         final List<InfoItem> relatedItems = info.getRelatedItems();
         if (Utils.isNullOrEmpty(relatedItems)) {

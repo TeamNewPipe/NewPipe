@@ -1,0 +1,15 @@
+Important
+Informations et appel à l'action pour la campagne Keep Android Open ajoutés : https://www.keepandroidopen.org/
+
+Améliorations
+[Flux] Ordre de mise à jour des abonnements obsolètes aléatoire
+Pages de commentaires non empilées
+Événements de clic désactivés sur la page de détails d'une vidéo
+
+
+Corrections
+Affichage de l'en-tête des réponses aux commentaires sans image d'avatar
+Corrections d'interface utilisateur pour plusieurs lecteurs
+[SoundCloud] Correction des flux avec des identifiants longs
+
+Et bien d'autres corrections et améliorations !

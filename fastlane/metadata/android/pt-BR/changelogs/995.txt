@@ -1,14 +1,16 @@
-Novidades
-• Suporta abas de canal
-• Seleção da qualidade da imagem
-• Obtém os URL para todas as imagens
+New
+• Support channel tabs
+• Select image quality
+• Get URLs to all images
 
-Melhorias
-• Acessibilidade das interfaces do reprodutor
-• Pode adicionar nome da lista de reprodução e de vídeo para compartilhamento do conteúdo
-• Melhorias internas (?) e atualizações de dependências
+Improved
+• Accessibility of player interfaces
+• Better audio selection for video-only downloads
+• Option to include playlist and video names to shared playlist content
 
-Corrigido
-• Seleção de idiomas errados ao selecionar
-• O foco do áudio do reprodutor não respeitava o mudo
-• Adicionar itens para listas de reprodução não funcionava em casos específicos
+Fixed
+• [YouTube] Fix getting like count
+• Fix player not responding popups and crashes
+• Selection of wrong languages in language picker
+• Player audio focus was not respecting mute
+• Playlist item addition occasionally not working

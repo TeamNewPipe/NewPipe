@@ -53,13 +53,14 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
+import org.schabi.newpipe.util.image.CoilHelper;
 import org.schabi.newpipe.util.image.ImageStrategy;
-import org.schabi.newpipe.util.image.PicassoHelper;
 
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.TimeUnit;
 
+import coil3.util.CoilUtils;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -73,7 +74,6 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
         implements StateSaver.WriteRead {
 
     private static final int BUTTON_DEBOUNCE_INTERVAL = 100;
-    private static final String PICASSO_CHANNEL_TAG = "PICASSO_CHANNEL_TAG";
 
     @State
     protected int serviceId = Constants.NO_SERVICE_ID;
@@ -160,34 +160,29 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
 
                 @Override
                 public boolean onMenuItemSelected(@NonNull final MenuItem item) {
-                    switch (item.getItemId()) {
-                        case R.id.menu_item_notify:
-                            final boolean value = !item.isChecked();
-                            item.setEnabled(false);
-                            setNotify(value);
-                            break;
-                        case R.id.action_settings:
-                            NavigationHelper.openSettings(requireContext());
-                            break;
-                        case R.id.menu_item_rss:
-                            if (currentInfo != null) {
-                                ShareUtils.openUrlInApp(requireContext(), currentInfo.getFeedUrl());
-                            }
-                            break;
-                        case R.id.menu_item_openInBrowser:
-                            if (currentInfo != null) {
-                                ShareUtils.openUrlInBrowser(requireContext(),
-                                        currentInfo.getOriginalUrl());
-                            }
-                            break;
-                        case R.id.menu_item_share:
-                            if (currentInfo != null) {
-                                ShareUtils.shareText(requireContext(), name,
-                                        currentInfo.getOriginalUrl(), currentInfo.getAvatars());
-                            }
-                            break;
-                        default:
-                            return false;
+                    final int itemId = item.getItemId();
+                    if (itemId == R.id.menu_item_notify) {
+                        final boolean value = !item.isChecked();
+                        item.setEnabled(false);
+                        setNotify(value);
+                    } else if (itemId == R.id.action_settings) {
+                        NavigationHelper.openSettings(requireContext());
+                    } else if (itemId == R.id.menu_item_rss) {
+                        if (currentInfo != null) {
+                            ShareUtils.openUrlInApp(requireContext(), currentInfo.getFeedUrl());
+                        }
+                    } else if (itemId == R.id.menu_item_openInBrowser) {
+                        if (currentInfo != null) {
+                            ShareUtils.openUrlInBrowser(requireContext(),
+                                    currentInfo.getOriginalUrl());
+                        }
+                    } else if (itemId == R.id.menu_item_share) {
+                        if (currentInfo != null) {
+                            ShareUtils.shareText(requireContext(), name,
+                                    currentInfo.getOriginalUrl(), currentInfo.getAvatars());
+                        }
+                    } else {
+                        return false;
                     }
                     return true;
                 }
@@ -583,7 +578,9 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
     @Override
     public void showLoading() {
         super.showLoading();
-        PicassoHelper.cancelTag(PICASSO_CHANNEL_TAG);
+        CoilUtils.dispose(binding.channelAvatarView);
+        CoilUtils.dispose(binding.channelBannerImage);
+        CoilUtils.dispose(binding.subChannelAvatarView);
         animate(binding.channelSubscribeButton, false, 100);
     }
 
@@ -594,17 +591,15 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
         setInitialData(result.getServiceId(), result.getOriginalUrl(), result.getName());
 
         if (ImageStrategy.shouldLoadImages() && !result.getBanners().isEmpty()) {
-            PicassoHelper.loadBanner(result.getBanners()).tag(PICASSO_CHANNEL_TAG)
-                    .into(binding.channelBannerImage);
+            CoilHelper.INSTANCE.loadBanner(binding.channelBannerImage, result.getBanners());
         } else {
             // do not waste space for the banner, if the user disabled images or there is not one
             binding.channelBannerImage.setImageDrawable(null);
         }
 
-        PicassoHelper.loadAvatar(result.getAvatars()).tag(PICASSO_CHANNEL_TAG)
-                .into(binding.channelAvatarView);
-        PicassoHelper.loadAvatar(result.getParentChannelAvatars()).tag(PICASSO_CHANNEL_TAG)
-                .into(binding.subChannelAvatarView);
+        CoilHelper.INSTANCE.loadAvatar(binding.channelAvatarView, result.getAvatars());
+        CoilHelper.INSTANCE.loadAvatar(binding.subChannelAvatarView,
+                result.getParentChannelAvatars());
 
         binding.channelTitleView.setText(result.getName());
         binding.channelSubscriberView.setVisibility(View.VISIBLE);

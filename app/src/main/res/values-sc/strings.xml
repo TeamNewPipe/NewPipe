@@ -224,7 +224,7 @@
     <string name="export_ongoing">Esportende…</string>
     <string name="msg_popup_permission">B\'at bisòngiu de custu permissu pro
 \nabèrrere sa modalidade ventanedda</string>
-    <string name="info_labels">Ite:\\nRechesta:\\nLimba de su cuntenutu\\nIstadu de su cuntenutu:\\nLimba de s\'aplicatzione:\\nServìtziu:\\nOràriu GMT:\\nPachete:\\nVersione:\\nVersione SO:</string>
+    <string name="info_labels">Ite:\nRechesta:\nLimba de su cuntenutu\nIstadu de su cuntenutu:\nLimba de s\'aplicatzione:\nServìtziu:\nOràriu GMT:\nPachete:\nVersione:\nVersione SO:</string>
     <string name="error_snackbar_message">A dolu mannu b\'at àpidu carchi problema.</string>
     <string name="search_history_deleted">Cronologia de chirca iscantzellada</string>
     <string name="restricted_video">Custu vìdeu tenet unu lìmite de edade.
@@ -628,8 +628,6 @@
     <string name="comments_are_disabled">Sos cummentos sunt disabilitados</string>
     <string name="detail_heart_img_view_description">Su creadore b\'at postu unu coro</string>
     <string name="mark_as_watched">Marca comente pompiadu</string>
-    <string name="show_image_indicators_summary">Ammustra sos listrones colorados de Picasso in subra de sas immàgines chi indicant sa fonte issoro: ruja pro sa retze, biaita pro su discu e birde pro sa memòria</string>
-    <string name="show_image_indicators_title">Ammustra sos indicadores de immàgines</string>
     <string name="remote_search_suggestions">Impòsitos de chirca remota</string>
     <string name="local_search_suggestions">Impòsitos de chirca locales</string>
     <plurals name="deleted_downloads_toast">

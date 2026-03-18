@@ -268,7 +268,7 @@
     <string name="error_snackbar_action">Prijavi</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Šta se dogodilo:</string>
-    <string name="info_labels">Šta:\\nZahtjev:\\nJezik sadržaja:\\nZemlja sadržaja:\\nJezik aplikacije:\\nUsluga:\\nVremenska oznaka:\\nPaket:\\nVerzija:\\nVerzija OS-a:</string>
+    <string name="info_labels">Šta:\nZahtjev:\nJezik sadržaja:\nZemlja sadržaja:\nJezik aplikacije:\nUsluga:\nVremenska oznaka:\nPaket:\nVerzija:\nVerzija OS-a:</string>
     <string name="your_comment">Vaš komentar (na engleskom):</string>
     <string name="error_details_headline">Detalji:</string>
     <string name="detail_thumbnail_view_description">Reproduciraj video, trajanje:</string>
@@ -449,8 +449,6 @@
     <string name="disable_media_tunneling_title">Onemogući tuneliranje medija</string>
     <string name="disable_media_tunneling_summary">Onemogućite tuneliranje medija ako se pojavi crni ekran ili se prilikom reprodukcije videa pojavi prekid.</string>
     <string name="disable_media_tunneling_automatic_info">Tuneliranje medija je onemogućeno prema zadanim postavkama na vašem uređaju jer je poznato da vaš model uređaja to ne podržava.</string>
-    <string name="show_image_indicators_title">Prikaži indikatore slike</string>
-    <string name="show_image_indicators_summary">Prikažite Picasso obojene trake preko slika koje označavaju njihov izvor: crvena za mrežu, plava za disk i zelena za memoriju</string>
     <string name="show_crash_the_player_title">Prikaži \"Sruši plejer\"</string>
     <string name="show_crash_the_player_summary">Prikazuje opciju pada sistema prilikom korištenja plejera</string>
     <string name="check_new_streams">Pokreni provjeru za nove tokove</string>

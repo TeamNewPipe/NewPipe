@@ -10,7 +10,7 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.databinding.PickerSubscriptionItemBinding
 import org.schabi.newpipe.ktx.AnimationType
 import org.schabi.newpipe.ktx.animate
-import org.schabi.newpipe.util.image.PicassoHelper
+import org.schabi.newpipe.util.image.CoilHelper
 
 data class PickerSubscriptionItem(
     val subscriptionEntity: SubscriptionEntity,
@@ -21,7 +21,7 @@ data class PickerSubscriptionItem(
     override fun getSpanSize(spanCount: Int, position: Int): Int = 1
 
     override fun bind(viewBinding: PickerSubscriptionItemBinding, position: Int) {
-        PicassoHelper.loadAvatar(subscriptionEntity.avatarUrl).into(viewBinding.thumbnailView)
+        CoilHelper.loadAvatar(viewBinding.thumbnailView, subscriptionEntity.avatarUrl)
         viewBinding.titleView.text = subscriptionEntity.name
         viewBinding.selectedHighlight.isVisible = isSelected
     }

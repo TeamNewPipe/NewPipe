@@ -255,7 +255,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             viewModel.getShowFutureItemsFromPreferences()
         )
 
-        AlertDialog.Builder(context!!)
+        AlertDialog.Builder(requireContext())
             .setTitle(R.string.feed_hide_streams_title)
             .setMultiChoiceItems(dialogItems, checkedDialogItems) { _, which, isChecked ->
                 checkedDialogItems[which] = isChecked

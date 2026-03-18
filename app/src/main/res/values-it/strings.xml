@@ -78,7 +78,7 @@
     <string name="msg_copied">Copiato negli appunti</string>
     <string name="no_available_dir">Seleziona una cartella per i file scaricati</string>
     <string name="app_ui_crash">L\'app/UI si è interrotta</string>
-    <string name="info_labels">Cosa:\\nRichiesta:\\nLingua contenuti:\\nPaese contenuti\\nLingua app:\\nServizio:\\nOrario GMT:\\nPacchetto:\\nVersione:\\nVersione SO:</string>
+    <string name="info_labels">Cosa:\nRichiesta:\nLingua contenuti:\nPaese contenuti\nLingua app:\nServizio:\nOrario GMT:\nPacchetto:\nVersione:\nVersione SO:</string>
     <string name="title_activity_recaptcha">Risoluzione reCAPTCHA</string>
     <string name="black_theme_title">Nero</string>
     <string name="all">Tutto</string>
@@ -518,7 +518,7 @@
 \n
 \nAttivare «%1$s» nelle Impostazioni per poterlo vedere.</string>
     <string name="remove_watched_popup_partially_watched_streams">Sì, anche quelli visualizzati parzialmente</string>
-    <string name="remove_watched_popup_warning">I video che sono stati visti prima e dopo essere stati aggiunti alla playlist verranno rimossi. \nProcedere? L\'azione è irreversibile!</string>
+    <string name="remove_watched_popup_warning">I video che sono stati visti prima e dopo essere stati aggiunti alla playlist verranno rimossi. \nProcedere?</string>
     <string name="remove_watched_popup_title">Rimuovere i video già visti?</string>
     <string name="remove_watched">Rimuovi elementi visti</string>
     <string name="youtube_restricted_mode_enabled_title">Attiva la \"Modalità con restrizioni\" di YouTube</string>
@@ -638,8 +638,6 @@
     <string name="comments_are_disabled">Commenti disattivati</string>
     <string name="detail_heart_img_view_description">Apprezzato dall\'autore</string>
     <string name="mark_as_watched">Segna come visto</string>
-    <string name="show_image_indicators_summary">Mostra gli indicatori colorati Picasso sopra le immagini, per indicare la loro fonte: rosso per la rete, blu per il disco e verde per la memoria</string>
-    <string name="show_image_indicators_title">Mostra indicatori immagine</string>
     <string name="remote_search_suggestions">Suggerimenti di ricerca remoti</string>
     <string name="local_search_suggestions">Suggerimenti di ricerca locali</string>
     <plurals name="deleted_downloads_toast">
@@ -863,4 +861,7 @@
     <string name="youtube_player_http_403">Errore HTTP 403 ricevuto dal server durante la riproduzione, probabilmente causato da un divieto dell\'IP o problemi di de-offuscamento dell\'URL in streaming</string>
     <string name="sign_in_confirm_not_bot_error">%1$s ha rifiutato di fornire i dati, chiedendo un accesso per confermare che il richiedente non sia un bot.\n\nIl tuo IP potrebbe essere stato temporaneamente vietato da %1$s, puoi aspettare un po\' di tempo o passare ad un IP diverso (ad esempio accendendo/spegnendo una VPN, o passando dal WiFi ai dati mobili).</string>
     <string name="unsupported_content_in_country">Questo contenuto non è disponibile per il Paese dei contenuti attualmente selezionato.\n\nModifica la selezione da \"Impostazioni &gt; Contenuti &gt; Paese dei contenuti predefinito\".</string>
+    <string name="kao_dialog_warning">Ad agosto 2025, Google ha annunciato che a partire da settembre 2026, l\'installazione di app richiederà la verifica dello sviluppatore per tutte le app Android su dispositivi certificati, compresi quelli installati al di fuori del Play Store. Poiché gli sviluppatori di NewPipe non sono d\'accordo con questo requisito, NewPipe non funzionerà più su dispositivi Android certificati dopo quel mese.</string>
+    <string name="kao_dialog_more_info">Dettagli</string>
+    <string name="kao_solution">Soluzione</string>
 </resources>

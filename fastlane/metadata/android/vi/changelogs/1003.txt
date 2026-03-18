@@ -1,4 +1,6 @@
-Đã sửa lỗi YouTube không phát bất kỳ luồng nào.
-
-Bản phát hành này chỉ giải quyết lỗi cấp bách nhất khiến video YouTube không tải thông tin chi tiết về video.
-Chúng tôi biết có những vấn đề khác và chúng tôi sẽ sớm đưa ra một bản phát hành riêng để giải quyết những vấn đề đó.
+Đây là bản vá khẩn sửa lỗi YouTube:
+• [YouTube] Sửa lỗi không tải thông tin video, lỗi HTTP 403 khi phát và khôi phục phát một số video giới hạn độ tuổi
+• Cỡ chữ phụ đề không thay đổi
+• Tải thông tin hai lần khi mở stream
+• [SoundCloud] Loại bỏ stream DRM không thể phát
+• Cập nhật bản dịch

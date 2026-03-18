@@ -146,7 +146,7 @@
     <string name="error_snackbar_action">Справаздача</string>
     <string name="what_device_headline">Інфармацыя:</string>
     <string name="what_happened_headline">Што адбылося:</string>
-    <string name="info_labels">Што:\\nЗапыт:\\nМова кантэнту:\\nКраіна кантэнту:\\nМова праграмы:\\nСэрвіс:\\nЧас GMT:\\nПакет:\\nВерсія:\\nВерсія АС:</string>
+    <string name="info_labels">Што:\nЗапыт:\nМова кантэнту:\nКраіна кантэнту:\nМова праграмы:\nСэрвіс:\nЧас GMT:\nПакет:\nВерсія:\nВерсія АС:</string>
     <string name="your_comment">Ваш каментарый (па-англійску):</string>
     <string name="error_details_headline">Падрабязнасці:</string>
     <string name="detail_thumbnail_view_description">Прайграць відэа, працягласць:</string>
@@ -611,8 +611,6 @@
     <string name="faq">Перайсці на вэб-сайт</string>
     <string name="main_page_content_swipe_remove">Каб выдаліць элемент, змахніце яго ўбок</string>
     <string name="unset_playlist_thumbnail">Прыбраць пастаянную мініяцюру</string>
-    <string name="show_image_indicators_title">Паказваць на відарысах указальнікі</string>
-    <string name="show_image_indicators_summary">Паказваць на відарысах каляровыя меткі Picasso, якія абазначаюць яго крыніцу: чырвоная — сетка, сіняя — дыск, зялёная — памяць</string>
     <string name="feed_processing_message">Апрацоўка стужкі…</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Пры кожным спампоўванні вам будзе прапанавана выбраць месца захавання</string>
     <string name="feed_notification_loading">Загрузка канала…</string>

@@ -33,7 +33,7 @@
     <string name="detail_thumbnail_view_description">ভিডিও প্রাকদর্শন, সময়ঃ</string>
     <string name="error_details_headline">বর্ণনা:</string>
     <string name="your_comment">আপনার মন্তব্য (ইংরেজিতে):</string>
-    <string name="info_labels">কি:\\nঅনুরোধ:\\nকন্টেন্ট ভাষা:\\nকন্টেন্ট দেশ:\\nঅ্যাপ ভাষা:\\nসার্ভিস:\\nসময়(GMT এ):\\nপ্যাকেজ:\\nসংস্করণ:\\nওএস সংস্করণ:</string>
+    <string name="info_labels">কি:\nঅনুরোধ:\nকন্টেন্ট ভাষা:\nকন্টেন্ট দেশ:\nঅ্যাপ ভাষা:\nসার্ভিস:\nসময়(GMT এ):\nপ্যাকেজ:\nসংস্করণ:\nওএস সংস্করণ:</string>
     <string name="what_happened_headline">কি হয়েছিল:</string>
     <string name="what_device_headline">তথ্য:</string>
     <string name="error_snackbar_action">প্রতিবেদন</string>
@@ -309,6 +309,6 @@
     <string name="notification_action_nothing">কিছু না</string>
     <string name="yes">হ্যাঁ</string>
     <string name="no">না</string>
-    <string name="search_with_service_name">সার্চ</string>
-    <string name="search_with_service_name_and_filter">খুঁজুন</string>
+    <string name="search_with_service_name">সার্চ %1$s</string>
+    <string name="search_with_service_name_and_filter">খুঁজুন %1$s (%2$s)</string>
 </resources>

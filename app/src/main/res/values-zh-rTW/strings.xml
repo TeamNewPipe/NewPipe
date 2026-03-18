@@ -76,7 +76,7 @@
     <string name="error_snackbar_action">回報</string>
     <string name="what_device_headline">資訊：</string>
     <string name="what_happened_headline">發生了什麼事：</string>
-    <string name="info_labels">發生了什麼：\\n請求：\\n內容語言：\\n內容國家：\\n應用程式語言：\\n服務：\\nGMT 時間：\\n套件：\\n版本：\\n系統版本：</string>
+    <string name="info_labels">發生了什麼：\n請求：\n內容語言：\n內容國家：\n應用程式語言：\n服務：\nGMT 時間：\n套件：\n版本：\n系統版本：</string>
     <string name="your_comment">您的留言 (請用英語)：</string>
     <string name="error_details_headline">詳細資訊：</string>
     <string name="video">影片</string>
@@ -480,8 +480,8 @@
 \n
 \n如果您想要觀看，請在設定中開啟「%1$s」。</string>
     <string name="remove_watched_popup_partially_watched_streams">是的，包括已部份觀看的影片</string>
-    <string name="remove_watched_popup_warning">已觀看過的影片在加入播放清單後將被移除。\n您確定嗎？此動作無法復原！</string>
-    <string name="remove_watched_popup_title">移除已觀看的影片？</string>
+    <string name="remove_watched_popup_warning">已觀看過的串流在加入播放清單後將被移除。\n您確定嗎？</string>
+    <string name="remove_watched_popup_title">移除已觀看的串流？</string>
     <string name="remove_watched">移除已觀看的影片</string>
     <string name="show_original_time_ago_summary">來自服務的原始文字將在串流項目中可見</string>
     <string name="show_original_time_ago_title">在項目上顯示原始時間</string>
@@ -600,8 +600,6 @@
     <string name="seekbar_preview_thumbnail_title">拖動列縮圖預覽</string>
     <string name="detail_heart_img_view_description">被創作者加心號</string>
     <string name="mark_as_watched">標記為已觀看</string>
-    <string name="show_image_indicators_summary">在圖片頂部顯示畢卡索彩色絲帶，指示其來源：紅色代表網路、藍色代表磁碟、綠色代表記憶體</string>
-    <string name="show_image_indicators_title">顯示圖片指示器</string>
     <string name="remote_search_suggestions">遠端搜尋建議</string>
     <string name="local_search_suggestions">本機搜尋建議</string>
     <plurals name="deleted_downloads_toast">

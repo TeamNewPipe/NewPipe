@@ -275,7 +275,7 @@
     <string name="show_hold_to_append_summary">نمایش راهنما هنگام فشردن پس زمینه یا دکمهٔ تصویر در تصویر در «جزییات:» ویدیو</string>
     <string name="hold_to_append">برای در صف قرار دادن، نگه دارید</string>
     <string name="undo">بازگردانی</string>
-    <string name="info_labels">چی:\\nدرخواست:\\nزبان محتوا:\\nکشور محتوا:\\nزبان اپ:\\nخدمت:\\nزمان GMT\\nپکیج:T:\\nنسخه:\\nنسخه‌اندروید:</string>
+    <string name="info_labels">چی:\nدرخواست:\nزبان محتوا:\nکشور محتوا:\nزبان اپ:\nخدمت:\nزمان GMT\nپکیج:T:\nنسخه:\nنسخه‌اندروید:</string>
     <string name="title_activity_recaptcha">چالش ری‌کپچا</string>
     <string name="recaptcha_request_toast">نیاز به چالش ری‌کپچا است</string>
     <string name="msg_popup_permission">این اجازه برای گشودن در حالت
@@ -592,7 +592,6 @@
     <string name="notification_colorize_title">رنگی کردن آگاهی</string>
     <string name="open_with">گشودن با</string>
     <string name="mark_as_watched">نشانه به عنوان دیده شده</string>
-    <string name="show_image_indicators_summary">نمایش روبان‌های رنگی پیکاسو در بالای تصویرها کهنشانگر منبعشان است: قرمز برای شبکه ، آبی برای دیسک و سبز برای حافظه</string>
     <string name="notification_colorize_summary">درخواست از اندروید برای سفارشی‌سازی رنگ آگاهی براساس رنگ اصلی در بندانگشتی (توجّه داشته باشید که روی همهٔ افزاره‌ها در دسترس نیست)</string>
     <string name="restricted_video">این ویدیو محدود به سن است.
 \n
@@ -629,7 +628,6 @@
     <string name="detail_heart_img_view_description">قلب‌شده به دست ایجادگر</string>
     <string name="local_search_suggestions">پیشنهادهای جست‌وجوی محلّی</string>
     <string name="remote_search_suggestions">پیشنهادهای جست‌وجوی دوردست</string>
-    <string name="show_image_indicators_title">نمایش نشانگرهای تصویر</string>
     <plurals name="download_finished_notification">
         <item quantity="one">بارگیری پایان یافت</item>
         <item quantity="other">%s بارگیری پایان یافتند</item>

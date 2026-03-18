@@ -26,12 +26,11 @@ data class PreferenceSearchItem(
     val breadcrumbs: String,
     @XmlRes val searchIndexItemResId: Int
 ) {
+    val allRelevantSearchFields: List<String>
+        get() = listOf(title, summary, entries, breadcrumbs)
+
     fun hasData(): Boolean {
         return !key.isEmpty() && !title.isEmpty()
-    }
-
-    fun getAllRelevantSearchFields(): MutableList<String?> {
-        return mutableListOf(title, summary, entries, breadcrumbs)
     }
 
     override fun toString(): String {

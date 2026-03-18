@@ -64,7 +64,7 @@
     <string name="detail_thumbnail_view_description">Vîdeo, demdirêj bilîze:</string>
     <string name="error_details_headline">Hûrî:</string>
     <string name="your_comment">Şîroveya we (bi Îngilîzî):</string>
-    <string name="info_labels">Çi:\\nRequest:\\nContent Language:\\nContent Welat:\\nApp Language:\\nService:\\nGMT Dem:\\nPackage:\\nVersion:\\nOS version:</string>
+    <string name="info_labels">Çi:\nRequest:\nContent Language:\nContent Welat:\nApp Language:\nService:\nGMT Dem:\nPackage:\nVersion:\nOS version:</string>
     <string name="what_happened_headline">Çi qewimî:</string>
     <string name="what_device_headline">Agahdarî:</string>
     <string name="error_snackbar_action">Nûçe</string>

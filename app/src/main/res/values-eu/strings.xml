@@ -78,7 +78,7 @@
     <string name="error_snackbar_action">Salatu</string>
     <string name="what_device_headline">Informazioa:</string>
     <string name="what_happened_headline">Zer gertatu da:</string>
-    <string name="info_labels">Zer:\\nEskaria:\\nEdukiaren hizkuntza:\\nEdukiaren herrialdea:\\nAplikazioaren hizkuntza:\\nZerbitzua:\\nDenbora-zigilua:\\nPaketea:\\nBertsioa:\\nSE bertsioa:</string>
+    <string name="info_labels">Zer:\nEskaria:\nEdukiaren hizkuntza:\nEdukiaren herrialdea:\nAplikazioaren hizkuntza:\nZerbitzua:\nDenbora-zigilua:\nPaketea:\nBertsioa:\nSE bertsioa:</string>
     <string name="your_comment">Zure iruzkina (Ingelesez):</string>
     <string name="error_details_headline">Xehetasunak:</string>
     <string name="video">Bideoa</string>
@@ -494,8 +494,8 @@
     <string name="detail_sub_channel_thumbnail_view_description">Kanalaren avatarraren miniatura</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Erakutsi taldekatuta ez dauden harpidetzak soilik</string>
     <string name="remove_watched_popup_partially_watched_streams">Bai, partzialki ikusitako bideoak ere bai</string>
-    <string name="remove_watched_popup_warning">Dagoeneko ikusi eta gero erreprodukzio-zerrendara gehitu diren bideoak kendu egingo dira. \nJarraitu nahi duzu? Ekintza hau ezin da desegin!</string>
-    <string name="remove_watched_popup_title">Ikusitako bideoak kendu?</string>
+    <string name="remove_watched_popup_warning">Dagoeneko ikusi eta gero erreprodukzio-zerrendara gehitu diren igorpenak kendu egingo dira. \nJarraitu nahi duzu?</string>
+    <string name="remove_watched_popup_title">Ikusitako igorpenak kendu?</string>
     <string name="remove_watched">Kendu ikusitako bideoak</string>
     <string name="never">Inoiz ez</string>
     <string name="wifi_only">WiFi-arekin soilik</string>
@@ -616,8 +616,6 @@
         <item quantity="one">Deskarga amaituta</item>
         <item quantity="other">%s deskarga amaituta</item>
     </plurals>
-    <string name="show_image_indicators_summary">Irudien gainean Picasso koloretako zintak erakutsi, jatorria adieraziz: gorria sarerako, urdina diskorako eta berdea memoriarako</string>
-    <string name="show_image_indicators_title">Erakutsi irudi-adierazleak</string>
     <string name="remote_search_suggestions">Urruneko bilaketa-iradokizunak</string>
     <string name="local_search_suggestions">Tokiko bilaketa-iradokizunak</string>
     <string name="mark_as_watched">Ikusitako gisa markatu</string>
@@ -706,7 +704,7 @@
     <string name="metadata_subscribers">Harpidedunak</string>
     <string name="unknown_audio_track">Ezezaguna</string>
     <string name="volume">Bolumena</string>
-    <string name="use_exoplayer_decoder_fallback_title">Erabili ExoPlayer-en deskodetzailearen ordezko eginbidea</string>
+    <string name="use_exoplayer_decoder_fallback_title">Erabili ExoPlayer-en deskodetzailearen ordezko ezaugarria</string>
     <string name="none">Bat ere ez</string>
     <string name="loading_metadata_title">Metadatuak kargatzen…</string>
     <string name="settings_category_exoplayer_summary">Kudeatu ExoPlayer-en ezarpen batzuk. Aldaketa hauek eragina izan dezaten, erreproduzitzailea berrabiarazi behar da</string>

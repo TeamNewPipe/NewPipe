@@ -55,7 +55,7 @@
     <string name="error_snackbar_action">Zgłoś</string>
     <string name="what_device_headline">Informacje:</string>
     <string name="what_happened_headline">Co się stało:</string>
-    <string name="info_labels">Co:\\nŻądanie:\\nJęzyk treści:\\nKraj treści:\\nJęzyk aplikacji:\\nUsługa:\\nZnacznik czasu:\\nPakiet:\\nWersja:\\nWersja systemu:</string>
+    <string name="info_labels">Co:\nŻądanie:\nJęzyk treści:\nKraj treści:\nJęzyk aplikacji:\nUsługa:\nZnacznik czasu:\nPakiet:\nWersja:\nWersja systemu:</string>
     <string name="your_comment">Twój komentarz (po angielsku):</string>
     <string name="error_details_headline">Szczegóły:</string>
     <string name="detail_thumbnail_view_description">Odtwarzane wideo, czas trwania:</string>
@@ -522,9 +522,9 @@
     <string name="restricted_video">To wideo jest objęte ograniczeniem wiekowym.
 \n
 \nWłącz „%1$s” w ustawieniach, jeśli chcesz je zobaczyć.</string>
-    <string name="remove_watched_popup_partially_watched_streams">Tak, i częściowo obejrzane wideo</string>
-    <string name="remove_watched_popup_warning">Wideo, które zostały obejrzane przed i po dodaniu do playlisty, zostaną usunięte. \nCzy na pewno? Tego nie da się cofnąć!</string>
-    <string name="remove_watched_popup_title">Czy usunąć obejrzane wideo?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Usuń częściowo obejrzane strumienie</string>
+    <string name="remove_watched_popup_warning">Strumienie, które zostały obejrzane przed i po dodaniu do playlisty, zostaną usunięte. \nCzy na pewno?</string>
+    <string name="remove_watched_popup_title">Czy usunąć obejrzane strumienie?</string>
     <string name="remove_watched">Usuń obejrzane</string>
     <string name="show_original_time_ago_summary">Oryginalne teksty z usług będą widoczne w strumieniowanych pozycjach</string>
     <string name="show_original_time_ago_title">Pokazuj oryginalny czas na pozycjach</string>
@@ -643,8 +643,6 @@
     <string name="dont_show">Nie pokazuj</string>
     <string name="detail_heart_img_view_description">Serduszko od twórcy</string>
     <string name="mark_as_watched">Oznacz jako obejrzane</string>
-    <string name="show_image_indicators_summary">Pokazuj kolorowe wstążki Picasso nad obrazami wskazujące ich źródło: czerwone dla sieci, niebieskie dla dysku i zielone dla pamięci</string>
-    <string name="show_image_indicators_title">Pokazuj wskaźniki obrazu</string>
     <string name="remote_search_suggestions">Zdalne podpowiedzi wyszukiwania</string>
     <string name="local_search_suggestions">Lokalne podpowiedzi wyszukiwania</string>
     <plurals name="deleted_downloads_toast">
@@ -872,4 +870,7 @@
     <string name="youtube_player_http_403">Podczas odtwarzania otrzymano od serwera błąd HTTP 403, prawdopodobnie spowodowany blokadą adresu IP lub problemami z odszyfrowaniem adresu URL strumienia.</string>
     <string name="sign_in_confirm_not_bot_error">%1$s odmówił dostarczenia danych, prosząc o zalogowanie się w celu potwierdzenia, że nie jest się botem.\n\nTwoje IP mogło zostać tymczasowo zablokowane przez %1$s. Możesz chwilę poczekać lub zmienić adres IP (na przykład włączając/wyłączając VPN lub przełączając się z sieci Wi-Fi na dane komórkowe).</string>
     <string name="unsupported_content_in_country">Ta treść nie jest dostępna dla aktualnie wybranego kraju treści.\n\nZmień swój wybór w „Ustawienia &gt; Zawartość &gt; Domyślny kraj treści”.</string>
+    <string name="kao_dialog_warning">W sierpniu 2025 r. Google ogłosił, że od września 2026 r. instalowanie aplikacji będzie wymagać weryfikacji ich twórców w przypadku wszystkich aplikacji na Androida na certyfikowanych urządzeniach, w tym tych zainstalowanych poza sklepem Google Play. Ponieważ programiści NewPipe nie zgadzają się z tym wymogiem, NewPipie nie będzie już działać na certyfikowanych urządzeniach z Androidem po tym czasie.</string>
+    <string name="kao_dialog_more_info">Szczegóły</string>
+    <string name="kao_solution">Rozwiązanie</string>
 </resources>
