@@ -11,6 +11,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.preference.PreferenceManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.functions.Function6
 import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -152,6 +153,14 @@ class FeedViewModel(
     }
 
     fun getShowFutureItemsFromPreferences() = getShowFutureItemsFromPreferences(application)
+
+    /**
+     * Returns a fresh [StreamWithState] for a single stream identified by [serviceId] and [url],
+     * reading the latest view count and watch progress directly from the database.
+     * Executes on the IO scheduler.
+     */
+    fun refreshStreamWithState(serviceId: Int, url: String): Maybe<StreamWithState> = feedDatabaseManager.getStreamWithState(serviceId, url)
+        .subscribeOn(Schedulers.io())
 
     companion object {
         private fun getShowPlayedItemsFromPreferences(context: Context) = PreferenceManager.getDefaultSharedPreferences(context)

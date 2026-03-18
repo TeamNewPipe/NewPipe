@@ -24,15 +24,16 @@ import org.schabi.newpipe.util.StreamTypeUtil
 import org.schabi.newpipe.util.image.CoilHelper
 
 data class StreamItem(
-    val streamWithState: StreamWithState,
+    var streamWithState: StreamWithState,
     var itemVersion: ItemVersion = ItemVersion.NORMAL
 ) : BindableItem<ListStreamItemBinding>() {
     companion object {
         const val UPDATE_RELATIVE_TIME = 1
+        const val UPDATE_STREAM_DATA = 2
     }
 
-    private val stream: StreamEntity = streamWithState.stream
-    private val stateProgressTime: Long? = streamWithState.stateProgressMillis
+    private val stream: StreamEntity get() = streamWithState.stream
+    private val stateProgressTime: Long? get() = streamWithState.stateProgressMillis
 
     /**
      * Will be executed at the end of the [StreamItem.bind] (with (ListStreamItemBinding,Int)).
@@ -62,6 +63,27 @@ data class StreamItem(
             return
         }
 
+        if (payloads.contains(UPDATE_STREAM_DATA)) {
+            // Rebind only the fields that may have changed: view count and watch progress
+            if (itemVersion != ItemVersion.MINI) {
+                viewBinding.itemAdditionalDetails.text =
+                    getStreamInfoDetailLine(viewBinding.itemAdditionalDetails.context)
+            }
+            if (stream.duration > 0) {
+                val progress = stateProgressTime
+                if (progress != null) {
+                    viewBinding.itemProgressView.visibility = View.VISIBLE
+                    viewBinding.itemProgressView.max = stream.duration.toInt()
+                    viewBinding.itemProgressView.progress =
+                        TimeUnit.MILLISECONDS.toSeconds(progress).toInt()
+                } else {
+                    viewBinding.itemProgressView.visibility = View.GONE
+                }
+            }
+            execBindEnd?.accept(viewBinding)
+            return
+        }
+
         super.bind(viewBinding, position, payloads)
     }
 
@@ -82,7 +104,9 @@ data class StreamItem(
             if (stateProgressTime != null) {
                 viewBinding.itemProgressView.visibility = View.VISIBLE
                 viewBinding.itemProgressView.max = stream.duration.toInt()
-                viewBinding.itemProgressView.progress = TimeUnit.MILLISECONDS.toSeconds(stateProgressTime).toInt()
+                viewBinding.itemProgressView.progress = TimeUnit.MILLISECONDS.toSeconds(
+                    stateProgressTime!!
+                ).toInt()
             } else {
                 viewBinding.itemProgressView.visibility = View.GONE
             }

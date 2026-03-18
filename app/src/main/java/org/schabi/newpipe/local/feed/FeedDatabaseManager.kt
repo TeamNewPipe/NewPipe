@@ -54,6 +54,8 @@ class FeedDatabaseManager(context: Context) {
         )
     }
 
+    fun getStreamWithState(serviceId: Int, url: String): Maybe<StreamWithState> = streamTable.getStreamWithState(serviceId, url)
+
     fun outdatedSubscriptions(outdatedThreshold: OffsetDateTime) = feedTable.getAllOutdated(outdatedThreshold)
 
     fun outdatedSubscriptionsWithNotificationMode(

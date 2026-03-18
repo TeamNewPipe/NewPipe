@@ -47,6 +47,7 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.local.feed.FeedViewModel;
+import org.schabi.newpipe.local.feed.StreamUpdateViewModel;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 
 import java.time.OffsetDateTime;
@@ -243,12 +244,15 @@ public class HistoryRecordManager {
 
     public Completable saveStreamState(@NonNull final StreamInfo info, final long progressMillis) {
         return Completable.fromAction(() -> database.runInTransaction(() -> {
-            final long streamId = streamTable.upsert(new StreamEntity(info));
-            final var state = new StreamStateEntity(streamId, progressMillis);
-            if (state.isValid(info.getDuration())) {
-                streamStateTable.upsert(state);
-            }
-        })).subscribeOn(Schedulers.io());
+                    final long streamId = streamTable.upsert(new StreamEntity(info));
+                    final var state = new StreamStateEntity(streamId, progressMillis);
+                    if (state.isValid(info.getDuration())) {
+                        streamStateTable.upsert(state);
+                    }
+                })).subscribeOn(Schedulers.io())
+                .doOnComplete(() -> StreamUpdateViewModel.postProgressUpdate(
+                        info.getServiceId(), info.getUrl()
+                ));
     }
 
     public Maybe<StreamStateEntity> loadStreamState(final InfoItem info) {

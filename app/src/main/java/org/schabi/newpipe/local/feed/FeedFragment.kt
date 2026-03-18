@@ -109,6 +109,8 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
     private var lastNewItemsCount = 0
 
+    private lateinit var streamUpdateViewModel: StreamUpdateViewModel
+
     init {
         setHasOptionsMenu(true)
     }
@@ -142,6 +144,20 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         val factory = FeedViewModel.getFactory(requireContext(), groupId)
         viewModel = ViewModelProvider(this, factory)[FeedViewModel::class.java]
         viewModel.stateLiveData.observe(viewLifecycleOwner) { it?.let(::handleResult) }
+
+        // Activity-scoped ViewModel shared with VideoDetailFragment
+        streamUpdateViewModel = ViewModelProvider(requireActivity())[StreamUpdateViewModel::class.java]
+
+        streamUpdateViewModel.updatedStream.observe(viewLifecycleOwner) { (serviceId, url) ->
+            refreshFeedItem(serviceId, url)
+        }
+
+        disposables.add(
+            StreamUpdateViewModel.globalProgressBus
+                .onBackpressureLatest()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ (serviceId, url) -> refreshFeedItem(serviceId, url) }, { })
+        )
 
         groupAdapter = GroupieAdapter().apply {
             setOnItemClickListener(listenerStreamItem)
@@ -182,6 +198,31 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                 handleResult(viewModel.stateLiveData.value!!)
             }
         }
+    }
+
+    /**
+     * Re-queries the DB for a single stream identified by [serviceId] + [url] and updates
+     * only that item in the adapter (view count + watch progress), without triggering a full
+     * list reload.
+     */
+    private fun refreshFeedItem(serviceId: Int, url: String) {
+        disposables.add(
+            viewModel.refreshStreamWithState(serviceId, url)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ updatedStreamWithState ->
+                    for (i in 0 until groupAdapter.itemCount) {
+                        val item = groupAdapter.getItem(i)
+                        if (item is StreamItem &&
+                            item.streamWithState.stream.url == url &&
+                            item.streamWithState.stream.serviceId == serviceId
+                        ) {
+                            item.streamWithState = updatedStreamWithState
+                            groupAdapter.notifyItemChanged(i, StreamItem.UPDATE_STREAM_DATA)
+                            break
+                        }
+                    }
+                }, { /* ignore — feed refreshes on next full load */ })
+        )
     }
 
     private fun setupListViewMode() {

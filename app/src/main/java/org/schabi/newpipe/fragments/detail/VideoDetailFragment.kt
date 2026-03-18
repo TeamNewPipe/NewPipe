@@ -44,6 +44,7 @@ import androidx.core.net.toUri
 import androidx.core.os.postDelayed
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import coil3.util.CoilUtils
 import com.evernote.android.state.State
@@ -90,6 +91,7 @@ import org.schabi.newpipe.ktx.AnimationType
 import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.ktx.animateRotation
 import org.schabi.newpipe.local.dialog.PlaylistDialog
+import org.schabi.newpipe.local.feed.StreamUpdateViewModel
 import org.schabi.newpipe.local.history.HistoryRecordManager
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment
 import org.schabi.newpipe.player.Player
@@ -203,6 +205,7 @@ class VideoDetailFragment :
     private var currentWorker: Disposable? = null
     private val disposables = CompositeDisposable()
     private var positionSubscriber: Disposable? = null
+    private var streamUpdateViewModel: StreamUpdateViewModel? = null
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service management
@@ -580,6 +583,8 @@ class VideoDetailFragment :
     // called from onViewCreated in {@link BaseFragment#onViewCreated}
     override fun initViews(rootView: View?, savedInstanceState: Bundle?) {
         super.initViews(rootView, savedInstanceState)
+
+        streamUpdateViewModel = ViewModelProvider(requireActivity())[StreamUpdateViewModel::class]
 
         pageAdapter = TabAdapter(getChildFragmentManager())
         binding.viewPager.setAdapter(pageAdapter)
@@ -1531,6 +1536,9 @@ class VideoDetailFragment :
         binding.detailThumbnailPlayButton.setImageResource(
             if (hasVideoStreams) R.drawable.ic_play_arrow_shadow else R.drawable.ic_headset_shadow
         )
+
+        // Notify FeedFragment that this stream's data (including view count) has been updated
+        streamUpdateViewModel?.notifyStreamInfoUpdated(info.serviceId, info.url)
     }
 
     private fun displayUploaderAsSubChannel(info: StreamInfo) {
