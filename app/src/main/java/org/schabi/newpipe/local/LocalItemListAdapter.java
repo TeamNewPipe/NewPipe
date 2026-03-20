@@ -2,15 +2,19 @@ package org.schabi.newpipe.local;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
+import org.schabi.newpipe.database.history.model.DateHeaderItem;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.info_list.ItemViewMode;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
@@ -65,6 +69,8 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     private static final int HEADER_TYPE = 0;
     private static final int FOOTER_TYPE = 1;
+
+    private static final int DATE_HEADER_HOLDER_TYPE = 0x4000;
 
     private static final int STREAM_STATISTICS_HOLDER_TYPE = 0x1000;
     private static final int STREAM_PLAYLIST_HOLDER_TYPE = 0x1001;
@@ -311,6 +317,8 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
                 } else {
                     return STREAM_STATISTICS_HOLDER_TYPE;
                 }
+            case DATE_HEADER:
+                return DATE_HEADER_HOLDER_TYPE;
             default:
                 Log.e(TAG, "No holder type has been considered for item: ["
                         + item.getLocalItemType() + "]");
@@ -331,6 +339,9 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
                 return new HeaderFooterHolder(headerSupplier.get());
             case FOOTER_TYPE:
                 return new HeaderFooterHolder(footer);
+            case DATE_HEADER_HOLDER_TYPE:
+                return new DateHeaderHolder(LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.list_date_header_item, parent, false));
             case LOCAL_PLAYLIST_HOLDER_TYPE:
                 return new LocalPlaylistItemHolder(localItemBuilder, parent);
             case LOCAL_PLAYLIST_GRID_HOLDER_TYPE:
@@ -374,7 +385,18 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
                     + "position = [" + position + "]");
         }
 
-        if (holder instanceof LocalItemHolder) {
+        if (holder instanceof DateHeaderHolder) {
+            // If header isn't null, offset the items by -1
+            if (hasHeader()) {
+                position--;
+            }
+
+            final LocalItem localItem = localItems.get(position);
+            if (localItem instanceof DateHeaderItem) {
+                ((DateHeaderHolder) holder).dateHeaderText.setText(
+                        dateTimeFormatter.format(((DateHeaderItem) localItem).getDate()));
+            }
+        } else if (holder instanceof LocalItemHolder) {
             // If header isn't null, offset the items by -1
             if (hasHeader()) {
                 position--;
@@ -408,12 +430,23 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
+    private static class DateHeaderHolder extends RecyclerView.ViewHolder {
+        private final TextView dateHeaderText;
+
+        DateHeaderHolder(@NonNull final View itemView) {
+            super(itemView);
+            dateHeaderText = itemView.findViewById(R.id.dateHeaderText);
+        }
+    }
+
+
     public GridLayoutManager.SpanSizeLookup getSpanSizeLookup(final int spanCount) {
         return new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(final int position) {
                 final int type = getItemViewType(position);
-                return type == HEADER_TYPE || type == FOOTER_TYPE ? spanCount : 1;
+                return type == HEADER_TYPE || type == FOOTER_TYPE
+                        || type == DATE_HEADER_HOLDER_TYPE ? spanCount : 1;
             }
         };
     }

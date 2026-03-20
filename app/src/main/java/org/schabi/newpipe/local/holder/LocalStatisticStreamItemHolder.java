@@ -69,12 +69,10 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
         itemProgressView = itemView.findViewById(R.id.itemProgressView);
     }
 
-    private String getStreamInfoDetailLine(final StreamStatisticsEntry entry,
-                                           final DateTimeFormatter dateTimeFormatter) {
+    private String getStreamInfoDetailLine(final StreamStatisticsEntry entry) {
         return Localization.concatenateStrings(
                 // watchCount
                 Localization.shortViewCount(itemBuilder.getContext(), entry.getWatchCount()),
-                dateTimeFormatter.format(entry.getLatestAccessDate()),
                 // serviceName
                 ServiceHelper.getNameOfServiceById(entry.getStreamEntity().getServiceId()));
     }
@@ -113,7 +111,7 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
         }
 
         if (itemAdditionalDetails != null) {
-            itemAdditionalDetails.setText(getStreamInfoDetailLine(item, dateTimeFormatter));
+            itemAdditionalDetails.setText(getStreamInfoDetailLine(item));
         }
 
         // Default thumbnail is shown on error, while loading and if the url is empty
