@@ -21,6 +21,7 @@ import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
+import org.schabi.newpipe.database.history.model.DateHeaderItem;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.PlaylistControlBinding;
@@ -39,6 +40,7 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.PlayButtonHelper;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -65,7 +67,7 @@ public class StatisticsPlaylistFragment
     private Subscription databaseSubscription;
     private HistoryRecordManager recordManager;
 
-    private List<StreamStatisticsEntry> processResult(final List<StreamStatisticsEntry> results) {
+    private List<LocalItem> processResult(final List<StreamStatisticsEntry> results) {
         final Comparator<StreamStatisticsEntry> comparator;
         switch (sortMode) {
             case LAST_PLAYED:
@@ -77,8 +79,26 @@ public class StatisticsPlaylistFragment
             default:
                 return null;
         }
+
         Collections.sort(results, comparator.reversed());
-        return results;
+
+        if (sortMode == StatisticSortMode.MOST_PLAYED) {
+            return new ArrayList<>(results);
+        }
+
+        final List<LocalItem> itemsWithHeaders = new ArrayList<>(results.size());
+        LocalDate lastDate = null;
+
+        for (final StreamStatisticsEntry entry : results) {
+            final LocalDate entryDate = entry.getLatestAccessDate().toLocalDate();
+            if (!entryDate.equals(lastDate)) {
+                itemsWithHeaders.add(new DateHeaderItem(entryDate));
+                lastDate = entryDate;
+            }
+            itemsWithHeaders.add(entry);
+        }
+
+        return itemsWithHeaders;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -314,7 +334,22 @@ public class StatisticsPlaylistFragment
     }
 
     private PlayQueue getPlayQueueStartingAt(final StreamStatisticsEntry infoItem) {
-        return getPlayQueue(Math.max(itemListAdapter.getItemsList().indexOf(infoItem), 0));
+        if (itemListAdapter == null) {
+            return new SinglePlayQueue(Collections.emptyList(), 0);
+        }
+
+        final List<LocalItem> items = itemListAdapter.getItemsList();
+        int streamIndex = 0;
+        for (final LocalItem item : items) {
+            if (item == infoItem) {
+                break;
+            }
+            if (item instanceof StreamStatisticsEntry) {
+                streamIndex++;
+            }
+        }
+
+        return getPlayQueue(streamIndex);
     }
 
     private void showInfoItemDialog(final StreamStatisticsEntry item) {
