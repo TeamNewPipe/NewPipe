@@ -162,12 +162,12 @@ public class Mp4FromDashWriter {
         final int[] defaultMediaTime = new int[readers.length];
         final int[] defaultSampleDuration = new int[readers.length];
         final int[] sampleCount = new int[readers.length];
-        long[] firstPts = new long[readers.length];
-        boolean[] firstPtsSet = new boolean[readers.length];
+        final long[] firstPts = new long[readers.length];
+        final boolean[] firstPtsSet = new boolean[readers.length];
+        final long[] basePts = new long[readers.length];
+        final boolean[] basePtsSet = new boolean[readers.length];
         boolean minPtsComputed = false;
         long minPts = 0;
-        long[] basePts = new long[readers.length];
-        boolean[] basePtsSet = new boolean[readers.length];
 
         final TablesInfo[] tablesInfo = new TablesInfo[tracks.length];
         for (int i = 0; i < tablesInfo.length; i++) {
@@ -350,7 +350,7 @@ public class Mp4FromDashWriter {
                     }
 
                     // Normalize composition timestamps to align audio and video timelines
-                    long pts = sample.info.sampleCompositionTimeOffset;
+                    final long pts = sample.info.sampleCompositionTimeOffset;
                     if (!firstPtsSet[i]) {
                         firstPts[i] = pts;
                         firstPtsSet[i] = true;
@@ -385,7 +385,7 @@ public class Mp4FromDashWriter {
                         basePtsSet[i] = true;
                     }
 
-                    int correctedOffset = (int) (pts - basePts[i]);
+                    final int correctedOffset = (int) (pts - basePts[i]);
                     if (tablesInfo[i].ctts > 0) {
                         if (correctedOffset == sampleExtra[i]) {
                             sampleCount[i]++;
