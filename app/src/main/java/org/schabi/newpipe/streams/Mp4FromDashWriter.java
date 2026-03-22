@@ -357,12 +357,16 @@ public class Mp4FromDashWriter {
                     }
 
                     if (!minPtsComputedArr[0]) {
-                        boolean allSet = true;
-                        for (int k = 0; k < readers.length; k++) {
-                            if (!firstPtsSet[k]) {
-                                allSet = false;
-                                break;
+                        final boolean allSet;
+                        {
+                            boolean temp = true;
+                            for (int k = 0; k < readers.length; k++) {
+                                if (!firstPtsSet[k]) {
+                                    temp = false;
+                                    break;
+                                }
                             }
+                            allSet = temp;
                         }
 
                         if (allSet) {
