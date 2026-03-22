@@ -166,8 +166,8 @@ public class Mp4FromDashWriter {
         final boolean[] firstPtsSet = new boolean[readers.length];
         final long[] basePts = new long[readers.length];
         final boolean[] basePtsSet = new boolean[readers.length];
-        boolean minPtsComputed = false;
-        long minPts = 0;
+        final boolean[] minPtsComputedArr = new boolean[]{false};
+        final long[] minPtsArr = new long[]{0};
 
         final TablesInfo[] tablesInfo = new TablesInfo[tracks.length];
         for (int i = 0; i < tablesInfo.length; i++) {
@@ -356,7 +356,7 @@ public class Mp4FromDashWriter {
                         firstPtsSet[i] = true;
                     }
 
-                    if (!minPtsComputed) {
+                    if (!minPtsComputedArr[0]) {
                         boolean allSet = true;
                         for (int k = 0; k < readers.length; k++) {
                             if (!firstPtsSet[k]) {
@@ -366,19 +366,19 @@ public class Mp4FromDashWriter {
                         }
 
                         if (allSet) {
-                            minPts = firstPts[0];
+                            minPtsArr[0] = firstPts[0];
                             for (int k = 1; k < readers.length; k++) {
-                                minPts = Math.min(minPts, firstPts[k]);
+                                minPtsArr[0] = Math.min(minPtsArr[0], firstPts[k]);
                             }
-                            minPtsComputed = true;
+                            minPtsComputedArr[0] = true;
                         }
                     }
 
                     sampleIndex[i]++;
 
                     if (!basePtsSet[i]) {
-                        if (minPtsComputed) {
-                            basePts[i] = minPts;
+                        if (minPtsComputedArr[0]) {
+                            basePts[i] = minPtsArr[0];
                         } else {
                             basePts[i] = firstPts[i];
                         }
