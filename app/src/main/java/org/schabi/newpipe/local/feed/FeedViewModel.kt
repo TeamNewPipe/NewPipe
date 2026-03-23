@@ -11,7 +11,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.preference.PreferenceManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.functions.Function6
+import io.reactivex.rxjava3.functions.Function7
 import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.time.OffsetDateTime
@@ -33,7 +33,8 @@ class FeedViewModel(
     groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
     initialShowPlayedItems: Boolean,
     initialShowPartiallyPlayedItems: Boolean,
-    initialShowFutureItems: Boolean
+    initialShowFutureItems: Boolean,
+    initialShowMembersOnlyItems: Boolean
 ) : ViewModel() {
     private val feedDatabaseManager = FeedDatabaseManager(application)
 
@@ -52,6 +53,11 @@ class FeedViewModel(
         .startWithItem(initialShowFutureItems)
         .distinctUntilChanged()
 
+    private val showMembersOnlyItems = BehaviorProcessor.create<Boolean>()
+    private val showMembersOnlyItemsFlowable = showMembersOnlyItems
+        .startWithItem(initialShowMembersOnlyItems)
+        .distinctUntilChanged()
+
     private val mutableStateLiveData = MutableLiveData<FeedState>()
     val stateLiveData: LiveData<FeedState> = mutableStateLiveData
 
@@ -61,27 +67,29 @@ class FeedViewModel(
             showPlayedItemsFlowable,
             showPartiallyPlayedItemsFlowable,
             showFutureItemsFlowable,
+            showMembersOnlyItemsFlowable,
             feedDatabaseManager.notLoadedCount(groupId),
             feedDatabaseManager.oldestSubscriptionUpdate(groupId),
 
-            Function6 {
+            Function7 {
                     t1: FeedEventManager.Event,
                     t2: Boolean,
                     t3: Boolean,
                     t4: Boolean,
-                    t5: Long,
-                    t6: List<OffsetDateTime?>
+                    t5: Boolean,
+                    t6: Long,
+                    t7: List<OffsetDateTime?>
                 ->
-                return@Function6 CombineResultEventHolder(t1, t2, t3, t4, t5, t6.firstOrNull())
+                return@Function7 CombineResultEventHolder(t1, t2, t3, t4, t5, t6, t7.firstOrNull())
             }
         )
         .throttleLatest(DEFAULT_THROTTLE_TIMEOUT, TimeUnit.MILLISECONDS)
         .subscribeOn(Schedulers.io())
         .observeOn(Schedulers.io())
-        .map { (event, showPlayedItems, showPartiallyPlayedItems, showFutureItems, notLoadedCount, oldestUpdate) ->
+        .map { (event, showPlayedItems, showPartiallyPlayedItems, showFutureItems, showMembersOnlyItems, notLoadedCount, oldestUpdate) ->
             val streamItems = if (event is SuccessResultEvent || event is IdleEvent) {
                 feedDatabaseManager
-                    .getStreams(groupId, showPlayedItems, showPartiallyPlayedItems, showFutureItems)
+                    .getStreams(groupId, showPlayedItems, showPartiallyPlayedItems, showFutureItems, showMembersOnlyItems)
                     .blockingGet(arrayListOf())
             } else {
                 arrayListOf()
@@ -115,8 +123,9 @@ class FeedViewModel(
         val t2: Boolean,
         val t3: Boolean,
         val t4: Boolean,
-        val t5: Long,
-        val t6: OffsetDateTime?
+        val t5: Boolean,
+        val t6: Long,
+        val t7: OffsetDateTime?
     )
 
     private data class CombineResultDataHolder(
@@ -153,6 +162,15 @@ class FeedViewModel(
 
     fun getShowFutureItemsFromPreferences() = getShowFutureItemsFromPreferences(application)
 
+    fun setSaveShowMembersOnlyItems(showMembersOnlyItems: Boolean) {
+        this.showMembersOnlyItems.onNext(showMembersOnlyItems)
+        PreferenceManager.getDefaultSharedPreferences(application).edit {
+            putBoolean(application.getString(R.string.feed_show_members_only_items_key), showMembersOnlyItems)
+        }
+    }
+
+    fun getShowMembersOnlyItemsFromPreferences() = getShowMembersOnlyItemsFromPreferences(application)
+
     companion object {
         private fun getShowPlayedItemsFromPreferences(context: Context) = PreferenceManager.getDefaultSharedPreferences(context)
             .getBoolean(context.getString(R.string.feed_show_watched_items_key), true)
@@ -163,6 +181,9 @@ class FeedViewModel(
         private fun getShowFutureItemsFromPreferences(context: Context) = PreferenceManager.getDefaultSharedPreferences(context)
             .getBoolean(context.getString(R.string.feed_show_future_items_key), true)
 
+        private fun getShowMembersOnlyItemsFromPreferences(context: Context) = PreferenceManager.getDefaultSharedPreferences(context)
+            .getBoolean(context.getString(R.string.feed_show_members_only_items_key), true)
+
         fun getFactory(context: Context, groupId: Long) = viewModelFactory {
             initializer {
                 FeedViewModel(
@@ -171,7 +192,8 @@ class FeedViewModel(
                     // Read initial value from preferences
                     getShowPlayedItemsFromPreferences(context.applicationContext),
                     getShowPartiallyPlayedItemsFromPreferences(context.applicationContext),
-                    getShowFutureItemsFromPreferences(context.applicationContext)
+                    getShowFutureItemsFromPreferences(context.applicationContext),
+                    getShowMembersOnlyItemsFromPreferences(context.applicationContext)
                 )
             }
         }

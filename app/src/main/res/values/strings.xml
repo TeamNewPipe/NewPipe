@@ -829,6 +829,7 @@
     <string name="feed_show_watched">Fully watched</string>
     <string name="feed_show_partially_watched">Partially watched</string>
     <string name="feed_show_upcoming">Upcoming</string>
+    <string name="feed_show_members_only">Members only</string>
     <string name="sort">Sort</string>
     <string name="settings_category_exoplayer_title">ExoPlayer settings</string>
     <string name="settings_category_exoplayer_summary">Manage some ExoPlayer settings. These changes require a player restart to take effect</string>

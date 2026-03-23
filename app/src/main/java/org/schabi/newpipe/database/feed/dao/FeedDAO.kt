@@ -23,12 +23,16 @@ abstract class FeedDAO {
     abstract fun deleteAll(): Int
 
     /**
-     * @param groupId          the group id to get feed streams of; use
-     *                         [FeedGroupEntity.GROUP_ALL_ID] to not filter by group
-     * @param includePlayed    if false, only return all of the live, never-played or non-finished
-     *                         feed streams (see `@see` items); if true no filter is applied
-     * @param uploadDateBefore get only streams uploaded before this date (useful to filter out
-     *                         future streams); use null to not filter by upload date
+     * @param groupId                the group id to get feed streams of; use
+     *                               [FeedGroupEntity.GROUP_ALL_ID] to not filter by group
+     * @param includePlayed          if false, only return all of the live, non-finished
+     *                               feed streams (see `@see` items); if true no filter is applied
+     * @param includePartiallyPlayed if false, only return all of the never-played
+     *                               feed streams (see `@see` items); if true no filter is applied
+     * @param uploadDateBefore       get only streams uploaded before this date (useful to filter out
+     *                               future streams); use null to not filter by upload date
+     * @param includeMembersOnly     if false, only return feed streams that are publicly accessible;
+     *                               if true no filter is applied
      * @return the feed streams filtered according to the conditions provided in the parameters
      * @see StreamStateEntity.isFinished()
      * @see StreamStateEntity.PLAYBACK_FINISHED_END_MILLISECONDS
@@ -81,6 +85,11 @@ abstract class FeedDAO {
             OR s.upload_date IS NULL
             OR s.upload_date < :uploadDateBefore
         )
+        AND (
+            :includeMembersOnly
+            OR (s.availability <> 'MEMBERSHIP'
+            AND s.availability <> 'PAID')
+        )
 
         ORDER BY s.upload_date IS NULL DESC, s.upload_date DESC, s.uploader ASC
         LIMIT 500
@@ -90,7 +99,8 @@ abstract class FeedDAO {
         groupId: Long,
         includePlayed: Boolean,
         includePartiallyPlayed: Boolean,
-        uploadDateBefore: OffsetDateTime?
+        uploadDateBefore: OffsetDateTime?,
+        includeMembersOnly: Boolean
     ): Maybe<List<StreamWithState>>
 
     /**
