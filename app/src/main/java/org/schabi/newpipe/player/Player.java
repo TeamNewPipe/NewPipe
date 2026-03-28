@@ -1328,7 +1328,34 @@ public final class Player implements PlaybackListener, Listener {
 
     public void toggleMute() {
         final boolean wasMuted = isMuted();
+        final boolean wasPlaying = simpleExoPlayer.isPlaying();
+        Log.d(TAG, "toggleMute: wasMuted=" + wasMuted + ", wasPlaying=" + wasPlaying);
         simpleExoPlayer.setVolume(wasMuted ? 1 : 0);
+        if (wasMuted) {
+            Log.d(TAG, "toggleMute: enabling audio focus, willPlay=" + wasPlaying);
+            simpleExoPlayer.setAudioAttributes(
+                new com.google.android.exoplayer2.audio.AudioAttributes.Builder()
+                    .setUsage(C.USAGE_MEDIA)
+                    .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
+                    .build(),
+                true  // handleAudioFocus = true - ExoPlayer handles focus automatically
+            );
+            if (wasPlaying) {
+                Log.d(TAG, "toggleMute: calling play(), isPlaying=" + simpleExoPlayer.isPlaying());
+                simpleExoPlayer.play();
+                Log.d(TAG, "toggleMute: after play(), isPlaying=" + simpleExoPlayer.isPlaying());
+            }
+        } else {
+            Log.d(TAG, "toggleMute: disabling audio focus, abandoning focus");
+            simpleExoPlayer.setAudioAttributes(
+                new com.google.android.exoplayer2.audio.AudioAttributes.Builder()
+                    .setUsage(C.USAGE_MEDIA)
+                    .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
+                    .build(),
+                false  // handleAudioFocus = false
+            );
+            audioReactor.abandonAudioFocus();
+        }
         UIs.call(playerUi -> playerUi.onMuteUnmuteChanged(!wasMuted));
         notifyPlaybackUpdateToListeners();
     }
