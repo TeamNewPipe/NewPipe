@@ -162,6 +162,12 @@ public class Mp4FromDashWriter {
         final int[] defaultMediaTime = new int[readers.length];
         final int[] defaultSampleDuration = new int[readers.length];
         final int[] sampleCount = new int[readers.length];
+        final long[] firstPts = new long[readers.length];
+        final boolean[] firstPtsSet = new boolean[readers.length];
+        final long[] basePts = new long[readers.length];
+        final boolean[] basePtsSet = new boolean[readers.length];
+        final boolean[] minPtsComputedArr = new boolean[]{false};
+        final long[] minPtsArr = new long[]{0};
 
         final TablesInfo[] tablesInfo = new TablesInfo[tracks.length];
         for (int i = 0; i < tablesInfo.length; i++) {
@@ -317,7 +323,7 @@ public class Mp4FromDashWriter {
 
             for (int i = 0; i < readers.length; i++) {
                 if (sampleIndex[i] < 0) {
-                    continue; // track is done
+                    continue;
                 }
 
                 final long chunkOffset = writeOffset;
@@ -336,26 +342,66 @@ public class Mp4FromDashWriter {
                     if (sample == null) {
                         if (tablesInfo[i].ctts > 0 && sampleExtra[i] >= 0) {
                             writeEntryArray(tablesInfo[i].ctts, 1, sampleCount[i],
-                                    sampleExtra[i]); // flush last entries
+                                    sampleExtra[i]);
                             outRestore();
                         }
                         sampleIndex[i] = -1;
                         break;
                     }
 
+                    // Normalize composition timestamps to align audio and video timelines
+                    final long pts = sample.info.sampleCompositionTimeOffset;
+                    if (!firstPtsSet[i]) {
+                        firstPts[i] = pts;
+                        firstPtsSet[i] = true;
+                    }
+
+                    if (!minPtsComputedArr[0]) {
+                        final boolean allSet;
+                        {
+                            boolean temp = true;
+                            for (int k = 0; k < readers.length; k++) {
+                                if (!firstPtsSet[k]) {
+                                    temp = false;
+                                    break;
+                                }
+                            }
+                            allSet = temp;
+                        }
+
+                        if (allSet) {
+                            minPtsArr[0] = firstPts[0];
+                            for (int k = 1; k < readers.length; k++) {
+                                minPtsArr[0] = Math.min(minPtsArr[0], firstPts[k]);
+                            }
+                            minPtsComputedArr[0] = true;
+                        }
+                    }
+
                     sampleIndex[i]++;
 
+                    if (!basePtsSet[i]) {
+                        if (minPtsComputedArr[0]) {
+                            basePts[i] = minPtsArr[0];
+                        } else {
+                            basePts[i] = firstPts[i];
+                        }
+                        basePtsSet[i] = true;
+                    }
+
+                    final int correctedOffset = (int) (pts - basePts[i]);
                     if (tablesInfo[i].ctts > 0) {
-                        if (sample.info.sampleCompositionTimeOffset == sampleExtra[i]) {
+                        if (correctedOffset == sampleExtra[i]) {
                             sampleCount[i]++;
                         } else {
                             if (sampleExtra[i] >= 0) {
-                                tablesInfo[i].ctts = writeEntryArray(tablesInfo[i].ctts, 2,
-                                        sampleCount[i], sampleExtra[i]);
+                                tablesInfo[i].ctts = writeEntryArray(
+                                        tablesInfo[i].ctts, 2, sampleCount[i], sampleExtra[i]
+                                );
                                 outRestore();
                             }
                             sampleCount[i] = 1;
-                            sampleExtra[i] = sample.info.sampleCompositionTimeOffset;
+                            sampleExtra[i] = correctedOffset;
                         }
                     }
 
