@@ -219,10 +219,8 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
         }
         final StreamInfoItem streamItem = (StreamInfoItem) item;
         try {
-            final StreamStateEntity[] result =
-                    historyRecordManager.loadStreamState(streamItem).blockingGet();
             final StreamStateEntity state =
-                    (result != null && result.length > 0) ? result[0] : null;
+                    historyRecordManager.loadStreamState(streamItem).blockingGet();
             if (state != null) {
                 final long duration = streamItem.getDuration();
                 final boolean isFinished = state.isFinished(duration);
