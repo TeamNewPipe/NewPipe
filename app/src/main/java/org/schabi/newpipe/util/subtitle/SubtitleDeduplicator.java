@@ -53,6 +53,12 @@ public final class SubtitleDeduplicator {
 
     private static final float BACKOFF_FACTOR = 1.0f;
 
+    // Once NewPipe/ExoPlayer supports styled subtitle rendering
+    // (e.g., colors, bold, background), set this to 'true'
+    // to preserve different styles for the same subtitle text
+    // in consecutive subtitle entries.
+    private static final boolean SUPPORT_STYLED_SUBTITLE_RENDERING = false;
+
     private static String subCacheDir = "subtitle_cache";
 
     private static File cacheDir = null;
@@ -250,6 +256,7 @@ public final class SubtitleDeduplicator {
     // Detects whether the subtitle contains duplicated <p> entries
     // using the same normalized (whitespace-trimmed) comparison rules
     // as deduplicateContent().
+    // Note: entry == paragraph
     public static boolean containsDuplicatedEntries(final String subtitleContent) {
         if (stringIsNullOrEmpty(subtitleContent)) {
             return false;
@@ -296,7 +303,7 @@ public final class SubtitleDeduplicator {
     }
 
     public static String deduplicateContent(final String subtitleContent) {
-        // Subtitle entries are considered duplicated only if:
+        // Subtitle entries/paragraphs are considered duplicated only if:
         // 1) begin timestamp is exactly the same,
         // 2) end timestamp is exactly the same,
         // 3) subtitle text content is the same
@@ -360,23 +367,87 @@ public final class SubtitleDeduplicator {
         final String begin = matcher.group(1).trim();
         final String end = matcher.group(2).trim();
 
+        // Textual content units inside the <p> element.
+        // It may contain <span style="..."> tags/attributes.
+        final String rawTextualContent = matcher.group(3);
+
+        String textContent = null;
         // Normalize subtitle text before comparison:
-        // - Leading and trailing whitespace is ignored
-        // - Runs of whitespace are collapsed into a single space (' ')
         //
         // Note:
         // This operates on raw TTML text as received (before XML entity decoding).
         // XML-encoded whitespace (e.g. &#x9;) is not decoded at this stage.
         //
-        // This is intentional: visually identical subtitles may differ only
-        // in whitespace due to formatting or extraction differences, and
-        // should be considered duplicates in such cases.
-        final String content = matcher.group(3)
-                                .trim()
-                                .replaceAll("\\s+", " ");
+        if (!SUPPORT_STYLED_SUBTITLE_RENDERING) {
+            // Purpose:
+            // Some subtitles have the same text but different style
+            // attributes (e.g., colors, bold).
+            // If NewPipe does not support styled subtitle rendering,
+            // style attributes are meaningless, so they are ignored
+            // during deduplication.
+            //
+            // Example:
+            // <p begin="00:00:11.452" end="00:00:14.388" style="s2">
+            //     <span style="s3">Magic</span>
+            // </p>
+            // <p begin="00:00:11.452" end="00:00:14.388" style="s2">
+            //     <span style="s11">Magic</span>
+            // </p>
+            // These two subtitles have the same visible text but
+            // different style attributes. They will be considered
+            // duplicates after stripping style tags.
+            //
+            // Note:
+            // It may still contain <br> tags, which we intentionally
+            // keep for semantic meaning.
+            final String textWithoutStyles = stripStyleTags(rawTextualContent);
+            textContent = normalizeParagraphText(textWithoutStyles);
+        } else {
+            textContent = normalizeParagraphText(rawTextualContent);
+        }
 
-        final String key = begin + "|" + end + "|" + content;
+        final String key = begin + "|" + end + "|" + textContent;
         return key;
+    }
+
+    private static String stripStyleTags(final String textualContent) {
+        return textualContent
+                .replaceAll("<span[^>]*>", "")
+                .replaceAll("</span>", "");
+    }
+
+    private static String normalizeParagraphText(final String textContent) {
+        if (textContent == null) {
+            return "";
+        }
+
+        final String normalized = textContent
+                    // Remove invisible Unicode characters
+                    // Reason:
+                    // Two subtitle entries may look the same visually, but
+                    // they may differ in code due to invisible characters.
+                    // Removing them ensures proper detection of duplicated
+                    // subtitles.
+                    // Covered characters:
+                    // - Zero-width spaces and related characters (U+200B to U+200D)
+                    // - Directionality control characters (U+200E, U+200F)
+                    // - Directionality formatting characters (U+202A to U+202E)
+                    // - Byte Order Mark (BOM, U+FEFF)
+                    .replaceAll("[\\u200B-\\u200F\\u202A-\\u202E\\uFEFF]", "")
+
+                    // normalize non-breaking space to normal space
+                    .replace('\u00A0', ' ')
+
+                    // Runs of whitespace are collapsed into a single space (' ')
+                    // This is intentional: visually identical subtitles
+                    // may differ only in whitespace due to formatting or
+                    // extraction, and should still be considered duplicates.
+                    .replaceAll("\\s+", " ")
+
+                    // Leading and trailing whitespace is ignored
+                    .trim();
+
+        return normalized;
     }
 
     private static String buildLocalFileUri(final File subtitleCacheFile) {
