@@ -372,15 +372,13 @@ public final class SubtitleDeduplicator {
         return false;
     }
 
-    private static Pattern defineTtmlSubtitlePattern() {
-        return Pattern.compile(
-            "<p[^>]*begin=\"([^\"]+)\"[^>]*end=\"([^\"]+)\"[^>]*>(.*?)</p>",
-            Pattern.DOTALL
-        );
-    }
+    private static final Pattern TTML_PARAGRAPH_PATTERN = Pattern.compile(
+        "<p[^>]*begin=\"([^\"]+)\"[^>]*end=\"([^\"]+)\"[^>]*>(.*?)</p>",
+        Pattern.DOTALL
+    );
 
     private static Matcher getTtmlMatcher(final String subtitleContent) {
-        final Pattern pattern = defineTtmlSubtitlePattern();
+        final Pattern pattern = TTML_PARAGRAPH_PATTERN;
         return pattern.matcher(subtitleContent);
     }
 
