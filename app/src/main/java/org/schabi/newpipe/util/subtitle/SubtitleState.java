@@ -1,6 +1,6 @@
-package org.schabi.newpipe.extractor.utils;
+package org.schabi.newpipe.util.subtitle;
 
-import javax.annotation.Nonnull;
+import androidx.annotation.NonNull;
 
 /**
  * Describes the processing state of a subtitle.
@@ -20,11 +20,11 @@ public enum SubtitleState {
 
     private final String id;
 
-    SubtitleState(@Nonnull final String id) {
+    SubtitleState(@NonNull final String id) {
         this.id = id;
     }
 
-    @Nonnull
+    @NonNull
     public String getId() {
         return id;
     }

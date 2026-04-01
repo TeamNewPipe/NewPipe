@@ -1,4 +1,4 @@
-package org.schabi.newpipe.extractor.utils;
+package org.schabi.newpipe.util.subtitle;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,7 +17,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.annotation.Nonnull;
+import androidx.annotation.NonNull;
 
 import org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper;
 import org.schabi.newpipe.extractor.MediaFormat;
@@ -430,13 +430,13 @@ public final class SubtitleDeduplicator {
         return SubtitleOrigin.HUMAN_PROVIDED;
     }
 
-    @Nonnull
+    @NonNull
     private static String buildSubtitleCacheFilename(
-            @Nonnull final String videoId,
-            @Nonnull final String language,
-            @Nonnull final SubtitleOrigin origin,
-            @Nonnull final SubtitleState state,
-            @Nonnull final String extension
+            @NonNull final String videoId,
+            @NonNull final String language,
+            @NonNull final SubtitleOrigin origin,
+            @NonNull final SubtitleState state,
+            @NonNull final String extension
     ) {
         final String filenamePartSeparator = "--";
 
@@ -526,11 +526,11 @@ public final class SubtitleDeduplicator {
         return null;
     }
 
-    @Nonnull
+    @NonNull
     private static String fallbackToStoredOrRemote(
-            @Nonnull final String remoteSubtitleUrl,
-            @Nonnull final MediaFormat format,
-            @Nonnull final SubtitleOrigin origin
+            @NonNull final String remoteSubtitleUrl,
+            @NonNull final MediaFormat format,
+            @NonNull final SubtitleOrigin origin
     ) {
         final File storedFile = findStoredCacheFile(
                 remoteSubtitleUrl,

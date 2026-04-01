@@ -1,6 +1,6 @@
-package org.schabi.newpipe.extractor.utils;
+package org.schabi.newpipe.util.subtitle;
 
-import javax.annotation.Nonnull;
+import androidx.annotation.NonNull;
 
 /**
  * Describes the origin of a subtitle -> how its content was produced.
@@ -27,11 +27,11 @@ public enum SubtitleOrigin {
 
     private final String id;
 
-    SubtitleOrigin(@Nonnull final String id) {
+    SubtitleOrigin(@NonNull final String id) {
         this.id = id;
     }
 
-    @Nonnull
+    @NonNull
     public String getId() {
         return id;
     }
