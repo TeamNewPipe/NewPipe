@@ -59,7 +59,7 @@ public final class SubtitleDeduplicator {
     // in consecutive subtitle entries.
     private static final boolean SUPPORT_STYLED_SUBTITLE_RENDERING = false;
 
-    private static String subCacheDir = "subtitle_cache";
+    private static final String SUBTITLE_DEDUP_CACHE_DIR = "subtitle_cache";
 
     private static File cacheDir = null;
 
@@ -67,13 +67,14 @@ public final class SubtitleDeduplicator {
         // no instance
     }
 
-    // cacheDir is /storage/emulated/0/Android/data/<package_name>/cache/{subCacheDir}
+    // cacheDir is /storage/emulated/0/Android/data/<package_name>/
+    //              cache/{SUBTITLE_DEDUP_CACHE_DIR}
     public static void setCacheDirPath(final String path) {
         if (stringIsNullOrEmpty(path)) {
             return;
         }
 
-        cacheDir = new File(path, subCacheDir);
+        cacheDir = new File(path, SUBTITLE_DEDUP_CACHE_DIR);
 
         createDirIfNotExist(cacheDir);
     }
@@ -136,7 +137,7 @@ public final class SubtitleDeduplicator {
                                              currentSubtitleOrigin,
                                              currentSubtitleState);
 
-        final String localSubtitleUri = storeItToCacheDir(finalContent,
+        final String localSubtitleUri = writeContentToCacheFile(finalContent,
                                              format,
                                              currentSubtitleOrigin,
                                              currentCacheFile);
@@ -257,21 +258,21 @@ public final class SubtitleDeduplicator {
     // using the same normalized (whitespace-trimmed) comparison rules
     // as deduplicateContent().
     // Note: entry == paragraph
-    public static boolean containsDuplicatedEntries(final String subtitleContent) {
-        if (stringIsNullOrEmpty(subtitleContent)) {
+    public static boolean containsDuplicatedEntries(final String ttmlFileContent) {
+        if (stringIsNullOrEmpty(ttmlFileContent)) {
             return false;
         }
 
-        final Matcher matcher = getTtmlMatcher(subtitleContent);
+        final Matcher matcher = getTtmlMatcher(ttmlFileContent);
 
-        final Set<String> seen = new HashSet<>();
+        final Set<String> processedKeys = new HashSet<>();
         while (matcher.find()) {
-            final String key = getSubtitleKeyOfTtml(matcher);
+            final String currentParagraphKey = buildDeduplicationKey(matcher);
 
-            if (seen.contains(key)) {
+            if (processedKeys.contains(currentParagraphKey)) {
                 return true;
             }
-            seen.add(key);
+            processedKeys.add(currentParagraphKey);
         }
 
         return false;
@@ -302,7 +303,7 @@ public final class SubtitleDeduplicator {
         }
     }
 
-    public static String deduplicateContent(final String subtitleContent) {
+    public static String deduplicateContent(final String ttmlFileContent) {
         // Subtitle entries/paragraphs are considered duplicated only if:
         // 1) begin timestamp is exactly the same,
         // 2) end timestamp is exactly the same,
@@ -312,30 +313,50 @@ public final class SubtitleDeduplicator {
         // This is a normalized comparison (trimmed and whitespace-normalized).
         // No semantic analysis or fuzzy matching is performed.
 
-        if (stringIsNullOrEmpty(subtitleContent)) {
-            return subtitleContent;
+        if (stringIsNullOrEmpty(ttmlFileContent)) {
+            return ttmlFileContent;
         }
 
-        final Matcher matcher = getTtmlMatcher(subtitleContent);
-
-        final Set<String> seen = new HashSet<>();
+        final Set<String> processedKeys = new HashSet<>();
         final StringBuilder result = new StringBuilder();
 
-        int lastIndex = 0;
+        // Create a matcher for all <p>...</p> entries
+        final Matcher matcher = getTtmlMatcher(ttmlFileContent);
+
+        // Keep track of the end index of the last processed <p>
+        int lastParagraphEndIndex = 0;
+
         while (matcher.find()) {
-            result.append(subtitleContent, lastIndex, matcher.start());
+            // Extract the gap between the previous <p> and the current <p>
+            // - it may contain whitespace, newlines, or other XML elements.
+            // - it is NOT part of the subtitle paragraph.
+            // - It is never used for deduplication or screen display.
+            final String gapBetweenParagraphs = ttmlFileContent.substring(
+                                                        lastParagraphEndIndex,
+                                                        matcher.start()
+                                                    );
+            result.append(gapBetweenParagraphs);
 
-            final String key = getSubtitleKeyOfTtml(matcher);
+            final String currentParagraph = matcher.group(0);
+            final String currentParagraphKey = buildDeduplicationKey(matcher);
 
-            if (!seen.contains(key)) {
-                result.append(matcher.group(0));
-                seen.add(key);
+            if (!processedKeys.contains(currentParagraphKey)) {
+                // Append the ORIGINAL full <p> paragraph.
+                // - This preserves the author's original formatting
+                //   (runs of whitespace, <br>, etc.).
+                result.append(currentParagraph);
+                processedKeys.add(currentParagraphKey);
             }
 
-            lastIndex = matcher.end();
+            // Move the last processed index to the end of the current <p>
+            lastParagraphEndIndex = matcher.end();
         }
 
-        result.append(subtitleContent.substring(lastIndex));
+        // Append any remaining content after the last <p>.
+        // - Usually contains closing tags like </div>, </body>, </tt>.
+        final String trailingContent = ttmlFileContent.substring(lastParagraphEndIndex);
+        result.append(trailingContent);
+
         return result.toString();
     }
 
@@ -363,7 +384,18 @@ public final class SubtitleDeduplicator {
         return pattern.matcher(subtitleContent);
     }
 
-    private static String getSubtitleKeyOfTtml(final Matcher matcher) {
+    /**
+     * Generates a deduplication key for one TTML {@code <p>} paragraph.
+     *
+     * @param matcher Matcher already positioned on a single {@code <p>} element.
+     *                group(1) = begin time
+     *                group(2) = end time
+     *                group(3) = raw textual content (may contain 'span' tags)
+     * @return a deduplication key composed of begin/end timestamps
+     *         and normalized text, used to detect whether this subtitle entry
+     *         has already been processed.
+     */
+    private static String buildDeduplicationKey(final Matcher matcher) {
         final String begin = matcher.group(1).trim();
         final String end = matcher.group(2).trim();
 
@@ -456,22 +488,20 @@ public final class SubtitleDeduplicator {
         return path;
     }
 
-    private static String storeItToCacheDir(final String subtitleContent,
+    private static String writeContentToCacheFile(final String subtitleContent,
                                             final MediaFormat format,
                                             final SubtitleOrigin currentSubtitleOrigin,
                                             final File currentCacheFile) {
-        final File cacheFile = currentCacheFile;
+        final String cacheFilePathForExoplayer = buildLocalFileUri(currentCacheFile);
 
-        final String cacheFilePathForExoplayer = buildLocalFileUri(cacheFile);
-
-        if (!ensureItsParentDirExist(cacheFile)) {
+        if (!ensureItsParentDirExist(currentCacheFile)) {
             return null;
         }
 
-        if (null == writeDeduplicatedContentToCachefile(subtitleContent, cacheFile)) {
+        if (null == writeContentToFile(subtitleContent, currentCacheFile)) {
             return cacheFilePathForExoplayer;
         } else {
-            Log.e(TAG, "Failed to write cache file: " + cacheFile.getAbsolutePath());
+            Log.e(TAG, "Failed to write cache file: " + currentCacheFile.getAbsolutePath());
             return null;
         }
     }
@@ -526,9 +556,7 @@ public final class SubtitleDeduplicator {
     }
 
     private static String getLanguageCode(final String remoteSubtitleUrl) {
-        String languageCode = null;
-        languageCode = YoutubeParsingHelper.extractLanguageCode(remoteSubtitleUrl);
-        return languageCode;
+        return YoutubeParsingHelper.extractLanguageCode(remoteSubtitleUrl);
     }
 
     private static String getAutoTranslateLanguage(final String remoteSubtitleUrl) {
@@ -651,12 +679,6 @@ public final class SubtitleDeduplicator {
             final boolean result = parentDir.mkdirs();
             return result;
         }
-    }
-
-    private static String writeDeduplicatedContentToCachefile(
-                                            final String subtitleContent,
-                                            final File tempCacheFile) {
-        return writeContentToFile(subtitleContent, tempCacheFile);
     }
 
     private static String writeContentToFile(final String content,
