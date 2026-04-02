@@ -634,7 +634,7 @@ public final class Player implements PlaybackListener, Listener {
         simpleExoPlayer.setWakeMode(C.WAKE_MODE_NETWORK);
         simpleExoPlayer.setHandleAudioBecomingNoisy(true);
 
-        int repeatMode = prefs.getInt(
+        final int repeatMode = prefs.getInt(
                 context.getString(R.string.repeat_mode_key), REPEAT_MODE_OFF
         );
         simpleExoPlayer.setRepeatMode(repeatMode);
