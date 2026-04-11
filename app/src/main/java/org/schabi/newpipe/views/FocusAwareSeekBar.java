@@ -33,7 +33,7 @@ import org.schabi.newpipe.util.DeviceUtils;
  * (onStartTrackingTouch/onStopTrackingTouch), so existing code does not need to be changed to
  * work with it.
   */
-public final class FocusAwareSeekBar extends AppCompatSeekBar {
+public class FocusAwareSeekBar extends AppCompatSeekBar {
     private NestedListener listener;
 
     private ViewTreeObserver treeObserver;
