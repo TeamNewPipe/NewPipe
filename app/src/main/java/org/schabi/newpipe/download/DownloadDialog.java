@@ -344,7 +344,7 @@ public class DownloadDialog extends DialogFragment
         toolbar.setNavigationOnClickListener(v -> dismiss());
         toolbar.setNavigationContentDescription(R.string.cancel);
 
-        okButton = toolbar.findViewById(R.id.okay);
+        okButton = toolbar.getMenu().findItem(R.id.okay);
         okButton.setEnabled(false); // disable until the download service connection is done
 
         toolbar.setOnMenuItemClickListener(item -> {
