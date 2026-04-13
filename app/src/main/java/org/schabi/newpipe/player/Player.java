@@ -1280,10 +1280,6 @@ public final class Player implements PlaybackListener, Listener {
                     break;
             }
             simpleExoPlayer.setRepeatMode(repeatMode);
-            prefs
-                .edit()
-                .putInt(context.getString(R.string.repeat_mode_key), repeatMode)
-                .apply();
         }
     }
 
@@ -1295,6 +1291,10 @@ public final class Player implements PlaybackListener, Listener {
         }
         UIs.call(playerUi -> playerUi.onRepeatModeChanged(repeatMode));
         notifyPlaybackUpdateToListeners();
+        prefs
+            .edit()
+            .putInt(context.getString(R.string.repeat_mode_key), repeatMode)
+            .apply();
     }
 
     @Override
