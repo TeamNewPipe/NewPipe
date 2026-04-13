@@ -28,6 +28,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.HapticFeedbackConstants;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -153,6 +154,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
     @NonNull
     private List<StreamSegment> currentChapters = Collections.emptyList();
+    @Nullable
+    private StreamSegment lastChapterForHaptic = null;
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -592,11 +595,15 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                         binding.currentSeekbarPreviewThumbnail,
                         binding.subtitleView::getWidth);
 
-        // Chapter title tooltip
+        // Chapter title tooltip + haptic feedback at chapter boundaries
         if (!currentChapters.isEmpty()) {
             final StreamSegment chapter = getChapterAtMs(progress);
             if (chapter != null && chapter.getTitle() != null) {
                 binding.currentChapterTitle.setText(chapter.getTitle());
+            }
+            if (chapter != lastChapterForHaptic) {
+                lastChapterForHaptic = chapter;
+                seekBar.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK);
             }
         }
 
@@ -1063,17 +1070,9 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         // Chapter markers on seekbar
         currentChapters = info.getStreamSegments() != null
                 ? info.getStreamSegments() : Collections.emptyList();
-        Log.d(TAG, "onMetadataChanged: seekBarClass="
-                + binding.playbackSeekBar.getClass().getSimpleName()
-                + " segments=" + currentChapters.size()
-                + " duration=" + info.getDuration());
-        if (binding.playbackSeekBar instanceof ChaptersSeekBar) {
-            ((ChaptersSeekBar) binding.playbackSeekBar)
-                    .setChapters(currentChapters, info.getDuration());
-        } else {
-            Log.e(TAG, "onMetadataChanged: playbackSeekBar is NOT a ChaptersSeekBar! "
-                    + "Check that player.xml was rebuilt.");
-        }
+        lastChapterForHaptic = null;
+        ((ChaptersSeekBar) binding.playbackSeekBar)
+                .setChapters(currentChapters, info.getDuration());
         binding.currentChapterTitle.setVisibility(View.GONE);
     }
 
