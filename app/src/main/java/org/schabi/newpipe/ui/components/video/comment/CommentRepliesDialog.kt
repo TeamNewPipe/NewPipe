@@ -45,7 +45,8 @@ import org.schabi.newpipe.ui.theme.AppTheme
 fun CommentRepliesDialog(
     parentComment: CommentsInfoItem,
     onDismissRequest: () -> Unit,
-    onCommentAuthorOpened: () -> Unit
+    onCommentAuthorOpened: () -> Unit,
+    onTimestampClick: ((Int) -> Unit)? = null
 ) {
     val coroutineScope = rememberCoroutineScope()
     val commentsFlow = remember {
@@ -56,7 +57,7 @@ fun CommentRepliesDialog(
             .cachedIn(coroutineScope)
     }
 
-    CommentRepliesDialog(parentComment, commentsFlow, onDismissRequest, onCommentAuthorOpened)
+    CommentRepliesDialog(parentComment, commentsFlow, onDismissRequest, onCommentAuthorOpened, onTimestampClick)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -65,7 +66,8 @@ private fun CommentRepliesDialog(
     parentComment: CommentsInfoItem,
     commentsFlow: Flow<PagingData<CommentsInfoItem>>,
     onDismissRequest: () -> Unit,
-    onCommentAuthorOpened: () -> Unit
+    onCommentAuthorOpened: () -> Unit,
+    onTimestampClick: ((Int) -> Unit)? = null
 ) {
     val comments = commentsFlow.collectAsLazyPagingItems()
     val nestedScrollInterop = rememberNestedScrollInteropConnection()
@@ -93,7 +95,8 @@ private fun CommentRepliesDialog(
                 item {
                     CommentRepliesHeader(
                         comment = parentComment,
-                        onCommentAuthorOpened = nestedOnCommentAuthorOpened
+                        onCommentAuthorOpened = nestedOnCommentAuthorOpened,
+                        onTimestampClick = onTimestampClick
                     )
                     HorizontalDivider(
                         thickness = 1.dp,
@@ -145,7 +148,8 @@ private fun CommentRepliesDialog(
                     items(comments.itemCount) {
                         Comment(
                             comment = comments[it]!!,
-                            onCommentAuthorOpened = nestedOnCommentAuthorOpened
+                            onCommentAuthorOpened = nestedOnCommentAuthorOpened,
+                            onTimestampClick = onTimestampClick
                         )
                     }
                 }

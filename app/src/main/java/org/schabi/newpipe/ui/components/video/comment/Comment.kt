@@ -55,11 +55,15 @@ import org.schabi.newpipe.util.image.ImageStrategy
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
+fun Comment(
+    comment: CommentsInfoItem,
+    onCommentAuthorOpened: () -> Unit,
+    onTimestampClick: ((Int) -> Unit)? = null
+) {
     val context = LocalContext.current
     var isExpanded by rememberSaveable { mutableStateOf(false) }
     var showReplies by rememberSaveable { mutableStateOf(false) }
-    val parsedDescription = rememberParsedDescription(comment.commentText)
+    val parsedDescription = rememberParsedDescription(comment.commentText, onTimestampClick)
 
     Row(
         modifier = Modifier
@@ -187,7 +191,8 @@ fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
         CommentRepliesDialog(
             parentComment = comment,
             onDismissRequest = { showReplies = false },
-            onCommentAuthorOpened = onCommentAuthorOpened
+            onCommentAuthorOpened = onCommentAuthorOpened,
+            onTimestampClick = onTimestampClick
         )
     }
 }
@@ -265,7 +270,7 @@ private fun CommentPreview(
 ) {
     AppTheme {
         Surface {
-            Comment(commentsInfoItem) {}
+            Comment(commentsInfoItem, onCommentAuthorOpened = {})
         }
     }
 }
@@ -277,7 +282,7 @@ private fun CommentListPreview() {
         Surface {
             Column {
                 for (comment in CommentPreviewProvider().values) {
-                    Comment(comment) {}
+                    Comment(comment, onCommentAuthorOpened = {})
                 }
             }
         }

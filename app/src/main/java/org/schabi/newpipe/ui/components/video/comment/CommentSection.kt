@@ -13,9 +13,12 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -30,6 +33,7 @@ import kotlinx.coroutines.flow.flowOf
 import org.schabi.newpipe.R
 import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.UserAction
+import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.Page
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
@@ -39,20 +43,38 @@ import org.schabi.newpipe.ui.components.common.LoadingIndicator
 import org.schabi.newpipe.ui.emptystate.EmptyStateComposable
 import org.schabi.newpipe.ui.emptystate.EmptyStateSpec
 import org.schabi.newpipe.ui.theme.AppTheme
+import org.schabi.newpipe.util.text.InternalUrlsHandler
 import org.schabi.newpipe.viewmodels.CommentsViewModel
 import org.schabi.newpipe.viewmodels.util.Resource
 
 @Composable
-fun CommentSection(commentsViewModel: CommentsViewModel = viewModel()) {
+fun CommentSection(
+    commentsViewModel: CommentsViewModel = viewModel(),
+    onScrollToPlayer: () -> Unit = {}
+) {
     val state by commentsViewModel.uiState.collectAsStateWithLifecycle()
-    CommentSection(state, commentsViewModel.comments)
+    CommentSection(state, commentsViewModel.comments, onScrollToPlayer)
 }
 
 @Composable
 private fun CommentSection(
     uiState: Resource<CommentInfo>,
-    commentsFlow: Flow<PagingData<CommentsInfoItem>>
+    commentsFlow: Flow<PagingData<CommentsInfoItem>>,
+    onScrollToPlayer: () -> Unit = {}
 ) {
+    val context = LocalContext.current
+    val commentInfo = (uiState as? Resource.Success)?.data
+    val onScrollToPlayerState = rememberUpdatedState(onScrollToPlayer)
+    val onTimestampClick: ((Int) -> Unit)? = remember(commentInfo?.serviceId, commentInfo?.url) {
+        if (commentInfo == null) return@remember null
+        runCatching { NewPipe.getService(commentInfo.serviceId) }.getOrNull()
+            ?.let { service ->
+                { seconds: Int ->
+                    InternalUrlsHandler.playOnPopup(context, commentInfo.url, service, seconds)
+                    onScrollToPlayerState.value()
+                }
+            }
+    }
     val comments = commentsFlow.collectAsLazyPagingItems()
     val nestedScrollInterop = rememberNestedScrollInteropConnection()
     val state = rememberLazyListState()
@@ -72,10 +94,9 @@ private fun CommentSection(
                 }
 
                 is Resource.Success -> {
-                    val commentInfo = uiState.data
-                    val count = commentInfo.commentCount
+                    val count = uiState.data.commentCount
 
-                    if (commentInfo.isCommentsDisabled) {
+                    if (uiState.data.isCommentsDisabled) {
                         item {
                             EmptyStateComposable(
                                 spec = EmptyStateSpec.DisabledComments,
@@ -137,7 +158,11 @@ private fun CommentSection(
 
                             else -> {
                                 items(comments.itemCount) {
-                                    Comment(comment = comments[it]!!) {}
+                                    Comment(
+                                        comment = comments[it]!!,
+                                        onCommentAuthorOpened = {},
+                                        onTimestampClick = onTimestampClick
+                                    )
                                 }
                             }
                         }

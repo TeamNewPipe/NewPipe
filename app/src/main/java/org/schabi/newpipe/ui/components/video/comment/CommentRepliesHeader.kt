@@ -39,7 +39,11 @@ import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.image.ImageStrategy
 
 @Composable
-fun CommentRepliesHeader(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
+fun CommentRepliesHeader(
+    comment: CommentsInfoItem,
+    onCommentAuthorOpened: () -> Unit,
+    onTimestampClick: ((Int) -> Unit)? = null
+) {
     val context = LocalContext.current
 
     Column(
@@ -126,7 +130,8 @@ fun CommentRepliesHeader(comment: CommentsInfoItem, onCommentAuthorOpened: () ->
 
         DescriptionText(
             description = comment.commentText,
-            style = MaterialTheme.typography.bodyMedium
+            style = MaterialTheme.typography.bodyMedium,
+            onTimestampClick = onTimestampClick
         )
     }
 }
@@ -145,7 +150,7 @@ fun CommentRepliesHeaderPreview() {
 
     AppTheme {
         Surface {
-            CommentRepliesHeader(comment) {}
+            CommentRepliesHeader(comment, onCommentAuthorOpened = {})
         }
     }
 }
