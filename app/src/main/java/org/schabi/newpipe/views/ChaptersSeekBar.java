@@ -19,10 +19,11 @@ package org.schabi.newpipe.views;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,18 +34,15 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * A {@link FocusAwareSeekBar} that draws thin white vertical tick marks at chapter boundaries.
+ * A {@link FocusAwareSeekBar} that renders narrow transparent gaps at chapter boundaries,
+ * giving the seekbar a segmented "chopped" appearance.
  * Call {@link #setChapters(List, long)} whenever a new stream loads.
  */
 public final class ChaptersSeekBar extends FocusAwareSeekBar {
 
-    private static final String TAG = "ChaptersSeekBar";
+    private static final float GAP_WIDTH_DP = 2f;
 
-    private static final int   TICK_ALPHA           = 180;  // ~70% opacity
-    private static final float TICK_WIDTH_DP        = 2f;
-    private static final float TICK_HEIGHT_FRACTION = 0.6f; // fraction of view height
-
-    private final Paint tickPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint gapPaint = new Paint();
 
     @NonNull private List<StreamSegment> chapters = Collections.emptyList();
     private long durationSeconds = 0;
@@ -68,14 +66,12 @@ public final class ChaptersSeekBar extends FocusAwareSeekBar {
     }
 
     private void init() {
-        tickPaint.setColor(Color.WHITE);
-        tickPaint.setAlpha(TICK_ALPHA);
-        tickPaint.setStyle(Paint.Style.FILL);
-        Log.d(TAG, "init: ChaptersSeekBar created");
+        gapPaint.setStyle(Paint.Style.FILL);
+        gapPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
     /**
-     * Stores chapter data for rendering tick marks.
+     * Stores chapter data for rendering segment gaps.
      *
      * @param newChapters     list of {@link StreamSegment}s; may be empty but never null
      * @param newDurationSecs total duration in seconds; used to compute fractional positions
@@ -84,64 +80,46 @@ public final class ChaptersSeekBar extends FocusAwareSeekBar {
                             final long newDurationSecs) {
         chapters = newChapters;
         durationSeconds = newDurationSecs;
-        Log.d(TAG, "setChapters: count=" + newChapters.size()
-                + " durationSeconds=" + newDurationSecs);
-        for (final StreamSegment seg : newChapters) {
-            Log.d(TAG, "  chapter: startSec=" + seg.getStartTimeSeconds()
-                    + " title=" + seg.getTitle());
-        }
         invalidate();
     }
 
     @Override
     protected void onDraw(@NonNull final Canvas canvas) {
+        if (chapters.isEmpty() || durationSeconds <= 0) {
+            super.onDraw(canvas);
+            return;
+        }
+
+        // Draw the seekbar into an offscreen layer so CLEAR mode can punch transparent gaps
+        final int sc = canvas.saveLayer(null, null);
         super.onDraw(canvas);
 
-        if (chapters.isEmpty() || durationSeconds <= 0) {
-            Log.d(TAG, "onDraw: skipped — chapters=" + chapters.size()
-                    + " durationSeconds=" + durationSeconds);
-            return;
-        }
-
         final float density = getResources().getDisplayMetrics().density;
-        final float tickWidthPx = TICK_WIDTH_DP * density;
+        final float gapHalfWidth = (GAP_WIDTH_DP * density) / 2f;
+        final int paddingLeft = getPaddingLeft();
+        final float trackWidth = getWidth() - paddingLeft - getPaddingRight();
 
-        // Track bounds: AbsSeekBar pads the track by getPaddingLeft/getPaddingRight
-        final int paddingLeft  = getPaddingLeft();
-        final int paddingRight = getPaddingRight();
-        final float trackWidth = getWidth() - paddingLeft - paddingRight;
-
-        Log.d(TAG, "onDraw: w=" + getWidth() + " h=" + getHeight()
-                + " paddingL=" + paddingLeft + " paddingR=" + paddingRight
-                + " trackWidth=" + trackWidth + " chapters=" + chapters.size()
-                + " durationSeconds=" + durationSeconds);
-
-        if (trackWidth <= 0) {
-            Log.d(TAG, "onDraw: trackWidth<=0, skipping");
-            return;
+        if (trackWidth > 0) {
+            for (final StreamSegment seg : chapters) {
+                final int startSec = seg.getStartTimeSeconds();
+                // Skip the very first position and anything at or past the end
+                if (startSec <= 0 || startSec >= durationSeconds) {
+                    continue;
+                }
+                final float x = paddingLeft + (startSec / (float) durationSeconds) * trackWidth;
+                canvas.drawRect(x - gapHalfWidth, 0, x + gapHalfWidth, getHeight(), gapPaint);
+            }
         }
 
-        // Center ticks vertically, scaling height as a fraction of the view
-        final float tickHeight = getHeight() * TICK_HEIGHT_FRACTION;
-        final float tickTop    = (getHeight() - tickHeight) / 2f;
-        final float tickBottom = tickTop + tickHeight;
+        canvas.restoreToCount(sc);
 
-        for (final StreamSegment seg : chapters) {
-            final int startSec = seg.getStartTimeSeconds();
-            // Skip the very beginning and anything at or past the end
-            if (startSec <= 0 || startSec >= durationSeconds) {
-                Log.d(TAG, "  skipping seg startSec=" + startSec);
-                continue;
-            }
-            final float x = paddingLeft + (startSec / (float) durationSeconds) * trackWidth;
-            Log.d(TAG, "  drawing tick at x=" + x + " for startSec=" + startSec
-                    + " title=" + seg.getTitle());
-            canvas.drawRect(
-                    x - tickWidthPx / 2f,
-                    tickTop,
-                    x + tickWidthPx / 2f,
-                    tickBottom,
-                    tickPaint);
+        // Redraw the thumb on top so it visually overlaps the gaps
+        final Drawable thumb = getThumb();
+        if (thumb != null) {
+            final int thumbSave = canvas.save();
+            canvas.translate(getPaddingLeft() - getThumbOffset(), getPaddingTop());
+            thumb.draw(canvas);
+            canvas.restoreToCount(thumbSave);
         }
     }
 }
