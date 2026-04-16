@@ -25,7 +25,7 @@ abstract class BasePlayerGestureListener(
     protected val binding: PlayerBinding = playerUi.binding
 
     override fun onTouch(v: View, event: MotionEvent): Boolean {
-        playerUi.gestureDetector.onTouchEvent(event)
+        playerUi.gestureDetector?.onTouchEvent(event)
         return false
     }
 
