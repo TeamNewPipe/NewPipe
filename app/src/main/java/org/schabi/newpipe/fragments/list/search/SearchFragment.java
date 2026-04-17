@@ -720,11 +720,14 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     @Override
     public boolean onBackPressed() {
+        if (KeyboardUtil.isKeyboardVisible(activity, searchEditText)) {
+            hideKeyboardSearch();
+            return true;
+        }
         if (suggestionsPanelVisible
                 && !infoListAdapter.getItemsList().isEmpty()
                 && !isLoading.get()) {
             hideSuggestionsPanel();
-            hideKeyboardSearch();
             searchEditText.setText(lastSearchedString);
             return true;
         }

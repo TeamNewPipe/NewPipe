@@ -52,4 +52,13 @@ public final class KeyboardUtil {
 
         editText.clearFocus();
     }
+
+    public static boolean isKeyboardVisible(final Activity activity, final EditText editText) {
+        if (activity == null || editText == null) {
+            return false;
+        }
+        final InputMethodManager imm = ContextCompat.getSystemService(activity,
+                InputMethodManager.class);
+        return imm.isActive(editText);
+    }
 }
