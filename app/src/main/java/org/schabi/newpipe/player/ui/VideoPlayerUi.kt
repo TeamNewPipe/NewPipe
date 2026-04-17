@@ -20,7 +20,6 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.SeekBar
-import androidx.annotation.OptIn
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.appcompat.widget.AppCompatImageButton
@@ -101,7 +100,7 @@ abstract class VideoPlayerUi protected constructor(
     // region Views
 
     @JvmField
-    protected var binding: PlayerBinding = playerBinding
+    var binding: PlayerBinding = playerBinding
 
     private val controlsVisibilityHandler = Handler(Looper.getMainLooper())
 
@@ -113,7 +112,7 @@ abstract class VideoPlayerUi protected constructor(
     // Popup menus ("popup" means that they pop up, not that they belong to the popup player)
 
     @JvmField
-    protected var isSomePopupMenuVisible = false
+    var isSomePopupMenuVisible = false
 
     private var qualityPopupMenu: PopupMenu? = null
     private var audioTrackPopupMenu: PopupMenu? = null
@@ -125,7 +124,7 @@ abstract class VideoPlayerUi protected constructor(
 
     // Gestures
 
-    private var gestureDetector: GestureDetector? = null
+    internal var gestureDetector: GestureDetector? = null
     private var playerGestureListener: BasePlayerGestureListener? = null
     private var onLayoutChangeListener: View.OnLayoutChangeListener? = null
 
@@ -177,7 +176,11 @@ abstract class VideoPlayerUi protected constructor(
         binding.itemsList.isNestedScrollingEnabled = false
     }
 
-    internal abstract fun buildGestureListener(): BasePlayerGestureListener
+    // Must be `protected` (not `internal`) so that the Java subclasses MainPlayerUi and
+    // PopupPlayerUi can override it. Kotlin `internal` compiles to a JVM-mangled name
+    // (e.g. `buildGestureListener$app_debug`) that Java cannot reference, which causes a
+    // "must be declared abstract or implement abstract method" compile error in those classes.
+    protected abstract fun buildGestureListener(): BasePlayerGestureListener
 
     protected open fun initListeners() {
         binding.qualityTextView.setOnClickListener(makeOnClickListener(this::onQualityClicked))
@@ -192,7 +195,7 @@ abstract class VideoPlayerUi protected constructor(
         binding.playbackLiveSync.setOnClickListener(makeOnClickListener(player::seekToDefault))
 
         playerGestureListener = buildGestureListener()
-        gestureDetector = GestureDetector(context, playerGestureListener)
+        gestureDetector = GestureDetector(context, playerGestureListener!!)
         binding.root.setOnTouchListener(playerGestureListener)
 
         binding.repeatButton.setOnClickListener { onRepeatClicked() }
@@ -392,6 +395,14 @@ abstract class VideoPlayerUi protected constructor(
 
         // #6825 - Ensure that the shuffle-button is in the correct state on the UI
         setShuffleButton(player.exoPlayer.shuffleModeEnabled)
+
+        // Seed chapter markers in case onMetadataChanged already fired before this UI was
+        // attached to the player (e.g. when switching player types or restoring a session).
+        player.currentStreamInfo.ifPresent { info ->
+            currentChapters = info.streamSegments ?: emptyList()
+            lastChapterForHaptic = null
+            (binding.playbackSeekBar as ChaptersSeekBar).setChapters(currentChapters, info.duration)
+        }
     }
 
     abstract fun removeViewFromParent()
@@ -497,6 +508,20 @@ abstract class VideoPlayerUi protected constructor(
         if (duration != binding.playbackSeekBar.max) {
             setVideoDurationToControls(duration)
         }
+
+        // If chapter metadata callback was missed, recover from currentStreamInfo.
+        if (currentChapters.isEmpty()) {
+            player.currentStreamInfo.ifPresent { info ->
+                val streamSegments = info.streamSegments ?: emptyList()
+                if (streamSegments.isNotEmpty()) {
+                    currentChapters = streamSegments
+                    lastChapterForHaptic = null
+                    (binding.playbackSeekBar as? ChaptersSeekBar)
+                        ?.setChapters(currentChapters, info.duration)
+                }
+            }
+        }
+
         if (player.currentState != STATE_PAUSED) {
             updatePlayBackElementsCurrentDuration(currentProgress)
         }
@@ -504,11 +529,12 @@ abstract class VideoPlayerUi protected constructor(
             binding.playbackSeekBar.secondaryProgress =
                 (binding.playbackSeekBar.max * (bufferPercent.toFloat() / 100)).toInt()
         }
+
         if (DEBUG && bufferPercent % 20 == 0) { // Limit log
             Log.d(
                 TAG,
                 "notifyProgressUpdateToListeners() called with: " +
-                    "isVisible = ${isControlsVisible()}, " +
+                    "isVisible = $isControlsVisible, " +
                     "currentProgress = [$currentProgress], " +
                     "duration = [$duration], bufferPercent = [$bufferPercent]"
             )
@@ -526,7 +552,7 @@ abstract class VideoPlayerUi protected constructor(
         if (player.currentState != STATE_PAUSED_SEEK) {
             binding.playbackSeekBar.progress = currentProgress
         }
-        binding.playbackCurrentTime.text = getTimeString(currentProgress)
+        binding.playbackCurrentTime.text = getTimeString(currentProgress.toLong())
     }
 
     /**
@@ -535,7 +561,7 @@ abstract class VideoPlayerUi protected constructor(
      * @param duration the video duration, in milliseconds
      */
     private fun setVideoDurationToControls(duration: Int) {
-        binding.playbackEndTime.text = getTimeString(duration)
+        binding.playbackEndTime.text = getTimeString(duration.toLong())
 
         binding.playbackSeekBar.max = duration
         // This is important for Android TVs otherwise it would apply the default from
@@ -558,7 +584,7 @@ abstract class VideoPlayerUi protected constructor(
             )
         }
 
-        binding.currentDisplaySeek.text = getTimeString(progress)
+        binding.currentDisplaySeek.text = getTimeString(progress.toLong())
 
         // Seekbar Preview Thumbnail
         SeekbarPreviewThumbnailHelper
@@ -645,7 +671,7 @@ abstract class VideoPlayerUi protected constructor(
             player.exoPlayer.play()
         }
 
-        binding.playbackCurrentTime.text = getTimeString(seekBar.progress)
+        binding.playbackCurrentTime.text = getTimeString(seekBar.progress.toLong())
         binding.currentDisplaySeek.animate(false, 200, AnimationType.SCALE_AND_ALPHA)
         binding.currentSeekbarPreviewThumbnail.animate(false, 200, AnimationType.SCALE_AND_ALPHA)
         binding.currentChapterTitle.animate(false, 200, AnimationType.SCALE_AND_ALPHA)
@@ -681,7 +707,8 @@ abstract class VideoPlayerUi protected constructor(
 
     // region Controls showing / hiding
 
-    fun isControlsVisible(): Boolean = binding.playbackControlRoot.visibility == View.VISIBLE
+    val isControlsVisible: Boolean
+        get() = binding.playbackControlRoot.visibility == View.VISIBLE
 
     fun showControlsThenHide() {
         if (DEBUG) {
@@ -772,10 +799,9 @@ abstract class VideoPlayerUi protected constructor(
         return false
     }
 
-    open fun isFullscreen(): Boolean {
+    open val isFullscreen: Boolean
         // only MainPlayerUi can be in fullscreen, so overridden there
-        return false
-    }
+        get() = false
 
     /**
      * Update the play/pause button to reflect the action that will be performed when clicked.
@@ -807,7 +833,7 @@ abstract class VideoPlayerUi protected constructor(
     override fun onPrepared() {
         super.onPrepared()
         setVideoDurationToControls(player.exoPlayer.duration.toInt())
-        binding.playbackSpeed.text = formatSpeed(player.playbackSpeed)
+        binding.playbackSpeed.text = formatSpeed(player.playbackSpeed.toDouble())
     }
 
     override fun onBlocked() {
@@ -865,7 +891,7 @@ abstract class VideoPlayerUi protected constructor(
 
         // Don't let UI elements popup during double tap seeking. This state is entered sometimes
         // during seeking/loading. This if-else check ensures that the controls aren't popping up.
-        if (!playerGestureListener!!.isDoubleTapping()) {
+        if (!playerGestureListener!!.isDoubleTapping) {
             showControls(400)
             binding.loadingPanel.visibility = View.GONE
 
@@ -982,7 +1008,7 @@ abstract class VideoPlayerUi protected constructor(
 
     override fun onPlaybackParametersChanged(playbackParameters: PlaybackParameters) {
         super.onPlaybackParametersChanged(playbackParameters)
-        binding.playbackSpeed.text = formatSpeed(playbackParameters.speed)
+        binding.playbackSpeed.text = formatSpeed(playbackParameters.speed.toDouble())
     }
 
     override fun onRenderedFirstFrame() {
@@ -1005,10 +1031,13 @@ abstract class VideoPlayerUi protected constructor(
         seekbarPreviewThumbnailHolder.resetFrom(player.context, info.previewFrames)
 
         // Chapter markers on seekbar
-        currentChapters = info.streamSegments ?: emptyList()
+        val rawSegments = info.streamSegments
+        currentChapters = rawSegments ?: emptyList()
         lastChapterForHaptic = null
-        (binding.playbackSeekBar as ChaptersSeekBar)
-            .setChapters(currentChapters, info.duration)
+        val seekBar = binding.playbackSeekBar
+        if (seekBar is ChaptersSeekBar) {
+            seekBar.setChapters(currentChapters, info.duration)
+        }
         binding.currentChapterTitle.visibility = View.GONE
     }
 
@@ -1134,10 +1163,10 @@ abstract class VideoPlayerUi protected constructor(
                 POPUP_MENU_ID_PLAYBACK_SPEED,
                 i,
                 Menu.NONE,
-                formatSpeed(PLAYBACK_SPEEDS[i])
+                formatSpeed(PLAYBACK_SPEEDS[i].toDouble())
             )
         }
-        binding.playbackSpeed.text = formatSpeed(player.playbackSpeed)
+        binding.playbackSpeed.text = formatSpeed(player.playbackSpeed.toDouble())
         playbackSpeedPopupMenu!!.setOnMenuItemClickListener(this)
         playbackSpeedPopupMenu!!.setOnDismissListener(this)
     }
@@ -1287,7 +1316,7 @@ abstract class VideoPlayerUi protected constructor(
                 val speedIndex = menuItem.itemId
                 val speed = PLAYBACK_SPEEDS[speedIndex]
                 player.setPlaybackSpeed(speed)
-                binding.playbackSpeed.text = formatSpeed(speed)
+                binding.playbackSpeed.text = formatSpeed(speed.toDouble())
                 false
             }
 
@@ -1360,7 +1389,6 @@ abstract class VideoPlayerUi protected constructor(
         isSomePopupMenuVisible = true
     }
 
-    fun isSomePopupMenuVisible(): Boolean = isSomePopupMenuVisible
     // endregion
 
     // region Captions (text tracks)
@@ -1376,11 +1404,11 @@ abstract class VideoPlayerUi protected constructor(
         }
 
         // Extract all loaded languages
-        val textTracks = currentTracks.groups.filter { it.type == C.TRACK_TYPE_TEXT }
+        val textTracks: List<Tracks.Group> = currentTracks.groups.filter { it.type == C.TRACK_TYPE_TEXT }
         val availableLanguages = textTracks
-            .map { it.mediaTrackGroup }
-            .filter { it.length > 0 }
-            .map { it.getFormat(0).language }
+            .mapNotNull { group ->
+                group.mediaTrackGroup.takeIf { it.length > 0 }?.getFormat(0)?.language
+            }
 
         // Find selected text track
         val selectedTrack: Format? = textTracks
@@ -1449,7 +1477,7 @@ abstract class VideoPlayerUi protected constructor(
                 if (player.currentState == STATE_PLAYING && !isSomePopupMenuVisible) {
                     if (v == binding.playPauseButton ||
                         // Hide controls in fullscreen immediately
-                        (v == binding.screenRotationButton && isFullscreen())
+                        (v == binding.screenRotationButton && isFullscreen)
                     ) {
                         hideControls(0, 0)
                     } else {
@@ -1463,7 +1491,7 @@ abstract class VideoPlayerUi protected constructor(
     open fun onKeyDown(keyCode: Int): Boolean {
         when (keyCode) {
             KeyEvent.KEYCODE_BACK -> {
-                if (DeviceUtils.isTv(context) && isControlsVisible()) {
+                if (DeviceUtils.isTv(context) && isControlsVisible) {
                     hideControls(0, 0)
                     return true
                 }
@@ -1485,7 +1513,7 @@ abstract class VideoPlayerUi protected constructor(
                     return true
                 }
 
-                if (isControlsVisible()) {
+                if (isControlsVisible) {
                     hideControls(DEFAULT_CONTROLS_DURATION, DPAD_CONTROLS_HIDE_TIME)
                 } else {
                     binding.playPauseButton.requestFocus()
@@ -1544,7 +1572,7 @@ abstract class VideoPlayerUi protected constructor(
 
     // region Video size
 
-    protected fun setResizeMode(@AspectRatioFrameLayout.ResizeMode resizeMode: Int) {
+    protected fun setResizeMode(resizeMode: Int) {
         binding.surfaceView.setResizeMode(resizeMode)
         binding.resizeTextView.text = PlayerHelper.resizeTypeOf(context, resizeMode)
     }
@@ -1610,8 +1638,6 @@ abstract class VideoPlayerUi protected constructor(
     // region Getters
 
     fun getBinding(): PlayerBinding = binding
-
-    fun getGestureDetector(): GestureDetector? = gestureDetector
     // endregion
 
     companion object {
@@ -1628,7 +1654,7 @@ abstract class VideoPlayerUi protected constructor(
         val DPAD_CONTROLS_HIDE_TIME: Long = 7000 // 7 Seconds
 
         @JvmField
-        val SEEK_OVERLAY_DURATION: Int = 450 // 450 millis
+        val SEEK_OVERLAY_DURATION: Long = 450 // 450 millis
 
         // other constants (TODO remove playback speeds and use normal menu for popup, too)
         private val PLAYBACK_SPEEDS = floatArrayOf(0.5f, 0.75f, 1.0f, 1.25f, 1.5f, 1.75f, 2.0f)
