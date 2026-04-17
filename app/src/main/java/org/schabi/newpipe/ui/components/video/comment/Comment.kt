@@ -57,7 +57,7 @@ import org.schabi.newpipe.util.image.ImageStrategy
 @Composable
 fun Comment(
     comment: CommentsInfoItem,
-    onCommentAuthorOpened: () -> Unit,
+    onCommentAuthorOpened: () -> Unit = {},
     onTimestampClick: ((Int) -> Unit)? = null
 ) {
     val context = LocalContext.current

@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
@@ -17,6 +18,7 @@ import androidx.compose.ui.text.fromHtml
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import org.schabi.newpipe.extractor.stream.Description
+import org.schabi.newpipe.util.external_communication.ShareUtils
 import org.schabi.newpipe.util.text.TimestampExtractor
 
 @Composable
@@ -46,6 +48,7 @@ fun rememberParsedDescription(
     // rememberUpdatedState lets the click handlers inside the AnnotatedString always invoke
     // the latest callback without rebuilding the string on every recomposition.
     val onTimestampClickState = rememberUpdatedState(onTimestampClick)
+    val contextState = rememberUpdatedState(LocalContext.current)
     // Use a boolean key so the string is only rebuilt when handler presence changes,
     // not on every lambda identity change.
     val hasTimestampHandler = onTimestampClick != null
@@ -57,41 +60,53 @@ fun rememberParsedDescription(
             val baseString = AnnotatedString.fromHtml(description.content, linkStyle)
             if (!hasTimestampHandler) return@remember baseString
 
-            // Rebuild the AnnotatedString, replacing YouTube timestamp URL annotations
-            // with Clickable ones so they seek the player instead of opening YouTube.
+            // Rebuild the AnnotatedString, replacing timestamp URL annotations
+            // with Clickable ones so they seek the player instead of opening the browser.
             buildAnnotatedString {
                 append(baseString.text)
-                for (span in baseString.spanStyles) {
+                baseString.spanStyles.forEach { span ->
                     addStyle(span.item, span.start, span.end)
                 }
-                for (para in baseString.paragraphStyles) {
+                baseString.paragraphStyles.forEach { para ->
                     addStyle(para.item, para.start, para.end)
                 }
 
                 val handledRanges = mutableListOf<IntRange>()
 
-                for (link in baseString.getLinkAnnotations(0, baseString.length)) {
+                baseString.getLinkAnnotations(0, baseString.length).forEach { link ->
                     val ann = link.item
-                    if (ann is LinkAnnotation.Url) {
-                        val secs = getTimestampSecondsFromUrl(ann.url)
-                        if (secs != null) {
-                            addLink(
-                                clickable = LinkAnnotation.Clickable(
-                                    tag = "timestamp",
-                                    styles = linkStyle,
-                                    linkInteractionListener = {
-                                        onTimestampClickState.value?.invoke(secs)
-                                    }
-                                ),
-                                start = link.start,
-                                end = link.end
-                            )
-                            handledRanges += link.start..link.end
-                            continue
+                    when (ann) {
+                        is LinkAnnotation.Url -> {
+                            val secs = getTimestampSecondsFromUrl(ann.url)
+                            if (secs != null) {
+                                addLink(
+                                    clickable = LinkAnnotation.Clickable(
+                                        tag = "timestamp",
+                                        styles = linkStyle,
+                                        linkInteractionListener = {
+                                            onTimestampClickState.value?.invoke(secs)
+                                        }
+                                    ),
+                                    start = link.start,
+                                    end = link.end
+                                )
+                                handledRanges += link.start..link.end
+                            } else {
+                                val url = ann.url
+                                addLink(
+                                    clickable = LinkAnnotation.Clickable(
+                                        tag = "url",
+                                        styles = ann.styles,
+                                        linkInteractionListener = {
+                                            ShareUtils.openUrlInApp(contextState.value, url)
+                                        }
+                                    ),
+                                    start = link.start,
+                                    end = link.end
+                                )
+                            }
                         }
-                        addLink(ann, link.start, link.end)
-                    } else if (ann is LinkAnnotation.Clickable) {
-                        addLink(ann, link.start, link.end)
+                        is LinkAnnotation.Clickable -> addLink(ann, link.start, link.end)
                     }
                 }
 
@@ -151,7 +166,7 @@ fun rememberParsedDescription(
 private fun getTimestampSecondsFromUrl(url: String): Int? {
     return try {
         Uri.parse(url).getQueryParameter("t")?.toIntOrNull()
-    } catch (e: Exception) {
+    } catch (_: Exception) {
         null
     }
 }
