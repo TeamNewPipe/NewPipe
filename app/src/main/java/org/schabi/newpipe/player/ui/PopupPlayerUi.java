@@ -101,8 +101,11 @@ public final class PopupPlayerUi extends VideoPlayerUi {
         initPopupCloseOverlay();
     }
 
+    // Same reason as MainPlayerUi: `protected` is required so this Java class can override the
+    // method declared in the Kotlin parent (VideoPlayerUi). Using `internal` in Kotlin produces
+    // a mangled JVM name that Java subclasses cannot reference.
     @Override
-    BasePlayerGestureListener buildGestureListener() {
+    protected BasePlayerGestureListener buildGestureListener() {
         return new PopupPlayerGestureListener(this);
     }
 
