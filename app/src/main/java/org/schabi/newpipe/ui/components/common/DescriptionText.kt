@@ -106,6 +106,7 @@ fun rememberParsedDescription(
                                 )
                             }
                         }
+
                         is LinkAnnotation.Clickable -> addLink(ann, link.start, link.end)
                     }
                 }

@@ -41,6 +41,18 @@ public class DescriptionFragment extends BaseDescriptionFragment {
         return streamInfo.getDescription();
     }
 
+    @Nullable
+    @Override
+    protected Runnable getAfterTimestampClickRunnable() {
+        return () -> {
+            final VideoDetailFragment parent =
+                    (VideoDetailFragment) getParentFragment();
+            if (parent != null) {
+                parent.scrollToTop();
+            }
+        };
+    }
+
     @NonNull
     @Override
     protected StreamingService getService() {

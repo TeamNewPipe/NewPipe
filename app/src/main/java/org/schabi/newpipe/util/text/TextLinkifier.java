@@ -48,8 +48,6 @@ public final class TextLinkifier {
      *
      * @param textView           the TextView to set the htmlBlock linked
      * @param description        the htmlBlock to be linked
-     * @param htmlCompatFlag     the int flag to be set if {@link HtmlCompat#fromHtml(String, int)}
-     *                           will be called (not used for formats different than HTML)
      * @param relatedInfoService if given, handle hashtags to search for the term in the correct
      *                           service
      * @param relatedStreamUrl   if given, used alongside {@code relatedInfoService} to handle
@@ -62,23 +60,59 @@ public final class TextLinkifier {
      */
     public static void fromDescription(@NonNull final TextView textView,
                                        @NonNull final Description description,
-                                       final int htmlCompatFlag,
                                        @Nullable final StreamingService relatedInfoService,
                                        @Nullable final String relatedStreamUrl,
                                        @NonNull final CompositeDisposable disposables,
                                        @Nullable final Consumer<TextView> onCompletion) {
+        fromDescription(textView, description, relatedInfoService,
+                relatedStreamUrl, disposables, onCompletion, null);
+    }
+
+    /**
+     * Like {@link #fromDescription(TextView, Description, StreamingService, String,
+     * CompositeDisposable, Consumer)} but with an extra callback that fires after a timestamp
+     * link is tapped and the player seek has been dispatched.
+     *
+     * @param textView              the TextView to set the linked description on
+     * @param description           the description to be linked
+     * @param relatedInfoService    if given, handle hashtags and timestamps for this service
+     * @param relatedStreamUrl      if given, used to open the stream in the popup player at the
+     *                              time indicated by a timestamp
+     * @param disposables           disposables created by the method are added here and their
+     *                              lifecycle should be handled by the calling class
+     * @param onCompletion          will be run when setting text to the textView completes; use
+     *                              {@link #SET_LINK_MOVEMENT_METHOD} to make links clickable
+     * @param onAfterTimestampClick invoked after a timestamp click is handled; use this to e.g.
+     *                              scroll the UI so the player is visible. May be {@code null}.
+     */
+    public static void fromDescription(@NonNull final TextView textView,
+                                       @NonNull final Description description,
+                                       @Nullable final StreamingService relatedInfoService,
+                                       @Nullable final String relatedStreamUrl,
+                                       @NonNull final CompositeDisposable disposables,
+                                       @Nullable final Consumer<TextView> onCompletion,
+                                       @Nullable final Runnable onAfterTimestampClick) {
         switch (description.getType()) {
             case Description.HTML:
-                TextLinkifier.fromHtml(textView, description.getContent(), htmlCompatFlag,
-                        relatedInfoService, relatedStreamUrl, disposables, onCompletion);
+                changeLinkIntents(textView,
+                        HtmlCompat.fromHtml(description.getContent(),
+                                HtmlCompat.FROM_HTML_MODE_LEGACY),
+                        relatedInfoService, relatedStreamUrl, disposables, onCompletion,
+                        onAfterTimestampClick);
                 break;
             case Description.MARKDOWN:
-                TextLinkifier.fromMarkdown(textView, description.getContent(),
-                        relatedInfoService, relatedStreamUrl, disposables, onCompletion);
+                changeLinkIntents(textView,
+                        Markwon.builder(textView.getContext())
+                                .usePlugin(LinkifyPlugin.create()).build()
+                                .toMarkdown(description.getContent()),
+                        relatedInfoService, relatedStreamUrl, disposables, onCompletion,
+                        onAfterTimestampClick);
                 break;
             case Description.PLAIN_TEXT: default:
-                TextLinkifier.fromPlainText(textView, description.getContent(),
-                        relatedInfoService, relatedStreamUrl, disposables, onCompletion);
+                textView.setAutoLinkMask(Linkify.WEB_URLS);
+                textView.setText(description.getContent(), TextView.BufferType.SPANNABLE);
+                changeLinkIntents(textView, textView.getText(), relatedInfoService,
+                        relatedStreamUrl, disposables, onCompletion, onAfterTimestampClick);
                 break;
         }
     }
@@ -115,7 +149,7 @@ public final class TextLinkifier {
                                 @Nullable final Consumer<TextView> onCompletion) {
         changeLinkIntents(
                 textView, HtmlCompat.fromHtml(htmlBlock, htmlCompatFlag), relatedInfoService,
-                relatedStreamUrl, disposables, onCompletion);
+                relatedStreamUrl, disposables, onCompletion, null);
     }
 
     /**
@@ -149,7 +183,7 @@ public final class TextLinkifier {
         textView.setAutoLinkMask(Linkify.WEB_URLS);
         textView.setText(plainTextBlock, TextView.BufferType.SPANNABLE);
         changeLinkIntents(textView, textView.getText(), relatedInfoService,
-                relatedStreamUrl, disposables, onCompletion);
+                relatedStreamUrl, disposables, onCompletion, null);
     }
 
     /**
@@ -182,7 +216,7 @@ public final class TextLinkifier {
         final Markwon markwon = Markwon.builder(textView.getContext())
                 .usePlugin(LinkifyPlugin.create()).build();
         changeLinkIntents(textView, markwon.toMarkdown(markdownBlock),
-                relatedInfoService, relatedStreamUrl, disposables, onCompletion);
+                relatedInfoService, relatedStreamUrl, disposables, onCompletion, null);
     }
 
     /**
@@ -221,13 +255,15 @@ public final class TextLinkifier {
      *                           lifecycle should be handled by the calling class
      * @param onCompletion       will be run when setting text to the textView completes; use {@link
      *                           #SET_LINK_MOVEMENT_METHOD} to make links clickable and focusable
+     * @param onAfterTimestampClick will be run after a timestamp link click action is resolved
      */
     private static void changeLinkIntents(@NonNull final TextView textView,
                                           @NonNull final CharSequence chars,
                                           @Nullable final StreamingService relatedInfoService,
                                           @Nullable final String relatedStreamUrl,
                                           @NonNull final CompositeDisposable disposables,
-                                          @Nullable final Consumer<TextView> onCompletion) {
+                                          @Nullable final Consumer<TextView> onCompletion,
+                                          @Nullable final Runnable onAfterTimestampClick) {
         disposables.add(Single.fromCallable(() -> {
                     final Context context = textView.getContext();
 
@@ -240,7 +276,8 @@ public final class TextLinkifier {
                     for (final URLSpan span : urls) {
                         final String url = span.getURL();
                         final LongPressClickableSpan longPressClickableSpan =
-                                new UrlLongPressClickableSpan(context, url);
+                                new UrlLongPressClickableSpan(context, url,
+                                        onAfterTimestampClick);
 
                         textBlockLinked.setSpan(longPressClickableSpan,
                                 textBlockLinked.getSpanStart(span),
@@ -254,7 +291,8 @@ public final class TextLinkifier {
                     if (relatedInfoService != null) {
                         if (relatedStreamUrl != null) {
                             addClickListenersOnTimestamps(context, textBlockLinked,
-                                    relatedInfoService, relatedStreamUrl, disposables);
+                                    relatedInfoService, relatedStreamUrl, disposables,
+                                    onAfterTimestampClick);
                         }
                         addClickListenersOnHashtags(context, textBlockLinked, relatedInfoService);
                     }
@@ -329,13 +367,15 @@ public final class TextLinkifier {
      * @param relatedStreamUrl     what to open in the popup player when timestamps are clicked
      * @param disposables          disposables created by the method are added here and their
      *                             lifecycle should be handled by the calling class
+     * @param onAfterTimestampClick will be run after a timestamp link click action is resolved
      */
     private static void addClickListenersOnTimestamps(
             @NonNull final Context context,
             @NonNull final SpannableStringBuilder spannableDescription,
             @NonNull final StreamingService relatedInfoService,
             @NonNull final String relatedStreamUrl,
-            @NonNull final CompositeDisposable disposables) {
+            @NonNull final CompositeDisposable disposables,
+            @Nullable final Runnable onAfterTimestampClick) {
         final String descriptionText = spannableDescription.toString();
         final Matcher timestampsMatches = TimestampExtractor.TIMESTAMPS_PATTERN.matcher(
                 descriptionText);
@@ -350,7 +390,8 @@ public final class TextLinkifier {
 
             spannableDescription.setSpan(
                     new TimestampLongPressClickableSpan(context, descriptionText, disposables,
-                            relatedInfoService, relatedStreamUrl, timestampMatchDTO),
+                            relatedInfoService, relatedStreamUrl, timestampMatchDTO,
+                            onAfterTimestampClick),
                     timestampMatchDTO.timestampStart(),
                     timestampMatchDTO.timestampEnd(),
                     0);
