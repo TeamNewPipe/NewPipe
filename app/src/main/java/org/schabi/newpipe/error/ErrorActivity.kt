@@ -10,32 +10,28 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.IntentCompat
 import androidx.core.net.toUri
 import com.grack.nanojson.JsonWriter
+import dagger.hilt.android.AndroidEntryPoint
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.R
-import org.schabi.newpipe.databinding.ActivityErrorBinding
+import org.schabi.newpipe.ui.BaseActivity
+import org.schabi.newpipe.ui.screens.ErrorReportScreen
 import org.schabi.newpipe.util.Localization
-import org.schabi.newpipe.util.ThemeHelper
 import org.schabi.newpipe.util.external_communication.ShareUtils
-import org.schabi.newpipe.util.text.setTextWithLinks
 
 /**
  * This activity is used to show error details and allow reporting them in various ways.
  * Use [ErrorUtil.openActivity] to correctly open this activity.
  */
-class ErrorActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class ErrorActivity : BaseActivity() {
     private lateinit var errorInfo: ErrorInfo
     private lateinit var currentTimeStamp: String
-
-    private lateinit var binding: ActivityErrorBinding
 
     private val contentCountryString: String
         get() = Localization.getPreferredContentCountry(this).countryCode
@@ -49,11 +45,7 @@ class ErrorActivity : AppCompatActivity() {
     private val osString: String
         get() {
             val name = System.getProperty("os.name")!!
-            val osBase = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                Build.VERSION.BASE_OS.ifEmpty { "Android" }
-            } else {
-                "Android"
-            }
+            val osBase = Build.VERSION.BASE_OS.ifEmpty { "Android" }
             return "$name $osBase ${Build.VERSION.RELEASE} - ${Build.VERSION.SDK_INT}"
         }
 
@@ -67,73 +59,53 @@ class ErrorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        ThemeHelper.setDayNightMode(this)
-        ThemeHelper.setTheme(this)
-
-        binding = ActivityErrorBinding.inflate(layoutInflater)
-        setContentView(binding.getRoot())
-
-        setSupportActionBar(binding.toolbarLayout.toolbar)
-        supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            setTitle(R.string.error_report_title)
-            setDisplayShowTitleEnabled(true)
-        }
-
         errorInfo = IntentCompat.getParcelableExtra(intent, ERROR_INFO, ErrorInfo::class.java)!!
 
-        // important add guru meditation
-        addGuruMeditation()
         // print current time, as zoned ISO8601 timestamp
         currentTimeStamp = ZonedDateTime.now().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
 
-        binding.errorReportEmailButton.setOnClickListener { _ ->
-            openPrivacyPolicyDialog(this, "EMAIL")
-        }
-
-        binding.errorReportCopyButton.setOnClickListener { _ ->
-            ShareUtils.copyToClipboard(this, buildMarkdown())
-        }
-
-        binding.errorReportGitHubButton.setOnClickListener { _ ->
-            openPrivacyPolicyDialog(this, "GITHUB")
-        }
-
-        // normal bugreport
-        buildInfo(errorInfo)
-        binding.errorMessageView.setTextWithLinks(errorInfo.getMessage(this))
-        binding.errorView.text = formErrorText(errorInfo.stackTraces)
-
         // print stack trace once again for debugging:
         errorInfo.stackTraces.forEach { Log.e(TAG, it) }
-    }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.error_menu, menu)
-        return true
-    }
+        val sorryMessage = getString(R.string.sorry_string) + "\n" + getString(R.string.guru_meditation)
+        val errorMessage = errorInfo.getMessage(this).toString()
+        val infoLabels = getString(R.string.info_labels)
+        val infoValues = buildInfoString()
+        val errorDetails = formErrorText(errorInfo.stackTraces)
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                onBackPressed()
-                true
-            }
-
-            R.id.menu_item_share_error -> {
-                ShareUtils.shareText(
-                    applicationContext,
-                    getString(R.string.error_report_title),
-                    buildJson()
-                )
-                true
-            }
-
-            else -> false
+        composeSetContent {
+            ErrorReportScreen(
+                sorryMessage = sorryMessage,
+                errorMessage = errorMessage,
+                infoLabels = infoLabels,
+                infoValues = infoValues,
+                errorDetails = errorDetails,
+                onBackClick = { finish() },
+                onReportViaEmail = { comment ->
+                    openPrivacyPolicyDialog(this, "EMAIL", comment)
+                },
+                onCopyForGitHub = { comment ->
+                    ShareUtils.copyToClipboard(this, buildMarkdown(comment))
+                },
+                onReportOnGitHub = {
+                    openPrivacyPolicyDialog(this, "GITHUB")
+                },
+                onShareError = { comment ->
+                    ShareUtils.shareText(
+                        applicationContext,
+                        getString(R.string.error_report_title),
+                        buildJson(comment)
+                    )
+                }
+            )
         }
     }
 
-    private fun openPrivacyPolicyDialog(context: Context, action: String) {
+    private fun openPrivacyPolicyDialog(
+        context: Context,
+        action: String,
+        comment: String = ""
+    ) {
         AlertDialog.Builder(context)
             .setIcon(android.R.drawable.ic_dialog_alert)
             .setTitle(R.string.privacy_policy_title)
@@ -148,7 +120,7 @@ class ErrorActivity : AppCompatActivity() {
                         .setData("mailto:".toUri()) // only email apps should handle this
                         .putExtra(Intent.EXTRA_EMAIL, arrayOf(ERROR_EMAIL_ADDRESS))
                         .putExtra(Intent.EXTRA_SUBJECT, errorEmailSubject)
-                        .putExtra(Intent.EXTRA_TEXT, buildJson())
+                        .putExtra(Intent.EXTRA_TEXT, buildJson(comment))
                     ShareUtils.openIntentInApp(context, intent)
                 } else if (action == "GITHUB") { // open the NewPipe issue page on GitHub
                     ShareUtils.openUrlInApp(this, ERROR_GITHUB_ISSUE_URL)
@@ -163,24 +135,20 @@ class ErrorActivity : AppCompatActivity() {
         return stacktrace.joinToString(separator + "\n", separator + "\n", separator)
     }
 
-    private fun buildInfo(info: ErrorInfo) {
-        binding.errorInfoLabelsView.text = getString(R.string.info_labels)
-
-        val text = info.userAction.message + "\n" +
-            info.request + "\n" +
+    private fun buildInfoString(): String {
+        return errorInfo.userAction.message + "\n" +
+            errorInfo.request + "\n" +
             contentLanguageString + "\n" +
             contentCountryString + "\n" +
             appLanguage + "\n" +
-            info.getServiceName() + "\n" +
+            errorInfo.getServiceName() + "\n" +
             currentTimeStamp + "\n" +
             packageName + "\n" +
             BuildConfig.VERSION_NAME + "\n" +
             osString
-
-        binding.errorInfosView.text = text
     }
 
-    private fun buildJson(): String {
+    private fun buildJson(comment: String): String {
         try {
             return JsonWriter.string()
                 .`object`()
@@ -195,7 +163,7 @@ class ErrorActivity : AppCompatActivity() {
                 .value("os", osString)
                 .value("time", currentTimeStamp)
                 .array("exceptions", errorInfo.stackTraces.toList())
-                .value("user_comment", binding.errorCommentBox.getText().toString())
+                .value("user_comment", comment)
                 .end()
                 .done()
         } catch (exception: Exception) {
@@ -205,12 +173,11 @@ class ErrorActivity : AppCompatActivity() {
         return ""
     }
 
-    private fun buildMarkdown(): String {
+    private fun buildMarkdown(comment: String): String {
         try {
             return buildString(1024) {
-                val userComment = binding.errorCommentBox.text.toString()
-                if (userComment.isNotEmpty()) {
-                    appendLine(userComment)
+                if (comment.isNotEmpty()) {
+                    appendLine(comment)
                 }
 
                 // basic error info
@@ -223,7 +190,6 @@ class ErrorActivity : AppCompatActivity() {
                 appendLine("* __Service:__ ${errorInfo.getServiceName()}")
                 appendLine("* __Timestamp:__ $currentTimeStamp")
                 appendLine("* __Package:__ $packageName")
-                appendLine("* __Service:__ ${errorInfo.getServiceName()}")
                 appendLine("* __Version:__ ${BuildConfig.VERSION_NAME}")
                 appendLine("* __OS:__ $osString")
 
@@ -260,18 +226,9 @@ class ErrorActivity : AppCompatActivity() {
         }
     }
 
-    private fun addGuruMeditation() {
-        // just an easter egg
-        var text = binding.errorSorryView.text.toString()
-        text += "\n" + getString(R.string.guru_meditation)
-        binding.errorSorryView.text = text
-    }
-
     companion object {
-        // LOG TAGS
         private val TAG = ErrorActivity::class.java.toString()
 
-        // BUNDLE TAGS
         const val ERROR_INFO = "error_info"
 
         private const val ERROR_EMAIL_ADDRESS = "crashreport@newpipe.schabi.org"
