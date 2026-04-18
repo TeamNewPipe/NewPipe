@@ -37,8 +37,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.schabi.newpipe.R
+import org.schabi.newpipe.ui.components.common.PrivacyPolicyDialog
 import org.schabi.newpipe.ui.components.common.ScaffoldWithToolbar
 import org.schabi.newpipe.ui.theme.AppTheme
+
+private const val ACTION_EMAIL = "EMAIL"
+private const val ACTION_GITHUB = "GITHUB"
 
 @Composable
 fun ErrorReportScreen(
@@ -51,9 +55,25 @@ fun ErrorReportScreen(
     onReportViaEmail: (comment: String) -> Unit,
     onCopyForGitHub: (comment: String) -> Unit,
     onReportOnGitHub: () -> Unit,
+    onReadPrivacyPolicy: () -> Unit = {},
     onShareError: (comment: String) -> Unit = {}
 ) {
     var comment by rememberSaveable { mutableStateOf("") }
+    var privacyDialogAction by rememberSaveable { mutableStateOf<String?>(null) }
+
+    privacyDialogAction?.let { action ->
+        PrivacyPolicyDialog(
+            onAccept = {
+                privacyDialogAction = null
+                when (action) {
+                    ACTION_EMAIL -> onReportViaEmail(comment)
+                    ACTION_GITHUB -> onReportOnGitHub()
+                }
+            },
+            onDecline = { privacyDialogAction = null },
+            onReadPrivacyPolicy = onReadPrivacyPolicy
+        )
+    }
 
     ScaffoldWithToolbar(
         title = stringResource(R.string.error_report_title),
@@ -141,7 +161,7 @@ fun ErrorReportScreen(
             // Report via email button
             Spacer(modifier = Modifier.height(16.dp))
             Button(
-                onClick = { onReportViaEmail(comment) },
+                onClick = { privacyDialogAction = ACTION_EMAIL },
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(text = stringResource(R.string.error_report_button_text))
@@ -164,7 +184,7 @@ fun ErrorReportScreen(
 
             // Report on GitHub button
             Button(
-                onClick = onReportOnGitHub,
+                onClick = { privacyDialogAction = ACTION_GITHUB },
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(text = stringResource(R.string.error_report_open_issue_button_text))

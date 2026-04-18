@@ -5,12 +5,10 @@
 
 package org.schabi.newpipe.error
 
-import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AlertDialog
 import androidx.core.content.IntentCompat
 import androidx.core.net.toUri
 import com.grack.nanojson.JsonWriter
@@ -67,7 +65,7 @@ class ErrorActivity : BaseActivity() {
         // print stack trace once again for debugging:
         errorInfo.stackTraces.forEach { Log.e(TAG, it) }
 
-        val sorryMessage = getString(R.string.sorry_string) + "\n" + getString(R.string.guru_meditation)
+        val sorryMessage = getString(R.string.sorry_string)
         val errorMessage = errorInfo.getMessage(this).toString()
         val infoLabels = getString(R.string.info_labels)
         val infoValues = buildInfoString()
@@ -81,14 +79,15 @@ class ErrorActivity : BaseActivity() {
                 infoValues = infoValues,
                 errorDetails = errorDetails,
                 onBackClick = { finish() },
-                onReportViaEmail = { comment ->
-                    openPrivacyPolicyDialog(this, "EMAIL", comment)
-                },
+                onReportViaEmail = { comment -> sendErrorEmail(comment) },
                 onCopyForGitHub = { comment ->
                     ShareUtils.copyToClipboard(this, buildMarkdown(comment))
                 },
                 onReportOnGitHub = {
-                    openPrivacyPolicyDialog(this, "GITHUB")
+                    ShareUtils.openUrlInApp(this, ERROR_GITHUB_ISSUE_URL)
+                },
+                onReadPrivacyPolicy = {
+                    ShareUtils.openUrlInApp(this, getString(R.string.privacy_policy_url))
                 },
                 onShareError = { comment ->
                     ShareUtils.shareText(
@@ -101,33 +100,13 @@ class ErrorActivity : BaseActivity() {
         }
     }
 
-    private fun openPrivacyPolicyDialog(
-        context: Context,
-        action: String,
-        comment: String = ""
-    ) {
-        AlertDialog.Builder(context)
-            .setIcon(android.R.drawable.ic_dialog_alert)
-            .setTitle(R.string.privacy_policy_title)
-            .setMessage(R.string.start_accept_privacy_policy)
-            .setCancelable(false)
-            .setNeutralButton(R.string.read_privacy_policy) { _, _ ->
-                ShareUtils.openUrlInApp(context, context.getString(R.string.privacy_policy_url))
-            }
-            .setPositiveButton(R.string.accept) { _, _ ->
-                if (action == "EMAIL") { // send on email
-                    val intent = Intent(Intent.ACTION_SENDTO)
-                        .setData("mailto:".toUri()) // only email apps should handle this
-                        .putExtra(Intent.EXTRA_EMAIL, arrayOf(ERROR_EMAIL_ADDRESS))
-                        .putExtra(Intent.EXTRA_SUBJECT, errorEmailSubject)
-                        .putExtra(Intent.EXTRA_TEXT, buildJson(comment))
-                    ShareUtils.openIntentInApp(context, intent)
-                } else if (action == "GITHUB") { // open the NewPipe issue page on GitHub
-                    ShareUtils.openUrlInApp(this, ERROR_GITHUB_ISSUE_URL)
-                }
-            }
-            .setNegativeButton(R.string.decline, null)
-            .show()
+    private fun sendErrorEmail(comment: String) {
+        val intent = Intent(Intent.ACTION_SENDTO)
+            .setData("mailto:".toUri())
+            .putExtra(Intent.EXTRA_EMAIL, arrayOf(ERROR_EMAIL_ADDRESS))
+            .putExtra(Intent.EXTRA_SUBJECT, errorEmailSubject)
+            .putExtra(Intent.EXTRA_TEXT, buildJson(comment))
+        ShareUtils.openIntentInApp(this, intent)
     }
 
     private fun formErrorText(stacktrace: Array<String>): String {

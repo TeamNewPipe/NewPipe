@@ -1,0 +1,94 @@
+/*
+ * SPDX-FileCopyrightText: 2025-2026 NewPipe e.V. <https://newpipe-ev.de>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+package org.schabi.newpipe.ui.components.common
+
+import android.content.res.Configuration
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import org.schabi.newpipe.R
+import org.schabi.newpipe.ui.theme.AppTheme
+
+@Composable
+fun PrivacyPolicyDialog(
+    onAccept: () -> Unit,
+    onDecline: () -> Unit,
+    onReadPrivacyPolicy: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDecline,
+        icon = {
+            Icon(
+                imageVector = Icons.Default.Warning,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.error
+            )
+        },
+        title = {
+            Text(
+                text = stringResource(R.string.privacy_policy_title),
+                color = MaterialTheme.colorScheme.onSurface
+            )
+        },
+        text = {
+            Column {
+                Text(
+                    text = stringResource(R.string.start_accept_privacy_policy),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                TextButton(onClick = onReadPrivacyPolicy) {
+                    Text(
+                        text = stringResource(R.string.read_privacy_policy),
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = onAccept) {
+                Text(
+                    text = stringResource(R.string.accept),
+                    color = MaterialTheme.colorScheme.primary
+                )
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDecline) {
+                Text(
+                    text = stringResource(R.string.decline),
+                    color = MaterialTheme.colorScheme.error
+                )
+            }
+        },
+        containerColor = MaterialTheme.colorScheme.surface,
+        titleContentColor = MaterialTheme.colorScheme.onSurface,
+        textContentColor = MaterialTheme.colorScheme.onSurfaceVariant
+    )
+}
+
+@Preview(name = "Light mode", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun PrivacyPolicyDialogPreview() {
+    AppTheme {
+        Surface(color = MaterialTheme.colorScheme.background) {
+            PrivacyPolicyDialog(
+                onAccept = {},
+                onDecline = {},
+                onReadPrivacyPolicy = {}
+            )
+        }
+    }
+}
