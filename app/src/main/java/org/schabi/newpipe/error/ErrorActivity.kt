@@ -15,9 +15,9 @@ import com.grack.nanojson.JsonWriter
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
+import org.schabi.newpipe.BaseActivity
 import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.R
-import org.schabi.newpipe.ui.BaseActivity
 import org.schabi.newpipe.ui.screens.ErrorReportScreen
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.external_communication.ShareUtils
