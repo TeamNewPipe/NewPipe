@@ -1,5 +1,6 @@
 package org.schabi.newpipe.player.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Bitmap
@@ -223,7 +224,7 @@ abstract class VideoPlayerUi protected constructor(
             ShareUtils.copyToClipboard(context, player.videoUrlAtCurrentTime)
             true
         }
-        binding.fullScreenButton.setOnClickListener(
+        binding.fullscreenToggleButtonSecondaryMenu.setOnClickListener(
             makeOnClickListener {
                 player.setRecovery()
                 NavigationHelper.playOnMainPlayer(
@@ -303,8 +304,8 @@ abstract class VideoPlayerUi protected constructor(
         binding.moreOptionsButton.setOnLongClickListener(null)
         binding.share.setOnClickListener(null)
         binding.share.setOnLongClickListener(null)
-        binding.fullScreenButton.setOnClickListener(null)
-        binding.screenRotationButton.setOnClickListener(null)
+        binding.fullscreenToggleButtonSecondaryMenu.setOnClickListener(null)
+        binding.fullscreenToggleButton.setOnClickListener(null)
         binding.playWithKodi.setOnClickListener(null)
         binding.openInBrowser.setOnClickListener(null)
         binding.playerCloseButton.setOnClickListener(null)
@@ -962,6 +963,8 @@ abstract class VideoPlayerUi protected constructor(
         player.toggleShuffleModeEnabled()
     }
 
+    // TODO: don’t reference internal exoplayer2 resources
+    @SuppressLint("PrivateResource")
     override fun onRepeatModeChanged(@RepeatMode repeatMode: Int) {
         super.onRepeatModeChanged(repeatMode)
 
@@ -1477,7 +1480,7 @@ abstract class VideoPlayerUi protected constructor(
                 if (player.currentState == STATE_PLAYING && !isSomePopupMenuVisible) {
                     if (v == binding.playPauseButton ||
                         // Hide controls in fullscreen immediately
-                        (v == binding.screenRotationButton && isFullscreen)
+                        (v == binding.fullscreenToggleButton && isFullscreen)
                     ) {
                         hideControls(0, 0)
                     } else {
