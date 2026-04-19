@@ -146,10 +146,6 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         }
     }
 
-    // `protected` matches the visibility declared in VideoPlayerUi.kt. The Kotlin parent used to
-    // declare this as `internal`, which the Kotlin compiler mangles to a JVM-private name that
-    // Java cannot see, so this class could not compile. Changing to `protected` gives the method
-    // a stable, unmangled JVM name accessible from Java subclasses.
     @Override
     protected BasePlayerGestureListener buildGestureListener() {
         return new MainPlayerGestureListener(this);
