@@ -8,10 +8,12 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import com.google.android.exoplayer2.database.StandaloneDatabaseProvider;
+import com.google.android.exoplayer2.extractor.ts.DefaultTsPayloadReaderFactory;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.source.SingleSampleMediaSource;
 import com.google.android.exoplayer2.source.dash.DashMediaSource;
 import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource;
+import com.google.android.exoplayer2.source.hls.DefaultHlsExtractorFactory;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
 import com.google.android.exoplayer2.source.hls.playlist.DefaultHlsPlaylistTracker;
 import com.google.android.exoplayer2.source.smoothstreaming.DefaultSsChunkSource;
@@ -175,7 +177,11 @@ public class PlayerDataSource {
 
     //region YouTube media source factories
     public HlsMediaSource.Factory getYoutubeHlsMediaSourceFactory() {
-        return new HlsMediaSource.Factory(ytHlsCacheDataSourceFactory);
+        // these custom flags fix AVC1/H264 stutter on some Pixel devices, see
+        // https://github.com/InfinityLoop1308/PipePipeClient/pull/24
+        final int payloadReaderFlags = DefaultTsPayloadReaderFactory.FLAG_DETECT_ACCESS_UNITS;
+        return new HlsMediaSource.Factory(ytHlsCacheDataSourceFactory)
+            .setExtractorFactory(new DefaultHlsExtractorFactory(payloadReaderFlags, true));
     }
 
     public DashMediaSource.Factory getYoutubeDashMediaSourceFactory() {
