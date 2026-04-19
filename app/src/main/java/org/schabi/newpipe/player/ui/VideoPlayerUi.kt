@@ -779,7 +779,7 @@ abstract class VideoPlayerUi protected constructor(
         val playQueue: PlayQueue = player.playQueue ?: return
 
         val showPrev = playQueue.index != 0
-        val showNext = playQueue.index + 1 != playQueue.streams.size
+        val showNext = playQueue.index + 1 != playQueue.size()
 
         binding.playPreviousButton.visibility = if (showPrev) View.VISIBLE else View.INVISIBLE
         binding.playPreviousButton.alpha = if (showPrev) 1.0f else 0.0f
@@ -941,7 +941,7 @@ abstract class VideoPlayerUi protected constructor(
         if (!show || playQueue.index > 0) {
             binding.playPreviousButton.animate(show, duration, AnimationType.SCALE_AND_ALPHA)
         }
-        if (!show || playQueue.index + 1 < playQueue.streams.size) {
+        if (!show || playQueue.index + 1 < playQueue.size()) {
             binding.playNextButton.animate(show, duration, AnimationType.SCALE_AND_ALPHA)
         }
     }
