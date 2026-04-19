@@ -1143,7 +1143,8 @@ public final class VideoDetailFragment
      * = false}, hence preventing it from going directly fullscreen.
      */
     public void openVideoPlayerAutoFullscreen() {
-        openVideoPlayer(forceFullscreen || PlayerHelper.isStartMainPlayerFullscreenEnabled(requireContext()));
+        openVideoPlayer(forceFullscreen
+                || PlayerHelper.isStartMainPlayerFullscreenEnabled(requireContext()));
         forceFullscreen = false;
     }
 
