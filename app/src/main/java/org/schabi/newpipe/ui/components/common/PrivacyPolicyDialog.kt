@@ -38,20 +38,18 @@ fun PrivacyPolicyDialog(
         },
         title = {
             Text(
-                text = stringResource(R.string.privacy_policy_title),
-                color = MaterialTheme.colorScheme.onSurface
+                text = stringResource(R.string.privacy_policy_title)
             )
         },
         text = {
             Column {
                 Text(
-                    text = stringResource(R.string.start_accept_privacy_policy),
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    text = stringResource(R.string.start_accept_privacy_policy)
                 )
                 TextButton(onClick = onReadPrivacyPolicy) {
                     Text(
                         text = stringResource(R.string.read_privacy_policy),
-                        color = MaterialTheme.colorScheme.primary
+                        color = MaterialTheme.colorScheme.secondary
                     )
                 }
             }
@@ -59,8 +57,7 @@ fun PrivacyPolicyDialog(
         confirmButton = {
             TextButton(onClick = onAccept) {
                 Text(
-                    text = stringResource(R.string.accept),
-                    color = MaterialTheme.colorScheme.primary
+                    text = stringResource(R.string.accept)
                 )
             }
         },
@@ -78,17 +75,15 @@ fun PrivacyPolicyDialog(
     )
 }
 
-@Preview(name = "Light mode", uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview(name = "Light mode", uiMode = Configuration.UI_MODE_NIGHT_NO, showBackground = true)
+@Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
 private fun PrivacyPolicyDialogPreview() {
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
-            PrivacyPolicyDialog(
-                onAccept = {},
-                onDecline = {},
-                onReadPrivacyPolicy = {}
-            )
-        }
+        PrivacyPolicyDialog(
+            onAccept = {},
+            onDecline = {},
+            onReadPrivacyPolicy = {}
+        )
     }
 }

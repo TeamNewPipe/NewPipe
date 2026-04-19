@@ -65,19 +65,9 @@ class ErrorActivity : BaseActivity() {
         // print stack trace once again for debugging:
         errorInfo.stackTraces.forEach { Log.e(TAG, it) }
 
-        val sorryMessage = getString(R.string.sorry_string)
-        val errorMessage = errorInfo.getMessage(this).toString()
-        val infoLabels = getString(R.string.info_labels)
-        val infoValues = buildInfoString()
-        val errorDetails = formErrorText(errorInfo.stackTraces)
-
         composeSetContent {
             ErrorReportScreen(
-                sorryMessage = sorryMessage,
-                errorMessage = errorMessage,
-                infoLabels = infoLabels,
-                infoValues = infoValues,
-                errorDetails = errorDetails,
+                errorInfo = errorInfo,
                 onBackClick = { finish() },
                 onReportViaEmail = { comment -> sendErrorEmail(comment) },
                 onCopyForGitHub = { comment ->
@@ -107,24 +97,6 @@ class ErrorActivity : BaseActivity() {
             .putExtra(Intent.EXTRA_SUBJECT, errorEmailSubject)
             .putExtra(Intent.EXTRA_TEXT, buildJson(comment))
         ShareUtils.openIntentInApp(this, intent)
-    }
-
-    private fun formErrorText(stacktrace: Array<String>): String {
-        val separator = "-------------------------------------"
-        return stacktrace.joinToString(separator + "\n", separator + "\n", separator)
-    }
-
-    private fun buildInfoString(): String {
-        return errorInfo.userAction.message + "\n" +
-            errorInfo.request + "\n" +
-            contentLanguageString + "\n" +
-            contentCountryString + "\n" +
-            appLanguage + "\n" +
-            errorInfo.getServiceName() + "\n" +
-            currentTimeStamp + "\n" +
-            packageName + "\n" +
-            BuildConfig.VERSION_NAME + "\n" +
-            osString
     }
 
     private fun buildJson(comment: String): String {

@@ -5,7 +5,9 @@
 
 package org.schabi.newpipe.ui.screens
 
+import android.content.Context
 import android.content.res.Configuration
+import android.os.Build
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,7 +23,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -29,6 +30,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
@@ -36,17 +38,47 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
+import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.R
+import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.ui.components.common.PrivacyPolicyDialog
 import org.schabi.newpipe.ui.components.common.ScaffoldWithToolbar
 import org.schabi.newpipe.ui.theme.AppTheme
+import org.schabi.newpipe.util.Localization
 
 private const val ACTION_EMAIL = "EMAIL"
 private const val ACTION_GITHUB = "GITHUB"
 
 @Composable
 fun ErrorReportScreen(
-    sorryMessage: String,
+    errorInfo: ErrorInfo,
+    onBackClick: () -> Unit,
+    onReportViaEmail: (comment: String) -> Unit,
+    onCopyForGitHub: (comment: String) -> Unit,
+    onReportOnGitHub: () -> Unit,
+    onReadPrivacyPolicy: () -> Unit = {},
+    onShareError: (comment: String) -> Unit = {}
+) {
+    val context = LocalContext.current
+
+    ErrorReportContent(
+        errorMessage = errorInfo.getMessage(context).toString(),
+        infoLabels = stringResource(R.string.info_labels),
+        infoValues = buildInfoString(context, errorInfo),
+        errorDetails = formErrorText(errorInfo.stackTraces),
+        onBackClick = onBackClick,
+        onReportViaEmail = onReportViaEmail,
+        onCopyForGitHub = onCopyForGitHub,
+        onReportOnGitHub = onReportOnGitHub,
+        onReadPrivacyPolicy = onReadPrivacyPolicy,
+        onShareError = onShareError
+    )
+}
+
+@Composable
+private fun ErrorReportContent(
     errorMessage: String,
     infoLabels: String,
     infoValues: String,
@@ -95,7 +127,7 @@ fun ErrorReportScreen(
         ) {
             // Sorry header
             Text(
-                text = sorryMessage,
+                text = stringResource(R.string.sorry_string),
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
@@ -193,23 +225,46 @@ fun ErrorReportScreen(
     }
 }
 
-@Preview(name = "Light mode", uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
+private fun buildInfoString(context: Context, errorInfo: ErrorInfo): String {
+    val contentLanguage = Localization.getPreferredLocalization(context).localizationCode
+    val contentCountry = Localization.getPreferredContentCountry(context).countryCode
+    val appLanguage = Localization.getAppLocale().toString()
+    val osName = System.getProperty("os.name")!!
+    val osBase = Build.VERSION.BASE_OS.ifEmpty { "Android" }
+    val osString = "$osName $osBase ${Build.VERSION.RELEASE} - ${Build.VERSION.SDK_INT}"
+    val timestamp = ZonedDateTime.now().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+
+    return errorInfo.userAction.message + "\n" +
+        errorInfo.request + "\n" +
+        contentLanguage + "\n" +
+        contentCountry + "\n" +
+        appLanguage + "\n" +
+        errorInfo.getServiceName() + "\n" +
+        timestamp + "\n" +
+        context.packageName + "\n" +
+        BuildConfig.VERSION_NAME + "\n" +
+        osString
+}
+
+private fun formErrorText(stackTraces: Array<String>): String {
+    val separator = "-------------------------------------"
+    return stackTraces.joinToString(separator + "\n", separator + "\n", separator)
+}
+
+@Preview(name = "Light mode", uiMode = Configuration.UI_MODE_NIGHT_NO, showBackground = true)
+@Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
 private fun ErrorReportScreenPreview() {
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
-            ErrorReportScreen(
-                sorryMessage = "Sorry, that should not have happened.",
-                errorMessage = "Requested list not handled",
-                infoLabels = "What:\nRequest:\nContent Language:\nContent Country:\nApp Language:\nService:\nTimestamp:\nPackage:\nVersion:\nOS version:",
-                infoValues = "Requested list\nnone\nen\nUS\nen_US\nYouTube\n2026-04-17T12:00:00Z\norg.schabi.newpipe\n0.27.5\nAndroid 14 - 34",
-                errorDetails = "java.lang.IllegalArgumentException: ...\n\tat org.schabi.newpipe.SomeClass.method(SomeClass.kt:42)",
-                onBackClick = {},
-                onReportViaEmail = {},
-                onCopyForGitHub = {},
-                onReportOnGitHub = {}
-            )
-        }
+        ErrorReportContent(
+            errorMessage = "Requested list not handled",
+            infoLabels = "What:\nRequest:\nContent Language:\nContent Country:\nApp Language:\nService:\nTimestamp:\nPackage:\nVersion:\nOS version:",
+            infoValues = "Requested list\nnone\nen\nUS\nen_US\nYouTube\n2026-04-17T12:00:00Z\norg.schabi.newpipe\n0.27.5\nAndroid 14 - 34",
+            errorDetails = "-------------------------------------\njava.lang.IllegalArgumentException: ...\n\tat org.schabi.newpipe.SomeClass.method(SomeClass.kt:42)\n-------------------------------------",
+            onBackClick = {},
+            onReportViaEmail = {},
+            onCopyForGitHub = {},
+            onReportOnGitHub = {}
+        )
     }
 }
