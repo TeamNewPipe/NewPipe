@@ -52,7 +52,7 @@ object FilenameUtils {
      * Create a valid filename.
      *
      * @param title the title to create a filename from
-     * @param invalidCharacters patter matching invalid characters
+     * @param invalidCharacters pattern matching invalid characters
      * @param replacementChar the replacement
      * @return the filename
      */
