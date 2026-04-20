@@ -1152,7 +1152,6 @@ public final class VideoDetailFragment
         this.forceFullscreen = force;
     }
 
-    //return the URL of the stream currently handled by this fragment.
     @Nullable
     public String getUrl() {
         return url;
