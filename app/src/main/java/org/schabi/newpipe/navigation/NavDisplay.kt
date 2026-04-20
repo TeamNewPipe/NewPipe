@@ -5,25 +5,33 @@
 
 package org.schabi.newpipe.navigation
 
+import android.content.Intent
 import androidx.activity.compose.LocalActivity
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.core.content.IntentCompat
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
+import org.schabi.newpipe.ComposeActivity
+import org.schabi.newpipe.MainActivity
+import org.schabi.newpipe.R
+import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.ErrorReportHelper
 import org.schabi.newpipe.ui.screens.ErrorReportScreen
-import org.schabi.newpipe.ui.screens.settings.navigation.SettingsNavigation
-import org.schabi.newpipe.util.external_communication.ShareUtils
+import org.schabi.newpipe.ui.screens.settings.debug.DebugScreen
+import org.schabi.newpipe.ui.screens.settings.home.SettingsHomeScreen
 
 /**
  * Top-level navigation display for all Compose screens in the app.
  * @param startDestination the initial screen to display, resolved from the launching Intent.
  */
-
 @Composable
 fun NavDisplay(startDestination: NavKey) {
     val backstack = rememberNavBackStack(startDestination)
@@ -33,26 +41,50 @@ fun NavDisplay(startDestination: NavKey) {
     val activity = LocalActivity.current
 
     fun onNavigateUp() {
-        if (backstack.size == 1) activity?.finish() else backstack.removeLastOrNull()
+        if (backstack.size > 1) {
+            backstack.removeLastOrNull()
+        } else {
+            // If this is the last screen in the backstack and there's no parent task,
+            // navigate to MainActivity so the user lands on the home screen.
+            activity?.let {
+                if (it.isTaskRoot) {
+                    it.startActivity(
+                        Intent(it, MainActivity::class.java).apply {
+                            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        }
+                    )
+                }
+                it.finish()
+            }
+        }
     }
 
     NavDisplay(
         backStack = backstack,
-        onBack = { backstack.removeLastOrNull() },
+        onBack = ::onNavigateUp,
         entryDecorators = listOf(
             rememberSaveableStateHolderNavEntryDecorator(),
             rememberViewModelStoreNavEntryDecorator()
         ),
         entryProvider = entryProvider {
-            entry<Screen.Error> { screen ->
+            // Error Report
+            entry<Screen.Error> {
+                val errorInfo = remember {
+                    IntentCompat.getParcelableExtra(
+                        activity!!.intent,
+                        ComposeActivity.EXTRA_ERROR_INFO,
+                        ErrorInfo::class.java
+                    )!!
+                }
+
                 ErrorReportScreen(
-                    errorInfo = screen.errorInfo,
+                    errorInfo = errorInfo,
                     onBackClick = ::onNavigateUp,
                     onReportViaEmail = { comment ->
-                        ErrorReportHelper.sendErrorEmail(context, screen.errorInfo, comment)
+                        ErrorReportHelper.sendErrorEmail(context, errorInfo, comment)
                     },
                     onCopyForGitHub = { comment ->
-                        ErrorReportHelper.copyForGitHub(context, screen.errorInfo, comment)
+                        ErrorReportHelper.copyForGitHub(context, errorInfo, comment)
                     },
                     onReportOnGitHub = {
                         ErrorReportHelper.openGitHubIssues(context)
@@ -61,13 +93,65 @@ fun NavDisplay(startDestination: NavKey) {
                         ErrorReportHelper.openPrivacyPolicy(context)
                     },
                     onShareError = { comment ->
-                        ErrorReportHelper.shareError(context, screen.errorInfo, comment)
+                        ErrorReportHelper.shareError(context, errorInfo, comment)
                     }
                 )
             }
 
+            // Settings
             entry<Screen.Settings.Home> {
-                SettingsNavigation(onExitSettings = ::onNavigateUp)
+                SettingsHomeScreen(
+                    onNavigate = { screen -> backstack.add(screen) },
+                    onBackClick = ::onNavigateUp
+                )
+            }
+
+            entry<Screen.Settings.Player> {
+                Text(stringResource(id = R.string.settings_category_player_title))
+            }
+
+            entry<Screen.Settings.Behaviour> {
+                Text(stringResource(id = R.string.settings_category_player_behavior_title))
+            }
+
+            entry<Screen.Settings.Download> {
+                Text(stringResource(id = R.string.settings_category_downloads_title))
+            }
+
+            entry<Screen.Settings.LookFeel> {
+                Text(stringResource(id = R.string.settings_category_look_and_feel_title))
+            }
+
+            entry<Screen.Settings.HistoryCache> {
+                Text(stringResource(id = R.string.settings_category_history_title))
+            }
+
+            entry<Screen.Settings.Content> {
+                Text(stringResource(id = R.string.settings_category_content_title))
+            }
+
+            entry<Screen.Settings.Feed> {
+                Text(stringResource(id = R.string.settings_category_feed_title))
+            }
+
+            entry<Screen.Settings.Services> {
+                Text(stringResource(id = R.string.settings_category_services_title))
+            }
+
+            entry<Screen.Settings.Language> {
+                Text(stringResource(id = R.string.settings_category_language_title))
+            }
+
+            entry<Screen.Settings.BackupRestore> {
+                Text(stringResource(id = R.string.settings_category_backup_restore_title))
+            }
+
+            entry<Screen.Settings.Updates> {
+                Text(stringResource(id = R.string.settings_category_updates_title))
+            }
+
+            entry<Screen.Settings.Debug> {
+                DebugScreen(onBackClick = { backstack.removeLastOrNull() })
             }
         }
     )

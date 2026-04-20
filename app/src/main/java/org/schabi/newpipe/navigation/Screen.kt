@@ -7,13 +7,12 @@ package org.schabi.newpipe.navigation
 
 import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable
-import org.schabi.newpipe.error.ErrorInfo
 
 @Serializable
 sealed interface Screen : NavKey {
 
     @Serializable
-    data class Error(val errorInfo: ErrorInfo) : Screen
+    data object Error : Screen
 
     sealed interface Settings : Screen {
         @Serializable

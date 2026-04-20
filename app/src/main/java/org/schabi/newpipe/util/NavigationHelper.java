@@ -66,8 +66,8 @@ import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
+import org.schabi.newpipe.ComposeActivity;
 import org.schabi.newpipe.settings.SettingsActivity;
-import org.schabi.newpipe.settings.SettingsV2Activity;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.List;
@@ -640,12 +640,13 @@ public final class NavigationHelper {
     }
 
     public static void openSettings(final Context context) {
-        final Class<?> settingsClass = PreferenceManager.getDefaultSharedPreferences(context)
+        final boolean useCompose = PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(Localization.compatGetString(context,
-                                R.string.settings_layout_redesign_key), false)
-                ? SettingsV2Activity.class : SettingsActivity.class;
+                                R.string.settings_layout_redesign_key), false);
 
-        final Intent intent = new Intent(context, settingsClass);
+        final Intent intent = useCompose
+                ? ComposeActivity.Companion.settingsIntent(context)
+                : new Intent(context, SettingsActivity.class);
         context.startActivity(intent);
     }
 

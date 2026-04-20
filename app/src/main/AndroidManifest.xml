@@ -95,10 +95,6 @@
             android:exported="false"
             android:label="@string/settings" />
 
-        <activity
-            android:name=".settings.SettingsV2Activity"
-            android:exported="true"
-            android:label="@string/settings" />
 
         <activity
             android:name=".about.AboutActivity"
@@ -132,10 +128,6 @@
             android:exported="false"
             android:label="@string/general_error"
             android:theme="@android:style/Theme.NoDisplay" />
-
-        <activity
-            android:name=".error.ErrorActivity"
-            android:exported="false" />
 
         <!-- giga get related -->
         <activity

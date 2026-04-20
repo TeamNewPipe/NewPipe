@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.google.android.material.snackbar.Snackbar
+import org.schabi.newpipe.ComposeActivity
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 
@@ -148,10 +149,7 @@ class ErrorUtil {
         }
 
         private fun getErrorActivityIntent(context: Context, errorInfo: ErrorInfo): Intent {
-            val intent = Intent(context, ErrorActivity::class.java)
-            intent.putExtra(ErrorActivity.ERROR_INFO, errorInfo)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            return intent
+            return ComposeActivity.errorIntent(context, errorInfo)
         }
 
         private fun showSnackbar(context: Context, rootView: View?, errorInfo: ErrorInfo) {

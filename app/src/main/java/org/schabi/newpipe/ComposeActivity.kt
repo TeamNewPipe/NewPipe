@@ -14,7 +14,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.core.content.IntentCompat
 import androidx.navigation3.runtime.NavKey
 import dagger.hilt.android.AndroidEntryPoint
 import org.schabi.newpipe.error.ErrorInfo
@@ -28,11 +27,11 @@ import org.schabi.newpipe.ui.theme.AppTheme
  * via Intent with extras specifying which screen to display.
  */
 @AndroidEntryPoint
-class ComposeActivity: ComponentActivity() {
+class ComposeActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge(
-            navigationBarStyle = SystemBarStyle.Companion.auto(Color.TRANSPARENT, Color.TRANSPARENT)
+            navigationBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT)
         )
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             window.isNavigationBarContrastEnforced = false
@@ -50,13 +49,10 @@ class ComposeActivity: ComponentActivity() {
 
     private fun resolveStartDestination(intent: Intent): NavKey {
         return when (intent.getStringExtra(EXTRA_SCREEN)) {
-            SCREEN_ERROR -> {
-                val errorInfo = IntentCompat.getParcelableExtra(
-                    intent, EXTRA_ERROR_INFO, ErrorInfo::class.java
-                ) ?: throw IllegalArgumentException("ErrorInfo is required for error screen")
-                Screen.Error(errorInfo)
-            }
+            SCREEN_ERROR -> Screen.Error
+
             SCREEN_SETTINGS -> Screen.Settings.Home
+
             else -> throw IllegalArgumentException(
                 "Unknown screen: ${intent.getStringExtra(EXTRA_SCREEN)}"
             )
@@ -70,14 +66,17 @@ class ComposeActivity: ComponentActivity() {
         const val SCREEN_ERROR = "error"
         const val SCREEN_SETTINGS = "settings"
 
-        /**
-         * Creates an intent to launch the error report screen.
-         */
         fun errorIntent(context: Context, errorInfo: ErrorInfo): Intent {
             return Intent(context, ComposeActivity::class.java).apply {
                 putExtra(EXTRA_SCREEN, SCREEN_ERROR)
                 putExtra(EXTRA_ERROR_INFO, errorInfo)
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+        }
+
+        fun settingsIntent(context: Context): Intent {
+            return Intent(context, ComposeActivity::class.java).apply {
+                putExtra(EXTRA_SCREEN, SCREEN_SETTINGS)
             }
         }
     }

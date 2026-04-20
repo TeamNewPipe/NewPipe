@@ -11,12 +11,12 @@ import android.os.Build
 import android.util.Log
 import androidx.core.net.toUri
 import com.grack.nanojson.JsonWriter
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.R
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.external_communication.ShareUtils
-import java.time.ZonedDateTime
-import java.time.format.DateTimeFormatter
 
 /**
  * Pure utility functions for building and sending error reports.
@@ -131,14 +131,11 @@ object ErrorReportHelper {
         ShareUtils.openUrlInApp(context, context.getString(R.string.privacy_policy_url))
     }
 
-    private fun getContentLanguage(context: Context): String =
-        Localization.getPreferredLocalization(context).localizationCode
+    private fun getContentLanguage(context: Context): String = Localization.getPreferredLocalization(context).localizationCode
 
-    private fun getContentCountry(context: Context): String =
-        Localization.getPreferredContentCountry(context).countryCode
+    private fun getContentCountry(context: Context): String = Localization.getPreferredContentCountry(context).countryCode
 
-    private fun getAppLanguage(): String =
-        Localization.getAppLocale().toString()
+    private fun getAppLanguage(): String = Localization.getAppLocale().toString()
 
     private fun getOsString(): String {
         val name = System.getProperty("os.name")!!
@@ -146,7 +143,5 @@ object ErrorReportHelper {
         return "$name $osBase ${Build.VERSION.RELEASE} - ${Build.VERSION.SDK_INT}"
     }
 
-    private fun getCurrentTimestamp(): String =
-        ZonedDateTime.now().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+    private fun getCurrentTimestamp(): String = ZonedDateTime.now().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
 }
-
