@@ -9,6 +9,7 @@ import com.google.android.exoplayer2.upstream.HttpDataSource
 import com.google.android.exoplayer2.upstream.Loader
 import java.net.UnknownHostException
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.Info
 import org.schabi.newpipe.extractor.ServiceList
@@ -35,6 +36,7 @@ import org.schabi.newpipe.util.text.getText
  * An error has occurred in the app. This class contains plain old parcelable data that can be used
  * to report the error and to show it to the user along with correct action buttons.
  */
+@Serializable
 @Parcelize
 class ErrorInfo private constructor(
     val stackTraces: Array<String>,
@@ -141,6 +143,7 @@ class ErrorInfo private constructor(
     }
 
     companion object {
+        @Serializable
         @Parcelize
         class ErrorMessage(
             @StringRes

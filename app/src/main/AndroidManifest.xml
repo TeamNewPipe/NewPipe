@@ -81,6 +81,10 @@
         </service>
 
         <activity
+            android:name=".ComposeActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".player.PlayQueueActivity"
             android:exported="false"
             android:label="@string/title_activity_play_queue"
