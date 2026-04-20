@@ -24,6 +24,7 @@ import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.ErrorReportHelper
+import org.schabi.newpipe.ui.screens.ErrorReportEvent
 import org.schabi.newpipe.ui.screens.ErrorReportScreen
 import org.schabi.newpipe.ui.screens.settings.debug.DebugScreen
 import org.schabi.newpipe.ui.screens.settings.home.SettingsHomeScreen
@@ -79,21 +80,26 @@ fun NavDisplay(startDestination: NavKey) {
 
                 ErrorReportScreen(
                     errorInfo = errorInfo,
-                    onBackClick = ::onNavigateUp,
-                    onReportViaEmail = { comment ->
-                        ErrorReportHelper.sendErrorEmail(context, errorInfo, comment)
-                    },
-                    onCopyForGitHub = { comment ->
-                        ErrorReportHelper.copyForGitHub(context, errorInfo, comment)
-                    },
-                    onReportOnGitHub = {
-                        ErrorReportHelper.openGitHubIssues(context)
-                    },
-                    onReadPrivacyPolicy = {
-                        ErrorReportHelper.openPrivacyPolicy(context)
-                    },
-                    onShareError = { comment ->
-                        ErrorReportHelper.shareError(context, errorInfo, comment)
+                    onEvent = { event ->
+                        when (event) {
+                            is ErrorReportEvent.ReportViaEmail ->
+                                ErrorReportHelper.sendErrorEmail(context, errorInfo, event.comment)
+
+                            is ErrorReportEvent.CopyForGitHub ->
+                                ErrorReportHelper.copyForGitHub(context, errorInfo, event.comment)
+
+                            is ErrorReportEvent.ReportOnGitHub ->
+                                ErrorReportHelper.openGitHubIssues(context)
+
+                            is ErrorReportEvent.ReadPrivacyPolicy ->
+                                ErrorReportHelper.openPrivacyPolicy(context)
+
+                            is ErrorReportEvent.ShareError ->
+                                ErrorReportHelper.shareError(context, errorInfo, event.comment)
+
+                            is ErrorReportEvent.NavigateUp ->
+                                onNavigateUp()
+                        }
                     }
                 )
             }

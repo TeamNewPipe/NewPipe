@@ -48,18 +48,19 @@ import org.schabi.newpipe.ui.components.common.ScaffoldWithToolbar
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.Localization
 
-private const val ACTION_EMAIL = "EMAIL"
-private const val ACTION_GITHUB = "GITHUB"
+sealed interface ErrorReportEvent {
+    data class ReportViaEmail(val comment: String) : ErrorReportEvent
+    data class CopyForGitHub(val comment: String) : ErrorReportEvent
+    data object ReportOnGitHub : ErrorReportEvent
+    data object ReadPrivacyPolicy : ErrorReportEvent
+    data class ShareError(val comment: String) : ErrorReportEvent
+    data object NavigateUp : ErrorReportEvent
+}
 
 @Composable
 fun ErrorReportScreen(
     errorInfo: ErrorInfo,
-    onBackClick: () -> Unit,
-    onReportViaEmail: (comment: String) -> Unit,
-    onCopyForGitHub: (comment: String) -> Unit,
-    onReportOnGitHub: () -> Unit,
-    onReadPrivacyPolicy: () -> Unit = {},
-    onShareError: (comment: String) -> Unit = {}
+    onEvent: (ErrorReportEvent) -> Unit
 ) {
     val context = LocalContext.current
 
@@ -68,14 +69,12 @@ fun ErrorReportScreen(
         infoLabels = stringResource(R.string.info_labels),
         infoValues = buildInfoString(context, errorInfo),
         errorDetails = formErrorText(errorInfo.stackTraces),
-        onBackClick = onBackClick,
-        onReportViaEmail = onReportViaEmail,
-        onCopyForGitHub = onCopyForGitHub,
-        onReportOnGitHub = onReportOnGitHub,
-        onReadPrivacyPolicy = onReadPrivacyPolicy,
-        onShareError = onShareError
+        onEvent = onEvent
     )
 }
+
+private const val ACTION_EMAIL = "EMAIL"
+private const val ACTION_GITHUB = "GITHUB"
 
 @Composable
 private fun ErrorReportContent(
@@ -83,12 +82,7 @@ private fun ErrorReportContent(
     infoLabels: String,
     infoValues: String,
     errorDetails: String,
-    onBackClick: () -> Unit,
-    onReportViaEmail: (comment: String) -> Unit,
-    onCopyForGitHub: (comment: String) -> Unit,
-    onReportOnGitHub: () -> Unit,
-    onReadPrivacyPolicy: () -> Unit = {},
-    onShareError: (comment: String) -> Unit = {}
+    onEvent: (ErrorReportEvent) -> Unit
 ) {
     var comment by rememberSaveable { mutableStateOf("") }
     var privacyDialogAction by rememberSaveable { mutableStateOf<String?>(null) }
@@ -98,20 +92,20 @@ private fun ErrorReportContent(
             onAccept = {
                 privacyDialogAction = null
                 when (action) {
-                    ACTION_EMAIL -> onReportViaEmail(comment)
-                    ACTION_GITHUB -> onReportOnGitHub()
+                    ACTION_EMAIL -> onEvent(ErrorReportEvent.ReportViaEmail(comment))
+                    ACTION_GITHUB -> onEvent(ErrorReportEvent.ReportOnGitHub)
                 }
             },
             onDecline = { privacyDialogAction = null },
-            onReadPrivacyPolicy = onReadPrivacyPolicy
+            onReadPrivacyPolicy = { onEvent(ErrorReportEvent.ReadPrivacyPolicy) }
         )
     }
 
     ScaffoldWithToolbar(
         title = stringResource(R.string.error_report_title),
-        onBackClick = onBackClick,
+        onBackClick = { onEvent(ErrorReportEvent.NavigateUp) },
         actions = {
-            IconButton(onClick = { onShareError(comment) }) {
+            IconButton(onClick = { onEvent(ErrorReportEvent.ShareError(comment)) }) {
                 Icon(
                     painter = painterResource(R.drawable.ic_share),
                     contentDescription = stringResource(R.string.share)
@@ -208,7 +202,7 @@ private fun ErrorReportContent(
 
             // Copy for GitHub button
             Button(
-                onClick = { onCopyForGitHub(comment) },
+                onClick = { onEvent(ErrorReportEvent.CopyForGitHub(comment)) },
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(text = stringResource(R.string.copy_for_github))
@@ -261,10 +255,7 @@ private fun ErrorReportScreenPreview() {
             infoLabels = "What:\nRequest:\nContent Language:\nContent Country:\nApp Language:\nService:\nTimestamp:\nPackage:\nVersion:\nOS version:",
             infoValues = "Requested list\nnone\nen\nUS\nen_US\nYouTube\n2026-04-17T12:00:00Z\norg.schabi.newpipe\n0.27.5\nAndroid 14 - 34",
             errorDetails = "-------------------------------------\njava.lang.IllegalArgumentException: ...\n\tat org.schabi.newpipe.SomeClass.method(SomeClass.kt:42)\n-------------------------------------",
-            onBackClick = {},
-            onReportViaEmail = {},
-            onCopyForGitHub = {},
-            onReportOnGitHub = {}
+            onEvent = {}
         )
     }
 }
