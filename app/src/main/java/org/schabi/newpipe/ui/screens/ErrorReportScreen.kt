@@ -48,6 +48,9 @@ import org.schabi.newpipe.ui.components.common.ScaffoldWithToolbar
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.Localization
 
+private const val ACTION_EMAIL = "EMAIL"
+private const val ACTION_GITHUB = "GITHUB"
+
 sealed interface ErrorReportEvent {
     data class ReportViaEmail(val comment: String) : ErrorReportEvent
     data class CopyForGitHub(val comment: String) : ErrorReportEvent
@@ -72,9 +75,6 @@ fun ErrorReportScreen(
         onEvent = onEvent
     )
 }
-
-private const val ACTION_EMAIL = "EMAIL"
-private const val ACTION_GITHUB = "GITHUB"
 
 @Composable
 private fun ErrorReportContent(

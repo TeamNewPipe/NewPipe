@@ -5,7 +5,6 @@
 
 package org.schabi.newpipe.navigation
 
-import android.content.Intent
 import androidx.activity.compose.LocalActivity
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,7 +19,6 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import org.schabi.newpipe.ComposeActivity
-import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.ErrorReportHelper
@@ -45,18 +43,7 @@ fun NavDisplay(startDestination: NavKey) {
         if (backstack.size > 1) {
             backstack.removeLastOrNull()
         } else {
-            // If this is the last screen in the backstack and there's no parent task,
-            // navigate to MainActivity so the user lands on the home screen.
-            activity?.let {
-                if (it.isTaskRoot) {
-                    it.startActivity(
-                        Intent(it, MainActivity::class.java).apply {
-                            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                        }
-                    )
-                }
-                it.finish()
-            }
+            activity?.finish()
         }
     }
 

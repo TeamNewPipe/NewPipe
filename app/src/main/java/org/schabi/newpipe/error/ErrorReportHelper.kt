@@ -48,8 +48,8 @@ object ErrorReportHelper {
                 .value("user_comment", comment)
                 .end()
                 .done()
-        } catch (e: Exception) {
-            Log.e(TAG, "Could not build json", e)
+        } catch (exception: Exception) {
+            Log.e(TAG, "Could not build json", exception)
         }
         return ""
     }
@@ -95,8 +95,8 @@ object ErrorReportHelper {
 
                 append("<hr>\n")
             }
-        } catch (e: Exception) {
-            Log.e(TAG, "Could not build markdown", e)
+        } catch (exception: Exception) {
+            Log.e(TAG, "Could not build markdown", exception)
             return ""
         }
     }
