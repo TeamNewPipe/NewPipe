@@ -1513,4 +1513,15 @@
         <item>@string/image_quality_medium_key</item>
         <item>@string/image_quality_high_key</item>
     </string-array>
+
+    <!-- Bullet comments -->
+    <string name="top_bottom_bullet_comments_duration_key">top_bottom_bullet_comments_duration_key</string>
+    <string name="regular_bullet_comments_duration_key">regular_bullet_comments_duration_key</string>
+    <string name="bullet_comments_outline_radius_key">bullet_comments_outline_radius_key</string>
+    <string name="bullet_comments_font_key">bullet_comments_font_key</string>
+    <string name="bullet_comments_opacity_key">bullet_comments_opacity_key</string>
+    <string name="enable_max_rows_customization_key">enable_max_rows_customization_key</string>
+    <string name="max_bullet_comments_rows_top_key">max_bullet_comments_rows_top_key</string>
+    <string name="max_bullet_comments_rows_bottom_key">max_bullet_comments_rows_bottom_key</string>
+    <string name="max_bullet_comments_rows_regular_key">max_bullet_comments_rows_regular_key</string>
 </resources>

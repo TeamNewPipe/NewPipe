@@ -41,6 +41,7 @@ public final class SettingsResourceRegistry {
         add(UpdateSettingsFragment.class, R.xml.update_settings);
         add(VideoAudioSettingsFragment.class, R.xml.video_audio_settings);
         add(ExoPlayerSettingsFragment.class, R.xml.exoplayer_settings);
+        add(BulletCommentsSettingsFragment.class, R.xml.bullet_comments_settings);
         add(BackupRestoreSettingsFragment.class, R.xml.backup_restore_settings);
     }
 
