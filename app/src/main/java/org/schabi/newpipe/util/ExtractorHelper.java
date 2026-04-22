@@ -40,6 +40,7 @@ import org.schabi.newpipe.extractor.ListExtractor.InfoItemsPage;
 import org.schabi.newpipe.extractor.MetaInfo;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.Page;
+import org.schabi.newpipe.extractor.bulletComments.BulletCommentsInfo;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.channel.tabs.ChannelTabInfo;
 import org.schabi.newpipe.extractor.kiosk.KioskInfo;
@@ -166,6 +167,15 @@ public final class ExtractorHelper {
                                                  final boolean forceLoad) {
         return checkCache(forceLoad, serviceId, url, InfoCache.Type.KIOSK,
                 Single.fromCallable(() -> KioskInfo.getInfo(NewPipe.getService(serviceId), url)));
+    }
+
+    public static Single<BulletCommentsInfo> getBulletCommentsInfo(final int serviceId,
+                                                                   final String url,
+                                                                   final boolean forceLoad) {
+        checkServiceId(serviceId);
+        return checkCache(forceLoad, serviceId, url, InfoCache.Type.BULLET_COMMENTS,
+                Single.fromCallable(() ->
+                        BulletCommentsInfo.getInfo(NewPipe.getService(serviceId), url)));
     }
 
     public static Single<InfoItemsPage<StreamInfoItem>> getMoreKioskItems(final int serviceId,
