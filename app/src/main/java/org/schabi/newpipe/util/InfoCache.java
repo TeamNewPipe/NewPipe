@@ -55,6 +55,7 @@ public final class InfoCache {
         CHANNEL,
         CHANNEL_TAB,
         COMMENTS,
+        BULLET_COMMENTS,
         PLAYLIST,
         KIOSK,
     }
