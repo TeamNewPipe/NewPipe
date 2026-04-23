@@ -75,7 +75,7 @@ private fun CommentSection(
                     val commentInfo = uiState.data
                     val count = commentInfo.commentCount
 
-                    if (commentInfo.isCommentsDisabled) {
+                    if (commentInfo.isCommentsDisabled && !commentInfo.isLiveChat) {
                         item {
                             EmptyStateComposable(
                                 spec = EmptyStateSpec.DisabledComments,
@@ -85,7 +85,7 @@ private fun CommentSection(
 
                             )
                         }
-                    } else if (count == 0) {
+                    } else if (count == 0 && !commentInfo.isLiveChat) {
                         item {
                             EmptyStateComposable(
                                 spec = EmptyStateSpec.NoComments,
@@ -96,7 +96,7 @@ private fun CommentSection(
                         }
                     } else {
                         // do not show anything if the comment count is unknown
-                        if (count >= 0) {
+                        if (count >= 0 && !commentInfo.isLiveChat) {
                             item {
                                 Text(
                                     modifier = Modifier
@@ -136,8 +136,19 @@ private fun CommentSection(
                             }
 
                             else -> {
-                                items(comments.itemCount) {
-                                    Comment(comment = comments[it]!!) {}
+                                if (comments.itemCount == 0 && commentInfo.isLiveChat) {
+                                    item {
+                                        EmptyStateComposable(
+                                            spec = EmptyStateSpec.NoComments,
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .heightIn(min = 128.dp)
+                                        )
+                                    }
+                                } else {
+                                    items(comments.itemCount) {
+                                        Comment(comment = comments[it]!!) {}
+                                    }
                                 }
                             }
                         }
@@ -211,7 +222,8 @@ private fun CommentSectionSuccessPreview() {
                         comments = comments,
                         nextPage = null,
                         commentCount = 10,
-                        isCommentsDisabled = false
+                        isCommentsDisabled = false,
+                        isLiveChat = false
                     )
                 ),
                 commentsFlow = flowOf(PagingData.from(comments))
