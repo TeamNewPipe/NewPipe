@@ -12,6 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -58,6 +59,14 @@ private fun CommentSection(
     val comments = commentsFlow.collectAsLazyPagingItems()
     val nestedScrollInterop = rememberNestedScrollInteropConnection()
     val state = rememberLazyListState()
+
+    // Auto-scroll to top when new live chat messages arrive
+    val isLiveChat = uiState is Resource.Success && uiState.data.isLiveChat
+    LaunchedEffect(liveChatItems.size) {
+        if (isLiveChat && liveChatItems.isNotEmpty()) {
+            state.scrollToItem(0)
+        }
+    }
 
     LazyColumnThemedScrollbar(state = state) {
         LazyColumn(
