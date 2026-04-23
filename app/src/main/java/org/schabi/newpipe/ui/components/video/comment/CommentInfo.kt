@@ -12,7 +12,8 @@ class CommentInfo(
     val comments: List<CommentsInfoItem>,
     val nextPage: Page?,
     val commentCount: Int,
-    val isCommentsDisabled: Boolean
+    val isCommentsDisabled: Boolean,
+    val isLiveChat: Boolean = false
 ) {
     constructor(commentsInfo: CommentsInfo) : this(
         commentsInfo.serviceId,
@@ -20,6 +21,7 @@ class CommentInfo(
         commentsInfo.relatedItems,
         commentsInfo.nextPage,
         commentsInfo.commentsCount,
-        commentsInfo.isCommentsDisabled
+        commentsInfo.isCommentsDisabled,
+        commentsInfo.isLiveChat
     )
 }
