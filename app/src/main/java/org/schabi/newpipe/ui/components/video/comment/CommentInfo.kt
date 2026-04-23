@@ -13,7 +13,7 @@ class CommentInfo(
     val nextPage: Page?,
     val commentCount: Int,
     val isCommentsDisabled: Boolean,
-    val isLiveChat: Boolean = false
+    val isLiveChat: Boolean
 ) {
     constructor(commentsInfo: CommentsInfo) : this(
         commentsInfo.serviceId,
