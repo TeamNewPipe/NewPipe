@@ -12,13 +12,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.comments.CommentsInfo
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
@@ -51,7 +55,10 @@ class CommentsViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
         .flowOn(Dispatchers.IO)
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), Resource.Loading)
 
-    // Live chat via PagingData (broken approach)
+    // Separate flow for live chat items (not using Paging 3)
+    private val _liveChatItems = MutableStateFlow<List<CommentsInfoItem>>(emptyList())
+    val liveChatItems: StateFlow<List<CommentsInfoItem>> = _liveChatItems
+
     @OptIn(ExperimentalCoroutinesApi::class)
     val comments: Flow<PagingData<CommentsInfoItem>> = uiState
         .filterIsInstance<Resource.Success<CommentInfo>>()
@@ -59,7 +66,10 @@ class CommentsViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
             val info = it.data
             Log.i(TAG, "flatMapLatest: isLiveChat=${info.isLiveChat}, items=${info.comments.size}")
             if (info.isLiveChat) {
-                liveChatPagingData(info)
+                _liveChatItems.value = info.comments
+                startLiveChatPolling(info)
+                // Return empty PagingData for live chat (items come from liveChatItems flow)
+                kotlinx.coroutines.flow.flowOf(androidx.paging.PagingData.empty())
             } else {
                 Pager(PagingConfig(pageSize = 20, enablePlaceholders = false)) {
                     CommentsSource(info)
@@ -68,29 +78,32 @@ class CommentsViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
         }
         .cachedIn(viewModelScope)
 
-    private fun liveChatPagingData(info: CommentInfo): Flow<PagingData<CommentsInfoItem>> = flow {
-        val allItems = info.comments.toMutableList()
-        emit(PagingData.from(allItems))
+    private fun startLiveChatPolling(info: CommentInfo) {
         var nextPage = info.nextPage
-        while (true) {
-            delay(3000)
-            if (nextPage == null) {
-                Log.d(TAG, "liveChatPolling: nextPage is null, skipping")
-                continue
-            }
-            try {
-                Log.d(TAG, "liveChatPolling: fetching more items...")
-                val result = CommentsInfo.getMoreItems(
-                    NewPipe.getService(info.serviceId),
-                    info.url,
-                    nextPage
-                )
-                Log.i(TAG, "liveChatPolling: fetched ${result.items.size} items")
-                allItems.addAll(result.items)
-                emit(PagingData.from(allItems))
-                nextPage = result.nextPage
-            } catch (e: Exception) {
-                Log.e(TAG, "liveChatPolling: failed to fetch more items", e)
+        Log.i(TAG, "startLiveChatPolling() items=${info.comments.size}, nextPage=${nextPage != null}")
+
+        viewModelScope.launch(Dispatchers.IO) {
+            while (isActive) {
+                delay(3000)
+                if (nextPage == null) {
+                    Log.d(TAG, "liveChatPolling: nextPage is null, skipping")
+                    continue
+                }
+                try {
+                    Log.d(TAG, "liveChatPolling: fetching more items...")
+                    val result = CommentsInfo.getMoreItems(
+                        NewPipe.getService(info.serviceId),
+                        info.url,
+                        nextPage
+                    )
+                    Log.i(TAG, "liveChatPolling: fetched ${result.items.size} items, nextPage=${result.nextPage != null}")
+                    if (result.items.isNotEmpty()) {
+                        _liveChatItems.value = _liveChatItems.value + result.items
+                    }
+                    nextPage = result.nextPage
+                } catch (e: Exception) {
+                    Log.e(TAG, "liveChatPolling: failed to fetch more items", e)
+                }
             }
         }
     }

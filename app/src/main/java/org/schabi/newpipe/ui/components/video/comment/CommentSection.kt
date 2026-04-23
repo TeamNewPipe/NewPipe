@@ -45,13 +45,15 @@ import org.schabi.newpipe.viewmodels.util.Resource
 @Composable
 fun CommentSection(commentsViewModel: CommentsViewModel = viewModel()) {
     val state by commentsViewModel.uiState.collectAsStateWithLifecycle()
-    CommentSection(state, commentsViewModel.comments)
+    val liveChatItems by commentsViewModel.liveChatItems.collectAsStateWithLifecycle()
+    CommentSection(state, commentsViewModel.comments, liveChatItems)
 }
 
 @Composable
 private fun CommentSection(
     uiState: Resource<CommentInfo>,
-    commentsFlow: Flow<PagingData<CommentsInfoItem>>
+    commentsFlow: Flow<PagingData<CommentsInfoItem>>,
+    liveChatItems: List<CommentsInfoItem>
 ) {
     val comments = commentsFlow.collectAsLazyPagingItems()
     val nestedScrollInterop = rememberNestedScrollInteropConnection()
@@ -75,7 +77,7 @@ private fun CommentSection(
                     val commentInfo = uiState.data
                     val count = commentInfo.commentCount
 
-                    if (commentInfo.isCommentsDisabled && !commentInfo.isLiveChat) {
+                    if (commentInfo.isCommentsDisabled) {
                         item {
                             EmptyStateComposable(
                                 spec = EmptyStateSpec.DisabledComments,
@@ -85,7 +87,7 @@ private fun CommentSection(
 
                             )
                         }
-                    } else if (count == 0 && !commentInfo.isLiveChat) {
+                    } else if (count == 0) {
                         item {
                             EmptyStateComposable(
                                 spec = EmptyStateSpec.NoComments,
@@ -95,7 +97,7 @@ private fun CommentSection(
                             )
                         }
                     } else {
-                        // do not show anything if the comment count is unknown
+                        // Show title for regular comments, but not for live chat
                         if (count >= 0 && !commentInfo.isLiveChat) {
                             item {
                                 Text(
@@ -107,47 +109,67 @@ private fun CommentSection(
                                 )
                             }
                         }
-                        when (val refresh = comments.loadState.refresh) {
-                            is LoadState.Loading -> {
-                                item {
-                                    LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
-                                }
-                            }
 
-                            is LoadState.Error -> {
-                                val errorInfo = ErrorInfo(
-                                    throwable = refresh.error,
-                                    userAction = UserAction.REQUESTED_COMMENTS,
-                                    request = "comments"
-                                )
-
+                        if (commentInfo.isLiveChat) {
+                            // Live chat: render items directly without Paging 3
+                            if (liveChatItems.isEmpty()) {
                                 item {
-                                    Box(
+                                    EmptyStateComposable(
+                                        spec = EmptyStateSpec.NoComments,
                                         modifier = Modifier
                                             .fillMaxWidth()
-                                    ) {
-                                        ErrorPanel(
-                                            errorInfo = errorInfo,
-                                            onRetry = { comments.retry() },
-                                            modifier = Modifier.align(Alignment.Center)
-                                        )
-                                    }
+                                            .heightIn(min = 128.dp)
+                                    )
+                                }
+                            } else {
+                                items(liveChatItems.size, key = { liveChatItems[it].commentId }) {
+                                    Comment(comment = liveChatItems[it]) {}
                                 }
                             }
-
-                            else -> {
-                                if (comments.itemCount == 0 && commentInfo.isLiveChat) {
+                        } else {
+                            // Normal comments via Paging 3
+                            when (val refresh = comments.loadState.refresh) {
+                                is LoadState.Loading -> {
                                     item {
-                                        EmptyStateComposable(
-                                            spec = EmptyStateSpec.NoComments,
+                                        LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
+                                    }
+                                }
+
+                                is LoadState.Error -> {
+                                    val errorInfo = ErrorInfo(
+                                        throwable = refresh.error,
+                                        userAction = UserAction.REQUESTED_COMMENTS,
+                                        request = "comments"
+                                    )
+
+                                    item {
+                                        Box(
                                             modifier = Modifier
                                                 .fillMaxWidth()
-                                                .heightIn(min = 128.dp)
-                                        )
+                                        ) {
+                                            ErrorPanel(
+                                                errorInfo = errorInfo,
+                                                onRetry = { comments.retry() },
+                                                modifier = Modifier.align(Alignment.Center)
+                                            )
+                                        }
                                     }
-                                } else {
-                                    items(comments.itemCount) {
-                                        Comment(comment = comments[it]!!) {}
+                                }
+
+                                else -> {
+                                    if (comments.itemCount == 0) {
+                                        item {
+                                            EmptyStateComposable(
+                                                spec = EmptyStateSpec.NoComments,
+                                                modifier = Modifier
+                                                    .fillMaxWidth()
+                                                    .heightIn(min = 128.dp)
+                                            )
+                                        }
+                                    } else {
+                                        items(comments.itemCount) {
+                                            Comment(comment = comments[it]!!) {}
+                                        }
                                     }
                                 }
                             }
@@ -186,7 +208,7 @@ private fun CommentSection(
 private fun CommentSectionLoadingPreview() {
     AppTheme {
         Surface {
-            CommentSection(uiState = Resource.Loading, commentsFlow = flowOf())
+            CommentSection(uiState = Resource.Loading, commentsFlow = flowOf(), liveChatItems = emptyList())
         }
     }
 }
@@ -226,7 +248,8 @@ private fun CommentSectionSuccessPreview() {
                         isLiveChat = false
                     )
                 ),
-                commentsFlow = flowOf(PagingData.from(comments))
+                commentsFlow = flowOf(PagingData.from(comments)),
+                liveChatItems = emptyList()
             )
         }
     }
@@ -238,7 +261,7 @@ private fun CommentSectionSuccessPreview() {
 private fun CommentSectionErrorPreview() {
     AppTheme {
         Surface {
-            CommentSection(uiState = Resource.Error(RuntimeException()), commentsFlow = flowOf())
+            CommentSection(uiState = Resource.Error(RuntimeException()), commentsFlow = flowOf(), liveChatItems = emptyList())
         }
     }
 }
