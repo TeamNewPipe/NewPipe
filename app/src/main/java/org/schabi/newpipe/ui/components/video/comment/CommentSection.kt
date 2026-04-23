@@ -77,7 +77,7 @@ private fun CommentSection(
                     val commentInfo = uiState.data
                     val count = commentInfo.commentCount
 
-                    if (commentInfo.isCommentsDisabled) {
+                    if (commentInfo.isCommentsDisabled && !commentInfo.isLiveChat) {
                         item {
                             EmptyStateComposable(
                                 spec = EmptyStateSpec.DisabledComments,
@@ -87,7 +87,7 @@ private fun CommentSection(
 
                             )
                         }
-                    } else if (count == 0) {
+                    } else if (count == 0 && !commentInfo.isLiveChat) {
                         item {
                             EmptyStateComposable(
                                 spec = EmptyStateSpec.NoComments,

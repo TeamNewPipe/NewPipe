@@ -98,7 +98,7 @@ class CommentsViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
                     )
                     Log.i(TAG, "liveChatPolling: fetched ${result.items.size} items, nextPage=${result.nextPage != null}")
                     if (result.items.isNotEmpty()) {
-                        _liveChatItems.value = _liveChatItems.value + result.items
+                        _liveChatItems.value = result.items + _liveChatItems.value
                     }
                     nextPage = result.nextPage
                 } catch (e: Exception) {
