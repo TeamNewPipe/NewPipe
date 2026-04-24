@@ -24,6 +24,14 @@ public class TabAdapter extends FragmentPagerAdapter {
         this.fragmentManager = fm;
     }
 
+    @Override
+    public long getItemId(final int position) {
+        // Use the fragment title hash as ID instead of position.
+        // This allows inserting fragments in the middle without breaking
+        // FragmentPagerAdapter's internal fragment cache.
+        return mFragmentTitleList.get(position).hashCode();
+    }
+
     @NonNull
     @Override
     public Fragment getItem(final int position) {
