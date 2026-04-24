@@ -102,7 +102,7 @@ public final class PopupPlayerUi extends VideoPlayerUi {
     }
 
     @Override
-    BasePlayerGestureListener buildGestureListener() {
+    protected BasePlayerGestureListener buildGestureListener() {
         return new PopupPlayerGestureListener(this);
     }
 

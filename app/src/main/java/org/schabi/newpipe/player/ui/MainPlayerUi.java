@@ -147,7 +147,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     }
 
     @Override
-    BasePlayerGestureListener buildGestureListener() {
+    protected BasePlayerGestureListener buildGestureListener() {
         return new MainPlayerGestureListener(this);
     }
 
