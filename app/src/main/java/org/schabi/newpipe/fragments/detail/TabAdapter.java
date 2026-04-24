@@ -40,6 +40,11 @@ public class TabAdapter extends FragmentPagerAdapter {
         mFragmentTitleList.add(title);
     }
 
+    public void addFragment(final Fragment fragment, final String title, final int position) {
+        mFragmentList.add(position, fragment);
+        mFragmentTitleList.add(position, title);
+    }
+
     public void clearAllItems() {
         mFragmentList.clear();
         mFragmentTitleList.clear();

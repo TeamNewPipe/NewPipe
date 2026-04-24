@@ -284,6 +284,7 @@
     <string name="detail_likes_img_view_description">Likes</string>
     <string name="detail_dislikes_img_view_description">Dislikes</string>
     <string name="comments_tab_description">Comments</string>
+    <string name="live_chat_tab_description">Live Chat</string>
     <string name="related_items_tab_description">Related items</string>
     <string name="description_tab_description">Description</string>
     <string name="search_no_results">No results</string>

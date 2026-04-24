@@ -12,7 +12,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,7 +30,6 @@ import kotlinx.coroutines.flow.flowOf
 import org.schabi.newpipe.R
 import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.UserAction
-import org.schabi.newpipe.extractor.Page
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.ui.components.common.ErrorPanel
@@ -46,27 +44,17 @@ import org.schabi.newpipe.viewmodels.util.Resource
 @Composable
 fun CommentSection(commentsViewModel: CommentsViewModel = viewModel()) {
     val state by commentsViewModel.uiState.collectAsStateWithLifecycle()
-    val liveChatItems by commentsViewModel.liveChatItems.collectAsStateWithLifecycle()
-    CommentSection(state, commentsViewModel.comments, liveChatItems)
+    CommentSection(state, commentsViewModel.comments)
 }
 
 @Composable
 private fun CommentSection(
     uiState: Resource<CommentInfo>,
-    commentsFlow: Flow<PagingData<CommentsInfoItem>>,
-    liveChatItems: List<CommentsInfoItem>
+    commentsFlow: Flow<PagingData<CommentsInfoItem>>
 ) {
     val comments = commentsFlow.collectAsLazyPagingItems()
     val nestedScrollInterop = rememberNestedScrollInteropConnection()
     val state = rememberLazyListState()
-
-    // Auto-scroll to top when new live chat messages arrive
-    val isLiveChat = uiState is Resource.Success && uiState.data.isLiveChat
-    LaunchedEffect(liveChatItems.size) {
-        if (isLiveChat && liveChatItems.isNotEmpty()) {
-            state.scrollToItem(0)
-        }
-    }
 
     LazyColumnThemedScrollbar(state = state) {
         LazyColumn(
@@ -86,17 +74,16 @@ private fun CommentSection(
                     val commentInfo = uiState.data
                     val count = commentInfo.commentCount
 
-                    if (commentInfo.isCommentsDisabled && !commentInfo.isLiveChat) {
+                    if (commentInfo.isCommentsDisabled) {
                         item {
                             EmptyStateComposable(
                                 spec = EmptyStateSpec.DisabledComments,
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .heightIn(min = 128.dp)
-
                             )
                         }
-                    } else if (count == 0 && !commentInfo.isLiveChat) {
+                    } else if (count == 0) {
                         item {
                             EmptyStateComposable(
                                 spec = EmptyStateSpec.NoComments,
@@ -106,8 +93,7 @@ private fun CommentSection(
                             )
                         }
                     } else {
-                        // Show title for regular comments, but not for live chat
-                        if (count >= 0 && !commentInfo.isLiveChat) {
+                        if (count >= 0) {
                             item {
                                 Text(
                                     modifier = Modifier
@@ -119,66 +105,47 @@ private fun CommentSection(
                             }
                         }
 
-                        if (commentInfo.isLiveChat) {
-                            // Live chat: render items directly without Paging 3
-                            if (liveChatItems.isEmpty()) {
+                        when (val refresh = comments.loadState.refresh) {
+                            is LoadState.Loading -> {
                                 item {
-                                    EmptyStateComposable(
-                                        spec = EmptyStateSpec.NoComments,
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .heightIn(min = 128.dp)
-                                    )
-                                }
-                            } else {
-                                items(liveChatItems.size, key = { liveChatItems[it].commentId }) {
-                                    Comment(comment = liveChatItems[it]) {}
+                                    LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
                                 }
                             }
-                        } else {
-                            // Normal comments via Paging 3
-                            when (val refresh = comments.loadState.refresh) {
-                                is LoadState.Loading -> {
-                                    item {
-                                        LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
+
+                            is LoadState.Error -> {
+                                val errorInfo = ErrorInfo(
+                                    throwable = refresh.error,
+                                    userAction = UserAction.REQUESTED_COMMENTS,
+                                    request = "comments"
+                                )
+
+                                item {
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                    ) {
+                                        ErrorPanel(
+                                            errorInfo = errorInfo,
+                                            onRetry = { comments.retry() },
+                                            modifier = Modifier.align(Alignment.Center)
+                                        )
                                     }
                                 }
+                            }
 
-                                is LoadState.Error -> {
-                                    val errorInfo = ErrorInfo(
-                                        throwable = refresh.error,
-                                        userAction = UserAction.REQUESTED_COMMENTS,
-                                        request = "comments"
-                                    )
-
+                            else -> {
+                                if (comments.itemCount == 0) {
                                     item {
-                                        Box(
+                                        EmptyStateComposable(
+                                            spec = EmptyStateSpec.NoComments,
                                             modifier = Modifier
                                                 .fillMaxWidth()
-                                        ) {
-                                            ErrorPanel(
-                                                errorInfo = errorInfo,
-                                                onRetry = { comments.retry() },
-                                                modifier = Modifier.align(Alignment.Center)
-                                            )
-                                        }
+                                                .heightIn(min = 128.dp)
+                                        )
                                     }
-                                }
-
-                                else -> {
-                                    if (comments.itemCount == 0) {
-                                        item {
-                                            EmptyStateComposable(
-                                                spec = EmptyStateSpec.NoComments,
-                                                modifier = Modifier
-                                                    .fillMaxWidth()
-                                                    .heightIn(min = 128.dp)
-                                            )
-                                        }
-                                    } else {
-                                        items(comments.itemCount) {
-                                            Comment(comment = comments[it]!!) {}
-                                        }
+                                } else {
+                                    items(comments.itemCount) {
+                                        Comment(comment = comments[it]!!) {}
                                     }
                                 }
                             }
@@ -217,7 +184,7 @@ private fun CommentSection(
 private fun CommentSectionLoadingPreview() {
     AppTheme {
         Surface {
-            CommentSection(uiState = Resource.Loading, commentsFlow = flowOf(), liveChatItems = emptyList())
+            CommentSection(uiState = Resource.Loading, commentsFlow = flowOf())
         }
     }
 }
@@ -233,7 +200,7 @@ private fun CommentSectionSuccessPreview() {
                 Description.PLAIN_TEXT
             ),
             uploaderName = "Test",
-            replies = Page(""),
+            replies = org.schabi.newpipe.extractor.Page(""),
             replyCount = 10
         )
     ) + (2..10).map {
@@ -253,12 +220,10 @@ private fun CommentSectionSuccessPreview() {
                         comments = comments,
                         nextPage = null,
                         commentCount = 10,
-                        isCommentsDisabled = false,
-                        isLiveChat = false
+                        isCommentsDisabled = false
                     )
                 ),
-                commentsFlow = flowOf(PagingData.from(comments)),
-                liveChatItems = emptyList()
+                commentsFlow = flowOf(PagingData.from(comments))
             )
         }
     }
@@ -270,7 +235,7 @@ private fun CommentSectionSuccessPreview() {
 private fun CommentSectionErrorPreview() {
     AppTheme {
         Surface {
-            CommentSection(uiState = Resource.Error(RuntimeException()), commentsFlow = flowOf(), liveChatItems = emptyList())
+            CommentSection(uiState = Resource.Error(RuntimeException()), commentsFlow = flowOf())
         }
     }
 }
