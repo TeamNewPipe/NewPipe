@@ -11,13 +11,6 @@
         app:iconSpaceReserved="false" />
 
     <PreferenceScreen
-        android:fragment="org.schabi.newpipe.settings.BulletCommentsSettingsFragment"
-        android:icon="@drawable/ic_comment"
-        android:title="@string/settings_category_bullet_comments_title"
-        android:summary="@string/settings_category_bullet_comments_summary"
-        app:iconSpaceReserved="false" />
-
-    <PreferenceScreen
         android:fragment="org.schabi.newpipe.settings.DownloadSettingsFragment"
         android:icon="@drawable/ic_file_download"
         android:title="@string/settings_category_downloads_title"

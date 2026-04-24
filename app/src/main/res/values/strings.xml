@@ -913,18 +913,4 @@
     <string name="kao_dialog_more_info">Details</string>
     <string name="kao_solution">Solution</string>
 
-    <!-- Bullet comments -->
-    <string name="settings_category_bullet_comments_title">Bullet comments</string>
-    <string name="settings_category_bullet_comments_summary">Configure live chat overlay</string>
-    <string name="regular_bullet_comments_duration_title">Regular comments duration</string>
-    <string name="regular_bullet_comments_duration_summary">Duration of scrolling comments in seconds</string>
-    <string name="top_bottom_bullet_comments_duration_title">Top/bottom comments duration</string>
-    <string name="top_bottom_bullet_comments_duration_summary">Duration of fixed comments in seconds</string>
-    <string name="bullet_comments_outline_radius_title">Outline radius</string>
-    <string name="bullet_comments_font_title">Font</string>
-    <string name="bullet_comments_opacity_title">Opacity</string>
-    <string name="enable_max_rows_customization_title">Limit max rows</string>
-    <string name="max_bullet_comments_rows_top_title">Max top rows</string>
-    <string name="max_bullet_comments_rows_bottom_title">Max bottom rows</string>
-    <string name="max_bullet_comments_rows_regular_title">Max regular rows</string>
 </resources>
