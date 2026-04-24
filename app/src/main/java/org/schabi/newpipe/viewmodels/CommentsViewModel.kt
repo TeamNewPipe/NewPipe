@@ -1,6 +1,5 @@
 package org.schabi.newpipe.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -31,23 +30,12 @@ import org.schabi.newpipe.util.KEY_URL
 import org.schabi.newpipe.viewmodels.util.Resource
 
 class CommentsViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
-    companion object {
-        private const val TAG = "CommentsViewModel"
-    }
-
     val uiState = savedStateHandle.getStateFlow(KEY_URL, "")
         .map {
             try {
                 val info = CommentsInfo.getInfo(it)
-                Log.i(
-                    TAG,
-                    "Loaded CommentsInfo: disabled=${info.isCommentsDisabled}, " +
-                        "liveChat=${info.isLiveChat}, items=${info.relatedItems.size}, " +
-                        "nextPage=${info.nextPage != null}"
-                )
                 Resource.Success(CommentInfo(info))
             } catch (e: Exception) {
-                Log.e(TAG, "Failed to load comments", e)
                 Resource.Error(e)
             }
         }
@@ -63,7 +51,6 @@ class CommentsViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
         .filterIsInstance<Resource.Success<CommentInfo>>()
         .flatMapLatest {
             val info = it.data
-            Log.i(TAG, "flatMapLatest: isLiveChat=${info.isLiveChat}, items=${info.comments.size}")
             if (info.isLiveChat) {
                 _liveChatItems.value = info.comments
                 startLiveChatPolling(info)
@@ -79,29 +66,25 @@ class CommentsViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
 
     private fun startLiveChatPolling(info: CommentInfo) {
         var nextPage = info.nextPage
-        Log.i(TAG, "startLiveChatPolling() items=${info.comments.size}, nextPage=${nextPage != null}")
 
         viewModelScope.launch(Dispatchers.IO) {
             while (isActive) {
                 delay(3000)
                 if (nextPage == null) {
-                    Log.d(TAG, "liveChatPolling: nextPage is null, skipping")
                     continue
                 }
                 try {
-                    Log.d(TAG, "liveChatPolling: fetching more items...")
                     val result = CommentsInfo.getMoreItems(
                         NewPipe.getService(info.serviceId),
                         info.url,
                         nextPage
                     )
-                    Log.i(TAG, "liveChatPolling: fetched ${result.items.size} items, nextPage=${result.nextPage != null}")
                     if (result.items.isNotEmpty()) {
                         _liveChatItems.value = result.items + _liveChatItems.value
                     }
                     nextPage = result.nextPage
                 } catch (e: Exception) {
-                    Log.e(TAG, "liveChatPolling: failed to fetch more items", e)
+                    // Silently ignore polling errors
                 }
             }
         }
