@@ -928,16 +928,14 @@ class VideoDetailFragment :
             return
         }
 
-        val commentsPosition = pageAdapter.getItemPositionByTitle(COMMENTS_TAB_TAG)
-        val insertPosition = if (commentsPosition >= 0) commentsPosition + 1 else pageAdapter.count
-
+        // Append live chat tab at the end to avoid FragmentPagerAdapter
+        // position synchronization issues when inserting in the middle
         pageAdapter.addFragment(
             LiveChatFragment.getInstance(serviceId, url, continuation),
-            LIVE_CHAT_TAB_TAG,
-            insertPosition
+            LIVE_CHAT_TAB_TAG
         )
-        tabIcons.add(insertPosition, R.drawable.ic_live_tv)
-        tabContentDescriptions.add(insertPosition, R.string.live_chat_tab_description)
+        tabIcons.add(R.drawable.ic_live_tv)
+        tabContentDescriptions.add(R.string.live_chat_tab_description)
         pageAdapter.notifyDataSetUpdate()
         updateTabIconsAndContentDescriptions()
         updateTabLayoutVisibility()

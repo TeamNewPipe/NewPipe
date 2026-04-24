@@ -12,6 +12,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -106,12 +107,15 @@ fun LiveChatSection(liveChatViewModel: LiveChatViewModel = viewModel()) {
             ) {
                 BadgedBox(
                     badge = {
-                        Text(
-                            text = unreadCount.toString(),
-                            modifier = Modifier.padding(4.dp),
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onPrimary
-                        )
+                        Badge(
+                            containerColor = MaterialTheme.colorScheme.error,
+                            contentColor = MaterialTheme.colorScheme.onError
+                        ) {
+                            Text(
+                                text = unreadCount.toString(),
+                                style = MaterialTheme.typography.labelSmall
+                            )
+                        }
                     }
                 ) {
                     Icon(
