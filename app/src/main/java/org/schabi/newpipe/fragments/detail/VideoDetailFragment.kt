@@ -928,17 +928,26 @@ class VideoDetailFragment :
             return
         }
 
-        // Append live chat tab at the end to avoid FragmentPagerAdapter
-        // position synchronization issues when inserting in the middle
+        val commentsPosition = pageAdapter.getItemPositionByTitle(COMMENTS_TAB_TAG)
+        val insertPosition = if (commentsPosition >= 0) commentsPosition + 1 else pageAdapter.count
+
         pageAdapter.addFragment(
             LiveChatFragment.getInstance(serviceId, url, continuation),
-            LIVE_CHAT_TAB_TAG
+            LIVE_CHAT_TAB_TAG,
+            insertPosition
         )
-        tabIcons.add(R.drawable.ic_live_tv)
-        tabContentDescriptions.add(R.string.live_chat_tab_description)
+        tabIcons.add(insertPosition, R.drawable.ic_live_tv)
+        tabContentDescriptions.add(insertPosition, R.string.live_chat_tab_description)
         pageAdapter.notifyDataSetUpdate()
         updateTabIconsAndContentDescriptions()
         updateTabLayoutVisibility()
+
+        // Select live chat tab by default for live streams
+        if (streamInfo.streamType == StreamType.LIVE_STREAM ||
+            streamInfo.streamType == StreamType.AUDIO_LIVE_STREAM
+        ) {
+            binding.viewPager.setCurrentItem(insertPosition, false)
+        }
     }
 
     fun updateTabLayoutVisibility() {
