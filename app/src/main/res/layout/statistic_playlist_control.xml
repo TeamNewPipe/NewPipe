@@ -6,6 +6,10 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <RelativeLayout
         android:id="@+id/sortButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,6 +39,17 @@
             android:textSize="15sp"
             android:textStyle="bold"
             tools:ignore="RtlHardcoded" />
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/searchButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentEnd="true"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_search"
+        android:contentDescription="@string/search_history"/>
+
     </RelativeLayout>
 
     <include
