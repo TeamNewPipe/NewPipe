@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -56,4 +61,47 @@
         android:id="@+id/playlist_control"
         layout="@layout/playlist_control" />
 
-</LinearLayout>
+    </LinearLayout>
+
+    <!-- Search overlay, positioned on top of sort+search row -->
+    <RelativeLayout
+        android:id="@+id/history_search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:visibility="gone"
+        android:background="?attr/windowBackground"
+        android:layout_gravity="top">
+
+        <!-- Use default cursor so its color follows textColor
+             (theme-driven, no hardcoded color) -->
+        <org.schabi.newpipe.views.NewPipeEditText
+            android:id="@+id/history_search_input"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textCursorDrawable="@null"
+            android:hint="@string/search_history"
+            android:imeOptions="actionSearch|flagNoFullscreen"
+            android:inputType="textFilter|textNoSuggestions"
+            android:background="@null"
+            android:textColor="?attr/toolbarSearchColor"
+            android:gravity="center_vertical"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:maxLines="1"/>
+
+        <ImageView
+            android:id="@+id/history_search_clear_icon"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_close"
+            android:tint="?attr/toolbarSearchColor"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="?attr/toolbarSearchColor"/>
+    </RelativeLayout>
+
+</FrameLayout>
