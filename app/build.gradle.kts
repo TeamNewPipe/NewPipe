@@ -245,6 +245,7 @@ dependencies {
     implementation(libs.androidx.work.runtime.ktx)
     implementation(libs.androidx.work.rxjava3)
     implementation(libs.google.android.material)
+    implementation(libs.google.flexbox)
     implementation(libs.androidx.webkit)
 
     /** Compose & other modern patterns **/
