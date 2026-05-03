@@ -9,6 +9,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.KeyEvent;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -155,6 +158,55 @@ public class StatisticsPlaylistFragment
                     showInfoItemDialog((StreamStatisticsEntry) selectedItem);
                 }
             }
+        });
+
+        initHistorySearchOverlayActions();
+
+        initHistorySearchInputActions();
+
+        initHistorySearchClearActions();
+    }
+
+    private void initHistorySearchOverlayActions() {
+        // Show search overlay
+        headerBinding.searchButton.setOnClickListener(view -> {
+            if (headerBinding.historySearchBar.getVisibility() == View.GONE) {
+                headerBinding.historySearchBar.setVisibility(View.VISIBLE);
+                headerBinding.historySearchInput.requestFocus();
+
+                // Show soft keyboard
+                final InputMethodManager imm =
+                        (InputMethodManager) requireContext()
+                        .getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(
+                        headerBinding.historySearchInput,
+                        InputMethodManager.SHOW_IMPLICIT
+                    );
+            }
+        });
+    }
+
+    private void initHistorySearchInputActions() {
+        headerBinding.historySearchInput.setOnEditorActionListener((v, actionId, event) -> {
+            if ((EditorInfo.IME_ACTION_SEARCH == actionId)
+                    || ((null != event) && (KeyEvent.KEYCODE_ENTER == event.getKeyCode()))) {
+
+                // hide keyboard
+                final InputMethodManager imm = (InputMethodManager)
+                        requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+
+                return true;
+            }
+            return false;
+        });
+    }
+
+    private void initHistorySearchClearActions() {
+        // Clear input & hide search overlay
+        headerBinding.historySearchClearIcon.setOnClickListener(view -> {
+            headerBinding.historySearchInput.setText("");
+            headerBinding.historySearchBar.setVisibility(View.GONE);
         });
     }
 
