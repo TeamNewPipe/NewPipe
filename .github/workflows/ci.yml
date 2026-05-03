@@ -54,14 +54,14 @@ jobs:
           distribution: "temurin"
           cache: 'gradle'
 
-      - name: Build debug APK and run jvm tests
-        run: ./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint
+      - name: Build APK
+        run: ./gradlew assembleRelease lintRelease testReleaseUnitTest
 
       - name: Upload APK
         uses: actions/upload-artifact@v7
         with:
           name: app
-          path: app/build/outputs/apk/debug/*.apk
+          path: app/build/outputs/apk/release/*.apk
 
   test-android:
     runs-on: ubuntu-latest
