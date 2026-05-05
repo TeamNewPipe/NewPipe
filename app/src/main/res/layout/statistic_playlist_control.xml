@@ -87,6 +87,7 @@
             android:gravity="center_vertical"
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
+            android:paddingStart="12dp"
             android:maxLines="1"/>
 
         <ImageView
