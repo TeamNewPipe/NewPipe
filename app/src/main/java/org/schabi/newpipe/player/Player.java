@@ -634,6 +634,11 @@ public final class Player implements PlaybackListener, Listener {
         simpleExoPlayer.setWakeMode(C.WAKE_MODE_NETWORK);
         simpleExoPlayer.setHandleAudioBecomingNoisy(true);
 
+        final int repeatMode = prefs.getInt(
+                context.getString(R.string.repeat_mode_key), REPEAT_MODE_OFF
+        );
+        simpleExoPlayer.setRepeatMode(repeatMode);
+
         audioReactor = new AudioReactor(context, simpleExoPlayer);
 
         registerBroadcastReceiver();
@@ -1286,6 +1291,10 @@ public final class Player implements PlaybackListener, Listener {
         }
         UIs.call(playerUi -> playerUi.onRepeatModeChanged(repeatMode));
         notifyPlaybackUpdateToListeners();
+        prefs
+            .edit()
+            .putInt(context.getString(R.string.repeat_mode_key), repeatMode)
+            .apply();
     }
 
     @Override

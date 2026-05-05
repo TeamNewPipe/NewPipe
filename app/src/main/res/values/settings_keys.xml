@@ -1513,4 +1513,5 @@
         <item>@string/image_quality_medium_key</item>
         <item>@string/image_quality_high_key</item>
     </string-array>
+    <string name="repeat_mode_key">repeat_mode_key</string>
 </resources>

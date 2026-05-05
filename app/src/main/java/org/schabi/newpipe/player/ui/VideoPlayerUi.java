@@ -399,6 +399,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
         // #6825 - Ensure that the shuffle-button is in the correct state on the UI
         setShuffleButton(player.getExoPlayer().getShuffleModeEnabled());
+        // Ensure that the repeat-button is in the correct state on the UI
+        setRepeatButton(player.getRepeatMode());
     }
 
     public abstract void removeViewFromParent();
@@ -950,16 +952,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     public void onRepeatModeChanged(@RepeatMode final int repeatMode) {
         super.onRepeatModeChanged(repeatMode);
 
-        if (repeatMode == REPEAT_MODE_ALL) {
-            binding.repeatButton.setImageResource(
-                    com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_all);
-        } else if (repeatMode == REPEAT_MODE_ONE) {
-            binding.repeatButton.setImageResource(
-                    com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_one);
-        } else /* repeatMode == REPEAT_MODE_OFF */ {
-            binding.repeatButton.setImageResource(
-                    com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_off);
-        }
+        setRepeatButton(repeatMode);
     }
 
     @Override
@@ -977,6 +970,19 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     private void setMuteButton(final boolean isMuted) {
         binding.switchMute.setImageDrawable(AppCompatResources.getDrawable(context, isMuted
                 ? R.drawable.ic_volume_off : R.drawable.ic_volume_up));
+    }
+
+    private void setRepeatButton(@RepeatMode final int repeatMode) {
+        if (repeatMode == REPEAT_MODE_ALL) {
+            binding.repeatButton.setImageResource(
+                    com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_all);
+        } else if (repeatMode == REPEAT_MODE_ONE) {
+            binding.repeatButton.setImageResource(
+                    com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_one);
+        } else /* repeatMode == REPEAT_MODE_OFF */ {
+            binding.repeatButton.setImageResource(
+                    com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_off);
+        }
     }
 
     private void setShuffleButton(final boolean shuffled) {
