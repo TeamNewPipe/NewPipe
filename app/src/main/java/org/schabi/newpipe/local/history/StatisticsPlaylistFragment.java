@@ -13,6 +13,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.KeyEvent;
 import android.widget.Toast;
+import android.text.TextWatcher;
+import android.text.Editable;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -48,6 +50,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
+import java.util.Locale;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -67,6 +70,8 @@ public class StatisticsPlaylistFragment
     /* Used for independent events */
     private Subscription databaseSubscription;
     private HistoryRecordManager recordManager;
+
+    private List<StreamStatisticsEntry> allHistoryEntries = new ArrayList<>();
 
     private List<StreamStatisticsEntry> processResult(final List<StreamStatisticsEntry> results) {
         final Comparator<StreamStatisticsEntry> comparator;
@@ -200,6 +205,28 @@ public class StatisticsPlaylistFragment
             }
             return false;
         });
+
+        headerBinding.historySearchInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(final CharSequence s,
+                                          final int start,
+                                          final int count,
+                                          final int after) {
+            }
+
+            @Override
+            public void onTextChanged(final CharSequence s,
+                                      final int start,
+                                      final int before,
+                                      final int count) {
+                final String userInputText = s.toString();
+                filterHistory(userInputText);
+            }
+
+            @Override
+            public void afterTextChanged(final Editable s) {
+            }
+        });
     }
 
     private void initHistorySearchClearActions() {
@@ -208,6 +235,52 @@ public class StatisticsPlaylistFragment
             headerBinding.historySearchInput.setText("");
             headerBinding.historySearchBar.setVisibility(View.GONE);
         });
+    }
+
+    private void filterHistory(final String query) {
+        if (itemListAdapter == null) {
+            return;
+        }
+
+        itemListAdapter.clearStreamItemList();
+
+        if (query.isEmpty()) {
+            itemListAdapter.addItems(processResult(allHistoryEntries));
+            return;
+        }
+
+        final List<StreamStatisticsEntry> filtered = new ArrayList<>();
+
+        final String lowerQuery = query.toLowerCase(Locale.ROOT);
+
+        for (final StreamStatisticsEntry historyEntry : allHistoryEntries) {
+            if (matchesHistoryEntry(historyEntry, lowerQuery)) {
+                filtered.add(historyEntry);
+            }
+        }
+
+        itemListAdapter.addItems(processResult(filtered));
+    }
+
+    private boolean matchesHistoryEntry(final StreamStatisticsEntry historyEntry,
+                                        final String lowerQuery) {
+        final String title = historyEntry.getStreamEntity().getTitle();
+        if (null != title) {
+            final String lowerTitle = title.toLowerCase(Locale.ROOT);
+            if (lowerTitle.contains(lowerQuery)) {
+                return true;
+            }
+        }
+
+        final String uploader = historyEntry.getStreamEntity().getUploader();
+        if (null != uploader) {
+            final String lowerUploader = uploader.toLowerCase(Locale.ROOT);
+            if (lowerUploader.contains(lowerQuery)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override
@@ -319,6 +392,8 @@ public class StatisticsPlaylistFragment
             showEmptyState();
             return;
         }
+
+        allHistoryEntries = new ArrayList<>(result);
 
         itemListAdapter.addItems(processResult(result));
         if (itemsListState != null && itemsList.getLayoutManager() != null) {
