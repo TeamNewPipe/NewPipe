@@ -68,6 +68,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private lateinit var feedGroupsSortMenuItem: GroupsHeader
     private val subscriptionsSection = Section()
 
+    private var currentGroups: List<Group> = emptyList()
+    private var currentListViewMode: Boolean = true
+
     @State
     @JvmField
     var itemsListState: Parcelable? = null
@@ -210,6 +213,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 handleFeedGroups(groups, listViewMode)
             }
         }
+        viewModel.selectedGroupLiveData.observe(viewLifecycleOwner) {
+            rebuildCarousel()
+        }
 
         setupInitialLayout()
     }
@@ -219,18 +225,32 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
             carouselAdapter = GroupAdapter<GroupieViewHolder<FeedItemCarouselBinding>>()
 
             carouselAdapter.setOnItemClickListener { item, _ ->
-                when (item) {
-                    is FeedGroupCardItem ->
-                        NavigationHelper.openFeedFragment(fm, item.groupId, item.name)
+                val groupId = when (item) {
+                    is FeedGroupCardItem -> item.groupId
 
-                    is FeedGroupCardGridItem ->
-                        NavigationHelper.openFeedFragment(fm, item.groupId, item.name)
+                    is FeedGroupCardGridItem -> item.groupId
 
-                    is FeedGroupAddNewItem ->
+                    is FeedGroupAddNewItem -> {
                         FeedGroupDialog.newInstance().show(fm, null)
+                        return@setOnItemClickListener
+                    }
 
-                    is FeedGroupAddNewGridItem ->
+                    is FeedGroupAddNewGridItem -> {
                         FeedGroupDialog.newInstance().show(fm, null)
+                        return@setOnItemClickListener
+                    }
+
+                    else -> return@setOnItemClickListener
+                }
+                val name = when (item) {
+                    is FeedGroupCardItem -> item.name
+                    is FeedGroupCardGridItem -> item.name
+                    else -> ""
+                }
+                if (groupId == viewModel.getSelectedGroupId()) {
+                    NavigationHelper.openFeedFragment(fm, groupId, name)
+                } else {
+                    viewModel.selectGroup(groupId)
                 }
             }
             carouselAdapter.setOnItemLongClickListener { item, _ ->
@@ -375,31 +395,40 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
             feedGroupsCarousel.onRestoreInstanceState(feedGroupsCarouselState)
             feedGroupsCarouselState = null
         }
+        currentGroups = groups
+        currentListViewMode = listViewMode
+        rebuildCarousel()
+    }
 
+    private fun rebuildCarousel() {
+        val selectedId = viewModel.getSelectedGroupId()
         binding.itemsList.post {
-            if (context == null) {
-                // since this part was posted to the next UI cycle, the fragment might have been
-                // removed in the meantime
-                return@post
-            }
+            if (context == null) return@post
 
-            feedGroupsCarousel.listViewMode = listViewMode
-            feedGroupsSortMenuItem.showSortButton = groups.size > 1
-            feedGroupsSortMenuItem.listViewMode = listViewMode
+            feedGroupsCarousel.listViewMode = currentListViewMode
+            feedGroupsSortMenuItem.showSortButton = currentGroups.size > 1
+            feedGroupsSortMenuItem.listViewMode = currentListViewMode
             feedGroupsCarousel.notifyChanged(FeedGroupCarouselItem.PAYLOAD_UPDATE_LIST_VIEW_MODE)
             feedGroupsSortMenuItem.notifyChanged(GroupsHeader.PAYLOAD_UPDATE_ICONS)
 
-            // update items here to prevent flickering
             carouselAdapter.apply {
                 clear()
-                if (listViewMode) {
+                if (currentListViewMode) {
                     add(FeedGroupAddNewItem())
-                    add(FeedGroupCardItem(GROUP_ALL_ID, getString(R.string.all), FeedGroupIcon.WHATS_NEW))
+                    add(FeedGroupCardItem(GROUP_ALL_ID, getString(R.string.all), FeedGroupIcon.WHATS_NEW, selectedId == GROUP_ALL_ID))
                 } else {
                     add(FeedGroupAddNewGridItem())
-                    add(FeedGroupCardGridItem(GROUP_ALL_ID, getString(R.string.all), FeedGroupIcon.WHATS_NEW))
+                    add(FeedGroupCardGridItem(GROUP_ALL_ID, getString(R.string.all), FeedGroupIcon.WHATS_NEW, selectedId == GROUP_ALL_ID))
                 }
-                addAll(groups)
+                addAll(
+                    currentGroups.map { group ->
+                        when (group) {
+                            is FeedGroupCardItem -> group.copy(isSelected = group.groupId == selectedId)
+                            is FeedGroupCardGridItem -> group.copy(isSelected = group.groupId == selectedId)
+                            else -> group
+                        }
+                    }
+                )
             }
         }
     }

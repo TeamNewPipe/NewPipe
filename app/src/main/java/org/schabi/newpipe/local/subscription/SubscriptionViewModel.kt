@@ -10,6 +10,8 @@ import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
+import org.schabi.newpipe.database.feed.model.FeedGroupEntity
+import org.schabi.newpipe.database.feed.model.FeedGroupEntity.Companion.GROUP_ALL_ID
 import org.schabi.newpipe.info_list.ItemViewMode
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.local.subscription.item.ChannelItem
@@ -28,10 +30,14 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
     )
     private val listViewModeFlowable = listViewMode.distinctUntilChanged()
 
+    private val selectedGroupId = BehaviorProcessor.createDefault(GROUP_ALL_ID)
+
     private val mutableStateLiveData = MutableLiveData<SubscriptionState>()
     private val mutableFeedGroupsLiveData = MutableLiveData<Pair<List<Group>, Boolean>>()
+    private val mutableSelectedGroupLiveData = MutableLiveData<Long>(GROUP_ALL_ID)
     val stateLiveData: LiveData<SubscriptionState> = mutableStateLiveData
     val feedGroupsLiveData: LiveData<Pair<List<Group>, Boolean>> = mutableFeedGroupsLiveData
+    val selectedGroupLiveData: LiveData<Long> = mutableSelectedGroupLiveData
 
     private var feedGroupItemsDisposable = Flowable
         .combineLatest(
@@ -52,10 +58,12 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
             { mutableStateLiveData.postValue(SubscriptionState.ErrorState(it)) }
         )
 
-    private var stateItemsDisposable = subscriptionManager.subscriptions()
+    private var stateItemsDisposable = selectedGroupId
+        .switchMap { groupId ->
+            subscriptionManager.getSubscriptions(groupId).subscribeOn(Schedulers.io())
+        }
         .throttleLatest(DEFAULT_THROTTLE_TIMEOUT, TimeUnit.MILLISECONDS)
         .map { it.map { entity -> ChannelItem(entity.toChannelInfoItem(), entity.uid, ChannelItem.ItemVersion.MINI) } }
-        .subscribeOn(Schedulers.io())
         .subscribe(
             { mutableStateLiveData.postValue(SubscriptionState.LoadedState(it)) },
             { mutableStateLiveData.postValue(SubscriptionState.ErrorState(it)) }
@@ -74,6 +82,13 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
     fun getListViewMode(): Boolean {
         return listViewMode.value ?: true
     }
+
+    fun selectGroup(groupId: Long) {
+        selectedGroupId.onNext(groupId)
+        mutableSelectedGroupLiveData.postValue(groupId)
+    }
+
+    fun getSelectedGroupId(): Long = selectedGroupId.value ?: GROUP_ALL_ID
 
     sealed class SubscriptionState {
         data class LoadedState(val subscriptions: List<Group>) : SubscriptionState()
