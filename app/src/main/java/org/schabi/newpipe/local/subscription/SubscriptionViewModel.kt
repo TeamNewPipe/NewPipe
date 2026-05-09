@@ -60,7 +60,7 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
 
     private var stateItemsDisposable = selectedGroupId
         .switchMap { groupId ->
-            subscriptionManager.getSubscriptions(groupId).subscribeOn(Schedulers.io())
+            subscriptionManager.subscriptionsFilteredByGroup(groupId).subscribeOn(Schedulers.io())
         }
         .throttleLatest(DEFAULT_THROTTLE_TIMEOUT, TimeUnit.MILLISECONDS)
         .map { it.map { entity -> ChannelItem(entity.toChannelInfoItem(), entity.uid, ChannelItem.ItemVersion.MINI) } }
