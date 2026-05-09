@@ -25,6 +25,7 @@ import com.xwray.groupie.viewbinding.GroupieViewHolder
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity.Companion.GROUP_ALL_ID
+import org.schabi.newpipe.database.feed.model.FeedGroupEntity.Companion.GROUP_UNGROUPED_ID
 import org.schabi.newpipe.databinding.DialogTitleBinding
 import org.schabi.newpipe.databinding.FeedItemCarouselBinding
 import org.schabi.newpipe.databinding.FragmentSubscriptionBinding
@@ -429,6 +430,11 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                         }
                     }
                 )
+                if (currentListViewMode) {
+                    add(FeedGroupCardItem(GROUP_UNGROUPED_ID, getString(R.string.feed_group_ungrouped), FeedGroupIcon.PERSON, selectedId == GROUP_UNGROUPED_ID))
+                } else {
+                    add(FeedGroupCardGridItem(GROUP_UNGROUPED_ID, getString(R.string.feed_group_ungrouped), FeedGroupIcon.PERSON, selectedId == GROUP_UNGROUPED_ID))
+                }
             }
         }
     }
