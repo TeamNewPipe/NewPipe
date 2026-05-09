@@ -46,6 +46,9 @@ class SubscriptionManager(context: Context) {
 
             showOnlyUngrouped -> subscriptionTable.getSubscriptionsOnlyUngrouped(currentGroupId)
 
+            currentGroupId != FeedGroupEntity.GROUP_ALL_ID ->
+                subscriptionTable.getSubscriptionsForGroup(currentGroupId)
+
             else -> subscriptionTable.getAll()
         }
     }
