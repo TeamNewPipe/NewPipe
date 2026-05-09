@@ -80,13 +80,13 @@ abstract class SubscriptionDAO : BasicDAO<SubscriptionEntity> {
     )
     abstract fun getSubscriptionsForGroup(groupId: Long): Flowable<List<SubscriptionEntity>>
 
-    @RewriteQueriesToDropUnusedColumns
     @Query(
         """
         SELECT * FROM subscriptions s
-        LEFT JOIN feed_group_subscription_join fgs
-        ON s.uid = fgs.subscription_id
-        WHERE fgs.subscription_id IS NULL
+        WHERE NOT EXISTS (
+            SELECT 1 FROM feed_group_subscription_join fgs
+            WHERE fgs.subscription_id = s.uid
+        )
         ORDER BY name COLLATE NOCASE ASC
         """
     )

@@ -19,7 +19,7 @@ data class FeedGroupCardGridItem(
 
     override fun getId(): Long {
         return when (groupId) {
-            FeedGroupEntity.GROUP_ALL_ID -> super.getId()
+            FeedGroupEntity.GROUP_ALL_ID, FeedGroupEntity.GROUP_UNGROUPED_ID -> super.getId()
             else -> groupId
         }
     }

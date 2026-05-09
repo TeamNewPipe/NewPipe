@@ -70,7 +70,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private val subscriptionsSection = Section()
 
     private var currentGroups: List<Group> = emptyList()
-    private var currentListViewMode: Boolean = true
+    private var currentListViewMode: Boolean = true // updated from ViewModel after init
 
     @State
     @JvmField
@@ -208,6 +208,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         binding.emptyStateView.setEmptyStateComposable()
 
         viewModel = ViewModelProvider(this)[SubscriptionViewModel::class.java]
+        currentListViewMode = viewModel.getListViewMode()
         viewModel.stateLiveData.observe(viewLifecycleOwner) { it?.let(this::handleResult) }
         viewModel.feedGroupsLiveData.observe(viewLifecycleOwner) {
             it?.let { (groups, listViewMode) ->
@@ -248,26 +249,23 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                     is FeedGroupCardGridItem -> item.name
                     else -> ""
                 }
-                if (groupId == viewModel.getSelectedGroupId()) {
+                if (groupId == viewModel.getSelectedGroupId() && groupId != GROUP_UNGROUPED_ID) {
                     NavigationHelper.openFeedFragment(fm, groupId, name)
                 } else {
                     viewModel.selectGroup(groupId)
                 }
             }
             carouselAdapter.setOnItemLongClickListener { item, _ ->
-                if ((item is FeedGroupCardItem && item.groupId == GROUP_ALL_ID) ||
-                    (item is FeedGroupCardGridItem && item.groupId == GROUP_ALL_ID)
-                ) {
+                val groupId = when (item) {
+                    is FeedGroupCardItem -> item.groupId
+                    is FeedGroupCardGridItem -> item.groupId
+                    else -> return@setOnItemLongClickListener false
+                }
+                if (groupId == GROUP_ALL_ID || groupId == GROUP_UNGROUPED_ID) {
                     return@setOnItemLongClickListener false
                 }
 
-                when (item) {
-                    is FeedGroupCardItem ->
-                        FeedGroupDialog.newInstance(item.groupId).show(fm, null)
-
-                    is FeedGroupCardGridItem ->
-                        FeedGroupDialog.newInstance(item.groupId).show(fm, null)
-                }
+                FeedGroupDialog.newInstance(groupId).show(fm, null)
                 return@setOnItemLongClickListener true
             }
 
@@ -402,10 +400,10 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     }
 
     private fun rebuildCarousel() {
-        val selectedId = viewModel.getSelectedGroupId()
         binding.itemsList.post {
             if (context == null) return@post
 
+            val selectedId = viewModel.getSelectedGroupId()
             feedGroupsCarousel.listViewMode = currentListViewMode
             feedGroupsSortMenuItem.showSortButton = currentGroups.size > 1
             feedGroupsSortMenuItem.listViewMode = currentListViewMode
