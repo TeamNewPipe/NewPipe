@@ -912,4 +912,41 @@
     <string name="kao_dialog_warning">In August 2025, Google announced that as of September 2026, installing apps will require developer verification for all Android apps on certified devices, including those installed outside of the Play Store. Since the developers of NewPipe do not agree to this requirement, NewPipe will no longer work on certified Android devices after that time.</string>
     <string name="kao_dialog_more_info">Details</string>
     <string name="kao_solution">Solution</string>
+
+    <!-- Channel filter/sort -->
+    <string name="filter_toggle_button_description">Toggle filter panel</string>
+    <string name="filter_toggle_button_label">Filter</string>
+    <string name="filter_sort_label">Sort</string>
+    <string name="filter_age_label">Age</string>
+    <string name="filter_name_label">Name</string>
+    <string name="filter_views_label">Views</string>
+    <string name="filter_name_hint">e.g. hello, hel*, *llo, *ell*</string>
+    <string name="filter_views_none">--</string>
+    <string name="filter_views_1k">1K</string>
+    <string name="filter_views_10k">10K</string>
+    <string name="filter_views_100k">100K</string>
+    <string name="filter_views_1m">1M</string>
+    <string name="filter_views_10m">10M</string>
+    <string name="filter_views_100m">100M</string>
+    <string name="filter_views_custom">Custom…</string>
+    <string name="filter_views_custom_hint">min views</string>
+    <string name="filter_sort_date">Date</string>
+    <string name="filter_sort_views">Views</string>
+    <string name="filter_sort_name">Name</string>
+    <string name="filter_age_none">--</string>
+    <string name="filter_age_1_day">1 Day</string>
+    <string name="filter_age_2_days">2 Days</string>
+    <string name="filter_age_4_days">4 Days</string>
+    <string name="filter_age_1_week">1 Week</string>
+    <string name="filter_age_2_weeks">2 Weeks</string>
+    <string name="filter_age_1_month">1 Month</string>
+    <string name="filter_age_2_months">2 Months</string>
+    <string name="filter_age_4_months">4 Months</string>
+    <string name="filter_age_1_year">1 Year</string>
+    <string name="filter_age_2_years">2 Years</string>
+    <string name="filter_age_5_years">5 Years</string>
+    <string name="filter_age_custom">Custom…</string>
+    <string name="filter_age_custom_hint">e.g. 3 days, 2 weeks</string>
+    <string name="filter_loading_progress">Loading… %1$d videos so far</string>
+    <string name="filter_loading_done">%1$d videos loaded</string>
 </resources>

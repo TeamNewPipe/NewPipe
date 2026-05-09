@@ -21,6 +21,7 @@ core = "1.18.0"
 desugar = "2.1.5"
 documentfile = "1.1.0"
 exoplayer = "2.19.1"
+flexbox = "3.0.0"
 fragment-compose = "1.8.9"
 groupie = "2.10.1"
 hilt = "2.58" # Newer version requires AGP 9
@@ -128,6 +129,7 @@ google-exoplayer-hls = { module = "com.google.android.exoplayer:exoplayer-hls", 
 google-exoplayer-mediasession = { module = "com.google.android.exoplayer:extension-mediasession", version.ref = "exoplayer" }
 google-exoplayer-smoothstreaming = { module = "com.google.android.exoplayer:exoplayer-smoothstreaming", version.ref = "exoplayer" }
 google-exoplayer-ui = { module = "com.google.android.exoplayer:exoplayer-ui", version.ref = "exoplayer" }
+google-flexbox = { module = "com.google.android.flexbox:flexbox", version.ref = "flexbox" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 jakewharton-phoenix = { module = "com.jakewharton:process-phoenix", version.ref = "phoenix" }
