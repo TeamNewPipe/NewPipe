@@ -9,6 +9,8 @@ package org.schabi.newpipe.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import org.schabi.newpipe.database.block.BlockedChannelDAO
+import org.schabi.newpipe.database.block.BlockedChannelEntity
 import org.schabi.newpipe.database.feed.dao.FeedDAO
 import org.schabi.newpipe.database.feed.dao.FeedGroupDAO
 import org.schabi.newpipe.database.feed.model.FeedEntity
@@ -34,8 +36,9 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity
 
 @TypeConverters(Converters::class)
 @Database(
-    version = Migrations.DB_VER_9,
+    version = Migrations.DB_VER_10,
     entities = [
+        BlockedChannelEntity::class,
         SubscriptionEntity::class,
         SearchHistoryEntry::class,
         StreamEntity::class,
@@ -51,6 +54,7 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity
     ]
 )
 abstract class AppDatabase : RoomDatabase() {
+    abstract fun blockedChannelDAO(): BlockedChannelDAO
     abstract fun feedDAO(): FeedDAO
     abstract fun feedGroupDAO(): FeedGroupDAO
     abstract fun playlistDAO(): PlaylistDAO

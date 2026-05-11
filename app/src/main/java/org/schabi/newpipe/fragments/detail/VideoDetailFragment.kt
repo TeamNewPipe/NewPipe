@@ -89,6 +89,7 @@ import org.schabi.newpipe.fragments.list.videos.RelatedItemsFragment.Companion.g
 import org.schabi.newpipe.ktx.AnimationType
 import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.ktx.animateRotation
+import org.schabi.newpipe.local.channel.BlockedChannelManager
 import org.schabi.newpipe.local.dialog.PlaylistDialog
 import org.schabi.newpipe.local.history.HistoryRecordManager
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment
@@ -203,6 +204,9 @@ class VideoDetailFragment :
     private var currentWorker: Disposable? = null
     private val disposables = CompositeDisposable()
     private var positionSubscriber: Disposable? = null
+    private val blockedChannelManager by lazy(LazyThreadSafetyMode.NONE) {
+        BlockedChannelManager(requireContext())
+    }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service management
@@ -780,6 +784,7 @@ class VideoDetailFragment :
         val prefs = PreferenceManager.getDefaultSharedPreferences(activity)
         currentWorker = ExtractorHelper.getStreamInfo(serviceId, url, forceLoad)
             .subscribeOn(Schedulers.io())
+            .flatMap { blockedChannelManager.filterStreamInfo(it) }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { result ->

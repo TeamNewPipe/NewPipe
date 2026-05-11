@@ -142,6 +142,13 @@
     <string name="default_content_country_title">Default content country</string>
     <string name="content_language_title">Default content language</string>
     <string name="peertube_instance_url_title">PeerTube instances</string>
+    <string name="blocked_channels">Blocked channels</string>
+    <string name="blocked_channels_summary">Hide videos and channels from selected creators in Trending, Search, and recommendations</string>
+    <string name="blocked_channels_key">blocked_channels</string>
+    <string name="no_blocked_channels">No blocked channels yet</string>
+    <string name="block_channel">Block channel</string>
+    <string name="unblock">Unblock</string>
+    <string name="channel_blocked_message">%1$s blocked</string>
     <string name="peertube_instance_url_summary">Select your favorite PeerTube instances</string>
     <string name="peertube_instance_url_help">Find the instances you like on %s</string>
     <string name="peertube_instance_add_title">Add instance</string>
