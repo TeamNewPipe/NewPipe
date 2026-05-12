@@ -266,7 +266,6 @@ class FeedLoadManager(private val context: Context) {
      */
     private fun postProcessFeed(): Completable {
         return Completable.fromAction {
-            FeedEventManager.postEvent(FeedEventManager.Event.ProgressEvent(R.string.feed_processing_message))
             feedDatabaseManager.removeOrphansOrOlderStreams()
         }
             .andThen(recommendationBootstrapper.rebuildChannelAffinitySignals())
