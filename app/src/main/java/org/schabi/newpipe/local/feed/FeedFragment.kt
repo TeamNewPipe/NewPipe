@@ -433,11 +433,17 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         }
 
         val feedsNotLoaded = loadedState.notLoadedCount > 0
-        feedBinding.refreshSubtitleText.isVisible = feedsNotLoaded
+        val hasRecommendations = loadedState.recommendedCount > 0
+        feedBinding.refreshSubtitleText.isVisible = feedsNotLoaded || hasRecommendations
         if (feedsNotLoaded) {
             feedBinding.refreshSubtitleText.text = getString(
                 R.string.feed_subscription_not_loaded_count,
                 loadedState.notLoadedCount
+            )
+        } else if (hasRecommendations) {
+            feedBinding.refreshSubtitleText.text = getString(
+                R.string.feed_recommended_count,
+                loadedState.recommendedCount
             )
         }
 

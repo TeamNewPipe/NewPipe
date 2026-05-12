@@ -8,6 +8,7 @@ internal const val ID_AUTHORITY = BuildConfig.APPLICATION_ID
 internal const val ID_ROOT = "//$ID_AUTHORITY"
 internal const val ID_BOOKMARKS = "playlists"
 internal const val ID_HISTORY = "history"
+internal const val ID_CONTINUE_WATCHING = "continue_watching"
 internal const val ID_INFO_ITEM = "item"
 
 internal const val ID_LOCAL = "local"

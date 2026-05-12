@@ -14,6 +14,8 @@ import org.schabi.newpipe.database.BasicDAO
 import org.schabi.newpipe.database.history.model.StreamHistoryEntity
 import org.schabi.newpipe.database.history.model.StreamHistoryEntry
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry
+import org.schabi.newpipe.database.stream.StreamWithState
+import org.schabi.newpipe.database.stream.model.StreamStateEntity
 
 @Dao
 abstract class StreamHistoryDAO : BasicDAO<StreamHistoryEntity> {
@@ -58,4 +60,33 @@ abstract class StreamHistoryDAO : BasicDAO<StreamHistoryEntity> {
         """
     )
     abstract fun getStatistics(): Flowable<MutableList<StreamStatisticsEntry>>
+
+    @Query(
+        """
+        SELECT s.*, sst.progress_time
+        FROM streams s
+
+        INNER JOIN (
+            SELECT stream_id, MAX(access_date) AS latestAccess
+            FROM stream_history
+            GROUP BY stream_id
+        ) sh
+        ON s.uid = sh.stream_id
+
+        INNER JOIN stream_state sst
+        ON s.uid = sst.stream_id
+
+        WHERE s.duration > 0
+        AND sst.progress_time > ${StreamStateEntity.PLAYBACK_SAVE_THRESHOLD_START_MILLISECONDS}
+        AND sst.progress_time > s.duration * 1000 / 4
+        AND (
+            sst.progress_time < s.duration * 1000 - ${StreamStateEntity.PLAYBACK_FINISHED_END_MILLISECONDS}
+            OR sst.progress_time < s.duration * 1000 * 3 / 4
+        )
+
+        ORDER BY sh.latestAccess DESC
+        LIMIT :limit
+        """
+    )
+    abstract fun getContinueWatching(limit: Int): Flowable<List<StreamWithState>>
 }

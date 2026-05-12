@@ -10,6 +10,7 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import java.time.OffsetDateTime
 import org.schabi.newpipe.database.BasicDAO
+import org.schabi.newpipe.database.stream.StreamWithState
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_ID
 import org.schabi.newpipe.extractor.stream.StreamType
@@ -122,6 +123,28 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
         """
     )
     abstract fun deleteOrphans(): Int
+
+    @Query(
+        """
+        SELECT s.*, sst.progress_time
+        FROM streams s
+
+        LEFT JOIN stream_state sst
+        ON s.uid = sst.stream_id
+
+        WHERE s.service_id = :serviceId
+        AND s.uploader_url = :uploaderUrl
+        AND s.upload_date IS NOT NULL
+
+        ORDER BY s.upload_date DESC
+        LIMIT :limit
+        """
+    )
+    abstract fun listRecentByUploader(
+        serviceId: Int,
+        uploaderUrl: String,
+        limit: Int
+    ): List<StreamWithState>
 
     /**
      * Minimal entry class used when comparing/updating an existent stream.

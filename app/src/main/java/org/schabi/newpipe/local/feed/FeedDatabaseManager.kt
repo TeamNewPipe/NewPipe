@@ -126,6 +126,33 @@ class FeedDatabaseManager(context: Context) {
         }
     }
 
+    fun getRecommendedStreamsByChannel(channelSignals: List<String>, limitPerChannel: Int = 5): List<StreamWithState> {
+        val results = ArrayList<StreamWithState>()
+        val seenStreamIds = HashSet<Long>()
+
+        channelSignals.forEach { key ->
+            val separatorIndex = key.indexOf(':')
+            if (separatorIndex <= 0 || separatorIndex >= key.length - 1) {
+                return@forEach
+            }
+
+            val serviceId = key.substring(0, separatorIndex).toIntOrNull() ?: return@forEach
+            val uploaderUrl = key.substring(separatorIndex + 1)
+            if (uploaderUrl.isBlank()) {
+                return@forEach
+            }
+
+            streamTable.listRecentByUploader(serviceId, uploaderUrl, limitPerChannel)
+                .forEach { streamWithState ->
+                    if (seenStreamIds.add(streamWithState.stream.uid)) {
+                        results.add(streamWithState)
+                    }
+                }
+        }
+
+        return results
+    }
+
     // /////////////////////////////////////////////////////////////////////////
     // Feed Groups
     // /////////////////////////////////////////////////////////////////////////

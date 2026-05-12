@@ -25,6 +25,8 @@ import org.schabi.newpipe.database.playlist.dao.PlaylistStreamDAO
 import org.schabi.newpipe.database.playlist.model.PlaylistEntity
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity
 import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity
+import org.schabi.newpipe.database.recommendation.dao.RecommendationSignalDAO
+import org.schabi.newpipe.database.recommendation.model.RecommendationSignalEntity
 import org.schabi.newpipe.database.stream.dao.StreamDAO
 import org.schabi.newpipe.database.stream.dao.StreamStateDAO
 import org.schabi.newpipe.database.stream.model.StreamEntity
@@ -34,7 +36,7 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity
 
 @TypeConverters(Converters::class)
 @Database(
-    version = Migrations.DB_VER_9,
+    version = Migrations.DB_VER_10,
     entities = [
         SubscriptionEntity::class,
         SearchHistoryEntry::class,
@@ -47,7 +49,8 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity
         FeedEntity::class,
         FeedGroupEntity::class,
         FeedGroupSubscriptionEntity::class,
-        FeedLastUpdatedEntity::class
+        FeedLastUpdatedEntity::class,
+        RecommendationSignalEntity::class
     ]
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -61,6 +64,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun streamHistoryDAO(): StreamHistoryDAO
     abstract fun streamStateDAO(): StreamStateDAO
     abstract fun subscriptionDAO(): SubscriptionDAO
+    abstract fun recommendationSignalDAO(): RecommendationSignalDAO
 
     companion object {
         const val DATABASE_NAME: String = "newpipe.db"

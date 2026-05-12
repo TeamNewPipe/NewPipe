@@ -26,6 +26,7 @@ import org.schabi.newpipe.extractor.feed.FeedInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.ktx.getStringSafe
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
+import org.schabi.newpipe.local.feed.RecommendationBootstrapper
 import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.util.ChannelTabHelper
 import org.schabi.newpipe.util.ExtractorHelper.getChannelInfo
@@ -36,6 +37,7 @@ class FeedLoadManager(private val context: Context) {
 
     private val subscriptionManager = SubscriptionManager(context)
     private val feedDatabaseManager = FeedDatabaseManager(context)
+    private val recommendationBootstrapper = RecommendationBootstrapper(context)
 
     private val notificationUpdater = PublishProcessor.create<String>()
     private val currentProgress = AtomicInteger(-1)
@@ -262,18 +264,26 @@ class FeedLoadManager(private val context: Context) {
      * Remove streams from the feed which are older than [FeedDatabaseManager.FEED_OLDEST_ALLOWED_DATE].
      * Remove streams from the database which are not linked / used by any table.
      */
-    private fun postProcessFeed() = Completable.fromRunnable {
-        FeedEventManager.postEvent(FeedEventManager.Event.ProgressEvent(R.string.feed_processing_message))
-        feedDatabaseManager.removeOrphansOrOlderStreams()
+    private fun postProcessFeed(): Completable {
+        return Completable.fromAction {
+            feedDatabaseManager.removeOrphansOrOlderStreams()
+        }
+            .andThen(recommendationBootstrapper.rebuildChannelAffinitySignals())
+            .andThen(
+                Completable.fromAction {
+                    FeedEventManager.postEvent(
+                        FeedEventManager.Event.SuccessResultEvent(feedResultsHolder.itemsErrors)
+                    )
+                }
+            )
+            .doOnSubscribe {
+                currentProgress.set(-1)
+                maxProgress.set(-1)
 
-        FeedEventManager.postEvent(FeedEventManager.Event.SuccessResultEvent(feedResultsHolder.itemsErrors))
-    }.doOnSubscribe {
-        currentProgress.set(-1)
-        maxProgress.set(-1)
-
-        notificationUpdater.onNext(context.getString(R.string.feed_processing_message))
-        FeedEventManager.postEvent(FeedEventManager.Event.ProgressEvent(R.string.feed_processing_message))
-    }.subscribeOn(Schedulers.io())
+                notificationUpdater.onNext(context.getString(R.string.feed_processing_message))
+                FeedEventManager.postEvent(FeedEventManager.Event.ProgressEvent(R.string.feed_processing_message))
+            }.subscribeOn(Schedulers.io())
+    }
 
     private inner class NotificationConsumer : Consumer<Notification<FeedUpdateInfo>> {
         override fun accept(item: Notification<FeedUpdateInfo>) {
@@ -326,7 +336,9 @@ class FeedLoadManager(private val context: Context) {
         }
 
         private fun filterNewStreams(list: List<StreamInfoItem>): List<StreamInfoItem> {
-            return list.filter {
+            return list
+                .distinctBy { "${it.serviceId}:${it.url}" }
+                .filter {
                 !feedDatabaseManager.doesStreamExist(it) &&
                     it.uploadDate != null &&
                     // Streams older than this date are automatically removed from the feed.
@@ -335,7 +347,7 @@ class FeedLoadManager(private val context: Context) {
                     it.uploadDate!!.offsetDateTime().isAfter(
                         FeedDatabaseManager.FEED_OLDEST_ALLOWED_DATE
                     )
-            }
+                }
         }
     }
 

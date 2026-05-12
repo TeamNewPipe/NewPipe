@@ -394,6 +394,7 @@
     <!-- History -->
     <string name="title_activity_history">History</string>
     <string name="action_history">History</string>
+    <string name="continue_watching">Continue watching</string>
     <string name="delete_item_search_history">Do you want to delete this item from search history?</string>
     <string name="title_last_played">Last Played</string>
     <string name="title_most_played">Most Played</string>
@@ -713,6 +714,7 @@
     <string name="feed_groups_header_title">Channel groups</string>
     <string name="feed_oldest_subscription_update">Feed last updated: %s</string>
     <string name="feed_subscription_not_loaded_count">Not loaded: %d</string>
+    <string name="feed_recommended_count">%d recommended for you</string>
     <string name="feed_notification_loading">Loading feed…</string>
     <string name="feed_processing_message">Processing feed…</string>
     <string name="feed_new_items">New feed items</string>

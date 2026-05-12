@@ -29,6 +29,7 @@ object Migrations {
     const val DB_VER_7 = 7
     const val DB_VER_8 = 8
     const val DB_VER_9 = 9
+    const val DB_VER_10 = 10
 
     private val TAG = Migrations::class.java.getName()
     private val isDebug = MainActivity.DEBUG
@@ -347,5 +348,22 @@ object Migrations {
         } finally {
             db.endTransaction()
         }
+    }
+
+    val MIGRATION_9_10 = Migration(DB_VER_9, DB_VER_10) { db ->
+        db.execSQL(
+            "CREATE TABLE IF NOT EXISTS `recommendation_signal` " +
+                "(`signal_type` TEXT NOT NULL, `target_key` TEXT NOT NULL, " +
+                "`score` REAL NOT NULL, `updated_at` INTEGER NOT NULL, " +
+                "PRIMARY KEY(`signal_type`, `target_key`))"
+        )
+        db.execSQL(
+            "CREATE INDEX IF NOT EXISTS `index_recommendation_signal_score` " +
+                "ON `recommendation_signal` (`score`)"
+        )
+        db.execSQL(
+            "CREATE INDEX IF NOT EXISTS `index_recommendation_signal_updated_at` " +
+                "ON `recommendation_signal` (`updated_at`)"
+        )
     }
 }

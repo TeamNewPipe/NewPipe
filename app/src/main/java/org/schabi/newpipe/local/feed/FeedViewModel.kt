@@ -36,6 +36,7 @@ class FeedViewModel(
     initialShowFutureItems: Boolean
 ) : ViewModel() {
     private val feedDatabaseManager = FeedDatabaseManager(application)
+    private val recommendationSignalManager = RecommendationSignalManager(application)
 
     private val showPlayedItems = BehaviorProcessor.create<Boolean>()
     private val showPlayedItemsFlowable = showPlayedItems
@@ -87,15 +88,46 @@ class FeedViewModel(
                 arrayListOf()
             }
 
-            CombineResultDataHolder(event, streamItems, notLoadedCount, oldestUpdate)
+            val recommendedItems = if (
+                (event is SuccessResultEvent || event is IdleEvent) &&
+                groupId == FeedGroupEntity.GROUP_ALL_ID
+            ) {
+                val signalKeys = recommendationSignalManager
+                    .listTopBySignalType(RecommendationBootstrapper.SIGNAL_TYPE_CHANNEL_AFFINITY, 8)
+                    .blockingFirst()
+                    .map { it.targetKey }
+
+                feedDatabaseManager
+                    .getRecommendedStreamsByChannel(signalKeys, limitPerChannel = 3)
+                    .take(20)
+            } else {
+                emptyList()
+            }
+
+            CombineResultDataHolder(event, streamItems, recommendedItems, notLoadedCount, oldestUpdate)
         }
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe { (event, listFromDB, notLoadedCount, oldestUpdate) ->
+        .subscribe { (event, listFromDB, recommendedFromDB, notLoadedCount, oldestUpdate) ->
+            val feedItems = listFromDB.map { e -> StreamItem(e) }
+            val recommendedItems = recommendedFromDB.map { e -> StreamItem(e) }
+            val allItems = (recommendedItems + feedItems).distinctBy { it.streamWithState.stream.uid }
             mutableStateLiveData.postValue(
                 when (event) {
-                    is IdleEvent -> FeedState.LoadedState(listFromDB.map { e -> StreamItem(e) }, oldestUpdate, notLoadedCount, listOf())
+                    is IdleEvent -> FeedState.LoadedState(
+                        allItems,
+                        oldestUpdate,
+                        notLoadedCount,
+                        listOf(),
+                        recommendedItems.size
+                    )
                     is ProgressEvent -> FeedState.ProgressState(event.currentProgress, event.maxProgress, event.progressMessage)
-                    is SuccessResultEvent -> FeedState.LoadedState(listFromDB.map { e -> StreamItem(e) }, oldestUpdate, notLoadedCount, event.itemsErrors)
+                    is SuccessResultEvent -> FeedState.LoadedState(
+                        allItems,
+                        oldestUpdate,
+                        notLoadedCount,
+                        event.itemsErrors,
+                        recommendedItems.size
+                    )
                     is ErrorResultEvent -> FeedState.ErrorState(event.error)
                 }
             )
@@ -122,8 +154,9 @@ class FeedViewModel(
     private data class CombineResultDataHolder(
         val t1: FeedEventManager.Event,
         val t2: List<StreamWithState>,
-        val t3: Long,
-        val t4: OffsetDateTime?
+        val t3: List<StreamWithState>,
+        val t4: Long,
+        val t5: OffsetDateTime?
     )
 
     fun setSaveShowPlayedItems(showPlayedItems: Boolean) {

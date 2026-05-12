@@ -36,6 +36,7 @@ import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
+import org.schabi.newpipe.database.stream.StreamWithState;
 import org.schabi.newpipe.database.stream.dao.StreamDAO;
 import org.schabi.newpipe.database.stream.dao.StreamStateDAO;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
@@ -179,6 +180,10 @@ public class HistoryRecordManager {
 
     public Flowable<List<StreamStatisticsEntry>> getStreamStatistics() {
         return streamHistoryTable.getStatistics().subscribeOn(Schedulers.io());
+    }
+
+    public Flowable<List<StreamWithState>> getContinueWatching(final int limit) {
+        return streamHistoryTable.getContinueWatching(limit).subscribeOn(Schedulers.io());
     }
 
     private boolean isStreamHistoryEnabled() {
