@@ -12,6 +12,7 @@ import androidx.preference.PreferenceManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.functions.Function6
+import io.reactivex.rxjava3.functions.Function7
 import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.time.OffsetDateTime
@@ -26,6 +27,7 @@ import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.ErrorResultE
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.IdleEvent
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.ProgressEvent
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.SuccessResultEvent
+import org.schabi.newpipe.local.history.HistoryRecordManager
 import org.schabi.newpipe.util.DEFAULT_THROTTLE_TIMEOUT
 
 class FeedViewModel(
@@ -37,6 +39,7 @@ class FeedViewModel(
 ) : ViewModel() {
     private val feedDatabaseManager = FeedDatabaseManager(application)
     private val recommendationSignalManager = RecommendationSignalManager(application)
+    private val historyRecordManager = HistoryRecordManager(application)
 
     private val showPlayedItems = BehaviorProcessor.create<Boolean>()
     private val showPlayedItemsFlowable = showPlayedItems
@@ -56,6 +59,15 @@ class FeedViewModel(
     private val mutableStateLiveData = MutableLiveData<FeedState>()
     val stateLiveData: LiveData<FeedState> = mutableStateLiveData
 
+    private val streamHistoryVersionFlowable = historyRecordManager
+        .getStreamHistorySortedById()
+        .map { entries ->
+            val latestAccessDateEpoch = entries.firstOrNull()?.accessDate?.toEpochSecond() ?: 0L
+            HistoryVersion(entries.size, latestAccessDateEpoch)
+        }
+        .distinctUntilChanged()
+        .onErrorReturnItem(HistoryVersion(0, 0L))
+
     private var combineDisposable = Flowable
         .combineLatest(
             FeedEventManager.events(),
@@ -64,16 +76,18 @@ class FeedViewModel(
             showFutureItemsFlowable,
             feedDatabaseManager.notLoadedCount(groupId),
             feedDatabaseManager.oldestSubscriptionUpdate(groupId),
+            streamHistoryVersionFlowable,
 
-            Function6 {
+            Function7 {
                     t1: FeedEventManager.Event,
                     t2: Boolean,
                     t3: Boolean,
                     t4: Boolean,
                     t5: Long,
-                    t6: List<OffsetDateTime?>
+                    t6: List<OffsetDateTime?>,
+                    t7: HistoryVersion
                 ->
-                return@Function6 CombineResultEventHolder(t1, t2, t3, t4, t5, t6.firstOrNull())
+                return@Function7 CombineResultEventHolder(t1, t2, t3, t4, t5, t6.firstOrNull(), t7)
             }
         )
         .throttleLatest(DEFAULT_THROTTLE_TIMEOUT, TimeUnit.MILLISECONDS)
@@ -120,7 +134,9 @@ class FeedViewModel(
                         listOf(),
                         recommendedItems.size
                     )
+
                     is ProgressEvent -> FeedState.ProgressState(event.currentProgress, event.maxProgress, event.progressMessage)
+
                     is SuccessResultEvent -> FeedState.LoadedState(
                         allItems,
                         oldestUpdate,
@@ -128,6 +144,7 @@ class FeedViewModel(
                         event.itemsErrors,
                         recommendedItems.size
                     )
+
                     is ErrorResultEvent -> FeedState.ErrorState(event.error)
                 }
             )
@@ -148,7 +165,8 @@ class FeedViewModel(
         val t3: Boolean,
         val t4: Boolean,
         val t5: Long,
-        val t6: OffsetDateTime?
+        val t6: OffsetDateTime?,
+        val t7: HistoryVersion
     )
 
     private data class CombineResultDataHolder(
@@ -157,6 +175,11 @@ class FeedViewModel(
         val t3: List<StreamWithState>,
         val t4: Long,
         val t5: OffsetDateTime?
+    )
+
+    private data class HistoryVersion(
+        val count: Int,
+        val latestAccessDateEpoch: Long
     )
 
     fun setSaveShowPlayedItems(showPlayedItems: Boolean) {
