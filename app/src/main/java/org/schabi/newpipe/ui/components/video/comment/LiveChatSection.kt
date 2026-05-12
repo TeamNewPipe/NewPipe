@@ -7,13 +7,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Badge
-import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -98,23 +98,11 @@ fun LiveChatSection(liveChatViewModel: LiveChatViewModel = viewModel()) {
             enter = fadeIn(),
             exit = fadeOut()
         ) {
-            FloatingActionButton(
-                onClick = {
-                    coroutineScope.launch {
-                        state.scrollToItem(0)
-                    }
-                }
-            ) {
-                BadgedBox(
-                    badge = {
-                        Badge(
-                            containerColor = MaterialTheme.colorScheme.error,
-                            contentColor = MaterialTheme.colorScheme.onError
-                        ) {
-                            Text(
-                                text = unreadCount.toString(),
-                                style = MaterialTheme.typography.labelSmall
-                            )
+            Box {
+                FloatingActionButton(
+                    onClick = {
+                        coroutineScope.launch {
+                            state.scrollToItem(0)
                         }
                     }
                 ) {
@@ -122,6 +110,20 @@ fun LiveChatSection(liveChatViewModel: LiveChatViewModel = viewModel()) {
                         imageVector = Icons.Default.KeyboardArrowUp,
                         contentDescription = "Scroll to new messages"
                     )
+                }
+                if (unreadCount > 0) {
+                    Badge(
+                        modifier = Modifier
+                            .align(Alignment.TopEnd)
+                            .offset(x = 6.dp, y = (-6).dp),
+                        containerColor = MaterialTheme.colorScheme.error,
+                        contentColor = MaterialTheme.colorScheme.onError
+                    ) {
+                        Text(
+                            text = unreadCount.toString(),
+                            style = MaterialTheme.typography.labelSmall
+                        )
+                    }
                 }
             }
         }
