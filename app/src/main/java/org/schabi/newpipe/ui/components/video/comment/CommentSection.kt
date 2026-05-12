@@ -30,7 +30,6 @@ import kotlinx.coroutines.flow.flowOf
 import org.schabi.newpipe.R
 import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.UserAction
-import org.schabi.newpipe.extractor.Page
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.ui.components.common.ErrorPanel
@@ -82,7 +81,6 @@ private fun CommentSection(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .heightIn(min = 128.dp)
-
                             )
                         }
                     } else if (count == 0) {
@@ -95,7 +93,6 @@ private fun CommentSection(
                             )
                         }
                     } else {
-                        // do not show anything if the comment count is unknown
                         if (count >= 0) {
                             item {
                                 Text(
@@ -107,6 +104,7 @@ private fun CommentSection(
                                 )
                             }
                         }
+
                         when (val refresh = comments.loadState.refresh) {
                             is LoadState.Loading -> {
                                 item {
@@ -136,8 +134,19 @@ private fun CommentSection(
                             }
 
                             else -> {
-                                items(comments.itemCount) {
-                                    Comment(comment = comments[it]!!) {}
+                                if (comments.itemCount == 0) {
+                                    item {
+                                        EmptyStateComposable(
+                                            spec = EmptyStateSpec.NoComments,
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .heightIn(min = 128.dp)
+                                        )
+                                    }
+                                } else {
+                                    items(comments.itemCount) {
+                                        Comment(comment = comments[it]!!) {}
+                                    }
                                 }
 
                                 // handle append (next page) errors
@@ -222,7 +231,7 @@ private fun CommentSectionSuccessPreview() {
                 Description.PLAIN_TEXT
             ),
             uploaderName = "Test",
-            replies = Page(""),
+            replies = org.schabi.newpipe.extractor.Page(""),
             replyCount = 10
         )
     ) + (2..10).map {

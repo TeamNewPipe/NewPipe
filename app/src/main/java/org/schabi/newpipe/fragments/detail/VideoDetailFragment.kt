@@ -85,6 +85,7 @@ import org.schabi.newpipe.fragments.BaseStateFragment
 import org.schabi.newpipe.fragments.EmptyFragment
 import org.schabi.newpipe.fragments.MainFragment
 import org.schabi.newpipe.fragments.list.comments.CommentsFragment.Companion.getInstance
+import org.schabi.newpipe.fragments.list.comments.LiveChatFragment
 import org.schabi.newpipe.fragments.list.videos.RelatedItemsFragment.Companion.getInstance
 import org.schabi.newpipe.ktx.AnimationType
 import org.schabi.newpipe.ktx.animate
@@ -323,7 +324,10 @@ class VideoDetailFragment :
         if (tabSettingsChanged) {
             tabSettingsChanged = false
             initTabs()
-            currentInfo?.let { updateTabs(it) }
+            currentInfo?.let {
+                updateTabs(it)
+                addLiveChatTabIfNeeded(it)
+            }
         }
 
         // Check if it was loading when the fragment was stopped/paused
@@ -912,6 +916,40 @@ class VideoDetailFragment :
         }
     }
 
+    private fun addLiveChatTabIfNeeded(streamInfo: StreamInfo) {
+        if (!streamInfo.hasLiveChat()) {
+            return
+        }
+        val continuation = streamInfo.liveChatContinuation ?: return
+        if (continuation.isEmpty()) {
+            return
+        }
+        if (pageAdapter.getItemPositionByTitle(LIVE_CHAT_TAB_TAG) != -1) {
+            return
+        }
+
+        val commentsPosition = pageAdapter.getItemPositionByTitle(COMMENTS_TAB_TAG)
+        val insertPosition = if (commentsPosition >= 0) commentsPosition + 1 else pageAdapter.count
+
+        pageAdapter.addFragment(
+            LiveChatFragment.getInstance(serviceId, url, continuation),
+            LIVE_CHAT_TAB_TAG,
+            insertPosition
+        )
+        tabIcons.add(insertPosition, R.drawable.ic_live_tv)
+        tabContentDescriptions.add(insertPosition, R.string.live_chat_tab_description)
+        pageAdapter.notifyDataSetUpdate()
+        updateTabIconsAndContentDescriptions()
+        updateTabLayoutVisibility()
+
+        // Select live chat tab by default for live streams
+        if (streamInfo.streamType == StreamType.LIVE_STREAM ||
+            streamInfo.streamType == StreamType.AUDIO_LIVE_STREAM
+        ) {
+            binding.viewPager.setCurrentItem(insertPosition, false)
+        }
+    }
+
     fun updateTabLayoutVisibility() {
         if (nullableBinding == null) {
             // If binding is null we do not need to and should not do anything with its object(s)
@@ -1418,6 +1456,7 @@ class VideoDetailFragment :
         setInitialData(info.serviceId, info.originalUrl, info.name, playQueue)
 
         updateTabs(info)
+        addLiveChatTabIfNeeded(info)
 
         binding.detailThumbnailPlayButton.animate(true, 200)
         binding.detailVideoTitleView.text = title
@@ -2342,6 +2381,7 @@ class VideoDetailFragment :
             App.PACKAGE_NAME + ".VideoDetailFragment.ACTION_VIDEO_FRAGMENT_STOPPED"
 
         private const val COMMENTS_TAB_TAG = "COMMENTS"
+        private const val LIVE_CHAT_TAB_TAG = "LIVE_CHAT"
         private const val RELATED_TAB_TAG = "NEXT VIDEO"
         private const val DESCRIPTION_TAB_TAG = "DESCRIPTION TAB"
         private const val EMPTY_TAB_TAG = "EMPTY TAB"

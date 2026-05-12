@@ -284,6 +284,7 @@
     <string name="detail_likes_img_view_description">Likes</string>
     <string name="detail_dislikes_img_view_description">Dislikes</string>
     <string name="comments_tab_description">Comments</string>
+    <string name="live_chat_tab_description">Live Chat</string>
     <string name="related_items_tab_description">Related items</string>
     <string name="description_tab_description">Description</string>
     <string name="search_no_results">No results</string>
@@ -912,4 +913,5 @@
     <string name="kao_dialog_warning">In August 2025, Google announced that as of September 2026, installing apps will require developer verification for all Android apps on certified devices, including those installed outside of the Play Store. Since the developers of NewPipe do not agree to this requirement, NewPipe will no longer work on certified Android devices after that time.</string>
     <string name="kao_dialog_more_info">Details</string>
     <string name="kao_solution">Solution</string>
+
 </resources>
