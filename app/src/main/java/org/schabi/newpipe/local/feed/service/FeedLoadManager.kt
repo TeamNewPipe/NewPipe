@@ -326,7 +326,9 @@ class FeedLoadManager(private val context: Context) {
         }
 
         private fun filterNewStreams(list: List<StreamInfoItem>): List<StreamInfoItem> {
-            return list.filter {
+            return list
+                .distinctBy { "${it.serviceId}:${it.url}" }
+                .filter {
                 !feedDatabaseManager.doesStreamExist(it) &&
                     it.uploadDate != null &&
                     // Streams older than this date are automatically removed from the feed.
@@ -335,7 +337,7 @@ class FeedLoadManager(private val context: Context) {
                     it.uploadDate!!.offsetDateTime().isAfter(
                         FeedDatabaseManager.FEED_OLDEST_ALLOWED_DATE
                     )
-            }
+                }
         }
     }
 

@@ -36,12 +36,13 @@ class NotificationHelper(val context: Context) {
      * individual notifications will open the corresponding video.
      */
     fun displayNewStreamsNotifications(data: FeedUpdateInfo) {
-        val newStreams = data.newStreams
+        val newStreams = data.newStreams.distinctBy { it.url }
         val summary = context.resources.getQuantityString(
             R.plurals.new_streams,
             newStreams.size,
             newStreams.size
         )
+        val summaryGroupKey = "${data.serviceId}:${data.url}"
         val summaryBuilder = NotificationCompat.Builder(
             context,
             context.getString(R.string.streams_notification_channel_id)
@@ -57,7 +58,7 @@ class NotificationHelper(val context: Context) {
             .setAutoCancel(true)
             .setCategory(NotificationCompat.CATEGORY_SOCIAL)
             .setGroupSummary(true)
-            .setGroup(data.url)
+            .setGroup(summaryGroupKey)
             .setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_SUMMARY)
 
         // Build a summary notification for Android versions < 7.0
@@ -71,7 +72,7 @@ class NotificationHelper(val context: Context) {
             .getChannelIntent(context, data.serviceId, data.url)
             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         summaryBuilder.setContentIntent(
-            PendingIntentCompat.getActivity(context, data.pseudoId, intent, 0, false)
+            PendingIntentCompat.getActivity(context, summaryGroupKey.hashCode(), intent, 0, false)
         )
 
         val avatarIcon =
@@ -82,7 +83,7 @@ class NotificationHelper(val context: Context) {
         showStreamNotifications(newStreams, data.serviceId, avatarIcon)
         // Show summary notification
         if (manager.areNotificationsEnabled()) {
-            manager.notify(data.pseudoId, summaryBuilder.build())
+            manager.notify(summaryGroupKey.hashCode(), summaryBuilder.build())
         }
     }
 
@@ -95,7 +96,7 @@ class NotificationHelper(val context: Context) {
             newStreams.forEach { stream ->
                 val notification =
                     createStreamNotification(stream, serviceId, channelIcon)
-                manager.notify(stream.url.hashCode(), notification)
+                manager.notify("$serviceId:${stream.url}".hashCode(), notification)
             }
         }
     }
@@ -113,7 +114,7 @@ class NotificationHelper(val context: Context) {
             .setLargeIcon(channelIcon)
             .setContentTitle(item.name)
             .setContentText(item.uploaderName)
-            .setGroup(item.uploaderUrl)
+            .setGroup("$serviceId:${item.uploaderUrl ?: item.url}")
             .setColor(ContextCompat.getColor(context, R.color.ic_launcher_background))
             .setColorized(true)
             .setAutoCancel(true)
@@ -122,7 +123,7 @@ class NotificationHelper(val context: Context) {
                 // Open the stream link in the player when clicking on the notification.
                 PendingIntentCompat.getActivity(
                     context,
-                    item.url.hashCode(),
+                    "$serviceId:${item.url}".hashCode(),
                     NavigationHelper.getStreamIntent(context, serviceId, item.url, item.name),
                     PendingIntent.FLAG_UPDATE_CURRENT,
                     false
