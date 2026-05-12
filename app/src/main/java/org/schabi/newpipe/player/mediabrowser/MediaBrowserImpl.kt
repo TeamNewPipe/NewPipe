@@ -25,6 +25,7 @@ import org.schabi.newpipe.database.history.model.StreamHistoryEntry
 import org.schabi.newpipe.database.playlist.PlaylistLocalItem
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity
+import org.schabi.newpipe.database.stream.StreamWithState
 import org.schabi.newpipe.extractor.InfoItem
 import org.schabi.newpipe.extractor.InfoItem.InfoType
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
@@ -134,6 +135,11 @@ class MediaBrowserImpl(
                             ID_HISTORY,
                             context.resources.getString(R.string.action_history),
                             R.drawable.ic_history_white
+                        ),
+                        createRootMediaItem(
+                            ID_CONTINUE_WATCHING,
+                            context.resources.getString(R.string.continue_watching),
+                            R.drawable.ic_history_white
                         )
                     )
                 )
@@ -158,6 +164,7 @@ class MediaBrowserImpl(
                 }
 
                 ID_HISTORY -> return populateHistory()
+                ID_CONTINUE_WATCHING -> return populateContinueWatching()
 
                 else -> throw parseError(parentId)
             }
@@ -323,6 +330,13 @@ class MediaBrowserImpl(
         }
     }
 
+    private fun populateContinueWatching(): Single<List<MediaBrowserCompat.MediaItem>> {
+        val continueWatching = database.streamHistoryDAO().getContinueWatching(50).firstOrError()
+        return continueWatching.map { items ->
+            items.map { this.createContinueWatchingMediaItem(it) }
+        }
+    }
+
     private fun createHistoryMediaItem(streamHistoryEntry: StreamHistoryEntry): MediaBrowserCompat.MediaItem {
         val builder = MediaDescriptionCompat.Builder()
         val mediaId = buildMediaId()
@@ -333,6 +347,23 @@ class MediaBrowserImpl(
             .setTitle(streamHistoryEntry.streamEntity.title)
             .setSubtitle(streamHistoryEntry.streamEntity.uploader)
             .setIconUri(imageUriOrNullIfDisabled(streamHistoryEntry.streamEntity.thumbnailUrl))
+
+        return MediaBrowserCompat.MediaItem(
+            builder.build(),
+            MediaBrowserCompat.MediaItem.FLAG_PLAYABLE
+        )
+    }
+
+    private fun createContinueWatchingMediaItem(streamWithState: StreamWithState): MediaBrowserCompat.MediaItem {
+        val builder = MediaDescriptionCompat.Builder()
+        val mediaId = buildMediaId()
+            .appendPath(ID_CONTINUE_WATCHING)
+            .appendPath(streamWithState.stream.uid.toString())
+            .build().toString()
+        builder.setMediaId(mediaId)
+            .setTitle(streamWithState.stream.title)
+            .setSubtitle(streamWithState.stream.uploader)
+            .setIconUri(imageUriOrNullIfDisabled(streamWithState.stream.thumbnailUrl))
 
         return MediaBrowserCompat.MediaItem(
             builder.build(),

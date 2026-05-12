@@ -154,6 +154,7 @@ class MediaBrowserPlaybackPreparer(
                 )
 
                 ID_HISTORY -> extractPlayQueueFromHistoryMediaId(mediaId, path)
+                ID_CONTINUE_WATCHING -> extractPlayQueueFromContinueWatchingMediaId(mediaId, path)
 
                 ID_INFO_ITEM -> extractPlayQueueFromInfoItemMediaId(
                     mediaId,
@@ -222,6 +223,26 @@ class MediaBrowserPlaybackPreparer(
                 val infoItems = items
                     .filter { it.streamId == streamId }
                     .map { it.toStreamInfoItem() }
+                SinglePlayQueue(infoItems, 0)
+            }
+    }
+
+    @Throws(ContentNotAvailableException::class)
+    private fun extractPlayQueueFromContinueWatchingMediaId(
+        mediaId: String,
+        path: List<String>
+    ): Single<PlayQueue> {
+        if (path.size != 1) {
+            throw parseError(mediaId)
+        }
+
+        val streamId = path[0].toLong()
+        return database.streamHistoryDAO().getContinueWatching(100)
+            .firstOrError()
+            .map { items ->
+                val infoItems = items
+                    .filter { it.stream.uid == streamId }
+                    .map { it.stream.toStreamInfoItem() }
                 SinglePlayQueue(infoItems, 0)
             }
     }
