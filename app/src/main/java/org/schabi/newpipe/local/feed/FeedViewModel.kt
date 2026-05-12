@@ -11,7 +11,6 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.preference.PreferenceManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.functions.Function6
 import io.reactivex.rxjava3.functions.Function7
 import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -60,11 +59,8 @@ class FeedViewModel(
     val stateLiveData: LiveData<FeedState> = mutableStateLiveData
 
     private val streamHistoryVersionFlowable = historyRecordManager
-        .getStreamHistorySortedById()
-        .map { entries ->
-            val latestAccessDateEpoch = entries.firstOrNull()?.accessDate?.toEpochSecond() ?: 0L
-            HistoryVersion(entries.size, latestAccessDateEpoch)
-        }
+        .getStreamHistoryStats()
+        .map { stats -> HistoryVersion(stats.count, stats.latestAccessDate) }
         .distinctUntilChanged()
         .onErrorReturnItem(HistoryVersion(0, 0L))
 
@@ -178,7 +174,7 @@ class FeedViewModel(
     )
 
     private data class HistoryVersion(
-        val count: Int,
+        val count: Long,
         val latestAccessDateEpoch: Long
     )
 

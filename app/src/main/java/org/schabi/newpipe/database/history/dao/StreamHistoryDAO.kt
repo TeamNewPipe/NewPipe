@@ -17,6 +17,8 @@ import org.schabi.newpipe.database.stream.StreamStatisticsEntry
 import org.schabi.newpipe.database.stream.StreamWithState
 import org.schabi.newpipe.database.stream.model.StreamStateEntity
 
+data class StreamHistoryStats(val count: Long, val latestAccessDate: Long)
+
 @Dao
 abstract class StreamHistoryDAO : BasicDAO<StreamHistoryEntity> {
 
@@ -41,6 +43,9 @@ abstract class StreamHistoryDAO : BasicDAO<StreamHistoryEntity> {
 
     @Query("DELETE FROM stream_history WHERE stream_id = :streamId")
     abstract fun deleteStreamHistory(streamId: Long): Int
+
+    @Query("SELECT COUNT(*) AS count, COALESCE(MAX(access_date), 0) AS latestAccessDate FROM stream_history")
+    abstract fun getHistoryStats(): Flowable<StreamHistoryStats>
 
     // Select the latest entry and watch count for each stream id on history table
     @RewriteQueriesToDropUnusedColumns
