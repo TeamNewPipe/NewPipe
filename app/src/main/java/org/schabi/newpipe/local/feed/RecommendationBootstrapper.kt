@@ -10,6 +10,7 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
+import org.schabi.newpipe.database.stream.StreamStatisticsEntry
 import org.schabi.newpipe.local.history.HistoryRecordManager
 
 /**
@@ -24,6 +25,8 @@ class RecommendationBootstrapper(context: Context) {
         return Completable.fromAction {
             val now = OffsetDateTime.now(ZoneOffset.UTC)
             val entries = historyRecordManager.getStreamStatistics().blockingFirst()
+                .sortedWith(compareByDescending<StreamStatisticsEntry> { it.latestAccessDate }
+                    .thenByDescending { it.watchCount })
             val channelScores = linkedMapOf<String, Double>()
 
             entries.take(limit).forEach { entry ->

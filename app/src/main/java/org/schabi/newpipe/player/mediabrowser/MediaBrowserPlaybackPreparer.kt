@@ -243,6 +243,9 @@ class MediaBrowserPlaybackPreparer(
                 val infoItems = items
                     .filter { it.stream.uid == streamId }
                     .map { it.stream.toStreamInfoItem() }
+                if (infoItems.isEmpty()) {
+                    throw ContentNotAvailableException("Continue watching item not found: $streamId")
+                }
                 SinglePlayQueue(infoItems, 0)
             }
     }

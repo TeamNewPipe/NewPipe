@@ -27,7 +27,7 @@ interface RecommendationSignalDAO : BasicDAO<RecommendationSignalEntity> {
     }
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    override fun upsert(entity: RecommendationSignalEntity): Long
+    fun upsert(entity: RecommendationSignalEntity): Long
 
     @Query(
         "SELECT * FROM recommendation_signal " +

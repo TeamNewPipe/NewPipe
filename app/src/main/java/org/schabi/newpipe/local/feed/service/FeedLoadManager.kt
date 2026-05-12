@@ -264,19 +264,27 @@ class FeedLoadManager(private val context: Context) {
      * Remove streams from the feed which are older than [FeedDatabaseManager.FEED_OLDEST_ALLOWED_DATE].
      * Remove streams from the database which are not linked / used by any table.
      */
-    private fun postProcessFeed() = Completable.fromRunnable {
-        FeedEventManager.postEvent(FeedEventManager.Event.ProgressEvent(R.string.feed_processing_message))
-        feedDatabaseManager.removeOrphansOrOlderStreams()
-        recommendationBootstrapper.rebuildChannelAffinitySignals().blockingAwait()
+    private fun postProcessFeed(): Completable {
+        return Completable.fromAction {
+            FeedEventManager.postEvent(FeedEventManager.Event.ProgressEvent(R.string.feed_processing_message))
+            feedDatabaseManager.removeOrphansOrOlderStreams()
+        }
+            .andThen(recommendationBootstrapper.rebuildChannelAffinitySignals())
+            .andThen(
+                Completable.fromAction {
+                    FeedEventManager.postEvent(
+                        FeedEventManager.Event.SuccessResultEvent(feedResultsHolder.itemsErrors)
+                    )
+                }
+            )
+            .doOnSubscribe {
+                currentProgress.set(-1)
+                maxProgress.set(-1)
 
-        FeedEventManager.postEvent(FeedEventManager.Event.SuccessResultEvent(feedResultsHolder.itemsErrors))
-    }.doOnSubscribe {
-        currentProgress.set(-1)
-        maxProgress.set(-1)
-
-        notificationUpdater.onNext(context.getString(R.string.feed_processing_message))
-        FeedEventManager.postEvent(FeedEventManager.Event.ProgressEvent(R.string.feed_processing_message))
-    }.subscribeOn(Schedulers.io())
+                notificationUpdater.onNext(context.getString(R.string.feed_processing_message))
+                FeedEventManager.postEvent(FeedEventManager.Event.ProgressEvent(R.string.feed_processing_message))
+            }.subscribeOn(Schedulers.io())
+    }
 
     private inner class NotificationConsumer : Consumer<Notification<FeedUpdateInfo>> {
         override fun accept(item: Notification<FeedUpdateInfo>) {
