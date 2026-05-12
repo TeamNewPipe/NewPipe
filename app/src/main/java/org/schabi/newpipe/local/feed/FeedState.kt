@@ -15,7 +15,8 @@ sealed class FeedState {
         val items: List<StreamItem>,
         val oldestUpdate: OffsetDateTime?,
         val notLoadedCount: Long,
-        val itemsErrors: List<Throwable>
+        val itemsErrors: List<Throwable>,
+        val recommendedCount: Int = 0
     ) : FeedState()
 
     data class ErrorState(

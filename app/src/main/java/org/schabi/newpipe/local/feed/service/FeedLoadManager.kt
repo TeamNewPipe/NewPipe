@@ -26,6 +26,7 @@ import org.schabi.newpipe.extractor.feed.FeedInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.ktx.getStringSafe
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
+import org.schabi.newpipe.local.feed.RecommendationBootstrapper
 import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.util.ChannelTabHelper
 import org.schabi.newpipe.util.ExtractorHelper.getChannelInfo
@@ -36,6 +37,7 @@ class FeedLoadManager(private val context: Context) {
 
     private val subscriptionManager = SubscriptionManager(context)
     private val feedDatabaseManager = FeedDatabaseManager(context)
+    private val recommendationBootstrapper = RecommendationBootstrapper(context)
 
     private val notificationUpdater = PublishProcessor.create<String>()
     private val currentProgress = AtomicInteger(-1)
@@ -265,6 +267,7 @@ class FeedLoadManager(private val context: Context) {
     private fun postProcessFeed() = Completable.fromRunnable {
         FeedEventManager.postEvent(FeedEventManager.Event.ProgressEvent(R.string.feed_processing_message))
         feedDatabaseManager.removeOrphansOrOlderStreams()
+        recommendationBootstrapper.rebuildChannelAffinitySignals().blockingAwait()
 
         FeedEventManager.postEvent(FeedEventManager.Event.SuccessResultEvent(feedResultsHolder.itemsErrors))
     }.doOnSubscribe {

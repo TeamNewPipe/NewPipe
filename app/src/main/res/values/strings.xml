@@ -714,6 +714,7 @@
     <string name="feed_groups_header_title">Channel groups</string>
     <string name="feed_oldest_subscription_update">Feed last updated: %s</string>
     <string name="feed_subscription_not_loaded_count">Not loaded: %d</string>
+    <string name="feed_recommended_count">%d recommended for you</string>
     <string name="feed_notification_loading">Loading feed…</string>
     <string name="feed_processing_message">Processing feed…</string>
     <string name="feed_new_items">New feed items</string>
