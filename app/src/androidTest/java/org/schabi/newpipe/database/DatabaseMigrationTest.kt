@@ -128,6 +128,13 @@ class DatabaseMigrationTest {
             Migrations.MIGRATION_8_9
         )
 
+        testHelper.runMigrationsAndValidate(
+            AppDatabase.DATABASE_NAME,
+            Migrations.DB_VER_10,
+            true,
+            Migrations.MIGRATION_9_10
+        )
+
         val migratedDatabaseV3 = getMigratedDatabase()
         val listFromDB = migratedDatabaseV3.streamDAO().getAll().blockingFirst()
 
@@ -224,6 +231,13 @@ class DatabaseMigrationTest {
             Migrations.MIGRATION_8_9
         )
 
+        testHelper.runMigrationsAndValidate(
+            AppDatabase.DATABASE_NAME,
+            Migrations.DB_VER_10,
+            true,
+            Migrations.MIGRATION_9_10
+        )
+
         val migratedDatabaseV8 = getMigratedDatabase()
         val listFromDB = migratedDatabaseV8.searchHistoryDAO().getAll().blockingFirst()
 
@@ -234,7 +248,7 @@ class DatabaseMigrationTest {
     }
 
     @Test
-    fun migrateDatabaseFrom8to9() {
+    fun migrateDatabaseFrom8to10() {
         val databaseInV8 = testHelper.createDatabase(AppDatabase.DATABASE_NAME, Migrations.DB_VER_8)
 
         val localUid1: Long
@@ -294,6 +308,13 @@ class DatabaseMigrationTest {
             Migrations.DB_VER_9,
             true,
             Migrations.MIGRATION_8_9
+        )
+
+        testHelper.runMigrationsAndValidate(
+            AppDatabase.DATABASE_NAME,
+            Migrations.DB_VER_10,
+            true,
+            Migrations.MIGRATION_9_10
         )
 
         val migratedDatabaseV9 = getMigratedDatabase()
