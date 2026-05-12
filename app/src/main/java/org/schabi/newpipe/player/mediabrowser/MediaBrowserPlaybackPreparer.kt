@@ -154,6 +154,7 @@ class MediaBrowserPlaybackPreparer(
                 )
 
                 ID_HISTORY -> extractPlayQueueFromHistoryMediaId(mediaId, path)
+
                 ID_CONTINUE_WATCHING -> extractPlayQueueFromContinueWatchingMediaId(mediaId, path)
 
                 ID_INFO_ITEM -> extractPlayQueueFromInfoItemMediaId(

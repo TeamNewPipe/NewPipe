@@ -164,6 +164,7 @@ class MediaBrowserImpl(
                 }
 
                 ID_HISTORY -> return populateHistory()
+
                 ID_CONTINUE_WATCHING -> return populateContinueWatching()
 
                 else -> throw parseError(parentId)
