@@ -339,14 +339,14 @@ class FeedLoadManager(private val context: Context) {
             return list
                 .distinctBy { "${it.serviceId}:${it.url}" }
                 .filter {
-                !feedDatabaseManager.doesStreamExist(it) &&
-                    it.uploadDate != null &&
-                    // Streams older than this date are automatically removed from the feed.
-                    // Therefore, streams which are not in the database,
-                    // but older than this date, are considered old.
-                    it.uploadDate!!.offsetDateTime().isAfter(
-                        FeedDatabaseManager.FEED_OLDEST_ALLOWED_DATE
-                    )
+                    !feedDatabaseManager.doesStreamExist(it) &&
+                        it.uploadDate != null &&
+                        // Streams older than this date are automatically removed from the feed.
+                        // Therefore, streams which are not in the database,
+                        // but older than this date, are considered old.
+                        it.uploadDate!!.offsetDateTime().isAfter(
+                            FeedDatabaseManager.FEED_OLDEST_ALLOWED_DATE
+                        )
                 }
         }
     }

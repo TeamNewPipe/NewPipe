@@ -17,6 +17,15 @@ import org.schabi.newpipe.database.stream.StreamStatisticsEntry
 import org.schabi.newpipe.database.stream.StreamWithState
 import org.schabi.newpipe.database.stream.model.StreamStateEntity
 
+/**
+ * Aggregate statistics for the stream watch history.
+ *
+ * @property count total number of history entries in the table (0 if history is empty).
+ * @property latestAccessDate epoch-millisecond timestamp of the most recent history entry,
+ *   or 0 if no entries exist.
+ */
+data class StreamHistoryStats(val count: Long, val latestAccessDate: Long)
+
 @Dao
 abstract class StreamHistoryDAO : BasicDAO<StreamHistoryEntity> {
 
@@ -41,6 +50,14 @@ abstract class StreamHistoryDAO : BasicDAO<StreamHistoryEntity> {
 
     @Query("DELETE FROM stream_history WHERE stream_id = :streamId")
     abstract fun deleteStreamHistory(streamId: Long): Int
+
+    /**
+     * Returns a [Flowable] that emits aggregate [StreamHistoryStats] whenever the
+     * `stream_history` table changes. Uses an efficient single-pass aggregate query
+     * (`COUNT(*) + MAX(access_date)`) instead of fetching full history records.
+     */
+    @Query("SELECT COUNT(*) AS count, COALESCE(MAX(access_date), 0) AS latestAccessDate FROM stream_history")
+    abstract fun getHistoryStats(): Flowable<StreamHistoryStats>
 
     // Select the latest entry and watch count for each stream id on history table
     @RewriteQueriesToDropUnusedColumns

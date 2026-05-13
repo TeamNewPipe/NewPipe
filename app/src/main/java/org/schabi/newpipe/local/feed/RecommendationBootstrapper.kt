@@ -25,8 +25,10 @@ class RecommendationBootstrapper(context: Context) {
         return Completable.fromAction {
             val now = OffsetDateTime.now(ZoneOffset.UTC)
             val entries = historyRecordManager.getStreamStatistics().blockingFirst()
-                .sortedWith(compareByDescending<StreamStatisticsEntry> { it.latestAccessDate }
-                    .thenByDescending { it.watchCount })
+                .sortedWith(
+                    compareByDescending<StreamStatisticsEntry> { it.latestAccessDate }
+                        .thenByDescending { it.watchCount }
+                )
             val channelScores = linkedMapOf<String, Double>()
 
             entries.take(limit).forEach { entry ->

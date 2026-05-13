@@ -30,6 +30,7 @@ import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.history.dao.SearchHistoryDAO;
 import org.schabi.newpipe.database.history.dao.StreamHistoryDAO;
+import org.schabi.newpipe.database.history.dao.StreamHistoryStats;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 import org.schabi.newpipe.database.history.model.StreamHistoryEntity;
 import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
@@ -176,6 +177,10 @@ public class HistoryRecordManager {
 
     public Flowable<List<StreamHistoryEntry>> getStreamHistorySortedById() {
         return streamHistoryTable.getHistorySortedById().subscribeOn(Schedulers.io());
+    }
+
+    public Flowable<StreamHistoryStats> getStreamHistoryStats() {
+        return streamHistoryTable.getHistoryStats().subscribeOn(Schedulers.io());
     }
 
     public Flowable<List<StreamStatisticsEntry>> getStreamStatistics() {
