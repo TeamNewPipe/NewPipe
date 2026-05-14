@@ -77,6 +77,7 @@
         <org.schabi.newpipe.views.NewPipeEditText
             android:id="@+id/history_search_input"
             android:layout_width="match_parent"
+            android:layout_toStartOf="@id/history_search_clear_icon"
             android:layout_height="match_parent"
             android:textCursorDrawable="@null"
             android:hint="@string/search_history"
@@ -101,6 +102,8 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_marginStart="6dp"
+            android:layout_toStartOf="@id/history_search_clear_icon"
             android:layout_alignParentBottom="true"
             android:background="?attr/toolbarSearchColor"/>
     </RelativeLayout>
