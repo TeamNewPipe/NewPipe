@@ -395,7 +395,10 @@ public class StatisticsPlaylistFragment
 
         allHistoryEntries = new ArrayList<>(result);
 
-        itemListAdapter.addItems(processResult(result));
+        final String currentQuery =
+                headerBinding.historySearchInput.getText().toString();
+        filterHistory(currentQuery);
+
         if (itemsListState != null && itemsList.getLayoutManager() != null) {
             itemsList.getLayoutManager().onRestoreInstanceState(itemsListState);
             itemsListState = null;
