@@ -6,7 +6,7 @@
 [versions]
 about-libraries = "14.0.1"
 acra = "5.13.1"
-agp = "8.13.2"
+agp = "9.2.1"
 appcompat = "1.7.1"
 assertj = "3.27.7"
 autoservice-google = "1.1.1"
