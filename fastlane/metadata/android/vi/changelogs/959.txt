@@ -1,3 +1,0 @@
-Sửa lỗi crash vô tận sau khi mở trình báo lỗi.
-Cập nhật danh sách instance PeerTube có thể tự động mở được bằng NewPipe.
-Cập nhật các bản dịch.

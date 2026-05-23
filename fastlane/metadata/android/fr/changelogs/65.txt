@@ -1,2 +1,0 @@
-### Améliorations
-- Ajout d'une option pour avancer rapidement pendant les silences dans le contrôle de la vitesse de lecture. Cette fonction devrait être utile pour les livres audio et certains genres musicaux, et peut offrir une expérience d'écoute parfaitement fluide (mais peut aussi perturber la lecture d'un morceau comportant de nombreux silences =\\)

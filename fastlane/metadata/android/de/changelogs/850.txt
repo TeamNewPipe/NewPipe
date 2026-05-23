@@ -1,1 +1,0 @@
-In dieser Veröffentlichung wurde die Version der Youtube-Website aktualisiert. Die alte Version der Website wird im März abgeschaltet und darum ist es nötig NewPipe zu aktualisieren.

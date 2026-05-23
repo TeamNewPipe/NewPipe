@@ -1,6 +1,0 @@
-Amélioré
-- Le KioskFragment est informé des changements dans le pays de contenu préféré et améliore les performances de tous les onglets principaux #2742
-
-Correction
-- Correction d'un bogue qui ne permettait pas de déplacer le lecteur popup si un autre doigt était placé pendant le déplacement du lecteur popup #2772 
-- Autorise les playlists sans uploader et corrige les crashs liés à ce problème #2724, TeamNewPipe/NewPipeExtractor#219

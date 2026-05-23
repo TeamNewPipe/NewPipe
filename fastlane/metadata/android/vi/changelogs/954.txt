@@ -1,9 +1,0 @@
-• giao diện làm việc mới: phát video trên trang chi tiết; vuốt xuống để thu nhỏ trình phát
-• thông báo kiểu MediaStyle: hành động nhanh tùy biến được, cải thiện hiệu năng
-• khả năng resize cửa sổ cơ bản khi dùng NewPipe như là ứng dụng desktop.
-
-• hiện thông báo với tùy chọn khi gặp URL không được hỗ trợ
-• sửa lỗi gợi ý tìm kiếm khi bị mất kết nối
-• nâng chất lượng video mặc định lên 720p60 (trình phát chính) và 480p (trình phát pop-up)
-
-• một đống bản vá lỗi và hơn thế nữa

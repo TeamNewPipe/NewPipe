@@ -1,6 +1,0 @@
-Đây là bản vá khẩn sửa lỗi YouTube:
-• [YouTube] Sửa lỗi không tải thông tin video, lỗi HTTP 403 khi phát và khôi phục phát một số video giới hạn độ tuổi
-• Cỡ chữ phụ đề không thay đổi
-• Tải thông tin hai lần khi mở stream
-• [SoundCloud] Loại bỏ stream DRM không thể phát
-• Cập nhật bản dịch

@@ -1,7 +1,0 @@
-### Améliorations
-* Les fichiers téléchargés peuvent maintenant être ouverts en un seul clic. 
-* Post-traitement pour les téléchargements et implémentation des fonctionnalités manquantes #1759 par @kapodamy
-* Déplacer les téléchargements sérialisés en attente (fichiers `.giga`) vers les données de l'application.
-
-### Corrigé
-* Correction d'un crash avec la résolution par défaut réglée sur la meilleure et la résolution limitée des données mobiles #1835

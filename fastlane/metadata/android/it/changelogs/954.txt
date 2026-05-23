@@ -1,9 +1,0 @@
-• Nuovo funzionamento dell'app: riproduci i video coi dettagli e trascina verso il basso per minimizzare
-• Notifiche MediaStyle: bottoni personalizzabili e prestazioni migliori
-• NewPipe può ora essere ridimensionata se usata su desktop
-
-• Finestra con opzioni di condivisione per URL non supportati
-• Esperienza di ricerca più fluida in caso di problemi di connessione
-• Qualità predefinita aumentata a 720p60 (player integrato) e 480p (pop-up)
-
-• Svariate correzioni di bug e altro

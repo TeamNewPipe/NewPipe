@@ -1,3 +1,0 @@
-Hotfix
-- Aumento del búfer para la reproducción después del rebuffer
-- Corregido el fallo en tabletas y televisores al hacer clic en el icono de la cola de reproducción en el reproductor

@@ -1,3 +1,0 @@
-[YouTube] Zoek-problemen voor sommige gebruikers verholpen
-[YouTube] Random decryptie-uitzonderingen verholpen
-[SoundCloud] URL's die eindigen met een schuine streep worden nu correct verwerkt

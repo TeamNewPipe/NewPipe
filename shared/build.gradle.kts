@@ -107,12 +107,13 @@ kotlin {
                 implementation(libs.koin.compose.viewmodel)
                 implementation(libs.koin.annotations)
 
-                implementation(libs.russhwolf.settings)
+                implementation(libs.russhwolf.settings.core)
             }
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test.core)
             implementation(libs.jetbrains.compose.test.ui)
+            implementation(libs.russhwolf.settings.test)
         }
         androidMain.dependencies {
             implementation(libs.jetbrains.compose.preview)

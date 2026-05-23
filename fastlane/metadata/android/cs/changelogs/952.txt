@@ -1,7 +1,0 @@
-Vylepšeno
-• Automatické přehrávaní je dostupné pro všechny služby (místo pouze pro YouTube)
-
-Opraveno
-• Opraveny související streamy díky podpoře nové komunikace YouTubu
-• Opraveny YouTube videa s omezeným věkem
-• [Android TV]

@@ -1,7 +1,0 @@
-Improved
-• Auto-play is available for all services (instead of only for YouTube)
-
-Fixed
-• Fixed related streams by supporting YouTube's new continuations
-• Fixed age restricted YouTube videos
-• [Android TV] Fixed lingering focus highlight overlay

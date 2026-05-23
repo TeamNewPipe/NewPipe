@@ -157,7 +157,8 @@ pinterest-ktlint = { module = "com.pinterest.ktlint:ktlint-cli", version.ref = "
 puppycrawl-checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checkstyle" }
 reactivex-rxandroid = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxandroid" }
 reactivex-rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
-russhwolf-settings = { module = "com.russhwolf:multiplatform-settings", version.ref = "settings" }
+russhwolf-settings-core = { module = "com.russhwolf:multiplatform-settings", version.ref = "settings" }
+russhwolf-settings-test = { module = "com.russhwolf:multiplatform-settings-test", version.ref = "settings" }
 squareup-leakcanary-core = { module = "com.squareup.leakcanary:leakcanary-android-core", version.ref = "leakcanary" }
 squareup-leakcanary-plumber = { module = "com.squareup.leakcanary:plumber-android", version.ref = "leakcanary" }
 squareup-leakcanary-watcher = { module = "com.squareup.leakcanary:leakcanary-object-watcher-android", version.ref = "leakcanary" }

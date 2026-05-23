@@ -1,3 +1,0 @@
-- YouTube] Arreglo carga infinita al tratar de reproducir videos
-- YouTube] Arreglo de ralentización de algunos vídeos
-- Actualización de biblioteca jsoup a versión 1.15.3, con un arreglo de seguridad

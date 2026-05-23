@@ -1,9 +1,0 @@
-Améliorations
-• Rendre la description de la liste de lecture cliquable pour afficher plus / moins de contenu.
-• Ne lancer la lecture que d'un seul élément dans l'écran de l'historique.
-
-Corrections
-• Correction des plantages de l'aperçu de la barre de recherche.
-• Correction de l'ajout à la playlist d'un élément sans vignette.
-• Correction de la fenêtre contextuelle de mise en file d'attente des éléments associés.
-• Ajustement de la disposition des éléments des signets de la liste de lecture.

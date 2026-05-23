@@ -1,4 +1,0 @@
-• Improved description of export database option in settings.
-• Fixed YouTube comments parsing.
-• Fixed display name of media.ccc.de service.
-• ترجمه‌های به‌روز شده.

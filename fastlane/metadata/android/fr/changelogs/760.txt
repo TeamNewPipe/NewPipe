@@ -1,9 +1,0 @@
-Changements dans la version 0.17.1
-
-Améliorations
-• Ajout de l'action "Commencer à jouer ici" dans les menus qui s'appuient longuement pour les playlists #2518
-• Ajout d'un commutateur pour le sélecteur de fichiers SAF / hérité #2521
-
-Corrections
-• [Extractor] Correction de ReCaptchaActivity #2527, TeamNewPipe/NewPipeExtractor#186
-• [Extractor] [YouTube] Correction de l'erreur de recherche occasionnelle lorsque les playlists sont dans les résultats TeamNewPipe/NewPipeExtractor#185

@@ -1,1 +1,0 @@
-Correction of the decryption function called regex, which rendered YouTube unusable.

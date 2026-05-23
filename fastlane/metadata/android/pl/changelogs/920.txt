@@ -1,9 +1,0 @@
-Ulepszenia
-
-• Dodano datę przesłania i liczbę wyświetleń elementów siatki strumienia
-• Ulepszenia w układzie nagłówka szuflady
-
-Naprawy
-
-• Naprawiono przycisk wyciszenia powodujący awarie w API 19
-• Naprawiono pobieranie długich filmów 1080p 60 fps

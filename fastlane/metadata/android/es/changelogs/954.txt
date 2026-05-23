@@ -1,9 +1,0 @@
-• nueva función: mira videos en la página de detalles, desliza hacia abajo para minimizar el reproductor
-• notificaciones MediaStyle: acciones personalizables, mejoras de rendimiento
-• cambiar tamaño de videos al usar NewPipe como app de escritorio
-
-• diálogo con opciones en caso de una URL no soportada
-• se mejoraron las sugerencias de búsqueda cuando no se pueden obtener remotamente
-• se incrementó la calidad de video a 720p60 (en la app) y 480p (en miniatura)
-
-• muchos errores reparados y más

@@ -1,4 +1,0 @@
-• Export adatbázis leírások opciójának fejlesztése a beállításokban.
-• YouTube kommentek feldolgozásának javítása.
-• media.ccc.de szolgáltatás neve fixálva
-• Fordítások frissítése.

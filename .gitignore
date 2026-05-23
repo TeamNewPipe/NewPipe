@@ -5,6 +5,9 @@ local.properties
 !src/**/build/
 captures/
 .idea/
+fastlane
+fastlane/
+
 *.iml
 *~
 .weblate

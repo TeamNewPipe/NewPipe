@@ -1,4 +1,0 @@
-Tato verze přináší tři drobné opravy:
-- Oprava přístupu k úložišti v systému Adroid 10+
-- Opraveno otevírání kiosků
-- Opraveno rozbor trvání dlouhých videí

@@ -1,1 +1,0 @@
-NewPipe no usa librerías de Google ni la API de YouTube. Solamente analiza el sitio web para obtener la información que necesita. Por lo tanto esta app puede ser utilizada en dispositivos que no tengan los servicios de Google instalados. Además, no necesitas una cuenta de YouTube para usar NewPipe, y es FLOSS (software libre y de código abierto).

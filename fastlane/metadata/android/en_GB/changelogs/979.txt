@@ -1,2 +1,0 @@
-- Fixed resuming playback
-- Improvements to ensure that the service which determines if NewPipe should check for a new version checks is not started in background

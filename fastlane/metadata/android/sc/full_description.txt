@@ -1,1 +1,0 @@
-NewPipe no impreat peruna libreria de Google o s'API de YouTube. Analizat petzi su situ pro otènnere sas informatziones chi li serbint. Pro custa resone custa aplicatzione la si podet impreare in dispositivos chene sos servìtzios de Google installados. In prus, non tenes bisòngiu de unu contu de YouTube pro impreare NewPipe, e est de badas e a còdighe abertu.

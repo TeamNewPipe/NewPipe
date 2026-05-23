@@ -1,8 +1,0 @@
-#### Melhorias
-- Adicionada a capacidade de limitar a qualidade do vídeo se usar dados móveis. #1339
-- Lembra-se do brilho para a sessão #1442
-- Melhora o desempenho de descarregar para CPUs mais fracas #1431
-- adicionar (trabalhando) suporte para a sessão de mídia #1433
-
-### Correções
-- Corrigir falha na abertura de descarregar (correção agora disponível para compilações de lançamentos) #1441

@@ -1,4 +1,0 @@
-Ta wersja zawiera trzy małe poprawki:
-• Naprawiono dostęp do pamięci w Adroid 10+
-• Naprawiono otwierane kioski
-• Naprawiono analizę czasu trwania długich filmów

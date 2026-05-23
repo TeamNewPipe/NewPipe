@@ -1,4 +1,0 @@
-Düzəltmə 
-• YouTube tənzimləməsinin səbəb olduğu buferləmə problemlərini həll edin 
-• YouTube şərhlərinin çıxarılmasını və əlil şərhlərlə qəzaları düzəldin 
-• YouTube musiqi axtarışını düzəldin • PeerTube canlı yayımlarını düzəldin

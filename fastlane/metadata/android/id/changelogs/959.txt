@@ -1,3 +1,0 @@
-Memperbaiki crash loop tanpa henti setelah membuka pelapor kesalahan
-Memperbarui daftar contoh PeerTube yang dapat dibuka secara otomatis oleh NewPipe
-Terjemahan diperbarui.

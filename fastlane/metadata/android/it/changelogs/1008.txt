@@ -1,4 +1,0 @@
-∙ Corretto il problema di ripresa degli streaming dall'ultima posizione di riproduzione
-∙ [YouTube] Aggiunto il supporto per più formati di URL dei canali
-∙ [YouTube] Aggiunto il supporto per più formati di metainformazioni video
-∙ Traduzioni aggiornate

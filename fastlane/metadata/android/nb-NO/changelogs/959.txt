@@ -1,3 +1,0 @@
-Fikset uendelig kræsjløkke ved åpning av feilrapportering.
-Oppdatert liste over PeerTube-isntanser som kan åpnes automatisk av NewPipe.
-Oppdaterte oversettelser.

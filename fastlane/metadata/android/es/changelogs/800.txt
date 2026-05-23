@@ -1,9 +1,0 @@
-Nuevo
-• Soporte de PeerTube sin P2P (#2201) [Beta]:
-  ◦ Ver y descargar vídeos de las instancias de PeerTube.
-  ◦ Añadir instancias en la configuración para acceder al mundo completo de PeerTube
-  ◦ Puede haber problemas con los apretones de manos SSL en Android 4.4 y 7.1 al acceder a ciertas instancias que dan lugar a un error de red.
-
-• Gestor de descargas (#2679):
-  ◦ Calcular el tiempo estimado de descarga
-  ◦ Descargar opus (archivos webm) como ogg

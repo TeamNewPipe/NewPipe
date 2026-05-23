@@ -1,3 +1,0 @@
-Perbaikan
-• Menaikkan buffer untuk pemutar stlah buffer ulang
-• Diperbaiki crash pada tablet dan TVs saat klik ikon antrian pada pemutar

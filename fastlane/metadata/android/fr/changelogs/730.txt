@@ -1,2 +1,0 @@
-# Corrections
-- Erreur liée à la fonctions de décryptage (encore).

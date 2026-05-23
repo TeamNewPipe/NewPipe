@@ -1,4 +1,0 @@
-Correção rápida
-• Corrigidos miniaturas e títulos sendo cortados no layout em grade, devido a um cálculo errado de quantos vídeos cabem em uma linha
-• Corrigido diálogo de download desaparecendo sem fazer nada se aberto pelo menu de compartilhamento
-• Atualizada uma biblioteca relacionada à abertura de atividades externas, como o seletor de arquivos do Storage Access Framework

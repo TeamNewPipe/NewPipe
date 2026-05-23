@@ -1,2 +1,0 @@
-- Problema ao retomar a reprodução corrigido
-- Melhorias para garantir que o serviço que determina se o NewPipe deve verificar se existe uma nova versão não seja iniciado em segundo plano

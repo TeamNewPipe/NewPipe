@@ -1,3 +1,0 @@
-• Poboljšan opis opcije izvoza baze podataka u postavkama.
-• Ispravljeno parsiranje komentara na YouTubeu.
-• Ispravljeno ime za prikaz servisa media.ccc.de. • Ažurirani prijevodi.

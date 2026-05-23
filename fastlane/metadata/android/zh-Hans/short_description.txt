@@ -1,1 +1,0 @@
-一个轻量级的自由 Android YouTube 前端。

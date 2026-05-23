@@ -1,6 +1,0 @@
-### Cải thiện
-* Thêm thông báo cập nhật cho bản build từ GitHub (#1608, @krtkush)
-* Cải thiện downloader: bổ sung icon, cho phép tải lại khi lỗi hậu xử lý và thêm muxer MPEG-4 mới để đồng bộ video-audio (#1944, #2039, @kapodamy)
-
-### Sửa lỗi
-* Livestream YouTube dừng phát sau một thời gian ngắn (#1996, @yausername)

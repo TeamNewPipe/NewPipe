@@ -1,3 +1,0 @@
-• [YouTube] Ispravljeno beskonačno učitavanje pri pokušaju reprodukcije bilo kojeg videa
-• [YouTube] Ispravljeno ograničavanje reprodukcije nekih videa
-• Nadogradite biblioteku jsoup na verziju 1.15.3, što uključuje sigurnosnu ispravku

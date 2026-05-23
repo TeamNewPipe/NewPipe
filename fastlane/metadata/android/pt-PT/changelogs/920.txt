@@ -1,9 +1,0 @@
-Melhorado
-
-- Data de carregamento e contagem de visualização dos itens da grelha de fluxo adicionada
-- Melhorias para o layout do cabeçalho da gaveta
-
-Correções
-
-- O botão de silenciamento causando falhas na API 19 corrigido
-- Descarregar de vídeos longos 1080p 60fps corrigido

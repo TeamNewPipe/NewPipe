@@ -1,8 +1,0 @@
-# Journal des modifications de la v0.13.7
-
-### Améliorations
-- Mise à jour de la version de la bibliothèque et correction de la sauvegarde de la base de données #1510
-- Refonte de la boîte de dialogue de contrôle de la vitesse de lecture pour permettre des incréments différents et ainsi accélérer les changements de vitesse.
-
-### Corrections
-- #1495 : mise à jour des métadonnées (miniature, titre et nombre de vidéos) dès que l'utilisateur accède à la liste de lecture.

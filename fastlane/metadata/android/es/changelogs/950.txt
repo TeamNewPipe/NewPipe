@@ -1,4 +1,0 @@
-Esta versión repara tres pequeños errores:
-• Reparado el acceso a almacenamiento en Android 10+
-• Reparada la apertura de quioscos
-• Reparado el análisis de duración de videos largos

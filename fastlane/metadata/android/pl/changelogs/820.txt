@@ -1,1 +1,0 @@
-Naprawiono wyrażenie regularne nazwy funkcji odszyfrowywania, które uniemożliwiało korzystanie z YouTube.

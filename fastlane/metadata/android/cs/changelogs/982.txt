@@ -1,1 +1,0 @@
-Opraveno nepřehrávání jakéhokoli streamu ve službě YouTube.

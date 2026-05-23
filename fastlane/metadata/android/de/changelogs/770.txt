@@ -1,4 +1,0 @@
-Veränderungen in 0.17.2
-
-Behoben
-• Behebung von kein Video verfügbar

@@ -1,4 +1,0 @@
-This release brings three small fixes:
-• Fixed storage access on Adroid 10+
-• Fixed opening kiosks
-• Fixed duration parsing of long videos

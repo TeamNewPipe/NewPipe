@@ -1,4 +1,0 @@
-Izmaiņas 0.17.2 versijā
-
-Salabots
-• Novērsta problēma, ka video bija nepieejams

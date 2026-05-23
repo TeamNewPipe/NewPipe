@@ -1,3 +1,0 @@
-0.17.2'deki Değişiklikler
-Düzeltme
-- Düzeltme video mevcut değildi

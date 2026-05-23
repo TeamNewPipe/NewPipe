@@ -1,8 +1,0 @@
-### Improvements
-- Added the ability to limit video quality if using mobile data. #1339 
-- Remember brightness for the session #1442 
-- Improve download performance for weaker CPUs #1431 
-- add (working) support for media session #1433
-
-### Fix
-- Fix crash on opening downloads (fix now available for release builds) #1441

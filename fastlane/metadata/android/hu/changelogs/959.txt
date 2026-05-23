@@ -1,3 +1,0 @@
-A hiba bejelentő megnyitásakor folyamatos összeomlás javítása.
-PeerTube folyamat listák frissítése amiket automata módon megnyithatóak NewPipe-al.
-Fordítások frissítése.

@@ -1,3 +1,0 @@
-[YouTube] Pesquisa corrigida para alguns utilizadores
-[YouTube] Corrigidas exceções de desencriptação aleatórias
-[SounCloud] URLs que terminam com uma barra são agora analisados corretamente

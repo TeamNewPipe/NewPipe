@@ -1,2 +1,0 @@
-Opravena chyba NullPointerException při otevírání kanálu / konference na media.ccc.de.
-Ježíšek nám málem doručil rozbitý dárek pro vás, ale opravili jsme to.

@@ -1,7 +1,0 @@
-• yeni uygulama iş akışı: videoları ayrıntı sayfasında oynat, oynatıcıyı küçültmek için aşağı kaydır
-• MediaStyle bildirimleri: bildirimlerde özelleştirilebilir eylemler, performans iyileştirmeleri
-• NewPipe masaüstü uygulaması olarak kullanılırken temel yeniden boyutlandırma
-
-• desteklenmeyen URL durumunda açma seçeneklerini içeren iletişim kutusu göster
-• Uzak olan alınamadığında arama önerisi deneyimini iyileştir
-• Öntanımlı video kalitesi 720p60 (uygulama içi) ve 480p'ye (açılır) yükseltildi

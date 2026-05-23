@@ -1,5 +1,0 @@
-Pikakorjaus
-* Korjattu puskurointiongelmat, jotka johtuvat YouTuben kuristumisesta
-* Korjattu YouTuben kommenttien lataaminen ja kaatumiset poistettuihin kommentteihin liittyen
-* Korjattu YouTuben musiikkihaku
-* Korjattu PeerTuben suoratoistot

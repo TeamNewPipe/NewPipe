@@ -1,1 +1,0 @@
-Naprawiono wyodrębnianie funkcji deszyfrowania YouTube.

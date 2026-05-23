@@ -1,1 +1,0 @@
-Corrigir a extração da função de descriptografia do YouTube.

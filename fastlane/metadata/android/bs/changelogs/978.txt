@@ -1,1 +1,0 @@
-Ispravljeno izvršavanje provjere za novu verziju NewPipe-a. Ova provjera se ponekad izvršavala prerano i stoga je dovodila do pada aplikacije. To bi sada trebalo biti ispravljeno.

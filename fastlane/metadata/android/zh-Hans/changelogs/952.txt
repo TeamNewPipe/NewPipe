@@ -1,7 +1,0 @@
-改进
-• 所有视频源的自动播放现在皆可用(不是仅有YouTube)
-
-修复
-• 支持新版YouTube网页以修复「相关视频」出错的问题
-• 修复YouTube年龄限制内容视频
-• [Android TV] 修复线性焦点的高亮布局[highlight overlay]

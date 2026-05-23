@@ -1,3 +1,0 @@
-Hotfix
-- Vergroot buffer voor afspelen na rebuffer
-- Crash op tablets en TV's verholpen bij het klikken op het play-queue icoon in de speler

@@ -1,2 +1,0 @@
-Dodano "ostatnie" filmy wideo do serwisu media.ccc.de.
-Dodano strumieniowe transmisje na żywo do serwisu media.ccc.de, a także obsługę transmisji na żywo.

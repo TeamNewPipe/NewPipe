@@ -1,1 +1,0 @@
-NewPipe bruker ikke noen av Googles rammeverksbiblioteker, eller YouTube-API-et. Den bare tolker nettsiden for å hente informasjonen den trenger. Programmet kan derfor brukes på enheter uten Google-tjenester, og du trenger ikke en YouTube-konto for å bruke det. I tillegg er det er gemenfrihetslig fritt.

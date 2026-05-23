@@ -1,4 +1,0 @@
-Zmiany w wersji 0.17.2
-
-Naprawa
-• Naprawiono brak wideo

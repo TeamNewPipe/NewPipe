@@ -1,4 +1,0 @@
-Alterações em 0.17.2
-
-Correções
-• Correção que nenhum vídeo estava disponível

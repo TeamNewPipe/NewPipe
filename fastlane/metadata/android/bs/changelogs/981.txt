@@ -1,2 +1,0 @@
-Uklonjena je podrška za MediaParser kako bi se riješio problem neuspjelog nastavka reprodukcije nakon baferovanja na Androidu 11+.
-Onemogućeno je tuneliranje medija na Philips QM16XE uređaju kako bi se riješili problemi s reprodukcijom.

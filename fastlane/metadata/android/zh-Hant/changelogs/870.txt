@@ -1,2 +1,0 @@
-這是一個 NewPipe 的快速修復版本，允許在沒有其他問題的情況下使用 SoundCloud。
-SoundCloud 的 v2 API 現在被用於擷取器與偵測無效的客戶端 ID，也被改善了。

@@ -1,2 +1,0 @@
-This is a hotfix release updating NewPipe to allow using SoundCloud without major hassles again.
-SoundCloud's v2 API is used in the extractor now and the detection of invalid client IDs has been improved.

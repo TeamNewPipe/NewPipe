@@ -1,1 +1,0 @@
-NewPipe, Google çerçeve kütüphanelerini veya YouTube API'sını kullanmaz. İhtiyaç duyduğu bilgileri almak için sadece web sitesini ayrıştırır. Bu nedenle bu uygulama, Google Hizmetleri yüklü olmayan cihazlarda kullanılabilir. Ayrıca NewPipe'ı kullanmak için bir YouTube hesabına ihtiyacınız yoktur ve bu FLOSS.

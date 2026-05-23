@@ -1,1 +1,0 @@
-Se actualizo SoundCloud client_id para corregir los problemas con SoundCloud.

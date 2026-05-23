@@ -1,8 +1,0 @@
-### Verbesserungen
-- Import/Export-Einstellungen #1333 
-- Reduzierung der Überzeichnung (Leistungsverbesserung) #1371 
-- Kleine Codeverbesserungen #1375 
-- Alles über DSGVO hinzugefügt #1420
-
-### Behoben
-- Downloader: Absturz beim Laden unvollendeter Downloads von .giga-Dateien behoben #1407

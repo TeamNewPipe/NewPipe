@@ -1,9 +1,0 @@
-Nouveautée :
-• Affiche la miniature de la vidéo sur l'écran de verrouillage lorsqu'elle est lu en arrière-plan
-
-Améliorations :
-• Ajout de la playlist locale à la file d'attente lors d'une pression longue sur le bouton arrière-plan / flottant
-• Possibilité de faire défiler les onglets de la page principale et les masquent lorsqu'il n'y a qu'un seul onglet
-
-Corrections :
-• Correction de plusieurs problèmes lors du partage d'une vidéo sur NewPipe et du téléchargement direct de ses flux

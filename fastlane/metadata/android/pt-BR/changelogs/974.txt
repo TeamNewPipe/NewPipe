@@ -1,5 +1,0 @@
-Correção rápida
-• Corrigidos problemas de buffer causados pelo throttling do YouTube
-• Corrigida extração de comentários do YouTube e travamentos com comentários desativados
-• Corrigida a busca de músicas no YouTube
-• Corrigidas transmissões ao vivo no PeerTube

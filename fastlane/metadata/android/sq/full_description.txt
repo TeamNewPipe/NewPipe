@@ -1,1 +1,0 @@
-NewPipe nuk përdor ndonjë bibliotekë kornizash të Google, ose API të YouTube. Ajo vetëm analizon faqen e internetit në mënyrë që të fitojë informacionin që i nevojitet. Prandaj, ky aplikacion mund të përdoret në pajisje pa instaluar Shërbimet e google. Gjithashtu, nuk keni nevojë për një llogari në YouTube për të përdorur NewPipe, dhe është FLOSS

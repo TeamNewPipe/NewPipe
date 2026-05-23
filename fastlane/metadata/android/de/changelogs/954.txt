@@ -1,9 +1,0 @@
-• Neuer Anwendungsworkflow: Videos auf der Detailseite abspielen und nach unten wischen, um den Player zu minimieren
-• MediaStyle-Benachrichtigungen: Anpassbare Aktionen in Benachrichtigungen
-• Grundlegende Größenänderung für NewPipe als Desktop-App
-
-• Dialog mit offenen Optionen bei nicht unterstütztem URL-Toast anzeigen 
-• Verbesserte Suchvorschläge, wenn Remote-Vorschläge nicht abgerufen werden können
-• Standardvideoqualität auf 720p60 (In-App) und 480p (Pop-up) angepasst
-
-• Fehlerbehebungen

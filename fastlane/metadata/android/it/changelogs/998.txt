@@ -1,4 +1,0 @@
-Corretto problema di riproduzione di YouTube causato da errori HTTP 403.
-
-Gli errori HTTP 403 saltuari nel mezzo di un video di YouTube non sono ancora stati sistemati.
-Questo problema sarà affrontato in un altra release hotfix non appena possibile.

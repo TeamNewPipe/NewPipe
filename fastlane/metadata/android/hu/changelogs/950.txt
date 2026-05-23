@@ -1,4 +1,0 @@
-Ez a verzió három kicsi javítást tartalmaz:
-• Háttértár hozzáférés javítás Android 10+ esetében
-• Megnyitási panel fixálása
-• Hosszú videók idejének felismerésének javítása

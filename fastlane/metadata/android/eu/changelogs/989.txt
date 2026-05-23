@@ -1,3 +1,0 @@
-• [YouTube] Karga amaigabea konpondu edozein bideo erreproduzitzen saiatzean
-• [YouTube] Bideo batzuen sare-geldotzea konpontzen da
-• Jsoup liburutegia 1.15.3ra eguneratzen da, segurtasun konponketak barne

@@ -1,8 +1,0 @@
-### Förbättringar
-- Import/exportinställningar #1333
-- Minskade överdragningen (prestandaförbättring) #1371
-- Små kodförbättringar #1375
-- La till allt om GDPR #1420
-
-### Fixade
-- Nedladdare: Fixade krasch vid laddning av ofärdig nedladdning från .giga filer #1407

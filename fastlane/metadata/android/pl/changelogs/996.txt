@@ -1,2 +1,0 @@
-Naprawiono NullPointerException podczas otwierania kanału / konferencji na media.ccc.de.
-Grinch próbował zepsuć nasz prezent świąteczny, który został przygotowany dla Ciebie, ale to naprawiliśmy.

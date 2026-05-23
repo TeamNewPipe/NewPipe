@@ -1,3 +1,0 @@
-Səhv reportyorunu açdıqdan sonra sonsuz qəza döngəsi düzəldildi.
-NewPipe tərəfindən avtomatik açıla bilən PeerTube nümunələrinin yenilənmiş siyahısı.
-Yenilənmiş tərcümələr.

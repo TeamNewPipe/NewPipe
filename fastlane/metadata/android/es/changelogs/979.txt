@@ -1,2 +1,0 @@
-- Reanudación de reproducción corregida
-- Mejoras para asegurar que el servicio, que determina si NewPipe debe buscar una nueva versión, no se inicie en segundo plano

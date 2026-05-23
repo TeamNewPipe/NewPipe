@@ -1,3 +1,0 @@
-[YouTube] Suche für einige Benutzer korrigiert
-[YouTube] Zufällige Entschlüsselungsausnahmen korrigiert
-[SoundCloud] URLs, die mit einem Schrägstrich enden, werden jetzt korrekt geparst

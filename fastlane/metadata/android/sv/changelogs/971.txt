@@ -1,3 +1,0 @@
-Hotfix
-• Öka bufferten för uppspelning efter återbuffring
-• Fixade krasch på surfplattor och TV-apparater när du klickade på spelköikonen i spelaren

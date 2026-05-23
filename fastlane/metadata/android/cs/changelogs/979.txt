@@ -1,2 +1,0 @@
-- Opraveno obnovení přehrávání
-- Vylepšení zajišťující, že služba, která určuje, zda má NewPipe kontrolovat nové verze, není spuštěna na pozadí
