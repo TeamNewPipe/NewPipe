@@ -50,13 +50,13 @@ class SubscriptionManager(context: Context) {
         }
     }
 
-    fun upsertAll(infoList: List<Pair<ChannelInfo, ChannelTabInfo>>) {
+    fun upsertAll(infoList: List<Pair<ChannelInfo, ChannelTabInfo?>>) {
         val listEntities = infoList.map { SubscriptionEntity.from(it.first) }
         subscriptionTable.upsertAll(listEntities)
 
         database.runInTransaction {
             infoList.forEachIndexed { index, info ->
-                val streams = info.second.relatedItems.filterIsInstance<StreamInfoItem>()
+                val streams = info.second?.relatedItems?.filterIsInstance<StreamInfoItem>().orEmpty()
                 feedDatabaseManager.upsertAll(listEntities[index].uid, streams)
             }
         }

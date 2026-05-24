@@ -2,8 +2,10 @@ package org.schabi.newpipe.local.subscription.workers
 
 import android.content.Context
 import android.content.pm.ServiceInfo
+import android.net.Uri
 import android.os.Build
 import android.os.Parcelable
+import android.provider.OpenableColumns
 import android.util.Log
 import android.webkit.MimeTypeMap
 import android.widget.Toast
@@ -15,6 +17,7 @@ import androidx.work.ForegroundInfo
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
+import java.io.BufferedInputStream
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -66,17 +69,37 @@ class SubscriptionImportWorker(
                     subscriptions
                         .map {
                             async {
-                                val channelInfo =
-                                    ExtractorHelper.getChannelInfo(it.serviceId, it.url, true).await()
-                                val channelTab =
-                                    ExtractorHelper.getChannelTab(it.serviceId, channelInfo.tabs[0], true).await()
+                                try {
+                                    val channelInfo =
+                                        ExtractorHelper.getChannelInfo(it.serviceId, it.url, true).await()
+                                    val channelTab = channelInfo.tabs.firstOrNull()?.let { tab ->
+                                        try {
+                                            ExtractorHelper.getChannelTab(it.serviceId, tab, true).await()
+                                        } catch (e: Exception) {
+                                            if (BuildConfig.DEBUG) {
+                                                Log.w(TAG, "Error while loading channel tab: ${channelInfo.url}", e)
+                                            }
+                                            null
+                                        }
+                                    }
 
-                                val currentIndex = mutex.withLock { index++ }
-                                setForeground(createForegroundInfo(title, channelInfo.name, currentIndex, qty))
+                                    val currentIndex = mutex.withLock { index++ }
+                                    setForeground(createForegroundInfo(title, channelInfo.name, currentIndex, qty))
 
-                                channelInfo to channelTab
+                                    channelInfo to channelTab
+                                } catch (e: Exception) {
+                                    if (BuildConfig.DEBUG) {
+                                        Log.w(TAG, "Error while loading channel info: ${it.url}", e)
+                                    }
+
+                                    val currentIndex = mutex.withLock { index++ }
+                                    setForeground(createForegroundInfo(title, it.name, currentIndex, qty))
+
+                                    null
+                                }
                             }
                         }.awaitAll()
+                        .filterNotNull()
                 }
             } catch (e: Exception) {
                 if (BuildConfig.DEBUG) {
@@ -89,7 +112,16 @@ class SubscriptionImportWorker(
                 return Result.failure()
             }
 
-        title = applicationContext.resources.getQuantityString(R.plurals.import_subscriptions, qty, qty)
+        if (channelInfoList.isEmpty()) {
+            withContext(Dispatchers.Main) {
+                Toast.makeText(applicationContext, R.string.subscriptions_import_unsuccessful, Toast.LENGTH_SHORT)
+                    .show()
+            }
+            return Result.failure()
+        }
+
+        val importQty = channelInfoList.size
+        title = applicationContext.resources.getQuantityString(R.plurals.import_subscriptions, importQty, importQty)
         setForeground(createForegroundInfo(title, null, 0, 0))
         index = 0
 
@@ -99,7 +131,7 @@ class SubscriptionImportWorker(
                 subscriptionManager.upsertAll(chunk)
             }
             index += chunk.size
-            setForeground(createForegroundInfo(title, null, index, qty))
+            setForeground(createForegroundInfo(title, null, index, importQty))
         }
 
         withContext(Dispatchers.Main) {
@@ -119,12 +151,13 @@ class SubscriptionImportWorker(
                         .map { SubscriptionItem(it.serviceId, it.url, it.name) }
 
                 is SubscriptionImportInput.InputStreamMode ->
-                    applicationContext.contentResolver.openInputStream(input.url.toUri())?.use {
-                        val contentType =
-                            MimeTypeMap.getFileExtensionFromUrl(input.url).ifEmpty { DEFAULT_MIME }
-                        NewPipe.getService(input.serviceId).subscriptionExtractor
-                            .fromInputStream(it, contentType)
-                            .map { SubscriptionItem(it.serviceId, it.url, it.name) }
+                    applicationContext.contentResolver.openInputStream(input.url.toUri())?.use { stream ->
+                        BufferedInputStream(stream).use {
+                            val contentType = resolveContentType(input.url, it)
+                            NewPipe.getService(input.serviceId).subscriptionExtractor
+                                .fromInputStream(it, contentType)
+                                .map { SubscriptionItem(it.serviceId, it.url, it.name) }
+                        }
                     }
 
                 is SubscriptionImportInput.PreviousExportMode ->
@@ -132,6 +165,82 @@ class SubscriptionImportWorker(
                         ImportExportJsonHelper.readFrom(it)
                     }
             } ?: emptyList()
+        }
+    }
+
+    private fun resolveContentType(url: String, input: BufferedInputStream): String {
+        val uri = url.toUri()
+        val contentType = applicationContext.contentResolver.getType(uri)
+            ?.lowercase()
+            ?.takeIf { it != DEFAULT_MIME }
+        if (contentType != null && contentType.isSupportedSubscriptionContentType()) {
+            return contentType
+        }
+
+        val extension = MimeTypeMap.getFileExtensionFromUrl(url)
+            .ifEmpty { getDisplayNameExtension(uri) }
+            .lowercase()
+        if (extension.isSupportedSubscriptionContentType()) {
+            return extension
+        }
+
+        return detectContentType(input) ?: contentType ?: DEFAULT_MIME
+    }
+
+    private fun getDisplayNameExtension(uri: Uri): String {
+        return applicationContext.contentResolver
+            .query(uri, arrayOf(OpenableColumns.DISPLAY_NAME), null, null, null)
+            ?.use { cursor ->
+                if (!cursor.moveToFirst()) {
+                    return@use ""
+                }
+
+                val nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+                if (nameIndex == -1) {
+                    return@use ""
+                }
+
+                cursor.getString(nameIndex)
+                    ?.substringAfterLast('.', missingDelimiterValue = "")
+                    .orEmpty()
+            }.orEmpty()
+    }
+
+    private fun detectContentType(input: BufferedInputStream): String? {
+        input.mark(CONTENT_TYPE_DETECTION_BYTE_COUNT)
+        val header = ByteArray(CONTENT_TYPE_DETECTION_BYTE_COUNT)
+        val bytesRead = input.read(header)
+        input.reset()
+
+        if (bytesRead < 1) {
+            return null
+        }
+
+        if (bytesRead >= 2 &&
+            header[0].toInt() == ZIP_MAGIC_FIRST_BYTE &&
+            header[1].toInt() == ZIP_MAGIC_SECOND_BYTE
+        ) {
+            return "zip"
+        }
+
+        val headerText = header.decodeToString(endIndex = bytesRead).trimStart()
+        if (headerText.startsWith("[") || headerText.startsWith("{")) {
+            return "json"
+        }
+        if (headerText.startsWith(CSV_HEADER, ignoreCase = true)) {
+            return "csv"
+        }
+
+        return null
+    }
+
+    private fun String?.isSupportedSubscriptionContentType(): Boolean {
+        return when (this) {
+            "json", "application/json",
+            "csv", "text/csv", "text/comma-separated-values",
+            "zip", "application/zip" -> true
+
+            else -> false
         }
     }
 
@@ -177,6 +286,10 @@ class SubscriptionImportWorker(
         private const val NOTIFICATION_ID = 4568
         private const val NOTIFICATION_CHANNEL_ID = "newpipe"
         private const val DEFAULT_MIME = "application/octet-stream"
+        private const val CONTENT_TYPE_DETECTION_BYTE_COUNT = 512
+        private const val CSV_HEADER = "Channel Id,Channel Url,Channel Title"
+        private const val ZIP_MAGIC_FIRST_BYTE = 'P'.code
+        private const val ZIP_MAGIC_SECOND_BYTE = 'K'.code
         private const val PARALLEL_EXTRACTIONS = 8
         private const val BUFFER_COUNT_BEFORE_INSERT = 50
 
