@@ -75,6 +75,7 @@ import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.Image;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
+import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.AudioStream;
@@ -210,6 +211,9 @@ public final class VideoDetailFragment
     @Nullable
     private StreamInfo currentInfo = null;
     private Disposable currentWorker;
+    /** Disposable for the auto-retry timer used when a live stream has not started yet. */
+    @Nullable
+    private Disposable liveStreamRetryDisposable;
     @NonNull
     private final CompositeDisposable disposables = new CompositeDisposable();
     @Nullable
@@ -420,6 +424,7 @@ public final class VideoDetailFragment
         if (currentWorker != null) {
             currentWorker.dispose();
         }
+        cancelLiveStreamAutoRetry();
         disposables.clear();
         positionSubscriber = null;
         currentWorker = null;
@@ -564,10 +569,10 @@ public final class VideoDetailFragment
         }));
 
         binding.detailControlsBackground.setOnLongClickListener(makeOnLongClickListener(info ->
-            openBackgroundPlayer(true)
+                openBackgroundPlayer(true)
         ));
         binding.detailControlsPopup.setOnLongClickListener(makeOnLongClickListener(info ->
-            openPopupPlayer(true)
+                openPopupPlayer(true)
         ));
         binding.detailControlsDownload.setOnLongClickListener(makeOnLongClickListener(info ->
                 NavigationHelper.openDownloads(activity)));
@@ -833,6 +838,7 @@ public final class VideoDetailFragment
     public void startLoading(final boolean forceLoad) {
         super.startLoading(forceLoad);
 
+        cancelLiveStreamAutoRetry();
         initTabs();
         currentInfo = null;
         if (currentWorker != null) {
@@ -845,6 +851,7 @@ public final class VideoDetailFragment
     private void startLoading(final boolean forceLoad, final boolean addToBackStack) {
         super.startLoading(forceLoad);
 
+        cancelLiveStreamAutoRetry();
         initTabs();
         currentInfo = null;
         if (currentWorker != null) {
@@ -882,8 +889,52 @@ public final class VideoDetailFragment
                             openVideoPlayerAutoFullscreen();
                         }
                     }
-                }, throwable -> showError(new ErrorInfo(throwable, UserAction.REQUESTED_STREAM,
-                        url == null ? "no url" : url, serviceId, url)));
+                }, throwable -> {
+                    // If the stream is a scheduled live event not yet started,
+                    // show a helpful message with the start hint and a retry button
+                    // instead of the generic monkey "Content unavailable" error.
+                    if (throwable instanceof ContentNotAvailableException
+                            && ErrorInfo.Companion.isLiveStreamOffline(
+                            (ContentNotAvailableException) throwable)) {
+                        scheduleAutoRetryForLiveStream();
+                    }
+                    showError(new ErrorInfo(throwable, UserAction.REQUESTED_STREAM,
+                            url == null ? "no url" : url, serviceId, url));
+                });
+    }
+
+    /**
+     * When a scheduled live stream has not started yet, automatically retry loading
+     * after {@link #LIVE_STREAM_RETRY_DELAY_SECONDS} seconds so the user does not
+     * have to manually tap Retry when the stream eventually goes live.
+     * Any pending retry is cancelled the moment the user navigates away or triggers
+     * a manual reload (disposables are cleared in {@link #onDestroyView}).
+     */
+    private static final long LIVE_STREAM_RETRY_DELAY_SECONDS = 60;
+
+    private void scheduleAutoRetryForLiveStream() {
+        // Cancel any previously scheduled retry before starting a new one
+        cancelLiveStreamAutoRetry();
+        liveStreamRetryDisposable =
+                io.reactivex.rxjava3.core.Completable
+                        .timer(LIVE_STREAM_RETRY_DELAY_SECONDS, TimeUnit.SECONDS, Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
+                                () -> {
+                                    if (isAdded() && !isDetached() && !isRemoving()) {
+                                        reloadContent();
+                                    }
+                                },
+                                throwable -> { /* timer disposed (user navigated away) */ }
+                        );
+        disposables.add(liveStreamRetryDisposable);
+    }
+
+    private void cancelLiveStreamAutoRetry() {
+        if (liveStreamRetryDisposable != null && !liveStreamRetryDisposable.isDisposed()) {
+            liveStreamRetryDisposable.dispose();
+        }
+        liveStreamRetryDisposable = null;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1617,14 +1668,13 @@ public final class VideoDetailFragment
         }
 
         if (!info.getErrors().isEmpty()) {
-            // Bandcamp fan pages are not yet supported and thus a ContentNotAvailableException is
-            // thrown. This is not an error and thus should not be shown to the user.
-            for (final Throwable throwable : info.getErrors()) {
-                if (throwable instanceof ContentNotSupportedException
-                        && "Fan pages are not supported".equals(throwable.getMessage())) {
-                    info.getErrors().remove(throwable);
-                }
-            }
+            // Bandcamp fan pages are not yet supported and thus a ContentNotSupportedException
+            // is thrown. This is not an error and thus should not be shown to the user.
+            // Use removeIf to avoid ConcurrentModificationException when modifying the list
+            // while iterating over it.
+            info.getErrors().removeIf(throwable ->
+                    throwable instanceof ContentNotSupportedException
+                            && "Fan pages are not supported".equals(throwable.getMessage()));
 
             if (!info.getErrors().isEmpty()) {
                 showSnackBarError(new ErrorInfo(info.getErrors(), UserAction.REQUESTED_STREAM,
