@@ -16,7 +16,6 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.globalScreenOrientat
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_PLAY_PAUSE;
 
 import android.app.Activity;
-import android.content.pm.ActivityInfo;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -940,23 +939,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         if (!isFullscreen) {
             getParentActivity().ifPresent(activity -> {
                 if (!DeviceUtils.isTablet(activity)) {
-                    if (globalScreenOrientationLocked(activity)) {
-                        // Restore correct orientation according to system rotation lock settings
-                        // when exiting fullscreen mode.
-                        final int userRotation = Settings.System.getInt(
-                                activity.getContentResolver(),
-                                Settings.System.USER_ROTATION, 0);
-                        if (userRotation == 1 || userRotation == 3) {
-                            activity.setRequestedOrientation(
-                                    ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                        } else {
-                            activity.setRequestedOrientation(
-                                    ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                        }
-                    } else {
-                        activity.setRequestedOrientation(
-                                ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-                    }
+                    PlayerHelper.restoreLockedOrientation(activity);
                 }
             });
         }
