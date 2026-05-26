@@ -199,6 +199,24 @@ public class PeertubeInstanceListFragment extends Fragment {
                 .show();
     }
 
+    private void showDeleteInstanceDialog(final PeertubeInstance instance, final int position) {
+        new AlertDialog.Builder(requireContext())
+                .setTitle(instance.getName())
+                .setCancelable(true)
+                .setNegativeButton(R.string.cancel, null)
+                .setPositiveButton(R.string.delete, (dialog, which) -> {
+                    final var list = new ArrayList<>(instanceListAdapter.getCurrentList());
+                    list.remove(position);
+
+                    if (list.isEmpty()) {
+                        list.add(selectedInstance);
+                    }
+
+                    instanceListAdapter.submitList(list);
+                })
+                .show();
+    }
+
     private void addInstance(final String url) {
         final String cleanUrl = cleanUrl(url);
         if (cleanUrl == null) {
@@ -357,6 +375,22 @@ public class PeertubeInstanceListFragment extends Fragment {
             TabViewHolder(final ItemInstanceBinding binding) {
                 super(binding.getRoot());
                 this.itemBinding = binding;
+
+                itemView.setOnLongClickListener(this::onInstanceLongClick);
+            }
+
+            private boolean onInstanceLongClick(final View view) {
+                final int position = getBindingAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    final PeertubeInstance instance = getItem(position);
+                    // do not allow removing the selected instance
+                    if (instance.getUrl().equals(selectedInstance.getUrl())) {
+                        return true;
+                    }
+
+                    showDeleteInstanceDialog(instance, position);
+                }
+                return true;
             }
 
             @SuppressLint("ClickableViewAccessibility")

@@ -139,6 +139,23 @@ public class ChooseTabsFragment extends Fragment {
                 .show();
     }
 
+    private void showDeleteTabDialog(final int position, final String tabName) {
+        new AlertDialog.Builder(requireContext())
+                .setTitle(tabName)
+                .setCancelable(true)
+                .setNegativeButton(R.string.cancel, null)
+                .setPositiveButton(R.string.delete, (dialog, which) -> {
+                    tabList.remove(position);
+                    selectedTabsAdapter.notifyItemRemoved(position);
+
+                    if (tabList.isEmpty()) {
+                        tabList.add(Tab.Type.BLANK.getTab());
+                        selectedTabsAdapter.notifyItemInserted(0);
+                    }
+                })
+                .show();
+    }
+
     private void initButton(final View rootView) {
         final FloatingActionButton fab = rootView.findViewById(R.id.addTabsButton);
         fab.setOnClickListener(v -> {
@@ -375,6 +392,16 @@ public class ChooseTabsFragment extends Fragment {
                 tabNameView = itemView.findViewById(R.id.tabName);
                 tabIconView = itemView.findViewById(R.id.tabIcon);
                 handle = itemView.findViewById(R.id.handle);
+
+                itemView.setOnLongClickListener(this::onTabLongClick);
+            }
+
+            private boolean onTabLongClick(final View view) {
+                final int position = getBindingAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    showDeleteTabDialog(position, tabNameView.getText().toString());
+                }
+                return true;
             }
 
             @SuppressLint("ClickableViewAccessibility")
