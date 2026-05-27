@@ -175,16 +175,20 @@
   - `rg "new AlertDialog.Builder" app/src/main/java -n`: PASS (remaining list audited)
   - `./gradlew runCheckstyle -DskipFormatKtlint`: PASS
   - `./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint`:
-    pending
+    PASS
 - Manual QA results for this migration batch:
-  - Open each migrated dialog: pending
-  - Confirm title/message/content: pending
-  - Confirm positive actions: pending
-  - Confirm negative/cancel behavior: pending
-  - Light theme: pending
-  - Dark theme: pending
-  - Black theme: pending
-  - Rotation where relevant: pending
+  - UpdateSettingsFragment auto-update consent dialog: PASS
+  - PermissionHelper overlay-permission guidance dialog: PASS
+  - ChooseTabsFragment restore-defaults dialog: PASS
+  - MigrationManager migration-info dialog: PASS
+  - KoreUtils install prompt dialog: PASS
+  - PeertubeInstanceListFragment restore-defaults dialog: PASS
+  - PeertubeInstanceListFragment add-instance dialog: PASS
+  - ImportConfirmationDialog subscription import confirmation dialog: PASS
+  - Light theme: PASS
+  - Dark theme: PASS
+  - Black theme: PASS
+  - Rotation: PASS
 
 ## Validation status
 
