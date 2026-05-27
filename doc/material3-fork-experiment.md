@@ -41,11 +41,23 @@
 - Fixed known `LineLength` violation in `PlaylistCreationDialog`.
 - `./gradlew runCheckstyle -DskipFormatKtlint` passes.
 
+
+### Feed group reorder item migration (latest QA record)
+
+- Local validation commands for this migration: **not yet recorded in this document** (no PASS/FAIL asserted).
+- Manual QA for this migration:
+  - Feed group reorder item display: **not yet explicitly confirmed**
+  - Drag handle / reorder interaction: **not yet explicitly confirmed**
+  - Scrolling behavior: **not yet explicitly confirmed**
+  - Light / Dark / Black themes: **not yet explicitly confirmed**
+  - Rotation behavior: **not yet explicitly confirmed**
+
 ## Validation status
 
 - ✅ Checkstyle: `./gradlew runCheckstyle -DskipFormatKtlint` passes.
-- ✅ Full local validation: `./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint` passes
+- ✅ Full local validation (branch-wide): `./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint` passes
   in an Android SDK-configured local environment.
+- ⚠️ Feed-group reorder-item-specific validation status is pending explicit command/result logging in this document.
 - ⚠️ Container note: full Gradle Android validation remains unavailable in Codex/container without
   Android SDK configuration (`ANDROID_HOME`/`sdk.dir`).
 
