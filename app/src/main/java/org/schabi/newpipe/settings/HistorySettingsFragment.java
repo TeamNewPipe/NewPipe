@@ -151,7 +151,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
     public static void openDeleteSearchHistoryDialog(@NonNull final Context context,
                                                      final HistoryRecordManager recordManager,
                                                      final CompositeDisposable disposables) {
-        new AlertDialog.Builder(context)
+        new MaterialAlertDialogBuilder(context)
                 .setTitle(R.string.delete_search_history_alert)
                 .setNegativeButton(R.string.cancel, ((dialog, which) -> dialog.dismiss()))
                 .setPositiveButton(R.string.delete, ((dialog, which) ->
