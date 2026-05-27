@@ -24,6 +24,7 @@
 - `feed_group_card_item` root migrated to `MaterialCardView`.
 - `feed_group_add_new_item` root migrated to `MaterialCardView`.
 - `feed_group_reorder_item` root migrated to `MaterialCardView`.
+- `feed_group_card_grid_item` root migrated to `MaterialCardView`.
 - `item_instance` root migrated to `MaterialCardView`.
 - `list_choose_tabs` root migrated to `MaterialCardView` (non-feed-group simple card row).
 - Non-feed-group card-layout audit (next migration candidate): no additional eligible `androidx.cardview.widget.CardView` list/card roots remain outside `feed_group_*` and already-migrated `list_choose_tabs`.
@@ -80,12 +81,26 @@
 ### Additional non-feed-group card migration audit (latest)
 
 - Scope searched: `app/src/main/res/layout/` for `androidx.cardview.widget.CardView`.
-- Result: only `feed_group_add_new_grid_item` and `feed_group_card_grid_item` still use `CardView`; both are `feed_group_*` and excluded by task rules.
+- Result at that step: only `feed_group_add_new_grid_item` and `feed_group_card_grid_item` used `CardView`; both were `feed_group_*` and were excluded by task rules then.
 - Migration action in this step: none (no safe new non-feed-group, non-player, non-download `CardView` target found).
 - Validation for this audit/doc step:
   - `./gradlew runCheckstyle -DskipFormatKtlint`: PASS
   - `./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint`: not run in this container step
 - Manual QA for this audit/doc step: not applicable (no new layout migration performed).
+
+### feed_group_card_grid_item migration (latest QA record)
+
+- Local validation results for this migration:
+  - `./gradlew runCheckstyle -DskipFormatKtlint`: PASS
+  - `./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint`: not run in this container step
+- Manual QA results for this migration:
+  - Feed-group grid card display: pending
+  - Click behavior: pending
+  - Scrolling: pending
+  - Light theme: pending
+  - Dark theme: pending
+  - Black theme: pending
+  - Rotation: pending
 
 ## Validation status
 
