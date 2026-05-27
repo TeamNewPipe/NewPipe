@@ -25,6 +25,7 @@
 - `feed_group_add_new_item` root migrated to `MaterialCardView`.
 - `feed_group_reorder_item` root migrated to `MaterialCardView`.
 - `feed_group_card_grid_item` root migrated to `MaterialCardView`.
+- `feed_group_add_new_grid_item` root migrated to `MaterialCardView`.
 - `item_instance` root migrated to `MaterialCardView`.
 - `list_choose_tabs` root migrated to `MaterialCardView` (non-feed-group simple card row).
 - Non-feed-group card-layout audit (next migration candidate): no additional eligible `androidx.cardview.widget.CardView` list/card roots remain outside `feed_group_*` and already-migrated `list_choose_tabs`.
@@ -102,6 +103,25 @@
   - Dark theme: PASS
   - Black theme: PASS
   - Rotation: PASS
+
+### feed_group_add_new_grid_item migration (latest QA record)
+
+- Local validation results for this migration:
+  - `./gradlew runCheckstyle -DskipFormatKtlint`: PASS
+  - `./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint`: pending
+- Manual QA results for this migration:
+  - Feed group add-new grid card display: pending
+  - Click opens expected add/create flow: pending
+  - Scrolling: pending
+  - Light theme: pending
+  - Dark theme: pending
+  - Black theme: pending
+  - Rotation: pending
+
+### CardView layout search after latest migration
+
+- Scope searched: `app/src/main/res/layout/` for `androidx.cardview.widget.CardView`.
+- Result: no remaining `androidx.cardview.widget.CardView` layouts found.
 
 ## Validation status
 
