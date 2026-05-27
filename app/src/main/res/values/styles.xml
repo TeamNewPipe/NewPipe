@@ -31,6 +31,8 @@
         <item name="colorOnSecondary">@color/white</item>
         <item name="colorSurface">@color/light_background_color</item>
         <item name="colorOnSurface">@color/light_contrast_background_color</item>
+        <item name="actionColor">@color/black</item>
+        <item name="toolbarSearchColor">@color/black</item>
         <item name="colorPrimaryContainer">@color/light_youtube_primary_color</item>
         <item name="colorOnPrimaryContainer">@color/white</item>
         <item name="colorOutline">@color/light_border_color</item>
@@ -62,6 +64,8 @@
         <item name="colorOnSecondary">@color/white</item>
         <item name="colorSurface">@color/dark_background_color</item>
         <item name="colorOnSurface">@color/white</item>
+        <item name="actionColor">@color/white</item>
+        <item name="toolbarSearchColor">@color/white</item>
         <item name="colorPrimaryContainer">@color/dark_youtube_primary_color</item>
         <item name="colorOnPrimaryContainer">@color/white</item>
         <item name="colorOutline">@color/dark_border_color</item>
@@ -90,6 +94,8 @@
         <item name="windowBackground">@color/black_background_color</item>
         <item name="colorSurface">@color/black_background_color</item>
         <item name="colorOnSurface">@color/white</item>
+        <item name="actionColor">@color/white</item>
+        <item name="toolbarSearchColor">@color/white</item>
         <item name="colorPrimaryContainer">@color/dark_youtube_primary_color</item>
         <item name="colorOnPrimaryContainer">@color/white</item>
         <item name="colorSecondary">@color/dark_youtube_accent_color</item>
