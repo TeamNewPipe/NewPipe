@@ -92,15 +92,16 @@
 
 - Local validation results for this migration:
   - `./gradlew runCheckstyle -DskipFormatKtlint`: PASS
-  - `./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint`: not run in this container step
+  - `./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint`: PASS
 - Manual QA results for this migration:
-  - Feed-group grid card display: pending
-  - Click behavior: pending
-  - Scrolling: pending
-  - Light theme: pending
-  - Dark theme: pending
-  - Black theme: pending
-  - Rotation: pending
+  - Feed group grid card display: PASS
+  - Icon/title visible: PASS
+  - Click opens expected feed group: PASS
+  - Scrolling: PASS
+  - Light theme: PASS
+  - Dark theme: PASS
+  - Black theme: PASS
+  - Rotation: PASS
 
 ## Validation status
 
