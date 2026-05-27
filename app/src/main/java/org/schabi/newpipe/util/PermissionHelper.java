@@ -12,10 +12,10 @@ import android.provider.Settings;
 import android.text.Html;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.NewPipeSettings;
@@ -141,7 +141,7 @@ public final class PermissionHelper {
                                 appNameItalic,
                                 permissionNameItalic
                         );
-                new AlertDialog.Builder(context)
+                new MaterialAlertDialogBuilder(context)
                         .setTitle(title)
                         .setMessage(Html.fromHtml(message, Html.FROM_HTML_MODE_COMPACT))
                         .setPositiveButton("OK", (dialog, which) -> {

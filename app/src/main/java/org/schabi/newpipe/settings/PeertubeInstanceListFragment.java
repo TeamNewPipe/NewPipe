@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.DiffUtil;
@@ -29,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.grack.nanojson.JsonStringWriter;
 import com.grack.nanojson.JsonWriter;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.DialogEditTextBinding;
 import org.schabi.newpipe.databinding.FragmentInstanceListBinding;
@@ -169,7 +169,7 @@ public class PeertubeInstanceListFragment extends Fragment {
 
     private void restoreDefaults() {
         final Context context = requireContext();
-        new AlertDialog.Builder(context)
+        new MaterialAlertDialogBuilder(context)
                 .setTitle(R.string.restore_defaults)
                 .setMessage(R.string.restore_defaults_confirmation)
                 .setNegativeButton(R.string.cancel, null)
@@ -187,7 +187,7 @@ public class PeertubeInstanceListFragment extends Fragment {
                 InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_URI);
         dialogBinding.dialogEditText.setHint(R.string.peertube_instance_add_help);
 
-        new AlertDialog.Builder(c)
+        new MaterialAlertDialogBuilder(c)
                 .setTitle(R.string.peertube_instance_add_title)
                 .setIcon(R.drawable.ic_placeholder_peertube)
                 .setView(dialogBinding.getRoot())

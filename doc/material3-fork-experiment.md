@@ -40,6 +40,29 @@
 - History delete search-history confirmation flow migrated to `MaterialAlertDialogBuilder`.
 - History delete watch-history confirmation flow migrated to `MaterialAlertDialogBuilder`.
 - Backup/restore settings reset confirmation migrated to `MaterialAlertDialogBuilder`.
+- Update settings auto-update consent dialog migrated to `MaterialAlertDialogBuilder`.
+- Permission helper "display over apps" guidance dialog migrated to
+  `MaterialAlertDialogBuilder`.
+- Choose Tabs "restore defaults" dialog migrated to `MaterialAlertDialogBuilder`.
+- Migration manager user-info dialog migrated to `MaterialAlertDialogBuilder`.
+- Kore install prompt dialog migrated to `MaterialAlertDialogBuilder`.
+- PeerTube instance list "restore defaults" dialog migrated to `MaterialAlertDialogBuilder`.
+- PeerTube instance list "add instance" dialog migrated to `MaterialAlertDialogBuilder`.
+- Subscription import confirmation dialog migrated to `MaterialAlertDialogBuilder`.
+
+### Dialogs intentionally skipped in this batch
+- Player dialogs skipped:
+  - `org.schabi.newpipe.player.helper.PlaybackParameterDialog`
+  - `org.schabi.newpipe.fragments.detail.VideoDetailPlayerCrasher`
+- Download dialogs skipped:
+  - `org.schabi.newpipe.download.DownloadDialog`
+  - `org.schabi.newpipe.settings.DownloadSettingsFragment`
+  - `org.schabi.newpipe.streams.io.NoFileManagerSafeGuard`
+- Complex/list-based dialogs skipped:
+  - `org.schabi.newpipe.RouterActivity` (adapter/list choice flows)
+  - `org.schabi.newpipe.settings.tabs.AddTabDialog` (adapter-backed tab list dialog)
+  - `org.schabi.newpipe.settings.custom.NotificationSlot` (custom button handling)
+  - `org.schabi.newpipe.info_list.dialog.InfoItemDialog` (menu-style item list handling)
 
 ### Checkstyle cleanup
 - Fixed known `LineLength` violation in `PlaylistCreationDialog`.
@@ -124,6 +147,44 @@
 
 - Scope searched: `app/src/main/res/layout/` for `androidx.cardview.widget.CardView`.
 - Result: no remaining `androidx.cardview.widget.CardView` layouts found.
+
+### AlertDialog.Builder search after dialog batch migration
+
+- Scope searched: `app/src/main/java/` for `new AlertDialog.Builder`.
+- Result: remaining usages are intentionally skipped complex or player/download dialogs:
+  - `org.schabi.newpipe.RouterActivity`
+  - `us.shandian.giga.ui.fragment.MissionsFragment`
+  - `us.shandian.giga.ui.adapter.MissionAdapter`
+  - `org.schabi.newpipe.info_list.dialog.InfoItemDialog`
+  - `org.schabi.newpipe.MainActivity`
+  - `org.schabi.newpipe.util.NavigationHelper`
+  - `org.schabi.newpipe.settings.tabs.AddTabDialog`
+  - `org.schabi.newpipe.settings.DownloadSettingsFragment`
+  - `org.schabi.newpipe.settings.custom.NotificationSlot`
+  - `org.schabi.newpipe.download.DownloadDialog`
+  - `org.schabi.newpipe.streams.io.NoFileManagerSafeGuard`
+  - `org.schabi.newpipe.player.helper.PlaybackParameterDialog`
+  - `org.schabi.newpipe.fragments.detail.VideoDetailFragment`
+  - `org.schabi.newpipe.fragments.list.search.SearchFragment`
+  - `org.schabi.newpipe.local.bookmark.BookmarkFragment`
+  - `org.schabi.newpipe.local.playlist.LocalPlaylistFragment`
+
+### Dialog batch migration (latest QA record)
+
+- Local validation results for this migration batch:
+  - `rg "new AlertDialog.Builder" app/src/main/java -n`: PASS (remaining list audited)
+  - `./gradlew runCheckstyle -DskipFormatKtlint`: PASS
+  - `./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint`:
+    pending
+- Manual QA results for this migration batch:
+  - Open each migrated dialog: pending
+  - Confirm title/message/content: pending
+  - Confirm positive actions: pending
+  - Confirm negative/cancel behavior: pending
+  - Light theme: pending
+  - Dark theme: pending
+  - Black theme: pending
+  - Rotation where relevant: pending
 
 ## Validation status
 
