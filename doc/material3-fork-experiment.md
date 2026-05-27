@@ -54,7 +54,7 @@
 - [x] Download dialog
 - [x] Video detail
 - [x] Light / Dark / Black themes
-- [ ] Rotation
+- [x] Rotation
 
 ## Known risks
 
