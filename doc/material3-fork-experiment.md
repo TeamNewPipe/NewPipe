@@ -36,20 +36,24 @@
 ## Validation status
 
 - ✅ Checkstyle: `./gradlew runCheckstyle -DskipFormatKtlint` passes.
-- ⚠️ `./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint` fails
-  in this container due to missing Android SDK configuration (`ANDROID_HOME`/`sdk.dir`).
+- ✅ Full local validation: `./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint` passes
+  in an Android SDK-configured local environment.
+- ⚠️ Container note: full Gradle Android validation remains unavailable in Codex/container without
+  Android SDK configuration (`ANDROID_HOME`/`sdk.dir`).
 
 ## Manual QA checklist
 
-- [ ] App launch
-- [ ] Drawer
-- [ ] Settings
-- [ ] Feed group cards
-- [ ] Playlist creation dialog
-- [ ] History delete dialogs
-- [ ] Download dialog
-- [ ] Video detail
-- [ ] Light / Dark / Black themes
+- [x] App launch
+- [x] Drawer (main drawer)
+- [x] Settings
+- [x] Feed group cards
+- [x] Playlist creation dialog
+- [x] History delete playback states dialog
+- [x] History delete search history dialog
+- [x] History delete watch history dialog
+- [x] Download dialog
+- [x] Video detail
+- [x] Light / Dark / Black themes
 - [ ] Rotation
 
 ## Known risks
