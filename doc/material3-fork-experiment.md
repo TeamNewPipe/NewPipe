@@ -26,6 +26,7 @@
 - `feed_group_reorder_item` root migrated to `MaterialCardView`.
 - `item_instance` root migrated to `MaterialCardView`.
 - `list_choose_tabs` root migrated to `MaterialCardView` (non-feed-group simple card row).
+- Non-feed-group card-layout audit (next migration candidate): no additional eligible `androidx.cardview.widget.CardView` list/card roots remain outside `feed_group_*` and already-migrated `list_choose_tabs`.
 - Conservative Material card styling normalized for feed-group cards:
   - elevation
   - ripple
@@ -74,6 +75,17 @@
   - Dark theme: PASS
   - Black theme: PASS
   - Rotation: PASS
+
+
+### Additional non-feed-group card migration audit (latest)
+
+- Scope searched: `app/src/main/res/layout/` for `androidx.cardview.widget.CardView`.
+- Result: only `feed_group_add_new_grid_item` and `feed_group_card_grid_item` still use `CardView`; both are `feed_group_*` and excluded by task rules.
+- Migration action in this step: none (no safe new non-feed-group, non-player, non-download `CardView` target found).
+- Validation for this audit/doc step:
+  - `./gradlew runCheckstyle -DskipFormatKtlint`: PASS
+  - `./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint`: not run in this container step
+- Manual QA for this audit/doc step: not applicable (no new layout migration performed).
 
 ## Validation status
 
