@@ -8,6 +8,7 @@ on:
       - master
       - refactor
       - release**
+      - material
     paths-ignore:
       - 'README.md'
       - 'doc/**'
