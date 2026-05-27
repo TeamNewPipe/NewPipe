@@ -14,6 +14,7 @@
 
 ### Toolbar
 - Main toolbar migrated to `MaterialToolbar`.
+- Toolbar color polish: main toolbar background moved to a neutral Material surface role (`colorSurface`) to reduce red dominance while keeping red as accent/brand color.
 
 ### Cards
 - `feed_group_card_item` root migrated to `MaterialCardView`.
@@ -61,6 +62,8 @@
 
 - Material 3 theme parent compatibility regressions in edge screens.
 - `MaterialToolbar` tint/title/elevation nuance differences versus prior toolbar behavior.
+- Service branding is less visually dominant in main app chrome after neutral toolbar background shift.
+- Toolbar icon/search tint contrast should be watched across Light/Dark/Black themes and services.
 - Visual/ripple/elevation differences between `CardView` and `MaterialCardView`.
 - `MaterialAlertDialogBuilder` rendering differences versus `AlertDialog.Builder`.
 - Dialog width behavior variance on tablet/foldable form factors.

@@ -15,9 +15,9 @@
 
     <!-- Base Theme -->
     <style name="Base.V21" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="actionColor">@color/white</item>
+        <item name="actionColor">?attr/colorOnSurface</item>
         <item name="floatingActionButtonStyle">@style/FloatingActionButtonTheme</item>
-        <item name="toolbarSearchColor">@color/white</item>
+        <item name="toolbarSearchColor">?attr/colorOnSurface</item>
         <item name="colorControlActivated">?attr/colorPrimary</item>
     </style>
     <style name="Base" parent="Base.V21"/>
