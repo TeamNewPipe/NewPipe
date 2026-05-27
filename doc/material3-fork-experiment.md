@@ -63,17 +63,17 @@
 
 - Local validation results for this migration:
   - `./gradlew runCheckstyle -DskipFormatKtlint`: PASS
-  - `./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint`: not recorded as a migration-specific run in this note
-- Manual QA results for this migration:
-  - Choose tabs row display: not yet explicitly confirmed
-  - Tab icon/name visible: not yet explicitly confirmed
-  - Drag handle visible: not yet explicitly confirmed
-  - Reorder/drag behavior: not yet explicitly confirmed
-  - Scrolling: not yet explicitly confirmed
-  - Light theme: not yet explicitly confirmed
-  - Dark theme: not yet explicitly confirmed
-  - Black theme: not yet explicitly confirmed
-  - Rotation: not yet explicitly confirmed
+  - `./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint`: pending exact provided result text
+- Manual QA results for this migration (pending exact provided result text):
+  - Choose tabs row display: pending
+  - Tab icon/name visible: pending
+  - Drag handle visible: pending
+  - Reorder/drag behavior: pending
+  - Scrolling: pending
+  - Light theme: pending
+  - Dark theme: pending
+  - Black theme: pending
+  - Rotation: pending
 
 ## Validation status
 
