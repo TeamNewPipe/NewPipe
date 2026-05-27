@@ -7,7 +7,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog.Builder;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
@@ -51,7 +52,7 @@ public final class PlaylistCreationDialog extends PlaylistDialog {
         dialogBinding.dialogEditText.setHint(R.string.name);
         dialogBinding.dialogEditText.setInputType(InputType.TYPE_CLASS_TEXT);
 
-        final Builder dialogBuilder = new Builder(requireContext(),
+        final MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(requireContext(),
                 ThemeHelper.getDialogTheme(requireContext()))
                 .setTitle(R.string.create_playlist)
                 .setView(dialogBinding.getRoot())
