@@ -3,7 +3,6 @@ package org.schabi.newpipe.settings;
 import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,6 +19,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 
 import com.grack.nanojson.JsonParserException;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
@@ -105,24 +105,23 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
         // A dialogue will pop up to confirm if user intends to reset all settings
         resetSettings.setOnPreferenceClickListener(preference -> {
             // Show Alert Dialogue
-            final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setMessage(R.string.reset_all_settings);
-            builder.setCancelable(true);
-            builder.setPositiveButton(R.string.ok, (dialogInterface, i) -> {
-                // Deletes all shared preferences xml files.
-                final SharedPreferences sharedPreferences =
-                        PreferenceManager.getDefaultSharedPreferences(requireContext());
-                sharedPreferences.edit().clear().apply();
-                // Restarts the app
-                if (getActivity() == null) {
-                    return;
-                }
-                NavigationHelper.restartApp(getActivity());
-            });
-            builder.setNegativeButton(R.string.cancel, (dialogInterface, i) -> {
-            });
-            final AlertDialog alertDialog = builder.create();
-            alertDialog.show();
+            new MaterialAlertDialogBuilder(requireContext())
+                    .setMessage(R.string.reset_all_settings)
+                    .setCancelable(true)
+                    .setPositiveButton(R.string.ok, (dialogInterface, i) -> {
+                        // Deletes all shared preferences xml files.
+                        final SharedPreferences sharedPreferences =
+                                PreferenceManager.getDefaultSharedPreferences(requireContext());
+                        sharedPreferences.edit().clear().apply();
+                        // Restarts the app
+                        if (getActivity() == null) {
+                            return;
+                        }
+                        NavigationHelper.restartApp(getActivity());
+                    })
+                    .setNegativeButton(R.string.cancel, (dialogInterface, i) -> {
+                    })
+                    .show();
             return true;
         });
 

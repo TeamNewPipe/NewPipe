@@ -32,6 +32,7 @@
 - History delete playback-states confirmation flow migrated to `MaterialAlertDialogBuilder`.
 - History delete search-history confirmation flow migrated to `MaterialAlertDialogBuilder`.
 - History delete watch-history confirmation flow migrated to `MaterialAlertDialogBuilder`.
+- Backup/restore settings reset confirmation migrated to `MaterialAlertDialogBuilder`.
 
 ### Checkstyle cleanup
 - Fixed known `LineLength` violation in `PlaylistCreationDialog`.
@@ -50,6 +51,8 @@
 - [x] App launch
 - [x] Drawer (main drawer)
 - [x] Settings
+- [x] Selected/activated controls remain readable and usable in Light / Dark / Black themes.
+- [x] Selected/activated control color result acceptable for this fork.
 - [x] Feed group cards
 - [x] Playlist creation dialog
 - [x] History delete playback states dialog
