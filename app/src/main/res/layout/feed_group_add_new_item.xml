@@ -9,7 +9,11 @@
     android:clickable="true"
     android:focusable="true"
     android:foreground="?attr/selectableItemBackground"
-    app:cardBackgroundColor="?attr/card_item_background_color">
+    app:cardBackgroundColor="?attr/card_item_background_color"
+    app:cardElevation="2dp"
+    app:rippleColor="?attr/colorControlHighlight"
+    app:strokeColor="?attr/colorOutline"
+    app:strokeWidth="1dp">
 
     <LinearLayout
         android:layout_width="match_parent"
