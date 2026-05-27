@@ -27,6 +27,7 @@
 - Playlist creation flow migrated to `MaterialAlertDialogBuilder`.
 - History delete playback-states confirmation flow migrated to `MaterialAlertDialogBuilder`.
 - History delete search-history confirmation flow migrated to `MaterialAlertDialogBuilder`.
+- History delete watch-history confirmation flow migrated to `MaterialAlertDialogBuilder`.
 
 ### Checkstyle cleanup
 - Fixed known `LineLength` violation in `PlaylistCreationDialog`.
@@ -35,10 +36,8 @@
 ## Validation status
 
 - ✅ Checkstyle: `./gradlew runCheckstyle -DskipFormatKtlint` passes.
-- ⏳ Full Android validation (build/lint/unit tests): **pending** in this checkpoint doc unless confirmed from a local Android SDK environment.
-  - `./gradlew assembleDebug -DskipFormatKtlint`
-  - `./gradlew lintDebug -DskipFormatKtlint`
-  - `./gradlew testDebugUnitTest -DskipFormatKtlint`
+- ⚠️ `./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint` fails
+  in this container due to missing Android SDK configuration (`ANDROID_HOME`/`sdk.dir`).
 
 ## Manual QA checklist
 
