@@ -25,6 +25,7 @@
 - `feed_group_add_new_item` root migrated to `MaterialCardView`.
 - `feed_group_reorder_item` root migrated to `MaterialCardView`.
 - `item_instance` root migrated to `MaterialCardView`.
+- `list_choose_tabs` root migrated to `MaterialCardView` (non-feed-group simple card row).
 - Conservative Material card styling normalized for feed-group cards:
   - elevation
   - ripple
