@@ -45,9 +45,17 @@
 ### Feed group reorder item migration (latest QA record)
 
 - Local validation results for this migration (as provided):
-  - `[PASTE ACTUAL RESULTS HERE]`
+  - `./gradlew runCheckstyle -DskipFormatKtlint`: PASS
+  - `./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint`: PASS
 - Manual QA results for this migration (as provided):
-  - `[PASTE ACTUAL RESULTS HERE]`
+  - Feed group reorder item display: PASS
+  - Drag handle visible: PASS
+  - Drag/reorder interaction: PASS
+  - Scrolling: PASS
+  - Light theme: PASS
+  - Dark theme: PASS
+  - Black theme: PASS
+  - Rotation: PASS
 
 ## Validation status
 
