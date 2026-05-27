@@ -108,15 +108,17 @@
 
 - Local validation results for this migration:
   - `./gradlew runCheckstyle -DskipFormatKtlint`: PASS
-  - `./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint`: pending
+  - `./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint`: PASS
+  - `rg "androidx.cardview.widget.CardView" app/src/main/res/layout -n`: no matches
 - Manual QA results for this migration:
-  - Feed group add-new grid card display: pending
-  - Click opens expected add/create flow: pending
-  - Scrolling: pending
-  - Light theme: pending
-  - Dark theme: pending
-  - Black theme: pending
-  - Rotation: pending
+  - Feed group grid add-new card display: PASS
+  - Icon/title visible: PASS
+  - Click opens expected add/create flow: PASS
+  - Scrolling: PASS
+  - Light theme: PASS
+  - Dark theme: PASS
+  - Black theme: PASS
+  - Rotation: PASS
 
 ### CardView layout search after latest migration
 
