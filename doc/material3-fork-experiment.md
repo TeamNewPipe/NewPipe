@@ -23,6 +23,7 @@
 ### Cards
 - `feed_group_card_item` root migrated to `MaterialCardView`.
 - `feed_group_add_new_item` root migrated to `MaterialCardView`.
+- `feed_group_reorder_item` root migrated to `MaterialCardView`.
 - `item_instance` root migrated to `MaterialCardView`.
 - Conservative Material card styling normalized for feed-group cards:
   - elevation
