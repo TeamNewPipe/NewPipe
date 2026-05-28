@@ -10,11 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="?attr/colorSecondaryContainer"
-        app:tabRippleColor="?attr/colorOnSecondaryContainer"
-        app:tabIconTint="?attr/colorOnSecondaryContainer"
-        app:tabIndicatorColor="?attr/colorOnSecondaryContainer"
+        android:background="?attr/colorSurface"
         app:tabGravity="fill"
+        app:tabIconTint="@color/tab_layout_material_item_color"
+        app:tabIndicatorColor="?attr/colorPrimary"
+        app:tabIndicatorFullWidth="false"
+        app:tabIndicatorHeight="3dp"
+        app:tabRippleColor="?attr/colorControlHighlight"
+        app:tabSelectedTextColor="?attr/colorPrimary"
+        app:tabTextColor="@color/tab_layout_material_item_color"
         app:tabMinWidth="60dp" />
 
     <androidx.viewpager.widget.ViewPager

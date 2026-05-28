@@ -80,7 +80,21 @@ Known risks:
 - Manual QA is still required for every settings screen with switches because Content, Download, and Notification screen results were not provided.
 
 ### Tab bar color polish
-- Main and channel top tab bars now use `colorSecondaryContainer` for the container and `colorOnSecondaryContainer` for tab icons/text, ripple, and selected indicator. This keeps the tab selector readable while replacing the stronger primary-green app-bar treatment with a softer Material 3 container role.
+- Main and channel `TabLayout` bars now use a neutral `colorSurface` container,
+  `colorPrimary` for selected text/icons and the indicator,
+  `colorOnSurfaceVariant` for unselected tab content, and
+  `colorControlHighlight` for ripple feedback.
+- The main screen still uses the same `ScrollableTabLayout` instance for both
+  top tabs and the bottom fallback; only its RelativeLayout rules and
+  selected-indicator gravity change when the main tabs position preference
+  changes.
+- NewPipe Material now defaults the main tabs position switch to Bottom for new
+  installs or unset preferences. Existing saved Top/Bottom preferences are
+  preserved because the preference key and stored boolean values were not
+  changed and no migration code was added.
+- Real `BottomNavigationView` remains deferred for a future conditional
+  implementation, likely only when bottom mode has five or fewer tabs; this pass
+  keeps the existing bottom `TabLayout` fallback.
 
 Validation results:
 - `./gradlew runCheckstyle -DskipFormatKtlint`: PASS

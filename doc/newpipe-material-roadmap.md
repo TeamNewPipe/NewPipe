@@ -75,6 +75,22 @@ Plan these after the current foundation is stable:
 - Accessibility review for dynamic type, focus order, touch targets, color
   contrast, TalkBack labels, and high-contrast Black theme behavior.
 
+### Main tabs polish
+
+- Top main tabs and the bottom main-tab fallback both continue to use the
+  existing `ScrollableTabLayout`; BottomNavigationView is intentionally not part
+  of this pass.
+- The shared main TabLayout and channel TabLayout now use a Material 3-style
+  surface container, primary-colored selected state/indicator, muted
+  on-surface-variant unselected state, and theme ripple so dynamic/manual theme
+  colors continue to drive selected tab emphasis.
+- NewPipe Material defaults the main tabs position to Bottom for new installs or
+  unset preferences only. Existing saved Top or Bottom values keep using the
+  same `main_tabs_position` preference key and are not migrated or overwritten.
+- A real Material `BottomNavigationView` remains a future conditional step for
+  bottom mode with five or fewer tabs; many-tab bottom mode should keep a
+  scrollable TabLayout fallback.
+
 ### Risky areas to defer
 
 Defer or handle only with dedicated test plans because regressions here can
@@ -193,8 +209,8 @@ Default behavior:
 - Maintain status bar and navigation bar contrast in Light, Dark, and Black
   themes, including gesture navigation edge cases.
 - Ensure settings controls, `MaterialSwitch` widgets, preference text/icons,
-  top tabs, dialogs, cards, toolbar surfaces, and selected/activated states all
-  update from the resolved palette.
+  top/bottom TabLayout tabs, dialogs, cards, toolbar surfaces, and
+  selected/activated states all update from the resolved palette.
 - Keep a neutral fallback palette for older Android and dynamic-color-disabled
   devices so unsupported devices do not fall back to fixed green chrome.
 - Define the new preference key/value format carefully so settings export/import

@@ -70,7 +70,7 @@
         app:iconSpaceReserved="false" />
 
     <SwitchPreferenceCompat
-        android:defaultValue="false"
+        android:defaultValue="true"
         android:key="@string/main_tabs_position_key"
         android:summary="@string/main_tabs_position_summary"
         android:title="@string/main_tabs_position_title"
