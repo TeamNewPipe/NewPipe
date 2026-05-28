@@ -20,6 +20,17 @@
 - Ripple/highlight audit after neutral toolbar and activated-state polish: existing generic ripple/selector colors are already neutral (gray/white alpha), so no additional ripple resource changes were applied in this step to avoid unnecessary churn.
 - Surface/background audit after toolbar neutralization: `colorSurface`, `android:windowBackground`/`windowBackground`, and custom card/background attrs are already consistently mapped per Light/Dark/Black themes, so no surface color resource changes were applied in this step.
 
+### SwitchPreferenceCompat MaterialSwitch experiment
+- Settings `SwitchPreferenceCompat` controls are globally retargeted through the settings themes to a custom preference widget layout backed by `com.google.android.material.materialswitch.MaterialSwitch`.
+- Files changed: `app/src/main/res/layout/preference_widget_material_switch.xml`, `app/src/main/res/values/styles.xml`, and `doc/material3-fork-experiment.md`.
+- Application scope: global for settings screens that use `SwitchPreferenceCompat` under `LightSettingsTheme`, `DarkSettingsTheme`, or `BlackSettingsTheme`; individual preference XML entries were not edited.
+- Binding approach: the widget layout keeps AndroidX Preference's expected `@+id/switchWidget` id and non-clickable/non-focusable widget flags so row-level and switch-area taps continue to flow through `SwitchPreferenceCompat` state handling.
+- Color approach: no new tint resources were added; the Material switch uses the existing Material 3 theme roles and non-red settings accent mappings already defined for Light/Dark/Black settings themes.
+- Known risks:
+  - AndroidX Preference row/switch binding may differ across library versions.
+  - Disabled/checked state tinting may need further tuning after device QA.
+  - Manual QA is required for every settings screen with switches.
+
 ### Tab bar color polish
 - Main and channel top tab bars now use `colorSecondaryContainer` for the container and `colorOnSecondaryContainer` for tab icons/text, ripple, and selected indicator. This keeps the tab selector readable while replacing the stronger primary-green app-bar treatment with a softer Material 3 container role.
 
