@@ -229,6 +229,93 @@ explicit decisions for each item:
   label.
 - **App icon:** Design fork-specific launcher and notification-safe branding
   that does not confuse users into thinking it is the official NewPipe app.
+
+### Launcher icon audit and NewPipe Material icon plan
+
+Current launcher icon structure:
+
+- The app manifest points `android:icon` and `android:logo` to
+  `@mipmap/ic_launcher`. There is no `android:roundIcon` declaration yet, so
+  launchers that prefer round icons currently fall back to the default launcher
+  icon reference.
+- Android Auto notification metadata also references `@mipmap/ic_launcher`, so
+  any future launcher-icon replacement must be checked for notification-safe
+  silhouette/readability before release.
+- `app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml` is the adaptive icon
+  definition used on Android 8.0+. It uses `@color/ic_launcher_background` for
+  the adaptive background, `@mipmap/ic_launcher_foreground` for the foreground,
+  and currently reuses that same foreground as the `monochrome` layer for
+  Android themed icons.
+- `@color/ic_launcher_background` is defined as `#CD201F`, matching the current
+  upstream/NewPipe red visual identity rather than a fork-specific neutral or
+  dynamic-friendly Material 3 direction.
+- Legacy fallback launcher PNGs are present in `mipmap-mdpi`, `mipmap-hdpi`,
+  `mipmap-xhdpi`, `mipmap-xxhdpi`, and `mipmap-xxxhdpi` as `ic_launcher.png`.
+  Foreground PNGs with the same density buckets are present as
+  `ic_launcher_foreground.png` for the adaptive foreground resource.
+- No `ic_launcher_round` resource was found, and no separate vector-only
+  monochrome launcher asset was found. The current themed-icon support is
+  therefore structurally present through the adaptive icon `monochrome` element,
+  but it is not yet backed by a purpose-built one-color symbol.
+- There is no `drawable-v24` resource directory in the current tree. Launcher
+  icon inputs are concentrated in `mipmap-*`, `mipmap-anydpi-v26`, and the
+  launcher background color in `values/colors.xml`.
+
+Proposed NewPipe Material icon direction:
+
+- Create a distinct fork mark that communicates **NewPipe Material** as an
+  independent maintained fork, not an official NewPipe build or endorsement.
+  Avoid reusing the official red play-pipe composition as the primary brand
+  shape without clear visual differentiation.
+- Keep the concept video/player-adjacent, but simplify it into a Material 3
+  compatible geometric symbol: for example, a rounded play form, layered
+  material surface/card motif, or abstract media tile that reads clearly at
+  small launcher sizes without copying upstream branding.
+- Prefer a neutral/dynamic-friendly base: avoid hard-coding the final identity
+  as green only. Use neutral surfaces with a configurable/accent-friendly
+  foreground or a palette that can sit beside the app's dynamic/manual Material
+  colors without implying the launcher icon itself follows every in-app theme
+  color.
+- Keep adaptive icon safe zones in mind: the foreground must remain legible
+  after circle, squircle, rounded-square, and other OEM launcher masks. The
+  background should be simple enough to survive launcher scaling and should not
+  contain essential detail.
+- Add a purpose-built monochrome/themed icon layer instead of reusing the full
+  color foreground. It should be a single-color silhouette that remains readable
+  in Android 13+ themed icon light and dark launcher modes.
+- Treat notification and automotive use separately during QA because the current
+  manifest metadata also points Google car notification icon metadata at the
+  launcher resource. If a future notification-specific icon is needed, plan it
+  deliberately rather than relying on a detailed launcher foreground.
+
+Future XML/vector implementation notes:
+
+- A safe XML-only setup would add a vector foreground such as
+  `app/src/main/res/drawable/ic_launcher_material_foreground.xml`, a separate
+  single-color vector such as
+  `app/src/main/res/drawable/ic_launcher_material_monochrome.xml`, and then
+  update `app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml` to reference those
+  drawables for `foreground` and `monochrome`.
+- Keep `@color/ic_launcher_background` or introduce a clearly named replacement
+  color only after the final palette is chosen. Do not make the background a
+  permanent green-only brand color; prefer a neutral or accent-compatible color
+  that works with Material You expectations.
+- Raster legacy fallback icons should be generated only after the vector design
+  is approved, so density PNGs remain consistent with the final adaptive icon.
+
+Future icon implementation checklist:
+
+- Design and review the adaptive icon foreground.
+- Design and review the adaptive icon background color/shape treatment.
+- Add a dedicated monochrome/themed icon silhouette.
+- Decide whether to add `android:roundIcon` and an `ic_launcher_round` resource
+  or continue relying on the adaptive icon mask behavior.
+- Regenerate legacy fallback launcher icons for pre-adaptive launchers if needed.
+- Preview launcher masks across circle, squircle, rounded-square, and OEM shapes.
+- Check Android themed icons in both light and dark launcher modes.
+- Check install/update, recents/task switcher, Android Auto notification metadata,
+  and any store/release artwork that could still imply official NewPipe
+  endorsement.
 - **Package/applicationId decision:** Chosen as
   **`org.wisso.newpipematerial`**. This Android applicationId lets NewPipe
   Material install as a separate app beside official NewPipe while preserving
