@@ -152,9 +152,12 @@ Default behavior:
 
 ### Implementation stages
 
-1. **Stage 1: dynamic color support.** Introduce dynamic-color theme plumbing
-   behind existing Light/Dark/Black mode selection, keeping behavior unchanged
-   when dynamic color is unavailable.
+1. **Stage 1: dynamic color support.** Implemented for supported Android
+   versions/devices through the existing Material Components dynamic color API.
+   Dynamic color is registered before activities are created and reapplied after
+   explicit activity `setTheme()` calls, unsupported devices keep the current
+   static fallback palette, and Black theme is excluded so its black surfaces
+   remain visually black.
 2. **Stage 2: static preset palettes.** Define Material 3-compatible preset
    palettes for NewPipe Material, Neutral, Green, Blue, Purple, Orange, Pink,
    and Red.
@@ -172,8 +175,11 @@ Default behavior:
 - Preserve existing Light, Dark, and Black theme support; color selection should
   choose the palette/accent inside the selected brightness mode, not replace the
   brightness mode.
-- Audit current `ThemeHelper` behavior before implementation so applying a new
-  color does not introduce activity restart loops, stale resources, or partial
+- Stage 1 skips dynamic color when the selected theme resolves to Black theme;
+  revisit this only if a later implementation can preserve pure black surfaces
+  while applying dynamic accent roles safely.
+- Continue auditing `ThemeHelper` behavior in later stages so applying manual
+  colors does not introduce activity restart loops, stale resources, or partial
   theme application.
 - Avoid app restart bugs: switching the color should either reapply the theme
   predictably or request a controlled activity recreation with saved state.
@@ -193,7 +199,8 @@ Default behavior:
 
 Before shipping theme color selection, verify:
 
-- Android 12+ dynamic color with **Follow system**.
+- Android 12+ dynamic color in Light and Dark themes.
+- Black theme remains black enough because Stage 1 skips dynamic color there.
 - Older Android or dynamic-color-unavailable fallback behavior.
 - Manual color override for every preset value.
 - Light, Dark, and Black modes combined with dynamic and manual colors.

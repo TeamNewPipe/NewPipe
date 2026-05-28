@@ -383,3 +383,34 @@ Known risks (updated):
 
 Additional known risk:
 - OEM/system-bar icon contrast behavior can vary by Android version and vendor skin; verify light status/nav icon readability on representative devices.
+
+
+### Dynamic color support (latest)
+
+- Stage 1 system dynamic color support is implemented with the existing Material
+  Components `DynamicColors` API; no new dependency was added.
+- Dynamic colors are registered from `App.onCreate()` after settings are
+  initialized and before activities are created. Activity-level theme application
+  also reapplies dynamic color through `ThemeHelper` after explicit `setTheme()`
+  calls, so supported Android 12+ devices can resolve Material You theme roles
+  for app activities that choose their theme at runtime.
+- Unsupported Android versions/devices keep the existing static Material 3
+  fallback palette because `DynamicColors.applyToActivitiesIfAvailable()` is a
+  no-op when dynamic color is unavailable. Existing fallback colors were not
+  removed.
+- Black theme decision: dynamic colors are skipped when the selected theme
+  resolves to Black theme, including automatic device theme with Black as the
+  selected night theme. This is the least risky Stage 1 behavior because it
+  preserves the fork's black surfaces, status/navigation bar treatment, and
+  OLED-friendly visual intent.
+- Manual accent/color settings are not implemented in this stage; they remain
+  planned for later static-palette and settings UI stages.
+
+Known risks:
+- OEM dynamic color palettes can vary across Android 12+ implementations.
+- Contrast can vary with wallpaper-derived palettes and should be manually
+  checked for toolbar, tabs, settings controls, dialogs, cards, and system bars.
+- Black theme interaction may need deeper work if a future stage tries to apply
+  dynamic accent roles while preserving pure black surfaces.
+- Manual accent override and preset palette export/import behavior are not part
+  of this stage.

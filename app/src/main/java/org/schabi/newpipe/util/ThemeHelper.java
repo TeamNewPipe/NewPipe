@@ -37,6 +37,8 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
+import com.google.android.material.color.DynamicColors;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -73,6 +75,22 @@ public final class ThemeHelper {
      */
     public static void setTheme(final Context context, final int serviceId) {
         context.setTheme(getThemeForService(context, serviceId));
+        applyDynamicColorsIfAvailable(context);
+    }
+
+    /**
+     * Apply Material You dynamic colors when the current device supports them.
+     *
+     * <p>Black theme intentionally skips dynamic colors so its black surfaces remain visually
+     * black. Unsupported devices keep the static theme colors because Material Components treats
+     * dynamic color application as a no-op when dynamic colors are unavailable.</p>
+     *
+     * @param context context that will receive dynamic colors, when it is an activity
+     */
+    public static void applyDynamicColorsIfAvailable(final Context context) {
+        if (context instanceof Activity && !isBlackThemeSelected(context)) {
+            DynamicColors.applyToActivityIfAvailable((Activity) context);
+        }
     }
 
     /**
@@ -88,6 +106,23 @@ public final class ThemeHelper {
         return selectedThemeKey.equals(res.getString(R.string.light_theme_key))
                 || (selectedThemeKey.equals(res.getString(R.string.auto_device_theme_key))
                 && !isDeviceDarkThemeEnabled(context));
+    }
+
+    /**
+     * Return true if the selected theme resolves to the Black theme.
+     *
+     * @param context context to get the preference
+     * @return whether the black theme is selected or resolved from automatic device theme
+     */
+    public static boolean isBlackThemeSelected(final Context context) {
+        final String selectedThemeKey = getSelectedThemeKey(context);
+        final Resources res = context.getResources();
+        final String blackThemeKey = res.getString(R.string.black_theme_key);
+
+        return selectedThemeKey.equals(blackThemeKey)
+                || (selectedThemeKey.equals(res.getString(R.string.auto_device_theme_key))
+                && isDeviceDarkThemeEnabled(context)
+                && getSelectedNightThemeKey(context).equals(blackThemeKey));
     }
 
     /**
