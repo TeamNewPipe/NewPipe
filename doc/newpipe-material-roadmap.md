@@ -75,6 +75,12 @@ Plan these after the current foundation is stable:
 - Accessibility review for dynamic type, focus order, touch targets, color
   contrast, TalkBack labels, and high-contrast Black theme behavior.
 
+### Navigation drawer polish
+
+- Main drawer visual styling now follows the fork Material 3 role mapping: the drawer container uses `colorSurface`, selected rows use a rounded `colorPrimaryContainer` background with `colorOnPrimaryContainer` content, unselected icons/text use on-surface roles, and ripple feedback uses `colorControlHighlight`.
+- Drawer destinations, menu grouping, open/close handling, and service switching remain unchanged; the change is limited to layout/color/drawable styling resources.
+- Header content is preserved, with a neutral `colorSurfaceVariant` fallback behind the existing header artwork to reduce red dominance. Continue to QA service identity/header contrast across Light, Dark, Black, dynamic color, and manual presets.
+
 ### Main tabs polish
 
 - Top main tabs continue to use the existing `ScrollableTabLayout`.

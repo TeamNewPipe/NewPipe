@@ -5,6 +5,12 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:layout_gravity="start"
-    android:background="?android:attr/windowBackground"
+    android:background="?attr/colorSurface"
     android:orientation="vertical"
-    app:headerLayout="@layout/drawer_header" />
+    app:headerLayout="@layout/drawer_header"
+    app:itemBackground="@drawable/drawer_navigation_item_background"
+    app:itemHorizontalPadding="16dp"
+    app:itemIconPadding="24dp"
+    app:itemIconTint="@color/drawer_navigation_icon_color"
+    app:itemRippleColor="?attr/colorControlHighlight"
+    app:itemTextColor="@color/drawer_navigation_text_color" />

@@ -20,6 +20,14 @@
 - Ripple/highlight audit after neutral toolbar and activated-state polish: existing generic ripple/selector colors are already neutral (gray/white alpha), so no additional ripple resource changes were applied in this step to avoid unnecessary churn.
 - Surface/background audit after toolbar neutralization: `colorSurface`, `android:windowBackground`/`windowBackground`, and custom card/background attrs are already consistently mapped per Light/Dark/Black themes, so no surface color resource changes were applied in this step.
 
+### Navigation drawer polish
+- Main drawer container now uses the Material surface role (`colorSurface`) instead of the generic window background.
+- Drawer item states are defined with dedicated resources: selected/activated rows use a rounded `colorPrimaryContainer` pill, selected icons/text use `colorOnPrimaryContainer`, unselected icons use `colorOnSurfaceVariant`, and unselected text uses `colorOnSurface`.
+- Drawer ripple feedback is wired to the existing subtle theme highlight (`colorControlHighlight`) so Light/Dark/Black and dynamic/manual theme colors remain consistent with the rest of the app chrome.
+- Drawer header content and service-switch behavior are preserved; the header fallback background now uses `colorSurfaceVariant` behind the existing header art to reduce red dominance while keeping the existing white header content readable.
+- Files changed: `app/src/main/res/layout/drawer_layout.xml`, `app/src/main/res/layout/drawer_header.xml`, `app/src/main/res/color/drawer_navigation_icon_color.xml`, `app/src/main/res/color/drawer_navigation_text_color.xml`, `app/src/main/res/drawable/drawer_navigation_item_background.xml`, `app/src/main/res/drawable/drawer_navigation_item_checked.xml`, and `app/src/main/res/drawable/drawer_navigation_item_mask.xml`.
+- Known risk: service identity in the header still depends on each service icon and the existing header image; contrast should be rechecked whenever service branding or header art changes.
+
 ### Settings row summary color polish
 - Standard AndroidX Preference rows now use an app-local `preference_material` layout override that preserves the required AndroidX Preference IDs while tinting summary text with `colorOnSurfaceVariant`.
 - Required IDs preserved in the layout override: `@android:id/title`, `@android:id/summary`, `@android:id/widget_frame`; icon IDs remain provided by the existing `image_frame` override (`@+id/icon_frame`, `@android:id/icon`).

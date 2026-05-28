@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?colorPrimary"
+    android:background="?attr/colorSurfaceVariant"
     android:nextFocusDown="@+id/drawer_header_action_button">
 
     <ImageView

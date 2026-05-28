@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?attr/colorControlHighlight">
+    <item>
+        <selector>
+            <item
+                android:drawable="@drawable/drawer_navigation_item_checked"
+                android:state_activated="true" />
+            <item
+                android:drawable="@drawable/drawer_navigation_item_checked"
+                android:state_checked="true" />
+            <item android:drawable="@android:color/transparent" />
+        </selector>
+    </item>
+    <item
+        android:id="@android:id/mask"
+        android:drawable="@drawable/drawer_navigation_item_mask" />
+</ripple>
