@@ -23,6 +23,48 @@
 ### Tab bar color polish
 - Main and channel top tab bars now use `colorSecondaryContainer` for the container and `colorOnSecondaryContainer` for tab icons/text, ripple, and selected indicator. This keeps the tab selector readable while replacing the stronger primary-green app-bar treatment with a softer Material 3 container role.
 
+Validation results:
+- `./gradlew runCheckstyle -DskipFormatKtlint`: PASS
+- `./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint`: PASS
+
+Manual QA results:
+- Light theme:
+  - Main screen tab bar: PASS
+  - Main tab icons readable: PASS
+  - Main selected indicator visible: PASS
+  - Channel tab bar: PASS
+  - Channel tab text/icons readable: PASS
+  - Toolbar remains neutral/readable: PASS
+  - Status bar readable: PASS
+  - Drawer: PASS
+  - Feed/list screen: PASS
+  - Rotation: PASS
+- Dark theme:
+  - Main screen tab bar: PASS
+  - Main tab icons readable: PASS
+  - Main selected indicator visible: PASS
+  - Channel tab bar: PASS
+  - Channel tab text/icons readable: PASS
+  - Toolbar remains neutral/readable: PASS
+  - Status bar readable: PASS
+  - Drawer: PASS
+  - Feed/list screen: PASS
+  - Rotation: PASS
+- Black theme:
+  - Main screen tab bar: PASS
+  - Main tab icons readable: PASS
+  - Main selected indicator visible: PASS
+  - Channel tab bar: PASS
+  - Channel tab text/icons readable: PASS
+  - Toolbar remains neutral/readable: PASS
+  - Status bar readable: PASS
+  - Drawer: PASS
+  - Feed/list screen: PASS
+  - Rotation: PASS
+
+Observed issues:
+- Not provided in the QA handoff.
+
 ### Cards
 - `feed_group_card_item` root migrated to `MaterialCardView`.
 - `feed_group_add_new_item` root migrated to `MaterialCardView`.
