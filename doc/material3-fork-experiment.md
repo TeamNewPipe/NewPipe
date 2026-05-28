@@ -488,3 +488,16 @@ Known risks:
   for every already-open screen to pick up the new overlay.
 - Older/unsupported Android fallback behavior for every manual preset still
   needs device QA if not tested.
+
+### Theme color change UX prompt (latest)
+
+- Changing the `Theme color` preference now saves the selected value and shows a
+  Material-styled prompt instead of immediately recreating settings without
+  explanation.
+- Prompt actions:
+  - `Apply now`: safely recreates the current Settings activity so the selected
+    color can be applied there through normal theme initialization.
+  - `Later`: dismisses the dialog and leaves the user in place; the saved color
+    applies after settings/app screens are reopened or the app is restarted.
+- Runtime theme color resolution, dynamic color behavior, palette values, and
+  Black theme protection are unchanged by this UX-only step.

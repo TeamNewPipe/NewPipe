@@ -184,8 +184,9 @@ Default behavior:
 - Continue auditing `ThemeHelper` behavior in later stages so applying manual
   colors does not introduce activity restart loops, stale resources, or partial
   theme application. The current `Theme color` preference is applied through
-  static overlays and activity recreation, so already-open screens may need to
-  be recreated before showing a new preset.
+  static overlays; when changed from Appearance settings, the user is prompted
+  to apply now by safely recreating Settings or apply later after screens are
+  reopened/restarted.
 - Avoid app restart bugs: switching the color should either reapply the theme
   predictably or request a controlled activity recreation with saved state.
 - Maintain status bar and navigation bar contrast in Light, Dark, and Black
@@ -215,8 +216,8 @@ Before shipping theme color selection, verify:
   settings screen without losing state.
 - Export/import of the new setting, including imports from builds that do not
   know the setting yet.
-- `Theme color` setting persistence and runtime application after activity
-  recreation/restart.
+- `Theme color` setting persistence plus the Apply now/Later prompt behavior
+  for activity recreation/restart timing.
 
 ## Fork productization checklist
 

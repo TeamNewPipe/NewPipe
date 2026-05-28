@@ -86,6 +86,10 @@
     <string name="theme_color_orange_title">Orange</string>
     <string name="theme_color_pink_title">Pink</string>
     <string name="theme_color_red_title">Red</string>
+    <string name="theme_color_restart_dialog_title">Apply theme color?</string>
+    <string name="theme_color_restart_dialog_message">The selected theme color has been saved. Reopen settings now to apply it here. Other open screens may update after you reopen or restart the app.</string>
+    <string name="theme_color_restart_apply_now">Apply now</string>
+    <string name="theme_color_restart_later">Later</string>
     <string name="night_theme_title">Night theme</string>
     <string name="light_theme_title">Light</string>
     <string name="dark_theme_title">Dark</string>
