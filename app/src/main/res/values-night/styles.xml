@@ -6,4 +6,119 @@
         <item name="android:navigationBarColor">@color/dark_background_color</item>
     </style>
 
+
+    <!-- Theme color preset overlays -->
+    <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_NewPipeMaterial">
+        <item name="colorPrimary">#AED4AF</item>
+        <item name="colorOnPrimary">#19361E</item>
+        <item name="colorPrimaryDark">#305236</item>
+        <item name="colorPrimaryContainer">#305236</item>
+        <item name="colorOnPrimaryContainer">#C9ECCB</item>
+        <item name="colorSecondary">#BCCFB7</item>
+        <item name="colorOnSecondary">#273423</item>
+        <item name="colorAccent">#BCCFB7</item>
+        <item name="colorControlActivated">#BCCFB7</item>
+        <item name="colorSecondaryContainer">#3E503A</item>
+        <item name="colorOnSecondaryContainer">#D5E8CF</item>
+    </style>
+
+    <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_Neutral">
+        <item name="colorPrimary">#C7C7C7</item>
+        <item name="colorOnPrimary">#303030</item>
+        <item name="colorPrimaryDark">#474747</item>
+        <item name="colorPrimaryContainer">#474747</item>
+        <item name="colorOnPrimaryContainer">#E3E3E3</item>
+        <item name="colorSecondary">#C8C8C8</item>
+        <item name="colorOnSecondary">#303030</item>
+        <item name="colorAccent">#C8C8C8</item>
+        <item name="colorControlActivated">#C8C8C8</item>
+        <item name="colorSecondaryContainer">#464646</item>
+        <item name="colorOnSecondaryContainer">#E5E5E5</item>
+    </style>
+
+    <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_Green">
+        <item name="colorPrimary">#9ED67D</item>
+        <item name="colorOnPrimary">#123800</item>
+        <item name="colorPrimaryDark">#205107</item>
+        <item name="colorPrimaryContainer">#205107</item>
+        <item name="colorOnPrimaryContainer">#B9F397</item>
+        <item name="colorSecondary">#BDCBB0</item>
+        <item name="colorOnSecondary">#283420</item>
+        <item name="colorAccent">#BDCBB0</item>
+        <item name="colorControlActivated">#BDCBB0</item>
+        <item name="colorSecondaryContainer">#3E4A36</item>
+        <item name="colorOnSecondaryContainer">#D9E7CB</item>
+    </style>
+
+    <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_Blue">
+        <item name="colorPrimary">#9ECAFF</item>
+        <item name="colorOnPrimary">#003258</item>
+        <item name="colorPrimaryDark">#00497D</item>
+        <item name="colorPrimaryContainer">#00497D</item>
+        <item name="colorOnPrimaryContainer">#D1E4FF</item>
+        <item name="colorSecondary">#BBC7DB</item>
+        <item name="colorOnSecondary">#253140</item>
+        <item name="colorAccent">#BBC7DB</item>
+        <item name="colorControlActivated">#BBC7DB</item>
+        <item name="colorSecondaryContainer">#3B4858</item>
+        <item name="colorOnSecondaryContainer">#D7E3F8</item>
+    </style>
+
+    <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_Purple">
+        <item name="colorPrimary">#D0BCFF</item>
+        <item name="colorOnPrimary">#381E72</item>
+        <item name="colorPrimaryDark">#4F378B</item>
+        <item name="colorPrimaryContainer">#4F378B</item>
+        <item name="colorOnPrimaryContainer">#EADDFF</item>
+        <item name="colorSecondary">#CCC2DC</item>
+        <item name="colorOnSecondary">#332D41</item>
+        <item name="colorAccent">#CCC2DC</item>
+        <item name="colorControlActivated">#CCC2DC</item>
+        <item name="colorSecondaryContainer">#4A4458</item>
+        <item name="colorOnSecondaryContainer">#E8DEF8</item>
+    </style>
+
+    <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_Orange">
+        <item name="colorPrimary">#FFB86C</item>
+        <item name="colorOnPrimary">#4A2800</item>
+        <item name="colorPrimaryDark">#6A3A00</item>
+        <item name="colorPrimaryContainer">#6A3A00</item>
+        <item name="colorOnPrimaryContainer">#FFDCC2</item>
+        <item name="colorSecondary">#E5C09B</item>
+        <item name="colorOnSecondary">#432C12</item>
+        <item name="colorAccent">#E5C09B</item>
+        <item name="colorControlActivated">#E5C09B</item>
+        <item name="colorSecondaryContainer">#5C432B</item>
+        <item name="colorOnSecondaryContainer">#FFDCC2</item>
+    </style>
+
+    <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_Pink">
+        <item name="colorPrimary">#FFB1CB</item>
+        <item name="colorOnPrimary">#5E1134</item>
+        <item name="colorPrimaryDark">#7B294A</item>
+        <item name="colorPrimaryContainer">#7B294A</item>
+        <item name="colorOnPrimaryContainer">#FFD8E7</item>
+        <item name="colorSecondary">#E2BDC7</item>
+        <item name="colorOnSecondary">#422932</item>
+        <item name="colorAccent">#E2BDC7</item>
+        <item name="colorControlActivated">#E2BDC7</item>
+        <item name="colorSecondaryContainer">#5A4148</item>
+        <item name="colorOnSecondaryContainer">#FFD8E7</item>
+    </style>
+
+    <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_Red">
+        <item name="colorPrimary">#FFB4AB</item>
+        <item name="colorOnPrimary">#690005</item>
+        <item name="colorPrimaryDark">#93000A</item>
+        <item name="colorPrimaryContainer">#93000A</item>
+        <item name="colorOnPrimaryContainer">#FFDAD6</item>
+        <item name="colorSecondary">#E7BDB6</item>
+        <item name="colorOnSecondary">#442925</item>
+        <item name="colorAccent">#E7BDB6</item>
+        <item name="colorControlActivated">#E7BDB6</item>
+        <item name="colorSecondaryContainer">#5D3F3B</item>
+        <item name="colorOnSecondaryContainer">#FFDAD6</item>
+    </style>
+
+
 </resources>

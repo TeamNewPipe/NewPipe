@@ -52,6 +52,14 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
                         getString(R.string.auto_device_theme_title)));
             }
         }
+
+        final String themeColorKey = getString(R.string.theme_color_key);
+        final String startThemeColorKey = defaultPreferences
+                .getString(themeColorKey, getString(R.string.default_theme_color_value));
+        findPreference(themeColorKey).setOnPreferenceChangeListener((preference, newValue) -> {
+            applyThemeColorChange(startThemeColorKey, themeColorKey, newValue);
+            return false;
+        });
     }
 
     @Override
@@ -65,6 +73,16 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
         }
 
         return super.onPreferenceTreeClick(preference);
+    }
+
+    private void applyThemeColorChange(final String beginningThemeColorKey,
+                                       final String themeColorKey,
+                                       final Object newValue) {
+        defaultPreferences.edit().putString(themeColorKey, newValue.toString()).apply();
+
+        if (!newValue.equals(beginningThemeColorKey) && getActivity() != null) {
+            ActivityCompat.recreate(getActivity());
+        }
     }
 
     private void applyThemeChange(final String beginningThemeKey,

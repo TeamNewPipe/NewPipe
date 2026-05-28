@@ -121,7 +121,7 @@ public class RouterActivity extends AppCompatActivity {
         ThemeHelper.setDayNightMode(this);
         setTheme(ThemeHelper.isLightThemeSelected(this)
                 ? R.style.RouterActivityThemeLight : R.style.RouterActivityThemeDark);
-        ThemeHelper.applyDynamicColorsIfAvailable(this);
+        ThemeHelper.applyThemeColor(this);
 
         // Pass-through touch events to background activities
         // so that our transparent window won't lock UI in the mean time

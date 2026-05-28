@@ -75,22 +75,97 @@ public final class ThemeHelper {
      */
     public static void setTheme(final Context context, final int serviceId) {
         context.setTheme(getThemeForService(context, serviceId));
-        applyDynamicColorsIfAvailable(context);
+        applyThemeColor(context);
     }
 
     /**
-     * Apply Material You dynamic colors when the current device supports them.
+     * Apply the currently selected runtime theme color behavior.
      *
-     * <p>Black theme intentionally skips dynamic colors so its black surfaces remain visually
-     * black. Unsupported devices keep the static theme colors because Material Components treats
-     * dynamic color application as a no-op when dynamic colors are unavailable.</p>
+     * <p>Follow system uses Material You dynamic colors when available. Manual presets skip
+     * dynamic colors and apply a static Material 3 role overlay instead. Unsupported dynamic-color
+     * devices keep the base static fallback palette.</p>
      *
-     * @param context context that will receive dynamic colors, when it is an activity
+     * @param context context that will receive dynamic colors or a static color overlay
      */
-    public static void applyDynamicColorsIfAvailable(final Context context) {
-        if (context instanceof Activity && !isBlackThemeSelected(context)) {
+    public static void applyThemeColor(final Context context) {
+        if (shouldApplyDynamicColors(context)) {
             DynamicColors.applyToActivityIfAvailable((Activity) context);
+        } else {
+            applyThemeColorOverlay(context);
         }
+    }
+
+    /**
+     * Return the selected theme color preference.
+     *
+     * @param context context to get the preference
+     * @return selected theme color preference value
+     */
+    public static String getThemeColorPreference(final Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(
+                context.getString(R.string.theme_color_key),
+                context.getString(R.string.default_theme_color_value));
+    }
+
+    /**
+     * Return true if the theme color preference should follow system dynamic color.
+     *
+     * @param context context to get the preference
+     * @return whether system dynamic color should be used when available
+     */
+    public static boolean isFollowSystemThemeColor(final Context context) {
+        return getThemeColorPreference(context)
+                .equals(context.getString(R.string.theme_color_follow_system_value));
+    }
+
+    /**
+     * Return whether Material You dynamic colors should be applied.
+     *
+     * @param context context to get theme and theme color preferences
+     * @return true when dynamic colors should be applied
+     */
+    public static boolean shouldApplyDynamicColors(final Context context) {
+        return context instanceof Activity
+                && isFollowSystemThemeColor(context)
+                && !isBlackThemeSelected(context);
+    }
+
+    /**
+     * Apply a static color preset overlay when the theme color preference is manual.
+     *
+     * @param context context that will receive a static color overlay
+     */
+    public static void applyThemeColorOverlay(final Context context) {
+        final int overlay = getThemeColorOverlay(context);
+        if (overlay != 0) {
+            context.getTheme().applyStyle(overlay, true);
+        }
+    }
+
+    @StyleRes
+    private static int getThemeColorOverlay(final Context context) {
+        final Resources res = context.getResources();
+        final String selectedThemeColor = getThemeColorPreference(context);
+
+        if (selectedThemeColor.equals(res.getString(R.string.theme_color_newpipe_material_value))) {
+            return R.style.ThemeOverlay_NewPipeMaterial_ThemeColor_NewPipeMaterial;
+        } else if (selectedThemeColor.equals(res.getString(R.string.theme_color_neutral_value))) {
+            return R.style.ThemeOverlay_NewPipeMaterial_ThemeColor_Neutral;
+        } else if (selectedThemeColor.equals(res.getString(R.string.theme_color_green_value))) {
+            return R.style.ThemeOverlay_NewPipeMaterial_ThemeColor_Green;
+        } else if (selectedThemeColor.equals(res.getString(R.string.theme_color_blue_value))) {
+            return R.style.ThemeOverlay_NewPipeMaterial_ThemeColor_Blue;
+        } else if (selectedThemeColor.equals(res.getString(R.string.theme_color_purple_value))) {
+            return R.style.ThemeOverlay_NewPipeMaterial_ThemeColor_Purple;
+        } else if (selectedThemeColor.equals(res.getString(R.string.theme_color_orange_value))) {
+            return R.style.ThemeOverlay_NewPipeMaterial_ThemeColor_Orange;
+        } else if (selectedThemeColor.equals(res.getString(R.string.theme_color_pink_value))) {
+            return R.style.ThemeOverlay_NewPipeMaterial_ThemeColor_Pink;
+        } else if (selectedThemeColor.equals(res.getString(R.string.theme_color_red_value))) {
+            return R.style.ThemeOverlay_NewPipeMaterial_ThemeColor_Red;
+        }
+
+        return 0;
     }
 
     /**

@@ -454,5 +454,37 @@ Observed issues:
   setting saves through normal Android preferences and is therefore covered by
   the existing settings export/import flow, but `ThemeHelper` and dynamic color
   behavior are unchanged.
-- Planned next step: wire the saved user-selected value into theme resolution
-  after static preset palettes and fallback behavior are designed and tested.
+- Follow-up completed in the runtime theme color resolution step below, which
+  wires the saved user-selected value into theme resolution with static overlays.
+
+
+### Runtime theme color resolution (latest)
+
+- Stage 2 runtime theme color resolution is implemented for the saved
+  `theme_color` preference.
+- Runtime priority is now: manual preset -> system dynamic color -> existing
+  static fallback palette.
+- `follow_system` keeps Material You dynamic color behavior on supported devices
+  and falls back to the existing static palette when dynamic color is unavailable.
+- Manual presets disable dynamic color and apply static Material 3 role overlays
+  after the base Light/Dark/Black theme is selected and before views are
+  inflated.
+- Implemented manual presets: `newpipe_material`, `neutral`, `green`, `blue`,
+  `purple`, `orange`, `pink`, and `red`. Red is available only when explicitly
+  selected by the user.
+- Black theme behavior: preset overlays only affect accent/container/control
+  roles and do not change window/background/surface roles, so Black theme keeps
+  black surfaces while allowing user-selected accents where safe.
+- Theme color changes recreate the Appearance settings activity so the selected
+  value can be applied through normal theme initialization; the value persists
+  through normal preferences and existing export/import behavior.
+
+Known risks:
+- Preset contrast and tone choices may need additional device QA across OEMs,
+  especially for system bars, tabs, settings controls, and dialogs.
+- Some legacy views or service-specific themes may still use older attrs or
+  explicit service colors instead of the new preset overlay roles.
+- Changing the theme color may still require activity recreation or app restart
+  for every already-open screen to pick up the new overlay.
+- Older/unsupported Android fallback behavior for every manual preset still
+  needs device QA if not tested.

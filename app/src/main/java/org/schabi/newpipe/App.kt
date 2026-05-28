@@ -132,7 +132,7 @@ open class App :
 
     private fun applyDynamicColorsIfAvailable() {
         val dynamicColorsOptions = DynamicColorsOptions.Builder()
-            .setPrecondition { activity, _ -> !ThemeHelper.isBlackThemeSelected(activity) }
+            .setPrecondition { activity, _ -> ThemeHelper.shouldApplyDynamicColors(activity) }
             .build()
         DynamicColors.applyToActivitiesIfAvailable(this, dynamicColorsOptions)
     }

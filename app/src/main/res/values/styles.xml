@@ -129,6 +129,120 @@
     <style name="Base.BlackTheme" parent="Base.V21.BlackTheme" />
     <style name="BlackTheme" parent="Base.BlackTheme"/>
 
+
+    <!-- Theme color preset overlays -->
+    <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_NewPipeMaterial">
+        <item name="colorPrimary">#46674F</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryDark">#C9ECCB</item>
+        <item name="colorPrimaryContainer">#C9ECCB</item>
+        <item name="colorOnPrimaryContainer">#01210D</item>
+        <item name="colorSecondary">#52634F</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorAccent">#52634F</item>
+        <item name="colorControlActivated">#52634F</item>
+        <item name="colorSecondaryContainer">#D5E8CF</item>
+        <item name="colorOnSecondaryContainer">#10200F</item>
+    </style>
+
+    <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_Neutral">
+        <item name="colorPrimary">#5F5F5F</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryDark">#E3E3E3</item>
+        <item name="colorPrimaryContainer">#E3E3E3</item>
+        <item name="colorOnPrimaryContainer">#1C1C1C</item>
+        <item name="colorSecondary">#5E5E5E</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorAccent">#5E5E5E</item>
+        <item name="colorControlActivated">#5E5E5E</item>
+        <item name="colorSecondaryContainer">#E5E5E5</item>
+        <item name="colorOnSecondaryContainer">#1B1B1B</item>
+    </style>
+
+    <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_Green">
+        <item name="colorPrimary">#386A20</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryDark">#B9F397</item>
+        <item name="colorPrimaryContainer">#B9F397</item>
+        <item name="colorOnPrimaryContainer">#042100</item>
+        <item name="colorSecondary">#55624C</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorAccent">#55624C</item>
+        <item name="colorControlActivated">#55624C</item>
+        <item name="colorSecondaryContainer">#D9E7CB</item>
+        <item name="colorOnSecondaryContainer">#131F0D</item>
+    </style>
+
+    <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_Blue">
+        <item name="colorPrimary">#0061A4</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryDark">#D1E4FF</item>
+        <item name="colorPrimaryContainer">#D1E4FF</item>
+        <item name="colorOnPrimaryContainer">#001D36</item>
+        <item name="colorSecondary">#535F70</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorAccent">#535F70</item>
+        <item name="colorControlActivated">#535F70</item>
+        <item name="colorSecondaryContainer">#D7E3F8</item>
+        <item name="colorOnSecondaryContainer">#101C2B</item>
+    </style>
+
+    <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_Purple">
+        <item name="colorPrimary">#6750A4</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryDark">#EADDFF</item>
+        <item name="colorPrimaryContainer">#EADDFF</item>
+        <item name="colorOnPrimaryContainer">#21005D</item>
+        <item name="colorSecondary">#625B71</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorAccent">#625B71</item>
+        <item name="colorControlActivated">#625B71</item>
+        <item name="colorSecondaryContainer">#E8DEF8</item>
+        <item name="colorOnSecondaryContainer">#1D192B</item>
+    </style>
+
+    <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_Orange">
+        <item name="colorPrimary">#8C4A00</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryDark">#FFDCC2</item>
+        <item name="colorPrimaryContainer">#FFDCC2</item>
+        <item name="colorOnPrimaryContainer">#2D1600</item>
+        <item name="colorSecondary">#765A3E</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorAccent">#765A3E</item>
+        <item name="colorControlActivated">#765A3E</item>
+        <item name="colorSecondaryContainer">#FFDCC2</item>
+        <item name="colorOnSecondaryContainer">#2B1703</item>
+    </style>
+
+    <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_Pink">
+        <item name="colorPrimary">#984061</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryDark">#FFD8E7</item>
+        <item name="colorPrimaryContainer">#FFD8E7</item>
+        <item name="colorOnPrimaryContainer">#3E001D</item>
+        <item name="colorSecondary">#74565F</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorAccent">#74565F</item>
+        <item name="colorControlActivated">#74565F</item>
+        <item name="colorSecondaryContainer">#FFD8E7</item>
+        <item name="colorOnSecondaryContainer">#2B151D</item>
+    </style>
+
+    <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_Red">
+        <item name="colorPrimary">#BA1A1A</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryDark">#FFDAD6</item>
+        <item name="colorPrimaryContainer">#FFDAD6</item>
+        <item name="colorOnPrimaryContainer">#410002</item>
+        <item name="colorSecondary">#775651</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorAccent">#775651</item>
+        <item name="colorControlActivated">#775651</item>
+        <item name="colorSecondaryContainer">#FFDAD6</item>
+        <item name="colorOnSecondaryContainer">#2C1512</item>
+    </style>
+
     <!-- Dialogs -->
     <style name="LightDialogTheme" parent="Theme.Material3.DayNight.Dialog">
         <item name="colorPrimary">@color/light_youtube_primary_color</item>
