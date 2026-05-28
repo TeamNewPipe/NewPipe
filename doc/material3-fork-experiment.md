@@ -84,17 +84,21 @@ Known risks:
   `colorPrimary` for selected text/icons and the indicator,
   `colorOnSurfaceVariant` for unselected tab content, and
   `colorControlHighlight` for ripple feedback.
-- The main screen still uses the same `ScrollableTabLayout` instance for both
-  top tabs and the bottom fallback; only its RelativeLayout rules and
-  selected-indicator gravity change when the main tabs position preference
-  changes.
+- Top mode still uses `ScrollableTabLayout`. Bottom mode now uses a real
+  Material `BottomNavigationView` when the selected tab count is five or fewer,
+  and keeps the existing scrollable bottom `TabLayout` fallback when more than
+  five tabs are enabled.
 - NewPipe Material now defaults the main tabs position switch to Bottom for new
   installs or unset preferences. Existing saved Top/Bottom preferences are
   preserved because the preference key and stored boolean values were not
   changed and no migration code was added.
-- Real `BottomNavigationView` remains deferred for a future conditional
-  implementation, likely only when bottom mode has five or fewer tabs; this pass
-  keeps the existing bottom `TabLayout` fallback.
+- Bottom navigation items are built dynamically from the selected tabs list, so
+  user tab order, titles, and icons remain the source of truth and no tabs are
+  dropped when falling back to the scrollable TabLayout.
+- Known risks/QA: verify ViewPager and bottom navigation selection sync, tab
+  reselection behavior, rotation, 4-tab/5-tab BottomNavigationView layouts,
+  more-than-5-tab fallback scrolling, and Light/Dark/Black plus dynamic/manual
+  color contrast.
 
 Validation results:
 - `./gradlew runCheckstyle -DskipFormatKtlint`: PASS

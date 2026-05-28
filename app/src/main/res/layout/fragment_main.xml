@@ -27,4 +27,17 @@
         android:layout_height="match_parent"
         android:layout_below="@id/main_tab_layout" />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/main_bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="?attr/colorSurface"
+        android:visibility="gone"
+        app:itemActiveIndicatorStyle="@style/NewPipeMaterialBottomNavigationActiveIndicator"
+        app:itemIconTint="@color/tab_layout_material_item_color"
+        app:itemRippleColor="?attr/colorControlHighlight"
+        app:itemTextColor="@color/tab_layout_material_item_color"
+        app:labelVisibilityMode="labeled" />
+
 </RelativeLayout>

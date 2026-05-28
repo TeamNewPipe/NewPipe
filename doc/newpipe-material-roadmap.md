@@ -77,19 +77,21 @@ Plan these after the current foundation is stable:
 
 ### Main tabs polish
 
-- Top main tabs and the bottom main-tab fallback both continue to use the
-  existing `ScrollableTabLayout`; BottomNavigationView is intentionally not part
-  of this pass.
-- The shared main TabLayout and channel TabLayout now use a Material 3-style
-  surface container, primary-colored selected state/indicator, muted
+- Top main tabs continue to use the existing `ScrollableTabLayout`.
+- Bottom main tabs now use a real Material `BottomNavigationView` when the
+  selected tab count is five or fewer, while more than five tabs fall back to the
+  existing scrollable bottom `TabLayout` so no user-selected tabs are dropped.
+- Main TabLayout, BottomNavigationView, and channel TabLayout use a Material
+  3-style surface container, primary-colored selected state/indicator, muted
   on-surface-variant unselected state, and theme ripple so dynamic/manual theme
   colors continue to drive selected tab emphasis.
 - NewPipe Material defaults the main tabs position to Bottom for new installs or
   unset preferences only. Existing saved Top or Bottom values keep using the
   same `main_tabs_position` preference key and are not migrated or overwritten.
-- A real Material `BottomNavigationView` remains a future conditional step for
-  bottom mode with five or fewer tabs; many-tab bottom mode should keep a
-  scrollable TabLayout fallback.
+- Bottom navigation items are generated from the selected main tabs at runtime,
+  preserving tab order, titles, and icons. QA must cover 4-tab and 5-tab bottom
+  navigation, more-than-5-tab fallback scrolling, ViewPager sync, rotation, and
+  Light/Dark/Black plus dynamic/manual color combinations.
 
 ### Risky areas to defer
 

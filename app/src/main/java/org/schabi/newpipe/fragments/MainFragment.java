@@ -47,6 +47,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainFragment extends BaseFragment implements TabLayout.OnTabSelectedListener {
+    private static final int BOTTOM_NAVIGATION_MAX_ITEM_COUNT = 5;
+    private static final int BOTTOM_NAVIGATION_ITEM_ID_BASE = 10_000;
+
     private FragmentMainBinding binding;
     private SelectedTabsPagerAdapter pagerAdapter;
 
@@ -104,9 +107,32 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
         binding.mainTabLayout.setupWithViewPager(binding.pager);
         binding.mainTabLayout.addOnTabSelectedListener(this);
+        binding.pager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(final int position) {
+                updateTitleForTab(position);
+                updateBottomNavigationSelection(position);
+            }
+        });
+        binding.mainBottomNavigation.setOnItemSelectedListener(item -> {
+            final int position = getBottomNavigationItemPosition(item.getItemId());
+            if (position < 0 || position >= tabsList.size()) {
+                return false;
+            }
+            if (binding.pager.getCurrentItem() != position) {
+                binding.pager.setCurrentItem(position);
+            }
+            updateTitleForTab(position);
+            return true;
+        });
+        binding.mainBottomNavigation.setOnItemReselectedListener(item -> {
+            final int position = getBottomNavigationItemPosition(item.getItemId());
+            if (position >= 0 && position < tabsList.size()) {
+                updateTitleForTab(position);
+            }
+        });
 
         setupTabs();
-        updateTabLayoutPosition();
     }
 
     @Override
@@ -123,7 +149,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         final boolean newMainTabsPosition = prefs.getBoolean(mainTabsPositionKey, true);
         if (mainTabsPositionBottom != newMainTabsPosition) {
             mainTabsPositionBottom = newMainTabsPosition;
-            updateTabLayoutPosition();
+            updateMainNavigationMode();
         }
     }
 
@@ -194,6 +220,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         binding.pager.setAdapter(pagerAdapter);
 
         updateTabsIconAndDescription();
+        updateBottomNavigationItems();
+        updateMainNavigationMode();
         updateTitleForTab(binding.pager.getCurrentItem());
 
         hasTabsChanged = false;
@@ -220,21 +248,72 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 .forEach(LocalPlaylistFragment::saveImmediate);
     }
 
-    private void updateTabLayoutPosition() {
+    private void updateBottomNavigationItems() {
+        final Menu menu = binding.mainBottomNavigation.getMenu();
+        menu.clear();
+        if (tabsList.size() > BOTTOM_NAVIGATION_MAX_ITEM_COUNT) {
+            return;
+        }
+
+        for (int i = 0; i < tabsList.size(); i++) {
+            final Tab tab = tabsList.get(i);
+            final MenuItem item = menu.add(Menu.NONE, getBottomNavigationItemId(i), i,
+                    tab.getTabName(requireContext()));
+            item.setIcon(tab.getTabIconRes(requireContext()));
+            item.setCheckable(true);
+        }
+
+        updateBottomNavigationSelection(binding.pager.getCurrentItem());
+    }
+
+    private void updateBottomNavigationSelection(final int position) {
+        if (binding == null || tabsList.size() > BOTTOM_NAVIGATION_MAX_ITEM_COUNT
+                || position < 0 || position >= tabsList.size()) {
+            return;
+        }
+        final int itemId = getBottomNavigationItemId(position);
+        if (binding.mainBottomNavigation.getSelectedItemId() != itemId) {
+            binding.mainBottomNavigation.setSelectedItemId(itemId);
+        }
+    }
+
+    private int getBottomNavigationItemId(final int position) {
+        return BOTTOM_NAVIGATION_ITEM_ID_BASE + position;
+    }
+
+    private int getBottomNavigationItemPosition(final int itemId) {
+        return itemId - BOTTOM_NAVIGATION_ITEM_ID_BASE;
+    }
+
+    private void updateMainNavigationMode() {
         final ScrollableTabLayout tabLayout = binding.mainTabLayout;
         final ViewPager viewPager = binding.pager;
         final boolean bottom = mainTabsPositionBottom;
+        final boolean showBottomNavigation = bottom
+                && tabsList.size() <= BOTTOM_NAVIGATION_MAX_ITEM_COUNT;
+        final boolean showTabLayout = !showBottomNavigation;
 
-        // change layout params to make the tab layout appear either at the top or at the bottom
         final var tabParams = (RelativeLayout.LayoutParams) tabLayout.getLayoutParams();
         final var pagerParams = (RelativeLayout.LayoutParams) viewPager.getLayoutParams();
 
-        tabParams.removeRule(bottom ? ALIGN_PARENT_TOP : ALIGN_PARENT_BOTTOM);
+        tabParams.removeRule(ALIGN_PARENT_TOP);
+        tabParams.removeRule(ALIGN_PARENT_BOTTOM);
         tabParams.addRule(bottom ? ALIGN_PARENT_BOTTOM : ALIGN_PARENT_TOP);
-        pagerParams.removeRule(bottom ? BELOW : ABOVE);
-        pagerParams.addRule(bottom ? ABOVE : BELOW, R.id.main_tab_layout);
+
+        pagerParams.removeRule(BELOW);
+        pagerParams.removeRule(ABOVE);
+        if (showBottomNavigation) {
+            pagerParams.addRule(ABOVE, R.id.main_bottom_navigation);
+        } else {
+            pagerParams.addRule(bottom ? ABOVE : BELOW, R.id.main_tab_layout);
+        }
+
         tabLayout.setSelectedTabIndicatorGravity(
                 bottom ? INDICATOR_GRAVITY_TOP : INDICATOR_GRAVITY_BOTTOM);
+        tabLayout.setVisibility(showTabLayout && tabsList.size() > 1
+                ? View.VISIBLE : View.GONE);
+        binding.mainBottomNavigation.setVisibility(showBottomNavigation
+                ? View.VISIBLE : View.GONE);
 
         tabLayout.setLayoutParams(tabParams);
         viewPager.setLayoutParams(pagerParams);
