@@ -449,7 +449,9 @@ Observed issues:
   preference key/resources for the planned color strategy.
 - Values added for the future accent mode/presets: `follow_system`,
   `newpipe_material`, `neutral`, `green`, `blue`, `purple`, `orange`, `pink`,
-  and `red`; the default value is `follow_system`.
+  and `red`; the default value is `follow_system`. The visible label for
+  `newpipe_material` is **App default** so it does not repeat the app name while
+  preserving the stored value for compatibility.
 - Runtime color override is intentionally not implemented in this step. The
   setting saves through normal Android preferences and is therefore covered by
   the existing settings export/import flow, but `ThemeHelper` and dynamic color
@@ -469,9 +471,9 @@ Observed issues:
 - Manual presets disable dynamic color and apply static Material 3 role overlays
   after the base Light/Dark/Black theme is selected and before views are
   inflated.
-- Implemented manual presets: `newpipe_material`, `neutral`, `green`, `blue`,
-  `purple`, `orange`, `pink`, and `red`. Red is available only when explicitly
-  selected by the user.
+- Implemented manual presets: `newpipe_material` (shown as **App default**),
+  `neutral`, `green`, `blue`, `purple`, `orange`, `pink`, and `red`. Red is
+  available only when explicitly selected by the user.
 - Black theme behavior: preset overlays only affect accent/container/control
   roles and do not change window/background/surface roles, so Black theme keeps
   black surfaces while allowing user-selected accents where safe.

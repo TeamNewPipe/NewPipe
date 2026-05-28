@@ -120,7 +120,7 @@ Resolve the active app accent/palette in this order:
 Add a future Appearance setting named **Theme color**. Proposed values:
 
 - **Follow system**
-- **NewPipe Material**
+- **App default** (stored internally as `newpipe_material`)
 - **Neutral**
 - **Green**
 - **Blue**
@@ -132,8 +132,8 @@ Add a future Appearance setting named **Theme color**. Proposed values:
 Default behavior:
 
 - Android 12+ / dynamic-color-capable devices: **Follow system**.
-- Unsupported devices: **NewPipe Material** or **Neutral**, depending on the
-  final fallback palette chosen during implementation.
+- Unsupported devices: **App default** (the internal `newpipe_material` preset) or
+  **Neutral**, depending on the final fallback palette chosen during implementation.
 
 ### Behavior rules
 
@@ -159,7 +159,8 @@ Default behavior:
    static fallback palette, and Black theme is excluded so its black surfaces
    remain visually black.
 2. **Stage 2: static preset palettes and runtime resolution.** Implemented for
-   NewPipe Material, Neutral, Green, Blue, Purple, Orange, Pink, and Red. Runtime
+   App default (stored as `newpipe_material`), Neutral, Green, Blue, Purple,
+   Orange, Pink, and Red. Runtime
    priority is manual preset -> system dynamic color -> existing static fallback
    palette.
 3. **Stage 3: settings UI for theme color.** The Appearance setting and

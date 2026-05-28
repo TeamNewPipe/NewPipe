@@ -78,7 +78,7 @@
     <string name="theme_color_title">Theme color</string>
     <string name="theme_color_summary">Choose app accent color style</string>
     <string name="theme_color_follow_system_title">Follow system</string>
-    <string name="theme_color_newpipe_material_title">NewPipe Material</string>
+    <string name="theme_color_newpipe_material_title">App default</string>
     <string name="theme_color_neutral_title">Neutral</string>
     <string name="theme_color_green_title">Green</string>
     <string name="theme_color_blue_title">Blue</string>
