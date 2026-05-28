@@ -202,16 +202,19 @@
 
     <style name="LightSettingsTheme" parent="LightTheme">
         <item name="colorAccent">@color/light_settings_accent_color</item>
+        <item name="preferenceCategoryTitleTextColor">?attr/colorOnSurfaceVariant</item>
         <item name="switchPreferenceCompatStyle">@style/Preference.MaterialSwitchPreferenceCompat</item>
     </style>
 
     <style name="DarkSettingsTheme" parent="DarkTheme">
         <item name="colorAccent">@color/dark_settings_accent_color</item>
+        <item name="preferenceCategoryTitleTextColor">?attr/colorOnSurfaceVariant</item>
         <item name="switchPreferenceCompatStyle">@style/Preference.MaterialSwitchPreferenceCompat</item>
     </style>
 
     <style name="BlackSettingsTheme" parent="BlackTheme">
         <item name="colorAccent">@color/black_settings_accent_color</item>
+        <item name="preferenceCategoryTitleTextColor">?attr/colorOnSurfaceVariant</item>
         <item name="switchPreferenceCompatStyle">@style/Preference.MaterialSwitchPreferenceCompat</item>
     </style>
 
