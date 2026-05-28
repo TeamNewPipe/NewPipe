@@ -164,6 +164,7 @@
 
         <ProgressBar
             android:id="@+id/loading_progress_bar"
+            style="@style/MaterialStateProgressIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -182,6 +183,7 @@
             tools:visibility="visible">
 
             <org.schabi.newpipe.views.NewPipeTextView
+                style="@style/EmptyStateKaomoji"
                 android:id="@+id/channel_kaomoji"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -198,6 +200,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/content_not_supported"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 android:textSize="15sp"
                 android:visibility="gone" />
 

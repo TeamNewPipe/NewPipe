@@ -8,6 +8,26 @@
         <item name="colorControlHighlight">@color/dark_ripple_color</item>
     </style>
 
+    <style name="EmptyStateKaomoji">
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+    <style name="MaterialStateActionButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">?attr/colorPrimary</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="colorControlHighlight">?attr/colorControlHighlight</item>
+    </style>
+
+    <style name="MaterialStateProgressIndicator" parent="Widget.AppCompat.ProgressBar">
+        <item name="android:indeterminateTint">?attr/colorPrimary</item>
+        <item name="android:progressTint">?attr/colorPrimary</item>
+    </style>
+
+    <style name="MaterialStateHorizontalProgressIndicator" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:indeterminateTint">?attr/colorPrimary</item>
+        <item name="android:progressTint">?attr/colorPrimary</item>
+    </style>
+
 
     <!--File picker styles-->
     <style name="FilePickerThemeLight" parent="NNF_BaseTheme.Light">

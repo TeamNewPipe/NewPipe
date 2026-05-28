@@ -75,6 +75,13 @@ Plan these after the current foundation is stable:
 - Accessibility review for dynamic type, focus order, touch targets, color
   contrast, TalkBack labels, and high-contrast Black theme behavior.
 
+### Empty/error/loading state polish
+
+- Shared and common inline empty states now use `colorOnSurfaceVariant` for kaomoji/supporting copy, keeping empty screens readable but visually quieter across Light, Dark, Black, dynamic color, and manual presets.
+- The shared error panel now uses a rounded `colorSurfaceVariant` container with on-surface text roles and primary/on-primary retry/action buttons while preserving existing retry/open/report actions.
+- Audited loading indicators now use `colorPrimary` progress styles so loading emphasis follows dynamic/manual theme color without changing loading state logic.
+- QA should cover empty bookmarks/subscriptions/feed groups, search no-results, representative loading, and representative error/retry states, including long translated error text in the shared panel.
+
 ### Search UI polish
 
 - Expanded toolbar search now uses Material 3 role colors: neutral `colorSurface` around a rounded `colorSurfaceVariant` field, `colorOnSurface` input text, `colorOnSurfaceVariant` hint/clear/suggestion icons, and `colorPrimary` for focused input accent.

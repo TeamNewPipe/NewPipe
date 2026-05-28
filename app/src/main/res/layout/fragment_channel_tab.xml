@@ -13,6 +13,7 @@
 
     <ProgressBar
         android:id="@+id/loading_progress_bar"
+        style="@style/MaterialStateProgressIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"

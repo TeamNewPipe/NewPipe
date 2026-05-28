@@ -8,6 +8,7 @@
     android:orientation="vertical">
 
     <org.schabi.newpipe.views.NewPipeTextView
+        style="@style/EmptyStateKaomoji"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="¯\\_(ツ)_/¯"
@@ -21,5 +22,6 @@
         android:layout_marginTop="6dp"
         android:gravity="center"
         android:paddingHorizontal="16dp"
+        android:textColor="?attr/colorOnSurfaceVariant"
         android:text="@string/empty_list_subtitle" />
 </LinearLayout>

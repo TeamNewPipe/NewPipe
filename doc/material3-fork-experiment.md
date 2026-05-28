@@ -20,6 +20,15 @@
 - Ripple/highlight audit after neutral toolbar and activated-state polish: existing generic ripple/selector colors are already neutral (gray/white alpha), so no additional ripple resource changes were applied in this step to avoid unnecessary churn.
 - Surface/background audit after toolbar neutralization: `colorSurface`, `android:windowBackground`/`windowBackground`, and custom card/background attrs are already consistently mapped per Light/Dark/Black themes, so no surface color resource changes were applied in this step.
 
+### Empty/error/loading state polish
+- Shared empty-state views now tint their kaomoji and explanatory copy with `colorOnSurfaceVariant` for quieter Material 3 empty states on Light/Dark/Black surfaces.
+- Inline empty states for search, playlists, kiosks, channel videos, comments, related items, settings search, and selection screens now use the same muted on-surface-variant treatment without changing their messages or visibility logic.
+- The shared `error_panel` now uses a rounded `colorSurfaceVariant` container, `colorOnSurface` for the primary error message, `colorOnSurfaceVariant` for supporting service/explanation text, and primary/on-primary themed retry/action buttons.
+- Loading indicators in audited list/search/feed/channel selection states now use `colorPrimary` through shared progress styles so dynamic/manual theme colors drive loading emphasis.
+- Files changed: `app/src/main/res/layout/error_panel.xml`, `app/src/main/res/layout/list_empty_view.xml`, `app/src/main/res/layout/list_empty_view_subscriptions.xml`, selected empty/loading state layouts, `app/src/main/res/values/styles_misc.xml`, and `app/src/main/res/drawable/state_panel_background.xml`.
+- Behavior scope: loading state transitions, retry/error actions, messages, search no-results logic, feed refresh logic, and selection-screen loading logic were not changed.
+- Known risk: the shared `error_panel` is used by many fragments, so device QA should verify long translated error messages still fit comfortably inside the rounded surface container.
+
 ### Search UI polish
 - Expanded toolbar search now keeps the toolbar neutral with a `colorSurface` outer container and uses a rounded `colorSurfaceVariant` search field background.
 - Search input text now uses `colorOnSurface`, hint/clear icon use `colorOnSurfaceVariant`, and the input accent/cursor roles are retargeted to `colorPrimary` so dynamic/manual theme colors provide focused emphasis without changing input behavior.

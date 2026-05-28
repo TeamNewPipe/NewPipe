@@ -22,6 +22,7 @@
         tools:visibility="gone">
 
         <org.schabi.newpipe.views.NewPipeTextView
+            style="@style/EmptyStateKaomoji"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -36,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/search_no_results"
+            android:textColor="?attr/colorOnSurfaceVariant"
             android:textSize="24sp" />
 
     </LinearLayout>

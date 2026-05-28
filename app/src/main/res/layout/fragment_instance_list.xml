@@ -24,7 +24,7 @@
     <!-- LOADING INDICATOR-->
     <ProgressBar
         android:id="@+id/loading_progress_bar"
-        style="@style/Widget.AppCompat.ProgressBar"
+        style="@style/MaterialStateProgressIndicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"

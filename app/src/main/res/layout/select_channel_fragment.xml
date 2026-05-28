@@ -30,12 +30,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:textColor="?attr/colorOnSurfaceVariant"
         android:text="@string/no_channel_subscribed_yet"
         android:textAppearance="?android:attr/textAppearanceListItem" />
 
     <ProgressBar
         android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
+        style="@style/MaterialStateProgressIndicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp" />
