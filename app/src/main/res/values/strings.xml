@@ -75,6 +75,17 @@
     <string name="default_audio_format_title">Default audio format</string>
     <string name="default_video_format_title">Default video format</string>
     <string name="theme_title">Theme</string>
+    <string name="theme_color_title">Theme color</string>
+    <string name="theme_color_summary">Choose app accent color style</string>
+    <string name="theme_color_follow_system_title">Follow system</string>
+    <string name="theme_color_newpipe_material_title">NewPipe Material</string>
+    <string name="theme_color_neutral_title">Neutral</string>
+    <string name="theme_color_green_title">Green</string>
+    <string name="theme_color_blue_title">Blue</string>
+    <string name="theme_color_purple_title">Purple</string>
+    <string name="theme_color_orange_title">Orange</string>
+    <string name="theme_color_pink_title">Pink</string>
+    <string name="theme_color_red_title">Red</string>
     <string name="night_theme_title">Night theme</string>
     <string name="light_theme_title">Light</string>
     <string name="dark_theme_title">Dark</string>

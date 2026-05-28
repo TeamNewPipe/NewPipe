@@ -161,9 +161,10 @@ Default behavior:
 2. **Stage 2: static preset palettes.** Define Material 3-compatible preset
    palettes for NewPipe Material, Neutral, Green, Blue, Purple, Orange, Pink,
    and Red.
-3. **Stage 3: settings UI for theme color.** Add the Appearance setting, persist
-   the selected value, and ensure export/import carries the new preference safely
-   with existing settings backup flows.
+3. **Stage 3: settings UI for theme color.** The Appearance setting and
+   preference key/resources have been added with `follow_system` as the default,
+   and the value is saved through normal preferences for export/import
+   compatibility. Runtime color override is not wired yet.
 4. **Stage 4: optional preview chips.** Consider compact preview chips or color
    swatches in the settings UI after the underlying palette behavior is stable.
 5. **Stage 5: QA matrix.** Validate dynamic color, presets, fallbacks, and
@@ -180,7 +181,8 @@ Default behavior:
   while applying dynamic accent roles safely.
 - Continue auditing `ThemeHelper` behavior in later stages so applying manual
   colors does not introduce activity restart loops, stale resources, or partial
-  theme application.
+  theme application. The current `Theme color` preference is UI/key-only and
+  does not change runtime theme resolution yet.
 - Avoid app restart bugs: switching the color should either reapply the theme
   predictably or request a controlled activity recreation with saved state.
 - Maintain status bar and navigation bar contrast in Light, Dark, and Black
@@ -210,6 +212,8 @@ Before shipping theme color selection, verify:
   settings screen without losing state.
 - Export/import of the new setting, including imports from builds that do not
   know the setting yet.
+- `Theme color` setting persistence without changing app colors until runtime
+  color override is implemented.
 
 ## Fork productization checklist
 

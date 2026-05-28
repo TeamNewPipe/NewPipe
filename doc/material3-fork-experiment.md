@@ -442,3 +442,17 @@ Older/unsupported Android QA results:
 
 Observed issues:
 - None observed.
+
+### Theme color setting UI/key (latest)
+
+- Added the Appearance settings `Theme color` `ListPreference` and backing
+  preference key/resources for the planned color strategy.
+- Values added for the future accent mode/presets: `follow_system`,
+  `newpipe_material`, `neutral`, `green`, `blue`, `purple`, `orange`, `pink`,
+  and `red`; the default value is `follow_system`.
+- Runtime color override is intentionally not implemented in this step. The
+  setting saves through normal Android preferences and is therefore covered by
+  the existing settings export/import flow, but `ThemeHelper` and dynamic color
+  behavior are unchanged.
+- Planned next step: wire the saved user-selected value into theme resolution
+  after static preset palettes and fallback behavior are designed and tested.

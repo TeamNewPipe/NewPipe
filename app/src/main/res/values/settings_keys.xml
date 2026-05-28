@@ -259,6 +259,39 @@
     <string name="auto_device_theme_key">auto_device_theme</string>
     <string name="default_theme_value">@string/auto_device_theme_key</string>
     <string name="default_night_theme_value">@string/dark_theme_key</string>
+    <string name="theme_color_key">theme_color</string>
+    <string name="theme_color_follow_system_value">follow_system</string>
+    <string name="theme_color_newpipe_material_value">newpipe_material</string>
+    <string name="theme_color_neutral_value">neutral</string>
+    <string name="theme_color_green_value">green</string>
+    <string name="theme_color_blue_value">blue</string>
+    <string name="theme_color_purple_value">purple</string>
+    <string name="theme_color_orange_value">orange</string>
+    <string name="theme_color_pink_value">pink</string>
+    <string name="theme_color_red_value">red</string>
+    <string name="default_theme_color_value">@string/theme_color_follow_system_value</string>
+    <string-array name="theme_color_values_list">
+        <item>@string/theme_color_follow_system_value</item>
+        <item>@string/theme_color_newpipe_material_value</item>
+        <item>@string/theme_color_neutral_value</item>
+        <item>@string/theme_color_green_value</item>
+        <item>@string/theme_color_blue_value</item>
+        <item>@string/theme_color_purple_value</item>
+        <item>@string/theme_color_orange_value</item>
+        <item>@string/theme_color_pink_value</item>
+        <item>@string/theme_color_red_value</item>
+    </string-array>
+    <string-array name="theme_color_description_list">
+        <item>@string/theme_color_follow_system_title</item>
+        <item>@string/theme_color_newpipe_material_title</item>
+        <item>@string/theme_color_neutral_title</item>
+        <item>@string/theme_color_green_title</item>
+        <item>@string/theme_color_blue_title</item>
+        <item>@string/theme_color_purple_title</item>
+        <item>@string/theme_color_orange_title</item>
+        <item>@string/theme_color_pink_title</item>
+        <item>@string/theme_color_red_title</item>
+    </string-array>
     <string-array name="theme_values_list">
         <item>@string/light_theme_key</item>
         <item>@string/dark_theme_key</item>
