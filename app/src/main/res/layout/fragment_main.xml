@@ -33,11 +33,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="?attr/colorSurface"
+        android:minHeight="@dimen/main_bottom_navigation_min_height"
         android:visibility="gone"
         app:itemActiveIndicatorStyle="@style/NewPipeMaterialBottomNavigationActiveIndicator"
         app:itemIconTint="@color/tab_layout_material_item_color"
+        app:itemPaddingBottom="@dimen/main_bottom_navigation_item_padding_bottom"
+        app:itemPaddingTop="@dimen/main_bottom_navigation_item_padding_top"
         app:itemRippleColor="?attr/colorControlHighlight"
         app:itemTextColor="@color/tab_layout_material_item_color"
-        app:labelVisibilityMode="labeled" />
+        app:labelVisibilityMode="selected" />
 
 </RelativeLayout>

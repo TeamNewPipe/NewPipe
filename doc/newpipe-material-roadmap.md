@@ -89,7 +89,10 @@ Plan these after the current foundation is stable:
   unset preferences only. Existing saved Top or Bottom values keep using the
   same `main_tabs_position` preference key and are not migrated or overwritten.
 - Bottom navigation items are generated from the selected main tabs at runtime,
-  preserving tab order, titles, and icons. QA must cover 4-tab and 5-tab bottom
+  preserving tab order, titles, and icons. The BottomNavigationView uses a
+  Material 3 active indicator/pill, selected-only labels to reduce long-label
+  truncation, and modest item padding/min-height values to keep the bar lighter
+  without changing tab identity. QA must cover 4-tab and 5-tab bottom
   navigation, more-than-5-tab fallback scrolling, ViewPager sync, rotation, and
   Light/Dark/Black plus dynamic/manual color combinations.
 

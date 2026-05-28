@@ -356,7 +356,8 @@
     <style name="RouterActivityThemeDark" parent="Base.RouterActivityThemeDark" />
 
 
-    <style name="NewPipeMaterialBottomNavigationActiveIndicator" parent="">
+    <style name="NewPipeMaterialBottomNavigationActiveIndicator"
+        parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">?attr/colorPrimaryContainer</item>
         <item name="shapeAppearance">@style/ShapeAppearance.Material3.Corner.Full</item>
     </style>

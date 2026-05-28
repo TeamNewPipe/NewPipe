@@ -95,10 +95,16 @@ Known risks:
 - Bottom navigation items are built dynamically from the selected tabs list, so
   user tab order, titles, and icons remain the source of truth and no tabs are
   dropped when falling back to the scrollable TabLayout.
+- BottomNavigationView polish: the active indicator style now inherits Material
+  Components' Material 3 bottom-navigation active-indicator dimensions/shape and
+  overrides only the color role to `colorPrimaryContainer`, so the selected pill
+  is visible behind the icon. The bar uses selected-only labels plus modest
+  item padding/min-height values to feel lighter and reduce long-label clutter
+  without changing tab titles or identity.
 - Known risks/QA: verify ViewPager and bottom navigation selection sync, tab
   reselection behavior, rotation, 4-tab/5-tab BottomNavigationView layouts,
-  more-than-5-tab fallback scrolling, and Light/Dark/Black plus dynamic/manual
-  color contrast.
+  active indicator visibility, more-than-5-tab fallback scrolling, and
+  Light/Dark/Black plus dynamic/manual color contrast.
 
 Validation results:
 - `./gradlew runCheckstyle -DskipFormatKtlint`: PASS
