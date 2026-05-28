@@ -269,3 +269,13 @@ Known risks (updated):
 - Service identity may feel less YouTube-branded as generic app chrome is now neutral/Material.
 - Status/navigation bar icon contrast must be watched across Android versions and OEM skins.
 - Settings controls may still need follow-up tint tuning after broader device QA.
+
+### System-bar contrast + green/neutral palette tuning (latest)
+
+- Fixed light-theme status bar icon contrast by adding API 23+ `windowLightStatusBar=true` for Light theme and `false` for Dark/Black, while keeping status bar backgrounds surface-aligned.
+- Kept API 27+ navigation bar icon contrast behavior (`windowLightNavigationBar=true` light, `false` dark/black) and aligned inheritance so v27 extends the v23 status-bar handling.
+- Tuned the static Material 3 app-chrome palette from blue/purple toward green/neutral role colors (`light_m3_*`/`dark_m3_*`) for primary and secondary roles, including settings accent mapping, to better match Material You-like green system palettes.
+- Dynamic color decision: investigated and deferred in this commit. Current theme stack includes many explicit role mappings and service-themed overrides; applying runtime dynamic colors safely would require broader theme audit/testing and is intentionally out-of-scope for this focused, reversible tuning step.
+
+Additional known risk:
+- OEM/system-bar icon contrast behavior can vary by Android version and vendor skin; verify light status/nav icon readability on representative devices.

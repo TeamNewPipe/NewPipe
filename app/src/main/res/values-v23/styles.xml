@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base Theme -->
+    <style name="Base.V23" parent="Base.V21"/>
+    <style name="Base" parent="Base.V23"/>
+
+    <!-- Light Theme -->
+    <style name="Base.V23.LightTheme" parent="Base.V21.LightTheme">
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+    <style name="Base.LightTheme" parent="Base.V23.LightTheme" />
+
+    <!-- Dark Theme -->
+    <style name="Base.V23.DarkTheme" parent="Base.V21.DarkTheme">
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+    <style name="Base.DarkTheme" parent="Base.V23.DarkTheme" />
+
+    <!-- Black Theme -->
+    <style name="Base.V23.BlackTheme" parent="Base.V21.BlackTheme">
+        <!-- BlackTheme inherits DarkTheme, so no need to specify windowLightStatusBar here -->
+    </style>
+    <style name="Base.BlackTheme" parent="Base.V23.BlackTheme" />
+
+</resources>
