@@ -93,6 +93,117 @@ break core functionality:
 - Java/Kotlin package renaming; the fork currently changes Android identity only
   and keeps existing source package declarations to minimize runtime risk.
 
+## Theme color strategy
+
+NewPipe Material should use Material You dynamic colors when available without
+turning any single static color, including green, into universal app chrome. The
+long-term color system should support dynamic color, explicit user choice, and a
+neutral Material 3 fallback while preserving the existing Light, Dark, and Black
+theme modes.
+
+### Theme color priority
+
+Resolve the active app accent/palette in this order:
+
+1. **User-selected accent color, if set.** A manual choice always overrides
+   system dynamic color so older Android users and users who dislike their
+   wallpaper-derived palette can still control the app accent.
+2. **System dynamic color, if available and enabled.** On Android 12+ and other
+   dynamic-color-capable environments, the default path should follow Material
+   You when the user has not selected a manual accent.
+3. **Neutral Material 3 fallback palette.** If no user color is selected and
+   dynamic colors are unavailable or disabled, use a neutral fallback palette
+   rather than a hard-coded green app-wide treatment.
+
+### Proposed setting
+
+Add a future Appearance setting named **Theme color**. Proposed values:
+
+- **Follow system**
+- **NewPipe Material**
+- **Neutral**
+- **Green**
+- **Blue**
+- **Purple**
+- **Orange**
+- **Pink**
+- **Red**
+
+Default behavior:
+
+- Android 12+ / dynamic-color-capable devices: **Follow system**.
+- Unsupported devices: **NewPipe Material** or **Neutral**, depending on the
+  final fallback palette chosen during implementation.
+
+### Behavior rules
+
+- **Follow system** uses Material You dynamic color when the platform and theme
+  stack support it.
+- Manual color choices override system dynamic color immediately after the theme
+  is reapplied.
+- Older Android users can still customize the app accent through static preset
+  palettes.
+- **Red** is allowed as an explicit user-selected accent, but red should not be
+  used as generic default chrome across toolbars, tabs, switches, cards, and
+  dialogs.
+- Service-specific colors, warning/error colors, and content metadata colors
+  should remain semantically scoped instead of being repurposed as global brand
+  color.
+
+### Implementation stages
+
+1. **Stage 1: dynamic color support.** Introduce dynamic-color theme plumbing
+   behind existing Light/Dark/Black mode selection, keeping behavior unchanged
+   when dynamic color is unavailable.
+2. **Stage 2: static preset palettes.** Define Material 3-compatible preset
+   palettes for NewPipe Material, Neutral, Green, Blue, Purple, Orange, Pink,
+   and Red.
+3. **Stage 3: settings UI for theme color.** Add the Appearance setting, persist
+   the selected value, and ensure export/import carries the new preference safely
+   with existing settings backup flows.
+4. **Stage 4: optional preview chips.** Consider compact preview chips or color
+   swatches in the settings UI after the underlying palette behavior is stable.
+5. **Stage 5: QA matrix.** Validate dynamic color, presets, fallbacks, and
+   theme switching across the UI before enabling the feature in a public
+   release.
+
+### Technical considerations
+
+- Preserve existing Light, Dark, and Black theme support; color selection should
+  choose the palette/accent inside the selected brightness mode, not replace the
+  brightness mode.
+- Audit current `ThemeHelper` behavior before implementation so applying a new
+  color does not introduce activity restart loops, stale resources, or partial
+  theme application.
+- Avoid app restart bugs: switching the color should either reapply the theme
+  predictably or request a controlled activity recreation with saved state.
+- Maintain status bar and navigation bar contrast in Light, Dark, and Black
+  themes, including gesture navigation edge cases.
+- Ensure settings controls, `MaterialSwitch` widgets, preference text/icons,
+  top tabs, dialogs, cards, toolbar surfaces, and selected/activated states all
+  update from the resolved palette.
+- Keep a neutral fallback palette for older Android and dynamic-color-disabled
+  devices so unsupported devices do not fall back to fixed green chrome.
+- Define the new preference key/value format carefully so settings export/import
+  remains backward-compatible and unsupported values fall back safely.
+- Do not add dependencies unless a later implementation plan proves they are
+  necessary; prefer existing Material Components and AndroidX capabilities.
+
+### QA checklist
+
+Before shipping theme color selection, verify:
+
+- Android 12+ dynamic color with **Follow system**.
+- Older Android or dynamic-color-unavailable fallback behavior.
+- Manual color override for every preset value.
+- Light, Dark, and Black modes combined with dynamic and manual colors.
+- Settings switches, tabs, dialogs, cards, toolbar surfaces, selected states,
+  status bar, and navigation bar contrast.
+- App restart/recreation after changing color, including returning to the same
+  settings screen without losing state.
+- Export/import of the new setting, including imports from builds that do not
+  know the setting yet.
+
 ## Fork productization checklist
 
 Before presenting NewPipe Material as a user-installable maintained fork, make
