@@ -13,3 +13,4 @@ const val NEWPIPE_VERSION_NAME = "0.28.7"
 
 const val NEWPIPE_APPLICATION_ID_OLD = "org.schabi.newpipe"
 const val NEWPIPE_APPLICATION_ID_NEW = "net.newpipe.app"
+const val NEWPIPE_MATERIAL_APPLICATION_ID = "org.wisso.newpipematerial"

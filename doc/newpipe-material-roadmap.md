@@ -88,22 +88,24 @@ break core functionality:
   networking behavior.
 - Complex adapter-backed dialogs and menus where replacing the UI component may
   change selection, lifecycle, or state restoration behavior.
-- Package/applicationId, app name, and launcher icon changes until the
-  productization decisions below are complete.
+- Launcher icon and signing changes until their productization decisions are
+  complete.
+- Java/Kotlin package renaming; the fork currently changes Android identity only
+  and keeps existing source package declarations to minimize runtime risk.
 
 ## Fork productization checklist
 
 Before presenting NewPipe Material as a user-installable maintained fork, make
 explicit decisions for each item:
 
-- **App name:** Decide when to change the visible app name from NewPipe to
-  NewPipe Material. Do not change it until release, support, and attribution
-  messaging are ready.
+- **App name:** Chosen as **NewPipe Material** for the visible launcher/app
+  label.
 - **App icon:** Design fork-specific launcher and notification-safe branding
   that does not confuse users into thinking it is the official NewPipe app.
-- **Package/applicationId decision:** Decide whether to keep the existing
-  applicationId for internal testing only or move to a fork-specific
-  applicationId before public distribution.
+- **Package/applicationId decision:** Chosen as
+  **`org.wisso.newpipematerial`**. This Android applicationId lets NewPipe
+  Material install as a separate app beside official NewPipe while preserving
+  the existing Java/Kotlin package and namespace structure for now.
 - **Signing and release channel:** Establish fork-owned signing keys, document
   key custody, and choose release channels before publishing APKs.
 - **README screenshots:** Replace or supplement screenshots only after the UI
@@ -139,21 +141,21 @@ upstream NewPipe:
 
 ## Compatibility and data strategy
 
-The fork needs a deliberate install/data policy before public release:
+The fork now uses `org.wisso.newpipematerial` as its Android applicationId for
+side-by-side installation with official NewPipe:
 
-- Decide whether NewPipe Material should install alongside official NewPipe.
-  Side-by-side installation usually requires a fork-specific applicationId.
-- If changing `applicationId`, document that Android treats the fork as a
-  separate app with separate app data, permissions, shortcuts, backups, and
-  update paths.
-- If keeping the existing applicationId for any release, document the signing
-  and update implications clearly; users may not be able to update between
-  builds signed by different keys.
-- Treat data migration as a release-blocking product decision, not a cosmetic
-  UI task. Avoid automatic migration until it is designed, reviewed, and tested.
-- Preserve NewPipe export/import compatibility so users can manually move
-  subscriptions, playlists, history/settings exports, and other supported data
-  between official NewPipe and NewPipe Material where formats remain compatible.
+- NewPipe Material and official NewPipe install as separate Android apps.
+- Android keeps separate app data, permissions, shortcuts, backups, and update
+  paths for `org.wisso.newpipematerial` and official NewPipe.
+- Data is not shared automatically between the apps. Users should use NewPipe's
+  supported export/import flows to move subscriptions, playlists,
+  history/settings exports, and other supported data where formats remain
+  compatible.
+- Automatic data migration is intentionally deferred until it is designed,
+  reviewed, and tested as a dedicated product decision.
+- Java/Kotlin source package renaming is intentionally deferred; package
+  declarations remain in their existing upstream namespaces to reduce merge
+  conflicts and avoid behavior risk.
 - Clearly warn users when importing data from another build or fork could be
   unsupported or risky.
 
@@ -204,8 +206,8 @@ Before a public NewPipe Material release, manually verify:
 
 ## Immediate follow-ups
 
-- Keep this roadmap documentation-only until productization decisions are made.
-- Do not change app name, icon, applicationId, signing, or runtime behavior as
-  part of this roadmap step.
-- Use this file as the checklist for future NewPipe Material planning issues and
-  pull requests.
+- Keep future identity changes focused and separately reviewed.
+- Do not change launcher icons, signing, version code/name, or runtime behavior
+  until those decisions have dedicated implementation plans.
+- Continue using this file as the checklist for future NewPipe Material planning
+  issues and pull requests.
