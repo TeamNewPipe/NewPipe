@@ -414,3 +414,31 @@ Known risks:
   dynamic accent roles while preserving pure black surfaces.
 - Manual accent override and preset palette export/import behavior are not part
   of this stage.
+
+Validation results for Stage 1 dynamic color support:
+- `./gradlew runCheckstyle -DskipFormatKtlint`: PASS
+- `./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint`: PASS
+
+Android 12+ dynamic color QA results:
+- System palette green applied to app: PASS
+- System palette changed to another color and app followed after relaunch: PASS
+- Light theme dynamic colors: PASS
+- Dark theme dynamic colors: PASS
+- Black theme remains black enough: PASS
+- Status bar contrast: PASS
+- Navigation bar contrast: PASS
+- Toolbar: PASS
+- Top tab bar: PASS
+- Settings switches: PASS
+- Dialogs: PASS
+- Video detail page: PASS
+- Download dialog: PASS
+- Rotation: PASS
+
+Older/unsupported Android QA results:
+- App launches with fallback palette: NOT CHECKED
+- Fallback palette readable: NOT CHECKED
+- No crash: NOT CHECKED
+
+Observed issues:
+- None observed.
