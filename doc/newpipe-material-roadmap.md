@@ -75,6 +75,12 @@ Plan these after the current foundation is stable:
 - Accessibility review for dynamic type, focus order, touch targets, color
   contrast, TalkBack labels, and high-contrast Black theme behavior.
 
+### Search UI polish
+
+- Expanded toolbar search now uses Material 3 role colors: neutral `colorSurface` around a rounded `colorSurfaceVariant` field, `colorOnSurface` input text, `colorOnSurfaceVariant` hint/clear/suggestion icons, and `colorPrimary` for focused input accent.
+- Main search suggestions and auxiliary result text now use on-surface roles while preserving suggestion selection, insertion, deletion, query submission, keyboard behavior, and result loading logic.
+- Because the toolbar search layout is shared, QA should cover main search, settings search, and any feed-group search entry point across Light/Dark/Black plus dynamic/manual color presets.
+
 ### Navigation drawer polish
 
 - Main drawer visual styling now follows the fork Material 3 role mapping: the drawer container uses `colorSurface`, selected rows use a rounded `colorPrimaryContainer` background with `colorOnPrimaryContainer` content, unselected icons/text use on-surface roles, and ripple feedback uses `colorControlHighlight`.

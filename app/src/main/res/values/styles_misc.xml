@@ -97,9 +97,18 @@
     </style>
 
     <style name="ToolbarSearchInputTheme">
-        <item name="colorPrimary">?attr/toolbarSearchColor</item>
-        <item name="colorPrimaryDark">?attr/toolbarSearchColor</item>
-        <item name="colorAccent">?attr/toolbarSearchColor</item>
+        <item name="colorPrimary">?attr/colorPrimary</item>
+        <item name="colorPrimaryDark">?attr/colorPrimary</item>
+        <item name="colorAccent">?attr/colorPrimary</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
+    </style>
+
+    <style name="SearchSuggestionTheme">
+        <item name="android:textColorPrimary">?attr/colorOnSurface</item>
+        <item name="android:textColorSecondary">?attr/colorOnSurfaceVariant</item>
+        <item name="tint">?attr/colorOnSurfaceVariant</item>
+        <item name="iconTint">?attr/colorOnSurfaceVariant</item>
+        <item name="colorControlHighlight">?attr/colorControlHighlight</item>
     </style>
 
     <style name="CircularImageView">

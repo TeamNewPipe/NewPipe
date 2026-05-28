@@ -20,6 +20,15 @@
 - Ripple/highlight audit after neutral toolbar and activated-state polish: existing generic ripple/selector colors are already neutral (gray/white alpha), so no additional ripple resource changes were applied in this step to avoid unnecessary churn.
 - Surface/background audit after toolbar neutralization: `colorSurface`, `android:windowBackground`/`windowBackground`, and custom card/background attrs are already consistently mapped per Light/Dark/Black themes, so no surface color resource changes were applied in this step.
 
+### Search UI polish
+- Expanded toolbar search now keeps the toolbar neutral with a `colorSurface` outer container and uses a rounded `colorSurfaceVariant` search field background.
+- Search input text now uses `colorOnSurface`, hint/clear icon use `colorOnSurfaceVariant`, and the input accent/cursor roles are retargeted to `colorPrimary` so dynamic/manual theme colors provide focused emphasis without changing input behavior.
+- Main search suggestions now use a surface background, on-surface query text, on-surface-variant icons, and existing `colorControlHighlight` touch feedback.
+- Search result auxiliary text was clarified with Material roles: corrected-suggestion text uses `colorPrimary`, meta information uses `colorOnSurfaceVariant`, and the suggestions panel uses `colorSurface`.
+- Files changed: `app/src/main/res/layout/toolbar_search_layout.xml`, `app/src/main/res/layout/fragment_search.xml`, `app/src/main/res/layout/item_search_suggestion.xml`, `app/src/main/res/values/styles_misc.xml`, and `app/src/main/res/drawable/search_toolbar_field_background.xml`.
+- Behavior scope: search opening/closing, query submission, suggestions, keyboard handling, filters, and result loading logic were not changed.
+- Known risk: `toolbar_search_layout` is shared by main search, settings search, and feed-group search UI, so device QA should verify all visible search entry points after this shared visual resource change.
+
 ### Navigation drawer polish
 - Main drawer container now uses the Material surface role (`colorSurface`) instead of the generic window background.
 - Drawer item states are defined with dedicated resources: selected/activated rows use a rounded `colorPrimaryContainer` pill, selected icons/text use `colorOnPrimaryContainer`, unselected icons use `colorOnSurfaceVariant`, and unselected text uses `colorOnSurface`.
