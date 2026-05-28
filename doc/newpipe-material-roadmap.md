@@ -91,8 +91,10 @@ Plan these after the current foundation is stable:
 - Bottom navigation items are generated from the selected main tabs at runtime,
   preserving tab order, titles, and icons. The BottomNavigationView uses a
   Material 3 active indicator/pill, selected-only labels to reduce long-label
-  truncation, and modest item padding/min-height values to keep the bar lighter
-  without changing tab identity. QA must cover 4-tab and 5-tab bottom
+  truncation, a fixed Material-sized height so content can be constrained above
+  the bar reliably, and a bottom-nav-only `Bookmarks` display label for the
+  Bookmarked Playlists tab without changing tab identity. QA must cover 4-tab
+  and 5-tab bottom
   navigation, more-than-5-tab fallback scrolling, ViewPager sync, rotation, and
   Light/Dark/Black plus dynamic/manual color combinations.
 

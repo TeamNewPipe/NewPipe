@@ -98,9 +98,11 @@ Known risks:
 - BottomNavigationView polish: the active indicator style now inherits Material
   Components' Material 3 bottom-navigation active-indicator dimensions/shape and
   overrides only the color role to `colorPrimaryContainer`, so the selected pill
-  is visible behind the icon. The bar uses selected-only labels plus modest
-  item padding/min-height values to feel lighter and reduce long-label clutter
-  without changing tab titles or identity.
+  is visible behind the icon. The bar uses a fixed Material-sized height plus
+  modest item padding so the ViewPager can be constrained above it reliably, and
+  selected-only labels reduce long-label clutter. The Bookmarked Playlists tab
+  gets a bottom-nav-only display label (`Bookmarks`) while preserving the full
+  tab title/content description and tab identity.
 - Known risks/QA: verify ViewPager and bottom navigation selection sync, tab
   reselection behavior, rotation, 4-tab/5-tab BottomNavigationView layouts,
   active indicator visibility, more-than-5-tab fallback scrolling, and

@@ -30,10 +30,9 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/main_bottom_navigation_height"
         android:layout_alignParentBottom="true"
         android:background="?attr/colorSurface"
-        android:minHeight="@dimen/main_bottom_navigation_min_height"
         android:visibility="gone"
         app:itemActiveIndicatorStyle="@style/NewPipeMaterialBottomNavigationActiveIndicator"
         app:itemIconTint="@color/tab_layout_material_item_color"

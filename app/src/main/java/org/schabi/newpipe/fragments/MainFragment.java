@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapterMenuWorkaround;
@@ -257,13 +258,22 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
         for (int i = 0; i < tabsList.size(); i++) {
             final Tab tab = tabsList.get(i);
+            final String tabName = tab.getTabName(requireContext());
             final MenuItem item = menu.add(Menu.NONE, getBottomNavigationItemId(i), i,
-                    tab.getTabName(requireContext()));
+                    getBottomNavigationDisplayLabel(tab, tabName));
             item.setIcon(tab.getTabIconRes(requireContext()));
             item.setCheckable(true);
+            MenuItemCompat.setContentDescription(item, tabName);
         }
 
         updateBottomNavigationSelection(binding.pager.getCurrentItem());
+    }
+
+    private String getBottomNavigationDisplayLabel(final Tab tab, final String tabName) {
+        if (tab.getTabId() == Tab.BookmarksTab.ID) {
+            return getString(R.string.bottom_navigation_tab_bookmarks);
+        }
+        return tabName;
     }
 
     private void updateBottomNavigationSelection(final int position) {
