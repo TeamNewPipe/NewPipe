@@ -9,10 +9,34 @@
     <color name="placeholder_background">#999999</color>
     <color name="placeholder_foreground">#6C6C6C</color>
 
+
+    <!-- Material 3 role colors (app chrome/control palette) -->
+    <color name="light_m3_primary_color">#4F5C92</color>
+    <color name="light_m3_on_primary_color">#FFFFFF</color>
+    <color name="light_m3_primary_container_color">#DDE1FF</color>
+    <color name="light_m3_on_primary_container_color">#0A144B</color>
+    <color name="light_m3_secondary_color">#5B5D72</color>
+    <color name="light_m3_on_secondary_color">#FFFFFF</color>
+    <color name="light_m3_secondary_container_color">#E0E1F9</color>
+    <color name="light_m3_on_secondary_container_color">#181A2C</color>
+    <color name="light_m3_surface_variant_color">#E3E1EC</color>
+    <color name="light_m3_on_surface_variant_color">#46464F</color>
+
+    <color name="dark_m3_primary_color">#BAC3FF</color>
+    <color name="dark_m3_on_primary_color">#1F2C61</color>
+    <color name="dark_m3_primary_container_color">#364379</color>
+    <color name="dark_m3_on_primary_container_color">#DDE1FF</color>
+    <color name="dark_m3_secondary_color">#C3C5DD</color>
+    <color name="dark_m3_on_secondary_color">#2D2F42</color>
+    <color name="dark_m3_secondary_container_color">#434659</color>
+    <color name="dark_m3_on_secondary_container_color">#E0E1F9</color>
+    <color name="dark_m3_surface_variant_color">#46464F</color>
+    <color name="dark_m3_on_surface_variant_color">#C7C5D0</color>
+
     <!-- Light Theme -->
     <color name="light_background_color">#EEEEEE</color>
     <color name="light_dialog_background_color">#EEEEEE</color>
-    <color name="light_settings_accent_color">#e53935</color>
+    <color name="light_settings_accent_color">@color/light_m3_secondary_color</color>
     <color name="light_separator_color">#32000000</color>
     <color name="light_ripple_color">#48868686</color>
     <color name="light_selected_color">#2a868686</color>
@@ -27,7 +51,7 @@
     <!-- Dark Theme -->
     <color name="dark_background_color">#222222</color>
     <color name="dark_dialog_background_color">#424242</color>
-    <color name="dark_settings_accent_color">#ff5252</color>
+    <color name="dark_settings_accent_color">@color/dark_m3_secondary_color</color>
     <color name="dark_separator_color">#0affffff</color>
     <color name="dark_ripple_color">#48ffffff</color>
     <color name="dark_selected_color">#2affffff</color>

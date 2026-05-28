@@ -231,3 +231,41 @@
 - Migrate **one component** or **one dialog flow** per commit.
 - Run Checkstyle and build validation after each change.
 - Smoke-test exactly the flow touched by the commit.
+
+### Material 3 color-role migration (latest)
+
+- Scope: conservative theme/color-role remap only (no layout/dialog/behavior migration).
+- Generic app chrome/control roles were moved away from YouTube red and aligned to Material 3 role colors.
+- YouTube red resources remain in place for explicit service/brand usage.
+
+Changed attrs in app themes:
+- `colorPrimary`
+- `colorOnPrimary`
+- `colorPrimaryContainer`
+- `colorOnPrimaryContainer`
+- `colorSecondary`
+- `colorOnSecondary`
+- `colorSecondaryContainer`
+- `colorOnSecondaryContainer`
+- `colorSurface`
+- `colorOnSurface`
+- `colorSurfaceVariant`
+- `colorOnSurfaceVariant`
+- `colorOutline`
+- `colorAccent` (mapped to non-red Material 3 secondary in app themes)
+- `colorControlActivated` (mapped to `colorSecondary`)
+- `android:statusBarColor`
+- `android:navigationBarColor`
+
+System bar updates:
+- Light/Dark/Black app themes now map status/navigation bars to `colorSurface` rather than red service colors.
+- Opening theme navigation bar moved from red service color to neutral surface/background colors per day/night variant.
+- Existing `windowLightNavigationBar` handling remains in `values-v27` (`true` light, `false` dark/black).
+
+Settings/control tint updates:
+- Settings accent colors now map to Material 3 secondary colors (`light_m3_secondary_color` / `dark_m3_secondary_color`) to reduce red-dominant toggles/switches/radio indicators.
+
+Known risks (updated):
+- Service identity may feel less YouTube-branded as generic app chrome is now neutral/Material.
+- Status/navigation bar icon contrast must be watched across Android versions and OEM skins.
+- Settings controls may still need follow-up tint tuning after broader device QA.

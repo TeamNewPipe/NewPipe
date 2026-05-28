@@ -9,7 +9,7 @@
         <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
     <style name="Base.OpeningTheme" parent="Base.V21.OpeningTheme">
-        <item name="android:navigationBarColor">@color/light_youtube_primary_color</item>
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
     </style>
     <style name="OpeningTheme" parent="Base.OpeningTheme" />
 
@@ -18,26 +18,33 @@
         <item name="actionColor">?attr/colorOnSurface</item>
         <item name="floatingActionButtonStyle">@style/FloatingActionButtonTheme</item>
         <item name="toolbarSearchColor">?attr/colorOnSurface</item>
-        <item name="colorControlActivated">?attr/colorOnSurface</item>
+        <item name="colorControlActivated">?attr/colorSecondary</item>
     </style>
     <style name="Base" parent="Base.V21"/>
 
     <!-- Light Theme -->
     <style name="Base.V21.LightTheme" parent="Base">
-        <item name="colorPrimary">@color/light_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/light_youtube_primary_color</item>
-        <item name="colorAccent">@color/light_youtube_accent_color</item>
-        <item name="colorSecondary">@color/light_youtube_accent_color</item>
-        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorPrimary">@color/light_m3_primary_color</item>
+        <item name="colorPrimaryDark">@color/light_m3_primary_container_color</item>
+        <item name="colorAccent">@color/light_m3_secondary_color</item>
+        <item name="colorSecondary">@color/light_m3_secondary_color</item>
+        <item name="colorOnSecondary">@color/light_m3_on_secondary_color</item>
         <item name="colorSurface">@color/light_background_color</item>
         <item name="colorOnSurface">@color/light_contrast_background_color</item>
+        <item name="colorOnPrimary">@color/light_m3_on_primary_color</item>
+        <item name="colorSecondaryContainer">@color/light_m3_secondary_container_color</item>
+        <item name="colorOnSecondaryContainer">@color/light_m3_on_secondary_container_color</item>
+        <item name="colorSurfaceVariant">@color/light_m3_surface_variant_color</item>
+        <item name="colorOnSurfaceVariant">@color/light_m3_on_surface_variant_color</item>
         <item name="actionColor">@color/black</item>
         <item name="toolbarSearchColor">@color/black</item>
-        <item name="colorPrimaryContainer">@color/light_youtube_primary_color</item>
-        <item name="colorOnPrimaryContainer">@color/white</item>
+        <item name="colorPrimaryContainer">@color/light_m3_primary_container_color</item>
+        <item name="colorOnPrimaryContainer">@color/light_m3_on_primary_container_color</item>
         <item name="colorOutline">@color/light_border_color</item>
         <item name="android:windowBackground">@color/light_background_color</item>
         <item name="windowBackground">@color/light_background_color</item>
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
 
         <item name="separator_color">@color/light_separator_color</item>
         <item name="contrast_background_color">@color/light_contrast_background_color</item>
@@ -57,20 +64,27 @@
 
     <!-- Dark Theme -->
     <style name="Base.V21.DarkTheme" parent="Base">
-        <item name="colorPrimary">@color/dark_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/dark_youtube_primary_color</item>
-        <item name="colorAccent">@color/dark_youtube_accent_color</item>
-        <item name="colorSecondary">@color/dark_youtube_accent_color</item>
-        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorPrimary">@color/dark_m3_primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_m3_primary_container_color</item>
+        <item name="colorAccent">@color/dark_m3_secondary_color</item>
+        <item name="colorSecondary">@color/dark_m3_secondary_color</item>
+        <item name="colorOnSecondary">@color/dark_m3_on_secondary_color</item>
         <item name="colorSurface">@color/dark_background_color</item>
         <item name="colorOnSurface">@color/white</item>
+        <item name="colorOnPrimary">@color/dark_m3_on_primary_color</item>
+        <item name="colorSecondaryContainer">@color/dark_m3_secondary_container_color</item>
+        <item name="colorOnSecondaryContainer">@color/dark_m3_on_secondary_container_color</item>
+        <item name="colorSurfaceVariant">@color/dark_m3_surface_variant_color</item>
+        <item name="colorOnSurfaceVariant">@color/dark_m3_on_surface_variant_color</item>
         <item name="actionColor">@color/white</item>
         <item name="toolbarSearchColor">@color/white</item>
-        <item name="colorPrimaryContainer">@color/dark_youtube_primary_color</item>
-        <item name="colorOnPrimaryContainer">@color/white</item>
+        <item name="colorPrimaryContainer">@color/dark_m3_primary_container_color</item>
+        <item name="colorOnPrimaryContainer">@color/dark_m3_on_primary_container_color</item>
         <item name="colorOutline">@color/dark_border_color</item>
         <item name="android:windowBackground">@color/dark_background_color</item>
         <item name="windowBackground">@color/dark_background_color</item>
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
 
         <item name="separator_color">@color/dark_separator_color</item>
         <item name="contrast_background_color">@color/dark_contrast_background_color</item>
@@ -92,14 +106,16 @@
     <style name="Base.V21.BlackTheme" parent="DarkTheme">
         <item name="android:windowBackground">@color/black_background_color</item>
         <item name="windowBackground">@color/black_background_color</item>
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
         <item name="colorSurface">@color/black_background_color</item>
         <item name="colorOnSurface">@color/white</item>
         <item name="actionColor">@color/white</item>
         <item name="toolbarSearchColor">@color/white</item>
-        <item name="colorPrimaryContainer">@color/dark_youtube_primary_color</item>
-        <item name="colorOnPrimaryContainer">@color/white</item>
-        <item name="colorSecondary">@color/dark_youtube_accent_color</item>
-        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/dark_m3_primary_container_color</item>
+        <item name="colorOnPrimaryContainer">@color/dark_m3_on_primary_container_color</item>
+        <item name="colorSecondary">@color/dark_m3_secondary_color</item>
+        <item name="colorOnSecondary">@color/dark_m3_on_secondary_color</item>
         <item name="colorOutline">@color/black_border_color</item>
 
         <item name="separator_color">@color/black_separator_color</item>
