@@ -146,12 +146,12 @@
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
+            android:background="?attr/colorSecondaryContainer"
             app:tabGravity="fill"
-            app:tabIndicatorColor="@color/white"
+            app:tabIndicatorColor="?attr/colorOnSecondaryContainer"
             app:tabMode="scrollable"
-            app:tabRippleColor="@color/white"
-            app:tabTextColor="@color/white" />
+            app:tabRippleColor="?attr/colorOnSecondaryContainer"
+            app:tabTextColor="?attr/colorOnSecondaryContainer" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager"

@@ -20,6 +20,9 @@
 - Ripple/highlight audit after neutral toolbar and activated-state polish: existing generic ripple/selector colors are already neutral (gray/white alpha), so no additional ripple resource changes were applied in this step to avoid unnecessary churn.
 - Surface/background audit after toolbar neutralization: `colorSurface`, `android:windowBackground`/`windowBackground`, and custom card/background attrs are already consistently mapped per Light/Dark/Black themes, so no surface color resource changes were applied in this step.
 
+### Tab bar color polish
+- Main and channel top tab bars now use `colorSecondaryContainer` for the container and `colorOnSecondaryContainer` for tab icons/text, ripple, and selected indicator. This keeps the tab selector readable while replacing the stronger primary-green app-bar treatment with a softer Material 3 container role.
+
 ### Cards
 - `feed_group_card_item` root migrated to `MaterialCardView`.
 - `feed_group_add_new_item` root migrated to `MaterialCardView`.

@@ -10,10 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="?attr/colorPrimary"
-        app:tabRippleColor="@color/white"
-        app:tabIconTint="@color/white"
-        app:tabIndicatorColor="@color/white"
+        android:background="?attr/colorSecondaryContainer"
+        app:tabRippleColor="?attr/colorOnSecondaryContainer"
+        app:tabIconTint="?attr/colorOnSecondaryContainer"
+        app:tabIndicatorColor="?attr/colorOnSecondaryContainer"
         app:tabGravity="fill"
         app:tabMinWidth="60dp" />
 
