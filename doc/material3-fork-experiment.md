@@ -26,10 +26,51 @@
 - Application scope: global for settings screens that use `SwitchPreferenceCompat` under `LightSettingsTheme`, `DarkSettingsTheme`, or `BlackSettingsTheme`; individual preference XML entries were not edited.
 - Binding approach: the widget layout keeps AndroidX Preference's expected `@+id/switchWidget` id and non-clickable/non-focusable widget flags so row-level and switch-area taps continue to flow through `SwitchPreferenceCompat` state handling.
 - Color approach: no new tint resources were added; the Material switch uses the existing Material 3 theme roles and non-red settings accent mappings already defined for Light/Dark/Black settings themes.
-- Known risks:
-  - AndroidX Preference row/switch binding may differ across library versions.
-  - Disabled/checked state tinting may need further tuning after device QA.
-  - Manual QA is required for every settings screen with switches.
+Validation results:
+- `./gradlew runCheckstyle -DskipFormatKtlint`: PASS
+- `./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint`: PASS
+
+Manual QA results:
+- Light theme:
+  - Appearance settings switches render correctly: PASS
+  - Row tap toggles switch: PASS
+  - Switch-area tap toggles switch: PASS
+  - State persists after leaving and returning: PASS
+  - Disabled switch state readable, if present: PASS
+  - Switch alignment/size acceptable: PASS
+  - Checked/unchecked colors acceptable: PASS
+  - Rotation: PASS
+- Dark theme:
+  - Appearance settings switches render correctly: PASS
+  - Row tap toggles switch: PASS
+  - Switch-area tap toggles switch: PASS
+  - State persists after leaving and returning: PASS
+  - Disabled switch state readable, if present: PASS
+  - Switch alignment/size acceptable: PASS
+  - Checked/unchecked colors acceptable: PASS
+  - Rotation: PASS
+- Black theme:
+  - Appearance settings switches render correctly: PASS
+  - Row tap toggles switch: PASS
+  - Switch-area tap toggles switch: PASS
+  - State persists after leaving and returning: PASS
+  - Disabled switch state readable, if present: PASS
+  - Switch alignment/size acceptable: PASS
+  - Checked/unchecked colors acceptable: PASS
+  - Rotation: PASS
+
+Additional settings screens checked:
+- Content settings switches: not provided in the QA handoff.
+- Download settings switches: not provided in the QA handoff.
+- Notification settings switches: not provided in the QA handoff.
+
+Observed issues:
+- Not provided in the QA handoff.
+
+Known risks:
+- AndroidX Preference row/switch binding may differ across library versions.
+- Disabled/checked state tinting may need further tuning after broader settings-screen QA.
+- Manual QA is still required for every settings screen with switches because Content, Download, and Notification screen results were not provided.
 
 ### Tab bar color polish
 - Main and channel top tab bars now use `colorSecondaryContainer` for the container and `colorOnSecondaryContainer` for tab icons/text, ripple, and selected indicator. This keeps the tab selector readable while replacing the stronger primary-green app-bar treatment with a softer Material 3 container role.
