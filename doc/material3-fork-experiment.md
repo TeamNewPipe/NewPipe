@@ -20,6 +20,13 @@
 - Ripple/highlight audit after neutral toolbar and activated-state polish: existing generic ripple/selector colors are already neutral (gray/white alpha), so no additional ripple resource changes were applied in this step to avoid unnecessary churn.
 - Surface/background audit after toolbar neutralization: `colorSurface`, `android:windowBackground`/`windowBackground`, and custom card/background attrs are already consistently mapped per Light/Dark/Black themes, so no surface color resource changes were applied in this step.
 
+### Settings row summary color polish
+- Standard AndroidX Preference rows now use an app-local `preference_material` layout override that preserves the required AndroidX Preference IDs while tinting summary text with `colorOnSurfaceVariant`.
+- Required IDs preserved in the layout override: `@android:id/title`, `@android:id/summary`, `@android:id/widget_frame`; icon IDs remain provided by the existing `image_frame` override (`@+id/icon_frame`, `@android:id/icon`).
+- Scope: global for AndroidX Preference rows that use the Material preference layout; individual preference XML entries, keys, defaults, titles, summaries, and behavior were not changed.
+- Preference icon tint QA passed locally.
+- SwitchPreferenceCompat → MaterialSwitch behavior passed locally.
+
 ### SwitchPreferenceCompat MaterialSwitch experiment
 - Settings `SwitchPreferenceCompat` controls are globally retargeted through the settings themes to a custom preference widget layout backed by `com.google.android.material.materialswitch.MaterialSwitch`.
 - Files changed: `app/src/main/res/layout/preference_widget_material_switch.xml`, `app/src/main/res/values/styles.xml`, and `doc/material3-fork-experiment.md`.
