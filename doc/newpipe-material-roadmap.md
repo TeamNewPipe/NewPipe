@@ -234,31 +234,32 @@ explicit decisions for each item:
 
 Current launcher icon structure:
 
-- The app manifest points `android:icon` and `android:logo` to
-  `@mipmap/ic_launcher`. There is no `android:roundIcon` declaration yet, so
-  launchers that prefer round icons currently fall back to the default launcher
-  icon reference.
+- The app manifest points `android:icon`, `android:logo`, and
+  `android:roundIcon` to `@mipmap/ic_launcher`. The round icon intentionally
+  reuses the adaptive launcher icon for this first XML/vector-only pass instead
+  of introducing a separate round-icon resource.
 - Android Auto notification metadata also references `@mipmap/ic_launcher`, so
   any future launcher-icon replacement must be checked for notification-safe
   silhouette/readability before release.
 - `app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml` is the adaptive icon
   definition used on Android 8.0+. It uses `@color/ic_launcher_background` for
-  the adaptive background, `@mipmap/ic_launcher_foreground` for the foreground,
-  and currently reuses that same foreground as the `monochrome` layer for
-  Android themed icons.
-- `@color/ic_launcher_background` is defined as `#CD201F`, matching the current
-  upstream/NewPipe red visual identity rather than a fork-specific neutral or
-  dynamic-friendly Material 3 direction.
+  the adaptive background, `@drawable/ic_launcher_material_foreground` for the
+  foreground, and `@drawable/ic_launcher_material_monochrome` for Android
+  themed icons.
+- `@color/ic_launcher_background` is now defined as `#202124`, replacing the
+  upstream/NewPipe red background with a neutral Material-friendly dark surface
+  that is not fixed to a green-only fork color.
 - Legacy fallback launcher PNGs are present in `mipmap-mdpi`, `mipmap-hdpi`,
   `mipmap-xhdpi`, `mipmap-xxhdpi`, and `mipmap-xxxhdpi` as `ic_launcher.png`.
   Foreground PNGs with the same density buckets are present as
   `ic_launcher_foreground.png` for the adaptive foreground resource.
-- No `ic_launcher_round` resource was found, and no separate vector-only
-  monochrome launcher asset was found. The current themed-icon support is
-  therefore structurally present through the adaptive icon `monochrome` element,
-  but it is not yet backed by a purpose-built one-color symbol.
+- No separate `ic_launcher_round` resource was added. The adaptive icon is used
+  for both standard and round launcher references for now.
+- Android themed-icon support now uses the dedicated one-color vector
+  `app/src/main/res/drawable/ic_launcher_material_monochrome.xml` instead of
+  reusing the full-color foreground.
 - There is no `drawable-v24` resource directory in the current tree. Launcher
-  icon inputs are concentrated in `mipmap-*`, `mipmap-anydpi-v26`, and the
+  icon XML inputs are concentrated in `drawable`, `mipmap-anydpi-v26`, and the
   launcher background color in `values/colors.xml`.
 
 Proposed NewPipe Material icon direction:
@@ -288,28 +289,43 @@ Proposed NewPipe Material icon direction:
   launcher resource. If a future notification-specific icon is needed, plan it
   deliberately rather than relying on a detailed launcher foreground.
 
+XML/vector-only pass completed:
+
+- Replaced the upstream red adaptive icon background with neutral `#202124`.
+- Added `app/src/main/res/drawable/ic_launcher_material_foreground.xml` as the
+  first fork-specific full-color foreground mark: a simple layered media tile
+  with a play shape, designed to remain centered within adaptive icon safe zones.
+- Added `app/src/main/res/drawable/ic_launcher_material_monochrome.xml` as a
+  clean one-color silhouette for Android themed icon recoloring.
+- Updated `app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml` to use the new
+  foreground and monochrome vector drawables while keeping the existing adaptive
+  icon resource name.
+- Added `android:roundIcon="@mipmap/ic_launcher"` because a safe adaptive
+  launcher resource already exists. A separate `ic_launcher_round` resource is
+  still optional future work only if launcher previews show a need for it.
+- Left all legacy raster fallback PNGs unchanged. Regenerating `ic_launcher.png`
+  and `ic_launcher_foreground.png` in the density-specific `mipmap-*` folders is
+  pending until the XML/vector direction is reviewed and approved.
+
 Future XML/vector implementation notes:
 
-- A safe XML-only setup would add a vector foreground such as
-  `app/src/main/res/drawable/ic_launcher_material_foreground.xml`, a separate
-  single-color vector such as
-  `app/src/main/res/drawable/ic_launcher_material_monochrome.xml`, and then
-  update `app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml` to reference those
-  drawables for `foreground` and `monochrome`.
-- Keep `@color/ic_launcher_background` or introduce a clearly named replacement
-  color only after the final palette is chosen. Do not make the background a
-  permanent green-only brand color; prefer a neutral or accent-compatible color
-  that works with Material You expectations.
+- The first XML/vector implementation now uses the existing
+  `@color/ic_launcher_background` name with a neutral value, plus dedicated
+  foreground and monochrome vector drawables. Future iterations can refine these
+  XML resources without touching app logic.
+- Do not make the background a permanent green-only brand color; keep it neutral
+  or otherwise accent-compatible so the launcher identity works beside Material
+  You expectations.
 - Raster legacy fallback icons should be generated only after the vector design
   is approved, so density PNGs remain consistent with the final adaptive icon.
 
 Future icon implementation checklist:
 
-- Design and review the adaptive icon foreground.
-- Design and review the adaptive icon background color/shape treatment.
-- Add a dedicated monochrome/themed icon silhouette.
-- Decide whether to add `android:roundIcon` and an `ic_launcher_round` resource
-  or continue relying on the adaptive icon mask behavior.
+- Review and refine the first XML/vector adaptive icon foreground.
+- Review and refine the neutral adaptive icon background color/shape treatment.
+- Validate the dedicated monochrome/themed icon silhouette on Android 13+ launchers.
+- Decide whether a separate `ic_launcher_round` resource is needed or whether
+  `android:roundIcon="@mipmap/ic_launcher"` is sufficient.
 - Regenerate legacy fallback launcher icons for pre-adaptive launchers if needed.
 - Preview launcher masks across circle, squircle, rounded-square, and OEM shapes.
 - Check Android themed icons in both light and dark launcher modes.

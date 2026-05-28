@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Android adaptive icon foreground.
+         Artwork is centered and scaled down to leave safe padding for launcher masks. -->
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:scaleX="0.88"
+        android:scaleY="0.88">
+
+        <path
+            android:fillColor="#BA1A1A"
+            android:strokeColor="#BA1A1A"
+            android:strokeWidth="5"
+            android:strokeLineJoin="round"
+            android:pathData="M 34,26 L 86,54 L 34,82 Z" />
+
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M 40,68 L 40,38 L 46,38 L 53,50 L 60,44 L 66,44 L 66,62 L 60,62 L 60,54 L 53,60 L 46,48 L 46,68 Z" />
+    </group>
+</vector>
