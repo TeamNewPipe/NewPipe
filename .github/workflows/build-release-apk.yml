@@ -1,4 +1,4 @@
-name: "Build unsigned release APK on master"
+name: "Build signed release APK on material"
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          ref: 'master'
+          ref: 'material'
 
       - uses: actions/setup-java@v5
         with:
@@ -17,8 +17,28 @@ jobs:
           java-version: '21'
           cache: 'gradle'
 
-      - name: "Build release APK"
+      - name: "Prepare release keystore"
+        env:
+          RELEASE_KEYSTORE_BASE64: ${{ secrets.NEWPIPE_MATERIAL_RELEASE_KEYSTORE_BASE64 }}
+        run: |
+          test -n "$RELEASE_KEYSTORE_BASE64"
+          mkdir -p "$RUNNER_TEMP/keystore"
+          printf '%s' "$RELEASE_KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/keystore/newpipe-material-release.jks"
+
+      - name: "Build signed release APK"
+        env:
+          NEWPIPE_MATERIAL_RELEASE_STORE_FILE: ${{ runner.temp }}/keystore/newpipe-material-release.jks
+          NEWPIPE_MATERIAL_RELEASE_STORE_PASSWORD: ${{ secrets.NEWPIPE_MATERIAL_RELEASE_STORE_PASSWORD }}
+          NEWPIPE_MATERIAL_RELEASE_KEY_ALIAS: ${{ secrets.NEWPIPE_MATERIAL_RELEASE_KEY_ALIAS }}
+          NEWPIPE_MATERIAL_RELEASE_KEY_PASSWORD: ${{ secrets.NEWPIPE_MATERIAL_RELEASE_KEY_PASSWORD }}
         run: ./gradlew assembleRelease --stacktrace
+
+      - name: "Verify APK signature"
+        run: |
+          APK_PATH="$(find app/build/outputs/apk/release -name '*.apk' | head -n 1)"
+          test -n "$APK_PATH"
+          APKSIGNER="$ANDROID_HOME/build-tools/$(ls "$ANDROID_HOME/build-tools" | sort -V | tail -n 1)/apksigner"
+          "$APKSIGNER" verify --verbose "$APK_PATH"
 
       - name: "Rename APK"
         run: |
@@ -28,11 +48,10 @@ jobs:
           cat "app/build/outputs/apk/release/output-metadata.json" >> "$GITHUB_STEP_SUMMARY"
           echo >> "$GITHUB_STEP_SUMMARY"
           echo '```' >> "$GITHUB_STEP_SUMMARY"
-          # assume there is only one APK in that folder
-          mv app/build/outputs/apk/release/*.apk "app/build/outputs/apk/release/NewPipe_v$VERSION_NAME.apk"
+          mv app/build/outputs/apk/release/*.apk "app/build/outputs/apk/release/NewPipeMaterial_v$VERSION_NAME.apk"
 
       - name: "Upload APK"
         uses: actions/upload-artifact@v7
         with:
-          name: app
+          name: newpipe-material-signed-release-apk
           path: app/build/outputs/apk/release/*.apk

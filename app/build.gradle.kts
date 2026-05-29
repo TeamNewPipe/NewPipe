@@ -11,9 +11,19 @@ plugins {
     alias(libs.plugins.google.ksp)
     alias(libs.plugins.jetbrains.kotlin.parcelize)
     alias(libs.plugins.jetbrains.kotlinx.serialization)
-    alias(libs.plugins.sonarqube)
     checkstyle
 }
+
+val releaseStoreFile = System.getenv("NEWPIPE_MATERIAL_RELEASE_STORE_FILE")
+val releaseStorePassword = System.getenv("NEWPIPE_MATERIAL_RELEASE_STORE_PASSWORD")
+val releaseKeyAlias = System.getenv("NEWPIPE_MATERIAL_RELEASE_KEY_ALIAS")
+val releaseKeyPassword = System.getenv("NEWPIPE_MATERIAL_RELEASE_KEY_PASSWORD")
+val hasReleaseSigningConfig = listOf(
+    releaseStoreFile,
+    releaseStorePassword,
+    releaseKeyAlias,
+    releaseKeyPassword
+).all { !it.isNullOrBlank() }
 
 kotlin {
     jvmToolchain(21)
@@ -51,12 +61,28 @@ configure<ApplicationExtension> {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    if (hasReleaseSigningConfig) {
+        signingConfigs {
+            create("release") {
+                storeFile = file(requireNotNull(releaseStoreFile))
+                storePassword = requireNotNull(releaseStorePassword)
+                keyAlias = requireNotNull(releaseKeyAlias)
+                keyPassword = requireNotNull(releaseKeyPassword)
+            }
+        }
+    }
+
     buildTypes {
         debug {
             isDebuggable = true
+            applicationIdSuffix = ".debug"
+            resValue("string", "app_name", "NewPipe Material Debug")
         }
 
         release {
+            if (hasReleaseSigningConfig) {
+                signingConfig = signingConfigs.getByName("release")
+            }
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
@@ -171,14 +197,6 @@ afterEvaluate {
             dependsOn("formatKtlint")
         }
         dependsOn("runCheckstyle", "runKtlint", "checkDependenciesOrder")
-    }
-}
-
-sonar {
-    properties {
-        property("sonar.projectKey", "TeamNewPipe_NewPipe")
-        property("sonar.organization", "teamnewpipe")
-        property("sonar.host.url", "https://sonarcloud.io")
     }
 }
 
