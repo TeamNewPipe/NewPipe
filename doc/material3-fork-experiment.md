@@ -20,6 +20,14 @@
 - Ripple/highlight audit after neutral toolbar and activated-state polish: existing generic ripple/selector colors are already neutral (gray/white alpha), so no additional ripple resource changes were applied in this step to avoid unnecessary churn.
 - Surface/background audit after toolbar neutralization: `colorSurface`, `android:windowBackground`/`windowBackground`, and custom card/background attrs are already consistently mapped per Light/Dark/Black themes, so no surface color resource changes were applied in this step.
 
+### Download UI visual polish
+- Download dialog and metadata-loading dialog roots now use `colorSurface` so the dialog body follows the neutral Material 3 surface role.
+- Download dialog labels, helper/warning text, and stream-format/size metadata now use `colorOnSurfaceVariant`, while editable filename text, selected quality text, and thread count use `colorOnSurface`.
+- Download media-type radio controls, the thread seekbar, and the loading spinner now use `colorPrimary` so dynamic/manual theme colors provide accent emphasis without changing selected defaults or callbacks.
+- Files changed: `app/src/main/res/layout/download_dialog.xml`, `app/src/main/res/layout/download_loading_dialog.xml`, and `app/src/main/res/layout/stream_quality_item.xml`.
+- Behavior scope: download path selection, file picker/file manager behavior, stream/format selection, thread count persistence, queue/start/cancel behavior, and download business logic were not changed.
+- Known risk: the native spinner/dropdown and edit-text underline rendering still depends on platform/AppCompat widgets, so manual QA should verify contrast across Light/Dark/Black and dynamic/manual theme presets.
+
 ### Empty/error/loading state polish
 - Shared empty-state views now tint their kaomoji and explanatory copy with `colorOnSurfaceVariant` for quieter Material 3 empty states on Light/Dark/Black surfaces.
 - Inline empty states for search, playlists, kiosks, channel videos, comments, related items, settings search, and selection screens now use the same muted on-surface-variant treatment without changing their messages or visibility logic.

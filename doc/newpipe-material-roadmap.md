@@ -75,6 +75,12 @@ Plan these after the current foundation is stable:
 - Accessibility review for dynamic type, focus order, touch targets, color
   contrast, TalkBack labels, and high-contrast Black theme behavior.
 
+### Download UI visual polish
+
+- Download dialog surfaces now use `colorSurface`, supporting labels/metadata use `colorOnSurfaceVariant`, primary content uses `colorOnSurface`, and radio/seekbar/loading accents use `colorPrimary`.
+- The change is XML-only and preserves download destination/path handling, file picker behavior, stream/format selection, thread persistence, queue/start/cancel behavior, and download business logic.
+- QA should cover opening the dialog from video detail, switching media type/quality/audio track/subtitle options, editing filename/path UI, starting/canceling a download, Downloads screen rows, Download settings, rotation, and Light/Dark/Black plus dynamic/manual theme colors.
+
 ### Empty/error/loading state polish
 
 - Shared and common inline empty states now use `colorOnSurfaceVariant` for kaomoji/supporting copy, keeping empty screens readable but visually quieter across Light, Dark, Black, dynamic color, and manual presets.

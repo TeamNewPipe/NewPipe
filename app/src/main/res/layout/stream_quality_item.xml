@@ -13,6 +13,7 @@
         android:layout_marginLeft="6dp"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_volume_off"
+        android:tint="?attr/colorOnSurfaceVariant"
         tools:ignore="ContentDescription,RtlHardcoded" />
 
     <org.schabi.newpipe.views.NewPipeTextView
@@ -27,6 +28,7 @@
         android:paddingLeft="12dp"
         android:paddingRight="18dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textColor="?attr/colorOnSurfaceVariant"
         android:textSize="12sp"
         tools:ignore="RtlHardcoded"
         tools:text="MPEG-4" />
@@ -43,6 +45,7 @@
         android:paddingLeft="12dp"
         android:paddingRight="18dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="14sp"
         tools:ignore="RtlHardcoded"
         tools:text="1080p60" />
@@ -57,6 +60,7 @@
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textColor="?attr/colorOnSurfaceVariant"
         android:textSize="12sp"
         android:visibility="gone"
         tools:ignore="RtlHardcoded"
