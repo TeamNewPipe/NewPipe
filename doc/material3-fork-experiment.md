@@ -26,6 +26,7 @@
 - Download media-type radio controls, the thread seekbar, and the loading spinner now use `colorPrimary` so dynamic/manual theme colors provide accent emphasis without changing selected defaults or callbacks.
 - Files changed: `app/src/main/res/layout/download_dialog.xml`, `app/src/main/res/layout/download_loading_dialog.xml`, and `app/src/main/res/layout/stream_quality_item.xml`.
 - Behavior scope: download path selection, file picker/file manager behavior, stream/format selection, thread count persistence, queue/start/cancel behavior, and download business logic were not changed.
+- Compatibility note: `stream_quality_item.xml` uses platform text color attrs for its spinner row icon/text so it can inflate under both the app Material theme and the plain `Theme.DeviceDefault` instrumentation-test theme used by `StreamItemAdapterTest`.
 - Known risk: the native spinner/dropdown and edit-text underline rendering still depends on platform/AppCompat widgets, so manual QA should verify contrast across Light/Dark/Black and dynamic/manual theme presets.
 
 ### Empty/error/loading state polish
