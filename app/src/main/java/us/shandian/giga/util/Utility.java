@@ -1,5 +1,8 @@
 package us.shandian.giga.util;
 
+import static com.google.android.material.R.attr.colorPrimaryContainer;
+import static com.google.android.material.R.attr.colorSurfaceVariant;
+
 import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
@@ -17,6 +20,7 @@ import com.google.android.exoplayer2.util.Util;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.streams.io.SharpInputStream;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -139,43 +143,12 @@ public class Utility {
 
     @ColorInt
     public static int getBackgroundForFileType(Context ctx, FileType type) {
-        int colorRes;
-        switch (type) {
-            case MUSIC:
-                colorRes = R.color.audio_left_to_load_color;
-                break;
-            case VIDEO:
-                colorRes = R.color.video_left_to_load_color;
-                break;
-            case SUBTITLE:
-                colorRes = R.color.subtitle_left_to_load_color;
-                break;
-            default:
-                colorRes = R.color.gray;
-        }
-
-        return ContextCompat.getColor(ctx, colorRes);
+        return ThemeHelper.resolveColorFromAttr(ctx, colorSurfaceVariant);
     }
 
     @ColorInt
     public static int getForegroundForFileType(Context ctx, FileType type) {
-        int colorRes;
-        switch (type) {
-            case MUSIC:
-                colorRes = R.color.audio_already_load_color;
-                break;
-            case VIDEO:
-                colorRes = R.color.video_already_load_color;
-                break;
-            case SUBTITLE:
-                colorRes = R.color.subtitle_already_load_color;
-                break;
-            default:
-                colorRes = R.color.gray;
-                break;
-        }
-
-        return ContextCompat.getColor(ctx, colorRes);
+        return ThemeHelper.resolveColorFromAttr(ctx, colorPrimaryContainer);
     }
 
     @DrawableRes

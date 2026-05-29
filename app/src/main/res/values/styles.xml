@@ -245,67 +245,55 @@
 
     <!-- Dialogs -->
     <style name="LightDialogTheme" parent="Theme.Material3.DayNight.Dialog">
-        <item name="colorPrimary">@color/light_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/light_youtube_primary_color</item>
-        <item name="colorAccent">@color/light_youtube_accent_color</item>
-        <item name="colorSecondary">@color/light_youtube_accent_color</item>
-        <item name="colorOnSecondary">@color/white</item>
         <item name="colorSurface">@color/light_dialog_background_color</item>
         <item name="colorOnSurface">@color/light_contrast_background_color</item>
-        <item name="colorPrimaryContainer">@color/light_youtube_primary_color</item>
-        <item name="colorOnPrimaryContainer">@color/white</item>
+        <item name="colorOnSurfaceVariant">@color/light_m3_on_surface_variant_color</item>
         <item name="colorOutline">@color/light_border_color</item>
         <item name="android:windowBackground">@color/light_dialog_background_color</item>
         <item name="windowBackground">@color/light_dialog_background_color</item>
+
+        <item name="actionColor">?attr/colorOnSurface</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
     </style>
 
     <style name="DarkDialogTheme" parent="Theme.Material3.DayNight.Dialog">
-        <item name="colorPrimary">@color/dark_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/dark_youtube_primary_color</item>
-        <item name="colorAccent">@color/dark_youtube_accent_color</item>
-        <item name="colorSecondary">@color/dark_youtube_accent_color</item>
-        <item name="colorOnSecondary">@color/white</item>
         <item name="colorSurface">@color/dark_dialog_background_color</item>
         <item name="colorOnSurface">@color/white</item>
-        <item name="colorPrimaryContainer">@color/dark_youtube_primary_color</item>
-        <item name="colorOnPrimaryContainer">@color/white</item>
+        <item name="colorOnSurfaceVariant">@color/dark_m3_on_surface_variant_color</item>
         <item name="colorOutline">@color/dark_border_color</item>
         <item name="android:windowBackground">@color/dark_dialog_background_color</item>
         <item name="windowBackground">@color/dark_dialog_background_color</item>
+
+        <item name="actionColor">?attr/colorOnSurface</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
     </style>
 
     <style name="LightDialogMinWidthTheme" parent="Theme.Material3.DayNight.Dialog">
         <item name="android:windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
         <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
-        <item name="colorPrimary">@color/light_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/light_youtube_primary_color</item>
-        <item name="colorAccent">@color/light_youtube_accent_color</item>
-        <item name="colorSecondary">@color/light_youtube_accent_color</item>
-        <item name="colorOnSecondary">@color/white</item>
         <item name="colorSurface">@color/light_dialog_background_color</item>
         <item name="colorOnSurface">@color/light_contrast_background_color</item>
-        <item name="colorPrimaryContainer">@color/light_youtube_primary_color</item>
-        <item name="colorOnPrimaryContainer">@color/white</item>
+        <item name="colorOnSurfaceVariant">@color/light_m3_on_surface_variant_color</item>
         <item name="colorOutline">@color/light_border_color</item>
         <item name="android:windowBackground">@color/light_dialog_background_color</item>
         <item name="windowBackground">@color/light_dialog_background_color</item>
+
+        <item name="actionColor">?attr/colorOnSurface</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
     </style>
 
     <style name="DarkDialogMinWidthTheme" parent="Theme.Material3.DayNight.Dialog">
         <item name="android:windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
         <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
-        <item name="colorPrimary">@color/dark_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/dark_youtube_primary_color</item>
-        <item name="colorAccent">@color/dark_youtube_accent_color</item>
-        <item name="colorSecondary">@color/dark_youtube_accent_color</item>
-        <item name="colorOnSecondary">@color/white</item>
         <item name="colorSurface">@color/dark_dialog_background_color</item>
         <item name="colorOnSurface">@color/white</item>
-        <item name="colorPrimaryContainer">@color/dark_youtube_primary_color</item>
-        <item name="colorOnPrimaryContainer">@color/white</item>
+        <item name="colorOnSurfaceVariant">@color/dark_m3_on_surface_variant_color</item>
         <item name="colorOutline">@color/dark_border_color</item>
         <item name="android:windowBackground">@color/dark_dialog_background_color</item>
         <item name="windowBackground">@color/dark_dialog_background_color</item>
+
+        <item name="actionColor">?attr/colorOnSurface</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
     </style>
 
     <!-- Settings -->

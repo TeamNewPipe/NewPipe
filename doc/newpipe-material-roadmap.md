@@ -78,8 +78,9 @@ Plan these after the current foundation is stable:
 ### Download UI visual polish
 
 - Download dialog surfaces now use `colorSurface`, supporting labels/metadata use `colorOnSurfaceVariant`, primary content uses `colorOnSurface`, and radio/seekbar/loading accents use `colorPrimary`.
-- The change is XML-only and preserves download destination/path handling, file picker behavior, stream/format selection, thread persistence, queue/start/cancel behavior, and download business logic.
-- QA should cover opening the dialog from video detail, switching media type/quality/audio track/subtitle options, editing filename/path UI, starting/canceling a download, Downloads screen rows, Download settings, rotation, and Light/Dark/Black plus dynamic/manual theme colors.
+- Follow-up contrast pass removed legacy service-red overrides from dialog theme accents, added readable enabled/disabled radio selectors, kept the stream quality row compatible with plain instrumentation themes, and moved Downloads screen mission card/progress colors to `colorSurfaceVariant`/`colorPrimaryContainer` roles.
+- The change preserves download destination/path handling, file picker behavior, stream/format selection, thread persistence, queue/start/cancel behavior, StreamItemAdapter behavior, and download business logic.
+- QA should cover opening the dialog from video detail, switching media type/quality/audio track/subtitle options, editing filename/path UI, starting/canceling a download, Downloads screen rows, Download settings, rotation, and Light/Dark/Black plus dynamic/manual theme colors. Pending and finished mission rows need real-device review because the card colors intentionally changed from file-type-specific legacy colors to Material role-based progress surfaces.
 
 ### Empty/error/loading state polish
 

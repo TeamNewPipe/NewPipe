@@ -26,7 +26,7 @@
                 android:layout_marginLeft="6dp"
                 android:singleLine="true"
                 android:text="0%"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="20sp" />
 
             <ImageView
@@ -67,7 +67,7 @@
             android:scrollHorizontally="true"
             android:singleLine="true"
             android:text="XXX.xx"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -79,7 +79,7 @@
             android:padding="6dp"
             android:singleLine="true"
             android:text="100.00MB"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnSurfaceVariant"
             android:textSize="12sp" />
 
         <org.schabi.newpipe.views.NewPipeTextView
@@ -91,7 +91,7 @@
             android:padding="6dp"
             android:singleLine="true"
             android:text=""
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnSurfaceVariant"
             android:textSize="12sp" />
 
     </RelativeLayout>

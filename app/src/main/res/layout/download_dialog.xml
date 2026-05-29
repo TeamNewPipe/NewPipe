@@ -31,6 +31,7 @@
         android:inputType="text"
         android:textColor="?attr/colorOnSurface"
         android:textColorHint="?attr/colorOnSurfaceVariant"
+        android:backgroundTint="?attr/colorPrimary"
         android:maxLines="1" />
 
     <RadioGroup
@@ -48,8 +49,8 @@
             android:id="@+id/video_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:buttonTint="?attr/colorPrimary"
-            android:textColor="?attr/colorOnSurface"
+            android:buttonTint="@color/download_control_tint"
+            android:textColor="@color/download_option_text_color"
             android:checked="true"
             android:text="@string/video" />
 
@@ -57,16 +58,16 @@
             android:id="@+id/audio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:buttonTint="?attr/colorPrimary"
-            android:textColor="?attr/colorOnSurface"
+            android:buttonTint="@color/download_control_tint"
+            android:textColor="@color/download_option_text_color"
             android:text="@string/audio" />
 
         <RadioButton
             android:id="@+id/subtitle_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:buttonTint="?attr/colorPrimary"
-            android:textColor="?attr/colorOnSurface"
+            android:buttonTint="@color/download_control_tint"
+            android:textColor="@color/download_option_text_color"
             android:text="@string/caption_setting_title" />
     </RadioGroup>
 
@@ -155,6 +156,7 @@
             android:progress="3"
             android:progressTint="?attr/colorPrimary"
             android:progressBackgroundTint="?attr/colorSurfaceVariant"
+            android:secondaryProgressTint="?attr/colorSurfaceVariant"
             android:thumbTint="?attr/colorPrimary" />
     </LinearLayout>
 
