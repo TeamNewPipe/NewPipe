@@ -650,3 +650,29 @@ Known risks / candidates for a future dedicated player pass:
 - Candidate: replace programmatic red seekbar tint with a theme role, but this is
   high risk because seek progress is part of active playback/gesture feedback and
   must remain visible over video frames in all player modes.
+
+### Playback parameter dialog visual polish (latest)
+
+- Applied the low-risk candidate from the player overlay audit to
+  `dialog_playback_parameter.xml` only. The main player overlay, playback
+  controls, seek gestures, queue controls, quality/audio/caption popups, popup
+  mode, background mode, and download/shared code remain untouched.
+- The dialog root now uses the Material surface role, section labels and checkbox
+  labels use `colorOnSurface`, min/max helper values use
+  `colorOnSurfaceVariant`, active step/current values and controls use
+  `colorPrimary`, separators use `colorSurfaceVariant`, and the pitch-mode
+  expand icon uses `colorOnSurfaceVariant`.
+- Tempo, pitch-percent, and pitch-semitone seekbars now share a small
+  `PlaybackParameterSeekBar` style that maps thumb/progress to `colorPrimary`,
+  track to `colorSurfaceVariant`, and secondary progress to
+  `colorPrimaryContainer`, so dynamic/manual theme colors affect active dialog
+  controls without changing any values.
+- Behavior preservation: IDs, listeners, seekbar ranges/progress calculations,
+  step-size persistence, unhook/skip-silence preferences, reset/apply/cancel
+  handling, and playback callback behavior are unchanged.
+
+Known risks / QA:
+- Device QA should verify the playback speed/parameter dialog in Light, Dark,
+  Black, Follow system dynamic color, App default, and one manual preset, and
+  should exercise speed changes, pitch changes, reset, cancel/dismiss, and
+  rotation if the dialog remains open.

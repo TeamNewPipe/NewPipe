@@ -49,6 +49,13 @@
         <item name="cornerSize">8dp</item>
     </style>
 
+    <style name="PlaybackParameterSeekBar" parent="Widget.AppCompat.SeekBar">
+        <item name="android:thumbTint">?attr/colorPrimary</item>
+        <item name="android:progressTint">?attr/colorPrimary</item>
+        <item name="android:progressBackgroundTint">?attr/colorSurfaceVariant</item>
+        <item name="android:secondaryProgressTint">?attr/colorPrimaryContainer</item>
+    </style>
+
 
     <!--File picker styles-->
     <style name="FilePickerThemeLight" parent="NNF_BaseTheme.Light">

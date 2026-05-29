@@ -75,6 +75,12 @@ Plan these after the current foundation is stable:
 - Accessibility review for dynamic type, focus order, touch targets, color
   contrast, TalkBack labels, and high-contrast Black theme behavior.
 
+### Playback parameter dialog polish
+
+- PlaybackParameterDialog now uses Material 3 role colors while preserving player behavior: the dialog surface uses `colorSurface`, labels use `colorOnSurface`, helper/min/max text uses `colorOnSurfaceVariant`, active controls use `colorPrimary`, dividers use `colorSurfaceVariant`, and seekbar tracks/thumbs use a dialog-local role-based style.
+- Reset/apply/cancel behavior, speed/pitch values, step-size persistence, unhook/skip-silence preferences, playback callbacks, and all main player overlay controls remain unchanged.
+- QA should cover speed and pitch adjustments, reset, cancel/dismiss, rotation, Light/Dark/Black, Follow system dynamic color, App default, and one manual preset.
+
 ### Player overlay controls audit
 
 - Player overlay controls were audited and intentionally left unchanged in this pass. The main overlay uses white-on-black/translucent-black affordances over arbitrary video frames, and several sensitive player elements still use legacy/service colors: programmatic red seekbar tint, translucent red closing overlay, `colorAccent` queue controls, legacy-red popup close FAB, and `colorAccent` playback-parameter dialog controls.
