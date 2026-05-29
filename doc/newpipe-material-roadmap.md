@@ -75,6 +75,12 @@ Plan these after the current foundation is stable:
 - Accessibility review for dynamic type, focus order, touch targets, color
   contrast, TalkBack labels, and high-contrast Black theme behavior.
 
+### Video detail action area polish
+
+- The video detail page content below the player now uses Material 3 role colors: primary title/channel/view text uses `colorOnSurface`, secondary uploader/like/meta text and action icons use `colorOnSurfaceVariant`, subtle dividers use `colorSurfaceVariant`, and the detail tab strip uses primary selected state with theme ripple.
+- Add To, Background, Popup, Download, Share, Open in browser, Kodi, debug crash, description expansion, comments, and related-video behavior are preserved; the change is limited to XML/style visual styling.
+- QA should cover video detail readability and every action callback across Light/Dark/Black, Follow system dynamic color, App default, one manual preset, and rotation.
+
 ### Download UI visual polish
 
 - Download dialog surfaces now use `colorSurface`, supporting labels/metadata use `colorOnSurfaceVariant`, primary content uses `colorOnSurface`, and radio/seekbar/loading accents use `colorPrimary`.

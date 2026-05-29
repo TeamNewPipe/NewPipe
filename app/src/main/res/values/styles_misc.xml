@@ -152,6 +152,12 @@
         <item name="colorControlHighlight">?attr/colorControlHighlight</item>
     </style>
 
+
+    <style name="VideoDetailActionText">
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+        <item name="android:drawableTint">?attr/colorOnSurfaceVariant</item>
+    </style>
+
     <style name="CircularImageView">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>

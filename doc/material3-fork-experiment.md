@@ -585,3 +585,26 @@ Known risks:
   permission, and history-delete snackbars plus representative platform toasts
   across Light/Dark/Black, Follow system dynamic color, App default, and at least
   one manual preset.
+
+
+### Video detail action area polish (latest)
+
+- The video detail content area now uses explicit Material 3 role colors below
+  the player: title, channel name, and view count use `colorOnSurface`, while
+  uploader/subscriber metadata, like/dislike counts, disabled-like text, meta
+  info, and expand/action icons use `colorOnSurfaceVariant`.
+- Detail action buttons keep the same IDs, order, click listeners, long-click
+  listeners, visibility logic, and callbacks, but their icon/text tint now comes
+  from a shared `VideoDetailActionText` style so Add To, Background, Popup,
+  Download, Share, Open in browser, Kodi, and debug crash actions are readable
+  across Light/Dark/Black and dynamic/manual palettes.
+- The detail meta-info dividers now use `colorSurfaceVariant`, and the
+  description/comments/related tab strip uses the existing Material tab color
+  selector plus `colorPrimary` indicator and `colorControlHighlight` ripple.
+- Player controls, playback overlay, seekbar, download logic, share/open/browser
+  behavior, queue/background/popup behavior, loading logic, and action callbacks
+  are unchanged.
+- Follow-up QA should open a video detail page, exercise the action buttons and
+  secondary controls, expand/collapse the description, switch comments/related
+  tabs, rotate, and verify Light/Dark/Black plus Follow system, App default, and
+  one manual preset.
