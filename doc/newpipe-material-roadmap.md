@@ -75,6 +75,12 @@ Plan these after the current foundation is stable:
 - Accessibility review for dynamic type, focus order, touch targets, color
   contrast, TalkBack labels, and high-contrast Black theme behavior.
 
+### Player overlay controls audit
+
+- Player overlay controls were audited and intentionally left unchanged in this pass. The main overlay uses white-on-black/translucent-black affordances over arbitrary video frames, and several sensitive player elements still use legacy/service colors: programmatic red seekbar tint, translucent red closing overlay, `colorAccent` queue controls, legacy-red popup close FAB, and `colorAccent` playback-parameter dialog controls.
+- No low-risk visual-only change was applied because quality/audio/caption/speed popup menus, seekbar tint, queue controls, gestures, captions, and player mode overlays are tightly coupled to playback visibility, focus, dismissal, and gesture behavior.
+- Follow-up should be a dedicated player-controls visual pass with real-device QA for fullscreen, embedded, background/audio, popup, queue, captions, speed, quality, fast seek, brightness/volume gestures, rotation, TV/desktop mode, and Light/Dark/Black plus dynamic/manual palettes.
+
 ### Video detail action area polish
 
 - The video detail page content below the player now uses Material 3 role colors: primary title/channel/view text uses `colorOnSurface`, secondary uploader/like/meta text and action icons use `colorOnSurfaceVariant`, subtle dividers use `colorSurfaceVariant`, and the detail tab strip uses primary selected state with theme ripple.

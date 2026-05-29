@@ -608,3 +608,45 @@ Known risks:
   secondary controls, expand/collapse the description, switch comments/related
   tabs, rotate, and verify Light/Dark/Black plus Follow system, App default, and
   one manual preset.
+
+### Player overlay controls Material 3 audit (latest)
+
+- Audit scope covered `player.xml`, `activity_player_queue_control.xml`,
+  `dialog_playback_parameter.xml`, fast-seek/popup-close overlays,
+  `stream_quality_item.xml`, and the player UI/helper code that builds quality,
+  audio-track, playback-speed, and captions menus.
+- The main player overlay intentionally sits on top of video content rather than
+  an app surface: transport controls, close/collapse/fullscreen buttons, title,
+  channel, quality, speed, captions, seek timestamps, volume/brightness overlays,
+  queue headers, and the popup-player close affordance mostly use hardcoded
+  white-on-black/translucent-black treatment for contrast over arbitrary video
+  frames.
+- Legacy/service color usage still exists in sensitive places: the playback
+  seekbar thumb/progress is programmatically tinted `Color.RED`, the closing
+  overlay uses a translucent red background, queue repeat/shuffle/add controls
+  use `colorAccent`, the popup close FAB uses the legacy YouTube red resource,
+  and playback-parameter dialog labels/step controls use `colorAccent`.
+- Popup/dropdown status: quality, audio-track, and captions menus use the
+  existing `DarkPopupMenu` overlay, while the playback-speed popup is created
+  from the player context. Changing these menu contexts could affect anchoring,
+  dismissal timing, focus, and hide-controls behavior, so it was not changed in
+  this audit-only step.
+- `stream_quality_item.xml` remains intentionally platform-attr based for
+  compatibility with both app Material themes and plain instrumentation-test
+  themes; this was preserved.
+- No visual code/resource change was applied. The safest follow-up is a dedicated
+  player-controls visual pass with real-device QA for fullscreen, embedded,
+  background/audio, popup, queue, captions, speed, quality, fast seek,
+  brightness/volume gestures, rotation, TV/desktop mode, and Light/Dark/Black
+  plus dynamic/manual palettes.
+
+Known risks / candidates for a future dedicated player pass:
+- Candidate: map playback-parameter dialog accent text/seekbars from
+  `colorAccent` to Material 3 roles, but only after confirming dialog button,
+  seekbar, step, reset, and pitch-mode behavior across themes.
+- Candidate: retheme queue header repeat/shuffle/add icons from `colorAccent` to
+  `colorPrimary` or overlay-safe white, but only after checking selected/repeat
+  states and queue mode affordance clarity.
+- Candidate: replace programmatic red seekbar tint with a theme role, but this is
+  high risk because seek progress is part of active playback/gesture feedback and
+  must remain visible over video frames in all player modes.
