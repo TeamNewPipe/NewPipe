@@ -567,3 +567,21 @@ Known risks:
     applies after settings/app screens are reopened or the app is restarted.
 - Runtime theme color resolution, dynamic color behavior, palette values, and
   Black theme protection are unchanged by this UX-only step.
+
+### Transient feedback polish (latest)
+
+- Snackbar styling is now pinned to the app theme instead of relying on legacy
+  per-call yellow action overrides. The global snackbar style uses Material 3
+  inverse surface roles for the container and message text, inverse primary for
+  action text, the existing Material snackbar elevation, and a rounded 8dp
+  container shape.
+- Explicit `setActionTextColor(Color.YELLOW)` calls were removed from snackbar
+  creation sites so the shared theme style can apply consistently. Snackbar
+  messages, actions, callbacks, and durations are unchanged.
+- Toast creation remains through platform `Toast.makeText(...)` calls. No custom
+  toast view or wrapper was introduced because platform toasts are not safely
+  themeable across Android versions without changing infrastructure/behavior.
+- Follow-up QA should trigger error/report, subscription notification, settings
+  permission, and history-delete snackbars plus representative platform toasts
+  across Light/Dark/Black, Follow system dynamic color, App default, and at least
+  one manual preset.

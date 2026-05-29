@@ -4,7 +4,6 @@ import android.app.Activity
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.view.View
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
@@ -160,7 +159,6 @@ class ErrorUtil {
                 createNotification(context, errorInfo)
             } else {
                 Snackbar.make(rootView, errorInfo.getMessage(context), Snackbar.LENGTH_LONG)
-                    .setActionTextColor(Color.YELLOW)
                     .setAction(context.getString(R.string.error_snackbar_action).uppercase()) {
                         context.startActivity(getErrorActivityIntent(context, errorInfo))
                     }.show()

@@ -2,7 +2,6 @@ package org.schabi.newpipe.settings
 
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import androidx.preference.Preference
@@ -82,7 +81,6 @@ class NotificationsSettingsFragment : BasePreferenceFragment(), OnSharedPreferen
                     setAction(R.string.settings) {
                         NotificationHelper.openNewPipeSystemNotificationSettings(it.context)
                     }
-                    setActionTextColor(Color.YELLOW)
                     addCallback(object : Snackbar.Callback() {
                         override fun onDismissed(transientBottomBar: Snackbar, event: Int) {
                             super.onDismissed(transientBottomBar, event)

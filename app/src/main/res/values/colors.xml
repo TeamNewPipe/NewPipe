@@ -21,6 +21,9 @@
     <color name="light_m3_on_secondary_container_color">#10200F</color>
     <color name="light_m3_surface_variant_color">#DFE5DA</color>
     <color name="light_m3_on_surface_variant_color">#41493F</color>
+    <color name="light_m3_inverse_surface_color">#30332F</color>
+    <color name="light_m3_inverse_on_surface_color">#F0F1EC</color>
+    <color name="light_m3_inverse_primary_color">#AED4AF</color>
 
     <color name="dark_m3_primary_color">#AED4AF</color>
     <color name="dark_m3_on_primary_color">#19361E</color>
@@ -32,6 +35,9 @@
     <color name="dark_m3_on_secondary_container_color">#D5E8CF</color>
     <color name="dark_m3_surface_variant_color">#41493F</color>
     <color name="dark_m3_on_surface_variant_color">#C1C8BC</color>
+    <color name="dark_m3_inverse_surface_color">#E2E3DD</color>
+    <color name="dark_m3_inverse_on_surface_color">#2F312D</color>
+    <color name="dark_m3_inverse_primary_color">#46674F</color>
 
     <!-- Light Theme -->
     <color name="light_background_color">#EEEEEE</color>

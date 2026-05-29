@@ -28,6 +28,27 @@
         <item name="android:progressTint">?attr/colorPrimary</item>
     </style>
 
+    <style name="Widget.NewPipeMaterial.Snackbar" parent="Widget.Material3.Snackbar">
+        <item name="backgroundTint">?attr/colorSurfaceInverse</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.NewPipeMaterial.Snackbar</item>
+        <item name="elevation">6dp</item>
+    </style>
+
+    <style name="Widget.NewPipeMaterial.Snackbar.TextView"
+        parent="Widget.Material3.Snackbar.TextView">
+        <item name="android:textColor">?attr/colorOnSurfaceInverse</item>
+    </style>
+
+    <style name="Widget.NewPipeMaterial.Button.TextButton.Snackbar"
+        parent="Widget.Material3.Button.TextButton.Snackbar">
+        <item name="android:textColor">?attr/colorPrimaryInverse</item>
+    </style>
+
+    <style name="ShapeAppearance.NewPipeMaterial.Snackbar" parent="ShapeAppearance.Material3.Corner.Small">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
 
     <!--File picker styles-->
     <style name="FilePickerThemeLight" parent="NNF_BaseTheme.Light">

@@ -89,6 +89,13 @@ Plan these after the current foundation is stable:
 - Audited loading indicators now use `colorPrimary` progress styles so loading emphasis follows dynamic/manual theme color without changing loading state logic.
 - QA should cover empty bookmarks/subscriptions/feed groups, search no-results, representative loading, and representative error/retry states, including long translated error text in the shared panel.
 
+### Transient feedback polish
+
+- Snackbars now use the app-level Material 3 snackbar styles: inverse surface for the container, on-inverse-surface message text, inverse-primary action text, rounded corners, and Material snackbar elevation. Existing snackbar messages, actions, callbacks, and durations are preserved.
+- Legacy hard-coded yellow snackbar action overrides were removed so error/report, notification-warning, channel-subscription, settings, and history snackbars share the same themed treatment.
+- Toasts remain platform `Toast.makeText(...)` messages and are intentionally unchanged because they are not safely themeable across Android versions without introducing custom toast infrastructure.
+- QA should cover representative snackbars and toasts across Light/Dark/Black, Follow system dynamic color, App default, and one manual preset.
+
 ### Search UI polish
 
 - Expanded toolbar search now uses Material 3 role colors: neutral `colorSurface` around a rounded `colorSurfaceVariant` field, `colorOnSurface` input text, `colorOnSurfaceVariant` hint/clear/suggestion icons, and `colorPrimary` for focused input accent.

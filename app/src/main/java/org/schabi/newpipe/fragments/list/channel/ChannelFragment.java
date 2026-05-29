@@ -6,7 +6,6 @@ import static org.schabi.newpipe.ktx.ViewUtils.animateBackgroundColor;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -452,7 +451,6 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
     private void showNotifySnackbar() {
         Snackbar.make(binding.getRoot(), R.string.you_successfully_subscribed, Snackbar.LENGTH_LONG)
                 .setAction(R.string.get_notified, v -> setNotify(true))
-                .setActionTextColor(Color.YELLOW)
                 .show();
     }
 
