@@ -221,6 +221,13 @@ class AboutActivity : AppCompatActivity() {
                 StandardLicenses.APACHE2
             ),
             SoftwareComponent(
+                "ProcessPhoenix",
+                "2015",
+                "Jake Wharton",
+                "https://github.com/JakeWharton/ProcessPhoenix",
+                StandardLicenses.APACHE2
+            ),
+            SoftwareComponent(
                 "RxAndroid",
                 "2015",
                 "The RxAndroid authors",
@@ -237,16 +244,16 @@ class AboutActivity : AppCompatActivity() {
             SoftwareComponent(
                 "RxJava",
                 "2016 - 2020",
-                "RxJava contributors",
+                "RxJava Contributors",
                 "https://github.com/ReactiveX/RxJava",
                 StandardLicenses.APACHE2
             ),
             SoftwareComponent(
-                "Stetho",
-                "2015",
-                "Facebook, Inc.",
-                "https://github.com/facebook/stetho",
-                StandardLicenses.BSD
+                "SearchPreference",
+                "2018",
+                "ByteHamster",
+                "https://github.com/ByteHamster/SearchPreference",
+                StandardLicenses.MIT
             )
         )
     }
