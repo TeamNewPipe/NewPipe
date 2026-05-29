@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Light dialog theme-color overlays -->
+    <style name="LightDialogTheme_ThemeColor_NewPipeMaterial" parent="LightDialogTheme">
+        <item name="colorPrimary">#46674F</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryDark">#C9ECCB</item>
+        <item name="colorPrimaryContainer">#C9ECCB</item>
+        <item name="colorOnPrimaryContainer">#01210D</item>
+        <item name="colorSecondary">#52634F</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorAccent">#52634F</item>
+        <item name="colorControlActivated">#52634F</item>
+        <item name="colorSecondaryContainer">#D5E8CF</item>
+        <item name="colorOnSecondaryContainer">#10200F</item>
+    </style>
+
+    <style name="LightDialogTheme_ThemeColor_Neutral" parent="LightDialogTheme">
+        <item name="colorPrimary">#5F5F5F</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryDark">#E3E3E3</item>
+        <item name="colorPrimaryContainer">#E3E3E3</item>
+        <item name="colorOnPrimaryContainer">#1C1C1C</item>
+        <item name="colorSecondary">#5E5E5E</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorAccent">#5E5E5E</item>
+        <item name="colorControlActivated">#5E5E5E</item>
+        <item name="colorSecondaryContainer">#E5E5E5</item>
+        <item name="colorOnSecondaryContainer">#1B1B1B</item>
+    </style>
+
+    <style name="LightDialogTheme_ThemeColor_Green" parent="LightDialogTheme">
+        <item name="colorPrimary">#386A20</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryDark">#B9F397</item>
+        <item name="colorPrimaryContainer">#B9F397</item>
+        <item name="colorOnPrimaryContainer">#042100</item>
+        <item name="colorSecondary">#55624C</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorAccent">#55624C</item>
+        <item name="colorControlActivated">#55624C</item>
+        <item name="colorSecondaryContainer">#D9E7CB</item>
+        <item name="colorOnSecondaryContainer">#131F0D</item>
+    </style>
+
+    <style name="LightDialogTheme_ThemeColor_Blue" parent="LightDialogTheme">
+        <item name="colorPrimary">#0061A4</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryDark">#D1E4FF</item>
+        <item name="colorPrimaryContainer">#D1E4FF</item>
+        <item name="colorOnPrimaryContainer">#001D36</item>
+        <item name="colorSecondary">#535F70</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorAccent">#535F70</item>
+        <item name="colorControlActivated">#535F70</item>
+        <item name="colorSecondaryContainer">#D7E3F7</item>
+        <item name="colorOnSecondaryContainer">#101C2B</item>
+    </style>
+
+    <style name="LightDialogTheme_ThemeColor_Purple" parent="LightDialogTheme">
+        <item name="colorPrimary">#6750A4</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryDark">#EADDFF</item>
+        <item name="colorPrimaryContainer">#EADDFF</item>
+        <item name="colorOnPrimaryContainer">#21005D</item>
+        <item name="colorSecondary">#625B71</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorAccent">#625B71</item>
+        <item name="colorControlActivated">#625B71</item>
+        <item name="colorSecondaryContainer">#E8DEF8</item>
+        <item name="colorOnSecondaryContainer">#1D192B</item>
+    </style>
+
+    <style name="LightDialogTheme_ThemeColor_Orange" parent="LightDialogTheme">
+        <item name="colorPrimary">#9B4300</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryDark">#FFDBC8</item>
+        <item name="colorPrimaryContainer">#FFDBC8</item>
+        <item name="colorOnPrimaryContainer">#321200</item>
+        <item name="colorSecondary">#77574A</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorAccent">#77574A</item>
+        <item name="colorControlActivated">#77574A</item>
+        <item name="colorSecondaryContainer">#FFDBCE</item>
+        <item name="colorOnSecondaryContainer">#2C160D</item>
+    </style>
+
+    <style name="LightDialogTheme_ThemeColor_Pink" parent="LightDialogTheme">
+        <item name="colorPrimary">#984061</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryDark">#FFD8E7</item>
+        <item name="colorPrimaryContainer">#FFD8E7</item>
+        <item name="colorOnPrimaryContainer">#3E001D</item>
+        <item name="colorSecondary">#74565F</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorAccent">#74565F</item>
+        <item name="colorControlActivated">#74565F</item>
+        <item name="colorSecondaryContainer">#FFD8E7</item>
+        <item name="colorOnSecondaryContainer">#2B151D</item>
+    </style>
+
+    <style name="LightDialogTheme_ThemeColor_Red" parent="LightDialogTheme">
+        <item name="colorPrimary">#BA1A1A</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryDark">#FFDAD6</item>
+        <item name="colorPrimaryContainer">#FFDAD6</item>
+        <item name="colorOnPrimaryContainer">#410002</item>
+        <item name="colorSecondary">#775651</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorAccent">#775651</item>
+        <item name="colorControlActivated">#775651</item>
+        <item name="colorSecondaryContainer">#FFDAD6</item>
+        <item name="colorOnSecondaryContainer">#2C1512</item>
+    </style>
+
+    <!-- Dark dialog theme-color overlays -->
+    <style name="DarkDialogTheme_ThemeColor_NewPipeMaterial" parent="DarkDialogTheme">
+        <item name="colorPrimary">#AED4AF</item>
+        <item name="colorOnPrimary">#19361E</item>
+        <item name="colorPrimaryDark">#305236</item>
+        <item name="colorPrimaryContainer">#305236</item>
+        <item name="colorOnPrimaryContainer">#C9ECCB</item>
+        <item name="colorSecondary">#BCCFB7</item>
+        <item name="colorOnSecondary">#273423</item>
+        <item name="colorAccent">#BCCFB7</item>
+        <item name="colorControlActivated">#BCCFB7</item>
+        <item name="colorSecondaryContainer">#3E503A</item>
+        <item name="colorOnSecondaryContainer">#D5E8CF</item>
+    </style>
+
+    <style name="DarkDialogTheme_ThemeColor_Neutral" parent="DarkDialogTheme">
+        <item name="colorPrimary">#C7C7C7</item>
+        <item name="colorOnPrimary">#303030</item>
+        <item name="colorPrimaryDark">#474747</item>
+        <item name="colorPrimaryContainer">#474747</item>
+        <item name="colorOnPrimaryContainer">#E3E3E3</item>
+        <item name="colorSecondary">#C8C8C8</item>
+        <item name="colorOnSecondary">#303030</item>
+        <item name="colorAccent">#C8C8C8</item>
+        <item name="colorControlActivated">#C8C8C8</item>
+        <item name="colorSecondaryContainer">#464646</item>
+        <item name="colorOnSecondaryContainer">#E5E5E5</item>
+    </style>
+
+    <style name="DarkDialogTheme_ThemeColor_Green" parent="DarkDialogTheme">
+        <item name="colorPrimary">#9ED67D</item>
+        <item name="colorOnPrimary">#123800</item>
+        <item name="colorPrimaryDark">#205107</item>
+        <item name="colorPrimaryContainer">#205107</item>
+        <item name="colorOnPrimaryContainer">#B9F397</item>
+        <item name="colorSecondary">#BDCBB0</item>
+        <item name="colorOnSecondary">#283420</item>
+        <item name="colorAccent">#BDCBB0</item>
+        <item name="colorControlActivated">#BDCBB0</item>
+        <item name="colorSecondaryContainer">#3E4A36</item>
+        <item name="colorOnSecondaryContainer">#D9E7CB</item>
+    </style>
+
+    <style name="DarkDialogTheme_ThemeColor_Blue" parent="DarkDialogTheme">
+        <item name="colorPrimary">#9ECAFF</item>
+        <item name="colorOnPrimary">#003258</item>
+        <item name="colorPrimaryDark">#00497D</item>
+        <item name="colorPrimaryContainer">#00497D</item>
+        <item name="colorOnPrimaryContainer">#D1E4FF</item>
+        <item name="colorSecondary">#BBC7DB</item>
+        <item name="colorOnSecondary">#253140</item>
+        <item name="colorAccent">#BBC7DB</item>
+        <item name="colorControlActivated">#BBC7DB</item>
+        <item name="colorSecondaryContainer">#3B4858</item>
+        <item name="colorOnSecondaryContainer">#D7E3F8</item>
+    </style>
+
+    <style name="DarkDialogTheme_ThemeColor_Purple" parent="DarkDialogTheme">
+        <item name="colorPrimary">#D0BCFF</item>
+        <item name="colorOnPrimary">#381E72</item>
+        <item name="colorPrimaryDark">#4F378B</item>
+        <item name="colorPrimaryContainer">#4F378B</item>
+        <item name="colorOnPrimaryContainer">#EADDFF</item>
+        <item name="colorSecondary">#CCC2DC</item>
+        <item name="colorOnSecondary">#332D41</item>
+        <item name="colorAccent">#CCC2DC</item>
+        <item name="colorControlActivated">#CCC2DC</item>
+        <item name="colorSecondaryContainer">#4A4458</item>
+        <item name="colorOnSecondaryContainer">#E8DEF8</item>
+    </style>
+
+    <style name="DarkDialogTheme_ThemeColor_Orange" parent="DarkDialogTheme">
+        <item name="colorPrimary">#FFB86C</item>
+        <item name="colorOnPrimary">#4A2800</item>
+        <item name="colorPrimaryDark">#6A3A00</item>
+        <item name="colorPrimaryContainer">#6A3A00</item>
+        <item name="colorOnPrimaryContainer">#FFDCC2</item>
+        <item name="colorSecondary">#E5C09B</item>
+        <item name="colorOnSecondary">#432C12</item>
+        <item name="colorAccent">#E5C09B</item>
+        <item name="colorControlActivated">#E5C09B</item>
+        <item name="colorSecondaryContainer">#5C432B</item>
+        <item name="colorOnSecondaryContainer">#FFDCC2</item>
+    </style>
+
+    <style name="DarkDialogTheme_ThemeColor_Pink" parent="DarkDialogTheme">
+        <item name="colorPrimary">#FFB1CB</item>
+        <item name="colorOnPrimary">#5E1134</item>
+        <item name="colorPrimaryDark">#7B294A</item>
+        <item name="colorPrimaryContainer">#7B294A</item>
+        <item name="colorOnPrimaryContainer">#FFD8E7</item>
+        <item name="colorSecondary">#E2BDC7</item>
+        <item name="colorOnSecondary">#422932</item>
+        <item name="colorAccent">#E2BDC7</item>
+        <item name="colorControlActivated">#E2BDC7</item>
+        <item name="colorSecondaryContainer">#5A4148</item>
+        <item name="colorOnSecondaryContainer">#FFD8E7</item>
+    </style>
+
+    <style name="DarkDialogTheme_ThemeColor_Red" parent="DarkDialogTheme">
+        <item name="colorPrimary">#FFB4AB</item>
+        <item name="colorOnPrimary">#690005</item>
+        <item name="colorPrimaryDark">#93000A</item>
+        <item name="colorPrimaryContainer">#93000A</item>
+        <item name="colorOnPrimaryContainer">#FFDAD6</item>
+        <item name="colorSecondary">#E7BDB6</item>
+        <item name="colorOnSecondary">#442925</item>
+        <item name="colorAccent">#E7BDB6</item>
+        <item name="colorControlActivated">#E7BDB6</item>
+        <item name="colorSecondaryContainer">#5D3F3B</item>
+        <item name="colorOnSecondaryContainer">#FFDAD6</item>
+    </style>
+
+    <!-- Min-width dialog wrappers reuse the same theme-color roles. -->
+    <style name="LightDialogMinWidthTheme_ThemeColor_NewPipeMaterial"
+        parent="LightDialogTheme_ThemeColor_NewPipeMaterial">
+        <item name="android:windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
+    </style>
+    <style name="LightDialogMinWidthTheme_ThemeColor_Neutral"
+        parent="LightDialogTheme_ThemeColor_Neutral">
+        <item name="android:windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
+    </style>
+    <style name="LightDialogMinWidthTheme_ThemeColor_Green"
+        parent="LightDialogTheme_ThemeColor_Green">
+        <item name="android:windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
+    </style>
+    <style name="LightDialogMinWidthTheme_ThemeColor_Blue"
+        parent="LightDialogTheme_ThemeColor_Blue">
+        <item name="android:windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
+    </style>
+    <style name="LightDialogMinWidthTheme_ThemeColor_Purple"
+        parent="LightDialogTheme_ThemeColor_Purple">
+        <item name="android:windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
+    </style>
+    <style name="LightDialogMinWidthTheme_ThemeColor_Orange"
+        parent="LightDialogTheme_ThemeColor_Orange">
+        <item name="android:windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
+    </style>
+    <style name="LightDialogMinWidthTheme_ThemeColor_Pink"
+        parent="LightDialogTheme_ThemeColor_Pink">
+        <item name="android:windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
+    </style>
+    <style name="LightDialogMinWidthTheme_ThemeColor_Red"
+        parent="LightDialogTheme_ThemeColor_Red">
+        <item name="android:windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
+    </style>
+
+    <style name="DarkDialogMinWidthTheme_ThemeColor_NewPipeMaterial"
+        parent="DarkDialogTheme_ThemeColor_NewPipeMaterial">
+        <item name="android:windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
+    </style>
+    <style name="DarkDialogMinWidthTheme_ThemeColor_Neutral"
+        parent="DarkDialogTheme_ThemeColor_Neutral">
+        <item name="android:windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
+    </style>
+    <style name="DarkDialogMinWidthTheme_ThemeColor_Green"
+        parent="DarkDialogTheme_ThemeColor_Green">
+        <item name="android:windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
+    </style>
+    <style name="DarkDialogMinWidthTheme_ThemeColor_Blue"
+        parent="DarkDialogTheme_ThemeColor_Blue">
+        <item name="android:windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
+    </style>
+    <style name="DarkDialogMinWidthTheme_ThemeColor_Purple"
+        parent="DarkDialogTheme_ThemeColor_Purple">
+        <item name="android:windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
+    </style>
+    <style name="DarkDialogMinWidthTheme_ThemeColor_Orange"
+        parent="DarkDialogTheme_ThemeColor_Orange">
+        <item name="android:windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
+    </style>
+    <style name="DarkDialogMinWidthTheme_ThemeColor_Pink"
+        parent="DarkDialogTheme_ThemeColor_Pink">
+        <item name="android:windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
+    </style>
+    <style name="DarkDialogMinWidthTheme_ThemeColor_Red"
+        parent="DarkDialogTheme_ThemeColor_Red">
+        <item name="android:windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
+    </style>
+</resources>

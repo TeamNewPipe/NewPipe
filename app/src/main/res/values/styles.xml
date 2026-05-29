@@ -33,7 +33,7 @@
         <item name="colorSecondary">@color/light_m3_secondary_color</item>
         <item name="colorOnSecondary">@color/light_m3_on_secondary_color</item>
         <item name="colorSurface">@color/light_background_color</item>
-        <item name="colorOnSurface">@color/light_contrast_background_color</item>
+        <item name="colorOnSurface">#1B1C18</item>
         <item name="colorOnPrimary">@color/light_m3_on_primary_color</item>
         <item name="colorSecondaryContainer">@color/light_m3_secondary_container_color</item>
         <item name="colorOnSecondaryContainer">@color/light_m3_on_secondary_container_color</item>
@@ -195,7 +195,7 @@
         <item name="colorOnSecondary">#FFFFFF</item>
         <item name="colorAccent">#535F70</item>
         <item name="colorControlActivated">#535F70</item>
-        <item name="colorSecondaryContainer">#D7E3F8</item>
+        <item name="colorSecondaryContainer">#D7E3F7</item>
         <item name="colorOnSecondaryContainer">#101C2B</item>
     </style>
 
@@ -214,17 +214,17 @@
     </style>
 
     <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_Orange">
-        <item name="colorPrimary">#8C4A00</item>
+        <item name="colorPrimary">#9B4300</item>
         <item name="colorOnPrimary">#FFFFFF</item>
-        <item name="colorPrimaryDark">#FFDCC2</item>
-        <item name="colorPrimaryContainer">#FFDCC2</item>
-        <item name="colorOnPrimaryContainer">#2D1600</item>
-        <item name="colorSecondary">#765A3E</item>
+        <item name="colorPrimaryDark">#FFDBC8</item>
+        <item name="colorPrimaryContainer">#FFDBC8</item>
+        <item name="colorOnPrimaryContainer">#321200</item>
+        <item name="colorSecondary">#77574A</item>
         <item name="colorOnSecondary">#FFFFFF</item>
-        <item name="colorAccent">#765A3E</item>
-        <item name="colorControlActivated">#765A3E</item>
-        <item name="colorSecondaryContainer">#FFDCC2</item>
-        <item name="colorOnSecondaryContainer">#2B1703</item>
+        <item name="colorAccent">#77574A</item>
+        <item name="colorControlActivated">#77574A</item>
+        <item name="colorSecondaryContainer">#FFDBCE</item>
+        <item name="colorOnSecondaryContainer">#2C160D</item>
     </style>
 
     <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_Pink">
@@ -257,8 +257,12 @@
 
     <!-- Dialogs -->
     <style name="LightDialogTheme" parent="Theme.Material3.DayNight.Dialog">
+        <item name="colorPrimary">@color/light_m3_primary_color</item>
+        <item name="colorPrimaryContainer">@color/light_m3_primary_container_color</item>
+        <item name="colorSecondary">@color/light_m3_secondary_color</item>
+        <item name="colorAccent">@color/light_m3_secondary_color</item>
         <item name="colorSurface">@color/light_dialog_background_color</item>
-        <item name="colorOnSurface">@color/light_contrast_background_color</item>
+        <item name="colorOnSurface">#1B1C18</item>
         <item name="colorOnSurfaceVariant">@color/light_m3_on_surface_variant_color</item>
         <item name="colorOutline">@color/light_border_color</item>
         <item name="android:windowBackground">@color/light_dialog_background_color</item>
@@ -269,6 +273,10 @@
     </style>
 
     <style name="DarkDialogTheme" parent="Theme.Material3.DayNight.Dialog">
+        <item name="colorPrimary">@color/dark_m3_primary_color</item>
+        <item name="colorPrimaryContainer">@color/dark_m3_primary_container_color</item>
+        <item name="colorSecondary">@color/dark_m3_secondary_color</item>
+        <item name="colorAccent">@color/dark_m3_secondary_color</item>
         <item name="colorSurface">@color/dark_dialog_background_color</item>
         <item name="colorOnSurface">@color/white</item>
         <item name="colorOnSurfaceVariant">@color/dark_m3_on_surface_variant_color</item>
@@ -283,8 +291,12 @@
     <style name="LightDialogMinWidthTheme" parent="Theme.Material3.DayNight.Dialog">
         <item name="android:windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
         <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
+        <item name="colorPrimary">@color/light_m3_primary_color</item>
+        <item name="colorPrimaryContainer">@color/light_m3_primary_container_color</item>
+        <item name="colorSecondary">@color/light_m3_secondary_color</item>
+        <item name="colorAccent">@color/light_m3_secondary_color</item>
         <item name="colorSurface">@color/light_dialog_background_color</item>
-        <item name="colorOnSurface">@color/light_contrast_background_color</item>
+        <item name="colorOnSurface">#1B1C18</item>
         <item name="colorOnSurfaceVariant">@color/light_m3_on_surface_variant_color</item>
         <item name="colorOutline">@color/light_border_color</item>
         <item name="android:windowBackground">@color/light_dialog_background_color</item>
@@ -297,6 +309,10 @@
     <style name="DarkDialogMinWidthTheme" parent="Theme.Material3.DayNight.Dialog">
         <item name="android:windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
         <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
+        <item name="colorPrimary">@color/dark_m3_primary_color</item>
+        <item name="colorPrimaryContainer">@color/dark_m3_primary_container_color</item>
+        <item name="colorSecondary">@color/dark_m3_secondary_color</item>
+        <item name="colorAccent">@color/dark_m3_secondary_color</item>
         <item name="colorSurface">@color/dark_dialog_background_color</item>
         <item name="colorOnSurface">@color/white</item>
         <item name="colorOnSurfaceVariant">@color/dark_m3_on_surface_variant_color</item>
