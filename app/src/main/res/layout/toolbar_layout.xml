@@ -13,7 +13,10 @@
         android:background="?attr/colorSurface"
         android:gravity="center_vertical"
         android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ToolbarTheme">
+        android:theme="@style/ToolbarTheme"
+        app:navigationIconTint="?attr/colorOnSurface"
+        app:subtitleTextColor="?attr/colorOnSurfaceVariant"
+        app:titleTextColor="?attr/colorOnSurface">
 
         <include
             android:id="@+id/toolbar_search_container"

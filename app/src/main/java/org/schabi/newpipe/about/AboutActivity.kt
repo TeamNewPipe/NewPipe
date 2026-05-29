@@ -24,7 +24,7 @@ class AboutActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ThemeHelper.setTheme(this)
-        title = getString(R.string.title_activity_about)
+        title = getString(R.string.newpipe_material_about_title)
 
         val aboutBinding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(aboutBinding.root)
@@ -221,13 +221,6 @@ class AboutActivity : AppCompatActivity() {
                 StandardLicenses.APACHE2
             ),
             SoftwareComponent(
-                "ProcessPhoenix",
-                "2015",
-                "Jake Wharton",
-                "https://github.com/JakeWharton/ProcessPhoenix",
-                StandardLicenses.APACHE2
-            ),
-            SoftwareComponent(
                 "RxAndroid",
                 "2015",
                 "The RxAndroid authors",
@@ -244,16 +237,16 @@ class AboutActivity : AppCompatActivity() {
             SoftwareComponent(
                 "RxJava",
                 "2016 - 2020",
-                "RxJava Contributors",
+                "RxJava contributors",
                 "https://github.com/ReactiveX/RxJava",
                 StandardLicenses.APACHE2
             ),
             SoftwareComponent(
-                "SearchPreference",
-                "2018",
-                "ByteHamster",
-                "https://github.com/ByteHamster/SearchPreference",
-                StandardLicenses.MIT
+                "Stetho",
+                "2015",
+                "Facebook, Inc.",
+                "https://github.com/facebook/stetho",
+                StandardLicenses.BSD
             )
         )
     }
