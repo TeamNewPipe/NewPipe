@@ -1,142 +1,170 @@
-<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p> 
-<h2 align="center"><b>NewPipe</b></h2>
-<h4 align="center">Android için hafif ve özgür bir akış arayüzü.</h4>
+<p align="center"><a href="https://github.com/wizdom13/NewPipe"><img src="../assets/new_pipe_icon_5.png" width="150" alt="NewPipe Material simgesi"></a></p>
 
-<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-tr.svg" alt="Get it on F-Droid" width=206/></a></p>
+<h1 align="center">NewPipe Material</h1>
 
-<p align="center">
-<a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub sürümleri"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
-<a href="https://github.com/TeamNewPipe/NewPipe-nightly/releases" alt="GitHub NewPipe nightly releases"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe-nightly.svg?labelColor=purple&label=dev%20nightly"></a>
-<a href="https://github.com/TeamNewPipe/NewPipe-refactor-nightly/releases" alt="GitHub NewPipe refactor nightly releases"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe-refactor-nightly.svg?labelColor=purple&label=refactor%20nightly"></a>
-<a href="https://www.gnu.org/licenses/gpl-3.0" alt="Lisans: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
-<a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Derleme Durumu"><img src="https://github.com/TeamNewPipe/NewPipe/actions/workflows/ci.yml/badge.svg?branch=dev&event=push"></a>
-<a href="https://hosted.weblate.org/engage/newpipe/" alt="Çeviri Durumu"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
-</p>
+<p align="center"><b>Android için Material 3 odaklı bağımsız bir NewPipe çatalı.</b></p>
 
 <p align="center">
-<a href="https://web.libera.chat/#newpipe" alt="IRC kanalı: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
-<a href="https://matrix.to/#/#newpipe:matrix.newpipe-ev.de" alt="Matrix channel: #newpipe"><img src="https://img.shields.io/badge/Matrix%20chat-%23newpipe-blue"></a>
+  <a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg" alt="Lisans: GPLv3"></a>
+  <a href="https://github.com/wizdom13/NewPipe/actions"><img src="https://github.com/wizdom13/NewPipe/actions/workflows/ci.yml/badge.svg" alt="Derleme durumu"></a>
 </p>
 
-<hr>
-<p align="center"><a href="#ekran-fotoğrafları">Ekran fotoğrafları</a> &bull; <a href="#açıklama">Açıklama</a> &bull; <a href="#özellikler">Özellikler</a> &bull; <a href="#kurulum-ve-güncellemeler">Kurulum ve güncellemeler</a> &bull; <a href="#katkıda-bulunma">Katkıda bulunma</a> &bull; <a href="#bağış">Bağış</a> &bull; <a href="#lisans">Lisans</a></p>
-<p align="center"><a href="https://newpipe.net">Web sitesi</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">SSS</a> &bull; <a href="https://newpipe.net/press/">Basın</a></p>
-<hr>
+<p align="center"><b>Bu dosyayı şu dilde oku:</b> <a href="../README.md">English</a> &bull; <a href="README.de.md">Deutsch</a> &bull; <a href="README.es.md">Español</a> &bull; <a href="README.fr.md">Français</a> &bull; <a href="README.hi.md">हिन्दी</a> &bull; <a href="README.it.md">Italiano</a> &bull; <a href="README.ko.md">한국어</a> &bull; <a href="README.pt_BR.md">Português Brasil</a> &bull; <a href="README.pl.md">Polski</a> &bull; <a href="README.pa.md">ਪੰਜਾਬੀ</a> &bull; <a href="README.ja.md">日本語</a> &bull; <a href="README.ro.md">Română</a> &bull; <a href="README.so.md">Soomaali</a> &bull; <a href="README.tr.md">Türkçe</a> &bull; <a href="README.zh_TW.md">正體中文</a> &bull; <a href="README.asm.md">অসমীয়া</a> &bull; <a href="README.sr.md">Српски</a> &bull; <a href="README.ar.md">العربية</a></p>
 
-*Read this document in other languages: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md) , [العربية](README.ar.md)*
+---
 
-> [!warning]
-> <b>BU SÜRÜM BETA SÜRÜMÜDÜR, BU NEDENLE HATALARLA KARŞILAŞABİLİRSİNİZ. HATA BULURSANIZ BU GITHUB DEPOSUNDA BUNU BİLDİRİN.</b>
->
-> <b>GOOGLE PLAY STORE'A NEWPIPE VEYA BAŞKA BİR KOPYASINI KOYMAK, PLAY STORE ŞARTLARINI VE KOŞULLARINI İHLAL EDER.</b>
+## Önemli çatal bildirimi
+
+NewPipe Material, Material 3 tasarımına, uygulama temalarına ve ürün cilasına odaklanan, bağımsız olarak sürdürülen bir NewPipe çatalıdır.
+
+Bu proje resmi NewPipe projesi, TeamNewPipe veya NewPipe e.V. ile **bağlantılı, sponsorlu ya da onlar tarafından onaylanmış değildir**.
+
+NewPipe Material, NewPipe üzerine kuruludur ve NewPipe özgür yazılım lisansını, upstream katkı bilgilerini ve üçüncü taraf lisans bildirimlerini korur.
+
+---
+
+## NewPipe Material nedir?
+
+NewPipe Material, NewPipe’ın temel deneyimini korurken uygulama kimliğini ve kullanıcı arayüzünü modernleştirir.
+
+Bu çatalın hedefleri:
+
+- Material 3 esintili yüzeyler, iletişim kutuları, ayarlar, sekmeler ve gezinme;
+- Kullanılabilir olduğunda Material You dinamik renkleri;
+- Uygulama varsayılanı, nötr, yeşil, mavi, mor, turuncu, pembe ve kırmızı gibi elle seçilen tema renkleri;
+- Yeni uygulama kimliği: **NewPipe Material**;
+- Ayrı uygulama kimliği: `org.wisso.newpipematerial`;
+- Hata ayıklama sürümleri `org.wisso.newpipematerial.debug` olarak ayrı yüklenir;
+- NewPipe davranışı, içe/dışa aktarma uyumluluğu ve desteklenen servisler korunur.
+
+Bu çatal, oynatma, indirme, arka plan oynatma, açılır oynatıcı ve Extractor mantığı gibi hassas alanlarda riskli davranış değişikliklerinden kaçınır; bu alanlar ancak ayrı ve test edilmiş değişiklikler olarak ele alınır.
+
+---
 
 ## Ekran görüntüleri
 
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/00.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/00.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png)
-<br/><br/>
-[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png)
-[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png)
+### Telefon
 
-## Açıklama
+<p align="center">
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" width="160" alt="Telefon ekran görüntüsü 1"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png" width="160" alt="Telefon ekran görüntüsü 2"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png" width="160" alt="Telefon ekran görüntüsü 3"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png" width="160" alt="Telefon ekran görüntüsü 4"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png" width="160" alt="Telefon ekran görüntüsü 5"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png" width="160" alt="Telefon ekran görüntüsü 6"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png" width="160" alt="Telefon ekran görüntüsü 7"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png" width="160" alt="Telefon ekran görüntüsü 8"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/09.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/09.png" width="160" alt="Telefon ekran görüntüsü 9"></a>
+</p>
 
-NewPipe herhangi bir Google çerçeve kütüphanesini, ya da YouTube API hizmetlerini kullanmaz. Gerekli web hizmetleri yalnızca gerekli bilgileri almak için kaynak olarak kullanılır, bu nedenle bu uygulama Google hizmetleri yüklü olmayan cihazlarda da kullanılabilir. Ayrıca, copyleft özgür yazılımı olan NewPipe'ı kullanmak için bir YouTube hesabına ihtiyacınız yoktur.
+### Tablet
 
-### Özellikler
+<p align="center">
+  <a href="../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png"><img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png" width="405" alt="Tablet ekran görüntüsü 1"></a>
+  <a href="../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png"><img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png" width="405" alt="Tablet ekran görüntüsü 2"></a>
+</p>
 
-* Video arama
-* Videolar hakkında genel bilgileri görüntüleme
-* YouTube videoları izleme
-* YouTube videolarını dinleme
-* Pop-up modu (hareketli oynatıcı)
-* Video izlemek için akış oynatıcısını seçme
-* Video indirme
-* Sadece ses indirme
-* Videoyu Kodi'de açma
-* Sonraki video/ilgili videolar
-* YouTube'u belirli bir dilde arayın
-* Yaş sınırlı içeriği izleme/engelleme
-* Kanallar hakkındaki genel bilgileri görüntüleme
-* Kanal arama
-* Bir kanaldaki videoları izleme
-* Orbot/Tor desteği (henüz direkt olarak değil)
-* 1080p/2K/4K desteği
-* Geçmişi görme
-* Kanallara abone olma
-* Geçmişte arama
-* Oynatma listesi arama/oynatma
-* Çalma listelerini sıralayıp oynatın
-* Videoları sırayla oynatın
-* Yerel oynatma listeleri
-* Altyazılar
-* Canlı yayın desteği
-* Yorumları görme
+---
 
-### Desteklenen servisler
+## Desteklenen servisler
 
-NewPipe birden fazla hizmeti destekler. Uygulamaya ve ayıklayıcıya yeni bir hizmet ekleme konusunda daha fazla bilgiye [kılavuzlarımızdan](https://teamnewpipe.github.io/documentation/) ulaşabilirsiniz. Yeni bir hizmet eklemek istiyorsanız lütfen bizimle iletişime geçin. Şu anda desteklenen hizmetler şunlardır:
+NewPipe Material, NewPipe’ın YouTube, YouTube Music, PeerTube, Bandcamp, SoundCloud ve media.ccc.de desteğini devralır.
 
-* YouTube
-* SoundCloud \[beta\]
-* media.ccc.de \[beta\]
-* PeerTube \[beta\]
-* Bandcamp \[beta\]
+Servis desteği upstream NewPipe ve NewPipe Extractor koduna bağlıdır.
 
-<!-- Eski bağlantıları uyumlu tutmak için gizli span. -->
-<span id="updates"></span>
+---
 
-## Kurulum ve güncellemeler
-Aşağıdaki yöntemlerden birini kullanarak NewPipe'ı kurabilirsiniz:
- 1. Özel depomuzu F-Droid'e ekleyin ve oradan yükleyin. Kılavuzu şurada bulabilirsiniz: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
- 2. APK'yı [GitHub sürümlerinden](https://github.com/TeamNewPipe/NewPipe/releases) indirin ve kurun.
- 3. F-Droid ile güncelleyin. Bu, güncellemeleri almanın en yavaş yöntemidir, çünkü F-Droid değişiklikleri tanımalı, APK'yı kendisi oluşturmalı, imzalamalı ve ardından güncellemeyi kullanıcılara dağıtmalıdır.
- 4. Kendiniz bir APK derleyin. Bu yöntem, cihazınızda yeni özellikler edinmenin en hızlı yoludur, ancak çok daha karmaşıktır, bu nedenle diğer yöntemlerden birini kullanmanızı öneririz.
+## Özellikler
 
-Çoğu kullanıcı için yöntem 1'i öneririz. Yöntem 1 veya 2 kullanılarak yüklenen APK'lar birbiriyle uyumludur, ancak yöntem 3 kullanılarak yüklenenlerle uyumlu değildir. Bu durum, 1 ve 2 için kullanılan aynı imzalama anahtarıın (bizim anahtarımız) 3 için kullanılan imzalama anahtarından (F-Droid'in anahtarı) farklı olmasından kaynaklanmaktadır. Yöntem 4 kullanılarak oluşturulan deneysel APK'larda anahtar yoktur. İmzalama anahtarları, bir kullanıcının bir uygulamaya kötü amaçlı bir güncelleme yüklemek için kandırılmadığından emin olmanıza yardımcı olur.
+NewPipe Material; video ve canlı yayın izleme, arka plan oynatma, açılır oynatıcı, yerel oynatma listeleri, platform hesabı olmadan abonelikler, kanal grupları, arama, video ayrıntıları, indirmeler ve veri içe/dışa aktarma gibi tanıdık NewPipe özelliklerini korur.
 
-Bu arada, herhangi bir nedenle kaynakları değiştirmek istiyorsanız (örneğin, NewPipe'ın temel bir işlevi bozuldu ve F-Droid tarafında henüz bir güncelleme yayınlanmadı), bu prosedürü izlemenizi öneririz:
-1. Verilerinizi yedekleyin. `NewPipe Ayarları > İçerik > Veritabanını dışa aktar` seçeneklerini izleyerek aboneliklerinizi, oynatma listelerinizi ve geçmişinizi yedekleyin.
-2. NewPipe'ı kaldırın
-3. APK dosyasını yeni bir kaynaktan indirin ve yükleyin
-4. `Ayarlar > İçerik > Veritabanını içe aktar` seçeneklerini izleyerek 1. adımdaki verileri içe aktarın
+Material eklemeleri arasında Material 3 renk rolleri, beş veya daha az ana sekme için alt gezinme, dinamik/elle seçilen tema renkleri, Hakkında ekranında çatal atfı ve sürüm imzalama desteği bulunur.
+
+---
+
+## Kurulum
+
+NewPipe Material’ı bu deponun GitHub sürümlerinden veya mevcut olduğunda imzalı derleme çıktılarından yükleyin.
+
+```text
+Resmi NewPipe:    org.schabi.newpipe / upstream derlemeye göre net.newpipe.app
+NewPipe Material: org.wisso.newpipematerial
+Debug:            org.wisso.newpipematerial.debug
+```
+
+Verileri taşımak için resmi NewPipe’tan Settings > Backup and Restore üzerinden veritabanını dışa aktarın, NewPipe Material’ı kurun ve yedeği içe aktarın. Her zaman bir yedek saklayın.
+
+NewPipe Material, NewPipe veya NewPipe çatallarını Google Play’de yayımlamayın.
+
+---
+
+## Kaynaktan derleme
+
+Gereksinimler: JDK 21, Android SDK ve bu depodaki Gradle wrapper.
+
+```bash
+./gradlew runCheckstyle -DskipFormatKtlint
+./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint
+./gradlew assembleDebug -DskipFormatKtlint
+```
+
+Debug derlemesi **NewPipe Material Debug** adını ve `org.wisso.newpipematerial.debug` paketini kullanır.
+
+---
+
+## Sürüm imzalama
+
+Ortam değişkenleri:
+
+```text
+NEWPIPE_MATERIAL_RELEASE_STORE_FILE
+NEWPIPE_MATERIAL_RELEASE_STORE_PASSWORD
+NEWPIPE_MATERIAL_RELEASE_KEY_ALIAS
+NEWPIPE_MATERIAL_RELEASE_KEY_PASSWORD
+```
+
+Önerilen doğrulama:
+
+```bash
+./gradlew assembleRelease -DskipFormatKtlint
+apksigner verify --verbose --print-certs app/build/outputs/apk/release/app-release.apk
+```
+
+---
+
+## Geliştirme durumu
+
+Tamamlanan veya devam edenler: uygulama adı ve kimliği, debug/release ayrımı, Material 3 renkleri, dinamik/elle seçilen renkler, alt gezinme, Hakkında ekranı, iletişim kutuları, snackbars, ayarlar, video ayrıntıları, indirme arayüzü ve imzalama iş akışı.
+
+Ertelenen veya yüksek riskli alanlar: ana oynatıcı katmanı, seekbar/hareket renkleri, kuyruk denetimleri, kalite/ses/altyazı menüleri ve geniş oynatma ya da indirme davranış değişiklikleri.
+
+---
 
 ## Katkıda bulunma
-Fikirleriniz, çevirileriniz, tasarım değişiklikleriniz, kod temizlemeniz veya ağır kod değişiklikleriniz olsun, yardımınıza her zaman açığız.
-Yapılan her değişiklikle NewPipe daha da iyi bir konuma geliyor!
 
-Eğer yer almak istiyorsanız, [katkı sağlayanlar için hazırladığımız notları](../.github/CONTRIBUTING.md) kontrol edin.
+Katkılar memnuniyetle karşılanır: hata düzeltmeleri, QA, belgelendirme, sürüm hazırlığı ve odaklı Material 3 cilası. Değişiklikleri odaklı ve test edilebilir tutun.
 
-<a href="https://hosted.weblate.org/engage/newpipe/">
-<img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Çeviri istatistikleri" />
-</a>
+---
+
+## Upstream NewPipe
+
+- NewPipe deposu: https://github.com/TeamNewPipe/NewPipe
+- NewPipe web sitesi: https://newpipe.net
+- NewPipe SSS: https://newpipe.net/FAQ/
+- NewPipe Extractor: https://github.com/TeamNewPipe/NewPipeExtractor
+
+Çatala özgü sorunlar bu depoya aittir. Servis veya Extractor sorunları resmi NewPipe ile de karşılaştırılmalıdır.
+
+---
 
 ## Bağış
-NewPipe'ı beğendiyseniz, yapacağınız bağışlar bizi motive eder. Bitcoin gönderebilir veya Bountysource veya Liberapay aracılığıyla bağış yapabilirsiniz. NewPipe'a bağış yapma hakkında daha fazla bilgi için lütfen [web sitemizi](https://newpipe.net/donate) ziyaret edin.
 
-<table>
-  <tr>
-    <td><a href="https://liberapay.com/TeamNewPipe/"><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/"><img src="../assets/liberapay_qr_code.png" alt="liberapay.com üzerinde NewPipe'ı ziyaret edin" width="100px"></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="../assets/liberapay_donate_button.svg" alt="Liberapay aracılığıyla bağış yapın" height="35px"></a></td>
-  </tr>
-</table>
+Upstream NewPipe’ı desteklemek için: https://newpipe.net/donate
 
-## Gizlilik politikası
+NewPipe Material bağımsız bir çataldır; upstream bağışlar upstream NewPipe projesine gider, otomatik olarak bu çatala gitmez.
 
-NewPipe projesi, çevrimiçi akış hizmetlerini kullanmak için özel, özgür ve anonim bir deneyim sunmayı amaçlamaktadır.
-Bu doğrultuda, uygulama sizin izniniz olmadan herhangi bir veri toplamaz. NewPipe'ın Gizlilik Politikası, bir çökme raporu gönderdiğinizde veya blogumuzda yorum yaptığınızda hangi verilerin gönderildiğini ve saklandığını ayrıntılı olarak açıklar. İlgili belgeyi [burada](https://newpipe.net/legal/privacy/) bulabilirsiniz.
+---
 
 ## Lisans
-[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
 
-NewPipe özgür bir yazılımdır. Kendi başınıza kullanabilir, öğrenebilir, paylaşabilir
-ve geliştirebilirsiniz. Free Software Foundation tarafından yayınlanan GNU Genel Kamu Lisansı,
-Lisansın 3. sürümü veya (isteğe bağlı olarak) daha sonraki bir sürümü şartları ve
-koşulları altında yeniden dağıtabilir ve/veya değiştirebilirsiniz.
+NewPipe Material, NewPipe tabanlı özgür yazılımdır ve GNU General Public License sürüm 3 veya sonrası altında dağıtılır. Ayrıntılar için depodaki lisans dosyalarına ve uygulamadaki lisans ekranına bakın.
