@@ -1,142 +1,159 @@
-<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p> 
-<h2 align="center"><b>NewPipe</b></h2>
-<h4 align="center">A libre lightweight streaming frontend for Android.</h4>
+<p align="center"><a href="https://github.com/wizdom13/NewPipe"><img src="../assets/new_pipe_icon_5.png" width="150" alt="NewPipe Material 아이콘"></a></p>
 
-<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-ko.svg" alt="Get it on F-Droid" width=206/></a></p>
+<h1 align="center">NewPipe Material</h1>
 
-<p align="center">
-<a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub release"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
-<a href="https://github.com/TeamNewPipe/NewPipe-nightly/releases" alt="GitHub NewPipe nightly releases"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe-nightly.svg?labelColor=purple&label=dev%20nightly"></a>
-<a href="https://github.com/TeamNewPipe/NewPipe-refactor-nightly/releases" alt="GitHub NewPipe refactor nightly releases"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe-refactor-nightly.svg?labelColor=purple&label=refactor%20nightly"></a>
-<a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
-<a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Build Status"><img src="https://github.com/TeamNewPipe/NewPipe/actions/workflows/ci.yml/badge.svg?branch=dev&event=push"></a>
-<a href="https://hosted.weblate.org/engage/newpipe/" alt="Translation Status"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
-</p>
+<p align="center"><b>Android용 NewPipe의 Material 3 중심 독립 포크입니다.</b></p>
 
 <p align="center">
-<a href="https://web.libera.chat/#newpipe" alt="IRC channel: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
-<a href="https://matrix.to/#/#newpipe:matrix.newpipe-ev.de" alt="Matrix channel: #newpipe"><img src="https://img.shields.io/badge/Matrix%20chat-%23newpipe-blue"></a>
+  <a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg" alt="License: GPLv3"></a>
+  <a href="https://github.com/wizdom13/NewPipe/actions"><img src="https://github.com/wizdom13/NewPipe/actions/workflows/ci.yml/badge.svg" alt="Build status"></a>
 </p>
 
-<hr>
-<p align="center"><a href="#screenshots">Screenshots</a> &bull; <a href="#description">Description</a> &bull; <a href="#features">Features</a> &bull; <a href="#updates">Updates</a> &bull; <a href="#contribution">Contribution</a> &bull; <a href="#donate">Donate</a> &bull; <a href="#license">License</a></p>
-<p align="center"><a href="https://newpipe.net">Website</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Press</a></p>
-<hr>
+<p align="center"><b>다른 언어:</b> <a href="../README.md">English</a> &bull; <a href="README.de.md">Deutsch</a> &bull; <a href="README.es.md">Español</a> &bull; <a href="README.fr.md">Français</a> &bull; <a href="README.hi.md">हिन्दी</a> &bull; <a href="README.it.md">Italiano</a> &bull; <a href="README.ko.md">한국어</a> &bull; <a href="README.pt_BR.md">Português Brasil</a> &bull; <a href="README.pl.md">Polski</a> &bull; <a href="README.pa.md">ਪੰਜਾਬੀ</a> &bull; <a href="README.ja.md">日本語</a> &bull; <a href="README.ro.md">Română</a> &bull; <a href="README.so.md">Soomaali</a> &bull; <a href="README.tr.md">Türkçe</a> &bull; <a href="README.zh_TW.md">正體中文</a> &bull; <a href="README.asm.md">অসমীয়া</a> &bull; <a href="README.sr.md">Српски</a> &bull; <a href="README.ar.md">العربية</a></p>
 
-*Read this document in other languages: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md) , [العربية](README.ar.md)*
+---
 
-> [!warning]
-> <b>이 버전은 베타 버전이므로, 버그가 발생할 수도 있습니다. 만약 버그가 발생하였다면, 우리의 GitHub 저장소에서 Issue를 열람하여 주십시오.</b>
->
-> <b>NewPipe 또는 NewPipe 포크를 구글 플레이스토어에 올리는 것은 그들의 이용약관을 위반합니다.</b>
+## 중요한 포크 안내
+
+NewPipe Material은 Material 3 디자인, 앱 테마, 제품 완성도에 집중하는 NewPipe의 독립 유지 포크입니다.
+
+이 프로젝트는 공식 NewPipe 프로젝트, TeamNewPipe 또는 NewPipe e.V.와 **제휴, 후원 또는 승인 관계가 아닙니다**.
+
+NewPipe Material은 NewPipe를 기반으로 하며 NewPipe의 자유 소프트웨어 라이선스, 업스트림 크레딧, 서드파티 라이선스 고지를 유지합니다.
+
+---
+
+## NewPipe Material이란?
+
+NewPipe Material은 NewPipe의 핵심 경험을 유지하면서 앱 정체성과 사용자 인터페이스를 현대화합니다.
+
+목표:
+
+- Material 3에서 영감을 받은 화면, 대화상자, 설정, 탭, 내비게이션
+- 사용 가능한 경우 Material You 동적 색상 지원
+- App default, Neutral, Green, Blue, Purple, Orange, Pink, Red 수동 테마 색상
+- 새 앱 정체성: **NewPipe Material**
+- 별도 application ID: `org.wisso.newpipematerial`
+- debug build는 `org.wisso.newpipematerial.debug`로 별도 설치
+- NewPipe 동작, 가져오기/내보내기 호환성, 지원 서비스를 유지
+
+재생, 다운로드, 백그라운드 재생, 팝업 재생, Extractor 로직 같은 민감한 영역은 전용 테스트 변경이 아닌 한 위험한 동작 변경을 피합니다.
+
+---
 
 ## 스크린샷
 
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/00.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/00.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png)
-<br/><br/>
-[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png)
-[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png)
+### Phone
 
-### 지원되는 서비스
+<p align="center">
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" width="160" alt="Phone screenshot 1"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png" width="160" alt="Phone screenshot 2"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png" width="160" alt="Phone screenshot 3"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png" width="160" alt="Phone screenshot 4"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png" width="160" alt="Phone screenshot 5"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png" width="160" alt="Phone screenshot 6"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png" width="160" alt="Phone screenshot 7"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png" width="160" alt="Phone screenshot 8"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/09.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/09.png" width="160" alt="Phone screenshot 9"></a>
+</p>
 
-NewPipe는 현재 이 서비스들을 지원합니다: 
+### Tablet
 
-* YouTube ([웹사이트](https://www.youtube.com/)) 와 YouTube Music ([웹사이트](https://music.youtube.com/)) ([위키](https://en.wikipedia.org/wiki/YouTube))
-* PeerTube ([웹사이트](https://joinpeertube.org/)) 와 모든 인스턴스 (인스턴스가 무엇인지 아려면 웹사이트를 참조하세요.) ([위키](https://en.wikipedia.org/wiki/PeerTube))
-* Bandcamp ([웹사이트](https://bandcamp.com/)) ([위키](https://en.wikipedia.org/wiki/Bandcamp))
-* SoundCloud ([웹사이트](https://soundcloud.com/)) ([위키](https://en.wikipedia.org/wiki/SoundCloud))
-* media.ccc.de ([웹사이트](https://media.ccc.de/)) ([위키](https://en.wikipedia.org/wiki/Chaos_Computer_Club))
+<p align="center">
+  <a href="../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png"><img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png" width="405" alt="Tablet screenshot 1"></a>
+  <a href="../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png"><img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png" width="405" alt="Tablet screenshot 2"></a>
+</p>
 
-NewPipe는 여러 영상·오디오 서비스를 지원합니다. YouTube부터 시작해서, 다른 사람들이 몇 년간 여러 서비스들을 추가해주어 NewPipe의 기능을 풍부하게 해 주었습니다.
+---
 
-현재 상황과, YouTube의 인기로 인해 현재 서비스 중에서 YouTube가 가장 잘 지원됩니다. 다른 서비스를 사용하시거나, 잘 알고 계시다면 지원을 개선할 수 있도록 도와주세요! SoundCloud와 PeerTube의 관리자를 찾고 있습니다.
+## 지원 서비스
 
-새로운 서비스를 추가하고 싶으시다면, 먼저 저희에게 연락해 주세요! 저희의 [문서](https://teamnewpipe.github.io/documentation/)가 앱과 [NewPipe Extractor](https://github.com/TeamNewPipe/NewPipeExtractor)에 서비스를 추가하는 법에 대한 정보를 제공합니다.
+NewPipe Material은 NewPipe의 YouTube, YouTube Music, PeerTube, Bandcamp, SoundCloud, media.ccc.de 지원을 계승합니다.
 
-## 설명
+---
 
-NewPipe는 서비스의 공식 API를 이용하여 정보를 받아오는 방식으로 작동합니다. 공식 API가 저희의 목적을 제한하는 경우 (예: YouTube), 또는 독점적인 경우 NewPipe는 웹사이트의 구문을 분석하거나 내부 API를 사용합니다. 즉, NewPipe를 사용할 때 계정은 필요하지 않습니다.
+## 기능
 
-### 기능
+NewPipe Material은 동영상과 라이브 스트림, 백그라운드 재생, 팝업 플레이어, 로컬 재생목록, 플랫폼 계정 없는 구독, 채널 그룹, 검색, 동영상 세부정보, 다운로드, 데이터 가져오기/내보내기 등 NewPipe의 익숙한 기능을 유지합니다.
 
-* 최대 4K 화질로 영상 보기
-* 백그라운드에서 노래 듣기 (노래 데이터만을 가져오므로 데이터 절약)
-* 팝업 모드 (floating player, 또는 Picture-in-Picture)
-* 실시간 영상 보기
-* 부제/자막 표시/숨기기
-* 영상과 오디오 검색하기 (YouTube에서는 콘텐츠 언어를 지정할 수 있습니다)
-* 영상 대기열 추가 (로컬 플레이리스트에 추가 가능)
-* 영상에 대한 기본 정보 표시/숨기기 (설명이나 태그 등)
-* 다음/관련 영상 표시/숨기기
-* 댓글 표시/숨기기
-* 영상, 오디오, 채널, 플레이리스트, 앨범 검색하기
-* 채널 내부에서 영상, 오디오 찾기
-* 채널 구독하기 (계정에 로그인 불필요!)
-* 구독한 채널의 영상 알림 받기
-* 채널 그룹 생성, 수정 (쉬운 탐색과 관리를 위해)
-* 채널 그룹에서 생성된 영상 피드 탐색
-* 시청 기록 보기, 검색
-* 플레이리스트 검색, 시청 (서비스에서 원격으로 받아옴)
-* 로컬 플레이리스트 만들기/수정 (다른 서비스에서 할 필요 없이 NewPipe 내부에 저장)
-* 영상/오디오/자막 다운로드
-* Kodi에서 열기
-* 나이 제한 영상 시청/차단
+Material 추가 사항에는 Material 3 색상 역할, 5개 이하 메인 탭의 하단 내비게이션, 동적/수동 테마 색상, About 화면의 포크 표기, release signing 지원이 포함됩니다.
 
-## 설치 및 업데이트
-당신은 NewPipe를 설치하기 위해 이 방법 중 하나를 사용할 수 있습니다:
- 1. 우리의 커스텀 저장소를 F-Droid에 추가하고 우리가 릴리즈를 게시하는 대로 F-Droid에서 릴리즈를 설치할 수 있습니다. 지침은 여기 있습니다: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
- 2. 우리가 릴리즈를 게시하는 대로 [GitHub Releases](https://github.com/TeamNewPipe/NewPipe/releases)에서 APK를 받고 이것을 설치할 수 있습니다.
- 3. F-Droid를 통해 업데이트 할 수 있습니다. F-Droid는 변화를 인식하고, 스스로 APK를 생성하고, 이것에 서명하고, 사용자들에서 업데이트를 전달해야만 하기 때문에,
- 이것은 업데이트를 받는 가장 느린 방법입니다.
- 4. 스스로 디버그 APK 빌드하기. 이것은 새 기능을 기기에 추가하는 가장 빠른 방법이지만, 매우 복잡하므로, 다른 방법 중 하나를 사용하는 것을 권장합니다.
- 5. 이 저장소의 PR에 제공된 기능 또는 버그 픽스에 관심이 있다면, PR의 APK를 받을 수 있습니다. 지침을 위해선 PR 설명을 따르십시오. PR APK는 공식 APK와 같이 설치되기 때문에, 데이터를 잃거나 무언가 잘못될 걱정을 하지 않으도 됩니다.
+---
 
-우리는 대부분의 사용자에게 1번째 방법을 추천합니다. 방법 1 또는 2를 사용하여 설치된 APK는 서로 호환되지만 (NewPipe를 방법 1로 설치한 후 방법 2로 업데이트할 수 있음을 의미합니다), 방법 3을 사용하여 설치된 것들과는 호환되지 않습니다. 이것은 방법 1 또는 2에서는 같은 (우리의)서명 키가 사용되지만, 방법 3에서는 다른 (F-Droid의)서명 키가 사용되기 때문입니다. 방법 4를 사용하여 디버그 APK를 생성하는 것에서는 키가 완전히 제외됩니다. 서명 키는 사용자가 앱에 악의적인 업데이트를 설치하는 것에 대해 속지 않도록 보장하는 것을 도와줍니다.
+## 설치
 
-한편, 만약 어떠한 이유(예. NewPipe의 핵심 기능이 손상되었고 F-Droid에 아직 업데이트가 없는 경우) 때문에 소스를 바꾸길 원한다면, 
-우리는 다음과 같은 절차를 따르는 것을 권장합니다:
-1. 당신의 기록, 구독, 그리고 재생목록을 유지할 수 있도록 Settings > Content > Export Database 를 통해 데이터를 백업하십시오.
-2. NewPipe를 삭제하십시오.
-3. 새로운 소스에서 APK를 다운로드하고 이것을 설치하십시오.
-4. Step 1의 Settings > Content > Import Database 을 통해 데이터를 불러오십시오.
+이 저장소의 GitHub Releases 또는 서명된 artifact가 제공될 때 설치하세요.
+
+```text
+Official NewPipe: org.schabi.newpipe / net.newpipe.app upstream build에 따라 다름
+NewPipe Material: org.wisso.newpipematerial
+Debug:            org.wisso.newpipematerial.debug
+```
+
+데이터 이전은 공식 NewPipe의 Settings > Backup and Restore에서 database를 export한 뒤 NewPipe Material을 설치하고 backup을 import하세요. 항상 백업을 보관하세요.
+
+NewPipe Material, NewPipe 또는 NewPipe 포크를 Google Play에 게시하지 마세요.
+
+---
+
+## 소스에서 빌드
+
+Requirements: JDK 21, Android SDK, repository Gradle wrapper.
+
+```bash
+./gradlew runCheckstyle -DskipFormatKtlint
+./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint
+./gradlew assembleDebug -DskipFormatKtlint
+```
+
+Debug build는 **NewPipe Material Debug** 이름과 `org.wisso.newpipematerial.debug` package를 사용합니다.
+
+---
+
+## Release signing
+
+```text
+NEWPIPE_MATERIAL_RELEASE_STORE_FILE
+NEWPIPE_MATERIAL_RELEASE_STORE_PASSWORD
+NEWPIPE_MATERIAL_RELEASE_KEY_ALIAS
+NEWPIPE_MATERIAL_RELEASE_KEY_PASSWORD
+```
+
+---
+
+## 개발 상태
+
+완료 또는 진행 중: 앱 이름과 ID, debug/release identity 분리, Material 3 colors, dynamic/manual colors, bottom navigation, About screen, dialogs, snackbars, settings, video detail, download UI, signing workflow.
+
+보류 또는 고위험: main player overlay, seekbar/gesture colors, queue controls, quality/audio/caption menus, 광범위한 playback/download behavior changes.
+
+---
 
 ## 기여
-당신이 아이디어, 번역, 디자인 변경, 코드 정리, 또는 정말 큰 코드 수정에 대한 의견이 있다면, 도움은 항상 환영합니다.
-더 많이 수행될수록 더 많이 발전할 수 있습니다! 
 
-만약 참여하고 싶다면, 우리의 [기여 공지](../.github/CONTRIBUTING.md)를 참고하십시오.
+버그 수정, QA, 문서, release readiness, 집중된 Material 3 polish 기여를 환영합니다. 변경은 작고 테스트 가능하게 유지하세요.
 
-<a href="https://hosted.weblate.org/engage/newpipe/">
-<img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Translation status" />
-</a>
+---
 
-## 기부
-만약 NewPipe가 마음에 들었다면, 우리는 기부에 대해 기꺼이 환영합니다. bitcoin을 보내거나, Bountysource 또는 Liberapay를 통해 기부할 수 있습니다. NewPipe에 기부하는 것에 대한 자세한 정보를 원한다면, 우리의 [웹사이트](https://newpipe.net/donate)를 방문하여 주십시오.
+## Upstream NewPipe
 
-<table>
-  <tr>
-    <td><a href="https://liberapay.com/TeamNewPipe/"><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/"><img src="../assets/liberapay_qr_code.png" alt="Visit NewPipe at liberapay.com" width="100px"></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="../assets/liberapay_donate_button.svg" alt="Donate via Liberapay" height="35px"></a></td>
-  </tr>
-</table>
+- NewPipe repository: https://github.com/TeamNewPipe/NewPipe
+- NewPipe website: https://newpipe.net
+- NewPipe FAQ: https://newpipe.net/FAQ/
+- NewPipe Extractor: https://github.com/TeamNewPipe/NewPipeExtractor
 
-## 개인정보 보호 정책
+포크 관련 문제는 이 저장소에 보고하세요. 서비스 또는 Extractor 문제는 공식 NewPipe와 비교가 필요할 수 있습니다.
 
-NewPipe 프로젝트는 미디어 웹 서비스를 사용하는 것에 대한 사적의, 익명의 경험을 제공하는 것을 목표로 하고 있습니다.
-그러므로, 앱은 당신의 동의 없이 어떤 데이터도 수집하지 않습니다. NewPipe의 개인정보보호정책은 당신이 충돌 리포트를 보내거나, 또는 우리의 블로그에 글을 남길 때 어떤 데이터가 보내지고 저장되는지에 대해 상세히 설명합니다. 이 문서는 [여기](https://newpipe.net/legal/privacy/)에서 확인할 수 있습니다.
+---
 
-## 라이선스
-[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
+## Donate
 
-NewPipe는 자유 소프트웨어입니다: 당신의 마음대로 이것을 사용하고, 연구하고, 공유하고, 개선할 수 있습니다. 
-구체적으로 당신은 자유 소프트웨어 재단에서 발행되는, 버전 3 또는 (당신의 선택에 따라)이후 버전의,
-[GNU General Public License](https://www.gnu.org/licenses/gpl.html) 하에서 이것을 재배포 및/또는 수정할 수 있습니다. 
+Upstream NewPipe 지원: https://newpipe.net/donate
+
+NewPipe Material은 독립 포크입니다. upstream 기부는 upstream NewPipe project로 가며 이 포크에 자동으로 전달되지 않습니다.
+
+---
+
+## License
+
+NewPipe Material은 NewPipe 기반 free software이며 GNU General Public License version 3 이상으로 배포됩니다. 자세한 내용은 repository license files와 앱 내 license screen을 확인하세요.
