@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Android 12+ system splash screen for Dark/Black themes. -->
+    <style name="OpeningTheme" parent="Base.OpeningTheme">
+        <item name="android:windowSplashScreenBackground">@color/dark_background_color</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_newpipe_material_splash</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@color/dark_background_color</item>
+        <item name="android:navigationBarColor">@color/dark_background_color</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="144dp"
+    android:height="144dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <path
+        android:fillColor="@color/light_m3_on_primary_color"
+        android:pathData="M54,10a44,44 0,1 0,0.1,0z" />
+
+    <!-- Match launcher foreground proportions by keeping the brand mark inside
+         the same circular safe area instead of filling the splash circle edge. -->
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:scaleX="0.78"
+        android:scaleY="0.78">
+
+        <path
+            android:fillColor="#BA1A1A"
+            android:strokeColor="#BA1A1A"
+            android:strokeWidth="5"
+            android:strokeLineJoin="round"
+            android:pathData="M34,26 L86,54 L34,82 Z" />
+
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M40,68 L40,38 L46,38 L53,50 L60,44 L66,44 L66,62 L60,62 L60,54 L53,60 L46,48 L46,68 Z" />
+    </group>
+</vector>
