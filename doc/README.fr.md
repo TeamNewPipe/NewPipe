@@ -1,145 +1,170 @@
-<h3 align="center">Nous prévoyons de <i>réécrire</i> une large partie de code, afin de créer <a href="https://github.com/TeamNewPipe/NewPipe/discussions/10118">un NewPipe encore plus moderne et stable</a>!</h3>
-<h4 align="center">Prière de ne pas ouvrir de nouvelles pull-up requêtes contenant de <i>nouvelles fonctionnalités</i>. Seules les corrections de bugs seront acceptées.</h4>
+<p align="center"><a href="https://github.com/wizdom13/NewPipe"><img src="../assets/new_pipe_icon_5.png" width="150" alt="Icône NewPipe Material"></a></p>
 
-<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p> 
-<h2 align="center"><b>NewPipe</b></h2>
-<h4 align="center">Un front-end de streaming libre et léger pour Android.</h4>
+<h1 align="center">NewPipe Material</h1>
 
-<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-fr.svg" alt="Get it on F-Droid" width=206/></a></p>
+<p align="center"><b>Un fork indépendant de NewPipe pour Android axé sur Material 3.</b></p>
 
 <p align="center">
-<a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub release"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
-<a href="https://github.com/TeamNewPipe/NewPipe-nightly/releases" alt="GitHub NewPipe nightly releases"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe-nightly.svg?labelColor=purple&label=dev%20nightly"></a>
-<a href="https://github.com/TeamNewPipe/NewPipe-refactor-nightly/releases" alt="GitHub NewPipe refactor nightly releases"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe-refactor-nightly.svg?labelColor=purple&label=refactor%20nightly"></a>
-<a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
-<a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Build Status"><img src="https://github.com/TeamNewPipe/NewPipe/actions/workflows/ci.yml/badge.svg?branch=dev&event=push"></a>
-<a href="https://hosted.weblate.org/engage/newpipe/" alt="Translation Status"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
+  <a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg" alt="Licence : GPLv3"></a>
+  <a href="https://github.com/wizdom13/NewPipe/actions"><img src="https://github.com/wizdom13/NewPipe/actions/workflows/ci.yml/badge.svg" alt="État de compilation"></a>
 </p>
+
+<p align="center"><b>Lire en :</b> <a href="../README.md">English</a> &bull; <a href="README.de.md">Deutsch</a> &bull; <a href="README.es.md">Español</a> &bull; <a href="README.fr.md">Français</a> &bull; <a href="README.hi.md">हिन्दी</a> &bull; <a href="README.it.md">Italiano</a> &bull; <a href="README.ko.md">한국어</a> &bull; <a href="README.pt_BR.md">Português Brasil</a> &bull; <a href="README.pl.md">Polski</a> &bull; <a href="README.pa.md">ਪੰਜਾਬੀ</a> &bull; <a href="README.ja.md">日本語</a> &bull; <a href="README.ro.md">Română</a> &bull; <a href="README.so.md">Soomaali</a> &bull; <a href="README.tr.md">Türkçe</a> &bull; <a href="README.zh_TW.md">正體中文</a> &bull; <a href="README.asm.md">অসমীয়া</a> &bull; <a href="README.sr.md">Српски</a> &bull; <a href="README.ar.md">العربية</a></p>
+
+---
+
+## Avis important concernant le fork
+
+NewPipe Material est un fork maintenu indépendamment de NewPipe, centré sur le design Material 3, les thèmes de l’application et la finition du produit.
+
+Ce projet **n’est pas affilié, sponsorisé ni approuvé** par le projet officiel NewPipe, TeamNewPipe ou NewPipe e.V.
+
+NewPipe Material est basé sur NewPipe et conserve la licence libre de NewPipe, les crédits du projet amont et les avis de licences tierces.
+
+---
+
+## Qu’est-ce que NewPipe Material ?
+
+NewPipe Material conserve l’expérience principale de NewPipe tout en modernisant l’identité et l’interface de l’application.
+
+Objectifs actuels du fork :
+
+- Surfaces, dialogues, paramètres, onglets et navigation inspirés de Material 3
+- Prise en charge des couleurs dynamiques Material You lorsque disponible
+- Couleurs de thème manuelles : défaut de l’app, neutre, vert, bleu, violet, orange, rose et rouge
+- Nouvelle identité : **NewPipe Material**
+- Identifiant d’application séparé : `org.wisso.newpipematerial`
+- Les builds de débogage s’installent séparément sous `org.wisso.newpipematerial.debug`
+- Préserver le comportement de NewPipe, la compatibilité import/export et les services pris en charge
+
+Ce fork évite les changements risqués dans les zones sensibles comme la lecture, les téléchargements, la lecture en arrière-plan, le lecteur flottant et la logique Extractor, sauf lorsqu’ils sont traités comme des changements dédiés et testés.
+
+---
+
+## Captures d’écran
+
+### Téléphone
 
 <p align="center">
-<a href="https://web.libera.chat/#newpipe" alt="IRC channel: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
-<a href="https://matrix.to/#/#newpipe:matrix.newpipe-ev.de" alt="Matrix channel: #newpipe"><img src="https://img.shields.io/badge/Matrix%20chat-%23newpipe-blue"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" width="160" alt="Capture téléphone 1"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png" width="160" alt="Capture téléphone 2"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png" width="160" alt="Capture téléphone 3"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png" width="160" alt="Capture téléphone 4"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png" width="160" alt="Capture téléphone 5"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png" width="160" alt="Capture téléphone 6"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png" width="160" alt="Capture téléphone 7"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png" width="160" alt="Capture téléphone 8"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/09.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/09.png" width="160" alt="Capture téléphone 9"></a>
 </p>
 
-<hr>
-<p align="center"><a href="#captures-décran">Captures d'écran</a> &bull; <a href="#services-supportés">Services Supportés</a> &bull; <a href="#description">Description</a> &bull; <a href="#fonctionnalités">Fonctionnalités</a> &bull; <a href="#installation-et-mises-à-jour">Installation et mises à jour</a> &bull; <a href="#contribuer">Contribuer</a> &bull; <a href="#dons">Dons</a> &bull; <a href="#licence">Licence</a></p>
-<p align="center"><a href="https://newpipe.net">Site</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Presse</a></p>
-<hr>
+### Tablette
 
-*Read this document in other languages: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md) , [العربية](README.ar.md)*
+<p align="center">
+  <a href="../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png"><img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png" width="405" alt="Capture tablette 1"></a>
+  <a href="../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png"><img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png" width="405" alt="Capture tablette 2"></a>
+</p>
 
-> [!warning]
-> <b>CETTE APP EST EN BETA, VOUS POUVEZ DONC RENCONTRER DES BUGS. SI C'EST LE CAS, OUVREZ UNE ISSUE DANS NOTRE DÉPÔT GITHUB EN REMPLISSANT LA CATEGORIE ISSUE.</b>
->
-> <b>AJOUTER NEWPIPE, OU N'IMPORTE QUEL FORK DE NEWPIPE, SUR LE GOOGLE PLAY STORE ENFREINT LEURS CONDITIONS D'UTILISATION</b>
+---
 
-## Captures d'écran
+## Services pris en charge
 
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/00.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/00.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png)
-<br/><br/>
-[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png)
-[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png)
+NewPipe Material hérite de la prise en charge NewPipe pour YouTube, YouTube Music, PeerTube, Bandcamp, SoundCloud et media.ccc.de.
 
-### Services supportés
+La prise en charge dépend du code amont de NewPipe et NewPipe Extractor.
 
-NewPipe supporte actuellement ces services:
+---
 
-<!-- We link to the service websites separately to avoid people accidentally opening a website they didn't want to. -->
-* YouTube ([site web](https://www.youtube.com/)) et YouTube Music ([site web](https://music.youtube.com/)) ([wiki](https://fr.wikipedia.org/wiki/YouTube))
-* PeerTube ([site web](https://joinpeertube.org/)) et toutes ses instances (regardez le site web pour savoir ce que cela signifie !) ([wiki](https://fr.wikipedia.org/wiki/PeerTube))
-* Bandcamp ([site web](https://bandcamp.com/)) ([wiki](https://fr.wikipedia.org/wiki/Bandcamp))
-* SoundCloud ([site web](https://soundcloud.com/)) ([wiki](https://fr.wikipedia.org/wiki/SoundCloud))
-* media.ccc.de ([site web](https://media.ccc.de/)) ([wiki](https://fr.wikipedia.org/wiki/Chaos_Computer_Club))
+## Fonctionnalités
 
-Comme vous pouvez le constater, NewPipe supporte de multiples services vidéo et audio. Bien que cela ait commencé avec YouTube, d'autres personnes ont ajouté de nouveaux services au fil des années, rendant NewPipe de plus en plus polyvalent !
+NewPipe Material conserve les fonctionnalités familières de NewPipe : vidéos et directs, lecture en arrière-plan, lecteur flottant, playlists locales, abonnements sans compte, groupes de chaînes, recherche, détails vidéo, téléchargements et import/export des données.
 
-Grace aux circonstances et en raison de sa popularité, YouTube est le service le mieux pris en charge. Si vous utilisez ou connaissez l'un de ces autres services, aidez-nous à améliorer leur prise en charge ! Nous recherchons des mainteneurs pour SoundCloud et PeerTube.
+Ajouts Material : rôles de couleur Material 3, navigation inférieure pour cinq onglets ou moins, couleurs dynamiques/manuelles, attribution du fork dans À propos et prise en charge de la signature de versions.
 
-Si vous avez l'intention d'ajouter un nouveau service, veuillez d'abord nous contacter ! Notre [documentation](https://teamnewpipe.github.io/documentation/) fournit plus d'informations sur la façon dont un nouveau service peut être ajouté à l'application et au [NewPipe Extractor](https://github.com/TeamNewPipe/NewPipeExtractor).
+---
 
-## Description
+## Installation
 
-NewPipe fonctionne en récupérant les données requises à partir des APIs officielles (par exemple PeerTube) du service que vous utilisez. Si l'API officielle est limitée (par exemple YouTube) pour nos besoins, ou si elle est propriétaire, l'application analyse le site Web ou utilise une API interne à la place. Cela signifie que vous n'avez pas besoin de compte sur n'importe lequel des services proposés pour utiliser NewPipe.
+Installez NewPipe Material depuis les releases GitHub de ce dépôt ou depuis les artefacts signés lorsqu’ils sont disponibles.
 
-De plus, puisqu'il s'agit de logiciels libres et gratuits, ni l'application ni l'Extracteur n'utilisent de bibliothèques ou de frameworks propriétaires, comme les services Google Play. Cela signifie que vous pouvez utiliser NewPipe sur des appareils ou des ROM personnalisées qui n'ont pas d'applications Google installées.
+```text
+NewPipe officiel : org.schabi.newpipe / net.newpipe.app selon le build amont
+NewPipe Material : org.wisso.newpipematerial
+Debug :            org.wisso.newpipematerial.debug
+```
 
-### Fonctionnalités
+Pour migrer les données, exportez la base de données depuis NewPipe officiel via Settings > Backup and Restore, installez NewPipe Material, puis importez cette sauvegarde. Gardez toujours une sauvegarde.
 
-* Regarder des vidéos à des résolutions allant jusqu'à la 4K
-* Écouter de l'audio en arrière-plan, en ne chargant que le flux audio pour économiser des données
-* Mode Popup (lecteur floattant, aka Picture-in-Picture)
-* Regarder des diffusions en direct
-* Afficher/masquer les sous-titres
-* Chercher des vidéos et des audios (sur Youtube, vous pouvez également spécifier la langue du contenu)
-* Mettre en file d'attente les vidéos (et éventuellement les enregistrer en tant que listes de lecture locales)
-* Afficher/cacher les informations générales à propos des vidéos (comme la description et les tags)
-* Afficher/cacher les vidéos suivantes ou en relation
-* Afficher/cacher les commentaires
-* Chercher des vidéos, des audios, des chaînes, des listes de lecture et des albums
-* Parcourir les vidéos et les audios d'une chaîne
-* S'abonner à des chaînes (oui, sans avoir besoin de se connecter à un compte !)
-* Recevoir des notifications sur les nouvelles vidéos des chaînes auxquelles vous êtes abonnés.
-* Créer et modifier des groupes de chaînes (pour une gestion et une navigation plus simples)
-* Parcourir des fils de vidéos générés depuis vos groupes de chaînes
-* Voir et rechercher dans votre historique de visionnage
-* Voir et chercher les listes de lectures (il s'agit de listes de lecture à distance, ce qui signifie qu'elles sont extraites du service sur lequel vous naviguez)
-* Créer et éditer des listes de lecture locales (elles sont créées et sauvegardées dans l'application, et n'ont rien à voir avec n'importe lequel des services)
-* Télécharger des vidéos/de l'audio/des sous-titres
-* Lire dans Kodi
-* Regarder/bloquer du contenu restreint en fonction de l'âge
+Ne publiez pas NewPipe Material, NewPipe ou ses forks sur Google Play.
 
-<!-- Hidden span to keep old links compatible. You should remove this span if you're translating the README into another language.-->
-<span id="updates"></span>
+---
 
-## Installation et mises à jour
-Vous pouvez installer NewPipe en utilisant l'une de ces méthodes:
- 1. Ajoutez notre dépôt dans F-Droid et l'installer de là. Les instructions sont ici: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
- 2. Téléchargez l'APK depuis les [GitHub Releases](https://github.com/TeamNewPipe/NewPipe/releases) et l'installer.
- 3. Mettez à jour via F-Droid. C'est la méthode la plus lente pour avoir des mises à jour, car F-Droid doit détecter les changements, construire l'APK lui-même, le signer puis enfin publier la mise à jour.
- 4. Construisez un APK de débug par vous-même. C'est la façon la plus rapide d'avoir des nouvelles fonctionnalités sur votre appareil, mais c'est bien plus compliqué, c'est pour cela que nous vous recommandons d'utiliser une des autres méthodes.
- 5. Si vous êtes intéréssé par une fonctionnalité ou une résolution de bug spécifique à une PR de ce dépôt, vous pouvez également télécharger l'APK à partir de la PR. Vous trouverez les instructions dans la description de la PR. Ce qui est super avec les APK spécifiques à des PR est qu'ils sont installés à côté de l'application officielle, vous n'avez donc pas à vous inquiéter de perdre vos données ou de foirer quoi que ce soit.
+## Compilation
 
-Nous recommandons la méthode 1 pour la plupart des utilisateurs. Les APKs installés en suivant les méthodes 1 ou 2 sont compatibles les uns avec les autres (ce qui signifie que si vous installez NewPipe en utilisant une de ces deux méthodes, vous pouvez également mettre à jour NewPipe en utilisant l'autre), mais pas avec ceux installés en utilisant la méthode 3. Cela est dû au fait que la même clé de signature (la notre) est utilisée pour les méthodes 1 et 2, mais une différente clé (celle de F-Droid) est utilisée pour la 3. Construire un APK de débug en utilisant la méthode 4 ne requiert aucune clé. Les clés de signature aident à assurer que l'utilisateur ne s'est pas fait avoir et installe une mise à jour frauduleuse de l'app. Lorsque la méthode 5 est utilisée, chaque APK est signé avec une clé unique et aléatoire générée par les GitHub Actions; vous ne pouvez donc pas les mettre à jour. Vous devrez alors sauvegarder et restaurer les données de l'application chaque fois que vous souhaitez utiliser un nouveau APK.
+Exigences : JDK 21, Android SDK et le wrapper Gradle du dépôt.
 
-Entre temps, si vous voulez changer de source pour une raison quelconque (par exemple, la fonctionnalité de base de NewPipe est cassée et F-Droid n'a pas encore la dernière mise à jour), nous vous recommandons de suivre cette procédure :
-1. Sauvegardez vos données via Settings(paramètre) > Content(contenu) > Export Database(exporter la base de donnée) pour conserver votre historique, vos abonnements et vos listes de lecture.
-2. Désinstallez NewPipe
-3. Téléchargez l'APK depuis la nouvelle source et installez le.
-4. Restaurez les données de l'étape 1 via Settings > Content > Import Database
+```bash
+./gradlew runCheckstyle -DskipFormatKtlint
+./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint
+./gradlew assembleDebug -DskipFormatKtlint
+```
 
-<b>Note: lorsque vous importez une base de données dans l'application officielle, assurez vous de toujours vérifier que c'est celle que vous avez exporté _depuis_ l'application officielle. Si vous importez une base de données provenant d'un autre APK que l'officiel, il se peut que des choses cassent. Une telle action n'est pas supportée, et vous devriez le faire uniquement lorsque vous êtes absolument certains de savoir ce que vous faites</b>
+Le build debug utilise **NewPipe Material Debug** et le paquet `org.wisso.newpipematerial.debug`.
+
+---
+
+## Signature de version
+
+Variables d’environnement :
+
+```text
+NEWPIPE_MATERIAL_RELEASE_STORE_FILE
+NEWPIPE_MATERIAL_RELEASE_STORE_PASSWORD
+NEWPIPE_MATERIAL_RELEASE_KEY_ALIAS
+NEWPIPE_MATERIAL_RELEASE_KEY_PASSWORD
+```
+
+Vérification recommandée :
+
+```bash
+./gradlew assembleRelease -DskipFormatKtlint
+apksigner verify --verbose --print-certs app/build/outputs/apk/release/app-release.apk
+```
+
+---
+
+## État du développement
+
+En cours ou terminé : identité d’application, séparation debug/release, couleurs Material 3, couleurs dynamiques/manuelles, navigation inférieure, écran À propos, dialogues, snackbars, paramètres, détails vidéo, interface de téléchargement et workflow de signature.
+
+Différé ou risqué : overlay principal du lecteur, couleurs de seekbar/gestes, file d’attente, menus qualité/audio/sous-titres et changements larges de lecture/téléchargement.
+
+---
 
 ## Contribuer
 
-Que vous ayez des idées, des traductions, des changements de design, du nettoyage de code, ou encore un changement de code majeur, toute aide est la bienvenue. L'app s'améliore un peu plus à chaque contribution, peu importe qu'elle soit grosse ou petite ! Si vous aimeriez être impliqué, jetez un coup d'oeil à nos [notes pour contribuer](/.github/CONTRIBUTING.md).
+Les contributions sont bienvenues : corrections, QA, documentation, préparation de release et polissage Material 3 ciblé. Gardez les changements ciblés et testables, avec captures avant/après pour l’UI lorsque possible.
 
-<a href="https://hosted.weblate.org/engage/newpipe/">
-<img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Translation status" />
-</a>
+---
+
+## NewPipe amont
+
+- Dépôt NewPipe : https://github.com/TeamNewPipe/NewPipe
+- Site NewPipe : https://newpipe.net
+- FAQ : https://newpipe.net/FAQ/
+- NewPipe Extractor : https://github.com/TeamNewPipe/NewPipeExtractor
+
+Les problèmes propres au fork appartiennent à ce dépôt. Les problèmes de services ou d’Extractor peuvent aussi devoir être comparés à NewPipe officiel.
+
+---
 
 ## Dons
-Si vous aimez NewPipe, vous êtes invités à envoyer un don. Nous préferons Liberapay, car c'est à la fois open-source et à but non-lucratif. Pour plus d'informations sur comment donner à NewPipe, visitez notre [site web](https://newpipe.net/donate)
-<table>
-  <tr>
-    <td><a href="https://liberapay.com/TeamNewPipe/"><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/"><img src="assets/liberapay_qr_code.png" alt="Visitez NewPipe sur liberapay.com" width="100px"></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="assets/liberapay_donate_button.svg" alt="Donnez via Liberapay" height="35px"></a></td>
-  </tr>
-</table>
 
-## Politique de confidentialité
+Pour soutenir NewPipe amont : https://newpipe.net/donate
 
-Le projet NewPipe vise à offrir une expérience privée et anonyme pour l'utilisation de services médiatiques basés sur le Web. Par conséquent, l'application ne recueille aucune donnée sans votre consentement. La politique de confidentialité de NewPipe explique en détail quelles données sont envoyées et stockées lorsque vous envoyez un rapport d'incident ou laissez un commentaire sur notre blog. Vous pouvez trouver le document [ici](https://newpipe.net/legal/privacy/).
+NewPipe Material est un fork indépendant ; les dons amont vont au projet NewPipe amont, pas automatiquement à ce fork.
+
+---
 
 ## Licence
-[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
 
-NewPipe est un logiciel libre : vous pouvez l'utiliser, l'étudier, le partager et l'améliorer à volonté. Plus précisément, vous pouvez le redistribuer et/ou le modifier selon les conditions de la [GNU General Public License](https://www.gnu.org/licenses/gpl.html) telle que publiée par la Free Software Foundation, soit la version 3 de la Licence, soit (à votre choix) toute version ultérieure.
+NewPipe Material est un logiciel libre basé sur NewPipe, distribué sous la GNU General Public License version 3 ou ultérieure. Consultez les fichiers de licence et l’écran de licences intégré pour les détails complets.
