@@ -1,140 +1,247 @@
-<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p>
-<h2 align="center"><b>NewPipe</b></h2>
-<h4 align="center">Una interfaz de streaming ligera y libre para Android.</h4>
+<p align="center"><a href="https://github.com/wizdom13/NewPipe"><img src="../assets/new_pipe_icon_5.png" width="150" alt="Icono de NewPipe Material"></a></p>
 
-<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-es.svg" alt="Get it on F-Droid" width=206/></a></p>
+<h1 align="center">NewPipe Material</h1>
 
-<p align="center">
-<a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="Lanzamientos GitHub"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
-<a href="https://github.com/TeamNewPipe/NewPipe-nightly/releases" alt="GitHub NewPipe nightly releases"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe-nightly.svg?labelColor=purple&label=dev%20nightly"></a>
-<a href="https://github.com/TeamNewPipe/NewPipe-refactor-nightly/releases" alt="GitHub NewPipe refactor nightly releases"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe-refactor-nightly.svg?labelColor=purple&label=refactor%20nightly"></a>
-<a href="https://www.gnu.org/licenses/gpl-3.0" alt="Licencia: GPLv3"><img src="https://img.shields.io/badge/Licencia-GPL%20v3-blue.svg"></a>
-<a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Estado del Build"><img src="https://github.com/TeamNewPipe/NewPipe/actions/workflows/ci.yml/badge.svg?branch=dev&event=push"></a>
-<a href="https://hosted.weblate.org/engage/newpipe/es/" alt="Estado de la Traducción"><img src="https://hosted.weblate.org/widgets/newpipe/es/svg-badge.svg"></a>
-</p>
+<p align="center"><b>Una bifurcación independiente de NewPipe para Android centrada en Material 3.</b></p>
 
 <p align="center">
-<a href="https://web.libera.chat/#newpipe" alt="Canal de IRC: #newpipe"><img src="https://img.shields.io/badge/Canal%20de%20IRC%20-%23newpipe-brightgreen.svg"></a>
-<a href="https://matrix.to/#/#newpipe:matrix.newpipe-ev.de" alt="Matrix channel: #newpipe"><img src="https://img.shields.io/badge/Matrix%20chat-%23newpipe-blue"></a>
+  <a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg" alt="Licencia: GPLv3"></a>
+  <a href="https://github.com/wizdom13/NewPipe/actions"><img src="https://github.com/wizdom13/NewPipe/actions/workflows/ci.yml/badge.svg" alt="Estado de compilación"></a>
 </p>
 
-<hr>
+<p align="center"><b>Leer en:</b> <a href="../README.md">English</a> &bull; <a href="README.de.md">Deutsch</a> &bull; <a href="README.es.md">Español</a> &bull; <a href="README.fr.md">Français</a> &bull; <a href="README.hi.md">हिन्दी</a> &bull; <a href="README.it.md">Italiano</a> &bull; <a href="README.ko.md">한국어</a> &bull; <a href="README.pt_BR.md">Português Brasil</a> &bull; <a href="README.pl.md">Polski</a> &bull; <a href="README.pa.md">ਪੰਜਾਬੀ</a> &bull; <a href="README.ja.md">日本語</a> &bull; <a href="README.ro.md">Română</a> &bull; <a href="README.so.md">Soomaali</a> &bull; <a href="README.tr.md">Türkçe</a> &bull; <a href="README.zh_TW.md">正體中文</a> &bull; <a href="README.asm.md">অসমীয়া</a> &bull; <a href="README.sr.md">Српски</a> &bull; <a href="README.ar.md">العربية</a></p>
 
-<p align="center"><a href="#capturas-de-pantalla">Capturas de Pantalla</a> &bull; <a href="#descripción">Descripción</a> &bull; <a href="#características">Características</a> &bull; <a href="#instalación-y-actualizaciones">Instalación y Actualizaciones</a> &bull; <a href="#contribución">Contribución</a> &bull; <a href="#donar">Donar</a> &bull; <a href="#licencia">Licencia</a></p>
-<p align="center"><a href="https://newpipe.net">Sitio Web</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">Preguntas Frecuentes</a> &bull; <a href="https://newpipe.net/press/">Prensa</a></p>
-<hr>
+---
 
-*Read this document in other languages: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md) , [العربية](README.ar.md)*
+## Aviso importante sobre la bifurcación
 
-> [!warning]
-> <b>ESTA ES UNA VERSIÓN BETA, POR LO TANTO, PUEDES ENCONTRAR BUGS. SI ENCUENTRAS UNO ABRA UN ISSUE A TRAVÉS DE NUESTRO REPOSITORIO DE GITHUB.</b>
->
-> <b>COLOCAR NEWPIPE O CUALQUIER FORK DE NEWPIPE EN LA GOOGLE PLAY STORE VIOLARÁ SUS TÉRMINOS Y CONDICIONES.</b>
+NewPipe Material es una bifurcación mantenida de forma independiente de NewPipe, centrada en el diseño Material 3, los temas de la aplicación y el pulido del producto.
 
-## Capturas de Pantalla
+Este proyecto **no está afiliado, patrocinado ni respaldado** por el proyecto oficial NewPipe, TeamNewPipe ni NewPipe e.V.
 
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/00.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/00.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png)
-<br/><br/>
-[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png)
-[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png)
+NewPipe Material se basa en NewPipe y conserva la licencia libre de NewPipe, los créditos del proyecto original y los avisos de licencias de terceros.
 
-## Descripción
+---
 
-NewPipe no usa ninguna librería del framework de Google, ni la API de YouTube. Los sitios web solamente se analizan para extraer la información requerida, por lo que esta app se puede usar sin los servicios de Google instalados. Además, no se necesita una cuenta de YouTube para usar NewPipe, que es un programa libre <i lang="en">copyleft</i>.
+## ¿Qué es NewPipe Material?
 
-### Características
+NewPipe Material conserva la experiencia principal de NewPipe mientras moderniza la identidad de la aplicación y su interfaz.
 
-* Buscar videos
-* No requiere inicio de sesión
-* Mostrar información general sobre videos
-* Mirar videos de YouTube
-* Modo de solo audio en videos de YouTube
-* Modo pop-up (reproductor flotante)
-* Elegir un reproductor de video externo para mirar videos
-* Descargar videos
-* Descargar solo audio
-* Abrir videos en Kodi
-* Mostrar videos próximos/relacionados
-* Buscar a través de YouTube en un idioma específico
-* Mirar/Bloquear videos restringidos por edad
-* Mostrar información general sobre canales
-* Buscador de canales
-* Mirar videos de un canal
-* Soporte Orbot/Tor (todavía no directamente)
-* Soporte para videos en 1080p/2K/4K
-* Historial de videos vistos
-* Suscripción a canales
-* Historial de búsquedas
-* Buscar/Mirar listas de reproducción
-* Mirar listas de reproducción en cola
-* Poner videos en cola
-* Listas de reproducción locales
-* Subtítulos
-* Soporte para transmisiones en vivo
-* Mostrar comentarios
+Objetivos actuales de esta bifurcación:
 
-### Servicios Soportados
+- Superficies, diálogos, ajustes, pestañas y navegación inspirados en Material 3
+- Soporte de colores dinámicos Material You cuando esté disponible
+- Colores de tema manuales: Predeterminado de la app, Neutral, Verde, Azul, Morado, Naranja, Rosa y Rojo
+- Nueva identidad de aplicación: **NewPipe Material**
+- ID de aplicación independiente: `org.wisso.newpipematerial`
+- Las compilaciones de depuración se instalan por separado como `org.wisso.newpipematerial.debug`
+- Conserva el comportamiento de NewPipe, la compatibilidad de importación/exportación y los servicios compatibles
 
-NewPipe soporta varios servicios. Nuestras [documentaciones](https://teamnewpipe.github.io/documentation/) ofrecen más información sobre cómo se puede agregar un servicio nuevo a la app y al extractor. Por favor ponte en contacto con nosotros si tienes pensado agregar uno nuevo. Actualmente los servicios soportados son:
+Esta bifurcación evita cambios de comportamiento arriesgados en áreas sensibles como reproducción, descargas, reproducción en segundo plano, reproductor emergente y lógica del Extractor, salvo que se traten como cambios específicos y probados.
 
-* YouTube
-* SoundCloud \[beta\]
-* media.ccc.de \[beta\]
-* PeerTube instances \[beta\]
-* Bandcamp \[beta\]
+---
 
-## Instalación y Actualizaciones
+## Capturas de pantalla
 
-Se puede instalar NewPipe usando uno de los métodos siguientes:
+### Teléfono
 
- 1. Agregando nuestro repositorio personalizado a F-Droid e instalarlo desde allí. Las instrucciones están [aquí](https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/).
- 2. Descargando el archivo APK de [aquí](https://github.com/TeamNewPipe/NewPipe/releases) y posteriormente instalarlo.
- 3. Usando el repositorio oficial de F-Droid. Este es el método más lento para obtener actualizaciones, ya que F-Droid debe reconocer los cambios, construir el APK aparte, firmarlo con una clave, y finalmente publicar la actualización.
- 4. Construyendo la app usted mismo. Este es el modo más rápido para obtener nuevas características en su dispositivo, pero es mucho más complicado, así que recomendamos uno de los otros métodos.
+<p align="center">
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" width="160" alt="Captura de teléfono 1"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png" width="160" alt="Captura de teléfono 2"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png" width="160" alt="Captura de teléfono 3"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png" width="160" alt="Captura de teléfono 4"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png" width="160" alt="Captura de teléfono 5"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png" width="160" alt="Captura de teléfono 6"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png" width="160" alt="Captura de teléfono 7"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png" width="160" alt="Captura de teléfono 8"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/09.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/09.png" width="160" alt="Captura de teléfono 9"></a>
+</p>
 
-Recomendamos el método 1 para la mayoría de usuarios. Los APKs instalados usando método 1 y 2 son compatibles entre sí, pero no lo son con los instalados usando el método 3. Esto es debido a la clave de firmado, ya que los métodos 1 y 2 usan la misma clave (la nuestra), pero el método 3 usa una clave diferente (la de F-Droid). El método 4 excluye totalmente una clave de firmado. Las claves de firmado aseguran que el usuario no esté siendo engañado para instalar/actualizar una APK maliciosa.
+### Tableta
 
-Además, si quiere cambiar el método de instalación por alguna razón (por ejemplo: la funcionalidad del núcleo de NewPipe se rompe o F-Droid aún no publica la actualización), recomendamos el siguiente procedimiento:
-1. Respalde su información a través de Ajustes > Contenido > Exportar base de datos; esto guardará su historial (videos vistos y búsquedas), suscripciones, listas de reproducción y ajustes.
-2. Desinstale NewPipe.
-3. Descargue el APK con un método distinto e instálelo.
-4. Importe la información (la base de datos extraída del paso 1) a través de Ajustes > Contenido > Importar base de datos. Tenga en cuenta que esta opción superpondrá su historial actual (tanto de vídeos como de búsquedas), sus listas de reproducción y (opcionalmente) sus configuraciones.
+<p align="center">
+  <a href="../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png"><img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png" width="405" alt="Captura de tableta 1"></a>
+  <a href="../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png"><img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png" width="405" alt="Captura de tableta 2"></a>
+</p>
 
-## Contribución
+---
 
-Si tiene ideas, traducciones, cambios de diseño, limpieza de código o cambios grandes de código, su ayuda es siempre bienvenida. ¡Cuanto más hagamos, NewPipe será mucho mejor!
+## Servicios compatibles
 
-Si quiere involucrarse, fíjese en nuestras [notas de contribución](../.github/CONTRIBUTING.md).
+NewPipe Material hereda el soporte de NewPipe para:
 
-<a href="https://hosted.weblate.org/engage/newpipe/es/">
-<img src="https://hosted.weblate.org/widgets/newpipe/es/287x66-grey.png" alt="Estado de la Traducción" />
-</a>
+- YouTube y YouTube Music
+- PeerTube
+- Bandcamp
+- SoundCloud
+- media.ccc.de
+
+El soporte de servicios depende del código original de NewPipe y NewPipe Extractor.
+
+---
+
+## Funciones
+
+NewPipe Material conserva las funciones conocidas de NewPipe:
+
+- Ver vídeos y transmisiones en directo
+- Reproducción en segundo plano
+- Reproductor emergente
+- Listas locales
+- Suscripciones sin iniciar sesión en una cuenta de plataforma
+- Grupos de canales y feeds
+- Búsqueda y navegación por servicios compatibles
+- Detalles de vídeo, vídeos relacionados y comentarios cuando estén disponibles
+- Descarga de vídeo, audio y subtítulos cuando esté disponible
+- Importar/exportar datos para migración y copia de seguridad
+
+Añadidos centrados en Material:
+
+- Roles de color Material 3 en más superficies de la app
+- Navegación inferior con cinco pestañas principales o menos, con TabLayout desplazable como alternativa
+- Posición inferior predeterminada para nuevas instalaciones o valores no configurados
+- Soporte de colores de tema dinámicos y manuales
+- Atribución de la bifurcación en la pantalla Acerca de
+- Soporte de firmado de versiones para compilaciones del fork
+
+---
+
+## Instalación
+
+Instala NewPipe Material desde las versiones de GitHub de este repositorio o desde artefactos firmados cuando estén disponibles.
+
+NewPipe Material usa un ID de aplicación distinto, por lo que puede instalarse junto a NewPipe oficial:
+
+```text
+NewPipe oficial:   org.schabi.newpipe / net.newpipe.app según la compilación original
+NewPipe Material:  org.wisso.newpipematerial
+Debug:             org.wisso.newpipematerial.debug
+```
+
+### Migrar datos
+
+1. Abre NewPipe oficial.
+2. Exporta la base de datos desde Settings > Backup and Restore.
+3. Instala NewPipe Material.
+4. Importa la base de datos exportada desde Settings > Backup and Restore.
+
+Haz siempre una copia de seguridad antes de importar datos entre compilaciones.
+
+### Aviso sobre Google Play
+
+No publiques NewPipe Material, NewPipe ni bifurcaciones de NewPipe en Google Play. Este proyecto sigue la misma advertencia práctica de distribución que NewPipe original.
+
+---
+
+## Compilar desde el código fuente
+
+Requisitos:
+
+- JDK 21
+- Android SDK
+- Gradle wrapper de este repositorio
+
+Comandos útiles:
+
+```bash
+./gradlew runCheckstyle -DskipFormatKtlint
+./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint
+```
+
+Compilar APK de depuración:
+
+```bash
+./gradlew assembleDebug -DskipFormatKtlint
+```
+
+El APK de depuración usa el nombre **NewPipe Material Debug** y el paquete `org.wisso.newpipematerial.debug`.
+
+---
+
+## Firmado de versión
+
+El firmado se configura con estas variables de entorno:
+
+```text
+NEWPIPE_MATERIAL_RELEASE_STORE_FILE
+NEWPIPE_MATERIAL_RELEASE_STORE_PASSWORD
+NEWPIPE_MATERIAL_RELEASE_KEY_ALIAS
+NEWPIPE_MATERIAL_RELEASE_KEY_PASSWORD
+```
+
+Si las cuatro variables están presentes, la compilación de lanzamiento usa la clave configurada. Si faltan, no se aplica la configuración de firmado.
+
+Validación recomendada:
+
+```bash
+./gradlew assembleRelease -DskipFormatKtlint
+apksigner verify --verbose --print-certs app/build/outputs/apk/release/app-release.apk
+```
+
+---
+
+## Estado de desarrollo
+
+NewPipe Material está en desarrollo activo para pulido Material 3 y preparación del producto.
+
+Completado o en progreso:
+
+- Nombre e ID de aplicación
+- Separación de identidad debug/release
+- Colores Material 3
+- Colores de tema dinámicos/manuales
+- Navegación inferior y pulido de pestañas principales
+- Atribución del fork en Acerca de
+- Pulido de diálogos, snackbars, ajustes, detalles de vídeo e interfaz de descarga
+- Flujo de firmado de versiones
+
+Aplazado o de alto riesgo:
+
+- Rediseño visual de la capa principal del reproductor
+- Colores de barra de progreso y gestos
+- Controles de cola
+- Comportamiento de menús de calidad/audio/subtítulos
+- Cambios amplios en reproducción o descargas
+
+Estas áreas necesitan QA dedicado antes de cambios visuales o de comportamiento.
+
+---
+
+## Contribuir
+
+Las contribuciones son bienvenidas, especialmente pulido Material 3 enfocado, correcciones, hallazgos de QA, documentación y preparación de lanzamientos.
+
+Mantén los cambios enfocados y comprobables. Para cambios de interfaz, incluye capturas antes/después cuando sea posible y comprueba Light, Dark, Black, Follow system y al menos un color manual.
+
+---
+
+## NewPipe original
+
+NewPipe Material está basado en NewPipe.
+
+Recursos originales:
+
+- Repositorio NewPipe: https://github.com/TeamNewPipe/NewPipe
+- Sitio web NewPipe: https://newpipe.net
+- FAQ de NewPipe: https://newpipe.net/FAQ/
+- NewPipe Extractor: https://github.com/TeamNewPipe/NewPipeExtractor
+
+Los problemas específicos de diseño, identidad, lanzamiento o Material 3 del fork pertenecen a este repositorio. Los fallos de servicios o Extractor pueden necesitar comparación con NewPipe oficial.
+
+---
 
 ## Donar
-Si te gusta NewPipe, estaremos felices con una donación. Puede enviar bitcoin o donar a través de Bountysource o Liberapay. Visita nuestro [sitio web](https://newpipe.net/donate) para más información.
 
-<table>
-  <tr>
-    <td><a href="https://liberapay.com/TeamNewPipe/"><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/"><img src="../assets/liberapay_qr_code.png" alt="Visita NewPipe en liberapay.com" width="100px"></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="../assets/liberapay_donate_button.svg" alt="Dona vía Liberapay" height="35px"></a></td>
-  </tr>
-</table>
+Si quieres apoyar a NewPipe original, visita la página oficial de donaciones:
 
-## Política de Privacidad
+https://newpipe.net/donate
 
-El proyecto NewPipe tiene como objetivo ofrecer una experience privada y anónima al usar servicios web multimedia. Por lo tanto, la app no recoleta ningún tipo de información sin su consentimiento. La politica de privacidad de NewPipe explica en detalle qué información es enviada y almacenada cuando envía un informe de error o comenta en [nuestro blog](https://newpipe.net/blog/). Puede encontrar el documento [aquí](https://newpipe.net/legal/privacy/).
+NewPipe Material es una bifurcación independiente; las donaciones al proyecto original van al proyecto NewPipe original, no automáticamente a este fork.
+
+---
 
 ## Licencia
 
-[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.html)
+NewPipe Material es software libre basado en NewPipe y se distribuye bajo la GNU General Public License versión 3 o posterior.
 
-NewPipe es Software Libre: Puede usarlo, estudiarlo, compartirlo y mejorarlo a su voluntad. Más específicamente, puede redistribuirlo y/o modificarlo bajo los términos de la [GNU General Public License](https://www.gnu.org/licenses/gpl.html) publicada por la Free Software Foundation tanto si usa la versión 3 o posterior de la licencia.
+Consulta los archivos de licencia del repositorio y la pantalla de licencias dentro de la app para detalles completos.
