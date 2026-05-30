@@ -32,6 +32,7 @@
                 android:gravity="start|center_vertical"
                 android:maxLines="2"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="14sp"
                 tools:text="@tools:sample/lorem/random" />
 
@@ -43,6 +44,7 @@
                 android:gravity="start|center_vertical"
                 android:maxLines="1"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 android:textSize="12sp"
                 tools:text="@tools:sample/lorem/random" />
         </LinearLayout>
@@ -57,6 +59,7 @@
             android:layout_marginStart="6dp"
             android:layout_marginEnd="12dp"
             android:src="@drawable/ic_refresh"
+            android:tint="?attr/colorPrimary"
             tools:ignore="ContentDescription" />
 
         <View

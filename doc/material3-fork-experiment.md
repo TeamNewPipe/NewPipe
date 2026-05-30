@@ -749,3 +749,28 @@ Known risks / QA:
   remote playlist rows, empty/error/loading states, and row pressed states in
   Light, Dark, Black, Follow system dynamic color, App default, and one manual
   palette such as Orange or Purple.
+
+### Empty, loading, no-content, and retry state polish (latest)
+
+- Empty/no-results titles for search, settings search, comments, kiosks, and
+  related-video panels now use `colorOnSurface`, while existing kaomoji/status
+  marks and helper copy remain on `colorOnSurfaceVariant`.
+- Generic error-panel actions now use a borderless primary-colored text treatment
+  so retry/report/open-in-browser affordances read as Material actions without
+  changing the panel IDs, listeners, or retry/error flow.
+- Feed refresh/loading state copy now maps title text to `colorOnSurface`, helper
+  text to `colorOnSurfaceVariant`, and the refresh affordance icon to
+  `colorPrimary`; picker empty/loading states now use the same Material role
+  mapping and progress indicator style.
+- Scope was intentionally limited to XML resource color/tint/style attributes and
+  this documentation. Error handling, retry behavior, loading behavior, search
+  and list behavior, extractor/service/network logic, playback, downloads,
+  navigation, database behavior, settings behavior, and player/queue overlays
+  were not changed.
+
+Known risks / QA:
+- Device QA should inspect fresh/empty home/feed states, nonsense-query search
+  no-results, settings search no-results, comments/related/kiosk empty states,
+  picker empty/loading states, generic error/retry panels, rotation, and Light,
+  Dark, Black, Follow system dynamic color, App default, and one manual palette
+  such as Orange or Purple.

@@ -546,3 +546,19 @@ Before a public NewPipe Material release, manually verify:
   stream/channel/playlist opening, playback, downloads, queue/player overlay,
   navigation, database behavior, and settings behavior while iterating on this
   visual surface.
+
+### Current Material polish note: empty, loading, no-content, and retry states
+
+- Keep empty/loading/error polish focused on resource-level Material role mapping:
+  visible empty/no-results titles should use `colorOnSurface`, helper text and
+  subdued glyphs/icons should use `colorOnSurfaceVariant`, and retry/action
+  affordances should use established primary-role action treatment.
+- Manual QA for this surface should cover fresh/empty main or feed states,
+  nonsense-query no-results, settings-search no-results, subscriptions/bookmarks/
+  playlists empty states, generic error/retry panels, loading indicators, title/
+  helper/icon/action contrast, rotation, and Light/Dark/Black plus dynamic/App
+  default/manual palettes.
+- Preserve error handling, retry behavior, loading behavior, search/list behavior,
+  network/extractor/service logic, playback, downloads, queue/player overlay,
+  navigation, database behavior, and settings behavior while iterating on this
+  visual surface.

@@ -15,7 +15,8 @@
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:text="@string/select_a_kiosk"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="?attr/colorOnSurface" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/items_list"

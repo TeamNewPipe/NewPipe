@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/empty_view_no_videos"
-            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="24sp" />
 
     </LinearLayout>

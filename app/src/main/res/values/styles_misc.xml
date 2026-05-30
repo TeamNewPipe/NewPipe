@@ -12,9 +12,9 @@
         <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
     </style>
 
-    <style name="MaterialStateActionButton" parent="Widget.AppCompat.Button.Colored">
-        <item name="colorButtonNormal">?attr/colorPrimary</item>
-        <item name="android:textColor">?attr/colorOnPrimary</item>
+    <style name="MaterialStateActionButton" parent="Widget.AppCompat.Button.Borderless.Colored">
+        <item name="colorAccent">?attr/colorPrimary</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
         <item name="colorControlHighlight">?attr/colorControlHighlight</item>
     </style>
 

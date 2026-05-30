@@ -16,7 +16,8 @@
         android:layout_marginRight="5dp"
         android:layout_marginBottom="10dp"
         android:text="@string/select_a_playlist"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="?attr/colorOnSurface" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/items_list"
@@ -33,11 +34,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="@string/no_playlist_bookmarked_yet"
-        android:textAppearance="?android:attr/textAppearanceListItem" />
+        android:textAppearance="?android:attr/textAppearanceListItem"
+        android:textColor="?attr/colorOnSurfaceVariant" />
 
     <ProgressBar
         android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
+        style="@style/MaterialStateProgressIndicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp" />
