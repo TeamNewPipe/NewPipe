@@ -291,8 +291,8 @@ Before shipping theme color selection, verify:
   settings screen without losing state.
 - Export/import of the new setting, including imports from builds that do not
   know the setting yet.
-- `Theme color` setting persistence plus the Apply now/Later prompt behavior
-  for activity recreation/restart timing.
+- `Theme color` setting persistence plus the Apply now/Restart/Later prompt
+  behavior for activity recreation/restart timing.
 
 ## Fork productization checklist
 

@@ -563,6 +563,8 @@ Known risks:
 - Prompt actions:
   - `Apply now`: safely recreates the current Settings activity so the selected
     color can be applied there through normal theme initialization.
+  - `Restart`: relaunches the app from its launcher intent and clears the old
+    task so the selected color can be applied app-wide.
   - `Later`: dismisses the dialog and leaves the user in place; the saved color
     applies after settings/app screens are reopened or the app is restarted.
 - Runtime theme color resolution, dynamic color behavior, palette values, and

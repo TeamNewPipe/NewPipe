@@ -96,10 +96,25 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
                     .setMessage(R.string.theme_color_restart_dialog_message)
                     .setPositiveButton(R.string.theme_color_restart_apply_now,
                             (dialog, which) -> ActivityCompat.recreate(activity))
+                    .setNeutralButton(R.string.theme_color_restart_app,
+                            (dialog, which) -> restartApplication(activity))
                     .setNegativeButton(R.string.theme_color_restart_later,
                             (dialog, which) -> dialog.dismiss())
                     .show();
         }
+    }
+
+    private void restartApplication(final Activity activity) {
+        final Intent restartIntent = activity.getPackageManager()
+                .getLaunchIntentForPackage(activity.getPackageName());
+        if (restartIntent == null) {
+            ActivityCompat.recreate(activity);
+            return;
+        }
+
+        restartIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        activity.startActivity(restartIntent);
+        activity.finishAffinity();
     }
 
     private void applyThemeChange(final String beginningThemeKey,
