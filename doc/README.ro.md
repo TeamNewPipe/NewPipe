@@ -1,142 +1,170 @@
-<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p> 
-<h2 align="center"><b>NewPipe</b></h2>
-<h4 align="center">Un front-end de streaming „uşor” liber, pentru Android.</h4>
+<p align="center"><a href="https://github.com/wizdom13/NewPipe"><img src="../assets/new_pipe_icon_5.png" width="150" alt="Pictograma NewPipe Material"></a></p>
 
-<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-ro.svg" alt="Get it on F-Droid" width=206/></a></p>
+<h1 align="center">NewPipe Material</h1>
 
-<p align="center">
-<a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub release"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
-<a href="https://github.com/TeamNewPipe/NewPipe-nightly/releases" alt="GitHub NewPipe nightly releases"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe-nightly.svg?labelColor=purple&label=dev%20nightly"></a>
-<a href="https://github.com/TeamNewPipe/NewPipe-refactor-nightly/releases" alt="GitHub NewPipe refactor nightly releases"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe-refactor-nightly.svg?labelColor=purple&label=refactor%20nightly"></a>
-<a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
-<a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Build Status"><img src="https://github.com/TeamNewPipe/NewPipe/actions/workflows/ci.yml/badge.svg?branch=dev&event=push"></a>
-<a href="https://hosted.weblate.org/engage/newpipe/" alt="Translation Status"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
-</p>
+<p align="center"><b>Un fork independent al NewPipe pentru Android, concentrat pe Material 3.</b></p>
 
 <p align="center">
-<a href="https://web.libera.chat/#newpipe" alt="IRC channel: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
-<a href="https://matrix.to/#/#newpipe:matrix.newpipe-ev.de" alt="Matrix channel: #newpipe"><img src="https://img.shields.io/badge/Matrix%20chat-%23newpipe-blue"></a>
+  <a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg" alt="Licență: GPLv3"></a>
+  <a href="https://github.com/wizdom13/NewPipe/actions"><img src="https://github.com/wizdom13/NewPipe/actions/workflows/ci.yml/badge.svg" alt="Stare build"></a>
 </p>
 
-<hr>
-<p align="center"><a href="#screenshots">Capturi de ecran</a> &bull; <a href="#description">Descriere</a> &bull; <a href="#features">Funcţii</a> &bull; <a href="#installation-and-updates">Instalare şi actualizări</a> &bull; <a href="#contribution">Contribuţie</a> &bull; <a href="#donate">Donaţi</a> &bull; <a href="#license">Licenţă</a></p>
-<p align="center"><a href="https://newpipe.net">Website</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Presă</a></p>
-<hr>
+<p align="center"><b>Citește în:</b> <a href="../README.md">English</a> &bull; <a href="README.de.md">Deutsch</a> &bull; <a href="README.es.md">Español</a> &bull; <a href="README.fr.md">Français</a> &bull; <a href="README.hi.md">हिन्दी</a> &bull; <a href="README.it.md">Italiano</a> &bull; <a href="README.ko.md">한국어</a> &bull; <a href="README.pt_BR.md">Português Brasil</a> &bull; <a href="README.pl.md">Polski</a> &bull; <a href="README.pa.md">ਪੰਜਾਬੀ</a> &bull; <a href="README.ja.md">日本語</a> &bull; <a href="README.ro.md">Română</a> &bull; <a href="README.so.md">Soomaali</a> &bull; <a href="README.tr.md">Türkçe</a> &bull; <a href="README.zh_TW.md">正體中文</a> &bull; <a href="README.asm.md">অসমীয়া</a> &bull; <a href="README.sr.md">Српски</a> &bull; <a href="README.ar.md">العربية</a></p>
 
-*Read this document in other languages: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md) , [العربية](README.ar.md)*
+---
 
-> [!warning]
-> <b>ACEASTA ESTE O VERSIUNE BETA, AŞA CĂ S-AR PUTE SĂ ÎNTÂLNIŢI ERORI. DACĂ SE ÎNTÂMPLĂ ACEST LUCRU, DESCHIDEŢI UN ISSUE PRIN REPSITORY-UL NOSTRU GITHUB.</b>
->
-> <b>PUNERA NEWPIPE SAU ORICĂRUI FORK AL ACESTUIA ÎN MAGAZINUL GOOGLE PLAY LE ÎNCALCĂ TERMENII ŞI CONDIŢIILE.</b>
+## Notificare importantă despre fork
+
+NewPipe Material este un fork întreținut independent al NewPipe, axat pe design Material 3, teme pentru aplicație și finisarea produsului.
+
+Acest proiect **nu este afiliat, sponsorizat sau aprobat** de proiectul oficial NewPipe, TeamNewPipe sau NewPipe e.V.
+
+NewPipe Material este construit pe baza NewPipe și păstrează licența liberă NewPipe, atribuirea proiectului original și notificările licențelor terțe.
+
+---
+
+## Ce este NewPipe Material?
+
+NewPipe Material păstrează experiența principală NewPipe, modernizând identitatea și interfața aplicației.
+
+Obiectivele forkului:
+
+- suprafețe, dialoguri, setări, taburi și navigare inspirate de Material 3;
+- suport pentru culori dinamice Material You, unde este disponibil;
+- culori manuale de temă: implicit aplicație, neutru, verde, albastru, mov, portocaliu, roz și roșu;
+- identitate nouă: **NewPipe Material**;
+- ID separat al aplicației: `org.wisso.newpipematerial`;
+- buildurile debug se instalează separat ca `org.wisso.newpipematerial.debug`;
+- comportamentul NewPipe, compatibilitatea import/export și serviciile suportate sunt păstrate.
+
+Forkul evită schimbările riscante în zone sensibile precum redarea, descărcările, redarea în fundal, playerul popup și logica Extractorului, cu excepția schimbărilor dedicate și testate.
+
+---
 
 ## Capturi de ecran
 
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/00.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/00.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png)
-<br/><br/>
-[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png)
-[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png)
+### Telefon
 
-## Descriere
+<p align="center">
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" width="160" alt="Captură telefon 1"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png" width="160" alt="Captură telefon 2"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png" width="160" alt="Captură telefon 3"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png" width="160" alt="Captură telefon 4"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png" width="160" alt="Captură telefon 5"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png" width="160" alt="Captură telefon 6"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png" width="160" alt="Captură telefon 7"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png" width="160" alt="Captură telefon 8"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/09.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/09.png" width="160" alt="Captură telefon 9"></a>
+</p>
 
-NewPipe nu foloseşte nici-o bibliotecă Google framework sau API-ul Youtube. Website-urile sunt doar analizate pentru a prelua informaţia necesară, aşa că această aplicaţie poate fi folosită pe telefoane fără Serviciile Google instalate. De asemenea, nu aveţi nevoie de un cont Youtube pentru a folosi Newpipe, care este sofware liber şi copylefted.
+### Tabletă
 
-### Funcţii
+<p align="center">
+  <a href="../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png"><img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png" width="405" alt="Captură tabletă 1"></a>
+  <a href="../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png"><img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png" width="405" alt="Captură tabletă 2"></a>
+</p>
 
-* Căutarea videoclipurilor
-* Nu este necesară logarea
-* Afişarea informaţiilor generale despre videoclipuri
-* Urmărirea videoclipurilor Youtube
-* Ascultarea videoclipurilor Youtube
-* Modul popup (player plutitor)
-* Selectarea playerului de streaming pentru vizionarea videoclipului
-* Descărcarea videoclipurilor
-* Doar descărcarea sunetului
-* Deschiderea videoclipurilor cu Kodi
-* Expunerea videoclipurilor următoare/asociate
-* Căutarea YouTube într-o limbă specifică
-* Vizionarea/Blocarea materialului restricţionat în funcţie de vârstă
-* Afişarea informaţiilor generale despre canale
-* Căutarea canalelor
-* Vizionarea videoclipurilor dintr-un canal
-* Suport Orbot/Tor (încă nu direct)
-* Suport 1080p/2K/4K
-* Vizionarea istoricului
-* Abonarea la canale
-* Căutarea în istoric
-* Căutarea/vizionarea playlisturilor
-* Vizionarea ca playlisturi puse în coadă
-* Punerea în coadă a videoclipurilor
-* Playlisturi locale
-* Subtitrări
-* Suport al transmiterilor live
-* Afişarea comentariilor
+---
 
-### Servicii întreţinute
+## Servicii acceptate
 
-NewPipe suportă servicii multiple. [Documentele](https://teamnewpipe.github.io/documentation/) noastre furnizează mai multe informaţii în legătură cu modalităţile prin care un nou serviciu poate fi adăugat aplicaţiei şi extractorului. Vă rugăm să ne contactaţi dacă doriţi să adăugaţi unul nou. Serviciile întreţinute acum sunt:
+NewPipe Material moștenește suportul NewPipe pentru YouTube, YouTube Music, PeerTube, Bandcamp, SoundCloud și media.ccc.de.
 
-* YouTube
-* SoundCloud \[beta\]
-* media.ccc.de \[beta\]
-* Instanţe PeerTube \[beta\]
-* Bandcamp \[beta\]
+Suportul serviciilor depinde de codul upstream NewPipe și NewPipe Extractor.
 
-<!-- Hidden span to keep old links compatible. -->
-<span id="updates"></span>
+---
 
-## Instalare şi actualizări
-Puteţi instala NewPipe folosind una dintre următoarele metode:
- 1. Adăugaţi depozitul nostru F-droid personalizat. Instrucţiunile sunt aici: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
- 2. Descărcaţi APK-ul din [GitHub Releases](https://github.com/TeamNewPipe/NewPipe/releases) şi instalaţi-l.
- 3. Actualizaţi via F-Droid. Aceasta este cea mai lentă metodă de a obţine actualizări, deoarece F-Droid trebuie să recunoască schimbările, să constriască APK-ul, să îl semneze, iar apoi să îl trimită utilizatorilor.
- 4. Construiţi un APK de depanare. Aceasta este cea mai rapidă metodă de a primi funcţii noi, dar este mult mai complicată, aşa că vă recomandăm să folosiţi una dintre celelalte metode.
+## Funcții
 
-Recomandăm metoda 1 pentru majoritatea utilizatorilor. APK-urile din metodele 1 şi 2 suntcompatibile una cu cealaltă, dar nu cu cele din metoda 3. Acest lucru se datorează faptului că aceeași cheie de semnare (a noastră) este utilizată pentru 1 și 2, dar o altă cheie de semnare (F-Droid) este utilizată pentru 3. Construirea unui APK de depanare folosind metoda 4 exclude o cheie în întregime. Cheile de semnare vă asigură că un utilizator nu este păcălit să instaleze o actualizare rău intenționată a unei aplicații.
+NewPipe Material păstrează funcțiile familiare NewPipe: videoclipuri și live streams, redare în fundal, player popup, playlisturi locale, abonamente fără cont de platformă, grupuri de canale, căutare, detalii video, descărcări și import/export de date.
 
-Între timp, dacă doriți să schimbați sursa dintr-un anumit motiv (de exemplu, funcționalitatea de bază a NewPipe a fost întreruptă și F-Droid nu are încă actualizarea), vă recomandăm să folosiţi următoarea procedură:
-1. Faceți o copie de rezervă a datelor prin Setări> Conținut> Exportați baza de date, astfel încât să vă păstrați istoricul, abonamentele și playlisturile
-2. Dezinstalaţi NewPipe
-3. Descărcaţi APK-ul din noua sursă şi instalaţi-l
-4. Importați datele de la pasul 1 prin Setări> Conținut> Importare bază de date
+Adăugirile Material includ roluri de culoare Material 3, navigare de jos pentru cinci taburi principale sau mai puține, culori dinamice/manuale, atribuire fork în ecranul Despre și suport pentru semnarea release-urilor.
 
-## Contribuţie
-Dacă aveţi idei, traduceri, schimbări de design, curaţarea codului, sau schimbări majore ale codului, ajutorul este întotdeauna binevenit.
-Cu cât se face mai mult cu atât mai bună devine aplicaţia!
+---
 
-Dacă doriţi să vă implicaţi, accesaţi [notele noastre de contribuţie](../.github/CONTRIBUTING.md).
+## Instalare
 
-<a href="https://hosted.weblate.org/engage/newpipe/">
-<img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Translation status" />
-</a>
+Instalează NewPipe Material din release-urile GitHub ale acestui repository sau din artefacte semnate când sunt disponibile.
 
-## Donaţii
-Dacă vă place NewPipe, am fi bucuroşi să primim o donaţie. Puteţi să ne trimiteţi bitcoin sau să ne donaţi cu Bountysource sau Liberapay. Pentru mai multe informaţii în legătură cu donaţiile către NewPipe, vă rugăm vizitaţi [website-ul nostru](https://newpipe.net/donate).
+```text
+NewPipe oficial:  org.schabi.newpipe / net.newpipe.app în funcție de buildul upstream
+NewPipe Material: org.wisso.newpipematerial
+Debug:            org.wisso.newpipematerial.debug
+```
 
-<table>
-  <tr>
-    <td><a href="https://liberapay.com/TeamNewPipe/"><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/"><img src="../assets/liberapay_qr_code.png" alt="Visit NewPipe at liberapay.com" width="100px"></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="../assets/liberapay_donate_button.svg" alt="Donate via Liberapay" height="35px"></a></td>
-  </tr>
-</table>
+Pentru migrarea datelor, exportă baza de date din NewPipe oficial prin Settings > Backup and Restore, instalează NewPipe Material și importă copia. Păstrează întotdeauna un backup.
 
-## Politica de Confidenţialitate
+Nu publica NewPipe Material, NewPipe sau forkuri NewPipe pe Google Play.
 
-Proiectul NewPipe îşi propune să furnizeze o experienţă privată şi anonimă pentru utilizarea serviciilor web media.
-Prin urmare, aplicaţia nu colectează niciun fel de informaţii fără acordul dumneavoastră. Politica de confidențialitate a NewPipe explică în detaliu ce date sunt trimise și stocate atunci când trimiteți un raport de blocare sau comentați pe blogul nostru. Puteți găsi documentul [aici](https://newpipe.net/legal/privacy/).
+---
 
-## Licenţă
-[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
+## Build din sursă
 
-NewPipe este Software Gratuit: Îl puteţi folosi şi împărtăşi cum doriţi. Mai exact, îl puteți redistribui și / sau modifica în conformitate cu termenii
-[GNU General Public License](https://www.gnu.org/licenses/gpl.html) aşa cum a fost publicat de Free Software Foundation, fie versiunea 3 a Licenței, fie
-(la alegerea dvs.) orice versiune ulterioară.
+Cerințe: JDK 21, Android SDK și Gradle wrapper din repository.
+
+```bash
+./gradlew runCheckstyle -DskipFormatKtlint
+./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint
+./gradlew assembleDebug -DskipFormatKtlint
+```
+
+Buildul debug folosește numele **NewPipe Material Debug** și pachetul `org.wisso.newpipematerial.debug`.
+
+---
+
+## Semnarea release-ului
+
+Variabile de mediu:
+
+```text
+NEWPIPE_MATERIAL_RELEASE_STORE_FILE
+NEWPIPE_MATERIAL_RELEASE_STORE_PASSWORD
+NEWPIPE_MATERIAL_RELEASE_KEY_ALIAS
+NEWPIPE_MATERIAL_RELEASE_KEY_PASSWORD
+```
+
+Verificare recomandată:
+
+```bash
+./gradlew assembleRelease -DskipFormatKtlint
+apksigner verify --verbose --print-certs app/build/outputs/apk/release/app-release.apk
+```
+
+---
+
+## Starea dezvoltării
+
+Finalizat sau în lucru: nume și ID aplicație, separare debug/release, culori Material 3, culori dinamice/manuale, navigare de jos, ecran Despre, dialoguri, snackbars, setări, detalii video, interfață de descărcare și workflow de semnare.
+
+Amânat sau cu risc ridicat: overlay-ul principal al playerului, culorile seekbar/gesturi, controalele cozii, meniurile calitate/audio/subtitrări și schimbări ample ale redării sau descărcării.
+
+---
+
+## Contribuții
+
+Contribuțiile sunt binevenite: corecturi, QA, documentație, pregătire release și polish Material 3 concentrat. Păstrează schimbările focalizate și testabile.
+
+---
+
+## Upstream NewPipe
+
+- Repository NewPipe: https://github.com/TeamNewPipe/NewPipe
+- Site NewPipe: https://newpipe.net
+- FAQ NewPipe: https://newpipe.net/FAQ/
+- NewPipe Extractor: https://github.com/TeamNewPipe/NewPipeExtractor
+
+Problemele specifice forkului aparțin acestui repository. Problemele de servicii sau Extractor pot necesita comparație cu NewPipe oficial.
+
+---
+
+## Donații
+
+Pentru a susține upstream NewPipe: https://newpipe.net/donate
+
+NewPipe Material este un fork independent; donațiile upstream merg către proiectul NewPipe upstream, nu automat către acest fork.
+
+---
+
+## Licență
+
+NewPipe Material este software liber bazat pe NewPipe și distribuit sub GNU General Public License versiunea 3 sau ulterioară. Consultă fișierele de licență și ecranul de licențe din aplicație pentru detalii complete.
