@@ -499,7 +499,9 @@ Before a public NewPipe Material release, manually verify:
 - Subscriptions: channel subscription/unsubscription, feed loading, refresh,
   groups, and notification-related settings.
 - Settings: Appearance, Content, Video/Audio, Download, History, Notification,
-  Privacy, and backup/restore paths.
+  Privacy, backup/restore paths, preference category/header contrast,
+  preference title/summary/icon colors, ListPreference dialogs, and the
+  Appearance theme-color restart prompt.
 - Import/export: settings export/import, database export/import, subscriptions,
   playlists, and failure handling for incompatible files.
 - Android versions: minimum supported API, current target API behavior, and at

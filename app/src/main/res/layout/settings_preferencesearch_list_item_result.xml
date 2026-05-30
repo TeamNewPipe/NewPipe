@@ -13,7 +13,7 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="?android:attr/editTextColor"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="16sp"
         tools:text="Title" />
 
@@ -21,7 +21,7 @@
         android:id="@+id/summary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="?android:attr/editTextColor"
+        android:textColor="?attr/colorOnSurfaceVariant"
         android:textSize="14sp"
         tools:text="Summary" />
 
@@ -29,8 +29,7 @@
         android:id="@+id/breadcrumbs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:alpha="0.6"
-        android:textColor="?android:attr/editTextColor"
+        android:textColor="?attr/colorOnSurfaceVariant"
         android:textSize="14sp"
         tools:text="Breadcrumb" />
 </LinearLayout>

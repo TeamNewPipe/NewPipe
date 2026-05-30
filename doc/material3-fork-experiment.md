@@ -678,3 +678,20 @@ Known risks / QA:
   Black, Follow system dynamic color, App default, and one manual preset, and
   should exercise speed changes, pitch changes, reset, cancel/dismiss, and
   rotation if the dialog remains open.
+
+### Settings surface Material 3 polish (latest)
+
+- Settings screens now map preference title text to `colorOnSurface`, summaries,
+  search-result secondary text, and normal preference controls/icons to
+  `colorOnSurfaceVariant`, and category/header text to `colorPrimary`.
+- Scope was limited to settings resource styling/layout tinting. Preference XML
+  keys/defaults, SettingsActivity navigation, Appearance theme-color persistence,
+  backup/import/export behavior, playback/download behavior, and the player
+  overlay were not changed.
+- The Appearance theme-color restart dialog remains behaviorally unchanged: Apply
+  now recreates the current settings activity, Restart relaunches the app, and
+  Later dismisses the dialog.
+- QA scope: Settings main screen, Appearance, Theme color list and restart dialog,
+  several ListPreference dialogs, Backup and restore settings, rotation in
+  settings, and Light/Dark/Black plus Follow system dynamic color, App default,
+  and one manual preset such as Orange or Purple.

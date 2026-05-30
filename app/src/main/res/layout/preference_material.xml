@@ -27,7 +27,8 @@
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:singleLine="true"
-            android:textAppearance="?android:attr/textAppearanceListItem" />
+            android:textAppearance="?android:attr/textAppearanceListItem"
+            android:textColor="?attr/colorOnSurface" />
 
         <TextView
             android:id="@android:id/summary"
