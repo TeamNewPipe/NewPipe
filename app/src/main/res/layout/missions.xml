@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
     android:orientation="vertical">
 
     <include
@@ -11,6 +12,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mission_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="?attr/colorSurface" />
 
 </LinearLayout>

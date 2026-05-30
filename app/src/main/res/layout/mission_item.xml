@@ -1,14 +1,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="?attr/colorSurface">
 
     <RelativeLayout
         android:id="@+id/item_bkg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        android:background="@color/bluegray">
+        android:background="?attr/colorSurfaceVariant">
 
         <RelativeLayout
             android:id="@+id/item_title_line"
@@ -26,7 +27,7 @@
                 android:layout_marginLeft="6dp"
                 android:singleLine="true"
                 android:text="0%"
-                android:textColor="?attr/colorOnSurface"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 android:textSize="20sp" />
 
             <ImageView
@@ -40,7 +41,7 @@
                 android:contentDescription="TODO"
                 android:scaleType="center"
                 android:src="@drawable/ic_more_vert"
-                app:tint="?attr/actionColor" />
+                app:tint="?attr/colorOnSurfaceVariant" />
 
         </RelativeLayout>
 
@@ -54,7 +55,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:scaleType="fitXY"
-            app:tint="?attr/actionColor" />
+            app:tint="?attr/colorOnSurfaceVariant" />
 
         <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/item_name"
