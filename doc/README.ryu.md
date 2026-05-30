@@ -1,146 +1,159 @@
-<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p> 
-<h2 align="center"><b>NewPipe</b></h2>
-<h4 align="center">じゆーいっしけいりょうなAndroidんきーストリーミングフロントエンド</h4>
+<p align="center"><a href="https://github.com/wizdom13/NewPipe"><img src="../assets/new_pipe_icon_5.png" width="150" alt="NewPipe Material アイコン"></a></p>
 
-<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-ja.svg" alt="Get it on F-Droid" width=206/></a></p>
+<h1 align="center">NewPipe Material</h1>
 
-<p align="center">
-<a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub リリース"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg"></a>
-<a href="https://github.com/TeamNewPipe/NewPipe-nightly/releases" alt="GitHub NewPipe nightly releases"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe-nightly.svg?labelColor=purple&label=dev%20nightly"></a>
-<a href="https://github.com/TeamNewPipe/NewPipe-refactor-nightly/releases" alt="GitHub NewPipe refactor nightly releases"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe-refactor-nightly.svg?labelColor=purple&label=refactor%20nightly"></a>
-<a href="https://www.gnu.org/licenses/gpl-3.0" alt="ライセンス: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
-<a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="ビルドじょうたい"><img src="https://github.com/TeamNewPipe/NewPipe/actions/workflows/ci.yml/badge.svg?branch=dev&event=push"></a>
-<a href="https://hosted.weblate.org/engage/newpipe/" alt="ふんやちゅるじょうたい"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
-</p>
+<p align="center"><b>Android 向け、Material 3 ぬデザインに重点を置いた NewPipe ぬ独立 fork やいびーん。</b></p>
 
 <p align="center">
-<a href="https://web.libera.chat/#newpipe" alt="IRC チャンネル: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
-<a href="https://matrix.to/#/#newpipe:matrix.newpipe-ev.de" alt="Matrix channel: #newpipe"><img src="https://img.shields.io/badge/Matrix%20chat-%23newpipe-blue"></a>
+  <a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg" alt="License: GPLv3"></a>
+  <a href="https://github.com/wizdom13/NewPipe/actions"><img src="https://github.com/wizdom13/NewPipe/actions/workflows/ci.yml/badge.svg" alt="Build status"></a>
 </p>
 
-<hr>
-<p align="center"><a href="#screenshots">スクリーンショット</a> &bull; <a href="#description">しちめい</a> &bull; <a href="#features">ちぬー</a> &bull; <a href="#installation-and-updates">インストールとぅこうしん</a> &bull; <a href="#contribution">こうきん</a> &bull; <a href="#donate">ちーふ</a> &bull; <a href="#license">ライセンス</a></p>
-<p align="center"><a href="https://newpipe.net">ウェブサイト</a> &bull; <a href="https://newpipe.net/blog/">ブログ</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">ニュース</a></p>
-<hr>
+<p align="center"><b>ほかぬ言語:</b> <a href="../README.md">English</a> &bull; <a href="README.de.md">Deutsch</a> &bull; <a href="README.es.md">Español</a> &bull; <a href="README.fr.md">Français</a> &bull; <a href="README.hi.md">हिन्दी</a> &bull; <a href="README.it.md">Italiano</a> &bull; <a href="README.ko.md">한국어</a> &bull; <a href="README.pt_BR.md">Português Brasil</a> &bull; <a href="README.pl.md">Polski</a> &bull; <a href="README.pa.md">ਪੰਜਾਬੀ</a> &bull; <a href="README.ja.md">日本語</a> &bull; <a href="README.ro.md">Română</a> &bull; <a href="README.ru.md">Русский</a> &bull; <a href="README.so.md">Soomaali</a> &bull; <a href="README.tr.md">Türkçe</a> &bull; <a href="README.zh_TW.md">正體中文</a> &bull; <a href="README.ryu.md">沖縄口</a> &bull; <a href="README.asm.md">অসমীয়া</a> &bull; <a href="README.sr.md">Српски</a> &bull; <a href="README.ar.md">العربية</a></p>
 
-*ふかぬぎんぐっしゆむん： [English](../README.md), [Español](README.es.md), [हिन्दी](README.hi.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md) , [العربية](README.ar.md)*
+---
 
-> [!warning]
-> <b>くれーベータばんぬたみ、バグぬはっせいすがのうゆいがあいびーん。むしバグぬはっせいさーあい、GitHubぬリポジトリっしIssueふぃらちくぃみそーれー。</b>
->
-> <b>NewPipeうゆびいじりぬフォークGoogle Playストアんかいかんかいしーねー、Googleぬとぅいふぃちじょうきんぬいはんになります。</b>
+## fork についてぬ大切なお知らせ
 
-<span id="screenshots"></span>
-## スクリーンショット
+NewPipe Material や、Material 3 デザイン、アプリぬテーマ、使いやすさぬ仕上げに重点を置いて独立して保守されている NewPipe ぬ fork やいびーん。
 
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/00.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/00.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png)
-<br/><br/>
-[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png)
-[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png)
+くぬ project や、公式 NewPipe project、TeamNewPipe、NewPipe e.V. と **提携、スポンサー関係、または承認関係にあいびらん**。
 
-<span id="description"></span>
-## しちめい
+NewPipe Material や NewPipe をもとに作られており、NewPipe ぬ自由 software license、upstream credits、third-party license notices を保っていびーん。
 
-じゆうなコピーレフトソフトウェアぬNewPipeーいっさいぬGoogleフレームワークライブラリうゆび、YouTube APIさしましん。ウェブサイトーふぃちぐとーるじょうほうぬたみてーぬんかいゆみくまりーるたみ、くぬアプレーGoogleぬサービスぬインストールさりてぃうぅらんたんまちっししようぬなやびーん。また、NewPipeぬしようんかいYouTubeアカウントーふぃちようとぅなやびらん。
+---
 
-<span id="features"></span>
-### ちぬー
+## NewPipe Material とは？
 
-* ちゃーしがぬきんさく
-* ちゃーしがどぅちふんじょうほうぬひょうじ
-* YouTubeぬちゃーしがぬしちょう
-* YouTubeぬちゃーしがぬバックグラウンドさいせい
-* ポップアップモード（フローティングプレイヤー）
-* ちゃーしがしちょうするストリーミングプレイヤーぬしんたく
-* ちゃーしがぬダウンロード
-* うんせいぬみぬダウンロード
-* Kodiっしぬちゃーしがさいせい
-* ちぎぬちゃーしが/かんりんちゃーしがぬひょうじ
-* とぅくていぬぎんぐぬYouTubeぬきんさく
-* されいゆいぎんぬあるコンテンツぬしちょう/ブロック
-* チャンネルぬきふんじょうほうぬひょうじ
-* チャンネルぬきんさく
-* チャンネルからぬちゃーしがぬしちょう
-* Orbot/Torたいおう（ちょくしちてぃきなむぬはみじっそう）
-* 1080p/2K/4Kたいおう
-* りりきぬひょうじ
-* チャンネルぬとぅうるく
-* りりきぬきんさく
-* さいせいリストぬきんさく/しちょう
-* さいせいリストキューんかいちいからちさいせい
-* ちゃーしがぬキューんかいぬちいが
-* たんまちなじぬさいせいリスト
-* じまちゅん
-* ライブーいしんぬたいおう
-* コメントぬひょうじ
+NewPipe Material や NewPipe ぬ基本的な体験を保ちながら、アプリぬ identity と user interface を modern にする fork やいびーん。
 
-### たいおうそーるサービス
+目標:
 
-NewPipeーふくすんぬサービスんかいたいおうそーいびーん。[ドキュメント](https://teamnewpipe.github.io/documentation/)ー、ちゃぬぐとぅしアプリとぅNewPipe Extractorんかいサービス追加ないがにちいてぃしーょうさいなじょうほうていきょうそーいびーん。むし、みーさるサービスちいかすいらー、じふぃわったーんかいりんらくうにげーさびら。ぎんじぇーたいおうそーるサービスー：
+- Material 3 inspired surfaces, dialogs, settings, tabs, navigation
+- 利用できる場合ぬ Material You dynamic colors
+- manual Theme color presets: App default, Neutral, Green, Blue, Purple, Orange, Pink, Red
+- 新しい app identity: **NewPipe Material**
+- 別ぬ application ID: `org.wisso.newpipematerial`
+- debug builds や `org.wisso.newpipematerial.debug` として別に install されいびーん
+- NewPipe behavior、import/export compatibility、supported services を保つこと
 
-* YouTube
-* SoundCloud \[ベータ\]
-* media.ccc.de \[ベータ\]
-* PeerTube インスタンス \[ベータ\]
-* Bandcamp \[ベータ\]
+Playback、downloads、background playback、popup playback、Extractor logic などぬ sensitive areas では、専用に test された変更でない限り、危険な behavior changes を避けやびーん。
 
-<!-- Hidden span to keep old links compatible. -->
-<span id="updates"></span>
+---
 
-<span id="installation-and-updates"></span>
-## インストールとぅこうしん
-いかぬほうほうぬいじりがんかいしたがいるくとぅにゆってぃNewPipeインストールなやびーん。
-1. カスタムリポジトリF-Droidんかいちいからちリリースぬかんかいされいしだいインストールすん。くぬほうほうぬしちめえーくちら： https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
-2. リリースぬかんかいされいしだい[GitHubぬリリース](https://github.com/TeamNewPipe/NewPipe/releases)からAPKダウンロードしインストールすん。
-3. F-Droidからこうしんすん。くれーこうしんてぃなするういっしむっとぅむにーさるほうほうやいびーん。F-Droidがへいるかんきんちし、APKビルドしー、しょめい、あんしユーザーんかいこうしんとぅどぅきーるふぃちようがあるたみやいびーん。
-4. じぶんっしデバッグAPKビルドすん。くれーみーさるちぬーしようするういっしむっとぅむふぇーさるほうほうやいびーしが、ふかんでぃくらびてぃいっぺーふちゅるざちやくとぅ、ふかぬほうほうぬしようすいしょうさびーん。
+## Screenshots
 
-わったーやふとぅんどぅぬユーザーんかいほうほう1すいしょうさびーん。ほうほう1んでぃ2っしインストールさったん APKーぐかんせいがあいびーしが、ほうほう3っしインストールさったるむぬんかえーあいびらん。くれーほうほう1んでぃ2っしぇー、いぬしょめいかぎ（わったーがしようすし）がささりやびーしが、ほうほう3っしぇーくとぅなたしょめいかぎ（F-Droidがしようすし）がささりーるたみやいびーん。ほうほう4ちかたるデバッグAPKぬビルドーくでぃぷんてぃきなしょめいかぎぬむんだいをぬずきます。しーょめいかぎはユーザーぬだまさってぃあくいぬあるこうしんぬアプリんかいインストールさりらんくとぅたしきーんでぃあいびーん。
+### Phone
 
-むし、ぬーやいびーがやーぬいゆーいんにゆりソースきりけーたるいばあい（れい： NewPipeぬコアちぬーがやんでぃてぃねーんしがF-Droidーなーらこうしんしうぅらん）ー、くぬてぃじゅんをすいしょうさびーん。
-1. りりきやとぅいるるいちゅるチャンネル、さいせいリストたむちゅんでぃ しってい > コンテンツ > データベースエクスポートからデータバックアップ
-2. NewPipeアンインストール
-3. みーさるソースからAPKダウンロードしインストール
-4. しってい > コンテンツ > データベースインポートからステップ1っしちゅくたるデータベースインポート
+<p align="center">
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" width="160" alt="Phone screenshot 1"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png" width="160" alt="Phone screenshot 2"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png" width="160" alt="Phone screenshot 3"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png" width="160" alt="Phone screenshot 4"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png" width="160" alt="Phone screenshot 5"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png" width="160" alt="Phone screenshot 6"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png" width="160" alt="Phone screenshot 7"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png" width="160" alt="Phone screenshot 8"></a>
+  <a href="../fastlane/metadata/android/en-US/images/phoneScreenshots/09.png"><img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/09.png" width="160" alt="Phone screenshot 9"></a>
+</p>
 
-<span id="contribution"></span>
-## こうきん
-ふんやちゅん、デザインぬへんかん、コードぬせいり、だいきぶやーコードぬへんかんんでーぬたしきーやいちやてぃんかんぎうぅいさびーん。
-ゆりじょーとぅーまじゅんちゅくいとぅらさびら！
+### Tablet
 
-むしこうきんさるいばあい、[こうきんノート](../.github/CONTRIBUTING.md)ぐかくにんくぃみそーれー。
+<p align="center">
+  <a href="../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png"><img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png" width="405" alt="Tablet screenshot 1"></a>
+  <a href="../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png"><img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png" width="405" alt="Tablet screenshot 2"></a>
+</p>
 
-<a href="https://hosted.weblate.org/engage/newpipe/">
-<img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="ふんやちゅるじょうたい" />
-</a>
+---
 
-<span id="donate"></span>
-## ちーふ
-むし、NewPipeちーがんじいただけいねー、ちーふしいただけいねーうっさいびーん。BitcoinあらんでぃBountysource,Liberapayからちーふするくとぅがなやびーん。NewPipeんかいどぅちふにちいてー、[ウェブサイト](https://newpipe.net/donate)からうにげーさびら。
+## Supported services
 
-<table>
-  <tr>
-    <td><a href="https://liberapay.com/TeamNewPipe/"><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/"><img src="../assets/liberapay_qr_code.png" alt="liberapay.comっしNewPipeちゅーん" width="100px"></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="../assets/liberapay_donate_button.svg" alt="Liberapayなちーふ" height="35px"></a></td>
-  </tr>
-</table>
+NewPipe Material や NewPipe ぬ YouTube、YouTube Music、PeerTube、Bandcamp、SoundCloud、media.ccc.de support を受け継いでいびーん。
 
-## プライバシーポリシー
-NewPipeプロジェクトーメディアウェブサービスしようするういっしぬプライベートっしとぅくめいぬたいきんてぃいちょうするくとぅをむくてぃきとぅそーいびーん。
-うぬたみ、アプリーうんじゅがちゃーいなしっしいっさいぬデータしゅうしゅうさびらん。NewPipeぬプライバシーポリシーやうんじゅがクラッシュレポートあらんでぃ、わったーがブログっしコメントあんしんさーあいんかいちゃぬぐとーるデータぬあんしんされい、ふずんさりーるぬがしーょうさいにしちめいそーいびーん。うぬドキュメントー[くちら](https://newpipe.net/legal/privacy/)からみーちきーるくとぅがなやびーん。
+---
 
-<span id="license"></span>
-## ライセンス
-[![GNU GPLv3ぬロゴ](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
+## Features
 
-NewPipeーフリーソフトウェアやくとぅ、うんじょーうんじゅがぬじゅむるぐとぅさ、しゅうとぅく、きょうゆう、かいじんうくねーやびーん。
-ぐたちちーがー、フリーソフトウェアじぇーやんんにゆりかんかいさったん [GNU General Public License](https://www.gnu.org/licenses/gpl.html) ぬバージョン3ぬライセンスあらんでぃ、（うんじゅがしんたくでぃ）いじりがぬこうけいバージョンぬきやくぬむとぅっしはいふあらんでぃかいんかいんうくないるくとぅがなやびーん。
+NewPipe Material や NewPipe ぬ familiar features を保ちます: videos と live streams、background playback、popup player、local playlists、platform account なしぬ subscriptions、channel groups、search、video details、downloads、data import/export。
+
+Material additions には Material 3 color roles、5 つ以下ぬ main tabs 向け bottom navigation、dynamic/manual Theme colors、About screen ぬ fork attribution、release signing support が含まれます。
+
+---
+
+## Installation
+
+NewPipe Material は、くぬ repository ぬ GitHub Releases または signed artifacts が利用できる時に install してください。
+
+```text
+Official NewPipe: org.schabi.newpipe / net.newpipe.app upstream build による
+NewPipe Material: org.wisso.newpipematerial
+Debug:            org.wisso.newpipematerial.debug
+```
+
+Data migrate するには、official NewPipe ぬ Settings > Backup and Restore から database を export し、NewPipe Material を install して backup を import してください。必ず backup を保ってください。
+
+NewPipe Material、NewPipe、NewPipe forks を Google Play に publish しないでください。
+
+---
+
+## Source から build
+
+Requirements: JDK 21、Android SDK、repository ぬ Gradle wrapper。
+
+```bash
+./gradlew runCheckstyle -DskipFormatKtlint
+./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint
+./gradlew assembleDebug -DskipFormatKtlint
+```
+
+Debug build は **NewPipe Material Debug** 名と `org.wisso.newpipematerial.debug` package を使います。
+
+---
+
+## Release signing
+
+```text
+NEWPIPE_MATERIAL_RELEASE_STORE_FILE
+NEWPIPE_MATERIAL_RELEASE_STORE_PASSWORD
+NEWPIPE_MATERIAL_RELEASE_KEY_ALIAS
+NEWPIPE_MATERIAL_RELEASE_KEY_PASSWORD
+```
+
+---
+
+## Development status
+
+Completed または in progress: app name と ID、debug/release identity separation、Material 3 colors、dynamic/manual colors、bottom navigation、About screen、dialogs、snackbars、settings、video detail、download UI、signing workflow。
+
+Deferred または high-risk: main player overlay、seekbar/gesture colors、queue controls、quality/audio/caption menus、broad playback/download behavior changes。
+
+---
+
+## Contributing
+
+Contributions welcome やいびーん: bug fixes、QA、documentation、release readiness、focused Material 3 polish。Changes は focused かつ testable にしてください。
+
+---
+
+## Upstream NewPipe
+
+- NewPipe repository: https://github.com/TeamNewPipe/NewPipe
+- NewPipe website: https://newpipe.net
+- NewPipe FAQ: https://newpipe.net/FAQ/
+- NewPipe Extractor: https://github.com/TeamNewPipe/NewPipeExtractor
+
+Fork-specific issues やくぬ repository に報告してください。Service や Extractor issues は official NewPipe と compare する必要がある場合があります。
+
+---
+
+## Donate
+
+Upstream NewPipe を support するには: https://newpipe.net/donate
+
+NewPipe Material や independent fork やいびーん。upstream donations は upstream NewPipe project に行き、くぬ fork に automatic に行くわけではありません。
+
+---
+
+## License
+
+NewPipe Material や NewPipe をもとにした free software で、GNU General Public License version 3 またはそれ以降で distributed されます。詳しくは repository license files と in-app license screen を見てください。
