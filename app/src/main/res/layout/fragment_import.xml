@@ -14,6 +14,7 @@
         android:padding="16dp"
         android:scrollbars="vertical"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="?attr/colorOnSurfaceVariant"
         tools:text="@string/import_soundcloud_instructions" />
 
     <LinearLayout
@@ -31,7 +32,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:backgroundTint="?attr/colorPrimary"
             android:inputType="text"
+            android:textColor="?attr/colorOnSurface"
+            android:textColorHint="?attr/colorOnSurfaceVariant"
             android:visibility="gone"
             tools:hint="@string/import_soundcloud_instructions_hint"
             tools:visibility="visible" />
@@ -41,6 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
+            android:textColor="?attr/colorPrimary"
             tools:text="@string/import_title" />
 
     </LinearLayout>

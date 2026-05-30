@@ -774,3 +774,12 @@ Known risks / QA:
   picker empty/loading states, generic error/retry panels, rotation, and Light,
   Dark, Black, Follow system dynamic color, App default, and one manual palette
   such as Orange or Purple.
+
+### Generic dialog and picker polish (latest)
+
+- Generic text-input dialog content now uses the dialog surface role, on-surface input text, on-surface-variant hints, and a primary underline so add/rename prompts stay readable across Light, Dark, Black, dynamic color, and manual palettes.
+- Shared custom dialog title rows, choose-tab picker rows, feed-group reorder dividers/actions, feed-group icon picker icons, PeerTube instance rows, channel/kiosk picker rows, and import helper/input surfaces now map primary labels to `colorOnSurface`, helper text and subdued icons to `colorOnSurfaceVariant`, dividers/strokes to `colorSurfaceVariant`, and action/FAB emphasis to `colorPrimary`/`colorOnPrimary`.
+- Scope was intentionally limited to XML resource color/tint/style attributes and this documentation. Dialog/list selection behavior, validation, import/export behavior, service selection, network/extractor logic, playback, downloads, queue/player overlays, navigation, database behavior, and settings behavior were not changed. Playback speed and download dialogs were not touched.
+
+Known risks / QA:
+- Device QA should inspect generic add/rename text-input dialogs, choose-tabs add picker rows, PeerTube instance add/list/restore prompts, feed-group icon/subscription picker dialogs, import helper/input screens, unsupported URL/open-with prompts if reachable, rotation while dialogs are open, and Light, Dark, Black, Follow system dynamic color, App default, and one manual palette such as Orange or Purple.

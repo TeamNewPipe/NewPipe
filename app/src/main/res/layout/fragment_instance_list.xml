@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:autoLink="web"
-        android:text="@string/peertube_instance_url_help" />
+        android:text="@string/peertube_instance_url_help"
+        android:textColor="?attr/colorOnSurfaceVariant" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/instances"
@@ -46,6 +47,7 @@
         android:focusable="true"
         android:src="@drawable/ic_add"
         app:backgroundTint="?attr/colorPrimary"
-        app:fabSize="auto" />
+        app:fabSize="auto"
+        app:tint="?attr/colorOnPrimary" />
 
 </RelativeLayout>

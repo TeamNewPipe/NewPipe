@@ -19,7 +19,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="?attr/separator_color" />
+        android:background="?attr/colorSurfaceVariant" />
 
     <Button
         android:id="@+id/confirm_button"
@@ -27,5 +27,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:text="@string/ok" />
+        android:text="@string/ok"
+        android:textColor="?attr/colorPrimary" />
 </LinearLayout>

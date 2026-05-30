@@ -562,3 +562,8 @@ Before a public NewPipe Material release, manually verify:
   network/extractor/service logic, playback, downloads, queue/player overlay,
   navigation, database behavior, and settings behavior while iterating on this
   visual surface.
+
+### Generic dialog and picker polish
+
+- Generic text-input dialogs and safe custom picker rows now use Material 3 role colors: primary labels on `colorOnSurface`, helper/secondary text and subdued picker icons on `colorOnSurfaceVariant`, dividers and PeerTube instance row strokes on `colorSurfaceVariant`, and action affordances/FAB icons on primary roles.
+- This pass deliberately stayed in XML/resource styling for generic app and picker dialogs. Behavior, validation, import/export flows, service/network/extractor logic, playback, downloads, queue/player overlays, navigation, database behavior, settings behavior, playback speed dialog, and download dialog remain out of scope.

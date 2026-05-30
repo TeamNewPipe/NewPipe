@@ -20,6 +20,7 @@
         android:scrollHorizontally="true"
         android:singleLine="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="@dimen/channel_item_detail_title_text_size"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. " />
 
@@ -36,6 +37,7 @@
         android:scrollHorizontally="true"
         android:singleLine="true"
         android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="?attr/colorOnSurfaceVariant"
         android:textSize="@dimen/video_item_search_uploader_text_size"
         android:visibility="gone"
         tools:text="UPLOADER"

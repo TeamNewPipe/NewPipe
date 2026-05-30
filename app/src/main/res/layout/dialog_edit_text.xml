@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?attr/colorSurface"
     android:clickable="false"
     android:paddingLeft="@dimen/video_item_search_padding"
     android:paddingTop="@dimen/video_item_search_padding"
@@ -14,5 +15,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="6dp"
-        android:maxLines="1" />
+        android:backgroundTint="?attr/colorPrimary"
+        android:maxLines="1"
+        android:textColor="?attr/colorOnSurface"
+        android:textColorHint="?attr/colorOnSurfaceVariant" />
 </RelativeLayout>

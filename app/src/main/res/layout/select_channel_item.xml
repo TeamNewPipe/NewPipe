@@ -34,6 +34,7 @@
         android:ellipsize="end"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceListItem"
+        android:textColor="?attr/colorOnSurface"
         tools:text="Channel Title, Lorem ipsum" />
 
 </RelativeLayout>

@@ -19,7 +19,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginRight="5dp"
         android:contentDescription="TODO"
-        app:tint="@color/contrastColor"
+        app:tint="?attr/colorOnSurfaceVariant"
         tools:ignore="RtlHardcoded" />
 
     <org.schabi.newpipe.views.NewPipeTextView
@@ -33,6 +33,7 @@
         android:ellipsize="end"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceListItem"
+        android:textColor="?attr/colorOnSurface"
         tools:text="Channel Title, Lorem ipsum" />
 
 </RelativeLayout>

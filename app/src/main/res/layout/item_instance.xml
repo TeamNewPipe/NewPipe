@@ -10,8 +10,11 @@
     android:layout_marginBottom="3dp"
     android:minHeight="?listPreferredItemHeightSmall"
     android:orientation="horizontal"
+    app:cardBackgroundColor="?attr/colorSurface"
     app:cardCornerRadius="5dp"
-    app:cardElevation="4dp">
+    app:cardElevation="4dp"
+    app:strokeColor="?attr/colorSurfaceVariant"
+    app:strokeWidth="1dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,6 +28,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
+            android:tint="?attr/colorOnSurfaceVariant"
             tools:ignore="ContentDescription,RtlHardcoded"
             tools:src="@drawable/ic_placeholder_peertube" />
 
@@ -39,6 +43,7 @@
             android:ellipsize="marquee"
             android:singleLine="true"
             android:textAppearance="?textAppearanceListItem"
+            android:textColor="?attr/colorOnSurface"
             tools:ignore="RtlHardcoded"
             tools:text="Framatube" />
 
@@ -55,6 +60,7 @@
             android:ellipsize="marquee"
             android:singleLine="true"
             android:textAppearance="?textAppearanceListItemSecondary"
+            android:textColor="?attr/colorOnSurfaceVariant"
             tools:ignore="RtlHardcoded"
             tools:text="https://framatube.org" />
 
@@ -63,7 +69,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/handle" />
+            android:layout_toLeftOf="@id/handle"
+            android:buttonTint="?attr/colorPrimary" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/handle"
@@ -76,6 +83,7 @@
             android:paddingRight="10dp"
             android:paddingBottom="12dp"
             android:src="@drawable/ic_drag_handle"
+            app:tint="?attr/colorOnSurfaceVariant"
             tools:ignore="ContentDescription,RtlHardcoded" />
     </RelativeLayout>
 </com.google.android.material.card.MaterialCardView>

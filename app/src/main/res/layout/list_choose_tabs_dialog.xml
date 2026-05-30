@@ -13,6 +13,7 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="?dialogPreferredPadding"
+        android:tint="?attr/colorOnSurfaceVariant"
         tools:ignore="ContentDescription,RtlHardcoded"
         tools:src="@drawable/ic_kiosk_hot" />
 
@@ -27,6 +28,7 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:textAppearance="?textAppearanceListItem"
+        android:textColor="?attr/colorOnSurface"
         tools:ignore="RtlHardcoded"
         tools:text="Lorem ipsum dolor sit amet" />
 </RelativeLayout>

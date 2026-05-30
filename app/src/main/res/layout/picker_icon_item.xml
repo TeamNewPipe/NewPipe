@@ -10,5 +10,6 @@
     android:minHeight="24dp"
     android:padding="8dp"
     android:scaleType="centerInside"
+    android:tint="?attr/colorOnSurfaceVariant"
     tools:ignore="ContentDescription"
     tools:src="@drawable/ic_rss_feed" />
