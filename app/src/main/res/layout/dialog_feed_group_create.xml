@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?attr/colorSurface"
     android:orientation="vertical">
 
     <FrameLayout
@@ -26,6 +27,7 @@
                 android:layout_height="64dp"
                 android:layout_gravity="center"
                 android:scaleType="centerInside"
+                android:tint="?attr/colorPrimary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription"
@@ -63,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/group_name_input_container"
@@ -122,7 +125,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="start|center_vertical"
                         android:text="@string/tab_subscriptions"
-                        android:textColor="?android:attr/textColorPrimary"
+                        android:textColor="?attr/colorOnSurface"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -131,7 +134,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="start|center_vertical"
-                        android:textColor="?android:attr/textColorPrimary"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         android:textSize="12sp"
                         tools:text="1 selected" />
                 </LinearLayout>
@@ -166,6 +169,7 @@
             android:paddingRight="?dialogPreferredPadding"
             android:paddingBottom="16dp"
             android:text="@string/feed_group_dialog_delete_message"
+            android:textColor="?attr/colorOnSurface"
             android:visibility="visible" />
     </FrameLayout>
 
@@ -173,7 +177,7 @@
         android:id="@+id/separator"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="?attr/separator_color" />
+        android:background="?attr/colorSurfaceVariant" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -194,6 +198,7 @@
             android:minWidth="0dp"
             android:scaleType="centerInside"
             android:src="@drawable/ic_delete"
+            android:tint="?attr/colorOnSurfaceVariant"
             android:visibility="gone"
             tools:ignore="ContentDescription"
             tools:visibility="visible" />

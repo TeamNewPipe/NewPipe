@@ -10,7 +10,7 @@
     android:layout_marginBottom="3dp"
     android:minHeight="?listPreferredItemHeightSmall"
     android:orientation="horizontal"
-    app:cardBackgroundColor="?attr/card_item_background_color"
+    app:cardBackgroundColor="?attr/colorSurface"
     app:cardCornerRadius="5dp"
     app:cardElevation="2dp">
 
@@ -26,6 +26,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
+            android:tint="?attr/colorOnSurfaceVariant"
             tools:ignore="ContentDescription,RtlHardcoded"
             tools:src="@drawable/ic_kiosk_hot" />
 
@@ -42,6 +43,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:textAppearance="?textAppearanceListItem"
+            android:textColor="?attr/colorOnSurface"
             tools:ignore="RtlHardcoded"
             tools:text="Lorem ipsum dolor sit amet" />
 
@@ -56,6 +58,7 @@
             android:paddingRight="16dp"
             android:paddingBottom="12dp"
             android:src="@drawable/ic_drag_handle"
+            android:tint="?attr/colorOnSurfaceVariant"
             tools:ignore="ContentDescription,RtlHardcoded" />
     </RelativeLayout>
 </com.google.android.material.card.MaterialCardView>

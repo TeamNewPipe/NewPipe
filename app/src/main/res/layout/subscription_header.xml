@@ -9,7 +9,7 @@
     android:paddingTop="12dp"
     android:paddingRight="16dp"
     android:paddingBottom="12dp"
-    android:textColor="?android:attr/textColorPrimary"
+    android:textColor="?attr/colorPrimary"
     android:textSize="16sp"
     android:textStyle="bold"
     tools:text="Header" />

@@ -9,7 +9,7 @@
     android:clickable="true"
     android:focusable="true"
     android:foreground="?attr/selectableItemBackground"
-    app:cardBackgroundColor="?attr/card_item_background_color"
+    app:cardBackgroundColor="?attr/colorSurface"
     app:cardElevation="2dp"
     app:rippleColor="?attr/colorControlHighlight"
     app:strokeColor="?attr/colorOutline"
@@ -28,6 +28,7 @@
             android:padding="8dp"
             android:scaleType="centerInside"
             tools:ignore="ContentDescription"
+            android:tint="?attr/colorOnSurfaceVariant"
             tools:src="@drawable/ic_fastfood" />
 
         <org.schabi.newpipe.views.NewPipeTextView
@@ -35,13 +36,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:background="?attr/card_item_contrast_color"
+            android:background="?attr/colorSurfaceVariant"
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:maxLines="1"
             android:padding="10dp"
             android:textAllCaps="false"
-            android:textColor="?attr/colorAccent"
+            android:textColor="?attr/colorPrimary"
             android:textSize="14sp"
             android:textStyle="bold"
             tools:text="All" />

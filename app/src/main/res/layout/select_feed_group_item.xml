@@ -19,6 +19,7 @@
         android:layout_marginStart="3dp"
         android:layout_marginRight="8dp"
         android:src="@drawable/ic_computer"
+        android:tint="?attr/colorOnSurfaceVariant"
         tools:ignore="RtlHardcoded" />
 
     <org.schabi.newpipe.views.NewPipeTextView
@@ -33,6 +34,7 @@
         android:ellipsize="end"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceListItem"
+        android:textColor="?attr/colorOnSurface"
         tools:text="Channel Title, Lorem ipsum" />
 
 </RelativeLayout>

@@ -54,6 +54,7 @@
         android:paddingLeft="@dimen/video_item_search_image_right_margin"
         android:scaleType="center"
         app:srcCompat="@drawable/ic_drag_handle"
+        app:tint="?attr/colorOnSurfaceVariant"
         tools:ignore="RtlHardcoded,RtlSymmetry" />
 
     <org.schabi.newpipe.views.NewPipeTextView
@@ -67,6 +68,7 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="@dimen/video_item_search_title_text_size"
         tools:ignore="RtlHardcoded"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum" />
@@ -81,6 +83,7 @@
         android:ellipsize="end"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="?attr/colorOnSurfaceVariant"
         android:textSize="@dimen/video_item_search_uploader_text_size"
         tools:ignore="RtlHardcoded"
         tools:text="Uploader really long lorem ipsum dolor sit amet consectetur" />

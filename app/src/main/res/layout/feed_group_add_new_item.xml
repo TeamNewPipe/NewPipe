@@ -9,7 +9,7 @@
     android:clickable="true"
     android:focusable="true"
     android:foreground="?attr/selectableItemBackground"
-    app:cardBackgroundColor="?attr/card_item_background_color"
+    app:cardBackgroundColor="?attr/colorSurface"
     app:cardElevation="2dp"
     app:rippleColor="?attr/colorControlHighlight"
     app:strokeColor="?attr/colorOutline"
@@ -29,6 +29,7 @@
             android:padding="8dp"
             android:scaleType="centerInside"
             android:src="@drawable/ic_add"
+            android:tint="?attr/colorPrimary"
             tools:ignore="ContentDescription" />
 
         <org.schabi.newpipe.views.NewPipeTextView
@@ -41,7 +42,7 @@
             android:padding="10dp"
             android:text="@string/feed_create_new_group_button_title"
             android:textAllCaps="true"
-            android:textColor="?attr/colorAccent"
+            android:textColor="?attr/colorPrimary"
             android:textSize="14sp"
             android:textStyle="bold" />
     </LinearLayout>

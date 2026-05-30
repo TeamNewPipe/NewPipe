@@ -695,3 +695,34 @@ Known risks / QA:
   several ListPreference dialogs, Backup and restore settings, rotation in
   settings, and Light/Dark/Black plus Follow system dynamic color, App default,
   and one manual preset such as Orange or Purple.
+
+### Playlist, subscription, and feed-group row polish (latest)
+
+- Playlist dialog rows, local/bookmarked playlist rows, playlist detail headers,
+  subscription rows, feed-group cards, feed-group reorder rows, feed-group picker
+  rows, and subscription section headers now use Material 3 role colors directly:
+  primary titles use `colorOnSurface`, supporting metadata/helper text and subdued
+  row controls use `colorOnSurfaceVariant`, section/add accents use `colorPrimary`,
+  selected subscription chips use `colorPrimaryContainer`/`colorOnPrimaryContainer`,
+  and simple dialog dividers use `colorSurfaceVariant`.
+- Feed-group cards now use the Material surface role for the card container and
+  surface-variant for the label strip instead of legacy card contrast colors, so
+  Light, Dark, Black, dynamic, App default, and manual palettes stay aligned with
+  the rest of the fork.
+- Scope was intentionally limited to XML resource tint/text/background polish.
+  Playlist creation/rename/delete, bookmarking, feed-group create/edit/delete,
+  subscription selection, import/export, playback, downloads, navigation, and
+  player overlays were not changed.
+- QA scope: subscriptions, group create/edit/delete/reorder/select flows,
+  bookmarks/playlists, playlist create/rename/delete/bookmark/unbookmark, Add to
+  playlist, row title/summary/icon contrast, rotation in dialogs, and Light/Dark/
+  Black plus Follow system dynamic color, App default, and one manual preset such
+  as Orange or Purple.
+
+Known risks / QA:
+- Subscription channel rows share common channel item layouts with other channel
+  lists, so device QA should spot-check search/channel-list channel rows for the
+  same on-surface/on-surface-variant treatment.
+- XML-only icon tinting assumes feed-group/add/reorder vectors are theme-tintable;
+  if a future drawable adds intrinsic colors, revisit those specific icons rather
+  than broadening behavior code.

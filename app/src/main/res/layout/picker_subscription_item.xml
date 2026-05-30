@@ -33,6 +33,7 @@
             android:lines="1"
             android:maxLines="1"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="10sp"
             tools:ignore="SmallSp"
             tools:text="Channel Title, Lorem ipsum" />
@@ -42,7 +43,7 @@
         android:id="@+id/selected_highlight"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/colorControlHighlight"
+        android:background="?attr/colorPrimaryContainer"
         android:visibility="gone"
         tools:visibility="visible">
 
@@ -53,7 +54,7 @@
             android:layout_marginTop="4dp"
             android:scaleType="centerInside"
             android:src="@drawable/ic_done"
-            app:tint="@color/white"
+            app:tint="?attr/colorOnPrimaryContainer"
             tools:ignore="ContentDescription" />
     </FrameLayout>
 </FrameLayout>

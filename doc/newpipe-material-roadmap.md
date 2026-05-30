@@ -517,3 +517,16 @@ Before a public NewPipe Material release, manually verify:
   until those decisions have dedicated implementation plans.
 - Continue using this file as the checklist for future NewPipe Material planning
   issues and pull requests.
+
+### Current Material polish note: playlists, subscriptions, and feed groups
+
+- Continue keeping playlist, subscription, and feed-group visual changes scoped to
+  resource-level Material role mapping unless a separately reviewed behavior task
+  requires code changes.
+- Manual QA for this surface should cover subscription group create/edit/delete/
+  reorder/selection, playlist create/rename/delete/bookmark/unbookmark, Add to
+  playlist, row title/summary/icon contrast, rotation in dialogs, and Light/Dark/
+  Black plus dynamic/App default/manual palettes.
+- Preserve playlist/subscription/feed database, import/export, playback,
+  downloads, navigation, settings, and player overlay behavior while iterating on
+  this visual surface.
