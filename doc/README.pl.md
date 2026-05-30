@@ -1,4 +1,4 @@
-<p align="center"><a href="https://github.com/wizdom13/NewPipe"><img src="../assets/new_pipe_icon_5.png" width="150" alt="Ikona NewPipe Material"></a></p>
+<p align="center"><a href="https://github.com/wizdom13/NewPipe"><img src="../assets/newpip_material_logo.png" width="150" alt="Ikona NewPipe Material"></a></p>
 
 <h1 align="center">NewPipe Material</h1>
 
