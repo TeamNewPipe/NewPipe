@@ -608,10 +608,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center"
                 app:elevation="16dp"
-                app:tabBackground="?attr/windowBackground"
+                android:background="?attr/colorSurface"
+                app:tabBackground="?attr/colorSurface"
                 app:tabGravity="fill"
-                app:tabIconTint="?attr/colorAccent"
-                app:tabIndicatorGravity="top" />
+                app:tabIconTint="@color/tab_layout_material_item_color"
+                app:tabIndicatorColor="?attr/colorPrimary"
+                app:tabIndicatorGravity="top"
+                app:tabRippleColor="?attr/colorControlHighlight"
+                app:tabTextColor="@color/tab_layout_material_item_color" />
 
         </org.schabi.newpipe.views.FocusAwareCoordinator>
 

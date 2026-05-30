@@ -567,3 +567,9 @@ Before a public NewPipe Material release, manually verify:
 
 - Generic text-input dialogs and safe custom picker rows now use Material 3 role colors: primary labels on `colorOnSurface`, helper/secondary text and subdued picker icons on `colorOnSurfaceVariant`, dividers and PeerTube instance row strokes on `colorSurfaceVariant`, and action affordances/FAB icons on primary roles.
 - This pass deliberately stayed in XML/resource styling for generic app and picker dialogs. Behavior, validation, import/export flows, service/network/extractor logic, playback, downloads, queue/player overlays, navigation, database behavior, settings behavior, playback speed dialog, and download dialog remain out of scope.
+
+### Current Material polish note: toolbar, app bar, overflow, search action, and tabs
+
+- Keep app-bar and menu polish focused on XML/theme role mapping: toolbar surfaces should remain neutral `colorSurface`, title/action icon text should use `colorOnSurface`, subtitles/hints/subdued popup icons should use `colorOnSurfaceVariant`, selected tab indicators should use `colorPrimary`, and ripple/highlight behavior should continue to use the existing control highlight role.
+- Manual QA for this surface should cover main/search/video/detail/channel/playlist/settings/feed-group/about/ReCAPTCHA toolbars, overflow menus, expanded search text/hint/clear controls, top tabs and detail tabs, rotation during search/menu screens, and Light/Dark/Black plus dynamic/App default/manual palettes.
+- Preserve toolbar/menu/search/navigation behavior, search query and service-selection handling, playback, downloads, queue/player overlay, database behavior, settings behavior, extractor/service logic, playback speed dialog, and download dialog behavior while iterating on this visual surface.

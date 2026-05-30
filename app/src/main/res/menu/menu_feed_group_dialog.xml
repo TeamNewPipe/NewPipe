@@ -7,7 +7,7 @@
         android:id="@+id/action_search"
         android:icon="@drawable/ic_search"
         android:title="@string/search"
-        app:iconTint="@color/contrastColor"
+        app:iconTint="?attr/colorOnSurface"
         app:showAsAction="always"
         tools:ignore="AlwaysShowAction" />
 

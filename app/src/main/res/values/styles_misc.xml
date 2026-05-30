@@ -116,23 +116,34 @@
 
     <style name="DarkPopupMenu" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    <style name="ToolbarTheme" parent="ThemeOverlay.Material3.ActionBar">
         <item name="popupTheme">@style/ToolbarPopupTheme</item>
-        <item name="android:textColorPrimary">?attr/actionColor</item>
-        <item name="android:textColorSecondary">?attr/actionColor</item>
-        <item name="tint">?attr/actionColor</item>
-        <item name="iconTint">?attr/actionColor</item>
+        <item name="android:textColorPrimary">?attr/colorOnSurface</item>
+        <item name="android:textColorSecondary">?attr/colorOnSurfaceVariant</item>
+        <item name="actionMenuTextColor">?attr/colorOnSurface</item>
+        <item name="android:colorControlNormal">?attr/colorOnSurface</item>
+        <item name="colorControlNormal">?attr/colorOnSurface</item>
+        <item name="tint">?attr/colorOnSurface</item>
+        <item name="iconTint">?attr/colorOnSurface</item>
+        <item name="toolbarSearchColor">?attr/colorOnSurface</item>
     </style>
-    <style name="ToolbarPopupTheme" parent="ThemeOverlay.AppCompat.DayNight.ActionBar">
-        <item name="tint">@color/contrastColor</item>
+    <style name="ToolbarPopupTheme" parent="ThemeOverlay.Material3.ActionBar">
+        <item name="android:colorBackground">?attr/colorSurface</item>
+        <item name="android:popupBackground">?attr/colorSurface</item>
+        <item name="android:textColorPrimary">?attr/colorOnSurface</item>
+        <item name="android:textColorSecondary">?attr/colorOnSurfaceVariant</item>
+        <item name="android:colorControlNormal">?attr/colorOnSurfaceVariant</item>
+        <item name="colorControlNormal">?attr/colorOnSurfaceVariant</item>
+        <item name="colorControlHighlight">?attr/colorControlHighlight</item>
+        <item name="tint">?attr/colorOnSurfaceVariant</item>
+        <item name="iconTint">?attr/colorOnSurfaceVariant</item>
     </style>
-    <style name="ContrastToolbarTheme" parent="ThemeOverlay.AppCompat.DayNight.ActionBar">
-        <item name="popupTheme">@style/ToolbarPopupTheme</item>
-        <item name="android:textColorPrimary">@color/contrastColor</item>
-        <item name="android:textColorSecondary">@color/contrastColor</item>
-        <item name="tint">@color/contrastColor</item>
-        <item name="iconTint">@color/contrastColor</item>
-        <item name="toolbarSearchColor">@color/contrastColor</item>
+    <style name="ContrastToolbarTheme" parent="ToolbarTheme">
+        <item name="android:textColorPrimary">?attr/colorOnSurface</item>
+        <item name="android:textColorSecondary">?attr/colorOnSurfaceVariant</item>
+        <item name="tint">?attr/colorOnSurface</item>
+        <item name="iconTint">?attr/colorOnSurface</item>
+        <item name="toolbarSearchColor">?attr/colorOnSurface</item>
     </style>
 
     <style name="WhiteTintTheme">

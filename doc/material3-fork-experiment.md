@@ -783,3 +783,14 @@ Known risks / QA:
 
 Known risks / QA:
 - Device QA should inspect generic add/rename text-input dialogs, choose-tabs add picker rows, PeerTube instance add/list/restore prompts, feed-group icon/subscription picker dialogs, import helper/input screens, unsupported URL/open-with prompts if reachable, rotation while dialogs are open, and Light, Dark, Black, Follow system dynamic color, App default, and one manual palette such as Orange or Purple.
+
+### Toolbar, app bar, search action, overflow, and tab chrome polish (latest)
+
+- Shared toolbar tinting now uses Material surface roles instead of legacy fixed contrast colors: toolbar title/action/icon text resolves through `colorOnSurface`, subtitles and popup-menu supporting/icon tinting resolve through `colorOnSurfaceVariant`, and toolbar search tint follows the active on-surface role.
+- Toolbar popup/overflow theme styling now keeps popup text/icons on Material on-surface roles while preserving the existing highlight/ripple role. The feed-group search action was moved off the static contrast color resource and onto the same on-surface toolbar role.
+- ReCAPTCHA chrome now uses the same neutral `colorSurface` app-bar treatment and on-surface title/subtitle/navigation tint as the shared app toolbar, without changing WebView or menu behavior.
+- Large-land video-detail tabs now match the regular detail tab strip by using `colorSurface` for the container, the shared tab selector for text/icons, `colorPrimary` for the indicator/selected state, and the existing control highlight ripple.
+- Scope was intentionally limited to XML resource/style attributes and this documentation. Search query handling, service selection, menu/navigation destinations, playback, downloads, queue/player overlays, database behavior, settings behavior, extractor/service logic, playback speed dialog, and download dialog behavior were not changed.
+
+Known risks / QA:
+- Device QA should inspect main, search, video/detail, channel, playlist, settings, feed-group, about, and ReCAPTCHA toolbar/overflow/menu surfaces; top and bottom/detail tabs; search entry/clear affordances; rotation during search/menu screens; and Light, Dark, Black, Follow system dynamic color, App default, and one manual palette such as Orange or Purple.
