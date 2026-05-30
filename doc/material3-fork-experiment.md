@@ -726,3 +726,26 @@ Known risks / QA:
 - XML-only icon tinting assumes feed-group/add/reorder vectors are theme-tintable;
   if a future drawable adds intrinsic colors, revisit those specific icons rather
   than broadening behavior code.
+
+### Search and common list-row surface polish (latest)
+
+- Common stream/search result rows now map primary titles to `colorOnSurface` and
+  uploader/view/date/supporting metadata to `colorOnSurfaceVariant` across list,
+  mini, grid, card, and playlist-queue row variants.
+- Channel card search/list rows now use the same role mapping for title,
+  description, and subscriber/count metadata so they match the already-polished
+  channel list rows.
+- Stream playlist drag handles now use `colorOnSurfaceVariant` as subdued row
+  controls. Existing duration/playlist badges, thumbnail placeholders,
+  progress drawables, row click selectors, loading panels, error panel surface,
+  and search suggestions were left on their established Material roles.
+- Scope was intentionally limited to XML color/tint attributes plus this
+  documentation. No adapters, extractor/service logic, search/list loading,
+  opening/navigation behavior, database behavior, playback, downloads, queue or
+  player overlay resources were changed.
+
+Known risks / QA:
+- Device QA should spot-check the main feed, search results, channel tabs,
+  remote playlist rows, empty/error/loading states, and row pressed states in
+  Light, Dark, Black, Follow system dynamic color, App default, and one manual
+  palette such as Orange or Purple.

@@ -530,3 +530,19 @@ Before a public NewPipe Material release, manually verify:
 - Preserve playlist/subscription/feed database, import/export, playback,
   downloads, navigation, settings, and player overlay behavior while iterating on
   this visual surface.
+
+### Current Material polish note: search and common list rows
+
+- Keep search/list-result polish focused on resource-level Material role mapping:
+  row titles should use `colorOnSurface`, supporting uploader/view/date/count and
+  helper text should use `colorOnSurfaceVariant`, and actions/important accents
+  should continue using established Material roles.
+- Manual QA for this surface should cover the main feed/home list, video search
+  results, channel and playlist search results, channel tabs, remote playlist
+  rows, empty/loading/error states where practical, row title/metadata/icon
+  contrast, rotation, and Light/Dark/Black plus dynamic/App default/manual
+  palettes.
+- Preserve adapter behavior, extractor/service logic, search/list loading,
+  stream/channel/playlist opening, playback, downloads, queue/player overlay,
+  navigation, database behavior, and settings behavior while iterating on this
+  visual surface.

@@ -50,6 +50,7 @@
         android:paddingLeft="@dimen/video_item_search_image_right_margin"
         android:scaleType="center"
         android:src="@drawable/ic_drag_handle"
+        android:tint="?attr/colorOnSurfaceVariant"
         app:layout_constraintEnd_toEndOf="@id/itemThumbnailView"
         app:layout_constraintTop_toBottomOf="@id/itemThumbnailView"
         tools:ignore="RtlHardcoded,RtlSymmetry" />
@@ -65,6 +66,7 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:textAppearance="?android:textAppearanceListItem"
+        android:textColor="?attr/colorOnSurface"
         app:layout_constraintEnd_toStartOf="@id/itemHandle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/itemThumbnailView"
@@ -78,6 +80,7 @@
         android:layout_marginTop="@dimen/spacing_nano"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="?attr/colorOnSurfaceVariant"
         app:layout_constraintEnd_toEndOf="@id/itemVideoTitleView"
         app:layout_constraintStart_toStartOf="@id/itemVideoTitleView"
         app:layout_constraintTop_toBottomOf="@id/itemVideoTitleView"
