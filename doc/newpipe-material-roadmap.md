@@ -620,3 +620,9 @@ Before a public NewPipe Material release, manually verify:
 - The first low-risk follow-up from the remaining visual-gap audit is complete: channel/playlist avatar stroke literals and video-detail thumbnail badge literals now use named non-player color resources while preserving the previous rendered values.
 - Still deferred: player/queue overlays, seek/gesture feedback, speed/quality/audio/caption popups, launcher/icon/splash/brand artwork, broad theme attr rewiring, and info-list duration/live badge retheming.
 - Next recommended PR remains the info-list duration/live badge audit outside the player, followed by preference/license/about style work, bridge-attr cleanup, and a dedicated player-controls visual pass last.
+
+### Current Material polish note: info-list duration/live badge audit
+
+- The info-list duration/live badge follow-up is complete as a minimal XML/resource cleanup. Static stream-row duration badges and playlist stream-count overlays now use info-list-specific thumbnail badge color names while preserving the existing translucent black/opaque black backgrounds and off-white text for readability over arbitrary thumbnails.
+- Live badges and programmatically rebound duration backgrounds intentionally keep the existing shared high-contrast resources in this pass to avoid adapter churn. Player overlay, queue overlay, seek/gesture feedback, video-detail thumbnail badge resources, launcher/icon/splash/brand artwork, and broad theme attr rewiring remain deferred.
+- Manual QA should cover home/feed rows, search results, channel/playlist/related-video rows, list/grid/mini/card variants, live rows when available, light and dark thumbnails, and Light/Dark/Black plus dynamic/App default/manual palettes, with a specific check that player overlay time/seek controls are unchanged.

@@ -82,6 +82,12 @@
     <!-- Miscellaneous -->
     <color name="queue_background_color">@color/dark_queue_background_color</color>
     <color name="drawer_header_font_color">#F2FFFFFF</color>
+    <!-- High-contrast thumbnail badges used by info-list stream/playlist rows.
+         These intentionally stay static over arbitrary thumbnail artwork. -->
+    <color name="info_list_duration_badge_background_color">#aa000000</color>
+    <color name="info_list_playlist_stream_count_badge_background_color">#e6000000</color>
+    <color name="info_list_thumbnail_badge_text_color">#EEFFFFFF</color>
+
     <color name="duration_background_color">#aa000000</color>
     <color name="live_duration_background_color">#c8E53935</color>
     <color name="playlist_stream_count_background_color">#e6000000</color>

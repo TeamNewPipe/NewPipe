@@ -908,3 +908,12 @@ Remaining risks / follow-ups:
 
 Known risks / QA:
 - Manual QA should inspect channel pages, playlist/bookmarked playlist headers, and video-detail thumbnails in portrait and large-land/tablet across Light, Dark, Black, Follow system dynamic color, App default, and one manual color. Confirm avatar borders stay subtle/readable, thumbnail badges stay readable over real thumbnails, and player overlays are unchanged.
+
+### Info-list duration/live badge audit (latest)
+
+- Audited the duration and live badge surfaces used by stream list, mini, grid, card, playlist-row, playlist-grid, playlist-card, playlist-count, channel/search/feed, and related-video row variants. The visible chips sit directly on arbitrary thumbnail artwork, so the existing translucent black duration background, red live background, opaque playlist-count scrim, and off-white text are intentionally high-contrast overlay colors rather than general Material surface roles.
+- XML-only cleanup was limited to the static info-list row layouts: stream duration badges and playlist stream-count overlays now reference info-list-specific thumbnail badge color resource names while preserving the previous rendered values exactly. Badge IDs, placement, padding, visibility, adapter binding, duration formatting, live-state handling, progress handling, and row behavior were not changed.
+- Skipped/deferred: the programmatic live/duration background assignments in info-list/local holders still use the existing shared duration/live resources, and video-detail/player/queue overlay duration resources remain untouched. Any future split of those programmatic resources should be a narrow non-XML follow-up with explicit player/queue exclusion checks.
+
+Known risks / QA:
+- Device QA should inspect home/feed rows, search results, related videos, channel/playlist rows, list/grid/mini/card variants, playlist stream-count overlays, and live rows where available. Check duration/live badge contrast over light and dark thumbnails across Light, Dark, Black, Follow system/dynamic color, App default, and one manual palette such as Orange or Purple. Confirm player overlay time/seek controls and queue overlays are unchanged.
