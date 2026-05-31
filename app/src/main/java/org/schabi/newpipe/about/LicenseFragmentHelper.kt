@@ -1,8 +1,10 @@
 package org.schabi.newpipe.about
 
 import android.content.Context
+import androidx.annotation.AttrRes
+import com.google.android.material.R as MaterialR
 import java.io.IOException
-import org.schabi.newpipe.R
+import java.util.Locale
 import org.schabi.newpipe.util.ThemeHelper
 
 /**
@@ -26,30 +28,24 @@ fun getFormattedLicense(context: Context, license: License): String {
  * @return String which is a CSS stylesheet according to the context's theme
  */
 fun getLicenseStylesheet(context: Context): String {
-    val isLightTheme = ThemeHelper.isLightThemeSelected(context)
-    val licenseBackgroundColor = getHexRGBColor(
-        context,
-        if (isLightTheme) R.color.light_license_background_color else R.color.dark_license_background_color
-    )
-    val licenseTextColor = getHexRGBColor(
-        context,
-        if (isLightTheme) R.color.light_license_text_color else R.color.dark_license_text_color
-    )
-    val youtubePrimaryColor = getHexRGBColor(
-        context,
-        if (isLightTheme) R.color.light_youtube_primary_color else R.color.dark_youtube_primary_color
-    )
+    val licenseBackgroundColor = getThemeHexRGBColor(context, MaterialR.attr.colorSurface)
+    val licenseTextColor = getThemeHexRGBColor(context, MaterialR.attr.colorOnSurface)
+    val licenseLinkColor = getThemeHexRGBColor(context, MaterialR.attr.colorPrimary)
     return "body{padding:12px 15px;margin:0;background:#$licenseBackgroundColor;color:#$licenseTextColor}" +
-        "a[href]{color:#$youtubePrimaryColor}pre{white-space:pre-wrap}"
+        "a[href]{color:#$licenseLinkColor}pre{white-space:pre-wrap}"
 }
 
 /**
- * Cast R.color to a hexadecimal color value.
+ * Resolve a theme color attr to a hexadecimal RGB value for WebView CSS.
  *
  * @param context the context to use
- * @param color   the color number from R.color
+ * @param attrColor the theme color attr to resolve
  * @return a six characters long String with hexadecimal RGB values
  */
-fun getHexRGBColor(context: Context, color: Int): String {
-    return context.getString(color).substring(3)
+private fun getThemeHexRGBColor(context: Context, @AttrRes attrColor: Int): String {
+    return String.format(
+        Locale.ROOT,
+        "%06X",
+        ThemeHelper.resolveColorFromAttr(context, attrColor) and 0xFFFFFF
+    )
 }

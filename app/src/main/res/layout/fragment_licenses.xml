@@ -2,6 +2,7 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
     android:fillViewport="true">
 
     <LinearLayout
@@ -19,14 +20,16 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:text="@string/app_license_title"
-            android:textAppearance="@android:style/TextAppearance.Large" />
+            android:textAppearance="@android:style/TextAppearance.Large"
+            android:textColor="?attr/colorOnSurface" />
 
         <org.schabi.newpipe.views.NewPipeTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:text="@string/app_license" />
+            android:text="@string/app_license"
+            android:textColor="?attr/colorOnSurfaceVariant" />
 
         <Button
             android:id="@+id/licenses_app_read_license"
@@ -35,7 +38,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginRight="@dimen/activity_vertical_margin"
-            android:text="@string/read_full_license" />
+            android:text="@string/read_full_license"
+            android:textColor="?attr/colorPrimary" />
 
         <org.schabi.newpipe.views.NewPipeTextView
             android:layout_width="match_parent"
@@ -44,7 +48,8 @@
             android:paddingTop="10dp"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:text="@string/title_licenses"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="?attr/colorOnSurface" />
 
         <LinearLayout
             android:id="@+id/licenses_software_components"

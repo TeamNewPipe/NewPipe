@@ -697,6 +697,14 @@ Known risks / QA:
   settings, and Light/Dark/Black plus Follow system dynamic color, App default,
   and one manual preset such as Orange or Purple.
 
+### About/license/preference role polish (latest)
+
+- About/license styling now keeps the existing About tab behavior and license navigation while tightening Material role usage on license surfaces: license screen titles use `colorOnSurface`, explanatory/license metadata uses `colorOnSurfaceVariant`, and the read-license action uses `colorPrimary`.
+- Software component rows on the Licenses tab now explicitly map component names to `colorOnSurface` and copyright/license metadata to `colorOnSurfaceVariant` while preserving the existing selectable row background and context-menu registration.
+- License detail WebView CSS now resolves `colorSurface`, `colorOnSurface`, and `colorPrimary` from the active theme instead of using fixed light/dark license colors, so Light/Dark/Black, dynamic color, App default, and manual palettes share the same Material role mapping as the surrounding About UI.
+- Scope was intentionally limited to license/about-adjacent layout colors plus the existing license stylesheet helper. About text/attribution strings, license component loading, dialog buttons/navigation, preference XML keys/defaults, settings logic, import/export, playback/download behavior, player overlay, and queue overlay were not changed.
+- QA scope: open About, inspect fork attribution/app info/link actions, open Licenses, inspect software component rows and license detail dialogs, then spot-check settings preference rows/search results across Light/Dark/Black, Follow system dynamic color, App default, and one manual preset such as Orange or Purple.
+
 ### Playlist, subscription, and feed-group row polish (latest)
 
 - Playlist dialog rows, local/bookmarked playlist rows, playlist detail headers,

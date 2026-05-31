@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:textAppearance="@android:style/TextAppearance.Medium"
+        android:textColor="?attr/colorOnSurface"
         tools:text="Software Name" />
 
     <TextView
@@ -24,5 +25,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/name"
         android:paddingBottom="10dp"
+        android:textColor="?attr/colorOnSurfaceVariant"
         tools:text="@string/copyright" />
 </RelativeLayout>
