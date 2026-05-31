@@ -614,3 +614,9 @@ Before a public NewPipe Material release, manually verify:
 - High-risk/deferred areas remain player-sensitive: main/popup player overlays, queue overlay, seekbar/progress/gesture feedback, brightness/volume/fast-seek feedback, speed/quality/audio/caption popups, loading/error overlays inside player, and closing overlay colors.
 - Intentional exceptions remain documented: `stream_quality_item.xml` platform attrs for test-theme compatibility, OS/system-controlled chrome, palette definitions in `colors.xml`/manual theme styles, launcher/artwork/vector identity colors, and white/black/red player overlay affordances over arbitrary video frames.
 - Recommended order: non-player thumbnail/avatar XML cleanup first, info-list duration/live badge audit second, preference/license/about style pass third, bridge-attr cleanup fourth, and dedicated player-controls visual pass last with real-device QA.
+
+### Current Material polish note: non-player thumbnail/avatar cleanup
+
+- The first low-risk follow-up from the remaining visual-gap audit is complete: channel/playlist avatar stroke literals and video-detail thumbnail badge literals now use named non-player color resources while preserving the previous rendered values.
+- Still deferred: player/queue overlays, seek/gesture feedback, speed/quality/audio/caption popups, launcher/icon/splash/brand artwork, broad theme attr rewiring, and info-list duration/live badge retheming.
+- Next recommended PR remains the info-list duration/live badge audit outside the player, followed by preference/license/about style work, bridge-attr cleanup, and a dedicated player-controls visual pass last.

@@ -53,7 +53,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0"
                     app:shapeAppearance="@style/CircularImageView"
-                    app:strokeColor="#ffffff"
+                    app:strokeColor="@color/thumbnail_avatar_stroke_color"
                     app:strokeWidth="2dp"
                     app:tint="@null" />
 
@@ -67,7 +67,7 @@
                     app:layout_constraintBottom_toBottomOf="@id/channel_avatar_view"
                     app:layout_constraintEnd_toEndOf="@id/channel_avatar_view"
                     app:shapeAppearance="@style/CircularImageView"
-                    app:strokeColor="#ffffff"
+                    app:strokeColor="@color/thumbnail_avatar_stroke_color"
                     app:strokeWidth="2dp"
                     app:tint="@null"
                     tools:visibility="visible" />

@@ -47,7 +47,7 @@
                 android:padding="0.7dp"
                 android:src="@drawable/placeholder_person"
                 app:shapeAppearance="@style/CircularImageView"
-                app:strokeColor="#ffffff"
+                app:strokeColor="@color/thumbnail_avatar_stroke_color"
                 app:strokeWidth="1dp" />
 
             <org.schabi.newpipe.views.NewPipeTextView

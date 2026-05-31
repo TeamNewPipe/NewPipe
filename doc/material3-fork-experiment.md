@@ -896,3 +896,15 @@ Remaining risks / follow-ups:
 - Some remaining search hits are names rather than visible problems (`youtube` drawable names, `black` theme mode resources, `white` icon artwork), so future PRs should verify actual rendered surfaces rather than mechanically replacing every match.
 - Theme attr changes can affect many widgets indirectly; prefer one-surface PRs with manual QA notes instead of global replacements.
 - Player overlay contrast cannot be evaluated from resource names alone because it depends on arbitrary video frames and runtime control visibility.
+
+### Non-player thumbnail/avatar XML cleanup (latest)
+
+- Applied the first low-risk follow-up from the remaining visual-gap audit, limited to non-player XML/resource color references and documentation.
+- Channel and playlist avatar borders now use the named `thumbnail_avatar_stroke_color` resource instead of inline white literals, preserving the existing subtle white circular border intent for real channel/playlist artwork and placeholders.
+- Video-detail thumbnail overlays in portrait and large-land now use named resources for the hold-to-append overlay and duration badge backgrounds. The resource values intentionally match the previous inline values so badge readability and thumbnail contrast remain visually equivalent.
+- Video-detail thumbnail badge text, including duration and position badges, now references the app `white` color resource instead of `@android:color/white`, again preserving the previous rendered color while avoiding platform color literals in these non-player badge layouts.
+- Deferred/skipped: player overlay resources, queue overlay backgrounds, seek preview, closing overlay, player gesture/seek feedback, speed/quality/audio/caption popups, launcher/icon/splash artwork, placeholder artwork, broad theme attrs, and info-list duration/live badge retheming remain untouched.
+- Scope preservation: no IDs, layout structure, click handling, playback behavior, navigation, settings, downloads, extractor/service logic, database/import/export behavior, notification behavior, or tests were changed.
+
+Known risks / QA:
+- Manual QA should inspect channel pages, playlist/bookmarked playlist headers, and video-detail thumbnails in portrait and large-land/tablet across Light, Dark, Black, Follow system dynamic color, App default, and one manual color. Confirm avatar borders stay subtle/readable, thumbnail badges stay readable over real thumbnails, and player overlays are unchanged.
