@@ -942,3 +942,15 @@ Known risks / QA:
 
 Known risks / QA:
 - Device QA should inspect home/feed rows, search results, related videos, channel/playlist rows, list/grid/mini/card variants, playlist stream-count overlays, and live rows where available. Check duration/live badge contrast over light and dark thumbnails across Light, Dark, Black, Follow system/dynamic color, App default, and one manual palette such as Orange or Purple. Confirm player overlay time/seek controls and queue overlays are unchanged.
+
+### Dialog bridge attr audit (latest)
+
+- Reviewed the previous bridge-attr audit and the scoped settings bridge cleanup before making any dialog-wide changes. This pass stayed audit-first and only touched dialog theme-color overlay resources.
+- Dialog-scoped classification:
+  - Already Material-safe: base app/dialog `colorAccent` mappings already point at Material secondary roles, base dialog `colorControlActivated` already points at `colorPrimary`, and dialog/settings `android:textColorPrimary`/`android:textColorSecondary` bridge values already map to `colorOnSurface`/`colorOnSurfaceVariant`.
+  - Safe tiny cleanup: manual theme-color dialog overlays accidentally overrode dialog `colorControlActivated` with fixed secondary-palette values. They now resolve through `?attr/colorPrimary`, matching the base dialog active-control role while preserving the existing MaterialAlertDialog theme parents, surfaces, title/body text roles, and button behavior.
+  - Needs manual dialog QA: dialog-wide `colorAccent` remains on secondary in base dialog themes and in manual dialog overlays because it can influence AppCompat/custom dialog widgets beyond MaterialAlertDialog buttons.
+  - Third-party/file-picker scoped and deferred: `FilePickerThemeLight`, `FilePickerThemeDark`, `FilePickerAlertDialogThemeLight`, and `FilePickerAlertDialogThemeDark` keep their existing `colorAccent` bridges for a separate file-picker pass.
+  - Player/download/behavior-sensitive and deferred: player/queue overlay `colorAccent`, playback/speed/quality/audio/caption popup surfaces, `stream_quality_item.xml`, and download/file-picker/storage flows remain untouched.
+- Skipped broad replacements for `textColorPrimary`, `textColorSecondary`, `android:textColorPrimary`, `android:textColorSecondary`, and `colorButtonNormal` because the remaining hits are either already role-mapped, toolbar/search/settings scoped, service-button scoped, file-picker scoped, or behavior-sensitive.
+- Recommended manual QA: open the Appearance theme-color restart dialog, generic text-input dialogs, playlist/feed-group/subscription dialogs, backup/import confirmation dialogs, and license detail dialog. Check buttons, radio/checkbox controls, text contrast, and active states in Light, Dark, Black, Follow system dynamic color, App default, and one manual palette.

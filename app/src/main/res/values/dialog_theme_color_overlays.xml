@@ -10,7 +10,7 @@
         <item name="colorSecondary">#52634F</item>
         <item name="colorOnSecondary">#FFFFFF</item>
         <item name="colorAccent">#52634F</item>
-        <item name="colorControlActivated">#52634F</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
         <item name="colorSecondaryContainer">#D5E8CF</item>
         <item name="colorOnSecondaryContainer">#10200F</item>
     </style>
@@ -24,7 +24,7 @@
         <item name="colorSecondary">#5E5E5E</item>
         <item name="colorOnSecondary">#FFFFFF</item>
         <item name="colorAccent">#5E5E5E</item>
-        <item name="colorControlActivated">#5E5E5E</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
         <item name="colorSecondaryContainer">#E5E5E5</item>
         <item name="colorOnSecondaryContainer">#1B1B1B</item>
     </style>
@@ -38,7 +38,7 @@
         <item name="colorSecondary">#55624C</item>
         <item name="colorOnSecondary">#FFFFFF</item>
         <item name="colorAccent">#55624C</item>
-        <item name="colorControlActivated">#55624C</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
         <item name="colorSecondaryContainer">#D9E7CB</item>
         <item name="colorOnSecondaryContainer">#131F0D</item>
     </style>
@@ -52,7 +52,7 @@
         <item name="colorSecondary">#535F70</item>
         <item name="colorOnSecondary">#FFFFFF</item>
         <item name="colorAccent">#535F70</item>
-        <item name="colorControlActivated">#535F70</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
         <item name="colorSecondaryContainer">#D7E3F7</item>
         <item name="colorOnSecondaryContainer">#101C2B</item>
     </style>
@@ -66,7 +66,7 @@
         <item name="colorSecondary">#625B71</item>
         <item name="colorOnSecondary">#FFFFFF</item>
         <item name="colorAccent">#625B71</item>
-        <item name="colorControlActivated">#625B71</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
         <item name="colorSecondaryContainer">#E8DEF8</item>
         <item name="colorOnSecondaryContainer">#1D192B</item>
     </style>
@@ -80,7 +80,7 @@
         <item name="colorSecondary">#77574A</item>
         <item name="colorOnSecondary">#FFFFFF</item>
         <item name="colorAccent">#77574A</item>
-        <item name="colorControlActivated">#77574A</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
         <item name="colorSecondaryContainer">#FFDBCE</item>
         <item name="colorOnSecondaryContainer">#2C160D</item>
     </style>
@@ -94,7 +94,7 @@
         <item name="colorSecondary">#74565F</item>
         <item name="colorOnSecondary">#FFFFFF</item>
         <item name="colorAccent">#74565F</item>
-        <item name="colorControlActivated">#74565F</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
         <item name="colorSecondaryContainer">#FFD8E7</item>
         <item name="colorOnSecondaryContainer">#2B151D</item>
     </style>
@@ -108,7 +108,7 @@
         <item name="colorSecondary">#775651</item>
         <item name="colorOnSecondary">#FFFFFF</item>
         <item name="colorAccent">#775651</item>
-        <item name="colorControlActivated">#775651</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
         <item name="colorSecondaryContainer">#FFDAD6</item>
         <item name="colorOnSecondaryContainer">#2C1512</item>
     </style>
@@ -123,7 +123,7 @@
         <item name="colorSecondary">#BCCFB7</item>
         <item name="colorOnSecondary">#273423</item>
         <item name="colorAccent">#BCCFB7</item>
-        <item name="colorControlActivated">#BCCFB7</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
         <item name="colorSecondaryContainer">#3E503A</item>
         <item name="colorOnSecondaryContainer">#D5E8CF</item>
     </style>
@@ -137,7 +137,7 @@
         <item name="colorSecondary">#C8C8C8</item>
         <item name="colorOnSecondary">#303030</item>
         <item name="colorAccent">#C8C8C8</item>
-        <item name="colorControlActivated">#C8C8C8</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
         <item name="colorSecondaryContainer">#464646</item>
         <item name="colorOnSecondaryContainer">#E5E5E5</item>
     </style>
@@ -151,7 +151,7 @@
         <item name="colorSecondary">#BDCBB0</item>
         <item name="colorOnSecondary">#283420</item>
         <item name="colorAccent">#BDCBB0</item>
-        <item name="colorControlActivated">#BDCBB0</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
         <item name="colorSecondaryContainer">#3E4A36</item>
         <item name="colorOnSecondaryContainer">#D9E7CB</item>
     </style>
@@ -165,7 +165,7 @@
         <item name="colorSecondary">#BBC7DB</item>
         <item name="colorOnSecondary">#253140</item>
         <item name="colorAccent">#BBC7DB</item>
-        <item name="colorControlActivated">#BBC7DB</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
         <item name="colorSecondaryContainer">#3B4858</item>
         <item name="colorOnSecondaryContainer">#D7E3F8</item>
     </style>
@@ -179,7 +179,7 @@
         <item name="colorSecondary">#CCC2DC</item>
         <item name="colorOnSecondary">#332D41</item>
         <item name="colorAccent">#CCC2DC</item>
-        <item name="colorControlActivated">#CCC2DC</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
         <item name="colorSecondaryContainer">#4A4458</item>
         <item name="colorOnSecondaryContainer">#E8DEF8</item>
     </style>
@@ -193,7 +193,7 @@
         <item name="colorSecondary">#E5C09B</item>
         <item name="colorOnSecondary">#432C12</item>
         <item name="colorAccent">#E5C09B</item>
-        <item name="colorControlActivated">#E5C09B</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
         <item name="colorSecondaryContainer">#5C432B</item>
         <item name="colorOnSecondaryContainer">#FFDCC2</item>
     </style>
@@ -207,7 +207,7 @@
         <item name="colorSecondary">#E2BDC7</item>
         <item name="colorOnSecondary">#422932</item>
         <item name="colorAccent">#E2BDC7</item>
-        <item name="colorControlActivated">#E2BDC7</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
         <item name="colorSecondaryContainer">#5A4148</item>
         <item name="colorOnSecondaryContainer">#FFD8E7</item>
     </style>
@@ -221,7 +221,7 @@
         <item name="colorSecondary">#E7BDB6</item>
         <item name="colorOnSecondary">#442925</item>
         <item name="colorAccent">#E7BDB6</item>
-        <item name="colorControlActivated">#E7BDB6</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
         <item name="colorSecondaryContainer">#5D3F3B</item>
         <item name="colorOnSecondaryContainer">#FFDAD6</item>
     </style>
