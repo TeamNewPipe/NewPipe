@@ -161,7 +161,7 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
             final StoredFileHelper file = new StoredFileHelper(
                     requireContext(), result.getData().getData(), ZIP_MIME_TYPE);
 
-            new androidx.appcompat.app.AlertDialog.Builder(requireActivity())
+            new MaterialAlertDialogBuilder(requireActivity())
                     .setMessage(R.string.override_current_data)
                     .setPositiveButton(R.string.ok, (d, id) ->
                             importDatabase(file, lastImportDataUri))
@@ -209,7 +209,7 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
             // if settings file exist, ask if it should be imported.
             final boolean hasJsonPrefs = manager.exportHasJsonPrefs(file);
             if (hasJsonPrefs || manager.exportHasSerializedPrefs(file)) {
-                new androidx.appcompat.app.AlertDialog.Builder(requireContext())
+                new MaterialAlertDialogBuilder(requireContext())
                         .setTitle(R.string.import_settings)
                         .setMessage(hasJsonPrefs ? null : requireContext()
                                 .getString(R.string.import_settings_vulnerable_format))

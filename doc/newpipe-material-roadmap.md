@@ -580,3 +580,22 @@ Before a public NewPipe Material release, manually verify:
 - Keep notification, update, debug, and report-adjacent polish focused on Material role mapping: primary row labels on `colorOnSurface`, helper/summary/detail text and subdued icons on `colorOnSurfaceVariant`, active/checked indicators on `colorPrimary`, and settings surfaces on `colorSurface`.
 - Manual QA for this surface should cover Settings > Player notification action rows and action chooser dialogs, notification channel toggles, Updates settings, Debug settings, reachable error-report surfaces, checked/disabled/helper/icon contrast, rotation, and Light/Dark/Black plus dynamic/App default/manual palettes.
 - Preserve notification behavior, action selection and saving, update checking, debug behavior, ACRA/error reporting, playback, downloads, extractor/service logic, queue/player overlays, database behavior, navigation, and settings preference logic while iterating on this visual surface.
+
+### Current Material polish note: backup, restore, import, export, and migration surfaces
+
+- Keep backup/restore/import/export polish focused on Material role mapping and
+  Material dialog chrome: primary titles/actions should resolve through
+  `colorOnSurface`/`colorPrimary`, helper and warning body copy should use
+  on-surface variant roles unless it is truly destructive/error, and surfaces
+  should stay on `colorSurface` or established dialog surfaces.
+- Manual QA for this surface should cover Settings > Backup and restore,
+  database export/import through the safe pre-picker/confirmation steps,
+  optional settings-import warning/result prompts, subscription import/export
+  entry points, migration-info prompts when reachable, cancel paths, rotation,
+  and Light/Dark/Black plus dynamic/App default/manual palettes.
+- Preserve import/export behavior, file picker behavior, backup format,
+  serialization/deserialization, database behavior, storage permissions,
+  SAF/document-tree behavior, validation logic, subscription worker behavior,
+  playback, downloads, extractor/service logic, queue/player overlays,
+  navigation, notification behavior, and settings preference logic while
+  iterating on this visual surface.

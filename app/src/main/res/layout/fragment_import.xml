@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface">
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/info_text_view"
@@ -42,6 +43,7 @@
 
         <Button
             android:id="@+id/input_button"
+            style="@style/MaterialStateActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"

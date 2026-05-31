@@ -806,3 +806,30 @@ Known risks / QA:
 
 Known risks / QA:
 - Device QA should inspect Settings > Player notification action rows and chooser dialogs, Settings > Notifications channel toggles, Updates settings, Debug settings, reachable error-report surfaces, row checked/disabled states, rotation, and Light, Dark, Black, Follow system/dynamic color, App default, and one manual palette such as Orange or Purple.
+
+### Backup, restore, import, export, and migration-adjacent polish (latest)
+
+- Backup/restore import confirmation and optional settings-import prompts now use
+  `MaterialAlertDialogBuilder`, matching the existing Material dialog role
+  mapping for titles, body copy, actions, and surfaces while preserving the same
+  confirmation/cancel listeners.
+- The subscription import helper screen now explicitly uses the Material
+  `colorSurface` role for its root surface and the existing primary text-button
+  treatment for its import action; helper copy remains on
+  `colorOnSurfaceVariant`, entered text remains on `colorOnSurface`, and the
+  active input underline/action color remains `colorPrimary`.
+- Scope was intentionally limited to dialog-builder selection and XML
+  color/style attributes. Import/export behavior, file picker behavior, backup
+  format, serialization/deserialization, database behavior, storage permissions,
+  SAF/document-tree behavior, validation logic, subscription import/export work,
+  playback, downloads, extractor/service logic, queue/player overlays,
+  navigation, notification behavior, and settings preference logic were not
+  changed.
+
+Known risks / QA:
+- Device QA should inspect Settings > Backup and restore, database import/export
+  confirmation prompts, optional settings-import warning prompts, subscription
+  import helper screens, previous-subscription-export import/export file-picker
+  entry points where safe, cancel paths, rotation, and Light, Dark, Black, Follow
+  system/dynamic color, App default, and one manual palette such as Orange or
+  Purple.
