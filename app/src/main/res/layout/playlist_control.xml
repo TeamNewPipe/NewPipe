@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -21,9 +22,11 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_headset"
             android:drawablePadding="4dp"
+            android:drawableTint="?attr/colorPrimary"
+            app:drawableTint="?attr/colorPrimary"
             android:gravity="center_vertical"
             android:text="@string/controls_background_title"
-            android:textColor="?attr/colorAccent"
+            android:textColor="?attr/colorPrimary"
             android:textSize="@dimen/channel_rss_title_size" />
     </LinearLayout>
 
@@ -32,7 +35,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/playlist_ctrl_separator_margin"
         android:layout_marginBottom="@dimen/playlist_ctrl_separator_margin"
-        android:background="?attr/colorAccent"
+        android:background="?attr/colorSurfaceVariant"
         android:clickable="false" />
 
     <LinearLayout
@@ -50,9 +53,11 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_playlist_play"
             android:drawablePadding="4dp"
+            android:drawableTint="?attr/colorPrimary"
+            app:drawableTint="?attr/colorPrimary"
             android:gravity="center_vertical"
             android:text="@string/play_all"
-            android:textColor="?attr/colorAccent"
+            android:textColor="?attr/colorPrimary"
             android:textSize="@dimen/channel_rss_title_size" />
     </LinearLayout>
 
@@ -61,7 +66,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/playlist_ctrl_separator_margin"
         android:layout_marginBottom="@dimen/playlist_ctrl_separator_margin"
-        android:background="?attr/colorAccent"
+        android:background="?attr/colorSurfaceVariant"
         android:clickable="false" />
 
     <LinearLayout
@@ -79,9 +84,11 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_picture_in_picture"
             android:drawablePadding="4dp"
+            android:drawableTint="?attr/colorPrimary"
+            app:drawableTint="?attr/colorPrimary"
             android:gravity="center_vertical"
             android:text="@string/controls_popup_title"
-            android:textColor="?attr/colorAccent"
+            android:textColor="?attr/colorPrimary"
             android:textSize="@dimen/channel_rss_title_size" />
     </LinearLayout>
 </LinearLayout>

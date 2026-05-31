@@ -599,3 +599,9 @@ Before a public NewPipe Material release, manually verify:
   playback, downloads, extractor/service logic, queue/player overlays,
   navigation, notification behavior, and settings preference logic while
   iterating on this visual surface.
+
+### Current Material polish note: history, local feed, and local list management
+
+- Keep local-library polish focused on XML/resource Material role mapping: primary labels on `colorOnSurface`, helper/secondary metadata and subdued icons on `colorOnSurfaceVariant`, active local playback/action controls on `colorPrimary`, and local feed/history surfaces and dividers on `colorSurface`/`colorSurfaceVariant`.
+- Manual QA for this surface should cover History, Feed / What's New refresh and loading rows, local playlist/history playback controls, clear-history confirmation cancel paths, local management row title/helper/icon/action contrast, rotation, and Light/Dark/Black plus dynamic/App default/manual palettes.
+- Preserve history sorting/deletion behavior, feed loading/update behavior, watched-state handling, playlist/subscription behavior, import/export, navigation, database behavior, settings preference logic, downloads, notifications, extractor/service logic, playback, queue/player overlays, and player overlay colors while iterating on this visual surface.

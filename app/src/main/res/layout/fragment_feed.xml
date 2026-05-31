@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface">
 
     <RelativeLayout
         android:id="@+id/refresh_root_view"
@@ -69,7 +70,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginRight="8dp"
-            android:background="?attr/separator_color" />
+            android:background="?attr/colorSurfaceVariant" />
     </RelativeLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

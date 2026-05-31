@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?attr/colorSurface"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -22,6 +23,7 @@
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
             android:src="@drawable/ic_filter_list"
+            android:tint="?attr/colorOnSurfaceVariant"
             tools:ignore="ContentDescription,RtlHardcoded" />
 
         <org.schabi.newpipe.views.NewPipeTextView
@@ -32,6 +34,7 @@
             android:gravity="left|center"
             android:text="@string/title_most_played"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="15sp"
             android:textStyle="bold"
             tools:ignore="RtlHardcoded" />

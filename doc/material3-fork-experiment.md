@@ -833,3 +833,13 @@ Known risks / QA:
   entry points where safe, cancel paths, rotation, and Light, Dark, Black, Follow
   system/dynamic color, App default, and one manual palette such as Orange or
   Purple.
+
+### History, local feed, and local list management polish (latest)
+
+- History sort/header controls now use a `colorSurface` header surface, `colorOnSurface` label text, and `colorOnSurfaceVariant` icon tint so the local history management row no longer falls back to platform/default text and vector colors.
+- Shared local playlist/history playback controls now map active action labels and compound icons to `colorPrimary`, while the vertical separators use `colorSurfaceVariant` instead of the legacy accent role.
+- The local feed refresh surface now sits on `colorSurface`, keeps its existing ripple/click target, and uses `colorSurfaceVariant` for its refresh-row divider while preserving the existing primary refresh affordance and on-surface title/helper text mapping.
+- Scope was intentionally limited to XML resource color/tint attributes and this documentation. History sorting/deletion, feed loading/update behavior, watched-state handling, playlist/subscription behavior, import/export, navigation, database behavior, settings logic, downloads, notifications, extractor/service logic, playback, queue/player overlays, and player overlay colors were not changed.
+
+Known risks / QA:
+- Device QA should inspect History, Watch history clear confirmation up to the cancel path, Feed / What's New refresh and loading states, local playlist/history playback controls, local list management rows, rotation on those screens, and Light, Dark, Black, Follow system dynamic color, App default, and one manual palette such as Orange or Purple.
