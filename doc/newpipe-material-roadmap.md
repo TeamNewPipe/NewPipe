@@ -640,3 +640,9 @@ Before a public NewPipe Material release, manually verify:
 - Tiny scoped cleanup applied: the two video-detail metadata label layouts now use `colorOnSurface` rather than platform `textColorPrimary`. This keeps the change XML-only and outside player/queue overlays, playback, downloads, extractor/service logic, database/import/export, notifications, navigation, and settings behavior.
 - Intentional exceptions: `stream_quality_item.xml` platform text-color attrs remain for `Theme.DeviceDefault` instrumentation compatibility; player/queue overlays, fast-seek feedback, launcher/splash/artwork vectors, black/white overlay affordances, file-picker bridge styles, and AppCompat/AndroidX settings/dialog bridge attrs remain deferred.
 - Recommended next PR order: targeted settings/dialog bridge-attr cleanup with widget QA, then file-picker bridge audit as a separate third-party-theme pass, then notification color setup if needed, and player/queue visual cleanup last with real-device QA.
+
+### Current Material polish note: settings/dialog bridge attr cleanup
+
+- The first narrow settings/dialog bridge cleanup is complete: settings themes now map their legacy `colorAccent` bridge to `colorPrimary`, keeping old AppCompat/Preference controls aligned with the active Material action/accent role without changing preference keys, defaults, or settings logic.
+- Deferred/skipped: dialog-wide `colorAccent` and `colorControlActivated`, file-picker bridge attrs, `stream_quality_item.xml`, player/queue overlays, seek/gesture feedback, speed/quality/audio/caption popups, playback/download/extractor/database/import/export/navigation/notification behavior, tests, launcher/splash/artwork, and brand identity colors.
+- Recommended next PR order: a dedicated dialog bridge cleanup with dialog button/control QA, then file-picker bridge audit separately, then notification color setup if still needed, and player/queue visual cleanup last with real-device QA.

@@ -715,6 +715,13 @@ Known risks / QA:
 - Non-visible palette/resource definitions remain as definitions or named overlay/artwork resources: `colors.xml` palette values, Black theme resources, launcher/splash/monochrome artwork, thumbnail/avatar overlay names, transparent gradients, and vector source fills.
 - Recommended next order: keep `stream_quality_item.xml` unchanged unless test-theme compatibility is reworked; split any base/dialog/settings bridge-attr cleanup into narrow PRs; keep file-picker bridge attrs separate because they are third-party-theme integration; handle player/queue overlay colors last with real-device QA.
 
+### Settings/dialog bridge attr cleanup (latest)
+
+- Tiny settings-scoped bridge cleanup applied: `LightSettingsTheme`, `DarkSettingsTheme`, and `BlackSettingsTheme` now map the legacy `colorAccent` bridge to `?attr/colorPrimary` so older AppCompat/Preference widgets in settings use the active Material primary/action role instead of the static settings-accent aliases.
+- Existing settings text/control bridge attrs remain intentionally scoped: `android:textColorPrimary` stays on `colorOnSurface`, `android:textColorSecondary` stays on `colorOnSurfaceVariant`, and `colorControlNormal` stays on `colorOnSurfaceVariant` for preference rows/icons.
+- Dialog theme `colorAccent`/`colorControlActivated` bridge attrs were inspected and deferred because changing them affects every app dialog; file-picker bridge attrs remain excluded for a separate third-party-theme pass.
+- Scope exclusions preserved: no `stream_quality_item.xml`, player/queue overlays, file-picker styles, playback/download/extractor/database/import/export/navigation/notification logic, tests, launcher/splash/artwork, or brand identity colors were changed.
+
 ### Playlist, subscription, and feed-group row polish (latest)
 
 - Playlist dialog rows, local/bookmarked playlist rows, playlist detail headers,

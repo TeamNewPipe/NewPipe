@@ -331,7 +331,7 @@
     </style>
 
     <style name="LightSettingsTheme" parent="LightTheme">
-        <item name="colorAccent">@color/light_settings_accent_color</item>
+        <item name="colorAccent">?attr/colorPrimary</item>
         <item name="android:textColorPrimary">?attr/colorOnSurface</item>
         <item name="android:textColorSecondary">?attr/colorOnSurfaceVariant</item>
         <item name="colorControlNormal">?attr/colorOnSurfaceVariant</item>
@@ -340,7 +340,7 @@
     </style>
 
     <style name="DarkSettingsTheme" parent="DarkTheme">
-        <item name="colorAccent">@color/dark_settings_accent_color</item>
+        <item name="colorAccent">?attr/colorPrimary</item>
         <item name="android:textColorPrimary">?attr/colorOnSurface</item>
         <item name="android:textColorSecondary">?attr/colorOnSurfaceVariant</item>
         <item name="colorControlNormal">?attr/colorOnSurfaceVariant</item>
@@ -349,7 +349,7 @@
     </style>
 
     <style name="BlackSettingsTheme" parent="BlackTheme">
-        <item name="colorAccent">@color/black_settings_accent_color</item>
+        <item name="colorAccent">?attr/colorPrimary</item>
         <item name="android:textColorPrimary">?attr/colorOnSurface</item>
         <item name="android:textColorSecondary">?attr/colorOnSurfaceVariant</item>
         <item name="colorControlNormal">?attr/colorOnSurfaceVariant</item>
