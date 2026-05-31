@@ -843,3 +843,56 @@ Known risks / QA:
 
 Known risks / QA:
 - Device QA should inspect History, Watch history clear confirmation up to the cancel path, Feed / What's New refresh and loading states, local playlist/history playback controls, local list management rows, rotation on those screens, and Light, Dark, Black, Follow system dynamic color, App default, and one manual palette such as Orange or Purple.
+
+### Remaining Material 3 visual-gap audit (latest)
+
+Audit scope and commands:
+- Inspected `app/src/main/res/layout/`, `layout-land/`, `layout-large-land/`, `menu/`, `drawable/`, `color/`, `values/styles.xml`, `values/styles_misc.xml`, `values/colors.xml`, `app/src/main/java/org/schabi/newpipe/player/`, `app/src/main/java/org/schabi/newpipe/`, and the Material roadmap docs.
+- `app/src/main/res/layout-large/` does not exist in this checkout, so no files were available to inspect there.
+- XML/resource hard-coded color search: `rg -n --glob '*.xml' '#[0-9A-Fa-f]{3,8}' app/src/main/res/layout app/src/main/res/layout-land app/src/main/res/layout-large-land app/src/main/res/menu app/src/main/res/drawable app/src/main/res/color app/src/main/res/values/styles.xml app/src/main/res/values/styles_misc.xml app/src/main/res/values/colors.xml`.
+- Legacy/platform color search: `rg -n 'textColorPrimary|textColorSecondary|colorAccent|colorControlNormal|@android:color|\?android:attr|\?attr/colorControl|youtube|Youtube|black|white|red|contrast' app/src/main/res/layout app/src/main/res/layout-land app/src/main/res/layout-large-land app/src/main/res/menu app/src/main/res/color app/src/main/res/drawable app/src/main/res/values/styles.xml app/src/main/res/values/styles_misc.xml app/src/main/res/values/colors.xml`.
+- Player-sensitive color search: `rg -n 'Color\.RED|Color\.WHITE|Color\.BLACK|R\.color\.(white|black|.*youtube.*|.*red.*|dark_background_color)|colorAccent|setProgressTintList|setThumbTintList|setBackgroundColor|setColorFilter|PorterDuffColorFilter|setTextColor' app/src/main/java/org/schabi/newpipe/player app/src/main/java/org/schabi/newpipe/player -S`.
+
+Audit summary:
+- No broad code/resource changes were made in this audit. The output is documentation-only so the next pass can choose focused, risk-appropriate PRs.
+- Remaining hard-coded layout colors are concentrated in media-thumbnail overlays and player/queue overlays: video-detail thumbnail hold/duration badges, channel/playlist avatar strokes, player seek preview/closing overlay, and player queue translucent backgrounds.
+- The large hard-coded color count in `colors.xml` and manual-theme sections of `styles.xml` is mostly palette definition, not per-surface leakage. Those values are expected until the fork finishes dynamic/manual palette consolidation.
+- Remaining legacy attrs are a mix of intentional compatibility (`stream_quality_item.xml` platform attrs), existing text appearance inheritance, and style/theme bridge attrs (`colorAccent`, `textColorPrimary`, `textColorSecondary`, `colorControlNormal`) still needed by AppCompat/preference/dialog widgets.
+- Java color-sensitive player uses remain intentionally untouched: red/white/black `PorterDuffColorFilter` and loading-panel background calls in `VideoPlayerUi`, plus notification color setup in `NotificationUtil`.
+
+Intentional exceptions to keep for now:
+- Player overlay white/black/red affordances over video frames remain intentional and high-risk: seekbar/gesture feedback, seek preview, loading panels, close overlays, queue overlay backgrounds, and popup-player close affordances need dedicated real-device QA before any retheme.
+- `stream_quality_item.xml` should continue using platform text color attrs for spinner row icon/text compatibility with both app Material themes and the plain `Theme.DeviceDefault` instrumentation-test theme used by `StreamItemAdapterTest`.
+- OS/system-controlled chrome and inherited platform text appearances can remain unless a specific surface shows contrast regressions; replacing all `?android:attr/textAppearance*` uses at once would be broad and noisy.
+- Palette resources in `colors.xml`, theme-preset values in `styles.xml`, launcher/icon artwork colors, placeholder artwork, white/black vector path fills, splash artwork, and named overlay/duration resources are not automatically defects just because they are hard-coded.
+- Runtime playback, gesture, seek, notification, download worker, extractor/service, database, import/export, navigation, settings logic, and tests remain out of scope for this audit.
+
+Remaining low-risk XML-only Material polish candidates:
+- Channel and playlist avatar border strokes currently use literal white strokes in `fragment_channel.xml` and `playlist_header.xml`. A focused XML-only PR could move them to a named overlay/border color or a Material outline/on-surface-variant role after screenshot/manual contrast checks over real thumbnails.
+- Video-detail thumbnail badges in `fragment_video_detail.xml` and `layout-large-land/fragment_video_detail.xml` use literal translucent black backgrounds plus white text for hold-to-append and duration chips. A focused XML-only PR could replace the literal values with existing named overlay/duration resources if the visual result stays identical across Light/Dark/Black.
+- A narrow drawable cleanup could replace isolated vector-local black/white fill literals with existing `@android:color/*`, `@color/white`, `@color/black`, or theme tints only where the vector is not artwork/launcher/service identity and already receives runtime tint elsewhere.
+- A small docs-backed resource cleanup could introduce names for repeated thumbnail overlay alphas, but should avoid changing actual colors or player resources.
+
+Medium-risk candidates that need focused PRs and manual QA:
+- Theme/style bridge cleanup: `colorAccent`, `textColorPrimary`, `textColorSecondary`, and `colorControlNormal` are still used in base, dialog, settings, notification, and misc styles to support AppCompat/Preference/Material interop. Any cleanup should be one surface at a time with Light/Dark/Black, dynamic color, App default, and one manual palette QA.
+- Legacy YouTube progress drawables and theme aliases (`progress_youtube_horizontal_*`, remaining YouTube primary references in misc themes) should be audited in the exact widgets that still consume them before renaming or remapping, because the name may be legacy while the actual use may still provide expected progress contrast.
+- License/about and preference-template platform text appearances can be polished, but should be handled as a focused style pass because these layouts inherit framework/AppCompat sizing and disabled-state behavior.
+- Info-list duration/live badges have named resources but still use old high-contrast overlay colors. Retheming them should be separated from player work and checked on stream lists, grids, cards, mini rows, and live items.
+- Notification color setup should stay in a notification-focused PR because Android system rendering and media-session behavior can override or reinterpret app color roles.
+
+High-risk / deferred areas:
+- Main player overlay, popup player overlay, queue overlay, seekbar/progress/gesture feedback, brightness/volume/fast-seek feedback, caption/audio/quality/speed popups, loading/error overlays inside the player, and closing overlay remain deferred.
+- Download worker/mission behavior, file picker/storage permission paths, extractor/service/network logic, database/migration behavior, import/export serialization, navigation behavior, settings persistence, notification action behavior, and tests remain deferred.
+- Broad palette consolidation or dynamic color rewiring across all theme presets remains deferred until the remaining widget bridge attrs are mapped and tested.
+
+Recommended next safe PR order:
+1. Documentation-backed XML cleanup for non-player thumbnail/avatar literals only: channel/playlist avatar strokes and video-detail thumbnail badges, preserving visual values or mapping to already-used named overlay resources.
+2. Info-list duration/live badge resource audit outside the player, with list/grid/card/mini-row screenshots or manual QA notes.
+3. Preference/license/about platform text appearance/style pass, limited to one family of layouts per PR.
+4. Theme/style bridge attr cleanup (`colorAccent`, `textColorPrimary`, `textColorSecondary`, `colorControlNormal`) after the above low-risk surfaces are stable.
+5. Dedicated player-controls visual pass last, with explicit device QA for fullscreen, embedded, popup, background/audio, queue, speed/quality/audio/captions menus, gestures, rotation, and all theme/color modes.
+
+Remaining risks / follow-ups:
+- Some remaining search hits are names rather than visible problems (`youtube` drawable names, `black` theme mode resources, `white` icon artwork), so future PRs should verify actual rendered surfaces rather than mechanically replacing every match.
+- Theme attr changes can affect many widgets indirectly; prefer one-surface PRs with manual QA notes instead of global replacements.
+- Player overlay contrast cannot be evaluated from resource names alone because it depends on arbitrary video frames and runtime control visibility.
