@@ -1000,3 +1000,10 @@ Known risks / QA:
 - The Reset settings flow clears only the existing default SharedPreferences file as before, then reapplies the same bundled snapshot before restarting the app. Databases, watch history, subscriptions, downloads, cache, queues, app identity, signing, player behavior, download behavior, navigation behavior, and `shared/` remain outside this reset change.
 - No keys from the supplied snapshot are intentionally skipped. Runtime-looking entries such as `is_in_background`, `import_export_data_path`, `kao_last_checked`, `stream_info_selected_tab`, `service`, and `media_tunneling_device_blacklist_version` are applied as part of the canonical baseline; the pre-existing media-tunneling first-run helper may still add device-specific tunneling-disable preferences when required.
 - Existing users are protected by the first-run/version flow and are not overwritten on normal app updates. A `newpipe_material_defaults_applied` marker records that the Material baseline was installed.
+
+### Stream thumbnail polish (latest)
+
+- Stream thumbnail polish: rounded preview thumbnails for list/grid/card and card-mode horizontal margins.
+- The stream list, mini/related, grid, and card item preview images now use the shared NewPipe Material stream-thumbnail shape overlay with 12dp rounded corners while preserving existing thumbnail IDs, scale types, fixed/grid/list sizing, card 16:9 constraint, image loading calls, progress visibility, click handling, and long-click handling.
+- Card-mode stream items now keep a 12dp horizontal inset from the RecyclerView/screen edges so full-width card previews are no longer edge-to-edge.
+- Duration and live badges remain constrained to the bottom/end of the existing thumbnail views; playback/loading behavior is unchanged.

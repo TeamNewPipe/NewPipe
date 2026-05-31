@@ -49,6 +49,13 @@
         <item name="cornerSize">8dp</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.NewPipeMaterial" parent="" />
+
+    <style name="ShapeAppearanceOverlay.NewPipeMaterial.StreamThumbnail">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/stream_thumbnail_corner_radius</item>
+    </style>
+
     <style name="PlaybackParameterSeekBar" parent="Widget.AppCompat.SeekBar">
         <item name="android:thumbTint">?attr/colorPrimary</item>
         <item name="android:progressTint">?attr/colorPrimary</item>

@@ -5,20 +5,20 @@
     android:id="@+id/itemRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/stream_card_horizontal_margin"
     android:paddingTop="@dimen/channel_item_grid_padding"
     android:paddingBottom="@dimen/channel_item_grid_padding"
     android:background="?attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/itemThumbnailView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginEnd="2dp"
         android:scaleType="centerCrop"
         android:src="@drawable/placeholder_thumbnail_video"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.NewPipeMaterial.StreamThumbnail"
         app:layout_constraintBottom_toTopOf="@+id/itemProgressView"
         app:layout_constraintDimensionRatio="16:9"
         app:layout_constraintEnd_toEndOf="parent"

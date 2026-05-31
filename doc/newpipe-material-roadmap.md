@@ -683,3 +683,9 @@ Before a public NewPipe Material release, manually verify:
 - Fresh installs / cleared app data apply the bundled snapshot before ordinary settings use, and Reset settings clears the default SharedPreferences file then reapplies that same snapshot before restart.
 - No supplied snapshot keys are intentionally skipped, including runtime-looking values such as `is_in_background`, `import_export_data_path`, `kao_last_checked`, `stream_info_selected_tab`, `service`, and `media_tunneling_device_blacklist_version`.
 - Existing users keep their chosen settings during normal updates; the snapshot is only applied on first run or explicit Reset settings. Non-preference user data such as databases, watch history, subscriptions, downloads, caches, player queues, app identity/signing, player/download/navigation behavior, and `shared/` are not changed by this defaults work.
+
+### Stream thumbnail polish status
+
+- Stream thumbnail polish: rounded preview thumbnails for list/grid/card and card-mode horizontal margins.
+- Status: complete for stream item layouts. List, mini/related, grid, and card stream preview thumbnails use the shared 12dp rounded stream-thumbnail shape overlay, and card-mode rows now use a 12dp horizontal inset from the screen/RecyclerView edges.
+- Duration and live badges remain inside the existing thumbnail bounds and readable, and playback/loading behavior is unchanged.
