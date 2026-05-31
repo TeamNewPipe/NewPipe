@@ -46,6 +46,9 @@ public final class NewPipeSettings {
     private NewPipeSettings() { }
 
     public static void initSettings(final Context context) {
+        NewPipeMaterialDefaultPreferences.applyBundledDefaultsIfNeeded(
+                context, App.getInstance().isFirstRun());
+
         // first run migrations, then setDefaultValues, since the latter requires the correct types
         MigrationManager.runMigrationsIfNeeded(context);
 

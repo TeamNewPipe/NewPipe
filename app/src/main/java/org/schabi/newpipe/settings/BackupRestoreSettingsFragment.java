@@ -109,10 +109,9 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
                     .setMessage(R.string.reset_all_settings)
                     .setCancelable(true)
                     .setPositiveButton(R.string.ok, (dialogInterface, i) -> {
-                        // Deletes all shared preferences xml files.
-                        final SharedPreferences sharedPreferences =
-                                PreferenceManager.getDefaultSharedPreferences(requireContext());
-                        sharedPreferences.edit().clear().apply();
+                        // Clears the default SharedPreferences and applies Material defaults.
+                        NewPipeMaterialDefaultPreferences.applyBundledDefaults(
+                                requireContext(), true);
                         // Restarts the app
                         if (getActivity() == null) {
                             return;
