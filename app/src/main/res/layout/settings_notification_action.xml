@@ -17,7 +17,7 @@
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="?android:textColorPrimary"
+        app:tint="?attr/colorOnSurfaceVariant"
         tools:ignore="ContentDescription"
         tools:src="@drawable/ic_previous" />
 
@@ -30,6 +30,7 @@
         android:maxLines="1"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="14sp"
+        android:textColor="?attr/colorOnSurface"
         app:layout_constraintBottom_toTopOf="@+id/notificationActionSummary"
         app:layout_constraintEnd_toEndOf="@id/notificationActionClickableArea"
         app:layout_constraintHorizontal_bias="0.0"
@@ -44,6 +45,7 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
+        android:textColor="?attr/colorOnSurfaceVariant"
         app:layout_constraintBottom_toBottomOf="@+id/notificationActionIcon"
         app:layout_constraintEnd_toEndOf="@+id/notificationActionClickableArea"
         app:layout_constraintHorizontal_bias="0.0"
@@ -69,6 +71,7 @@
         android:layout_height="wrap_content"
         android:clickable="false"
         android:focusable="false"
+        android:buttonTint="@color/settings_control_tint"
         app:layout_constraintBottom_toBottomOf="@+id/notificationActionCheckBoxClickableArea"
         app:layout_constraintEnd_toEndOf="@+id/notificationActionCheckBoxClickableArea"
         app:layout_constraintStart_toStartOf="@+id/notificationActionCheckBoxClickableArea"

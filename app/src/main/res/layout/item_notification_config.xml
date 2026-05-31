@@ -12,5 +12,7 @@
     android:paddingStart="?listPreferredItemPaddingStart"
     android:paddingEnd="?listPreferredItemPaddingEnd"
     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+    android:textColor="?attr/colorOnSurface"
+    android:drawableTint="@color/settings_control_tint"
     android:drawableEnd="?android:listChoiceIndicatorMultiple"
     tools:text="@tools:sample/lorem[4]" />

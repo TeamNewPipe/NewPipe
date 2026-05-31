@@ -795,3 +795,14 @@ Known risks / QA:
 
 Known risks / QA:
 - Device QA should inspect main, search, video/detail, channel, playlist, settings, feed-group, about, and ReCAPTCHA toolbar/overflow/menu surfaces; top and bottom/detail tabs; search entry/clear affordances; rotation during search/menu screens; and Light, Dark, Black, Follow system dynamic color, App default, and one manual palette such as Orange or Purple.
+
+### Notification, update, debug, and report-adjacent settings polish (latest)
+
+- Notification action configuration rows now place primary slot labels on `colorOnSurface`, helper/action summaries and row icons on `colorOnSurfaceVariant`, and compact-slot checkboxes on a state list that uses `colorPrimary` only for checked/active emphasis.
+- The channel notification configuration screen now uses `colorSurface` for its root/list background, `colorOnSurface` for channel names, and the same checked/active primary state list for row indicators.
+- The notification action chooser dialog keeps its existing single-choice behavior while moving row text to `colorOnSurface` and action icons to `colorOnSurfaceVariant`.
+- The error report surface, which is reachable from debug/error flows, now uses `colorSurface` for the report body, `colorOnSurface` for headings/comment text, and `colorOnSurfaceVariant` for stack/device details and report helper copy.
+- Scope was intentionally limited to XML/resource color attributes plus one visual-only icon tint attr lookup in the existing notification action chooser. Notification behavior, action selection/saving, update checking, debug/ACRA/error behavior, playback, downloads, extractor/service logic, queue/player overlays, database behavior, navigation, and settings preference logic were not changed.
+
+Known risks / QA:
+- Device QA should inspect Settings > Player notification action rows and chooser dialogs, Settings > Notifications channel toggles, Updates settings, Debug settings, reachable error-report surfaces, row checked/disabled states, rotation, and Light, Dark, Black, Follow system/dynamic color, App default, and one manual palette such as Orange or Purple.

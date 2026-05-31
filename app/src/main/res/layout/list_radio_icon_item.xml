@@ -12,6 +12,6 @@
     android:minHeight="?attr/listPreferredItemHeightSmall"
     android:paddingStart="?attr/listPreferredItemPaddingLeft"
     android:paddingEnd="?attr/listPreferredItemPaddingRight"
-    android:textColor="?attr/textColorAlertDialogListItem"
+    android:textColor="?attr/colorOnSurface"
     tools:drawableLeft="@drawable/ic_play_arrow"
     tools:text="Lorem ipsum dolor sit amet" />
