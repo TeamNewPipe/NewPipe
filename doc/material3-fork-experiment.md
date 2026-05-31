@@ -705,6 +705,16 @@ Known risks / QA:
 - Scope was intentionally limited to license/about-adjacent layout colors plus the existing license stylesheet helper. About text/attribution strings, license component loading, dialog buttons/navigation, preference XML keys/defaults, settings logic, import/export, playback/download behavior, player overlay, and queue overlay were not changed.
 - QA scope: open About, inspect fork attribution/app info/link actions, open Licenses, inspect software component rows and license detail dialogs, then spot-check settings preference rows/search results across Light/Dark/Black, Follow system dynamic color, App default, and one manual preset such as Orange or Purple.
 
+### Bridge attr cleanup audit (latest)
+
+- Audit scope covered remaining `colorAccent`, `textColorPrimary`, `textColorSecondary`, `colorControlNormal`, `colorControlActivated`, `colorButtonNormal`, `android:textColorPrimary`, `android:textColorSecondary`, and fixed black/white contrast resources in app resources.
+- Tiny scoped cleanup applied: video-detail metadata label layouts now use the app Material role `colorOnSurface` instead of platform `textColorPrimary`; this is XML-only, non-player-overlay, and keeps metadata content/loading behavior unchanged.
+- Intentional compatibility/bridge usage remains: `stream_quality_item.xml` keeps platform text-color attrs for `Theme.DeviceDefault` instrumentation compatibility; settings, toolbar, popup, search, snackbar, file-picker, dialog, and action-button styles keep scoped bridge attrs where AppCompat/AndroidX/third-party widgets still consume them.
+- Medium-risk global/theme usage remains deferred: base theme and preset palette `colorAccent`/`colorControlActivated`, settings theme `android:textColorPrimary`/`android:textColorSecondary`/`colorControlNormal`, and dialog/file-picker bridge attrs should only be changed in dedicated PRs with widget-by-widget QA.
+- High-risk player/overlay usage remains untouched: `player.xml`, `activity_player_queue_control.xml`, fast-seek feedback, play queue text themes, player-control gradients, and white/black overlay affordances are intentionally deferred to a dedicated player-controls visual pass.
+- Non-visible palette/resource definitions remain as definitions or named overlay/artwork resources: `colors.xml` palette values, Black theme resources, launcher/splash/monochrome artwork, thumbnail/avatar overlay names, transparent gradients, and vector source fills.
+- Recommended next order: keep `stream_quality_item.xml` unchanged unless test-theme compatibility is reworked; split any base/dialog/settings bridge-attr cleanup into narrow PRs; keep file-picker bridge attrs separate because they are third-party-theme integration; handle player/queue overlay colors last with real-device QA.
+
 ### Playlist, subscription, and feed-group row polish (latest)
 
 - Playlist dialog rows, local/bookmarked playlist rows, playlist detail headers,

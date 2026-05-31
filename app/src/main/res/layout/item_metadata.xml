@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical|end"
         android:textAllCaps="true"
-        android:textColor="?android:attr/textColorPrimary"
+        android:textColor="?attr/colorOnSurface"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -13,7 +13,7 @@
         android:gravity="center"
         android:text="@string/metadata_tags"
         android:textAllCaps="true"
-        android:textColor="?android:attr/textColorPrimary"
+        android:textColor="?attr/colorOnSurface"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
