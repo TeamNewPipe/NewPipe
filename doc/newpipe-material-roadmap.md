@@ -28,6 +28,11 @@ Project communication should be explicit that:
 
 ## Material 3 roadmap
 
+### About screen identity status
+
+- About screen now credits Wissam Shehadeh (Wisso) as the NewPipe Material author/developer in the fork attribution card.
+- The About screen GitHub contribution link now points to `wizdom13/NewPipe_Material`.
+
 ### Completed areas
 
 The current fork already has a Material 3 foundation underway. Keep these areas

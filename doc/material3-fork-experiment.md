@@ -6,6 +6,10 @@
 
 ## Completed changes
 
+### About screen identity and repository link
+- About screen now credits Wissam Shehadeh (Wisso) as the NewPipe Material author/developer in the fork attribution card.
+- The About screen GitHub contribution link now points to `wizdom13/NewPipe_Material`.
+
 ### Theme foundation
 - Base app and dialog theme parents migrated to Material 3.
 

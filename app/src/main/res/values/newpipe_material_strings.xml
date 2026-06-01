@@ -3,6 +3,7 @@
     <string name="newpipe_material_about_title">About NewPipe Material</string>
     <string name="newpipe_material_fork_title">NewPipe Material</string>
     <string name="newpipe_material_fork_attribution">NewPipe Material is an independent fork of NewPipe focused on Material 3 design. It is not affiliated with, sponsored by, or endorsed by the official NewPipe project, TeamNewPipe, or NewPipe e.V.</string>
+    <string name="newpipe_material_author_developer">Author and developer: Wissam Shehadeh (Wisso)</string>
     <string name="newpipe_material_upstream_title">Upstream NewPipe attribution</string>
     <string name="newpipe_material_upstream_attribution">NewPipe Material is built from NewPipe and preserves the NewPipe libre software license, upstream credits, and third-party license notices.</string>
 </resources>

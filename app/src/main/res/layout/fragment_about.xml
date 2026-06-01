@@ -77,6 +77,13 @@
                     android:text="@string/newpipe_material_fork_attribution"
                     android:textColor="?attr/colorOnSurfaceVariant" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/newpipe_material_author_developer"
+                    android:textColor="?attr/colorOnSurface" />
+
                 <org.schabi.newpipe.views.NewPipeTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
