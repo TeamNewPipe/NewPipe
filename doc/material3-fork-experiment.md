@@ -776,6 +776,24 @@ Known risks / QA:
   Light, Dark, Black, Follow system dynamic color, App default, and one manual
   palette such as Orange or Purple.
 
+
+### Stream watched-progress thumbnail polish (latest)
+
+- Stream list, grid, card, and mini/related watched-progress bars now use a
+  thumbnail-local Material drawable instead of the global service progress attr,
+  so the strip follows `colorPrimary`/theme color while optional secondary
+  progress uses `colorPrimaryContainer`.
+- The watched-progress views now sit inside the rounded thumbnail bounds at the
+  bottom edge, with a thin 3dp height and small horizontal inset to reduce
+  square-corner protrusion against rounded thumbnails.
+- Duration/live badges remain inside thumbnails and are lifted above the strip
+  so their high-contrast badge treatment stays readable over arbitrary
+  thumbnails.
+- Global/player/download progress drawables and the `progress_horizontal_drawable`
+  theme attr were intentionally untouched; existing watch-progress calculation,
+  visibility logic, stream loading, playback, download, and navigation behavior
+  were not changed.
+
 ### Empty, loading, no-content, and retry state polish (latest)
 
 - Empty/no-results titles for search, settings search, comments, kiosks, and
@@ -900,7 +918,7 @@ Remaining low-risk XML-only Material polish candidates:
 
 Medium-risk candidates that need focused PRs and manual QA:
 - Theme/style bridge cleanup: `colorAccent`, `textColorPrimary`, `textColorSecondary`, and `colorControlNormal` are still used in base, dialog, settings, notification, and misc styles to support AppCompat/Preference/Material interop. Any cleanup should be one surface at a time with Light/Dark/Black, dynamic color, App default, and one manual palette QA.
-- Legacy YouTube progress drawables and theme aliases (`progress_youtube_horizontal_*`, remaining YouTube primary references in misc themes) should be audited in the exact widgets that still consume them before renaming or remapping, because the name may be legacy while the actual use may still provide expected progress contrast.
+- Legacy YouTube progress drawables and theme aliases (`progress_youtube_horizontal_*`, remaining YouTube primary references in misc themes) should still be audited in exact remaining consumers before renaming or remapping. Stream watched-progress bars no longer use the global alias, but player/download/legacy widgets may still rely on its contrast.
 - License/about and preference-template platform text appearances can be polished, but should be handled as a focused style pass because these layouts inherit framework/AppCompat sizing and disabled-state behavior.
 - Info-list duration/live badges have named resources but still use old high-contrast overlay colors. Retheming them should be separated from player work and checked on stream lists, grids, cards, mini rows, and live items.
 - Notification color setup should stay in a notification-focused PR because Android system rendering and media-session behavior can override or reinterpret app color roles.

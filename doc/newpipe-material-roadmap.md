@@ -686,6 +686,7 @@ Before a public NewPipe Material release, manually verify:
 
 ### Stream thumbnail polish status
 
-- Stream thumbnail polish: rounded preview thumbnails for list/grid/card and card-mode horizontal margins.
-- Status: complete for stream item layouts. List, mini/related, grid, and card stream preview thumbnails use the shared 12dp rounded stream-thumbnail shape overlay, and card-mode rows now use a 12dp horizontal inset from the screen/RecyclerView edges.
-- Duration and live badges remain inside the existing thumbnail bounds and readable, and playback/loading behavior is unchanged.
+- Stream thumbnail polish: rounded preview thumbnails for list/grid/card, card-mode horizontal margins, and thumbnail-local watched-progress strips.
+- Status: complete for stream item layouts. List, mini/related, grid, and card stream preview thumbnails use the shared 12dp rounded stream-thumbnail shape overlay, card-mode rows keep a 12dp horizontal inset from the screen/RecyclerView edges, and watched-progress bars now sit inside the thumbnail bottom edge.
+- Watched-progress bars use a stream-thumbnail-specific Material drawable driven by `colorPrimary`/`colorPrimaryContainer` instead of the global YouTube/service progress alias, so player/download progress drawables remain intentionally untouched.
+- Duration and live badges remain inside the existing thumbnail bounds and readable above the progress strip, and playback/loading/watch-history behavior is unchanged.
