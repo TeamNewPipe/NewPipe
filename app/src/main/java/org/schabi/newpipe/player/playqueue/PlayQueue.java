@@ -38,6 +38,8 @@ import io.reactivex.rxjava3.subjects.PublishSubject;
  */
 public abstract class PlayQueue implements Serializable {
     public static final boolean DEBUG = MainActivity.DEBUG;
+    private static final int MAX_HISTORY_SIZE = 100;
+
     @NonNull
     private final AtomicInteger queueIndex;
     private final List<PlayQueueItem> history = new ArrayList<>();
@@ -130,38 +132,28 @@ public abstract class PlayQueue implements Serializable {
      */
     public synchronized void setIndex(final int index) {
         final int oldIndex = getIndex();
-
-        final int newIndex;
-
-        if (index < 0) {
-            newIndex = 0;
-        } else if (index < streams.size()) {
-            // Regular assignment for index in bounds
-            newIndex = index;
-        } else if (streams.isEmpty()) {
-            // Out of bounds from here on
-            // Need to check if stream is empty to prevent arithmetic error and negative index
-            newIndex = 0;
-        } else if (isComplete()) {
-            // Circular indexing
-            newIndex = index % streams.size();
-        } else {
-            // Index of last element
-            newIndex = streams.size() - 1;
-        }
+        final int newIndex = calculateWrappedIndex(index);
 
         queueIndex.set(newIndex);
 
         if (oldIndex != newIndex) {
-            history.add(streams.get(newIndex));
+            addToHistory(newIndex);
+            broadcast(new SelectEvent(oldIndex, newIndex));
         }
+    }
 
-        /*
-        TODO: Documentation states that a SelectEvent will only be emitted if the new index is...
-        different from the old one but this is emitted regardless? Not sure what this what it does
-        exactly so I won't touch it
-         */
-        broadcast(new SelectEvent(oldIndex, newIndex));
+    private int calculateWrappedIndex(final int index) {
+        if (index < 0) {
+            return 0;
+        } else if (index < streams.size()) {
+            return index;
+        } else if (streams.isEmpty()) {
+            return 0;
+        } else if (isComplete()) {
+            return index % streams.size();
+        } else {
+            return streams.size() - 1;
+        }
     }
 
     /**
@@ -335,11 +327,14 @@ public abstract class PlayQueue implements Serializable {
      */
     public synchronized void error() {
         final int oldIndex = getIndex();
-        queueIndex.incrementAndGet();
-        if (streams.size() > queueIndex.get()) {
-            history.add(streams.get(queueIndex.get()));
+        final int newIndex = calculateWrappedIndex(oldIndex + 1);
+
+        queueIndex.set(newIndex);
+
+        if (oldIndex != newIndex) {
+            addToHistory(newIndex);
         }
-        broadcast(new ErrorEvent(oldIndex, getIndex()));
+        broadcast(new ErrorEvent(oldIndex, newIndex));
     }
 
     private synchronized void removeInternal(final int removeIndex) {
@@ -515,16 +510,29 @@ public abstract class PlayQueue implements Serializable {
      * @return true if history is not empty and the item can be played
      * */
     public synchronized boolean previous() {
-        if (history.size() <= 1) {
-            return false;
+        while (history.size() > 1) {
+            history.remove(history.size() - 1);
+            final PlayQueueItem last = history.get(history.size() - 1);
+            final int index = indexOf(last);
+            if (index != -1) {
+                setIndex(index);
+                return true;
+            }
         }
 
-        history.remove(history.size() - 1);
+        return false;
+    }
 
-        final PlayQueueItem last = history.remove(history.size() - 1);
-        setIndex(indexOf(last));
-
-        return true;
+    private void addToHistory(final int index) {
+        if (index < 0 || index >= streams.size()) {
+            return;
+        }
+        final PlayQueueItem item = streams.get(index);
+        history.remove(item);
+        history.add(item);
+        if (history.size() > MAX_HISTORY_SIZE) {
+            history.remove(0);
+        }
     }
 
     /*
