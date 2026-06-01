@@ -307,6 +307,10 @@ explicit decisions for each item:
 
 - **App name:** Chosen as **NewPipe Material** for the visible launcher/app
   label.
+- **Version identity:** NewPipe Material app versions use
+  `<upstream-version>-m<material-release-number>` while the upstream NewPipe
+  base version remains available separately. Example: app version `0.28.7-m1`,
+  GitHub release tag `v0.28.7-m1`, based on NewPipe `0.28.7`.
 - **App icon:** Design fork-specific launcher and notification-safe branding
   that does not confuse users into thinking it is the official NewPipe app.
 
@@ -477,6 +481,9 @@ future code or resource changes should use the checklist below before release.
 ### Programmatic checks
 
 - Build the app variant intended for testing or release.
+- Confirm release APK metadata uses the NewPipe Material version name, for
+  example `0.28.7-m1`, and release artifacts/tags use `v0.28.7-m1` while the
+  About screen still reports the based-on NewPipe version separately.
 - Run lint for the changed variant.
 - Run unit tests affected by the change.
 - Run checkstyle/format checks required by the repository.

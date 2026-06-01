@@ -53,10 +53,27 @@ configure<ApplicationExtension> {
             version = release(NEWPIPE_VERSION_SDK_TARGET)
         }
 
-        versionCode = System.getProperty("versionCodeOverride")?.toInt() ?: NEWPIPE_VERSION_CODE
+        versionCode = System.getProperty("versionCodeOverride")?.toInt()
+            ?: NEWPIPE_MATERIAL_VERSION_CODE
 
-        versionName = NEWPIPE_VERSION_NAME
+        versionName = NEWPIPE_MATERIAL_VERSION_NAME
         System.getProperty("versionNameSuffix")?.let { versionNameSuffix = it }
+
+        buildConfigField(
+            "String",
+            "NEWPIPE_MATERIAL_VERSION_NAME",
+            "\"$NEWPIPE_MATERIAL_VERSION_NAME\""
+        )
+        buildConfigField(
+            "String",
+            "UPSTREAM_NEWPIPE_VERSION_NAME",
+            "\"$NEWPIPE_VERSION_NAME\""
+        )
+        buildConfigField(
+            "int",
+            "NEWPIPE_MATERIAL_RELEASE_NUMBER",
+            "$NEWPIPE_MATERIAL_RELEASE_NUMBER"
+        )
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

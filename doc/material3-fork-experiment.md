@@ -8,7 +8,14 @@
 
 ### About screen identity and repository link
 - About screen now credits Wissam Shehadeh (Wisso) as the NewPipe Material author/developer in the fork attribution card.
+- About screen version identity now shows the NewPipe Material app version and the upstream NewPipe base version separately, using `0.28.7-m1` for the fork release built from NewPipe `0.28.7`.
 - The About screen GitHub contribution link now points to `wizdom13/NewPipe_Material`.
+
+### NewPipe Material version identity
+- NewPipe Material app versions use `<upstream-version>-m<material-release-number>`.
+- Example app version: `0.28.7-m1`.
+- GitHub release tags should use the same version with a leading `v`, for example `v0.28.7-m1`.
+- The based-on NewPipe version remains the upstream version alone, for example `0.28.7`.
 
 ### Theme foundation
 - Base app and dialog theme parents migrated to Material 3.
