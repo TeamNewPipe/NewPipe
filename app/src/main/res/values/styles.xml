@@ -28,7 +28,7 @@
     <!-- Light Theme -->
     <style name="Base.V21.LightTheme" parent="Base">
         <item name="colorPrimary">@color/light_m3_primary_color</item>
-        <item name="colorPrimaryFixedDim">@color/light_m3_inverse_primary_color</item>
+        <item name="colorPrimaryFixedDim">@color/dark_m3_primary_color</item>
         <item name="colorPrimaryDark">@color/light_m3_primary_container_color</item>
         <item name="colorAccent">@color/light_m3_secondary_color</item>
         <item name="colorSecondary">@color/light_m3_secondary_color</item>

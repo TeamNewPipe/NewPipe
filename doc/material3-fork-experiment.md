@@ -1026,3 +1026,10 @@ Known risks / QA:
 - Card-mode stream items now keep a 12dp horizontal inset from the RecyclerView/screen edges so full-width card previews are no longer edge-to-edge.
 - Duration and live badges keep the normal bottom/end XML position by default; stream duration/time badges are conditionally raised at bind time only when watched progress is visible and non-zero, giving long badges such as `1:25:55` clearance above the in-thumbnail progress strip.
 - This is a spacing-only stream thumbnail fix. Player seekbar/color work remains intentionally separate, and playback/loading/watch-progress behavior is unchanged.
+
+### Player seekbar fixed-dim primary tint status
+
+- Added an app-level `colorPrimaryFixedDim` attr for compatibility with the current Material Components version, so app code can resolve `R.attr.colorPrimaryFixedDim` without depending on a library-exposed fixed-dim attr.
+- The player seekbar active progress and visible thumb now resolve `colorPrimaryFixedDim`, replacing the old hard-coded red player tint path while leaving the inactive track and secondary progress behavior to the existing seekbar drawable/state handling.
+- Playback, seeking, scrubbing gestures, player visibility/dismiss timing, fullscreen/embedded control behavior, thumbnail progress/duration spacing, downloads, and watch-progress calculation are unchanged by this color-only pass.
+- Manual theme-color presets provide fixed-dim primary values for NewPipe Material, Neutral, Green, Blue, Purple, Orange, Pink, and Red. Follow system dynamic color can only feed this custom compatibility attr when the active theme/overlay supplies it; otherwise it falls back to the static NewPipe Material fixed-dim primary value.

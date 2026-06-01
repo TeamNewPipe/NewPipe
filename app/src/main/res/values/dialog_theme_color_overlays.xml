@@ -3,6 +3,7 @@
     <!-- Light dialog theme-color overlays -->
     <style name="LightDialogTheme_ThemeColor_NewPipeMaterial" parent="LightDialogTheme">
         <item name="colorPrimary">#46674F</item>
+        <item name="colorPrimaryFixedDim">#AED4AF</item>
         <item name="colorOnPrimary">#FFFFFF</item>
         <item name="colorPrimaryDark">#C9ECCB</item>
         <item name="colorPrimaryContainer">#C9ECCB</item>
@@ -17,6 +18,7 @@
 
     <style name="LightDialogTheme_ThemeColor_Neutral" parent="LightDialogTheme">
         <item name="colorPrimary">#5F5F5F</item>
+        <item name="colorPrimaryFixedDim">#C7C7C7</item>
         <item name="colorOnPrimary">#FFFFFF</item>
         <item name="colorPrimaryDark">#E3E3E3</item>
         <item name="colorPrimaryContainer">#E3E3E3</item>
@@ -31,6 +33,7 @@
 
     <style name="LightDialogTheme_ThemeColor_Green" parent="LightDialogTheme">
         <item name="colorPrimary">#386A20</item>
+        <item name="colorPrimaryFixedDim">#9ED67D</item>
         <item name="colorOnPrimary">#FFFFFF</item>
         <item name="colorPrimaryDark">#B9F397</item>
         <item name="colorPrimaryContainer">#B9F397</item>
@@ -45,6 +48,7 @@
 
     <style name="LightDialogTheme_ThemeColor_Blue" parent="LightDialogTheme">
         <item name="colorPrimary">#0061A4</item>
+        <item name="colorPrimaryFixedDim">#9ECAFF</item>
         <item name="colorOnPrimary">#FFFFFF</item>
         <item name="colorPrimaryDark">#D1E4FF</item>
         <item name="colorPrimaryContainer">#D1E4FF</item>
@@ -59,6 +63,7 @@
 
     <style name="LightDialogTheme_ThemeColor_Purple" parent="LightDialogTheme">
         <item name="colorPrimary">#6750A4</item>
+        <item name="colorPrimaryFixedDim">#D0BCFF</item>
         <item name="colorOnPrimary">#FFFFFF</item>
         <item name="colorPrimaryDark">#EADDFF</item>
         <item name="colorPrimaryContainer">#EADDFF</item>
@@ -73,6 +78,7 @@
 
     <style name="LightDialogTheme_ThemeColor_Orange" parent="LightDialogTheme">
         <item name="colorPrimary">#9B4300</item>
+        <item name="colorPrimaryFixedDim">#FFB86C</item>
         <item name="colorOnPrimary">#FFFFFF</item>
         <item name="colorPrimaryDark">#FFDBC8</item>
         <item name="colorPrimaryContainer">#FFDBC8</item>
@@ -87,6 +93,7 @@
 
     <style name="LightDialogTheme_ThemeColor_Pink" parent="LightDialogTheme">
         <item name="colorPrimary">#984061</item>
+        <item name="colorPrimaryFixedDim">#FFB1CB</item>
         <item name="colorOnPrimary">#FFFFFF</item>
         <item name="colorPrimaryDark">#FFD8E7</item>
         <item name="colorPrimaryContainer">#FFD8E7</item>
@@ -101,6 +108,7 @@
 
     <style name="LightDialogTheme_ThemeColor_Red" parent="LightDialogTheme">
         <item name="colorPrimary">#BA1A1A</item>
+        <item name="colorPrimaryFixedDim">#FFB4AB</item>
         <item name="colorOnPrimary">#FFFFFF</item>
         <item name="colorPrimaryDark">#FFDAD6</item>
         <item name="colorPrimaryContainer">#FFDAD6</item>
@@ -116,6 +124,7 @@
     <!-- Dark dialog theme-color overlays -->
     <style name="DarkDialogTheme_ThemeColor_NewPipeMaterial" parent="DarkDialogTheme">
         <item name="colorPrimary">#AED4AF</item>
+        <item name="colorPrimaryFixedDim">#AED4AF</item>
         <item name="colorOnPrimary">#19361E</item>
         <item name="colorPrimaryDark">#305236</item>
         <item name="colorPrimaryContainer">#305236</item>
@@ -130,6 +139,7 @@
 
     <style name="DarkDialogTheme_ThemeColor_Neutral" parent="DarkDialogTheme">
         <item name="colorPrimary">#C7C7C7</item>
+        <item name="colorPrimaryFixedDim">#C7C7C7</item>
         <item name="colorOnPrimary">#303030</item>
         <item name="colorPrimaryDark">#474747</item>
         <item name="colorPrimaryContainer">#474747</item>
@@ -144,6 +154,7 @@
 
     <style name="DarkDialogTheme_ThemeColor_Green" parent="DarkDialogTheme">
         <item name="colorPrimary">#9ED67D</item>
+        <item name="colorPrimaryFixedDim">#9ED67D</item>
         <item name="colorOnPrimary">#123800</item>
         <item name="colorPrimaryDark">#205107</item>
         <item name="colorPrimaryContainer">#205107</item>
@@ -158,6 +169,7 @@
 
     <style name="DarkDialogTheme_ThemeColor_Blue" parent="DarkDialogTheme">
         <item name="colorPrimary">#9ECAFF</item>
+        <item name="colorPrimaryFixedDim">#9ECAFF</item>
         <item name="colorOnPrimary">#003258</item>
         <item name="colorPrimaryDark">#00497D</item>
         <item name="colorPrimaryContainer">#00497D</item>
@@ -172,6 +184,7 @@
 
     <style name="DarkDialogTheme_ThemeColor_Purple" parent="DarkDialogTheme">
         <item name="colorPrimary">#D0BCFF</item>
+        <item name="colorPrimaryFixedDim">#D0BCFF</item>
         <item name="colorOnPrimary">#381E72</item>
         <item name="colorPrimaryDark">#4F378B</item>
         <item name="colorPrimaryContainer">#4F378B</item>
@@ -186,6 +199,7 @@
 
     <style name="DarkDialogTheme_ThemeColor_Orange" parent="DarkDialogTheme">
         <item name="colorPrimary">#FFB86C</item>
+        <item name="colorPrimaryFixedDim">#FFB86C</item>
         <item name="colorOnPrimary">#4A2800</item>
         <item name="colorPrimaryDark">#6A3A00</item>
         <item name="colorPrimaryContainer">#6A3A00</item>
@@ -200,6 +214,7 @@
 
     <style name="DarkDialogTheme_ThemeColor_Pink" parent="DarkDialogTheme">
         <item name="colorPrimary">#FFB1CB</item>
+        <item name="colorPrimaryFixedDim">#FFB1CB</item>
         <item name="colorOnPrimary">#5E1134</item>
         <item name="colorPrimaryDark">#7B294A</item>
         <item name="colorPrimaryContainer">#7B294A</item>
@@ -214,6 +229,7 @@
 
     <style name="DarkDialogTheme_ThemeColor_Red" parent="DarkDialogTheme">
         <item name="colorPrimary">#FFB4AB</item>
+        <item name="colorPrimaryFixedDim">#FFB4AB</item>
         <item name="colorOnPrimary">#690005</item>
         <item name="colorPrimaryDark">#93000A</item>
         <item name="colorPrimaryContainer">#93000A</item>

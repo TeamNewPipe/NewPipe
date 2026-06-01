@@ -691,3 +691,9 @@ Before a public NewPipe Material release, manually verify:
 - Watched-progress bars use a stream-thumbnail-specific Material drawable driven by `colorPrimaryFixedDim`/`colorPrimaryContainer` instead of the global YouTube/service progress alias, so player/download progress drawables remain intentionally untouched.
 - The progress strip is lifted inside the rounded thumbnail, and stream holders now use a 20dp raised duration/time badge margin only while watched progress is visible and non-zero; unwatched and zero-progress items keep the normal lower badge position.
 - This status is limited to stream thumbnail spacing. Player seekbar/color work remains intentionally separate, and playback/loading/watch-history behavior is unchanged.
+
+### Player seekbar fixed-dim primary tint status
+
+- Player seekbar color polish is complete as a focused color-only pass: an app-level `colorPrimaryFixedDim` compatibility attr is declared and mapped through base themes plus manual theme-color overlays.
+- The player seekbar active progress and visible thumb now use `colorPrimaryFixedDim` instead of the legacy hard-coded red tint path. Inactive track, secondary progress, playback, seeking, scrubbing gestures, fullscreen/embedded controls, player visibility timing, thumbnail progress/duration spacing, downloads, and watch-progress calculation remain unchanged.
+- Manual presets resolve to their fixed-dim primary colors, including Orange, Blue, Purple, and the default NewPipe Material green. Follow system dynamic color uses this custom attr only when supplied by the active theme/overlay; otherwise it uses the static NewPipe Material fixed-dim fallback.
