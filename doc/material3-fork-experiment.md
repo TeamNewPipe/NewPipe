@@ -786,9 +786,9 @@ Known risks / QA:
 - The watched-progress views now sit lifted inside the rounded thumbnail bounds,
   with a thin 3dp height, 3dp bottom margin, and small horizontal inset to reduce
   square-corner protrusion against rounded thumbnails.
-- Duration/live badges remain inside thumbnails, and stream holders raise the
-  duration/time badge only while visible watched progress is present so unwatched
-  items keep the normal lower badge position.
+- Duration/live badges remain inside thumbnails, and stream holders now use a
+  larger raised margin only while visible watched progress is present so the
+  badge clears the strip while unwatched items keep the normal lower position.
 - Global/player/download progress drawables and the `progress_horizontal_drawable`
   theme attr were intentionally untouched; existing watch-progress calculation,
   visibility logic, stream loading, playback, download, and navigation behavior
