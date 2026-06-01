@@ -3,6 +3,7 @@ package org.schabi.newpipe.local.feed.item
 import android.content.Context
 import android.text.TextUtils
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import com.xwray.groupie.viewbinding.BindableItem
@@ -82,7 +83,8 @@ data class StreamItem(
             if (stateProgressTime != null) {
                 viewBinding.itemProgressView.visibility = View.VISIBLE
                 viewBinding.itemProgressView.max = stream.duration.toInt()
-                viewBinding.itemProgressView.progress = TimeUnit.MILLISECONDS.toSeconds(stateProgressTime).toInt()
+                viewBinding.itemProgressView.progress = TimeUnit.MILLISECONDS
+                    .toSeconds(stateProgressTime).toInt()
             } else {
                 viewBinding.itemProgressView.visibility = View.GONE
             }
@@ -101,6 +103,8 @@ data class StreamItem(
             viewBinding.itemProgressView.visibility = View.GONE
         }
 
+        updateDurationMarginForProgress(viewBinding)
+
         CoilHelper.loadThumbnail(viewBinding.itemThumbnailView, stream.thumbnailUrl)
 
         if (itemVersion != ItemVersion.MINI) {
@@ -109,6 +113,29 @@ data class StreamItem(
         }
 
         execBindEnd?.accept(viewBinding)
+    }
+
+    private fun updateDurationMarginForProgress(viewBinding: ListStreamItemBinding) {
+        val layoutParams = viewBinding.itemDurationView.layoutParams
+        if (layoutParams !is ViewGroup.MarginLayoutParams) {
+            return
+        }
+
+        val progressVisible = viewBinding.itemProgressView.visibility == View.VISIBLE &&
+            viewBinding.itemProgressView.progress > 0
+        val bottomMargin = viewBinding.itemDurationView.resources.getDimensionPixelSize(
+            if (progressVisible) {
+                R.dimen.stream_thumbnail_duration_margin_with_progress
+            } else {
+                R.dimen.video_item_search_duration_margin
+            }
+        )
+
+        if (layoutParams.bottomMargin != bottomMargin) {
+            layoutParams.bottomMargin = bottomMargin
+            viewBinding.itemDurationView.layoutParams = layoutParams
+            viewBinding.itemDurationView.requestLayout()
+        }
     }
 
     override fun isLongClickable() = when (stream.streamType) {

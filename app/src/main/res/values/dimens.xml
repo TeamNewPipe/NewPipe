@@ -40,7 +40,7 @@
     <dimen name="stream_thumbnail_progress_height">3dp</dimen>
     <dimen name="stream_thumbnail_progress_bottom_margin">3dp</dimen>
     <dimen name="stream_thumbnail_progress_horizontal_inset">2dp</dimen>
-    <dimen name="stream_thumbnail_duration_margin_with_progress">12dp</dimen>
+    <dimen name="stream_thumbnail_duration_margin_with_progress">20dp</dimen>
     <dimen name="stream_card_horizontal_margin">12dp</dimen>
 
     <dimen name="channel_item_card_thumbnail_image_size">100dp</dimen>

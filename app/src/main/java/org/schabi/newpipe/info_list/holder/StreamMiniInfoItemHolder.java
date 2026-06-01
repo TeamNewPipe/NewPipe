@@ -69,6 +69,7 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
         if (marginLayoutParams.bottomMargin != bottomMargin) {
             marginLayoutParams.bottomMargin = bottomMargin;
             itemDurationView.setLayoutParams(marginLayoutParams);
+            itemDurationView.requestLayout();
         }
     }
 

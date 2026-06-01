@@ -10,13 +10,13 @@
     android:focusable="true"
     android:padding="@dimen/video_item_search_padding">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/itemThumbnailView"
         android:layout_width="@dimen/video_item_search_thumbnail_image_width"
         android:layout_height="@dimen/video_item_search_thumbnail_image_height"
         android:scaleType="fitCenter"
         android:src="@drawable/placeholder_thumbnail_video"
-        app:layout_constraintBottom_toTopOf="@+id/itemProgressView"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.NewPipeMaterial.StreamThumbnail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -84,11 +84,12 @@
         android:id="@+id/itemProgressView"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="0dp"
-        android:layout_height="4dp"
-        android:progressDrawable="?progress_horizontal_drawable"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="@dimen/stream_thumbnail_progress_height"
+        android:layout_marginBottom="@dimen/stream_thumbnail_progress_bottom_margin"
+        android:layout_marginHorizontal="@dimen/stream_thumbnail_progress_horizontal_inset"
+        android:progressDrawable="@drawable/progress_stream_thumbnail_material"
+        app:layout_constraintBottom_toBottomOf="@+id/itemThumbnailView"
         app:layout_constraintEnd_toEndOf="@+id/itemThumbnailView"
-        app:layout_constraintStart_toStartOf="@+id/itemThumbnailView"
-        app:layout_constraintTop_toBottomOf="@+id/itemThumbnailView" />
+        app:layout_constraintStart_toStartOf="@+id/itemThumbnailView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

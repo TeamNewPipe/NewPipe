@@ -1024,4 +1024,5 @@ Known risks / QA:
 - Stream thumbnail polish: rounded preview thumbnails for list/grid/card and card-mode horizontal margins.
 - The stream list, mini/related, grid, and card item preview images now use the shared NewPipe Material stream-thumbnail shape overlay with 12dp rounded corners while preserving existing thumbnail IDs, scale types, fixed/grid/list sizing, card 16:9 constraint, image loading calls, progress visibility, click handling, and long-click handling.
 - Card-mode stream items now keep a 12dp horizontal inset from the RecyclerView/screen edges so full-width card previews are no longer edge-to-edge.
-- Duration and live badges remain constrained to the bottom/end of the existing thumbnail views; playback/loading behavior is unchanged.
+- Duration and live badges keep the normal bottom/end XML position by default; stream duration/time badges are conditionally raised at bind time only when watched progress is visible and non-zero, giving long badges such as `1:25:55` clearance above the in-thumbnail progress strip.
+- This is a spacing-only stream thumbnail fix. Player seekbar/color work remains intentionally separate, and playback/loading/watch-progress behavior is unchanged.
