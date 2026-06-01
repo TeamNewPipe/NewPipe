@@ -2,20 +2,33 @@ name: "Build signed release APK on material"
 
 on:
   workflow_dispatch:
+    inputs:
+      release_target:
+        description: "What to do with the signed release APK"
+        required: false
+        default: "artifacts"
+        type: choice
+        options:
+          - artifacts
+          - release
+  push:
+    tags:
+      - "m*"
+
+permissions:
+  contents: write
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-        with:
-          ref: 'material'
 
       - uses: actions/setup-java@v5
         with:
-          distribution: 'temurin'
-          java-version: '21'
-          cache: 'gradle'
+          distribution: "temurin"
+          java-version: "21"
+          cache: "gradle"
 
       - name: "Prepare release keystore"
         env:
@@ -41,17 +54,52 @@ jobs:
           "$APKSIGNER" verify --verbose "$APK_PATH"
 
       - name: "Rename APK"
+        id: release_info
         run: |
           VERSION_NAME="$(jq -r ".elements[0].versionName" "app/build/outputs/apk/release/output-metadata.json")"
+          MATERIAL_TAG="${VERSION_NAME##*-}"
+
+          if [ "$GITHUB_EVENT_NAME" = "push" ] && [ "$GITHUB_REF_NAME" != "$MATERIAL_TAG" ]; then
+            echo "Tag mismatch: pushed tag is '$GITHUB_REF_NAME' but Gradle versionName is '$VERSION_NAME' and expects tag '$MATERIAL_TAG'"
+            exit 1
+          fi
+
+          APK_NAME="NewPipeMaterial_v${VERSION_NAME}.apk"
+          APK_PATH="app/build/outputs/apk/release/${APK_NAME}"
+          CHANGELOG_PATH="changelogs/${MATERIAL_TAG}.txt"
+
+          mv app/build/outputs/apk/release/*.apk "$APK_PATH"
+
+          echo "version_name=$VERSION_NAME" >> "$GITHUB_OUTPUT"
+          echo "material_tag=$MATERIAL_TAG" >> "$GITHUB_OUTPUT"
+          echo "apk_name=$APK_NAME" >> "$GITHUB_OUTPUT"
+          echo "apk_path=$APK_PATH" >> "$GITHUB_OUTPUT"
+          echo "changelog_path=$CHANGELOG_PATH" >> "$GITHUB_OUTPUT"
+
           echo "Version name: $VERSION_NAME" >> "$GITHUB_STEP_SUMMARY"
-          echo '```json' >> "$GITHUB_STEP_SUMMARY"
-          cat "app/build/outputs/apk/release/output-metadata.json" >> "$GITHUB_STEP_SUMMARY"
-          echo >> "$GITHUB_STEP_SUMMARY"
-          echo '```' >> "$GITHUB_STEP_SUMMARY"
-          mv app/build/outputs/apk/release/*.apk "app/build/outputs/apk/release/NewPipeMaterial_v$VERSION_NAME.apk"
+          echo "Material tag: $MATERIAL_TAG" >> "$GITHUB_STEP_SUMMARY"
+          echo "Changelog: $CHANGELOG_PATH" >> "$GITHUB_STEP_SUMMARY"
 
       - name: "Upload APK"
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_target == 'artifacts' }}
         uses: actions/upload-artifact@v7
         with:
           name: newpipe-material-signed-release-apk
-          path: app/build/outputs/apk/release/*.apk
+          path: ${{ steps.release_info.outputs.apk_path }}
+
+      - name: "Validate changelog"
+        if: ${{ github.event_name == 'push' || inputs.release_target == 'release' }}
+        run: |
+          test -s "${{ steps.release_info.outputs.changelog_path }}"
+
+      - name: "Create release"
+        if: ${{ github.event_name == 'push' || inputs.release_target == 'release' }}
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ github.event_name == 'push' && github.ref_name || steps.release_info.outputs.material_tag }}
+          target_commitish: material
+          name: NewPipe Material ${{ steps.release_info.outputs.version_name }}
+          body_path: ${{ steps.release_info.outputs.changelog_path }}
+          files: ${{ steps.release_info.outputs.apk_path }}
+          fail_on_unmatched_files: true
+          make_latest: true
