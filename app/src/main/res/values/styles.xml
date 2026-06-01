@@ -28,6 +28,7 @@
     <!-- Light Theme -->
     <style name="Base.V21.LightTheme" parent="Base">
         <item name="colorPrimary">@color/light_m3_primary_color</item>
+        <item name="colorPrimaryFixedDim">@color/light_m3_inverse_primary_color</item>
         <item name="colorPrimaryDark">@color/light_m3_primary_container_color</item>
         <item name="colorAccent">@color/light_m3_secondary_color</item>
         <item name="colorSecondary">@color/light_m3_secondary_color</item>
@@ -71,6 +72,7 @@
     <!-- Dark Theme -->
     <style name="Base.V21.DarkTheme" parent="Base">
         <item name="colorPrimary">@color/dark_m3_primary_color</item>
+        <item name="colorPrimaryFixedDim">@color/dark_m3_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_m3_primary_container_color</item>
         <item name="colorAccent">@color/dark_m3_secondary_color</item>
         <item name="colorSecondary">@color/dark_m3_secondary_color</item>
@@ -121,6 +123,7 @@
         <item name="colorOnSurface">@color/white</item>
         <item name="actionColor">?attr/colorOnSurface</item>
         <item name="toolbarSearchColor">?attr/colorOnSurface</item>
+        <item name="colorPrimaryFixedDim">@color/dark_m3_primary_color</item>
         <item name="colorPrimaryContainer">@color/dark_m3_primary_container_color</item>
         <item name="colorOnPrimaryContainer">@color/dark_m3_on_primary_container_color</item>
         <item name="colorSecondary">@color/dark_m3_secondary_color</item>
@@ -145,6 +148,7 @@
     <!-- Theme color preset overlays -->
     <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_NewPipeMaterial">
         <item name="colorPrimary">#46674F</item>
+        <item name="colorPrimaryFixedDim">#AED4AF</item>
         <item name="colorOnPrimary">#FFFFFF</item>
         <item name="colorPrimaryDark">#C9ECCB</item>
         <item name="colorPrimaryContainer">#C9ECCB</item>
@@ -159,6 +163,7 @@
 
     <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_Neutral">
         <item name="colorPrimary">#5F5F5F</item>
+        <item name="colorPrimaryFixedDim">#C7C7C7</item>
         <item name="colorOnPrimary">#FFFFFF</item>
         <item name="colorPrimaryDark">#E3E3E3</item>
         <item name="colorPrimaryContainer">#E3E3E3</item>
@@ -173,6 +178,7 @@
 
     <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_Green">
         <item name="colorPrimary">#386A20</item>
+        <item name="colorPrimaryFixedDim">#9ED67D</item>
         <item name="colorOnPrimary">#FFFFFF</item>
         <item name="colorPrimaryDark">#B9F397</item>
         <item name="colorPrimaryContainer">#B9F397</item>
@@ -187,6 +193,7 @@
 
     <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_Blue">
         <item name="colorPrimary">#0061A4</item>
+        <item name="colorPrimaryFixedDim">#9ECAFF</item>
         <item name="colorOnPrimary">#FFFFFF</item>
         <item name="colorPrimaryDark">#D1E4FF</item>
         <item name="colorPrimaryContainer">#D1E4FF</item>
@@ -201,6 +208,7 @@
 
     <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_Purple">
         <item name="colorPrimary">#6750A4</item>
+        <item name="colorPrimaryFixedDim">#D0BCFF</item>
         <item name="colorOnPrimary">#FFFFFF</item>
         <item name="colorPrimaryDark">#EADDFF</item>
         <item name="colorPrimaryContainer">#EADDFF</item>
@@ -215,6 +223,7 @@
 
     <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_Orange">
         <item name="colorPrimary">#9B4300</item>
+        <item name="colorPrimaryFixedDim">#FFB86C</item>
         <item name="colorOnPrimary">#FFFFFF</item>
         <item name="colorPrimaryDark">#FFDBC8</item>
         <item name="colorPrimaryContainer">#FFDBC8</item>
@@ -229,6 +238,7 @@
 
     <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_Pink">
         <item name="colorPrimary">#984061</item>
+        <item name="colorPrimaryFixedDim">#FFB1CB</item>
         <item name="colorOnPrimary">#FFFFFF</item>
         <item name="colorPrimaryDark">#FFD8E7</item>
         <item name="colorPrimaryContainer">#FFD8E7</item>
@@ -243,6 +253,7 @@
 
     <style name="ThemeOverlay_NewPipeMaterial_ThemeColor_Red">
         <item name="colorPrimary">#BA1A1A</item>
+        <item name="colorPrimaryFixedDim">#FFB4AB</item>
         <item name="colorOnPrimary">#FFFFFF</item>
         <item name="colorPrimaryDark">#FFDAD6</item>
         <item name="colorPrimaryContainer">#FFDAD6</item>

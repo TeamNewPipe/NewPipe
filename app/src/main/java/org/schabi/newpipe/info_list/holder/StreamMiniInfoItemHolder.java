@@ -44,6 +44,34 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
         this(infoItemBuilder, R.layout.list_stream_mini_item, parent);
     }
 
+    private void updateDurationMarginForProgress() {
+        updateDurationMarginForProgress(itemProgressView.getProgress());
+    }
+
+    private void updateDurationMarginForProgress(final int progress) {
+        if (itemDurationView == null || itemProgressView == null) {
+            return;
+        }
+
+        final ViewGroup.LayoutParams layoutParams = itemDurationView.getLayoutParams();
+        if (!(layoutParams instanceof ViewGroup.MarginLayoutParams)) {
+            return;
+        }
+
+        final boolean shouldRaiseDuration = itemProgressView.getVisibility() == View.VISIBLE
+                && progress > 0;
+        final int bottomMargin = itemDurationView.getResources().getDimensionPixelSize(
+                shouldRaiseDuration
+                        ? R.dimen.stream_thumbnail_duration_margin_with_progress
+                        : R.dimen.video_item_search_duration_margin);
+        final ViewGroup.MarginLayoutParams marginLayoutParams =
+                (ViewGroup.MarginLayoutParams) layoutParams;
+        if (marginLayoutParams.bottomMargin != bottomMargin) {
+            marginLayoutParams.bottomMargin = bottomMargin;
+            itemDurationView.setLayoutParams(marginLayoutParams);
+        }
+    }
+
     @Override
     public void updateFromItem(final InfoItem infoItem,
                                final HistoryRecordManager historyRecordManager) {
@@ -85,6 +113,7 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
             itemDurationView.setVisibility(View.GONE);
             itemProgressView.setVisibility(View.GONE);
         }
+        updateDurationMarginForProgress();
 
         // Default thumbnail is shown on error, while loading and if the url is empty
         CoilHelper.INSTANCE.loadThumbnail(itemThumbnailView, item.getThumbnails());
@@ -124,17 +153,21 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
         }
         if (state != null && item.getDuration() > 0
                 && !StreamTypeUtil.isLiveStream(item.getStreamType())) {
+            final int progress = (int) TimeUnit.MILLISECONDS
+                    .toSeconds(state.getProgressMillis());
             itemProgressView.setMax((int) item.getDuration());
             if (itemProgressView.getVisibility() == View.VISIBLE) {
-                itemProgressView.setProgressAnimated((int) TimeUnit.MILLISECONDS
-                        .toSeconds(state.getProgressMillis()));
+                itemProgressView.setProgressAnimated(progress);
             } else {
-                itemProgressView.setProgress((int) TimeUnit.MILLISECONDS
-                        .toSeconds(state.getProgressMillis()));
+                itemProgressView.setProgress(progress);
                 ViewUtils.animate(itemProgressView, true, 500);
             }
+            updateDurationMarginForProgress(progress);
         } else if (itemProgressView.getVisibility() == View.VISIBLE) {
             ViewUtils.animate(itemProgressView, false, 500);
+            updateDurationMarginForProgress(0);
+        } else {
+            updateDurationMarginForProgress(0);
         }
     }
 

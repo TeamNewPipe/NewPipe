@@ -781,14 +781,14 @@ Known risks / QA:
 
 - Stream list, grid, card, and mini/related watched-progress bars now use a
   thumbnail-local Material drawable instead of the global service progress attr,
-  so the strip follows `colorPrimary`/theme color while optional secondary
-  progress uses `colorPrimaryContainer`.
-- The watched-progress views now sit inside the rounded thumbnail bounds at the
-  bottom edge, with a thin 3dp height and small horizontal inset to reduce
+  so the strip follows the softer `colorPrimaryFixedDim` theme role while
+  optional secondary progress uses `colorPrimaryContainer`.
+- The watched-progress views now sit lifted inside the rounded thumbnail bounds,
+  with a thin 3dp height, 3dp bottom margin, and small horizontal inset to reduce
   square-corner protrusion against rounded thumbnails.
-- Duration/live badges remain inside thumbnails and are lifted above the strip
-  so their high-contrast badge treatment stays readable over arbitrary
-  thumbnails.
+- Duration/live badges remain inside thumbnails, and stream holders raise the
+  duration/time badge only while visible watched progress is present so unwatched
+  items keep the normal lower badge position.
 - Global/player/download progress drawables and the `progress_horizontal_drawable`
   theme attr were intentionally untouched; existing watch-progress calculation,
   visibility logic, stream loading, playback, download, and navigation behavior

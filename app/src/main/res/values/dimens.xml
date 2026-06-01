@@ -38,8 +38,9 @@
     <dimen name="video_item_grid_thumbnail_image_height">92dp</dimen>
     <dimen name="stream_thumbnail_corner_radius">12dp</dimen>
     <dimen name="stream_thumbnail_progress_height">3dp</dimen>
+    <dimen name="stream_thumbnail_progress_bottom_margin">3dp</dimen>
     <dimen name="stream_thumbnail_progress_horizontal_inset">2dp</dimen>
-    <dimen name="stream_thumbnail_progress_badge_bottom_margin">5dp</dimen>
+    <dimen name="stream_thumbnail_duration_margin_with_progress">8dp</dimen>
     <dimen name="stream_card_horizontal_margin">12dp</dimen>
 
     <dimen name="channel_item_card_thumbnail_image_size">100dp</dimen>
