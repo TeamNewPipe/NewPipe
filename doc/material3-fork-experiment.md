@@ -434,6 +434,7 @@ System bar updates:
 - Light/Dark/Black app themes now map status/navigation bars to `colorSurface` rather than red service colors.
 - Opening theme navigation bar moved from red service color to neutral surface/background colors per day/night variant.
 - Existing `windowLightNavigationBar` handling remains in `values-v27` (`true` light, `false` dark/black).
+- Fullscreen video exit now restores Light-theme status/navigation icon appearance after immersive playback while restoring system bar colors through `android:statusBarColor`/`android:navigationBarColor`, which remain mapped to `colorSurface` instead of `colorPrimary`; playback, rotation, controls, and fullscreen behavior are unchanged.
 
 Settings/control tint updates:
 - Settings accent colors now map to Material 3 secondary colors (`light_m3_secondary_color` / `dark_m3_secondary_color`) to reduce red-dominant toggles/switches/radio indicators.

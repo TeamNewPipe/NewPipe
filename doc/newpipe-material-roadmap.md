@@ -697,6 +697,12 @@ Before a public NewPipe Material release, manually verify:
 - The progress strip is lifted inside the rounded thumbnail, and stream holders now use a 20dp raised duration/time badge margin only while watched progress is visible and non-zero; unwatched and zero-progress items keep the normal lower badge position.
 - This status is limited to stream thumbnail spacing. Player seekbar/color work remains intentionally separate, and playback/loading/watch-history behavior is unchanged.
 
+### Player fullscreen system-bar restore status
+
+- Fullscreen video exit now restores normal system-bar contrast after portrait/landscape playback transitions: Light theme reapplies dark status/navigation icons, while Dark and Black keep light icons.
+- Status and navigation bar backgrounds are restored through `android:statusBarColor`/`android:navigationBarColor`, which remain mapped to the neutral `colorSurface` role instead of `colorPrimary`, so manual palettes such as Green or Orange no longer tint the portrait status bar after leaving fullscreen.
+- Playback, rotation, fullscreen immersive behavior, player controls, player overlays, video detail layout, navigation/tabs, and `shared/` remain unchanged.
+
 ### Player seekbar fixed-dim primary tint status
 
 - Player seekbar color polish is complete as a focused color-only pass: an app-level `colorPrimaryFixedDim` compatibility attr is declared and mapped through base themes plus manual theme-color overlays.

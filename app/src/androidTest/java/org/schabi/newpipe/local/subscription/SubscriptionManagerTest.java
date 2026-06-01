@@ -11,15 +11,19 @@ import org.junit.Test;
 import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
-import org.schabi.newpipe.extractor.channel.ChannelInfo;
-import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.testUtil.TestDatabase;
 import org.schabi.newpipe.testUtil.TrampolineSchedulerRule;
 
-import java.io.IOException;
 import java.util.List;
 
 public class SubscriptionManagerTest {
+    private static final int SERVICE_ID = 0;
+    private static final String CHANNEL_URL = "https://example.com/channel/test-channel";
+    private static final String CHANNEL_NAME = "Test Channel";
+    private static final String CHANNEL_AVATAR_URL = "https://example.com/avatar.jpg";
+    private static final long CHANNEL_SUBSCRIBER_COUNT = 123456L;
+    private static final String CHANNEL_DESCRIPTION = "Deterministic subscription fixture";
+
     private AppDatabase database;
     private SubscriptionManager manager;
 
@@ -35,6 +39,17 @@ public class SubscriptionManagerTest {
         return entities.get(0);
     }
 
+    private SubscriptionEntity createSubscriptionEntity() {
+        final SubscriptionEntity subscription = new SubscriptionEntity();
+        subscription.setServiceId(SERVICE_ID);
+        subscription.setUrl(CHANNEL_URL);
+        subscription.setName(CHANNEL_NAME);
+        subscription.setAvatarUrl(CHANNEL_AVATAR_URL);
+        subscription.setSubscriberCount(CHANNEL_SUBSCRIBER_COUNT);
+        subscription.setDescription(CHANNEL_DESCRIPTION);
+        return subscription;
+    }
+
 
     @Before
     public void setup() {
@@ -48,9 +63,8 @@ public class SubscriptionManagerTest {
     }
 
     @Test
-    public void testInsert() throws ExtractionException, IOException {
-        final ChannelInfo info = ChannelInfo.getInfo("https://www.youtube.com/c/3blue1brown");
-        final SubscriptionEntity subscription = SubscriptionEntity.from(info);
+    public void testInsert() {
+        final SubscriptionEntity subscription = createSubscriptionEntity();
 
         manager.insertSubscription(subscription);
         final SubscriptionEntity readSubscription = getAssertOneSubscriptionEntity();
@@ -65,9 +79,8 @@ public class SubscriptionManagerTest {
     }
 
     @Test
-    public void testUpdateNotificationMode() throws ExtractionException, IOException {
-        final ChannelInfo info = ChannelInfo.getInfo("https://www.youtube.com/c/veritasium");
-        final SubscriptionEntity subscription = SubscriptionEntity.from(info);
+    public void testUpdateNotificationMode() {
+        final SubscriptionEntity subscription = createSubscriptionEntity();
         subscription.setNotificationMode(0);
 
         manager.insertSubscription(subscription);
