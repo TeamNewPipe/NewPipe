@@ -1,0 +1,13 @@
+NewPipe Material 0.28.7-m3
+
+Highlights:
+- Added F-Droid release publishing support for signed APKs.
+- Moved release changelogs to Fastlane versionCode-based metadata.
+- Added localized Fastlane store descriptions and NewPipe Material title metadata.
+- Updated F-Droid feature artwork and app screenshots.
+- Improved player quality, audio-track, and captions popup readability.
+- Improved comment reply action contrast and comment row text colors.
+- Expanded NewPipe Material contribution rules and release QA guidance.
+- Cleaned up README repository links, build badge, release link, and localized documentation links.
+
+Based on NewPipe 0.28.7.
