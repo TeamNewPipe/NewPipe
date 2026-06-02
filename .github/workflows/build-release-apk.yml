@@ -57,6 +57,7 @@ jobs:
         id: release_info
         run: |
           VERSION_NAME="$(jq -r ".elements[0].versionName" "app/build/outputs/apk/release/output-metadata.json")"
+          VERSION_CODE="$(jq -r ".elements[0].versionCode" "app/build/outputs/apk/release/output-metadata.json")"
           MATERIAL_TAG="${VERSION_NAME##*-}"
 
           if [ "$GITHUB_EVENT_NAME" = "push" ] && [ "$GITHUB_REF_NAME" != "$MATERIAL_TAG" ]; then
@@ -66,17 +67,19 @@ jobs:
 
           APK_NAME="NewPipeMaterial_v${VERSION_NAME}.apk"
           APK_PATH="app/build/outputs/apk/release/${APK_NAME}"
-          CHANGELOG_PATH="changelogs/${MATERIAL_TAG}.txt"
+          CHANGELOG_PATH="fastlane/metadata/android/en-US/changelogs/${VERSION_CODE}.txt"
 
           mv app/build/outputs/apk/release/*.apk "$APK_PATH"
 
           echo "version_name=$VERSION_NAME" >> "$GITHUB_OUTPUT"
+          echo "version_code=$VERSION_CODE" >> "$GITHUB_OUTPUT"
           echo "material_tag=$MATERIAL_TAG" >> "$GITHUB_OUTPUT"
           echo "apk_name=$APK_NAME" >> "$GITHUB_OUTPUT"
           echo "apk_path=$APK_PATH" >> "$GITHUB_OUTPUT"
           echo "changelog_path=$CHANGELOG_PATH" >> "$GITHUB_OUTPUT"
 
           echo "Version name: $VERSION_NAME" >> "$GITHUB_STEP_SUMMARY"
+          echo "Version code: $VERSION_CODE" >> "$GITHUB_STEP_SUMMARY"
           echo "Material tag: $MATERIAL_TAG" >> "$GITHUB_STEP_SUMMARY"
           echo "Changelog: $CHANGELOG_PATH" >> "$GITHUB_STEP_SUMMARY"
 

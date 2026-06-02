@@ -1,9 +1,0 @@
-Improved
-
-• Added upload date and view count on stream grid items
-• Improvements for the drawer header layout
-
-Fixed
-
-• Fixed mute button causing crashes on API 19
-• Fixed downloading of long 1080p 60fps videos
