@@ -715,3 +715,8 @@ Before a public NewPipe Material release, manually verify:
 - Player seekbar color polish is complete as a focused color-only pass: an app-level `colorPrimaryFixedDim` compatibility attr is declared and mapped through base themes plus manual theme-color overlays.
 - The player seekbar active progress and visible thumb now use `colorPrimaryFixedDim` instead of the legacy hard-coded red tint path. Inactive track, secondary progress, playback, seeking, scrubbing gestures, fullscreen/embedded controls, player visibility timing, thumbnail progress/duration spacing, downloads, and watch-progress calculation remain unchanged.
 - Manual presets resolve to their fixed-dim primary colors, including Orange, Blue, Purple, and the default NewPipe Material green. Follow system dynamic color uses this custom attr only when supplied by the active theme/overlay; otherwise it uses the static NewPipe Material fixed-dim fallback.
+
+### Comment replies contrast polish
+
+- Comment row reply-count actions now use `colorPrimary` so “N replies” remains readable as an action/link across Light, Dark, Black, dynamic color, App default, and manual palettes. Comment author/time metadata stays on `colorOnSurfaceVariant`, and comment body text stays on `colorOnSurface`.
+- Scope is limited to comment-row XML color roles and this note; reply expansion/loading, like/heart indicators, comment parsing, player overlay, playback, and video-detail behavior are unchanged.

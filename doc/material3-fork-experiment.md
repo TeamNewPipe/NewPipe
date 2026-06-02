@@ -1049,3 +1049,8 @@ Known risks / QA:
 - The player seekbar active progress and visible thumb now resolve `colorPrimaryFixedDim`, replacing the old hard-coded red player tint path while leaving the inactive track and secondary progress behavior to the existing seekbar drawable/state handling.
 - Playback, seeking, scrubbing gestures, player visibility/dismiss timing, fullscreen/embedded control behavior, thumbnail progress/duration spacing, downloads, and watch-progress calculation are unchanged by this color-only pass.
 - Manual theme-color presets provide fixed-dim primary values for NewPipe Material, Neutral, Green, Blue, Purple, Orange, Pink, and Red. Follow system dynamic color can only feed this custom compatibility attr when the active theme/overlay supplies it; otherwise it falls back to the static NewPipe Material fixed-dim primary value.
+
+### Comment replies contrast polish (latest)
+
+- The comment-row replies action now uses the active theme `colorPrimary` role instead of inheriting a pale button text color, improving contrast for “N replies” on light surfaces while preserving dynamic/manual theme colors.
+- Author/time metadata remains `colorOnSurfaceVariant`, comment body text remains `colorOnSurface`, and like/heart indicators plus reply loading behavior are unchanged.

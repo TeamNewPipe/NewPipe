@@ -41,6 +41,7 @@
         android:ellipsize="end"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="?attr/colorOnSurfaceVariant"
         android:textSize="@dimen/comment_item_title_text_size"
         tools:text="Author Name, Lorem ipsum • 5 months ago" />
 
@@ -52,6 +53,7 @@
         android:layout_marginTop="6dp"
         android:layout_toEndOf="@+id/itemThumbnailView"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="@dimen/comment_item_content_text_size"
         tools:text="@tools:sample/lorem/random[1]" />
 
@@ -99,6 +101,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginStart="@dimen/video_item_detail_heart_margin"
         android:minHeight="0dp"
+        android:textColor="?attr/colorPrimary"
         tools:text="543 replies" />
 
 </RelativeLayout>
