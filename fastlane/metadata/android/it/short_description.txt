@@ -1,1 +1,1 @@
-Un frontend YouTube leggero e libero per Android.
+Una forcella NewPipe indipendente focalizzata su Material 3.

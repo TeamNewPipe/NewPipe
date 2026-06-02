@@ -1,1 +1,28 @@
-NewPipe no usa librerías de Google ni la API de YouTube. Solamente analiza el sitio web para obtener la información que necesita. Por lo tanto esta app puede ser utilizada en dispositivos que no tengan los servicios de Google instalados. Además, no necesitas una cuenta de YouTube para usar NewPipe, y es FLOSS (software libre y de código abierto).
+NewPipe Material es una bifurcación independiente de NewPipe para Android, centrada en el diseño de Material 3, colores de tema dinámicos y manuales y un cuidadoso pulido visual al tiempo que conserva la experiencia familiar de NewPipe.
+
+NewPipe Material mantiene el enfoque liviano y respetuoso con la privacidad heredado de NewPipe. No requiere una cuenta de plataforma, no depende de Google framework libraries y está diseñado para funcionar sin Google Play Services.
+
+Las características heredadas de NewPipe incluyen:
+- Mire videos y transmisiones en vivo desde servicios compatibles
+- Reproducción en segundo plano
+- Reproducción emergente
+- Listas de reproducción locales
+- Suscripciones sin iniciar sesión en una cuenta de plataforma
+- Grupos de canales y feeds.
+- Buscar y explorar servicios compatibles
+- Detalles del video, videos relacionados y comentarios cuando estén disponibles
+- Descargue videos, audio y subtítulos cuando estén disponibles
+- Importar y exportar datos de aplicaciones para copia de seguridad y migración.
+
+NewPipe Material añade una identidad de horquilla moderna y un pulido centrado en el material:
+- Superficies, diálogos, configuraciones, pestañas y navegación inspirados en Material 3
+- Compatibilidad con colores dinámicos Material You donde esté disponible
+- Ajustes preestablecidos de color de tema manual
+- Identidad de la aplicación NewPipe Material
+- Atribución de bifurcación clara
+- Versiones de lanzamiento firmadas para NewPipe Material
+
+Aviso importante sobre la bifurcación:
+NewPipe Material se mantiene de forma independiente. No está afiliado, patrocinado ni respaldado por el proyecto oficial NewPipe, TeamNewPipe o NewPipe e.V..
+
+NewPipe Material es un software gratuito basado en NewPipe y distribuido bajo la versión 3 o posterior de GNU General Public License. Conserva los créditos ascendentes de NewPipe, los avisos de licencia y la información de licencias de terceros.

@@ -1,1 +1,28 @@
-Nid yw NewPipe yn defnyddio unrhyw fframweithiau lyfrgell Google neu API YouTube. Mae ond yn didoli'r wefan er mwyn cael y wybodaeth mae ei angen. Felly mae modd ei ddefnyddio ar ddyfeisiau sydd heb Google Services wedi'u gosod. Hefyd, does dim angen cyfrif YouTube arnoch i ddefnyddio NewPipe ac mae'n FLOSS.
+Mae NewPipe Material yn fforch annibynnol o NewPipe ar gyfer Android, sy'n canolbwyntio ar ddyluniad Material 3, lliwiau thema deinamig a llaw, a sglein gweledol gofalus wrth gadw'r profiad ZNewPipe cyfarwydd.
+
+Mae NewPipe Material yn cadw'r dull ysgafn, cyfeillgar i breifatrwydd a etifeddwyd gan NewPipe. Nid oes angen cyfrif platfform arno, nid yw'n dibynnu ar Google framework libraries, ac fe'i cynlluniwyd i weithio heb Google Play Services.
+
+Mae nodweddion a etifeddwyd gan NewPipe yn cynnwys:
+- Gwyliwch fideos a ffrydiau byw o wasanaethau â chymorth
+- Chwarae cefndir
+- Chwarae popup
+- Rhestri chwarae lleol
+- Tanysgrifiadau heb fewngofnodi i gyfrif platfform
+- Grwpiau sianeli a ffrydiau
+- Chwilio a phori gwasanaethau a gefnogir
+- Manylion fideo, fideos cysylltiedig, a sylwadau pan fyddant ar gael
+- Dadlwythwch fideo, sain a chapsiynau lle maent ar gael
+- Mewnforio ac allforio data app ar gyfer gwneud copi wrth gefn a mudo
+
+Mae NewPipe Material yn ychwanegu hunaniaeth fforc fodern a sglein sy'n canolbwyntio ar ddeunydd:
+- Arwynebau, deialogau, gosodiadau, tabiau a llywio wedi'u hysbrydoli gan Material 3
+- Cefnogaeth lliw deinamig Material You lle mae ar gael
+- Rhagosodiadau lliw thema â llaw
+- Hunaniaeth ap NewPipe Material
+- Priodoli fforc clir
+- Adeiladau rhyddhau wedi'u llofnodi ar gyfer NewPipe Material
+
+Hysbysiad fforch pwysig:
+NewPipe Material yn cael ei gynnal yn annibynnol. Nid yw'n gysylltiedig â'r prosiect swyddogol NewPipe, TeamNewPipe, neu NewPipe e.V., na'i noddi ganddo na'i gymeradwyo ganddo.
+
+Mae NewPipe Material yn feddalwedd am ddim sy'n seiliedig ar NewPipe ac a ddosberthir o dan fersiwn 3 neu ddiweddarach GNU General Public License. Mae'n cadw credydau NewPipe i fyny'r afon, hysbysiadau trwydded, a gwybodaeth trwydded trydydd parti.

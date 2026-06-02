@@ -1,1 +1,28 @@
-NewPipe al drœva nissuna libreria framework del Google o l'API del YouTube. Al scandiss domà el sit web per ciapar su i informazione de qe n'ha bisogn. Per qella rexon qì qell'aplicazion qì la pœl vesser doperada ind aparecc senza i Servizi Google installad. G'è nanca bisogn d'haver-g un cunt YouTube per doperar NewPipe e a l'è FLOSS.
+NewPipe Material è un fork indipendente di NewPipe per Android, incentrato sul design Material 3, sui colori dei temi dinamici e manuali e su un'attenta rifinitura visiva pur preservando l'esperienza familiare NewPipe.
+
+NewPipe Material mantiene l'approccio leggero e rispettoso della privacy ereditato da NewPipe. Non richiede un account sulla piattaforma, non dipende da Google framework libraries ed è progettato per funzionare senza Google Play Services.
+
+Le funzionalità ereditate da NewPipe includono:
+- Guarda video e live streaming dai servizi supportati
+- Riproduzione in sottofondo
+- Riproduzione popup
+- Playlist locali
+- Abbonamenti senza accedere a un account della piattaforma
+- Gruppi di canali e feed
+- Cerca e sfoglia i servizi supportati
+- Dettagli video, video correlati e commenti, ove disponibili
+- Scarica video, audio e didascalie ove disponibili
+- Importa ed esporta i dati delle app per il backup e la migrazione
+
+NewPipe Material aggiunge un'identità moderna alla forcella e una lucidatura incentrata sui materiali:
+- Superfici, finestre di dialogo, impostazioni, schede e navigazione ispirate a Material 3
+- Supporto colore dinamico Material You, ove disponibile
+- Preimpostazioni manuali dei colori del tema
+- Identità dell'app NewPipe Material
+- Chiara attribuzione della forcella
+- Build di rilascio firmati per NewPipe Material
+
+Avviso importante sulla forcella:
+NewPipe Material è mantenuto in modo indipendente. Non è affiliato, sponsorizzato o approvato dal progetto ufficiale NewPipe, TeamNewPipe o NewPipe e.V.
+
+NewPipe Material è un software gratuito basato su NewPipe e distribuito sotto la versione GNU General Public License 3 o successiva. Conserva i crediti NewPipe originali, gli avvisi di licenza e le informazioni sulla licenza di terze parti.

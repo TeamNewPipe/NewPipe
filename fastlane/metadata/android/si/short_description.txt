@@ -1,1 +1,1 @@
-Android සඳහා නොමිලේ සැහැල්ලු YouTube ඉදිරි අන්තය.
+Material 3-නාභිගත ස්වාධීන NewPipe දෙබලක.

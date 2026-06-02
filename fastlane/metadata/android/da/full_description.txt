@@ -1,1 +1,28 @@
-NewPipe bruger ingen af Googles programmeringsplatforme eller YouTubes API. Det besøger kun hjemmesiden for at finde de informationer det har brug for. derfor kan denne app køre på enheder uden Google Services, desuden har du ikke brug for en Google konto for at bruge appen. NewPipe er udgivet under en fri og open source licens.
+NewPipe Material er en uafhængig forgaffel af NewPipe til Android, fokuseret på Material 3-design, dynamiske og manuelle temafarver og omhyggelig visuel polering, mens den velkendte NewPipe-oplevelse bevares.
+
+NewPipe Material beholder den lette, privatlivsvenlige tilgang, som er arvet fra NewPipe. Det kræver ikke en platformskonto, afhænger ikke af Google framework libraries og er designet til at fungere uden Google Play Services.
+
+Funktioner arvet fra NewPipe inkluderer:
+- Se videoer og livestreams fra understøttede tjenester
+- Baggrundsafspilning
+- Popup-afspilning
+- Lokale afspilningslister
+- Abonnementer uden at logge ind på en platformskonto
+- Kanalgrupper og feeds
+- Søg og gennemse understøttede tjenester
+- Videodetaljer, relaterede videoer og kommentarer, hvor de er tilgængelige
+- Download video, lyd og billedtekster, hvor de er tilgængelige
+- Importer og eksporter appdata til backup og migrering
+
+NewPipe Material tilføjer en moderne gaffelidentitet og materialefokuseret polering:
+- Material 3-inspirerede overflader, dialogbokse, indstillinger, faner og navigation
+- Dynamisk Material You farveunderstøttelse, hvor tilgængelig
+- Manuelle forudindstillinger af temafarve
+- NewPipe Material app identitet
+- Klar tilskrivning af gaffel
+- Release builds signeret til NewPipe Material
+
+Vigtig gaffelmeddelelse:
+NewPipe Material vedligeholdes uafhængigt. Det er ikke tilknyttet, sponsoreret af eller godkendt af det officielle NewPipe-projekt, TeamNewPipe eller NewPipe e.V.
+
+NewPipe Material er gratis software baseret på NewPipe og distribueret under GNU General Public License version 3 eller nyere. Den bevarer opstrøms NewPipe-kreditter, licensmeddelelser og tredjepartslicensoplysninger.

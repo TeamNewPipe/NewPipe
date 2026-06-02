@@ -1,1 +1,1 @@
-Androidの無料で軽量なYouTubeアプリ。
+Material 3を重視したNewPipe独立フォーク。

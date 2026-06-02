@@ -1,0 +1,28 @@
+NewPipe Material je neodvisna razcepitev NewPipe za Android, osredotočena na oblikovanje Material 3, dinamične in ročne barve teme ter skrbno vizualno poliranje, hkrati pa ohranja znano izkušnjo NewPipe.
+
+NewPipe Material ohranja lahek, zasebnosti prijazen pristop, podedovan od NewPipe. Ne zahteva računa platforme, ni odvisen od Google framework libraries in je zasnovan tako, da deluje brez Google Play Services.
+
+Funkcije, podedovane od NewPipe, vključujejo:
+- Oglejte si videoposnetke in prenose v živo iz podprtih storitev
+- Predvajanje v ozadju
+- Pojavno predvajanje
+- Lokalni seznami predvajanja
+- Naročnine brez prijave v račun platforme
+- Skupine kanalov in viri
+- Iskanje in brskanje po podprtih storitvah
+- Podrobnosti videoposnetkov, sorodni videoposnetki in komentarji, kjer so na voljo
+- Prenesite video, zvok in napise, kjer so na voljo
+- Uvoz in izvoz podatkov aplikacij za varnostno kopiranje in selitev
+
+NewPipe Material dodaja sodobno identiteto vilic in lak, osredotočen na material:
+- Površine, pogovorna okna, nastavitve, zavihki in navigacija po navdihu Material 3
+- Podpora za dinamične barve Material You, kjer je na voljo
+- Ročne prednastavitve barv teme
+- Identiteta aplikacije NewPipe Material
+- Jasno pripisovanje vilic
+- Graditve izdaje, podpisane za NewPipe Material
+
+Pomembno obvestilo o vilicah:
+NewPipe Material je neodvisno vzdrževan. Ni povezan z uradnim projektom NewPipe, TeamNewPipe ali NewPipe e.V., ga ne sponzorira ali podpira
+
+NewPipe Material je brezplačna programska oprema, ki temelji na NewPipe in se distribuira pod GNU General Public License različico 3 ali novejšo. Ohranja kredite NewPipe, obvestila o licencah in informacije o licencah tretjih oseb.

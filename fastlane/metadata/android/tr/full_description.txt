@@ -1,1 +1,28 @@
-NewPipe, Google çerçeve kütüphanelerini veya YouTube API'sını kullanmaz. İhtiyaç duyduğu bilgileri almak için sadece web sitesini ayrıştırır. Bu nedenle bu uygulama, Google Hizmetleri yüklü olmayan cihazlarda kullanılabilir. Ayrıca NewPipe'ı kullanmak için bir YouTube hesabına ihtiyacınız yoktur ve bu FLOSS.
+NewPipe Material, Android için bağımsız bir NewPipe çatalıdır; tanıdık NewPipe deneyimini korurken Material 3 tasarımına, dinamik ve manuel tema renklerine ve dikkatli görsel cilaya odaklanmıştır.
+
+NewPipe Material, NewPipe'den devralınan hafif, gizlilik dostu yaklaşımı koruyor. Platform hesabı gerektirmez, Google framework libraries'ye bağlı değildir ve Google Play Services olmadan çalışacak şekilde tasarlanmıştır.
+
+NewPipe'den devralınan özellikler şunları içerir:
+- Desteklenen hizmetlerden videoları ve canlı yayınları izleyin
+- Arka planda oynatma
+- Açılır pencere oynatma
+- Yerel çalma listeleri
+- Bir platform hesabında oturum açmadan abonelikler
+- Kanal grupları ve yayınlar
+- Desteklenen hizmetleri arayın ve göz atın
+- Varsa video ayrıntıları, ilgili videolar ve yorumlar
+- Varsa video, ses ve altyazıları indirin
+- Yedekleme ve geçiş için uygulama verilerini içe ve dışa aktarın
+
+NewPipe Material, modern bir çatal kimliği ve Malzeme odaklı bir cila ekler:
+- Material 3'den ilham alan yüzeyler, diyaloglar, ayarlar, sekmeler ve gezinme
+- Mevcut olduğunda dinamik Material You renk desteği
+- Manuel tema rengi ön ayarları
+- NewPipe Material uygulama kimliği
+- Çatal ilişkilendirmesini temizle
+- NewPipe Material için imzalanan sürüm yapıları
+
+Önemli çatal bildirimi:
+NewPipe Material bağımsız olarak korunur. Resmi NewPipe projesi, TeamNewPipe veya NewPipe e.V.'ye bağlı değildir, sponsorluğunda değildir veya bunlar tarafından desteklenmemektedir.
+
+NewPipe Material, NewPipe'yi temel alan ve GNU General Public License sürüm 3 veya üstü altında dağıtılan ücretsiz bir yazılımdır. Yukarı akışlı NewPipe kredilerini, lisans bildirimlerini ve üçüncü taraf lisans bilgilerini korur.

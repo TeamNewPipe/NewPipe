@@ -1,1 +1,28 @@
-NewPipe neizmanto nekādas Google bibliotēkas vai YouTube API. Tā tikai aprasa vietni, lai iegūtu nepieciešamo informāciju. Tāpēc šo lietotni var izmantot arī ierīcēs, kurās Google pakalpojumi nav uzstādīti. Nav pat nepieciešams YouTube konts, lai izmantotu NewPipe, un lietotne pat ir bezmaksas, bez ierobežojuma, atvērtā pirmkoda programmatūra - FLOSS (Free / Libre / Open Source Software).
+NewPipe Material ir NewPipe neatkarīga dakša, kas paredzēta Android, koncentrējoties uz Material 3 dizainu, dinamiskām un manuālām motīvu krāsām un rūpīgu vizuālo pulēšanu, vienlaikus saglabājot pazīstamo NewPipe pieredzi.
+
+NewPipe Material saglabā vieglo, privātumam draudzīgo pieeju, kas mantota no NewPipe. Tam nav nepieciešams platformas konts, tas nav atkarīgs no Google framework libraries un ir paredzēts darbam bez Google Play Services.
+
+No NewPipe mantotās funkcijas ietver:
+- Skatieties video un tiešraides no atbalstītajiem pakalpojumiem
+- Fona atskaņošana
+- Uznirstošo logu atskaņošana
+- Vietējie atskaņošanas saraksti
+- Abonementi bez pierakstīšanās platformas kontā
+- Kanālu grupas un plūsmas
+- Meklējiet un pārlūkojiet atbalstītos pakalpojumus
+- Videoklipa informācija, saistītie videoklipi un komentāri, ja tie ir pieejami
+- Lejupielādējiet video, audio un parakstus, ja tie ir pieejami
+- Importēt un eksportēt lietotņu datus dublēšanai un migrācijai
+
+NewPipe Material pievieno modernu dakšu identitāti un uz materiālu vērstu pulēšanu:
+- Material 3 iedvesmotas virsmas, dialoglodziņi, iestatījumi, cilnes un navigācija
+- Dinamisks Material You krāsu atbalsts, ja tas ir pieejams
+- Manuāli motīvu krāsu sākotnējie iestatījumi
+- NewPipe Material lietotnes identitāte
+- Skaidrs dakšu attiecinājums
+- Parakstītas NewPipe Material izlaiduma versijas
+
+Svarīga dakšas piezīme:
+NewPipe Material tiek uzturēta neatkarīgi. Tas nav saistīts ar oficiālo NewPipe projektu, TeamNewPipe vai NewPipe e.V., to sponsorē vai apstiprina.
+
+NewPipe Material ir bezmaksas programmatūra, kuras pamatā ir NewPipe un tiek izplatīta ar GNU General Public License 3. vai jaunāku versiju. Tajā tiek saglabāti augšējie NewPipe kredīti, licences paziņojumi un trešās puses licences informācija.

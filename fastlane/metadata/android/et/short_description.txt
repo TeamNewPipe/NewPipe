@@ -1,1 +1,1 @@
-Tasuta ja lihtne rakendus YouTube'i vaatamiseks.
+Material 3-fookusega sõltumatu NewPipe kahvel.

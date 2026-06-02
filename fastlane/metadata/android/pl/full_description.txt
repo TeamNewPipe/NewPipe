@@ -1,1 +1,28 @@
-NewPipe nie korzysta z żadnych bibliotek programistycznych Google ani API YouTube. Aplikacja przetwarza jedynie stronę internetową w celu uzyskania potrzebnych informacji. Z tego powodu może ona być używana na urządzeniach, na których nie zainstalowano usług Google. Ponadto do korzystania z NewPipe nie jest wymagane posiadanie konta w serwisie YouTube, a sama aplikacja jest w pełni wolnym i otwartym oprogramowaniem.
+NewPipe Material to niezależny fork NewPipe dla Android, skupiający się na projektowaniu Material 3, dynamicznych i ręcznych kolorach motywu oraz starannym dopracowaniu wizualnym, przy jednoczesnym zachowaniu znanego doświadczenia NewPipe.
+
+NewPipe Material zachowuje lekkie i przyjazne dla prywatności podejście odziedziczone po NewPipe. Nie wymaga konta na platformie, nie zależy od Google framework libraries i jest przeznaczony do pracy bez Google Play Services.
+
+Funkcje odziedziczone z NewPipe obejmują:
+- Oglądaj filmy i transmisje na żywo z obsługiwanych usług
+- Odtwarzanie w tle
+- Odtwarzanie wyskakujących okienek
+- Lokalne playlisty
+- Subskrypcje bez logowania się na konto platformy
+- Grupy kanałów i kanały
+- Wyszukiwanie i przeglądanie obsługiwanych usług
+- Szczegóły filmu, powiązane filmy i komentarze, jeśli są dostępne
+- Pobieraj wideo, audio i napisy, jeśli są dostępne
+- Importuj i eksportuj dane aplikacji w celu tworzenia kopii zapasowych i migracji
+
+NewPipe Material dodaje nowoczesną tożsamość widelca i dopracowanie zorientowane na materiał:
+- Inspirowane Material 3 powierzchnie, okna dialogowe, ustawienia, karty i nawigacja
+- Dynamiczna obsługa kolorów Material You, jeśli jest dostępna
+- Ręczne ustawienia kolorów motywu
+- Tożsamość aplikacji NewPipe Material
+- Jasne przypisanie widełek
+- Wydanie kompilacji podpisanych dla NewPipe Material
+
+Ważna uwaga dotycząca widelca:
+NewPipe Material jest utrzymywany niezależnie. Nie jest powiązany, sponsorowany ani wspierany przez oficjalny projekt NewPipe, TeamNewPipe ani NewPipe e.V.
+
+NewPipe Material to darmowe oprogramowanie oparte na NewPipe i rozpowszechniane w wersji GNU General Public License 3 lub nowszej. Zachowuje informacje o licencjach NewPipe, informacje o licencji i informacje o licencjach stron trzecich.

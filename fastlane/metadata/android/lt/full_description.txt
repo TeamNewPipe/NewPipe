@@ -1,1 +1,28 @@
-NewPipe nenaudoja jokių Google struktūrinių bibliotekų ar YouTube API. Ji tik analizuoja svetainę, kad gautų reikiamą informaciją. Todėl šią programėlę galima naudoti įrenginiuose, kuriuose nėra įdiegtos Google paslaugos. Be to, norint naudoti NewPipe, jums nereikia YouTube paskyros ir visa tai yra FLOSS (nemokama/libre/atvirojo kodo programinė įranga).
+NewPipe Material yra nepriklausoma NewPipe šakutė, skirta Android, orientuota į Material 3 dizainą, dinamines ir rankines temų spalvas ir kruopštų vizualinį šlifavimą, išsaugant pažįstamą NewPipe patirtį.
+
+NewPipe Material išlaiko lengvą, privatumą tausojantį požiūrį, paveldėtą iš NewPipe. Tam nereikia platformos paskyros, ji nepriklauso nuo Google framework libraries ir yra skirta dirbti be Google Play Services.
+
+Iš NewPipe paveldėtos funkcijos apima:
+- Žiūrėkite vaizdo įrašus ir tiesiogines transliacijas iš palaikomų paslaugų
+- Atkūrimas fone
+- Iššokantis atkūrimas
+- Vietiniai grojaraščiai
+- Prenumeratos neprisijungus prie platformos paskyros
+- Kanalų grupės ir sklaidos kanalai
+- Ieškokite ir naršykite palaikomas paslaugas
+- Išsami vaizdo įrašo informacija, susiję vaizdo įrašai ir komentarai, jei yra
+- Atsisiųskite vaizdo įrašų, garso įrašų ir subtitrų, kur yra
+- Importuokite ir eksportuokite programos duomenis, kad sukurtumėte atsarginę kopiją ir perkeltumėte
+
+NewPipe Material prideda šiuolaikišką šakės identitetą ir į medžiagą orientuotą poliravimą:
+- Material 3 įkvėpti paviršiai, dialogo langai, nustatymai, skirtukai ir naršymas
+- Dinaminis Material You spalvų palaikymas, jei įmanoma
+- Rankiniai temos spalvų nustatymai
+- NewPipe Material programos tapatybė
+- Aiškus šakės priskyrimas
+– Pasirašytos NewPipe Material leidimo versijos
+
+Svarbus įspėjimas apie šakę:
+NewPipe Material yra prižiūrimas savarankiškai. Ji nėra susijusi su oficialiu NewPipe projektu, TeamNewPipe arba NewPipe e.V., jo neremia ir nepatvirtina.
+
+NewPipe Material yra nemokama programinė įranga, pagrįsta NewPipe ir platinama GNU General Public License 3 ar naujesne versija. Jame išsaugomi NewPipe kreditai, pranešimai apie licenciją ir trečiosios šalies licencijos informacija.

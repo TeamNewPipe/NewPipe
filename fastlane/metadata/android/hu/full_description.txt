@@ -1,1 +1,28 @@
-A NewPipe nem használ semmilyen Google keretrendszer-programkönyvtárat, sem a YouTube API-t. Csupán a weboldalt dolgozza fel, hogy kinyerje a szükséges információkat. Így ez az alkalmazás a Google Szolgáltatások nélküli eszközökön is használható. Továbbá a NewPipe használatához nincs szükség YouTube-fiókra, emellett szabad és nyílt forráskódú szoftver (FLOSS).
+A NewPipe Material a NewPipe független villája a Android számára, amely a Material 3 dizájnra, a dinamikus és manuális témaszínekre, valamint a gondos vizuális csiszolásra összpontosít, miközben megőrzi az ismerős NewPipe élményt.
+
+A NewPipe Material megtartja a NewPipe-től örökölt könnyű, magánélet-barát megközelítést. Nem igényel platformfiókot, nem függ a Google framework libraries-től, és úgy tervezték, hogy Google Play Services nélkül is működjön.
+
+A NewPipe-től örökölt funkciók a következők:
+- Videókat és élő közvetítéseket nézhet a támogatott szolgáltatásokból
+- Lejátszás a háttérben
+- Popup lejátszás
+- Helyi lejátszási listák
+- Előfizetések platformfiókba való bejelentkezés nélkül
+- Csatornacsoportok és hírcsatornák
+- Támogatott szolgáltatások keresése és böngészése
+- Videó részletei, kapcsolódó videók és megjegyzések, ahol elérhetők
+- Letöltés videó, hang és feliratok, ahol elérhető
+- Alkalmazásadatok importálása és exportálása biztonsági mentéshez és migrációhoz
+
+A NewPipe Material modern villa-identitást és anyagközpontú fényezést ad hozzá:
+- Material 3-ihlette felületek, párbeszédpanelek, beállítások, lapok és navigáció
+- Dinamikus Material You színtámogatás, ahol elérhető
+- Kézi téma színbeállítások
+- NewPipe Material alkalmazásazonosító
+- Tiszta villatulajdonítás
+- Kiadási buildek aláírva a NewPipe Material számára
+
+Fontos villával kapcsolatos megjegyzés:
+A NewPipe Material önállóan karbantartott. Nem áll kapcsolatban, nem szponzorálja vagy támogatja a hivatalos NewPipe projekt, a TeamNewPipe vagy a NewPipe e.V.
+
+A NewPipe Material a NewPipe alapú ingyenes szoftver, amelyet a GNU General Public License 3-as vagy újabb verziója alatt terjesztenek. Megőrzi az upstream NewPipe krediteket, a licencfeljegyzéseket és a harmadik féltől származó licencinformációkat.

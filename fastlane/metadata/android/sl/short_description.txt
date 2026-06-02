@@ -1,1 +1,1 @@
-Brezplačen in enostaven YouTube "frontend" za Android.
+Neodvisna vilica NewPipe, osredotočena na Material 3.

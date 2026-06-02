@@ -1,1 +1,28 @@
-NewPipe nu utilizează nicio librărie framework Google sau API-ul YouTube. Acesta doar analizează site-ul web pentru a obține informațiile de care are nevoie. Ca atare, această aplicație poate fi utilizată pe dispozitive care nu au instalate serviciile Google. De asemenea, nu aveți nevoie de un cont YouTube pentru a utiliza NewPipe și este FLOSS.
+NewPipe Material este o furcă independentă a NewPipe pentru Android, axată pe designul Material 3, pe culori dinamice și manuale ale temei și pe o lustruire vizuală atentă, păstrând în același timp experiența familiară NewPipe.
+
+NewPipe Material păstrează abordarea ușoară, prietenoasă cu confidențialitatea moștenită de la NewPipe. Nu necesită un cont de platformă, nu depinde de Google framework libraries și este conceput să funcționeze fără Google Play Services.
+
+Caracteristicile moștenite de la NewPipe includ:
+- Vizionați videoclipuri și streamuri live de la serviciile acceptate
+- Redare în fundal
+- Redare pop-up
+- Liste de redare locale
+- Abonamente fără a vă conecta la un cont de platformă
+- Grupuri de canale și fluxuri
+- Căutați și răsfoiți serviciile acceptate
+- Detalii video, videoclipuri conexe și comentarii acolo unde sunt disponibile
+- Descărcați videoclipuri, audio și subtitrări acolo unde sunt disponibile
+- Importați și exportați datele aplicației pentru backup și migrare
+
+NewPipe Material adaugă o identitate modernă a furcii și o lustruire axată pe material:
+- suprafețe, dialoguri, setări, file și navigare inspirate de Material 3
+- Suport dinamic pentru culori Material You acolo unde este disponibil
+- Presetări manuale ale culorilor temei
+- Identitatea aplicației NewPipe Material
+- Atribuire clară a furcii
+- Build-uri de lansare semnate pentru NewPipe Material
+
+Notă importantă de furcă:
+NewPipe Material este întreținut independent. Nu este afiliat, sponsorizat de sau susținut de proiectul oficial NewPipe, TeamNewPipe sau NewPipe e.V.
+
+NewPipe Material este un software gratuit bazat pe NewPipe și distribuit sub GNU General Public License versiunea 3 sau ulterioară. Păstrează creditele NewPipe din amonte, notificările de licență și informațiile despre licență terță parte.

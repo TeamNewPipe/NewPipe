@@ -1,1 +1,1 @@
-Een gratis en lichtgewicht YouTube-front-end voor Android.
+Een op Material 3 gerichte onafhankelijke NewPipe-vork.

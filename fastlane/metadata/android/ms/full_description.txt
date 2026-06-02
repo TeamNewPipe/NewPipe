@@ -1,1 +1,28 @@
-NewPipe tidak menggunakan sebarang pustaka kerangka kerja Google atau API Youtube. NewPipe cuma menghuraikan tapak web untuk mendapatkan maklumat yang perlu. Oleh itu, aplikasi ini boleh digunakan pada peranti tanpa perkhidmatan Google. Anda juga tidak memerlukan akaun YouTube untuk menggunakan NewPipe, dan aplikasi ini sepenuhnya FLOSS.
+NewPipe Material ialah garpu bebas NewPipe untuk Android, memfokuskan pada reka bentuk Material 3, warna tema dinamik dan manual serta pengilat visual yang teliti sambil mengekalkan pengalaman NewPipe yang biasa.
+
+NewPipe Material mengekalkan pendekatan mesra privasi yang ringan dan diwarisi daripada NewPipe. Ia tidak memerlukan akaun platform, tidak bergantung pada Google framework libraries, dan direka untuk berfungsi tanpa Google Play Services.
+
+Ciri yang diwarisi daripada NewPipe termasuk:
+- Tonton video dan strim langsung daripada perkhidmatan yang disokong
+- Main semula latar belakang
+- Main balik pop timbul
+- Senarai main tempatan
+- Langganan tanpa melog masuk ke akaun platform
+- Kumpulan saluran dan suapan
+- Cari dan semak imbas perkhidmatan yang disokong
+- Butiran video, video berkaitan dan ulasan jika tersedia
+- Muat turun video, audio dan kapsyen jika tersedia
+- Import dan eksport data apl untuk sandaran dan penghijrahan
+
+NewPipe Material menambah identiti garpu moden dan pengilat tertumpu Bahan:
+- Permukaan, dialog, tetapan, tab dan navigasi yang diilhamkan oleh Material 3
+- Sokongan warna Material You dinamik jika tersedia
+- Pratetap warna tema manual
+- Identiti aplikasi NewPipe Material
+- Atribusi garpu yang jelas
+- Binaan keluaran ditandatangani untuk NewPipe Material
+
+Notis garpu penting:
+NewPipe Material diselenggara secara bebas. Ia tidak bergabung dengan, ditaja oleh, atau disokong oleh projek rasmi NewPipe, TeamNewPipe atau NewPipe e.V.
+
+NewPipe Material ialah perisian percuma berdasarkan NewPipe dan diedarkan di bawah GNU General Public License versi 3 atau lebih baru. Ia mengekalkan kredit NewPipe huluan, notis lesen dan maklumat lesen pihak ketiga.

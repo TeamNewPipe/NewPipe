@@ -1,1 +1,1 @@
-適用於Android嘅免費，自由、輕量級同具有前瞻性嘅YouTube。
+以Material 3為中心的獨立NewPipe前叉。

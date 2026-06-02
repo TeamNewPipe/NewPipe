@@ -1,1 +1,1 @@
-Libre't magaang YouTube frontend para sa Android.
+Isang Material 3-focused independent NewPipe fork.

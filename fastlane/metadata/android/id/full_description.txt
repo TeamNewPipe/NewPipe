@@ -1,1 +1,28 @@
-NewPipe sama sekali tidak menggunakan pustaka kerangka kerja Google, atau layanan API YouTube. NewPipe hanya mengunakan informasi situs YouTube untuk mendapatkan informasi yang dibutuhkan. Oleh karena itu, NewPipe bisa digunakan pada perangkat tanpa Layanan Google. Anda juga tidak membutuhkan akun YouTube untuk menggunakan NewPipe, dan aplikasi ini sepenuhnya FLOSS.
+NewPipe Material adalah fork independen dari NewPipe untuk Android, berfokus pada desain Material 3, warna tema dinamis dan manual, serta polesan visual yang cermat sambil mempertahankan pengalaman NewPipe yang sudah dikenal.
+
+NewPipe Material mempertahankan pendekatan ringan dan ramah privasi yang diwarisi dari NewPipe. Itu tidak memerlukan akun platform, tidak bergantung pada Google framework libraries, dan dirancang untuk bekerja tanpa Google Play Services.
+
+Fitur-fitur yang diwarisi dari NewPipe antara lain:
+- Tonton video dan streaming langsung dari layanan yang didukung
+- Pemutaran latar belakang
+- Pemutaran pop-up
+- Daftar putar lokal
+- Berlangganan tanpa masuk ke akun platform
+- Grup saluran dan feed
+- Cari dan jelajahi layanan yang didukung
+- Detail video, video terkait, dan komentar jika tersedia
+- Unduh video, audio, dan teks jika tersedia
+- Impor dan ekspor data aplikasi untuk pencadangan dan migrasi
+
+NewPipe Material menambahkan identitas garpu modern dan polesan yang berfokus pada Material:
+- Permukaan, dialog, pengaturan, tab, dan navigasi yang terinspirasi Material 3
+- Dukungan warna Material You dinamis jika tersedia
+- Preset warna tema manual
+- Identitas aplikasi NewPipe Material
+- Hapus atribusi garpu
+- Rilis build ditandatangani untuk NewPipe Material
+
+Pemberitahuan garpu penting:
+NewPipe Material dikelola secara independen. Itu tidak berafiliasi dengan, disponsori oleh, atau didukung oleh proyek resmi NewPipe, TeamNewPipe, atau NewPipe e.V.
+
+NewPipe Material adalah perangkat lunak gratis berdasarkan NewPipe dan didistribusikan di bawah GNU General Public License versi 3 atau lebih baru. Ini mempertahankan kredit NewPipe hulu, pemberitahuan lisensi, dan informasi lisensi pihak ketiga.

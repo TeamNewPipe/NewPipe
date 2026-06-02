@@ -1,0 +1,28 @@
+NewPipe Material forkek serbixwe ya NewPipe-ê ye ji bo Android, ku li ser sêwirana Material 3, rengên mijarên dînamîkî û destan, û pola dîtbarî ya baldar di heman demê de ku ezmûna naskirî ya NewPipe diparêze, balê dikişîne.
+
+NewPipe Material nêzîkatiya sivik, nepenîtiyê-heval ku ji NewPipe mîras maye digire. Ew hesabek platformê hewce nake, bi Google framework libraries ve girêdayî nabe, û ji bo ku bêyî Google Play Services bixebite hatî çêkirin.
+
+Taybetmendiyên ku ji NewPipe mîras hatine wergirtin ev in:
+- Vîdyo û weşanên zindî ji karûbarên piştgirî temaşe bikin
+- Lîstika paşîn
+- Lîstika popupê
+- Lîsteyên lîstikên herêmî
+- Aboneyên bêyî têketina hesabek platformê
+- Kom û fêkiyên kanalê
+- Karûbarên piştgirîkirî bigerin û bigerin
+- Hûrguliyên vîdyoyê, vîdyoyên têkildar, û şîroveyên ku hene hene
+- Vîdyo, deng, û sernavên ku hene dakêşin
+- Daneyên sepanê ji bo hilanînê û koçberiyê derxînin û derxînin
+
+NewPipe Material nasnameya forkek nûjen û polayîk li ser materyalê zêde dike:
+- Zeviyên îlhama Material 3, diyalog, mîheng, tablo û navîgasyon
+- Piştgiriya rengê Material You ya dînamîk li ku heye
+- Pêşniyarên rengê mijarê yên destan
+- Nasnameya serîlêdana NewPipe Material
+- Zehfkirina forkê paqij bike
+- Avahiyên berdanê ji bo NewPipe Material hatine îmzekirin
+
+Daxuyaniya Forkê ya Girîng:
+NewPipe Material serbixwe tê parastin. Ew bi projeya fermî ya NewPipe, TeamNewPipe, an NewPipe e.V. ve ne girêdayî ye, ji hêla piştgirî, an pejirandin
+
+NewPipe Material nermalava belaş e ku li ser bingeha NewPipe-ê ye û di binê GNU General Public License guhertoya 3 an dereng de tê belav kirin. Ew krediyên NewPipe-ya jorîn, agahdariya lîsansê, û agahdariya lîsansê ya sêyemîn diparêze.

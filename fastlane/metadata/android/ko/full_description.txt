@@ -1,1 +1,28 @@
-NewPipe는 구글 프레임워크 러이브러리나 유튜브 API를 전혀 사용하지 않습니다. NewPipe는 필요한 정보를 얻기 위해서만 웹사이트 파싱을 합니다. 따라서 구글 서비스가 설치되지 않은 디바이스에서도 이 앱을 사용할 수 있습니다. 또한, NewPipe 사용을 위해 유튜브 계정이 필요없으며, 완벽한 오픈소스입니다.
+NewPipe Material는 Android용 NewPipe의 독립 포크로, 익숙한 NewPipe 경험을 유지하면서 Material 3 디자인, 동적 및 수동 테마 색상, 세심한 시각적 다듬기에 중점을 둡니다.
+
+NewPipe Material는 NewPipe에서 물려받은 가볍고 개인 정보 보호 친화적인 접근 방식을 유지합니다. 플랫폼 계정이 필요하지 않고 Google framework libraries에 의존하지 않으며 Google Play Services 없이 작동하도록 설계되었습니다.
+
+NewPipe에서 상속된 기능은 다음과 같습니다.
+- 지원되는 서비스에서 비디오 및 라이브 스트림을 시청하세요
+- 백그라운드 재생
+- 팝업 재생
+- 지역 재생 목록
+- 플랫폼 계정에 로그인하지 않고 구독하는 경우
+- 채널 그룹 및 피드
+- 지원되는 서비스 검색 및 찾아보기
+- 가능한 경우 동영상 세부정보, 관련 동영상 및 댓글
+- 가능한 경우 비디오, 오디오 및 캡션을 다운로드하세요.
+- 백업 및 마이그레이션을 위해 앱 데이터 가져오기 및 내보내기
+
+NewPipe Material는 현대적인 포크 아이덴티티와 소재 중심의 광택을 추가합니다.
+- Material 3에서 영감을 받은 표면, 대화상자, 설정, 탭 및 탐색
+- 가능한 경우 동적 Material You 색상 지원
+- 수동 테마 색상 사전 설정
+- NewPipe Material 앱 아이덴티티
+- 명확한 포크 속성
+- NewPipe Material에 대해 서명된 릴리스 빌드
+
+중요한 포크 알림:
+NewPipe Material는 독립적으로 유지 관리됩니다. 공식 NewPipe 프로젝트, TeamNewPipe 또는 NewPipe e.V.와 제휴, 후원 또는 보증되지 않습니다.
+
+NewPipe Material는 NewPipe를 기반으로 하는 무료 소프트웨어이며 GNU General Public License 버전 3 이상으로 배포됩니다. 업스트림 NewPipe 크레딧, 라이센스 공지 및 타사 라이센스 정보를 보존합니다.

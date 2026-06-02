@@ -1,1 +1,1 @@
-Sebuah klien YouTube gratis dan ringan untuk Android.
+Garpu NewPipe independen yang berfokus pada Material 3.

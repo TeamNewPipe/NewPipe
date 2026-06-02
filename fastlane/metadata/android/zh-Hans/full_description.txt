@@ -1,1 +1,28 @@
-NewPipe 不使用任何 Google 框架库组件，也不使用 YouTube API。NewPipe 仅仅通过解析 YouTube 网页版来获取所需信息。因此，可在没有安装 Google 服务的设备上使用 NewPipe。此外，使用 NewPipe 并不需要 YouTube 账号，NewPipe 是自由开源软件（FLOSS）。
+NewPipe Material是Android的NewPipe的独立分叉，专注于Material 3的设计、动态和手动的主题颜色以及仔细的视觉打磨，同时保留了熟悉的NewPipe体验。
+
+NewPipe Material 继承了 NewPipe 的轻量级、隐私友好的方法。它不需要平台帐户，不依赖于 Google framework libraries，并且设计为无需 Google Play Services 即可工作。
+
+从 NewPipe 继承的功能包括：
+- 通过支持的服务观看视频和直播
+- 后台播放
+- 弹出播放
+- 本地播放列表
+- 无需登录平台账户即可订阅
+- 频道组和提要
+- 搜索和浏览支持的服务
+- 视频详细信息、相关视频和评论（如果有）
+- 下载视频、音频和字幕（如果有）
+- 导入和导出应用程序数据以进行备份和迁移
+
+NewPipe Material 增加了现代的前叉标识和以材质为中心的抛光：
+- 受 Material 3 启发的界面、对话框、设置、选项卡和导航
+- 动态 Material You 颜色支持（如果有）
+- 手动主题颜色预设
+- NewPipe Material 应用程序标识
+- 明确分叉归属
+- 为 NewPipe Material 签名的发布版本
+
+重要分叉通知：
+NewPipe Material 是独立维护的。它不隶属于、赞助或认可官方 NewPipe 项目、TeamNewPipe 或 NewPipe e.V.
+
+NewPipe Material 是基于 NewPipe 的免费软件，并在 GNU General Public License 版本 3 或更高版本下分发。它保留上游 NewPipe 信用、许可证通知和第三方许可证信息。

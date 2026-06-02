@@ -1,1 +1,1 @@
-Une interface YouTube libre et légère pour Android.
+Une fourche NewPipe indépendante centrée sur Material 3.

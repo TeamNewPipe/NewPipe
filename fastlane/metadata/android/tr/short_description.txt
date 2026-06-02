@@ -1,1 +1,1 @@
-Android için Bedava ve hafif bir YouTube istemcisi.
+Material 3 odaklı bağımsız bir NewPipe çatalı.

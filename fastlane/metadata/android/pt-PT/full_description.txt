@@ -1,1 +1,28 @@
-NewPipe não utiliza nenhuma biblioteca de estrutura do Google, nem a API do YouTube. Apenas analisa o site para obter as informações necessárias. Desta forma, esta aplicação pode ser utilizada em aparelhos que não tenham Google Services instalados. Não precisa de uma conta Youtube e, além disso, é uma aplicação FLOSS.
+NewPipe Material é um fork independente de NewPipe para Android, focado no design Material 3, cores de tema dinâmicas e manuais e polimento visual cuidadoso, preservando a experiência familiar NewPipe.
+
+NewPipe Material mantém a abordagem leve e amigável à privacidade herdada do NewPipe. Não requer conta de plataforma, não depende de Google framework libraries e foi projetado para funcionar sem Google Play Services.
+
+Os recursos herdados do NewPipe incluem:
+- Assista a vídeos e transmissões ao vivo de serviços suportados
+- Reprodução em segundo plano
+- Reprodução pop-up
+- Listas de reprodução locais
+- Assinaturas sem fazer login em uma conta da plataforma
+- Grupos de canais e feeds
+- Pesquise e navegue pelos serviços suportados
+- Detalhes do vídeo, vídeos relacionados e comentários, quando disponíveis
+- Baixe vídeo, áudio e legendas quando disponíveis
+- Importe e exporte dados de aplicativos para backup e migração
+
+NewPipe Material adiciona uma identidade de garfo moderna e polimento focado em materiais:
+- Superfícies, caixas de diálogo, configurações, guias e navegação inspiradas em Material 3
+- Suporte dinâmico de cores Material You quando disponível
+- Predefinições manuais de cores de tema
+- Identidade do aplicativo NewPipe Material
+- Atribuição clara do garfo
+- Versões de lançamento assinadas para NewPipe Material
+
+Aviso importante sobre garfo:
+NewPipe Material é mantido de forma independente. Não é afiliado, patrocinado ou endossado pelo projeto oficial NewPipe, TeamNewPipe ou NewPipe e.V.
+
+NewPipe Material é um software gratuito baseado em NewPipe e distribuído sob a versão 3 ou posterior do GNU General Public License. Ele preserva créditos NewPipe upstream, avisos de licença e informações de licença de terceiros.

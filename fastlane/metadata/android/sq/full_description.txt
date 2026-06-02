@@ -1,1 +1,28 @@
-NewPipe nuk përdor ndonjë bibliotekë kornizash të Google, ose API të YouTube. Ajo vetëm analizon faqen e internetit në mënyrë që të fitojë informacionin që i nevojitet. Prandaj, ky aplikacion mund të përdoret në pajisje pa instaluar Shërbimet e google. Gjithashtu, nuk keni nevojë për një llogari në YouTube për të përdorur NewPipe, dhe është FLOSS
+NewPipe Material është një pirun i pavarur i NewPipe për Android, i fokusuar në dizajnin Material 3, ngjyrat dinamike dhe manuale të temave dhe lustrimin e kujdesshëm vizual duke ruajtur përvojën e njohur NewPipe.
+
+NewPipe Material ruan qasjen e lehtë dhe miqësore ndaj privatësisë të trashëguar nga NewPipe. Nuk kërkon një llogari platforme, nuk varet nga Google framework libraries dhe është krijuar për të punuar pa Google Play Services.
+
+Karakteristikat e trashëguara nga NewPipe përfshijnë:
+- Shikoni video dhe transmetime të drejtpërdrejta nga shërbimet e mbështetura
+- Riprodhimi në sfond
+- Riprodhimi kërcyes
+- Listat lokale të luajtjes
+- Abonime pa u identifikuar në një llogari platforme
+- Grupet dhe burimet e kanaleve
+- Kërkoni dhe shfletoni shërbimet e mbështetura
+- Detajet e videos, videot e lidhura dhe komentet aty ku janë të disponueshme
+- Shkarko videon, audion dhe titrat aty ku ka
+- Importoni dhe eksportoni të dhënat e aplikacionit për kopje rezervë dhe migrim
+
+NewPipe Material shton një identitet modern të pirunit dhe lustrim të fokusuar në material:
+- Sipërfaqet, dialogët, cilësimet, skedat dhe navigimi i frymëzuar nga Material 3
+- Mbështetje dinamike e ngjyrave Material You aty ku është e disponueshme
+- Paracaktimet manuale të ngjyrave të temës
+- Identiteti i aplikacionit NewPipe Material
+- Pastro atributin e pirunit
+- Publikimi i ndërtimeve të nënshkruara për NewPipe Material
+
+Njoftim i rëndësishëm për pirunin:
+NewPipe Material mirëmbahet në mënyrë të pavarur. Ai nuk është i lidhur me, i sponsorizuar ose i miratuar nga projekti zyrtar NewPipe, TeamNewPipe, ose NewPipe e.V.
+
+NewPipe Material është softuer falas i bazuar në NewPipe dhe shpërndahet nën versionin 3 të GNU General Public License ose më të ri. Ai ruan kredite NewPipe në rrjedhën e sipërme, njoftimet e licencës dhe informacionin e licencës së palëve të treta.

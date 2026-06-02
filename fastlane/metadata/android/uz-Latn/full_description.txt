@@ -1,1 +1,28 @@
-NewPipe hech qanday Google ramka kutubxonalaridan yoki YouTube API-dan foydalanmaydi. U faqat kerakli ma'lumotlarni olish uchun veb-saytni tahlil qiladi. Shuning uchun ushbu dasturdan Google Services o'rnatilmagan qurilmalarda foydalanish mumkin. Bundan tashqari, NewPipe-dan foydalanish uchun sizga hech qanday YouTube hisob qaydnomasi kerak emas va bu FLOSS.
+NewPipe Material Android uchun NewPipe-ning mustaqil vilkasi bo‘lib, Material 3 dizayni, dinamik va qo‘lda mavzu ranglari va tanish NewPipe tajribasini saqlab qolgan holda diqqat bilan vizual jilolashga qaratilgan.
+
+NewPipe Material NewPipedan meros bo'lib qolgan engil, maxfiylik uchun qulay yondashuvni saqlaydi. U platforma hisobini talab qilmaydi, Google framework libraries ga bog'liq emas va Google Play Services holda ishlashga mo'ljallangan.
+
+NewPipe-dan meros bo'lib o'tgan xususiyatlarga quyidagilar kiradi:
+- Qo'llab-quvvatlanadigan xizmatlardan video va jonli oqimlarni tomosha qiling
+- Fonda ijro etish
+- Qalqib chiquvchi oyna
+- Mahalliy pleylistlar
+- Platforma hisobiga kirmasdan obunalar
+- Kanal guruhlari va tasmalari
+- Qo'llab-quvvatlanadigan xizmatlarni qidiring va ko'rib chiqing
+- Video tafsilotlari, tegishli videolar va mavjud bo'lgan sharhlar
+- Agar mavjud bo'lsa, video, audio va taglavhalarni yuklab oling
+- Zaxira va migratsiya uchun ilova ma'lumotlarini import va eksport qilish
+
+NewPipe Material zamonaviy vilkalar identifikatori va Materialga yo'naltirilgan jilo qo'shadi:
+- Material 3-dan ilhomlangan yuzalar, dialoglar, sozlamalar, yorliqlar va navigatsiya
+- Agar mavjud bo'lsa, dinamik Material You ranglarini qo'llab-quvvatlash
+- Mavzu rangini qo'lda sozlash
+- NewPipe Material ilova identifikatori
+- Fork atributini aniqlang
+- NewPipe Material uchun imzolangan reliz tuzilmalari
+
+Muhim vilkalar haqida eslatma:
+NewPipe Material mustaqil ravishda saqlanadi. U rasmiy NewPipe loyihasi TeamNewPipe yoki NewPipe e.V. bilan bog'lanmagan, homiylik qilmaydi yoki tasdiqlamaydi
+
+NewPipe Material - bu NewPipe asosidagi bepul dasturiy ta'minot va GNU General Public License 3 yoki undan keyingi versiyalari ostida tarqatiladi. U yuqori oqim NewPipe kreditlarini, litsenziya bildirishnomalarini va uchinchi tomon litsenziya ma'lumotlarini saqlaydi.

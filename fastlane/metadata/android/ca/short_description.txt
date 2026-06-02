@@ -1,1 +1,1 @@
-Un reproductor de YouTube lliure i lleuger per a Android.
+Una forquilla Material 3 independent centrada en Material 3.

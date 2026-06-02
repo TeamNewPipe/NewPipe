@@ -1,1 +1,1 @@
-Um frontend gratuito e leve do YouTube para Android.
+Um garfo NewPipe independente focado em Material 3.

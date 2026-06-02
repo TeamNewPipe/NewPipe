@@ -1,1 +1,28 @@
-NewPipe uzas nek frambildotekojn de *Google*, nek la aplikprograman interfacon de YouTube. Ĝi nur sintakse analizas la retejon por akiri la necesaj datumoj. Tial ĉi tio aplikaĵo estas uzebla per disponaĵoj sen instalita *Google Services*. Oni ne bezonas konton de YouTube por uzi NewPipe, kaj ĝi estas libera programaro.
+NewPipe Material estas sendependa forko de NewPipe por Android, koncentrita al Material 3-dezajno, dinamikaj kaj manaj etoskoloroj, kaj zorgema vida polurado konservante la konatan NewPipe-sperton.
+
+NewPipe Material konservas la malpezan, privatecan aliron hereditan de NewPipe. Ĝi ne postulas platforman konton, ne dependas de Google framework libraries kaj estas desegnita por funkcii sen Google Play Services.
+
+Trajtoj hereditaj de NewPipe inkluzivas:
+- Spektu filmetojn kaj vivajn fluojn de subtenataj servoj
+- Fona reprodukto
+- Ŝprucfenestra reprodukto
+- Lokaj ludlistoj
+- Abonoj sen ensaluti al platforma konto
+- Kanalaj grupoj kaj fluoj
+- Serĉu kaj foliumi subtenatajn servojn
+- Videodetaloj, rilataj filmetoj kaj komentoj kie disponeblas
+- Elŝutu filmetojn, aŭdojn kaj subtitolojn kie disponeblas
+- Importi kaj eksporti aplikajn datumojn por sekurkopio kaj migrado
+
+NewPipe Material aldonas modernan forkidentecon kaj Material-fokusitan poluron:
+- Material 3-inspiritaj surfacoj, dialogoj, agordoj, langetoj kaj navigado
+- Dinamika Material You-kolora subteno kie disponeblas
+- Manaj temo-koloraj antaŭaj agordoj
+- NewPipe Material aplika identeco
+- Klara forko-atribuo
+- Eldonaj konstruoj subskribitaj por NewPipe Material
+
+Grava forkonoto:
+NewPipe Material estas sendepende konservita. Ĝi ne estas aligita, sponsorita de aŭ aprobita de la oficiala projekto NewPipe, TeamNewPipe aŭ NewPipe e.V..
+
+NewPipe Material estas libera programaro bazita sur NewPipe kaj distribuita sub la GNU General Public License versio 3 aŭ posta. Ĝi konservas kontraŭfluajn NewPipe-kreditojn, licencajn avizojn kaj triajn licencinformojn.

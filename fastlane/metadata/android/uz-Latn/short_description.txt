@@ -1,1 +1,1 @@
-Android uchun bepul yangi YouTube frontend.
+Material 3-ga yo'naltirilgan mustaqil NewPipe vilka.

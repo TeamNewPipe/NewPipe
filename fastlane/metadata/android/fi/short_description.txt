@@ -1,1 +1,1 @@
-Vapaa kevyt YouTube-katseluohjelma Androidille.
+Material 3-keskittynyt itsenäinen NewPipe-haarukka.

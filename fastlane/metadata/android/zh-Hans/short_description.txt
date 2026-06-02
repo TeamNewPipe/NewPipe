@@ -1,1 +1,1 @@
-一个轻量级的自由 Android YouTube 前端。
+以Material 3为中心的独立NewPipe前叉。

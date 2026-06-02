@@ -1,1 +1,28 @@
-NewPipe non usa ningunha libraría de Google nin a API de YouTube. Só analiza a páxina web para obter a información que precisa. Polo tanto esta aplicación pode usarse en dispositivos sen os servizos de Google. Ademais non necesitas unha conta de Youtube para usar NewPipe, e é FLOSS (software libre de código aberto).
+NewPipe Material é unha bifurcación independente de NewPipe para Android, centrada no deseño Material 3, cores temáticas dinámicas e manuais e coidado visual, preservando a experiencia familiar de NewPipe.
+
+NewPipe Material mantén o enfoque lixeiro e amigable coa privacidade herdado de NewPipe. Non require unha conta de plataforma, non depende de Google framework libraries e está deseñado para funcionar sen Google Play Services.
+
+As funcións herdadas de NewPipe inclúen:
+- Mira vídeos e emisións en directo dos servizos compatibles
+- Reprodución en segundo plano
+- Reprodución emerxente
+- Listas de reprodución locais
+- Subscricións sen iniciar sesión nunha conta da plataforma
+- Grupos de canles e fontes
+- Busca e busca servizos compatibles
+- Detalles do vídeo, vídeos relacionados e comentarios cando estean dispoñibles
+- Descarga vídeo, audio e subtítulos cando estean dispoñibles
+- Importar e exportar datos da aplicación para copias de seguridade e migración
+
+NewPipe Material engade unha identidade de garfo moderno e un pulido centrado no material:
+- Superficies, diálogos, configuracións, pestanas e navegación inspirados en Material 3
+- Soporte de cores Material You dinámico cando estea dispoñible
+- Axustes manuais de cores do tema
+- Identidade da aplicación NewPipe Material
+- Atribución clara do garfo
+- Compilacións de lanzamento asinadas para NewPipe Material
+
+Aviso importante de bifurcación:
+NewPipe Material mantense de forma independente. Non está afiliado, patrocinado nin avalado polo proxecto oficial NewPipe, TeamNewPipe ou NewPipe e.V.
+
+NewPipe Material é un software libre baseado en NewPipe e distribuído baixo a versión 3 ou posterior de GNU General Public License. Conserva os créditos de NewPipe, os avisos de licenza e a información de licenzas de terceiros.

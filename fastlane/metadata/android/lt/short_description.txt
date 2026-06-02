@@ -1,1 +1,1 @@
-Nemokama ir lengva YouTube sąsaja, skirta Android.
+Į Material 3 orientuota nepriklausoma NewPipe šakutė.

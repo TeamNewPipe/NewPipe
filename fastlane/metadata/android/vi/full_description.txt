@@ -1,1 +1,28 @@
-NewPipe không sử dụng bất kì thư viện nào của Google, hay API của YouTube. Nó chỉ đọc và phân tích trang web để lấy thông tin cần thiết. Vì thế, ứng dụng này có thể dùng được trên các thiết bị không có cài đặt Dịch vụ của Google. Bạn cũng không cần tài khoản YouTube để sử dụng NewPipe, và ứng dụng này là mã nguồn mở (FLOSS).
+NewPipe Material là một nhánh độc lập của NewPipe dành cho Android, tập trung vào thiết kế Material 3, màu sắc chủ đề năng động và thủ công, đồng thời trau chuốt hình ảnh cẩn thận trong khi vẫn giữ được trải nghiệm NewPipe quen thuộc.
+
+NewPipe Material giữ nguyên phương pháp gọn nhẹ, thân thiện với quyền riêng tư kế thừa từ NewPipe. Nó không yêu cầu tài khoản nền tảng, không phụ thuộc vào Google framework libraries và được thiết kế để hoạt động mà không cần Google Play Services.
+
+Các tính năng kế thừa từ NewPipe bao gồm:
+- Xem video và phát trực tiếp từ các dịch vụ được hỗ trợ
+- Phát lại nền
+- Phát lại cửa sổ bật lên
+- Danh sách phát địa phương
+- Đăng ký mà không cần đăng nhập vào tài khoản nền tảng
+- Nhóm kênh và nguồn cấp dữ liệu
+- Tìm kiếm và duyệt các dịch vụ được hỗ trợ
+- Chi tiết video, video liên quan và nhận xét nếu có
+- Tải xuống video, âm thanh và chú thích nếu có
+- Nhập và xuất dữ liệu ứng dụng để sao lưu và di chuyển
+
+NewPipe Material bổ sung nhận dạng nĩa hiện đại và đánh bóng tập trung vào Vật liệu:
+- Các bề mặt, hộp thoại, cài đặt, tab và điều hướng lấy cảm hứng từ Material 3
+- Hỗ trợ màu Material You động nếu có
+- Cài đặt trước màu chủ đề thủ công
+- Nhận dạng ứng dụng NewPipe Material
+- Phân bổ ngã ba rõ ràng
+- Phát hành các bản dựng được ký cho NewPipe Material
+
+Thông báo ngã ba quan trọng:
+NewPipe Material được duy trì độc lập. Nó không được liên kết, tài trợ hoặc xác nhận bởi dự án NewPipe chính thức, TeamNewPipe hoặc NewPipe e.V.
+
+NewPipe Material là phần mềm miễn phí dựa trên NewPipe và được phân phối theo GNU General Public License phiên bản 3 trở lên. Nó bảo tồn các khoản tín dụng NewPipe ngược dòng, thông báo giấy phép và thông tin giấy phép của bên thứ ba.

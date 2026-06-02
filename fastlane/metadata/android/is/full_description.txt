@@ -1,1 +1,28 @@
-NewPipe er frjáls hugbúnaður sem notar ekki tól frá Google eða YouTube forritaskil. Það sækir aðeins vefsíðuna til að fá þær upplýsingar sem það þarf. Þess vegna er hægt að nota þetta forrit á tækjum án þess að Google Services sé uppsett. Einnig þarftu ekki YouTube reikning til að nota NewPipe, og svo er þetta frjáls og opinn hugbúnaður.
+NewPipe Material er sjálfstæður gaffli NewPipe fyrir Android, með áherslu á Material 3 hönnun, kraftmikla og handvirka þemaliti og vandlega sjónræna pólsku á sama tíma og kunnugleg NewPipe upplifun er varðveitt.
+
+NewPipe Material heldur léttum, persónuverndarvænni nálgun sem er arfleifð frá NewPipe. Það þarf ekki vettvangsreikning, er ekki háð Google framework libraries og er hannað til að virka án Google Play Services.
+
+Eiginleikar sem erfðir eru frá NewPipe eru:
+- Horfðu á myndbönd og strauma í beinni frá studdum þjónustum
+- Bakgrunnsspilun
+- Sprettigluggaspilun
+- Staðbundnir lagalistar
+- Áskrift án þess að skrá þig inn á vettvangsreikning
+- Rásarhópar og straumar
+- Leitaðu og skoðaðu studdar þjónustur
+- Upplýsingar um myndband, tengd myndbönd og athugasemdir þar sem þær eru tiltækar
+- Hlaða niður myndskeiðum, hljóði og skjátextum þar sem það er í boði
+- Flytja inn og flytja út appgögn fyrir öryggisafrit og flutning
+
+NewPipe Material bætir við nútíma gaffalkennslu og efnismiðuðu pússi:
+- Material 3 innblásnir yfirborð, gluggar, stillingar, flipar og siglingar
+- Dynamic Material You litastuðningur þar sem hann er í boði
+- Handvirkar forstillingar þemalita
+- NewPipe Material app auðkenni
+- Hreinsa gaffaleign
+- Gefa út smíði undirrituð fyrir NewPipe Material
+
+Mikilvæg tilkynning um gaffal:
+NewPipe Material er viðhaldið sjálfstætt. Það er ekki tengt, styrkt af eða samþykkt af opinberu NewPipe verkefninu, TeamNewPipe eða NewPipe e.V.
+
+NewPipe Material er ókeypis hugbúnaður byggður á NewPipe og dreift undir GNU General Public License útgáfu 3 eða síðar. Það varðveitir andstreymis NewPipe inneign, leyfistilkynningar og leyfisupplýsingar frá þriðja aðila.

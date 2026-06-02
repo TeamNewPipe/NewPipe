@@ -1,1 +1,28 @@
-El NewPipe no fa servir cap tipus de llibreria de Google o la API de YouTube. El que fa és analitzar el lloc web amb tal d'obtenir l'informació necessària. D'aquesta manera l'aplicació pot utilitzar-se sense tenir els Serveis de Google instal·lats. Tampoc cal un compte de YouTube per fer servir NewPipe. NewPipe és programari lliure, gratuït i de codi obert.
+NewPipe Material és una forquilla independent de NewPipe per a Android, centrada en el disseny Material 3, els colors temàtics dinàmics i manuals i un polit visual acurat tot preservant l'experiència familiar NewPipe.
+
+NewPipe Material manté l'enfocament lleuger i respectuós de la privadesa heretat de NewPipe. No requereix un compte de plataforma, no depèn de Google framework libraries i està dissenyat per funcionar sense Google Play Services.
+
+Les característiques heretades de NewPipe inclouen:
+- Mira vídeos i transferències en directe dels serveis compatibles
+- Reproducció en segon pla
+- Reproducció emergent
+- Llistes de reproducció locals
+- Subscripcions sense iniciar sessió en un compte de plataforma
+- Grups de canals i canals
+- Cerca i navega per serveis compatibles
+- Detalls del vídeo, vídeos relacionats i comentaris quan estiguin disponibles
+- Baixeu vídeo, àudio i subtítols quan estiguin disponibles
+- Importa i exporta dades d'aplicacions per a còpies de seguretat i migració
+
+NewPipe Material afegeix una identitat de forquilla moderna i un poliment centrat en el material:
+- Superfícies, diàlegs, paràmetres, pestanyes i navegació inspirats en Material 3
+- Suport de color dinàmic Material You quan estigui disponible
+- Preajustos manuals del color del tema
+- Identitat de l'aplicació NewPipe Material
+- Atribució clara de la forquilla
+- Versions de versions signades per a NewPipe Material
+
+Avís important de forquilla:
+NewPipe Material es manté de manera independent. No està afiliat, patrocinat ni avalat pel projecte oficial NewPipe, TeamNewPipe o NewPipe e.V.
+
+NewPipe Material és programari lliure basat en NewPipe i distribuït sota la versió 3 o posterior de GNU General Public License. Conserva els crèdits NewPipe aigües amunt, els avisos de llicència i la informació de llicència de tercers.

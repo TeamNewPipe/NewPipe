@@ -1,1 +1,28 @@
-NewPipe-k ez du Google liburutegirik edo YouTuben APIa erabiltzen. Webgunea aztertzen du, behar duen informazioa lortzeko. Hori dela eta, aplikazio hau Google Zerbitzuak instalatu gabeko gailuetan erabili daiteke. Gainera, ez duzu YouTube konturik behar NewPipe erabiltzeko, eta FLOSS da.
+NewPipe Material NewPipe-ren sardexka independentea da, Material 3 diseinuan, gai-kolore dinamikoetan eta eskuliburuan eta ikusmen-polinketa zainduan, NewPipe esperientzia ezaguna mantenduz.
+
+NewPipe Material NewPipe-tik heredatutako ikuspegi arina eta pribatutasuna errespetatzen duen ikuspegia mantentzen du. Ez du plataformako konturik behar, ez da Google framework librariesren menpekoa eta Google Play Services gabe funtzionatzeko diseinatuta dago.
+
+NewPipe-tik heredatutako ezaugarriak hauek dira:
+- Ikusi bideoak eta zuzeneko igorpenak onartzen diren zerbitzuetatik
+- Atzeko planoko erreprodukzioa
+- Popup erreprodukzioa
+- Tokiko erreprodukzio-zerrendak
+- Harpidetzak plataformako kontu batean saioa hasi gabe
+- Kanal-taldeak eta jarioak
+- Bilatu eta arakatu onartzen diren zerbitzuak
+- Bideoaren xehetasunak, erlazionatutako bideoak eta iruzkinak eskuragarri daudenean
+- Deskargatu bideoa, audioa eta epigrafeak eskuragarri daudenean
+- Inportatu eta esportatu aplikazioaren datuak babeskopia egiteko eta migratzeko
+
+NewPipe Material-k sardexka-identitate modernoa eta Materialean oinarritutako leuntzea gehitzen du:
+- Material 3 inspiratutako gainazalak, elkarrizketa-koadroak, ezarpenak, fitxak eta nabigazioa
+- Material You kolore-laguntza dinamikoa eskuragarri dagoenean
+- Eskuzko gaiaren kolore aurrezarpenak
+- NewPipe Material aplikazioaren identitatea
+- Sardexka esleipena argia
+- NewPipe Material-rako sinatutako bertsio-konstrukzioak
+
+Sardexka-ohar garrantzitsua:
+NewPipe Material modu independentean mantentzen da. Ez dago NewPipe, TeamNewPipe edo NewPipe e.V. proiektu ofizialarekin afiliatuta, babestuta edo babestuta.
+
+NewPipe Material NewPipen oinarritutako software librea da eta GNU General Public License 3. bertsioarekin edo berriagoa denarekin banatua. Goran dauden NewPipe kredituak, lizentzia-oharrak eta hirugarrenen lizentziaren informazioa gordetzen ditu.

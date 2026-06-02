@@ -1,1 +1,28 @@
-NewPipe bruker ikke noen av Googles rammeverksbiblioteker, eller YouTube-API-et. Den bare tolker nettsiden for å hente informasjonen den trenger. Programmet kan derfor brukes på enheter uten Google-tjenester, og du trenger ikke en YouTube-konto for å bruke det. I tillegg er det er gemenfrihetslig fritt.
+NewPipe Material er en uavhengig gaffel av NewPipe for Android, fokusert på Material 3-design, dynamiske og manuelle temafarger og forsiktig visuell polering samtidig som den kjente NewPipe-opplevelsen bevares.
+
+NewPipe Material beholder den lette, personvernvennlige tilnærmingen som er arvet fra NewPipe. Den krever ikke en plattformkonto, er ikke avhengig av Google framework libraries og er designet for å fungere uten Google Play Services.
+
+Funksjoner som er arvet fra NewPipe inkluderer:
+- Se videoer og direktesendinger fra støttede tjenester
+- Bakgrunnsavspilling
+- Popup-avspilling
+- Lokale spillelister
+- Abonnementer uten å logge på en plattformkonto
+- Kanalgrupper og feeder
+- Søk og bla gjennom støttede tjenester
+- Videodetaljer, relaterte videoer og kommentarer der det er tilgjengelig
+- Last ned video, lyd og bildetekster der det er tilgjengelig
+- Importer og eksporter appdata for sikkerhetskopiering og migrering
+
+NewPipe Material legger til en moderne gaffelidentitet og materialfokusert polering:
+- Material 3-inspirerte overflater, dialoger, innstillinger, faner og navigasjon
+- Dynamisk Material You fargestøtte der det er tilgjengelig
+- Manuelle forhåndsinnstillinger for temafarge
+- NewPipe Material app-identitet
+- Tydelig gaffelattribusjon
+- Release builds signert for NewPipe Material
+
+Viktig gaffelvarsel:
+NewPipe Material vedlikeholdes uavhengig. Det er ikke tilknyttet, sponset av eller støttet av det offisielle NewPipe-prosjektet, TeamNewPipe eller NewPipe e.V.
+
+NewPipe Material er gratis programvare basert på NewPipe og distribuert under GNU General Public License versjon 3 eller nyere. Den bevarer oppstrøms NewPipe-kreditter, lisensmeldinger og tredjeparts lisensinformasjon.

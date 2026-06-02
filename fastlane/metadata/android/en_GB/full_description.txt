@@ -1,1 +1,28 @@
-NewPipe does not use any Google framework libraries, or the YouTube API. It only parses the website in order to gain the information it needs. Therefore this app can be used on devices without Google Services installed. Also, you don't need a YouTube account to use NewPipe, and it's FLOSS.
+NewPipe Material is an independent fork of NewPipe for Android, focused on Material 3 design, dynamic and manual theme colors, and careful visual polish while preserving the familiar NewPipe experience.
+
+NewPipe Material keeps the lightweight, privacy-friendly approach inherited from NewPipe. It does not require a platform account, does not depend on Google framework libraries, and is designed to work without Google Play Services.
+
+Features inherited from NewPipe include:
+- Watch videos and live streams from supported services
+- Background playback
+- Popup playback
+- Local playlists
+- Subscriptions without signing in to a platform account
+- Channel groups and feeds
+- Search and browse supported services
+- Video details, related videos, and comments where available
+- Download video, audio, and captions where available
+- Import and export app data for backup and migration
+
+NewPipe Material adds a modern fork identity and Material-focused polish:
+- Material 3-inspired surfaces, dialogs, settings, tabs, and navigation
+- Dynamic Material You color support where available
+- Manual theme color presets
+- NewPipe Material app identity
+- Clear fork attribution
+- Release builds signed for NewPipe Material
+
+Important fork notice:
+NewPipe Material is independently maintained. It is not affiliated with, sponsored by, or endorsed by the official NewPipe project, TeamNewPipe, or NewPipe e.V.
+
+NewPipe Material is free software based on NewPipe and distributed under the GNU General Public License version 3 or later. It preserves upstream NewPipe credits, license notices, and third-party license information.

@@ -1,1 +1,1 @@
-Eine kostenlose, leichte YouTube-App für Android.
+Eine Material 3-fokussierte unabhängige NewPipe-Gabel.

@@ -1,1 +1,28 @@
-NewPipe ma isticmaalo wax nidaamka ka shaqaysiinta Google ka ah, ama iskuxidhyada (API) YouTube. Kaliya waxay xogta kasoo rogtaa websiteka YouTube-ka si ay xogta ay u baahantahay u hesho. Sidaa darteed app-kan waxaa lagu isticmaali karaa aaladaha aysa ku jirin Adeegyada Google. Sidoo kale uma baahnid akoon YouTube si aad u isticmaasho NewPipe, waana bilaash waxna waad ka badali kartaa (FLOSS).
+NewPipe Material waa fargeeto madax-bannaan oo NewPipe ah oo loogu talagalay Android, oo diiradda saarey Material 3 naqshadeynta, midabada mawduuca firfircoon iyo gacanta, iyo si taxadar leh muuqaal muuqaal ah iyadoo la ilaalinayo khibradda NewPipe ee la yaqaan.
+
+NewPipe Material waxa ay ilaalisaa habka fudud ee asturnaanta ee laga dhaxlo NewPipe. Uma baahna xisaab madal, kuma xirna Google framework libraries, waxaana loogu talagalay inay shaqeyso Google Play Services la'aanteed.
+
+Tilmaamaha laga dhaxlay NewPipe waxaa ka mid ah:
+- Daawo fiidiyowyada iyo durdurrada tooska ah ee adeegyada la taageero
+- Dib-u-ciyaarista asalka ah
+- Dib-u-soo-celinta soo-baxa
+- Liisaska heesaha maxalliga ah
+- Is-diiwaangelinta adiga oo aan soo galin akoon madal
+- Kooxaha kanaalka iyo quudinta
+- Raadi oo baadh adeegyada la taageeray
+- Faahfaahinta fiidiyowga, fiidiyowyada la xidhiidha, iyo faallooyinka halka la heli karo
+- Soo deji muuqaal, maqal, iyo qoraallo halka la heli karo
+- Soo dejinta iyo dhoofinta xogta app ee kaydinta iyo socdaalka
+
+NewPipe Material waxay ku daraysaa aqoonsiga fargeetada casriga ah iyo suufka diirada saaraya:
+-Material 3-sagxadaha, wada sheekaysiga, dejinta, tabsyada, iyo hagidda
+- Taageerada midabka Material You firfircoon halka la heli karo
+- Horudhac midabka mawduuca gacanta
+- NewPipe Material aqoonsiga app
+- Cad sifada fargeetada
+- Siidaynta waxay u dhisan tahay NewPipe Material
+
+Ogeysiis fargeeto ah oo muhiim ah:
+NewPipe Material si madaxbanaan ayaa loo ilaaliyaa. Ma xidhna, kafaala qaaday, ama taageeray mashruuca rasmiga ah ee NewPipe, TeamNewPipe, ama NewPipe e.V.
+
+NewPipe Material waa software bilaash ah oo ku salaysan NewPipe waxaana lagu qaybiyaa nooca GNU General Public License 3 ama ka dib. Waxay ilaalisaa kor u kaca dhibcaha NewPipe, ogeysiisyada shatiga, iyo macluumaadka shatiga cid saddexaad.

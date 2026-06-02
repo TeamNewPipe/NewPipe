@@ -1,1 +1,1 @@
-Android üçün pulsuz və yüngül YouTube müştərisi.
+Material 3 yönümlü müstəqil NewPipe çəngəl.

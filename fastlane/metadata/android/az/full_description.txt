@@ -1,1 +1,28 @@
-NewPipe hər hansı Google quruluş kitabxanası və ya Youtube API istifadə etmir. O yalnız ehtiyac olan məlumatları toplamaq üçün veb-saytı təhlil edir. Bu səbəbdən, bu tətbiq Google Xidmətləri quraşdırılmamış cihazlarda istifadə edilə biləndir. Həmçinin NewPipe istifadə etmək üçün YouTube hesabına ehtiyacınız yoxdur və o, azad və açıq qaynaqlı tətbiqdir.
+NewPipe Material Android üçün NewPipe-in müstəqil çəngəlidir, Material 3 dizaynına, dinamik və əl mövzu rənglərinə və tanış NewPipe təcrübəsini qoruyarkən diqqətli vizual cilalanmaya yönəlmişdir.
+
+NewPipe Material, NewPipe-dən miras qalan yüngül, məxfiliyə uyğun yanaşmanı saxlayır. O, platforma hesabı tələb etmir, Google framework libraries-dən asılı deyil və Google Play Services olmadan işləmək üçün nəzərdə tutulub.
+
+NewPipe-dən miras qalan xüsusiyyətlərə aşağıdakılar daxildir:
+- Dəstəklənən xidmətlərdən videolara və canlı yayımlara baxın
+- Fon oxutma
+- Pop-up oxutma
+- Yerli çalğı siyahıları
+- Platforma hesabına daxil olmadan abunəliklər
+- Kanal qrupları və lentlər
+- Dəstəklənən xidmətləri axtarın və gözdən keçirin
+- Video təfərrüatları, əlaqəli videolar və mümkün olduqda şərhlər
+- Mümkün olduqda video, audio və başlıqları endirin
+- Yedəkləmə və miqrasiya üçün tətbiq məlumatlarını idxal və ixrac edin
+
+NewPipe Material müasir çəngəl şəxsiyyəti və Materiala əsaslanan cila əlavə edir:
+- Material 3-dən ilhamlanmış səthlər, dialoqlar, parametrlər, nişanlar və naviqasiya
+- Mövcud olduğu yerlərdə dinamik Material You rəng dəstəyi
+- Əl ilə mövzu rənginin əvvəlcədən təyin edilməsi
+- NewPipe Material tətbiq şəxsiyyəti
+- Çəngəl atributunu təmizləyin
+- NewPipe Material üçün imzalanmış buraxılış quruluşları
+
+Vacib çəngəl bildirişi:
+NewPipe Material müstəqil şəkildə saxlanılır. Rəsmi NewPipe layihəsi, TeamNewPipe və ya NewPipe e.V. ilə əlaqəli deyil, sponsorluq etmir və ya təsdiqlənmir
+
+NewPipe Material, NewPipe-ə əsaslanan və GNU General Public License 3 və ya daha sonrakı versiyada paylanan pulsuz proqramdır. O, yuxarı NewPipe kreditlərini, lisenziya bildirişlərini və üçüncü tərəf lisenziya məlumatlarını qoruyur.

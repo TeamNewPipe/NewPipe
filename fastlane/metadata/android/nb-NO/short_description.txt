@@ -1,1 +1,1 @@
-En fri og lett YouTube-skjermflate for Android.
+En Material 3-fokusert uavhengig NewPipe-gaffel.

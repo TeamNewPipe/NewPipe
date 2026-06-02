@@ -1,1 +1,28 @@
-NewPipe nepoužívá žádné knihovny Google Framework nebo YouTube API. Aplikace pouze analyzuje webovou stránku YouTube, aby získala potřebné informace. Proto lze tuto aplikaci použít i na zařízeních bez nainstalovaných Služeb Google. K používání NewPipe navíc není potřeba žádný YouTube účet, je to snadné.
+NewPipe Material je nezávislá vidlice NewPipe pro Android, zaměřená na design Material 3, dynamické a manuální barvy motivu a pečlivý vizuální lesk při zachování známého zážitku NewPipe.
+
+NewPipe Material si zachovává lehký přístup šetrný k soukromí zděděný od NewPipe. Nevyžaduje účet platformy, není závislý na Google framework libraries a je navržen tak, aby fungoval bez Google Play Services.
+
+Funkce zděděné od NewPipe zahrnují:
+- Sledujte videa a živé přenosy z podporovaných služeb
+- Přehrávání na pozadí
+- Vyskakovací přehrávání
+- Místní seznamy skladeb
+- Předplatné bez přihlášení k účtu platformy
+- Skupiny kanálů a kanály
+- Hledat a procházet podporované služby
+– Podrobnosti o videu, související videa a komentáře, pokud jsou k dispozici
+- Stáhněte si video, zvuk a titulky, pokud jsou k dispozici
+- Import a export dat aplikací pro zálohování a migraci
+
+NewPipe Material přidává moderní identitu vidlice a leštění zaměřené na materiál:
+- Povrchy, dialogy, nastavení, karty a navigace inspirované Material 3
+- Dynamická podpora barev Material You, pokud je k dispozici
+- Ruční předvolby barev motivu
+- Identita aplikace NewPipe Material
+- Vymazat přiřazení vidlice
+- Vydání sestavení podepsané pro NewPipe Material
+
+Důležité upozornění na vidlici:
+NewPipe Material se udržuje nezávisle. Není přidružen k oficiálnímu projektu NewPipe, TeamNewPipe nebo NewPipe e.V., není jím sponzorován ani podporován
+
+NewPipe Material je svobodný software založený na NewPipe a distribuovaný pod GNU General Public License verze 3 nebo novější. Zachovává upstream kredity NewPipe, licenční oznámení a licenční informace třetích stran.

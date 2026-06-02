@@ -1,1 +1,1 @@
-En gratis, lättviktig YouTube-klient för Android.
+En Material 3-fokuserad oberoende NewPipe-gaffel.

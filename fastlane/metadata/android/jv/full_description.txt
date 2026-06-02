@@ -1,1 +1,28 @@
-NewPipe ora migunakake pustaka kerangka kerja Google, utawa API Youtube. NewPipe namung migunakake informasi situs kanggo njupuk informasi kang dibutuhake. Mula iku, NewPipe isa digunakke ing piranti tanpa Layanan Google. Sampeyan uga ora mbutuhake akun Youtube kanggo migunakake NewPipe, lan aplikasi iki FLOSS.
+NewPipe Material minangka garpu independen saka NewPipe kanggo Android, fokus ing desain Material 3, warna tema dinamis lan manual, lan polish visual sing ati-ati nalika njaga pengalaman NewPipe sing akrab.
+
+NewPipe Material njaga pendekatan sing entheng lan ramah privasi sing diwarisake saka NewPipe. Ora mbutuhake akun platform, ora gumantung ing Google framework libraries, lan dirancang kanggo bisa tanpa Google Play Services.
+
+Fitur sing diwarisake saka NewPipe kalebu:
+- Nonton video lan stream langsung saka layanan sing didhukung
+- puter maneh latar mburi
+- Puter maneh nyembul
+- dhaptar lagu lokal
+- Langganan tanpa mlebu menyang akun platform
+- Grup saluran lan feed
+- Telusuri lan telusuri layanan sing didhukung
+- Rincian video, video sing gegandhengan, lan komentar yen kasedhiya
+- Download video, audio, lan katrangan yen kasedhiya
+- Impor lan ekspor data aplikasi kanggo serep lan migrasi
+
+NewPipe Material nambah identitas garpu modern lan polesan fokus Material:
+- Material 3-inspirasi lumahing, dialog, setelan, tab, lan pandhu arah
+- Dhukungan warna Material You dinamis sing kasedhiya
+- Prasetel warna tema manual
+- NewPipe Material app identitas
+- Atribusi garpu sing cetha
+- Rilis mbangun mlebu kanggo NewPipe Material
+
+Wara-wara penting:
+NewPipe Material wis independen maintained. Ora ana hubungane karo, disponsori, utawa disetujoni dening proyek NewPipe resmi, TeamNewPipe, utawa NewPipe e.V.
+
+NewPipe Material minangka piranti lunak gratis adhedhasar NewPipe lan disebarake ing versi GNU General Public License 3 utawa luwih anyar. Iki njaga kridit NewPipe hulu, kabar lisensi, lan informasi lisensi pihak katelu.

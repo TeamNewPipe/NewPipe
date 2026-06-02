@@ -1,1 +1,28 @@
-NewPipe ei käytä mitään Google-kirjastoja tai YouTuben API:a. Se ainoastaan käsittelee verkkosivuja saadakseen tarvitsemansa informaation. Siksi tätä sovellusta voidaan käyttää laitteilla ilman Google Palveluiden asentamista. Et myöskään tarvitse YouTube-tiliä käyttääksesi NewPipea, ja se on FLOSS.
+NewPipe Material on NewPipe:n itsenäinen haarukka Android:lle, joka keskittyy Material 3-suunnitteluun, dynaamisiin ja manuaalisiin teemaväreihin ja huolelliseen visuaaliseen kiillotukseen säilyttäen samalla tutun NewPipe-kokemuksen.
+
+NewPipe Material säilyttää kevyen, yksityisyyttä säästävän lähestymistavan, joka on peritty NewPipe:ltä. Se ei vaadi alustatiliä, ei ole riippuvainen Google framework libraries:stä ja on suunniteltu toimimaan ilman Google Play Services:tä.
+
+NewPipe:ltä perittyjä ominaisuuksia ovat:
+- Katso videoita ja suoria lähetyksiä tuetuista palveluista
+- Taustatoisto
+- Ponnahdusikkunatoisto
+- Paikalliset soittolistat
+- Tilaukset kirjautumatta alustatilille
+- Kanavaryhmät ja syötteet
+- Etsi ja selaa tuettuja palveluita
+- Videon tiedot, aiheeseen liittyvät videot ja kommentit, jos niitä on saatavilla
+- Lataa videoita, ääntä ja tekstityksiä, jos saatavilla
+- Tuo ja vie sovellustietoja varmuuskopiointia ja siirtoa varten
+
+NewPipe Material lisää modernia haarukkaidentiteettiä ja materiaalikeskeistä kiillotusta:
+- Material 3-vaikutteiset pinnat, valintaikkunat, asetukset, välilehdet ja navigointi
+- Dynaaminen Material You-värituki mahdollisuuksien mukaan
+- Manuaaliset teeman värien esiasetukset
+- NewPipe Material-sovellusidentiteetti
+- Selkeä haarukka
+- NewPipe Material:n julkaisuversiot allekirjoitettu
+
+Tärkeä haarukkahuomautus:
+NewPipe Material on itsenäisesti ylläpidetty. Se ei ole sidoksissa viralliseen NewPipe-projektiin, TeamNewPipe tai NewPipe e.V., sitä sponsoroi tai tue
+
+NewPipe Material on NewPipe-pohjainen ilmainen ohjelmisto, joka on jaettu GNU General Public License-versiolla 3 tai uudemmalla. Se säilyttää alkupään NewPipe-hyvitykset, lisenssiilmoitukset ja kolmannen osapuolen lisenssitiedot.

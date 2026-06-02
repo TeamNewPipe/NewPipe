@@ -1,1 +1,28 @@
-NewPipe använder inte något av Googles ramverksbibliotek, eller YouTubes API. Den tolkar bara webbplatsens innehåll för att hämta den information den behöver. Därför kan denna app användas på enheter som inte har Google-tjänster installerat. Du behöver inte heller ha ett YouTube-konto för att använda NewPipe, och det är fri programvara med öppen källkod (FLOSS).
+NewPipe Material är en oberoende gaffel av NewPipe för Android, fokuserad på Material 3 design, dynamiska och manuella temafärger och noggrann visuell polering samtidigt som den välbekanta NewPipe-upplevelsen bevaras.
+
+NewPipe Material behåller den lätta, integritetsvänliga metoden som ärvts från NewPipe. Det kräver inget plattformskonto, är inte beroende av Google framework libraries och är designat för att fungera utan Google Play Services.
+
+Funktioner som ärvts från NewPipe inkluderar:
+- Titta på videor och liveströmmar från tjänster som stöds
+- Bakgrundsuppspelning
+- Popup-uppspelning
+- Lokala spellistor
+- Prenumerationer utan att logga in på ett plattformskonto
+- Kanalgrupper och flöden
+- Sök och bläddra bland tjänster som stöds
+- Videodetaljer, relaterade videor och kommentarer där det är tillgängligt
+- Ladda ner video, ljud och bildtexter där det finns
+- Importera och exportera appdata för säkerhetskopiering och migrering
+
+NewPipe Material lägger till en modern gaffelidentitet och materialfokuserad polering:
+- Material 3-inspirerade ytor, dialogrutor, inställningar, flikar och navigering
+- Dynamiskt Material You färgstöd där tillgängligt
+- Manuella förinställningar av temafärg
+- NewPipe Material app-identitet
+- Tydlig gaffelattribution
+- Release builds signerade för NewPipe Material
+
+Viktigt meddelande om gaffel:
+NewPipe Material underhålls oberoende. Det är inte anslutet till, sponsrat av eller godkänt av det officiella NewPipe-projektet, TeamNewPipe eller NewPipe e.V.
+
+NewPipe Material är fri programvara baserad på NewPipe och distribuerad under GNU General Public License version 3 eller senare. Den bevarar uppströms NewPipe-krediter, licensmeddelanden och licensinformation från tredje part.

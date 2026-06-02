@@ -1,1 +1,28 @@
-NewPipe ei kasuta Google'i raamistiku teeke ega YouTube'i APIt. Ta ainult sõelub veebilehelt vajamineva info. Seega saab rakendust kasutada ka seadmes, millesse ei ole paigaldatud Google'i teenuseid (Google Services). Lisaks ei ole NewPipe'i kasutamisel vaja YouTube'i kontot ja tegemist on avatud lähtekoodil põhineva tasuta ja vaba tarkvaraga.
+NewPipe Material on NewPipe iseseisev kahvel Android jaoks, mis keskendub Material 3 disainile, dünaamilisele ja manuaalsele teemavärvidele ning hoolikale visuaalsele lihvimisele, säilitades samas tuttava NewPipe kogemuse.
+
+NewPipe Material säilitab NewPipe-lt päritud kerge ja privaatsussõbraliku lähenemisviisi. See ei nõua platvormi kontot, ei sõltu Google framework libraries-st ja on loodud töötama ilma Google Play Services-ita.
+
+NewPipe-lt päritud funktsioonid hõlmavad järgmist:
+- Vaadake toetatud teenuste videoid ja otseülekandeid
+- Taasesitus taustal
+- Hüpik taasesitus
+- Kohalikud esitusloendid
+- Tellimused ilma platvormikontole sisse logimata
+- Kanalirühmad ja kanalid
+- Otsige ja sirvige toetatud teenuseid
+- Video üksikasjad, seotud videod ja kommentaarid, kui need on saadaval
+- Laadige alla video, heli ja subtiitrid, kui need on saadaval
+- Importige ja eksportige rakenduse andmeid varundamiseks ja migreerimiseks
+
+NewPipe Material lisab kaasaegse kahvli identiteedi ja materjalikeskse poleerimise:
+- Material 3-st inspireeritud pinnad, dialoogid, sätted, vahelehed ja navigeerimine
+- Dünaamiline Material You värvitugi, kui see on saadaval
+- Teema värvide käsitsi seadistamine
+- NewPipe Material rakenduse identiteet
+- Selge kahvli omistamine
+- NewPipe Material väljalaskejärgud on allkirjastatud
+
+Oluline kahvliteade:
+NewPipe Material on iseseisvalt hooldatud. See ei ole seotud ametliku NewPipe projektiga, TeamNewPipe ega NewPipe e.V., seda ei sponsoreeri ega toeta
+
+NewPipe Material on tasuta tarkvara, mis põhineb NewPipe-l ja mida levitatakse GNU General Public License versiooni 3 või uuema all. See säilitab ülesvoolu NewPipe krediiti, litsentsiteateid ja kolmanda osapoole litsentsiteavet.
