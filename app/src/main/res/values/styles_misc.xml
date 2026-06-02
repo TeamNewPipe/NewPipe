@@ -123,6 +123,54 @@
 
     <style name="DarkPopupMenu" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
+    <style name="PlayerOverlayPopupMenu" parent="DarkPopupMenu">
+        <item name="android:colorBackground">@color/player_overlay_popup_background_color</item>
+        <item name="android:popupBackground">@drawable/player_overlay_popup_background</item>
+        <item name="android:popupMenuStyle">@style/Widget.NewPipe.PlayerOverlay.PopupMenu</item>
+        <item name="popupMenuStyle">@style/Widget.NewPipe.PlayerOverlay.PopupMenu</item>
+        <item name="panelMenuListTheme">@style/ThemeOverlay.NewPipe.PlayerOverlay.PopupMenu.List</item>
+        <item name="listPopupWindowStyle">@style/Widget.NewPipe.PlayerOverlay.ListPopupWindow</item>
+        <item name="android:textColorPrimary">@color/player_overlay_popup_text_primary</item>
+        <item name="android:textColorSecondary">@color/player_overlay_popup_text_secondary</item>
+        <item name="android:textAppearanceLargePopupMenu">@style/TextAppearance.NewPipe.PlayerOverlay.PopupMenu.Primary</item>
+        <item name="android:textAppearanceSmallPopupMenu">@style/TextAppearance.NewPipe.PlayerOverlay.PopupMenu.Secondary</item>
+        <item name="textAppearanceLargePopupMenu">@style/TextAppearance.NewPipe.PlayerOverlay.PopupMenu.Primary</item>
+        <item name="textAppearanceSmallPopupMenu">@style/TextAppearance.NewPipe.PlayerOverlay.PopupMenu.Secondary</item>
+        <item name="android:colorControlNormal">@color/player_overlay_popup_text_secondary</item>
+        <item name="colorControlNormal">@color/player_overlay_popup_text_secondary</item>
+    </style>
+
+    <style name="Widget.NewPipe.PlayerOverlay.PopupMenu" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:popupBackground">@drawable/player_overlay_popup_background</item>
+        <item name="android:textAppearanceLargePopupMenu">@style/TextAppearance.NewPipe.PlayerOverlay.PopupMenu.Primary</item>
+        <item name="android:textAppearanceSmallPopupMenu">@style/TextAppearance.NewPipe.PlayerOverlay.PopupMenu.Secondary</item>
+        <item name="textAppearanceLargePopupMenu">@style/TextAppearance.NewPipe.PlayerOverlay.PopupMenu.Primary</item>
+        <item name="textAppearanceSmallPopupMenu">@style/TextAppearance.NewPipe.PlayerOverlay.PopupMenu.Secondary</item>
+    </style>
+
+    <style name="Widget.NewPipe.PlayerOverlay.ListPopupWindow" parent="Widget.AppCompat.ListPopupWindow">
+        <item name="android:popupBackground">@drawable/player_overlay_popup_background</item>
+    </style>
+
+    <style name="ThemeOverlay.NewPipe.PlayerOverlay.PopupMenu.List" parent="DarkPopupMenu">
+        <item name="android:textColorPrimary">@color/player_overlay_popup_text_primary</item>
+        <item name="android:textColorSecondary">@color/player_overlay_popup_text_secondary</item>
+        <item name="android:textAppearanceLargePopupMenu">@style/TextAppearance.NewPipe.PlayerOverlay.PopupMenu.Primary</item>
+        <item name="android:textAppearanceSmallPopupMenu">@style/TextAppearance.NewPipe.PlayerOverlay.PopupMenu.Secondary</item>
+        <item name="textAppearanceLargePopupMenu">@style/TextAppearance.NewPipe.PlayerOverlay.PopupMenu.Primary</item>
+        <item name="textAppearanceSmallPopupMenu">@style/TextAppearance.NewPipe.PlayerOverlay.PopupMenu.Secondary</item>
+    </style>
+
+    <style name="TextAppearance.NewPipe.PlayerOverlay.PopupMenu.Primary"
+        parent="TextAppearance.AppCompat.Widget.PopupMenu.Large">
+        <item name="android:textColor">@color/player_overlay_popup_text_primary</item>
+    </style>
+
+    <style name="TextAppearance.NewPipe.PlayerOverlay.PopupMenu.Secondary"
+        parent="TextAppearance.AppCompat.Widget.PopupMenu.Small">
+        <item name="android:textColor">@color/player_overlay_popup_text_secondary</item>
+    </style>
+
     <style name="ToolbarTheme" parent="ThemeOverlay.Material3.ActionBar">
         <item name="popupTheme">@style/ToolbarPopupTheme</item>
         <item name="android:textColorPrimary">?attr/colorOnSurface</item>

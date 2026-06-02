@@ -93,6 +93,7 @@
     <color name="playlist_stream_count_background_color">#e6000000</color>
     <color name="duration_text_color">#EEFFFFFF</color>
     <color name="video_overlay_color">#64000000</color>
+    <color name="player_overlay_popup_background_color">#E6000000</color>
     <color name="thumbnail_avatar_stroke_color">#FFFFFFFF</color>
     <color name="thumbnail_hold_overlay_background_color">#64000000</color>
     <color name="thumbnail_duration_badge_background_color">#23000000</color>

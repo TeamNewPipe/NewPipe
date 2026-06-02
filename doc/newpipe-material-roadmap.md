@@ -88,9 +88,9 @@ Plan these after the current foundation is stable:
 
 ### Player overlay controls audit
 
-- Player overlay controls were audited and intentionally left unchanged in this pass. The main overlay uses white-on-black/translucent-black affordances over arbitrary video frames, and several sensitive player elements still use legacy/service colors: programmatic red seekbar tint, translucent red closing overlay, `colorAccent` queue controls, legacy-red popup close FAB, and `colorAccent` playback-parameter dialog controls.
-- No low-risk visual-only change was applied because quality/audio/caption/speed popup menus, seekbar tint, queue controls, gestures, captions, and player mode overlays are tightly coupled to playback visibility, focus, dismissal, and gesture behavior.
-- Follow-up should be a dedicated player-controls visual pass with real-device QA for fullscreen, embedded, background/audio, popup, queue, captions, speed, quality, fast seek, brightness/volume gestures, rotation, TV/desktop mode, and Light/Dark/Black plus dynamic/manual palettes.
+- Player overlay controls were audited and mostly left unchanged. The main overlay uses white-on-black/translucent-black affordances over arbitrary video frames, and several sensitive player elements still use legacy/service colors: programmatic red seekbar tint, translucent red closing overlay, `colorAccent` queue controls, legacy-red popup close FAB, and `colorAccent` playback-parameter dialog controls.
+- Focused readability follow-up: quality, captions, and audio-track popups now use a player-only dark popup theme so their white/overlay-oriented item text remains readable over video without changing popup anchoring, dismissal, focus, menu entries, selection behavior, playback, queue, or normal app popups.
+- Remaining follow-up should be a dedicated player-controls visual pass with real-device QA for fullscreen, embedded, background/audio, popup, queue, speed, fast seek, brightness/volume gestures, rotation, TV/desktop mode, and Light/Dark/Black plus dynamic/manual palettes.
 
 ### Video detail action area polish
 

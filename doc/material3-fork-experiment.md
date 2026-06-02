@@ -641,19 +641,23 @@ Known risks:
   overlay uses a translucent red background, queue repeat/shuffle/add controls
   use `colorAccent`, the popup close FAB uses the legacy YouTube red resource,
   and playback-parameter dialog labels/step controls use `colorAccent`.
-- Popup/dropdown status: quality, audio-track, and captions menus use the
-  existing `DarkPopupMenu` overlay, while the playback-speed popup is created
-  from the player context. Changing these menu contexts could affect anchoring,
-  dismissal timing, focus, and hide-controls behavior, so it was not changed in
-  this audit-only step.
+- Focused popup readability fix: quality, audio-track, and captions menus now
+  use the player-only `PlayerOverlayPopupMenu` theme wrapper, which keeps their
+  existing anchors/listeners/menu contents but gives those popups a dedicated
+  near-opaque black background and white/subdued-white menu text for contrast over
+  arbitrary video frames.
+- The playback-speed popup still uses the player context because it does not share
+  the exact quality/audio/caption wrapper changed for this bug fix.
 - `stream_quality_item.xml` remains intentionally platform-attr based for
   compatibility with both app Material themes and plain instrumentation-test
-  themes; this was preserved.
-- No visual code/resource change was applied. The safest follow-up is a dedicated
-  player-controls visual pass with real-device QA for fullscreen, embedded,
-  background/audio, popup, queue, captions, speed, quality, fast seek,
-  brightness/volume gestures, rotation, TV/desktop mode, and Light/Dark/Black
-  plus dynamic/manual palettes.
+  themes; readability is fixed by the player popup theme around it rather than by
+  changing the shared row layout.
+- QA scope for this focused fix is limited to opening quality, captions, and
+  audio-track popups in embedded/fullscreen player, selecting entries, dismissing
+  with outside/back, rotating, and checking Light/Dark/Black, Follow system, App
+  default, dynamic color, and one manual palette. Player controls, seekbar, queue,
+  playback, downloads, settings, navigation, and normal app dialogs/list popups
+  are intentionally outside this change.
 
 Known risks / candidates for a future dedicated player pass:
 - Candidate: map playback-parameter dialog accent text/seekbars from

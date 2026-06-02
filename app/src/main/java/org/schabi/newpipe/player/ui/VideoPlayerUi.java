@@ -177,7 +177,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         applyPlayerSeekBarColor();
 
         final ContextThemeWrapper themeWrapper = new ContextThemeWrapper(context,
-                R.style.DarkPopupMenu);
+                R.style.PlayerOverlayPopupMenu);
 
         qualityPopupMenu = new PopupMenu(themeWrapper, binding.qualityTextView);
         audioTrackPopupMenu = new PopupMenu(themeWrapper, binding.audioTrackTextView);
