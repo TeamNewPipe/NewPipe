@@ -11,6 +11,8 @@ on:
         options:
           - artifacts
           - release
+          - fdroid
+          - all
   push:
     tags:
       - "m*"
@@ -84,19 +86,19 @@ jobs:
           echo "Changelog: $CHANGELOG_PATH" >> "$GITHUB_STEP_SUMMARY"
 
       - name: "Upload APK"
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_target == 'artifacts' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && (inputs.release_target == 'artifacts' || inputs.release_target == 'all') }}
         uses: actions/upload-artifact@v7
         with:
           name: newpipe-material-signed-release-apk
           path: ${{ steps.release_info.outputs.apk_path }}
 
       - name: "Validate changelog"
-        if: ${{ github.event_name == 'push' || inputs.release_target == 'release' }}
+        if: ${{ github.event_name == 'push' || inputs.release_target == 'release' || inputs.release_target == 'fdroid' || inputs.release_target == 'all' }}
         run: |
           test -s "${{ steps.release_info.outputs.changelog_path }}"
 
       - name: "Create release"
-        if: ${{ github.event_name == 'push' || inputs.release_target == 'release' }}
+        if: ${{ github.event_name == 'push' || inputs.release_target == 'release' || inputs.release_target == 'all' }}
         uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ github.event_name == 'push' && github.ref_name || steps.release_info.outputs.material_tag }}
@@ -106,3 +108,96 @@ jobs:
           files: ${{ steps.release_info.outputs.apk_path }}
           fail_on_unmatched_files: true
           make_latest: true
+
+      - name: "Install fdroidserver"
+        if: ${{ github.event_name == 'push' || inputs.release_target == 'fdroid' || inputs.release_target == 'all' }}
+        run: |
+          set -euo pipefail
+          python3 -m pip install --user --upgrade pip
+          python3 -m pip install --user --force-reinstall "fdroidserver==2.4.2" "androguard>=4.1,<4.2"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          python3 -m pip show fdroidserver androguard
+
+      - name: "Checkout F-Droid repository"
+        if: ${{ github.event_name == 'push' || inputs.release_target == 'fdroid' || inputs.release_target == 'all' }}
+        uses: actions/checkout@v6
+        with:
+          repository: ${{ vars.FDROID_REPO }}
+          ref: ${{ vars.FDROID_REPO_BRANCH }}
+          token: ${{ secrets.FDROID_REPO_TOKEN }}
+          path: fdroid-repo
+
+      - name: "Publish APK to F-Droid repository"
+        if: ${{ github.event_name == 'push' || inputs.release_target == 'fdroid' || inputs.release_target == 'all' }}
+        env:
+          FDROID_REPO_URL: ${{ vars.FDROID_REPO_URL }}
+          FDROID_REPO_KEYSTORE_BASE64: ${{ secrets.FDROID_REPO_KEYSTORE_BASE64 }}
+          FDROID_REPO_KEYSTORE_PASSWORD: ${{ secrets.FDROID_REPO_KEYSTORE_PASSWORD }}
+          FDROID_REPO_KEY_ALIAS: ${{ secrets.FDROID_REPO_KEY_ALIAS }}
+          FDROID_REPO_KEY_PASSWORD: ${{ secrets.FDROID_REPO_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+
+          test -n "${FDROID_REPO_URL}"
+          test -n "${FDROID_REPO_KEYSTORE_BASE64}"
+          test -n "${FDROID_REPO_KEYSTORE_PASSWORD}"
+          test -n "${FDROID_REPO_KEY_ALIAS}"
+          test -n "${FDROID_REPO_KEY_PASSWORD}"
+
+          APP_ID="org.wisso.newpipematerial"
+          FDROID_KEYSTORE="$RUNNER_TEMP/fdroid-repo-index.jks"
+
+          printf '%s' "$FDROID_REPO_KEYSTORE_BASE64" | base64 --decode > "$FDROID_KEYSTORE"
+
+          cd fdroid-repo
+
+          mkdir -p repo
+          mkdir -p "metadata/${APP_ID}/en-US/changelogs"
+
+          cp "../${{ steps.release_info.outputs.apk_path }}" "repo/${{ steps.release_info.outputs.apk_name }}"
+
+          if [ -s "../${{ steps.release_info.outputs.changelog_path }}" ]; then
+            cp "../${{ steps.release_info.outputs.changelog_path }}" "metadata/${APP_ID}/en-US/changelogs/${{ steps.release_info.outputs.version_code }}.txt"
+          fi
+
+          if [ -f config.yml ]; then
+            cp config.yml "$RUNNER_TEMP/fdroid-config-before.yml"
+          fi
+
+          cat > config.yml <<EOF
+          repo_name: NewPipe Material
+          repo_description: Independent Material 3-focused fork of NewPipe for Android.
+          repo_url: ${FDROID_REPO_URL}
+          archive_older: 3
+          keystore: ${FDROID_KEYSTORE}
+          repo_keyalias: ${FDROID_REPO_KEY_ALIAS}
+          keystorepass: ${FDROID_REPO_KEYSTORE_PASSWORD}
+          keypass: ${FDROID_REPO_KEY_PASSWORD}
+          EOF
+
+          chmod 600 config.yml
+
+          fdroid update --create-metadata --rename-apks --verbose
+
+          if [ -f "$RUNNER_TEMP/fdroid-config-before.yml" ]; then
+            cp "$RUNNER_TEMP/fdroid-config-before.yml" config.yml
+          else
+            rm -f config.yml
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add repo metadata
+
+          if [ -f config.yml ]; then
+            git add config.yml
+          fi
+
+          if git diff --cached --quiet; then
+            echo "No F-Droid repository changes to publish."
+            exit 0
+          fi
+
+          git commit -m "Publish NewPipe Material ${{ steps.release_info.outputs.version_name }} to F-Droid repo"
+          git push
