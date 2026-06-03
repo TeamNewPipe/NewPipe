@@ -30,12 +30,12 @@ import org.acra.ACRA.init
 import org.acra.ACRA.isACRASenderServiceProcess
 import org.acra.config.CoreConfigurationBuilder
 import org.schabi.newpipe.error.ReCaptchaActivity
-import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.downloader.Downloader
 import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor
 import org.schabi.newpipe.ktx.hasAssignableCause
 import org.schabi.newpipe.settings.NewPipeSettings
 import org.schabi.newpipe.util.BridgeStateSaverInitializer
+import org.schabi.newpipe.util.ExtractorEngineHelper
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.ServiceHelper
 import org.schabi.newpipe.util.StateSaver
@@ -100,11 +100,7 @@ open class App :
         NewPipeSettings.initSettings(this)
         applyDynamicColorsIfAvailable()
 
-        NewPipe.init(
-            getDownloader(),
-            Localization.getPreferredLocalization(this),
-            Localization.getPreferredContentCountry(this)
-        )
+        ExtractorEngineHelper.initSelectedEngine(this, getDownloader())
         Localization.initPrettyTime(Localization.resolvePrettyTime())
 
         BridgeStateSaverInitializer.init(this)

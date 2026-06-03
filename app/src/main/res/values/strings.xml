@@ -47,6 +47,13 @@
     <string name="download_path_audio_title">Audio download folder</string>
     <string name="download_path_audio_summary">Downloaded audio files are stored here</string>
     <string name="download_path_audio_dialog_title">Choose download folder for audio files</string>
+    <string name="extractor_engine_title">Engine</string>
+    <string name="extractor_engine_newpipe">NewPipe Extractor</string>
+    <string name="extractor_engine_pipepipe">PipePipe Extractor</string>
+    <string name="extractor_engine_restart_dialog_title">Restart required</string>
+    <string name="extractor_engine_restart_dialog_message">The selected engine has been saved. Restart the app to apply this change.</string>
+    <string name="extractor_engine_restart_now">Restart now</string>
+    <string name="extractor_engine_restart_later">Later</string>
     <string name="default_resolution_title">Default resolution</string>
     <string name="default_popup_resolution_title">Default popup resolution</string>
     <string name="show_higher_resolutions_title">Show higher resolutions</string>

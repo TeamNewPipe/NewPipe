@@ -120,6 +120,19 @@
         <item>@string/dont_show</item>
     </string-array>
 
+    <string name="extractor_engine_key">extractor_engine</string>
+    <string name="extractor_engine_default_value">newpipe</string>
+    <string name="extractor_engine_newpipe_value">newpipe</string>
+    <string name="extractor_engine_pipepipe_value">pipepipe</string>
+    <string-array name="extractor_engine_entries">
+        <item>@string/extractor_engine_newpipe</item>
+        <item>@string/extractor_engine_pipepipe</item>
+    </string-array>
+    <string-array name="extractor_engine_values">
+        <item>@string/extractor_engine_newpipe_value</item>
+        <item>@string/extractor_engine_pipepipe_value</item>
+    </string-array>
+
     <string name="default_resolution_key">default_resolution</string>
     <string name="default_resolution_value">720p60</string>
     <string name="show_higher_resolutions_key">show_higher_resolutions</string>

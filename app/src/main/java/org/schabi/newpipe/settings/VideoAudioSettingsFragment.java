@@ -1,5 +1,6 @@
 package org.schabi.newpipe.settings;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -9,10 +10,12 @@ import android.widget.Toast;
 
 import androidx.preference.ListPreference;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.ListHelper;
+import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 
 import java.util.LinkedList;
@@ -49,8 +52,26 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
                 updateSeekOptions();
             } else if (getString(R.string.show_higher_resolutions_key).equals(key)) {
                 updateResolutionOptions();
+            } else if (getString(R.string.extractor_engine_key).equals(key)) {
+                showExtractorEngineRestartDialog();
             }
         };
+    }
+
+    private void showExtractorEngineRestartDialog() {
+        final Activity activity = getActivity();
+        if (activity == null) {
+            return;
+        }
+
+        new MaterialAlertDialogBuilder(activity)
+                .setTitle(R.string.extractor_engine_restart_dialog_title)
+                .setMessage(R.string.extractor_engine_restart_dialog_message)
+                .setPositiveButton(R.string.extractor_engine_restart_now,
+                        (dialog, which) -> NavigationHelper.restartApp(activity))
+                .setNegativeButton(R.string.extractor_engine_restart_later,
+                        (dialog, which) -> dialog.dismiss())
+                .show();
     }
 
     /**

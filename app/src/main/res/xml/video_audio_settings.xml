@@ -4,6 +4,16 @@
     android:title="@string/settings_category_video_audio_title">
 
     <ListPreference
+        android:defaultValue="@string/extractor_engine_default_value"
+        android:entries="@array/extractor_engine_entries"
+        android:entryValues="@array/extractor_engine_values"
+        android:key="@string/extractor_engine_key"
+        android:title="@string/extractor_engine_title"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false"
+        app:useSimpleSummaryProvider="true" />
+
+    <ListPreference
         android:defaultValue="@string/default_resolution_value"
         android:entries="@array/resolution_list_description"
         android:entryValues="@array/resolution_list_values"
