@@ -1,0 +1,9 @@
+NewPipe Material 0.28.7-m4
+
+Highlights:
+- Cleaned up release workflow after pausing custom F-Droid repo publishing.
+- Kept GitHub release/artifact publishing with APK signature verification.
+- Shortened release changelog metadata for F-Droid readiness.
+- Prepared release metadata flow for IzzyOnDroid and official F-Droid submission.
+
+Based on NewPipe 0.28.7.
