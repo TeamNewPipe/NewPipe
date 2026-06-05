@@ -139,6 +139,34 @@ public class ChooseTabsFragment extends Fragment {
                 .show();
     }
 
+    private void showTabDialog(final int position, final String tabName) {
+        final int itemCount = tabList.size();
+        final ArrayList<String> options = new ArrayList<>();
+        if (position > 0) {
+            options.add(getString(R.string.move_up));
+        }
+        if (position < itemCount - 1) {
+            options.add(getString(R.string.move_down));
+        }
+        options.add(getString(R.string.delete));
+
+        new AlertDialog.Builder(requireContext())
+                .setTitle(tabName)
+                .setItems(options.toArray(new String[0]), (dialog, which) -> {
+                    final String selected = options.get(which);
+                    if (selected.equals(getString(R.string.move_up))) {
+                        selectedTabsAdapter.swapItems(position, position - 1);
+                    } else if (selected.equals(getString(R.string.move_down))) {
+                        selectedTabsAdapter.swapItems(position, position + 1);
+                    } else if (selected.equals(getString(R.string.delete))) {
+                        showDeleteTabDialog(position, tabName);
+                    }
+                })
+                .setCancelable(true)
+                .setNegativeButton(R.string.cancel, null)
+                .show();
+    }
+
     private void showDeleteTabDialog(final int position, final String tabName) {
         new AlertDialog.Builder(requireContext())
                 .setTitle(tabName)
@@ -399,7 +427,7 @@ public class ChooseTabsFragment extends Fragment {
             private boolean onTabLongClick(final View view) {
                 final int position = getBindingAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
-                    showDeleteTabDialog(position, tabNameView.getText().toString());
+                    showTabDialog(position, tabNameView.getText().toString());
                 }
                 return true;
             }

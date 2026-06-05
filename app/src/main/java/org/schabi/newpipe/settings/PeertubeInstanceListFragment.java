@@ -199,6 +199,42 @@ public class PeertubeInstanceListFragment extends Fragment {
                 .show();
     }
 
+    private void showInstanceDialog(final PeertubeInstance instance, final int position) {
+        final boolean isSelected = instance.getUrl().equals(selectedInstance.getUrl());
+        final int itemCount = instanceListAdapter.getCurrentList().size();
+
+        final ArrayList<String> options = new ArrayList<>();
+        if (position > 0) {
+            options.add(getString(R.string.move_up));
+        }
+        if (position < itemCount - 1) {
+            options.add(getString(R.string.move_down));
+        }
+        if (!isSelected) {
+            options.add(getString(R.string.delete));
+        }
+
+        if (options.isEmpty()) {
+            return;
+        }
+
+        new AlertDialog.Builder(requireContext())
+                .setTitle(instance.getName())
+                .setItems(options.toArray(new String[0]), (dialog, which) -> {
+                    final String selected = options.get(which);
+                    if (selected.equals(getString(R.string.move_up))) {
+                        instanceListAdapter.swapItems(position, position - 1);
+                    } else if (selected.equals(getString(R.string.move_down))) {
+                        instanceListAdapter.swapItems(position, position + 1);
+                    } else if (selected.equals(getString(R.string.delete))) {
+                        showDeleteInstanceDialog(instance, position);
+                    }
+                })
+                .setCancelable(true)
+                .setNegativeButton(R.string.cancel, null)
+                .show();
+    }
+
     private void showDeleteInstanceDialog(final PeertubeInstance instance, final int position) {
         new AlertDialog.Builder(requireContext())
                 .setTitle(instance.getName())
@@ -382,13 +418,7 @@ public class PeertubeInstanceListFragment extends Fragment {
             private boolean onInstanceLongClick(final View view) {
                 final int position = getBindingAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
-                    final PeertubeInstance instance = getItem(position);
-                    // do not allow removing the selected instance
-                    if (instance.getUrl().equals(selectedInstance.getUrl())) {
-                        return true;
-                    }
-
-                    showDeleteInstanceDialog(instance, position);
+                    showInstanceDialog(getItem(position), position);
                 }
                 return true;
             }
