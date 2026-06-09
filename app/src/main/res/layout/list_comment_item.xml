@@ -34,7 +34,7 @@
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemTitleView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/detail_pinned_view"
@@ -43,6 +43,20 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/comment_item_title_text_size"
         tools:text="Author Name, Lorem ipsum • 5 months ago" />
+
+    <TextView
+        android:id="@+id/comment_edited_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/itemTitleView"
+        android:layout_alignBaseline="@+id/itemTitleView"
+        android:layout_marginStart="4dp"
+        android:ellipsize="end"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="@dimen/comment_item_title_text_size"
+        android:visibility="gone"
+        android:text="(edited)" />
+
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemCommentContentView"

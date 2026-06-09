@@ -36,13 +36,14 @@ public class CommentInfoItemHolder extends InfoItemHolder {
     private static final int COMMENT_DEFAULT_LINES = 2;
     private final int commentHorizontalPadding;
     private final int commentVerticalPadding;
-
     private final RelativeLayout itemRoot;
     private final ImageView itemThumbnailView;
     private final TextView itemContentView;
     private final ImageView itemThumbsUpView;
     private final TextView itemLikesCountView;
     private final TextView itemTitleView;
+
+    private final TextView itemEditedView;
     private final ImageView itemHeartView;
     private final ImageView itemPinnedView;
     private final Button repliesButton;
@@ -60,6 +61,7 @@ public class CommentInfoItemHolder extends InfoItemHolder {
         itemThumbsUpView = itemView.findViewById(R.id.detail_thumbs_up_img_view);
         itemLikesCountView = itemView.findViewById(R.id.detail_thumbs_up_count_view);
         itemTitleView = itemView.findViewById(R.id.itemTitleView);
+        itemEditedView = itemView.findViewById(R.id.comment_edited_text);
         itemHeartView = itemView.findViewById(R.id.detail_heart_image_view);
         itemPinnedView = itemView.findViewById(R.id.detail_pinned_view);
         repliesButton = itemView.findViewById(R.id.replies_button);
@@ -101,6 +103,10 @@ public class CommentInfoItemHolder extends InfoItemHolder {
 
         // setup the top row, with pinned icon, author name and comment date
         itemPinnedView.setVisibility(item.isPinned() ? View.VISIBLE : View.GONE);
+
+        // setup the top row, with edited text, author name and comment date
+        itemEditedView.setVisibility(item.isEdited() ? View.VISIBLE : View.GONE);
+
         final String uploaderName = Localization.localizeUserName(item.getUploaderName());
         itemTitleView.setText(Localization.concatenateStrings(
                 uploaderName,
