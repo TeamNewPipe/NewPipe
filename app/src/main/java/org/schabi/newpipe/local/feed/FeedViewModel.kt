@@ -70,7 +70,7 @@ class FeedViewModel(
                     t3: Boolean,
                     t4: Boolean,
                     t5: Long,
-                    t6: List<Instant>
+                    t6: List<Instant?>
                 ->
                 return@Function6 CombineResultEventHolder(t1, t2, t3, t4, t5, t6.firstOrNull())
             }
