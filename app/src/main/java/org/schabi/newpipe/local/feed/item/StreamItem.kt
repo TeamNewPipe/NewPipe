@@ -6,6 +6,8 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import com.xwray.groupie.viewbinding.BindableItem
+import java.util.concurrent.TimeUnit
+import java.util.function.Consumer
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.stream.StreamWithState
@@ -19,9 +21,7 @@ import org.schabi.newpipe.extractor.stream.StreamType.POST_LIVE_STREAM
 import org.schabi.newpipe.extractor.stream.StreamType.VIDEO_STREAM
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.StreamTypeUtil
-import org.schabi.newpipe.util.image.PicassoHelper
-import java.util.concurrent.TimeUnit
-import java.util.function.Consumer
+import org.schabi.newpipe.util.image.CoilHelper
 
 data class StreamItem(
     val streamWithState: StreamWithState,
@@ -101,7 +101,7 @@ data class StreamItem(
             viewBinding.itemProgressView.visibility = View.GONE
         }
 
-        PicassoHelper.loadThumbnail(stream.thumbnailUrl).into(viewBinding.itemThumbnailView)
+        CoilHelper.loadThumbnail(viewBinding.itemThumbnailView, stream.thumbnailUrl)
 
         if (itemVersion != ItemVersion.MINI) {
             viewBinding.itemAdditionalDetails.text =
@@ -132,6 +132,7 @@ data class StreamItem(
                 viewsAndDate.isEmpty() -> uploadDate!!
                 else -> Localization.concatenateStrings(viewsAndDate, uploadDate)
             }
+
             else -> viewsAndDate
         }
     }

@@ -1,1 +1,4 @@
-Corrigido YouTube não reproduzir qualquer transmissão
+Corrigido o problema do YouTube não reproduzir nenhum vídeo.
+
+Esta versão corrige apenas o erro mais urgente que impede o carregamento de detalhes dos vídeos do YouTube.
+Estamos cientes de que existem outros problemas e, em breve, lançaremos uma versão separada para resolvê-los.

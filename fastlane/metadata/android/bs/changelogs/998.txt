@@ -1,0 +1,4 @@
+Ispravljena greška zbog koje YouTube nije reproducirao nijedan tok zbog HTTP 403 greške.
+
+Povremene HTTP 403 greške usred YouTube videa još nisu ispravljene.
+Taj problem će biti riješen u drugom izdanju hitne ispravke što je prije moguće.

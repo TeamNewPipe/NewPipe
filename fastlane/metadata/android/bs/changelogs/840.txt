@@ -1,0 +1,22 @@
+Novo
+• Dodan je birač jezika za promjenu jezika aplikacije
+• Dodano je dugme "pošalji na Kodi" u sklopivi meni plejera
+• Dodana je mogućnost kopiranja komentara dugim pritiskom
+
+Poboljšano
+• Ispravljena je ReCaptcha aktivnost i ispravno spremanje dobijenih kolačića
+• Uklonjen je meni s tačkama u korist dugmeta "ladica" i "sakrivanje historije" kada historija gledanja nije omogućena u postavkama
+• Ispravno traženje dozvole za prikaz preko drugih aplikacija u postavkama na Androidu 6 i novijim verzijama
+• Preimenovanje lokalne liste za reprodukciju dugim klikom u BookmarkFragmentu
+• Različita poboljšanja PeerTubea
+• Poboljšano je nekoliko izvornih nizova na engleskom jeziku
+
+Ispravljeno
+• Ispravljeno je ponovno pokretanje plejera iako je pauziran kada je omogućena opcija "minimiziraj pri prebacivanju aplikacija" i NewPipe je minimiziran
+• Ispravljena je početna vrijednost svjetline za gestu
+• Ispravljena su preuzimanja .srt titlova koja nisu sadržavala sve prijelome reda
+• Ispravljeno je neuspješno preuzimanje na SD karticu jer neki Android 5 uređaji nisu kompatibilni sa CTF-om
+• Ispravljeno je preuzimanje na Android KitKat-u
+• Ispravljena je oštećena video .mp4 datoteka koja se prepoznaje kao audio datoteka
+• Ispravljeni su višestruki problemi s lokalizacijom, uključujući pogrešne kineske jezičke kodove
+• [YouTube] Vremenske oznake u opisu su ponovo dostupne za klikanje

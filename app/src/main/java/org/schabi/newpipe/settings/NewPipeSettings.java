@@ -157,7 +157,7 @@ public final class NewPipeSettings {
                 prefs.getInt(disabledTunnelingAutomaticallyKey, -1) == 0
                         && !prefs.getBoolean(disabledTunnelingKey, false);
 
-        if (App.getApp().isFirstRun()
+        if (App.getInstance().isFirstRun()
                 || (wasDeviceBlacklistUpdated && !wasMediaTunnelingEnabledByUser)) {
             setMediaTunneling(context);
         }

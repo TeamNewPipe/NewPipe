@@ -328,7 +328,7 @@
     <string name="player_recoverable_failure">گێڕانەوەی کارپێکەر بۆکاتی پێش کێشە</string>
     <string name="invalid_directory">هەمان فۆڵدەر بوونی نییە</string>
     <string name="invalid_source">هەمان فایل/بابەت بوونی نییە</string>
-    <string name="info_labels">چی:\\nداواکراو:\\nناوەڕۆک:\\nلانگ:\\nخزمەتگوزاری:\\nGMT:\\nکات:\\nپاکێج:\\nوەشان:\\nوەشانی سیستەم:</string>
+    <string name="info_labels">چی:\nداواکراو:\nناوەڕۆک:\nلانگ:\nخزمەتگوزاری:\nGMT:\nکات:\nپاکێج:\nوەشان:\nوەشانی سیستەم:</string>
     <string name="settings_file_charset_title">هێما ڕێگەپێدراوەکان لە فایلێکی ناویدا</string>
     <string name="settings_file_replacement_character_summary">هێما نادروستەکان بەم بەهایە جێگۆڕکێ دەکرێن</string>
     <string name="settings_file_replacement_character_title">هێمای جێگۆڕین</string>
@@ -499,9 +499,8 @@
     <string name="artists">هونەرمەندەکان</string>
     <string name="albums">ئەلبوومەکان</string>
     <string name="songs">گۆرانییەکان</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">بەڵێ، لەگەڵ ڤیدیۆ تەماشاکراوەکانەوە</string>
-    <string name="remove_watched_popup_warning">ئەو ڤیدیۆیانەی پێشتر سەیرت کردوون و دواتر زیادت کردوون بۆ لیستەلێدان دەسڕێنەوە.
-\nئایا دڵنیایت؟ ئەمە ناگەڕێنرێتەوە!</string>
+    <string name="remove_watched_popup_partially_watched_streams">بەڵێ، لەگەڵ ڤیدیۆ تەماشاکراوەکانەوە</string>
+    <string name="remove_watched_popup_warning">ئەو ڤیدیۆیانەی پێشتر سەیرت کردوون و دواتر زیادت کردوون بۆ لیستەلێدان دەسڕێنەوە. \nئایا دڵنیایت؟ ئەمە ناگەڕێنرێتەوە!</string>
     <string name="remove_watched_popup_title">ڤیدیۆ تەماشاکراوەکان بسڕێنەوە؟</string>
     <string name="remove_watched">سڕینەوەی تەماشاکراوەکان</string>
     <string name="show_original_time_ago_summary">دەقە بنچینەییەکان لە خزمەتگوزارییەکانەوە لە بابەتی پەخشەکاندا دیار دەبن</string>

@@ -16,7 +16,7 @@
     <string name="ok">Լավ</string>
     <string name="delete">Ջնջել</string>
     <string name="start">Սկսել</string>
-    <string name="detail_likes_img_view_description">Հավանում եմ</string>
+    <string name="detail_likes_img_view_description">Հավանումներ</string>
     <string name="detail_dislikes_img_view_description">Չեմ հավանում</string>
     <string name="clear">Մաքրել</string>
     <string name="upload_date_text">Հրապարակվել է %1$s</string>
@@ -228,7 +228,7 @@
     <string name="sort">Դասավորել</string>
     <string name="detail_pinned_comment_view_description">Գամված մեկնաբանություն</string>
     <string name="account_terminated">Հաշիվը կասեցված է</string>
-    <string name="channel_tab_about"/>
+    <string name="channel_tab_about">Մասին</string>
     <string name="channel_tab_albums">Ալբոմներ</string>
     <string name="yes">Այո</string>
     <string name="no">Ոչ</string>
@@ -243,4 +243,39 @@
     <string name="unknown_audio_track">Անհայտ</string>
     <string name="did_you_mean">Նկատի ունե՞ս «%1$s»</string>
     <string name="volume">Բարձրություն</string>
+    <string name="kao_solution">Լուծում</string>
+    <string name="kao_dialog_more_info">Մանրամասներ</string>
+    <plurals name="replies">
+        <item quantity="one">%s պատասխան</item>
+        <item quantity="other">%s պատասխաններ</item>
+    </plurals>
+    <string name="share_playlist">Կիսվել նվագացանկով</string>
+    <string name="forward">Առաջ տանել</string>
+    <string name="play">Նվագել</string>
+    <string name="duration">Տևողություն</string>
+    <string name="rewind">Հետ տանել</string>
+    <string name="open_play_queue">Բացել նվագացանկը</string>
+    <string name="channel_tab_likes">Հավանումներ</string>
+    <string name="channel_tab_shorts">Կարճեր</string>
+    <string name="feed_show_partially_watched">Մասնակի դիտված</string>
+    <string name="feed_show_watched">Ամբողչովին դիտված</string>
+    <string name="on">Միացված</string>
+    <string name="off">Անջատված</string>
+    <string name="metadata_subscribers">Բաժանորդագրվածներ</string>
+    <string name="metadata_privacy_internal">Ներքին</string>
+    <string name="metadata_privacy_private">Անձնական</string>
+    <string name="downloads_storage_ask_title">Հարցնել որտեղ ներբեռնել</string>
+    <string name="any_network">Կամայական ցանցով</string>
+    <string name="playlist_creation_success">Նվագացանկը ստեղծվեց</string>
+    <string name="create_playlist">Նոր նվագացանկ</string>
+    <string name="albums">Ալբոմներ</string>
+    <string name="artists">Արվեստագետներ</string>
+    <string name="donation_title">Նվիրել</string>
+    <string name="dismiss">Անտեսել</string>
+    <string name="short_thousand">%sՀզր</string>
+    <string name="short_million">%sՄլն</string>
+    <string name="short_billion">%sԲլն</string>
+    <string name="error_snackbar_action">Ազդարարել</string>
+    <string name="invalid_directory">Այդպիսի պանակ չկա</string>
+    <string name="tab_bookmarks_short">Նվագացանկեր</string>
 </resources>

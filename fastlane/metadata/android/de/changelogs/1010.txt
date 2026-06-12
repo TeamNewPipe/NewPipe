@@ -1,0 +1,9 @@
+NullPointerException beim Einreihen von Aktionen durch den Anwendungskontext behoben
+[YouTube] Problem beim Analysieren der Elementdauer behoben
+
+Übersetzungen aktualisiert und nicht übersetzte Sprachversionen entfernt
+Kleinere Verbesserungen bei der Handhabung von Bildern
+
+Änderungen im Zusammenhang mit Abonnements aus der Refaktorisierung übertragen
+Änderungen im Zusammenhang mit Pfaden aus der Refaktorisierung übertragen
+Abhängigkeiten und Gradle auf die neueste stabile Version aktualisiert

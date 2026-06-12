@@ -1,9 +1,9 @@
 package org.schabi.newpipe.database
 
 import androidx.room.TypeConverter
+import java.time.Instant
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.local.subscription.FeedGroupIcon
-import java.time.Instant
 
 class Converters {
     /**

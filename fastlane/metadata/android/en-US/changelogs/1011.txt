@@ -1,0 +1,1 @@
+Add popup to inform users that v0.28.7 will drop support for Android 5

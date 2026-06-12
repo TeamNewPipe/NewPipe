@@ -1,0 +1,13 @@
+Novo
+• Dodana je opcija "Dodaj na listu za reprodukciju" u meni za dijeljenje
+• Dodana je podrška za kratke linkove na y2u.be i PeerTube
+
+Poboljšano
+• Kontrole brzine reprodukcije su kompaktnije
+• Feed sada ističe nove stavke
+• Opcija "Prikaži gledane stavke" u feedu je sada sačuvana
+
+Ispravljeno
+• Ispravljeno izdvajanje lajkova i nesviđanja na YouTubeu
+• Ispravljena je automatska reprodukcija nakon povratka iz pozadine
+I još mnogo toga

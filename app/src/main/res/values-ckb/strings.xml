@@ -12,7 +12,7 @@
 \n
 \nبۆیە هەڵژرادن بۆ خۆت دەگەڕێتەوە: زانیاری تەواو یان خێرا.</string>
     <string name="app_license">نیوپایپ نه‌رمه‌والایه‌كی سەرچاوە کراوەیە : دەتوانیت بەکاریبهێنیت، بیخوێنیتەوە، هاوبەشی پێبکەیت ،بەرەوپێشی ببەیت. بەتایبەتی دەتوانی دابەشیبکەیتەوە یاخوود بگۆڕیت بەپێی مەرجەکانی GNU مۆڵەتنامەی گشتی وەک نه‌رمه‌واڵایه‌كی بڵاوی خۆڕایی, بەهۆی وەشانی ٣ ی مۆڵەتنامە، یان هەر وەشانێکی دوواتر.</string>
-    <string name="info_labels">چی:\\nداواكاری:\\nزمانی بابەت:\\nوڵاتی بابەت:\\nزمانی به‌رنامه‌:\\nخزمه‌تگوزاری:\\nGMT كات:\\nپاكێج:\\nوه‌شان:\\nOS وه‌شان:</string>
+    <string name="info_labels">چی:\nداواكاری:\nزمانی بابەت:\nوڵاتی بابەت:\nزمانی به‌رنامه‌:\nخزمه‌تگوزاری:\nGMT كات:\nپاكێج:\nوه‌شان:\nOS وه‌شان:</string>
     <string name="privacy_policy_encouragement">پڕۆژەی نیوپایپ زانیارییە تایبەتییەکانت بە وردی دەپارێزێت. هەروەها به‌رنامه‌كه‌ هیچ زانایارییەکت بەبێ ئاگاداری تۆ بەکارنابات.
 \n‫سیاسەتی تایبەتی نیوپایپ بە وردی ڕوونکردنەوەت دەداتێ لەسەر ئەو زانیاریانەی وەریاندەگرێت و بەکاریاندەبات.</string>
     <string name="download_to_sdcard_error_message">ناتوانرێت لە بیرگەی دەرەکیدا داببەزێنرێت . شوێنی فۆڵده‌ری دابه‌زاندنەکان ڕێکبخرێتەوە؟</string>
@@ -191,8 +191,7 @@
     <string name="top_50">باشترین ٥٠</string>
     <string name="peertube_instance_add_https_only">تەنها بەستەرەکانی https پشتگیریکراون</string>
     <string name="error_ssl_exception">پەیوەستبوونی پارێزراو هه‌ره‌سی هێنا</string>
-    <string name="remove_watched_popup_warning">ئەو ڤیدیۆیانەی پێشتر سەیرت کردوون و دواتر زیادت کردوون بۆ خشتەلێدان لادەدرێن.
-\nئایا دڵنیایت؟ ئەمە ناگەڕێنرێتەوە!</string>
+    <string name="remove_watched_popup_warning">ئەو ڤیدیۆیانەی پێشتر سەیرت کردوون و دواتر زیادت کردوون بۆ خشتەلێدان لادەدرێن. \nئایا دڵنیایت؟ ئەمە ناگەڕێنرێتەوە!</string>
     <string name="detail_sub_channel_thumbnail_view_description">وێنۆچکەی سه‌روێنه‌ی کەناڵ</string>
     <string name="import_settings">دەتەوێت ڕێکخستنەکانیش هاوردە بكرینه‌وه‌؟</string>
     <string name="no_player_found">هیچ لێدەرێکی ڤیدیۆیی نه‌دۆزرایه‌وه‌. ده‌ته‌وێت VLC دابمەزرێنیت؟</string>
@@ -350,7 +349,7 @@
     <string name="hold_to_append">په‌نجه‌ڕاگرتن له‌سه‌ری بۆ نۆبه‌ت نه‌بوون</string>
     <string name="max_retry_desc">زۆرترین ژمارەی هەوڵدان پێش پاشگەزبوونەوە لە دابەزاندنەکە</string>
     <string name="general_error">هەڵه‌</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">بەڵێ، لەگەڵ ڤیدیۆ سەیر کراوەکانەوە</string>
+    <string name="remove_watched_popup_partially_watched_streams">بەڵێ، لەگەڵ ڤیدیۆ سەیر کراوەکانەوە</string>
     <string name="start_here_on_popup">دەستپێکردنی لێدان لە پەنجەرەوه‌</string>
     <string name="detail_dislikes_img_view_description">نابەدڵه‌كان</string>
     <string name="title_activity_history">مێژوو</string>
@@ -626,8 +625,6 @@
     <string name="dont_show">پیشان نەدرێت</string>
     <string name="low_quality_smaller">کواڵێتی نزم (بچووکتر)</string>
     <string name="high_quality_larger">کواڵێتی بەرز (گەورەتر)</string>
-    <string name="show_image_indicators_summary">پیشاندانی شریتە ڕەنگکراوەکانی پیکاسۆ لەسەرووی وێنەکانەوە بۆ بەدیار خستنی سەرچاوەکانیان : سوور بۆ تۆڕ ، شین بۆ دیسک و سەوز بۆ بیرگە</string>
-    <string name="show_image_indicators_title">پیشاندانی دیارخەرەکانی وێنە</string>
     <string name="remote_search_suggestions">پێشنیازکراوەکانی گەڕانی ڕیمۆت</string>
     <string name="local_search_suggestions">پێشنیازکراوەکانی گەڕانی نێوخۆیی</string>
     <string name="mark_as_watched">دیارکردن وەک بینراو</string>

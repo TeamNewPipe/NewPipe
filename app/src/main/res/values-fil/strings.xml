@@ -249,7 +249,7 @@
     <string name="tracks">Mga track</string>
     <string name="users">Mga gumagamit</string>
     <string name="metadata_age_limit">Hangganan ng Edad</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Oo, pati na rin ang mga napanood nang video</string>
+    <string name="remove_watched_popup_partially_watched_streams">Oo, pati na rin ang mga napanood nang video</string>
     <string name="auto_device_theme_title">Kusa (tema ng device)</string>
     <string name="delete_view_history_alert">Tanggalin ang kabuuan ng watch history?</string>
     <string name="no_streams_available_download">Walang mga stream na maaaring i-download</string>

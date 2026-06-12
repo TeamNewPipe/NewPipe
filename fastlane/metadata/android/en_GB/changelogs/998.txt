@@ -1,0 +1,4 @@
+Fixed YouTube not playing any stream because of HTTP 403 errors.
+
+Occasional HTTP 403 errors in the middle of a YouTube video are not fixed yet.
+That issue will be addressed in another hotfix release as soon as possible.

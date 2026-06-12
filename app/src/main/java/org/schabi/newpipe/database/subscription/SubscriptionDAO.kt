@@ -99,8 +99,8 @@ abstract class SubscriptionDAO : BasicDAO<SubscriptionEntity> {
             if (uidFromInsert != -1L) {
                 entity.uid = uidFromInsert
             } else {
-                val subscriptionIdFromDb = getSubscriptionIdInternal(entity.serviceId, entity.url)
-                    ?: throw IllegalStateException("Subscription cannot be null just after insertion.")
+                val subscriptionIdFromDb = getSubscriptionIdInternal(entity.serviceId, entity.url!!)
+                    ?: error("Subscription cannot be null just after insertion.")
                 entity.uid = subscriptionIdFromDb
 
                 update(entity)

@@ -104,7 +104,7 @@
     <string name="player_unrecoverable_failure">Allvarligt spelarfel inträffade</string>
     <string name="player_recoverable_failure">Återhämtar sig från spelarfel</string>
     <string name="error_report_button_text">Rapportera via e-post</string>
-    <string name="info_labels">Vad:\\nBegäran:\\nInnehållsspråk:\\nInnehållsland:\\nApp-språk:\\nTjänst:\\nGMT-tid:\\nPaket:\\nVersion:\\nOS-version:</string>
+    <string name="info_labels">Vad:\nBegäran:\nInnehållsspråk:\nInnehållsland:\nApp-språk:\nTjänst:\nGMT-tid:\nPaket:\nVersion:\nOS-version:</string>
     <string name="detail_thumbnail_view_description">Spela video, längd:</string>
     <string name="detail_uploader_thumbnail_view_description">Uppladdarens avatar-miniatyrbild</string>
     <string name="search_no_results">Inga resultat</string>
@@ -144,7 +144,7 @@
 \nöppna i popup-läge</string>
     <string name="title_activity_recaptcha">reCAPTCHA utmaning</string>
     <string name="recaptcha_request_toast">reCAPTCHA utmaning begärd</string>
-    <string name="settings_category_downloads_title">Hämta</string>
+    <string name="settings_category_downloads_title">Hämtning</string>
     <string name="settings_file_charset_title">Tillåtna tecken i filnamn</string>
     <string name="settings_file_replacement_character_summary">Ogiltiga tecken ersätts med detta värde</string>
     <string name="settings_file_replacement_character_title">Ersättningstecken</string>
@@ -166,12 +166,12 @@
     <string name="delete_item_search_history">Vill du ta bort det här objektet från sökhistoriken?</string>
     <string name="main_page_content">Huvudsidans innehåll</string>
     <string name="blank_page_summary">Tom sida</string>
-    <string name="kiosk_page_summary">Kiosk sida</string>
-    <string name="channel_page_summary">Kanal-sida</string>
+    <string name="kiosk_page_summary">Kiosksida</string>
+    <string name="channel_page_summary">Kanalsida</string>
     <string name="select_a_channel">Välj en kanal</string>
     <string name="no_channel_subscribed_yet">Inga kanal prenumerationer ännu</string>
     <string name="select_a_kiosk">Välj en kiosk</string>
-    <string name="trending">Trendande</string>
+    <string name="trending">Populärt</string>
     <string name="top_50">Topp 50</string>
     <string name="new_and_hot">Nytt och populärt</string>
     <string name="play_queue_remove">Ta bort</string>
@@ -473,10 +473,9 @@
         <item quantity="other">%d sekunder</item>
     </plurals>
     <string name="new_seek_duration_toast">På grund av ExoPlayer-begränsningar sattes söktiden till %d sekunder</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, och delvis tittade videor</string>
-    <string name="remove_watched_popup_warning">Videor som har spelats före och efter att de har lagts till i spellistan kommer att tas bort.
-\nÄr du säker\? Detta kan inte ångras!</string>
-    <string name="remove_watched_popup_title">Ta bort tittade videor\?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Ja, och delvis tittade videor</string>
+    <string name="remove_watched_popup_warning">Strömningar som har spelats före och efter att de har lagts till i spellistan kommer att tas bort. \nÄr du säker?</string>
+    <string name="remove_watched_popup_title">Ta bort tittade strömningar?</string>
     <string name="remove_watched">Ta bort tittade</string>
     <string name="systems_language">Systemstandard</string>
     <string name="app_language_title">Appspråk</string>
@@ -628,7 +627,6 @@
     <string name="select_night_theme_toast">Du kan välja det natt-tema du föredrar nedan</string>
     <string name="night_theme_summary">Välj det natt-tema du föredrar — %s</string>
     <string name="seekbar_preview_thumbnail_title">Sökradens förhandsvisningsminiatyr</string>
-    <string name="show_image_indicators_title">Visa bildindikatorer</string>
     <string name="local_search_suggestions">Lokala sökningsförslag</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">Tog bort %1$s nedladdning</item>
@@ -646,7 +644,6 @@
     <string name="main_page_content_swipe_remove">Svep objekt för att ta bort dem</string>
     <string name="remote_search_suggestions">Förslag via fjärrsökning</string>
     <string name="start_main_player_fullscreen_summary">Starta inte videor i minispelaren, utan byt till helskärmsläge direkt, om automatisk rotation är låst. Du kan fortfarande komma åt minispelaren genom att gå ut ur helskärmsläge</string>
-    <string name="show_image_indicators_summary">Visa Picasso färgade band ovanpå bilderna som anger deras källa: rött för nätverk, blått för disk och grönt för minne</string>
     <string name="check_for_updates">Sök efter uppdateringar</string>
     <string name="manual_update_description">Kolla manuellt efter nya versioner</string>
     <string name="checking_updates_toast">Söker efter uppdateringar…</string>
@@ -825,4 +822,49 @@
     <string name="select_a_feed_group">Välj en flödesgrupp</string>
     <string name="no_feed_group_created_yet">Ingen flödesgrupp har skapats ännu</string>
     <string name="feed_group_page_summary">Kanalgruppsida</string>
+    <string name="search_with_service_name">Sök %1$s</string>
+    <string name="search_with_service_name_and_filter">Sök %1$s (%2$s)</string>
+    <string name="short_thousand">%sK</string>
+    <string name="short_million">%sM</string>
+    <string name="short_billion">%sB</string>
+    <string name="channel_tab_likes">Gillar</string>
+    <string name="migration_info_6_7_title">SoundCloud Topp 50-sida borttagen</string>
+    <string name="migration_info_6_7_message">SoundCloud har lagt ner de ursprungliga topp 50-listorna. Motsvarande flik har tagits bort från din startsida.</string>
+    <string name="migration_info_7_8_title">YouTubes kombinerade trender har tagits bort</string>
+    <string name="migration_info_7_8_message">YouTube har upphört med den kombinerade trendsidan från och med den 21 juli 2025. NewPipe ersatte standardtrendsidan med trendiga livestreams.\n\nDu kan också välja olika trendsidor i \"Inställningar &gt; Innehåll &gt; Innehåll på huvudsidan\".</string>
+    <string name="trending_gaming">Speltrender</string>
+    <string name="trending_podcasts">Trendiga poddar</string>
+    <string name="trending_movies">Populära filmer och serier</string>
+    <string name="trending_music">Populär musik</string>
+    <string name="permission_display_over_apps_message">För att använda Popup Player, välj %1$s i följande Android-inställningsmeny och aktivera %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">\"Tillåt visning över andra appar\"</string>
+    <string name="delete_file">Ta bort fil</string>
+    <string name="delete_entry">Ta bort post</string>
+    <string name="account_terminated_service_provides_reason">Konto avslutat\n\n%1$s anger denna anledning: %2$s</string>
+    <string name="entry_deleted">Posten borttagen</string>
+    <string name="player_http_403">HTTP-fel 403 mottogs från servern under uppspelning, troligen orsakat av att streaming-URL:en har löpt ut eller att en IP-adress har blockerats</string>
+    <string name="player_http_invalid_status">HTTP-fel %1$s mottogs från servern under spelning</string>
+    <string name="youtube_player_http_403">HTTP-fel 403 mottogs från servern under spelning, troligen orsakat av en IP-avstängning eller problem med deobfuskering av streaming-URL:er</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s vägrade att lämna ut data och bad om en inloggning för att bekräfta att den som begärde detta inte är en bot.\n\nDin IP-adress kan ha blivit tillfälligt avstängd av %1$s. Du kan vänta en stund eller byta till en annan IP-adress (till exempel genom att slå på/av ett VPN eller genom att byta från Wi-Fi till mobildata).\n\nSe <a href="%2$s">denna FAQ-post</a> för mer information.</string>
+    <string name="unsupported_content_in_country">Detta innehåll är inte tillgängligt för det valda innehållslandet.\n\nÄndra ditt val från \"Inställningar &gt; Innehåll &gt; Standardinnehållsland\".</string>
+    <string name="kao_dialog_warning">I augusti 2025 meddelade Google att från och med september 2026 kommer installation av appar att kräva utvecklarverifiering för alla Android-appar på certifierade enheter, inklusive de som installerats utanför Play Store. Eftersom utvecklarna av NewPipe inte godkänner detta krav kommer NewPipe inte längre att fungera på certifierade Android-enheter efter den tiden.</string>
+    <string name="kao_dialog_more_info">Detaljer</string>
+    <string name="kao_solution">Lösning</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">Exporterar %d prenumeration…</item>
+        <item quantity="other">Exporterar %d prenumerationer…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">Importerar %d prenumeration…</item>
+        <item quantity="other">Importerar %d prenumerationer…</item>
+    </plurals>
+    <string name="import_subscriptions_title">Importera prenumerationer</string>
+    <string name="export_subscriptions_title">Exportera prenumerationer</string>
+    <string name="import_subscriptions_summary">Importera prenumerationer från en tidigare .json-export</string>
+    <string name="export_subscriptions_summary">Exportera dina prenumerationer till en .json-fil</string>
+    <string name="import_from_previous_export">Importera från tidigare export</string>
+    <plurals name="load_subscriptions">
+        <item quantity="one">Läser in %d prenumeration…</item>
+        <item quantity="other">Läser in %d prenumerationer…</item>
+    </plurals>
 </resources>

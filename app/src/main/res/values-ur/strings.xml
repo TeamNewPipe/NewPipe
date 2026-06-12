@@ -133,7 +133,7 @@
     <string name="error_snackbar_action">رپورٹ کریں</string>
     <string name="what_device_headline">معلومات:</string>
     <string name="what_happened_headline">کیا ہوا:</string>
-    <string name="info_labels">کیا ہوا:\\nدرخواست:\\nمواد کی زبان:\\nملک:\\nایپ کی زبان:\\nسروس:\\nجی ایم ٹٰ:\\nوقت:\\nپیکیج:\\nورژن:\\nآپریٹنگ سسٹم ورزن:</string>
+    <string name="info_labels">کیا ہوا:\nدرخواست:\nمواد کی زبان:\nملک:\nایپ کی زبان:\nسروس:\nجی ایم ٹٰ:\nوقت:\nپیکیج:\nورژن:\nآپریٹنگ سسٹم ورزن:</string>
     <string name="your_comment">آپ کا تبصرہ (انگریزی میں):</string>
     <string name="error_details_headline">تفصیلات:</string>
     <string name="detail_thumbnail_view_description">ویڈیو چلائیں، دورانیہ:</string>

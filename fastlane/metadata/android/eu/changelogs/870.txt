@@ -1,0 +1,2 @@
+Hau NewPipe eguneratzen duen zuzenketa bat da, SoundCloud arazorik gabe berriro erabili ahal izateko.
+SoundCloud-en v2 APIa erabiltzen da orain erauzgailuan eta bezero ID baliogabeen detekzioa hobetu da.

@@ -1,13 +1,13 @@
 package org.schabi.newpipe.util
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
-import org.ocpsoft.prettytime.PrettyTime
 import java.time.Instant
 import java.time.LocalDate
 import java.time.Month
 import java.time.ZoneId
 import java.util.Locale
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import org.ocpsoft.prettytime.PrettyTime
 
 class LocalizationTest {
     @Test(expected = NullPointerException::class)

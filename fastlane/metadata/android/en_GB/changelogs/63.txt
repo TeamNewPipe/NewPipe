@@ -1,0 +1,8 @@
+### Improvements
+- Import/export settings #1333 
+- Reduce overdraw (performance improvement) #1371 
+- Small code improvements #1375 
+- Add everything about GDPR #1420
+
+### Fixed
+- Downloader: Fix crash on loading unfinished downloads from .giga files #1407

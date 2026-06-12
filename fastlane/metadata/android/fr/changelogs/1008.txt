@@ -1,0 +1,4 @@
+∙ Correction de la reprise des flux à la dernière position de lecture.
+∙ [YouTube] Ajout de la prise en charge d'autres formats d'URL de chaîne.
+∙ [YouTube] Ajout de la prise en charge d'autres formats de métadonnées vidéo.
+∙ Mise à jour des traductions

@@ -1,0 +1,7 @@
+Učitajte dovoljno početnih stavki u listama da popune cijeli ekran i da se riješi problem skrolovanja na tabletima i televizorima
+Ispravite nasumična rušenja prilikom skrolovanja kroz liste
+Neka se luk preklapanja brzog pretraživanja plejera nalazi ispod sistemskog korisničkog interfejsa
+Vratite promjene izreza prilikom reprodukcije u više prozora, što je uzrokovalo regresiju pogrešno postavljenog plejera na nekim telefonima
+Povećajte compileSdk sa 30 na 31
+Ažurirajte biblioteku za prijavljivanje grešaka
+Refaktorišite dio koda u plejeru

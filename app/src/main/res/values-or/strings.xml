@@ -190,8 +190,7 @@
     <string name="use_external_video_player_summary">କିଛି ରେଜୋଲୁସନରେ ଅଡିଓ ଅପସାରଣ କରେ</string>
     <string name="show_higher_resolutions_title">ଉଚ୍ଚ ରେଜୋଲୁସନ ଦେଖାନ୍ତୁ</string>
     <string name="show_play_with_kodi_title">\"କୋଡି ସହିତ ଖୋଲନ୍ତୁ\" ବିକଳ୍ପ ଦେଖାନ୍ତୁ</string>
-    <string name="remove_watched_popup_warning">ପ୍ଲେ ଲିଷ୍ଟରେ ଯୋଡାଯିବା ପୂର୍ବରୁ ଏବଂ ପରେ ଦେଖାଯାଇଥିବା ଭିଡିଓଗୁଡିକ ଅପସାରିତ ହେବ ।
-\nତମେ ନିଶ୍ଚିତ କି\? ଏହାକୁ ପୂର୍ବବତ୍ କରାଯାଇପାରିବ ନାହିଁ!</string>
+    <string name="remove_watched_popup_warning">ପ୍ଲେ ଲିଷ୍ଟରେ ଯୋଡାଯିବା ପୂର୍ବରୁ ଏବଂ ପରେ ଦେଖାଯାଇଥିବା ଭିଡିଓଗୁଡିକ ଅପସାରିତ ହେବ । \nତମେ ନିଶ୍ଚିତ କି? ଏହାକୁ ପୂର୍ବବତ୍ କରାଯାଇପାରିବ ନାହିଁ!</string>
     <string name="crash_the_player">ପ୍ଲେୟାରକୁ କ୍ରାସ୍ କରନ୍ତୁ</string>
     <string name="default_audio_format_title">ଡିଫଲ୍ଟ ଅଡିଓ ଫର୍ମାଟ୍</string>
     <string name="use_inexact_seek_summary">ଅକ୍ଷୟ ସନ୍ଧାନ ପ୍ଲେୟାରକୁ ହ୍ରାସ ହୋଇଥିବା ସଠିକତା ସହିତ ଶୀଘ୍ର ପଦବୀ ଖୋଜିବାକୁ ଅନୁମତି ଦିଏ । 5, 15 କିମ୍ବା 25 ସେକେଣ୍ଡ ଖୋଜିବା ଏହା ସହିତ କାମ କରେ ନାହିଁ</string>
@@ -341,7 +340,6 @@
     <string name="show_original_time_ago_summary">ସେବାଗୁଡିକରୁ ମୂଳ ଲେଖା ଷ୍ଟ୍ରିମ୍ ଆଇଟମ୍ ଗୁଡିକରେ ଦୃଶ୍ୟମାନ ହେବ</string>
     <string name="disable_media_tunneling_title">ମିଡିଆ ଟନେଲିଂକୁ ଅକ୍ଷମ କରନ୍ତୁ</string>
     <string name="disable_media_tunneling_summary">ଯଦି ଆପଣ ଏକ କଳା ପରଦା ଅନୁଭବ କରନ୍ତି କିମ୍ବା ଭିଡିଓ ପ୍ଲେବେକ୍ ଉପରେ ଝୁଣ୍ଟି ପଡ଼ନ୍ତି ତେବେ ମିଡିଆ ଟନେଲିଂକୁ ଅକ୍ଷମ କରନ୍ତୁ ।</string>
-    <string name="show_image_indicators_summary">ଚିତ୍ରଗୁଡ଼ିକର ଉପରେ ପିକାସୋ ରଙ୍ଗୀନ ଫିତା ଦେଖାନ୍ତୁ: ସେମାନଙ୍କର ଉତ୍ସକୁ ସୂଚାଇଥାଏ: ନେଟୱାର୍କ ପାଇଁ ନାଲି, ଡିସ୍କ ପାଇଁ ନୀଳ ଏବଂ ସ୍ମୃତି ପାଇଁ ସବୁଜ</string>
     <string name="import_title">ଆମଦାନି କରନ୍ତୁ</string>
     <string name="import_from">ଠାରୁ ଆମଦାନୀ କରନ୍ତୁ</string>
     <string name="import_ongoing">ଆମଦାନି…</string>
@@ -412,7 +410,7 @@
     <string name="check_for_updates">ଅଦ୍ୟତନ ପାଇଁ ଯାଞ୍ଚ କରନ୍ତୁ</string>
     <string name="manual_update_description">ନୂତନ ସଂସ୍କରଣଗୁଡ଼ିକ ପାଇଁ ମାନୁଆଲ ଯାଞ୍ଚ କରନ୍ତୁ</string>
     <string name="missions_header_pending">ବିଚାରାଧୀନ ଅଛି</string>
-    <string name="remove_watched_popup_title">ଦେଖାଯାଇଥିବା ଭିଡିଓଗୁଡିକ ଅପସାରଣ କରିବେ କି\?</string>
+    <string name="remove_watched_popup_title">ଦେଖାଯାଇଥିବା ଭିଡିଓଗୁଡିକ ଅପସାରଣ କରିବେ କି?</string>
     <string name="description_select_disable">ବର୍ଣ୍ଣନାରେ ପାଠ ବାଛିବା ଅକ୍ଷମ କରନ୍ତୁ</string>
     <string name="error_ssl_exception">ଏକ ସୁରକ୍ଷିତ ସଂଯୋଗ ସ୍ଥାପନ କରିପାରିଲା ନାହିଁ</string>
     <string name="drawer_header_description">ଟୋଗଲ୍ ସେବା, ବର୍ତ୍ତମାନ ମନୋନୀତ:</string>
@@ -462,7 +460,7 @@
     <string name="invalid_file">ଫାଇଲ୍ ବିଦ୍ୟମାନ ନାହିଁ କିମ୍ବା ଏହାକୁ ପଢ଼ିବା କିମ୍ବା ଲେଖିବା ପାଇଁ ଅନୁମତି ଅଭାବ</string>
     <string name="invalid_directory">ଏପରି ଫୋଲ୍ଡର ନାହିଁ</string>
     <string name="saved_tabs_invalid_json">ସଞ୍ଚିତ ଟ୍ୟାବଗୁଡିକ ପଢ଼ି ପାରିଲା ନାହିଁ, ତେଣୁ ଡିଫଲ୍ଟଗୁଡିକ ବ୍ୟବହାର କରି</string>
-    <string name="info_labels">କଣ:\\nRequest:\\nContent Language:\\nContent Country:\\nApp Language:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS ସଂସ୍କରଣ:</string>
+    <string name="info_labels">କଣ:\nRequest:\nContent Language:\nContent Country:\nApp Language:\nService:\nGMT Time:\nPackage:\nVersion:\nOS ସଂସ୍କରଣ:</string>
     <string name="search_no_results">କୌଣସି ଫଳାଫଳ ନାହିଁ</string>
     <string name="empty_list_subtitle">ଏଠାରେ କ୍ରିକେଟ୍ ବ୍ୟତୀତ ଆଉ କିଛି ନାହିଁ</string>
     <string name="retry">ପୁନଃଚେଷ୍ଟା କରନ୍ତୁ</string>
@@ -595,7 +593,7 @@
     <string name="overwrite_finished_warning">ଏହି ନାମ ସହିତ ଏକ ଡାଉନଲୋଡ୍ ଫାଇଲ୍ ପୂର୍ବରୁ ବିଦ୍ୟମାନ ଅଛି</string>
     <string name="delete_downloaded_files">ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଫାଇଲଗୁଡିକ ଡିଲିଟ୍ କରନ୍ତୁ</string>
     <string name="downloads_storage_use_saf_title">ସିଷ୍ଟମ୍ ଫୋଲ୍ଡର୍ ପିକର୍ (SAF) ବ୍ୟବହାର କରନ୍ତୁ</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">ହଁ, ଏବଂ ଆଂଶିକ ଦେଖାଯାଇଥିବା ଭିଡିଓଗୁଡିକ</string>
+    <string name="remove_watched_popup_partially_watched_streams">ହଁ, ଏବଂ ଆଂଶିକ ଦେଖାଯାଇଥିବା ଭିଡିଓଗୁଡିକ</string>
     <string name="feed_group_dialog_empty_name">ଗୋଷ୍ଠୀ ନାମ ଖାଲି ଅଛି</string>
     <string name="feed_use_dedicated_fetch_method_title">ଉପଲବ୍ଧ ଥିବାବେଳେ ଉତ୍ସର୍ଗୀକୃତ ଫିଡରୁ ଆଣ</string>
     <string name="list">ତାଲିକା</string>
@@ -652,7 +650,6 @@
     <string name="playlist_no_uploader">ଅଟୋ-ଜେନେରେଟ୍ (କୌଣସି ଅପଲୋଡର୍ ମିଳିଲା ନାହିଁ)</string>
     <string name="resize_fill">ପୁରଣ କରନ୍ତୁ</string>
     <string name="caption_setting_title">କ୍ୟାପସନ୍</string>
-    <string name="show_image_indicators_title">ପ୍ରତିଛବି ସୂଚକ ଦେଖାନ୍ତୁ</string>
     <string name="show_crash_the_player_summary">ପ୍ଲେୟାର ବ୍ୟବହାର କରିବା ସମୟରେ ଏକ କ୍ରାସ୍ ବିକଳ୍ପ ଦେଖାଏ</string>
     <string name="check_new_streams">ନୂତନ ଷ୍ଟ୍ରିମ୍ ପାଇଁ ଯାଞ୍ଚ ଚଲାନ୍ତୁ</string>
     <string name="crash_the_app">ଆପ୍ କ୍ରାସ୍ କରନ୍ତୁ</string>

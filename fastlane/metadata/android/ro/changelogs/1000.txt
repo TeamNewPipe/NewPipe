@@ -1,0 +1,11 @@
+Îmbunătățiri
+• Descrierea listei de redare poate fi extinsă sau restrânsă la clic
+• Gestionare automată a linkurilor subscribeto.me pentru PeerTube
+• Redarea unui singur element pornește doar din ecranul Istoric
+
+Remedieri
+• Corectată vizibilitatea butonului RSS
+• Rezolvată blocarea previzualizării în bara de căutare
+• Corectată adăugarea elementelor fără miniatură
+• Reparat pop-up-ul pentru elemente corelate
+• Corectată ordinea în „Adaugă la lista de redare”

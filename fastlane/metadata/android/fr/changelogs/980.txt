@@ -1,5 +1,5 @@
 Nouveautés
-• Ajout option "Ajouter à la liste de lecture" au menu de partage
+• Ajout option "Ajouter à la playlist" au menu de partage
 • Ajout prise en charge des liens courts y2u.be et PeerTube
 
 Améliorations

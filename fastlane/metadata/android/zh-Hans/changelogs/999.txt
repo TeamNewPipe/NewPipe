@@ -1,1 +1,12 @@
-修复YouTube无法播放任何视频
+此热修复版本修复 YouTube 视频播放中的 HTTP 403 错误。
+
+新功能
+• [SoundCloud] 支持 on.soundcloud.com URLs
+
+改进
+• [Bandcamp] 在电台 kiosk 中显示附加信息
+
+修复
+• [YouTube] 视频开头或当中偶然的 403 错误
+• [YouTube] 从更多频道标头类型提取头像和横幅
+• [Bandcamp] 多个故障和始终使用 HTTPS

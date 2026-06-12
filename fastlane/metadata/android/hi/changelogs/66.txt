@@ -1,33 +1,21 @@
-# Changelog of v0.13.7
+# v0.13.7 का चेंजलॉग
 
-### Fixed
-- Fix sort filter issues of v0.13.6
+### ठीक किया गया
+- v0.13.6 के सॉर्ट फ़िल्टर की दिक्कतें ठीक की गईं
 
-# Changelog of v0.13.6
+# v0.13.6 का चेंजलॉग
 
-### Improvements
+### सुधार
 
-- Disable burgermenu icon animation #1486 
-- undo delete of downloads #1472 
-- Download option in share menu #1498
-- Added share option to long tap menu #1454 
-- Minimize main player on exit #1354 
-- Library version update and database backup fix #1510 
-- ExoPlayer 2.8.2 Update #1392
-  - Reworked the playback speed control dialog to support different step sizes for faster speed change.
-  - Added a toggle to fast-forward during silences in playback speed control. This should be helpful for audiobooks and certain music genres, and can bring a true seamless experience (and can break a song with lots of silences =\\).  
-  - Refactored media source resolution to allow passing metadata alongside media internally in the player, rather than doing so manually. Now we have a single source of metadata and is directly available when playback starts.
-  - Fixed remote playlist metadata not updating when new metadata is available when playlist fragment is opened.
-  - Various UI fixes: #1383, background player notification controls now always white, easier to shutdown popup player through flinging
-- Use new extractor with refactored architecture for multiservice
+- बर्गरमेनू आइकन एनिमेशन डिसेबल करें #1486
+- डाउनलोड को अनडू डिलीट करें #1472
+- शेयर मेनू में डाउनलोड ऑप्शन #1498
+- लॉन्ग टैप मेनू में शेयर ऑप्शन जोड़ा गया #1454
+- ExoPlayer 2.8.2 अपडेट #1392
+कई UI फ़िक्स: #1383
 
-### Fixes
+### फ़िक्स
 
-- Fix #1440 Broken Video Info Layout #1491 
-- View history fix #1497
-  - #1495, by updating the metadata (thumbnail, title and video count) as soon as the user access the playlist. 
-  - #1475, by registering a view in the database when the user starts a video on external player on detail fragment.
-- Fix creen timeout in case of popup mode. #1463 (Fixed #640)
-- Main video player fix #1509 
-  - [#1412] Fixed repeat mode causing player NPE when new intent is received while player activity is in background.
-  - Fixed minimizing player to popup does not destroy player when popup permission is not granted.
+- फ़िक्स #1440 टूटा हुआ वीडियो इन्फ़ो लेआउट #1491
+- व्यू हिस्ट्री फ़िक्स #1497
+- मेन वीडियो प्लेयर फिक्स #1509।

@@ -1,0 +1,17 @@
+Novo
+• Broj pretplatnika u detaljima videa
+• Preuzimanje iz reda čekanja
+• Trajno postavljanje sličice liste za reprodukciju
+• Dugi pritisak na hashtagove i linkove
+• Način prikaza kartice
+
+Poboljšano
+• Veće dugme za zatvaranje mini-playera
+• Glatko smanjenje sličica
+• Ciljano za Android 13 (API 33)
+• Traženje više ne pauzira player
+
+Ispravljeno
+• Ispravljen prekrivač na DeX-u/mišu
+• Omogućen pozadinski player bez odvojenih audio tokova
+• Razne ispravke za YouTube i još mnogo toga…

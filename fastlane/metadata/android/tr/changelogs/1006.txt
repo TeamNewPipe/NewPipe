@@ -1,0 +1,19 @@
+# Geliştirmeler (Improved)
+
+* Zaman damgalarına tıklandığında mevcut oynatıcıyı koru.
+* Mümkün olduğunda bekleyen indirme görevlerini kurtarmayı dene.
+* Dosyayı silmeden sadece indirme kaydını silme seçeneği ekle.
+* Üstte Gösterim İzni: Android R ve üzeri için açıklayıcı iletişim kutusu göster.
+* "on.soundcloud" bağlantılarını açma desteği.
+* Çok sayıda küçük iyileştirme ve optimizasyon.
+
+# Düzeltmeler (Fixed)
+
+* Android 7 altı sürümler için kısa sayı formatını düzelt.
+* Hayalet bildirimleri düzelt.
+* SRT altyazı dosyaları için düzeltmeler.
+* Çok sayıda çökme sorunu giderildi.
+
+# Geliştirme (Development)
+
+* Dahili kod modernizasyonu.

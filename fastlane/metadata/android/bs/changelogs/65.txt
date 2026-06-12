@@ -1,0 +1,26 @@
+### Poboljšanja
+
+- Onemogućavanje animacije ikone burgermenuja #1486
+- poništavanje brisanja preuzimanja #1472
+- Opcija preuzimanja u meniju za dijeljenje #1498
+- Dodata opcija dijeljenja u meni s dugim dodirom #1454
+- Minimiziranje glavnog playera pri izlasku #1354
+- Ispravka ažuriranja verzije biblioteke i sigurnosne kopije baze podataka #1510
+- Ažuriranje ExoPlayera 2.8.2 #1392
+- Prerađen dijalog za kontrolu brzine reprodukcije radi podrške za različite veličine koraka za bržu promjenu brzine.
+- Dodan je prekidač za premotavanje unaprijed tokom tišina u kontroli brzine reprodukcije. Ovo bi trebalo biti korisno za audio knjige i određene muzičke žanrove, a može donijeti zaista besprijekorno iskustvo (i može prekinuti pjesmu s puno tišina =\\).
+- Refaktorisana rezolucija izvora medija kako bi se omogućilo interno prosljeđivanje metapodataka uz medije u playeru, umjesto ručnog. Sada imamo jedan izvor metapodataka i direktno je dostupan kada reprodukcija počne.
+- Ispravljeni metapodaci udaljene liste za reprodukciju koji se ne ažuriraju kada su novi metapodaci dostupni kada se otvori fragment liste za reprodukciju.
+- Razne ispravke korisničkog interfejsa: #1383, kontrole obavještenja u pozadini playera sada su uvijek bijele, lakše je isključiti iskačući player prebacivanjem.
+- Koristi se novi ekstraktor s refaktoriranom arhitekturom za više servisa.
+
+### Ispravke
+
+- Ispravka #1440 Neispravan raspored informacija o videu #1491
+- Ispravka historije pregleda #1497
+- #1495, ažuriranjem metapodataka (sličica, naslov i broj videa) čim korisnik pristupi listi za reprodukciju.
+- #1475, registracijom pregleda u bazi podataka kada korisnik pokrene video na vanjskom playeru na fragmentu detalja.
+- Ispravljeno vremensko ograničenje ekrana u slučaju iskačućeg načina rada. #1463 (Ispravljeno #640)
+- Ispravka glavnog video playera #1509
+- [#1412] Ispravljen je način ponavljanja koji je uzrokovao NPE playera kada se primi nova namjera dok je aktivnost playera u pozadini.
+- Ispravljena je greška minimiziranja playera u iskačući prozor koja ne uništava player kada nije odobrena dozvola za iskačući prozor.

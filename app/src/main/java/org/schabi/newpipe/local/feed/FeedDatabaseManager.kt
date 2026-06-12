@@ -7,6 +7,9 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.time.Instant
+import java.time.LocalDate
+import java.time.ZoneId
 import org.schabi.newpipe.MainActivity.DEBUG
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.database.feed.model.FeedEntity
@@ -18,9 +21,6 @@ import org.schabi.newpipe.database.subscription.NotificationMode
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.local.subscription.FeedGroupIcon
-import java.time.Instant
-import java.time.LocalDate
-import java.time.ZoneId
 
 class FeedDatabaseManager(context: Context) {
     private val database = NewPipeDatabase.getInstance(context)
@@ -72,13 +72,19 @@ class FeedDatabaseManager(context: Context) {
         return streamTable.exists(stream.serviceId, stream.url)
     }
 
-    fun upsertAll(subscriptionId: Long, items: List<StreamInfoItem>) {
+    fun upsertAll(
+        subscriptionId: Long,
+        items: List<StreamInfoItem>
+    ) {
         val oldestAllowedDate = LocalDate.now().minusWeeks(13)
-        val itemsToInsert = items.filter {
-            val uploadDate = it.uploadDate?.localDateTime?.toLocalDate()
+        val itemsToInsert = items.mapNotNull { stream ->
+            val uploadDate = stream.uploadDate?.localDateTime?.toLocalDate()
 
-            (uploadDate == null && it.streamType == StreamType.LIVE_STREAM) ||
-                (uploadDate != null && uploadDate >= oldestAllowedDate)
+            when {
+                uploadDate == null && stream.streamType == StreamType.LIVE_STREAM -> stream
+                uploadDate != null && uploadDate >= oldestAllowedDate -> stream
+                else -> null
+            }
         }
 
         feedTable.unlinkOldLivestreams(subscriptionId)

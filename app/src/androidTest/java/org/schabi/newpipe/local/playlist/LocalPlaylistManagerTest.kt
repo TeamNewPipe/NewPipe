@@ -33,8 +33,12 @@ class LocalPlaylistManagerTest {
     fun createPlaylist() {
         val NEWPIPE_URL = "https://newpipe.net/"
         val stream = StreamEntity(
-            serviceId = 1, url = NEWPIPE_URL, title = "title",
-            streamType = StreamType.VIDEO_STREAM, duration = 1, uploader = "uploader",
+            serviceId = 1,
+            url = NEWPIPE_URL,
+            title = "title",
+            streamType = StreamType.VIDEO_STREAM,
+            duration = 1,
+            uploader = "uploader",
             uploaderUrl = NEWPIPE_URL
         )
 
@@ -58,20 +62,28 @@ class LocalPlaylistManagerTest {
     @Test()
     fun createPlaylist_nonExistentStreamsAreUpserted() {
         val stream = StreamEntity(
-            serviceId = 1, url = "https://newpipe.net/", title = "title",
-            streamType = StreamType.VIDEO_STREAM, duration = 1, uploader = "uploader",
+            serviceId = 1,
+            url = "https://newpipe.net/",
+            title = "title",
+            streamType = StreamType.VIDEO_STREAM,
+            duration = 1,
+            uploader = "uploader",
             uploaderUrl = "https://newpipe.net/"
         )
         database.streamDAO().insert(stream)
         val upserted = StreamEntity(
-            serviceId = 1, url = "https://newpipe.net/2", title = "title2",
-            streamType = StreamType.VIDEO_STREAM, duration = 1, uploader = "uploader",
+            serviceId = 1,
+            url = "https://newpipe.net/2",
+            title = "title2",
+            streamType = StreamType.VIDEO_STREAM,
+            duration = 1,
+            uploader = "uploader",
             uploaderUrl = "https://newpipe.net/"
         )
 
         val result = manager.createPlaylist("name", listOf(stream, upserted))
 
         result.test().await().assertComplete()
-        database.streamDAO().all.test().awaitCount(1).assertValue(listOf(stream, upserted))
+        database.streamDAO().getAll().test().awaitCount(1).assertValue(listOf(stream, upserted))
     }
 }

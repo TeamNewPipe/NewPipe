@@ -1,0 +1,1 @@
+Ažuriran je SoundCloud client_id kako bi se riješili problemi sa SoundCloudom.

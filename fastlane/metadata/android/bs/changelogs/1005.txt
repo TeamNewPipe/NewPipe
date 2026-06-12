@@ -1,0 +1,17 @@
+Novo
+• Dodata podrška za Android Auto
+• Omogućeno postavljanje grupa feedova kao kartica na glavnom ekranu
+• [YouTube] Dijeli kao privremenu listu za reprodukciju
+• [SoundCloud] Kartica kanala sa sviđanjima
+
+Poboljšano
+• Bolji savjeti u traci za pretragu
+• Prikaz datuma preuzimanja u Preuzimanjema
+• Korištenje jezika Androida 13 po aplikaciji
+
+Ispravljeno
+• Ispravljene boje teksta koje ne rade u tamnom režimu
+• [YouTube] Ispravljeno liste za reprodukciju koje ne učitavaju više od 100 stavki
+• [YouTube] Ispravljeni nedostajući preporučeni videozapisi
+• Ispravljeni rušenja u prikazu liste historije
+• Ispravljene vremenske oznake u odgovorima na komentare

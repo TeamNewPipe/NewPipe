@@ -46,7 +46,7 @@ class ErrorUtil {
         @JvmStatic
         fun openActivity(context: Context, errorInfo: ErrorInfo) {
             if (PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(MainActivity.KEY_IS_IN_BACKGROUND, true)
+                    .getBoolean(MainActivity.KEY_IS_IN_BACKGROUND, true)
             ) {
                 createNotification(context, errorInfo)
             } else {
@@ -134,8 +134,11 @@ class ErrorUtil {
                         )
                     )
 
-            NotificationManagerCompat.from(context)
-                .notify(ERROR_REPORT_NOTIFICATION_ID, notificationBuilder.build())
+            val notificationManager = NotificationManagerCompat.from(context)
+            if (notificationManager.areNotificationsEnabled()) {
+                notificationManager
+                    .notify(ERROR_REPORT_NOTIFICATION_ID, notificationBuilder.build())
+            }
 
             ContextCompat.getMainExecutor(context).execute {
                 // since the notification is silent, also show a toast, otherwise the user is confused

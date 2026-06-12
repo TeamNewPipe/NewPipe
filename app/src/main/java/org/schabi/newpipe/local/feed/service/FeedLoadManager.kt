@@ -11,6 +11,10 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.functions.Consumer
 import io.reactivex.rxjava3.processors.PublishProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.time.Instant
+import java.time.LocalDate
+import java.util.concurrent.atomic.AtomicBoolean
+import java.util.concurrent.atomic.AtomicInteger
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.subscription.NotificationMode
@@ -22,15 +26,14 @@ import org.schabi.newpipe.extractor.feed.FeedInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.ktx.getStringSafe
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
+import org.schabi.newpipe.local.feed.service.FeedLoadManager.Companion.BATCH_SIZE
+import org.schabi.newpipe.local.feed.service.FeedLoadManager.Companion.DELAY_BETWEEN_BATCHES_MILLIS
+import org.schabi.newpipe.local.feed.service.FeedLoadManager.Companion.GROUP_NOTIFICATION_ENABLED
 import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.util.ChannelTabHelper
 import org.schabi.newpipe.util.ExtractorHelper.getChannelInfo
 import org.schabi.newpipe.util.ExtractorHelper.getChannelTab
 import org.schabi.newpipe.util.ExtractorHelper.getMoreChannelTabItems
-import java.time.Instant
-import java.time.LocalDate
-import java.util.concurrent.atomic.AtomicBoolean
-import java.util.concurrent.atomic.AtomicInteger
 
 class FeedLoadManager(private val context: Context) {
 
@@ -60,7 +63,7 @@ class FeedLoadManager(private val context: Context) {
      */
     fun startLoading(
         groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
-        ignoreOutdatedThreshold: Boolean = false,
+        ignoreOutdatedThreshold: Boolean = false
     ): Single<List<Notification<FeedUpdateInfo>>> {
         val defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         val useFeedExtractor = defaultSharedPreferences.getBoolean(
@@ -85,9 +88,12 @@ class FeedLoadManager(private val context: Context) {
             FeedGroupEntity.GROUP_ALL_ID -> feedDatabaseManager.getOutdatedSubscriptions(
                 outdatedThreshold
             )
+
             GROUP_NOTIFICATION_ENABLED -> feedDatabaseManager.getOutdatedSubscriptionsWithNotificationMode(
-                outdatedThreshold, NotificationMode.ENABLED
+                outdatedThreshold,
+                NotificationMode.ENABLED
             )
+
             else -> feedDatabaseManager.getOutdatedSubscriptionsForGroup(groupId, outdatedThreshold)
         }
 
@@ -108,7 +114,8 @@ class FeedLoadManager(private val context: Context) {
                 broadcastProgress()
             }
             .observeOn(Schedulers.io())
-            .flatMap { Flowable.fromIterable(it) }
+            // Randomize user subscription ordering to attempt to resist fingerprinting
+            .flatMap { Flowable.fromIterable(it.shuffled()) }
             .takeWhile { !cancelSignal.get() }
             .doOnNext { subscriptionEntity ->
                 // throttle YouTube extractions once every BATCH_SIZE to avoid being rate limited
@@ -186,7 +193,8 @@ class FeedLoadManager(private val context: Context) {
 
                 val channelInfo = getChannelInfo(
                     subscriptionEntity.serviceId,
-                    subscriptionEntity.url, true
+                    subscriptionEntity.url,
+                    true
                 )
                     .onErrorReturn(storeOriginalErrorAndRethrow)
                     .blockingGet()
@@ -216,7 +224,8 @@ class FeedLoadManager(private val context: Context) {
                         ) {
                             val infoItemsPage = getMoreChannelTabItems(
                                 subscriptionEntity.serviceId,
-                                linkHandler, channelTabInfo.nextPage
+                                linkHandler,
+                                channelTabInfo.nextPage
                             )
                                 .blockingGet()
 
@@ -234,7 +243,7 @@ class FeedLoadManager(private val context: Context) {
                     subscriptionEntity,
                     originalInfo!!,
                     streams!!,
-                    errors,
+                    errors
                 )
             )
         } catch (e: Throwable) {
@@ -305,6 +314,7 @@ class FeedLoadManager(private val context: Context) {
                                 feedDatabaseManager.markAsOutdated(info.uid)
                             }
                         }
+
                         notification.isOnError -> {
                             val error = notification.error
                             feedResultsHolder.addError(error!!)

@@ -1,0 +1,25 @@
+PAŽNJA: Ova verzija je vjerovatno puna grešaka, baš kao i prethodna. Međutim, zbog potpunog gašenja od verzije 17, bolja je i pokvarena verzija nego nikakva. Zar ne? ¯\_(ツ)_/¯
+
+### Poboljšanja
+* preuzete datoteke se sada mogu otvoriti jednim klikom #1879
+* ukidanje podrške za Android 4.1 - 4.3 #1884
+* uklanjanje starog plejera #1884
+* uklanjanje tokova iz trenutnog reda čekanja prevlačenjem prsta udesno #1915
+* uklanjanje automatski dodanog toka u red čekanja kada se novi tok ručno doda u red čekanja #1878
+* Naknadna obrada preuzimanja i implementacija nedostajućih funkcija #1759 od @kapodamy
+* Infrastruktura naknadne obrade
+* Ispravna "infrastruktura" za rukovanje greškama (za program za preuzimanje)
+* Stavljanje u red čekanja umjesto više preuzimanja
+* Premještanje serijaliziranih preuzimanja na čekanju (`.giga` datoteke) u podatke aplikacije
+* Implementacija maksimalnog broja ponovnih pokušaja preuzimanja
+* Ispravno pauziranje preuzimanja u više niti
+* Zaustavljanje preuzimanja prilikom prebacivanja na mobilnu mrežu (nikada ne radi, pogledajte 2. tačku)
+* Sačuvanje broja niti za sljedeća preuzimanja
+* Mnogo nedosljednosti ispravljeno
+
+### Ispravljeno
+* Ispravljen pad sistema sa zadanom rezolucijom postavljenom na najbolju i ograničenom rezolucijom mobilnih podataka #1835
+* Ispravljen pad sistema prilikom iskačućeg plejera #1874
+* NPE pri pokušaju otvaranja pozadinskog plejera #1901
+* Ispravljeno umetanje novih tokova kada je omogućeno automatsko stavljanje u red #1878
+* Ispravljen problem sa dešifriranjem i isključivanjem sistema

@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2022 NewPipe contributors <https://newpipe.net>
+ * SPDX-FileCopyrightText: 2025 NewPipe e.V. <https://newpipe-ev.de>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
 package org.schabi.newpipe.database.history.model
 
 import androidx.room.ColumnInfo
@@ -11,14 +17,20 @@ import java.time.Instant
     tableName = SearchHistoryEntry.TABLE_NAME,
     indices = [Index(value = [SearchHistoryEntry.SEARCH])]
 )
-data class SearchHistoryEntry(
-    @ColumnInfo(name = CREATION_DATE) var creationInstant: Instant?,
-    @ColumnInfo(name = SERVICE_ID) var serviceId: Int,
-    @ColumnInfo(name = SEARCH) var search: String?
-) {
+data class SearchHistoryEntry @JvmOverloads constructor(
+    @ColumnInfo(name = CREATION_DATE)
+    var creationInstant: Instant?,
+
+    @ColumnInfo(name = SERVICE_ID)
+    val serviceId: Int,
+
+    @ColumnInfo(name = SEARCH)
+    val search: String?,
+
     @ColumnInfo(name = ID)
     @PrimaryKey(autoGenerate = true)
-    var id: Long = 0
+    val id: Long = 0
+) {
 
     @Ignore
     fun hasEqualValues(otherEntry: SearchHistoryEntry): Boolean {

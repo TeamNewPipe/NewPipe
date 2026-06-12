@@ -1,0 +1,4 @@
+Ovo izdanje donosi tri male ispravke:
+• Ispravljen pristup pohrani na Androidu 10+
+• Ispravljeno otvaranje kioska
+• Ispravljeno parsiranje dužih videa

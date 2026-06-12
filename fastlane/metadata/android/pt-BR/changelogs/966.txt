@@ -1,0 +1,14 @@
+New:
+• Add a new service: Bandcamp
+
+Improved:
+• Add an option to have the app follow the device theme
+• Prevent some crashes by showing an improved error panel
+• Show more information on why content in unavailable
+• Hardware space button triggers play/pause
+• Show "Download started" toast
+
+Fixed:
+• Fix very small thumbnail in video details while playing in the background
+• Fix empty title in minimized player
+• Fix last resize mode not being restored correctly
