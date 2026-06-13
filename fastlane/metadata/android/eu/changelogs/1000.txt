@@ -1,0 +1,13 @@
+Hobetua
+• Zerrenda deskribapena klikagarria
+• [PeerTube] subscribeto.me estekak auto-kudeatu
+• Historia elementu bakarra hasi
+
+Konpondua
+• RSS botoien ikusgarritasuna
+• Bilaketa aurrebista matxurak
+• Miniaturarik gabeko zerrenda
+• Deskarga elkarrizketa irtetea
+• Erlazionatutako elementuen leihoa
+• Zerrendan gehitzeko ordena
+• Laster-marken diseinua

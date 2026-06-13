@@ -1,0 +1,8 @@
+### Poboljšanja
+- Dodata je mogućnost ograničavanja kvalitete videa ako se koriste mobilni podaci. #1339
+- Zapamti svjetlinu za sesiju #1442
+- Poboljšane performanse preuzimanja za slabije procesore #1431
+- dodana (funkcionalna) podrška za medijsku sesiju #1433
+
+### Ispravka
+- Ispravljen pad sistema prilikom otvaranja preuzimanja (ispravka je sada dostupna za izdane verzije) #1441

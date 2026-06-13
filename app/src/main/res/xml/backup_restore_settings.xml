@@ -22,4 +22,18 @@
         android:summary="@string/reset_settings_summary"
         app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
+
+    <Preference
+        android:key="@string/export_subscriptions_key"
+        android:title="@string/export_subscriptions_title"
+        android:summary="@string/export_subscriptions_summary"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
+    <Preference
+        android:key="@string/import_subscriptions_key"
+        android:title="@string/import_subscriptions_title"
+        android:summary="@string/import_subscriptions_summary"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
 </PreferenceScreen>

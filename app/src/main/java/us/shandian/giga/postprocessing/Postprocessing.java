@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.streams.io.SharpStream;
 
 import java.io.File;
@@ -30,7 +31,8 @@ public abstract class Postprocessing implements Serializable {
     public transient static final String ALGORITHM_M4A_NO_DASH = "mp4D-m4a";
     public transient static final String ALGORITHM_OGG_FROM_WEBM_DEMUXER = "webm-ogg-d";
 
-    public static Postprocessing getAlgorithm(@NonNull String algorithmName, String[] args) {
+    public static Postprocessing getAlgorithm(@NonNull String algorithmName, String[] args,
+                                              StreamInfo streamInfo) {
         Postprocessing instance;
 
         switch (algorithmName) {
@@ -56,6 +58,7 @@ public abstract class Postprocessing implements Serializable {
         }
 
         instance.args = args;
+        instance.streamInfo = streamInfo;
         return instance;
     }
 
@@ -75,8 +78,8 @@ public abstract class Postprocessing implements Serializable {
      */
     private final String name;
 
-
     private String[] args;
+    protected StreamInfo streamInfo;
 
     private transient DownloadMission mission;
 

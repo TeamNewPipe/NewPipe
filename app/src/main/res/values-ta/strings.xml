@@ -236,7 +236,7 @@
     <string name="restore_defaults">இயல்பிருப்புகளை மீட்டெடு</string>
     <string name="error_report_notification_title">NewPipe பிழையைச் எதிர்கொண்டது, புகாரளிக்க தட்டு</string>
     <string name="error_snackbar_action">புகாரளி</string>
-    <string name="info_labels">என்ன:\\nகோரிக்கை:\\nஉள்ளடக்க மொழி:\\nஉள்ளடக்க நாடு:\\nசெயலி மொழி:\\nசேவை:\\nGMT நேரம்:\\nசிப்பம்:\\nபதிப்பு:\\nOS பதிப்பு:</string>
+    <string name="info_labels">என்ன:\nகோரிக்கை:\nஉள்ளடக்க மொழி:\nஉள்ளடக்க நாடு:\nசெயலி மொழி:\nசேவை:\nGMT நேரம்:\nசிப்பம்:\nபதிப்பு:\nOS பதிப்பு:</string>
     <string name="detail_thumbnail_view_description">காணொளியை இயக்கு, காலவளவு:</string>
     <string name="comments_tab_description">கருத்தளிப்புகள்</string>
     <string name="crash_the_player">இயக்கியைச் சிதை</string>
@@ -488,7 +488,7 @@
     <string name="feed_show_hide_streams">ச்ட்ரீம்களைக் காட்டு/மறைக்க</string>
     <string name="georestricted_content">இந்த உள்ளடக்கம் உங்கள் நாட்டில் கிடைக்கவில்லை.</string>
     <string name="give_back">திருப்பித் தரவும்</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">ஆம், மற்றும் ஓரளவு பார்த்த வீடியோக்கள்</string>
+    <string name="remove_watched_popup_partially_watched_streams">ஆம், மற்றும் ஓரளவு பார்த்த வீடியோக்கள்</string>
     <string name="feed_oldest_subscription_update">கடைசியாக புதுப்பிக்கப்பட்டது: %s</string>
     <string name="import_settings_vulnerable_format">ஏற்றுமதியில் இறக்குமதி செய்யப்படும் அமைப்புகள் பாதிக்கப்படக்கூடிய வடிவமைப்பைப் பயன்படுத்துகின்றன, இது நியூபைப் 0.27.0 முதல் நீக்கப்பட்டது. இறக்குமதி செய்யப்படும் ஏற்றுமதி நம்பகமான மூலத்திலிருந்து வந்தது என்பதை உறுதிப்படுத்திக் கொள்ளுங்கள், மேலும் நியூபைப் 0.27.0 அல்லது எதிர்காலத்தில் புதியதாக பெறப்பட்ட ஏற்றுமதியை மட்டுமே பயன்படுத்த விரும்புகிறது. இந்த பாதிக்கப்படக்கூடிய வடிவத்தில் அமைப்புகளை இறக்குமதி செய்வதற்கான உதவி விரைவில் முழுமையாக அகற்றப்படும், பின்னர் நியூபைப்பின் பழைய பதிப்புகள் புதிய பதிப்புகளிலிருந்து ஏற்றுமதியின் அமைப்புகளை இனி இறக்குமதி செய்ய முடியாது.</string>
     <plurals name="seconds">
@@ -614,8 +614,6 @@
     <string name="disable_media_tunneling_title">மீடியா சுரங்கப்பாதையை முடக்கு</string>
     <string name="disable_media_tunneling_summary">நீங்கள் ஒரு கருப்பு திரை அனுபவித்தால் அல்லது வீடியோ பிளேபேக்கில் திணறினால் மீடியா சுரங்கப்பாதையை முடக்கு.</string>
     <string name="disable_media_tunneling_automatic_info">உங்கள் சாதனத்தில் முன்னிருப்பாக மீடியா சுரங்கப்பாதை முடக்கப்பட்டது, ஏனெனில் உங்கள் சாதன மாதிரி அதை ஆதரிக்காது என்று அறியப்படுகிறது.</string>
-    <string name="show_image_indicators_title">பட குறிகாட்டிகளைக் காட்டு</string>
-    <string name="show_image_indicators_summary">அவற்றின் மூலத்தைக் குறிக்கும் படங்களின் மேல் பிக்காசோ வண்ண ரிப்பன்களைக் காட்டு: நெட்வொர்க்கிற்கு சிவப்பு, வட்டுக்கு நீலம் மற்றும் நினைவகத்திற்கு பச்சை</string>
     <string name="show_crash_the_player_title">\"வீரரை செயலிழக்க\" காட்டு</string>
     <string name="show_crash_the_player_summary">பிளேயரைப் பயன்படுத்தும் போது செயலிழப்பு விருப்பத்தைக் காட்டுகிறது</string>
     <string name="check_new_streams">புதிய நீரோடைகளுக்கு காசோலை இயக்கவும்</string>

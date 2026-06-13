@@ -1,5 +1,7 @@
 package org.schabi.newpipe.local.dialog;
 
+import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.DEFAULT_THUMBNAIL_ID;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.playlist.model.PlaylistEntity;
 import org.schabi.newpipe.database.playlist.PlaylistDuplicatesEntry;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.local.LocalItemListAdapter;
@@ -138,7 +139,7 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
 
     private boolean anyPlaylistContainsDuplicates(final List<PlaylistDuplicatesEntry> playlists) {
         return playlists.stream()
-                .anyMatch(playlist -> playlist.timesStreamIsContained > 0);
+                .anyMatch(playlist -> playlist.getTimesStreamIsContained() > 0);
     }
 
     private void onPlaylistSelected(@NonNull final LocalPlaylistManager manager,
@@ -146,9 +147,9 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
                                     @NonNull final List<StreamEntity> streams) {
 
         final String toastText;
-        if (playlist.timesStreamIsContained > 0) {
+        if (playlist.getTimesStreamIsContained() > 0) {
             toastText = getString(R.string.playlist_add_stream_success_duplicate,
-                    playlist.timesStreamIsContained);
+                    playlist.getTimesStreamIsContained());
         } else {
             toastText = getString(R.string.playlist_add_stream_success);
         }
@@ -160,8 +161,9 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
                 .subscribe(ignored -> {
                     successToast.show();
 
-                    if (playlist.thumbnailUrl != null
-                            && playlist.thumbnailUrl.equals(PlaylistEntity.DEFAULT_THUMBNAIL)) {
+                    if (playlist.getThumbnailStreamId() != null
+                            && playlist.getThumbnailStreamId() == DEFAULT_THUMBNAIL_ID
+                    ) {
                         playlistDisposables.add(manager
                                 .changePlaylistThumbnail(playlist.getUid(), streams.get(0).getUid(),
                                         false)

@@ -1,0 +1,16 @@
+Yeni
+• Kanal sekmeleri desteği
+• Resim kalite seçme özelliği
+• Tüm resimlerin URL'lerini alma özelliği
+
+İyileştirmeler
+• Oynatıcı arayüzlerinin erişilebilirliği
+• Yalnızca video indirmeleri için daha iyi ses seçimi
+• Paylaşılan oynatma listesi içeriğine oynatma listesi ve video adlarını ekleme seçeneği
+
+Düzeltilenler
+• [YouTube] Beğeni sayısını alma sorunu düzeltildi
+• Oynatıcının yanıt vermemesi ve çökmesi sorunu düzeltildi
+• Dil seçicide yanlış dil seçimi sorunu düzeltildi
+• Oynatıcı ses odaklı modda, sessize alma özelliğini dikkate almıyordu
+• Oynatma listesi öğesi ekleme özelliği bazen çalışmıyordu

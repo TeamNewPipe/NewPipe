@@ -1,3 +1,8 @@
+/*
+ * SPDX-FileCopyrightText: 2025 NewPipe contributors <https://newpipe.net>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
 package org.schabi.newpipe.local.playlist
 
 import android.content.Context
@@ -9,7 +14,6 @@ import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.local.playlist.PlayListShareMode.JUST_URLS
 import org.schabi.newpipe.local.playlist.PlayListShareMode.YOUTUBE_TEMP_PLAYLIST
-import java.util.stream.Stream
 
 class ExportPlaylistTest {
 
@@ -41,9 +45,7 @@ class ExportPlaylistTest {
          */
 
         val playlist = asPlaylist(
-            (10..70)
-                .map { id -> "https://www.youtube.com/watch?v=aaaaaaaaa$id" } // YouTube video IDs are 11 characters long
-                .stream()
+            (10..70).map { id -> "https://www.youtube.com/watch?v=aaaaaaaaa$id" } // YouTube video IDs are 11 characters long
         )
 
         val url = export(YOUTUBE_TEMP_PLAYLIST, playlist, mock(Context::class.java))
@@ -78,13 +80,11 @@ class ExportPlaylistTest {
 }
 
 fun asPlaylist(vararg urls: String): List<PlaylistStreamEntry> {
-    return asPlaylist(Stream.of(*urls))
+    return asPlaylist(listOf(*urls))
 }
 
-fun asPlaylist(urls: Stream<String>): List<PlaylistStreamEntry> {
-    return urls
-        .map { url: String -> newPlaylistStreamEntry(url) }
-        .toList()
+fun asPlaylist(urls: List<String>): List<PlaylistStreamEntry> {
+    return urls.map { newPlaylistStreamEntry(it) }
 }
 
 fun newPlaylistStreamEntry(url: String): PlaylistStreamEntry {

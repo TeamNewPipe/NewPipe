@@ -48,8 +48,8 @@ public abstract class BasePreferenceFragment extends PreferenceFragmentCompat {
     }
 
     @NonNull
-    public final Preference requirePreference(@StringRes final int resId) {
-        final Preference preference = findPreference(getString(resId));
+    public final <T extends Preference> T requirePreference(@StringRes final int resId) {
+        final T preference = findPreference(getString(resId));
         Objects.requireNonNull(preference);
         return preference;
     }

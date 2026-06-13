@@ -1,0 +1,4 @@
+∙ Memperbaiki masalah melanjutkan pemutaran pengaliran dari posisi pemutaran terakhir
+∙ [YouTube] Menambahkan dukungan untuk lebih banyak format Tautan saluran
+∙ [YouTube] Menambahkan dukungan untuk lebih banyak format metainfo video
+∙ Pembaruan terjemahan

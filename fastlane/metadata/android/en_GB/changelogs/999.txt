@@ -1,0 +1,12 @@
+This hotfix release fixes HTTP 403 errors in the middle of YouTube videos.
+
+New
+• [SoundCloud] Add support for on.soundcloud.com URLs
+
+Improved
+• [Bandcamp] Show additional info in radio kiosk
+
+Fixed
+• [YouTube] Fix occasional HTTP 403 errors at the beginning or in the middle of videos
+• [YouTube] Extract avatar and banner from more channel header types
+• [Bandcamp] Fix various bugs and always use HTTPS

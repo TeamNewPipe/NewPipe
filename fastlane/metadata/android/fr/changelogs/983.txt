@@ -6,4 +6,4 @@ Ajoute les notifications d’erreur
 Corrige la relecture du premier item de la file lorsque le lecteur change
 Attend plus longtemps lors des directs avant d’échouer
 Corrige l’ordre des résultats d’une recherche locale
-Corrige les champs d’item vides dans la liste de lecture
+Corrige les champs d’item vides dans la playlist

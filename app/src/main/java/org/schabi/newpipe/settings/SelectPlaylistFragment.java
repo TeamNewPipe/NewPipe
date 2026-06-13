@@ -27,7 +27,7 @@ import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
-import org.schabi.newpipe.util.image.PicassoHelper;
+import org.schabi.newpipe.util.image.CoilHelper;
 
 import java.util.List;
 import java.util.Vector;
@@ -118,12 +118,12 @@ public class SelectPlaylistFragment extends DialogFragment {
 
             if (selectedItem instanceof PlaylistMetadataEntry) {
                 final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
-                onSelectedListener.onLocalPlaylistSelected(entry.getUid(), entry.name);
+                onSelectedListener.onLocalPlaylistSelected(entry.getUid(), entry.getOrderingName());
 
             } else if (selectedItem instanceof PlaylistRemoteEntity) {
                 final PlaylistRemoteEntity entry = ((PlaylistRemoteEntity) selectedItem);
                 onSelectedListener.onRemotePlaylistSelected(
-                        entry.getServiceId(), entry.getUrl(), entry.getName());
+                        entry.getServiceId(), entry.getUrl(), entry.getOrderingName());
             }
         }
         dismiss();
@@ -138,7 +138,7 @@ public class SelectPlaylistFragment extends DialogFragment {
         void onRemotePlaylistSelected(int serviceId, String url, String name);
     }
 
-    private class SelectPlaylistAdapter
+    private final class SelectPlaylistAdapter
             extends RecyclerView.Adapter<SelectPlaylistAdapter.SelectPlaylistItemHolder> {
         @NonNull
         @Override
@@ -154,20 +154,17 @@ public class SelectPlaylistFragment extends DialogFragment {
                                      final int position) {
             final PlaylistLocalItem selectedItem = playlists.get(position);
 
-            if (selectedItem instanceof PlaylistMetadataEntry) {
-                final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
-
-                holder.titleView.setText(entry.name);
+            if (selectedItem instanceof PlaylistMetadataEntry entry) {
+                holder.titleView.setText(entry.getOrderingName());
                 holder.view.setOnClickListener(view -> clickedItem(position));
-                PicassoHelper.loadPlaylistThumbnail(entry.thumbnailUrl).into(holder.thumbnailView);
+                CoilHelper.INSTANCE.loadPlaylistThumbnail(holder.thumbnailView,
+                        entry.getThumbnailUrl());
 
-            } else if (selectedItem instanceof PlaylistRemoteEntity) {
-                final PlaylistRemoteEntity entry = ((PlaylistRemoteEntity) selectedItem);
-
-                holder.titleView.setText(entry.getName());
+            } else if (selectedItem instanceof PlaylistRemoteEntity entry) {
+                holder.titleView.setText(entry.getOrderingName());
                 holder.view.setOnClickListener(view -> clickedItem(position));
-                PicassoHelper.loadPlaylistThumbnail(entry.getThumbnailUrl())
-                        .into(holder.thumbnailView);
+                CoilHelper.INSTANCE.loadPlaylistThumbnail(holder.thumbnailView,
+                        entry.getThumbnailUrl());
             }
         }
 

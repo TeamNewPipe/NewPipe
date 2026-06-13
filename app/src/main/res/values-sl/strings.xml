@@ -80,7 +80,7 @@
     <string name="app_ui_crash">Program se je sesul</string>
     <string name="title_activity_recaptcha">Izziv reCAPTCHA</string>
     <string name="recaptcha_request_toast">Zahtevan izziv reCAPTCHA</string>
-    <string name="info_labels">Predmet:\\nZahteva:\\nJezik vsebine:\\nDržava vsebine:\\nJezik aplikacije:\\nStoritev:\\nČas v GMT:\\nPaket:\\nRazličica:\\nRazličica OS:</string>
+    <string name="info_labels">Predmet:\nZahteva:\nJezik vsebine:\nDržava vsebine:\nJezik aplikacije:\nStoritev:\nČas v GMT:\nPaket:\nRazličica:\nRazličica OS:</string>
     <string name="black_theme_title">Črna</string>
     <string name="all">Vse</string>
     <string name="open_in_popup_mode">Odpri v pojavnem načinu</string>

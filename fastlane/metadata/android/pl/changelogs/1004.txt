@@ -1,0 +1,3 @@
+W tej aktualizacji naprawiono błąd, przez który serwis YouTube udostępniał strumień wyłącznie w rozdzielczości 360p.
+
+Należy pamiętać, że rozwiązanie zastosowane w tej wersji ma prawdopodobnie charakter tymczasowy, a w dłuższej perspektywie konieczne będzie wdrożenie protokołu wideo SABR. Członkowie zespołu TeamNewPipe są jednak obecnie bardzo zajęci, dlatego będziemy wdzięczni za każdą pomoc! https://github.com/TeamNewPipe/NewPipe/issues/12248

@@ -48,6 +48,11 @@ public final class DownloaderImpl extends Downloader {
         this.mCookies = new HashMap<>();
     }
 
+    @NonNull
+    public OkHttpClient getClient() {
+        return client;
+    }
+
     /**
      * It's recommended to call exactly once in the entire lifetime of the application.
      *
@@ -161,9 +166,7 @@ public final class DownloaderImpl extends Downloader {
 
             String responseBodyToReturn = null;
             try (ResponseBody body = response.body()) {
-                if (body != null) {
-                    responseBodyToReturn = body.string();
-                }
+                responseBodyToReturn = body.string();
             }
 
             final String latestUrl = response.request().url().toString();

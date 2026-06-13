@@ -1,15 +1,16 @@
 package org.schabi.newpipe.util.external_communication;
 
 import static org.schabi.newpipe.MainActivity.DEBUG;
+import static coil3.Image_androidKt.toBitmap;
 
 import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.text.TextUtils;
@@ -23,13 +24,17 @@ import androidx.core.content.FileProvider;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.RouterActivity;
 import org.schabi.newpipe.extractor.Image;
 import org.schabi.newpipe.util.image.ImageStrategy;
-import org.schabi.newpipe.util.image.PicassoHelper;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.util.Collections;
 import java.util.List;
+
+import coil3.SingletonImageLoader;
+import coil3.disk.DiskCache;
+import coil3.memory.MemoryCache;
 
 public final class ShareUtils {
     private static final String TAG = ShareUtils.class.getSimpleName();
@@ -62,8 +67,9 @@ public final class ShareUtils {
     }
 
     /**
-     * Open the url with the system default browser. If no browser is set as default, falls back to
-     * {@link #openAppChooser(Context, Intent, boolean)}.
+     * Open the url with the system default browser. If no browser is installed, falls back to
+     * {@link #openAppChooser(Context, Intent, boolean)} (for displaying that no apps are available
+     * to handle the action, or possible OEM-related edge cases).
      * <p>
      * This function selects the package to open based on which apps respond to the {@code http://}
      * schema alone, which should exclude special non-browser apps that are can handle the url (e.g.
@@ -77,44 +83,26 @@ public final class ShareUtils {
      * @param url     the url to browse
      **/
     public static void openUrlInBrowser(@NonNull final Context context, final String url) {
-        // Resolve using a generic http://, so we are sure to get a browser and not e.g. the yt app.
+        // Target a generic http://, so we are sure to get a browser and not e.g. the yt app.
         // Note that this requires the `http` schema to be added to `<queries>` in the manifest.
-        final ResolveInfo defaultBrowserInfo;
         final Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://"));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            defaultBrowserInfo = context.getPackageManager().resolveActivity(browserIntent,
-                    PackageManager.ResolveInfoFlags.of(PackageManager.MATCH_DEFAULT_ONLY));
-        } else {
-            defaultBrowserInfo = context.getPackageManager().resolveActivity(browserIntent,
-                    PackageManager.MATCH_DEFAULT_ONLY);
-        }
 
         final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url))
                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        if (defaultBrowserInfo == null) {
-            // No app installed to open a web URL, but it may be handled by other apps so try
-            // opening a system chooser for the link in this case (it could be bypassed by the
-            // system if there is only one app which can open the link or a default app associated
-            // with the link domain on Android 12 and higher)
+        // See https://stackoverflow.com/a/58801285 and `setSelector` documentation
+        intent.setSelector(browserIntent);
+        try {
+            context.startActivity(intent);
+        } catch (final ActivityNotFoundException e) {
+            // No browser is available. This should, in the end, yield a nice AOSP error message
+            // indicating that no app is available to handle this action.
+            //
+            // Note: there are some situations where modified OEM ROMs have apps that appear
+            // to be browsers but are actually app choosers. If starting the Activity fails
+            // related to this, opening the system app chooser is still the correct behavior.
+            intent.setSelector(null);
             openAppChooser(context, intent, true);
-            return;
-        }
-
-        final String defaultBrowserPackage = defaultBrowserInfo.activityInfo.packageName;
-
-        if (defaultBrowserPackage.equals("android")) {
-            // No browser set as default (doesn't work on some devices)
-            openAppChooser(context, intent, true);
-        } else {
-            try {
-                intent.setPackage(defaultBrowserPackage);
-                context.startActivity(intent);
-            } catch (final ActivityNotFoundException e) {
-                // Not a browser but an app chooser because of OEMs changes
-                intent.setPackage(null);
-                openAppChooser(context, intent, true);
-            }
         }
     }
 
@@ -188,6 +176,18 @@ public final class ShareUtils {
         chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (setTitleChooser) {
             chooserIntent.putExtra(Intent.EXTRA_TITLE, context.getString(R.string.open_with));
+        }
+
+        // Avoid opening in NewPipe
+        // (Implementation note: if the URL is one for which NewPipe itself
+        // is set as handler on Android >= 12, we actually remove the only eligible app
+        // for this link, and browsers will not be offered to the user. For that, use
+        // `openUrlInBrowser`.)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            chooserIntent.putExtra(
+                    Intent.EXTRA_EXCLUDE_COMPONENTS,
+                    new ComponentName[]{new ComponentName(context, RouterActivity.class)}
+            );
         }
 
         // Migrate any clip data and flags from the original intent.
@@ -278,7 +278,7 @@ public final class ShareUtils {
      * @param content the content to share
      * @param images  a set of possible {@link Image}s of the subject, among which to choose with
      *                {@link ImageStrategy#choosePreferredImage(List)} since that's likely to
-     *                provide an image that is in Picasso's cache
+     *                provide an image that is in Coil's cache
      */
     public static void shareText(@NonNull final Context context,
                                  @NonNull final String title,
@@ -339,11 +339,9 @@ public final class ShareUtils {
      *
      * <p>
      * In order not to worry about network issues (timeouts, DNS issues, low connection speed, ...)
-     * when sharing a content, only images in the {@link com.squareup.picasso.LruCache LruCache}
-     * used by the Picasso library inside {@link PicassoHelper} are used as preview images. If the
-     * thumbnail image is not in the cache, no {@link ClipData} will be generated and {@code null}
-     * will be returned.
-     * </p>
+     * when sharing a content, only images in the {@link MemoryCache} or {@link DiskCache}
+     * used by the Coil library are used as preview images. If the thumbnail image is not in the
+     * cache, no {@link ClipData} will be generated and {@code null} will be returned.
      *
      * <p>
      * In order to display the image in the content preview of the Android share sheet, an URI of
@@ -356,12 +354,6 @@ public final class ShareUtils {
      * <p>
      * Note that if an exception occurs when generating the {@link ClipData}, {@code null} is
      * returned.
-     * </p>
-     *
-     * <p>
-     * This method will call {@link PicassoHelper#getImageFromCacheIfPresent(String)} to get the
-     * thumbnail of the content in the {@link com.squareup.picasso.LruCache LruCache} used by
-     * the Picasso library inside {@link PicassoHelper}.
      * </p>
      *
      * <p>
@@ -378,33 +370,46 @@ public final class ShareUtils {
             @NonNull final Context context,
             @NonNull final String thumbnailUrl) {
         try {
-            final Bitmap bitmap = PicassoHelper.getImageFromCacheIfPresent(thumbnailUrl);
-            if (bitmap == null) {
-                return null;
-            }
-
             // Save the image in memory to the application's cache because we need a URI to the
             // image to generate a ClipData which will show the share sheet, and so an image file
             final Context applicationContext = context.getApplicationContext();
-            final String appFolder = applicationContext.getCacheDir().getAbsolutePath();
-            final File thumbnailPreviewFile = new File(appFolder
-                    + "/android_share_sheet_image_preview.jpg");
+            final var loader = SingletonImageLoader.get(context);
+            final var value = loader.getMemoryCache()
+                    .get(new MemoryCache.Key(thumbnailUrl, Collections.emptyMap()));
 
-            // Any existing file will be overwritten with FileOutputStream
-            final FileOutputStream fileOutputStream = new FileOutputStream(thumbnailPreviewFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fileOutputStream);
-            fileOutputStream.close();
+            final Bitmap cachedBitmap;
+            if (value != null) {
+                cachedBitmap = toBitmap(value.getImage());
+            } else {
+                try (var snapshot = loader.getDiskCache().openSnapshot(thumbnailUrl)) {
+                    if (snapshot != null) {
+                        cachedBitmap = BitmapFactory.decodeFile(snapshot.getData().toString());
+                    } else {
+                        cachedBitmap = null;
+                    }
+                }
+            }
+
+            if (cachedBitmap == null) {
+                return null;
+            }
+
+            final var path = applicationContext.getCacheDir().toPath()
+                    .resolve("android_share_sheet_image_preview.jpg");
+            // Any existing file will be overwritten
+            try (var outputStream = Files.newOutputStream(path)) {
+                cachedBitmap.compress(Bitmap.CompressFormat.JPEG, 90, outputStream);
+            }
 
             final ClipData clipData = ClipData.newUri(applicationContext.getContentResolver(), "",
-                        FileProvider.getUriForFile(applicationContext,
-                                BuildConfig.APPLICATION_ID + ".provider",
-                                thumbnailPreviewFile));
+                    FileProvider.getUriForFile(applicationContext,
+                            BuildConfig.APPLICATION_ID + ".provider",
+                            path.toFile()));
 
             if (DEBUG) {
                 Log.d(TAG, "ClipData successfully generated for Android share sheet: " + clipData);
             }
             return clipData;
-
         } catch (final Exception e) {
             Log.w(TAG, "Error when setting preview image for share sheet", e);
             return null;

@@ -1,6 +1,11 @@
 package org.schabi.newpipe.settings
 
 import android.content.SharedPreferences
+import java.io.File
+import java.io.IOException
+import kotlin.io.path.createTempFile
+import kotlin.io.path.exists
+import kotlin.io.path.fileSize
 import org.junit.Assert
 import org.junit.Test
 import org.mockito.Mockito
@@ -8,9 +13,6 @@ import org.schabi.newpipe.settings.export.BackupFileLocator
 import org.schabi.newpipe.settings.export.ImportExportManager
 import org.schabi.newpipe.streams.io.StoredFileHelper
 import us.shandian.giga.io.FileStream
-import java.io.File
-import java.io.IOException
-import java.nio.file.Files
 
 class ImportAllCombinationsTest {
 
@@ -21,7 +23,7 @@ class ImportAllCombinationsTest {
     private enum class Ser(val id: String) {
         YES("ser"),
         VULNERABLE("vulnser"),
-        NO("noser");
+        NO("noser")
     }
 
     private data class FailData(
@@ -29,7 +31,7 @@ class ImportAllCombinationsTest {
         val containsSer: Ser,
         val containsJson: Boolean,
         val filename: String,
-        val throwable: Throwable,
+        val throwable: Throwable
     )
 
     private fun testZipCombination(
@@ -37,7 +39,7 @@ class ImportAllCombinationsTest {
         containsSer: Ser,
         containsJson: Boolean,
         filename: String,
-        runTest: (test: () -> Unit) -> Unit,
+        runTest: (test: () -> Unit) -> Unit
     ) {
         val zipFile = File(classloader.getResource(filename)?.file!!)
         val zip = Mockito.mock(StoredFileHelper::class.java, Mockito.withSettings().stubOnly())
@@ -47,10 +49,10 @@ class ImportAllCombinationsTest {
             BackupFileLocator::class.java,
             Mockito.withSettings().stubOnly()
         )
-        val db = File.createTempFile("newpipe_", "")
-        val dbJournal = File.createTempFile("newpipe_", "")
-        val dbWal = File.createTempFile("newpipe_", "")
-        val dbShm = File.createTempFile("newpipe_", "")
+        val db = createTempFile("newpipe_", "")
+        val dbJournal = createTempFile("newpipe_", "")
+        val dbWal = createTempFile("newpipe_", "")
+        val dbShm = createTempFile("newpipe_", "")
         Mockito.`when`(fileLocator.db).thenReturn(db)
         Mockito.`when`(fileLocator.dbJournal).thenReturn(dbJournal)
         Mockito.`when`(fileLocator.dbShm).thenReturn(dbShm)
@@ -62,7 +64,7 @@ class ImportAllCombinationsTest {
                 Assert.assertFalse(dbJournal.exists())
                 Assert.assertFalse(dbWal.exists())
                 Assert.assertFalse(dbShm.exists())
-                Assert.assertTrue("database file size is zero", Files.size(db.toPath()) > 0)
+                Assert.assertTrue("database file size is zero", db.fileSize() > 0)
             }
         } else {
             runTest {
@@ -70,7 +72,7 @@ class ImportAllCombinationsTest {
                 Assert.assertTrue(dbJournal.exists())
                 Assert.assertTrue(dbWal.exists())
                 Assert.assertTrue(dbShm.exists())
-                Assert.assertEquals(0, Files.size(db.toPath()))
+                Assert.assertEquals(0, db.fileSize())
             }
         }
 
@@ -93,6 +95,7 @@ class ImportAllCombinationsTest {
                 Mockito.verify(editor, Mockito.atLeastOnce())
                     .putInt(Mockito.anyString(), Mockito.anyInt())
             }
+
             Ser.VULNERABLE -> runTest {
                 Assert.assertTrue(ImportExportManager(fileLocator).exportHasSerializedPrefs(zip))
                 Assert.assertThrows(ClassNotFoundException::class.java) {
@@ -102,6 +105,7 @@ class ImportAllCombinationsTest {
                 Mockito.verify(editor, Mockito.never()).clear()
                 Mockito.verify(editor, Mockito.never()).commit()
             }
+
             Ser.NO -> runTest {
                 Assert.assertFalse(ImportExportManager(fileLocator).exportHasSerializedPrefs(zip))
                 Assert.assertThrows(IOException::class.java) {
@@ -152,15 +156,18 @@ class ImportAllCombinationsTest {
             for (containsSer in Ser.entries) {
                 for (containsJson in listOf(true, false)) {
                     val filename = "settings/${if (containsDb) "db" else "nodb"}_${
-                    containsSer.id}_${if (containsJson) "json" else "nojson"}.zip"
+                        containsSer.id}_${if (containsJson) "json" else "nojson"}.zip"
                     testZipCombination(containsDb, containsSer, containsJson, filename) { test ->
                         try {
                             test()
                         } catch (e: Throwable) {
                             failedAssertions.add(
                                 FailData(
-                                    containsDb, containsSer, containsJson,
-                                    filename, e
+                                    containsDb,
+                                    containsSer,
+                                    containsJson,
+                                    filename,
+                                    e
                                 )
                             )
                         }
@@ -173,7 +180,7 @@ class ImportAllCombinationsTest {
             for (a in failedAssertions) {
                 println(
                     "Assertion failed with containsDb=${a.containsDb}, containsSer=${
-                    a.containsSer}, containsJson=${a.containsJson}, filename=${a.filename}:"
+                        a.containsSer}, containsJson=${a.containsJson}, filename=${a.filename}:"
                 )
                 a.throwable.printStackTrace()
                 println()

@@ -145,7 +145,7 @@
     <string name="error_snackbar_action">Informe</string>
     <string name="what_device_headline">Información:</string>
     <string name="what_happened_headline">Que ocorreu:</string>
-    <string name="info_labels">Que: \\n Solicitar: \\n Idioma de contido: \\n País de contido: \\n Idioma do aplicativo: \\nServicio: \\n Tempo GMT: \\n Paquete: \\n Versión: \\n versión de nOS:</string>
+    <string name="info_labels">Que: \n Solicitar: \n Idioma de contido: \n País de contido: \n Idioma do aplicativo: \nServicio: \n Tempo GMT: \n Paquete: \n Versión: \n versión de nOS:</string>
     <string name="your_comment">O teu comentario (en inglés):</string>
     <string name="error_details_headline">Detalles:</string>
     <string name="detail_thumbnail_view_description">Reproducir o vídeo, duración:</string>
@@ -355,7 +355,7 @@
     <string name="feed_notification_loading">Cargando transmisión…</string>
     <string name="feed_subscription_not_loaded_count">Non se cargou: %d</string>
     <string name="feed_oldest_subscription_update">Actualizada a última información: %s</string>
-    <string name="feed_groups_header_title">Grupos da canle</string>
+    <string name="feed_groups_header_title">Grupos da canles</string>
     <plurals name="days">
         <item quantity="one">%d día</item>
         <item quantity="other">%d días</item>
@@ -373,10 +373,9 @@
         <item quantity="other">%d segundos</item>
     </plurals>
     <string name="new_seek_duration_toast">Debido ás restricións de ExoPlayer, a duración da busca estableceuse en %d segundos</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Si, e visualizou parcialmente estes vídeos</string>
-    <string name="remove_watched_popup_warning">Eliminaranse os vídeos vistos antes e despois de seren engadidos á lista de reprodución.
-\nEstás seguro\? Isto non se pode desfacer.!</string>
-    <string name="remove_watched_popup_title">Borrar todos os vídeos vistos\?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Si, e visualizou parcialmente estes vídeos</string>
+    <string name="remove_watched_popup_warning">Eliminaranse as emisións vistas antes e despois de seren engadidas á lista de reprodución.\nEstás seguro?</string>
+    <string name="remove_watched_popup_title">Borrar todos os vídeos vistos?</string>
     <string name="remove_watched">Eliminar o visto</string>
     <string name="systems_language">Sistema predeterminado</string>
     <string name="app_language_title">Lingua do aplicativo</string>
@@ -595,7 +594,6 @@
         <item quantity="other">%s descargas finalizadas</item>
     </plurals>
     <string name="seekbar_preview_thumbnail_title">Miniatura na barra de busca</string>
-    <string name="show_image_indicators_title">Mostrar indicadores de imaxe</string>
     <string name="disable_media_tunneling_summary">Desactive o túnel multimedia se experimentar unha pantalla en negro ou interrupcións na reprodución.</string>
     <string name="disable_media_tunneling_title">Desactivar túnel multimedia</string>
     <string name="enqueued">Engadido á cola</string>
@@ -632,7 +630,6 @@
     <string name="downloads_storage_use_saf_summary_api_29">A partir do Android 10, só o \'Sistema de Acceso ao Almacenamento\' está soportado</string>
     <string name="processing_may_take_a_moment">Procesando... Pode devagar un momento</string>
     <string name="create_error_notification">Crear unha notificación de erro</string>
-    <string name="show_image_indicators_summary">Amosar fitas coloridas de Picasso na cima das imaxes que indican a súa fonte: vermello para a rede, azul para o disco e verde para a memoria</string>
     <string name="feed_new_items">Novos elementos</string>
     <string name="progressive_load_interval_exoplayer_default">Predefinido do ExoPlayer</string>
     <string name="show_crash_the_player_title">Amosar \"Travar o reprodutor\"</string>
@@ -788,6 +785,13 @@
     <string name="channel_tab_tracks">Pistas</string>
     <string name="feed_fetch_channel_tabs_summary">Lapelas a recuperar ao actualizar o feed. Esta opción non ten efecto se a canle se actualiza no modo rápido.</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">Esta solución alternativa libera os códecs de video e os re-instancia cando muda a máscara, no canto de configurar a máscara directamente no códec. ExoPlayer xa emprega esta configuración nalgúns dispositivos con este problema e só afecta a Android 6 e versións posteriores.\n\nActivar esta opción pode minimizar erros de reprodución ao mudar o reprodutor de video actual ou mudar ao modo de pantalla completa</string>
+    <string name="short_thousand">%sK</string>
+    <string name="short_million">%sM</string>
+    <string name="short_billion">%sMM</string>
+    <string name="search_with_service_name">Procurar %1$s</string>
+    <string name="search_with_service_name_and_filter">Procurar %1$s (%2$s)</string>
+    <string name="tab_bookmarks_short">Listas de reprodución</string>
+    <string name="feed_group_page_summary">Páxina do grupo de canles</string>
     <!-- MessageFormat-style strings -->
     <string name="subscribers">
         {count, plural,

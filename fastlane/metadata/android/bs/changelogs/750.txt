@@ -1,0 +1,21 @@
+Novo
+Nastavak reprodukcije #2288
+• Nastavite tokove tamo gdje ste prošli put stali
+Poboljšanja programa za preuzimanje #2149
+• Koristite okvir za pristup pohrani za pohranu preuzimanja na eksterne SD kartice
+• Novi mp4 muxer
+• Opcionalno promijenite direktorij za preuzimanje prije početka preuzimanja
+• Poštujte mjerene mreže
+
+Poboljšano
+• Uklonjeni gema stringovi #2295
+• Obrađuje promjene (automatske) rotacije tokom životnog ciklusa aktivnosti #2444
+• Učinite menije s dugim pritiskom konzistentnim #2368
+
+Ispravljeno
+• Ispravljeno neprikazivanje naziva odabrane pjesme s titlovima #2394
+• Nije došlo do pada programa kada provjera ažuriranja aplikacije ne uspije (GitHub verzija) #2423
+• Ispravljena preuzimanja zaglavljena na 99,9% #2440
+• Ažuriranje metapodataka reda čekanja za reprodukciju #2453
+• [SoundCloud] Ispravljen pad programa prilikom učitavanja lista za reprodukciju TeamNewPipe/NewPipeExtractor#170
+• [YouTube] Fiksno trajanje se ne može parsirati TeamNewPipe/NewPipeExtractor#177

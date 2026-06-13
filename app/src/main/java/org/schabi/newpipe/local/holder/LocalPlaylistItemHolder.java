@@ -8,8 +8,8 @@ import org.schabi.newpipe.database.playlist.PlaylistDuplicatesEntry;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.util.image.CoilHelper;
 
 public class LocalPlaylistItemHolder extends PlaylistItemHolder {
 
@@ -31,15 +31,15 @@ public class LocalPlaylistItemHolder extends PlaylistItemHolder {
             return;
         }
 
-        itemTitleView.setText(item.name);
+        itemTitleView.setText(item.getOrderingName());
         itemStreamCountView.setText(Localization.formatStreamCountMini(
                 itemStreamCountView.getContext(), item.streamCount));
         itemUploaderView.setVisibility(View.INVISIBLE);
 
-        PicassoHelper.loadPlaylistThumbnail(item.thumbnailUrl).into(itemThumbnailView);
+        CoilHelper.INSTANCE.loadPlaylistThumbnail(itemThumbnailView, item.getThumbnailUrl());
 
         if (item instanceof PlaylistDuplicatesEntry
-                && ((PlaylistDuplicatesEntry) item).timesStreamIsContained > 0) {
+                && ((PlaylistDuplicatesEntry) item).getTimesStreamIsContained() > 0) {
             itemView.setAlpha(GRAYED_OUT_ALPHA);
         } else {
             itemView.setAlpha(1.0f);

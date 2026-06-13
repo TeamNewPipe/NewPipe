@@ -117,7 +117,7 @@ public final class PlayerHolder {
     // helper to handle context in common place as using the same
     // context to bind/unbind a service is crucial
     private Context getCommonContext() {
-        return App.getApp();
+        return App.getInstance();
     }
 
     public void startService(final boolean playAfterConnect,
@@ -192,9 +192,11 @@ public final class PlayerHolder {
             startPlayerListener();
             // ^ will call listener.onPlayerConnected() down the line if there is an active player
 
-            // notify the main activity that binding the service has completed, so that it can
-            // open the bottom mini-player
-            NavigationHelper.sendPlayerStartedEvent(localBinder.getService());
+            if (playerService != null && playerService.getPlayer() != null) {
+                // notify the main activity that binding the service has completed and that there is
+                // a player, so that it can open the bottom mini-player
+                NavigationHelper.sendPlayerStartedEvent(localBinder.getService());
+            }
         }
     }
 

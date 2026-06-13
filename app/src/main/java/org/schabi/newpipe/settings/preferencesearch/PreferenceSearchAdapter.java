@@ -69,7 +69,8 @@ class PreferenceSearchAdapter
         }
     }
 
-    private static class PreferenceCallback extends DiffUtil.ItemCallback<PreferenceSearchItem> {
+    private static final class PreferenceCallback
+            extends DiffUtil.ItemCallback<PreferenceSearchItem> {
         @Override
         public boolean areItemsTheSame(@NonNull final PreferenceSearchItem oldItem,
                                        @NonNull final PreferenceSearchItem newItem) {

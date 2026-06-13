@@ -1,0 +1,3 @@
+[YouTube] Ispravljena pretraga za neke korisnike
+[YouTube] Ispravljeni izuzeci slučajnog dešifriranja
+[SoundCloud] URL-ovi koji završavaju kosom crtom sada se ispravno parsiraju

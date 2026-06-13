@@ -1,14 +1,14 @@
 package org.schabi.newpipe
 
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import kotlin.math.abs
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.schabi.newpipe.util.ReleaseVersionUtil.coerceUpdateCheckExpiry
 import org.schabi.newpipe.util.ReleaseVersionUtil.isLastUpdateCheckExpired
-import java.time.Instant
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import kotlin.math.abs
 
 class NewVersionManagerTest {
 

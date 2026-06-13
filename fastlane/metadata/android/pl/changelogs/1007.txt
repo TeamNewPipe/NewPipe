@@ -1,0 +1,11 @@
+Poprawka naprawia błąd "Treść niedostępna": filmy znów można odtwarzać!
+
+Naprawia kilka błędów z wersji 0.28.1:
+• Przesuwanie elementów listy odtwarzania tylko do sąsiednich pozycji
+• Migotanie tytułu/komentarzy między bieżącym a poprzednim filmem
+• Nie działa opcja „Uruchom odtwarzacz główny na pełnym ekranie”
+
+Inne:
+• [YT] Ponownie działa przewijanie transmisji na żywo do 4 godzin wstecz
+• Nie ładuj transmisji na żywo podczas odtwarzania w tle
+• Nowy interfejs dla opcji „Usuń z obejrzanych”

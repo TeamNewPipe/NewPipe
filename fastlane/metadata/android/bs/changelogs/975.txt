@@ -1,0 +1,17 @@
+Novo
+• Prikaz pregleda sličice tokom pretraživanja
+• Detekcija onemogućenih komentara
+• Omogućeno označavanje stavke feeda kao gledane
+• Prikaz srca u komentarima
+
+Poboljšano
+• Poboljšan raspored metapodataka i oznaka
+• Primjena boje usluge na UI komponente
+
+Ispravljeno
+• Ispravljena sličica u mini playeru
+• Ispravljeno beskonačno baferovanje duplih stavki reda čekanja
+• Neke ispravke playera poput rotacije i bržeg zatvaranja
+• Ispravljena ReCAPTCHA koja ostaje učitana u pozadini
+• Onemogući klikove prilikom osvježavanja feeda
+• Ispravljeni neki padovi preuzimanja

@@ -1,0 +1,2 @@
+Ovo je hitna ispravka koja ažurira NewPipe kako bi se ponovo omogućilo korištenje SoundClouda bez većih problema.
+SoundCloudov v2 API se sada koristi u ekstraktoru, a detekcija nevažećih ID-ova klijenata je poboljšana.

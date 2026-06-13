@@ -58,7 +58,7 @@ public final class ListHelper {
     /**
      * List of supported YouTube Itag ids.
      * The original order is kept.
-     * @see {@link org.schabi.newpipe.extractor.services.youtube.ItagItem#ITAG_LIST}
+     * @see org.schabi.newpipe.extractor.services.youtube.ItagItem
      */
     private static final List<Integer> SUPPORTED_ITAG_IDS =
             List.of(
@@ -806,7 +806,7 @@ public final class ListHelper {
         final Locale preferredLanguage = Localization.getPreferredLocale(context);
         final boolean preferOriginalAudio =
                 preferences.getBoolean(context.getString(R.string.prefer_original_audio_key),
-                        false);
+                        true);
         final boolean preferDescriptiveAudio =
                 preferences.getBoolean(context.getString(R.string.prefer_descriptive_audio_key),
                         false);

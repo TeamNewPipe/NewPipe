@@ -1,0 +1,23 @@
+<h4>Improvements</h4>
+<ul>
+<li>Make links in comments clickable, increase text size</li>
+<li>Click to search for the timestamp of links in comments</li>
+<li>Show preferred tab based on recently selected status</li>
+<li>Add the playlist to the queue when long-clicking &#39;Background&#39; in the playlist window</li>
+<li>Search for shared text when not a URL</li>
+<li>Add the "share now" button to the main video player</li>
+<li>Add a close button to the main player when the video queue is complete</li>
+<li>Add the "Play directly in background" button to the context menu for video queue items</li>
+<li>Improved English translations for Play/Enqueue commands</li>
+<li>Small performance improvements</li>
+<li>Deleting unused files</li>
+<li>Update ExoPlayer to version 2.9.6</li>
+<li>Add support for Invidious links</li>
+</ul>
+<h4>Changed</h4>
+<ul>
+<li>fix scrolling with comments and related feeds disabled</li>
+<li>correction of CheckForNewAppVersionTask task executed when it shouldn't be</li>
+<li>correction of youtube subscriptions import: ignore those with invalid url and keep those with empty title</li>
+<li>invalid YouTube url fix: the name of the signature tag is not always "signature", which prevents streams from loading</li>
+</ul>

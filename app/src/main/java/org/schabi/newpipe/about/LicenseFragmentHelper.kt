@@ -1,9 +1,9 @@
 package org.schabi.newpipe.about
 
 import android.content.Context
+import java.io.IOException
 import org.schabi.newpipe.R
 import org.schabi.newpipe.util.ThemeHelper
-import java.io.IOException
 
 /**
  * @param context the context to use
@@ -28,13 +28,16 @@ fun getFormattedLicense(context: Context, license: License): String {
 fun getLicenseStylesheet(context: Context): String {
     val isLightTheme = ThemeHelper.isLightThemeSelected(context)
     val licenseBackgroundColor = getHexRGBColor(
-        context, if (isLightTheme) R.color.light_license_background_color else R.color.dark_license_background_color
+        context,
+        if (isLightTheme) R.color.light_license_background_color else R.color.dark_license_background_color
     )
     val licenseTextColor = getHexRGBColor(
-        context, if (isLightTheme) R.color.light_license_text_color else R.color.dark_license_text_color
+        context,
+        if (isLightTheme) R.color.light_license_text_color else R.color.dark_license_text_color
     )
     val youtubePrimaryColor = getHexRGBColor(
-        context, if (isLightTheme) R.color.light_youtube_primary_color else R.color.dark_youtube_primary_color
+        context,
+        if (isLightTheme) R.color.light_youtube_primary_color else R.color.dark_youtube_primary_color
     )
     return "body{padding:12px 15px;margin:0;background:#$licenseBackgroundColor;color:#$licenseTextColor}" +
         "a[href]{color:#$youtubePrimaryColor}pre{white-space:pre-wrap}"

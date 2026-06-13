@@ -1,0 +1,40 @@
+Promjene u verziji 0.17.1
+
+Novo
+• Tajlandska lokalizacija
+
+Poboljšano
+
+• Ponovo dodana akcija "počni reprodukciju ovdje" u menijima dugog pritiska za liste za reprodukciju #2518
+• Dodan prekidač za SAF / birač starih datoteka #2521
+
+Ispravljeno
+• Ispravljeni dugmad koja nestaju u prikazu preuzimanja prilikom prebacivanja aplikacija #2487
+• Ispravljena je greška u poziciji reprodukcije koja se pohranjuje iako je historija gledanja onemogućena
+• Ispravljene smanjene performanse uzrokovane pozicijom reprodukcije u prikazima liste #2517
+• [Extractor] Ispravljena je ReCaptchaActivity #2527, TeamNewPipe/NewPipeExtractor #186
+• [Extractor] [YouTube] Ispravljena je slučajna greška u pretrazi kada su liste za reprodukciju u rezultatima TeamNewPipe/NewPipeExtractor #185
+
+Promjene u verziji 0.17.0
+
+Novo
+Nastavak reprodukcije #2288
+• Nastavite tokove tamo gdje ste zadnji put stali
+Poboljšanja programa za preuzimanje #2149
+• Koristite okvir za pristup pohrani za pohranjivanje preuzimanja na eksterne SD kartice
+• Novi mp4 muxer
+• Opcionalno promijenite direktorij za preuzimanje prije početka preuzimanja
+• Poštujte mjerene mreže
+
+Poboljšano
+• Uklonjeni gema stringovi #2295
+• Obrađuje promjene (automatske) rotacije tokom životnog ciklusa aktivnosti #2444
+• Učinite menije s dugim pritiskom konzistentnim #2368
+
+Ispravljeno
+• Ispravljeno ime odabrane numere titlova koje se ne prikazuje #2394
+• Nije došlo do pada programa kada provjera ažuriranja aplikacije ne uspije (GitHub verzija) #2423
+• Ispravljena preuzimanja zaglavljena na 99,9% #2440
+• Ažuriranje metapodataka reda za reprodukciju #2453
+• [SoundCloud] Ispravljen pad programa prilikom učitavanja lista za reprodukciju TeamNewPipe/NewPipeExtractor#170
+• [YouTube] Fiksno trajanje se ne može parsirati TeamNewPipe/NewPipeExtractor#177

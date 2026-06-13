@@ -1,0 +1,9 @@
+Application Context kullanılarak kuyruğa ekleme işlemlerindeki NullPointerException hatası giderildi
+[YouTube] Öge süresinin ayrıştırılması sorunu giderildi
+
+Çeviriler güncellendi ve çevrilmemiş diller kaldırıldı
+Görüntü işleme konusunda küçük iyileştirmeler yapıldı
+
+Refactor sürecinden kaynaklanan aboneliklerle ilgili değişiklikler aktarıldı
+Refactor sürecinden kaynaklanan path ile ilgili değişiklikler aktarıldı
+Bağımlılıklar ve Gradle, en son düzgün sürüme güncellendi

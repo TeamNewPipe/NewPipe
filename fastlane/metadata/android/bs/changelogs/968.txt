@@ -1,0 +1,7 @@
+Dodana je opcija za detalje kanala u meni s dugim pritiskom.
+Dodana je funkcionalnost preimenovanja naziva liste za reprodukciju iz sučelja liste za reprodukciju.
+Omogućeno korisniku pauziranje dok se video učitava.
+Dotjerana je bijela tema.
+Ispravljeno preklapanje fontova pri korištenju veće veličine fonta.
+Ispravljen je problem s nedostatkom videa na Formuler i Zephier uređajima.
+Ispravljeni su razni padovi sistema.

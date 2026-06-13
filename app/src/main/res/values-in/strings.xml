@@ -76,7 +76,7 @@
     <string name="no_available_dir">Silakan pilih folder unduhan di pengaturan</string>
     <string name="no_player_found">Pemutar penjaliran tidak ditemukan. Pasang VLC?</string>
     <string name="app_ui_crash">App/UI rusak</string>
-    <string name="info_labels">Apa:\\nPermintaan:\\nBahasa Konten:\\nNegara Konten:\\nBahasa Apl:\\nLayanan:\\nWaktu GMT:\\nPaket:\\nVersi:\\nVersi OS:</string>
+    <string name="info_labels">Apa:\nPermintaan:\nBahasa Konten:\nNegara Konten:\nBahasa Apl:\nLayanan:\nWaktu GMT:\nPaket:\nVersi:\nVersi OS:</string>
     <string name="msg_threads">Thread</string>
     <string name="title_activity_recaptcha">Tantangan reCAPTCHA</string>
     <string name="recaptcha_request_toast">Meminta kode reCAPTCHA</string>
@@ -414,7 +414,7 @@
     <string name="delete_downloaded_files">Hapus berkas yang diunduh</string>
     <string name="permission_display_over_apps">Izinkan untuk ditampilkan di atas aplikasi lain</string>
     <string name="app_language_title">Bahasa apl</string>
-    <string name="systems_language">Default sistem</string>
+    <string name="systems_language">Bawaan sistem</string>
     <string name="done">Selesai</string>
     <string name="seek_duration_title">Durasi maju/mundur cepat</string>
     <string name="subtitle_activity_recaptcha">Tekan \"Selesai\" saat selesai</string>
@@ -456,7 +456,7 @@
     <string name="albums">Album</string>
     <string name="songs">Lagu</string>
     <string name="feed_use_dedicated_fetch_method_title">Ambil dari langganan aslinya jika tersedia</string>
-    <string name="remove_watched_popup_title">Buang video yang sudah ditonton\?</string>
+    <string name="remove_watched_popup_title">Hapus siaran yang sudah ditonton?</string>
     <string name="remove_watched">Buang ditonton</string>
     <string name="restricted_video">Video ini dibatasi usia.
 \n
@@ -464,9 +464,8 @@
     <string name="content_not_supported">Konten ini belum didukung oleh NewPipe.
 \n
 \nSemoga akan didukung pada versi berikutnya.</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Iya, dan video yang ditonton sebagian</string>
-    <string name="remove_watched_popup_warning">Video yang sudah ditonton sebelum dan sesudah ditambahkan ke daftar putar akan dibuang.
-\nApakah Anda yakin\? Ini tidak bisa diurungkan!</string>
+    <string name="remove_watched_popup_partially_watched_streams">Iya, dan video yang ditonton sebagian</string>
+    <string name="remove_watched_popup_warning">Siaran yang telah ditonton sebelum dan sesudah ditambahkan ke daftar putar akan dihapus.  \nAnda yakin?</string>
     <string name="unmute">Batal bisukan</string>
     <string name="mute">Bisukan</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Apakah Anda merasa pemuatan langganan sangat lambat\? Jika iya, coba nyalakan pemuatan cepat (Anda bisa mengubahnya di dalam pengaturan atau dengan menekan tombol di bawah)
@@ -604,13 +603,11 @@
     <string name="detail_heart_img_view_description">Disukai oleh kreator</string>
     <string name="local_search_suggestions">Saran pencarian lokal</string>
     <string name="remote_search_suggestions">Saran pencarian remote</string>
-    <string name="show_image_indicators_title">Tampilkan indikator gambar</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="other">Menghapus %1$s unduhan</item>
     </plurals>
     <string name="enqueue_next_stream">tambahkan ke selanjutnya</string>
     <string name="enqueued_next">telah ditambahkan ke selanjutnya</string>
-    <string name="show_image_indicators_summary">Tampilkan Ribon bewarna Picasso di atas gambar yang mengindikasikan asalnya: merah untuk jaringan, biru untuk disk dan hijau untuk memori</string>
     <string name="start_main_player_fullscreen_summary">Jangan memulai memutar video di mini player, tapi nyalakan langsung di mode layar penuh, jika rotasi otomatis terkunci. Anda tetap dapat mengakses mini player dengan keluar dari layar penuh</string>
     <string name="processing_may_take_a_moment">Memproses… Mungkin butuh waktu sebentar</string>
     <string name="check_for_updates">Periksa Pembaruan</string>
@@ -727,7 +724,7 @@
     <string name="show_channel_tabs">Tab saluran</string>
     <string name="channel_tab_shorts">Shorts</string>
     <string name="loading_metadata_title">Memuat Metadata…</string>
-    <string name="feed_fetch_channel_tabs">Dapatjan tab saluran</string>
+    <string name="feed_fetch_channel_tabs">Dapatkan tab saluran</string>
     <string name="channel_tab_about">Tentang</string>
     <string name="channel_tab_albums">Album</string>
     <string name="feed_fetch_channel_tabs_summary">Tab untuk didapatkan ketika memperarui umpan. Opsi ini tidak memiliki efek jika saluran diperbarui menggunakan mode cepat.</string>
@@ -794,4 +791,41 @@
     <string name="channel_tab_likes">Suka</string>
     <string name="migration_info_6_7_title">Halaman Top 50 SoundCloud dihapus</string>
     <string name="migration_info_6_7_message">SoundCloud telah menghentikan dukungan tangga lagu Top 50. Tab terkait telah dihapus dari halaman utama Anda.</string>
+    <string name="permission_display_over_apps_message">Untuk menggunakan Pemutar Sembul, silakan pilih %1$s dalam menu pengaturan Android berikut dan aktifkan %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">\"Izinkan menampilkan di atas aplikasi\"</string>
+    <string name="delete_file">Hapus berkas</string>
+    <string name="delete_entry">Hapus entri</string>
+    <string name="account_terminated_service_provides_reason">Akun dihapus\n\n%1$s menyediakan alasan ini: %2$s</string>
+    <string name="migration_info_7_8_title">Tren terpadu YouTube dihilangkan</string>
+    <string name="migration_info_7_8_message">YouTube telah mengakhiri halaman tren terpadu pada 21 Juli 2025. NewPipe mengganti halaman tren bawaan dengan tren siaran langsung.\n\nAnda juga dapat memilih halaman tren berbeda dalam \"Pengaturan &gt; Konten &gt; Konten di halaman utama\".</string>
+    <string name="trending_gaming">Tren permainan</string>
+    <string name="trending_podcasts">Tren siniar</string>
+    <string name="trending_movies">Tren film dan acara</string>
+    <string name="trending_music">Tren musik</string>
+    <string name="entry_deleted">Entri dihapus</string>
+    <string name="player_http_403">Kesalahan HTTP 403 diterima dari server saat memutar, dapat disebabkan oleh URL streaming kedaluwarsa atau pemblokiran IP</string>
+    <string name="player_http_invalid_status">Kesalahan HTTP %1$s diterima dari server saat memutar</string>
+    <string name="youtube_player_http_403">Kesalahan HTTP 403 diterima dari server saat memutar, dapat disebabkan oleh pemblokiran IP atau masalah deobfuskasi URL streaming</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s menolak memberikan data, meminta login untuk memastikan peminta bukan bot.\n\nAlamat IP Anda mungkin telah diblokir sementara oleh %1$s, Anda dapat menunggu beberapa saat atau beralih ke alamat IP yang berbeda (misalnya dengan mengaktifkan/menonaktifkan VPN, atau beralih dari WiFi ke data seluler).\n\nHarap lihat &lt;a href=\"%2$s\"&gt;&lt;/a&gt;entri Pertanyaan ini&lt;/a&gt; untuk informasi lebih lanjut.</string>
+    <string name="unsupported_content_in_country">Konten ini tidak tersedia untuk negara konten yang saat ini dipilih.\n\nUbah pilihan Anda dari “Pengaturan &gt; Konten &gt; Negara konten bawaan”.</string>
+    <string name="short_thousand">%sK</string>
+    <string name="short_million">%sM</string>
+    <string name="short_billion">%sB</string>
+    <string name="kao_dialog_warning">Pada Agustus 2025, Google mengumumkan bahwa mulai September 2026, pemasangan aplikasi akan memerlukan verifikasi pengembang untuk semua aplikasi Android pada perangkat bersertifikasi, termasuk yang dipasang di luar Play Store. Karena pengembang NewPipe tidak menyetujui persyaratan ini, NewPipe tidak akan lagi berfungsi pada perangkat Android bersertifikasi setelah waktu tersebut.</string>
+    <string name="kao_dialog_more_info">Rincian</string>
+    <string name="kao_solution">Solusi</string>
+    <plurals name="export_subscriptions">
+        <item quantity="other">Mengekspor %d langganan…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="other">Memuat %d langganan…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="other">Mengimpor %d langganan…</item>
+    </plurals>
+    <string name="import_subscriptions_title">Impor langganan</string>
+    <string name="export_subscriptions_title">Ekspor langganan</string>
+    <string name="import_subscriptions_summary">Impor langganan dari ekspor .json sebelumnya</string>
+    <string name="export_subscriptions_summary">Ekspor langganan Anda ke berkas .json</string>
+    <string name="import_from_previous_export">Impor dari ekspor sebelumnya</string>
 </resources>

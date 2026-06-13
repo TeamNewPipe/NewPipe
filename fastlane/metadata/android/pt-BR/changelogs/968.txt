@@ -1,0 +1,9 @@
+# Melhorias
+* Detalhes do canal adicionados ao menu de toque longo.
+* Agora é possível renomear playlists diretamente pela interface.
+* Permite pausar o vídeo mesmo durante o carregamento (buffering).
+* Refinamentos e polimento no tema claro.
+# Correções
+* Correção de fontes sobrepostas ao usar tamanhos de letra maiores.
+* Correção da ausência de vídeo nos aparelhos Formuler e Zephier.
+* Correção de diversos erros de fechamento (crashes).

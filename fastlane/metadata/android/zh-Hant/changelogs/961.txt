@@ -7,6 +7,6 @@
 
 • 修復從播放器內部分享影片的問題
 • 修復空白的 ReCaptcha webview
-• 修復了從列表中移除串流時所發生的當機問題
+• 修復了從清單中移除串流時所發生的當機問題
 • [PeerTube] 修復相關串流
 • [YouTube] 修復 YouTube Music 搜尋

@@ -1,0 +1,2 @@
+MediaParserren euskarria kendu da Android 11+-n bufferrean sartu ondoren erreprodukzioa berriro hasteko huts egitea konpontzeko.
+Philips QM16XE-n multimedia tunelizazioa desgaitu da erreprodukzio arazoak konpontzeko.

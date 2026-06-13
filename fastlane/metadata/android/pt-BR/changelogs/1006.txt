@@ -1,0 +1,16 @@
+# Melhorias
+Mantém o player ao tocar nas minutagens do vídeo.
+Recupera downloads pendentes quando possível.
+Limpa a lista de downloads sem excluir o arquivo permanentemente.
+Aviso de Permissão de Sobreposição (Android R+).
+Suporte a links do SoundCloud.
+Pequenas melhorias e otimizações.
+
+# Correções
+Formato de contagem para Android < 7.
+Notificações confusas ou incoerentes.
+Ajustes em legendas SRT.
+Correção de fechamentos bruscos (crashes).
+
+# Desenvolvimento
+Modernização do código interno.

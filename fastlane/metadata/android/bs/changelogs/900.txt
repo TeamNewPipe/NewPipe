@@ -1,0 +1,15 @@
+Novo
+• Grupe pretplata i sortirani feedovi
+• Dugme za isključivanje zvuka u playerima
+
+Poboljšano
+
+• Omogućeno otvaranje linkova music.youtube.com i media.ccc.de u NewPipe-u
+• Premještanje dvije postavke iz Izgled u Sadržaj
+• Sakrivanje opcija pretraživanja od 5, 15, 25 sekundi ako je omogućeno neprecizno pretraživanje
+
+Ispravljeno
+• neki WebM videozapisi se ne mogu pretraživati
+• sigurnosna kopija baze podataka na Android P
+• rušenje prilikom dijeljenja preuzete datoteke
+• mnoštvo problema s ekstrakcijom YouTubea i još mnogo toga ...

@@ -1,0 +1,8 @@
+• Dodana podrška za poglavlja u kontrolama playera
+• [PeerTube] Dodana pretraga u sepia boji
+• Ponovo dodano dugme za dijeljenje u detaljnom prikazu videa i opis toka premješten u raspored kartica
+• Onemogućeno vraćanje svjetline ako je gesta za svjetlinu onemogućena
+• Dodana stavka liste za reprodukciju videa na Kodiju
+• Ispravljen pad sistema kada na nekim uređajima nije postavljen zadani preglednik i poboljšani su dijalozi za dijeljenje
+• Uključivanje/isključivanje reprodukcije/pauze pomoću hardverskog dugmeta za razmak u playeru preko cijelog ekrana
+• [media.ccc.de] Razne ispravke i poboljšanja

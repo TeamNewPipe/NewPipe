@@ -1,0 +1,7 @@
+Poboljšano
+• Automatska reprodukcija je dostupna za sve usluge (umjesto samo za YouTube)
+
+Ispravljeno
+• Ispravljeni povezani tokovi podrškom za nove YouTube nastavke
+• Ispravljeni YouTube videozapisi s ograničenjem za određene uzraste
+• [Android TV] Ispravljeno dugotrajno preklapanje istaknutog fokusa

@@ -1,17 +1,17 @@
-Zer berri
-• Harpidetza kopurua bideoen xehetasunetan
-• Ilaratik deskargatu
-• Erreprodukzio-zerrendei betirako izango den miniatura ezarri
-• Luze sakatu traola eta estekentzako
-• Txartel-bista modua
+Berria
+• Harpidedun kopurua bideoaren xehetasunetan
+• Deskargatu ilaratik
+• Zerrenda miniatura behin betiko ezarri
+• Sakatu luze traolak eta estekak
+• Txartelen ikuspegi modua
 
-Hobekuntzak
-• Mini-erreproduzitzailearen ixteko botoi handiago bat
-• Miniaturen eskala murrizketa arinagoa
-• Android 13 (API 33)
-• Bilaketak ez du erreprodukzioa geldiaraziko
+Hobetua
+• Mini-erreproduzitzailearen ixteko botoia handiagoa
+• Miniaturen eskala txikiagotzea leunagoa
+• Helburua Android 13 (API 33)
+• Bilatzeak ez du jokalaria pausatzen
 
-Konponketak
-• DeX/saguaren gainezarpena konpondua
-• Bigarren planoko erreprodukzioa baimendu bereizitako bi audio-jariorik gabe
-• YouTube-kin zeuden arazoak konpondu eta are gehiago…
+Konpondua
+• Gainjartzea DeX/saguaren gainean konpondu
+• Atzeko planoan audio-jariorik gabe baimendu
+• Hainbat YouTube konponketa eta gehiago

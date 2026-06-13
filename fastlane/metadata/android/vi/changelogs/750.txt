@@ -1,0 +1,16 @@
+Mới
+• Tiếp tục phát video từ vị trí đã dừng (#2288)
+• Cải tiến tải xuống: hỗ trợ SD-card (SAF), muxer MP4 mới, đổi thư mục tải trước khi tải, tôn trọng mạng dữ liệu (#2149)
+
+Cải thiện
+• Dọn chuỗi không dùng
+• Xử lý xoay màn hình tốt hơn
+• Menu chạm lâu nhất quán hơn
+
+Đã sửa
+• Hiển thị đúng tên phụ đề
+• Không crash khi kiểm tra cập nhật thất bại
+• Sửa lỗi tải kẹt 99.9%
+• Cập nhật metadata hàng phát
+• Sửa lỗi playlist SoundCloud
+• Sửa lỗi đọc thời lượng YouTube TeamNewPipe/NewPipeExtractor#177

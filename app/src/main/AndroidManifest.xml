@@ -97,14 +97,6 @@
             android:label="@string/title_activity_about" />
 
         <service
-            android:name=".local.subscription.services.SubscriptionsImportService"
-            android:foregroundServiceType="dataSync" />
-
-        <service
-            android:name=".local.subscription.services.SubscriptionsExportService"
-            android:foregroundServiceType="dataSync" />
-
-        <service
             android:name=".local.feed.service.FeedLoadService"
             android:foregroundServiceType="dataSync" />
 
@@ -340,6 +332,7 @@
                 <data android:scheme="https" />
                 <data android:host="soundcloud.com" />
                 <data android:host="m.soundcloud.com" />
+                <data android:host="on.soundcloud.com" />
                 <data android:host="www.soundcloud.com" />
                 <data android:pathPrefix="/" />
             </intent-filter>
@@ -384,6 +377,7 @@
 
                 <data android:host="eduvid.org" />
                 <data android:host="framatube.org" />
+                <data android:host="indymotion.fr" />
                 <data android:host="media.assassinate-you.net" />
                 <data android:host="media.fsfe.org" />
                 <data android:host="peertube.co.uk" />

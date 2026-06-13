@@ -1,7 +1,6 @@
 package org.schabi.newpipe.local.subscription
 
 import android.content.Context
-import android.util.Pair
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
@@ -26,7 +25,7 @@ class SubscriptionManager(context: Context) {
     private val feedDatabaseManager = FeedDatabaseManager(context)
 
     fun subscriptionTable(): SubscriptionDAO = subscriptionTable
-    fun subscriptions() = subscriptionTable.all
+    fun subscriptions() = subscriptionTable.getAll()
 
     fun getSubscriptions(
         currentGroupId: Long = FeedGroupEntity.GROUP_ALL_ID,
@@ -37,49 +36,44 @@ class SubscriptionManager(context: Context) {
             filterQuery.isNotEmpty() -> {
                 return if (showOnlyUngrouped) {
                     subscriptionTable.getSubscriptionsOnlyUngroupedFiltered(
-                        currentGroupId, filterQuery
+                        currentGroupId,
+                        filterQuery
                     )
                 } else {
                     subscriptionTable.getSubscriptionsFiltered(filterQuery)
                 }
             }
+
             showOnlyUngrouped -> subscriptionTable.getSubscriptionsOnlyUngrouped(currentGroupId)
-            else -> subscriptionTable.all
+
+            else -> subscriptionTable.getAll()
         }
     }
 
-    fun upsertAll(infoList: List<Pair<ChannelInfo, List<ChannelTabInfo>>>): List<SubscriptionEntity> {
-        val listEntities = subscriptionTable.upsertAll(
-            infoList.map { SubscriptionEntity.from(it.first) }
-        )
+    fun upsertAll(infoList: List<Pair<ChannelInfo, ChannelTabInfo>>) {
+        val listEntities = infoList.map { SubscriptionEntity.from(it.first) }
+        subscriptionTable.upsertAll(listEntities)
 
         database.runInTransaction {
             infoList.forEachIndexed { index, info ->
-                info.second.forEach {
-                    feedDatabaseManager.upsertAll(
-                        listEntities[index].uid,
-                        it.relatedItems.filterIsInstance<StreamInfoItem>()
-                    )
-                }
+                val streams = info.second.relatedItems.filterIsInstance<StreamInfoItem>()
+                feedDatabaseManager.upsertAll(listEntities[index].uid, streams)
             }
         }
-
-        return listEntities
     }
 
-    fun updateChannelInfo(info: ChannelInfo): Completable =
-        subscriptionTable.getSubscription(info.serviceId, info.url)
-            .flatMapCompletable {
-                Completable.fromRunnable {
-                    it.setData(
-                        info.name,
-                        ImageStrategy.imageListToDbUrl(info.avatars),
-                        info.description,
-                        info.subscriberCount
-                    )
-                    subscriptionTable.update(it)
+    fun updateChannelInfo(info: ChannelInfo): Completable = subscriptionTable.getSubscription(info.serviceId, info.url)
+        .flatMapCompletable {
+            Completable.fromRunnable {
+                it.apply {
+                    name = info.name
+                    avatarUrl = ImageStrategy.imageListToDbUrl(info.avatars)
+                    description = info.description
+                    subscriberCount = info.subscriberCount
                 }
+                subscriptionTable.update(it)
             }
+        }
 
     fun updateNotificationMode(serviceId: Int, url: String, @NotificationMode mode: Int): Completable {
         return subscriptionTable().getSubscription(serviceId, url)

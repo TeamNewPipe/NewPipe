@@ -1,0 +1,12 @@
+Novo
+• Podrška za metode isporuke osim progresivnog HTTP-a: brže vrijeme učitavanja reprodukcije, ispravke za PeerTube i SoundCloud, reprodukcija nedavno završenih YouTube prijenosa uživo
+• Dodano dugme za dodavanje udaljene liste za reprodukciju na lokalnu
+• Pregled slike u Android 10+ listu za dijeljenje
+
+Poboljšano
+• Poboljšan dijalog parametara reprodukcije
+• Dugmad za uvoz/izvoz pretplate premještena u meni s tri tačke
+
+Ispravljeno
+• Ispravljeno uklanjanje potpuno pregledanih videozapisa s liste za reprodukciju
+• Ispravljena tema menija za dijeljenje i unos "dodaj na listu za reprodukciju"

@@ -8,6 +8,7 @@ import androidx.room.Transaction
 import androidx.room.Update
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Maybe
+import java.time.OffsetDateTime
 import org.schabi.newpipe.database.feed.model.FeedEntity
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.feed.model.FeedLastUpdatedEntity
@@ -15,7 +16,6 @@ import org.schabi.newpipe.database.stream.StreamWithState
 import org.schabi.newpipe.database.stream.model.StreamStateEntity
 import org.schabi.newpipe.database.subscription.NotificationMode
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
-import java.time.OffsetDateTime
 
 @Dao
 abstract class FeedDAO {
@@ -168,10 +168,10 @@ abstract class FeedDAO {
         ON fgs.subscription_id = lu.subscription_id AND fgs.group_id = :groupId
         """
     )
-    abstract fun oldestSubscriptionUpdate(groupId: Long): Flowable<List<OffsetDateTime>>
+    abstract fun oldestSubscriptionUpdate(groupId: Long): Flowable<List<OffsetDateTime?>>
 
     @Query("SELECT MIN(last_updated) FROM feed_last_updated")
-    abstract fun oldestSubscriptionUpdateFromAll(): Flowable<List<OffsetDateTime>>
+    abstract fun oldestSubscriptionUpdateFromAll(): Flowable<List<OffsetDateTime?>>
 
     @Query("SELECT COUNT(*) FROM feed_last_updated WHERE last_updated IS NULL")
     abstract fun notLoadedCount(): Flowable<Long>

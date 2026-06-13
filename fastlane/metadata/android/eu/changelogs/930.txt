@@ -1,0 +1,17 @@
+Berria
+• YouTube Music bilaketa
+• Android TV oinarrizkoa
+
+Hobetua
+• Ikusitako bideoak kendu
+• Mezua eduki onartzen ez
+• Leiho tamaina keinuak
+• Ilaran kanaleko botoiak
+• Tiradera izenburu kudeaketa
+
+Konpondua
+• Adin mugatuko edukia
+• reCAPTCHA motak
+• Laster-markak null
+• Sareko salbuespena
+• Harpidetza ordenatzea

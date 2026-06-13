@@ -1,0 +1,6 @@
+Usprawniono
+• Zawsze zezwalaj na zmianę preferencji powiadomień odtwarzacza w systemie Android 13 i nowszych
+
+Naprawiono
+• Naprawiono błąd, w wyniku którego eksport bazy danych/subskrypcji nie skracał istniejącego pliku, co mogło prowadzić do uszkodzenia eksportu
+• Naprawiono błąd, w wyniku którego odtwarzacz wznawiał odtwarzanie od początku po kliknięciu znacznika czasu
