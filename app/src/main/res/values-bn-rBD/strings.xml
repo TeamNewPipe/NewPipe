@@ -26,7 +26,7 @@
     <string name="default_resolution_title">ডিফল্ট রেজ্যুলেশন</string>
     <string name="default_popup_resolution_title">ডিফল্ট পপআপ রেজ্যুলেশন</string>
     <string name="show_higher_resolutions_title">উচ্চ রেজ্যুলেশন দেখাও</string>
-    <string name="show_higher_resolutions_summary">শুধু কিছু ডিভাইস 2K/4K ভিডিও চালাতে পারে</string>
+    <string name="show_higher_resolutions_summary">শুধু কিছু ডিভাইস 1440p/4K ভিডিও চালাতে পারে</string>
     <string name="play_with_kodi_title">Kodi এর মাধ্যমে চালাও</string>
     <string name="kore_not_found">হারানো কোর ইনস্টল করবেন\?</string>
     <string name="show_play_with_kodi_title">\"Kodi দিয়ে চালাও\" অপশন দেখাও</string>
@@ -103,7 +103,7 @@
     <string name="title_activity_recaptcha">reCAPTCHA চ্যালেঞ্জ</string>
     <string name="recaptcha_request_toast">reCAPTCHA চ্যালেঞ্জ অনুরোধ করা হয়েছে</string>
     <!-- End of GigaGet's Strings -->
-    <string name="info_labels">কি:\\nঅনুরোধ:\\nকন্টেন্ট ভাষা:\\nসার্ভিস:\\nসময়(GMT এ):\\nপ্যাকেজ:\\nসংস্করণ:\\nওএস সংস্করণ:\\nআইপি পরিসর:</string>
+    <string name="info_labels">কি:\nঅনুরোধ:\nকন্টেন্ট ভাষা:\nসার্ভিস:\nসময়(GMT এ):\nপ্যাকেজ:\nসংস্করণ:\nওএস সংস্করণ:\nআইপি পরিসর:</string>
     <string name="controls_download_desc">স্ট্রিম ফাইল ডাউনলোড করুন</string>
     <string name="show_info">তথ্য দেখাও</string>
     <string name="fragment_feed_title">নতুন যা কিছু</string>

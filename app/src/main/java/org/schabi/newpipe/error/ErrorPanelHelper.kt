@@ -11,16 +11,17 @@ import androidx.fragment.app.Fragment
 import com.jakewharton.rxbinding4.view.clicks
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
+import java.util.concurrent.TimeUnit
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.util.external_communication.ShareUtils
-import java.util.concurrent.TimeUnit
+import org.schabi.newpipe.util.text.setTextWithLinks
 
 class ErrorPanelHelper(
     private val fragment: Fragment,
     rootView: View,
-    onRetry: Runnable?,
+    onRetry: Runnable?
 ) {
     private val context: Context = rootView.context!!
 
@@ -64,7 +65,7 @@ class ErrorPanelHelper(
 
     fun showError(errorInfo: ErrorInfo) {
         ensureDefaultVisibility()
-        errorTextView.text = errorInfo.getMessage(context)
+        errorTextView.setTextWithLinks(errorInfo.getMessage(context))
 
         if (errorInfo.recaptchaUrl != null) {
             showAndSetErrorButtonAction(R.string.recaptcha_solve) {
@@ -109,7 +110,7 @@ class ErrorPanelHelper(
     fun showTextError(errorString: String) {
         ensureDefaultVisibility()
 
-        errorTextView.text = errorString
+        errorTextView.setTextWithLinks(errorString)
 
         setRootVisible()
     }

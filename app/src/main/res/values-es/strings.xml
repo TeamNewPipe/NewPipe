@@ -78,7 +78,7 @@
     <string name="msg_copied">Copiado al portapapeles</string>
     <string name="no_available_dir">Defina una carpeta de descargas más tarde en los ajustes</string>
     <string name="app_ui_crash">La interfaz de la aplicación dejó de funcionar</string>
-    <string name="info_labels">Qué:\\nSolicitud:\\nIdioma del contenido:\\nPaís del contenido:\\nIdioma de la aplicación:\\nServicio:\\nMarca de tiempo:\\nPaquete:\\nVersión:\\nVersión del SO:</string>
+    <string name="info_labels">Qué:\nSolicitud:\nIdioma del contenido:\nPaís del contenido:\nIdioma de la aplicación:\nServicio:\nMarca de tiempo:\nPaquete:\nVersión:\nVersión del SO:</string>
     <string name="black_theme_title">Negro</string>
     <string name="all">Todo</string>
     <string name="open_in_popup_mode">Abrir en modo emergente</string>
@@ -90,7 +90,7 @@
     <string name="default_video_format_title">Formato de vídeo predefinido</string>
     <string name="disabled">Deshabilitado</string>
     <string name="show_higher_resolutions_title">Mostrar resoluciones más altas</string>
-    <string name="show_higher_resolutions_summary">Solo algunos dispositivos pueden reproducir vídeos en 2K / 4K</string>
+    <string name="show_higher_resolutions_summary">Solo algunos dispositivos pueden reproducir vídeos en 1440p / 4K</string>
     <string name="default_popup_resolution_title">Resolución predefinida de emergente</string>
     <string name="controls_background_title">Segundo plano</string>
     <string name="controls_popup_title">Emergente</string>
@@ -512,10 +512,9 @@
     <string name="albums">Álbumes</string>
     <string name="songs">Canciones</string>
     <string name="restricted_video">Este vídeo tiene restricción de edad. \n \nHabilitar \"%1$s\" en los ajustes si quieres verlo.</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sí, y también vídeos vistos parcialmente</string>
-    <string name="remove_watched_popup_warning">Los vídeos que ya se hayan visto luego de añadidos a la lista de reproducción, serán quitados.
-\n¿Estás seguro\? ¡Esta acción no se puede deshacer!</string>
-    <string name="remove_watched_popup_title">¿Quitar vídeos ya vistos\?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Sí, y también vídeos vistos parcialmente</string>
+    <string name="remove_watched_popup_warning">Los vídeos que ya se hayan visto antes y después de ser añadidos a la lista de reproducción serán quitados. \n¿Estás seguro?</string>
+    <string name="remove_watched_popup_title">¿Quitar streams ya vistos?</string>
     <string name="remove_watched">Quitar vídeos ya vistos</string>
     <string name="video_detail_by">Por %s</string>
     <string name="channel_created_by">Creado por %s</string>
@@ -664,7 +663,7 @@
     <string name="create_error_notification">Crear una notificación de error</string>
     <string name="show_error_snackbar">Mostrar una barra de error</string>
     <string name="no_appropriate_file_manager_message">No se ha encontrado un gestor de archivos apropiado para esta acción. \nPor favor, instala un gestor de archivos o intenta deshabilitarlo \'%s\' en los ajustes de la descarga</string>
-    <string name="no_appropriate_file_manager_message_android_10">No se encontró ningún administrador de archivos apropiado para esta acción. 
+    <string name="no_appropriate_file_manager_message_android_10">No se encontró ningún administrador de archivos apropiado para esta acción.
 \n Instale un administrador de archivos compatible con Storage Access Framework</string>
     <string name="detail_pinned_comment_view_description">Comentario fijado</string>
     <string name="leak_canary_not_available">LeakCanary no está disponible</string>
@@ -827,4 +826,55 @@
     <string name="select_a_feed_group">Selecciona un grupo de feed</string>
     <string name="no_feed_group_created_yet">Aún no se ha creado ningún grupo de feed</string>
     <string name="feed_group_page_summary">Página de grupo de canales</string>
+    <string name="search_with_service_name">Buscar %1$s</string>
+    <string name="search_with_service_name_and_filter">Buscar %1$s (%2$s)</string>
+    <string name="channel_tab_likes">Me gusta</string>
+    <string name="migration_info_6_7_title">Página Top 50 de SoundCloud eliminada</string>
+    <string name="migration_info_6_7_message">SoundCloud ha descontinuado las listas originales del Top 50. La pestaña correspondiente se ha eliminado de la página principal.</string>
+    <string name="migration_info_7_8_title">YouTube tendencias combinadas eliminado</string>
+    <string name="migration_info_7_8_message">YouTube ha descontinuado la página de tendencias combinadas a partir del 21 de julio de 2025. NewPipe reemplazó la página de tendencias predeterminada con tendencias en directo.\n\nTambién puedes seleccionar diferentes páginas de tendencias en \"Ajustes &gt; Contenido &gt; Contenido de la página principal\".</string>
+    <string name="trending_gaming">Tendencias videojuegos</string>
+    <string name="trending_podcasts">Tendencias pódcasts</string>
+    <string name="trending_movies">Tendencias películas y programas</string>
+    <string name="trending_music">Tendencias música</string>
+    <string name="permission_display_over_apps_permission_name">“Permitir mostrar sobre otras aplicaciones”</string>
+    <string name="delete_file">Eliminar archivo</string>
+    <string name="short_thousand">%sM</string>
+    <string name="short_million">%sM</string>
+    <string name="delete_entry">Eliminar entrada</string>
+    <string name="account_terminated_service_provides_reason">Cuenta cancelada\n\n%1$s proporciona esta razón: %2$s</string>
+    <string name="entry_deleted">Entrada eliminada</string>
+    <string name="player_http_403">Error HTTP 403 recibido del servidor durante la reproducción, probablemente causado por la expiración de la URL de transmisión o una prohibición de IP</string>
+    <string name="player_http_invalid_status">Error HTTP %1$s recibido del servidor durante la reproducción</string>
+    <string name="youtube_player_http_403">Error HTTP 403 recibido del servidor durante la reproducción, probablemente causado por una prohibición de IP o problemas de desofuscación de la URL de transmisión</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s se negó a proporcionar datos y solicitó un inicio de sesión para confirmar que el solicitante no es un bot.\n\nEs posible que tu IP haya sido bloqueada temporalmente por %1$s. Puedes esperar un tiempo o cambiar a una IP diferente (por ejemplo, habilitando o deshabilitando una VPN, o cambiando de WiFi a datos móviles).</string>
+    <string name="short_billion">%sMM</string>
+    <string name="unsupported_content_in_country">Este contenido no está disponible para el país seleccionado actualmente.\n\nCambia tu selección en «Ajustes &gt; Contenido &gt; País predefinido del contenido».</string>
+    <string name="permission_display_over_apps_message">Para usar el reproductor emergente, seleccione %1$s en el siguiente menú de la configuración de Android y habilite %2$s.</string>
+    <string name="kao_dialog_warning">En Agosto de 2025, Google ha anunciado que, a partir de 2026/2027, todas las aplicaciones en dispositivos Android certificados requerirán que los desarrolladores envíen sus datos personales de identidad directamente a Google. Como los desarrolladores de NewPipe no están de acuerdo con este requisito, la aplicación dejará de funcionar en dispositivos Android certificados después de esa fecha.</string>
+    <string name="kao_dialog_more_info">Detalles</string>
+    <string name="kao_solution">Solución</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">Exportando %d suscripción…</item>
+        <item quantity="many">Exportando %d suscripciones…</item>
+        <item quantity="other">Exportando %d suscripciones…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">Cargando %d suscripción…</item>
+        <item quantity="many">Cargando %d suscripciones…</item>
+        <item quantity="other">Cargando %d suscripciones…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">Importando %d suscripción…</item>
+        <item quantity="many">Importando %d suscripciones…</item>
+        <item quantity="other">Importando %d suscripciones…</item>
+    </plurals>
+    <string name="import_subscriptions_title">Importar suscripciones</string>
+    <string name="export_subscriptions_title">Exportar suscripciones</string>
+    <string name="import_subscriptions_summary">Importar suscripciones desde una exportación .json anterior</string>
+    <string name="export_subscriptions_summary">Exportar suscripciones a un archivo .json</string>
+    <string name="import_from_previous_export">Importar desde exportación anterior</string>
+    <string name="api23_requirement_dialog_title">NewPipe dejará de soportar Android 5</string>
+    <string name="api23_requirement_dialog_message">Desafortunadamente, NewPipe depende de algunas bibliotecas que dejaron de soportar Android 5.0 y 5.1. La próxima versión de NewPipe sólo funcionará en dispositivos con Android 6 o superior, tristemente. Lea más en el artículo de nuestro blog.</string>
+    <string name="api23_requirement_dialog_blogpost">Artículo</string>
 </resources>

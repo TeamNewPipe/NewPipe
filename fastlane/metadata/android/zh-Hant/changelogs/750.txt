@@ -19,4 +19,4 @@
 • 修正下載停滯於 99.9% #2440
 • 更新播放佇列中繼資料 #2453 
 • [SoundCloud] 修正載入播放清單時崩潰 TeamNewPipe/NewPipeExtractor#170
-• [YouTube] 修正持續時間無法剖析 TeamNewPipe/NewPipeExtractor#177
+• [YouTube] 修正持續時間無法解析 TeamNewPipe/NewPipeExtractor#177

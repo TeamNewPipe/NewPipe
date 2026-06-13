@@ -37,7 +37,10 @@ class StreamSegmentItem(
         viewBinding.textViewStartSeconds.text =
             Localization.getDurationString(item.startTimeSeconds.toLong())
         viewBinding.root.setOnClickListener { onClick.onItemClick(this, item.startTimeSeconds) }
-        viewBinding.root.setOnLongClickListener { onClick.onItemLongClick(this, item.startTimeSeconds); true }
+        viewBinding.root.setOnLongClickListener {
+            onClick.onItemLongClick(this, item.startTimeSeconds)
+            true
+        }
         viewBinding.root.isSelected = isSelected
     }
 

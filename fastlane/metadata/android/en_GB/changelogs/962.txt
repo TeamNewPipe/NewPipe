@@ -1,0 +1,2 @@
+Added "recent" videos to media.ccc.de service.
+Added live streams to media.ccc.de service and also live stream support.

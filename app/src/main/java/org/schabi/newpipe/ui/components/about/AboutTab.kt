@@ -37,20 +37,28 @@ import org.schabi.newpipe.util.image.NewPipeSquircleIcon
 private val ABOUT_ITEMS = listOf(
     AboutData(R.string.faq_title, R.string.faq_description, R.string.faq, R.string.faq_url),
     AboutData(
-        R.string.contribution_title, R.string.contribution_encouragement,
-        R.string.view_on_github, R.string.github_url
+        R.string.contribution_title,
+        R.string.contribution_encouragement,
+        R.string.view_on_github,
+        R.string.github_url
     ),
     AboutData(
-        R.string.donation_title, R.string.donation_encouragement, R.string.give_back,
+        R.string.donation_title,
+        R.string.donation_encouragement,
+        R.string.give_back,
         R.string.donation_url
     ),
     AboutData(
-        R.string.website_title, R.string.website_encouragement, R.string.open_in_browser,
+        R.string.website_title,
+        R.string.website_encouragement,
+        R.string.open_in_browser,
         R.string.website_url
     ),
     AboutData(
-        R.string.privacy_policy_title, R.string.privacy_policy_encouragement,
-        R.string.read_privacy_policy, R.string.privacy_policy_url
+        R.string.privacy_policy_title,
+        R.string.privacy_policy_encouragement,
+        R.string.read_privacy_policy,
+        R.string.privacy_policy_url
     )
 )
 
@@ -86,23 +94,23 @@ fun AboutTab() {
                 Image(
                     imageVector = NewPipeSquircleIcon,
                     contentDescription = stringResource(R.string.app_name),
-                    modifier = Modifier.size(64.dp),
+                    modifier = Modifier.size(64.dp)
                 )
                 Spacer(Modifier.height(4.dp))
                 Text(
                     text = stringResource(R.string.app_name),
                     style = MaterialTheme.typography.titleLarge,
-                    textAlign = TextAlign.Center,
+                    textAlign = TextAlign.Center
                 )
                 Text(
                     text = BuildConfig.VERSION_NAME,
                     style = MaterialTheme.typography.titleMedium,
-                    textAlign = TextAlign.Center,
+                    textAlign = TextAlign.Center
                 )
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = stringResource(R.string.app_description),
-                    textAlign = TextAlign.Center,
+                    textAlign = TextAlign.Center
                 )
             }
 
@@ -120,7 +128,7 @@ fun AboutTab() {
 @NonRestartableComposable
 private fun AboutItem(
     @PreviewParameter(AboutDataProvider::class) aboutData: AboutData,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
         Text(

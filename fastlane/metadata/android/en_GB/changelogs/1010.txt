@@ -1,0 +1,9 @@
+Fixed NullPointerException in enqueue actions by using Application Context
+[YouTube] Fixed parsing item duration
+
+Updated translations and removed untranslated locales
+Small improvements to Image handling
+
+Port subscriptions related changes from refactor
+Port path related changes from refactor
+Update dependencies and Gradle to latest stable release

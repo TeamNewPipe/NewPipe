@@ -1,0 +1,3 @@
+• [YouTube] Fix infinite loading when trying to play any video
+• [YouTube] Fix throttling on some videos
+• Upgrade the jsoup library to 1.15.3, which includes a security fix

@@ -1,0 +1,14 @@
+Important
+Information on and call for action for the Keep Android Open campaign added: https://www.keepandroidopen.org/
+
+Improved
+[Feed] Shuffle the order outdated subscriptions are updated in
+Do not stack comment pages
+Do not pass click events to underlying views when clicking on video detail page
+
+Fixed
+Comment replies header layout without avatar image
+Multiple player-related UI fixes
+[SoundCloud] Fix streams with long IDs
+
+and more fixes and improvements!

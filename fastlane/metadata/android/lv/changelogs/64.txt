@@ -5,4 +5,4 @@
 - pievienots (darbojošs) multimediju sesijas atbalsts #1433
 
 ### Salabots
-- Salabota lietotnes nobrukšana, kad atvēra Lejupielādes (labojums pieejams relīzes laidienos) #1441
+- Salabota lietotnes nobrukšana, kad atvēra Lejupielādes (labojums pieejams izlaiduma laidienos) #1441

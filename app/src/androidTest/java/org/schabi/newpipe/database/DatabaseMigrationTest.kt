@@ -131,7 +131,7 @@ class DatabaseMigrationTest {
         )
 
         val migratedDatabaseV3 = getMigratedDatabase()
-        val listFromDB = migratedDatabaseV3.streamDAO().all.blockingFirst()
+        val listFromDB = migratedDatabaseV3.streamDAO().getAll().blockingFirst()
 
         // Only expect 2, the one with the null url will be ignored
         assertEquals(2, listFromDB.size)
@@ -178,28 +178,32 @@ class DatabaseMigrationTest {
 
         databaseInV7.run {
             insert(
-                "search_history", SQLiteDatabase.CONFLICT_FAIL,
+                "search_history",
+                SQLiteDatabase.CONFLICT_FAIL,
                 ContentValues().apply {
                     put("service_id", serviceId)
                     put("search", defaultSearch1)
                 }
             )
             insert(
-                "search_history", SQLiteDatabase.CONFLICT_FAIL,
+                "search_history",
+                SQLiteDatabase.CONFLICT_FAIL,
                 ContentValues().apply {
                     put("service_id", serviceId)
                     put("search", defaultSearch2)
                 }
             )
             insert(
-                "search_history", SQLiteDatabase.CONFLICT_FAIL,
+                "search_history",
+                SQLiteDatabase.CONFLICT_FAIL,
                 ContentValues().apply {
                     put("service_id", otherServiceId)
                     put("search", defaultSearch1)
                 }
             )
             insert(
-                "search_history", SQLiteDatabase.CONFLICT_FAIL,
+                "search_history",
+                SQLiteDatabase.CONFLICT_FAIL,
                 ContentValues().apply {
                     put("service_id", otherServiceId)
                     put("search", defaultSearch2)
@@ -209,17 +213,21 @@ class DatabaseMigrationTest {
         }
 
         testHelper.runMigrationsAndValidate(
-            AppDatabase.DATABASE_NAME, Migrations.DB_VER_8,
-            true, Migrations.MIGRATION_7_8
+            AppDatabase.DATABASE_NAME,
+            Migrations.DB_VER_8,
+            true,
+            Migrations.MIGRATION_7_8
         )
 
         testHelper.runMigrationsAndValidate(
-            AppDatabase.DATABASE_NAME, Migrations.DB_VER_9,
-            true, Migrations.MIGRATION_8_9
+            AppDatabase.DATABASE_NAME,
+            Migrations.DB_VER_9,
+            true,
+            Migrations.MIGRATION_8_9
         )
 
         val migratedDatabaseV8 = getMigratedDatabase()
-        val listFromDB = migratedDatabaseV8.searchHistoryDAO().all.blockingFirst()
+        val listFromDB = migratedDatabaseV8.searchHistoryDAO().getAll().blockingFirst()
 
         assertEquals(2, listFromDB.size)
         assertEquals("abc", listFromDB[0].search)
@@ -237,7 +245,8 @@ class DatabaseMigrationTest {
         val remoteUid2: Long
         databaseInV8.run {
             localUid1 = insert(
-                "playlists", SQLiteDatabase.CONFLICT_FAIL,
+                "playlists",
+                SQLiteDatabase.CONFLICT_FAIL,
                 ContentValues().apply {
                     put("name", DEFAULT_NAME + "1")
                     put("is_thumbnail_permanent", false)
@@ -245,7 +254,8 @@ class DatabaseMigrationTest {
                 }
             )
             localUid2 = insert(
-                "playlists", SQLiteDatabase.CONFLICT_FAIL,
+                "playlists",
+                SQLiteDatabase.CONFLICT_FAIL,
                 ContentValues().apply {
                     put("name", DEFAULT_NAME + "2")
                     put("is_thumbnail_permanent", false)
@@ -253,25 +263,29 @@ class DatabaseMigrationTest {
                 }
             )
             delete(
-                "playlists", "uid = ?",
+                "playlists",
+                "uid = ?",
                 Array(1) { localUid1 }
             )
             remoteUid1 = insert(
-                "remote_playlists", SQLiteDatabase.CONFLICT_FAIL,
+                "remote_playlists",
+                SQLiteDatabase.CONFLICT_FAIL,
                 ContentValues().apply {
                     put("service_id", DEFAULT_SERVICE_ID)
                     put("url", DEFAULT_URL)
                 }
             )
             remoteUid2 = insert(
-                "remote_playlists", SQLiteDatabase.CONFLICT_FAIL,
+                "remote_playlists",
+                SQLiteDatabase.CONFLICT_FAIL,
                 ContentValues().apply {
                     put("service_id", DEFAULT_SECOND_SERVICE_ID)
                     put("url", DEFAULT_SECOND_URL)
                 }
             )
             delete(
-                "remote_playlists", "uid = ?",
+                "remote_playlists",
+                "uid = ?",
                 Array(1) { remoteUid2 }
             )
             close()
@@ -296,12 +310,22 @@ class DatabaseMigrationTest {
         assertEquals(-1, remoteListFromDB[0].displayIndex)
 
         val localUid3 = migratedDatabaseV9.playlistDAO().insert(
-            PlaylistEntity(DEFAULT_NAME + "3", false, -1, -1)
+            PlaylistEntity(
+                name = "${DEFAULT_NAME}3",
+                isThumbnailPermanent = false,
+                thumbnailStreamId = -1,
+                displayIndex = -1
+            )
         )
         val remoteUid3 = migratedDatabaseV9.playlistRemoteDAO().insert(
             PlaylistRemoteEntity(
-                DEFAULT_THIRD_SERVICE_ID, DEFAULT_NAME, DEFAULT_THIRD_URL,
-                DEFAULT_THUMBNAIL, DEFAULT_UPLOADER_NAME, -1, 10
+                serviceId = DEFAULT_THIRD_SERVICE_ID,
+                orderingName = DEFAULT_NAME,
+                url = DEFAULT_THIRD_URL,
+                thumbnailUrl = DEFAULT_THUMBNAIL,
+                uploader = DEFAULT_UPLOADER_NAME,
+                displayIndex = -1,
+                streamCount = 10
             )
         )
 

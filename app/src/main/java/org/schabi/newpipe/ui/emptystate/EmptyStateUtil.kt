@@ -17,7 +17,7 @@ import org.schabi.newpipe.ui.theme.AppTheme
 @JvmOverloads
 fun ComposeView.setEmptyStateComposable(
     spec: EmptyStateSpec = EmptyStateSpec.GenericError,
-    strategy: ViewCompositionStrategy = ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed,
+    strategy: ViewCompositionStrategy = ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
 ) = apply {
     setViewCompositionStrategy(strategy)
     setContent {

@@ -44,7 +44,7 @@ fun CommentRepliesHeader(comment: CommentsInfoItem, onCommentAuthorOpened: () ->
 
     Column(
         modifier = Modifier.padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -61,7 +61,7 @@ fun CommentRepliesHeader(comment: CommentsInfoItem, onCommentAuthorOpened: () ->
                     }
                     .weight(1.0f, true),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
-                verticalAlignment = Alignment.CenterVertically,
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 AsyncImage(
                     model = ImageStrategy.choosePreferredImage(comment.uploaderAvatars),
@@ -78,11 +78,13 @@ fun CommentRepliesHeader(comment: CommentsInfoItem, onCommentAuthorOpened: () ->
                         text = comment.uploaderName,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
-                        style = MaterialTheme.typography.titleSmall,
+                        style = MaterialTheme.typography.titleSmall
                     )
 
                     Localization.relativeTimeOrTextual(
-                        context, comment.uploadDate, comment.textualUploadDate
+                        context,
+                        comment.uploadDate,
+                        comment.textualUploadDate
                     )?.let {
                         Text(text = it, style = MaterialTheme.typography.bodySmall)
                     }
@@ -97,11 +99,11 @@ fun CommentRepliesHeader(comment: CommentsInfoItem, onCommentAuthorOpened: () ->
                 if (comment.likeCount >= 0) {
                     Icon(
                         imageVector = Icons.Default.ThumbUp,
-                        contentDescription = stringResource(R.string.detail_likes_img_view_description),
+                        contentDescription = stringResource(R.string.detail_likes_img_view_description)
                     )
                     Text(
                         text = Localization.likeCount(context, comment.likeCount),
-                        maxLines = 1,
+                        maxLines = 1
                     )
                 }
 
@@ -109,14 +111,14 @@ fun CommentRepliesHeader(comment: CommentsInfoItem, onCommentAuthorOpened: () ->
                     Icon(
                         imageVector = Icons.Default.Favorite,
                         contentDescription = stringResource(R.string.detail_heart_img_view_description),
-                        tint = MaterialTheme.colorScheme.primary,
+                        tint = MaterialTheme.colorScheme.primary
                     )
                 }
 
                 if (comment.isPinned) {
                     Icon(
                         imageVector = Icons.Default.PushPin,
-                        contentDescription = stringResource(R.string.detail_pinned_comment_view_description),
+                        contentDescription = stringResource(R.string.detail_pinned_comment_view_description)
                     )
                 }
             }
@@ -124,7 +126,7 @@ fun CommentRepliesHeader(comment: CommentsInfoItem, onCommentAuthorOpened: () ->
 
         DescriptionText(
             description = comment.commentText,
-            style = MaterialTheme.typography.bodyMedium,
+            style = MaterialTheme.typography.bodyMedium
         )
     }
 }

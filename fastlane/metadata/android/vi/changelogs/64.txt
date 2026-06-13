@@ -1,7 +1,7 @@
 ### Cải thiện
 - Thêm tính năng giới hạn độ phân giải video nếu đang sử dụng dữ liệu di động (yêu cầu #1339)
 - Ghi nhớ độ sáng màn hình trong phiên (yêu cầu #1442)
-- Cải thiện hiệu năng của trình tải cho các CPU có hiệu năng yếu (vấn đề #1431)
+- Cải thiện tốc độ tải xuống cho các CPU có hiệu năng yếu (vấn đề #1431)
 - Hỗ trợ cho media session (yêu cầu #1433)
 
 ### Sửa lỗi

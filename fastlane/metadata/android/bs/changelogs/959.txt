@@ -1,0 +1,3 @@
+Ispravljen beskonačan niz rušenja sistema nakon otvaranja izvještaja o greškama.
+Ažurirana lista PeerTube instanci koje NewPipe može automatski otvoriti.
+Ažurirani prijevodi.

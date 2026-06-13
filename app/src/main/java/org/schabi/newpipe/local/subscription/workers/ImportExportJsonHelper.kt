@@ -19,13 +19,13 @@
 
 package org.schabi.newpipe.local.subscription.workers
 
+import java.io.InputStream
+import java.io.OutputStream
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream
 import kotlinx.serialization.json.encodeToStream
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor.InvalidSourceException
-import java.io.InputStream
-import java.io.OutputStream
 
 /**
  * A JSON implementation capable of importing and exporting subscriptions, it has the advantage
@@ -65,7 +65,7 @@ object ImportExportJsonHelper {
     @JvmStatic
     fun writeTo(
         items: List<SubscriptionItem>,
-        out: OutputStream,
+        out: OutputStream
     ) {
         json.encodeToStream(SubscriptionData(items), out)
     }

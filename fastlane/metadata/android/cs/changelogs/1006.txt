@@ -1,0 +1,12 @@
+# Vylepšení
+Ponechání aktuálního přehrávače při klepnutí na časová razítka
+Pokus o obnovení čekajících stahování, pokud to jde
+Možnost odstranění stahování bez smazání souboru
+Oprávnění Zobrazení přes ostatní aplikace: zobrazení vysvětlení pro Android > R
+Podpora odkazů on.soundcloud
+
+# Opravy
+Oprava formátování pro verze Androidu nižší než 7
+Oprava falešných oznámení
+Opravy souborů titulků SRT
+Oprava spousty pádů

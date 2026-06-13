@@ -1,0 +1,23 @@
+Improved (Yaxshilangan)
+
+• Playlist tavsifini bosilganda kengaytirish / qisqartirish imkonini berish
+
+• [PeerTube] subscribeto.me instance havolalarini avtomatik qo‘llab-quvvatlash
+
+• History (tarix) ekranida faqat bitta elementni avtomatik ijro etish
+
+🛠 Fixed (Tuzatildi)
+
+• RSS tugmasining ko‘rinish muammosini tuzatish
+
+• Seekbar preview (oldindan ko‘rish) paytidagi crashlarni tuzatish
+
+• Thumbnail (rasm) bo‘lmagan elementni playlistga qo‘shish muammosini tuzatish
+
+• Yuklab olish dialogi chiqmasidan oldin undan chiqib ketish muammosini tuzatish
+
+• Related items ro‘yxatini queue (navbat)ga qo‘shish popup muammosini tuzatish
+
+• Playlistga qo‘shish dialogidagi tartibni tuzatish
+
+• Playlist bookmark elementining layout (ko‘rinish)ini moslashtirish

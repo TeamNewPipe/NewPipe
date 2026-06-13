@@ -1,0 +1,4 @@
+Hitna ispravka
+• Ispravljene sličice i naslovi koji su se skraćivali u rasporedu mreže, zbog pogrešnog izračuna koliko videozapisa može stati u jedan red
+• Ispravljen dijalog za preuzimanje koji je nestajao bez ikakve radnje ako se otvori iz menija za dijeljenje
+• Ažurirana biblioteka povezana s otvaranjem vanjskih aktivnosti kao što je birač datoteka Storage Access Frameworka

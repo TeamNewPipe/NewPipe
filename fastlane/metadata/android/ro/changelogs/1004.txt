@@ -1,0 +1,3 @@
+Această versiune remediază problema YouTube care oferea doar un flux video la 360p.
+
+Rețineți că soluția utilizată în această versiune este probabil temporară și, pe termen lung, protocolul video SABR trebuie implementat, însă membrii TeamNewPipe sunt ocupați în prezent, așa că orice ajutor ar fi foarte apreciat! https://github.com/TeamNewPipe/NewPipe/issues/12248

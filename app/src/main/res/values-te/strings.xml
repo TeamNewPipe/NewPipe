@@ -154,7 +154,7 @@
     <string name="resume_on_audio_focus_gain_summary">అంతరాయాలు (ఉదా. ఫోన్‌కాల్స్) తర్వాత ప్లే చేయడం కొనసాగించండి</string>
     <string name="show_meta_info_title">మెటా సమాచారాన్ని చూపు</string>
     <string name="show_play_with_kodi_summary">కోడి మీడియా సెంటర్ ద్వారా వీడియోను ప్లే చేయడానికి ఎంపికను ప్రదర్శించండి</string>
-    <string name="show_higher_resolutions_summary">కొన్ని పరికరాలు మాత్రమే 2K/4K వీడియోలను ప్లే చేయగలవు</string>
+    <string name="show_higher_resolutions_summary">కొన్ని పరికరాలు మాత్రమే 1440p/4K వీడియోలను ప్లే చేయగలవు</string>
     <string name="mark_as_watched">వీక్షించినట్లు గుర్తుపెట్టుము</string>
     <string name="open_with">దీనితో తెరువుము</string>
     <string name="search_showing_result_for">దీని కోసం ఫలితాలను చూపుతోంది: %s</string>

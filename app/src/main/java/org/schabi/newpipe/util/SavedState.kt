@@ -5,21 +5,12 @@ import kotlinx.parcelize.Parcelize
 
 /**
  * Information about the saved state on the disk.
+ * Path to the saved file.
+ *
+ * @property prefixFileSaved Prefix of the saved file
+ * @property pathFileSaved Path to the saved file
  */
 @Parcelize
-class SavedState(
-    /**
-     * Get the prefix of the saved file.
-     *
-     * @return the file prefix
-     */
-    val prefixFileSaved: String,
-    /**
-     * Get the path to the saved file.
-     *
-     * @return the path to the saved file
-     */
-    val pathFileSaved: String
-) : Parcelable {
+class SavedState(val prefixFileSaved: String, val pathFileSaved: String) : Parcelable {
     override fun toString() = "$prefixFileSaved > $pathFileSaved"
 }

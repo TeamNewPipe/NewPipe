@@ -1,0 +1,10 @@
+• Dodano dugme "reproduciraj sljedeće" u meni dugog pritiska
+• Dodan prefiks putanje YouTube kratkih videozapisa u filter namjere
+• Ispravljen uvoz postavki
+• Zamjena pozicije trake za pretraživanje s dugmadima playera na ekranu reda čekanja
+• Razne ispravke vezane za MediasessionManager
+• Ispravljena traka za pretraživanje koja se nije dovršila nakon završetka videa
+• Onemogućeno tuneliranje medija na RealtekATV-u
+• Prošireno područje za klik na minimizirana dugmad playera
+
+Da biste vidjeli daljnje promjene, pogledajte dnevnik promjena (i objavu na blogu) na kartici Linkovi ispod.

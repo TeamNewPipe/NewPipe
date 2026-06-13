@@ -1,0 +1,20 @@
+Novo
+• Pretraga na YouTube Musicu
+• Osnovna podrška za Android TV
+
+Poboljšano
+
+• Dodana je mogućnost uklanjanja svih gledanih videa s lokalne liste za reprodukciju
+• Prikaz poruke kada sadržaj još nije podržan umjesto rušenja
+• Poboljšana promjena veličine skočnog playera gestama štipanja
+• Stavljanje tokova u red čekanja dugim pritiskom na pozadinu i skočne dugmad u kanalu
+• Poboljšano rukovanje veličinom naslova zaglavlja ladice
+
+Ispravljeno
+• Ispravljena postavka sadržaja s ograničenjem prema dobi koja nije radila
+• Ispravljene određene vrste reCAPTCHA-a
+• Ispravljen pad prilikom otvaranja oznaka dok je lista za reprodukciju `null`
+• Ispravljeno otkrivanje izuzetaka povezanih s mrežom
+• Ispravljena vidljivost dugmeta za sortiranje grupe u fragmentu pretplata
+
+i više

@@ -81,7 +81,7 @@ private fun RelatedItemsPreview() {
     info.relatedItems = listOf(
         StreamInfoItem(streamType = StreamType.NONE),
         StreamInfoItem(streamType = StreamType.LIVE_STREAM),
-        StreamInfoItem(streamType = StreamType.AUDIO_LIVE_STREAM),
+        StreamInfoItem(streamType = StreamType.AUDIO_LIVE_STREAM)
     )
 
     AppTheme {

@@ -1,1 +1,3 @@
-Corrigido YouTube não reproduzir qualquer transmissão
+Esta versão corrige o problema do YouTube fornecer apenas uma transmissão de 360p.
+
+Observe que a solução empregada nesta versão é provavelmente temporária e, a longo prazo, o protocolo de vídeo SABR precisa ser implementado, mas os membros da TeamNewPipe estão ocupados no momento, portanto, qualquer ajuda será muito bem-vinda! https://github.com/TeamNewPipe/NewPipe/issues/12248

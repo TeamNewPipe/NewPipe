@@ -1,0 +1,20 @@
+Novo
+• Prikaz minijature videa na zaključanom ekranu prilikom reprodukcije u pozadini
+
+Poboljšano
+
+• Dodavanje lokalne liste za reprodukciju u red čekanja prilikom dugog pritiska na dugme za pozadinu / skočni prozor
+• Omogućavanje pomicanja kartica glavne stranice i njihovo skrivanje kada postoji samo jedna kartica
+• Ograničavanje broja ažuriranja minijatura obavještenja u pozadinskom playeru
+• Dodavanje lažne minijature za prazne lokalne liste za reprodukciju
+• Korištenje ekstenzije datoteke *.opus umjesto *.webm i prikaz "opus" u oznaci formata umjesto "WebM Opus" u padajućem izborniku za preuzimanje
+• Dodavanje dugmeta za brisanje preuzetih datoteka ili historije preuzimanja u "Preuzimanja"
+• [YouTube] Dodana podrška za linkove kanala /c/shortened_url
+
+Ispravljeno
+• Ispravljeno više problema prilikom dijeljenja videa na NewPipe i direktnog preuzimanja njegovih tokova
+• Ispravljen pristup playeru izvan teme njegovog kreiranja
+• Ispravljeno podjeljivanje rezultata pretrage
+• [YouTube] Ispravljeno prebacivanje na null što je uzrokovalo NPE
+• [YouTube] Ispravljeno pregledavanje komentara prilikom otvaranja invidio.us URL-a
+• [SoundCloud] Ažuriran client_id

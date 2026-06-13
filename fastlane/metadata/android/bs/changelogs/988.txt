@@ -1,0 +1,2 @@
+[YouTube] Ispravljena greška "Nije moguće dobiti tok" prilikom pokušaja reprodukcije bilo kojeg videa
+[YouTube] Ispravljena poruka "Sljedeći sadržaj nije dostupan u ovoj aplikaciji" koja se prikazuje umjesto traženog videa

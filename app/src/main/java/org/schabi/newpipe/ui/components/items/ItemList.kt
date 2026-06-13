@@ -54,11 +54,20 @@ fun ItemList(
             val fragmentManager = context.findFragmentActivity().supportFragmentManager
             if (item is StreamInfoItem) {
                 NavigationHelper.openVideoDetailFragment(
-                    context, fragmentManager, item.serviceId, item.url, item.name, null, false
+                    context,
+                    fragmentManager,
+                    item.serviceId,
+                    item.url,
+                    item.name,
+                    null,
+                    false
                 )
             } else if (item is PlaylistInfoItem) {
                 NavigationHelper.openPlaylistFragment(
-                    fragmentManager, item.serviceId, item.url, item.name
+                    fragmentManager,
+                    item.serviceId,
+                    item.url,
+                    item.name
                 )
             }
         }
@@ -157,6 +166,7 @@ private fun determineItemViewMode(): ItemViewMode {
                 ItemViewMode.LIST
             }
         }
+
         else -> viewMode
     }
 }

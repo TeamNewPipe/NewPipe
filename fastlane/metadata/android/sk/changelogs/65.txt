@@ -1,26 +1,26 @@
-### Zlepšenia
+### Improvements
 
-- Zakázanie animácie ikony burgermenu #1486 
-- Zrušenie odstránenia stiahnutých súborov #1472 
-- Možnosť sťahovania v ponuke zdieľania #1498
-- Pridaná možnosť zdieľania do ponuky dlhého ťuknutia #1454 
-- Minimalizácia hlavného prehrávača pri ukončení #1354 
-- Aktualizácia verzie knižnice a oprava zálohovania databázy #1510 
-- Aktualizácia ExoPlayer 2.8.2 #1392
-  - Prepracované dialógové okno na ovládanie rýchlosti prehrávania tak, aby podporovalo rôzne veľkosti krokov pre rýchlejšiu zmenu rýchlosti.
-  - Pridaný prepínač na rýchle prevíjanie dopredu počas ticha v ovládaní rýchlosti prehrávania. Toto by malo byť užitočné pre audioknihy a niektoré hudobné žánre a môže priniesť skutočne plynulý zážitok (a môže prerušiť skladbu s množstvom ticha =\).  
-  - Prepracované rozlíšenie zdrojov médií, aby bolo možné odovzdávať metadáta spolu s médiami interne v prehrávači, namiesto toho, aby sa to robilo ručne. Teraz máme jediný zdroj metadát a je priamo k dispozícii pri spustení prehrávania.
-  - Opravené neaktualizovanie metadát vzdialeného zoznamu skladieb, keď sú k dispozícii nové metadáta pri otvorení fragmentu zoznamu skladieb.
-  - Rôzne opravy používateľského rozhrania: #1383, ovládacie prvky oznámenia prehrávača na pozadí sú teraz vždy biele, jednoduchšie vypnutie vyskakovacieho prehrávača prostredníctvom hodenia
-- Použitie nového extraktora s preformulovanou architektúrou pre multiservis
+- Disable burgermenu icon animation #1486 
+- undo delete of downloads #1472 
+- Download option in share menu #1498
+- Added share option to long tap menu #1454 
+- Minimize main player on exit #1354 
+- Library version update and database backup fix #1510 
+- ExoPlayer 2.8.2 Update #1392
+  - Reworked the playback speed control dialog to support different step sizes for faster speed change.
+  - Added a toggle to fast-forward during silences in playback speed control. This should be helpful for audiobooks and certain music genres, and can bring a true seamless experience (and can break a song with lots of silences =\\).  
+  - Refactored media source resolution to allow passing metadata alongside media internally in the player, rather than doing so manually. Now we have a single source of metadata and is directly available when playback starts.
+  - Fixed remote playlist metadata not updating when new metadata is available when playlist fragment is opened.
+  - Various UI fixes: #1383, background player notification controls now always white, easier to shutdown popup player through flinging
+- Use new extractor with refactored architecture for multiservice
 
-### Opravy
+### Fixes
 
-- Oprava #1440 Nefunkčné rozloženie informácií o videu #1491 
-- Oprava histórie zobrazenia #1497
-  - #1495 aktualizáciou metadát (miniatúry, názov a počet videí) hneď, ako používateľ vstúpi do zoznamu skladieb. 
-  - #1475, zaregistrovaním zobrazenia v databáze, keď používateľ spustí video v externom prehrávači na detailnom fragmente.
-- Oprava časového limitu creen v prípade popup režimu. #1463 (Opravené #640)
-- Oprava hlavného prehrávača videa č. 1509 
-  - #1412] Opravený režim opakovania spôsobujúci NPE prehrávača, keď je prijatý nový zámer, zatiaľ čo je činnosť prehrávača na pozadí.
-  - Opravené minimalizovanie prehrávača na vyskakovacie okno nezničí prehrávač, keď nie je udelené povolenie na vyskakovanie.
+- Fix #1440 Broken Video Info Layout #1491 
+- View history fix #1497
+  - #1495, by updating the metadata (thumbnail, title and video count) as soon as the user access the playlist. 
+  - #1475, by registering a view in the database when the user starts a video on external player on detail fragment.
+- Fix creen timeout in case of popup mode. #1463 (Fixed #640)
+- Main video player fix #1509 
+  - [#1412] Fixed repeat mode causing player NPE when new intent is received while player activity is in background.
+  - Fixed minimizing player to popup does not destroy player when popup permission is not granted.

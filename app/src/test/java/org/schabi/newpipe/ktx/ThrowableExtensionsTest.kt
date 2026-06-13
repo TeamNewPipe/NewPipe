@@ -1,12 +1,12 @@
 package org.schabi.newpipe.ktx
 
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
-import org.junit.Test
 import java.io.IOException
 import java.io.InterruptedIOException
 import java.net.SocketException
 import javax.net.ssl.SSLException
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
+import org.junit.Test
 
 class ThrowableExtensionsTest {
     @Test fun `assignable causes`() {

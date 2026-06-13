@@ -10,6 +10,7 @@ import kotlin.io.path.div
 class BackupFileLocator(context: Context) {
     companion object {
         const val FILE_NAME_DB = "newpipe.db"
+
         @Deprecated(
             "Serializing preferences with Java's ObjectOutputStream is vulnerable to injections",
             replaceWith = ReplaceWith("FILE_NAME_JSON_PREFS")

@@ -1,0 +1,3 @@
+Hitna ispravka
+• Povećanje bafera za reprodukciju nakon ponovnog baferovanja
+• Ispravljen pad sistema na tabletima i televizorima prilikom klika na ikonu reda za reprodukciju u plejeru

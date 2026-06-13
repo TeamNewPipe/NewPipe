@@ -1,0 +1,9 @@
+Opravena chyba NullPointerException při zařazování akcí do fronty pomocí kontextu aplikace
+[YouTube] Opraveno zpracování délky trvání položky
+
+Aktualizovány překlady a odstraněny nepřeložené jazykové verze
+Drobná vylepšení při práci s obrázky
+
+Přeneseny změny související s odběry z refaktoringu
+Přeneseny změny související s cestami z refaktoringu
+Aktualizovány závislosti a Gradle na nejnovější stabilní verzi

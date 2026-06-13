@@ -14,6 +14,7 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.app.PendingIntentCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
+import androidx.core.net.toUri
 import androidx.preference.PreferenceManager
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
@@ -37,7 +38,9 @@ class NotificationHelper(val context: Context) {
     fun displayNewStreamsNotifications(data: FeedUpdateInfo) {
         val newStreams = data.newStreams
         val summary = context.resources.getQuantityString(
-            R.plurals.new_streams, newStreams.size, newStreams.size
+            R.plurals.new_streams,
+            newStreams.size,
+            newStreams.size
         )
         val summaryBuilder = NotificationCompat.Builder(
             context,
@@ -79,7 +82,9 @@ class NotificationHelper(val context: Context) {
         // Show individual stream notifications, set channel icon only if there is actually one
         showStreamNotifications(newStreams, data.serviceId, avatarIcon)
         // Show summary notification
-        manager.notify(data.pseudoId, summaryBuilder.build())
+        if (manager.areNotificationsEnabled()) {
+            manager.notify(data.pseudoId, summaryBuilder.build())
+        }
     }
 
     private fun showStreamNotifications(
@@ -87,9 +92,12 @@ class NotificationHelper(val context: Context) {
         serviceId: Int,
         channelIcon: Bitmap?
     ) {
-        for (stream in newStreams) {
-            val notification = createStreamNotification(stream, serviceId, channelIcon)
-            manager.notify(stream.url.hashCode(), notification)
+        if (manager.areNotificationsEnabled()) {
+            newStreams.forEach { stream ->
+                val notification =
+                    createStreamNotification(stream, serviceId, channelIcon)
+                manager.notify(stream.url.hashCode(), notification)
+            }
         }
     }
 
@@ -146,8 +154,7 @@ class NotificationHelper(val context: Context) {
                 val manager = context.getSystemService<NotificationManager>()!!
                 val enabled = manager.areNotificationsEnabled()
                 val channel = manager.getNotificationChannel(channelId)
-                val importance = channel?.importance
-                enabled && channel != null && importance != NotificationManager.IMPORTANCE_NONE
+                enabled && channel?.importance != NotificationManager.IMPORTANCE_NONE
             } else {
                 NotificationManagerCompat.from(context).areNotificationsEnabled()
             }
@@ -177,7 +184,7 @@ class NotificationHelper(val context: Context) {
                 context.startActivity(intent)
             } else {
                 val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                intent.data = Uri.parse("package:" + context.packageName)
+                intent.data = "package:${context.packageName}".toUri()
                 context.startActivity(intent)
             }
         }

@@ -37,7 +37,9 @@ object PoTokenProviderImpl : PoTokenProvider {
                     webViewBadImpl = true
                     return null
                 }
+
                 null -> throw e
+
                 else -> throw cause // includes PoTokenException
             }
         }
@@ -58,7 +60,6 @@ object PoTokenProviderImpl : PoTokenProvider {
                     webPoTokenGenerator!!.isExpired()
 
                 if (shouldRecreate) {
-
                     val innertubeClientRequestInfo = InnertubeClientRequestInfo.ofWebClient()
                     innertubeClientRequestInfo.clientInfo.clientVersion =
                         YoutubeParsingHelper.getClientVersion()

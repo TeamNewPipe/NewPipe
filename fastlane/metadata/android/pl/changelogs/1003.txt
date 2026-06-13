@@ -1,0 +1,6 @@
+To jest aktualizacja poprawiająca błędy serwisu YouTube:
+• [YouTube] Naprawiono brak wyświetlania informacji o filmach, błędy HTTP 403 podczas odtwarzania filmów oraz przywrócono odtwarzanie niektórych filmów z ograniczeniami wiekowymi
+• Naprawiono problem z brakiem możliwości zmiany rozmiaru napisów
+• Naprawiono podwójne pobieranie informacji podczas otwierania strumienia
+• [Soundcloud] Usunięto strumienie chronione DRM, których nie można odtworzyć
+• Zaktualizowano tłumaczenia

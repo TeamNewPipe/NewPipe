@@ -43,13 +43,13 @@ object PlayerHolder {
     private val playQueue: PlayQueue?
         get() = this.player?.playQueue
 
+    /**
+     * Returns the current [PlayerType] of the [PlayerService] service,
+     * otherwise `null` if no service is running.
+     *
+     * @return Current PlayerType
+     */
     val type: PlayerType?
-        /**
-         * Returns the current [PlayerType] of the [PlayerService] service,
-         * otherwise `null` if no service is running.
-         *
-         * @return Current PlayerType
-         */
         get() = this.player?.playerType
 
     val isPlaying: Boolean
@@ -58,12 +58,12 @@ object PlayerHolder {
     val isPlayerOpen: Boolean
         get() = this.player != null
 
+    /**
+     * Use this method to only allow the user to manipulate the play queue (e.g. by enqueueing via
+     * the stream long press menu) when there actually is a play queue to manipulate.
+     * @return true only if the player is open and its play queue is ready (i.e. it is not null)
+     */
     val isPlayQueueReady: Boolean
-        /**
-         * Use this method to only allow the user to manipulate the play queue (e.g. by enqueueing via
-         * the stream long press menu) when there actually is a play queue to manipulate.
-         * @return true only if the player is open and its play queue is ready (i.e. it is not null)
-         */
         get() = this.playQueue != null
 
     val queueSize: Int
@@ -172,9 +172,11 @@ object PlayerHolder {
             startPlayerListener()
             // ^ will call listener.onPlayerConnected() down the line if there is an active player
 
-            // notify the main activity that binding the service has completed, so that it can
-            // open the bottom mini-player
-            NavigationHelper.sendPlayerStartedEvent(s)
+            if (playerService != null && playerService?.player != null) {
+                // notify the main activity that binding the service has completed and that there is
+                // a player, so that it can open the bottom mini-player
+                NavigationHelper.sendPlayerStartedEvent(localBinder.service)
+            }
         }
     }
 
@@ -243,8 +245,8 @@ object PlayerHolder {
             listener?.onFullscreenStateChanged(fullscreen)
         }
 
-        override fun onScreenRotationButtonClicked() {
-            listener?.onScreenRotationButtonClicked()
+        override fun onFullscreenToggleButtonClicked() {
+            listener?.onFullscreenToggleButtonClicked()
         }
 
         override fun onMoreOptionsLongClicked() {

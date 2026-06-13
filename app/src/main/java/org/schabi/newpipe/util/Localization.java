@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 import androidx.core.math.MathUtils;
 import androidx.core.os.LocaleListCompat;
 import androidx.preference.PreferenceManager;
@@ -70,6 +71,46 @@ public final class Localization {
     private static PrettyTime prettyTime;
 
     private Localization() { }
+
+    /**
+     * Gets a string like you would normally do with {@link Context#getString}, except that when
+     * Context is not an AppCompatActivity the correct locale is still used. The latter step uses
+     * {@link ContextCompat#getString}, which might fail if the Locale system service is not
+     * available (e.g. inside of Compose previews). In that case this method falls back to plain old
+     * {@link Context#getString}.
+     * <p>This method also supports format args (see {@link #compatGetString(Context, int,
+     * Object...)}, unlike {@link ContextCompat#getString}.</p>
+     *
+     * @param context any Android context, even the App context
+     * @param resId the string resource to resolve
+     * @return the resolved string
+     */
+    public static String compatGetString(final Context context, @StringRes final int resId) {
+        try {
+            return ContextCompat.getString(context, resId);
+        } catch (final Throwable e) {
+            return context.getString(resId);
+        }
+    }
+
+    /**
+     * @see #compatGetString(Context, int)
+     * @param context any Android context, even the App context
+     * @param resId the string resource to resolve
+     * @param formatArgs the formatting arguments
+     * @return the resolved string
+     */
+    public static String compatGetString(final Context context,
+                                         @StringRes final int resId,
+                                         final Object... formatArgs) {
+        try {
+            // ContextCompat.getString() with formatArgs does not exist, so we just
+            // replicate its source code but with formatArgs
+            return ContextCompat.getContextForLanguage(context).getString(resId, formatArgs);
+        } catch (final Throwable e) {
+            return context.getString(resId, formatArgs);
+        }
+    }
 
     @NonNull
     public static String concatenateStrings(final String... strings) {
@@ -153,9 +194,9 @@ public final class Localization {
             case (int) ListExtractor.ITEM_COUNT_UNKNOWN:
                 return "";
             case (int) ListExtractor.ITEM_COUNT_INFINITE:
-                return context.getResources().getString(R.string.infinite_videos);
+                return context.getString(R.string.infinite_videos);
             case (int) ListExtractor.ITEM_COUNT_MORE_THAN_100:
-                return context.getResources().getString(R.string.more_than_100_videos);
+                return context.getString(R.string.more_than_100_videos);
             default:
                 return getQuantity(context, R.plurals.videos, R.string.no_videos, streamCount,
                         localizeNumber(streamCount));
@@ -168,9 +209,9 @@ public final class Localization {
             case (int) ListExtractor.ITEM_COUNT_UNKNOWN:
                 return "";
             case (int) ListExtractor.ITEM_COUNT_INFINITE:
-                return context.getResources().getString(R.string.infinite_videos_mini);
+                return context.getString(R.string.infinite_videos_mini);
             case (int) ListExtractor.ITEM_COUNT_MORE_THAN_100:
-                return context.getResources().getString(R.string.more_than_100_videos_mini);
+                return context.getString(R.string.more_than_100_videos_mini);
             default:
                 return String.valueOf(streamCount);
         }
@@ -421,12 +462,24 @@ public final class Localization {
         return new BigDecimal(value).setScale(scale, RoundingMode.HALF_UP).doubleValue();
     }
 
+    /**
+     * A wrapper around {@code context.getResources().getQuantityString()} with some safeguard.
+     *
+     * @param context the Android context
+     * @param pluralId the ID of the plural resource
+     * @param zeroCaseStringId the resource ID of the string to use in case {@code count=0},
+     *                         or 0 if the plural resource should be used in the zero case too
+     * @param count the number that should be used to pick the correct plural form
+     * @param formattedCount the formatting parameter to substitute inside the plural resource,
+     *                       ideally just {@code count} converted to string
+     * @return the formatted string with the correct pluralization
+     */
     private static String getQuantity(@NonNull final Context context,
                                       @PluralsRes final int pluralId,
                                       @StringRes final int zeroCaseStringId,
                                       final long count,
                                       final String formattedCount) {
-        if (count == 0) {
+        if (count == 0 && zeroCaseStringId != 0) {
             return context.getString(zeroCaseStringId);
         }
 

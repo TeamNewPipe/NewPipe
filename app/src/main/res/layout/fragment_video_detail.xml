@@ -214,7 +214,6 @@
                     android:layout_marginTop="@dimen/video_item_detail_error_panel_margin"
                     android:visibility="gone"
                     tools:visibility="gone" />
-
                 <!--HIDING ROOT-->
                 <LinearLayout
                     android:id="@+id/detail_content_root_hiding"
