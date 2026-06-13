@@ -11,6 +11,7 @@ import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Maybe
 import java.time.OffsetDateTime
 import org.schabi.newpipe.database.BasicDAO
+import org.schabi.newpipe.database.stream.StreamWithState
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_ID
 import org.schabi.newpipe.extractor.stream.StreamType
@@ -29,6 +30,17 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
 
     @Query("SELECT * FROM streams WHERE url = :url AND service_id = :serviceId")
     abstract fun getStream(serviceId: Long, url: String): Maybe<StreamEntity>
+
+    @Query(
+        """
+        SELECT s.*, sst.progress_time
+        FROM streams s
+        LEFT JOIN stream_state sst ON s.uid = sst.stream_id
+        WHERE s.url = :url AND s.service_id = :serviceId
+        LIMIT 1
+        """
+    )
+    abstract fun getStreamWithState(serviceId: Int, url: String): Maybe<StreamWithState>
 
     @Query("UPDATE streams SET uploader_url = :uploaderUrl WHERE url = :url AND service_id = :serviceId")
     abstract fun setUploaderUrl(serviceId: Long, url: String, uploaderUrl: String): Completable
