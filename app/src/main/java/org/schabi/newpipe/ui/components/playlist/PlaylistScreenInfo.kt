@@ -34,6 +34,6 @@ class PlaylistScreenInfo(
         playlistInfo.uploaderName,
         playlistInfo.uploaderAvatars,
         playlistInfo.thumbnails,
-        playlistInfo.nextPage,
+        playlistInfo.nextPage
     )
 }

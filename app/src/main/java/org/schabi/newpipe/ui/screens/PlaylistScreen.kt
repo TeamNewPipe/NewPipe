@@ -43,7 +43,7 @@ private fun PlaylistScreen(
 
             ItemList(
                 items = streams,
-                header = { PlaylistHeader(info, streams.itemSnapshotList) },
+                header = { PlaylistHeader(info, streams.itemSnapshotList) }
             )
         }
 
@@ -71,7 +71,7 @@ private fun PlaylistPreview() {
         uploaderName = "Uploader",
         uploaderAvatars = listOf(),
         thumbnails = listOf(),
-        nextPage = null,
+        nextPage = null
     )
     val stream = StreamInfoItem(streamType = StreamType.VIDEO_STREAM)
     val streamFlow = flowOf(PagingData.from(listOf(stream)))

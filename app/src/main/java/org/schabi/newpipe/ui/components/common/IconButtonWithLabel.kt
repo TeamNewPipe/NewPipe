@@ -25,7 +25,7 @@ import org.schabi.newpipe.ui.theme.AppTheme
 fun IconButtonWithLabel(
     icon: ImageVector,
     @StringRes label: Int,
-    onClick: () -> Unit,
+    onClick: () -> Unit
 ) {
     FilledTonalButton(
         contentPadding = PaddingValues(vertical = 8.dp, horizontal = 12.dp),
@@ -33,7 +33,7 @@ fun IconButtonWithLabel(
     ) {
         Row(
             horizontalArrangement = Arrangement.spacedBy(4.dp),
-            verticalAlignment = Alignment.CenterVertically,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(imageVector = icon, contentDescription = null)
             Text(text = stringResource(label))

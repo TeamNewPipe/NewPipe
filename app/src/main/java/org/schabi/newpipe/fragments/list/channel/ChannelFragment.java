@@ -158,41 +158,36 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
                 updateNotifyButton(channelSubscription);
             }
 
-                @Override
-                public boolean onMenuItemSelected(@NonNull final MenuItem item) {
-                    final int itemId = item.getItemId();
-                    if (itemId == R.id.menu_item_notify) {
-                        final boolean value = !item.isChecked();
-                        item.setEnabled(false);
-                        setNotify(value);
-                    } else if (itemId == R.id.action_settings) {
-                        NavigationHelper.openSettings(requireContext());
-                    } else if (itemId == R.id.menu_item_rss) {
-                        if (currentInfo != null) {
-                            ShareUtils.openUrlInApp(requireContext(), currentInfo.getFeedUrl());
-                        }
-                    } else if (itemId == R.id.menu_item_openInBrowser) {
-                        if (currentInfo != null) {
-                            ShareUtils.openUrlInBrowser(requireContext(),
-                                    currentInfo.getOriginalUrl());
-                        }
-                    } else if (itemId == R.id.menu_item_share) {
-                        if (currentInfo != null) {
-                            ShareUtils.shareText(requireContext(), name,
-                                    currentInfo.getOriginalUrl(), currentInfo.getAvatars());
-                        }
-                    } else {
-                        return false;
+            @Override
+            public boolean onMenuItemSelected(@NonNull final MenuItem item) {
+                final int itemId = item.getItemId();
+                if (itemId == R.id.menu_item_notify) {
+                    final boolean value = !item.isChecked();
+                    item.setEnabled(false);
+                    setNotify(value);
+                } else if (itemId == R.id.action_settings) {
+                    NavigationHelper.openSettings(requireContext());
+                } else if (itemId == R.id.menu_item_rss) {
+                    if (currentInfo != null) {
+                        ShareUtils.openUrlInApp(requireContext(), currentInfo.getFeedUrl());
                     }
-                    return true;
+                } else if (itemId == R.id.menu_item_openInBrowser) {
+                    if (currentInfo != null) {
+                        ShareUtils.openUrlInBrowser(requireContext(),
+                                currentInfo.getOriginalUrl());
+                    }
+                } else if (itemId == R.id.menu_item_share) {
+                    if (currentInfo != null) {
+                        ShareUtils.shareText(requireContext(), name,
+                                currentInfo.getOriginalUrl(), currentInfo.getAvatars());
+                    }
+                } else {
+                    return false;
                 }
-            };
-            activity.addMenuProvider(menuProvider);
-    }
-
-    @Override // called from onViewCreated in BaseFragment.onViewCreated
-    protected void initViews(final View rootView, final Bundle savedInstanceState) {
-        super.initViews(rootView, savedInstanceState);
+                return true;
+            }
+        };
+        activity.addMenuProvider(menuProvider);
 
         setEmptyStateComposable(binding.emptyStateView, EmptyStateSpec.ContentNotSupported);
 

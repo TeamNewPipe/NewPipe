@@ -32,19 +32,19 @@ fun PlaybackControlButtons(
         IconButtonWithLabel(
             icon = Icons.Default.Headphones,
             label = R.string.controls_background_title,
-            onClick = { NavigationHelper.playOnBackgroundPlayer(context, queue, false) },
+            onClick = { NavigationHelper.playOnBackgroundPlayer(context, queue, false) }
         )
 
         IconButtonWithLabel(
             icon = Icons.AutoMirrored.Filled.PlaylistPlay,
             label = R.string.play_all,
-            onClick = { NavigationHelper.playOnMainPlayer(context.findFragmentActivity(), queue) },
+            onClick = { NavigationHelper.playOnMainPlayer(context.findFragmentActivity(), queue) }
         )
 
         IconButtonWithLabel(
             icon = Icons.Default.PictureInPicture,
             label = R.string.controls_popup_title,
-            onClick = { NavigationHelper.playOnPopupPlayer(context, queue, false) },
+            onClick = { NavigationHelper.playOnPopupPlayer(context, queue, false) }
         )
     }
 }

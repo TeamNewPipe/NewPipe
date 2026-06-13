@@ -98,7 +98,7 @@ enum class EmptyStateSpec(
     ),
     ErrorLoadingItems(
         emojiText = "¯\\_(╹x╹)_/¯",
-        descriptionText = R.string.error_unable_to_load_items,
+        descriptionText = R.string.error_unable_to_load_items
     ),
     NoSearchResult(
         emojiText = "╰(°●°╰)",

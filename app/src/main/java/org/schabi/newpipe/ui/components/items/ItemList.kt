@@ -93,7 +93,7 @@ fun ItemList(
     if (items.loadState.refresh is LoadState.NotLoading && items.itemCount == 0) {
         EmptyStateComposable(
             spec = EmptyStateSpec.NoVideos,
-            modifier = Modifier.fillMaxWidth().heightIn(min = 128.dp),
+            modifier = Modifier.fillMaxWidth().heightIn(min = 128.dp)
         )
     } else if (mode == ItemViewMode.GRID) {
         val gridState = rememberLazyGridState()

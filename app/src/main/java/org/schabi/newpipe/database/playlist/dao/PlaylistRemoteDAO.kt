@@ -25,7 +25,7 @@ interface PlaylistRemoteDAO {
     fun getPlaylist(playlistId: Long): Flowable<PlaylistRemoteEntity>
 
     @Query("SELECT * FROM remote_playlists WHERE url = :url AND service_id = :serviceId")
-    fun getPlaylist(serviceId: Int, url: String): Flow<PlaylistRemoteEntity?>
+    fun getPlaylist(serviceId: Int, url: String?): Flow<PlaylistRemoteEntity?>
 
     @Query("SELECT * FROM remote_playlists ORDER BY display_index")
     fun getPlaylists(): Flowable<List<PlaylistRemoteEntity>>
@@ -45,7 +45,6 @@ interface PlaylistRemoteDAO {
         } else {
             playlist.uid = dbPlaylist.uid
             update(playlist)
-            return playlistId
         }
     }
 

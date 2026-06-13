@@ -52,11 +52,11 @@ import org.schabi.newpipe.util.image.ImageStrategy
 @Composable
 fun PlaylistHeader(
     playlistScreenInfo: PlaylistScreenInfo,
-    streams: List<StreamInfoItem?>,
+    streams: List<StreamInfoItem?>
 ) {
     Column(
         modifier = Modifier.padding(12.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp),
+        verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         Text(text = playlistScreenInfo.name, style = MaterialTheme.typography.titleMedium)
 
@@ -96,7 +96,7 @@ fun PlaylistHeader(
 
         PlaybackControlButtons(
             modifier = Modifier.align(Alignment.CenterHorizontally),
-            queue = SinglePlayQueue(streams.filterNotNull(), 0),
+            queue = SinglePlayQueue(streams.filterNotNull(), 0)
         )
     }
 }
@@ -111,25 +111,25 @@ private fun PlaylistStats(
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Row(
             modifier = Modifier.clickable(
-                playlistScreenInfo.uploaderName != null && playlistScreenInfo.uploaderUrl != null,
+                playlistScreenInfo.uploaderName != null && playlistScreenInfo.uploaderUrl != null
             ) {
                 try {
                     NavigationHelper.openChannelFragment(
                         context.findFragmentActivity().supportFragmentManager,
                         playlistScreenInfo.serviceId,
                         playlistScreenInfo.uploaderUrl,
-                        playlistScreenInfo.uploaderName!!,
+                        playlistScreenInfo.uploaderName!!
                     )
                 } catch (e: Exception) {
                     ErrorUtil.showUiErrorSnackbar(context, "Opening channel fragment", e)
                 }
             },
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(4.dp),
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             val isMix = YoutubeParsingHelper.isYoutubeMixId(playlistScreenInfo.id) ||
                 YoutubeParsingHelper.isYoutubeMusicMixId(playlistScreenInfo.id)
@@ -146,7 +146,7 @@ private fun PlaylistStats(
                     .size(24.dp)
                     .border(BorderStroke(1.dp, Color.White), CircleShape)
                     .padding(1.dp)
-                    .clip(CircleShape),
+                    .clip(CircleShape)
             )
 
             val uploader = playlistScreenInfo.uploaderName.orEmpty()
@@ -184,7 +184,7 @@ private fun PlaylistHeaderPreview() {
         Surface {
             PlaylistHeader(
                 playlistScreenInfo = playlistScreenInfo,
-                streams = listOf(StreamInfoItem(streamType = StreamType.NONE)),
+                streams = listOf(StreamInfoItem(streamType = StreamType.NONE))
             )
         }
     }

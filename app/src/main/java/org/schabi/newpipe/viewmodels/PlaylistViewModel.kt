@@ -30,7 +30,7 @@ import org.schabi.newpipe.viewmodels.util.Resource
 
 class PlaylistViewModel(
     application: Application,
-    savedStateHandle: SavedStateHandle,
+    savedStateHandle: SavedStateHandle
 ) : AndroidViewModel(application) {
     val serviceId = savedStateHandle.get<Int>(KEY_SERVICE_ID)!!
     val url = savedStateHandle.get<String>(KEY_URL)!!

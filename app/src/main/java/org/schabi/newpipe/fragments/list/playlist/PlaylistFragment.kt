@@ -35,7 +35,7 @@ class PlaylistFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ) = content {
         AppTheme {
             Surface {
@@ -46,7 +46,7 @@ class PlaylistFragment : Fragment() {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ) {
         val activity = requireActivity()
 
@@ -59,7 +59,7 @@ class PlaylistFragment : Fragment() {
             object : MenuProvider {
                 override fun onCreateMenu(
                     menu: Menu,
-                    menuInflater: MenuInflater,
+                    menuInflater: MenuInflater
                 ) {
                     menuInflater.inflate(R.menu.menu_playlist, menu)
 
@@ -79,12 +79,15 @@ class PlaylistFragment : Fragment() {
                         R.id.action_settings -> {
                             NavigationHelper.openSettings(activity)
                         }
+
                         R.id.menu_item_openInBrowser -> {
                             ShareUtils.openUrlInBrowser(activity, viewModel.url)
                         }
+
                         R.id.menu_item_bookmark -> {
                             viewModel.toggleBookmark()
                         }
+
                         R.id.menu_item_share -> {
                             ShareUtils.shareText(activity, viewModel.playlistTitle, viewModel.url)
                         }
@@ -92,7 +95,7 @@ class PlaylistFragment : Fragment() {
                     return true
                 }
             },
-            viewLifecycleOwner,
+            viewLifecycleOwner
         )
     }
 
@@ -101,12 +104,12 @@ class PlaylistFragment : Fragment() {
         fun getInstance(
             serviceId: Int,
             url: String,
-            playlistName: String,
+            playlistName: String
         ) = PlaylistFragment().apply {
             arguments = bundleOf(
                 KEY_SERVICE_ID to serviceId,
                 KEY_URL to url,
-                KEY_TITLE to playlistName,
+                KEY_TITLE to playlistName
             )
         }
     }
