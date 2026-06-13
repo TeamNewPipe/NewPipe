@@ -864,9 +864,35 @@
     <string name="player_http_403">Во время воспроизведения получена ошибка HTTP 403 от сервера, вероятно, вызванная истечением срока действия URL-адреса потоковой передачи или блокировкой IP-адреса</string>
     <string name="player_http_invalid_status">Ошибка HTTP %1$s получена от сервера во время воспроизведения</string>
     <string name="youtube_player_http_403">Во время воспроизведения получена ошибка HTTP 403 от сервера, вероятно, вызванная блокировкой IP-адреса или проблемами деобфускации URL-адреса потоковой передачи</string>
-    <string name="sign_in_confirm_not_bot_error">%1$s отказался предоставить данные, запросив логин для подтверждения, что запросчик не бот.\n\nВозможно, ваш IP-адрес временно заблокирован %1$s. Вы можете подождать некоторое время или переключиться на другой IP-адрес (например, включив/выключив VPN или переключившись с Wi-Fi на мобильный интернет).</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s отказался предоставить данные, запросив вход в аккаунт для подтверждения, что запрашивающий не является ботом.\n\nВозможно, ваш IP-адрес временно заблокирован %1$s, вы можете подождать некоторое время или переключиться на другой IP-адрес (например, включив/выключив VPN или переключившись с Wi-Fi на мобильный интернет).\n\nПожалуйста посмотрите <a href="%2$s">этот пункт FAQ</a> для получения дополнительной информации.</string>
     <string name="unsupported_content_in_country">Этот контент недоступен для выбранной страны контента.\n\nИзмените свой выбор в разделе «Настройки &gt; Контент &gt; Страна контента по умолчанию».</string>
     <string name="kao_dialog_warning">В августе 2025 года, Google анонсировала, что с сентября 2026 года, установка приложений потребует верификации разработчика для всех Android приложений на сертифицированных устройствах, включая те, которые были установлены не через Play Store. Поскольку разработчики NewPipe не согласны с этим требованием, NewPipe перестанет работать на сертифицированных Android устройствах после этой даты.</string>
     <string name="kao_dialog_more_info">Подробнее</string>
     <string name="kao_solution">Решение</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">Экспортирование %d подписки…</item>
+        <item quantity="few">Экспортирование %d подписок…</item>
+        <item quantity="many">Экспортирование %d подписок…</item>
+        <item quantity="other">Экспортирование %d подписок…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">Загрузка %d подписки…</item>
+        <item quantity="few">Загрузка %d подписок…</item>
+        <item quantity="many">Загрузка %d подписок…</item>
+        <item quantity="other">Загрузка %d подписок…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">Импортирование %d подписки…</item>
+        <item quantity="few">Импортирование %d подписок…</item>
+        <item quantity="many">Импортирование %d подписок…</item>
+        <item quantity="other">Импортирование %d подписок…</item>
+    </plurals>
+    <string name="import_subscriptions_title">Импорт подписок</string>
+    <string name="export_subscriptions_title">Экспорт подписок</string>
+    <string name="import_subscriptions_summary">Импорт подписок из предыдущего экспорта .json</string>
+    <string name="export_subscriptions_summary">Экспорт ваших подписок в .json файл</string>
+    <string name="import_from_previous_export">Импорт из предыдущего экспорта</string>
+    <string name="api23_requirement_dialog_title">NewPipe прекращает поддержку Android 5</string>
+    <string name="api23_requirement_dialog_message">К сожалению, NewPipe зависит от нескольких библиотек, которые прекратили поддерживать Android 5.0 и 5.1. Таким образом, к сожалению следующий выпуск NewPipe будет работать только на устройствах с Android 6 или выше. Подробности в посте в блоге.</string>
+    <string name="api23_requirement_dialog_blogpost">Пост в блоге</string>
 </resources>

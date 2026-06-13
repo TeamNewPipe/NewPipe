@@ -850,4 +850,21 @@
     <string name="kao_dialog_warning">अगस्त 2025 में, Google ने घोषणा की कि सितंबर 2026 से, सर्टिफाइड डिवाइस पर सभी Android ऐप्स जिनमें Play Store के बाहर से इंस्टॉल किए गए ऐप्स भी शामिल हैं, को इंस्टॉल करने के लिए डेवलपर वेरिफिकेशन ज़रूरी होगा। चूंकि NewPipe के डेवलपर्स इस शर्त से सहमत नहीं हैं, इसलिए उस समय के बाद NewPipe सर्टिफाइड Android डिवाइस पर काम नहीं करेगा।</string>
     <string name="kao_dialog_more_info">विवरण</string>
     <string name="kao_solution">समाधान</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">%d सब्सक्रिप्शन एक्सपोर्ट किया जा रहा है…</item>
+        <item quantity="other">%d सब्सक्रिप्शन एक्सपोर्ट किए जा रहे हैं…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">%d सब्सक्रिप्शन लोड हो रहा है…</item>
+        <item quantity="other">%d सब्सक्रिप्शन लोड हो रहे हैं…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">%d सब्सक्रिप्शन इंपोर्ट किया जा रहा है…</item>
+        <item quantity="other">%d सब्सक्रिप्शन इंपोर्ट किए जा रहे हैं…</item>
+    </plurals>
+    <string name="import_subscriptions_title">सब्सक्रिप्शन इंपोर्ट करें</string>
+    <string name="export_subscriptions_title">सब्सक्रिप्शन एक्सपोर्ट करें</string>
+    <string name="import_subscriptions_summary">पिछले .json एक्सपोर्ट से सब्सक्रिप्शन इंपोर्ट करें</string>
+    <string name="export_subscriptions_summary">अपनी सब्सक्रिप्शन को एक .json फ़ाइल में एक्सपोर्ट करें।</string>
+    <string name="import_from_previous_export">पिछले एक्सपोर्ट से इंपोर्ट करें</string>
 </resources>

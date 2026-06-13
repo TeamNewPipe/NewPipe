@@ -671,8 +671,7 @@
     <string name="create_error_notification">Criar uma notificação de erro</string>
     <string name="no_appropriate_file_manager_message">Não foi encontrado um gestor de ficheiros apropriado para esta ação.
 \nPor favor, instale um gestor de ficheiros ou tente desativar \'%s\' nas definições das descargas</string>
-    <string name="no_appropriate_file_manager_message_android_10">Nenhum gestor de ficheiros apropriado foi encontrado para esta ação.
-\nPor favor, instale um gestor de ficheiros compatível com SAF (Storage Access Framework)</string>
+    <string name="no_appropriate_file_manager_message_android_10">Nenhum gestor de ficheiros apropriado foi encontrado para esta ação. \nPor favor, instale um gestor de ficheiros compatível com o Storage Access Framework</string>
     <string name="detail_pinned_comment_view_description">Comentário afixado</string>
     <string name="leak_canary_not_available">LeakCanary não disponível</string>
     <string name="progressive_load_interval_exoplayer_default">Predefinição ExoPlayer</string>
@@ -884,4 +883,7 @@
     <string name="import_subscriptions_summary">Importar subscrições do ficheiro .json anteriormente exportado</string>
     <string name="export_subscriptions_summary">Exportar subscrições para um ficheiro .json</string>
     <string name="import_from_previous_export">Importar da exportação anterior</string>
+    <string name="api23_requirement_dialog_title">O NewPipe deixará de apoiar o Android 5</string>
+    <string name="api23_requirement_dialog_message">Infelizmente, o NewPipe depende de algumas bibliotecas que terminaram apoio para o Android 5.0 e 5.1. Por isso, a próxima versão do NewPipe só funcionará em dispositivos com Android 6 ou superior, infelizmente. Saiba mais na publicação do blog.</string>
+    <string name="api23_requirement_dialog_blogpost">Postagem no blog</string>
 </resources>

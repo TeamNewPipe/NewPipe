@@ -867,4 +867,7 @@
     <string name="import_subscriptions_summary">Importeer abonnementen vanuit een eerder geëxporteerd .json-bestand</string>
     <string name="export_subscriptions_summary">Exporteer uw abonnementen naar een .json-bestand</string>
     <string name="kao_dialog_warning">In augustus 2025 kondigde Google aan dat vanaf september 2026 voor het installeren van apps op gecertificeerde Android-apparaten, inclusief apps die buiten de Play Store zijn geïnstalleerd, een ontwikkelaars­verificatie vereist is. Omdat de ontwikkelaars van NewPipe het niet eens zijn met deze vereiste, zal NewPipe na die datum niet meer werken op gecertificeerde Android-apparaten.</string>
+    <string name="api23_requirement_dialog_title">NewPipe stopt met ondersteuning voor Android 5</string>
+    <string name="api23_requirement_dialog_message">NewPipe is afhankelijk van een aantal bibliotheken die geen ondersteuning meer bieden voor Android 5.0 en 5.1. De volgende versie van NewPipe zal daarom alleen werken op apparaten met Android 6 of hoger. Lees meer in het blogbericht.</string>
+    <string name="api23_requirement_dialog_blogpost">Blogbericht</string>
 </resources>

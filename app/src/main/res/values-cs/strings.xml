@@ -887,4 +887,7 @@
     <string name="import_subscriptions_summary">Importovat odběry z předchozího exportu .json</string>
     <string name="export_subscriptions_summary">Exportovat odběry do souboru .json</string>
     <string name="import_from_previous_export">Importovat z předchozího exportu</string>
+    <string name="api23_requirement_dialog_title">NewPipe ukončuje podporu systému Android 5</string>
+    <string name="api23_requirement_dialog_message">NewPipe bohužel využívá několik knihoven, které již nepodporují Android 5.0 a 5.1. Příští verze NewPipe proto bude bohužel fungovat pouze na zařízeních s Androidem 6 nebo novějším. Více se dozvíte v tomto blogovém příspěvku.</string>
+    <string name="api23_requirement_dialog_blogpost">Blogový příspěvek</string>
 </resources>

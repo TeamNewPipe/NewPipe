@@ -544,7 +544,7 @@
     <string name="show_description_summary">關閉以隱藏影片說明及其他附帶資訊</string>
     <string name="show_description_title">顯示說明</string>
     <string name="open_with">以……開啟</string>
-    <string name="no_app_to_open_intent">您裝置上沒有應用程式可以打開這個</string>
+    <string name="no_app_to_open_intent">您的裝置上沒有應用程式可以開啟這個</string>
     <string name="crash_the_app">應用程式當機</string>
     <string name="paid_content">此內容僅對已付費的內容可用，因此無法由 NewPipe 串流或下載。</string>
     <string name="youtube_music_premium_content">此影片僅供 YouTube Music Premium 會員使用，因此無法由 NewPipe 串流或下載。</string>
@@ -830,4 +830,7 @@
     <string name="export_subscriptions_summary">匯出您的訂閱至 .json 檔案</string>
     <string name="import_subscriptions_summary">從先前匯出的 .json 匯入訂閱</string>
     <string name="import_from_previous_export">從先前的匯出檔案匯入</string>
+    <string name="api23_requirement_dialog_title">NewPipe 即將停止支援 Android 5</string>
+    <string name="api23_requirement_dialog_blogpost">部落格文章</string>
+    <string name="api23_requirement_dialog_message">不幸的是，NewPipe 依賴的一些函式庫已停止支援 Android 5.0 和 5.1。因此，下一個版本的 NewPipe 將只能在 Android 6 或更高版本的裝置上運作，非常遺憾。更多資訊請參閱部落格文章。</string>
 </resources>

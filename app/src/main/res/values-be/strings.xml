@@ -830,4 +830,9 @@
     <string name="unsupported_content_in_country">Гэты кантэнт недаступны для цяперашняй краіны кантэнту.\n\nЯе можна змяніць праз «Налады &gt; Кантэнт &gt; Прадвызначаная краіна кантэнту».</string>
     <string name="migration_info_7_8_message">21 ліпеня 2025 года YouTube спыніў падтрымку аб\'яднанай старонкі трэндаў. NewPipe замяніў старонку трэндаў на трэнды трансляцый.\n\nТаксама можна выбраць іншыя старонкі трэндаў праз «Налады &gt; Кантэнт &gt; Змесціва галоўнай старонкі».</string>
     <string name="migration_info_7_8_title">Аб\'яднаныя трэнды YouTube выдалены</string>
+    <string name="import_subscriptions_title">Імпартаваць падпіскі</string>
+    <string name="export_subscriptions_title">Экспартаваць падпіскі</string>
+    <string name="kao_dialog_warning">У жніўні 2025 года Google абвясціў, што з верасня 2026 года для ўсталявання праграм для Android на сертыфікаваныя прылады будзе патрабавацца праверка распрацоўшчыка. Гэта тычыцца і тых праграм, што ўсталёўваюцца па-за Play Store. Паколькі распрацоўшчыкі NewPipe не згодныя з гэтым патрабаваннем, пасля гэтага часу NewPipe больш не будзе працаваць на сертыфікаваных прыладах Android.</string>
+    <string name="kao_dialog_more_info">Падрабязнасці</string>
+    <string name="kao_solution">Рашэнне</string>
 </resources>

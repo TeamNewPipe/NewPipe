@@ -9,7 +9,7 @@
     <string name="download">Descărcare</string>
     <string name="search">Căutare</string>
     <string name="settings">Setări</string>
-    <string name="did_you_mean">V-ați referit la: %1$s \?</string>
+    <string name="did_you_mean">V-ați referit la: „%1$s” ?</string>
     <string name="share_dialog_title">Distribuiți cu</string>
     <string name="use_external_video_player_title">Folosiți un player video extern</string>
     <string name="use_external_audio_player_title">Folosește un player audio extern</string>
@@ -22,7 +22,7 @@
     <string name="default_resolution_title">Rezoluție implicită</string>
     <string name="play_with_kodi_title">Redați folosind Kodi</string>
     <string name="kore_not_found">Aplicația Kore nu a fost găsită. Doriți să o instalați?</string>
-    <string name="show_play_with_kodi_title">Arată opțiunea \"Redați folosind Kodi\"</string>
+    <string name="show_play_with_kodi_title">Arată opțiunea „Redați folosind Kodi”</string>
     <string name="show_play_with_kodi_summary">Arată opțiunea de redare a videoclipurilor via player-ului media Kodi</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Format audio implicit</string>
@@ -163,7 +163,7 @@
     <string name="main_page_content">Conținutul pagini principale</string>
     <string name="blank_page_summary">Pagină goală</string>
     <string name="kiosk_page_summary">Pagina de chioșc</string>
-    <string name="channel_page_summary">Pagină canale</string>
+    <string name="channel_page_summary">Pagină canal</string>
     <string name="select_a_channel">Alegeți un canal</string>
     <string name="no_channel_subscribed_yet">Nu v-ați abonat la niciun canal deocamdată</string>
     <string name="select_a_kiosk">Alegeți un chioșc</string>
@@ -183,8 +183,8 @@
     <string name="metadata_cache_wipe_complete_notice">Cache pentru metadata șters</string>
     <string name="auto_queue_title">Adaugă următorul stream în coadă automat</string>
     <string name="auto_queue_summary">Continuă coadă de redare (care nu se repetă) prin adăugarea unui flux asemănător</string>
-    <string name="show_hold_to_append_title">Afișați sfatul \"Țineți apăsat pentru a adăuga\"</string>
-    <string name="show_hold_to_append_summary">Afișați un sfat la apăsarea fundalului sau a butonului popup în videoclipul \"Detalii:\"</string>
+    <string name="show_hold_to_append_title">Afișați sfatul „Țineți apăsat pentru a adăuga”</string>
+    <string name="show_hold_to_append_summary">Afișați un sfat la apăsarea fundalului sau a butonului popup în videoclipul „Detalii:”</string>
     <string name="default_content_country_title">Țara implicită pentru conținut</string>
     <string name="settings_category_debug_title">Depanare</string>
     <string name="play_all">Redă toate</string>
@@ -335,7 +335,7 @@
     <string name="peertube_instance_url_title">Instanțe PeerTube</string>
     <string name="seek_duration_title">Durată derulare rapidă înainte/înapoi</string>
     <string name="done">Gata</string>
-    <string name="subtitle_activity_recaptcha">Apăsați \"Gata\" după ce ați rezolvat problema</string>
+    <string name="subtitle_activity_recaptcha">Apăsați „Gata” după ce ați rezolvat problema</string>
     <string name="error_report_open_issue_button_text">Raportați pe GitHub</string>
     <string name="clear_cookie_summary">Ștergeți cookie-urile pe care NewPipe le stochează atunci când rezolvați un reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Cookie-urile reCAPTCHA au fost șterse</string>
@@ -345,11 +345,9 @@
     <string name="artists">Artiști</string>
     <string name="albums">Albume</string>
     <string name="songs">Melodii</string>
-    <string name="restricted_video">Acest videoclip este restricționat în funcție de vârstă.
-\n
-\nActivați \"%1$s\" în setări dacă doriți să îl vedeți.</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube oferă un \"Mod restricționat\" care ascunde conținutul potențial matur</string>
-    <string name="youtube_restricted_mode_enabled_title">Activați \"Modul restricționat\" de pe YouTube</string>
+    <string name="restricted_video">Acest videoclip este restricționat în funcție de vârstă. \n \nActivați „%1$s” în setări dacă doriți să îl vedeți.</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube oferă un „Mod restricționat” care ascunde conținutul potențial matur</string>
+    <string name="youtube_restricted_mode_enabled_title">Activați „Modul restricționat” de pe YouTube</string>
     <string name="show_age_restricted_content_summary">Afișați conținut posibil nepotrivit pentru copii, deoarece are o limită de vârstă (cum ar fi 18+)</string>
     <string name="unsupported_url_dialog_message">Adresa URL nu a putut fi recunoscută. Deschideți cu o altă aplicație\?</string>
     <string name="show_meta_info_title">Afișează informațiile meta</string>
@@ -433,13 +431,13 @@
     </plurals>
     <string name="new_seek_duration_toast">Datorită constrângerilor ExoPlayer, durata de căutare a fost setată la %d secunde</string>
     <string name="remove_watched_popup_partially_watched_streams">Da, și videoclipuri vizionate parțial</string>
-    <string name="remove_watched_popup_warning">Videoclipurile care au fost vizionate înainte și după ce au fost adăugate la lista de redare vor fi eliminate. \nSunteți sigur? Acest lucru nu poate fi anulat!</string>
-    <string name="remove_watched_popup_title">Eliminați videoclipurile vizionate?</string>
+    <string name="remove_watched_popup_warning">Fluxurile care au fost vizionate înainte și după ce au fost adăugate la lista de redare vor fi eliminate. \nSunteți sigur?</string>
+    <string name="remove_watched_popup_title">Eliminați fluxurile vizionate?</string>
     <string name="remove_watched">Eliminare cele urmărite</string>
     <string name="systems_language">Prestabilită de sistem</string>
     <string name="app_language_title">Limba aplicației</string>
     <string name="choose_instance_prompt">Alegeți o instanță</string>
-    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" permite descărcări pe un card SD extern</string>
+    <string name="downloads_storage_use_saf_summary">„Storage Access Framework” permite descărcări pe un card SD extern</string>
     <string name="downloads_storage_use_saf_title">Utilizați selectorul de dosare de sistem (SAF)</string>
     <string name="downloads_storage_ask_summary">Veți fi întrebat unde să salvați fiecare descărcare.
 \nActivați selectorul de foldere de sistem (SAF) dacă doriți să descărcați pe un card SD extern</string>
@@ -526,21 +524,8 @@
 \n
 \nContinuați\?</string>
     <string name="import_soundcloud_instructions_hint">ID-ul dvs., soundcloud.com/yourid</string>
-    <string name="import_soundcloud_instructions">Importați un profil SoundCloud introducând fie URL-ul, fie ID-ul dvs:
-\n
-\n1. Activați \"modul desktop\" într-un browser web (site-ul nu este disponibil pentru dispozitive mobile)
-\n2. Mergeți la acest URL: %1$s
-\n3. Conectați-vă atunci când vi se cere
-\n4. Copiați URL-ul profilului la care ați fost redirecționat.</string>
-    <string name="import_youtube_instructions">Importați abonamentele YouTube din Google takeout:
-\n
-\n1. Mergeți la această adresă URL: %1$s
-\n2. Autentificați-vă atunci când vi se cere
-\n3. Faceți clic pe \"Toate datele incluse\", apoi pe \"Deselectați totul\", apoi selectați doar \"Abonamente\" și faceți clic pe \"OK\"
-\n4. Faceți clic pe \"Pasul următor\" și apoi pe \"Creați exportul\"
-\n5. Faceți clic pe butonul \"Descărcare\" după ce acesta apare
-\n6. Faceți clic pe IMPORT FIȘIER de mai jos și selectați fișierul .zip descărcat
-\n7. [În cazul în care importul .zip eșuează] Extrageți fișierul .csv (de obicei sub \"YouTube and YouTube Music/subscriptions/subscriptions.csv\"), faceți clic pe IMPORT FIȘIER de mai jos și selectați fișierul csv extras</string>
+    <string name="import_soundcloud_instructions">Importați un profil SoundCloud introducând fie URL-ul, fie ID-ul dvs: \n \n1. Activați „modul desktop” într-un browser web (site-ul nu este disponibil pentru dispozitive mobile) \n2. Mergeți la acest URL: %1$s \n3. Conectați-vă atunci când vi se cere \n4. Copiați URL-ul profilului la care ați fost redirecționat.</string>
+    <string name="import_youtube_instructions">Importați abonamentele YouTube din Google takeout: \n \n1. Mergeți la această adresă URL: %1$s \n2. Autentificați-vă atunci când vi se cere \n3. Faceți clic pe „Toate datele incluse”, apoi pe „Deselectați totul”, apoi selectați doar „Abonamente” și faceți clic pe „OK” \n4. Faceți clic pe „Pasul următor” și apoi pe „Creați exportul” \n5. Faceți clic pe butonul „Descărcare” după ce acesta apare \n6. Faceți clic pe IMPORT FIȘIER de mai jos și selectați fișierul .zip descărcat \n7. [În cazul în care importul .zip eșuează] Extrageți fișierul .csv (de obicei sub „YouTube and YouTube Music/subscriptions/subscriptions.csv”), faceți clic pe IMPORT FIȘIER de mai jos și selectați fișierul csv extras</string>
     <string name="show_original_time_ago_summary">Textele originale din servicii vor fi vizibile în elementele de flux</string>
     <string name="enable_disposed_exceptions_title">Raportați erori în afara ciclului de viață</string>
     <string name="show_memory_leaks">Afișați scurgeri de memorie</string>
@@ -628,9 +613,9 @@
     <string name="feed_load_error_terminated">Contul autorului a fost închis.
 \nNewPipe nu va mai putea încărca acest flux în viitor.
 \nDoriți să vă dezabonați de la acest canal\?</string>
-    <string name="feed_load_error_account_info">Nu s-a putut încărca fluxul pentru \"%s\".</string>
+    <string name="feed_load_error_account_info">Nu s-a putut încărca fluxul pentru „%s”.</string>
     <string name="feed_load_error">Eroare la încărcarea fluxului</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Începând cu Android 10, este acceptat doar \"Storage Access Framework\"</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Începând cu Android 10, este acceptat doar „Storage Access Framework”</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Veți fi întrebat unde să salvați fiecare descărcare</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">S-a șters %1$s descărcare</item>
@@ -658,7 +643,7 @@
     <string name="processing_may_take_a_moment">Procesarea.. Poate dura un moment</string>
     <string name="check_for_updates">Verifică dacă există actualizări</string>
     <string name="manual_update_description">Verifică manual dacă există versiuni noi</string>
-    <string name="detail_pinned_comment_view_description">Comentariu lipit</string>
+    <string name="detail_pinned_comment_view_description">Comentariu fixat</string>
     <string name="error_report_channel_name">Notificare cu raport de eroare</string>
     <string name="show_crash_the_player_summary">Afișează opțiunea de a întrerupe atunci când utilizați playerul</string>
     <string name="error_report_notification_toast">A apărut o eroare, consultați notificarea</string>
@@ -666,7 +651,7 @@
     <string name="checking_updates_toast">Se verifică actualizări…</string>
     <string name="error_report_channel_description">Notificări pentru a raporta erori</string>
     <string name="create_error_notification">Creați o notificare de eroare</string>
-    <string name="show_crash_the_player_title">Afișează \"Dați crash playerului\"</string>
+    <string name="show_crash_the_player_title">Afișează „Dați crash playerului”</string>
     <string name="show_error_snackbar">Afișați o eroare de tip snackbar</string>
     <string name="feed_new_items">Elemente noi în flux</string>
     <string name="settings_category_player_notification_title">Notificarea player-ului</string>
@@ -809,40 +794,79 @@
     <string name="channel_tab_livestreams">În direct</string>
     <string name="channel_tab_shorts">Shorturi</string>
     <string name="metadata_uploader_avatars">Avatarele autorului</string>
-    <string name="notification_actions_summary_android13">Editează fiecare acțiune de notificare de mai jos atingând-o. Primele trei acțiuni (redare/pauză, anterioară și următoare) sunt setate de sistem și nu pot fi personalizate.</string>
+    <string name="notification_actions_summary_android13">Editați fiecare acțiune de notificare de mai jos atingând-o. Primele trei acțiuni (redare/pauză, anterioară și următoare) sunt setate de sistem și nu pot fi personalizate.</string>
     <plurals name="replies">
         <item quantity="one">%s răspuns</item>
         <item quantity="few">%s răspunsuri</item>
-        <item quantity="other">%s răspunsuri</item>
+        <item quantity="other">%s de răspunsuri</item>
     </plurals>
     <string name="show_more">Arată mai multe</string>
     <string name="show_less">Arată mai puține</string>
     <string name="channel_tab_tracks">Piste</string>
     <string name="error_insufficient_storage">Nu este suficient spațiu liber pe dispozitiv</string>
     <string name="settings_category_backup_restore_title">Backup și restabilire</string>
-    <string name="auto_update_check_description">NewPipe poate verifica automat pentru versiuni noi din când în când și vă poate notifica când acestea sunt disponibile.
-\nDoriți să activați acest lucru?</string>
-    <string name="reset_settings_summary">Resetează toate setările la valorile inițiale</string>
+    <string name="auto_update_check_description">NewPipe poate verifica automat din când în când dacă există versiuni noi și vă poate anunța când acestea sunt disponibile.\nDoriți să activați această opțiune?</string>
+    <string name="reset_settings_summary">Resetați toate setările la valorile implicite</string>
     <string name="yes">Da</string>
     <string name="no">Nu</string>
-    <string name="reset_settings_title">Resetează setări</string>
-    <string name="reset_all_settings">Resetarea tuturor setărilor va elimina toate setările tale preferate și va reporni aplicația.
-\n
-\nSigur doriți să continuați?</string>
+    <string name="reset_settings_title">Resetați setările</string>
+    <string name="reset_all_settings">Resetarea tuturor setărilor va elimina toate setările preferate și va reporni aplicația. \n \nSigur doriți să continuați?</string>
     <string name="import_settings_vulnerable_format">Setările din exportul importat folosesc un format vulnerabil care a fost depreciat de la NewPipe 0.27.0. Asigurați-vă că exportul care este importat este dintr-o sursă de încredere și preferați să utilizați numai exporturi obținute din NewPipe 0.27.0 sau mai nou în viitor. Suportul pentru importul setărilor în acest format vulnerabil va fi în curând eliminat complet, iar versiunile vechi ale NewPipe nu vor mai putea importa setările exporturilor din versiunile noi.</string>
     <string name="audio_track_type_secondary">secundar</string>
-    <string name="share_playlist_as_youtube_temporary_playlist">Distribuie ca listă de redare temporară YouTube</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Distribuiți ca listă de redare temporară YouTube</string>
     <string name="tab_bookmarks_short">Liste de redare</string>
     <string name="feed_group_page_summary">Pagina grupului de canale</string>
-    <string name="search_with_service_name">Caută: %1$s</string>
-    <string name="search_with_service_name_and_filter">Caută %1$s (%2$s)</string>
-    <string name="select_a_feed_group">Selectează un grup de fluxuri</string>
+    <string name="search_with_service_name">Căutare: %1$s</string>
+    <string name="search_with_service_name_and_filter">Căutare %1$s (%2$s)</string>
+    <string name="select_a_feed_group">Selectați un grup de fluxuri</string>
     <string name="no_feed_group_created_yet">Încă nu a fost creat niciun grup de fluxuri</string>
     <string name="channel_tab_likes">Aprecieri</string>
     <string name="migration_info_6_7_title">Pagina SoundCloud Top 50 a fost eliminată</string>
     <string name="migration_info_6_7_message">SoundCloud a eliminat Top 50. Fila corespunzătoare a fost eliminată din pagina principală.</string>
     <string name="permission_display_over_apps_permission_name">„Permite afișarea deasupra altor aplicații”</string>
-    <string name="short_thousand">%s mii</string>
+    <string name="short_thousand">%sK</string>
     <string name="short_million">%s mil.</string>
     <string name="short_billion">%s mld.</string>
+    <string name="kao_dialog_warning">În august 2025, Google a anunțat că, începând din septembrie 2026, instalarea aplicațiilor va necesita verificarea dezvoltatorului pentru toate aplicațiile Android de pe dispozitivele certificate, inclusiv pentru cele instalate din afara Play Store. Deoarece dezvoltatorii NewPipe nu sunt de acord cu această cerință, NewPipe nu va mai funcționa pe dispozitivele Android certificate după acea dată.</string>
+    <string name="kao_solution">Soluție</string>
+    <string name="kao_dialog_more_info">Detalii</string>
+    <string name="unsupported_content_in_country">Acest conținut nu este disponibil pentru țara de conținut selectată în prezent.\n\nModificați selecția din „Setări &gt; Conținut &gt; Țara implicită pentru conținut”.</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s a refuzat să furnizeze datele, cerând autentificarea pentru a confirma că solicitantul nu este un bot.\n\nEste posibil ca adresa dvs. IP să fi fost blocată temporar de %1$s; puteți aștepta puțin sau puteți trece la o altă adresă IP (de exemplu, activând/dezactivând un VPN sau trecând de la Wi-Fi la date mobile).\n\nVă rugăm să consultați <a href="%2$s">această intrare din secțiunea de întrebări frecvente</a> pentru mai multe informații.</string>
+    <string name="youtube_player_http_403">S-a primit eroarea HTTP 403 de la server în timpul redării, probabil din cauza unei restricții de IP sau a unor probleme legate de dezobfuscarea adresei URL de flux</string>
+    <string name="player_http_invalid_status">S-a primit eroarea HTTP %1$s de la server în timpul redării</string>
+    <string name="player_http_403">S-a primit eroarea HTTP 403 de la server în timpul redării, probabil din cauza expirării adresei URL de flux sau a blocării adresei IP</string>
+    <string name="entry_deleted">Intrare ștearsă</string>
+    <string name="trending_music">Muzică în tendințe</string>
+    <string name="trending_movies">Filme și seriale în tendințe</string>
+    <string name="trending_podcasts">Podcast-uri în tendințe</string>
+    <string name="trending_gaming">Jocuri în tendințe</string>
+    <string name="migration_info_7_8_message">YouTube a desființat pagina combinată de tendințe începând cu 21 iulie 2025. NewPipe a înlocuit pagina implicită de tendințe cu secțiunea de transmisiuni live în tendințe.\n\nDe asemenea, puteți selecta diferite pagini de tendințe din „Setări &gt; Conținut &gt; Conținutul paginii principale”.</string>
+    <string name="migration_info_7_8_title">Youtube a desființat pagina combinată de tendințe</string>
+    <string name="permission_display_over_apps_message">Pentru a utiliza playerul pop-up, vă rugăm să selectați %1$s la următorul meniu de setări Android și să activați %2$s.</string>
+    <string name="delete_file">Ștergeți fișierul</string>
+    <string name="delete_entry">Ștergeți intrarea</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">Se exportă %d abonament…</item>
+        <item quantity="few">Se exportă %d abonamente…</item>
+        <item quantity="other">Se exportă %d de abonamente…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">Se încarcă %d abonament…</item>
+        <item quantity="few">Se încarcă %d abonamente…</item>
+        <item quantity="other">Se încarcă %d de abonamente…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">Se importă %d abonament…</item>
+        <item quantity="few">Se importă %d abonamente…</item>
+        <item quantity="other">Se importă %d de abonamente…</item>
+    </plurals>
+    <string name="import_subscriptions_title">Importați abonamente</string>
+    <string name="export_subscriptions_title">Exportați abonamente</string>
+    <string name="import_subscriptions_summary">Importați abonamente dintr-un export .json anterior</string>
+    <string name="export_subscriptions_summary">Exportați abonamentele într-un fișier .json</string>
+    <string name="import_from_previous_export">Importați dintr-un export anterior</string>
+    <string name="account_terminated_service_provides_reason">Cont închis.\n\n%1$s oferă acest motiv: %2$s</string>
+    <string name="api23_requirement_dialog_title">NewPipe nu va mai fi compatibil cu Android 5</string>
+    <string name="api23_requirement_dialog_blogpost">Postare blog</string>
+    <string name="api23_requirement_dialog_message">Din păcate, NewPipe depinde de câteva biblioteci care nu mai sunt compatibile cu Android 5.0 și 5.1. Prin urmare, următoarea versiune a NewPipe va funcționa doar pe dispozitive cu Android 6 sau o versiune ulterioară. Aflați mai multe în articolul de pe blog.</string>
 </resources>

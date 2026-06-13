@@ -2,18 +2,15 @@
  * SPDX-FileCopyrightText: 2025 NewPipe e.V. <https://newpipe-ev.de>
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import com.mikepenz.aboutlibraries.plugin.DuplicateMode
-
 import com.android.build.api.dsl.ApplicationExtension
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.android.legacy.kapt)
+    alias(libs.plugins.google.ksp)
     alias(libs.plugins.jetbrains.kotlin.compose)
-    alias(libs.plugins.jetbrains.kotlin.kapt)
     alias(libs.plugins.jetbrains.kotlin.parcelize)
     alias(libs.plugins.jetbrains.kotlinx.serialization)
-    alias(libs.plugins.google.ksp)
     alias(libs.plugins.sonarqube)
     alias(libs.plugins.hilt)
     alias(libs.plugins.about.libraries)
@@ -44,9 +41,9 @@ configure<ApplicationExtension> {
         minSdk = 23
         targetSdk = 35
 
-        versionCode = System.getProperty("versionCodeOverride")?.toInt() ?: 1010
+        versionCode = System.getProperty("versionCodeOverride")?.toInt() ?: 1011
 
-        versionName = "0.28.5"
+        versionName = "0.28.6"
         System.getProperty("versionNameSuffix")?.let { versionNameSuffix = it }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

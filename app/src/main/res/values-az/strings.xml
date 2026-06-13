@@ -845,4 +845,7 @@
     <string name="import_subscriptions_summary">Əvvəlki .json ixracından abunəlikləri idxal et</string>
     <string name="export_subscriptions_summary">Abunəliklərinizi .json faylına köçürün</string>
     <string name="import_from_previous_export">Əvvəlki köçürmədən idxal et</string>
+    <string name="api23_requirement_dialog_title">NewPipe Android 5 üçün dəstəyi dayandırır</string>
+    <string name="api23_requirement_dialog_blogpost">Bloq elanı</string>
+    <string name="api23_requirement_dialog_message">Təəssüf ki, NewPipe Android 5.0 və 5.1 üçün dəstəyi dayandıran bir neçə kitabxanadan asılıdır. Bu səbəbdən, üzücü olaraq növbəti NewPipe buraxılışı yalnız Android 6 və ya daha yüksək versiyalı cihazlarda işləyəcək. Daha çoxunu blog elanında oxu.</string>
 </resources>

@@ -1,1 +1,3 @@
-修正 YouTube 無法播放任何串流
+此版本修正 YouTube 僅提供 360p 串流的問題。
+
+請注意，此版本所採用的解決方案可能只是暫時性的，從長遠來看仍需實作 SABR 影片協定，但目前 TeamNewPipe 成員都相當忙碌，因此非常歡迎任何協助！ https://github.com/TeamNewPipe/NewPipe/issues/12248

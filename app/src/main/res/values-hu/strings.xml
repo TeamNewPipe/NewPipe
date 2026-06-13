@@ -838,4 +838,7 @@
     <string name="import_subscriptions_summary">Feliratkozások importálása korábbi .json-fájlból</string>
     <string name="export_subscriptions_summary">Feliratkozások exportálása .json-fájlba</string>
     <string name="import_from_previous_export">Importálás korábbi exportból</string>
+    <string name="api23_requirement_dialog_title">A NewPipe megszünteti az Android 5 támogatását</string>
+    <string name="api23_requirement_dialog_message">Sajnos a NewPipe néhány olyan programkönyvtárra támaszkodik, amelyek megszüntették az Android 5.0 és 5.1 verziójának támogatását. A NewPipe következő verziója ezért sajnos csak Android 6 vagy újabb rendszerrel rendelkező eszközökön fog működni. További információt a blogbejegyzésben olvashat.</string>
+    <string name="api23_requirement_dialog_blogpost">Blogbejegyzés</string>
 </resources>

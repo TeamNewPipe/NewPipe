@@ -867,4 +867,7 @@
     <string name="import_subscriptions_summary">Abonelikleri önceki dışarı aktarmadaki .json dosyası ile içeri aktar</string>
     <string name="export_subscriptions_summary">Aboneliklerini bir .json dosyasında dışarı aktar</string>
     <string name="import_from_previous_export">Önceki dışarı aktarmadan içe aktar</string>
+    <string name="api23_requirement_dialog_title">NewPipe, Android 5 desteğini bırakıyor</string>
+    <string name="api23_requirement_dialog_message">NewPipe ne yazık ki Android 5.0 ve 5.1 desteğini bırakan birkaç kitaplığa bağlıdır. Üzücü ki sıradaki NewPipe sürümü yalnızca Android 6 ve üstü aygıtlarda çalışacaktır. Daha çoğunu blog gönderisinde okuyun.</string>
+    <string name="api23_requirement_dialog_blogpost">Blog gönderisi</string>
 </resources>

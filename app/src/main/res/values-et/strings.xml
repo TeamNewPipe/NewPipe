@@ -852,4 +852,7 @@
     <string name="import_subscriptions_summary">Impordi tellimusi varasemeksporditud json-failist</string>
     <string name="export_subscriptions_summary">Ekspirdi oma tellimused json-faili</string>
     <string name="import_from_previous_export">Impordi tellimusi varasemeksporditud failist</string>
+    <string name="api23_requirement_dialog_title">NewPipe loobub Android 5 toest</string>
+    <string name="api23_requirement_dialog_message">Kahjuks sõltub NewPipe mõnest teegist, mis on lõpetanud Androidi versioonide 5.0 ja 5.1 toetamise. Seetõttu töötab järgmine NewPipe’i versioon kahjuks ainult nutiseadmetes, millel on Android 6 või uuem versioon. Lisateavet leiad ajaveebi postitusest.</string>
+    <string name="api23_requirement_dialog_blogpost">Postitus meie ajaveebis</string>
 </resources>

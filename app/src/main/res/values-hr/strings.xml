@@ -859,4 +859,29 @@
     <string name="youtube_player_http_403">HTTP greška 403 primljena od poslužitelja tijekom reprodukcije, vjerojatno uzrokovana zabranom IP adrese ili problemima s deobfuskacijom URL-a za streaming</string>
     <string name="sign_in_confirm_not_bot_error">%1$s je odbio dati podatke, tražeći prijavu kako bi potvrdio da podnositelj zahtjeva nije bot.\n\nVašu IP adresu je možda privremeno zabranio %1$s, možete pričekati neko vrijeme ili se prebaciti na drugu IP adresu (na primjer uključivanjem/isključivanjem VPN-a ili prebacivanjem s WiFi-ja na mobilne podatke).</string>
     <string name="unsupported_content_in_country">Ovaj sadržaj nije dostupan za trenutno odabranu zemlju sadržaja.\n\nPromijenite odabir u \"Postavke &gt; Sadržaj &gt; Zadana zemlja sadržaja\".</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">Izvozi se %d pretplata …</item>
+        <item quantity="few">Izvoze se %d pretplate …</item>
+        <item quantity="other">Izvozi se %d pretplata …</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">Učitava se %d pretplata …</item>
+        <item quantity="few">Učitavaju se %d pretplate …</item>
+        <item quantity="other">Učitavaju se %d pretplate …</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">Uvozi se %d pretplata …</item>
+        <item quantity="few">Uvoze se %d pretplate …</item>
+        <item quantity="other">Uvozi se %d pretplata …</item>
+    </plurals>
+    <string name="import_subscriptions_title">Uvezi pretplate</string>
+    <string name="export_subscriptions_title">Izvezi pretplate</string>
+    <string name="import_subscriptions_summary">Uvezi pretplate iz jednog prijašnjeg .json izvoza</string>
+    <string name="export_subscriptions_summary">Izvezi svoje pretplate u .json datoteku</string>
+    <string name="import_from_previous_export">Uvezi iz prethodnog izvoza</string>
+    <string name="kao_dialog_more_info">Detalji</string>
+    <string name="kao_solution">Rješenje</string>
+    <string name="api23_requirement_dialog_title">NewPipe ukida podršku za Android 5</string>
+    <string name="api23_requirement_dialog_message">Nažalost NewPipe ovisi o nekoliko biblioteka koje su ukinule podršku za Android 5.0 i 5.1. Sljedeće NewPipe izdanje će stoga nažalost raditi samo na uređajima s Androidom 6 ili novije. Pročitaj više u objavi na blogu.</string>
+    <string name="api23_requirement_dialog_blogpost">Objava na blogu</string>
 </resources>

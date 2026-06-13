@@ -850,4 +850,7 @@
     <string name="import_subscriptions_summary">이전에 내보낸 .json에서 구독을 가져옵니다</string>
     <string name="export_subscriptions_summary">구독 현황을 .json 파일로 내보냅니다</string>
     <string name="import_from_previous_export">이전 내보내기에서 가져오기</string>
+    <string name="api23_requirement_dialog_title">NewPipe가 Android 5 지원을 중단합니다</string>
+    <string name="api23_requirement_dialog_message">NewPipe는 Android 5.0 및 5.1 지원을 중단한 몇 라이브러리에 의존합니다. 따라서 유감스럽게도 다음NewPipe 버전은 Android 6 이상 기기에서만 작동할 예정입니다. 자세한 내용은 블로그 게시글을 참조하세요.</string>
+    <string name="api23_requirement_dialog_blogpost">블로그 게시글</string>
 </resources>

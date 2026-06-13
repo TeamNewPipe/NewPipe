@@ -874,4 +874,7 @@
     <string name="import_subscriptions_summary">Importar suscripciones desde una exportación .json anterior</string>
     <string name="export_subscriptions_summary">Exportar suscripciones a un archivo .json</string>
     <string name="import_from_previous_export">Importar desde exportación anterior</string>
+    <string name="api23_requirement_dialog_title">NewPipe dejará de soportar Android 5</string>
+    <string name="api23_requirement_dialog_message">Desafortunadamente, NewPipe depende de algunas bibliotecas que dejaron de soportar Android 5.0 y 5.1. La próxima versión de NewPipe sólo funcionará en dispositivos con Android 6 o superior, tristemente. Lea más en el artículo de nuestro blog.</string>
+    <string name="api23_requirement_dialog_blogpost">Artículo</string>
 </resources>

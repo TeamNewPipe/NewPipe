@@ -1,6 +1,7 @@
 package org.schabi.newpipe.util;
 
 import static android.text.TextUtils.isEmpty;
+import android.text.TextUtils;
 import static org.schabi.newpipe.util.ListHelper.getUrlAndNonTorrentStreams;
 
 import android.annotation.SuppressLint;
@@ -431,13 +432,16 @@ public final class NavigationHelper {
         final RunnableWithVideoDetailFragment onVideoDetailFragmentReady = detailFragment -> {
             expandMainPlayer(detailFragment.requireActivity());
             detailFragment.setAutoPlay(autoPlay);
-            if (switchingPlayers) {
+            if (switchingPlayers && TextUtils.equals(detailFragment.getUrl(), url)) {
                 // Situation when user switches from players to main player. All needed data is
                 // here, we can start watching (assuming newQueue equals playQueue).
                 // Starting directly in fullscreen if the previous player type was popup.
                 detailFragment.openVideoPlayer(playerType == PlayerType.POPUP
                         || PlayerHelper.isStartMainPlayerFullscreenEnabled(context));
             } else {
+                if (switchingPlayers && playerType == PlayerType.POPUP) {
+                    detailFragment.setForceFullscreen(true);
+                }
                 detailFragment.selectAndLoadVideo(serviceId, url, title, playQueue);
             }
             detailFragment.scrollToTop();

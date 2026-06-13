@@ -171,7 +171,7 @@
     <string name="select_a_channel">Välj en kanal</string>
     <string name="no_channel_subscribed_yet">Inga kanal prenumerationer ännu</string>
     <string name="select_a_kiosk">Välj en kiosk</string>
-    <string name="trending">Trendande</string>
+    <string name="trending">Populärt</string>
     <string name="top_50">Topp 50</string>
     <string name="new_and_hot">Nytt och populärt</string>
     <string name="play_queue_remove">Ta bort</string>
@@ -834,8 +834,8 @@
     <string name="migration_info_7_8_message">YouTube har upphört med den kombinerade trendsidan från och med den 21 juli 2025. NewPipe ersatte standardtrendsidan med trendiga livestreams.\n\nDu kan också välja olika trendsidor i \"Inställningar &gt; Innehåll &gt; Innehåll på huvudsidan\".</string>
     <string name="trending_gaming">Speltrender</string>
     <string name="trending_podcasts">Trendiga poddar</string>
-    <string name="trending_movies">Trendiga filmer och serier</string>
-    <string name="trending_music">Trendig musik</string>
+    <string name="trending_movies">Populära filmer och serier</string>
+    <string name="trending_music">Populär musik</string>
     <string name="permission_display_over_apps_message">För att använda Popup Player, välj %1$s i följande Android-inställningsmeny och aktivera %2$s.</string>
     <string name="permission_display_over_apps_permission_name">\"Tillåt visning över andra appar\"</string>
     <string name="delete_file">Ta bort fil</string>
@@ -863,4 +863,8 @@
     <string name="import_subscriptions_summary">Importera prenumerationer från en tidigare .json-export</string>
     <string name="export_subscriptions_summary">Exportera dina prenumerationer till en .json-fil</string>
     <string name="import_from_previous_export">Importera från tidigare export</string>
+    <plurals name="load_subscriptions">
+        <item quantity="one">Läser in %d prenumeration…</item>
+        <item quantity="other">Läser in %d prenumerationer…</item>
+    </plurals>
 </resources>

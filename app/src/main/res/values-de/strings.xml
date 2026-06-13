@@ -43,7 +43,7 @@
     <string name="settings_category_appearance_title">Aussehen</string>
     <string name="general_error">Fehler</string>
     <string name="could_not_load_thumbnails">Konnte nicht alle Vorschaubilder laden</string>
-    <string name="parsing_error">Konnte Webseite nicht analysieren</string>
+    <string name="parsing_error">Konnte Website nicht analysieren</string>
     <string name="content_not_available">Inhalt nicht verfügbar</string>
     <string name="content">Inhalt</string>
     <string name="show_age_restricted_content_title">Altersbeschränkte Inhalte anzeigen</string>
@@ -185,7 +185,7 @@
     <string name="donation_title">Spenden</string>
     <string name="give_back">Zurückgeben</string>
     <string name="website_title">Website</string>
-    <string name="website_encouragement">Besuche die NewPipe Website für weitere Informationen und Neuigkeiten.</string>
+    <string name="website_encouragement">Besuche die NewPipe-Website für weitere Informationen und Neuigkeiten.</string>
     <string name="donation_encouragement">NewPipe wird von Freiwilligen entwickelt, die ihre Freizeit dafür verwenden, dir die beste Nutzererfahrung zu bieten. Gib etwas zurück, indem du den Entwicklern hilfst, NewPipe noch weiter zu verbessern, während sie sich an einer Tasse Kaffee erfreuen.</string>
     <string name="no_player_found_toast">Kein Stream-Player gefunden (du kannst VLC installieren, um den Stream abzuspielen).</string>
     <string name="default_content_country_title">Bevorzugtes Land des Inhalts</string>
@@ -621,7 +621,7 @@
     <string name="account_terminated">Konto geschlossen</string>
     <string name="feed_load_error_fast_unknown">Der Schnellmodus liefert hierzu keine weiteren Informationen.</string>
     <string name="no_dir_yet">Noch kein Downloadordner festgelegt, wähle jetzt den Standard-Downloadordner</string>
-    <string name="open_website_license">Webseite öffnen</string>
+    <string name="open_website_license">Website öffnen</string>
     <string name="downloads_storage_use_saf_summary_api_29">Ab Android 10 wird nur noch „Storage Access Framework“ unterstützt</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Du wirst jedes Mal gefragt werden, wohin der Download gespeichert werden soll</string>
     <string name="feed_load_error">Fehler beim Laden des Feeds</string>
@@ -697,7 +697,7 @@
     <string name="streams_not_yet_supported_removed">Streams, die der Downloader noch nicht unterstützt, werden nicht angezeigt</string>
     <string name="selected_stream_external_player_not_supported">Der ausgewählte Stream wird von externen Playern nicht unterstützt</string>
     <string name="progressive_load_interval_title">Größe des Ladeintervalls für die Wiedergabe</string>
-    <string name="faq">Auf der Webseite ansehen</string>
+    <string name="faq">Auf der Website ansehen</string>
     <string name="faq_title">Häufig gestellte Fragen</string>
     <string name="faq_description">Wenn du Probleme bei der Verwendung der App hast, lies bitte die Antworten auf häufig gestellte Fragen!</string>
     <string name="sort">Sortieren</string>
@@ -867,4 +867,7 @@
     <string name="import_subscriptions_summary">Importieren von Abonnements aus einem früheren .json-Export</string>
     <string name="export_subscriptions_summary">Exportiere deine Abonnements in eine .json-Datei</string>
     <string name="import_from_previous_export">Aus vorherigem Export importieren</string>
+    <string name="api23_requirement_dialog_blogpost">Blogbeitrag</string>
+    <string name="api23_requirement_dialog_title">NewPipe stellt die Unterstützung für Android 5 ein</string>
+    <string name="api23_requirement_dialog_message">Leider ist NewPipe auf einige Bibliotheken angewiesen, welche die Unterstützung für Android 5.0 und 5.1 eingestellt haben. Die nächste Version von NewPipe wird daher leider nur auf Geräten mit Android 6 oder höher funktionieren. Mehr dazu im Blogbeitrag.</string>
 </resources>

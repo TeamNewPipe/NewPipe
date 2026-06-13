@@ -11,6 +11,7 @@
 
     <!-- Key values -->
     <string name="kao_last_checked_key">kao_last_checked</string>
+    <string name="api23_requirement_dialog_shown_key">api23_requirement_dialog_shown</string>
 
     <string name="download_path_video_key">download_path</string>
     <string name="download_path_audio_key">download_path_audio</string>

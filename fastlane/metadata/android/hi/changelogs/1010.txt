@@ -1,0 +1,9 @@
+Application Context का इस्तेमाल करके enqueue actions में NullPointerException को ठीक किया
+[YouTube] आइटम की अवधि (duration) को parse करने की समस्या को ठीक किया
+
+अनुवादों को अपडेट किया और बिना अनुवाद वाले locales को हटा दिया
+Image handling में छोटे-मोटे सुधार किए
+
+Refactor से subscriptions से जुड़े बदलावों को पोर्ट किया
+Refactor से path से जुड़े बदलावों को पोर्ट किया
+Dependencies और Gradle को सबसे नए release पर अपडेट किया

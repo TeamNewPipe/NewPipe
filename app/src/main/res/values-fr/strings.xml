@@ -886,4 +886,7 @@
     <string name="import_subscriptions_summary">Importer des abonnements à partir d\'une exportation .json précédente</string>
     <string name="export_subscriptions_summary">Exportez vos abonnements dans un fichier .json</string>
     <string name="import_from_previous_export">Importer à partir d\'une exportation précédente</string>
+    <string name="api23_requirement_dialog_title">NewPipe ne prendra plus en charge Android 5</string>
+    <string name="api23_requirement_dialog_message">Malheureusement, NewPipe dépend de certaines bibliothèques qui ne prennent plus en charge Android 5.0 et 5.1. La prochaine version de NewPipe ne fonctionnera donc, à notre grand regret, que sur les appareils équipés d\'Android 6 ou d\'une version ultérieure. Pour en savoir plus, consultez l\'article de blog.</string>
+    <string name="api23_requirement_dialog_blogpost">Article de blog</string>
 </resources>

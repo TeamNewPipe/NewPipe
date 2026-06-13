@@ -1,0 +1,10 @@
+### Improvements
+* Added an application update notification for the GitHub version (#1608 by @krtkush)
+* Various improvements to the downloader (#1944 by @kapodamy):
+  * added the missing white icons and used a hard-coded method to change the colour of the icons
+  * check iterator initialisation (fix #2031)
+  * allows you to retry downloads with the "post-processing failed" error in the new muxer
+  * new MPEG-4 muxer correcting unsynchronised video and audio streams (#2039)
+
+### Fix
+* YouTube live streams stop playing after a short time (#1996 by @yausername)

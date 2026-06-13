@@ -52,7 +52,7 @@
     <string name="action_history">Vēsture</string>
     <string name="title_activity_history">Vēsture</string>
     <string name="read_full_license">Lasīt licenci</string>
-    <string name="app_license">Newpipe ir bezmaksas programmatūra: jūs varat izmantot, izpētīt, dalīties un uzlabot to jebkurā brīdī. Tieši jūs varat kopīgot un/ vai modificēt to saskaņā ar GNU Vispārējās Publiskās Licences noteikumiem, ko publicējusi Brīvās Programmatūras Fonds, vai nu 3. licences versija, vai (pēc jūsu izvēles) jebkura vēlāka versija.</string>
+    <string name="app_license">NewPipe — bez autortiesību ierobežojumiem brīva, pieejama bezmaksas, programmatūra: jūs variet izmantot, pētīt, dalīties un uzlabot to jebkurā brīdī pēc saviem ieskatiem. Tieši jūs varat kopīgot un/ vai modificēt to saskaņā ar GNU Vispārējās Publiskās Licences noteikumiem, ko publicējusi Brīvās Programmatūras Fonds, vai nu 3. licences versija, vai (pēc jūsu izvēles) jebkura vēlāka versija.</string>
     <string name="app_license_title">NewPipe Licence</string>
     <string name="read_privacy_policy">Izslasīt privātuma politiku</string>
     <string name="privacy_policy_encouragement">Datu aizsardzība ir ļoti svarīga NewPipe projektam. Tāpēc lietotne neapkopo datus bez jūsu piekrišanas.\nNewPipe konfidencialitātes politika sīki izskaidro, kādi dati tiek nosūtīti un uzglabāti, kad nosūtiet nobrukšanas ziņojumu.</string>
@@ -65,7 +65,7 @@
     <string name="view_on_github">Apskatīt GitHub</string>
     <string name="contribution_encouragement">Vienalga, kādas idejas Jums ir; Tulkojuma, dizaina izmaiņu, koda tīrīšanas vai reāli smagas kodu izmaiņas - palīdzība vienmēr ir laipni gaidīta. Jo vairāk tiek darīts, jo labāks tas kļūst!</string>
     <string name="contribution_title">Atbalstiet</string>
-    <string name="app_description">Libre, viegla atskaņošana uz Android.</string>
+    <string name="app_description">Viegls brīvs, pieejams bezmaksas, straumēšanas atskaņotājs Android ierīcēm.</string>
     <string name="tab_licenses">Licences</string>
     <string name="tab_about">Par un BUJ</string>
     <string name="title_licenses">Trešo pušu licences</string>
