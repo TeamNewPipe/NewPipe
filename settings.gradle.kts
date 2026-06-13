@@ -29,9 +29,9 @@ include("shared")
 // We assume, that NewPipe and NewPipe Extractor have the same parent directory.
 // If this is not the case, please change the path in includeBuild().
 
-//    includeBuild("../NewPipeExtractor") {
-//        dependencySubstitution {
-//            substitute(module("com.github.TeamNewPipe:NewPipeExtractor"))
-//                .using(project(":extractor"))
-//        }
+// includeBuild("../NewPipeExtractor") {
+//    dependencySubstitution {
+//        substitute(module("com.github.TeamNewPipe:NewPipeExtractor"))
+//            .using(project(":extractor"))
 //    }
+// }

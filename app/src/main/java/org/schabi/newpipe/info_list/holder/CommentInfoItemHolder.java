@@ -103,8 +103,6 @@ public class CommentInfoItemHolder extends InfoItemHolder {
 
         // setup the top row, with pinned icon, author name and comment date
         itemPinnedView.setVisibility(item.isPinned() ? View.VISIBLE : View.GONE);
-
-        // setup the top row, with edited text, author name and comment date
         itemEditedView.setVisibility(item.isEdited() ? View.VISIBLE : View.GONE);
 
         final String uploaderName = Localization.localizeUserName(item.getUploaderName());

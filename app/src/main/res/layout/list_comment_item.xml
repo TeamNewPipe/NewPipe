@@ -44,7 +44,7 @@
         android:textSize="@dimen/comment_item_title_text_size"
         tools:text="Author Name, Lorem ipsum • 5 months ago" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/comment_edited_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/comment_item_title_text_size"
         android:visibility="gone"
-        android:text="(edited)" />
+        android:text="@string/comment_edited_indicator" />
 
 
     <org.schabi.newpipe.views.NewPipeTextView
