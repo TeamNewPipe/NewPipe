@@ -867,4 +867,7 @@
         <item quantity="one">Läser in %d prenumeration…</item>
         <item quantity="other">Läser in %d prenumerationer…</item>
     </plurals>
+    <string name="api23_requirement_dialog_title">NewPipe slutar stödja Android 5</string>
+    <string name="api23_requirement_dialog_message">Tyvärr är NewPipe beroende av ett fåtal bibliotek som slutat stödja Android 5.0 och 5.1. Nästa NewPipe-utgåva kommer därför tyvärr bara att fungera på enheter med Android 6 eller senare. Läs mer i blogginlägget.</string>
+    <string name="api23_requirement_dialog_blogpost">Blogginlägg</string>
 </resources>

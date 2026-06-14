@@ -1,0 +1,14 @@
+Importante
+Informações e apoio à campanha Keep Android Open: https://www.keepandroidopen.org/
+
+Melhorias
+[Feed] Ordem de atualização de inscrições obsoletas aleatorizada
+Não empilha mais páginas de comentários
+Impede a propagação de cliques para as camadas inferiores na página de detalhes do vídeo
+
+Correções
+Layout do cabeçalho de respostas sem avatar corrigido
+Diversas correções na interface do player
+[SoundCloud] Correção de transmissões com IDs longos
+
+E muitas outras correções e melhorias!

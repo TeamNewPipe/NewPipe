@@ -103,13 +103,13 @@
 \nper utilizzare il lettore popup</string>
     <string name="title_licenses">Licenze di terze parti</string>
     <string name="copyright" formatted="true">© %1$s di %2$s protetto da licenza %3$s</string>
-    <string name="tab_about">Info e domande frequenti</string>
+    <string name="tab_about">Informazioni e domande frequenti</string>
     <string name="tab_licenses">Licenze</string>
     <string name="app_description">Streaming libero e leggero su Android.</string>
-    <string name="view_on_github">Mostra su GitHub</string>
+    <string name="view_on_github">Vedi su GitHub</string>
     <string name="app_license_title">Licenza di NewPipe</string>
-    <string name="contribution_encouragement">Un aiuto è sempre gradito: traduzioni, modifiche al design, pulizia del codice, cambiamenti radicali. Più si fa, meglio è!</string>
-    <string name="read_full_license">Leggi la Licenza</string>
+    <string name="contribution_encouragement">Un aiuto è sempre gradito per qualsiasi cosa: traduzioni, modifiche al design, pulizia del codice o cambiamenti radicali. Più si fa, meglio è!</string>
+    <string name="read_full_license">Leggi la licenza</string>
     <string name="contribution_title">Contribuisci</string>
     <string name="title_activity_about">Informazioni su NewPipe</string>
     <string name="subscribe_button_title">Iscriviti</string>
@@ -184,10 +184,10 @@
     <string name="start_here_on_background">Riproduci in sottofondo</string>
     <string name="start_here_on_popup">Riproduci nel lettore popup</string>
     <string name="donation_title">Dona</string>
-    <string name="website_title">Sito</string>
-    <string name="website_encouragement">Visita il sito di NewPipe per informazioni e novità.</string>
-    <string name="donation_encouragement">NewPipe è sviluppato da volontari che impiegano il loro tempo libero per offrire agli utenti un\'esperienza migliore. Restituisci il favore, aiutandoli a rendere NewPipe ancora più piacevole, mentre si gustano una tazza di caffè.</string>
-    <string name="give_back">Restituisci</string>
+    <string name="website_title">Sito web</string>
+    <string name="website_encouragement">Visita il sito di NewPipe per maggiori info e notizie.</string>
+    <string name="donation_encouragement">NewPipe è sviluppato da volontari che impiegano il loro tempo libero per offrirti un\'esperienza d\'uso migliore. Restituisci il favore, aiutandoli a rendere NewPipe ancora più piacevole mentre si gustano una tazza di caffè.</string>
+    <string name="give_back">Restituisci il favore</string>
     <string name="default_content_country_title">Paese predefinito per i contenuti</string>
     <string name="switch_to_background">Passa in sottofondo</string>
     <string name="switch_to_popup">Passa alla modalità popup</string>
@@ -305,12 +305,12 @@
     <string name="delete_search_history_alert">Eliminare la cronologia delle ricerche\?</string>
     <string name="search_history_deleted">Cronologia delle ricerche eliminata</string>
     <string name="one_item_deleted">1 elemento eliminato.</string>
-    <string name="app_license">NewPipe è un software libero con licenza copyleft: si può utilizzare, studiare, condividere e migliorare a proprio piacimento. In particolare, è possibile ridistribuirlo e/o modificarlo secondo i termini della GNU General Public License (Free Software Foundation), nella versione 3 o successiva, a propria discrezione.</string>
+    <string name="app_license">NewPipe è software libre copyleft: puoi utilizzare, studiare, condividere e migliorare a volontà il suo codice sorgente. Nello specifico è possibile ridistribuirlo e/o modificarlo in base ai termini della GNU General Public License come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza sia (a vostra scelta) qualsiasi versione successiva.</string>
     <string name="import_settings">Vuoi anche importare le impostazioni?</string>
-    <string name="privacy_policy_title">Informativa sulla privacy</string>
+    <string name="privacy_policy_title">Politica di riservatezza di NewPipe</string>
     <string name="privacy_policy_encouragement">Il progetto NewPipe tiene molto alla tua privacy. Perciò, l\'app non raccoglie alcun dato senza il tuo consenso.
 \nL\'informativa sulla privacy spiega nel dettaglio quali dati vengono trattati e memorizzati durante l\'invio di segnalazioni per arresti anomali.</string>
-    <string name="read_privacy_policy">Leggi l\'informativa sulla privacy</string>
+    <string name="read_privacy_policy">Leggi la politica di riservatezza</string>
     <string name="start_accept_privacy_policy">Per rispettare il regolamento europeo sulla protezione dei dati (GDPR), richiamiamo la vostra attenzione sull\'informativa sulla privacy di NewPipe. Si prega di leggerla attentamente.
 \nDeve essere accettata per poter inviare la segnalazione.</string>
     <string name="accept">Accetto</string>
@@ -710,9 +710,9 @@
     <string name="unknown_format">Formato sconosciuto</string>
     <string name="progressive_load_interval_title">Dimensione intervallo di caricamento della riproduzione</string>
     <string name="faq_title">Domande frequenti</string>
-    <string name="faq_description">Se riscontri problemi nell\'utilizzo dell\'app, dai un\'occhiata alle risposte delle domande più comuni!</string>
+    <string name="faq_description">Se stai avendo problemi durante l\'uso dell\'app, dai un occhio alle risposte a queste domande comuni!</string>
     <string name="sort">Ordina</string>
-    <string name="faq">Visualizza sul sito</string>
+    <string name="faq">Guarda sul sito web</string>
     <string name="fast_mode">Recupero veloce</string>
     <string name="app_update_available_notification_text">Premi per scaricare %s</string>
     <string name="app_update_unavailable_toast">Stai già usando l\'ultima versione di NewPipe</string>

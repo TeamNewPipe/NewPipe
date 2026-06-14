@@ -1,0 +1,1 @@
+Agregar ventana emergente para informar a los usuarios que la versión v0.28.7 dejará de ser compatible con Android 5

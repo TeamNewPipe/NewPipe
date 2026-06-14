@@ -55,13 +55,13 @@ jobs:
           cache: 'gradle'
 
       - name: Build debug APK and run jvm tests
-        run: ./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint
+        run: ./gradlew assembleContinuous lintContinuous testDebugUnitTest --stacktrace -DskipFormatKtlint
 
       - name: Upload APK
         uses: actions/upload-artifact@v7
         with:
           name: app
-          path: app/build/outputs/apk/debug/*.apk
+          path: app/build/outputs/apk/continuous/*.apk
 
   test-android:
     runs-on: ubuntu-latest

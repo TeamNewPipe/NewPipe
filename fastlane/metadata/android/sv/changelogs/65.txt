@@ -1,24 +1,25 @@
 ### Förbättringar
-- Stängde av burgarmeny ikonens animation #1486
-- Ångra radering av nedladdningar #1472
-- Nedladdningsalternativ i delningsmenyn #1498
-- Lade till delningsalternativet i menyn för långa tryckningar #1454
-- Minimerar huvudsplearen vid avslut #1354 
-- Uppdatering av biblioteksversion samt åtgärd av databasbackup #1510 
-- Uppdatering av ExoPlayer 2.8.2  #1392
-  - Omarbetad kontroll för uppspelningshastighet för att stödja olika stegstorlekar för snabbare hastighetsändring.
-  - Lade till växelkontroll för att snabbspola vid tystnad i uppspelningens hastighetskontroll. Detta borde vara underlätta vid uppspelning av ljudböcker och vissa musikgenres och kan bidra till en sömlös upplevelse ( och kan pajja en låt med massa tystnad =\\).
-  - Omskrivning av källmedias upplösning för att tillåta samtidig rörelse av metadata internt i spelaren, hellre än att utföra detta manuellt. Nu finns endast en källa för metadata som är omedelbart tillgängig så snart uppspelning sker.
-  - Åtgärdat att fjärrspellistors metadata inte uppdateras när nytt metadata är tillgänligt vid öppning av spelliststdelar.
-  - Diverse åtgärder av användargränssnitt: #1383, aviseringar för bakgrundsspelaren är nu alltid vita, lättare att stänga popup-spelare via "flinging"
-- Nyttja ny extraherare med omskriven arkitektur för stöd av flera tjänster
 
-### Åtgärdade
-- Åtgärdade #1440 Trasig layout för videoinformation #1491
-- Visningshistorik fix #1497
-- #1495, genom att uppdatera metadata (miniatyrbild, titel och videoantal) så snart användaren får tillgång till spellistan. 
-  - #1475, genom att skapa en vy i databasen när användaren startar en video i extern spelare för detaljfragment.
-- Åtgärdade tidsgräns för fönster som är i popup-läge. #1463 (Fixed #640)
-- Åtgärd av primär videospelare #1509 
-  - [#1412] Åtgärdade upprepningsläge vilket orsakade "null-pointer-exception" i spelaren när ny avsikt mottas för spelare som arbetar i bakgrunden.
-  - Åtgärdade att spelare utan popup-behörighet inte kraschar vid minimering till popupstorlek av fönstret.
+- Inaktivera animering av burgermenyikon #1486
+- ångra borttagning av nedladdningar #1472
+- Nedladdningsalternativ i delningsmenyn #1498
+- Lade till delningsalternativ i långtryckningsmenyn #1454
+- Minimera huvudspelaren vid utgång #1354
+- Uppdatering av biblioteksversion och säkerhetskopiering av databas #1510
+- ExoPlayer 2.8.2 Uppdatering #1392
+- Omarbetade dialogrutan för kontroll av uppspelningshastighet för att stödja olika stegstorlekar för snabbare hastighetsändring.
+- Lade till en växling för snabbspolning framåt under tystnader i kontrollen av uppspelningshastighet. Detta borde vara användbart för ljudböcker och vissa musikgenrer och kan ge en verkligt sömlös upplevelse (och kan bryta en låt med många tystnader =\\).
+- Omstrukturerad upplösning för mediekällan för att tillåta att metadata skickas tillsammans med media internt i spelaren, istället för att göra det manuellt. Nu har vi en enda metadatakälla som är direkt tillgänglig när uppspelningen startar.
+- Åtgärdade problemet med att fjärrspellistemetadata inte uppdateras när nya metadata är tillgängliga när ett spellistefragment öppnas. - Diverse UI-fixar: #1383, bakgrundskontroller för spelares aviseringar är nu alltid vita, enklare att stänga av popup-spelaren genom att kasta den
+- Använd ny extraktor med omarbetad arkitektur för multitjänster
+
+### Fixar
+
+- Fix #1440 Trasig videoinformationslayout #1491
+- Fix för visningshistorik #1497
+- #1495, genom att uppdatera metadata (miniatyrbild, titel och videoantal) så snart användaren öppnar spellistan.
+- #1475, genom att registrera en visning i databasen när användaren startar en video på extern spelare på detaljfragment.
+- Fix för skärmtidsgräns vid popup-läge. #1463 (Fix #640)
+- Fix för huvudvideospelare #1509
+- [#1412] Fixade upprepningsläge som orsakar spelarens NPE när ny intent tas emot medan spelaraktivitet pågår i bakgrunden.
+- Fixade att minimering av spelare till popup inte förstör spelaren när popup-behörighet inte beviljas.

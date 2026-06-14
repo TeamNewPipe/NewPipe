@@ -199,8 +199,8 @@
     <string name="website_encouragement">Per a més informació i notícies, visiteu el nostre web.</string>
     <string name="title_last_played">Últimes reproduccions</string>
     <string name="title_most_played">Més reproduïts</string>
-    <string name="kiosk_page_summary">Tendències</string>
-    <string name="channel_page_summary">Pàgina d\'un canal</string>
+    <string name="kiosk_page_summary">Pàgina de quiosc</string>
+    <string name="channel_page_summary">Pàgina de canal</string>
     <string name="select_a_kiosk">Trieu un quiosc</string>
     <string name="no_valid_zip_file">El fitxer no té un format ZIP vàlid</string>
     <string name="could_not_import_all_files">Avís: No s\'han pogut importar tots els fitxers.</string>
@@ -509,8 +509,8 @@
     </plurals>
     <string name="new_seek_duration_toast">A causa de les limitacions d\'ExoPlayer, la durada de cerca és de %d segons</string>
     <string name="remove_watched_popup_partially_watched_streams">Sí, i també els vídeos vistos parcialment</string>
-    <string name="remove_watched_popup_warning">Els vídeos que ja heu vist tant abans com després d\'haver estat afegits a la llista de reproducció seran suprimits. \nN\'esteu segurs? Aquesta acció no pot desfer-se!</string>
-    <string name="remove_watched_popup_title">Esborrar els vídeos ja vistos?</string>
+    <string name="remove_watched_popup_warning">S\'eliminaran les transmissions que s\'hagin vist abans i després d\'afegir-les a la llista de reproducció.\n\nN’esteu segur?</string>
+    <string name="remove_watched_popup_title">Eliminar transmissions vistes?</string>
     <string name="remove_watched">Esborra els ja vistos</string>
     <string name="systems_language">Valors per defecte</string>
     <string name="app_language_title">Llengua de l\'aplicació</string>
@@ -820,4 +820,55 @@
     <string name="no_feed_group_created_yet">Encara no s\'ha creat cap grup de continguts</string>
     <string name="select_a_feed_group">Tria un grup de continguts</string>
     <string name="feed_group_page_summary">Pàgina del grup de canals</string>
+    <string name="search_with_service_name">Cercar %1$s</string>
+    <string name="search_with_service_name_and_filter">Cercar %1$s (%2$s)</string>
+    <string name="short_billion">%sB</string>
+    <string name="channel_tab_likes">M\'agrada</string>
+    <string name="kao_dialog_more_info">Detalls</string>
+    <string name="kao_solution">Solució</string>
+    <string name="api23_requirement_dialog_blogpost">Article</string>
+    <string name="trending_gaming">Tendències de videojocs</string>
+    <string name="trending_podcasts">Tendències de podcasts</string>
+    <string name="trending_music">Tendències de música</string>
+    <string name="delete_file">Esborrar fitxer</string>
+    <string name="delete_entry">Esborrar entrada</string>
+    <string name="entry_deleted">Entrada esborrada</string>
+    <string name="import_subscriptions_title">Importar subscripcions</string>
+    <string name="export_subscriptions_title">Exportar suscripcions</string>
+    <string name="migration_info_7_8_title">Esborrades tendències combinades de YouTube</string>
+    <string name="trending_movies">Tendències de pel·lícules i sèries</string>
+    <string name="import_from_previous_export">Importar des d\'exportació anterior</string>
+    <string name="permission_display_over_apps_message">Per utilitzar el reproductor emergent, seleccioneu %1$s al següent menú de configuració d\'Android i habiliteu %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">“Permetre visualització sobre altres aplicacions”</string>
+    <string name="short_thousand">%sK</string>
+    <string name="short_million">%sM</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">Exportant subscripció %d…</item>
+        <item quantity="many">Exportant subscripcions %d…</item>
+        <item quantity="other">Exportant subscripcions %d…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">Carregant subscripció %d…</item>
+        <item quantity="many">Carregant subscripcions %d…</item>
+        <item quantity="other">Carregant subscripcions %d…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">Important subscripció %d…</item>
+        <item quantity="many">Important subscripcions %d…</item>
+        <item quantity="other">Important subscripcions %d…</item>
+    </plurals>
+    <string name="import_subscriptions_summary">Importar subscripcions d\'una exportació .json anterior</string>
+    <string name="export_subscriptions_summary">Exportar les vostres subscripcions a un fitxer .json</string>
+    <string name="account_terminated_service_provides_reason">Compte cancel·lat %1$s proporciona aquest motiu: %2$s</string>
+    <string name="migration_info_6_7_title">Pàgina Top 50 de SoundCloud eliminada</string>
+    <string name="migration_info_6_7_message">SoundCloud ha descontinuat les llistes Top 50 originals. La pestanya corresponent s\'ha eliminat de la pàgina principal.</string>
+    <string name="migration_info_7_8_message">YouTube va descontinuar la pàgina de tendències combinades a partir del 21 de juliol de 2025. NewPipe va reemplaçar la pàgina de tendències predeterminada amb les transmissions en viu de tendències.\n\nTambé podeu seleccionar diferents pàgines de tendències a \"Configuració &gt; Contingut &gt; Contingut de la pàgina principal\".</string>
+    <string name="player_http_403">Error HTTP 403 rebut del servidor durant la reproducció, probablement causat per l\'expiració de la URL de transmissió o un bloqueig d\'IP.</string>
+    <string name="player_http_invalid_status">Error HTTP %1$s rebut del servidor durant la reproducció</string>
+    <string name="youtube_player_http_403">Error HTTP 403 rebut del servidor durant la reproducció, probablement causat per un bloqueig d\'IP o problemes de desofuscació de la URL de transmissió</string>
+    <string name="sign_in_confirm_not_bot_error">\'\'%1$s es va negar a proporcionar dades, sol·licitant un inici de sessió per confirmar que el sol·licitant no és un bot.\n\nÉs possible que %1$s hagi bloquejat temporalment la vostra IP. Pots esperar un temps o canviar a una IP diferent (per exemple, activant/desactivant una VPN o canviant de Wi-Fi a dades mòbils).\n\nConsulta <a href="%2$s">aquesta entrada de preguntes freqüents</a> per obtenir més informació’</string>
+    <string name="unsupported_content_in_country">Aquest contingut no està disponible per al país de contingut seleccionat actualment.\n\nCanvia la teva selecció a \"Paràmetres &gt; Contingut &gt; País de contingut predeterminat\".</string>
+    <string name="kao_dialog_warning">A l\'agost del 2025, Google va anunciar que, a partir del setembre del 2026, la instal·lació d\'aplicacions requerirà la verificació del desenvolupador per a totes les aplicacions d\'Android en dispositius certificats, incloses les instal·lades fora de la Play Store. Com que els desenvolupadors de NewPipe no estan d\'acord amb aquest requisit, NewPipe deixarà de funcionar en dispositius Android certificats després d\'aquesta data.</string>
+    <string name="api23_requirement_dialog_title">NewPipe deixarà de ser compatible amb Android 5.</string>
+    <string name="api23_requirement_dialog_message">Malauradament, NewPipe depèn d\'algunes biblioteques que van deixar de ser compatibles amb Android 5.0 i 5.1. Per tant, la propera versió de NewPipe només funcionarà en dispositius amb Android 6 o superior. Llegeix més a la publicació del bloc.</string>
 </resources>

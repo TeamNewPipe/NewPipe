@@ -138,7 +138,7 @@
     <string name="charset_letters_and_digits">字母與數字</string>
     <string name="charset_most_special_characters">大部分的特殊字元</string>
     <string name="title_activity_about">關於 NewPipe</string>
-    <string name="title_licenses">第三方授權</string>
+    <string name="title_licenses">第三方授權條款</string>
     <string name="copyright" formatted="true">© %1$s 由 %2$s 使用 %3$s 授權條款發布</string>
     <string name="tab_about">關於與常見問題</string>
     <string name="tab_licenses">授權條款</string>
@@ -168,7 +168,7 @@
     <string name="external_player_unsupported_link_type">外部播放器不支援此類型連結</string>
     <string name="video_streams_empty">找不到影片串流</string>
     <string name="audio_streams_empty">找不到音訊串流</string>
-    <string name="donation_title">贊助</string>
+    <string name="donation_title">捐款</string>
     <string name="website_title">網站</string>
     <string name="import_data_title">匯入資料庫</string>
     <string name="export_data_title">匯出資料庫</string>

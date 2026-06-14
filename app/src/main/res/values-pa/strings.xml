@@ -6,7 +6,7 @@
     <string name="no_player_found_toast">ਸਟ੍ਰੀਮਿੰਗ ਲਈ ਪਲੇਅਰ ਨਹੀਂ ਮਿਲਿਆ (ਤੁਸੀਂ ਇਸਨੂੰ ਚਲਾਉਣ ਲਈ VLC ਪਲੇਅਰ ਇੰਸਟਾਲ ਕਰ ਸਕਦੇ ਹੋ)।</string>
     <string name="install">ਇੰਸਟਾਲ ਕਰੋ</string>
     <string name="cancel">ਰੱਦ ਕਰੋ</string>
-    <string name="open_in_browser">ਬ੍ਰਾਊਜ਼ਰ \'ਚ ਖੋਲ੍ਹੋ</string>
+    <string name="open_in_browser">ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਖੋਲ੍ਹੋ</string>
     <string name="open_in_popup_mode">ਪੌਪ-ਅਪ ਮੋਡ \'ਚ ਖੋਲ੍ਹੋ</string>
     <string name="share">ਸਾਂਝਾ ਕਰੋ</string>
     <string name="download">ਡਾਊਨਲੋਡ ਕਰੋ</string>
@@ -196,22 +196,22 @@
     <string name="charset_letters_and_digits">ਅੱਖਰ ਅਤੇ ਅੰਕ</string>
     <string name="charset_most_special_characters">ਬਹੁਤੇ ਖ਼ਾਸ ਅੱਖਰ</string>
     <string name="title_activity_about">ਨਿਊਪਾਈਪ ਬਾਰੇ ਵਿੱਚ ਜਾਣੋ</string>
-    <string name="title_licenses">ਤੀਜੀ ਧਿਰ ਦੇ ਲਾਈਸੈਂਸ</string>
+    <string name="title_licenses">ਤੀਜੀ-ਧਿਰ ਦੇ ਲਾਇਸੈਂਸ</string>
     <string name="copyright" formatted="true">%2$s ਵੱਲੋਂ © %1$s , %3$s ਅਧੀਨ</string>
     <string name="tab_about">ਐਪ ਬਾਰੇ ਤੇ ਆਮ ਸਵਾਲ</string>
-    <string name="tab_licenses">ਲਾਈਸੈਂਸ</string>
-    <string name="app_description">ਐਂਡਰਾਇਡ ਦੇ ਲਈ ਹਲਕੀ ਅਤੇ ਮੁਫ਼ਤ ਸਟ੍ਰੀਮਿੰਗ ਐਪਲੀਕੇਸ਼ਨ।</string>
+    <string name="tab_licenses">ਲਾਇਸੈਂਸ</string>
+    <string name="app_description">ਐਂਡਰਾਇਡ \'ਤੇ ਹਲਕੀ ਅਤੇ ਮੁਫ਼ਤ ਸਟ੍ਰੀਮਿੰਗ ਐਪਲੀਕੇਸ਼ਨ।</string>
     <string name="contribution_title">ਯੋਗਦਾਨ ਪਾਓ</string>
-    <string name="contribution_encouragement">ਭਾਵੇਂ ਤੁਹਾਡੇ ਕੋਲ ਵਿਚਾਰ ਹਨ; ਅਨੁਵਾਦ, ਡਿਜ਼ਾਈਨ ਬਦਲਾਵ, ਕੋਡ ਦੀ ਸਫਾਈ, ਜਾਂ ਅਸਲ ਭਾਰੀ ਕੋਡ ਬਦਲਾਵ — ਹਰ ਮਦਦ ਦਾ ਸਦਾ ਸਵਾਗਤ ਹੈ। ਜਿੰਨਾ ਇਸ ਨੂੰ ਜ਼ਿਆਦਾ ਕੀਤਾ ਜਾਂਦਾ ਹੈ ਉੱਨਾ ਹੀ ਇਹ ਬਿਹਤਰ ਹੁੰਦਾ ਹੈ!</string>
-    <string name="view_on_github">ਗਿਟਹੱਬ ਤੇ ਵੇਖੋ</string>
+    <string name="contribution_encouragement">ਭਾਵੇਂ ਤੁਹਾਡੇ ਕੋਲ ਅਨੁਵਾਦ, ਡਿਜ਼ਾਈਨ ਬਦਲਾਅ, ਕੋਡ ਸਫਾਈ, ਜਾਂ ਅਸਲ ਭਾਰੀ ਕੋਡ ਬਦਲਾਅ ਦੇ ਵਿਚਾਰ ਹੋਣ - ਮਦਦ ਦਾ ਹਮੇਸ਼ਾ ਸਵਾਗਤ ਹੈ। ਜਿੰਨਾ ਜ਼ਿਆਦਾ ਕੀਤਾ ਜਾਵੇਗਾ, ਓਨਾ ਹੀ ਬਿਹਤਰ ਹੋਵੇਗਾ!</string>
+    <string name="view_on_github">GitHub \'ਤੇ ਵੇਖੋ</string>
     <string name="donation_title">ਦਾਨ ਕਰੋ</string>
-    <string name="donation_encouragement">ਨਿਊਪਾਈਪ ਵਲੰਟੀਅਰਾਂ ਦੁਆਰਾ ਵਿਕਸਤ ਕੀਤੀ ਗਈ ਹੈ ਜੋ ਤੁਹਾਡੇ ਲਈ ਬਿਹਤਰ ਵਰਤੋਂਕਾਰ ਤਜ਼ਰਬਾ ਲਿਆਉਣ ਲਈ ਸਮਾਂ ਬਿਤਾਉਂਦੇ ਹਨ। ਡਿਵੈਲਪਰਾਂ ਵਾਸਤੇ ਇੱਕ ਕੱਪ ਕਾਫ਼ੀ ਖ਼ਰੀਦ ਦਿਓ ਤਾਂ ਕਿ ਇਸਦਾ ਆਨੰਦ ਲੈਂਦੇ ਹੋਏ ਉਹ ਨਿਊਪਾਈਪ ਨੂੰ ਹੋਰ ਵਧੀਆ ਬਣਾ ਸਕਣ।</string>
+    <string name="donation_encouragement">ਨਿਊਪਾਈਪ ਨੂੰ ਵਲੰਟੀਅਰਾਂ ਦੁਆਰਾ ਵਿਕਸਤ ਕੀਤਾ ਗਿਆ ਹੈ ਜੋ ਆਪਣਾ ਖਾਲੀ ਸਮਾਂ ਤੁਹਾਨੂੰ ਸਭ ਤੋਂ ਵਧੀਆ ਉਪਭੋਗਤਾ ਅਨੁਭਵ ਪ੍ਰਦਾਨ ਕਰਨ ਲਈ ਸਮਰਪਿਤ ਕਰਦੇ ਹਨ। ਡਿਵੈਲਪਰਾਂ ਦਾ ਸਮਰਥਨ ਕਰੋ ਤਾਂ ਜੋ ਉਹ ਨਿਊਪਾਈਪ ਨੂੰ ਹੋਰ ਵੀ ਬਿਹਤਰ ਬਣਾ ਸਕਣ ਅਤੇ ਅਜਿਹਾ ਕਰਦੇ ਹੋਏ ਇੱਕ ਕੱਪ ਕੌਫੀ ਦਾ ਆਨੰਦ ਮਾਣ ਸਕਣ।</string>
     <string name="give_back">ਵਾਪਸ ਦਿਓ</string>
     <string name="website_title">ਵੈੱਬਸਾਈਟ</string>
     <string name="website_encouragement">ਵਧੇਰੇ ਜਾਣਕਾਰੀ ਅਤੇ ਖ਼ਬਰਾਂ ਲਈ ਨਿਊਪਾਈਪ ਵੈੱਬਸਾਈਟ ਵੇਖੋ।</string>
-    <string name="app_license_title">ਨਿਊਪਾਈਪ ਲਾਈਸੈਂਸ</string>
-    <string name="app_license">ਨਿਊਪਾਈਪ ਇੱਕ ਕਾਪੀਲਿਫਟ ਮੁਫ਼ਤ ਸਾਫਟਵੇਅਰ ਹੈ। ਤੁਸੀਂ ਇਸ ਦੀ ਵਰਤੋਂ, ਇਸ ਦਾ ਅਧਿਐਨ ਅਤੇ ਇਸ ਨੂੰ ਸਾਂਝਾ ਕਰ ਸਕਦੇ ਹੋ ਅਤੇ ਇਸ ਵਿੱਚ ਆਪਣੀ ਮਰਜ਼ੀ ਅਨੁਸਾਰ ਸੁਧਾਰ ਸਕਦੇ ਹੋ। ਖਾਸ ਤੌਰ \'ਤੇ ਤੁਸੀਂ ਇਸ ਨੂੰ GNU ਜਨਰਲ ਪਬਲਿਕ ਲਾਈਸੈਂਸ ਦੀਆਂ ਸ਼ਰਤਾਂ ਦੇ ਅਧੀਨ ਵੰਡ ਸਕਦੇ ਹੋ / ਜਾਂ ਸੰਸ਼ੋਧਿਤ ਕਰ ਸਕਦੇ ਹੋ ਜਿਵੇਂ ਕਿ ਮੁਫਤ ਸਾਫਟਵੇਅਰ ਫਾਊਂਡੇਸ਼ਨ ਦੁਆਰਾ ਪ੍ਰਕਾਸ਼ਤ ਕੀਤਾ ਗਿਆ ਹੈ, ਜਾਂ ਤਾਂ ਲਾਈਸੈਂਸ ਦਾ ਵਰਜ਼ਨ 3, ਜਾਂ (ਤੁਹਾਡੇ ਵਿਕਲਪ \'ਤੇ) ਬਾਅਦ ਦਾ ਕੋਈ ਸੰਸਕਰਣ।</string>
-    <string name="read_full_license">ਲਾਈਸੈਂਸ ਪੜ੍ਹੋ</string>
+    <string name="app_license_title">ਨਿਊਪਾਈਪ ਦਾ ਲਾਇਸੈਂਸ</string>
+    <string name="app_license">ਨਿਊਪਾਈਪ ਇੱਕ ਕਾਪੀਲਿਫਟ ਮੁਫ਼ਤ ਸਾਫਟਵੇਅਰ ਹੈ। ਤੁਸੀਂ ਇਸ ਦੀ ਵਰਤੋਂ, ਇਸ ਦਾ ਅਧਿਐਨ ਅਤੇ ਇਸ ਨੂੰ ਸਾਂਝਾ ਕਰ ਸਕਦੇ ਹੋ ਅਤੇ ਇਸ ਵਿੱਚ ਆਪਣੀ ਮਰਜ਼ੀ ਅਨੁਸਾਰ ਸੁਧਾਰ ਸਕਦੇ ਹੋ। ਖਾਸ ਤੌਰ \'ਤੇ ਤੁਸੀਂ ਇਸ ਨੂੰ GNU ਜਨਰਲ ਪਬਲਿਕ ਲਾਇਸੈਂਸ ਦੀਆਂ ਸ਼ਰਤਾਂ ਦੇ ਅਧੀਨ ਵੰਡ ਸਕਦੇ ਹੋ / ਜਾਂ ਸੰਸ਼ੋਧਿਤ ਕਰ ਸਕਦੇ ਹੋ ਜਿਵੇਂ ਕਿ ਮੁਫਤ ਸਾਫਟਵੇਅਰ ਫਾਊਂਡੇਸ਼ਨ ਦੁਆਰਾ ਪ੍ਰਕਾਸ਼ਤ ਕੀਤਾ ਗਿਆ ਹੈ, ਜਾਂ ਤਾਂ ਲਾਇਸੈਂਸ ਦਾ ਵਰਜ਼ਨ 3, ਜਾਂ (ਤੁਹਾਡੇ ਵਿਕਲਪ \'ਤੇ) ਬਾਅਦ ਦਾ ਕੋਈ ਸੰਸਕਰਣ।</string>
+    <string name="read_full_license">ਲਾਇਸੈਂਸ ਪੜ੍ਹੋ</string>
     <string name="title_activity_history">ਇਤਿਹਾਸ</string>
     <string name="action_history">ਇਤਿਹਾਸ</string>
     <string name="delete_item_search_history">ਕੀ ਤੁਸੀਂ ਇਸਨੂੰ ਖੋਜ ਇਤਿਹਾਸ ਵਿੱਚੋਂ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ\?</string>
@@ -442,7 +442,7 @@
     <string name="metadata_language">ਭਾਸ਼ਾ</string>
     <string name="metadata_age_limit">ਉਮਰ ਹੱਦ</string>
     <string name="metadata_privacy">ਪਰਦੇਦਾਰੀ</string>
-    <string name="metadata_licence">ਲਾਈਸੈਂਸ</string>
+    <string name="metadata_licence">ਲਾਇਸੈਂਸ</string>
     <string name="metadata_tags">ਟੈਗ</string>
     <string name="metadata_category">ਸ਼੍ਰੇਣੀ</string>
     <string name="description_select_disable">ਵੇਰਵੇ \'ਚੋਂ ਲਿਖਤ ਚੁਣਨਾ ਬੰਦ ਕਰੋ</string>
@@ -866,4 +866,7 @@
     <string name="import_subscriptions_summary">ਪਹਿਲਾਂ ਕੀਤੇ .json ਐਕਸਪੋਰਟ ਤੋਂ ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ ਨੂੰ ਇੰਪੋਰਟ ਕਰੋ</string>
     <string name="export_subscriptions_summary">ਆਪਣੀਆਂ ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ ਨੂੰ .json ਫਾਈਲ ਵਿੱਚ ਐਕਸਪੋਰਟ ਕਰੋ</string>
     <string name="import_from_previous_export">ਪਹਿਲਾਂ ਕੀਤੇ ਐਕਸਪੋਰਟ ਤੋਂ ਇੰਪੋਰਟ ਕਰੋ</string>
+    <string name="api23_requirement_dialog_title">ਨਿਊਪਾਈਪ ਐਂਡਰਾਇਡ 5 ਲਈ ਸਮਰਥਨ ਬੰਦ ਕਰ ਰਿਹਾ ਹੈ</string>
+    <string name="api23_requirement_dialog_message">ਬਦਕਿਸਮਤੀ ਨਾਲ NewPipe ਕੁਝ ਲਾਇਬ੍ਰੇਰੀਆਂ \'ਤੇ ਨਿਰਭਰ ਕਰਦਾ ਹੈ ਜਿਨ੍ਹਾਂ ਨੇ Android 5.0 ਅਤੇ 5.1 ਲਈ ਸਮਰਥਨ ਛੱਡ ਦਿੱਤਾ ਹੈ। ਇਸ ਲਈ, ਅਗਲੀ NewPipe ਰੀਲੀਜ਼ ਸਿਰਫ਼ Android 6 ਜਾਂ ਇਸ ਤੋਂ ਉੱਚੇ ਵਰਜਨ ਵਾਲੇ ਡਿਵਾਈਸਾਂ \'ਤੇ ਕੰਮ ਕਰੇਗੀ। ਬਲੌਗਪੋਸਟ ਵਿੱਚ ਹੋਰ ਪੜ੍ਹੋ।</string>
+    <string name="api23_requirement_dialog_blogpost">ਬਲੌਗਪੋਸਟ</string>
 </resources>

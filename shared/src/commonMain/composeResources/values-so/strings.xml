@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigate_back">Ka Noqo</string>
+    <string name="title_activity_about">Ku saabsan NewPipe</string>
+    <string name="tab_about">Ku Saabsan &amp; Su’aalaha Inta Badan La Isweydiiyo</string>
+    <string name="contribution_title">Ka qayb qaado</string>
+    <string name="contribution_encouragement">Hadday jiraan fikrado ku saabsan; turjumaadda, isbeddellada naqshadeynta, nadiifinta koodhka, ama isbeddellada koodhka culus ee dhabta ah - caawimaad ayaa had iyo jeer la soo dhaweynayaa. Inta badan ee la sameeyo ayaa ka sii fiican!</string>
+    <string name="view_on_github">Ka eeg GitHub</string>
+    <string name="donation_title">Deeq</string>
+    <string name="donation_encouragement">NewPipe waxaa sameeyay mutadawiciin waqtigooda firaaqada ah ku bixinaya iyagoo kuu keenaya khibradda isticmaalaha ugu fiican. U celi si aad uga caawiso horumariyayaasha inay NewPipe ka dhigaan mid ka sii fiican inta ay ku raaxaysanayaan koob qaxwo ah.</string>
+    <string name="give_back">Soo celi</string>
+    <string name="website_title">Mareegta internetka</string>
+    <string name="website_encouragement">Booqo Mareegta NewPipe si aad u hesho macluumaad dheeraad ah iyo warar.</string>
+    <string name="privacy_policy_title">Siyaasadda Arrimaha Khaaska ah ee NewPipe</string>
+    <string name="privacy_policy_encouragement">Mashruuca NewPipe wuxuu si dhab ah u qaataa asturnaantaada. Sidaa darteed, barnaamijku ma ururiyo wax xog ah adigoon ogolaansho lagaa haysan.\nSiyaasadda asturnaanta ee NewPipe waxay si faahfaahsan u sharraxaysaa xogta la diro iyo marka la kaydiyo.</string>
+    <string name="read_privacy_policy">Akhri siyaasadda asturnaanta</string>
+    <string name="app_license_title">Shatiga NewPipe</string>
+    <string name="read_full_license">Liisanka akhri</string>
+    <string name="faq_title">Su'aalaha Badiya La Weydiiyo</string>
+    <string name="faq_description">Haddii aad dhibaato kala kulanto isticmaalka abka, hubi inaad hubiso jawaabahan su'aalaha la yaqaan!</string>
+    <string name="faq">Ka eeg bogga internetka</string>
+    <string name="open_in_browser">Fur biraawsarka</string>
+    <string name="done">La dhammeeyay</string>
+    <string name="not_available">Lama heli karo</string>
+    <string name="tab_licenses">Shati</string>
+    <string name="app_description">Daawashada fudud ee Libre ee Android.</string>
+    <string name="app_license">NewPipe waa copyleft software libre: Waad isticmaali kartaa, baran kartaa, wadaagi kartaa, oo waad hagaajin kartaa markaad doonto. Gaar ahaan waad dib u qaybin kartaa oo/ama wax ka beddeli kartaa iyada oo la raacayo shuruudaha GNU General Public License sida ay daabacday Mu'asasada Software-ka Xorta ah, nooca 3 ee shatiga, ama (doorashadaada) nooc kasta oo dambe.</string>
+    <string name="title_licenses">Shatiyada qolo saddexaad</string>
+    <string name="license">Waxaa sameeyay %1$s iyadoo hoos timaadda %2$s</string>
+</resources>

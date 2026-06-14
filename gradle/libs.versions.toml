@@ -4,22 +4,27 @@
 #
 
 [versions]
-about-libraries = "14.0.1"
+about-libraries = "14.2.1"
 acra = "5.13.1"
+activity = "1.13.0"
 agp = "9.2.1"
 appcompat = "1.7.1"
 assertj = "3.27.7"
 autoservice-google = "1.1.1"
 autoservice-zacsweers = "1.2.0"
 bridge = "v2.0.2"
+browser = "1.10.0"
 cardview = "1.0.0"
 checkstyle = "13.4.2"
 coil = "3.4.0"
+compose = "1.11.2"
 compose-bom = "2026.04.01"
 constraintlayout = "2.2.1"
 core = "1.18.0"
+coroutines = "1.11.0"
 desugar = "2.1.5"
 documentfile = "1.1.0"
+espresso = "3.7.0"
 exoplayer = "2.19.1"
 fragment-compose = "1.8.9"
 groupie = "2.10.1"
@@ -28,6 +33,9 @@ hilt-navigation-compose = "1.3.0"
 jsoup = "1.22.2"
 junit = "4.13.2"
 junit-ext = "1.3.0"
+kermit = "2.1.0"
+koin = "4.2.1"
+koin-plugin = "1.0.0"
 kotlin = "2.3.21"
 kotlinx-coroutines-rx3 = "1.11.0"
 kotlinx-serialization-json = "1.11.0"
@@ -38,9 +46,11 @@ leakcanary = "2.14"
 lifecycle = "2.10.0"
 markwon = "4.6.2"
 material = "1.11.0" # TODO: update to newer version after bug is fixed. See https://github.com/TeamNewPipe/NewPipe/pull/13018
+material3 = "1.11.0-alpha07"
 media = "1.7.1"
 mockitoCore = "5.23.0"
-nav3Core = "1.1.1"
+multiplatform = "1.11.0"
+navigation3 = "1.1.1"
 okhttp = "5.3.2"
 paging-compose = "3.4.2"
 phoenix = "3.0.0"
@@ -52,6 +62,7 @@ runner = "1.7.0"
 rxandroid = "3.0.2"
 rxbinding = "4.0.0"
 rxjava = "3.1.12"
+settings = "1.3.0"
 sonarqube = "7.3.0.8198"
 statesaver = "1.4.1" # TODO: Drop because it is deprecated and incompatible with KSP2
 stetho = "1.6.0"
@@ -66,16 +77,17 @@ teamnewpipe-nanojson = "e9d656ddb49a412a5a0a5d5ef20ca7ef09549996"
 # the corresponding commit hash, since JitPack sometimes deletes artifacts.
 # If there’s already a git hash, just add more of it to the end (or remove a letter)
 # to cause jitpack to regenerate the artifact.
-teamnewpipe-newpipe-extractor = "b33c151ea844068bf663ed766c81356f57bbc173"
-webkit = "1.15.0"
+teamnewpipe-newpipe-extractor = "v0.26.3"
+webkit = "1.15.0" # New versions require minSdk 24
 work = "2.11.2"
 
 [libraries]
 about-libraries-compose-m3 = { group = "com.mikepenz", name = "aboutlibraries-compose-m3", version.ref = "about-libraries" }
 acra-core = { module = "ch.acra:acra-core", version.ref = "acra" }
 android-desugar = { module = "com.android.tools:desugar_jdk_libs_nio", version.ref = "desugar" }
-androidx-activity-compose = { module = "androidx.activity:activity-compose" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+androidx-browser = { module = "androidx.browser:browser", version.ref = "browser" }
 androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
 androidx-compose-adaptive = { module = "androidx.compose.material3.adaptive:adaptive" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
@@ -96,8 +108,8 @@ androidx-lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata-
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 androidx-media = { module = "androidx.media:media", version.ref = "media" }
-androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
-androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
+androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "navigation3" }
+androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "navigation3" }
 androidx-navigation3-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3" }
 androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging-compose" }
 androidx-preference = { module = "androidx.preference:preference", version.ref = "preference" }
@@ -108,6 +120,7 @@ androidx-room-rxjava3 = { module = "androidx.room:room-rxjava3", version.ref = "
 androidx-room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
 androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
 androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
+androidx-test-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
 androidx-webkit = { module = "androidx.webkit:webkit", version.ref = "webkit" }
 androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "work" }
 androidx-work-rxjava3 = { module = "androidx.work:work-rxjava3", version.ref = "work" }
@@ -132,9 +145,25 @@ hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt"
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 jakewharton-phoenix = { module = "com.jakewharton:process-phoenix", version.ref = "phoenix" }
 jakewharton-rxbinding = { module = "com.jakewharton.rxbinding4:rxbinding", version.ref = "rxbinding" }
+jetbrains-compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "multiplatform" }
+jetbrains-compose-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "material3" }
+jetbrains-compose-preview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "multiplatform" }
+jetbrains-compose-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "multiplatform" }
+jetbrains-compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "multiplatform" }
+jetbrains-compose-test-ui = { module = "org.jetbrains.compose.ui:ui-test", version.ref = "multiplatform" }
+jetbrains-compose-tooling = { module = "org.jetbrains.compose.ui:ui-tooling", version.ref = "multiplatform" }
+jetbrains-compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "multiplatform" }
+jetbrains-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "coroutines" }
+jetbrains-lifecycle-navigation3 = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "lifecycle" }
+jetbrains-lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+jetbrains-navigation3-ui = { module = "org.jetbrains.androidx.navigation3:navigation3-ui", version.ref = "navigation3" }
 jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
 junit = { module = "junit:junit", version.ref = "junit" }
+koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koin" }
+koin-compose-navigation3 = { module = "io.insert-koin:koin-compose-navigation3", version.ref = "koin" }
+koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+kotlin-test-core = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlinx-coroutines-rx3 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-rx3", version.ref = "kotlinx-coroutines-rx3" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
 lazy-column-scrollbar = { module = "com.github.nanihadesuka:LazyColumnScrollbar", version.ref = "lazy-column-scrollbar" }
@@ -152,19 +181,27 @@ pinterest-ktlint = { module = "com.pinterest.ktlint:ktlint-cli", version.ref = "
 puppycrawl-checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checkstyle" }
 reactivex-rxandroid = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxandroid" }
 reactivex-rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
+russhwolf-settings-core = { module = "com.russhwolf:multiplatform-settings", version.ref = "settings" }
+russhwolf-settings-test = { module = "com.russhwolf:multiplatform-settings-test", version.ref = "settings" }
 squareup-leakcanary-core = { module = "com.squareup.leakcanary:leakcanary-android-core", version.ref = "leakcanary" }
 squareup-leakcanary-plumber = { module = "com.squareup.leakcanary:plumber-android", version.ref = "leakcanary" }
 squareup-leakcanary-watcher = { module = "com.squareup.leakcanary:leakcanary-object-watcher-android", version.ref = "leakcanary" }
 squareup-okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+touchlab-kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 zacsweers-autoservice-compiler = { module = "dev.zacsweers.autoservice:auto-service-ksp", version.ref = "autoservice-zacsweers" }
 
 [plugins]
 about-libraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "about-libraries" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-legacy-kapt = { id = "com.android.legacy-kapt", version.ref = "agp" } # Needed for statesaver
+android-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+jetbrains-compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "multiplatform" }
 jetbrains-kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+jetbrains-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 jetbrains-kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 jetbrains-kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+koin = { id = "io.insert-koin.compiler.plugin", version.ref = "koin-plugin" }
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }

@@ -110,7 +110,7 @@
     <string name="tab_about">Über &amp; FAQ</string>
     <string name="app_description">Freies und schlankes Streaming für Android.</string>
     <string name="app_license_title">NewPipes Lizenz</string>
-    <string name="contribution_encouragement">Ob Ideen, Übersetzungen, Design-Änderungen, Code-Aufräumung oder richtig große Code-Änderungen — Hilfe ist immer willkommen. Je mehr geholfen wird, desto besser wird NewPipe!</string>
+    <string name="contribution_encouragement">Ob Ideen, Übersetzungen, Design-Änderungen, Code-Aufräumen oder richtig große Code-Änderungen — Hilfe ist immer willkommen. Je mehr geholfen wird, desto besser wird NewPipe!</string>
     <string name="title_licenses">Drittanbieter-Lizenzen</string>
     <string name="view_on_github">Auf GitHub ansehen</string>
     <string name="contribution_title">Beitragen</string>
@@ -307,8 +307,7 @@
     <string name="app_license">NewPipe ist freie Copyleft-Software: Du kannst sie nach Belieben benutzen, untersuchen, mit anderen teilen und verbessern. Insbesondere kannst du sie unter den von der Free Software Foundation veröffentlichten Bedingungen der GNU General Public License, in der Version 3 der Lizenz oder (nach deiner Wahl) jeder späteren Version, weitergeben und/oder verändern.</string>
     <string name="import_settings">Möchtest du auch Einstellungen importieren\?</string>
     <string name="privacy_policy_title">NewPipes Datenschutzbestimmung</string>
-    <string name="privacy_policy_encouragement">Dem NewPipe-Projekt ist Datenschutz sehr wichtig. Deshalb sammelt diese App keine Daten ohne deine Zustimmung.
-\nNewPipes Datenschutzbestimmungen erklären im Detail, welche Daten beim Absenden eines Absturzberichtes verschickt und gespeichert werden.</string>
+    <string name="privacy_policy_encouragement">Dem NewPipe-Projekt ist Datenschutz sehr wichtig. Deshalb sammelt diese App keine Daten ohne deine Zustimmung.\nNewPipes Datenschutzbestimmungen erklären im Detail, welche Daten beim Absenden eines Absturzberichtes verschickt und gespeichert werden.</string>
     <string name="read_privacy_policy">Datenschutzbestimmungen lesen</string>
     <string name="accept">Akzeptieren</string>
     <string name="decline">Ablehnen</string>
@@ -354,7 +353,7 @@
     <string name="low_quality_smaller">Niedrige Qualität (kleiner)</string>
     <string name="dont_show">Nicht anzeigen</string>
     <string name="app_update_available_notification_title">Eine NewPipe-Aktualisierung ist verfügbar!</string>
-    <string name="missions_header_finished">Fertig</string>
+    <string name="missions_header_finished">Abgeschlossen</string>
     <string name="missions_header_pending">Ausstehend</string>
     <string name="paused">pausiert</string>
     <string name="queued">eingereiht</string>

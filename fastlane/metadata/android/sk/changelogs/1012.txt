@@ -1,0 +1,9 @@
+Toto je malá aktualizácia typu hotfix, ktorá opäť sprístupňuje YouTube. Je potrebná, pretože YouTube vykonal zmeny.
+NewPipe je teraz opäť schopný extrahovať položky v kartách kanálov vďaka úsiliu @AudricV a @Ecomont.
+
+Ďalšie zmeny
+- [YouTube] Opravené trvanie a zobrazenie živého vysielania v súvisiacich videách
+- [SoundCloud] Opravené zlyhanie komentárov pri spracovaní URL adries s nulovou hodnotou
+- aktualizácie závislostí
+
+NewPipe v nasledujúcej verzii ukončí podporu pre Android 5.
