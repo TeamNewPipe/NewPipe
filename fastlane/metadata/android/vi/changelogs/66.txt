@@ -7,15 +7,15 @@
 
 ### Cải tiến
 
-- Tắt hoạt ảnh biểu tượng burgermenu #1486
-- hoàn tác xóa tải xuống #1472
+- Tắt animation của biểu tượng burgermenu #1486
+- hoàn tác các tải xuống đã xóa #1472
 - Tùy chọn tải xuống trong menu chia sẻ #1498
-- Đã thêm tùy chọn chia sẻ vào menu nhấn dài #1454
-- Thu nhỏ trình phát chính ở lối ra #1354
-- Phiên bản thư viện cập nhật và bản sửa lỗi sao lưu cơ sở dữ liệu #1510
-- ExoPlayer 2.8.2 Cập nhật #1392
-- Làm lại hộp thoại kiểm soát tốc độ phát lại để hỗ trợ các kích cỡ bước khác nhau nhằm thay đổi tốc độ nhanh hơn.
-- Đã thêm nút chuyển đổi để tua đi nhanh trong khi im lặng trong điều khiển tốc độ phát lại. Điều này sẽ hữu ích cho sách nói và một số thể loại âm nhạc nhất định, đồng thời có thể mang lại trải nghiệm liền mạch thực sự (và có thể ngắt một bài hát có nhiều khoảng lặng =\\).
+- Đã thêm tùy chọn chia sẻ vào menu nhấn giữ #1454
+- Thu nhỏ trình phát chính khi thoát #1354
+- Cập nhật phiên bản thư viện và bản sửa lỗi sao lưu cơ sở dữ liệu #1510
+- Cập nhật ExoPlayer lên bản 2.8.2 #1392
+- Làm lại hộp thoại kiểm soát tốc độ phát lại để hỗ trợ các số lần nhân đôi khác nhau nhằm thay đổi tốc độ nhanh hơn.
+- Đã thêm nút chuyển đổi để tuanhanh trong khi im lặng trong điều khiển tốc độ phát lại. Điều này sẽ hữu ích cho sách nói và một số thể loại âm nhạc nhất định, đồng thời có thể mang lại trải nghiệm liền mạch thực sự (và có thể ngắt một bài hát có nhiều khoảng lặng =\\).
 - Độ phân giải nguồn phương tiện được tái cấu trúc để cho phép truyền siêu dữ liệu cùng với phương tiện nội bộ trong trình phát thay vì thực hiện thủ công. Bây giờ chúng tôi có một nguồn siêu dữ liệu duy nhất và có sẵn trực tiếp khi quá trình phát lại bắt đầu.
 - Đã sửa lỗi siêu dữ liệu danh sách phát từ xa không cập nhật khi có siêu dữ liệu mới khi mở đoạn danh sách phát.
 - Nhiều bản sửa lỗi giao diện người dùng khác nhau: #1383, các điều khiển thông báo trình phát nền giờ đây luôn có màu trắng, dễ dàng tắt trình phát cửa sổ bật lên thông qua thao tác ném

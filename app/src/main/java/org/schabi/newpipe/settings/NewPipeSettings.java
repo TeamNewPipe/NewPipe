@@ -103,12 +103,12 @@ public final class NewPipeSettings {
     }
 
     public static boolean useStorageAccessFramework(final Context context) {
-        // There's a FireOS bug which prevents SAF open/close dialogs from being confirmed with a
-        // remote (see #6455).
-        if (DeviceUtils.isFireTv()) {
-            return false;
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             return true;
+        } else if (DeviceUtils.isFireTv()) {
+            // There's a FireOS bug which prevents SAF open/close dialogs from being confirmed with
+            // a remote (see #6455).
+            return false;
         }
 
         final String key = context.getString(R.string.storage_use_saf);

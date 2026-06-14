@@ -1,0 +1,4 @@
+• Đã sửa lỗi phát lại livestreams tại điểm phát cuối
+• [Youtube] hỗ trợ thêm nhiều dạng URL kênh
+• [Youtube] hỗ trợ thêm nhiều format cho video metainfo
+• Đã cải thiện các bản dịch

@@ -1,0 +1,9 @@
+Naprawiono NullPointerException podczas akcji dodawania do kolejki przy użyciu Application Context
+[YouTube] Naprawiono odczytywanie czasu trwania elementu
+
+Zaktualizowano tłumaczenia i usunięto nieprzetłumaczone lokalizacje
+Drobne ulepszenia w obsłudze obrazów
+
+Przeniesiono zmiany związane z subskrypcjami po refaktorze
+Przeniesiono zmiany związane ze ścieżkami po refaktorze
+Zaktualizowano zależności i Gradle do najnowszej stabilnej wersji

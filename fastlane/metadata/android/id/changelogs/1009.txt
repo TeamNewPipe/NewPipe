@@ -1,0 +1,14 @@
+Penting
+Informasi dan ajakan untuk bertindak terkait kampanye Keep Android Open telah ditambahkan: https://www.keepandroidopen.org/
+
+Improved
+[Feed] Acak urutan pembaruan langganan yang sudah kedaluwarsa di
+Jangan menumpuk halaman komentar
+Jangan meneruskan peristiwa klik ke tampilan yang mendasarinya saat mengklik halaman detail video.
+
+Telah Diperbaiki
+Tata letak header balasan komentar tanpa gambar avatar
+Perbaikan antarmuka pengguna terkait pemain ganda
+[SoundCloud] Perbaiki aliran data dengan ID yang panjang
+
+dan masih banyak perbaikan dan peningkatan lainnya!

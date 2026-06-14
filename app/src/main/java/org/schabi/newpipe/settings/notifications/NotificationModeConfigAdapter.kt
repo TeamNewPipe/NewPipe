@@ -31,7 +31,7 @@ class NotificationModeConfigAdapter(
 
     fun update(newData: List<SubscriptionEntity>) {
         val items = newData.map {
-            SubscriptionItem(it.uid, it.name, it.notificationMode, it.serviceId, it.url)
+            SubscriptionItem(it.uid, it.name!!, it.notificationMode, it.serviceId, it.url!!)
         }
         submitList(items)
     }

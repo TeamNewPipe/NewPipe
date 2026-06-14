@@ -1,0 +1,11 @@
+Yaxshilangan
+
+• Android 13+ da pleyer bildirishnomalari sozlamalarini har doim o'zgartirishga ruxsat berish
+
+
+
+Tuzatildi
+
+• Ma'lumotlar bazasini / obunalarni eksport qilish mavjud faylni qisqartirmasligini va eksportning buzilishiga olib kelishini tuzatish
+
+• Vaqt tamg'asini bosganingizda pleyer boshidan davom etishini tuzatish

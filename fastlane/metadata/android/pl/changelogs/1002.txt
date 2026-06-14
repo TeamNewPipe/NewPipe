@@ -1,0 +1,4 @@
+Naprawiono błąd uniemożliwiający odtwarzanie strumieni na YouTube.
+
+W tej aktualizacji rozwiązano jedynie najpilniejszy błąd, który uniemożliwiał ładowanie szczegółów filmów na YouTube.
+Jesteśmy świadomi istnienia innych problemów i wkrótce udostępnimy osobną aktualizację, aby je rozwiązać.

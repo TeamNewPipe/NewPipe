@@ -1,0 +1,13 @@
+New
+• Added "Add to playlist" option to share menu
+• Added support for y2u.be and PeerTube short links
+
+Improved
+• Made Playback-Speed-Controls more compact
+• Feed highlights new items now
+• "Show watched items" option in the feed is now saved
+
+Fixed
+• Fixed YouTube likes and dislikes extraction
+• Fixed automatic replay after returning from the background
+And much more

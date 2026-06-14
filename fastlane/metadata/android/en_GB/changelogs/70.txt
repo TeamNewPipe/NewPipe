@@ -1,0 +1,25 @@
+WARNING: This version is probably a bugfest, just like the last one. However, due to the complete shutdown of the application since the 17th, a faulty version is better than no version at all. Isn't it? ¯\_(ツ)_/¯
+
+### Improvements
+* downloaded files can now be opened with a single click #1879
+* support for Android 4.1 - 4.3 removed #1884
+* remove old player #1884
+* remove streams from current play queue by dragging to the right #1915
+* remove automatically queued stream when a new stream is manually queued #1878
+* Post-processing for downloads and implementation of missing features #1759 by @kapodamy
+  * Post-processing infrastructure
+  * Error handling infrastructure (for the uploader)
+  * Queuing instead of multiple downloads
+  * Move serialised pending downloads (`.giga` files) to application data
+  * Implement maximum repetition of downloads
+  * Pause multi-threaded downloads
+  * Stop downloads when switching to the mobile network (never works, see 2nd point)
+  * Save the number of threads for future downloads
+  * Many inconsistencies corrected
+
+#### Fixed
+* Fixed crash when default resolution is best and mobile data resolution is limited #1835
+* Fixed pop-up player crash #1874
+* Fixed NPE when opening a player in background #1901
+* Fixed insertion of new streams when auto-queuing is enabled #1878
+* Fixed shuttown decoding problem

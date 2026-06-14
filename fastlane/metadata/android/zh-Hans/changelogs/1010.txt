@@ -1,0 +1,9 @@
+使用 Application Context 修复加入队列操作中的 NullPointerExxeption 
+[YouTube] 修复解析条目时长的问题
+
+更新译文并删除未翻译的语言环境
+小幅改进图像处理
+
+从代码重构移植订阅相关的更改
+从代码重构移植路径相关的更改
+更新依赖和 Gradle 到最新稳定版

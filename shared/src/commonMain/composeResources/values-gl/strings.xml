@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_activity_about">Sobre NewPipe</string>
+    <string name="title_licenses">Licenzas de terceiras partes</string>
+    <string name="license">Por %1$s baixo%2$s</string>
+    <string name="tab_about">Acerca de e preguntas frecuentes</string>
+    <string name="tab_licenses">Licenzas</string>
+    <string name="app_description">Transmisión lixeira e libre en Android.</string>
+    <string name="contribution_title">Contribúe</string>
+    <string name="contribution_encouragement">Tanto se tes ideas para traducións, cambios de deseño, limpeza de código ou cambios de código moi importantes, a axuda sempre é benvida. Canto máis se faga, mellor será!</string>
+    <string name="view_on_github">Ver en GitHub</string>
+    <string name="donation_title">Doar</string>
+    <string name="donation_encouragement">NewPipe está desenvolvido por persoas voluntarias que dedican o seu tempo libre a ofrecerche a mellor experiencia como persoa usuaria. Axuda ás persoas desenvolvedoras a mellorar NewPipe mentres gozan dunha cunca de café.</string>
+    <string name="give_back">Devolver</string>
+    <string name="website_title">Páxina web</string>
+    <string name="website_encouragement">Visita o sitio web de NewPipe para obter máis información e novas.</string>
+    <string name="privacy_policy_title">Política de Privacidade de NewPipe</string>
+    <string name="privacy_policy_encouragement">O proxecto NewPipe tómase moi en serio a túa privacidade. Polo tanto, a aplicación non recompila ningún dato sen o teu consentimento.\nA política de privacidade de NewPipe explica en detalle que datos se envían e almacenan cando envías un informe de erro.</string>
+    <string name="read_privacy_policy">Le a política de privacidade</string>
+    <string name="app_license_title">Licenza de NewPipe</string>
+</resources>

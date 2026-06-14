@@ -10,7 +10,7 @@ Nieuw
  • Verbeterde formaatverwerking van de titel van de ladekoptekst
 
  Opgelost
- •  instelling voor inhoud met leeftijdsbeperking werkt niet opgelost 
+ • instelling voor inhoud met leeftijdsbeperking werkt niet opgelost 
  • Bepaalde soorten reCAPTCHA's opgelost
  • Crash opgelost bij het openen van bladwijzers terwijl de afspeellijst 'null' is
  • Vaste detectie van netwerkgerelateerde uitzonderingen

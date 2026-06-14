@@ -1,0 +1,15 @@
+{
+  "uniqueId": "com.evernote:android-state",
+  "artifactVersion": "1.4.1",
+  "name": "Android State",
+  "description": "Android library to save object states into a bundle.",
+  "website": "https://github.com/evernote/android-state",
+  "developers": [
+    {
+      "name": "Ralf Wondratschek"
+    }
+  ],
+  "licenses": [
+    "EPL-1.0"
+  ]
+}

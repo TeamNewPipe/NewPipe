@@ -34,15 +34,15 @@ public class LocalPlaylistItemHolder extends PlaylistItemHolder {
             return;
         }
 
-        itemTitleView.setText(item.name);
+        itemTitleView.setText(item.getOrderingName());
         itemStreamCountView.setText(Localization.localizeStreamCountMini(
-                itemStreamCountView.getContext(), item.streamCount));
+                itemStreamCountView.getContext(), item.getStreamCount()));
         itemUploaderView.setVisibility(View.INVISIBLE);
 
-        CoilHelper.INSTANCE.loadPlaylistThumbnail(itemThumbnailView, item.thumbnailUrl);
+        CoilHelper.INSTANCE.loadPlaylistThumbnail(itemThumbnailView, item.getThumbnailUrl());
 
         if (item instanceof PlaylistDuplicatesEntry
-                && ((PlaylistDuplicatesEntry) item).timesStreamIsContained > 0) {
+                && ((PlaylistDuplicatesEntry) item).getTimesStreamIsContained() > 0) {
             itemView.setAlpha(GRAYED_OUT_ALPHA);
         } else {
             itemView.setAlpha(1.0f);

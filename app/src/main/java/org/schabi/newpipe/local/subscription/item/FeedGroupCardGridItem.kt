@@ -10,7 +10,7 @@ import org.schabi.newpipe.local.subscription.FeedGroupIcon
 data class FeedGroupCardGridItem(
     val groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
     val name: String,
-    val icon: FeedGroupIcon,
+    val icon: FeedGroupIcon
 ) : BindableItem<FeedGroupCardGridItemBinding>() {
     constructor (feedGroupEntity: FeedGroupEntity) : this(feedGroupEntity.uid, feedGroupEntity.name, feedGroupEntity.icon)
 

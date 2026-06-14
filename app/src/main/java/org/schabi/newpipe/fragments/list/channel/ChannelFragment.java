@@ -161,34 +161,29 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
 
                 @Override
                 public boolean onMenuItemSelected(@NonNull final MenuItem item) {
-                    switch (item.getItemId()) {
-                        case R.id.menu_item_notify:
-                            final boolean value = !item.isChecked();
-                            item.setEnabled(false);
-                            setNotify(value);
-                            break;
-                        case R.id.action_settings:
-                            NavigationHelper.openSettings(requireContext());
-                            break;
-                        case R.id.menu_item_rss:
-                            if (currentInfo != null) {
-                                ShareUtils.openUrlInApp(requireContext(), currentInfo.getFeedUrl());
-                            }
-                            break;
-                        case R.id.menu_item_openInBrowser:
-                            if (currentInfo != null) {
-                                ShareUtils.openUrlInBrowser(requireContext(),
-                                        currentInfo.getOriginalUrl());
-                            }
-                            break;
-                        case R.id.menu_item_share:
-                            if (currentInfo != null) {
-                                ShareUtils.shareText(requireContext(), name,
-                                        currentInfo.getOriginalUrl(), currentInfo.getAvatars());
-                            }
-                            break;
-                        default:
-                            return false;
+                    final int itemId = item.getItemId();
+                    if (itemId == R.id.menu_item_notify) {
+                        final boolean value = !item.isChecked();
+                        item.setEnabled(false);
+                        setNotify(value);
+                    } else if (itemId == R.id.action_settings) {
+                        NavigationHelper.openSettings(requireContext());
+                    } else if (itemId == R.id.menu_item_rss) {
+                        if (currentInfo != null) {
+                            ShareUtils.openUrlInApp(requireContext(), currentInfo.getFeedUrl());
+                        }
+                    } else if (itemId == R.id.menu_item_openInBrowser) {
+                        if (currentInfo != null) {
+                            ShareUtils.openUrlInBrowser(requireContext(),
+                                    currentInfo.getOriginalUrl());
+                        }
+                    } else if (itemId == R.id.menu_item_share) {
+                        if (currentInfo != null) {
+                            ShareUtils.shareText(requireContext(), name,
+                                    currentInfo.getOriginalUrl(), currentInfo.getAvatars());
+                        }
+                    } else {
+                        return false;
                     }
                     return true;
                 }
@@ -364,10 +359,10 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
                 final SubscriptionEntity channel = new SubscriptionEntity();
                 channel.setServiceId(info.getServiceId());
                 channel.setUrl(info.getUrl());
-                channel.setData(info.getName(),
-                        ImageStrategy.imageListToDbUrl(info.getAvatars()),
-                        info.getDescription(),
-                        info.getSubscriberCount());
+                channel.setName(info.getName());
+                channel.setAvatarUrl(ImageStrategy.imageListToDbUrl(info.getAvatars()));
+                channel.setDescription(info.getDescription());
+                channel.setSubscriberCount(info.getSubscriberCount());
                 channelSubscription = null;
                 updateNotifyButton(null);
                 subscribeButtonMonitor = monitorSubscribeButton(mapOnSubscribe(channel));

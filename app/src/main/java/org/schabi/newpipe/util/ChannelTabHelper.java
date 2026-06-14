@@ -48,68 +48,44 @@ public final class ChannelTabHelper {
 
     @StringRes
     private static int getShowTabKey(final String tab) {
-        switch (tab) {
-            case ChannelTabs.VIDEOS:
-                return R.string.show_channel_tabs_videos;
-            case ChannelTabs.TRACKS:
-                return R.string.show_channel_tabs_tracks;
-            case ChannelTabs.SHORTS:
-                return R.string.show_channel_tabs_shorts;
-            case ChannelTabs.LIVESTREAMS:
-                return R.string.show_channel_tabs_livestreams;
-            case ChannelTabs.CHANNELS:
-                return R.string.show_channel_tabs_channels;
-            case ChannelTabs.PLAYLISTS:
-                return R.string.show_channel_tabs_playlists;
-            case ChannelTabs.ALBUMS:
-                return R.string.show_channel_tabs_albums;
-            case ChannelTabs.LIKES:
-                return R.string.show_channel_tabs_likes;
-            default:
-                return -1;
-        }
+        return switch (tab) {
+            case ChannelTabs.VIDEOS -> R.string.show_channel_tabs_videos;
+            case ChannelTabs.TRACKS -> R.string.show_channel_tabs_tracks;
+            case ChannelTabs.SHORTS -> R.string.show_channel_tabs_shorts;
+            case ChannelTabs.LIVESTREAMS -> R.string.show_channel_tabs_livestreams;
+            case ChannelTabs.CHANNELS -> R.string.show_channel_tabs_channels;
+            case ChannelTabs.PLAYLISTS -> R.string.show_channel_tabs_playlists;
+            case ChannelTabs.ALBUMS -> R.string.show_channel_tabs_albums;
+            case ChannelTabs.LIKES -> R.string.show_channel_tabs_likes;
+            default -> -1;
+        };
     }
 
     @StringRes
     private static int getFetchFeedTabKey(final String tab) {
-        switch (tab) {
-            case ChannelTabs.VIDEOS:
-                return R.string.fetch_channel_tabs_videos;
-            case ChannelTabs.TRACKS:
-                return R.string.fetch_channel_tabs_tracks;
-            case ChannelTabs.SHORTS:
-                return R.string.fetch_channel_tabs_shorts;
-            case ChannelTabs.LIVESTREAMS:
-                return R.string.fetch_channel_tabs_livestreams;
-            case ChannelTabs.LIKES:
-                return R.string.fetch_channel_tabs_likes;
-            default:
-                return -1;
-        }
+        return switch (tab) {
+            case ChannelTabs.VIDEOS -> R.string.fetch_channel_tabs_videos;
+            case ChannelTabs.TRACKS -> R.string.fetch_channel_tabs_tracks;
+            case ChannelTabs.SHORTS -> R.string.fetch_channel_tabs_shorts;
+            case ChannelTabs.LIVESTREAMS -> R.string.fetch_channel_tabs_livestreams;
+            case ChannelTabs.LIKES -> R.string.fetch_channel_tabs_likes;
+            default -> -1;
+        };
     }
 
     @StringRes
     public static int getTranslationKey(final String tab) {
-        switch (tab) {
-            case ChannelTabs.VIDEOS:
-                return R.string.channel_tab_videos;
-            case ChannelTabs.TRACKS:
-                return R.string.channel_tab_tracks;
-            case ChannelTabs.SHORTS:
-                return R.string.channel_tab_shorts;
-            case ChannelTabs.LIVESTREAMS:
-                return R.string.channel_tab_livestreams;
-            case ChannelTabs.CHANNELS:
-                return R.string.channel_tab_channels;
-            case ChannelTabs.PLAYLISTS:
-                return R.string.channel_tab_playlists;
-            case ChannelTabs.ALBUMS:
-                return R.string.channel_tab_albums;
-            case ChannelTabs.LIKES:
-                return R.string.channel_tab_likes;
-            default:
-                return R.string.unknown_content;
-        }
+        return switch (tab) {
+            case ChannelTabs.VIDEOS -> R.string.channel_tab_videos;
+            case ChannelTabs.TRACKS -> R.string.channel_tab_tracks;
+            case ChannelTabs.SHORTS -> R.string.channel_tab_shorts;
+            case ChannelTabs.LIVESTREAMS -> R.string.channel_tab_livestreams;
+            case ChannelTabs.CHANNELS -> R.string.channel_tab_channels;
+            case ChannelTabs.PLAYLISTS -> R.string.channel_tab_playlists;
+            case ChannelTabs.ALBUMS -> R.string.channel_tab_albums;
+            case ChannelTabs.LIKES -> R.string.channel_tab_likes;
+            default -> R.string.unknown_content;
+        };
     }
 
     public static boolean showChannelTab(final Context context,

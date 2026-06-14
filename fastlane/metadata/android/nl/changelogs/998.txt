@@ -1,1 +1,4 @@
-YouTube speelt geen stream af opgelost
+Het probleem dat YouTube geen streams afspeelde vanwege HTTP 403-fouten is opgelost.
+
+Incidentele HTTP 403-fouten midden in een YouTube-video zijn nog niet verholpen.
+Dit probleem zal zo snel mogelijk in een volgende hotfix-release worden aangepakt.

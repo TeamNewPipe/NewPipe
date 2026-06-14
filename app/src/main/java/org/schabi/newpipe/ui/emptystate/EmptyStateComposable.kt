@@ -22,17 +22,17 @@ import org.schabi.newpipe.ui.theme.AppTheme
 @Composable
 fun EmptyStateComposable(
     spec: EmptyStateSpec,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.Center
     ) {
         Text(
             text = spec.emojiText,
             style = MaterialTheme.typography.titleLarge,
-            textAlign = TextAlign.Center,
+            textAlign = TextAlign.Center
         )
 
         Text(
@@ -41,7 +41,7 @@ fun EmptyStateComposable(
                 .padding(horizontal = 16.dp),
             text = stringResource(spec.descriptionText),
             style = MaterialTheme.typography.bodyMedium,
-            textAlign = TextAlign.Center,
+            textAlign = TextAlign.Center
         )
     }
 }
@@ -74,46 +74,46 @@ fun EmptyStateComposableNoCommentPreview() {
 
 enum class EmptyStateSpec(
     val emojiText: String,
-    @field:StringRes val descriptionText: Int,
+    @field:StringRes val descriptionText: Int
 ) {
     GenericError(
         emojiText = "¯\\_(ツ)_/¯",
-        descriptionText = R.string.empty_list_subtitle,
+        descriptionText = R.string.empty_list_subtitle
     ),
     NoVideos(
         emojiText = "(╯°-°)╯",
-        descriptionText = R.string.no_videos,
+        descriptionText = R.string.no_videos
     ),
     NoComments(
         emojiText = "¯\\_(╹x╹)_/¯",
-        descriptionText = R.string.no_comments,
+        descriptionText = R.string.no_comments
     ),
     DisabledComments(
         emojiText = "¯\\_(╹x╹)_/¯",
-        descriptionText = R.string.comments_are_disabled,
+        descriptionText = R.string.comments_are_disabled
     ),
     ErrorLoadingComments(
         emojiText = "¯\\_(╹x╹)_/¯",
-        descriptionText = R.string.error_unable_to_load_comments,
+        descriptionText = R.string.error_unable_to_load_comments
     ),
     NoSearchResult(
         emojiText = "╰(°●°╰)",
-        descriptionText = R.string.search_no_results,
+        descriptionText = R.string.search_no_results
     ),
     ContentNotSupported(
         emojiText = "(︶︹︺)",
-        descriptionText = R.string.content_not_supported,
+        descriptionText = R.string.content_not_supported
     ),
     NoBookmarkedPlaylist(
         emojiText = "(╥﹏╥)",
-        descriptionText = R.string.no_playlist_bookmarked_yet,
+        descriptionText = R.string.no_playlist_bookmarked_yet
     ),
     NoSubscriptionsHint(
         emojiText = "(꩜ᯅ꩜)",
-        descriptionText = R.string.import_subscriptions_hint,
+        descriptionText = R.string.import_subscriptions_hint
     ),
     NoSubscriptions(
         emojiText = "(꩜ᯅ꩜)",
-        descriptionText = R.string.no_channel_subscribed_yet,
-    ),
+        descriptionText = R.string.no_channel_subscribed_yet
+    )
 }

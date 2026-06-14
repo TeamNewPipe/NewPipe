@@ -1,0 +1,2 @@
+- Ispravljeno nastavljanje reprodukcije
+- Poboljšanja kako bi se osiguralo da servis koji određuje da li NewPipe treba provjeravati nove verzije nije pokrenut u pozadini

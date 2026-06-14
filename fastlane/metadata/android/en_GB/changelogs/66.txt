@@ -1,0 +1,33 @@
+# Changelog from v0.13.7
+
+#### Fixed
+- Fixed sorting filter problems in v0.13.6
+
+# Changelog from v0.13.6
+
+### Improvements
+
+- Disable burgermenu icon animation #1486
+- Undo deletion of downloads #1472
+- Download option in share menu #1498
+- Added sharing option to long tap menu #1454
+- Reduce main player to output #1354
+- Updated library version and fixed database backup #1510
+- ExoPlayer 2.8.2 update #1392
+  - The playback speed control dialog has been reworked to support different step sizes for faster speed change.
+  - Added an option to fast forward during pauses in the playback speed control. This should be useful for audiobooks and certain music genres, and can provide a truly seamless experience (and can break up a song with lots of silences).  
+  - Overhaul of media source resolution to allow metadata to be passed with the media internally in the player, rather than doing it manually. We now have a single source of metadata, which is directly available at the start of playback.
+  - Fixed remote playlist metadata not being updated when new metadata is available when the playlist fragment is opened.
+  - Various UI fixes: #1383, background player notification controls are now always white, it is easier to close the popup player by discarding it.
+- Use of a new extractor with a redesigned architecture for multiservice.
+
+### Corrections
+
+- Fix #1440 Broken video information layout #1491
+- Fixed view history #1497
+  - #1495, updating the metadata (thumbnail, title and number of videos) as soon as the user accesses the playlist.
+  - #1475, by saving a view in the database when the user starts a video on an external player in a detailed fragment.
+- Fixed window timeout in popup mode. #1463 (Fixed #640)
+- Fixed main video player #1509
+  - Fixed repeat mode causing player NPE when a new intent is received while player activity is in background.
+  - Fixed that reducing the player to a popup does not destroy the player when popup permission is not granted.

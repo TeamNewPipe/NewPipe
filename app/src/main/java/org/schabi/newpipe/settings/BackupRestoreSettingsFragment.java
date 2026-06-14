@@ -26,6 +26,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.local.subscription.SubscriptionsImportExportHelper;
 import org.schabi.newpipe.settings.export.BackupFileLocator;
 import org.schabi.newpipe.settings.export.ImportExportManager;
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
@@ -37,6 +38,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
 
@@ -52,7 +55,14 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
     private final ActivityResultLauncher<Intent> requestExportPathLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                     this::requestExportPathResult);
+    private SubscriptionsImportExportHelper importExportHelper;
 
+
+    @Override
+    public void onAttach(@NonNull final Context context) {
+        super.onAttach(context);
+        importExportHelper = new SubscriptionsImportExportHelper(this);
+    }
 
     @Override
     public void onCreatePreferences(@Nullable final Bundle savedInstanceState,
@@ -90,10 +100,9 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
             return true;
         });
 
-        final Preference resetSettings = findPreference(getString(R.string.reset_settings));
+        final Preference resetSettings = requirePreference(R.string.reset_settings);
         // Resets all settings by deleting shared preference and restarting the app
         // A dialogue will pop up to confirm if user intends to reset all settings
-        assert resetSettings != null;
         resetSettings.setOnPreferenceClickListener(preference -> {
             // Show Alert Dialogue
             final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -116,6 +125,21 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
             alertDialog.show();
             return true;
         });
+
+        final Preference exportSubsPreference =
+                requirePreference(R.string.export_subscriptions_key);
+        exportSubsPreference.setOnPreferenceClickListener(reference -> {
+            importExportHelper.onExportSelected();
+            return true;
+        });
+
+        final Preference importSubsPreference =
+                requirePreference(R.string.import_subscriptions_key);
+        importSubsPreference.setOnPreferenceClickListener(preference -> {
+            importExportHelper.onImportPreviousSelected();
+            return true;
+        });
+
     }
 
     private void requestExportPathResult(final ActivityResult result) {
@@ -149,9 +173,9 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
     }
 
     private void exportDatabase(final StoredFileHelper file, final Uri exportDataUri) {
-        try {
+        try (ExecutorService executor = Executors.newSingleThreadExecutor()) {
             //checkpoint before export
-            NewPipeDatabase.checkpoint();
+            executor.submit(NewPipeDatabase::checkpoint).get();
 
             final SharedPreferences preferences = PreferenceManager
                     .getDefaultSharedPreferences(requireContext());

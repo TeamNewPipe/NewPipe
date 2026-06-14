@@ -1,0 +1,9 @@
+Toto je malá opravná aktualizace, která opět zprovozní YouTube. Je nezbytná, protože YouTube provedl změny.
+Díky úsilí @AudricV a @Ecomont je NewPipe nyní opět schopen extrahovat položky v záložkách kanálů.
+
+Další změny
+- [YouTube] Opraveno zobrazení délky trvání a živého přenosu v souvisejících videích
+- [SoundCloud] Opraven pád komentářů při zpracování null adres stránek
+- aktualizace závislostí
+
+NewPipe v příštím vydání ukončí podporu pro Android 5.

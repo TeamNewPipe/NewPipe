@@ -1,0 +1,6 @@
+Ispravljen pad sistema koji se javljao prilikom promjene redoslijeda grupa kanala.
+Ispravljeno dobijanje više YouTube videa sa kanala i plejlista.
+Ispravljeno dobijanje YouTube komentara.
+Dodana je podrška za podputanje /watch/, /v/ i /w/ u YouTube URL-ovima.
+Ispravljeno izdvajanje SoundCloud klijentskog ID-a i geo-ograničenog sadržaja.
+Dodana je lokalizacija za sjeverni kurdski jezik.

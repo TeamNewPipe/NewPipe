@@ -1,0 +1,2 @@
+修复了在 media.ccc.de 中打开频道/会议时出现的 NullPointerException 异常。
+圣诞怪杰试图破坏我们送给大家的圣诞礼物，但我们已经解决了这个问题。

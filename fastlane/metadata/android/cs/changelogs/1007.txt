@@ -1,0 +1,11 @@
+Oprava chyby „Obsah není k dispozici“: videa z YouTube lze nyní opět přehrávat!
+
+Další opravy chyb z verze 0.28.1:
+• Přetahování položek playlistu pouze na sousední pozice
+• Blikání názvu/komentářů mezi aktuálním a předchozím videem
+• Nefunkční možnost „Spustit hlavní přehrávač na celou obrazovku“
+
+Další vylepšení:
+• [YouTube] Opětovné povolení přetáčení živých přenosů až o 4 hodiny zpět
+• Nepřetáčení živého videa při přehrávání na pozadí
+• Nové uživatelské rozhraní pro „Odebrat zhlédnuté“

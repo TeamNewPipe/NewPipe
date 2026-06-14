@@ -1,0 +1,1 @@
+Pridané vyskakovacie okno s informáciou pre používateľov, že verzia v0.28.7 už nebude podporovať systém Android 5

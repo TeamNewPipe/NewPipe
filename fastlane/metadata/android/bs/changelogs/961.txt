@@ -1,0 +1,12 @@
+• [YouTube] Podrška za Mix
+• [YouTube] Prikaz informacija o javnim emiterima i Covid-19
+• [media.ccc.de] Dodani nedavni videozapisi
+• Dodan prijevod na somalski jezik
+
+• Mnoga interna poboljšanja
+
+• Ispravljeno dijeljenje videozapisa iz playera
+• Ispravljen prazan ReCaptcha web prikaz
+• Ispravljen pad aplikacije koji se javljao prilikom uklanjanja toka s liste
+• [PeerTube] Ispravljeni povezani tokovi
+• [YouTube] Ispravljena pretraga YouTube muzike

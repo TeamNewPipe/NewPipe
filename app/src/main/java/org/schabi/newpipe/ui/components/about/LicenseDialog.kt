@@ -40,7 +40,7 @@ fun LicenseDialog(licenseHtml: AnnotatedString, onDismissRequest: () -> Unit) {
                         } else {
                             Text(
                                 text = licenseHtml,
-                                modifier = Modifier.padding(horizontal = 12.dp),
+                                modifier = Modifier.padding(horizontal = 12.dp)
                             )
                         }
                     }

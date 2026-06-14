@@ -1,4 +1,4 @@
-### Improvements
+### Usprawnienia
 
 - Disable burgermenu icon animation #1486 
 - undo delete of downloads #1472 
@@ -14,7 +14,7 @@
   - Various UI fixes: #1383, background player notification controls now always white, easier to shutdown popup player through flinging
 - Use new extractor with refactored architecture for multiservice
 
-### Fixes
+### Poprawki
 
 - Fix #1440 Broken Video Info Layout #1491 
 - View history fix #1497

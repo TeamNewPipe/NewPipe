@@ -1,0 +1,16 @@
+# Improved
+Keep current player when clicking on timestamps
+Try to recover pending download missions when possible
+Add option to delete a download without also deleting file
+Overlay Permission: display explanatory dialog for Android > R
+Support on.soundcloud link opening
+A lot of small improvements and optimizations
+
+# Fixed
+Fix short count formatting for Android versions below 7
+Fix ghost notifications
+Fixes for SRT subtitle files
+Fixed tons of crashes
+
+# Development
+Internal code modernization

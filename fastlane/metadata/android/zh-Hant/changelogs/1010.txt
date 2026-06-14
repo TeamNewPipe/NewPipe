@@ -1,0 +1,9 @@
+使用 Application Context 修正加入佇列操作中的 NullPointerException 問題
+[YouTube] 修正項目時長解析問題
+
+更新翻譯內容，並移除尚未翻譯的語系
+小幅改善圖片處理方式
+
+移植重構版本中的訂閱相關變更
+移植重構版本中的路徑相關變更
+將相依套件與 Gradle 更新至最新穩定版

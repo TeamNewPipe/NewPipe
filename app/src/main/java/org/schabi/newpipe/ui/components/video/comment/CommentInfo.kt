@@ -15,7 +15,11 @@ class CommentInfo(
     val isCommentsDisabled: Boolean
 ) {
     constructor(commentsInfo: CommentsInfo) : this(
-        commentsInfo.serviceId, commentsInfo.url, commentsInfo.relatedItems, commentsInfo.nextPage,
-        commentsInfo.commentsCount, commentsInfo.isCommentsDisabled
+        commentsInfo.serviceId,
+        commentsInfo.url,
+        commentsInfo.relatedItems,
+        commentsInfo.nextPage,
+        commentsInfo.commentsCount,
+        commentsInfo.isCommentsDisabled
     )
 }

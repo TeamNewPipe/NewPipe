@@ -1,6 +1,11 @@
+/*
+ * SPDX-FileCopyrightText: 2017-2025 NewPipe contributors <https://newpipe.net>
+ * SPDX-FileCopyrightText: 2025-2026 NewPipe e.V. <https://newpipe-ev.de>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
 package org.schabi.newpipe.settings;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.preference.Preference;
@@ -21,24 +26,18 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
         addPreferencesFromResourceRegistry();
 
         final Preference allowHeapDumpingPreference =
-                findPreference(getString(R.string.allow_heap_dumping_key));
+                requirePreference(R.string.allow_heap_dumping_key);
         final Preference showMemoryLeaksPreference =
-                findPreference(getString(R.string.show_memory_leaks_key));
+                requirePreference(R.string.show_memory_leaks_key);
         final Preference checkNewStreamsPreference =
-                findPreference(getString(R.string.check_new_streams_key));
+                requirePreference(R.string.check_new_streams_key);
         final Preference crashTheAppPreference =
-                findPreference(getString(R.string.crash_the_app_key));
+                requirePreference(R.string.crash_the_app_key);
         final Preference showErrorSnackbarPreference =
-                findPreference(getString(R.string.show_error_snackbar_key));
+                requirePreference(R.string.show_error_snackbar_key);
         final Preference createErrorNotificationPreference =
-                findPreference(getString(R.string.create_error_notification_key));
+                requirePreference(R.string.create_error_notification_key);
 
-        assert allowHeapDumpingPreference != null;
-        assert showMemoryLeaksPreference != null;
-        assert checkNewStreamsPreference != null;
-        assert crashTheAppPreference != null;
-        assert showErrorSnackbarPreference != null;
-        assert createErrorNotificationPreference != null;
 
         final Optional<DebugSettingsBVDLeakCanaryAPI> optBVLeakCanary = getBVDLeakCanary();
 
@@ -93,16 +92,5 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
         } catch (final Exception e) {
             return Optional.empty();
         }
-    }
-
-    /**
-     * Build variant dependent (BVD) leak canary API for this fragment.
-     * Why is LeakCanary not used directly? Because it can't be assured
-     */
-    public interface DebugSettingsBVDLeakCanaryAPI {
-        String IMPL_CLASS =
-                "org.schabi.newpipe.settings.DebugSettingsBVDLeakCanary";
-
-        Intent getNewLeakDisplayActivityIntent();
     }
 }

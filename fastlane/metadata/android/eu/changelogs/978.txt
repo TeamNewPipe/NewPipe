@@ -1,0 +1,1 @@
+NewPipe bertsio berri baten egiaztapena exekutatzea konpondu da. Batzuetan egiaztapen hau goizegi exekutatzen zen eta, beraz, aplikazioaren kraskadura eragiten zuen. Hori orain konpondu beharko litzateke.

@@ -81,6 +81,10 @@
         </service>
 
         <activity
+            android:name=".ComposeActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".player.PlayQueueActivity"
             android:exported="false"
             android:label="@string/title_activity_play_queue"
@@ -90,16 +94,6 @@
             android:name=".settings.SettingsActivity"
             android:exported="false"
             android:label="@string/settings" />
-
-        <activity
-            android:name=".settings.SettingsV2Activity"
-            android:exported="true"
-            android:label="@string/settings" />
-
-        <activity
-            android:name=".about.AboutActivity"
-            android:exported="false"
-            android:label="@string/title_activity_about" />
 
         <service
             android:name="androidx.work.impl.foreground.SystemForegroundService"
@@ -128,10 +122,6 @@
             android:exported="false"
             android:label="@string/general_error"
             android:theme="@android:style/Theme.NoDisplay" />
-
-        <activity
-            android:name=".error.ErrorActivity"
-            android:exported="false" />
 
         <!-- giga get related -->
         <activity
@@ -338,6 +328,7 @@
                 <data android:scheme="https" />
                 <data android:host="soundcloud.com" />
                 <data android:host="m.soundcloud.com" />
+                <data android:host="on.soundcloud.com" />
                 <data android:host="www.soundcloud.com" />
                 <data android:pathPrefix="/" />
             </intent-filter>
@@ -382,6 +373,7 @@
 
                 <data android:host="eduvid.org" />
                 <data android:host="framatube.org" />
+                <data android:host="indymotion.fr" />
                 <data android:host="media.assassinate-you.net" />
                 <data android:host="media.fsfe.org" />
                 <data android:host="peertube.co.uk" />

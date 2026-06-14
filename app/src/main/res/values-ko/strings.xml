@@ -24,7 +24,7 @@
     <string name="download_dialog_title">다운로드</string>
     <string name="show_next_and_similar_title">다음/유사한 비디오 표시</string>
     <string name="unsupported_url">지원하지 않는 URL입니다</string>
-    <string name="content_language_title">기본 컨텐츠 언어</string>
+    <string name="content_language_title">기본 콘텐츠 언어</string>
     <string name="settings_category_video_audio_title">비디오 및 오디오</string>
     <string name="detail_thumbnail_view_description">비디오 재생, 구간:</string>
     <string name="detail_uploader_thumbnail_view_description">업로더 썸네일</string>
@@ -42,13 +42,13 @@
     <string name="background_player_playing_toast">백그라운드에서 재생 중</string>
     <string name="network_error">네트워크 오류</string>
     <string name="main_bg_subtitle">돋보기를 탭하여 시작합니다.</string>
-    <string name="content">컨텐츠</string>
-    <string name="show_age_restricted_content_title">연령 제한 컨텐츠 보여주기</string>
+    <string name="content">콘텐츠</string>
+    <string name="show_age_restricted_content_title">연령 제한 콘텐츠 보여주기</string>
     <string name="duration_live">라이브</string>
     <string name="general_error">오류</string>
     <string name="could_not_load_thumbnails">모든 썸네일을 불러올 수 없습니다</string>
     <string name="parsing_error">웹사이트를 가져올 수 없습니다</string>
-    <string name="content_not_available">컨텐츠를 사용할 수 없습니다</string>
+    <string name="content_not_available">콘텐츠를 사용할 수 없습니다</string>
     <string name="could_not_setup_download_menu">다운로드 메뉴를 설정할 수 없습니다</string>
     <string name="sorry_string">죄송합니다. 오류가 발생했습니다.</string>
     <string name="error_report_button_text">이메일을 통해 보고</string>
@@ -80,7 +80,7 @@
     <string name="controls_popup_title">팝업</string>
     <string name="default_popup_resolution_title">기본 팝업 해상도</string>
     <string name="show_higher_resolutions_title">높은 해상도 표시</string>
-    <string name="show_higher_resolutions_summary">일부 기기에서만 2K/4K 해상도 재생이 지원됩니다</string>
+    <string name="show_higher_resolutions_summary">일부 기기에서만 1440p/4K 해상도 재생이 지원됩니다</string>
     <string name="default_video_format_title">기본 비디오 형식</string>
     <string name="black_theme_title">블랙 테마</string>
     <string name="popup_remember_size_pos_title">팝업 크기 및 위치 기억</string>
@@ -113,7 +113,7 @@
     <string name="player_stream_failure">이 스트림을 재생할 수 없습니다</string>
     <string name="player_unrecoverable_failure">복구할 수 없는 플레이어 오류가 발생했습니다</string>
     <string name="player_recoverable_failure">플레이어 오류로부터 복구 중</string>
-    <string name="info_labels">무엇:\\n요청:\\n콘텐츠 언어:\\n콘텐츠 국가:\\n앱 언어:\\n서비스:\\nGMT 시간:\\n패키지:\\n버전:\\nOS 버전:</string>
+    <string name="info_labels">무엇:\n요청:\n콘텐츠 언어:\n콘텐츠 국가:\n앱 언어:\n서비스:\nGMT 시간:\n패키지:\n버전:\nOS 버전:</string>
     <string name="search_no_results">결과 없음</string>
     <string name="empty_list_subtitle">구독할 항목을 추가하세요</string>
     <string name="no_subscribers">구독자 없음</string>
@@ -265,14 +265,14 @@
 \n6. 아래의 \"파일 가져오기\"를 클릭하고 다운로드한 .zip 파일을 선택합니다
 \n7. [.zip 파일 가져오기를 실패한 경우] .csv 파일(일반적으로 \"YouTube 및 YouTube Music/구독정보/구독정보.csv\")을 압축해제한 다음, 아래의 \"파일 가져오기\"를 클릭한 후 압축해제한 csv 파일을 선택합니다</string>
     <string name="import_soundcloud_instructions">URL 또는 ID를 입력하여 SoundCloud 프로필을 가져옵니다:
-\n 
+\n
 \n1. 웹 브라우저에서 \"데스크톱 모드\"를 활성화합니다(모바일 장치에서는 사이트를 사용할 수 없습니다)
 \n2. 다음 URL로 이동: %1$s
 \n3. 요청 시 로그인
 \n4. 리디렉션된 프로필 URL을 복사합니다.</string>
     <string name="import_soundcloud_instructions_hint">프로필ID, soundcloud.com/프로필ID</string>
-    <string name="import_network_expensive_warning">경고: 데이터가 많이 소모될 수 있습니다. 
-\n 
+    <string name="import_network_expensive_warning">경고: 데이터가 많이 소모될 수 있습니다.
+\n
 \n계속하시겠습니까\?</string>
     <string name="thumbnail_cache_wipe_complete_notice">이미지 캐시 지워짐</string>
     <string name="metadata_cache_wipe_title">캐시된 메타데이터 지우기</string>
@@ -284,7 +284,7 @@
     <string name="unhook_checkbox">영상과 소리 분리 (왜곡이 발생할 수 있음)</string>
     <string name="no_streams_available_download">다운로드 가능한 스트림이 없습니다</string>
     <string name="preferred_open_action_settings_title">선호하는 열기 동작</string>
-    <string name="preferred_open_action_settings_summary">컨텐츠를 열 때 사용할 기본 동작 — %s</string>
+    <string name="preferred_open_action_settings_summary">콘텐츠를 열 때 사용할 기본 동작 — %s</string>
     <string name="caption_setting_title">자막</string>
     <string name="caption_setting_description">플레이어 자막 글자 크기와 배경 스타일을 수정합니다. 적용하려면 앱을 다시 시작해야 합니다</string>
     <string name="channels">채널</string>
@@ -298,7 +298,7 @@
     <string name="delete_search_history_alert">모든 검색 기록을 삭제하시겠습니까\?</string>
     <string name="search_history_deleted">검색 기록이 삭제되었습니다</string>
     <string name="privacy_policy_title">NewPipe 개인정보 보호 정책</string>
-    <string name="privacy_policy_encouragement">NewPipe 프로젝트는 사용자의 개인 정보 보호를 최우선으로 생각하며, 동의 없이 어떠한 정보도 수집하지 않습니다. 
+    <string name="privacy_policy_encouragement">NewPipe 프로젝트는 사용자의 개인 정보 보호를 최우선으로 생각하며, 동의 없이 어떠한 정보도 수집하지 않습니다.
 \nNewPipe 개인정보 보호 정책에서는 오류 보고 시 어떠한 정보가 수집되고 저장되는지 자세히 명시되어 있습니다.</string>
     <string name="read_privacy_policy">개인정보 보호 정책 읽기</string>
     <string name="app_license">NewPipe는 카피레프트 자유 소프트웨어입니다: 마음대로 사용하고, 연구하고, 공유하고, 개선할 수 있습니다. 특히 자유 소프트웨어 재단에서 발행한 GNU 일반 공중 사용 라이센스의 조건에 따라 라이센스 버전 3 또는 (귀하의 선택에 따라) 이후 버전을 재배포 및/또는 수정할 수 있습니다.</string>
@@ -362,7 +362,7 @@
     <string name="error_connect_host">서버에 연결할 수 없습니다</string>
     <string name="error_http_no_content">서버가 데이터를 전송하지 않고 있습니다</string>
     <string name="error_http_unsupported_range">서버가 다중 스레드 다운로드를 받아들이지 않습니다, @string/msg_threads = 1 를 사용해 다시 시도해보세요</string>
-    <string name="error_http_not_found">HTTP 찾을 수 없습니다</string>
+    <string name="error_http_not_found">찾을 수 없음</string>
     <string name="error_postprocessing_failed">후처리 작업이 실패하였습니다</string>
     <string name="stop">멈추기</string>
     <string name="max_retry_msg">최대 재시도 횟수</string>
@@ -480,7 +480,7 @@
     <plurals name="seconds">
         <item quantity="other">%d초</item>
     </plurals>
-    <string name="remove_watched_popup_title">시청 기록을 지우겠습니까\?</string>
+    <string name="remove_watched_popup_title">시청 기록을 지우겠습니까?</string>
     <string name="remove_watched">시청 기록 지우기</string>
     <string name="title_activity_play_queue">재생목록 실행</string>
     <string name="unsupported_url_dialog_message">URL을 인식할 수 없습니다. 다른 앱으로 여시겠습니까\?</string>
@@ -587,7 +587,7 @@
         <item quantity="other">%s 다운로드 완료</item>
     </plurals>
     <string name="app_language_title">앱 언어</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">예, 부분적으로 본 비디오</string>
+    <string name="remove_watched_popup_partially_watched_streams">예, 부분적으로 본 비디오</string>
     <string name="metadata_category">카테고리</string>
     <string name="video_detail_by">%s에 의해</string>
     <string name="select_night_theme_toast">아래에서 선호하는 어두운 테마를 선택할 수 있습니다</string>
@@ -657,8 +657,7 @@
     <string name="feed_group_dialog_select_subscriptions">구독 선택</string>
     <string name="feed_use_dedicated_fetch_method_summary">일부 서비스에서 사용할 수 있으며 일반적으로 훨씬 빠르지만 제한된 양의 항목과 종종 불완전한 정보를 반환할 수 있습니다 (예: 기간 없음, 항목 유형, 라이브 상태 없음)</string>
     <string name="downloads_storage_use_saf_summary_api_29">안드로이드 10부터 \'저장영역 접속 프레임워크\'만 지원됩니다</string>
-    <string name="remove_watched_popup_warning">재생 목록에 추가되기 전과 후에 시청한 동영상은 제거됩니다.
-\n확실합니까\? 이것은 취소 할 수 없습니다!</string>
+    <string name="remove_watched_popup_warning">재생목록에 추가하기 전후로 시청한 스트림이 제거됩니다. \n정말 계속합니까?</string>
     <string name="start_main_player_fullscreen_summary">화면 자동 회전이 잠겨 있는 경우 미니 플레이어에서 동영상을 시작하지 말고 바로 전체 화면 모드로 재생하세요. 전체 화면을 종료해서 미니 플레이어를 이용할 수도 있습니다</string>
     <string name="metadata_privacy_public">공식</string>
     <string name="radio">라디오</string>
@@ -803,4 +802,55 @@
     <string name="yes">네</string>
     <string name="reset_settings_title">설정 초기화</string>
     <string name="reset_settings_summary">모든 설정을 기본값으로 초기화</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">YouTube 임시 재생목록으로 공유</string>
+    <string name="migration_info_6_7_title">SoundCloud Top 50 페이지가 삭제되었습니다</string>
+    <string name="migration_info_6_7_message">SoundCloud에서 더 이상 기존 Top 50 차트를 제공하지 않습니다. 해당하는 탭이 메인 페이지에서 제거되었습니다.</string>
+    <string name="short_thousand">%s천</string>
+    <string name="short_million">%s백만</string>
+    <string name="short_billion">%s십억</string>
+    <string name="delete_file">파일 삭제</string>
+    <string name="select_a_feed_group">피드 그룹 선택</string>
+    <string name="no_feed_group_created_yet">피드 그룹을 생성하지 않았습니다</string>
+    <string name="feed_group_page_summary">채널 그룹 페이지</string>
+    <string name="account_terminated_service_provides_reason">계정 정지됨\n\n%1$s에서 제공한 이유: %2$s</string>
+    <string name="tab_bookmarks_short">재생목록</string>
+    <string name="search_with_service_name">%1$s 검색</string>
+    <string name="search_with_service_name_and_filter">%1$s 검색 (%2$s)</string>
+    <string name="permission_display_over_apps_permission_name">\"다른 앱 위에 표시 허용\"</string>
+    <string name="migration_info_7_8_title">YouTube 통합 인기 급상승 동영상이 삭제되었습니다</string>
+    <string name="migration_info_7_8_message">YouTube에서 2025년 7월 21일부로 더 이상 통합 인기 급상승 동영상을 제공하지 않습니다. NewPipe에서는 기본 인기 급상승 페이지를 인기 급상승 실시간 페이지로 교체했습니다.\n\n\"설정 &gt; 콘텐츠 &gt; 메인 화면의 내용\"에서 다른 인기 급상승 페이지를 선택할 수 있습니다.</string>
+    <string name="trending_gaming">인기 급상승 게임</string>
+    <string name="trending_podcasts">인기 급상승 팟캐스트</string>
+    <string name="trending_movies">인기 급상승 영화 및 쇼</string>
+    <string name="trending_music">인기 급상승 음악</string>
+    <string name="permission_display_over_apps_message">팝업 플레이어를 사용하려면, 이후 Android 설정에서 %1$s 선택 후 %2$s 설정을 켜 주십시오.</string>
+    <string name="delete_entry">항목 삭제</string>
+    <string name="audio_track_type_secondary">보조</string>
+    <string name="channel_tab_likes">좋아요</string>
+    <string name="entry_deleted">항목 삭제됨</string>
+    <string name="player_http_403">재생 중 서버에서 HTTP 403 오류를 수신했으며, 스트리밍 URL이 만료되었거나 IP 차단으로 인해 발생했을 수 있습니다</string>
+    <string name="player_http_invalid_status">재생 중 서버에서 HTTP %1$s 오류를 수신했습니다</string>
+    <string name="youtube_player_http_403">재생 중 서버에서 HTTP 403 오류를 수신했으며, 스트리밍 URL 역난독화 문제나 IP 차단 때문일 수 있습니다</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s에서 데이터 제공을 거부하고, 요청자가 봇이 아닌지 확인하기 위해 로그인을 요청하고 있습니다.\n\n아마 IP가 %1$s에서 임시 차단되었을 것이며, 잠시 기다리거나 다른 IP로 전환할 수 있습니다 (예를 들어 VPN을 켜/끄거나, WiFi를 모바일 데이터로 바꿔 보세요).\n\n자세한 정보는 <a href="%2$s">여기 FAQ</a>를 확인하세요.</string>
+    <string name="unsupported_content_in_country">이 콘텐츠는 현재 선택한 콘텐츠 지역에서 이용할 수 없습니다.\n\n\"설정 &gt; 콘텐츠 &gt; 기본 콘텐츠 국가\"에서 지역을 바꾸세요.</string>
+    <string name="kao_dialog_warning">2025년 8월, Google은 2026년 9월부터 인증된 기기에 앱을 설치하려면 Play 스토어 외 앱을 포함한 모든 Android 앱에 대해 개발자 인증을 받아야 한다고 발표했습니다. NewPipe 개발자는 이 요구 사항에 동의하지 않으므로, 이 이후 NewPipe는 더 이상 인증된 Android 기기에서 동작하지 않을 것입니다.</string>
+    <string name="kao_dialog_more_info">자세히</string>
+    <string name="kao_solution">해결책</string>
+    <plurals name="export_subscriptions">
+        <item quantity="other">구독 %d건 내보내는 중…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="other">구독 %d건 불러오는 중…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="other">구독 %d건 가져오는 중…</item>
+    </plurals>
+    <string name="import_subscriptions_title">구독 가져오기</string>
+    <string name="export_subscriptions_title">구독 내보내기</string>
+    <string name="import_subscriptions_summary">이전에 내보낸 .json에서 구독을 가져옵니다</string>
+    <string name="export_subscriptions_summary">구독 현황을 .json 파일로 내보냅니다</string>
+    <string name="import_from_previous_export">이전 내보내기에서 가져오기</string>
+    <string name="api23_requirement_dialog_title">NewPipe가 Android 5 지원을 중단합니다</string>
+    <string name="api23_requirement_dialog_message">NewPipe는 Android 5.0 및 5.1 지원을 중단한 몇 라이브러리에 의존합니다. 따라서 유감스럽게도 다음NewPipe 버전은 Android 6 이상 기기에서만 작동할 예정입니다. 자세한 내용은 블로그 게시글을 참조하세요.</string>
+    <string name="api23_requirement_dialog_blogpost">블로그 게시글</string>
 </resources>

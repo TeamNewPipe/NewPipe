@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigate_back">ਵਾਪਿਸ ਜਾਓ</string>
+    <string name="title_activity_about">ਨਿਊਪਾਈਪ ਬਾਰੇ ਵਿੱਚ ਜਾਣੋ</string>
+    <string name="title_licenses">ਤੀਜੀ-ਧਿਰ ਦੇ ਲਾਇਸੈਂਸ</string>
+    <string name="tab_licenses">ਲਾਇਸੈਂਸ</string>
+    <string name="app_license_title">ਨਿਊਪਾਈਪ ਦਾ ਲਾਇਸੈਂਸ</string>
+    <string name="app_license">ਨਿਊਪਾਈਪ ਇੱਕ ਕਾਪੀਲਿਫਟ ਮੁਫ਼ਤ ਸਾਫਟਵੇਅਰ ਹੈ। ਤੁਸੀਂ ਇਸ ਦੀ ਵਰਤੋਂ, ਇਸ ਦਾ ਅਧਿਐਨ ਅਤੇ ਇਸ ਨੂੰ ਸਾਂਝਾ ਕਰ ਸਕਦੇ ਹੋ ਅਤੇ ਇਸ ਵਿੱਚ ਆਪਣੀ ਮਰਜ਼ੀ ਅਨੁਸਾਰ ਸੁਧਾਰ ਸਕਦੇ ਹੋ। ਖਾਸ ਤੌਰ 'ਤੇ ਤੁਸੀਂ ਇਸ ਨੂੰ GNU ਜਨਰਲ ਪਬਲਿਕ ਲਾਇਸੈਂਸ ਦੀਆਂ ਸ਼ਰਤਾਂ ਦੇ ਅਧੀਨ ਵੰਡ ਸਕਦੇ ਹੋ / ਜਾਂ ਸੰਸ਼ੋਧਿਤ ਕਰ ਸਕਦੇ ਹੋ ਜਿਵੇਂ ਕਿ ਮੁਫਤ ਸਾਫਟਵੇਅਰ ਫਾਊਂਡੇਸ਼ਨ ਦੁਆਰਾ ਪ੍ਰਕਾਸ਼ਤ ਕੀਤਾ ਗਿਆ ਹੈ, ਜਾਂ ਤਾਂ ਲਾਇਸੈਂਸ ਦਾ ਵਰਜ਼ਨ 3, ਜਾਂ (ਤੁਹਾਡੇ ਵਿਕਲਪ 'ਤੇ) ਬਾਅਦ ਦਾ ਕੋਈ ਸੰਸਕਰਣ।</string>
+    <string name="read_full_license">ਲਾਇਸੈਂਸ ਪੜ੍ਹੋ</string>
+    <string name="not_available">ਅਣਉਪਲਬਧ</string>
+    <string name="done">ਹੋ ਗਿਆ</string>
+    <string name="tab_about">ਐਪ ਬਾਰੇ ਤੇ ਆਮ ਸਵਾਲ</string>
+    <string name="app_description">ਐਂਡਰਾਇਡ 'ਤੇ ਹਲਕੀ ਅਤੇ ਮੁਫ਼ਤ ਸਟ੍ਰੀਮਿੰਗ ਐਪਲੀਕੇਸ਼ਨ।</string>
+    <string name="contribution_title">ਯੋਗਦਾਨ ਪਾਓ</string>
+    <string name="contribution_encouragement">ਭਾਵੇਂ ਤੁਹਾਡੇ ਕੋਲ ਅਨੁਵਾਦ, ਡਿਜ਼ਾਈਨ ਬਦਲਾਅ, ਕੋਡ ਸਫਾਈ, ਜਾਂ ਅਸਲ ਭਾਰੀ ਕੋਡ ਬਦਲਾਅ ਦੇ ਵਿਚਾਰ ਹੋਣ - ਮਦਦ ਦਾ ਹਮੇਸ਼ਾ ਸਵਾਗਤ ਹੈ। ਜਿੰਨਾ ਜ਼ਿਆਦਾ ਕੀਤਾ ਜਾਵੇਗਾ, ਓਨਾ ਹੀ ਬਿਹਤਰ ਹੋਵੇਗਾ!</string>
+    <string name="view_on_github">GitHub 'ਤੇ ਵੇਖੋ</string>
+    <string name="donation_title">ਦਾਨ ਕਰੋ</string>
+    <string name="donation_encouragement">ਨਿਊਪਾਈਪ ਨੂੰ ਵਲੰਟੀਅਰਾਂ ਦੁਆਰਾ ਵਿਕਸਤ ਕੀਤਾ ਗਿਆ ਹੈ ਜੋ ਆਪਣਾ ਖਾਲੀ ਸਮਾਂ ਤੁਹਾਨੂੰ ਸਭ ਤੋਂ ਵਧੀਆ ਉਪਭੋਗਤਾ ਅਨੁਭਵ ਪ੍ਰਦਾਨ ਕਰਨ ਲਈ ਸਮਰਪਿਤ ਕਰਦੇ ਹਨ। ਡਿਵੈਲਪਰਾਂ ਦਾ ਸਮਰਥਨ ਕਰੋ ਤਾਂ ਜੋ ਉਹ ਨਿਊਪਾਈਪ ਨੂੰ ਹੋਰ ਵੀ ਬਿਹਤਰ ਬਣਾ ਸਕਣ ਅਤੇ ਅਜਿਹਾ ਕਰਦੇ ਹੋਏ ਇੱਕ ਕੱਪ ਕੌਫੀ ਦਾ ਆਨੰਦ ਮਾਣ ਸਕਣ।</string>
+    <string name="give_back">ਵਾਪਸ ਦਿਓ</string>
+    <string name="website_title">ਵੈੱਬਸਾਈਟ</string>
+    <string name="website_encouragement">ਵਧੇਰੇ ਜਾਣਕਾਰੀ ਅਤੇ ਖ਼ਬਰਾਂ ਲਈ ਨਿਊਪਾਈਪ ਵੈੱਬਸਾਈਟ ਵੇਖੋ।</string>
+    <string name="privacy_policy_title">ਨਿਊਪਾਈਪ ਦੀ ਗੋਪਨੀਯਤਾ ਨੀਤੀ</string>
+    <string name="privacy_policy_encouragement">ਨਿਊਪਾਈਪ ਪ੍ਰੋਜੈਕਟ ਤੁਹਾਡੀ ਗੋਪਨੀਯਤਾ ਨੂੰ ਬਹੁਤ ਗੰਭੀਰਤਾ ਨਾਲ ਲੈਂਦਾ ਹੈ। ਇਸ ਲਈ, ਐਪ ਤੁਹਾਡੀ ਸਹਿਮਤੀ ਤੋਂ ਬਿਨਾਂ ਕੋਈ ਵੀ ਡੇਟਾ ਇਕੱਠਾ ਨਹੀਂ ਕਰਦਾ ਹੈ।\nਨਿਊਪਾਈਪ ਦੀ ਗੋਪਨੀਯਤਾ ਨੀਤੀ ਵਿਸਥਾਰ ਵਿੱਚ ਦੱਸਦੀ ਹੈ ਕਿ ਜਦੋਂ ਤੁਸੀਂ ਕਰੈਸ਼ ਰਿਪੋਰਟ ਭੇਜਦੇ ਹੋ ਤਾਂ ਕਿਹੜਾ ਡੇਟਾ ਭੇਜਿਆ ਅਤੇ ਸਟੋਰ ਕੀਤਾ ਜਾਂਦਾ ਹੈ।</string>
+    <string name="read_privacy_policy">ਗੋਪਨੀਯਤਾ ਨੀਤੀ ਪੜ੍ਹੋ</string>
+    <string name="faq_title">ਅਕਸਰ ਪੁੱਛੇ ਜਾਂਦੇ ਸਵਾਲ</string>
+    <string name="faq_description">ਅਗਰ ਤੁਸੀਂ ਐਪ ਦੀ ਵਰਤੋਂ ਸਬੰਧੀ ਮੁਸ਼ਕਿਲਾਂ ਦਾ ਸਾਹਮਣਾ ਕਰ ਰਹੇ ਹੋ, ਤਾਂ ਇਹਨਾਂ ਆਮ ਸਵਾਲਾਂ ਦੇ ਜਵਾਬ ਜਾਣਨਾ ਨਾ ਭੁੱਲੋ!</string>
+    <string name="faq">ਵੈੱਬਸਾਈਟ 'ਤੇ ਵੇਖੋ</string>
+    <string name="open_in_browser">ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਖੋਲ੍ਹੋ</string>
+    <string name="license">%1$s ਦੁਆਰਾ %2$s ਅਧੀਨ</string>
+</resources>

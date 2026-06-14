@@ -45,7 +45,7 @@ import org.schabi.newpipe.ui.theme.AppTheme
 fun CommentRepliesDialog(
     parentComment: CommentsInfoItem,
     onDismissRequest: () -> Unit,
-    onCommentAuthorOpened: () -> Unit,
+    onCommentAuthorOpened: () -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
     val commentsFlow = remember {
@@ -65,7 +65,7 @@ private fun CommentRepliesDialog(
     parentComment: CommentsInfoItem,
     commentsFlow: Flow<PagingData<CommentsInfoItem>>,
     onDismissRequest: () -> Unit,
-    onCommentAuthorOpened: () -> Unit,
+    onCommentAuthorOpened: () -> Unit
 ) {
     val comments = commentsFlow.collectAsLazyPagingItems()
     val nestedScrollInterop = rememberNestedScrollInteropConnection()
@@ -83,7 +83,7 @@ private fun CommentRepliesDialog(
 
     ModalBottomSheet(
         sheetState = sheetState,
-        onDismissRequest = onDismissRequest,
+        onDismissRequest = onDismissRequest
     ) {
         LazyColumnThemedScrollbar(state = listState) {
             LazyColumn(
@@ -93,7 +93,7 @@ private fun CommentRepliesDialog(
                 item {
                     CommentRepliesHeader(
                         comment = parentComment,
-                        onCommentAuthorOpened = nestedOnCommentAuthorOpened,
+                        onCommentAuthorOpened = nestedOnCommentAuthorOpened
                     )
                     HorizontalDivider(
                         thickness = 1.dp,
@@ -111,7 +111,7 @@ private fun CommentRepliesDialog(
                             text = pluralStringResource(
                                 R.plurals.replies,
                                 parentComment.replyCount,
-                                parentComment.replyCount,
+                                parentComment.replyCount
                             ),
                             maxLines = 1,
                             style = MaterialTheme.typography.titleMedium
@@ -125,6 +125,7 @@ private fun CommentRepliesDialog(
                             is LoadState.Loading -> {
                                 LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
                             }
+
                             else -> {
                                 // TODO use error panel instead
                                 EmptyStateComposable(
@@ -144,7 +145,7 @@ private fun CommentRepliesDialog(
                     items(comments.itemCount) {
                         Comment(
                             comment = comments[it]!!,
-                            onCommentAuthorOpened = nestedOnCommentAuthorOpened,
+                            onCommentAuthorOpened = nestedOnCommentAuthorOpened
                         )
                     }
                 }
@@ -168,7 +169,7 @@ private fun CommentRepliesDialogPreview() {
         CommentsInfoItem(
             commentText = Description(
                 "Reply $i: ${LoremIpsum(i * i).values.first()}",
-                Description.PLAIN_TEXT,
+                Description.PLAIN_TEXT
             ),
             uploaderName = LoremIpsum(11 - i).values.first()
         )

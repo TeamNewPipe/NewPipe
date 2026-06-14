@@ -17,10 +17,10 @@ import org.schabi.newpipe.player.mediasource.ManagedMediaSource;
 import org.schabi.newpipe.player.mediasource.ManagedMediaSourcePlaylist;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
-import org.schabi.newpipe.player.playqueue.events.MoveEvent;
-import org.schabi.newpipe.player.playqueue.events.PlayQueueEvent;
-import org.schabi.newpipe.player.playqueue.events.RemoveEvent;
-import org.schabi.newpipe.player.playqueue.events.ReorderEvent;
+import org.schabi.newpipe.player.playqueue.PlayQueueEvent.MoveEvent;
+import org.schabi.newpipe.player.playqueue.PlayQueueEvent;
+import org.schabi.newpipe.player.playqueue.PlayQueueEvent.RemoveEvent;
+import org.schabi.newpipe.player.playqueue.PlayQueueEvent.ReorderEvent;
 
 import java.util.Collection;
 import java.util.Collections;

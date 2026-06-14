@@ -1,11 +1,11 @@
 package org.schabi.newpipe.database
 
 import androidx.room.TypeConverter
-import org.schabi.newpipe.extractor.stream.StreamType
-import org.schabi.newpipe.local.subscription.FeedGroupIcon
 import java.time.Instant
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
+import org.schabi.newpipe.extractor.stream.StreamType
+import org.schabi.newpipe.local.subscription.FeedGroupIcon
 
 class Converters {
     /**

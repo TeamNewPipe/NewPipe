@@ -29,9 +29,7 @@ import com.mikepenz.aboutlibraries.entity.Library
 import com.mikepenz.aboutlibraries.entity.License
 import com.mikepenz.aboutlibraries.entity.Organization
 import com.mikepenz.aboutlibraries.entity.Scm
-import com.mikepenz.aboutlibraries.ui.compose.m3.util.author
-import kotlinx.collections.immutable.toImmutableList
-import kotlinx.collections.immutable.toImmutableSet
+import com.mikepenz.aboutlibraries.ui.compose.util.author
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.external_communication.ShareUtils
 
@@ -39,7 +37,7 @@ import org.schabi.newpipe.util.external_communication.ShareUtils
 fun Library(
     @PreviewParameter(LibraryProvider::class) library: Library,
     showLicenseDialog: (licenseFilename: String) -> Unit,
-    descriptionMaxLines: Int,
+    descriptionMaxLines: Int
 ) {
     val spdxLicense = library.licenses.firstOrNull()?.spdxId?.takeIf { it.isNotBlank() }
     val licenseAssetPath = spdxLicense?.let { SPDX_ID_TO_ASSET_PATH[it] }
@@ -63,14 +61,14 @@ fun Library(
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
                 text = library.name,
                 modifier = Modifier.weight(0.75f),
                 style = MaterialTheme.typography.titleMedium,
                 maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
+                overflow = TextOverflow.Ellipsis
             )
             val version = library.artifactVersion
             if (!version.isNullOrBlank()) {
@@ -85,7 +83,7 @@ fun Library(
                     }.padding(start = 8.dp),
                     style = MaterialTheme.typography.labelMedium,
                     maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
         }
@@ -95,7 +93,7 @@ fun Library(
                 text = author,
                 style = MaterialTheme.typography.bodyMedium,
                 maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
+                overflow = TextOverflow.Ellipsis
             )
         }
         val description = library.description
@@ -105,14 +103,14 @@ fun Library(
                 text = description,
                 style = MaterialTheme.typography.bodySmall,
                 maxLines = descriptionMaxLines,
-                overflow = TextOverflow.Ellipsis,
+                overflow = TextOverflow.Ellipsis
             )
         }
         if (library.licenses.isNotEmpty()) {
             FlowRow(
                 modifier = Modifier.padding(top = 6.dp, bottom = 4.dp),
                 horizontalArrangement = Arrangement.spacedBy(4.dp),
-                verticalArrangement = Arrangement.spacedBy(4.dp),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 library.licenses.forEach {
                     Badge {
@@ -140,7 +138,7 @@ private class LibraryProvider : CollectionPreviewParameterProvider<Library>(
             name = "NewPipeExtractor",
             description = "NewPipe Extractor is a library for extracting things from streaming sites. It is a core component of NewPipe, but could be used independently.",
             website = "https://newpipe.net",
-            developers = listOf(Developer("TeamNewPipe", "https://newpipe.net")).toImmutableList(),
+            developers = listOf(Developer("TeamNewPipe", "https://newpipe.net")),
             organization = Organization("TeamNewPipe", "https://newpipe.net"),
             scm = Scm(null, null, "https://github.com/TeamNewPipe/NewPipeExtractor"),
             licenses = setOf(
@@ -160,7 +158,7 @@ private class LibraryProvider : CollectionPreviewParameterProvider<Library>(
                     licenseContent = LoremIpsum().values.first(),
                     hash = "4321"
                 )
-            ).toImmutableSet()
+            )
         ),
         Library(
             uniqueId = "org.schabi.newpipe.extractor",
@@ -168,7 +166,7 @@ private class LibraryProvider : CollectionPreviewParameterProvider<Library>(
             name = "NewPipeExtractor",
             description = "NewPipe Extractor is a library for extracting things from streaming sites. It is a core component of NewPipe, but could be used independently.",
             website = null,
-            developers = listOf<Developer>().toImmutableList(),
+            developers = listOf<Developer>(),
             organization = null,
             scm = null,
             licenses = setOf(
@@ -180,7 +178,7 @@ private class LibraryProvider : CollectionPreviewParameterProvider<Library>(
                     licenseContent = LoremIpsum().values.first(),
                     hash = "1234"
                 )
-            ).toImmutableSet()
+            )
         )
     )
 )

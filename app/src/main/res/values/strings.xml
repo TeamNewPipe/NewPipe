@@ -49,7 +49,7 @@
     <string name="default_resolution_title">Default resolution</string>
     <string name="default_popup_resolution_title">Default popup resolution</string>
     <string name="show_higher_resolutions_title">Show higher resolutions</string>
-    <string name="show_higher_resolutions_summary">Only some devices can play 2K/4K videos</string>
+    <string name="show_higher_resolutions_summary">Only some devices can play 1440p/4K videos</string>
     <string name="play_with_kodi_title">Play with Kodi</string>
     <string name="kore_not_found">Install missing Kore app\?</string>
     <string name="show_play_with_kodi_title">Show \"Play with Kodi\" option</string>
@@ -154,11 +154,15 @@
     <string name="settings_category_video_audio_title">Video and audio</string>
     <string name="settings_category_history_title">History and cache</string>
     <string name="settings_category_appearance_title">Appearance</string>
+    <string name="settings_category_look_and_feel_title">Look and feel</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="settings_category_updates_title">Updates</string>
     <string name="settings_category_player_notification_title">Player notification</string>
     <string name="settings_category_player_notification_summary">Configure current playing stream notification</string>
     <string name="settings_category_backup_restore_title">Backup and restore</string>
+    <string name="settings_category_content_title">Content</string>
+    <string name="settings_category_services_title">Services</string>
+    <string name="settings_category_language_title">Language</string>
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="content">Content</string>
@@ -271,7 +275,7 @@
     <string name="error_snackbar_action">Report</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">What happened:</string>
-    <string name="info_labels">What:\\nRequest:\\nContent Language:\\nContent Country:\\nApp Language:\\nService:\\nTimestamp:\\nPackage:\\nVersion:\\nOS version:</string>
+    <string name="info_labels">What:\nRequest:\nContent Language:\nContent Country:\nApp Language:\nService:\nTimestamp:\nPackage:\nVersion:\nOS version:</string>
     <string name="your_comment">Your comment (in English):</string>
     <string name="error_details_headline">Details:</string>
     <!-- Content descriptions (for better accessibility) -->
@@ -502,6 +506,18 @@
     <string name="create_error_notification">Create an error notification</string>
     <string name="settings_layout_redesign">Enable the Redesigned Settings page</string>
     <!-- Subscriptions import/export -->
+    <plurals name="export_subscriptions">
+        <item quantity="one">Exporting %d subscription…</item>
+        <item quantity="other">Exporting %d subscriptions…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">Loading %d subscription…</item>
+        <item quantity="other">Loading %d subscriptions…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">Importing %d subscription…</item>
+        <item quantity="other">Importing %d subscriptions…</item>
+    </plurals>
     <string name="import_title">Import</string>
     <string name="import_from">Import from</string>
     <string name="export_to">Export to</string>
@@ -509,6 +525,11 @@
     <string name="export_ongoing">Exporting…</string>
     <string name="import_file_title">Import file</string>
     <string name="previous_export">Previous export</string>
+    <string name="import_subscriptions_title">Import subscriptions"</string>
+    <string name="export_subscriptions_title">Export subscriptions</string>
+    <string name="import_subscriptions_summary">Import subscriptions from a previous .json export"</string>
+    <string name="export_subscriptions_summary">Export your subscriptions to a .json file</string>
+    <string name="import_from_previous_export">Import from previous export</string>
     <string name="subscriptions_import_unsuccessful">Could not import subscriptions</string>
     <string name="subscriptions_export_unsuccessful">Could not export subscriptions</string>
     <string name="import_youtube_instructions">Import YouTube subscriptions from Google takeout:
@@ -666,13 +687,13 @@
     <string name="app_language_title">App language</string>
     <string name="systems_language">System default</string>
     <string name="remove_watched">Remove watched</string>
-    <string name="remove_watched_popup_title">Remove watched videos?</string>
+    <string name="remove_watched_popup_title">Remove watched streams?</string>
     <string name="remove_duplicates">Remove duplicates</string>
     <string name="remove_duplicates_title">Remove duplicates?</string>
     <string name="remove_duplicates_message">Do you want to remove all duplicate streams in this playlist?</string>
-    <string name="remove_watched_popup_warning">Videos that have been watched before and after being added to the playlist will be removed.
-\nAre you sure\? This cannot be undone!</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Yes, and partially watched videos</string>
+    <string name="remove_watched_popup_warning">Streams that have been watched before and after being added to the playlist will be removed.
+\nAre you sure\?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Remove partially watched streams</string>
     <string name="new_seek_duration_toast">Due to ExoPlayer constraints the seek duration was set to %d seconds</string>
     <!-- Time duration plurals -->
     <plurals name="seconds">
@@ -875,18 +896,6 @@
         <item quantity="one">%d comment</item>
         <item quantity="other">%d comments</item>
     </plurals>
-    <plurals name="export_subscriptions">
-        <item quantity="one">Exporting %d subscription…</item>
-        <item quantity="other">Exporting %d subscriptions…</item>
-    </plurals>
-    <plurals name="load_subscriptions">
-        <item quantity="one">Loading %d subscription…</item>
-        <item quantity="other">Loading %d subscriptions…</item>
-    </plurals>
-    <plurals name="import_subscriptions">
-        <item quantity="one">Importing %d subscription…</item>
-        <item quantity="other">Importing %d subscriptions…</item>
-    </plurals>
     <string name="migration_info_7_8_title">YouTube combined trending removed</string>
     <string name="migration_info_7_8_message">YouTube has discontinued the combined trending page as of 21st July 2025. NewPipe replaced the default trending page with the trending livestreams.\n\nYou can also select different trending pages in \"Settings > Content > Content of main page\".</string>
     <string name="trending_gaming">Gaming trends</string>
@@ -897,6 +906,13 @@
     <string name="player_http_403">HTTP error 403 received from server while playing, likely caused by streaming URL expiration or an IP ban</string>
     <string name="player_http_invalid_status">HTTP error %1$s received from server while playing</string>
     <string name="youtube_player_http_403">HTTP error 403 received from server while playing, likely caused by an IP ban or streaming URL deobfuscation issues</string>
-    <string name="sign_in_confirm_not_bot_error">%1$s refused to provide data, asking for a login to confirm the requester is not a bot.\n\nYour IP might have been temporarily banned by %1$s, you can wait some time or switch to a different IP (for example by turning on/off a VPN, or by switching from WiFi to mobile data).</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s refused to provide data, asking for a login to confirm the requester is not a bot.\n\nYour IP might have been temporarily banned by %1$s, you can wait some time or switch to a different IP (for example by turning on/off a VPN, or by switching from WiFi to mobile data).\n\nPlease see <a href="%2$s">this FAQ entry</a> for more information.</string>
     <string name="unsupported_content_in_country">This content is not available for the currently selected content country.\n\nChange your selection from \"Settings > Content > Default content country\".</string>
+    <string name="navigate_back">Navigate back</string>
+    <string name="kao_dialog_warning">In August 2025, Google announced that as of September 2026, installing apps will require developer verification for all Android apps on certified devices, including those installed outside of the Play Store. Since the developers of NewPipe do not agree to this requirement, NewPipe will no longer work on certified Android devices after that time.</string>
+    <string name="kao_dialog_more_info">Details</string>
+    <string name="kao_solution">Solution</string>
+    <string name="api23_requirement_dialog_title">NewPipe is dropping support for Android 5</string>
+    <string name="api23_requirement_dialog_message">Unfortunately NewPipe depends on a few libraries that dropped support for Android 5.0 and 5.1. The next NewPipe release will therefore only work on devices with Android 6 or higher, sadly. Read more in the blogpost.</string>
+    <string name="api23_requirement_dialog_blogpost">Blogpost</string>
 </resources>

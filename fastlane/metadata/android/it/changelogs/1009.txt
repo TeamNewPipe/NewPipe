@@ -1,0 +1,14 @@
+Importante
+Informazioni e invito all'azione per la campagna Keep Android Open aggiunte: https://www.keepandroidopen.org/
+
+Migliorato
+[Feed] Riordina l'ordine in cui vengono aggiornati gli abbonamenti obsoleti
+Non sovrapporre le pagine dei commenti
+Non passare gli eventi clic alle viste sottostanti quando si fa clic sulla pagina dei dettagli del video
+
+Corretto
+Layout dell'intestazione delle risposte ai commenti senza immagine avatar
+Correzioni multiple all'interfaccia utente relative al player
+[SoundCloud] Correzione degli stream con ID lunghi
+
+e altre correzioni e miglioramenti!

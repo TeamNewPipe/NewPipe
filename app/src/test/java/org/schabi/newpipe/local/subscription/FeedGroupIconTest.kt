@@ -15,7 +15,8 @@ class FeedGroupIconTest {
 
             assertEquals(
                 "Gap between ids detected (current item: ${currentIcon.name} - ${currentIcon.id} → should be: $shouldBeId)",
-                shouldBeId, currentIcon.id
+                shouldBeId,
+                currentIcon.id
             )
         }
     }

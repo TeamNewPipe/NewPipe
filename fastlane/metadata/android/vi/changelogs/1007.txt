@@ -1,0 +1,11 @@
+Bản vá khẩn sửa lỗi "Nội dung không khả dụng": video YouTube đã phát lại bình thường.
+
+Cũng sửa một số lỗi từ 0.28.1:
+• Kéo mục trong playlist chỉ sang được vị trí liền kề
+• Tiêu đề/bình luận nhấp nháy giữa video hiện tại và trước đó
+• Tùy chọn "Mở trình phát chính toàn màn hình" không hoạt động
+
+Cải thiện khác:
+• [YouTube] Có thể tua lại livestream tối đa 4 giờ
+• Không tải video livestream khi phát nền
+• Giao diện mới cho "Xóa đã xem"

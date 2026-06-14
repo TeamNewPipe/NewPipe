@@ -1,0 +1,10 @@
+Berria
+• Erakutsi edukiaren metadatuak (etiketak, kategoriak, lizentzia) deskribapenaren azpian
+• "Erakutsi kanalaren xehetasunak" aukera urruneko erreprodukzio-zerrendetan
+• "Ireki arakatzailean" aukera sakatuta edukitzeko menuan
+
+Konpondua
+• Bideoaren xehetasunen orrialdean errotazio-matxura
+• "Jolastu Kodirekin" botoia Kore instalatzeko eskatzen zuena
+• Inportazio eta esportazio bideak konpondu eta hobetu
+• [YouTube] Iruzkinen "atsegin dut" kopurua

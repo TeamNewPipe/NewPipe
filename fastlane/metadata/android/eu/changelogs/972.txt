@@ -1,0 +1,12 @@
+Berria
+Denbora-zigiluen eta traolen ezagutza deskribapenean
+Tableta moduaren eskuzko doikuntza gehitu da
+Jarioan erreproduzitutako elementuak ezkutatzeko aukera gehitu da
+
+Hobetua
+Biltegiratze sarbide sistemarako (SAF) laguntza egokia
+Ezabatutako eta erabilgarri ez dauden kanaletako erroreen kudeaketa hobetua
+Android 10+ erabiltzaileentzako partekatzeko menuak edukiaren izenburua erakusten du orain.
+Invidious-en instantzia eguneratuak eta Piped estekak erabiltzeko laguntza
+
+...eta zuzenketak

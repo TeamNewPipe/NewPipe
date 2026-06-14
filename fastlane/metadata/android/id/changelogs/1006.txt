@@ -1,0 +1,16 @@
+# Peningkatan
+Pertahankan pemutar saat ini ketika mengklik stempel waktu
+Cobalah untuk memulihkan misi pengunduhan yang tertunda jika memungkinkan
+Tambahkan opsi untuk menghapus unduhan tanpa ikut menghapus berkas
+Izin Overlay: menampilkan dialog penjelasan untuk Android > R
+Mendukung tautan on.soundcloud saat membuka
+Banyak perbaikan dan optimasi kecil.
+
+# Telah diperbaiki
+Memperbaiki format penghitungan pendek untuk versi Android di bawah 7
+Memperbaiki notifikasi berhantu
+Memperbaiki berkas SRT
+Memperbaiki banyak sekali kerusakan
+
+# Pengembangan
+Modernisasi kode internal

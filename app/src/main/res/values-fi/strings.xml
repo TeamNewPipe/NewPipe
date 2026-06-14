@@ -34,7 +34,7 @@
     <string name="default_resolution_title">Oletusresoluutio</string>
     <string name="default_popup_resolution_title">Ponnahdusikkunan oletusresoluutio</string>
     <string name="show_higher_resolutions_title">Näytä korkeammat resoluutiot</string>
-    <string name="show_higher_resolutions_summary">Vain jotkin laitteet voivat toistaa 2K/4K-videota</string>
+    <string name="show_higher_resolutions_summary">Vain jotkin laitteet voivat toistaa 1440p/4K-videota</string>
     <string name="play_with_kodi_title">Toista Kodissa</string>
     <string name="kore_not_found">Asennetaanko puuttuva Kore-sovellus\?</string>
     <string name="show_play_with_kodi_title">Näytä ”Toista Kodissa”-vaihtoehto</string>
@@ -155,7 +155,7 @@
     <string name="delete_item_search_history">Haluatko poistaa tämän hakuhistoriasta?</string>
     <string name="resume_on_audio_focus_gain_title">Jatka toistoa</string>
     <string name="what_device_headline">Info:</string>
-    <string name="info_labels">Mikä:\\nPyyntö:\\nSisällön kieli:\\nSisällön maa:\\n:Sovelluksen kieli:\\nPalvelu:\\nGMT Aika:\\nPaketti:\\nVersio:\\nOS versio:</string>
+    <string name="info_labels">Mikä:\nPyyntö:\nSisällön kieli:\nSisällön maa:\n:Sovelluksen kieli:\nPalvelu:\nGMT Aika:\nPaketti:\nVersio:\nOS versio:</string>
     <string name="copyright" formatted="true">© %1$s %2$s %3$s alla</string>
     <string name="main_page_content">Pääsivun sisältö</string>
     <string name="blank_page_summary">Tyhjä sivu</string>
@@ -305,7 +305,7 @@
 \n3. Kirjaudu sisään kysyttäessä.
 \n4. Kopioi se nettiosoite johon sinut ohjattiin.</string>
     <string name="import_soundcloud_instructions_hint">sinun käyttäjänimesi, soundcloud.com/&lt;sinun käyttäjänimesi&gt;</string>
-    <string name="import_network_expensive_warning">Ota huomioon että tämä operaatio voi käyttää paljon dataa. 
+    <string name="import_network_expensive_warning">Ota huomioon että tämä operaatio voi käyttää paljon dataa.
 \n
 \nHaluatko jatkaa\?</string>
     <string name="playback_speed_control">Toistonopeuden säätimet</string>
@@ -392,10 +392,9 @@
     <string name="enable_playback_state_lists_summary">Näytä toistokohtien osoittimet listoissa</string>
     <string name="enable_playback_state_lists_title">Kohdat listoissa</string>
     <string name="enable_playback_resume_summary">Palauta edellinen toistokohta</string>
-    <string name="remove_watched_popup_warning">Aiemmin katsotut ja soittolistaan lisätyt videot poistetaan.
-\nOletko varma\? Tätä ei voi peruuttaa!</string>
-    <string name="remove_watched_popup_title">Poistetaanko katsotut videot\?</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Kyllä ja osittain katsotut videot</string>
+    <string name="remove_watched_popup_warning">Aiemmin katsotut ja soittolistaan lisätyt videot poistetaan. \nOletko varma? Tätä ei voi peruuttaa!</string>
+    <string name="remove_watched_popup_title">Poistetaanko katsotut videot?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Kyllä ja osittain katsotut videot</string>
     <string name="stop">Pysäytä</string>
     <string name="clear_download_history">Tyhjennä lataushistoria</string>
     <string name="close">Sulje</string>
