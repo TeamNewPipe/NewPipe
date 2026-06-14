@@ -81,12 +81,22 @@ fun CommentRepliesHeader(comment: CommentsInfoItem, onCommentAuthorOpened: () ->
                         style = MaterialTheme.typography.titleSmall
                     )
 
-                    Localization.relativeTimeOrTextual(
-                        context,
-                        comment.uploadDate,
-                        comment.textualUploadDate
-                    )?.let {
-                        Text(text = it, style = MaterialTheme.typography.bodySmall)
+                    Row {
+                        Localization.relativeTimeOrTextual(
+                            context,
+                            comment.uploadDate,
+                            comment.textualUploadDate
+                        )?.let {
+                            Text(text = it, style = MaterialTheme.typography.bodySmall)
+                        }
+                        if (comment.isEdited) {
+                            Text(
+                                text = stringResource(R.string.edited_comment_indicator),
+                                style = MaterialTheme.typography.bodySmall,
+                                modifier = Modifier.padding(start = 4.dp),
+                                maxLines = 1
+                            )
+                        }
                     }
                 }
             }
@@ -140,7 +150,8 @@ fun CommentRepliesHeaderPreview() {
         uploaderName = "Test really long lorem ipsum dolor sit",
         likeCount = 1000,
         isPinned = true,
-        isHeartedByUploader = true
+        isHeartedByUploader = true,
+        isEdited = true
     )
 
     AppTheme {
