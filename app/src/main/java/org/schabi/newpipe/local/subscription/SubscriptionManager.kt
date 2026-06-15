@@ -50,13 +50,16 @@ class SubscriptionManager(context: Context) {
         }
     }
 
-    fun upsertAll(infoList: List<Pair<ChannelInfo, ChannelTabInfo>>) {
+    fun upsertAll(infoList: List<Pair<ChannelInfo, ChannelTabInfo?>>) {
         val listEntities = infoList.map { SubscriptionEntity.from(it.first) }
         subscriptionTable.upsertAll(listEntities)
 
         database.runInTransaction {
             infoList.forEachIndexed { index, info ->
-                val streams = info.second.relatedItems.filterIsInstance<StreamInfoItem>()
+                // There may be no tabs on the channel to refresh the feed from
+                if (info.second == null) return@forEachIndexed
+
+                val streams = info.second!!.relatedItems.filterIsInstance<StreamInfoItem>()
                 feedDatabaseManager.upsertAll(listEntities[index].uid, streams)
             }
         }

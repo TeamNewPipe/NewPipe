@@ -1,12 +1,19 @@
+/*
+ * SPDX-FileCopyrightText: 2018-2025 NewPipe contributors <https://newpipe.net>
+ * SPDX-FileCopyrightText: 2026 NewPipe e.V. <https://newpipe-ev.de>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
 package org.schabi.newpipe.local.subscription.workers
 
 import android.content.Context
-import android.content.pm.ServiceInfo
+import android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC
 import android.os.Build
 import android.os.Parcelable
 import android.util.Log
 import android.webkit.MimeTypeMap
 import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.core.app.NotificationCompat
 import androidx.core.net.toUri
 import androidx.work.CoroutineWorker
@@ -15,102 +22,119 @@ import androidx.work.ForegroundInfo
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
+import kotlin.runCatching
+import kotlin.to
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.chunked
+import kotlinx.coroutines.flow.flatMapMerge
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.rx3.await
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import kotlinx.parcelize.Parcelize
-import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.util.ExtractorHelper
 
 class SubscriptionImportWorker(
-    appContext: Context,
-    params: WorkerParameters
-) : CoroutineWorker(appContext, params) {
+    private val context: Context,
+    private val params: WorkerParameters
+) : CoroutineWorker(context, params) {
+
+    private lateinit var subscriptions: List<SubscriptionItem>
+
+    private val subscriptionManager = SubscriptionManager(context)
+    private val mutex = Mutex()
+    private val size: Int
+        get() = subscriptions.size
+
     // This is needed for API levels < 31 (Android S).
     override suspend fun getForegroundInfo(): ForegroundInfo {
-        return createForegroundInfo(applicationContext.getString(R.string.import_ongoing), null, 0, 0)
+        return createForegroundInfo(title = context.getString(R.string.import_ongoing))
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     override suspend fun doWork(): Result {
-        val subscriptions =
-            try {
-                loadSubscriptionsFromInput(SubscriptionImportInput.fromData(inputData))
-            } catch (e: Exception) {
-                if (BuildConfig.DEBUG) {
-                    Log.e(TAG, "Error while loading subscriptions from path", e)
-                }
-                withContext(Dispatchers.Main) {
-                    Toast
-                        .makeText(applicationContext, R.string.subscriptions_import_unsuccessful, Toast.LENGTH_SHORT)
-                        .show()
-                }
-                return Result.failure()
+        subscriptions = try {
+            loadSubscriptionsFromInput(SubscriptionImportInput.fromData(inputData))
+        } catch (exception: Exception) {
+            Log.e(TAG, "Error while loading subscriptions from path", exception)
+            withContext(Dispatchers.Main) {
+                Toast.makeText(context, R.string.subscriptions_import_unsuccessful, LENGTH_SHORT)
+                    .show()
             }
-
-        val mutex = Mutex()
-        var index = 1
-        val qty = subscriptions.size
-        var title =
-            applicationContext.resources.getQuantityString(R.plurals.load_subscriptions, qty, qty)
-
-        val channelInfoList =
-            try {
-                withContext(Dispatchers.IO.limitedParallelism(PARALLEL_EXTRACTIONS)) {
-                    subscriptions
-                        .map {
-                            async {
-                                val channelInfo =
-                                    ExtractorHelper.getChannelInfo(it.serviceId, it.url, true).await()
-                                val channelTab =
-                                    ExtractorHelper.getChannelTab(it.serviceId, channelInfo.tabs[0], true).await()
-
-                                val currentIndex = mutex.withLock { index++ }
-                                setForeground(createForegroundInfo(title, channelInfo.name, currentIndex, qty))
-
-                                channelInfo to channelTab
-                            }
-                        }.awaitAll()
-                }
-            } catch (e: Exception) {
-                if (BuildConfig.DEBUG) {
-                    Log.e(TAG, "Error while loading subscription data", e)
-                }
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(applicationContext, R.string.subscriptions_import_unsuccessful, Toast.LENGTH_SHORT)
-                        .show()
-                }
-                return Result.failure()
-            }
-
-        title = applicationContext.resources.getQuantityString(R.plurals.import_subscriptions, qty, qty)
-        setForeground(createForegroundInfo(title, null, 0, 0))
-        index = 0
-
-        val subscriptionManager = SubscriptionManager(applicationContext)
-        for (chunk in channelInfoList.chunked(BUFFER_COUNT_BEFORE_INSERT)) {
-            withContext(Dispatchers.IO) {
-                subscriptionManager.upsertAll(chunk)
-            }
-            index += chunk.size
-            setForeground(createForegroundInfo(title, null, index, qty))
+            return Result.failure()
         }
 
+        val title = context.resources.getQuantityString(R.plurals.import_subscriptions, size, size)
+        setForeground(createForegroundInfo(title = title))
+
+        try {
+            var index = 1
+            subscriptions.asFlow()
+                .flatMapMerge(concurrency = PARALLEL_EXTRACTIONS) { subscription ->
+                    flow {
+                        runCatching {
+                            ExtractorHelper.getChannelInfo(
+                                subscription.serviceId,
+                                subscription.url,
+                                true
+                            ).await()
+                        }.mapCatching { channelInfo ->
+                            val channelTab = when {
+                                channelInfo.tabs.isNotEmpty() -> {
+                                    ExtractorHelper.getChannelTab(
+                                        subscription.serviceId,
+                                        channelInfo.tabs[0],
+                                        true
+                                    ).await()
+                                }
+
+                                else -> {
+                                    Log.i(TAG, "No channel tabs available for: ${channelInfo.url}")
+                                    null
+                                }
+                            }
+                            Pair(channelInfo, channelTab)
+                        }.also {
+                            mutex.withLock { index++ }
+                        }.onFailure { exception ->
+                            Log.e(TAG, "Failed to fetch subscription", exception)
+                        }.onSuccess { (channelInfo, channelTab) ->
+                            setForeground(createForegroundInfo(title, channelInfo.name, index))
+                            emit(channelInfo to channelTab)
+                        }
+                    }
+                }
+                .chunked(BUFFER_COUNT_BEFORE_INSERT)
+                .collect { chunk ->
+                    subscriptionManager.upsertAll(chunk)
+                }
+        } catch (exception: Exception) {
+            Log.e(TAG, "Error while processing subscription data", exception)
+            withContext(Dispatchers.Main) {
+                Toast.makeText(context, R.string.subscriptions_import_unsuccessful, LENGTH_SHORT)
+                    .show()
+            }
+            return Result.failure()
+        }
+
+        setForeground(createForegroundInfo(title = title, progress = size))
         withContext(Dispatchers.Main) {
-            Toast.makeText(applicationContext, R.string.import_complete_toast, Toast.LENGTH_SHORT)
+            Toast.makeText(applicationContext, R.string.import_complete_toast, LENGTH_SHORT)
                 .show()
         }
 
         return Result.success()
     }
 
-    private suspend fun loadSubscriptionsFromInput(input: SubscriptionImportInput): List<SubscriptionItem> {
+    private suspend fun loadSubscriptionsFromInput(
+        input: SubscriptionImportInput
+    ): List<SubscriptionItem> {
         return withContext(Dispatchers.IO) {
             when (input) {
                 is SubscriptionImportInput.ChannelUrlMode ->
@@ -119,16 +143,16 @@ class SubscriptionImportWorker(
                         .map { SubscriptionItem(it.serviceId, it.url, it.name) }
 
                 is SubscriptionImportInput.InputStreamMode ->
-                    applicationContext.contentResolver.openInputStream(input.url.toUri())?.use {
+                    context.contentResolver.openInputStream(input.url.toUri())?.use { stream ->
                         val contentType =
                             MimeTypeMap.getFileExtensionFromUrl(input.url).ifEmpty { DEFAULT_MIME }
                         NewPipe.getService(input.serviceId).subscriptionExtractor
-                            .fromInputStream(it, contentType)
+                            .fromInputStream(stream, contentType)
                             .map { SubscriptionItem(it.serviceId, it.url, it.name) }
                     }
 
                 is SubscriptionImportInput.PreviousExportMode ->
-                    applicationContext.contentResolver.openInputStream(input.url.toUri())?.use {
+                    context.contentResolver.openInputStream(input.url.toUri())?.use {
                         ImportExportJsonHelper.readFrom(it)
                     }
             } ?: emptyList()
@@ -137,35 +161,36 @@ class SubscriptionImportWorker(
 
     private fun createForegroundInfo(
         title: String,
-        text: String?,
-        currentProgress: Int,
-        maxProgress: Int
+        text: String? = null,
+        progress: Int = 0
     ): ForegroundInfo {
-        val notification =
-            NotificationCompat
-                .Builder(applicationContext, NOTIFICATION_CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
-                .setOngoing(true)
-                .setProgress(maxProgress, currentProgress, currentProgress == 0)
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
-                .setContentTitle(title)
-                .setContentText(text)
-                .addAction(
-                    R.drawable.ic_close,
-                    applicationContext.getString(R.string.cancel),
-                    WorkManager.getInstance(applicationContext).createCancelPendingIntent(id)
-                ).apply {
-                    if (currentProgress > 0 && maxProgress > 0) {
-                        val progressText = "$currentProgress/$maxProgress"
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            setSubText(progressText)
-                        } else {
-                            setContentInfo(progressText)
-                        }
+        val maxProgress = subscriptions.size
+        val notification = NotificationCompat
+            .Builder(context, NOTIFICATION_CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
+            .setOngoing(true)
+            .setProgress(maxProgress, progress, progress == 0)
+            .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
+            .setContentTitle(title)
+            .setContentText(text)
+            .addAction(
+                R.drawable.ic_close,
+                context.getString(R.string.cancel),
+                WorkManager.getInstance(context).createCancelPendingIntent(id)
+            ).apply {
+                if (progress > 0 && maxProgress > 0) {
+                    val progressText = "$progress/$maxProgress"
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        setSubText(progressText)
+                    } else {
+                        setContentInfo(progressText)
                     }
-                }.build()
-        val serviceType = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC else 0
+                }
+            }.build()
+        val serviceType = when {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> FOREGROUND_SERVICE_TYPE_DATA_SYNC
+            else -> 0
+        }
 
         return ForegroundInfo(NOTIFICATION_ID, notification, serviceType)
     }
