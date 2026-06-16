@@ -1,3 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="navigate_back">뒤로</string>
+    <string name="title_activity_about">NewPipe 정보</string>
+    <string name="title_licenses">서드파티 라이선스</string>
+    <string name="tab_about">정보 및 FAQ</string>
+    <string name="tab_licenses">라이선스</string>
+    <string name="contribution_title">기여</string>
+    <string name="view_on_github">GitHub에서 보기</string>
+    <string name="donation_title">후원</string>
+    <string name="website_title">웹사이트</string>
+    <string name="website_encouragement">더 많은 정보와 뉴스를 확인하려면 NewPipe 웹사이트에 방문하세요.</string>
+    <string name="privacy_policy_title">NewPipe의 개인정보취급방침</string>
+    <string name="read_privacy_policy">개인정보취급방침 읽기</string>
+    <string name="app_license_title">NewPipe의 라이선스</string>
+    <string name="read_full_license">라이선스 읽기</string>
+    <string name="faq_title">자주 묻는 질문</string>
+    <string name="faq">웹사이트에서 보기</string>
+    <string name="open_in_browser">브라우저에서 열기</string>
+    <string name="done">완료</string>
+    <string name="not_available">이용 불가</string>
 </resources>

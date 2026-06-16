@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="navigate_back">वापस</string>
+    <string name="navigate_back">वापस जाएं</string>
     <string name="title_activity_about">न्यूपाइप के बारे में जानें</string>
     <string name="title_licenses">थर्ड-पार्टी लाइसेंस</string>
     <string name="license">%1$s द्वारा %2$s के अंतर्गत</string>

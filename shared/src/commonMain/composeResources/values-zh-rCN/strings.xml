@@ -27,4 +27,5 @@
     <string name="done">完成</string>
     <string name="privacy_policy_encouragement">NewPipe 项目非常严肃地对待您的隐私。因此，本应用没有您的同意不收集任何数据。\nNewPipe 的隐私政策详细解释发送崩溃报告时发送和存储的数据。</string>
     <string name="not_available">不可用</string>
+    <string name="license">由%1$s制作，在%2$s协议下发行</string>
 </resources>
