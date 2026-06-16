@@ -99,15 +99,12 @@
 \nmở trong chế độ bật lên</string>
     <string name="title_activity_recaptcha">reCAPTCHA</string>
     <string name="recaptcha_request_toast">Yêu cầu reCAPTCHA</string>
-    <string name="title_activity_about">Giới thiệu về NewPipe</string>
-    <string name="title_licenses">Giấy phép của bên thứ ba</string>
+    <string name="title_activity_about">Về NewPipe</string>
+    <string name="title_licenses">Các giấy phép Bên thứ ba</string>
     <string name="copyright" formatted="true">© %1$s bởi %2$s dưới %3$s</string>
-    <string name="tab_about">Giới thiệu &amp; Câu hỏi thường gặp</string>
     <string name="tab_licenses">Giấy phép</string>
-    <string name="app_description">Phát trực tuyến nhẹ tự do trên Android.</string>
-    <string name="view_on_github">Xem trên GitHub</string>
+    <string name="view_on_github">Xem trên Github</string>
     <string name="app_license_title">Giấy phép của NewPipe</string>
-    <string name="contribution_encouragement">Cho dù bạn có ý tưởng về: dịch thuật, thay đổi thiết kế, dọn mã hoặc thay đổi mã thực sự nhiều— sự trợ giúp luôn được hoan nghênh. Làm càng nhiều thì càng tốt!</string>
     <string name="read_full_license">Đọc giấy phép</string>
     <string name="contribution_title">Đóng góp</string>
     <string name="content_language_title">Ngôn ngữ nội dung ưu tiên</string>
@@ -209,16 +206,15 @@
     <string name="settings_file_replacement_character_title">Ký tự thay thế</string>
     <string name="charset_letters_and_digits">Chỉ chữ cái và chữ số</string>
     <string name="charset_most_special_characters">Hầu hết các ký tự đặc biệt</string>
-    <string name="donation_title">Quyên tặng</string>
-    <string name="donation_encouragement">NewPipe được phát triển bởi các tình nguyện viên dành thời gian rảnh rỗi để mang lại cho bạn trải nghiệm người dùng tốt nhất. Hãy đền đáp để giúp các nhà phát triển làm cho NewPipe thậm chí còn tốt hơn nữa trong khi họ thưởng thức một tách cà phê.</string>
-    <string name="give_back">Đền đáp</string>
+    <string name="donation_title">Quyên góp</string>
+    <string name="donation_encouragement">Newpipe được phát triển bởi các tình nguyện viên dành thời gian rảnh để mang trải nghiệm người dùng tốt nhất. Gửi lại để giúp nhà phát triển làm NewPipe tốt hơn nữa trong khi họ tận hưởng một ly cà phê.</string>
+    <string name="give_back">Gửi lại</string>
     <string name="website_title">Trang web</string>
-    <string name="website_encouragement">Truy cập website chính thức của NewPipe để biết thêm thông tin và tin tức.</string>
-    <string name="privacy_policy_title">Chính sách bảo mật của NewPipe</string>
+    <string name="website_encouragement">Ghé thăm Trang web NewPipe để biết thêm thông tin và tin tức.</string>
+    <string name="privacy_policy_title">Chính sách Quyền riêng tư của NewPipe</string>
     <string name="privacy_policy_encouragement">NewPipe rất coi trọng quyền riêng tư của bạn. Do đó, ứng dụng không thu thập bất kỳ dữ liệu nào mà không có sự đồng ý của bạn.
 \nChính sách bảo mật của NewPipe giải thích chi tiết dữ liệu nào được gửi và lưu trữ khi bạn gửi báo cáo sự cố.</string>
-    <string name="read_privacy_policy">Đọc chính sách bảo mật</string>
-    <string name="app_license">NewPipe là phần mềm tự do bản quyền bên trái: Bạn có thể sử dụng, nghiên cứu, chia sẻ và cải tiến nó theo ý muốn. Cụ thể là bạn có thể phân phối lại và/hoặc sửa đổi nó theo các điều khoản của Giấy phép Công cộng GNU do Tổ chức Phần mềm Tự do xuất bản, phiên bản 3 của Giấy phép hoặc (tùy theo lựa chọn của bạn) bất kỳ phiên bản nào mới hơn.</string>
+    <string name="read_privacy_policy">Đọc chính sách quyền riêng tư</string>
     <string name="title_activity_history">Lịch sử</string>
     <string name="action_history">Lịch sử</string>
     <string name="delete_item_search_history">Bạn có muốn xóa mục này khỏi lịch sử tìm kiếm không?</string>
@@ -438,7 +434,7 @@
     <string name="most_liked">Được yêu thích nhất</string>
     <string name="recently_added">Đã thêm gần đây</string>
     <string name="subtitle_activity_recaptcha">Bấm \"Xong\" khi hoàn thành</string>
-    <string name="done">Đã hoàn thành</string>
+    <string name="done">Đã xong</string>
     <string name="infinite_videos">∞ video</string>
     <string name="more_than_100_videos">100+ video</string>
     <plurals name="listening">
@@ -685,8 +681,8 @@
     <string name="progressive_load_interval_title">Kích thước tải thời lượng phát lại</string>
     <string name="sort">Thể loại</string>
     <string name="faq_title">Câu hỏi thường gặp</string>
-    <string name="faq">Xem trên website</string>
-    <string name="faq_description">Nếu bạn gặp vấn đề khi sử dụng ứng dụng , hãy chắc chắn rằng bạn đã tìm kiếm các câu hỏi thường thấy !</string>
+    <string name="faq">Xem trên trang web</string>
+    <string name="faq_description">Nếu bạn gặp vấn đề khi sử dụng ứng dụng, hãy chắc chắn rằng bạn kiểm tra câu trà lời cho câu hỏi thường gặp!</string>
     <string name="import_subscriptions_hint">Nhập hoặc xuất các kênh bạn đăng ký bằng cách nhấn nút 3 chấm ở góc trên màn hình</string>
     <string name="msg_failed_to_copy">Không thể sao chép vào khay nhớ tạm</string>
     <string name="playlist_add_stream_success_duplicate">Đã thêm trùng lặp %d lần</string>
