@@ -839,7 +839,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     /**
      * Perform a search.
-     * @param theSearchString  the trimmed search string
+     * @param theSearchString the trimmed search string
      * @param theContentFilter the content filter to use. FIXME: unused param
      * @param theSortFilter FIXME: unused param
      */
