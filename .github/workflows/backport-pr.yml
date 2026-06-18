@@ -22,7 +22,7 @@ jobs:
         github.event.comment.author_association == 'MEMBER'
         )
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Get backport metadata
         # the target branch is the first argument after `/backport`
         env:

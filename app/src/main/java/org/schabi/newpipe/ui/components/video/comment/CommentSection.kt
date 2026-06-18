@@ -59,7 +59,9 @@ private fun CommentSection(
 
     LazyColumnThemedScrollbar(state = state) {
         LazyColumn(
-            modifier = Modifier.nestedScroll(nestedScrollInterop),
+            modifier = Modifier
+                .fillMaxSize()
+                .nestedScroll(nestedScrollInterop),
             state = state
         ) {
             when (uiState) {
@@ -136,6 +138,37 @@ private fun CommentSection(
                             else -> {
                                 items(comments.itemCount) {
                                     Comment(comment = comments[it]!!) {}
+                                }
+
+                                // handle append (next page) errors
+                                when (comments.loadState.append) {
+                                    is LoadState.Error -> {
+                                        item {
+                                            ErrorPanel(
+                                                errorInfo = ErrorInfo(
+                                                    throwable = (comments.loadState.append as LoadState.Error).error,
+                                                    userAction = UserAction.REQUESTED_COMMENTS,
+                                                    request = "comments"
+                                                ),
+                                                onRetry = { comments.retry() },
+                                                modifier = Modifier.fillMaxWidth()
+                                            )
+                                        }
+                                    }
+
+                                    // show loading indicator while appending
+                                    is LoadState.Loading -> {
+                                        item {
+                                            LoadingIndicator(
+                                                modifier = Modifier.padding(
+                                                    top = 8.dp,
+                                                    bottom = 8.dp
+                                                )
+                                            )
+                                        }
+                                    }
+
+                                    else -> {}
                                 }
                             }
                         }

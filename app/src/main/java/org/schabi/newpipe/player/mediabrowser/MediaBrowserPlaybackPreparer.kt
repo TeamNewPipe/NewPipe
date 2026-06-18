@@ -49,7 +49,7 @@ import org.schabi.newpipe.util.NavigationHelper
  */
 class MediaBrowserPlaybackPreparer(
     private val context: Context,
-    private val setMediaSessionError: BiConsumer<String, Int>, // error string, error code
+    private val setMediaSessionError: BiConsumer<CharSequence, Int>, // error string, error code
     private val clearMediaSessionError: Runnable,
     private val onPrepare: Consumer<Boolean>
 ) : PlaybackPreparer {
@@ -118,7 +118,7 @@ class MediaBrowserPlaybackPreparer(
 
     private fun onPrepareError(throwable: Throwable) {
         setMediaSessionError.accept(
-            ErrorInfo.getMessage(throwable, null, null).getString(context),
+            ErrorInfo.getMessage(throwable, null, null).getText(context),
             PlaybackStateCompat.ERROR_CODE_APP_ERROR
         )
     }

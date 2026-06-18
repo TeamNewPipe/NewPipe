@@ -45,7 +45,7 @@ fun ErrorPanel(
         modifier = modifier
     ) {
         Text(
-            text = messageText,
+            text = messageText.toString(),
             style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
             textAlign = TextAlign.Center
         )

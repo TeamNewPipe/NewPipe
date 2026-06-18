@@ -56,7 +56,7 @@
     <string name="show_play_with_kodi_title">\"Kodi bilan ijro etish\" parametrini ko\'rsatish</string>
     <string name="kore_not_found">missing Kore dasturini o\'rnatasizmi\?</string>
     <string name="play_with_kodi_title">Kodi bilan ijro etish</string>
-    <string name="show_higher_resolutions_summary">Faqat ba\'zi qurilmalar 2K / 4K videolarni ijro etishi mumkin</string>
+    <string name="show_higher_resolutions_summary">Faqat ba\'zi qurilmalar 1440p / 4K videolarni ijro etishi mumkin</string>
     <string name="show_higher_resolutions_title">Yuqori o\'lchamlarni ko\'rsatish</string>
     <string name="default_popup_resolution_title">Standart pop-up o\'lchamlari</string>
     <string name="default_resolution_title">Standart o\'lchamlari</string>
@@ -277,7 +277,7 @@
     <string name="detail_thumbnail_view_description">Videoni ijro etish muddati, davomiyligi:</string>
     <string name="error_details_headline">Detallar:</string>
     <string name="your_comment">Sizning sharhingiz (ingliz tilida):</string>
-    <string name="info_labels">Nima: \\n So\'rov: \\nTarkib tili: \\nTarkib mamlakati: \\nIlova tili: \\ nXizmat: \\ nGMT vaqti: \\ nPaket: \\ nVersion: \\ nOS versiyasi:</string>
+    <string name="info_labels">Nima: \n So\'rov: \nTarkib tili: \nTarkib mamlakati: \nIlova tili: \\ nXizmat: \\ nGMT vaqti: \\ nPaket: \\ nVersion: \\ nOS versiyasi:</string>
     <string name="what_happened_headline">Nima sodir bo\'ldi:</string>
     <string name="what_device_headline">Info:</string>
     <string name="error_snackbar_action">Hisobot</string>
@@ -382,10 +382,9 @@
         <item quantity="other">%d sekondlar</item>
     </plurals>
     <string name="new_seek_duration_toast">ExoPlayer cheklovlari tufayli qidiruv davomiyligi %d soniya qilib belgilandi</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ha, va qisman videolarni tomosha qildim</string>
-    <string name="remove_watched_popup_warning">Pleylistga qo\'shilishdan oldin va keyin ko\'rilgan videolar o\'chiriladi.
-\nIshonchingiz komilmi\? Buni qaytarib bo\'lmaydi!</string>
-    <string name="remove_watched_popup_title">Ko\'rilgan videolar olib tashlansinmi\?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Ha, va qisman videolarni tomosha qildim</string>
+    <string name="remove_watched_popup_warning">Pleylistga qo\'shilishdan oldin va keyin ko\'rilgan videolar o\'chiriladi. \nIshonchingiz komilmi? Buni qaytarib bo\'lmaydi!</string>
+    <string name="remove_watched_popup_title">Ko\'rilgan videolar olib tashlansinmi?</string>
     <string name="remove_watched">Ko\'rilganlarni olib tashlash</string>
     <string name="systems_language">Tizimning standart qiymati</string>
     <string name="app_language_title">Ilova tili</string>

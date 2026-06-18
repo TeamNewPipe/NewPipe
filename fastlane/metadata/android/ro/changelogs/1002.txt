@@ -1,0 +1,4 @@
+S-a remediat eroarea care împiedica YouTube să redea niciun stream.
+
+Această versiune rezolvă doar cea mai urgentă eroare care împiedică încărcarea detaliilor videoclipurilor YouTube.
+Știm că există și alte probleme și vom lansa în curând o versiune separată pentru a le rezolva.

@@ -55,7 +55,7 @@
     <string name="error_snackbar_action">Bildir</string>
     <string name="what_device_headline">Bilgi:</string>
     <string name="what_happened_headline">Ne oldu:</string>
-    <string name="info_labels">Ne:\\nİstek:\\nİçerik Dili:\\nİçerik Ülkesi:\\nUygulama Dili:\\nHizmet:\\nGMT Zamanı:\\nPaket:\\nSürüm:\\nİşletim sistemi sürümü:</string>
+    <string name="info_labels">Ne:\nİstek:\nİçerik Dili:\nİçerik Ülkesi:\nUygulama Dili:\nHizmet:\nGMT Zamanı:\nPaket:\nSürüm:\nİşletim sistemi sürümü:</string>
     <string name="detail_thumbnail_view_description">Videoyu oynat, süre:</string>
     <string name="detail_uploader_thumbnail_view_description">Yükleyenin avatar küçük resmi</string>
     <string name="detail_likes_img_view_description">Beğeni</string>
@@ -80,7 +80,7 @@
     <string name="open_in_popup_mode">Açılır pencere modunda aç</string>
     <string name="default_popup_resolution_title">Varsayılan açılır pencere çözünürlüğü</string>
     <string name="show_higher_resolutions_title">Yüksek çözünürlükleri göster</string>
-    <string name="show_higher_resolutions_summary">Yalnızca bazı aygıtlar 2K/4K videoları oynatabilir</string>
+    <string name="show_higher_resolutions_summary">Yalnızca bazı aygıtlar 1440p/4K videoları oynatabilir</string>
     <string name="default_video_format_title">Varsayılan video biçimi</string>
     <string name="black_theme_title">Siyah</string>
     <string name="popup_playing_toast">Açılır pencere kipinde oynatılıyor</string>
@@ -504,10 +504,9 @@
     <string name="restricted_video">Bu video yaş kısıtlıdır.
 \n
 \nGörmek istiyorsanız ayarlarda \"%1$s\" seçeneğini açın.</string>
-    <string name="remove_watched_popup_warning">Oynatma listesine eklendikten önce ve sonra izlenen videolar kaldırılacak.
-\nEmin misiniz\? Bu geri döndürülemez!</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Evet ve kısmen izlenmiş videolar</string>
-    <string name="remove_watched_popup_title">İzlenen videoları kaldır\?</string>
+    <string name="remove_watched_popup_warning">Oynatma listesine eklenmeden önce ve sonra izlenen yayınlar kaldırılacaktır. \nEmin misiniz?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Evet ve kısmen izlenmiş videolar</string>
+    <string name="remove_watched_popup_title">İzlenen yayınları kaldır?</string>
     <string name="remove_watched">İzleneni kaldır</string>
     <string name="show_original_time_ago_summary">Akış ögelerinde hizmetlerden alınan özgün metinler görünecektir</string>
     <string name="show_original_time_ago_title">Ögelerde özgün \'… önce\'yi göster</string>
@@ -844,6 +843,29 @@
     <string name="player_http_403">Oynatırken sunucudan HTTP 403 hatası alındı, akış URL’si bitmiş ya da IP engellenmiş olabilir</string>
     <string name="player_http_invalid_status">Oynatırken sunucudan HTTP %1$s hatası alındı</string>
     <string name="youtube_player_http_403">Oynatırken sunucudan HTTP 403 hatası alındı, IP engeli ya da akış URL’si çözme sorunları olabilir</string>
-    <string name="sign_in_confirm_not_bot_error">%1$s veri sağlamayı geri çevirdi, istekçinin robot olmadığını doğrulaması için oturum açmasını istiyor.\n\n%1$s, IP adresinizi geçici olarak engellemiş olabilir, bir süre bekleyebilir ya da başka IP\'ye geçebilirsiniz (örneğin VPN\'i açıp/kapatarak ya da WiFi\'den mobil veriye geçerek).</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s veri sağlamıyor, istekçinin robot olmadığını doğrulaması için oturum açmasını istiyor.\n\n%1$s, IP adresinizi geçici olarak engellemiş olabilir, bir süre bekleyebilir ya da başka IP\'ye geçebilirsiniz (örneğin VPN\'i açıp/kapatarak ya da WiFi\'den mobil veriye geçerek).\n\nDaha çok bilgi için <a href="%2$s">bu SSS girdisine</a> bakın.</string>
     <string name="unsupported_content_in_country">Bu içerik şu anda seçili içerik ülkesinde kullanılamıyor.\n\nSeçiminizi \"Ayarlar &gt; İçerik &gt; Öntanımlı içerik ülkesi\"nden değiştirin.</string>
+    <string name="kao_dialog_warning">Google, Eylül 2026\'dan sonra sertifikalı Android aygıtlarda Play Store dışından kurulmuşlarla birlikte tüm uygulamaların, geliştiricilerin kişisel kimlik bilgilerini doğrudan Google’a göndermesini gerektireceğini duyurdu. NewPipe geliştiricileri bu zorunluluğu kabul etmediğinden, NewPipe bu tarihten sonra sertifikalı Android aygıtlarda çalışmayacaktır.</string>
+    <string name="kao_dialog_more_info">Ayrıntılar</string>
+    <string name="kao_solution">Çözüm</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">%d abonelik dışa aktarılıyor…</item>
+        <item quantity="other">%d abonelik dışa aktarılıyor…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">%d abonelik yükleniyor…</item>
+        <item quantity="other">%d abonelik yükleniyor…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">%d abonelik içeri aktarılıyor…</item>
+        <item quantity="other">%d abonelik içeri aktarılıyor…</item>
+    </plurals>
+    <string name="import_subscriptions_title">Abonelikleri içeri aktar</string>
+    <string name="export_subscriptions_title">Abonelikleri dışarı aktar</string>
+    <string name="import_subscriptions_summary">Abonelikleri önceki dışarı aktarmadaki .json dosyası ile içeri aktar</string>
+    <string name="export_subscriptions_summary">Aboneliklerini bir .json dosyasında dışarı aktar</string>
+    <string name="import_from_previous_export">Önceki dışarı aktarmadan içe aktar</string>
+    <string name="api23_requirement_dialog_title">NewPipe, Android 5 desteğini bırakıyor</string>
+    <string name="api23_requirement_dialog_message">NewPipe ne yazık ki Android 5.0 ve 5.1 desteğini bırakan birkaç kitaplığa bağlıdır. Üzücü ki sıradaki NewPipe sürümü yalnızca Android 6 ve üstü aygıtlarda çalışacaktır. Daha çoğunu blog gönderisinde okuyun.</string>
+    <string name="api23_requirement_dialog_blogpost">Blog gönderisi</string>
 </resources>

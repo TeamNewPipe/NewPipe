@@ -44,7 +44,7 @@
     <string name="open_in_popup_mode">Άνοιγμα σε αναδυόμενο παράθυρο</string>
     <string name="subscribe_button_title">Εγγραφή</string>
     <string name="subscribed_button_title">Εγγεγραμμένος</string>
-    <string name="show_higher_resolutions_summary">Μόνο μερικές συσκευές μπορούν να παίξουν 2K/4K βίντεο</string>
+    <string name="show_higher_resolutions_summary">Μόνο μερικές συσκευές μπορούν να παίξουν 1440p/4K βίντεο</string>
     <string name="black_theme_title">Μαύρο</string>
     <string name="show_search_suggestions_title">Προτάσεις αναζήτησης</string>
     <string name="enable_search_history_title">Ιστορικό αναζήτησης</string>
@@ -163,7 +163,7 @@
     <string name="sorry_string">Λυπούμαστε, αυτό δεν έπρεπε να έχει συμβεί.</string>
     <string name="error_report_button_text">Αναφορά μέσω ηλεκτρονικού ταχυδρομείου</string>
     <string name="error_snackbar_message">Συγγνώμη, κάτι πήγε στραβά.</string>
-    <string name="info_labels">Τι:\\nΑίτημα:\\nΓλώσσα περιεχομένου:\\nΧώρα περιεχομένου:\\nΓλώσσα εφαρμογής:\\nΥπηρεσία:\\nΏρα GMT:\\nΠακέτο:\\nΈκδοση:\\nΈκδοση λειτουργικού συστήματος:</string>
+    <string name="info_labels">Τι:\nΑίτημα:\nΓλώσσα περιεχομένου:\nΧώρα περιεχομένου:\nΓλώσσα εφαρμογής:\nΥπηρεσία:\nΏρα GMT:\nΠακέτο:\nΈκδοση:\nΈκδοση λειτουργικού συστήματος:</string>
     <string name="search_no_results">Κανένα αποτέλεσμα</string>
     <string name="empty_list_subtitle">Δεν υπάρχει τίποτα εδώ</string>
     <string name="detail_drag_description">Σύρετε για ταξινόμηση</string>
@@ -522,10 +522,9 @@
         <item quantity="other">%d δευτερόλεπτα</item>
     </plurals>
     <string name="new_seek_duration_toast">Λόγω περιορισμών του ExoPlayer, η διάρκεια αναζήτησης ορίστηκε στα %d δευτερόλεπτα</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ναι. Και τα μερικώς θεαθέντα βίντεο</string>
-    <string name="remove_watched_popup_warning">Τα βίντεο που εθεάθησαν πριν και αφού προστέθηκαν στη λίστα αναπαραγωγής θα απομακρυνθούν
-\nΕίστε σίγουρος; Δεν μπορεί να αναιρεθεί!</string>
-    <string name="remove_watched_popup_title">Απομάκρυνση θεαθέντων βίντεο;</string>
+    <string name="remove_watched_popup_partially_watched_streams">Ναι. Και τα μερικώς θεαθέντα βίντεο</string>
+    <string name="remove_watched_popup_warning">Οι ροές που εθεάθησαν πριν και αφού προστέθηκαν στη λίστα αναπαραγωγής θα απομακρυνθούν \nΕίστε σίγουρος;</string>
+    <string name="remove_watched_popup_title">Απομάκρυνση θεαθέντων ροών;</string>
     <string name="remove_watched">Απομάκρυνση όσων θεάθησαν</string>
     <string name="app_language_title">Γλώσσα εφαρμογής</string>
     <string name="choose_instance_prompt">Επιλογή μιας instance</string>
@@ -613,7 +612,7 @@
 \nΘέλετε να απεγγραφείτε από αυτό το κανάλι;</string>
     <string name="feed_load_error_account_info">Αδυναμία φόρτωσης τροφοδοσίας για \'%s\'.</string>
     <string name="feed_load_error">Σφάλμα φόρτωσης τροφοδοσίας</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Από το Android 10 και μετά, μόνο το SAF υποστηρίζεται</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Από το Android 10 και μετά, μόνο το Πλαίσιο Πρόσβασης Αποθήκευσης υποστηρίζεται</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Θα ερωτηθείτε πού να αποθηκεύσετε κάθε λήψη</string>
     <string name="no_dir_yet">Δεν έχει ορισθεί φάκελος λήψεων ακόμα, eπιλέξτε τον προεπιλεγμένο φάκελο τώρα</string>
     <string name="metadata_host">Host</string>
@@ -844,6 +843,29 @@
     <string name="player_http_403">Σφάλμα HTTP 403 που ελήφθη από τον διακομιστή κατά την αναπαραγωγή, πιθανώς λόγω λήξης διεύθυνσης URL ροής ή αποκλεισμού IP</string>
     <string name="player_http_invalid_status">Σφάλμα HTTP %1$s ελήφθη από τον διακομιστή κατά την αναπαραγωγή</string>
     <string name="youtube_player_http_403">Σφάλμα HTTP 403 ελήφθη από τον διακομιστή κατά την αναπαραγωγή, πιθανώς λόγω αποκλεισμού IP ή προβλημάτων απεμπλοκής URL ροής</string>
-    <string name="sign_in_confirm_not_bot_error">Ο %1$s αρνήθηκε να παράσχει δεδομένα, ζητώντας σύνδεση για να επιβεβαιώσει ότι ο αιτών δεν είναι bot.\n\nΗ IP σας ενδέχεται να έχει αποκλειστεί προσωρινά από τον %1$s. Μπορείτε να περιμένετε λίγο ή να αλλάξετε IP (για παράδειγμα, ενεργοποιώντας/απενεργοποιώντας ένα VPN ή αλλάζοντας από WiFi σε δεδομένα κινητής τηλεφωνίας).</string>
+    <string name="sign_in_confirm_not_bot_error">To %1$s αρνήθηκε να παράσχει δεδομένα, ζητώντας σύνδεση για να επιβεβαιώσει ότι ο αιτών δεν είναι bot.\n\nΗ IP σας ενδέχεται να έχει αποκλειστεί προσωρινά από το %1$s. Μπορείτε να περιμένετε λίγο ή να αλλάξετε IP (για παράδειγμα, ενεργοποιώντας/απενεργοποιώντας ένα VPN ή αλλάζοντας από WiFi σε δεδομένα κινητής τηλεφωνίας).\n\nΓια περισσότερες πληροφορίες, ανατρέξτε σε <a href="%2$s"> αυτή την καταχώριση στις Συχνές Ερωτήσεις </a>.</string>
     <string name="unsupported_content_in_country">Αυτό το περιεχόμενο δεν είναι διαθέσιμο για την τρέχουσα επιλεγμένη χώρα περιεχομένου.\n\nΑλλάξτε την επιλογή σας από \"Ρυθμίσεις &gt; Περιεχόμενο &gt; Προεπιλεγμένη χώρα περιεχομένου\".</string>
+    <string name="kao_dialog_more_info">Λεπτομέρειες</string>
+    <string name="kao_solution">Λύση</string>
+    <string name="kao_dialog_warning">Τον Αύγουστο του 2025, η Google ανακοίνωσε ότι από τον Σεπτέμβριο του 2026, η εγκατάσταση εφαρμογών θα απαιτεί επαλήθευση προγραμματιστή για όλες τις εφαρμογές Android σε πιστοποιημένες συσκευές, συμπεριλαμβανομένων εκείνων που είναι εγκατεστημένες εκτός του Play Store. Δεδομένου ότι οι προγραμματιστές του NewPipe δεν συμφωνούν με αυτήν την απαίτηση, το NewPipe δεν θα λειτουργεί πλέον σε πιστοποιημένες συσκευές Android μετά από αυτό το χρονικό διάστημα.</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">Εξαγωγή %d συνδρομής…</item>
+        <item quantity="other">Εξαγωγή %d συνδρομών…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">Φόρτωση %d συνδρομής…</item>
+        <item quantity="other">Φόρτωση %d συνδρομών…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">Εισαγωγή %d συνδρομής…</item>
+        <item quantity="other">Εισαγωγή %d συνδρομών…</item>
+    </plurals>
+    <string name="import_subscriptions_title">Εισαγωγή συνδρομών</string>
+    <string name="export_subscriptions_title">Εξαγωγή συνδρομών</string>
+    <string name="import_subscriptions_summary">Εισαγωγή συνδρομών από προηγούμενη εξαγωγή</string>
+    <string name="export_subscriptions_summary">Εξαγωγή των συνδρομών σας σε αρχείο .json</string>
+    <string name="import_from_previous_export">Εισαγωγή από προηγούμενη εξαγωγή</string>
+    <string name="api23_requirement_dialog_title">Το NewPipe καταργεί την υποστήριξη για το Android 5</string>
+    <string name="api23_requirement_dialog_message">Δυστυχώς, το NewPipe βασίζεται σε ορισμένες βιβλιοθήκες που έχουν σταματήσει να υποστηρίζουν τα Android 5.0 και 5.1. Ως εκ τούτου, η επόμενη έκδοση του NewPipe θα λειτουργεί μόνο σε συσκευές με Android 6 ή νεότερη έκδοση, δυστυχώς. Διαβάστε περισσότερα στην ανάρτηση του ιστολογίου.</string>
+    <string name="api23_requirement_dialog_blogpost">Δημοσίευση στο ιστολόγιο</string>
 </resources>

@@ -39,7 +39,7 @@
     <string name="default_resolution_title">Прадвызначаная раздзяляльнасць</string>
     <string name="default_popup_resolution_title">Раздзяляльнасць у аконным рэжыме</string>
     <string name="show_higher_resolutions_title">Паказваць высокія раздзяляльнасці</string>
-    <string name="show_higher_resolutions_summary">Толькі некаторыя прылады могуць прайграваць відэа ў 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Толькі некаторыя прылады могуць прайграваць відэа ў 1440p/4K</string>
     <string name="play_with_kodi_title">Прайграць у Kodi</string>
     <string name="kore_not_found">Усталяваць адсутную праграму Kore?</string>
     <string name="show_play_with_kodi_title">Паказваць пункт «Прайграць у Kodi»</string>
@@ -146,7 +146,7 @@
     <string name="error_snackbar_action">Справаздача</string>
     <string name="what_device_headline">Інфармацыя:</string>
     <string name="what_happened_headline">Што адбылося:</string>
-    <string name="info_labels">Што:\\nЗапыт:\\nМова кантэнту:\\nКраіна кантэнту:\\nМова праграмы:\\nСэрвіс:\\nЧас GMT:\\nПакет:\\nВерсія:\\nВерсія АС:</string>
+    <string name="info_labels">Што:\nЗапыт:\nМова кантэнту:\nКраіна кантэнту:\nМова праграмы:\nСэрвіс:\nЧас GMT:\nПакет:\nВерсія:\nВерсія АС:</string>
     <string name="your_comment">Ваш каментарый (па-англійску):</string>
     <string name="error_details_headline">Падрабязнасці:</string>
     <string name="detail_thumbnail_view_description">Прайграць відэа, працягласць:</string>
@@ -294,8 +294,8 @@
     <string name="import_youtube_instructions">Імпарт падпісак YouTube з Google Takeout: \n \n1. Перайдзіце па гэтым URL: %1$s \n2. Увайдзіце, калі вас папросяць \n3. Націсніце на «Усе даныя ўключаны», затым на «Зняць выбар з усіх», затым выберыце толькі «падпіскі» і націсніце «ОК» \n4. Націсніце «Наступны крок», а затым «Стварыць экспарт» \n5. Націсніце на кнопку «Спампаваць» пасля таго, як яна з\'явіцца \n6. Ніжэй націсніце на ІМПАРТАВАЦЬ ФАЙЛ і выберыце спампаваны файл .zip \n7. [Калі не ўдаецца імпартаваць .zip] Трэба выняць файл .csv (звычайна ў раздзеле «YouTube і YouTube Music/subscriptions/subscriptions.csv»), ніжэй націсніце ІМПАРТАВАЦЬ ФАЙЛ і выберыце выняты файл CSV</string>
     <string name="import_soundcloud_instructions">Каб імпартаваць профіль SoundCloud, увядзіце URL або свой ID:\n\n1. Уключыце «Версія для ПК» у браўзеры (сайт не падтрымліваецца мабільнымі прыладамі) \n2. Перайдзіце на: %1$s \n3. Увайдзіце, калі неабходна \n4. Скапіруйце URL-адрас профілю, на які вас перанакіравала.</string>
     <string name="import_soundcloud_instructions_hint">вашID, soundcloud.com/вашID</string>
-    <string name="import_network_expensive_warning">Гэтае дзеянне можа выклікаць вялікі расход трафіку. 
-\n 
+    <string name="import_network_expensive_warning">Гэтае дзеянне можа выклікаць вялікі расход трафіку.
+\n
 \nПрацягнуць?</string>
     <string name="playback_speed_control">Кіраванне хуткасцю прайгравання</string>
     <string name="playback_tempo">Тэмп</string>
@@ -609,15 +609,13 @@
     <string name="faq">Перайсці на вэб-сайт</string>
     <string name="main_page_content_swipe_remove">Каб выдаліць элемент, змахніце яго ўбок</string>
     <string name="unset_playlist_thumbnail">Прыбраць пастаянную мініяцюру</string>
-    <string name="show_image_indicators_title">Паказваць на відарысах указальнікі</string>
-    <string name="show_image_indicators_summary">Паказваць на відарысах каляровыя меткі Picasso, якія абазначаюць яго крыніцу: чырвоная — сетка, сіняя — дыск, зялёная — памяць</string>
     <string name="feed_processing_message">Апрацоўка стужкі…</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Пры кожным спампоўванні вам будзе прапанавана выбраць месца захавання</string>
     <string name="feed_notification_loading">Загрузка канала…</string>
-    <string name="remove_watched_popup_title">Выдаліць прагледжаныя відэа\?</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Так, часткова прагледжаныя відэа таксама</string>
+    <string name="remove_watched_popup_title">Выдаліць прагледжаныя трансляцыі?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Так, часткова прагледжаныя відэа таксама</string>
     <string name="percent">Працэнт</string>
-    <string name="remove_watched_popup_warning">Відэа, якія прагледжаны перад дадаваннем і пасля дадавання ў спіс прайгравання, будуць выдалены. \nВы ўпэўнены? Гэта дзеянне немагчыма скасаваць!</string>
+    <string name="remove_watched_popup_warning">Трансляцыі, якія прагледжаны перад дадаваннем і пасля дадавання ў спіс прайгравання, будуць выдалены. \nВы ўпэўнены?</string>
     <string name="show_crash_the_player_summary">Паказвае варыянт збою пры выкарыстанні плэера</string>
     <string name="remove_watched">Выдаліць прагледжаныя</string>
     <string name="show_error_snackbar">Паказаць панэль памылак</string>
@@ -830,4 +828,40 @@
     <string name="unsupported_content_in_country">Гэты кантэнт недаступны для цяперашняй краіны кантэнту.\n\nЯе можна змяніць праз «Налады &gt; Кантэнт &gt; Прадвызначаная краіна кантэнту».</string>
     <string name="migration_info_7_8_message">21 ліпеня 2025 года YouTube спыніў падтрымку аб\'яднанай старонкі трэндаў. NewPipe замяніў старонку трэндаў на трэнды трансляцый.\n\nТаксама можна выбраць іншыя старонкі трэндаў праз «Налады &gt; Кантэнт &gt; Змесціва галоўнай старонкі».</string>
     <string name="migration_info_7_8_title">Аб\'яднаныя трэнды YouTube выдалены</string>
+    <string name="import_subscriptions_title">Імпартаваць падпіскі</string>
+    <string name="export_subscriptions_title">Экспартаваць падпіскі</string>
+    <string name="kao_dialog_warning">У жніўні 2025 года Google абвясціў, што з верасня 2026 года для ўсталявання праграм для Android на сертыфікаваныя прылады будзе патрабавацца праверка распрацоўшчыка. Гэта тычыцца і тых праграм, што ўсталёўваюцца па-за Play Store. Паколькі распрацоўшчыкі NewPipe не згодныя з гэтым патрабаваннем, пасля гэтага часу NewPipe больш не будзе працаваць на сертыфікаваных прыладах Android.</string>
+    <string name="kao_dialog_more_info">Падрабязнасці</string>
+    <string name="kao_solution">Рашэнне</string>
+    <string name="permission_display_over_apps_message">Каб выкарыстоўваць аконны прайгравальнік, у наступным меню налад Android выберыце %1$s і ўключыце %2$s.</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">Экспартаванне %d падпіскі…</item>
+        <item quantity="few">Экспартаванне %d падпісак…</item>
+        <item quantity="many">Экспартаванне %d падпісак…</item>
+        <item quantity="other">Экспартаванне %d падпісак…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">Загрузка %d падпіскі…</item>
+        <item quantity="few">Загрузка %d падпісак…</item>
+        <item quantity="many">Загрузка %d падпісак…</item>
+        <item quantity="other">Загрузка %d падпісак…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">Імпартаванне %d падпіскі…</item>
+        <item quantity="few">Імпартаванне %d падпісак…</item>
+        <item quantity="many">Імпартаванне %d падпісак…</item>
+        <item quantity="other">Імпартаванне %d падпісак…</item>
+    </plurals>
+    <string name="import_subscriptions_summary">Імпарт падпісак з папярэдняга экспарту ў .json</string>
+    <string name="export_subscriptions_summary">Экспарт падпісак у файл .json</string>
+    <string name="import_from_previous_export">Імпарт з папярэдняга экспарту</string>
+    <string name="account_terminated_service_provides_reason">Уліковы запіс спынены\n\n%1$s паведамляе наступную прычыну: %2$s</string>
+    <string name="migration_info_6_7_message">SoundCloud больш не публікуе свой спіс 50 лепшых. Адпаведная ўкладка выдалена з галоўнай старонкі.</string>
+    <string name="player_http_403">Падчас прайгравання ад сервера атрымана памылка HTTP 403, хутчэй за ўсё гэта выклікана заканчэннем тэрміну дзеяння URL для патокавай перадачы або блакіраваннем IP-адраса</string>
+    <string name="player_http_invalid_status">Падчас прайгравання ад сервера атрымана памылка HTTP %1$s</string>
+    <string name="youtube_player_http_403">Падчас прайгравання ад сервера атрымана памылка HTTP 403, хутчэй за ўсё гэта выклікана блакіроўкай IP-адраса або праблемамі з дэабфускацыяй URL-адраса для патокавай перадачы</string>
+    <string name="api23_requirement_dialog_title">NewPipe спыняе падтрымку Android 5</string>
+    <string name="api23_requirement_dialog_message">На жаль, NewPipe залежыць ад некалькіх бібліятэк, якія спынілі падтрымку Android 5.0 і 5.1. Таму наступны выпуск NewPipe, будзе працаваць толькі на прыладах з Android 6 і вышэй. Падрабязнасці можна прачытаць ў блогу.</string>
+    <string name="api23_requirement_dialog_blogpost">Запіс у блогу</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s адмовіўся перадаць даныя, запытаўшы ўваход у сістэму для пацвярджэння, што вы не бот.\n\nМагчыма, ваш IP-адрас быў часова заблакіраваны %1$s. Можна пачакаць некаторы час або перайсці на іншы IP-адрас (напрыклад, уключыўшы/выключыўшы VPN або пераключыўшыся з Wi-Fi на мабільныя даныя).\n\nПаглядзіце гэты <a href="%2$s">раздзел FAQ</a>, каб атрымаць дадатковую інфармацыю.</string>
 </resources>

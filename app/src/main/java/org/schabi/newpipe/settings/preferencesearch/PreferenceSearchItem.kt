@@ -12,7 +12,7 @@ import androidx.annotation.XmlRes
  *
  * @param key Key of the setting/preference. E.g. used inside [android.content.SharedPreferences].
  * @param title Title of the setting, e.g. 'Default resolution' or 'Show higher resolutions'.
- * @param summary Summary of the setting, e.g. '480p' or 'Only some devices can play 2k/4k'.
+ * @param summary Summary of the setting, e.g. '480p' or 'Only some devices can play 1440p/4k'.
  * @param entries Possible entries of the setting, e.g. 480p,720p,...
  * @param breadcrumbs Breadcrumbs - a hint where the setting is located e.g. 'Video and Audio > Player'
  * @param searchIndexItemResId The xml-resource where this item was found/built from.
@@ -26,12 +26,11 @@ data class PreferenceSearchItem(
     val breadcrumbs: String,
     @XmlRes val searchIndexItemResId: Int
 ) {
+    val allRelevantSearchFields: List<String>
+        get() = listOf(title, summary, entries, breadcrumbs)
+
     fun hasData(): Boolean {
         return !key.isEmpty() && !title.isEmpty()
-    }
-
-    fun getAllRelevantSearchFields(): MutableList<String?> {
-        return mutableListOf(title, summary, entries, breadcrumbs)
     }
 
     override fun toString(): String {

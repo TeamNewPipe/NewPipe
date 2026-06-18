@@ -1,0 +1,15 @@
+This release drops support for Android 4.4 KitKat, now the minimum version is Android 5 Lollipop!
+
+New
+• Download from long-press menu
+• Hide future videos in feed
+• Share local playlists
+
+Improved
+• Refactor the player code into small components: less RAM used, less bugs
+• Improve thumbnails' scale mode
+• Vector-ize image placeholders
+
+Fixed
+• Fix various issues with the player notification: outdated/missing media info, distorted thumbnail
+• Fix fullscreen using 1/4 of screen

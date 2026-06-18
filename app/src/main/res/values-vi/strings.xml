@@ -26,7 +26,7 @@
     <string name="default_resolution_title">Độ phân giải mặc định</string>
     <string name="default_popup_resolution_title">Độ phân giải cửa sổ bật lên mặc định</string>
     <string name="show_higher_resolutions_title">Hiện độ phân giải cao hơn</string>
-    <string name="show_higher_resolutions_summary">Chỉ một số thiết bị có thể phát video 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Chỉ một số thiết bị có thể phát video 1440p/4K</string>
     <string name="play_with_kodi_title">Phát với Kodi</string>
     <string name="kore_not_found">Cài đặt ứng dụng Kore bị thiếu\?</string>
     <string name="show_play_with_kodi_title">Hiển thị tùy chọn \"Phát với Kodi\"</string>
@@ -62,7 +62,7 @@
     <string name="general_error">Lỗi</string>
     <string name="network_error">Lỗi kết nối mạng</string>
     <string name="could_not_load_thumbnails">Không thể tải tất cả hình thu nhỏ</string>
-    <string name="parsing_error">Không thể phân tích cú pháp trang web</string>
+    <string name="parsing_error">Không thể phân tích cú pháp web.</string>
     <string name="content_not_available">Nội dung không khả dụng</string>
     <string name="could_not_setup_download_menu">Không thể thiết lập menu tải về</string>
     <string name="app_ui_crash">Ứng dụng/Giao diện người dùng bị lỗi</string>
@@ -72,7 +72,7 @@
     <string name="error_snackbar_action">Báo cáo</string>
     <string name="what_device_headline">Thông tin:</string>
     <string name="what_happened_headline">Chuyện gì đã xảy ra:</string>
-    <string name="info_labels">Loại lỗi:\\nYêu cầu:\\nNgôn ngữ của nội dung:\\nVùng miền (quốc gia) của nội dung:\\nNgôn ngữ của ứng dụng:\\nDịch vụ:\\nThời gian GMT:\\nTên gói:\\nPhiên bản:\\nPhiên bản hệ điều hành:</string>
+    <string name="info_labels">Loại lỗi:\nYêu cầu:\nNgôn ngữ của nội dung:\nVùng miền (quốc gia) của nội dung:\nNgôn ngữ của ứng dụng:\nDịch vụ:\nThời gian GMT:\nTên gói:\nPhiên bản:\nPhiên bản hệ điều hành:</string>
     <string name="your_comment">Nhận xét của bạn (bằng tiếng Anh):</string>
     <string name="error_details_headline">Chi tiết:</string>
     <string name="detail_thumbnail_view_description">Phát video, thời lượng:</string>
@@ -420,9 +420,8 @@
     <plurals name="seconds">
         <item quantity="other">%d giây</item>
     </plurals>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Có, và video đã xem một phần</string>
-    <string name="remove_watched_popup_warning">Những video đã xem trước và sau khi thêm vào danh sách phát sẽ bị loại bỏ.
-\nBạn có chắc không? Điều này không thể được hoàn tác!</string>
+    <string name="remove_watched_popup_partially_watched_streams">Có, và video đã xem một phần</string>
+    <string name="remove_watched_popup_warning">Những video đã xem trước và sau khi thêm vào danh sách phát sẽ bị loại bỏ. \nBạn có chắc không? Điều này không thể được hoàn tác!</string>
     <string name="remove_watched_popup_title">Xóa các video đã xem?</string>
     <string name="remove_watched">Loại bỏ đã xem</string>
     <string name="systems_language">Mặc định hệ thống</string>
@@ -793,9 +792,7 @@
     <string name="settings_category_backup_restore_title">Sao lưu và khôi phục</string>
     <string name="reset_settings_title">Đặt lại cài đặt</string>
     <string name="reset_settings_summary">Đặt lại tất cả cài đặt về giá trị mặc định</string>
-    <string name="reset_all_settings">Việc đặt lại tất cả cài đặt sẽ loại bỏ tất cả các cài đặt ưa thích của bạn và khởi động lại ứng dụng.
-\n
-\nBạn có chắc muốn tiếp tục?</string>
+    <string name="reset_all_settings">Việc đặt lại tất cả cài đặt sẽ loại bỏ tất cả các cài đặt mà bạn đã đặt và khởi động lại ứng dụng. \n \nBạn có chắc muốn tiếp tục?</string>
     <string name="no">Không</string>
     <string name="auto_update_check_description">NewPipe có thể tự động kiểm tra các phiên bản mới theo thời gian và thông báo cho bạn khi chúng có sẵn.
 \nBạn có muốn kích hoạt tính năng này không?</string>
@@ -821,4 +818,29 @@
     <string name="trending_podcasts">Podcasts đang thịnh hành</string>
     <string name="trending_movies">Phim và chương trình đang thịnh hành</string>
     <string name="trending_music">Âm nhạc đang thịnh hành</string>
+    <string name="player_http_403">Đã xảy ra lỗi HTTP 403 trong khi phát, có thể do URL phát sóng đã hết hạn hoặc bị ban IP</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s đã từ chối cung cấp dữ liệu, cần phải đăng nhập để xác nhận requester của NewPipe ko phải là bot.\n\nIP này có vẻ đã bị ban tạm thời bởi %1$s, bạn có thể đợi một lúc hoặc chuyển sang IP khác (ví dụ như việc tắt / bật lại VPN, hoặc là chuyển mạng từ WIFI sang 4G/5G).\n\nXem qua <a href="%2$s">phần FAQ này</a> đẻ biết thêm chi tiết</string>
+    <string name="unsupported_content_in_country">Nội dung này không được hỗ trợ tại quốc gia mà bạn chọn.\n\nHãy đổi quốc gia trong phần \"Cài đặt &gt; Nội dung &gt; Quốc gia nội dung mặc định\".</string>
+    <string name="permission_display_over_apps_message">Để sử dụng tính năng phát video nổi, hãy chọn %1$s trong Cài đặt Android và bật tính năng %2$s.</string>
+    <string name="youtube_player_http_403">Đã xảy ra lỗi HTTP 403 trong khi phát, có thể IP này đã bị ban hoặc vấn đề phát URL deobfuscation</string>
+    <string name="permission_display_over_apps_permission_name">\"Cho phép hiển thị trên ứng dụng khác\"</string>
+    <string name="delete_file">Xóa file</string>
+    <string name="delete_entry">Xóa entry</string>
+    <string name="account_terminated_service_provides_reason">Tài khoản bị vô hiệu hóa. \n\n%1$s cung cấp lý do này: %2$s</string>
+    <string name="entry_deleted">Entry đã xóa</string>
+    <string name="player_http_invalid_status">Đã xảy ra lỗi HTTP %1$s trong khi phát</string>
+    <string name="kao_dialog_warning">Từ tháng 8 năm 2025, Google đã thông báo rằng kể từ tháng 9 năm 2026, việc cài app sẽ yêu cầu các nhà phát triển phải xác minh trên những thiết bị đã chứng nhận, kể cả đối với các ứng dụng ngoài Play Store. Vì các nhà phát triển của NewPipe không đồng ý với điều kiện này, nên có lẽ NewPipe sẽ không còn hoạt động trên các máy Android được chứng nhận sau thời điểm ấy.</string>
+    <string name="kao_dialog_more_info">Chi tiết</string>
+    <string name="kao_solution">Giải pháp</string>
+    <string name="api23_requirement_dialog_title">NewPipe sẽ ngừng hỗ trợ phiên bản Android 5.x vào bản cập nhật sau</string>
+    <string name="api23_requirement_dialog_message">Vì NewPipe phụ thuộc vào vài libs của Google nhưng đã ngừng hỗ trợ cho Android 5.x. Bản cập nhật sau sẽ chỉ hỗ trợ cho Android 6 trở lên, thật đáng tiếc. Chi tiết tại blog của NewPipe.</string>
+    <string name="api23_requirement_dialog_blogpost">Bài đăng</string>
+    <plurals name="export_subscriptions">
+        <item quantity="other">Nhập/Xuất kênh đăng ký</item>
+    </plurals>
+    <string name="import_subscriptions_title">Nhập kênh đăng ký</string>
+    <string name="export_subscriptions_title">Xuất kênh đăng ký</string>
+    <string name="import_subscriptions_summary">Nhập kênh đăng ký từ file .json đã xuất trước đó</string>
+    <string name="export_subscriptions_summary">Xuất kênh đăng ký của bạn thành file .json</string>
+    <string name="import_from_previous_export">Nhập từ bản đã xuất trước đó</string>
 </resources>

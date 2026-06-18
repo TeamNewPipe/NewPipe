@@ -1,0 +1,1 @@
+Lägg till popup-fönster för att informera användare om att v0.28.7 kommer att ta bort stödet för Android 5

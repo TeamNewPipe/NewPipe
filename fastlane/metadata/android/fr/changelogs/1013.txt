@@ -1,0 +1,4 @@
+- [YouTube] Contournement de l'application de la norme SABR grâce à l'utilisation d'un autre client de lecture. Les vidéos et les flux sont à nouveau disponibles dans des résolutions autres que 360p !
+- [YouTube] Suppression des solutions de secours pour les positions inconnues lors de l'extraction du nombre de vues et de la date dans la vue verrouillée.
+
+Un immense merci à toutes les personnes qui ont participé à cette version !

@@ -1,0 +1,6 @@
+Aceasta este o actualizare rapidă care corectează erori YouTube:
+• [YouTube] Repară încărcarea informațiilor video, erorile HTTP 403 la redare și redarea unor videoclipuri cu restricție de vârstă
+• Corectează problema dimensiunii subtitrărilor care nu se actualiza
+• Corectează descărcarea dublă a informațiilor la deschiderea unui stream
+• [SoundCloud] Elimină streamurile protejate DRM care nu puteau fi redate
+• Traduceri actualizate

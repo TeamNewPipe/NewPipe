@@ -1,0 +1,9 @@
+Opravená chyba NullPointerException pri vkladaní akcií do fronty pomocou kontextu aplikácie
+[YouTube] Opravené spracovanie trvania položky
+
+Aktualizované preklady a odstránené nepreložené jazykové verzie
+Drobné vylepšenia pri práci s obrázkami
+
+Zmeny súvisiace s portovaním odberov v rámci refaktoringu
+Zmeny súvisiace s portovaním cesty v rámci refaktoringu
+Aktualizácia závislosti a Gradle na najnovšiu stabilnú verziu

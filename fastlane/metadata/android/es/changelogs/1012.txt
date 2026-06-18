@@ -1,0 +1,9 @@
+Pequeña actualización para corregir errores y que YouTube vuelva a funcionar. Necesaria debido a los cambios realizados por YouTube.
+Gracias al trabajo de @AudricV y @Ecomont, NewPipe ahora puede extraer elementos de las pestañas de los canales nuevamente.
+
+Otros cambios
+- [YouTube] Se corrigió la visualización de la duración y la transmisión en vivo en los videos relacionados.
+- [SoundCloud] Se corrigió el error que provocaba el cierre inesperado de los comentarios al gestionar las URL de página nulas.
+- Actualizaciones de dependencias
+
+NewPipe dejará de ser compatible con Android 5 en la próxima versión.

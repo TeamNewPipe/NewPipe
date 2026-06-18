@@ -78,7 +78,7 @@
     <string name="downloads_title">ダウンロード</string>
     <string name="error_report_title">ふぐあいほうくーく</string>
     <string name="app_ui_crash">アプリ（UI）やしがクラッシュさびたん</string>
-    <string name="info_labels">ちゃーるむんだい：\\nリクエスト：\\nコンテンツぬぎんぐ：\\nコンテンツぬくに：\\nアプリぬぎんぐ：\\nサービス：\\nGMTじかん：\\nパッケージ：\\nバージョン：\\nOSぬバージョン：</string>
+    <string name="info_labels">ちゃーるむんだい：\nリクエスト：\nコンテンツぬぎんぐ：\nコンテンツぬくに：\nアプリぬぎんぐ：\nサービス：\nGMTじかん：\nパッケージ：\nバージョン：\nOSぬバージョン：</string>
     <string name="title_activity_recaptcha">reCAPTCHAぬようきゅう</string>
     <string name="recaptcha_request_toast">reCAPTCHAようきゅうさびたん</string>
     <string name="black_theme_title">ブラック</string>
@@ -91,7 +91,7 @@
     <string name="default_video_format_title">デフォルトぬちゃーがけいしき</string>
     <string name="default_popup_resolution_title">デフォルトふぃんがしち（ポップアップひょうじ）</string>
     <string name="show_higher_resolutions_title">ゆりたかさしがしーちひょうじ</string>
-    <string name="show_higher_resolutions_summary">2K/4Kちゃーがはいちぶぬデバイスっしぬみさいゆいなやびーん</string>
+    <string name="show_higher_resolutions_summary">1440p/4Kちゃーがはいちぶぬデバイスっしぬみさいゆいなやびーん</string>
     <string name="controls_background_title">バックグラウンド</string>
     <string name="controls_popup_title">ポップアップ</string>
     <string name="clear">しーょうきょ</string>
@@ -504,9 +504,8 @@
     <string name="restricted_video">くぬちゃーがんかいはにーるれいうぅいゆいぎんぬあいびーん。
 \n
 \nいちらんさるいばあい、しっていから \"%1$s\" ゆーいるこうかしみそーれー。</string>
-    <string name="remove_watched_popup_warning">プレイリストんかいちいからさりーるめーんちいからさったるあとぅんしちょうさんちゃーしがはプレイリストからさくじょさりやびーん。
-\nゆたさいびーが？くぬあしっさーむとぅんかいむどぅしやびらん！</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">はい、ぶぶんてぃちーがしちょうさんちゃーしがんさちゅるじょさびーん</string>
+    <string name="remove_watched_popup_warning">プレイリストんかいちいからさりーるめーんちいからさったるあとぅんしちょうさんちゃーしがはプレイリストからさくじょさりやびーん。 \nゆたさいびーが？くぬあしっさーむとぅんかいむどぅしやびらん！</string>
+    <string name="remove_watched_popup_partially_watched_streams">はい、ぶぶんてぃちーがしちょうさんちゃーしがんさちゅるじょさびーん</string>
     <string name="remove_watched_popup_title">しちょうじみぬちゃーしがさちゅるじょさびーが？</string>
     <string name="remove_watched">しちょうじみさちゅるじょ</string>
     <string name="show_original_time_ago_summary">サービスぬオリジナルぬテキストぬやーまほうあぬんかいひょうじさりやびーん</string>

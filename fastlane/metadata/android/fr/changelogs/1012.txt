@@ -1,0 +1,8 @@
+Il s'agit d'une petite mise à jour corrective visant à rendre YouTube à nouveau utilisable. Elle est nécessaire en raison de modifications apportées par YouTube.
+
+Autres modifications
+- [YouTube] Correction de l'affichage de la durée et des diffusions en direct dans les vidéos associées
+- [SoundCloud] Correction du plantage des commentaires en gérant les URL de page nulles
+- Mises à jour des dépendances
+
+NewPipe ne prendra plus en charge Android 5 dans la prochaine version.

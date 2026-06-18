@@ -1,19 +1,19 @@
-Novo
-- Pesquisa no YouTube Música
-- Suporte básico de TV Android
+New
+• Search on YouTube Music
+• Basic Android TV support
 
-Melhorado
-- Adicionada a capacidade de remover todos os vídeos vistos de uma lista de reprodução local
-- Mostrar mensagem quando o conteúdo ainda não é suportado, em vez de se chocar
-- Reprodutor popup melhorado redimensionado com gestos de beliscão
-- Enqueue streams em fundo e botões de popup no canal
-- Melhor manuseamento do tamanho do título do cabeçalho da gaveta
+Improved
+• Added the ability to remove all watched videos from a local playlist
+• Show message when content isn't supported yet instead of crashing
+• Improved popup player resize with pinch gestures
+• Enqueue streams on long press on background and popup buttons in channel
+• Improved size handling of the drawer header title
 
-Fixa
-- Definição de conteúdo com restrição de idade fixa não funciona
-- Fixação de certos tipos de reCAPTCHAs
-- Corrigido o crash ao abrir marcadores enquanto a lista de reprodução é "nula".
-- Deteção fixa de exceções relacionadas com a rede
-- Visibilidade fixa do botão de ordenação do grupo no fragmento de subscrições
+Fixed
+• Fixed age restricted content setting not working
+• Fixed certain kinds of reCAPTCHAs
+• Fixed crash when opening bookmarks while playlist is `null`
+• Fixed detection of network related exceptions
+• Fixed visibility of group sort button in the subscriptions fragment
 
-e mais
+and more

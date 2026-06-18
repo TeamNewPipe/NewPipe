@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -24,11 +25,13 @@ import androidx.preference.PreferenceManager;
 
 import com.jakewharton.processphoenix.ProcessPhoenix;
 
+import net.newpipe.app.navigation.Destination;
+
+import org.schabi.newpipe.ComposeActivity;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.RouterActivity;
-import org.schabi.newpipe.about.AboutActivity;
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity;
 import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.error.ErrorUtil;
@@ -66,7 +69,6 @@ import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.settings.SettingsActivity;
-import org.schabi.newpipe.settings.SettingsV2Activity;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.List;
@@ -431,13 +433,16 @@ public final class NavigationHelper {
         final RunnableWithVideoDetailFragment onVideoDetailFragmentReady = detailFragment -> {
             expandMainPlayer(detailFragment.requireActivity());
             detailFragment.setAutoPlay(autoPlay);
-            if (switchingPlayers) {
+            if (switchingPlayers && TextUtils.equals(detailFragment.getUrl(), url)) {
                 // Situation when user switches from players to main player. All needed data is
                 // here, we can start watching (assuming newQueue equals playQueue).
                 // Starting directly in fullscreen if the previous player type was popup.
                 detailFragment.openVideoPlayer(playerType == PlayerType.POPUP
                         || PlayerHelper.isStartMainPlayerFullscreenEnabled(context));
             } else {
+                if (switchingPlayers && playerType == PlayerType.POPUP) {
+                    detailFragment.setForceFullscreen(true);
+                }
                 detailFragment.selectAndLoadVideo(serviceId, url, title, playQueue);
             }
             detailFragment.scrollToTop();
@@ -634,17 +639,17 @@ public final class NavigationHelper {
     }
 
     public static void openAbout(final Context context) {
-        final Intent intent = new Intent(context, AboutActivity.class);
-        context.startActivity(intent);
+        ContextKt.navigateTo(context, Destination.About.INSTANCE);
     }
 
     public static void openSettings(final Context context) {
-        final Class<?> settingsClass = PreferenceManager.getDefaultSharedPreferences(context)
+        final boolean useCompose = PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(Localization.compatGetString(context,
-                                R.string.settings_layout_redesign_key), false)
-                ? SettingsV2Activity.class : SettingsActivity.class;
+                                R.string.settings_layout_redesign_key), false);
 
-        final Intent intent = new Intent(context, settingsClass);
+        final Intent intent = useCompose
+                ? ComposeActivity.Companion.settingsIntent(context)
+                : new Intent(context, SettingsActivity.class);
         context.startActivity(intent);
     }
 

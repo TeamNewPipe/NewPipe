@@ -80,14 +80,14 @@
     <string name="could_not_load_thumbnails">Не удалось загрузить все миниатюры</string>
     <string name="controls_background_title">В фоне</string>
     <string name="controls_popup_title">В окне</string>
-    <string name="show_higher_resolutions_summary">Только некоторые устройства поддерживают видео в 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Только некоторые устройства поддерживают видео в 1440p/4K</string>
     <string name="default_video_format_title">Формат видео по умолчанию</string>
     <string name="black_theme_title">Чёрная</string>
     <string name="popup_remember_size_pos_title">Помнить параметры окна</string>
     <string name="popup_playing_toast">Воспроизведение во всплывающем окне</string>
     <string name="clear">Очистить</string>
     <string name="all">Всё</string>
-    <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСтрана контента:\\nЯзык приложения:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия пакета:\\nВерсия ОС:</string>
+    <string name="info_labels">Что:\nЗапрос:\nЯзык контента:\nСтрана контента:\nЯзык приложения:\nСервис:\nВремя по Гринвичу:\nПакет:\nВерсия пакета:\nВерсия ОС:</string>
     <string name="msg_popup_permission">Это разрешение нужно для
 \nвоспроизведения в окне</string>
     <string name="open_in_popup_mode">Открыть во всплывающем окне</string>
@@ -290,7 +290,7 @@
 \n4. Скопируйте URL профиля из адресной строки.</string>
     <string name="import_soundcloud_instructions_hint">вашID, soundcloud.com/вашID</string>
     <string name="import_network_expensive_warning">Это действие может вызвать большой расход трафика.
-\n 
+\n
 \nПродолжить?</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кэш изображений очищен</string>
     <string name="metadata_cache_wipe_title">Очистить кэш метаданных</string>
@@ -343,7 +343,7 @@
     <string name="grid">Сетка</string>
     <string name="auto">Автоматически</string>
     <string name="download_to_sdcard_error_message">Загрузка на SD-карту невозможна. Сбросить расположение папки загрузки\?</string>
-    <string name="download_to_sdcard_error_title">SD-карта недоступна</string>
+    <string name="download_to_sdcard_error_title">Внешнее хранилище недоступно</string>
     <string name="main_page_content_summary">Вкладки, видимые на главной странице</string>
     <string name="restore_defaults">Значения по умолчанию</string>
     <string name="restore_defaults_confirmation">Восстановить значения по умолчанию\?</string>
@@ -508,14 +508,14 @@
 \nКак пример, YouTube поддерживает быстрое обновление.
 \n
 \nВыбор за вами: скорость или точность.</string>
-    <string name="feed_use_dedicated_fetch_method_title">Обновление по RSS, если доступно</string>
+    <string name="feed_use_dedicated_fetch_method_title">Получать из выделенной ленты, когда доступно</string>
     <string name="feed_use_dedicated_fetch_method_summary">Доступно для некоторых сервисов, быстрое, может возвращать не всё содержимое канала и не содержать часть сведений (длительность, статус трансляции)</string>
     <string name="feed_update_threshold_summary">Период актуальности подписок после обновления — %s</string>
     <string name="restricted_video">Это видео имеет возрастное ограничение.
 \n
 \nВключите «%1$s» в настройках, если хотите его видеть.</string>
-    <string name="content_not_supported">NewPipe не поддерживает этот контент. 
-\n 
+    <string name="content_not_supported">NewPipe не поддерживает этот контент.
+\n
 \nВозможно, поддержка появится в следующих версиях.</string>
     <string name="infinite_videos">∞ видео</string>
     <string name="more_than_100_videos">100+ видео</string>
@@ -523,10 +523,9 @@
     <string name="artists">Исполнители</string>
     <string name="albums">Альбомы</string>
     <string name="remove_watched">Удалить просмотренные</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Да, и частично просмотренные</string>
-    <string name="remove_watched_popup_warning">Видео, просмотренные до или после добавления в плейлист, будут удалены.
-\nПродолжить\? Не может быть отменено!</string>
-    <string name="remove_watched_popup_title">Удалить просмотренные видео\?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Да, и частично просмотренные</string>
+    <string name="remove_watched_popup_warning">Трансляции, просмотренные до или после добавления в плейлист, будут удалены. \nВы уверены?</string>
+    <string name="remove_watched_popup_title">Удалить просмотренные трансляции?</string>
     <string name="show_original_time_ago_summary">Отображать сообщённое сервисом время с момента публикации</string>
     <string name="show_original_time_ago_title">Исходное время публикации</string>
     <string name="youtube_restricted_mode_enabled_title">Включить \"Ограниченный режим\" YouTube</string>
@@ -632,7 +631,7 @@
     <string name="feed_load_error">Ошибка загрузки подписки</string>
     <string name="open_website_license">Открыть веб-сайт</string>
     <string name="account_terminated">Аккаунт отключён</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Начиная с Android 10 поддерживается только «Storage Access Framework»</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Начиная с Android 10, поддерживается только \"Storage Access Framework\"</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Спрашивать, куда сохранять каждую загрузку</string>
     <string name="no_dir_yet">Папка для загрузки ещё не выбрана, укажите папку для загрузки сейчас</string>
     <string name="off">Отключить</string>
@@ -838,8 +837,8 @@
     <string name="share_playlist_as_youtube_temporary_playlist">Поделиться как временным плейлистом YouTube</string>
     <string name="tab_bookmarks_short">Плейлисты</string>
     <string name="feed_group_page_summary">Страница группы каналов</string>
-    <string name="select_a_feed_group">Выберите группу кормов</string>
-    <string name="no_feed_group_created_yet">Группа кормов еще не создана</string>
+    <string name="select_a_feed_group">Выберите группу каналов</string>
+    <string name="no_feed_group_created_yet">Нет созданной группы каналов</string>
     <string name="search_with_service_name">Поиск %1$s</string>
     <string name="search_with_service_name_and_filter">Поиск %1$s (%2$s)</string>
     <string name="channel_tab_likes">Лайки</string>
@@ -863,6 +862,35 @@
     <string name="player_http_403">Во время воспроизведения получена ошибка HTTP 403 от сервера, вероятно, вызванная истечением срока действия URL-адреса потоковой передачи или блокировкой IP-адреса</string>
     <string name="player_http_invalid_status">Ошибка HTTP %1$s получена от сервера во время воспроизведения</string>
     <string name="youtube_player_http_403">Во время воспроизведения получена ошибка HTTP 403 от сервера, вероятно, вызванная блокировкой IP-адреса или проблемами деобфускации URL-адреса потоковой передачи</string>
-    <string name="sign_in_confirm_not_bot_error">%1$s отказался предоставить данные, запросив логин для подтверждения, что запросчик не бот.\n\nВозможно, ваш IP-адрес временно заблокирован %1$s. Вы можете подождать некоторое время или переключиться на другой IP-адрес (например, включив/выключив VPN или переключившись с Wi-Fi на мобильный интернет).</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s отказался предоставить данные, запросив вход в аккаунт для подтверждения, что запрашивающий не является ботом.\n\nВозможно, ваш IP-адрес временно заблокирован %1$s, вы можете подождать некоторое время или переключиться на другой IP-адрес (например, включив/выключив VPN или переключившись с Wi-Fi на мобильный интернет).\n\nПожалуйста посмотрите <a href="%2$s">этот пункт FAQ</a> для получения дополнительной информации.</string>
     <string name="unsupported_content_in_country">Этот контент недоступен для выбранной страны контента.\n\nИзмените свой выбор в разделе «Настройки &gt; Контент &gt; Страна контента по умолчанию».</string>
+    <string name="kao_dialog_warning">В августе 2025 года, Google анонсировала, что с сентября 2026 года, установка приложений потребует верификации разработчика для всех Android приложений на сертифицированных устройствах, включая те, которые были установлены не через Play Store. Поскольку разработчики NewPipe не согласны с этим требованием, NewPipe перестанет работать на сертифицированных Android устройствах после этой даты.</string>
+    <string name="kao_dialog_more_info">Подробнее</string>
+    <string name="kao_solution">Решение</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">Экспортирование %d подписки…</item>
+        <item quantity="few">Экспортирование %d подписок…</item>
+        <item quantity="many">Экспортирование %d подписок…</item>
+        <item quantity="other">Экспортирование %d подписок…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">Загрузка %d подписки…</item>
+        <item quantity="few">Загрузка %d подписок…</item>
+        <item quantity="many">Загрузка %d подписок…</item>
+        <item quantity="other">Загрузка %d подписок…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">Импортирование %d подписки…</item>
+        <item quantity="few">Импортирование %d подписок…</item>
+        <item quantity="many">Импортирование %d подписок…</item>
+        <item quantity="other">Импортирование %d подписок…</item>
+    </plurals>
+    <string name="import_subscriptions_title">Импорт подписок</string>
+    <string name="export_subscriptions_title">Экспорт подписок</string>
+    <string name="import_subscriptions_summary">Импорт подписок из предыдущего экспорта .json</string>
+    <string name="export_subscriptions_summary">Экспорт ваших подписок в .json файл</string>
+    <string name="import_from_previous_export">Импорт из предыдущего экспорта</string>
+    <string name="api23_requirement_dialog_title">NewPipe прекращает поддержку Android 5</string>
+    <string name="api23_requirement_dialog_message">К сожалению, NewPipe зависит от нескольких библиотек, которые прекратили поддерживать Android 5.0 и 5.1. Таким образом, к сожалению следующий выпуск NewPipe будет работать только на устройствах с Android 6 или выше. Подробности в посте в блоге.</string>
+    <string name="api23_requirement_dialog_blogpost">Пост в блоге</string>
 </resources>

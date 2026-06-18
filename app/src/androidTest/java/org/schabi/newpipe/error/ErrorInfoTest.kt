@@ -9,7 +9,6 @@ import androidx.test.filters.LargeTest
 import java.io.IOException
 import java.net.SocketTimeoutException
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -25,7 +24,7 @@ import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
 @RunWith(AndroidJUnit4::class)
 @LargeTest
 class ErrorInfoTest {
-    private val context: Context by lazy { ApplicationProvider.getApplicationContext<Context>() }
+    private val context: Context by lazy { ApplicationProvider.getApplicationContext() }
 
     /**
      * @param errorInfo the error info to access
@@ -122,7 +121,7 @@ class ErrorInfoTest {
         )
         assertEquals(context.getString(R.string.recaptcha_request_toast), errorInfo.getMessage(context))
         assertEquals(url, errorInfo.recaptchaUrl)
-        assertFalse(errorInfo.isReportable)
+        assertTrue(errorInfo.isReportable)
         assertTrue(errorInfo.isRetryable)
     }
 }

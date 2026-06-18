@@ -1,0 +1,14 @@
+Důležité
+Přidány informace a výzva k akci v rámci kampaně Keep Android Open: https://www.keepandroidopen.org/
+
+Vylepšeno
+[Feed] Změna pořadí aktualizace starších odběrů
+Zrušeno kupení stránek s komentáři
+Nepředávání události kliknutí podkladovým zobrazením při kliknutí na stránku s podrobnostmi o videu
+
+Opraveno
+Rozložení záhlaví odpovědí na komentáře bez avataru
+Několik oprav rozhraní souvisejících s přehrávačem
+[SoundCloud] Oprava streamů s dlouhými ID
+
+a další opravy a vylepšení!

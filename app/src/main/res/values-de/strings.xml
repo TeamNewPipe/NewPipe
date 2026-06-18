@@ -43,7 +43,7 @@
     <string name="settings_category_appearance_title">Aussehen</string>
     <string name="general_error">Fehler</string>
     <string name="could_not_load_thumbnails">Konnte nicht alle Vorschaubilder laden</string>
-    <string name="parsing_error">Konnte Webseite nicht analysieren</string>
+    <string name="parsing_error">Konnte Website nicht analysieren</string>
     <string name="content_not_available">Inhalt nicht verfügbar</string>
     <string name="content">Inhalt</string>
     <string name="show_age_restricted_content_title">Altersbeschränkte Inhalte anzeigen</string>
@@ -54,7 +54,7 @@
     <string name="error_snackbar_action">Melden</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Dies ist passiert:</string>
-    <string name="info_labels">Was:\\nAnfrage:\\nSprache des Inhalts:\\nLand des Inhalts:\\nSprache der App:\\nDienst:\\nZeit (GMT):\\nPaket:\\nVersion:\\nOS-Version:</string>
+    <string name="info_labels">Was:\nAnfrage:\nSprache des Inhalts:\nLand des Inhalts:\nSprache der App:\nDienst:\nZeit (GMT):\nPaket:\nVersion:\nOS-Version:</string>
     <string name="error_details_headline">Details:</string>
     <string name="video">Video</string>
     <string name="audio">Audio</string>
@@ -93,7 +93,7 @@
 \nÖffnen im Pop-up-Modus erforderlich</string>
     <string name="default_popup_resolution_title">Standardauflösung des Pop-ups</string>
     <string name="show_higher_resolutions_title">Höhere Auflösungen anzeigen</string>
-    <string name="show_higher_resolutions_summary">Nur manche Geräte können Videos in 2K/4K abspielen</string>
+    <string name="show_higher_resolutions_summary">Nur manche Geräte können Videos in 1440p/4K abspielen</string>
     <string name="controls_background_title">Hintergrund</string>
     <string name="controls_popup_title">Pop-up</string>
     <string name="popup_remember_size_pos_title">Eigenschaften des Pop-ups merken</string>
@@ -110,7 +110,7 @@
     <string name="tab_about">Über &amp; FAQ</string>
     <string name="app_description">Freies und schlankes Streaming für Android.</string>
     <string name="app_license_title">NewPipes Lizenz</string>
-    <string name="contribution_encouragement">Ob Ideen, Übersetzungen, Design-Änderungen, Code-Aufräumung oder richtig große Code-Änderungen — Hilfe ist immer willkommen. Je mehr geholfen wird, desto besser wird NewPipe!</string>
+    <string name="contribution_encouragement">Ob Ideen, Übersetzungen, Design-Änderungen, Code-Aufräumen oder richtig große Code-Änderungen — Hilfe ist immer willkommen. Je mehr geholfen wird, desto besser wird NewPipe!</string>
     <string name="title_licenses">Drittanbieter-Lizenzen</string>
     <string name="view_on_github">Auf GitHub ansehen</string>
     <string name="contribution_title">Beitragen</string>
@@ -185,7 +185,7 @@
     <string name="donation_title">Spenden</string>
     <string name="give_back">Zurückgeben</string>
     <string name="website_title">Website</string>
-    <string name="website_encouragement">Besuche die NewPipe Website für weitere Informationen und Neuigkeiten.</string>
+    <string name="website_encouragement">Besuche die NewPipe-Website für weitere Informationen und Neuigkeiten.</string>
     <string name="donation_encouragement">NewPipe wird von Freiwilligen entwickelt, die ihre Freizeit dafür verwenden, dir die beste Nutzererfahrung zu bieten. Gib etwas zurück, indem du den Entwicklern hilfst, NewPipe noch weiter zu verbessern, während sie sich an einer Tasse Kaffee erfreuen.</string>
     <string name="no_player_found_toast">Kein Stream-Player gefunden (du kannst VLC installieren, um den Stream abzuspielen).</string>
     <string name="default_content_country_title">Bevorzugtes Land des Inhalts</string>
@@ -240,12 +240,12 @@
     <string name="caption_auto_generated">Automatisch erzeugt</string>
     <string name="import_from">Import von</string>
     <string name="export_to">Export nach</string>
-    <string name="import_ongoing">Importiere …</string>
-    <string name="export_ongoing">Exportiere …</string>
+    <string name="import_ongoing">Wird importiert …</string>
+    <string name="export_ongoing">Wird exportiert …</string>
     <string name="import_file_title">Datei importieren</string>
     <string name="previous_export">Vorheriger Export</string>
-    <string name="import_network_expensive_warning">Beachte, dass diese Aktion das Netzwerk stark belasten kann. 
-\n 
+    <string name="import_network_expensive_warning">Beachte, dass diese Aktion das Netzwerk stark belasten kann.
+\n
 \nMöchtest du fortfahren\?</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bilder-Cache gelöscht</string>
     <string name="metadata_cache_wipe_title">Zwischengespeicherte (Metadaten) löschen</string>
@@ -305,8 +305,7 @@
     <string name="app_license">NewPipe ist freie Copyleft-Software: Du kannst sie nach Belieben benutzen, untersuchen, mit anderen teilen und verbessern. Insbesondere kannst du sie unter den von der Free Software Foundation veröffentlichten Bedingungen der GNU General Public License, in der Version 3 der Lizenz oder (nach deiner Wahl) jeder späteren Version, weitergeben und/oder verändern.</string>
     <string name="import_settings">Möchtest du auch Einstellungen importieren\?</string>
     <string name="privacy_policy_title">NewPipes Datenschutzbestimmung</string>
-    <string name="privacy_policy_encouragement">Dem NewPipe-Projekt ist Datenschutz sehr wichtig. Deshalb sammelt diese App keine Daten ohne deine Zustimmung.
-\nNewPipes Datenschutzbestimmungen erklären im Detail, welche Daten beim Absenden eines Absturzberichtes verschickt und gespeichert werden.</string>
+    <string name="privacy_policy_encouragement">Dem NewPipe-Projekt ist Datenschutz sehr wichtig. Deshalb sammelt diese App keine Daten ohne deine Zustimmung.\nNewPipes Datenschutzbestimmungen erklären im Detail, welche Daten beim Absenden eines Absturzberichtes verschickt und gespeichert werden.</string>
     <string name="read_privacy_policy">Datenschutzbestimmungen lesen</string>
     <string name="accept">Akzeptieren</string>
     <string name="decline">Ablehnen</string>
@@ -352,7 +351,7 @@
     <string name="low_quality_smaller">Niedrige Qualität (kleiner)</string>
     <string name="dont_show">Nicht anzeigen</string>
     <string name="app_update_available_notification_title">Eine NewPipe-Aktualisierung ist verfügbar!</string>
-    <string name="missions_header_finished">Fertig</string>
+    <string name="missions_header_finished">Abgeschlossen</string>
     <string name="missions_header_pending">Ausstehend</string>
     <string name="paused">pausiert</string>
     <string name="queued">eingereiht</string>
@@ -514,11 +513,10 @@
     <string name="restricted_video">Dieses Video ist altersbeschränkt.
 \n
 \nAktiviere in den Einstellungen „%1$s“, falls du diese sehen möchtest.</string>
-    <string name="remove_watched_popup_warning">Videos, die vor und nach dem Hinzufügen zur Wiedergabeliste angeschaut wurden, werden entfernt.
-\nBist du sicher\? Dies kann nicht rückgängig gemacht werden!</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, und teilweise gesehene Videos</string>
+    <string name="remove_watched_popup_warning">Streams, die vor und nach dem Hinzufügen zur Wiedergabeliste angeschaut wurden, werden entfernt. \nBist du sicher?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Teilweise angesehene Streams entfernen</string>
     <string name="remove_watched">Gesehene entfernen</string>
-    <string name="remove_watched_popup_title">Gesehene Videos entfernen\?</string>
+    <string name="remove_watched_popup_title">Gesehene Streams entfernen?</string>
     <string name="show_original_time_ago_title">Originalzeit vor Elementen anzeigen</string>
     <string name="show_original_time_ago_summary">Originaltexte von Diensten werden in Stream-Elementen sichtbar sein</string>
     <string name="youtube_restricted_mode_enabled_title">YouTubes „Eingeschränkten Modus“ aktivieren</string>
@@ -620,7 +618,7 @@
     <string name="account_terminated">Konto geschlossen</string>
     <string name="feed_load_error_fast_unknown">Der Schnellmodus liefert hierzu keine weiteren Informationen.</string>
     <string name="no_dir_yet">Noch kein Downloadordner festgelegt, wähle jetzt den Standard-Downloadordner</string>
-    <string name="open_website_license">Webseite öffnen</string>
+    <string name="open_website_license">Website öffnen</string>
     <string name="downloads_storage_use_saf_summary_api_29">Ab Android 10 wird nur noch „Storage Access Framework“ unterstützt</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Du wirst jedes Mal gefragt werden, wohin der Download gespeichert werden soll</string>
     <string name="feed_load_error">Fehler beim Laden des Feeds</string>
@@ -696,7 +694,7 @@
     <string name="streams_not_yet_supported_removed">Streams, die der Downloader noch nicht unterstützt, werden nicht angezeigt</string>
     <string name="selected_stream_external_player_not_supported">Der ausgewählte Stream wird von externen Playern nicht unterstützt</string>
     <string name="progressive_load_interval_title">Größe des Ladeintervalls für die Wiedergabe</string>
-    <string name="faq">Auf der Webseite ansehen</string>
+    <string name="faq">Auf der Website ansehen</string>
     <string name="faq_title">Häufig gestellte Fragen</string>
     <string name="faq_description">Wenn du Probleme bei der Verwendung der App hast, lies bitte die Antworten auf häufig gestellte Fragen!</string>
     <string name="sort">Sortieren</string>
@@ -844,6 +842,29 @@
     <string name="player_http_403">HTTP-Fehler 403 vom Server während der Wiedergabe erhalten, wahrscheinlich verursacht durch Ablauf der Streaming-URL oder eine IP-Sperre</string>
     <string name="player_http_invalid_status">HTTP-Fehler %1$s vom Server während der Wiedergabe erhalten</string>
     <string name="youtube_player_http_403">HTTP-Fehler 403 vom Server während der Wiedergabe erhalten, wahrscheinlich verursacht durch eine IP-Sperre oder Probleme beim Entschlüsseln der Streaming-URL</string>
-    <string name="sign_in_confirm_not_bot_error">%1$s hat die Datenbereitstellung verweigert und verlangt eine Anmeldung, um zu bestätigen, dass es sich bei dem Anfragenden nicht um einen Bot handelt.\n\nDeine IP-Adresse wurde möglicherweise vorübergehend von %1$s gesperrt. Du kannst einige Zeit warten oder zu einer anderen IP-Adresse wechseln (z. B. durch Ein- und Ausschalten eines VPNs oder durch Wechseln von WLAN zu mobilen Daten).</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s hat die Datenbereitstellung verweigert und verlangt eine Anmeldung, um zu bestätigen, dass es sich bei dem Anfragenden nicht um einen Bot handelt.\n\nDeine IP-Adresse wurde möglicherweise vorübergehend von %1$s gesperrt. Du kannst einige Zeit warten oder zu einer anderen IP-Adresse wechseln (z. B. durch Ein- und Ausschalten eines VPNs oder durch Wechseln von WLAN zu mobilen Daten).\n\nWeitere Informationen findest du unter <a href="%2$s">diesem FAQ-Eintrag</a>.</string>
     <string name="unsupported_content_in_country">Dieser Inhalt ist für das aktuell ausgewählte Land des Inhalts nicht verfügbar.\n\nÄndere die Auswahl unter „Einstellungen &gt; Inhalt &gt; Bevorzugtes Land des Inhalts“.</string>
+    <string name="kao_dialog_warning">Im August 2025 gab Google bekannt, dass ab September 2026 für die Installation von Apps eine Entwicklerüberprüfung für alle Android-Apps auf zertifizierten Geräten erforderlich sein wird, einschließlich derjenigen, die außerhalb des Play Store installiert wurden. Da die Entwickler von NewPipe dieser Forderung nicht nachkommen, wird NewPipe nach diesem Zeitpunkt auf zertifizierten Android-Geräten nicht mehr funktionieren.</string>
+    <string name="kao_dialog_more_info">Details</string>
+    <string name="kao_solution">Lösung</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">%d Abonnement wird exportiert …</item>
+        <item quantity="other">%d Abonnements werden exportiert …</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">%d Abonnement wird geladen …</item>
+        <item quantity="other">%d Abonnements werden geladen …</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">%d Abonnement wird importiert …</item>
+        <item quantity="other">%d Abonnements werden importiert …</item>
+    </plurals>
+    <string name="import_subscriptions_title">Abonnements importieren</string>
+    <string name="export_subscriptions_title">Abonnements exportieren</string>
+    <string name="import_subscriptions_summary">Importieren von Abonnements aus einem früheren .json-Export</string>
+    <string name="export_subscriptions_summary">Exportiere deine Abonnements in eine .json-Datei</string>
+    <string name="import_from_previous_export">Aus vorherigem Export importieren</string>
+    <string name="api23_requirement_dialog_blogpost">Blogbeitrag</string>
+    <string name="api23_requirement_dialog_title">NewPipe stellt die Unterstützung für Android 5 ein</string>
+    <string name="api23_requirement_dialog_message">Leider ist NewPipe auf einige Bibliotheken angewiesen, welche die Unterstützung für Android 5.0 und 5.1 eingestellt haben. Die nächste Version von NewPipe wird daher leider nur auf Geräten mit Android 6 oder höher funktionieren. Mehr dazu im Blogbeitrag.</string>
 </resources>

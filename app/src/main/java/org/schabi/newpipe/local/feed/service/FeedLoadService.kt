@@ -185,7 +185,9 @@ class FeedLoadService : Service() {
             }
         }
 
-        notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
+        if (notificationManager.areNotificationsEnabled()) {
+            notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
+        }
     }
 
     // /////////////////////////////////////////////////////////////////////////

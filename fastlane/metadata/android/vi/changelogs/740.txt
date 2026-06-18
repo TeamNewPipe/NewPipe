@@ -1,23 +1,20 @@
 <h4>Cải tiến</h4>
 <ul>
-<li>click được liên kết trong phần bình luận, tăng cỡ chữ</li>
-<li>nhảy đến khi click vào mốc thời gian ở bình luận</li>
-<li>hiện tab ưa thích dựa trên trạng thái lựa chọn gần đây</li>
-<li>thêm danh sách phát vào hàng chờ khi chạm lâu &#39;Phát nền&#39; trong cửa sổ danh sách phát</li>
-<li>tìm kiếm từ ngữ chung khi nó không phảiURL</li>
-<li>thêm &quot;chia sẻ thời gian hiện tại &quot; nút trờ về video chính</li>
-<li>thêm nút đóng vào trình phát chính khi hàng đợi video kết thúc</li>
-<li>thêm &quot;Chơi trực tiếp dưới nền&quot; chạm lâu vào menu để xem danh sách video</li>
-<li>cải thiện bản dịch tiếng Anh cho lệnh Chơi/Thêm vào danh sách </li>
-<li>cải thiện hiệu năng một xíu</li>
-<li>xóa bỏ những tệp không dùng đến</li>
-<li>cập nhật ExoPlayer lên 2.9.6</li>
-<li>hỗ trợ liên kết Invidious </li>
+<li>Click được link và mốc thời gian trong bình luận</li>
+<li>Hiện tab ưa thích theo lựa chọn gần đây</li>
+<li>Chạm lâu “Phát nền” để thêm playlist vào hàng chờ</li>
+<li>Tìm kiếm khi nhập không phải URL</li>
+<li>Thêm nút “Chia sẻ thời điểm hiện tại”</li>
+<li>Thêm nút đóng khi hàng phát kết thúc</li>
+<li>Cải thiện hiệu năng</li>
+<li>Cập nhật ExoPlayer 2.9.6</li>
+<li>Hỗ trợ liên kết Invidious</li>
 </ul>
+
 <h4>Vá lỗi</h4>
 <ul>
-<li>sửa w/ bình luận và vô hiệu hóa phát luồng liên quan</li>
-<li>sửa lỗi CheckForNewAppVersionTask bị thực thi khi không mong muốn&#39;t</li>
-<li>sửa lỗi nhập danh sách kênh youtube đăng ký: phớt lờ url không hợp lệ và giữ nó trống với tiêu đề</li>
-<li>sửa lỗi url youtube không hợp lệ: tên thẻ chữ ký không phải lúc nào cũng là "chữ ký" ngăn luồng tải</li>
+<li>Sửa lỗi bình luận</li>
+<li>Sửa kiểm tra cập nhật chạy ngoài ý muốn</li>
+<li>Sửa nhập danh sách kênh đăng ký</li>
+<li>Sửa URL YouTube không hợp lệ</li>
 </ul>

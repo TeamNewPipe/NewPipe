@@ -5,7 +5,7 @@
     <string name="no_player_found">Не е намерен стрийм плейър. Инсталиране на VLC\?</string>
     <string name="install">Инсталиране</string>
     <string name="cancel">Отмяна</string>
-    <string name="open_in_browser">Отваряне в браузър</string>
+    <string name="open_in_browser">Отвори в браузър</string>
     <string name="open_in_popup_mode">Отваряне в прозорец</string>
     <string name="share">Споделяне</string>
     <string name="download">Изтегляне</string>
@@ -34,7 +34,7 @@
     <string name="default_resolution_title">Резолюция по подразбиране</string>
     <string name="default_popup_resolution_title">Резолюция по подразбиране на прозореца</string>
     <string name="show_higher_resolutions_title">Покажи по-високи резолюции</string>
-    <string name="show_higher_resolutions_summary">Само някои устройства могат да възпроизвеждат 2K/4K видео</string>
+    <string name="show_higher_resolutions_summary">Само някои устройства могат да възпроизвеждат 1440p/4K видео</string>
     <string name="play_with_kodi_title">Въпроизвеждане с Kodi</string>
     <string name="kore_not_found">Инсталиране на липсващо приложение Kore?</string>
     <string name="show_play_with_kodi_title">Покажи „Възпроизвеждане с Kodi“</string>
@@ -139,12 +139,12 @@
     <string name="settings_file_replacement_character_summary">Невалидните символи се заменят с тази стойност</string>
     <string name="settings_file_replacement_character_title">Символ за замяна</string>
     <string name="charset_letters_and_digits">Букви и цифри</string>
-    <string name="title_activity_about">За NewPipe</string>
-    <string name="title_licenses">Лицензи от трети страни</string>
-    <string name="tab_about">За приложението</string>
+    <string name="title_activity_about">Относно NewPipe</string>
+    <string name="title_licenses">Лицензи на трети страни</string>
+    <string name="tab_about">За нас и ЧЗВ</string>
     <string name="tab_licenses">Лицензи</string>
-    <string name="app_description">Безплатно и леко поточно предаване за Android.</string>
-    <string name="view_on_github">Виж в GitHub</string>
+    <string name="app_description">Безплатно леко стрийминг на Android.</string>
+    <string name="view_on_github">Преглед в GitHub</string>
     <string name="controls_download_desc">Изтегляне на стрийм файл</string>
     <string name="show_info">Покажи информация</string>
     <string name="tab_bookmarks">Отметнати плейлисти</string>
@@ -187,24 +187,23 @@
     <string name="create">Създай</string>
     <string name="dismiss">Откажи</string>
     <string name="copyright" formatted="true">© %1$s от %2$s под лиценза %3$s</string>
-    <string name="contribution_title">Съдействайте</string>
-    <string name="contribution_encouragement">За всичко, което се сетите: превод, промени по дизайна, изчистване на кода или много сериозни промени по кода – помощта е винаги добре дошла. Колкото повече развитие, толкова по-добре!</string>
-    <string name="donation_title">Дарение</string>
-    <string name="donation_encouragement">NewPipe се разработва от доброволци, които отделят от своето време, за да предоставят най-доброто потребителско изживяване. Включете се в разработката като почерпите разработчиците с една чашка кафе, които да изпият, докато правят NewPipe още по-добро приложение.</string>
-    <string name="give_back">Дари</string>
+    <string name="contribution_title">Допринесете</string>
+    <string name="contribution_encouragement">Независимо дали имате идеи за превод, промени в дизайна, почистване на кода или наистина сериозни промени в кода – помощта винаги е добре дошла. Колкото повече се направи, толкова по-добре става!</string>
+    <string name="donation_title">Дарете</string>
+    <string name="donation_encouragement">NewPipe е разработен от доброволци, които прекарват свободното си време, за да ви осигурят най-доброто потребителско изживяване. Дарете, за да помогнете на разработчиците да направят NewPipe още по-добър, докато се наслаждават на чаша кафе.</string>
+    <string name="give_back">Върни обратно</string>
     <string name="website_title">Уебсайт</string>
-    <string name="website_encouragement">Посетете сайта на NewPipe за повече информация и новини.</string>
-    <string name="privacy_policy_title">Политиката на NewPipe за личните данни</string>
-    <string name="privacy_policy_encouragement">Проектът NewPipe се отнася много сериозно към вашата поверителност. За това, приложението не събира никакви данни без вашето съгласие.
-\nНашата политика за личните данни обяснява подробно какви данни изпращате и къде се съхраняват, когато изпращате съобщения за грешки.</string>
-    <string name="read_privacy_policy">Прочетете нашата политика за поверителност</string>
-    <string name="app_license_title">Лицензът на NewPipe</string>
+    <string name="website_encouragement">Посетете уебсайта на NewPipe за повече информация и новини.</string>
+    <string name="privacy_policy_title">Политика за поверителност на NewPipe</string>
+    <string name="privacy_policy_encouragement">Проектът NewPipe приема вашата поверителност много сериозно. Затова приложението не събира никакви данни без вашето съгласие.\nПолитиката за поверителност на NewPipe подробно обяснява какви данни се изпращат и съхраняват при изпращане на доклад за срив.</string>
+    <string name="read_privacy_policy">Прочетете политиката за поверителност</string>
+    <string name="app_license_title">Лиценз на NewPipe</string>
     <string name="no_player_found_toast">Липсва стрийм плейър (можете да изтеглите VLC, за да пуснете стрийма).</string>
     <string name="show_hold_to_append_summary">Покажи съвет при натискане на фона или изскачащия бутон във видеоклипа \"Подробности:“</string>
     <string name="clear_views_history_summary">Изтрива историята на възпроизвежданите стриймове и позицията на възпроизвеждането</string>
     <string name="video_streams_empty">Не са намерени видео стриймове</string>
     <string name="audio_streams_empty">Не са намерени аудио стриймове</string>
-    <string name="info_labels">Какво:\\nЗаявка:\\nЕзик на съдържанието:\\nДържава на съдържанието:\\nЕзик на приложението:\\nУслуга:\\nGMT Време:\\nПакет:\\nВерсия:\\nВерсия на ОС:</string>
+    <string name="info_labels">Какво:\nЗаявка:\nЕзик на съдържанието:\nДържава на съдържанието:\nЕзик на приложението:\nУслуга:\nGMT Време:\nПакет:\nВерсия:\nВерсия на ОС:</string>
     <string name="detail_drag_description">Пренареди чрез плъзгане</string>
     <string name="start">Начало</string>
     <string name="rename">Преименувай</string>
@@ -216,7 +215,7 @@
     <string name="recaptcha_request_toast">Изисква се въвеждане на reCAPTCHA</string>
     <string name="settings_category_downloads_title">Изтегляне</string>
     <string name="charset_most_special_characters">Повечето специални символи</string>
-    <string name="app_license">NewPipe е свободен софтуер с авторски права: можете да го използвате, изучавате, споделяте и подобрявате по желание. По-конкретно можете да го разпространявате и/или променяте съгласно условията на Общия публичен лиценз на GNU, публикуван от Фондацията за свободен софтуер, версия 3 на лиценза или (по ваш избор) която и да е по-късна версия.</string>
+    <string name="app_license">NewPipe е софтуер с авторско право: Можете да го използвате, изучавате, споделяте и подобрявате по ваше желание. По-конкретно, можете да го разпространявате и/или променяте съгласно условията на Общия публичен лиценз на GNU, публикуван от Фондацията за свободен софтуер, или версия 3 на Лиценза, или (по ваш избор) всяка по-късна версия.</string>
     <string name="read_full_license">Прочетете лиценза</string>
     <string name="title_activity_history">История</string>
     <string name="action_history">История</string>
@@ -462,8 +461,7 @@
 \nЕвентуално може да бъде поддържано в бъдещи версии.</string>
     <string name="processing_may_take_a_moment">Обработка… Ще отнеме момент</string>
     <string name="new_seek_duration_toast">Поради ограничения в ExoPlayer, стъпката за превъртане е зададена на %d секунди</string>
-    <string name="remove_watched_popup_warning">Видата, които са били изгледани преди и след добавянето към плейлиста ще бъдат премахнати.
-\nСигурни ли сте\? Това не може да бъде отменено!</string>
+    <string name="remove_watched_popup_warning">Потоците, които са били гледани преди и след добавянето им към плейлиста, ще бъдат премахнати. \nСигурни ли сте?</string>
     <string name="downloads_storage_use_saf_summary">„Storage Access Framework“ позволява изтегляния във външна SD-карта</string>
     <string name="start_downloads">Започни изтеглянията</string>
     <string name="close">Затвори</string>
@@ -499,8 +497,8 @@
     <string name="channel_created_by">Създаден от %s</string>
     <string name="paid_content">Съдържанието е достъпно само за хора, които са си платили, затова не може да бъде гледано или изтеглено с NewPipe.</string>
     <string name="youtube_music_premium_content">Това видео е достъпно за абонати на YouTube Music Premium, затова не може да бъде гледано или изтеглено с NewPipe.</string>
-    <string name="remove_watched_popup_title">Премахни изгледаните видеа\?</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Да, както и само частично изгледаните видеа</string>
+    <string name="remove_watched_popup_title">Премахни изгледаните потоци?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Да, както и само частично изгледаните видеа</string>
     <string name="subscribers_count_not_available">Брой на абонати не е наличен</string>
     <string name="peertube_instance_add_exists">Инстанцията вече съществува</string>
     <string name="missing_file">Файлът е преместен или изтрит</string>
@@ -608,7 +606,7 @@
     <string name="settings_category_player_notification_title">Известие на плеъра</string>
     <string name="msg_failed_to_copy">Неуспешно копиране в клипборда</string>
     <string name="faq_title">Често задавани въпроси</string>
-    <string name="faq">Отвори уеб страницата</string>
+    <string name="faq">Преглед на уебсайта</string>
     <string name="title_activity_play_queue">Възпроизвеждане на опашка</string>
     <string name="leak_canary_not_available">LeakCanary не е открито</string>
     <string name="show_memory_leaks">Покажи къде изтича паметта</string>
@@ -721,7 +719,7 @@
         <item quantity="other">%s нови потоци</item>
     </plurals>
     <string name="subtitle_activity_recaptcha">Натиснете „Готово“, когато решите</string>
-    <string name="faq_description">Ако имате проблеми с използването на приложението, не забравяйте да проверите тези отговори на често задавани въпроси!</string>
+    <string name="faq_description">Ако имате проблеми с използването на приложението, не забравяйте да разгледате тези отговори на често задавани въпроси!</string>
     <string name="main_page_content_swipe_remove">Плъзнете елементи, за да ги премахнете</string>
     <string name="default_kiosk_page_summary">Kiosk по подразбиране</string>
     <string name="enqueue_next_stream">Наредете следващия</string>
@@ -786,7 +784,6 @@
     <string name="error_report_notification_title">NewPipe откри грешка, докоснете, за да докладвате</string>
     <string name="no_streams">Няма потоци</string>
     <string name="disable_media_tunneling_title">Деактивиране на медийното тунелиране</string>
-    <string name="show_image_indicators_title">Покажи индикатори за изображения</string>
     <string name="missions_header_pending">В очакване</string>
     <string name="error_postprocessing_failed">Неуспешна последваща обработка</string>
     <string name="pause_downloads_on_mobile">Прекъсване на мрежи с измерване</string>
@@ -830,6 +827,29 @@
     <string name="player_http_403">HTTP грешка 403, получена от сървъра по време на възпроизвеждане, вероятно причинена от изтичане на URL адреса за стрийминг или забрана на IP адреса</string>
     <string name="player_http_invalid_status">HTTP грешка %1$s получена от сървъра по време на възпроизвеждане</string>
     <string name="youtube_player_http_403">HTTP грешка 403, получена от сървъра по време на възпроизвеждане, вероятно причинена от забрана на IP адреса или проблеми с деобфускацията на URL адреси за стрийминг</string>
-    <string name="sign_in_confirm_not_bot_error">%1$s отказа да предостави данни, като поиска вход, за да потвърди, че заявителят не е бот.\n\nВашият IP адрес може да е временно забранен от %1$s. Можете да изчакате известно време или да превключите към друг IP адрес (например като включите/изключите VPN или като превключите от WiFi към мобилни данни).</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s отказа да предостави данни, като поиска вход, за да потвърди, че заявителят не е бот.\n\nВашият IP адрес може да е временно забранен от %1$s. Можете да изчакате известно време или да превключите към друг IP адрес (например като включите/изключите VPN или като превключите от WiFi към мобилни данни).\n\nМоля, вижте <a href="%2$s">тази статия с ЧЗВ</a> за повече информация.</string>
     <string name="unsupported_content_in_country">Това съдържание не е налично за текущо избраната държава на съдържанието.\n\nПроменете избора си от \"Настройки &gt; Съдържание &gt; Държава на съдържанието по подразбиране\".</string>
+    <string name="kao_dialog_warning">През август 2025 г. Google обяви, че от септември 2026 г. инсталирането на приложения ще изисква проверка от разработчика за всички приложения за Android на сертифицирани устройства, включително тези, инсталирани извън Play Store. Тъй като разработчиците на NewPipe не са съгласни с това изискване, NewPipe вече няма да работи на сертифицирани устройства с Android след този период.</string>
+    <string name="kao_dialog_more_info">Детайли</string>
+    <string name="kao_solution">Решение</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">Изнасяне на %d абонамент…</item>
+        <item quantity="other">Изнасяне на %d абонаменти…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">Зареждане на %d абонамент…</item>
+        <item quantity="other">Зареждане на %d абонаменти…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">Внасяне на %d абонамент…</item>
+        <item quantity="other">Внасяне на %d абонаменти…</item>
+    </plurals>
+    <string name="import_subscriptions_title">Внасяне на абонаменти</string>
+    <string name="export_subscriptions_title">Изнасяне на абонаменти</string>
+    <string name="import_subscriptions_summary">Внасяне на абонаменти от предишен .json файл</string>
+    <string name="export_subscriptions_summary">Изнесете абонаментите си в .json файл</string>
+    <string name="import_from_previous_export">Внасяне от предишно изнасяне</string>
+    <string name="api23_requirement_dialog_title">NewPipe спира поддръжката си за Android 5</string>
+    <string name="api23_requirement_dialog_message">За съжаление NewPipe зависи от няколко библиотеки, които спряха поддръжката за Android 5.0 и 5.1. Следователно, за съжаление, следващата версия на NewPipe ще работи само на устройства с Android 6 или по-нова версия. Прочетете повече в публикацията в блога.</string>
+    <string name="api23_requirement_dialog_blogpost">Публикация в блога</string>
 </resources>

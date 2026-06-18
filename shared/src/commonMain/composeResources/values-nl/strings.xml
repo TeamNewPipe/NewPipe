@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigate_back">Terug</string>
+    <string name="title_activity_about">Over NewPipe</string>
+    <string name="title_licenses">Licenties van derden</string>
+    <string name="license">Door %1$s onder %2$s</string>
+    <string name="tab_about">Over &amp; veel­gestelde vragen</string>
+    <string name="tab_licenses">Licenties</string>
+    <string name="contribution_title">Bij­dragen</string>
+    <string name="donation_title">Doneren</string>
+    <string name="website_title">Website</string>
+    <string name="done">Klaar</string>
+    <string name="give_back">Terug­geven</string>
+    <string name="app_license_title">De licentie van NewPipe</string>
+    <string name="not_available">Niet beschik­baar</string>
+    <string name="faq_title">Veelgestelde vragen</string>
+    <string name="faq">Bekijken op website</string>
+    <string name="open_in_browser">Openen in browser</string>
+    <string name="app_description">Libre en lichtgewicht streamen op Android.</string>
+    <string name="view_on_github">Bekijken op GitHub</string>
+    <string name="website_encouragement">Bezoek de NewPipe-website voor nieuws en meer informatie.</string>
+    <string name="privacy_policy_title">Privébeleid van NewPipe</string>
+    <string name="read_privacy_policy">Privébeleid lezen</string>
+    <string name="read_full_license">Licentie lezen</string>
+</resources>

@@ -47,7 +47,7 @@
     <string name="controls_background_title">背景播放</string>
     <string name="default_popup_resolution_title">懸浮視窗預設解析度</string>
     <string name="show_higher_resolutions_title">顯示更高的解析度</string>
-    <string name="show_higher_resolutions_summary">僅部份裝置可播放 2K/4K 影片</string>
+    <string name="show_higher_resolutions_summary">僅部份裝置可播放 1440p/4K 影片</string>
     <string name="default_video_format_title">預設影片格式</string>
     <string name="black_theme_title">黑色</string>
     <string name="popup_remember_size_pos_title">記住懸浮視窗屬性</string>
@@ -76,7 +76,7 @@
     <string name="error_snackbar_action">回報</string>
     <string name="what_device_headline">資訊：</string>
     <string name="what_happened_headline">發生了什麼事：</string>
-    <string name="info_labels">發生了什麼：\\n請求：\\n內容語言：\\n內容國家：\\n應用程式語言：\\n服務：\\nGMT 時間：\\n套件：\\n版本：\\n系統版本：</string>
+    <string name="info_labels">發生了什麼：\n請求：\n內容語言：\n內容國家：\n應用程式語言：\n服務：\nGMT 時間：\n套件：\n版本：\n系統版本：</string>
     <string name="your_comment">您的留言 (請用英語)：</string>
     <string name="error_details_headline">詳細資訊：</string>
     <string name="video">影片</string>
@@ -104,7 +104,7 @@
     <string name="subscribe_button_title">訂閱</string>
     <string name="subscribed_button_title">已訂閱</string>
     <string name="channel_unsubscribed">已取消訂閱頻道</string>
-    <string name="subscription_change_failed">無法更改訂閱</string>
+    <string name="subscription_change_failed">無法變更訂閱</string>
     <string name="subscription_update_failed">無法更新訂閱</string>
     <string name="tab_subscriptions">訂閱清單</string>
     <string name="fragment_feed_title">新鮮事</string>
@@ -138,7 +138,7 @@
     <string name="charset_letters_and_digits">字母與數字</string>
     <string name="charset_most_special_characters">大部分的特殊字元</string>
     <string name="title_activity_about">關於 NewPipe</string>
-    <string name="title_licenses">第三方授權</string>
+    <string name="title_licenses">第三方授權條款</string>
     <string name="copyright" formatted="true">© %1$s 由 %2$s 使用 %3$s 授權條款發布</string>
     <string name="tab_about">關於與常見問題</string>
     <string name="tab_licenses">授權條款</string>
@@ -168,7 +168,7 @@
     <string name="external_player_unsupported_link_type">外部播放器不支援此類型連結</string>
     <string name="video_streams_empty">找不到影片串流</string>
     <string name="audio_streams_empty">找不到音訊串流</string>
-    <string name="donation_title">贊助</string>
+    <string name="donation_title">捐款</string>
     <string name="website_title">網站</string>
     <string name="import_data_title">匯入資料庫</string>
     <string name="export_data_title">匯出資料庫</string>
@@ -224,7 +224,7 @@
     <string name="delete_playlist_prompt">刪除此播放清單？</string>
     <string name="playlist_creation_success">已建立播放清單</string>
     <string name="playlist_add_stream_success">已增至播放清單</string>
-    <string name="playlist_thumbnail_change_success">播放清單縮圖已更改。</string>
+    <string name="playlist_thumbnail_change_success">播放清單縮圖已變更。</string>
     <string name="caption_none">沒有字幕</string>
     <string name="resize_fit">合適的</string>
     <string name="resize_fill">填滿</string>
@@ -255,14 +255,14 @@
     <string name="invalid_file">檔案不存在或缺少讀寫檔案的權限</string>
     <string name="import_youtube_instructions">從 Google Takeout 匯入您的 YouTube 訂閱： \n \n1. 移至此網址：%1$s \n2. 當被提示時登入帳號 \n3. 按一下「包含所有資料」，接著「取消選取全部」，然後僅勾選「訂閱」並按一下「確定」 \n4. 按一下「下一步」然後「建立匯出」 \n5. 在「下載」按鈕出現後按一下它 \n6. 點擊下方的「匯入檔案」並選取已下載的 zip 檔案 \n7. [若 zip 匯入失敗] 擷取 .csv 檔案 (通常位於「YouTube 與 YouTube Music/訂閱/訂閱.csv」)，按一下下方的「匯入檔案」並選取擷取的 csv 檔案</string>
     <string name="import_soundcloud_instructions_hint">您的 ID, soundcloud.com/yourid</string>
-    <string name="import_network_expensive_warning">請記住，此操作可造成昂貴網路花費。 
-\n 
+    <string name="import_network_expensive_warning">請記住，此操作可造成昂貴網路花費。
+\n
 \n您是否希望繼續？</string>
-    <string name="import_soundcloud_instructions">透過輸入 URL 或您的 ID 來匯入 SoundCloud 個人設定檔： 
-\n 
-\n1. 在瀏覽器中啟用「桌面模式」(該網站不適用於行動裝置) 
-\n2. 移至此網址： %1$s 
-\n3. 當被提示時登入帳號 
+    <string name="import_soundcloud_instructions">透過輸入 URL 或您的 ID 來匯入 SoundCloud 個人設定檔：
+\n
+\n1. 在瀏覽器中啟用「桌面模式」(該網站不適用於行動裝置)
+\n2. 移至此網址： %1$s
+\n3. 當被提示時登入帳號
 \n4. 複製您被重新導向到的個人設定檔網址。</string>
     <string name="thumbnail_cache_wipe_complete_notice">已清除圖片快取</string>
     <string name="metadata_cache_wipe_title">清除已快取的詮釋資料</string>
@@ -289,10 +289,10 @@
     <string name="app_license">NewPipe 是一個 Copyleft 的自由軟體：您可以隨意使用、研究、分享並改進它。在遵守由自由軟體基金會所發佈的 GNU 通用公共授權條款的狀況下，您可以自由地再散佈及／或修改它；授權條款預設使用第三版，但您也可以選擇更新的版本。</string>
     <string name="import_settings">您是否要同時匯入設定？</string>
     <string name="privacy_policy_title">NewPipe 的隱私政策</string>
-    <string name="privacy_policy_encouragement">NewPipe 專案非常重視您的隱私。因此，未經您同意此程式不會收集任何資料。 
+    <string name="privacy_policy_encouragement">NewPipe 專案非常重視您的隱私。因此，未經您同意此程式不會收集任何資料。
 \nNewPipe 的隱私權政策詳細說明了當您發送錯誤回報時，什麼資料會被傳送及儲存。</string>
     <string name="read_privacy_policy">閱讀隱私政策</string>
-    <string name="start_accept_privacy_policy">為配合歐洲通用資料保護條例 ( GDPR ) ，我們在此請您注意 NewPipe 的隱私政策。請務必仔細閱讀。 
+    <string name="start_accept_privacy_policy">為配合歐洲通用資料保護條例 ( GDPR ) ，我們在此請您注意 NewPipe 的隱私政策。請務必仔細閱讀。
 \n您必須接受它才能向我們發送錯誤報告。</string>
     <string name="accept">接受</string>
     <string name="decline">拒絕</string>
@@ -341,7 +341,7 @@
     <string name="generate_unique_name">生成獨特的名稱</string>
     <string name="overwrite">覆寫</string>
     <string name="overwrite_finished_warning">有已下載的同名檔案</string>
-    <string name="download_already_running">已有進行中的下載與此同名</string>
+    <string name="download_already_running">已有正在進行的下載與此同名</string>
     <string name="show_error">顯示錯誤</string>
     <string name="error_file_creation">無法建立檔案</string>
     <string name="error_path_creation">無法建立目的地資料夾</string>
@@ -375,7 +375,7 @@
     <string name="missing_file">檔案已被移動或刪除</string>
     <string name="overwrite_unrelated_warning">同名的檔案已存在</string>
     <string name="overwrite_failed">無法覆寫檔案</string>
-    <string name="download_already_pending">已有擱置中的下載與此同名</string>
+    <string name="download_already_pending">已有正在擱置的下載與此同名</string>
     <string name="error_postprocessing_stopped">NewPipe 在處理檔案時被關閉</string>
     <string name="error_insufficient_storage_left">裝置上沒有剩餘的空間</string>
     <string name="error_progress_lost">進度遺失，因為檔案已被刪除</string>
@@ -477,9 +477,9 @@
     <string name="restricted_video">此影片設有年齡限制。
 \n
 \n如果您想要觀看，請在設定中開啟「%1$s」。</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">是的，包括已部份觀看的影片</string>
-    <string name="remove_watched_popup_warning">已觀看過的影片在加入播放清單後將被移除。\n您確定嗎？此動作無法復原！</string>
-    <string name="remove_watched_popup_title">移除已觀看的影片？</string>
+    <string name="remove_watched_popup_partially_watched_streams">是的，包括已部份觀看的影片</string>
+    <string name="remove_watched_popup_warning">已觀看過的串流在加入播放清單後將被移除。\n您確定嗎？</string>
+    <string name="remove_watched_popup_title">移除已觀看的串流？</string>
     <string name="remove_watched">移除已觀看的影片</string>
     <string name="show_original_time_ago_summary">來自服務的原始文字將在串流項目中可見</string>
     <string name="show_original_time_ago_title">在項目上顯示原始時間</string>
@@ -542,7 +542,7 @@
     <string name="show_description_summary">關閉以隱藏影片說明及其他附帶資訊</string>
     <string name="show_description_title">顯示說明</string>
     <string name="open_with">以……開啟</string>
-    <string name="no_app_to_open_intent">您裝置上沒有應用程式可以打開這個</string>
+    <string name="no_app_to_open_intent">您的裝置上沒有應用程式可以開啟這個</string>
     <string name="crash_the_app">應用程式當機</string>
     <string name="paid_content">此內容僅對已付費的內容可用，因此無法由 NewPipe 串流或下載。</string>
     <string name="youtube_music_premium_content">此影片僅供 YouTube Music Premium 會員使用，因此無法由 NewPipe 串流或下載。</string>
@@ -598,8 +598,6 @@
     <string name="seekbar_preview_thumbnail_title">拖動列縮圖預覽</string>
     <string name="detail_heart_img_view_description">被創作者加心號</string>
     <string name="mark_as_watched">標記為已觀看</string>
-    <string name="show_image_indicators_summary">在圖片頂部顯示畢卡索彩色絲帶，指示其來源：紅色代表網路、藍色代表磁碟、綠色代表記憶體</string>
-    <string name="show_image_indicators_title">顯示圖片指示器</string>
     <string name="remote_search_suggestions">遠端搜尋建議</string>
     <string name="local_search_suggestions">本機搜尋建議</string>
     <plurals name="deleted_downloads_toast">
@@ -811,6 +809,26 @@
     <string name="player_http_403">播放時收到來自伺服器的 HTTP 錯誤 403，可能因串流網址過期或 IP 封鎖所致</string>
     <string name="player_http_invalid_status">播放時收到來自伺服器的 HTTP 錯誤 %1$s</string>
     <string name="youtube_player_http_403">播放時收到來自伺服器的 HTTP 錯誤 403，可能因 IP 封鎖或串流網址去混淆化問題所致</string>
-    <string name="sign_in_confirm_not_bot_error">%1$s 拒絕提供資料，要求登入以確認請求者並非機器人。\n\n您的 IP 位址可能已被 %1$s 暫時封鎖，您可稍候片刻或切換至其他 IP 位址（例如開啟/關閉 VPN，或從 Wi-Fi 切換至行動數據）。</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s 拒絕提供資料，要求登入以確認請求者並非機器人。\n\n您的 IP 位址可能已被 %1$s 暫時封鎖，您可稍候片刻或切換至其他 IP 位址（例如開啟/關閉 VPN，或從 Wi-Fi 切換至行動數據）。\n\n更多資訊請參見<a href="%2$s">此 FAQ 條目</a>。</string>
     <string name="unsupported_content_in_country">此內容目前無法於您所選的國家/地區提供。\n\n請至「設定」→「內容」→「預設內容國家」變更您的選擇。</string>
+    <string name="kao_dialog_warning">2025年8月，Google 宣佈自2026年9月起，所有經認證裝置上的 Android 應用程式（包含不是透過 Play 商店安裝的應用程式）皆須通過開發者驗證方可安裝。由於 NewPipe 開發團隊不接受此項要求，該應用程式屆時將無法在經認證的 Android 裝置上運作。</string>
+    <string name="kao_dialog_more_info">詳細資訊</string>
+    <string name="kao_solution">解決方案</string>
+    <plurals name="export_subscriptions">
+        <item quantity="other">正在匯出 %d 個訂閱…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="other">正在載入 %d 個訂閱…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="other">正在匯入 %d 個訂閱…</item>
+    </plurals>
+    <string name="import_subscriptions_title">匯入訂閱</string>
+    <string name="export_subscriptions_title">匯出訂閱</string>
+    <string name="export_subscriptions_summary">匯出您的訂閱至 .json 檔案</string>
+    <string name="import_subscriptions_summary">從先前匯出的 .json 匯入訂閱</string>
+    <string name="import_from_previous_export">從先前的匯出檔案匯入</string>
+    <string name="api23_requirement_dialog_title">NewPipe 即將停止支援 Android 5</string>
+    <string name="api23_requirement_dialog_blogpost">部落格文章</string>
+    <string name="api23_requirement_dialog_message">不幸的是，NewPipe 依賴的一些函式庫已停止支援 Android 5.0 和 5.1。因此，下一個版本的 NewPipe 將只能在 Android 6 或更高版本的裝置上運作，非常遺憾。更多資訊請參閱部落格文章。</string>
 </resources>

@@ -134,7 +134,7 @@ public class SeekbarPreviewThumbnailHolder {
                 // Get the bounds where the frame is found
                 final int[] bounds = frameset.getFrameBoundsAt(currentPosMs);
                 generatedDataForUrl.put(currentPosMs,
-                                        createBitmapSupplier(srcBitMap, bounds, frameset));
+                        createBitmapSupplier(srcBitMap, bounds, frameset));
 
                 currentPosMs += frameset.getDurationPerFrame();
                 pos++;
@@ -192,7 +192,7 @@ public class SeekbarPreviewThumbnailHolder {
             // Reference: https://stackoverflow.com/a/23683075 + first comment
             // Fixes: https://github.com/TeamNewPipe/NewPipe/issues/11461
             return cutOutBitmap == srcBitMap
-                    ? cutOutBitmap.copy(cutOutBitmap.getConfig(), true) : cutOutBitmap;
+                    ? cutOutBitmap.copy(Bitmap.Config.ARGB_8888, true) : cutOutBitmap;
         };
     }
 

@@ -57,7 +57,7 @@
     <string name="download_path_audio_title">ߡߍ߲ߕߊ߫ ߟߊߖߌ߰ߣߍ߲ ߞߎ߲ߓߍ߲</string>
     <string name="default_popup_resolution_title">ߝߎ߲ߞߊ߲߫ ߝߢߐߘߊ߫ ߓߍ߲߬ߡߊ߬ ߖߏߣߡߊ</string>
     <string name="play_with_kodi_title">ߊ߬ ߕߏߟߏ߲߫ Kodi ߞߣߐ߫</string>
-    <string name="show_higher_resolutions_summary">ߕߙߏߞߏ߫ ߘߊ߲ߘߐ߫ߣߍ߲߫ ߠߋ߬ ߦߋ߫ ߛߋ߫ ߟߊ߫ 2K/4K ߦߋߡߍ߲ߕߊ ߟߎ߬ ߕߏߟߏ߲߫ ߠߊ߫</string>
+    <string name="show_higher_resolutions_summary">ߕߙߏߞߏ߫ ߘߊ߲ߘߐ߫ߣߍ߲߫ ߠߋ߬ ߦߋ߫ ߛߋ߫ ߟߊ߫ 1440p/4K ߦߋߡߍ߲ߕߊ ߟߎ߬ ߕߏߟߏ߲߫ ߠߊ߫</string>
     <string name="main_bg_subtitle">ߊ߬ ߛߐ߲߬ߞߌ߫ ߥߊߘߏ ߞߊ߲߬ ߞߵߊ߬ ߘߊߡߌ߬ߣߊ߬.</string>
     <string name="notification_colorize_title">ߛߐ߬ߓߌ߬ߘߐ߬ߓߏ߲߫ ߞߟߐ߬ߡߊ</string>
     <string name="notification_colorize_summary">ߞߊ߬ ߊ߲ߘߙߏߌߘ ߟߐ߬ ߛߐ߬ߓߌ߲߬ߘߐ߬ߓߏ߲ ߞ߬ߟߐ ߟߊߖߘߍ߬ߕߦߊ߬ ߟߊ߫ ߞߵߊ߬ ߓߍ߲߬ ߞߏ߬ߋߞߏ߬ߋ߫ ߞߐ߬ߟߐ ߓߊߖߎ ߡߊ߬ (ߦߴߊ߬ ߟߐ߲߫ ߞߴߏ߬ ߕߍ߫ ߡߊߛߐ߬ߘߐ߲߬ ߠߊ߫ ߕߙߏߞߏ ߓߍ߯ ߟߊ߫)</string>
@@ -166,7 +166,7 @@
     <string name="error_snackbar_message">ߘߌ߬ߢߍ߬߸ ߞߏ߫ ߘߏ߫ ߡߊ߫ ߕߊ߬ߡߌ߲߬ ߞߏߢߊ߬.</string>
     <string name="what_device_headline">ߟߌ߬ߤߟߊ:</string>
     <string name="what_happened_headline">ߡߎ߲߬ ߞߍߣߍ߲߫:</string>
-    <string name="info_labels">ߡߎ߲߬:\\nRequest:\\nContent Language:\\nContent Country:\\nApp Language:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:</string>
+    <string name="info_labels">ߡߎ߲߬:\nRequest:\nContent Language:\nContent Country:\nApp Language:\nService:\nGMT Time:\nPackage:\nVersion:\nOS version:</string>
     <string name="your_comment">ߌ ߟߊ߫ ߞߊ߲߬ߞߎߡߊ (ߊ߲߬ߞߌ߬ߟߍ߬ ߞߊ߲ ߘߐ߫):</string>
     <string name="error_details_headline">ߕߐ߬ߝߍ߬ߦߊ ߟߎ߬:</string>
     <string name="detail_thumbnail_view_description">ߦߋߡߍ߲ߕߊ ߘߐߞߊ߬ߙߊ߲߸ ߥߎ߬ߛߎ:</string>
@@ -588,9 +588,8 @@
     <string name="systems_language">ߞߊ߲ߞߋ ߟߊ߫ ߖߏߣߡߊ</string>
     <string name="remove_watched_popup_title">ߞߊ߬ ߖߌ߬ߦߊ߬ߖߟߎ߬ ߦߋߣߍ߲ ߠߎ߫ ߖߏ߬ߛߌ߫ ؟</string>
     <string name="remove_watched">ߞߊ߬ ߖߌ߬ߦߊ߬ߖߟߎ߬ ߦߋߣߍ߲ ߠߎ߫ ߖߏ߬ߛߌ߫</string>
-    <string name="remove_watched_popup_warning">ߦߋߡߍ߲ߕߊ ߟߎ߫ ߖߏ߬ߛߌ߬ߕߐ߫ ߟߋ߬߸ ߡߍ߲ ߠߎ߬ ߡߊߝߍߣߍ߲ߣߍ߲߫ ߊ߬ߟߎ߫ ߝߊ߬ߙߊ ߢߍ߫ ߥߊߟߴߊ߬ߟߎ߫ ߝߊ߬ߙߊ ߞߐ߫ ߕߏߟߏ߲߫ ߛߙߍߘߍ ߟߊ߫.
-\nߌ ߟߊߣߍ߲߫ ߊ߬ ߟߊ߫ ؟ ߊ߬ ߕߍߣߊ߬ ߛߋ߫ ߟߊ߫ ߟߊߛߊ߬ߦߌ߬ ߟߊ߫߹</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">ߐ߬ߤߐ߲߫߸ ߊ߬ߣߌ߫ ߘߏ߫ ߡߊߝߍߣߍ߲ߣߍ߲߫ ߖߌ߬ߦߊ߬ߖߟߎ ߡߍ߲ ߠߎ߬ ߘߐ߫</string>
+    <string name="remove_watched_popup_warning">ߦߋߡߍ߲ߕߊ ߟߎ߫ ߖߏ߬ߛߌ߬ߕߐ߫ ߟߋ߬߸ ߡߍ߲ ߠߎ߬ ߡߊߝߍߣߍ߲ߣߍ߲߫ ߊ߬ߟߎ߫ ߝߊ߬ߙߊ ߢߍ߫ ߥߊߟߴߊ߬ߟߎ߫ ߝߊ߬ߙߊ ߞߐ߫ ߕߏߟߏ߲߫ ߛߙߍߘߍ ߟߊ߫. \nߌ ߟߊߣߍ߲߫ ߊ߬ ߟߊ߫ ؟ ߊ߬ ߕߍߣߊ߬ ߛߋ߫ ߟߊ߫ ߟߊߛߊ߬ߦߌ߬ ߟߊ߫߹</string>
+    <string name="remove_watched_popup_partially_watched_streams">ߐ߬ߤߐ߲߫߸ ߊ߬ߣߌ߫ ߘߏ߫ ߡߊߝߍߣߍ߲ߣߍ߲߫ ߖߌ߬ߦߊ߬ߖߟߎ ߡߍ߲ ߠߎ߬ ߘߐ߫</string>
     <string name="new_seek_duration_toast">ߞߵߊ߬ ߓߍ߲߬ ExoPlayer ߟߊ߫ ߛߙߊߕߌ߫ ߛߌ߰ߣߍ߲ ߠߎ߫ ߡߊ߬߸ ߓߐߒߣߐ߬ߘߐ ߛߋ߲߬ߕߊ ߓߘߊ߬ ߞߍ߫ ߝߌ߬ߟߊ߲߬ %d ߘߌ߫</string>
     <plurals name="minutes">
         <item quantity="other">ߡߌ߬ߛߍ߲߬ %d</item>

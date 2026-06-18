@@ -6,7 +6,7 @@
     <string name="no_player_found_toast">ਸਟ੍ਰੀਮਿੰਗ ਲਈ ਪਲੇਅਰ ਨਹੀਂ ਮਿਲਿਆ (ਤੁਸੀਂ ਇਸਨੂੰ ਚਲਾਉਣ ਲਈ VLC ਪਲੇਅਰ ਇੰਸਟਾਲ ਕਰ ਸਕਦੇ ਹੋ)।</string>
     <string name="install">ਇੰਸਟਾਲ ਕਰੋ</string>
     <string name="cancel">ਰੱਦ ਕਰੋ</string>
-    <string name="open_in_browser">ਬ੍ਰਾਊਜ਼ਰ \'ਚ ਖੋਲ੍ਹੋ</string>
+    <string name="open_in_browser">ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਖੋਲ੍ਹੋ</string>
     <string name="open_in_popup_mode">ਪੌਪ-ਅਪ ਮੋਡ \'ਚ ਖੋਲ੍ਹੋ</string>
     <string name="share">ਸਾਂਝਾ ਕਰੋ</string>
     <string name="download">ਡਾਊਨਲੋਡ ਕਰੋ</string>
@@ -24,7 +24,7 @@
     <string name="subscription_change_failed">ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਨੂੰ ਬਦਲਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ</string>
     <string name="show_info">ਜਾਣਕਾਰੀ ਵਿਖਾਓ</string>
     <string name="subscription_update_failed">ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਅਪਡੇਟ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ</string>
-    <string name="tab_subscriptions">ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ</string>
+    <string name="tab_subscriptions">ਸਬਸਕ੍ਰਿਪਸ਼ਨਜ਼</string>
     <string name="tab_bookmarks">ਬੁੱਕਮਾਰਕ ਕੀਤੀਆਂ ਪਲੇਲਿਸਟਾਂ</string>
     <string name="fragment_feed_title">ਨਵਾਂ ਕੀ ਹੈ</string>
     <string name="controls_background_title">ਬੈਕਗ੍ਰਾਊਂਡ</string>
@@ -39,7 +39,7 @@
     <string name="default_resolution_title">ਡਿਫ਼ਾਲਟ ਰੈਜ਼ੋਲਿਊਸ਼ਨ</string>
     <string name="default_popup_resolution_title">ਪੌਪ-ਅਪ ਲਈ ਡਿਫ਼ਾਲਟ ਰੈਜ਼ੋਲਿਊਸ਼ਨ</string>
     <string name="show_higher_resolutions_title">ਉੱਚ ਰੈਜ਼ੋਲਿਊਸ਼ਨਾਂ ਵਿਖਾਓ</string>
-    <string name="show_higher_resolutions_summary">ਸਿਰਫ਼ ਕੁਝ ਹੀ ਡਿਵਾਈਸ 2K/4K ਵਿੱਚ ਵੀਡੀਓ ਚਲਾ ਸਕਦੇ ਹਨ</string>
+    <string name="show_higher_resolutions_summary">ਸਿਰਫ਼ ਕੁਝ ਹੀ ਡਿਵਾਈਸ 1440p/4K ਵਿੱਚ ਵੀਡੀਓ ਚਲਾ ਸਕਦੇ ਹਨ</string>
     <string name="play_with_kodi_title">Kodi ਵਿੱਚ ਚਲਾਓ</string>
     <string name="kore_not_found">ਗੈਰ ਮੌਜੂਦਾ Kore ਐਪ ਨੂੰ ਇੰਸਟਾਲ ਕਰੋ?</string>
     <string name="show_play_with_kodi_title">\"Kodi ਵਿੱਚ ਚਲਾਓ\" ਦਾ ਵਿਕਲਪ ਵਿਖਾਓ</string>
@@ -104,10 +104,10 @@
     <string name="switch_to_background">ਬੈਕਗ੍ਰਾਊਂਡ ਮੋਡ ਵਿੱਚ ਚਲਾਓ</string>
     <string name="switch_to_popup">ਪੌਪ-ਅਪ ਮੋਡ ਵਿੱਚ ਚਲਾਓ</string>
     <string name="switch_to_main">ਮੇਨ ਤੇ ਚਲਾਓ</string>
-    <string name="import_data_title">ਡਾਟਾਬੇਸ ਆਯਾਤ ਕਰੋ</string>
-    <string name="export_data_title">ਡਾਟਾਬੇਸ ਨਿਰਯਾਤ ਕਰੋ</string>
+    <string name="import_data_title">ਡਾਟਾਬੇਸ ਇੰਪੋਰਟ ਕਰੋ</string>
+    <string name="export_data_title">ਡਾਟਾਬੇਸ ਐਕਸਪੋਰਟ ਕਰੋ</string>
     <string name="import_data_summary">ਤੁਹਾਡੇ ਮੌਜੂਦਾ ਇਤਿਹਾਸ, ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ, ਪਲੇਲਿਸਟਾਂ ਅਤੇ (ਚੋਣਵੇਂ ਤੌਰ \'ਤੇ) ਸੈਟਿੰਗਾਂ ਨੂੰ ਨਵੀਆਂ ਨਾਲ ਬਦਲ ਦਿੰਦਾ ਹੈ</string>
-    <string name="export_data_summary">ਇਤਿਹਾਸ, ਸੁਬਸਕ੍ਰਿਪਸ਼ਨਾਂ, ਪਲੇਲਿਸਟਾਂ ਅਤੇ ਸੈਟਿੰਗਾਂ ਨਿਰਯਾਤ ਕਰੋ</string>
+    <string name="export_data_summary">ਇਤਿਹਾਸ, ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ, ਪਲੇਲਿਸਟਾਂ ਅਤੇ ਸੈਟਿੰਗਾਂ ਐਕਸਪੋਰਟ ਕਰੋ</string>
     <string name="clear_views_history_title">ਵੇਖੇ ਗਏ ਵੀਡੀਓਜ਼ ਦੀ ਸੂਚੀ ਮਿਟਾਓ</string>
     <string name="clear_views_history_summary">ਚਲਾਈਆਂ ਗਈਆਂ ਸਟ੍ਰੀਮਾਂ ਦੇ ਇਤਿਹਾਸ ਅਤੇ ਪਲੇ-ਸਥਿਤੀਆਂ ਨੂੰ ਮਿਟਾਉਂਦਾ ਹੈ</string>
     <string name="delete_view_history_alert">ਕੀ ਵੇਖੇ ਗਏ ਵੀਡੀਓਜ਼ ਦਾ ਇਤਿਹਾਸ ਮਿਟਾ ਦਿੱਤਾ ਜਾਵੇ\?</string>
@@ -140,7 +140,7 @@
     <string name="error_snackbar_action">ਇਤਲਾਹ ਕਰੋ</string>
     <string name="what_device_headline">ਜਾਣਕਾਰੀ:</string>
     <string name="what_happened_headline">ਕੀ ਹੋਇਆ ਹੈ:</string>
-    <string name="info_labels">ਕੀ:\\nRequest:\\nContent ਭਾਸ਼ਾ/ਬੋਲੀ:\\nContent Country:\\nApp ਭਾਸ਼ਾ/ਬੋਲੀ:\\nService:\\nGMT ਸਮਾਂ:\\nPackage:\\nVersion:\\nOS version:</string>
+    <string name="info_labels">ਕੀ:\nRequest:\nContent ਭਾਸ਼ਾ/ਬੋਲੀ:\nContent Country:\nApp ਭਾਸ਼ਾ/ਬੋਲੀ:\nService:\nGMT ਸਮਾਂ:\nPackage:\nVersion:\nOS version:</string>
     <string name="your_comment">ਤੁਹਾਡੀ ਟਿੱਪਣੀ (ਅੰਗਰੇਜ਼ੀ ਵਿਚ):</string>
     <string name="error_details_headline">ਵੇਰਵੇ:</string>
     <string name="detail_thumbnail_view_description">ਵੀਡੀਓ ਚਲਾਓ, ਮਿਆਦ:</string>
@@ -184,7 +184,8 @@
     <string name="msg_wait">ਕ੍ਰਿਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ…</string>
     <string name="msg_copied">ਕਲਿਪ-ਬੋਰਡ ਵਿੱਚ ਕਾਪੀ ਹੋ ਗਿਆ ਹੈ</string>
     <string name="no_available_dir">ਬਾਅਦ ਵਿੱਚ ਸੈਟਿੰਗਾਂ ਵਿਚੋਂ ਇੱਕ ਡਾਊਨਲੋਡ ਫੋਲਡਰ ਨੂੰ ਚੁਣੋ</string>
-    <string name="msg_popup_permission">ਪੌਪ-ਅਪ ਮੋਡ ਵਿੱਚ ਖੋਲ੍ਹਣ ਵਾਸਤੇ\nਇਸ ਇਜਾਜ਼ਤ ਦੀ ਲੋੜ ਹੈ</string>
+    <string name="msg_popup_permission">ਪੌਪ-ਅਪ ਮੋਡ ਵਿੱਚ ਖੋਲ੍ਹਣ ਵਾਸਤੇ
+\nਇਸ ਇਜਾਜ਼ਤ ਦੀ ਲੋੜ ਹੈ</string>
     <string name="one_item_deleted">1 ਆਈਟਮ ਮਿਟਾਈ ਗਈ।</string>
     <string name="title_activity_recaptcha">ReCaptcha ਚੁਣੌਤੀ</string>
     <string name="recaptcha_request_toast">ReCaptcha ਚੁਣੌਤੀ ਲਈ ਬੇਨਤੀ</string>
@@ -195,22 +196,22 @@
     <string name="charset_letters_and_digits">ਅੱਖਰ ਅਤੇ ਅੰਕ</string>
     <string name="charset_most_special_characters">ਬਹੁਤੇ ਖ਼ਾਸ ਅੱਖਰ</string>
     <string name="title_activity_about">ਨਿਊਪਾਈਪ ਬਾਰੇ ਵਿੱਚ ਜਾਣੋ</string>
-    <string name="title_licenses">ਤੀਜੀ ਧਿਰ ਦੇ ਲਾਈਸੈਂਸ</string>
+    <string name="title_licenses">ਤੀਜੀ-ਧਿਰ ਦੇ ਲਾਇਸੈਂਸ</string>
     <string name="copyright" formatted="true">%2$s ਵੱਲੋਂ © %1$s , %3$s ਅਧੀਨ</string>
     <string name="tab_about">ਐਪ ਬਾਰੇ ਤੇ ਆਮ ਸਵਾਲ</string>
-    <string name="tab_licenses">ਲਾਈਸੈਂਸ</string>
-    <string name="app_description">ਐਂਡਰਾਇਡ ਦੇ ਲਈ ਹਲਕੀ ਅਤੇ ਮੁਫ਼ਤ ਸਟ੍ਰੀਮਿੰਗ ਐਪਲੀਕੇਸ਼ਨ।</string>
+    <string name="tab_licenses">ਲਾਇਸੈਂਸ</string>
+    <string name="app_description">ਐਂਡਰਾਇਡ \'ਤੇ ਹਲਕੀ ਅਤੇ ਮੁਫ਼ਤ ਸਟ੍ਰੀਮਿੰਗ ਐਪਲੀਕੇਸ਼ਨ।</string>
     <string name="contribution_title">ਯੋਗਦਾਨ ਪਾਓ</string>
-    <string name="contribution_encouragement">ਭਾਵੇਂ ਤੁਹਾਡੇ ਕੋਲ ਵਿਚਾਰ ਹਨ; ਅਨੁਵਾਦ, ਡਿਜ਼ਾਈਨ ਬਦਲਾਵ, ਕੋਡ ਦੀ ਸਫਾਈ, ਜਾਂ ਅਸਲ ਭਾਰੀ ਕੋਡ ਬਦਲਾਵ — ਹਰ ਮਦਦ ਦਾ ਸਦਾ ਸਵਾਗਤ ਹੈ। ਜਿੰਨਾ ਇਸ ਨੂੰ ਜ਼ਿਆਦਾ ਕੀਤਾ ਜਾਂਦਾ ਹੈ ਉੱਨਾ ਹੀ ਇਹ ਬਿਹਤਰ ਹੁੰਦਾ ਹੈ!</string>
-    <string name="view_on_github">ਗਿਟਹੱਬ ਤੇ ਵੇਖੋ</string>
+    <string name="contribution_encouragement">ਭਾਵੇਂ ਤੁਹਾਡੇ ਕੋਲ ਅਨੁਵਾਦ, ਡਿਜ਼ਾਈਨ ਬਦਲਾਅ, ਕੋਡ ਸਫਾਈ, ਜਾਂ ਅਸਲ ਭਾਰੀ ਕੋਡ ਬਦਲਾਅ ਦੇ ਵਿਚਾਰ ਹੋਣ - ਮਦਦ ਦਾ ਹਮੇਸ਼ਾ ਸਵਾਗਤ ਹੈ। ਜਿੰਨਾ ਜ਼ਿਆਦਾ ਕੀਤਾ ਜਾਵੇਗਾ, ਓਨਾ ਹੀ ਬਿਹਤਰ ਹੋਵੇਗਾ!</string>
+    <string name="view_on_github">GitHub \'ਤੇ ਵੇਖੋ</string>
     <string name="donation_title">ਦਾਨ ਕਰੋ</string>
-    <string name="donation_encouragement">ਨਿਊਪਾਈਪ ਵਲੰਟੀਅਰਾਂ ਦੁਆਰਾ ਵਿਕਸਤ ਕੀਤੀ ਗਈ ਹੈ ਜੋ ਤੁਹਾਡੇ ਲਈ ਬਿਹਤਰ ਵਰਤੋਂਕਾਰ ਤਜ਼ਰਬਾ ਲਿਆਉਣ ਲਈ ਸਮਾਂ ਬਿਤਾਉਂਦੇ ਹਨ। ਡਿਵੈਲਪਰਾਂ ਵਾਸਤੇ ਇੱਕ ਕੱਪ ਕਾਫ਼ੀ ਖ਼ਰੀਦ ਦਿਓ ਤਾਂ ਕਿ ਇਸਦਾ ਆਨੰਦ ਲੈਂਦੇ ਹੋਏ ਉਹ ਨਿਊਪਾਈਪ ਨੂੰ ਹੋਰ ਵਧੀਆ ਬਣਾ ਸਕਣ।</string>
+    <string name="donation_encouragement">ਨਿਊਪਾਈਪ ਨੂੰ ਵਲੰਟੀਅਰਾਂ ਦੁਆਰਾ ਵਿਕਸਤ ਕੀਤਾ ਗਿਆ ਹੈ ਜੋ ਆਪਣਾ ਖਾਲੀ ਸਮਾਂ ਤੁਹਾਨੂੰ ਸਭ ਤੋਂ ਵਧੀਆ ਉਪਭੋਗਤਾ ਅਨੁਭਵ ਪ੍ਰਦਾਨ ਕਰਨ ਲਈ ਸਮਰਪਿਤ ਕਰਦੇ ਹਨ। ਡਿਵੈਲਪਰਾਂ ਦਾ ਸਮਰਥਨ ਕਰੋ ਤਾਂ ਜੋ ਉਹ ਨਿਊਪਾਈਪ ਨੂੰ ਹੋਰ ਵੀ ਬਿਹਤਰ ਬਣਾ ਸਕਣ ਅਤੇ ਅਜਿਹਾ ਕਰਦੇ ਹੋਏ ਇੱਕ ਕੱਪ ਕੌਫੀ ਦਾ ਆਨੰਦ ਮਾਣ ਸਕਣ।</string>
     <string name="give_back">ਵਾਪਸ ਦਿਓ</string>
     <string name="website_title">ਵੈੱਬਸਾਈਟ</string>
     <string name="website_encouragement">ਵਧੇਰੇ ਜਾਣਕਾਰੀ ਅਤੇ ਖ਼ਬਰਾਂ ਲਈ ਨਿਊਪਾਈਪ ਵੈੱਬਸਾਈਟ ਵੇਖੋ।</string>
-    <string name="app_license_title">ਨਿਊਪਾਈਪ ਲਾਈਸੈਂਸ</string>
-    <string name="app_license">ਨਿਊਪਾਈਪ ਇੱਕ ਕਾਪੀਲਿਫਟ ਮੁਫ਼ਤ ਸਾਫਟਵੇਅਰ ਹੈ। ਤੁਸੀਂ ਇਸ ਦੀ ਵਰਤੋਂ, ਇਸ ਦਾ ਅਧਿਐਨ ਅਤੇ ਇਸ ਨੂੰ ਸਾਂਝਾ ਕਰ ਸਕਦੇ ਹੋ ਅਤੇ ਇਸ ਵਿੱਚ ਆਪਣੀ ਮਰਜ਼ੀ ਅਨੁਸਾਰ ਸੁਧਾਰ ਸਕਦੇ ਹੋ। ਖਾਸ ਤੌਰ \'ਤੇ ਤੁਸੀਂ ਇਸ ਨੂੰ GNU ਜਨਰਲ ਪਬਲਿਕ ਲਾਈਸੈਂਸ ਦੀਆਂ ਸ਼ਰਤਾਂ ਦੇ ਅਧੀਨ ਵੰਡ ਸਕਦੇ ਹੋ / ਜਾਂ ਸੰਸ਼ੋਧਿਤ ਕਰ ਸਕਦੇ ਹੋ ਜਿਵੇਂ ਕਿ ਮੁਫਤ ਸਾਫਟਵੇਅਰ ਫਾਊਂਡੇਸ਼ਨ ਦੁਆਰਾ ਪ੍ਰਕਾਸ਼ਤ ਕੀਤਾ ਗਿਆ ਹੈ, ਜਾਂ ਤਾਂ ਲਾਈਸੈਂਸ ਦਾ ਵਰਜ਼ਨ 3, ਜਾਂ (ਤੁਹਾਡੇ ਵਿਕਲਪ \'ਤੇ) ਬਾਅਦ ਦਾ ਕੋਈ ਸੰਸਕਰਣ।</string>
-    <string name="read_full_license">ਲਾਈਸੈਂਸ ਪੜ੍ਹੋ</string>
+    <string name="app_license_title">ਨਿਊਪਾਈਪ ਦਾ ਲਾਇਸੈਂਸ</string>
+    <string name="app_license">ਨਿਊਪਾਈਪ ਇੱਕ ਕਾਪੀਲਿਫਟ ਮੁਫ਼ਤ ਸਾਫਟਵੇਅਰ ਹੈ। ਤੁਸੀਂ ਇਸ ਦੀ ਵਰਤੋਂ, ਇਸ ਦਾ ਅਧਿਐਨ ਅਤੇ ਇਸ ਨੂੰ ਸਾਂਝਾ ਕਰ ਸਕਦੇ ਹੋ ਅਤੇ ਇਸ ਵਿੱਚ ਆਪਣੀ ਮਰਜ਼ੀ ਅਨੁਸਾਰ ਸੁਧਾਰ ਸਕਦੇ ਹੋ। ਖਾਸ ਤੌਰ \'ਤੇ ਤੁਸੀਂ ਇਸ ਨੂੰ GNU ਜਨਰਲ ਪਬਲਿਕ ਲਾਇਸੈਂਸ ਦੀਆਂ ਸ਼ਰਤਾਂ ਦੇ ਅਧੀਨ ਵੰਡ ਸਕਦੇ ਹੋ / ਜਾਂ ਸੰਸ਼ੋਧਿਤ ਕਰ ਸਕਦੇ ਹੋ ਜਿਵੇਂ ਕਿ ਮੁਫਤ ਸਾਫਟਵੇਅਰ ਫਾਊਂਡੇਸ਼ਨ ਦੁਆਰਾ ਪ੍ਰਕਾਸ਼ਤ ਕੀਤਾ ਗਿਆ ਹੈ, ਜਾਂ ਤਾਂ ਲਾਇਸੈਂਸ ਦਾ ਵਰਜ਼ਨ 3, ਜਾਂ (ਤੁਹਾਡੇ ਵਿਕਲਪ \'ਤੇ) ਬਾਅਦ ਦਾ ਕੋਈ ਸੰਸਕਰਣ।</string>
+    <string name="read_full_license">ਲਾਇਸੈਂਸ ਪੜ੍ਹੋ</string>
     <string name="title_activity_history">ਇਤਿਹਾਸ</string>
     <string name="action_history">ਇਤਿਹਾਸ</string>
     <string name="delete_item_search_history">ਕੀ ਤੁਸੀਂ ਇਸਨੂੰ ਖੋਜ ਇਤਿਹਾਸ ਵਿੱਚੋਂ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ\?</string>
@@ -271,23 +272,40 @@
     <string name="export_to">ਤੇ ਐਕਸਪੋਰਟ ਕਰੋ</string>
     <string name="import_ongoing">ਇੰਪੋਰਟ ਹੋ ਰਿਹਾ ਹੈ…</string>
     <string name="export_ongoing">ਐਕਸਪੋਰਟ ਹੋ ਰਿਹਾ ਹੈ…</string>
-    <string name="import_file_title">ਇੰਪੋਰਟ ਫਾਈਲ</string>
+    <string name="import_file_title">ਫ਼ਾਈਲ ਇੰਪੋਰਟ ਕਰੋ</string>
     <string name="previous_export">ਪਿੱਛਲਾ ਐਕਸਪੋਰਟ</string>
     <string name="subscriptions_import_unsuccessful">ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ ਇੰਪੋਰਟ ਨਹੀਂ ਹੋ ਸਕੀਆਂ</string>
     <string name="subscriptions_export_unsuccessful">ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ ਐਕਸਪੋਰਟ ਨਹੀਂ ਹੋ ਸਕੀਆਂ</string>
-    <string name="import_youtube_instructions">ਗੂਗਲ ਟੇਕਆਊਟ ਤੋਂ ਯੂਟਿਊਬ ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ ਇੰਪੋਰਟ ਕਰਨ ਲਈ ਐਕਸਪੋਰਟ ਫਾਈਲ ਡਾਊਨਲੋਡ ਕਰੋ:\n\n1. ਇਸ URL ਤੇ ਜਾਓ: %1$s\n2. ਮੰਗਣ ਤੇ ਆਪਣੇ ਖਾਤੇ \'ਚ ਲਾਗ-ਇਨ ਕਰੋ\n3. ਕਲਿੱਕ ਕਰੋ \" All data incuded\" ਤੇ, ਫੇਰ \"Deselect all\" ਤੇ ਫੇਰ ਸਿਰਫ \"subscriprion\" ਚੁਣੋ ਅਤੇ \"OK\" ਕਰੋ\n4. \"Next step\" ਤੇ ਕਲਿੱਕ ਕਰੋ ਅਤੇ ਫੇਰ \"create export\" ਤੇ\n5. ਡਾਊਨਲੋਡ ਬਟਨ ਦਿਖਾਈ ਦੇਣ ਤੇ ਇਸ ਤੇ ਕਲਿੱਕ ਕਰੋ। ਇੱਕ ਡਾਉਨਲੋਡ ਸ਼ੁਰੂ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ (ਇਹੀ ਐਕਸਪੋਰਟ ਫਾਈਲ ਹੈ)\n6. ਥੱਲੇ ਇੰਪੋਰਟ ਫਾਈਲ ਤੇ ਕਲਿੱਕ ਕਰੋ ਤੇ ਡਾਊਨਲੋਡ ਕੀਤੀ .zip ਫਾਈਲ ਚੁਣੋ\n7. [ਜੇ .zip ਤੋਂ ਐਕਸਪੋਰਟ ਫੇਲ ਹੋ ਜਾਂਦੀ ਹੈ] ਤਾਂ .csv ਫਾਈਲ ਐਕਸਟਰੈਕਟ ਕਰੋ (ਆਮ ਤੌਰ ਤੇ \"YouTube and YouTube Music/subscriptions/subscriptions.csv\"), ਥੱਲੇ ਦਿੱਤੇ ਇੰਪੋਰਟ ਫਾਈਲ ਤੇ ਕਲਿੱਕ ਕਰਕੇ ਐਕਸਟਰੈਕਟ ਕੀਤੀ csv ਫਾਈਲ ਚੁਣੋ</string>
-    <string name="import_soundcloud_instructions">URL ਜਾਂ ਆਪਣੀ ID ਟਾਈਪ ਕਰਕੇ ਸਾਉੰਡ ਕਲਾਉਡ ਪ੍ਰੋਫਾਈਲ ਇੰਪੋਰਟ ਕਰੋ: \n \n1. ਇੱਕ ਵੈਬ-ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ \"ਡੈਸਕਟਾਪ ਮੋਡ\" ਨੂੰ ਚਾਲੂ ਕਰੋ (ਸਾਈਟ ਮੋਬਾਈਲ ਉਪਕਰਣਾਂ ਲਈ ਉਪਲਬਧ ਨਹੀਂ ਹੈ) \n2. ਇਸ URL ਤੇ ਜਾਓ: %1$s \n3. ਆਪਣੇ ਖਾਤੇ ਚ ਲੌਗ-ਇਨ ਕਰੋ \n4. ਨਿਰਦੇਸ਼ਤ ਕੀਤੇ ਗਏ ਪ੍ਰੋਫਾਈਲ URL ਨੂੰ ਕਾਪੀ ਕਰੋ।</string>
+    <string name="import_youtube_instructions">ਗੂਗਲ ਟੇਕਅਊਟ ਤੋਂ ਯੂਟਿਊਬ ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ ਇੰਪੋਰਟ ਕਰਨ ਲਈ ਐਕਸਪੋਰਟ ਫਾਈਲ ਡਾਊਨਲੋਡ ਕਰੋ:
+\n
+\n1. ਇਸ URL ਤੇ ਜਾਓ: %1$s
+\n2. ਮੰਗਣ ਤੇ ਆਪਣੇ ਖਾਤੇ \'ਚ ਲਾਗ-ਇਨ ਕਰੋ
+\n3. ਕਲਿੱਕ ਕਰੋ \" All data incuded\" ਤੇ, ਫੇਰ \"Deselect all\" ਤੇ ਫੇਰ ਸਿਰਫ \"subscriprion\" ਚੁਣੋ ਅਤੇ \"OK\" ਕਰੋ
+\n4. \"Next step\" ਤੇ ਕਲਿੱਕ ਕਰੋ ਤੇ ਫੇਰ \"create export\" ਤੇ
+\n5. ਡਾਊਨਲੋਡ ਬਟਨ ਦਿਖਾਈ ਦੇਣ ਤੇ ਇਸ ਤੇ ਕਲਿੱਕ ਕਰੋ।ਇੱਕ ਡਾਉਨਲੋਡ ਸ਼ੁਰੂ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ (ਇਹੀ ਐਕਸਪੋਰਟ ਫਾਈਲ ਹੈ)
+\n6. ਥੱਲੇ ਇੰਪੋਰਟ ਫਾਈਲ ਤੇ ਕਲਿੱਕ ਕਰੋ ਤੇ ਡਾਊਨਲੋਡ ਕੀਤੀ .zip ਫਾਈਲ ਚੁਣੋ
+\n7. [ਜੇ .zip ਤੋਂ ਐਕਸਪੋਰਟ ਫੇਲ ਹੋ ਜਾਂਦੀ ਹੈ] ਤਾਂ .csv ਫਾਈਲ ਐਕਸਟਰੈਕਟ ਕਰੋ (ਆਮ ਤੌਰ ਤੇ \"YouTube and YouTube Music/subscriptions/subscriptions.csv\"), ਥੱਲੇ ਦਿੱਤੇ ਇੰਪੋਰਟ ਫਾਈਲ ਤੇ ਕਲਿੱਕ ਕਰਕੇ ਐਕਸਟਰੈਕਟ ਕੀਤੀ csv ਫਾਈਲ ਚੁਣੋ</string>
+    <string name="import_soundcloud_instructions">URL ਜਾਂ ਆਪਣੀ ID ਟਾਈਪ ਕਰਕੇ ਸਾਉੰਡ ਕਲਾਉਡ ਪ੍ਰੋਫਾਈਲ ਇੰਪੋਰਟ ਕਰੋ:
+\n
+\n1. ਇੱਕ ਵੈਬ-ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ \"ਡੈਸਕਟਾਪ ਮੋਡ\" ਨੂੰ ਚਾਲੂ ਕਰੋ (ਸਾਈਟ ਮੋਬਾਈਲ ਉਪਕਰਣਾਂ ਲਈ ਉਪਲਬਧ ਨਹੀਂ ਹੈ)
+\n2. ਇਸ URL ਤੇ ਜਾਓ: %1$s
+\n3. ਆਪਣੇ ਖਾਤੇ ਚ ਲੌਗ-ਇਨ ਕਰੋ
+\n4. ਨਿਰਦੇਸ਼ਤ ਕੀਤੇ ਗਏ ਪ੍ਰੋਫਾਈਲ URL ਨੂੰ ਕਾਪੀ ਕਰੋ.</string>
     <string name="import_soundcloud_instructions_hint">ਤੁਹਾਡੀ ਆਈਡੀ, soundcloud.com/ਤੁਹਾਡੀ ਆਈਡੀ</string>
-    <string name="import_network_expensive_warning">ਯਾਦ ਰੱਖੋ ਕਿ ਇਸ ਕਾਰਜ ਨਾਲ ਡਾਟਾ ਖਪਤ ਹੋ ਸਕਦਾ ਹੈ।\n\nਕੀ ਤੁਸੀਂ ਜਾਰੀ ਰੱਖਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+    <string name="import_network_expensive_warning">ਯਾਦ ਰੱਖੋ ਕਿ ਇਸ ਕਾਰਜ ਨਾਲ ਡਾਟਾ ਖਪਤ ਹੋ ਸਕਦਾ ਹੈ।
+\n
+\nਕੀ ਤੁਸੀਂ ਜਾਰੀ ਰੱਖਣਾ ਚਾਹੁੰਦੇ ਹੋ\?</string>
     <string name="playback_speed_control">ਪਲੇਅਬੈਕ ਸਪੀਡ ਕੰਟਰੋਲ</string>
     <string name="playback_tempo">ਤਾਲ</string>
     <string name="playback_pitch">ਪਿੱਚ</string>
     <string name="unhook_checkbox">ਅਲਹਿਦਾ ਕਰੋ (ਵਿਗਾੜ ਪੈ ਸਕਦਾ ਹੈ)</string>
     <string name="import_settings">ਕੀ ਤੁਸੀਂ ਸੈਟਿੰਗਾਂ ਨੂੰ ਵੀ ਇੰਪੋਰਟ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ\?</string>
     <string name="privacy_policy_title">ਨਿਊਪਾਈਪ ਦੀ ਗੋਪਨੀਯਤਾ ਨੀਤੀ</string>
-    <string name="privacy_policy_encouragement">ਨਿਊਪਾਈਪ ਪ੍ਰੋਜੈਕਟ ਤੁਹਾਡੀ ਗੋਪਨੀਯਤਾ ਨੂੰ ਬਹੁਤ ਗੰਭੀਰਤਾ ਨਾਲ ਲੈਂਦਾ ਹੈ। ਇਸ ਲਈ ਐਪ ਤੁਹਾਡੀ ਸਹਿਮਤੀ ਤੋਂ ਬਿਨਾਂ ਕੋਈ ਵੀ ਡਾਟਾ ਇੱਕਠਾ ਨਹੀਂ ਕਰਦਾ।\nਨਿਊਪਾਈਪ ਦੀ ਗੋਪਨੀਯਤਾ ਨੀਤੀ ਵਿਸਥਾਰ ਵਿੱਚ ਦੱਸਦੀ ਹੈ ਕਿ ਜਦੋਂ ਤੁਸੀਂ ਕਰੈਸ਼ ਰਿਪੋਰਟ ਭੇਜਦੇ ਹੋ ਤਾਂ ਕਿਹੜਾ ਡਾਟਾ ਭੇਜਿਆ ਜਾਂ ਸਟੋਰ ਕੀਤਾ ਜਾਂਦਾ ਹੈ।</string>
+    <string name="privacy_policy_encouragement">ਨਿਊਪਾਈਪ ਪ੍ਰੋਜੈਕਟ ਤੁਹਾਡੀ ਗੋਪਨੀਯਤਾ ਨੂੰ ਬਹੁਤ ਗੰਭੀਰਤਾ ਨਾਲ ਲੈਂਦਾ ਹੈ। ਇਸ ਲਈ ਐਪ ਤੁਹਾਡੀ ਸਹਿਮਤੀ ਤੋਂ ਬਿਨਾਂ ਕੋਈ ਵੀ ਡਾਟਾ ਇੱਕਠਾ ਨਹੀਂ ਕਰਦਾ।
+\nਨਿਊਪਾਈਪ ਦੀ ਗੋਪਨੀਯਤਾ ਨੀਤੀ ਵਿਸਥਾਰ ਵਿੱਚ ਦੱਸਦੀ ਹੈ ਕਿ ਜਦੋਂ ਤੁਸੀਂ ਕਰੈਸ਼ ਰਿਪੋਰਟ ਭੇਜਦੇ ਹੋ ਤਾਂ ਕਿਹੜਾ ਡਾਟਾ ਭੇਜਿਆ ਜਾਂ ਸਟੋਰ ਕੀਤਾ ਜਾਂਦਾ ਹੈ।</string>
     <string name="read_privacy_policy">ਗੋਪਨੀਯਤਾ ਨੀਤੀ ਪੜ੍ਹੋ</string>
-    <string name="start_accept_privacy_policy">ਯੂਰਪੀਅਨ ਜਨਰਲ ਡੇਟਾ ਪ੍ਰੋਟੈਕਸ਼ਨ ਰੈਗੂਲੇਸ਼ਨ (ਜੀਡੀਪੀਆਰ) ਦੀ ਪਾਲਣਾ ਕਰਨ ਲਈ, ਅਸੀਂ ਤੁਹਾਡਾ ਧਿਆਨ ਨਿਊਪਾਈਪ ਦੀ ਗੋਪਨੀਯਤਾ ਨੀਤੀ ਵੱਲ ਖਿੱਚਦੇ ਹਾਂ। ਕਿਰਪਾ ਕਰਕੇ ਇਸਨੂੰ ਧਿਆਨ ਨਾਲ ਪੜ੍ਹੋ।\nਸਾਨੂੰ ਨੁਕਸ ਰਿਪੋਰਟ ਭੇਜਣ ਲਈ ਤੁਹਾਨੂੰ ਇਸ ਨੂੰ ਸਵੀਕਾਰ ਕਰਨਾ ਹੋਵੇਗਾ।</string>
+    <string name="start_accept_privacy_policy">ਯੂਰਪੀਅਨ ਜਨਰਲ ਡੇਟਾ ਪ੍ਰੋਟੈਕਸ਼ਨ ਰੈਗੂਲੇਸ਼ਨ (ਜੀਡੀਪੀਆਰ) ਦੀ ਪਾਲਣਾ ਕਰਨ ਲਈ, ਅਸੀਂ ਤੁਹਾਡਾ ਧਿਆਨ ਨਿਊਪਾਈਪ ਦੀ ਗੋਪਨੀਯਤਾ ਨੀਤੀ ਵੱਲ ਖਿੱਚਦੇ ਹਾਂ। ਕਿਰਪਾ ਕਰਕੇ ਇਸਨੂੰ ਧਿਆਨ ਨਾਲ ਪੜ੍ਹੋ।
+\nਸਾਨੂੰ ਨੁਕਸ ਰਿਪੋਰਟ ਭੇਜਣ ਲਈ ਤੁਹਾਨੂੰ ਇਸ ਨੂੰ ਸਵੀਕਾਰ ਕਰਨਾ ਹੋਵੇਗਾ।</string>
     <string name="accept">ਸਵੀਕਾਰ ਕਰੋ</string>
     <string name="decline">ਅਸਵੀਕਾਰ</string>
     <string name="limit_data_usage_none_description">ਕੋਈ ਸੀਮਾ ਨਹੀਂ</string>
@@ -422,13 +440,13 @@
     <string name="metadata_language">ਭਾਸ਼ਾ</string>
     <string name="metadata_age_limit">ਉਮਰ ਹੱਦ</string>
     <string name="metadata_privacy">ਪਰਦੇਦਾਰੀ</string>
-    <string name="metadata_licence">ਲਾਈਸੈਂਸ</string>
+    <string name="metadata_licence">ਲਾਇਸੈਂਸ</string>
     <string name="metadata_tags">ਟੈਗ</string>
     <string name="metadata_category">ਸ਼੍ਰੇਣੀ</string>
     <string name="description_select_disable">ਵੇਰਵੇ \'ਚੋਂ ਲਿਖਤ ਚੁਣਨਾ ਬੰਦ ਕਰੋ</string>
     <string name="description_select_enable">ਵੇਰਵੇ \'ਚੋਂ ਲਿਖਤ ਚੁਣਨਾ ਚਾਲੂ ਕਰੋ</string>
     <string name="description_select_note">ਤੁਸੀਂ ਹੁਣ ਵੇਰਵੇ \'ਚੋਂ ਲਿਖਤ ਨੂੰ ਚੁਣ ਸਕਦੇ ਹੋ। ਨੋਟ ਕਰੋ ਕਿ ਪੰਨਾ ਜਗ-ਬੁੱਝ ਸਕਦਾ ਹੈ ਅਤੇ ਚੋਣ ਮੋਡ ਵਿੱਚ ਹੋਣ ਵੇਲੇ ਲਿੰਕ ਕਲਿੱਕ ਕਰਨ ਯੋਗ ਨਹੀਂ ਹੋ ਸਕਦੇ ਹਨ।</string>
-    <string name="download_has_started">ਡਾਊਨਲੋਡ ਸ਼ੁਰੂ ਹੋ ਗਿਐ</string>
+    <string name="download_has_started">ਡਾਊਨਲੋਡ ਸ਼ੁਰੂ ਹੋਇਆ</string>
     <string name="select_night_theme_toast">ਤੁਸੀਂ ਆਪਣੀ ਪਸੰਦੀਦਾ ਰਾਤ ਦੀ ਥੀਮ ਹੇਠਾਂ ਚੁਣ ਸਕਦੇ ਹੋ</string>
     <string name="night_theme_summary">ਆਪਣੀ ਪਸੰਦੀਦਾ ਰਾਤ ਦੀ ਥੀਮ ਚੁਣੋ — %s</string>
     <string name="auto_device_theme_title">ਆਟੋਮੈਟਿਕ (ਡਿਵਾਈਸ ਥੀਮ)</string>
@@ -491,9 +509,9 @@
         <item quantity="one">%d ਸਕਿੰਟ</item>
         <item quantity="other">%d ਸਕਿੰਟ</item>
     </plurals>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">ਹਾਂ, ਅਤੇ ਅੱਧ-ਪਚੱਧੀਆਂ ਵੇਖੀਆਂ ਹੋਈਆਂ ਵੀ</string>
-    <string name="remove_watched_popup_warning">ਪਲੇਲਿਸਟ ਵਿੱਚ ਸ਼ਾਮਿਲ ਪਹਿਲਾਂ ਤੇ ਬਾਅਦ ਵਿੱਚ ਵੇਖੇ ਜਾ ਚੁੱਕੇ ਵੀਡੀਓ ਹਟਾ ਦਿੱਤੇ ਜਾਣਗੇ। \nਕੀ ਵਾਕਿਆ ਹੀ ਤੁਸੀਂ ਇਹਨਾਂ ਨੂੰ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ? ਇਸ ਕਾਰਵਾਈ ਨੂੰ ਵਾਪਸ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਣਾ!</string>
-    <string name="remove_watched_popup_title">ਵੇਖੇ ਹੋਏ ਵੀਡੀਓ ਹਟਾ ਦੇਈਏ\?</string>
+    <string name="remove_watched_popup_partially_watched_streams">ਹਾਂ, ਅਤੇ ਅੱਧ-ਪਚੱਧੀਆਂ ਵੇਖੀਆਂ ਹੋਈਆਂ ਵੀ</string>
+    <string name="remove_watched_popup_warning">ਪਲੇਲਿਸਟ ਵਿੱਚ ਸ਼ਾਮਿਲ ਪਹਿਲਾਂ ਤੇ ਬਾਅਦ ਵਿੱਚ ਵੇਖੀਆਂ ਸਟ੍ਰੀਮਾਂ ਨੂੰ ਹਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ।\nਕੀ ਤੁਸੀਂ ਯਕੀਨਨ ਇਹ ਚਾਹੁੰਦੇ ਹੋ?</string>
+    <string name="remove_watched_popup_title">ਕੀ ਵੇਖੀਆਂ ਸਟ੍ਰੀਮਾਂ ਨੂੰ ਹਟਾਉਣਾ ਹੈ?</string>
     <string name="remove_watched">ਵੇਖੇ ਹੋਏ ਨੂੰ ਹਟਾਓ</string>
     <string name="systems_language">ਸਿਸਟਮ ਡਿਫ਼ਾਲਟ</string>
     <string name="app_language_title">ਐਪ ਦੀ ਭਾਸ਼ਾ</string>
@@ -649,8 +667,7 @@
         <item quantity="other">%1$s ਡਾਊਨਲੋਡ ਹਟਾਏ</item>
     </plurals>
     <string name="detail_sub_channel_thumbnail_view_description">ਚੈਨਲ ਦਾ ਅਵਤਾਰ ਥੰਮਨੇਲ</string>
-    <string name="no_appropriate_file_manager_message_android_10">ਇਸ ਕਾਰਜ ਲਈ ਕੋਈ ਢੁਕਵਾਂ ਫਾਈਲ ਮੈਨੇਜਰ ਨਹੀਂ ਮਿਲਿਆ।
-\nਕ੍ਰਿਪਾ ਕਰਕੇ ਸਟੋਰੇਜ ਐਕਸਿਸ ਫਰੇਮਵਰਕ SAF ਅਨੁਕੂਲ ਫਾਈਲ ਮੈਨੇਜਰ ਇੰਨਸਟਾਲ ਕਰੋ</string>
+    <string name="no_appropriate_file_manager_message_android_10">ਇਸ ਕਾਰਜ ਲਈ ਕੋਈ ਢੁਕਵਾਂ ਫਾਈਲ ਮੈਨੇਜਰ ਨਹੀਂ ਮਿਲਿਆ।\nਕ੍ਰਿਪਾ ਕਰਕੇ ਸਟੋਰੇਜ ਐਕਸਿਸ ਫਰੇਮਵਰਕ SAF ਅਨੁਕੂਲ ਫਾਈਲ ਮੈਨੇਜਰ ਸਥਾਪਤ ਕਰੋ</string>
     <string name="tablet_mode_title">ਟੈਬਲੇਟ ਮੋਡ</string>
     <string name="notifications_disabled">ਨੋਟੀਫਿਕੇਸ਼ਨ ਬੰਦ ਕੀਤੇ ਹੋਏ ਹਨ</string>
     <string name="toggle_all">ਸਭ ਨੂੰ ਟੌਗਲ ਕਰੋ</string>
@@ -682,7 +699,7 @@
 \n
 \nਤੁਹਾਡੀ ਚੋਣ ਇਸ ਗੱਲ ਤੇ ਮੁਨੱਸਰ ਕਰਦੀ ਹੈ ਕਿ ਤੁਸੀਂ ਗਤੀ ਤੇ ਸਟੀਕਤਾ ਵਿੱਚੋਂ ਕਿਸ ਨੂੰ ਪ੍ਰਾਥਮਿਕਤਾ ਦਿੰਦੇ ਹੋ।</string>
     <string name="fast_mode">ਤੇਜ ਮੋਡ</string>
-    <string name="import_subscriptions_hint">3-ਡੌਟ ਮੀਨੂ ਤੋਂ ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ ਨੂੰ ਆਯਾਤ ਜਾਂ ਨਿਰਯਾਤ ਕਰੋ</string>
+    <string name="import_subscriptions_hint">3-ਡੌਟ ਮੀਨੂ ਤੋਂ ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ ਨੂੰ ਇੰਪੋਰਟ ਜਾਂ ਐਕਸਪੋਰਟ ਕਰੋ</string>
     <string name="app_update_unavailable_toast">ਤੁਸੀਂ ਨਿਊਪਾਈਪ ਦਾ ਨਵੀਨਤਮ ਸੰਸਕਰਣ ਚਲਾ ਰਹੇ ਹੋ</string>
     <string name="app_update_available_notification_text">%s ਨੂੰ ਡਾਊਨਲੋਡ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
     <string name="night_theme_available">ਇਹ ਵਿਕਲਪ ਤਾਂ ਹੀ ਉਪਲਬਧ ਹੁੰਦਾ ਹੈ ਜੇਕਰ %s ਨੂੰ ਥੀਮ ਲਈ ਚੁਣਿਆ ਜਾਂਦਾ ਹੈ</string>
@@ -825,6 +842,29 @@
     <string name="player_http_403">ਪਲੇਅ ਕਰਦੇ ਸਮੇਂ ਸਰਵਰ ਤੋਂ HTTP error 403 ਪ੍ਰਾਪਤ ਹੋਇਆ, ਜੋ ਸ਼ਾਇਦ ਸਟ੍ਰੀਮਿੰਗ URL ਦੀ ਮਿਆਦ ਪੁੱਗਣ ਜਾਂ IP ਦੀ ਪਾਬੰਦੀ ਕਾਰਨ ਹੋਈ ਹੈ</string>
     <string name="player_http_invalid_status">ਚਲਾਉਣ ਦੌਰਾਨ ਸਰਵਰ ਤੋਂ HTTP error %1$s ਪ੍ਰਾਪਤ ਹੋਇਆ</string>
     <string name="youtube_player_http_403">ਪਲੇਅ ਕਰਦੇ ਸਮੇਂ ਸਰਵਰ ਤੋਂ HTTP error 403 ਪ੍ਰਾਪਤ ਹੋਇਆ, ਜੋ ਸ਼ਾਇਦ IP ਬੈਨ ਜਾਂ ਸਟ੍ਰੀਮਿੰਗ URL ਡੀਔਬਫਸਕੇਸ਼ਨ ਸਮੱਸਿਆਵਾਂ ਕਾਰਨ ਹੋਈ ਹੈ</string>
-    <string name="sign_in_confirm_not_bot_error">%1$s ਨੇ ਡੇਟਾ ਪ੍ਰਦਾਨ ਕਰਨ ਤੋਂ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ, ਅਤੇ ਇਹ ਪੁਸ਼ਟੀ ਕਰਨ ਲਈ ਲੌਗਇਨ ਕਰਨ ਲਈ ਕਿਹਾ ਕਿ ਬੇਨਤੀਕਰਤਾ ਬੋਟ ਨਹੀਂ ਹੈ।\n\nਹੋ ਸਕਦਾ ਹੈ ਕਿ %1$s ਨੇ ਤੁਹਾਡੇ IP ਨੂੰ ਅਸਥਾਈ ਤੌਰ \'ਤੇ ਪਾਬੰਦੀ ਲਗਾਈ ਹੋਵੇ, ਤੁਸੀਂ ਕੁਝ ਸਮਾਂ ਉਡੀਕ ਕਰ ਸਕਦੇ ਹੋ ਜਾਂ ਕਿਸੇ ਵੱਖਰੇ IP \'ਤੇ ਸਵਿੱਚ ਕਰ ਸਕਦੇ ਹੋ (ਉਦਾਹਰਣ ਵਜੋਂ VPN ਨੂੰ ਚਾਲੂ/ਬੰਦ ਕਰਕੇ, ਜਾਂ WiFi ਤੋਂ ਮੋਬਾਈਲ ਡੇਟਾ \'ਤੇ ਸਵਿੱਚ ਕਰਕੇ)।</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s ਨੇ ਡੇਟਾ ਪ੍ਰਦਾਨ ਕਰਨ ਤੋਂ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ, ਅਤੇ ਇਹ ਪੁਸ਼ਟੀ ਕਰਨ ਲਈ ਲੌਗਇਨ ਕਰਨ ਲਈ ਕਿਹਾ ਕਿ ਬੇਨਤੀਕਰਤਾ ਬੋਟ ਨਹੀਂ ਹੈ।\n\nਹੋ ਸਕਦਾ ਹੈ ਕਿ %1$s ਨੇ ਤੁਹਾਡੇ IP ਨੂੰ ਅਸਥਾਈ ਤੌਰ \'ਤੇ ਪਾਬੰਦੀ ਲਗਾਈ ਹੋਵੇ, ਤੁਸੀਂ ਕੁਝ ਸਮਾਂ ਉਡੀਕ ਕਰ ਸਕਦੇ ਹੋ ਜਾਂ ਕਿਸੇ ਵੱਖਰੇ IP \'ਤੇ ਸਵਿੱਚ ਕਰ ਸਕਦੇ ਹੋ (ਉਦਾਹਰਣ ਵਜੋਂ VPN ਨੂੰ ਚਾਲੂ/ਬੰਦ ਕਰਕੇ, ਜਾਂ WiFi ਤੋਂ ਮੋਬਾਈਲ ਡੇਟਾ \'ਤੇ ਸਵਿੱਚ ਕਰਕੇ)।\n\nਹੋਰ ਜਾਣਕਾਰੀ ਲਈ ਕਿਰਪਾ ਕਰਕੇ <a href="%2$s">ਇਹ FAQ ਐਂਟਰੀ</a> ਵੇਖੋ।</string>
     <string name="unsupported_content_in_country">ਇਹ ਸਮੱਗਰੀ ਵਰਤਮਾਨ ਵਿੱਚ ਚੁਣੇ ਗਏ ਦੇਸ਼ ਦੀ ਸਮੱਗਰੀ ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ ਹੈ।\n\n\"ਸੈਟਿੰਗਾਂ &gt; ਸਮੱਗਰੀ &gt; ਡਿਫ਼ਾਲਟ ਸਮੱਗਰੀ ਦੇਸ਼\" ਤੋਂ ਆਪਣੀ ਚੋਣ ਬਦਲੋ।</string>
+    <string name="kao_dialog_warning">ਅਗਸਤ 2025 ਵਿੱਚ, ਗੂਗਲ ਨੇ ਐਲਾਨ ਕੀਤਾ ਕਿ ਸਤੰਬਰ 2026 ਤੋਂ, ਐਪਸ ਨੂੰ ਸਥਾਪਿਤ ਕਰਨ ਲਈ ਪ੍ਰਮਾਣਿਤ ਡਿਵਾਈਸਾਂ \'ਤੇ ਸਾਰੇ ਐਂਡਰਾਇਡ ਐਪਸ ਲਈ ਡਿਵੈਲਪਰ ਤਸਦੀਕ ਦੀ ਲੋੜ ਹੋਵੇਗੀ, ਜਿਸ ਵਿੱਚ ਪਲੇ ਸਟੋਰ ਤੋਂ ਬਾਹਰ ਸਥਾਪਤ ਕੀਤੇ ਐਪਸ ਵੀ ਸ਼ਾਮਲ ਹਨ। ਕਿਉਂਕਿ ਨਿਊਪਾਈਪ ਦੇ ਡਿਵੈਲਪਰ ਇਸ ਲੋੜ ਨਾਲ ਸਹਿਮਤ ਨਹੀਂ ਹਨ, ਇਸ ਲਈ ਨਿਊਪਾਈਪ ਉਸ ਸਮੇਂ ਤੋਂ ਬਾਅਦ ਪ੍ਰਮਾਣਿਤ ਐਂਡਰਾਇਡ ਡਿਵਾਈਸਾਂ \'ਤੇ ਕੰਮ ਨਹੀਂ ਕਰੇਗੀ।</string>
+    <string name="kao_dialog_more_info">ਵੇਰਵੇ</string>
+    <string name="kao_solution">ਹੱਲ</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">%d ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਐਕਸਪੋਰਟ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…</item>
+        <item quantity="other">%d ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ ਐਕਸਪੋਰਟ ਕੀਤੀਆਂ ਜਾ ਰਹੀਆਂ ਹਨ…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">%d ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਲੋਡ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…</item>
+        <item quantity="other">%d ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ ਲੋਡ ਕੀਤੀਆਂ ਜਾ ਰਹੀਆਂ ਹਨ…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">%d ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਇੰਪੋਰਟ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…</item>
+        <item quantity="other">%d ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ ਇੰਪੋਰਟ ਕੀਤੀਆਂ ਜਾ ਰਹੀਆਂ ਹਨ…</item>
+    </plurals>
+    <string name="import_subscriptions_title">ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ ਇੰਪੋਰਟ ਕਰੋ</string>
+    <string name="export_subscriptions_title">ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ ਐਕਸਪੋਰਟ ਕਰੋ</string>
+    <string name="import_subscriptions_summary">ਪਹਿਲਾਂ ਕੀਤੇ .json ਐਕਸਪੋਰਟ ਤੋਂ ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ ਨੂੰ ਇੰਪੋਰਟ ਕਰੋ</string>
+    <string name="export_subscriptions_summary">ਆਪਣੀਆਂ ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ ਨੂੰ .json ਫਾਈਲ ਵਿੱਚ ਐਕਸਪੋਰਟ ਕਰੋ</string>
+    <string name="import_from_previous_export">ਪਹਿਲਾਂ ਕੀਤੇ ਐਕਸਪੋਰਟ ਤੋਂ ਇੰਪੋਰਟ ਕਰੋ</string>
+    <string name="api23_requirement_dialog_title">ਨਿਊਪਾਈਪ ਐਂਡਰਾਇਡ 5 ਲਈ ਸਮਰਥਨ ਬੰਦ ਕਰ ਰਿਹਾ ਹੈ</string>
+    <string name="api23_requirement_dialog_message">ਬਦਕਿਸਮਤੀ ਨਾਲ NewPipe ਕੁਝ ਲਾਇਬ੍ਰੇਰੀਆਂ \'ਤੇ ਨਿਰਭਰ ਕਰਦਾ ਹੈ ਜਿਨ੍ਹਾਂ ਨੇ Android 5.0 ਅਤੇ 5.1 ਲਈ ਸਮਰਥਨ ਛੱਡ ਦਿੱਤਾ ਹੈ। ਇਸ ਲਈ, ਅਗਲੀ NewPipe ਰੀਲੀਜ਼ ਸਿਰਫ਼ Android 6 ਜਾਂ ਇਸ ਤੋਂ ਉੱਚੇ ਵਰਜਨ ਵਾਲੇ ਡਿਵਾਈਸਾਂ \'ਤੇ ਕੰਮ ਕਰੇਗੀ। ਬਲੌਗਪੋਸਟ ਵਿੱਚ ਹੋਰ ਪੜ੍ਹੋ।</string>
+    <string name="api23_requirement_dialog_blogpost">ਬਲੌਗਪੋਸਟ</string>
 </resources>

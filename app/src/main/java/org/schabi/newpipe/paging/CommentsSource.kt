@@ -20,11 +20,14 @@ class CommentsSource(private val commentInfo: CommentInfo) : PagingSource<Page, 
         if (params.key == null) {
             return LoadResult.Page(commentInfo.comments, null, commentInfo.nextPage)
         } else {
-            val info = withContext(Dispatchers.IO) {
-                CommentsInfo.getMoreItems(service, commentInfo.url, params.key)
+            return try {
+                val info = withContext(Dispatchers.IO) {
+                    CommentsInfo.getMoreItems(service, commentInfo.url, params.key)
+                }
+                LoadResult.Page(info.items, null, info.nextPage)
+            } catch (exception: Exception) {
+                LoadResult.Error(exception)
             }
-
-            return LoadResult.Page(info.items, null, info.nextPage)
         }
     }
 

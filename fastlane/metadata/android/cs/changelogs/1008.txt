@@ -1,0 +1,4 @@
+∙ Opraveno obnovení streamů na poslední pozici přehrávání
+∙ [YouTube] Přidána podpora pro více formátů URL kanálů
+∙ [YouTube] Přidána podpora pro více formátů metainformací videí
+∙ Aktualizovány překlady

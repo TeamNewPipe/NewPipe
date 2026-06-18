@@ -5,6 +5,7 @@ import static org.schabi.newpipe.util.SparseItemUtil.fetchItemInfoIfSparse;
 import static org.schabi.newpipe.util.SparseItemUtil.fetchStreamInfoAndSaveToDatabase;
 import static org.schabi.newpipe.util.SparseItemUtil.fetchUploaderUrlIfSparse;
 
+import android.content.Context;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
@@ -53,28 +54,33 @@ public enum StreamDialogDefaultEntry {
     /**
      * Enqueues the stream automatically to the current PlayerType.
      */
-    ENQUEUE(R.string.enqueue_stream, (fragment, item) ->
-            fetchItemInfoIfSparse(fragment.requireContext(), item, singlePlayQueue ->
-                NavigationHelper.enqueueOnPlayer(fragment.getContext(), singlePlayQueue))
-    ),
+    ENQUEUE(R.string.enqueue_stream, (fragment, item) -> {
+            final Context ctx = fragment.requireContext().getApplicationContext();
+            fetchItemInfoIfSparse(ctx, item, singlePlayQueue ->
+                NavigationHelper.enqueueOnPlayer(ctx, singlePlayQueue));
+    }),
 
     /**
      * Enqueues the stream automatically to the current PlayerType
      * after the currently playing stream.
      */
-    ENQUEUE_NEXT(R.string.enqueue_next_stream, (fragment, item) ->
-            fetchItemInfoIfSparse(fragment.requireContext(), item, singlePlayQueue ->
-                NavigationHelper.enqueueNextOnPlayer(fragment.getContext(), singlePlayQueue))
-    ),
+    ENQUEUE_NEXT(R.string.enqueue_next_stream, (fragment, item) -> {
+            final Context ctx = fragment.requireContext().getApplicationContext();
+            fetchItemInfoIfSparse(ctx, item, singlePlayQueue ->
+                NavigationHelper.enqueueNextOnPlayer(ctx, singlePlayQueue));
+    }),
 
-    START_HERE_ON_BACKGROUND(R.string.start_here_on_background, (fragment, item) ->
-            fetchItemInfoIfSparse(fragment.requireContext(), item, singlePlayQueue ->
-                NavigationHelper.playOnBackgroundPlayer(
-                        fragment.getContext(), singlePlayQueue, true))),
+    START_HERE_ON_BACKGROUND(R.string.start_here_on_background, (fragment, item) -> {
+            final Context ctx = fragment.requireContext().getApplicationContext();
+            fetchItemInfoIfSparse(ctx, item, singlePlayQueue ->
+                NavigationHelper.playOnBackgroundPlayer(ctx, singlePlayQueue, true));
+    }),
 
-    START_HERE_ON_POPUP(R.string.start_here_on_popup, (fragment, item) ->
-            fetchItemInfoIfSparse(fragment.requireContext(), item, singlePlayQueue ->
-                NavigationHelper.playOnPopupPlayer(fragment.getContext(), singlePlayQueue, true))),
+    START_HERE_ON_POPUP(R.string.start_here_on_popup, (fragment, item) -> {
+            final Context ctx = fragment.requireContext().getApplicationContext();
+            fetchItemInfoIfSparse(ctx, item, singlePlayQueue ->
+                NavigationHelper.playOnPopupPlayer(ctx, singlePlayQueue, true));
+    }),
 
     SET_AS_PLAYLIST_THUMBNAIL(R.string.set_as_playlist_thumbnail, (fragment, item) -> {
         throw new UnsupportedOperationException("This needs to be implemented manually "

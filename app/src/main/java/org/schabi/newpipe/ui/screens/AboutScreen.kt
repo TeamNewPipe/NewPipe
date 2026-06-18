@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SecondaryTabRow
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
@@ -44,7 +45,7 @@ fun AboutScreen(padding: PaddingValues) {
             tabIndex = pagerState.currentPage
         }
 
-        TabRow(
+        SecondaryTabRow(
             selectedTabIndex = tabIndex,
             containerColor = MaterialTheme.colorScheme.primaryContainer
         ) {

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigate_back">वापस</string>
+    <string name="title_activity_about">न्यूपाइप के बारे में जानें</string>
+    <string name="title_licenses">थर्ड-पार्टी लाइसेंस</string>
+    <string name="license">%1$s द्वारा %2$s के अंतर्गत</string>
+    <string name="tab_about">ऐप के बारे में और सामान्य प्रश्न</string>
+    <string name="tab_licenses">लाइसेंस</string>
+    <string name="app_description">एंड्राइड के लिए हल्का और मुफ्त स्ट्रीमिंग एप्लिकेशन।</string>
+    <string name="contribution_title">योगदान करें</string>
+    <string name="contribution_encouragement">अगर आपके पास कोई सुझाव हो जैसे कि - अनुवाद करना, डिजाईन में बदलाव करना, कोड को साफ़ रखना, या फिर कोड में जायदा बदलाव लाना हो तो - सहायता के लिए आपका स्वागत है। जितना ज्यादा होगा उतना बेहतर होगा !</string>
+    <string name="view_on_github">GitHub पर देखें</string>
+    <string name="donation_title">दान करें</string>
+    <string name="donation_encouragement">न्यूपाइप वॉलंटियर्स द्वारा विकसित किया जाता है जो आपको अच्छा अनुभव देने के लिए अपना खाली समय इस एप्लिकेशन को देते हैं। डेवलपर्स को मदद भेजे, ताकि वह न्यूपाइप को और अच्छा बना सके।</string>
+    <string name="give_back">वापस दो</string>
+    <string name="website_title">वेबसाइट</string>
+    <string name="website_encouragement">अधिक जानकारी और खबरों के लिए न्यूपाइप की वेबसाइट पर जाएं।</string>
+    <string name="privacy_policy_title">न्यूपाइप की प्राइवेसी पॉलिसी</string>
+    <string name="privacy_policy_encouragement">न्यूपाइप परियोजना आपकी गोपनीयता को बहुत गंभीर रूप से लेता है। इसलिए, ऐप आपकी अनुमति के बिना कोई डेटा जमा नहीं करता।\nन्यूपाइप की गोपनीयता नीति विस्तार से समझाती है कि कौनसा डेटा भेजा और संग्रह किया जाता है जब आप क्रेश विवरण भेजते हैं।</string>
+    <string name="read_privacy_policy">प्राइवेसी पॉलिसी पढ़ें</string>
+    <string name="app_license_title">NewPipe का लाइसेंस</string>
+    <string name="app_license">न्यूपाइप एक काॅपीलेफ़्ट फ़्री साॅफ़्टवेर है: इसे आप अपनी इच्छा के अनुसार इस्तेमाल, जाँच, बाँट तथा और बेहतर बना सकते है। खास तौर पर आप इसे फ़्री साॅफ़्टवेर फ़ाउंडेशन के द्वारा जारी जीएनयू जनरल पब्लिक लाइसेंस के तीसरे या उसके बाद आने वाले कोई भी वर्णन के शर्तों के मुताबिक फिर से बाँट या बदल सकते हैं।</string>
+    <string name="read_full_license">लाइसेंस पढ़ें</string>
+    <string name="faq_title">अक्सर पूछे जाते प्रश्न</string>
+    <string name="faq_description">यदि आपको ऐप का उपयोग करने में परेशानी हो रही है, तो सामान्य प्रश्नों के इन उत्तरों को देखना सुनिश्चित करें!</string>
+    <string name="faq">वेबसाइट पर देखें</string>
+    <string name="open_in_browser">ब्राउज़र में खोलें</string>
+    <string name="done">संपन्न</string>
+    <string name="not_available">अनुपलब्ध</string>
+</resources>

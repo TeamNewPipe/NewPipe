@@ -10,9 +10,6 @@ import com.mikepenz.aboutlibraries.entity.Developer
 import com.mikepenz.aboutlibraries.entity.Library
 import com.mikepenz.aboutlibraries.entity.License
 import com.mikepenz.aboutlibraries.entity.Scm
-import kotlinx.collections.immutable.ImmutableSet
-import kotlinx.collections.immutable.toImmutableList
-import kotlinx.collections.immutable.toImmutableSet
 import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.R
 
@@ -38,7 +35,7 @@ fun getFirstPartyLibraries(
             licenseContent = null,
             hash = "GPL-3.0-or-later"
         )
-    ).toImmutableSet()
+    )
 
     val npeId = "com.github.TeamNewPipe:NewPipeExtractor"
     val npe = teamNewPipeLibraries.firstOrNull { it.uniqueId == npeId }
@@ -55,7 +52,7 @@ fun getFirstPartyLibraries(
                     name = context.getString(R.string.team_newpipe),
                     organisationUrl = context.getString(R.string.website_url)
                 )
-            ).toImmutableList(),
+            ),
             organization = null,
             scm = Scm(null, null, context.getString(R.string.github_url)),
             licenses = gpl3
@@ -71,7 +68,7 @@ fun getFirstPartyLibraries(
                     name = context.getString(R.string.team_newpipe),
                     organisationUrl = context.getString(R.string.website_url)
                 )
-            ).toImmutableList(),
+            ),
             organization = null,
             scm = Scm(null, null, context.getString(R.string.newpipe_extractor_github_url)),
             licenses = gpl3
@@ -82,7 +79,7 @@ fun getFirstPartyLibraries(
 fun getAdditionalThirdPartyLibraries(
     context: Context,
     teamNewPipeLibraries: List<Library>,
-    licenses: ImmutableSet<License>
+    licenses: Set<License>
 ): List<Library> {
     val apache2 = licenses.firstOrNull { it.spdxId == "Apache-2.0" }
     val mit = licenses.firstOrNull { it.spdxId == "MIT" }
@@ -109,10 +106,10 @@ fun getAdditionalThirdPartyLibraries(
                     name = context.getString(R.string.team_newpipe),
                     organisationUrl = context.getString(R.string.website_url)
                 )
-            ).toImmutableList(),
+            ),
             organization = null,
             scm = Scm(null, null, "https://github.com/TeamNewPipe/NoNonsense-FilePicker"),
-            licenses = listOfNotNull(mpl2).toImmutableSet()
+            licenses = setOfNotNull(mpl2)
         ),
         Library(
             uniqueId = nanojsonId,
@@ -129,10 +126,10 @@ fun getAdditionalThirdPartyLibraries(
                     name = context.getString(R.string.team_newpipe),
                     organisationUrl = context.getString(R.string.website_url)
                 )
-            ).toImmutableList(),
+            ),
             organization = null,
             scm = Scm(null, null, "https://github.com/TeamNewPipe/nanojson"),
-            licenses = listOfNotNull(mit, apache2).toImmutableSet()
+            licenses = setOfNotNull(mit, apache2)
         )
     )
 }

@@ -1,0 +1,6 @@
+Îmbunătățit
+• Se permite întotdeauna modificarea preferințelor de notificare ale jucătorului pe Android 13+
+
+Remediat
+• S-a remediat problema care împiedica exportul bazei de date/abonamentelor să trunchieze un fișier deja existent, ceea ce putea duce la un export corupt
+• S-a remediat problema reluării playerului de la început la clic pe un timestamp

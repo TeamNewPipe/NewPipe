@@ -1,17 +1,12 @@
 Nouveautés
 • Ajout de la compatibilité avec Android Auto
 • Possibilité de définir des groupes de flux comme onglets de l'écran principal
-• [YouTube] Partager comme playlist temporaire
-• [SoundCloud] Onglet « J'aime » sur les chaînes
 
 Améliorations
 • Amélioration des suggestions de la barre de recherche
 • Affichage de la date de téléchargement dans Téléchargements
-• Utilisation de la langue par application d'Android 13
 
 Corrections
 • Correction des couleurs de texte défectueuses en mode sombre
 • [YouTube] Correction du chargement des playlists de plus de 100 éléments
 • [YouTube] Correction de l'affichage des vidéos recommandées manquantes
-• Correction des plantages dans l'historique
-• Correction des horodatages dans les réponses aux commentaires

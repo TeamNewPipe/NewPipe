@@ -1,0 +1,9 @@
+This is a small hotfix update to make YouTube usable again. It is necessary, because there were changes by YouTube.
+NewPipe is now able to extract items in channel tabs again thanks to @AudricV and @Ecomont effort.
+
+Further changes
+- [YouTube] Fixed duration and live stream display in related videos
+- [SoundCloud] Fixed comments crash by handling null page URLs
+- dependency updates
+
+NewPipe will drop Android 5 support in the next release.

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">نیوپایپ</string>
+    <string name="navigate_back">بازگشت</string>
+    <string name="title_activity_about">درباره نیوپایپ</string>
+    <string name="title_licenses">پروانه‌های شخص سوم</string>
+    <string name="tab_about">درباره و سوالات‌متداول</string>
+    <string name="tab_licenses">پروانه‌ها</string>
+    <string name="app_description">پخش‌کننده آزاد سبُک برای اندروید.</string>
+    <string name="contribution_title">مشارکت</string>
+    <string name="contribution_encouragement">اگر ایده‌ای برای ترجمه، تغییر طراحی، پاک‌سازی کد و یا تغییرات واقعا سنگین کدنویسی دارید، از کمک‌تان همواره استقبال می‌کنیم. هر چه بیشتر کار کنیم، نتایج بهتری می‌گیریم!</string>
+    <string name="view_on_github">دیدن روی گیت‌هاب</string>
+    <string name="donation_title">اعانه</string>
+    <string name="donation_encouragement">نیوپایپ توسط داوطلبانی توسعه داده می‌شود که با صرف زمان آزاد‌شان، بهترین تجربه کاربری را برای شما به ارمغان می‌آورند. حمایت از توسعه‌دهندگان، به آنها کمک می‌کند تا حین لذت بردن از نوشیدن یک فنجان قهوه، نیوپایپ را به مراتب بهتر کنند.</string>
+    <string name="give_back">حمایت</string>
+    <string name="website_title">وب‌سایت</string>
+    <string name="website_encouragement">برای اطلاعات و اخبار بیشتر، به وب‌سایت نیوپایپ سر بزنید.</string>
+    <string name="privacy_policy_title">سیاست حریم خصوصی نیوپایپ</string>
+    <string name="read_privacy_policy">خواندن سیاست حریم خصوصی</string>
+    <string name="app_license_title">پروانه نیوپایپ</string>
+    <string name="app_license">نیوپایپ یک نرم‌افزار آزاد کپی‌لفتی است: می‌توانید به دلخواه خود استفاده، بررسی، هم‌رسانی و بهترش کنید. به طور خاص می‌توانید ذیل نگارش ۳ یا هر نگارش بالاتری از پروانهٔ جامع همگانی گنو که به دست بنیاد نرم‌افزار آزاد منتشر شده، تغییر و بازنشرش دهید.</string>
+    <string name="read_full_license">خواندن پروانه</string>
+    <string name="faq_title">سوالات متداول</string>
+    <string name="faq_description">اگر حین استفاده از اپ مشکلی دارید، حتما پاسخ‌ها به سوالات متداول را بررسی کنید!</string>
+    <string name="faq">نمایش در وبسایت</string>
+    <string name="open_in_browser">گشودن در مرورگر</string>
+    <string name="done">انجام شد</string>
+    <string name="license">به دست %1$s در %2$s</string>
+    <string name="not_available">موجود نیست</string>
+</resources>

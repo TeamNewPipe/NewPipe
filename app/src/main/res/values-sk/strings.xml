@@ -78,7 +78,7 @@
     <string name="downloads_title">Stiahnuté</string>
     <string name="error_report_title">Hlásenie o chybe</string>
     <string name="app_ui_crash">Aplikácia/UP zlyhalo</string>
-    <string name="info_labels">Čo:\\nPožiadavka:\\nJazyk obsahu:\\nKrajina Obsahu:\\nJazyk Aplikácie:\\nSlužba:\\nČas v GMT:\\nBalík:\\nVerzia:\\nOS:</string>
+    <string name="info_labels">Čo:\nPožiadavka:\nJazyk obsahu:\nKrajina Obsahu:\nJazyk Aplikácie:\nSlužba:\nČas v GMT:\nBalík:\nVerzia:\nOS:</string>
     <string name="title_activity_recaptcha">Výzva reCAPTCHA</string>
     <string name="black_theme_title">Čierna</string>
     <string name="all">Všetko</string>
@@ -91,7 +91,7 @@
     <string name="disabled">Vypnuté</string>
     <string name="default_popup_resolution_title">Predvolená veľkosť mini okna</string>
     <string name="show_higher_resolutions_title">Zobraziť vyššie rozlíšenie</string>
-    <string name="show_higher_resolutions_summary">Len niektoré zariadenia podporujú videá 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Len niektoré zariadenia podporujú videá 1440p/4K</string>
     <string name="controls_background_title">Na pozadí</string>
     <string name="controls_popup_title">V okne</string>
     <string name="clear">Vyčistiť</string>
@@ -110,8 +110,8 @@
     <string name="fragment_feed_title">Čo je nové</string>
     <string name="enable_search_history_title">Hľadať v histórií</string>
     <string name="enable_search_history_summary">Hľadané výrazy uloží lokálne</string>
-    <string name="enable_watch_history_title">História pozretí</string>
-    <string name="enable_watch_history_summary">Uloží históriu pozretých videí</string>
+    <string name="enable_watch_history_title">História pozerania</string>
+    <string name="enable_watch_history_summary">Uloží históriu pozeraných videí</string>
     <string name="resume_on_audio_focus_gain_title">Pokračovať v prehrávaní</string>
     <string name="resume_on_audio_focus_gain_summary">Pokračouje v prehrávaní po prerušení (napr. po telefonáte)</string>
     <string name="notification_channel_name">NewPipe oznámenia</string>
@@ -147,11 +147,12 @@
         <item quantity="few">%s odberatelia</item>
         <item quantity="other">%s odberateľov</item>
     </plurals>
-    <string name="no_views">Žiadne pozretia</string>
+    <string name="no_views">Žiadne zobrazenia</string>
     <plurals name="views">
-        <item quantity="one">%s pozriete</item>
-        <item quantity="few">%s pozretia</item>
-        <item quantity="other">%s pozretí</item>
+        <item quantity="one">%s zobrazenie</item>
+        <item quantity="few">%s zobrazenia</item>
+        <item quantity="many">%s zobrazení</item>
+        <item quantity="other">%s zobrazení</item>
     </plurals>
     <string name="no_videos">Žiadne videá</string>
     <plurals name="videos">
@@ -294,10 +295,10 @@
     <string name="playback_tempo">Rýchlosť</string>
     <string name="playback_pitch">Výška</string>
     <string name="unhook_checkbox">Spraviť nezávislými (môže spôsobovať skreslenie)</string>
-    <string name="clear_views_history_title">Vymazať históriu pozretí</string>
+    <string name="clear_views_history_title">Vymazať históriu pozerania</string>
     <string name="clear_views_history_summary">Odstráni históriu a pozície prehrávaných streamov</string>
-    <string name="delete_view_history_alert">Vymazať celú históriu pozretí\?</string>
-    <string name="watch_history_deleted">História pozretí bola vymazaná</string>
+    <string name="delete_view_history_alert">Vymazať celú históriu pozerania?</string>
+    <string name="watch_history_deleted">História pozerania bola vymazaná</string>
     <string name="clear_search_history_title">Vymazať históriu vyhľadávania</string>
     <string name="clear_search_history_summary">Odstráni históriu vyhľadávania kľúčových slov</string>
     <string name="delete_search_history_alert">Vymazať celú históriu vyhľadávania\?</string>
@@ -493,24 +494,24 @@
     <string name="feed_use_dedicated_fetch_method_summary">Služba je dostupná len pre určité zdroje, zvyčajne je rýchlejšia ale môže vrátiť obmedzený počet položiek alebo neúplné informácie (napr. dĺžka, typ, status)</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Povoliť rýchly režim</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Zakázať rýchly režim</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Myslíte si, že načítavanie informačného kanála je príliš pomalé\? Ak áno, skúste povoliť rýchle načítanie (môžete ho zmeniť v nastaveniach alebo stlačením tlačidla nižšie). 
-\n 
-\nNewPipe ponúka dve stratégie načítania informačného kanála: 
-\n• Načítava sa celý kanál prihlásenia na odber, ktorý je pomalý, ale úplný. 
-\n• Používanie vyhradeného koncového bodu služby, ktorý je rýchly, ale zvyčajne nie je kompletný. 
-\n 
-\nRozdiel medzi nimi je ten, že v prípade rýchleho zvyčajne chýbajú nejaké informácie, napríklad trvanie alebo typ položky (nedá sa rozlíšiť medzi živými videami a normálnymi videami) a môže načítať menej položiek. 
-\n 
-\nYouTube je príkladom služby, ktorá ponúka túto rýchlu metódu s informačným kanálom RSS. 
-\n 
+    <string name="feed_use_dedicated_fetch_method_help_text">Myslíte si, že načítavanie informačného kanála je príliš pomalé\? Ak áno, skúste povoliť rýchle načítanie (môžete ho zmeniť v nastaveniach alebo stlačením tlačidla nižšie).
+\n
+\nNewPipe ponúka dve stratégie načítania informačného kanála:
+\n• Načítava sa celý kanál prihlásenia na odber, ktorý je pomalý, ale úplný.
+\n• Používanie vyhradeného koncového bodu služby, ktorý je rýchly, ale zvyčajne nie je kompletný.
+\n
+\nRozdiel medzi nimi je ten, že v prípade rýchleho zvyčajne chýbajú nejaké informácie, napríklad trvanie alebo typ položky (nedá sa rozlíšiť medzi živými videami a normálnymi videami) a môže načítať menej položiek.
+\n
+\nYouTube je príkladom služby, ktorá ponúka túto rýchlu metódu s informačným kanálom RSS.
+\n
 \nTakže výber sa zredukuje na to, čo uprednostňujete: rýchlosť alebo presné informácie.</string>
     <string name="content_not_supported">Tento obsah ešte nie je podporovaný v NwPipe.
 \n
 \nMožno v budúcnosti sa to zmení.</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Áno aj čiastočne pozreté videá</string>
-    <string name="remove_watched_popup_warning">Pozreté videá, ktoré ste pozreli pred a po ich pridaní do playlistu, budú odstránené. \nSte si istí ich odstránením z playlistu? Táto operácia je nezvratná!</string>
-    <string name="remove_watched_popup_title">Odstrániť pozreté videá\?</string>
-    <string name="remove_watched">Odstrániť pozreté</string>
+    <string name="remove_watched_popup_partially_watched_streams">Áno aj čiastočne pozreté videá</string>
+    <string name="remove_watched_popup_warning">Videá, ktoré ste sledovali pred a po pridaní do playlistu, budú odstránené. \nNaozaj to chcete urobiť?</string>
+    <string name="remove_watched_popup_title">Odstrániť pozerané videá?</string>
+    <string name="remove_watched">Odstrániť pozerané</string>
     <string name="show_original_time_ago_summary">Pôvodné texty zo služieb budú viditeľné v položkách streamu</string>
     <string name="show_original_time_ago_title">Zobrazovať pôvodný čas</string>
     <string name="infinite_videos">∞ videí</string>
@@ -857,6 +858,35 @@
     <string name="player_http_403">Počas prehrávania bola zo servera prijatá chyba HTTP 403, pravdepodobne spôsobená vypršaním platnosti streamingovej adresy URL alebo zákazom IP adresy</string>
     <string name="player_http_invalid_status">Chyba HTTP %1$s prijatá zo servera počas prehrávania</string>
     <string name="youtube_player_http_403">Chyba HTTP 403 prijatá zo servera počas prehrávania, pravdepodobne spôsobená zákazom IP adresy alebo problémami s deobfuskáciou streamingovej URL adresy</string>
-    <string name="sign_in_confirm_not_bot_error">%1$s odmietol poskytnúť údaje, žiada o prihlásenie na potvrdenie, že žiadateľ nie je bot.\n\nVaša IP adresa mohla byť dočasne zakázaná %1$s, môžete nejaký čas počkať alebo prejsť na inú IP adresu (napríklad zapnutím/vypnutím VPN alebo prepnutím z WiFi na mobilné dáta).</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s odmietol poskytnúť údaje, žiada o prihlásenie na potvrdenie, že žiadateľ nie je bot.\n\nVaša IP adresa mohla byť dočasne zakázaná %1$s, môžete nejaký čas počkať alebo prejsť na inú IP adresu (napríklad zapnutím/vypnutím VPN alebo prepnutím z WiFi na mobilné dáta).\n\nPozrite si <a href="%2$s">túto časť FAQ</a> pre viac informácií.</string>
     <string name="unsupported_content_in_country">Tento obsah nie je dostupný pre aktuálne zvolenú krajinu obsahu.\n\nZmeňte výber v ponuke \"Nastavenia &gt; Obsah &gt; Predvolená krajina obsahu\".</string>
+    <string name="kao_dialog_warning">V auguste 2025 spoločnosť Google oznámila, že od septembra 2026 bude inštalácia aplikácií vyžadovať overenie vývojára pre všetky aplikácie Android na certifikovaných zariadeniach, vrátane tých, ktoré sú inštalované mimo obchodu Play Store. Keďže vývojári NewPipe s touto požiadavkou nesúhlasia, NewPipe po tomto termíne nebude na certifikovaných zariadeniach Android fungovať.</string>
+    <string name="kao_dialog_more_info">Podrobnosti</string>
+    <string name="kao_solution">Riešenie</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">Exportovanie %d odberu…</item>
+        <item quantity="few">Exportovanie %d odberov…</item>
+        <item quantity="many">Exportovanie %d odberov…</item>
+        <item quantity="other">Exportovanie %d odberov…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">Načítanie %d odberu…</item>
+        <item quantity="few">Načítanie %d odberov…</item>
+        <item quantity="many">Načítanie %d odberov…</item>
+        <item quantity="other">Načítanie %d odberov…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">Importovanie %d odberu…</item>
+        <item quantity="few">Importovanie %d odberov…</item>
+        <item quantity="many">Importovanie %d odberov…</item>
+        <item quantity="other">Importovanie %d odberov…</item>
+    </plurals>
+    <string name="import_subscriptions_title">Importovať odbery</string>
+    <string name="export_subscriptions_title">Exportovať odbery</string>
+    <string name="import_subscriptions_summary">Import odberov z predchádzajúceho exportu .json</string>
+    <string name="export_subscriptions_summary">Export vašich odberov do súboru .json</string>
+    <string name="import_from_previous_export">Importovať z predchádzajúceho exportu</string>
+    <string name="api23_requirement_dialog_title">NewPipe ukončuje podporu pre Android 5</string>
+    <string name="api23_requirement_dialog_message">NewPipe je bohužiaľ závislý od niekoľkých knižníc, ktoré ukončili podporu pre Android 5.0 a 5.1. Ďalšia verzia NewPipe bude preto, žiaľ, fungovať len na zariadeniach s Androidom 6 alebo novším. Viac informácií nájdete v blogovom príspevku.</string>
+    <string name="api23_requirement_dialog_blogpost">Blogový príspevok</string>
 </resources>

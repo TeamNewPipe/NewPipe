@@ -2,16 +2,17 @@
  * SPDX-FileCopyrightText: 2025 NewPipe e.V. <https://newpipe-ev.de>
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
+import com.android.build.api.dsl.ApplicationExtension
 import com.mikepenz.aboutlibraries.plugin.DuplicateMode
+import java.util.regex.Pattern
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.android.legacy.kapt)
+    alias(libs.plugins.google.ksp)
     alias(libs.plugins.jetbrains.kotlin.compose)
-    alias(libs.plugins.jetbrains.kotlin.kapt)
     alias(libs.plugins.jetbrains.kotlin.parcelize)
     alias(libs.plugins.jetbrains.kotlinx.serialization)
-    alias(libs.plugins.google.ksp)
     alias(libs.plugins.sonarqube)
     alias(libs.plugins.hilt)
     alias(libs.plugins.about.libraries)
@@ -21,14 +22,14 @@ plugins {
 val gitWorkingBranch = providers.exec {
     commandLine("git", "rev-parse", "--abbrev-ref", "HEAD")
 }.standardOutput.asText.map { it.trim() }
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
-}
+val defaultBranches = listOf("master", "dev")
+val workingBranch = gitWorkingBranch.getOrElse("")
+val normalizedWorkingBranch = workingBranch
+    .replaceFirst("^[^A-Za-z]+".toRegex(), "")
+    .replace("[^0-9A-Za-z]+".toRegex(), "")
 
 kotlin {
+    jvmToolchain(21)
     compilerOptions {
         // TODO: Drop annotation default target when it is stable
         freeCompilerArgs.addAll(
@@ -37,19 +38,27 @@ kotlin {
     }
 }
 
-android {
-    compileSdk = 36
-    namespace = "org.schabi.newpipe"
+configure<ApplicationExtension> {
+    compileSdk {
+        version = release(NEWPIPE_VERSION_SDK_COMPILE_MAJOR) {
+            minorApiLevel = NEWPIPE_VERSION_SDK_COMPILE_MINOR
+        }
+    }
+    namespace = NEWPIPE_APPLICATION_ID_OLD
 
     defaultConfig {
-        applicationId = "org.schabi.newpipe"
+        applicationId = NEWPIPE_APPLICATION_ID_OLD
         resValue("string", "app_name", "NewPipe")
-        minSdk = 23
-        targetSdk = 35
+        minSdk {
+            version = release(NEWPIPE_VERSION_SDK_MIN)
+        }
+        targetSdk {
+            version = release(NEWPIPE_VERSION_SDK_TARGET)
+        }
 
-        versionCode = System.getProperty("versionCodeOverride")?.toInt() ?: 1006
+        versionCode = System.getProperty("versionCodeOverride")?.toInt() ?: NEWPIPE_VERSION_CODE
 
-        versionName = "0.28.1"
+        versionName = NEWPIPE_VERSION_NAME
         System.getProperty("versionNameSuffix")?.let { versionNameSuffix = it }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -60,14 +69,7 @@ android {
             isDebuggable = true
 
             // suffix the app id and the app name with git branch name
-            val defaultBranches = listOf("master", "dev")
-            val workingBranch = gitWorkingBranch.getOrElse("")
-            val normalizedWorkingBranch = workingBranch
-                .replaceFirst("^[^A-Za-z]+".toRegex(), "")
-                .replace("[^0-9A-Za-z]+".toRegex(), "")
-
             if (normalizedWorkingBranch.isEmpty() || workingBranch in defaultBranches) {
-                // default values when branch name could not be determined or is master or dev
                 applicationIdSuffix = ".debug"
                 resValue("string", "app_name", "NewPipe Debug")
             } else {
@@ -82,19 +84,33 @@ android {
                 resValue("string", "app_name", "NewPipe $suffix")
             }
             isMinifyEnabled = true
-            isShrinkResources = false // disabled to fix F-Droid"s reproducible build
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+
+        register("continuous") {
+            initWith(getByName("release"))
+            signingConfig = signingConfigs.getByName("debug")
+            isDefault = true
+
+            // suffix the app id and the app name with git branch name
+            if (normalizedWorkingBranch.isEmpty() || workingBranch in defaultBranches) {
+                applicationIdSuffix = ".continuous"
+                resValue("string", "app_name", "NewPipe Continuous")
+            } else {
+                applicationIdSuffix = ".continuous.$normalizedWorkingBranch"
+                resValue("string", "app_name", "NewPipe $workingBranch")
+            }
         }
     }
 
     lint {
-        checkReleaseBuilds = false
-        // Or, if you prefer, you can continue to check for errors in release builds,
-        // but continue the build even when errors are found:
+        lintConfig = file("lint.xml")
+        // Continue the debug build even when errors are found
         abortOnError = false
-        // suppress false warning ("Resource IDs will be non-final in Android Gradle Plugin version
-        // 5.0, avoid using them in switch case statements"), which affects only library projects
-        disable += "NonConstantResourceId"
     }
 
     compileOptions {
@@ -105,7 +121,7 @@ android {
 
     sourceSets {
         getByName("androidTest") {
-            assets.srcDir("$projectDir/schemas")
+            assets.directories += "$projectDir/schemas"
         }
     }
 
@@ -117,6 +133,7 @@ android {
         viewBinding = true
         compose = true
         buildConfig = true
+        resValues = true
     }
 
     packaging {
@@ -139,13 +156,6 @@ ksp {
 
 // Custom dependency configuration for ktlint
 val ktlint by configurations.creating
-
-// https://checkstyle.org/#JRE_and_JDK
-tasks.withType<Checkstyle>().configureEach {
-    javaLauncher = javaToolchains.launcherFor {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
-}
 
 checkstyle {
     configDirectory = rootProject.file("checkstyle")
@@ -218,19 +228,19 @@ aboutLibraries {
     // note: offline mode prevents the plugin from fetching licenses at build time, which would be
     // harmful for reproducible builds
     offlineMode = true
-    duplicationMode = DuplicateMode.MERGE
 }
 
 dependencies {
-    /** Desugaring **/
+    // Desugaring
     coreLibraryDesugaring(libs.android.desugar)
 
-    /** NewPipe libraries **/
+    // NewPipe libraries
+    implementation(projects.shared)
     implementation(libs.newpipe.nanojson)
     implementation(libs.newpipe.extractor)
     implementation(libs.newpipe.filepicker)
 
-    /** Checkstyle **/
+    // Checkstyle
     checkstyle(libs.puppycrawl.checkstyle)
     ktlint(libs.pinterest.ktlint)
 
@@ -269,9 +279,14 @@ dependencies {
     implementation(libs.androidx.compose.ui.text) // Needed for parsing HTML to AnnotatedString
     implementation(libs.androidx.compose.material.icons.extended)
 
+    // Jetpack navigatio3
+    implementation(libs.androidx.navigation3.ui)
+    implementation(libs.androidx.navigation3.runtime)
+    implementation(libs.androidx.navigation3.viewmodel)
+
     // Jetpack Compose related dependencies
     implementation(libs.androidx.paging.compose)
-    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     // Coroutines interop
     implementation(libs.kotlinx.coroutines.rx3)
@@ -289,8 +304,7 @@ dependencies {
     // Kotlinx Serialization
     implementation(libs.kotlinx.serialization.json)
 
-    /** Third-party libraries **/
-    // Instance state boilerplate elimination
+    // Third-party libraries
     implementation(libs.livefront.bridge)
     implementation(libs.evernote.statesaver.core)
     kapt(libs.evernote.statesaver.compiler)
@@ -340,8 +354,7 @@ dependencies {
     // Date and time formatting
     implementation(libs.ocpsoft.prettytime)
 
-    /** Debugging **/
-    // Memory leak detection
+    // Debugging and memory leak detection
     debugImplementation(libs.squareup.leakcanary.watcher)
     debugImplementation(libs.squareup.leakcanary.plumber)
     debugImplementation(libs.squareup.leakcanary.core)
@@ -363,4 +376,21 @@ dependencies {
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+}
+
+aboutLibraries {
+    collect {
+        configPath = file("../config/aboutlibraries")
+    }
+    export {
+        outputFile = file("../shared/src/androidMain/assets/aboutlibraries.json")
+        prettyPrint = true
+        excludeFields.addAll("organization", "scm", "funding")
+    }
+    library {
+        exclusionPatterns = listOf(
+            Pattern.compile("^com\\.github\\.TeamNewPipe:NewPipeExtractor$"),
+            Pattern.compile("^com\\.evernote:android-state$")
+        )
+    }
 }

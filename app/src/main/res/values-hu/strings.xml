@@ -93,7 +93,7 @@
     <string name="show_info">További információ</string>
     <string name="default_popup_resolution_title">Felugró ablak alapértelmezett felbontása</string>
     <string name="show_higher_resolutions_title">Magasabb felbontások megjelenítése</string>
-    <string name="show_higher_resolutions_summary">Csak bizonyos eszközök tudnak 2K/4K-s videókat lejátszani</string>
+    <string name="show_higher_resolutions_summary">Csak bizonyos eszközök tudnak 1440p/4K-s videókat lejátszani</string>
     <string name="default_video_format_title">Alapértelmezett videóformátum</string>
     <string name="black_theme_title">Fekete</string>
     <string name="popup_remember_size_pos_title">Felugró ablak tulajdonságainak megjegyzése</string>
@@ -129,7 +129,7 @@
     <string name="external_player_unsupported_link_type">A külső lejátszó nem támogatja az ilyen típusú hivatkozásokat</string>
     <string name="video_streams_empty">Nem található videófolyam</string>
     <string name="audio_streams_empty">Nem található hangfolyam</string>
-    <string name="info_labels">Mi:\\nKérés:\\nTartalom nyelve:\\nTartalom származási országa:\\nAlkalmazás nyelve:\\nSzolgáltatás:\\nGMT idő:\\nCsomag:\\nVerzió:\\nOperációs rendszer verzió:</string>
+    <string name="info_labels">Mi:\nKérés:\nTartalom nyelve:\nTartalom származási országa:\nAlkalmazás nyelve:\nSzolgáltatás:\nGMT idő:\nCsomag:\nVerzió:\nOperációs rendszer verzió:</string>
     <string name="search_no_results">Nincs találat</string>
     <string name="controls_download_desc">Közvetítési fájl letöltése</string>
     <string name="controls_add_to_playlist_title">Hozzáadás ehhez</string>
@@ -197,21 +197,20 @@
     <string name="title_activity_about">A NewPipe névjegye</string>
     <string name="tab_about">Névjegy és GYIK</string>
     <string name="tab_licenses">Licencek</string>
-    <string name="app_description">Szabad, egyszerű közvetítésnézés Androidon.</string>
+    <string name="app_description">Szabad és könnyed közvetítés Androidon.</string>
     <string name="contribution_title">Közreműködés</string>
-    <string name="contribution_encouragement">Akár fordítással, tervezési változtatásokkal, kódtisztítással, vagy valódi nehéz kódváltoztatással kapcsolatos ötletei vannak, bármilyen segítséget szívesen fogadunk. Minél több minden készül el, annál jobb lesz!</string>
+    <string name="contribution_encouragement">Legyen szó fordításról, dizájnmódosításokról, kódtisztításról vagy komolyabb fejlesztésekről, minden segítséget szívesen fogadunk. Minél többen járulnak hozzá, annál jobb lesz a projekt!</string>
     <string name="view_on_github">Megtekintés a GitHubon</string>
-    <string name="donation_title">Adományozás</string>
-    <string name="donation_encouragement">A NewPipe alkalmazást önkéntesek fejlesztik a szabadidejükben, hogy a lehető legjobb felhasználói élményt nyújtsák. Járuljon hozzá, hogy a fejlesztők még jobbá tegyék alkalmazást, miközben egy csésze kávét szürcsölnek.</string>
-    <string name="give_back">Hozzájárulás</string>
+    <string name="donation_title">Adakozás</string>
+    <string name="donation_encouragement">A NewPipe-ot önkéntesek fejlesztik a szabadidejükben, hogy a lehető legjobb felhasználói élményt nyújtsák. Támogatásával hozzájárulhat ahhoz, hogy a fejlesztők egy csésze kávé mellett még jobbá tehessék a NewPipe-ot.</string>
+    <string name="give_back">Támogatás</string>
     <string name="website_title">Weboldal</string>
-    <string name="website_encouragement">Látogasson el a NewPipe weboldalára további információkért és hírekért.</string>
+    <string name="website_encouragement">Látogassa meg a NewPipe weboldalát további információkért és hírekért.</string>
     <string name="privacy_policy_title">A NewPipe adatvédelmi irányelvei</string>
-    <string name="privacy_policy_encouragement">A NewPipe projekt komolyan veszi az adatvédelmét. Az alkalmazás nem gyűjt semmilyen adatot a beleegyezése nélkül.
-\nA NewPipe adatvédelmi irányelve részletesen elmagyarázza, mely adatok kerülnek elküldésre és tárolásra az alkalmazás összeomlásának jelentésekor.</string>
-    <string name="read_privacy_policy">Adatvédelmi irányelvek elolvasása</string>
+    <string name="privacy_policy_encouragement">A NewPipe projekt komolyan veszi az adatvédelmét. Az alkalmazás nem gyűjt semmilyen adatot a beleegyezése nélkül.\nA NewPipe adatvédelmi irányelve részletesen elmagyarázza, mely adatok kerülnek elküldésre és tárolásra az alkalmazás összeomlásának jelentésekor.</string>
+    <string name="read_privacy_policy">Adatvédelmi irányelvek megtekintése</string>
     <string name="app_license_title">A NewPipe licence</string>
-    <string name="read_full_license">Licenc elolvasása</string>
+    <string name="read_full_license">Licenc megtekintése</string>
     <string name="title_activity_history">Előzmények</string>
     <string name="action_history">Előzmények</string>
     <string name="delete_item_search_history">Törli ezt az elemet a keresési előzmények közül\?</string>
@@ -528,7 +527,7 @@
     <string name="show_channel_details">Csatorna részleteinek megjelenítése</string>
     <string name="hold_to_append">Tartsa a sorba állításhoz</string>
     <string name="default_kiosk_page_summary">Alapértelmezett témagyűjtemény</string>
-    <string name="app_license">A NewPipe egy copyleft szabad szoftver: tetszése szerint felhasználhatja, tanulmányozhatja, megoszthatja és fejlesztheti. Egész pontosan a Free Software Foundation által kiadott GNU General Public License 3-as, vagy (választható módon) újabb verziójának feltételei szerint módosíthatja vagy adhatja tovább.</string>
+    <string name="app_license">A NewPipe copyleft, szabad szoftver: Ön szabadon használhatja, tanulmányozhatja, megoszthatja és továbbfejlesztheti. Különösen jogosult arra, hogy a Free Software Foundation által közzétett GNU General Public License feltételei szerint terjessze és/vagy módosítsa, akár a licenc 3-as verziója, akár – saját belátása szerint – bármely későbbi verziója alapján.</string>
     <string name="recaptcha_solve">Megoldás</string>
     <string name="subtitle_activity_recaptcha">Nyomja meg a „Kész” gombot, ha megoldotta</string>
     <string name="msg_calculating_hash">Ujjlenyomat számítása</string>
@@ -581,7 +580,7 @@
     <string name="feed_processing_message">Hírfolyam feldolgozása…</string>
     <string name="feed_use_dedicated_fetch_method_summary">Egyes szolgáltatásoknál érhető el, általában sokkal gyorsabb, és korlátozott számú elemet adhat vissza, gyakran hiányos információkkal (például nincs hossz, elemtípus, vagy élő videó állapot)</string>
     <string name="account_terminated">Fiók eltávolítva</string>
-    <string name="mark_as_watched">Megjelölés megnézettként</string>
+    <string name="mark_as_watched">Megjelölés megtekintettként</string>
     <string name="no_dir_yet">Még nincs letöltési mappa beállítva, válassza ki az alapértelmezett letöltési mappát most</string>
     <string name="seekbar_preview_thumbnail_title">Tekerősáv bélyegkép-előnézete</string>
     <string name="high_quality_larger">Magas minőségű (nagyobb)</string>
@@ -617,19 +616,17 @@
     <string name="metadata_tags">Címkék</string>
     <string name="metadata_privacy">Adatvédelem</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Gyors mód letiltása</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Igen, és távolítsa el a részben megnézett videókat is</string>
-    <string name="remove_watched_popup_warning">A videók, melyeket már megnézett miután a lejátszási listához adta őket, el lesznek távolítva.
-\nBiztos benne\? Ez nem vonható vissza!</string>
+    <string name="remove_watched_popup_partially_watched_streams">Távolítsa el a részben megtekintett közvetítéseket</string>
+    <string name="remove_watched_popup_warning">A lejátszási listához való hozzáadás előtt és után megtekintett közvetítések el lesznek távolítva.\nBiztos benne?</string>
     <string name="show_original_time_ago_summary">A szolgáltatásokból származó eredeti szövegek láthatók lesznek a közvetítési elemeken</string>
     <string name="crash_the_player">Lejátszó összeomlasztása</string>
-    <string name="show_image_indicators_title">Képjelölők megjelenítése</string>
     <string name="show_crash_the_player_title">A „Lejátszó összeomlasztása” lehetőség megjelenítése</string>
     <string name="show_crash_the_player_summary">Megjeleníti az összeomlasztási lehetőséget a lejátszó használatakor</string>
     <string name="unhook_checkbox">Hangmagasság megtartása (torzítást okozhat)</string>
     <string name="check_for_updates">Frissítések keresése</string>
     <string name="dont_show">Ne jelenítse meg</string>
-    <string name="remove_watched">Megnézettek eltávolítása</string>
-    <string name="remove_watched_popup_title">Eltávolítja a megnézett videókat\?</string>
+    <string name="remove_watched">Megtekintettek eltávolítása</string>
+    <string name="remove_watched_popup_title">Eltávolítja a megtekintett közvetítéseket?</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s letöltés törölve</item>
         <item quantity="other">%1$s letöltés törölve</item>
@@ -673,7 +670,7 @@
     <string name="faq_title">Gyakran ismételt kérdések</string>
     <string name="faq">Megtekintés a weboldalon</string>
     <string name="sort">Rendezés</string>
-    <string name="faq_description">Ha problémája van az alkalmazás használatával, akkor nézze meg az ezekre a gyakori kérdésekre adott válaszokat!</string>
+    <string name="faq_description">Ha problémái adódnak az alkalmazás használata során, érdemes áttekintenie a gyakori kérdésekre adott válaszokat!</string>
     <string name="fast_mode">Gyors mód</string>
     <string name="import_subscriptions_hint">Feliratkozások importálása vagy exportálása a 3 pontos menüből</string>
     <string name="app_update_unavailable_toast">Ön a Newpipe legfrissebb verzióját futtatja</string>
@@ -816,6 +813,29 @@
     <string name="player_http_403">A lejátszás közben a kiszolgáló 403-as HTTP-hibát adott vissza, valószínűleg a közvetítési hivatkozás érvényessége lejárt vagy a IP-tiltás miatt</string>
     <string name="player_http_invalid_status">HTTP-hiba (%1$s) érkezett a kiszolgálótól a lejátszás során</string>
     <string name="youtube_player_http_403">HTTP 403-as hiba érkezett a kiszolgálótól a lejátszás közben, valószínűleg IP-tiltás vagy a közvetítési hivatkozás feloldási problémák miatt</string>
-    <string name="sign_in_confirm_not_bot_error">%1$s visszautasította az adatok szolgáltatását, és bejelentkezést kér annak megerősítésére, hogy a kérés nem robot által érkezik.\n\nElőfordulhat, hogy az IP-címét ideiglenesen letiltotta %1$s, várhat egy keveset, vagy váltson egy másik IP-címre (például VPN be-/kikapcsolásával, vagy Wi-Fi-ről mobiladat-forgalomra váltva).</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s visszautasította az adatok szolgáltatását, és bejelentkezést kér annak megerősítésére, hogy a kérés nem robot által érkezik.\n\nElőfordulhat, hogy az IP-címét ideiglenesen letiltotta %1$s, várhat egy keveset, vagy váltson egy másik IP-címre (például VPN be-/kikapcsolásával, vagy Wi-Fi-ről mobiladat-forgalomra váltva).\n\nTovábbi információért tekintse meg <a href="%2$s">ezt a GYIK-bejegyzést</a>.</string>
     <string name="unsupported_content_in_country">Ez a tartalom a jelenleg kiválasztott tartalom országában nem elérhető.\n\nVáltoztassa meg a „Beállítások &gt; Tartalom &gt;Tartalom alapértelmezett országa” menüpontban.</string>
+    <string name="kao_dialog_warning">2025 augusztusában a Google bejelentette, hogy 2026 szeptemberétől az alkalmazások telepítéséhez fejlesztői ellenőrzésre lesz szükség a tanúsított eszközökön található összes Android-alkalmazáshoz, beleértve a Play Áruházon kívül telepített alkalmazásokat is. Mivel a NewPipe fejlesztői nem értenek egyet ezzel a követelménnyel, a NewPipe ezután nem fog működni a tanúsított Android-eszközökön.</string>
+    <string name="kao_dialog_more_info">Részletek</string>
+    <string name="kao_solution">Megoldás</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">%d feliratkozás exportálása…</item>
+        <item quantity="other">%d feliratkozások exportálása…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">%d feliratkozás betöltése…</item>
+        <item quantity="other">%d feliratkozások betöltése…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">%d feliratkozás importálása…</item>
+        <item quantity="other">%d feliratkozások importálása…</item>
+    </plurals>
+    <string name="import_subscriptions_title">Feliratkozások importálása</string>
+    <string name="export_subscriptions_title">Feliratkozások exportálása</string>
+    <string name="import_subscriptions_summary">Feliratkozások importálása korábbi .json-fájlból</string>
+    <string name="export_subscriptions_summary">Feliratkozások exportálása .json-fájlba</string>
+    <string name="import_from_previous_export">Importálás korábbi exportból</string>
+    <string name="api23_requirement_dialog_title">A NewPipe megszünteti az Android 5 támogatását</string>
+    <string name="api23_requirement_dialog_message">Sajnos a NewPipe néhány olyan programkönyvtárra támaszkodik, amelyek megszüntették az Android 5.0 és 5.1 verziójának támogatását. A NewPipe következő verziója ezért sajnos csak Android 6 vagy újabb rendszerrel rendelkező eszközökön fog működni. További információt a blogbejegyzésben olvashat.</string>
+    <string name="api23_requirement_dialog_blogpost">Blogbejegyzés</string>
 </resources>

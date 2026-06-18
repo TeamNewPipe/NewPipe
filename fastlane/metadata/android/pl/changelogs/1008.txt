@@ -1,0 +1,4 @@
+∙ Naprawiono problem ze wznawianiem odtwarzania strumieniowego od ostatniej pozycji
+∙ [YouTube] Dodano obsługę kolejnych formatów adresów URL kanałów
+∙ [YouTube] Dodano obsługę kolejnych formatów metadanych filmów
+∙ Zaktualizowano tłumaczenia

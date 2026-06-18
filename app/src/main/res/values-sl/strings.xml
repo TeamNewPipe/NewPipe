@@ -80,18 +80,18 @@
     <string name="app_ui_crash">Program se je sesul</string>
     <string name="title_activity_recaptcha">Izziv reCAPTCHA</string>
     <string name="recaptcha_request_toast">Zahtevan izziv reCAPTCHA</string>
-    <string name="info_labels">Predmet:\\nZahteva:\\nJezik vsebine:\\nDržava vsebine:\\nJezik aplikacije:\\nStoritev:\\nČas v GMT:\\nPaket:\\nRazličica:\\nRazličica OS:</string>
+    <string name="info_labels">Predmet:\nZahteva:\nJezik vsebine:\nDržava vsebine:\nJezik aplikacije:\nStoritev:\nČas v GMT:\nPaket:\nRazličica:\nRazličica OS:</string>
     <string name="black_theme_title">Črna</string>
     <string name="all">Vse</string>
     <string name="open_in_popup_mode">Odpri v pojavnem načinu</string>
-    <string name="msg_popup_permission">To dovoljenje je potrebno za odpiranje 
+    <string name="msg_popup_permission">To dovoljenje je potrebno za odpiranje
 \nv pojavnem načinu</string>
     <string name="popup_playing_toast">Predvajanje v pojavnem načinu</string>
     <string name="disabled">Onemogočeno</string>
     <string name="default_video_format_title">Prednostni zapis video datoteke</string>
     <string name="default_popup_resolution_title">Privzeta ločljivost pojavnega okna</string>
     <string name="show_higher_resolutions_title">Pokaži večje ločljivosti</string>
-    <string name="show_higher_resolutions_summary">Predvajanje posnetkov 2K/4K omogočajo le nekatere naprave</string>
+    <string name="show_higher_resolutions_summary">Predvajanje posnetkov 1440p/4K omogočajo le nekatere naprave</string>
     <string name="controls_background_title">Ozadje</string>
     <string name="controls_popup_title">Pojavno okno</string>
     <string name="clear">Počisti</string>

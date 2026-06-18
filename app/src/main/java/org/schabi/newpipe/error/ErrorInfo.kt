@@ -3,6 +3,7 @@ package org.schabi.newpipe.error
 import android.content.Context
 import android.os.Parcelable
 import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
 import com.google.android.exoplayer2.ExoPlaybackException
 import com.google.android.exoplayer2.upstream.HttpDataSource
 import com.google.android.exoplayer2.upstream.Loader
@@ -28,7 +29,7 @@ import org.schabi.newpipe.extractor.exceptions.YoutubeMusicPremiumContentExcepti
 import org.schabi.newpipe.ktx.isNetworkRelated
 import org.schabi.newpipe.player.mediasource.FailedMediaSource
 import org.schabi.newpipe.player.resolver.PlaybackResolver
-import org.schabi.newpipe.util.Localization
+import org.schabi.newpipe.util.text.getText
 
 /**
  * An error has occurred in the app. This class contains plain old parcelable data that can be used
@@ -135,8 +136,8 @@ class ErrorInfo private constructor(
         return getServiceName(serviceId)
     }
 
-    fun getMessage(context: Context): String {
-        return message.getString(context)
+    fun getMessage(context: Context): CharSequence {
+        return message.getText(context)
     }
 
     companion object {
@@ -146,17 +147,22 @@ class ErrorInfo private constructor(
             private val stringRes: Int,
             private vararg val formatArgs: String
         ) : Parcelable {
-            fun getString(context: Context): String {
-                // use Localization.compatGetString() just in case context is not AppCompatActivity
+            fun getText(context: Context): CharSequence {
+                // Ensure locale aware context via ContextCompat.getContextForLanguage() (just in case context is not AppCompatActivity)
+                val ctx = ContextCompat.getContextForLanguage(context)
                 return if (formatArgs.isEmpty()) {
-                    Localization.compatGetString(context, stringRes)
+                    ctx.getText(stringRes)
                 } else {
-                    Localization.compatGetString(context, stringRes, *formatArgs)
+                    // ContextCompat.getString() with formatArgs does not exist, so we just
+                    // replicate its source code but with formatArgs
+                    ctx.resources.getText(stringRes, *formatArgs)
                 }
             }
         }
 
         const val SERVICE_NONE = "<unknown_service>"
+
+        const val YOUTUBE_IP_BAN_FAQ_URL = "https://newpipe.net/FAQ/#ip-banned-youtube"
 
         private fun getServiceName(serviceId: Int?) = // not using getNameOfServiceById since we want to accept a nullable serviceId and we
             // want to default to SERVICE_NONE
@@ -245,7 +251,11 @@ class ErrorInfo private constructor(
                     ErrorMessage(R.string.youtube_music_premium_content)
 
                 throwable is SignInConfirmNotBotException ->
-                    ErrorMessage(R.string.sign_in_confirm_not_bot_error, getServiceName(serviceId))
+                    ErrorMessage(
+                        R.string.sign_in_confirm_not_bot_error,
+                        getServiceName(serviceId),
+                        YOUTUBE_IP_BAN_FAQ_URL
+                    )
 
                 throwable is ContentNotAvailableException ->
                     ErrorMessage(R.string.content_not_available)
@@ -297,13 +307,9 @@ class ErrorInfo private constructor(
                 // indicates that it's important and is thus reportable
                 null -> true
 
-                // a recaptcha was detected, and the user needs to solve it, there is no use in
-                // letting users report it
-                is ReCaptchaException -> false
-
-                // the service explicitly said that content is not available (e.g. age restrictions,
-                // video deleted, etc.), there is no use in letting users report it
-                is ContentNotAvailableException -> false
+                // if the service explicitly said that content is not available (e.g. age
+                // restrictions, video deleted, etc.), there is no use in letting users report it
+                is ContentNotAvailableException -> !isContentSurelyNotAvailable(throwable)
 
                 // we know the content is not supported, no need to let the user report it
                 is ContentNotSupportedException -> false
@@ -320,8 +326,8 @@ class ErrorInfo private constructor(
 
         fun isRetryable(throwable: Throwable?): Boolean {
             return when (throwable) {
-                // we know the content is not available, retrying won't help
-                is ContentNotAvailableException -> false
+                // if we know the content is surely not available, retrying won't help
+                is ContentNotAvailableException -> !isContentSurelyNotAvailable(throwable)
 
                 // we know the content is not supported, retrying won't help
                 is ContentNotSupportedException -> false
@@ -329,6 +335,29 @@ class ErrorInfo private constructor(
                 // by default (including if throwable is null), enable retrying (though the retry
                 // button will be shown only if a way to perform the retry is implemented)
                 else -> true
+            }
+        }
+
+        /**
+         * Unfortunately sometimes [ContentNotAvailableException] may not indicate that the content
+         * is blocked/deleted/paid, but may just indicate that we could not extract it. This is an
+         * inconsistency in the exceptions thrown by the extractor, but until it is fixed, this
+         * function will distinguish between the two types.
+         * @return `true` if the content is not available because of a limitation imposed by the
+         * service or the owner, `false` if the extractor could not extract info about it
+         */
+        fun isContentSurelyNotAvailable(e: ContentNotAvailableException): Boolean {
+            return when (e) {
+                is AccountTerminatedException,
+                is AgeRestrictedContentException,
+                is GeographicRestrictionException,
+                is PaidContentException,
+                is PrivateContentException,
+                is SoundCloudGoPlusContentException,
+                is UnsupportedContentInCountryException,
+                is YoutubeMusicPremiumContentException -> true
+
+                else -> false
             }
         }
     }

@@ -29,9 +29,7 @@ import com.mikepenz.aboutlibraries.entity.Library
 import com.mikepenz.aboutlibraries.entity.License
 import com.mikepenz.aboutlibraries.entity.Organization
 import com.mikepenz.aboutlibraries.entity.Scm
-import com.mikepenz.aboutlibraries.ui.compose.m3.util.author
-import kotlinx.collections.immutable.toImmutableList
-import kotlinx.collections.immutable.toImmutableSet
+import com.mikepenz.aboutlibraries.ui.compose.util.author
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.external_communication.ShareUtils
 
@@ -140,7 +138,7 @@ private class LibraryProvider : CollectionPreviewParameterProvider<Library>(
             name = "NewPipeExtractor",
             description = "NewPipe Extractor is a library for extracting things from streaming sites. It is a core component of NewPipe, but could be used independently.",
             website = "https://newpipe.net",
-            developers = listOf(Developer("TeamNewPipe", "https://newpipe.net")).toImmutableList(),
+            developers = listOf(Developer("TeamNewPipe", "https://newpipe.net")),
             organization = Organization("TeamNewPipe", "https://newpipe.net"),
             scm = Scm(null, null, "https://github.com/TeamNewPipe/NewPipeExtractor"),
             licenses = setOf(
@@ -160,7 +158,7 @@ private class LibraryProvider : CollectionPreviewParameterProvider<Library>(
                     licenseContent = LoremIpsum().values.first(),
                     hash = "4321"
                 )
-            ).toImmutableSet()
+            )
         ),
         Library(
             uniqueId = "org.schabi.newpipe.extractor",
@@ -168,7 +166,7 @@ private class LibraryProvider : CollectionPreviewParameterProvider<Library>(
             name = "NewPipeExtractor",
             description = "NewPipe Extractor is a library for extracting things from streaming sites. It is a core component of NewPipe, but could be used independently.",
             website = null,
-            developers = listOf<Developer>().toImmutableList(),
+            developers = listOf<Developer>(),
             organization = null,
             scm = null,
             licenses = setOf(
@@ -180,7 +178,7 @@ private class LibraryProvider : CollectionPreviewParameterProvider<Library>(
                     licenseContent = LoremIpsum().values.first(),
                     hash = "1234"
                 )
-            ).toImmutableSet()
+            )
         )
     )
 )

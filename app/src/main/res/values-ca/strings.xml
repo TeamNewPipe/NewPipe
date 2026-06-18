@@ -113,7 +113,7 @@
     <string name="download_path_audio_dialog_title">Trieu la carpeta de baixada per als fitxers d\'àudio</string>
     <string name="default_popup_resolution_title">Resolució per defecte del mode emergent</string>
     <string name="show_higher_resolutions_title">Mostra resolucions superiors</string>
-    <string name="show_higher_resolutions_summary">Només alguns dispositius poden reproduir vídeos en 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Només alguns dispositius poden reproduir vídeos en 1440p/4K</string>
     <string name="play_with_kodi_title">Reprodueix amb el Kodi</string>
     <string name="kore_not_found">No s\'ha trobat l\'aplicació Kore. Voleu instal·lar-la\?</string>
     <string name="show_play_with_kodi_title">Mostra «Reprodueix amb el Kodi»</string>
@@ -197,8 +197,8 @@
     <string name="view_on_github">Visualitza a GitHub</string>
     <string name="donation_title">Feu una donació</string>
     <string name="website_encouragement">Per a més informació i notícies, visiteu el nostre web.</string>
-    <string name="kiosk_page_summary">Tendències</string>
-    <string name="channel_page_summary">Pàgina d\'un canal</string>
+    <string name="kiosk_page_summary">Pàgina de quiosc</string>
+    <string name="channel_page_summary">Pàgina de canal</string>
     <string name="select_a_kiosk">Trieu un quiosc</string>
     <string name="no_valid_zip_file">El fitxer no té un format ZIP vàlid</string>
     <string name="could_not_import_all_files">Avís: No s\'han pogut importar tots els fitxers.</string>
@@ -266,22 +266,22 @@
     <string name="auto_queue_summary">Acaba de reproduir la cua (sense repetició) quan s\'hi afegeixi un vídeo relacionat</string>
     <string name="show_hold_to_append_title">Mostra l\'indicador «Mantenir per posar a la cua»</string>
     <string name="show_hold_to_append_summary">Mostra un missatge d\'ajuda quan el botó de mode en segon pla o emergent estigui premut a la pàgina de detalls d\'un vídeo</string>
-    <string name="info_labels">Què ha passat:\\nPetició:\\nIdioma del contingut:\\nPaís del contingut:\\nLlengua de l\'aplicació:\\nServei:\\nHora GMT:\\nPaquet:\\nVersió:\\nVersió del SO:</string>
+    <string name="info_labels">Què ha passat:\nPetició:\nIdioma del contingut:\nPaís del contingut:\nLlengua de l\'aplicació:\nServei:\nHora GMT:\nPaquet:\nVersió:\nVersió del SO:</string>
     <string name="preferred_open_action_settings_title">Acció d\'obertura preferida</string>
     <string name="preferred_open_action_settings_summary">Acció per defecte en obrir continguts — %s</string>
     <string name="enable_leak_canary_summary">La supervisió de fugues de memòria pot fer que l\'aplicació deixi de respondre mentre es bolca la memòria</string>
     <string name="enable_disposed_exceptions_title">Informa d\'errors fora del cicle de vida</string>
     <string name="enable_disposed_exceptions_summary">Força l\'informe d\'excepcions Rx que no es puguin transmetre que tinguin lloc fora del cicle de vida d\'un fragment o activitat després de disposar-los</string>
     <string name="import_youtube_instructions">Importeu les vostres subscripcions de YouTube mitjançant la còpia de contingut de Google Takeout: \n \n1. Aneu a : %1$s \n2. Inicieu la sessió si se us demana \n3. Premeu \"Totes les dades incloses\", després \"Dessel·lecciona-ho tot\", llavors sel·leccioneu només \"Subscripcions\" i finalment premeu \"D\'acord\". \n4. Premeu \"Pas següent\" i llavors a \"Crea una exportació\" \n5. Premeu el botó \"Baixa\" un cop hagi aparegut \n6. Premeu a IMPORTA EL FITXER i sel·leccioneu el fitxer .zip descarregat \n7. [En cas que la importació del fitxer .zip hagi fallat] extreieu-ne el fitxer subscripcions.csv (es troba generalment a \"Takeout/YouTube i YouTube Music/subscripcions/subscripcions.csv\"), premeu a IMPORTA EL FITXER i sel·leccioneu el fitxer .csv extret</string>
-    <string name="import_soundcloud_instructions">Importeu un perfil del SoundCloud mitjançant l\'URL o l\'identificador del vostre perfil: 
-\n 
-\n1. Activeu el «Mode d\'ordinador» en un navegador (el lloc web no està disponible per a dispositius mòbils) 
-\n2. Aneu a: %1$s 
-\n3. Inicieu la sessió al vostre compte quan si us demani 
+    <string name="import_soundcloud_instructions">Importeu un perfil del SoundCloud mitjançant l\'URL o l\'identificador del vostre perfil:
+\n
+\n1. Activeu el «Mode d\'ordinador» en un navegador (el lloc web no està disponible per a dispositius mòbils)
+\n2. Aneu a: %1$s
+\n3. Inicieu la sessió al vostre compte quan si us demani
 \n4. Copieu l\'URL on si us ha redirigit.</string>
     <string name="import_soundcloud_instructions_hint">identificador, soundcloud.com/identificador</string>
-    <string name="import_network_expensive_warning">Tingueu en compte que això pot comportar un ús intensiu de la xarxa. 
-\n 
+    <string name="import_network_expensive_warning">Tingueu en compte que això pot comportar un ús intensiu de la xarxa.
+\n
 \nVoleu continuar\?</string>
     <string name="no_streams_available_download">No hi ha vídeos que es puguin baixar</string>
     <string name="caption_setting_title">Subtítols</string>
@@ -298,7 +298,7 @@
     <string name="app_license">El NewPipe és programari lliure sota llicència copyleft: el podeu fer servir, estudiar, compartir i millorar com vulgueu. Concretament, el podeu redistribuir i/o modificar d\'acord amb els termes de la llicència GNU GPL publicada per la Free Software Foundation, versió 3 o qualsevol altra versió posterior.</string>
     <string name="import_settings">Voleu importar també els paràmetres\?</string>
     <string name="privacy_policy_title">Política de privadesa del NewPipe</string>
-    <string name="privacy_policy_encouragement">El projecte NewPipe es pren molt seriosament la vostra privadesa. Per aquesta raó, l\'aplicació no emmagatzema cap dada sense el vostre consentiment. 
+    <string name="privacy_policy_encouragement">El projecte NewPipe es pren molt seriosament la vostra privadesa. Per aquesta raó, l\'aplicació no emmagatzema cap dada sense el vostre consentiment.
 \nLa política de privadesa del NewPipe descriu detalladament quines dades s\'envien i s\'emmagatzemen quan envieu un informe d\'error.</string>
     <string name="read_privacy_policy">Llegiu la política de privadesa</string>
     <string name="start_accept_privacy_policy">Per complir amb el Reglament General de Protecció de Dades Europeu (GDPR), us demanem que pareu atenció a la política de privadesa del NewPipe. Llegiu-la detingudament.
@@ -506,10 +506,9 @@
         <item quantity="other">%d segons</item>
     </plurals>
     <string name="new_seek_duration_toast">A causa de les limitacions d\'ExoPlayer, la durada de cerca és de %d segons</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sí, i també els vídeos vistos parcialment</string>
-    <string name="remove_watched_popup_warning">Els vídeos que ja heu vist tant abans com després d\'haver estat afegits a la llista de reproducció seran suprimits.
-\nN\'esteu segurs\? Aquesta acció no pot desfer-se!</string>
-    <string name="remove_watched_popup_title">Esborrar els vídeos ja vistos\?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Sí, i també els vídeos vistos parcialment</string>
+    <string name="remove_watched_popup_warning">S\'eliminaran les transmissions que s\'hagin vist abans i després d\'afegir-les a la llista de reproducció.\n\nN’esteu segur?</string>
+    <string name="remove_watched_popup_title">Eliminar transmissions vistes?</string>
     <string name="remove_watched">Esborra els ja vistos</string>
     <string name="systems_language">Valors per defecte</string>
     <string name="app_language_title">Llengua de l\'aplicació</string>
@@ -620,7 +619,7 @@
     <string name="dont_show">No mostris</string>
     <string name="low_quality_smaller">Baixa qualitat (més petit)</string>
     <string name="high_quality_larger">Alta qualitat (més gran)</string>
-    <string name="disable_media_tunneling_summary">Desactiva l\'entunelament del contingut si en els videos hi ha una pantalla negre o tartamudegen</string>
+    <string name="disable_media_tunneling_summary">Desactiva l\'entunelament del contingut si en reproduir el vídeos la pantalla se\'n va a negre o s\'entretallen.</string>
     <string name="show_channel_details">Mostra detalls del canal</string>
     <string name="no_dir_yet">No s\'ha establert una carpeta de descàrregues, selecciona la carpeta per defecte ara</string>
     <string name="comments_are_disabled">Els comentaris estan desactivats</string>
@@ -819,4 +818,55 @@
     <string name="no_feed_group_created_yet">Encara no s\'ha creat cap grup de continguts</string>
     <string name="select_a_feed_group">Tria un grup de continguts</string>
     <string name="feed_group_page_summary">Pàgina del grup de canals</string>
+    <string name="search_with_service_name">Cercar %1$s</string>
+    <string name="search_with_service_name_and_filter">Cercar %1$s (%2$s)</string>
+    <string name="short_billion">%sB</string>
+    <string name="channel_tab_likes">M\'agrada</string>
+    <string name="kao_dialog_more_info">Detalls</string>
+    <string name="kao_solution">Solució</string>
+    <string name="api23_requirement_dialog_blogpost">Article</string>
+    <string name="trending_gaming">Tendències de videojocs</string>
+    <string name="trending_podcasts">Tendències de podcasts</string>
+    <string name="trending_music">Tendències de música</string>
+    <string name="delete_file">Esborrar fitxer</string>
+    <string name="delete_entry">Esborrar entrada</string>
+    <string name="entry_deleted">Entrada esborrada</string>
+    <string name="import_subscriptions_title">Importar subscripcions</string>
+    <string name="export_subscriptions_title">Exportar suscripcions</string>
+    <string name="migration_info_7_8_title">Esborrades tendències combinades de YouTube</string>
+    <string name="trending_movies">Tendències de pel·lícules i sèries</string>
+    <string name="import_from_previous_export">Importar des d\'exportació anterior</string>
+    <string name="permission_display_over_apps_message">Per utilitzar el reproductor emergent, seleccioneu %1$s al següent menú de configuració d\'Android i habiliteu %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">“Permetre visualització sobre altres aplicacions”</string>
+    <string name="short_thousand">%sK</string>
+    <string name="short_million">%sM</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">Exportant subscripció %d…</item>
+        <item quantity="many">Exportant subscripcions %d…</item>
+        <item quantity="other">Exportant subscripcions %d…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">Carregant subscripció %d…</item>
+        <item quantity="many">Carregant subscripcions %d…</item>
+        <item quantity="other">Carregant subscripcions %d…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">Important subscripció %d…</item>
+        <item quantity="many">Important subscripcions %d…</item>
+        <item quantity="other">Important subscripcions %d…</item>
+    </plurals>
+    <string name="import_subscriptions_summary">Importar subscripcions d\'una exportació .json anterior</string>
+    <string name="export_subscriptions_summary">Exportar les vostres subscripcions a un fitxer .json</string>
+    <string name="account_terminated_service_provides_reason">Compte cancel·lat %1$s proporciona aquest motiu: %2$s</string>
+    <string name="migration_info_6_7_title">Pàgina Top 50 de SoundCloud eliminada</string>
+    <string name="migration_info_6_7_message">SoundCloud ha descontinuat les llistes Top 50 originals. La pestanya corresponent s\'ha eliminat de la pàgina principal.</string>
+    <string name="migration_info_7_8_message">YouTube va descontinuar la pàgina de tendències combinades a partir del 21 de juliol de 2025. NewPipe va reemplaçar la pàgina de tendències predeterminada amb les transmissions en viu de tendències.\n\nTambé podeu seleccionar diferents pàgines de tendències a \"Configuració &gt; Contingut &gt; Contingut de la pàgina principal\".</string>
+    <string name="player_http_403">Error HTTP 403 rebut del servidor durant la reproducció, probablement causat per l\'expiració de la URL de transmissió o un bloqueig d\'IP.</string>
+    <string name="player_http_invalid_status">Error HTTP %1$s rebut del servidor durant la reproducció</string>
+    <string name="youtube_player_http_403">Error HTTP 403 rebut del servidor durant la reproducció, probablement causat per un bloqueig d\'IP o problemes de desofuscació de la URL de transmissió</string>
+    <string name="sign_in_confirm_not_bot_error">\'\'%1$s es va negar a proporcionar dades, sol·licitant un inici de sessió per confirmar que el sol·licitant no és un bot.\n\nÉs possible que %1$s hagi bloquejat temporalment la vostra IP. Pots esperar un temps o canviar a una IP diferent (per exemple, activant/desactivant una VPN o canviant de Wi-Fi a dades mòbils).\n\nConsulta <a href="%2$s">aquesta entrada de preguntes freqüents</a> per obtenir més informació’</string>
+    <string name="unsupported_content_in_country">Aquest contingut no està disponible per al país de contingut seleccionat actualment.\n\nCanvia la teva selecció a \"Paràmetres &gt; Contingut &gt; País de contingut predeterminat\".</string>
+    <string name="kao_dialog_warning">A l\'agost del 2025, Google va anunciar que, a partir del setembre del 2026, la instal·lació d\'aplicacions requerirà la verificació del desenvolupador per a totes les aplicacions d\'Android en dispositius certificats, incloses les instal·lades fora de la Play Store. Com que els desenvolupadors de NewPipe no estan d\'acord amb aquest requisit, NewPipe deixarà de funcionar en dispositius Android certificats després d\'aquesta data.</string>
+    <string name="api23_requirement_dialog_title">NewPipe deixarà de ser compatible amb Android 5.</string>
+    <string name="api23_requirement_dialog_message">Malauradament, NewPipe depèn d\'algunes biblioteques que van deixar de ser compatibles amb Android 5.0 i 5.1. Per tant, la propera versió de NewPipe només funcionarà en dispositius amb Android 6 o superior. Llegeix més a la publicació del bloc.</string>
 </resources>

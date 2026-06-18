@@ -124,7 +124,7 @@
         <item quantity="other">%s مُشاهِد</item>
     </plurals>
     <string name="show_hold_to_append_summary">عرض تلميح عند الضغط على زر استخدام المشغل الخلفي أو النافذة المنبثقة في صفحة تفاصيل الفديو</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">نعم، ومقاطع الفيديو التي تمت مشاهدتها جزئيًا</string>
+    <string name="remove_watched_popup_partially_watched_streams">نعم، ومقاطع الفيديو التي تمت مشاهدتها جزئيًا</string>
     <string name="error_timeout">انتهى وقت الاتصال</string>
     <string name="unknown_audio_track">غير معروف</string>
     <string name="autoplay_title">تشغيل تلقائي</string>
@@ -324,7 +324,7 @@
     <string name="skip_silence_checkbox">تسريع إلى الأمام أثناء الصمت</string>
     <string name="settings_category_exoplayer_summary">إدارة بعض إعدادات ExoPlayer. تتطلب هذه التغييرات إعادة تشغيل المشغل لتصبح سارية المفعول</string>
     <string name="playlist_add_stream_success_duplicate">تمت إضافة وقت (أوقات) مكررة %d</string>
-    <string name="show_higher_resolutions_summary">فقط بعض الأجهزة تدعم تشغيل مقاطع فيديو 2K/4K</string>
+    <string name="show_higher_resolutions_summary">فقط بعض الأجهزة تدعم تشغيل مقاطع فيديو 1440p/4K</string>
     <string name="import_data_title">استيراد قاعدة البيانات</string>
     <string name="image_quality_low">جودة منخفضة</string>
     <string name="main_tabs_position_title">موضع الألسنة الرئيسية</string>
@@ -380,7 +380,7 @@
     <string name="channels">القنوات</string>
     <string name="dont_show">لا تظهر</string>
     <string name="peertube_instance_add_help">أدخل عنوان للمثيل</string>
-    <string name="info_labels">ماذا:\\nطلب:\\nلغة المحتوى:\\nبلد المحتوى:\\nلغة التطبيق:\\nالخدمات:\\nتوقيت جرينتش:\\nالحزمة:\\nالإصدار:\\nOS نسخة:</string>
+    <string name="info_labels">ماذا:\nطلب:\nلغة المحتوى:\nبلد المحتوى:\nلغة التطبيق:\nالخدمات:\nتوقيت جرينتش:\nالحزمة:\nالإصدار:\nOS نسخة:</string>
     <string name="use_external_video_player_summary">يزيل الصوت في بعض الجودات</string>
     <string name="feed_fetch_channel_tabs">جلب ألسنة القنوات</string>
     <string name="high_quality_larger">جودة عالية (أكبر)</string>
@@ -426,8 +426,7 @@
     <string name="msg_popup_permission">هذا الإذن مطلوب
 \nللفتح في وضع النافذة المنبثقة</string>
     <string name="settings_category_feed_title">الموجز</string>
-    <string name="remove_watched_popup_warning">ستتم إزالة مقاطع الفيديو التي تمت مشاهدتها قبل وبعد إضافتها إلى قائمة التشغيل.
-\nهل أنت واثق؟ لا يمكن التراجع عن هذا!</string>
+    <string name="remove_watched_popup_warning">ستتم إزالة مقاطع الفيديو التي تمت مشاهدتها قبل وبعد إضافتها إلى قائمة التشغيل. \nهل أنت واثق؟ لا يمكن التراجع عن هذا!</string>
     <string name="detail_dislikes_img_view_description">عدم الإعجاب</string>
     <string name="faq">مشاهدة على الموقع</string>
     <string name="night_theme_available">هذا الخيار متاح فقط إذا تم تحديد %s للسمة</string>

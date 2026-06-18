@@ -1,0 +1,14 @@
+Viktigt
+Information om och uppmaning till handling för Keep Android Open-kampanjen tillagd: https://www.keepandroidopen.org/
+
+Förbättrad
+[Flöde] Blanda ordningen som föråldrade prenumerationer uppdateras i
+Stapla inte kommentarsidor
+Skicka inte klickanden till underliggande vyer när du klickar på videodetaljsidan
+
+Åtgärdat
+Layout för kommentarssvarsrubrik utan avatarbild
+Flera spelarrelaterade gränssnittsfixar
+[SoundCloud] Åtgärdat strömmar med långa ID:n
+
+och fler rättningar och förbättringar!

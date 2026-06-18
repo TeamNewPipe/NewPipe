@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.google.android.material.snackbar.Snackbar
+import org.schabi.newpipe.ComposeActivity
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 
@@ -25,7 +26,7 @@ import org.schabi.newpipe.R
  *      is available.
  * - Use a notification if the exception happens inside a background service (player, subscription
  *      import, ...) or there is no activity/fragment from which to extract a root view.
- * - Finally use the error activity only as a last resort in case the exception is critical and
+ * - Finally use the error screen only as a last resort in case the exception is critical and
  *      happens in an open activity (since the workflow would be interrupted anyway in that case).
  */
 class ErrorUtil {
@@ -33,7 +34,7 @@ class ErrorUtil {
         private const val ERROR_REPORT_NOTIFICATION_ID = 5340681
 
         /**
-         * Starts a new error activity allowing the user to report the provided error. Only use this
+         * Starts a new error screen allowing the user to report the provided error. Only use this
          * method directly as a last resort in case the exception is critical and happens in an open
          * activity (since the workflow would be interrupted anyway in that case). So never use this
          * for background services.
@@ -50,12 +51,12 @@ class ErrorUtil {
             ) {
                 createNotification(context, errorInfo)
             } else {
-                context.startActivity(getErrorActivityIntent(context, errorInfo))
+                context.startActivity(getErrorScreenIntent(context, errorInfo))
             }
         }
 
         /**
-         * Show a bottom snackbar to the user, with a report button that opens the error activity.
+         * Show a bottom snackbar to the user, with a report button that opens the error screen.
          * Use this method if the exception is not critical and it happens in a place where a root
          * view is available.
          *
@@ -70,7 +71,7 @@ class ErrorUtil {
         }
 
         /**
-         * Show a bottom snackbar to the user, with a report button that opens the error activity.
+         * Show a bottom snackbar to the user, with a report button that opens the error screen.
          * Use this method if the exception is not critical and it happens in a place where a root
          * view is available.
          *
@@ -104,7 +105,7 @@ class ErrorUtil {
         }
 
         /**
-         * Create an error notification. Tapping on the notification opens the error activity. Use
+         * Create an error notification. Tapping on the notification opens the error screen. Use
          * this method if the exception happens inside a background service (player, subscription
          * import, ...) or there is no activity/fragment from which to extract a root view.
          *
@@ -128,14 +129,17 @@ class ErrorUtil {
                         PendingIntentCompat.getActivity(
                             context,
                             0,
-                            getErrorActivityIntent(context, errorInfo),
+                            getErrorScreenIntent(context, errorInfo),
                             PendingIntent.FLAG_UPDATE_CURRENT,
                             false
                         )
                     )
 
-            NotificationManagerCompat.from(context)
-                .notify(ERROR_REPORT_NOTIFICATION_ID, notificationBuilder.build())
+            val notificationManager = NotificationManagerCompat.from(context)
+            if (notificationManager.areNotificationsEnabled()) {
+                notificationManager
+                    .notify(ERROR_REPORT_NOTIFICATION_ID, notificationBuilder.build())
+            }
 
             ContextCompat.getMainExecutor(context).execute {
                 // since the notification is silent, also show a toast, otherwise the user is confused
@@ -144,11 +148,8 @@ class ErrorUtil {
             }
         }
 
-        private fun getErrorActivityIntent(context: Context, errorInfo: ErrorInfo): Intent {
-            val intent = Intent(context, ErrorActivity::class.java)
-            intent.putExtra(ErrorActivity.ERROR_INFO, errorInfo)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            return intent
+        private fun getErrorScreenIntent(context: Context, errorInfo: ErrorInfo): Intent {
+            return ComposeActivity.errorIntent(context, errorInfo)
         }
 
         private fun showSnackbar(context: Context, rootView: View?, errorInfo: ErrorInfo) {
@@ -159,7 +160,7 @@ class ErrorUtil {
                 Snackbar.make(rootView, errorInfo.getMessage(context), Snackbar.LENGTH_LONG)
                     .setActionTextColor(Color.YELLOW)
                     .setAction(context.getString(R.string.error_snackbar_action).uppercase()) {
-                        context.startActivity(getErrorActivityIntent(context, errorInfo))
+                        context.startActivity(getErrorScreenIntent(context, errorInfo))
                     }.show()
             }
         }

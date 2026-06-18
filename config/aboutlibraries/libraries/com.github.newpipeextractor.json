@@ -1,0 +1,15 @@
+{
+  "uniqueId": "com.github.TeamNewPipe:NewPipeExtractor",
+  "artifactVersion": "v0.26.3",
+  "name": "NewPipe Extractor",
+  "description": "A library for extracting data from streaming websites, used in NewPipe",
+  "website": "https://github.com/TeamNewPipe/NewPipeExtractor",
+  "developers": [
+    {
+      "name": "Team NewPipe"
+    }
+  ],
+  "licenses": [
+    "GPL-3.0-or-later"
+  ]
+}

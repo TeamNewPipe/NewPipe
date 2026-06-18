@@ -1,0 +1,1 @@
+修正 YouTube 在歐盟無法正常運作的問題。這是由新的 Cookie 與隱私權同意機制造成，該機制要求 NewPipe 設定 CONSENT Cookie。

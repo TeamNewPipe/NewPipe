@@ -32,7 +32,7 @@ jobs:
           mv app/build/outputs/apk/release/*.apk "app/build/outputs/apk/release/NewPipe_v$VERSION_NAME.apk"
 
       - name: "Upload APK"
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: app
           path: app/build/outputs/apk/release/*.apk

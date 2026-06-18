@@ -16,6 +16,7 @@ import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.util.external_communication.ShareUtils
+import org.schabi.newpipe.util.text.setTextWithLinks
 
 class ErrorPanelHelper(
     private val fragment: Fragment,
@@ -64,7 +65,7 @@ class ErrorPanelHelper(
 
     fun showError(errorInfo: ErrorInfo) {
         ensureDefaultVisibility()
-        errorTextView.text = errorInfo.getMessage(context)
+        errorTextView.setTextWithLinks(errorInfo.getMessage(context))
 
         if (errorInfo.recaptchaUrl != null) {
             showAndSetErrorButtonAction(R.string.recaptcha_solve) {
@@ -109,7 +110,7 @@ class ErrorPanelHelper(
     fun showTextError(errorString: String) {
         ensureDefaultVisibility()
 
-        errorTextView.text = errorString
+        errorTextView.setTextWithLinks(errorString)
 
         setRootVisible()
     }

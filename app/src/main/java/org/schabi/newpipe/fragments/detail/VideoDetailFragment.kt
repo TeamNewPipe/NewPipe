@@ -136,7 +136,6 @@ class VideoDetailFragment :
     @State
     var title: String = ""
 
-    @JvmField
     @State
     var url: String? = null
     private var currentInfo: StreamInfo? = null
@@ -147,6 +146,8 @@ class VideoDetailFragment :
     @JvmField
     @State
     var autoPlayEnabled: Boolean = true
+
+    var forceFullscreen: Boolean = false
 
     @JvmField
     @State
@@ -600,6 +601,12 @@ class VideoDetailFragment :
     override fun initListeners() {
         super.initListeners()
 
+        // Workaround for #5600
+        // Forcefully catch click events uncaught by children because otherwise
+        // they will be caught by underlying view and "click through" will happen
+        binding.root.setOnClickListener { _ -> }
+        binding.root.setOnLongClickListener { _ -> true }
+
         setOnClickListeners()
         setOnLongClickListeners()
 
@@ -1047,7 +1054,11 @@ class VideoDetailFragment :
      * = false`, hence preventing it from going directly fullscreen.
      */
     fun openVideoPlayerAutoFullscreen() {
-        openVideoPlayer(PlayerHelper.isStartMainPlayerFullscreenEnabled(requireContext()))
+        openVideoPlayer(
+            forceFullscreen ||
+                PlayerHelper.isStartMainPlayerFullscreenEnabled(requireContext())
+        )
+        forceFullscreen = false
     }
 
     private fun openNormalBackgroundPlayer(append: Boolean) {
@@ -1339,8 +1350,9 @@ class VideoDetailFragment :
                             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED)
                         }
                         // Rebound to the service if it was closed via notification or mini player
-                        PlayerHolder.setListener(this@VideoDetailFragment)
-                        PlayerHolder.tryBindIfNeeded(requireContext())
+                        if (!PlayerHolder.isBound) {
+                            PlayerHolder.startService(false, this@VideoDetailFragment)
+                        }
                     }
                 }
             }
@@ -1772,7 +1784,7 @@ class VideoDetailFragment :
             showSystemUi()
         }
 
-        binding.relatedItemsLayout?.isVisible = !fullscreen
+        binding.relatedItemsLayout?.isVisible = if (showRelatedItems) !fullscreen else false
         scrollToTop()
 
         tryAddVideoPlayerView()

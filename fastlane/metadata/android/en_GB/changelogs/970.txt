@@ -1,0 +1,11 @@
+New
+• Show content metadata (tags, categories, license, ...) below the description
+• Added "Show channel details" option in remote (non-local) playlists
+• Added "Open in browser" option to long-press menu
+
+Fixed
+• Fixed rotation crash on video detail page
+• Fixed "Play with Kodi" button in player always prompts to install Kore
+• Fixed and improved setting import and export paths
+• [YouTube] Fixed comment like count
+And much more

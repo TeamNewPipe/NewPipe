@@ -39,7 +39,7 @@
     <string name="default_resolution_title">Standaard resolutie</string>
     <string name="default_popup_resolution_title">Standaard resolutie voor pop-up</string>
     <string name="show_higher_resolutions_title">Hogere resoluties weergeven</string>
-    <string name="show_higher_resolutions_summary">Slechts enkele toestellen kunnen 2K- en 4K-video\'s afspelen</string>
+    <string name="show_higher_resolutions_summary">Slechts enkele toestellen kunnen 1440p- en 4K-video\'s afspelen</string>
     <string name="play_with_kodi_title">Afspelen met Kodi</string>
     <string name="kore_not_found">Wilt u de missende Kore-app installeren\?</string>
     <string name="show_play_with_kodi_title">Toon “Afspelen met Kodi”-optie</string>
@@ -134,7 +134,7 @@
     <string name="error_snackbar_action">Melden</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Wat er is gebeurd:</string>
-    <string name="info_labels">Wat:\\nVerzoek:\\nTaal van inhoud:\\nLand:\\nTaal van applicatie:\\nDienst:\\nGMT tijd:\\nPakket:\\nVersie:\\nVersie van besturingssysteem:</string>
+    <string name="info_labels">Wat:\nVerzoek:\nTaal van inhoud:\nLand:\nTaal van applicatie:\nDienst:\nGMT tijd:\nPakket:\nVersie:\nVersie van besturingssysteem:</string>
     <string name="your_comment">Uw opmerking (in het Engels):</string>
     <string name="error_details_headline">Details:</string>
     <string name="detail_thumbnail_view_description">Speel video, tijd:</string>
@@ -438,10 +438,9 @@
         <item quantity="other">%d seconden</item>
     </plurals>
     <string name="new_seek_duration_toast">Door beperkingen van ExoPlayer is de zoekduur ingesteld op %d seconden</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, en deels bekeken video\'s</string>
-    <string name="remove_watched_popup_warning">Video\'s die zijn bekeken voor, en na, ze werden toegevoegd aan de afspeellijst worden verwijderd.
-\nBent u zeker\? Dit kan niet ongedaan gemaakt worden!</string>
-    <string name="remove_watched_popup_title">Verwijder bekeken video\'s\?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Ja, en deels bekeken video\'s</string>
+    <string name="remove_watched_popup_warning">Video\'s die zijn bekeken voor, en na, ze werden toegevoegd aan de afspeellijst worden verwijderd. \nBent u zeker? Dit kan niet ongedaan gemaakt worden!</string>
+    <string name="remove_watched_popup_title">Verwijder bekeken video\'s?</string>
     <string name="remove_watched">Verwijder bekeken</string>
     <string name="systems_language">Systeem standaard</string>
     <string name="app_language_title">App taal</string>

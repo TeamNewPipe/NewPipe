@@ -1,0 +1,11 @@
+這是一個小型修正更新，用於恢復 YouTube 功能可用性。由於 YouTube 端變更，本次為必要修補的更新。
+
+感謝 @AudricV 與 @Ecomont 的貢獻，NewPipe 已重新支援擷取頻道分頁內容。
+
+其他變更
+
+[YouTube] 修正相關影片中的片長與直播狀態顯示問題
+[SoundCloud] 處理空白頁面 URL，修正留言造成的閃退問題
+更新相依套件
+
+NewPipe 將於下一個版本停止支援 Android 5。

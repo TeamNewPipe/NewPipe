@@ -76,14 +76,14 @@
     <string name="msg_running_detail">Trykk for detaljer</string>
     <string name="msg_wait">Vent…</string>
     <string name="msg_copied">Kopiert til utklippstavle</string>
-    <string name="info_labels">Hva:\\nForespørsel:\\nInnholdsspråk:\\nInnholdsland:\\nAppspråk:\\nTjeneste:\\nGMT-tid:\\nPakke:\\nVersjon:\\nOS-versjon:</string>
+    <string name="info_labels">Hva:\nForespørsel:\nInnholdsspråk:\nInnholdsland:\nAppspråk:\nTjeneste:\nGMT-tid:\nPakke:\nVersjon:\nOS-versjon:</string>
     <string name="start">Start</string>
     <string name="no_available_dir">Definer en nedlastingsmappe senere i innstillingene</string>
     <string name="title_activity_recaptcha">reCAPTCHA-oppgave</string>
     <string name="open_in_popup_mode">Åpne i oppsprettsmodus</string>
     <string name="default_popup_resolution_title">Forvalgt oppsprettsoppløsning</string>
     <string name="show_higher_resolutions_title">Vis høyere oppløsninger</string>
-    <string name="show_higher_resolutions_summary">Det er bare noen enheter som kan spille 2K-/4K-videoer</string>
+    <string name="show_higher_resolutions_summary">Det er bare noen enheter som kan spille 1440p-/4K-videoer</string>
     <string name="default_video_format_title">Forvalgt videoformat</string>
     <string name="black_theme_title">Svart</string>
     <string name="popup_playing_toast">Spiller av i oppsprettsmodus</string>
@@ -486,8 +486,8 @@
     <string name="artists">Artister</string>
     <string name="albums">Album</string>
     <string name="songs">Sanger</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, og delvist sette videoer</string>
-    <string name="remove_watched_popup_title">Fjern sette videoer\?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Ja, og delvist sette videoer</string>
+    <string name="remove_watched_popup_title">Fjern sette videoer?</string>
     <string name="remove_watched">Fjern sette</string>
     <string name="channel_created_by">Opprettet av %s</string>
     <string name="video_detail_by">Av %s</string>
@@ -524,8 +524,7 @@
     <string name="feed_use_dedicated_fetch_method_title">Hent fra dedikert strøm når tilgjengelig</string>
     <string name="feed_update_threshold_summary">Tid siden siste oppdatering før et abonnement vurderes utdatert — %s</string>
     <string name="new_seek_duration_toast">Som følge av begrensninger i ExoPlayer er blafringsdistansen kun %d sekunder</string>
-    <string name="remove_watched_popup_warning">Videoer som har blitt sett før og etter at de er lagt til spillelisten, vil bli fjernet.
-\nEr du sikker\? Dette kan ikke angres!</string>
+    <string name="remove_watched_popup_warning">Videoer som har blitt sett før og etter at de er lagt til spillelisten, vil bli fjernet. \nEr du sikker? Dette kan ikke angres!</string>
     <string name="autoplay_summary">Start avspilling automatisk — %s</string>
     <string name="unsupported_url_dialog_message">Kunne ikke gjenkjenne angitt nettadresse. Åpne den med et annet program\?</string>
     <string name="content_not_supported">Innholdet støttes ikke enda av NewPipe.

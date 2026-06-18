@@ -1,5 +1,3 @@
-Ce correctif corrige les erreurs HTTP 403 au milieu des vidéos YouTube.
-
 Nouveau
 • [SoundCloud] Ajout de la prise en charge des URL on.soundcloud.com
 

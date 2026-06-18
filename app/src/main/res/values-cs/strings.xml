@@ -26,9 +26,9 @@
     <string name="show_play_with_kodi_summary">Zobrazit možnost přehrání videa pomocí multimediálního centra Kodi</string>
     <string name="play_audio">Zvuk</string>
     <string name="default_audio_format_title">Výchozí formát zvuku</string>
-    <string name="theme_title">Téma</string>
-    <string name="dark_theme_title">Tmavé</string>
-    <string name="light_theme_title">Světlé</string>
+    <string name="theme_title">Motiv</string>
+    <string name="dark_theme_title">Tmavý</string>
+    <string name="light_theme_title">Světlý</string>
     <string name="download_dialog_title">Stáhnout</string>
     <string name="show_next_and_similar_title">Zobrazovat \'další\' a \'podobná\' videa</string>
     <string name="unsupported_url">URL není podporováno</string>
@@ -78,17 +78,17 @@
     <string name="ok">OK</string>
     <string name="title_activity_recaptcha">Výzva reCAPTCHA</string>
     <string name="recaptcha_request_toast">Požadována výzva reCAPTCHA</string>
-    <string name="black_theme_title">Černé</string>
+    <string name="black_theme_title">Černý</string>
     <string name="checksum">Kontrolní součet</string>
     <string name="no_available_dir">Určete prosím složku pro stahování později v nastavení</string>
-    <string name="info_labels">Co:\\nŽádost:\\nJazyk obsahu:\\nZemě obsahu:\\nJazyk aplikace:\\nSlužba:\\nČas GMT:\\nBalíček:\\nVerze:\\nVerze OS:</string>
+    <string name="info_labels">Co:\nŽádost:\nJazyk obsahu:\nZemě obsahu:\nJazyk aplikace:\nSlužba:\nČas GMT:\nBalíček:\nVerze:\nVerze OS:</string>
     <string name="all">Vše</string>
     <string name="open_in_popup_mode">Otevřít ve vyskakovacím okně</string>
     <string name="msg_popup_permission">Toto oprávnění je vyžadováno
 \npro otevření ve vyskakovacím okně</string>
     <string name="use_external_video_player_summary">Odstraňuje zvuk v některých rozlišeních</string>
     <string name="show_higher_resolutions_title">Zobrazovat vyšší rozlišení</string>
-    <string name="show_higher_resolutions_summary">Pouze některá zařízení dokáží přehrát 2K/4K videa</string>
+    <string name="show_higher_resolutions_summary">Pouze některá zařízení dokáží přehrát 1440p/4K videa</string>
     <string name="default_video_format_title">Výchozí formát videa</string>
     <string name="popup_remember_size_pos_title">Pamatovat si vlastnosti vyskakovacího okna</string>
     <string name="popup_remember_size_pos_summary">Pamatovat si poslední velikost a pozici vyskakovacího okna</string>
@@ -146,17 +146,17 @@
     <string name="settings_file_replacement_character_title">Náhradní znak</string>
     <string name="charset_letters_and_digits">Písmena a číslice</string>
     <string name="charset_most_special_characters">Většina speciálních znaků</string>
-    <string name="title_activity_about">O NewPipe</string>
+    <string name="title_activity_about">O aplikaci NewPipe</string>
     <string name="title_licenses">Licence třetích stran</string>
     <string name="copyright" formatted="true">© %1$s od %2$s pod %3$s</string>
-    <string name="tab_about">O aplikaci a FAQ</string>
+    <string name="tab_about">O aplikaci a dotazy</string>
     <string name="tab_licenses">Licence</string>
-    <string name="app_description">Svobodné a nenáročné streamování v Androidu.</string>
-    <string name="view_on_github">Zobraz na GitHubu</string>
+    <string name="app_description">Svobodné a lehké streamování pro Android.</string>
+    <string name="view_on_github">Zobrazit na GitHubu</string>
     <string name="app_license_title">Licence NewPipe</string>
-    <string name="contribution_encouragement">Pokud máte nápady na zlepšení jako; překlad, změny designu, vylepšování kódu nebo opravdu velké změny kódu - pomoc je vždy vítána. Čím více se udělá, tím lepší to bude!</string>
+    <string name="contribution_encouragement">Ať máte nápady na překlad, designové změny, pročištění kódu nebo velké změny – pomoc je vždy vítána. Čím více, tím lépe!</string>
     <string name="read_full_license">Přečíst licenci</string>
-    <string name="contribution_title">Podílet se</string>
+    <string name="contribution_title">Přispějte</string>
     <string name="title_activity_history">Historie</string>
     <string name="action_history">Historie</string>
     <string name="show_hold_to_append_title">Zobrazit tip „Podržte pro zařazení do fronty“</string>
@@ -184,10 +184,10 @@
     <string name="start_here_on_background">Začít přehrávat na pozadí</string>
     <string name="start_here_on_popup">Začít přehrávat v pop-upu</string>
     <string name="donation_title">Přispět</string>
-    <string name="donation_encouragement">NewPipe je vyvíjen dobrovolníky, kteří tráví svůj volný čas, aby vaše zkušenost s aplikací byla co nejlepší. Vraťte vývojářům něco zpět, aby mohli NewPipe dále zlepšovat a zároveň si vychutnat šálek kávy.</string>
-    <string name="give_back">Daruj</string>
-    <string name="website_title">Webová stránka</string>
-    <string name="website_encouragement">Pro další informace a novinky navštivte webovou stránku NewPipe.</string>
+    <string name="donation_encouragement">NewPipe je vyvíjen dobrovolníky, kteří tráví svůj volný čas tím, že vám přinášejí ten nejlepší uživatelský zážitek. Odměňte snahu vývojářů zlepšovat NewPipe a dopřejte jim šálek kávy.</string>
+    <string name="give_back">Odměnit</string>
+    <string name="website_title">Webové stránky</string>
+    <string name="website_encouragement">Navštivte webové stránky NewPipe pro další informace a novinky.</string>
     <string name="default_content_country_title">Země výchozího obsahu</string>
     <string name="switch_to_background">Přepnout na pozadí</string>
     <string name="switch_to_popup">Do okna</string>
@@ -282,8 +282,8 @@
 \n3. Při požádání se přihlaste
 \n4. Zkopírujte URL adresu profilu, na kterou jste byli přesměrováni.</string>
     <string name="import_soundcloud_instructions_hint">vašeID, soundcloud.com/yourid</string>
-    <string name="import_network_expensive_warning">Pamatujte, že tato operace může být náročná na data. 
-\n 
+    <string name="import_network_expensive_warning">Pamatujte, že tato operace může být náročná na data.
+\n
 \nChcete pokračovat?</string>
     <string name="playback_speed_control">Ovládání rychlosti přehrávání</string>
     <string name="playback_tempo">Tempo</string>
@@ -303,15 +303,15 @@
     <string name="delete_search_history_alert">Vymazat celkovou historii vyhledávání\?</string>
     <string name="search_history_deleted">Historie vyhledávání smazána</string>
     <string name="one_item_deleted">Jedna položka smazána.</string>
-    <string name="app_license">NewPipe je svobodný software s copyleft licencí: Můžete jej libovolně používat, studovat, sdílet a vylepšovat. Konkrétně jej můžete šířit a/nebo upravovat za podmínek Obecné veřejné licence GNU (GNU GPL) vydané nadací Free Software Foundation, a to buď za podmínek Licence verze 3 nebo (dle vaší volby) jakékoli pozdější verze.</string>
+    <string name="app_license">NewPipe je copyleftovaný svobodný software: můžete jej jakkoli používat, studovat, sdílet a vylepšovat. Redistribuovat a/nebo upravovat jej můžete pod podmínkami licence GNU General Public License zveřejněné nadací Free Software Foundation, buď ve verzi 3, nebo v jakékoli novější verzi (záleží na vás).</string>
     <string name="channels">Kanály</string>
     <string name="playlists">Playlisty</string>
     <string name="tracks">Stopy</string>
     <string name="users">Uživatelé</string>
-    <string name="privacy_policy_title">Zásady ochrany soukromí v NewPipe</string>
+    <string name="privacy_policy_title">Ochrana soukromí NewPipe</string>
     <string name="privacy_policy_encouragement">Projekt NewPipe bere vaše soukromí velice vážně. Proto aplikace neshromažďuje žádné údaje bez vašeho souhlasu.
 \nZásady ochrany soukromí NewPipe podrobně vysvětlují, jaké údaje jsou odesílány a ukládány, když odešlete zprávu o pádu aplikace.</string>
-    <string name="read_privacy_policy">Přečíst zásady ochrany soukromí</string>
+    <string name="read_privacy_policy">Přečíst zásady ochrany osobních údajů</string>
     <string name="import_settings">Chcete také přenést nastavení?</string>
     <string name="skip_silence_checkbox">Zrychleně vpřed během ticha</string>
     <string name="playback_step">Krok</string>
@@ -493,16 +493,16 @@
     <string name="feed_use_dedicated_fetch_method_summary">K dispozici na některých zařízeních, je obvykle mnohem rychlejší, ale může vrátit omezený počet položek a často neúplné informace (např. bez trvání, typu položky, skutečného stavu)</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Zapnout rychlý režim</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Vypnout rychlý režim</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Zdá se vám načítání příliš pomalé\? Pokud ano, zkuste zapnout rychlé načítání (lze změnit v nastavení nebo stiskem tlačítka níže). 
-\n 
+    <string name="feed_use_dedicated_fetch_method_help_text">Zdá se vám načítání příliš pomalé\? Pokud ano, zkuste zapnout rychlé načítání (lze změnit v nastavení nebo stiskem tlačítka níže).
+\n
 \nNewPipe nabízí dvě strategie načítání seznamu novinek
 \n• Stažení celého kanálu vašich odběrů, což je pomalé, ale spolehlivé.
-\n• Použití služby k tomu určené, což je rychlé, ale obvykle neobsahuje všechny potřebné informace. 
-\n 
-\nRozdíl mezi těmi dvěma je, že rychlému způsobu obvykle chybí nějaká informace, např. délka videa nebo typ (nemůže rozlišit mezi živým a normálním videem) a patrně vrátí méně položek. 
-\n 
-\nYouTube je příklad služby, která nabízí tuto rychlou metodu pomocí RSS přísunu. 
-\n 
+\n• Použití služby k tomu určené, což je rychlé, ale obvykle neobsahuje všechny potřebné informace.
+\n
+\nRozdíl mezi těmi dvěma je, že rychlému způsobu obvykle chybí nějaká informace, např. délka videa nebo typ (nemůže rozlišit mezi živým a normálním videem) a patrně vrátí méně položek.
+\n
+\nYouTube je příklad služby, která nabízí tuto rychlou metodu pomocí RSS přísunu.
+\n
 \nVýběr je vposledku určen tím, čemu dáte přednost: rychlosti nebo přesnosti informací.</string>
     <string name="content_not_supported">Tento obsah ještě není podporován NewPipe.
 \n
@@ -515,11 +515,10 @@
     <string name="restricted_video">Toto video má věkové omezení.
 \n
 \nPokud jej chcete vidět, povolte „%1$s“ v nastavení.</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ano, i zčásti zhlédnutá videa</string>
-    <string name="remove_watched_popup_title">Odstranit zhlédnutá videa?</string>
-    <string name="remove_watched">Odstranit zhlédnutá</string>
-    <string name="remove_watched_popup_warning">Videa, která jste zhlédli před a po jejich přidání do playlistu, budou odstraněna.
-\nJste se jisti? Tato akce je nevratná!</string>
+    <string name="remove_watched_popup_partially_watched_streams">Ano, i zčásti zhlédnutá videa</string>
+    <string name="remove_watched_popup_title">Odstranit zhlédnuté streamy?</string>
+    <string name="remove_watched">Odstranit zhlédnuté</string>
+    <string name="remove_watched_popup_warning">Streamy, které jste zhlédli před a po jejich přidání do playlistu, budou odstraněny. \nJste se jisti?</string>
     <string name="show_original_time_ago_summary">Původní texty služeb budou viditelné u položek streamů</string>
     <string name="show_original_time_ago_title">U položek zobrazit původní čas</string>
     <string name="youtube_restricted_mode_enabled_title">Zapnout „Omezený režim“ YouTube</string>
@@ -585,7 +584,7 @@
     <string name="crash_the_app">Zbořit aplikaci</string>
     <string name="download_has_started">Stahování bylo zahájeno</string>
     <string name="select_night_theme_toast">Níže si můžete zvolit svůj oblíbený motiv</string>
-    <string name="night_theme_summary">Zvolte si svůj oblíbený noční motiv - %s</string>
+    <string name="night_theme_summary">Zvolte si svůj oblíbený noční motiv – %s</string>
     <string name="auto_device_theme_title">Automatický (motiv zařízení)</string>
     <string name="radio">Radio</string>
     <string name="featured">Představujeme</string>
@@ -709,7 +708,7 @@
     <string name="select_quality_external_players">Vyberte kvalitu pro externí přehrávače</string>
     <string name="no_video_streams_available_for_external_players">U externích přehrávačů nejsou k dispozici žádné videostreamy</string>
     <string name="faq_title">Často kladené dotazy</string>
-    <string name="faq_description">Pokud máte potíže s používáním aplikace, přečtěte si tyto odpovědi na časté otázky!</string>
+    <string name="faq_description">Pokud máte problémy s používáním aplikace, podívejte se na tyto odpovědi, které zodpovídají nejčastější dotazy!</string>
     <string name="faq">Zobrazit na webu</string>
     <string name="sort">Řazení</string>
     <string name="app_update_available_notification_text">Klepnutím stáhnete %s</string>
@@ -858,6 +857,35 @@
     <string name="player_http_403">Během přehrávání byla ze serveru přijata chyba HTTP 403, pravděpodobně způsobená vypršením platnosti streamingové adresy URL nebo zákazem IP adresy</string>
     <string name="player_http_invalid_status">Chyba HTTP %1$s obdržená ze serveru během přehrávání</string>
     <string name="youtube_player_http_403">Chyba HTTP 403 obdržená od serveru během přehrávání, pravděpodobně způsobená zákazem IP adresy nebo problémy s deobfuskací streamovací adresy URL</string>
-    <string name="sign_in_confirm_not_bot_error">%1$s odmítl poskytnout data, žádá o přihlášení k potvrzení, že žadatel není bot.\n\nVaše IP adresa mohla být dočasně zakázána %1$s, můžete nějakou dobu počkat nebo přepnout na jinou IP adresu (například zapnutím/vypnutím VPN nebo přepnutím z WiFi na mobilní data).</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s odmítl poskytnout data, žádá o přihlášení k potvrzení, že žadatel není bot.\n\nVaše IP adresa mohla být dočasně zablokována službou %1$s, můžete nějakou dobu počkat nebo přepnout na jinou IP adresu (například zapnutím/vypnutím VPN nebo přepnutím z Wi-Fi na mobilní data).\n\nPro více informací si přečtěte <a href="%2$s">tento záznam v FAQ</a>.</string>
     <string name="unsupported_content_in_country">Tento obsah není pro aktuálně vybranou zemi obsahu dostupný.\n\nZměňte výběr v nabídce \"Nastavení &gt; Obsah &gt; Výchozí země obsahu\".</string>
+    <string name="kao_dialog_warning">Společnost Google oznámila, že od roku 2026/2027 budou všechny aplikace na certifikovaných zařízeních Android vyžadovat, aby vývojář odeslal své osobní identifikační údaje přímo společnosti Google. Jelikož vývojáři této aplikace s tímto požadavkem nesouhlasí, aplikace po tomto datu přestane na certifikovaných zařízeních Android fungovat.</string>
+    <string name="kao_dialog_more_info">Podrobnosti</string>
+    <string name="kao_solution">Řešení</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">Exportování %d odběru…</item>
+        <item quantity="few">Exportování %d odběrů…</item>
+        <item quantity="many">Exportování %d odběrů…</item>
+        <item quantity="other">Exportování %d odběrů…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">Načítání %d odběru…</item>
+        <item quantity="few">Načítání %d odběrů…</item>
+        <item quantity="many">Načítání %d odběrů…</item>
+        <item quantity="other">Načítání %d odběrů…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">Importování %d odběru…</item>
+        <item quantity="few">Importování %d odběrů…</item>
+        <item quantity="many">Importování %d odběrů…</item>
+        <item quantity="other">Importování %d odběrů…</item>
+    </plurals>
+    <string name="import_subscriptions_title">Importovat odběry</string>
+    <string name="export_subscriptions_title">Exportovat odběry</string>
+    <string name="import_subscriptions_summary">Importovat odběry z předchozího exportu .json</string>
+    <string name="export_subscriptions_summary">Exportovat odběry do souboru .json</string>
+    <string name="import_from_previous_export">Importovat z předchozího exportu</string>
+    <string name="api23_requirement_dialog_title">NewPipe ukončuje podporu systému Android 5</string>
+    <string name="api23_requirement_dialog_message">NewPipe bohužel využívá několik knihoven, které již nepodporují Android 5.0 a 5.1. Příští verze NewPipe proto bude bohužel fungovat pouze na zařízeních s Androidem 6 nebo novějším. Více se dozvíte v tomto blogovém příspěvku.</string>
+    <string name="api23_requirement_dialog_blogpost">Blogový příspěvek</string>
 </resources>

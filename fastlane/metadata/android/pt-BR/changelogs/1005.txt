@@ -1,17 +1,17 @@
 New
-• Suporte adicionado para Android Auto
-• Permitir configuração de grupos de feed como abas da tela principal
-• [YouTube] Compartilhe como playlist temporária
-• [SoundCloud] Aba de curtidas do canal
+• Add support for Android Auto
+• Allow setting feed groups as main screen tabs
+• [YouTube] Share as temporary playlist
+• [SoundCloud] Likes channel tab
 
-Melhorado
-• Melhor sugestão na barra de busca
-• Mostra data do download em Downloads
-• Usar idioma por aplicativo no Android 13
+Improved
+• Better search bar hints
+• Show download date in Downloads
+• Use Android 13 per-app language
 
-Consertado
-• Texto no modo escuro consertado
-• [YouTube] Conserta playlists não carregando mais do que 100 itens
-• [YouTube] Conserta videos recomendados faltando
-• Conserta lista de visualização do histórico
-• Conserta registro de tempo na resposta de comentários
+Fixed
+• Fix broken text colors in dark mode
+• [YouTube] Fix playlists not loading more than 100 items
+• [YouTube] Fix missing recommended videos
+• Fix crashes in History list view
+• Fix timestamps in comment replies

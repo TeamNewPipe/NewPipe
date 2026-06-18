@@ -61,8 +61,8 @@
     <string name="pause_downloads_on_mobile">Interromper em redes limitadas</string>
     <string name="detail_thumbnail_view_description">Reproduzir vídeo, duração:</string>
     <string name="feed_create_new_group_button_title">Novo</string>
-    <string name="content_not_supported">Este conteúdo ainda não é suportado pelo NewPipe. 
-\n 
+    <string name="content_not_supported">Este conteúdo ainda não é suportado pelo NewPipe.
+\n
 \nEsperamos que seja suportado numa versão futura.</string>
     <string name="minimize_on_exit_none_description">Nenhuma</string>
     <string name="download_path_dialog_title">Escolha a pasta para colocar os ficheiros de vídeo</string>
@@ -144,8 +144,7 @@
     <string name="delete_downloaded_files">Eliminar ficheiros descarregados</string>
     <string name="app_language_title">Idioma da aplicação</string>
     <string name="users">Utilizadores</string>
-    <string name="remove_watched_popup_warning">Os vídeos que tenham sido vistos antes e depois de serem adicionados à lista de reprodução serão removidos.
-\nTem a certeza\? Esta ação não pode ser revertida!</string>
+    <string name="remove_watched_popup_warning">Os vídeos que tenham sido vistos antes e após serem adicionados à lista de reprodução serão removidos. \nTem a certeza?</string>
     <plurals name="watching">
         <item quantity="one">%s a ver</item>
         <item quantity="many">%s a ver</item>
@@ -203,7 +202,7 @@
     <string name="generate_unique_name">Gerar nome único</string>
     <string name="minimize_on_exit_summary">Ação a executar ao trocar para outra aplicação a partir do menu principal - %s</string>
     <string name="use_external_video_player_title">Utilizar reprodutor de vídeo externo</string>
-    <string name="info_labels">O quê:\\nPedido:\\nIdioma do conteúdo:\\nPaís do conteúdo\\nIdioma da aplicação\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nSO Versão:</string>
+    <string name="info_labels">O quê:\nPedido:\nIdioma do conteúdo:\nPaís do conteúdo\nIdioma da aplicação\nServiço:\nHora GMT:\nPacote:\nVersão:\nSO Versão:</string>
     <string name="contribution_encouragement">Se tem ideias para: tradução, alterações de desenho, limpeza de código, ou alterações significativas no código fonte - todas as ajudas são bem-vindas. Quanto mais se faz, melhor ficará!</string>
     <string name="settings_category_clear_data_title">Limpar dados</string>
     <string name="just_once">Apenas uma vez</string>
@@ -228,7 +227,7 @@
     <string name="feed_update_threshold_title">Limite de atualização da fonte</string>
     <string name="ok">OK</string>
     <string name="subscription_update_failed">Não foi possível atualizar a subscrição</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim e também os vídeos parcialmente vistos</string>
+    <string name="remove_watched_popup_partially_watched_streams">Sim e também os vídeos parcialmente vistos</string>
     <string name="no_playlist_bookmarked_yet">Ainda não há listas de reprodução favoritas</string>
     <plurals name="listening">
         <item quantity="one">%s ouvinte</item>
@@ -280,7 +279,7 @@
     <string name="app_update_notification_channel_description">Notificações para novas versões do NewPipe</string>
     <string name="action_history">Histórico</string>
     <string name="list">Lista</string>
-    <string name="remove_watched_popup_title">Remover vídeos visualizados\?</string>
+    <string name="remove_watched_popup_title">Remover transmissões vistas?</string>
     <plurals name="minutes">
         <item quantity="one">%d minuto</item>
         <item quantity="many">%d minutos</item>
@@ -483,7 +482,7 @@
     <string name="trending">Tendências</string>
     <string name="always_ask_open_action">Perguntar sempre</string>
     <string name="error_timeout">Ligação expirada</string>
-    <string name="show_higher_resolutions_summary">Apenas alguns dispositivos conseguem reproduzir vídeos em 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Apenas alguns dispositivos conseguem reproduzir vídeos em 1440p/4K</string>
     <string name="settings_category_appearance_title">Aparência</string>
     <string name="donation_title">Doar</string>
     <string name="error_report_open_github_notice">Verifique se o seu erro já foi reportado. A criação de erros em duplicado tira-nos tempo que pode ser utilizado para corrigir os erros.</string>
@@ -856,8 +855,34 @@
     <string name="entry_deleted">Entrada apagada</string>
     <string name="account_terminated_service_provides_reason">Conta terminada\n\n%1$s fornece esta razão: %2$s</string>
     <string name="player_http_invalid_status">Erro HTTP %1$s recebido do servidor ao reproduzir</string>
-    <string name="sign_in_confirm_not_bot_error">%1$s recusou fornecer dados, pedindo por um login para confirmar que o solicitante não é um bot.\n\nO seu IP pode ter sido temporariamente banido por %1$s, pode esperar algum tempo ou mudar para um IP diferente (por exemplo, a ligar / desligar uma VPN, ou a alternar de Wi-Fi para dados móveis).</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s recusou fornecer dados, pedindo por um login para confirmar que o solicitante não é um bot.\n\nO seu IP pode ter sido temporariamente banido por %1$s, você pode esperar algum tempo ou mudar para um IP diferente (por exemplo, a ligar/desligar uma VPN, ou a alternar de Wi-Fi para dados móveis).\n\nConfira <a href="%2$s">este artigo do FAQ</a> para mais informações.</string>
     <string name="unsupported_content_in_country">Este conteúdo não está disponível para o país de conteúdo atualmente selecionado.\n\nAltere a sua seleção de \"Configurações &gt; Conteúdo &gt; País predefinido de conteúdo\".</string>
     <string name="player_http_403">Erro HTTP 403 recebido do servidor durante a reprodução, provavelmente causado pela URL de streaming expirado ou IP banido</string>
     <string name="youtube_player_http_403">Erro HTTP 403 recebido do servidor durante a reprodução, provavelmente causado por um bloqueio de IP ou problemas de desofuscação da URL de streaming</string>
+    <string name="kao_dialog_warning">Em agosto de 2025, o Google anunciou que, a partir de setembro de 2026, a instalação de apps exigirá a verificação do programador para todas as apps Android em dispositivos certificados, incluindo aqueles instalados fora da Play Store. Como os programadores do NewPipe não concordam com este requisito, o NewPipe já não funcionará em dispositivos Android certificados após essa data.</string>
+    <string name="kao_dialog_more_info">Pormenores</string>
+    <string name="kao_solution">Solução</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">A exportar %d subscrição…</item>
+        <item quantity="many">A exportar %d subscrições…</item>
+        <item quantity="other">A exportar %d subscrições…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">A carregar %d subscrição…</item>
+        <item quantity="many">A carregar %d subscrições…</item>
+        <item quantity="other">A carregar %d subscrições…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">A importar %d subscrição…</item>
+        <item quantity="many">A importar %d subscrições…</item>
+        <item quantity="other">A importar %d subscrições…</item>
+    </plurals>
+    <string name="import_subscriptions_title">Importar subscrições</string>
+    <string name="export_subscriptions_title">Exportar subscrições</string>
+    <string name="import_subscriptions_summary">Importar subscrições do ficheiro .json anteriormente exportado</string>
+    <string name="export_subscriptions_summary">Exportar subscrições para um ficheiro .json</string>
+    <string name="import_from_previous_export">Importar da exportação anterior</string>
+    <string name="api23_requirement_dialog_title">O NewPipe deixará de apoiar o Android 5</string>
+    <string name="api23_requirement_dialog_message">Infelizmente, o NewPipe depende de algumas bibliotecas que terminaram apoio para o Android 5.0 e 5.1. Por isso, a próxima versão do NewPipe só funcionará em dispositivos com Android 6 ou superior, infelizmente. Saiba mais na publicação do blog.</string>
+    <string name="api23_requirement_dialog_blogpost">Postagem no blog</string>
 </resources>

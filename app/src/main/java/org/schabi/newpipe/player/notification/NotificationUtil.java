@@ -72,7 +72,9 @@ public final class NotificationUtil {
             notificationBuilder = createNotification();
         }
         updateNotification();
-        notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
+        if (notificationManager.areNotificationsEnabled()) {
+            notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
+        }
     }
 
     public synchronized void updateThumbnail() {
@@ -84,7 +86,9 @@ public final class NotificationUtil {
             }
 
             setLargeIcon(notificationBuilder);
-            notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
+            if (notificationManager.areNotificationsEnabled()) {
+                notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
+            }
         }
     }
 

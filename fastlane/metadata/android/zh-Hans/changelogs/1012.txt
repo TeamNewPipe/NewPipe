@@ -1,0 +1,9 @@
+这是一个让 YouTube 再次可用的小小的热修复更新。这是必需的，因为 YouTube 有多个更改。
+多亏 @AudricV 和 @Ecomont 的努力，NewPipe 现在又能提取频道标签页中的项目了。
+
+进一步更改
+- [YouTube] 修复了“相关视频”中持续时间和直播显示问题
+- [SoundCloud] 通过处理 null 页面 URL 修复评论崩溃
+- 依赖项更新
+
+NewPipe 下个版本不再支持 Android 5。

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NewPipe</string>
+    <string name="navigate_back">Wstecz</string>
+    <string name="title_activity_about">O NewPipe</string>
+    <string name="title_licenses">Licencje innych firm</string>
+    <string name="tab_about">O aplikacji i FAQ</string>
+    <string name="tab_licenses">Licencje</string>
+    <string name="app_description">Lekkie przesyłanie strumieniowe w systemie Android.</string>
+    <string name="contribution_title">Wkład</string>
+    <string name="contribution_encouragement">Niezależnie od tego, czy masz pomysł na tłumaczenie, zmiany w projekcie, oczyszczenie kodu źródłowego, czy na naprawdę ciężkie zmiany w kodzie — pomoc jest zawsze mile widziana. Im więcej jest zrobione, tym lepiej!</string>
+    <string name="view_on_github">Zobacz na GitHubie</string>
+    <string name="donation_title">Dotacja</string>
+    <string name="donation_encouragement">NewPipe jest rozwijany przez wolontariuszy, którzy poświęcają swój wolny czas, zapewniając Ci najlepsze wrażenia z użytkowania. To dobry moment na wsparcie programistów i sprawienie, aby NewPipe był jeszcze lepszy, podczas gdy oni będą mogli delektować się filiżanką kawy.</string>
+    <string name="give_back">Wspomóż</string>
+    <string name="website_title">Strona internetowa</string>
+    <string name="website_encouragement">Odwiedź stronę NewPipe, aby uzyskać więcej informacji i najnowsze wiadomości.</string>
+    <string name="privacy_policy_title">Polityka prywatności NewPipe</string>
+    <string name="read_privacy_policy">Przeczytaj politykę prywatności</string>
+    <string name="app_license_title">Licencja NewPipe</string>
+    <string name="app_license">NewPipe jest wolnym i bezpłatnym oprogramowaniem: Możesz używać, udostępniać i ulepszać je do woli. W szczególności możesz je redystrybuować i/lub modyfikować zgodnie z warunkami GNU General Public License, opublikowanej przez Free Software Fundation, w wersji 3 albo (według Twojego wyboru) jakiejkolwiek późniejszej wersji.</string>
+    <string name="read_full_license">Przeczytaj licencję</string>
+    <string name="faq_title">Często zadawane pytania</string>
+    <string name="faq_description">Jeśli masz problemy podczas korzystania z aplikacji, koniecznie sprawdź odpowiedzi na najczęściej pojawiające się pytania!</string>
+    <string name="faq">Zobacz na stronie internetowej</string>
+    <string name="open_in_browser">Otwórz w przeglądarce</string>
+    <string name="done">Gotowe</string>
+    <string name="license">%1$s na licencji %2$s</string>
+    <string name="privacy_policy_encouragement">Projekt NewPipe bardzo poważnie traktuje Twoją prywatność, dlatego aplikacja nie gromadzi żadnych danych bez Twojej zgody. \nPolityka prywatności NewPipe szczegółowo wyjaśnia, jakie dane są zbierane i przesyłane, kiedy wysyłasz raport o awarii aplikacji.</string>
+    <string name="not_available">Niedostępna</string>
+</resources>
