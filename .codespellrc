@@ -1,0 +1,10 @@
+[codespell]
+# Skip translation string files (managed via Weblate), build directories, git, and localized metadata
+skip = ./app/src/main/res/values-*,./fastlane/metadata/android/*,./doc/README.*.md,./.git,./build,./.gradle,./app/build,./captures,./.idea
+
+# Words to ignore (case-insensitive) - common words from other languages and valid technical terms
+ignore-words-list = ser,nam,te,als,ist,unter,som,alle,ned,noe,noen,openen,appen,tre,fane,selv,lastes,ser,vise,sist,aktive,aktiv,tekst,lokale,adres,nowe,teh,sme,stran,mape,buton,complet,normale,modul,ore,sistem,progres,efect,curent,progresive,grup,incluse,apreciate,similare,categorie,elemente,probleme,duplicat,vor,devine,populare,importat,generat,serios,implicite,butoon,serwer,selektor,serwerow,nin,nome,vai,nomes,erro,autor,inicial,utiliza,alternar,posible,nd,ue,meda,nto,subscriprion,fo,mis,trun,cant,optin,goup,heigh,ot,compatability,whats,re-used,co-ordinates,re-using,everytime
+
+# File types to check
+check-hidden = false
+quiet-level = 2

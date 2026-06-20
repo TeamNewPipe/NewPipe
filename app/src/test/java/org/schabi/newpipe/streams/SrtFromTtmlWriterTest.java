@@ -127,7 +127,7 @@ public class SrtFromTtmlWriterTest {
      * - Reference:
      *   Unicode Basic Latin (https://unicode.org/charts/PDF/U0000.pdf),
      *   ASCII Control (https://en.wikipedia.org/wiki/ASCII#Control_characters).
-     *   and the defination of these characters can be known.
+     *   and the definition of these characters can be known.
      */
     private static final String CONTROL_CHAR_TTML = "<p begin=\"00:00:05.000\" "
             + "end=\"00:00:07.000\">"
