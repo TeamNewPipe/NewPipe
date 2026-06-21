@@ -13,6 +13,14 @@ import androidx.core.content.ContextCompat;
  * </p>
  */
 public final class KeyboardUtil {
+
+    /**
+     * Flag for {@link #hideKeyboard(Activity, EditText)} to force the keyboard to hide.
+     * This is required for non-touch devices like Fire TV where the system
+     * flags the focus as an explicit user action.
+     */
+    private static final int CLEAR_SOFT_INPUT_FORCED = 0;
+
     private KeyboardUtil() {
     }
 
@@ -24,6 +32,7 @@ public final class KeyboardUtil {
         if (editText.requestFocus()) {
             final InputMethodManager imm = ContextCompat.getSystemService(activity,
                     InputMethodManager.class);
+
             if (!imm.showSoftInput(editText, InputMethodManager.SHOW_FORCED)) {
                 /*
                  * Sometimes the keyboard can't be shown because Android's ImeFocusController is in
@@ -47,8 +56,9 @@ public final class KeyboardUtil {
 
         final InputMethodManager imm = ContextCompat.getSystemService(activity,
                 InputMethodManager.class);
-        imm.hideSoftInputFromWindow(editText.getWindowToken(),
-                InputMethodManager.HIDE_NOT_ALWAYS);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(editText.getWindowToken(), CLEAR_SOFT_INPUT_FORCED);
+        }
 
         editText.clearFocus();
     }
