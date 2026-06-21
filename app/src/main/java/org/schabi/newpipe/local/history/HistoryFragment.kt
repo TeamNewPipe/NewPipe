@@ -29,7 +29,7 @@ class HistoryFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ) = content {
         AppTheme {
             Surface {
@@ -40,7 +40,7 @@ class HistoryFragment : Fragment() {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ) {
         val context = requireActivity()
         (context as? AppCompatActivity)?.supportActionBar?.setTitle(R.string.title_activity_history)

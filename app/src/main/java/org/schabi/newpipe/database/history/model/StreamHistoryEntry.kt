@@ -11,13 +11,13 @@ data class StreamHistoryEntry(
     @Embedded
     val streamEntity: StreamEntity,
 
-    @ColumnInfo(name = StreamHistoryEntity.JOIN_STREAM_ID)
+    @ColumnInfo(name = "stream_id")
     val streamId: Long,
 
-    @ColumnInfo(name = StreamHistoryEntity.STREAM_ACCESS_DATE)
+    @ColumnInfo(name = "access_date")
     val accessDate: OffsetDateTime,
 
-    @ColumnInfo(name = StreamHistoryEntity.STREAM_REPEAT_COUNT)
+    @ColumnInfo(name = "repeat_count")
     val repeatCount: Long
 ) {
 

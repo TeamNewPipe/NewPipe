@@ -37,7 +37,7 @@ import org.schabi.newpipe.database.stream.model.StreamEntity
         ),
         ForeignKey(
             entity = StreamEntity::class,
-            parentColumns = arrayOf(StreamEntity.STREAM_ID),
+            parentColumns = arrayOf("uid"),
             childColumns = arrayOf(JOIN_STREAM_ID),
             onDelete = CASCADE,
             onUpdate = CASCADE,

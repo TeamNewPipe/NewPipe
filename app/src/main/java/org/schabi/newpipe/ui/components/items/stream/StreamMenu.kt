@@ -37,7 +37,7 @@ fun StreamMenu(
                     SparseItemUtil.fetchItemInfoIfSparse(context, info) {
                         NavigationHelper.enqueueOnPlayer(context, it)
                     }
-                },
+                }
             )
 
             if (PlayerHolder.queuePosition < PlayerHolder.queueSize - 1) {
@@ -48,7 +48,7 @@ fun StreamMenu(
                         SparseItemUtil.fetchItemInfoIfSparse(context, info) {
                             NavigationHelper.enqueueOnPlayer(context, it)
                         }
-                    },
+                    }
                 )
             }
         }
@@ -60,7 +60,7 @@ fun StreamMenu(
                 SparseItemUtil.fetchItemInfoIfSparse(context, info) {
                     NavigationHelper.playOnBackgroundPlayer(context, it, true)
                 }
-            },
+            }
         )
         DropdownTextMenuItem(
             text = R.string.start_here_on_popup,
@@ -69,7 +69,7 @@ fun StreamMenu(
                 SparseItemUtil.fetchItemInfoIfSparse(context, info) {
                     NavigationHelper.playOnPopupPlayer(context, it, true)
                 }
-            },
+            }
         )
 
         if (stream.streamId != -1L) {
@@ -78,7 +78,7 @@ fun StreamMenu(
                 onClick = {
                     onDismissRequest()
                     streamViewModel.deleteStreamHistory(stream.streamId)
-                },
+                }
             )
         }
 
@@ -96,7 +96,7 @@ fun StreamMenu(
                     val fragmentManager = context.findFragmentActivity().supportFragmentManager
                     downloadDialog.show(fragmentManager, "downloadDialog")
                 }
-            },
+            }
         )
         DropdownTextMenuItem(
             text = R.string.add_to_playlist,
@@ -107,24 +107,24 @@ fun StreamMenu(
                     val tag = if (dialog is PlaylistAppendDialog) "append" else "create"
                     dialog.show(
                         context.findFragmentActivity().supportFragmentManager,
-                        "StreamDialogEntry@${tag}_playlist",
+                        "StreamDialogEntry@${tag}_playlist"
                     )
                 }
-            },
+            }
         )
         DropdownTextMenuItem(
             text = R.string.share,
             onClick = {
                 onDismissRequest()
                 ShareUtils.shareText(context, stream.name, stream.url, stream.thumbnails)
-            },
+            }
         )
         DropdownTextMenuItem(
             text = R.string.open_in_browser,
             onClick = {
                 onDismissRequest()
                 ShareUtils.openUrlInBrowser(context, stream.url)
-            },
+            }
         )
         DropdownTextMenuItem(
             text = R.string.mark_as_watched,

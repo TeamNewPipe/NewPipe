@@ -1,6 +1,9 @@
 package org.schabi.newpipe.ui.components.items
 
 import android.os.Parcelable
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
+import java.util.concurrent.TimeUnit
 import kotlinx.parcelize.Parcelize
 import org.schabi.newpipe.App
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry
@@ -11,9 +14,6 @@ import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NO_SERVICE_ID
 import org.schabi.newpipe.util.ServiceHelper
 import org.schabi.newpipe.util.image.ImageStrategy
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
-import java.util.concurrent.TimeUnit
 
 @Parcelize
 class Stream(
@@ -26,7 +26,7 @@ class Stream(
     val uploaderUrl: String? = null,
     val duration: Long = TimeUnit.HOURS.toSeconds(1),
     val detailText: String = "",
-    val streamId: Long = -1,
+    val streamId: Long = -1
 ) : Info(), Parcelable {
 
     constructor(item: StreamInfoItem) : this(
@@ -79,5 +79,5 @@ private val StreamStatisticsEntry.detailText: String
         Localization.concatenateStrings(
             Localization.shortViewCount(App.instance, watchCount),
             DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).format(latestAccessDate),
-            ServiceHelper.getNameOfServiceById(streamEntity.serviceId),
+            ServiceHelper.getNameOfServiceById(streamEntity.serviceId)
         )

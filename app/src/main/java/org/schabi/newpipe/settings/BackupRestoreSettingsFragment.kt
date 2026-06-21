@@ -12,7 +12,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.edit
 import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
+import androidx.preference.Preference
 import com.grack.nanojson.JsonParserException
+import java.io.IOException
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,10 +34,6 @@ import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard
 import org.schabi.newpipe.streams.io.StoredFileHelper
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.ZipHelper
-import java.io.IOException
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.Locale
 
 class BackupRestoreSettingsFragment : BasePreferenceFragment() {
     private val exportDateFormat = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss", Locale.US)
@@ -44,27 +45,27 @@ class BackupRestoreSettingsFragment : BasePreferenceFragment() {
 
     override fun onCreatePreferences(
         savedInstanceState: Bundle?,
-        rootKey: String?,
+        rootKey: String?
     ) {
         val activity = requireActivity()
         manager = ImportExportManager(BackupFileLocator(activity))
 
         addPreferencesFromResourceRegistry()
 
-        requirePreference(R.string.import_data).setOnPreferenceClickListener {
+        requirePreference<Preference>(R.string.import_data).setOnPreferenceClickListener {
             val picker = StoredFileHelper.getPicker(activity, ZIP_MIME_TYPE, importExportDataUri)
             NoFileManagerSafeGuard.launchSafe(requestImportPathLauncher, picker, TAG, activity)
             true
         }
 
-        requirePreference(R.string.export_data).setOnPreferenceClickListener {
+        requirePreference<Preference>(R.string.export_data).setOnPreferenceClickListener {
             val filename = "NewPipeData-${exportDateFormat.format(LocalDateTime.now())}.zip"
             val picker = StoredFileHelper.getNewPicker(activity, filename, ZIP_MIME_TYPE, importExportDataUri)
             NoFileManagerSafeGuard.launchSafe(requestExportPathLauncher, picker, TAG, activity)
             true
         }
 
-        requirePreference(R.string.reset_settings).setOnPreferenceClickListener {
+        requirePreference<Preference>(R.string.reset_settings).setOnPreferenceClickListener {
             // Show Alert Dialogue
             AlertDialog
                 .Builder(activity)

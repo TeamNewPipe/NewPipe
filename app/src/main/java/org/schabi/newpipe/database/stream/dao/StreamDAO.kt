@@ -12,7 +12,6 @@ import io.reactivex.rxjava3.core.Maybe
 import java.time.OffsetDateTime
 import org.schabi.newpipe.database.BasicDAO
 import org.schabi.newpipe.database.stream.model.StreamEntity
-import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_ID
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.util.StreamTypeUtil
 
@@ -125,22 +124,22 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
      * Minimal entry class used when comparing/updating an existent stream.
      */
     internal data class StreamCompareFeed(
-        @ColumnInfo(name = STREAM_ID)
+        @ColumnInfo(name = "uid")
         var uid: Long = 0,
 
-        @ColumnInfo(name = StreamEntity.STREAM_TYPE)
+        @ColumnInfo(name = "stream_type")
         var streamType: StreamType,
 
-        @ColumnInfo(name = StreamEntity.STREAM_TEXTUAL_UPLOAD_DATE)
+        @ColumnInfo(name = "textual_upload_date")
         var textualUploadDate: String? = null,
 
-        @ColumnInfo(name = StreamEntity.STREAM_UPLOAD_DATE)
+        @ColumnInfo(name = "upload_date")
         var uploadDate: OffsetDateTime? = null,
 
-        @ColumnInfo(name = StreamEntity.STREAM_IS_UPLOAD_DATE_APPROXIMATION)
+        @ColumnInfo(name = "is_upload_date_approximation")
         var isUploadDateApproximation: Boolean? = null,
 
-        @ColumnInfo(name = StreamEntity.STREAM_DURATION)
+        @ColumnInfo(name = "duration")
         var duration: Long
     )
 }

@@ -3,12 +3,12 @@ package org.schabi.newpipe.database
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.rx3.await
 import io.reactivex.rxjava3.core.Single
 import java.io.IOException
 import java.time.OffsetDateTime
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.rx3.await
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
@@ -25,8 +25,6 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.extractor.ServiceList
 import org.schabi.newpipe.extractor.channel.ChannelInfo
 import org.schabi.newpipe.extractor.stream.StreamType
-import java.io.IOException
-import java.time.OffsetDateTime
 
 class FeedDAOTest {
     private lateinit var db: AppDatabase

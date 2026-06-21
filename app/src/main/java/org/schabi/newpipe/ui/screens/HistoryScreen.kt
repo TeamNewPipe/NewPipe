@@ -52,14 +52,14 @@ fun HistoryScreen(viewModel: HistoryViewModel = viewModel()) {
 private fun HistoryHeader(
     sortKey: SortKey,
     queue: PlayQueue,
-    onSelectSortKey: (SortKey) -> Unit,
+    onSelectSortKey: (SortKey) -> Unit
 ) {
     FlowRow(
         modifier = Modifier
             .fillMaxWidth()
             .padding(12.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterVertically),
-        horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally),
+        horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally)
     ) {
         HistorySortRow(sortKey, onSelectSortKey)
 
@@ -70,11 +70,11 @@ private fun HistoryHeader(
 @Composable
 private fun HistorySortRow(
     sortKey: SortKey,
-    onSelectSortKey: (SortKey) -> Unit,
+    onSelectSortKey: (SortKey) -> Unit
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalAlignment = Alignment.CenterVertically,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Text(text = stringResource(R.string.history_sort_label))
 

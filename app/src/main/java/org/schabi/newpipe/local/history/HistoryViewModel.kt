@@ -17,7 +17,7 @@ import org.schabi.newpipe.ui.components.items.Stream
 
 class HistoryViewModel(
     application: Application,
-    private val savedStateHandle: SavedStateHandle,
+    private val savedStateHandle: SavedStateHandle
 ) : AndroidViewModel(application) {
     private val historyDao = NewPipeDatabase.getInstance(getApplication()).streamHistoryDAO()
 

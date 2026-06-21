@@ -23,6 +23,7 @@ import androidx.core.content.edit
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.preference.PreferenceManager
+import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.flow.flowOf
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.Image
@@ -36,7 +37,6 @@ import org.schabi.newpipe.ui.components.items.Playlist
 import org.schabi.newpipe.ui.components.items.Stream
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.NO_SERVICE_ID
-import java.util.concurrent.TimeUnit
 
 @Composable
 fun RelatedItems(info: StreamInfo) {
@@ -58,16 +58,15 @@ fun RelatedItems(info: StreamInfo) {
     ItemList(
         items = flowOf(PagingData.from(displayItems)).collectAsLazyPagingItems(),
         mode = ItemViewMode.LIST,
-        listHeader = {
-            item {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 12.dp, end = 12.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(text = stringResource(R.string.auto_queue_description))
+        header = {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 12.dp, end = 12.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(text = stringResource(R.string.auto_queue_description))
 
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(4.dp),
@@ -89,6 +88,7 @@ fun RelatedItems(info: StreamInfo) {
     )
 }
 
+@Suppress("ktlint:standard:function-naming")
 private fun StreamInfoItem(
     serviceId: Int = NO_SERVICE_ID,
     url: String = "",

@@ -12,11 +12,15 @@ class Playlist(
     val name: String = "",
     val thumbnails: List<Image> = emptyList(),
     val uploaderName: String = "",
-    val streamCount: Long = 10,
+    val streamCount: Long = 10
 ) : Info() {
 
     constructor(item: PlaylistInfoItem) : this(
-        item.serviceId, item.url, item.name, item.thumbnails, item.uploaderName.orEmpty(),
+        item.serviceId,
+        item.url,
+        item.name,
+        item.thumbnails,
+        item.uploaderName.orEmpty(),
         item.streamCount
     )
 }

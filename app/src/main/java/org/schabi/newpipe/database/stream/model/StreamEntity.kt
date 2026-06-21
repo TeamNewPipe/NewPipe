@@ -7,9 +7,6 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.io.Serializable
 import java.time.OffsetDateTime
-import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_SERVICE_ID
-import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_TABLE
-import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_URL
 import org.schabi.newpipe.extractor.localization.DateWrapper
 import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
@@ -18,50 +15,50 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem
 import org.schabi.newpipe.util.image.ImageStrategy
 
 @Entity(
-    tableName = STREAM_TABLE,
+    tableName = "streams",
     indices = [
-        Index(value = [STREAM_SERVICE_ID, STREAM_URL], unique = true)
+        Index(value = ["service_id", "url"], unique = true)
     ]
 )
 data class StreamEntity(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = STREAM_ID)
+    @ColumnInfo(name = "uid")
     var uid: Long = 0,
 
-    @ColumnInfo(name = STREAM_SERVICE_ID)
+    @ColumnInfo(name = "service_id")
     var serviceId: Int,
 
-    @ColumnInfo(name = STREAM_URL)
+    @ColumnInfo(name = "url")
     var url: String,
 
-    @ColumnInfo(name = STREAM_TITLE)
+    @ColumnInfo(name = "title")
     var title: String,
 
-    @ColumnInfo(name = STREAM_TYPE)
+    @ColumnInfo(name = "stream_type")
     var streamType: StreamType,
 
-    @ColumnInfo(name = STREAM_DURATION)
+    @ColumnInfo(name = "duration")
     var duration: Long,
 
-    @ColumnInfo(name = STREAM_UPLOADER)
+    @ColumnInfo(name = "uploader")
     var uploader: String,
 
-    @ColumnInfo(name = STREAM_UPLOADER_URL)
+    @ColumnInfo(name = "uploader_url")
     var uploaderUrl: String? = null,
 
-    @ColumnInfo(name = STREAM_THUMBNAIL_URL)
+    @ColumnInfo(name = "thumbnail_url")
     var thumbnailUrl: String? = null,
 
-    @ColumnInfo(name = STREAM_VIEWS)
+    @ColumnInfo(name = "view_count")
     var viewCount: Long? = null,
 
-    @ColumnInfo(name = STREAM_TEXTUAL_UPLOAD_DATE)
+    @ColumnInfo(name = "textual_upload_date")
     var textualUploadDate: String? = null,
 
-    @ColumnInfo(name = STREAM_UPLOAD_DATE)
+    @ColumnInfo(name = "upload_date")
     var uploadDate: OffsetDateTime? = null,
 
-    @ColumnInfo(name = STREAM_IS_UPLOAD_DATE_APPROXIMATION)
+    @ColumnInfo(name = "is_upload_date_approximation")
     var isUploadDateApproximation: Boolean? = null
 ) : Serializable {
     @Ignore
@@ -110,23 +107,5 @@ data class StreamEntity(
         }
 
         return item
-    }
-
-    companion object {
-        const val STREAM_TABLE = "streams"
-        const val STREAM_ID = "uid"
-        const val STREAM_SERVICE_ID = "service_id"
-        const val STREAM_URL = "url"
-        const val STREAM_TITLE = "title"
-        const val STREAM_TYPE = "stream_type"
-        const val STREAM_DURATION = "duration"
-        const val STREAM_UPLOADER = "uploader"
-        const val STREAM_UPLOADER_URL = "uploader_url"
-        const val STREAM_THUMBNAIL_URL = "thumbnail_url"
-
-        const val STREAM_VIEWS = "view_count"
-        const val STREAM_TEXTUAL_UPLOAD_DATE = "textual_upload_date"
-        const val STREAM_UPLOAD_DATE = "upload_date"
-        const val STREAM_IS_UPLOAD_DATE_APPROXIMATION = "is_upload_date_approximation"
     }
 }

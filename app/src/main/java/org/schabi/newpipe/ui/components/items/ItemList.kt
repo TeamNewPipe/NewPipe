@@ -47,7 +47,7 @@ import org.schabi.newpipe.util.NavigationHelper
 fun ItemList(
     items: LazyPagingItems<out Info>,
     mode: ItemViewMode = determineItemViewMode(),
-    header: @Composable () -> Unit = {},
+    header: @Composable () -> Unit = {}
 ) {
     val context = LocalContext.current
     val onClick = remember {
@@ -122,7 +122,12 @@ fun ItemList(
                     // TODO: Implement playlist and channel grid items.
                     if (item is Stream) {
                         StreamGridItem(
-                            item, showProgress, isSelected, isCompact, onClick, onLongClick,
+                            item,
+                            showProgress,
+                            isSelected,
+                            isCompact,
+                            onClick,
+                            onLongClick,
                             onDismissPopup
                         )
                     } else if (item == null) { // Placeholder
@@ -149,11 +154,21 @@ fun ItemList(
 
                         if (mode == ItemViewMode.CARD) {
                             StreamCardItem(
-                                item, showProgress, isSelected, onClick, onLongClick, onDismissPopup
+                                item,
+                                showProgress,
+                                isSelected,
+                                onClick,
+                                onLongClick,
+                                onDismissPopup
                             )
                         } else {
                             StreamListItem(
-                                item, showProgress, isSelected, onClick, onLongClick, onDismissPopup
+                                item,
+                                showProgress,
+                                isSelected,
+                                onClick,
+                                onLongClick,
+                                onDismissPopup
                             )
                         }
                     } else if (item is Playlist) {
