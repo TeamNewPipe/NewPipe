@@ -16,6 +16,13 @@ import java.util.stream.Collectors;
 
 import okhttp3.Dns;
 
+/**
+ * A DNS implementation that can be configured to filter out IPv6 addresses.
+ * <p>
+ * This is useful for users who experience issues with IPv6, such as reCAPTCHAs or
+ * connection problems on certain networks.
+ * </p>
+ */
 public final class IPv4Dns implements Dns {
     private final SharedPreferences prefs;
     private final String ipv4OnlyKey;
@@ -29,6 +36,7 @@ public final class IPv4Dns implements Dns {
     @Override
     public List<InetAddress> lookup(@NonNull final String hostname) throws UnknownHostException {
         final List<InetAddress> addresses = Dns.SYSTEM.lookup(hostname);
+
         if (prefs.getBoolean(ipv4OnlyKey, false)) {
             final List<InetAddress> ipv4Addresses = addresses.stream()
                     .filter(address -> address instanceof Inet4Address)
@@ -37,6 +45,7 @@ public final class IPv4Dns implements Dns {
                 return ipv4Addresses;
             }
         }
+
         return addresses;
     }
 }
