@@ -1,0 +1,9 @@
+Šī versija satur nelielus uzlabojumus, lai varētu atkal izmantot YouTube. Tas nepieciešams, jo YouTube veica izmaiņas.
+NewPipe tagad atkal var izvilkt vienumus kanālu cilnēs, pateicoties @AudricV un @Ecomont centieniem.
+
+Papildus veiktās izmaiņas
+- [YouTube] Salabota ilguma un tiešraides rādīšana saistītajos video
+- [SoundCloud] Salabota nobrukšana iegūstot komentārus, apstrādājot bez vērtības (null) lapas URL adreses
+- atkarības atjauninājumi
+
+Nākamā NewPipe versija vairs neatbalstīs Android 5.

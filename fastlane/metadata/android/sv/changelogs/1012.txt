@@ -1,0 +1,9 @@
+Detta är en liten snabbkorrigeringsuppdatering för att göra YouTube användbart igen. Den är nödvändig eftersom det har gjorts ändringar från YouTube.
+NewPipe kan nu extrahera objekt i kanalflikar igen tack vare @AudricV och @Ecomonts arbete.
+
+Ytterligare ändringar
+- [YouTube] Åtgärdade längd- och livestream-visning i relaterade videor
+- [SoundCloud] Åtgärdade kommentarkrasch genom att hantera null-sid-URL:er
+- beroendeuppdateringar
+
+NewPipe kommer att ta bort stöd för Android 5 i nästa version.

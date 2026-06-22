@@ -1,0 +1,7 @@
+- [YouTube] Work around SABR enforcement by using another player client. Videos and streams are available in resolutions different to 360p again!
+- [YouTube] Fixed extraction of playlist items and some properties in lockup view models.
+- [YouTube] Removed blind position fallbacks in lockup view count/date extraction.
+- [YouTube] Use formats xTags to extract audio track type.
+- [Bandcamp] Fixed bandcamp search.
+
+A huge thanks to everybody involved in this release!

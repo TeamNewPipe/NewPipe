@@ -1,0 +1,4 @@
+∙ Salabota video atsākšana pēdējā atskaņošanas pozīcijā
+∙ [YouTube] Pievienots atbalsts papildu kanālu URL formātiem
+∙ [YouTube] Pievienots atbalsts citiem video metainfo formātiem
+∙ Atjaunināti tulkojumi

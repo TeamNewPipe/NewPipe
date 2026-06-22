@@ -5,7 +5,7 @@
     <string name="install">इंस्टॉल करें</string>
     <string name="open_in_browser">ब्राउज़र में खोलें</string>
     <string name="open_in_popup_mode">पॉपअप मोड में खोलें</string>
-    <string name="share">शेयर करें</string>
+    <string name="share">साझा करें</string>
     <string name="download">डाउनलोड करें</string>
     <string name="search">खोजें</string>
     <string name="settings">सेटिंग्स</string>
@@ -26,11 +26,11 @@
     <string name="no_views">कोई विऊ नहीं</string>
     <string name="no_videos">कोई वीडियो नहीं</string>
     <string name="title_activity_about">न्यूपाइप के बारे में जानें</string>
-    <string name="title_licenses">तृतीय-पक्ष लाइसेंस</string>
+    <string name="title_licenses">थर्ड-पार्टी लाइसेंस</string>
     <string name="tab_about">ऐप के बारे में और सामान्य प्रश्न</string>
     <string name="tab_licenses">लाइसेंस</string>
-    <string name="view_on_github">गिटहब पर देखें</string>
-    <string name="app_license_title">न्यूपाइप का लाइसेंस</string>
+    <string name="view_on_github">GitHub पर देखें</string>
+    <string name="app_license_title">NewPipe का लाइसेंस</string>
     <string name="read_full_license">लाइसेंस पढ़ें</string>
     <string name="contribution_title">योगदान करें</string>
     <string name="title_activity_history">इतिहास</string>
@@ -96,7 +96,7 @@
     <string name="undo">अन-डू करें</string>
     <string name="play_all">सभी प्ले करें</string>
     <string name="notification_channel_name">न्यूपाइप की नोटीफिकेशन</string>
-    <string name="notification_channel_description">न्यूपाइप के प्लेयर के लिए नोटीफिकेशन</string>
+    <string name="notification_channel_description">न्यूपाइप के प्लेयर के लिए नोटिफ़िकेशन</string>
     <string name="unknown_content">[अज्ञात]</string>
     <string name="general_error">त्रुटी</string>
     <string name="network_error">नेटवर्क में त्रुटी</string>
@@ -203,8 +203,8 @@
     <string name="dismiss">ख़ारिज करें</string>
     <string name="rename">नाम बदलें</string>
     <string name="donation_title">दान करें</string>
-    <string name="donation_encouragement">न्यूपाइप स्वयंसेवकों द्वारा विकसित किया जाता है जो आपको अच्छा अनुभव देने के लिए अपना खाली समय इस एप्लिकेशन को देते हैं। स्वयंसेवको को मदद भेजे, ताकि वह न्यूपाइप को और अच्छा बना सके।</string>
-    <string name="give_back">वापस दें</string>
+    <string name="donation_encouragement">न्यूपाइप वॉलंटियर्स द्वारा विकसित किया जाता है जो आपको अच्छा अनुभव देने के लिए अपना खाली समय इस एप्लिकेशन को देते हैं। डेवलपर्स को मदद भेजे, ताकि वह न्यूपाइप को और अच्छा बना सके।</string>
+    <string name="give_back">वापस दो</string>
     <string name="website_title">वेबसाइट</string>
     <string name="website_encouragement">अधिक जानकारी और खबरों के लिए न्यूपाइप की वेबसाइट पर जाएं।</string>
     <string name="title_last_played">पिछला चलाया गया</string>
@@ -269,10 +269,9 @@
     <string name="error_occurred_detail">एक त्रुटी उत्पन्न हुई: %1$s</string>
     <string name="no_streams_available_download">डाउनलोड करने के लिए कोई स्ट्रीम उपलब्ध नहीं है</string>
     <string name="one_item_deleted">एक आइटम मिटा दी गई।</string>
-    <string name="privacy_policy_title">न्यूपाइप की गोपनीयता नीति</string>
-    <string name="privacy_policy_encouragement">न्यूपाइप परियोजना आपकी गोपनीयता को बहुत गंभीर रूप से लेता है। इसलिए, ऐप आपकी अनुमति के बिना कोई डेटा जमा नहीं करता।
-\nन्यूपाइप की गोपनीयता नीति विस्तार से समझाती है कि कौनसा डेटा भेजा और संग्रह किया जाता है जब आप क्रेश विवरण भेजते हैं।</string>
-    <string name="read_privacy_policy">गोपनीयता नीति पढें</string>
+    <string name="privacy_policy_title">न्यूपाइप की प्राइवेसी पॉलिसी</string>
+    <string name="privacy_policy_encouragement">न्यूपाइप परियोजना आपकी गोपनीयता को बहुत गंभीर रूप से लेता है। इसलिए, ऐप आपकी अनुमति के बिना कोई डेटा जमा नहीं करता।\nन्यूपाइप की गोपनीयता नीति विस्तार से समझाती है कि कौनसा डेटा भेजा और संग्रह किया जाता है जब आप क्रेश विवरण भेजते हैं।</string>
+    <string name="read_privacy_policy">प्राइवेसी पॉलिसी पढ़ें</string>
     <string name="import_settings">क्या आप सेटिंग्स भी आयात करना चाहते हैं\?</string>
     <string name="preferred_open_action_settings_title">\'खोलने\' पर तरजीही एक्शन</string>
     <string name="preferred_open_action_settings_summary">सामग्री खोलते समय डिफ़ॉल्ट कारवाही — %s</string>
@@ -323,7 +322,7 @@
     <string name="settings_category_updates_title">अपडेटस</string>
     <string name="file_deleted">फाइल मिटा दी गयी</string>
     <string name="app_update_notification_channel_name">ऐप अपडेट नोटीफिकेशन</string>
-    <string name="app_update_notification_channel_description">नए नयूपाईप अपडेट का नोटीफिकेशन</string>
+    <string name="app_update_notification_channel_description">नए नयूपाईप अपडेट का नोटिफ़िकेशन</string>
     <string name="download_to_sdcard_error_title">एक्सटर्नल स्टोरेज अनुपलब्ध</string>
     <string name="download_to_sdcard_error_message">SD कार्ड पर डाउनलोड करना संभव नहीं। डाउनलोड स्थान पुनः चुनें\?</string>
     <string name="restore_defaults">डिफ़ॉल्टस पुन: स्थापित करें</string>
@@ -507,7 +506,7 @@
     <string name="error_report_open_github_notice">कृपया जांचें लें कि क्या आपके क्रैश पर चर्चा करने वाला मुद्दा पहले से मौजूद है। डुप्लिकेट टिकट बनाते समय, आप हमसे समय लेते हैं जो हम वास्तविक बग को ठीक करने के लिए खर्च कर सकते हैं।</string>
     <string name="error_report_open_issue_button_text">गिटहब पर रिपोर्ट करें</string>
     <string name="permission_display_over_apps">अन्य ऐप्स पर प्रदर्शित करने की अनुमति दें</string>
-    <string name="hash_channel_description">विडीओ हैशिंग की प्रगति का नोटीफिकेशन</string>
+    <string name="hash_channel_description">वीडियो हैशिंग की प्रगति के लिए सूचनाएं</string>
     <string name="hash_channel_name">वीडियो हैश नोटीफिकेशन</string>
     <string name="show_meta_info_summary">स्ट्रीम निर्माता, स्ट्रीम सामग्री या खोज अनुरोध के बारे में अतिरिक्त जानकारी देते मेटा जानकारी बक्से को छिपाने के लिए बंद करें</string>
     <string name="show_meta_info_title">मेटा जानकारी दिखाएं</string>
@@ -555,9 +554,9 @@
     <string name="metadata_privacy_public">सार्वजनिक</string>
     <string name="settings_category_player_notification_summary">चल रही स्ट्रीम की नोटीफिकेशन को कॉन्फ़िगर करें</string>
     <string name="streams_notification_channel_name">नई स्ट्रीमें</string>
-    <string name="streams_notification_channel_description">सब्सक्रिप्शनस की नई स्ट्रीमों के नोटीफिकेशन</string>
+    <string name="streams_notification_channel_description">सब्सक्रिप्शनस की नई स्ट्रीमों के बारे में नोटिफ़िकेशन</string>
     <string name="error_report_channel_name">त्रुटि रिपोर्ट नोटीफिकेशन</string>
-    <string name="error_report_channel_description">त्रुटियों की रिपोर्ट करने के लिए नोटीफिकेशन</string>
+    <string name="error_report_channel_description">त्रुटियों की रिपोर्ट करने के लिए नोटिफ़िकेशन</string>
     <string name="error_report_notification_title">न्यूपाइप को एक त्रुटि का सामना करना पड़ा, रिपोर्ट करने के लिए टैप करें</string>
     <string name="recaptcha_solve">हल करें</string>
     <string name="enqueue_stream">कतारबद्ध करें</string>
@@ -589,7 +588,7 @@
     <string name="feed_load_error">फ़ीड लोड करने में त्रुटि हूई</string>
     <string name="feed_load_error_account_info">\'%s\' के लिए फ़ीड लोड नहीं हो सकी।</string>
     <string name="recent">हाल ही के</string>
-    <string name="description_select_enable">विवरण में पाठ का चयन सक्षम करें</string>
+    <string name="description_select_enable">विवरण में टेक्स्ट चुनने की सुविधा चालू करें</string>
     <string name="metadata_privacy">गोपनीयता</string>
     <string name="description_select_note">अब आप विवरण के अंदर पाठ का चयन कर सकते हैं। ध्यान दें कि पृष्ठ झिलमिला सकता है और चयन मोड में लिंक क्लिक करने योग्य नहीं हो सकते हैं।</string>
     <string name="metadata_age_limit">आयु सीमा</string>
@@ -612,7 +611,7 @@
     <string name="downloads_storage_ask_summary_no_saf_notice">आपसे पूछा जाएगा कि प्रत्येक डाउनलोड को कहां सहेजना है</string>
     <string name="off">ऑफ़</string>
     <string name="feed_update_threshold_option_always_update">हमेशा अपडेट करें</string>
-    <string name="description_select_disable">विवरण में पाठ का चयन अक्षम करें</string>
+    <string name="description_select_disable">विवरण में टेक्स्ट चुनने की सुविधा बंद करें</string>
     <string name="dont_show">मत दिखाओ</string>
     <string name="remote_search_suggestions">रिमोट खोज सुझाव</string>
     <plurals name="new_streams">
@@ -729,7 +728,7 @@
     <string name="right_gesture_control_summary">प्लेयर स्क्रीन के दाहिने आधे हिस्से के लिए जेस्चर चुनें</string>
     <string name="right_gesture_control_title">दाएँ इशारा क्रिया</string>
     <string name="prefer_original_audio_title">मूल ऑडियो को प्राथमिकता दें</string>
-    <string name="prefer_descriptive_audio_summary">यदि उपलब्ध हो तो दृष्टिबाधित लोगों के लिए विवरण के साथ एक ऑडियो ट्रैक का चयन करें</string>
+    <string name="prefer_descriptive_audio_summary">यदि उपलब्ध हो, तो दृष्टिबाधित लोगों के लिए विवरण वाला ऑडियो ट्रैक चुनें</string>
     <string name="prefer_descriptive_audio_title">वर्णनात्मक ऑडियो को प्राथमिकता दें</string>
     <string name="prefer_original_audio_summary">भाषा की परवाह किए बिना मूल ऑडियो ट्रैक का चयन करें</string>
     <string name="play_queue_audio_track">ऑडियो: %s</string>
@@ -865,6 +864,9 @@
     <string name="import_subscriptions_title">सब्सक्रिप्शन इंपोर्ट करें</string>
     <string name="export_subscriptions_title">सब्सक्रिप्शन एक्सपोर्ट करें</string>
     <string name="import_subscriptions_summary">पिछले .json एक्सपोर्ट से सब्सक्रिप्शन इंपोर्ट करें</string>
-    <string name="export_subscriptions_summary">अपनी सब्सक्रिप्शन को एक .json फ़ाइल में एक्सपोर्ट करें।</string>
+    <string name="export_subscriptions_summary">अपनी सब्सक्रिप्शन को एक .json फ़ाइल में एक्सपोर्ट करें</string>
     <string name="import_from_previous_export">पिछले एक्सपोर्ट से इंपोर्ट करें</string>
+    <string name="api23_requirement_dialog_title">NewPipe, Android 5 के लिए सपोर्ट बंद कर रहा है</string>
+    <string name="api23_requirement_dialog_message">दुर्भाग्य से, NewPipe कुछ ऐसी लाइब्रेरीज़ पर निर्भर है जिन्होंने Android 5.0 और 5.1 के लिए सपोर्ट बंद कर दिया है। इसलिए, अफ़सोस की बात है कि NewPipe का अगला वर्शन सिर्फ़ Android 6 या उससे नए वर्शन वाले डिवाइस पर ही काम करेगा। ज़्यादा जानकारी के लिए ब्लॉग पोस्ट पढ़ें।</string>
+    <string name="api23_requirement_dialog_blogpost">ब्लॉगपोस्ट</string>
 </resources>

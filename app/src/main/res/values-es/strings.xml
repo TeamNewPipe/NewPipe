@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="upload_date_text">Publicado en %1$s</string>
-    <string name="no_player_found">No se encontró ningún reproductor de retransmisiones. ¿Instalar VLC\?</string>
+    <string name="upload_date_text">Publicado el %1$s</string>
+    <string name="no_player_found">No se encontró ningún reproductor de streaming. ¿Quieres instalar VLC?</string>
     <string name="install">Instalar</string>
     <string name="cancel">Cancelar</string>
     <string name="open_in_browser">Abrir en el navegador</string>
@@ -194,7 +194,7 @@
     <string name="switch_to_main">Cambiar a principal</string>
     <string name="drawer_open">Abrir cajón</string>
     <string name="drawer_close">Cerrar cajón</string>
-    <string name="no_player_found_toast">No se encontró ningún reproductor de retransmisiones (puedes instalar VLC para reproducirlo).</string>
+    <string name="no_player_found_toast">No se encuentra un reproductor (puedes instalar VLC para reproducirlo).</string>
     <string name="always">Siempre</string>
     <string name="just_once">Solo una vez</string>
     <string name="external_player_unsupported_link_type">Los reproductores externos no soportan este tipo de enlaces</string>
@@ -244,7 +244,7 @@
     <string name="caption_auto_generated">Auto generados</string>
     <string name="enable_leak_canary_summary">La monitorización de fugas de memoria puede causar que la aplicación no responda al realizar el volcado de memoria</string>
     <string name="enable_disposed_exceptions_title">Informar errores fuera del ciclo de vida</string>
-    <string name="enable_disposed_exceptions_summary">Forzar informe de excepciones no entregables de RX fuera del fragmento o del ciclo de actividad después del descarte</string>
+    <string name="enable_disposed_exceptions_summary">Forzar informe de excepciones no entregables de Rx fuera del fragmento o del ciclo de actividad después del descarte</string>
     <string name="use_inexact_seek_title">Usar búsqueda rápida e inexacta</string>
     <string name="use_inexact_seek_summary">La búsqueda inexacta permite al reproductor buscar posiciones más rápido con menor precisión. Buscar de a 5, 15 o 25 segundos no funciona</string>
     <string name="auto_queue_title">Poner en cola automáticamente la siguiente transmisión</string>
@@ -647,7 +647,7 @@
     <string name="start_main_player_fullscreen_summary">Si la rotación automática está bloqueada, no inicie los videos en el mini reproductor, sino pase directamente a modo de pantalla completa. Aún podrá acceder al mini reproductor al salir del modo pantalla completa</string>
     <string name="start_main_player_fullscreen_title">Iniciar reproductor principal en pantalla completa</string>
     <string name="enqueued_next">Añadido el siguiente vídeo a la cola</string>
-    <string name="enqueue_next_stream">Añadir el siguiente vídeo a la cola</string>
+    <string name="enqueue_next_stream">Añadir vídeo a la cola como siguiente</string>
     <string name="processing_may_take_a_moment">Procesando… Podría tomar un momento</string>
     <string name="check_for_updates">Buscar actualizaciones</string>
     <string name="manual_update_description">Buscar nuevas versiones manualmente</string>
@@ -763,7 +763,7 @@
     <string name="metadata_subscribers">Suscriptores</string>
     <string name="show_channel_tabs_summary">Qué pestañas se muestran en las páginas del canal</string>
     <string name="show_channel_tabs">Pestañas del canal</string>
-    <string name="channel_tab_shorts">Shorts</string>
+    <string name="channel_tab_shorts">Vídeos cortos</string>
     <string name="loading_metadata_title">Cargando metadatos…</string>
     <string name="feed_fetch_channel_tabs">Recuperar las fichas del canal</string>
     <string name="channel_tab_about">Acerca de</string>
@@ -793,7 +793,7 @@
     <string name="image_quality_high">Calidad alta</string>
     <string name="image_quality_medium">Calidad media</string>
     <string name="metadata_uploader_avatars">avatares subidos</string>
-    <string name="metadata_banners">Banners</string>
+    <string name="metadata_banners">Anuncios</string>
     <string name="image_quality_summary">Elige la calidad de las imágenes y si cargar imágenes en su totalidad, para reducir el uso de datos y memoria. Los cambios borran la caché de las imágenes en la memoria y en el disco - %s</string>
     <string name="metadata_thumbnails">Miniaturas</string>
     <string name="share_playlist_with_list">Compartir la lista de la dirección URL</string>
@@ -837,43 +837,43 @@
     <string name="trending_podcasts">Tendencias pódcasts</string>
     <string name="trending_movies">Tendencias películas y programas</string>
     <string name="trending_music">Tendencias música</string>
-    <string name="permission_display_over_apps_permission_name">“Permitir mostrar sobre otras aplicaciones”</string>
-    <string name="delete_file">Eliminar archivo</string>
-    <string name="short_thousand">%sM</string>
-    <string name="short_million">%sM</string>
-    <string name="delete_entry">Eliminar entrada</string>
-    <string name="account_terminated_service_provides_reason">Cuenta cancelada\n\n%1$s proporciona esta razón: %2$s</string>
-    <string name="entry_deleted">Entrada eliminada</string>
-    <string name="player_http_403">Error HTTP 403 recibido del servidor durante la reproducción, probablemente causado por la expiración de la URL de transmisión o una prohibición de IP</string>
-    <string name="player_http_invalid_status">Error HTTP %1$s recibido del servidor durante la reproducción</string>
-    <string name="youtube_player_http_403">Error HTTP 403 recibido del servidor durante la reproducción, probablemente causado por una prohibición de IP o problemas de desofuscación de la URL de transmisión</string>
-    <string name="sign_in_confirm_not_bot_error">%1$s se negó a proporcionar datos y solicitó un inicio de sesión para confirmar que el solicitante no es un bot.\n\nEs posible que tu IP haya sido bloqueada temporalmente por %1$s. Puedes esperar un tiempo o cambiar a una IP diferente (por ejemplo, habilitando o deshabilitando una VPN, o cambiando de WiFi a datos móviles).</string>
-    <string name="short_billion">%sMM</string>
-    <string name="unsupported_content_in_country">Este contenido no está disponible para el país seleccionado actualmente.\n\nCambia tu selección en «Ajustes &gt; Contenido &gt; País predefinido del contenido».</string>
-    <string name="permission_display_over_apps_message">Para usar el reproductor emergente, seleccione %1$s en el siguiente menú de la configuración de Android y habilite %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">\"Permitir la visualización sobre otras aplicaciones\"</string>
+    <string name="delete_file">Eliminar el archivo</string>
+    <string name="short_thousand">%s K</string>
+    <string name="short_million">%s M</string>
+    <string name="delete_entry">Eliminar la entrada</string>
+    <string name="account_terminated_service_provides_reason">Cuenta cerrada\n\n%1$s proporciona este motivo: %2$s</string>
+    <string name="entry_deleted">Entrada suprimida</string>
+    <string name="player_http_403">Error HTTP 403 recibido del servidor durante la reproducción, probablemente causado por la caducidad de la URL de transmisión o una prohibición por IP</string>
+    <string name="player_http_invalid_status">Error HTTP %1$s del servidor en la reproducción</string>
+    <string name="youtube_player_http_403">Se ha recibido un error HTTP 403 del servidor durante la reproducción, probablemente causado por una prohibición de IP o problemas de desofuscación de la URL de transmisión</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s se ha negado a proporcionar datos y solicita un inicio de sesión para confirmar que el solicitante no es un bot.\n\nEs posible que %1$s haya bloqueado temporalmente tu IP. Puedes esperar un rato o cambiar a una IP diferente (por ejemplo, activando o desactivando una VPN, o cambiando de WiFi a datos móviles).</string>
+    <string name="short_billion">%s bill.</string>
+    <string name="unsupported_content_in_country">Este contenido no está disponible para el país actualmente seleccionado.\n\nPuedes cambiarlo en: «Configuración &gt; Contenido &gt; País predeterminado para el contenido».</string>
+    <string name="permission_display_over_apps_message">Para usar el reproductor emergente, selecciona %1$s en el siguiente menú de la configuración de Android y habilita %2$s.</string>
     <string name="kao_dialog_warning">En Agosto de 2025, Google ha anunciado que, a partir de 2026/2027, todas las aplicaciones en dispositivos Android certificados requerirán que los desarrolladores envíen sus datos personales de identidad directamente a Google. Como los desarrolladores de NewPipe no están de acuerdo con este requisito, la aplicación dejará de funcionar en dispositivos Android certificados después de esa fecha.</string>
     <string name="kao_dialog_more_info">Detalles</string>
     <string name="kao_solution">Solución</string>
     <plurals name="export_subscriptions">
-        <item quantity="one">Exportando %d suscripción…</item>
+        <item quantity="one">Exportando la suscripción %d…</item>
         <item quantity="many">Exportando %d suscripciones…</item>
         <item quantity="other">Exportando %d suscripciones…</item>
     </plurals>
     <plurals name="load_subscriptions">
-        <item quantity="one">Cargando %d suscripción…</item>
+        <item quantity="one">Cargando la suscripción %d…</item>
         <item quantity="many">Cargando %d suscripciones…</item>
         <item quantity="other">Cargando %d suscripciones…</item>
     </plurals>
     <plurals name="import_subscriptions">
-        <item quantity="one">Importando %d suscripción…</item>
+        <item quantity="one">Importando la suscripción %d…</item>
         <item quantity="many">Importando %d suscripciones…</item>
         <item quantity="other">Importando %d suscripciones…</item>
     </plurals>
-    <string name="import_subscriptions_title">Importar suscripciones</string>
-    <string name="export_subscriptions_title">Exportar suscripciones</string>
-    <string name="import_subscriptions_summary">Importar suscripciones desde una exportación .json anterior</string>
-    <string name="export_subscriptions_summary">Exportar suscripciones a un archivo .json</string>
-    <string name="import_from_previous_export">Importar desde exportación anterior</string>
+    <string name="import_subscriptions_title">Importar las suscripciones</string>
+    <string name="export_subscriptions_title">Exportar las suscripciones</string>
+    <string name="import_subscriptions_summary">Importar las suscripciones desde un archivo .json</string>
+    <string name="export_subscriptions_summary">Exportar tus suscripciones a un archivo . json</string>
+    <string name="import_from_previous_export">Importar desde la exportación anterior</string>
     <string name="api23_requirement_dialog_title">NewPipe dejará de soportar Android 5</string>
     <string name="api23_requirement_dialog_message">Desafortunadamente, NewPipe depende de algunas bibliotecas que dejaron de soportar Android 5.0 y 5.1. La próxima versión de NewPipe sólo funcionará en dispositivos con Android 6 o superior, tristemente. Lea más en el artículo de nuestro blog.</string>
     <string name="api23_requirement_dialog_blogpost">Artículo</string>

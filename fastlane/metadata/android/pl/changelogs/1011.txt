@@ -1,0 +1,1 @@
+Dodaj okno dialogowe, aby poinformować użytkowników, że v0.28.7 zakończy wsparcie dla Androida 5

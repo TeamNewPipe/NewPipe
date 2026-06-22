@@ -857,7 +857,7 @@
     <string name="player_http_403">HTTP greška 403 primljena od poslužitelja tijekom reprodukcije, vjerojatno uzrokovana istekom URL-a za streaming ili zabranom IP adrese</string>
     <string name="player_http_invalid_status">HTTP greška %1$s primljena od poslužitelja tijekom reprodukcije</string>
     <string name="youtube_player_http_403">HTTP greška 403 primljena od poslužitelja tijekom reprodukcije, vjerojatno uzrokovana zabranom IP adrese ili problemima s deobfuskacijom URL-a za streaming</string>
-    <string name="sign_in_confirm_not_bot_error">%1$s je odbio dati podatke, tražeći prijavu kako bi potvrdio da podnositelj zahtjeva nije bot.\n\nVašu IP adresu je možda privremeno zabranio %1$s, možete pričekati neko vrijeme ili se prebaciti na drugu IP adresu (na primjer uključivanjem/isključivanjem VPN-a ili prebacivanjem s WiFi-ja na mobilne podatke).</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s je odbio dati podatke, tražeći prijavu kako bi potvrdio da podnositelj zahtjeva nije bot.\n\nVašu IP adresu je možda privremeno zabranio %1$s, možete pričekati neko vrijeme ili se prebaciti na drugu IP adresu (na primjer uključivanjem/isključivanjem VPN-a ili prebacivanjem s WiFi-ja na mobilne podatke).\n\nZa više informacija pogledajte <a href="%2$s">ovaj unos u često postavljanim pitanjima</a>.</string>
     <string name="unsupported_content_in_country">Ovaj sadržaj nije dostupan za trenutno odabranu zemlju sadržaja.\n\nPromijenite odabir u \"Postavke &gt; Sadržaj &gt; Zadana zemlja sadržaja\".</string>
     <plurals name="export_subscriptions">
         <item quantity="one">Izvozi se %d pretplata …</item>

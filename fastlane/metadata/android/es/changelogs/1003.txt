@@ -1,1 +1,6 @@
-Arreglo en YouTube no reproduciendo flujos
+Esta es una revisión que corrige los errores YouTube:
+• [YouTube] que no cargue ninguna información del vídeo, los errores HTTP 403 durante la reproducción de vídeos y al restaurar la reproducción de algunos vídeos con restricciones de edad
+• Que no se cambian los tamaños de los subtítulos
+• El error por el que se descargaba la información dos veces al abrir una transmisión.
+• [Soundcloud] Eliminar secuencias protegidas por DRM que no se pueden reproducir
+• Traducciones actualizadas

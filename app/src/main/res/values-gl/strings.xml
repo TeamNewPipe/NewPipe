@@ -200,25 +200,25 @@
     <string name="settings_file_replacement_character_title">Carácter de substitución</string>
     <string name="charset_letters_and_digits">Letras e díxitos</string>
     <string name="charset_most_special_characters">A maioría dos caracteres especiais</string>
-    <string name="title_activity_about">Sobre o NewPipe</string>
-    <string name="title_licenses">Licenzas de terceiros</string>
+    <string name="title_activity_about">Sobre NewPipe</string>
+    <string name="title_licenses">Licenzas de terceiras partes</string>
     <string name="copyright" formatted="true">© %1$s de %2$s, so %3$s</string>
-    <string name="tab_about">Sobre e preguntas frecuentes</string>
+    <string name="tab_about">Acerca de e preguntas frecuentes</string>
     <string name="tab_licenses">Licenzas</string>
-    <string name="app_description">Reprodutor lixeiro e libre para Android.</string>
-    <string name="contribution_title">Colaborar</string>
-    <string name="contribution_encouragement">Se ten ideas de tradución, mudanzas ao deseño, limpeza de código ou mudanzas serias deste—a axuda sempre é benvida. Canto máis fixermos, tanto máis vai mellorar!</string>
-    <string name="view_on_github">Ver no GitHub</string>
+    <string name="app_description">Transmisión lixeira e libre en Android.</string>
+    <string name="contribution_title">Contribúe</string>
+    <string name="contribution_encouragement">Tanto se tes ideas para traducións, cambios de deseño, limpeza de código ou cambios de código moi importantes, a axuda sempre é benvida. Canto máis se faga, mellor será!</string>
+    <string name="view_on_github">Ver en GitHub</string>
     <string name="donation_title">Doar</string>
-    <string name="donation_encouragement">NewPipe é desenvolvido por voluntarios que pasan o seu tempo libre para brindarte a mellor experiencia de usuario. Regresa aos desenvolvedores para que NewPipe sexa aínda mellor mentres gozan dunha cunca de café.</string>
-    <string name="give_back">Retribuír</string>
-    <string name="website_title">Sitio web</string>
-    <string name="website_encouragement">Visite o sitio web do NewPipe para saber máis e ver noticias sobre o proxecto.</string>
-    <string name="privacy_policy_title">Política de privacidade do NewPipe</string>
+    <string name="donation_encouragement">NewPipe está desenvolvido por persoas voluntarias que dedican o seu tempo libre a ofrecerche a mellor experiencia como persoa usuaria. Axuda ás persoas desenvolvedoras a mellorar NewPipe mentres gozan dunha cunca de café.</string>
+    <string name="give_back">Devolver</string>
+    <string name="website_title">Páxina web</string>
+    <string name="website_encouragement">Visita o sitio web de NewPipe para obter máis información e novas.</string>
+    <string name="privacy_policy_title">Política de Privacidade de NewPipe</string>
     <string name="privacy_policy_encouragement">O proxecto NewPipe dá moita importancia á súa privacidade. Por tanto, non recolle ningún dato sen o seu consentimento.
 \nA política de privacidade do NewPipe explica con máis detalle que datos son enviados e gardados cando envía un relatorio de erros.</string>
-    <string name="read_privacy_policy">Ler a política de privacidade</string>
-    <string name="app_license_title">Licenza do NewPipe</string>
+    <string name="read_privacy_policy">Le a política de privacidade</string>
+    <string name="app_license_title">Licenza de NewPipe</string>
     <string name="app_license">NewPipe é un software libre copyleft: Pode usar, estudar compartillar e melloralo a vontade. En concreto, pode redistribuír e / ou modificala segundo os termos da Licenza Pública Xeral GNU publicada pola Free Software Foundation, xa sexa a versión 3 da licenza, ou (na súa opción) calquera outra versión posterior.</string>
     <string name="read_full_license">Ler a licenza</string>
     <string name="title_activity_history">Historial</string>
@@ -228,8 +228,8 @@
     <string name="title_most_played">Máis reproducido</string>
     <string name="main_page_content">Contido da páxina principal</string>
     <string name="blank_page_summary">Páxina en branco</string>
-    <string name="kiosk_page_summary">Páxina do «kiosk»</string>
-    <string name="channel_page_summary">Páxina do canal</string>
+    <string name="kiosk_page_summary">Páxina de quiosco</string>
+    <string name="channel_page_summary">Páxina de canle</string>
     <string name="select_a_channel">Seleccione un canal</string>
     <string name="no_channel_subscribed_yet">Non se subscribiu a ningunha canle aínda</string>
     <string name="select_a_kiosk">Seleccione un «kiosk»</string>
@@ -389,7 +389,7 @@
     <string name="new_seek_duration_toast">Debido ás restricións de ExoPlayer, a duración da busca estableceuse en %d segundos</string>
     <string name="remove_watched_popup_partially_watched_streams">Si, e visualizou parcialmente estes vídeos</string>
     <string name="remove_watched_popup_warning">Eliminaranse as emisións vistas antes e despois de seren engadidas á lista de reprodución.\nEstás seguro?</string>
-    <string name="remove_watched_popup_title">Borrar todos os vídeos vistos?</string>
+    <string name="remove_watched_popup_title">Eliminar as transmisións vistas?</string>
     <string name="remove_watched">Eliminar o visto</string>
     <string name="systems_language">Sistema predeterminado</string>
     <string name="app_language_title">Lingua do aplicativo</string>
@@ -819,4 +819,51 @@
     <string name="search_with_service_name_and_filter">Procurar %1$s (%2$s)</string>
     <string name="tab_bookmarks_short">Listas de reprodución</string>
     <string name="feed_group_page_summary">Páxina do grupo de canles</string>
+    <string name="permission_display_over_apps_message">Para usar o reprodutor emerxente, selecciona %1$s no seguinte menú de configuración de Android e activa %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">“Permitir a visualización sobre outras aplicacións”</string>
+    <string name="delete_file">Eliminar ficheiro</string>
+    <string name="delete_entry">Eliminar entrada</string>
+    <string name="select_a_feed_group">Selecciona un grupo de feeds</string>
+    <string name="no_feed_group_created_yet">Aínda non se creou ningún grupo de feeds</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">Exportando %d subscrición…</item>
+        <item quantity="other">Exportando %d subscricións…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">Cargando %d subscrición…</item>
+        <item quantity="other">Cargando %d subscricións…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">Importando %d subscrición…</item>
+        <item quantity="other">Importando %d subscricións…</item>
+    </plurals>
+    <string name="import_subscriptions_title">Importar subscricións</string>
+    <string name="export_subscriptions_title">Exportar subscricións</string>
+    <string name="import_subscriptions_summary">Importar subscricións dunha exportación .json anterior</string>
+    <string name="export_subscriptions_summary">Exportar as túas subscricións a un ficheiro .json</string>
+    <string name="import_from_previous_export">Importar dunha exportación anterior</string>
+    <string name="account_terminated_service_provides_reason">Conta cancelada\n\n%1$s proporciona este motivo: %2$s</string>
+    <string name="audio_track_type_secondary">secundario</string>
+    <string name="channel_tab_likes">Gústame</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Compartir como lista de reprodución temporal de YouTube</string>
+    <string name="migration_info_6_7_title">Páxina dos 50 mellores de SoundCloud eliminada</string>
+    <string name="migration_info_6_7_message">SoundCloud deixou de publicar as listas orixinais dos 50 mellores. Eliminouse a pestana correspondente da túa páxina principal.</string>
+    <string name="migration_info_7_8_title">Tendencias combinadas de YouTube eliminadas</string>
+    <string name="migration_info_7_8_message">YouTube deixou de ofrecer a páxina de tendencias combinadas desde o 21 de xullo de 2025. NewPipe substituíu a páxina de tendencias predeterminada polas transmisións en directo en tendencia.\n\nTamén podes seleccionar diferentes páxinas de tendencias en \"Configuración &gt; Contido &gt; Contido da páxina principal\".</string>
+    <string name="trending_gaming">Tendencias de videoxogos</string>
+    <string name="trending_podcasts">Podcasts en tendencia</string>
+    <string name="trending_movies">Películas e programas en tendencia</string>
+    <string name="trending_music">Música en tendencia</string>
+    <string name="entry_deleted">Entrada eliminada</string>
+    <string name="player_http_403">Erro HTTP 403 recibido do servidor mentres se reproducía, probablemente causado pola caducidade do URL de transmisión ou por unha prohibición de IP</string>
+    <string name="player_http_invalid_status">Erro HTTP %1$s recibido do servidor mentres se reproducía</string>
+    <string name="youtube_player_http_403">Erro HTTP 403 recibido do servidor mentres se reproducía, probablemente causado por unha prohibición de IP ou problemas de desofuscación do URL de transmisión</string>
+    <string name="sign_in_confirm_not_bot_error">\"%1$s negouse a proporcionar datos, solicitando un inicio de sesión para confirmar que o solicitante non é un bot.\n\nO teu IP pode ter sido prohibido temporalmente por %1$s, podes esperar un tempo ou cambiar a un IP diferente (por exemplo, activando/desactivando unha VPN ou cambiando de WiFi a datos móbiles).\n\nConsulta <a href="%2$s">esta entrada de preguntas frecuentes</a> para obter máis información.’</string>
+    <string name="unsupported_content_in_country">Este contido non está dispoñible para o país de contido seleccionado actualmente.\n\nCambia a túa selección desde \"Configuración &gt; Contido &gt; País de contido predeterminado\".</string>
+    <string name="kao_dialog_warning">En agosto de 2025, Google anunciou que, a partir de setembro de 2026, a instalación de aplicacións requirirá a verificación do desenvolvedor para todas as aplicacións de Android en dispositivos certificados, incluídas as instaladas fóra de Play Store. Dado que os desenvolvedores de NewPipe non están de acordo con este requisito, NewPipe deixará de funcionar en dispositivos Android certificados despois dese tempo.</string>
+    <string name="kao_dialog_more_info">Detalles</string>
+    <string name="kao_solution">Solución</string>
+    <string name="api23_requirement_dialog_title">NewPipe deixa de ser compatible con Android 5</string>
+    <string name="api23_requirement_dialog_message">Desafortunadamente, NewPipe depende dalgunhas bibliotecas que deixaron de ser compatible con Android 5.0 e 5.1. Polo tanto, a próxima versión de NewPipe só funcionará en dispositivos con Android 6 ou superior. Le máis na publicación do blog.</string>
+    <string name="api23_requirement_dialog_blogpost">Publicación do blog</string>
 </resources>

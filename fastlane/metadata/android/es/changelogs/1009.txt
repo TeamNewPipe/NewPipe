@@ -1,0 +1,16 @@
+Importante:
+Información sobre la campaña «Keep Android Open»: https://keepandroidopen.org/de/
+
+
+Mejoras:
+[Feed] El orden en el que se actualizan las suscripciones obsoletas.
+No apilar páginas de comentarios.
+Al hacer clic en la página de detalles del vídeo, no se transmiten los eventos de clic a las vistas subyacentes.
+
+
+Corregido
+Diseño de las respuestas a los comentarios sin foto de perfil.
+Varias correcciones relacionadas con el reproductor en la interfaz de usuario. 
+[SoundCloud] Transmisiones con ID largos.
+
+¡Y otras correcciones y mejoras!

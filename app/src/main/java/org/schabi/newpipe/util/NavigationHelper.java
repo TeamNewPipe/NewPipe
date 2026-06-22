@@ -1,7 +1,6 @@
 package org.schabi.newpipe.util;
 
 import static android.text.TextUtils.isEmpty;
-import android.text.TextUtils;
 import static org.schabi.newpipe.util.ListHelper.getUrlAndNonTorrentStreams;
 
 import android.annotation.SuppressLint;
@@ -10,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -26,6 +26,9 @@ import androidx.preference.PreferenceManager;
 
 import com.jakewharton.processphoenix.ProcessPhoenix;
 
+import net.newpipe.app.navigation.Destination;
+
+import org.schabi.newpipe.ComposeActivity;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
@@ -66,7 +69,6 @@ import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
-import org.schabi.newpipe.ComposeActivity;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
@@ -638,8 +640,7 @@ public final class NavigationHelper {
     }
 
     public static void openAbout(final Context context) {
-        final Intent intent = ComposeActivity.Companion.aboutIntent(context);
-        context.startActivity(intent);
+        ContextKt.navigateTo(context, Destination.About.INSTANCE);
     }
 
     public static void openSettings(final Context context) {

@@ -834,4 +834,15 @@
     <string name="kao_dialog_warning">Từ tháng 8 năm 2025, Google đã thông báo rằng kể từ tháng 9 năm 2026, việc cài app sẽ yêu cầu các nhà phát triển phải xác minh trên những thiết bị đã chứng nhận, kể cả đối với các ứng dụng ngoài Play Store. Vì các nhà phát triển của NewPipe không đồng ý với điều kiện này, nên có lẽ NewPipe sẽ không còn hoạt động trên các máy Android được chứng nhận sau thời điểm ấy.</string>
     <string name="kao_dialog_more_info">Chi tiết</string>
     <string name="kao_solution">Giải pháp</string>
+    <string name="api23_requirement_dialog_title">NewPipe sẽ ngừng hỗ trợ phiên bản Android 5.x vào bản cập nhật sau</string>
+    <string name="api23_requirement_dialog_message">Vì NewPipe phụ thuộc vào vài libs của Google nhưng đã ngừng hỗ trợ cho Android 5.x. Bản cập nhật sau sẽ chỉ hỗ trợ cho Android 6 trở lên, thật đáng tiếc. Chi tiết tại blog của NewPipe.</string>
+    <string name="api23_requirement_dialog_blogpost">Bài đăng</string>
+    <plurals name="export_subscriptions">
+        <item quantity="other">Nhập/Xuất kênh đăng ký</item>
+    </plurals>
+    <string name="import_subscriptions_title">Nhập kênh đăng ký</string>
+    <string name="export_subscriptions_title">Xuất kênh đăng ký</string>
+    <string name="import_subscriptions_summary">Nhập kênh đăng ký từ file .json đã xuất trước đó</string>
+    <string name="export_subscriptions_summary">Xuất kênh đăng ký của bạn thành file .json</string>
+    <string name="import_from_previous_export">Nhập từ bản đã xuất trước đó</string>
 </resources>

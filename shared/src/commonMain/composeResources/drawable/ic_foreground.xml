@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ SPDX-FileCopyrightText: 2026 NewPipe e.V. <https://newpipe-ev.de>
+  ~ SPDX-License-Identifier: GPL-3.0-or-later
+  -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="470dp"
+    android:height="464dp"
+    android:viewportWidth="470"
+    android:viewportHeight="464">
+    <path
+        android:pathData="M144.1,388.93L191.69,358.59L192.69,157.51L315.15,230.22L226.54,281.32V339.8L410.63,230.22L143.85,73.44L144.1,388.93Z"
+        android:fillColor="#ffffff"
+        android:fillType="evenOdd"/>
+</vector>

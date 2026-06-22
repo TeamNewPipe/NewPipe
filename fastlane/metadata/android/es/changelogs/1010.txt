@@ -1,0 +1,8 @@
+Se corrigió una excepción NullPointerException al encolar mediante el uso del contexto.
+[YouTube] Se corrigió el análisis de la duración de los elementos.
+
+Actualizadas las traducciones y eliminados los idiomas sin traducir.
+Pequeñas mejoras en el manejo de imágenes.
+
+Cambios relacionados con las suscripciones de puertos derivados de la refactorización y con la ruta de los puertos derivados de la refactorización.
+Se actualizaron las dependencias y Gradle a la última versión estable.
