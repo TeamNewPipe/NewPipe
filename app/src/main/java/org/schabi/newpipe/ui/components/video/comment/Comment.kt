@@ -112,8 +112,7 @@ fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
                     text = nameAndDate,
                     style = MaterialTheme.typography.titleSmall,
                     maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier.weight(1f, fill = false)
+                    overflow = TextOverflow.Ellipsis
                 )
 
                 if (comment.isEdited) {
@@ -121,7 +120,8 @@ fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
                         text = stringResource(R.string.edited_comment_indicator),
                         style = MaterialTheme.typography.titleSmall,
                         modifier = Modifier.padding(start = 4.dp),
-                        maxLines = 1
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
                     )
                 }
             }
@@ -238,7 +238,7 @@ private class CommentPreviewProvider : CollectionPreviewParameterProvider<Commen
             isHeartedByUploader = true,
             replies = null,
             replyCount = 0,
-            isEdited = true
+            isEdited = false
         ),
         CommentsInfoItem(
             commentText = Description("Hello world, long long long text lorem ipsum dolor sit amet!<br><br>This line should be hidden by default.", Description.HTML),
