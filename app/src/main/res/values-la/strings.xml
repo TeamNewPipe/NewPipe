@@ -31,7 +31,7 @@
     <string name="unsubscribe">Inscribe</string>
     <string name="subscribed_button_title">Scriptum</string>
     <string name="subscribe_button_title">Scribe</string>
-    <string name="no_player_found_toast">Nullus amnem amnibus invenit (potes instalar VLC quia id ludere).</string>
+    <string name="no_player_found_toast">Nullus amnem amnibus invenit (potes instituere VLC quia id ludere).</string>
     <string name="no_player_found">Nullus amnem amnibus invenit. Instalar VLC\?</string>
     <string name="controls_download_desc">Scarica amnem file</string>
     <string name="use_external_audio_player_title">Utere ludionem externum</string>
@@ -47,9 +47,9 @@
     <string name="share">Condividi</string>
     <string name="open_with">Aperi apud</string>
     <string name="open_in_popup_mode">Aperi in popup mode</string>
-    <string name="open_in_browser">Aperi in browser</string>
+    <string name="open_in_browser">Aperi in navigatro</string>
     <string name="cancel">Inrita</string>
-    <string name="install">instalar</string>
+    <string name="install">instituere</string>
     <string name="upload_date_text">Edita %1$s</string>
     <string name="start">Initio</string>
     <string name="pause">Pausa</string>
@@ -121,4 +121,8 @@
     <string name="resize_zoom">Retrahe</string>
     <string name="resize_fill">Satiatus</string>
     <string name="resize_fit">Aptus</string>
+    <string name="yes">Ita</string>
+    <string name="no">Non</string>
+    <string name="search_with_service_name">Quaere %1$s</string>
+    <string name="search_with_service_name_and_filter">Quaere %1$s (%2$s)</string>
 </resources>

@@ -120,17 +120,17 @@
     <string name="settings_file_replacement_character_title">Znak za zamjenu</string>
     <string name="charset_letters_and_digits">Slova i brojevi</string>
     <string name="charset_most_special_characters">Najviše posebnih znakova</string>
-    <string name="title_activity_about">O NewPipeu</string>
+    <string name="title_activity_about">O aplikaciji NewPipe</string>
     <string name="title_licenses">Licence treće strane</string>
     <string name="copyright" formatted="true">© %1$s od %2$s pod %3$s</string>
-    <string name="tab_about">O aplikaciji i ČPP</string>
+    <string name="tab_about">Informacije i ČPP</string>
     <string name="tab_licenses">Licence</string>
-    <string name="app_description">Slobodan i mali tok na Android uređaju.</string>
+    <string name="app_description">Slobodan i jednostavan streaming na Android uređaju.</string>
     <string name="view_on_github">Pogledaj na GitHubu</string>
-    <string name="app_license_title">NewPipe licenca</string>
+    <string name="app_license_title">NewPipeova licenca</string>
     <string name="contribution_encouragement">Ako imate ideja za prijevod, promjene u dizajnu, čišćenje koda ili neke veće promjene u kodu, pomoć je uvijek dobro došla. Što više radimo, to bolji postajemo!</string>
     <string name="read_full_license">Pročitaj licencu</string>
-    <string name="contribution_title">Doprinos</string>
+    <string name="contribution_title">Doprinesi</string>
     <string name="title_activity_history">Povijest</string>
     <string name="action_history">Povijest</string>
     <string name="notification_channel_name">NewPipe obavijest</string>
@@ -245,7 +245,7 @@
     <string name="dismiss">Odbaci</string>
     <string name="rename">Preimenuj</string>
     <string name="one_item_deleted">1 stavka izbrisana.</string>
-    <string name="give_back">Vrati</string>
+    <string name="give_back">Daj nešto zauzvrat</string>
     <string name="website_encouragement">Posjeti NewPipe web-stranicu za više informacija i vijesti.</string>
     <string name="privacy_policy_title">NewPipe pravila o privatnosti</string>
     <string name="read_privacy_policy">Pročitaj pravila o privatnosti</string>
@@ -381,8 +381,7 @@
     <string name="error_unable_to_load_comments">Nije bilo moguće učitati komentare</string>
     <string name="close">Zatvori</string>
     <string name="app_license">NewPipe je copyleft libre softver: Može se koristiti, proučavati i poboljšavati po volji. Konkretno, može se redistribuirati i / ili modificirati pod uvjetima GNU opće javne licence koju je objavila zaklada Free Software Foundation, pod verzijom 3 licence, ili (po vlastitom izboru) bilo koje kasnije verzije.</string>
-    <string name="privacy_policy_encouragement">Projekt NewPipe ozbiljno shvaća temu o privatnosti. Stoga aplikacija ne prikuplja podatke bez tvog pristanka.
-\nNewPipe pravila o privatnosti detaljno objašnjavaju koji se podaci šalju i spremaju kad šalješ izvještaje o prekidu rada aplikacije.</string>
+    <string name="privacy_policy_encouragement">Projekt NewPipe ozbiljno shvaća temu o privatnosti. Stoga aplikacija ne prikuplja podatke bez tvog pristanka. \nNewPipeova pravila o privatnosti detaljno objašnjavaju koji se podaci šalju i spremaju kad šalješ izvještaje o prekidu rada aplikacije.</string>
     <string name="start_accept_privacy_policy">Kako bismo se uskladili s Europskom općom uredbom o zaštiti podataka (GDPR), ovime upozoravamo na NewPipe politiku privatnosti. Pažljivo je pročitaj.
 \nZa slanje izvješća o pogreškama moraš prihvatiti politiku privatnosti.</string>
     <string name="enable_playback_resume_title">Nastavi reprodukciju</string>
@@ -741,7 +740,7 @@
     <string name="msg_failed_to_copy">Neuspjelo kopiranje u međuspremnik</string>
     <string name="faq_title">Često postavljena pitanja</string>
     <string name="faq_description">Ako imaš problema s korištenjem aplikacije, pogledaj odgovore na česta pitanja!</string>
-    <string name="faq">Pogledaj na web stranici</string>
+    <string name="faq">Pogledaj na web-stranici</string>
     <string name="play_queue_audio_track">Audio snimka: %s</string>
     <string name="audio_track">Traka audio snimke</string>
     <string name="duplicate_in_playlist">Zasivljene playliste već sadrže ovu stavku.</string>

@@ -1,6 +1,6 @@
-Cette m.à.j corrective résout les problèmes suivants sur YouTube :
-• [YouTube] Correction du problème de chargement des informations vidéo, des erreurs HTTP 403 lors de la lecture et restauration de la lecture de certaines vidéos à contenu restreint.
-• Correction du problème d'affichage de la taille des sous-titres.
-• Correction du double téléchargement des informations lors de l'ouverture d'un flux.
-• [SoundCloud] Suppression des flux protégés par DRM et illisibles.
-• Traductions mises à jour.
+Il s'agit d'une mise à jour corrective qui corrige des erreurs liées à YouTube :
+• [YouTube] Correction du problème empêchant le chargement des informations sur les vidéos, correction des erreurs HTTP 403 lors de la lecture des vidéos et rétablissement de la lecture de certaines vidéos soumises à une restriction d'âge
+• Correction du problème empêchant la modification de la taille des sous-titres
+• Correction du problème entraînant le téléchargement double des informations lors de l'ouverture d'un flux
+• [Soundcloud] Suppression des flux protégés par DRM et non lisibles
+• Mise à jour des traductions

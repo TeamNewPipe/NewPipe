@@ -1,1 +1,3 @@
-Correction de YouTube qui ne lisait aucun média
+Cette mise à jour corrige le problème lié au fait que YouTube ne proposait qu'un flux en 360p.
+
+Notez que la solution mise en œuvre dans cette version est probablement temporaire et qu'à long terme, le protocole vidéo SABR devra être implémenté. Cependant, les membres de TeamNewPipe sont actuellement très occupés ; toute aide serait donc grandement appréciée ! https://github.com/TeamNewPipe/NewPipe/issues/12248
