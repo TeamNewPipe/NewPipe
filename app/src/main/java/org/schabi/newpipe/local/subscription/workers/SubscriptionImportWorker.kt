@@ -11,7 +11,6 @@ import android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC
 import android.os.Build
 import android.os.Parcelable
 import android.util.Log
-import android.webkit.MimeTypeMap
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.core.app.NotificationCompat
@@ -22,8 +21,6 @@ import androidx.work.ForegroundInfo
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
-import kotlin.runCatching
-import kotlin.to
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.asFlow
@@ -38,6 +35,8 @@ import kotlinx.parcelize.Parcelize
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.local.subscription.SubscriptionManager
+import org.schabi.newpipe.streams.io.SharpInputStream
+import org.schabi.newpipe.streams.io.StoredFileHelper
 import org.schabi.newpipe.util.ExtractorHelper
 
 class SubscriptionImportWorker(
@@ -143,12 +142,14 @@ class SubscriptionImportWorker(
                         .map { SubscriptionItem(it.serviceId, it.url, it.name) }
 
                 is SubscriptionImportInput.InputStreamMode ->
-                    context.contentResolver.openInputStream(input.url.toUri())?.use { stream ->
-                        val contentType =
-                            MimeTypeMap.getFileExtensionFromUrl(input.url).ifEmpty { DEFAULT_MIME }
-                        NewPipe.getService(input.serviceId).subscriptionExtractor
-                            .fromInputStream(stream, contentType)
-                            .map { SubscriptionItem(it.serviceId, it.url, it.name) }
+                    StoredFileHelper(context, input.url.toUri(), DEFAULT_MIME).let { fileHelper ->
+                        SharpInputStream(fileHelper.getStream()).use { stream ->
+                            val contentType = getInputStreamContentType(fileHelper)
+
+                            NewPipe.getService(input.serviceId).subscriptionExtractor
+                                .fromInputStream(stream, contentType)
+                                .map { SubscriptionItem(it.serviceId, it.url, it.name) }
+                        }
                     }
 
                 is SubscriptionImportInput.PreviousExportMode ->
@@ -206,6 +207,20 @@ class SubscriptionImportWorker(
         private const val BUFFER_COUNT_BEFORE_INSERT = 50
 
         const val WORK_NAME = "SubscriptionImportWorker"
+
+        internal fun getInputStreamContentType(fileHelper: StoredFileHelper): String {
+            val contentType = fileHelper.getType()
+            if (!contentType.isNullOrEmpty() && contentType != DEFAULT_MIME) {
+                return contentType
+            }
+
+            val fileName = fileHelper.getName() ?: return DEFAULT_MIME
+            val pointIndex = fileName.lastIndexOf('.')
+            return when {
+                pointIndex == -1 || pointIndex >= fileName.length - 1 -> DEFAULT_MIME
+                else -> fileName.substring(pointIndex + 1)
+            }
+        }
     }
 }
 
@@ -235,8 +250,7 @@ sealed class SubscriptionImportInput : Parcelable {
         private const val PREVIOUS_EXPORT_MODE = 2
 
         fun fromData(data: Data): SubscriptionImportInput {
-            val mode = data.getInt("mode", PREVIOUS_EXPORT_MODE)
-            when (mode) {
+            when (val mode = data.getInt("mode", PREVIOUS_EXPORT_MODE)) {
                 CHANNEL_URL_MODE -> {
                     val serviceId = data.getInt("service_id", -1)
                     if (serviceId == -1) {
