@@ -429,6 +429,25 @@
             </intent-filter>
 
         </activity>
+
+        <!-- Declares voice "play from search" support. Android Auto / Assistant only route a
+             spoken MEDIA_PLAY_FROM_SEARCH command to the MediaSession (onPlayFromSearch) when the
+             app declares an activity with this *bare* intent filter (no data constraints) - see
+             android/uamp#479. This activity also directly handles the legacy activity-style
+             MEDIA_PLAY_FROM_SEARCH intent (e.g. from automation tools) by searching and playing. -->
+        <activity
+            android:name=".PlayMediaFromSearchActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:noHistory="true"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <service
             android:name=".RouterActivity$FetcherService"
             android:foregroundServiceType="dataSync"
