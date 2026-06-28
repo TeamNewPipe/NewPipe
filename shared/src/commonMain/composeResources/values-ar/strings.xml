@@ -1,3 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="navigate_back">رجوع</string>
+    <string name="title_activity_about">حول NewPipe</string>
+    <string name="title_licenses">تراخيص الطرف الثالث</string>
+    <string name="license">بواسطة %1$s تحت %2$s</string>
+    <string name="tab_about">حول و الأسئلة الشائعة</string>
+    <string name="tab_licenses">التراخيص</string>
+    <string name="app_description">بث مباشر خفيف الوزن مجاني على نظام أندرويد.</string>
+    <string name="contribution_title">ساهم</string>
+    <string name="contribution_encouragement">سواءً كانت لديك أفكارٌ حول الترجمة، أو تغييرات التصميم، أو تنظيف الكود، أو حتى تغييرات جذرية فيه — فإن المساعدة مرحب بها دائمًا. كلما زاد العمل، كان ذلك أفضل!</string>
+    <string name="view_on_github">عرض علي GitHub</string>
+    <string name="donation_title">تبرع</string>
+    <string name="donation_encouragement">تم تطوير NewPipe بواسطة متطوعين يقضون أوقات فراغهم لتقديم أفضل تجربة مستخدم لكم. ساهموا في دعم المطورين لجعل NewPipe أفضل بينما يستمتعون بفنجان قهوة.</string>
+    <string name="give_back">رد الجميل</string>
+    <string name="website_title">الموقع الإلكتروني</string>
+    <string name="website_encouragement">قم بزيارة موقع NewPipe الإلكتروني لمزيد من المعلومات والأخبار.</string>
+    <string name="privacy_policy_title">سياسة خصوصية NewPipe</string>
+    <string name="privacy_policy_encouragement">يأخذ مشروع NewPipe خصوصيتك بأهمية بالغة. لذا، لا يجمع التطبيق أي بيانات دون موافقتك.\nتوضح سياسة خصوصية NewPipe بالتفصيل البيانات التي يتم إرسالها وتخزينها عند إرسال تقرير عطل.</string>
+    <string name="read_privacy_policy">اقرأ سياسة الخصوصية</string>
+    <string name="app_license_title">ترخيص NewPipe</string>
+    <string name="app_license">NewPipe هو برنامج مفتوح المصدر مرخص بموجب حقوق النشر: يمكنك استخدامه ودراسته ومشاركته وتحسينه كما تشاء. وبالتحديد، يمكنك إعادة توزيعه و/أو تعديله وفقًا لشروط رخصة GNU العمومية العامة كما نشرتها مؤسسة البرمجيات الحرة، سواء الإصدار 3 من الرخصة، أو (حسب اختيارك) أي إصدار لاحق.</string>
+    <string name="read_full_license">اقرأ الرخصة</string>
+    <string name="faq_title">الأسئلة الشائعة</string>
+    <string name="faq_description">إذا كنت تواجه مشكلة في استخدام التطبيق، فتأكد من مراجعة هذه الإجابات على الأسئلة الشائعة!</string>
+    <string name="faq">عرض على الموقع الإلكتروني</string>
+    <string name="open_in_browser">فتح في المتصفح</string>
+    <string name="done">تم</string>
+    <string name="not_available">غير متاح</string>
 </resources>

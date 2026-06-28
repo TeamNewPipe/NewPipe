@@ -27,4 +27,5 @@
     <string name="done">انجام شد</string>
     <string name="license">به دست %1$s در %2$s</string>
     <string name="not_available">موجود نیست</string>
+    <string name="privacy_policy_encouragement">پروژهٔ نیوپایپ محرمانگیتان را بسیار جدی می‌گیرد. برای همین کاره هیچ داده‌ای را بدون رضایتتان جمع‌آوری نمی‌کند.\nسیاست محرمانگی نیوپایپ با جزییات توضیح می‌دهد که هنگام گزارش فروپاشی چه داده‌هایی فرستاده و ذخیره می‌شوند.</string>
 </resources>
