@@ -9,8 +9,10 @@ import org.schabi.newpipe.NewPipeComposeActivity
 
 fun Context.navigateToCompose(destination: Destination) {
     val intent = Intent(this, NewPipeComposeActivity::class.java).apply {
-        putExtra(Constants.INTENT_SCREEN_KEY,
-            Json.encodeToString(destination))
+        putExtra(
+            Constants.INTENT_SCREEN_KEY,
+            Json.encodeToString(destination)
+        )
     }
     startActivity(intent)
 }

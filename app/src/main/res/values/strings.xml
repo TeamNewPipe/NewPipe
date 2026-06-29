@@ -154,13 +154,11 @@
     <string name="settings_category_video_audio_title">Video and audio</string>
     <string name="settings_category_history_title">History and cache</string>
     <string name="settings_category_appearance_title">Appearance</string>
-    <string name="settings_category_look_and_feel_title">Look and feel</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="settings_category_updates_title">Updates</string>
     <string name="settings_category_player_notification_title">Player notification</string>
     <string name="settings_category_player_notification_summary">Configure current playing stream notification</string>
     <string name="settings_category_backup_restore_title">Backup and restore</string>
-    <string name="settings_category_content_title">Content</string>
     <string name="settings_category_services_title">Services</string>
     <string name="settings_category_language_title">Language</string>
     <string name="background_player_playing_toast">Playing in background</string>
@@ -909,9 +907,8 @@
     <string name="api23_requirement_dialog_blogpost">Blogpost</string>
     <string name="settings_category_look_and_feel_title">Look and feel</string>
     <string name="settings_category_content_title">Content</string>
-    <string name="settings_category_services_title">Services</string>
-    <string name="settings_category_language_title">Language</string>
     <string name="navigate_back">Navigate back</string>
     <string name="settings_layout_redesign">Enable the Redesigned Settings page</string>
+    <string name="app_restart_required">Restart NewPipe to apply the new theme</string>
 
 </resources>

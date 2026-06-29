@@ -9,8 +9,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.russhwolf.settings.ObservableSettings
 import kotlinx.coroutines.flow.StateFlow
-import net.newpipe.app.screen.settings.BooleanPreference
-import net.newpipe.app.screen.settings.StringPreference
+import net.newpipe.app.viewmodel.settings.BooleanPreference
+import net.newpipe.app.viewmodel.settings.StringPreference
 import org.koin.core.annotation.KoinViewModel
 
 // Keys mirror app/src/main/res/values/settings_keys.xml verbatim so the

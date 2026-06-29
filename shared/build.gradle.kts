@@ -17,12 +17,14 @@ plugins {
 // https://stackoverflow.com/a/74771876/8446131
 val buildConfigGenerator by tasks.registering(Sync::class) {
     val buildConfigPackage = NEWPIPE_APPLICATION_ID_NEW
+    val isDebug = providers.gradleProperty("buildVariant").orElse("release").map { it ==  "debug" }
     val rawClass = """
         package $buildConfigPackage
 
-        object BuildConfig {
+        object BuildConfig { 
             const val VERSION_NAME = "$NEWPIPE_VERSION_NAME"
             const val APP_NAME = "NewPipe"
+            const val DEBUG = ${isDebug.get()}
         }
     """.trimIndent()
     from(resources.text.fromString(rawClass)) {
@@ -108,10 +110,11 @@ kotlin {
                 implementation(libs.kotlinx.serialization.json)
 
                 implementation(libs.koin.compose.navigation3)
-                implementation(libs.koin.compose.viewmodel)
-                implementation(libs.koin.annotations)
+                api(libs.koin.compose.viewmodel)
+                api(libs.koin.annotations)
 
                 implementation(libs.russhwolf.settings.core)
+                implementation(libs.russhwolf.settings.coroutines)
                 implementation(libs.touchlab.kermit)
             }
         }

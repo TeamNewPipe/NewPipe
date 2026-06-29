@@ -163,6 +163,7 @@ puppycrawl-checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.re
 reactivex-rxandroid = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxandroid" }
 reactivex-rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
 russhwolf-settings-core = { module = "com.russhwolf:multiplatform-settings", version.ref = "settings" }
+russhwolf-settings-coroutines = { module = "com.russhwolf:multiplatform-settings-coroutines", version.ref = "settings" }
 russhwolf-settings-test = { module = "com.russhwolf:multiplatform-settings-test", version.ref = "settings" }
 squareup-leakcanary-core = { module = "com.squareup.leakcanary:leakcanary-android-core", version.ref = "leakcanary" }
 squareup-leakcanary-plumber = { module = "com.squareup.leakcanary:plumber-android", version.ref = "leakcanary" }

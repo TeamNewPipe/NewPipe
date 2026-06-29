@@ -11,7 +11,7 @@ import com.russhwolf.settings.ObservableSettings
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import net.newpipe.app.platform.HistoryActions
-import net.newpipe.app.screen.settings.BooleanPreference
+import net.newpipe.app.viewmodel.settings.BooleanPreference
 import org.koin.core.annotation.KoinViewModel
 
 // Mirrors app/src/main/res/values/settings_keys.xml — keep byte-identical so

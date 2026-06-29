@@ -162,6 +162,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        org.schabi.newpipe.platform.DirectoryPickerRegistry.INSTANCE.bindTo(this);
+
         super.onCreate(savedInstanceState);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPrefEditor = sharedPreferences.edit();

@@ -8,6 +8,16 @@ package net.newpipe.app.navigation
 import androidx.compose.runtime.mutableStateListOf
 import co.touchlab.kermit.Logger
 import net.newpipe.app.screen.about.AboutScreen
+import net.newpipe.app.screen.settings.backuprestore.BackupRestoreSettingsScreen
+import net.newpipe.app.screen.settings.content.ContentSettingsScreen
+import net.newpipe.app.screen.settings.debug.DebugScreen
+import net.newpipe.app.screen.settings.download.DownloadSettingsScreen
+import net.newpipe.app.screen.settings.exoplayer.ExoPlayerSettingsScreen
+import net.newpipe.app.screen.settings.history.HistorySettingsScreen
+import net.newpipe.app.screen.settings.home.SettingsHomeScreen
+import net.newpipe.app.screen.settings.lookfeel.LookFeelSettingsScreen
+import net.newpipe.app.screen.settings.player.PlayerSettingsScreen
+import net.newpipe.app.screen.settings.updates.UpdatesSettingsScreen
 import org.koin.core.annotation.KoinExperimentalAPI
 import org.koin.core.annotation.Provided
 import org.koin.core.annotation.Singleton
@@ -27,6 +37,47 @@ fun navModule() = module {
     navigation<Destination.About> {
         AboutScreen()
     }
+
+    navigation<Destination.Settings.Home> {
+        SettingsHomeScreen()
+    }
+
+    navigation<Destination.Settings.Debug> {
+        DebugScreen()
+    }
+
+    navigation<Destination.Settings.Player> {
+        PlayerSettingsScreen()
+    }
+
+    navigation<Destination.Settings.Download> {
+        DownloadSettingsScreen()
+    }
+
+    navigation<Destination.Settings.HistoryCache> {
+        HistorySettingsScreen()
+    }
+
+    navigation<Destination.Settings.ExoPlayer> {
+        ExoPlayerSettingsScreen()
+    }
+
+    navigation<Destination.Settings.Updates> {
+        UpdatesSettingsScreen()
+    }
+
+    navigation<Destination.Settings.LookFeel> {
+        LookFeelSettingsScreen()
+    }
+
+    navigation<Destination.Settings.BackupRestore> {
+        BackupRestoreSettingsScreen()
+    }
+
+    navigation<Destination.Settings.Content> {
+        ContentSettingsScreen()
+    }
+
 }
 
 /**

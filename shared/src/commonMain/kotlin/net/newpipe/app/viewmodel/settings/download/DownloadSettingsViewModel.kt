@@ -8,11 +8,10 @@ package net.newpipe.app.viewmodel.settings.download
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.russhwolf.settings.ObservableSettings
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import net.newpipe.app.platform.DownloadActions
-import net.newpipe.app.screen.settings.BooleanPreference
+import net.newpipe.app.viewmodel.settings.BooleanPreference
+import net.newpipe.app.viewmodel.settings.StringPreference
 import org.koin.core.annotation.KoinViewModel
 
 // Keys mirror app/src/main/res/values/settings_keys.xml — keep in sync.
@@ -23,31 +22,31 @@ private const val DOWNLOAD_PATH_AUDIO_KEY = "download_path_audio_key"
 
 @KoinViewModel
 class DownloadSettingsViewModel(
-    private val settings: ObservableSettings,
+    settings: ObservableSettings,
     private val actions: DownloadActions
 ) : ViewModel() {
 
-    private val askPref = BooleanPreference(DOWNLOADS_STORAGE_ASK_KEY, false, settings, viewModelScope)
-    private val useSafPref = BooleanPreference(STORAGE_USE_SAF_KEY, true, settings, viewModelScope)
+    private val askPref = BooleanPreference(
+        DOWNLOADS_STORAGE_ASK_KEY, false, settings, viewModelScope
+    )
+    private val useSafPref = BooleanPreference(
+        STORAGE_USE_SAF_KEY, true, settings, viewModelScope
+    )
+    private val videoPathPref = StringPreference(
+        DOWNLOAD_PATH_VIDEO_KEY, "", settings, viewModelScope
+    )
+    private val audioPathPref = StringPreference(
+        DOWNLOAD_PATH_AUDIO_KEY, "", settings, viewModelScope
+    )
 
-    private val _videoPath = MutableStateFlow(settings.getStringOrNull(DOWNLOAD_PATH_VIDEO_KEY).orEmpty())
-    private val _audioPath = MutableStateFlow(settings.getStringOrNull(DOWNLOAD_PATH_AUDIO_KEY).orEmpty())
-
-    val storageAsk = askPref.state
-    val useSaf = useSafPref.state
-    val videoPath: StateFlow<String> = _videoPath.asStateFlow()
-    val audioPath: StateFlow<String> = _audioPath.asStateFlow()
+    val storageAsk: StateFlow<Boolean> = askPref.state
+    val useSaf: StateFlow<Boolean> = useSafPref.state
+    val videoPath: StateFlow<String> = videoPathPref.state
+    val audioPath: StateFlow<String> = audioPathPref.state
 
     fun toggleStorageAsk(v: Boolean) = askPref.toggle(v)
     fun toggleUseSaf(v: Boolean) = useSafPref.toggle(v)
 
-    fun pickVideoPath() = actions.pickDirectory { uri ->
-        settings.putString(DOWNLOAD_PATH_VIDEO_KEY, uri)
-        _videoPath.value = uri
-    }
-
-    fun pickAudioPath() = actions.pickDirectory { uri ->
-        settings.putString(DOWNLOAD_PATH_AUDIO_KEY, uri)
-        _audioPath.value = uri
-    }
+    fun pickVideoPath() = actions.pickDirectory(videoPathPref::set)
+    fun pickAudioPath() = actions.pickDirectory(audioPathPref::set)
 }

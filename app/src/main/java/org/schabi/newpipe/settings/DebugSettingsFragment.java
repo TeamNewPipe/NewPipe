@@ -78,10 +78,6 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
         });
     }
 
-    /**
-     * Tries to find the {@link DebugSettingsBVDLeakCanaryAPI#IMPL_CLASS} and loads it if available.
-     * @return An {@link Optional} which is empty if the implementation class couldn't be loaded.
-     */
     private Optional<DebugSettingsBVDLeakCanaryAPI> getBVDLeakCanary() {
         try {
             // Try to find the implementation of the LeakCanary API

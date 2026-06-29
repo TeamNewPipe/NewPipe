@@ -51,6 +51,10 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="org.schabi.newpipe.NewPipeComposeActivity"
+            android:exported="false" />
+
         <receiver
             android:name="androidx.media.session.MediaButtonReceiver"
             android:exported="true">

@@ -70,6 +70,9 @@ import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
+import android.content.SharedPreferences;
+import androidx.preference.PreferenceManager;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -688,8 +691,19 @@ public final class NavigationHelper {
     }
 
     public static void openSettings(final Context context) {
-        final Intent intent = new Intent(context, SettingsActivity.class);
-        context.startActivity(intent);
+        final SharedPreferences prefs =
+                PreferenceManager.getDefaultSharedPreferences(context);
+        final boolean useCompose = prefs.getBoolean(
+                context.getString(R.string.settings_layout_redesign_key), false);
+        if (useCompose) {
+            org.schabi.newpipe.platform.ComposeLauncherKt.navigateToCompose(
+                    context,
+                    net.newpipe.app.navigation.Destination.Settings.Home.INSTANCE
+            );
+        } else {
+            final Intent intent = new Intent(context, SettingsActivity.class);
+            context.startActivity(intent);
+        }
     }
 
     public static void openDownloads(final Activity activity) {

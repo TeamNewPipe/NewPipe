@@ -1,2 +1,33 @@
 package org.schabi.newpipe
 
+import android.content.Context
+import android.os.Bundle
+import net.newpipe.app.ComposeActivity
+import net.newpipe.app.platform.AndroidLegacyHooks
+import org.koin.dsl.module
+import org.schabi.newpipe.platform.AppLegacyHooks
+import org.schabi.newpipe.platform.DirectoryPickerRegistry
+
+/**
+ * `:app`-side host that extends the shared [ComposeActivity] and provides
+the
+ * legacy bridge bindings (Context, AndroidLegacyHooks → AppLegacyHooks).
+ *
+ * Required while parts of NewPipe still live as Views in `:app`. Once the
+ * migration completes this class is deleted and the manifest entry points
+ * directly at [net.newpipe.app.ComposeActivity].
+ */
+class NewPipeComposeActivity : ComposeActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        DirectoryPickerRegistry.bindTo(this)
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun platformModules(): List<Module> = listOf(
+        module {
+            single<Context> { applicationContext }
+            single<AndroidLegacyHooks> { AppLegacyHooks(application) }
+        }
+    )
+}

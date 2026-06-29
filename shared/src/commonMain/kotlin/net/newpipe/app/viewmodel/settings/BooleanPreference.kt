@@ -6,6 +6,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
+import com.russhwolf.settings.ExperimentalSettingsApi
 
 /**
  * Encapsulates a boolean preference backed by the multiplatform
@@ -21,6 +22,7 @@ string-resource key).
  * @param scope Scope to keep the underlying flow alive (typically the
 ViewModel scope).
  */
+@OptIn(ExperimentalSettingsApi::class)
 internal class BooleanPreference(
     private val key: String,
     private val defaultValue: Boolean,

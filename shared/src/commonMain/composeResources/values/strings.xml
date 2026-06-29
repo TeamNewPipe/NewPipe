@@ -34,4 +34,288 @@
     <string name="open_in_browser">Open in browser</string>
     <string name="done">Done</string>
     <string name="not_available">Not available</string>
+
+    <!--    Settings    -->
+    <string name="settings">Settings</string>
+    <string name="settings_category_player_title">Player</string>
+    <string name="settings_category_player_behavior_title">Behavior</string>
+    <string name="settings_category_downloads_title">Downloads</string>
+    <string name="settings_category_look_and_feel_title">Look and feel</string>
+    <string name="settings_category_history_title">History &amp; cache</string>
+    <string name="settings_category_content_title">Content</string>
+    <string name="settings_category_feed_title">Feed</string>
+    <string name="settings_category_services_title">Services</string>
+    <string name="settings_category_language_title">Language</string>
+    <string name="settings_category_backup_restore_title">Backup &amp; restore</string>
+    <string name="settings_category_updates_title">Updates</string>
+    <string name="settings_category_debug_title">Debug</string>
+    <string name="settings_layout_redesign">Enable the Redesigned Settings page</string>
+    <string name="leakcanary">LeakCanary</string>
+    <string name="enable_leak_canary_summary">Allow heap dumping</string>
+    <string name="leak_canary_not_available">LeakCanary is not available in this build</string>
+    <string name="show_memory_leaks">Show memory leaks</string>
+    <string name="enable_disposed_exceptions_title">Enable disposed exceptions</string>
+    <string name="enable_disposed_exceptions_summary">Throw on RxJava onErrorNotImplemented after disposal</string>
+    <string name="show_original_time_ago_title">Show original time-ago</string>
+    <string name="show_original_time_ago_summary">Disable smoothing of upload dates</string>
+    <string name="show_crash_the_player_title">Show "crash the player" option</string>
+    <string name="show_crash_the_player_summary">Adds an option to the player menu to forcibly crash it</string>
+    <string name="check_new_streams">Check new streams now</string>
+    <string name="crash_the_app">Crash the app</string>
+    <string name="show_error_snackbar">Show error snackbar</string>
+    <string name="create_error_notification">Create error notification</string>
+    <string name="downloads_storage_ask_title">Ask where to download</string>
+    <string name="downloads_storage_ask_summary">You will be asked where to save each download.\nEnable the system folder picker (SAF) if you want to download to an external SD card</string>
+    <string name="downloads_storage_use_saf_title">Use system folder picker (SAF)</string>
+    <string name="downloads_storage_use_saf_summary">The \'Storage Access Framework\' allows downloads to an external SD card</string>
+    <string name="download_path_title">Video download folder</string>
+    <string name="download_path_summary">Downloaded video files are stored here</string>
+    <string name="download_path_audio_title">Audio download folder</string>
+    <string name="download_path_audio_summary">Downloaded audio files are stored here</string>
+
+    <!-- HistorySettingsScreen -->
+    <string name="enable_watch_history_title">Watch history</string>
+    <string name="enable_watch_history_summary">Keep track of watched videos</string>
+    <string name="enable_playback_resume_title">Resume playback</string>
+    <string name="enable_playback_resume_summary">Restore last playback position</string>
+    <string name="enable_playback_state_lists_title">Positions in lists</string>
+    <string name="enable_playback_state_lists_summary">Show playback position indicators in lists</string>
+    <string name="enable_search_history_title">Search history</string>
+    <string name="enable_search_history_summary">Store search queries locally</string>
+    <string name="settings_category_clear_data_title">Clear data</string>
+    <string name="metadata_cache_wipe_title">Wipe cached metadata</string>
+    <string name="metadata_cache_wipe_summary">Remove all cached webpage data</string>
+    <string name="clear_views_history_title">Clear watch history</string>
+    <string name="clear_views_history_summary">Deletes the history of played streams and the playback positions</string>
+    <string name="clear_playback_states_title">Delete playback positions</string>
+    <string name="clear_playback_states_summary">Deletes all playback positions</string>
+    <string name="clear_search_history_title">Clear search history</string>
+    <string name="clear_search_history_summary">Deletes history of search keywords</string>
+    <string name="clear_cookie_title">Clear reCAPTCHA cookies</string>
+    <string name="clear_cookie_summary">Clear cookies that NewPipe stores when you solve a reCAPTCHA</string>
+
+    <!-- Generic action labels -->
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+
+    <!-- PlayerSettingsScreen -->
+    <string name="settings_category_video_audio_title">Video &amp; Audio</string>
+    <string name="default_resolution_title">Default resolution</string>
+    <string name="default_popup_resolution_title">Default popup resolution</string>
+    <string name="limit_mobile_data_usage_title">Mobile data limit</string>
+    <string name="show_higher_resolutions_title">Show higher resolutions</string>
+    <string name="show_higher_resolutions_summary">Only some devices can play 2K/4K videos</string>
+    <string name="default_video_format_title">Default video format</string>
+    <string name="default_audio_format_title">Default audio format</string>
+    <string name="prefer_original_audio_title">Prefer original audio</string>
+    <string name="prefer_original_audio_summary">Pick the audio language marked as original by the uploader, when available</string>
+    <string name="prefer_descriptive_audio_title">Prefer descriptive audio</string>
+    <string name="prefer_descriptive_audio_summary">Pick the audio track that describes what is happening on screen, when available</string>
+    <string name="settings_category_exoplayer_title">ExoPlayer settings</string>
+    <string name="settings_category_exoplayer_summary">Configure ExoPlayer (the underlying video player)</string>
+    <string name="use_external_video_player_title">Use external video player</string>
+    <string name="use_external_video_player_summary">Some formats are unavailable when this is on</string>
+    <string name="use_external_audio_player_title">Use external audio player</string>
+    <string name="show_play_with_kodi_title">Show \"Play with Kodi\" option</string>
+    <string name="show_play_with_kodi_summary">Show an option to play a video via Kodi</string>
+    <string name="seekbar_preview_thumbnail_title">Seekbar preview thumbnails</string>
+
+    <!-- Resolution labels -->
+    <string name="best_resolution">Best resolution</string>
+    <string name="resolution_2160p">2160p</string>
+    <string name="resolution_1440p">1440p</string>
+    <string name="resolution_1080p60">1080p60</string>
+    <string name="resolution_1080p">1080p</string>
+    <string name="resolution_720p60">720p60</string>
+    <string name="resolution_720p">720p</string>
+    <string name="resolution_480p">480p</string>
+    <string name="resolution_360p">360p</string>
+    <string name="resolution_240p">240p</string>
+    <string name="resolution_144p">144p</string>
+
+    <!-- Mobile data limit labels -->
+    <string name="limit_data_usage_none">No limit</string>
+    <string name="limit_data_usage_wifi_only">Restrict to Wi-Fi</string>
+
+    <!-- Format labels -->
+    <string name="video_format_mp4">MP4</string>
+    <string name="video_format_webm">WebM</string>
+    <string name="video_format_3gp">3GP</string>
+    <string name="audio_format_m4a">M4A</string>
+    <string name="audio_format_webm">WebM (Opus)</string>
+    <string name="audio_format_ogg">OGG (Vorbis)</string>
+
+    <!-- Seekbar preview thumbnail labels -->
+    <string name="seekbar_preview_thumbnail_high">High quality</string>
+    <string name="seekbar_preview_thumbnail_low">Low quality</string>
+    <string name="seekbar_preview_thumbnail_off">Off</string>
+
+    <!-- ExoPlayerSettingsScreen -->
+    <string name="progressive_load_interval_title">Playback load interval size</string>
+    <string name="progressive_load_interval_summary">Change the load interval size on progressive contents. A lower value may speed up their initial loading</string>
+    <string name="progressive_load_interval_1_kib">1 KiB</string>
+    <string name="progressive_load_interval_16_kib">16 KiB</string>
+    <string name="progressive_load_interval_64_kib">64 KiB</string>
+    <string name="progressive_load_interval_256_kib">256 KiB</string>
+    <string name="progressive_load_interval_exoplayer_default">ExoPlayer default</string>
+    <string name="use_exoplayer_decoder_fallback_title">Use ExoPlayer\'s decoder fallback feature</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Enable this option if you have decoder initialization issues, which falls back to lower-priority decoders if primary decoders initialization fail. This may result in poor playback performance than when using primary decoders</string>
+    <string name="disable_media_tunneling_title">Disable media tunneling</string>
+    <string name="disable_media_tunneling_summary">Disable media tunneling if you experience a black screen or stuttering on video playback.</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Always use ExoPlayer\'s video output surface setting workaround</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">This workaround releases and re-instantiates video codecs when a surface change occurs, instead of setting the surface to the codec directly. Already used by ExoPlayer on some devices with this issue, this setting has only an effect on Android 6 and higher\n\nEnabling this option may prevent playback errors when switching the current video player or switching to fullscreen</string>
+
+    <!-- Generic shared labels (reused by ConfirmDialog & legacy parity) -->
+    <string name="ok">OK</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <!-- UpdatesSettingsScreen -->
+    <string name="updates_setting_title">Updates</string>
+    <string name="updates_setting_description">Show a notification to prompt app update when a new version is available</string>
+    <string name="check_for_updates">Check for updates</string>
+    <string name="manual_update_description">Manually check for new versions</string>
+
+    <!-- LookFeel / AppearanceSettingsScreen -->
+    <string name="settings_category_appearance_title">Appearance</string>
+    <string name="theme_title">Theme</string>
+    <string name="theme_light">Light theme</string>
+    <string name="theme_dark">Dark theme</string>
+    <string name="theme_black">Black theme</string>
+    <string name="theme_auto">Automatic (device theme)</string>
+    <string name="night_theme_title">Night theme</string>
+    <string name="night_theme_summary">Select your favorite night theme</string>
+    <string name="night_theme_available">This option is only available if %s is selected for Theme</string>
+    <string name="select_night_theme_toast">You can select your favorite night theme below</string>
+    <string name="show_hold_to_append_title">Show \"Hold to enqueue\" tip</string>
+    <string name="show_hold_to_append_summary">Show tip when pressing the background or the popup button in video details</string>
+    <string name="tablet_mode_title">Tablet mode</string>
+    <string name="tablet_mode_auto">Automatic</string>
+    <string name="tablet_mode_on">On</string>
+    <string name="tablet_mode_off">Off</string>
+    <string name="list_view_mode_title">List view mode</string>
+    <string name="list_view_mode_auto">Automatic</string>
+    <string name="list_view_mode_list">List</string>
+    <string name="list_view_mode_grid">Grid</string>
+    <string name="list_view_mode_card">Card</string>
+    <string name="caption_setting_title">Captions</string>
+    <string name="caption_setting_description">Modify player caption text scale and background styles. Requires app restart to take effect</string>
+    <string name="main_tabs_position_title">Main tabs position</string>
+    <string name="main_tabs_position_summary">Move main tab selector to the bottom</string>
+
+    <!-- BackupRestoreSettingsScreen -->
+    <string name="import_data_title">Import database</string>
+    <string name="import_data_summary">Overrides your current history, subscriptions, playlists and (optionally) settings</string>
+    <string name="export_data_title">Export database</string>
+    <string name="export_data_summary">Export history, subscriptions, playlists and settings</string>
+    <string name="reset_settings_title">Reset settings</string>
+    <string name="reset_settings_summary">Reset all settings to their default values</string>
+    <string name="reset_all_settings">Resetting all settings will discard all of your preferred settings and restart the app.\n\nAre you sure you want to proceed?</string>
+    <string name="import_subscriptions_title">Import subscriptions</string>
+    <string name="import_subscriptions_summary">Import subscriptions from a previous .json export</string>
+    <string name="export_subscriptions_title">Export subscriptions</string>
+    <string name="export_subscriptions_summary">Export your subscriptions to a .json file</string>
+    <string name="override_current_data">This will override your current setup.</string>
+    <string name="import_settings">Do you want to also import settings?</string>
+    <string name="export_complete_toast">Exported</string>
+    <string name="no_valid_zip_file">No valid ZIP file</string>
+    <string name="import_settings_vulnerable_format">The settings being imported use a vulnerable format deprecated since NewPipe 0.27.0. Make sure the export is from a trusted source.</string>
+
+    <!-- ContentSettingsScreen -->
+    <string name="app_language_title">App language</string>
+    <string name="content">Content</string>
+    <string name="content_language_title">Default content language</string>
+    <string name="default_content_country_title">Default content country</string>
+    <string name="main_page_content">Content of main page</string>
+    <string name="main_page_content_summary">What tabs are shown on the main page</string>
+    <string name="show_channel_tabs">Channel tabs</string>
+    <string name="show_channel_tabs_summary">What tabs are shown on the channel pages</string>
+    <string name="peertube_instance_url_title">PeerTube instances</string>
+    <string name="peertube_instance_url_summary">Select your favorite PeerTube instances</string>
+    <string name="show_age_restricted_content_title">Show age restricted content</string>
+    <string name="show_age_restricted_content_summary">Show content possibly unsuitable for children because it has an age limit (like 18+)</string>
+    <string name="youtube_restricted_mode_enabled_title">Turn on YouTube\'s \"Restricted Mode\"</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube provides a \"Restricted Mode\" which hides potentially mature content</string>
+    <string name="show_search_suggestions_title">Search suggestions</string>
+    <string name="show_search_suggestions_summary">Choose the suggestions to show when searching</string>
+    <string name="image_quality_title">Image quality</string>
+    <string name="image_quality_summary">Choose the quality of images and whether to load images at all, to reduce data and memory usage</string>
+    <string name="image_quality_low">Low</string>
+    <string name="image_quality_medium">Medium</string>
+    <string name="image_quality_high">High</string>
+    <string name="show_comments_title">Show comments</string>
+    <string name="show_comments_summary">Turn off to hide comments</string>
+    <string name="show_next_and_similar_title">Show \'Next\' and \'Similar\' videos</string>
+    <string name="show_description_title">Show description</string>
+    <string name="show_description_summary">Turn off to hide video description and additional information</string>
+    <string name="show_meta_info_title">Show meta info</string>
+    <string name="show_meta_info_summary">Turn off to hide meta info boxes with additional information</string>
+
+    <!-- Feed sub-category -->
+    <string name="feed_update_threshold_title">Feed update threshold</string>
+    <string name="feed_update_threshold_summary">Time after last update before a subscription is considered outdated</string>
+    <string name="feed_use_dedicated_fetch_method_title">Fetch from dedicated feed when available</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Available in some services, usually much faster but may return limited info</string>
+    <string name="feed_fetch_channel_tabs">Fetch channel tabs</string>
+    <string name="feed_fetch_channel_tabs_summary">Tabs to fetch when updating the feed. No effect if fast mode is used.</string>
+
+    <!-- Feed threshold value labels -->
+    <string name="threshold_immediate">Immediately</string>
+    <string name="threshold_5_min">After 5 minutes</string>
+    <string name="threshold_15_min">After 15 minutes</string>
+    <string name="threshold_1_hour">After 1 hour</string>
+    <string name="threshold_6_hours">After 6 hours</string>
+    <string name="threshold_12_hours">After 12 hours</string>
+    <string name="threshold_1_day">After 1 day</string>
+
+    <!-- Channel-tab labels -->
+    <string name="channel_tab_videos">Videos</string>
+    <string name="channel_tab_tracks">Tracks</string>
+    <string name="channel_tab_shorts">Shorts</string>
+    <string name="channel_tab_livestreams">Livestreams</string>
+    <string name="channel_tab_channels">Channels</string>
+    <string name="channel_tab_playlists">Playlists</string>
+    <string name="channel_tab_albums">Albums</string>
+    <string name="channel_tab_likes">Likes</string>
+    <string name="channel_tab_about">About</string>
+
+    <!-- Search-suggestion labels -->
+    <string name="local_search_suggestions">Local</string>
+    <string name="remote_search_suggestions">Remote</string>
+
+    <!-- Localization labels -->
+    <string name="language_system">System default</string>
+    <string name="language_en">English</string>
+    <string name="language_es">Spanish</string>
+    <string name="language_fr">French</string>
+    <string name="language_de">German</string>
+    <string name="language_pt">Portuguese</string>
+    <string name="language_ru">Russian</string>
+    <string name="language_zh">Chinese</string>
+    <string name="language_ja">Japanese</string>
+    <string name="language_ko">Korean</string>
+    <string name="language_it">Italian</string>
+    <string name="language_nl">Dutch</string>
+    <string name="language_pl">Polish</string>
+    <string name="language_tr">Turkish</string>
+    <string name="language_ar">Arabic</string>
+    <string name="language_hi">Hindi</string>
+
+    <string name="country_system">System default</string>
+    <string name="country_us">United States</string>
+    <string name="country_gb">United Kingdom</string>
+    <string name="country_de">Germany</string>
+    <string name="country_fr">France</string>
+    <string name="country_es">Spain</string>
+    <string name="country_it">Italy</string>
+    <string name="country_br">Brazil</string>
+    <string name="country_jp">Japan</string>
+    <string name="country_kr">South Korea</string>
+    <string name="country_in">India</string>
+    <string name="country_ru">Russia</string>
+    <string name="country_cn">China</string>
+    <string name="country_au">Australia</string>
+    <string name="country_ca">Canada</string>
+    <string name="country_mx">Mexico</string>
+
 </resources>

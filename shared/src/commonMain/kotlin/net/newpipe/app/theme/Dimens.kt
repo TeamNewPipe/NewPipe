@@ -22,3 +22,5 @@ val iconHDPI = 72.dp
 val iconXHDPI = 96.dp
 val iconXXHDPI = 144.dp
 val iconXXXHDPI = 192.dp
+
+val preferenceMinHeight = 48.dp

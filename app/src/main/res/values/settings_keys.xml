@@ -1513,4 +1513,7 @@
         <item>@string/image_quality_medium_key</item>
         <item>@string/image_quality_high_key</item>
     </string-array>
+
+    <!--    Layout redesigh-->
+    <string name="settings_layout_redesign_key">settings_layout_redesign_key</string>
 </resources>

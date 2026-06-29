@@ -7,6 +7,8 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 
+import com.russhwolf.settings.ExperimentalSettingsApi
+
 /**
  * String-valued analogue of [BooleanPreference]. Backs [ListPreference]
  * composables — anything that stores a small set of opaque string values.
@@ -16,6 +18,7 @@ import kotlinx.coroutines.flow.stateIn
  * @param settings The shared, observable key-value store.
  * @param scope Scope that keeps the underlying flow alive (typically viewModelScope).
  */
+@OptIn(ExperimentalSettingsApi::class)
 internal class StringPreference(
     private val key: String,
     private val defaultValue: String,
