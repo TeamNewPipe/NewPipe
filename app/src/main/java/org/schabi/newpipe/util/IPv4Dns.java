@@ -38,12 +38,9 @@ public final class IPv4Dns implements Dns {
         final List<InetAddress> addresses = Dns.SYSTEM.lookup(hostname);
 
         if (prefs.getBoolean(ipv4OnlyKey, false)) {
-            final List<InetAddress> ipv4Addresses = addresses.stream()
+            return addresses.stream()
                     .filter(address -> address instanceof Inet4Address)
                     .collect(Collectors.toList());
-            if (!ipv4Addresses.isEmpty()) {
-                return ipv4Addresses;
-            }
         }
 
         return addresses;
