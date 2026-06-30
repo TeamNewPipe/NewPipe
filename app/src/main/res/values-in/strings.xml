@@ -4,7 +4,7 @@
     <string name="upload_date_text">Diterbitkan pada %1$s</string>
     <string name="install">Pasang</string>
     <string name="cancel">Batal</string>
-    <string name="open_in_browser">Buka di perambah</string>
+    <string name="open_in_browser">Buka di peramban</string>
     <string name="share">Bagikan</string>
     <string name="download">Unduh</string>
     <string name="search">Cari</string>
@@ -107,14 +107,14 @@
     <string name="charset_letters_and_digits">Huruf dan angka</string>
     <string name="charset_most_special_characters">Karakter spesial umum</string>
     <string name="title_activity_about">Tentang NewPipe</string>
-    <string name="title_licenses">Lisensi pihak ketiga</string>
+    <string name="title_licenses">Lisensi Pihak-ketiga</string>
     <string name="copyright" formatted="true">© %1$s oleh %2$s di bawah %3$s</string>
-    <string name="tab_about">Tentang &amp; SSD</string>
+    <string name="tab_about">Tentang &amp; FAQ</string>
     <string name="tab_licenses">Lisensi</string>
-    <string name="app_description">Aplikasi video penjaliran daring yang bebas dan ringan untuk Android.</string>
+    <string name="app_description">Streaming ringan Libre di Android.</string>
     <string name="view_on_github">Lihat di GitHub</string>
     <string name="app_license_title">Lisensi NewPipe</string>
-    <string name="contribution_encouragement">Terlepas apakah kamu memiliki ide: terjemahan, perubahan desain, pembersihan kode, atau perubahan kode yang signifikan, segala bantuan akan selalu kami terima. Semakin banyak ide akan semakin baik jadinya!</string>
+    <string name="contribution_encouragement">Baik Anda memiliki ide tentang; terjemahan, pengubahan desain, pembersihan kode, atau pengubahan kode yang besar—bantuan selalu diterima. Semakin banyak yang dilakukan, semakin banyak hasilnya!</string>
     <string name="read_full_license">Baca lisensi</string>
     <string name="contribution_title">Kontribusi</string>
     <string name="subscribe_button_title">Berlanggan</string>
@@ -182,10 +182,10 @@
     <string name="dismiss">Abaikan</string>
     <string name="rename">Ubah nama</string>
     <string name="donation_title">Donasi</string>
-    <string name="donation_encouragement">NewPipe dikembangkan oleh relawan yang menyisihkan waktu luang untuk memberi kamu sebuah pengalaman terbaik. Segala dukungan yang diberikan kepada para pengembang akan membuat NewPipe menjadi lebih baik sembari mereka menikmati secangkir kopi.</string>
-    <string name="give_back">Beri dukungan</string>
-    <string name="website_title">Situs Web</string>
-    <string name="website_encouragement">Kunjungi situs web NewPipe untuk melihat info dan berita lebih lanjut.</string>
+    <string name="donation_encouragement">NewPipe dikembangkan oleh para sukarelawan yang meluangkan waktu luang mereka untuk memberikan Anda pengalaman pengguna terbaik. Berikan dukungan untuk membantu para pengembang membuat NewPipe menjadi lebih baik lagi sementara mereka menikmati secangkir kopi.</string>
+    <string name="give_back">Berikan</string>
+    <string name="website_title">Situs web</string>
+    <string name="website_encouragement">Kunjungi Situs Web NewPipe untuk info dan berita lainnya.</string>
     <string name="delete_item_search_history">Apakah ingin hapus butir ini dari riwayat pencarian?</string>
     <string name="title_last_played">Terakhir Diputar</string>
     <string name="title_most_played">Sering Diputar</string>
@@ -256,7 +256,7 @@
     <string name="tab_subscriptions">Langganan</string>
     <string name="use_inexact_seek_title">Pakai intip cepat tak presisi</string>
     <string name="use_inexact_seek_summary">Intip tak presisi membantu pengguna mengintip posisi video dengan cepat tapi presisi rendah. Mengintip 5, 15, atau 25 detik saja tidak berfungsi</string>
-    <string name="app_license">NewPipe adalah perangkat lunak libre copyleft: Anda bisa menggunakannya, mempelajarinya, berbagi, dan meningkatkannya. Secara khusus Anda bisa mendistribusikan ulang dan/atau memodifikasinya dibawah syarat Lisensi Publik Umum GNU yang diterbitkan oleh Free Software Foundation, baik versi 3 dari Lisensi, atau (sesuai pilihan Anda) versi yang lebih baru.</string>
+    <string name="app_license">Aplikasi ini adalah perangkat lunak bebas copyleft: Anda dapat menggunakan, mempelajari, membagikan, dan memperbaikinya sesuka hati. Secara khusus, Anda dapat mendistribusikan dan/atau memodifikasinya berdasarkan ketentuan Lisensi Publik Umum GNU sebagaimana diterbitkan oleh Free Software Foundation, baik versi 3 dari Lisensi, atau (sesuai pilihan Anda) versi apapun yang lebih baru.</string>
     <string name="import_settings">Apakah Anda juga ingin mengimpor pengaturan\?</string>
     <string name="preferred_open_action_settings_title">Tindakan \'buka\' yang diinginkan</string>
     <string name="preferred_open_action_settings_summary">Tindakan bawaan ketika membuka konten — %s</string>
@@ -684,8 +684,8 @@
     <string name="unknown_format">Format tidak diketahui</string>
     <string name="progressive_load_interval_title">Ukuran selang pemuatan putar balik</string>
     <string name="faq_title">Pertanyaan yang sering diajukan</string>
-    <string name="faq_description">Jika kamu mengalami masalah dalam penggunaan aplikasi, pastikan untuk melihat jawaban soal sering ditanya (SSD)!</string>
-    <string name="faq">Tampilkan di situs web</string>
+    <string name="faq_description">Jika Anda mengalami kesulitan menggunakan aplikasi, pastikan untuk memeriksa jawaban atas pertanyaan umum ini!</string>
+    <string name="faq">Lihat di situs web</string>
     <string name="sort">Urutan</string>
     <string name="fast_mode">Mode cepat</string>
     <string name="import_subscriptions_hint">Impor atau ekspor langganan dari menu 3 titik</string>

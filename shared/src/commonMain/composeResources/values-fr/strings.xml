@@ -6,7 +6,7 @@
     <string name="license">Par %1$s sous %2$s</string>
     <string name="tab_about">À propos &amp; FAQ</string>
     <string name="tab_licenses">Licences</string>
-    <string name="app_description">Un service de streaming libre et léger sur Android.</string>
+    <string name="app_description">Streaming libre et léger sur Android.</string>
     <string name="contribution_title">Contribuer</string>
     <string name="contribution_encouragement">Que vous ayez des idées concernant la traduction, des modifications de conception, le nettoyage du code ou des modifications techniques importantes, votre aide est toujours la bienvenue. Plus on y met du nôtre, meilleurs sont les résultats !</string>
     <string name="view_on_github">Consulter sur GitHub</string>
@@ -25,6 +25,6 @@
     <string name="faq_description">Si vous rencontrez des difficultés avec l'application, n'hésitez pas à consulter ces réponses aux questions fréquentes !</string>
     <string name="faq">Consulter sur le site web</string>
     <string name="open_in_browser">Ouvrir dans le navigateur</string>
-    <string name="done">Fait</string>
+    <string name="done">Terminé</string>
     <string name="not_available">Indisponible</string>
 </resources>

@@ -110,7 +110,7 @@
     <string name="title_licenses">Licences de tiers</string>
     <string name="tab_about">À propos &amp; FAQ</string>
     <string name="tab_licenses">Licences</string>
-    <string name="app_description">Un service de streaming libre et léger sur Android.</string>
+    <string name="app_description">Streaming libre et léger sur Android.</string>
     <string name="view_on_github">Consulter sur GitHub</string>
     <string name="app_license_title">Licence de NewPipe</string>
     <string name="read_full_license">Lire la licence</string>
@@ -447,7 +447,7 @@
     <string name="app_language_title">Langue de l’application</string>
     <string name="systems_language">Prédéfini par le système</string>
     <string name="subtitle_activity_recaptcha">Appuyez sur « Terminé » une fois résolu</string>
-    <string name="done">Fait</string>
+    <string name="done">Terminé</string>
     <string name="videos_string">Vidéos</string>
     <string name="new_seek_duration_toast">En raison des contraintes d’ExoPlayer, le pas de déplacement a été réglée à %d secondes</string>
     <string name="mute">Couper le son</string>

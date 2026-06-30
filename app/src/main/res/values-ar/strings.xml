@@ -23,7 +23,7 @@
     <string name="light_theme_title">فاتح</string>
     <string name="network_error">خطأ في الشبكة</string>
     <string name="no_player_found">لم يتم العثور على مشغل بث. تود تثبيت VLC؟</string>
-    <string name="open_in_browser">فتح في متصفح الويب</string>
+    <string name="open_in_browser">فتح في المتصفح</string>
     <string name="play_audio">الصوت</string>
     <string name="play_with_kodi_title">تشغيل بواسطة كودي</string>
     <string name="search">البحث</string>
@@ -60,7 +60,7 @@
     <string name="all">الجميع</string>
     <string name="video">الفيديو</string>
     <string name="settings_category_downloads_title">التنزيل</string>
-    <string name="tab_about">حول التطبيق &amp; الأسئلة الشائعة</string>
+    <string name="tab_about">حول و الأسئلة الشائعة</string>
     <string name="title_activity_history">التاريخ</string>
     <string name="action_history">التاريخ</string>
     <string name="open_in_popup_mode">فتح في الوضع المنبثق</string>
@@ -147,20 +147,20 @@
     <string name="settings_file_replacement_character_title">استبدال الحرف</string>
     <string name="charset_letters_and_digits">الحروف والأرقام</string>
     <string name="charset_most_special_characters">معظم الأحرف الخاصة</string>
-    <string name="title_activity_about">عن تطبيق نيوپايپ</string>
-    <string name="title_licenses">تراخيص الجهات الخارجية</string>
+    <string name="title_activity_about">حول NewPipe</string>
+    <string name="title_licenses">تراخيص الطرف الثالث</string>
     <string name="tab_licenses">التراخيص</string>
-    <string name="app_description">تطبيق مجاني خفيف البث على أندرويد.</string>
+    <string name="app_description">بث مباشر خفيف الوزن مجاني على نظام أندرويد.</string>
     <string name="contribution_title">ساهم</string>
-    <string name="contribution_encouragement">إذا كانت لديك أفكار؛ أو ترجمة، أو تغييرات تخص التصميم، أو تنظيف و تحسين الشفرة البرمجية، أو تعديلات عميقة عليها، فتذكر أنّ مساعدتك دائما موضع ترحيب. وكلما أتممنا شيئا كلما كان ذلك أفضل!</string>
-    <string name="view_on_github">عرض على GitHub</string>
-    <string name="donation_title">تبرَّع</string>
-    <string name="donation_encouragement">يتم تطوير NewPipe من قبل متطوعين يقضون وقت فراغهم لتقديم أفضل تجربة لك. حان الوقت لرد المساعدة مع المطورين وجعل NewPipe أكثر و أفضل بينما يستمتعون بفنجان من القهوة.</string>
+    <string name="contribution_encouragement">سواءً كانت لديك أفكارٌ حول الترجمة، أو تغييرات التصميم، أو تنظيف الكود، أو حتى تغييرات جذرية فيه — فإن المساعدة مرحب بها دائمًا. كلما زاد العمل، كان ذلك أفضل!</string>
+    <string name="view_on_github">عرض علي GitHub</string>
+    <string name="donation_title">تبرع</string>
+    <string name="donation_encouragement">تم تطوير NewPipe بواسطة متطوعين يقضون أوقات فراغهم لتقديم أفضل تجربة مستخدم لكم. ساهموا في دعم المطورين لجعل NewPipe أفضل بينما يستمتعون بفنجان قهوة.</string>
     <string name="give_back">رد الجميل</string>
-    <string name="website_title">موقع الويب</string>
-    <string name="website_encouragement">قم بزيارة موقع NewPipe لمزيد من المعلومات والمستجدات.</string>
-    <string name="app_license_title">تراخيص NewPipe</string>
-    <string name="read_full_license">قراءة الرخصة</string>
+    <string name="website_title">الموقع الإلكتروني</string>
+    <string name="website_encouragement">قم بزيارة موقع NewPipe الإلكتروني لمزيد من المعلومات والأخبار.</string>
+    <string name="app_license_title">ترخيص NewPipe</string>
+    <string name="read_full_license">اقرأ الرخصة</string>
     <string name="delete_item_search_history">هل تريد حذف هذا العنصر من سجل البحث؟</string>
     <string name="main_page_content">محتوى الشاشة الرئيسية</string>
     <string name="blank_page_summary">صفحة فارغة</string>
@@ -282,7 +282,7 @@
     <string name="invalid_file">الملف غير موجود أو الإذن بالقراءة أو الكتابة إليه غير موجود</string>
     <string name="no_streams_available_download">لا يوجد بث متاح للتنزيل</string>
     <string name="one_item_deleted">تم حذف عنصر واحد.</string>
-    <string name="app_license">NewPipe هو برنامج مفتوح المصدر وبحقوق متروكة: يمكنك استخدام الكود ودراسته وتحسينه كما شئت. وعلى وجه التحديد يمكنك إعادة توزيعه / أو تعديله تحت شروط رخصة GNU العمومية والتي نشرتها مؤسسة البرمجيات الحرة، سواء الإصدار 3 من الرخصة، أو (باختيارك) أي إصدار أحدث.</string>
+    <string name="app_license">NewPipe هو برنامج مفتوح المصدر مرخص بموجب حقوق النشر: يمكنك استخدامه ودراسته ومشاركته وتحسينه كما تشاء. وبالتحديد، يمكنك إعادة توزيعه و/أو تعديله وفقًا لشروط رخصة GNU العمومية العامة كما نشرتها مؤسسة البرمجيات الحرة، سواء الإصدار 3 من الرخصة، أو (حسب اختيارك) أي إصدار لاحق.</string>
     <string name="title_last_played">آخر ما تم تشغيله</string>
     <string name="title_most_played">الأكثر تشغيلا</string>
     <string name="override_current_data">هذا سوف يُزيل إعداداتك الحالية.</string>
@@ -319,7 +319,7 @@
     <string name="privacy_policy_title">سياسة خصوصية NewPipe</string>
     <string name="privacy_policy_encouragement">يأخذ مشروع NewPipe خصوصيتك على محمل الجد. لذلك، لا يجمع التطبيق أي بيانات دون موافقتك.
 \nتوضح سياسة خصوصية NewPipe بالتفصيل البيانات التي يتم إرسالها وتخزينها عند إرسال تقرير الأعطال.</string>
-    <string name="read_privacy_policy">الإطلاع على سياسة الخصوصية</string>
+    <string name="read_privacy_policy">اقرأ سياسة الخصوصية</string>
     <string name="start_accept_privacy_policy">من أجل الامتثال للائحة الأوروبية العامة لحماية البيانات (GDPR)، فإننا نلفت انتباهك إلى سياسة خصوصية NewPipe. يرجى قراءتها بعناية.
 \nويجب عليك قبولها لإرسال تقرير الأخطاء إلينا.</string>
     <string name="accept">قبول</string>
@@ -462,7 +462,7 @@
     <string name="app_language_title">لغة التطبيق</string>
     <string name="systems_language">النظام الافتراضي</string>
     <string name="subtitle_activity_recaptcha">اضغط على \"تم\" عند حلها</string>
-    <string name="done">منجز</string>
+    <string name="done">تم</string>
     <string name="videos_string">الفيديوهات</string>
     <plurals name="seconds">
         <item quantity="zero">%d ثانية</item>
@@ -748,9 +748,9 @@
     <string name="unknown_format">تنسيق غير معروف</string>
     <string name="unknown_quality">جودة غير معروفة</string>
     <string name="progressive_load_interval_title">حجم الفاصل الزمني لتحميل التشغيل</string>
-    <string name="faq_title">أسئلة مكررة</string>
-    <string name="faq_description">إذا كنت تواجه مشكلة في استخدام التطبيق ، فتأكد من مراجعة هذه الإجابات للأسئلة الشائعة!</string>
-    <string name="faq">مشاهدة على الموقع</string>
+    <string name="faq_title">الأسئلة الشائعة</string>
+    <string name="faq_description">إذا كنت تواجه مشكلة في استخدام التطبيق، فتأكد من مراجعة هذه الإجابات على الأسئلة الشائعة!</string>
+    <string name="faq">عرض على الموقع الإلكتروني</string>
     <string name="sort">فرز</string>
     <string name="app_update_unavailable_toast">أنت تقوم بتشغيل أحدث إصدار من NewPipe</string>
     <string name="app_update_available_notification_text">انقر للتنزيل %s</string>

@@ -15,7 +15,7 @@
     <string name="website_title">Webová stránka</string>
     <string name="website_encouragement">Navštívte webovú stránku NewPipe pre viac informácií a noviniek.</string>
     <string name="privacy_policy_title">Zásady ochrany osobných údajov NewPipe</string>
-    <string name="privacy_policy_encouragement">Zásady ochrany osobných údajov NewPipe\nProjekt NewPipe berie vaše súkromie veľmi vážne. Preto aplikácia nezhromažďuje žiadne údaje bez vášho súhlasu.\nZásady ochrany osobných údajov NewPipe podrobne vysvetľujú, aké údaje sa odosielajú a ukladajú, keď odošlete správu o chybe.</string>
+    <string name="privacy_policy_encouragement">Projekt NewPipe berie ochranu vašich osobných údajov veľmi vážne. Aplikácia preto bez vášho súhlasu nezhromažďuje žiadne údaje.\nV zásadách ochrany osobných údajov NewPipe je podrobne vysvetlené, aké údaje sa odosielajú a ukladajú pri zaslaní správy o chybe.</string>
     <string name="read_privacy_policy">Prečítajte si zásady ochrany osobných údajov</string>
     <string name="app_license_title">Licencia NewPipe</string>
     <string name="app_license">NewPipe je voľný softvér s copyleftom: Môžete ho používať, študovať, zdieľať a vylepšovať podľa vlastného uváženia. Konkrétne ho môžete redistribuovať a/alebo modifikovať podľa podmienok Všeobecnej verejnej licencie GNU, ako ju uverejnila Free Software Foundation, buď verzie 3 licencie, alebo (podľa vášho výberu) akejkoľvek neskoršej verzie.</string>
