@@ -38,9 +38,16 @@ public final class IPv4Dns implements Dns {
         final List<InetAddress> addresses = Dns.SYSTEM.lookup(hostname);
 
         if (prefs.getBoolean(ipv4OnlyKey, false)) {
-            return addresses.stream()
+            final List<InetAddress> ipv4Addresses = addresses.stream()
                     .filter(address -> address instanceof Inet4Address)
                     .collect(Collectors.toList());
+
+            if (ipv4Addresses.isEmpty()) {
+                throw new UnknownHostException(
+                        hostname + ": No IPv4 address found (IPv4-only mode enabled)");
+            }
+
+            return ipv4Addresses;
         }
 
         return addresses;
