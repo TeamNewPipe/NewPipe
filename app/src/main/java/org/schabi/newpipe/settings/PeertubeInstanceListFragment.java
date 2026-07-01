@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.DiffUtil;
@@ -134,6 +135,17 @@ public class PeertubeInstanceListFragment extends Fragment {
                                     @NonNull final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_chooser_fragment, menu);
+        final SwitchCompat editSwitch =
+                (SwitchCompat) menu.findItem(R.id.menu_item_edit_mode).getActionView();
+        if (editSwitch != null) {
+            editSwitch.setChecked(
+                    instanceListAdapter != null && instanceListAdapter.editModeEnabled);
+            editSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                if (instanceListAdapter != null) {
+                    instanceListAdapter.setEditMode(isChecked);
+                }
+            });
+        }
     }
 
     @Override
@@ -196,42 +208,6 @@ public class PeertubeInstanceListFragment extends Fragment {
                     final String url = dialogBinding.dialogEditText.getText().toString();
                     addInstance(url);
                 })
-                .show();
-    }
-
-    private void showInstanceDialog(final PeertubeInstance instance, final int position) {
-        final boolean isSelected = instance.getUrl().equals(selectedInstance.getUrl());
-        final int itemCount = instanceListAdapter.getCurrentList().size();
-
-        final ArrayList<String> options = new ArrayList<>();
-        if (position > 0) {
-            options.add(getString(R.string.move_up));
-        }
-        if (position < itemCount - 1) {
-            options.add(getString(R.string.move_down));
-        }
-        if (!isSelected) {
-            options.add(getString(R.string.delete));
-        }
-
-        if (options.isEmpty()) {
-            return;
-        }
-
-        new AlertDialog.Builder(requireContext())
-                .setTitle(instance.getName())
-                .setItems(options.toArray(new String[0]), (dialog, which) -> {
-                    final String selected = options.get(which);
-                    if (selected.equals(getString(R.string.move_up))) {
-                        instanceListAdapter.swapItems(position, position - 1);
-                    } else if (selected.equals(getString(R.string.move_down))) {
-                        instanceListAdapter.swapItems(position, position + 1);
-                    } else if (selected.equals(getString(R.string.delete))) {
-                        showDeleteInstanceDialog(instance, position);
-                    }
-                })
-                .setCancelable(true)
-                .setNegativeButton(R.string.cancel, null)
                 .show();
     }
 
@@ -378,6 +354,12 @@ public class PeertubeInstanceListFragment extends Fragment {
         private final LayoutInflater inflater;
         private final ItemTouchHelper itemTouchHelper;
         private RadioButton lastChecked;
+        boolean editModeEnabled = false;
+
+        void setEditMode(final boolean enabled) {
+            editModeEnabled = enabled;
+            notifyDataSetChanged();
+        }
 
         InstanceListAdapter(final Context context, final ItemTouchHelper itemTouchHelper) {
             super(new PeertubeInstanceCallback());
@@ -412,15 +394,8 @@ public class PeertubeInstanceListFragment extends Fragment {
                 super(binding.getRoot());
                 this.itemBinding = binding;
 
-                itemView.setOnLongClickListener(this::onInstanceLongClick);
-            }
-
-            private boolean onInstanceLongClick(final View view) {
-                final int position = getBindingAdapterPosition();
-                if (position != RecyclerView.NO_POSITION) {
-                    showInstanceDialog(getItem(position), position);
-                }
-                return true;
+                itemView.setOnLongClickListener(null);
+                itemView.setOnClickListener(null);
             }
 
             @SuppressLint("ClickableViewAccessibility")
@@ -456,6 +431,34 @@ public class PeertubeInstanceListFragment extends Fragment {
                     }
                 });
                 itemBinding.instanceIcon.setImageResource(R.drawable.ic_placeholder_peertube);
+
+                itemBinding.handle.setVisibility(editModeEnabled ? View.GONE : View.VISIBLE);
+                itemBinding.itemActions.setVisibility(editModeEnabled ? View.VISIBLE : View.GONE);
+                if (editModeEnabled) {
+                    final boolean isActiveInstance =
+                            instance.getUrl().equals(selectedInstance.getUrl());
+                    itemBinding.btnMoveUp.setEnabled(position > 0);
+                    itemBinding.btnMoveDown.setEnabled(position < getItemCount() - 1);
+                    itemBinding.btnDelete.setEnabled(!isActiveInstance);
+                    itemBinding.btnMoveUp.setOnClickListener(v -> {
+                        final int pos = getBindingAdapterPosition();
+                        if (pos > 0) {
+                            swapItems(pos, pos - 1);
+                        }
+                    });
+                    itemBinding.btnMoveDown.setOnClickListener(v -> {
+                        final int pos = getBindingAdapterPosition();
+                        if (pos < getItemCount() - 1) {
+                            swapItems(pos, pos + 1);
+                        }
+                    });
+                    itemBinding.btnDelete.setOnClickListener(v -> {
+                        final int pos = getBindingAdapterPosition();
+                        if (pos != RecyclerView.NO_POSITION) {
+                            showDeleteInstanceDialog(getItem(pos), pos);
+                        }
+                    });
+                }
             }
         }
     }

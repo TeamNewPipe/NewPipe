@@ -151,6 +151,7 @@
     <string name="peertube_instance_add_exists">Instance already exists</string>
     <string name="move_up">Move up</string>
     <string name="move_down">Move down</string>
+    <string name="arrange">Arrange</string>
     <string name="settings_category_player_title">Player</string>
     <string name="settings_category_player_behavior_title">Behavior</string>
     <string name="settings_category_video_audio_title">Video and audio</string>
