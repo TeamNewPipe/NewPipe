@@ -15,7 +15,7 @@
     <string name="app_license_title">NewPipes licens</string>
     <string name="tab_licenses">Licenser</string>
     <string name="donation_title">Donera</string>
-    <string name="faq_description">Om du har problem med att använda appen, se till att kolla in dessa svar på några vanliga frågor!</string>
+    <string name="faq_description">Om du har problem med att använda appen, se till att läsa dessa svar på några vanliga frågor!</string>
     <string name="done">Klar</string>
     <string name="not_available">Icke tillgängligt</string>
     <string name="tab_about">Om &amp; vanliga frågor</string>
@@ -24,6 +24,6 @@
     <string name="faq">Visa på webbplatsen</string>
     <string name="open_in_browser">Öppna i webbläsare</string>
     <string name="license">Av %1$s under %2$s</string>
-    <string name="app_description">Libre lättviktsströmning på Android.</string>
+    <string name="app_description">Lättviktsströmning på Android med fri programvara.</string>
     <string name="view_on_github">Visa på GitHub</string>
 </resources>
