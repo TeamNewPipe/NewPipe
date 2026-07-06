@@ -206,7 +206,7 @@
     <string name="settings_file_replacement_character_title">Сімвал для замены</string>
     <string name="charset_letters_and_digits">Літары і лічбы</string>
     <string name="charset_most_special_characters">Большасць спецсімвалаў</string>
-    <string name="title_activity_about">Аб NewPipe</string>
+    <string name="title_activity_about">Пра NewPipe</string>
     <string name="title_licenses">Іншыя ліцэнзіі</string>
     <string name="copyright" formatted="true">© %1$s %2$s пад ліцэнзіяй %3$s</string>
     <string name="tab_about">Аб праграме</string>
