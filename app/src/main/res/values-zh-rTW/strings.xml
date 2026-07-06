@@ -140,11 +140,11 @@
     <string name="title_activity_about">關於 NewPipe</string>
     <string name="title_licenses">第三方授權條款</string>
     <string name="copyright" formatted="true">© %1$s 由 %2$s 使用 %3$s 授權條款發布</string>
-    <string name="tab_about">關於與常見問題</string>
+    <string name="tab_about">關於 &amp; 常見問題</string>
     <string name="tab_licenses">授權條款</string>
-    <string name="app_description">Android 上自由且輕巧的串流播放器。</string>
+    <string name="app_description">在 Android 上自由且輕量的串流。</string>
     <string name="view_on_github">在 GitHub 上檢視</string>
-    <string name="app_license_title">NewPipe 使用的授權條款</string>
+    <string name="app_license_title">NewPipe 的授權條款</string>
     <string name="contribution_encouragement">不管您有什麼點子 ── 翻譯、設計、清理或撰寫大量程式碼 ── 我們永遠歡迎您來幫忙。做得越多，NewPipe 就會更好！</string>
     <string name="read_full_license">閱讀授權條款</string>
     <string name="contribution_title">貢獻</string>
