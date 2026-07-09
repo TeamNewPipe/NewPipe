@@ -47,4 +47,31 @@
     <string name="settings_category_updates_title">Updates</string>
     <string name="settings_category_backup_restore_title">Backup and restore</string>
     <string name="settings_category_debug_title">Debug</string>
+
+    <!-- AppearanceSettingsScreen -->
+    <string name="theme_title">Theme</string>
+    <string name="light_theme_title">Light</string>
+    <string name="dark_theme_title">Dark</string>
+    <string name="black_theme_title">Black</string>
+    <string name="auto_device_theme_title">Automatic (device theme)</string>
+    <string name="night_theme_title">Night theme</string>
+    <string name="night_theme_summary">Select your favorite night theme — %1$s</string>
+    <string name="night_theme_available">This option is only available if %1$s is selected for Theme</string>
+    <string name="select_night_theme_toast">You can select your favorite night theme below</string>
+    <string name="show_hold_to_append_title">Show \"Hold to enqueue\" tip</string>
+    <string name="show_hold_to_append_summary">Show tip when pressing the background or the popup button in video \"Details:\"</string>
+    <string name="tablet_mode_title">Tablet mode</string>
+    <string name="list_view_mode">List view mode</string>
+    <string name="caption_setting_title">Captions</string>
+    <string name="caption_setting_description">Modify player caption text scale and background styles. Requires app restart to take effect</string>
+    <string name="main_tabs_position_title">Main tabs position</string>
+    <string name="main_tabs_position_summary">Move main tab selector to the bottom</string>
+    <string name="auto">Auto</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
+    <string name="list">List</string>
+    <string name="grid">Grid</string>
+    <string name="card">Card</string>
+    <string name="cancel">Cancel</string>
+
 </resources>
