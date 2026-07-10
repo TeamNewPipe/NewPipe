@@ -16,6 +16,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalInspectionMode
 import com.russhwolf.settings.Settings
 import org.koin.compose.koinInject
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import com.russhwolf.settings.ObservableSettings
 
 private val lightScheme = lightColorScheme(
     primary = primaryLight,
@@ -103,17 +109,41 @@ fun currentColorScheme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
     settings: Settings = koinInject()
 ): ColorScheme {
-    val nightScheme = when (settings.getString("night_theme", "dark_theme")) {
+    val theme = rememberSettingString(settings, "theme", "auto_device_theme")
+    val nightTheme = rememberSettingString(settings, "night_theme", "dark_theme")
+
+    val nightScheme = when (nightTheme) {
         "black_theme" -> blackScheme
         else -> darkScheme
     }
 
-    return when (settings.getString("theme", "auto_device_theme")) {
+    return when (theme) {
         "light_theme" -> lightScheme
         "dark_theme" -> darkScheme
         "black_theme" -> blackScheme
         else -> if (!useDarkTheme) lightScheme else nightScheme
     }
+}
+
+/**
+ * Reads a string setting as Compose state, updating when the stored value changes so theme
+ * edits made elsewhere (e.g. the Appearance screen) apply live without recreating the host.
+ */
+@Composable
+private fun rememberSettingString(
+    settings: Settings,
+    key: String,
+    defaultValue: String
+): String {
+    var value by remember(key) { mutableStateOf(settings.getString(key, defaultValue)) }
+    val observable = settings as? ObservableSettings
+    if (observable != null) {
+        DisposableEffect(key, observable) {
+            val listener = observable.addStringListener(key, defaultValue) { value = it }
+            onDispose { listener.deactivate() }
+        }
+    }
+    return value
 }
 
 /**
