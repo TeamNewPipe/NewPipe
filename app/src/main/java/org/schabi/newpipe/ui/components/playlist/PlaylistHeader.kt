@@ -19,6 +19,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -53,6 +54,11 @@ fun PlaylistHeader(
     playlistScreenInfo: PlaylistScreenInfo,
     streams: List<Stream?>
 ) {
+    val queueItems = remember(streams) {
+        streams.mapNotNull { it?.toStreamInfoItem() }
+    }
+    val queue = SinglePlayQueue(queueItems, 0)
+
     Column(
         modifier = Modifier.padding(12.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp)
@@ -62,7 +68,10 @@ fun PlaylistHeader(
         // Paging's load states only indicate when loading is currently happening, not if it can/will
         // happen. As such, the duration initially displayed will be the incomplete duration if more
         // items can be loaded.
-        PlaylistStats(playlistScreenInfo, streams.sumOf { it?.duration ?: 0 })
+        PlaylistStats(
+            playlistScreenInfo = playlistScreenInfo,
+            totalDuration = queueItems.sumOf { it.duration }
+        )
 
         if (playlistScreenInfo.description != Description.EMPTY_DESCRIPTION) {
             var isExpanded by rememberSaveable { mutableStateOf(false) }
@@ -93,10 +102,9 @@ fun PlaylistHeader(
             }
         }
 
-        val queueItems = streams.mapNotNull { it?.toStreamInfoItem() }
         PlaybackControlButtons(
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            queue = SinglePlayQueue(queueItems, 0)
+            playQueue = queue,
+            modifier = Modifier.align(Alignment.CenterHorizontally)
         )
     }
 }
