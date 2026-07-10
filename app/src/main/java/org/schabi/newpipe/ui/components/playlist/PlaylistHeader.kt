@@ -37,13 +37,12 @@ import org.schabi.newpipe.error.ErrorUtil
 import org.schabi.newpipe.extractor.ServiceList
 import org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper
 import org.schabi.newpipe.extractor.stream.Description
-import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.ktx.findFragmentActivity
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue
 import org.schabi.newpipe.ui.components.common.DescriptionText
 import org.schabi.newpipe.ui.components.common.PlaybackControlButtons
-import org.schabi.newpipe.ui.components.items.stream.StreamInfoItem
+import org.schabi.newpipe.ui.components.items.Stream
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
@@ -52,7 +51,7 @@ import org.schabi.newpipe.util.image.ImageStrategy
 @Composable
 fun PlaylistHeader(
     playlistScreenInfo: PlaylistScreenInfo,
-    streams: List<StreamInfoItem?>
+    streams: List<Stream?>
 ) {
     Column(
         modifier = Modifier.padding(12.dp),
@@ -94,9 +93,10 @@ fun PlaylistHeader(
             }
         }
 
+        val queueItems = streams.mapNotNull { it?.toStreamInfoItem() }
         PlaybackControlButtons(
             modifier = Modifier.align(Alignment.CenterHorizontally),
-            queue = SinglePlayQueue(streams.filterNotNull(), 0)
+            queue = SinglePlayQueue(queueItems, 0)
         )
     }
 }
@@ -184,7 +184,7 @@ private fun PlaylistHeaderPreview() {
         Surface {
             PlaylistHeader(
                 playlistScreenInfo = playlistScreenInfo,
-                streams = listOf(StreamInfoItem(streamType = StreamType.NONE))
+                streams = listOf(Stream(type = StreamType.NONE))
             )
         }
     }

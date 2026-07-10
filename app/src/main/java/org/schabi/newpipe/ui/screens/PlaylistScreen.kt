@@ -12,11 +12,10 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import org.schabi.newpipe.extractor.stream.Description
-import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.ui.components.common.LoadingIndicator
 import org.schabi.newpipe.ui.components.items.ItemList
-import org.schabi.newpipe.ui.components.items.stream.StreamInfoItem
+import org.schabi.newpipe.ui.components.items.Stream
 import org.schabi.newpipe.ui.components.playlist.PlaylistHeader
 import org.schabi.newpipe.ui.components.playlist.PlaylistScreenInfo
 import org.schabi.newpipe.ui.emptystate.EmptyStateComposable
@@ -34,7 +33,7 @@ fun PlaylistScreen(playlistViewModel: PlaylistViewModel = viewModel()) {
 @Composable
 private fun PlaylistScreen(
     uiState: Resource<PlaylistScreenInfo>,
-    streamFlow: Flow<PagingData<StreamInfoItem>>
+    streamFlow: Flow<PagingData<Stream>>
 ) {
     when (uiState) {
         is Resource.Success -> {
@@ -73,7 +72,7 @@ private fun PlaylistPreview() {
         thumbnails = listOf(),
         nextPage = null
     )
-    val stream = StreamInfoItem(streamType = StreamType.VIDEO_STREAM)
+    val stream = Stream(type = StreamType.VIDEO_STREAM)
     val streamFlow = flowOf(PagingData.from(listOf(stream)))
 
     AppTheme {

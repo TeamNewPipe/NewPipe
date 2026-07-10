@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
+import androidx.paging.map
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,12 +16,14 @@ import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.await
 import kotlinx.coroutines.withContext
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity
 import org.schabi.newpipe.paging.PlaylistItemsSource
+import org.schabi.newpipe.ui.components.items.Stream
 import org.schabi.newpipe.ui.components.playlist.PlaylistScreenInfo
 import org.schabi.newpipe.util.ExtractorHelper
 import org.schabi.newpipe.util.KEY_SERVICE_ID
@@ -50,6 +53,7 @@ class PlaylistViewModel(
                 PlaylistItemsSource(it.data)
             }.flow
         }
+        .map { pagingData -> pagingData.map { Stream(it) } }
         .flowOn(Dispatchers.IO)
         .cachedIn(viewModelScope)
 
