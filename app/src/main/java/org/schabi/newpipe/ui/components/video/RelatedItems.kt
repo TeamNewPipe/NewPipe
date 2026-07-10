@@ -23,31 +23,46 @@ import androidx.core.content.edit
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.preference.PreferenceManager
+import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.flow.flowOf
 import org.schabi.newpipe.R
+import org.schabi.newpipe.extractor.Image
+import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem
 import org.schabi.newpipe.extractor.stream.StreamInfo
+import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.info_list.ItemViewMode
 import org.schabi.newpipe.ui.components.items.ItemList
-import org.schabi.newpipe.ui.components.items.stream.StreamInfoItem
+import org.schabi.newpipe.ui.components.items.Playlist
+import org.schabi.newpipe.ui.components.items.Stream
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.NO_SERVICE_ID
 
 @Composable
 fun RelatedItems(info: StreamInfo) {
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(LocalContext.current)
+    val context = LocalContext.current
+    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
     val key = stringResource(R.string.auto_queue_key)
     // TODO: AndroidX DataStore might be a better option.
     var isAutoQueueEnabled by rememberSaveable {
         mutableStateOf(sharedPreferences.getBoolean(key, false))
     }
+    val displayItems = info.relatedItems.mapNotNull {
+        when (it) {
+            is StreamInfoItem -> Stream(it)
+            is PlaylistInfoItem -> Playlist(it)
+            else -> null
+        }
+    }
 
     ItemList(
-        items = flowOf(PagingData.from(info.relatedItems)).collectAsLazyPagingItems(),
+        items = flowOf(PagingData.from(displayItems)).collectAsLazyPagingItems(),
         mode = ItemViewMode.LIST,
         header = {
             Row(
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 12.dp, end = 12.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -71,6 +86,27 @@ fun RelatedItems(info: StreamInfo) {
             }
         }
     )
+}
+
+@Suppress("ktlint:standard:function-naming")
+private fun StreamInfoItem(
+    serviceId: Int = NO_SERVICE_ID,
+    url: String = "",
+    name: String = "Stream",
+    streamType: StreamType,
+    uploaderName: String? = "Uploader",
+    uploaderUrl: String? = null,
+    uploaderAvatars: List<Image> = emptyList(),
+    duration: Long = TimeUnit.HOURS.toSeconds(1),
+    viewCount: Long = 10,
+    textualUploadDate: String = "1 month ago"
+) = StreamInfoItem(serviceId, url, name, streamType).apply {
+    this.uploaderName = uploaderName
+    this.uploaderUrl = uploaderUrl
+    this.uploaderAvatars = uploaderAvatars
+    this.duration = duration
+    this.viewCount = viewCount
+    this.textualUploadDate = textualUploadDate
 }
 
 @Preview(name = "Light mode", uiMode = Configuration.UI_MODE_NIGHT_NO)

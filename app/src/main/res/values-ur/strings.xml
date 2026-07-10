@@ -204,8 +204,6 @@
     <string name="title_activity_history">سرگزشت</string>
     <string name="action_history">سرگزشت</string>
     <string name="delete_item_search_history">کیا آپ اس آئٹم کو تلاش کی سرگزشت سے حذف کرنا چاہتے ہیں؟</string>
-    <string name="title_last_played">آخری چلائی گئی</string>
-    <string name="title_most_played">سب سے زیادہ چلائی گئی</string>
     <string name="main_page_content">مرکزی صفحہ کا مواد</string>
     <string name="blank_page_summary">خالی صفحہ</string>
     <string name="kiosk_page_summary">رجحان صفحہ</string>

@@ -229,9 +229,7 @@
     <string name="title_activity_history">Гісторыя</string>
     <string name="action_history">Гісторыя</string>
     <string name="delete_item_search_history">Выдаліць гэты элемент з гісторыі пошуку?</string>
-    <string name="title_last_played">Прайгравалася нядаўна</string>
-    <string name="title_most_played">Прайгравалася найбольш</string>
-    <string name="main_page_content">Змесціва галоўнай старонкі</string>
+    <string name="main_page_content">Кантэнт галоўнай старонкі</string>
     <string name="blank_page_summary">Пустая старонка</string>
     <string name="kiosk_page_summary">Старонка кіёска</string>
     <string name="channel_page_summary">Старонка канала</string>

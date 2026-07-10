@@ -11,36 +11,39 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
+import androidx.room.Update
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Maybe
 import org.schabi.newpipe.database.BasicDAO
 import org.schabi.newpipe.database.stream.model.StreamStateEntity
 
 @Dao
-interface StreamStateDAO : BasicDAO<StreamStateEntity> {
+interface StreamStateDAO {
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insert(entity: StreamStateEntity): Long
 
-    @Query("SELECT * FROM " + StreamStateEntity.STREAM_STATE_TABLE)
-    override fun getAll(): Flowable<List<StreamStateEntity>>
+    @Update
+    fun update(entity: StreamStateEntity)
 
-    @Query("DELETE FROM " + StreamStateEntity.STREAM_STATE_TABLE)
-    override fun deleteAll(): Int
+    @Query("SELECT * FROM stream_state")
+    fun getAll(): Flowable<List<StreamStateEntity>>
 
-    override fun listByService(serviceId: Int): Flowable<List<StreamStateEntity>> {
-        throw UnsupportedOperationException()
-    }
+    @Query("DELETE FROM stream_state")
+    fun deleteAll(): Completable
 
-    @Query("SELECT * FROM " + StreamStateEntity.STREAM_STATE_TABLE + " WHERE " + StreamStateEntity.JOIN_STREAM_ID + " = :streamId")
+    @Query("SELECT * FROM stream_state WHERE stream_id = :streamId")
     fun getState(streamId: Long): Maybe<StreamStateEntity>
 
-    @Query("DELETE FROM " + StreamStateEntity.STREAM_STATE_TABLE + " WHERE " + StreamStateEntity.JOIN_STREAM_ID + " = :streamId")
-    fun deleteState(streamId: Long): Int
+    @Query("DELETE FROM stream_state WHERE stream_id = :streamId")
+    fun deleteState(streamId: Long): Completable
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun silentInsertInternal(streamState: StreamStateEntity)
 
     @Transaction
-    fun upsert(stream: StreamStateEntity): Long {
+    fun upsert(stream: StreamStateEntity) {
         silentInsertInternal(stream)
-        return update(stream).toLong()
+        update(stream)
     }
 }

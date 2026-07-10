@@ -1,7 +1,9 @@
 package org.schabi.newpipe.ui.components.items
 
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
@@ -13,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -26,12 +29,10 @@ import androidx.preference.PreferenceManager
 import androidx.window.core.layout.WindowWidthSizeClass
 import my.nanihadesuka.compose.LazyVerticalGridScrollbar
 import org.schabi.newpipe.R
-import org.schabi.newpipe.extractor.InfoItem
-import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem
-import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.info_list.ItemViewMode
 import org.schabi.newpipe.ktx.findFragmentActivity
 import org.schabi.newpipe.ui.components.common.LazyColumnThemedScrollbar
+import org.schabi.newpipe.ui.components.common.LoadingIndicator
 import org.schabi.newpipe.ui.components.common.defaultThemedScrollbarSettings
 import org.schabi.newpipe.ui.components.items.playlist.PlaylistListItem
 import org.schabi.newpipe.ui.components.items.stream.StreamCardItem
@@ -44,15 +45,15 @@ import org.schabi.newpipe.util.NavigationHelper
 
 @Composable
 fun ItemList(
-    items: LazyPagingItems<out InfoItem>,
+    items: LazyPagingItems<out Info>,
     mode: ItemViewMode = determineItemViewMode(),
     header: @Composable () -> Unit = {}
 ) {
     val context = LocalContext.current
     val onClick = remember {
-        { item: InfoItem ->
+        { item: Info ->
             val fragmentManager = context.findFragmentActivity().supportFragmentManager
-            if (item is StreamInfoItem) {
+            if (item is Stream) {
                 NavigationHelper.openVideoDetailFragment(
                     context,
                     fragmentManager,
@@ -62,7 +63,7 @@ fun ItemList(
                     null,
                     false
                 )
-            } else if (item is PlaylistInfoItem) {
+            } else if (item is Playlist) {
                 NavigationHelper.openPlaylistFragment(
                     fragmentManager,
                     item.serviceId,
@@ -75,9 +76,9 @@ fun ItemList(
 
     // Handle long clicks for stream items
     // TODO: Adjust the menu display depending on where it was triggered
-    var selectedStream by remember { mutableStateOf<StreamInfoItem?>(null) }
+    var selectedStream by rememberSaveable { mutableStateOf<Stream?>(null) }
     val onLongClick = remember {
-        { stream: StreamInfoItem ->
+        { stream: Stream ->
             selectedStream = stream
         }
     }
@@ -93,29 +94,44 @@ fun ItemList(
     if (items.loadState.refresh is LoadState.NotLoading && items.itemCount == 0) {
         EmptyStateComposable(
             spec = EmptyStateSpec.NoVideos,
-            modifier = Modifier.fillMaxWidth().heightIn(min = 128.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .heightIn(min = 128.dp)
         )
     } else if (mode == ItemViewMode.GRID) {
-        val gridState = rememberLazyGridState()
+        val state = rememberLazyGridState()
 
-        LazyVerticalGridScrollbar(state = gridState, settings = defaultThemedScrollbarSettings()) {
+        LazyVerticalGridScrollbar(state = state, settings = defaultThemedScrollbarSettings()) {
             val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
             val isCompact = windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT
-            val minSize = if (isCompact) 150.dp else 250.dp
+            val minWidth = if (isCompact) 150.dp else 250.dp
 
-            LazyVerticalGrid(state = gridState, columns = GridCells.Adaptive(minSize)) {
+            LazyVerticalGrid(
+                modifier = nestedScrollModifier,
+                state = state,
+                columns = GridCells.Adaptive(minWidth)
+            ) {
                 item(span = { GridItemSpan(maxLineSpan) }) {
                     header()
                 }
 
                 items(items.itemCount) {
-                    val item = items[it]!!
+                    val item = items[it]
+                    val isSelected = selectedStream == item
 
-                    // TODO: Handle channel and playlist items.
-                    if (item is StreamInfoItem) {
-                        val isSelected = selectedStream == item
-
-                        StreamGridItem(item, showProgress, isSelected, isCompact, onClick, onLongClick, onDismissPopup)
+                    // TODO: Implement playlist and channel grid items.
+                    if (item is Stream) {
+                        StreamGridItem(
+                            item,
+                            showProgress,
+                            isSelected,
+                            isCompact,
+                            onClick,
+                            onLongClick,
+                            onDismissPopup
+                        )
+                    } else if (item == null) { // Placeholder
+                        LoadingIndicator(Modifier.size(minWidth, if (isCompact) 150.dp else 200.dp))
                     }
                 }
             }
@@ -130,19 +146,35 @@ fun ItemList(
                 }
 
                 items(items.itemCount) {
-                    val item = items[it]!!
+                    val item = items[it]
 
-                    // TODO: Handle channel items.
-                    if (item is StreamInfoItem) {
+                    // TODO: Implement playlist and channel items.
+                    if (item is Stream) {
                         val isSelected = selectedStream == item
 
                         if (mode == ItemViewMode.CARD) {
-                            StreamCardItem(item, showProgress, isSelected, onClick, onLongClick, onDismissPopup)
+                            StreamCardItem(
+                                item,
+                                showProgress,
+                                isSelected,
+                                onClick,
+                                onLongClick,
+                                onDismissPopup
+                            )
                         } else {
-                            StreamListItem(item, showProgress, isSelected, onClick, onLongClick, onDismissPopup)
+                            StreamListItem(
+                                item,
+                                showProgress,
+                                isSelected,
+                                onClick,
+                                onLongClick,
+                                onDismissPopup
+                            )
                         }
-                    } else if (item is PlaylistInfoItem) {
+                    } else if (item is Playlist) {
                         PlaylistListItem(item, onClick)
+                    } else if (item == null) { // Placeholder
+                        LoadingIndicator(Modifier.height(80.dp))
                     }
                 }
             }

@@ -318,7 +318,6 @@
     <string name="faq_description">ߣߴߌ ߞߊ߬ ߜߟߍ߬ߦߊ߬ ߡߊߛߐ߬ߘߐ߲߬ ߟߥߊߟߌߟߊ߲ ߠߊߓߊ߯ߙߊ ߘߐ߫߸ ߢߌ߬ߣߌ߲߬ߞߊ߬ߟߌ߬ ߞߍߣߍ߲߫ ߛߌߦߊߡߊ߲ ߠߎ߬ ߡߊߝߍߣߍ߲߫ ߹</string>
     <string name="action_history">ߘߝߐ߬ߦߊ</string>
     <string name="delete_item_search_history">ߌ ߦߴߊ߬ ߝߍ߬ ߞߊ߬ ߝߌ߬ߛߌ ߣߌ߲߬ ߖߐ߬ߛߌ߫ ߢߌߣߌ߲ߠߌ߲߫ ߘߝߐ߬ߦߊ ߟߎ߬ ߘߐ߫؟</string>
-    <string name="title_most_played">ߦߋߡߍ߲ߕߊ߫ ߦߋߣߍ߲ߓߊ ߟߎ߬</string>
     <string name="main_page_content">ߓߏ߬ߟߏ߲߬ ߞߐߜߍ ߞߣߐߘߐ</string>
     <string name="override_current_data">ߏ߬ ߘߴߌ ߟߊ߫ ߛߋ߲߬ߠߊ߬ ߢߊߓߐߟߌ ߟߎ߬ ߓߍ߯ ߝߌߘߊ߲߫.</string>
     <string name="main_page_content_summary">ߛߎߥߊ߲ߘߟߌ ߞߍ߫ ߛߏ߬ߙߌ߲߬ߘߐ ߟߎ߬ ߟߊ߫߸ ߡߍ߲ ߠߎ߫ ߦߌ߬ߘߊ߬ߕߐ߫ ߓߏ߬ߟߏ߲߬ ߞߐߜߍ ߞߊ߲߬</string>
@@ -393,7 +392,6 @@
     <string name="read_full_license">ߞߊ߬ ߟߊ߬ߘߌߢߍ ߞߊ߬ߙߊ߲߬</string>
     <string name="faq">ߊ߬ ߡߊߝߍߣߍ߲߫ ߗߍߦߙߐ ߟߊ߫</string>
     <string name="title_activity_history">ߘߝߐ߬ߦߊ</string>
-    <string name="title_last_played">ߞߐߟߕߊ߫ ߕߏߟߏ߲ߣߍ߲ ߠߎ߬</string>
     <string name="channel_page_summary">ߥߙߏߝߋ߫ ߞߐߜߍ</string>
     <string name="kiosk_page_summary">ߝߎ߲ߞߎ߲ߟߋ߲</string>
     <string name="select_a_channel">ߥߙߏߝߋ ߘߏ߫ ߛߎߥߊ߲ߘߌ߫</string>

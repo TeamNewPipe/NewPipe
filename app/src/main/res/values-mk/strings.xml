@@ -206,8 +206,6 @@
     <string name="title_activity_history">Историја</string>
     <string name="action_history">Историја</string>
     <string name="delete_item_search_history">Сакаш да го избришеш предметот од историјата?</string>
-    <string name="title_last_played">Последно пуштено</string>
-    <string name="title_most_played">Најгледани</string>
     <string name="main_page_content">Содржина</string>
     <string name="blank_page_summary">Празна страна</string>
     <string name="kiosk_page_summary">Киоск</string>

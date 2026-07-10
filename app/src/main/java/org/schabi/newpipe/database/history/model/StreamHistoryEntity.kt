@@ -12,11 +12,7 @@ import androidx.room.ForeignKey
 import androidx.room.ForeignKey.Companion.CASCADE
 import androidx.room.Index
 import java.time.OffsetDateTime
-import org.schabi.newpipe.database.history.model.StreamHistoryEntity.Companion.JOIN_STREAM_ID
-import org.schabi.newpipe.database.history.model.StreamHistoryEntity.Companion.STREAM_ACCESS_DATE
-import org.schabi.newpipe.database.history.model.StreamHistoryEntity.Companion.STREAM_HISTORY_TABLE
 import org.schabi.newpipe.database.stream.model.StreamEntity
-import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_ID
 
 /**
  * @param streamUid the stream id this history item will refer to
@@ -24,33 +20,26 @@ import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_ID
  * @param repeatCount the total number of views this stream received
  */
 @Entity(
-    tableName = STREAM_HISTORY_TABLE,
-    primaryKeys = [JOIN_STREAM_ID, STREAM_ACCESS_DATE],
-    indices = [Index(value = [JOIN_STREAM_ID])],
+    tableName = "stream_history",
+    primaryKeys = ["stream_id", "access_date"],
+    indices = [Index(value = ["stream_id"])],
     foreignKeys = [
         ForeignKey(
             entity = StreamEntity::class,
-            parentColumns = arrayOf(STREAM_ID),
-            childColumns = arrayOf(JOIN_STREAM_ID),
+            parentColumns = arrayOf("uid"),
+            childColumns = arrayOf("stream_id"),
             onDelete = CASCADE,
             onUpdate = CASCADE
         )
     ]
 )
 data class StreamHistoryEntity(
-    @ColumnInfo(name = JOIN_STREAM_ID)
+    @ColumnInfo(name = "stream_id")
     val streamUid: Long,
 
-    @ColumnInfo(name = STREAM_ACCESS_DATE)
+    @ColumnInfo(name = "access_date")
     var accessDate: OffsetDateTime,
 
-    @ColumnInfo(name = STREAM_REPEAT_COUNT)
+    @ColumnInfo(name = "repeat_count")
     var repeatCount: Long
-) {
-    companion object {
-        const val STREAM_HISTORY_TABLE: String = "stream_history"
-        const val STREAM_ACCESS_DATE: String = "access_date"
-        const val JOIN_STREAM_ID: String = "stream_id"
-        const val STREAM_REPEAT_COUNT: String = "repeat_count"
-    }
-}
+)

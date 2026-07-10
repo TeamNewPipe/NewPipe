@@ -17,18 +17,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
-import org.schabi.newpipe.extractor.stream.StreamInfoItem
+import org.schabi.newpipe.ui.components.items.Stream
 import org.schabi.newpipe.ui.theme.AppTheme
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun StreamGridItem(
-    stream: StreamInfoItem,
+    stream: Stream,
     showProgress: Boolean,
     isSelected: Boolean = false,
     isMini: Boolean = false,
-    onClick: (StreamInfoItem) -> Unit = {},
-    onLongClick: (StreamInfoItem) -> Unit = {},
+    onClick: (Stream) -> Unit = {},
+    onLongClick: (Stream) -> Unit = {},
     onDismissPopup: () -> Unit = {}
 ) {
     Box {
@@ -55,10 +55,10 @@ fun StreamGridItem(
                 maxLines = 2
             )
 
-            Text(text = stream.uploaderName.orEmpty(), style = MaterialTheme.typography.bodySmall)
+            Text(text = stream.uploaderName, style = MaterialTheme.typography.bodySmall)
 
             Text(
-                text = getStreamInfoDetail(stream),
+                text = stream.detailText,
                 style = MaterialTheme.typography.bodySmall
             )
         }
@@ -71,24 +71,11 @@ fun StreamGridItem(
 @Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun StreamGridItemPreview(
-    @PreviewParameter(StreamItemPreviewProvider::class) stream: StreamInfoItem
+    @PreviewParameter(StreamItemPreviewProvider::class) stream: Stream
 ) {
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
-            StreamGridItem(stream, showProgress = false)
-        }
-    }
-}
-
-@Preview(name = "Light mode", uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-private fun StreamMiniGridItemPreview(
-    @PreviewParameter(StreamItemPreviewProvider::class) stream: StreamInfoItem
-) {
-    AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
-            StreamGridItem(stream, showProgress = false, isMini = true)
+        Surface {
+            StreamGridItem(stream, showProgress = false, isSelected = false)
         }
     }
 }

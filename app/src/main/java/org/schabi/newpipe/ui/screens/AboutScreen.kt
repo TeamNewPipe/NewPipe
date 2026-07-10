@@ -78,7 +78,7 @@ fun AboutScreen(padding: PaddingValues) {
 @Composable
 private fun AboutScreenPreview() {
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
+        Surface {
             AboutScreen(PaddingValues(8.dp))
         }
     }

@@ -46,7 +46,7 @@ fun IconButtonWithLabel(
 @Composable
 private fun IconButtonWithLabelPreview() {
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
+        Surface {
             IconButtonWithLabel(Icons.Default.Info, R.string.name) {}
         }
     }

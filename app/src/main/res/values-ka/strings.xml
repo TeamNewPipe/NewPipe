@@ -314,8 +314,6 @@
     <string name="title_activity_history">ისტორია</string>
     <string name="action_history">ისტორია</string>
     <string name="delete_item_search_history">გსურთ წაშალოთ ეს ელემენტი ძიების ისტორიიდან\?</string>
-    <string name="title_last_played">ბოლოს დაუკრა</string>
-    <string name="title_most_played">ხშირად დაკრული</string>
     <string name="main_page_content">მთავარი გვერდის შინაარსი</string>
     <string name="main_page_content_summary">რა ჩანართებია ნაჩვენები მთავარ გვერდზე</string>
     <string name="main_page_content_swipe_remove">გადაფურცლეთ ელემენტები მათი ამოსაშლელად</string>

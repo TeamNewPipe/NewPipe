@@ -17,7 +17,7 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity
     foreignKeys = [
         ForeignKey(
             entity = StreamEntity::class,
-            parentColumns = [StreamEntity.STREAM_ID],
+            parentColumns = ["uid"],
             childColumns = [STREAM_ID],
             onDelete = ForeignKey.CASCADE,
             onUpdate = ForeignKey.CASCADE,

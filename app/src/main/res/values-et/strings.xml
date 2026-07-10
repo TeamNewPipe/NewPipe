@@ -210,8 +210,6 @@
     <string name="title_activity_history">Ajalugu</string>
     <string name="action_history">Ajalugu</string>
     <string name="delete_item_search_history">Kas kustutame selle kirje otsinguajaloost\?</string>
-    <string name="title_last_played">Viimati esitatud</string>
-    <string name="title_most_played">Enim esitatud</string>
     <string name="main_page_content">Avalehe sisu</string>
     <string name="blank_page_summary">Tühi leht</string>
     <string name="kiosk_page_summary">Kioskivaade</string>

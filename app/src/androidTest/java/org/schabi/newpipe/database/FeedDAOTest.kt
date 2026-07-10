@@ -6,6 +6,9 @@ import androidx.test.core.app.ApplicationProvider
 import io.reactivex.rxjava3.core.Single
 import java.io.IOException
 import java.time.OffsetDateTime
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.rx3.await
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
@@ -106,14 +109,10 @@ class FeedDAOTest {
         )
     }
 
-    private fun setupUnlinkDelete(time: String) {
+    private fun setupUnlinkDelete(time: String) = runBlocking(Dispatchers.IO) {
         clearAndFillTables()
-        Single.fromCallable {
-            feedDAO.unlinkStreamsOlderThan(OffsetDateTime.parse(time))
-        }.blockingSubscribe()
-        Single.fromCallable {
-            streamDAO.deleteOrphans()
-        }.blockingSubscribe()
+        feedDAO.unlinkStreamsOlderThan(OffsetDateTime.parse(time))
+        streamDAO.deleteOrphans().await()
     }
 
     private fun clearAndFillTables() {

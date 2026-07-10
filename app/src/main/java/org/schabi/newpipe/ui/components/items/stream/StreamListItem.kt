@@ -20,17 +20,17 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import org.schabi.newpipe.extractor.stream.StreamInfoItem
+import org.schabi.newpipe.ui.components.items.Stream
 import org.schabi.newpipe.ui.theme.AppTheme
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun StreamListItem(
-    stream: StreamInfoItem,
+    stream: Stream,
     showProgress: Boolean,
     isSelected: Boolean,
-    onClick: (StreamInfoItem) -> Unit = {},
-    onLongClick: (StreamInfoItem) -> Unit = {},
+    onClick: (Stream) -> Unit = {},
+    onLongClick: (Stream) -> Unit = {},
     onDismissPopup: () -> Unit = {}
 ) {
     // Box serves as an anchor for the dropdown menu
@@ -58,10 +58,10 @@ fun StreamListItem(
                     maxLines = 2
                 )
 
-                Text(text = stream.uploaderName.orEmpty(), style = MaterialTheme.typography.bodySmall)
+                Text(text = stream.uploaderName, style = MaterialTheme.typography.bodySmall)
 
                 Text(
-                    text = getStreamInfoDetail(stream),
+                    text = stream.detailText,
                     style = MaterialTheme.typography.bodySmall
                 )
             }
@@ -75,7 +75,7 @@ fun StreamListItem(
 @Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun StreamListItemPreview(
-    @PreviewParameter(StreamItemPreviewProvider::class) stream: StreamInfoItem
+    @PreviewParameter(StreamItemPreviewProvider::class) stream: Stream
 ) {
     AppTheme {
         Surface {

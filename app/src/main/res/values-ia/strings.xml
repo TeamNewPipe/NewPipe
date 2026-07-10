@@ -136,8 +136,6 @@
     <string name="app_license_title">Licentia de NewPipe</string>
     <string name="read_full_license">Leger le licentia</string>
     <string name="action_history">Chronologia</string>
-    <string name="title_last_played">Ultime reproductiones</string>
-    <string name="title_most_played">Le plus reproducite</string>
     <string name="main_page_content">Contento del pagina principal</string>
     <string name="select_a_channel">Selige un canal</string>
     <string name="done">Preste</string>

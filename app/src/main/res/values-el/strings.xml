@@ -225,8 +225,6 @@
     <string name="app_license">Το NewPipe είναι copylelft ελεύθερο λογισμικό: Μπορείτε να το χρησιμοποιήσετε, να το μελετήσετε, να το μοιραστείτε και να το βελτιώσετε κατά βούληση. Ειδικότερα, μπορείτε να το αναδιανείμετε ή/και να το τροποποιήσετε υπό την άδεια GNU General Public Licence όπως αυτή εκδόθηκε από το Free Software Foundation, είτε υπό την έκδοση 3 της άδειας, είτε (προαιρετικά) υπό οποιαδήποτε μεταγενέστερη άδεια.</string>
     <string name="read_full_license">Ανάγνωση της άδειας</string>
     <string name="delete_item_search_history">Θέλετε να σβήσετε αυτό το αντικείμενο από το ιστορικό αναζήτησης;</string>
-    <string name="title_last_played">Τελευταία αναπαραγωγή</string>
-    <string name="title_most_played">Αναπαράχθηκε περισσότερο</string>
     <string name="main_page_content">Περιεχόμενο της κεντρικής σελίδας</string>
     <string name="blank_page_summary">Κενή σελίδα</string>
     <string name="kiosk_page_summary">Σελίδα περιπτέρου</string>
