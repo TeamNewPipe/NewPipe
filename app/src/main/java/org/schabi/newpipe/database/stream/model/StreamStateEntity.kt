@@ -10,29 +10,26 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.ForeignKey.Companion.CASCADE
-import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_ID
-import org.schabi.newpipe.database.stream.model.StreamStateEntity.Companion.JOIN_STREAM_ID
 import org.schabi.newpipe.database.stream.model.StreamStateEntity.Companion.PLAYBACK_FINISHED_END_MILLISECONDS
-import org.schabi.newpipe.database.stream.model.StreamStateEntity.Companion.STREAM_STATE_TABLE
 
 @Entity(
-    tableName = STREAM_STATE_TABLE,
-    primaryKeys = [JOIN_STREAM_ID],
+    tableName = "stream_state",
+    primaryKeys = ["stream_id"],
     foreignKeys = [
         ForeignKey(
             entity = StreamEntity::class,
-            parentColumns = arrayOf(STREAM_ID),
-            childColumns = arrayOf(JOIN_STREAM_ID),
+            parentColumns = arrayOf("uid"),
+            childColumns = arrayOf("stream_id"),
             onDelete = CASCADE,
             onUpdate = CASCADE
         )
     ]
 )
 data class StreamStateEntity(
-    @ColumnInfo(name = JOIN_STREAM_ID)
+    @ColumnInfo(name = "stream_id")
     val streamUid: Long,
 
-    @ColumnInfo(name = STREAM_PROGRESS_MILLIS)
+    @ColumnInfo(name = "progress_time")
     val progressMillis: Long
 ) {
     /**
@@ -61,14 +58,6 @@ data class StreamStateEntity(
     }
 
     companion object {
-        const val STREAM_STATE_TABLE = "stream_state"
-        const val JOIN_STREAM_ID = "stream_id"
-
-        // This additional field is required for the SQL query because 'stream_id' is used
-        // for some other joins already
-        const val JOIN_STREAM_ID_ALIAS = "stream_id_alias"
-        const val STREAM_PROGRESS_MILLIS = "progress_time"
-
         /**
          * Playback state will not be saved, if playback time is less than this threshold
          * (5000ms = 5s).

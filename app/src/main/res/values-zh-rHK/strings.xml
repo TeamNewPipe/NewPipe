@@ -317,8 +317,6 @@
     <string name="done">搞掂</string>
     <string name="privacy_policy_encouragement">NewPipe 專案非常著重你嘅私隱。因此，呢個 app 未得你同意係唔會收集任何資料。
 \nNewPipe 嘅私隱政策會詳述，當你傳送彈 app 報告嗰陣，有咩資料會傳送同保存。</string>
-    <string name="title_last_played">最近播放</string>
-    <string name="title_most_played">最常播放</string>
     <string name="main_page_content">頭條新嘢</string>
     <string name="main_page_content_summary">頭版要擺放邊啲分頁</string>
     <string name="main_page_content_swipe_remove">打橫掃走啲項目去剷走佢</string>

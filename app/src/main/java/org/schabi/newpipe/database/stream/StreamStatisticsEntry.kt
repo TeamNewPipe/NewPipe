@@ -11,9 +11,7 @@ import androidx.room.Embedded
 import androidx.room.Ignore
 import java.time.OffsetDateTime
 import org.schabi.newpipe.database.LocalItem
-import org.schabi.newpipe.database.history.model.StreamHistoryEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity
-import org.schabi.newpipe.database.stream.model.StreamStateEntity.Companion.STREAM_PROGRESS_MILLIS
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.util.image.ImageStrategy
 
@@ -21,16 +19,16 @@ data class StreamStatisticsEntry(
     @Embedded
     val streamEntity: StreamEntity,
 
-    @ColumnInfo(name = STREAM_PROGRESS_MILLIS, defaultValue = "0")
+    @ColumnInfo(name = "progress_time", defaultValue = "0")
     val progressMillis: Long,
 
-    @ColumnInfo(name = StreamHistoryEntity.JOIN_STREAM_ID)
+    @ColumnInfo(name = "stream_id")
     val streamId: Long,
 
-    @ColumnInfo(name = STREAM_LATEST_DATE)
+    @ColumnInfo(name = "latestAccess")
     val latestAccessDate: OffsetDateTime,
 
-    @ColumnInfo(name = STREAM_WATCH_COUNT)
+    @ColumnInfo(name = "watchCount")
     val watchCount: Long
 ) : LocalItem {
 
@@ -50,10 +48,5 @@ data class StreamStatisticsEntry(
             uploaderUrl = streamEntity.uploaderUrl
             thumbnails = ImageStrategy.dbUrlToImageList(streamEntity.thumbnailUrl)
         }
-    }
-
-    companion object {
-        const val STREAM_LATEST_DATE = "latestAccess"
-        const val STREAM_WATCH_COUNT = "watchCount"
     }
 }

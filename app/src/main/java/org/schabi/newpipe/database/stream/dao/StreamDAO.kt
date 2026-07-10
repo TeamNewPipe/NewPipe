@@ -12,7 +12,6 @@ import io.reactivex.rxjava3.core.Maybe
 import java.time.OffsetDateTime
 import org.schabi.newpipe.database.BasicDAO
 import org.schabi.newpipe.database.stream.model.StreamEntity
-import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_ID
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.util.StreamTypeUtil
 
@@ -29,9 +28,6 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
 
     @Query("SELECT * FROM streams WHERE url = :url AND service_id = :serviceId")
     abstract fun getStream(serviceId: Long, url: String): Maybe<StreamEntity>
-
-    @Query("UPDATE streams SET uploader_url = :uploaderUrl WHERE url = :url AND service_id = :serviceId")
-    abstract fun setUploaderUrl(serviceId: Long, url: String, uploaderUrl: String): Completable
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     internal abstract fun silentInsertInternal(stream: StreamEntity): Long
@@ -122,28 +118,28 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
         WHERE f.stream_id = streams.uid)
         """
     )
-    abstract fun deleteOrphans(): Int
+    abstract fun deleteOrphans(): Completable
 
     /**
      * Minimal entry class used when comparing/updating an existent stream.
      */
     internal data class StreamCompareFeed(
-        @ColumnInfo(name = STREAM_ID)
+        @ColumnInfo(name = "uid")
         var uid: Long = 0,
 
-        @ColumnInfo(name = StreamEntity.STREAM_TYPE)
+        @ColumnInfo(name = "stream_type")
         var streamType: StreamType,
 
-        @ColumnInfo(name = StreamEntity.STREAM_TEXTUAL_UPLOAD_DATE)
+        @ColumnInfo(name = "textual_upload_date")
         var textualUploadDate: String? = null,
 
-        @ColumnInfo(name = StreamEntity.STREAM_UPLOAD_DATE)
+        @ColumnInfo(name = "upload_date")
         var uploadDate: OffsetDateTime? = null,
 
-        @ColumnInfo(name = StreamEntity.STREAM_IS_UPLOAD_DATE_APPROXIMATION)
+        @ColumnInfo(name = "is_upload_date_approximation")
         var isUploadDateApproximation: Boolean? = null,
 
-        @ColumnInfo(name = StreamEntity.STREAM_DURATION)
+        @ColumnInfo(name = "duration")
         var duration: Long
     )
 }

@@ -259,6 +259,7 @@ dependencies {
     implementation(libs.androidx.media)
     implementation(libs.androidx.preference)
     implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.room.paging)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.rxjava3)
     ksp(libs.androidx.room.compiler)

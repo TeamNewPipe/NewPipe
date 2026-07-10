@@ -307,10 +307,10 @@ class MediaBrowserImpl(
     }
 
     private fun populateHistory(): Single<List<MediaBrowserCompat.MediaItem>> {
-        val history = database.streamHistoryDAO().history.firstOrError()
-        return history.map { items ->
-            items.map { this.createHistoryMediaItem(it) }
-        }
+        return database.streamHistoryDAO().getHistory().firstOrError()
+            .map { items ->
+                items.map { this.createHistoryMediaItem(it) }
+            }
     }
 
     private fun createHistoryMediaItem(streamHistoryEntry: StreamHistoryEntry): MediaBrowserCompat.MediaItem {

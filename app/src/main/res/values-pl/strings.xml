@@ -218,8 +218,6 @@
     <string name="create">Utwórz</string>
     <string name="dismiss">Odrzuć</string>
     <string name="rename">Zmień nazwę</string>
-    <string name="title_last_played">Ostatnio odtwarzane</string>
-    <string name="title_most_played">Najczęściej odtwarzane</string>
     <string name="export_complete_toast">Wyeksportowano</string>
     <string name="import_complete_toast">Zaimportowano</string>
     <string name="no_valid_zip_file">Nieprawidłowy plik ZIP</string>

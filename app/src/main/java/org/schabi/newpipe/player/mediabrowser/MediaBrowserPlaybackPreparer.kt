@@ -216,7 +216,7 @@ class MediaBrowserPlaybackPreparer(
         }
 
         val streamId = path[0].toLong()
-        return database.streamHistoryDAO().history
+        return database.streamHistoryDAO().getHistory()
             .firstOrError()
             .map { items ->
                 val infoItems = items

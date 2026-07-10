@@ -1,61 +1,66 @@
-/*
- * SPDX-FileCopyrightText: 2018-2022 NewPipe contributors <https://newpipe.net>
- * SPDX-FileCopyrightText: 2025 NewPipe e.V. <https://newpipe-ev.de>
- * SPDX-License-Identifier: GPL-3.0-or-later
- */
-
 package org.schabi.newpipe.database.history.dao
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
 import androidx.room.Query
-import androidx.room.RewriteQueriesToDropUnusedColumns
+import androidx.room.RawQuery
+import androidx.sqlite.db.SimpleSQLiteQuery
+import androidx.sqlite.db.SupportSQLiteQuery
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
-import org.schabi.newpipe.database.BasicDAO
+import io.reactivex.rxjava3.core.Single
 import org.schabi.newpipe.database.history.model.StreamHistoryEntity
 import org.schabi.newpipe.database.history.model.StreamHistoryEntry
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry
+import org.schabi.newpipe.database.stream.model.StreamEntity
+import org.schabi.newpipe.local.history.SortKey
 
 @Dao
-abstract class StreamHistoryDAO : BasicDAO<StreamHistoryEntity> {
+interface StreamHistoryDAO {
+    @Insert
+    fun insert(entity: StreamHistoryEntity): Long
 
-    @Query("SELECT * FROM stream_history")
-    abstract override fun getAll(): Flowable<List<StreamHistoryEntity>>
+    @Delete
+    fun delete(entity: StreamHistoryEntity)
 
     @Query("DELETE FROM stream_history")
-    abstract override fun deleteAll(): Int
+    fun deleteAll(): Completable
 
-    override fun listByService(serviceId: Int): Flowable<List<StreamHistoryEntity>> {
-        throw UnsupportedOperationException()
-    }
-
-    @get:Query("SELECT * FROM streams INNER JOIN stream_history ON uid = stream_id ORDER BY access_date DESC")
-    abstract val history: Flowable<MutableList<StreamHistoryEntry>>
-
-    @get:Query("SELECT * FROM streams INNER JOIN stream_history ON uid = stream_id ORDER BY uid ASC")
-    abstract val historySortedById: Flowable<MutableList<StreamHistoryEntry>>
+    @Query("SELECT * FROM streams INNER JOIN stream_history ON uid = stream_id ORDER BY uid ASC")
+    fun getHistorySortedById(): Flowable<List<StreamHistoryEntry>>
 
     @Query("SELECT * FROM stream_history WHERE stream_id = :streamId ORDER BY access_date DESC LIMIT 1")
-    abstract fun getLatestEntry(streamId: Long): StreamHistoryEntity?
+    fun getLatestEntry(streamId: Long): StreamHistoryEntity?
 
     @Query("DELETE FROM stream_history WHERE stream_id = :streamId")
-    abstract fun deleteStreamHistory(streamId: Long): Int
+    fun deleteStreamHistory(streamId: Long): Completable
 
-    // Select the latest entry and watch count for each stream id on history table
-    @RewriteQueriesToDropUnusedColumns
-    @Query(
-        """
-        SELECT * FROM streams
+    @Query("SELECT * FROM streams INNER JOIN stream_history ON uid = stream_id ORDER BY access_date DESC")
+    fun getHistory(): Flowable<List<StreamHistoryEntry>>
 
-        INNER JOIN (
-            SELECT stream_id, MAX(access_date) AS latestAccess, SUM(repeat_count) AS watchCount
-            FROM stream_history
-            GROUP BY stream_id
-        )
-        ON uid = stream_id
-
-        LEFT JOIN (SELECT stream_id AS stream_id_alias, progress_time FROM stream_state )
-        ON uid = stream_id_alias
-        """
+    @RawQuery(
+        observedEntities = [StreamStatisticsEntry::class, StreamEntity::class, StreamHistoryEntity::class]
     )
-    abstract fun getStatistics(): Flowable<MutableList<StreamStatisticsEntry>>
+    fun getOrderedHistoryByRaw(query: SupportSQLiteQuery): PagingSource<Int, StreamStatisticsEntry>
+
+    fun getOrderedHistory(key: SortKey): PagingSource<Int, StreamStatisticsEntry> {
+        val orderBy = when (key) {
+            SortKey.LAST_PLAYED -> "latestAccess"
+            SortKey.MOST_PLAYED -> "watchCount"
+        }
+        return getOrderedHistoryByRaw(
+            SimpleSQLiteQuery(
+                """SELECT * FROM streams INNER JOIN
+                (SELECT stream_id, MAX(access_date) AS latestAccess,
+                SUM(repeat_count) AS watchCount FROM stream_history GROUP BY stream_id)
+                ON uid = stream_id LEFT JOIN
+                (SELECT stream_id AS stream_id_alias, progress_time FROM stream_state)
+                ON uid = stream_id_alias
+                ORDER BY $orderBy DESC
+                """.trimIndent()
+            )
+        )
+    }
 }

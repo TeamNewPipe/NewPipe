@@ -46,8 +46,6 @@
     <string name="blank_page_summary">Tukša lapa</string>
     <string name="main_page_content_summary">Kādas cilnes rādīt galvenajā lapā</string>
     <string name="main_page_content">Galvenā lapa</string>
-    <string name="title_most_played">Visvairāk Atskaņotais</string>
-    <string name="title_last_played">Pēdējais atskaņotais</string>
     <string name="delete_item_search_history">Vai tiešām vēlaties izdzēst šo vaicājumu no meklēšanas vēstures?</string>
     <string name="action_history">Vēsture</string>
     <string name="title_activity_history">Vēsture</string>

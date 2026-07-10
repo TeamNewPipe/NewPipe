@@ -217,8 +217,6 @@
     <string name="detail_drag_description">Zum Neuordnen ziehen</string>
     <string name="create">Erstellen</string>
     <string name="rename">Umbenennen</string>
-    <string name="title_last_played">Zuletzt wiedergegeben</string>
-    <string name="title_most_played">Am häufigsten wiedergegeben</string>
     <string name="always_ask_open_action">Immer fragen</string>
     <string name="create_playlist">Neue Wiedergabeliste</string>
     <string name="rename_playlist">Umbenennen</string>

@@ -207,8 +207,6 @@
     <string name="title_activity_history">Geschiedenis</string>
     <string name="action_history">Geschiedenis</string>
     <string name="delete_item_search_history">Wilt u dit item verwijderen uit uw zoekgeschiedenis\?</string>
-    <string name="title_last_played">Laatst afgespeeld</string>
-    <string name="title_most_played">Meest afgespeeld</string>
     <string name="main_page_content">Inhoud van hoofdpagina</string>
     <string name="blank_page_summary">Blanco pagina</string>
     <string name="kiosk_page_summary">Kioskpagina</string>
