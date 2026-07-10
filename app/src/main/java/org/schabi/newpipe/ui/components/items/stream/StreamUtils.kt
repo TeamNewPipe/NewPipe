@@ -1,11 +1,11 @@
 package org.schabi.newpipe.ui.components.items.stream
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
+import java.util.concurrent.TimeUnit
 import org.schabi.newpipe.extractor.Image
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.util.NO_SERVICE_ID
-import java.util.concurrent.TimeUnit
 
 @Suppress("ktlint:standard:function-naming")
 fun StreamInfoItem(
