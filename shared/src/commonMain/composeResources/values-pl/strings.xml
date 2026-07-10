@@ -28,4 +28,15 @@
     <string name="license">%1$s na licencji %2$s</string>
     <string name="privacy_policy_encouragement">Projekt NewPipe bardzo poważnie traktuje Twoją prywatność, dlatego aplikacja nie gromadzi żadnych danych bez Twojej zgody. \nPolityka prywatności NewPipe szczegółowo wyjaśnia, jakie dane są zbierane i przesyłane, kiedy wysyłasz raport o awarii aplikacji.</string>
     <string name="not_available">Niedostępna</string>
+    <string name="settings">Ustawienia</string>
+    <string name="search">Szukaj</string>
+    <string name="content">Zawartość</string>
+    <string name="notifications">Powiadomienia</string>
+    <string name="settings_category_video_audio_title">Wideo i audio</string>
+    <string name="settings_category_downloads_title">Pobieranie</string>
+    <string name="settings_category_appearance_title">Wygląd</string>
+    <string name="settings_category_history_title">Historia i pamięć podręczna</string>
+    <string name="settings_category_updates_title">Aktualizacje</string>
+    <string name="settings_category_backup_restore_title">Kopia zapasowa i przywracanie</string>
+    <string name="settings_category_debug_title">Debugowanie</string>
 </resources>

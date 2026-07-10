@@ -26,4 +26,5 @@
     <string name="license">Av %1$s under %2$s</string>
     <string name="app_description">Lättviktsströmning på Android med fri programvara.</string>
     <string name="view_on_github">Visa på GitHub</string>
+    <string name="app_license">NewPipe är copyleft-licensierad fri programvara: du får använda, studera, dela och förbättra den som du vill. Mer specifikt får du distribuera och/eller modifiera den enligt villkoren i GNU General Public License, såsom den publicerats av Free Software Foundation, antingen version 3 av licensen eller, om du så önskar, någon senare version.</string>
 </resources>

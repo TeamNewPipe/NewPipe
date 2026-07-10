@@ -28,4 +28,15 @@
     <string name="privacy_policy_encouragement">NewPipe 项目非常严肃地对待您的隐私。因此，本应用没有您的同意不收集任何数据。\nNewPipe 的隐私政策详细解释发送崩溃报告时发送和存储的数据。</string>
     <string name="not_available">不可用</string>
     <string name="license">由%1$s制作，在%2$s协议下发行</string>
+    <string name="settings">设置</string>
+    <string name="search">搜索</string>
+    <string name="content">内容</string>
+    <string name="notifications">通知</string>
+    <string name="settings_category_video_audio_title">音视频</string>
+    <string name="settings_category_downloads_title">下载</string>
+    <string name="settings_category_appearance_title">外观</string>
+    <string name="settings_category_history_title">历史记录和缓存</string>
+    <string name="settings_category_updates_title">更新</string>
+    <string name="settings_category_backup_restore_title">备份和恢复</string>
+    <string name="settings_category_debug_title">调试</string>
 </resources>
