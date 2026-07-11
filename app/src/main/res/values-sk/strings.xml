@@ -116,7 +116,7 @@
     <string name="resume_on_audio_focus_gain_summary">Pokračouje v prehrávaní po prerušení (napr. po telefonáte)</string>
     <string name="notification_channel_name">NewPipe oznámenia</string>
     <string name="notification_channel_description">Notifikácie NewPipe prehrávača</string>
-    <string name="settings_category_downloads_title">Preberanie</string>
+    <string name="settings_category_downloads_title">Sťahovanie</string>
     <string name="settings_file_charset_title">Povolené znaky v názvoch súborov</string>
     <string name="settings_file_replacement_character_summary">Neplatné znaky budú nahradené znakmi s týmto významom</string>
     <string name="settings_file_replacement_character_title">Náhradný znak</string>
@@ -137,7 +137,7 @@
     <string name="action_history">História</string>
     <string name="settings_category_player_title">Prehrávač</string>
     <string name="settings_category_player_behavior_title">Správanie</string>
-    <string name="settings_category_history_title">História a vyrovnávacia pamäť</string>
+    <string name="settings_category_history_title">História a medzipamäť</string>
     <string name="undo">Vrátiť</string>
     <string name="search_no_results">Žiadne výsledky</string>
     <string name="empty_list_subtitle">Zatiaľ je tu ticho ako v hrobe</string>
@@ -308,8 +308,7 @@
     <string name="one_item_deleted">1 položka bola vymazaná.</string>
     <string name="app_license">NewPipe je voľný softvér s copyleftom: Môžete ho používať, študovať, zdieľať a vylepšovať podľa vlastného uváženia. Konkrétne ho môžete redistribuovať a/alebo modifikovať podľa podmienok Všeobecnej verejnej licencie GNU, ako ju uverejnila Free Software Foundation, buď verzie 3 licencie, alebo (podľa vášho výberu) akejkoľvek neskoršej verzie.</string>
     <string name="privacy_policy_title">Zásady ochrany osobných údajov NewPipe</string>
-    <string name="privacy_policy_encouragement">NewPipe projekt berie vaše súkromie vážne. Preto aplikácia nezhromažďuje žiadne údaje bez vášho súhlasu.
-\nNewPipe v ochrane súkromia podrobne vysvetľuje, aké údaje budú odoslané a uložené pri hlásení o páde.</string>
+    <string name="privacy_policy_encouragement">Projekt NewPipe berie ochranu vašich osobných údajov veľmi vážne. Aplikácia preto bez vášho súhlasu nezhromažďuje žiadne údaje.\nV zásadách ochrany osobných údajov NewPipe je podrobne vysvetlené, aké údaje sa odosielajú a ukladajú pri zaslaní správy o chybe.</string>
     <string name="read_privacy_policy">Prečítajte si zásady ochrany osobných údajov</string>
     <string name="import_settings">Chcete zároveň importovať aj nastavenia?</string>
     <string name="start_accept_privacy_policy">V súlade s Európskym Všeobecným Nariadením o Ochrane Údajov (GDPR), chceme upriamiť Vašu pozornosť na zmluvu o ochrane osobných údajov v NewPipe. Starostlivo si ju prečítajte.
@@ -677,7 +676,7 @@
     <string name="show_error_snackbar">Zobraziť krátke oznámenie chyby</string>
     <string name="create_error_notification">Oznámte chybu</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer preddefinovaný</string>
-    <string name="notifications">Upozornenia</string>
+    <string name="notifications">Oznámenia</string>
     <string name="streams_notifications_interval_title">Frekvencia kontroly</string>
     <string name="delete_downloaded_files_confirm">Vymazať všetky stiahnuté súbory z disku\?</string>
     <string name="notifications_disabled">Upozornenia sú vypnuté</string>

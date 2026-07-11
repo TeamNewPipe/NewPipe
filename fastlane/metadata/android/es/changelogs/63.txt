@@ -1,5 +1,5 @@
 ### Mejoras
-- Importar/exportar configuraciones #1333 
+- Importar/exportar ajustes #1333 
 - Reducción de sobreescritura (mejora de rendimiento) #1371 
 - Pequeñas mejoras de código #1375 
 - Agregado todo lo referente al RGPD #1420

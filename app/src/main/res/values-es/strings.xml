@@ -34,7 +34,7 @@
     <string name="download_path_audio_summary">Los archivos de audio descargados se almacenan aquí</string>
     <string name="download_path_audio_dialog_title">Elija la carpeta de descarga para los archivos de audio</string>
     <string name="download_path_audio_title">Carpeta de descarga de audio</string>
-    <string name="settings_category_video_audio_title">Vídeo y audio</string>
+    <string name="settings_category_video_audio_title">Video y audio</string>
     <string name="general_error">Error</string>
     <string name="network_error">Error de conexión</string>
     <string name="could_not_load_thumbnails">No se pudo cargar las miniaturas</string>
@@ -104,13 +104,13 @@
     <string name="title_activity_about">Acerca de NewPipe</string>
     <string name="title_licenses">Licencias de terceros</string>
     <string name="copyright" formatted="true">© %1$s por %2$s, bajo %3$s</string>
-    <string name="tab_about">FAQ y Acerca de</string>
+    <string name="tab_about">Acerca de y preguntas frecuentes</string>
     <string name="tab_licenses">Licencias</string>
-    <string name="app_description">Reproducción de transmisiones ligera y libre para Android.</string>
+    <string name="app_description">Streaming libre y ligero en Android.</string>
     <string name="view_on_github">Ver en GitHub</string>
     <string name="app_license_title">Licencia de NewPipe</string>
-    <string name="contribution_encouragement">Si puedes traducir, quieres cambiar el diseño, tienes ideas para mejorar el código o proponer mejoras grandes, siempre agradeceremos tu ayuda. ¡Mientras más manos participen, mejor!</string>
-    <string name="read_full_license">Leer licencia</string>
+    <string name="contribution_encouragement">Tanto si tiene ideas de traducción, cambios de diseño, limpieza de código o modificaciones profundas en el código, la ayuda siempre es bienvenida. ¡Cuanto más se haga, mejor se vuelve!</string>
+    <string name="read_full_license">Leer la licencia</string>
     <string name="contribution_title">Contribuir</string>
     <string name="subscribe_button_title">Suscribirse</string>
     <string name="subscribed_button_title">Suscrito</string>
@@ -184,10 +184,10 @@
     <string name="new_and_hot">Lo nuevo y lo mejor</string>
     <string name="hold_to_append">Mantener pulsado para añadir a la cola</string>
     <string name="donation_title">Donar</string>
-    <string name="donation_encouragement">NewPipe es desarrollado por voluntarios que emplean su tiempo libre para brindarle la mejor experiencia. Haz una aportación para ayudarlos a crear un NewPipe mejor mientras disfrutan de una taza de café.</string>
-    <string name="give_back">Devolver</string>
-    <string name="website_title">Sitio web</string>
-    <string name="website_encouragement">Visita el sitio web de NewPipe para más información y noticias.</string>
+    <string name="donation_encouragement">NewPipe es desarrollado por voluntarios que dedican su tiempo libre a ofrecerle la mejor experiencia de usuario. Colabore para ayudar a los desarrolladores a hacer que NewPipe sea aún mejor mientras disfrutan de una taza de café.</string>
+    <string name="give_back">Colaborar</string>
+    <string name="website_title">Sito web</string>
+    <string name="website_encouragement">Visita el nuevo sitio web de NewPipe para más detalles y noticias.</string>
     <string name="default_content_country_title">País predefinido del contenido</string>
     <string name="switch_to_background">Cambiar a segundo plano</string>
     <string name="switch_to_popup">Cambiar a emergente</string>
@@ -301,12 +301,12 @@
     <string name="delete_search_history_alert">¿Borrar todo el historial de búsqueda\?</string>
     <string name="search_history_deleted">Historial de búsquedas borrado</string>
     <string name="one_item_deleted">Se ha borrado 1 elemento.</string>
-    <string name="app_license">NewPipe es un software copyleft libre: puedes usarlo, estudiarlo, compartirlo y mejorarlo a voluntad. Específicamente, puedes redistribuirlo y/o modificarlo bajo los términos de la Licencia Pública General GNU publicada por la Free Software Foundation, ya sea la versión 3 de la licencia, o (a tu elección) cualquier versión posterior.</string>
+    <string name="app_license">NewPipe es software libre con copyleft: puede usarlo, estudiarlo, compartirlo y mejorarlo a su antojo. Específicamente, puede redistribuirlo y/o modificarlo bajo los términos de la Licencia Pública General de GNU publicada por la Free Software Foundation, ya sea la versión 3 de la Licencia o (a su elección) cualquier versión posterior.</string>
     <string name="import_settings">¿Quieres importar también los ajustes\?</string>
     <string name="privacy_policy_title">Política de privacidad de NewPipe</string>
     <string name="privacy_policy_encouragement">El proyecto NewPipe toma tu privacidad muy en serio. Por ello, la aplicación no recopila ningún dato sin tu consentimiento.
 \nLa política de privacidad de NewPipe explica en detalle qué datos se envían y almacenan al enviar un informe de fallo.</string>
-    <string name="read_privacy_policy">Leer política de privacidad</string>
+    <string name="read_privacy_policy">Leer la política de privacidad</string>
     <string name="start_accept_privacy_policy">Para cumplir con el «Reglamento general europeo de protección de datos (GDPR)», atraemos su atención sobre la política de privacidad de NewPipe. Por favor léase cuidadosamente.
 \nDebe aceptarlo para enviarnos el informe de error.</string>
     <string name="accept">Aceptar</string>
@@ -443,8 +443,8 @@
     <string name="permission_display_over_apps">Dar permiso para mostrar sobre otras aplicaciones</string>
     <string name="app_language_title">Idioma de aplicación</string>
     <string name="systems_language">Predefinido del sistema</string>
-    <string name="subtitle_activity_recaptcha">Pulsa en «Hecho» al resolverlo</string>
-    <string name="done">Hecho</string>
+    <string name="subtitle_activity_recaptcha">Pulsa en «Listo» al resolverlo</string>
+    <string name="done">Listo</string>
     <string name="videos_string">Vídeos</string>
     <plurals name="seconds">
         <item quantity="one">%d segundo</item>
@@ -701,9 +701,9 @@
     <string name="unknown_format">Formato desconocido</string>
     <string name="unknown_quality">Calidad desconocida</string>
     <string name="progressive_load_interval_title">Tamaño del intervalo de carga de reproducción</string>
-    <string name="faq">Ver en la página web</string>
+    <string name="faq">Ver en el sitio web</string>
     <string name="faq_title">Preguntas frecuentes</string>
-    <string name="faq_description">Si tienes problemas al usar la aplicación, ¡Asegúrate de verificar estas respuestas a preguntas comunes!</string>
+    <string name="faq_description">Si tiene problemas al usar la aplicación, ¡asegúrese de consultar estas respuestas a las preguntas comunes!</string>
     <string name="sort">Ordenar</string>
     <string name="fast_mode">Modo rápido</string>
     <string name="import_subscriptions_hint">Importa o exporta las suscripciones desde el menú con los tres puntos</string>
@@ -819,7 +819,7 @@
     <string name="no">No</string>
     <string name="auto_update_check_description">NewPipe puede buscar automáticamente nuevas versiones de vez en cuando y notificarle cuando estén disponibles.
 \n¿Quieres habilitar esto?</string>
-    <string name="import_settings_vulnerable_format">La configuración de la exportación que se importa utiliza un formato vulnerable que quedó obsoleto desde NewPipe 0.27.0. Asegúrese de que la exportación que se está importando provenga de una fuente confiable y prefiera usar solo exportaciones obtenidas de NewPipe 0.27.0 o posterior en el futuro. La compatibilidad con la importación de configuraciones en este formato vulnerable pronto se eliminará por completo y, luego, las versiones antiguas de NewPipe ya no podrán importar configuraciones de exportaciones desde las nuevas versiones.</string>
+    <string name="import_settings_vulnerable_format">Los ajustes de la exportación que se importa utiliza un formato vulnerable que quedó obsoleto desde NewPipe 0.27.0. Asegúrese de que la exportación que se está importando provenga de una fuente confiable y prefiera usar solo exportaciones obtenidas de NewPipe 0.27.0 o posterior en el futuro. La compatibilidad con la importación de configuraciones en este formato vulnerable pronto se eliminará por completo y, luego, las versiones antiguas de NewPipe ya no podrán importar configuraciones de exportaciones desde las nuevas versiones.</string>
     <string name="audio_track_type_secondary">secundaria</string>
     <string name="share_playlist_as_youtube_temporary_playlist">Compartir como lista de reproducción temporal de YouTube</string>
     <string name="tab_bookmarks_short">Lista de reproducción</string>
