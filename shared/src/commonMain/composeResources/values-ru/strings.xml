@@ -1,3 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="title_activity_about">О NewPipe</string>
+    <string name="title_licenses">Лицензии сторонних компонентов</string>
+    <string name="license">Автор: %1$s, лицензия: %2$s</string>
+    <string name="tab_about">О приложении и ответы на вопросы</string>
+    <string name="tab_licenses">Лицензии</string>
+    <string name="contribution_title">Помочь проекту</string>
+    <string name="contribution_encouragement">Будь то перевод, изменения дизайна, чистка кода или серьёзная переработка - любая помощь приветствуется. Чем больше сделано, тем лучше становится проект!</string>
+    <string name="view_on_github">Открыть на GitHub</string>
+    <string name="donation_title">Пожертвовать</string>
+    <string name="navigate_back">Назад</string>
+    <string name="donation_encouragement">NewPipe разрабатывают волонтёры, которые тратят свободное время, чтобы сделать приложение как можно удобнее. Поддержите разработчиков и помогите им сделать NewPipe ещё лучше - хотя бы за чашкой кофе.</string>
+    <string name="give_back">Поддержать проект</string>
+    <string name="website_title">Веб-сайт</string>
+    <string name="website_encouragement">Посетите сайт NewPipe, чтобы узнать больше и ознакомиться с новостями.</string>
+    <string name="privacy_policy_title">Политика конфиденциальности NewPipe</string>
+    <string name="privacy_policy_encouragement">Проект NewPipe очень серьёзно относится к защите вашей конфиденциальности. Поэтому приложение не собирает никаких данных без вашего согласия.\nВ политике конфиденциальности NewPipe подробно описано, какие данные отправляются и сохраняются при отправке отчёта о сбое.</string>
+    <string name="read_privacy_policy">Ознакомиться с политикой конфиденциальности</string>
+    <string name="app_license_title">Лицензия NewPipe</string>
+    <string name="app_license">NewPipe - свободное программное обеспечение, распространяемое на условиях копилефта. Вы можете свободно использовать, изучать, распространять и улучшать его. В частности, NewPipe можно распространять и/или изменять на условиях Стандартной общественной лицензии GNU, опубликованной Фондом свободного программного обеспечения, версии 3 либо, по вашему выбору, любой более поздней версии.</string>
 </resources>

@@ -27,4 +27,15 @@
     <string name="done">Hotovo</string>
     <string name="not_available">Nedostupné</string>
     <string name="navigate_back">Naspäť</string>
+    <string name="settings">Nastavenia</string>
+    <string name="search">Hľadať</string>
+    <string name="content">Obsah</string>
+    <string name="notifications">Oznámenia</string>
+    <string name="settings_category_video_audio_title">Video a zvuk</string>
+    <string name="settings_category_downloads_title">Sťahovanie</string>
+    <string name="settings_category_appearance_title">Vzhľad</string>
+    <string name="settings_category_history_title">História a medzipamäť</string>
+    <string name="settings_category_updates_title">Aktualizácie</string>
+    <string name="settings_category_backup_restore_title">Záloha a obnovenie</string>
+    <string name="settings_category_debug_title">Ladenie</string>
 </resources>
