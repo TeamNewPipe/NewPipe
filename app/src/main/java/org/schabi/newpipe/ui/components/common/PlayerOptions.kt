@@ -1,12 +1,7 @@
 package org.schabi.newpipe.ui.components.common
 
-import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.PlaylistPlay
-import androidx.compose.material.icons.filled.PictureInPicture
-import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.RichTooltip
@@ -25,7 +20,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -34,26 +28,27 @@ import androidx.compose.ui.unit.dp
 import net.newpipe.app.preview.ThemePreviewProvider
 import org.schabi.newpipe.R
 import org.schabi.newpipe.ktx.findFragmentActivity
+import org.schabi.newpipe.player.PlayerType
 import org.schabi.newpipe.player.playqueue.PlayQueue
 import org.schabi.newpipe.util.NavigationHelper.playOnBackgroundPlayer
 import org.schabi.newpipe.util.NavigationHelper.playOnMainPlayer
 import org.schabi.newpipe.util.NavigationHelper.playOnPopupPlayer
 
 @Composable
-fun PlaybackControlButtons(queue: PlayQueue) {
+fun PlayerOptions(queue: PlayQueue) {
     val context = LocalContext.current
-    var option by rememberSaveable { mutableStateOf<PlaybackOption?>(null) }
+    var option by rememberSaveable { mutableStateOf<PlayerType?>(null) }
 
     LaunchedEffect(option) {
         when (option) {
-            PlaybackOption.STANDARD -> playOnMainPlayer(context.findFragmentActivity(), queue)
-            PlaybackOption.BACKGROUND -> playOnBackgroundPlayer(context, queue, true)
-            PlaybackOption.POPUP -> playOnPopupPlayer(context, queue, false)
+            PlayerType.MAIN -> playOnMainPlayer(context.findFragmentActivity(), queue)
+            PlayerType.BACKGROUND -> playOnBackgroundPlayer(context, queue, true)
+            PlayerType.POPUP -> playOnPopupPlayer(context, queue, false)
             else -> {}
         }
     }
 
-    PlaybackControlButtons(
+    PlayerOptions(
         option = option,
         onSelectOption = { option = it }
     )
@@ -61,18 +56,18 @@ fun PlaybackControlButtons(queue: PlayQueue) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PlaybackControlButtons(
-    option: PlaybackOption?,
-    onSelectOption: (PlaybackOption) -> Unit
+fun PlayerOptions(
+    option: PlayerType?,
+    onSelectOption: (PlayerType) -> Unit
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(text = stringResource(R.string.playback_options_label))
+        Text(text = stringResource(R.string.player_options_label))
 
         SingleChoiceSegmentedButtonRow {
-            PlaybackOption.entries.forEachIndexed { index, key ->
+            PlayerType.entries.forEachIndexed { index, key ->
                 val tooltipState = rememberTooltipState()
 
                 TooltipBox(
@@ -88,7 +83,7 @@ fun PlaybackControlButtons(
                         selected = key == option,
                         onClick = { onSelectOption(key) },
                         shape = SegmentedButtonDefaults
-                            .itemShape(index = index, count = PlaybackOption.entries.size)
+                            .itemShape(index = index, count = PlayerType.entries.size)
                     ) {
                         Icon(
                             imageVector = key.icon,
@@ -101,18 +96,12 @@ fun PlaybackControlButtons(
     }
 }
 
-enum class PlaybackOption(@StringRes val title: Int, val icon: ImageVector) {
-    STANDARD(R.string.controls_standard_title, Icons.Default.PlayArrow),
-    BACKGROUND(R.string.controls_background_title, Icons.AutoMirrored.Default.PlaylistPlay),
-    POPUP(R.string.controls_popup_title, Icons.Default.PictureInPicture)
-}
-
 @PreviewWrapper(ThemePreviewProvider::class)
 @PreviewLightDark
 @Composable
-private fun PlaybackControlButtonsPreview() {
-    PlaybackControlButtons(
-        option = PlaybackOption.STANDARD,
+private fun PlayerOptionsPreview() {
+    PlayerOptions(
+        option = PlayerType.MAIN,
         onSelectOption = {}
     )
 }

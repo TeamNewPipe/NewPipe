@@ -566,9 +566,12 @@ public final class Player implements PlaybackListener, Listener {
     }
 
     private void initUIsForCurrentPlayerType() {
-        if ((UIs.get(MainPlayerUi.class) != null && playerType == PlayerType.MAIN)
-                || (UIs.get(BackgroundPlayerUi.class) != null && playerType == PlayerType.AUDIO)
-                || (UIs.get(PopupPlayerUi.class) != null && playerType == PlayerType.POPUP)) {
+        final var playerClass = switch (playerType) {
+            case MAIN -> MainPlayerUi.class;
+            case POPUP -> PopupPlayerUi.class;
+            case BACKGROUND -> BackgroundPlayerUi.class;
+        };
+        if (UIs.get(playerClass) != null) {
             // correct UI already in place
             return;
         }
@@ -578,7 +581,7 @@ public final class Player implements PlaybackListener, Listener {
         final PlayerBinding binding;
         if (ui != null) {
             binding = ui.getBinding();
-        } else if (playerType == PlayerType.AUDIO) {
+        } else if (playerType == PlayerType.BACKGROUND) {
             binding = null;
         } else {
             binding = PlayerBinding.inflate(LayoutInflater.from(context));
@@ -595,7 +598,7 @@ public final class Player implements PlaybackListener, Listener {
                 UIs.destroyAllOfType(BackgroundPlayerUi.class);
                 UIs.addAndPrepare(new PopupPlayerUi(this, binding));
                 break;
-            case AUDIO:
+            case BACKGROUND:
                 // destroys both MainPlayerUi and PopupPlayerUi
                 UIs.destroyAllOfType(VideoPlayerUi.class);
                 UIs.addAndPrepare(new BackgroundPlayerUi(this));
@@ -2406,7 +2409,7 @@ public final class Player implements PlaybackListener, Listener {
     }
 
     public boolean audioPlayerSelected() {
-        return playerType == PlayerType.AUDIO;
+        return playerType == PlayerType.BACKGROUND;
     }
 
     public boolean videoPlayerSelected() {
