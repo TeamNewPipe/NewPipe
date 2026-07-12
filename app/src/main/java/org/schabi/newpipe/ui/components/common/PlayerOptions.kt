@@ -33,6 +33,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueue
 import org.schabi.newpipe.util.NavigationHelper.playOnBackgroundPlayer
 import org.schabi.newpipe.util.NavigationHelper.playOnMainPlayer
 import org.schabi.newpipe.util.NavigationHelper.playOnPopupPlayer
+import org.schabi.newpipe.util.PermissionHelper
 
 @Composable
 fun PlayerOptions(queue: PlayQueue) {
@@ -50,7 +51,11 @@ fun PlayerOptions(queue: PlayQueue) {
 
     PlayerOptions(
         option = option,
-        onSelectOption = { option = it }
+        onSelectOption = {
+            if (it != PlayerType.POPUP || PermissionHelper.checkSystemAlertWindowPermission(context)) {
+                option = it
+            }
+        }
     )
 }
 
