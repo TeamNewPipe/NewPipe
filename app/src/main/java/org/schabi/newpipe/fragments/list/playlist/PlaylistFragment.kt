@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material3.Surface
-import androidx.core.os.bundleOf
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -29,7 +28,7 @@ import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.external_communication.ShareUtils
 import org.schabi.newpipe.viewmodels.PlaylistViewModel
 
-class PlaylistFragment : Fragment() {
+class PlaylistFragment : Fragment(), MenuProvider {
     private val viewModel by viewModels<PlaylistViewModel>()
 
     override fun onCreateView(
@@ -55,48 +54,48 @@ class PlaylistFragment : Fragment() {
             it.title = viewModel.playlistTitle
         }
 
-        activity.addMenuProvider(
-            object : MenuProvider {
-                override fun onCreateMenu(
-                    menu: Menu,
-                    menuInflater: MenuInflater
-                ) {
-                    menuInflater.inflate(R.menu.menu_playlist, menu)
+        activity.addMenuProvider(this, viewLifecycleOwner)
+    }
 
-                    viewLifecycleOwner.lifecycleScope.launch {
-                        repeatOnLifecycle(Lifecycle.State.STARTED) {
-                            viewModel.bookmarkFlow.collectLatest {
-                                val bookmarkButton = menu.findItem(R.id.menu_item_bookmark)
-                                bookmarkButton.setIcon(if (it == null) R.drawable.ic_playlist_add else R.drawable.ic_playlist_add_check)
-                                bookmarkButton.setTitle(if (it == null) R.string.bookmark_playlist else R.string.unbookmark_playlist)
-                            }
-                        }
-                    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        requireActivity().removeMenuProvider(this)
+    }
+
+    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+        menuInflater.inflate(R.menu.menu_playlist, menu)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.bookmarkFlow.collectLatest {
+                    val bookmarkButton = menu.findItem(R.id.menu_item_bookmark)
+                    bookmarkButton.setIcon(if (it == null) R.drawable.ic_playlist_add else R.drawable.ic_playlist_add_check)
+                    bookmarkButton.setTitle(if (it == null) R.string.bookmark_playlist else R.string.unbookmark_playlist)
                 }
+            }
+        }
+    }
 
-                override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                    when (menuItem.itemId) {
-                        R.id.action_settings -> {
-                            NavigationHelper.openSettings(activity)
-                        }
+    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+        val activity = requireActivity()
+        when (menuItem.itemId) {
+            R.id.action_settings -> {
+                NavigationHelper.openSettings(activity)
+            }
 
-                        R.id.menu_item_openInBrowser -> {
-                            ShareUtils.openUrlInBrowser(activity, viewModel.url)
-                        }
+            R.id.menu_item_openInBrowser -> {
+                ShareUtils.openUrlInBrowser(activity, viewModel.url)
+            }
 
-                        R.id.menu_item_bookmark -> {
-                            viewModel.toggleBookmark()
-                        }
+            R.id.menu_item_bookmark -> {
+                viewModel.toggleBookmark()
+            }
 
-                        R.id.menu_item_share -> {
-                            ShareUtils.shareText(activity, viewModel.playlistTitle, viewModel.url)
-                        }
-                    }
-                    return true
-                }
-            },
-            viewLifecycleOwner
-        )
+            R.id.menu_item_share -> {
+                ShareUtils.shareText(activity, viewModel.playlistTitle, viewModel.url)
+            }
+        }
+        return true
     }
 
     companion object {
@@ -106,11 +105,11 @@ class PlaylistFragment : Fragment() {
             url: String,
             playlistName: String
         ) = PlaylistFragment().apply {
-            arguments = bundleOf(
-                KEY_SERVICE_ID to serviceId,
-                KEY_URL to url,
-                KEY_TITLE to playlistName
-            )
+            arguments = Bundle().apply {
+                putInt(KEY_SERVICE_ID, serviceId)
+                putString(KEY_URL, url)
+                putString(KEY_TITLE, playlistName)
+            }
         }
     }
 }
