@@ -27,4 +27,15 @@
     <string name="faq">ਵੈੱਬਸਾਈਟ 'ਤੇ ਵੇਖੋ</string>
     <string name="open_in_browser">ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਖੋਲ੍ਹੋ</string>
     <string name="license">%1$s ਦੁਆਰਾ %2$s ਅਧੀਨ</string>
+    <string name="settings">ਸੈਟਿੰਗਾਂ</string>
+    <string name="search">ਖੋਜ ਕਰੋ</string>
+    <string name="content">ਸਮੱਗਰੀ</string>
+    <string name="notifications">ਨੋਟੀਫਿਕੇਸ਼ਨ</string>
+    <string name="settings_category_video_audio_title">ਵੀਡੀਓ ਅਤੇ ਆਡੀਓ</string>
+    <string name="settings_category_downloads_title">ਡਾਊਨਲੋਡ</string>
+    <string name="settings_category_appearance_title">ਦਿੱਖ</string>
+    <string name="settings_category_history_title">ਇਤਿਹਾਸ ਅਤੇ ਕੈਸ਼-ਭੰਡਾਰ</string>
+    <string name="settings_category_updates_title">ਅੱਪਡੇਟਾਂ</string>
+    <string name="settings_category_backup_restore_title">ਬੈਕਅੱਪ ਅਤੇ ਰੀਸਟੋਰ</string>
+    <string name="settings_category_debug_title">ਡੀ-ਬੱਗ</string>
 </resources>

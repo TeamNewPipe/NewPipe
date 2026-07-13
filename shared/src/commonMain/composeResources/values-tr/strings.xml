@@ -1,4 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_description">Android'de özgür ve hafif bir oynatıcı.</string>
+    <string name="navigate_back">Geri</string>
+    <string name="title_activity_about">NewPipe Hakkında</string>
+    <string name="title_licenses">Üçüncü Taraf Lisansları</string>
+    <string name="license">%1$s tarafından, %2$s altında</string>
+    <string name="tab_about">Hakkında ve SSS</string>
+    <string name="tab_licenses">Lisanslar</string>
+    <string name="contribution_title">Katkıda bulunun</string>
+    <string name="contribution_encouragement">Fikirleriniz; çeviri, tasarım değişiklikleri, kod temizliği ya da gerçek köklü kod değişikleri olsun yardımınıza her zaman açığız. Ne kadar çok yapılırsa o kadar iyi olur!</string>
+    <string name="view_on_github">GitHub'da Görüntüle</string>
+    <string name="donation_title">Bağışta bulunun</string>
+    <string name="donation_encouragement">NewPipe, boş zamanlarını size en iyi kullanıcı deneyimi sunmak için harcayan gönüllüler tarafından geliştirilmiştir. Geliştiricilerin bir fincan kahvenin tadını çıkarırken NewPipe'ı daha iyi hale getirmelerine yardımcı olun.</string>
+    <string name="give_back">Bağışta bulunun</string>
+    <string name="website_title">Web sitesi</string>
+    <string name="website_encouragement">Daha çok bilgi ve haber için NewPipe web sitesini ziyaret edin.</string>
+    <string name="privacy_policy_title">NewPipe'ın Gizlilik İlkesi</string>
+    <string name="privacy_policy_encouragement">NewPipe projesi, gizliliğinizi çok ciddiye alıyor. Bu nedenle, uygulama sizin izniniz olmadan herhangi bir veri toplamaz.\nNewPipe\\'ın gizlilik ilkesi, çökme raporu gönderdiğinizde hangi verilerin gönderildiğini ve saklandığını ayrıntılı olarak açıklar.</string>
+    <string name="read_privacy_policy">Gizlilik ilkesini oku</string>
+    <string name="app_license_title">NewPipe'ın Lisansı</string>
+    <string name="app_license">NewPipe, telif müsaadeli özgür yazılımdır: İstediğiniz gibi kullanabilir, öğrenebilir, paylaşabilir ve geliştirebilirsiniz. Özellikle, Özgür Yazılım Vakfı tarafından yayımlanan GNU Genel Kamu Lisansı 3. sürümü veya (isterseniz) daha sonraki sürümleri koşulları altında yeniden dağıtabilir ve/veya değiştirebilirsiniz.</string>
+    <string name="read_full_license">Lisansı oku</string>
+    <string name="faq_title">Sık Sorulan Sorular</string>
+    <string name="faq_description">Uygulamayı kullanırken sorun yaşıyorsanız, sık sorulan sorulara verilen bu yanıtlara göz atmayı unutmayın!</string>
+    <string name="faq">Web sitesinde görüntüle</string>
+    <string name="open_in_browser">Tarayıcıda aç</string>
+    <string name="done">Bitti</string>
+    <string name="not_available">Kullanılabilir değil</string>
+    <string name="settings">Ayarlar</string>
+    <string name="search">Ara</string>
+    <string name="content">İçerik</string>
+    <string name="notifications">Bildirimler</string>
+    <string name="settings_category_video_audio_title">Video ve ses</string>
+    <string name="settings_category_downloads_title">İndir</string>
+    <string name="settings_category_appearance_title">Görünüm</string>
+    <string name="settings_category_history_title">Geçmiş ve önbellek</string>
+    <string name="settings_category_updates_title">Güncellemeler</string>
+    <string name="settings_category_backup_restore_title">Yedekle ve geri yükle</string>
+    <string name="settings_category_debug_title">Hata ayıklama</string>
 </resources>
