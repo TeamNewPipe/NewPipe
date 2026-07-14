@@ -1,0 +1,5 @@
+• Aumento da versão mínima do Android para 6.0
+• Bugs corrigidos com importação de assinaturas
+• Corrigidos vários bugs com reprodução de vídeo
+• Corrigido um bug que impedia a abertura de downloads em outro aplicativo
+• Atualizações de tradução

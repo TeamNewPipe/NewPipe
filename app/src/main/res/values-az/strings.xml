@@ -100,7 +100,7 @@
     <string name="content">Məzmun</string>
     <string name="popup_playing_toast">Ani görüntü rejimində oynadılır</string>
     <string name="background_player_playing_toast">Fonda oynadılır</string>
-    <string name="settings_category_updates_title">Yeniləmələr</string>
+    <string name="settings_category_updates_title">Yenilənmələr</string>
     <string name="settings_category_debug_title">Sazlama</string>
     <string name="settings_category_appearance_title">Görünüş</string>
     <string name="settings_category_history_title">Tarixçə və qalıq</string>
@@ -562,7 +562,7 @@
     <string name="play_queue_remove">Sil</string>
     <string name="app_description">Android-də pulsuz, çevik yayımlanma.</string>
     <string name="copyright">© %1$s, %2$s tərəfindən %3$s altında</string>
-    <string name="settings_category_downloads_title">Endirmə</string>
+    <string name="settings_category_downloads_title">Yüklə</string>
     <string name="msg_popup_permission">Bu icazə, ani görüntü rejimində
 \naçmaq üçün lazımdır</string>
     <string name="msg_copied">Buferə köçürüldü</string>
@@ -740,7 +740,7 @@
     <string name="metadata_thumbnails">Miniatürlər</string>
     <string name="notification_actions_summary_android13">Aşağıdakı hər bildiriş fəaliyyətin ona toxunub redaktə edin. İlk üç fəaliyyət (oynatma/fasilə, əvvəlki və növbəti) sistem tərəfindən tənzimlənib və dəyişdirilə bilməz.</string>
     <string name="no">Xeyr</string>
-    <string name="settings_category_backup_restore_title">Nüsxələ və bərpa et</string>
+    <string name="settings_category_backup_restore_title">Nüsxələmə və bərpa</string>
     <string name="auto_update_check_description">NewPipe arabir avtomatik şəkildə yeni versiyaları yoxlaya və onlar mövcud olduqda sizə bildirə bilər.
 \nBunu aktivləşdirmək istəyirsiniz?</string>
     <string name="yes">Bəli</string>

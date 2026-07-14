@@ -29,7 +29,7 @@
     <string name="network_error">Hálózati hiba</string>
     <string name="background_player_playing_toast">Lejátszás a háttérben</string>
     <string name="settings_category_video_audio_title">Videó és hang</string>
-    <string name="settings_category_appearance_title">Megjelenés</string>
+    <string name="settings_category_appearance_title">Kinézet</string>
     <string name="content_language_title">Tartalom alapértelmezett nyelve</string>
     <string name="show_next_and_similar_title">„Következő” és „Hasonló” videók megjelenítése</string>
     <string name="dark_theme_title">Sötét</string>
@@ -107,7 +107,7 @@
     <string name="settings_category_player_title">Lejátszó</string>
     <string name="settings_category_player_behavior_title">Működés</string>
     <string name="settings_category_history_title">Előzmények és gyorsítótár</string>
-    <string name="settings_category_debug_title">Hibaelhárítás</string>
+    <string name="settings_category_debug_title">Hibakeresés</string>
     <string name="popup_playing_toast">Lejátszás felugró módban</string>
     <string name="all">Összes</string>
     <string name="disabled">Letiltva</string>
@@ -777,7 +777,7 @@
     <string name="error_insufficient_storage">Nincs elég szabad hely az eszközön</string>
     <string name="yes">Igen</string>
     <string name="no">Nem</string>
-    <string name="settings_category_backup_restore_title">Biztonsági mentés és helyreállítás</string>
+    <string name="settings_category_backup_restore_title">Biztonsági mentés és visszaállítás</string>
     <string name="auto_update_check_description">A NewPipe időről időre automatikusan ellenőrzi az új verziókat, és értesít, amint azok elérhetővé válnak.
 \nSzeretné engedélyezni ezt?</string>
     <string name="reset_settings_title">Beállítások alaphelyzetbe állítása</string>
