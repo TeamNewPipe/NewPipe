@@ -38,10 +38,10 @@ import org.schabi.newpipe.util.PermissionHelper
 @Composable
 fun PlayerOptions(queue: PlayQueue) {
     val context = LocalContext.current
-    var option by rememberSaveable { mutableStateOf<PlayerType?>(null) }
+    var selectedOption by rememberSaveable { mutableStateOf<PlayerType?>(null) }
 
-    LaunchedEffect(option) {
-        when (option) {
+    LaunchedEffect(selectedOption) {
+        when (selectedOption) {
             PlayerType.MAIN -> playOnMainPlayer(context.findFragmentActivity(), queue)
             PlayerType.BACKGROUND -> playOnBackgroundPlayer(context, queue, true)
             PlayerType.POPUP -> playOnPopupPlayer(context, queue, false)
@@ -50,10 +50,10 @@ fun PlayerOptions(queue: PlayQueue) {
     }
 
     PlayerOptions(
-        option = option,
+        selectedOption = selectedOption,
         onSelectOption = {
             if (it != PlayerType.POPUP || PermissionHelper.checkSystemAlertWindowPermission(context)) {
-                option = it
+                selectedOption = it
             }
         }
     )
@@ -62,7 +62,7 @@ fun PlayerOptions(queue: PlayQueue) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PlayerOptions(
-    option: PlayerType?,
+    selectedOption: PlayerType?,
     onSelectOption: (PlayerType) -> Unit
 ) {
     Row(
@@ -85,7 +85,7 @@ fun PlayerOptions(
                     state = tooltipState
                 ) {
                     SegmentedButton(
-                        selected = key == option,
+                        selected = key == selectedOption,
                         onClick = { onSelectOption(key) },
                         shape = SegmentedButtonDefaults
                             .itemShape(index = index, count = PlayerType.entries.size)
@@ -106,7 +106,7 @@ fun PlayerOptions(
 @Composable
 private fun PlayerOptionsPreview() {
     PlayerOptions(
-        option = PlayerType.MAIN,
+        selectedOption = PlayerType.MAIN,
         onSelectOption = {}
     )
 }
