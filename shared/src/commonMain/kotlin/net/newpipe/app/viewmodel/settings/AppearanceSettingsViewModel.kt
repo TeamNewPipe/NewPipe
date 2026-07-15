@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import com.russhwolf.settings.Settings
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import net.newpipe.app.preferences.AppearancePreferences
 import org.koin.core.annotation.KoinViewModel
 
 
