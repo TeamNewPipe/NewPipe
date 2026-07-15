@@ -4,7 +4,6 @@
  */
 
 import com.android.build.api.dsl.ApplicationExtension
-import com.mikepenz.aboutlibraries.plugin.DuplicateMode
 import java.util.regex.Pattern
 
 plugins {
@@ -29,12 +28,6 @@ val normalizedWorkingBranch = workingBranch
 
 kotlin {
     jvmToolchain(21)
-    compilerOptions {
-        // TODO: Drop annotation default target when it is stable
-        freeCompilerArgs.addAll(
-            "-Xannotation-default-target=param-property"
-        )
-    }
 }
 
 configure<ApplicationExtension> {
