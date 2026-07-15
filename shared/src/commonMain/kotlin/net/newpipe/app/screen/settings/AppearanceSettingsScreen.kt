@@ -33,7 +33,7 @@ import net.newpipe.app.composable.TopAppBar
 import net.newpipe.app.navigation.Navigator
 import net.newpipe.app.platform.AppearanceActions
 import net.newpipe.app.preview.ThemePreviewProvider
-import net.newpipe.app.viewmodel.settings.AppearancePreferences
+import net.newpipe.app.preferences.AppearancePreferences
 import net.newpipe.app.viewmodel.settings.AppearanceSettingsViewModel
 import newpipe.shared.generated.resources.Res
 import newpipe.shared.generated.resources.auto
