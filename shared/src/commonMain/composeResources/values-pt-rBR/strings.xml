@@ -1,3 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="navigate_back">Voltar</string>
+    <string name="title_activity_about">Sobre o NewPipe</string>
+    <string name="title_licenses">Licenças de terceiros</string>
+    <string name="license">Por %1$s sob %2$s</string>
+    <string name="tab_about">Sobre &amp; Perguntas Frequentes</string>
+    <string name="tab_licenses">Licenças</string>
+    <string name="app_description">Streaming leve e gratuito no Android.</string>
+    <string name="contribution_title">Contribuir</string>
+    <string name="contribution_encouragement">Caso você tenha ideias; tradução, alterações de design, limpeza de código ou alterações realmente pesadas de código, a ajuda é sempre bem-vinda. Quanto mais for feito, melhor será!</string>
+    <string name="view_on_github">Ver no GitHub</string>
+    <string name="donation_title">Doar</string>
+    <string name="donation_encouragement">O NewPipe é desenvolvido por voluntários que passam seu tempo livre trazendo a você a melhor experiência de usuário. Retribua para ajudar os desenvolvedores a tornar o NewPipe ainda melhor enquanto tomam uma xícara de café.</string>
+    <string name="give_back">Retribuir</string>
+    <string name="website_title">Site</string>
+    <string name="website_encouragement">Visite o site do NewPipe para mais informações e novidades.</string>
+    <string name="privacy_policy_title">Política de Privacidade do NewPipe</string>
+    <string name="privacy_policy_encouragement">O projeto NewPipe leva a sua privacidade muito a sério. Portanto, o aplicativo não coleta nenhum dado sem o seu consentimento.\nA política de privacidade do NewPipe explica detalhadamente quais dados são enviados e armazenados ao enviar um relatório de erro.</string>
+    <string name="read_privacy_policy">Leia a política de privacidade</string>
+    <string name="app_license_title">Licença do NewPipe</string>
+    <string name="app_license">NewPipe é um software copyleft libre: você pode usá-lo, estudá-lo, compartilhá-lo e melhorá-lo à vontade. Especificamente, você pode redistribuí-lo e/ou modificá-lo sob os termos da Licença Pública Geral GNU conforme publicada pela Free Software Foundation, seja a versão 3 da Licença ou (a seu critério) qualquer versão posterior.</string>
+    <string name="read_full_license">Ler licença</string>
+    <string name="faq_title">Perguntas frequentes</string>
+    <string name="faq_description">Se você estiver tendo problemas para usar o aplicativo, verifique estas respostas para perguntas comuns!</string>
+    <string name="faq">Ver no site</string>
+    <string name="open_in_browser">Abrir no navegador</string>
+    <string name="done">Concluído</string>
+    <string name="not_available">Não disponível</string>
+    <string name="settings">Configurações</string>
+    <string name="search">Pesquisar</string>
+    <string name="content">Conteúdo</string>
+    <string name="notifications">Notificações</string>
+    <string name="settings_category_video_audio_title">Vídeo e áudio</string>
+    <string name="settings_category_downloads_title">Download</string>
+    <string name="settings_category_appearance_title">Aparência</string>
+    <string name="settings_category_history_title">Histórico e cache</string>
+    <string name="settings_category_updates_title">Atualizações</string>
+    <string name="settings_category_backup_restore_title">Backup e restauração</string>
+    <string name="settings_category_debug_title">Depuração</string>
 </resources>

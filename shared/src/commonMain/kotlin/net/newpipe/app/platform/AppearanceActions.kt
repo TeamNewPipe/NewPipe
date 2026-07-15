@@ -9,8 +9,5 @@ package net.newpipe.app.platform
  * Platform-specific actions triggered from the Appearance settings screen.
  */
 interface AppearanceActions {
-    /**
-     * Opens the system captioning settings, where supported.
-     */
     fun openCaptionSettings()
 }

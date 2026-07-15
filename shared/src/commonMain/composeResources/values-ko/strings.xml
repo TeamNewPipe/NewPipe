@@ -27,4 +27,15 @@
     <string name="app_license">NewPipe는 카피레프트 자유 소프트웨어입니다: 마음대로 사용하고, 연구하고, 공유하고, 개선할 수 있습니다. 특히 자유 소프트웨어 재단에서 발행한 GNU 일반 공중 사용 라이센스의 조건에 따라 라이센스 버전 3 또는 (귀하의 선택에 따라) 이후 버전을 재배포 및/또는 수정할 수 있습니다.</string>
     <string name="faq_description">앱 사용에 문제가 있는 경우, 일반적인 질문에 대한 다음 답변을 확인하세요!</string>
     <string name="license">%1$s 제작 %2$s 하 배포</string>
+    <string name="settings">설정</string>
+    <string name="search">검색</string>
+    <string name="content">콘텐츠</string>
+    <string name="notifications">알림</string>
+    <string name="settings_category_video_audio_title">비디오 및 오디오</string>
+    <string name="settings_category_downloads_title">다운로드</string>
+    <string name="settings_category_appearance_title">외관</string>
+    <string name="settings_category_history_title">기록 및 캐시</string>
+    <string name="settings_category_updates_title">업데이트</string>
+    <string name="settings_category_backup_restore_title">백업 및 복원</string>
+    <string name="settings_category_debug_title">디버그</string>
 </resources>

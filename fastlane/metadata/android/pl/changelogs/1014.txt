@@ -1,0 +1,5 @@
+• Zwiększono minimalną wersję Androida do 6.0
+• Naprawiono błędy związane z importowaniem subskrypcji
+• Naprawiono wiele błędów związanych z odtwarzaniem wideo
+• Naprawiono błąd uniemożliwiający otwieranie pobranych plików w innych aplikacjach
+• Aktualizacje tłumaczeń

@@ -1,3 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_description">Viegls un brīvs, pieejams bezmaksas, straumēšanas atskaņotājs Android ierīcēm.</string>
+    <string name="navigate_back">Atpakaļ</string>
+    <string name="title_activity_about">Par NewPipe</string>
+    <string name="tab_about">Par un BUJ</string>
+    <string name="tab_licenses">Licences</string>
+    <string name="contribution_title">Dot savu artavu</string>
+    <string name="website_title">Vietne</string>
+    <string name="not_available">Nav pieejams</string>
+    <string name="title_licenses">Trešo pušu licences</string>
+    <string name="view_on_github">Skatīt GitHub</string>
+    <string name="open_in_browser">Atvērt pārlūkā</string>
+    <string name="faq">Skatīt vietnē</string>
+    <string name="read_privacy_policy">Lasīt konfidencialitātes politiku</string>
+    <string name="privacy_policy_title">NewPipe konfidencialitātes politika</string>
+    <string name="faq_title">Bieži uzdotie jautājumi</string>
+    <string name="website_encouragement">Apmeklējiet NewPipe vietni, lai iegūtu vairāk informācijas un jaunumus.</string>
+    <string name="faq_description">Ja jums rodas grūtības ar lietotnes izmantošanu, noteikti apskatiet bieži uzdoto jautājumu atbildes!</string>
+    <string name="contribution_encouragement">Neatkarīgi no tā, vai tās ir tulkojuma, dizaina izmaiņas, koda tīrīšanas un sakārtošanas vai patiešām apjomīgas koda izmaiņas idejas — jebkura palīdzība vienmēr ir gaidīta. Kopā mēs varam padarīt NewPipe projektu vēl labāku!</string>
+    <string name="donation_encouragement">NewPipe izstrādā brīvprātīgie savā brīvajā laikā, lai nodrošinātu jums pašu labāko lietošanas pieredzi. Atbalstiet izstrādātājus, lai palīdzētu padarīt NewPipe vēl labāku, kamēr viņi bauda tasi kafijas.</string>
+    <string name="privacy_policy_encouragement">Datu aizsardzība ir ļoti svarīga NewPipe projektam. Tāpēc lietotne neapkopo datus bez jūsu piekrišanas.\nNewPipe konfidencialitātes politika sīki izskaidro, kādi dati tiek nosūtīti un uzglabāti, kad nosūtiet nobrukšanas ziņojumu.</string>
+    <string name="app_license">NewPipe — bez autortiesību ierobežojumiem (copyleft) licencēta brīva, pieejama bezmaksas, programmatūra: jūs variet izmantot, pētīt, dalīties un uzlabot to jebkurā brīdī pēc saviem ieskatiem. Tieši jūs variet to izplatīt un/vai modificēt saskaņā ar GNU General Public License noteikumiem, ko publicējusi Free Software Foundation, vai nu zem licences 3. versijas, vai (pēc jūsu izvēles) jebkuras jaunākas versijas noteikumiem.</string>
+    <string name="license">Izstrādājis %1$s saskaņā ar %2$s licenci</string>
+    <string name="donation_title">Ziedot</string>
+    <string name="app_license_title">NewPipe licence</string>
+    <string name="read_full_license">Lasīt licenci</string>
+    <string name="done">Skaidrs</string>
+    <string name="give_back">Atbalstīt projektu</string>
 </resources>

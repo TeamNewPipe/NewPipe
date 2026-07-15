@@ -27,4 +27,15 @@
     <string name="open_in_browser">Megnyitás böngészőben</string>
     <string name="done">Kész</string>
     <string name="not_available">Nem elérhető</string>
+    <string name="settings">Beállítások</string>
+    <string name="search">Keresés</string>
+    <string name="content">Tartalom</string>
+    <string name="notifications">Értesítések</string>
+    <string name="settings_category_video_audio_title">Videó és hang</string>
+    <string name="settings_category_downloads_title">Letöltés</string>
+    <string name="settings_category_appearance_title">Kinézet</string>
+    <string name="settings_category_history_title">Előzmények és gyorsítótár</string>
+    <string name="settings_category_updates_title">Frissítések</string>
+    <string name="settings_category_backup_restore_title">Biztonsági mentés és visszaállítás</string>
+    <string name="settings_category_debug_title">Hibakeresés</string>
 </resources>

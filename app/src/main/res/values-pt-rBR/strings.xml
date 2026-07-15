@@ -76,7 +76,7 @@
     <string name="parsing_error">O site não pôde ser analisado</string>
     <string name="play_audio">Áudio</string>
     <string name="play_with_kodi_title">Reproduzir no Kodi</string>
-    <string name="search">Buscar</string>
+    <string name="search">Pesquisar</string>
     <string name="show_play_with_kodi_summary">Mostrar opção para reproduzir o vídeo no Kodi</string>
     <string name="use_external_audio_player_title">Usar player de áudio externo</string>
     <string name="use_external_video_player_title">Usar um player de vídeo alternativo</string>
@@ -101,15 +101,15 @@
     <string name="show_search_suggestions_title">Sugestões de busca</string>
     <string name="show_search_suggestions_summary">Escolha as sugestões a serem exibidas enquanto estiver buscando</string>
     <string name="best_resolution">Melhor resolução</string>
-    <string name="title_licenses">Licenças de Terceiros</string>
-    <string name="tab_about">Sobre &amp; FAQ</string>
+    <string name="title_licenses">Licenças de terceiros</string>
+    <string name="tab_about">Sobre &amp; Perguntas Frequentes</string>
     <string name="tab_licenses">Licenças</string>
-    <string name="app_description">Transmissão leve e livre no Android.</string>
+    <string name="app_description">Streaming leve e gratuito no Android.</string>
     <string name="view_on_github">Ver no GitHub</string>
     <string name="app_license_title">Licença do NewPipe</string>
-    <string name="contribution_encouragement">Se você tem ideias de: tradução, mudança no design, limpeza de código ou grandes mudanças de código — ajuda é sempre bem-vinda. Quanto mais se faz, melhor fica!</string>
-    <string name="read_full_license">Ver licença</string>
-    <string name="contribution_title">Colaborar</string>
+    <string name="contribution_encouragement">Caso você tenha ideias; tradução, alterações de design, limpeza de código ou alterações realmente pesadas de código, a ajuda é sempre bem-vinda. Quanto mais for feito, melhor será!</string>
+    <string name="read_full_license">Ler licença</string>
+    <string name="contribution_title">Contribuir</string>
     <string name="copyright" formatted="true">© %1$s %2$s protegido pela licença %3$s</string>
     <string name="title_activity_about">Sobre o NewPipe</string>
     <string name="settings_category_downloads_title">Download</string>
@@ -183,10 +183,10 @@
     <string name="unknown_content">[Desconhecido]</string>
     <string name="start_here_on_background">Reproduzir em segundo plano</string>
     <string name="start_here_on_popup">Reproduzir em um Popup</string>
-    <string name="donation_title">Fazer doação</string>
-    <string name="donation_encouragement">O NewPipe é desenvolvido por voluntários que usam seu tempo livre para trazer a você a melhor experiência de usuário. Retribua e ajude os desenvolvedores a tornarem o NewPipe ainda melhor enquanto eles desfrutam de uma xícara de café.</string>
+    <string name="donation_title">Doar</string>
+    <string name="donation_encouragement">O NewPipe é desenvolvido por voluntários que passam seu tempo livre trazendo a você a melhor experiência de usuário. Retribua para ajudar os desenvolvedores a tornar o NewPipe ainda melhor enquanto tomam uma xícara de café.</string>
     <string name="give_back">Retribuir</string>
-    <string name="website_title">Site oficial</string>
+    <string name="website_title">Site</string>
     <string name="website_encouragement">Visite o site do NewPipe para mais informações e novidades.</string>
     <string name="no_player_found_toast">O player de vídeo não foi encontrado, mas você pode instalar o VLC para tentar reproduzi-lo.</string>
     <string name="default_content_country_title">País padrão do conteúdo</string>
@@ -304,12 +304,12 @@
     <string name="delete_search_history_alert">Remover todo o histórico de buscas?</string>
     <string name="search_history_deleted">Histórico de busca removido</string>
     <string name="one_item_deleted">1 item excluído.</string>
-    <string name="app_license">NewPipe é um copyleft de software livre: Você pode usar, estudar, compartilhar e melhorar a seu gosto. Especificamente você pode redistribuir e/ou modificá-lo sob os termos da GNU General Public License como publicado pela Fundação de Software Livre, na versão 3 da Licença, ou (a seu critério) qualquer versão posterior.</string>
+    <string name="app_license">NewPipe é um software copyleft libre: você pode usá-lo, estudá-lo, compartilhá-lo e melhorá-lo à vontade. Especificamente, você pode redistribuí-lo e/ou modificá-lo sob os termos da Licença Pública Geral GNU conforme publicada pela Free Software Foundation, seja a versão 3 da Licença ou (a seu critério) qualquer versão posterior.</string>
     <string name="import_settings">Você também quer importar as configurações?</string>
-    <string name="privacy_policy_title">Política de privacidade do NewPipe</string>
+    <string name="privacy_policy_title">Política de Privacidade do NewPipe</string>
     <string name="privacy_policy_encouragement">O projeto NewPipe leva sua privacidade muito a sério. Por isso, o aplicativo não coleta nenhum dado sem seu consentimento.
 \nA política de privacidade do NewPipe explica em detalhes quais dados são envidados e salvos quando você manda um relatório de erro.</string>
-    <string name="read_privacy_policy">Ver política de privacidade</string>
+    <string name="read_privacy_policy">Leia a política de privacidade</string>
     <string name="start_accept_privacy_policy">A fim de cumprir com o Regulamento Geral sobre a Proteção de Dados da UE (RGPD), chamamos sua atenção para a política de privacidade do NewPipe. Por favor, leia com atenção.
 \nVocê deve aceitá-la para nos enviar o relatório de erros.</string>
     <string name="accept">Aceitar</string>
@@ -447,7 +447,7 @@
     <string name="app_language_title">Idioma do aplicativo</string>
     <string name="systems_language">Padrão do sistema</string>
     <string name="subtitle_activity_recaptcha">Toque em \"Pronto\" ao resolver</string>
-    <string name="done">Pronto</string>
+    <string name="done">Concluído</string>
     <string name="videos_string">Vídeos</string>
     <plurals name="seconds">
         <item quantity="one">%d segundo</item>
@@ -710,7 +710,7 @@
     <string name="unknown_quality">Qualidade desconhecida</string>
     <string name="progressive_load_interval_title">Tamanho do intervalo de carregamento da reprodução</string>
     <string name="faq">Ver no site</string>
-    <string name="faq_description">Se você está com problemas ao usar o aplicativo, confira estas respostas para perguntas comuns!</string>
+    <string name="faq_description">Se você estiver tendo problemas para usar o aplicativo, verifique estas respostas para perguntas comuns!</string>
     <string name="faq_title">Perguntas frequentes</string>
     <string name="sort">Classificar</string>
     <string name="fast_mode">Modo rápido</string>
@@ -822,7 +822,7 @@
     <string name="error_insufficient_storage">Não há espaço livre suficiente no dispositivo</string>
     <string name="yes">Sim</string>
     <string name="no">Não</string>
-    <string name="settings_category_backup_restore_title">Backup &amp; Restauração</string>
+    <string name="settings_category_backup_restore_title">Backup e restauração</string>
     <string name="auto_update_check_description">O NewPipe pode verificar automaticamente se há novas versões de tempos em tempos e notificá-lo quando elas estiverem disponíveis.
 \nDeseja ativar essa opção?</string>
     <string name="reset_settings_title">Restaurar configurações</string>

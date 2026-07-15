@@ -1,0 +1,5 @@
+• En düşük Android sürümü 6.0’a yükseltildi
+• Aboneliklerin içe aktarılmasıyla ilgili hatalar giderildi
+• Video oynatma ile ilgili çeşitli hatalar giderildi
+• İndirilenlerin başka bir uygulamada açılmasını engelleyen bir hata giderildi
+• Çeviri güncellemeleri

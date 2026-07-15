@@ -39,7 +39,7 @@
     <string name="subscribed_button_title">已订阅</string>
     <string name="enable_watch_history_title">记录播放记录</string>
     <string name="settings_category_player_title">播放器</string>
-    <string name="settings_category_history_title">历史记录与缓存</string>
+    <string name="settings_category_history_title">历史记录和缓存</string>
     <string name="undo">撤销</string>
     <string name="play_all">播放全部</string>
     <string name="always">总是</string>
@@ -126,7 +126,7 @@
     <string name="play_audio">音频</string>
     <string name="default_audio_format_title">默认音频格式</string>
     <string name="show_next_and_similar_title">显示“接下来”和“相似视频”</string>
-    <string name="settings_category_video_audio_title">视频和音频</string>
+    <string name="settings_category_video_audio_title">音视频</string>
     <string name="background_player_playing_toast">后台播放</string>
     <string name="content">内容</string>
     <string name="show_age_restricted_content_title">显示年龄限制的内容</string>
@@ -791,7 +791,7 @@
     <string name="show_less">显示较少</string>
     <string name="notification_actions_summary_android13">轻按下方的每个通知操作进行编辑。头三个动作（播放/暂停、上一个和下一个）是系统设置的，不能自定义。</string>
     <string name="error_insufficient_storage">设备剩余空间不足</string>
-    <string name="settings_category_backup_restore_title">备份和还原</string>
+    <string name="settings_category_backup_restore_title">备份和恢复</string>
     <string name="reset_settings_title">重置设置</string>
     <string name="reset_settings_summary">将所有设置重置为默认值</string>
     <string name="reset_all_settings">重置所有设置会取消你所有的偏好设置并重启应用。

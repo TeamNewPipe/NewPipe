@@ -27,4 +27,15 @@
     <string name="open_in_browser">Otevřít v prohlížeči</string>
     <string name="done">Hotovo</string>
     <string name="not_available">Nedostupné</string>
+    <string name="settings">Nastavení</string>
+    <string name="search">Hledat</string>
+    <string name="content">Obsah</string>
+    <string name="notifications">Oznámení</string>
+    <string name="settings_category_video_audio_title">Video a zvuk</string>
+    <string name="settings_category_downloads_title">Stahování</string>
+    <string name="settings_category_appearance_title">Vzhled</string>
+    <string name="settings_category_history_title">Historie a mezipaměť</string>
+    <string name="settings_category_updates_title">Aktualizace</string>
+    <string name="settings_category_backup_restore_title">Záloha a obnovení</string>
+    <string name="settings_category_debug_title">Ladění</string>
 </resources>

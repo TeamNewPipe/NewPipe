@@ -28,4 +28,15 @@
     <string name="license">به دست %1$s در %2$s</string>
     <string name="not_available">موجود نیست</string>
     <string name="privacy_policy_encouragement">پروژهٔ نیوپایپ محرمانگیتان را بسیار جدی می‌گیرد. برای همین کاره هیچ داده‌ای را بدون رضایتتان جمع‌آوری نمی‌کند.\nسیاست محرمانگی نیوپایپ با جزییات توضیح می‌دهد که هنگام گزارش فروپاشی چه داده‌هایی فرستاده و ذخیره می‌شوند.</string>
+    <string name="settings_category_debug_title">اشکال‌زدایی</string>
+    <string name="settings_category_backup_restore_title">پشتیبان و بازگردانی</string>
+    <string name="settings_category_history_title">تاریخچه و انباره</string>
+    <string name="settings_category_updates_title">به‌روز رسانی‌ها</string>
+    <string name="settings">تنظیمات</string>
+    <string name="search">جست‌وجو</string>
+    <string name="content">محتوا</string>
+    <string name="notifications">آگاهی‌ها</string>
+    <string name="settings_category_video_audio_title">ویدیو و صدا</string>
+    <string name="settings_category_downloads_title">بارگیری</string>
+    <string name="settings_category_appearance_title">ظاهر</string>
 </resources>
