@@ -16,8 +16,8 @@ import org.koin.core.annotation.Singleton
 @Singleton(binds = [BuildInfo::class])
 class AndroidBuildInfo(private val context: Context) : BuildInfo {
 
-    override val isDebug: Boolean =
-        context.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
+    override val isDebug: Boolean
+        get() = (context.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0) || !isReleaseApk
 
     @get:SuppressLint("NewApi")
     @OptIn(ExperimentalStdlibApi::class)
