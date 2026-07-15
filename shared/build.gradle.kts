@@ -149,10 +149,6 @@ dependencies {
     androidRuntimeClasspath(libs.jetbrains.compose.tooling)
 }
 
-koinCompiler {
-    userLogs = true // See what the compiler plugin detects
-}
-
 aboutLibraries {
     export {
         outputFile = file("src/iosMain/resources/aboutlibraries.json")
