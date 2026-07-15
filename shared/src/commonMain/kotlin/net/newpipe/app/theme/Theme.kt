@@ -22,6 +22,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.russhwolf.settings.ObservableSettings
+import net.newpipe.app.preferences.AppearancePreferences
 
 private val lightScheme = lightColorScheme(
     primary = primaryLight,
@@ -109,18 +110,22 @@ fun currentColorScheme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
     settings: Settings = koinInject()
 ): ColorScheme {
-    val theme = rememberSettingString(settings, "theme", "auto_device_theme")
-    val nightTheme = rememberSettingString(settings, "night_theme", "dark_theme")
+    val theme = rememberSettingString(
+        settings, AppearancePreferences.KEY_THEME, AppearancePreferences.DEFAULT_THEME
+    )
+    val nightTheme = rememberSettingString(
+        settings, AppearancePreferences.KEY_NIGHT_THEME, AppearancePreferences.DEFAULT_NIGHT_THEME
+    )
 
     val nightScheme = when (nightTheme) {
-        "black_theme" -> blackScheme
+        AppearancePreferences.THEME_BLACK -> blackScheme
         else -> darkScheme
     }
 
     return when (theme) {
-        "light_theme" -> lightScheme
-        "dark_theme" -> darkScheme
-        "black_theme" -> blackScheme
+        AppearancePreferences.THEME_LIGHT -> lightScheme
+        AppearancePreferences.THEME_DARK -> darkScheme
+        AppearancePreferences.THEME_BLACK -> blackScheme
         else -> if (!useDarkTheme) lightScheme else nightScheme
     }
 }
