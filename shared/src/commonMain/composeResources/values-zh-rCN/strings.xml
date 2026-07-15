@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">NewPipe</string>
     <string name="navigate_back">返回</string>
     <string name="title_activity_about">关于 NewPipe</string>
     <string name="title_licenses">第三方许可</string>

@@ -17,8 +17,8 @@ import kotlin.test.Test
 import kotlin.test.assertTrue
 import net.newpipe.app.extensions.withKoin
 import newpipe.shared.generated.resources.Res
-import newpipe.shared.generated.resources.app_name
 import newpipe.shared.generated.resources.navigate_back
+import newpipe.shared.generated.resources.title_activity_about
 import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.stringResource
 import org.koin.dsl.module
@@ -51,12 +51,12 @@ class TopAppBarTest {
             modules = listOf(emptySettings),
             content = {
                 TopAppBar(
-                    title = stringResource(Res.string.app_name),
+                    title = stringResource(Res.string.title_activity_about),
                     onNavigateUp = { navigationBackClicked = true }
                 )
             },
             onContent = {
-                onNodeWithText(getString(Res.string.app_name)).assertIsDisplayed()
+                onNodeWithText(getString(Res.string.title_activity_about)).assertIsDisplayed()
                 onNodeWithContentDescription(getString(Res.string.navigate_back)).apply {
                     assertExists()
                     performClick()
