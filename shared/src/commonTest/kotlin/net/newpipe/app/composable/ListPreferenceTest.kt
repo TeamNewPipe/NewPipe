@@ -47,8 +47,8 @@ class ListPreferenceTest {
             )
         }
 
-        onNodeWithText("Choose").performClick()   // open the dialog
-        onNodeWithText("Option B").performClick()  // pick an option
+        onNodeWithText("Choose").performClick()
+        onNodeWithText("Option B").performClick()
         assertEquals("b", selected)
     }
 }

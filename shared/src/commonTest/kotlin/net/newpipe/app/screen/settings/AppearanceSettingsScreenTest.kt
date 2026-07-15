@@ -12,7 +12,7 @@ import androidx.compose.ui.test.v2.runComposeUiTest
 import com.russhwolf.settings.MapSettings
 import com.russhwolf.settings.Settings
 import net.newpipe.app.extensions.withKoin
-import net.newpipe.app.viewmodel.settings.AppearancePreferences
+import net.newpipe.app.preferences.AppearancePreferences
 import newpipe.shared.generated.resources.Res
 import newpipe.shared.generated.resources.settings_category_appearance_title
 import newpipe.shared.generated.resources.theme_title
