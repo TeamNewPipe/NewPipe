@@ -120,6 +120,7 @@ class NotificationHelper(val context: Context) {
             .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
             .setLargeIcon(channelIcon)
             .setStyle(thumbnailStyle)
+            .setWhen(item.uploadDate?.instant?.toEpochMilli() ?: System.currentTimeMillis())
             .setContentTitle(item.name)
             .setContentText(item.uploaderName)
             .setGroup(item.uploaderUrl)
