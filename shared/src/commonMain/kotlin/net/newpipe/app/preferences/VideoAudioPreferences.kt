@@ -16,6 +16,7 @@ object VideoAudioPreferences {
     const val KEY_SHOW_HIGHER_RESOLUTIONS = "show_higher_resolutions"
     const val KEY_DEFAULT_VIDEO_FORMAT = "default_video_format"
     const val KEY_DEFAULT_AUDIO_FORMAT = "default_audio_format"
+    const val KEY_PREFER_ORIGINAL_AUDIO = "prefer_original_audio"
     const val KEY_PREFER_DESCRIPTIVE_AUDIO = "prefer_descriptive_audio"
 
     // Special resolution values that need a localized label
