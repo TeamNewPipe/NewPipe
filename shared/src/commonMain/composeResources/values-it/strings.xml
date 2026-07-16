@@ -27,4 +27,15 @@
     <string name="donation_encouragement">NewPipe è sviluppato da volontari che impiegano il loro tempo libero per offrirti un'esperienza d'uso migliore. Restituisci il favore, aiutandoli a rendere NewPipe ancora più piacevole mentre si gustano una tazza di caffè.</string>
     <string name="privacy_policy_encouragement">Il progetto NewPipe tiene molto seriamente alla tua privacy. Perciò, l'app non raccoglie alcun dato senza il tuo consenso. \nL'informativa sulla privacy spiega nel dettaglio quali dati vengono trattati e memorizzati durante l'invio di segnalazioni per arresti anomali.</string>
     <string name="app_license">NewPipe è software libre copyleft: puoi utilizzare, studiare, condividere e migliorare a volontà il suo codice sorgente. Nello specifico è possibile ridistribuirlo e/o modificarlo in base ai termini della GNU General Public License come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza sia (a vostra scelta) qualsiasi versione successiva.</string>
+    <string name="settings">Impostazioni</string>
+    <string name="search">Cerca</string>
+    <string name="content">Contenuto</string>
+    <string name="notifications">Notifiche</string>
+    <string name="settings_category_video_audio_title">Video e audio</string>
+    <string name="settings_category_downloads_title">Scaricamenti</string>
+    <string name="settings_category_appearance_title">Aspetto</string>
+    <string name="settings_category_history_title">Cronologia e cache</string>
+    <string name="settings_category_updates_title">Aggiornamenti</string>
+    <string name="settings_category_backup_restore_title">Backup e ripristino</string>
+    <string name="settings_category_debug_title">Debug</string>
 </resources>
