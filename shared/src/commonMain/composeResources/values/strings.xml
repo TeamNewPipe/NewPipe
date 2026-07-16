@@ -74,4 +74,19 @@
     <string name="card">Card</string>
     <string name="cancel">Cancel</string>
 
+    <!-- Video/Audio Settings -->
+    <string name="default_resolution_title">Default resolution</string>
+    <string name="default_popup_resolution_title">Default popup resolution</string>
+    <string name="limit_mobile_data_usage_title">Limit resolution when using mobile data</string>
+    <string name="show_higher_resolutions_title">Show higher resolutions</string>
+    <string name="show_higher_resolutions_summary">Only some devices can play 2K/4K videos</string>
+    <string name="default_video_format_title">Default video format</string>
+    <string name="default_audio_format_title">Default audio format</string>
+    <string name="prefer_original_audio_title">Prefer original audio</string>
+    <string name="prefer_original_audio_summary">Select the original audio track regardless of the language</string>
+    <string name="prefer_descriptive_audio_title">Prefer descriptive audio</string>
+    <string name="prefer_descriptive_audio_summary">Select an audio track with descriptions for visually impaired people if available</string>
+    <string name="best_resolution">Best resolution</string>
+    <string name="limit_data_usage_none_description">No limit</string>
+
 </resources>
