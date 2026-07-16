@@ -2,6 +2,10 @@ package org.schabi.newpipe.ui.components.common
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.PlaylistPlay
+import androidx.compose.material.icons.filled.Headphones
+import androidx.compose.material.icons.filled.PictureInPicture
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.RichTooltip
@@ -74,12 +78,17 @@ fun PlayerOptions(
         SingleChoiceSegmentedButtonRow {
             PlayerType.entries.forEachIndexed { index, key ->
                 val tooltipState = rememberTooltipState()
+                val (title, icon) = when (key) {
+                    PlayerType.MAIN -> R.string.controls_main_title to Icons.AutoMirrored.Filled.PlaylistPlay
+                    PlayerType.BACKGROUND -> R.string.controls_background_title to Icons.Default.Headphones
+                    PlayerType.POPUP -> R.string.controls_popup_title to Icons.Default.PictureInPicture
+                }
 
                 TooltipBox(
                     positionProvider = rememberTooltipPositionProvider(positioning = TooltipAnchorPosition.Above),
                     tooltip = {
                         RichTooltip {
-                            Text(text = stringResource(key.title))
+                            Text(text = stringResource(title))
                         }
                     },
                     state = tooltipState
@@ -91,8 +100,8 @@ fun PlayerOptions(
                             .itemShape(index = index, count = PlayerType.entries.size)
                     ) {
                         Icon(
-                            imageVector = key.icon,
-                            contentDescription = stringResource(key.title)
+                            imageVector = icon,
+                            contentDescription = stringResource(title)
                         )
                     }
                 }
