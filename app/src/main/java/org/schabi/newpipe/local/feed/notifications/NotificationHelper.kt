@@ -6,13 +6,11 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Build
 import android.provider.Settings
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.app.PendingIntentCompat
-import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
 import androidx.core.net.toUri
 import androidx.preference.PreferenceManager
@@ -21,6 +19,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.service.FeedUpdateInfo
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.image.CoilHelper
+import org.schabi.newpipe.util.image.ImageStrategy
 
 /**
  * Helper for everything related to show notifications about new streams to the user.
@@ -52,7 +51,7 @@ class NotificationHelper(val context: Context) {
             .setBadgeIconType(NotificationCompat.BADGE_ICON_LARGE)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
-            .setColor(ContextCompat.getColor(context, R.color.ic_launcher_background))
+            .setColor(context.getColor(R.color.ic_launcher_background))
             .setColorized(true)
             .setAutoCancel(true)
             .setCategory(NotificationCompat.CATEGORY_SOCIAL)
@@ -78,25 +77,15 @@ class NotificationHelper(val context: Context) {
             CoilHelper.loadBitmapBlocking(context, data.avatarUrl, R.drawable.ic_newpipe_triangle_white)
         summaryBuilder.setLargeIcon(avatarIcon)
 
-        // Show individual stream notifications, set channel icon only if there is actually one
-        showStreamNotifications(newStreams, data.serviceId, avatarIcon)
-        // Show summary notification
         if (manager.areNotificationsEnabled()) {
-            manager.notify(data.pseudoId, summaryBuilder.build())
-        }
-    }
-
-    private fun showStreamNotifications(
-        newStreams: List<StreamInfoItem>,
-        serviceId: Int,
-        channelIcon: Bitmap?
-    ) {
-        if (manager.areNotificationsEnabled()) {
+            // Show individual stream notifications, set channel icon only if there is actually one
             newStreams.forEach { stream ->
                 val notification =
-                    createStreamNotification(stream, serviceId, channelIcon)
+                    createStreamNotification(stream, data.serviceId, avatarIcon)
                 manager.notify(stream.url.hashCode(), notification)
             }
+            // Show summary notification
+            manager.notify(data.pseudoId, summaryBuilder.build())
         }
     }
 
@@ -105,29 +94,40 @@ class NotificationHelper(val context: Context) {
         serviceId: Int,
         channelIcon: Bitmap?
     ): Notification {
+        val intent = NavigationHelper.getStreamIntent(context, serviceId, item.url, item.name)
+        // Open the stream link in the player when clicking on the notification.
+        val contentIntent = PendingIntentCompat.getActivity(
+            context,
+            item.url.hashCode(),
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT,
+            false
+        )
+        val thumbnailUrl = ImageStrategy.choosePreferredImage(item.thumbnails)
+        val thumbnailStyle = NotificationCompat.BigPictureStyle()
+            .bigPicture(CoilHelper.loadBitmapBlocking(context, thumbnailUrl))
+            .also {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    it.showBigPictureWhenCollapsed(true)
+                } else {
+                    it.bigLargeIcon(null as Bitmap?)
+                }
+            }
         return NotificationCompat.Builder(
             context,
             context.getString(R.string.streams_notification_channel_id)
         )
             .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
             .setLargeIcon(channelIcon)
+            .setStyle(thumbnailStyle)
             .setContentTitle(item.name)
             .setContentText(item.uploaderName)
             .setGroup(item.uploaderUrl)
-            .setColor(ContextCompat.getColor(context, R.color.ic_launcher_background))
+            .setColor(context.getColor(R.color.ic_launcher_background))
             .setColorized(true)
             .setAutoCancel(true)
             .setCategory(NotificationCompat.CATEGORY_SOCIAL)
-            .setContentIntent(
-                // Open the stream link in the player when clicking on the notification.
-                PendingIntentCompat.getActivity(
-                    context,
-                    item.url.hashCode(),
-                    NavigationHelper.getStreamIntent(context, serviceId, item.url, item.name),
-                    PendingIntent.FLAG_UPDATE_CURRENT,
-                    false
-                )
-            )
+            .setContentIntent(contentIntent)
             .setSilent(true) // Avoid creating noise for individual stream notifications.
             .build()
     }
