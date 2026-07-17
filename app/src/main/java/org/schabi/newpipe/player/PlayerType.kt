@@ -8,5 +8,6 @@ package org.schabi.newpipe.player
 enum class PlayerType {
     BACKGROUND,
     MAIN,
-    POPUP
+    POPUP,
+    NONE
 }

@@ -42,7 +42,7 @@ import org.schabi.newpipe.util.PermissionHelper
 @Composable
 fun PlayerOptions(queue: PlayQueue) {
     val context = LocalContext.current
-    var selectedOption by rememberSaveable { mutableStateOf<PlayerType?>(null) }
+    var selectedOption by rememberSaveable { mutableStateOf(PlayerType.NONE) }
 
     LaunchedEffect(selectedOption) {
         when (selectedOption) {
@@ -66,7 +66,7 @@ fun PlayerOptions(queue: PlayQueue) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PlayerOptions(
-    selectedOption: PlayerType?,
+    selectedOption: PlayerType,
     onSelectOption: (PlayerType) -> Unit
 ) {
     Row(
@@ -75,8 +75,13 @@ fun PlayerOptions(
     ) {
         Text(text = stringResource(R.string.player_options_label))
 
+        val validTypes = PlayerType.entries.filter { it != PlayerType.NONE }
         SingleChoiceSegmentedButtonRow {
-            PlayerType.entries.forEachIndexed { index, key ->
+            for ((index, key) in validTypes.withIndex()) {
+                if (key == PlayerType.NONE) {
+                    continue
+                }
+
                 val tooltipState = rememberTooltipState()
                 val (title, icon) = when (key) {
                     PlayerType.MAIN -> R.string.controls_main_title to Icons.AutoMirrored.Filled.PlaylistPlay
@@ -97,7 +102,7 @@ fun PlayerOptions(
                         selected = key == selectedOption,
                         onClick = { onSelectOption(key) },
                         shape = SegmentedButtonDefaults
-                            .itemShape(index = index, count = PlayerType.entries.size)
+                            .itemShape(index = index, count = validTypes.size)
                     ) {
                         Icon(
                             imageVector = icon,

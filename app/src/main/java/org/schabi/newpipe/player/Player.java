@@ -570,8 +570,9 @@ public final class Player implements PlaybackListener, Listener {
             case MAIN -> MainPlayerUi.class;
             case POPUP -> PopupPlayerUi.class;
             case BACKGROUND -> BackgroundPlayerUi.class;
+            default -> null; // Should not be possible
         };
-        if (UIs.get(playerClass) != null) {
+        if (playerClass == null || UIs.get(playerClass) != null) {
             // correct UI already in place
             return;
         }
