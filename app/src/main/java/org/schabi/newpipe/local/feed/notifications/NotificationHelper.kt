@@ -79,21 +79,13 @@ class NotificationHelper(val context: Context) {
 
         if (manager.areNotificationsEnabled()) {
             // Show individual stream notifications, set channel icon only if there is actually one
-            newStreams.forEach { stream ->
-                val notification =
-                    createStreamNotification(stream, data.serviceId, avatarIcon)
-                manager.notify(stream.url.hashCode(), notification)
-            }
+            manager.notify(newStreams.map { createStreamNotification(it, data.serviceId) })
             // Show summary notification
             manager.notify(data.pseudoId, summaryBuilder.build())
         }
     }
 
-    private fun createStreamNotification(
-        item: StreamInfoItem,
-        serviceId: Int,
-        channelIcon: Bitmap?
-    ): Notification {
+    private fun createStreamNotification(item: StreamInfoItem, serviceId: Int): NotificationManagerCompat.NotificationWithIdAndTag {
         val intent = NavigationHelper.getStreamIntent(context, serviceId, item.url, item.name)
         // Open the stream link in the player when clicking on the notification.
         val contentIntent = PendingIntentCompat.getActivity(
@@ -104,21 +96,16 @@ class NotificationHelper(val context: Context) {
             false
         )
         val thumbnailUrl = ImageStrategy.choosePreferredImage(item.thumbnails)
+        val thumbnail = CoilHelper.loadBitmapBlocking(context, thumbnailUrl)
         val thumbnailStyle = NotificationCompat.BigPictureStyle()
-            .bigPicture(CoilHelper.loadBitmapBlocking(context, thumbnailUrl))
-            .also {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                    it.showBigPictureWhenCollapsed(true)
-                } else {
-                    it.bigLargeIcon(null as Bitmap?)
-                }
-            }
-        return NotificationCompat.Builder(
+            .bigPicture(thumbnail)
+            .bigLargeIcon(null as Bitmap?)
+        val notification = NotificationCompat.Builder(
             context,
             context.getString(R.string.streams_notification_channel_id)
         )
             .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
-            .setLargeIcon(channelIcon)
+            .setLargeIcon(thumbnail)
             .setStyle(thumbnailStyle)
             .setWhen(item.uploadDate?.instant?.toEpochMilli() ?: System.currentTimeMillis())
             .setContentTitle(item.name)
@@ -131,6 +118,7 @@ class NotificationHelper(val context: Context) {
             .setContentIntent(contentIntent)
             .setSilent(true) // Avoid creating noise for individual stream notifications.
             .build()
+        return NotificationManagerCompat.NotificationWithIdAndTag(item.url.hashCode(), notification)
     }
 
     companion object {
