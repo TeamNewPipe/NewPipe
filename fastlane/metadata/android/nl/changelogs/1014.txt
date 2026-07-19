@@ -1,0 +1,5 @@
+• Minimum Androidversie: 6.0
+• Opgelost: fouten bij importeren van abonnementen
+• Opgelost: fouten bij video afspelen
+• Opgelost: fout die downloads openen in een andere app voorkwam
+• Vertalingen bijgewerkt
