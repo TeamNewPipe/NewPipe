@@ -1,0 +1,5 @@
+Hotfix
+• 修正 YouTube 限速造成的緩衝問題
+• 修正 YouTube 留言擷取問題，以及留言停用時發生的當機問題
+• 修正 YouTube 音樂搜尋問題
+• 修正 PeerTube 直播串流問題

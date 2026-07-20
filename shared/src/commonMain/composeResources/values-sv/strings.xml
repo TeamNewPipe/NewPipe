@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="privacy_policy_encouragement">NewPipe-projektet tar din integritet på stort allvar. Därför samlar appen inte in någon data utan ditt samtycke.\nNewPipes integritetspolicy förklarar i detalj vilken data som skickas och lagras då du skickar en kraschrapport.</string>
+    <string name="navigate_back">Tillbaka</string>
+    <string name="title_activity_about">Om NewPipe</string>
+    <string name="title_licenses">Tredjepartslicenser</string>
+    <string name="contribution_title">Bidra</string>
+    <string name="contribution_encouragement">Oavsett om du har idéer kring översättning, designändringar, uppstädning av kod eller riktigt tunga kodändringar är hjälp alltid välkommen. Ju mer som görs, desto bättre blir det!</string>
+    <string name="donation_encouragement">NewPipe utvecklas av frivilliga som ägnar sin fritid åt att ge dig den bästa användarupplevelsen. Ge något tillbaka genom att hjälpa utvecklarna att göra NewPipe ännu bättre medan de njuter av en kopp kaffe.</string>
+    <string name="give_back">Ge tillbaka</string>
+    <string name="website_title">Webbplats</string>
+    <string name="website_encouragement">Besök NewPipes webbplats för mer information och nyheter.</string>
+    <string name="privacy_policy_title">NewPipes integritetspolicy</string>
+    <string name="read_privacy_policy">Läs integritetspolicyn</string>
+    <string name="app_license_title">NewPipes licens</string>
+    <string name="tab_licenses">Licenser</string>
+    <string name="donation_title">Donera</string>
+    <string name="faq_description">Om du har problem med att använda appen, se till att läsa dessa svar på några vanliga frågor!</string>
+    <string name="done">Klar</string>
+    <string name="not_available">Icke tillgängligt</string>
+    <string name="tab_about">Om &amp; vanliga frågor</string>
+    <string name="read_full_license">Läs licens</string>
+    <string name="faq_title">Vanliga frågor</string>
+    <string name="faq">Visa på webbplatsen</string>
+    <string name="open_in_browser">Öppna i webbläsare</string>
+    <string name="license">Av %1$s under %2$s</string>
+    <string name="app_description">Lättviktsströmning på Android med fri programvara.</string>
+    <string name="view_on_github">Visa på GitHub</string>
+    <string name="app_license">NewPipe är copyleft-licensierad fri programvara: du får använda, studera, dela och förbättra den som du vill. Mer specifikt får du distribuera och/eller modifiera den enligt villkoren i GNU General Public License, såsom den publicerats av Free Software Foundation, antingen version 3 av licensen eller, om du så önskar, någon senare version.</string>
+</resources>

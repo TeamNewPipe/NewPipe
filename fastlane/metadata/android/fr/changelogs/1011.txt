@@ -1,0 +1,1 @@
+Ajouter une fenêtre contextuelle pour informer les utilisateurs que la version 0.28.7 ne prendra plus en charge Android 5

@@ -1,0 +1,9 @@
+Il s'agit d'une petite mise à jour corrective visant à rendre YouTube à nouveau utilisable. Elle est nécessaire en raison de modifications apportées par YouTube.
+NewPipe est désormais à nouveau capable d'extraire les éléments des onglets de chaîne grâce aux efforts de @AudricV et @Ecomont.
+
+Autres modifications
+- [YouTube] Correction de l'affichage de la durée et des diffusions en direct dans les vidéos associées
+- [SoundCloud] Correction du plantage lié aux commentaires en gérant les URL de page nulles
+- Mises à jour des dépendances
+
+NewPipe ne prendra plus en charge Android 5 dans la prochaine version.

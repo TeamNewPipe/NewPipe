@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="upload_date_text">Publicado en %1$s</string>
-    <string name="no_player_found">No se encontró ningún reproductor de retransmisiones. ¿Instalar VLC\?</string>
+    <string name="upload_date_text">Publicado el %1$s</string>
+    <string name="no_player_found">No se encontró ningún reproductor de streaming. ¿Quieres instalar VLC?</string>
     <string name="install">Instalar</string>
     <string name="cancel">Cancelar</string>
     <string name="open_in_browser">Abrir en el navegador</string>
@@ -34,7 +34,7 @@
     <string name="download_path_audio_summary">Los archivos de audio descargados se almacenan aquí</string>
     <string name="download_path_audio_dialog_title">Elija la carpeta de descarga para los archivos de audio</string>
     <string name="download_path_audio_title">Carpeta de descarga de audio</string>
-    <string name="settings_category_video_audio_title">Vídeo y audio</string>
+    <string name="settings_category_video_audio_title">Video y audio</string>
     <string name="general_error">Error</string>
     <string name="network_error">Error de conexión</string>
     <string name="could_not_load_thumbnails">No se pudo cargar las miniaturas</string>
@@ -104,13 +104,13 @@
     <string name="title_activity_about">Acerca de NewPipe</string>
     <string name="title_licenses">Licencias de terceros</string>
     <string name="copyright" formatted="true">© %1$s por %2$s, bajo %3$s</string>
-    <string name="tab_about">FAQ y Acerca de</string>
+    <string name="tab_about">Acerca de y preguntas frecuentes</string>
     <string name="tab_licenses">Licencias</string>
-    <string name="app_description">Reproducción de transmisiones ligera y libre para Android.</string>
+    <string name="app_description">Streaming libre y ligero en Android.</string>
     <string name="view_on_github">Ver en GitHub</string>
     <string name="app_license_title">Licencia de NewPipe</string>
-    <string name="contribution_encouragement">Si puedes traducir, quieres cambiar el diseño, tienes ideas para mejorar el código o proponer mejoras grandes, siempre agradeceremos tu ayuda. ¡Mientras más manos participen, mejor!</string>
-    <string name="read_full_license">Leer licencia</string>
+    <string name="contribution_encouragement">Tanto si tiene ideas de traducción, cambios de diseño, limpieza de código o modificaciones profundas en el código, la ayuda siempre es bienvenida. ¡Cuanto más se haga, mejor se vuelve!</string>
+    <string name="read_full_license">Leer la licencia</string>
     <string name="contribution_title">Contribuir</string>
     <string name="subscribe_button_title">Suscribirse</string>
     <string name="subscribed_button_title">Suscrito</string>
@@ -184,17 +184,17 @@
     <string name="new_and_hot">Lo nuevo y lo mejor</string>
     <string name="hold_to_append">Mantener pulsado para añadir a la cola</string>
     <string name="donation_title">Donar</string>
-    <string name="donation_encouragement">NewPipe es desarrollado por voluntarios que emplean su tiempo libre para brindarle la mejor experiencia. Haz una aportación para ayudarlos a crear un NewPipe mejor mientras disfrutan de una taza de café.</string>
-    <string name="give_back">Devolver</string>
-    <string name="website_title">Sitio web</string>
-    <string name="website_encouragement">Visita el sitio web de NewPipe para más información y noticias.</string>
+    <string name="donation_encouragement">NewPipe es desarrollado por voluntarios que dedican su tiempo libre a ofrecerle la mejor experiencia de usuario. Colabore para ayudar a los desarrolladores a hacer que NewPipe sea aún mejor mientras disfrutan de una taza de café.</string>
+    <string name="give_back">Colaborar</string>
+    <string name="website_title">Sito web</string>
+    <string name="website_encouragement">Visita el nuevo sitio web de NewPipe para más detalles y noticias.</string>
     <string name="default_content_country_title">País predefinido del contenido</string>
     <string name="switch_to_background">Cambiar a segundo plano</string>
     <string name="switch_to_popup">Cambiar a emergente</string>
     <string name="switch_to_main">Cambiar a principal</string>
     <string name="drawer_open">Abrir cajón</string>
     <string name="drawer_close">Cerrar cajón</string>
-    <string name="no_player_found_toast">No se encontró ningún reproductor de retransmisiones (puedes instalar VLC para reproducirlo).</string>
+    <string name="no_player_found_toast">No se encuentra un reproductor (puedes instalar VLC para reproducirlo).</string>
     <string name="always">Siempre</string>
     <string name="just_once">Solo una vez</string>
     <string name="external_player_unsupported_link_type">Los reproductores externos no soportan este tipo de enlaces</string>
@@ -244,7 +244,7 @@
     <string name="caption_auto_generated">Auto generados</string>
     <string name="enable_leak_canary_summary">La monitorización de fugas de memoria puede causar que la aplicación no responda al realizar el volcado de memoria</string>
     <string name="enable_disposed_exceptions_title">Informar errores fuera del ciclo de vida</string>
-    <string name="enable_disposed_exceptions_summary">Forzar informe de excepciones no entregables de RX fuera del fragmento o del ciclo de actividad después del descarte</string>
+    <string name="enable_disposed_exceptions_summary">Forzar informe de excepciones no entregables de Rx fuera del fragmento o del ciclo de actividad después del descarte</string>
     <string name="use_inexact_seek_title">Usar búsqueda rápida e inexacta</string>
     <string name="use_inexact_seek_summary">La búsqueda inexacta permite al reproductor buscar posiciones más rápido con menor precisión. Buscar de a 5, 15 o 25 segundos no funciona</string>
     <string name="auto_queue_title">Poner en cola automáticamente la siguiente transmisión</string>
@@ -301,12 +301,12 @@
     <string name="delete_search_history_alert">¿Borrar todo el historial de búsqueda\?</string>
     <string name="search_history_deleted">Historial de búsquedas borrado</string>
     <string name="one_item_deleted">Se ha borrado 1 elemento.</string>
-    <string name="app_license">NewPipe es un software copyleft libre: puedes usarlo, estudiarlo, compartirlo y mejorarlo a voluntad. Específicamente, puedes redistribuirlo y/o modificarlo bajo los términos de la Licencia Pública General GNU publicada por la Free Software Foundation, ya sea la versión 3 de la licencia, o (a tu elección) cualquier versión posterior.</string>
+    <string name="app_license">NewPipe es software libre con copyleft: puede usarlo, estudiarlo, compartirlo y mejorarlo a su antojo. Específicamente, puede redistribuirlo y/o modificarlo bajo los términos de la Licencia Pública General de GNU publicada por la Free Software Foundation, ya sea la versión 3 de la Licencia o (a su elección) cualquier versión posterior.</string>
     <string name="import_settings">¿Quieres importar también los ajustes\?</string>
     <string name="privacy_policy_title">Política de privacidad de NewPipe</string>
     <string name="privacy_policy_encouragement">El proyecto NewPipe toma tu privacidad muy en serio. Por ello, la aplicación no recopila ningún dato sin tu consentimiento.
 \nLa política de privacidad de NewPipe explica en detalle qué datos se envían y almacenan al enviar un informe de fallo.</string>
-    <string name="read_privacy_policy">Leer política de privacidad</string>
+    <string name="read_privacy_policy">Leer la política de privacidad</string>
     <string name="start_accept_privacy_policy">Para cumplir con el «Reglamento general europeo de protección de datos (GDPR)», atraemos su atención sobre la política de privacidad de NewPipe. Por favor léase cuidadosamente.
 \nDebe aceptarlo para enviarnos el informe de error.</string>
     <string name="accept">Aceptar</string>
@@ -443,8 +443,8 @@
     <string name="permission_display_over_apps">Dar permiso para mostrar sobre otras aplicaciones</string>
     <string name="app_language_title">Idioma de aplicación</string>
     <string name="systems_language">Predefinido del sistema</string>
-    <string name="subtitle_activity_recaptcha">Pulsa en «Hecho» al resolverlo</string>
-    <string name="done">Hecho</string>
+    <string name="subtitle_activity_recaptcha">Pulsa en «Listo» al resolverlo</string>
+    <string name="done">Listo</string>
     <string name="videos_string">Vídeos</string>
     <plurals name="seconds">
         <item quantity="one">%d segundo</item>
@@ -647,7 +647,7 @@
     <string name="start_main_player_fullscreen_summary">Si la rotación automática está bloqueada, no inicie los videos en el mini reproductor, sino pase directamente a modo de pantalla completa. Aún podrá acceder al mini reproductor al salir del modo pantalla completa</string>
     <string name="start_main_player_fullscreen_title">Iniciar reproductor principal en pantalla completa</string>
     <string name="enqueued_next">Añadido el siguiente vídeo a la cola</string>
-    <string name="enqueue_next_stream">Añadir el siguiente vídeo a la cola</string>
+    <string name="enqueue_next_stream">Añadir vídeo a la cola como siguiente</string>
     <string name="processing_may_take_a_moment">Procesando… Podría tomar un momento</string>
     <string name="check_for_updates">Buscar actualizaciones</string>
     <string name="manual_update_description">Buscar nuevas versiones manualmente</string>
@@ -701,9 +701,9 @@
     <string name="unknown_format">Formato desconocido</string>
     <string name="unknown_quality">Calidad desconocida</string>
     <string name="progressive_load_interval_title">Tamaño del intervalo de carga de reproducción</string>
-    <string name="faq">Ver en la página web</string>
+    <string name="faq">Ver en el sitio web</string>
     <string name="faq_title">Preguntas frecuentes</string>
-    <string name="faq_description">Si tienes problemas al usar la aplicación, ¡Asegúrate de verificar estas respuestas a preguntas comunes!</string>
+    <string name="faq_description">Si tiene problemas al usar la aplicación, ¡asegúrese de consultar estas respuestas a las preguntas comunes!</string>
     <string name="sort">Ordenar</string>
     <string name="fast_mode">Modo rápido</string>
     <string name="import_subscriptions_hint">Importa o exporta las suscripciones desde el menú con los tres puntos</string>
@@ -763,7 +763,7 @@
     <string name="metadata_subscribers">Suscriptores</string>
     <string name="show_channel_tabs_summary">Qué pestañas se muestran en las páginas del canal</string>
     <string name="show_channel_tabs">Pestañas del canal</string>
-    <string name="channel_tab_shorts">Shorts</string>
+    <string name="channel_tab_shorts">Vídeos cortos</string>
     <string name="loading_metadata_title">Cargando metadatos…</string>
     <string name="feed_fetch_channel_tabs">Recuperar las fichas del canal</string>
     <string name="channel_tab_about">Acerca de</string>
@@ -793,7 +793,7 @@
     <string name="image_quality_high">Calidad alta</string>
     <string name="image_quality_medium">Calidad media</string>
     <string name="metadata_uploader_avatars">avatares subidos</string>
-    <string name="metadata_banners">Banners</string>
+    <string name="metadata_banners">Anuncios</string>
     <string name="image_quality_summary">Elige la calidad de las imágenes y si cargar imágenes en su totalidad, para reducir el uso de datos y memoria. Los cambios borran la caché de las imágenes en la memoria y en el disco - %s</string>
     <string name="metadata_thumbnails">Miniaturas</string>
     <string name="share_playlist_with_list">Compartir la lista de la dirección URL</string>
@@ -819,7 +819,7 @@
     <string name="no">No</string>
     <string name="auto_update_check_description">NewPipe puede buscar automáticamente nuevas versiones de vez en cuando y notificarle cuando estén disponibles.
 \n¿Quieres habilitar esto?</string>
-    <string name="import_settings_vulnerable_format">La configuración de la exportación que se importa utiliza un formato vulnerable que quedó obsoleto desde NewPipe 0.27.0. Asegúrese de que la exportación que se está importando provenga de una fuente confiable y prefiera usar solo exportaciones obtenidas de NewPipe 0.27.0 o posterior en el futuro. La compatibilidad con la importación de configuraciones en este formato vulnerable pronto se eliminará por completo y, luego, las versiones antiguas de NewPipe ya no podrán importar configuraciones de exportaciones desde las nuevas versiones.</string>
+    <string name="import_settings_vulnerable_format">Los ajustes de la exportación que se importa utiliza un formato vulnerable que quedó obsoleto desde NewPipe 0.27.0. Asegúrese de que la exportación que se está importando provenga de una fuente confiable y prefiera usar solo exportaciones obtenidas de NewPipe 0.27.0 o posterior en el futuro. La compatibilidad con la importación de configuraciones en este formato vulnerable pronto se eliminará por completo y, luego, las versiones antiguas de NewPipe ya no podrán importar configuraciones de exportaciones desde las nuevas versiones.</string>
     <string name="audio_track_type_secondary">secundaria</string>
     <string name="share_playlist_as_youtube_temporary_playlist">Compartir como lista de reproducción temporal de YouTube</string>
     <string name="tab_bookmarks_short">Lista de reproducción</string>
@@ -837,41 +837,44 @@
     <string name="trending_podcasts">Tendencias pódcasts</string>
     <string name="trending_movies">Tendencias películas y programas</string>
     <string name="trending_music">Tendencias música</string>
-    <string name="permission_display_over_apps_permission_name">“Permitir mostrar sobre otras aplicaciones”</string>
-    <string name="delete_file">Eliminar archivo</string>
-    <string name="short_thousand">%sM</string>
-    <string name="short_million">%sM</string>
-    <string name="delete_entry">Eliminar entrada</string>
-    <string name="account_terminated_service_provides_reason">Cuenta cancelada\n\n%1$s proporciona esta razón: %2$s</string>
-    <string name="entry_deleted">Entrada eliminada</string>
-    <string name="player_http_403">Error HTTP 403 recibido del servidor durante la reproducción, probablemente causado por la expiración de la URL de transmisión o una prohibición de IP</string>
-    <string name="player_http_invalid_status">Error HTTP %1$s recibido del servidor durante la reproducción</string>
-    <string name="youtube_player_http_403">Error HTTP 403 recibido del servidor durante la reproducción, probablemente causado por una prohibición de IP o problemas de desofuscación de la URL de transmisión</string>
-    <string name="sign_in_confirm_not_bot_error">%1$s se negó a proporcionar datos y solicitó un inicio de sesión para confirmar que el solicitante no es un bot.\n\nEs posible que tu IP haya sido bloqueada temporalmente por %1$s. Puedes esperar un tiempo o cambiar a una IP diferente (por ejemplo, habilitando o deshabilitando una VPN, o cambiando de WiFi a datos móviles).</string>
-    <string name="short_billion">%sMM</string>
-    <string name="unsupported_content_in_country">Este contenido no está disponible para el país seleccionado actualmente.\n\nCambia tu selección en «Ajustes &gt; Contenido &gt; País predefinido del contenido».</string>
-    <string name="permission_display_over_apps_message">Para usar el reproductor emergente, seleccione %1$s en el siguiente menú de la configuración de Android y habilite %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">\"Permitir la visualización sobre otras aplicaciones\"</string>
+    <string name="delete_file">Eliminar el archivo</string>
+    <string name="short_thousand">%s K</string>
+    <string name="short_million">%s M</string>
+    <string name="delete_entry">Eliminar la entrada</string>
+    <string name="account_terminated_service_provides_reason">Cuenta cerrada\n\n%1$s proporciona este motivo: %2$s</string>
+    <string name="entry_deleted">Entrada suprimida</string>
+    <string name="player_http_403">Error HTTP 403 recibido del servidor durante la reproducción, probablemente causado por la caducidad de la URL de transmisión o una prohibición por IP</string>
+    <string name="player_http_invalid_status">Error HTTP %1$s del servidor en la reproducción</string>
+    <string name="youtube_player_http_403">Se ha recibido un error HTTP 403 del servidor durante la reproducción, probablemente causado por una prohibición de IP o problemas de desofuscación de la URL de transmisión</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s se ha negado a proporcionar datos y solicita un inicio de sesión para confirmar que el solicitante no es un bot.\n\nEs posible que %1$s haya bloqueado temporalmente tu IP. Puedes esperar un rato o cambiar a una IP diferente (por ejemplo, activando o desactivando una VPN, o cambiando de WiFi a datos móviles).</string>
+    <string name="short_billion">%s bill.</string>
+    <string name="unsupported_content_in_country">Este contenido no está disponible para el país actualmente seleccionado.\n\nPuedes cambiarlo en: «Configuración &gt; Contenido &gt; País predeterminado para el contenido».</string>
+    <string name="permission_display_over_apps_message">Para usar el reproductor emergente, selecciona %1$s en el siguiente menú de la configuración de Android y habilita %2$s.</string>
     <string name="kao_dialog_warning">En Agosto de 2025, Google ha anunciado que, a partir de 2026/2027, todas las aplicaciones en dispositivos Android certificados requerirán que los desarrolladores envíen sus datos personales de identidad directamente a Google. Como los desarrolladores de NewPipe no están de acuerdo con este requisito, la aplicación dejará de funcionar en dispositivos Android certificados después de esa fecha.</string>
     <string name="kao_dialog_more_info">Detalles</string>
     <string name="kao_solution">Solución</string>
     <plurals name="export_subscriptions">
-        <item quantity="one">Exportando %d suscripción…</item>
+        <item quantity="one">Exportando la suscripción %d…</item>
         <item quantity="many">Exportando %d suscripciones…</item>
         <item quantity="other">Exportando %d suscripciones…</item>
     </plurals>
     <plurals name="load_subscriptions">
-        <item quantity="one">Cargando %d suscripción…</item>
+        <item quantity="one">Cargando la suscripción %d…</item>
         <item quantity="many">Cargando %d suscripciones…</item>
         <item quantity="other">Cargando %d suscripciones…</item>
     </plurals>
     <plurals name="import_subscriptions">
-        <item quantity="one">Importando %d suscripción…</item>
+        <item quantity="one">Importando la suscripción %d…</item>
         <item quantity="many">Importando %d suscripciones…</item>
         <item quantity="other">Importando %d suscripciones…</item>
     </plurals>
-    <string name="import_subscriptions_title">Importar suscripciones</string>
-    <string name="export_subscriptions_title">Exportar suscripciones</string>
-    <string name="import_subscriptions_summary">Importar suscripciones desde una exportación .json anterior</string>
-    <string name="export_subscriptions_summary">Exportar suscripciones a un archivo .json</string>
-    <string name="import_from_previous_export">Importar desde exportación anterior</string>
+    <string name="import_subscriptions_title">Importar las suscripciones</string>
+    <string name="export_subscriptions_title">Exportar las suscripciones</string>
+    <string name="import_subscriptions_summary">Importar las suscripciones desde un archivo .json</string>
+    <string name="export_subscriptions_summary">Exportar tus suscripciones a un archivo . json</string>
+    <string name="import_from_previous_export">Importar desde la exportación anterior</string>
+    <string name="api23_requirement_dialog_title">NewPipe dejará de soportar Android 5</string>
+    <string name="api23_requirement_dialog_message">Desafortunadamente, NewPipe depende de algunas bibliotecas que dejaron de soportar Android 5.0 y 5.1. La próxima versión de NewPipe sólo funcionará en dispositivos con Android 6 o superior, tristemente. Lea más en el artículo de nuestro blog.</string>
+    <string name="api23_requirement_dialog_blogpost">Artículo</string>
 </resources>

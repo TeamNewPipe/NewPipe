@@ -1,0 +1,17 @@
+New
+• Add comment replies
+• Allow reordering playlists
+• Show playlist description and duration
+• Allow resetting settings
+
+Improved
+• [Android 13+] Restore custom notification actions
+• Request consent for update check
+• Allow notification play/pause while buffering
+• Reorder some settings
+
+Fixed
+• [YouTube] Fix comments not loading, plus other fixes and improvements
+• Solve vulnerability in settings import and switch to JSON
+• Various download fixes
+• Trim search text

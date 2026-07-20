@@ -205,6 +205,7 @@ public final class VideoDetailFragment
     int lastStableBottomSheetState = BottomSheetBehavior.STATE_EXPANDED;
     @State
     protected boolean autoPlayEnabled = true;
+    private boolean forceFullscreen = false;
 
     @Nullable
     private StreamInfo currentInfo = null;
@@ -877,7 +878,7 @@ public final class VideoDetailFragment
                             }
                         }
 
-                        if (isAutoplayEnabled()) {
+                        if (isAutoplayEnabled() || forceFullscreen) {
                             openVideoPlayerAutoFullscreen();
                         }
                     }
@@ -1134,15 +1135,29 @@ public final class VideoDetailFragment
     }
 
     /**
-     * If the option to start directly fullscreen is enabled, calls
-     * {@link #openVideoPlayer(boolean)} with {@code directlyFullscreenIfApplicable = true}, so that
-     * if the user is not already in landscape and he has screen orientation locked the activity
-     * rotates and fullscreen starts. Otherwise, if the option to start directly fullscreen is
-     * disabled, calls {@link #openVideoPlayer(boolean)} with {@code directlyFullscreenIfApplicable
-     * = false}, hence preventing it from going directly fullscreen.
+     * If the option to start directly fullscreen is enabled, or if {@code forceFullscreen} is
+     * {@code true} (e.g. when switching from popup player to main player with a different video),
+     * calls {@link #openVideoPlayer(boolean)} with {@code directlyFullscreenIfApplicable = true},
+     * so that if the user is not already in landscape and he has screen orientation locked the
+     * activity rotates and fullscreen starts. Otherwise, if the option to start directly fullscreen
+     * is disabled and {@code forceFullscreen} is {@code false}, calls
+     * {@link #openVideoPlayer(boolean)} with {@code directlyFullscreenIfApplicable = false},
+     * hence preventing it from going directly fullscreen.
+     * {@code forceFullscreen} is reset to {@code false} after this call.
      */
     public void openVideoPlayerAutoFullscreen() {
-        openVideoPlayer(PlayerHelper.isStartMainPlayerFullscreenEnabled(requireContext()));
+        openVideoPlayer(forceFullscreen
+                || PlayerHelper.isStartMainPlayerFullscreenEnabled(requireContext()));
+        forceFullscreen = false;
+    }
+
+    public void setForceFullscreen(final boolean force) {
+        this.forceFullscreen = force;
+    }
+
+    @Nullable
+    public String getUrl() {
+        return url;
     }
 
     private void openNormalBackgroundPlayer(final boolean append) {

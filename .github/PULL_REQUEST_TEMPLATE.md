@@ -2,7 +2,7 @@
 
 #### What is it?
 - [ ] Bugfix (user facing)
-- [ ] Feature (user facing) ⚠️ **Your PR must target the [`refactor`](https://github.com/TeamNewPipe/NewPipe/tree/refactor) branch**
+- [ ] Feature (user facing)
 - [ ] Codebase improvement (dev facing)
 - [ ] Meta improvement to the project (dev facing)
 

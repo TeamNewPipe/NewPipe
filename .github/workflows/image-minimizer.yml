@@ -27,7 +27,7 @@ jobs:
         run: npm i probe-image-size@7.2.3 --ignore-scripts
 
       - name: Minimize simple images
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         timeout-minutes: 3
         with:
           script: |

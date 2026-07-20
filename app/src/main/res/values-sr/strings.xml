@@ -206,8 +206,8 @@
     <string name="show_comments_summary">Искључите да бисте сакрили коментаре</string>
     <string name="new_seek_duration_toast">Због ограничења ExoPlayer-а, премотавање је постављено на %d секунди</string>
     <string name="remove_watched_popup_partially_watched_streams">Да, и делимично одгледани видео снимци</string>
-    <string name="remove_watched_popup_warning">Видео снимци који су одгледани пре и после додавања на плејлисту биће уклоњени. \nЈесте ли сигурни? Ово се не може поништити!</string>
-    <string name="remove_watched_popup_title">Уклонити одгледане видео снимке?</string>
+    <string name="remove_watched_popup_warning">Токови који су одгледани пре и после додавања на списак извођења биће уклоњени. \nПоуздано уклонити?</string>
+    <string name="remove_watched_popup_title">Уклонити одгледане токове?</string>
     <string name="remove_watched">Уклони одгледано</string>
     <string name="systems_language">Системски подразумевано</string>
     <string name="app_language_title">Језик апликације</string>
@@ -859,6 +859,26 @@
     <string name="player_http_403">HTTP грешка 403 примљена са сервера током репродукције, вероватно узрокована истеком URL-а за токовање или забраном IP адресе</string>
     <string name="player_http_invalid_status">HTTP грешка %1$s примљена са сервера током репродукције</string>
     <string name="youtube_player_http_403">HTTP грешка 403 примљена са сервера током репродукције, вероватно узрокована забраном IP адресе или проблемима са деобфускацијом URL-а за токовање</string>
-    <string name="sign_in_confirm_not_bot_error">%1$s је одбио да пружи податке, тражећи пријаву како би се потврдило да подносилац захтева није бот.\n\nВаша IP адреса је можда привремено забрањена од стране %1$s, можете сачекати неко време или прећи на другу IP адресу (на пример, укључивањем/искључивањем VPN-а или преласком са WiFi-ја на мобилне податке).</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s је одбио да пружи податке, тражећи пријаву како би се потврдило да подносилац захтева није робот.\n\nВаша адреса ИП је можда привремено забрањена од стране %1$s, можете сачекати неко време или прећи на другу IP адресу (на пример, укључивањем/искључивањем VPN-а или преласком са WiFi-ја на мобилне податке).</string>
     <string name="unsupported_content_in_country">Овај садржај није доступан за тренутно изабрану земљу садржаја.\n\nПромените свој избор у „Подешавања &gt; Садржај &gt; Подразумевана држава садржаја“.</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">Извозим %d претплату…</item>
+        <item quantity="few">Извозим %d претплате…</item>
+        <item quantity="other">Извозим %d претплата…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">Учитавам %d претплату…</item>
+        <item quantity="few">Учитавам %d претплате…</item>
+        <item quantity="other">Учитавам %d претплата…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">Увозим %d претплату…</item>
+        <item quantity="few">Увозим %d претплате…</item>
+        <item quantity="other">Увозим %d претплата…</item>
+    </plurals>
+    <string name="import_subscriptions_title">Увези претплату</string>
+    <string name="export_subscriptions_title">Извету претплату</string>
+    <string name="import_subscriptions_summary">Увези претплате из претходне датотеке .json</string>
+    <string name="export_subscriptions_summary">Извези своје претплате у датотеку .json</string>
+    <string name="import_from_previous_export">Увези из претходног извоза</string>
 </resources>

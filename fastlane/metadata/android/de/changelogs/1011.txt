@@ -1,0 +1,1 @@
+Pop-up hinzugefügt, um die Benutzer darüber zu informieren, dass ab Version 0.28.7 die Unterstützung für Android 5 eingestellt wird

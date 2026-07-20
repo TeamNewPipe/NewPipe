@@ -1,0 +1,1 @@
+Přidáno okno informující uživatele, že od verze v0.28.7 nebude podporován Android 5

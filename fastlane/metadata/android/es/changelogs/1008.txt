@@ -1,0 +1,4 @@
+∙ Se ha corregido la continuación de las transmisiones en la última posición de reproducción.
+∙ [YouTube] Compatibilidad con más formatos de URL de canales.
+∙ [YouTube] Compatibilidad con más formatos de metainformación de vídeos.
+∙ Traducciones actualizadas.

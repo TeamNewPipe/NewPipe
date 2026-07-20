@@ -76,7 +76,7 @@
     <string name="msg_running_detail">Naciśnij, aby zobaczyć szczegóły</string>
     <string name="msg_wait">Proszę czekać…</string>
     <string name="msg_copied">Skopiowano do schowka</string>
-    <string name="no_available_dir">Zdefiniuj katalog zapisywania później w ustawieniach</string>
+    <string name="no_available_dir">Zdefiniuj folder zapisywania później w ustawieniach</string>
     <string name="app_ui_crash">Awaria aplikacji/interfejsu</string>
     <string name="start">Rozpocznij</string>
     <string name="title_activity_recaptcha">Zadanie reCAPTCHA</string>
@@ -896,4 +896,7 @@
     <string name="import_subscriptions_summary">Zaimportuj subskrypcje z poprzedniego eksportu do .json</string>
     <string name="export_subscriptions_summary">Wyeksportuj swoje subskrypcje do pliku .json</string>
     <string name="import_from_previous_export">Importuj z poprzedniego eksportu</string>
+    <string name="api23_requirement_dialog_title">NewPipe przestaje obsługiwać Androida 5</string>
+    <string name="api23_requirement_dialog_message">Niestety, NewPipe zależy od kilku bibliotek, które przestały obsługiwać Androida 5.0 i 5.1. W związku z tym kolejna wersja NewPipe będzie działać wyłącznie na urządzeniach z Androidem 6 lub nowszym. Czytaj więcej we wpisie na blogu.</string>
+    <string name="api23_requirement_dialog_blogpost">Wpis na blogu</string>
 </resources>

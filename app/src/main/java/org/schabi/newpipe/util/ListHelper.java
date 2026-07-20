@@ -58,7 +58,7 @@ public final class ListHelper {
     /**
      * List of supported YouTube Itag ids.
      * The original order is kept.
-     * @see {@link org.schabi.newpipe.extractor.services.youtube.ItagItem#ITAG_LIST}
+     * @see org.schabi.newpipe.extractor.services.youtube.ItagItem
      */
     private static final List<Integer> SUPPORTED_ITAG_IDS =
             List.of(

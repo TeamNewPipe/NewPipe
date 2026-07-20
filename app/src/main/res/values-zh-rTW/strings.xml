@@ -138,13 +138,13 @@
     <string name="charset_letters_and_digits">字母與數字</string>
     <string name="charset_most_special_characters">大部分的特殊字元</string>
     <string name="title_activity_about">關於 NewPipe</string>
-    <string name="title_licenses">第三方授權</string>
+    <string name="title_licenses">第三方授權條款</string>
     <string name="copyright" formatted="true">© %1$s 由 %2$s 使用 %3$s 授權條款發布</string>
-    <string name="tab_about">關於與常見問題</string>
+    <string name="tab_about">關於 &amp; 常見問題</string>
     <string name="tab_licenses">授權條款</string>
-    <string name="app_description">Android 上自由且輕巧的串流播放器。</string>
+    <string name="app_description">在 Android 上自由且輕量的串流。</string>
     <string name="view_on_github">在 GitHub 上檢視</string>
-    <string name="app_license_title">NewPipe 使用的授權條款</string>
+    <string name="app_license_title">NewPipe 的授權條款</string>
     <string name="contribution_encouragement">不管您有什麼點子 ── 翻譯、設計、清理或撰寫大量程式碼 ── 我們永遠歡迎您來幫忙。做得越多，NewPipe 就會更好！</string>
     <string name="read_full_license">閱讀授權條款</string>
     <string name="contribution_title">貢獻</string>
@@ -168,7 +168,7 @@
     <string name="external_player_unsupported_link_type">外部播放器不支援此類型連結</string>
     <string name="video_streams_empty">找不到影片串流</string>
     <string name="audio_streams_empty">找不到音訊串流</string>
-    <string name="donation_title">贊助</string>
+    <string name="donation_title">捐款</string>
     <string name="website_title">網站</string>
     <string name="import_data_title">匯入資料庫</string>
     <string name="export_data_title">匯出資料庫</string>
@@ -544,7 +544,7 @@
     <string name="show_description_summary">關閉以隱藏影片說明及其他附帶資訊</string>
     <string name="show_description_title">顯示說明</string>
     <string name="open_with">以……開啟</string>
-    <string name="no_app_to_open_intent">您裝置上沒有應用程式可以打開這個</string>
+    <string name="no_app_to_open_intent">您的裝置上沒有應用程式可以開啟這個</string>
     <string name="crash_the_app">應用程式當機</string>
     <string name="paid_content">此內容僅對已付費的內容可用，因此無法由 NewPipe 串流或下載。</string>
     <string name="youtube_music_premium_content">此影片僅供 YouTube Music Premium 會員使用，因此無法由 NewPipe 串流或下載。</string>
@@ -830,4 +830,7 @@
     <string name="export_subscriptions_summary">匯出您的訂閱至 .json 檔案</string>
     <string name="import_subscriptions_summary">從先前匯出的 .json 匯入訂閱</string>
     <string name="import_from_previous_export">從先前的匯出檔案匯入</string>
+    <string name="api23_requirement_dialog_title">NewPipe 即將停止支援 Android 5</string>
+    <string name="api23_requirement_dialog_blogpost">部落格文章</string>
+    <string name="api23_requirement_dialog_message">不幸的是，NewPipe 依賴的一些函式庫已停止支援 Android 5.0 和 5.1。因此，下一個版本的 NewPipe 將只能在 Android 6 或更高版本的裝置上運作，非常遺憾。更多資訊請參閱部落格文章。</string>
 </resources>

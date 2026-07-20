@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigate_back">Назад</string>
+    <string name="title_activity_about">Пра NewPipe</string>
+    <string name="tab_licenses">Ліцэнзіі</string>
+</resources>

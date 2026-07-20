@@ -1,0 +1,8 @@
+- [YouTube] Video e streaming sono nuovamente disponibili in risoluzioni diverse a 360p!
+- [YouTube] Sistemata l'estrazione di elementi di playlist e alcune proprietà nelle visualizzazioni.
+- [YouTube] Rimossi i fallback alla posizione cieca nel conteggio delle visualizzazioni/data di estrazione.
+- [YouTube] Uso dei formati xTags per estrarre il tipo di traccia audio.
+- [Bandcamp] Sistemata la ricerca su bandcamp.
+
+
+Un grande grazie a tutti coloro che sono coinvolti in questa pubblicazione!

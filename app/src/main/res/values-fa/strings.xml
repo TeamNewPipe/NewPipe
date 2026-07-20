@@ -189,9 +189,9 @@
     <string name="title_last_played">آخرین پخش‌شده</string>
     <string name="title_most_played">بیشترین پخش‌شده</string>
     <string name="main_page_content">محتوای صفحه اصلی</string>
-    <string name="blank_page_summary">صفحه خالی</string>
-    <string name="kiosk_page_summary">صفحه کیوسک</string>
-    <string name="channel_page_summary">صفحه کانال</string>
+    <string name="blank_page_summary">صفحهٔ خالی</string>
+    <string name="kiosk_page_summary">صفحهٔ کیوسک</string>
+    <string name="channel_page_summary">صفحهٔ کانال</string>
     <string name="select_a_channel">کانالی را انتخاب کنید</string>
     <string name="no_channel_subscribed_yet">هنز کانال مشترک‌شده‌ای وجود ندارد</string>
     <string name="select_a_kiosk">یک کیوسک را انتخاب کنید</string>
@@ -220,9 +220,9 @@
     <string name="unsubscribe">لغو اشتراک</string>
     <string name="tab_choose">گزینش زبانه</string>
     <string name="enable_watch_history_title">تاریخچه تماشا</string>
-    <string name="settings_category_history_title">تاریخچه و حافظه نهان</string>
+    <string name="settings_category_history_title">تاریخچه و انباره</string>
     <string name="settings_category_debug_title">اشکال‌زدایی</string>
-    <string name="settings_category_updates_title">به‌روزرسانی‌ها</string>
+    <string name="settings_category_updates_title">به‌روز رسانی‌ها</string>
     <string name="open_in_popup_mode">گشودن در حالت تصویردرتصویر</string>
     <string name="default_popup_resolution_title">وضوح پیش‌گزیدهٔ تصویردرتصویر</string>
     <string name="controls_popup_title">تصویردرتصویر</string>
@@ -341,8 +341,7 @@
     <string name="caption_setting_description">تغییر سبک پس‌زمینه و اندازه متن توضیحات پخش‌کننده. برای تأثیر، نیازمند آغاز دوبارهٔ کاره است</string>
     <string name="clear_views_history_summary">پاک کردن تاریخچه جریان‌های پخش شه و موقعیت‌های پخش</string>
     <string name="app_license">نیوپایپ یک نرم‌افزار آزاد کپی‌لفتی است: می‌توانید به دلخواه خود استفاده، بررسی، هم‌رسانی و بهترش کنید. به طور خاص می‌توانید ذیل نگارش ۳ یا هر نگارش بالاتری از پروانهٔ جامع همگانی گنو که به دست بنیاد نرم‌افزار آزاد منتشر شده، تغییر و بازنشرش دهید.</string>
-    <string name="privacy_policy_encouragement">حریم شخصی شما برای پروژه نیویایپ بسیاری جدی است. در نتیجه، این برنامه هیچ اطلاعاتی را بدون رضایت شما گردآوری نمی‌کند.
-\nسیاست‌های حریم شخصی نیوپایپ با جزئیات توضیح می‌دهد که وقتی گزارش یک خطا را می‌فرستید، چه داده‌هایی ذخیره و فرستاده می‌شود.</string>
+    <string name="privacy_policy_encouragement">پروژهٔ نیوپایپ محرمانگیتان را بسیار جدی می‌گیرد. برای همین کاره هیچ داده‌ای را بدون رضایتتان جمع‌آوری نمی‌کند.\nسیاست محرمانگی نیوپایپ با جزییات توضیح می‌دهد که هنگام گزارش فروپاشی چه داده‌هایی فرستاده و ذخیره می‌شوند.</string>
     <string name="start_accept_privacy_policy">به منظور هماهنگی با مقرّرات حفاظت دادهٔ عمومی اروپا (GDPR) توجهتان را به سیاست محرمانگی نیوپایپ جلب می‌کنیم. لطفاً به دقّت مطالعه‌اش کنید.
 \nبرای فرستادن گزارش مشکل باید بپذیریدش.</string>
     <string name="limit_mobile_data_usage_title">کیفیت را در زمان استفاده از داده همراه محدود کن</string>
@@ -450,7 +449,7 @@
         <item quantity="other">%d ثانیه</item>
     </plurals>
     <string name="remove_watched_popup_partially_watched_streams">بله، و ویدیوهای ناقص دیده شده</string>
-    <string name="remove_watched_popup_title">برداشتن ویدیوهای دیده شده؟</string>
+    <string name="remove_watched_popup_title">برداشتن جریان‌های دیده شده؟</string>
     <string name="remove_watched">پاک کردن دیده شده‌ها</string>
     <string name="systems_language">پیش‌فرض دستگاه</string>
     <string name="app_language_title">زبان برنامه</string>
@@ -500,7 +499,7 @@
     <string name="feed_group_show_only_ungrouped_subscriptions">نمایش اشتراک های دسته بندی نشده</string>
     <string name="detail_sub_channel_thumbnail_view_description">آواتار بندانگشتی کانال</string>
     <string name="playlist_page_summary">صفحه فهرست پخش</string>
-    <string name="remove_watched_popup_warning">ویدیوهایی که پیش و‌ پس از افزوده شدن به سیاههٔ پخش دیده شده‌اند حذف خواهند شد. \nمطمئنید؟ این کار قابل بازگشت نیست!</string>
+    <string name="remove_watched_popup_warning">ویدیوهایی که پیش و‌ پس از افزوده شدن به سیاههٔ پخش دیده شده‌اند حذف خواهند شد. \nمطمئنید؟</string>
     <string name="enable_disposed_exceptions_summary">گزارش اجباری خطاهای Rx غیرقابل تحویل خارج از چرخه حیات فعالیت یا بخش پس از اتمام</string>
     <string name="feed_use_dedicated_fetch_method_help_text">فکر می‌کنید دریافت خوراک بیش از حد آهسته است؟ اگر چنین است، بارگیری سریع را فعالی کنید (می‌توانید آن را در تنظیمات یا با فشردن دکمه زیر تغییر دهید)
 \n
@@ -756,7 +755,7 @@
     <string name="duration">مدّت</string>
     <string name="rewind">پسروی</string>
     <string name="question_mark">؟</string>
-    <string name="settings_category_backup_restore_title">پشتیبان‌گیری و بازیابی</string>
+    <string name="settings_category_backup_restore_title">پشتیبان و بازگردانی</string>
     <string name="no_live_streams">بدون جریان زنده</string>
     <string name="image_quality_title">کیفیت تصویر</string>
     <string name="image_quality_medium">کیفیت متوسّط</string>
@@ -813,4 +812,46 @@
     <string name="open_play_queue">گشودن صف پخش</string>
     <string name="remove_duplicates_message">می‌خواهید همهٔ جریان‌های تکراری را در این سیاههٔ پخش بردارید؟</string>
     <string name="feed_fetch_channel_tabs_summary">زبانه‌هایی که هنگام به‌روز رسانی خوراک واکشی می‌شوند. این گزینه تأثیری روی کانال‌هایی که با ساتفاده از حالت سریع به‌روز می‌شوند ندارد.</string>
+    <string name="short_thousand">%sه</string>
+    <string name="short_million">%sم</string>
+    <string name="short_billion">%sمیلیارد</string>
+    <string name="channel_tab_likes">پسندها</string>
+    <string name="kao_dialog_more_info">جزییات</string>
+    <string name="kao_solution">راهکار</string>
+    <string name="search_with_service_name">جست‌وجوی %1$s</string>
+    <string name="api23_requirement_dialog_blogpost">فرستهٔ وبلاگ</string>
+    <string name="trending_gaming">داغ‌های بازی</string>
+    <string name="trending_podcasts">داغ‌های پادپخش</string>
+    <string name="trending_music">آهنگ‌های داغ</string>
+    <string name="delete_file">حذف پرونده</string>
+    <string name="delete_entry">حذف ورودی</string>
+    <string name="entry_deleted">ورودی حذف شد</string>
+    <string name="import_subscriptions_title">درون‌ریزی اشتراک‌ها</string>
+    <string name="export_subscriptions_title">برون‌ریزی اشتراک‌ها</string>
+    <string name="feed_group_page_summary">صفحهٔ گروه کانال</string>
+    <string name="search_with_service_name_and_filter">جست‌وجوی %1$s ‏(%2$s)</string>
+    <string name="select_a_feed_group">گزینش گروه خوراک</string>
+    <string name="migration_info_7_8_title">داغ‌های ترکیبی یوتوب برداشته شد</string>
+    <string name="trending_movies">فیلم و سریال‌های داغ</string>
+    <string name="import_from_previous_export">درون‌ریزی از برون‌ریزی پیشین</string>
+    <string name="no_feed_group_created_yet">هنوز گروه خوراکی ایجاد نشده</string>
+    <string name="migration_info_6_7_title">۵۰ صفحهٔ برتر سوندکلود برداشته شد</string>
+    <string name="permission_display_over_apps_permission_name">«اجازهٔ نمایش روی دیگر کاره‌ها»</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">برون ریختن %d اشتراک…</item>
+        <item quantity="other">برون ریختن %d اشتراک…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">بار کردن %d اشتراک…</item>
+        <item quantity="other">بار کردن %d اشتراک…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">درون ریختن %d اشتراک…</item>
+        <item quantity="other">درون ریختن %d اشتراک…</item>
+    </plurals>
+    <string name="account_terminated_service_provides_reason">حساب از بین رفت\n\n‫%1$s این دلیل را گفته: %2$s</string>
+    <string name="import_subscriptions_summary">درون‌ریزی اشتراک‌ها از برون‌ریزی پیشین ‪.json‬</string>
+    <string name="export_subscriptions_summary">برون‌ریزی اشتراک‌هایتان به پروندهٔ ‪.json‬</string>
+    <string name="api23_requirement_dialog_title">نیوپایپ دارد پشتیبانی از اندروید ۵ را رها می‌کند</string>
+    <string name="player_http_invalid_status">هنگام پخش کردن کارساز خطای HTTP ‏%1$s داد</string>
 </resources>

@@ -1,0 +1,1 @@
+In this release, the YouTube website version was updated. The old website version is going to be discontinued in March, so you are required to upgrade NewPipe.

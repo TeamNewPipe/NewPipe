@@ -9,7 +9,6 @@ Pages de commentaires non empilées
 
 Corrections
 Affichage de l'en-tête des réponses aux commentaires sans image d'avatar
-Corrections d'interface utilisateur pour plusieurs lecteurs
 [SoundCloud] Correction des flux avec des identifiants longs
 
 Et bien d'autres corrections et améliorations !

@@ -1,5 +1,6 @@
 package us.shandian.giga.ui.adapter;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 import static android.content.Intent.FLAG_GRANT_PREFIX_URI_PERMISSION;
 import static android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION;
 import static android.content.Intent.createChooser;
@@ -356,7 +357,9 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         viewIntent.addFlags(FLAG_GRANT_PREFIX_URI_PERMISSION);
 
         Intent chooserIntent = createChooser(viewIntent, null);
-        chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_GRANT_READ_URI_PERMISSION);
+        chooserIntent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+        chooserIntent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
+        chooserIntent.addFlags(FLAG_GRANT_PREFIX_URI_PERMISSION);
 
         ShareUtils.openIntentInApp(mContext, chooserIntent);
     }
@@ -375,7 +378,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.O_MR1) {
             intent.putExtra(Intent.EXTRA_TITLE, mContext.getString(R.string.share_dialog_title));
         }
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
 
         mContext.startActivity(intent);

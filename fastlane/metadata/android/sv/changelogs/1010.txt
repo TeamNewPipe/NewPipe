@@ -1,0 +1,9 @@
+Åtgärdade NullPointerException i köåtgärder med hjälp av programkontext
+[YouTube] Åtgärdade varaktighet för objektparning
+
+Uppdaterade översättningar och tog bort oöversatta språkinställningar
+Små förbättringar av bildhantering
+
+Ändringar relaterade till portprenumerationer från refactoring
+Ändringar relaterade till portsökväg från refactoring
+Uppdatera beroenden och Gradle till den senaste stabila versionen

@@ -1,0 +1,31 @@
+# Changes from v0.14.1
+
+### Fixed
+- Fixed video url decryption failure #1659
+- Fixed description link not extracting properly #1657
+
+# Changes to v0.14.0
+
+#### New
+- New drawer design #1461
+- New customisable home page #1461
+
+### Improvements
+- Reworked gesture controls #1604
+- New way to close the popup player #1597
+
+### Fix
+- Fixed an error when the number of subscriptions is not available. Closes #1649.
+  - Display of "Subscriber count not available" in these cases.
+- Fixed NPE error when a YouTube playlist is empty.
+- Quick fix for kiosks in SoundCloud
+- Redesign and bugfix #1623
+  - Fixed cyclic search result #1562
+  - Fixed search bar not being statically laid out
+  - Fixed YT Premium videos not being blocked correctly
+  - Fixed videos not always loading (due to DASH analysis)
+  - Fixed links in the video description
+  - Display a warning when someone tries to download to an external SD card
+  - Fixed the "Nothing displayed" exception that triggers a report
+  - Thumbnail not displayed in background player for android 8.1 [see here] (https://github.com/TeamNewPipe/NewPipe/issues/943)
+- Fixed broadcast receiver registration. Closes #1641.

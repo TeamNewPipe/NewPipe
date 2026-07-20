@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_activity_about">O aplikácii NewPipe</string>
+    <string name="title_licenses">Licencie tretích strán</string>
+    <string name="license">Od %1$s pod licenciou %2$s</string>
+    <string name="tab_about">O nás a často kladené otázky</string>
+    <string name="tab_licenses">Licencie</string>
+    <string name="app_description">Voľné a ľahké streamovanie pre Android.</string>
+    <string name="contribution_title">Prispieť</string>
+    <string name="donation_title">Darovať</string>
+    <string name="contribution_encouragement">Či už máte nápady týkajúce sa prekladu, dizajnu, čistenia kódu alebo zásadných zmien v kóde – vaša pomoc je vždy vítaná. Čím viac sa urobí, tým lepšie to bude!</string>
+    <string name="view_on_github">Pozrieť na GitHub</string>
+    <string name="donation_encouragement">NewPipe vyvíjajú dobrovoľníci, ktorí vo voľnom čase pracujú na tom, aby vám poskytli čo najlepší používateľský zážitok. Odmeňte vývojárov, aby mohli NewPipe ešte vylepšiť, zatiaľ čo si vychutnávajú šálku kávy.</string>
+    <string name="give_back">Odmeniť</string>
+    <string name="website_title">Webová stránka</string>
+    <string name="website_encouragement">Navštívte webovú stránku NewPipe pre viac informácií a noviniek.</string>
+    <string name="privacy_policy_title">Zásady ochrany osobných údajov NewPipe</string>
+    <string name="privacy_policy_encouragement">Projekt NewPipe berie ochranu vašich osobných údajov veľmi vážne. Aplikácia preto bez vášho súhlasu nezhromažďuje žiadne údaje.\nV zásadách ochrany osobných údajov NewPipe je podrobne vysvetlené, aké údaje sa odosielajú a ukladajú pri zaslaní správy o chybe.</string>
+    <string name="read_privacy_policy">Prečítajte si zásady ochrany osobných údajov</string>
+    <string name="app_license_title">Licencia NewPipe</string>
+    <string name="app_license">NewPipe je voľný softvér s copyleftom: Môžete ho používať, študovať, zdieľať a vylepšovať podľa vlastného uváženia. Konkrétne ho môžete redistribuovať a/alebo modifikovať podľa podmienok Všeobecnej verejnej licencie GNU, ako ju uverejnila Free Software Foundation, buď verzie 3 licencie, alebo (podľa vášho výberu) akejkoľvek neskoršej verzie.</string>
+    <string name="read_full_license">Prečítajte si licenciu</string>
+    <string name="faq_title">Často kladené otázky</string>
+    <string name="faq_description">Ak máte problémy s používaním aplikácie, určite si prečítajte tieto odpovede na zvyčajné otázky!</string>
+    <string name="faq">Pozrieť na webstránke</string>
+    <string name="open_in_browser">Otvoriť v prehliadači</string>
+    <string name="done">Hotovo</string>
+    <string name="not_available">Nedostupné</string>
+    <string name="navigate_back">Naspäť</string>
+    <string name="settings">Nastavenia</string>
+    <string name="search">Hľadať</string>
+    <string name="content">Obsah</string>
+    <string name="notifications">Oznámenia</string>
+    <string name="settings_category_video_audio_title">Video a zvuk</string>
+    <string name="settings_category_downloads_title">Sťahovanie</string>
+    <string name="settings_category_appearance_title">Vzhľad</string>
+    <string name="settings_category_history_title">História a medzipamäť</string>
+    <string name="settings_category_updates_title">Aktualizácie</string>
+    <string name="settings_category_backup_restore_title">Záloha a obnovenie</string>
+    <string name="settings_category_debug_title">Ladenie</string>
+</resources>

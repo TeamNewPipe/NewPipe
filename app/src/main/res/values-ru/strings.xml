@@ -104,14 +104,14 @@
     <string name="title_activity_about">О NewPipe</string>
     <string name="app_license_title">Лицензия NewPipe</string>
     <string name="tab_licenses">Лицензии</string>
-    <string name="title_licenses">Сторонние лицензии</string>
-    <string name="tab_about">О приложении</string>
+    <string name="title_licenses">Лицензии сторонних компонентов</string>
+    <string name="tab_about">О приложении и ответы на вопросы</string>
     <string name="read_full_license">Прочитать лицензию</string>
     <string name="app_description">Свободный и легковесный потоковый плеер для Android.</string>
     <string name="view_on_github">Открыть на GitHub</string>
-    <string name="contribution_encouragement">Приветствуется всё — идеи, перевод, редизайн, чистка кода или огромные изменения в коде. Чем больше сделано, тем лучше!</string>
+    <string name="contribution_encouragement">Будь то перевод, изменения дизайна, чистка кода или серьёзная переработка - любая помощь приветствуется. Чем больше сделано, тем лучше становится проект!</string>
     <string name="copyright" formatted="true">© %1$s • %2$s • %3$s</string>
-    <string name="contribution_title">Помощь проекту</string>
+    <string name="contribution_title">Помочь проекту</string>
     <string name="subscribe_button_title">Подписаться</string>
     <string name="subscription_change_failed">Не удалось изменить подписку</string>
     <string name="subscription_update_failed">Не удалось обновить подписку</string>
@@ -204,11 +204,11 @@
     <string name="external_player_unsupported_link_type">Внешние плееры не поддерживают эти типы ссылок</string>
     <string name="video_streams_empty">Видеопотоки не найдены</string>
     <string name="audio_streams_empty">Аудиопотоки не найдены</string>
-    <string name="donation_title">Пожертвование</string>
-    <string name="donation_encouragement">Разработчики NewPipe ценой своего свободного времени делают вашу жизнь чуть удобнее. Отплатите им тем же — наслаждаясь чашечкой кофе, они смогут сделать NewPipe ещё круче.</string>
-    <string name="give_back">Воздать должное</string>
+    <string name="donation_title">Пожертвовать</string>
+    <string name="donation_encouragement">NewPipe разрабатывают волонтёры, которые тратят свободное время, чтобы сделать приложение как можно удобнее. Поддержите разработчиков и помогите им сделать NewPipe ещё лучше - хотя бы за чашкой кофе.</string>
+    <string name="give_back">Поддержать проект</string>
     <string name="website_title">Веб-сайт</string>
-    <string name="website_encouragement">Для получения более подробной информации и последних новостей о NewPipe посетите наш веб-сайт.</string>
+    <string name="website_encouragement">Посетите сайт NewPipe, чтобы узнать больше и ознакомиться с новостями.</string>
     <string name="drawer_open">Открыть боковую панель</string>
     <string name="drawer_close">Закрыть боковую панель</string>
     <string name="video_player">Видеоплеер</string>
@@ -315,13 +315,13 @@
     <string name="delete_search_history_alert">Удалить всю историю поиска\?</string>
     <string name="search_history_deleted">История поиска удалена</string>
     <string name="one_item_deleted">1 элемент удалён.</string>
-    <string name="app_license">NewPipe — свободное программное обеспечение: вы можете использовать, изучать и улучшать его по своему усмотрению. В частности, вы можете распространять и/или изменять его в соответствии с условиями GNU General Public License, опубликованной Free Software Foundation, либо версии 3, либо (по вашему выбору) любой более поздней версии.</string>
+    <string name="app_license">NewPipe - свободное программное обеспечение, распространяемое на условиях копилефта. Вы можете свободно использовать, изучать, распространять и улучшать его. В частности, NewPipe можно распространять и/или изменять на условиях Стандартной общественной лицензии GNU, опубликованной Фондом свободного программного обеспечения, версии 3 либо, по вашему выбору, любой более поздней версии.</string>
     <string name="preferred_open_action_settings_title">При открытии ссылки</string>
     <string name="import_settings">Хотите импортировать настройки?</string>
-    <string name="privacy_policy_title">Конфиденциальность</string>
+    <string name="privacy_policy_title">Политика конфиденциальности NewPipe</string>
     <string name="privacy_policy_encouragement">Проект NewPipe очень серьёзно относится к вашей конфиденциальности. Приложение не собирает никакие данные без вашего согласия.
 \nПолитика конфиденциальности подробно объясняет, какие данные обрабатываются и хранятся при отправке отчёта о сбоях.</string>
-    <string name="read_privacy_policy">Прочитать политику</string>
+    <string name="read_privacy_policy">Ознакомиться с политикой конфиденциальности</string>
     <string name="start_accept_privacy_policy">В соответствии с Общим регламентом по защите данных ЕС (GDPR), обращаем ваше внимание на политику конфиденциальности NewPipe. Пожалуйста, внимательно ознакомьтесь с ней.
 \nВам необходимо принять её условия, чтобы отправить нам отчёт об ошибке.</string>
     <string name="accept">Принять</string>
@@ -864,9 +864,35 @@
     <string name="player_http_403">Во время воспроизведения получена ошибка HTTP 403 от сервера, вероятно, вызванная истечением срока действия URL-адреса потоковой передачи или блокировкой IP-адреса</string>
     <string name="player_http_invalid_status">Ошибка HTTP %1$s получена от сервера во время воспроизведения</string>
     <string name="youtube_player_http_403">Во время воспроизведения получена ошибка HTTP 403 от сервера, вероятно, вызванная блокировкой IP-адреса или проблемами деобфускации URL-адреса потоковой передачи</string>
-    <string name="sign_in_confirm_not_bot_error">%1$s отказался предоставить данные, запросив логин для подтверждения, что запросчик не бот.\n\nВозможно, ваш IP-адрес временно заблокирован %1$s. Вы можете подождать некоторое время или переключиться на другой IP-адрес (например, включив/выключив VPN или переключившись с Wi-Fi на мобильный интернет).</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s отказался предоставить данные, запросив вход в аккаунт для подтверждения, что запрашивающий не является ботом.\n\nВозможно, ваш IP-адрес временно заблокирован %1$s, вы можете подождать некоторое время или переключиться на другой IP-адрес (например, включив/выключив VPN или переключившись с Wi-Fi на мобильный интернет).\n\nПожалуйста посмотрите <a href="%2$s">этот пункт FAQ</a> для получения дополнительной информации.</string>
     <string name="unsupported_content_in_country">Этот контент недоступен для выбранной страны контента.\n\nИзмените свой выбор в разделе «Настройки &gt; Контент &gt; Страна контента по умолчанию».</string>
     <string name="kao_dialog_warning">В августе 2025 года, Google анонсировала, что с сентября 2026 года, установка приложений потребует верификации разработчика для всех Android приложений на сертифицированных устройствах, включая те, которые были установлены не через Play Store. Поскольку разработчики NewPipe не согласны с этим требованием, NewPipe перестанет работать на сертифицированных Android устройствах после этой даты.</string>
     <string name="kao_dialog_more_info">Подробнее</string>
     <string name="kao_solution">Решение</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">Экспортирование %d подписки…</item>
+        <item quantity="few">Экспортирование %d подписок…</item>
+        <item quantity="many">Экспортирование %d подписок…</item>
+        <item quantity="other">Экспортирование %d подписок…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">Загрузка %d подписки…</item>
+        <item quantity="few">Загрузка %d подписок…</item>
+        <item quantity="many">Загрузка %d подписок…</item>
+        <item quantity="other">Загрузка %d подписок…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">Импортирование %d подписки…</item>
+        <item quantity="few">Импортирование %d подписок…</item>
+        <item quantity="many">Импортирование %d подписок…</item>
+        <item quantity="other">Импортирование %d подписок…</item>
+    </plurals>
+    <string name="import_subscriptions_title">Импорт подписок</string>
+    <string name="export_subscriptions_title">Экспорт подписок</string>
+    <string name="import_subscriptions_summary">Импорт подписок из предыдущего экспорта .json</string>
+    <string name="export_subscriptions_summary">Экспорт ваших подписок в .json файл</string>
+    <string name="import_from_previous_export">Импорт из предыдущего экспорта</string>
+    <string name="api23_requirement_dialog_title">NewPipe прекращает поддержку Android 5</string>
+    <string name="api23_requirement_dialog_message">К сожалению, NewPipe зависит от нескольких библиотек, которые прекратили поддерживать Android 5.0 и 5.1. Таким образом, к сожалению следующий выпуск NewPipe будет работать только на устройствах с Android 6 или выше. Подробности в посте в блоге.</string>
+    <string name="api23_requirement_dialog_blogpost">Пост в блоге</string>
 </resources>

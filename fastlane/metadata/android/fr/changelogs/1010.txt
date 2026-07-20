@@ -1,0 +1,9 @@
+Correction d'une exception NullPointerException lors de la mise en file d'attente d'actions à l'aide du contexte d'application
+[YouTube] Correction de l'analyse de la durée des éléments
+
+Mise à jour des traductions et suppression des locales non traduites
+Petites améliorations apportées à la gestion des images
+
+Portage des modifications liées aux abonnements issues de la refactorisation
+Portage des modifications liées aux chemins d'accès issues de la refactorisation
+Mise à jour des dépendances et de Gradle vers la dernière version stable
