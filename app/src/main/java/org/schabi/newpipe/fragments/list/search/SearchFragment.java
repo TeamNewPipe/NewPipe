@@ -622,6 +622,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             }
         };
         searchEditText.addTextChangedListener(textWatcher);
+        
         searchEditText.setOnEditorActionListener(
                 (final TextView v, final int actionId, final KeyEvent event) -> {
                     if (DEBUG) {
@@ -630,11 +631,15 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                     }
                     if (actionId == EditorInfo.IME_ACTION_PREVIOUS) {
                         hideKeyboardSearch();
-                    } else if (event != null
-                            && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER
-                            || event.getAction() == EditorInfo.IME_ACTION_SEARCH)) {
+                        return true;
+                    } else if (actionId == EditorInfo.IME_ACTION_SEARCH
+                            || (event != null
+                                && event.getKeyCode() == KeyEvent.KEYCODE_ENTER
+                                && event.getAction() == KeyEvent.ACTION_UP)) {
                         searchEditText.setText(getSearchEditString().trim());
                         search(getSearchEditString(), new String[0], "");
+                        // Close the IME / drop focus so the keyboard overlay disappears on Firestick.
+                        hideKeyboardSearch();
                         return true;
                     }
                     return false;
@@ -692,6 +697,12 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         }
 
         KeyboardUtil.hideKeyboard(activity, searchEditText);
+
+        // Remove focus from the search field so the IME overlay doesn't pop back up
+        // (important on Firestick / TV where the IME is a separate focused window).
+        if (searchEditText != null) {
+            searchEditText.clearFocus();
+        }
     }
 
     private void showDeleteSuggestionDialog(final SuggestionItem item) {
