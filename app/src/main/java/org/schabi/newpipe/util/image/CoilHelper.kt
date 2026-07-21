@@ -31,7 +31,7 @@ object CoilHelper {
         context: Context,
         url: String?,
         @DrawableRes placeholderResId: Int = 0
-    ) = runBlocking {
+    ): Bitmap? = runBlocking {
         loadBitmap(context, url, placeholderResId)
     }
 

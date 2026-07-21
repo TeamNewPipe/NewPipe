@@ -21,7 +21,7 @@ object NotificationHelper {
      * If this is the case, the app cannot create any notifications
      * and display them to the user.
      *
-     * On Android 26 and above, notification channels are used by NewPipe.
+     * On Android 8.0 (API 26) and above, notification channels are used by NewPipe.
      * These can be configured by the user, too.
      * The notification channel for new streams is also checked by this method.
      *
