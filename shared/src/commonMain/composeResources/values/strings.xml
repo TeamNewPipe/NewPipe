@@ -89,4 +89,67 @@
     <string name="best_resolution">Best resolution</string>
     <string name="limit_data_usage_none_description">No limit</string>
 
+    <!-- Video/Audio Settings: Player section -->
+    <string name="settings_category_player_title">Player</string>
+    <string name="use_external_video_player_title">Use external video player</string>
+    <string name="use_external_video_player_summary">Removes audio at some resolutions</string>
+    <string name="use_external_audio_player_title">Use external audio player</string>
+    <string name="show_play_with_kodi_title">Show \"Play with Kodi\" option</string>
+    <string name="show_play_with_kodi_summary">Display an option to play a video via Kodi media center</string>
+    <string name="seekbar_preview_thumbnail_title">Seekbar thumbnail preview</string>
+    <string name="high_quality_larger">High quality (larger)</string>
+    <string name="low_quality_smaller">Low quality (smaller)</string>
+    <string name="dont_show">Don\'t show</string>
+
+    <!-- Video/Audio Settings: Behavior section -->
+    <string name="settings_category_player_behavior_title">Behavior</string>
+    <string name="preferred_open_action_settings_title">Preferred \'open\' action</string>
+    <string name="preferred_open_action_settings_summary">Default action when opening content — %1$s</string>
+    <string name="show_info">Show info</string>
+    <string name="video_player">Video player</string>
+    <string name="background_player">Background player</string>
+    <string name="popup_player">Popup player</string>
+    <string name="download">Download</string>
+    <string name="add_to_playlist">Add to playlist</string>
+    <string name="enqueue_stream">Enqueue</string>
+    <string name="always_ask_open_action">Always ask</string>
+    <string name="minimize_on_exit_title">Minimize on app switch</string>
+    <string name="minimize_on_exit_summary">Action when switching to other app from main video player — %1$s</string>
+    <string name="minimize_on_exit_none_description">None</string>
+    <string name="minimize_on_exit_background_description">Minimize to background player</string>
+    <string name="minimize_on_exit_popup_description">Minimize to popup player</string>
+    <string name="start_main_player_fullscreen_title">Start main player in fullscreen</string>
+    <string name="start_main_player_fullscreen_summary">Do not start videos in the mini player, but turn to fullscreen mode directly, if auto rotation is locked. You can still access the mini player by exiting fullscreen</string>
+    <string name="autoplay_title">Autoplay</string>
+    <string name="autoplay_summary">Start playback automatically — %1$s</string>
+    <string name="always">Always</string>
+    <string name="wifi_only">Only on Wi-Fi</string>
+    <string name="never">Never</string>
+    <string name="auto_queue_title">Auto-enqueue next stream</string>
+    <string name="auto_queue_summary">Continue ending (non-repeating) playback queue by appending a related stream</string>
+    <string name="resume_on_audio_focus_gain_title">Resume playing</string>
+    <string name="resume_on_audio_focus_gain_summary">Continue playing after interruptions (e.g. phonecalls)</string>
+    <string name="left_gesture_control_title">Left gesture action</string>
+    <string name="left_gesture_control_summary">Choose gesture for left half of player screen</string>
+    <string name="right_gesture_control_title">Right gesture action</string>
+    <string name="right_gesture_control_summary">Choose gesture for right half of player screen</string>
+    <string name="brightness">Brightness</string>
+    <string name="volume">Volume</string>
+    <string name="none">None</string>
+    <string name="popup_remember_size_pos_title">Remember popup properties</string>
+    <string name="popup_remember_size_pos_summary">Remember last size and position of popup</string>
+    <string name="use_inexact_seek_title">Use fast inexact seek</string>
+    <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision. Seeking for 5, 15 or 25 seconds doesn\'t work with this</string>
+    <string name="seek_duration_title">Fast-forward/-rewind seek duration</string>
+    <string name="new_seek_duration_toast">Due to ExoPlayer constraints the seek duration was set to %1$d seconds</string>
+    <string name="clear_queue_confirmation_title">Ask for confirmation before clearing a queue</string>
+    <string name="clear_queue_confirmation_summary">Switching from one player to another may replace your queue</string>
+    <string name="ignore_hardware_media_buttons_title">Ignore hardware media button events</string>
+    <string name="ignore_hardware_media_buttons_summary">Useful, for instance, if you are using a headset with broken physical buttons</string>
+    <plurals name="seconds">
+        <item quantity="one">%1$d second</item>
+        <item quantity="other">%1$d seconds</item>
+    </plurals>
+
+
 </resources>
