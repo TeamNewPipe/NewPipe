@@ -11,5 +11,7 @@ package net.newpipe.app.platform
 interface AppearanceActions {
     fun openCaptionSettings()
 
+    fun isCaptionSettingsAvailable(): Boolean
+
     fun applyThemeChange(theme: String)
 }

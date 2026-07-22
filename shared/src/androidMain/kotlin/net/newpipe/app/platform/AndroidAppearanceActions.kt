@@ -21,6 +21,10 @@ class AndroidAppearanceActions(
     private val settings: Settings,
 ) : AppearanceActions {
 
+    override fun isCaptionSettingsAvailable(): Boolean =
+        Intent(AndroidSettings.ACTION_CAPTIONING_SETTINGS)
+            .resolveActivity(context.packageManager) != null
+
     override fun openCaptionSettings() {
         try {
             context.startActivity(
