@@ -14,5 +14,7 @@ interface AppearanceActions {
      */
     fun openCaptionSettings()
 
+    fun isCaptionSettingsAvailable(): Boolean
+
     fun applyThemeChange(theme: String)
 }
