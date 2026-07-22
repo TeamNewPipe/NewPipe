@@ -132,7 +132,12 @@ fun currentColorScheme(
 
 /**
  * Reads a string setting as Compose state, updating when the stored value changes so theme
- * edits made elsewhere (e.g. the Appearance screen) apply live without recreating the host.
+ * edits made elsewhere (e.g. the Appearance screen) re-theme the Compose UI live via
+ * recomposition
+ *
+ * This only covers Compose-rendered UI. Legacy Android Views screens are re-themed separately
+ * (global AppCompatDelegate day/night mode + the KEY_THEME_CHANGE recreate flag consumed by
+ * MainActivity.onResume), driven from AppearanceActions.applyThemeChange.
  */
 @Composable
 private fun rememberSettingString(
