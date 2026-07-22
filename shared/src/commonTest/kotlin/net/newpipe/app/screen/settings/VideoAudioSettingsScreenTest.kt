@@ -8,6 +8,7 @@ package net.newpipe.app.screen.settings
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.v2.runComposeUiTest
 import com.russhwolf.settings.MapSettings
 import com.russhwolf.settings.Settings
@@ -17,6 +18,7 @@ import net.newpipe.app.preferences.VideoAudioPreferences
 import newpipe.shared.generated.resources.Res
 import newpipe.shared.generated.resources.best_resolution
 import newpipe.shared.generated.resources.default_resolution_title
+import newpipe.shared.generated.resources.settings_category_player_title
 import newpipe.shared.generated.resources.settings_category_video_audio_title
 import org.jetbrains.compose.resources.getString
 import org.koin.dsl.module
@@ -36,6 +38,19 @@ class VideoAudioSettingsScreenTest {
             onContent = {
                 onNodeWithText(getString(Res.string.settings_category_video_audio_title)).assertIsDisplayed()
                 onNodeWithText(getString(Res.string.default_resolution_title)).assertIsDisplayed()
+            }
+        )
+    }
+
+    @Test
+    fun rendersPlayerCategoryHeader() = runComposeUiTest {
+        withKoin(
+            modules = listOf(emptySettings),
+            content = { VideoAudioSettingsScreenContent() },
+            onContent = {
+                onNodeWithText(getString(Res.string.settings_category_player_title))
+                    .performScrollTo()
+                    .assertIsDisplayed()
             }
         )
     }
