@@ -10,4 +10,6 @@ import org.koin.core.annotation.Singleton
 @Singleton(binds = [AppearanceActions::class])
 class IOSAppearanceActions : AppearanceActions {
     override fun openCaptionSettings() = Unit
+
+    override fun applyThemeChange(theme: String) = Unit
 }
