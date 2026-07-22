@@ -9,11 +9,16 @@ import androidx.lifecycle.ViewModel
 import com.russhwolf.settings.Settings
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import net.newpipe.app.platform.AppearanceActions
 import net.newpipe.app.preferences.AppearancePreferences
 import org.koin.core.annotation.KoinViewModel
 
 
 @KoinViewModel
+class AppearanceSettingsViewModel(
+    private val settings: Settings,
+    private val appearanceActions: AppearanceActions,
+) : ViewModel() {
 
     val theme: StateFlow<String>
         field = MutableStateFlow(
@@ -63,11 +68,13 @@ import org.koin.core.annotation.KoinViewModel
     fun setTheme(value: String) {
         settings.putString(AppearancePreferences.KEY_THEME, value)
         theme.value = value
+        appearanceActions.applyThemeChange(value)
     }
 
     fun setNightTheme(value: String) {
         settings.putString(AppearancePreferences.KEY_NIGHT_THEME, value)
         nightTheme.value = value
+        appearanceActions.applyThemeChange(theme.value)
     }
 
     fun setHoldToAppend(value: Boolean) {
