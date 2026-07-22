@@ -13,4 +13,6 @@ interface AppearanceActions {
      * Opens the system captioning settings, where supported.
      */
     fun openCaptionSettings()
+
+    fun applyThemeChange(theme: String)
 }
