@@ -47,14 +47,6 @@ class VideoAudioSettingsViewModel(private val settings: Settings) : ViewModel() 
             )
         )
 
-    /** Resolution values available for the default & popup pickers; grows with [showHigherResolutions]. */
-    val resolutionValues: StateFlow<List<String>>
-        field = MutableStateFlow(VideoAudioPreferences.resolutions(showHigherResolutions.value))
-
-    /** Resolution values for the mobile-data limit picker; grows with [showHigherResolutions]. */
-    val mobileDataResolutionValues: StateFlow<List<String>>
-        field = MutableStateFlow(VideoAudioPreferences.mobileDataResolutions(showHigherResolutions.value))
-
     val videoFormat: StateFlow<String>
         field = MutableStateFlow(
             settings.getString(
@@ -102,16 +94,9 @@ class VideoAudioSettingsViewModel(private val settings: Settings) : ViewModel() 
         mobileDataResolution.value = value
     }
 
-    /**
-     * Toggling higher resolutions rebuilds the pickers' option lists. When turning the option
-     * off, any currently selected high resolution is reset to the top entry, matching the legacy
-     * screen (which called `setValueIndex(0)`).
-     */
     fun setShowHigherResolutions(value: Boolean) {
         settings.putBoolean(VideoAudioPreferences.KEY_SHOW_HIGHER_RESOLUTIONS, value)
         showHigherResolutions.value = value
-        resolutionValues.value = VideoAudioPreferences.resolutions(value)
-        mobileDataResolutionValues.value = VideoAudioPreferences.mobileDataResolutions(value)
 
         if (!value) {
             if (defaultResolution.value in VideoAudioPreferences.HIGH_RESOLUTIONS) {
