@@ -124,6 +124,7 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.jetbrains.compose.preview)
             implementation(libs.androidx.activity)
+            implementation(libs.androidx.appcompat)
             implementation(libs.androidx.preference)
             implementation(libs.androidx.browser)
         }

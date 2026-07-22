@@ -76,6 +76,7 @@ fun AppearanceSettingsScreen(
     val tabletMode by viewModel.tabletMode.collectAsStateWithLifecycle()
     val listViewMode by viewModel.listViewMode.collectAsStateWithLifecycle()
     val mainTabsPosition by viewModel.mainTabsPosition.collectAsStateWithLifecycle()
+    val captionSettingsAvailable = remember { appearanceActions.isCaptionSettingsAvailable() }
 
     AppearanceSettingsScreenContent(
         theme = theme,
@@ -90,6 +91,7 @@ fun AppearanceSettingsScreen(
         onTabletModeChange = viewModel::setTabletMode,
         onListViewModeChange = viewModel::setListViewMode,
         onMainTabsPositionChange = viewModel::setMainTabsPosition,
+        captionSettingsAvailable = captionSettingsAvailable,
         onCaptionSettingsClick = appearanceActions::openCaptionSettings,
         onNavigateUp = { navigator.navigateUp() }
     )
@@ -109,6 +111,7 @@ fun AppearanceSettingsScreenContent(
     onTabletModeChange: (String) -> Unit = {},
     onListViewModeChange: (String) -> Unit = {},
     onMainTabsPositionChange: (Boolean) -> Unit = {},
+    captionSettingsAvailable: Boolean = true,
     onCaptionSettingsClick: () -> Unit = {},
     onNavigateUp: () -> Unit = {}
 ) {
@@ -199,11 +202,13 @@ fun AppearanceSettingsScreenContent(
                 selectedValue = listViewMode,
                 onValueSelected = onListViewModeChange
             )
-            PreferenceRow(
-                title = stringResource(Res.string.caption_setting_title),
-                summary = stringResource(Res.string.caption_setting_description),
-                onClick = onCaptionSettingsClick
-            )
+            if (captionSettingsAvailable) {
+                PreferenceRow(
+                    title = stringResource(Res.string.caption_setting_title),
+                    summary = stringResource(Res.string.caption_setting_description),
+                    onClick = onCaptionSettingsClick
+                )
+            }
             SwitchPreference(
                 title = stringResource(Res.string.main_tabs_position_title),
                 summary = stringResource(Res.string.main_tabs_position_summary),
