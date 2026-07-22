@@ -58,7 +58,7 @@
     <string name="night_theme_summary">Select your favorite night theme — %1$s</string>
     <string name="night_theme_available">This option is only available if %1$s is selected for Theme</string>
     <string name="select_night_theme_toast">You can select your favorite night theme below</string>
-    <string name="show_hold_to_append_title">Show \"Hold to enqueue\" tip</string>
+    <string name="show_hold_to_append_title">Show "Hold to enqueue" tip</string>
     <string name="show_hold_to_append_summary">Show tip when pressing the background or the popup button in video \"Details:\"</string>
     <string name="tablet_mode_title">Tablet mode</string>
     <string name="list_view_mode">List view mode</string>
@@ -94,7 +94,7 @@
     <string name="use_external_video_player_title">Use external video player</string>
     <string name="use_external_video_player_summary">Removes audio at some resolutions</string>
     <string name="use_external_audio_player_title">Use external audio player</string>
-    <string name="show_play_with_kodi_title">Show \"Play with Kodi\" option</string>
+    <string name="show_play_with_kodi_title">Show "Play with Kodi" option</string>
     <string name="show_play_with_kodi_summary">Display an option to play a video via Kodi media center</string>
     <string name="seekbar_preview_thumbnail_title">Seekbar thumbnail preview</string>
     <string name="high_quality_larger">High quality (larger)</string>
@@ -103,7 +103,7 @@
 
     <!-- Video/Audio Settings: Behavior section -->
     <string name="settings_category_player_behavior_title">Behavior</string>
-    <string name="preferred_open_action_settings_title">Preferred \'open\' action</string>
+    <string name="preferred_open_action_settings_title">Preferred 'open' action</string>
     <string name="preferred_open_action_settings_summary">Default action when opening content — %1$s</string>
     <string name="show_info">Show info</string>
     <string name="video_player">Video player</string>
