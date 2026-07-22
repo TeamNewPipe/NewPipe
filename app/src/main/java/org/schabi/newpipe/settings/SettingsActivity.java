@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.SoftwareKeyboardControllerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.preference.Preference;
@@ -34,7 +35,6 @@ import org.schabi.newpipe.settings.preferencesearch.PreferenceSearchResultHighli
 import org.schabi.newpipe.settings.preferencesearch.PreferenceSearchResultListener;
 import org.schabi.newpipe.settings.preferencesearch.PreferenceSearcher;
 import org.schabi.newpipe.util.DeviceUtils;
-import org.schabi.newpipe.util.KeyboardUtil;
 import org.schabi.newpipe.util.ReleaseVersionUtil;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.FocusOverlayView;
@@ -302,6 +302,7 @@ public class SettingsActivity extends AppCompatActivity implements
             menuSearchItem.setVisible(!active);
         }
 
+        final var keyboardController = new SoftwareKeyboardControllerCompat(searchEditText);
         if (active) {
             getSupportFragmentManager()
                     .beginTransaction()
@@ -309,7 +310,7 @@ public class SettingsActivity extends AppCompatActivity implements
                     .addToBackStack(PreferenceSearchFragment.NAME)
                     .commit();
 
-            KeyboardUtil.showKeyboard(this, searchEditText);
+            keyboardController.show();
         } else if (searchFragment != null) {
             hideSearchFragment();
             getSupportFragmentManager()
@@ -317,7 +318,7 @@ public class SettingsActivity extends AppCompatActivity implements
                         PreferenceSearchFragment.NAME,
                         FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
-            KeyboardUtil.hideKeyboard(this, searchEditText);
+            keyboardController.hide();
         }
 
         resetSearchText();
