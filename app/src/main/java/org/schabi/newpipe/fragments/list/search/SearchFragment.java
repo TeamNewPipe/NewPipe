@@ -691,6 +691,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             Log.d(TAG, "hideKeyboardSearch() called");
         }
         new SoftwareKeyboardControllerCompat(searchEditText).hide();
+        searchEditText.clearFocus();
     }
 
     private void showDeleteSuggestionDialog(final SuggestionItem item) {
