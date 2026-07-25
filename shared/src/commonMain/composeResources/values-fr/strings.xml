@@ -27,4 +27,15 @@
     <string name="open_in_browser">Ouvrir dans le navigateur</string>
     <string name="done">Terminé</string>
     <string name="not_available">Indisponible</string>
+    <string name="settings">Paramètres</string>
+    <string name="search">Chercher</string>
+    <string name="content">Contenu</string>
+    <string name="notifications">Notifications</string>
+    <string name="settings_category_video_audio_title">Vidéo et audio</string>
+    <string name="settings_category_downloads_title">Téléchargement</string>
+    <string name="settings_category_appearance_title">Apparence</string>
+    <string name="settings_category_history_title">Historique et cache</string>
+    <string name="settings_category_updates_title">Mises à jour</string>
+    <string name="settings_category_backup_restore_title">Sauvegarde et restauration</string>
+    <string name="settings_category_debug_title">Corriger</string>
 </resources>

@@ -1,3 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="navigate_back">戻る</string>
+    <string name="title_activity_about">NewPipeについて</string>
+    <string name="title_licenses">サードパーティライセンス</string>
+    <string name="license">%1$s作、%2$sライセンス</string>
+    <string name="tab_about">概要とよくある質問</string>
+    <string name="tab_licenses">ライセンス</string>
+    <string name="app_description">Android向けの自由で軽量なストリーミングアプリ。</string>
+    <string name="contribution_title">貢献する</string>
+    <string name="contribution_encouragement">翻訳、デザインの変更、コードの整理、大規模なコード変更など、どんな形の協力もいつでも歓迎します。手を加えるほど、より良いものになります！</string>
+    <string name="view_on_github">GitHubで見る</string>
+    <string name="donation_title">寄付する</string>
+    <string name="donation_encouragement">NewPipeは、最高のユーザー体験を届けるために、ボランティアが自由時間を使って開発しています。開発者がコーヒーを楽しみながらNewPipeをさらに良くできるよう、ぜひ支援してください。</string>
+    <string name="give_back">支援する</string>
+    <string name="website_title">ウェブサイト</string>
+    <string name="website_encouragement">詳しい情報や最新ニュースについては、NewPipeのウェブサイトをご覧ください。</string>
+    <string name="privacy_policy_title">NewPipeのプライバシーポリシー</string>
+    <string name="privacy_policy_encouragement">NewPipeプロジェクトは、ユーザーのプライバシーを非常に重視しています。そのため、このアプリがユーザーの同意なくデータを収集することはありません。\nNewPipeのプライバシーポリシーでは、クラッシュレポートを送信した際に、どのようなデータが送信および保存されるかを詳しく説明しています。</string>
+    <string name="read_privacy_policy">プライバシーポリシーを読む</string>
+    <string name="app_license_title">NewPipeのライセンス</string>
+    <string name="app_license">NewPipeは、コピーレフトの自由ソフトウェアです。自由に使用、研究、共有、改良できます。具体的には、フリーソフトウェア財団が公開しているGNU General Public Licenseのバージョン3、またはそれ以降の任意のバージョンの条件に従って、再配布や改変を行えます。</string>
+    <string name="read_full_license">ライセンスを読む</string>
+    <string name="faq_title">よくある質問</string>
+    <string name="faq_description">アプリの使用中に問題が発生した場合は、よくある質問への回答をご確認ください！</string>
+    <string name="faq">ウェブサイトで見る</string>
+    <string name="open_in_browser">ブラウザで開く</string>
+    <string name="done">閉じる</string>
+    <string name="not_available">利用できません</string>
+    <string name="settings">設定</string>
+    <string name="search">検索</string>
+    <string name="content">コンテンツ</string>
+    <string name="notifications">通知</string>
+    <string name="settings_category_video_audio_title">動画と音声</string>
+    <string name="settings_category_downloads_title">ダウンロード</string>
+    <string name="settings_category_appearance_title">外観</string>
+    <string name="settings_category_history_title">履歴とキャッシュ</string>
+    <string name="settings_category_updates_title">更新</string>
+    <string name="settings_category_backup_restore_title">バックアップと復元</string>
+    <string name="settings_category_debug_title">デバッグ</string>
 </resources>
