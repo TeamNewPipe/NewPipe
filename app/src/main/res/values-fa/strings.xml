@@ -854,4 +854,5 @@
     <string name="export_subscriptions_summary">برون‌ریزی اشتراک‌هایتان به پروندهٔ ‪.json‬</string>
     <string name="api23_requirement_dialog_title">نیوپایپ دارد پشتیبانی از اندروید ۵ را رها می‌کند</string>
     <string name="player_http_invalid_status">هنگام پخش کردن کارساز خطای HTTP ‏%1$s داد</string>
+    <string name="permission_display_over_apps_message">برای استفاده از پخش‌کنندهٔ بالاپریدنی %1$s را در فهرست تنظیمات اندروید زیر گزیده و %2$s را به کار بیندازید.</string>
 </resources>
