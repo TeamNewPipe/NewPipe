@@ -26,7 +26,7 @@
     <string name="open_in_browser">فتح في المتصفح</string>
     <string name="play_audio">الصوت</string>
     <string name="play_with_kodi_title">تشغيل بواسطة كودي</string>
-    <string name="search">البحث</string>
+    <string name="search">بحث</string>
     <string name="content_language_title">اللغة الإفتراضية للمحتوى</string>
     <string name="settings">الإعدادات</string>
     <string name="settings_category_appearance_title">المظهر</string>
@@ -59,7 +59,7 @@
     <string name="downloads_title">الملفات المحملة</string>
     <string name="all">الجميع</string>
     <string name="video">الفيديو</string>
-    <string name="settings_category_downloads_title">التنزيل</string>
+    <string name="settings_category_downloads_title">تنزيل</string>
     <string name="tab_about">حول و الأسئلة الشائعة</string>
     <string name="title_activity_history">التاريخ</string>
     <string name="action_history">التاريخ</string>
@@ -862,7 +862,7 @@
     <string name="notification_actions_summary_android13">قم بتحرير كل إجراء إعلام أدناه من خلال النقر عليه. يتم تعيين الإجراءات الثلاثة الأولى (تشغيل/إيقاف مؤقت، السابق والتالي) بواسطة النظام ولا يمكن تخصيصها.</string>
     <string name="error_insufficient_storage">لا توجد مساحة خالية كافية على الجهاز</string>
     <string name="reset_settings_title">اعادة ضبط الإعداداتِ</string>
-    <string name="settings_category_backup_restore_title">النسخ الاحتياطيُّ والاستعادة</string>
+    <string name="settings_category_backup_restore_title">النسخ الاحتياطي والاستعادة</string>
     <string name="reset_settings_summary">أعيدوا جميع الإعدادات إلى قيمهم الافتراضية</string>
     <string name="reset_all_settings">ستؤدي إعادة ضبط جميع الإعدادات إلى تجاهل جميع إعداداتك المفضلة وإعادة تشغيل التطبيق.
 \n
