@@ -27,4 +27,13 @@
     <string name="open_in_browser">فتح في المتصفح</string>
     <string name="done">تم</string>
     <string name="not_available">غير متاح</string>
+    <string name="settings">الإعدادات</string>
+    <string name="search">بحث</string>
+    <string name="content">المحتوى</string>
+    <string name="notifications">الإشعارات</string>
+    <string name="settings_category_video_audio_title">الفيديو والصوت</string>
+    <string name="settings_category_downloads_title">تنزيل</string>
+    <string name="settings_category_appearance_title">المظهر</string>
+    <string name="settings_category_updates_title">التحديثات</string>
+    <string name="settings_category_backup_restore_title">النسخ الاحتياطي والاستعادة</string>
 </resources>
