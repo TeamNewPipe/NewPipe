@@ -20,7 +20,6 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import com.evernote.android.state.State;
-import com.jakewharton.rxbinding4.widget.RxTextView;
 import com.livefront.bridge.Bridge;
 
 import org.schabi.newpipe.MainActivity;
@@ -40,6 +39,10 @@ import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.FocusOverlayView;
 
 import java.util.concurrent.TimeUnit;
+
+import io.reactivex.rxjava3.disposables.Disposable;
+
+import com.jakewharton.rxbinding4.widget.RxTextView;
 
 /*
  * Created by Christian Schabesberger on 31.08.15.
@@ -84,6 +87,8 @@ public class SettingsActivity extends AppCompatActivity implements
     @State
     boolean wasSearchActive;
 
+    private Disposable searchDisposable;
+
     @Override
     protected void onCreate(final Bundle savedInstanceBundle) {
         setTheme(ThemeHelper.getSettingsThemeStyle(this));
@@ -108,9 +113,7 @@ public class SettingsActivity extends AppCompatActivity implements
                 }
             }
         } else {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.settings_fragment_holder, new MainSettingsFragment())
-                    .commit();
+            showMainSettingsFragment();
         }
 
         if (DeviceUtils.isTv(this)) {
@@ -186,8 +189,18 @@ public class SettingsActivity extends AppCompatActivity implements
                 .commit();
     }
 
+    private void showMainSettingsFragment() {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.settings_fragment_holder, new MainSettingsFragment())
+                    .commit();
+    }
+
+
     @Override
     protected void onDestroy() {
+        if (searchDisposable != null && !searchDisposable.isDisposed()) {
+            searchDisposable.dispose();
+        }
         setMenuSearchItem(null);
         searchFragment = null;
         super.onDestroy();
@@ -202,16 +215,43 @@ public class SettingsActivity extends AppCompatActivity implements
             final SettingsLayoutBinding settingsLayoutBinding,
             final boolean restored
     ) {
+
         searchContainer =
                 settingsLayoutBinding.settingsToolbarLayout.toolbar
                         .findViewById(R.id.toolbar_search_container);
 
         // Configure input field for search
         searchEditText = searchContainer.findViewById(R.id.toolbar_search_edit_text);
-        RxTextView.textChanges(searchEditText)
+        searchDisposable = RxTextView.textChanges(searchEditText)
+                // Ignore the initial empty state
+                .skipInitialValue()
                 // Wait some time after the last input before actually searching
                 .debounce(200, TimeUnit.MILLISECONDS)
-                .subscribe(v -> runOnUiThread(this::onSearchChanged));
+                .subscribe(charSequence -> runOnUiThread(() -> {
+                    // Change Fragment based on search text
+                    if (charSequence.length() > 0) {
+                        if (searchFragment != null) {
+                            if (!searchFragment.isAdded()) {
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.settings_fragment_holder, searchFragment,
+                                                PreferenceSearchFragment.NAME)
+                                        .addToBackStack(PreferenceSearchFragment.NAME)
+                                        .commit();
+                            } else {
+                                showSettingsFragment(searchFragment);
+                            }
+                            onSearchChanged();
+                        }
+                    } else {
+            final Fragment current = getSupportFragmentManager()
+                    .findFragmentById(R.id.settings_fragment_holder);
+            if (!(current instanceof MainSettingsFragment)) {
+                getSupportFragmentManager()
+                        .popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                showMainSettingsFragment();
+            }
+        }
+    }));
 
         // Configure clear button
         searchContainer.findViewById(R.id.toolbar_search_clear)
@@ -290,25 +330,36 @@ public class SettingsActivity extends AppCompatActivity implements
             Log.d(TAG, "setSearchActive called active=" + active);
         }
 
+        // Only reset the text when activating search from the toolbar
+        if (active && !isSearchActive()) {
+            resetSearchText();
+        }
+
         // Ignore if search is already in correct state
         if (isSearchActive() == active) {
             return;
         }
 
         wasSearchActive = active;
+        if (wasSearchActive) {
+            searchEditText.post(() -> {
+                searchEditText.requestFocus();
+                KeyboardUtil.showKeyboard(this, searchEditText);
+            });
+        }
 
         searchContainer.setVisibility(active ? View.VISIBLE : View.GONE);
         if (menuSearchItem != null) {
             menuSearchItem.setVisible(!active);
         }
 
-        if (active) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .add(FRAGMENT_HOLDER_ID, searchFragment, PreferenceSearchFragment.NAME)
-                    .addToBackStack(PreferenceSearchFragment.NAME)
-                    .commit();
-
+        if (active && searchText == null) {
+            showMainSettingsFragment();
+        } else if (active) {
+            // Only add if not already added
+            if (!searchFragment.isAdded()) {
+                showSettingsFragment(searchFragment);
+            }
             KeyboardUtil.showKeyboard(this, searchEditText);
         } else if (searchFragment != null) {
             hideSearchFragment();
@@ -319,8 +370,6 @@ public class SettingsActivity extends AppCompatActivity implements
 
             KeyboardUtil.hideKeyboard(this, searchEditText);
         }
-
-        resetSearchText();
     }
 
     private void hideSearchFragment() {
@@ -382,6 +431,19 @@ public class SettingsActivity extends AppCompatActivity implements
             PreferenceSearchResultHighlighter
                     .highlight(result, (PreferenceFragmentCompat) currentFragment);
         }
+    }
+
+    // Functions needed for testing
+    protected EditText getSearchEditText() {
+        return searchEditText;
+    }
+
+    public void setMockEditText(final EditText editText) {
+        this.searchEditText = editText;
+    }
+
+    protected static int getFragmentHolderId() {
+        return FRAGMENT_HOLDER_ID;
     }
 
     //endregion
