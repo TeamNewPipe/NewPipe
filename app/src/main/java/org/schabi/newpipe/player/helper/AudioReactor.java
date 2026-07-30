@@ -1,8 +1,5 @@
 package org.schabi.newpipe.player.helper;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
@@ -21,7 +18,6 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, An
 
     private static final String TAG = "AudioFocusReactor";
 
-    private static final int DUCK_DURATION = 1500;
     private static final float DUCK_AUDIO_TO = .2f;
 
     private static final int FOCUS_GAIN_TYPE = AudioManagerCompat.AUDIOFOCUS_GAIN;
@@ -42,7 +38,6 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, An
 
         request = new AudioFocusRequestCompat.Builder(FOCUS_GAIN_TYPE)
                 //.setAcceptsDelayedFocusGain(true)
-                .setWillPauseWhenDucked(true)
                 .setOnAudioFocusChangeListener(this)
                 .build();
     }
@@ -100,8 +95,7 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, An
 
     private void onAudioFocusGain() {
         Log.d(TAG, "onAudioFocusGain() called");
-        player.setVolume(DUCK_AUDIO_TO);
-        animateAudio(DUCK_AUDIO_TO, 1.0f);
+        player.setVolume(1.0f);
 
         if (PlayerHelper.isResumeAfterAudioFocusGain(context)) {
             player.play();
@@ -117,31 +111,6 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, An
         Log.d(TAG, "onAudioFocusLossCanDuck() called");
         // Set the volume to 1/10 on ducking
         player.setVolume(DUCK_AUDIO_TO);
-    }
-
-    private void animateAudio(final float from, final float to) {
-        final ValueAnimator valueAnimator = new ValueAnimator();
-        valueAnimator.setFloatValues(from, to);
-        valueAnimator.setDuration(AudioReactor.DUCK_DURATION);
-        valueAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationStart(final Animator animation) {
-                player.setVolume(from);
-            }
-
-            @Override
-            public void onAnimationCancel(final Animator animation) {
-                player.setVolume(to);
-            }
-
-            @Override
-            public void onAnimationEnd(final Animator animation) {
-                player.setVolume(to);
-            }
-        });
-        valueAnimator.addUpdateListener(animation ->
-                player.setVolume(((float) animation.getAnimatedValue())));
-        valueAnimator.start();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
