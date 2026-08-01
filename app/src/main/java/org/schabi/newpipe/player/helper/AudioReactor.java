@@ -4,11 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.audiofx.AudioEffect;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
-import androidx.media.AudioFocusRequestCompat;
 import androidx.media.AudioManagerCompat;
 
 import com.google.android.exoplayer2.ExoPlayer;
@@ -16,15 +14,11 @@ import com.google.android.exoplayer2.analytics.AnalyticsListener;
 
 public class AudioReactor implements AnalyticsListener {
 
-    private static final String TAG = "AudioFocusReactor";
-
-    private static final int FOCUS_GAIN_TYPE = AudioManagerCompat.AUDIOFOCUS_GAIN;
     private static final int STREAM_TYPE = AudioManager.STREAM_MUSIC;
 
     private final ExoPlayer player;
     private final Context context;
     private final AudioManager audioManager;
-    private final AudioFocusRequestCompat request;
 
     public AudioReactor(@NonNull final Context context,
                         @NonNull final ExoPlayer player) {
@@ -32,32 +26,11 @@ public class AudioReactor implements AnalyticsListener {
         this.context = context;
         this.audioManager = ContextCompat.getSystemService(context, AudioManager.class);
         player.addAnalyticsListener(this);
-
-        request = new AudioFocusRequestCompat.Builder(FOCUS_GAIN_TYPE)
-                .setWillPauseWhenDucked(true)
-                .setOnAudioFocusChangeListener(focusChange -> {
-                })
-                .build();
     }
 
     public void dispose() {
-        abandonAudioFocus();
         player.removeAnalyticsListener(this);
         notifyAudioSessionUpdate(false, player.getAudioSessionId());
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Audio Focus
-    //////////////////////////////////////////////////////////////////////////*/
-
-    public void requestAudioFocus() {
-        Log.d(TAG, "requestAudioFocus() called");
-        AudioManagerCompat.requestAudioFocus(audioManager, request);
-    }
-
-    public void abandonAudioFocus() {
-        Log.d(TAG, "abandonAudioFocus() called");
-        AudioManagerCompat.abandonAudioFocusRequest(audioManager, request);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
