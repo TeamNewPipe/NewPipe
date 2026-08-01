@@ -634,14 +634,13 @@ public final class Player implements PlaybackListener, Listener {
         simpleExoPlayer.setWakeMode(C.WAKE_MODE_NETWORK);
         simpleExoPlayer.setHandleAudioBecomingNoisy(true);
 
-        // Enable automatic audio focus management - let Android handle ducking automatically
+        // Enable ExoPlayer automatic audio focus management
         simpleExoPlayer.setAudioAttributes(
             new com.google.android.exoplayer2.audio.AudioAttributes.Builder()
                 .setUsage(C.USAGE_MEDIA)
                 .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
                 .build(),
-            true  // handleAudioFocus = true for automatic management
-        );
+            true);
 
         audioReactor = new AudioReactor(context, simpleExoPlayer);
 
@@ -1328,34 +1327,19 @@ public final class Player implements PlaybackListener, Listener {
 
     public void toggleMute() {
         final boolean wasMuted = isMuted();
-        final boolean wasPlaying = simpleExoPlayer.isPlaying();
-        Log.d(TAG, "toggleMute: wasMuted=" + wasMuted + ", wasPlaying=" + wasPlaying);
         simpleExoPlayer.setVolume(wasMuted ? 1 : 0);
-        if (wasMuted) {
-            Log.d(TAG, "toggleMute: enabling audio focus, willPlay=" + wasPlaying);
-            simpleExoPlayer.setAudioAttributes(
+
+        // Update audio focus
+        // When wasMuted is true, we want to play sound, so ExoPlayer has to handle audio focus in
+        // this case; when wasMuted is false, we don't want to play sound, so no audio focus should
+        // be done
+        simpleExoPlayer.setAudioAttributes(
                 new com.google.android.exoplayer2.audio.AudioAttributes.Builder()
-                    .setUsage(C.USAGE_MEDIA)
-                    .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
-                    .build(),
-                true  // handleAudioFocus = true - ExoPlayer handles focus automatically
-            );
-            if (wasPlaying) {
-                Log.d(TAG, "toggleMute: calling play(), isPlaying=" + simpleExoPlayer.isPlaying());
-                simpleExoPlayer.play();
-                Log.d(TAG, "toggleMute: after play(), isPlaying=" + simpleExoPlayer.isPlaying());
-            }
-        } else {
-            Log.d(TAG, "toggleMute: disabling audio focus, abandoning focus");
-            simpleExoPlayer.setAudioAttributes(
-                new com.google.android.exoplayer2.audio.AudioAttributes.Builder()
-                    .setUsage(C.USAGE_MEDIA)
-                    .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
-                    .build(),
-                false  // handleAudioFocus = false
-            );
-            audioReactor.abandonAudioFocus();
-        }
+                        .setUsage(C.USAGE_MEDIA)
+                        .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
+                        .build(),
+                wasMuted);
+
         UIs.call(playerUi -> playerUi.onMuteUnmuteChanged(!wasMuted));
         notifyPlaybackUpdateToListeners();
     }
