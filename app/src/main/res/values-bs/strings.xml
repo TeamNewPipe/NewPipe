@@ -359,8 +359,6 @@
     <string name="title_activity_history">Historija</string>
     <string name="action_history">Historija</string>
     <string name="delete_item_search_history">Želite li izbrisati ovu stavku iz historije pretrage?</string>
-    <string name="title_last_played">Posljednje igrano</string>
-    <string name="title_most_played">Najigranije</string>
     <string name="main_page_content">Sadržaj glavne stranice</string>
     <string name="main_page_content_summary">Koje kartice se prikazuju na glavnoj stranici</string>
     <string name="main_page_content_swipe_remove">Prevucite stavke da biste ih uklonili</string>
