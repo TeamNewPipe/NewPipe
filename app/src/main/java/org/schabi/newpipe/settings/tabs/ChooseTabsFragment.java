@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -111,6 +113,17 @@ public class ChooseTabsFragment extends Fragment {
             restoreDefaults();
             return true;
         });
+        final SwitchCompat editSwitch =
+                (SwitchCompat) menu.findItem(R.id.menu_item_edit_mode).getActionView();
+        if (editSwitch != null) {
+            editSwitch.setChecked(
+                    selectedTabsAdapter != null && selectedTabsAdapter.editModeEnabled);
+            editSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                if (selectedTabsAdapter != null) {
+                    selectedTabsAdapter.setEditMode(isChecked);
+                }
+            });
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -135,6 +148,23 @@ public class ChooseTabsFragment extends Fragment {
                     tabsManager.resetTabs();
                     updateTabList();
                     selectedTabsAdapter.notifyDataSetChanged();
+                })
+                .show();
+    }
+
+    private void showDeleteTabDialog(final int position, final String tabName) {
+        new AlertDialog.Builder(requireContext())
+                .setTitle(tabName)
+                .setCancelable(true)
+                .setNegativeButton(R.string.cancel, null)
+                .setPositiveButton(R.string.delete, (dialog, which) -> {
+                    tabList.remove(position);
+                    selectedTabsAdapter.notifyItemRemoved(position);
+
+                    if (tabList.isEmpty()) {
+                        tabList.add(Tab.Type.BLANK.getTab());
+                        selectedTabsAdapter.notifyItemInserted(0);
+                    }
                 })
                 .show();
     }
@@ -333,6 +363,12 @@ public class ChooseTabsFragment extends Fragment {
             extends RecyclerView.Adapter<ChooseTabsFragment.SelectedTabsAdapter.TabViewHolder> {
         private final LayoutInflater inflater;
         private final ItemTouchHelper itemTouchHelper;
+        boolean editModeEnabled = false;
+
+        void setEditMode(final boolean enabled) {
+            editModeEnabled = enabled;
+            notifyDataSetChanged();
+        }
 
         SelectedTabsAdapter(final Context context, final ItemTouchHelper itemTouchHelper) {
             this.itemTouchHelper = itemTouchHelper;
@@ -368,6 +404,10 @@ public class ChooseTabsFragment extends Fragment {
             private final AppCompatImageView tabIconView;
             private final TextView tabNameView;
             private final ImageView handle;
+            private final View itemActions;
+            private final ImageButton btnMoveUp;
+            private final ImageButton btnMoveDown;
+            private final ImageButton btnDelete;
 
             TabViewHolder(final View itemView) {
                 super(itemView);
@@ -375,6 +415,10 @@ public class ChooseTabsFragment extends Fragment {
                 tabNameView = itemView.findViewById(R.id.tabName);
                 tabIconView = itemView.findViewById(R.id.tabIcon);
                 handle = itemView.findViewById(R.id.handle);
+                itemActions = itemView.findViewById(R.id.itemActions);
+                btnMoveUp = itemView.findViewById(R.id.btnMoveUp);
+                btnMoveDown = itemView.findViewById(R.id.btnMoveDown);
+                btnDelete = itemView.findViewById(R.id.btnDelete);
             }
 
             @SuppressLint("ClickableViewAccessibility")
@@ -390,6 +434,33 @@ public class ChooseTabsFragment extends Fragment {
 
                 tabNameView.setText(getTabName(type, tab));
                 tabIconView.setImageResource(tab.getTabIconRes(requireContext()));
+
+                handle.setVisibility(editModeEnabled ? View.GONE : View.VISIBLE);
+                itemActions.setVisibility(editModeEnabled ? View.VISIBLE : View.GONE);
+                if (editModeEnabled) {
+                    btnMoveUp.setEnabled(position > 0);
+                    btnMoveDown.setEnabled(position < getItemCount() - 1);
+                    btnMoveUp.setOnClickListener(v -> {
+                        final int pos = getBindingAdapterPosition();
+                        if (pos > 0) {
+                            Collections.swap(tabList, pos, pos - 1);
+                            notifyDataSetChanged();
+                        }
+                    });
+                    btnMoveDown.setOnClickListener(v -> {
+                        final int pos = getBindingAdapterPosition();
+                        if (pos < getItemCount() - 1) {
+                            Collections.swap(tabList, pos, pos + 1);
+                            notifyDataSetChanged();
+                        }
+                    });
+                    btnDelete.setOnClickListener(v -> {
+                        final int pos = getBindingAdapterPosition();
+                        if (pos != RecyclerView.NO_POSITION) {
+                            showDeleteTabDialog(pos, tabNameView.getText().toString());
+                        }
+                    });
+                }
             }
 
             private String getTabName(@NonNull final Tab.Type type, @NonNull final Tab tab) {
