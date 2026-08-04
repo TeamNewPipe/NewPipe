@@ -70,7 +70,7 @@
 
             <Button
                 android:id="@+id/select_channel_button"
-                style="@style/Widget.AppCompat.Button.Borderless"
+                style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -107,8 +107,7 @@
                 android:id="@+id/subscriptions_header_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:gravity="center_vertical"
-                android:theme="@style/ContrastToolbarTheme">
+                android:gravity="center_vertical">
 
                 <LinearLayout
                     android:id="@+id/subscriptions_header_info_container"
@@ -157,7 +156,7 @@
 
         <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/delete_screen_message"
-            style="@style/TextAppearance.AppCompat.Subhead"
+            style="@style/TextAppearance.Material3.ActionBar.Subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"

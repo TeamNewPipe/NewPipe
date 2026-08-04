@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
@@ -18,12 +17,10 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:hint="@string/search"
-        android:textColor="?attr/toolbarSearchColor"
         android:imeOptions="actionSearch|flagNoFullscreen"
         android:inputType="textFilter|textNoSuggestions"
         android:maxLines="1"
         android:nextFocusDown="@+id/suggestions_list"
-        android:theme="@style/ToolbarSearchInputTheme"
         tools:ignore="RtlHardcoded" />
 
     <FrameLayout
@@ -49,7 +46,6 @@
             android:contentDescription="@string/search"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_close"
-            app:tint="?attr/toolbarSearchColor"
             tools:ignore="RtlHardcoded" />
     </FrameLayout>
 
