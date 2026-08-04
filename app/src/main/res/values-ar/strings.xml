@@ -53,7 +53,7 @@
     <string name="controls_background_title">في الخلفية</string>
     <string name="black_theme_title">أسود</string>
     <string name="enable_watch_history_title">سجل المشاهدة</string>
-    <string name="settings_category_history_title">سجل المشاهدة و ذاكرة التخزين المؤقت</string>
+    <string name="settings_category_history_title">السجل والملفات المؤقتة</string>
     <string name="content">المحتوى</string>
     <string name="downloads">التحميلات</string>
     <string name="downloads_title">الملفات المحملة</string>
@@ -212,7 +212,7 @@
     <string name="export_data_summary">تصدير السجل، وقوائم تشغيل، والإعدادات، والاشتراكات</string>
     <string name="show_info">عرض المعلومات</string>
     <string name="controls_add_to_playlist_title">إضافة إلى</string>
-    <string name="settings_category_debug_title">تحليل</string>
+    <string name="settings_category_debug_title">تصحيح الأخطاء</string>
     <string name="video_streams_empty">لم يتم العثور على أي بث مرئي</string>
     <string name="audio_streams_empty">لم يتم العثور على أي بث صوتي</string>
     <string name="detail_drag_description">اسحب لإعادة ترتيب</string>
