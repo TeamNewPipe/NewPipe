@@ -1,3 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="navigate_back">ᱛᱟᱭᱚᱢ</string>
+    <string name="title_activity_about">NewPipe ᱵᱚᱵᱚᱛ</string>
+    <string name="app_description">ᱮᱱᱰᱨᱳᱭᱮᱰ ᱨᱮ ᱞᱤᱵᱽᱨᱮ ᱦᱟᱞᱠᱟ ᱚᱡᱚᱱ ᱥᱴᱨᱤᱢᱤᱝ ᱾</string>
 </resources>

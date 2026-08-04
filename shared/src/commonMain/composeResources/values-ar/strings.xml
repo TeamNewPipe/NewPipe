@@ -36,4 +36,6 @@
     <string name="settings_category_appearance_title">المظهر</string>
     <string name="settings_category_updates_title">التحديثات</string>
     <string name="settings_category_backup_restore_title">النسخ الاحتياطي والاستعادة</string>
+    <string name="settings_category_history_title">السجل والملفات المؤقتة</string>
+    <string name="settings_category_debug_title">تصحيح الأخطاء</string>
 </resources>
