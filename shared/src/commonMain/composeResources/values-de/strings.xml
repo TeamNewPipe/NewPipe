@@ -21,7 +21,7 @@
     <string name="website_title">Website</string>
     <string name="website_encouragement">Besuche die NewPipe-Website für weitere Informationen und Neuigkeiten.</string>
     <string name="privacy_policy_title">NewPipes Datenschutzerklärung</string>
-    <string name="privacy_policy_encouragement">Dem NewPipe-Projekt ist Datenschutz sehr wichtig. Deshalb sammelt diese App keine Daten ohne deine Zustimmung.\nNewPipes Datenschutzerklärung erklären im Detail, welche Daten beim Absenden eines Absturzberichtes verschickt und gespeichert werden.</string>
+    <string name="privacy_policy_encouragement">Dem NewPipe-Projekt ist Datenschutz sehr wichtig. Daher sammelt die App keinerlei Daten ohne deine Zustimmung.\nNewPipes Datenschutzerklärung erläutert ausführlich, welche Daten beim Senden eines Absturzberichts übermittelt und gespeichert werden.</string>
     <string name="read_privacy_policy">Datenschutzerklärung lesen</string>
     <string name="app_license_title">NewPipes Lizenz</string>
     <string name="app_license">NewPipe ist freie Copyleft-Software: Du kannst sie nach Belieben benutzen, untersuchen, mit anderen teilen und verbessern. Insbesondere kannst du sie unter den von der Free Software Foundation veröffentlichten Bedingungen der GNU General Public License, in der Version 3 der Lizenz oder (nach deiner Wahl) jeder späteren Version, weitergeben und/oder verändern.</string>
