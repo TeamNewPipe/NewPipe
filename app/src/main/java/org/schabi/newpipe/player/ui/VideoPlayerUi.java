@@ -954,15 +954,33 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     public void onRepeatModeChanged(@RepeatMode final int repeatMode) {
         super.onRepeatModeChanged(repeatMode);
 
-        if (repeatMode == REPEAT_MODE_ALL) {
-            binding.repeatButton.setImageResource(
-                    com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_all);
-        } else if (repeatMode == REPEAT_MODE_ONE) {
+        // Only update icon if stop-after-current is not active
+        if (!player.isStopAfterCurrentSong()) {
+            if (repeatMode == REPEAT_MODE_ALL) {
+                binding.repeatButton.setImageResource(
+                        com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_all);
+            } else if (repeatMode == REPEAT_MODE_ONE) {
+                binding.repeatButton.setImageResource(
+                        com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_one);
+            } else /* repeatMode == REPEAT_MODE_OFF */ {
+                binding.repeatButton.setImageResource(
+                        com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_off);
+            }
+        }
+    }
+
+    @Override
+    public void onStopAfterCurrentSongChanged(final boolean stopAfterCurrentSong) {
+        super.onStopAfterCurrentSongChanged(stopAfterCurrentSong);
+        if (stopAfterCurrentSong) {
+            // Use repeat_one icon with a different tint to indicate "stop after current"
             binding.repeatButton.setImageResource(
                     com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_one);
-        } else /* repeatMode == REPEAT_MODE_OFF */ {
-            binding.repeatButton.setImageResource(
-                    com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_off);
+            binding.repeatButton.setAlpha(0.5f);
+        } else {
+            binding.repeatButton.setAlpha(1.0f);
+            // Restore the normal repeat mode icon
+            setRepeatButton(player.getExoPlayer().getRepeatMode());
         }
     }
 
@@ -988,14 +1006,21 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     }
 
     private void setRepeatButton(final int repeatMode) {
-        final int resId = switch (repeatMode) {
-            case REPEAT_MODE_ALL
-                    -> com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_all;
-            case REPEAT_MODE_ONE
-                    -> com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_one;
-            default -> com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_off;
-        };
-        binding.repeatButton.setImageResource(resId);
+        if (player.isStopAfterCurrentSong()) {
+            binding.repeatButton.setImageResource(
+                    com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_one);
+            binding.repeatButton.setAlpha(0.5f);
+        } else {
+            binding.repeatButton.setAlpha(1.0f);
+            final int resId = switch (repeatMode) {
+                case REPEAT_MODE_ALL
+                        -> com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_all;
+                case REPEAT_MODE_ONE
+                        -> com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_one;
+                default -> com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_off;
+            };
+            binding.repeatButton.setImageResource(resId);
+        }
     }
 
     //endregion
