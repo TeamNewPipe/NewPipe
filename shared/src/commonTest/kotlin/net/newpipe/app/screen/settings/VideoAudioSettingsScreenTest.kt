@@ -18,6 +18,7 @@ import net.newpipe.app.preferences.VideoAudioPreferences
 import newpipe.shared.generated.resources.Res
 import newpipe.shared.generated.resources.best_resolution
 import newpipe.shared.generated.resources.default_resolution_title
+import newpipe.shared.generated.resources.settings_category_exoplayer_title
 import newpipe.shared.generated.resources.settings_category_player_title
 import newpipe.shared.generated.resources.settings_category_video_audio_title
 import org.jetbrains.compose.resources.getString
@@ -64,6 +65,19 @@ class VideoAudioSettingsScreenTest {
             },
             onContent = {
                 onNodeWithText(getString(Res.string.best_resolution)).assertIsDisplayed()
+            }
+        )
+    }
+
+    @Test
+    fun rendersExoPlayerSettingsLink() = runComposeUiTest {
+        withKoin(
+            modules = listOf(emptySettings),
+            content = { VideoAudioSettingsScreenContent() },
+            onContent = {
+                onNodeWithText(getString(Res.string.settings_category_exoplayer_title))
+                    .performScrollTo()
+                    .assertIsDisplayed()
             }
         )
     }
