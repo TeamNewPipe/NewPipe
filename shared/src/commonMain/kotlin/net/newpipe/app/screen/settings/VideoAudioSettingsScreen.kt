@@ -28,8 +28,10 @@ import kotlinx.coroutines.launch
 import net.newpipe.app.composable.ListPreference
 import net.newpipe.app.composable.ListPreferenceEntry
 import net.newpipe.app.composable.PreferenceCategoryTitle
+import net.newpipe.app.composable.PreferenceRow
 import net.newpipe.app.composable.SwitchPreference
 import net.newpipe.app.composable.TopAppBar
+import net.newpipe.app.navigation.Destination
 import net.newpipe.app.navigation.Navigator
 import net.newpipe.app.preferences.VideoAudioPreferences
 import net.newpipe.app.preview.ThemePreviewProvider
@@ -86,6 +88,8 @@ import newpipe.shared.generated.resources.right_gesture_control_title
 import newpipe.shared.generated.resources.seconds
 import newpipe.shared.generated.resources.seek_duration_title
 import newpipe.shared.generated.resources.seekbar_preview_thumbnail_title
+import newpipe.shared.generated.resources.settings_category_exoplayer_summary
+import newpipe.shared.generated.resources.settings_category_exoplayer_title
 import newpipe.shared.generated.resources.settings_category_player_behavior_title
 import newpipe.shared.generated.resources.settings_category_player_title
 import newpipe.shared.generated.resources.settings_category_video_audio_title
@@ -206,6 +210,7 @@ fun VideoAudioSettingsScreen(
         onSeekDurationChange = viewModel::setSeekDuration,
         onClearQueueConfirmationChange = viewModel::setClearQueueConfirmation,
         onIgnoreHardwareMediaButtonsChange = viewModel::setIgnoreHardwareMediaButtons,
+        onOpenExoPlayerSettings = { navigator.navigateTo(Destination.ExoPlayerSettings) },
         onNavigateUp = { navigator.navigateUp() }
     )
 }
@@ -265,6 +270,7 @@ fun VideoAudioSettingsScreenContent(
     onSeekDurationChange: (String) -> Unit = {},
     onClearQueueConfirmationChange: (Boolean) -> Unit = {},
     onIgnoreHardwareMediaButtonsChange: (Boolean) -> Unit = {},
+    onOpenExoPlayerSettings: () -> Unit = {},
     onNavigateUp: () -> Unit = {}
 ) {
     val scope = rememberCoroutineScope()
@@ -393,7 +399,11 @@ fun VideoAudioSettingsScreenContent(
                 onCheckedChange = onPreferDescriptiveAudioChange
             )
 
-            // TODO: ExoPlayer settings sub-screen link goes here once that screen is migrated.
+            PreferenceRow(
+                title = stringResource(Res.string.settings_category_exoplayer_title),
+                summary = stringResource(Res.string.settings_category_exoplayer_summary),
+                onClick = onOpenExoPlayerSettings
+            )
 
             PreferenceCategoryTitle(title = stringResource(Res.string.settings_category_player_title))
             SwitchPreference(
@@ -497,8 +507,6 @@ fun VideoAudioSettingsScreenContent(
                 summary = stringResource(Res.string.use_inexact_seek_summary),
                 checked = useInexactSeek,
                 onCheckedChange = { checked ->
-                    // The view model applies the same adjustment. this only decides whether to
-                    // tell the user about it, mirroring the legacy toast.
                     VideoAudioPreferences.adjustedSeekDurationMs(seekDuration, checked)?.let { adjustedMs ->
                         val newSeconds = VideoAudioPreferences.seekDurationSeconds(adjustedMs)
                         scope.launch {
