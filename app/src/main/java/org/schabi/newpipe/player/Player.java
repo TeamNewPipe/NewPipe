@@ -1470,7 +1470,7 @@ public final class Player implements PlaybackListener, Listener {
         // to start, stop playback instead of advancing. The queue remains intact.
         if (stopAfterCurrentSong && (discontinuityReason == DISCONTINUITY_REASON_AUTO_TRANSITION
                 || discontinuityReason == DISCONTINUITY_REASON_REMOVE)
-                && newIndex != playQueue.getIndex()) {
+                && newPosition.mediaItemIndex != playQueue.getIndex()) {
             stopAfterCurrentSong = false;
             simpleExoPlayer.setPlayWhenReady(false);
             UIs.call(playerUi -> playerUi.onStopAfterCurrentSongChanged(false));
