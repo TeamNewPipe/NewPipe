@@ -23,7 +23,7 @@
     <string name="website_title">Website</string>
     <string name="website_encouragement">Visit the NewPipe Website for more info and news.</string>
     <string name="privacy_policy_title">NewPipe's Privacy Policy</string>
-    <string name="privacy_policy_encouragement">The NewPipe project takes your privacy very seriously. Therefore, the app does not collect any data without your consent.\nNewPipe\'s privacy policy explains in detail what data is sent and stored when you send a crash report.</string>
+    <string name="privacy_policy_encouragement">The NewPipe project takes your privacy very seriously. Therefore, the app does not collect any data without your consent.\nNewPipe's privacy policy explains in detail what data is sent and stored when you send a crash report.</string>
     <string name="read_privacy_policy">Read privacy policy</string>
     <string name="app_license_title">NewPipe's License</string>
     <string name="app_license">NewPipe is copyleft libre software: You can use, study, share, and improve it at will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
@@ -59,7 +59,7 @@
     <string name="night_theme_available">This option is only available if %1$s is selected for Theme</string>
     <string name="select_night_theme_toast">You can select your favorite night theme below</string>
     <string name="show_hold_to_append_title">Show "Hold to enqueue" tip</string>
-    <string name="show_hold_to_append_summary">Show tip when pressing the background or the popup button in video \"Details:\"</string>
+    <string name="show_hold_to_append_summary">Show tip when pressing the background or the popup button in video "Details:"</string>
     <string name="tablet_mode_title">Tablet mode</string>
     <string name="list_view_mode">List view mode</string>
     <string name="caption_setting_title">Captions</string>
@@ -99,7 +99,7 @@
     <string name="seekbar_preview_thumbnail_title">Seekbar thumbnail preview</string>
     <string name="high_quality_larger">High quality (larger)</string>
     <string name="low_quality_smaller">Low quality (smaller)</string>
-    <string name="dont_show">Don\'t show</string>
+    <string name="dont_show">Don't show</string>
 
     <!-- Video/Audio Settings: Behavior section -->
     <string name="settings_category_player_behavior_title">Behavior</string>
@@ -139,7 +139,7 @@
     <string name="popup_remember_size_pos_title">Remember popup properties</string>
     <string name="popup_remember_size_pos_summary">Remember last size and position of popup</string>
     <string name="use_inexact_seek_title">Use fast inexact seek</string>
-    <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision. Seeking for 5, 15 or 25 seconds doesn\'t work with this</string>
+    <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision. Seeking for 5, 15 or 25 seconds doesn't work with this</string>
     <string name="seek_duration_title">Fast-forward/-rewind seek duration</string>
     <string name="new_seek_duration_toast">Due to ExoPlayer constraints the seek duration was set to %1$d seconds</string>
     <string name="clear_queue_confirmation_title">Ask for confirmation before clearing a queue</string>
@@ -150,6 +150,20 @@
         <item quantity="one">%1$d second</item>
         <item quantity="other">%1$d seconds</item>
     </plurals>
+
+    <!-- ExoPlayer Settings -->
+    <string name="settings_category_exoplayer_title">ExoPlayer settings</string>
+    <string name="settings_category_exoplayer_summary">Manage some ExoPlayer settings. These changes require a player restart to take effect</string>
+    <string name="progressive_load_interval_title">Playback load interval size</string>
+    <string name="progressive_load_interval_summary">Change the load interval size on progressive contents (currently %1$s). A lower value may speed up their initial loading</string>
+    <string name="progressive_load_interval_exoplayer_default">ExoPlayer default</string>
+    <string name="use_exoplayer_decoder_fallback_title">Use ExoPlayer's decoder fallback feature</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Enable this option if you have decoder initialization issues, which falls back to lower-priority decoders if primary decoders initialization fail. This may result in poor playback performance than when using primary decoders</string>
+    <string name="disable_media_tunneling_title">Disable media tunneling</string>
+    <string name="disable_media_tunneling_summary">Disable media tunneling if you experience a black screen or stuttering on video playback.</string>
+    <string name="disable_media_tunneling_automatic_info">Media tunneling was disabled by default on your device because your device model is known to not support it.</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Always use ExoPlayer's video output surface setting workaround</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">This workaround releases and re-instantiates video codecs when a surface change occurs, instead of setting the surface to the codec directly. Already used by ExoPlayer on some devices with this issue, this setting has only an effect on Android 6 and higher\n\nEnabling this option may prevent playback errors when switching the current video player or switching to fullscreen</string>
 
 
 </resources>
