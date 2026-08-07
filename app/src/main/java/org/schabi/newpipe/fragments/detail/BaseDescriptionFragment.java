@@ -20,8 +20,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.widget.TooltipCompat;
-import androidx.core.text.HtmlCompat;
-
 import com.google.android.material.chip.Chip;
 
 import org.schabi.newpipe.BaseFragment;
@@ -68,6 +66,17 @@ public abstract class BaseDescriptionFragment extends BaseFragment {
      */
     @Nullable
     protected abstract Description getDescription();
+
+    /**
+     * Optional action to run after a timestamp in the description is clicked.
+     * Subclasses can override to e.g. scroll the UI to the player.
+     *
+     * @return runnable to execute, or null if no action needed
+     */
+    @Nullable
+    protected Runnable getAfterTimestampClickRunnable() {
+        return null;
+    }
 
     /**
      * Get the streaming service. Used for generating description links.
@@ -140,9 +149,9 @@ public abstract class BaseDescriptionFragment extends BaseFragment {
         final Description description = getDescription();
         if (description != null) {
             TextLinkifier.fromDescription(binding.detailDescriptionView,
-                    description, HtmlCompat.FROM_HTML_MODE_LEGACY,
-                    getService(), getStreamUrl(),
-                    descriptionDisposables, SET_LINK_MOVEMENT_METHOD);
+                    description, getService(), getStreamUrl(),
+                    descriptionDisposables, SET_LINK_MOVEMENT_METHOD,
+                    getAfterTimestampClickRunnable());
         }
 
         binding.detailDescriptionNoteView.setVisibility(View.GONE);

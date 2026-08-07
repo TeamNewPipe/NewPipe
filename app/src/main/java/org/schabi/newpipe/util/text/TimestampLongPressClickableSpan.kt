@@ -13,13 +13,21 @@ import org.schabi.newpipe.extractor.StreamingService
 import org.schabi.newpipe.util.external_communication.ShareUtils
 import org.schabi.newpipe.util.text.TimestampExtractor.TimestampMatchDTO
 
+/**
+ * A [LongPressClickableSpan] that seeks the player to a timestamp on click and copies the
+ * timestamp URL to the clipboard on long-click.
+ *
+ * @param onAfterClick optional callback invoked after the seek intent is dispatched, e.g. to
+ *   scroll the UI back to the player so the user can see the updated position.
+ */
 class TimestampLongPressClickableSpan(
     private val context: Context,
     private val descriptionText: String,
     private val disposables: CompositeDisposable,
     private val relatedInfoService: StreamingService,
     private val relatedStreamUrl: String,
-    private val timestampMatchDTO: TimestampMatchDTO
+    private val timestampMatchDTO: TimestampMatchDTO,
+    private val onAfterClick: Runnable? = null
 ) : LongPressClickableSpan() {
     override fun onClick(view: View) {
         InternalUrlsHandler.playOnPopup(
@@ -28,6 +36,7 @@ class TimestampLongPressClickableSpan(
             relatedInfoService,
             timestampMatchDTO.seconds()
         )
+        onAfterClick?.run()
     }
 
     override fun onLongClick(view: View) {

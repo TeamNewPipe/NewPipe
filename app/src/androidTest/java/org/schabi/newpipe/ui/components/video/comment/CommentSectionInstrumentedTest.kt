@@ -335,7 +335,7 @@ private fun TestCommentSection(
                                 }
 
                                 else -> items(comments.itemCount) { index ->
-                                    Comment(comment = comments[index]!!) {}
+                                    Comment(comment = comments[index]!!, onCommentAuthorOpened = {})
                                 }
                             }
                         }
