@@ -42,7 +42,7 @@ import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.ktx.findFragmentActivity
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue
 import org.schabi.newpipe.ui.components.common.DescriptionText
-import org.schabi.newpipe.ui.components.common.PlaybackControlButtons
+import org.schabi.newpipe.ui.components.common.PlayerOptions
 import org.schabi.newpipe.ui.components.items.Stream
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.Localization
@@ -102,8 +102,8 @@ fun PlaylistHeader(
             }
         }
 
-        PlaybackControlButtons(
-            playQueue = queue,
+        PlayerOptions(
+            queue = queue,
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
     }

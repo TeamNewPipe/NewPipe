@@ -24,6 +24,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -40,7 +41,10 @@ import org.schabi.newpipe.util.NavigationHelper.playOnPopupPlayer
 import org.schabi.newpipe.util.PermissionHelper
 
 @Composable
-fun PlayerOptions(queue: PlayQueue) {
+fun PlayerOptions(
+    queue: PlayQueue,
+    modifier: Modifier = Modifier
+) {
     val context = LocalContext.current
     var selectedOption by rememberSaveable { mutableStateOf(PlayerType.NONE) }
 
@@ -54,6 +58,7 @@ fun PlayerOptions(queue: PlayQueue) {
     }
 
     PlayerOptions(
+        modifier = modifier,
         selectedOption = selectedOption,
         onSelectOption = {
             if (it != PlayerType.POPUP || PermissionHelper.checkSystemAlertWindowPermission(context)) {
@@ -67,9 +72,11 @@ fun PlayerOptions(queue: PlayQueue) {
 @Composable
 fun PlayerOptions(
     selectedOption: PlayerType,
-    onSelectOption: (PlayerType) -> Unit
+    onSelectOption: (PlayerType) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Row(
+        modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
