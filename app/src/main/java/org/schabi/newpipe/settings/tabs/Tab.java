@@ -580,7 +580,6 @@ public abstract class Tab {
         public Fragment getFragment(final Context context) {
             if (playlistType == LocalItemType.PLAYLIST_LOCAL_ITEM) {
                 return LocalPlaylistFragment.getInstance(playlistId, playlistName);
-
             } else { // playlistType == LocalItemType.PLAYLIST_REMOTE_ITEM
                 return PlaylistFragment.getInstance(playlistServiceId, playlistUrl, playlistName);
             }
@@ -609,11 +608,9 @@ public abstract class Tab {
 
         @Override
         public boolean equals(final Object obj) {
-            if (!(obj instanceof PlaylistTab)) {
+            if (!(obj instanceof PlaylistTab other)) {
                 return false;
             }
-
-            final PlaylistTab other = (PlaylistTab) obj;
 
             return super.equals(obj)
                     && playlistServiceId == other.playlistServiceId // Remote

@@ -900,6 +900,8 @@
     <string name="clear_history_description">Button to clear watch history</string>
     <string name="playlist_content_description">Thumbnail for playlist %1$s</string>
     <string name="stream_content_description">Thumbnail for stream %1$s</string>
+    <string name="error_unable_to_load_items">Could not load items</string>
+    <string name="playlist_uploader_icon_description">Playlist uploader icon</string>
     <plurals name="comments">
         <item quantity="one">%d comment</item>
         <item quantity="other">%d comments</item>

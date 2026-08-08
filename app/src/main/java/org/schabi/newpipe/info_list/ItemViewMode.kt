@@ -10,7 +10,7 @@ package org.schabi.newpipe.info_list
  */
 enum class ItemViewMode {
     /**
-     * Default mode.
+     * View mode is automatically determined based on the device configuration.
      */
     AUTO,
 

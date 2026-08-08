@@ -7,49 +7,47 @@
 package org.schabi.newpipe.database.playlist.dao
 
 import androidx.room.Dao
+import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
+import androidx.room.Update
 import io.reactivex.rxjava3.core.Flowable
-import org.schabi.newpipe.database.BasicDAO
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.firstOrNull
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity
 
 @Dao
-interface PlaylistRemoteDAO : BasicDAO<PlaylistRemoteEntity> {
-
+interface PlaylistRemoteDAO {
     @Query("SELECT * FROM remote_playlists")
-    override fun getAll(): Flowable<List<PlaylistRemoteEntity>>
-
-    @Query("DELETE FROM remote_playlists")
-    override fun deleteAll(): Int
-
-    @Query("SELECT * FROM remote_playlists WHERE service_id = :serviceId")
-    override fun listByService(serviceId: Int): Flowable<List<PlaylistRemoteEntity>>
+    fun getAll(): Flowable<List<PlaylistRemoteEntity>>
 
     @Query("SELECT * FROM remote_playlists WHERE uid = :playlistId")
     fun getPlaylist(playlistId: Long): Flowable<PlaylistRemoteEntity>
 
     @Query("SELECT * FROM remote_playlists WHERE url = :url AND service_id = :serviceId")
-    fun getPlaylist(serviceId: Long, url: String?): Flowable<MutableList<PlaylistRemoteEntity>>
+    fun getPlaylist(serviceId: Int, url: String?): Flow<PlaylistRemoteEntity?>
 
-    @get:Query("SELECT * FROM remote_playlists ORDER BY display_index")
-    val playlists: Flowable<MutableList<PlaylistRemoteEntity>>
+    @Query("SELECT * FROM remote_playlists ORDER BY display_index")
+    fun getPlaylists(): Flowable<List<PlaylistRemoteEntity>>
 
-    @Query("SELECT uid FROM remote_playlists WHERE url = :url AND service_id = :serviceId")
-    fun getPlaylistIdInternal(serviceId: Long, url: String?): Long?
+    @Insert
+    suspend fun insert(playlist: PlaylistRemoteEntity): Long
+
+    @Update
+    suspend fun update(playlist: PlaylistRemoteEntity)
 
     @Transaction
-    fun upsert(playlist: PlaylistRemoteEntity): Long {
-        val playlistId = getPlaylistIdInternal(playlist.serviceId.toLong(), playlist.url)
+    suspend fun upsert(playlist: PlaylistRemoteEntity) {
+        val dbPlaylist = getPlaylist(playlist.serviceId, playlist.url).firstOrNull()
 
-        if (playlistId == null) {
-            return insert(playlist)
+        if (dbPlaylist == null) {
+            insert(playlist)
         } else {
-            playlist.uid = playlistId
+            playlist.uid = dbPlaylist.uid
             update(playlist)
-            return playlistId
         }
     }
 
     @Query("DELETE FROM remote_playlists WHERE uid = :playlistId")
-    fun deletePlaylist(playlistId: Long): Int
+    suspend fun deletePlaylist(playlistId: Long): Int
 }

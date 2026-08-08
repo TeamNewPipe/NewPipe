@@ -18,6 +18,7 @@ import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.Companion
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.Companion.REMOTE_PLAYLIST_TABLE
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.Companion.REMOTE_PLAYLIST_URL
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo
+import org.schabi.newpipe.ui.components.playlist.PlaylistScreenInfo
 import org.schabi.newpipe.util.NO_SERVICE_ID
 import org.schabi.newpipe.util.image.ImageStrategy
 
@@ -57,7 +58,7 @@ data class PlaylistRemoteEntity(
     val streamCount: Long?
 ) : PlaylistLocalItem {
 
-    constructor(playlistInfo: PlaylistInfo) : this(
+    constructor(playlistInfo: PlaylistScreenInfo) : this(
         serviceId = playlistInfo.serviceId,
         orderingName = playlistInfo.name,
         url = playlistInfo.url,

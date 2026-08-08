@@ -17,7 +17,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.compose.ui.platform.ComposeView;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -141,20 +140,17 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         itemListAdapter.setSelectedListener(new OnClickGesture<>() {
             @Override
             public void selected(final LocalItem selectedItem) {
-                final FragmentManager fragmentManager = getFM();
+                final var fragmentManager = getFM();
 
-                if (selectedItem instanceof PlaylistMetadataEntry) {
-                    final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
+                if (selectedItem instanceof PlaylistMetadataEntry entry) {
                     NavigationHelper.openLocalPlaylistFragment(fragmentManager, entry.getUid(),
                             entry.getOrderingName());
-
-                } else if (selectedItem instanceof PlaylistRemoteEntity) {
-                    final PlaylistRemoteEntity entry = ((PlaylistRemoteEntity) selectedItem);
+                } else if (selectedItem instanceof PlaylistRemoteEntity entity) {
                     NavigationHelper.openPlaylistFragment(
                             fragmentManager,
-                            entry.getServiceId(),
-                            entry.getUrl(),
-                            entry.getOrderingName());
+                            entity.getServiceId(),
+                            entity.getUrl(),
+                            entity.getOrderingName());
                 }
             }
 
