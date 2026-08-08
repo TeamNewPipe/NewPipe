@@ -27,7 +27,7 @@ import org.schabi.newpipe.local.history.HistoryViewModel
 import org.schabi.newpipe.local.history.SortKey
 import org.schabi.newpipe.player.playqueue.PlayQueue
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue
-import org.schabi.newpipe.ui.components.common.PlaybackControlButtons
+import org.schabi.newpipe.ui.components.common.PlayerOptions
 import org.schabi.newpipe.ui.components.items.ItemList
 import org.schabi.newpipe.ui.theme.AppTheme
 
@@ -61,14 +61,14 @@ private fun HistoryHeader(
         verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterVertically),
         horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally)
     ) {
-        HistorySortRow(sortKey, onSelectSortKey)
+        HistorySortOptions(sortKey, onSelectSortKey)
 
-        PlaybackControlButtons(queue)
+        PlayerOptions(queue)
     }
 }
 
 @Composable
-private fun HistorySortRow(
+private fun HistorySortOptions(
     sortKey: SortKey,
     onSelectSortKey: (SortKey) -> Unit
 ) {

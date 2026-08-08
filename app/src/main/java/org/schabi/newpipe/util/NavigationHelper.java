@@ -166,7 +166,7 @@ public final class NavigationHelper {
 
         final Intent intent = getPlayerIntent(context, PlayerService.class, queue,
                 PlayerIntentType.AllOthers)
-                .putExtra(Player.PLAYER_TYPE, PlayerType.AUDIO)
+                .putExtra(Player.PLAYER_TYPE, PlayerType.BACKGROUND)
                 .putExtra(Player.RESUME_PLAYBACK, resumePlayback);
         ContextCompat.startForegroundService(context, intent);
     }
@@ -199,7 +199,7 @@ public final class NavigationHelper {
         PlayerType playerType = PlayerHolder.INSTANCE.getType();
         if (playerType == null) {
             Log.e(TAG, "Enqueueing but no player is open; defaulting to background player");
-            playerType = PlayerType.AUDIO;
+            playerType = PlayerType.BACKGROUND;
         }
 
         enqueueOnPlayer(context, queue, playerType);
@@ -210,7 +210,7 @@ public final class NavigationHelper {
         PlayerType playerType = PlayerHolder.INSTANCE.getType();
         if (playerType == null) {
             Log.e(TAG, "Enqueueing next but no player is open; defaulting to background player");
-            playerType = PlayerType.AUDIO;
+            playerType = PlayerType.BACKGROUND;
         }
         Toast.makeText(context, R.string.enqueued_next, Toast.LENGTH_SHORT).show();
         final Intent intent = getPlayerEnqueueNextIntent(context, PlayerService.class, queue)

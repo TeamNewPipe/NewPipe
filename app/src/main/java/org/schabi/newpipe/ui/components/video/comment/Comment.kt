@@ -114,6 +114,16 @@ fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
+
+                if (comment.isEdited) {
+                    Text(
+                        text = stringResource(R.string.edited_comment_indicator),
+                        style = MaterialTheme.typography.titleSmall,
+                        modifier = Modifier.padding(start = 4.dp),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
             }
 
             Text(
@@ -204,7 +214,8 @@ fun CommentsInfoItem(
     isHeartedByUploader: Boolean = false,
     isPinned: Boolean = false,
     replies: Page? = null,
-    replyCount: Int = 0
+    replyCount: Int = 0,
+    isEdited: Boolean = false
 ) = CommentsInfoItem(serviceId, url, name).apply {
     this.commentText = commentText
     this.uploaderName = uploaderName
@@ -214,6 +225,7 @@ fun CommentsInfoItem(
     this.isPinned = isPinned
     this.replies = replies
     this.replyCount = replyCount
+    this.isEdited = isEdited
 }
 
 private class CommentPreviewProvider : CollectionPreviewParameterProvider<CommentsInfoItem>(
@@ -225,7 +237,8 @@ private class CommentPreviewProvider : CollectionPreviewParameterProvider<Commen
             isPinned = false,
             isHeartedByUploader = true,
             replies = null,
-            replyCount = 0
+            replyCount = 0,
+            isEdited = false
         ),
         CommentsInfoItem(
             commentText = Description("Hello world, long long long text lorem ipsum dolor sit amet!<br><br>This line should be hidden by default.", Description.HTML),
@@ -234,7 +247,8 @@ private class CommentPreviewProvider : CollectionPreviewParameterProvider<Commen
             isPinned = true,
             isHeartedByUploader = false,
             replies = Page(""),
-            replyCount = 10
+            replyCount = 10,
+            isEdited = true
         ),
         CommentsInfoItem(
             commentText = Description("Hello world, long long long text lorem ipsum dolor sit amet!<br><br>This line should be hidden by default.", Description.HTML),
@@ -243,7 +257,8 @@ private class CommentPreviewProvider : CollectionPreviewParameterProvider<Commen
             isPinned = true,
             isHeartedByUploader = true,
             replies = null,
-            replyCount = 0
+            replyCount = 0,
+            isEdited = true
         ),
         CommentsInfoItem(
             commentText = Description("Short comment", Description.HTML),

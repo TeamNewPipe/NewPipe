@@ -60,7 +60,7 @@ object PlayButtonHelper {
             true
         }
         playlistControlBinding.playlistCtrlPlayBgButton.setOnLongClickListener {
-            NavigationHelper.enqueueOnPlayer(activity, fragment.getPlayQueue(), PlayerType.AUDIO)
+            NavigationHelper.enqueueOnPlayer(activity, fragment.getPlayQueue(), PlayerType.BACKGROUND)
             true
         }
     }

@@ -1069,7 +1069,7 @@ class VideoDetailFragment :
 
         val queue = setupPlayQueueForIntent(append)
         if (append) {
-            NavigationHelper.enqueueOnPlayer(activity, queue, PlayerType.AUDIO)
+            NavigationHelper.enqueueOnPlayer(activity, queue, PlayerType.BACKGROUND)
         } else {
             replaceQueueIfUserConfirms {
                 NavigationHelper.playOnBackgroundPlayer(activity, queue, true)
