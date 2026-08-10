@@ -44,7 +44,7 @@ public final class DeviceUtils {
      * support media tunneling to match the <strong>upcoming</strong> version code.</p>
      * @see #shouldSupportMediaTunneling()
      */
-    public static final int MEDIA_TUNNELING_DEVICE_BLACKLIST_VERSION = 995;
+    public static final int MEDIA_TUNNELING_DEVICE_BLACKLIST_VERSION = 1015;
 
     // region: devices not supporting media tunneling / media tunneling blacklist
     /**
