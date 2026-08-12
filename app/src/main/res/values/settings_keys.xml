@@ -356,6 +356,8 @@
     <string name="playback_speed_key">playback_speed_key</string>
     <string name="playback_pitch_key">playback_pitch_key</string>
     <string name="playback_skip_silence_key">playback_skip_silence_key</string>
+    <string name="playback_volume_boost_key">playback_volume_boost_key</string>
+    <string name="playback_auto_volume_boost_key">playback_auto_volume_boost_key</string>
 
     <string name="app_language_key">app_language_key</string>
     <string name="app_language_android_13_and_up_key">app_language_android_13_and_up_key</string>
