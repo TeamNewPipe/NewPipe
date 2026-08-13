@@ -1,6 +1,5 @@
 package org.schabi.newpipe.fragments.detail;
 
-import static android.text.TextUtils.isEmpty;
 import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 import static org.schabi.newpipe.util.text.TextLinkifier.SET_LINK_MOVEMENT_METHOD;
 
@@ -66,7 +65,7 @@ public abstract class BaseDescriptionFragment extends BaseFragment {
      * Get the description to display.
      * @return description object, if available
      */
-    @Nullable
+    @NonNull
     protected abstract Description getDescription();
 
     /**
@@ -105,8 +104,7 @@ public abstract class BaseDescriptionFragment extends BaseFragment {
 
     private void setupDescription() {
         final Description description = getDescription();
-        if (description == null || isEmpty(description.getContent())
-                || description == Description.EMPTY_DESCRIPTION) {
+        if (Description.EMPTY_DESCRIPTION.equals(description)) {
             binding.detailDescriptionView.setVisibility(View.GONE);
             binding.detailSelectDescriptionButton.setVisibility(View.GONE);
             return;
@@ -137,13 +135,9 @@ public abstract class BaseDescriptionFragment extends BaseFragment {
 
     private void disableDescriptionSelection() {
         // show description content again, otherwise some links are not clickable
-        final Description description = getDescription();
-        if (description != null) {
-            TextLinkifier.fromDescription(binding.detailDescriptionView,
-                    description, HtmlCompat.FROM_HTML_MODE_LEGACY,
-                    getService(), getStreamUrl(),
-                    descriptionDisposables, SET_LINK_MOVEMENT_METHOD);
-        }
+        TextLinkifier.fromDescription(binding.detailDescriptionView, getDescription(),
+                HtmlCompat.FROM_HTML_MODE_LEGACY, getService(), getStreamUrl(),
+                descriptionDisposables, SET_LINK_MOVEMENT_METHOD);
 
         binding.detailDescriptionNoteView.setVisibility(View.GONE);
         binding.detailDescriptionView.setTextIsSelectable(false);
