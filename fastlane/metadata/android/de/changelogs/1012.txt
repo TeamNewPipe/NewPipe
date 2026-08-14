@@ -1,0 +1,9 @@
+Dies ist ein kleines Hotfix-Update, damit YouTube wieder funktioniert. Es ist notwendig, da es Änderungen seitens YouTube gab.
+NewPipe kann nun wieder Elemente in den Kanal-Tabs extrahieren, dank @AudricV und @Ecomont.
+
+Weitere Änderungen
+- [YouTube] Anzeige von Dauer und Live-Stream in verwandten Videos korrigiert
+- [SoundCloud] Absturz bei Kommentaren aufgrund von Null-Seiten-URLs behoben
+- Abhängigkeiten aktualisiert
+
+NewPipe stellt in der nächsten Version die Unterstützung für Android 5 ein.

@@ -1,0 +1,9 @@
+To jest mała aktualizacja naprawcza, która przywraca działanie Youtube. Jest konieczna, ponieważ Youtube wprowadził zmiany.
+NewPipe ponownie pobiera elementy z zakładek kanału, dzięki staraniom @AudricV i @Ecomont.
+
+Dalsze zmiany
+- [Youtube] Naprawiono czas trwania oraz wyświetlanie transmisji na żywo w powiązanych filmach wideo
+- [SoundCloud] Naprawiono awarię komentarzy - obsługa null adresów URL stron
+- aktualizacja zależności
+
+NewPipe zakończy wsparcie dla Androida 5 w następnej wersji.

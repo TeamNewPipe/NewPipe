@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigate_back">Quay lại</string>
+    <string name="title_activity_about">Về NewPipe</string>
+    <string name="title_licenses">Các giấy phép Bên thứ ba</string>
+    <string name="tab_licenses">Giấy phép</string>
+    <string name="contribution_title">Đóng góp</string>
+    <string name="view_on_github">Xem trên Github</string>
+    <string name="donation_title">Quyên góp</string>
+    <string name="donation_encouragement">Newpipe được phát triển bởi các tình nguyện viên dành thời gian rảnh để mang trải nghiệm người dùng tốt nhất. Gửi lại để giúp nhà phát triển làm NewPipe tốt hơn nữa trong khi họ tận hưởng một ly cà phê.</string>
+    <string name="give_back">Gửi lại</string>
+    <string name="website_title">Trang web</string>
+    <string name="website_encouragement">Ghé thăm Trang web NewPipe để biết thêm thông tin và tin tức.</string>
+    <string name="privacy_policy_title">Chính sách Quyền riêng tư của NewPipe</string>
+    <string name="read_privacy_policy">Đọc chính sách quyền riêng tư</string>
+    <string name="app_license_title">Giấy phép của NewPipe</string>
+    <string name="read_full_license">Đọc giấy phép</string>
+    <string name="faq_title">Câu hỏi thường gặp</string>
+    <string name="faq_description">Nếu bạn gặp vấn đề khi sử dụng ứng dụng, hãy chắc chắn rằng bạn kiểm tra câu trà lời cho câu hỏi thường gặp!</string>
+    <string name="faq">Xem trên trang web</string>
+    <string name="open_in_browser">Mở trong trình duyệt</string>
+    <string name="done">Đã xong</string>
+    <string name="not_available">Không khả dụng</string>
+</resources>

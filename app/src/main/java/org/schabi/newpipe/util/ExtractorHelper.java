@@ -315,7 +315,7 @@ public final class ExtractorHelper {
                             .append(Localization.DOT_SEPARATOR);
                 }
 
-                String content = metaInfo.getContent().getContent().trim();
+                String content = metaInfo.getContent().content().trim();
                 if (content.endsWith(".")) {
                     content = content.substring(0, content.length() - 1); // remove . at end
                 }

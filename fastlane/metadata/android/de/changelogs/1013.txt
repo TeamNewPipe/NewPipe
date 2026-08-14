@@ -1,0 +1,7 @@
+- [YouTube] Umgehen der SABR-Vorgaben durch anderen Player-Client. Videos/Streams sind wieder in anderen Auflösungen als 360p verfügbar!
+- [YouTube] Extrahieren von Wiedergabelisten-Elemente und Eigenschaften in Lockup-Ansichten korrigiert.
+- [YouTube] Blindposition-Fallbacks beim Extrahieren von Anzahl/Datum in Lockup-Ansicht entfernt.
+- [YouTube] xTags-Format, um den Audiotrack-Typ zu extrahieren.
+- [Bandcamp] Suche korrigiert.
+
+Danke an alle, die an dieser Veröffentlichung mitgewirkt haben!

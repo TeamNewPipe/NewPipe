@@ -1,0 +1,9 @@
+Atualização para tornar o YouTube utilizável novamente.
+O NewPipe extrai abas de canais outra vez, graças ao esforço de @AudricV e @Ecomont.
+
+Correções:
+- duração e transmissão ao vivo em vídeos relacionados (YouTube)
+- travamento em comentários com URLs nulas (SoundCloud)
+- dependências atualizadas.
+
+Próxima versão encerra suporte ao Android 5.

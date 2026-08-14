@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigate_back">Назад</string>
+    <string name="title_activity_about">Относно NewPipe</string>
+    <string name="title_licenses">Лицензи на трети страни</string>
+    <string name="license">От %1$s под %2$s</string>
+    <string name="tab_about">За нас и ЧЗВ</string>
+    <string name="tab_licenses">Лицензи</string>
+    <string name="app_description">Безплатно леко стрийминг на Android.</string>
+    <string name="contribution_title">Допринесете</string>
+    <string name="contribution_encouragement">Независимо дали имате идеи за превод, промени в дизайна, почистване на кода или наистина сериозни промени в кода – помощта винаги е добре дошла. Колкото повече се направи, толкова по-добре става!</string>
+    <string name="view_on_github">Преглед в GitHub</string>
+    <string name="donation_title">Дарете</string>
+    <string name="donation_encouragement">NewPipe е разработен от доброволци, които прекарват свободното си време, за да ви осигурят най-доброто потребителско изживяване. Дарете, за да помогнете на разработчиците да направят NewPipe още по-добър, докато се наслаждават на чаша кафе.</string>
+    <string name="give_back">Върни обратно</string>
+    <string name="website_title">Уебсайт</string>
+    <string name="website_encouragement">Посетете уебсайта на NewPipe за повече информация и новини.</string>
+    <string name="privacy_policy_title">Политика за поверителност на NewPipe</string>
+    <string name="privacy_policy_encouragement">Проектът NewPipe приема вашата поверителност много сериозно. Следователно приложението не събира никакви данни без вашето съгласие.\nПолитиката за поверителност на NewPipe обяснява подробно какви данни се изпращат и съхраняват, когато изпращате отчет за срив.</string>
+    <string name="read_privacy_policy">Прочетете политиката за поверителност</string>
+    <string name="app_license_title">Лиценз на NewPipe</string>
+    <string name="app_license">NewPipe е софтуер с авторско право: Можете да го използвате, изучавате, споделяте и подобрявате по ваше желание. По-конкретно, можете да го разпространявате и/или променяте съгласно условията на Общия публичен лиценз на GNU, публикуван от Фондацията за свободен софтуер, или версия 3 на Лиценза, или (по ваш избор) всяка по-късна версия.</string>
+    <string name="read_full_license">Прочетете лиценза</string>
+    <string name="faq_title">Често задавани въпроси</string>
+    <string name="faq_description">Ако имате проблеми с използването на приложението, не забравяйте да разгледате тези отговори на често задавани въпроси!</string>
+    <string name="faq">Преглед на уебсайта</string>
+    <string name="open_in_browser">Отвори в браузър</string>
+    <string name="done">Готово</string>
+    <string name="not_available">Не е налично</string>
+    <string name="settings">Настройки</string>
+    <string name="search">Търсене</string>
+    <string name="content">Съдържание</string>
+    <string name="notifications">Известия</string>
+    <string name="settings_category_video_audio_title">Видео и аудио</string>
+    <string name="settings_category_downloads_title">Изтегляне</string>
+    <string name="settings_category_appearance_title">Външен вид</string>
+    <string name="settings_category_history_title">История и кеш</string>
+    <string name="settings_category_updates_title">Актуализации</string>
+    <string name="settings_category_backup_restore_title">Архивиране и възстановяване</string>
+    <string name="settings_category_debug_title">Отстраняване на грешки</string>
+</resources>

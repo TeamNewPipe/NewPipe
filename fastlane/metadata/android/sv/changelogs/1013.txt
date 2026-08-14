@@ -1,0 +1,7 @@
+* [YouTube] Kringgår SABR-krav med en annan spelarklient. Videor och strömmar finns åter i andra upplösningar än 360p!
+* [YouTube] Fixade extrahering av spellisteobjekt och egenskaper i lockup-vymodeller.
+* [YouTube] Tog bort blinda positionsfallbacks vid extrahering av visningsantal/datum i lockup.
+* [YouTube] Använder formatens xTags för att hitta ljudspårstyp.
+* [Bandcamp] Fixade Bandcamp-sökning.
+
+Stort tack till alla som bidrog till denna version!

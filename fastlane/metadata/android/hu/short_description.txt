@@ -1,1 +1,1 @@
-Egy ingyenes, könnyű YouTube felület Androidra.
+Egy ingyenes és könnyű androidos kezelőfelület a YouTube-hoz.

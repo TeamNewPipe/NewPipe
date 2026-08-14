@@ -25,11 +25,13 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.jakewharton.processphoenix.ProcessPhoenix;
 
+import net.newpipe.app.extensions.ContextKt;
+import net.newpipe.app.navigation.Destination;
+
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.RouterActivity;
-import org.schabi.newpipe.about.AboutActivity;
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity;
 import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.error.ErrorUtil;
@@ -682,11 +684,11 @@ public final class NavigationHelper {
     }
 
     public static void openAbout(final Context context) {
-        final Intent intent = new Intent(context, AboutActivity.class);
-        context.startActivity(intent);
+        ContextKt.navigateTo(context, Destination.About.INSTANCE);
     }
 
     public static void openSettings(final Context context) {
+        // TODO: Replace with "ContextKt.navigateTo(context, Destination.Settings.INSTANCE);" later
         final Intent intent = new Intent(context, SettingsActivity.class);
         context.startActivity(intent);
     }

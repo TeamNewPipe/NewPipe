@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigate_back">Tagasi</string>
+    <string name="title_activity_about">Rakenduse teave: NewPipe</string>
+    <string name="title_licenses">Kolmanda osapoole litsentsid</string>
+    <string name="license">Arendaja: %1$s, kasutatud litsents: %2$s</string>
+    <string name="tab_about">Rakenduse teave ja KKK</string>
+    <string name="tab_licenses">Litsentsid</string>
+    <string name="app_description">Vaba ja lihtne voogesitus Androidis.</string>
+    <string name="contribution_title">Tee kaastööd</string>
+</resources>

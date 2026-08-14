@@ -1,0 +1,9 @@
+Corrigido o erro NullPointerException nas ações de enfileiramento usando o contexto do aplicativo
+[YouTube] Corrigido o problema na análise da duração do item
+
+Traduções atualizadas e localidades não traduzidas removidas
+Pequenas melhorias no tratamento de imagens
+
+Alterações relacionadas às assinaturas de portas devido à refatoração
+Alterações relacionadas ao caminho da porta devido à refatoração
+Dependências e Gradle atualizados para a versão estável mais recente

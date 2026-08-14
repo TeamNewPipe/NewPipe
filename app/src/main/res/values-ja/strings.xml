@@ -101,15 +101,15 @@
     <string name="show_search_suggestions_title">検索候補の表示</string>
     <string name="show_search_suggestions_summary">検索時に表示する候補を選択します</string>
     <string name="best_resolution">最高</string>
-    <string name="title_activity_about">NewPipe について</string>
-    <string name="title_licenses">サードパーティー ライセンス</string>
+    <string name="title_activity_about">NewPipeについて</string>
+    <string name="title_licenses">サードパーティライセンス</string>
     <string name="copyright" formatted="true">© %1$s 作者 %2$s ライセンス %3$s</string>
-    <string name="tab_about">バージョン情報とよくある質問</string>
+    <string name="tab_about">概要とよくある質問</string>
     <string name="tab_licenses">ライセンス</string>
-    <string name="app_description">Android 向けのフリーで軽量なストリーミング。</string>
-    <string name="view_on_github">GitHub で表示</string>
-    <string name="app_license_title">NewPipe のライセンス</string>
-    <string name="contribution_encouragement">翻訳、デザインの変更、コードの整理、動作の重いコードの変更など、アイデアをお持ちではありませんか？ヘルプはいつでも歓迎します。より良いものを一緒に作り上げましょう！</string>
+    <string name="app_description">Android向けの自由で軽量なストリーミングアプリ。</string>
+    <string name="view_on_github">GitHubで見る</string>
+    <string name="app_license_title">NewPipeのライセンス</string>
+    <string name="contribution_encouragement">翻訳、デザインの変更、コードの整理、大規模なコード変更など、どんな形の協力もいつでも歓迎します。手を加えるほど、より良いものになります！</string>
     <string name="read_full_license">ライセンスを読む</string>
     <string name="contribution_title">貢献する</string>
     <string name="subscribe_button_title">チャンネル登録</string>
@@ -138,26 +138,26 @@
     <string name="search_no_results">一致する結果はありませんでした</string>
     <string name="no_subscribers">チャンネル登録者なし</string>
     <string name="no_videos">動画がありません</string>
-    <string name="settings_category_downloads_title">保存</string>
+    <string name="settings_category_downloads_title">ダウンロード</string>
     <string name="settings_file_charset_title">ファイル名に使用可能な文字</string>
     <string name="settings_file_replacement_character_summary">無効な文字はここで指定した文字に置き換えられます</string>
     <string name="settings_file_replacement_character_title">ファイル名の自動修正</string>
     <string name="charset_letters_and_digits">文字と数字</string>
     <string name="charset_most_special_characters">文字と数字と、多くの特殊文字</string>
-    <string name="donation_title">寄付</string>
-    <string name="donation_encouragement">NewPipe は、あなたに最高の体験を提供するために、ボランティアが自分たちの時間を使って開発しています。開発者たちがコーヒーを飲みながら NewPipe を継続的に改良できるよう、ご支援をお願いします。</string>
-    <string name="website_title">Webサイト</string>
-    <string name="website_encouragement">NewPipe の詳しい情報や最新情報については、ウェブサイトをご覧ください。</string>
+    <string name="donation_title">寄付する</string>
+    <string name="donation_encouragement">NewPipeは、最高のユーザー体験を届けるために、ボランティアが自由時間を使って開発しています。開発者がコーヒーを楽しみながらNewPipeをさらに良くできるよう、ぜひ支援してください。</string>
+    <string name="website_title">ウェブサイト</string>
+    <string name="website_encouragement">詳しい情報や最新ニュースについては、NewPipeのウェブサイトをご覧ください。</string>
     <string name="title_activity_history">履歴</string>
     <string name="action_history">履歴</string>
     <string name="delete_item_search_history">このアイテムを検索履歴から削除しますか？</string>
     <string name="main_page_content">メインページのコンテンツ</string>
     <string name="blank_page_summary">空白ページ</string>
-    <string name="kiosk_page_summary">Kioskページ</string>
+    <string name="kiosk_page_summary">キオスクページ</string>
     <string name="channel_page_summary">チャンネルページ</string>
     <string name="select_a_channel">チャンネルを選択</string>
     <string name="no_channel_subscribed_yet">登録しているチャンネルはありません</string>
-    <string name="select_a_kiosk">Kioskを選択</string>
+    <string name="select_a_kiosk">キオスクを選択</string>
     <string name="trending">人気</string>
     <string name="top_50">トップ50</string>
     <string name="play_queue_remove">削除</string>
@@ -245,8 +245,8 @@
     <string name="channels">チャンネル</string>
     <string name="playlists">プレイリスト</string>
     <string name="users">ユーザー</string>
-    <string name="privacy_policy_title">NewPipe プライバシーポリシー</string>
-    <string name="read_privacy_policy">プライバシーポリシーを確認</string>
+    <string name="privacy_policy_title">NewPipeのプライバシーポリシー</string>
+    <string name="read_privacy_policy">プライバシーポリシーを読む</string>
     <string name="use_inexact_seek_title">おおまかなシーク</string>
     <string name="use_inexact_seek_summary">おおまかなシークを使用することで精度が下がる代わりに高速にシークができます。5 秒、15 秒または 25 秒間隔のシークはできません</string>
     <string name="auto_queue_summary">キューに関連動画を追加して再生を続ける (繰り返ししない場合)</string>
@@ -262,9 +262,8 @@
     </plurals>
     <string name="one_item_deleted">1 つのアイテムが削除されました。</string>
     <string name="give_back">支援する</string>
-    <string name="privacy_policy_encouragement">NewPipe プロジェクトはあなたのプライバシーを非常に大切にしています。あなたの同意がない限り、アプリはいかなるデータも収集しません。
-\nNewPipe のプライバシー・ポリシーでは、クラッシュリポート送信時にどのような種類のデータが送信・記録されるかを詳細に説明しています。</string>
-    <string name="app_license">NewPipe はコピーレフトなソフトウェアです。あなたは自由にそれを使用し、研究し、共有し、そして改善することができます。あなたは、GNU フリーソフトウェア財団が公開する GNU General Public ライセンス バージョン3以降の下に、自由に再配布・修正を行うことができます。</string>
+    <string name="privacy_policy_encouragement">NewPipeプロジェクトは、ユーザーのプライバシーを非常に重視しています。そのため、このアプリがユーザーの同意なくデータを収集することはありません。\nNewPipeのプライバシーポリシーでは、クラッシュレポートを送信した際に、どのようなデータが送信および保存されるかを詳しく説明しています。</string>
+    <string name="app_license">NewPipeは、コピーレフトの自由ソフトウェアです。自由に使用、研究、共有、改良できます。具体的には、フリーソフトウェア財団が公開しているGNU General Public Licenseのバージョン3、またはそれ以降の任意のバージョンの条件に従って、再配布や改変を行えます。</string>
     <string name="title_last_played">最終再生日時</string>
     <string name="title_most_played">最も再生された動画</string>
     <string name="resize_zoom">拡大</string>
@@ -320,7 +319,7 @@
     <string name="playback_step">音階</string>
     <string name="unsubscribe">登録解除</string>
     <string name="tab_choose">タブを選択</string>
-    <string name="settings_category_updates_title">アプリの更新</string>
+    <string name="settings_category_updates_title">更新</string>
     <string name="events">イベント</string>
     <string name="app_update_notification_channel_description">新しい NewPipe バージョンの通知</string>
     <string name="download_to_sdcard_error_title">外部記憶装置は利用できません</string>
@@ -406,7 +405,7 @@
     <plurals name="videos">
         <item quantity="other">%s本の動画</item>
     </plurals>
-    <string name="default_kiosk_page_summary">デフォルトのKiosk</string>
+    <string name="default_kiosk_page_summary">デフォルトのキオスク</string>
     <string name="no_one_watching">誰も見ていません</string>
     <plurals name="watching">
         <item quantity="other">%s人が視聴中</item>
@@ -437,7 +436,7 @@
     <string name="app_language_title">アプリの言語</string>
     <string name="systems_language">システムの既定</string>
     <string name="subtitle_activity_recaptcha">解けたら「完了」を押してください</string>
-    <string name="done">完了</string>
+    <string name="done">閉じる</string>
     <string name="videos_string">動画</string>
     <plurals name="seconds">
         <item quantity="other">%d 秒</item>
@@ -497,7 +496,7 @@
     <string name="restricted_video">この動画には年齢制限があります。
 \n
 \n閲覧したい場合、設定から \"%1$s\" を有効化してください。</string>
-    <string name="remove_watched_popup_warning">プレイリストに追加される前も追加された後も視聴した動画はプレイリストから削除されます。 \nよろしいですか？この操作は元に戻せません！</string>
+    <string name="remove_watched_popup_warning">プレイリストへの追加前または追加後に視聴済みとなった動画が削除されます。\nよろしいですか？</string>
     <string name="remove_watched_popup_partially_watched_streams">はい、部分的に視聴した動画も削除します</string>
     <string name="remove_watched_popup_title">視聴済みの動画を削除しますか？</string>
     <string name="remove_watched">視聴済みを削除</string>
@@ -684,11 +683,11 @@
     <string name="no_video_streams_available_for_external_players">外部プレイヤーで利用可能な動画ストリームがありません</string>
     <string name="select_quality_external_players">外部プレイヤーでの品質を選択</string>
     <string name="sort">並び替え</string>
-    <string name="faq">ウェブサイトを表示</string>
+    <string name="faq">ウェブサイトで見る</string>
     <string name="app_update_available_notification_text">タップして%sをダウンロード</string>
     <string name="app_update_unavailable_toast">あなたはNewPipeの最新版を起動しています</string>
     <string name="faq_title">よくある質問</string>
-    <string name="faq_description">アプリの使い方に困ったときは、よくある質問に答えていますので、ぜひご覧ください!</string>
+    <string name="faq_description">アプリの使用中に問題が発生した場合は、よくある質問への回答をご確認ください！</string>
     <string name="night_theme_available">%sがテーマに選択された場合のみ、この選択肢が利用可能です</string>
     <string name="fast_mode">高速モード</string>
     <string name="import_subscriptions_hint">3点メニューから登録チャンネルの読み込みまたは書き出しが可能</string>
@@ -804,8 +803,53 @@
     <string name="import_settings_vulnerable_format">インポートされているエクスポートの設定は、NewPipe 0.27.0以降は非推奨であった脆弱な形式を使用します。 インポートされているエクスポートは信頼できる情報源からであり、将来的にはNewPipe 0.27.0かこれより新しいバージョンから得られるエクスポートのみを優先して使用します。 この脆弱な形式で設定をインポートするための対応はすぐに完全に削除され、新しいバージョンからエクスポートの設定をインポートすることは出来ません。</string>
     <string name="share_playlist_as_youtube_temporary_playlist">YouTubeの一時的なプレイリストとして共有</string>
     <string name="audio_track_type_secondary">二次的</string>
-    <string name="kao_dialog_warning">Google は、2026/2027 年から、認定 Android デバイス上のすべてのアプリについて、開発者が個人の身元情報を直接 Google に提出することを必須にすると発表しました。本アプリの開発者はこの要件に同意していないため、このアプリはその時点以降、認定 Android デバイス上で動作しなくなります。</string>
+    <string name="kao_dialog_warning">2025年8月、Googleは、2026年9月以降、Playストア以外からインストールするアプリを含め、認定済み端末上のすべてのAndroidアプリのインストールに開発者の確認が必要になると発表しました。NewPipeの開発者はこの要件に同意していないため、それ以降、NewPipeは認定済みAndroid端末で動作しなくなります。</string>
     <string name="kao_dialog_more_info">詳細</string>
     <string name="kao_solution">解決</string>
     <string name="short_billion">%sB</string>
+    <string name="search_with_service_name">%1$sを検索</string>
+    <string name="search_with_service_name_and_filter">%1$s（%2$s）を検索</string>
+    <string name="tab_bookmarks_short">プレイリスト</string>
+    <string name="permission_display_over_apps_message">ポップアッププレーヤーを使用するには、次のAndroid設定メニューで%1$sを選択し、%2$sを有効にしてください。</string>
+    <string name="permission_display_over_apps_permission_name">「他のアプリの上に表示」を許可</string>
+    <string name="short_thousand">%sK</string>
+    <string name="short_million">%sM</string>
+    <string name="delete_file">ファイルを削除</string>
+    <string name="delete_entry">エントリを削除</string>
+    <string name="select_a_feed_group">フィードグループを選択</string>
+    <string name="no_feed_group_created_yet">フィードグループはまだ作成されていません</string>
+    <plurals name="export_subscriptions">
+        <item quantity="other">%d件の登録チャンネルをエクスポートしています…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="other">%d件の登録チャンネルを読み込んでいます…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="other">%d件の登録チャンネルをインポートしています…</item>
+    </plurals>
+    <string name="import_subscriptions_title">登録チャンネルをインポート</string>
+    <string name="export_subscriptions_title">登録チャンネルをエクスポート</string>
+    <string name="import_subscriptions_summary">以前エクスポートした.jsonファイルから登録チャンネルをインポート</string>
+    <string name="export_subscriptions_summary">登録チャンネルを.jsonファイルにエクスポート</string>
+    <string name="import_from_previous_export">以前のエクスポートからインポート</string>
+    <string name="feed_group_page_summary">チャンネルグループページ</string>
+    <string name="account_terminated_service_provides_reason">アカウントは停止されました\n\n%1$sによる理由: %2$s</string>
+    <string name="channel_tab_likes">高評価</string>
+    <string name="migration_info_6_7_title">SoundCloudのトップ50ページを削除しました</string>
+    <string name="migration_info_6_7_message">SoundCloudは従来のトップ50チャートを終了しました。該当するタブはメインページから削除されました。</string>
+    <string name="migration_info_7_8_title">YouTubeの統合トレンドを削除しました</string>
+    <string name="migration_info_7_8_message">YouTubeは2025年7月21日をもって、統合トレンドページを終了しました。NewPipeでは、デフォルトのトレンドページをトレンドのライブ配信に置き換えました。\n\n設定 &gt; コンテンツ &gt; メインページのコンテンツから、別のトレンドページを選択することもできます。</string>
+    <string name="trending_gaming">ゲームのトレンド</string>
+    <string name="trending_podcasts">トレンドのポッドキャスト</string>
+    <string name="trending_movies">トレンドの映画と番組</string>
+    <string name="trending_music">トレンドの音楽</string>
+    <string name="entry_deleted">エントリを削除しました</string>
+    <string name="player_http_403">再生中にサーバーからHTTPエラー403を受信しました。ストリーミングURLの有効期限切れまたはIPアドレスのブロックが原因である可能性があります</string>
+    <string name="player_http_invalid_status">再生中にサーバーからHTTPエラー%1$sを受信しました</string>
+    <string name="youtube_player_http_403">再生中にサーバーからHTTPエラー403を受信しました。IPアドレスのブロックまたはストリーミングURLの難読化解除に関する問題が原因である可能性があります</string>
+    <string name="sign_in_confirm_not_bot_error">%1$sは、リクエスト元がボットではないことを確認するためにログインを求め、データの提供を拒否しました。\n\nお使いのIPアドレスが%1$sによって一時的にブロックされている可能性があります。しばらく待つか、別のIPアドレスに切り替えてください（たとえば、VPNのオンとオフを切り替えるか、Wi-Fiからモバイルデータ通信に切り替えます）。\n\n詳しくは <a href="%2$s">こちらのFAQ項目</a> をご覧ください。</string>
+    <string name="unsupported_content_in_country">このコンテンツは、現在選択されているコンテンツの国では利用できません。\n\n設定 &gt; コンテンツ &gt; デフォルトのコンテンツの国から選択を変更してください。</string>
+    <string name="api23_requirement_dialog_title">NewPipeはAndroid 5のサポートを終了します</string>
+    <string name="api23_requirement_dialog_message">残念ながら、NewPipeが依存している一部のライブラリでAndroid 5.0および5.1のサポートが終了しました。そのため、次回リリースのNewPipeはAndroid 6以降の端末でのみ動作します。詳しくはブログ記事をご覧ください。</string>
+    <string name="api23_requirement_dialog_blogpost">ブログ記事</string>
 </resources>

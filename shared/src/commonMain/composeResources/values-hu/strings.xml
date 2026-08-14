@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigate_back">Vissza</string>
+    <string name="title_activity_about">A NewPipe névjegye</string>
+    <string name="title_licenses">Harmadik féltől származó licencek</string>
+    <string name="license">Szerző: %1$s · Licenc: %2$s</string>
+    <string name="tab_about">Névjegy és GYIK</string>
+    <string name="tab_licenses">Licencek</string>
+    <string name="app_description">Szabad és könnyed közvetítés Androidon.</string>
+    <string name="contribution_title">Közreműködés</string>
+    <string name="contribution_encouragement">Legyen szó fordításról, dizájnmódosításokról, kódtisztításról vagy komolyabb fejlesztésekről, minden segítséget szívesen fogadunk. Minél többen járulnak hozzá, annál jobb lesz a projekt!</string>
+    <string name="view_on_github">Megtekintés a GitHubon</string>
+    <string name="donation_title">Adakozás</string>
+    <string name="donation_encouragement">A NewPipe-ot önkéntesek fejlesztik a szabadidejükben, hogy a lehető legjobb felhasználói élményt nyújtsák. Támogatásával hozzájárulhat ahhoz, hogy a fejlesztők egy csésze kávé mellett még jobbá tehessék a NewPipe-ot.</string>
+    <string name="give_back">Támogatás</string>
+    <string name="website_title">Weboldal</string>
+    <string name="website_encouragement">Látogassa meg a NewPipe weboldalát további információkért és hírekért.</string>
+    <string name="privacy_policy_title">A NewPipe adatvédelmi irányelvei</string>
+    <string name="privacy_policy_encouragement">A NewPipe projekt kiemelten fontosnak tartja az Ön adatainak védelmét. Ezért az alkalmazás az Ön hozzájárulása nélkül semmilyen adatot nem gyűjt.\nA NewPipe adatvédelmi irányelvei részletesen ismertetik, hogy összeomlási jelentés küldésekor milyen adatok kerülnek továbbításra és tárolásra.</string>
+    <string name="read_privacy_policy">Adatvédelmi irányelvek megtekintése</string>
+    <string name="app_license_title">A NewPipe licence</string>
+    <string name="app_license">A NewPipe copyleft, szabad szoftver: Ön szabadon használhatja, tanulmányozhatja, megoszthatja és továbbfejlesztheti. Különösen jogosult arra, hogy a Free Software Foundation által közzétett GNU General Public License feltételei szerint terjessze és/vagy módosítsa, akár a licenc 3-as verziója, akár – saját belátása szerint – bármely későbbi verziója alapján.</string>
+    <string name="read_full_license">Licenc megtekintése</string>
+    <string name="faq_title">Gyakran ismételt kérdések</string>
+    <string name="faq_description">Ha problémái adódnak az alkalmazás használata során, érdemes áttekintenie a gyakori kérdésekre adott válaszokat!</string>
+    <string name="faq">Megtekintés a weboldalon</string>
+    <string name="open_in_browser">Megnyitás böngészőben</string>
+    <string name="done">Kész</string>
+    <string name="not_available">Nem elérhető</string>
+    <string name="settings">Beállítások</string>
+    <string name="search">Keresés</string>
+    <string name="content">Tartalom</string>
+    <string name="notifications">Értesítések</string>
+    <string name="settings_category_video_audio_title">Videó és hang</string>
+    <string name="settings_category_downloads_title">Letöltés</string>
+    <string name="settings_category_appearance_title">Kinézet</string>
+    <string name="settings_category_history_title">Előzmények és gyorsítótár</string>
+    <string name="settings_category_updates_title">Frissítések</string>
+    <string name="settings_category_backup_restore_title">Biztonsági mentés és visszaállítás</string>
+    <string name="settings_category_debug_title">Hibakeresés</string>
+</resources>

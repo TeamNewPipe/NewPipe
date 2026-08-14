@@ -10,12 +10,19 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
+import android.text.Layout;
+import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.style.AlignmentSpan;
 import android.text.style.CharacterStyle;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -36,6 +43,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.TooltipCompat;
 import androidx.collection.SparseArrayCompat;
 import androidx.core.text.HtmlCompat;
+import androidx.core.view.SoftwareKeyboardControllerCompat;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -68,7 +76,6 @@ import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
-import org.schabi.newpipe.util.KeyboardUtil;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 
@@ -453,22 +460,28 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
         for (final String filter : service.getSearchQHFactory().getAvailableContentFilter()) {
             if (filter.equals(YoutubeSearchQueryHandlerFactory.MUSIC_SONGS)) {
-                final MenuItem musicItem = menu.add(2,
+                menu.add(2,
                         itemId++,
                         0,
-                        "YouTube Music");
-                musicItem.setEnabled(false);
+                        getStyledHeader("YouTube"));
+                menu.add(2,
+                        itemId++,
+                        1,
+                        getStyledHeader("YouTube Music"));
             } else if (filter.equals(PeertubeSearchQueryHandlerFactory.SEPIA_VIDEOS)) {
-                final MenuItem sepiaItem = menu.add(2,
+                menu.add(2,
                         itemId++,
                         0,
-                        "Sepia Search");
-                sepiaItem.setEnabled(false);
+                        getStyledHeader("Search"));
+                menu.add(2,
+                        itemId++,
+                        1,
+                        getStyledHeader("Sepia Search"));
             }
             menuItemToFilterName.put(itemId, filter);
             final MenuItem item = menu.add(1,
                     itemId++,
-                    0,
+                    1,
                     ServiceHelper.getTranslatedFilterString(filter, c));
             if (isFirstItem) {
                 item.setChecked(true);
@@ -478,6 +491,15 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         menu.setGroupCheckable(1, true, true);
 
         restoreFilterChecked(menu, filterItemCheckedId);
+    }
+
+    private SpannableString getStyledHeader(final String title) {
+        final SpannableString styledTitle = new SpannableString(title);
+        styledTitle.setSpan(new StyleSpan(Typeface.BOLD), 0, title.length(), 0);
+        styledTitle.setSpan(new ForegroundColorSpan(Color.GRAY), 0, title.length(), 0);
+        styledTitle.setSpan(new AlignmentSpan.Standard(Layout.Alignment.ALIGN_CENTER),
+                0, title.length(), 0);
+        return styledTitle;
     }
 
     @Override
@@ -683,15 +705,15 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         if (DEBUG) {
             Log.d(TAG, "showKeyboardSearch() called");
         }
-        KeyboardUtil.showKeyboard(activity, searchEditText);
+        new SoftwareKeyboardControllerCompat(searchEditText).show();
     }
 
     private void hideKeyboardSearch() {
         if (DEBUG) {
             Log.d(TAG, "hideKeyboardSearch() called");
         }
-
-        KeyboardUtil.hideKeyboard(activity, searchEditText);
+        new SoftwareKeyboardControllerCompat(searchEditText).hide();
+        searchEditText.clearFocus();
     }
 
     private void showDeleteSuggestionDialog(final SuggestionItem item) {

@@ -1,4 +1,4 @@
-∙ Arreglados los streams resumidos en la última posición de reproducción
-∙ [YouTube] Añadido el soporte para más formatos de URL de canales
-∙ [YouTube] Añadido el soporte para más formatos de metainformación de video
-∙ Actualizadas las traducciones
+∙ Se ha corregido la continuación de las transmisiones en la última posición de reproducción.
+∙ [YouTube] Compatibilidad con más formatos de URL de canales.
+∙ [YouTube] Compatibilidad con más formatos de metainformación de vídeos.
+∙ Traducciones actualizadas.

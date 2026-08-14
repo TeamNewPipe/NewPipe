@@ -1,16 +1,16 @@
-#Mejoras
-Mantener el reproductor actual al hacer clic en marcas de tiempo.
-Intentar recuperar descargas pendientes cuando sea posible.
-Añadir opción para eliminar una descarga sin borrar el archivo.
-Permiso de superposición: mostrar diálogo explicativo en Android 11 y superior.
-Soporte para abrir enlaces on.soundcloud.
-Muchas pequeñas mejoras y optimizaciones.
+# Mejorado
+Mantener el reproductor actual al hacer clic en las marcas de tiempo
+Intenta recuperar las misiones de descarga pendientes cuando sea posible.
+Agregar opción para eliminar una descarga sin eliminar el archivo.
+Permiso de superposición: mostrar un diálogo explicativo para Android > R
+Soporte para abrir enlaces de on.soundcloud
+Muchas pequeñas mejoras y optimizaciones
 
-#Corregido
-Formato corto de conteos en Android inferior a 7.
-Notificaciones fantasma.
-Problemas con archivos de subtítulos SRT.
-Numerosos crashes.
+# Corregido
+Arreglar el formato de conteo corto para versiones de Android anteriores a la versión 7
+Arreglar notificaciones fantasma
+Correcciones para archivos de subtítulos SRT
+Arreglados montones de fallos
 
-#Desarrollo
-Modernización interna del código.
+# Desarrollo
+Modernización del código interno

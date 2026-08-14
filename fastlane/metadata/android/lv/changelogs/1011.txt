@@ -1,0 +1,1 @@
+Pievienots uznirstošais logs, lai informētu lietotājus, ka, sākot ar versiju 0.28.7, Android 5 atbalsts tiks pārtraukts

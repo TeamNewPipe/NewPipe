@@ -4,7 +4,7 @@
     <string name="no_player_found">Програвач потокового відео не знайдений. Встановити VLC\?</string>
     <string name="install">Встановити</string>
     <string name="cancel">Скасувати</string>
-    <string name="open_in_browser">Відкрити в оглядачі</string>
+    <string name="open_in_browser">Відкрити в браузері</string>
     <string name="share">Поширити</string>
     <string name="download">Завантажити</string>
     <string name="search">Пошук</string>
@@ -33,7 +33,7 @@
     <string name="show_next_and_similar_title">Показувати «Наступне» і «Схожі» відео</string>
     <string name="unsupported_url">URL не підтримується</string>
     <string name="content_language_title">Переважна мова вмісту</string>
-    <string name="settings_category_video_audio_title">Відео та звук</string>
+    <string name="settings_category_video_audio_title">Відео та аудіо</string>
     <string name="settings_category_appearance_title">Зовнішній вигляд</string>
     <string name="background_player_playing_toast">Відтворення у фоновому режимі</string>
     <string name="content">Вміст</string>
@@ -139,7 +139,7 @@
     <string name="no_videos">Немає відео</string>
     <string name="msg_popup_permission">Цей дозвіл потрібен для перегляду
 \nу віконному режимі</string>
-    <string name="settings_category_downloads_title">Завантаження</string>
+    <string name="settings_category_downloads_title">Завантажити</string>
     <string name="settings_file_charset_title">Допустимі символи в назвах файлів</string>
     <string name="settings_file_replacement_character_summary">Недопустимі символи замінюватимуться цим значенням</string>
     <string name="settings_file_replacement_character_title">Замінні символи</string>
@@ -147,9 +147,9 @@
     <string name="charset_most_special_characters">Більшість спеціальних символів</string>
     <string name="title_activity_about">Про NewPipe</string>
     <string name="tab_licenses">Ліцензії</string>
-    <string name="contribution_title">Посприяти</string>
+    <string name="contribution_title">Зробіть внесок</string>
     <string name="view_on_github">Переглянути на GitHub</string>
-    <string name="donation_title">Фінансова допомога</string>
+    <string name="donation_title">Пожертвувати</string>
     <string name="website_title">Вебсайт</string>
     <string name="title_activity_history">Історія</string>
     <string name="export_complete_toast">Експортовано</string>
@@ -190,9 +190,9 @@
     <string name="dismiss">Відхилити</string>
     <string name="rename">Перейменувати</string>
     <string name="title_licenses">Ліцензії третіх сторін</string>
-    <string name="tab_about">Про застосунок і ЧаП</string>
-    <string name="app_description">Вільне та легке потокове програвання на Android.</string>
-    <string name="contribution_encouragement">Які б не були ваші ідеї: переклад, дизайн, легкий чи глобальний рефакторинг — будь-яка допомога завжди у пригоді. Що більше зроблено, то ліпшим стає NewPipe!</string>
+    <string name="tab_about">Про нас і ЧаПи</string>
+    <string name="app_description">Libre — легкий стримінг на Android</string>
+    <string name="contribution_encouragement">Незалежно від того, чи у вас є ідеї щодо перекладу, змін дизайну, очищення коду або серйозних доопрацювань — будь-яка допомога завжди вітається. Чим більше зроблено, тим кращим стає проєкт!</string>
     <string name="settings_category_debug_title">Налагодження</string>
     <string name="empty_list_subtitle">Нічого немає… чути лише цвіркунів</string>
     <string name="no_views">Немає переглядів</string>
@@ -203,12 +203,12 @@
     </plurals>
     <string name="title_activity_recaptcha">Перевірка reCAPTCHA</string>
     <string name="recaptcha_request_toast">Запит перевірки reCAPTCHA</string>
-    <string name="copyright" formatted="true">© %1$s, %2$s під %3$s</string>
-    <string name="donation_encouragement">NewPipe розроблений добровольцями, які витрачають власний час заради вашого задоволення. Допоможіть розробникам зробити NewPipe ще ліпшим, насолоджуючись філіжанкою кави.</string>
-    <string name="give_back">Ваша допомога</string>
-    <string name="website_encouragement">Завітайте на офіційний сайт NewPipe, щоб отримати більше інформації та новин.</string>
+    <string name="copyright" formatted="true">© %1$s від %2$s за ліцензією %3$s</string>
+    <string name="donation_encouragement">NewPipe розробляють волонтери, які у вільний час створюють для вас найкращий користувацький досвід. Підтримайте розробників, щоб допомогти зробити NewPipe ще кращим, поки вони насолоджуються чашкою кави.</string>
+    <string name="give_back">Віддячити</string>
+    <string name="website_encouragement">Відвідайте вебсайт NewPipe, щоб дізнатися більше інформації та новин.</string>
     <string name="app_license_title">Ліцензія NewPipe</string>
-    <string name="read_full_license">Прочитати ліцензію</string>
+    <string name="read_full_license">Ознайомитися з ліцензією</string>
     <string name="action_history">Історія</string>
     <string name="delete_item_search_history">Видалити цей елемент з історії пошуку\?</string>
     <string name="title_last_played">Відтворювалося останнім</string>
@@ -310,12 +310,12 @@
     <string name="delete_search_history_alert">Видалити всю історію пошуку\?</string>
     <string name="search_history_deleted">Історію пошуку видалено</string>
     <string name="one_item_deleted">Видалено 1 елемент.</string>
-    <string name="app_license">NewPipe є вільним (копілефт) застосунком: ви можете використовувати, поширювати та вдосконалювати його на власний розсуд. Зокрема ви можете розповсюджувати та/або змінювати його за умов дотримання вимог GNU General Public License 3-ї версії або (на ваш вибір) будь-якої пізнішої версії, опублікованої Free Software Foundation.</string>
+    <string name="app_license">NewPipe — це copyleft libre програмне забезпечення: ви можете вільно використовувати, вивчати, поширювати та вдосконалювати його. Зокрема, ви можете розповсюджувати та/або змінювати його на умовах GNU General Public License, опублікованої Free Software Foundation, версії 3 або (на ваш вибір) будь-якої пізнішої версії.</string>
     <string name="import_settings">Імпортувати разом з налаштуваннями\?</string>
-    <string name="privacy_policy_title">Політика приватності NewPipe</string>
+    <string name="privacy_policy_title">Політика конфіденційності NewPipe</string>
     <string name="privacy_policy_encouragement">Проєкт NewPipe дуже серйозно ставиться до вашої приватності. Тому застосунок не збирає ніяких даних без вашої згоди.
 \nПолітика приватності докладно NewPipe пояснює, які дані надсилаються і зберігаються у звіті про збій.</string>
-    <string name="read_privacy_policy">Читати політику приватності</string>
+    <string name="read_privacy_policy">Ознайомитися з політикою конфіденційності</string>
     <string name="start_accept_privacy_policy">З метою дотримання Загального регламенту про захист даних ЄС (General Data Protection Regulation, GDPR) ми звертаємо вашу увагу на політику приватності NewPipe. Будь ласка, прочитайте уважно.
 \nВи маєте прийняти її, аби надіслати нам звіт про помилку.</string>
     <string name="accept">Прийняти</string>
@@ -715,7 +715,7 @@
     <string name="progressive_load_interval_title">Розмір інтервалу завантаження відтворення</string>
     <string name="faq">Переглянути на сайті</string>
     <string name="faq_title">Поширені запитання</string>
-    <string name="faq_description">Якщо у вас виникли проблеми з використанням застосунку, обов\'язково ознайомтеся з відповідями на поширені запитання!</string>
+    <string name="faq_description">Якщо у вас виникають труднощі з використанням застосунку, обов’язково перегляньте відповіді на поширені запитання!</string>
     <string name="sort">Сортувати</string>
     <string name="app_update_unavailable_toast">Ви використовуєте найновішу версію NewPipe</string>
     <string name="app_update_available_notification_text">Торкніться, щоб завантажити %s</string>
@@ -825,7 +825,7 @@
     <string name="show_less">Показати менше</string>
     <string name="error_insufficient_storage">Недостатньо вільного простору на пристрої</string>
     <string name="reset_settings_title">Скинути налаштування</string>
-    <string name="settings_category_backup_restore_title">Резервне копіювання і відновлення</string>
+    <string name="settings_category_backup_restore_title">Резервна копія та відновлення</string>
     <string name="auto_update_check_description">NewPipe може час від часу автоматично перевіряти наявність нових версій і сповіщати вас про їх появу.
 \nХочете увімкнути цю функцію?</string>
     <string name="yes">Так</string>
@@ -869,4 +869,30 @@
     <string name="kao_dialog_warning">У серпні 2025 року, Google анонсувала, що з вересня 2026 року, для встановлення застосунків буде потрібна верифікація розробника для всіх Android застосунків на сертифікованих пристроях, включаючи ті, що були встановлені не через Play Store. Оскільки розробники NewPipe не згодні з цією вимогою, NewPipe перестане працювати на сертифікованих Android пристроях після цієї дати.</string>
     <string name="kao_dialog_more_info">Детальніше</string>
     <string name="kao_solution">Вирішення</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">Експорт %d підписки…</item>
+        <item quantity="few">Експорт %d підписок…</item>
+        <item quantity="many">Експорт %d підписок…</item>
+        <item quantity="other">Експорт %d підписок…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">Завантаження %d підписки…</item>
+        <item quantity="few">Завантаження %d підписок…</item>
+        <item quantity="many">Завантаження %d підписок…</item>
+        <item quantity="other">Завантаження %d підписок…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">Імпорт %d підписки…</item>
+        <item quantity="few">Імпорт %d підписок…</item>
+        <item quantity="many">Імпорт %d підписок…</item>
+        <item quantity="other">Імпорт %d підписок…</item>
+    </plurals>
+    <string name="import_subscriptions_title">Імпорт підписок</string>
+    <string name="export_subscriptions_title">Експорт підписок</string>
+    <string name="import_subscriptions_summary">Імпорт підписок із попереднього експорту .json</string>
+    <string name="export_subscriptions_summary">Експорт підписок у файл .json</string>
+    <string name="import_from_previous_export">Імпорт із попереднього експорту</string>
+    <string name="api23_requirement_dialog_title">NewPipe припиняє підтримку Android 5</string>
+    <string name="api23_requirement_dialog_message">На жаль, NewPipe залежить від кількох бібліотек, які припинили підтримку Android 5.0 і 5.1. Тому наступна версія NewPipe працюватиме лише на пристроях з Android 6 або новішою версією. Докладніше читайте в дописі в блозі.</string>
+    <string name="api23_requirement_dialog_blogpost">Допис у блозі</string>
 </resources>

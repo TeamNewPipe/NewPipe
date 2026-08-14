@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_activity_about">Ekran o nama</string>
+    <string name="title_licenses">Licence trećih strana</string>
+    <string name="tab_about">O Nama &amp; Ćesto postavljana pitanja</string>
+    <string name="tab_licenses">Licence</string>
+    <string name="app_description">Libre lako strimanje na Androidu</string>
+    <string name="contribution_title">Doprinesi</string>
+    <string name="contribution_encouragement">Ako imate ideje; translacije, izmjene dizajnsa, ćistenje koda ili prave teske dizajna -- pomoc je uvijek dobrodośla. Śto viśe uradimo bolje će biti</string>
+    <string name="view_on_github">Pogledajte na GitHub-u</string>
+    <string name="donation_title">Doniraj</string>
+    <string name="give_back">Vrati Nazad</string>
+    <string name="website_title">Website</string>
+    <string name="website_encouragement">Pogledaj NewPipe Website za viśe informacije i novosti.</string>
+    <string name="privacy_policy_title">Politka Privatnosti</string>
+    <string name="read_privacy_policy">Proćitaj politiku privatnosti</string>
+    <string name="app_license_title">NewPipe License</string>
+    <string name="read_full_license">Proćitaj License</string>
+    <string name="faq_title">Ćesto postavljana pitanja</string>
+    <string name="faq_description">Ako imate probleme koriśteći aplikaciju, budite sigurnu da pogledate odgovore na iobičajna pitanja</string>
+    <string name="faq">Pogledajte na Website</string>
+    <string name="open_in_browser">Otvorite u browser</string>
+    <string name="done">Gotovo</string>
+</resources>

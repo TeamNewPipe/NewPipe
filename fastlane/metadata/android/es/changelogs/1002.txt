@@ -1,1 +1,4 @@
-Arreglo en YouTube no reproduciendo flujos
+Se ha solucionado el problema por el que YouTube no reproducía ninguna transmisión.
+
+Esta versión solo soluciona el error más urgente que impedía que se cargaran los detalles de los vídeos de YouTube.
+Somos conscientes de que hay otros problemas y pronto lanzaremos una versión independiente para solucionarlos.

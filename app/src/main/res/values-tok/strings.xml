@@ -48,4 +48,5 @@
     <string name="default_audio_format_title">nasin lipu kalama mute</string>
     <string name="default_video_format_title">nasin lipu pi sitelen tawa mute</string>
     <string name="light_theme_title">walo</string>
+    <string name="start">open</string>
 </resources>

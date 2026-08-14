@@ -1,0 +1,7 @@
+- [YouTube] Contournement des restrictions SABR grâce à l'utilisation d'un autre lecteur. Les vidéos et les flux sont à nouveau disponibles dans des résolutions autres que 360p !
+- [YouTube] Correction de l'extraction des éléments de playlist et de certaines propriétés dans les modèles de vue « lockup ».
+- [YouTube] Suppression des solutions de repli pour les positions inconnues lors de l'extraction du nombre de vues et de la date en mode « lockup ».
+- [YouTube] Utilisation des xTags de format pour extraire le type de piste audio.
+- [Bandcamp] Correction de la recherche sur Bandcamp.
+
+Un immense merci à toutes les personnes ayant participé à cette version !

@@ -2,4 +2,26 @@
 <resources>
     <string name="no_player_found">Geen stream-speler gevind nie. Installeer VLC\?</string>
     <string name="main_bg_subtitle">Tik op \"Soek\" om aan die gang te kom</string>
+    <string name="read_full_license">Lees lisensie</string>
+    <string name="faq_title">Gereelde vrae</string>
+    <string name="faq_description">As jy probleme ondergaan met die gebruik van hierdie toepassing, maak seker dat jy deur die algemene vrae gaan!</string>
+    <string name="faq">Bekyk op webtuiste</string>
+    <string name="open_in_browser">Maak oop in Internetblaaier toepassing</string>
+    <string name="done">Gedoen</string>
+    <string name="settings">Instellings</string>
+    <string name="search">Soek</string>
+    <string name="donation_title">Skenk</string>
+    <string name="give_back">Gee terug</string>
+    <string name="website_title">Webtuiste</string>
+    <string name="website_encouragement">Besoek die NewPipe Webtuiste vir meer inligting en nuus.</string>
+    <string name="privacy_policy_title">NewPipe Se Privaatheidsbeleid</string>
+    <string name="read_privacy_policy">Lees privaatheidsbeleid</string>
+    <string name="content">Inhoud</string>
+    <string name="notifications">Kennisgewings</string>
+    <string name="settings_category_video_audio_title">Beeld en klank</string>
+    <string name="settings_category_downloads_title">Laai af</string>
+    <string name="settings_category_appearance_title">Voorkoms</string>
+    <string name="settings_category_history_title">Geskiedenis en kas</string>
+    <string name="settings_category_updates_title">Opdateerings</string>
+    <string name="settings_category_backup_restore_title">Rugsteun en herstel</string>
 </resources>
