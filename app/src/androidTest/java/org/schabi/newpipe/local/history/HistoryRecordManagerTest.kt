@@ -50,10 +50,10 @@ class HistoryRecordManagerTest {
     @Test
     fun deleteSearchHistory() {
         val entries = listOf(
-            SearchHistoryEntry(creationDate = time.minusSeconds(1), serviceId = 0, search = "A"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(2), serviceId = 2, search = "A"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(3), serviceId = 1, search = "B"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(4), serviceId = 0, search = "B")
+            SearchHistoryEntry(creationInstant = time.minusSeconds(1), serviceId = 0, search = "A"),
+            SearchHistoryEntry(creationInstant = time.minusSeconds(2), serviceId = 2, search = "A"),
+            SearchHistoryEntry(creationInstant = time.minusSeconds(3), serviceId = 1, search = "B"),
+            SearchHistoryEntry(creationInstant = time.minusSeconds(4), serviceId = 0, search = "B")
         )
 
         // make sure all 4 were inserted
@@ -82,9 +82,9 @@ class HistoryRecordManagerTest {
     @Test
     fun deleteCompleteSearchHistory() {
         val entries = listOf(
-            SearchHistoryEntry(creationDate = time.minusSeconds(1), serviceId = 1, search = "A"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(2), serviceId = 2, search = "B"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(3), serviceId = 0, search = "C")
+            SearchHistoryEntry(creationInstant = time.minusSeconds(1), serviceId = 1, search = "A"),
+            SearchHistoryEntry(creationInstant = time.minusSeconds(2), serviceId = 2, search = "B"),
+            SearchHistoryEntry(creationInstant = time.minusSeconds(3), serviceId = 0, search = "C")
         )
 
         // make sure all 3 were inserted
@@ -98,7 +98,7 @@ class HistoryRecordManagerTest {
 
     private fun insertShuffledRelatedSearches(relatedSearches: Collection<SearchHistoryEntry>) {
         // shuffle to make sure the order of items returned by queries depends only on
-        // SearchHistoryEntry.creationDate, not on the actual insertion time, so that we can
+        // SearchHistoryEntry.creationInstant, not on the actual insertion time, so that we can
         // verify that the `ORDER BY` clause does its job
         database.searchHistoryDAO().insertAll(relatedSearches.shuffled())
 
@@ -126,15 +126,15 @@ class HistoryRecordManagerTest {
     @Test
     fun getRelatedSearches_emptyQuery_manyDuplicates() {
         val relatedSearches = listOf(
-            SearchHistoryEntry(creationDate = time.minusSeconds(9), serviceId = 3, search = "A"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(8), serviceId = 3, search = "AB"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(7), serviceId = 3, search = "A"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(6), serviceId = 3, search = "A"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(5), serviceId = 3, search = "BA"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(4), serviceId = 3, search = "A"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(3), serviceId = 3, search = "A"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(2), serviceId = 0, search = "A"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(1), serviceId = 2, search = "AA")
+            SearchHistoryEntry(creationInstant = time.minusSeconds(9), serviceId = 3, search = "A"),
+            SearchHistoryEntry(creationInstant = time.minusSeconds(8), serviceId = 3, search = "AB"),
+            SearchHistoryEntry(creationInstant = time.minusSeconds(7), serviceId = 3, search = "A"),
+            SearchHistoryEntry(creationInstant = time.minusSeconds(6), serviceId = 3, search = "A"),
+            SearchHistoryEntry(creationInstant = time.minusSeconds(5), serviceId = 3, search = "BA"),
+            SearchHistoryEntry(creationInstant = time.minusSeconds(4), serviceId = 3, search = "A"),
+            SearchHistoryEntry(creationInstant = time.minusSeconds(3), serviceId = 3, search = "A"),
+            SearchHistoryEntry(creationInstant = time.minusSeconds(2), serviceId = 0, search = "A"),
+            SearchHistoryEntry(creationInstant = time.minusSeconds(1), serviceId = 2, search = "AA")
         )
         insertShuffledRelatedSearches(relatedSearches)
 
@@ -163,13 +163,13 @@ class HistoryRecordManagerTest {
         private val time = LocalDateTime.of(2000, 1, 1, 1, 1).toInstant(ZoneOffset.UTC)
 
         private val RELATED_SEARCHES_ENTRIES = listOf(
-            SearchHistoryEntry(creationDate = time.minusSeconds(7), serviceId = 2, search = "AC"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(6), serviceId = 0, search = "ABC"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(5), serviceId = 1, search = "BA"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(4), serviceId = 3, search = "A"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(2), serviceId = 0, search = "B"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(3), serviceId = 2, search = "AA"),
-            SearchHistoryEntry(creationDate = time.minusSeconds(1), serviceId = 1, search = "A")
+            SearchHistoryEntry(creationInstant = time.minusSeconds(7), serviceId = 2, search = "AC"),
+            SearchHistoryEntry(creationInstant = time.minusSeconds(6), serviceId = 0, search = "ABC"),
+            SearchHistoryEntry(creationInstant = time.minusSeconds(5), serviceId = 1, search = "BA"),
+            SearchHistoryEntry(creationInstant = time.minusSeconds(4), serviceId = 3, search = "A"),
+            SearchHistoryEntry(creationInstant = time.minusSeconds(2), serviceId = 0, search = "B"),
+            SearchHistoryEntry(creationInstant = time.minusSeconds(3), serviceId = 2, search = "AA"),
+            SearchHistoryEntry(creationInstant = time.minusSeconds(1), serviceId = 1, search = "A")
         )
     }
 }
