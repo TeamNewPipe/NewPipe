@@ -367,20 +367,15 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
                     + "position = [" + position + "]");
         }
 
-        switch (holder) {
-            case LocalItemHolder localItemHolder -> {
-                // If header isn't null, offset the items by -1
-                final int itemPosition = hasHeader() ? position - 1 : position;
-                localItemHolder.updateFromItem(localItems.get(itemPosition), recordManager);
-            }
-            case HeaderFooterHolder headerFooterHolder -> {
-                if (position == 0 && hasHeader()) {
-                    headerFooterHolder.view = headerSupplier.get();
-                } else if (position == sizeConsideringHeader() && footer != null && showFooter) {
-                    headerFooterHolder.view = footer;
-                }
-            }
-            default -> {
+        if (holder instanceof LocalItemHolder localItemHolder) {
+            // If header isn't null, offset the items by -1
+            final int itemPosition = hasHeader() ? position - 1 : position;
+            localItemHolder.updateFromItem(localItems.get(itemPosition), recordManager);
+        } else if (holder instanceof HeaderFooterHolder headerFooterHolder) {
+            if (position == 0 && hasHeader()) {
+                headerFooterHolder.view = headerSupplier.get();
+            } else if (position == sizeConsideringHeader() && footer != null && showFooter) {
+                headerFooterHolder.view = footer;
             }
         }
     }
@@ -388,14 +383,11 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position,
                                  @NonNull final List<Object> payloads) {
-        if (!payloads.isEmpty() && holder instanceof LocalItemHolder) {
+        if (!payloads.isEmpty() && holder instanceof LocalItemHolder localItemHolder) {
             for (final Object payload : payloads) {
-                if (payload instanceof StreamStateEntity) {
-                    ((LocalItemHolder) holder).updateState(localItems
-                            .get(hasHeader() ? position - 1 : position), recordManager);
-                } else if (payload instanceof Boolean) {
-                    ((LocalItemHolder) holder).updateState(localItems
-                            .get(hasHeader() ? position - 1 : position), recordManager);
+                if (payload instanceof StreamStateEntity || payload instanceof Boolean) {
+                    final var item = localItems.get(hasHeader() ? position - 1 : position);
+                    localItemHolder.updateState(item, recordManager);
                 }
             }
         } else {
