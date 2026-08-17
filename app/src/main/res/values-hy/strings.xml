@@ -119,7 +119,7 @@
     <string name="feed_group_dialog_empty_name">Դատարկ խմբի անուն</string>
     <string name="feed_group_dialog_select_subscriptions">Նշիր բաժանորդագրումներ</string>
     <string name="feed_notification_loading">Բեռնում եմ հոսքը…</string>
-    <string name="fragment_feed_title">Ինչ կա֊չկա</string>
+    <string name="feed_title">Ինչ կա֊չկա</string>
     <string name="remove_watched">Հեռացնել դիտվածները</string>
     <string name="settings_category_player_behavior_title">Վարքագիծ</string>
     <string name="video">Տեսանյութ</string>

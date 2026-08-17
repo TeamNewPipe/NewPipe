@@ -10,6 +10,8 @@ plugins {
     alias(libs.plugins.jetbrains.compose.multiplatform)
     alias(libs.plugins.koin)
     alias(libs.plugins.jetbrains.kotlinx.serialization)
+    alias(libs.plugins.google.ksp)
+    alias(libs.plugins.ktorfit)
     alias(libs.plugins.about.libraries)
 }
 
@@ -30,6 +32,10 @@ val buildConfigGenerator by tasks.registering(Sync::class) {
         into(buildConfigPackage.replace(".", "/"))
     }
     into(layout.buildDirectory.dir("generated/kotlin/"))
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask<*>>().configureEach {
+    dependsOn(buildConfigGenerator)
 }
 
 kotlin {
@@ -89,8 +95,25 @@ kotlin {
     }
 
     jvm()
-
+    
     sourceSets {
+        val jvmMain by getting {
+            dependencies {
+                implementation(libs.ktor.client.java)
+            }
+        }
+        val iosMain by creating {
+            dependsOn(commonMain.get())
+            dependencies {
+                implementation(libs.ktor.client.darwin)
+            }
+        }
+        val iosArm64Main by getting {
+            dependsOn(iosMain)
+        }
+        val iosSimulatorArm64Main by getting {
+            dependsOn(iosMain)
+        }
         commonMain {
             kotlin.srcDir(buildConfigGenerator.map { it.destinationDir })
             dependencies {
@@ -114,6 +137,11 @@ kotlin {
 
                 implementation(libs.russhwolf.settings.core)
                 implementation(libs.touchlab.kermit)
+
+                implementation(libs.ktorfit.lib)
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.content.negotiation)
+                implementation(libs.ktor.serialization.kotlinx.json)
             }
         }
         commonTest.dependencies {
@@ -126,6 +154,7 @@ kotlin {
             implementation(libs.androidx.activity)
             implementation(libs.androidx.preference)
             implementation(libs.androidx.browser)
+            implementation(libs.ktor.client.okhttp)
         }
         val androidDeviceTest by getting {
             dependencies {

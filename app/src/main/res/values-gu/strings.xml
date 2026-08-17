@@ -80,7 +80,7 @@
     <string name="show_play_with_kodi_title">કોડિથી ચલાવવાનો વિકલ્પ દેખાડો</string>
     <string name="download_dialog_title">ડાઉનલોડ કરો</string>
     <string name="autoplay_title">આપમેળે ચલાવો</string>
-    <string name="fragment_feed_title">નવું શું છે</string>
+    <string name="feed_title">નવું શું છે</string>
     <string name="downloads">ડાઉનલોડ્સ</string>
     <string name="downloads_title">ડાઉનલોડ્સ</string>
 </resources>

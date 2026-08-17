@@ -302,7 +302,7 @@
     <string name="feed_subscription_not_loaded_count">Nav ielādēts: %d</string>
     <string name="feed_oldest_subscription_update">Atjaunināta: %s</string>
     <string name="feed_groups_header_title">Abonementu grupas</string>
-    <string name="fragment_feed_title">Kas jauns</string>
+    <string name="feed_title">Kas jauns</string>
     <plurals name="days">
         <item quantity="zero">%d dienas</item>
         <item quantity="one">%d dienu</item>

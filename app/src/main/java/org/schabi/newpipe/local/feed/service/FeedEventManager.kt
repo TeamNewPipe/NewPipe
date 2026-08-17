@@ -1,22 +1,22 @@
 package org.schabi.newpipe.local.feed.service
 
 import androidx.annotation.StringRes
-import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.processors.BehaviorProcessor
 import java.util.concurrent.atomic.AtomicBoolean
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.filter
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.IdleEvent
 
 object FeedEventManager {
-    private var processor: BehaviorProcessor<Event> = BehaviorProcessor.create()
+    private val stateFlow = MutableStateFlow<Event>(IdleEvent)
     private var ignoreUpstream = AtomicBoolean()
-    private var eventsFlowable = processor.startWithItem(IdleEvent)
 
     fun postEvent(event: Event) {
-        processor.onNext(event)
+        stateFlow.value = event
     }
 
-    fun events(): Flowable<Event> {
-        return eventsFlowable.filter { !ignoreUpstream.get() }
+    fun events(): Flow<Event> {
+        return stateFlow.filter { !ignoreUpstream.get() }
     }
 
     fun reset() {

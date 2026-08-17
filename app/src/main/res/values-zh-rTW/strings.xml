@@ -107,7 +107,7 @@
     <string name="subscription_change_failed">無法變更訂閱</string>
     <string name="subscription_update_failed">無法更新訂閱</string>
     <string name="tab_subscriptions">訂閱清單</string>
-    <string name="fragment_feed_title">新鮮事</string>
+    <string name="feed_title">新鮮事</string>
     <string name="enable_search_history_title">搜尋歷史紀錄</string>
     <string name="enable_search_history_summary">在本機儲存搜尋紀錄</string>
     <string name="enable_watch_history_title">觀看歷史紀錄</string>

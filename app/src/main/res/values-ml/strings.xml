@@ -443,7 +443,7 @@
     <string name="feed_subscription_not_loaded_count">ലോഡ് ആവാത്തത്: %d</string>
     <string name="feed_oldest_subscription_update">അവസാനം അപ്‌ഡേറ്റുചെയ്‌ത ഫീഡ്: %s</string>
     <string name="feed_groups_header_title">ചാനൽ ഗ്രൂപ്പുകൾ</string>
-    <string name="fragment_feed_title">പുതിയതെന്താണ്</string>
+    <string name="feed_title">പുതിയതെന്താണ്</string>
     <plurals name="days">
         <item quantity="one">%d ദിവസം</item>
         <item quantity="other">%d ദിവസങ്ങൾ</item>

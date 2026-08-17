@@ -32,13 +32,17 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.app.PendingIntentCompat
 import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.functions.Function
-import java.util.concurrent.TimeUnit
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import org.schabi.newpipe.App
-import org.schabi.newpipe.MainActivity.DEBUG
+import org.schabi.newpipe.DebugConstants.DEBUG
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.ErrorResultEvent
@@ -53,13 +57,12 @@ class FeedLoadService : Service() {
         /**
          * How often the notification will be updated.
          */
-        private const val NOTIFICATION_SAMPLING_PERIOD = 1500
+        private const val NOTIFICATION_SAMPLING_PERIOD = 1500L
 
         const val EXTRA_GROUP_ID: String = "FeedLoadService.EXTRA_GROUP_ID"
     }
 
-    private var loadingDisposable: Disposable? = null
-    private var notificationDisposable: Disposable? = null
+    private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
     private lateinit var feedLoadManager: FeedLoadManager
 
@@ -81,7 +84,7 @@ class FeedLoadService : Service() {
             )
         }
 
-        if (intent == null || loadingDisposable != null) {
+        if (intent == null) {
             return START_NOT_STICKY
         }
 
@@ -89,27 +92,25 @@ class FeedLoadService : Service() {
         setupBroadcastReceiver()
 
         val groupId = intent.getLongExtra(EXTRA_GROUP_ID, FeedGroupEntity.GROUP_ALL_ID)
-        loadingDisposable = feedLoadManager.startLoading(groupId)
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe {
-                startForeground(NOTIFICATION_ID, notificationBuilder.build())
-            }
-            .subscribe { _, error: Throwable? ->
-                // explicitly mark error as nullable
-                if (error != null) {
-                    Log.e(TAG, "Error while storing result", error)
-                    handleError(error)
-                    return@subscribe
-                }
+
+        startForeground(NOTIFICATION_ID, notificationBuilder.build())
+
+        serviceScope.launch {
+            try {
+                feedLoadManager.startLoading(groupId)
                 stopService()
+            } catch (e: Exception) {
+                Log.e(TAG, "Error while storing result", e)
+                handleError(e)
             }
+        }
+
         return START_NOT_STICKY
     }
 
     private fun disposeAll() {
         unregisterReceiver(broadcastReceiver)
-        loadingDisposable?.dispose()
-        notificationDisposable?.dispose()
+        serviceScope.cancel()
     }
 
     private fun stopService() {
@@ -152,15 +153,11 @@ class FeedLoadService : Service() {
         notificationManager = NotificationManagerCompat.from(this)
         notificationBuilder = createNotification()
 
-        val throttleAfterFirstEmission = Function { flow: Flowable<FeedLoadState> ->
-            flow.take(1).concatWith(flow.skip(1).throttleLatest(NOTIFICATION_SAMPLING_PERIOD.toLong(), TimeUnit.MILLISECONDS))
-        }
-
-        notificationDisposable = feedLoadManager.notification
-            .publish(throttleAfterFirstEmission)
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnTerminate { notificationManager.cancel(NOTIFICATION_ID) }
-            .subscribe(this::updateNotificationProgress)
+        feedLoadManager.notification
+            .debounce(NOTIFICATION_SAMPLING_PERIOD)
+            .flowOn(Dispatchers.IO)
+            .onEach { updateNotificationProgress(it) }
+            .launchIn(serviceScope)
     }
 
     private fun updateNotificationProgress(state: FeedLoadState) {

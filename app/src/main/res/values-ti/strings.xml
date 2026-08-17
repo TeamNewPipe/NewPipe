@@ -145,7 +145,7 @@
         <item quantity="one">%d ደቒቕ</item>
         <item quantity="other">%d ደቓይቕ</item>
     </plurals>
-    <string name="fragment_feed_title">እንታይ ሓድሽ ኣሎ</string>
+    <string name="feed_title">እንታይ ሓድሽ ኣሎ</string>
     <string name="feed_create_new_group_button_title">ሓድሽ</string>
     <string name="feed_groups_header_title">ጉጅለታት መስመር</string>
     <string name="play_all">ኩሉ ተጻወቶ</string>

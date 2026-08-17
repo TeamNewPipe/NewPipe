@@ -88,7 +88,7 @@
     <string name="show_info">نمایش اطلاعات</string>
     <string name="tab_subscriptions">اشتراک‌ها</string>
     <string name="tab_bookmarks">سیاههٔ پخش‌های نشان شده</string>
-    <string name="fragment_feed_title">موارد جدید</string>
+    <string name="feed_title">موارد جدید</string>
     <string name="controls_background_title">پس‌زمینه</string>
     <string name="controls_add_to_playlist_title">افزودن به</string>
     <string name="show_higher_resolutions_title">نمایش وضوح‌های بالاتر</string>

@@ -11,6 +11,7 @@ import org.schabi.newpipe.extractor.services.youtube.PoTokenProvider
 import org.schabi.newpipe.extractor.services.youtube.PoTokenResult
 import org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper
 import org.schabi.newpipe.util.DeviceUtils
+import kotlinx.coroutines.runBlocking
 
 object PoTokenProviderImpl : PoTokenProvider {
     val TAG = PoTokenProviderImpl::class.simpleName
@@ -77,13 +78,15 @@ object PoTokenProviderImpl : PoTokenProvider {
                     webPoTokenGenerator?.let { Handler(Looper.getMainLooper()).post { it.close() } }
 
                     // create a new webPoTokenGenerator
-                    webPoTokenGenerator = PoTokenWebView
-                        .newPoTokenGenerator(App.instance).blockingGet()
+                    runBlocking {
+                        webPoTokenGenerator = PoTokenWebView
+                            .newPoTokenGenerator(App.instance)
 
-                    // The streaming poToken needs to be generated exactly once before generating
-                    // any other (player) tokens.
-                    webPoTokenStreamingPot = webPoTokenGenerator!!
-                        .generatePoToken(webPoTokenVisitorData!!).blockingGet()
+                        // The streaming poToken needs to be generated exactly once before generating
+                        // any other (player) tokens.
+                        webPoTokenStreamingPot = webPoTokenGenerator!!
+                            .generatePoToken(webPoTokenVisitorData!!)
+                    }
                 }
 
                 return@synchronized Quadruple(
@@ -98,7 +101,7 @@ object PoTokenProviderImpl : PoTokenProvider {
             // Not using synchronized here, since poTokenGenerator would be able to generate
             // multiple poTokens in parallel if needed. The only important thing is for exactly one
             // visitorData/streaming poToken to be generated before anything else.
-            poTokenGenerator.generatePoToken(videoId).blockingGet()
+            runBlocking { poTokenGenerator.generatePoToken(videoId) }
         } catch (throwable: Throwable) {
             if (hasBeenRecreated) {
                 // the poTokenGenerator has just been recreated (and possibly this is already the

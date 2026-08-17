@@ -31,7 +31,7 @@ object Migrations {
     const val DB_VER_9 = 9
 
     private val TAG = Migrations::class.java.getName()
-    private val isDebug = MainActivity.DEBUG
+    private val isDebug = org.schabi.newpipe.DebugConstants.DEBUG
 
     val MIGRATION_1_2 = Migration(DB_VER_1, DB_VER_2) { db ->
         if (isDebug) {

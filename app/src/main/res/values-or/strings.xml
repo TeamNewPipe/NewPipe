@@ -477,7 +477,7 @@
     <string name="playlist_creation_success">ପ୍ଲେଲିଷ୍ଟ ସୃଷ୍ଟି ହୋଇଛି</string>
     <string name="channel_created_by">%s ଦ୍ୱାରା ସୃଷ୍ଟି</string>
     <string name="video_detail_by">%s ଦ୍ଵାରା</string>
-    <string name="fragment_feed_title">ନୁଆ କଣ</string>
+    <string name="feed_title">ନୁଆ କଣ</string>
     <string name="feed_oldest_subscription_update">ଶେଷ ଅଦ୍ୟତନ କରନ୍ତୁ: %s</string>
     <string name="feed_subscription_not_loaded_count">ଲୋଡ୍ ହୋଇନାହିଁ: %d</string>
     <string name="feed_notification_loading">ଫିଡ୍ ଲୋଡିଂ…</string>

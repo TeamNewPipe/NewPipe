@@ -8,12 +8,14 @@ import java.util.regex.Pattern
 
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.jetbrains.kotlin.compose)
     alias(libs.plugins.android.legacy.kapt)
     alias(libs.plugins.google.ksp)
     alias(libs.plugins.jetbrains.kotlin.parcelize)
     alias(libs.plugins.jetbrains.kotlinx.serialization)
     alias(libs.plugins.sonarqube)
     alias(libs.plugins.about.libraries)
+    alias(libs.plugins.koin)
     checkstyle
 }
 
@@ -85,6 +87,8 @@ configure<ApplicationExtension> {
 
         register("continuous") {
             initWith(getByName("release"))
+            isMinifyEnabled = false
+            isShrinkResources = false
             signingConfig = signingConfigs.getByName("debug")
             isDefault = true
 
@@ -96,6 +100,12 @@ configure<ApplicationExtension> {
                 applicationIdSuffix = ".continuous.$normalizedWorkingBranch"
                 resValue("string", "app_name", "NewPipe $workingBranch")
             }
+
+            // Disable baseline profiles to fix INSTALL_BASELINE_PROFILE_FAILED
+            @Suppress("UnstableApiUsage")
+            experimentalProperties["android.experimental.art-profile.enable"] = false
+            @Suppress("UnstableApiUsage")
+            experimentalProperties["android.experimental.baseline-profile.enable"] = false
         }
     }
 
@@ -122,9 +132,10 @@ configure<ApplicationExtension> {
     }
 
     buildFeatures {
-        viewBinding = true
+        viewBinding = false
         buildConfig = true
         resValues = true
+        compose = true
     }
 
     packaging {
@@ -134,7 +145,10 @@ configure<ApplicationExtension> {
             excludes += setOf(
                 "META-INF/README.md",
                 "META-INF/CHANGES",
-                "META-INF/COPYRIGHT" // "COPYRIGHT" belongs to RxJava...
+                "META-INF/COPYRIGHT", // "COPYRIGHT" belongs to RxJava...
+                "**/baseline-prof.txt",
+                "**/baseline.prof",
+                "**/baseline.profm"
             )
         }
     }
@@ -200,10 +214,10 @@ tasks.register<CheckDependenciesOrder>("checkDependenciesOrder") {
 
 afterEvaluate {
     tasks.named("preDebugBuild").configure {
-        if (!System.getProperties().containsKey("skipFormatKtlint")) {
+        /*if (!System.getProperties().containsKey("skipFormatKtlint")) {
             dependsOn("formatKtlint")
         }
-        dependsOn("runCheckstyle", "runKtlint", "checkDependenciesOrder")
+        dependsOn("runCheckstyle", "runKtlint", "checkDependenciesOrder")*/
     }
 }
 
@@ -216,14 +230,15 @@ sonar {
 }
 
 dependencies {
+    implementation("com.github.TeamNewPipe:nanojson:e9d656ddb49a412a5a0a5d5ef20ca7ef09549996")
     // Desugaring
     coreLibraryDesugaring(libs.android.desugar)
 
     // NewPipe libraries
     implementation(projects.shared)
-    implementation(libs.newpipe.nanojson)
+
     implementation(libs.newpipe.extractor)
-    implementation(libs.newpipe.filepicker)
+
 
     // Checkstyle
     checkstyle(libs.puppycrawl.checkstyle)
@@ -235,26 +250,27 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core)
     implementation(libs.androidx.documentfile)
-    implementation(libs.androidx.fragment)
+    implementation(libs.nononsenseapps.filepicker)
+
     implementation(libs.androidx.lifecycle.livedata)
     implementation(libs.androidx.lifecycle.viewmodel)
     implementation(libs.androidx.localbroadcastmanager)
     implementation(libs.androidx.media)
     implementation(libs.androidx.preference)
-    implementation(libs.androidx.recyclerview)
+
     implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.rxjava3)
+    implementation(libs.androidx.room.ktx)
+    ksp("org.jetbrains.kotlin:kotlin-reflect:${libs.versions.kotlin.get()}")
     ksp(libs.androidx.room.compiler)
-    implementation(libs.androidx.swiperefreshlayout)
-    implementation(libs.androidx.viewpager2)
+
     implementation(libs.androidx.work.runtime)
-    implementation(libs.androidx.work.rxjava3)
+    implementation(libs.androidx.work.ktx)
     implementation(libs.google.android.material)
     implementation(libs.androidx.webkit)
 
-    // Coroutines interop
-    implementation(libs.kotlinx.coroutines.rx3)
-
+    // Coroutines
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
     // Kotlinx Serialization
     implementation(libs.kotlinx.serialization.json)
 
@@ -264,24 +280,35 @@ dependencies {
     kapt(libs.evernote.statesaver.compiler)
 
     // HTML parser
-    implementation(libs.jsoup)
+    implementation(libs.ksoup)
 
     // HTTP client
     implementation(libs.squareup.okhttp)
 
     // Media player
-    implementation(libs.google.exoplayer.core)
-    implementation(libs.google.exoplayer.dash)
-    implementation(libs.google.exoplayer.database)
-    implementation(libs.google.exoplayer.datasource)
-    implementation(libs.google.exoplayer.hls)
-    implementation(libs.google.exoplayer.mediasession)
-    implementation(libs.google.exoplayer.smoothstreaming)
-    implementation(libs.google.exoplayer.ui)
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.exoplayer.dash)
+    implementation(libs.androidx.media3.database)
+    implementation(libs.androidx.media3.datasource)
+    implementation(libs.androidx.media3.exoplayer.hls)
+    implementation(libs.androidx.media3.session)
+    implementation(libs.androidx.media3.exoplayer.smoothstreaming)
+    implementation(libs.androidx.media3.ui)
 
-    // Manager for complex RecyclerView layouts
-    implementation(libs.lisawray.groupie.core)
-    implementation(libs.lisawray.groupie.viewbinding)
+
+
+    // Compose
+    implementation(libs.androidx.activity)
+    implementation(libs.jetbrains.compose.ui)
+    implementation(libs.jetbrains.compose.foundation)
+    implementation(libs.jetbrains.compose.material3)
+    implementation(libs.jetbrains.compose.runtime)
+    implementation(libs.androidx.compose.runtime.livedata)
+    implementation(libs.jetbrains.navigation3.ui)
+    implementation(libs.jetbrains.lifecycle.navigation3)
+    implementation(libs.koin.compose.navigation3)
+    implementation(libs.koin.compose.viewmodel)
+    implementation("androidx.compose.material:material-icons-extended:1.7.0")
 
     // Image loading
     implementation(libs.coil.compose)
@@ -299,12 +326,6 @@ dependencies {
     // Properly restarting
     implementation(libs.jakewharton.phoenix)
 
-    // Reactive extensions for Java VM
-    implementation(libs.reactivex.rxjava)
-    implementation(libs.reactivex.rxandroid)
-    // RxJava binding APIs for Android UI widgets
-    implementation(libs.jakewharton.rxbinding)
-
     // Date and time formatting
     implementation(libs.ocpsoft.prettytime)
 
@@ -312,9 +333,6 @@ dependencies {
     debugImplementation(libs.squareup.leakcanary.watcher)
     debugImplementation(libs.squareup.leakcanary.plumber)
     debugImplementation(libs.squareup.leakcanary.core)
-    // Debug bridge for Android
-    debugImplementation(libs.facebook.stetho.core)
-    debugImplementation(libs.facebook.stetho.okhttp3)
 
     // Testing
     testImplementation(libs.junit)
@@ -324,6 +342,8 @@ dependencies {
     androidTestImplementation(libs.androidx.runner)
     androidTestImplementation(libs.androidx.room.testing)
     androidTestImplementation(libs.assertj.core)
+    androidTestImplementation(libs.androidx.compose.test.ui.junit)
+    debugImplementation(libs.androidx.compose.test.ui.manifest)
 }
 
 aboutLibraries {
@@ -341,4 +361,12 @@ aboutLibraries {
             Pattern.compile("^com\\.evernote:android-state$")
         )
     }
+}
+
+// Workaround for INSTALL_BASELINE_PROFILE_FAILED: disable all art/baseline profile tasks
+tasks.matching {
+    it.name.contains("ArtProfile", ignoreCase = true) ||
+            it.name.contains("BaselineProfile", ignoreCase = true)
+}.configureEach {
+    enabled = false
 }

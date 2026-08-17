@@ -666,7 +666,7 @@
     <plurals name="seconds">
         <item quantity="other">ߝߌ߬ߟߊ߲߬ %d</item>
     </plurals>
-    <string name="fragment_feed_title">ߞߎߘߊ ߟߎ߬</string>
+    <string name="feed_title">ߞߎߘߊ ߟߎ߬</string>
     <string name="feed_groups_header_title">ߥߙߏߝߋ߫ ߘߙߎ ߟߎ߬</string>
     <string name="feed_oldest_subscription_update">ߟߊ߬ߞߎ߬ߘߦߊ߬ߟߌ ߞߍ߫ ߘߊ߫: %s</string>
     <plurals name="days">

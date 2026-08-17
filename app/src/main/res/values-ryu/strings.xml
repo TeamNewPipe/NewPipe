@@ -118,7 +118,7 @@
     <string name="subscription_change_failed">チャンネルとぅうるいちゅんへいるかんなやびらん</string>
     <string name="subscription_update_failed">チャンネルとぅうるいちゅんかんしでぃちゃびらん</string>
     <string name="tab_subscriptions">とうるいちゅるチャンネル</string>
-    <string name="fragment_feed_title">しじちゃいちゅん</string>
+    <string name="feed_title">しじちゃいちゅん</string>
     <string name="enable_search_history_title">きんさくりりき</string>
     <string name="enable_search_history_summary">きんさくりりききうくさびーん</string>
     <string name="enable_watch_history_title">さいせいりりき</string>

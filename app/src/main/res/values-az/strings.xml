@@ -23,7 +23,7 @@
     <string name="show_info">Məlumat göstər</string>
     <string name="tab_subscriptions">Abunəliklər</string>
     <string name="tab_bookmarks">Əlfəcinlənmiş Pleylistlər</string>
-    <string name="fragment_feed_title">Yeniliklər</string>
+    <string name="feed_title">Yeniliklər</string>
     <string name="controls_background_title">Fon</string>
     <string name="download_path_title">Video yükləmə qovluğu</string>
     <string name="download_path_summary">Yüklənilmiş video fayllar burada saxlanılır</string>

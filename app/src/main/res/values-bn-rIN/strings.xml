@@ -137,7 +137,7 @@
     <string name="upload_date_text">প্রকাশকাল %1$s</string>
     <string name="main_bg_subtitle">অনুসন্ধান শুরু করুন</string>
     <string name="feed_create_new_group_button_title">নতুন</string>
-    <string name="fragment_feed_title">নতুন কি</string>
+    <string name="feed_title">নতুন কি</string>
     <string name="app_language_title">অ্যাপ এর ভাষা</string>
     <string name="stop">বন্ধ করুন</string>
     <string name="clear_download_history">ডাওন লোড ইতিহাস মুছুন</string>

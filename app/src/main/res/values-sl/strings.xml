@@ -116,7 +116,7 @@
     <string name="subscription_change_failed">Ni bilo mogoče spremeniti naročnine</string>
     <string name="subscription_update_failed">Ni bilo mogoče posodobiti naročnine</string>
     <string name="tab_subscriptions">Naročnine</string>
-    <string name="fragment_feed_title">Kaj je novega</string>
+    <string name="feed_title">Kaj je novega</string>
     <string name="settings_category_downloads_title">Prejmi</string>
     <string name="settings_file_charset_title">Dovoljeni znaki v imenih datotek</string>
     <string name="settings_file_replacement_character_summary">Neveljavni znaki so zamenjani z znakom</string>

@@ -6,9 +6,11 @@
 package net.newpipe.app.di
 
 import org.koin.core.annotation.KoinApplication
+import org.koin.core.annotation.ComponentScan
 
 /**
  * Entry point for Koin-related configuration
  */
 @KoinApplication
+@ComponentScan("net.newpipe.app")
 object KoinApp

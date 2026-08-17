@@ -107,7 +107,7 @@
     <string name="subscription_change_failed">Nemožno zmeniť odber</string>
     <string name="subscription_update_failed">Nemožno aktualizovať odber</string>
     <string name="tab_subscriptions">Odbery</string>
-    <string name="fragment_feed_title">Čo je nové</string>
+    <string name="feed_title">Čo je nové</string>
     <string name="enable_search_history_title">Hľadať v histórií</string>
     <string name="enable_search_history_summary">Hľadané výrazy uloží lokálne</string>
     <string name="enable_watch_history_title">História pozerania</string>

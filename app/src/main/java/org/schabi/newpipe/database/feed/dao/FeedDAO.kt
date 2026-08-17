@@ -6,9 +6,8 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
-import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.core.Maybe
 import java.time.OffsetDateTime
+import kotlinx.coroutines.flow.Flow
 import org.schabi.newpipe.database.feed.model.FeedEntity
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.feed.model.FeedLastUpdatedEntity
@@ -20,7 +19,7 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity
 @Dao
 abstract class FeedDAO {
     @Query("DELETE FROM feed")
-    abstract fun deleteAll(): Int
+    abstract suspend fun deleteAll(): Int
 
     /**
      * @param groupId          the group id to get feed streams of; use
@@ -86,12 +85,12 @@ abstract class FeedDAO {
         LIMIT 500
         """
     )
-    abstract fun getStreams(
+    abstract suspend fun getStreams(
         groupId: Long,
         includePlayed: Boolean,
         includePartiallyPlayed: Boolean,
         uploadDateBefore: OffsetDateTime?
-    ): Maybe<List<StreamWithState>>
+    ): List<StreamWithState>
 
     /**
      * Remove links to streams that are older than the given date
@@ -119,7 +118,7 @@ abstract class FeedDAO {
               AND   s.upload_date <> max_upload_date))
         """
     )
-    abstract fun unlinkStreamsOlderThan(offsetDateTime: OffsetDateTime)
+    abstract suspend fun unlinkStreamsOlderThan(offsetDateTime: OffsetDateTime)
 
     @Query(
         """
@@ -137,22 +136,22 @@ abstract class FeedDAO {
         )
         """
     )
-    abstract fun unlinkOldLivestreams(subscriptionId: Long)
+    abstract suspend fun unlinkOldLivestreams(subscriptionId: Long)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    abstract fun insert(feedEntity: FeedEntity)
+    abstract suspend fun insert(feedEntity: FeedEntity)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    abstract fun insertAll(entities: List<FeedEntity>): List<Long>
+    abstract suspend fun insertAll(entities: List<FeedEntity>): List<Long>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    internal abstract fun insertLastUpdated(lastUpdatedEntity: FeedLastUpdatedEntity): Long
+    internal abstract suspend fun insertLastUpdated(lastUpdatedEntity: FeedLastUpdatedEntity): Long
 
     @Update(onConflict = OnConflictStrategy.IGNORE)
-    internal abstract fun updateLastUpdated(lastUpdatedEntity: FeedLastUpdatedEntity)
+    internal abstract suspend fun updateLastUpdated(lastUpdatedEntity: FeedLastUpdatedEntity)
 
     @Transaction
-    open fun setLastUpdatedForSubscription(lastUpdatedEntity: FeedLastUpdatedEntity) {
+    open suspend fun setLastUpdatedForSubscription(lastUpdatedEntity: FeedLastUpdatedEntity) {
         val id = insertLastUpdated(lastUpdatedEntity)
 
         if (id == -1L) {
@@ -168,13 +167,13 @@ abstract class FeedDAO {
         ON fgs.subscription_id = lu.subscription_id AND fgs.group_id = :groupId
         """
     )
-    abstract fun oldestSubscriptionUpdate(groupId: Long): Flowable<List<OffsetDateTime?>>
+    abstract fun oldestSubscriptionUpdate(groupId: Long): Flow<List<OffsetDateTime?>>
 
     @Query("SELECT MIN(last_updated) FROM feed_last_updated")
-    abstract fun oldestSubscriptionUpdateFromAll(): Flowable<List<OffsetDateTime?>>
+    abstract fun oldestSubscriptionUpdateFromAll(): Flow<List<OffsetDateTime?>>
 
     @Query("SELECT COUNT(*) FROM feed_last_updated WHERE last_updated IS NULL")
-    abstract fun notLoadedCount(): Flowable<Long>
+    abstract fun notLoadedCount(): Flow<Long>
 
     @Query(
         """
@@ -189,7 +188,7 @@ abstract class FeedDAO {
         WHERE lu.last_updated IS NULL
         """
     )
-    abstract fun notLoadedCountForGroup(groupId: Long): Flowable<Long>
+    abstract fun notLoadedCountForGroup(groupId: Long): Flow<Long>
 
     @Query(
         """
@@ -201,7 +200,7 @@ abstract class FeedDAO {
         WHERE lu.last_updated IS NULL OR lu.last_updated < :outdatedThreshold
         """
     )
-    abstract fun getAllOutdated(outdatedThreshold: OffsetDateTime): Flowable<List<SubscriptionEntity>>
+    abstract fun getAllOutdated(outdatedThreshold: OffsetDateTime): Flow<List<SubscriptionEntity>>
 
     @Query(
         """
@@ -216,7 +215,7 @@ abstract class FeedDAO {
         WHERE lu.last_updated IS NULL OR lu.last_updated < :outdatedThreshold
         """
     )
-    abstract fun getAllOutdatedForGroup(groupId: Long, outdatedThreshold: OffsetDateTime): Flowable<List<SubscriptionEntity>>
+    abstract fun getAllOutdatedForGroup(groupId: Long, outdatedThreshold: OffsetDateTime): Flow<List<SubscriptionEntity>>
 
     @Query(
         """
@@ -233,5 +232,5 @@ abstract class FeedDAO {
     abstract fun getOutdatedWithNotificationMode(
         outdatedThreshold: OffsetDateTime,
         @NotificationMode notificationMode: Int
-    ): Flowable<List<SubscriptionEntity>>
+    ): Flow<List<SubscriptionEntity>>
 }

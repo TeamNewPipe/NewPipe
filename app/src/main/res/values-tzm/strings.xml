@@ -145,7 +145,7 @@
     <string name="night_theme_title">Asgum n yiḍ</string>
     <string name="open_with">Ṛẓem s</string>
     <string name="feed_groups_header_title">Tirubba n tbadut</string>
-    <string name="fragment_feed_title">Matta n umaynu</string>
+    <string name="feed_title">Matta n umaynu</string>
     <string name="always_ask_open_action">ttseqsa abda</string>
     <string name="blank_page_summary">Tasna ixwan</string>
     <string name="title_activity_about">Ɣef NewPipe</string>

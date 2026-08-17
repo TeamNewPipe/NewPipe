@@ -23,5 +23,6 @@ plugins {
     alias(libs.plugins.jetbrains.kotlinx.serialization) apply false
     alias(libs.plugins.sonarqube) apply false
     alias(libs.plugins.koin) apply false
+    alias(libs.plugins.ktorfit) apply false
     alias(libs.plugins.about.libraries) apply false
 }

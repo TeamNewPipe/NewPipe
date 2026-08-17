@@ -468,7 +468,7 @@
         <item quantity="one">%d dagur</item>
         <item quantity="other">%d dagar</item>
     </plurals>
-    <string name="fragment_feed_title">Hvað er nýtt</string>
+    <string name="feed_title">Hvað er nýtt</string>
     <string name="feed_groups_header_title">Rásarhópar</string>
     <string name="feed_notification_loading">Hleður…</string>
     <string name="settings_category_feed_title">Streymi</string>

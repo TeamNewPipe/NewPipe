@@ -118,7 +118,7 @@
     <string name="subscription_change_failed">Impossibile cambiare l\'iscrizione</string>
     <string name="subscription_update_failed">Impossibile aggiornare l\'iscrizione</string>
     <string name="tab_subscriptions">Iscrizioni</string>
-    <string name="fragment_feed_title">Novità</string>
+    <string name="feed_title">Novità</string>
     <string name="enable_search_history_title">Cronologia delle ricerche</string>
     <string name="enable_search_history_summary">Salva le ricerche localmente</string>
     <string name="enable_watch_history_title">Cronologia delle visualizzazioni</string>

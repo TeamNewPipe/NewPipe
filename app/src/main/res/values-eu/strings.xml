@@ -118,7 +118,7 @@
     <string name="subscription_change_failed">Ezin izan da harpidetza aldatu</string>
     <string name="subscription_update_failed">Ezin izan da harpidetza eguneratu</string>
     <string name="tab_subscriptions">Harpidetzak</string>
-    <string name="fragment_feed_title">Zer dago berri</string>
+    <string name="feed_title">Zer dago berri</string>
     <string name="resume_on_audio_focus_gain_title">Berrekin erreprodukzioa</string>
     <string name="resume_on_audio_focus_gain_summary">Jarraitu erreproduzitzen etenaldien ostean (adib. telefono deiak)</string>
     <string name="settings_category_downloads_title">Deskargak</string>

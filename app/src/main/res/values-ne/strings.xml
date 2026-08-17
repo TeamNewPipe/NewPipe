@@ -479,7 +479,7 @@
     <string name="feed_subscription_not_loaded_count">लोड गरिएको छैन:%d</string>
     <string name="feed_oldest_subscription_update">फिड पछिल्लोपटक अपडेट गरिएको:%s</string>
     <string name="feed_groups_header_title">च्यानल समूहहरू</string>
-    <string name="fragment_feed_title">नयाँ के छ</string>
+    <string name="feed_title">नयाँ के छ</string>
     <plurals name="hours">
         <item quantity="one">%d घण्टा</item>
         <item quantity="other">%d घण्टा</item>

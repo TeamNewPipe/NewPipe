@@ -18,7 +18,7 @@ import coil3.target.Target
 import coil3.toBitmap
 import coil3.transform.Transformation
 import kotlin.math.min
-import org.schabi.newpipe.MainActivity
+import org.schabi.newpipe.DebugConstants
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.Image
 import org.schabi.newpipe.ktx.scale
@@ -81,7 +81,7 @@ object CoilHelper {
                             input: Bitmap,
                             size: Size
                         ): Bitmap {
-                            if (MainActivity.DEBUG) {
+                            if (DebugConstants.DEBUG) {
                                 Log.d(TAG, "Thumbnail - transform() called")
                             }
 

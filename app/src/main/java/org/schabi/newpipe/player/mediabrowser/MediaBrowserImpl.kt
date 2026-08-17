@@ -13,12 +13,16 @@ import androidx.media.MediaBrowserServiceCompat
 import androidx.media.MediaBrowserServiceCompat.BrowserRoot.EXTRA_RECENT
 import androidx.media.MediaBrowserServiceCompat.Result
 import androidx.media.utils.MediaConstants
-import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.schedulers.Schedulers
 import java.util.function.Consumer
-import org.schabi.newpipe.MainActivity.DEBUG
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.schabi.newpipe.DebugConstants.DEBUG
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.history.model.StreamHistoryEntry
@@ -52,18 +56,20 @@ class MediaBrowserImpl(
 ) {
     private val packageValidator = PackageValidator(context)
     private val database = NewPipeDatabase.getInstance(context)
-    private var disposables = CompositeDisposable()
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
     init {
         // this will listen to changes in the bookmarks until this MediaBrowserImpl is dispose()d
-        disposables.add(
-            getMergedPlaylists().subscribe { notifyChildrenChanged.accept(ID_BOOKMARKS) }
-        )
+        scope.launch {
+            getMergedPlaylists().collect {
+                notifyChildrenChanged.accept(ID_BOOKMARKS)
+            }
+        }
     }
 
     //region Cleanup
     fun dispose() {
-        disposables.dispose()
+        scope.cancel()
     }
     //endregion
 
@@ -104,37 +110,33 @@ class MediaBrowserImpl(
         }
 
         result.detach() // allows sendResult() to happen later
-        disposables.add(
-            onLoadChildren(parentId)
-                .subscribe(
-                    { result.sendResult(it) },
-                    { throwable ->
-                        // null indicates an error, see the docs of MediaSessionCompat.onSearch()
-                        result.sendResult(null)
-                        Log.e(TAG, "onLoadChildren error for parentId=$parentId: $throwable")
-                    }
-                )
-        )
+        scope.launch {
+            try {
+                result.sendResult(onLoadChildren(parentId))
+            } catch (throwable: Throwable) {
+                // null indicates an error, see the docs of MediaSessionCompat.onSearch()
+                result.sendResult(null)
+                Log.e(TAG, "onLoadChildren error for parentId=$parentId: $throwable")
+            }
+        }
     }
 
-    private fun onLoadChildren(parentId: String): Single<List<MediaBrowserCompat.MediaItem>> {
+    private suspend fun onLoadChildren(parentId: String): List<MediaBrowserCompat.MediaItem> = withContext(Dispatchers.IO) {
         try {
             val parentIdUri = parentId.toUri()
             val path = ArrayList(parentIdUri.pathSegments)
 
             if (path.isEmpty()) {
-                return Single.just(
-                    listOf(
-                        createRootMediaItem(
-                            ID_BOOKMARKS,
-                            context.resources.getString(R.string.tab_bookmarks_short),
-                            R.drawable.ic_bookmark_white
-                        ),
-                        createRootMediaItem(
-                            ID_HISTORY,
-                            context.resources.getString(R.string.action_history),
-                            R.drawable.ic_history_white
-                        )
+                return@withContext listOf(
+                    createRootMediaItem(
+                        ID_BOOKMARKS,
+                        context.resources.getString(R.string.tab_bookmarks_short),
+                        R.drawable.ic_bookmark_white
+                    ),
+                    createRootMediaItem(
+                        ID_HISTORY,
+                        context.resources.getString(R.string.action_history),
+                        R.drawable.ic_history_white
                     )
                 )
             }
@@ -142,27 +144,27 @@ class MediaBrowserImpl(
             when (path.removeAt(0)) {
                 ID_BOOKMARKS -> {
                     if (path.isEmpty()) {
-                        return populateBookmarks()
+                        return@withContext populateBookmarks()
                     }
                     if (path.size == 2) {
                         val localOrRemote = path[0]
                         val playlistId = path[1].toLong()
                         if (localOrRemote == ID_LOCAL) {
-                            return populateLocalPlaylist(playlistId)
+                            return@withContext populateLocalPlaylist(playlistId)
                         } else if (localOrRemote == ID_REMOTE) {
-                            return populateRemotePlaylist(playlistId)
+                            return@withContext populateRemotePlaylist(playlistId)
                         }
                     }
                     Log.w(TAG, "Unknown playlist URI: $parentId")
                     throw parseError(parentId)
                 }
 
-                ID_HISTORY -> return populateHistory()
+                ID_HISTORY -> return@withContext populateHistory()
 
                 else -> throw parseError(parentId)
             }
         } catch (e: ContentNotAvailableException) {
-            return Single.error(e)
+            throw e
         }
     }
 
@@ -316,11 +318,9 @@ class MediaBrowserImpl(
         return buildInfoItemMediaId(item).build().toString()
     }
 
-    private fun populateHistory(): Single<List<MediaBrowserCompat.MediaItem>> {
-        val history = database.streamHistoryDAO().history.firstOrError()
-        return history.map { items ->
-            items.map { this.createHistoryMediaItem(it) }
-        }
+    private suspend fun populateHistory(): List<MediaBrowserCompat.MediaItem> {
+        val history = database.streamHistoryDAO().getHistory().first()
+        return history.map { this.createHistoryMediaItem(it) }
     }
 
     private fun createHistoryMediaItem(streamHistoryEntry: StreamHistoryEntry): MediaBrowserCompat.MediaItem {
@@ -340,39 +340,33 @@ class MediaBrowserImpl(
         )
     }
 
-    private fun getMergedPlaylists(): Flowable<MutableList<PlaylistLocalItem>> {
+    private fun getMergedPlaylists(): Flow<List<PlaylistLocalItem>> {
         return MergedPlaylistManager.getMergedOrderedPlaylists(
             LocalPlaylistManager(database),
             RemotePlaylistManager(database)
         )
     }
 
-    private fun populateBookmarks(): Single<List<MediaBrowserCompat.MediaItem>> {
-        val playlists = getMergedPlaylists().firstOrError()
-        return playlists.map { playlist ->
-            playlist.map { this.createPlaylistMediaItem(it) }
+    private suspend fun populateBookmarks(): List<MediaBrowserCompat.MediaItem> {
+        val playlists = getMergedPlaylists().first()
+        return playlists.map { this.createPlaylistMediaItem(it) }
+    }
+
+    private suspend fun populateLocalPlaylist(playlistId: Long): List<MediaBrowserCompat.MediaItem> {
+        val playlist = LocalPlaylistManager(database).getPlaylistStreams(playlistId).first()
+        return playlist.mapIndexed { index, item ->
+            createLocalPlaylistStreamMediaItem(playlistId, item, index)
         }
     }
 
-    private fun populateLocalPlaylist(playlistId: Long): Single<List<MediaBrowserCompat.MediaItem>> {
-        val playlist = LocalPlaylistManager(database).getPlaylistStreams(playlistId).firstOrError()
-        return playlist.map { items ->
-            items.mapIndexed { index, item ->
-                createLocalPlaylistStreamMediaItem(playlistId, item, index)
-            }
+    private suspend fun populateRemotePlaylist(playlistId: Long): List<MediaBrowserCompat.MediaItem> {
+        val it = RemotePlaylistManager(database).getPlaylist(playlistId).first()
+        val info = ExtractorHelper.getPlaylistInfo(it.serviceId, it.url!!, false)
+        // ignore it.errors, i.e. ignore errors about specific items, since there would
+        // be no way to show the error properly in Android Auto anyway
+        return info.relatedItems.mapIndexed { index, item ->
+            createRemotePlaylistStreamMediaItem(playlistId, item, index)
         }
-    }
-
-    private fun populateRemotePlaylist(playlistId: Long): Single<List<MediaBrowserCompat.MediaItem>> {
-        return RemotePlaylistManager(database).getPlaylist(playlistId).firstOrError()
-            .flatMap { ExtractorHelper.getPlaylistInfo(it.serviceId, it.url, false) }
-            .map {
-                // ignore it.errors, i.e. ignore errors about specific items, since there would
-                // be no way to show the error properly in Android Auto anyway
-                it.relatedItems.mapIndexed { index, item ->
-                    createRemotePlaylistStreamMediaItem(playlistId, item, index)
-                }
-            }
     }
     //endregion
 
@@ -386,26 +380,24 @@ class MediaBrowserImpl(
         }
 
         result.detach() // allows sendResult() to happen later
-        disposables.add(
-            searchMusicBySongTitle(query)
+        scope.launch {
+            try {
+                val searchInfo = searchMusicBySongTitle(query)
                 // ignore it.errors, i.e. ignore errors about specific items, since there would
                 // be no way to show the error properly in Android Auto anyway
-                .map { it.relatedItems.mapNotNull(this::createInfoItemMediaItem) }
-                .subscribeOn(Schedulers.io())
-                .subscribe(
-                    { result.sendResult(it) },
-                    { throwable ->
-                        // null indicates an error, see the docs of MediaSessionCompat.onSearch()
-                        result.sendResult(null)
-                        Log.e(TAG, "Search error for query=\"$query\": $throwable")
-                    }
-                )
-        )
+                val items = searchInfo.relatedItems.mapNotNull(this@MediaBrowserImpl::createInfoItemMediaItem)
+                result.sendResult(items)
+            } catch (throwable: Throwable) {
+                // null indicates an error, see the docs of MediaSessionCompat.onSearch()
+                result.sendResult(null)
+                Log.e(TAG, "Search error for query=\"$query\": $throwable")
+            }
+        }
     }
 
-    private fun searchMusicBySongTitle(query: String?): Single<SearchInfo> {
+    private suspend fun searchMusicBySongTitle(query: String?): SearchInfo {
         val serviceId = ServiceHelper.getSelectedServiceId(context)
-        return ExtractorHelper.searchFor(serviceId, query, listOf(), "")
+        return ExtractorHelper.searchFor(serviceId, query ?: "", listOf(), "")
     }
     //endregion
 

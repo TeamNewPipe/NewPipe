@@ -6,7 +6,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
@@ -37,11 +38,14 @@
         android:logo="@mipmap/ic_launcher"
         android:resizeableActivity="true"
         android:theme="@style/OpeningTheme"
+        android:enableOnBackInvokedCallback="true"
         tools:ignore="AllowBackup">
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
+            android:supportsPictureInPicture="true"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -138,16 +142,7 @@
         <service android:name="us.shandian.giga.service.DownloadManagerService"
             android:foregroundServiceType="dataSync" />
 
-        <activity
-            android:name=".util.FilePickerActivityHelper"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/FilePickerThemeDark">
-            <intent-filter>
-                <action android:name="android.intent.action.GET_CONTENT" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+
 
         <activity
             android:name=".error.ReCaptchaActivity"
@@ -161,7 +156,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/nnf_provider_paths" />
+                android:resource="@xml/file_paths" />
         </provider>
 
         <activity
@@ -433,6 +428,15 @@
             android:name=".RouterActivity$FetcherService"
             android:foregroundServiceType="dataSync"
             android:exported="false" />
+            
+        <service
+            android:name=".player.PlaybackService"
+            android:foregroundServiceType="mediaPlayback"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="androidx.media3.session.MediaSessionService" />
+            </intent-filter>
+        </service>
 
         <!-- opting out of sending metrics to Google in Android System WebView -->
         <meta-data
@@ -447,9 +451,6 @@
         <meta-data
             android:name="com.samsung.android.multidisplay.keep_process_alive"
             android:value="true" />
-        <!-- Android Auto -->
-        <meta-data android:name="com.google.android.gms.car.application"
-            android:resource="@xml/automotive_app_desc" />
         <meta-data android:name="com.google.android.gms.car.notification.SmallIcon"
             android:resource="@mipmap/ic_launcher" />
     </application>

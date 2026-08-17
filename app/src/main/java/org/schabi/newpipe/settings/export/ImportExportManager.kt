@@ -1,10 +1,7 @@
 package org.schabi.newpipe.settings.export
 
 import android.content.SharedPreferences
-import com.grack.nanojson.JsonArray
-import com.grack.nanojson.JsonParser
-import com.grack.nanojson.JsonParserException
-import com.grack.nanojson.JsonWriter
+import kotlinx.serialization.json.*
 import java.io.FileNotFoundException
 import java.io.IOException
 import java.io.ObjectOutputStream
@@ -28,7 +25,8 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
     fun exportDatabase(preferences: SharedPreferences, file: StoredFileHelper) {
         // truncate the file before writing to it, otherwise if the new content is smaller than the
         // previous file size, the file will retain part of the previous content and be corrupted
-        ZipOutputStream(SharpOutputStream(file.openAndTruncateStream()).buffered()).use { outZip ->
+        val stream = file.openAndTruncateStream()
+        ZipOutputStream(SharpOutputStream(stream).buffered()).use { outZip ->
             // add the database
             val name = BackupFileLocator.FILE_NAME_DB
             ZipHelper.addFileToZip(outZip, name, fileLocator.db)
@@ -44,16 +42,24 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
                 }
             }
 
-            // add the JSON preferences
             ZipHelper.addFileToZip(
                 outZip,
                 BackupFileLocator.FILE_NAME_JSON_PREFS
             ) { byteOutput ->
-                JsonWriter
-                    .indent("")
-                    .on(byteOutput)
-                    .`object`(preferences.all)
-                    .done()
+                val jsonMap = preferences.all.mapValues { (_, value) ->
+                    when (value) {
+                        is Boolean -> JsonPrimitive(value)
+                        is Float -> JsonPrimitive(value)
+                        is Int -> JsonPrimitive(value)
+                        is Long -> JsonPrimitive(value)
+                        is String -> JsonPrimitive(value)
+                        is Set<*> -> JsonArray(value.map { JsonPrimitive(it as String) })
+                        else -> JsonNull
+                    }
+                }
+                val element = JsonObject(jsonMap)
+                val format = Json { prettyPrint = true }
+                byteOutput.write(format.encodeToString(JsonObject.serializer(), element).toByteArray())
             }
         }
     }
@@ -148,28 +154,23 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
     /**
      * Remove all shared preferences from the app and load the preferences supplied to the manager.
      */
-    @Throws(IOException::class, JsonParserException::class)
+    @Throws(IOException::class, Exception::class)
     fun loadJsonPrefs(zipFile: StoredFileHelper, preferences: SharedPreferences) {
         ZipHelper.extractFileFromZip(zipFile, BackupFileLocator.FILE_NAME_JSON_PREFS) {
-            val jsonObject = JsonParser.`object`().from(it)
+            val jsonObject = Json.parseToJsonElement(it.readBytes().decodeToString()).jsonObject
 
             val editor = preferences.edit()
             editor.clear()
 
             for ((key, value) in jsonObject) {
-                when (value) {
-                    is Boolean -> editor.putBoolean(key, value)
-
-                    is Float -> editor.putFloat(key, value)
-
-                    is Int -> editor.putInt(key, value)
-
-                    is Long -> editor.putLong(key, value)
-
-                    is String -> editor.putString(key, value)
-
-                    is JsonArray -> {
-                        editor.putStringSet(key, value.mapNotNull { e -> e as? String }.toSet())
+                when {
+                    value is JsonPrimitive && value.isString -> editor.putString(key, value.content)
+                    value is JsonPrimitive && value.booleanOrNull != null -> editor.putBoolean(key, value.boolean)
+                    value is JsonPrimitive && value.intOrNull != null -> editor.putInt(key, value.int)
+                    value is JsonPrimitive && value.longOrNull != null -> editor.putLong(key, value.long)
+                    value is JsonPrimitive && value.floatOrNull != null -> editor.putFloat(key, value.float)
+                    value is JsonArray -> {
+                        editor.putStringSet(key, value.mapNotNull { e -> e.jsonPrimitive.contentOrNull }.toSet())
                     }
                 }
             }

@@ -10,20 +10,14 @@ import androidx.core.content.getSystemService
 import androidx.preference.PreferenceManager
 import coil3.ImageLoader
 import coil3.SingletonImageLoader
+import coil3.disk.DiskCache
+import coil3.memory.MemoryCache
 import coil3.network.okhttp.OkHttpNetworkFetcherFactory
 import coil3.request.allowRgb565
 import coil3.request.crossfade
 import coil3.util.DebugLogger
+import okio.Path.Companion.toOkioPath
 import com.jakewharton.processphoenix.ProcessPhoenix
-import io.reactivex.rxjava3.exceptions.CompositeException
-import io.reactivex.rxjava3.exceptions.MissingBackpressureException
-import io.reactivex.rxjava3.exceptions.OnErrorNotImplementedException
-import io.reactivex.rxjava3.exceptions.UndeliverableException
-import io.reactivex.rxjava3.functions.Consumer
-import io.reactivex.rxjava3.plugins.RxJavaPlugins
-import java.io.IOException
-import java.io.InterruptedIOException
-import java.net.SocketException
 import org.acra.ACRA.init
 import org.acra.ACRA.isACRASenderServiceProcess
 import org.acra.config.CoreConfigurationBuilder
@@ -31,7 +25,6 @@ import org.schabi.newpipe.error.ReCaptchaActivity
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.downloader.Downloader
 import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor
-import org.schabi.newpipe.ktx.hasAssignableCause
 import org.schabi.newpipe.settings.NewPipeSettings
 import org.schabi.newpipe.util.BridgeStateSaverInitializer
 import org.schabi.newpipe.util.Localization
@@ -40,6 +33,12 @@ import org.schabi.newpipe.util.StateSaver
 import org.schabi.newpipe.util.image.ImageStrategy
 import org.schabi.newpipe.util.image.PreferredImageQuality
 import org.schabi.newpipe.util.potoken.PoTokenProviderImpl
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
+import net.newpipe.app.di.KoinApp
+import net.newpipe.app.navigation.navModule
+import org.schabi.newpipe.ui.navigation.appNavModule
+import org.koin.dsl.module
 
 /*
  * Copyright (C) Hans-Christoph Steiner 2016 <hans@eds.org>
@@ -85,6 +84,15 @@ open class App :
             return
         }
 
+        startKoin {
+            androidContext(this@App)
+            modules(
+                module {
+                    includes(navModule(), appNavModule(onCloseRequest = {}))
+                }
+            )
+        }
+
         // check if the last used preference version is set
         // to determine whether this is the first app run
         val lastUsedPrefVersion =
@@ -121,8 +129,6 @@ open class App :
             )
         )
 
-        configureRxJavaErrorHandler()
-
         YoutubeStreamExtractor.setPoTokenProvider(PoTokenProviderImpl)
     }
 
@@ -131,8 +137,20 @@ open class App :
         .logger(if (BuildConfig.DEBUG) DebugLogger() else null)
         .allowRgb565(getSystemService<ActivityManager>()!!.isLowRamDevice)
         .crossfade(true)
+        .memoryCache {
+            MemoryCache.Builder()
+                .maxSizePercent(this, 0.25)
+                .strongReferencesEnabled(true)
+                .build()
+        }
+        .diskCache {
+            DiskCache.Builder()
+                .directory(cacheDir.resolve("image_cache").toOkioPath())
+                .maxSizeBytes(100L * 1024 * 1024)
+                .build()
+        }
         .components {
-            add(OkHttpNetworkFetcherFactory(callFactory = DownloaderImpl.getInstance().client))
+            add(OkHttpNetworkFetcherFactory(callFactory = DownloaderImpl.instance!!.client))
         }.build()
 
     protected open fun getDownloader(): Downloader {
@@ -144,76 +162,10 @@ open class App :
     protected fun setCookiesToDownloader(downloader: DownloaderImpl) {
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
         val key = getString(R.string.recaptcha_cookies_key)
-        downloader.setCookie(ReCaptchaActivity.RECAPTCHA_COOKIES_KEY, prefs.getString(key, null))
+        prefs.getString(key, null)?.let {
+            downloader.setCookie(ReCaptchaActivity.RECAPTCHA_COOKIES_KEY, it)
+        }
         downloader.updateYoutubeRestrictedModeCookies(this)
-    }
-
-    private fun configureRxJavaErrorHandler() {
-        // https://github.com/ReactiveX/RxJava/wiki/What's-different-in-2.0#error-handling
-        RxJavaPlugins.setErrorHandler(
-            object : Consumer<Throwable> {
-                override fun accept(throwable: Throwable) {
-                    Log.e(TAG, "RxJavaPlugins.ErrorHandler called with -> : throwable = [${throwable.javaClass.getName()}]")
-
-                    // As UndeliverableException is a wrapper,
-                    // get the cause of it to get the "real" exception
-                    val actualThrowable = (throwable as? UndeliverableException)?.cause ?: throwable
-
-                    val errors = (actualThrowable as? CompositeException)?.exceptions ?: listOf(actualThrowable)
-
-                    for (error in errors) {
-                        if (isThrowableIgnored(error)) {
-                            return
-                        }
-                        if (isThrowableCritical(error)) {
-                            reportException(error)
-                            return
-                        }
-                    }
-
-                    // Out-of-lifecycle exceptions should only be reported if a debug user wishes so,
-                    // When exception is not reported, log it
-                    if (isDisposedRxExceptionsReported()) {
-                        reportException(actualThrowable)
-                    } else {
-                        Log.e(TAG, "RxJavaPlugin: Undeliverable Exception received: ", actualThrowable)
-                    }
-                }
-
-                fun isThrowableIgnored(throwable: Throwable): Boolean {
-                    // Don't crash the application over a simple network problem
-                    return throwable // network api cancellation
-                        .hasAssignableCause(
-                            IOException::class.java,
-                            SocketException::class.java, // blocking code disposed
-                            InterruptedException::class.java,
-                            InterruptedIOException::class.java
-                        )
-                }
-
-                fun isThrowableCritical(throwable: Throwable): Boolean {
-                    // Though these exceptions cannot be ignored
-                    return throwable
-                        .hasAssignableCause(
-                            // bug in app
-                            NullPointerException::class.java,
-                            IllegalArgumentException::class.java,
-                            OnErrorNotImplementedException::class.java,
-                            MissingBackpressureException::class.java,
-                            // bug in operator
-                            IllegalStateException::class.java
-                        )
-                }
-
-                fun reportException(throwable: Throwable) {
-                    // Throw uncaught exception that will trigger the report system
-                    Thread
-                        .currentThread()
-                        .uncaughtExceptionHandler
-                        .uncaughtException(Thread.currentThread(), throwable)
-                }
-            }
-        )
     }
 
     /**
@@ -279,8 +231,6 @@ open class App :
 
         NotificationManagerCompat.from(this).createNotificationChannelsCompat(channels)
     }
-
-    protected open fun isDisposedRxExceptionsReported(): Boolean = false
 
     companion object {
         const val PACKAGE_NAME: String = BuildConfig.APPLICATION_ID

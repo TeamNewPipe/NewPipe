@@ -124,7 +124,7 @@
     <string name="subscription_change_failed">Não foi possível alterar a inscrição</string>
     <string name="subscription_update_failed">Não foi possível atualizar a inscrição</string>
     <string name="tab_subscriptions">Inscrições</string>
-    <string name="fragment_feed_title">Novidades</string>
+    <string name="feed_title">Novidades</string>
     <string name="resume_on_audio_focus_gain_title">Continuar reprodução</string>
     <string name="resume_on_audio_focus_gain_summary">Continuar a reprodução após interrupções (por exemplo, chamadas telefônicas)</string>
     <string name="enable_search_history_title">Histórico de busca</string>

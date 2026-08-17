@@ -337,7 +337,7 @@
     <string name="feed_subscription_not_loaded_count">Ne barkirî: %d</string>
     <string name="feed_oldest_subscription_update">Xxweyîkirin herî dawî hate nûve kirin: %s</string>
     <string name="feed_groups_header_title">Komên kenalê</string>
-    <string name="fragment_feed_title">Çi Nû ye</string>
+    <string name="feed_title">Çi Nû ye</string>
     <plurals name="days">
         <item quantity="one">%d rojê</item>
         <item quantity="other">%d roj</item>

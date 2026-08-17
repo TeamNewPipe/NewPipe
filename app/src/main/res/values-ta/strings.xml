@@ -25,7 +25,7 @@
     <string name="show_info">தகவல் காண்பி</string>
     <string name="tab_subscriptions">சந்தாக்கள்</string>
     <string name="tab_bookmarks">நூற்குறித்த ஒளிச்சரங்கள்</string>
-    <string name="fragment_feed_title">புதிதாக</string>
+    <string name="feed_title">புதிதாக</string>
     <string name="controls_background_title">பின்புலம்</string>
     <string name="controls_popup_title">திரைமேல்</string>
     <string name="controls_add_to_playlist_title">இதற்கு சேர்</string>

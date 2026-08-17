@@ -17,7 +17,7 @@ import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.reactive.awaitFirst
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.R
@@ -37,7 +37,7 @@ class SubscriptionExportWorker(
             val table = NewPipeDatabase.getInstance(applicationContext).subscriptionDAO()
             val subscriptions =
                 table.getAll()
-                    .awaitFirst()
+                    .first()
                     .map { SubscriptionItem(it.serviceId, it.url ?: "", it.name ?: "") }
 
             val qty = subscriptions.size

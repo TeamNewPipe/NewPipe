@@ -6,6 +6,7 @@ import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.work.Constraints
+import androidx.work.CoroutineWorker
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.ForegroundInfo
 import androidx.work.NetworkType
@@ -13,10 +14,9 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
-import androidx.work.rxjava3.RxWorker
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Single
 import java.util.concurrent.TimeUnit
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.schabi.newpipe.App
 import org.schabi.newpipe.R
 import org.schabi.newpipe.error.ErrorInfo
@@ -32,46 +32,45 @@ import org.schabi.newpipe.local.feed.service.FeedLoadService
 class NotificationWorker(
     appContext: Context,
     workerParams: WorkerParameters
-) : RxWorker(appContext, workerParams) {
+) : CoroutineWorker(appContext, workerParams) {
 
     private val notificationHelper by lazy {
         NotificationHelper(appContext)
     }
     private val feedLoadManager = FeedLoadManager(appContext)
 
-    override fun createWork(): Single<Result> = if (areNotificationsEnabled(applicationContext)) {
-        feedLoadManager.startLoading(
-            ignoreOutdatedThreshold = true,
-            groupId = FeedLoadManager.GROUP_NOTIFICATION_ENABLED
-        )
-            .doOnSubscribe { showLoadingFeedForegroundNotification() }
-            .map { feed ->
-                // filter out feedUpdateInfo items (i.e. channels) with nothing new
-                feed.mapNotNull {
-                    it.value?.takeIf { feedUpdateInfo ->
-                        feedUpdateInfo.newStreams.isNotEmpty()
-                    }
-                }
+    override suspend fun doWork(): Result = if (areNotificationsEnabled(applicationContext)) {
+        try {
+            showLoadingFeedForegroundNotification()
+            val feed = feedLoadManager.startLoading(
+                ignoreOutdatedThreshold = true,
+                groupId = FeedLoadManager.GROUP_NOTIFICATION_ENABLED
+            )
+
+            // filter out feedUpdateInfo items (i.e. channels) with nothing new
+            val feedUpdateInfoList = feed.mapNotNull { feedResult ->
+                feedResult.value?.takeIf { it.newStreams.isNotEmpty() }
             }
-            .observeOn(AndroidSchedulers.mainThread()) // Picasso requires calls from main thread
-            .map { feedUpdateInfoList ->
-                // display notifications for each feedUpdateInfo (i.e. channel)
+
+            // display notifications for each feedUpdateInfo (i.e. channel)
+            withContext(Dispatchers.Main) {
+                // Picasso requires calls from main thread
                 feedUpdateInfoList.forEach { feedUpdateInfo ->
                     notificationHelper.displayNewStreamsNotifications(feedUpdateInfo)
                 }
-                return@map Result.success()
             }
-            .doOnError { throwable ->
-                Log.e(TAG, "Error while displaying streams notifications", throwable)
-                ErrorUtil.createNotification(
-                    applicationContext,
-                    ErrorInfo(throwable, UserAction.NEW_STREAMS_NOTIFICATIONS, "main worker")
-                )
-            }
-            .onErrorReturnItem(Result.failure())
+            Result.success()
+        } catch (throwable: Throwable) {
+            Log.e(TAG, "Error while displaying streams notifications", throwable)
+            ErrorUtil.createNotification(
+                applicationContext,
+                ErrorInfo(throwable, UserAction.NEW_STREAMS_NOTIFICATIONS, "main worker")
+            )
+            Result.failure()
+        }
     } else {
         // the user can disable streams notifications in the device's app settings
-        Single.just(Result.success())
+        Result.success()
     }
 
     private fun showLoadingFeedForegroundNotification() {

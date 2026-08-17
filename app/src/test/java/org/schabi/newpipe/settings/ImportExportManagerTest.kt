@@ -1,7 +1,7 @@
 package org.schabi.newpipe.settings
 
 import android.content.SharedPreferences
-import com.grack.nanojson.JsonParser
+import kotlinx.serialization.json.*
 import java.io.File
 import java.io.ObjectInputStream
 import java.nio.file.Paths
@@ -81,7 +81,7 @@ class ImportExportManagerTest {
         }
 
         zipFile.getInputStream(entries.first { it.name == "preferences.json" }).use { actual ->
-            val actualPreferences = JsonParser.`object`().from(actual)
+            val actualPreferences = Json.parseToJsonElement(actual.readBytes().decodeToString()).jsonObject
             assertEquals(expectedPreferences, actualPreferences)
         }
     }

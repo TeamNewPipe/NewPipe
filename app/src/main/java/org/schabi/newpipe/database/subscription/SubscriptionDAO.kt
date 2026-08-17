@@ -6,20 +6,19 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.RewriteQueriesToDropUnusedColumns
 import androidx.room.Transaction
-import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.core.Maybe
+import kotlinx.coroutines.flow.Flow
 import org.schabi.newpipe.database.BasicDAO
 
 @Dao
 abstract class SubscriptionDAO : BasicDAO<SubscriptionEntity> {
     @Query("SELECT COUNT(*) FROM subscriptions")
-    abstract fun rowCount(): Flowable<Long>
+    abstract fun rowCount(): Flow<Long>
 
     @Query("SELECT * FROM subscriptions WHERE service_id = :serviceId")
-    abstract override fun listByService(serviceId: Int): Flowable<List<SubscriptionEntity>>
+    abstract override fun listByService(serviceId: Int): Flow<List<SubscriptionEntity>>
 
     @Query("SELECT * FROM subscriptions ORDER BY name COLLATE NOCASE ASC")
-    abstract override fun getAll(): Flowable<List<SubscriptionEntity>>
+    abstract override fun getAll(): Flow<List<SubscriptionEntity>>
 
     @Query(
         """
@@ -30,7 +29,7 @@ abstract class SubscriptionDAO : BasicDAO<SubscriptionEntity> {
         ORDER BY name COLLATE NOCASE ASC
         """
     )
-    abstract fun getSubscriptionsFiltered(filter: String): Flowable<List<SubscriptionEntity>>
+    abstract fun getSubscriptionsFiltered(filter: String): Flow<List<SubscriptionEntity>>
 
     @RewriteQueriesToDropUnusedColumns
     @Query(
@@ -47,7 +46,7 @@ abstract class SubscriptionDAO : BasicDAO<SubscriptionEntity> {
     )
     abstract fun getSubscriptionsOnlyUngrouped(
         currentGroupId: Long
-    ): Flowable<List<SubscriptionEntity>>
+    ): Flow<List<SubscriptionEntity>>
 
     @RewriteQueriesToDropUnusedColumns
     @Query(
@@ -66,31 +65,31 @@ abstract class SubscriptionDAO : BasicDAO<SubscriptionEntity> {
     abstract fun getSubscriptionsOnlyUngroupedFiltered(
         currentGroupId: Long,
         filter: String
-    ): Flowable<List<SubscriptionEntity>>
+    ): Flow<List<SubscriptionEntity>>
 
     @Query("SELECT * FROM subscriptions WHERE url LIKE :url AND service_id = :serviceId")
-    abstract fun getSubscriptionFlowable(serviceId: Int, url: String): Flowable<List<SubscriptionEntity>>
+    abstract fun getSubscriptionFlow(serviceId: Int, url: String): Flow<List<SubscriptionEntity>>
 
     @Query("SELECT * FROM subscriptions WHERE url LIKE :url AND service_id = :serviceId")
-    abstract fun getSubscription(serviceId: Int, url: String): Maybe<SubscriptionEntity>
+    abstract suspend fun getSubscription(serviceId: Int, url: String): SubscriptionEntity?
 
     @Query("SELECT * FROM subscriptions WHERE uid = :subscriptionId")
-    abstract fun getSubscription(subscriptionId: Long): SubscriptionEntity
+    abstract suspend fun getSubscription(subscriptionId: Long): SubscriptionEntity?
 
     @Query("DELETE FROM subscriptions")
-    abstract override fun deleteAll(): Int
+    abstract override suspend fun deleteAll(): Int
 
     @Query("DELETE FROM subscriptions WHERE url LIKE :url AND service_id = :serviceId")
-    abstract fun deleteSubscription(serviceId: Int, url: String): Int
+    abstract suspend fun deleteSubscription(serviceId: Int, url: String): Int
 
     @Query("SELECT uid FROM subscriptions WHERE url LIKE :url AND service_id = :serviceId")
-    internal abstract fun getSubscriptionIdInternal(serviceId: Int, url: String): Long?
+    internal abstract suspend fun getSubscriptionIdInternal(serviceId: Int, url: String): Long?
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    internal abstract fun silentInsertAllInternal(entities: List<SubscriptionEntity>): List<Long>
+    internal abstract suspend fun silentInsertAllInternal(entities: List<SubscriptionEntity>): List<Long>
 
     @Transaction
-    open fun upsertAll(entities: List<SubscriptionEntity>): List<SubscriptionEntity> {
+    open suspend fun upsertAll(entities: List<SubscriptionEntity>): List<SubscriptionEntity> {
         val insertUidList = silentInsertAllInternal(entities)
 
         insertUidList.forEachIndexed { index: Int, uidFromInsert: Long ->

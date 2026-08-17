@@ -363,7 +363,7 @@
     <string name="general_error">Erro</string>
     <string name="clear_playback_states_title">Limpar posições de reprodução</string>
     <string name="import_ongoing">A importar…</string>
-    <string name="fragment_feed_title">Novidades</string>
+    <string name="feed_title">Novidades</string>
     <string name="local">Local</string>
     <string name="app_ui_crash">Aplicação terminou em erro</string>
     <string name="delete_item_search_history">Deseja remover este item do histórico de pesquisas\?</string>

@@ -83,7 +83,7 @@
     <string name="subscription_change_failed">Det gick inte att ändra prenumerationen</string>
     <string name="subscription_update_failed">Det gick inte att uppdatera prenumerationen</string>
     <string name="tab_subscriptions">Prenumerationer</string>
-    <string name="fragment_feed_title">Vad är nytt</string>
+    <string name="feed_title">Vad är nytt</string>
     <string name="enable_search_history_title">Sökhistorik</string>
     <string name="enable_search_history_summary">Spara sökfrågor lokalt</string>
     <string name="enable_watch_history_title">Visningshistorik</string>

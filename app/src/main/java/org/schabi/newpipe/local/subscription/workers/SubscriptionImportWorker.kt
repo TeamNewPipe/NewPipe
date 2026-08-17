@@ -27,7 +27,6 @@ import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.chunked
 import kotlinx.coroutines.flow.flatMapMerge
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.rx3.await
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
@@ -82,7 +81,7 @@ class SubscriptionImportWorker(
                                 subscription.serviceId,
                                 subscription.url,
                                 true
-                            ).await()
+                            )
                         }.mapCatching { channelInfo ->
                             val channelTab = when {
                                 channelInfo.tabs.isNotEmpty() -> {
@@ -90,7 +89,7 @@ class SubscriptionImportWorker(
                                         subscription.serviceId,
                                         channelInfo.tabs[0],
                                         true
-                                    ).await()
+                                    )
                                 }
 
                                 else -> {

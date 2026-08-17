@@ -26,7 +26,7 @@
     <string name="show_info">معلومات دکھائیں</string>
     <string name="tab_subscriptions">رکنیتیں</string>
     <string name="tab_bookmarks">نشان زدہ پلے لسٹس</string>
-    <string name="fragment_feed_title">نیا کیا ہے</string>
+    <string name="feed_title">نیا کیا ہے</string>
     <string name="controls_background_title">پس منظر</string>
     <string name="controls_popup_title">پوپ اپ</string>
     <string name="controls_add_to_playlist_title">شامل کریں</string>

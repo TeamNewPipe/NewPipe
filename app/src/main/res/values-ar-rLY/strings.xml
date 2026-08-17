@@ -203,7 +203,7 @@
     <string name="read_full_license">قراءة الرخصة</string>
     <string name="show_channel_tabs">ألسنة القنوات</string>
     <string name="seekbar_preview_thumbnail_title">معاينة مصغرة على شريط التمرير</string>
-    <string name="fragment_feed_title">ما الجديد</string>
+    <string name="feed_title">ما الجديد</string>
     <string name="feed_oldest_subscription_update">آخر تحديث للموجز: %s</string>
     <string name="msg_error">الخطأ</string>
     <string name="notification_action_4_title">زر الإجراء الخامس</string>

@@ -14,19 +14,23 @@ import androidx.preference.PreferenceManager
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.Worker
+import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
-import com.grack.nanojson.JsonParser
-import com.grack.nanojson.JsonParserException
-import java.io.IOException
+import kotlinx.serialization.json.*
+import okio.IOException
+import org.schabi.newpipe.DebugConstants
 import org.schabi.newpipe.extractor.downloader.Response
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
 import org.schabi.newpipe.util.ReleaseVersionUtil
+import net.newpipe.app.network.NewPipeService
+import net.newpipe.app.model.NewPipeVersionResponse
+import org.koin.java.KoinJavaComponent.get
 
 class NewVersionWorker(
     context: Context,
     workerParams: WorkerParameters
-) : Worker(context, workerParams) {
+) : CoroutineWorker(context, workerParams) {
 
     /**
      * Method to compare the current and latest available app version.
@@ -88,7 +92,7 @@ class NewVersionWorker(
     }
 
     @Throws(IOException::class, ReCaptchaException::class)
-    private fun checkNewVersion() {
+    private suspend fun checkNewVersion() {
         // Check if the current apk is a github one or not.
         if (!ReleaseVersionUtil.isReleaseApk) {
             return
@@ -104,46 +108,26 @@ class NewVersionWorker(
             }
         }
 
-        // Make a network request to get latest NewPipe data.
-        val response = DownloaderImpl.getInstance().get(NEWPIPE_API_URL)
-        handleResponse(response)
-    }
-
-    private fun handleResponse(response: Response) {
-        val prefs = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        // Make a network request to get latest NewPipe data using Ktorfit.
         try {
-            // Store a timestamp which needs to be exceeded,
-            // before a new request to the API is made.
-            val newExpiry = ReleaseVersionUtil.coerceUpdateCheckExpiry(response.getHeader("expires"))
-            prefs.edit {
-                putLong(applicationContext.getString(R.string.update_expiry_key), newExpiry)
-            }
+            val service = get<NewPipeService>(NewPipeService::class.java)
+            val response = service.getVersionInfo()
+            handleKtorfitResponse(response)
         } catch (e: Exception) {
-            if (DEBUG) {
-                Log.w(TAG, "Could not extract and save new expiry date", e)
-            }
-        }
-
-        // Parse the json from the response.
-        try {
-            val newpipeVersionInfo = JsonParser.`object`()
-                .from(response.responseBody()).getObject("flavors")
-                .getObject("newpipe")
-
-            val versionName = newpipeVersionInfo.getString("version")
-            val versionCode = newpipeVersionInfo.getInt("version_code")
-            val apkLocationUrl = newpipeVersionInfo.getString("apk")
-            compareAppVersionAndShowNotification(versionName, apkLocationUrl, versionCode)
-        } catch (e: JsonParserException) {
-            // Most likely something is wrong in data received from NEWPIPE_API_URL.
-            // Do not alarm user and fail silently.
-            if (DEBUG) {
-                Log.w(TAG, "Could not get NewPipe API: invalid json", e)
-            }
+            Log.w(TAG, "Could not fetch NewPipe API using Ktorfit", e)
+            throw IOException(e)
         }
     }
 
-    override fun doWork(): Result {
+    private fun handleKtorfitResponse(response: NewPipeVersionResponse) {
+        val newpipeVersionInfo = response.flavors.newpipe
+        val versionName = newpipeVersionInfo.version
+        val versionCode = newpipeVersionInfo.versionCode
+        val apkLocationUrl = newpipeVersionInfo.apk
+        compareAppVersionAndShowNotification(versionName, apkLocationUrl, versionCode)
+    }
+
+    override suspend fun doWork(): Result {
         return try {
             checkNewVersion()
             Result.success()
@@ -157,7 +141,7 @@ class NewVersionWorker(
     }
 
     companion object {
-        private val DEBUG = MainActivity.DEBUG
+        private val DEBUG = DebugConstants.DEBUG
         private val TAG = NewVersionWorker::class.java.simpleName
         private const val NEWPIPE_API_URL = "https://newpipe.net/api/data.json"
         private const val IS_MANUAL = "isManual"

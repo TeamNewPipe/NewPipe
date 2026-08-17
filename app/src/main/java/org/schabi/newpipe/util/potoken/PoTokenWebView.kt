@@ -11,11 +11,7 @@ import android.webkit.WebView
 import androidx.annotation.MainThread
 import androidx.webkit.WebSettingsCompat
 import androidx.webkit.WebViewFeature
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.core.SingleEmitter
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.*
 import java.time.Instant
 import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.DownloaderImpl
@@ -23,11 +19,10 @@ import org.schabi.newpipe.DownloaderImpl
 class PoTokenWebView private constructor(
     context: Context,
     // to be used exactly once only during initialization!
-    private val generatorEmitter: SingleEmitter<PoTokenGenerator>
+    private val generatorDeferred: CompletableDeferred<PoTokenGenerator>
 ) : PoTokenGenerator {
     private val webView = WebView(context)
-    private val disposables = CompositeDisposable() // used only during initialization
-    private val poTokenEmitters = mutableListOf<Pair<String, SingleEmitter<String>>>()
+    private val poTokenEmitters = mutableListOf<Pair<String, CompletableDeferred<String>>>()
     private lateinit var expirationInstant: Instant
 
     //region Initialization
@@ -57,7 +52,7 @@ class PoTokenWebView private constructor(
                     Log.e(TAG, "This WebView implementation is broken: $fmt")
 
                     onInitializationErrorCloseAndCancel(exception)
-                    popAllPoTokenEmitters().forEach { (_, emitter) -> emitter.onError(exception) }
+                    popAllPoTokenEmitters().forEach { (_, deferred) -> deferred.completeExceptionally(exception) }
                 }
                 return super.onConsoleMessage(m)
             }
@@ -74,31 +69,26 @@ class PoTokenWebView private constructor(
             Log.d(TAG, "loadHtmlAndObtainBotguard() called")
         }
 
-        disposables.add(
-            Single.fromCallable {
-                val html = context.assets.open("po_token.html").bufferedReader()
-                    .use { it.readText() }
-                return@fromCallable html
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val html = context.assets.open("po_token.html").bufferedReader().use { it.readText() }
+                withContext(Dispatchers.Main.immediate) {
+                    webView.loadDataWithBaseURL(
+                        "https://www.youtube.com",
+                        html.replaceFirst(
+                            "</script>",
+                            // calls downloadAndRunBotguard() when the page has finished loading
+                            "\n$JS_INTERFACE.downloadAndRunBotguard()</script>"
+                        ),
+                        "text/html",
+                        "utf-8",
+                        null
+                    )
+                }
+            } catch (e: Throwable) {
+                withContext(Dispatchers.Main) { onInitializationErrorCloseAndCancel(e) }
             }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                    { html ->
-                        webView.loadDataWithBaseURL(
-                            "https://www.youtube.com",
-                            html.replaceFirst(
-                                "</script>",
-                                // calls downloadAndRunBotguard() when the page has finished loading
-                                "\n$JS_INTERFACE.downloadAndRunBotguard()</script>"
-                            ),
-                            "text/html",
-                            "utf-8",
-                            null
-                        )
-                    },
-                    this::onInitializationErrorCloseAndCancel
-                )
-        )
+        }
     }
 
     /**
@@ -172,36 +162,42 @@ class PoTokenWebView private constructor(
                 if (BuildConfig.DEBUG) {
                     Log.d(TAG, "initialization finished, expiration=${expirationTimeInSeconds}s")
                 }
-                generatorEmitter.onSuccess(this)
+                generatorDeferred.complete(this)
             }
         }
     }
     //endregion
 
     //region Obtaining poTokens
-    override fun generatePoToken(identifier: String): Single<String> = Single.create { emitter ->
+    override suspend fun generatePoToken(identifier: String): String {
+        val deferred = CompletableDeferred<String>()
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "generatePoToken() called with identifier $identifier")
         }
-        runOnMainThread(emitter) {
-            addPoTokenEmitter(identifier, emitter)
-            val u8Identifier = stringToU8(identifier)
-            webView.evaluateJavascript(
-                """try {
-                        identifier = "$identifier"
-                        u8Identifier = $u8Identifier
-                        poTokenU8 = obtainPoToken(webPoSignalOutput, integrityToken, u8Identifier)
-                        poTokenU8String = ""
-                        for (i = 0; i < poTokenU8.length; i++) {
-                            if (i != 0) poTokenU8String += ","
-                            poTokenU8String += poTokenU8[i]
-                        }
-                        $JS_INTERFACE.onObtainPoTokenResult(identifier, poTokenU8String)
-                    } catch (error) {
-                        $JS_INTERFACE.onObtainPoTokenError(identifier, error + "\n" + error.stack)
-                    }"""
-            ) {}
+        withContext(Dispatchers.Main) {
+            try {
+                addPoTokenEmitter(identifier, deferred)
+                val u8Identifier = stringToU8(identifier)
+                webView.evaluateJavascript(
+                    """try {
+                            identifier = "$identifier"
+                            u8Identifier = $u8Identifier
+                            poTokenU8 = obtainPoToken(webPoSignalOutput, integrityToken, u8Identifier)
+                            poTokenU8String = ""
+                            for (i = 0; i < poTokenU8.length; i++) {
+                                if (i != 0) poTokenU8String += ","
+                                poTokenU8String += poTokenU8[i]
+                            }
+                            $JS_INTERFACE.onObtainPoTokenResult(identifier, poTokenU8String)
+                        } catch (error) {
+                            $JS_INTERFACE.onObtainPoTokenError(identifier, error + "\n" + error.stack)
+                        }"""
+                ) {}
+            } catch (e: Throwable) {
+                deferred.completeExceptionally(PoTokenException("Could not run on main thread: ${e.message}"))
+            }
         }
+        return deferred.await()
     }
 
     /**
@@ -213,7 +209,7 @@ class PoTokenWebView private constructor(
         if (BuildConfig.DEBUG) {
             Log.e(TAG, "obtainPoToken error from JavaScript: $error")
         }
-        popPoTokenEmitter(identifier)?.onError(buildExceptionForJsError(error))
+        popPoTokenEmitter(identifier)?.completeExceptionally(buildExceptionForJsError(error))
     }
 
     /**
@@ -228,14 +224,14 @@ class PoTokenWebView private constructor(
         val poToken = try {
             u8ToBase64(poTokenU8)
         } catch (t: Throwable) {
-            popPoTokenEmitter(identifier)?.onError(t)
+            popPoTokenEmitter(identifier)?.completeExceptionally(t)
             return
         }
 
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "Generated poToken: identifier=$identifier poToken=$poToken")
         }
-        popPoTokenEmitter(identifier)?.onSuccess(poToken)
+        popPoTokenEmitter(identifier)?.complete(poToken)
     }
 
     override fun isExpired(): Boolean {
@@ -250,9 +246,9 @@ class PoTokenWebView private constructor(
      * multiple poToken requests can be generated invparallel, and the results will be notified to
      * the right emitters.
      */
-    private fun addPoTokenEmitter(identifier: String, emitter: SingleEmitter<String>) {
+    private fun addPoTokenEmitter(identifier: String, deferred: CompletableDeferred<String>) {
         synchronized(poTokenEmitters) {
-            poTokenEmitters.add(Pair(identifier, emitter))
+            poTokenEmitters.add(Pair(identifier, deferred))
         }
     }
 
@@ -261,7 +257,7 @@ class PoTokenWebView private constructor(
      * [identifier]. The emitter is supposed to be used immediately after to either signal a success
      * or an error.
      */
-    private fun popPoTokenEmitter(identifier: String): SingleEmitter<String>? {
+    private fun popPoTokenEmitter(identifier: String): CompletableDeferred<String>? {
         return synchronized(poTokenEmitters) {
             poTokenEmitters.indexOfFirst { it.first == identifier }.takeIf { it >= 0 }?.let {
                 poTokenEmitters.removeAt(it).second
@@ -273,7 +269,7 @@ class PoTokenWebView private constructor(
      * Clears [poTokenEmitters] and returns its previous contents. The emitters are supposed to be
      * used immediately after to either signal a success or an error.
      */
-    private fun popAllPoTokenEmitters(): List<Pair<String, SingleEmitter<String>>> {
+    private fun popAllPoTokenEmitters(): List<Pair<String, CompletableDeferred<String>>> {
         return synchronized(poTokenEmitters) {
             val result = poTokenEmitters.toList()
             poTokenEmitters.clear()
@@ -297,9 +293,9 @@ class PoTokenWebView private constructor(
         data: String,
         handleResponseBody: (String) -> Unit
     ) {
-        disposables.add(
-            Single.fromCallable {
-                return@fromCallable DownloaderImpl.getInstance().post(
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = DownloaderImpl.instance!!.post(
                     url,
                     mapOf(
                         // replace the downloader user agent
@@ -311,24 +307,21 @@ class PoTokenWebView private constructor(
                     ),
                     data.toByteArray()
                 )
+                withContext(Dispatchers.Main.immediate) {
+                    val httpCode = response.responseCode()
+                    if (httpCode != 200) {
+                        onInitializationErrorCloseAndCancel(
+                            PoTokenException("Invalid response code: $httpCode")
+                        )
+                        return@withContext
+                    }
+                    val responseBody = response.responseBody()
+                    handleResponseBody(responseBody)
+                }
+            } catch (e: Throwable) {
+                withContext(Dispatchers.Main) { onInitializationErrorCloseAndCancel(e) }
             }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                    { response ->
-                        val httpCode = response.responseCode()
-                        if (httpCode != 200) {
-                            onInitializationErrorCloseAndCancel(
-                                PoTokenException("Invalid response code: $httpCode")
-                            )
-                            return@subscribe
-                        }
-                        val responseBody = response.responseBody()
-                        handleResponseBody(responseBody)
-                    },
-                    this::onInitializationErrorCloseAndCancel
-                )
-        )
+        }
     }
 
     /**
@@ -336,10 +329,8 @@ class PoTokenWebView private constructor(
      * to [generatorEmitter].
      */
     private fun onInitializationErrorCloseAndCancel(error: Throwable) {
-        runOnMainThread(generatorEmitter) {
-            close()
-            generatorEmitter.onError(error)
-        }
+        close()
+        generatorDeferred.completeExceptionally(error)
     }
 
     /**
@@ -347,9 +338,7 @@ class PoTokenWebView private constructor(
      */
     @MainThread
     override fun close() {
-        disposables.dispose()
-
-        webView.clearHistory()
+                webView.clearHistory()
         // clears RAM cache and disk cache (globally for all WebViews)
         webView.clearCache(true)
 
@@ -372,25 +361,19 @@ class PoTokenWebView private constructor(
             "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.3"
         private const val JS_INTERFACE = "PoTokenWebView"
 
-        override fun newPoTokenGenerator(context: Context): Single<PoTokenGenerator> = Single.create { emitter ->
-            runOnMainThread(emitter) {
-                val potWv = PoTokenWebView(context, emitter)
-                potWv.loadHtmlAndObtainBotguard(context)
-                emitter.setDisposable(potWv.disposables)
+        override suspend fun newPoTokenGenerator(context: Context): PoTokenGenerator {
+            val deferred = CompletableDeferred<PoTokenGenerator>()
+            withContext(Dispatchers.Main) {
+                try {
+                    val potWv = PoTokenWebView(context, deferred)
+                    potWv.loadHtmlAndObtainBotguard(context)
+                } catch (e: Throwable) {
+                    deferred.completeExceptionally(e)
+                }
             }
+            return deferred.await()
         }
 
-        /**
-         * Runs [runnable] on the main thread using `Handler(Looper.getMainLooper()).post()`, and
-         * if the `post` fails emits an error on [emitterIfPostFails].
-         */
-        private fun runOnMainThread(
-            emitterIfPostFails: SingleEmitter<out Any>,
-            runnable: Runnable
-        ) {
-            if (!Handler(Looper.getMainLooper()).post(runnable)) {
-                emitterIfPostFails.onError(PoTokenException("Could not run on main thread"))
-            }
-        }
+
     }
 }

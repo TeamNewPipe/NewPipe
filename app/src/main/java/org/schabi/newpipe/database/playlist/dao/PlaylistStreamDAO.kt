@@ -10,7 +10,7 @@ import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.RewriteQueriesToDropUnusedColumns
 import androidx.room.Transaction
-import io.reactivex.rxjava3.core.Flowable
+import kotlinx.coroutines.flow.Flow
 import org.schabi.newpipe.database.BasicDAO
 import org.schabi.newpipe.database.playlist.PlaylistDuplicatesEntry
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry
@@ -22,20 +22,20 @@ import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity
 interface PlaylistStreamDAO : BasicDAO<PlaylistStreamEntity> {
 
     @Query("SELECT * FROM playlist_stream_join")
-    override fun getAll(): Flowable<List<PlaylistStreamEntity>>
+    override fun getAll(): Flow<List<PlaylistStreamEntity>>
 
     @Query("DELETE FROM playlist_stream_join")
-    override fun deleteAll(): Int
+    override suspend fun deleteAll(): Int
 
-    override fun listByService(serviceId: Int): Flowable<List<PlaylistStreamEntity>> {
+    override fun listByService(serviceId: Int): Flow<List<PlaylistStreamEntity>> {
         throw UnsupportedOperationException()
     }
 
     @Query("DELETE FROM playlist_stream_join WHERE playlist_id = :playlistId")
-    fun deleteBatch(playlistId: Long)
+    suspend fun deleteBatch(playlistId: Long)
 
     @Query("SELECT COALESCE(MAX(join_index), -1) FROM playlist_stream_join WHERE playlist_id = :playlistId")
-    fun getMaximumIndexOf(playlistId: Long): Flowable<Int>
+    fun getMaximumIndexOf(playlistId: Long): Flow<Int>
 
     @Query(
         """
@@ -48,7 +48,7 @@ interface PlaylistStreamDAO : BasicDAO<PlaylistStreamEntity> {
         WHERE playlist_id = :playlistId LIMIT 1
         """
     )
-    fun getAutomaticThumbnailStreamId(playlistId: Long): Flowable<Long>
+    fun getAutomaticThumbnailStreamId(playlistId: Long): Flow<Long>
 
     // get ids of streams of the given playlist then merge with the stream metadata
     @RewriteQueriesToDropUnusedColumns
@@ -66,7 +66,7 @@ interface PlaylistStreamDAO : BasicDAO<PlaylistStreamEntity> {
         ORDER BY join_index ASC
         """
     )
-    fun getOrderedStreamsOf(playlistId: Long): Flowable<MutableList<PlaylistStreamEntry>>
+    fun getOrderedStreamsOf(playlistId: Long): Flow<List<PlaylistStreamEntry>>
 
     // If a playlist has no streams, there won’t be any rows in the **playlist_stream_join** table
     // that have a foreign key to that playlist. Thus, the **playlist_id** will not have a
@@ -88,7 +88,7 @@ interface PlaylistStreamDAO : BasicDAO<PlaylistStreamEntity> {
         ORDER BY display_index
         """
     )
-    fun getPlaylistMetadata(): Flowable<MutableList<PlaylistMetadataEntry>>
+    fun getPlaylistMetadata(): Flow<List<PlaylistMetadataEntry>>
 
     @RewriteQueriesToDropUnusedColumns
     @Transaction
@@ -106,7 +106,7 @@ interface PlaylistStreamDAO : BasicDAO<PlaylistStreamEntity> {
         ORDER BY MIN(join_index) ASC
         """
     )
-    fun getStreamsWithoutDuplicates(playlistId: Long): Flowable<MutableList<PlaylistStreamEntry>>
+    fun getStreamsWithoutDuplicates(playlistId: Long): Flow<List<PlaylistStreamEntry>>
 
     // If a playlist has no streams, there won’t be any rows in the **playlist_stream_join** table
     // that have a foreign key to that playlist. Thus, the **playlist_id** will not have a
@@ -132,5 +132,5 @@ interface PlaylistStreamDAO : BasicDAO<PlaylistStreamEntity> {
         ORDER BY display_index, name
         """
     )
-    fun getPlaylistDuplicatesMetadata(streamUrl: String): Flowable<MutableList<PlaylistDuplicatesEntry>>
+    fun getPlaylistDuplicatesMetadata(streamUrl: String): Flow<List<PlaylistDuplicatesEntry>>
 }

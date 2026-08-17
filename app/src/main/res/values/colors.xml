@@ -49,6 +49,19 @@
     <color name="black_card_item_contrast_color">#202020</color>
     <color name="black_border_color">#25FFFFFF</color>
 
+    <!-- YouTube Colors -->
+    <color name="youtube_red">#FF0000</color>
+    <color name="youtube_white">#FFFFFF</color>
+    <color name="youtube_black">#000000</color>
+    <color name="youtube_dark_background">#0F0F0F</color>
+    <color name="youtube_dark_surface">#212121</color>
+    <color name="youtube_dark_on_surface">#FFFFFF</color>
+    <color name="youtube_dark_on_surface_variant">#AAAAAA</color>
+    <color name="youtube_light_background">#FFFFFF</color>
+    <color name="youtube_light_surface">#F2F2F2</color>
+    <color name="youtube_light_on_surface">#0F0F0F</color>
+    <color name="youtube_light_on_surface_variant">#606060</color>
+
     <!-- Miscellaneous -->
     <color name="queue_background_color">@color/dark_queue_background_color</color>
     <color name="drawer_header_font_color">#F2FFFFFF</color>

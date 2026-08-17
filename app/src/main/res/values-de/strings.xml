@@ -123,7 +123,7 @@
     <string name="subscribed_button_title">Abonniert</string>
     <string name="channel_unsubscribed">Kanal deabonniert</string>
     <string name="tab_subscriptions">Abonnements</string>
-    <string name="fragment_feed_title">Neuigkeiten</string>
+    <string name="feed_title">Neuigkeiten</string>
     <string name="enable_search_history_title">Suchverlauf</string>
     <string name="enable_search_history_summary">Suchanfragen lokal speichern</string>
     <string name="enable_watch_history_title">Verlauf ansehen</string>

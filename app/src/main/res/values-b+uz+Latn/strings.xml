@@ -366,7 +366,7 @@
     <string name="feed_subscription_not_loaded_count">Yuklanmadi: %d</string>
     <string name="feed_oldest_subscription_update">Oxirgi yangilanish: %s</string>
     <string name="feed_groups_header_title">Kanal guruhlari</string>
-    <string name="fragment_feed_title">Nima yangiliklar</string>
+    <string name="feed_title">Nima yangiliklar</string>
     <plurals name="days">
         <item quantity="one">%d kun</item>
         <item quantity="other">%d kunlar</item>

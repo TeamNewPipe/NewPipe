@@ -6,9 +6,8 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
-import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.core.Flowable
 import java.time.OffsetDateTime
+import kotlinx.coroutines.flow.Flow
 import org.schabi.newpipe.database.BasicDAO
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_ID
@@ -18,25 +17,25 @@ import org.schabi.newpipe.util.StreamTypeUtil
 @Dao
 abstract class StreamDAO : BasicDAO<StreamEntity> {
     @Query("SELECT * FROM streams")
-    abstract override fun getAll(): Flowable<List<StreamEntity>>
+    abstract override fun getAll(): Flow<List<StreamEntity>>
 
     @Query("DELETE FROM streams")
-    abstract override fun deleteAll(): Int
+    abstract override suspend fun deleteAll(): Int
 
     @Query("SELECT * FROM streams WHERE service_id = :serviceId")
-    abstract override fun listByService(serviceId: Int): Flowable<List<StreamEntity>>
+    abstract override fun listByService(serviceId: Int): Flow<List<StreamEntity>>
 
     @Query("SELECT * FROM streams WHERE url = :url AND service_id = :serviceId")
-    abstract fun getStream(serviceId: Long, url: String): Flowable<List<StreamEntity>>
+    abstract fun getStream(serviceId: Long, url: String): Flow<List<StreamEntity>>
 
     @Query("UPDATE streams SET uploader_url = :uploaderUrl WHERE url = :url AND service_id = :serviceId")
-    abstract fun setUploaderUrl(serviceId: Long, url: String, uploaderUrl: String): Completable
+    abstract suspend fun setUploaderUrl(serviceId: Long, url: String, uploaderUrl: String)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    internal abstract fun silentInsertInternal(stream: StreamEntity): Long
+    internal abstract suspend fun silentInsertInternal(stream: StreamEntity): Long
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    internal abstract fun silentInsertAllInternal(streams: List<StreamEntity>): List<Long>
+    internal abstract suspend fun silentInsertAllInternal(streams: List<StreamEntity>): List<Long>
 
     @Query("SELECT COUNT(*) != 0 FROM streams WHERE url = :url AND service_id = :serviceId")
     internal abstract fun exists(serviceId: Int, url: String): Boolean
@@ -50,7 +49,7 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
     internal abstract fun getMinimalStreamForCompare(serviceId: Int, url: String): StreamCompareFeed?
 
     @Transaction
-    open fun upsert(newerStream: StreamEntity): Long {
+    open suspend fun upsert(newerStream: StreamEntity): Long {
         val uid = silentInsertInternal(newerStream)
 
         if (uid != -1L) {
@@ -65,7 +64,7 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
     }
 
     @Transaction
-    open fun upsertAll(streams: List<StreamEntity>): List<Long> {
+    open suspend fun upsertAll(streams: List<StreamEntity>): List<Long> {
         val insertUidList = silentInsertAllInternal(streams)
 
         val streamIds = ArrayList<Long>(streams.size)
@@ -121,7 +120,7 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
         WHERE f.stream_id = streams.uid)
         """
     )
-    abstract fun deleteOrphans(): Int
+    abstract suspend fun deleteOrphans(): Int
 
     /**
      * Minimal entry class used when comparing/updating an existent stream.

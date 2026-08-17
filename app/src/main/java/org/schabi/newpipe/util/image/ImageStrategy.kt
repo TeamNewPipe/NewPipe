@@ -12,8 +12,8 @@ import org.schabi.newpipe.extractor.Image.ResolutionLevel
 object ImageStrategy {
     // when preferredImageQuality is LOW or MEDIUM, images are sorted by how close their preferred
     // image quality is to these values (H stands for "Height")
-    private const val BEST_LOW_H = 75
-    private const val BEST_MEDIUM_H = 250
+    private const val BEST_LOW_H = 360
+    private const val BEST_MEDIUM_H = 720
 
     private var preferredImageQuality = PreferredImageQuality.MEDIUM
 

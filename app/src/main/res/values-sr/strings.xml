@@ -103,7 +103,7 @@
     <string name="subscribed_button_title">Пратите</string>
     <string name="subscribe_button_title">Запрати</string>
     <string name="tab_subscriptions">Праћења</string>
-    <string name="fragment_feed_title">Шта је ново</string>
+    <string name="feed_title">Шта је ново</string>
     <string name="enable_search_history_title">Историја претраге</string>
     <string name="enable_search_history_summary">Локално чувајте упите за претрагу</string>
     <string name="enable_watch_history_title">Историја гледања</string>

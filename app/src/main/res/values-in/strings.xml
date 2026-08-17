@@ -119,7 +119,7 @@
     <string name="contribution_title">Kontribusi</string>
     <string name="subscribe_button_title">Berlanggan</string>
     <string name="subscribed_button_title">Dilanggani</string>
-    <string name="fragment_feed_title">Apa Yang Baru</string>
+    <string name="feed_title">Apa Yang Baru</string>
     <string name="resume_on_audio_focus_gain_title">Lanjutkan pemutaran</string>
     <string name="resume_on_audio_focus_gain_summary">Melanjutkan pemutaran setelah interupsi (mis. panggilan telepon)</string>
     <string name="enable_search_history_title">Riwayat pencarian</string>

@@ -123,7 +123,7 @@
     <string name="subscription_change_failed">Nie udało się zmienić subskrypcji</string>
     <string name="subscription_update_failed">Nie udało się zaktualizować subskrypcji</string>
     <string name="tab_subscriptions">Subskrypcje</string>
-    <string name="fragment_feed_title">Co nowego</string>
+    <string name="feed_title">Co nowego</string>
     <string name="enable_search_history_title">Historia wyszukiwania</string>
     <string name="enable_search_history_summary">Przechowuj lokalnie historię wyszukiwania</string>
     <string name="enable_watch_history_title">Historia oglądania</string>

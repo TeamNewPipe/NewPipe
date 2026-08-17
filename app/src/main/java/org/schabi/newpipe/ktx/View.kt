@@ -268,15 +268,7 @@ fun View.slideUp(
         .start()
 }
 
-/**
- * Instead of hiding normally using [animate], which would make
- * the recycler view unable to capture touches after being hidden, this just animates the alpha
- * value setting it to `0.0` after `200` milliseconds.
- */
-fun View.animateHideRecyclerViewAllowingScrolling() {
-    // not hiding normally because the view needs to still capture touches and allow scroll
-    animate().alpha(0.0f).setDuration(200).start()
-}
+
 
 private open class ExecOnEndListener(private val execOnEnd: Runnable?) : AnimatorListenerAdapter() {
     override fun onAnimationEnd(animation: Animator) {

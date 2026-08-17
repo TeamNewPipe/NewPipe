@@ -141,7 +141,7 @@
     <string name="error_ssl_exception">ᱥᱤᱠᱷᱱᱟᱹᱛ ᱡᱚᱱᱚᱲᱟᱣ ᱵᱟᱭ ᱛᱮᱭᱟᱨ ᱫᱟᱲᱮᱭᱟᱜ ᱠᱟᱱᱟ</string>
     <string name="downloads_storage_ask_title">ᱡᱟᱦᱟᱸ ᱨᱮ ᱰᱟᱩᱱᱞᱚᱰ ᱢᱮ</string>
     <string name="new_seek_duration_toast">ᱮᱠᱥᱳᱯᱞᱮᱭᱟᱨ ᱞᱟᱹᱠᱛᱤᱭᱟᱜ ᱞᱟᱹᱠᱛᱤᱭᱟᱜ ᱞᱟᱹᱠᱛᱤᱭᱟᱜ ᱚᱠᱛᱚ %d ᱥᱮᱠᱮᱱᱰ ᱨᱮ ᱞᱟᱜᱟᱣ ᱟᱠᱟᱱᱟ</string>
-    <string name="fragment_feed_title">ᱪᱮᱫ ᱱᱟᱣᱟ</string>
+    <string name="feed_title">ᱪᱮᱫ ᱱᱟᱣᱟ</string>
     <string name="selected_stream_external_player_not_supported">ᱵᱟᱦᱨᱮ ᱠᱷᱮᱞᱚᱸᱰᱤᱭᱟᱹᱠᱚ ᱵᱟᱠᱚ ᱥᱚᱦᱚᱫ ᱟᱠᱟᱫ ᱪᱷᱟᱸᱪ</string>
     <string name="no_audio_streams_available_for_external_players">ᱵᱟᱦᱨᱮ ᱯᱞᱮᱭᱟᱨ ᱞᱟᱹᱜᱤᱫ ᱚᱰᱤᱭᱚ ᱥᱴᱨᱤᱢ ᱵᱟᱭ ᱧᱟᱢᱚᱜ ᱠᱟᱱᱟ</string>
     <string name="audio_track_type_original">ᱚᱥᱚᱞ</string>

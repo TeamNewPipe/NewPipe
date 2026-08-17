@@ -9,7 +9,7 @@ package org.schabi.newpipe.database.history.dao
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.RewriteQueriesToDropUnusedColumns
-import io.reactivex.rxjava3.core.Flowable
+import kotlinx.coroutines.flow.Flow
 import org.schabi.newpipe.database.BasicDAO
 import org.schabi.newpipe.database.history.model.StreamHistoryEntity
 import org.schabi.newpipe.database.history.model.StreamHistoryEntry
@@ -19,26 +19,26 @@ import org.schabi.newpipe.database.stream.StreamStatisticsEntry
 abstract class StreamHistoryDAO : BasicDAO<StreamHistoryEntity> {
 
     @Query("SELECT * FROM stream_history")
-    abstract override fun getAll(): Flowable<List<StreamHistoryEntity>>
+    abstract override fun getAll(): Flow<List<StreamHistoryEntity>>
 
     @Query("DELETE FROM stream_history")
-    abstract override fun deleteAll(): Int
+    abstract override suspend fun deleteAll(): Int
 
-    override fun listByService(serviceId: Int): Flowable<List<StreamHistoryEntity>> {
+    override fun listByService(serviceId: Int): Flow<List<StreamHistoryEntity>> {
         throw UnsupportedOperationException()
     }
 
-    @get:Query("SELECT * FROM streams INNER JOIN stream_history ON uid = stream_id ORDER BY access_date DESC")
-    abstract val history: Flowable<MutableList<StreamHistoryEntry>>
+    @Query("SELECT * FROM streams INNER JOIN stream_history ON uid = stream_id ORDER BY access_date DESC")
+    abstract fun getHistory(): Flow<List<StreamHistoryEntry>>
 
-    @get:Query("SELECT * FROM streams INNER JOIN stream_history ON uid = stream_id ORDER BY uid ASC")
-    abstract val historySortedById: Flowable<MutableList<StreamHistoryEntry>>
+    @Query("SELECT * FROM streams INNER JOIN stream_history ON uid = stream_id ORDER BY uid ASC")
+    abstract fun getHistorySortedById(): Flow<List<StreamHistoryEntry>>
 
     @Query("SELECT * FROM stream_history WHERE stream_id = :streamId ORDER BY access_date DESC LIMIT 1")
-    abstract fun getLatestEntry(streamId: Long): StreamHistoryEntity?
+    abstract suspend fun getLatestEntry(streamId: Long): StreamHistoryEntity?
 
     @Query("DELETE FROM stream_history WHERE stream_id = :streamId")
-    abstract fun deleteStreamHistory(streamId: Long): Int
+    abstract suspend fun deleteStreamHistory(streamId: Long): Int
 
     // Select the latest entry and watch count for each stream id on history table
     @RewriteQueriesToDropUnusedColumns
@@ -57,5 +57,5 @@ abstract class StreamHistoryDAO : BasicDAO<StreamHistoryEntity> {
         ON uid = stream_id_alias
         """
     )
-    abstract fun getStatistics(): Flowable<MutableList<StreamStatisticsEntry>>
+    abstract fun getStatistics(): Flow<List<StreamStatisticsEntry>>
 }

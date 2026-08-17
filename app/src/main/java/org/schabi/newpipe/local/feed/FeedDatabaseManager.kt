@@ -2,15 +2,11 @@ package org.schabi.newpipe.local.feed
 
 import android.content.Context
 import android.util.Log
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.core.Maybe
-import io.reactivex.rxjava3.schedulers.Schedulers
 import java.time.LocalDate
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
-import org.schabi.newpipe.MainActivity.DEBUG
+import kotlinx.coroutines.flow.Flow
+import org.schabi.newpipe.DebugConstants.DEBUG
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.database.feed.model.FeedEntity
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
@@ -18,6 +14,7 @@ import org.schabi.newpipe.database.feed.model.FeedLastUpdatedEntity
 import org.schabi.newpipe.database.stream.StreamWithState
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.subscription.NotificationMode
+import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.local.subscription.FeedGroupIcon
@@ -36,16 +33,16 @@ class FeedDatabaseManager(context: Context) {
             .atStartOfDay().atOffset(ZoneOffset.UTC)
     }
 
-    fun groups() = feedGroupTable.getAll()
+    fun groups(): Flow<List<FeedGroupEntity>> = feedGroupTable.getAll()
 
     fun database() = database
 
-    fun getStreams(
+    suspend fun getStreams(
         groupId: Long,
         includePlayedStreams: Boolean,
         includePartiallyPlayedStreams: Boolean,
         includeFutureStreams: Boolean
-    ): Maybe<List<StreamWithState>> {
+    ): List<StreamWithState> {
         return feedTable.getStreams(
             groupId,
             includePlayedStreams,
@@ -54,14 +51,14 @@ class FeedDatabaseManager(context: Context) {
         )
     }
 
-    fun outdatedSubscriptions(outdatedThreshold: OffsetDateTime) = feedTable.getAllOutdated(outdatedThreshold)
+    fun outdatedSubscriptions(outdatedThreshold: OffsetDateTime): Flow<List<SubscriptionEntity>> = feedTable.getAllOutdated(outdatedThreshold)
 
     fun outdatedSubscriptionsWithNotificationMode(
         outdatedThreshold: OffsetDateTime,
         @NotificationMode notificationMode: Int
-    ) = feedTable.getOutdatedWithNotificationMode(outdatedThreshold, notificationMode)
+    ): Flow<List<SubscriptionEntity>> = feedTable.getOutdatedWithNotificationMode(outdatedThreshold, notificationMode)
 
-    fun notLoadedCount(groupId: Long = FeedGroupEntity.GROUP_ALL_ID): Flowable<Long> {
+    fun notLoadedCount(groupId: Long = FeedGroupEntity.GROUP_ALL_ID): Flow<Long> {
         return when (groupId) {
             FeedGroupEntity.GROUP_ALL_ID -> feedTable.notLoadedCount()
             else -> feedTable.notLoadedCountForGroup(groupId)
@@ -71,16 +68,16 @@ class FeedDatabaseManager(context: Context) {
     fun outdatedSubscriptionsForGroup(
         groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
         outdatedThreshold: OffsetDateTime
-    ) = feedTable.getAllOutdatedForGroup(groupId, outdatedThreshold)
+    ): Flow<List<SubscriptionEntity>> = feedTable.getAllOutdatedForGroup(groupId, outdatedThreshold)
 
-    fun markAsOutdated(subscriptionId: Long) = feedTable
+    suspend fun markAsOutdated(subscriptionId: Long) = feedTable
         .setLastUpdatedForSubscription(FeedLastUpdatedEntity(subscriptionId, null))
 
     fun doesStreamExist(stream: StreamInfoItem): Boolean {
         return streamTable.exists(stream.serviceId, stream.url)
     }
 
-    fun upsertAll(
+    suspend fun upsertAll(
         subscriptionId: Long,
         items: List<StreamInfoItem>,
         oldestAllowedDate: OffsetDateTime = FEED_OLDEST_ALLOWED_DATE
@@ -110,12 +107,12 @@ class FeedDatabaseManager(context: Context) {
         )
     }
 
-    fun removeOrphansOrOlderStreams(oldestAllowedDate: OffsetDateTime = FEED_OLDEST_ALLOWED_DATE) {
+    suspend fun removeOrphansOrOlderStreams(oldestAllowedDate: OffsetDateTime = FEED_OLDEST_ALLOWED_DATE) {
         feedTable.unlinkStreamsOlderThan(oldestAllowedDate)
         streamTable.deleteOrphans()
     }
 
-    fun clear() {
+    suspend fun clear() {
         feedTable.deleteAll()
         val deletedOrphans = streamTable.deleteOrphans()
         if (DEBUG) {
@@ -130,53 +127,37 @@ class FeedDatabaseManager(context: Context) {
     // Feed Groups
     // /////////////////////////////////////////////////////////////////////////
 
-    fun subscriptionIdsForGroup(groupId: Long): Flowable<List<Long>> {
+    fun subscriptionIdsForGroup(groupId: Long): Flow<List<Long>> {
         return feedGroupTable.getSubscriptionIdsFor(groupId)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun updateSubscriptionsForGroup(groupId: Long, subscriptionIds: List<Long>): Completable {
-        return Completable
-            .fromCallable { feedGroupTable.updateSubscriptionsForGroup(groupId, subscriptionIds) }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+    suspend fun updateSubscriptionsForGroup(groupId: Long, subscriptionIds: List<Long>) {
+        feedGroupTable.updateSubscriptionsForGroup(groupId, subscriptionIds)
     }
 
-    fun createGroup(name: String, icon: FeedGroupIcon): Maybe<Long> {
-        return Maybe.fromCallable { feedGroupTable.insert(FeedGroupEntity(0, name, icon)) }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+    suspend fun createGroup(name: String, icon: FeedGroupIcon): Long {
+        return feedGroupTable.insert(FeedGroupEntity(0, name, icon))
     }
 
-    fun getGroup(groupId: Long): Maybe<FeedGroupEntity> {
+    suspend fun getGroup(groupId: Long): FeedGroupEntity? {
         return feedGroupTable.getGroup(groupId)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun updateGroup(feedGroupEntity: FeedGroupEntity): Completable {
-        return Completable.fromCallable { feedGroupTable.update(feedGroupEntity) }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+    suspend fun updateGroup(feedGroupEntity: FeedGroupEntity): Int {
+        return feedGroupTable.update(feedGroupEntity)
     }
 
-    fun deleteGroup(groupId: Long): Completable {
-        return Completable.fromCallable { feedGroupTable.delete(groupId) }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+    suspend fun deleteGroup(groupId: Long): Int {
+        return feedGroupTable.delete(groupId)
     }
 
-    fun updateGroupsOrder(groupIdList: List<Long>): Completable {
+    suspend fun updateGroupsOrder(groupIdList: List<Long>) {
         var index = 0L
         val orderMap = groupIdList.associateBy({ it }, { index++ })
-
-        return Completable.fromCallable { feedGroupTable.updateOrder(orderMap) }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+        feedGroupTable.updateOrder(orderMap)
     }
 
-    fun oldestSubscriptionUpdate(groupId: Long): Flowable<List<OffsetDateTime?>> {
+    fun oldestSubscriptionUpdate(groupId: Long): Flow<List<OffsetDateTime?>> {
         return when (groupId) {
             FeedGroupEntity.GROUP_ALL_ID -> feedTable.oldestSubscriptionUpdateFromAll()
             else -> feedTable.oldestSubscriptionUpdate(groupId)

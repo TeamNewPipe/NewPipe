@@ -7,6 +7,11 @@ import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.widget.Spinner
 import androidx.collection.SparseArrayCompat
+import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsNotDisplayed
+import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.MediumTest
@@ -17,9 +22,9 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.MediaFormat
 import org.schabi.newpipe.extractor.downloader.Response
 import org.schabi.newpipe.extractor.stream.AudioStream
@@ -31,6 +36,9 @@ import org.schabi.newpipe.util.StreamItemAdapter.StreamInfoWrapper
 @MediumTest
 @RunWith(AndroidJUnit4::class)
 class StreamItemAdapterTest {
+    @get:Rule
+    val composeTestRule = createComposeRule()
+
     private lateinit var context: Context
     private lateinit var spinner: Spinner
 
@@ -303,20 +311,33 @@ class StreamItemAdapterTest {
         normalVisibility: Int,
         dropDownVisibility: Int
     ) {
-        spinner.setSelection(position)
-        spinner.adapter.getView(position, null, spinner).run {
-            Assert.assertEquals(
-                "normal visibility (pos=[$position]) is not correct",
-                findViewById<View>(R.id.wo_sound_icon).visibility,
-                normalVisibility
-            )
+        UiThreadStatement.runOnUiThread {
+            spinner.setSelection(position)
         }
-        spinner.adapter.getDropDownView(position, null, spinner).run {
-            Assert.assertEquals(
-                "drop down visibility (pos=[$position]) is not correct",
-                findViewById<View>(R.id.wo_sound_icon).visibility,
-                dropDownVisibility
-            )
+
+        val normalView = spinner.adapter.getView(position, null, spinner)
+        checkComposeVisibility(normalView, normalVisibility)
+
+        val dropDownView = spinner.adapter.getDropDownView(position, null, spinner)
+        checkComposeVisibility(dropDownView, dropDownVisibility)
+    }
+
+    private fun checkComposeVisibility(view: View, expectedVisibility: Int) {
+        composeTestRule.setContent {
+            AndroidView(factory = { view })
+        }
+
+        when (expectedVisibility) {
+            VISIBLE -> {
+                composeTestRule.onNodeWithTag("wo_sound_icon").assertExists().assertIsDisplayed()
+            }
+            INVISIBLE -> {
+                // In Compose, INVISIBLE means it exists but is hidden (e.g. alpha 0)
+                composeTestRule.onNodeWithTag("wo_sound_icon").assertExists().assertIsNotDisplayed()
+            }
+            GONE -> {
+                composeTestRule.onNodeWithTag("wo_sound_icon").assertDoesNotExist()
+            }
         }
     }
 

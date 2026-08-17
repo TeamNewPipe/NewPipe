@@ -367,7 +367,7 @@
     <plurals name="days">
         <item quantity="other">%d 日</item>
     </plurals>
-    <string name="fragment_feed_title">有咩新嘢</string>
+    <string name="feed_title">有咩新嘢</string>
     <plurals name="seconds">
         <item quantity="other">%d 秒</item>
     </plurals>

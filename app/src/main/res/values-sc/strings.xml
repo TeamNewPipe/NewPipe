@@ -266,7 +266,7 @@
     <string name="feed_subscription_not_loaded_count">Non carrigadas: %d</string>
     <string name="feed_oldest_subscription_update">Ùrtimu agiornamentu de sa fonte (feed): %s</string>
     <string name="feed_groups_header_title">Grupos de canales</string>
-    <string name="fragment_feed_title">Ite b\'at de nou</string>
+    <string name="feed_title">Ite b\'at de nou</string>
     <plurals name="days">
         <item quantity="one">%d dies</item>
         <item quantity="other">%d die</item>

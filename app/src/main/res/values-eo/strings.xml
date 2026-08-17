@@ -67,7 +67,7 @@
     <string name="show_info">Montri informojn</string>
     <string name="tab_subscriptions">Abonoj</string>
     <string name="tab_bookmarks">Konservitaj ludlistoj</string>
-    <string name="fragment_feed_title">Kio novas</string>
+    <string name="feed_title">Kio novas</string>
     <string name="controls_background_title">Fono</string>
     <string name="controls_popup_title">Ŝprucfenestro</string>
     <string name="controls_add_to_playlist_title">Aldonu al</string>

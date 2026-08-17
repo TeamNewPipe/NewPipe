@@ -9,34 +9,36 @@ package org.schabi.newpipe.database
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.Query
 import androidx.room.Update
-import io.reactivex.rxjava3.core.Flowable
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface BasicDAO<Entity> {
 
     /* Inserts */
     @Insert
-    fun insert(entity: Entity): Long
+    suspend fun insert(entity: Entity): Long
 
     @Insert
-    fun insertAll(entities: Collection<Entity>): List<Long>
+    suspend fun insertAll(entities: Collection<Entity>): List<Long>
 
     /* Searches */
-    fun getAll(): Flowable<List<Entity>>
+    fun getAll(): Flow<List<Entity>>
 
-    fun listByService(serviceId: Int): Flowable<List<Entity>>
+    fun listByService(serviceId: Int): Flow<List<Entity>>
 
     /* Deletes */
     @Delete
-    fun delete(entity: Entity)
+    suspend fun delete(entity: Entity)
 
-    fun deleteAll(): Int
+    @Query("") // This is a placeholder as BasicDAO is generic, but subclasses override it
+    suspend fun deleteAll(): Int
 
     /* Updates */
     @Update
-    fun update(entity: Entity): Int
+    suspend fun update(entity: Entity): Int
 
     @Update
-    fun update(entities: Collection<Entity>)
+    suspend fun update(entities: Collection<Entity>)
 }

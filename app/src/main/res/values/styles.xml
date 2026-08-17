@@ -155,4 +155,21 @@
 
     <style name="RouterActivityThemeDark" parent="Base.RouterActivityThemeDark" />
 
+    <!-- File Picker Themes -->
+    <style name="FilePickerThemeLight" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowBackground">@color/youtube_light_background</item>
+        <item name="colorPrimary">@color/youtube_red</item>
+        <item name="colorOnSurface">@color/youtube_light_on_surface</item>
+        <item name="colorOnSurfaceVariant">@color/youtube_light_on_surface_variant</item>
+        <item name="android:textColorPrimary">@color/youtube_light_on_surface</item>
+    </style>
+
+    <style name="FilePickerThemeDark" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:windowBackground">@color/youtube_dark_background</item>
+        <item name="colorPrimary">@color/youtube_red</item>
+        <item name="colorOnSurface">@color/youtube_dark_on_surface</item>
+        <item name="colorOnSurfaceVariant">@color/youtube_dark_on_surface_variant</item>
+        <item name="android:textColorPrimary">@color/youtube_dark_on_surface</item>
+    </style>
+
 </resources>

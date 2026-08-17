@@ -107,7 +107,7 @@
     <string name="subscription_change_failed">Nu s-a putut modifica abonamentul</string>
     <string name="subscription_update_failed">Nu s-a putut actualiza abonamentul</string>
     <string name="tab_subscriptions">Abonamente</string>
-    <string name="fragment_feed_title">Noutăți</string>
+    <string name="feed_title">Noutăți</string>
     <string name="enable_search_history_title">Istoric de căutări</string>
     <string name="enable_search_history_summary">Stochează local căutările</string>
     <string name="enable_watch_history_title">Istoricul vizionărilor</string>

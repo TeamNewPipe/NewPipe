@@ -1500,7 +1500,7 @@
     <string name="image_quality_low_key">image_quality_low</string>
     <string name="image_quality_medium_key">image_quality_medium</string>
     <string name="image_quality_high_key">image_quality_high</string>
-    <string name="image_quality_default">@string/image_quality_medium_key</string>
+    <string name="image_quality_default">@string/image_quality_high_key</string>
     <string-array name="image_quality_description">
         <item>@string/image_quality_none</item>
         <item>@string/image_quality_low</item>

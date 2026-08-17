@@ -3,9 +3,9 @@ package org.schabi.newpipe.database
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import io.reactivex.rxjava3.core.Single
 import java.io.IOException
 import java.time.OffsetDateTime
+import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
@@ -68,7 +68,7 @@ class FeedDAOTest {
     }
 
     @Test
-    fun testUnlinkStreamsOlderThan_KeepOne() {
+    fun testUnlinkStreamsOlderThan_KeepOne() = runTest {
         setupUnlinkDelete("2023-08-15T00:00:00Z")
         val streams = feedDAO.getStreams(
             FeedGroupEntity.GROUP_ALL_ID,
@@ -76,13 +76,12 @@ class FeedDAOTest {
             includePartiallyPlayed = true,
             null
         )
-            .blockingGet()
         val allowedStreams = listOf(stream3, stream5, stream6, stream7)
         assertEqual(streams, allowedStreams)
     }
 
     @Test
-    fun testUnlinkStreamsOlderThan_KeepMultiple() {
+    fun testUnlinkStreamsOlderThan_KeepMultiple() = runTest {
         setupUnlinkDelete("2023-08-01T00:00:00Z")
         val streams = feedDAO.getStreams(
             FeedGroupEntity.GROUP_ALL_ID,
@@ -90,7 +89,6 @@ class FeedDAOTest {
             includePartiallyPlayed = true,
             null
         )
-            .blockingGet()
         val allowedStreams = listOf(stream3, stream4, stream5, stream6, stream7)
         assertEqual(streams, allowedStreams)
     }
@@ -106,14 +104,10 @@ class FeedDAOTest {
         )
     }
 
-    private fun setupUnlinkDelete(time: String) {
+    private suspend fun setupUnlinkDelete(time: String) {
         clearAndFillTables()
-        Single.fromCallable {
-            feedDAO.unlinkStreamsOlderThan(OffsetDateTime.parse(time))
-        }.blockingSubscribe()
-        Single.fromCallable {
-            streamDAO.deleteOrphans()
-        }.blockingSubscribe()
+        feedDAO.unlinkStreamsOlderThan(OffsetDateTime.parse(time))
+        streamDAO.deleteOrphans()
     }
 
     private fun clearAndFillTables() {

@@ -2,7 +2,7 @@
 <resources>
     <string name="feed_create_new_group_button_title">নতুন</string>
     <string name="feed_notification_loading">ফিড লোড হচ্ছে…</string>
-    <string name="fragment_feed_title">কি নতুন</string>
+    <string name="feed_title">কি নতুন</string>
     <string name="app_language_title">অ্যাপ এর ভাষা</string>
     <string name="pause_downloads">ডাউনলোড পজ করুন</string>
     <string name="start_downloads">ডাউনলোড শুরু করুন</string>

@@ -2,11 +2,13 @@ package org.schabi.newpipe.error
 
 import android.content.Context
 import android.os.Parcelable
+import androidx.annotation.OptIn
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
-import com.google.android.exoplayer2.ExoPlaybackException
-import com.google.android.exoplayer2.upstream.HttpDataSource
-import com.google.android.exoplayer2.upstream.Loader
+import androidx.media3.common.util.UnstableApi
+import androidx.media3.datasource.HttpDataSource
+import androidx.media3.exoplayer.ExoPlaybackException
+import androidx.media3.exoplayer.upstream.Loader
 import java.net.UnknownHostException
 import kotlinx.parcelize.Parcelize
 import org.schabi.newpipe.R
@@ -108,11 +110,10 @@ class ErrorInfo private constructor(
         request: String,
         serviceId: Int?,
         @StringRes message: Int
-    ) :
-        this(
-            stackTraces, userAction, request, serviceId, ErrorMessage(message),
-            true, false, null, null
-        )
+    ) : this(
+        stackTraces, userAction, request, serviceId, ErrorMessage(message),
+        true, false, null, null
+    )
 
     // constructor with only one throwable to extract service id and openInBrowserUrl from an Info
     constructor(
@@ -120,8 +121,7 @@ class ErrorInfo private constructor(
         userAction: UserAction,
         request: String,
         info: Info?
-    ) :
-        this(throwable, userAction, request, info?.serviceId, info?.url)
+    ) : this(throwable, userAction, request, info?.serviceId, info?.url)
 
     // constructor with multiple throwables to extract service id and openInBrowserUrl from an Info
     constructor(
@@ -129,8 +129,7 @@ class ErrorInfo private constructor(
         userAction: UserAction,
         request: String,
         info: Info?
-    ) :
-        this(throwables, userAction, request, info?.serviceId, info?.url)
+    ) : this(throwables, userAction, request, info?.serviceId, info?.url)
 
     fun getServiceName(): String {
         return getServiceName(serviceId)
@@ -155,7 +154,7 @@ class ErrorInfo private constructor(
                 } else {
                     // ContextCompat.getString() with formatArgs does not exist, so we just
                     // replicate its source code but with formatArgs
-                    ctx.resources.getText(stringRes, *formatArgs)
+                    ctx.getString(stringRes, *formatArgs)
                 }
             }
         }
@@ -164,15 +163,18 @@ class ErrorInfo private constructor(
 
         const val YOUTUBE_IP_BAN_FAQ_URL = "https://newpipe.net/FAQ/#ip-banned-youtube"
 
-        private fun getServiceName(serviceId: Int?) = // not using getNameOfServiceById since we want to accept a nullable serviceId and we
+        private fun getServiceName(serviceId: Int?) =
+        // not using getNameOfServiceById since we want to accept a nullable serviceId and we
             // want to default to SERVICE_NONE
             ServiceList.all().firstOrNull { it.serviceId == serviceId }?.serviceInfo?.name
                 ?: SERVICE_NONE
 
         fun throwableToStringList(throwable: Throwable) = arrayOf(throwable.stackTraceToString())
 
-        fun throwableListToStringList(throwableList: List<Throwable>) = throwableList.map { it.stackTraceToString() }.toTypedArray()
+        fun throwableListToStringList(throwableList: List<Throwable>) =
+            throwableList.map { it.stackTraceToString() }.toTypedArray()
 
+        @OptIn(UnstableApi::class)
         fun getMessage(
             throwable: Throwable?,
             action: UserAction?,
@@ -197,7 +199,7 @@ class ErrorInfo private constructor(
                         }
 
                         cause is Loader.UnexpectedLoaderException && cause.cause is ExtractionException ->
-                            getMessage(throwable, action, serviceId)
+                            getMessage(cause.cause, action, serviceId)
 
                         throwable.type == ExoPlaybackException.TYPE_SOURCE ->
                             ErrorMessage(R.string.player_stream_failure)
@@ -219,7 +221,7 @@ class ErrorInfo private constructor(
                 // content not available exceptions
                 throwable is AccountTerminatedException ->
                     throwable.message
-                        ?.takeIf { reason -> !reason.isEmpty() }
+                        ?.takeIf { reason -> reason.isNotEmpty() }
                         ?.let { reason ->
                             ErrorMessage(
                                 R.string.account_terminated_service_provides_reason,

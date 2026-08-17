@@ -122,7 +122,7 @@
     <string name="show_info">Hiện thông tin</string>
     <string name="tab_subscriptions">Kênh đăng ký</string>
     <string name="tab_bookmarks">Đã đánh dấu danh sách phát</string>
-    <string name="fragment_feed_title">Có gì mới</string>
+    <string name="feed_title">Có gì mới</string>
     <string name="controls_add_to_playlist_title">Thêm vào</string>
     <string name="use_inexact_seek_title">Dùng tua nhanh ít chính xác</string>
     <string name="use_inexact_seek_summary">Tua ít chính xác cho phép trình phát giảm độ chính xác để tua tới vị trí nhanh hơn. Tua khoảng 5, 15 hoặc 25 giây không hoạt động với điều này</string>

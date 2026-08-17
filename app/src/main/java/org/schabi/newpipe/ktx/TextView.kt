@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.core.animation.addListener
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
-import org.schabi.newpipe.MainActivity
+import org.schabi.newpipe.DebugConstants.DEBUG
 
 private const val TAG = "TextViewUtils"
 
@@ -21,7 +21,7 @@ private const val TAG = "TextViewUtils"
  * @param colorEnd   the text color to end with
  */
 fun TextView.animateTextColor(duration: Long, @ColorInt colorStart: Int, @ColorInt colorEnd: Int) {
-    if (MainActivity.DEBUG) {
+    if (DEBUG) {
         Log.d(
             TAG,
             "animateTextColor() called with: " +

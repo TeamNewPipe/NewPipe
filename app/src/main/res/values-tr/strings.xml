@@ -124,7 +124,7 @@
     <string name="subscription_change_failed">Abonelik değiştirilemedi</string>
     <string name="subscription_update_failed">Abonelik güncellenemedi</string>
     <string name="tab_subscriptions">Abonelikler</string>
-    <string name="fragment_feed_title">Yenilikler</string>
+    <string name="feed_title">Yenilikler</string>
     <string name="enable_search_history_title">Arama geçmişi</string>
     <string name="enable_search_history_summary">Arama sorgularını yerel olarak sakla</string>
     <string name="enable_watch_history_title">İzleme geçmişi</string>

@@ -32,3 +32,17 @@ node_modules/
 !*.xcodeproj/project.xcworkspace/
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
+
+# Temporary Diagnostic Files
+compile_errors*.txt
+current_errors*.txt
+scratch_*.txt
+temp_media3/
+temp_media3.zip
+*.orig
+testSyntax.kt
+
+# AI Agent Artifacts
+.artifacts/
+.agents/
+
