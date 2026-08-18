@@ -47,8 +47,8 @@
     <string name="show_next_and_similar_title">להציג סרטונים דומים והבאים בתור</string>
     <string name="unsupported_url">כתובת לא נתמכת</string>
     <string name="content_language_title">שפת התוכן המועדפת</string>
-    <string name="settings_category_video_audio_title">סרטונים ושמע</string>
-    <string name="settings_category_appearance_title">תצוגה</string>
+    <string name="settings_category_video_audio_title">וידאו ושמע</string>
+    <string name="settings_category_appearance_title">מראה</string>
     <string name="background_player_playing_toast">מתנגן ברקע</string>
     <string name="popup_playing_toast">מתנגן בחלון צף</string>
     <string name="content">תוכן</string>
@@ -156,20 +156,20 @@
     <string name="settings_file_replacement_character_title">תו חלופי</string>
     <string name="charset_letters_and_digits">אותיות וספרות</string>
     <string name="charset_most_special_characters">רוב התווים המיוחדים</string>
-    <string name="title_activity_about">על אודות NewPipe</string>
-    <string name="title_licenses">רישיונות צד שלישי</string>
+    <string name="title_activity_about">על NewPipe</string>
+    <string name="title_licenses">רישיונות צד־שלישי</string>
     <string name="copyright" formatted="true">© %1$s ע״י %2$s תחת %3$s</string>
     <string name="tab_about">על אודות ושו״ת</string>
     <string name="tab_licenses">רישיונות</string>
-    <string name="app_description">נגן קל וחופשי להזרמת מדיה עבור Android.</string>
+    <string name="app_description">הזרמה חופשית וקלילה ב־Android.</string>
     <string name="contribution_title">התנדבות</string>
-    <string name="contribution_encouragement">אם יש לך רעיון כלשהו בנוגע לתרגום, שינויי עיצוב, ניקוי הקוד או שינויים מהותיים בקוד - אנו תמיד שמחים לקבל עזרה. ככל שיותר דברים מתבצעים כך היישומון משתפר!</string>
+    <string name="contribution_encouragement">אם יש לך רעיונות ליכולות מסוימות, בא לך לתרגם, לשנות את העיצוב או לבצע שינויים מהותיים בקוד - אנו תמיד שמחים לקבל עזרה. ככל שיותר דברים נעשים ככה הוא נהיה טוב יותר!</string>
     <string name="view_on_github">הצגה ב־GitHub</string>
     <string name="donation_title">תרומה</string>
-    <string name="donation_encouragement">הפיתוח של NewPipe נערך ע״י מתנדבים שמשקיעים את זמנם הפנוי כדי להגיש לך את חווית השימוש הטובה ביותר. באפשרותך להעניק בחזרה כדי לסייע למפתחים לשפר את NewPipe בעודם נהנים מכוס קפה.</string>
-    <string name="give_back">לתרום בחזרה</string>
-    <string name="website_title">אתר הבית</string>
-    <string name="website_encouragement">מומלץ לבקר באתר של NewPipe לפרטים נוספים ולחדשות.</string>
+    <string name="donation_encouragement">NewPipe מפותח על ידי מתנדבים שמשקיעים את זמן החופשי כדי לספק לך את חוויית המשתמש הטובה ביותר. אפשר לתת בחזרה כדי לסייע למפתחים לשפר את NewPipe עוד יותר תוך שהם נהנים מכוס קפה.</string>
+    <string name="give_back">לתת בחזרה</string>
+    <string name="website_title">אתר</string>
+    <string name="website_encouragement">יש לבקר באתר של NewPipe למידע נוסף ולחדשות.</string>
     <string name="app_license_title">הרישיון של NewPipe</string>
     <string name="read_full_license">הצגת הרישיון</string>
     <string name="title_activity_history">היסטוריה</string>
@@ -724,8 +724,8 @@
     <string name="progressive_load_interval_title">גודל משך טעינת נגינה</string>
     <string name="sort">מיון</string>
     <string name="faq">הצגה באתר</string>
-    <string name="faq_title">תשובות לשאלות נפוצות</string>
-    <string name="faq_description">אם נתקלת בתקלות כשניסית להשתמש ביישומון, כדאי לעיין בתשובות לשאלות הנפוצות!</string>
+    <string name="faq_title">שאלות נפוצות</string>
+    <string name="faq_description">אם נתקלת בבעיות בשימוש ביישומון, חשוב לעיין בתשובות האלו לשאלות נפוצות!</string>
     <string name="import_subscriptions_hint">ניתן לייבא או לייצא מינויים מתפריט 3 הנקודות</string>
     <string name="app_update_available_notification_text">נגיעה כאן תוריד את %s</string>
     <string name="fast_mode">מצב מהיר</string>
@@ -872,6 +872,32 @@
     <string name="player_http_403">שגיאת HTTP 403 שהתקבלה מהשרת בזמן השמעה, ככל הנראה נגרמת עקב פקיעת כתובת URL של סטרימינג או חסימת IP</string>
     <string name="player_http_invalid_status">שגיאת HTTP %1$s התקבלה מהשרת בזמן הניגון</string>
     <string name="youtube_player_http_403">שגיאת HTTP‏ 403 שהתקבלה מהשרת בזמן הניגון, ככל הנראה נגרמה עקב חסימת IP או בעיות בהסרת ערפול כתובת תזרים</string>
-    <string name="sign_in_confirm_not_bot_error">%1$s סירב לספק נתונים, וביקש התחברות כדי לאשר שהמבקש אינו בוט.\n\nכנראה שה־IP שלך נחסם זמנית על ידי %1$s, ניתן להמתין זמן מה או לעבור ל־IP אחר (לדוגמה על ידי הפעלה/כיבוי של VPN, או על ידי מעבר מרשת אלחוטית לתקשורת נתונים סלולרית).</string>
+    <string name="sign_in_confirm_not_bot_error">%1$s סירב לספק נתונים, וביקש התחברות כדי לאשר שהמבקש אינו בוט.\n\nכנראה שה־IP שלך נחסם זמנית על ידי %1$s, ניתן להמתין זמן מה או לעבור ל־IP אחר (לדוגמה על ידי הפעלה/כיבוי של VPN, או על ידי מעבר מרשת אלחוטית לתקשורת נתונים סלולרית).\n\nנא לקרוא <a href="%2$s">את רשומת FAQ הזאת</a> למידע נוסף.</string>
     <string name="unsupported_content_in_country">תוכן זה אינו זמין עבור מדינת התוכן שנבחרה כעת.\n\nניתן לשנות את בחירתך דרך „הגדרות &gt; תוכן &gt; מדינת תוכן ברירת מחדל”.</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">מייצא מנוי %d …</item>
+        <item quantity="two">מייצא %d מנויים…</item>
+        <item quantity="other">מייצא %d מנויים…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">טוען מנוי %d …</item>
+        <item quantity="two">טוען %d מנויים…</item>
+        <item quantity="other">טוען %d מנויים…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">מייבא מנוי %d …</item>
+        <item quantity="two">מייבא %d מנויים…</item>
+        <item quantity="other">מייבא %d מנויים…</item>
+    </plurals>
+    <string name="import_subscriptions_title">ייבוא מנויים</string>
+    <string name="export_subscriptions_title">ייצוא מנויים</string>
+    <string name="import_subscriptions_summary">ייבוא מנויים מייצוא קודם בקובץ .json</string>
+    <string name="export_subscriptions_summary">ייצא את המינויים שלך לקובץ .json</string>
+    <string name="import_from_previous_export">ייבוא מייצוא קודם</string>
+    <string name="kao_dialog_warning">באוגוסט 2025, גוגל הודיעה כי החל מספטמבר 2026, התקנת יישומים תדרוש אימות מפתח עבור כל יישומי אנדרואיד במכשירים מוסמכים, כולל אלה שהותקנו מחוץ לחנות Play. מכיוון שהמפתחים של NewPipe אינם מסכימים לדרישה זו, NewPipe כבר לא יעבוד על מכשירי אנדרואיד מוסמכים לאחר זמן זה.</string>
+    <string name="kao_dialog_more_info">פרטים</string>
+    <string name="kao_solution">פתרון</string>
+    <string name="api23_requirement_dialog_title">NewPipe מורידה את התמיכה באנדרואיד 5</string>
+    <string name="api23_requirement_dialog_message">למרבה הצער, NewPipe תלויה במספר ספריות שהורידו את התמיכה באנדרואיד 5.0 ו־5.1. הגירסה החדשה הבאה תעבוד רק על מכשירים עם אנדרואיד 6 ומעלה, למרבה הצער. קרא עוד בבלוג.</string>
+    <string name="api23_requirement_dialog_blogpost">פוסט בבלוג</string>
 </resources>

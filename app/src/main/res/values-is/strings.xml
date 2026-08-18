@@ -821,4 +821,25 @@
     <string name="player_http_invalid_status">Tók við HTTP-villu %1$s frá þjóni á meðan afspilun stóð</string>
     <string name="youtube_player_http_403">Tók við HTTP-villu 403 frá þjóni á meðan afspilun stóð, líklega vegna banns á IP-vistfang eða vandamála með afkóðun URL-slóðar streymis</string>
     <string name="unsupported_content_in_country">Þetta efni er ekki í boði fyrir valið landsvæði efnis.\n\nBreyttu valinu með því að fara í \"Stillingar &gt; Efni &gt; Sjálfgefið landsvæði efnis\".</string>
+    <plurals name="export_subscriptions">
+        <item quantity="one">Flyt út %d áskrift…</item>
+        <item quantity="other">Flyt út %d áskriftir…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">Hleð inn %d áskrift…</item>
+        <item quantity="other">Hleð inn %d áskriftum…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">Flyt út %d áskrift…</item>
+        <item quantity="other">Flyt út %d áskriftir…</item>
+    </plurals>
+    <string name="import_subscriptions_title">Flytja inn áskriftir</string>
+    <string name="export_subscriptions_title">Flytja út áskriftir</string>
+    <string name="import_subscriptions_summary">Flytja áskriftir inn úr fyrri .json útflutningsskrá</string>
+    <string name="export_subscriptions_summary">Flytja áskriftirnar þínar í .json-skrá</string>
+    <string name="import_from_previous_export">Flytja inn úr fyrri útflutningsskrá</string>
+    <string name="kao_dialog_more_info">Nánar</string>
+    <string name="kao_solution">Lausn</string>
+    <string name="api23_requirement_dialog_title">NewPipe er að hætta stuðningi við Android 5</string>
+    <string name="api23_requirement_dialog_blogpost">Bloggfærsla</string>
 </resources>
