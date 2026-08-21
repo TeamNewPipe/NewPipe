@@ -852,4 +852,6 @@
     <string name="api23_requirement_dialog_title">NewPipeはAndroid 5のサポートを終了します</string>
     <string name="api23_requirement_dialog_message">残念ながら、NewPipeが依存している一部のライブラリでAndroid 5.0および5.1のサポートが終了しました。そのため、次回リリースのNewPipeはAndroid 6以降の端末でのみ動作します。詳しくはブログ記事をご覧ください。</string>
     <string name="api23_requirement_dialog_blogpost">ブログ記事</string>
+    <string name="channel_tab_podcasts">ポッドキャスト</string>
+    <string name="channel_tab_courses">コース</string>
 </resources>

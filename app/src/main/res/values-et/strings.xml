@@ -3,7 +3,7 @@
     <string name="main_bg_subtitle">Alustamiseks toksa suurendusklaasi ikooni.</string>
     <string name="upload_date_text">Avaldatud %1$s</string>
     <string name="no_player_found">Voogesituseks puudub pleier. Kas paigaldame VLC\?</string>
-    <string name="no_player_found_toast">Voogesituseks puudub pleier (selleks võid paigaldada VLC).</string>
+    <string name="no_player_found_toast">Voogesituseks puudub pleier (selleks saad paigaldada VLC).</string>
     <string name="install">Paigalda</string>
     <string name="cancel">Tühista</string>
     <string name="open_in_browser">Ava veebilehitsejas</string>
@@ -855,4 +855,6 @@
     <string name="api23_requirement_dialog_title">NewPipe loobub Android 5 toest</string>
     <string name="api23_requirement_dialog_message">Kahjuks sõltub NewPipe mõnest teegist, mis on lõpetanud Androidi versioonide 5.0 ja 5.1 toetamise. Seetõttu töötab järgmine NewPipe’i versioon kahjuks ainult nutiseadmetes, millel on Android 6 või uuem versioon. Lisateavet leiad ajaveebi postitusest.</string>
     <string name="api23_requirement_dialog_blogpost">Postitus meie ajaveebis</string>
+    <string name="channel_tab_podcasts">Taskuhäälingud</string>
+    <string name="channel_tab_courses">Kursused</string>
 </resources>

@@ -868,4 +868,6 @@
     <string name="api23_requirement_dialog_blogpost">Blogbeitrag</string>
     <string name="api23_requirement_dialog_title">NewPipe stellt die Unterstützung für Android 5 ein</string>
     <string name="api23_requirement_dialog_message">Leider ist NewPipe auf einige Bibliotheken angewiesen, welche die Unterstützung für Android 5.0 und 5.1 eingestellt haben. Die nächste Version von NewPipe wird daher leider nur auf Geräten mit Android 6 oder höher funktionieren. Mehr dazu im Blogbeitrag.</string>
+    <string name="channel_tab_podcasts">Podcasts</string>
+    <string name="channel_tab_courses">Kurse</string>
 </resources>
