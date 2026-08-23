@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto"
+                  android:title="@string/settings_category_bilibili_account_title">
+    <Preference
+            android:key="@string/login_key"
+            android:summary="@string/login_warning"
+            android:title="@string/login_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+    <Preference
+            android:key="@string/logout_key"
+            android:title="@string/logout_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+    <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/override_cookies_bilibili_key"
+            android:summary="@string/override_cookies_summary"
+            android:title="@string/override_cookies_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+    <EditTextPreference
+            android:defaultValue=""
+            android:inputType="text"
+            android:key="@string/override_cookies_bilibili_value_key"
+            android:title="@string/override_cookies_value_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+    <MultiSelectListPreference
+            android:key="@string/cookie_functions_bilibili_key"
+            android:title="@string/cookie_functions_title"
+            android:entries="@array/cookie_functions_bilibili_entries"
+            android:entryValues="@array/cookie_functions_bilibili_values"
+            android:defaultValue="@array/cookie_functions_bilibili_values"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+</PreferenceScreen>

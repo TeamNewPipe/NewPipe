@@ -20,17 +20,18 @@
 
 package org.schabi.newpipe;
 
+import static org.schabi.newpipe.util.AnnouncementParser.parseContentsBeforeId;
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
+
 import android.app.AlertDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
+import android.app.Dialog;
+import android.content.*;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -38,23 +39,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
-import android.widget.Spinner;
+import android.widget.*;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 import androidx.preference.PreferenceManager;
 
@@ -68,41 +62,36 @@ import org.schabi.newpipe.databinding.ToolbarLayoutBinding;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
-import org.schabi.newpipe.fragments.list.comments.CommentRepliesFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.local.feed.notifications.NotificationWorker;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
-import org.schabi.newpipe.settings.UpdateSettingsFragment;
-import org.schabi.newpipe.settings.migration.MigrationManager;
-import org.schabi.newpipe.util.Constants;
-import org.schabi.newpipe.util.DeviceUtils;
-import org.schabi.newpipe.util.KioskTranslator;
-import org.schabi.newpipe.util.Localization;
-import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.PeertubeHelper;
-import org.schabi.newpipe.util.PermissionHelper;
-import org.schabi.newpipe.util.ReleaseVersionUtil;
-import org.schabi.newpipe.util.SerializedCache;
-import org.schabi.newpipe.util.ServiceHelper;
-import org.schabi.newpipe.util.StateSaver;
-import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.*;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.views.FocusOverlayView;
 
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
+import java.io.IOException;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.X509TrustManager;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -126,14 +115,13 @@ public class MainActivity extends AppCompatActivity {
     private static final int ITEM_ID_DOWNLOADS = -4;
     private static final int ITEM_ID_HISTORY = -5;
     private static final int ITEM_ID_SETTINGS = 0;
-    private static final int ITEM_ID_DONATION = 1;
-    private static final int ITEM_ID_ABOUT = 2;
+    private static final int ITEM_ID_ABOUT = 1;
 
     private static final int ORDER = 0;
-    public static final String KEY_IS_IN_BACKGROUND = "is_in_background";
 
-    private SharedPreferences sharedPreferences;
-    private SharedPreferences.Editor sharedPrefEditor;
+    private long lastBackPressTime = 0;
+    private static final int BACK_PRESS_TIMEOUT = 2000;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Activity's LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
@@ -145,26 +133,17 @@ public class MainActivity extends AppCompatActivity {
                     + "savedInstanceState = [" + savedInstanceState + "]");
         }
 
-        Localization.migrateAppLanguageSettingIfNecessary(getApplicationContext());
+        // enable TLS1.1/1.2 for kitkat devices, to fix download and play for media.ccc.de sources
+        trustEveryone(); //Fix random certificate issue for BiliBili
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                .permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         ThemeHelper.setDayNightMode(this);
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
 
-        // Fixes text color turning black in dark/black mode:
-        // https://github.com/TeamNewPipe/NewPipe/issues/12016
-        // For further reference see: https://issuetracker.google.com/issues/37124582
-        if (DeviceUtils.supportsWebView()) {
-            try {
-                new WebView(this);
-            } catch (final Throwable e) {
-                if (DEBUG) {
-                    Log.e(TAG, "Failed to create WebView", e);
-                }
-            }
-        }
-
+        assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        sharedPrefEditor = sharedPreferences.edit();
 
         mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         drawerLayoutBinding = mainBinding.drawerLayout;
@@ -188,56 +167,103 @@ public class MainActivity extends AppCompatActivity {
         }
         openMiniPlayerUponPlayerStarted();
 
-        if (PermissionHelper.checkPostNotificationsPermission(this,
-                PermissionHelper.POST_NOTIFICATIONS_REQUEST_CODE)) {
-            // Schedule worker for checking for new streams and creating corresponding notifications
-            // if this is enabled by the user.
-            NotificationWorker.initialize(this);
-        }
-        if (!UpdateSettingsFragment.wasUserAskedForConsent(this)
-                && !App.getInstance().isFirstRun()
-                && ReleaseVersionUtil.INSTANCE.isReleaseApk()) {
-            UpdateSettingsFragment.askForConsentToUpdateChecks(this);
-        }
-
-        // ReleaseVersionUtil.INSTANCE.isReleaseApk() will be true only for main official build
-        // We want every release build (nightly, nightly-refactor) to show the popup
-        if (!DEBUG) {
-            showKeepAndroidDialog();
-            showApi23RequirementDialog();
-        }
-
-        MigrationManager.showUserInfoIfPresent(this);
+        // Schedule worker for checking for new streams and creating corresponding notifications
+        // if this is enabled by the user.
+        NotificationWorker.initialize(this);
     }
 
     @Override
     protected void onPostCreate(final Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        final App app = App.getInstance();
+        final App app = App.getApp();
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(app);
 
-        if (sharedPreferences.getBoolean(app.getString(R.string.update_app_key), false)
-                && sharedPreferences
-                .getBoolean(app.getString(R.string.update_check_consent_key), false)) {
+        String audioLang = prefs.getString(getString(R.string.preferred_audio_language_key), "original");
+        if (!Arrays.asList("original", "en", "fr", "de", "es", "pt", "ru", "tr", "zh", "ja", "hi", "ko", "th", "vi", "bn", "id", "ar").contains(audioLang)) {
+            prefs.edit().putString(getString(R.string.preferred_audio_language_key), "original").apply();
+        } // remove this after sometime
+
+        if (prefs.getBoolean(app.getString(R.string.update_app_key), false)) {
             // Start the worker which is checking all conditions
             // and eventually searching for a new version.
-            NewVersionWorker.enqueueNewVersionCheckingWork(app, false);
+                NewVersionWorker.enqueueNewVersionCheckingWork(app, false);
+        }
+
+        int currentVersionCode = BuildConfig.VERSION_CODE;
+        int storedVersionCode = prefs.getInt("version_code", 0);
+        long lastShowDonationTime = prefs.getLong("last_show_donation_time", 0);
+        long currentTime = System.currentTimeMillis();
+
+        if (currentVersionCode > storedVersionCode + 90) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(R.string.fragment_feed_title);
+            builder.setMessage(R.string.update_log);
+            builder.setPositiveButton(R.string.ok, null);
+
+            AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+            builder2.setTitle(R.string.donation_dialog_title);
+            builder2.setMessage(R.string.donation_dialog_message);
+
+            builder2.setPositiveButton(R.string.sponsor_promote, (dialog, which) -> {
+                ShareUtils.openUrlInBrowser(this, getString(R.string.donation_url));
+            });
+            builder2.setNegativeButton(R.string.no, null);
+
+            final AlertDialog dialog2 = builder2.create();
+
+            final AlertDialog dialog1 = builder.create();
+            dialog1.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    if((storedVersionCode / 100 < 1105 && currentTime - lastShowDonationTime > 14 * 24 * 60 * 60 * 1000)
+                            || currentTime - lastShowDonationTime > 30L * 24 * 60 * 60 * 1000) {
+                        prefs.edit().putLong("last_show_donation_time", currentTime).apply();
+                        dialog2.show();
+                    }
+                }
+            });
+
+            dialog1.show();
+            prefs.edit().putInt("version_code", currentVersionCode).apply();
+        }
+        String lastAnnouncementId = prefs.getString("last_announcement_id", null);
+        try {
+            NewPipe.getDownloader().getAsync("https://github.com/InfinityLoop1308/PipePlay/wiki/Announcement", resp -> {
+                AnnouncementParser.ParsedResult result = parseContentsBeforeId(resp.responseBody(), lastAnnouncementId);
+                if(result.latestId != null) {
+                    Handler handler = new Handler(Looper.getMainLooper());
+                    handler.post(() -> {
+                        AlertDialog.Builder builder3 = new AlertDialog.Builder(this);
+                        builder3.setMessage(result.contents);
+                        builder3.setTitle(R.string.announcement);
+                        builder3.setPositiveButton(R.string.ok, (dialog, which) -> {
+                            prefs.edit().putString("last_announcement_id", result.latestId).apply();
+                        });
+                        builder3.show();
+                    });
+                }
+            });
+        } catch (Exception ignore) {
+        }
+
+
+        int isFirstRun = prefs.getInt("isFirstRun", 0);
+        if (isFirstRun == 0) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(R.string.dialog_title_enable_update_checker);
+            builder.setMessage(R.string.dialog_message_enable_update_checker);
+            builder.setPositiveButton(R.string.ok, (dialog, which) -> {
+                prefs.edit().putBoolean(app.getString(R.string.update_app_key), true).apply();
+                NewVersionWorker.enqueueNewVersionCheckingWork(app, true);
+            });
+            builder.setNegativeButton(R.string.no, (dialog, which) -> prefs.edit().putBoolean(app.getString(R.string.update_app_key), false).apply());
+            builder.show();
+            prefs.edit().putInt("isFirstRun", 1).apply();
+            PermissionChecker.checkNotificationPermission(this);
         }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        sharedPrefEditor.putBoolean(KEY_IS_IN_BACKGROUND, false).apply();
-        Log.d(TAG, "App moved to foreground");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        sharedPrefEditor.putBoolean(KEY_IS_IN_BACKGROUND, true).apply();
-        Log.d(TAG, "App moved to background");
-    }
     private void setupDrawer() throws ExtractionException {
         addDrawerMenuForCurrentService();
 
@@ -275,13 +301,26 @@ public class MainActivity extends AppCompatActivity {
      */
     private void addDrawerMenuForCurrentService() throws ExtractionException {
         //Tabs
+        final int currentServiceId = ServiceHelper.getSelectedServiceId(this);
+        final StreamingService service = NewPipe.getService(currentServiceId);
+
+        int kioskId = 0;
+
+        for (final String ks : service.getKioskList().getAvailableKiosks()) {
+            drawerLayoutBinding.navigation.getMenu()
+                    .add(R.id.menu_tabs_group, kioskId, 0, KioskTranslator
+                            .getTranslatedKioskName(ks, this))
+                    .setIcon(KioskTranslator.getKioskIcon(ks));
+            kioskId++;
+        }
+
         drawerLayoutBinding.navigation.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_SUBSCRIPTIONS, ORDER,
                         R.string.tab_subscriptions)
                 .setIcon(R.drawable.ic_tv);
         drawerLayoutBinding.navigation.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_FEED, ORDER, R.string.fragment_feed_title)
-                .setIcon(R.drawable.ic_subscriptions);
+                .setIcon(R.drawable.ic_rss_feed);
         drawerLayoutBinding.navigation.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_BOOKMARKS, ORDER, R.string.tab_bookmarks)
                 .setIcon(R.drawable.ic_bookmark);
@@ -292,46 +331,25 @@ public class MainActivity extends AppCompatActivity {
                 .add(R.id.menu_tabs_group, ITEM_ID_HISTORY, ORDER, R.string.action_history)
                 .setIcon(R.drawable.ic_history);
 
-        //Kiosks
-        final int currentServiceId = ServiceHelper.getSelectedServiceId(this);
-        final StreamingService service = NewPipe.getService(currentServiceId);
-
-        int kioskMenuItemId = 0;
-
-        for (final String ks : service.getKioskList().getAvailableKiosks()) {
-            drawerLayoutBinding.navigation.getMenu()
-                    .add(R.id.menu_kiosks_group, kioskMenuItemId, 0, KioskTranslator
-                            .getTranslatedKioskName(ks, this))
-                    .setIcon(KioskTranslator.getKioskIcon(ks));
-            kioskMenuItemId++;
-        }
-
         //Settings and About
         drawerLayoutBinding.navigation.getMenu()
                 .add(R.id.menu_options_about_group, ITEM_ID_SETTINGS, ORDER, R.string.settings)
                 .setIcon(R.drawable.ic_settings);
-        drawerLayoutBinding.navigation.getMenu()
-                .add(R.id.menu_options_about_group, ITEM_ID_DONATION, ORDER,
-                        R.string.donation_title)
-                .setIcon(R.drawable.volunteer_activism_ic);
         drawerLayoutBinding.navigation.getMenu()
                 .add(R.id.menu_options_about_group, ITEM_ID_ABOUT, ORDER, R.string.tab_about)
                 .setIcon(R.drawable.ic_info_outline);
     }
 
     private boolean drawerItemSelected(final MenuItem item) {
-        final int groupId = item.getGroupId();
-        if (groupId == R.id.menu_services_group) {
+        if (item.getGroupId() == R.id.menu_services_group) {
             changeService(item);
-        } else if (groupId == R.id.menu_tabs_group) {
-            tabSelected(item);
-        } else if (groupId == R.id.menu_kiosks_group) {
+        } else if (item.getGroupId() == R.id.menu_tabs_group) {
             try {
-                kioskSelected(item);
+                tabSelected(item);
             } catch (final Exception e) {
-                ErrorUtil.showUiErrorSnackbar(this, "Selecting drawer kiosk", e);
+                ErrorUtil.showUiErrorSnackbar(this, "Selecting main page tab", e);
             }
-        } else if (groupId == R.id.menu_options_about_group) {
+        } else if (item.getGroupId() == R.id.menu_options_about_group) {
             optionsAboutSelected(item);
         } else {
             return false;
@@ -346,12 +364,13 @@ public class MainActivity extends AppCompatActivity {
                 .getItem(ServiceHelper.getSelectedServiceId(this))
                 .setChecked(false);
         ServiceHelper.setSelectedServiceId(this, item.getItemId());
+        SearchFragment.setPersistedSearchServiceId(this, item.getItemId());
         drawerLayoutBinding.navigation.getMenu()
                 .getItem(ServiceHelper.getSelectedServiceId(this))
                 .setChecked(true);
     }
 
-    private void tabSelected(final MenuItem item) {
+    private void tabSelected(final MenuItem item) throws ExtractionException {
         switch (item.getItemId()) {
             case ITEM_ID_SUBSCRIPTIONS:
                 NavigationHelper.openSubscriptionFragment(getSupportFragmentManager());
@@ -368,19 +387,22 @@ public class MainActivity extends AppCompatActivity {
             case ITEM_ID_HISTORY:
                 NavigationHelper.openStatisticFragment(getSupportFragmentManager());
                 break;
-        }
-    }
+            default:
+                final int currentServiceId = ServiceHelper.getSelectedServiceId(this);
+                final StreamingService service = NewPipe.getService(currentServiceId);
+                String serviceName = "";
 
-    private void kioskSelected(final MenuItem item) throws ExtractionException {
-        final StreamingService currentService = ServiceHelper.getSelectedService(this);
-        int kioskMenuItemId = 0;
-        for (final String kioskId : currentService.getKioskList().getAvailableKiosks()) {
-            if (kioskMenuItemId == item.getItemId()) {
-                NavigationHelper.openKioskFragment(getSupportFragmentManager(),
-                        currentService.getServiceId(), kioskId);
+                int kioskId = 0;
+                for (final String ks : service.getKioskList().getAvailableKiosks()) {
+                    if (kioskId == item.getItemId()) {
+                        serviceName = ks;
+                    }
+                    kioskId++;
+                }
+
+                NavigationHelper.openKioskFragment(getSupportFragmentManager(), currentServiceId,
+                        serviceName);
                 break;
-            }
-            kioskMenuItemId++;
         }
     }
 
@@ -388,9 +410,6 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case ITEM_ID_SETTINGS:
                 NavigationHelper.openSettings(this);
-                break;
-            case ITEM_ID_DONATION:
-                ShareUtils.openUrlInBrowser(this, getString(R.string.donation_url));
                 break;
             case ITEM_ID_ABOUT:
                 NavigationHelper.openAbout(this);
@@ -421,7 +440,6 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayoutBinding.navigation.getMenu().removeGroup(R.id.menu_services_group);
         drawerLayoutBinding.navigation.getMenu().removeGroup(R.id.menu_tabs_group);
-        drawerLayoutBinding.navigation.getMenu().removeGroup(R.id.menu_kiosks_group);
         drawerLayoutBinding.navigation.getMenu().removeGroup(R.id.menu_options_about_group);
 
         // Show up or down arrow
@@ -441,7 +459,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void showServices() {
         for (final StreamingService s : NewPipe.getServices()) {
-            final String title = s.getServiceInfo().getName();
+            final String title = s.getServiceInfo().getName()
+                    + (ServiceHelper.isBeta(s) ? " (Legacy)" : "");
 
             final MenuItem menuItem = drawerLayoutBinding.navigation.getMenu()
                     .add(R.id.menu_services_group, s.getServiceId(), ORDER, title)
@@ -449,7 +468,7 @@ public class MainActivity extends AppCompatActivity {
 
             // peertube specifics
             if (s.getServiceId() == 3) {
-                enhancePeertubeMenu(menuItem);
+                enhancePeertubeMenu(s, menuItem);
             }
         }
         drawerLayoutBinding.navigation.getMenu()
@@ -457,9 +476,9 @@ public class MainActivity extends AppCompatActivity {
                 .setChecked(true);
     }
 
-    private void enhancePeertubeMenu(final MenuItem menuItem) {
+    private void enhancePeertubeMenu(final StreamingService s, final MenuItem menuItem) {
         final PeertubeInstance currentInstance = PeertubeHelper.getCurrentInstance();
-        menuItem.setTitle(currentInstance.getName());
+        menuItem.setTitle(currentInstance.getName() + (ServiceHelper.isBeta(s) ? " (Legacy)" : ""));
         final Spinner spinner = InstanceSpinnerLayoutBinding.inflate(LayoutInflater.from(this))
                 .getRoot();
         final List<PeertubeInstance> instances = PeertubeHelper.getInstanceList(this);
@@ -515,8 +534,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        assureCorrectAppLanguage(this);
         // Change the date format to match the selected language on resume
-        Localization.initPrettyTime(Localization.resolvePrettyTime());
+        Localization.initPrettyTime(Localization.resolvePrettyTime(getApplicationContext()));
         super.onResume();
 
         // Close drawer on return, and don't show animation,
@@ -538,11 +558,13 @@ public class MainActivity extends AppCompatActivity {
             ErrorUtil.showUiErrorSnackbar(this, "Setting up service toggle", e);
         }
 
+        final SharedPreferences sharedPreferences
+                = PreferenceManager.getDefaultSharedPreferences(this);
         if (sharedPreferences.getBoolean(Constants.KEY_THEME_CHANGE, false)) {
             if (DEBUG) {
                 Log.d(TAG, "Theme has changed, recreating activity...");
             }
-            sharedPrefEditor.putBoolean(Constants.KEY_THEME_CHANGE, false).apply();
+            sharedPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, false).apply();
             ActivityCompat.recreate(this);
         }
 
@@ -550,7 +572,7 @@ public class MainActivity extends AppCompatActivity {
             if (DEBUG) {
                 Log.d(TAG, "main page has changed, recreating main fragment...");
             }
-            sharedPrefEditor.putBoolean(Constants.KEY_MAIN_PAGE_CHANGE, false).apply();
+            sharedPreferences.edit().putBoolean(Constants.KEY_MAIN_PAGE_CHANGE, false).apply();
             NavigationHelper.openMainActivity(this);
         }
 
@@ -611,21 +633,14 @@ public class MainActivity extends AppCompatActivity {
         // interacts with a fragment inside fragment_holder so all back presses should be
         // handled by it
         if (bottomSheetHiddenOrCollapsed()) {
-            final FragmentManager fm = getSupportFragmentManager();
-            final Fragment fragment = fm.findFragmentById(R.id.fragment_holder);
+            final Fragment fragment = getSupportFragmentManager()
+                    .findFragmentById(R.id.fragment_holder);
             // If current fragment implements BackPressable (i.e. can/wanna handle back press)
             // delegate the back press to it
             if (fragment instanceof BackPressable) {
                 if (((BackPressable) fragment).onBackPressed()) {
                     return;
                 }
-            } else if (fragment instanceof CommentRepliesFragment) {
-                // expand DetailsFragment if CommentRepliesFragment was opened
-                // to show the top level comments again
-                // Expand DetailsFragment if CommentRepliesFragment was opened
-                // and no other CommentRepliesFragments are on top of the back stack
-                // to show the top level comments again.
-                openDetailFragmentFromCommentReplies(fm, false);
             }
 
         } else {
@@ -642,12 +657,26 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
-            finish();
+        final SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+
+        // Show toast and exit logic only when we're about to exit the app
+        if (getSupportFragmentManager().getBackStackEntryCount() == 1 ) {
+            long currentTime = System.currentTimeMillis();
+
+            if (!pref.getBoolean(getString(R.string.exit_app_confirmation_key), true) || currentTime - lastBackPressTime < BACK_PRESS_TIMEOUT) {
+                // Second back press within timeout - exit the app
+                finish();
+                return;
+            }
+
+            // First back press or timeout exceeded - show toast
+            lastBackPressTime = currentTime;
+            Toast.makeText(this, R.string.press_back_again_to_exit, Toast.LENGTH_SHORT).show();
         } else {
             super.onBackPressed();
         }
     }
+
 
     @Override
     public void onRequestPermissionsResult(final int requestCode,
@@ -669,9 +698,6 @@ public class MainActivity extends AppCompatActivity {
                 if (fragment instanceof VideoDetailFragment) {
                     ((VideoDetailFragment) fragment).openDownloadDialog();
                 }
-                break;
-            case PermissionHelper.POST_NOTIFICATIONS_REQUEST_CODE:
-                NotificationWorker.initialize(this);
                 break;
         }
     }
@@ -701,17 +727,8 @@ public class MainActivity extends AppCompatActivity {
      * </pre>
      */
     private void onHomeButtonPressed() {
-        final FragmentManager fm = getSupportFragmentManager();
-        final Fragment fragment = fm.findFragmentById(R.id.fragment_holder);
-
-        if (fragment instanceof CommentRepliesFragment) {
-            // Expand DetailsFragment if CommentRepliesFragment was opened
-            // and no other CommentRepliesFragments are on top of the back stack
-            // to show the top level comments again.
-            openDetailFragmentFromCommentReplies(fm, true);
-        } else if (!NavigationHelper.tryGotoSearchFragment(fm)) {
-            // If search fragment wasn't found in the backstack go to the main fragment
-            NavigationHelper.gotoMainFragment(fm);
+        if (!NavigationHelper.tryGotoSearchFragment(getSupportFragmentManager())) {
+            onBackPressed();
         }
     }
 
@@ -726,8 +743,8 @@ public class MainActivity extends AppCompatActivity {
         }
         super.onCreateOptionsMenu(menu);
 
-        final Fragment fragment =
-                getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
+        final Fragment fragment
+                = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
         if (!(fragment instanceof SearchFragment)) {
             toolbarLayoutBinding.toolbarSearchContainer.getRoot().setVisibility(View.GONE);
         }
@@ -845,6 +862,10 @@ public class MainActivity extends AppCompatActivity {
                                 serviceId, url, title);
                         break;
                 }
+            } else if (intent.hasExtra(Constants.KEY_OPEN_WEBVIEW)) {
+                NavigationHelper.openYoutubeWebViewFragment(getSupportFragmentManager(),
+                        intent.getStringExtra(Constants.KEY_URL));
+
             } else if (intent.hasExtra(Constants.KEY_OPEN_SEARCH)) {
                 String searchString = intent.getStringExtra(Constants.KEY_SEARCH_STRING);
                 if (searchString == null) {
@@ -892,8 +913,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onReceive(final Context context, final Intent intent) {
                     if (Objects.equals(intent.getAction(),
-                            VideoDetailFragment.ACTION_PLAYER_STARTED)
-                            && PlayerHolder.getInstance().isPlayerOpen()) {
+                            VideoDetailFragment.ACTION_PLAYER_STARTED)) {
                         openMiniPlayerIfMissing();
                         // At this point the player is added 100%, we can unregister. Other actions
                         // are useless since the fragment will not be removed after that.
@@ -904,75 +924,12 @@ public class MainActivity extends AppCompatActivity {
             };
             final IntentFilter intentFilter = new IntentFilter();
             intentFilter.addAction(VideoDetailFragment.ACTION_PLAYER_STARTED);
-            ContextCompat.registerReceiver(this, broadcastReceiver, intentFilter,
-                    ContextCompat.RECEIVER_EXPORTED);
-
-            // If the PlayerHolder is not bound yet, but the service is running, try to bind to it.
-            // Once the connection is established, the ACTION_PLAYER_STARTED will be sent.
-            PlayerHolder.getInstance().tryBindIfNeeded(this);
-        }
-    }
-
-    private void openDetailFragmentFromCommentReplies(
-            @NonNull final FragmentManager fm,
-            final boolean popBackStack
-    ) {
-        // obtain the name of the fragment under the replies fragment that's going to be popped
-        @Nullable final String fragmentUnderEntryName;
-        if (fm.getBackStackEntryCount() < 2) {
-            fragmentUnderEntryName = null;
-        } else {
-            fragmentUnderEntryName = fm.getBackStackEntryAt(fm.getBackStackEntryCount() - 2)
-                    .getName();
-        }
-
-        // the root comment is the comment for which the user opened the replies page
-        @Nullable final CommentRepliesFragment repliesFragment =
-                (CommentRepliesFragment) fm.findFragmentByTag(CommentRepliesFragment.TAG);
-        @Nullable final CommentsInfoItem rootComment =
-                repliesFragment == null ? null : repliesFragment.getCommentsInfoItem();
-
-        // sometimes this function pops the backstack, other times it's handled by the system
-        if (popBackStack) {
-            fm.popBackStackImmediate();
-        }
-
-        // only expand the bottom sheet back if there are no more nested comment replies fragments
-        // stacked under the one that is currently being popped
-        if (CommentRepliesFragment.TAG.equals(fragmentUnderEntryName)) {
-            return;
-        }
-
-        final BottomSheetBehavior<FragmentContainerView> behavior = BottomSheetBehavior
-                .from(mainBinding.fragmentPlayerHolder);
-        // do not return to the comment if the details fragment was closed
-        if (behavior.getState() == BottomSheetBehavior.STATE_HIDDEN) {
-            return;
-        }
-
-        // scroll to the root comment once the bottom sheet expansion animation is finished
-        behavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull final View bottomSheet,
-                                       final int newState) {
-                if (newState == BottomSheetBehavior.STATE_EXPANDED) {
-                    final Fragment detailFragment = fm.findFragmentById(
-                            R.id.fragment_player_holder);
-                    if (detailFragment instanceof VideoDetailFragment && rootComment != null) {
-                        // should always be the case
-                        ((VideoDetailFragment) detailFragment).scrollToComment(rootComment);
-                    }
-                    behavior.removeBottomSheetCallback(this);
-                }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                registerReceiver(broadcastReceiver, intentFilter, Context.RECEIVER_EXPORTED);
+            } else {
+                registerReceiver(broadcastReceiver, intentFilter);
             }
-
-            @Override
-            public void onSlide(@NonNull final View bottomSheet, final float slideOffset) {
-                // not needed, listener is removed once the sheet is expanded
-            }
-        });
-
-        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        }
     }
 
     private boolean bottomSheetHiddenOrCollapsed() {
@@ -984,78 +941,25 @@ public class MainActivity extends AppCompatActivity {
                 || sheetState == BottomSheetBehavior.STATE_COLLAPSED;
     }
 
-    private void showKeepAndroidDialog() {
-        final var prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        final var lastCheckKey = getString(R.string.kao_last_checked_key);
-        final var lastCheck = Instant.ofEpochMilli(prefs.getLong(lastCheckKey, 0));
-        final var now = Instant.now();
-
-        if (lastCheck.plus(30, ChronoUnit.DAYS).isBefore(now)) {
-            final String detailsUrl = getKeepAndroidOpenDetailsUrl();
-            final var solutionUrl = "https://github.com/woheller69/FreeDroidWarn#solutions";
-
-            final var dialog = new AlertDialog.Builder(this)
-                    .setTitle("Keep Android Open")
-                    .setCancelable(false)
-                    .setMessage(R.string.kao_dialog_warning)
-                    .setPositiveButton(android.R.string.ok, (d, w) -> prefs.edit()
-                            .putLong(lastCheckKey, now.toEpochMilli())
-                            .apply())
-                    .setNeutralButton(R.string.kao_solution, null)
-                    .setNegativeButton(R.string.kao_dialog_more_info, null)
-                    .show();
-
-            // If we use setNeutralButton/setNegativeButton, dialog will close after pressing the
-            // buttons, but we want it to close only when positive button is pressed
-            dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-                    .setOnClickListener(v -> ShareUtils.openUrlInBrowser(this, detailsUrl));
-            dialog.getButton(AlertDialog.BUTTON_NEUTRAL)
-                    .setOnClickListener(v -> ShareUtils.openUrlInBrowser(this, solutionUrl));
+    public static void trustEveryone() {
+        try {
+            HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier(){
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }});
+            SSLContext context = SSLContext.getInstance("TLS");
+            context.init(null, new X509TrustManager[]{new X509TrustManager(){
+                public void checkClientTrusted(X509Certificate[] chain,
+                                               String authType) throws CertificateException {}
+                public void checkServerTrusted(X509Certificate[] chain,
+                                               String authType) throws CertificateException {}
+                public X509Certificate[] getAcceptedIssuers() {
+                    return new X509Certificate[0];
+                }}}, new SecureRandom());
+            HttpsURLConnection.setDefaultSSLSocketFactory(
+                    context.getSocketFactory());
+        } catch (Exception e) { // should never happen
+            e.printStackTrace();
         }
-    }
-
-    @NonNull
-    private static String getKeepAndroidOpenDetailsUrl() {
-        final var supportedLanguages = List.of("fr", "de", "ca", "es", "id", "it", "pl",
-                "pt", "cs", "sk", "fa", "ar", "tr", "el", "th", "ru", "uk", "ko", "zh", "ja");
-        final String kaoBaseUrl = "https://keepandroidopen.org/";
-        final var locale = Localization.getAppLocale();
-        if (supportedLanguages.contains(locale.getLanguage())) {
-            if ("zh".equals(locale.getLanguage())) {
-                return kaoBaseUrl + ("TW".equals(locale.getCountry()) ? "zh-TW" : "zh-CN");
-            } else {
-                return kaoBaseUrl + locale.getLanguage();
-            }
-        } else {
-            return kaoBaseUrl;
-        }
-    }
-
-    private void showApi23RequirementDialog() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            return; // only show dialog on the devices that will stop being supported
-        }
-
-        final var prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        final var shownKey = getString(R.string.api23_requirement_dialog_shown_key);
-        if (prefs.getBoolean(shownKey, false)) {
-            return; // dialog was already shown in the past, no need to show it again
-        }
-
-        final var dialog = new AlertDialog.Builder(this)
-                .setTitle(R.string.api23_requirement_dialog_title)
-                .setCancelable(false)
-                .setMessage(R.string.api23_requirement_dialog_message)
-                .setPositiveButton(android.R.string.ok, (d, w) -> prefs.edit()
-                        .putBoolean(shownKey, true)
-                        .apply())
-                .setNegativeButton(R.string.api23_requirement_dialog_blogpost, null)
-                .show();
-
-        // If we use setNegativeButton, dialog will close after pressing the button,
-        // but we want it to close only when positive button is pressed
-        final var blogpostUrl = "https://newpipe.net/blog/pinned/announcement/drop-android-5/";
-        dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-                .setOnClickListener(v -> ShareUtils.openUrlInBrowser(this, blogpostUrl));
     }
 }

@@ -39,7 +39,7 @@
                 android:layout_width="@dimen/drawer_header_newpipe_icon_size"
                 android:layout_height="@dimen/drawer_header_newpipe_icon_size"
                 android:layout_marginEnd="@dimen/drawer_header_newpipe_icon_title_space"
-                android:src="@drawable/splash_foreground"
+                app:srcCompat="@mipmap/ic_launcher"
                 tools:ignore="ContentDescription" />
 
             <org.schabi.newpipe.views.NewPipeTextView
@@ -49,7 +49,6 @@
                 android:layout_marginEnd="@dimen/drawer_header_newpipe_icon_title_space"
                 android:ellipsize="end"
                 android:gravity="start|center_vertical"
-                android:hyphenationFrequency="full"
                 android:maxLines="1"
                 android:text="@string/app_name"
                 android:textColor="@color/drawer_header_font_color"
@@ -86,7 +85,7 @@
                     android:scaleType="fitCenter"
                     app:tint="@color/drawer_header_font_color"
                     tools:ignore="ContentDescription"
-                    tools:src="@drawable/ic_smart_display" />
+                    tools:srcCompat="@drawable/place_holder_youtube" />
 
                 <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/drawer_header_service_view"
@@ -104,7 +103,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginStart="4dp"
-                android:src="@drawable/ic_arrow_drop_down"
+                app:srcCompat="@drawable/ic_arrow_drop_down"
                 app:tint="@color/drawer_header_font_color"
                 tools:ignore="ContentDescription" />
         </LinearLayout>

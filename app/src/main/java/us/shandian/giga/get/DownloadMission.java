@@ -1,36 +1,28 @@
 package us.shandian.giga.get;
 
+import android.content.Context;
 import android.os.Handler;
 import android.system.ErrnoException;
 import android.system.OsConstants;
 import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import org.schabi.newpipe.DownloaderImpl;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InterruptedIOException;
-import java.io.Serializable;
-import java.net.ConnectException;
-import java.net.HttpURLConnection;
-import java.net.SocketTimeoutException;
-import java.net.URL;
-import java.net.UnknownHostException;
-import java.nio.channels.ClosedByInterruptException;
-import java.util.Objects;
-
-import javax.net.ssl.SSLException;
-
 import org.schabi.newpipe.streams.io.StoredFileHelper;
+import us.shandian.giga.hls.state.HlsDownloadCheckpoint;
 import us.shandian.giga.postprocessing.Postprocessing;
 import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.util.Utility;
 
+import javax.net.ssl.SSLException;
+import java.io.*;
+import java.net.*;
+import java.nio.channels.ClosedByInterruptException;
+import java.util.Objects;
+
 import static org.schabi.newpipe.BuildConfig.DEBUG;
+import static us.shandian.giga.postprocessing.Postprocessing.NICONICO_MUXER;
+import static us.shandian.giga.util.Utility.setRequestPropertyIfDownloadingBilibili;
 
 public class DownloadMission extends Mission {
     private static final long serialVersionUID = 6L;// last bump: 07 october 2019
@@ -55,8 +47,10 @@ public class DownloadMission extends Mission {
     public static final int ERROR_PROGRESS_LOST = 1011;
     public static final int ERROR_TIMEOUT = 1012;
     public static final int ERROR_RESOURCE_GONE = 1013;
+    public static final int ERROR_SABR_DOWNLOAD = 1014;
     public static final int ERROR_HTTP_NO_CONTENT = 204;
     static final int ERROR_HTTP_FORBIDDEN = 403;
+    static final int ERROR_HTTP_AUTH = 401;
 
     /**
      * The urls of the file to download
@@ -134,6 +128,17 @@ public class DownloadMission extends Mission {
      */
     public MissionRecoveryInfo[] recoveryInfo;
 
+    /**
+     * Optional typed metadata for resources. Used to route session/manifest resources to their
+     * dedicated downloaders instead of the direct HTTP range downloader.
+     */
+    public String[] resourceDeliveryMethods;
+    public String[] resourceManifestUrls;
+    public boolean[] resourceIsUrls;
+    public HlsDownloadCheckpoint hlsCheckpoint;
+    public SabrDownloadCheckpoint sabrCheckpoint;
+    public boolean sabrStarted;
+
     private transient int finishCount;
     public transient volatile boolean running;
     public boolean enqueued;
@@ -153,7 +158,9 @@ public class DownloadMission extends Mission {
     public transient Thread[] threads = new Thread[0];
     public transient Thread init = null;
 
-    public DownloadMission(String[] urls, StoredFileHelper storage, char kind, Postprocessing psInstance) {
+    public transient Context context;
+
+    public DownloadMission(String[] urls, StoredFileHelper storage, char kind, Postprocessing psInstance, Context context) {
         if (Objects.requireNonNull(urls).length < 1)
             throw new IllegalArgumentException("urls array is empty");
         this.urls = urls;
@@ -163,10 +170,8 @@ public class DownloadMission extends Mission {
         this.maxRetry = 3;
         this.storage = storage;
         this.psAlgorithm = psInstance;
+        this.context = context;
 
-        if (DEBUG && psInstance == null && urls.length > 1) {
-            Log.w(TAG, "mission created with multiple urls ¿missing post-processing algorithm?");
-        }
     }
 
     /**
@@ -219,9 +224,17 @@ public class DownloadMission extends Mission {
     }
 
     HttpURLConnection openConnection(String url, boolean headRequest, long rangeStart, long rangeEnd) throws IOException {
+        String cookie = null;
+        if(url.contains("#cookie=")) {
+            cookie = URLDecoder.decode(url.split("#cookie=")[1].split("&")[0]);
+            url = url.split("#cookie=")[0];
+        }
         HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
         conn.setInstanceFollowRedirects(true);
         conn.setRequestProperty("User-Agent", DownloaderImpl.USER_AGENT);
+        setRequestPropertyIfDownloadingBilibili(url, conn);
+        if (cookie != null) conn.setRequestProperty("Cookie", cookie);
+
         conn.setRequestProperty("Accept", "*/*");
         conn.setRequestProperty("Accept-Encoding", "*");
 
@@ -308,6 +321,8 @@ public class DownloadMission extends Mission {
             notifyError(ERROR_UNKNOWN_HOST, null);
         } else if (err instanceof SocketTimeoutException) {
             notifyError(ERROR_TIMEOUT, null);
+        } else if (err instanceof SabrDownloadException) {
+            notifyError(ERROR_SABR_DOWNLOAD, err);
         } else {
             notifyError(ERROR_UNKNOWN_EXCEPTION, err);
         }
@@ -452,6 +467,16 @@ public class DownloadMission extends Mission {
             return;
         }
 
+        if (hasSabrResource()) {
+            init = runAsync(DownloadInitializer.mId, new SabrDownloader(this));
+            return;
+        }
+
+        if (hasHlsResource()) {
+            init = runAsync(DownloadInitializer.mId, new HlsDownloader(this));
+            return;
+        }
+
         if (blocks == null) {
             initializer();
             return;
@@ -525,6 +550,8 @@ public class DownloadMission extends Mission {
     @Override
     public boolean delete() {
         if (psAlgorithm != null) psAlgorithm.cleanupTemporalDir();
+        HlsDownloader.cleanup(this);
+        SabrDownloader.cleanup(this);
 
         notify(DownloadManagerService.MESSAGE_DELETED);
 
@@ -550,6 +577,11 @@ public class DownloadMission extends Mission {
         fallbackResumeOffset = 0;
         blocks = null;
         blockAcquired = null;
+        if (rollback) {
+            hlsCheckpoint = null;
+            sabrCheckpoint = null;
+            sabrStarted = false;
+        }
 
         if (rollback) current = 0;
         if (persistChanges) writeThisToFile();
@@ -614,7 +646,16 @@ public class DownloadMission extends Mission {
      * @return true, otherwise, false
      */
     public boolean isInitialized() {
-        return blocks != null; // DownloadMissionInitializer was executed
+        return blocks != null || hlsCheckpoint != null || sabrStarted;
+    }
+
+    boolean hasHlsResource() {
+        return HlsDownloadStreamHelper.containsHlsResource(resourceDeliveryMethods,
+                resourceManifestUrls, urls);
+    }
+
+    boolean hasSabrResource() {
+        return SabrDownloadStreamHelper.containsSabrResource(resourceDeliveryMethods, recoveryInfo);
     }
 
     /**
@@ -625,6 +666,10 @@ public class DownloadMission extends Mission {
     public long getLength() {
         long calculated;
         if (psState == 1 || psState == 3) {
+            if(psAlgorithm != null && psAlgorithm.name == NICONICO_MUXER) {
+                long result = (long) Math.ceil(Long.parseLong(URLDecoder.decode(urls[0].split("&length=")[1]))/6.0);
+                return result * (kind == 'v'? 2 :1);
+            }
             return length;
         }
 

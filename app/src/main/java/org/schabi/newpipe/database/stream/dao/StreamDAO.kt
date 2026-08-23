@@ -8,12 +8,13 @@ import androidx.room.Query
 import androidx.room.Transaction
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
-import java.time.OffsetDateTime
 import org.schabi.newpipe.database.BasicDAO
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_ID
 import org.schabi.newpipe.extractor.stream.StreamType
-import org.schabi.newpipe.util.StreamTypeUtil
+import org.schabi.newpipe.extractor.stream.StreamType.AUDIO_LIVE_STREAM
+import org.schabi.newpipe.extractor.stream.StreamType.LIVE_STREAM
+import java.time.OffsetDateTime
 
 @Dao
 abstract class StreamDAO : BasicDAO<StreamEntity> {
@@ -87,10 +88,12 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
 
     private fun compareAndUpdateStream(newerStream: StreamEntity) {
         val existentMinimalStream = getMinimalStreamForCompare(newerStream.serviceId, newerStream.url)
-            ?: error("Stream cannot be null just after insertion.")
+            ?: throw IllegalStateException("Stream cannot be null just after insertion.")
         newerStream.uid = existentMinimalStream.uid
 
-        if (!StreamTypeUtil.isLiveStream(newerStream.streamType)) {
+        val isNewerStreamLive = newerStream.streamType == AUDIO_LIVE_STREAM || newerStream.streamType == LIVE_STREAM
+        if (!isNewerStreamLive) {
+
             // Use the existent upload date if the newer stream does not have a better precision
             // (i.e. is an approximation). This is done to prevent unnecessary changes.
             val hasBetterPrecision =

@@ -109,14 +109,13 @@
                         android:layout_marginEnd="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
-                        android:contentDescription="@string/close"
                         android:focusable="true"
                         android:padding="@dimen/player_main_buttons_padding"
                         android:scaleType="fitXY"
-                        android:src="@drawable/ic_close"
                         android:visibility="gone"
+                        app:srcCompat="@drawable/ic_close"
                         app:tint="@color/white"
-                        tools:ignore="RtlHardcoded" />
+                        tools:ignore="ContentDescription,RtlHardcoded" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -227,17 +226,16 @@
                         android:layout_marginEnd="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
-                        android:contentDescription="@string/open_play_queue"
                         android:focusable="true"
                         android:paddingStart="3dp"
                         android:paddingTop="5dp"
                         android:paddingEnd="3dp"
                         android:paddingBottom="3dp"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/ic_list"
                         android:visibility="gone"
+                        app:srcCompat="@drawable/ic_list"
                         app:tint="@color/white"
-                        tools:ignore="RtlHardcoded" />
+                        tools:ignore="ContentDescription,RtlHardcoded" />
 
                     <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/segmentsButton"
@@ -246,17 +244,16 @@
                         android:layout_marginEnd="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
-                        android:contentDescription="@string/chapters"
                         android:focusable="true"
                         android:paddingStart="6dp"
-                        android:paddingTop="3dp"
+                        android:paddingTop="5dp"
                         android:paddingEnd="6dp"
                         android:paddingBottom="3dp"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/ic_menu_book"
                         android:visibility="gone"
+                        app:srcCompat="@drawable/ic_format_list_numbered"
                         app:tint="@color/white"
-                        tools:ignore="RtlHardcoded" />
+                        tools:ignore="ContentDescription,RtlHardcoded" />
 
                     <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/moreOptionsButton"
@@ -264,13 +261,12 @@
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
-                        android:contentDescription="@string/more_options"
                         android:focusable="true"
                         android:padding="@dimen/player_main_buttons_padding"
                         android:scaleType="fitXY"
-                        android:src="@drawable/ic_expand_more"
+                        app:srcCompat="@drawable/ic_expand_more"
                         app:tint="@color/white"
-                        tools:ignore="RtlHardcoded" />
+                        tools:ignore="ContentDescription,RtlHardcoded" />
 
                 </LinearLayout>
 
@@ -322,6 +318,21 @@
                     </FrameLayout>
 
                     <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/switchCommentsVisibility"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:contentDescription="Switch comment visibility"
+                        android:focusable="true"
+                        android:padding="@dimen/player_main_buttons_padding"
+                        android:scaleType="fitXY"
+                        app:srcCompat="@drawable/ic_bullet_comment_enabled"
+                        app:tint="@color/white"
+                        tools:ignore="RtlHardcoded" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/playWithKodi"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
@@ -332,7 +343,7 @@
                         android:focusable="true"
                         android:padding="@dimen/player_main_buttons_padding"
                         android:scaleType="fitXY"
-                        android:src="@drawable/ic_cast"
+                        app:srcCompat="@drawable/ic_cast"
                         app:tint="@color/white"
                         tools:ignore="RtlHardcoded" />
 
@@ -347,7 +358,7 @@
                         android:focusable="true"
                         android:padding="@dimen/player_main_buttons_padding"
                         android:scaleType="fitXY"
-                        android:src="@drawable/ic_language"
+                        app:srcCompat="@drawable/ic_language"
                         app:tint="@color/white"
                         tools:ignore="RtlHardcoded" />
 
@@ -362,7 +373,7 @@
                         android:focusable="true"
                         android:padding="@dimen/player_main_buttons_padding"
                         android:scaleType="fitXY"
-                        android:src="@drawable/ic_share"
+                        app:srcCompat="@drawable/ic_share"
                         app:tint="@color/white"
                         tools:ignore="RtlHardcoded" />
 
@@ -370,15 +381,30 @@
                         android:id="@+id/switchMute"
                         android:layout_width="wrap_content"
                         android:layout_height="37dp"
+                        android:layout_marginEnd="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:contentDescription="@string/mute"
                         android:focusable="true"
                         android:padding="@dimen/player_main_buttons_padding"
                         android:scaleType="fitXY"
-                        android:src="@drawable/ic_volume_off"
+                        app:srcCompat="@drawable/ic_volume_off"
                         app:tint="@color/white"
                         tools:ignore="RtlHardcoded" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/sleep_timer"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:contentDescription="@string/sleep_timer_length_title"
+                            android:focusable="true"
+                            android:padding="@dimen/player_main_buttons_padding"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_timer_off"
+                            app:tint="@color/white"
+                            tools:ignore="RtlHardcoded" />
 
                     <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/fullScreenButton"
@@ -386,14 +412,13 @@
                         android:layout_height="40dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
-                        android:contentDescription="@string/toggle_fullscreen"
                         android:focusable="true"
                         android:padding="@dimen/player_main_buttons_padding"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/ic_fullscreen"
                         android:visibility="gone"
+                        app:srcCompat="@drawable/ic_fullscreen"
                         app:tint="@color/white"
-                        tools:ignore="RtlHardcoded"
+                        tools:ignore="ContentDescription,RtlHardcoded"
                         tools:visibility="visible" />
 
                 </LinearLayout>
@@ -436,8 +461,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="2dp"
-                        android:src="@drawable/placeholder_thumbnail_video"
                         android:visibility="gone"
+                        app:srcCompat="@drawable/dummy_thumbnail"
                         tools:visibility="visible" />
 
                 </LinearLayout>
@@ -510,21 +535,21 @@
                     android:layout_marginStart="4dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
-                    android:contentDescription="@string/toggle_screen_orientation"
                     android:focusable="true"
                     android:nextFocusUp="@id/playbackSeekBar"
                     android:padding="@dimen/player_main_buttons_padding"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_fullscreen"
                     android:visibility="gone"
+                    app:srcCompat="@drawable/ic_fullscreen"
                     app:tint="@color/white"
-                    tools:ignore="RtlHardcoded"
+                    tools:ignore="ContentDescription,RtlHardcoded"
                     tools:visibility="visible" />
             </LinearLayout>
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:id="@+id/playButtons"
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="horizontal"
@@ -538,11 +563,11 @@
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:contentDescription="@string/previous_stream"
                 android:focusable="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_previous"
-                app:tint="@color/white" />
+                app:srcCompat="@drawable/ic_previous"
+                app:tint="@color/white"
+                tools:ignore="ContentDescription" />
 
 
             <androidx.appcompat.widget.AppCompatImageButton
@@ -551,10 +576,10 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/pause"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_pause"
-                app:tint="@color/white" />
+                app:srcCompat="@drawable/ic_pause"
+                app:tint="@color/white"
+                tools:ignore="ContentDescription" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/playNextButton"
@@ -564,11 +589,11 @@
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:contentDescription="@string/next_stream"
                 android:focusable="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_next"
-                app:tint="@color/white" />
+                app:srcCompat="@drawable/ic_next"
+                app:tint="@color/white"
+                tools:ignore="ContentDescription" />
 
         </LinearLayout>
 
@@ -614,13 +639,12 @@
                 android:layout_marginLeft="40dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:contentDescription="@string/notification_action_repeat"
                 android:focusable="true"
                 android:padding="10dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/exo_controls_repeat_off"
                 android:tint="?attr/colorAccent"
-                tools:ignore="RtlHardcoded" />
+                app:srcCompat="@drawable/exo_controls_repeat_off"
+                tools:ignore="ContentDescription,RtlHardcoded" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/shuffleButton"
@@ -630,13 +654,12 @@
                 android:layout_toRightOf="@id/repeatButton"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:contentDescription="@string/notification_action_shuffle"
                 android:focusable="true"
                 android:padding="10dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_shuffle"
                 android:tint="?attr/colorAccent"
-                tools:ignore="RtlHardcoded" />
+                app:srcCompat="@drawable/ic_shuffle"
+                tools:ignore="ContentDescription,RtlHardcoded" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/itemsListHeaderDuration"
@@ -657,13 +680,12 @@
                 android:layout_toLeftOf="@+id/itemsListClose"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:contentDescription="@string/add_to_playlist"
                 android:focusable="true"
                 android:padding="10dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_playlist_add"
                 android:tint="?attr/colorAccent"
-                tools:ignore="RtlHardcoded" />
+                app:srcCompat="@drawable/ic_playlist_add"
+                tools:ignore="ContentDescription,RtlHardcoded" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/itemsListClose"
@@ -678,7 +700,7 @@
                 android:focusable="true"
                 android:padding="10dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_close"
+                app:srcCompat="@drawable/ic_close"
                 app:tint="@color/white" />
 
         </RelativeLayout>
@@ -701,19 +723,39 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
-            android:id="@+id/loading_panel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/black"
-            tools:visibility="gone">
+            android:id="@+id/loading_panel_wrapper">
+            <RelativeLayout
+                android:id="@+id/loading_panel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/black"
+                tools:visibility="gone">
 
-            <ProgressBar
-                android:id="@+id/progressBarLoadingPanel"
-                style="?android:attr/progressBarStyleLargeInverse"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:indeterminate="true" />
+                <ProgressBar
+                    android:id="@+id/progressBarLoadingPanel"
+                    style="?android:attr/progressBarStyleLargeInverse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:indeterminate="true" />
+
+                <TextView
+                    android:id="@+id/sabrBackoffCountdown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/progressBarLoadingPanel"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    tools:text="YouTube requires us to wait 7 seconds before continuing playback" />
+            </RelativeLayout>
         </RelativeLayout>
 
         <RelativeLayout
@@ -776,6 +818,76 @@
                     tools:src="@drawable/ic_brightness_high" />
             </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/unskipButton"
+                android:visibility="gone"
+                android:clickable="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/background_rectangle_black_transparent"
+                android:padding="@dimen/player_main_buttons_padding">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/tooltipUnskipIcon"
+                    android:src="@drawable/ic_previous"
+                    android:clickable="false"
+                    app:tint="@color/white"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:scaleType="fitXY"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_centerVertical="true" />
+
+                <TextView
+                    android:id="@+id/tooltipUnskipText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sponsor_block_manual_unskip_button"
+                    android:paddingRight="5dp"
+                    android:layout_toRightOf="@+id/tooltipUnskipIcon"
+                    android:layout_centerVertical="true"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#FFFFFF" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/skipButton"
+                android:clickable="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/background_rectangle_black_transparent"
+                android:visibility="gone"
+                android:padding="@dimen/player_main_buttons_padding">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/tooltipSkipIcon"
+                    android:src="@drawable/ic_next"
+                    android:clickable="false"
+                    app:tint="@color/white"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:scaleType="fitXY"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_toRightOf="@+id/tooltipSkipText"
+                    android:layout_centerVertical="true" />
+
+                <TextView
+                    android:id="@+id/tooltipSkipText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sponsor_block_manual_skip_button"
+                    android:paddingLeft="5dp"
+                    android:layout_centerVertical="true"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#FFFFFF" />
+            </RelativeLayout>
+
         </RelativeLayout>
 
     </RelativeLayout>
@@ -808,5 +920,38 @@
         android:layout_height="match_parent"
         android:alpha="0"
         android:visibility="invisible" /> <!-- Required for the first appearance fading correctly -->
+
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:id="@+id/swipeSeekDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/background_rectangle_black_transparent"
+        android:padding="8dp"
+        android:textColor="@android:color/white"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        tools:ignore="RtlHardcoded"
+        tools:text="+0:00 (0:00)" />
+
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:id="@+id/swipeSpeedDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/background_rectangle_black_transparent"
+        android:padding="8dp"
+        android:textColor="@android:color/white"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        tools:ignore="RtlHardcoded"
+        tools:text="1.0x" />
+
+    <org.schabi.newpipe.views.BulletCommentsView
+        android:id="@+id/bulletCommentsView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </RelativeLayout>

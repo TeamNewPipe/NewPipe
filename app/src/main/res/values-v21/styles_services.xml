@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- YouTube -->
+    <style name="LightTheme.YouTube" parent="LightTheme" tools:keep="@style/LightTheme_YouTube">
+        <item name="colorPrimaryDark">@color/light_youtube_statusbar_color</item>
+    </style>
+
+    <style name="DarkTheme.YouTube" parent="DarkTheme" tools:keep="@style/DarkTheme_YouTube">
+        <item name="colorPrimaryDark">@color/dark_youtube_statusbar_color</item>
+    </style>
+
+    <style name="BlackTheme.YouTube" parent="BlackTheme" tools:keep="@style/BlackTheme_YouTube">
+        <item name="colorPrimaryDark">@color/dark_youtube_statusbar_color</item>
+    </style>
+
+    <!-- SoundCloud -->
+    <style name="LightTheme.SoundCloud" parent="LightTheme" tools:keep="@style/LightTheme_SoundCloud">
+        <item name="colorPrimary">@color/light_soundcloud_primary_color</item>
+        <item name="colorPrimaryDark">@color/light_soundcloud_statusbar_color</item>
+        <item name="colorAccent">@color/light_soundcloud_accent_color</item>
+    </style>
+
+    <style name="DarkTheme.SoundCloud" parent="DarkTheme" tools:keep="@style/DarkTheme_SoundCloud">
+        <item name="colorPrimary">@color/dark_soundcloud_primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_soundcloud_statusbar_color</item>
+        <item name="colorAccent">@color/dark_soundcloud_accent_color</item>
+    </style>
+
+    <style name="BlackTheme.SoundCloud" parent="BlackTheme" tools:keep="@style/BlackTheme_SoundCloud">
+        <item name="colorPrimary">@color/dark_soundcloud_primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_soundcloud_statusbar_color</item>
+        <item name="colorAccent">@color/dark_soundcloud_accent_color</item>
+    </style>
+
+    <!-- PeerTube -->
+    <style name="LightTheme.PeerTube" parent="LightTheme" tools:keep="@style/LightTheme_PeerTube">
+        <item name="colorPrimary">@color/light_peertube_primary_color</item>
+        <item name="colorPrimaryDark">@color/light_peertube_statusbar_color</item>
+        <item name="colorAccent">@color/light_peertube_accent_color</item>
+    </style>
+
+    <style name="DarkTheme.PeerTube" parent="DarkTheme" tools:keep="@style/DarkTheme_PeerTube">
+        <item name="colorPrimary">@color/dark_peertube_primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_peertube_statusbar_color</item>
+        <item name="colorAccent">@color/dark_peertube_accent_color</item>
+    </style>
+
+    <style name="BlackTheme.PeerTube" parent="BlackTheme" tools:keep="@style/BlackTheme_PeerTube">
+        <item name="colorPrimary">@color/dark_peertube_primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_peertube_statusbar_color</item>
+        <item name="colorAccent">@color/dark_peertube_accent_color</item>
+    </style>
+
+    <!-- media.ccc.de -->
+    <style name="LightTheme.media.ccc.de" parent="LightTheme" tools:keep="@style/LightTheme_media_ccc_de">
+        <item name="colorPrimary">@color/light_media_ccc_primary_color</item>
+        <item name="colorPrimaryDark">@color/light_media_ccc_statusbar_color</item>
+        <item name="colorAccent">@color/light_media_ccc_accent_color</item>
+    </style>
+
+    <style name="DarkTheme.media.ccc.de" parent="DarkTheme" tools:keep="@style/DarkTheme_media_ccc_de">
+        <item name="colorPrimary">@color/dark_media_ccc_primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_media_ccc_statusbar_color</item>
+        <item name="colorAccent">@color/dark_media_ccc_accent_color</item>
+    </style>
+
+    <style name="BlackTheme.media.ccc.de" parent="BlackTheme" tools:keep="@style/BlackTheme_media_ccc_de">
+        <item name="colorPrimary">@color/dark_media_ccc_primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_media_ccc_statusbar_color</item>
+        <item name="colorAccent">@color/dark_media_ccc_accent_color</item>
+    </style>
+
+    <!-- Bandcamp -->
+    <style name="LightTheme.Bandcamp" parent="LightTheme" tools:keep="@style/LightTheme_Bandcamp">
+        <item name="colorPrimary">@color/light_bandcamp_primary_color</item>
+        <item name="colorPrimaryDark">@color/light_bandcamp_statusbar_color</item>
+        <item name="colorAccent">@color/light_bandcamp_accent_color</item>
+    </style>
+
+    <style name="DarkTheme.Bandcamp" parent="DarkTheme" tools:keep="@style/DarkTheme_Bandcamp">
+        <item name="colorPrimary">@color/dark_bandcamp_primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_bandcamp_statusbar_color</item>
+        <item name="colorAccent">@color/dark_bandcamp_accent_color</item>
+    </style>
+
+    <style name="BlackTheme.Bandcamp" parent="BlackTheme" tools:keep="@style/BlackTheme_Bandcamp">
+        <item name="colorPrimary">@color/dark_bandcamp_primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_bandcamp_statusbar_color</item>
+        <item name="colorAccent">@color/dark_bandcamp_accent_color</item>
+    </style>
+
+</resources>

@@ -1,5 +1,6 @@
 package us.shandian.giga.postprocessing;
 
+import android.content.Context;
 import org.schabi.newpipe.streams.Mp4FromDashWriter;
 import org.schabi.newpipe.streams.io.SharpStream;
 
@@ -15,6 +16,10 @@ class Mp4FromDashMuxer extends Postprocessing {
     }
 
     @Override
+    int process(String source, Context context, SharpStream out, SharpStream... sources) throws IOException {
+        return process(out, sources);
+    }
+
     int process(SharpStream out, SharpStream... sources) throws IOException {
         Mp4FromDashWriter muxer = new Mp4FromDashWriter(sources);
         muxer.parseSources();

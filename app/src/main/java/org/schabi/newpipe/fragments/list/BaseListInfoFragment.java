@@ -1,16 +1,13 @@
 package org.schabi.newpipe.fragments.list;
 
-import static org.schabi.newpipe.extractor.ServiceList.SoundCloud;
-
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
-import com.evernote.android.state.State;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
@@ -19,13 +16,17 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.ListInfo;
 import org.schabi.newpipe.extractor.Page;
+import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.views.NewPipeRecyclerView;
 
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
+import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
@@ -34,21 +35,34 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInfo<I>>
         extends BaseListFragment<L, ListExtractor.InfoItemsPage<I>> {
-    @State
     protected int serviceId = Constants.NO_SERVICE_ID;
-    @State
     protected String name;
-    @State
     protected String url;
 
     private final UserAction errorUserAction;
     protected L currentInfo;
-    @Nullable
     protected Page currentNextPage;
     protected Disposable currentWorker;
+    protected boolean filterFutureItems;
 
     protected BaseListInfoFragment(final UserAction errorUserAction) {
         this.errorUserAction = errorUserAction;
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull final Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("serviceId", serviceId);
+        outState.putString("name", name);
+        outState.putString("url", url);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull final Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        serviceId = savedInstanceState.getInt("serviceId", Constants.NO_SERVICE_ID);
+        name = savedInstanceState.getString("name");
+        url = savedInstanceState.getString("url");
     }
 
     @Override
@@ -56,6 +70,13 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
         super.initViews(rootView, savedInstanceState);
         setTitle(name);
         showListFooter(hasMoreItems());
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        filterFutureItems = PreferenceManager.getDefaultSharedPreferences(getActivity())
+                .getBoolean(getString(R.string.filter_future_items_key), true);
     }
 
     @Override
@@ -146,14 +167,14 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
         currentWorker = loadResult(forceLoad)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((@NonNull final L result) -> {
+                .subscribe((@NonNull L result) -> {
                     isLoading.set(false);
                     currentInfo = result;
                     currentNextPage = result.getNextPage();
                     handleResult(result);
                 }, throwable ->
                         showError(new ErrorInfo(throwable, errorUserAction,
-                                "Start loading: " + url, serviceId, url)));
+                                "Start loading: " + url, serviceId)));
     }
 
     /**
@@ -184,7 +205,7 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
                     handleNextItems(infoItemsPage);
                 }, (@NonNull Throwable throwable) ->
                         dynamicallyShowErrorPanelOrSnackbar(new ErrorInfo(throwable,
-                                errorUserAction, "Loading more items: " + url, serviceId, url)));
+                                errorUserAction, "Loading more items: " + url, serviceId)));
     }
 
     private void forbidDownwardFocusScroll() {
@@ -210,7 +231,7 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
 
         if (!result.getErrors().isEmpty()) {
             dynamicallyShowErrorPanelOrSnackbar(new ErrorInfo(result.getErrors(), errorUserAction,
-                    "Get next items of: " + url, serviceId, url));
+                    "Get next items of: " + url, serviceId));
         }
     }
 
@@ -232,13 +253,18 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
 
         if (infoListAdapter.getItemsList().isEmpty()) {
             if (!result.getRelatedItems().isEmpty()) {
-                infoListAdapter.addInfoItemList(result.getRelatedItems());
+                infoListAdapter.addInfoItemList(result.getRelatedItems().stream()
+                        .filter(item -> !filterFutureItems || !(item instanceof StreamInfoItem) || ((StreamInfoItem) item).getUploadDate() == null
+                                || ((StreamInfoItem)item).getUploadDate().offsetDateTime().isBefore(OffsetDateTime.now()))
+                                .collect(Collectors.toList()));
                 showListFooter(hasMoreItems());
-            } else if (hasMoreItems()) {
-                loadMoreItems();
             } else {
                 infoListAdapter.clearStreamItemList();
-                showEmptyState();
+                // showEmptyState should be called only if there is no item as
+                // well as no header in infoListAdapter
+                if (!(result instanceof ChannelInfo && infoListAdapter.getItemCount() == 1)) {
+                    showEmptyState();
+                }
             }
         }
 
@@ -250,23 +276,9 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
 
             if (!errors.isEmpty()) {
                 dynamicallyShowErrorPanelOrSnackbar(new ErrorInfo(result.getErrors(),
-                        errorUserAction, "Start loading: " + url, serviceId, url));
+                        errorUserAction, "Start loading: " + url, serviceId));
             }
         }
-    }
-
-    @Override
-    public void showEmptyState() {
-        // show "no streams" for SoundCloud; otherwise "no videos"
-        // showing "no live streams" is handled in KioskFragment
-        if (emptyStateView != null) {
-            if (currentInfo.getService() == SoundCloud) {
-                setEmptyStateMessage(R.string.no_streams);
-            } else {
-                setEmptyStateMessage(R.string.no_videos);
-            }
-        }
-        super.showEmptyState();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -287,5 +299,17 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
             isLoading.set(false);
             showSnackBarError(errorInfo);
         }
+    }
+
+    public int getServiceId() {
+        return serviceId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getUrl() {
+        return url;
     }
 }

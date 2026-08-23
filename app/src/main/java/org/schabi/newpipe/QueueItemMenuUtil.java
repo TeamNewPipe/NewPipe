@@ -18,7 +18,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.SparseItemUtil;
 
-import java.util.List;
+import java.util.Collections;
 
 public final class QueueItemMenuUtil {
     private QueueItemMenuUtil() {
@@ -41,21 +41,19 @@ public final class QueueItemMenuUtil {
         }
 
         popupMenu.setOnMenuItemClickListener(menuItem -> {
-            final int itemId = menuItem.getItemId();
-            if (itemId == R.id.menu_item_remove) {
+            if (menuItem.getItemId() == R.id.menu_item_remove) {
                 final int index = playQueue.indexOf(item);
                 playQueue.remove(index);
                 return true;
-            } else if (itemId == R.id.menu_item_details) {
-                // playQueue is null since we don't want any queue change
+            } else if (menuItem.getItemId() == R.id.menu_item_details) {
                 NavigationHelper.openVideoDetail(context, item.getServiceId(),
                         item.getUrl(), item.getTitle(), null,
                         false);
                 return true;
-            } else if (itemId == R.id.menu_item_append_playlist) {
+            } else if (menuItem.getItemId() == R.id.menu_item_append_playlist) {
                 PlaylistDialog.createCorrespondingDialog(
                         context,
-                        List.of(new StreamEntity(item)),
+                        Collections.singletonList(new StreamEntity(item)),
                         dialog -> dialog.show(
                                 fragmentManager,
                                 "QueueItemMenuUtil@append_playlist"
@@ -63,30 +61,27 @@ public final class QueueItemMenuUtil {
                 );
 
                 return true;
-            } else if (itemId == R.id.menu_item_channel_details) {
+            } else if (menuItem.getItemId() == R.id.menu_item_channel_details) {
                 SparseItemUtil.fetchUploaderUrlIfSparse(context, item.getServiceId(),
                         item.getUrl(), item.getUploaderUrl(),
-                        // An intent must be used here.
-                        // Opening with FragmentManager transactions is not working,
-                        // as PlayQueueActivity doesn't use fragments.
                         uploaderUrl -> NavigationHelper.openChannelFragmentUsingIntent(
                                 context, item.getServiceId(), uploaderUrl, item.getUploader()
                         ));
                 return true;
-            } else if (itemId == R.id.menu_item_share) {
+            } else if (menuItem.getItemId() == R.id.menu_item_share) {
                 shareText(context, item.getTitle(), item.getUrl(),
-                        item.getThumbnails());
+                        item.getThumbnailUrl());
                 return true;
-            } else if (itemId == R.id.menu_item_download) {
+            } else if (menuItem.getItemId() == R.id.menu_item_download) {
                 fetchStreamInfoAndSaveToDatabase(context, item.getServiceId(), item.getUrl(),
                         info -> {
-                            final DownloadDialog downloadDialog = new DownloadDialog(context,
-                                    info);
+                            final DownloadDialog downloadDialog = DownloadDialog.newInstance(context, info);
                             downloadDialog.show(fragmentManager, "downloadDialog");
                         });
                 return true;
+            } else {
+                return false;
             }
-            return false;
         });
 
         popupMenu.show();

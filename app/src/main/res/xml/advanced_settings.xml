@@ -1,0 +1,248 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto"
+                  android:key="general_preferences"
+                  android:title="@string/settings_category_advanced_title">
+
+    <PreferenceCategory
+            android:layout="@layout/settings_category_header_layout"
+            android:title="@string/settings_category_player_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false">
+        <SwitchPreferenceCompat
+                android:defaultValue="false"
+                android:key="@string/use_inexact_seek_key"
+                android:summary="@string/use_inexact_seek_summary"
+                android:title="@string/use_inexact_seek_title"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+                android:defaultValue="true"
+                android:key="@string/require_audio_focus_key"
+                android:summary="@string/require_audio_focus_summary"
+                android:title="@string/require_audio_focus_title"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+                android:defaultValue="false"
+                android:key="@string/resume_on_audio_focus_gain_key"
+                android:summary="@string/resume_on_audio_focus_gain_summary"
+                android:title="@string/resume_on_audio_focus_gain_title"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+                android:defaultValue="false"
+                android:key="@string/always_start_from_beginning_key"
+                android:title="@string/always_start_from_beginning_title"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+                android:defaultValue="false"
+                android:key="@string/start_main_player_fullscreen_key"
+                android:summary="@string/start_main_player_fullscreen_summary"
+                android:title="@string/start_main_player_fullscreen_title"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+
+        <ListPreference
+                android:defaultValue="@string/loading_timeout_default_value"
+                android:entries="@array/seek_duration_description"
+                android:entryValues="@array/loading_timeout_value"
+                android:key="@string/loading_timeout_key"
+                android:summary="@string/loading_timeout_description"
+                android:title="@string/loading_timeout_title"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+                android:defaultValue="false"
+                android:key="@string/force_end_on_overtime_key"
+                android:summary="@string/force_end_on_overtime_summary"
+                android:title="@string/force_end_on_overtime_title"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+
+        <ListPreference
+                android:defaultValue="visionos"
+                android:entries="@array/youtube_player_client_entries"
+                android:entryValues="@array/youtube_player_client_values"
+                android:key="@string/youtube_player_client_key"
+                android:summary="%s"
+                android:title="@string/youtube_player_client_title"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+
+        <PreferenceScreen
+                android:fragment="org.schabi.newpipe.settings.ExoPlayerSettingsFragment"
+                android:key="@string/exoplayer_settings_key"
+                android:summary="@string/settings_category_exoplayer_summary"
+                android:title="@string/settings_category_exoplayer_title"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+
+        <PreferenceScreen
+                android:fragment="org.schabi.newpipe.settings.BulletCommentsSettingsFragment"
+                android:title="@string/settings_category_bullet_comments_summary"
+                app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+            android:layout="@layout/settings_category_header_layout"
+            android:title="@string/settings_category_appearance_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false">
+        <ListPreference
+                android:defaultValue="@string/tablet_mode_auto_key"
+                android:entries="@array/tablet_mode_description"
+                android:entryValues="@array/tablet_mode_values"
+                android:key="@string/tablet_mode_key"
+                android:summary="%s"
+                android:title="@string/tablet_mode_title"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+                android:defaultValue="true"
+                android:key="@string/show_meta_info_key"
+                android:summary="@string/show_meta_info_summary"
+                android:title="@string/show_meta_info_title"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+
+        <SwitchPreference
+                android:defaultValue="false"
+                android:key="@string/show_dislike_key"
+                android:title="@string/show_dislike_title"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false"/>
+
+        <SwitchPreferenceCompat
+                android:defaultValue="false"
+                android:key="@string/always_list_mode_for_bookmark_key"
+                android:title="@string/always_list_mode_for_bookmark_title"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+                android:defaultValue="false"
+                android:key="@string/auto_ellipsize_key"
+                android:summary="@string/auto_ellipsize_summary"
+                android:title="@string/auto_ellipsize_title"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+                android:defaultValue="true"
+                android:key="@string/download_thumbnail_key"
+                android:summary="@string/download_thumbnail_summary"
+                android:title="@string/download_thumbnail_title"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+                android:defaultValue="false"
+                android:key="@string/use_old_search_filter_key"
+                android:summary="@string/use_old_search_filter_summary"
+                android:title="@string/use_old_search_filter_title"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+                android:defaultValue="false"
+                android:key="@string/use_experimental_new_ui_key"
+                android:summary="@string/use_experimental_new_ui_summary"
+                android:title="@string/use_experimental_new_ui_title"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+            android:layout="@layout/settings_category_header_layout"
+            android:title="@string/settings_category_behavior_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false">
+        <MultiSelectListPreference
+                android:key="@string/show_search_suggestions_key"
+                android:summary="@string/show_search_suggestions_summary"
+                android:title="@string/show_search_suggestions_title"
+                android:entries="@array/show_search_suggestions_description_list"
+                android:entryValues="@array/show_search_suggestions_value_list"
+                android:defaultValue="@array/show_search_suggestions_value_list"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+
+        <EditTextPreference
+                android:key="@string/search_suggestions_count_key"
+                android:title="@string/search_suggestions_count_title"
+                android:summary="@string/search_suggestions_count_summary"
+                android:defaultValue="25"
+                android:inputType="number"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+                android:defaultValue="false"
+                android:key="@string/feed_use_dedicated_fetch_method_key"
+                android:summary="@string/feed_use_dedicated_fetch_method_summary"
+                android:title="@string/feed_use_dedicated_fetch_method_title"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+                android:defaultValue="false"
+                android:key="@string/disable_android_auto_key"
+                android:summary="@string/disable_android_auto_summary"
+                android:title="@string/disable_android_auto_title"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+
+        <ListPreference
+                android:defaultValue="@string/limit_mobile_data_usage_value"
+                android:entries="@array/limit_data_usage_description_list"
+                android:entryValues="@array/limit_data_usage_values_list"
+                android:key="@string/limit_mobile_data_usage_key"
+                android:summary="%s"
+                android:title="@string/limit_mobile_data_usage_title"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+                android:defaultValue="false"
+                android:key="@string/fetch_full_playlist_key"
+                android:summary="@string/fetch_full_playlist_summary"
+                android:title="@string/fetch_full_playlist_title"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+                android:defaultValue="true"
+                android:key="@string/exit_app_confirmation_key"
+                android:title="@string/exit_app_confirmation_title"
+                android:summary="@string/exit_app_confirmation_message"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+                android:defaultValue="true"
+                android:key="@string/show_auto_translated_subtitles_key"
+                android:summary="@string/show_auto_translated_subtitles_summary"
+                android:title="@string/show_auto_translated_subtitles_title"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+
+        <ListPreference
+                android:defaultValue="en"
+                android:dependency="@string/show_auto_translated_subtitles_key"
+                android:entries="@array/auto_translated_subtitles_language_names"
+                android:entryValues="@array/auto_translated_subtitles_language_values"
+                android:key="@string/auto_translated_subtitles_language_key"
+                android:summary="%s"
+                android:title="@string/auto_translated_subtitles_language_title"
+                app:singleLineTitle="false"
+                app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

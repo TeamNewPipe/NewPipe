@@ -21,6 +21,7 @@ package org.schabi.newpipe.util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -33,9 +34,10 @@ import androidx.annotation.StyleRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
+
+import com.google.android.material.color.DynamicColors;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -73,6 +75,63 @@ public final class ThemeHelper {
      */
     public static void setTheme(final Context context, final int serviceId) {
         context.setTheme(getThemeForService(context, serviceId));
+        applyThemeColor(context);
+    }
+
+    /**
+     * Applies the user's Material You/manual color preference on top of the selected base theme.
+     * Dynamic colors are only applied to activities, and are disabled for the black theme so the
+     * user-selected pure-black background remains intact.
+     */
+    public static void applyThemeColor(final Context context) {
+        if (shouldApplyDynamicColors(context)) {
+            DynamicColors.applyToActivityIfAvailable((Activity) context);
+        } else {
+            applyThemeColorOverlay(context);
+        }
+    }
+
+    public static boolean shouldApplyDynamicColors(final Context context) {
+        return context instanceof Activity
+                && isThemeColor(context, R.string.theme_color_follow_system_value)
+                && !isBlackThemeSelected(context);
+    }
+
+    private static void applyThemeColorOverlay(final Context context) {
+        final int overlay = getThemeColorOverlay(context);
+        if (overlay != 0) {
+            context.getTheme().applyStyle(overlay, true);
+        }
+    }
+
+    @StyleRes
+    private static int getThemeColorOverlay(final Context context) {
+        if (isThemeColor(context, R.string.theme_color_pipeplay_value)) {
+            return R.style.ThemeOverlay_PipePlay_ThemeColor_PipePlay;
+        } else if (isThemeColor(context, R.string.theme_color_neutral_value)) {
+            return R.style.ThemeOverlay_PipePlay_ThemeColor_Neutral;
+        } else if (isThemeColor(context, R.string.theme_color_green_value)) {
+            return R.style.ThemeOverlay_PipePlay_ThemeColor_Green;
+        } else if (isThemeColor(context, R.string.theme_color_blue_value)) {
+            return R.style.ThemeOverlay_PipePlay_ThemeColor_Blue;
+        } else if (isThemeColor(context, R.string.theme_color_purple_value)) {
+            return R.style.ThemeOverlay_PipePlay_ThemeColor_Purple;
+        } else if (isThemeColor(context, R.string.theme_color_orange_value)) {
+            return R.style.ThemeOverlay_PipePlay_ThemeColor_Orange;
+        } else if (isThemeColor(context, R.string.theme_color_pink_value)) {
+            return R.style.ThemeOverlay_PipePlay_ThemeColor_Pink;
+        } else if (isThemeColor(context, R.string.theme_color_red_value)) {
+            return R.style.ThemeOverlay_PipePlay_ThemeColor_Red;
+        }
+        return 0;
+    }
+
+    private static boolean isThemeColor(final Context context, final int colorValueResId) {
+        final String themeColorKey = context.getString(R.string.theme_color_key);
+        final String defaultThemeColor = context.getString(R.string.default_theme_color_value);
+        final String selectedThemeColor = PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(themeColorKey, defaultThemeColor);
+        return selectedThemeColor.equals(context.getString(colorValueResId));
     }
 
     /**
@@ -88,6 +147,22 @@ public final class ThemeHelper {
         return selectedThemeKey.equals(res.getString(R.string.light_theme_key))
                 || (selectedThemeKey.equals(res.getString(R.string.auto_device_theme_key))
                 && !isDeviceDarkThemeEnabled(context));
+    }
+
+    /**
+     * Return true if the selected theme (on NewPipe settings) is the black theme.
+     *
+     * @param context context to get the preference
+     * @return whether the black theme is selected
+     */
+    public static boolean isBlackThemeSelected(final Context context) {
+        final String selectedThemeKey = getSelectedThemeKey(context);
+        final Resources res = context.getResources();
+        final String blackThemeKey = res.getString(R.string.black_theme_key);
+        return selectedThemeKey.equals(blackThemeKey)
+                || (selectedThemeKey.equals(res.getString(R.string.auto_device_theme_key))
+                && isDeviceDarkThemeEnabled(context)
+                && getSelectedNightThemeKey(context).equals(blackThemeKey));
     }
 
     /**
@@ -170,8 +245,11 @@ public final class ThemeHelper {
             themeName = "BlackTheme";
         }
 
-        themeName += "." + service.getServiceInfo().getName();
-        final int resourceId = getThemeOrDefault(themeName, baseTheme);
+        themeName += "." + (PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.enable_eye_protection_key), false)?
+                "Collector": service.getServiceInfo().getName());
+        final int resourceId = context.getResources()
+                .getIdentifier(themeName, "style", context.getPackageName());
 
         if (resourceId > 0) {
             return resourceId;
@@ -237,32 +315,18 @@ public final class ThemeHelper {
      * @param attrResId Resource id
      * @return the {@link Drawable}
      */
-    public static Drawable resolveDrawable(@NonNull final Context context,
-                                           @AttrRes final int attrResId) {
+    public static Drawable resolveDrawable(
+            @NonNull final Context context,
+            @AttrRes final int attrResId
+    ) {
         final TypedValue typedValue = new TypedValue();
         context.getTheme().resolveAttribute(attrResId, typedValue, true);
-        return AppCompatResources.getDrawable(context, typedValue.resourceId);
-    }
-
-    /**
-     * Gets a runtime dimen from the {@code android} package. Should be used for dimens for which
-     * normal accessing with {@code R.dimen.} is not available.
-     *
-     * @param context context
-     * @param name    dimen resource name (e.g. navigation_bar_height)
-     * @return the obtained dimension, in pixels, or 0 if the resource could not be resolved
-     */
-    public static int getAndroidDimenPx(@NonNull final Context context, final String name) {
-        final int resId = context.getResources().getIdentifier(name, "dimen", "android");
-        if (resId <= 0) {
-            return 0;
-        }
-        return context.getResources().getDimensionPixelSize(resId);
+        return ContextCompat.getDrawable(context, typedValue.resourceId);
     }
 
     private static String getSelectedThemeKey(final Context context) {
         final String themeKey = context.getString(R.string.theme_key);
-        final String defaultTheme = context.getString(R.string.default_theme_value);
+        final String defaultTheme = context.getResources().getString(R.string.default_theme_value);
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(themeKey, defaultTheme);
     }
@@ -340,8 +404,25 @@ public final class ThemeHelper {
      * @return true:use grid layout, false:use list layout
      */
     public static boolean shouldUseGridLayout(final Context context) {
-        final ItemViewMode mode = getItemViewMode(context);
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getBoolean(context.getString(R.string.grid_layout_enabled_key), true);
+    }
+
+    public static boolean shouldUseExperimentalNewUi(final Context context) {
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getBoolean(context.getString(R.string.use_experimental_new_ui_key), false);
+    }
+
+    public static boolean isGrid(ItemViewMode mode)  {
         return mode == ItemViewMode.GRID;
+    }
+
+    public static int getGridWidth(Context context) {
+        return context.getResources().getDimensionPixelSize(R.dimen.video_item_grid_thumbnail_image_width);
+    }
+
+    public static int getGridHeight(Context context) {
+        return context.getResources().getDimensionPixelSize(R.dimen.video_item_grid_thumbnail_image_height);
     }
 
     /**
@@ -351,8 +432,8 @@ public final class ThemeHelper {
      * @return the span count of grid channel info items
      */
     public static int getGridSpanCountChannels(final Context context) {
-        return getGridSpanCount(context,
-                context.getResources().getDimensionPixelSize(R.dimen.channel_item_grid_min_width));
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return getConfiguredGridColumns(context, preferences);
     }
 
     /**
@@ -361,28 +442,11 @@ public final class ThemeHelper {
      * @return Returns one of ItemViewMode
      */
     public static ItemViewMode getItemViewMode(final Context context) {
-        final String listMode = PreferenceManager.getDefaultSharedPreferences(context)
-                .getString(context.getString(R.string.list_view_mode_key),
-                        context.getString(R.string.list_view_mode_value));
-        final ItemViewMode result;
-        if (listMode.equals(context.getString(R.string.list_view_mode_list_key))) {
-            result = ItemViewMode.LIST;
-        } else if (listMode.equals(context.getString(R.string.list_view_mode_grid_key))) {
-            result = ItemViewMode.GRID;
-        } else if (listMode.equals(context.getString(R.string.list_view_mode_card_key))) {
-            result = ItemViewMode.CARD;
-        } else {
-            // Auto mode - evaluate whether to use Grid based on screen real estate.
-            final Configuration configuration = context.getResources().getConfiguration();
-            final boolean useGrid = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-                    && configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE);
-            if (useGrid) {
-                result = ItemViewMode.GRID;
-            } else {
-                result = ItemViewMode.LIST;
-            }
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        if (preferences.getBoolean(context.getString(R.string.card_mode_enabled_key), false)) {
+            return ItemViewMode.CARD;
         }
-        return result;
+        return shouldUseGridLayout(context) ? ItemViewMode.GRID : ItemViewMode.LIST;
     }
 
     /**
@@ -394,10 +458,8 @@ public final class ThemeHelper {
      * @return the span count of grid stream info items
      */
     public static int getGridSpanCountStreams(final Context context) {
-        final Resources res = context.getResources();
-        return getGridSpanCount(context,
-                res.getDimensionPixelSize(R.dimen.video_item_grid_thumbnail_image_width)
-                        + res.getDimensionPixelSize(R.dimen.video_item_search_padding) * 2);
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return getConfiguredGridColumns(context, preferences);
     }
 
     /**
@@ -412,25 +474,20 @@ public final class ThemeHelper {
         return Math.max(1, context.getResources().getDisplayMetrics().widthPixels / minWidth);
     }
 
-    @StyleRes
-    private static int getThemeOrDefault(final String name, @StyleRes final int baseTheme) {
-        return switch (name) {
-            case "LightTheme.YouTube" -> R.style.LightTheme_YouTube;
-            case "DarkTheme.YouTube" -> R.style.DarkTheme_YouTube;
-            case "BlackTheme.YouTube" -> R.style.BlackTheme_YouTube;
-            case "LightTheme.SoundCloud" -> R.style.LightTheme_SoundCloud;
-            case "DarkTheme.SoundCloud" -> R.style.DarkTheme_SoundCloud;
-            case "BlackTheme.SoundCloud" -> R.style.BlackTheme_SoundCloud;
-            case "LightTheme.PeerTube" -> R.style.LightTheme_PeerTube;
-            case "DarkTheme.PeerTube" -> R.style.DarkTheme_PeerTube;
-            case "BlackTheme.PeerTube" -> R.style.BlackTheme_PeerTube;
-            case "LightTheme.media.ccc.de" -> R.style.LightTheme_media_ccc_de;
-            case "DarkTheme.media.ccc.de" -> R.style.DarkTheme_media_ccc_de;
-            case "BlackTheme.media.ccc.de" -> R.style.BlackTheme_media_ccc_de;
-            case "LightTheme.Bandcamp" -> R.style.LightTheme_Bandcamp;
-            case "DarkTheme.Bandcamp" -> R.style.DarkTheme_Bandcamp;
-            case "BlackTheme.Bandcamp" -> R.style.BlackTheme_Bandcamp;
-            default -> baseTheme;
-        };
+    private static int getConfiguredGridColumns(final Context context,
+                                                final SharedPreferences preferences) {
+        final boolean landscape = context.getResources().getConfiguration().orientation
+                == Configuration.ORIENTATION_LANDSCAPE;
+        final String key = landscape
+                ? context.getString(R.string.grid_columns_landscape_key)
+                : context.getString(R.string.grid_columns_key);
+        final String defaultValue = landscape ? "4" : "2";
+        final String value = preferences.getString(key, defaultValue);
+        try {
+            return Math.max(1, Integer.parseInt(value));
+        } catch (final NumberFormatException e) {
+            return Integer.parseInt(defaultValue);
+        }
     }
+
 }

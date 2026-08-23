@@ -13,9 +13,8 @@ import androidx.collection.SparseArrayCompat;
 
 import com.google.common.base.Stopwatch;
 
-import org.schabi.newpipe.App;
 import org.schabi.newpipe.extractor.stream.Frameset;
-import org.schabi.newpipe.util.image.CoilHelper;
+import org.schabi.newpipe.util.PicassoHelper;
 
 import java.util.Comparator;
 import java.util.List;
@@ -31,6 +30,8 @@ public class SeekbarPreviewThumbnailHolder {
     // or it fails with an IllegalArgumentException
     // https://stackoverflow.com/a/54744028
     public static final String TAG = "SeekbarPrevThumbHolder";
+
+    private static final int MAX_STORYBOARD_BITMAP_PAGES = 48;
 
     // Key = Position of the picture in milliseconds
     // Supplier = Supplies the bitmap for that position
@@ -109,13 +110,18 @@ public class SeekbarPreviewThumbnailHolder {
         Log.d(TAG, "Starting generation of seekbarPreviewData");
         final Stopwatch sw = Log.isLoggable(TAG, Log.DEBUG) ? Stopwatch.createStarted() : null;
 
-        int currentPosMs = 0;
-        int pos = 1;
-
         final int urlFrameCount = frameset.getFramesPerPageX() * frameset.getFramesPerPageY();
+        final List<String> urls = frameset.getUrls();
+        final int pageStep = Math.max(1,
+                (int) Math.ceil((double) urls.size() / MAX_STORYBOARD_BITMAP_PAGES));
+        if (pageStep > 1) {
+            Log.d(TAG, "Sampling seekbarPreviewData storyboards: pages=" + urls.size()
+                    + ", step=" + pageStep);
+        }
 
         // Process each url in the frameset
-        for (final String url : frameset.getUrls()) {
+        for (int pageIndex = 0; pageIndex < urls.size(); pageIndex += pageStep) {
+            final String url = urls.get(pageIndex);
             // get the bitmap
             final Bitmap srcBitMap = getBitMapFrom(url);
 
@@ -123,18 +129,21 @@ public class SeekbarPreviewThumbnailHolder {
             // concurrency and checks for "updateRequestIdentifier"
             final var generatedDataForUrl = new SparseArrayCompat<Supplier<Bitmap>>(urlFrameCount);
 
+            long currentPosMs = (long) pageIndex * urlFrameCount * frameset.getDurationPerFrame();
+            int pos = pageIndex * urlFrameCount + 1;
+
             // The bitmap consists of several images, which we process here
             // foreach frame in the returned bitmap
             for (int i = 0; i < urlFrameCount; i++) {
                 // Frames outside the video length are skipped
-                if (pos > frameset.getTotalCount()) {
+                if (pos > frameset.getTotalCount() || currentPosMs > Integer.MAX_VALUE) {
                     break;
                 }
 
                 // Get the bounds where the frame is found
                 final int[] bounds = frameset.getFrameBoundsAt(currentPosMs);
-                generatedDataForUrl.put(currentPosMs,
-                        createBitmapSupplier(srcBitMap, bounds, frameset));
+                generatedDataForUrl.put((int) currentPosMs,
+                                        createBitmapSupplier(srcBitMap, bounds, frameset));
 
                 currentPosMs += frameset.getDurationPerFrame();
                 pos++;
@@ -192,7 +201,7 @@ public class SeekbarPreviewThumbnailHolder {
             // Reference: https://stackoverflow.com/a/23683075 + first comment
             // Fixes: https://github.com/TeamNewPipe/NewPipe/issues/11461
             return cutOutBitmap == srcBitMap
-                    ? cutOutBitmap.copy(Bitmap.Config.ARGB_8888, true) : cutOutBitmap;
+                    ? cutOutBitmap.copy(cutOutBitmap.getConfig(), true) : cutOutBitmap;
         };
     }
 
@@ -208,8 +217,8 @@ public class SeekbarPreviewThumbnailHolder {
             Log.d(TAG, "Downloading bitmap for seekbarPreview from '" + url + "'");
 
             // Gets the bitmap within the timeout of 15 seconds imposed by default by OkHttpClient
-            // Ensure that you are not running on the main thread, otherwise this will hang
-            final var bitmap = CoilHelper.INSTANCE.loadBitmapBlocking(App.getInstance(), url);
+            // Ensure that your are not running on the main-Thread this will otherwise hang
+            final Bitmap bitmap = PicassoHelper.loadSeekbarThumbnailPreview(url).get();
 
             if (sw != null) {
                 Log.d(TAG, "Download of bitmap for seekbarPreview from '" + url + "' took "

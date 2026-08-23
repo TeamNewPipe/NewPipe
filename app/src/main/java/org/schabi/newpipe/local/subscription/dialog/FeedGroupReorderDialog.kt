@@ -11,11 +11,8 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ItemTouchHelper.SimpleCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.evernote.android.state.State
-import com.livefront.bridge.Bridge
 import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.TouchCallback
-import java.util.Collections
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.databinding.DialogFeedGroupReorderBinding
@@ -23,6 +20,11 @@ import org.schabi.newpipe.local.subscription.dialog.FeedGroupReorderDialogViewMo
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupReorderDialogViewModel.DialogEvent.SuccessEvent
 import org.schabi.newpipe.local.subscription.item.FeedGroupReorderItem
 import org.schabi.newpipe.util.ThemeHelper
+import java.util.Collections
+import kotlin.collections.ArrayList
+import kotlin.collections.List
+import kotlin.collections.map
+import kotlin.collections.sortedBy
 
 class FeedGroupReorderDialog : DialogFragment() {
     private var _binding: DialogFeedGroupReorderBinding? = null
@@ -30,7 +32,6 @@ class FeedGroupReorderDialog : DialogFragment() {
 
     private lateinit var viewModel: FeedGroupReorderDialogViewModel
 
-    @State
     @JvmField
     var groupOrderedIdList = ArrayList<Long>()
     private val groupAdapter = GroupieAdapter()
@@ -38,7 +39,9 @@ class FeedGroupReorderDialog : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Bridge.restoreInstanceState(this, savedInstanceState)
+        if (savedInstanceState != null) {
+            groupOrderedIdList = ArrayList(savedInstanceState.getLongArray("groupOrderedIdList")?.toList() ?: emptyList())
+        }
 
         setStyle(STYLE_NO_TITLE, ThemeHelper.getMinWidthDialogTheme(requireContext()))
     }
@@ -76,7 +79,7 @@ class FeedGroupReorderDialog : DialogFragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        Bridge.saveInstanceState(this, outState)
+        outState.putLongArray("groupOrderedIdList", groupOrderedIdList.toLongArray())
     }
 
     private fun handleGroups(list: List<FeedGroupEntity>) {

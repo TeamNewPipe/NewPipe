@@ -2,9 +2,8 @@ package org.schabi.newpipe.local.feed.notifications
 
 import android.content.Context
 import androidx.preference.PreferenceManager
-import java.util.concurrent.TimeUnit
 import org.schabi.newpipe.R
-import org.schabi.newpipe.ktx.getStringSafe
+import java.util.concurrent.TimeUnit
 
 /**
  * Information for the Scheduler which checks for new streams.
@@ -21,9 +20,11 @@ data class ScheduleOptions(
             val preferences = PreferenceManager.getDefaultSharedPreferences(context)
             return ScheduleOptions(
                 interval = TimeUnit.SECONDS.toMillis(
-                    preferences.getStringSafe(
+                    preferences.getString(
                         context.getString(R.string.streams_notifications_interval_key),
-                        context.getString(R.string.streams_notifications_interval_default)
+                        null
+                    )?.toLongOrNull() ?: context.getString(
+                        R.string.streams_notifications_interval_default
                     ).toLong()
                 ),
                 isRequireNonMeteredNetwork = preferences.getString(

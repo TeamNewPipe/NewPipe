@@ -1,5 +1,6 @@
 package us.shandian.giga.postprocessing;
 
+import android.content.Context;
 import org.schabi.newpipe.streams.WebMReader.TrackKind;
 import org.schabi.newpipe.streams.WebMReader.WebMTrack;
 import org.schabi.newpipe.streams.WebMWriter;
@@ -17,6 +18,10 @@ class WebMMuxer extends Postprocessing {
     }
 
     @Override
+    int process(String source, Context context, SharpStream out, SharpStream... sources) throws IOException {
+        return process(out, sources);
+    }
+
     int process(SharpStream out, SharpStream... sources) throws IOException {
         WebMWriter muxer = new WebMWriter(sources);
         muxer.parseSources();

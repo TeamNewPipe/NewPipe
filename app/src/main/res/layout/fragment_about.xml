@@ -1,0 +1,87 @@
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="org.schabi.newpipe.about.AboutActivity$AboutFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="@string/app_name"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <org.schabi.newpipe.views.NewPipeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/app_name"
+            android:textAppearance="@android:style/TextAppearance.Large" />
+
+
+        <org.schabi.newpipe.views.NewPipeTextView
+            android:id="@+id/about_app_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            tools:text="0.9.9" />
+
+        <org.schabi.newpipe.views.NewPipeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:text="@string/app_description_new" />
+
+        <org.schabi.newpipe.views.NewPipeTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:text="@string/contribution_title"
+            android:textAppearance="@android:style/TextAppearance.Medium" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/contribution_encouragement" />
+
+        <Button
+            android:id="@+id/about_github_link"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="@string/view_on_github" />
+        <org.schabi.newpipe.views.NewPipeTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:text="@string/donation_title"
+                android:textAppearance="@android:style/TextAppearance.Medium" />
+
+        <org.schabi.newpipe.views.NewPipeTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/donation_dialog_message" />
+
+        <Button
+                android:id="@+id/about_donation_link"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="@string/sponsor_promote" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

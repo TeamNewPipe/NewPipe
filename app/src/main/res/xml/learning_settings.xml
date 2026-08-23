@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="@string/settings_category_learning_title">
+
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="@string/learning_mode_key"
+        android:summary="@string/learning_mode_summary"
+        android:title="@string/learning_mode_title"
+        app:iconSpaceReserved="false"
+        app:singleLineTitle="false" />
+
+    <SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:dependency="@string/learning_mode_key"
+        android:key="@string/learning_notes_key"
+        android:summary="@string/learning_notes_summary"
+        android:title="@string/learning_notes_title"
+        app:iconSpaceReserved="false"
+        app:singleLineTitle="false" />
+
+    <SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:dependency="@string/learning_mode_key"
+        android:key="@string/learning_playlist_progress_key"
+        android:summary="@string/learning_playlist_progress_summary"
+        android:title="@string/learning_playlist_progress_title"
+        app:iconSpaceReserved="false"
+        app:singleLineTitle="false" />
+
+    <SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:dependency="@string/learning_mode_key"
+        android:key="@string/learning_count_background_key"
+        android:summary="@string/learning_count_background_summary"
+        android:title="@string/learning_count_background_title"
+        app:iconSpaceReserved="false"
+        app:singleLineTitle="false" />
+</PreferenceScreen>

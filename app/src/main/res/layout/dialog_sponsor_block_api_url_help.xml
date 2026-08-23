@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:clickable="false"
+    android:paddingLeft="@dimen/video_item_search_padding"
+    android:paddingRight="@dimen/video_item_search_padding"
+    android:paddingTop="@dimen/video_item_search_padding">
+    <TextView
+        android:id="@+id/api_url_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="@string/sponsor_block_api_url_help_text"/>
+    <Button
+        android:id="@+id/sponsor_block_privacy_policy_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/sponsor_block_privacy_policy_text"/>
+</LinearLayout>

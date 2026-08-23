@@ -1,17 +1,18 @@
 .gradle/
 local.properties
 .DS_Store
-**/build/
-!src/**/build/
+build/
 captures/
 .idea/
 *.iml
 *~
 .weblate
-.kotlin
 *.class
 app/debug/
 app/release/
+.kotlin/
+log/
+/local-pr-desc/
 
 # vscode / eclipse files
 *.classpath
@@ -20,15 +21,5 @@ app/release/
 bin/
 .vscode/
 *.code-workspace
-
-# xcode files
-xcuserdata
-.externalNativeBuild
-.cxx
-node_modules/
-*.xcodeproj/*
-!*.xcodeproj/project.pbxproj
-!*.xcodeproj/xcshareddata/
-!*.xcodeproj/project.xcworkspace/
-!*.xcworkspace/contents.xcworkspacedata
-**/xcshareddata/WorkspaceSettings.xcsettings
+/config.py
+__pycache__

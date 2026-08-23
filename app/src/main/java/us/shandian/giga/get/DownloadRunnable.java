@@ -14,6 +14,7 @@ import us.shandian.giga.get.DownloadMission.Block;
 import us.shandian.giga.get.DownloadMission.HttpError;
 
 import static org.schabi.newpipe.BuildConfig.DEBUG;
+import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_AUTH;
 import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_FORBIDDEN;
 
 
@@ -130,7 +131,7 @@ public class DownloadRunnable extends Thread {
             } catch (Exception e) {
                 if (!mMission.running || e instanceof ClosedByInterruptException) break;
 
-                if (e instanceof HttpError && ((HttpError) e).statusCode == ERROR_HTTP_FORBIDDEN) {
+                if (e instanceof HttpError && (((HttpError) e).statusCode == ERROR_HTTP_FORBIDDEN || ((HttpError) e).statusCode == ERROR_HTTP_AUTH)) {
                     // for youtube streams. The url has expired, recover
                     f.close();
 

@@ -40,6 +40,43 @@ abstract class SubscriptionDAO : BasicDAO<SubscriptionEntity> {
         LEFT JOIN feed_group_subscription_join fgs
         ON s.uid = fgs.subscription_id
 
+        WHERE (fgs.group_id = :currentGroupId)
+
+        ORDER BY name COLLATE NOCASE ASC
+        """
+    )
+    abstract fun getSubscriptionsForCurrentGroup(
+        currentGroupId: Long
+    ): Flowable<List<SubscriptionEntity>>
+
+    @RewriteQueriesToDropUnusedColumns
+    @Query(
+        """
+        SELECT * FROM subscriptions s
+
+        LEFT JOIN feed_group_subscription_join fgs
+        ON s.uid = fgs.subscription_id
+
+        WHERE (fgs.group_id = :currentGroupId)
+        AND s.name LIKE '%' || :filter || '%'
+
+        ORDER BY name COLLATE NOCASE ASC
+        """
+    )
+    abstract fun getSubscriptionsForCurrentGroupFiltered(
+        currentGroupId: Long,
+        filter: String
+    ): Flowable<List<SubscriptionEntity>>
+
+
+    @RewriteQueriesToDropUnusedColumns
+    @Query(
+        """
+        SELECT * FROM subscriptions s
+
+        LEFT JOIN feed_group_subscription_join fgs
+        ON s.uid = fgs.subscription_id
+
         WHERE (fgs.subscription_id IS NULL OR fgs.group_id = :currentGroupId)
 
         ORDER BY name COLLATE NOCASE ASC
@@ -99,8 +136,8 @@ abstract class SubscriptionDAO : BasicDAO<SubscriptionEntity> {
             if (uidFromInsert != -1L) {
                 entity.uid = uidFromInsert
             } else {
-                val subscriptionIdFromDb = getSubscriptionIdInternal(entity.serviceId, entity.url!!)
-                    ?: error("Subscription cannot be null just after insertion.")
+                val subscriptionIdFromDb = getSubscriptionIdInternal(entity.serviceId, entity.url)
+                    ?: throw IllegalStateException("Subscription cannot be null just after insertion.")
                 entity.uid = subscriptionIdFromDb
 
                 update(entity)

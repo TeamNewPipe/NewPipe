@@ -1,5 +1,6 @@
 package us.shandian.giga.postprocessing;
 
+import android.content.Context;
 import org.schabi.newpipe.streams.Mp4DashReader;
 import org.schabi.newpipe.streams.Mp4FromDashWriter;
 import org.schabi.newpipe.streams.io.SharpStream;
@@ -29,6 +30,10 @@ class M4aNoDash extends Postprocessing {
     }
 
     @Override
+    int process(String source, Context context, SharpStream out, SharpStream... sources) throws IOException {
+        return process(out, sources);
+    }
+
     int process(SharpStream out, SharpStream... sources) throws IOException {
         Mp4FromDashWriter muxer = new Mp4FromDashWriter(sources[0]);
         muxer.setMainBrand(0x4D344120);// binary string "M4A "

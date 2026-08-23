@@ -23,4 +23,15 @@
         android:layout_height="match_parent"
         android:layout_below="@id/main_tab_layout" />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/main_bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/windowBackground"
+        android:visibility="gone"
+        app:itemIconTint="?attr/colorAccent"
+        app:itemTextColor="?attr/colorAccent"
+        app:labelVisibilityMode="labeled" />
+
 </RelativeLayout>

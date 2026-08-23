@@ -6,32 +6,29 @@ import android.os.Bundle
 import android.os.ResultReceiver
 import android.support.v4.media.session.PlaybackStateCompat
 import android.util.Log
-import androidx.core.content.ContextCompat
-import androidx.core.net.toUri
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector.PlaybackPreparer
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
-import java.util.function.BiConsumer
-import java.util.function.Consumer
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.R
-import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.extractor.InfoItem.InfoType
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager
-import org.schabi.newpipe.player.playqueue.ChannelTabPlayQueue
+import org.schabi.newpipe.player.playqueue.ChannelPlayQueue
 import org.schabi.newpipe.player.playqueue.PlayQueue
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue
 import org.schabi.newpipe.util.ChannelTabHelper
 import org.schabi.newpipe.util.ExtractorHelper
 import org.schabi.newpipe.util.NavigationHelper
+import java.util.function.BiConsumer
+import java.util.function.Consumer
 
 /**
  * This class is used to cleanly separate the Service implementation (in
@@ -49,9 +46,9 @@ import org.schabi.newpipe.util.NavigationHelper
  */
 class MediaBrowserPlaybackPreparer(
     private val context: Context,
-    private val setMediaSessionError: BiConsumer<CharSequence, Int>, // error string, error code
+    private val setMediaSessionError: BiConsumer<String, Int>, // error string, error code
     private val clearMediaSessionError: Runnable,
-    private val onPrepare: Consumer<Boolean>
+    private val onPrepare: Consumer<Boolean>,
 ) : PlaybackPreparer {
     private val database = NewPipeDatabase.getInstance(context)
     private var disposable: Disposable? = null
@@ -85,7 +82,7 @@ class MediaBrowserPlaybackPreparer(
                 },
                 { throwable ->
                     Log.e(TAG, "Failed to start playback of media ID [$mediaId]", throwable)
-                    onPrepareError(throwable)
+                    onPrepareError()
                 }
             )
     }
@@ -111,14 +108,14 @@ class MediaBrowserPlaybackPreparer(
     //region Errors
     private fun onUnsupportedError() {
         setMediaSessionError.accept(
-            ContextCompat.getString(context, R.string.content_not_supported),
+            context.getString(R.string.content_not_supported_new),
             PlaybackStateCompat.ERROR_CODE_NOT_SUPPORTED
         )
     }
 
-    private fun onPrepareError(throwable: Throwable) {
+    private fun onPrepareError() {
         setMediaSessionError.accept(
-            ErrorInfo.getMessage(throwable, null, null).getText(context),
+            context.getString(R.string.error_snackbar_message),
             PlaybackStateCompat.ERROR_CODE_APP_ERROR
         )
     }
@@ -140,13 +137,13 @@ class MediaBrowserPlaybackPreparer(
 
     private fun extractPlayQueueFromMediaId(mediaId: String): Single<PlayQueue> {
         try {
-            val mediaIdUri = mediaId.toUri()
+            val mediaIdUri = Uri.parse(mediaId)
             val path = ArrayList(mediaIdUri.pathSegments)
             if (path.isEmpty()) {
                 throw parseError(mediaId)
             }
 
-            return when (path.removeAt(0)) {
+            return when (/*val uriType = */path.removeAt(0)) {
                 ID_BOOKMARKS -> extractPlayQueueFromPlaylistMediaId(
                     mediaId,
                     path,
@@ -172,7 +169,7 @@ class MediaBrowserPlaybackPreparer(
     private fun extractPlayQueueFromPlaylistMediaId(
         mediaId: String,
         path: MutableList<String>,
-        url: String?
+        url: String?,
     ): Single<PlayQueue> {
         if (path.isEmpty()) {
             throw parseError(mediaId)
@@ -185,11 +182,10 @@ class MediaBrowserPlaybackPreparer(
                 }
                 val playlistId = path[0].toLong()
                 val index = path[1].toInt()
-                return if (playlistType == ID_LOCAL) {
+                return if (playlistType == ID_LOCAL)
                     extractLocalPlayQueue(playlistId, index)
-                } else {
+                else
                     extractRemotePlayQueue(playlistId, index)
-                }
             }
 
             ID_URL -> {
@@ -209,14 +205,14 @@ class MediaBrowserPlaybackPreparer(
     @Throws(ContentNotAvailableException::class)
     private fun extractPlayQueueFromHistoryMediaId(
         mediaId: String,
-        path: List<String>
+        path: List<String>,
     ): Single<PlayQueue> {
         if (path.size != 1) {
             throw parseError(mediaId)
         }
 
         val streamId = path[0].toLong()
-        return database.streamHistoryDAO().history
+        return database.streamHistoryDAO().getHistory()
             .firstOrError()
             .map { items ->
                 val infoItems = items
@@ -230,14 +226,14 @@ class MediaBrowserPlaybackPreparer(
     private fun extractPlayQueueFromInfoItemMediaId(
         mediaId: String,
         path: List<String>,
-        url: String
+        url: String,
     ): Single<PlayQueue> {
         if (path.size != 2) {
             throw parseError(mediaId)
         }
 
         val serviceId = path[1].toInt()
-        return when (infoItemTypeFromString(path[0])) {
+        return when (/*val infoItemType = */infoItemTypeFromString(path[0])) {
             InfoType.STREAM -> ExtractorHelper.getStreamInfo(serviceId, url, false)
                 .map { SinglePlayQueue(it) }
 
@@ -245,12 +241,7 @@ class MediaBrowserPlaybackPreparer(
                 .map { PlaylistPlayQueue(it) }
 
             InfoType.CHANNEL -> ExtractorHelper.getChannelInfo(serviceId, url, false)
-                .map { info ->
-                    val playableTab = info.tabs
-                        .firstOrNull { ChannelTabHelper.isStreamsTab(it) }
-                        ?: throw ContentNotAvailableException("No streams tab found")
-                    return@map ChannelTabPlayQueue(serviceId, ListLinkHandler(playableTab))
-                }
+                .map {ChannelPlayQueue(it) }
 
             else -> throw parseError(mediaId)
         }

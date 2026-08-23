@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:minWidth="500dp"
+        android:gravity="left"
+        android:layout_gravity="left"
+        android:id="@+id/local_playlist_search_toolbar"
+        android:layout_height="?attr/actionBarSize"
+        tools:background="?attr/colorPrimary"
+        android:layout_width="match_parent" tools:ignore="RtlHardcoded">
+
+    <org.schabi.newpipe.views.NewPipeEditText
+            android:id="@+id/toolbar_search_edit_text_local"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="48dp"
+            android:layout_marginBottom="4dp"
+            android:minWidth="500dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="@string/search"
+            android:textColor="?attr/toolbarSearchColor"
+            android:imeOptions="actionSearch|flagNoFullscreen"
+            android:inputType="textFilter|textNoSuggestions"
+            android:maxLines="1"
+            android:nextFocusDown="@+id/suggestions_list"
+            android:theme="@style/ToolbarSearchInputTheme"
+            tools:ignore="RtlHardcoded" />
+
+    <FrameLayout
+            android:id="@+id/toolbar_search_clear_local"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="right"
+            android:contentDescription="@string/clear"
+            android:focusable="true"
+            tools:ignore="RtlHardcoded">
+
+        <View
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:background="?attr/selectableItemBackgroundBorderless" />
+
+        <ImageView
+                android:id="@+id/toolbar_search_clear_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/search"
+                android:scaleType="fitCenter"
+                app:tint="?attr/toolbarSearchColor"
+                app:srcCompat="@drawable/ic_close"
+                tools:ignore="RtlHardcoded" />
+    </FrameLayout>
+
+</FrameLayout>

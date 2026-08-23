@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
@@ -19,22 +18,19 @@ import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.ItemViewMode;
-import org.schabi.newpipe.info_list.dialog.InfoItemDialog;
 import org.schabi.newpipe.ktx.ViewUtils;
+import org.schabi.newpipe.util.RelatedItemInfo;
 
-import java.io.Serializable;
+import java.util.Queue;
 import java.util.function.Supplier;
 
 import io.reactivex.rxjava3.core.Single;
 
-public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, RelatedItemsInfo>
+public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, RelatedItemInfo>
         implements SharedPreferences.OnSharedPreferenceChangeListener {
-    private static final String INFO_KEY = "related_info_key";
-
-    private RelatedItemsInfo relatedItemsInfo;
+    private RelatedItemInfo relatedItemInfo;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -71,7 +67,7 @@ public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, Related
 
     @Override
     protected Supplier<View> getListHeaderSupplier() {
-        if (relatedItemsInfo == null || relatedItemsInfo.getRelatedItems() == null) {
+        if (relatedItemInfo == null || relatedItemInfo.getRelatedItems() == null) {
             return null;
         }
 
@@ -99,8 +95,8 @@ public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, Related
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    protected Single<RelatedItemsInfo> loadResult(final boolean forceLoad) {
-        return Single.fromCallable(() -> relatedItemsInfo);
+    protected Single<RelatedItemInfo> loadResult(final boolean forceLoad) {
+        return Single.fromCallable(() -> relatedItemInfo);
     }
 
     @Override
@@ -112,7 +108,7 @@ public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, Related
     }
 
     @Override
-    public void handleResult(@NonNull final RelatedItemsInfo result) {
+    public void handleResult(@NonNull final RelatedItemInfo result) {
         super.handleResult(result);
 
         if (headerBinding != null) {
@@ -139,31 +135,30 @@ public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, Related
 
     private void setInitialData(final StreamInfo info) {
         super.setInitialData(info.getServiceId(), info.getUrl(), info.getName());
-        if (this.relatedItemsInfo == null) {
-            this.relatedItemsInfo = new RelatedItemsInfo(info);
+        if (this.relatedItemInfo == null) {
+            this.relatedItemInfo = RelatedItemInfo.getInfo(info);
         }
     }
 
     @Override
-    public void onSaveInstanceState(@NonNull final Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putSerializable(INFO_KEY, relatedItemsInfo);
+    public void writeTo(final Queue<Object> objectsToSave) {
+        super.writeTo(objectsToSave);
+        objectsToSave.add(relatedItemInfo);
     }
 
     @Override
-    protected void onRestoreInstanceState(@NonNull final Bundle savedState) {
-        super.onRestoreInstanceState(savedState);
-        final Serializable serializable = savedState.getSerializable(INFO_KEY);
-        if (serializable instanceof RelatedItemsInfo) {
-            this.relatedItemsInfo = (RelatedItemsInfo) serializable;
-        }
+    public void readFrom(@NonNull final Queue<Object> savedObjects) throws Exception {
+        super.readFrom(savedObjects);
+        relatedItemInfo = (RelatedItemInfo) savedObjects.poll();
     }
 
     @Override
     public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences,
-                                          final String key) {
-        if (headerBinding != null && getString(R.string.auto_queue_key).equals(key)) {
-            headerBinding.autoplaySwitch.setChecked(sharedPreferences.getBoolean(key, false));
+                                          final String s) {
+        if (headerBinding != null) {
+            headerBinding.autoplaySwitch.setChecked(
+                    sharedPreferences.getBoolean(
+                            getString(R.string.auto_queue_key), false));
         }
     }
 
@@ -176,27 +171,4 @@ public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, Related
         }
         return mode;
     }
-
-    @Override
-    protected void showInfoItemDialog(final StreamInfoItem item) {
-        // Try and attach the InfoItemDialog to the parent fragment of the RelatedItemsFragment
-        // so that its context is not lost when the RelatedItemsFragment is reinitialized,
-        // e.g. when a new stream is loaded in a parent VideoDetailFragment.
-        final Fragment parentFragment = getParentFragment();
-        if (parentFragment != null) {
-            try {
-                new InfoItemDialog.Builder(
-                        parentFragment.getActivity(),
-                        parentFragment.getContext(),
-                        parentFragment,
-                        item
-                ).create().show();
-            } catch (final IllegalArgumentException e) {
-                InfoItemDialog.Builder.reportErrorDuringInitialization(e, item);
-            }
-        } else {
-            super.showInfoItemDialog(item);
-        }
-    }
-
 }

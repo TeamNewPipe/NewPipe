@@ -1,10 +1,8 @@
 package org.schabi.newpipe.player.playback;
 
-import android.content.Context;
 import android.view.SurfaceHolder;
 
 import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.video.PlaceholderSurface;
 
 /**
  * Prevent error message: 'Unrecoverable player error occurred'
@@ -12,7 +10,7 @@ import com.google.android.exoplayer2.video.PlaceholderSurface;
  * having a Callback that handles the lifecycle of the surface.
  * <p>
  * How?: In case we are no longer able to write to the surface eg. through rotation/putting in
- * background we set set a DummySurface. Although it it works on API >= 23 only.
+ * background we clear the surface, and the player swaps in a placeholder one of its own.
  * Result: we get a little video interruption (audio is still fine) but we won't get the
  * 'Unrecoverable player error occurred' error message.
  * <p>
@@ -24,12 +22,9 @@ import com.google.android.exoplayer2.video.PlaceholderSurface;
  */
 public final class SurfaceHolderCallback implements SurfaceHolder.Callback {
 
-    private final Context context;
     private final Player player;
-    private PlaceholderSurface placeholderSurface;
 
-    public SurfaceHolderCallback(final Context context, final Player player) {
-        this.context = context;
+    public SurfaceHolderCallback(final Player player) {
         this.player = player;
     }
 
@@ -47,16 +42,6 @@ public final class SurfaceHolderCallback implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceDestroyed(final SurfaceHolder holder) {
-        if (placeholderSurface == null) {
-            placeholderSurface = PlaceholderSurface.newInstanceV17(context, false);
-        }
-        player.setVideoSurface(placeholderSurface);
-    }
-
-    public void release() {
-        if (placeholderSurface != null) {
-            placeholderSurface.release();
-            placeholderSurface = null;
-        }
+        player.setVideoSurface(null);
     }
 }

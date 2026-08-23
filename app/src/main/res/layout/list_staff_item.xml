@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detail_staff_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingHorizontal="6dp"
+    android:paddingVertical="2dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/detail_staff_thumbnail_view"
+        android:layout_width="@dimen/video_item_detail_uploader_image_size"
+        android:layout_height="@dimen/video_item_detail_uploader_image_size"
+        android:contentDescription="@string/detail_uploader_thumbnail_view_description"
+        android:src="@drawable/buddy"
+        app:shapeAppearance="@style/CircularImageView" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <org.schabi.newpipe.views.NewPipeTextView
+            android:id="@+id/detail_staff_name_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:fadingEdge="horizontal"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="@dimen/video_item_detail_sub_channel_text_size"
+            android:textStyle="normal|bold"
+            tools:ignore="RtlHardcoded"
+            tools:text="Staff Name" />
+
+        <org.schabi.newpipe.views.NewPipeTextView
+            android:id="@+id/detail_staff_title_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:fadingEdge="horizontal"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textSize="@dimen/video_item_detail_uploader_text_size"
+            tools:ignore="RtlHardcoded"
+            tools:text="Title" />
+
+    </LinearLayout>
+
+</LinearLayout>

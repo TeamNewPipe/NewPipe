@@ -2,14 +2,15 @@ package org.schabi.newpipe.util;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-public interface OnClickGesture<T> {
-    void selected(T selectedItem);
+public abstract class OnClickGesture<T> {
 
-    default void held(final T selectedItem) {
+    public abstract void selected(T selectedItem);
+
+    public void held(final T selectedItem) {
         // Optional gesture
     }
 
-    default void drag(final T selectedItem, final RecyclerView.ViewHolder viewHolder) {
+    public void drag(final T selectedItem, final RecyclerView.ViewHolder viewHolder) {
         // Optional gesture
     }
 }

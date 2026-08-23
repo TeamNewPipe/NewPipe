@@ -36,9 +36,23 @@
 
     <SwitchPreferenceCompat
         android:defaultValue="false"
+        android:key="@string/show_image_indicators_key"
+        android:summary="@string/show_image_indicators_summary"
+        android:title="@string/show_image_indicators_title"
+        app:iconSpaceReserved="false" />
+
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
         android:key="@string/show_crash_the_player_key"
         android:summary="@string/show_crash_the_player_summary"
         android:title="@string/show_crash_the_player_title"
+        app:iconSpaceReserved="false" />
+
+    <EditTextPreference
+        android:key="@string/youtube_visitor_data"
+        android:summary="@string/youtube_visitor_data_summary"
+        android:title="@string/youtube_visitor_data_title"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
     <Preference

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Opening Theme -->
+    <style name="Base.V21.OpeningTheme" parent="Base.V19.OpeningTheme">
+        <item name="android:navigationBarColor">@color/dark_youtube_primary_color</item>
+    </style>
+
+</resources>

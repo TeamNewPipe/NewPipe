@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="false"
+    android:paddingLeft="@dimen/video_item_search_padding"
+    android:paddingRight="@dimen/video_item_search_padding"
+    android:paddingTop="@dimen/video_item_search_padding">
+    <EditText
+        android:id="@+id/api_url_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1"
+        android:saveEnabled="true"
+        android:inputType="textUri"
+        android:maxLines="1"
+        android:importantForAutofill="no"
+        android:hint="https://domain.com/api/"/>
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/icon_api_url_help"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        app:srcCompat="@drawable/ic_help"
+        android:background="?attr/selectableItemBackground"
+        android:tint="?attr/colorAccent"/>
+</LinearLayout>

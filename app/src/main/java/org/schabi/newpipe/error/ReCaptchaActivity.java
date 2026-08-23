@@ -3,15 +3,14 @@ package org.schabi.newpipe.error;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.CookieManager;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,13 +18,16 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 import androidx.preference.PreferenceManager;
+import androidx.webkit.WebViewClientCompat;
 
+import org.schabi.newpipe.databinding.ActivityRecaptchaBinding;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.databinding.ActivityRecaptchaBinding;
-import org.schabi.newpipe.extractor.utils.Utils;
 import org.schabi.newpipe.util.ThemeHelper;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 /*
  * Created by beneth <bmauduit@beneth.fr> on 06.12.16.
@@ -84,15 +86,14 @@ public class ReCaptchaActivity extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
         webSettings.setUserAgentString(DownloaderImpl.USER_AGENT);
 
-        recaptchaBinding.reCaptchaWebView.setWebViewClient(new WebViewClient() {
+        recaptchaBinding.reCaptchaWebView.setWebViewClient(new WebViewClientCompat() {
             @Override
-            public boolean shouldOverrideUrlLoading(final WebView view,
-                                                    final WebResourceRequest request) {
+            public boolean shouldOverrideUrlLoading(final WebView view, final String url) {
                 if (MainActivity.DEBUG) {
-                    Log.d(TAG, "shouldOverrideUrlLoading: url=" + request.getUrl().toString());
+                    Log.d(TAG, "shouldOverrideUrlLoading: url=" + url);
                 }
 
-                handleCookiesFromUrl(request.getUrl().toString());
+                handleCookiesFromUrl(url);
                 return false;
             }
 
@@ -106,7 +107,9 @@ public class ReCaptchaActivity extends AppCompatActivity {
         // cleaning cache, history and cookies from webView
         recaptchaBinding.reCaptchaWebView.clearCache(true);
         recaptchaBinding.reCaptchaWebView.clearHistory();
-        CookieManager.getInstance().removeAllCookies(null);
+        final CookieManager cookieManager = CookieManager.getInstance();
+        cookieManager.removeAllCookies(value -> {
+        });
 
         recaptchaBinding.reCaptchaWebView.loadUrl(url);
     }
@@ -126,7 +129,6 @@ public class ReCaptchaActivity extends AppCompatActivity {
     }
 
     @Override
-    @SuppressLint("MissingSuperCall") // saveCookiesAndFinish method handles back navigation
     public void onBackPressed() {
         saveCookiesAndFinish();
     }
@@ -186,11 +188,14 @@ public class ReCaptchaActivity extends AppCompatActivity {
             final int abuseEnd = url.indexOf("+path");
 
             try {
-                handleCookies(Utils.decodeUrlUtf8(url.substring(abuseStart + 13, abuseEnd)));
-            } catch (final StringIndexOutOfBoundsException e) {
+                String abuseCookie = url.substring(abuseStart + 13, abuseEnd);
+                abuseCookie = URLDecoder.decode(abuseCookie, "UTF-8");
+                handleCookies(abuseCookie);
+            } catch (UnsupportedEncodingException | StringIndexOutOfBoundsException e) {
                 if (MainActivity.DEBUG) {
-                    Log.e(TAG, "handleCookiesFromUrl: invalid google abuse starting at "
-                            + abuseStart + " and ending at " + abuseEnd + " for url " + url, e);
+                    e.printStackTrace();
+                    Log.d(TAG, "handleCookiesFromUrl: invalid google abuse starting at "
+                            + abuseStart + " and ending at " + abuseEnd + " for url " + url);
                 }
             }
         }

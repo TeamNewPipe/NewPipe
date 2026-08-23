@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:padding="@dimen/comments_vertical_padding">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/itemThumbnailView"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="@dimen/comment_item_avatar_right_margin"
+        android:focusable="false"
+        android:src="@drawable/buddy"
+        app:shapeAppearance="@style/CircularImageView"
+        tools:ignore="RtlHardcoded" />
+
+    <ImageView
+        android:id="@+id/detail_pinned_view"
+        android:layout_width="@dimen/video_item_detail_pinned_image_width"
+        android:layout_height="@dimen/video_item_detail_pinned_image_height"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="@dimen/video_item_detail_pinned_right_margin"
+        android:layout_toEndOf="@+id/itemThumbnailView"
+        android:contentDescription="@string/detail_pinned_comment_view_description"
+        android:visibility="gone"
+        app:srcCompat="@drawable/ic_pin"
+        tools:visibility="visible" />
+
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:id="@+id/itemTitleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="@dimen/video_item_search_image_right_margin"
+        android:layout_toEndOf="@+id/detail_pinned_view"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="@dimen/comment_item_title_text_size"
+        tools:text="Author Name, Lorem ipsum" />
+
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:id="@+id/itemCommentContentView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/itemTitleView"
+        android:layout_marginBottom="@dimen/channel_item_description_to_details_margin"
+        android:layout_toEndOf="@+id/itemThumbnailView"
+        android:layout_toRightOf="@+id/itemThumbnailView"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="@dimen/comment_item_content_text_size"
+        tools:text="Comment Content, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blandit" />
+
+
+    <ImageView
+        android:id="@+id/detail_thumbs_up_img_view"
+        android:layout_width="@dimen/video_item_detail_like_image_width"
+        android:layout_height="@dimen/video_item_detail_like_image_height"
+        android:layout_below="@id/itemCommentContentView"
+        android:layout_toRightOf="@+id/itemThumbnailView"
+        android:contentDescription="@string/detail_likes_img_view_description"
+        app:srcCompat="@drawable/ic_thumb_up" />
+
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:id="@+id/detail_thumbs_up_count_view"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/video_item_detail_like_image_height"
+        android:layout_below="@id/itemCommentContentView"
+        android:layout_marginLeft="@dimen/video_item_detail_like_margin"
+        android:layout_toRightOf="@id/detail_thumbs_up_img_view"
+        android:lines="1"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="@dimen/video_item_detail_likes_text_size"
+        tools:ignore="RtlHardcoded"
+        tools:text="12M" />
+
+    <ImageView
+        android:id="@+id/detail_heart_image_view"
+        android:layout_width="@dimen/video_item_detail_heart_image_size"
+        android:layout_height="@dimen/video_item_detail_heart_image_size"
+        android:layout_below="@id/itemCommentContentView"
+        android:layout_marginLeft="@dimen/video_item_detail_heart_margin"
+        android:layout_toRightOf="@+id/detail_thumbs_up_count_view"
+        android:contentDescription="@string/detail_heart_img_view_description"
+        android:visibility="gone"
+        app:srcCompat="@drawable/ic_heart"
+        tools:visibility="visible" />
+
+
+    <!--we can uncomment below code if we need dislike button and count in future-->
+
+    <!--<ImageView
+        android:id="@+id/detail_thumbs_down_img_view"
+        android:layout_width="@dimen/video_item_detail_like_image_width"
+        android:layout_height="@dimen/video_item_detail_like_image_height"
+        android:layout_below="@id/itemCommentContentView"
+        android:layout_marginLeft="12dp"
+        android:layout_toRightOf="@id/detail_thumbs_up_count_view"
+        android:contentDescription="@string/detail_dislikes_img_view_description"
+        app:srcCompat="?attr/thumbs_down"
+        tools:ignore="RtlHardcoded" />
+
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:id="@+id/detail_thumbs_down_count_view"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/video_item_detail_like_image_height"
+        android:layout_below="@id/itemCommentContentView"
+        android:layout_marginLeft="@dimen/video_item_detail_like_margin"
+        android:layout_toRightOf="@id/detail_thumbs_down_img_view"
+        android:gravity="center_vertical"
+        android:lines="1"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="@dimen/video_item_detail_likes_text_size"
+        tools:ignore="RtlHardcoded"
+        tools:text="10K" />-->
+
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:id="@+id/itemPublishedTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/itemCommentContentView"
+        android:layout_marginLeft="12dp"
+        android:layout_toRightOf="@id/detail_heart_image_view"
+        android:lines="1"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="@dimen/video_item_search_upload_date_text_size"
+        tools:text="1 year ago" />
+
+    <Button
+        android:id="@+id/itemContentPictureButton"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/detail_thumbs_up_img_view"
+        android:layout_marginTop="4dp"
+        android:layout_toEndOf="@+id/itemThumbnailView"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="start|center_vertical"
+        android:layout="@id/detail_heart_image_view"
+        android:minHeight="0dp"
+        android:paddingHorizontal="4dp"
+        android:paddingVertical="6dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/show_replies_button_text_color"
+        android:textSize="@dimen/file_picker_items_text_size"
+        android:visibility="gone"
+        tools:text="View pictures (2)"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/itemContentReplyButton"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/itemContentPictureButton"
+        android:layout_marginTop="4dp"
+        android:layout_toEndOf="@+id/itemThumbnailView"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="start|center_vertical"
+        android:layout="@id/detail_heart_image_view"
+        android:minHeight="0dp"
+        android:paddingHorizontal="4dp"
+        android:paddingVertical="6dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/show_replies_button_text_color"
+        android:textSize="@dimen/file_picker_items_text_size"
+        tools:text="3 replies" />
+
+</RelativeLayout>

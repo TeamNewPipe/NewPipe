@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="@string/auto_queue_toggle"
-        android:textColor="@android:color/tab_indicator_text"
+        android:textColor="?android:attr/textColorSecondary"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

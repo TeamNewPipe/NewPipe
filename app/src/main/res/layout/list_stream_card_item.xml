@@ -11,7 +11,7 @@
     android:clickable="true"
     android:focusable="true">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/itemThumbnailView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -19,6 +19,7 @@
         android:layout_marginEnd="2dp"
         android:scaleType="centerCrop"
         android:src="@drawable/placeholder_thumbnail_video"
+        app:shapeAppearance="@style/RoundedThumbnailImageView"
         app:layout_constraintBottom_toTopOf="@+id/itemProgressView"
         app:layout_constraintDimensionRatio="16:9"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,9 +92,22 @@
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="0dp"
         android:layout_height="4dp"
-        android:progressDrawable="?progress_horizontal_drawable"
+        android:progressDrawable="@drawable/progress_youtube_horizontal_light_rounded"
         app:layout_constraintBottom_toBottomOf="@id/itemThumbnailView"
         app:layout_constraintEnd_toEndOf="@+id/itemThumbnailView"
         app:layout_constraintStart_toStartOf="@+id/itemThumbnailView" />
+
+    <ImageView
+        android:id="@+id/itemHandle"
+        android:layout_width="48dp"
+        android:layout_height="36dp"
+        android:contentDescription="@string/detail_drag_description"
+        android:paddingLeft="@dimen/video_item_search_image_right_margin"
+        android:scaleType="center"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/itemThumbnailView"
+        app:layout_constraintTop_toBottomOf="@id/itemThumbnailView"
+        app:srcCompat="@drawable/ic_drag_handle"
+        tools:ignore="RtlHardcoded,RtlSymmetry" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

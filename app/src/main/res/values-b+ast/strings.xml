@@ -6,25 +6,18 @@
     <string name="share">Compartir</string>
     <string name="settings">Axustes</string>
     <string name="did_you_mean">¿Quxesti dicir «%1$s»\?</string>
-    <string name="use_external_video_player_title">Usar un reproductor esternu de videu</string>
-    <string name="use_external_audio_player_title">Usar un reproductor esternu d\'audiu</string>
     <string name="default_resolution_title">Resolución predeterminada</string>
     <string name="play_with_kodi_title">Reproducir en Kodi</string>
-    <string name="show_play_with_kodi_title">Amosar la opción «Reproducir en Kodi»</string>
-    <string name="show_play_with_kodi_summary">Amuesa una opción pa reproducir vídeos pel centru multimedia Kodi</string>
     <string name="play_audio">Audiu</string>
-    <string name="default_audio_format_title">Formatu d\'audiu predetermináu</string>
     <string name="theme_title">Estilu</string>
     <string name="dark_theme_title">Escuridá</string>
     <string name="light_theme_title">Claridá</string>
-    <string name="content_language_title">Llingua predeterminada del conteníu</string>
-    <string name="settings_category_video_audio_title">Videu y audiu</string>
     <string name="settings_category_appearance_title">Aspeutu</string>
     <string name="content">Conteníu</string>
-    <string name="show_age_restricted_content_title">Amosar el conteníu torgáu pola edá</string>
     <string name="duration_live">En direuto</string>
     <string name="general_error">Fallu</string>
     <string name="could_not_load_thumbnails">Nun pudieron cargase toles miniatures</string>
+    <string name="youtube_signature_deobfuscation_error">Nun pudo sabese la robla de la URL del videu</string>
     <string name="parsing_error">Nun pudo analizase\'l sitiu web</string>
     <string name="sorry_string">Buff… Esto nun debió asoceder.</string>
     <string name="error_snackbar_message">Perdona mas asocedió daqué malo.</string>
@@ -41,8 +34,10 @@
     <string name="msg_wait">Espera…</string>
     <string name="msg_copied">Copióse al cartafueyu</string>
     <string name="detail_dislikes_img_view_description">Tarrezmes</string>
-    <string name="default_video_format_title">Formatu de videu predetermináu</string>
     <string name="black_theme_title">Prietu</string>
+    <string name="short_thousand">mil</string>
+    <string name="short_million">mill.</string>
+    <string name="short_billion">mil mill.</string>
     <string name="msg_popup_permission">Precísase esti permisu p\'abrir
 \nnel mou ventanu</string>
     <string name="title_activity_recaptcha">Retu de reCAPTCHA</string>
@@ -50,10 +45,7 @@
     <string name="controls_background_title">En segundu planu</string>
     <string name="controls_popup_title">Ventanu</string>
     <string name="default_popup_resolution_title">Resolución predeterminada del ventanu</string>
-    <string name="show_higher_resolutions_title">Amosar resoluciones más altes</string>
-    <string name="show_higher_resolutions_summary">Namás dalgunos preseos puen reproducir videos en 2K/4K</string>
     <string name="clear">Llimpiar</string>
-    <string name="use_external_video_player_summary">Quita l\'audiu en dalgunes resoluciones</string>
     <string name="show_search_suggestions_title">Suxerencies de busca</string>
     <string name="show_search_suggestions_summary">Amosar suxerencies al buscar</string>
     <string name="subscribe_button_title">Soscribise</string>
@@ -64,12 +56,11 @@
     <string name="resume_on_audio_focus_gain_title">Siguir cola reproducción</string>
     <string name="resume_on_audio_focus_gain_summary">Sigue cola reproducción dempués de les interrupciones (por exemplu, llamaes)</string>
     <string name="settings_category_player_title">Reproductor</string>
-    <string name="settings_category_player_behavior_title">Comportamientu</string>
     <string name="settings_category_history_title">Historial y caché</string>
     <string name="best_resolution">La meyor resolución</string>
     <string name="notification_channel_name">Avisu permanente de NewPipe</string>
     <string name="search_no_results">Nun hai resultaos</string>
-    <string name="empty_list_subtitle">Equí nun hai más que grillos</string>
+    <string name="empty_subscription_feed_subtitle">Equí nun hai más que grillos</string>
     <plurals name="subscribers">
         <item quantity="one">%s soscriptor</item>
         <item quantity="other">%s soscriptores</item>
@@ -87,7 +78,6 @@
     <string name="title_licenses">Llicencies de terceros</string>
     <string name="copyright" formatted="true">© %1$s por %2$s baxo %3$s</string>
     <string name="tab_about">Tocante a</string>
-    <string name="tab_licenses">Llicencies</string>
     <string name="view_on_github">Ver en GitHub</string>
     <string name="app_license_title">Llicencia de NewPipe</string>
     <string name="contribution_encouragement">Si tienes idees, quies traducir, facer dalgún cambéu nel diseñu, acuriosar poco o muncho\'l códigu… Agradecemos l\'ayuda. ¡Cuanto más se faiga, meyor!</string>
@@ -111,7 +101,6 @@
     <string name="start_here_on_popup">Reproducir nun ventanu</string>
     <string name="donation_title">Donación</string>
     <string name="donation_encouragement">NewPipe ta desendolcáu por xente voluntario que pasa\'l tiempu llibre ufriéndote la meyor esperiencia d\'usuariu. Devolvi\'l favor p\'ayudar a los desendolcadores p\'ameyorar NewPipe tovía más mentanto esfruten d\'una taza de café.</string>
-    <string name="give_back">Donar</string>
     <string name="website_title">Sitiu web</string>
     <string name="website_encouragement">Visita\'l sitiu web de NewPipe pa más información y noticies.</string>
     <string name="default_content_country_title">País predetermináu del conteníu</string>
@@ -141,11 +130,12 @@
     <string name="subscriptions_export_unsuccessful">Nun pudieron esportase les soscripciones</string>
     <string name="preferred_open_action_settings_title">Aición d\'apertura preferida</string>
     <string name="import_settings">¿Quies tamién importar los axustes\?</string>
-    <string name="read_privacy_policy">Lleer</string>
     <string name="channels">Canales</string>
     <string name="playlists">Llistes de reproducción</string>
     <string name="tracks">Pistes</string>
     <string name="users">Usuarios</string>
+    <string name="volume_gesture_control_summary">Usa xestos pa controlar el volume del reproductor</string>
+    <string name="brightness_gesture_control_summary">Usa xestos pa controlar el brillu del reproductor</string>
     <string name="restore_defaults">Reafitamientu de valores</string>
     <string name="subscribers_count_not_available">El númberu de soscriptores nun ta disponible</string>
     <string name="updates_setting_title">Anovamientos</string>
@@ -168,18 +158,15 @@
     <string name="overwrite_finished_warning">Yá esiste un ficheru baxáu con esti nome</string>
     <string name="overwrite_failed">nun pue sobrecribise\'l ficheru</string>
     <string name="download_already_pending">Hai una descarga pendiente con esti nome</string>
-    <string name="error_insufficient_storage_left">Nun queda espaciu nel preséu</string>
+    <string name="error_insufficient_storage">Nun queda espaciu nel preséu</string>
     <string name="error_timeout">Escosó\'l tiempu d\'espera de la conexón</string>
     <string name="subscriptions_import_unsuccessful">Nun pudieron importase les soscripciones</string>
     <string name="caption_setting_title">Sotítulos</string>
-    <string name="accept">Aceutar</string>
     <string name="restore_defaults_confirmation">¿Quies reafitar los valores\?</string>
     <string name="error_unknown_host">Nun pudo atopase\'l sirvidor</string>
     <string name="error_http_unsupported_range">El sirvidor nun aceuta descargues multifilu, volvi tentalo con @string/msg_threads = 1</string>
     <string name="no_comments">Nun hai comentarios</string>
     <string name="settings_category_clear_data_title">Llimpieza de datos</string>
-    <string name="show_comments_title">Amosar los comentarios</string>
-    <string name="show_comments_summary">Desactiva esta opción p\'anubrir los comentarios</string>
     <string name="start_accept_privacy_policy">Pa cumplir cola Regulación Xeneral de Proteición de Datos (RGPD), pidímoste que mires la política de privacidá de NewPipe. Lleila con procuru.
 \nHas aceutala pa unvianos informes de fallos.</string>
     <string name="minimize_on_exit_summary">L\'aición al cambiar a otra aplicación dende\'l reproductor de videu princpial — %s</string>
@@ -202,6 +189,8 @@
 \n3. Anicia sesión cuando se te pida
 \n4. Copia la URL del perfil al que te redirixeron.</string>
     <string name="import_soundcloud_instructions_hint">soundcloud.com/LaToID</string>
+    <string name="download_thumbnail_title">Cargar les miniatures</string>
+    <string name="download_thumbnail_summary">Desactiva esta opción pa eviar la carga de miniatures y aforrar datos y usu de memoria. Los cambeos llimpien la caché d\'imáxenes temporal y permanente.</string>
     <string name="minimize_on_exit_title">Minimizar al cambiar d\'aplicación</string>
     <string name="minimize_on_exit_background_description">Minimizar al reproductor en segundu planu</string>
     <string name="minimize_on_exit_popup_description">Minimizar al reproductor en ventanu</string>
@@ -218,14 +207,18 @@
     </plurals>
     <string name="preferred_player_fetcher_notification_message">Cargando\'l conteníu solicitáu</string>
     <string name="privacy_policy_title">Política de privacidá de NewPipe</string>
+    <string name="volume_gesture_control_title">Control per xestos del volume</string>
+    <string name="brightness_gesture_control_title">Control per xestos del brillu</string>
     <string name="error_file_creation">El ficheru nun pue crease</string>
     <string name="error_http_no_content">El sirvidor nun unvia datos</string>
+    <string name="localization_changes_requires_app_restart">La llingua va camudar namás que se reanicie l\'aplicación.</string>
     <string name="search">Buscar</string>
     <string name="share_dialog_title">Compartir con</string>
     <string name="subscribed_button_title">Soscribiéstite</string>
     <string name="no_videos">Nun hai vídeos</string>
     <string name="delete_search_history_alert">¿Desaniciar tol historial de busques\?</string>
-    <string name="app_update_available_notification_title">¡Hai un anovamientu pa NewPipe!</string>
+    <string name="app_update_notification_content_title">¡Hai un anovamientu pa NewPipe!</string>
+    <string name="app_update_notification_content_text">Toca pa baxalu</string>
     <string name="error_progress_lost">Perdióse\'l progresu porque se desanició\'l ficheru</string>
     <string name="peertube_instance_url_title">Instancies de PeerTube</string>
     <string name="peertube_instance_add_exists">La instancia yá esiste</string>
@@ -238,7 +231,6 @@
     </plurals>
     <string name="playback_tempo">Tempu</string>
     <string name="playback_pitch">Tonu</string>
-    <string name="decline">Refugar</string>
     <string name="unsupported_url">La URL nun ta sofitada</string>
     <string name="background_player_playing_toast">Reproduciendo en segundu planu</string>
     <string name="popup_playing_toast">Reproduciendo nel mou ventanu</string>
@@ -266,8 +258,8 @@
     <string name="metadata_cache_wipe_summary">Desanicia tolos datos na caché de les páxines web</string>
     <string name="metadata_cache_wipe_title">Llimpiar los metadatos de la caché</string>
     <string name="thumbnail_cache_wipe_complete_notice">Llimpióse la caché d\'imáxenes</string>
-    <string name="kore_not_found">¿Instalar Kode\?</string>
-    <string name="info_labels">Qué asocedió:\nSolicitú:\nLlingua del conteníu:\nPaís del conteníu:\nLlingua de l\'aplicación:\nServiciu:\nHora en GMT:\nPaquete:\nVersión de l\'aplicación:\nVersión del SO:</string>
+    <string name="kore_not_found">¿Instalar Kore\?</string>
+    <string name="info_labels">Qué asocedió:\\nSolicitú:\\nLlingua del conteníu:\\nPaís del conteníu:\\nLlingua de l\'aplicación:\\nServiciu:\\nHora en GMT:\\nPaquete:\\nVersión de l\'aplicación:\\nVersión del SO:</string>
     <string name="no_player_found_toast">Nun s\'atopó nengún reproductor de fluxos (pues instalar VLC pa reproducilos).</string>
     <string name="show_thumbnail_summary">Amuesa una miniatura nel fondu de la pantalla de bloquéu y dientro de los avisos</string>
     <string name="show_thumbnail_title">Amosar una miniatura</string>
@@ -311,10 +303,10 @@
     <string name="feed_subscription_not_loaded_count">Númberu d\'elementos que nun cargaron: %d</string>
     <string name="feed_oldest_subscription_update">Últimu anovamientu del feed: %s</string>
     <string name="feed_groups_header_title">Grupos de canales</string>
-    <string name="new_seek_duration_toast">Pola mor de les torgues d\'ExoPlayer la duración afitóse en %d segundos</string>
-    <string name="remove_watched_popup_partially_watched_streams">Sí, y tamién los vistos parcialmente</string>
-    <string name="remove_watched_popup_warning">Van desaniciase los vídeos que se vieren enantes y dempués d\'amestase a la llista de reproducción. \n¿De xuru? ¡Esto nun pue desfacese!</string>
-    <string name="remove_watched_popup_title">¿Desaniciar los vídeos vistos?</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sí, y tamién los vistos parcialmente</string>
+    <string name="remove_watched_popup_warning">Van desaniciase los vídeos que se vieren enantes y dempués d\'amestase a la llista de reproducción.
+\n¿De xuru\? ¡Esto nun pue desfacese!</string>
+    <string name="remove_watched_popup_title">¿Desaniciar los vídeos vistos\?</string>
     <string name="remove_watched">Desaniciar lo visto</string>
     <string name="choose_instance_prompt">Escoyeta d\'una instancia</string>
     <string name="downloads_storage_use_saf_summary">El «Storage Access Framework» permite les descargues nuna tarxeta SD esterna.
@@ -413,9 +405,8 @@
     <string name="privacy_policy_encouragement">El proyeutu de NewPipe toma mui en serio la privacidá. Poro, l\'aplicación nun recueye nengún datu ensin el to consentimientu.
 \nLa política de privacidá de NewPipe desplica en detalle los datos que s\'unvien y atroxen cuando unvies un informe de casque.</string>
     <string name="app_description">Un aplicación llibre pa ver/sentir plataformes de tresmisión n\'Android.</string>
-    <string name="settings_file_replacement_character_title">Caráuteres de troquéu</string>
-    <string name="settings_file_replacement_character_summary">Los caráuteres que nun son válidos van trocase por esti valor</string>
-    <string name="done">Fecho</string>
+    <string name="toast_no_player">Nun hai nenguna aplicación pa reproducir esti ficheru</string>
+    <string name="recaptcha_done_button">Fecho</string>
     <string name="subtitle_activity_recaptcha">Primi «Fecho» al resolvelu</string>
     <string name="one_item_deleted">Desanicióse 1 elementu.</string>
     <string name="no_available_dir">Defini una capeta de descargues dempués, nos axustes de l\'aplicación</string>
@@ -465,6 +456,7 @@
     <string name="network_error">Fallu de la rede</string>
     <string name="download_to_sdcard_error_message">La descarga a la tarxeta SD nun ye posible. ¿Reafitar l\'allugamientu de la carpeta de descarga\?</string>
     <string name="download_to_sdcard_error_title">L\'almacenamientu esternu nun ta disponible</string>
+    <string name="help">Ayuda</string>
     <string name="search_history_deleted">Desanicióse l\'historial de busques.</string>
     <string name="clear_search_history_summary">Desanicia l\'historial de les pallabres clave de busca</string>
     <string name="clear_search_history_title">Llimpiar l\'historial de busca</string>
@@ -497,9 +489,6 @@
     <string name="restricted_video">Tien una torga por edá.
 \n
 \nActiva «%1$s» nos axustes de l\'aplicación si quies velu.</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube forne\'l «Mou torgáu» qu\'anubre conteníu\'l que seya potencialmente p\'adultos</string>
-    <string name="youtube_restricted_mode_enabled_title">Activar el «Mou torgáu» de YouTube</string>
-    <string name="show_age_restricted_content_summary">Amuesa\'l conteníu que quiciabes nun seya afayadizu pa guaḥes porque tien una llende d\'edá (como +18)</string>
     <string name="settings_category_debug_title">Depuración</string>
     <string name="peertube_instance_add_https_only">Namás se sofiten URLs HTTPS</string>
     <string name="peertube_instance_add_help">Introduz la URL d\'una instancia</string>
@@ -507,26 +496,16 @@
     <string name="peertube_instance_url_help">Atopa les instancies que te presten en %s</string>
     <string name="peertube_instance_url_summary">Esbilla les instancies de PeerTube que prefieras</string>
     <string name="unsupported_url_dialog_message">Nun pudo reconocese la URL. ¿Abrila con otra aplicación\?</string>
-    <string name="show_hold_to_append_summary">Amuesa\'l mensaxe al primir el nel botón «En segundu planu» o «Ventanu» nel «Details:» de los vídeos</string>
-    <string name="show_hold_to_append_title">Amosar el mensaxe «Ten primío p\'amestar a la cola»</string>
-    <string name="show_next_and_similar_title">Amosar los vídeos siguientes y asemeyaos</string>
     <string name="download_dialog_title">Descarga</string>
     <string name="enable_watch_history_summary">Rexistra los vídeos vistos</string>
-    <string name="enable_playback_state_lists_summary">Amuesa los indicadores de los puntos de reprodución nes llistes</string>
-    <string name="enable_playback_state_lists_title">Puntos de reproducción nes llistes</string>
     <string name="enable_playback_resume_summary">Restaura l\'últimu puntu de reproducción</string>
     <string name="enable_watch_history_title">Historial de vídeos vistos</string>
     <string name="auto_queue_toggle">Cola automática</string>
     <string name="auto_queue_summary">Amiesta un videu rellacionáu a la cola cuando se repoduz l\'últimu videu a una cola ensin repitición</string>
     <string name="auto_queue_title">Meter les tresmisiones siguientes a cola automática</string>
-    <string name="clear_queue_confirmation_description">Va trocase la cola del reproductor activu</string>
-    <string name="clear_queue_confirmation_summary">Cambiar d\'un reproductor a otru pue trocar la cola</string>
-    <string name="clear_queue_confirmation_title">Confirmar la llimpieza de les coles</string>
     <string name="seek_duration_title">Duración de la gueta del avance/rebobináu rápidu</string>
     <string name="use_inexact_seek_summary">La gueta imprecisa permite al reproductor que guete les posiciones más rápido con menos precisión. La gueta de 5, 15 ó 25 segundos nun funciona con esti axuste.</string>
     <string name="use_inexact_seek_title">Usar la gueta rápida imprecisa</string>
-    <string name="popup_remember_size_pos_summary">Acuérdase del últimu tamañu y la última posición del ventanu</string>
-    <string name="popup_remember_size_pos_title">Acordase de les propiedaes del ventanu</string>
     <string name="notification_colorize_summary">Fai qu\'Android personalice\'l color del avisu permanente según el color principal de les miniatures (decátate qu\'esto nun ta disponible en tolos preseos)</string>
     <string name="notification_colorize_title">Avisu con color</string>
     <string name="notification_action_nothing">Nada</string>

@@ -1,5 +1,6 @@
 package org.schabi.newpipe.fragments.detail;
 
+import android.util.Log;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -35,23 +36,48 @@ public class TabAdapter extends FragmentPagerAdapter {
         return mFragmentList.size();
     }
 
+    @Override
+    public long getItemId(final int position) {
+        return mFragmentTitleList.get(position).hashCode();
+    }
+
     public void addFragment(final Fragment fragment, final String title) {
+        if(fragmentManager.isStateSaved()){
+            Log.d("TabAdapter", "This should not happen: addFragment() called after onSaveInstanceState()");
+            return ;
+        }
         mFragmentList.add(fragment);
         mFragmentTitleList.add(title);
+        notifyDataSetChanged();
     }
 
     public void clearAllItems() {
+        if(fragmentManager.isStateSaved()){
+            Log.d("TabAdapter", "This should not happen: clearAllItems() called after onSaveInstanceState()");
+            return ;
+        }
         mFragmentList.clear();
         mFragmentTitleList.clear();
+        notifyDataSetChanged();
     }
 
     public void removeItem(final int position) {
-        mFragmentList.remove(position == 0 ? 0 : position - 1);
-        mFragmentTitleList.remove(position == 0 ? 0 : position - 1);
+        if(fragmentManager.isStateSaved()){
+            Log.d("TabAdapter", "This should not happen: removeItem() called after onSaveInstanceState()");
+            return ;
+        }
+        mFragmentList.remove(position);
+        mFragmentTitleList.remove(position);
+        notifyDataSetChanged();
     }
 
     public void updateItem(final int position, final Fragment fragment) {
+        if(fragmentManager.isStateSaved()){
+            Log.d("TabAdapter", "This should not happen: updateItem() called after onSaveInstanceState()");
+            return ;
+        }
         mFragmentList.set(position, fragment);
+        notifyDataSetChanged();
     }
 
     public void updateItem(final String title, final Fragment fragment) {
@@ -93,4 +119,14 @@ public class TabAdapter extends FragmentPagerAdapter {
         fragmentManager.beginTransaction().remove((Fragment) object).commitNowAllowingStateLoss();
     }
 
+    @Override
+    public void notifyDataSetChanged() {
+        if (!fragmentManager.isStateSaved()) {
+            try {
+                super.notifyDataSetChanged();
+            } catch (final IllegalStateException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

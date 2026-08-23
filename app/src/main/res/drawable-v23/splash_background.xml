@@ -2,11 +2,11 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:drawable="@color/light_youtube_primary_color"/>
+        android:drawable="@color/main_theme_color"/>
 
     <item
         android:width="80dp"
         android:height="80dp"
         android:gravity="center"
-        android:drawable="@drawable/splash_foreground"/>
+        android:drawable="@drawable/ic_pipeplay"/>
 </layer-list>

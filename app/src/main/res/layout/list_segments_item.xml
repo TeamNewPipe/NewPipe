@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="0dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:orientation="horizontal">
+    <!-- segment color -->
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center">
+
+        <!-- skip to highlight -->
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/item_segment_skip_to_highlight"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/description_skip_to_highlight"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_fast_forward" />
+
+        <!-- segment type (color) -->
+        <View
+            android:id="@+id/item_segment_color_view"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_centerInParent="true"
+            android:background="@color/interaction_segment" />
+
+    </RelativeLayout>
+
+    <!-- segment name -->
+    <TextView
+        android:id="@+id/item_segment_category_name_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        tools:text="Intermission/Intro Animation" />
+
+    <!-- start time, end time -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:layout_gravity="center"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/item_segment_start_time_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:textAlignment="center"
+            tools:text="00:00:00" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:textAlignment="center"
+            android:text="-" />
+        <TextView
+            android:id="@+id/item_segment_end_time_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:textAlignment="center"
+            tools:text="99:99:99" />
+    </LinearLayout>
+
+    <!-- vote up -->
+    <ImageView
+        android:id="@+id/item_segment_vote_up_imageview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="@string/description_up_vote_segment"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_thumb_up" />
+
+    <!-- vote down -->
+    <ImageView
+        android:id="@+id/item_segment_vote_down_imageview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="@string/description_down_vote_segment"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_thumb_down" />
+
+</LinearLayout>

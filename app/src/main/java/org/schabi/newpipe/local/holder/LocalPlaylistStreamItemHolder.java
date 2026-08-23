@@ -11,13 +11,12 @@ import androidx.core.content.ContextCompat;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.ktx.ViewUtils;
 import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.util.DependentPreferenceHelper;
+import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.Localization;
-import org.schabi.newpipe.util.ServiceHelper;
-import org.schabi.newpipe.util.image.CoilHelper;
 import org.schabi.newpipe.views.AnimatedProgressBar;
 
 import java.time.format.DateTimeFormatter;
@@ -26,6 +25,7 @@ import java.util.concurrent.TimeUnit;
 public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
     public final ImageView itemThumbnailView;
     public final TextView itemVideoTitleView;
+    private final TextView itemUploaderView;
     private final TextView itemAdditionalDetailsView;
     public final TextView itemDurationView;
     private final View itemHandleView;
@@ -37,6 +37,7 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
 
         itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
         itemVideoTitleView = itemView.findViewById(R.id.itemVideoTitleView);
+        itemUploaderView = itemView.findViewById(R.id.itemUploaderView);
         itemAdditionalDetailsView = itemView.findViewById(R.id.itemAdditionalDetails);
         itemDurationView = itemView.findViewById(R.id.itemDurationView);
         itemHandleView = itemView.findViewById(R.id.itemHandle);
@@ -58,9 +59,12 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
         final PlaylistStreamEntry item = (PlaylistStreamEntry) localItem;
 
         itemVideoTitleView.setText(item.getStreamEntity().getTitle());
+        if (itemUploaderView != null) {
+            itemUploaderView.setVisibility(View.GONE);
+        }
         itemAdditionalDetailsView.setText(Localization
                 .concatenateStrings(item.getStreamEntity().getUploader(),
-                        ServiceHelper.getNameOfServiceById(item.getStreamEntity().getServiceId())));
+                        NewPipe.getNameOfService(item.getStreamEntity().getServiceId())));
 
         if (item.getStreamEntity().getDuration() > 0) {
             itemDurationView.setText(Localization
@@ -69,8 +73,7 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
 
-            if (DependentPreferenceHelper.getPositionsInListsEnabled(itemProgressView.getContext())
-                    && item.getProgressMillis() > 0) {
+            if (item.getProgressMillis() > 0) {
                 itemProgressView.setVisibility(View.VISIBLE);
                 itemProgressView.setMax((int) item.getStreamEntity().getDuration());
                 itemProgressView.setProgress((int) TimeUnit.MILLISECONDS
@@ -83,8 +86,8 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
         }
 
         // Default thumbnail is shown on error, while loading and if the url is empty
-        CoilHelper.INSTANCE.loadThumbnail(itemThumbnailView,
-                item.getStreamEntity().getThumbnailUrl());
+        PicassoHelper.loadScaledDownThumbnail(itemBuilder.getContext(), item.getStreamEntity().getThumbnailUrl())
+                .into(itemThumbnailView);
 
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnItemSelectedListener() != null) {
@@ -111,8 +114,7 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
         }
         final PlaylistStreamEntry item = (PlaylistStreamEntry) localItem;
 
-        if (DependentPreferenceHelper.getPositionsInListsEnabled(itemProgressView.getContext())
-                && item.getProgressMillis() > 0 && item.getStreamEntity().getDuration() > 0) {
+        if (item.getProgressMillis() > 0 && item.getStreamEntity().getDuration() > 0) {
             itemProgressView.setMax((int) item.getStreamEntity().getDuration());
             if (itemProgressView.getVisibility() == View.VISIBLE) {
                 itemProgressView.setProgressAnimated((int) TimeUnit.MILLISECONDS

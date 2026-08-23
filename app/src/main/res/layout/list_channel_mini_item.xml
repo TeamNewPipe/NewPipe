@@ -17,7 +17,7 @@
         android:layout_centerVertical="true"
         android:layout_marginStart="3dp"
         android:layout_marginRight="15dp"
-        android:src="@drawable/placeholder_person"
+        android:src="@drawable/buddy_channel_item"
         app:shapeAppearance="@style/CircularImageView"
         tools:ignore="RtlHardcoded" />
 
@@ -47,5 +47,4 @@
         android:textSize="@dimen/video_item_search_upload_date_text_size"
         tools:ignore="RtlHardcoded"
         tools:text="10M subscribers" />
-
 </RelativeLayout>

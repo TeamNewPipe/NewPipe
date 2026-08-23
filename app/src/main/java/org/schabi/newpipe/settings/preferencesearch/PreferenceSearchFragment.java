@@ -1,6 +1,7 @@
 package org.schabi.newpipe.settings.preferencesearch;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import org.schabi.newpipe.databinding.SettingsPreferencesearchFragmentBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,8 +54,13 @@ public class PreferenceSearchFragment extends Fragment {
             return;
         }
 
-        final List<PreferenceSearchItem> results = searcher.searchFor(keyword);
-        adapter.submitList(results);
+        final List<PreferenceSearchItem> results =
+                !TextUtils.isEmpty(keyword)
+                    ? searcher.searchFor(keyword)
+                    : new ArrayList<>();
+
+        adapter.setContent(new ArrayList<>(results));
+
         setEmptyViewShown(results.isEmpty());
     }
 

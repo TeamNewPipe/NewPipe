@@ -27,7 +27,6 @@
     <string name="title_activity_history">ⴰⵎⵣⵔⵓⵢ</string>
     <string name="website_title">ⴰⵙⵉⵜ</string>
     <string name="view_on_github">ⵥⵕ ⴳ GitHub</string>
-    <string name="tab_licenses">ⵜⵓⵔⴰⴳⵜ</string>
     <string name="tab_about">ⵅⴼ</string>
     <string name="copyright">© %1$s ⵙⴳ %2$s ⴷⴷⴰⵡ %3$s</string>
     <string name="title_activity_about">ⵅⴼ NewPipe</string>
@@ -45,10 +44,14 @@
     </plurals>
     <string name="infinite_videos">∞ ⵉⴼⵉⴷⵢⵓⵜⵏ</string>
     <string name="more_than_100_videos">100+ ⵉⴼⵉⴷⵢⵓⵜⵏ</string>
+    <string name="short_billion">ⴱ</string>
+    <string name="short_million">ⵎ</string>
+    <string name="short_thousand">ⴽ</string>
     <string name="audio">ⴰⵎⵙⵍⴰⵢ</string>
     <string name="video">ⴰⴼⵉⴷⵢⵓ</string>
     <string name="detail_likes_img_view_description">ⵉⵔⵉⵜⵏ</string>
     <string name="general_error">ⵜⴰⵣⴳⵍⵜ</string>
+    <string name="help">ⵜⵉⵡⵉⵙⵉ</string>
     <string name="file">ⴰⴼⴰⵢⵍⵓ</string>
     <string name="play_all">ⵖⵔ ⵎⴰⵕⵕⴰ</string>
     <string name="file_deleted">ⵉⵜⵜⵡⴰⴽⴽⵙ ⵓⴼⴰⵢⵍⵓ</string>
@@ -57,7 +60,6 @@
     <string name="downloads_title">ⵓⴳⴳⴰⵎⵏ</string>
     <string name="downloads">ⵓⴳⴳⴰⵎⵏ</string>
     <string name="duration_live">ⵓⵙⵔⵉⴷ</string>
-    <string name="settings_category_video_audio_title">ⴰⴼⵉⴷⵢⵓ ⴷ ⵉⵎⵙⵍⵉ</string>
     <string name="download_dialog_title">ⴰⴳⵎ</string>
     <string name="enable_watch_history_title">ⵥⵕ ⴰⵎⵣⵔⵓⵢ</string>
     <string name="enable_search_history_title">ⴰⵎⵣⵔⵓⵢ ⵏ ⵓⵔⵣⵣⵓ</string>
@@ -80,8 +82,6 @@
     <string name="grid">ⴰⵥⵟⵟⴰ</string>
     <string name="list">ⵜⴰⵍⴳⴰⵎⵜ</string>
     <string name="updates_setting_title">ⵜⵓⵙⴷⵖⵉⵏ</string>
-    <string name="decline">ⴰⴳⵉ</string>
-    <string name="accept">ⵜⴰⵢⵢⵉⵀⵜ</string>
     <string name="resize_fill">ⴽⵜⵔ</string>
     <string name="resize_fit">ⵙⴰⵙⵜⵡⴰ</string>
     <string name="unmute">ⴽⴽⵙ ⴰⵙⵓⵔⵎ</string>
@@ -98,11 +98,8 @@
     <string name="unsubscribe">ⴽⴽⵙ ⵜⴰⵙⵓⵔⵉ</string>
     <string name="subscribed_button_title">ⵉⵙⵙⵓⵔ</string>
     <string name="subscribe_button_title">ⵙⵙⵓⵔ</string>
-    <string name="use_external_audio_player_title">ⵙⵎⵔⵙ ⵉⵎⵖⵔⵉ ⵏ ⵉⵎⵙⵍⵉ ⴰⴱⵕⵕⴰⵏⵉ</string>
-    <string name="use_external_video_player_title">ⵙⵎⵔⵙ ⵉⵎⵖⵔⵉ ⵏ ⵓⴼⵉⴷⵢⵓ ⴰⴱⵕⵕⴰⵏⵉ</string>
     <string name="search_showing_result_for">ⴰⵙⵎⴰⵍ ⵏ ⵜⴰⵢⴰⴼⵓⵜ ⵉ: %s</string>
     <string name="did_you_mean">ⵎⵉⵏ ⵜⵅⵙⴷ ⴰⴷ ⵜⵉⵏⵉⴷ:\"%1$s\"\?</string>
     <string name="main_bg_subtitle">ⴰⴷⵔ ⵅ \"ⵔⵣⵓ\"ⴰⴼⴰⴷ ⴰⴷ ⵜⵜⴰⵡⵍⴷ</string>
-    <string name="show_comments_title">ⵙⴽⵏ ⵉⵅⴼⴰⵡⴰⵍⵏ</string>
     <string name="theme_title">ⴰⵙⴳⵓⵎ</string>
 </resources>

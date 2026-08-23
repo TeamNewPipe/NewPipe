@@ -3,10 +3,8 @@ package org.schabi.newpipe.settings
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import androidx.preference.Preference
-import androidx.preference.SwitchPreference
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
@@ -23,16 +21,14 @@ import org.schabi.newpipe.local.subscription.SubscriptionManager
 
 class NotificationsSettingsFragment : BasePreferenceFragment(), OnSharedPreferenceChangeListener {
 
-    private var streamsNotificationsPreference: SwitchPreference? = null
     private var notificationWarningSnackbar: Snackbar? = null
     private var loader: Disposable? = null
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.notifications_settings)
-        streamsNotificationsPreference = requirePreference(R.string.enable_streams_notifications)
 
         // main check is done in onResume, but also do it here to prevent flickering
-        updateEnabledState(NotificationHelper.areNotificationsEnabledOnDevice(requireContext()))
+        preferenceScreen.isEnabled = true
     }
 
     override fun onStart() {
@@ -71,7 +67,7 @@ class NotificationsSettingsFragment : BasePreferenceFragment(), OnSharedPreferen
         // If they are disabled, show a snackbar informing the user about that
         // while allowing them to open the device's app settings.
         val enabled = NotificationHelper.areNotificationsEnabledOnDevice(requireContext())
-        updateEnabledState(enabled)
+        preferenceScreen.isEnabled = true // it is disabled by default, see the xml
         if (!enabled) {
             if (notificationWarningSnackbar == null) {
                 notificationWarningSnackbar = Snackbar.make(
@@ -112,20 +108,10 @@ class NotificationsSettingsFragment : BasePreferenceFragment(), OnSharedPreferen
         super.onPause()
     }
 
-    private fun updateEnabledState(enabled: Boolean) {
-        // On Android 13 player notifications are exempt from notification settings
-        // so the preferences in app should always be available.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            streamsNotificationsPreference?.isEnabled = enabled
-        } else {
-            preferenceScreen.isEnabled = enabled
-        }
-    }
-
     private fun updateSubscriptions(subscriptions: List<SubscriptionEntity>) {
         val notified = subscriptions.count { it.notificationMode != NotificationMode.DISABLED }
-        val preference = requirePreference<Preference>(R.string.streams_notifications_channels_key)
-        preference.summary = "$notified/${subscriptions.size}"
+        val preference = findPreference<Preference>(getString(R.string.streams_notifications_channels_key))
+        preference?.apply { summary = "$notified/${subscriptions.size}" }
     }
 
     private fun onError(e: Throwable) {

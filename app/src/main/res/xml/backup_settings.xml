@@ -1,0 +1,18 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto"
+                  android:key="general_preferences"
+                  android:title="@string/settings_category_backup_title">
+    <Preference
+            android:key="@string/import_data"
+            android:summary="@string/import_data_summary"
+            android:title="@string/import_data_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
+    <Preference
+            android:key="@string/export_data"
+            android:summary="@string/export_data_summary"
+            android:title="@string/export_data_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+</PreferenceScreen>

@@ -12,6 +12,7 @@ const val KEY_URL = "key_url"
 const val KEY_TITLE = "key_title"
 const val KEY_LINK_TYPE = "key_link_type"
 const val KEY_OPEN_SEARCH = "key_open_search"
+const val KEY_OPEN_WEBVIEW = "key_open_webview"
 const val KEY_SEARCH_STRING = "key_search_string"
 
 const val KEY_THEME_CHANGE = "key_theme_change"

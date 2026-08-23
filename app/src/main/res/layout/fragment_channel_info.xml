@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/description_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="@string/description_tab_description"
+            android:textAllCaps="true"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <org.schabi.newpipe.views.NewPipeTextView
+            android:id="@+id/description_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textIsSelectable="true"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@+id/description_title"
+            tools:layout_editor_absoluteX="0dp"
+            tools:text="Cupcake ipsum dolor sit amet I love. I love macaroon cake sweet topping jelly beans chocolate chupa chups candy canes. Marshmallow cake jelly fruitcake soufflé pie. Jelly jelly beans cupcake topping chocolate bar jelly pudding pastry sweet roll."
+            tools:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/detail_metadata_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingBottom="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

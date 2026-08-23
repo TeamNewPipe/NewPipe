@@ -2,27 +2,38 @@
 <resources>
 
     <!-- Base Theme -->
-    <style name="Base.V27" parent="Base.V21">
+    <style name="Base.V27" parent="Base.V19">
         <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
     <style name="Base" parent="Base.V27"/>
 
     <!-- Light Theme -->
-    <style name="Base.V27.LightTheme" parent="Base.V21.LightTheme">
+    <style name="Base.V27.LightTheme" parent="Base.V19.LightTheme">
         <item name="android:windowLightNavigationBar">true</item>
     </style>
     <style name="Base.LightTheme" parent="Base.V27.LightTheme" />
 
     <!-- Dark Theme -->
-    <style name="Base.V27.DarkTheme" parent="Base.V21.DarkTheme">
+    <style name="Base.V27.DarkTheme" parent="Base.V19.DarkTheme">
         <item name="android:windowLightNavigationBar">false</item>
     </style>
     <style name="Base.DarkTheme" parent="Base.V27.DarkTheme" />
 
     <!-- Black Theme -->
-    <style name="Base.V27.BlackTheme" parent="Base.V21.BlackTheme">
+    <style name="Base.V27.BlackTheme" parent="Base.V19.BlackTheme">
         <!-- BlackTheme inherits DarkTheme, so no need to specify windowLightNavigationBar here -->
     </style>
     <style name="Base.BlackTheme" parent="Base.V27.BlackTheme" />
+
+    <!-- Bottom Sheets -->
+    <style name="BottomSheetDialogTheme.Light.V27" parent="BottomSheetDialogTheme.Light.V19">
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+    <style name="BottomSheetDialogTheme.Light.Base" parent="BottomSheetDialogTheme.Light.V27"/>
+
+    <style name="BottomSheetDialogTheme.Dark.V27" parent="BottomSheetDialogTheme.Dark.V19">
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+    <style name="BottomSheetDialogTheme.Dark.Base" parent="BottomSheetDialogTheme.Dark.V27"/>
 
 </resources>

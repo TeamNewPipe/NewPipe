@@ -8,14 +8,17 @@
     android:background="?attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
-    android:padding="@dimen/video_item_search_padding">
+   android:paddingTop="12dp"
+   android:paddingBottom="8dp"
+   android:paddingHorizontal="12dp"
+>
 
-    <ImageView
+    <org.schabi.newpipe.views.DynamicGridImageView
         android:id="@+id/itemThumbnailView"
-        android:layout_width="@dimen/video_item_grid_thumbnail_image_width"
-        android:layout_height="@dimen/video_item_grid_thumbnail_image_height"
-        android:scaleType="fitCenter"
-        android:src="@drawable/placeholder_thumbnail_video"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@drawable/dummy_thumbnail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,6 +46,7 @@
         android:id="@+id/itemVideoTitleView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:ellipsize="end"
         android:maxLines="2"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -50,7 +54,7 @@
         app:layout_constraintBottom_toTopOf="@+id/itemUploaderView"
         app:layout_constraintEnd_toEndOf="@+id/itemThumbnailView"
         app:layout_constraintStart_toStartOf="@+id/itemThumbnailView"
-        app:layout_constraintTop_toBottomOf="@+id/itemProgressView"
+        app:layout_constraintTop_toBottomOf="@+id/itemThumbnailView"
         tools:text="@tools:sample/lorem[10]" />
 
     <org.schabi.newpipe.views.NewPipeTextView
@@ -76,7 +80,9 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/video_item_search_upload_date_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/itemThumbnailView"
+        app:layout_constraintEnd_toStartOf="@+id/itemHandle"
+        android:layout_marginEnd="4dp"
+
         app:layout_constraintStart_toStartOf="@+id/itemThumbnailView"
         app:layout_constraintTop_toBottomOf="@+id/itemUploaderView"
         tools:text="2 years ago • 10M views" />
@@ -86,9 +92,23 @@
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="0dp"
         android:layout_height="4dp"
-        android:progressDrawable="?progress_horizontal_drawable"
+        android:progressDrawable="@drawable/progress_youtube_horizontal_light_rounded"
+        app:layout_constraintBottom_toBottomOf="@+id/itemThumbnailView"
         app:layout_constraintEnd_toEndOf="@+id/itemThumbnailView"
-        app:layout_constraintStart_toStartOf="@+id/itemThumbnailView"
-        app:layout_constraintTop_toBottomOf="@+id/itemThumbnailView" />
+        app:layout_constraintStart_toStartOf="@+id/itemThumbnailView" />
+
+    <ImageView
+        android:id="@+id/itemHandle"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:contentDescription="@string/detail_drag_description"
+        android:paddingStart="2dp"
+        android:scaleType="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/itemAdditionalDetails"
+        app:layout_constraintEnd_toEndOf="@id/itemThumbnailView"
+        app:layout_constraintTop_toTopOf="@id/itemAdditionalDetails"
+        app:srcCompat="@drawable/ic_drag_handle"
+        tools:ignore="RtlHardcoded,RtlSymmetry" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

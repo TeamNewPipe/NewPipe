@@ -1,6 +1,7 @@
 package org.schabi.newpipe.info_list.holder;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,6 +36,11 @@ public abstract class InfoItemHolder extends RecyclerView.ViewHolder {
     public InfoItemHolder(final InfoItemBuilder infoItemBuilder, final int layoutId,
                           final ViewGroup parent) {
         super(LayoutInflater.from(infoItemBuilder.getContext()).inflate(layoutId, parent, false));
+        this.itemBuilder = infoItemBuilder;
+    }
+
+    public InfoItemHolder(final InfoItemBuilder infoItemBuilder, final View view) {
+        super(view);
         this.itemBuilder = infoItemBuilder;
     }
 

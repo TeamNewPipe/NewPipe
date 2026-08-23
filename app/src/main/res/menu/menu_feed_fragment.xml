@@ -3,16 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menu_item_feed_toggle_played_items"
-        android:orderInCategory="2"
-        android:icon="@drawable/ic_visibility_on"
-        android:title="@string/feed_show_hide_streams"
-        app:showAsAction="ifRoom" />
+            android:orderInCategory="1"
+            android:id="@+id/action_search_feed"
+            android:icon="@drawable/ic_search"
+            android:title="@string/search"
+            app:showAsAction="always" />
+
 
     <item
-        android:id="@+id/menu_item_feed_help"
-        android:icon="@drawable/ic_help"
-        android:title="@string/fast_mode"
-        android:orderInCategory="4"
-        app:showAsAction="ifRoom" />
+        android:id="@+id/menu_item_feed_toggle_played_items"
+        android:checkable="true"
+        android:checked="true"
+        android:icon="@drawable/ic_visibility_on"
+        android:title="@string/feed_toggle_show_played_items"
+        app:showAsAction="collapseActionView" />
+
+    <item
+            android:id="@+id/menu_item_feed_channel_list"
+            android:icon="@drawable/ic_channels"
+            android:title="@string/channels"
+            android:orderInCategory="3"
+            app:showAsAction="ifRoom" />
 </menu>

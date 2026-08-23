@@ -1,23 +1,16 @@
 package org.schabi.newpipe.util;
 
-import static android.content.Context.INPUT_SERVICE;
-
-import android.annotation.SuppressLint;
+import android.app.Service;
 import android.app.UiModeManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.graphics.Point;
-import android.hardware.input.InputManager;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.provider.Settings;
 import android.util.TypedValue;
-import android.view.InputDevice;
 import android.view.KeyEvent;
-import android.view.WindowInsets;
-import android.view.WindowManager;
-import android.webkit.CookieManager;
 
 import androidx.annotation.Dimension;
 import androidx.annotation.NonNull;
@@ -27,13 +20,12 @@ import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
-
-import java.lang.reflect.Method;
+import org.schabi.newpipe.player.PlayerService;
+import org.schabi.newpipe.player.PlayerServiceForAuto;
 
 public final class DeviceUtils {
 
     private static final String AMAZON_FEATURE_FIRE_TV = "amazon.hardware.fire_tv";
-    private static final boolean SAMSUNG = Build.MANUFACTURER.equals("samsung");
     private static Boolean isTV = null;
     private static Boolean isFireTV = null;
 
@@ -44,7 +36,7 @@ public final class DeviceUtils {
      * support media tunneling to match the <strong>upcoming</strong> version code.</p>
      * @see #shouldSupportMediaTunneling()
      */
-    public static final int MEDIA_TUNNELING_DEVICE_BLACKLIST_VERSION = 1015;
+    public static final int MEDIA_TUNNELING_DEVICE_BLACKLIST_VERSION = 994;
 
     // region: devices not supporting media tunneling / media tunneling blacklist
     /**
@@ -120,18 +112,7 @@ public final class DeviceUtils {
      *     #10122</a></p>
      */
     private static final boolean HMB9213NW = Build.DEVICE.equals("HMB9213NW");
-    /**
-     * <p>JMGO N1S 4K.</p>
-     * <p>Blacklist reason: fullscreen crash</p>
-     */
-    private static final boolean LONAVLA = Build.DEVICE.equals("lonavla");
-    /**
-     * <p>TCL 65Q651G.</p>
-     * <p>Blacklist reason: fullscreen crash</p>
-     */
-    private static final boolean G10 = Build.DEVICE.equals("G10");
     // endregion
-
     private DeviceUtils() {
     }
 
@@ -141,7 +122,7 @@ public final class DeviceUtils {
         }
 
         isFireTV =
-                App.getInstance().getPackageManager().hasSystemFeature(AMAZON_FEATURE_FIRE_TV);
+                App.getApp().getPackageManager().hasSystemFeature(AMAZON_FEATURE_FIRE_TV);
         return isFireTV;
     }
 
@@ -150,13 +131,13 @@ public final class DeviceUtils {
             return isTV;
         }
 
-        final PackageManager pm = App.getInstance().getPackageManager();
+        final PackageManager pm = App.getApp().getPackageManager();
 
         // from doc: https://developer.android.com/training/tv/start/hardware.html#runtime-check
         boolean isTv = ContextCompat.getSystemService(context, UiModeManager.class)
                 .getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION
                 || isFireTv()
-                || pm.hasSystemFeature(PackageManager.FEATURE_LEANBACK);
+                || pm.hasSystemFeature(PackageManager.FEATURE_TELEVISION);
 
         // from https://stackoverflow.com/a/58932366
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -168,84 +149,10 @@ public final class DeviceUtils {
                     && pm.hasSystemFeature(PackageManager.FEATURE_ETHERNET));
         }
 
+        isTv = isTv || pm.hasSystemFeature(PackageManager.FEATURE_LEANBACK);
+
         DeviceUtils.isTV = isTv;
         return DeviceUtils.isTV;
-    }
-
-    /**
-     * Checks if the device is in desktop or DeX mode. This function should only
-     * be invoked once on view load as it is using reflection for the DeX checks.
-     * @param context the context to use for services and config.
-     * @return true if the Android device is in desktop mode or using DeX.
-     */
-    @SuppressWarnings("JavaReflectionMemberAccess")
-    public static boolean isDesktopMode(@NonNull final Context context) {
-        // Adapted from https://stackoverflow.com/a/64615568
-        // to check for all input devices that have an active cursor
-        final InputManager im = (InputManager) context.getSystemService(INPUT_SERVICE);
-        for (final int id : im.getInputDeviceIds()) {
-            final InputDevice inputDevice = im.getInputDevice(id);
-            if (inputDevice.supportsSource(InputDevice.SOURCE_BLUETOOTH_STYLUS)
-                    || inputDevice.supportsSource(InputDevice.SOURCE_MOUSE)
-                    || inputDevice.supportsSource(InputDevice.SOURCE_STYLUS)
-                    || inputDevice.supportsSource(InputDevice.SOURCE_TOUCHPAD)
-                    || inputDevice.supportsSource(InputDevice.SOURCE_TRACKBALL)) {
-                return true;
-            }
-        }
-
-        final UiModeManager uiModeManager =
-                ContextCompat.getSystemService(context, UiModeManager.class);
-        if (uiModeManager != null
-                && uiModeManager.getCurrentModeType() == Configuration.UI_MODE_TYPE_DESK) {
-            return true;
-        }
-
-        if (!SAMSUNG) {
-            return false;
-            // DeX is Samsung-specific, skip the checks below on non-Samsung devices
-        }
-        // DeX check for standalone and multi-window mode, from:
-        // https://developer.samsung.com/samsung-dex/modify-optimizing.html
-        try {
-            final Configuration config = context.getResources().getConfiguration();
-            final Class<?> configClass = config.getClass();
-            final int semDesktopModeEnabledConst =
-                    configClass.getField("SEM_DESKTOP_MODE_ENABLED").getInt(configClass);
-            final int currentMode =
-                    configClass.getField("semDesktopModeEnabled").getInt(config);
-            if (semDesktopModeEnabledConst == currentMode) {
-                return true;
-            }
-        } catch (final NoSuchFieldException | IllegalAccessException ignored) {
-            // Device doesn't seem to support DeX
-        }
-
-        @SuppressLint("WrongConstant") final Object desktopModeManager = context
-                .getApplicationContext()
-                .getSystemService("desktopmode");
-
-        if (desktopModeManager != null) {
-            try {
-                final Method getDesktopModeStateMethod = desktopModeManager.getClass()
-                        .getDeclaredMethod("getDesktopModeState");
-                final Object desktopModeState = getDesktopModeStateMethod
-                        .invoke(desktopModeManager);
-                final Class<?> desktopModeStateClass = desktopModeState.getClass();
-                final Method getEnabledMethod = desktopModeStateClass
-                        .getDeclaredMethod("getEnabled");
-                final int enabledStatus = (int) getEnabledMethod.invoke(desktopModeState);
-                if (enabledStatus == desktopModeStateClass
-                        .getDeclaredField("ENABLED").getInt(desktopModeStateClass)) {
-                    return true;
-                }
-            } catch (final Exception ignored) {
-                // Device does not support DeX 3.0 or something went wrong when trying to determine
-                // if it supports this feature
-            }
-        }
-
-        return false;
     }
 
     public static boolean isTablet(@NonNull final Context context) {
@@ -291,36 +198,11 @@ public final class DeviceUtils {
                 context.getResources().getDisplayMetrics());
     }
 
-    public static boolean isLandscape(final Context context) {
-        return context.getResources().getDisplayMetrics().heightPixels < context.getResources()
-                .getDisplayMetrics().widthPixels;
-    }
-
-    public static boolean isInMultiWindow(final AppCompatActivity activity) {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && activity.isInMultiWindowMode();
-    }
-
-    public static boolean hasAnimationsAnimatorDurationEnabled(final Context context) {
-        return Settings.System.getFloat(
-                context.getContentResolver(),
-                Settings.Global.ANIMATOR_DURATION_SCALE,
-                1F) != 0F;
-    }
-
-    public static int getWindowHeight(@NonNull final WindowManager windowManager) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            final var windowMetrics = windowManager.getCurrentWindowMetrics();
-            final var windowInsets = windowMetrics.getWindowInsets();
-            final var insets = windowInsets.getInsetsIgnoringVisibility(
-                    WindowInsets.Type.navigationBars() | WindowInsets.Type.displayCutout());
-            return windowMetrics.getBounds().height() - (insets.top + insets.bottom);
-        } else {
-            final Point point = new Point();
-            windowManager.getDefaultDisplay().getSize(point);
-            return point.y;
-        }
-    }
-
+    /**
+     * Some devices have broken tunneled video playback but claim to support it.
+     * See https://github.com/TeamNewPipe/NewPipe/issues/5911
+     * @return false if Kitkat (does not support tunneling) or affected device
+     */
     /**
      * <p>Some devices have broken tunneled video playback but claim to support it.</p>
      * <p>This can cause a black video player surface while attempting to play a video or
@@ -344,21 +226,44 @@ public final class DeviceUtils {
                 && !BRAVIA_ATV3_4K
                 && !PH7M_EU_5596
                 && !TX_50JXW834
-                && !HMB9213NW
-                && !LONAVLA
-                && !G10;
+                && !HMB9213NW;
     }
 
-    /**
-     * @return whether the device has support for WebView, see
-     * <a href="https://stackoverflow.com/a/69626735">https://stackoverflow.com/a/69626735</a>
-     */
-    public static boolean supportsWebView() {
-        try {
-            CookieManager.getInstance();
-            return true;
-        } catch (final Throwable ignored) {
-            return false;
-        }
+    public static boolean isLandscape(final Context context) {
+        return context.getResources().getDisplayMetrics().heightPixels < context.getResources()
+                .getDisplayMetrics().widthPixels;
+    }
+
+    public static boolean isInMultiWindow(final AppCompatActivity activity) {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && activity.isInMultiWindowMode();
+    }
+
+    public static boolean hasAnimationsAnimatorDurationEnabled(final Context context) {
+        return Settings.System.getFloat(
+                context.getContentResolver(),
+                Settings.Global.ANIMATOR_DURATION_SCALE,
+                1F) != 0F;
+    }
+
+    public static boolean isUsingFromAndroidAuto() {
+        return CarConnectionStateReceiver.isCarConnected();
+    }
+
+    public static Class<? extends Service> getPlayerServiceClass() {
+        return isUsingFromAndroidAuto()? PlayerServiceForAuto.class: PlayerService.class;
+    }
+
+    public static void updateAndroidAutoComponentState(final Context context) {
+        final boolean defaultValue = Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU;
+        final boolean isDisabled = PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.disable_android_auto_key), defaultValue);
+        final PackageManager pm = context.getPackageManager();
+        final ComponentName component = new ComponentName(context, PlayerServiceForAuto.class);
+        
+        final int newState = isDisabled 
+            ? PackageManager.COMPONENT_ENABLED_STATE_DISABLED 
+            : PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
+            
+        pm.setComponentEnabledSetting(component, newState, PackageManager.DONT_KILL_APP);
     }
 }

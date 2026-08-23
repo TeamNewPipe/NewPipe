@@ -10,10 +10,7 @@ import androidx.recyclerview.widget.DiffUtil;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.FinishedMission;
@@ -32,9 +29,9 @@ public class DownloadManager {
 
     enum NetworkState {Unavailable, Operating, MeteredOperating}
 
-    public static final int SPECIAL_NOTHING = 0;
-    public static final int SPECIAL_PENDING = 1;
-    public static final int SPECIAL_FINISHED = 2;
+    public final static int SPECIAL_NOTHING = 0;
+    public final static int SPECIAL_PENDING = 1;
+    public final static int SPECIAL_FINISHED = 2;
 
     public static final String TAG_AUDIO = "audio";
     public static final String TAG_VIDEO = "video";
@@ -52,7 +49,7 @@ public class DownloadManager {
 
     int mPrefMaxRetry;
     boolean mPrefMeteredDownloads;
-    boolean mPrefQueueLimit;
+    private static final boolean QUEUE_LIMIT_ENABLED = true;
     private boolean mSelfMissionsControl;
 
     StoredDirectoryHelper mMainStorageAudio;
@@ -169,7 +166,7 @@ public class DownloadManager {
             // DON'T delete missions with storage issues - try to recover them
             if (mis.hasInvalidStorage() && mis.errCode != ERROR_PROGRESS_LOST) {
                 // Only delete if it's truly unrecoverable (not just progress lost)
-                if (mis.storage == null) {
+                if (mis.storage == null && mis.errCode != ERROR_PROGRESS_LOST) {
                     //noinspection ResultOfMethodCallIgnored
                     sub.delete();
                     continue;
@@ -194,7 +191,6 @@ public class DownloadManager {
                     if (exists && mis.storage.isDirect() && !mis.storage.delete())
                         Log.w(TAG, "Unable to delete incomplete download file: " + sub.getPath());
                 }
-
                 mis.psState = 0;
                 mis.errCode = DownloadMission.ERROR_POSTPROCESSING_STOPPED;
             } else if (!exists) {
@@ -214,6 +210,7 @@ public class DownloadManager {
             mis.metadata = sub;
             mis.maxRetry = mPrefMaxRetry;
             mis.mHandler = mHandler;
+            mis.context = ctx;
 
             mMissionsPending.add(mis);
         }
@@ -221,6 +218,7 @@ public class DownloadManager {
         if (mMissionsPending.size() > 1)
             Collections.sort(mMissionsPending, Comparator.comparingLong(Mission::getTimestamp));
     }
+
 
     /**
      * Start a new download mission
@@ -262,7 +260,7 @@ public class DownloadManager {
                 return;
             }
 
-            boolean start = !mPrefQueueLimit || getRunningMissionsCount() < 1;
+            boolean start = !QUEUE_LIMIT_ENABLED || getRunningMissionsCount() < 1;
 
             if (canDownloadInCurrentNetwork() && start) {
                 mission.start();
@@ -272,7 +270,14 @@ public class DownloadManager {
 
 
     public void resumeMission(DownloadMission mission) {
-        if (!mission.running) {
+        synchronized (this) {
+            if (mission.running) return;
+
+            if (getRunningMissionsCount() > 0) {
+                mission.setEnqueued(true);
+                return;
+            }
+
             mission.start();
         }
     }
@@ -284,7 +289,7 @@ public class DownloadManager {
         }
     }
 
-    public void deleteMission(Mission mission, boolean alsoDeleteFile) {
+    public void deleteMission(Mission mission) {
         synchronized (this) {
             if (mission instanceof DownloadMission) {
                 mMissionsPending.remove(mission);
@@ -293,9 +298,7 @@ public class DownloadManager {
                 mFinishedMissionStore.deleteMission(mission);
             }
 
-            if (alsoDeleteFile) {
-                mission.delete();
-            }
+            mission.delete();
         }
     }
 
@@ -426,10 +429,10 @@ public class DownloadManager {
     public void startAllMissions() {
         synchronized (this) {
             for (DownloadMission mission : mMissionsPending) {
-                if (mission.running || mission.isCorrupt()) continue;
-
-                mission.start();
+                if (!mission.running && !mission.isCorrupt()) mission.setEnqueued(true);
             }
+
+            runMissions();
         }
     }
 
@@ -441,6 +444,9 @@ public class DownloadManager {
     void setFinished(DownloadMission mission) {
         synchronized (this) {
             mMissionsPending.remove(mission);
+            if(mission.storage.srcName.endsWith(".tmp")){
+                return;
+            }
             mMissionsFinished.add(0, new FinishedMission(mission));
             mFinishedMissionStore.addFinishedMission(mission);
         }
@@ -456,7 +462,7 @@ public class DownloadManager {
             if (mMissionsPending.size() < 1) return false;
             if (!canDownloadInCurrentNetwork()) return false;
 
-            if (mPrefQueueLimit) {
+            if (QUEUE_LIMIT_ENABLED) {
                 for (DownloadMission mission : mMissionsPending)
                     if (!mission.isFinished() && mission.running) return true;
             }
@@ -469,7 +475,7 @@ public class DownloadManager {
                 resumeMission(mission);
                 if (mission.errCode != ERROR_NOTHING) continue;
 
-                if (mPrefQueueLimit) return true;
+                if (QUEUE_LIMIT_ENABLED) return true;
                 flag = true;
             }
 
@@ -519,7 +525,7 @@ public class DownloadManager {
                     mission.pause();
                 } else if (!mission.running && !isMetered && mission.enqueued) {
                     mission.start();
-                    if (mPrefQueueLimit) break;
+                    if (QUEUE_LIMIT_ENABLED) break;
                 }
             }
         }
@@ -614,8 +620,11 @@ public class DownloadManager {
 
                 // Don't hide recoverable missions
                 remove.removeIf(mission -> {
-                    if (mission instanceof DownloadMission dm && canRecoverMission(dm)) {
-                        return false; // Don't remove recoverable missions
+                    if (mission instanceof DownloadMission) {
+                        DownloadMission dm = (DownloadMission) mission;
+                        if (canRecoverMission(dm)) {
+                            return false; // Don't remove recoverable missions
+                        }
                     }
                     return pending.remove(mission) || finished.remove(mission);
                 });

@@ -1,7 +1,5 @@
 package org.schabi.newpipe.player.helper;
 
-import androidx.core.math.MathUtils;
-
 /**
  * Converts between percent and 12-tone equal temperament semitones.
  * <br/>
@@ -35,6 +33,6 @@ public final class PlayerSemitoneHelper {
     }
 
     private static int ensureSemitonesInRange(final int semitones) {
-        return MathUtils.clamp(semitones, -SEMITONE_COUNT, SEMITONE_COUNT);
+        return Math.max(-SEMITONE_COUNT, Math.min(SEMITONE_COUNT, semitones));
     }
 }

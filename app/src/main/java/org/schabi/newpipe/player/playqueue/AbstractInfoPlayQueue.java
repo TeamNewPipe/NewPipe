@@ -3,9 +3,7 @@ package org.schabi.newpipe.player.playqueue;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
-import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.ListInfo;
 import org.schabi.newpipe.extractor.Page;
@@ -17,30 +15,23 @@ import java.util.stream.Collectors;
 import io.reactivex.rxjava3.core.SingleObserver;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-abstract class AbstractInfoPlayQueue<T extends ListInfo<? extends InfoItem>>
+abstract class AbstractInfoPlayQueue<T extends ListInfo<StreamInfoItem>>
         extends PlayQueue {
     boolean isInitial;
     private boolean isComplete;
 
     final int serviceId;
     final String baseUrl;
-    @Nullable
     Page nextPage;
 
     private transient Disposable fetchReactor;
 
     protected AbstractInfoPlayQueue(final T info) {
-        this(info, 0);
+        this(info.getServiceId(), info.getUrl(), info.getNextPage(), info.getRelatedItems(), 0);
     }
 
-    protected AbstractInfoPlayQueue(final T info, final int index) {
-        this(info.getServiceId(), info.getUrl(), info.getNextPage(),
-                info.getRelatedItems()
-                        .stream()
-                        .filter(StreamInfoItem.class::isInstance)
-                        .map(StreamInfoItem.class::cast)
-                        .collect(Collectors.toList()),
-                index);
+    protected AbstractInfoPlayQueue(final T info, int index) {
+        this(info.getServiceId(), info.getUrl(), info.getNextPage(), info.getRelatedItems(), index);
     }
 
     protected AbstractInfoPlayQueue(final int serviceId,
@@ -85,11 +76,7 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo<? extends InfoItem>>
                 }
                 nextPage = result.getNextPage();
 
-                append(extractListItems(result.getRelatedItems()
-                        .stream()
-                        .filter(StreamInfoItem.class::isInstance)
-                        .map(StreamInfoItem.class::cast)
-                        .collect(Collectors.toList())));
+                append(extractListItems(result.getRelatedItems()));
 
                 fetchReactor.dispose();
                 fetchReactor = null;
@@ -99,12 +86,12 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo<? extends InfoItem>>
             public void onError(@NonNull final Throwable e) {
                 Log.e(getTag(), "Error fetching more playlist, marking playlist as complete.", e);
                 isComplete = true;
-                notifyChange();
+                append(); // Notify change
             }
         };
     }
 
-    SingleObserver<ListExtractor.InfoItemsPage<? extends InfoItem>> getNextPageObserver() {
+    SingleObserver<ListExtractor.InfoItemsPage<StreamInfoItem>> getNextPageObserver() {
         return new SingleObserver<>() {
             @Override
             public void onSubscribe(@NonNull final Disposable d) {
@@ -118,17 +105,13 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo<? extends InfoItem>>
 
             @Override
             public void onSuccess(
-                    @NonNull final ListExtractor.InfoItemsPage<? extends InfoItem> result) {
+                    @NonNull final ListExtractor.InfoItemsPage<StreamInfoItem> result) {
                 if (!result.hasNextPage()) {
                     isComplete = true;
                 }
                 nextPage = result.getNextPage();
 
-                append(extractListItems(result.getItems()
-                        .stream()
-                        .filter(StreamInfoItem.class::isInstance)
-                        .map(StreamInfoItem.class::cast)
-                        .collect(Collectors.toList())));
+                append(extractListItems(result.getItems()));
 
                 fetchReactor.dispose();
                 fetchReactor = null;
@@ -138,7 +121,7 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo<? extends InfoItem>>
             public void onError(@NonNull final Throwable e) {
                 Log.e(getTag(), "Error fetching more playlist, marking playlist as complete.", e);
                 isComplete = true;
-                notifyChange();
+                append(); // Notify change
             }
         };
     }

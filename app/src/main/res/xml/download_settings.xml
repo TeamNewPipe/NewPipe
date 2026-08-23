@@ -12,7 +12,6 @@
         app:iconSpaceReserved="false" />
 
     <SwitchPreferenceCompat
-        android:defaultValue="true"
         android:key="@string/storage_use_saf"
         android:summary="@string/downloads_storage_use_saf_summary"
         android:title="@string/downloads_storage_use_saf_title"
@@ -36,22 +35,14 @@
         app:iconSpaceReserved="false" />
 
     <ListPreference
-        android:defaultValue="@string/default_file_charset_value"
-        android:entries="@array/settings_filename_charset_name"
-        android:entryValues="@array/settings_filename_charset"
-        android:key="@string/settings_file_charset_key"
-        android:title="@string/settings_file_charset_title"
-        app:singleLineTitle="false"
-        app:iconSpaceReserved="false"
-        app:useSimpleSummaryProvider="true" />
-
-    <EditTextPreference
-        android:defaultValue="@string/settings_file_replacement_character_default_value"
-        android:key="@string/settings_file_replacement_character_key"
-        android:summary="@string/settings_file_replacement_character_summary"
-        android:title="@string/settings_file_replacement_character_title"
-        app:singleLineTitle="false"
-        app:iconSpaceReserved="false" />
+            android:defaultValue="@string/default_file_charset_value"
+            android:entries="@array/settings_filename_charset_name"
+            android:entryValues="@array/settings_filename_charset"
+            android:key="@string/settings_file_charset_key"
+            android:summary="%s"
+            android:title="@string/settings_file_charset_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
 
     <ListPreference
         android:defaultValue="@string/downloads_maximum_retry_default"
@@ -71,12 +62,12 @@
         app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
-    <SwitchPreferenceCompat
-        android:defaultValue="true"
-        android:key="@string/downloads_queue_limit"
-        android:summary="@string/enable_queue_limit_desc"
-        android:title="@string/enable_queue_limit"
-        app:singleLineTitle="false"
-        app:iconSpaceReserved="false" />
+<!--    <SwitchPreferenceCompat-->
+<!--        android:defaultValue="true"-->
+<!--        android:key="@string/downloads_queue_limit"-->
+<!--        android:summary="@string/enable_queue_limit_desc"-->
+<!--        android:title="@string/enable_queue_limit"-->
+<!--        app:singleLineTitle="false"-->
+<!--        app:iconSpaceReserved="false" />-->
 
 </PreferenceScreen>

@@ -31,25 +31,22 @@
     <string name="unsubscribe">Inscribe</string>
     <string name="subscribed_button_title">Scriptum</string>
     <string name="subscribe_button_title">Scribe</string>
-    <string name="no_player_found_toast">Nullus amnem amnibus invenit (potes instituere VLC quia id ludere).</string>
+    <string name="no_player_found_toast">Nullus amnem amnibus invenit (potes instalar VLC quia id ludere).</string>
     <string name="no_player_found">Nullus amnem amnibus invenit. Instalar VLC\?</string>
     <string name="controls_download_desc">Scarica amnem file</string>
-    <string name="use_external_audio_player_title">Utere ludionem externum</string>
-    <string name="use_external_video_player_summary">Removes sentum aliquas resolutionibus</string>
-    <string name="use_external_video_player_title">Utere lectorem externum</string>
     <string name="share_dialog_title">Condividi apud</string>
     <string name="search_showing_result_for">Praecessi propter: %s</string>
     <string name="did_you_mean">Intendi \"%1$s\"\?</string>
     <string name="settings">Optiones</string>
     <string name="main_bg_subtitle">Tange \"Quaere\" ad initium</string>
-    <string name="search">Quaerere</string>
+    <string name="search">Quaere</string>
     <string name="download">Scarica</string>
     <string name="share">Condividi</string>
     <string name="open_with">Aperi apud</string>
     <string name="open_in_popup_mode">Aperi in popup mode</string>
-    <string name="open_in_browser">Aperi in navigatro</string>
+    <string name="open_in_browser">Aperi in browser</string>
     <string name="cancel">Inrita</string>
-    <string name="install">instituere</string>
+    <string name="install">instalar</string>
     <string name="upload_date_text">Edita %1$s</string>
     <string name="start">Initio</string>
     <string name="pause">Pausa</string>
@@ -65,16 +62,13 @@
     <string name="no_subscribers">Nulli signatores</string>
     <string name="search_no_results">Nullae resultationes</string>
     <string name="settings_category_appearance_title">Apparentia</string>
-    <string name="settings_category_player_behavior_title">Mos</string>
     <string name="notification_channel_name">NewPipe notitia</string>
     <plurals name="listening">
         <item quantity="one">%s audiens</item>
         <item quantity="other">%s audientes</item>
     </plurals>
-    <string name="decline">Declina</string>
     <string name="delete">Dele</string>
     <string name="create">Crea</string>
-    <string name="accept">Accipe</string>
     <string name="name">Nomin</string>
     <string name="max_retry_msg">Retentati maximi</string>
     <string name="retry">Retentare</string>
@@ -93,7 +87,7 @@
         <item quantity="one">%d secundus</item>
         <item quantity="other">%d secundi</item>
     </plurals>
-    <string name="done">Factum</string>
+    <string name="recaptcha_done_button">Factum</string>
     <string name="always_ask_open_action">Quaere semper</string>
     <string name="list">Index</string>
     <string name="limit_data_usage_none_description">Nullus limus</string>
@@ -102,7 +96,6 @@
     <string name="no_comments">Nullae commentaria</string>
     <string name="comments_tab_description">Commentaria</string>
     <string name="your_comment">Commentarium tuum (In Anglico):</string>
-    <string name="show_comments_title">Ostende commentarium</string>
     <string name="notification_action_shuffle">Misce</string>
     <string name="notification_action_repeat">Repete</string>
     <string name="notification_action_nothing">Nihil</string>
@@ -121,8 +114,4 @@
     <string name="resize_zoom">Retrahe</string>
     <string name="resize_fill">Satiatus</string>
     <string name="resize_fit">Aptus</string>
-    <string name="yes">Ita</string>
-    <string name="no">Non</string>
-    <string name="search_with_service_name">Quaere %1$s</string>
-    <string name="search_with_service_name_and_filter">Quaere %1$s (%2$s)</string>
 </resources>

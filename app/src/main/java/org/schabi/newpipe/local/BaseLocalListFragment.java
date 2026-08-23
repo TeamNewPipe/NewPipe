@@ -1,7 +1,6 @@
 package org.schabi.newpipe.local;
 
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -23,12 +22,11 @@ import org.schabi.newpipe.databinding.PignateFooterBinding;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.list.ListViewContract;
 import org.schabi.newpipe.info_list.ItemViewMode;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
-import static org.schabi.newpipe.util.ThemeHelper.getItemViewMode;
-
-import java.util.function.Supplier;
+import static org.schabi.newpipe.util.ThemeHelper.*;
 
 /**
  * This fragment is design to be used with persistent data such as
@@ -86,14 +84,19 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
         }
     }
 
+    protected boolean forceUseListLayout() {
+        return false;
+    }
+
     /**
      * Updates the item view mode based on user preference.
      */
     private void refreshItemViewMode() {
         final ItemViewMode itemViewMode = getItemViewMode(requireContext());
-        itemsList.setLayoutManager((itemViewMode == ItemViewMode.GRID)
+        final ItemViewMode appliedItemViewMode = forceUseListLayout() ? ItemViewMode.LIST : itemViewMode;
+        itemsList.setLayoutManager((isGrid(appliedItemViewMode))
                 ? getGridLayoutManager() : getListLayoutManager());
-        itemListAdapter.setItemViewMode(itemViewMode);
+        itemListAdapter.setItemViewMode(appliedItemViewMode);
         itemListAdapter.notifyDataSetChanged();
     }
 
@@ -102,7 +105,7 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Nullable
-    protected Supplier<View> getListHeaderSupplier() {
+    protected ViewBinding getListHeader() {
         return null;
     }
 
@@ -111,10 +114,7 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     }
 
     protected RecyclerView.LayoutManager getGridLayoutManager() {
-        final Resources resources = activity.getResources();
-        int width = resources.getDimensionPixelSize(R.dimen.video_item_grid_thumbnail_image_width);
-        width += (24 * resources.getDisplayMetrics().density);
-        final int spanCount = Math.floorDiv(resources.getDisplayMetrics().widthPixels, width);
+        final int spanCount = ThemeHelper.getGridSpanCountStreams(activity);
         final GridLayoutManager lm = new GridLayoutManager(activity, spanCount);
         lm.setSpanSizeLookup(itemListAdapter.getSpanSizeLookup(spanCount));
         return lm;
@@ -133,9 +133,9 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
         itemsList = rootView.findViewById(R.id.items_list);
         refreshItemViewMode();
 
-        final Supplier<View> listHeaderSupplier = getListHeaderSupplier();
-        if (listHeaderSupplier != null) {
-            itemListAdapter.setHeaderSupplier(listHeaderSupplier);
+        headerRootBinding = getListHeader();
+        if (headerRootBinding != null) {
+            itemListAdapter.setHeader(headerRootBinding.getRoot());
         }
         footerRootBinding = getListFooter();
         itemListAdapter.setFooter(footerRootBinding.getRoot());
@@ -196,6 +196,9 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
         if (itemsList != null) {
             animateHideRecyclerViewAllowingScrolling(itemsList);
         }
+        if (headerRootBinding != null) {
+            animate(headerRootBinding.getRoot(), false, 200);
+        }
     }
 
     @Override
@@ -203,6 +206,9 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
         super.hideLoading();
         if (itemsList != null) {
             animate(itemsList, true, 200);
+        }
+        if (headerRootBinding != null) {
+            animate(headerRootBinding.getRoot(), true, 200);
         }
     }
 
@@ -212,8 +218,6 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
         showListFooter(false);
     }
 
-    @Deprecated(since = "Calling this method with `true` may cause crashes, see "
-            + "https://github.com/TeamNewPipe/NewPipe/pull/12996#pullrequestreview-3713317115")
     @Override
     public void showListFooter(final boolean show) {
         if (itemsList == null) {
@@ -251,12 +255,19 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
         if (itemsList != null) {
             animateHideRecyclerViewAllowingScrolling(itemsList);
         }
+        if (headerRootBinding != null) {
+            animate(headerRootBinding.getRoot(), false, 200);
+        }
     }
 
     @Override
     public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences,
                                           final String key) {
-        if (getString(R.string.list_view_mode_key).equals(key)) {
+        if (key != null && (key.equals(getString(R.string.list_view_mode_key))
+                || key.equals(getString(R.string.grid_layout_enabled_key))
+                || key.equals(getString(R.string.grid_columns_key))
+                || key.equals(getString(R.string.grid_columns_landscape_key))
+                || key.equals(getString(R.string.use_experimental_new_ui_key)))) {
             updateFlags |= LIST_MODE_UPDATE_FLAG;
         }
     }

@@ -3,8 +3,8 @@ package org.schabi.newpipe.local.feed.service
 import androidx.annotation.StringRes
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.processors.BehaviorProcessor
-import java.util.concurrent.atomic.AtomicBoolean
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.IdleEvent
+import java.util.concurrent.atomic.AtomicBoolean
 
 object FeedEventManager {
     private var processor: BehaviorProcessor<Event> = BehaviorProcessor.create()
@@ -26,7 +26,7 @@ object FeedEventManager {
     }
 
     sealed class Event {
-        data object IdleEvent : Event()
+        object IdleEvent : Event()
         data class ProgressEvent(val currentProgress: Int = -1, val maxProgress: Int = -1, @StringRes val progressMessage: Int = 0) : Event() {
             constructor(@StringRes progressMessage: Int) : this(-1, -1, progressMessage)
         }

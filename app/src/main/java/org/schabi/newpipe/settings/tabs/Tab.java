@@ -19,15 +19,19 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.fragments.BlankFragment;
-import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
+import org.schabi.newpipe.fragments.YoutubeWebViewFragment;
+import org.schabi.newpipe.fragments.list.channel.ChannelVideosFragment;
 import org.schabi.newpipe.fragments.list.kiosk.DefaultKioskFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
+import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.local.bookmark.BookmarkFragment;
 import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionFragment;
+import org.schabi.newpipe.local.subscription.item.FeedGroupCardItem;
+import org.schabi.newpipe.learning.LearningDashboardFragment;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.ServiceHelper;
 
@@ -93,8 +97,8 @@ public abstract class Tab {
                     return new ChannelTab(jsonObject);
                 case PLAYLIST:
                     return new PlaylistTab(jsonObject);
-                case FEEDGROUP:
-                    return new FeedGroupTab(jsonObject);
+                case CHANNEL_GROUP:
+                    return new ChannelGroupTab(jsonObject);
             }
         }
 
@@ -165,7 +169,11 @@ public abstract class Tab {
         KIOSK(new KioskTab()),
         CHANNEL(new ChannelTab()),
         PLAYLIST(new PlaylistTab()),
-        FEEDGROUP(new FeedGroupTab());
+        CHANNEL_GROUP(new ChannelGroupTab()),
+        LEARNING(new LearningTab()),
+        YOUTUBE_WEB(new YouTubeWebTab()),
+        YOUTUBE_MUSIC(new YouTubeMusicTab()),
+        YOUTUBE_SHORTS(new YouTubeShortsTab());
 
         private final Tab tab;
 
@@ -192,9 +200,7 @@ public abstract class Tab {
 
         @Override
         public String getTabName(final Context context) {
-            // TODO: find a better name for the blank tab (maybe "blank_tab") or replace it with
-            //       context.getString(R.string.app_name);
-            return "NewPipe"; // context.getString(R.string.blank_page_summary);
+            return "PipePlay";
         }
 
         @DrawableRes
@@ -251,7 +257,7 @@ public abstract class Tab {
         @DrawableRes
         @Override
         public int getTabIconRes(final Context context) {
-            return R.drawable.ic_subscriptions;
+            return R.drawable.ic_rss_feed;
         }
 
         @Override
@@ -435,8 +441,8 @@ public abstract class Tab {
         }
 
         @Override
-        public ChannelFragment getFragment(final Context context) {
-            return ChannelFragment.getInstance(channelServiceId, channelUrl, channelName);
+        public ChannelVideosFragment getFragment(final Context context) {
+            return ChannelVideosFragment.getInstance(channelServiceId, channelUrl, channelName);
         }
 
         @Override
@@ -461,7 +467,7 @@ public abstract class Tab {
             final ChannelTab other = (ChannelTab) obj;
             return super.equals(obj)
                     && channelServiceId == other.channelServiceId
-                    && channelUrl.equals(other.channelUrl)
+                    && channelUrl.equals(other.channelName)
                     && channelName.equals(other.channelName);
         }
 
@@ -655,28 +661,134 @@ public abstract class Tab {
             return playlistType;
         }
     }
-    public static class FeedGroupTab extends Tab {
+
+
+
+    public static class YouTubeWebTab extends Tab {
+        public static final int ID = 13;
+
+        @Override
+        public int getTabId() {
+            return ID;
+        }
+
+        @Override
+        public String getTabName(final Context context) {
+            return context.getString(R.string.youtube_webview_title);
+        }
+
+        @DrawableRes
+        @Override
+        public int getTabIconRes(final Context context) {
+            return R.drawable.ic_language;
+        }
+
+        @Override
+        public Fragment getFragment(final Context context) {
+            return YoutubeWebViewFragment.newInstance(null);
+        }
+    }
+
+    public static class YouTubeMusicTab extends Tab {
+        public static final int ID = 11;
+
+        @Override
+        public int getTabId() {
+            return ID;
+        }
+
+        @Override
+        public String getTabName(final Context context) {
+            return context.getString(R.string.youtube_music_destination);
+        }
+
+        @DrawableRes
+        @Override
+        public int getTabIconRes(final Context context) {
+            return R.drawable.ic_music_note;
+        }
+
+        @Override
+        public Fragment getFragment(final Context context) {
+            return SearchFragment.getYouTubeMusicInstance("");
+        }
+    }
+
+    public static class YouTubeShortsTab extends Tab {
+        public static final int ID = 12;
+
+        @Override
+        public int getTabId() {
+            return ID;
+        }
+
+        @Override
+        public String getTabName(final Context context) {
+            return context.getString(R.string.youtube_shorts_destination);
+        }
+
+        @DrawableRes
+        @Override
+        public int getTabIconRes(final Context context) {
+            return R.drawable.ic_movie;
+        }
+
+        @Override
+        public Fragment getFragment(final Context context) {
+            return SearchFragment.getYouTubeShortsInstance();
+        }
+    }
+
+    public static class LearningTab extends Tab {
+        public static final int ID = 10;
+
+        @Override
+        public int getTabId() {
+            return ID;
+        }
+
+        @Override
+        public String getTabName(final Context context) {
+            return context.getString(R.string.learning_dashboard_title);
+        }
+
+        @DrawableRes
+        @Override
+        public int getTabIconRes(final Context context) {
+            return R.drawable.ic_school;
+        }
+
+        @Override
+        public Fragment getFragment(final Context context) {
+            return new LearningDashboardFragment();
+        }
+    }
+
+    public static class ChannelGroupTab extends Tab {
         public static final int ID = 9;
-        private static final String JSON_FEED_GROUP_ID_KEY = "feed_group_id";
-        private static final String JSON_FEED_GROUP_NAME_KEY = "feed_group_name";
-        private static final String JSON_FEED_GROUP_ICON_KEY = "feed_group_icon";
-        private Long feedGroupId;
-        private String feedGroupName;
-        private int iconId;
+        private static final String JSON_GROUP_ID_KEY = "group_id";
+        private static final String JSON_GROUP_NAME_KEY = "group_name";
+        private static final String JSON_ICON_KEY = "icon";
+        private long groupId;
+        private String groupName;
+        private int icon;
 
-        private FeedGroupTab() {
-            this((long) -1, NO_NAME, R.drawable.ic_asterisk);
+        private ChannelGroupTab() {
+            this(-1, NO_NAME);
         }
 
-        public FeedGroupTab(final Long feedGroupId, final String feedGroupName,
-                               final int iconId) {
-            this.feedGroupId = feedGroupId;
-            this.feedGroupName = feedGroupName;
-            this.iconId = iconId;
-
+        public ChannelGroupTab(final long groupId, final String groupName) {
+            this.groupId = groupId;
+            this.groupName = groupName;
         }
 
-        public FeedGroupTab(final JsonObject jsonObject) {
+        public ChannelGroupTab(FeedGroupCardItem feedGroupCardItem) {
+            this.groupId = feedGroupCardItem.getGroupId();
+            this.groupName = feedGroupCardItem.getName();
+            this.icon = feedGroupCardItem.getIcon().getDrawableRes();
+        }
+
+        public ChannelGroupTab(final JsonObject jsonObject) {
             super(jsonObject);
         }
 
@@ -687,61 +799,56 @@ public abstract class Tab {
 
         @Override
         public String getTabName(final Context context) {
-            return context.getString(R.string.fragment_feed_title);
+            return groupName;
         }
 
         @DrawableRes
         @Override
         public int getTabIconRes(final Context context) {
-            return this.iconId;
+            return this.icon == 0? R.drawable.ic_rss_feed: this.icon;
         }
 
         @Override
-        public FeedFragment getFragment(final Context context) {
-            return FeedFragment.newInstance(feedGroupId, feedGroupName);
+        public Fragment getFragment(final Context context) {
+            return FeedFragment.newInstance(groupId, groupName);
         }
 
         @Override
         protected void writeDataToJson(final JsonStringWriter writerSink) {
-            writerSink.value(JSON_FEED_GROUP_ID_KEY, feedGroupId)
-                    .value(JSON_FEED_GROUP_NAME_KEY, feedGroupName)
-                    .value(JSON_FEED_GROUP_ICON_KEY, iconId);
+            writerSink.value(JSON_GROUP_ID_KEY, groupId)
+                    .value(JSON_GROUP_NAME_KEY, groupName)
+                    .value(JSON_ICON_KEY, icon);
         }
 
         @Override
         protected void readDataFromJson(final JsonObject jsonObject) {
-            feedGroupId = jsonObject.getLong(JSON_FEED_GROUP_ID_KEY, -1);
-            feedGroupName = jsonObject.getString(JSON_FEED_GROUP_NAME_KEY, NO_NAME);
-            iconId = jsonObject.getInt(JSON_FEED_GROUP_ICON_KEY, R.drawable.ic_asterisk);
+            groupId = jsonObject.getLong(JSON_GROUP_ID_KEY, -1);
+            groupName = jsonObject.getString(JSON_GROUP_NAME_KEY, NO_NAME);
+            icon = jsonObject.getInt(JSON_ICON_KEY, 0);
         }
 
         @Override
         public boolean equals(final Object obj) {
-            if (!(obj instanceof FeedGroupTab)) {
+            if (!(obj instanceof ChannelGroupTab)) {
                 return false;
             }
-            final FeedGroupTab other = (FeedGroupTab) obj;
+            final ChannelGroupTab other = (ChannelGroupTab) obj;
             return super.equals(obj)
-                    && feedGroupId.equals(other.feedGroupId)
-                    && feedGroupName.equals(other.feedGroupName)
-                    && iconId == other.iconId;
+                    && groupId == other.groupId
+                    && groupName.equals(other.groupName);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(getTabId(), feedGroupId, feedGroupName, iconId);
+            return Objects.hash(getTabId(), groupId, groupName);
         }
 
-        public Long getFeedGroupId() {
-            return feedGroupId;
+        public long getGroupId() {
+            return groupId;
         }
 
-        public String getFeedGroupName() {
-            return feedGroupName;
-        }
-
-        public int getIconId() {
-            return iconId;
+        public String getGroupName() {
+            return groupName;
         }
     }
 }

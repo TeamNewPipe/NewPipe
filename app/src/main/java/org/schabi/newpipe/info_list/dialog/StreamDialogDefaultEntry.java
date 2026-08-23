@@ -5,26 +5,31 @@ import static org.schabi.newpipe.util.SparseItemUtil.fetchItemInfoIfSparse;
 import static org.schabi.newpipe.util.SparseItemUtil.fetchStreamInfoAndSaveToDatabase;
 import static org.schabi.newpipe.util.SparseItemUtil.fetchUploaderUrlIfSparse;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 
+import androidx.preference.PreferenceManager;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.download.DownloadDialog;
-import org.schabi.newpipe.error.ErrorInfo;
-import org.schabi.newpipe.error.ErrorUtil;
-import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
-import java.util.List;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
@@ -45,40 +50,43 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
  * </p>
  */
 public enum StreamDialogDefaultEntry {
-    SHOW_CHANNEL_DETAILS(R.string.show_channel_details, (fragment, item) ->
+    SHOW_CHANNEL_DETAILS(R.string.show_channel_details, (fragment, item) -> {
+        if (item.getUploaderUrl() != null && !Objects.equals(item.getUploaderUrl(), "")) {
+            openChannelFragment(fragment, item, item.getUploaderUrl());
+        } else {
             fetchUploaderUrlIfSparse(fragment.requireContext(), item.getServiceId(), item.getUrl(),
-                    item.getUploaderUrl(), url -> openChannelFragment(fragment, item, url))
-    ),
+                    item.getUploaderUrl(), url -> openChannelFragment(fragment, item, url));
+        }
+    }),
 
     /**
      * Enqueues the stream automatically to the current PlayerType.
      */
-    ENQUEUE(R.string.enqueue_stream, (fragment, item) -> {
-            final Context ctx = fragment.requireContext().getApplicationContext();
-            fetchItemInfoIfSparse(ctx, item, singlePlayQueue ->
-                NavigationHelper.enqueueOnPlayer(ctx, singlePlayQueue));
-    }),
+    ENQUEUE(R.string.enqueue_stream, (fragment, item) ->
+            fetchItemInfoIfSparse(fragment.requireContext(), item, singlePlayQueue ->
+                NavigationHelper.enqueueOnPlayer(fragment.getContext(), singlePlayQueue))
+    ),
 
     /**
      * Enqueues the stream automatically to the current PlayerType
      * after the currently playing stream.
      */
     ENQUEUE_NEXT(R.string.enqueue_next_stream, (fragment, item) -> {
-            final Context ctx = fragment.requireContext().getApplicationContext();
-            fetchItemInfoIfSparse(ctx, item, singlePlayQueue ->
-                NavigationHelper.enqueueNextOnPlayer(ctx, singlePlayQueue));
+        final Context context = fragment.requireContext();
+        fetchItemInfoIfSparse(context, item, singlePlayQueue ->
+            NavigationHelper.enqueueNextOnPlayer(context, singlePlayQueue));
     }),
 
     START_HERE_ON_BACKGROUND(R.string.start_here_on_background, (fragment, item) -> {
-            final Context ctx = fragment.requireContext().getApplicationContext();
-            fetchItemInfoIfSparse(ctx, item, singlePlayQueue ->
-                NavigationHelper.playOnBackgroundPlayer(ctx, singlePlayQueue, true));
+        final Context context = fragment.requireContext();
+        fetchItemInfoIfSparse(context, item, singlePlayQueue ->
+            NavigationHelper.playOnBackgroundPlayer(context, singlePlayQueue, true));
     }),
 
     START_HERE_ON_POPUP(R.string.start_here_on_popup, (fragment, item) -> {
-            final Context ctx = fragment.requireContext().getApplicationContext();
-            fetchItemInfoIfSparse(ctx, item, singlePlayQueue ->
-                NavigationHelper.playOnPopupPlayer(ctx, singlePlayQueue, true));
+        final Context context = fragment.requireContext();
+        fetchItemInfoIfSparse(context, item, singlePlayQueue ->
+            NavigationHelper.playOnPopupPlayer(context, singlePlayQueue, true));
     }),
 
     SET_AS_PLAYLIST_THUMBNAIL(R.string.set_as_playlist_thumbnail, (fragment, item) -> {
@@ -98,7 +106,7 @@ public enum StreamDialogDefaultEntry {
     APPEND_PLAYLIST(R.string.add_to_playlist, (fragment, item) ->
         PlaylistDialog.createCorrespondingDialog(
                 fragment.getContext(),
-                List.of(new StreamEntity(item)),
+                Collections.singletonList(new StreamEntity(item)),
                 dialog -> dialog.show(
                         fragment.getParentFragmentManager(),
                         "StreamDialogEntry@"
@@ -108,29 +116,25 @@ public enum StreamDialogDefaultEntry {
         )
     ),
 
-    PLAY_WITH_KODI(R.string.play_with_kodi_title, (fragment, item) ->
-            KoreUtils.playWithKore(fragment.requireContext(), Uri.parse(item.getUrl()))),
+    PLAY_WITH_KODI(R.string.play_with_kodi_title, (fragment, item) -> {
+        final Uri videoUrl = Uri.parse(item.getUrl());
+        try {
+            NavigationHelper.playWithKore(fragment.requireContext(), videoUrl);
+        } catch (final Exception e) {
+            KoreUtils.showInstallKoreDialog(fragment.requireActivity());
+        }
+    }),
 
     SHARE(R.string.share, (fragment, item) ->
             ShareUtils.shareText(fragment.requireContext(), item.getName(), item.getUrl(),
-                    item.getThumbnails())),
+                    item.getThumbnailUrl())),
 
-    /**
-     * Opens a {@link DownloadDialog} after fetching some stream info.
-     * If the user quits the current fragment, it will not open a DownloadDialog.
-     */
     DOWNLOAD(R.string.download, (fragment, item) ->
             fetchStreamInfoAndSaveToDatabase(fragment.requireContext(), item.getServiceId(),
                     item.getUrl(), info -> {
-                        // Ensure the fragment is attached and its state hasn't been saved to avoid
-                        // showing dialog during lifecycle changes or when the activity is paused,
-                        // e.g. by selecting the download option and opening a different fragment.
-                        if (fragment.isAdded() && !fragment.isStateSaved()) {
-                            final DownloadDialog downloadDialog =
-                                    new DownloadDialog(fragment.requireContext(), info);
-                            downloadDialog.show(fragment.getChildFragmentManager(),
-                                    "downloadDialog");
-                        }
+                        final DownloadDialog downloadDialog
+                                = DownloadDialog.newInstance(fragment.requireContext(), info);
+                        downloadDialog.show(fragment.getChildFragmentManager(), "downloadDialog");
                     })
     ),
 
@@ -141,20 +145,49 @@ public enum StreamDialogDefaultEntry {
     MARK_AS_WATCHED(R.string.mark_as_watched, (fragment, item) ->
         new HistoryRecordManager(fragment.getContext())
                 .markAsWatched(item)
-                .doOnError(error -> {
-                    ErrorUtil.showSnackbar(
-                            fragment.requireContext(),
-                            new ErrorInfo(
-                                    error,
-                                    UserAction.OPEN_INFO_ITEM_DIALOG,
-                                    "Got an error when trying to mark as watched"
-                            )
-                    );
-                })
                 .onErrorComplete()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe()
-    );
+    ),
+
+    ADD_TO_FILTER_LIST(R.string.add_to_filter_list, (fragment, item) -> {
+        // Create confirmation dialog
+        new AlertDialog.Builder(fragment.requireContext())
+                .setMessage(fragment.getString(R.string.add_to_filter_list_confirm, item.getUploaderName()))
+                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                    // User confirmed - execute blocking logic
+                    final SharedPreferences pref = PreferenceManager
+                            .getDefaultSharedPreferences(fragment.requireContext());
+                    // Get the key from string resources
+                    String filterKey = fragment.requireContext().getString(R.string.filter_by_channel_key) + "_set";
+                    // Retrieve current filter set or default to empty
+                    Set<String> currentFilters = new HashSet<>(pref.getStringSet(filterKey, new HashSet<>()));
+                    // Add the new channel to the set
+                    currentFilters.add(item.getUploaderName());
+                    // Save the updated set back to SharedPreferences
+                    pref.edit()
+                            .putStringSet(filterKey, currentFilters)
+                            .apply();
+                    ServiceHelper.initServices(fragment.requireContext());
+                    Toast.makeText(
+                            fragment.requireContext(), R.string.recaptcha_done_button,
+                            Toast.LENGTH_SHORT
+                    ).show();
+                })
+                .setNegativeButton(android.R.string.cancel, null)
+                .show();
+    }),
+
+
+    NAVIGATE_TO(R.string.navigate_to, (fragment, item) -> {
+        throw new UnsupportedOperationException("This needs to be implemented manually "
+                + "by using InfoItemDialog.Builder.setAction()");
+    }),
+
+    SHOW_STREAM_DETAILS(R.string.show_stream_details, (fragment, item) -> {
+        throw new UnsupportedOperationException("This needs to be implemented manually "
+                + "by using InfoItemDialog.Builder.setAction()");
+    });
 
 
     @StringRes

@@ -27,6 +27,12 @@ import org.schabi.newpipe.util.FilePickerActivityHelper;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class DownloadSettingsFragment extends BasePreferenceFragment {
     public static final boolean IGNORE_RELEASE_ON_OLD_PATH = true;
@@ -60,11 +66,12 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
         prefStorageAsk = findPreference(downloadStorageAsk);
 
         final SwitchPreferenceCompat prefUseSaf = findPreference(storageUseSafPreference);
-        prefUseSaf.setChecked(NewPipeSettings.useStorageAccessFramework(ctx));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            prefUseSaf.setEnabled(false);
-            prefUseSaf.setSummary(R.string.downloads_storage_use_saf_summary_api_29);
+            getPreferenceScreen().removePreference(prefUseSaf);
             prefStorageAsk.setSummary(R.string.downloads_storage_ask_summary_no_saf_notice);
+        } else {
+            prefUseSaf.setDefaultValue(true);
+            prefUseSaf.setChecked(NewPipeSettings.useStorageAccessFramework(ctx));
         }
 
         updatePreferencesSummary();
@@ -103,15 +110,28 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
 
     private void showPathInSummary(final String prefKey, @StringRes final int defaultString,
                                    final Preference target) {
-        final Uri uri = Uri.parse(defaultPreferences.getString(prefKey, ""));
-        if (uri.equals(Uri.EMPTY)) {
+        String rawUri = defaultPreferences.getString(prefKey, null);
+        if (rawUri == null || rawUri.isEmpty()) {
             target.setSummary(getString(defaultString));
             return;
         }
 
-        final String summary = ContentResolver.SCHEME_FILE.equals(uri.getScheme())
-                ? uri.getPath() : uri.toString();
-        target.setSummary(summary);
+        if (rawUri.charAt(0) == File.separatorChar) {
+            target.setSummary(rawUri);
+            return;
+        }
+        if (rawUri.startsWith(ContentResolver.SCHEME_FILE)) {
+            target.setSummary(new File(URI.create(rawUri)).getPath());
+            return;
+        }
+
+        try {
+            rawUri = URLDecoder.decode(rawUri, StandardCharsets.UTF_8.name());
+        } catch (final UnsupportedEncodingException e) {
+            // nothing to do
+        }
+
+        target.setSummary(rawUri);
     }
 
     private boolean isFileUri(final String path) {
@@ -152,11 +172,11 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
     }
 
     private void showMessageDialog(@StringRes final int title, @StringRes final int message) {
-        new AlertDialog.Builder(ctx)
-                .setTitle(title)
-                .setMessage(message)
-                .setPositiveButton(getString(R.string.ok), null)
-                .show();
+        final AlertDialog.Builder msg = new AlertDialog.Builder(ctx);
+        msg.setTitle(title);
+        msg.setMessage(message);
+        msg.setPositiveButton(getString(R.string.ok), null);
+        msg.show();
     }
 
     @Override
@@ -207,6 +227,8 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
     }
 
     private void requestDownloadPathResult(final ActivityResult result, final String key) {
+        assureCorrectAppLanguage(getContext());
+
         if (result.getResultCode() != Activity.RESULT_OK) {
             return;
         }
@@ -234,8 +256,8 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
                 context.grantUriPermission(context.getPackageName(), uri,
                         StoredDirectoryHelper.PERMISSION_FLAGS);
 
-                final StoredDirectoryHelper mainStorage =
-                        new StoredDirectoryHelper(context, uri, null);
+                final StoredDirectoryHelper mainStorage
+                        = new StoredDirectoryHelper(context, uri, null);
                 Log.i(TAG, "Acquiring tree success from " + uri.toString());
 
                 if (!mainStorage.canWrite()) {

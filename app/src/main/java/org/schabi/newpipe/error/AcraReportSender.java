@@ -33,11 +33,12 @@ public class AcraReportSender implements ReportSender {
 
     @Override
     public void send(@NonNull final Context context, @NonNull final CrashReportData report) {
+        final String stackTrace = report.getString(ReportField.STACK_TRACE);
         ErrorUtil.openActivity(context, new ErrorInfo(
-                new String[]{report.getString(ReportField.STACK_TRACE)},
+                new String[]{stackTrace},
                 UserAction.UI_ERROR,
+                ErrorInfo.SERVICE_NONE,
                 "ACRA report",
-                null,
                 R.string.app_ui_crash));
     }
 }

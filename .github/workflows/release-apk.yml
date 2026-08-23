@@ -1,0 +1,89 @@
+name: Release APK
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Release tag name to create/update (optional for manual runs)'
+        required: false
+        type: string
+  push:
+    tags:
+      - 'v*'
+      - 'V*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Checkout PipePipeExtractor composite build
+        uses: actions/checkout@v4
+        with:
+          repository: InfinityLoop1308/PipePipeExtractor
+          path: PipePipeExtractor
+
+      - name: Validate Gradle wrapper
+        uses: gradle/actions/wrapper-validation@v4
+
+      - name: Set up JDK 25
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 25
+          cache: gradle
+
+      - name: Decode signing keystore (optional)
+        shell: bash
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        run: |
+          if [ -n "$ANDROID_KEYSTORE_BASE64" ]; then
+            echo "$ANDROID_KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/release.keystore"
+          fi
+
+      - name: Build release APK
+        working-directory: PipePipeClient-dev
+        env:
+          KEY_PATH: ${{ runner.temp }}/release.keystore
+          KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          chmod +x ./gradlew
+          ./gradlew assembleRelease --stacktrace -DskipFormatKtlint
+
+      - name: Upload release APK artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-apks
+          retention-days: 30
+          path: PipePipeClient-dev/app/build/outputs/apk/release/*.apk
+
+      - name: Resolve release tag
+        id: release-tag
+        shell: bash
+        run: |
+          if [ -n "${{ github.ref_name }}" ] && [[ "${{ github.ref }}" == refs/tags/* ]]; then
+            echo "tag=${{ github.ref_name }}" >> "$GITHUB_OUTPUT"
+          elif [ -n "${{ inputs.tag_name }}" ]; then
+            echo "tag=${{ inputs.tag_name }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "tag=manual-${{ github.run_number }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create GitHub release and upload APKs
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.release-tag.outputs.tag }}
+          target_commitish: ${{ github.sha }}
+          name: ${{ steps.release-tag.outputs.tag }}
+          generate_release_notes: true
+          files: PipePipeClient-dev/app/build/outputs/apk/release/*.apk

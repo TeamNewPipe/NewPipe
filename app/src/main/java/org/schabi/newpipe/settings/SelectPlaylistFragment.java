@@ -1,7 +1,5 @@
 package org.schabi.newpipe.settings;
 
-import static org.schabi.newpipe.local.bookmark.MergedPlaylistManager.getMergedOrderedPlaylists;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,12 +25,13 @@ import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
-import org.schabi.newpipe.util.image.CoilHelper;
+import org.schabi.newpipe.util.PicassoHelper;
 
 import java.util.List;
 import java.util.Vector;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 public class SelectPlaylistFragment extends DialogFragment {
@@ -91,7 +90,8 @@ public class SelectPlaylistFragment extends DialogFragment {
         final LocalPlaylistManager localPlaylistManager = new LocalPlaylistManager(database);
         final RemotePlaylistManager remotePlaylistManager = new RemotePlaylistManager(database);
 
-        disposable = getMergedOrderedPlaylists(localPlaylistManager, remotePlaylistManager)
+        disposable = Flowable.combineLatest(localPlaylistManager.getPlaylists(),
+                remotePlaylistManager.getPlaylists(), PlaylistLocalItem::merge)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::displayPlaylists, this::onError);
     }
@@ -118,12 +118,12 @@ public class SelectPlaylistFragment extends DialogFragment {
 
             if (selectedItem instanceof PlaylistMetadataEntry) {
                 final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
-                onSelectedListener.onLocalPlaylistSelected(entry.getUid(), entry.getOrderingName());
+                onSelectedListener.onLocalPlaylistSelected(entry.uid, entry.name);
 
             } else if (selectedItem instanceof PlaylistRemoteEntity) {
                 final PlaylistRemoteEntity entry = ((PlaylistRemoteEntity) selectedItem);
                 onSelectedListener.onRemotePlaylistSelected(
-                        entry.getServiceId(), entry.getUrl(), entry.getOrderingName());
+                        entry.getServiceId(), entry.getUrl(), entry.getName());
             }
         }
         dismiss();
@@ -138,7 +138,7 @@ public class SelectPlaylistFragment extends DialogFragment {
         void onRemotePlaylistSelected(int serviceId, String url, String name);
     }
 
-    private final class SelectPlaylistAdapter
+    private class SelectPlaylistAdapter
             extends RecyclerView.Adapter<SelectPlaylistAdapter.SelectPlaylistItemHolder> {
         @NonNull
         @Override
@@ -154,17 +154,20 @@ public class SelectPlaylistFragment extends DialogFragment {
                                      final int position) {
             final PlaylistLocalItem selectedItem = playlists.get(position);
 
-            if (selectedItem instanceof PlaylistMetadataEntry entry) {
-                holder.titleView.setText(entry.getOrderingName());
-                holder.view.setOnClickListener(view -> clickedItem(position));
-                CoilHelper.INSTANCE.loadPlaylistThumbnail(holder.thumbnailView,
-                        entry.getThumbnailUrl());
+            if (selectedItem instanceof PlaylistMetadataEntry) {
+                final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
 
-            } else if (selectedItem instanceof PlaylistRemoteEntity entry) {
-                holder.titleView.setText(entry.getOrderingName());
+                holder.titleView.setText(entry.name);
                 holder.view.setOnClickListener(view -> clickedItem(position));
-                CoilHelper.INSTANCE.loadPlaylistThumbnail(holder.thumbnailView,
-                        entry.getThumbnailUrl());
+                PicassoHelper.loadPlaylistThumbnail(entry.thumbnailUrl).into(holder.thumbnailView);
+
+            } else if (selectedItem instanceof PlaylistRemoteEntity) {
+                final PlaylistRemoteEntity entry = ((PlaylistRemoteEntity) selectedItem);
+
+                holder.titleView.setText(entry.getName());
+                holder.view.setOnClickListener(view -> clickedItem(position));
+                PicassoHelper.loadPlaylistThumbnail(entry.getThumbnailUrl())
+                        .into(holder.thumbnailView);
             }
         }
 

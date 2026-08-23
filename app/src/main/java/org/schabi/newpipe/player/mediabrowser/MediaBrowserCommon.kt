@@ -4,8 +4,8 @@ import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.extractor.InfoItem.InfoType
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
 
-internal const val ID_AUTHORITY = BuildConfig.APPLICATION_ID
-internal const val ID_ROOT = "//$ID_AUTHORITY"
+internal val ID_AUTHORITY: String get() = BuildConfig.APPLICATION_ID
+internal val ID_ROOT: String get() = "//$ID_AUTHORITY"
 internal const val ID_BOOKMARKS = "playlists"
 internal const val ID_HISTORY = "history"
 internal const val ID_INFO_ITEM = "item"
@@ -22,7 +22,7 @@ internal fun infoItemTypeToString(type: InfoType): String {
         InfoType.STREAM -> ID_STREAM
         InfoType.PLAYLIST -> ID_PLAYLIST
         InfoType.CHANNEL -> ID_CHANNEL
-        else -> error("Unexpected value: $type")
+        else -> throw IllegalStateException("Unexpected value: $type")
     }
 }
 
@@ -31,7 +31,7 @@ internal fun infoItemTypeFromString(type: String): InfoType {
         ID_STREAM -> InfoType.STREAM
         ID_PLAYLIST -> InfoType.PLAYLIST
         ID_CHANNEL -> InfoType.CHANNEL
-        else -> error("Unexpected value: $type")
+        else -> throw IllegalStateException("Unexpected value: $type")
     }
 }
 

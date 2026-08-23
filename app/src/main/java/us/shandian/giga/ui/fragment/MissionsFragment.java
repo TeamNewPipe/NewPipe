@@ -186,24 +186,24 @@ public class MissionsFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int itemId = item.getItemId();
-        if (itemId == R.id.switch_mode) {
+        final int id = item.getItemId();
+        if (id == R.id.switch_mode) {
             mLinear = !mLinear;
             updateList();
             return true;
-        } else if (itemId == R.id.clear_list) {
+        } else if (id == R.id.clear_list) {
             showClearDownloadHistoryPrompt();
             return true;
-        } else if (itemId == R.id.start_downloads) {
+        } else if (id == R.id.start_downloads) {
             mBinder.getDownloadManager().startAllMissions();
             return true;
-        } else if (itemId == R.id.pause_downloads) {
+        } else if (id == R.id.pause_downloads) {
             mBinder.getDownloadManager().pauseAllMissions(false);
-            mAdapter.refreshMissionItems();// update items view
-
+            mAdapter.refreshMissionItems();
+            return true;
+        } else {
             return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     public void showClearDownloadHistoryPrompt() {
@@ -212,11 +212,12 @@ public class MissionsFragment extends Fragment {
                 .setTitle(R.string.clear_download_history)
                 .setMessage(R.string.confirm_prompt)
                 // Intentionally misusing buttons' purpose in order to achieve good order
-                .setNegativeButton(R.string.clear_download_history, (dialog, which) ->
-                        mAdapter.clearFinishedDownloads(false))
+                .setNegativeButton(R.string.clear_download_history,
+                        (dialog, which) -> mAdapter.clearFinishedDownloads(false))
                 .setNeutralButton(R.string.cancel, null)
-                .setPositiveButton(R.string.delete_downloaded_files, (dialog, which) ->
-                        showDeleteDownloadedFilesConfirmationPrompt())
+                .setPositiveButton(R.string.delete_downloaded_files,
+                        (dialog, which) -> showDeleteDownloadedFilesConfirmationPrompt())
+                .create()
                 .show();
     }
 
@@ -225,8 +226,9 @@ public class MissionsFragment extends Fragment {
         new AlertDialog.Builder(mContext)
                 .setTitle(R.string.delete_downloaded_files_confirm)
                 .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(R.string.ok, (dialog, which) ->
-                        mAdapter.clearFinishedDownloads(true))
+                .setPositiveButton(R.string.ok,
+                        (dialog, which) -> mAdapter.clearFinishedDownloads(true))
+                .create()
                 .show();
     }
 

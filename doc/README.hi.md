@@ -2,70 +2,47 @@
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">Android के लिए एक ओपन सोर्स, हल्का YouTube ऐप।</h4>
 
-<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-hi.svg" alt="इसे F-Droid पर पाएँ" width=206/></a></p>
+<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-en.svg" alt="इसे F-Droid पर पाएँ" height=80/></a></p>
 
 <p align="center">
 <a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub प्रकाशन"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
-<a href="https://github.com/TeamNewPipe/NewPipe-nightly/releases" alt="GitHub NewPipe nightly releases"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe-nightly.svg?labelColor=purple&label=dev%20nightly"></a>
 <a href="https://www.gnu.org/licenses/gpl-3.0" alt="लाइसेंस: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
-<a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="बिल्ड की स्थिति"><img src="https://github.com/TeamNewPipe/NewPipe/actions/workflows/ci.yml/badge.svg?branch=dev&event=push"></a>
+<a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="बिल्ड की स्थिति"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="अनुवाद की स्थिति"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
-</p>
-
-<p align="center">
 <a href="https://web.libera.chat/#newpipe" alt="IRC चैनल: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
-<a href="https://matrix.to/#/#newpipe:matrix.newpipe-ev.de" alt="Matrix channel: #newpipe"><img src="https://img.shields.io/badge/Matrix%20chat-%23newpipe-blue"></a>
+<a href="https://www.bountysource.com/teams/newpipe" alt="Bountysource बाउंटी"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
-
 <hr>
-<p align="center"><a href="#ऐप-कैसी-दिखती-है">ऐप कैसी दिखती है</a> &bull; <a href="#समर्थित-सेवाएँ">समर्थित सेवाएँ</a> &bull; <a href="#विवरण">विवरण</a> &bull; <a href="#सुविधाएँ">सुविधाएँ</a> &bull; <a href="#स्थापित-करना-और-अपडेट-करना">स्थापित करना और अपडेट करना</a> &bull; <a href="#योगदान-करें">योगदान करें</a> &bull; <a href="#आर्थिक-योगदान-करें">आर्थिक योगदान करें</a> &bull; <a href="#लाइसेंस">लाइसेंस</a></p>
+<p align="center"><a href="#ऐप-कैसी-दिखती-है">ऐप कैसी दिखती है</a> &bull; <a href="#विवरण">विवरण</a> &bull; <a href="#सुविधाएँ">सुविधाएँ</a> &bull; <a href="#स्थापित-करना-और-अपडेट-करना">स्थापित करना और अपडेट करना</a> &bull; <a href="#योगदान-करें">योगदान करें</a> &bull; <a href="#आर्थिक-योगदान-करें">आर्थिक योगदान करें</a> &bull; <a href="#लाइसेंस">लाइसेंस</a></p>
 <p align="center"><a href="https://newpipe.net">वेबसाइट</a> &bull; <a href="https://newpipe.net/blog/">ब्लॉग</a> &bull; <a href="https://newpipe.net/FAQ/">साधारण सवाल-जवाब</a> &bull; <a href="https://newpipe.net/press/">प्रेस</a></p>
 <hr>
 
-*Read this document in other languages: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md) , [العربية](README.ar.md)*
+इसे दूसरी भाषाओं में पढ़ें: [English](../README.md), [Español](README.es.md), [हिन्दी](README.hi.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md)।
 
-> [!warning]
-> <b>यह एक बीटा संस्करण है, तो अगर आपको इसमें बग्स नज़र आते हैं, कृपया हमारे GitHub रिपॉज़िटरी के ज़रिए एक समस्या खोल दें।</b>
->
-> <b>NewPipe या इसके किसी फोर्क को Google Play Store पर डालने पर Store के नियमों और शर्तों का उल्लंघन होता है।</b>
+<b>चेतावनी: यह एक बीटा संस्करण है, तो अगर आपको इसमें बग्स नज़र आते हैं, कृपया हमारे GitHub रिपॉज़िटरी के ज़रिए एक समस्या खोल दें।</b>
+
+<b>NewPipe या इसके किसी फोर्क को Google Play Store पर डालने पर Store के नियमों और शर्तों का उल्लंघन होता है।</b>
 
 ## ऐप कैसी दिखती है
 
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/00.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/00.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png)
-<br/><br/>
-[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png)
-[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png)
-
-## समर्थित सेवाएँ
-
-न्यूपाइप वर्तमान में इन सेवाओं का समर्थन करता है:
-
-<!-- हम सेवा वेबसाइटों को अलग से लिंक करते हैं ताकि लोग गलती से ऐसी वेबसाइट न खोल लें जिसे वे खोलना नहीं चाहते। -->
-* YouTube ([वेबसाइट](https://www.youtube.com/)) and YouTube Music ([वेबसाइट](https://music.youtube.com/)) ([wiki](https://en.wikipedia.org/wiki/YouTube))
-* PeerTube ([वेबसाइट](https://joinpeertube.org/)) और इसके सभी इंसटैंस (इसका क्या अर्थ है यह जानने के लिए वेबसाइट खोलें!) ([wiki](https://en.wikipedia.org/wiki/PeerTube))
-* Bandcamp ([वेबसाइट](https://bandcamp.com/)) ([wiki](https://en.wikipedia.org/wiki/Bandcamp))
-* SoundCloud ([वेबसाइट](https://soundcloud.com/)) ([wiki](https://en.wikipedia.org/wiki/SoundCloud))
-* media.ccc.de ([वेबसाइट](https://media.ccc.de/)) ([wiki](https://en.wikipedia.org/wiki/Chaos_Computer_Club))
-
-जैसा कि आप देख सकते हैं, न्यूपाइप कई वीडियो और ऑडियो सेवाओं का समर्थन करता है। इसकी शुरुआत YouTube से हुई, लेकिन पिछले कुछ वर्षों में अन्य लोगों ने अन्य सेवाएँ जोड़ी हैं, जिससे न्यूपाइप और भी बहुमुखी बन गया है!
-
-परिस्थितियों और लोकप्रियता के कारण, YouTube इन सेवाओं में से सबसे अच्छा समर्थित है। यदि आप इनमें से किसी भी अन्य सेवा का उपयोग करते हैं या उससे परिचित हैं, तो कृपया उनके लिए समर्थन को बेहतर बनाने में हमारी सहायता करें! हम SoundCloud और PeerTube के लिए मेंटेनरज़ की तलाश कर रहे हैं।
-
-यदि आप कोई नई सेवा जोड़ना चाहते हैं, कृपया पहले हमसे संपर्क करें! हमारे [प्रलेख](https://teamnewpipe.github.io/documentation/) में यह बताया गया है कि ऐप और  [NewPipe Extractor](https://github.com/TeamNewPipe/NewPipeExtractor) में एक नई सेवा कैसे जोड़ी जा सकती है।
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_01.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_01.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_02.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_02.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_03.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_03.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_04.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_04.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_05.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_05.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_06.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_06.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_07.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_07.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_08.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_08.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_09.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_09.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_10.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_10.png)
+[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_11.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_11.png)
+[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_12.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_12.png)
 
 ## विवरण
 
 NewPipe ना ही किसी Google फ्रेमवर्क लाइब्रेरी, और ना ही YouTube के API का इस्तेमाल करता है। इस ऐप को चलाने के लिए सिर्फ वेबसाइट्स से जानकारी प्राप्त करने की ज़रूरत है, तो इस ऐप का इस्तेमाल उन डिवाइसों पर भी किया जा सकता है जिनपर Google की सेवाएँ स्थापित नहीं हैं। और NewPipe जैसे कॉपीलेफ्ट किए गए मुक्त सॉफ़्टवेयर का इस्तेमाल करने के लिए आपको YouTube खाते की ज़रूरत नहीं।
 
-## सुविधाएँ
+### सुविधाएँ
 
 * वीडियो खोजें
 * खाते की ज़रूरत नहीं
@@ -96,6 +73,19 @@ NewPipe ना ही किसी Google फ्रेमवर्क लाइ�
 * लाइवस्ट्रीम देखें
 * वीडियो पे टिप्पणियाँ देखें
 
+### उपलब्ध सेवाएँ
+
+NewPipe पर कई सेवाएँ उपलब्ध हैं। हमारे [प्रलेख](https://teamnewpipe.github.io/documentation/) में यह बताया गया है कि ऐप और एक्सट्रैक्टर में एक नई सेवा कैसे जोड़ी जा सकती है। अगर आप कोई नई सेवा जोड़ना चाहते हैं, कृपया हमसे संपर्क करें। वर्तमान में उपलब्ध सेवाएँ हैं:
+
+* YouTube
+* SoundCloud \[बीटा\]
+* media.ccc.de \[बीटा\]
+* PeerTube instances \[बीटा\]
+* Bandcamp \[बीटा\]
+
+<!-- Hidden span to keep old links compatible. -->
+<span id="updates"></span>
+
 ## स्थापित करना और अपडेट करना
 आप इनमें से किसी एक तरीके से NewPipe को स्थापित कर सकते हैं:
  1. हमारे अपने रिपॉज़िटरी को F-Droid पर जोड़ें और उसे वहाँ से स्थापित करें। अनुदेश यहाँ हैं: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
@@ -106,31 +96,39 @@ NewPipe ना ही किसी Google फ्रेमवर्क लाइ�
 ज़्यादातर उपयोगकर्ताओं के लिए पहला तरीका ठीक है। पहले और दूसरे तरीके से स्थापित APK एक-दूसरे के अनुकूल हैं, मगर तीसरे तरीके से स्थापित APK से नहीं। ऐसा इसलिए है क्योंकि पहले और दूसरे तरीके में एक ही (हमारे) हस्ताक्षर कुँजी का इस्तेमाल हुआ है, मगर तीसरे तरीके में दूसरे (F-Droid के) हस्ताक्षर कुँजी का इस्तेमाल किया जाता है। चौथे तरीके से अपना डीबग APK फ़ाइल बनाने पर कुँजी की ज़रूरत ही नहीं पड़ती। कुँजियों से यह निश्चित किया जाता है कि उपयोगकर्ता कहीं ऐप पर कोई दुर्भावनापूर्ण अपडेट तो स्थापित नहीं कर रहा।
 
 इस दौरान अगर आप स्रोत बदलना चाहते हैं (मान लीजिए NewPipe की मूल सुविधा खराब हो गई और F-Droid पर कोई अपडेट नहीं आया है), हम इस अनुदेश का इस्तेमाल करने की सलाह देंगे:
-1. सेटिंग्स > बैकअप और रिस्टोर > डेटाबेस निर्यात करें — इसके ज़रिए अपने डेटा को बैकअप कर लें ताकि आपके पास अपने देखे गए वीडियो, सदस्यताएँ और प्लेलिस्ट्स हो
+1. सेटिंग्स > सामग्री > डेटाबेस निर्यात करें — इसके ज़रिए अपने डेटा को बैकअप कर लें ताकि आपके पास अपने देखे गए वीडियो, सदस्यताएँ और प्लेलिस्ट्स हो
 2. NewPipe को डिवाइस से हटाएँ
 3. नए स्रोत से APK डाउनलोड करें और उसे स्थापित करें
-4. सेटिंग्स > बैकअप और रिस्टोर > डेटाबेस आयात करें — इसके ज़रिए पहले चरण के डेटा को आयात करें
-
-<b>ध्यान दें: जब आप किसी डेटाबेस को आधिकारिक ऐप में आयात कर रहे हैं, तो हमेशा सुनिश्चित करें कि यह वही है जिसे आपने आधिकारिक ऐप से निर्यात किया था। यदि आप आधिकारिक ऐप के अलावा किसी एपीके से निर्यात किया गया डेटाबेस आयात करते हैं, तो यह चीजों को तोड़ सकता है। ऐसी कार्रवाई समर्थित नहीं है, और आपको ऐसा केवल तभी करना चाहिए जब आप पूरी तरह से आश्वस्त हों कि आप जानते हैं कि आप क्या कर रहे हैं।</b>
+4. सेटिंग्स > सामग्री > डेटाबेस आयात करें — इसके ज़रिए पहले चरण के डेटा को आयात करें
 
 ## योगदान करें
 चाहे आप अपने विचार जोड़ना चाहे, या अनुवाद, डिज़ाइन में बदलाव, कोड में सफ़ाई, या कोड में भारी बदलाव, सहायता ज़रूर करें।
 जितने योगदान हो, ऐप उतनी ही बेहतर होती जाती है!
 
-अगर आप योगदान करना चाहते हैं, हमारे [योगदान के दिशानिर्देश](/.github/CONTRIBUTING.md) देखें।
+अगर आप योगदान करना चाहते हैं, हमारे [योगदान के दिशानिर्देश](.github/CONTRIBUTING.md) देखें।
 
 <a href="https://hosted.weblate.org/engage/newpipe/">
 <img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="अनुवाद की स्थिति" />
 </a>
 
 ## आर्थिक योगदान करें
-यदि आपको न्यूपाइप पसंद है, तो दान भेजने के लिए आपका स्वागत है। आप Liberapay से दान कर सकते हैं। हम Liberapay को प्राथमिकता देते हैं, क्योंकि यह ओपन-सोर्स और गैर-लाभकारी दोनों है। न्यूपाइप को दान देने के बारे में अधिक जानकारी के लिए कृपया हमारी [वेबसाइट](https://newpipe.net/donate) पर जाएँ।
+अगर आपको NewPipe पसंद है, एक छोटे-से दान से हम खुश होंगे। आप या तो बिटकॉइन भेज सकते हैं या फिर Bountysource या Liberapay से दान कर सकते हैं। NewPipe को दान करने के बारे में अधिक जानकारी के लिए कृपया हमारी [वेबसाइट](https://newpipe.net/donate) देखें।
 
 <table>
+  <tr>
+    <td><img src="https://bitcoin.org/img/icons/logotop.svg" alt="Bitcoin"></td>
+    <td><img src="../assets/bitcoin_qr_code.png" alt="बिटकॉइन पर दान करने के लिए QR कोड" width="100px"></td>
+    <td><samp>16A9J59ahMRqkLSZjhYj33n9j3fMztFxnh</samp></td>
+  </tr>
   <tr>
     <td><a href="https://liberapay.com/TeamNewPipe/"><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px"></a></td>
     <td><a href="https://liberapay.com/TeamNewPipe/"><img src="../assets/liberapay_qr_code.png" alt="liberapay.com पर NewPipe को देखें" width="100px"></a></td>
     <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="../assets/liberapay_donate_button.svg" alt="Liberapay के ज़रिए दान करें" height="35px"></a></td>
+  </tr>
+  <tr>
+    <td><a href="https://www.bountysource.com/teams/newpipe"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Bountysource.png/320px-Bountysource.png" alt="Bountysource" width="190px"></a></td>
+    <td><a href="https://www.bountysource.com/teams/newpipe"><img src="../assets/bountysource_qr_code.png" alt="bountysource.com पर NewPipe को देखें" width="100px"></a></td>
+    <td><a href="https://www.bountysource.com/teams/newpipe/issues"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f" height="30px" alt="देखें कि आप कितने बाउंटी कमा सकते हैं।"></a></td>
   </tr>
 </table>
 

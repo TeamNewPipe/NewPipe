@@ -1,6 +1,7 @@
 package org.schabi.newpipe.local.holder;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,6 +38,11 @@ public abstract class LocalItemHolder extends RecyclerView.ViewHolder {
     public LocalItemHolder(final LocalItemBuilder itemBuilder, final int layoutId,
                            final ViewGroup parent) {
         super(LayoutInflater.from(itemBuilder.getContext()).inflate(layoutId, parent, false));
+        this.itemBuilder = itemBuilder;
+    }
+
+    public LocalItemHolder(final LocalItemBuilder itemBuilder, final View view) {
+        super(view);
         this.itemBuilder = itemBuilder;
     }
 

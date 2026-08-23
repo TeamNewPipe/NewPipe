@@ -15,13 +15,14 @@ import java.nio.channels.ClosedByInterruptException;
 import us.shandian.giga.util.Utility;
 
 import static org.schabi.newpipe.BuildConfig.DEBUG;
+import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_AUTH;
 import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_FORBIDDEN;
 
 public class DownloadInitializer extends Thread {
-    private static final String TAG = "DownloadInitializer";
-    static final int mId = 0;
-    private static final int RESERVE_SPACE_DEFAULT = 5 * 1024 * 1024;// 5 MiB
-    private static final int RESERVE_SPACE_MAXIMUM = 150 * 1024 * 1024;// 150 MiB
+    private final static String TAG = "DownloadInitializer";
+    final static int mId = 0;
+    private final static int RESERVE_SPACE_DEFAULT = 5 * 1024 * 1024;// 5 MiB
+    private final static int RESERVE_SPACE_MAXIMUM = 150 * 1024 * 1024;// 150 MiB
 
     private final DownloadMission mMission;
     private HttpURLConnection mConn;
@@ -175,7 +176,8 @@ public class DownloadInitializer extends Thread {
             } catch (Exception e) {
                 if (!mMission.running || super.isInterrupted()) return;
 
-                if (e instanceof DownloadMission.HttpError && ((DownloadMission.HttpError) e).statusCode == ERROR_HTTP_FORBIDDEN) {
+                if (e instanceof DownloadMission.HttpError && ((((DownloadMission.HttpError) e).statusCode == ERROR_HTTP_FORBIDDEN)
+                        || ((DownloadMission.HttpError) e).statusCode == ERROR_HTTP_AUTH)) {
                     // for youtube streams. The url has expired
                     interrupt();
                     mMission.doRecover(ERROR_HTTP_FORBIDDEN);

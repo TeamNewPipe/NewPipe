@@ -2,26 +2,45 @@ package org.schabi.newpipe.error
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import androidx.annotation.Nullable
 import androidx.annotation.StringRes
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.jakewharton.rxbinding4.view.clicks
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
-import java.util.concurrent.TimeUnit
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
+import org.schabi.newpipe.extractor.NewPipe
+import org.schabi.newpipe.extractor.exceptions.AccountTerminatedException
+import org.schabi.newpipe.extractor.exceptions.AgeRestrictedContentException
+import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
+import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException
+import org.schabi.newpipe.extractor.exceptions.GeographicRestrictionException
+import org.schabi.newpipe.extractor.exceptions.LiveNotStartException
+import org.schabi.newpipe.extractor.exceptions.AntiBotException
+import org.schabi.newpipe.extractor.exceptions.NeedLoginException
+import org.schabi.newpipe.extractor.exceptions.PaidContentException
+import org.schabi.newpipe.extractor.exceptions.PrivateContentException
+import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
+import org.schabi.newpipe.extractor.exceptions.SoundCloudGoPlusContentException
+import org.schabi.newpipe.extractor.exceptions.WebViewUnavailableException
+import org.schabi.newpipe.extractor.exceptions.YoutubeMusicPremiumContentException
+import org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty
 import org.schabi.newpipe.ktx.animate
-import org.schabi.newpipe.util.external_communication.ShareUtils
-import org.schabi.newpipe.util.text.setTextWithLinks
+import org.schabi.newpipe.ktx.isInterruptedCaused
+import org.schabi.newpipe.ktx.isNetworkRelated
+import org.schabi.newpipe.util.ServiceHelper
+import java.util.concurrent.TimeUnit
 
 class ErrorPanelHelper(
     private val fragment: Fragment,
     rootView: View,
-    onRetry: Runnable?
+    onRetry: Runnable
 ) {
     private val context: Context = rootView.context!!
 
@@ -38,19 +57,14 @@ class ErrorPanelHelper(
         errorPanelRoot.findViewById(R.id.error_action_button)
     private val errorRetryButton: Button =
         errorPanelRoot.findViewById(R.id.error_retry_button)
-    private val errorOpenInBrowserButton: Button =
-        errorPanelRoot.findViewById(R.id.error_open_in_browser)
 
     private var errorDisposable: Disposable? = null
-    private var retryShouldBeShown: Boolean = (onRetry != null)
 
     init {
-        if (onRetry != null) {
-            errorDisposable = errorRetryButton.clicks()
-                .debounce(300, TimeUnit.MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { onRetry.run() }
-        }
+        errorDisposable = errorRetryButton.clicks()
+            .debounce(300, TimeUnit.MILLISECONDS)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { onRetry.run() }
     }
 
     private fun ensureDefaultVisibility() {
@@ -60,35 +74,65 @@ class ErrorPanelHelper(
         errorServiceExplanationTextView.isVisible = false
         errorActionButton.isVisible = false
         errorRetryButton.isVisible = false
-        errorOpenInBrowserButton.isVisible = false
     }
 
     fun showError(errorInfo: ErrorInfo) {
-        ensureDefaultVisibility()
-        errorTextView.setTextWithLinks(errorInfo.getMessage(context))
 
-        if (errorInfo.recaptchaUrl != null) {
-            showAndSetErrorButtonAction(R.string.recaptcha_solve) {
+        if (errorInfo.throwable != null && errorInfo.throwable!!.isInterruptedCaused) {
+            if (DEBUG) {
+                Log.w(TAG, "onError() isInterruptedCaused! = [$errorInfo.throwable]")
+            }
+            return
+        }
+
+        ensureDefaultVisibility()
+
+        if (errorInfo.throwable is ReCaptchaException) {
+            errorTextView.setText(R.string.recaptcha_request_toast)
+
+            showAndSetErrorButtonAction(
+                R.string.recaptcha_solve
+            ) {
                 // Starting ReCaptcha Challenge Activity
                 val intent = Intent(context, ReCaptchaActivity::class.java)
-                intent.putExtra(ReCaptchaActivity.RECAPTCHA_URL_EXTRA, errorInfo.recaptchaUrl)
+                intent.putExtra(
+                    ReCaptchaActivity.RECAPTCHA_URL_EXTRA,
+                    (errorInfo.throwable as ReCaptchaException).url
+                )
                 fragment.startActivityForResult(intent, ReCaptchaActivity.RECAPTCHA_REQUEST)
                 errorActionButton.setOnClickListener(null)
             }
-        } else if (errorInfo.isReportable) {
-            showAndSetErrorButtonAction(R.string.error_snackbar_action) {
+
+            errorRetryButton.isVisible = true
+        } else if (errorInfo.throwable is AccountTerminatedException) {
+            errorTextView.setText(R.string.account_terminated)
+
+            if (!isNullOrEmpty((errorInfo.throwable as AccountTerminatedException).message)) {
+                errorServiceInfoTextView.text = context.resources.getString(
+                    R.string.service_provides_reason,
+                    NewPipe.getNameOfService(ServiceHelper.getSelectedServiceId(context))
+                )
+                errorServiceInfoTextView.isVisible = true
+
+                errorServiceExplanationTextView.text =
+                    (errorInfo.throwable as AccountTerminatedException).message
+                errorServiceExplanationTextView.isVisible = true
+            }
+        } else {
+            showAndSetErrorButtonAction(
+                R.string.error_snackbar_action
+            ) {
                 ErrorUtil.openActivity(context, errorInfo)
             }
-        }
 
-        if (errorInfo.isRetryable) {
-            errorRetryButton.isVisible = retryShouldBeShown
-        }
+            errorTextView.setText(getExceptionDescription(errorInfo.throwable))
 
-        if (errorInfo.openInBrowserUrl != null) {
-            errorOpenInBrowserButton.isVisible = true
-            errorOpenInBrowserButton.setOnClickListener {
-                ShareUtils.openUrlInBrowser(context, errorInfo.openInBrowserUrl)
+            if (errorInfo.throwable !is ContentNotAvailableException &&
+                errorInfo.throwable !is ContentNotSupportedException &&
+                errorInfo.throwable !is WebViewUnavailableException
+            ) {
+                // show retry button only for content which is not unavailable or unsupported
+                errorRetryButton.isVisible = true
             }
         }
 
@@ -100,7 +144,7 @@ class ErrorPanelHelper(
      */
     private fun showAndSetErrorButtonAction(
         @StringRes resid: Int,
-        listener: View.OnClickListener
+        @Nullable listener: View.OnClickListener
     ) {
         errorActionButton.isVisible = true
         errorActionButton.setText(resid)
@@ -110,7 +154,7 @@ class ErrorPanelHelper(
     fun showTextError(errorString: String) {
         ensureDefaultVisibility()
 
-        errorTextView.setTextWithLinks(errorString)
+        errorTextView.text = errorString
 
         setRootVisible()
     }
@@ -137,5 +181,31 @@ class ErrorPanelHelper(
     companion object {
         val TAG: String = ErrorPanelHelper::class.simpleName!!
         val DEBUG: Boolean = MainActivity.DEBUG
+
+        @StringRes
+        fun getExceptionDescription(throwable: Throwable?): Int {
+            return when (throwable) {
+                is AntiBotException -> R.string.anti_bot_youtube_hint
+                is NeedLoginException -> R.string.need_login_hint
+                is LiveNotStartException -> R.string.live_not_started
+                is AgeRestrictedContentException -> R.string.restricted_video_no_stream_new
+                is GeographicRestrictionException -> R.string.georestricted_content
+                is PaidContentException -> R.string.paid_content_new
+                is PrivateContentException -> R.string.private_content_new
+                is SoundCloudGoPlusContentException -> R.string.soundcloud_go_plus_content_new
+                is YoutubeMusicPremiumContentException -> R.string.youtube_music_premium_content_new
+                is WebViewUnavailableException -> R.string.webview_unavailable_youtube_hint
+                is ContentNotAvailableException -> R.string.content_not_available
+                is ContentNotSupportedException -> R.string.content_not_supported_new
+                else -> {
+                    // show retry button only for content which is not unavailable or unsupported
+                    if (throwable != null && throwable.isNetworkRelated) {
+                        R.string.network_error
+                    } else {
+                        R.string.error_snackbar_message
+                    }
+                }
+            }
+        }
     }
 }

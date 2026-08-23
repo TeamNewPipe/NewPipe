@@ -9,19 +9,18 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
-import android.text.Html;
+import android.view.Gravity;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.NewPipeSettings;
 
 public final class PermissionHelper {
-    public static final int POST_NOTIFICATIONS_REQUEST_CODE = 779;
     public static final int DOWNLOAD_DIALOG_REQUEST_CODE = 778;
     public static final int DOWNLOADS_REQUEST_CODE = 777;
 
@@ -38,6 +37,7 @@ public final class PermissionHelper {
         return checkWriteStoragePermissions(activity, requestCode);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean checkReadStoragePermissions(final Activity activity,
                                                       final int requestCode) {
         if (ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -72,7 +72,8 @@ public final class PermissionHelper {
 
             // No explanation needed, we can request the permission.
             ActivityCompat.requestPermissions(activity,
-                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, requestCode);
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    requestCode);
 
             // PERMISSION_WRITE_STORAGE is an
             // app-defined int constant. The callback method gets the
@@ -83,21 +84,6 @@ public final class PermissionHelper {
         return true;
     }
 
-    public static boolean checkPostNotificationsPermission(final Activity activity,
-                                                           final int requestCode) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
-                && ContextCompat.checkSelfPermission(activity,
-                Manifest.permission.POST_NOTIFICATIONS)
-                != PackageManager.PERMISSION_GRANTED) {
-            if (!App.getInstance().getNotificationsRequested()) {
-                ActivityCompat.requestPermissions(activity,
-                        new String[]{Manifest.permission.POST_NOTIFICATIONS}, requestCode);
-                App.getInstance().setNotificationsRequested();
-                return false;
-            }
-        }
-        return true;
-    }
 
     /**
      * In order to be able to draw over other apps,
@@ -115,68 +101,28 @@ public final class PermissionHelper {
      * @param context {@link Context}
      * @return {@link Settings#canDrawOverlays(Context)}
      **/
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public static boolean checkSystemAlertWindowPermission(final Context context) {
         if (!Settings.canDrawOverlays(context)) {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
-                final Intent i = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                        Uri.parse("package:" + context.getPackageName()));
-                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                try {
-                    context.startActivity(i);
-                } catch (final ActivityNotFoundException ignored) {
-                }
-                return false;
-            // from Android R the ACTION_MANAGE_OVERLAY_PERMISSION will only point to the menu,
-            // so let’s add a dialog that points the user to the right setting.
-            } else {
-                final String appName = context.getApplicationInfo()
-                        .loadLabel(context.getPackageManager()).toString();
-                final String title = context.getString(R.string.permission_display_over_apps);
-                final String permissionName =
-                        context.getString(R.string.permission_display_over_apps_permission_name);
-                final String appNameItalic = "<i>" + appName + "</i>";
-                final String permissionNameItalic = "<i>" + permissionName + "</i>";
-                final String message =
-                        context.getString(R.string.permission_display_over_apps_message,
-                                appNameItalic,
-                                permissionNameItalic
-                        );
-                new AlertDialog.Builder(context)
-                        .setTitle(title)
-                        .setMessage(Html.fromHtml(message, Html.FROM_HTML_MODE_COMPACT))
-                        .setPositiveButton("OK", (dialog, which) -> {
-                            // we don’t need the package name here, since it won’t do anything on >R
-                            final Intent intent =
-                                    new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
-                            try {
-                                context.startActivity(intent);
-                            } catch (final ActivityNotFoundException ignored) {
-                            }
-                        })
-                        .setCancelable(true)
-                        .show();
-                return false;
+            final Intent i = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                    Uri.parse("package:" + context.getPackageName()));
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            try {
+                context.startActivity(i);
+            } catch (final ActivityNotFoundException ignored) {
             }
-
+            return false;
         } else {
             return true;
         }
     }
 
-    /**
-     * Determines whether the popup is enabled, and if it is not, starts the system activity to
-     * request the permission with {@link #checkSystemAlertWindowPermission(Context)} and shows a
-     * toast to the user explaining why the permission is needed.
-     *
-     * @param context the Android context
-     * @return whether the popup is enabled
-     */
-    public static boolean isPopupEnabledElseAsk(final Context context) {
-        if (checkSystemAlertWindowPermission(context)) {
-            return true;
-        } else {
-            Toast.makeText(context, R.string.msg_popup_permission, Toast.LENGTH_LONG).show();
-            return false;
-        }
+    public static boolean isPopupEnabled(final Context context) {
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M
+                || checkSystemAlertWindowPermission(context);
+    }
+
+    public static void showPopupEnablementToast(final Context context) {
+        Toast.makeText(context, R.string.msg_popup_permission, Toast.LENGTH_LONG).show();
     }
 }

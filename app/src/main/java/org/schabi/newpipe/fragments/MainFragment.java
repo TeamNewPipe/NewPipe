@@ -21,7 +21,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -31,15 +30,15 @@ import androidx.fragment.app.FragmentStatePagerAdapterMenuWorkaround;
 import androidx.preference.PreferenceManager;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.FragmentMainBinding;
-import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
-import org.schabi.newpipe.error.UserAction;
-import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.settings.tabs.TabsManager;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -50,20 +49,22 @@ import org.schabi.newpipe.views.ScrollableTabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainFragment extends BaseFragment implements TabLayout.OnTabSelectedListener {
+public class MainFragment extends BaseFragment implements TabLayout.OnTabSelectedListener, BackPressable {
+    private static final int BOTTOM_NAVIGATION_MAX_ITEM_COUNT = 5;
+    private static final int BOTTOM_NAVIGATION_ITEM_ID_BASE = 10_000;
+
     private FragmentMainBinding binding;
+    private BottomNavigationView bottomNavigation;
     private SelectedTabsPagerAdapter pagerAdapter;
 
     private final List<Tab> tabsList = new ArrayList<>();
     private TabsManager tabsManager;
 
     private boolean hasTabsChanged = false;
-
     private SharedPreferences prefs;
-    private boolean youtubeRestrictedModeEnabled;
-    private String youtubeRestrictedModeEnabledKey;
     private boolean mainTabsPositionBottom;
     private String mainTabsPositionKey;
+
 
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment's LifeCycle
@@ -87,10 +88,9 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         });
 
         prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
-        youtubeRestrictedModeEnabledKey = getString(R.string.youtube_restricted_mode_enabled);
-        youtubeRestrictedModeEnabled = prefs.getBoolean(youtubeRestrictedModeEnabledKey, false);
         mainTabsPositionKey = getString(R.string.main_tabs_position_key);
         mainTabsPositionBottom = prefs.getBoolean(mainTabsPositionKey, false);
+
     }
 
     @Override
@@ -105,29 +105,52 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         super.initViews(rootView, savedInstanceState);
 
         binding = FragmentMainBinding.bind(rootView);
+        bottomNavigation = binding.mainBottomNavigation;
 
         binding.mainTabLayout.setupWithViewPager(binding.pager);
         binding.mainTabLayout.addOnTabSelectedListener(this);
+        binding.mainTabLayout.setTabRippleColor(binding.mainTabLayout.getTabRippleColor()
+                .withAlpha(32));
+        binding.pager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(final int position) {
+                updateTitleForTab(position);
+                updateBottomNavigationSelection(position);
+            }
+        });
+        bottomNavigation.setOnItemSelectedListener(item -> {
+            final int position = getBottomNavigationItemPosition(item.getItemId());
+            if (position < 0 || position >= tabsList.size()) {
+                return false;
+            }
+            if (binding.pager.getCurrentItem() != position) {
+                binding.pager.setCurrentItem(position);
+            }
+            updateTitleForTab(position);
+            return true;
+        });
+        bottomNavigation.setOnItemReselectedListener(item -> {
+            final int position = getBottomNavigationItemPosition(item.getItemId());
+            if (position >= 0 && position < tabsList.size()) {
+                updateTitleForTab(position);
+            }
+        });
 
         setupTabs();
-        updateTabLayoutPosition();
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-        final boolean newYoutubeRestrictedModeEnabled =
-                prefs.getBoolean(youtubeRestrictedModeEnabledKey, false);
-        if (youtubeRestrictedModeEnabled != newYoutubeRestrictedModeEnabled || hasTabsChanged) {
-            youtubeRestrictedModeEnabled = newYoutubeRestrictedModeEnabled;
+        if (hasTabsChanged) {
             setupTabs();
         }
 
         final boolean newMainTabsPosition = prefs.getBoolean(mainTabsPositionKey, false);
         if (mainTabsPositionBottom != newMainTabsPosition) {
             mainTabsPositionBottom = newMainTabsPosition;
-            updateTabLayoutPosition();
+            updateMainNavigationMode();
         }
     }
 
@@ -137,14 +160,14 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         tabsManager.unsetSavedTabsListener();
         if (binding != null) {
             binding.pager.setAdapter(null);
+            if (bottomNavigation != null) {
+                bottomNavigation.setOnItemSelectedListener(null);
+                bottomNavigation.setOnItemReselectedListener(null);
+                bottomNavigation.getMenu().clear();
+                bottomNavigation = null;
+            }
             binding = null;
         }
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -171,8 +194,10 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     public boolean onOptionsItemSelected(final MenuItem item) {
         if (item.getItemId() == R.id.action_search) {
             try {
+                final int selectedServiceId = ServiceHelper.getSelectedServiceId(activity);
                 NavigationHelper.openSearchFragment(getFM(),
-                        ServiceHelper.getSelectedServiceId(activity), "");
+                        SearchFragment.getPersistedSearchServiceId(activity, selectedServiceId),
+                        "");
             } catch (final Exception e) {
                 ErrorUtil.showUiErrorSnackbar(this, "Opening search fragment", e);
             }
@@ -195,9 +220,12 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         }
 
         binding.pager.setAdapter(null);
+        binding.pager.setOffscreenPageLimit(tabsList.size());
         binding.pager.setAdapter(pagerAdapter);
 
         updateTabsIconAndDescription();
+        updateBottomNavigationItems();
+        updateMainNavigationMode();
         updateTitleForTab(binding.pager.getCurrentItem());
 
         hasTabsChanged = false;
@@ -215,40 +243,94 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     }
 
     private void updateTitleForTab(final int tabPosition) {
+        if (tabPosition < 0 || tabPosition >= tabsList.size()) {
+            return;
+        }
         setTitle(tabsList.get(tabPosition).getTabName(requireContext()));
     }
 
-    public void commitPlaylistTabs() {
-        pagerAdapter.getLocalPlaylistFragments()
-                .stream()
-                .forEach(LocalPlaylistFragment::saveImmediate);
+    private void updateBottomNavigationItems() {
+        if (bottomNavigation == null) {
+            return;
+        }
+        bottomNavigation.getMenu().clear();
+        for (int i = 0; i < tabsList.size() && i < BOTTOM_NAVIGATION_MAX_ITEM_COUNT; i++) {
+            final Tab tab = tabsList.get(i);
+            bottomNavigation.getMenu()
+                    .add(0, BOTTOM_NAVIGATION_ITEM_ID_BASE + i, i, tab.getTabName(requireContext()))
+                    .setIcon(tab.getTabIconRes(requireContext()));
+        }
+        updateBottomNavigationSelection(binding == null ? 0 : binding.pager.getCurrentItem());
     }
 
-    private void updateTabLayoutPosition() {
+    private void updateBottomNavigationSelection(final int position) {
+        if (bottomNavigation == null || bottomNavigation.getVisibility() != View.VISIBLE
+                || position < 0 || position >= bottomNavigation.getMenu().size()) {
+            return;
+        }
+        bottomNavigation.getMenu().getItem(position).setChecked(true);
+    }
+
+    private int getBottomNavigationItemPosition(final int itemId) {
+        return itemId - BOTTOM_NAVIGATION_ITEM_ID_BASE;
+    }
+
+    private boolean shouldUseBottomNavigation() {
+        return mainTabsPositionBottom
+                && tabsList.size() > 1
+                && tabsList.size() <= BOTTOM_NAVIGATION_MAX_ITEM_COUNT;
+    }
+
+    private void updateMainNavigationMode() {
+        if (binding == null) {
+            return;
+        }
+        final boolean bottomNavigationMode = shouldUseBottomNavigation();
+        if (bottomNavigation != null) {
+            bottomNavigation.setVisibility(bottomNavigationMode ? View.VISIBLE : View.GONE);
+        }
+        updateTabLayoutPosition(bottomNavigationMode);
+        updateBottomNavigationSelection(binding.pager.getCurrentItem());
+    }
+
+    private void updateTabLayoutPosition(final boolean bottomNavigationMode) {
         final ScrollableTabLayout tabLayout = binding.mainTabLayout;
         final ViewPager viewPager = binding.pager;
-        final boolean bottom = mainTabsPositionBottom;
+        final boolean showTabLayout = tabsList.size() > 1 && !bottomNavigationMode;
+        final boolean bottomTabs = mainTabsPositionBottom && showTabLayout;
 
-        // change layout params to make the tab layout appear either at the top or at the bottom
-        final var tabParams = (RelativeLayout.LayoutParams) tabLayout.getLayoutParams();
-        final var pagerParams = (RelativeLayout.LayoutParams) viewPager.getLayoutParams();
+        final RelativeLayout.LayoutParams tabParams =
+                (RelativeLayout.LayoutParams) tabLayout.getLayoutParams();
+        final RelativeLayout.LayoutParams pagerParams =
+                (RelativeLayout.LayoutParams) viewPager.getLayoutParams();
 
-        tabParams.removeRule(bottom ? ALIGN_PARENT_TOP : ALIGN_PARENT_BOTTOM);
-        tabParams.addRule(bottom ? ALIGN_PARENT_BOTTOM : ALIGN_PARENT_TOP);
-        pagerParams.removeRule(bottom ? BELOW : ABOVE);
-        pagerParams.addRule(bottom ? ABOVE : BELOW, R.id.main_tab_layout);
+        tabParams.removeRule(ALIGN_PARENT_TOP);
+        tabParams.removeRule(ALIGN_PARENT_BOTTOM);
+        if (bottomTabs) {
+            tabParams.addRule(ALIGN_PARENT_BOTTOM);
+        } else {
+            tabParams.addRule(ALIGN_PARENT_TOP);
+        }
+
+        pagerParams.removeRule(BELOW);
+        pagerParams.removeRule(ABOVE);
+        if (bottomNavigationMode) {
+            pagerParams.addRule(ABOVE, R.id.main_bottom_navigation);
+        } else if (showTabLayout) {
+            pagerParams.addRule(bottomTabs ? ABOVE : BELOW, R.id.main_tab_layout);
+        }
+
+        tabLayout.setVisibility(showTabLayout ? View.VISIBLE : View.GONE);
         tabLayout.setSelectedTabIndicatorGravity(
-                bottom ? INDICATOR_GRAVITY_TOP : INDICATOR_GRAVITY_BOTTOM);
+                bottomTabs ? INDICATOR_GRAVITY_TOP : INDICATOR_GRAVITY_BOTTOM);
 
         tabLayout.setLayoutParams(tabParams);
         viewPager.setLayoutParams(pagerParams);
 
-        // change the background and icon color of the tab layout:
-        // service-colored at the top, app-background-colored at the bottom
         tabLayout.setBackgroundColor(ThemeHelper.resolveColorFromAttr(requireContext(),
-                bottom ? android.R.attr.windowBackground : R.attr.colorPrimary));
+                bottomTabs ? android.R.attr.windowBackground : R.attr.colorPrimary));
 
-        @ColorInt final int iconColor = bottom
+        final int iconColor = bottomTabs
                 ? ThemeHelper.resolveColorFromAttr(requireContext(), android.R.attr.colorAccent)
                 : Color.WHITE;
         tabLayout.setTabRippleColor(ColorStateList.valueOf(iconColor).withAlpha(32));
@@ -275,18 +357,25 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         updateTitleForTab(tab.getPosition());
     }
 
-    public static final class SelectedTabsPagerAdapter
+
+    @Override
+    public boolean onBackPressed() {
+        if (pagerAdapter == null || binding == null) {
+            return false;
+        }
+
+        final Object currentItem = pagerAdapter.instantiateItem(binding.pager,
+                binding.pager.getCurrentItem());
+        if (currentItem instanceof BackPressable) {
+            return ((BackPressable) currentItem).onBackPressed();
+        }
+        return false;
+    }
+
+    private static final class SelectedTabsPagerAdapter
             extends FragmentStatePagerAdapterMenuWorkaround {
         private final Context context;
         private final List<Tab> internalTabsList;
-        /**
-         * Keep reference to LocalPlaylistFragments, because their data can be modified by the user
-         * during runtime and changes are not committed immediately. However, in some cases,
-         * the changes need to be committed immediately by calling
-         * {@link LocalPlaylistFragment#saveImmediate()}.
-         * The fragments are removed when {@link LocalPlaylistFragment#onDestroy()} is called.
-         */
-        private final List<LocalPlaylistFragment> localPlaylistFragments = new ArrayList<>();
 
         private SelectedTabsPagerAdapter(final Context context,
                                          final FragmentManager fragmentManager,
@@ -304,24 +393,16 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             final Fragment fragment;
             try {
                 fragment = tab.getFragment(context);
-            } catch (final Throwable t) {
-                return new BlankFragment(new ErrorInfo(t, UserAction.GETTING_MAIN_SCREEN_TAB,
-                        "Tab " + tab.getClass().getSimpleName() + ":" + tab.getTabName(context)));
+            } catch (final ExtractionException e) {
+                ErrorUtil.showUiErrorSnackbar(context, "Getting fragment item", e);
+                return new BlankFragment();
             }
 
             if (fragment instanceof BaseFragment) {
                 ((BaseFragment) fragment).useAsFrontPage(true);
             }
 
-            if (fragment instanceof LocalPlaylistFragment) {
-                localPlaylistFragments.add((LocalPlaylistFragment) fragment);
-            }
-
             return fragment;
-        }
-
-        public List<LocalPlaylistFragment> getLocalPlaylistFragments() {
-            return localPlaylistFragments;
         }
 
         @Override

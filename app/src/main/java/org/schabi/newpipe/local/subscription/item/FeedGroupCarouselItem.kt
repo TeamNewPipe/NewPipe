@@ -1,82 +1,96 @@
 package org.schabi.newpipe.local.subscription.item
 
+import android.content.Context
 import android.os.Parcelable
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.viewbinding.BindableItem
 import com.xwray.groupie.viewbinding.GroupieViewHolder
 import org.schabi.newpipe.R
 import org.schabi.newpipe.databinding.FeedItemCarouselBinding
-import org.schabi.newpipe.util.DeviceUtils
-import org.schabi.newpipe.util.ThemeHelper.getGridSpanCount
+import org.schabi.newpipe.local.subscription.decoration.FeedGroupCarouselDecoration
+import org.schabi.newpipe.local.subscription.decoration.FeedGroupGridDecoration
 
 class FeedGroupCarouselItem(
-    private val carouselAdapter: GroupAdapter<GroupieViewHolder<FeedItemCarouselBinding>>,
-    var listViewMode: Boolean
+    private val context: Context,
+    private val carouselAdapter: GroupAdapter<GroupieViewHolder<*>>,
+    private val useGridLayout: Boolean = false,
+    private val gridSpanCount: Int = 2
 ) : BindableItem<FeedItemCarouselBinding>() {
-    companion object {
-        const val PAYLOAD_UPDATE_LIST_VIEW_MODE = 2
+
+    private val feedGroupCarouselDecoration = FeedGroupCarouselDecoration(context)
+    private val feedGroupGridDecoration = FeedGroupGridDecoration(context)
+
+    private val leftMarginGridPx: Int by lazy {
+        (12 * context.resources.displayMetrics.density).toInt()
     }
 
-    private var carouselLayoutManager: LinearLayoutManager? = null
+
+    private var layoutManager: RecyclerView.LayoutManager? = null
     private var listState: Parcelable? = null
 
     override fun getLayout() = R.layout.feed_item_carousel
 
     fun onSaveInstanceState(): Parcelable? {
-        listState = carouselLayoutManager?.onSaveInstanceState()
+        listState = layoutManager?.onSaveInstanceState()
         return listState
     }
 
     fun onRestoreInstanceState(state: Parcelable?) {
-        carouselLayoutManager?.onRestoreInstanceState(state)
+        layoutManager?.onRestoreInstanceState(state)
         listState = state
     }
 
     override fun initializeViewBinding(view: View): FeedItemCarouselBinding {
-        val viewBinding = FeedItemCarouselBinding.bind(view)
-        updateViewMode(viewBinding)
-        return viewBinding
-    }
+        val viewHolder = FeedItemCarouselBinding.bind(view)
 
-    override fun bind(
-        viewBinding: FeedItemCarouselBinding,
-        position: Int,
-        payloads: MutableList<Any>
-    ) {
-        if (payloads.contains(PAYLOAD_UPDATE_LIST_VIEW_MODE)) {
-            updateViewMode(viewBinding)
-            return
+        layoutManager = if (useGridLayout) {
+            GridLayoutManager(view.context, gridSpanCount)
+        } else {
+            LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
         }
 
-        super.bind(viewBinding, position, payloads)
+        viewHolder.recyclerView.apply {
+            layoutManager = this@FeedGroupCarouselItem.layoutManager
+            adapter = carouselAdapter
+
+            // Remove existing decorations
+            while (itemDecorationCount > 0) {
+                removeItemDecorationAt(0)
+            }
+
+            // Add appropriate decoration
+            if (useGridLayout) {
+                addItemDecoration(feedGroupGridDecoration)
+            } else {
+                addItemDecoration(feedGroupCarouselDecoration)
+            }
+        }
+
+        return viewHolder
     }
 
     override fun bind(viewBinding: FeedItemCarouselBinding, position: Int) {
-        viewBinding.recyclerView.apply { adapter = carouselAdapter }
-        carouselLayoutManager?.onRestoreInstanceState(listState)
+        // Adjust the margin of the root layout based on whether it's a grid or not.
+        // This is done in bind() to correctly handle view recycling.
+        (viewBinding.root.layoutParams as? ViewGroup.MarginLayoutParams)?.let { params ->
+            params.leftMargin = if (useGridLayout) {
+                leftMarginGridPx
+            } else {
+                0 // Reset margin for non-grid items
+            }
+            viewBinding.root.layoutParams = params
+        }
+        viewBinding.recyclerView.adapter = carouselAdapter
+        layoutManager?.onRestoreInstanceState(listState)
     }
 
     override fun unbind(viewHolder: GroupieViewHolder<FeedItemCarouselBinding>) {
         super.unbind(viewHolder)
-        listState = carouselLayoutManager?.onSaveInstanceState()
-    }
-
-    private fun updateViewMode(viewBinding: FeedItemCarouselBinding) {
-        viewBinding.recyclerView.apply { adapter = carouselAdapter }
-
-        val context = viewBinding.root.context
-        carouselLayoutManager = if (listViewMode) {
-            LinearLayoutManager(context)
-        } else {
-            GridLayoutManager(context, getGridSpanCount(context, DeviceUtils.dpToPx(112, context)))
-        }
-
-        viewBinding.recyclerView.apply {
-            layoutManager = carouselLayoutManager
-            adapter = carouselAdapter
-        }
+        listState = layoutManager?.onSaveInstanceState()
     }
 }

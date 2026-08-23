@@ -1,22 +1,25 @@
 package us.shandian.giga.util;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Build;
-import android.os.Environment;
-import android.os.StatFs;
 import android.util.Log;
 
+import android.widget.Toast;
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import com.google.android.exoplayer2.util.Util;
-
+import androidx.documentfile.provider.DocumentFile;
+import com.grack.nanojson.JsonParserException;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.streams.io.SharpInputStream;
-import org.schabi.newpipe.streams.io.StoredFileHelper;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
+import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
+import org.schabi.newpipe.extractor.services.bilibili.BilibiliService;
+import org.schabi.newpipe.streams.io.SharpStream;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -27,9 +30,20 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Random;
 
 import okio.ByteString;
+import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
+import us.shandian.giga.get.DownloadMission;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
+
+import static org.schabi.newpipe.extractor.services.bilibili.BilibiliService.WWW_REFERER;
+import static org.schabi.newpipe.streams.io.StoredDirectoryHelper.findFileSAFHelper;
 
 public class Utility {
 
@@ -42,8 +56,8 @@ public class Utility {
 
     public static String formatBytes(long bytes) {
         Locale locale = Locale.getDefault();
-        if (bytes < 1024) {
-            return String.format(locale, "%d B", bytes);
+        if (bytes < 50 * 1024) {
+            return "Unknown";
         } else if (bytes < 1024 * 1024) {
             return String.format(locale, "%.2f kB", bytes / 1024d);
         } else if (bytes < 1024 * 1024 * 1024) {
@@ -191,18 +205,56 @@ public class Utility {
         }
     }
 
-    public static String checksum(final StoredFileHelper source, final int algorithmId)
-            throws IOException {
-        ByteString byteString;
-        try (var inputStream = new SharpInputStream(source.getStream())) {
-            byteString = ByteString.of(Util.toByteArray(inputStream));
+    public static void copyToClipboard(Context context, String str) {
+        ClipboardManager cm = ContextCompat.getSystemService(context, ClipboardManager.class);
+
+        if (cm == null) {
+            Toast.makeText(context, R.string.permission_denied, Toast.LENGTH_LONG).show();
+            return;
         }
-        if (algorithmId == R.id.md5) {
-            byteString = byteString.md5();
-        } else if (algorithmId == R.id.sha1) {
-            byteString = byteString.sha1();
+
+        cm.setPrimaryClip(ClipData.newPlainText("text", str));
+        Toast.makeText(context, R.string.msg_copied, Toast.LENGTH_SHORT).show();
+    }
+
+    public static String checksum(StoredFileHelper source, String algorithm) {
+        MessageDigest md;
+
+        try {
+            md = MessageDigest.getInstance(algorithm);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
         }
-        return byteString.hex();
+
+        SharpStream i;
+
+        try {
+            i = source.getStream();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        byte[] buf = new byte[1024];
+        int len;
+
+        try {
+            while ((len = i.read(buf)) != -1) {
+                md.update(buf, 0, len);
+            }
+        } catch (IOException e) {
+            // nothing to do
+        }
+
+        byte[] digest = md.digest();
+
+        // HEX
+        StringBuilder sb = new StringBuilder();
+        for (byte b : digest) {
+            sb.append(Integer.toString((b & 0xff) + 0x100, 16).substring(1));
+        }
+
+        return sb.toString();
+
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
@@ -257,10 +309,10 @@ public class Utility {
         return number < 10 ? ("0" + number) : String.valueOf(number);
     }
 
-    public static String stringifySeconds(final long seconds) {
-        final int h = (int) Math.floorDiv(seconds, 3600);
-        final int m = (int) Math.floorDiv(seconds - (h * 3600L), 60);
-        final int s = (int) (seconds - (h * 3600) - (m * 60));
+    public static String stringifySeconds(double seconds) {
+        int h = (int) Math.floor(seconds / 3600);
+        int m = (int) Math.floor((seconds - (h * 3600)) / 60);
+        int s = (int) (seconds - (h * 3600) - (m * 60));
 
         String str = "";
 
@@ -272,5 +324,50 @@ public class Utility {
         }
 
         return str + pad(s);
+    }
+    public static void setRequestPropertyIfDownloadingBilibili(String url, HttpURLConnection conn) throws IOException {
+        if(BilibiliService.isBiliBiliDownloadUrl(url)){
+            // from header map set RequestProperty
+            Map<String, List<String>> headerMap = BilibiliService.getUserAgentHeaders(WWW_REFERER);
+            for (Map.Entry<String, List<String>> entry : headerMap.entrySet()) {
+                String key = entry.getKey();
+                List<String> value = entry.getValue();
+                if (value.size() == 1) {
+                    conn.setRequestProperty(key, value.get(0));
+                } else {
+                    conn.setRequestProperty(key, value.toString());
+                }
+            }
+        }
+    }
+
+    public static void removeTempFileOfDownloadedVideo(StoredFileHelper storedFileHelper) {
+        if(storedFileHelper.docTree == null) {
+            // ioTree instead
+            try {
+                File ioTree = storedFileHelper.ioFile;
+                for (final File file : ioTree.listFiles()) {
+                    if (file.getName().equals(storedFileHelper.getName().replace(".mp4", ".tmp.mp4"))
+                            || file.getName().equals(storedFileHelper.getName().replace(".mp4", ".tmp"))) {
+                        file.delete();
+                    }
+                }
+                return;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        try{
+            DocumentFile docTree = storedFileHelper.docTree;
+            DocumentFile[] docFiles = docTree.listFiles();
+            for (DocumentFile docFile : docFiles) {
+                if (docFile.getName().equals(storedFileHelper.getName().replace(".mp4", ".tmp.mp4"))
+                        || docFile.getName().equals(storedFileHelper.getName().replace(".mp4", ".tmp"))) {
+                    docFile.delete();
+                }
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

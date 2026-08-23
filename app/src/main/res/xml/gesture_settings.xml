@@ -1,0 +1,83 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto"
+                  android:key="general_preferences"
+                  android:title="@string/settings_category_gestures_summary">
+    <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="@string/volume_gesture_control_key"
+            android:summary="@string/volume_gesture_control_summary"
+            android:title="@string/volume_gesture_control_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
+    <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="@string/brightness_gesture_control_key"
+            android:summary="@string/brightness_gesture_control_summary"
+            android:title="@string/brightness_gesture_control_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
+    <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="@string/fullscreen_gesture_control_key"
+            android:summary="@string/fullscreen_gesture_control_summary"
+            android:title="@string/fullscreen_gesture_control_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
+    <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/playback_speed_gesture_control_key"
+            android:summary="@string/playback_speed_gesture_control_summary"
+            android:title="@string/playback_speed_gesture_control_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
+    <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="@string/swipe_seek_gesture_control_key"
+            android:summary="@string/swipe_seek_gesture_control_summary"
+            android:title="@string/swipe_seek_gesture_control_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
+    <ListPreference
+            android:defaultValue="@string/seek_duration_default_value"
+            android:entries="@array/seek_duration_description"
+            android:entryValues="@array/seek_duration_value"
+            android:key="@string/seek_duration_key"
+            android:summary="%s"
+            android:title="@string/seek_duration_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
+    <ListPreference
+            android:defaultValue="@string/speeding_playback_default_value"
+            android:entries="@array/speeding_playback_description"
+            android:entryValues="@array/speeding_playback_value"
+            android:key="@string/speeding_playback_key"
+            android:summary="%s"
+            android:title="@string/speeding_playback_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
+    <SwitchPreferenceCompat
+            android:key="@string/pull_to_refresh_key"
+            android:title="@string/pull_to_refresh_title"
+            android:summary="@string/pull_to_refresh_summary"
+            android:defaultValue="true"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
+    <ListPreference
+            android:defaultValue="delete"
+            android:entries="@array/local_playlist_swipe_action_entries"
+            android:entryValues="@array/local_playlist_swipe_action_values"
+            android:key="@string/local_playlist_swipe_action_key"
+            android:summary="%s"
+            android:title="@string/local_playlist_swipe_action_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false"
+            app:useSimpleSummaryProvider="true" />
+</PreferenceScreen>

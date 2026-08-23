@@ -1,13 +1,17 @@
 package org.schabi.newpipe.util;
 
+import static org.schabi.newpipe.extractor.stream.StreamType.AUDIO_LIVE_STREAM;
+import static org.schabi.newpipe.extractor.stream.StreamType.LIVE_STREAM;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import io.reactivex.rxjava3.core.Single;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
@@ -47,8 +51,8 @@ public final class SparseItemUtil {
     public static void fetchItemInfoIfSparse(@NonNull final Context context,
                                              @NonNull final StreamInfoItem item,
                                              @NonNull final Consumer<SinglePlayQueue> callback) {
-        if ((StreamTypeUtil.isLiveStream(item.getStreamType()) || item.getDuration() >= 0)
-                && !isNullOrEmpty(item.getUploaderUrl())) {
+        if (((item.getStreamType() == LIVE_STREAM || item.getStreamType() == AUDIO_LIVE_STREAM)
+                || item.getDuration() >= 0) && !isNullOrEmpty(item.getUploaderUrl())) {
             // if the duration is >= 0 (provided that the item is not a livestream) and there is an
             // uploader url, probably all info is already there, so there is no need to fetch it
             callback.accept(new SinglePlayQueue(item));
@@ -101,7 +105,9 @@ public final class SparseItemUtil {
                                                         final int serviceId,
                                                         @NonNull final String url,
                                                         final Consumer<StreamInfo> callback) {
+
         Toast.makeText(context, R.string.loading_stream_details, Toast.LENGTH_SHORT).show();
+
         ExtractorHelper.getStreamInfo(serviceId, url, false)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -121,7 +127,36 @@ public final class SparseItemUtil {
                     callback.accept(result);
                 }, throwable -> ErrorUtil.createNotification(context,
                         new ErrorInfo(throwable, UserAction.REQUESTED_STREAM,
-                                "Loading stream info: " + url, serviceId, url)
+                                "Loading stream info: " + url, serviceId)
                 ));
     }
+
+    public static Single<StreamInfo> fetchStreamInfoAndSaveToDatabaseRx(
+            @NonNull final Context context,
+            final int serviceId,
+            @NonNull final String url) {
+
+        return ExtractorHelper.getStreamInfoWithoutException(serviceId, url, false)
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .flatMap(result -> {
+                    if (result.getServiceId() == -1) {
+                        return Single.just(result);
+                    }
+                    // save to database in the background
+                    return Completable.fromAction(() -> NewPipeDatabase.getInstance(context)
+                                    .streamDAO().upsert(new StreamEntity(result)))
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(Schedulers.io())
+                            .doOnError(throwable ->
+                                    ErrorUtil.createNotification(context,
+                                            new ErrorInfo(throwable, UserAction.REQUESTED_STREAM,
+                                                    "Saving stream info to database", result)))
+                            .andThen(Single.just(result)); // Emit the result after saving
+                })
+                .doOnError(throwable ->
+                        System.err.println("Error processing stream item: " + url + " - " + throwable.getMessage())
+                );
+    }
+
 }

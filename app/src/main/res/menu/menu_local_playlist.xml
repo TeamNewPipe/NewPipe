@@ -1,25 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+            android:id="@+id/action_search_local"
+            android:icon="@drawable/ic_search"
+            android:orderInCategory="1"
+            android:title="@string/search"
+            app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_item_sort"
+        android:title="@string/sort"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_sort" >
+            <menu>
+                <item
+                    android:title="@string/sort_name"
+                    android:id="@+id/menu_item_sort_name"
+                    app:showAsAction="never" />
+                <item
+                    android:title="@string/sort_name_reverse"
+                    android:id="@+id/menu_item_sort_name_reverse"
+                    app:showAsAction="never" />
+                <item
+                    android:title="@string/sort_origin"
+                    android:id="@+id/menu_item_sort_origin"
+                    app:showAsAction="never" />
+                <item
+                    android:title="@string/sort_origin_reverse"
+                    android:id="@+id/menu_item_sort_origin_reverse"
+                    app:showAsAction="never" />
+            </menu>
+    </item>
 
     <item
         android:id="@+id/menu_item_share_playlist"
         android:icon="@drawable/ic_share"
         android:title="@string/share"
-        app:showAsAction="ifRoom" />
-
+        app:showAsAction="never" />
     <item
         android:id="@+id/menu_item_rename_playlist"
         android:title="@string/rename_playlist"
         app:showAsAction="never" />
-
     <item
         android:id="@+id/menu_item_remove_watched"
         android:title="@string/remove_watched"
         app:showAsAction="never" />
-
     <item
         android:id="@+id/menu_item_remove_duplicates"
         android:title="@string/remove_duplicates"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_item_download_all"
+        android:title="@string/download_all"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_item_import_urls"
+        android:title="@string/import_urls_from_file"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_item_append_playlist"
+        android:title="@string/add_to_playlist"
+        app:showAsAction="never" />
+
 </menu>

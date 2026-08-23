@@ -7,5 +7,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:theme="@style/Theme.MaterialComponents.DayNight.Bridge"
+    android:textColor="?attr/tag_text_color"
+    app:chipBackgroundColor="?attr/card_item_contrast_color"
     app:chipMinTouchTargetSize="40dp"
     tools:text="I'm a correctly themed chip!" />

@@ -1,5 +1,6 @@
 package us.shandian.giga.postprocessing;
 
+import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.schabi.newpipe.streams.OggFromWebMWriter;
@@ -33,8 +34,12 @@ class OggFromWebmDemuxer extends Postprocessing {
     }
 
     @Override
+    int process(String source, Context context, SharpStream out, SharpStream... sources) throws IOException {
+        return process(out, sources);
+    }
+
     int process(SharpStream out, @NonNull SharpStream... sources) throws IOException {
-        OggFromWebMWriter demuxer = new OggFromWebMWriter(sources[0], out, streamInfo);
+        OggFromWebMWriter demuxer = new OggFromWebMWriter(sources[0], out);
         demuxer.parseSource();
         demuxer.selectTrack(0);
         demuxer.build();

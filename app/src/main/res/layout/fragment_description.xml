@@ -39,11 +39,11 @@
             android:contentDescription="@string/description_select_enable"
             android:focusable="true"
             android:padding="5dp"
-            android:src="@drawable/ic_select_all"
             app:layout_constraintBottom_toTopOf="@+id/barrier"
             app:layout_constraintDimensionRatio="1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_select_all" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier"
@@ -83,6 +83,59 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detail_description_note_view"
             tools:text="Description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum." />
+
+        <org.schabi.newpipe.views.NewPipeTextView
+            android:id="@+id/detail_staffs_bar_header_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="1dp"
+            android:text="@string/title_staff_list"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="@dimen/video_item_detail_upload_date_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/detail_staff_list_recycler_view"
+            app:layout_constraintEnd_toStartOf="@id/detail_staffs_toggle_button"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detail_description_view" />
+
+        <ImageView
+            android:id="@+id/detail_staffs_toggle_button"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="1dp"
+            app:layout_constraintBottom_toBottomOf="@id/detail_staffs_bar_header_view"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/detail_staffs_bar_header_view"
+            app:layout_constraintTop_toTopOf="@id/detail_staffs_bar_header_view"
+            app:srcCompat="@drawable/ic_arrow_drop_up" />
+
+        <org.schabi.newpipe.views.NewPipeRecyclerView
+            android:id="@+id/detail_staff_list_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:scrollbars="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/detail_metadata_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detail_staffs_bar_header_view"
+            tools:itemCount="4"
+            tools:listitem="@layout/list_staff_item"
+            tools:visibility="visible" />
+
 
         <LinearLayout
             android:id="@+id/detail_metadata_layout"

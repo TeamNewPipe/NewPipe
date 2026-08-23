@@ -1,19 +1,13 @@
 package org.schabi.newpipe.fragments;
 
-import static org.schabi.newpipe.ktx.ViewUtils.animate;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
-
-import com.evernote.android.state.State;
 
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
@@ -24,27 +18,39 @@ import org.schabi.newpipe.util.InfoCache;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static org.schabi.newpipe.ktx.ViewUtils.animate;
+
 public abstract class BaseStateFragment<I> extends BaseFragment implements ViewContract<I> {
-    @State
     protected AtomicBoolean wasLoading = new AtomicBoolean();
     protected AtomicBoolean isLoading = new AtomicBoolean();
 
     @Nullable
-    protected View emptyStateView;
-    @Nullable
-    protected TextView emptyStateMessageView;
+    private View emptyStateView;
     @Nullable
     private ProgressBar loadingProgressBar;
 
     private ErrorPanelHelper errorPanelHelper;
     @Nullable
-    @State
     protected ErrorInfo lastPanelError = null;
 
     @Override
     public void onViewCreated(@NonNull final View rootView, final Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
         doInitialLoadLogic();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull final Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("wasLoading", wasLoading.get());
+        outState.putParcelable("lastPanelError", lastPanelError);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull final Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        wasLoading = new AtomicBoolean(savedInstanceState.getBoolean("wasLoading", false));
+        lastPanelError = savedInstanceState.getParcelable("lastPanelError");
     }
 
     @Override
@@ -69,7 +75,6 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
         emptyStateView = rootView.findViewById(R.id.empty_state_view);
-        emptyStateMessageView = rootView.findViewById(R.id.empty_state_message);
         loadingProgressBar = rootView.findViewById(R.id.loading_progress_bar);
         errorPanelHelper = new ErrorPanelHelper(this, rootView, this::onRetryButtonClicked);
     }
@@ -80,8 +85,6 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         if (errorPanelHelper != null) {
             errorPanelHelper.dispose();
         }
-        emptyStateView = null;
-        emptyStateMessageView = null;
     }
 
     protected void onRetryButtonClicked() {
@@ -134,7 +137,6 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         hideErrorPanel();
     }
 
-    @Override
     public void showEmptyState() {
         isLoading.set(false);
         if (emptyStateView != null) {
@@ -195,12 +197,6 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         }
 
         errorPanelHelper.showTextError(errorString);
-    }
-
-    protected void setEmptyStateMessage(@StringRes final int text) {
-        if (emptyStateMessageView != null) {
-            emptyStateMessageView.setText(text);
-        }
     }
 
     public final void hideErrorPanel() {

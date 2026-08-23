@@ -1,7 +1,7 @@
 package org.schabi.newpipe.player.resolver;
 
-import static org.schabi.newpipe.util.ListHelper.getFilteredAudioStreams;
-import static org.schabi.newpipe.util.ListHelper.getPlayableStreams;
+import static org.schabi.newpipe.util.ListHelper.removeTorrentStreams;
+import static org.schabi.newpipe.util.ListHelper.filterUnsupportedFormats;
 
 import android.content.Context;
 import android.util.Log;
@@ -12,15 +12,17 @@ import androidx.annotation.Nullable;
 import com.google.android.exoplayer2.source.MediaSource;
 
 import org.schabi.newpipe.extractor.stream.AudioStream;
-import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
+import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.mediaitem.MediaItemTag;
 import org.schabi.newpipe.player.mediaitem.StreamInfoTag;
 import org.schabi.newpipe.util.ListHelper;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AudioPlaybackResolver implements PlaybackResolver {
     private static final String TAG = AudioPlaybackResolver.class.getSimpleName();
@@ -29,6 +31,7 @@ public class AudioPlaybackResolver implements PlaybackResolver {
     private final Context context;
     @NonNull
     private final PlayerDataSource dataSource;
+    private List<String> blacklistUrls = new ArrayList<>();
     @Nullable
     private String audioTrack;
 
@@ -38,13 +41,6 @@ public class AudioPlaybackResolver implements PlaybackResolver {
         this.dataSource = dataSource;
     }
 
-    /**
-     * Get a media source providing audio. If a service has no separate {@link AudioStream}s we
-     * use a video stream as audio source to support audio background playback.
-     *
-     * @param info of the stream
-     * @return the audio source to use or null if none could be found
-     */
     @Override
     @Nullable
     public MediaSource resolve(@NonNull final StreamInfo info) {
@@ -53,43 +49,33 @@ public class AudioPlaybackResolver implements PlaybackResolver {
             return liveSource;
         }
 
-        final List<AudioStream> audioStreams =
-                getFilteredAudioStreams(context, info.getAudioStreams());
-        final Stream stream;
-        final MediaItemTag tag;
+        List<AudioStream> audioStreams = info.getAudioStreams()
+                .stream().filter(s -> !blacklistUrls.contains(s.getContent())).collect(Collectors.toList());
+        removeTorrentStreams(audioStreams);
+        audioStreams = filterUnsupportedFormats(audioStreams, context);
 
-        if (!audioStreams.isEmpty()) {
-            final int audioIndex =
-                    ListHelper.getAudioFormatIndex(context, audioStreams, audioTrack);
-            stream = getStreamForIndex(audioIndex, audioStreams);
-            tag = StreamInfoTag.of(info, audioStreams, audioIndex);
-        } else {
-            final List<VideoStream> videoStreams =
-                    getPlayableStreams(info.getVideoStreams(), info.getServiceId());
-            if (!videoStreams.isEmpty()) {
-                final int index = ListHelper.getDefaultResolutionIndex(context, videoStreams);
-                stream = getStreamForIndex(index, videoStreams);
-                tag = StreamInfoTag.of(info);
-            } else {
-                return null;
-            }
+        final int index = ListHelper.getAudioFormatIndex(context, audioStreams, audioTrack);
+        if (index < 0 || index >= audioStreams.size()) {
+            return null;
         }
+
+        final AudioStream audio = audioStreams.get(index);
+        final MediaItemTag tag = StreamInfoTag.of(info);
 
         try {
             return PlaybackResolver.buildMediaSource(
-                    dataSource, stream, info, PlaybackResolver.cacheKeyOf(info, stream), tag);
-        } catch (final ResolverException e) {
-            Log.e(TAG, "Unable to create audio source", e);
+                    dataSource, audio, info, PlayerHelper.cacheKeyOf(info, audio), tag);
+        } catch (final IOException e) {
+            Log.e(TAG, "Unable to create audio source:", e);
             return null;
         }
     }
+    public void addBlacklistUrl(@NonNull final String url) {
+        blacklistUrls.add(url);
+    }
 
-    @Nullable
-    Stream getStreamForIndex(final int index, @NonNull final List<? extends Stream> streams) {
-        if (index >= 0 && index < streams.size()) {
-            return streams.get(index);
-        }
-        return null;
+    public List<String> getBlacklistUrls() {
+        return blacklistUrls;
     }
 
     @Nullable
@@ -97,7 +83,7 @@ public class AudioPlaybackResolver implements PlaybackResolver {
         return audioTrack;
     }
 
-    public void setAudioTrack(@Nullable final String audioLanguage) {
-        this.audioTrack = audioLanguage;
+    public void setAudioTrack(@Nullable final String audioTrack) {
+        this.audioTrack = audioTrack;
     }
 }

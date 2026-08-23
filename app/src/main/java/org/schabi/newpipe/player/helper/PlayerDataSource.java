@@ -1,39 +1,62 @@
 package org.schabi.newpipe.player.helper;
 
-import static org.schabi.newpipe.MainActivity.DEBUG;
-
 import android.content.Context;
-import android.util.Log;
+import android.net.Uri;
 
-import androidx.annotation.Nullable;
-
-import com.google.android.exoplayer2.database.StandaloneDatabaseProvider;
+import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.source.SingleSampleMediaSource;
 import com.google.android.exoplayer2.source.dash.DashMediaSource;
 import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
+import com.google.android.exoplayer2.source.hls.DefaultHlsExtractorFactory;
 import com.google.android.exoplayer2.source.hls.playlist.DefaultHlsPlaylistTracker;
 import com.google.android.exoplayer2.source.smoothstreaming.DefaultSsChunkSource;
 import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource;
+import com.google.android.exoplayer2.extractor.ts.DefaultTsPayloadReaderFactory;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSource;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
+import com.google.android.exoplayer2.upstream.DefaultLoadErrorHandlingPolicy;
+import com.google.android.exoplayer2.upstream.ResolvingDataSource;
 import com.google.android.exoplayer2.upstream.TransferListener;
-import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor;
-import com.google.android.exoplayer2.upstream.cache.SimpleCache;
+import com.google.android.exoplayer2.upstream.cache.CacheDataSource;
+import com.google.android.exoplayer2.upstream.cache.CacheKeyFactory;
+import com.grack.nanojson.JsonObject;
+import com.grack.nanojson.JsonParser;
+import com.grack.nanojson.JsonParserException;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.schabi.newpipe.DownloaderImpl;
+import org.schabi.newpipe.extractor.ServiceList;
+import org.schabi.newpipe.extractor.downloader.Response;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
+import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
+import org.schabi.newpipe.extractor.services.niconico.NicoWebSocketClient;
+import org.schabi.newpipe.extractor.services.niconico.NiconicoService;
+import org.schabi.newpipe.extractor.services.niconico.extractors.NiconicoDMCPayloadBuilder;
+
+import java.io.IOException;
+import java.net.URI;
+import java.nio.charset.StandardCharsets;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import com.google.android.exoplayer2.source.hls.playlist.HlsPlaylistParserFactory;
+
 import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubeOtfDashManifestCreator;
 import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubePostLiveStreamDvrDashManifestCreator;
 import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubeProgressiveDashManifestCreator;
-import org.schabi.newpipe.player.datasource.NonUriHlsDataSourceFactory;
 import org.schabi.newpipe.player.datasource.YoutubeHttpDataSource;
 
-import java.io.File;
-
 public class PlayerDataSource {
-    public static final String TAG = PlayerDataSource.class.getSimpleName();
 
     public static final int LIVE_STREAM_EDGE_GAP_MILLIS = 10000;
 
@@ -50,66 +73,50 @@ public class PlayerDataSource {
      * {@link YoutubeProgressiveDashManifestCreator}, {@link YoutubeOtfDashManifestCreator} and
      * {@link YoutubePostLiveStreamDvrDashManifestCreator}.
      */
-    private static final int MAX_MANIFEST_CACHE_SIZE = 500;
+    private static final int MAXIMUM_SIZE_CACHED_GENERATED_MANIFESTS_PER_CACHE = 500;
 
-    /**
-     * The folder name in which the ExoPlayer cache will be written.
-     */
-    private static final String CACHE_FOLDER_NAME = "exoplayer";
-
-    /**
-     * The {@link SimpleCache} instance which will be used to build
-     * {@link com.google.android.exoplayer2.upstream.cache.CacheDataSource}s instances (with
-     * {@link CacheFactory}).
-     */
-    private static SimpleCache cache;
-
-
-    private final int progressiveLoadIntervalBytes;
-
-    // Generic Data Source Factories (without or with cache)
+    private final int continueLoadingCheckIntervalBytes;
+    private final CacheFactory.Builder cacheDataSourceFactoryBuilder;
     private final DataSource.Factory cachelessDataSourceFactory;
-    private final CacheFactory cacheDataSourceFactory;
+    private final DataSource.Factory biliCachelessDataSourceFactory;
+    private final TransferListener transferListener;
+    private final Context context;
+    private final String userAgent;
 
-    // YouTube-specific Data Source Factories (with cache)
-    // They use YoutubeHttpDataSource.Factory, with different parameters each
-    private final CacheFactory ytHlsCacheDataSourceFactory;
-    private final CacheFactory ytDashCacheDataSourceFactory;
-    private final CacheFactory ytProgressiveDashCacheDataSourceFactory;
+    private NicoWebSocketClient nicoWebSocketClient;
 
-
-    public PlayerDataSource(final Context context,
-                            final TransferListener transferListener) {
-
-        progressiveLoadIntervalBytes = PlayerHelper.getProgressiveLoadIntervalBytes(context);
-
-        // make sure the static cache was created: needed by CacheFactories below
-        instantiateCacheIfNeeded(context);
-
-        // generic data source factories use DefaultHttpDataSource.Factory
-        cachelessDataSourceFactory = new DefaultDataSource.Factory(context,
-                new DefaultHttpDataSource.Factory().setUserAgent(DownloaderImpl.USER_AGENT))
-                .setTransferListener(transferListener);
-        cacheDataSourceFactory = new CacheFactory(context, transferListener, cache,
-                new DefaultHttpDataSource.Factory().setUserAgent(DownloaderImpl.USER_AGENT));
-
-        // YouTube-specific data source factories use getYoutubeHttpDataSourceFactory()
-        ytHlsCacheDataSourceFactory = new CacheFactory(context, transferListener, cache,
-                getYoutubeHttpDataSourceFactory(false, false));
-        ytDashCacheDataSourceFactory = new CacheFactory(context, transferListener, cache,
-                getYoutubeHttpDataSourceFactory(true, true));
-        ytProgressiveDashCacheDataSourceFactory = new CacheFactory(context, transferListener, cache,
-                getYoutubeHttpDataSourceFactory(false, true));
-
-        // set the maximum size to manifest creators
-        YoutubeProgressiveDashManifestCreator.getCache().setMaximumSize(MAX_MANIFEST_CACHE_SIZE);
-        YoutubeOtfDashManifestCreator.getCache().setMaximumSize(MAX_MANIFEST_CACHE_SIZE);
-        YoutubePostLiveStreamDvrDashManifestCreator.getCache().setMaximumSize(
-                MAX_MANIFEST_CACHE_SIZE);
+    /** Clear only downloaded media while retaining fetched extractor responses in memory. */
+    public static void clearMediaCacheForBenchmark() throws IOException {
+        CacheFactory.clearMediaCache();
     }
 
+    public PlayerDataSource(@NonNull final Context context,
+                            @NonNull final String userAgent,
+                            @NonNull final TransferListener transferListener) {
+        continueLoadingCheckIntervalBytes = PlayerHelper.getProgressiveLoadIntervalBytes(context);
+        cacheDataSourceFactoryBuilder = new CacheFactory.Builder(context, userAgent,
+                transferListener);
+        cachelessDataSourceFactory = new DefaultDataSource.Factory(context,
+                new DefaultHttpDataSource.Factory().setUserAgent(userAgent).setDefaultRequestProperties(Map.of("Referer", "https://www.bilibili.com")))
+                .setTransferListener(transferListener);
 
-    //region Live media source factories
+        this.context = context;
+        this.transferListener = transferListener;
+        this.userAgent = userAgent;
+
+        YoutubeProgressiveDashManifestCreator.getCache().setMaximumSize(
+                MAXIMUM_SIZE_CACHED_GENERATED_MANIFESTS_PER_CACHE);
+        YoutubeOtfDashManifestCreator.getCache().setMaximumSize(
+                MAXIMUM_SIZE_CACHED_GENERATED_MANIFESTS_PER_CACHE);
+        YoutubePostLiveStreamDvrDashManifestCreator.getCache().setMaximumSize(
+                MAXIMUM_SIZE_CACHED_GENERATED_MANIFESTS_PER_CACHE);
+
+        biliCachelessDataSourceFactory = new PurifiedDataSource.Factory(context,
+                new PurifiedHttpDataSource.Factory().setUserAgent(userAgent)
+                        .setDefaultRequestProperties(Map.of("Referer", "https://www.bilibili.com")))
+                .setTransferListener(transferListener);
+    }
+
     public SsMediaSource.Factory getLiveSsMediaSourceFactory() {
         return getSSMediaSourceFactory().setLivePresentationDelayMs(LIVE_STREAM_EDGE_GAP_MILLIS);
     }
@@ -136,29 +143,38 @@ public class PlayerDataSource {
                 cachelessDataSourceFactory)
                 .setManifestParser(new YoutubeDashLiveManifestParser());
     }
-    //endregion
 
-
-    //region Generic media source factories
     public HlsMediaSource.Factory getHlsMediaSourceFactory(
-            @Nullable final NonUriHlsDataSourceFactory.Builder hlsDataSourceFactoryBuilder) {
-        if (hlsDataSourceFactoryBuilder != null) {
-            hlsDataSourceFactoryBuilder.setDataSourceFactory(cacheDataSourceFactory);
-            return new HlsMediaSource.Factory(hlsDataSourceFactoryBuilder.build());
+            @Nullable final HlsPlaylistParserFactory hlsPlaylistParserFactory) {
+        final HlsMediaSource.Factory factory = new HlsMediaSource.Factory(
+                cacheDataSourceFactoryBuilder.build());
+        if (hlsPlaylistParserFactory != null) {
+            factory.setPlaylistParserFactory(hlsPlaylistParserFactory);
         }
-
-        return new HlsMediaSource.Factory(cacheDataSourceFactory);
+        return factory;
     }
 
     public DashMediaSource.Factory getDashMediaSourceFactory() {
         return new DashMediaSource.Factory(
-                getDefaultDashChunkSourceFactory(cacheDataSourceFactory),
-                cacheDataSourceFactory);
+                getDefaultDashChunkSourceFactory(cacheDataSourceFactoryBuilder.build()),
+                cacheDataSourceFactoryBuilder.build());
+    }
+
+    /** Wraps a custom playback source in the same disk cache used by other media sources. */
+    @NonNull
+    public DataSource.Factory getCacheDataSourceFactory(
+            @NonNull final DataSource.Factory upstreamDataSourceFactory,
+            @NonNull final CacheKeyFactory cacheKeyFactory) {
+        final CacheFactory.Builder builder = new CacheFactory.Builder(
+                context, userAgent, transferListener);
+        builder.setUpstreamDataSourceFactory(upstreamDataSourceFactory);
+        builder.setCacheKeyFactory(cacheKeyFactory);
+        return builder.build();
     }
 
     public ProgressiveMediaSource.Factory getProgressiveMediaSourceFactory() {
-        return new ProgressiveMediaSource.Factory(cacheDataSourceFactory)
-                .setContinueLoadingCheckIntervalBytes(progressiveLoadIntervalBytes);
+        return new ProgressiveMediaSource.Factory(cachelessDataSourceFactory)
+                .setContinueLoadingCheckIntervalBytes(continueLoadingCheckIntervalBytes);
     }
 
     public SsMediaSource.Factory getSSMediaSourceFactory() {
@@ -168,36 +184,41 @@ public class PlayerDataSource {
     }
 
     public SingleSampleMediaSource.Factory getSingleSampleMediaSourceFactory() {
-        return new SingleSampleMediaSource.Factory(cacheDataSourceFactory);
-    }
-    //endregion
-
-
-    //region YouTube media source factories
-    public HlsMediaSource.Factory getYoutubeHlsMediaSourceFactory() {
-        return new HlsMediaSource.Factory(ytHlsCacheDataSourceFactory);
+        return new SingleSampleMediaSource.Factory(cacheDataSourceFactoryBuilder.build());
     }
 
-    public DashMediaSource.Factory getYoutubeDashMediaSourceFactory() {
-        return new DashMediaSource.Factory(
-                getDefaultDashChunkSourceFactory(ytDashCacheDataSourceFactory),
-                ytDashCacheDataSourceFactory);
-    }
-
-    public ProgressiveMediaSource.Factory getYoutubeProgressiveMediaSourceFactory() {
-        return new ProgressiveMediaSource.Factory(ytProgressiveDashCacheDataSourceFactory)
-                .setContinueLoadingCheckIntervalBytes(progressiveLoadIntervalBytes);
-    }
-    //endregion
-
-
-    //region Static methods
-    private static DefaultDashChunkSource.Factory getDefaultDashChunkSourceFactory(
+    @NonNull
+    private DefaultDashChunkSource.Factory getDefaultDashChunkSourceFactory(
             final DataSource.Factory dataSourceFactory) {
         return new DefaultDashChunkSource.Factory(dataSourceFactory);
     }
 
-    private static YoutubeHttpDataSource.Factory getYoutubeHttpDataSourceFactory(
+    // YoutubeMediaSourceFactories
+    public DashMediaSource.Factory getYoutubeDashMediaSourceFactory() {
+        cacheDataSourceFactoryBuilder.setUpstreamDataSourceFactory(
+                getYoutubeHttpDataSourceFactory(true, true));
+        return new DashMediaSource.Factory(
+                getDefaultDashChunkSourceFactory(cacheDataSourceFactoryBuilder.build()),
+                cacheDataSourceFactoryBuilder.build());
+    }
+
+    public HlsMediaSource.Factory getYoutubeHlsMediaSourceFactory() {
+        cacheDataSourceFactoryBuilder.setUpstreamDataSourceFactory(
+                getYoutubeHttpDataSourceFactory(false, false));
+        final int payloadReaderFlags = DefaultTsPayloadReaderFactory.FLAG_DETECT_ACCESS_UNITS;
+        return new HlsMediaSource.Factory(cacheDataSourceFactoryBuilder.build())
+                .setExtractorFactory(new DefaultHlsExtractorFactory(payloadReaderFlags, true));
+    }
+
+    public ProgressiveMediaSource.Factory getYoutubeProgressiveMediaSourceFactory() {
+        cacheDataSourceFactoryBuilder.setUpstreamDataSourceFactory(
+                getYoutubeHttpDataSourceFactory(false, true));
+        return new ProgressiveMediaSource.Factory(cacheDataSourceFactoryBuilder.build())
+                .setContinueLoadingCheckIntervalBytes(continueLoadingCheckIntervalBytes);
+    }
+
+    @NonNull
+    private YoutubeHttpDataSource.Factory getYoutubeHttpDataSourceFactory(
             final boolean rangeParameterEnabled,
             final boolean rnParameterEnabled) {
         return new YoutubeHttpDataSource.Factory()
@@ -205,20 +226,87 @@ public class PlayerDataSource {
                 .setRnParameterEnabled(rnParameterEnabled);
     }
 
-    private static void instantiateCacheIfNeeded(final Context context) {
-        if (cache == null) {
-            final File cacheDir = new File(context.getExternalCacheDir(), CACHE_FOLDER_NAME);
-            if (DEBUG) {
-                Log.d(TAG, "instantiateCacheIfNeeded: cacheDir = " + cacheDir.getAbsolutePath());
+    // NicoNicoMediaSourceFactories
+    public String getNicoLiveUrl(String url) throws ParsingException, IOException, ReCaptchaException, JsonParserException {
+        DownloaderImpl downloader = DownloaderImpl.getInstance();
+        Document liveResponse = Jsoup.parse(downloader.get(url).responseBody());
+        String result = JsonParser.object().from(liveResponse
+                        .select("script#embedded-data").attr("data-props"))
+                .getObject("site").getObject("relive").getString("webSocketUrl");
+        disconnectWebSocketClients();
+        nicoWebSocketClient = new NicoWebSocketClient(URI.create(result), NiconicoService.getWebSocketHeaders());
+        NicoWebSocketClient.WrappedWebSocketClient webSocketClient = nicoWebSocketClient.getWebSocketClient();
+        webSocketClient.connect();
+        long startTime = System.nanoTime();
+        do {
+            String liveUrl = nicoWebSocketClient.getUrl();
+            if (liveUrl != null) {
+                return liveUrl;
             }
-            if (!cacheDir.exists() && !cacheDir.mkdir()) {
-                Log.w(TAG, "instantiateCacheIfNeeded: could not create cache dir");
-            }
+        } while (TimeUnit.NANOSECONDS.toSeconds(System.nanoTime() - startTime) <= 10);
+        webSocketClient.close();
+        throw new RuntimeException("Failed to get live url"); // TODO: throw other kind of Exception
+    }
 
-            final LeastRecentlyUsedCacheEvictor evictor =
-                    new LeastRecentlyUsedCacheEvictor(PlayerHelper.getPreferredCacheSize());
-            cache = new SimpleCache(cacheDir, evictor, new StandaloneDatabaseProvider(context));
+    public MediaSource.Factory getNicoMediaSourceFactory(String cookie) {
+        cacheDataSourceFactoryBuilder.setUpstreamDataSourceFactory(new PurifiedDataSource.Factory(context,
+                new PurifiedHttpDataSource.Factory()
+                        .setDefaultRequestProperties(Map.of("Cookie", cookie)))
+                .setTransferListener(transferListener));
+
+        return new HlsMediaSource.Factory(cacheDataSourceFactoryBuilder.build());
+    }
+
+    public HlsMediaSource.Factory getNicoLiveHlsMediaSourceFactory(String liveUrl) {
+        DataSource.Factory newFactory = new ResolvingDataSource.Factory(new NiconicoLiveDataSource
+                .Factory(context, new NiconicoLiveHttpDataSource.Factory(liveUrl)
+                .setDefaultRequestProperties(Map.of("Referer", "https://live.nicovideo.jp",
+                        "Origin", "https://live.nicovideo.jp",
+                        "User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36"
+                ))
+                .setTransferListener(transferListener)), dataSpec -> {
+            try {
+                if(dataSpec.uri.toString().contains("live.nicovideo.jp/watch")){
+                    return dataSpec.withUri(Uri.parse(getNicoLiveUrl(String.valueOf(dataSpec.uri))));
+                }
+                return dataSpec;
+            } catch (ParsingException | ReCaptchaException | JsonParserException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        return new HlsMediaSource.Factory(newFactory)
+                .setAllowChunklessPreparation(true)
+                .setPlaylistTrackerFactory((dataSourceFactory, loadErrorHandlingPolicy,
+                                            playlistParserFactory) ->
+                        new DefaultHlsPlaylistTracker(dataSourceFactory, loadErrorHandlingPolicy,
+                                playlistParserFactory,
+                                PLAYLIST_STUCK_TARGET_DURATION_COEFFICIENT)).setLoadErrorHandlingPolicy(new DefaultLoadErrorHandlingPolicy());
+    }
+
+    // BiliBiliMediaSourceFactories
+    public MediaSource.Factory getBiliMediaSourceFactory(String url){
+        DataSource.Factory factory;
+        if(url.contains("live.bilibili.com")){
+            factory = biliCachelessDataSourceFactory;
+        } else {
+            cacheDataSourceFactoryBuilder.setUpstreamDataSourceFactory(biliCachelessDataSourceFactory);
+            factory = cacheDataSourceFactoryBuilder.build();
+        }
+        return new ProgressiveMediaSource.Factory(factory)
+                .setContinueLoadingCheckIntervalBytes(continueLoadingCheckIntervalBytes);
+    }
+
+    public DashMediaSource.Factory getBiliDashMediaSourceFactory(){
+        cacheDataSourceFactoryBuilder.setUpstreamDataSourceFactory(biliCachelessDataSourceFactory);
+        return new DashMediaSource.Factory(
+                getDefaultDashChunkSourceFactory(cacheDataSourceFactoryBuilder.build()),
+                cacheDataSourceFactoryBuilder.build());
+    }
+
+    public void disconnectWebSocketClients() {
+        try {
+            nicoWebSocketClient.disconnect();
+        } catch (Exception ignore) {
         }
     }
-    //endregion
 }

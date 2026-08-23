@@ -18,4 +18,5 @@
     <attr name="card_item_background_color" format="color" />
     <attr name="card_item_contrast_color" format="color" />
     <attr name="border_color" format="color" />
+    <attr name="tag_text_color" format="color" />
 </resources>

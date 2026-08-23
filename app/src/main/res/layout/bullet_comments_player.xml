@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Space
+        android:id="@+id/topLeft"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+
+    <Space
+        android:id="@+id/bottomRight"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bulletCommentsContainer"
+        app:layout_constraintBottom_toBottomOf="@id/bottomRight"
+        app:layout_constraintEnd_toEndOf="@id/bottomRight"
+        app:layout_constraintStart_toStartOf="@id/topLeft"
+        app:layout_constraintTop_toTopOf="@id/topLeft"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:foregroundGravity="center_horizontal"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

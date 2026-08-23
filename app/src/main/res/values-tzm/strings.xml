@@ -9,7 +9,6 @@
     <string name="download">Agem</string>
     <string name="share">Bḍu</string>
     <string name="cancel">Ser</string>
-    <string name="show_comments_title">Smal iɣfawalen</string>
     <string name="black_theme_title">Aberkan</string>
     <string name="dark_theme_title">Adeɣmum</string>
     <string name="light_theme_title">Anafaw</string>
@@ -39,7 +38,7 @@
         <item quantity="one">%d wass</item>
         <item quantity="other">%d wussan</item>
     </plurals>
-    <string name="remove_watched_popup_title">Kkes ividyuten ittwannayen?</string>
+    <string name="remove_watched_popup_title">Kkes ividyuten ittwannayen\?</string>
     <string name="more_than_100_videos">100+ ividyuten</string>
     <string name="no_videos">walu ividyuten</string>
     <string name="video_detail_by">Sɣur %s</string>
@@ -91,17 +90,13 @@
     <string name="play_all">Γer maṛṛa</string>
     <string name="file_deleted">Ittwakkes ufaylu</string>
     <string name="content">Akettur</string>
-    <string name="settings_category_video_audio_title">Avidyu d imesli</string>
     <string name="settings_category_clear_data_title">Sfeḍ isefka</string>
-    <string name="show_higher_resolutions_summary">Zmern ad ɣren kra n wallalen ividyuten 2K/4K</string>
     <string name="feed_create_new_group_button_title">Amaynu</string>
     <string name="stop">Sbedd</string>
     <string name="grid">Aẓeṭṭa</string>
     <string name="list">Talgamet</string>
     <string name="minimize_on_exit_none_description">Walu</string>
     <string name="updates_setting_title">Tisdɣiwin</string>
-    <string name="decline">Agey</string>
-    <string name="accept">Deggi</string>
     <string name="mute">Ẓẓiẓen</string>
     <string name="name">Isem</string>
     <string name="local">Adɣran</string>
@@ -113,11 +108,13 @@
     <string name="delete">Kkes</string>
     <string name="create">Senulfu</string>
     <string name="start">Senti</string>
+    <string name="short_thousand">ifḍ</string>
     <string name="retry">Als-arem</string>
     <string name="audio">Imesli</string>
     <string name="video">Avidyu</string>
     <string name="what_device_headline">Umelan:</string>
     <string name="general_error">Tazgelt</string>
+    <string name="help">Tiwisi</string>
     <string name="file">Afaylu</string>
     <string name="always">Ku dwal</string>
     <string name="clear">Sfeḍ</string>
@@ -136,11 +133,7 @@
     <string name="download_dialog_title">Agem</string>
     <string name="subscribe_button_title">Lteɣ</string>
     <string name="main_bg_subtitle">Add \"Rzu\" i usenti</string>
-    <string name="show_play_with_kodi_title">Ssemal tadɣert \"Γer s Kodi\"</string>
     <string name="download_path_dialog_title">Dɣer asedaw n wagam n ifuyla n ividyuten</string>
-    <string name="use_external_audio_player_title">Ssemres ameɣri n imsli abeṛṛani</string>
-    <string name="use_external_video_player_summary">La-ittekkes imsli d kra n tɣariwin</string>
-    <string name="use_external_video_player_title">Asenṭeḍ ameɣri n uvidyu abeṛṛani</string>
     <string name="did_you_mean">Txsed ad tarad \"%1$s\"\?</string>
     <string name="night_theme_title">Asgum n yiḍ</string>
     <string name="open_with">Ṛẓem s</string>
@@ -171,7 +164,6 @@
     <string name="unknown_content">[Arussin]</string>
     <string name="description_tab_description">Aglam</string>
     <string name="playlist_add_stream_success">Rnu ɣer telgamt n tɣuri</string>
-    <string name="tab_licenses">Turagin</string>
     <string name="dismiss">Ttu</string>
     <string name="undo">Ser</string>
     <string name="albums">Ilbumen</string>

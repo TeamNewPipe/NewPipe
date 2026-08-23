@@ -15,13 +15,14 @@ import us.shandian.giga.get.DownloadMission.HttpError;
 import us.shandian.giga.util.Utility;
 
 import static org.schabi.newpipe.BuildConfig.DEBUG;
+import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_AUTH;
 import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_FORBIDDEN;
 
 /**
  * Single-threaded fallback mode
  */
 public class DownloadRunnableFallback extends Thread {
-    private static final String TAG = "DLRunnableFallback";
+    private static final String TAG = "DownloadRunnableFallback";
 
     private final DownloadMission mMission;
 
@@ -85,7 +86,6 @@ public class DownloadRunnableFallback extends Thread {
             if (mMission.unknownLength || mConn.getResponseCode() == 200) {
                 // restart amount of bytes downloaded
                 mMission.done = mMission.offsets[mMission.current] - mMission.offsets[0];
-                start = 0; // reset position to avoid writing at wrong offset
             }
 
             mF = mMission.storage.getStream();
@@ -113,7 +113,8 @@ public class DownloadRunnableFallback extends Thread {
 
             if (!mMission.running || e instanceof ClosedByInterruptException) return;
 
-            if (e instanceof HttpError && ((HttpError) e).statusCode == ERROR_HTTP_FORBIDDEN) {
+            if (e instanceof HttpError && (((HttpError) e).statusCode == ERROR_HTTP_FORBIDDEN
+                    || ((HttpError) e).statusCode == ERROR_HTTP_AUTH)) {
                 // for youtube streams. The url has expired, recover
                 dispose();
                 mMission.doRecover(ERROR_HTTP_FORBIDDEN);

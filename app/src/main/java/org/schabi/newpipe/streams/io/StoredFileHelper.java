@@ -1,5 +1,6 @@
 package org.schabi.newpipe.streams.io;
 
+import android.annotation.TargetApi;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -23,9 +24,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URI;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import us.shandian.giga.io.FileStream;
 import us.shandian.giga.io.FileStreamSAF;
@@ -38,22 +36,21 @@ public class StoredFileHelper implements Serializable {
     public static final String DEFAULT_MIME = "application/octet-stream";
 
     private transient DocumentFile docFile;
-    private transient DocumentFile docTree;
-    private transient Path ioPath;
-    private transient Context context;
+    public transient DocumentFile docTree;
+    public transient File ioFile;
+    public transient Context context;
 
-    protected String source;
-    private String sourceTree;
+    public String source;
+    public String sourceTree;
 
     protected String tag;
 
-    private String srcName;
+    public String srcName;
     private String srcType;
 
     public StoredFileHelper(final Context context, final Uri uri, final String mime) {
         if (FilePickerActivityHelper.isOwnFileUri(context, uri)) {
-            final File ioFile = Utils.getFileForUri(uri);
-            ioPath = ioFile.toPath();
+            ioFile = Utils.getFileForUri(uri);
             source = Uri.fromFile(ioFile).toString();
         } else {
             docFile = DocumentFile.fromSingleUri(context, uri);
@@ -77,6 +74,7 @@ public class StoredFileHelper implements Serializable {
         this.tag = tag;
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     StoredFileHelper(@Nullable final Context context, final DocumentFile tree,
                      final String filename, final String mime, final boolean safe)
             throws IOException {
@@ -104,20 +102,29 @@ public class StoredFileHelper implements Serializable {
         this.srcType = this.docFile.getType();
     }
 
-    StoredFileHelper(final Path location, final String filename, final String mime)
+    StoredFileHelper(final File location, final String filename, final String mime)
             throws IOException {
-        ioPath = location.resolve(filename);
+        this.ioFile = new File(location, filename);
 
-        Files.deleteIfExists(ioPath);
-        Files.createFile(ioPath);
+        if (this.ioFile.exists()) {
+            if (!this.ioFile.isFile() && !this.ioFile.delete()) {
+                throw new IOException("The filename is already in use by non-file entity "
+                        + "and cannot overwrite it");
+            }
+        } else {
+            if (!this.ioFile.createNewFile()) {
+                throw new IOException("Cannot create the file");
+            }
+        }
 
-        source = Uri.fromFile(ioPath.toFile()).toString();
-        sourceTree = Uri.fromFile(location.toFile()).toString();
+        this.source = Uri.fromFile(this.ioFile).toString();
+        this.sourceTree = Uri.fromFile(location).toString();
 
-        srcName = ioPath.getFileName().toString();
-        srcType = mime;
+        this.srcName = ioFile.getName();
+        this.srcType = mime;
     }
 
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     public StoredFileHelper(final Context context, @Nullable final Uri parent,
                             @NonNull final Uri path, final String tag) throws IOException {
         this.tag = tag;
@@ -125,12 +132,12 @@ public class StoredFileHelper implements Serializable {
 
         if (path.getScheme() == null
                 || path.getScheme().equalsIgnoreCase(ContentResolver.SCHEME_FILE)) {
-            this.ioPath = Paths.get(URI.create(this.source));
+            this.ioFile = new File(URI.create(this.source));
         } else {
             final DocumentFile file = DocumentFile.fromSingleUri(context, path);
 
             if (file == null) {
-                throw new IOException("SAF not available");
+                throw new RuntimeException("SAF not available");
             }
 
             this.context = context;
@@ -183,23 +190,10 @@ public class StoredFileHelper implements Serializable {
         assertValid();
 
         if (docFile == null) {
-            return new FileStream(ioPath.toFile());
+            return new FileStream(ioFile);
         } else {
             return new FileStreamSAF(context.getContentResolver(), docFile.getUri());
         }
-    }
-
-    public SharpStream openAndTruncateStream() throws IOException {
-        final SharpStream sharpStream = getStream();
-        try {
-            sharpStream.setLength(0);
-        } catch (final Throwable e) {
-            // we can't use try-with-resources here, since we only want to close the stream if an
-            // exception occurs, but leave it open if everything goes well
-            sharpStream.close();
-            throw e;
-        }
-        return sharpStream;
     }
 
     /**
@@ -220,7 +214,7 @@ public class StoredFileHelper implements Serializable {
     public Uri getUri() {
         assertValid();
 
-        return docFile == null ? Uri.fromFile(ioPath.toFile()) : docFile.getUri();
+        return docFile == null ? Uri.fromFile(ioFile) : docFile.getUri();
     }
 
     public Uri getParentUri() {
@@ -242,12 +236,7 @@ public class StoredFileHelper implements Serializable {
             return true;
         }
         if (docFile == null) {
-            try {
-                return Files.deleteIfExists(ioPath);
-            } catch (final IOException e) {
-                Log.e(TAG, "Exception while deleting " + ioPath, e);
-                return false;
-            }
+            return ioFile.delete();
         }
 
         final boolean res = docFile.delete();
@@ -266,30 +255,21 @@ public class StoredFileHelper implements Serializable {
     public long length() {
         assertValid();
 
-        if (docFile == null) {
-            try {
-                return Files.size(ioPath);
-            } catch (final IOException e) {
-                Log.e(TAG, "Exception while getting the size of " + ioPath, e);
-                return 0;
-            }
-        } else {
-            return docFile.length();
-        }
+        return docFile == null ? ioFile.length() : docFile.length();
     }
 
     public boolean canWrite() {
         if (source == null) {
             return false;
         }
-        return docFile == null ? Files.isWritable(ioPath) : docFile.canWrite();
+        return docFile == null ? ioFile.canWrite() : docFile.canWrite();
     }
 
     public String getName() {
         if (source == null) {
             return srcName;
         } else if (docFile == null) {
-            return ioPath.getFileName().toString();
+            return ioFile.getName();
         }
 
         final String name = docFile.getName();
@@ -310,11 +290,12 @@ public class StoredFileHelper implements Serializable {
     }
 
     public boolean existsAsFile() {
-        if (source == null || (docFile == null && ioPath == null)) {
+        if (source == null || (docFile == null && ioFile == null)) {
             if (DEBUG) {
                 Log.d(TAG, "existsAsFile called but something is null: source = ["
                         + (source == null ? "null => storage is invalid" : source)
-                        + "], docFile = [" + docFile + "], ioPath = [" + ioPath + "]");
+                        + "], docFile = [" + (docFile == null ? "null" : docFile)
+                        + "], ioFile = [" + (ioFile == null ? "null" : ioFile) + "]");
             }
             return false;
         }
@@ -322,7 +303,7 @@ public class StoredFileHelper implements Serializable {
         // WARNING: DocumentFile.exists() and DocumentFile.isFile() methods are slow
         // docFile.isVirtual() means it is non-physical?
         return docFile == null
-                ? Files.isRegularFile(ioPath)
+                ? (ioFile.exists() && ioFile.isFile())
                 : (docFile.exists() && docFile.isFile());
     }
 
@@ -332,10 +313,8 @@ public class StoredFileHelper implements Serializable {
 
         if (docFile == null) {
             try {
-                Files.createFile(ioPath);
-                result = true;
+                result = ioFile.createNewFile();
             } catch (final IOException e) {
-                Log.e(TAG, "Exception while creating " + ioPath, e);
                 return false;
             }
         } else if (docTree == null) {
@@ -356,8 +335,7 @@ public class StoredFileHelper implements Serializable {
         }
 
         if (result) {
-            source = (docFile == null ? Uri.fromFile(ioPath.toFile()) : docFile.getUri())
-                    .toString();
+            source = (docFile == null ? Uri.fromFile(ioFile) : docFile.getUri()).toString();
             srcName = getName();
             srcType = getType();
         }
@@ -377,7 +355,7 @@ public class StoredFileHelper implements Serializable {
 
         docTree = null;
         docFile = null;
-        ioPath = null;
+        ioFile = null;
         context = null;
     }
 
@@ -408,7 +386,7 @@ public class StoredFileHelper implements Serializable {
         }
 
         if (this.isDirect()) {
-            return this.ioPath.equals(storage.ioPath);
+            return this.ioFile.getPath().equalsIgnoreCase(storage.ioFile.getPath());
         }
 
         return DocumentsContract.getDocumentId(this.docFile.getUri())
@@ -448,6 +426,9 @@ public class StoredFileHelper implements Serializable {
     private DocumentFile createSAF(@Nullable final Context ctx, final String mime,
                                    final String filename) throws IOException {
         DocumentFile res = StoredDirectoryHelper.findFileSAFHelper(ctx, docTree, filename);
+        if(res != null && !res.getName().equals(filename)){
+            res = null;
+        }
 
         if (res != null && res.exists() && res.isDirectory()) {
             if (!res.delete()) {
@@ -587,4 +568,5 @@ public class StoredFileHelper implements Serializable {
                     .putExtra(FilePickerActivityHelper.EXTRA_START_PATH, file.getAbsolutePath());
         }
     }
+
 }

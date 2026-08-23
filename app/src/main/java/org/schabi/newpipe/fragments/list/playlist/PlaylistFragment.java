@@ -1,10 +1,11 @@
 package org.schabi.newpipe.fragments.list.playlist;
 
+import static org.schabi.newpipe.extractor.ListExtractor.ITEM_COUNT_INFINITE;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
-import static org.schabi.newpipe.util.ServiceHelper.getServiceById;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,7 +18,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.shape.CornerFamily;
 import com.google.android.material.shape.ShapeAppearanceModel;
@@ -38,22 +41,20 @@ import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper;
-import org.schabi.newpipe.extractor.stream.Description;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.dialog.InfoItemDialog;
-import org.schabi.newpipe.info_list.dialog.StreamDialogDefaultEntry;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
+import org.schabi.newpipe.player.PlayerService.PlayerType;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.PlayButtonHelper;
+import org.schabi.newpipe.util.PicassoHelper;
+import org.schabi.newpipe.info_list.dialog.StreamDialogDefaultEntry;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
-import org.schabi.newpipe.util.image.CoilHelper;
-import org.schabi.newpipe.util.text.TextEllipsizer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,15 +62,15 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import coil3.util.CoilUtils;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, PlaylistInfo>
-        implements PlaylistControlViewHolder {
+public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, PlaylistInfo> {
+
+    private static final String PICASSO_PLAYLIST_TAG = "PICASSO_PLAYLIST_TAG";
 
     private CompositeDisposable disposables;
     private Subscription bookmarkReactor;
@@ -86,6 +87,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
     private PlaylistControlBinding playlistControlBinding;
 
     private MenuItem playlistBookmarkButton;
+    private boolean isInfinitePlayList;
 
     private long streamCount;
     private long playlistOverallDurationSeconds;
@@ -137,9 +139,6 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
     @Override
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
-
-        // Is mini variant still relevant?
-        // Only the remote playlist screen uses it now
         infoListAdapter.setUseMiniVariant(true);
     }
 
@@ -225,33 +224,40 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
 
     @Override
     protected Single<PlaylistInfo> loadResult(final boolean forceLoad) {
-        return ExtractorHelper.getPlaylistInfo(serviceId, url, forceLoad);
+        return ExtractorHelper.getPlaylistInfoWithFullItems(serviceId, url, forceLoad);
     }
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
-        final int itemId = item.getItemId();
-        if (itemId == R.id.action_settings) {
+        if (item.getItemId() == R.id.action_settings) {
             NavigationHelper.openSettings(requireContext());
-        } else if (itemId == R.id.menu_item_openInBrowser) {
+        } else if (item.getItemId() == R.id.menu_item_openInBrowser) {
             ShareUtils.openUrlInBrowser(requireContext(), url);
-        } else if (itemId == R.id.menu_item_share) {
-            ShareUtils.shareText(requireContext(), name, url,
-                    currentInfo == null ? List.of() : currentInfo.getThumbnails());
-        } else if (itemId == R.id.menu_item_bookmark) {
-            onBookmarkClicked();
-        } else if (itemId == R.id.menu_item_append_playlist) {
+        } else if (item.getItemId() == R.id.menu_item_share) {
             if (currentInfo != null) {
-                disposables.add(PlaylistDialog.createCorrespondingDialog(
-                        getContext(),
-                        getPlayQueue()
-                                .getStreams()
-                                .stream()
-                                .map(StreamEntity::new)
-                                .collect(Collectors.toList()),
-                        dialog -> dialog.show(getFM(), TAG)
-                ));
+                ShareUtils.shareText(requireContext(), name, url,
+                        currentInfo.getThumbnailUrl());
             }
+        } else if (item.getItemId() == R.id.menu_item_bookmark) {
+            onBookmarkClicked();
+        } else if (item.getItemId() == R.id.menu_item_append_playlist) {
+            if(isInfinitePlayList) {
+                new AlertDialog.Builder(requireContext())
+                        .setTitle(R.string.add_failed)
+                        .setMessage(R.string.append_playlist_not_supported)
+                        .setPositiveButton(R.string.ok, null)
+                        .show();
+                return true;
+            }
+            disposables.add(PlaylistDialog.createCorrespondingDialog(
+                    getContext(),
+                    getPlayQueue()
+                            .getStreams()
+                            .stream()
+                            .map(StreamEntity::new)
+                            .collect(Collectors.toList()),
+                    dialog -> dialog.show(getFM(), TAG)
+            ));
         } else {
             return super.onOptionsItemSelected(item);
         }
@@ -266,10 +272,13 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
     @Override
     public void showLoading() {
         super.showLoading();
+        if (headerBinding == null) {
+            return;
+        }
         animate(headerBinding.getRoot(), false, 200);
         animateHideRecyclerViewAllowingScrolling(itemsList);
 
-        CoilUtils.dispose(headerBinding.uploaderAvatarView);
+        PicassoHelper.cancelTag(PICASSO_PLAYLIST_TAG);
         animate(headerBinding.uploaderLayout, false, 200);
     }
 
@@ -283,6 +292,9 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
     public void handleResult(@NonNull final PlaylistInfo result) {
         super.handleResult(result);
 
+        if (headerBinding == null) {
+            return;
+        }
         animate(headerBinding.getRoot(), true, 100);
         animate(headerBinding.uploaderLayout, true, 300);
         headerBinding.uploaderLayout.setOnClickListener(null);
@@ -305,6 +317,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
 
         playlistControlBinding.getRoot().setVisibility(View.VISIBLE);
 
+        final String avatarUrl = result.getUploaderAvatarUrl();
         if (result.getServiceId() == ServiceList.YouTube.getServiceId()
                 && (YoutubeParsingHelper.isYoutubeMixId(result.getId())
                 || YoutubeParsingHelper.isYoutubeMusicMixId(result.getId()))) {
@@ -313,43 +326,23 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
                     .setAllCorners(CornerFamily.ROUNDED, 0f)
                     .build(); // this turns the image back into a square
             headerBinding.uploaderAvatarView.setShapeAppearanceModel(model);
-            headerBinding.uploaderAvatarView.setStrokeColor(AppCompatResources
-                    .getColorStateList(requireContext(), R.color.transparent_background_color));
+            headerBinding.uploaderAvatarView.setStrokeColor(
+                    ColorStateList.valueOf(ContextCompat.getColor(
+                            requireContext(), R.color.transparent_background_color))
+            );
             headerBinding.uploaderAvatarView.setImageDrawable(
                     AppCompatResources.getDrawable(requireContext(),
                     R.drawable.ic_radio)
             );
         } else {
-            CoilHelper.INSTANCE.loadAvatar(headerBinding.uploaderAvatarView,
-                    result.getUploaderAvatars());
+            PicassoHelper.loadAvatar(avatarUrl).tag(PICASSO_PLAYLIST_TAG)
+                    .into(headerBinding.uploaderAvatarView);
         }
 
         streamCount = result.getStreamCount();
         setStreamCountAndOverallDuration(result.getRelatedItems(), !result.hasNextPage());
 
-        final Description description = result.getDescription() != null ? result.getDescription()
-                : Description.EMPTY_DESCRIPTION;
-        if (!Description.EMPTY_DESCRIPTION.equals(description)) {
-            final TextEllipsizer ellipsizer = new TextEllipsizer(
-                    headerBinding.playlistDescription, 5, getServiceById(result.getServiceId()));
-            ellipsizer.setStateChangeListener(isEllipsized ->
-                headerBinding.playlistDescriptionReadMore.setText(
-                        Boolean.TRUE.equals(isEllipsized) ? R.string.show_more : R.string.show_less
-                ));
-            ellipsizer.setOnContentChanged(canBeEllipsized -> {
-                headerBinding.playlistDescriptionReadMore.setVisibility(
-                        Boolean.TRUE.equals(canBeEllipsized) ? View.VISIBLE : View.GONE);
-                if (Boolean.TRUE.equals(canBeEllipsized)) {
-                    ellipsizer.ellipsize();
-                }
-            });
-            ellipsizer.setContent(description);
-            headerBinding.playlistDescriptionReadMore.setOnClickListener(v -> ellipsizer.toggle());
-            headerBinding.playlistDescription.setOnClickListener(v -> ellipsizer.toggle());
-        } else {
-            headerBinding.playlistDescription.setVisibility(View.GONE);
-            headerBinding.playlistDescriptionReadMore.setVisibility(View.GONE);
-        }
+        isInfinitePlayList = result.getStreamCount() == ITEM_COUNT_INFINITE;
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(new ErrorInfo(result.getErrors(), UserAction.REQUESTED_PLAYLIST,
@@ -362,10 +355,26 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getPlaylistBookmarkSubscriber());
 
-        PlayButtonHelper.initPlaylistControlClickListener(activity, playlistControlBinding, this);
+        playlistControlBinding.playlistCtrlPlayAllButton.setOnClickListener(view ->
+                NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
+        playlistControlBinding.playlistCtrlPlayPopupButton.setOnClickListener(view ->
+                NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false));
+        playlistControlBinding.playlistCtrlPlayBgButton.setOnClickListener(view ->
+                NavigationHelper.
+                        playOnBackgroundPlayer(activity, getPlayQueue(), false));
+
+        playlistControlBinding.playlistCtrlPlayPopupButton.setOnLongClickListener(view -> {
+            NavigationHelper.enqueueOnPlayer(activity, getPlayQueue(), PlayerType.POPUP);
+            return true;
+        });
+
+        playlistControlBinding.playlistCtrlPlayBgButton.setOnLongClickListener(view -> {
+            NavigationHelper.enqueueOnPlayer(activity, getPlayQueue(), PlayerType.AUDIO);
+            return true;
+        });
     }
 
-    public PlayQueue getPlayQueue() {
+    private PlayQueue getPlayQueue() {
         return getPlayQueue(0);
     }
 

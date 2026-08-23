@@ -9,9 +9,10 @@ import com.grack.nanojson.JsonParserException;
 import com.grack.nanojson.JsonStringWriter;
 import com.grack.nanojson.JsonWriter;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * Class to get a JSON representation of a list of tabs, and the other way around.
@@ -19,11 +20,12 @@ import java.util.stream.Collectors;
 public final class TabsJsonHelper {
     private static final String JSON_TABS_ARRAY_KEY = "tabs";
 
-    private static final List<Tab> FALLBACK_INITIAL_TABS_LIST = List.of(
-            Tab.Type.DEFAULT_KIOSK.getTab(),
-            Tab.Type.FEED.getTab(),
-            Tab.Type.SUBSCRIPTIONS.getTab(),
-            Tab.Type.BOOKMARKS.getTab());
+    private static final List<Tab> FALLBACK_INITIAL_TABS_LIST = Collections.unmodifiableList(
+            Arrays.asList(
+                    Tab.Type.YOUTUBE_WEB.getTab(),
+                    Tab.Type.FEED.getTab(),
+                    Tab.Type.SUBSCRIPTIONS.getTab(),
+                    Tab.Type.BOOKMARKS.getTab()));
 
     private TabsJsonHelper() { }
 
@@ -45,25 +47,39 @@ public final class TabsJsonHelper {
             return getDefaultTabs();
         }
 
+        final List<Tab> returnTabs = new ArrayList<>();
+
+        final JsonObject outerJsonObject;
         try {
-            final JsonObject outerJsonObject = JsonParser.object().from(tabsJson);
+            outerJsonObject = JsonParser.object().from(tabsJson);
 
             if (!outerJsonObject.has(JSON_TABS_ARRAY_KEY)) {
                 throw new InvalidJsonException("JSON doesn't contain \"" + JSON_TABS_ARRAY_KEY
                         + "\" array");
             }
 
-            final JsonArray tabsArray = outerJsonObject.getArray(JSON_TABS_ARRAY_KEY, null);
+            final JsonArray tabsArray = outerJsonObject.getArray(JSON_TABS_ARRAY_KEY);
 
-            final var returnTabs = tabsArray.streamAsJsonObjects()
-                    .map(Tab::from)
-                    .filter(Objects::nonNull)
-                    .collect(Collectors.toUnmodifiableList());
+            for (final Object o : tabsArray) {
+                if (!(o instanceof JsonObject)) {
+                    continue;
+                }
 
-            return returnTabs.isEmpty() ? getDefaultTabs() : returnTabs;
+                final Tab tab = Tab.from((JsonObject) o);
+
+                if (tab != null) {
+                    returnTabs.add(tab);
+                }
+            }
         } catch (final JsonParserException e) {
             throw new InvalidJsonException(e);
         }
+
+        if (returnTabs.isEmpty()) {
+            return getDefaultTabs();
+        }
+
+        return returnTabs;
     }
 
     /**

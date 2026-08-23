@@ -19,6 +19,7 @@
 
 package org.schabi.newpipe.local.feed.service
 
+import android.app.PendingIntent
 import android.app.Service
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -29,20 +30,20 @@ import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.app.PendingIntentCompat
 import androidx.core.app.ServiceCompat
-import androidx.core.content.ContextCompat
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.functions.Function
-import java.util.concurrent.TimeUnit
 import org.schabi.newpipe.App
 import org.schabi.newpipe.MainActivity.DEBUG
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
+import org.schabi.newpipe.extractor.ListInfo
+import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.ErrorResultEvent
 import org.schabi.newpipe.local.feed.service.FeedEventManager.postEvent
+import java.util.concurrent.TimeUnit
 
 class FeedLoadService : Service() {
     companion object {
@@ -94,15 +95,12 @@ class FeedLoadService : Service() {
             .doOnSubscribe {
                 startForeground(NOTIFICATION_ID, notificationBuilder.build())
             }
-            .subscribe { _, error: Throwable? ->
-                // explicitly mark error as nullable
-                if (error != null) {
-                    Log.e(TAG, "Error while storing result", error)
-                    handleError(error)
-                    return@subscribe
-                }
+            .subscribe({
                 stopService()
-            }
+            }, { error ->
+                Log.e(TAG, "Error while storing result", error)
+                handleError(error)
+            })
         return START_NOT_STICKY
     }
 
@@ -126,7 +124,17 @@ class FeedLoadService : Service() {
     // Loading & Handling
     // /////////////////////////////////////////////////////////////////////////
 
-    class RequestException(val subscriptionId: Long, message: String, cause: Throwable) : Exception(message, cause)
+    class RequestException(val subscriptionId: Long, message: String, cause: Throwable) : Exception(message, cause) {
+        companion object {
+            fun wrapList(subscriptionId: Long, info: ListInfo<StreamInfoItem>): List<Throwable> {
+                val toReturn = ArrayList<Throwable>(info.errors.size)
+                info.errors.mapTo(toReturn) {
+                    RequestException(subscriptionId, info.serviceId.toString() + ":" + info.url, it)
+                }
+                return toReturn
+            }
+        }
+    }
 
     // /////////////////////////////////////////////////////////////////////////
     // Notification
@@ -136,13 +144,17 @@ class FeedLoadService : Service() {
     private lateinit var notificationBuilder: NotificationCompat.Builder
 
     private fun createNotification(): NotificationCompat.Builder {
-        val cancelActionIntent = PendingIntentCompat
-            .getBroadcast(this, NOTIFICATION_ID, Intent(ACTION_CANCEL), 0, false)
+        val cancelActionIntent = PendingIntent.getBroadcast(
+            this,
+            NOTIFICATION_ID,
+            Intent(ACTION_CANCEL),
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0
+        )
 
         return NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
             .setOngoing(true)
             .setProgress(-1, -1, true)
-            .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
+            .setSmallIcon(R.drawable.ic_pipeplay)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .addAction(0, getString(R.string.cancel), cancelActionIntent)
             .setContentTitle(getString(R.string.feed_notification_loading))
@@ -185,9 +197,7 @@ class FeedLoadService : Service() {
             }
         }
 
-        if (notificationManager.areNotificationsEnabled()) {
-            notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
-        }
+        notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
     }
 
     // /////////////////////////////////////////////////////////////////////////
@@ -204,7 +214,11 @@ class FeedLoadService : Service() {
                 }
             }
         }
-        ContextCompat.registerReceiver(this, broadcastReceiver, IntentFilter(ACTION_CANCEL), ContextCompat.RECEIVER_NOT_EXPORTED)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            registerReceiver(broadcastReceiver, IntentFilter(ACTION_CANCEL), Context.RECEIVER_EXPORTED)
+        } else {
+            registerReceiver(broadcastReceiver, IntentFilter(ACTION_CANCEL))
+        }
     }
 
     // /////////////////////////////////////////////////////////////////////////

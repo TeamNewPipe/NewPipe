@@ -9,10 +9,10 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.OnClickGesture
-import org.schabi.newpipe.util.image.CoilHelper
+import org.schabi.newpipe.util.PicassoHelper
 
 class ChannelItem(
-    private val infoItem: ChannelInfoItem,
+    val infoItem: ChannelInfoItem,
     private val subscriptionId: Long = -1L,
     var itemVersion: ItemVersion = ItemVersion.NORMAL,
     var gesturesListener: OnClickGesture<ChannelInfoItem>? = null
@@ -39,14 +39,11 @@ class ChannelItem(
             itemChannelDescriptionView.text = infoItem.description
         }
 
-        CoilHelper.loadAvatar(itemThumbnailView, infoItem.thumbnails)
+        PicassoHelper.loadScaledDownThumbnail(itemThumbnailView.context, infoItem.thumbnailUrl).into(itemThumbnailView)
 
         gesturesListener?.run {
             viewHolder.root.setOnClickListener { selected(infoItem) }
-            viewHolder.root.setOnLongClickListener {
-                held(infoItem)
-                true
-            }
+            viewHolder.root.setOnLongClickListener { held(infoItem); true }
         }
     }
 

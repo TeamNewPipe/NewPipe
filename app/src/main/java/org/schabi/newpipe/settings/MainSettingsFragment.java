@@ -23,17 +23,17 @@ public class MainSettingsFragment extends BasePreferenceFragment {
         setHasOptionsMenu(true); // Otherwise onCreateOptionsMenu is not called
 
         // Check if the app is updatable
-        if (!ReleaseVersionUtil.INSTANCE.isReleaseApk()) {
-            getPreferenceScreen().removePreference(
-                    requirePreference(R.string.update_pref_screen_key));
-
-            defaultPreferences.edit().putBoolean(getString(R.string.update_app_key), false).apply();
-        }
+//        if (!ReleaseVersionUtil.isReleaseApk()) {
+//            getPreferenceScreen().removePreference(
+//                    findPreference(getString(R.string.update_pref_screen_key)));
+//
+//            defaultPreferences.edit().putBoolean(getString(R.string.update_app_key), false).apply();
+//        }
 
         // Hide debug preferences in RELEASE build variant
         if (!DEBUG) {
             getPreferenceScreen().removePreference(
-                    requirePreference(R.string.debug_pref_screen_key));
+                    findPreference(getString(R.string.debug_pref_screen_key)));
         }
     }
 

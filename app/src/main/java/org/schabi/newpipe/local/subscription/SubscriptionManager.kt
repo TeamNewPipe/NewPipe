@@ -11,13 +11,13 @@ import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.subscription.NotificationMode
 import org.schabi.newpipe.database.subscription.SubscriptionDAO
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
+import org.schabi.newpipe.extractor.ListInfo
 import org.schabi.newpipe.extractor.channel.ChannelInfo
-import org.schabi.newpipe.extractor.channel.tabs.ChannelTabInfo
+import org.schabi.newpipe.extractor.feed.FeedInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.local.feed.service.FeedUpdateInfo
 import org.schabi.newpipe.util.ExtractorHelper
-import org.schabi.newpipe.util.image.ImageStrategy
 
 class SubscriptionManager(context: Context) {
     private val database = NewPipeDatabase.getInstance(context)
@@ -25,7 +25,7 @@ class SubscriptionManager(context: Context) {
     private val feedDatabaseManager = FeedDatabaseManager(context)
 
     fun subscriptionTable(): SubscriptionDAO = subscriptionTable
-    fun subscriptions() = subscriptionTable.getAll()
+    fun subscriptions() = subscriptionTable.all
 
     fun getSubscriptions(
         currentGroupId: Long = FeedGroupEntity.GROUP_ALL_ID,
@@ -36,45 +36,42 @@ class SubscriptionManager(context: Context) {
             filterQuery.isNotEmpty() -> {
                 return if (showOnlyUngrouped) {
                     subscriptionTable.getSubscriptionsOnlyUngroupedFiltered(
-                        currentGroupId,
-                        filterQuery
+                        currentGroupId, filterQuery
                     )
                 } else {
-                    subscriptionTable.getSubscriptionsFiltered(filterQuery)
+                    if (currentGroupId != FeedGroupEntity.GROUP_ALL_ID) {
+                        subscriptionTable.getSubscriptionsForCurrentGroupFiltered(currentGroupId, filterQuery)
+                    }
+                    else subscriptionTable.getSubscriptionsFiltered(filterQuery)
                 }
             }
-
             showOnlyUngrouped -> subscriptionTable.getSubscriptionsOnlyUngrouped(currentGroupId)
-
-            else -> subscriptionTable.getAll()
+            currentGroupId != FeedGroupEntity.GROUP_ALL_ID -> subscriptionTable.getSubscriptionsForCurrentGroup(currentGroupId)
+            else -> subscriptionTable.all
         }
     }
 
-    fun upsertAll(infoList: List<Pair<ChannelInfo, ChannelTabInfo?>>) {
-        val listEntities = infoList.map { SubscriptionEntity.from(it.first) }
-        subscriptionTable.upsertAll(listEntities)
+    fun upsertAll(infoList: List<ChannelInfo>): List<SubscriptionEntity> {
+        val listEntities = subscriptionTable.upsertAll(
+            infoList.map { SubscriptionEntity.from(it) }
+        )
 
         database.runInTransaction {
             infoList.forEachIndexed { index, info ->
-                // There may be no tabs on the channel to refresh the feed from
-                if (info.second == null) return@forEachIndexed
-
-                val streams = info.second!!.relatedItems.filterIsInstance<StreamInfoItem>()
-                feedDatabaseManager.upsertAll(listEntities[index].uid, streams)
+                feedDatabaseManager.upsertAll(listEntities[index].uid, info.relatedItems)
             }
         }
+
+        return listEntities
     }
 
     fun updateChannelInfo(info: ChannelInfo): Completable = subscriptionTable.getSubscription(info.serviceId, info.url)
         .flatMapCompletable {
             Completable.fromRunnable {
-                it.apply {
-                    name = info.name
-                    avatarUrl = ImageStrategy.imageListToDbUrl(info.avatars)
-                    description = info.description
-                    subscriberCount = info.subscriberCount
-                }
+                if (info.name == null) return@fromRunnable
+                it.setData(info.name, info.avatarUrl, info.description, info.subscriberCount)
                 subscriptionTable.update(it)
+                feedDatabaseManager.upsertAll(it.uid, info.relatedItems)
             }
         }
 
@@ -114,8 +111,11 @@ class SubscriptionManager(context: Context) {
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun insertSubscription(subscriptionEntity: SubscriptionEntity) {
-        subscriptionTable.insert(subscriptionEntity)
+    fun insertSubscription(subscriptionEntity: SubscriptionEntity, info: ChannelInfo) {
+        database.runInTransaction {
+            val subscriptionId = subscriptionTable.insert(subscriptionEntity)
+            feedDatabaseManager.upsertAll(subscriptionId, info.relatedItems)
+        }
     }
 
     fun deleteSubscription(subscriptionEntity: SubscriptionEntity) {
@@ -129,10 +129,7 @@ class SubscriptionManager(context: Context) {
      */
     private fun rememberAllStreams(subscription: SubscriptionEntity): Completable {
         return ExtractorHelper.getChannelInfo(subscription.serviceId, subscription.url, false)
-            .flatMap { info ->
-                ExtractorHelper.getChannelTab(subscription.serviceId, info.tabs.first(), false)
-            }
-            .map { channel -> channel.relatedItems.filterIsInstance<StreamInfoItem>().map { stream -> StreamEntity(stream) } }
+            .map { channel -> channel.relatedItems.map { stream -> StreamEntity(stream) } }
             .flatMapCompletable { entities ->
                 Completable.fromAction {
                     database.streamDAO().upsertAll(entities)

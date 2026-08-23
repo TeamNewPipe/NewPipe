@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:installLocation="auto">
+          android:installLocation="auto">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -9,40 +9,61 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
-
-    <!-- We need to be able to open links in the browser on API 30+ -->
-    <queries>
-        <intent>
-            <action android:name="android.intent.action.VIEW" />
-            <data android:scheme="http" />
-        </intent>
-    </queries>
+    <permission
+        android:name="${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        tools:node="remove" />
+    <uses-permission
+        android:name="${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        tools:node="remove" />
 
     <uses-feature
         android:name="android.hardware.touchscreen"
         android:required="false" />
-    <uses-feature
-        android:name="android.software.leanback"
-        android:required="false" />
+    <uses-feature android:name="android.software.leanback" android:required="false"/>
+
+    <uses-sdk tools:overrideLibrary="androidx.car.app" />
+
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="http" />
+        </intent>
+        <intent>
+            <action android:name="android.media.browse.MediaBrowserService" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+            <data android:scheme="mailto" />
+        </intent>
+    </queries>
 
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:banner="@mipmap/newpipe_tv_banner"
+        android:banner="@mipmap/tv_banner"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:logo="@mipmap/ic_launcher"
-        android:resizeableActivity="true"
         android:theme="@style/OpeningTheme"
+        android:resizeableActivity="true"
+        android:enableOnBackInvokedCallback="false"
         tools:ignore="AllowBackup">
         <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:launchMode="singleTask">
+                android:name=".MainActivity"
+                android:label="@string/app_name"
+                android:launchMode="singleTask" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -51,66 +72,77 @@
             </intent-filter>
         </activity>
 
-        <receiver
-            android:name="androidx.media.session.MediaButtonReceiver"
-            android:exported="true">
+        <receiver android:name="androidx.media.session.MediaButtonReceiver" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
         </receiver>
 
+
+        <receiver android:name=".sleep.TimerStopReceiver"/>
         <service
-            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
-            android:enabled="false"
-            android:exported="false">
-            <meta-data
-                android:name="autoStoreLocales"
-                android:value="true" />
-        </service>
+            android:name=".sleep.SleepTimerService"
+            android:foregroundServiceType="mediaPlayback" />
 
         <service
             android:name=".player.PlayerService"
-            android:exported="true"
+            android:exported="false"
             android:foregroundServiceType="mediaPlayback">
-            <intent-filter>
-                <action android:name="android.intent.action.MEDIA_BUTTON" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.media.browse.MediaBrowserService"/>
-            </intent-filter>
         </service>
-
-        <activity
-            android:name=".player.PlayQueueActivity"
-            android:exported="false"
-            android:label="@string/title_activity_play_queue"
-            android:launchMode="singleTask" />
-
-        <activity
-            android:name=".settings.SettingsActivity"
-            android:exported="false"
-            android:label="@string/settings" />
-
-        <activity
-            android:name=".about.AboutActivity"
-            android:exported="false"
-            android:label="@string/title_activity_about" />
-
-        <service
-            android:name=".local.feed.service.FeedLoadService"
-            android:foregroundServiceType="dataSync" />
 
         <service
             android:name="androidx.work.impl.foreground.SystemForegroundService"
             android:foregroundServiceType="dataSync"
             tools:node="merge" />
 
+        <service
+                android:name=".player.PlayerServiceForAuto"
+                android:exported="true"
+                android:foregroundServiceType="mediaPlayback">
+            <intent-filter>
+                <action android:name="android.media.browse.MediaBrowserService"/>
+            </intent-filter>
+        </service>
+
+        <receiver android:name=".util.MediaButtonReceiver"
+                  android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
+
         <activity
-            android:name=".PanicResponderActivity"
-            android:exported="true"
-            android:launchMode="singleInstance"
-            android:noHistory="true"
-            android:theme="@android:style/Theme.NoDisplay">
+            android:name=".player.PlayQueueActivity"
+            android:label="@string/title_activity_play_queue"
+            android:launchMode="singleTask" />
+
+        <activity
+            android:name=".settings.SettingsActivity"
+            android:label="@string/settings" />
+
+        <activity
+            android:name=".about.AboutActivity"
+            android:label="@string/title_activity_about_new" />
+
+        <service
+            android:name=".local.subscription.services.SubscriptionsImportService"
+            android:foregroundServiceType="dataSync" />
+        <service
+            android:name=".local.subscription.services.SubscriptionsExportService"
+            android:foregroundServiceType="dataSync" />
+        <service
+            android:name=".local.feed.service.FeedLoadService"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="user_initiated_subscription_feed_refresh" />
+        </service>
+
+        <activity
+                android:name=".PanicResponderActivity"
+                android:launchMode="singleInstance"
+                android:noHistory="true"
+                android:theme="@android:style/Theme.NoDisplay" android:exported="true">
             <intent-filter>
                 <action android:name="info.guardianproject.panic.action.TRIGGER" />
 
@@ -120,29 +152,28 @@
 
         <activity
             android:name=".ExitActivity"
-            android:exported="false"
             android:label="@string/general_error"
             android:theme="@android:style/Theme.NoDisplay" />
-
-        <activity
-            android:name=".error.ErrorActivity"
-            android:exported="false" />
+        <activity android:name=".error.ErrorActivity" />
 
         <!-- giga get related -->
         <activity
             android:name=".download.DownloadActivity"
-            android:exported="false"
             android:label="@string/app_name"
             android:launchMode="singleTask" />
 
-        <service android:name="us.shandian.giga.service.DownloadManagerService"
-            android:foregroundServiceType="dataSync" />
+        <service
+            android:name="us.shandian.giga.service.DownloadManagerService"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="long_running_download" />
+        </service>
 
         <activity
-            android:name=".util.FilePickerActivityHelper"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/FilePickerThemeDark">
+                android:name=".util.FilePickerActivityHelper"
+                android:label="@string/app_name"
+                android:theme="@style/FilePickerThemeDark" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -150,8 +181,11 @@
         </activity>
 
         <activity
+            android:name=".util.ImageViewerActivity"
+            android:theme="@style/BlackTheme" />
+
+        <activity
             android:name=".error.ReCaptchaActivity"
-            android:exported="false"
             android:label="@string/recaptcha" />
 
         <provider
@@ -165,12 +199,11 @@
         </provider>
 
         <activity
-            android:name=".RouterActivity"
-            android:excludeFromRecents="true"
-            android:exported="true"
-            android:label="@string/preferred_open_action_share_menu_title"
-            android:taskAffinity=""
-            android:theme="@style/RouterActivityThemeDark">
+                android:name=".RouterActivity"
+                android:excludeFromRecents="true"
+                android:label="@string/preferred_open_action_share_menu_title"
+                android:taskAffinity=""
+                android:theme="@style/RouterActivityThemeDark" android:exported="true">
 
             <!-- Youtube filter -->
             <intent-filter>
@@ -193,12 +226,10 @@
                 <data android:pathPrefix="/watch" />
                 <data android:pathPrefix="/attribution_link" />
                 <data android:pathPrefix="/shorts/" />
-                <data android:pathPrefix="/live/" />
                 <!-- channel prefix -->
                 <data android:pathPrefix="/channel/" />
                 <data android:pathPrefix="/user/" />
                 <data android:pathPrefix="/c/" />
-                <data android:pathPrefix="/@" />
                 <!-- playlist prefix -->
                 <data android:pathPrefix="/playlist" />
             </intent-filter>
@@ -240,6 +271,28 @@
                 <data android:scheme="vnd.youtube.launch" />
             </intent-filter>
 
+            <!-- Hooktube filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="hooktube.com" />
+                <data android:host="*.hooktube.com" />
+                <!-- video prefix -->
+                <data android:pathPrefix="/v/" />
+                <data android:pathPrefix="/embed/" />
+                <data android:pathPrefix="/watch" />
+                <!-- channel prefix -->
+                <data android:pathPrefix="/channel/" />
+                <data android:pathPrefix="/user/" />
+            </intent-filter>
+
             <!-- Invidious filter -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -251,15 +304,35 @@
 
                 <data android:scheme="http" />
                 <data android:scheme="https" />
+                <data android:host="tubus.eduvid.org" />
+                <data android:host="invidio.us" />
+                <data android:host="dev.invidio.us" />
+                <data android:host="www.invidio.us" />
                 <data android:host="redirect.invidious.io" />
+                <data android:host="invidious.snopyta.org" />
                 <data android:host="yewtu.be" />
+                <data android:host="tube.connect.cafe" />
+                <data android:host="invidious.kavin.rocks" />
+                <data android:host="invidious-us.kavin.rocks" />
                 <data android:host="piped.kavin.rocks" />
                 <data android:host="piped.video" />
-                <data android:host="inv.nadeko.net/" />
-                <data android:host="invidious.nerdvpn.de" />
-                <data android:host="yt.chocolatemoo53.com" />
-                <data android:host="invidious.tiekoetter.com" />
-                <data android:host="invidious.f5.si" />
+                <data android:host="invidious.site" />
+                <data android:host="vid.mint.lgbt" />
+                <data android:host="invidiou.site" />
+                <data android:host="invidious.fdn.fr" />
+                <data android:host="invidious.048596.xyz" />
+                <data android:host="invidious.zee.li" />
+                <data android:host="vid.puffyan.us" />
+                <data android:host="ytprivate.com" />
+                <data android:host="invidious.namazso.eu" />
+                <data android:host="invidious.silkky.cloud" />
+                <data android:host="invidious.exonip.de" />
+                <data android:host="inv.riverside.rocks" />
+                <data android:host="invidious.blamefran.net" />
+                <data android:host="invidious.moomoo.me" />
+                <data android:host="ytb.trom.tf" />
+                <data android:host="yt.cyberhost.uk" />
+                <data android:host="y.com.cm" />
                 <data android:pathPrefix="/" />
             </intent-filter>
 
@@ -291,7 +364,6 @@
                 <data android:scheme="https" />
                 <data android:host="soundcloud.com" />
                 <data android:host="m.soundcloud.com" />
-                <data android:host="on.soundcloud.com" />
                 <data android:host="www.soundcloud.com" />
                 <data android:pathPrefix="/" />
             </intent-filter>
@@ -336,19 +408,17 @@
 
                 <data android:host="eduvid.org" />
                 <data android:host="framatube.org" />
-                <data android:host="indymotion.fr" />
                 <data android:host="media.assassinate-you.net" />
-                <data android:host="media.fsfe.org" />
                 <data android:host="peertube.co.uk" />
                 <data android:host="peertube.cpy.re" />
-                <data android:host="peertube.fr" />
                 <data android:host="peertube.mastodon.host" />
-                <data android:host="peertube.stream" />
-                <data android:host="skeptikon.fr" />
+                <data android:host="peertube.fr" />
                 <data android:host="tilvids.com" />
-                <data android:host="video.lqdn.fr" />
+                <data android:host="tube.privacytools.io" />
                 <data android:host="video.ploud.fr" />
-                <data android:host="subscribeto.me" />
+                <data android:host="video.lqdn.fr" />
+                <data android:host="skeptikon.fr" />
+                <data android:host="media.fsfe.org" />
 
                 <data android:pathPrefix="/videos/" /> <!-- it contains playlists -->
                 <data android:pathPrefix="/w/" /> <!-- short video URLs -->
@@ -361,19 +431,33 @@
 
             <!-- Bandcamp filter for tracks, albums and playlists -->
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
 
-                <data android:scheme="http" />
-                <data android:scheme="https" />
-                <data android:host="*.bandcamp.com" />
+                <data android:scheme="http"/>
+                <data android:scheme="https"/>
+                <data android:host="*.bandcamp.com"/>
             </intent-filter>
 
             <!-- Bandcamp filter for radio -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:scheme="http"/>
+                <data android:scheme="https"/>
+                <data android:sspPattern="bandcamp.com/?show=*"/>
+            </intent-filter>
+
+            <!-- BiliBili filter -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
@@ -384,28 +468,101 @@
 
                 <data android:scheme="http" />
                 <data android:scheme="https" />
-                <data android:sspPattern="bandcamp.com/?show=*" />
+                <data android:host="*.bilibili.com" />
+                <data android:host="bilibili.com" />
+                <data android:pathPrefix="/video/" />
+                <data android:pathPrefix="/bangumi/play/" />
+                <data android:pathPrefix="/space/" />
             </intent-filter>
 
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="live.bilibili.com" />
+                <data android:host="b23.tv" />
+            </intent-filter>
+
+            <!-- NicoNico filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="sp.nicovideo.jp" />
+                <data android:host="www.nicovideo.jp" />
+                <data android:host="live.nicovideo.jp" />
+                <data android:host="sp.live.nicovideo.jp" />
+                <data android:pathPrefix="/watch/" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+
+                <data android:host="sp.nicovideo.jp" />
+                <data android:host="www.nicovideo.jp" />
+                <data android:pathPrefix="/user/" />
+                <data android:pathPrefix="/mylist/" />
+                <data android:pathPrefix="/series/" />
+            </intent-filter>
         </activity>
         <service
             android:name=".RouterActivity$FetcherService"
-            android:foregroundServiceType="dataSync"
-            android:exported="false" />
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+        <activity android:name=".views.YouTubeLoginWebViewActivity"
+                  android:configChanges="orientation|screenSize"
+                  android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".views.NicoNicoLoginWebViewActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".views.BiliBiliLoginWebViewActivity"
+                  android:configChanges="orientation|screenSize"
+                  android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+        <activity
+                android:name=".settings.KeywordFilterListActivity"
+                android:label="@string/filter_by_keyword_title"
+                android:parentActivityName=".settings.SettingsActivity" />
+        <activity
+                android:name=".settings.ChannelFilterListActivity"
+                android:label="@string/filter_by_channel_title"
+                android:parentActivityName=".settings.SettingsActivity" />
+
+        <activity
+                android:name="org.schabi.newpipe.util.StreamFailureDetailActivity"
+                android:theme="@style/Theme.AppCompat.Dialog.Alert"
+                android:exported="false"
+                android:taskAffinity=""
+                android:excludeFromRecents="true"/>
 
         <!-- opting out of sending metrics to Google in Android System WebView -->
-        <meta-data
-            android:name="android.webkit.WebView.MetricsOptOut"
-            android:value="true" />
+        <meta-data android:name="android.webkit.WebView.MetricsOptOut" android:value="true" />
         <!-- see https://github.com/TeamNewPipe/NewPipe/issues/3947 -->
         <!-- Version < 3.0. DeX Mode and Screen Mirroring support -->
-        <meta-data
-            android:name="com.samsung.android.keepalive.density"
-            android:value="true" />
+        <meta-data android:name="com.samsung.android.keepalive.density" android:value="true"/>
         <!-- Version >= 3.0. DeX Dual Mode support -->
-        <meta-data
-            android:name="com.samsung.android.multidisplay.keep_process_alive"
-            android:value="true" />
+        <meta-data android:name="com.samsung.android.multidisplay.keep_process_alive" android:value="true"/>
         <!-- Android Auto -->
         <meta-data android:name="com.google.android.gms.car.application"
             android:resource="@xml/automotive_app_desc" />

@@ -1,9 +1,8 @@
 package org.schabi.newpipe.local.bookmark;
 
-import static org.schabi.newpipe.local.bookmark.MergedPlaylistManager.getMergedOrderedPlaylists;
 import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
 
-import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.InputType;
@@ -17,10 +16,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentManager;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.evernote.android.state.State;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -39,16 +37,19 @@ import org.schabi.newpipe.local.holder.LocalBookmarkPlaylistItemHolder;
 import org.schabi.newpipe.local.holder.RemoteBookmarkPlaylistItemHolder;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
+import org.schabi.newpipe.util.DebounceSavable;
+import org.schabi.newpipe.util.DebounceSaver;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
-import org.schabi.newpipe.util.debounce.DebounceSavable;
-import org.schabi.newpipe.util.debounce.DebounceSaver;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
@@ -56,8 +57,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         implements DebounceSavable {
 
     private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 12;
-    @State
-    Parcelable itemsListState;
+    protected Parcelable itemsListState;
 
     private Subscription databaseSubscription;
     private CompositeDisposable disposables = new CompositeDisposable();
@@ -68,11 +68,10 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     /* Have the bookmarked playlists been fully loaded from db */
     private AtomicBoolean isLoadingComplete;
 
-    /* Gives enough time to avoid interrupting user sorting operations */
-    @Nullable
     private DebounceSaver debounceSaver;
 
-    private List<Pair<Long, LocalItem.LocalItemType>> deletedItems;
+    // Map from (uid, local/remote item) to the saved display index in the database.
+    private Map<Pair<Long, LocalItem.LocalItemType>, Long> displayIndexInDatabase;
 
     ///////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle - Creation
@@ -90,9 +89,9 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         disposables = new CompositeDisposable();
 
         isLoadingComplete = new AtomicBoolean();
-        debounceSaver = new DebounceSaver(3000, this);
+        debounceSaver = new DebounceSaver(10000, this);
 
-        deletedItems = new ArrayList<>();
+        displayIndexInDatabase = new HashMap<>();
     }
 
     @Nullable
@@ -133,15 +132,15 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
         itemTouchHelper.attachToRecyclerView(itemsList);
 
-        itemListAdapter.setSelectedListener(new OnClickGesture<>() {
+        itemListAdapter.setSelectedListener(new OnClickGesture<LocalItem>() {
             @Override
             public void selected(final LocalItem selectedItem) {
                 final FragmentManager fragmentManager = getFM();
 
                 if (selectedItem instanceof PlaylistMetadataEntry) {
                     final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
-                    NavigationHelper.openLocalPlaylistFragment(fragmentManager, entry.getUid(),
-                            entry.getOrderingName());
+                    NavigationHelper.openLocalPlaylistFragment(fragmentManager, entry.uid,
+                            entry.name);
 
                 } else if (selectedItem instanceof PlaylistRemoteEntity) {
                     final PlaylistRemoteEntity entry = ((PlaylistRemoteEntity) selectedItem);
@@ -149,7 +148,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                             fragmentManager,
                             entry.getServiceId(),
                             entry.getUrl(),
-                            entry.getOrderingName());
+                            entry.getName());
                 }
             }
 
@@ -172,6 +171,12 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         });
     }
 
+    @Override
+    protected boolean forceUseListLayout() {
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        return prefs.getBoolean(getString(R.string.always_list_mode_for_bookmark_key), false);
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle - Loading
     ///////////////////////////////////////////////////////////////////////////
@@ -182,11 +187,12 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
         if (debounceSaver != null) {
             disposables.add(debounceSaver.getDebouncedSaver());
-            debounceSaver.setNoChangesToSave();
+            debounceSaver.setIsModified(false);
         }
         isLoadingComplete.set(false);
 
-        getMergedOrderedPlaylists(localPlaylistManager, remotePlaylistManager)
+        Flowable.combineLatest(localPlaylistManager.getPlaylists(),
+                remotePlaylistManager.getPlaylists(), PlaylistLocalItem::merge)
                 .onBackpressureLatest()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getPlaylistsSubscriber());
@@ -203,6 +209,18 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
         // Save on exit
         saveImmediate();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull final Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable("itemsListState", itemsListState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull final Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        itemsListState = savedInstanceState.getParcelable("itemsListState");
     }
 
     @Override
@@ -237,7 +255,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         itemsListState = null;
 
         isLoadingComplete = null;
-        deletedItems = null;
+        displayIndexInDatabase = null;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -245,7 +263,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     ///////////////////////////////////////////////////////////////////////////
 
     private Subscriber<List<PlaylistLocalItem>> getPlaylistsSubscriber() {
-        return new Subscriber<>() {
+        return new Subscriber<List<PlaylistLocalItem>>() {
             @Override
             public void onSubscribe(final Subscription s) {
                 showLoading();
@@ -261,6 +279,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             @Override
             public void onNext(final List<PlaylistLocalItem> subscriptions) {
                 if (debounceSaver == null || !debounceSaver.getIsModified()) {
+                    checkDisplayIndexModified(subscriptions);
                     handleResult(subscriptions);
                     isLoadingComplete.set(true);
                 }
@@ -277,6 +296,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
             @Override
             public void onComplete() {
+                // Do nothing.
             }
         };
     }
@@ -341,17 +361,50 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         }
         itemListAdapter.removeItem(item);
 
-        if (item instanceof PlaylistMetadataEntry) {
-            deletedItems.add(new Pair<>(item.getUid(),
-                    LocalItem.LocalItemType.PLAYLIST_LOCAL_ITEM));
-        } else if (item instanceof PlaylistRemoteEntity) {
-            deletedItems.add(new Pair<>(item.getUid(),
-                    LocalItem.LocalItemType.PLAYLIST_REMOTE_ITEM));
+        debounceSaver.saveChanges();
+    }
+
+    private void checkDisplayIndexModified(@NonNull final List<PlaylistLocalItem> result) {
+        if (debounceSaver != null && debounceSaver.getIsModified()) {
+            return;
         }
 
-        if (debounceSaver != null) {
-            debounceSaver.setHasChangesToSave();
-            saveImmediate();
+        displayIndexInDatabase.clear();
+
+        // If the display index does not match actual index in the list, update the display index.
+        // This may happen when a new list is created
+        // or on the first run after database migration
+        // or display index is not continuous for some reason
+        // or the user changes the display index.
+        boolean isDisplayIndexModified = false;
+        for (int i = 0; i < result.size(); i++) {
+            final PlaylistLocalItem item = result.get(i);
+            if (item.getDisplayIndex() != i) {
+                isDisplayIndexModified = true;
+            }
+
+            // Updating display index in the item does not affect the value inserts into
+            // database, which will be recalculated during the database update. Updating
+            // display index in the item here is to determine whether it is recently modified.
+            // Save the index read from the database.
+            if (item instanceof PlaylistMetadataEntry) {
+
+                displayIndexInDatabase.put(new Pair<>(((PlaylistMetadataEntry) item).uid,
+                        LocalItem.LocalItemType.PLAYLIST_LOCAL_ITEM), item.getDisplayIndex());
+                ((PlaylistMetadataEntry) item).displayIndex = i;
+
+            } else if (item instanceof PlaylistRemoteEntity) {
+
+                displayIndexInDatabase.put(new Pair<>(((PlaylistRemoteEntity) item).getUid(),
+                                LocalItem.LocalItemType.PLAYLIST_REMOTE_ITEM),
+                        item.getDisplayIndex());
+                ((PlaylistRemoteEntity) item).setDisplayIndex(i);
+
+            }
+        }
+
+        if (isDisplayIndexModified) {
+            debounceSaver.saveChanges();
         }
     }
 
@@ -364,6 +417,8 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         // List must be loaded and modified in order to save
         if (isLoadingComplete == null || debounceSaver == null
                 || !isLoadingComplete.get() || !debounceSaver.getIsModified()) {
+            Log.w(TAG, "Attempting to save playlists in bookmark when bookmark "
+                    + "is not loaded or playlists not modified");
             return;
         }
 
@@ -377,40 +432,62 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         for (int i = 0; i < items.size(); i++) {
             final LocalItem item = items.get(i);
 
-            if (item instanceof PlaylistMetadataEntry
-                    && ((PlaylistMetadataEntry) item).getDisplayIndex() != i) {
-                ((PlaylistMetadataEntry) item).setDisplayIndex((long) i);
-                localItemsUpdate.add((PlaylistMetadataEntry) item);
-            } else if (item instanceof PlaylistRemoteEntity
-                    && ((PlaylistRemoteEntity) item).getDisplayIndex() != i) {
-                ((PlaylistRemoteEntity) item).setDisplayIndex((long) i);
-                remoteItemsUpdate.add((PlaylistRemoteEntity) item);
+            if (item instanceof PlaylistMetadataEntry) {
+                ((PlaylistMetadataEntry) item).displayIndex = i;
+
+                final Long uid = ((PlaylistMetadataEntry) item).uid;
+                final Pair<Long, LocalItem.LocalItemType> key = new Pair<>(uid,
+                        LocalItem.LocalItemType.PLAYLIST_LOCAL_ITEM);
+                final Long databaseIndex = displayIndexInDatabase.remove(key);
+
+                // The database index should not be null because inserting new item into database
+                // is not handled here. NullPointerException has occurred once, but I can't
+                // reproduce it. Enhance robustness here.
+                if (databaseIndex != null && databaseIndex != i) {
+                    localItemsUpdate.add((PlaylistMetadataEntry) item);
+                }
+            } else if (item instanceof PlaylistRemoteEntity) {
+                ((PlaylistRemoteEntity) item).setDisplayIndex(i);
+
+                final Long uid = ((PlaylistRemoteEntity) item).getUid();
+                final Pair<Long, LocalItem.LocalItemType> key = new Pair<>(uid,
+                        LocalItem.LocalItemType.PLAYLIST_REMOTE_ITEM);
+                final Long databaseIndex = displayIndexInDatabase.remove(key);
+
+                if (databaseIndex != null && databaseIndex != i) {
+                    remoteItemsUpdate.add((PlaylistRemoteEntity) item);
+                }
             }
         }
 
         // Find deleted items
-        for (final Pair<Long, LocalItem.LocalItemType> item : deletedItems) {
-            if (item.second.equals(LocalItem.LocalItemType.PLAYLIST_LOCAL_ITEM)) {
-                localItemsDeleteUid.add(item.first);
-            } else if (item.second.equals(LocalItem.LocalItemType.PLAYLIST_REMOTE_ITEM)) {
-                remoteItemsDeleteUid.add(item.first);
+        for (final Pair<Long, LocalItem.LocalItemType> key : displayIndexInDatabase.keySet()) {
+            if (key.second.equals(LocalItem.LocalItemType.PLAYLIST_LOCAL_ITEM)) {
+                localItemsDeleteUid.add(key.first);
+            } else if (key.second.equals(LocalItem.LocalItemType.PLAYLIST_REMOTE_ITEM)) {
+                remoteItemsDeleteUid.add(key.first);
             }
         }
 
-        deletedItems.clear();
+        displayIndexInDatabase.clear();
 
         // 1. Update local playlists
         // 2. Update remote playlists
-        // 3. Set NoChangesToSave
+        // 3. Set isModified false
         disposables.add(localPlaylistManager.updatePlaylists(localItemsUpdate, localItemsDeleteUid)
-                .mergeWith(remotePlaylistManager.updatePlaylists(
-                        remoteItemsUpdate, remoteItemsDeleteUid))
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(() -> {
-                            if (debounceSaver != null) {
-                                debounceSaver.setNoChangesToSave();
-                            }
-                        },
+                .subscribe(() -> disposables.add(remotePlaylistManager.updatePlaylists(
+                        remoteItemsUpdate, remoteItemsDeleteUid)
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(() -> {
+                                            if (debounceSaver != null) {
+                                                debounceSaver.setIsModified(false);
+                                            }
+                                        },
+                                        throwable -> showError(new ErrorInfo(throwable,
+                                                UserAction.REQUESTED_BOOKMARK,
+                                                "Saving playlist"))
+                                )),
                         throwable -> showError(new ErrorInfo(throwable,
                                 UserAction.REQUESTED_BOOKMARK, "Saving playlist"))
                 ));
@@ -422,7 +499,8 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         if (shouldUseGridLayout(requireContext())) {
             directions |= ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
         }
-        return new ItemTouchHelper.SimpleCallback(directions, ItemTouchHelper.ACTION_STATE_IDLE) {
+        return new ItemTouchHelper.SimpleCallback(directions,
+                ItemTouchHelper.ACTION_STATE_IDLE) {
             @Override
             public int interpolateOutOfBoundsScroll(@NonNull final RecyclerView recyclerView,
                                                     final int viewSize,
@@ -460,8 +538,8 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 final int sourceIndex = source.getBindingAdapterPosition();
                 final int targetIndex = target.getBindingAdapterPosition();
                 final boolean isSwapped = itemListAdapter.swapItems(sourceIndex, targetIndex);
-                if (isSwapped && debounceSaver != null) {
-                    debounceSaver.setHasChangesToSave();
+                if (isSwapped) {
+                    debounceSaver.saveChanges();
                 }
                 return isSwapped;
             }
@@ -489,57 +567,28 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     ///////////////////////////////////////////////////////////////////////////
 
     private void showRemoteDeleteDialog(final PlaylistRemoteEntity item) {
-        showDeleteDialog(item.getOrderingName(), item);
+        showDeleteDialog(item.getName(), item);
     }
 
     private void showLocalDialog(final PlaylistMetadataEntry selectedItem) {
-        final String rename = getString(R.string.rename);
-        final String delete = getString(R.string.delete);
-        final String unsetThumbnail = getString(R.string.unset_playlist_thumbnail);
-        final boolean isThumbnailPermanent = localPlaylistManager
-                .getIsPlaylistThumbnailPermanent(selectedItem.getUid());
-
-        final ArrayList<String> items = new ArrayList<>();
-        items.add(rename);
-        items.add(delete);
-        if (isThumbnailPermanent) {
-            items.add(unsetThumbnail);
-        }
-
-        final DialogInterface.OnClickListener action = (d, index) -> {
-            if (items.get(index).equals(rename)) {
-                showRenameDialog(selectedItem);
-            } else if (items.get(index).equals(delete)) {
-                showDeleteDialog(selectedItem.getOrderingName(), selectedItem);
-            } else if (isThumbnailPermanent && items.get(index).equals(unsetThumbnail)) {
-                final long thumbnailStreamId = localPlaylistManager
-                        .getAutomaticPlaylistThumbnailStreamId(selectedItem.getUid());
-                localPlaylistManager
-                        .changePlaylistThumbnail(selectedItem.getUid(), thumbnailStreamId, false)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe();
-            }
-        };
-
-        new AlertDialog.Builder(activity)
-                .setItems(items.toArray(new String[0]), action)
-                .show();
-    }
-
-    private void showRenameDialog(final PlaylistMetadataEntry selectedItem) {
-        final DialogEditTextBinding dialogBinding =
-                DialogEditTextBinding.inflate(getLayoutInflater());
+        final DialogEditTextBinding dialogBinding
+                = DialogEditTextBinding.inflate(getLayoutInflater());
         dialogBinding.dialogEditText.setHint(R.string.name);
         dialogBinding.dialogEditText.setInputType(InputType.TYPE_CLASS_TEXT);
-        dialogBinding.dialogEditText.setText(selectedItem.getOrderingName());
+        dialogBinding.dialogEditText.setText(selectedItem.name);
 
-        new AlertDialog.Builder(activity)
-                .setView(dialogBinding.getRoot())
+        final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setView(dialogBinding.getRoot())
                 .setPositiveButton(R.string.rename_playlist, (dialog, which) ->
                         changeLocalPlaylistName(
-                                selectedItem.getUid(),
+                                selectedItem.uid,
                                 dialogBinding.dialogEditText.getText().toString()))
                 .setNegativeButton(R.string.cancel, null)
+                .setNeutralButton(R.string.delete, (dialog, which) -> {
+                    showDeleteDialog(selectedItem.name, selectedItem);
+                    dialog.dismiss();
+                })
+                .create()
                 .show();
     }
 
@@ -557,3 +606,4 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 .show();
     }
 }
+

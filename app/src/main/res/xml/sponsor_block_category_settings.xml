@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="@string/settings_category_sponsor_block_categories_title">
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/settings_category_sponsor_block_categories_quick_actions">
+
+        <Preference
+            app:iconSpaceReserved="false"
+            android:key="@string/sponsor_block_category_all_on_key"
+            android:title="@string/settings_category_sponsor_block_categories_all_colors_on_title"/>
+        <Preference
+            app:iconSpaceReserved="false"
+            android:key="@string/sponsor_block_category_all_off_key"
+            android:title="@string/settings_category_sponsor_block_categories_all_colors_off_title"/>
+        <Preference
+            app:iconSpaceReserved="false"
+            android:key="@string/sponsor_block_category_reset_key"
+            android:title="@string/settings_category_sponsor_block_categories_reset_colors_title"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/sponsor_block_category_sponsor">
+
+        <Preference
+            app:iconSpaceReserved="false"
+            android:summary="@string/settings_category_sponsor_block_category_sponsor_summary"
+            android:selectable="false"/>
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="true"
+            android:key="@string/sponsor_block_category_sponsor_key"
+            android:title="@string/settings_category_sponsor_block_category_enable_title"/>
+
+        <ListPreference
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false"
+            app:useSimpleSummaryProvider="true"
+            android:dependency="@string/sponsor_block_category_sponsor_key"
+            android:defaultValue="@string/sponsor_block_skip_mode_automatic_value"
+            android:entries="@array/sponsor_block_category_sponsor_modes_key"
+            android:entryValues="@array/sponsor_block_category_mode_values"
+            android:key="@string/sponsor_block_category_sponsor_mode_key"
+            android:title="@string/settings_category_sponsor_block_category_enable_mode_title" />
+
+        <org.schabi.newpipe.settings.custom.EditColorPreference
+            app:iconSpaceReserved="false"
+            android:dependency="@string/sponsor_block_category_sponsor_key"
+            android:defaultValue="@color/sponsor_segment"
+            android:key="@string/sponsor_block_category_sponsor_color_key"
+            android:title="@string/settings_category_sponsor_block_category_color"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/sponsor_block_category_intro">
+
+        <Preference
+            app:iconSpaceReserved="false"
+            android:summary="@string/settings_category_sponsor_block_category_intro_summary"
+            android:selectable="false"/>
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="true"
+            android:key="@string/sponsor_block_category_intro_key"
+            android:title="@string/settings_category_sponsor_block_category_enable_title"/>
+
+        <ListPreference
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false"
+            app:useSimpleSummaryProvider="true"
+            android:dependency="@string/sponsor_block_category_intro_key"
+            android:defaultValue="@string/sponsor_block_skip_mode_automatic_value"
+            android:entries="@array/sponsor_block_category_sponsor_modes_key"
+            android:entryValues="@array/sponsor_block_category_mode_values"
+            android:key="@string/sponsor_block_category_intro_mode_key"
+            android:title="@string/settings_category_sponsor_block_category_enable_mode_title" />
+
+        <org.schabi.newpipe.settings.custom.EditColorPreference
+            app:iconSpaceReserved="false"
+            android:dependency="@string/sponsor_block_category_intro_key"
+            android:defaultValue="@color/intro_segment"
+            android:key="@string/sponsor_block_category_intro_color_key"
+            android:title="@string/settings_category_sponsor_block_category_color"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/sponsor_block_category_outro">
+
+        <Preference
+            app:iconSpaceReserved="false"
+            android:summary="@string/settings_category_sponsor_block_category_outro_summary"
+            android:selectable="false"/>
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="true"
+            android:key="@string/sponsor_block_category_outro_key"
+            android:title="@string/settings_category_sponsor_block_category_enable_title"/>
+
+        <ListPreference
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false"
+            app:useSimpleSummaryProvider="true"
+            android:dependency="@string/sponsor_block_category_outro_key"
+            android:defaultValue="@string/sponsor_block_skip_mode_automatic_value"
+            android:entries="@array/sponsor_block_category_sponsor_modes_key"
+            android:entryValues="@array/sponsor_block_category_mode_values"
+            android:key="@string/sponsor_block_category_outro_mode_key"
+            android:title="@string/settings_category_sponsor_block_category_enable_mode_title" />
+
+        <org.schabi.newpipe.settings.custom.EditColorPreference
+            app:iconSpaceReserved="false"
+            android:dependency="@string/sponsor_block_category_outro_key"
+            android:defaultValue="@color/outro_segment"
+            android:key="@string/sponsor_block_category_outro_color_key"
+            android:title="@string/settings_category_sponsor_block_category_color"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/sponsor_block_category_interaction">
+
+        <Preference
+            app:iconSpaceReserved="false"
+            android:summary="@string/settings_category_sponsor_block_category_interaction_summary"
+            android:selectable="false"/>
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="true"
+            android:key="@string/sponsor_block_category_interaction_key"
+            android:title="@string/settings_category_sponsor_block_category_enable_title"/>
+
+        <ListPreference
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false"
+            app:useSimpleSummaryProvider="true"
+            android:dependency="@string/sponsor_block_category_interaction_key"
+            android:defaultValue="@string/sponsor_block_skip_mode_automatic_value"
+            android:entries="@array/sponsor_block_category_sponsor_modes_key"
+            android:entryValues="@array/sponsor_block_category_mode_values"
+            android:key="@string/sponsor_block_category_interaction_mode_key"
+            android:title="@string/settings_category_sponsor_block_category_enable_mode_title" />
+
+        <org.schabi.newpipe.settings.custom.EditColorPreference
+            app:iconSpaceReserved="false"
+            android:dependency="@string/sponsor_block_category_interaction_key"
+            android:defaultValue="@color/interaction_segment"
+            android:key="@string/sponsor_block_category_interaction_color_key"
+            android:title="@string/settings_category_sponsor_block_category_color"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/sponsor_block_category_highlight">
+
+        <Preference
+            app:iconSpaceReserved="false"
+            android:summary="@string/settings_category_sponsor_block_category_highlight_summary"
+            android:selectable="false"/>
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="true"
+            android:key="@string/sponsor_block_category_highlight_key"
+            android:title="@string/settings_category_sponsor_block_category_enable_title"/>
+
+        <org.schabi.newpipe.settings.custom.EditColorPreference
+            app:iconSpaceReserved="false"
+            android:dependency="@string/sponsor_block_category_highlight_key"
+            android:defaultValue="@color/highlight_segment"
+            android:key="@string/sponsor_block_category_highlight_color_key"
+            android:title="@string/settings_category_sponsor_block_category_color"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/sponsor_block_category_self_promo">
+
+        <Preference
+            app:iconSpaceReserved="false"
+            android:summary="@string/settings_category_sponsor_block_category_self_promo_summary"
+            android:selectable="false"/>
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="true"
+            android:key="@string/sponsor_block_category_self_promo_key"
+            android:title="@string/settings_category_sponsor_block_category_enable_title"/>
+
+        <ListPreference
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false"
+            app:useSimpleSummaryProvider="true"
+            android:dependency="@string/sponsor_block_category_self_promo_key"
+            android:defaultValue="@string/sponsor_block_skip_mode_automatic_value"
+            android:entries="@array/sponsor_block_category_sponsor_modes_key"
+            android:entryValues="@array/sponsor_block_category_mode_values"
+            android:key="@string/sponsor_block_category_self_promo_mode_key"
+            android:title="@string/settings_category_sponsor_block_category_enable_mode_title" />
+
+        <org.schabi.newpipe.settings.custom.EditColorPreference
+            app:iconSpaceReserved="false"
+            android:dependency="@string/sponsor_block_category_self_promo_key"
+            android:defaultValue="@color/self_promo_segment"
+            android:key="@string/sponsor_block_category_self_promo_color_key"
+            android:title="@string/settings_category_sponsor_block_category_color"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/sponsor_block_category_non_music">
+
+        <Preference
+            app:iconSpaceReserved="false"
+            android:summary="@string/settings_category_sponsor_block_category_non_music_summary"
+            android:selectable="false"/>
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="true"
+            android:key="@string/sponsor_block_category_non_music_key"
+            android:title="@string/settings_category_sponsor_block_category_enable_title"/>
+
+        <ListPreference
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false"
+            app:useSimpleSummaryProvider="true"
+            android:dependency="@string/sponsor_block_category_non_music_key"
+            android:defaultValue="@string/sponsor_block_skip_mode_automatic_value"
+            android:entries="@array/sponsor_block_category_sponsor_modes_key"
+            android:entryValues="@array/sponsor_block_category_mode_values"
+            android:key="@string/sponsor_block_category_non_music_mode_key"
+            android:title="@string/settings_category_sponsor_block_category_enable_mode_title" />
+
+        <org.schabi.newpipe.settings.custom.EditColorPreference
+            app:iconSpaceReserved="false"
+            android:dependency="@string/sponsor_block_category_non_music_key"
+            android:defaultValue="@color/non_music_segment"
+            android:key="@string/sponsor_block_category_non_music_color_key"
+            android:title="@string/settings_category_sponsor_block_category_color"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/sponsor_block_category_preview">
+
+        <Preference
+            app:iconSpaceReserved="false"
+            android:summary="@string/settings_category_sponsor_block_category_preview_summary"
+            android:selectable="false"/>
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="true"
+            android:key="@string/sponsor_block_category_preview_key"
+            android:title="@string/settings_category_sponsor_block_category_enable_title"/>
+
+        <ListPreference
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false"
+            app:useSimpleSummaryProvider="true"
+            android:dependency="@string/sponsor_block_category_preview_key"
+            android:defaultValue="@string/sponsor_block_skip_mode_automatic_value"
+            android:entries="@array/sponsor_block_category_sponsor_modes_key"
+            android:entryValues="@array/sponsor_block_category_mode_values"
+            android:key="@string/sponsor_block_category_preview_mode_key"
+            android:title="@string/settings_category_sponsor_block_category_enable_mode_title" />
+
+        <org.schabi.newpipe.settings.custom.EditColorPreference
+            app:iconSpaceReserved="false"
+            android:dependency="@string/sponsor_block_category_preview_key"
+            android:defaultValue="@color/preview_segment"
+            android:key="@string/sponsor_block_category_preview_color_key"
+            android:title="@string/settings_category_sponsor_block_category_color"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/sponsor_block_category_filler">
+
+        <Preference
+            app:iconSpaceReserved="false"
+            android:summary="@string/settings_category_sponsor_block_category_filler_summary"
+            android:selectable="false"/>
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="true"
+            android:key="@string/sponsor_block_category_filler_key"
+            android:title="@string/settings_category_sponsor_block_category_enable_title"/>
+
+        <ListPreference
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false"
+            app:useSimpleSummaryProvider="true"
+            android:dependency="@string/sponsor_block_category_filler_key"
+            android:defaultValue="@string/sponsor_block_skip_mode_automatic_value"
+            android:entries="@array/sponsor_block_category_sponsor_modes_key"
+            android:entryValues="@array/sponsor_block_category_mode_values"
+            android:key="@string/sponsor_block_category_filler_mode_key"
+            android:title="@string/settings_category_sponsor_block_category_enable_mode_title"
+            />
+
+        <org.schabi.newpipe.settings.custom.EditColorPreference
+            app:iconSpaceReserved="false"
+            android:dependency="@string/sponsor_block_category_filler_key"
+            android:defaultValue="@color/filler_segment"
+            android:key="@string/sponsor_block_category_filler_color_key"
+            android:title="@string/settings_category_sponsor_block_category_color"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/sponsor_block_category_pending">
+
+        <Preference
+            app:iconSpaceReserved="false"
+            android:summary="@string/settings_category_sponsor_block_category_pending_summary"
+            android:selectable="false"/>
+
+        <org.schabi.newpipe.settings.custom.EditColorPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="@color/pending_segment"
+            android:key="@string/sponsor_block_category_pending_color_key"
+            android:title="@string/settings_category_sponsor_block_category_color"/>
+
+    </PreferenceCategory>
+</PreferenceScreen>

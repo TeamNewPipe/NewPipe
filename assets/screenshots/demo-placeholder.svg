@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="2160" viewBox="0 0 1080 2160" role="img" aria-labelledby="title desc">
+  <title id="title">PipePlay demo screenshot placeholder</title>
+  <desc id="desc">A placeholder phone screenshot for PipePlay until real app screenshots are added.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset="0.55" stop-color="#1f2937"/>
+      <stop offset="1" stop-color="#7f1d1d"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#374151"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="2160" rx="96" fill="#030712"/>
+  <rect x="54" y="54" width="972" height="2052" rx="72" fill="url(#bg)"/>
+  <rect x="118" y="132" width="844" height="96" rx="28" fill="#111827" opacity="0.72"/>
+  <circle cx="172" cy="180" r="24" fill="#ef4444"/>
+  <text x="220" y="194" fill="#f9fafb" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="700">PipePlay</text>
+  <rect x="118" y="284" width="844" height="474" rx="42" fill="url(#card)" stroke="#4b5563" stroke-width="2"/>
+  <polygon points="462,426 462,616 632,521" fill="#ef4444"/>
+  <text x="158" y="836" fill="#f9fafb" font-family="Inter, Arial, sans-serif" font-size="44" font-weight="700">Demo screenshot coming soon</text>
+  <text x="158" y="904" fill="#d1d5db" font-family="Inter, Arial, sans-serif" font-size="30">Replace this placeholder with real PipePlay app screenshots.</text>
+  <g fill="#111827" opacity="0.8">
+    <rect x="118" y="1000" width="844" height="150" rx="34"/>
+    <rect x="118" y="1190" width="844" height="150" rx="34"/>
+    <rect x="118" y="1380" width="844" height="150" rx="34"/>
+  </g>
+  <g fill="#f9fafb" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="600">
+    <text x="170" y="1088">Integrated YouTube WebView</text>
+    <text x="170" y="1278">Material colors and home tabs</text>
+    <text x="170" y="1468">Learning Mode foundations</text>
+  </g>
+  <rect x="118" y="1888" width="844" height="96" rx="32" fill="#111827" opacity="0.72"/>
+  <circle cx="268" cy="1936" r="20" fill="#ef4444"/>
+  <circle cx="540" cy="1936" r="20" fill="#6b7280"/>
+  <circle cx="812" cy="1936" r="20" fill="#6b7280"/>
+</svg>

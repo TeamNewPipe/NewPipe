@@ -11,13 +11,12 @@ import androidx.core.content.ContextCompat;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.ktx.ViewUtils;
 import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.util.DependentPreferenceHelper;
+import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.Localization;
-import org.schabi.newpipe.util.ServiceHelper;
-import org.schabi.newpipe.util.image.CoilHelper;
 import org.schabi.newpipe.views.AnimatedProgressBar;
 
 import java.time.format.DateTimeFormatter;
@@ -71,12 +70,11 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
 
     private String getStreamInfoDetailLine(final StreamStatisticsEntry entry,
                                            final DateTimeFormatter dateTimeFormatter) {
-        return Localization.concatenateStrings(
-                // watchCount
-                Localization.shortViewCount(itemBuilder.getContext(), entry.getWatchCount()),
-                dateTimeFormatter.format(entry.getLatestAccessDate()),
-                // serviceName
-                ServiceHelper.getNameOfServiceById(entry.getStreamEntity().getServiceId()));
+        final String watchCount = Localization
+                .shortViewCount(itemBuilder.getContext(), entry.getWatchCount());
+        final String uploadDate = dateTimeFormatter.format(entry.getLatestAccessDate());
+        final String serviceName = NewPipe.getNameOfService(entry.getStreamEntity().getServiceId());
+        return Localization.concatenateStrings(watchCount, uploadDate, serviceName);
     }
 
     @Override
@@ -98,8 +96,7 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
 
-            if (DependentPreferenceHelper.getPositionsInListsEnabled(itemProgressView.getContext())
-                    && item.getProgressMillis() > 0) {
+            if (item.getProgressMillis() > 0) {
                 itemProgressView.setVisibility(View.VISIBLE);
                 itemProgressView.setMax((int) item.getStreamEntity().getDuration());
                 itemProgressView.setProgress((int) TimeUnit.MILLISECONDS
@@ -117,8 +114,8 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
         }
 
         // Default thumbnail is shown on error, while loading and if the url is empty
-        CoilHelper.INSTANCE.loadThumbnail(itemThumbnailView,
-                item.getStreamEntity().getThumbnailUrl());
+        PicassoHelper.loadScaledDownThumbnail(itemThumbnailView.getContext(), item.getStreamEntity().getThumbnailUrl())
+                .into(itemThumbnailView);
 
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnItemSelectedListener() != null) {
@@ -143,8 +140,7 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
         }
         final StreamStatisticsEntry item = (StreamStatisticsEntry) localItem;
 
-        if (DependentPreferenceHelper.getPositionsInListsEnabled(itemProgressView.getContext())
-                && item.getProgressMillis() > 0 && item.getStreamEntity().getDuration() > 0) {
+        if (item.getProgressMillis() > 0 && item.getStreamEntity().getDuration() > 0) {
             itemProgressView.setMax((int) item.getStreamEntity().getDuration());
             if (itemProgressView.getVisibility() == View.VISIBLE) {
                 itemProgressView.setProgressAnimated((int) TimeUnit.MILLISECONDS

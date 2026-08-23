@@ -27,6 +27,63 @@
         tools:ignore="RtlHardcoded" />
 
     <FrameLayout
+        android:id="@+id/toolbar_search_filter"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="right|center_vertical"
+        android:layout_marginRight="48dp"
+        android:contentDescription="@string/filter"
+        android:focusable="true"
+        android:visibility="gone"
+        tools:ignore="RtlHardcoded">
+
+        <View
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+
+        <ImageView
+            android:id="@+id/toolbar_search_filter_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/filter"
+            android:scaleType="fitCenter"
+            app:tint="?attr/toolbarSearchColor"
+            app:srcCompat="@drawable/ic_filter_list"
+            tools:ignore="RtlHardcoded" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/toolbar_search_submit"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="right|center_vertical"
+        android:contentDescription="@string/search"
+        android:focusable="true"
+        android:visibility="gone"
+        tools:ignore="RtlHardcoded">
+
+        <View
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+
+        <ImageView
+            android:id="@+id/toolbar_search_submit_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/search"
+            android:scaleType="fitCenter"
+            app:tint="?attr/toolbarSearchColor"
+            app:srcCompat="@drawable/ic_search"
+            tools:ignore="RtlHardcoded" />
+    </FrameLayout>
+
+    <FrameLayout
         android:id="@+id/toolbar_search_clear"
         android:layout_width="48dp"
         android:layout_height="48dp"
@@ -48,8 +105,8 @@
             android:layout_gravity="center"
             android:contentDescription="@string/search"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_close"
             app:tint="?attr/toolbarSearchColor"
+            app:srcCompat="@drawable/ic_close"
             tools:ignore="RtlHardcoded" />
     </FrameLayout>
 

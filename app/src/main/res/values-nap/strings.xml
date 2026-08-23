@@ -18,12 +18,9 @@
     <string name="tab_subscriptions">Iscrizzione</string>
     <string name="show_info">Vire informazione</string>
     <string name="channel_unsubscribed">Desecritte d\' \'o canale</string>
-    <string name="use_external_video_player_title">Utilizze \'nu lettore video esterno</string>
-    <string name="use_external_audio_player_title">Utilizze \'nu lettore video esterno</string>
     <string name="subscribed_button_title">Iscritte</string>
     <string name="unsubscribe">Desecrivete</string>
     <string name="subscribe_button_title">Iscrivete</string>
-    <string name="use_external_video_player_summary">Leve l\'audio cu alcune risuluzioni</string>
     <string name="share_dialog_title">Condividi cu</string>
     <string name="search_showing_result_for">Resultati pe\': %s</string>
     <string name="did_you_mean">Vulive ricere \"%1$s\"\?</string>

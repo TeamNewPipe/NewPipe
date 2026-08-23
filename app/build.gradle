@@ -1,0 +1,316 @@
+plugins {
+    id "com.android.application"
+    id "org.jetbrains.kotlin.android"
+    id "org.jetbrains.kotlin.plugin.compose"
+    id "org.jetbrains.kotlin.plugin.parcelize"
+    id "org.jetbrains.kotlin.kapt"
+}
+
+def keyPath = System.getenv("KEY_PATH")
+def keyStorePassword = System.getenv("KEY_STORE_PASSWORD")
+def signingKeyAlias = System.getenv("KEY_ALIAS")
+def signingKeyPassword = System.getenv("KEY_PASSWORD")
+def baseVersionCode = 1106
+def appVersionName = "5.3.0-beta1"
+def abiCodes = ['armeabi-v7a': 1, 'x86': 2, 'x86_64': 3, 'arm64-v8a': 4]
+def stableBuildConfigVersionCode =
+        (100 * baseVersionCode) + abiCodes['armeabi-v7a']
+
+android {
+    compileSdk 37
+
+    defaultConfig {
+        applicationId "InfinityLoop1309.NewPipeEnhanced"
+        minSdk 23
+        //noinspection OldTargetApi,ExpiredTargetSdkVersion
+        targetSdk 36
+        versionCode baseVersionCode
+        versionName appVersionName
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+    }
+
+    splits {
+        abi {
+            reset()
+            enable true
+            include "armeabi-v7a", "arm64-v8a", "x86_64", "x86"
+        }
+    }
+
+    signingConfigs {
+        if (keyPath && keyStorePassword && signingKeyAlias && signingKeyPassword) {
+            release {
+                storeFile file(keyPath)
+                storePassword keyStorePassword
+                keyAlias signingKeyAlias
+                keyPassword signingKeyPassword
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+
+            // suffix the app id and the app name with git branch name
+            def workingBranch = getGitWorkingBranch()
+            def normalizedWorkingBranch = workingBranch.replaceFirst("^[^A-Za-z]+", "").replaceAll("[^0-9A-Za-z]+", "")
+            if (true) {
+                // default values when branch name could not be determined or is master or dev
+                applicationIdSuffix ".debug"
+                resValue "string", "app_name", "PipePlay Debug"
+            } else {
+                applicationIdSuffix ".debug." + normalizedWorkingBranch
+                resValue "string", "app_name", "PipePlay " + workingBranch
+            }
+        }
+
+        release {
+            if (signingConfigs.findByName("release")) {
+                signingConfig signingConfigs.release
+            }
+            if (System.properties.containsKey('packageSuffix')) {
+                applicationIdSuffix System.getProperty('packageSuffix')
+                resValue "string", "app_name", "PipePlay " + System.getProperty('packageSuffix')
+            } else {
+                resValue "string", "app_name", "PipePlay"
+            }
+            minifyEnabled true
+            shrinkResources false // disabled to fix F-Droid's reproducible build
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lint {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    compileOptions {
+        // Flag to enable support for the new language APIs
+        coreLibraryDesugaringEnabled true
+
+        sourceCompatibility JavaVersion.VERSION_25
+        targetCompatibility JavaVersion.VERSION_25
+        encoding 'utf-8'
+    }
+
+    buildFeatures {
+        buildConfig true
+        viewBinding true
+        compose true
+        resValues true
+    }
+
+    dependenciesInfo {
+        // Disables dependency metadata when building APKs.
+        includeInApk = false
+        // Disables dependency metadata when building Android App Bundles.
+        includeInBundle = false
+    }
+
+    packaging {
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
+
+    namespace 'org.schabi.newpipe'
+}
+
+tasks.withType(com.android.build.gradle.internal.tasks.ExtractVersionControlInfoTask).configureEach {
+    enabled = false
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+        jvmTarget = '25'
+    }
+}
+
+kapt {
+    correctErrorTypes true
+}
+
+androidComponents.onVariants(androidComponents.selector().all()) { variant ->
+    variant.buildConfigFields.put(
+            "VERSION_CODE",
+            new com.android.build.api.variant.BuildConfigField(
+                    "int", stableBuildConfigVersionCode,
+                    "Stable across ABI splits; use PackageManager at runtime."))
+
+    variant.outputs.each { output ->
+        def outputFileName = output.outputFileName.get()
+        def abi = abiCodes.keySet().sort { -it.length() }.find { outputFileName.contains(it) }
+        def versionCode = 100 * baseVersionCode
+        if (abi != null) {
+            versionCode += abiCodes[abi]
+        }
+        output.versionCode.set(versionCode)
+        output.outputFileName.set(
+                "PipePlay_${appVersionName}-${abi ?: 'universal'}-${variant.name}.apk")
+    }
+}
+
+ext {
+    androidxLifecycleVersion = '2.11.0'
+    androidxRoomVersion = '2.8.4'
+    androidxWorkVersion = '2.11.2'
+
+    exoPlayerVersion = '2.18.7'
+    googleAutoServiceVersion = '1.1.1'
+    groupieVersion = '2.10.1'
+    markwonVersion = '4.6.2'
+
+    leakCanaryVersion = '2.14'
+    stethoVersion = '1.6.0'
+}
+
+afterEvaluate {
+}
+
+dependencies {
+/** Desugaring **/
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
+
+/** NewPipe libraries **/
+    implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
+    implementation group: 'com.github.InfinityLoop1308.PipePipeExtractor', name: 'extractor'
+
+/** Kotlin **/
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation 'androidx.compose.animation:animation:1.11.3'
+    implementation 'androidx.compose.foundation:foundation:1.11.3'
+    implementation 'androidx.compose.material3:material3:1.4.0'
+    implementation 'androidx.compose.material:material-icons-extended:1.7.8'
+    implementation 'androidx.compose.ui:ui:1.11.3'
+    implementation 'androidx.compose.ui:ui-tooling-preview:1.11.3'
+
+/** AndroidX **/
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    implementation 'androidx.core:core-ktx:1.19.0'
+    implementation 'androidx.documentfile:documentfile:1.1.0'
+    implementation 'androidx.fragment:fragment-ktx:1.8.9'
+    implementation "androidx.lifecycle:lifecycle-livedata:${androidxLifecycleVersion}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:${androidxLifecycleVersion}"
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
+    implementation 'androidx.media:media:1.8.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.preference:preference:1.2.1'
+    implementation 'androidx.recyclerview:recyclerview:1.4.0'
+    implementation "androidx.room:room-runtime:${androidxRoomVersion}"
+    implementation "androidx.room:room-rxjava3:${androidxRoomVersion}"
+    kapt "androidx.room:room-compiler:${androidxRoomVersion}"
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.2.0'
+    implementation 'androidx.viewpager2:viewpager2:1.1.0'
+    implementation 'androidx.webkit:webkit:1.15.0'
+    implementation 'com.google.android.material:material:1.14.0'
+    implementation "androidx.work:work-runtime:${androidxWorkVersion}"
+    implementation "androidx.work:work-runtime-ktx:${androidxWorkVersion}"
+    implementation "androidx.work:work-rxjava3:${androidxWorkVersion}"
+    implementation "androidx.car.app:app:1.7.0"
+
+/** Third-party libraries **/
+    implementation 'org.lsposed.hiddenapibypass:hiddenapibypass:6.1'
+
+    // HTML parser
+    implementation "org.jsoup:jsoup:1.22.2"
+
+    // HTTP client
+    implementation "com.squareup.okhttp3:okhttp:5.4.0"
+
+    // Media player
+    implementation "com.google.android.exoplayer:exoplayer:${exoPlayerVersion}"
+    implementation "com.google.android.exoplayer:extension-mediasession:${exoPlayerVersion}"
+
+    // Metadata generator for service descriptors
+    compileOnly "com.google.auto.service:auto-service-annotations:${googleAutoServiceVersion}"
+    kapt "com.google.auto.service:auto-service:${googleAutoServiceVersion}"
+
+    // Manager for complex RecyclerView layouts
+    implementation "com.github.lisawray.groupie:groupie:${groupieVersion}"
+    implementation "com.github.lisawray.groupie:groupie-viewbinding:${groupieVersion}"
+
+    // Image loading
+    //noinspection GradleDependency --> 2.8 is the last version, not 2.71828!
+    implementation "com.squareup.picasso:picasso:2.8"
+
+    // Markdown library for Android
+    implementation "io.noties.markwon:core:${markwonVersion}"
+    implementation "io.noties.markwon:linkify:${markwonVersion}"
+
+    // File picker
+    implementation "com.nononsenseapps:filepicker:4.2.1"
+
+    // Image Viewer: PhotoView
+    implementation "com.github.chrisbanes:PhotoView:2.3.0"
+
+    // Crash reporting
+    implementation "ch.acra:acra-core:5.13.1"
+
+    // Properly restarting
+    implementation 'com.jakewharton:process-phoenix:3.0.0'
+
+    // WebSocket
+    implementation "org.java-websocket:Java-WebSocket:1.6.0"
+
+    // Annotation
+    implementation 'javax.annotation:javax.annotation-api:1.3.2'
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+
+    // Reactive extensions for Java VM
+    implementation "io.reactivex.rxjava3:rxjava:3.1.12"
+    implementation "io.reactivex.rxjava3:rxandroid:3.0.2"
+    // RxJava binding APIs for Android UI widgets
+    implementation "com.jakewharton.rxbinding4:rxbinding:4.0.0"
+
+    // Date and time formatting
+    implementation "org.ocpsoft.prettytime:prettytime:5.0.9.Final"
+
+
+/** Debugging **/
+    // Memory leak detection
+    implementation "com.squareup.leakcanary:leakcanary-object-watcher-android:${leakCanaryVersion}"
+    implementation "com.squareup.leakcanary:plumber-android:${leakCanaryVersion}"
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"
+    // Debug bridge for Android
+    debugImplementation "com.facebook.stetho:stetho:${stethoVersion}"
+    debugImplementation "com.facebook.stetho:stetho-okhttp3:${stethoVersion}"
+
+//    implementation 'com.arthenica:ffmpeg-kit-https:6.0-2.LTS'
+    implementation project(':ffmpeg')
+    implementation 'com.arthenica:smart-exception-java:0.2.1'
+
+/** Instrumented integration tests **/
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test:runner:1.7.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.3.0'
+    androidTestImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'org.bouncycastle:bcprov-jdk18on:1.85'
+}
+
+static String getGitWorkingBranch() {
+    try {
+        def gitProcess = "git rev-parse --abbrev-ref HEAD".execute()
+        gitProcess.waitFor()
+        if (gitProcess.exitValue() == 0) {
+            return gitProcess.text.trim()
+        } else {
+            // not a git repository
+            return ""
+        }
+    } catch (IOException ignored) {
+        // git was not found
+        return ""
+    }
+}

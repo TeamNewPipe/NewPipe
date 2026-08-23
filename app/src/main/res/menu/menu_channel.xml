@@ -4,9 +4,9 @@
     tools:context=".fragments.list.impl.ChannelFragment">
 
     <item
-        android:id="@+id/menu_item_rss"
-        android:icon="@drawable/ic_rss_feed"
-        android:title="@string/rss_button_title"
+        android:id="@+id/menu_item_search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search"
         android:visible="false"
         app:showAsAction="ifRoom"
         tools:visible="true" />

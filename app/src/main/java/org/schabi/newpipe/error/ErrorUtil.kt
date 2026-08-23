@@ -5,16 +5,16 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.os.Build
 import android.view.View
+import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.Toast
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.app.PendingIntentCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.preference.PreferenceManager
 import com.google.android.material.snackbar.Snackbar
-import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 
 /**
@@ -38,20 +38,12 @@ class ErrorUtil {
          * activity (since the workflow would be interrupted anyway in that case). So never use this
          * for background services.
          *
-         * If the crashed occurred while the app was in the background open a notification instead
-         *
          * @param context the context to use to start the new activity
          * @param errorInfo the error info to be reported
          */
         @JvmStatic
         fun openActivity(context: Context, errorInfo: ErrorInfo) {
-            if (PreferenceManager.getDefaultSharedPreferences(context)
-                    .getBoolean(MainActivity.KEY_IS_IN_BACKGROUND, true)
-            ) {
-                createNotification(context, errorInfo)
-            } else {
-                context.startActivity(getErrorActivityIntent(context, errorInfo))
-            }
+            context.startActivity(getErrorActivityIntent(context, errorInfo))
         }
 
         /**
@@ -65,7 +57,7 @@ class ErrorUtil {
          */
         @JvmStatic
         fun showSnackbar(context: Context, errorInfo: ErrorInfo) {
-            val rootView = (context as? Activity)?.findViewById<View>(android.R.id.content)
+            val rootView = if (context is Activity) context.findViewById<View>(android.R.id.content) else null
             showSnackbar(context, rootView, errorInfo)
         }
 
@@ -115,36 +107,38 @@ class ErrorUtil {
          */
         @JvmStatic
         fun createNotification(context: Context, errorInfo: ErrorInfo) {
+            var pendingIntentFlags = PendingIntent.FLAG_UPDATE_CURRENT
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                pendingIntentFlags = pendingIntentFlags or PendingIntent.FLAG_IMMUTABLE
+            }
+
             val notificationBuilder: NotificationCompat.Builder =
                 NotificationCompat.Builder(
                     context,
                     context.getString(R.string.error_report_channel_id)
                 )
-                    .setSmallIcon(R.drawable.ic_bug_report)
-                    .setContentTitle(context.getString(R.string.error_report_notification_title))
-                    .setContentText(errorInfo.getMessage(context))
+                    .setSmallIcon(
+                        // the vector drawable icon causes crashes on KitKat devices
+                        R.drawable.ic_bug_report
+                    )
+                    .setContentTitle(context.getString(R.string.error_report_notification_title_new))
+                    .setContentText(context.getString(errorInfo.messageStringId))
                     .setAutoCancel(true)
                     .setContentIntent(
-                        PendingIntentCompat.getActivity(
+                        PendingIntent.getActivity(
                             context,
                             0,
                             getErrorActivityIntent(context, errorInfo),
-                            PendingIntent.FLAG_UPDATE_CURRENT,
-                            false
+                            pendingIntentFlags
                         )
                     )
 
-            val notificationManager = NotificationManagerCompat.from(context)
-            if (notificationManager.areNotificationsEnabled()) {
-                notificationManager
-                    .notify(ERROR_REPORT_NOTIFICATION_ID, notificationBuilder.build())
-            }
+            NotificationManagerCompat.from(context)
+                .notify(ERROR_REPORT_NOTIFICATION_ID, notificationBuilder.build())
 
-            ContextCompat.getMainExecutor(context).execute {
-                // since the notification is silent, also show a toast, otherwise the user is confused
-                Toast.makeText(context, R.string.error_report_notification_toast, Toast.LENGTH_SHORT)
-                    .show()
-            }
+            // since the notification is silent, also show a toast, otherwise the user is confused
+            Toast.makeText(context, R.string.error_report_notification_toast, Toast.LENGTH_SHORT)
+                .show()
         }
 
         private fun getErrorActivityIntent(context: Context, errorInfo: ErrorInfo): Intent {
@@ -155,16 +149,44 @@ class ErrorUtil {
         }
 
         private fun showSnackbar(context: Context, rootView: View?, errorInfo: ErrorInfo) {
-            if (rootView == null) {
+            if (rootView == null || findSuitableParent(rootView) == null) {
                 // fallback to showing a notification if no root view is available
                 createNotification(context, errorInfo)
             } else {
-                Snackbar.make(rootView, errorInfo.getMessage(context), Snackbar.LENGTH_LONG)
+                Snackbar.make(rootView, R.string.error_snackbar_message, Snackbar.LENGTH_LONG)
                     .setActionTextColor(Color.YELLOW)
                     .setAction(context.getString(R.string.error_snackbar_action).uppercase()) {
-                        context.startActivity(getErrorActivityIntent(context, errorInfo))
+                        openActivity(context, errorInfo)
                     }.show()
             }
+        }
+
+        private fun findSuitableParent(passedView: View): ViewGroup? {
+            var view: View? = passedView
+            var fallback: ViewGroup? = null
+            do {
+                if (view is CoordinatorLayout) {
+                    // We've found a CoordinatorLayout, use it
+                    return view
+                } else if (view is FrameLayout) {
+                    fallback = if (view.getId() == android.R.id.content) {
+                        // If we've hit the decor content view, then we didn't find a CoL in the
+                        // hierarchy, so use it.
+                        return view
+                    } else {
+                        // It's not the content view but we'll use it as our fallback
+                        view
+                    }
+                }
+                if (view != null) {
+                    // Else, we will loop and crawl up the view hierarchy and try to find a parent
+                    val parent = view.parent
+                    view = if (parent is View) parent else null
+                }
+            } while (view != null)
+
+            // If we reach here then we didn't find a CoL or a suitable content view so we'll fallback
+            return fallback
         }
     }
 }

@@ -1,19 +1,12 @@
 package org.schabi.newpipe.streams.io;
 
-import static android.provider.DocumentsContract.Document.COLUMN_DISPLAY_NAME;
-import static android.provider.DocumentsContract.Root.COLUMN_DOCUMENT_ID;
-import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
-
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.ParcelFileDescriptor;
+import android.os.Build;
 import android.provider.DocumentsContract;
-import android.system.Os;
-import android.system.StructStatVfs;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,30 +15,24 @@ import androidx.documentfile.provider.DocumentFile;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 
-import java.io.FileDescriptor;
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+import static android.provider.DocumentsContract.Document.COLUMN_DISPLAY_NAME;
+import static android.provider.DocumentsContract.Document.COLUMN_SIZE;
+import static android.provider.DocumentsContract.Root.COLUMN_DOCUMENT_ID;
+import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 
 public class StoredDirectoryHelper {
-    private static final String TAG = StoredDirectoryHelper.class.getSimpleName();
     public static final int PERMISSION_FLAGS = Intent.FLAG_GRANT_READ_URI_PERMISSION
             | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
 
-    private Path ioTree;
+    private File ioTree;
     private DocumentFile docTree;
 
-    /**
-     * Context is `null` for non-SAF files, i.e. files that use `ioTree`.
-     */
-    @Nullable
     private Context context;
 
     private final String tag;
@@ -55,7 +42,7 @@ public class StoredDirectoryHelper {
         this.tag = tag;
 
         if (ContentResolver.SCHEME_FILE.equalsIgnoreCase(path.getScheme())) {
-            ioTree = Paths.get(URI.create(path.toString()));
+            this.ioTree = new File(URI.create(path.toString()));
             return;
         }
 
@@ -79,17 +66,13 @@ public class StoredDirectoryHelper {
     }
 
     public StoredFileHelper createUniqueFile(final String name, final String mime) {
-        final List<String> matches = new ArrayList<>();
+        final ArrayList<String> matches = new ArrayList<>();
         final String[] filename = splitFilename(name);
-        final String lcFileName = filename[0].toLowerCase();
+        final String lcFilename = filename[0].toLowerCase();
 
         if (docTree == null) {
-            try (Stream<Path> stream = Files.list(ioTree)) {
-                matches.addAll(stream.map(path -> path.getFileName().toString().toLowerCase())
-                        .filter(fileName -> fileName.startsWith(lcFileName))
-                        .collect(Collectors.toList()));
-            } catch (final IOException e) {
-                Log.e(TAG, "Exception while traversing " + ioTree, e);
+            for (final File file : ioTree.listFiles()) {
+                addIfStartWith(matches, lcFilename, file.getName());
             }
         } else {
             // warning: SAF file listing is very slow
@@ -101,37 +84,37 @@ public class StoredDirectoryHelper {
             final ContentResolver cr = context.getContentResolver();
 
             try (Cursor cursor = cr.query(docTreeChildren, projection, selection,
-                    new String[]{lcFileName}, null)) {
+                    new String[]{lcFilename}, null)) {
                 if (cursor != null) {
                     while (cursor.moveToNext()) {
-                        addIfStartWith(matches, lcFileName, cursor.getString(0));
+                        addIfStartWith(matches, lcFilename, cursor.getString(0));
                     }
                 }
             }
         }
 
-        if (matches.isEmpty()) {
+        if (matches.size() < 1) {
             return createFile(name, mime, true);
-        }
-
-        // check if the filename is in use
-        String lcName = name.toLowerCase();
-        for (final String testName : matches) {
-            if (testName.equals(lcName)) {
-                lcName = null;
-                break;
+        } else {
+            // check if the filename is in use
+            String lcName = name.toLowerCase();
+            for (final String testName : matches) {
+                if (testName.equals(lcName)) {
+                    lcName = null;
+                    break;
+                }
             }
-        }
 
-        // create file if filename not in use
-        if (lcName != null) {
-            return createFile(name, mime, true);
+            // check if not in use
+            if (lcName != null) {
+                return createFile(name, mime, true);
+            }
         }
 
         Collections.sort(matches, String::compareTo);
 
         for (int i = 1; i < 1000; i++) {
-            if (Collections.binarySearch(matches, makeFileName(lcFileName, i, filename[1])) < 0) {
+            if (Collections.binarySearch(matches, makeFileName(lcFilename, i, filename[1])) < 0) {
                 return createFile(makeFileName(filename[0], i, filename[1]), mime, true);
             }
         }
@@ -160,11 +143,11 @@ public class StoredDirectoryHelper {
     }
 
     public Uri getUri() {
-        return docTree == null ? Uri.fromFile(ioTree.toFile()) : docTree.getUri();
+        return docTree == null ? Uri.fromFile(ioTree) : docTree.getUri();
     }
 
     public boolean exists() {
-        return docTree == null ? Files.exists(ioTree) : docTree.exists();
+        return docTree == null ? ioTree.exists() : docTree.exists();
     }
 
     /**
@@ -177,49 +160,9 @@ public class StoredDirectoryHelper {
     }
 
     /**
-     * Get free memory of the storage partition this file belongs to (root of the directory).
-     * See <a href="https://stackoverflow.com/q/31171838">StackOverflow</a> and
-     * <a href="https://pubs.opengroup.org/onlinepubs/9699919799/functions/fstatvfs.html">
-     *     {@code statvfs()} and {@code fstatvfs()} docs</a>
-     *
-     * @return amount of free memory in the volume of current directory (bytes), or {@link
-     * Long#MAX_VALUE} if an error occurred
-     */
-    public long getFreeStorageSpace() {
-        try {
-            final StructStatVfs stat;
-
-            if (ioTree != null) {
-                // non-SAF file, use statvfs with the path directly (also, `context` would be null
-                // for non-SAF files, so we wouldn't be able to call `getContentResolver` anyway)
-                stat = Os.statvfs(ioTree.toString());
-
-            } else {
-                // SAF file, we can't get a path directly, so obtain a file descriptor first
-                // and then use fstatvfs with the file descriptor
-                try (ParcelFileDescriptor parcelFileDescriptor =
-                             context.getContentResolver().openFileDescriptor(getUri(), "r")) {
-                    if (parcelFileDescriptor == null) {
-                        return Long.MAX_VALUE;
-                    }
-                    final FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
-                    stat = Os.fstatvfs(fileDescriptor);
-                }
-            }
-
-            // this is the same formula used inside the FsStat class
-            return stat.f_bavail * stat.f_frsize;
-        } catch (final Throwable e) {
-            // ignore any error
-            Log.e(TAG, "Could not get free storage space", e);
-            return Long.MAX_VALUE;
-        }
-    }
-
-    /**
      * Only using Java I/O. Creates the directory named by this abstract pathname, including any
-     * necessary but nonexistent parent directories.
-     * Note that if this operation fails it may have succeeded in creating some of the necessary
+     * necessary but nonexistent parent directories.  Note that if this
+     * operation fails it may have succeeded in creating some of the necessary
      * parent directories.
      *
      * @return <code>true</code> if and only if the directory was created,
@@ -228,12 +171,7 @@ public class StoredDirectoryHelper {
      */
     public boolean mkdirs() {
         if (docTree == null) {
-            try {
-                Files.createDirectories(ioTree);
-            } catch (final IOException e) {
-                Log.e(TAG, "Error while creating directories at " + ioTree, e);
-            }
-            return Files.exists(ioTree);
+            return ioTree.exists() || ioTree.mkdirs();
         }
 
         if (docTree.exists()) {
@@ -270,16 +208,73 @@ public class StoredDirectoryHelper {
 
     public Uri findFile(final String filename) {
         if (docTree == null) {
-            final Path res = ioTree.resolve(filename);
-            return Files.exists(res) ? Uri.fromFile(res.toFile()) : null;
+            final File res = new File(ioTree, filename);
+            return res.exists() ? Uri.fromFile(res) : null;
         }
 
         final DocumentFile res = findFileSAFHelper(context, docTree, filename);
-        return res == null ? null : res.getUri();
+        return (res == null || res.length() > 0) ? null : res.getUri();
     }
 
+    /**
+     * Checks if a file with the given base name exists (regardless of extension) and has non-zero length.
+     *
+     * @param baseFilename The base filename without extension (e.g. "test" for "test.m4a")
+     * @return true if a file with this base name exists and has length > 0, false otherwise
+     */
+    public boolean findFileWithoutExtension(final String baseFilename) {
+        if (docTree == null) {
+            // For regular file system
+            File directory = ioTree;
+            File[] matchingFiles = directory.listFiles((dir, name) ->
+                    name.startsWith(baseFilename + ".") || name.equals(baseFilename));
+
+            if (matchingFiles != null) {
+                for (File file : matchingFiles) {
+                    if (file.exists() && file.length() > 0) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        // For Storage Access Framework
+        if (context == null || !docTree.canRead()) {
+            return false;
+        }
+
+        final Uri childrenUri = DocumentsContract.buildChildDocumentsUriUsingTree(docTree.getUri(),
+                DocumentsContract.getDocumentId(docTree.getUri()));
+        final String[] projection = {COLUMN_DISPLAY_NAME, COLUMN_DOCUMENT_ID, COLUMN_SIZE};
+        final ContentResolver contentResolver = context.getContentResolver();
+
+        try (Cursor cursor = contentResolver.query(childrenUri, projection, null, null, null)) {
+            if (cursor == null) {
+                return false;
+            }
+
+            while (cursor.moveToNext()) {
+                String name = cursor.getString(0);
+                long size = cursor.getLong(2);
+
+                if (name != null) {
+                    int dotIndex = name.lastIndexOf('.');
+                    String nameWithoutExt = (dotIndex > 0) ? name.substring(0, dotIndex) : name;
+
+                    if (nameWithoutExt.equals(baseFilename) && size > 0) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+
     public boolean canWrite() {
-        return docTree == null ? Files.isWritable(ioTree) : docTree.canWrite();
+        return docTree == null ? ioTree.canWrite() : docTree.canWrite();
     }
 
     /**
@@ -294,14 +289,14 @@ public class StoredDirectoryHelper {
     @NonNull
     @Override
     public String toString() {
-        return (docTree == null ? Uri.fromFile(ioTree.toFile()) : docTree.getUri()).toString();
+        return (docTree == null ? Uri.fromFile(ioTree) : docTree.getUri()).toString();
     }
 
     ////////////////////
     //      Utils
     ///////////////////
 
-    private static void addIfStartWith(final List<String> list, @NonNull final String base,
+    private static void addIfStartWith(final ArrayList<String> list, @NonNull final String base,
                                        final String str) {
         if (isNullOrEmpty(str)) {
             return;
@@ -312,12 +307,6 @@ public class StoredDirectoryHelper {
         }
     }
 
-    /**
-     * Splits the filename into the name and extension.
-     *
-     * @param filename The filename to split
-     * @return A String array with the name at index 0 and extension at index 1
-     */
     private static String[] splitFilename(@NonNull final String filename) {
         final int dotIndex = filename.lastIndexOf('.');
 
@@ -329,7 +318,7 @@ public class StoredDirectoryHelper {
     }
 
     private static String makeFileName(final String name, final int idx, final String ext) {
-        return name + "(" + idx + ")" + ext;
+        return name.concat(" (").concat(String.valueOf(idx)).concat(")").concat(ext);
     }
 
     /**
@@ -340,7 +329,7 @@ public class StoredDirectoryHelper {
      * @param filename Target filename
      * @return A {@link DocumentFile} contain the reference, otherwise, null
      */
-    static DocumentFile findFileSAFHelper(@Nullable final Context context, final DocumentFile tree,
+    public static DocumentFile findFileSAFHelper(@Nullable final Context context, final DocumentFile tree,
                                           final String filename) {
         if (context == null) {
             return tree.findFile(filename); // warning: this is very slow
@@ -397,6 +386,61 @@ public class StoredDirectoryHelper {
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
                     .putExtra(FilePickerActivityHelper.EXTRA_MODE,
                             FilePickerActivityHelper.MODE_DIR);
+        }
+    }
+
+    public void remove(String fileName){
+        if (ioTree != null) {
+            File file = new File(ioTree, fileName);
+            file.delete();
+        }
+        else {
+            // use docTree
+            DocumentFile file = findFileSAFHelper(context, docTree, fileName);
+            if (file != null) {
+                file.delete();
+            }
+        }
+    }
+    public void clear(){
+        // clear *.tmp in the folder if [filename].mp4.tmp 's size > 0
+        ArrayList<String> filesToDelete = new ArrayList<>();
+        if (ioTree != null) {
+            File[] files = ioTree.listFiles();
+            try{
+                for (File file : files) {
+                    if (file.getName().endsWith(".tmp.mp4") && file.length() > 0) {
+                        filesToDelete.add(file.getName());
+                        filesToDelete.add(file.getName().replace(".tmp.mp4", ".tmp"));
+                    }
+                }
+                for (String filename : filesToDelete) {
+                    File file = new File(ioTree, filename);
+                    file.delete();
+                }
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        else {
+            // use docTree
+            DocumentFile[] docFiles = docTree.listFiles();
+            try{
+                for (DocumentFile docFile : docFiles) {
+                    if (docFile.getName().endsWith(".tmp.mp4") && docFile.length() > 0) {
+                        filesToDelete.add(docFile.getName());
+                        filesToDelete.add(docFile.getName().replace(".tmp.mp4", ".tmp"));
+                    }
+                }
+                for (String filename : filesToDelete) {
+                    DocumentFile docFile = findFileSAFHelper(context, docTree, filename);
+                    if (docFile != null) {
+                        docFile.delete();
+                    }
+                }
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 }

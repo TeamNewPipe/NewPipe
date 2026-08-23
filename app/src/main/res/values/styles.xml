@@ -1,34 +1,33 @@
 <resources>
 
     <!-- Opening Theme -->
-    <style name="Base.V21.OpeningTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="Base.V19.OpeningTheme" parent="Theme.AppCompat.DayNight.NoActionBar"/>
+    <style name="Base.OpeningTheme" parent="Base.V19.OpeningTheme"/>
+    <style name="OpeningTheme" parent="Base.OpeningTheme">
         <item name="colorPrimary">@android:color/transparent</item>
         <item name="colorPrimaryDark">@android:color/transparent</item>
         <item name="colorAccent">@android:color/transparent</item>
 
         <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
-    <style name="Base.OpeningTheme" parent="Base.V21.OpeningTheme">
-        <item name="android:navigationBarColor">@color/light_youtube_primary_color</item>
-    </style>
-    <style name="OpeningTheme" parent="Base.OpeningTheme" />
 
     <!-- Base Theme -->
-    <style name="Base.V21" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="Base.V19" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="actionColor">@color/white</item>
         <item name="floatingActionButtonStyle">@style/FloatingActionButtonTheme</item>
         <item name="toolbarSearchColor">@color/white</item>
         <item name="colorControlActivated">?attr/colorPrimary</item>
     </style>
-    <style name="Base" parent="Base.V21"/>
+    <style name="Base" parent="Base.V19"/>
 
     <!-- Light Theme -->
-    <style name="Base.V21.LightTheme" parent="Base">
+    <style name="Base.V19.LightTheme" parent="Base">
         <item name="colorPrimary">@color/light_youtube_primary_color</item>
         <item name="colorPrimaryDark">@color/light_youtube_primary_color</item>
         <item name="colorAccent">@color/light_youtube_accent_color</item>
         <item name="android:windowBackground">@color/light_background_color</item>
         <item name="windowBackground">@color/light_background_color</item>
+        <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme.Light.Base</item>
 
         <item name="separator_color">@color/light_separator_color</item>
         <item name="contrast_background_color">@color/light_contrast_background_color</item>
@@ -37,22 +36,27 @@
         <item name="toolbar_shadow">@drawable/toolbar_shadow_light</item>
         <item name="selector">@drawable/selector_light</item>
         <item name="colorControlHighlight">@color/light_ripple_color</item>
-        <item name="progress_horizontal_drawable">@drawable/progress_youtube_horizontal_light</item>
+        <item name="progress_horizontal_drawable">@drawable/progress_youtube_horizontal_light_rounded</item>
         <item name="card_item_background_color">@color/light_card_item_background_color</item>
         <item name="card_item_contrast_color">@color/light_card_item_contrast_color</item>
         <item name="border_color">@color/light_border_color</item>
         <item name="dashed_border">@drawable/dashed_border_light</item>
+        <item name="tag_text_color">@color/black</item>
     </style>
-    <style name="Base.LightTheme" parent="Base.V21.LightTheme" />
+    <style name="Base.LightTheme" parent="Base.V19.LightTheme" />
     <style name="LightTheme" parent="Base.LightTheme"/>
 
     <!-- Dark Theme -->
-    <style name="Base.V21.DarkTheme" parent="Base">
+    <style name="Base.V19.DarkTheme" parent="Base">
         <item name="colorPrimary">@color/dark_youtube_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_youtube_primary_color</item>
         <item name="colorAccent">@color/dark_youtube_accent_color</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/white_secondary</item>
+        <item name="android:textColorTertiary">@color/white_secondary</item>
         <item name="android:windowBackground">@color/dark_background_color</item>
         <item name="windowBackground">@color/dark_background_color</item>
+        <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme.Dark.Base</item>
 
         <item name="separator_color">@color/dark_separator_color</item>
         <item name="contrast_background_color">@color/dark_contrast_background_color</item>
@@ -61,19 +65,21 @@
         <item name="toolbar_shadow">@drawable/toolbar_shadow_dark</item>
         <item name="selector">@drawable/selector_dark</item>
         <item name="colorControlHighlight">@color/dark_ripple_color</item>
-        <item name="progress_horizontal_drawable">@drawable/progress_youtube_horizontal_dark</item>
+        <item name="progress_horizontal_drawable">@drawable/progress_youtube_horizontal_dark_rounded</item>
         <item name="card_item_background_color">@color/dark_card_item_background_color</item>
         <item name="card_item_contrast_color">@color/dark_card_item_contrast_color</item>
         <item name="border_color">@color/dark_border_color</item>
         <item name="dashed_border">@drawable/dashed_border_dark</item>
+        <item name="tag_text_color">@color/white</item>
     </style>
-    <style name="Base.DarkTheme" parent="Base.V21.DarkTheme" />
+    <style name="Base.DarkTheme" parent="Base.V19.DarkTheme" />
     <style name="DarkTheme" parent="Base.DarkTheme"/>
 
     <!-- Black Theme -->
-    <style name="Base.V21.BlackTheme" parent="DarkTheme">
+    <style name="Base.V19.BlackTheme" parent="DarkTheme">
         <item name="android:windowBackground">@color/black_background_color</item>
         <item name="windowBackground">@color/black_background_color</item>
+        <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme.Black</item>
 
         <item name="separator_color">@color/black_separator_color</item>
         <item name="contrast_background_color">@color/black_contrast_background_color</item>
@@ -83,8 +89,58 @@
         <item name="border_color">@color/black_border_color</item>
         <item name="dashed_border">@drawable/dashed_border_black</item>
     </style>
-    <style name="Base.BlackTheme" parent="Base.V21.BlackTheme" />
+    <style name="Base.BlackTheme" parent="Base.V19.BlackTheme" />
     <style name="BlackTheme" parent="Base.BlackTheme"/>
+
+    <!-- Manual Material-style theme color overlays -->
+    <style name="ThemeOverlay.PipePlay.ThemeColor.PipePlay">
+        <item name="colorPrimary">@color/theme_color_pipeplay_primary</item>
+        <item name="colorPrimaryDark">@color/theme_color_pipeplay_primary_dark</item>
+        <item name="colorAccent">@color/theme_color_pipeplay_accent</item>
+        <item name="colorControlActivated">@color/theme_color_pipeplay_accent</item>
+    </style>
+    <style name="ThemeOverlay.PipePlay.ThemeColor.Neutral">
+        <item name="colorPrimary">@color/theme_color_neutral_primary</item>
+        <item name="colorPrimaryDark">@color/theme_color_neutral_primary_dark</item>
+        <item name="colorAccent">@color/theme_color_neutral_accent</item>
+        <item name="colorControlActivated">@color/theme_color_neutral_accent</item>
+    </style>
+    <style name="ThemeOverlay.PipePlay.ThemeColor.Green">
+        <item name="colorPrimary">@color/theme_color_green_primary</item>
+        <item name="colorPrimaryDark">@color/theme_color_green_primary_dark</item>
+        <item name="colorAccent">@color/theme_color_green_accent</item>
+        <item name="colorControlActivated">@color/theme_color_green_accent</item>
+    </style>
+    <style name="ThemeOverlay.PipePlay.ThemeColor.Blue">
+        <item name="colorPrimary">@color/theme_color_blue_primary</item>
+        <item name="colorPrimaryDark">@color/theme_color_blue_primary_dark</item>
+        <item name="colorAccent">@color/theme_color_blue_accent</item>
+        <item name="colorControlActivated">@color/theme_color_blue_accent</item>
+    </style>
+    <style name="ThemeOverlay.PipePlay.ThemeColor.Purple">
+        <item name="colorPrimary">@color/theme_color_purple_primary</item>
+        <item name="colorPrimaryDark">@color/theme_color_purple_primary_dark</item>
+        <item name="colorAccent">@color/theme_color_purple_accent</item>
+        <item name="colorControlActivated">@color/theme_color_purple_accent</item>
+    </style>
+    <style name="ThemeOverlay.PipePlay.ThemeColor.Orange">
+        <item name="colorPrimary">@color/theme_color_orange_primary</item>
+        <item name="colorPrimaryDark">@color/theme_color_orange_primary_dark</item>
+        <item name="colorAccent">@color/theme_color_orange_accent</item>
+        <item name="colorControlActivated">@color/theme_color_orange_accent</item>
+    </style>
+    <style name="ThemeOverlay.PipePlay.ThemeColor.Pink">
+        <item name="colorPrimary">@color/theme_color_pink_primary</item>
+        <item name="colorPrimaryDark">@color/theme_color_pink_primary_dark</item>
+        <item name="colorAccent">@color/theme_color_pink_accent</item>
+        <item name="colorControlActivated">@color/theme_color_pink_accent</item>
+    </style>
+    <style name="ThemeOverlay.PipePlay.ThemeColor.Red">
+        <item name="colorPrimary">@color/theme_color_red_primary</item>
+        <item name="colorPrimaryDark">@color/theme_color_red_primary_dark</item>
+        <item name="colorAccent">@color/theme_color_red_accent</item>
+        <item name="colorControlActivated">@color/theme_color_red_accent</item>
+    </style>
 
     <!-- Dialogs -->
     <style name="LightDialogTheme" parent="Theme.AppCompat.DayNight.Dialog">
@@ -132,27 +188,43 @@
         <item name="colorAccent">@color/black_settings_accent_color</item>
     </style>
 
-    <!-- Router Activity -->
-    <style name="Base.RouterActivityThemeLight" parent="LightTheme">
+    <style name="RouterActivityThemeLight" parent="LightTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@null</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
-    <style name="RouterActivityThemeLight" parent="Base.RouterActivityThemeLight" />
-
-    <style name="Base.RouterActivityThemeDark" parent="DarkTheme">
+    <style name="RouterActivityThemeDark" parent="DarkTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@null</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
-    <style name="RouterActivityThemeDark" parent="Base.RouterActivityThemeDark" />
+
+    <style name="BottomSheetDialogTheme.Light.V19" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/white</item>
+    </style>
+    <style name="BottomSheetDialogTheme.Light.Base" parent="BottomSheetDialogTheme.Light.V19"/>
+
+    <style name="BottomSheetDialogTheme.Dark.V19" parent="Theme.Design.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/dark_bottom_sheet_color</item>
+    </style>
+    <style name="BottomSheetDialogTheme.Dark.Base" parent="BottomSheetDialogTheme.Dark.V19"/>
+
+    <style name="BottomSheetDialogTheme.Black" parent="BottomSheetDialogTheme.Dark.Base">
+        <item name="android:navigationBarColor">#121212</item>
+        <item name="bottomSheetStyle">@style/BottomSheetStyle.Black</item>
+    </style>
+    <style name="BottomSheetStyle.Black" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@color/black_bottom_sheet_color</item>
+    </style>
 
 </resources>

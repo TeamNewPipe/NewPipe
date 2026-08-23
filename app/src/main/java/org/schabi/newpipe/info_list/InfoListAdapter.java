@@ -17,16 +17,18 @@ import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.info_list.holder.ChannelCardInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelGridInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelMiniInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.CommentInfoItemHolder;
+import org.schabi.newpipe.info_list.holder.CommentsInfoItemHolder;
+import org.schabi.newpipe.info_list.holder.CommentsMiniInfoItemHolder;
+import org.schabi.newpipe.info_list.holder.ComposeInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.InfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistCardInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistGridInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistMiniInfoItemHolder;
+import org.schabi.newpipe.info_list.holder.StaffInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamCardInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamGridInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamInfoItemHolder;
@@ -38,6 +40,9 @@ import org.schabi.newpipe.util.OnClickGesture;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
+
+import static org.schabi.newpipe.util.ThemeHelper.isGrid;
+import static org.schabi.newpipe.util.ThemeHelper.shouldUseExperimentalNewUi;
 
 /*
  * Created by Christian Schabesberger on 01.08.16.
@@ -66,6 +71,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int HEADER_TYPE = 0;
     private static final int FOOTER_TYPE = 1;
 
+    private static final int COMPOSE_HOLDER_TYPE = 2;
     private static final int MINI_STREAM_HOLDER_TYPE = 0x100;
     private static final int STREAM_HOLDER_TYPE = 0x101;
     private static final int GRID_STREAM_HOLDER_TYPE = 0x102;
@@ -73,12 +79,13 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int MINI_CHANNEL_HOLDER_TYPE = 0x200;
     private static final int CHANNEL_HOLDER_TYPE = 0x201;
     private static final int GRID_CHANNEL_HOLDER_TYPE = 0x202;
-    private static final int CARD_CHANNEL_HOLDER_TYPE = 0x203;
     private static final int MINI_PLAYLIST_HOLDER_TYPE = 0x300;
     private static final int PLAYLIST_HOLDER_TYPE = 0x301;
     private static final int GRID_PLAYLIST_HOLDER_TYPE = 0x302;
     private static final int CARD_PLAYLIST_HOLDER_TYPE = 0x303;
-    private static final int COMMENT_HOLDER_TYPE = 0x400;
+    private static final int MINI_COMMENT_HOLDER_TYPE = 0x400;
+    private static final int COMMENT_HOLDER_TYPE = 0x401;
+    private static final int STAFF_TYPE = 0x816;
 
     private final LayoutInflater layoutInflater;
     private final InfoItemBuilder infoItemBuilder;
@@ -113,6 +120,10 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public void setOnCommentsSelectedListener(final OnClickGesture<CommentsInfoItem> listener) {
         infoItemBuilder.setOnCommentsSelectedListener(listener);
+    }
+
+    public void setOnCommentsReplyListener(final OnClickGesture<CommentsInfoItem> listener) {
+        infoItemBuilder.setOnCommentsReplyListener(listener);
     }
 
     public void setUseMiniVariant(final boolean useMiniVariant) {
@@ -152,6 +163,12 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         + " to " + footerNow);
             }
         }
+    }
+
+    public void setInfoItemList(final List<? extends InfoItem> data) {
+        infoItemList.clear();
+        infoItemList.addAll(data);
+        notifyDataSetChanged();
     }
 
     public void clearStreamItemList() {
@@ -237,11 +254,15 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return FOOTER_TYPE;
         }
         final InfoItem item = infoItemList.get(position);
+        if (shouldUseExperimentalNewUi(layoutInflater.getContext())
+                && item.getInfoType() != InfoItem.InfoType.COMMENT) {
+            return COMPOSE_HOLDER_TYPE;
+        }
         switch (item.getInfoType()) {
             case STREAM:
                 if (itemMode == ItemViewMode.CARD) {
                     return CARD_STREAM_HOLDER_TYPE;
-                } else if (itemMode == ItemViewMode.GRID) {
+                } else if (isGrid(itemMode)) {
                     return GRID_STREAM_HOLDER_TYPE;
                 } else if (useMiniVariant) {
                     return MINI_STREAM_HOLDER_TYPE;
@@ -249,9 +270,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     return STREAM_HOLDER_TYPE;
                 }
             case CHANNEL:
-                if (itemMode == ItemViewMode.CARD) {
-                    return CARD_CHANNEL_HOLDER_TYPE;
-                } else if (itemMode == ItemViewMode.GRID) {
+                if (isGrid(itemMode)) {
                     return GRID_CHANNEL_HOLDER_TYPE;
                 } else if (useMiniVariant) {
                     return MINI_CHANNEL_HOLDER_TYPE;
@@ -261,7 +280,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             case PLAYLIST:
                 if (itemMode == ItemViewMode.CARD) {
                     return CARD_PLAYLIST_HOLDER_TYPE;
-                } else if (itemMode == ItemViewMode.GRID) {
+                } else if (isGrid(itemMode)) {
                     return GRID_PLAYLIST_HOLDER_TYPE;
                 } else if (useMiniVariant) {
                     return MINI_PLAYLIST_HOLDER_TYPE;
@@ -269,7 +288,9 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     return PLAYLIST_HOLDER_TYPE;
                 }
             case COMMENT:
-                return COMMENT_HOLDER_TYPE;
+                return useMiniVariant ? MINI_COMMENT_HOLDER_TYPE : COMMENT_HOLDER_TYPE;
+            case STAFF:
+                return STAFF_TYPE;
             default:
                 return -1;
         }
@@ -294,6 +315,8 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         .inflate(layoutInflater, parent, false)
                         .getRoot()
                 );
+            case COMPOSE_HOLDER_TYPE:
+                return new ComposeInfoItemHolder(infoItemBuilder, parent, itemMode);
             case MINI_STREAM_HOLDER_TYPE:
                 return new StreamMiniInfoItemHolder(infoItemBuilder, parent);
             case STREAM_HOLDER_TYPE:
@@ -306,8 +329,6 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 return new ChannelMiniInfoItemHolder(infoItemBuilder, parent);
             case CHANNEL_HOLDER_TYPE:
                 return new ChannelInfoItemHolder(infoItemBuilder, parent);
-            case CARD_CHANNEL_HOLDER_TYPE:
-                return new ChannelCardInfoItemHolder(infoItemBuilder, parent);
             case GRID_CHANNEL_HOLDER_TYPE:
                 return new ChannelGridInfoItemHolder(infoItemBuilder, parent);
             case MINI_PLAYLIST_HOLDER_TYPE:
@@ -318,8 +339,12 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 return new PlaylistGridInfoItemHolder(infoItemBuilder, parent);
             case CARD_PLAYLIST_HOLDER_TYPE:
                 return new PlaylistCardInfoItemHolder(infoItemBuilder, parent);
+            case MINI_COMMENT_HOLDER_TYPE:
+                return new CommentsMiniInfoItemHolder(infoItemBuilder, parent);
             case COMMENT_HOLDER_TYPE:
-                return new CommentInfoItemHolder(infoItemBuilder, parent);
+                return new CommentsInfoItemHolder(infoItemBuilder, parent);
+            case STAFF_TYPE:
+                return new StaffInfoItemHolder(infoItemBuilder, parent);
             default:
                 return new FallbackViewHolder(new View(parent.getContext()));
         }

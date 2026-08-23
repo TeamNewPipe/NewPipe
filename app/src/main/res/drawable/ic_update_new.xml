@@ -1,0 +1,7 @@
+<!-- drawable/arrow_up_bold_circle.xml -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:height="24dp" android:width="24dp"
+        android:tint="@color/defaultIconTint"
+        android:viewportWidth="24" android:viewportHeight="24">
+    <path android:fillColor="#000000"
+          android:pathData="M12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22M12,7L7,12H10V16H14V12H17L12,7Z"/>
+</vector>

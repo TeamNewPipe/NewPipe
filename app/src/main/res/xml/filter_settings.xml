@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto"
+                  android:title="@string/settings_category_filter_title">
+    <Preference
+            android:key="@string/filter_by_keyword_key"
+            android:title="@string/filter_by_keyword_title"
+            android:summary="@string/filter_by_keyword_summary"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+    <Preference
+            android:key="@string/filter_by_channel_key"
+            android:title="@string/filter_by_channel_title"
+            android:summary="@string/filter_by_channel_summary"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+    <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/filter_shorts_key"
+            android:summary="@string/filter_shorts_summary"
+            android:title="@string/filter_shorts_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+    <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/filter_paid_contents_key"
+            android:summary="@string/filter_paid_contents_summary"
+            android:title="@string/filter_paid_contents_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+    <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/filter_future_items_key"
+            android:summary="@string/filter_future_items_summary"
+            android:title="@string/filter_future_items_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+    <MultiSelectListPreference
+            android:key="@string/filter_type_key"
+            android:title="@string/filter_field_summary"
+            android:entries="@array/filter_type_entries"
+            android:entryValues="@array/filter_type_values"
+            android:defaultValue="@array/filter_type_values"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+</PreferenceScreen>

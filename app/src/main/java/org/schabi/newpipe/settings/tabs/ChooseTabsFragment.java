@@ -1,8 +1,5 @@
 package org.schabi.newpipe.settings.tabs;
 
-import static org.schabi.newpipe.settings.tabs.Tab.typeFrom;
-import static org.schabi.newpipe.util.ServiceHelper.getNameOfServiceById;
-
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
@@ -31,16 +28,19 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.settings.SelectChannelFragment;
+import org.schabi.newpipe.settings.SelectChannelGroupFragment;
 import org.schabi.newpipe.settings.SelectKioskFragment;
 import org.schabi.newpipe.settings.SelectPlaylistFragment;
-import org.schabi.newpipe.settings.SelectFeedGroupFragment;
 import org.schabi.newpipe.settings.tabs.AddTabDialog.ChooseTabListItem;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static org.schabi.newpipe.settings.tabs.Tab.typeFrom;
 
 public class ChooseTabsFragment extends Fragment {
     private TabsManager tabsManager;
@@ -204,13 +204,11 @@ public class ChooseTabsFragment extends Fragment {
                         });
                 selectPlaylistFragment.show(getParentFragmentManager(), "select_playlist");
                 return;
-            case FEEDGROUP:
-                final SelectFeedGroupFragment selectFeedGroupFragment =
-                        new SelectFeedGroupFragment();
-                selectFeedGroupFragment.setOnSelectedListener(
-                        (groupId, name, iconId) ->
-                                addTab(new Tab.FeedGroupTab(groupId, name, iconId)));
-                selectFeedGroupFragment.show(getParentFragmentManager(), "select_feed_group");
+            case CHANNEL_GROUP:  // Add this case
+                final SelectChannelGroupFragment selectChannelGroupFragment = new SelectChannelGroupFragment();
+                selectChannelGroupFragment.setOnSelectedListener(item ->
+                        addTab(new Tab.ChannelGroupTab(item)));
+                selectChannelGroupFragment.show(getParentFragmentManager(), "select_channel_group");
                 return;
             default:
                 addTab(type.getTab());
@@ -253,10 +251,10 @@ public class ChooseTabsFragment extends Fragment {
                             getString(R.string.playlist_page_summary),
                             tab.getTabIconRes(context)));
                     break;
-                case FEEDGROUP:
+                case CHANNEL_GROUP:  // Add this case
                     returnList.add(new ChooseTabListItem(tab.getTabId(),
-                            getString(R.string.feed_group_page_summary),
-                            tab.getTabIconRes(context)));
+                            getString(R.string.channel_group_tab_summary), // You'll need to add this string
+                            R.drawable.ic_rss_feed));
                     break;
                 default:
                     if (!tabList.contains(tab)) {
@@ -388,34 +386,36 @@ public class ChooseTabsFragment extends Fragment {
                     return;
                 }
 
-                tabNameView.setText(getTabName(type, tab));
-                tabIconView.setImageResource(tab.getTabIconRes(requireContext()));
-            }
-
-            private String getTabName(@NonNull final Tab.Type type, @NonNull final Tab tab) {
+                final String tabName;
                 switch (type) {
                     case BLANK:
-                        return getString(R.string.blank_page_summary);
+                        tabName = getString(R.string.blank_page_summary);
+                        break;
                     case DEFAULT_KIOSK:
-                        return getString(R.string.default_kiosk_page_summary);
+                        tabName = getString(R.string.default_kiosk_page_summary);
+                        break;
                     case KIOSK:
-                        return getNameOfServiceById(((Tab.KioskTab) tab).getKioskServiceId())
-                                + "/" + tab.getTabName(requireContext());
+                        tabName = NewPipe.getNameOfService(((Tab.KioskTab) tab)
+                                .getKioskServiceId()) + "/" + tab.getTabName(requireContext());
+                        break;
                     case CHANNEL:
-                        return getNameOfServiceById(((Tab.ChannelTab) tab).getChannelServiceId())
-                                + "/" + tab.getTabName(requireContext());
+                        tabName = NewPipe.getNameOfService(((Tab.ChannelTab) tab)
+                                .getChannelServiceId()) + "/" + tab.getTabName(requireContext());
+                        break;
                     case PLAYLIST:
                         final int serviceId = ((Tab.PlaylistTab) tab).getPlaylistServiceId();
                         final String serviceName = serviceId == -1
                                 ? getString(R.string.local)
-                                : getNameOfServiceById(serviceId);
-                        return serviceName + "/" + tab.getTabName(requireContext());
-                    case FEEDGROUP:
-                        return getString(R.string.feed_groups_header_title)
-                                + "/" + ((Tab.FeedGroupTab) tab).getFeedGroupName();
+                                : NewPipe.getNameOfService(serviceId);
+                        tabName = serviceName + "/" + tab.getTabName(requireContext());
+                        break;
                     default:
-                        return tab.getTabName(requireContext());
+                        tabName = tab.getTabName(requireContext());
+                        break;
                 }
+
+                tabNameView.setText(tabName);
+                tabIconView.setImageResource(tab.getTabIconRes(requireContext()));
             }
 
             @SuppressLint("ClickableViewAccessibility")

@@ -4,8 +4,7 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
+import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.disposables.Disposable
@@ -55,8 +54,7 @@ class FeedGroupDialogViewModel(
 
     private var subscriptionsDisposable = Flowable
         .combineLatest(
-            subscriptionsFlowable,
-            feedDatabaseManager.subscriptionIdsForGroup(groupId)
+            subscriptionsFlowable, feedDatabaseManager.subscriptionIdsForGroup(groupId)
         ) { t1: List<PickerSubscriptionItem>, t2: List<Long> -> t1 to t2.toSet() }
         .subscribeOn(Schedulers.io())
         .subscribe(mutableSubscriptionsLiveData::postValue)
@@ -111,27 +109,24 @@ class FeedGroupDialogViewModel(
     }
 
     sealed class DialogEvent {
-        data object ProcessingEvent : DialogEvent()
-        data object SuccessEvent : DialogEvent()
+        object ProcessingEvent : DialogEvent()
+        object SuccessEvent : DialogEvent()
     }
 
     data class Filter(val query: String, val showOnlyUngrouped: Boolean)
 
-    companion object {
-        fun getFactory(
-            context: Context,
-            groupId: Long,
-            initialQuery: String,
-            initialShowOnlyUngrouped: Boolean
-        ) = viewModelFactory {
-            initializer {
-                FeedGroupDialogViewModel(
-                    context.applicationContext,
-                    groupId,
-                    initialQuery,
-                    initialShowOnlyUngrouped
-                )
-            }
+    class Factory(
+        private val context: Context,
+        private val groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
+        private val initialQuery: String = "",
+        private val initialShowOnlyUngrouped: Boolean = false
+    ) : ViewModelProvider.Factory {
+        @Suppress("UNCHECKED_CAST")
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return FeedGroupDialogViewModel(
+                context.applicationContext,
+                groupId, initialQuery, initialShowOnlyUngrouped
+            ) as T
         }
     }
 }

@@ -1,7 +1,5 @@
 package org.schabi.newpipe.settings;
 
-import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -11,13 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.preference.PreferenceManager;
 
-import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.settings.migration.MigrationManager;
 import org.schabi.newpipe.util.DeviceUtils;
 
 import java.io.File;
 import java.util.Set;
+
+import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 
 /*
  * Created by k3b on 07.01.2016.
@@ -46,8 +44,25 @@ public final class NewPipeSettings {
     private NewPipeSettings() { }
 
     public static void initSettings(final Context context) {
+        // check if there are entries in the prefs to determine whether this is the first app run
+        Boolean isFirstRun = null;
+        final Set<String> prefsKeys = PreferenceManager.getDefaultSharedPreferences(context)
+                .getAll().keySet();
+        for (final String key: prefsKeys) {
+            // ACRA stores some info in the prefs during app initialization
+            // which happens before this method is called. Therefore ignore ACRA-related keys.
+            if (!key.toLowerCase().startsWith("acra")) {
+                isFirstRun = false;
+                break;
+            }
+        }
+        if (isFirstRun == null) {
+            isFirstRun = true;
+        }
+
         // first run migrations, then setDefaultValues, since the latter requires the correct types
-        MigrationManager.runMigrationsIfNeeded(context);
+        SettingMigrations.initMigrations(context, isFirstRun);
+        PipePlayMigrations.initMigrations(context, isFirstRun);
 
         // readAgain is true so that if new settings are added their default value is set
         PreferenceManager.setDefaultValues(context, R.xml.main_settings, true);
@@ -59,12 +74,10 @@ public final class NewPipeSettings {
         PreferenceManager.setDefaultValues(context, R.xml.player_notification_settings, true);
         PreferenceManager.setDefaultValues(context, R.xml.update_settings, true);
         PreferenceManager.setDefaultValues(context, R.xml.debug_settings, true);
-        PreferenceManager.setDefaultValues(context, R.xml.backup_restore_settings, true);
+        PreferenceManager.setDefaultValues(context, R.xml.sponsor_block_category_settings, true);
 
         saveDefaultVideoDownloadDirectory(context);
         saveDefaultAudioDownloadDirectory(context);
-
-        disableMediaTunnelingIfNecessary(context);
     }
 
     static void saveDefaultVideoDownloadDirectory(final Context context) {
@@ -99,16 +112,16 @@ public final class NewPipeSettings {
     }
 
     private static String getNewPipeChildFolderPathForDir(final File dir) {
-        return new File(dir, "NewPipe").toURI().toString();
+        return new File(dir, "PipePlay").toURI().toString();
     }
 
     public static boolean useStorageAccessFramework(final Context context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            return true;
-        } else if (DeviceUtils.isFireTv()) {
-            // There's a FireOS bug which prevents SAF open/close dialogs from being confirmed with
-            // a remote (see #6455).
+        // There's a FireOS bug which prevents SAF open/close dialogs from being confirmed with a
+        // remote (see #6455).
+        if (DeviceUtils.isFireTv()) {
             return false;
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            return true;
         }
 
         final String key = context.getString(R.string.storage_use_saf);
@@ -142,47 +155,15 @@ public final class NewPipeSettings {
                 R.string.show_remote_search_suggestions_key);
     }
 
-    private static void disableMediaTunnelingIfNecessary(@NonNull final Context context) {
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        final String disabledTunnelingKey = context.getString(R.string.disable_media_tunneling_key);
-        final String disabledTunnelingAutomaticallyKey =
-                context.getString(R.string.disabled_media_tunneling_automatically_key);
-        final String blacklistVersionKey =
-                context.getString(R.string.media_tunneling_device_blacklist_version);
-
-        final int lastMediaTunnelingUpdate = prefs.getInt(blacklistVersionKey, 0);
-        final boolean wasDeviceBlacklistUpdated =
-                DeviceUtils.MEDIA_TUNNELING_DEVICE_BLACKLIST_VERSION != lastMediaTunnelingUpdate;
-        final boolean wasMediaTunnelingEnabledByUser =
-                prefs.getInt(disabledTunnelingAutomaticallyKey, -1) == 0
-                        && !prefs.getBoolean(disabledTunnelingKey, false);
-
-        if (App.getInstance().isFirstRun()
-                || (wasDeviceBlacklistUpdated && !wasMediaTunnelingEnabledByUser)) {
-            setMediaTunneling(context);
-        }
-    }
-
-    /**
-     * Check if device does not support media tunneling
-     * and disable that exoplayer feature if necessary.
-     * @see DeviceUtils#shouldSupportMediaTunneling()
-     * @param context
-     */
-    public static void setMediaTunneling(@NonNull final Context context) {
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        if (!DeviceUtils.shouldSupportMediaTunneling()) {
-            prefs.edit()
-                    .putBoolean(context.getString(R.string.disable_media_tunneling_key), true)
-                    .putInt(context.getString(
-                            R.string.disabled_media_tunneling_automatically_key), 1)
-                    .putInt(context.getString(R.string.media_tunneling_device_blacklist_version),
-                            DeviceUtils.MEDIA_TUNNELING_DEVICE_BLACKLIST_VERSION)
-                    .apply();
-        } else {
-            prefs.edit()
-                    .putInt(context.getString(R.string.media_tunneling_device_blacklist_version),
-                            DeviceUtils.MEDIA_TUNNELING_DEVICE_BLACKLIST_VERSION).apply();
+    public static int getSearchSuggestionsCount(final Context context,
+                                               final SharedPreferences sharedPreferences) {
+        final String countString = sharedPreferences.getString(
+                context.getString(R.string.search_suggestions_count_key), "25");
+        try {
+            final int count = Integer.parseInt(countString);
+            return Math.max(1, Math.min(count, 1000));
+        } catch (final NumberFormatException e) {
+            return 25;
         }
     }
 }

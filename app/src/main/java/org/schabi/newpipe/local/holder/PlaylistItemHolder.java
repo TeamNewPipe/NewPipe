@@ -1,5 +1,6 @@
 package org.schabi.newpipe.local.holder;
 
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -48,5 +49,13 @@ public abstract class PlaylistItemHolder extends LocalItemHolder {
             }
             return true;
         });
+
+        if (itemUploaderView != null) {
+            if (android.text.TextUtils.isEmpty(itemUploaderView.getText())) {
+                itemUploaderView.setVisibility(View.GONE);
+            } else if (itemUploaderView.getVisibility() == View.GONE) {
+                itemUploaderView.setVisibility(View.VISIBLE);
+            }
+        }
     }
 }

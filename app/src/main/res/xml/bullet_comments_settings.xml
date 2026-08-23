@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto"
+                  android:key="general_preferences"
+                  android:title="@string/settings_category_bullet_comments_summary">
+    <!--preference compat where user can use a seekbar to select regular bullet comments duration between 5s to 15s-->
+    <!--        default value should be 8s-->
+    <SeekBarPreference
+            android:defaultValue="8"
+            android:key="@string/regular_bullet_comments_duration_key"
+            android:max="15"
+            android:summary="@string/regular_bullet_comments_duration_summary"
+            android:title="@string/regular_bullet_comments_duration_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+    <!--preference compat where user can use a seekbar to select top/bottom bullet comments duration between 5s to 15s-->
+    <!--        default value should be 8s-->
+    <SeekBarPreference
+            android:defaultValue="8"
+            android:key="@string/top_bottom_bullet_comments_duration_key"
+            android:max="15"
+            android:summary="@string/top_bottom_bullet_comments_duration_summary"
+            android:title="@string/top_bottom_bullet_comments_duration_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
+    <SeekBarPreference
+            android:defaultValue="2"
+            android:key="@string/bullet_comments_outline_radius_key"
+            android:max="8"
+            android:title="@string/bullet_comments_outline_radius_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
+    <SeekBarPreference
+            android:defaultValue="255"
+            android:key="@string/bullet_comments_opacity_key"
+            android:max="255"
+            android:title="@string/bullet_comments_opacity_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
+    <SwitchPreferenceCompat
+            android:key="@string/enable_max_rows_customization_key"
+            android:title="@string/enable_max_rows_customization_title"
+            android:summary="@string/enable_max_rows_customization_summary"
+            android:defaultValue="false"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false"/>
+
+
+    <SeekBarPreference
+            android:defaultValue="15"
+            android:key="@string/max_bullet_comments_rows_top_key"
+            android:max="15"
+            android:title="@string/max_bullet_comments_rows_top_summary"
+            android:summary="%s"
+            app:singleLineTitle="false"
+            app:dependency="@string/enable_max_rows_customization_key"
+            app:iconSpaceReserved="false" />
+
+    <SeekBarPreference
+            android:defaultValue="15"
+            android:key="@string/max_bullet_comments_rows_bottom_key"
+            android:max="15"
+            android:title="@string/max_bullet_comments_rows_bottom_summary"
+            android:summary="%s"
+            app:singleLineTitle="false"
+            app:dependency="@string/enable_max_rows_customization_key"
+            app:iconSpaceReserved="false" />
+
+    <SeekBarPreference
+            android:defaultValue="15"
+            android:key="@string/max_bullet_comments_rows_regular_key"
+            android:max="15"
+            android:title="@string/max_bullet_comments_rows_regular_summary"
+            android:summary="%s"
+            app:singleLineTitle="false"
+            app:dependency="@string/enable_max_rows_customization_key"
+            app:iconSpaceReserved="false" />
+
+    <ListPreference
+            android:key="@string/bullet_comments_font_key"
+            android:entries="@array/font_list"
+            android:entryValues="@array/font_list"
+            android:defaultValue="LXGW WenKai Screen"
+            android:title="@string/bullet_comments_font_title"
+            android:summary="%s"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false"/>
+</PreferenceScreen>

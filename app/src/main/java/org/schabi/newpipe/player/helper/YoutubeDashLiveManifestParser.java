@@ -33,7 +33,6 @@ public class YoutubeDashLiveManifestParser extends DashManifestParser {
     // this method using the workaround value
     // Overriding parsePeriod does not seem to be needed
 
-    @SuppressWarnings("checkstyle:ParameterNumber")
     @NonNull
     @Override
     protected DashManifest buildMediaPresentationDescription(

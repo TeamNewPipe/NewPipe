@@ -13,6 +13,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.App;
@@ -24,7 +27,6 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.player.helper.PlayerHolder;
-import org.schabi.newpipe.util.StreamTypeUtil;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 
 import java.util.ArrayList;
@@ -72,13 +74,28 @@ public final class InfoItemDialog {
                 .map(entry -> entry.getString(activity)).toArray(String[]::new);
 
         // Call an entry's action / onClick method when the entry is selected.
-        final DialogInterface.OnClickListener action = (d, index) ->
+        final DialogInterface.OnClickListener action = (d, index) -> {
+            if (fragment.getView() == null
+                    || !fragment.getViewLifecycleOwner().getLifecycle().getCurrentState()
+                    .isAtLeast(Lifecycle.State.STARTED)) {
+                return;
+            }
             entries.get(index).action.onClick(fragment, info);
+        };
 
         dialog = new AlertDialog.Builder(activity)
                 .setCustomTitle(bannerView)
                 .setItems(items, action)
                 .create();
+
+        final Lifecycle viewLifecycle = fragment.getViewLifecycleOwner().getLifecycle();
+        viewLifecycle.addObserver(new DefaultLifecycleObserver() {
+            @Override
+            public void onDestroy(@NonNull final LifecycleOwner owner) {
+                dialog.dismiss();
+                viewLifecycle.removeObserver(this);
+            }
+        });
 
     }
 
@@ -252,11 +269,10 @@ public final class InfoItemDialog {
          * @return the current {@link Builder} instance
          */
         public Builder addEnqueueEntriesIfNeeded() {
-            final PlayerHolder holder = PlayerHolder.getInstance();
-            if (holder.isPlayQueueReady()) {
+            if (PlayerHolder.getInstance().isPlayQueueReady()) {
                 addEntry(StreamDialogDefaultEntry.ENQUEUE);
 
-                if (holder.getQueuePosition() < holder.getQueueSize() - 1) {
+                if (PlayerHolder.getInstance().getQueueSize() > 1) {
                     addEntry(StreamDialogDefaultEntry.ENQUEUE_NEXT);
                 }
             }
@@ -271,7 +287,8 @@ public final class InfoItemDialog {
          */
         public Builder addStartHereEntries() {
             addEntry(StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND);
-            if (!StreamTypeUtil.isAudio(infoItem.getStreamType())) {
+            if (infoItem.getStreamType() != StreamType.AUDIO_STREAM
+                    && infoItem.getStreamType() != StreamType.AUDIO_LIVE_STREAM) {
                 addEntry(StreamDialogDefaultEntry.START_HERE_ON_POPUP);
             }
             return this;
@@ -285,8 +302,10 @@ public final class InfoItemDialog {
         public Builder addMarkAsWatchedEntryIfNeeded() {
             final boolean isWatchHistoryEnabled = PreferenceManager
                     .getDefaultSharedPreferences(context)
-                    .getBoolean(context.getString(R.string.enable_watch_history_key), false);
-            if (isWatchHistoryEnabled && !StreamTypeUtil.isLiveStream(infoItem.getStreamType())) {
+                    .getBoolean(context.getString(R.string.enable_watch_history_key), true);
+            if (isWatchHistoryEnabled
+                    && infoItem.getStreamType() != StreamType.LIVE_STREAM
+                    && infoItem.getStreamType() != StreamType.AUDIO_LIVE_STREAM) {
                 addEntry(StreamDialogDefaultEntry.MARK_AS_WATCHED);
             }
             return this;
@@ -302,6 +321,9 @@ public final class InfoItemDialog {
             }
             return this;
         }
+
+
+
 
         /**
          * Add the entries which are usually at the top of the action list.
@@ -330,6 +352,7 @@ public final class InfoItemDialog {
             addPlayWithKodiEntryIfNeeded();
             addMarkAsWatchedEntryIfNeeded();
             addEntry(StreamDialogDefaultEntry.SHOW_CHANNEL_DETAILS);
+            addEntry(StreamDialogDefaultEntry.ADD_TO_FILTER_LIST);
             return this;
         }
 
@@ -346,7 +369,7 @@ public final class InfoItemDialog {
 
         public static void reportErrorDuringInitialization(final Throwable throwable,
                                                            final InfoItem item) {
-            ErrorUtil.showSnackbar(App.getInstance().getBaseContext(), new ErrorInfo(
+            ErrorUtil.showSnackbar(App.getApp().getBaseContext(), new ErrorInfo(
                     throwable,
                     UserAction.OPEN_INFO_ITEM_DIALOG,
                     "none",

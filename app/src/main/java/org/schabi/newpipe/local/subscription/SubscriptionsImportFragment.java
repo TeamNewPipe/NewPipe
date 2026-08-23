@@ -1,7 +1,5 @@
 package org.schabi.newpipe.local.subscription;
 
-import static org.schabi.newpipe.extractor.subscription.SubscriptionExtractor.ContentSource.CHANNEL_URL;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,8 +21,6 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.core.text.util.LinkifyCompat;
 
-import com.evernote.android.state.State;
-
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
@@ -33,7 +29,7 @@ import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
-import org.schabi.newpipe.local.subscription.workers.SubscriptionImportInput;
+import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService;
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.Constants;
@@ -42,8 +38,13 @@ import org.schabi.newpipe.util.ServiceHelper;
 import java.util.Collections;
 import java.util.List;
 
+import static org.schabi.newpipe.extractor.subscription.SubscriptionExtractor.ContentSource.CHANNEL_URL;
+import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.CHANNEL_URL_MODE;
+import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.INPUT_STREAM_MODE;
+import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_MODE;
+import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_VALUE;
+
 public class SubscriptionsImportFragment extends BaseFragment {
-    @State
     int currentServiceId = Constants.NO_SERVICE_ID;
 
     private List<SubscriptionExtractor.ContentSource> supportedSources;
@@ -85,8 +86,8 @@ public class SubscriptionsImportFragment extends BaseFragment {
         if (supportedSources.isEmpty() && currentServiceId != Constants.NO_SERVICE_ID) {
             ErrorUtil.showSnackbar(activity,
                     new ErrorInfo(new String[]{}, UserAction.SUBSCRIPTION_IMPORT_EXPORT,
+                            NewPipe.getNameOfService(currentServiceId),
                             "Service does not support importing subscriptions",
-                            currentServiceId,
                             R.string.general_error));
             activity.finish();
         }
@@ -96,6 +97,18 @@ public class SubscriptionsImportFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         setTitle(getString(R.string.import_title));
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull final Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("currentServiceId", currentServiceId);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull final Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        currentServiceId = savedInstanceState.getInt("currentServiceId", Constants.NO_SERVICE_ID);
     }
 
     @Nullable
@@ -164,8 +177,10 @@ public class SubscriptionsImportFragment extends BaseFragment {
     }
 
     public void onImportUrl(final String value) {
-        ImportConfirmationDialog.show(this,
-                new SubscriptionImportInput.ChannelUrlMode(currentServiceId, value));
+        ImportConfirmationDialog.show(this, new Intent(activity, SubscriptionsImportService.class)
+                .putExtra(KEY_MODE, CHANNEL_URL_MODE)
+                .putExtra(KEY_VALUE, value)
+                .putExtra(Constants.KEY_SERVICE_ID, currentServiceId));
     }
 
     public void onImportFile() {
@@ -180,10 +195,16 @@ public class SubscriptionsImportFragment extends BaseFragment {
     }
 
     private void requestImportFileResult(final ActivityResult result) {
-        final String data = result.getData() != null ? result.getData().getDataString() : null;
-        if (result.getResultCode() == Activity.RESULT_OK && data != null) {
+        if (result.getData() == null) {
+            return;
+        }
+
+        if (result.getResultCode() == Activity.RESULT_OK && result.getData().getData() != null) {
             ImportConfirmationDialog.show(this,
-                    new SubscriptionImportInput.InputStreamMode(currentServiceId, data));
+                    new Intent(activity, SubscriptionsImportService.class)
+                            .putExtra(KEY_MODE, INPUT_STREAM_MODE)
+                            .putExtra(KEY_VALUE, result.getData().getData())
+                            .putExtra(Constants.KEY_SERVICE_ID, currentServiceId));
         }
     }
 

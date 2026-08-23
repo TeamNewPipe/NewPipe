@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="use_inexact_seek_title">Isticmaal Dhaafinta dagdaga ah</string>
-    <string name="popup_remember_size_pos_summary">Xusuusnow meeshii iyo cabirkii udambeeyay ee daaqada</string>
-    <string name="popup_remember_size_pos_title">Xusuusnow fadhiga daaqada</string>
-    <string name="dark_theme_title">Mugdi</string>
+    <string name="use_inexact_seek_title">Dhaafinta dagdaga ah</string>
+    <string name="dark_theme_title">Madow</string>
     <string name="theme_title">Nashqada</string>
-    <string name="default_video_format_title">Nooca muuqaalka</string>
-    <string name="default_audio_format_title">Nooca Maqaalka</string>
     <string name="notification_colorize_summary">Androidka hakuu baddalo midabka ogaysiiska galka waxa daaran asagoo kusalaynaya midabka galka shayga daaran (aalladahoo dhan looma wada heli karo nidaamkan)</string>
     <string name="notification_colorize_title">Midabbee ogaysiiska</string>
     <string name="notification_action_buffering">Soo Kicinaya</string>
@@ -14,25 +10,21 @@
     <string name="notification_action_repeat">Ku celi</string>
     <string name="notification_actions_at_most_three">Ugu badnaan waxad dooran kartaa sadex shay iney ka muuqdaan ogaysiiska yar!</string>
     <string name="notification_actions_summary">Wax ka baddal hawsha ogaysiiska adigoo dushooda ku dhufanaya. Dooro ilaa sadex kamida si ay uga muuqdaan ogaysiiska yar adigoo saxaya santuuqa dhanka midig kaga yaala</string>
-    <string name="notification_action_4_title">Batoonka shanaad</string>
-    <string name="notification_action_3_title">Batoonka afraad</string>
-    <string name="notification_action_2_title">Batoonka saddexaad</string>
-    <string name="notification_action_1_title">Batoonka labaad</string>
-    <string name="notification_action_0_title">Batoonka koowaad</string>
-    <string name="notification_scale_to_square_image_summary">La ekaysii galka muuqaalka xaga ogaysiisyada ka muuqda cabirka 1:1 ayadoo laga soo baddalayo 16:9</string>
+    <string name="notification_action_4_title">Batoonka hawsha shanaad</string>
+    <string name="notification_action_3_title">Batoonka hawsha afraad</string>
+    <string name="notification_action_2_title">Batoonka hawsha sadexaad</string>
+    <string name="notification_action_1_title">Batoonka hawsha labaad</string>
+    <string name="notification_action_0_title">Batoonka hawsha koowaad</string>
+    <string name="notification_scale_to_square_image_summary">La ekaysii galka muuqaalka xaga ogaysiisyada ka muuqda cabirka 1:1 ayadoo laga soo baddalayo 16:9 (wuxuu keeni karaa shucaac)</string>
     <string name="notification_scale_to_square_image_title">Galka la ekaysii cabirka 1:1</string>
-    <string name="show_play_with_kodi_summary">Soo bandhig istikhyaar ah in muuqaalka lagu furo Kodi</string>
-    <string name="show_play_with_kodi_title">Soodhig istikhyaarka \"Ku fur Kodi\"</string>
-    <string name="kore_not_found">Soo deji appka maqan ee Kore?</string>
+    <string name="kore_not_found">Kushub appka maqan ee Kore\?</string>
     <string name="play_with_kodi_title">Ku fur Kodi</string>
-    <string name="show_higher_resolutions_summary">Aalladaha qaar kaliya ayaa furi kara muuqaalada 2K/4K ga ah</string>
-    <string name="show_higher_resolutions_title">Tus tayooyinka sare</string>
     <string name="default_popup_resolution_title">Tayada muuqaalka daaqada</string>
     <string name="default_resolution_title">Tayada muuqaalka</string>
-    <string name="download_path_audio_dialog_title">Dooro Khaanada soo dejinta ee faylasha maqalka ah</string>
-    <string name="download_path_dialog_title">Dooro khaanada Muuqaallada lagu soo dejinayo</string>
-    <string name="download_path_audio_summary">Dhagaysiyada lasoo dajiyay halkan ayaa lagu kaydiyey</string>
-    <string name="download_path_summary">Muuqaalada lasoo dajiyo halkan ayaa lagu kaydiyey</string>
+    <string name="download_path_audio_dialog_title">Dooro khaanada dhagaysiga lasoo dajiyo</string>
+    <string name="download_path_dialog_title">Dooro khaanada muuqaalada lasoo dajiyo</string>
+    <string name="download_path_audio_summary">Dhagaysiyada lasoo dajiyay halkan ayaa lagu kaydiyaa</string>
+    <string name="download_path_summary">Muuqaalada lasoo dajiyo halkan ayaa lagu kaydiyaa</string>
     <string name="download_path_audio_title">Khaanada dajinta dhagaysiga</string>
     <string name="download_path_title">Khaanada dajinta muuqaalada</string>
     <string name="controls_add_to_playlist_title">Ku Dar</string>
@@ -41,30 +33,27 @@
     <string name="tab_choose">Dooro Daaqada</string>
     <string name="tab_bookmarks">La calaamadsaday</string>
     <string name="tab_subscriptions">Rukunka</string>
-    <string name="show_info">Tus Faahfaahinta</string>
+    <string name="show_info">Faahfaahinta</string>
     <string name="subscription_update_failed">Lama cusbooneysiin karo rukunka</string>
     <string name="subscription_change_failed">Lama baddali karo rukunka</string>
     <string name="channel_unsubscribed">Kanaalka waad iskajoojisay</string>
     <string name="unsubscribe">Iskajooji Rukunka</string>
     <string name="subscribed_button_title">Rukuntay</string>
     <string name="subscribe_button_title">Rukumo</string>
-    <string name="use_external_audio_player_title">Isticmaal dhagaysi Daare dibada ah</string>
-    <string name="use_external_video_player_summary">Codka ayuu ka saaraa tayada muuqaalada qaar</string>
-    <string name="use_external_video_player_title">Isticmaal muuqaal daare dibada ah</string>
-    <string name="share_dialog_title">Ku La wadaag</string>
+    <string name="share_dialog_title">La wadaag</string>
     <string name="search_showing_result_for">Kutusaya natiijooyinka: %s</string>
     <string name="did_you_mean">Ma waxaad ka waday \"%1$s\"\?</string>
     <string name="settings">Fadhiga</string>
     <string name="controls_download_desc">Daji midka socda</string>
     <string name="share">La wadaag</string>
     <string name="open_in_popup_mode">Ku fur qaabka daaqada</string>
-    <string name="open_in_browser">Fur biraawsarka</string>
+    <string name="open_in_browser">Ku fur browserka</string>
     <string name="cancel">Ka noqo</string>
     <string name="install">Ku shub</string>
     <string name="no_player_found_toast">Wax fura lama helin shaygan. (waxaad Ku shuban kartaa VLC si aad u furto).</string>
     <string name="no_player_found">Wax fura lama helin shaygan. Ku shubo VLC\?</string>
     <string name="upload_date_text">Lasoo galiyay: %1$s</string>
-    <string name="main_bg_subtitle">Ku dhufo raadinta si aad wax uraadiso.</string>
+    <string name="main_bg_subtitle">Ku dhufo waynaysada 🔍 si aad wax uraadiso.</string>
     <string name="overwrite_unrelated_warning">Shay magacan leh ayaa horay ujiray</string>
     <string name="overwrite">Ku badal</string>
     <string name="generate_unique_name">Usamee magac gaar ah</string>
@@ -75,7 +64,8 @@
     <string name="paused">la qabtay</string>
     <string name="missions_header_pending">Socda</string>
     <string name="missions_header_finished">Dhamaystirmay</string>
-    <string name="app_update_available_notification_title">Nooc cusub oo NewPipe ah ayaa diyaar ah!</string>
+    <string name="app_update_notification_content_text">Ku dhufo si aad u dajiso</string>
+    <string name="app_update_notification_content_title">Nooc cusub oo NewPipe ah ayaa diyaar ah!</string>
     <string name="list_view_mode">Qaabka soobandhigga</string>
     <string name="never">Marna</string>
     <string name="wifi_only">WiFi-ga kaliya</string>
@@ -139,6 +129,7 @@
     <string name="trending">Shiddan</string>
     <string name="new_and_hot">Cusub oo Shiddan</string>
     <string name="top_50">50ka Sare</string>
+    <string name="localization_changes_requires_app_restart">Luuqadu waxay isbaddali doontaa marka appka dib loo soo kiciyo</string>
     <string name="error_unable_to_load_comments">Faallooyinka lama soo kicin karo</string>
     <string name="import_settings">Inaad sidoo kale fadhiga soo galiso ma rabtaa\?</string>
     <string name="override_current_data">Tani waxay baddali fadhiga siduu kuu yahay hadda.</string>
@@ -161,34 +152,30 @@
     <string name="title_last_played">U Dambeeyay ee La Daawaday</string>
     <string name="delete_item_search_history">Ma rabtaa inaad ka saarto shaygan kaydka wixii la raadiyay\?</string>
     <string name="action_history">Wixii Hore</string>
-    <string name="read_full_license">Liisanka akhri</string>
-    <string name="app_license">NewPipe waa copyleft software libre: Waad isticmaali kartaa, baran kartaa, wadaagi kartaa, oo waad hagaajin kartaa markaad doonto. Gaar ahaan waad dib u qaybin kartaa oo/ama wax ka beddeli kartaa iyada oo la raacayo shuruudaha GNU General Public License sida ay daabacday Mu\'asasada Software-ka Xorta ah, nooca 3 ee shatiga, ama (doorashadaada) nooc kasta oo dambe.</string>
-    <string name="privacy_policy_title">Siyaasadda Arrimaha Khaaska ah ee NewPipe</string>
-    <string name="app_license_title">Shatiga NewPipe</string>
-    <string name="read_privacy_policy">Akhri siyaasadda asturnaanta</string>
+    <string name="read_full_license">Akhri laysinka</string>
+    <string name="app_license">NewPipe waa barnaamij bilaash ah oo aan lahayn xuquuqda daabacaada: Waad isticmaali kartaa, waad wadaagi kartaa waadna hormarin kartaa hadaad rabto. Gaar ahaan waad sii daabici kartaa ama wax baad ka baddali kartaa ayadoo la raacayo shuruudaha sharciga guud ee GNU sida ay soosaareen Ururka Barnaamijyada Bilaashka ah, soosaarista 3aad ee laysinka, ama (hadaad doonto) nooc walba oo kasii dambeeyay laysinkii 3aad.</string>
+    <string name="privacy_policy_title">Siyaasada Sirdhawrka NewPipe</string>
+    <string name="app_license_title">Laysanka NewPipe</string>
     <string name="privacy_policy_encouragement">Mashruuca NewPipe sir dhawrkaaga aad ayuu u qiimeeyaa. Sidaas darteed, App-ku wax xogtaada ah ma uruuriyo fasax la\'aan.
 \nSiyaasada sir-dhawrka NewPipe ayaa si faahfaahsan u sharaxda wixii xog ah ee la diro lana kaydiyo markaad cilad farsamo wariso.</string>
-    <string name="website_encouragement">Booqo Mareegta NewPipe si aad u hesho macluumaad dheeraad ah iyo warar.</string>
-    <string name="website_title">Mareegta internetka</string>
-    <string name="give_back">Soo celi</string>
-    <string name="donation_encouragement">NewPipe waxaa sameeyay mutadawiciin waqtigooda firaaqada ah ku bixinaya iyagoo kuu keenaya khibradda isticmaalaha ugu fiican. U celi si aad uga caawiso horumariyayaasha inay NewPipe ka dhigaan mid ka sii fiican inta ay ku raaxaysanayaan koob qaxwo ah.</string>
-    <string name="donation_title">Deeq</string>
-    <string name="view_on_github">Ka eeg GitHub</string>
-    <string name="contribution_encouragement">Hadday jiraan fikrado ku saabsan; turjumaadda, isbeddellada naqshadeynta, nadiifinta koodhka, ama isbeddellada koodhka culus ee dhabta ah - caawimaad ayaa had iyo jeer la soo dhaweynayaa. Inta badan ee la sameeyo ayaa ka sii fiican!</string>
-    <string name="contribution_title">Ka qayb qaado</string>
-    <string name="app_description">Daawashada fudud ee Libre ee Android.</string>
-    <string name="tab_licenses">Shati</string>
-    <string name="tab_about">Ku Saabsan &amp; Su’aalaha Inta Badan La Isweydiiyo</string>
+    <string name="website_encouragement">Booqo website-ka NewPipe si aad xog intaas dheer iyo warar uhesho.</string>
+    <string name="website_title">Website-ka</string>
+    <string name="donation_encouragement">NewPipe waxaa sameeyay dad iskood isku xilqaamay oo wakhtiga ay xorta yihiin qayb kamid ah ku kharash gareeya inay kuu keenaan wax markaad isticmaalayso aad ku qanacdo. U fidi taageero sameeyaasha appka si ay NewPipe xataa sidan oga sii fiicneeyaan.</string>
+    <string name="donation_title">Ugu Deeq</string>
+    <string name="view_on_github">Xaga GitHub fur</string>
+    <string name="contribution_encouragement">Hadaad hayso fikrado; rogid, qaab baddal, nadiifin koodh, ama koodhka ood si wayn wax oga badashaa—caawinta marwalba waa lasoo dhawaynayaa. Waxbadan hadii la qabto waxbadan ayaa fiicnaan!</string>
+    <string name="contribution_title">Kusoo Kordhin</string>
+    <string name="app_description">App bilaash ah oo fudud looguna talagalay in Androidka wax loogu daawado.</string>
+    <string name="tab_about">Kusaabsan NewPipe</string>
     <string name="copyright">© %1$s sameeyay %2$s ayagoo raacaya %3$s</string>
-    <string name="title_licenses">Shatiyada qolo saddexaad</string>
-    <string name="title_activity_about">Ku saabsan NewPipe</string>
+    <string name="title_licenses">Laysimada gacanta sadexaad</string>
+    <string name="title_activity_about">Kusaabsan NewPipe</string>
+    <string name="toast_no_player">Shaygan app fura kuuguma jiro</string>
     <string name="charset_most_special_characters">Xarfaha gaarka ah kuwa ugu badan</string>
     <string name="charset_letters_and_digits">Xarfaha iyo godadka</string>
-    <string name="settings_file_replacement_character_title">Xarafka lagu baddalayo</string>
-    <string name="settings_file_replacement_character_summary">Xarfaha aan la taageerin waxaa lagu bdadali midkan</string>
     <string name="settings_file_charset_title">Xarafyada magaca shayga loo ogol yahay</string>
     <string name="settings_category_downloads_title">Dajinta</string>
-    <string name="done">La dhammeeyay</string>
+    <string name="recaptcha_done_button">Dhameeyay</string>
     <string name="recaptcha_request_toast">Tijaabada reCAPTCHA ayaa la codsaday</string>
     <string name="subtitle_activity_recaptcha">Taabo \"Dhameeyay\" ✅ markaad xaliso</string>
     <string name="title_activity_recaptcha">Tijaabada reCAPTCHA</string>
@@ -242,17 +229,20 @@
     </plurals>
     <string name="no_subscribers">Dad rukuntay ma jiraan</string>
     <string name="drawer_header_description">Furo adeega, hada waxaa dooran:</string>
+    <string name="short_billion">B</string>
+    <string name="short_thousand">K</string>
+    <string name="short_million">M</string>
     <string name="retry">ku celi</string>
     <string name="audio">Dhagaysi</string>
     <string name="video">Muuqaal</string>
     <string name="detail_drag_description">Farta ku jiid si aad ukala hormariso</string>
-    <string name="empty_list_subtitle">meel madhan</string>
+    <string name="empty_subscription_feed_subtitle">meel madhan</string>
     <string name="search_no_results">natiijo lama helin</string>
     <string name="detail_dislikes_img_view_description">intaan ka helin</string>
     <string name="detail_likes_img_view_description">inta ka heshay</string>
     <string name="detail_uploader_thumbnail_view_description">Sawirka u saaran soosaareha</string>
     <string name="detail_thumbnail_view_description">Daar muuqaalka, intuu socdo:</string>
-    <string name="info_labels">Shayga:\nCodsiga:\nLuuqada Shayga:\nWadanka Shayga:\nLuuqada Appka:\nAdeega:\nWakhtiga oo GMT ah:\nXidhmada:\nTirsiga Appka:\nTirsiga Nooca Barnaamijka:</string>
+    <string name="info_labels">Shayga:\\nCodsiga:\\nLuuqada Shayga:\\nWadanka Shayga:\\nLuuqada Appka:\\nAdeega:\\nWakhtiga oo GMT ah:\\nXidhmada:\\nTirsiga Appka:\\nTirsiga Nooca Barnaamijka:</string>
     <string name="error_details_headline">Faahfaahin:</string>
     <string name="your_comment">Faalladaada (oo Ingiriis ah):</string>
     <string name="what_happened_headline">Waxa dhacay:</string>
@@ -262,7 +252,7 @@
     <string name="error_report_open_github_notice">Fadlan hubi in arin cilladdan ka hadlaya horay loo wariyay. Marka wax horay u jiray la wariyo markale, wakhti ayaad naga qaadaysaa wakhtigaas oo aan cilada ku sixi la hayn.</string>
     <string name="error_report_open_issue_button_text">Ku wari xaga GitHub-ka</string>
     <string name="copy_for_github">Koobiyee warka oo diyaarsan</string>
-    <string name="error_report_button_text">Khaladkan email ahaan uga war bixi</string>
+    <string name="error_report_button_text">Khaladkan email ahaan ku warceli</string>
     <string name="sorry_string">Waan ka xunahay, sidaa inay dhacdo ma ahayn.</string>
     <string name="permission_display_over_apps">U ogolow appka inuu dul fuulo applicationada kale</string>
     <string name="restore_defaults_confirmation">Ma rabtaa inaad sidii hore kuceliso\?</string>
@@ -285,11 +275,13 @@
     <string name="could_not_setup_download_menu">Lama soo kicin karo tusmada dajinta</string>
     <string name="content_not_available">shaygan lama heli karo</string>
     <string name="parsing_error">Lama furi karo website-ka</string>
+    <string name="youtube_signature_deobfuscation_error">Lama baddali karo sixiixa tixraaca muuqaalka</string>
     <string name="could_not_load_thumbnails">Lama soo wada kicin karo galalkoo dhan</string>
     <string name="network_error">khalad xaga khadka ah</string>
     <string name="download_to_sdcard_error_message">Ku dajinta kaydka dibadda (mimoriga) suurtogal ma aha. Dib u fadhiisi khaanada wax lagu dajiyo\?</string>
     <string name="download_to_sdcard_error_title">Kaydka dibadda lama heli karo</string>
     <string name="general_error">Khalad</string>
+    <string name="help">Caawin</string>
     <string name="search_history_deleted">Wixii la raadiyay waa la tirtiray</string>
     <string name="delete_search_history_alert">Tirtir dhamaan wixii la raadiyay\?</string>
     <string name="clear_search_history_summary">Wuxuu tirtiraa kaydka wixii lagu qoray xaga raadinta</string>
@@ -345,10 +337,6 @@
     <string name="restricted_video">Muuqaalkan da\'da qofka ayuu ku xidhanyahay.
 \n
 \nKasoo fur \"%1$s\" xaga fadhiga hadaad rabto inaad aragto.</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube-ku wuxuu leeyahay nidaamka \"Qaabka Xadidan\" kaasoo qariya waxyaabo laga yaabo ineysa haboonayn</string>
-    <string name="youtube_restricted_mode_enabled_title">Fur \"Qaabka Xadidan\"</string>
-    <string name="show_age_restricted_content_summary">Soo bandhig waxyaabaha laga yaabo inaysa ku haboonayn caruurta sababtoo ah waxay ku xidhan yihiin da\'da qofka (sida 18+)</string>
-    <string name="show_age_restricted_content_title">Tus waxyaabaha da\'da ku xidhan</string>
     <string name="content">Luuqada &amp; Fadhiga Kale</string>
     <string name="popup_playing_toast">Ku daaraya daaqada</string>
     <string name="background_player_playing_toast">Ka daaraya xaga dambe</string>
@@ -356,9 +344,7 @@
     <string name="settings_category_debug_title">Cilad bixinta</string>
     <string name="settings_category_appearance_title">Nashqada</string>
     <string name="settings_category_history_title">Wixii Hore &amp; kaydka K/G ah</string>
-    <string name="settings_category_video_audio_title">Muuqaalada &amp; Dhagaysiga</string>
     <string name="settings_category_player_title">Daareha</string>
-    <string name="settings_category_player_behavior_title">Dabeecada</string>
     <string name="peertube_instance_add_exists">Qaybtan horay ayay ujirtay</string>
     <string name="peertube_instance_add_https_only">Kaliya waxaa la taageeraa tixraacyada HTTPS-ka ah</string>
     <string name="peertube_instance_add_fail">Lama ansixin karo qaybtan</string>
@@ -367,21 +353,15 @@
     <string name="peertube_instance_url_help">Ka hel qaybaha aad jeceshahay %s</string>
     <string name="peertube_instance_url_summary">Dooro qaybaha aad jeceshahay ee PeerTube-ka</string>
     <string name="peertube_instance_url_title">Qaybaha PeerTube</string>
-    <string name="content_language_title">Luuqada muuqaalka/dhagaysiga</string>
     <string name="default_content_country_title">Wadanka muuqaalada/dhagaysiga</string>
     <string name="unsupported_url_dialog_message">Lama aqoonsan karo tixraacan. Ku fur app kale\?</string>
     <string name="unsupported_url">Tixraac aan la furi karin</string>
-    <string name="show_hold_to_append_summary">Tus sharaxaada marka la riixayo batoonka xaga dambe ama midka daaqada ee ku yaala xaga \"Faahfaahinta:\" muuqaalka</string>
-    <string name="show_hold_to_append_title">Tus sharaxaada \"Farta ku hay si aad iskugu darto\"</string>
-    <string name="show_next_and_similar_title">Muuqaalada \'Xiga\' iyo \'La xidhiidha\'</string>
     <string name="autoplay_title">isdaarida</string>
     <string name="download_dialog_title">Daji</string>
     <string name="resume_on_audio_focus_gain_summary">Sii wad wixii daaraa marka la dhabqiyo kadib (tusaale marka wicitaan kusoo galo)</string>
     <string name="resume_on_audio_focus_gain_title">Sii wad daaridda</string>
     <string name="enable_watch_history_summary">La soco [oo kaydi] muuqaalada ladaawaday</string>
     <string name="settings_category_clear_data_title">Tirtir Xogta</string>
-    <string name="enable_playback_state_lists_summary">Tus meelaha waxa daaran meeshuu marayo tilmaamaya ee xaga liistada</string>
-    <string name="enable_playback_state_lists_title">Meelaha ay marayeen (xaga liistada)</string>
     <string name="enable_playback_resume_summary">Kasii wad meeshii hore</string>
     <string name="enable_playback_resume_title">Sii wad daarrida</string>
     <string name="enable_watch_history_title">Wixii la daawaday</string>
@@ -389,6 +369,10 @@
     <string name="enable_search_history_title">Wixii laraadiyay</string>
     <string name="show_search_suggestions_summary">Dooro soojeedinada lasoo bandhigo marka wax la raadinayo</string>
     <string name="show_search_suggestions_title">Soojeedinada raadinta</string>
+    <string name="brightness_gesture_control_summary">Isticmaal fartaada adigoo shaashada farta dhinac kaga jiidaya si aad u maamusho iftiinka</string>
+    <string name="brightness_gesture_control_title">Maamulista iftiinka (farta)</string>
+    <string name="volume_gesture_control_summary">Isticmaal fartaada adigoo shaashada farta dhinac kaga jiidaya si aad umaamusho codka</string>
+    <string name="volume_gesture_control_title">Maamulista codka (farta)</string>
     <string name="auto_queue_toggle">Hormada isutalisa</string>
     <string name="auto_queue_summary">Sii wad dhamaystirka (mida aan isku celcelinin) hormada shidan ayadoo lagu sii darayo waxyaabo la xidhiidha shayga daaran</string>
     <string name="auto_queue_title">Ku xiji hormada shayga xiga</string>
@@ -396,15 +380,12 @@
     <string name="metadata_cache_wipe_summary">Tirtir waxyaabaha K/G ah ee boga website-ka</string>
     <string name="metadata_cache_wipe_title">Tirtir faahfaahinada yaryar</string>
     <string name="thumbnail_cache_wipe_complete_notice">kaydkii kumeelgaadhka ahaa ee sawirka waa la tirtiray</string>
-    <string name="show_comments_summary">Xidh si aad uqariso faallooyinka</string>
-    <string name="show_comments_title">Tus faallooyinka</string>
-    <string name="clear_queue_confirmation_description">Hormada daareha hadda wax shidaya waa la baddali doonaa</string>
-    <string name="clear_queue_confirmation_summary">Kala baddalka daareha waxay badali kartaa hormada sidaas darteed waydii in la xaqiijiyo intaan hormada la tirtirin</string>
-    <string name="clear_queue_confirmation_title">Weydii xaqiijin ka hor intaadan tirtirin saf-ka</string>
+    <string name="download_thumbnail_summary">Xidh si aad u joojiso soo bandhiga galka muuqaalada, adigoo yaraynaya isticmalka khadka iyo maskaxda aalada. Wax ka baddalkan wuxuu nadiifin doonaa waxa kaydka hore iyo ka caadiga ah kumeelgaadh ahaan ugu jira</string>
+    <string name="download_thumbnail_title">Soodhig galalka</string>
     <string name="seek_duration_title">Wakhtiga horay udhaafinta/dibucelinta</string>
-    <string name="black_theme_title">Madow</string>
-    <string name="light_theme_title">Iftiin</string>
-    <string name="play_audio">Maqal</string>
+    <string name="black_theme_title">Mugdi</string>
+    <string name="light_theme_title">Caddaan</string>
+    <string name="play_audio">Dhagaysi</string>
     <string name="notification_action_nothing">Waxba</string>
     <string name="search">Raadi</string>
     <string name="download">Daji</string>
@@ -413,7 +394,6 @@
     <string name="close">Ka bax</string>
     <string name="grid">Shax</string>
     <string name="minimize_on_exit_none_description">Waxba</string>
-    <string name="decline">Diid</string>
     <string name="name">Magaca</string>
     <string name="conferences">Shirar</string>
     <string name="feed_create_new_group_button_title">Mid Cusub</string>
@@ -489,10 +469,10 @@
         <item quantity="one">%d ilbiriqsi</item>
         <item quantity="other">%d ilbiriqsi</item>
     </plurals>
-    <string name="new_seek_duration_toast">Ayadooy ugu wacantahay xayiraad xaga ExoPlayer-ka ah xadka dhaaf-dhaafinta waa %d ilbiriqsi</string>
-    <string name="remove_watched_popup_partially_watched_streams">Haa, sidoo kale ku dar muuqaalada qayb laga daawaday</string>
-    <string name="remove_watched_popup_warning">Muuqaalada la daawaday kahor iyo kadib markii xulka lagu daray waa la saari doonaa. \nMa hubtaa?</string>
-    <string name="remove_watched_popup_title">Saar muuqaalada la daawaday?</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Haa, sidoo kale ku dar muuqaalada qayb laga daawaday</string>
+    <string name="remove_watched_popup_warning">Muuqaalada la daawaday kahor iyo kadib markii xulka lagu daray waa la saari doonaa.
+\nMa hubtaa\? Arrinkan dib looma soocelin karo!</string>
+    <string name="remove_watched_popup_title">Saar muuqaalada la daawaday\?</string>
     <string name="remove_watched">Saar kuwa la daawaday</string>
     <string name="systems_language">Aaladu saytahay</string>
     <string name="app_language_title">Luuqada Appka</string>
@@ -515,12 +495,12 @@
     <string name="error_download_resource_gone">Dajintan lama hagaajin karo</string>
     <string name="error_timeout">Ku xidhidii ayaa wakhtigii ka dhacay</string>
     <string name="error_progress_lost">Hawshii socotay way kala kacday, sababtoo ah shayga waa lala saaray</string>
-    <string name="error_insufficient_storage_left">Meel banaan oo wax lagu kaydiyo aalaada kuma hadhin</string>
+    <string name="error_insufficient_storage">Meel banaan oo wax lagu kaydiyo aalaada kuma hadhin</string>
     <string name="error_postprocessing_stopped">NewPipe waxaa la xidhay asagoo fayl ka shaqaynaya</string>
     <string name="error_postprocessing_failed">Habayntii way guuldareystay</string>
     <string name="error_http_not_found">Lama helin</string>
     <string name="error_http_unsupported_range">Martigaliyuhu ma aqbalo dajinta qaybaha badan leh, iskula day @string/msg_threads = 1</string>
-    <string name="error_connect_host">Kuma xidhmi karo server-ka</string>
+    <string name="error_connect_host">Kuma xidhi karo martigaliyaha</string>
     <string name="error_unknown_host">Lama heli karo martigaliyaha</string>
     <string name="error_ssl_exception">Lama samayn karo iskuxidh amni ah</string>
     <string name="error_path_creation">khaanadii la rabay lama samayn karo</string>
@@ -534,7 +514,6 @@
     <string name="minimize_on_exit_summary">Waxa la samayn doono marka app kale loo gudbayo ayadoo muuqaal caadi u daaran yahay — %s</string>
     <string name="updates_setting_description">Ogaysiis soo bandhig doonaya inaad appka cusboonaysiiso marka mid cusub soo baxo</string>
     <string name="limit_mobile_data_usage_title">Xadid tayada (khadka SIM-ka)</string>
-    <string name="accept">Aqbal</string>
     <string name="start_accept_privacy_policy">Si loogu hogaansamo Maaraynta Xog Dhawrka Guud ee heer Yurub (GDPR), waxaan halkan kugu xusuusinaynaa siyaasada sirdhawrka NewPipe. Fadlan si taxadar leh u akhriso.
 \nWaana inaad aqbashaa si [hadii aad damacdo] aad cilad appka ah warcelin nooga soo dirto.</string>
     <string name="playback_pitch">Dheelitirka codka</string>
@@ -546,7 +525,7 @@
 \n
 \n1. Fur nidaamka \"Desktop mode\" browser-kaaga dhexdiisa (sababtoo ah websitekan moobilada kuma shaqaynayo)
 \n2. Booqo tixraacan %1$s
-\n3. Gali akoonkaaga marka lagu waydiiyo 
+\n3. Gali akoonkaaga marka lagu waydiiyo
 \n4. Koobiyee tixraaca boga ee lagugu xawilay.</string>
     <string name="import_youtube_instructions">Soo gali rukumada YouTube-ka:
 \n
@@ -567,8 +546,6 @@
     <string name="description_tab_description">Faahfaahin</string>
     <string name="related_items_tab_description">La xidhiidha</string>
     <string name="comments_tab_description">Faallooyin</string>
-    <string name="show_description_summary">Xidh si aad u qariso faahfaahinta muuqaalka iyo xogaha dheeraadka ah</string>
-    <string name="show_description_title">Tus faahfaahinta</string>
     <string name="open_with">Ku fur</string>
     <string name="no_app_to_open_intent">Wax app ah oo kuugu jira mafuri karo midkan</string>
     <string name="radio">Raadye</string>
@@ -596,6 +573,7 @@
     <string name="metadata_privacy_private">Gaar ah</string>
     <string name="metadata_privacy_unlisted">Aan liistada kujirin</string>
     <string name="metadata_privacy_public">Lawada arko</string>
+    <string name="metadata_thumbnail_url">Tixraaca galka</string>
     <string name="metadata_host">Martigaliye</string>
     <string name="metadata_support">Taageero</string>
     <string name="metadata_language">Luuqada</string>
@@ -607,14 +585,16 @@
     <string name="description_select_disable">Xidh caalamadinta qoraalka</string>
     <string name="description_select_enable">Fur caalamadinta qoraalka</string>
     <string name="description_select_note">Hadda waad dooran kartaa qoraalka ku dhexjira faahfaahinta. Ogow markaad caalamdinayso qoraalka boggu wuu boodboodi karaa tixraacyadana waxay noqon karaan kuwo aan lagu dhufan karin.</string>
+    <string name="service_provides_reason">%s wuxuu sheegayaa sababtan:</string>
     <string name="account_terminated">Akoonka waa lajoojiyay</string>
+    <string name="feed_toggle_show_played_items">Tus kuwa ladaawaday</string>
     <string name="feed_load_error_fast_unknown">Nidaamka dagdaga ah faahfaahin dheeraad ah uma hayo shaygan.</string>
     <string name="feed_load_error_terminated">Akoonka soosaaraha waa la joojiyay.
 \nNewPipe ma awoodi doono inuu soo kiciyo bandhiggan mustaqbalka.
 \nMa iska joojin rabtaa rukunka kanaalkan\?</string>
     <string name="feed_load_error_account_info">Lama soo kicin karo bandhigga: \'%s\'.</string>
     <string name="feed_load_error">Khalad ayaa ka dhacay sookicintii</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Laga bilaabo Android 10 kaliya waxaa la isticmaali \'SAF\'</string>
+    <string name="downloads_storage_use_saf_summary_api_19">\'SAF\' kuma shaqeeyo Android KitKat iyo wixii ka hooseeya</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Dajin walba meeshii lagu kaydin lahaa ayaa lagu waydiin</string>
     <string name="disable_media_tunneling_summary">Iska xidh kala-leexinta muuqaalada/dhagaysiga hadaad lakulanto shaashad madow ama muuqaalka oo isistaaga</string>
     <string name="disable_media_tunneling_title">Xidh kala-leexinta</string>
@@ -623,19 +603,11 @@
     <string name="dont_show">Hatusin</string>
     <string name="low_quality_smaller">Tayo hoose (ka yar)</string>
     <string name="high_quality_larger">Tayo sare (ka wayn)</string>
-    <string name="seekbar_preview_thumbnail_title">Tusmada dhaafdhaafinta</string>
     <string name="comments_are_disabled">Fallooyinka waa laxidhay</string>
     <string name="detail_heart_img_view_description">Kahelay soosaaraha</string>
     <string name="mark_as_watched">Waan daawaday</string>
+    <string name="show_image_indicators_summary">Soo bandhig shaambado midabka Picasso leh sawirrada dushooda oo tilmaamaya isha laga keenay: guduud waa khadka, buluug waa kaydka gudaha, cagaar waa kaydka K/G</string>
+    <string name="show_image_indicators_title">Tus tilmaamayaasha sawirka</string>
     <string name="remote_search_suggestions">Soojeedinada raadinta banaanka</string>
     <string name="local_search_suggestions">Soojeedinada raadinta gudaha</string>
-    <string name="progressive_load_interval_title">Cabirka soodaarida udhexeeya</string>
-    <string name="crash_the_player">Jabi Daaraha</string>
-    <string name="yes">Haa</string>
-    <string name="no">Maya</string>
-    <string name="search_with_service_name">Raadi %1$s</string>
-    <string name="search_with_service_name_and_filter">Raadi %1$s (%2$s)</string>
-    <string name="faq_title">Su\'aalaha Badiya La Weydiiyo</string>
-    <string name="faq_description">Haddii aad dhibaato kala kulanto isticmaalka abka, hubi inaad hubiso jawaabahan su\'aalaha la yaqaan!</string>
-    <string name="faq">Ka eeg bogga internetka</string>
 </resources>

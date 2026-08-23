@@ -1,7 +1,7 @@
 package org.schabi.newpipe.local.feed.service
 
 import android.content.Context
-import android.content.SharedPreferences
+import android.util.Log
 import androidx.preference.PreferenceManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
@@ -11,26 +11,27 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.functions.Consumer
 import io.reactivex.rxjava3.processors.PublishProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
-import java.time.OffsetDateTime
-import java.time.ZoneOffset
-import java.util.concurrent.atomic.AtomicBoolean
-import java.util.concurrent.atomic.AtomicInteger
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.subscription.NotificationMode
-import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.extractor.Info
 import org.schabi.newpipe.extractor.NewPipe
-import org.schabi.newpipe.extractor.ServiceList
 import org.schabi.newpipe.extractor.feed.FeedInfo
+import org.schabi.newpipe.extractor.ListInfo
+import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
-import org.schabi.newpipe.ktx.getStringSafe
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.util.ChannelTabHelper
 import org.schabi.newpipe.util.ExtractorHelper.getChannelInfo
 import org.schabi.newpipe.util.ExtractorHelper.getChannelTab
 import org.schabi.newpipe.util.ExtractorHelper.getMoreChannelTabItems
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
+import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicBoolean
+import java.util.concurrent.atomic.AtomicInteger
 
 class FeedLoadManager(private val context: Context) {
 
@@ -43,8 +44,16 @@ class FeedLoadManager(private val context: Context) {
     private val cancelSignal = AtomicBoolean()
     private val feedResultsHolder = FeedResultsHolder()
 
+    private val lastFetchTimePerService = ConcurrentHashMap<Int, Long>()
+
+
     val notification: Flowable<FeedLoadState> = notificationUpdater.map { description ->
         FeedLoadState(description, maxProgress.get(), currentProgress.get())
+    }
+
+
+    private fun getServiceDelay(serviceId: Int): Long {
+        return NewPipe.getService(serviceId).feedFetchInterval;
     }
 
     /**
@@ -60,7 +69,7 @@ class FeedLoadManager(private val context: Context) {
      */
     fun startLoading(
         groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
-        ignoreOutdatedThreshold: Boolean = false
+        ignoreOutdatedThreshold: Boolean = false,
     ): Single<List<Notification<FeedUpdateInfo>>> {
         val defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         val useFeedExtractor = defaultSharedPreferences.getBoolean(
@@ -68,13 +77,20 @@ class FeedLoadManager(private val context: Context) {
             false
         )
 
+        val filterFutureItems = defaultSharedPreferences.getBoolean(
+            context.getString(R.string.filter_future_items_key),
+            true
+        )
+
         val outdatedThreshold = if (ignoreOutdatedThreshold) {
             OffsetDateTime.now(ZoneOffset.UTC)
         } else {
-            val thresholdOutdatedSeconds = defaultSharedPreferences.getStringSafe(
-                context.getString(R.string.feed_update_threshold_key),
-                context.getString(R.string.feed_update_threshold_default_value)
-            ).toInt()
+            val thresholdOutdatedSeconds = (
+                    defaultSharedPreferences.getString(
+                        context.getString(R.string.feed_update_threshold_key),
+                        context.getString(R.string.feed_update_threshold_default_value)
+                    ) ?: context.getString(R.string.feed_update_threshold_default_value)
+                    ).toInt()
             OffsetDateTime.now(ZoneOffset.UTC).minusSeconds(thresholdOutdatedSeconds.toLong())
         }
 
@@ -85,18 +101,11 @@ class FeedLoadManager(private val context: Context) {
             FeedGroupEntity.GROUP_ALL_ID -> feedDatabaseManager.outdatedSubscriptions(
                 outdatedThreshold
             )
-
             GROUP_NOTIFICATION_ENABLED -> feedDatabaseManager.outdatedSubscriptionsWithNotificationMode(
-                outdatedThreshold,
-                NotificationMode.ENABLED
+                outdatedThreshold, NotificationMode.ENABLED
             )
-
             else -> feedDatabaseManager.outdatedSubscriptionsForGroup(groupId, outdatedThreshold)
         }
-
-        // like `currentProgress`, but counts the number of YouTube extractions that have begun, so
-        // they can be properly throttled every once in a while (see doOnNext below)
-        val youtubeExtractionCount = AtomicInteger()
 
         return outdatedSubscriptions
             .take(1)
@@ -111,24 +120,140 @@ class FeedLoadManager(private val context: Context) {
                 broadcastProgress()
             }
             .observeOn(Schedulers.io())
-            // Randomize user subscription ordering to attempt to resist fingerprinting
-            .flatMap { Flowable.fromIterable(it.shuffled()) }
+            .flatMap { Flowable.fromIterable(it) }
             .takeWhile { !cancelSignal.get() }
-            .doOnNext { subscriptionEntity ->
-                // throttle YouTube extractions once every BATCH_SIZE to avoid being rate limited
-                if (subscriptionEntity.serviceId == ServiceList.YouTube.serviceId) {
-                    val previousCount = youtubeExtractionCount.getAndIncrement()
-                    if (previousCount != 0 && previousCount % BATCH_SIZE == 0) {
-                        Thread.sleep(DELAY_BETWEEN_BATCHES_MILLIS.random())
-                    }
-                }
-            }
             .parallel(PARALLEL_EXTRACTIONS, PARALLEL_EXTRACTIONS * 2)
             .runOn(Schedulers.io(), PARALLEL_EXTRACTIONS * 2)
             .filter { !cancelSignal.get() }
-            .map { subscriptionEntity ->
-                loadStreams(subscriptionEntity, useFeedExtractor, defaultSharedPreferences)
+            .concatMap { subscriptionEntity ->
+                val serviceId = subscriptionEntity.serviceId
+                val delay = getServiceDelay(serviceId)
+                val lastFetch = lastFetchTimePerService[serviceId] ?: 0L
+                val now = System.currentTimeMillis()
+                val wait = maxOf(0, delay - (now - lastFetch))
+
+                Flowable.just(subscriptionEntity)
+                    .delay(wait, TimeUnit.MILLISECONDS)
+                    .map {
+                        lastFetchTimePerService[serviceId] = System.currentTimeMillis()
+                        it
+                    }
+                    .flatMap { sub ->
+                        Flowable.defer {
+                            var error: Throwable? = null
+                            val storeOriginalErrorAndRethrow = { e: Throwable ->
+                                Log.e(TAG, "Failed to extract from channel '${subscriptionEntity.name}' (${subscriptionEntity.serviceId}:${subscriptionEntity.url}): ${e.javaClass.simpleName}: ${e.message}", e)
+                                error = e
+                                throw e
+                            }
+
+                            try {
+                                // check for and load new streams
+                                // either by using the dedicated feed method or by getting the channel info
+                                var originalInfo: Info? = null
+                                var streams: List<StreamInfoItem>? = null
+                                val errors = ArrayList<Throwable>()
+
+                                if (useFeedExtractor) {
+                                    NewPipe.getService(subscriptionEntity.serviceId)
+                                        .getFeedExtractor(subscriptionEntity.url)
+                                        ?.also { feedExtractor ->
+                                            // the user wants to use a feed extractor and there is one, use it
+                                            val feedInfo = FeedInfo.getInfo(feedExtractor)
+                                            errors.addAll(feedInfo.errors)
+                                            originalInfo = feedInfo
+                                            streams = feedInfo.relatedItems
+                                        }
+                                }
+
+                                if (originalInfo == null) {
+                                    // use the normal channel tabs extractor if either the user wants it, or
+                                    // the current service does not have a dedicated feed extractor
+
+                                    val channelInfo = getChannelInfo(
+                                        subscriptionEntity.serviceId,
+                                        subscriptionEntity.url, true
+                                    )
+                                        .onErrorReturn(storeOriginalErrorAndRethrow)
+                                        .blockingGet()
+                                    errors.addAll(channelInfo.errors)
+                                    originalInfo = channelInfo
+
+                                    streams = channelInfo.tabs
+                                        .filter { tab ->
+                                            ChannelTabHelper.fetchFeedChannelTab(
+                                                context,
+                                                defaultSharedPreferences,
+                                                tab
+                                            )
+                                        }
+                                        .map {
+                                            Pair(
+                                                getChannelTab(subscriptionEntity.serviceId, it, true)
+                                                    .onErrorReturn(storeOriginalErrorAndRethrow)
+                                                    .blockingGet(),
+                                                it
+                                            )
+                                        }
+                                        .flatMap { (channelTabInfo, linkHandler) ->
+                                            errors.addAll(channelTabInfo.errors)
+                                            if (channelTabInfo.relatedItems.isEmpty()) {
+                                                if (channelTabInfo.nextPage == null) {
+                                                    return@flatMap emptyList()
+                                                }
+                                                val infoItemsPage = getMoreChannelTabItems(
+                                                    subscriptionEntity.serviceId,
+                                                    linkHandler, channelTabInfo.nextPage
+                                                )
+                                                    .blockingGet()
+                                                errors.addAll(infoItemsPage.errors)
+                                                return@flatMap infoItemsPage.items
+                                            } else {
+                                                return@flatMap channelTabInfo.relatedItems
+                                            }
+                                        }
+                                        .filterIsInstance<StreamInfoItem>()
+                                }
+                                streams = streams?.filterNot { it.isRoundPlayStream || (filterFutureItems && it.uploadDate != null && it.uploadDate!!.offsetDateTime().isAfter(OffsetDateTime.now())) }
+
+                                return@defer Flowable.just(
+                                    FeedUpdateInfo(
+                                        subscriptionEntity,
+                                        originalInfo!!,
+                                        streams!!,
+                                        errors,
+                                    )
+                                )
+                            } catch (e: Throwable) {
+                                // Actually throw the exception to trigger retry
+                                val request = "${sub.serviceId}:${sub.url}"
+                                val wrapper = FeedLoadService.RequestException(
+                                    sub.uid,
+                                    request,
+                                    error ?: e
+                                )
+                                throw wrapper
+                            }
+                        }
+                            .retry { retryCount, throwable ->
+                                // Check if it's the actual wrapped exception
+                                val actualException = when (throwable) {
+                                    is FeedLoadService.RequestException -> throwable.cause
+                                    else -> throwable
+                                }
+                                false
+                            }
+                            // Now wrap in Notification AFTER retry logic
+                            .map { feedUpdateInfo ->
+                                Notification.createOnNext(feedUpdateInfo)
+                            }
+                            .onErrorReturn { error ->
+                                Notification.createOnError<FeedUpdateInfo>(error)
+                            }
+                    }
+
             }
+
             .sequential()
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext(NotificationConsumer())
@@ -151,108 +276,6 @@ class FeedLoadManager(private val context: Context) {
                 maxProgress.get()
             )
         )
-    }
-
-    private fun loadStreams(
-        subscriptionEntity: SubscriptionEntity,
-        useFeedExtractor: Boolean,
-        defaultSharedPreferences: SharedPreferences
-    ): Notification<FeedUpdateInfo> {
-        var error: Throwable? = null
-        val storeOriginalErrorAndRethrow = { e: Throwable ->
-            // keep original to prevent blockingGet() from wrapping it into RuntimeException
-            error = e
-            throw e
-        }
-
-        try {
-            // check for and load new streams
-            // either by using the dedicated feed method or by getting the channel info
-            var originalInfo: Info? = null
-            var streams: List<StreamInfoItem>? = null
-            val errors = ArrayList<Throwable>()
-
-            if (useFeedExtractor) {
-                NewPipe.getService(subscriptionEntity.serviceId)
-                    .getFeedExtractor(subscriptionEntity.url)
-                    ?.also { feedExtractor ->
-                        // the user wants to use a feed extractor and there is one, use it
-                        val feedInfo = FeedInfo.getInfo(feedExtractor)
-                        errors.addAll(feedInfo.errors)
-                        originalInfo = feedInfo
-                        streams = feedInfo.relatedItems
-                    }
-            }
-
-            if (originalInfo == null) {
-                // use the normal channel tabs extractor if either the user wants it, or
-                // the current service does not have a dedicated feed extractor
-
-                val channelInfo = getChannelInfo(
-                    subscriptionEntity.serviceId,
-                    subscriptionEntity.url,
-                    true
-                )
-                    .onErrorReturn(storeOriginalErrorAndRethrow)
-                    .blockingGet()
-                errors.addAll(channelInfo.errors)
-                originalInfo = channelInfo
-
-                streams = channelInfo.tabs
-                    .filter { tab ->
-                        ChannelTabHelper.fetchFeedChannelTab(
-                            context,
-                            defaultSharedPreferences,
-                            tab
-                        )
-                    }
-                    .map {
-                        Pair(
-                            getChannelTab(subscriptionEntity.serviceId, it, true)
-                                .onErrorReturn(storeOriginalErrorAndRethrow)
-                                .blockingGet(),
-                            it
-                        )
-                    }
-                    .flatMap { (channelTabInfo, linkHandler) ->
-                        errors.addAll(channelTabInfo.errors)
-                        if (channelTabInfo.relatedItems.isEmpty() &&
-                            channelTabInfo.nextPage != null
-                        ) {
-                            val infoItemsPage = getMoreChannelTabItems(
-                                subscriptionEntity.serviceId,
-                                linkHandler,
-                                channelTabInfo.nextPage
-                            )
-                                .blockingGet()
-
-                            errors.addAll(infoItemsPage.errors)
-                            return@flatMap infoItemsPage.items
-                        } else {
-                            return@flatMap channelTabInfo.relatedItems
-                        }
-                    }
-                    .filterIsInstance<StreamInfoItem>()
-            }
-
-            return Notification.createOnNext(
-                FeedUpdateInfo(
-                    subscriptionEntity,
-                    originalInfo!!,
-                    streams!!,
-                    errors
-                )
-            )
-        } catch (e: Throwable) {
-            val request = "${subscriptionEntity.serviceId}:${subscriptionEntity.url}"
-            val wrapper = FeedLoadService.RequestException(
-                subscriptionEntity.uid,
-                request,
-                // do this to prevent blockingGet() from wrapping into RuntimeException
-                error ?: e
-            )
-            return Notification.createOnError(wrapper)
-        }
     }
 
     /**
@@ -299,6 +322,12 @@ class FeedLoadManager(private val context: Context) {
                             subscriptionManager.updateFromInfo(info)
 
                             if (info.errors.isNotEmpty()) {
+                                // Log errors for this specific channel
+                                Log.w(TAG, "Channel '${info.name}' (${info.serviceId}:${info.url}) had ${info.errors.size} error(s):")
+                                info.errors.forEachIndexed { index, error ->
+                                    Log.w(TAG, "  Error ${index + 1}: ${error.javaClass.simpleName}: ${error.message}", error)
+                                }
+
                                 feedResultsHolder.addErrors(
                                     info.errors.map {
                                         FeedLoadService.RequestException(
@@ -311,14 +340,18 @@ class FeedLoadManager(private val context: Context) {
                                 feedDatabaseManager.markAsOutdated(info.uid)
                             }
                         }
-
                         notification.isOnError -> {
-                            val error = notification.error
-                            feedResultsHolder.addError(error!!)
+                            val error = notification.error!!
 
+                            // Log the error for the failed channel
                             if (error is FeedLoadService.RequestException) {
+                                Log.e(TAG, "Failed to load channel with subscription ID ${error.subscriptionId}: ${error.message}", error.cause ?: error)
                                 feedDatabaseManager.markAsOutdated(error.subscriptionId)
+                            } else {
+                                Log.e(TAG, "Unexpected error during feed loading: ${error.javaClass.simpleName}: ${error.message}", error)
                             }
+
+                            feedResultsHolder.addError(error)
                         }
                     }
                 }
@@ -328,18 +361,20 @@ class FeedLoadManager(private val context: Context) {
         private fun filterNewStreams(list: List<StreamInfoItem>): List<StreamInfoItem> {
             return list.filter {
                 !feedDatabaseManager.doesStreamExist(it) &&
-                    it.uploadDate != null &&
-                    // Streams older than this date are automatically removed from the feed.
-                    // Therefore, streams which are not in the database,
-                    // but older than this date, are considered old.
-                    it.uploadDate!!.offsetDateTime().isAfter(
-                        FeedDatabaseManager.FEED_OLDEST_ALLOWED_DATE
-                    )
+                        it.uploadDate != null &&
+                        // Streams older than this date are automatically removed from the feed.
+                        // Therefore, streams which are not in the database,
+                        // but older than this date, are considered old.
+                        it.uploadDate!!.offsetDateTime().isAfter(
+                            FeedDatabaseManager.FEED_OLDEST_ALLOWED_DATE
+                        )
             }
         }
     }
 
     companion object {
+
+        private val TAG = FeedLoadManager::class.java.simpleName
 
         /**
          * Constant used to check for updates of subscriptions with [NotificationMode.ENABLED].
@@ -349,19 +384,7 @@ class FeedLoadManager(private val context: Context) {
         /**
          * How many extractions will be running in parallel.
          */
-        private const val PARALLEL_EXTRACTIONS = 3
-
-        /**
-         * How many YouTube extractions to perform before waiting [DELAY_BETWEEN_BATCHES_MILLIS]
-         * to avoid being rate limited
-         */
-        private const val BATCH_SIZE = 50
-
-        /**
-         * Wait a random delay in this range once every [BATCH_SIZE] YouTube extractions to avoid
-         * being rate limited
-         */
-        private val DELAY_BETWEEN_BATCHES_MILLIS = (6000L..12000L)
+        private const val PARALLEL_EXTRACTIONS = 6
 
         /**
          * Number of items to buffer to mass-insert in the database.

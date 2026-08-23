@@ -4,30 +4,35 @@
     <string name="last_used_preferences_version">last_used_preferences_version</string>
 
     <!-- Service -->
+    <string-array name="service_list">
+        <item>@string/youtube</item>
+        <item>@string/soundcloud</item>
+    </string-array>
     <string name="current_service_key">service</string>
     <string name="default_service_value">@string/youtube</string>
 
     <string name="saved_tabs_key">saved_tabs_key</string>
 
     <!-- Key values -->
-    <string name="kao_last_checked_key">kao_last_checked</string>
-    <string name="api23_requirement_dialog_shown_key">api23_requirement_dialog_shown</string>
-
     <string name="download_path_video_key">download_path</string>
     <string name="download_path_audio_key">download_path_audio</string>
 
     <string name="use_external_video_player_key">use_external_video_player</string>
     <string name="use_external_audio_player_key">use_external_audio_player</string>
 
+    <string name="volume_gesture_control_key">volume_gesture_control</string>
+    <string name="brightness_gesture_control_key">brightness_gesture_control</string>
+    <string name="fullscreen_gesture_control_key">fullscreen_gesture_control</string>
+    <string name="swipe_seek_gesture_control_key">swipe_seek_gesture_control</string>
+    <string name="playback_speed_gesture_control_key">playback_speed_gesture_control</string>
     <string name="resume_on_audio_focus_gain_key">resume_on_audio_focus_gain</string>
     <string name="popup_remember_size_pos_key">popup_remember_size_pos_key</string>
     <string name="use_inexact_seek_key">use_inexact_seek_key</string>
     <string name="auto_queue_key">auto_queue_key</string>
+    <string name="prefer_webview_playback_key">prefer_webview_playback</string>
+    <string name="fallback_to_webview_on_extraction_error_key">fallback_to_webview_on_extraction_error</string>
     <string name="screen_brightness_key">screen_brightness_key</string>
     <string name="screen_brightness_timestamp_key">screen_brightness_timestamp_key</string>
-    <string name="clear_queue_confirmation_key">clear_queue_confirmation_key</string>
-    <string name="ignore_hardware_media_buttons_key">ignore_hardware_media_buttons_key</string>
-
     <string name="popup_saved_width_key">popup_saved_width</string>
     <string name="popup_saved_x_key">popup_saved_x</string>
     <string name="popup_saved_y_key">popup_saved_y</string>
@@ -52,9 +57,19 @@
         <item>25000</item>
         <item>30000</item>
     </string-array>
+    <string-array name="loading_timeout_value">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+    </string-array>
+
+    <string name="loading_timeout_default_value">10</string>
 
     <string name="progressive_load_interval_key">progressive_load_interval</string>
-    <string name="progressive_load_interval_default_value">64</string>
+    <string name="progressive_load_interval_default_value">1</string>
     <string name="progressive_load_interval_exoplayer_default_value">exoplayer_default</string>
     <string-array name="progressive_load_interval_descriptions">
         <item>1 KiB</item>
@@ -64,9 +79,9 @@
         <item>@string/progressive_load_interval_exoplayer_default</item>
     </string-array>
     <string-array name="progressive_load_interval_values">
-        <item>1</item>
-        <item>16</item>
         <item>@string/progressive_load_interval_default_value</item>
+        <item>16</item>
+        <item>64</item>
         <item>256</item>
         <item>@string/progressive_load_interval_exoplayer_default_value</item>
     </string-array>
@@ -126,16 +141,6 @@
     <string name="default_popup_resolution_key">default_popup_resolution</string>
     <string name="default_popup_resolution_value">480p</string>
     <string name="best_resolution_key">best_resolution</string>
-
-    <string-array name="high_resolution_list_values">
-        <item>2160p</item>
-        <item>1440p</item>
-    </string-array>
-
-    <string-array name="high_resolution_list_descriptions">
-        <item>2160p</item>
-        <item>1440p</item>
-    </string-array>
 
     <string-array name="resolution_list_values">
         <item>@string/best_resolution_key</item>
@@ -203,40 +208,7 @@
         <item>@string/audio_webm_key</item>
     </string-array>
 
-    <string name="left_gesture_control_key">left_gesture_control</string>
-    <string name="default_left_gesture_control_value">@string/brightness_control_key</string>
-    <string name="brightness_control_key">brightness_control</string>
-    <string name="volume_control_key">volume_control</string>
-    <string name="none_control_key">none_control</string>
-    <string-array name="left_gesture_control_description">
-        <item>@string/brightness</item>
-        <item>@string/volume</item>
-        <item>@string/none</item>
-    </string-array>
-    <string-array name="left_gesture_control_values">
-        <item>@string/brightness_control_key</item>
-        <item>@string/volume_control_key</item>
-        <item>@string/none_control_key</item>
-    </string-array>
-
-    <string name="right_gesture_control_key">right_gesture_control</string>
-    <string name="default_right_gesture_control_value">@string/volume_control_key</string>
-    <string-array name="right_gesture_control_description">
-        <item>@string/volume</item>
-        <item>@string/brightness</item>
-        <item>@string/none</item>
-    </string-array>
-    <string-array name="right_gesture_control_values">
-        <item>@string/volume_control_key</item>
-        <item>@string/brightness_control_key</item>
-        <item>@string/none_control_key</item>
-    </string-array>
-
-    <string name="prefer_original_audio_key">prefer_original_audio</string>
-    <string name="prefer_descriptive_audio_key">prefer_descriptive_audio</string>
     <string name="last_resize_mode">last_resize_mode</string>
-
-    <string name="reset_settings">reset_settings</string>
 
     <!-- DEBUG ONLY -->
     <string name="debug_pref_screen_key">debug_pref_screen_key</string>
@@ -244,7 +216,9 @@
     <string name="show_memory_leaks_key">show_memory_leaks_key</string>
     <string name="allow_disposed_exceptions_key">allow_disposed_exceptions_key</string>
     <string name="show_original_time_ago_key">show_original_time_ago_key</string>
+    <string name="show_image_indicators_key">show_image_indicators_key</string>
     <string name="show_crash_the_player_key">show_crash_the_player_key</string>
+    <string name="youtube_visitor_data">youtube_visitor_data</string>
     <string name="check_new_streams_key">check_new_streams</string>
     <string name="crash_the_app_key">crash_the_app_key</string>
     <string name="show_error_snackbar_key">show_error_snackbar_key</string>
@@ -257,7 +231,7 @@
     <string name="dark_theme_key">dark_theme</string>
     <string name="black_theme_key">black_theme</string>
     <string name="auto_device_theme_key">auto_device_theme</string>
-    <string name="default_theme_value">@string/auto_device_theme_key</string>
+    <string name="default_theme_value">@string/dark_theme_key</string>
     <string name="default_night_theme_value">@string/dark_theme_key</string>
     <string-array name="theme_values_list">
         <item>@string/light_theme_key</item>
@@ -280,55 +254,81 @@
         <item>@string/black_theme_title</item>
     </string-array>
 
+    <string name="theme_color_key">theme_color</string>
+    <string name="theme_color_follow_system_value">follow_system</string>
+    <string name="theme_color_pipeplay_value">pipeplay</string>
+    <string name="theme_color_neutral_value">neutral</string>
+    <string name="theme_color_green_value">green</string>
+    <string name="theme_color_blue_value">blue</string>
+    <string name="theme_color_purple_value">purple</string>
+    <string name="theme_color_orange_value">orange</string>
+    <string name="theme_color_pink_value">pink</string>
+    <string name="theme_color_red_value">red</string>
+    <string name="default_theme_color_value">@string/theme_color_follow_system_value</string>
+    <string-array name="theme_color_values_list">
+        <item>@string/theme_color_follow_system_value</item>
+        <item>@string/theme_color_pipeplay_value</item>
+        <item>@string/theme_color_neutral_value</item>
+        <item>@string/theme_color_green_value</item>
+        <item>@string/theme_color_blue_value</item>
+        <item>@string/theme_color_purple_value</item>
+        <item>@string/theme_color_orange_value</item>
+        <item>@string/theme_color_pink_value</item>
+        <item>@string/theme_color_red_value</item>
+    </string-array>
+    <string-array name="theme_color_description_list">
+        <item>@string/theme_color_follow_system_title</item>
+        <item>@string/theme_color_pipeplay_title</item>
+        <item>@string/theme_color_neutral_title</item>
+        <item>@string/theme_color_green_title</item>
+        <item>@string/theme_color_blue_title</item>
+        <item>@string/theme_color_purple_title</item>
+        <item>@string/theme_color_orange_title</item>
+        <item>@string/theme_color_pink_title</item>
+        <item>@string/theme_color_red_title</item>
+    </string-array>
+
+    <!-- Learning Mode -->
+    <string name="settings_category_learning_key">learning_settings</string>
+    <string name="learning_mode_key">learning_mode</string>
+    <string name="learning_notes_key">learning_notes</string>
+    <string name="learning_playlist_progress_key">learning_playlist_progress</string>
+    <string name="learning_count_background_key">learning_count_background</string>
+
     <!-- Caption Size -->
     <string name="caption_settings_key">caption_settings_key</string>
     <string name="caption_user_set_key">caption_user_set_key</string>
 
-    <!-- Main-Tabs Position -->
-    <string name="main_tabs_position_key">main_tabs_position</string>
-
     <!-- Content & History -->
     <string name="show_channel_tabs_key">channel_tabs</string>
-    <string name="show_channel_tabs_videos">show_channel_tabs_videos</string>
-    <string name="show_channel_tabs_tracks">show_channel_tabs_tracks</string>
-    <string name="show_channel_tabs_shorts">show_channel_tabs_shorts</string>
-    <string name="show_channel_tabs_livestreams">show_channel_tabs_livestreams</string>
-    <string name="show_channel_tabs_channels">show_channel_tabs_channels</string>
     <string name="show_channel_tabs_playlists">show_channel_tabs_playlists</string>
+    <string name="show_channel_tabs_livestreams">show_channel_tabs_live</string>
+    <string name="show_channel_tabs_shorts">show_channel_tabs_shorts</string>
+    <string name="show_channel_tabs_channels">show_channel_tabs_channels</string>
     <string name="show_channel_tabs_albums">show_channel_tabs_albums</string>
-    <string name="show_channel_tabs_likes">show_channel_tabs_likes</string>
-    <string name="show_channel_tabs_podcasts">show_channel_tabs_podcasts</string>
-    <string name="show_channel_tabs_courses">show_channel_tabs_courses</string>
-    <string name="show_channel_tabs_about">show_channel_tabs_about</string>
+    <string name="show_channel_tabs_info">show_channel_tabs_info</string>
     <string-array name="show_channel_tabs_value_list">
-        <item>@string/show_channel_tabs_videos</item>
-        <item>@string/show_channel_tabs_tracks</item>
-        <item>@string/show_channel_tabs_shorts</item>
-        <item>@string/show_channel_tabs_livestreams</item>
-        <item>@string/show_channel_tabs_channels</item>
         <item>@string/show_channel_tabs_playlists</item>
+        <item>@string/show_channel_tabs_livestreams</item>
+        <item>@string/show_channel_tabs_shorts</item>
+        <item>@string/show_channel_tabs_channels</item>
         <item>@string/show_channel_tabs_albums</item>
-        <item>@string/show_channel_tabs_likes</item>
         <item>@string/show_channel_tabs_podcasts</item>
-        <item>@string/show_channel_tabs_courses</item>
-        <item>@string/show_channel_tabs_about</item>
+        <item>@string/show_channel_tabs_info</item>
     </string-array>
     <string-array name="show_channel_tabs_description_list">
-        <item>@string/channel_tab_videos</item>
-        <item>@string/channel_tab_tracks</item>
-        <item>@string/channel_tab_shorts</item>
-        <item>@string/channel_tab_livestreams</item>
-        <item>@string/channel_tab_channels</item>
         <item>@string/channel_tab_playlists</item>
+        <item>@string/channel_tab_livestreams</item>
+        <item>@string/channel_tab_shorts</item>
+        <item>@string/channel_tab_channels</item>
         <item>@string/channel_tab_albums</item>
-        <item>@string/channel_tab_likes</item>
         <item>@string/channel_tab_podcasts</item>
-        <item>@string/channel_tab_courses</item>
-        <item>@string/channel_tab_about</item>
+        <item>@string/channel_tab_info</item>
     </string-array>
     <string name="show_search_suggestions_key">show_search_suggestions</string>
     <string name="show_local_search_suggestions_key">show_local_search_suggestions</string>
     <string name="show_remote_search_suggestions_key">show_remote_search_suggestions</string>
+    <string name="search_suggestions_count_key">search_suggestions_count</string>
     <string-array name="show_search_suggestions_value_list">
         <item>@string/show_local_search_suggestions_key</item>
         <item>@string/show_remote_search_suggestions_key</item>
@@ -350,9 +350,14 @@
     <string name="peertube_selected_instance_key">peertube_selected_instance</string>
     <string name="peertube_instance_list_key">peertube_instance_list</string>
     <string name="content_country_key">content_country</string>
+    <string name="show_auto_translated_subtitles_key">show_auto_translated_subtitles</string>
     <string name="show_age_restricted_content">show_age_restricted_content</string>
+    <string name="dearrow_enable_key">dearrow_enable</string>
+    <string name="dearrow_titles_key">dearrow_titles</string>
+    <string name="dearrow_thumbnails_key">dearrow_thumbnails</string>
     <string name="youtube_restricted_mode_enabled">youtube_restricted_mode_enabled</string>
     <string name="enable_search_history_key">enable_search_history</string>
+    <string name="enable_webview_history_sync_key">enable_webview_history_sync</string>
     <string name="enable_watch_history_key">enable_watch_history</string>
     <string name="main_page_content_key">main_page_content</string>
     <string name="enable_playback_resume_key">enable_playback_resume</string>
@@ -364,13 +369,10 @@
     <string name="playback_skip_silence_key">playback_skip_silence_key</string>
 
     <string name="app_language_key">app_language_key</string>
-    <string name="app_language_android_13_and_up_key">app_language_android_13_and_up_key</string>
 
     <string name="feed_update_threshold_key">feed_update_threshold_key</string>
     <string name="feed_update_threshold_default_value">300</string>
-    <string name="feed_show_watched_items_key">feed_show_played_items</string>
-    <string name="feed_show_partially_watched_items_key">feed_show_partially_watched_items</string>
-    <string name="feed_show_future_items_key">feed_show_future_items</string>
+    <string name="feed_show_played_items_key">feed_show_played_items</string>
 
     <string name="show_thumbnail_key">show_thumbnail_key</string>
 
@@ -400,36 +402,27 @@
     <string name="fetch_channel_tabs_videos">fetch_channel_tabs_videos</string>
     <string name="fetch_channel_tabs_tracks">fetch_channel_tabs_tracks</string>
     <string name="fetch_channel_tabs_shorts">fetch_channel_tabs_shorts</string>
-    <string name="fetch_channel_tabs_livestreams">fetch_channel_tabs_livestreams</string>
-    <string name="fetch_channel_tabs_likes">fetch_channel_tabs_likes</string>
-    <string name="fetch_channel_tabs_podcasts">fetch_channel_tabs_podcasts</string>
-    <string name="fetch_channel_tabs_courses">fetch_channel_tabs_courses</string>
+    <string name="fetch_channel_tabs_livestreams">fetch_channel_tabs_live</string>
     <string-array name="feed_fetch_channel_tabs_value_list">
         <item>@string/fetch_channel_tabs_videos</item>
         <item>@string/fetch_channel_tabs_tracks</item>
         <item>@string/fetch_channel_tabs_shorts</item>
         <item>@string/fetch_channel_tabs_livestreams</item>
-        <item>@string/fetch_channel_tabs_likes</item>
-        <item>@string/fetch_channel_tabs_podcasts</item>
-        <item>@string/fetch_channel_tabs_courses</item>
     </string-array>
     <string-array name="feed_fetch_channel_tabs_description_list">
         <item>@string/channel_tab_videos</item>
         <item>@string/channel_tab_tracks</item>
         <item>@string/channel_tab_shorts</item>
         <item>@string/channel_tab_livestreams</item>
-        <item>@string/channel_tab_likes</item>
-        <item>@string/channel_tab_podcasts</item>
-        <item>@string/channel_tab_courses</item>
     </string-array>
 
     <string name="import_export_data_path">import_export_data_path</string>
     <string name="import_data">import_data</string>
     <string name="export_data">export_data</string>
-    <string name="import_subscriptions_key">import_subscriptions_key</string>
-    <string name="export_subscriptions_key">export_subscriptions_key</string>
 
     <string name="clear_cookie_key">clear_cookie</string>
+
+    <string name="download_thumbnail_key">download_thumbnail_key</string>
 
     <string name="metadata_cache_wipe_key">cache_wipe_key</string>
     <string name="clear_views_history_key">clear_play_history</string>
@@ -495,8 +488,8 @@
     <string name="popup_player_key">popup_player</string>
     <string name="download_key">download</string>
     <string name="add_to_playlist_key">add_to_playlist</string>
-    <string name="enqueue_key">enqueue</string>
     <string name="always_ask_open_action_key">always_ask_player</string>
+    <string name="open_in_webview_key">open_in_webview</string>
 
     <string-array name="preferred_open_action_description_list">
         <item>@string/show_info</item>
@@ -505,7 +498,7 @@
         <item>@string/popup_player</item>
         <item>@string/download</item>
         <item>@string/add_to_playlist</item>
-        <item>@string/enqueue_stream</item>
+        <item>@string/open_in_webview</item>
         <item>@string/always_ask_open_action</item>
     </string-array>
     <string-array name="preferred_open_action_values_list">
@@ -515,16 +508,65 @@
         <item>@string/popup_player_key</item>
         <item>@string/download_key</item>
         <item>@string/add_to_playlist_key</item>
+        <item>@string/open_in_webview_key</item>
         <item>@string/always_ask_open_action_key</item>
-        <item>@string/enqueue_key</item>
     </string-array>
 
     <!-- Updates -->
-    <string name="update_check_consent_key">update_check_consent_key</string>
     <string name="update_app_key">update_app_key</string>
     <string name="manual_update_key">manual_update_key</string>
     <string name="update_pref_screen_key">update_pref_screen_key</string>
     <string name="update_expiry_key">update_expiry_key</string>
+
+
+    <!-- SponsorBlock -->
+    <string name="sponsor_block_home_page_key" translatable="false">sponsor_block_home_page</string>
+    <string name="sponsor_block_enable_key" translatable="false">sponsor_block_enable</string>
+    <string name="sponsor_block_api_url_key" translatable="false">sponsor_block_api_url</string>
+    <string name="sponsor_block_notifications_key" translatable="false">sponsor_block_notifications</string>
+    <string name="sponsor_block_privacy_key" translatable="false">sponsor_block_privacy</string>
+    <string name="sponsor_block_categories_key" translatable="false">sponsor_block_categories</string>
+    <string name="sponsor_block_category_reset_key" translatable="false">sponsor_block_category_reset</string>
+    <string name="sponsor_block_category_all_on_key" translatable="false">sponsor_block_category_all_on</string>
+    <string name="sponsor_block_category_all_off_key" translatable="false">sponsor_block_category_all_off</string>
+    <string name="sponsor_block_category_sponsor_key" translatable="false">sponsor_block_category_sponsor</string>
+    <string name="sponsor_block_category_sponsor_mode_key" translatable="false">sponsor_block_category_sponsor_mode</string>
+    <string name="sponsor_block_category_sponsor_color_key" translatable="false">sponsor_block_category_sponsor_color</string>
+    <string name="sponsor_block_category_intro_key" translatable="false">sponsor_block_category_intro</string>
+    <string name="sponsor_block_category_intro_mode_key" translatable="false">sponsor_block_category_intro_mode</string>
+    <string name="sponsor_block_category_intro_color_key" translatable="false">sponsor_block_category_intro_color</string>
+    <string name="sponsor_block_category_outro_key" translatable="false">sponsor_block_category_outro</string>
+    <string name="sponsor_block_category_outro_mode_key" translatable="false">sponsor_block_category_outro_mode</string>
+    <string name="sponsor_block_category_outro_color_key" translatable="false">sponsor_block_category_outro_color</string>
+    <string name="sponsor_block_category_interaction_key" translatable="false">sponsor_block_category_interaction</string>
+    <string name="sponsor_block_category_interaction_mode_key" translatable="false">sponsor_block_category_interaction_mode</string>
+    <string name="sponsor_block_category_interaction_color_key" translatable="false">sponsor_block_category_interaction_color</string>
+    <string name="sponsor_block_category_highlight_key" translatable="false">sponsor_block_category_highlight</string>
+    <string name="sponsor_block_category_highlight_color_key" translatable="false">sponsor_block_category_highlight_color</string>
+    <string name="sponsor_block_category_self_promo_key" translatable="false">sponsor_block_category_self_promo</string>
+    <string name="sponsor_block_category_self_promo_mode_key" translatable="false">sponsor_block_category_promo_mode</string>
+    <string name="sponsor_block_category_self_promo_color_key" translatable="false">sponsor_block_category_self_promo_color</string>
+    <string name="sponsor_block_category_non_music_key" translatable="false">sponsor_block_category_music</string>
+    <string name="sponsor_block_category_non_music_mode_key" translatable="false">sponsor_block_category_music_mode</string>
+    <string name="sponsor_block_category_non_music_color_key" translatable="false">sponsor_block_category_music_color</string>
+    <string name="sponsor_block_category_preview_key" translatable="false">sponsor_block_category_preview</string>
+    <string name="sponsor_block_category_preview_mode_key" translatable="false">sponsor_block_category_preview_mode</string>
+    <string name="sponsor_block_category_preview_color_key" translatable="false">sponsor_block_category_preview_color</string>
+    <string name="sponsor_block_category_filler_key" translatable="false">sponsor_block_category_filler</string>
+    <string name="sponsor_block_category_filler_mode_key" translatable="false">sponsor_block_category_filler_mode</string>
+    <string name="sponsor_block_category_filler_color_key" translatable="false">sponsor_block_category_filler_color</string>
+    <string name="sponsor_block_category_pending_key" translatable="false">sponsor_block_category_pending_key</string>
+    <string name="sponsor_block_category_pending_color_key" translatable="false">sponsor_block_category_pending_color_key</string>
+    <string name="sponsor_block_clear_whitelist_key" translatable="false">sponsor_block_clear_whitelist</string>
+    <string name="sponsor_block_graced_rewind_key" translatable="false">sponsor_block_graced_rewind</string>
+    <string name="sponsor_block_show_manual_skip_key" translatable="false">sponsor_block_show_manual_skip</string>
+    <string name="sponsor_block_user_id_key" translatable="false">sponsor_block_user_id</string>
+
+    <string-array name="sponsor_block_category_sponsor_modes_key">
+        <item>@string/sponsor_block_skip_mode_enabled</item>
+        <item>@string/sponsor_block_skip_mode_manual</item>
+        <item>@string/sponsor_block_skip_mode_highlight</item>
+    </string-array>
 
     <!-- Localizations   -->
     <string name="default_localization_key">system</string>
@@ -557,11 +599,8 @@
         <item>lt</item>
         <item>hu</item>
         <item>nl</item>
-        <item>nqo</item>
         <item>no</item>
-        <item>nn</item>
         <item>uz</item>
-        <item>or</item>
         <item>pl</item>
         <item>pt-PT</item>
         <item>pt</item>
@@ -576,6 +615,7 @@
         <item>tr</item>
         <item>bg</item>
         <item>ky</item>
+        <item>kk</item>
         <item>mk</item>
         <item>mn</item>
         <item>ru</item>
@@ -608,13 +648,12 @@
         <item>zh-TW</item>
         <item>zh-HK</item>
         <item>ja</item>
-        <item>ryu</item>
         <item>ko</item>
     </string-array>
     <string-array name="language_names">
         <item>@string/systems_language</item>
         <item>Afrikaans</item>
-        <item>Azərbaycanca</item>
+        <item>Azərbaycan</item>
         <item>Bahasa Indonesia</item>
         <item>Bahasa Malaysia</item>
         <item>Català</item>
@@ -639,11 +678,8 @@
         <item>Lietuvių</item>
         <item>Magyar</item>
         <item>Nederlands</item>
-        <item>ߒߞߏ</item>
         <item>Norsk</item>
-        <item>Nynorsk</item>
         <item>O‘zbek</item>
-        <item>ଓଡ଼ିଆ</item>
         <item>Polski</item>
         <item>Português</item>
         <item>Português (Brasil)</item>
@@ -658,6 +694,7 @@
         <item>Türkçe</item>
         <item>Български</item>
         <item>Кыргызча</item>
+        <item>Қазақ Тілі</item>
         <item>Македонски</item>
         <item>Монгол</item>
         <item>Русский</item>
@@ -690,7 +727,6 @@
         <item>中文 (繁體)</item>
         <item>中文 (香港)</item>
         <item>日本語</item>
-        <item>うちなーぐち</item>
         <item>한국어</item>
     </string-array>
 
@@ -1211,8 +1247,6 @@
         <item>bn</item>
         <item>bn-bd</item>
         <item>bn-in</item>
-        <item>br</item>
-        <item>bs</item>
         <item>ca</item>
         <item>ckb</item>
         <item>cs</item>
@@ -1229,7 +1263,6 @@
         <item>fil</item>
         <item>fr</item>
         <item>gl</item>
-        <item>gu</item>
         <item>he</item>
         <item>hi</item>
         <item>hr</item>
@@ -1237,42 +1270,28 @@
         <item>hy</item>
         <item>ia</item>
         <item>in</item>
-        <item>is</item>
         <item>it</item>
         <item>ja</item>
         <item>jv</item>
-        <item>ka</item>
         <item>kab</item>
         <item>kmr</item>
-        <item>kn</item>
         <item>ko</item>
         <item>ku</item>
-        <item>la</item>
         <item>lt</item>
-        <item>lv</item>
         <item>mk</item>
-        <item>ml</item>
-        <item>mn</item>
-        <item>mr</item>
         <item>ms</item>
         <item>nb-no</item>
-        <item>nn</item>
         <item>ne</item>
         <item>nl</item>
         <item>nl-be</item>
-        <!-- nn is placed next to nb-no -->
-        <item>nqo</item>
         <item>oc</item>
-        <item>or</item>
         <item>pa</item>
-        <item>pa-pk</item>
         <item>pl</item>
         <item>pt</item>
         <item>pt-br</item>
         <item>pt-pt</item>
         <item>ro</item>
         <item>ru</item>
-        <item>ryu</item>
         <item>sat</item>
         <item>sc</item>
         <item>sk</item>
@@ -1284,11 +1303,7 @@
         <item>ta</item>
         <item>te</item>
         <item>th</item>
-        <item>ti</item>
-        <item>tl</item>
-        <item>tok</item>
         <item>tr</item>
-        <item>tt</item>
         <item>tzm</item>
         <item>uk</item>
         <item>ur</item>
@@ -1303,7 +1318,7 @@
         <item>Basa Acèh</item>
         <item>العربية</item>
         <item>العربية (ليبيا)</item>
-        <item>Azərbaycanca</item>
+        <item>Azərbaycan dili</item>
         <item>Asturianu</item>
         <item>Беларуская</item>
         <item>ⵜⴰⵎⴰⵣⵉⵖⵜ</item>
@@ -1311,8 +1326,6 @@
         <item>বাংলা</item>
         <item>বাংলা (বাংলাদেশ)</item>
         <item>বাংলা (भारत)</item>
-        <item>Brezhoneg</item>
-        <item>Босански</item>
         <item>Català</item>
         <item>کوردیی سۆرانی</item>
         <item>Čeština</item>
@@ -1329,7 +1342,6 @@
         <item>Wikang Filipino</item>
         <item>Français</item>
         <item>Galego</item>
-        <item>ગુજરાતી</item>
         <item>עברית</item>
         <item>हिन्दी</item>
         <item>Hrvatski</item>
@@ -1337,42 +1349,28 @@
         <item>Հայերեն</item>
         <item>Interlingua</item>
         <item>Bahasa Indonesia</item>
-        <item>Íslenska</item>
         <item>Italiano</item>
         <item>日本語</item>
         <item>ꦧꦱꦗꦮ</item>
-        <item>ქართული</item>
         <item>Taqbaylit</item>
         <item>Kurmancî</item>
-        <item>ಕನ್ನಡ</item>
         <item>한국어</item>
         <item>کوردی</item>
-        <item>Latina</item>
         <item>Lietuvių kalba</item>
-        <item>latviski</item>
         <item>македонски јазик</item>
-        <item>മലയാളം</item>
-        <item>Монгол хэл</item>
-        <item>मराठी</item>
         <item>Bahasa Melayu</item>
         <item>Norsk bokmål</item>
-        <item>Norsk Nynorsk</item>
-        <item>नेपाली</item>
+        <item>Nनेपाली</item>
         <item>Nederlands (NL)</item>
         <item>Nederlands (BE)</item>
-        <!-- nn is placed next to nb-no -->
-        <item>ߒߞߏ</item>
         <item>Occitan</item>
-        <item>ଓଡ଼ିଆ</item>
         <item>ਪੰਜਾਬੀ</item>
-        <item>ਪੰਜਾਬੀ (PK)</item>
         <item>Polski</item>
         <item>Português</item>
         <item>Português (BR)</item>
         <item>Português (PT)</item>
         <item>Română</item>
-        <item>Pусский</item>
-        <item>うちなーぐち</item>
+        <item>русский язык</item>
         <item>ᱥᱟᱱᱛᱟᱲᱤ</item>
         <item>sardu</item>
         <item>Slovenčina</item>
@@ -1384,11 +1382,7 @@
         <item>தமிழ்</item>
         <item>తెలుగు</item>
         <item>ไทย</item>
-        <item>ትግርኛ</item>
-        <item>Wikang Tagalog </item>
-        <item>Toki Pona</item>
         <item>Türkçe</item>
-        <item>Татар теле</item>
         <item>Tamaziɣt</item>
         <item>українська мова</item>
         <item>اردو</item>
@@ -1415,30 +1409,28 @@
         <item>144p</item>
     </string-array>
 
-    <string-array name="high_resolution_limit_data_usage_values_list">
-        <item>2160p</item>
-        <item>1440p</item>
-    </string-array>
-
     <string name="list_view_mode_key">list_view_mode</string>
-    <string name="list_view_mode_value">@string/list_view_mode_auto_key</string>
+    <string name="list_view_mode_value">@string/list_view_mode_card_key</string>
 
     <!-- TODO: Use these across the app instead of hardcoding it -->
     <string name="list_view_mode_auto_key">auto</string>
     <string name="list_view_mode_list_key">list</string>
     <string name="list_view_mode_grid_key">grid</string>
+    <string name="list_view_mode_large_grid_key">large_grid</string>
     <string name="list_view_mode_card_key">card</string>
 
     <string-array name="list_view_mode_values">
         <item>@string/list_view_mode_auto_key</item>
         <item>@string/list_view_mode_list_key</item>
         <item>@string/list_view_mode_grid_key</item>
+        <item>@string/list_view_mode_large_grid_key</item>
         <item>@string/list_view_mode_card_key</item>
     </string-array>
     <string-array name="list_view_mode_description">
         <item>@string/auto</item>
         <item>@string/list</item>
         <item>@string/grid</item>
+        <item>@string/large_grid</item>
         <item>@string/card</item>
     </string-array>
 
@@ -1497,12 +1489,34 @@
     </string-array>
     <string name="streams_notifications_channels_key">streams_notifications_channels</string>
     <string name="player_notification_screen_key">player_notification_screen</string>
+    <string name="enable_eye_protection_key">enable_eye_protection_key</string>
+    <string name="logout_key">logout_key</string>
+    <string name="login_key">login_key</string>
+    <string name="niconico_cookies_key">niconico_cookies_key</string>
+    <string name="youtube_cookies_key">youtube_cookies_key</string>
+    <string name="bilibili_cookies_key">bilibili_cookies_key</string>
+    <string name="bullet_comments_font_key">bullet_comments_font_key</string>
+    <string name="bullet_comments_opacity_key">bullet_comments_opacity_key</string>
+    <string name="toggle_show_future_items_key">toggle_show_future_items_key</string>
+    <string name="auto_background_play_key">auto_background_play_key</string>
+    <string name="override_cookies_bilibili_key">override_cookies_bilibili_key</string>
+    <string name="override_cookies_niconico_key">override_cookies_niconico_key</string>
+    <string name="override_cookies_youtube_key">override_cookies_youtube_key</string>
+    <string name="override_cookies_bilibili_value_key">override_cookies_bilibili_value_key</string>
+    <string name="override_cookies_niconico_value_key">override_cookies_niconico_value_key</string>
+    <string name="override_cookies_youtube_value_key">override_cookies_youtube_value_key</string>
+    <string name="auto_queue_partition_key">auto_queue_partition_key</string>
+    <string-array name="font_list">
+        <item>Default</item>
+        <item>sans-serif</item>
+        <item>serif</item>
+        <item>monospace</item>
+        <item>LXGW WenKai Screen</item>
+    </string-array>
 
     <!-- ExoPlayer settings -->
     <string name="exoplayer_settings_key">exoplayer_settings_key</string>
     <string name="disable_media_tunneling_key">disable_media_tunneling_key</string>
-    <string name="disabled_media_tunneling_automatically_key">disabled_media_tunneling_automatically_key</string>
-    <string name="media_tunneling_device_blacklist_version">media_tunneling_device_blacklist_version</string>
     <string name="use_exoplayer_decoder_fallback_key">use_exoplayer_decoder_fallback_key</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_key">always_use_exoplayer_set_output_surface_workaround_key</string>
 
@@ -1524,5 +1538,308 @@
         <item>@string/image_quality_low_key</item>
         <item>@string/image_quality_medium_key</item>
         <item>@string/image_quality_high_key</item>
+    </string-array>
+
+
+
+
+    <!-- Accounts Cookies -->
+    <string name="cookie_functions_bilibili_key">cookie_functions_bilibili_key</string>
+    <string name="cookie_functions_niconico_key">cookie_functions_niconico_key</string>
+    <string-array name="cookie_functions_bilibili_entries">
+        <item>@string/high_res</item>
+        <item>@string/ai_subtitle</item>
+    </string-array>
+    <string-array name="cookie_functions_bilibili_values">
+        <item>high_res</item>
+        <item>ai_subtitle</item>
+    </string-array>
+    <string name="pref_sponsorblock_mode_key">pref_sponsorblock_mode_key</string>
+    <string name="playlist_sort_mode_key">playlist_sort_mode_key</string>
+    <string name="sleep_timer_length_key">sleep_timer_length_key</string>
+    <string-array name="sleep_timer_length_key">
+        <item>5 min</item>
+        <item>10 min</item>
+        <item>15 min</item>
+        <item>20 min</item>
+        <item>30 min</item>
+        <item>1 hour</item>
+    </string-array>
+    <string-array name="sleep_timer_length_value">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>30</item>
+        <item>60</item>
+    </string-array>
+
+    <string-array name="playlist_sorting_mode">
+        <item>@string/oldest_first</item>
+        <item>@string/newest_first</item>
+<!--        <item>@string/same_as_item_mode</item>-->
+    </string-array>
+    <string-array name="playlist_sorting_mode_value">
+        <item>0</item>
+        <item>1</item>
+<!--        <item>2</item>-->
+    </string-array>
+    <string name="playlist_sorting_key">playlist_sorting_key</string>
+    <string name="dont_auto_queue_long_key">dont_auto_queue_long_key</string>
+    <string name="random_music_play_mode_key">random_music_play_mode_key</string>
+    <string name="speeding_playback_key">speeding_playback_key</string>
+    <string-array name="speeding_playback_description">
+        <item>0.1x</item>
+        <item>0.3x</item>
+        <item>0.5x</item>
+        <item>0.75x</item>
+        <item>Disable</item>
+        <item>1.25x</item>
+        <item>1.5x</item>
+        <item>1.75x</item>
+        <item>2x</item>
+        <item>2.25x</item>
+        <item>2.5x</item>
+        <item>3x</item>
+        <item>5x</item>
+    </string-array>
+    <string-array name="speeding_playback_value">
+        <item>0.1</item>
+        <item>0.3</item>
+        <item>0.5</item>
+        <item>0.75</item>
+        <item>1</item>
+        <item>1.25</item>
+        <item>1.5</item>
+        <item>1.75</item>
+        <item>2</item>
+        <item>2.25</item>
+        <item>2.5</item>
+        <item>3</item>
+        <item>5</item>
+    </string-array>
+    <string name="speeding_playback_default_value">3</string>
+    <string name="require_audio_focus_key">require_audio_focus_key</string>
+    <string name="regular_bullet_comments_duration_key">regular_bullet_comments_duration_key</string>
+    <string name="top_bottom_bullet_comments_duration_key">top_bottom_bullet_comments_duration_key</string>
+    <string name="max_bullet_comments_rows_top_key">max_bullet_comments_rows_top_key</string>
+    <string name="max_bullet_comments_rows_bottom_key">max_bullet_comments_rows_bottom_key</string>
+    <string name="max_bullet_comments_rows_regular_key">max_bullet_comments_rows_regular_key</string>
+
+    <string name="bullet_comments_outline_radius_key">bullet_comments_outline_radius_key</string>
+    <string name="advanced_formats_key">advanced_formats_key</string>
+    <string name="preferred_audio_language_key">preferred_audio_language_key</string>
+    <string name="filter_by_keyword_key">filter_by_keyword_key</string>
+    <string name="pin_video_to_top_key">pin_video_to_top_key</string>
+    <string-array name="advanced_formats_values">
+        <item>VP9</item>
+        <item>AV01</item>
+        <item>HEVC</item>
+        <item>EC-3</item>
+    </string-array>
+    <string-array name="default_advanced_formats_values">
+        <item>VP9</item>
+        <item>HEVC</item>
+    </string-array>
+    <string-array name="audio_langs">
+        <item>@string/sort_origin</item>
+        <!-- Global -->
+        <item>English</item> <!-- English -->
+
+        <!-- Europe -->
+        <item>Français</item> <!-- French -->
+        <item>Deutsch</item> <!-- German -->
+        <item>Español</item> <!-- Spanish -->
+        <item>Português</item> <!-- Portuguese -->
+        <item>Русский</item> <!-- Russian -->
+        <item>Türkçe</item> <!-- Turkish -->
+
+        <!-- Asia -->
+        <item>简体中文</item> <!-- Chinese (Simplified) -->
+        <item>日本語</item> <!-- Japanese -->
+        <item>हिन्दी</item> <!-- Hindi -->
+        <item>한국어</item> <!-- Korean -->
+        <item>ไทย</item> <!-- Thai -->
+        <item>Tiếng Việt</item> <!-- Vietnamese -->
+        <item>বাংলা</item> <!-- Bangla -->
+        <item>Bahasa Indonesia</item> <!-- Indonesian -->
+
+        <!-- Middle East -->
+        <item>العربية</item> <!-- Arabic -->
+    </string-array>
+    <string-array name="audio_lang_values">
+        <item>original</item>
+        <item>en</item> <!-- English -->
+
+        <!-- Europe -->
+        <item>fr</item> <!-- French -->
+        <item>de</item> <!-- German -->
+        <item>es</item> <!-- Spanish -->
+        <item>pt</item> <!-- Portuguese -->
+        <item>ru</item> <!-- Russian -->
+        <item>tr</item> <!-- Turkish -->
+
+        <!-- Asia -->
+        <item>zh</item> <!-- Chinese (Simplified) -->
+        <item>ja</item> <!-- Japanese -->
+        <item>hi</item> <!-- Hindi -->
+        <item>ko</item> <!-- Korean -->
+        <item>th</item> <!-- Thai -->
+        <item>vi</item> <!-- Vietnamese -->
+        <item>bn</item> <!-- Bangla -->
+        <item>id</item> <!-- Indonesian -->
+
+        <!-- Middle East -->
+        <item>ar</item> <!-- Arabic -->
+    </string-array>
+    <string name="filter_type_key">filter_type_key</string>
+    <string name="filter_by_channel_key">filter_by_channel_key</string>
+    <string name="proxy_token_key">proxy_token_key</string>
+    <string name="enable_proxy_key">enable_proxy_key</string>
+    <string name="check_token_validity_key">check_token_validity_key</string>
+    <string name="donation_encouragement_key">donation_encouragement_key</string>
+    <string name="show_prerelease_key">show_prerelease_key</string>
+    <string name="show_dislike_key">show_dislike_key</string>
+    <string name="filter_shorts_key">filter_shorts_key</string>
+    <string name="filter_paid_contents_key">filter_paid_contents_key</string>
+    <string name="loading_timeout_key">loading_timeout_key</string>
+    <string name="youtube_po_token_key">youtube_po_token_key</string>
+    <string name="always_start_from_beginning_key">always_start_from_beginning_key</string>
+    <string name="fetch_full_playlist_key">fetch_full_playlist_key</string>
+    <string name="auto_ellipsize_key">auto_ellipsize_key</string>
+    <string name="enable_max_rows_customization_key">enable_max_rows_customization_key</string>
+    <string name="always_list_mode_for_bookmark_key">always_list_mode_for_bookmark_key</string>
+    <string name="exit_app_confirmation_key">exit_app_confirmation_key</string>
+    <string name="pull_to_refresh_key">pull_to_refresh_key</string>
+    <string name="local_playlist_swipe_action_key">local_playlist_swipe_action_key</string>
+    <string name="disable_android_auto_key">disable_android_auto_key</string>
+    <string-array name="filter_type_entries">
+        <item>@string/search_result</item>
+        <item>@string/recommended_videos</item>
+        <item>@string/related_items_tab_description</item>
+        <item>@string/channel_videos</item>
+    </string-array>
+    <string-array name="filter_type_values">
+        <item>search_result</item>
+        <item>recommendations</item>
+        <item>related_item</item>
+        <item>channels</item>
+    </string-array>
+    <string-array name="local_playlist_swipe_action_entries">
+        <item>@string/delete</item>
+        <item>@string/enqueue</item>
+        <item>@string/disabled</item>
+    </string-array>
+    <string-array name="local_playlist_swipe_action_values">
+        <item>delete</item>
+        <item>enqueue</item>
+        <item>disable</item>
+    </string-array>
+    <string name="grid_layout_enabled_key">grid_layout_enabled_key</string>
+    <string name="grid_columns_key">grid_columns_key</string>
+    <string name="grid_columns_landscape_key">grid_columns_landscape_key</string>
+    <string name="card_mode_enabled_key">card_mode_enabled_key</string>
+    <string name="list_view_mode_migrated_key">list_view_mode_migrated_key</string>
+    <string-array name="grid_columns_entries">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+    <string-array name="grid_columns_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+
+    <string name="show_channel_tabs_podcasts">show_channel_tabs_podcasts</string>
+    <string name="last_used_pipeplay_preferences_version">last_used_pipeplay_preferences_version</string>
+    <string name="video_tabs_key">video_tabs_key</string>
+    <string-array name="video_tabs_value_list">
+        <item>comments</item>
+        <item>related</item>
+        <item>sponsorblock</item>
+        <item>description</item>
+    </string-array>
+    <string-array name="video_tabs_description_list">
+        <item>@string/comments_tab_description</item>
+        <item>@string/related_items_tab_description</item>
+        <item>@string/sponsor_block</item>
+        <item>@string/description_tab_description</item>
+    </string-array>
+    <string name="filter_future_items_key">filter_future_items_key</string>
+    <string name="use_experimental_new_ui_key">use_experimental_new_ui</string>
+    <string name="force_end_on_overtime_key">force_end_on_overtime</string>
+    <string name="use_old_search_filter_key">use_old_search_filter</string>
+    <string name="main_tabs_position_key">main_tabs_position</string>
+    <string name="disable_exoplayer_media_codec_async_queueing_key">disable_exoplayer_media_codec_async_queueing_key</string>
+    <string name="auto_translated_subtitles_language_key">auto_translated_subtitles_language</string>
+    <string-array name="auto_translated_subtitles_language_names">
+        <item>English</item>
+        <item>Français</item>
+        <item>Deutsch</item>
+        <item>Español</item>
+        <item>Português</item>
+        <item>Русский</item>
+        <item>Türkçe</item>
+        <item>简体中文</item>
+        <item>日本語</item>
+        <item>हिन्दी</item>
+        <item>한국어</item>
+        <item>ไทย</item>
+        <item>Tiếng Việt</item>
+        <item>বাংলা</item>
+        <item>Bahasa Indonesia</item>
+        <item>العربية</item>
+    </string-array>
+    <string-array name="auto_translated_subtitles_language_values">
+        <item>en</item>
+        <item>fr</item>
+        <item>de</item>
+        <item>es</item>
+        <item>pt</item>
+        <item>ru</item>
+        <item>tr</item>
+        <item>zh</item>
+        <item>ja</item>
+        <item>hi</item>
+        <item>ko</item>
+        <item>th</item>
+        <item>vi</item>
+        <item>bn</item>
+        <item>id</item>
+        <item>ar</item>
+    </string-array>
+    <string name="export_data_to_newpipe_key">export_data_to_newpipe</string>
+    <string name="youtube_player_client_key">youtube_player_client</string>
+    <string-array name="youtube_player_client_entries">
+        <item>Android VR</item>
+        <item>VisionOS</item>
+        <item>TV Downgraded</item>
+        <item>MWEB (SABR)</item>
+    </string-array>
+    <string-array name="youtube_player_client_values">
+        <item>android_vr</item>
+        <item>visionos</item>
+        <item>tv_downgraded</item>
+        <item>mweb</item>
+    </string-array>
+    <string name="sabr_backoff_notification_channel_id">sabr_backoff</string>
+    <string name="sponsor_block_skip_mode_automatic_value" translatable="false">automatic</string>
+    <string name="sponsor_block_skip_mode_manual_value" translatable="false">manual</string>
+    <string name="sponsor_block_skip_mode_highlight_value" translatable="false">highlight</string>
+    <string-array name="sponsor_block_category_mode_values">
+        <item>@string/sponsor_block_skip_mode_automatic_value</item>
+        <item>@string/sponsor_block_skip_mode_manual_value</item>
+        <item>@string/sponsor_block_skip_mode_highlight_value</item>
     </string-array>
 </resources>

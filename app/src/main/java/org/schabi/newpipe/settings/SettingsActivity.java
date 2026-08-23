@@ -1,5 +1,7 @@
 package org.schabi.newpipe.settings;
 
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,15 +16,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.SoftwareKeyboardControllerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
-import com.evernote.android.state.State;
 import com.jakewharton.rxbinding4.widget.RxTextView;
-import com.livefront.bridge.Bridge;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
@@ -35,6 +34,7 @@ import org.schabi.newpipe.settings.preferencesearch.PreferenceSearchResultHighli
 import org.schabi.newpipe.settings.preferencesearch.PreferenceSearchResultListener;
 import org.schabi.newpipe.settings.preferencesearch.PreferenceSearcher;
 import org.schabi.newpipe.util.DeviceUtils;
+import org.schabi.newpipe.util.KeyboardUtil;
 import org.schabi.newpipe.util.ReleaseVersionUtil;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.FocusOverlayView;
@@ -79,17 +79,20 @@ public class SettingsActivity extends AppCompatActivity implements
     private EditText searchEditText;
 
     // State
-    @State
     String searchText;
-    @State
     boolean wasSearchActive;
 
     @Override
     protected void onCreate(final Bundle savedInstanceBundle) {
         setTheme(ThemeHelper.getSettingsThemeStyle(this));
+        ThemeHelper.applyThemeColor(this);
+        assureCorrectAppLanguage(this);
 
         super.onCreate(savedInstanceBundle);
-        Bridge.restoreInstanceState(this, savedInstanceBundle);
+        if (savedInstanceBundle != null) {
+            searchText = savedInstanceBundle.getString("searchText");
+            wasSearchActive = savedInstanceBundle.getBoolean("wasSearchActive", false);
+        }
         final boolean restored = savedInstanceBundle != null;
 
         final SettingsLayoutBinding settingsLayoutBinding =
@@ -121,7 +124,8 @@ public class SettingsActivity extends AppCompatActivity implements
     @Override
     protected void onSaveInstanceState(@NonNull final Bundle outState) {
         super.onSaveInstanceState(outState);
-        Bridge.saveInstanceState(this, outState);
+        outState.putString("searchText", searchText);
+        outState.putBoolean("wasSearchActive", wasSearchActive);
     }
 
     @Override
@@ -225,6 +229,7 @@ public class SettingsActivity extends AppCompatActivity implements
 
         // Build search items
         final Context searchContext = getApplicationContext();
+        assureCorrectAppLanguage(searchContext);
         final PreferenceParser parser = new PreferenceParser(searchContext, config);
         final PreferenceSearcher searcher = new PreferenceSearcher(config);
 
@@ -261,12 +266,12 @@ public class SettingsActivity extends AppCompatActivity implements
      */
     private void ensureSearchRepresentsApplicationState() {
         // Check if the update settings are available
-        if (!ReleaseVersionUtil.INSTANCE.isReleaseApk()) {
-            SettingsResourceRegistry.getInstance()
-                    .getEntryByPreferencesResId(R.xml.update_settings)
-                    .setSearchable(false);
-        }
-
+//        if (!ReleaseVersionUtil.isReleaseApk()) {
+//            SettingsResourceRegistry.getInstance()
+//                    .getEntryByPreferencesResId(R.xml.update_settings)
+//                    .setSearchable(false);
+//        }
+//
         // Hide debug preferences in RELEASE build variant
         if (DEBUG) {
             SettingsResourceRegistry.getInstance()
@@ -302,7 +307,6 @@ public class SettingsActivity extends AppCompatActivity implements
             menuSearchItem.setVisible(!active);
         }
 
-        final var keyboardController = new SoftwareKeyboardControllerCompat(searchEditText);
         if (active) {
             getSupportFragmentManager()
                     .beginTransaction()
@@ -310,7 +314,7 @@ public class SettingsActivity extends AppCompatActivity implements
                     .addToBackStack(PreferenceSearchFragment.NAME)
                     .commit();
 
-            keyboardController.show();
+            KeyboardUtil.showKeyboard(this, searchEditText);
         } else if (searchFragment != null) {
             hideSearchFragment();
             getSupportFragmentManager()
@@ -318,8 +322,7 @@ public class SettingsActivity extends AppCompatActivity implements
                         PreferenceSearchFragment.NAME,
                         FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
-            keyboardController.hide();
-            searchEditText.clearFocus();
+            KeyboardUtil.hideKeyboard(this, searchEditText);
         }
 
         resetSearchText();

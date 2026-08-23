@@ -2,16 +2,15 @@
 <resources>
 
     <color name="contrastColor">@color/black</color>
-    <color name="defaultIconTint">@color/black</color>
+    <color name="defaultIconTint">?android:attr/textColorPrimary</color>
 
     <color name="ic_launcher_background">#CD201F</color>
-
     <color name="placeholder_background">#999999</color>
     <color name="placeholder_foreground">#6C6C6C</color>
 
     <!-- Light Theme -->
-    <color name="light_background_color">#EEEEEE</color>
-    <color name="light_dialog_background_color">#EEEEEE</color>
+    <color name="light_background_color">#FFFBFE</color>
+    <color name="light_dialog_background_color">#FFFBFE</color>
     <color name="light_settings_accent_color">#e53935</color>
     <color name="light_separator_color">#32000000</color>
     <color name="light_ripple_color">#48868686</color>
@@ -39,6 +38,7 @@
     <color name="dark_card_item_background_color">#313131</color>
     <color name="dark_card_item_contrast_color">#474747</color>
     <color name="dark_border_color">#33FFFFFF</color>
+    <color name="dark_bottom_sheet_color">#424242</color>
 
     <!-- Black Theme -->
     <color name="black_background_color">#000000</color>
@@ -48,12 +48,40 @@
     <color name="black_card_item_background_color">#0F0F0F</color>
     <color name="black_card_item_contrast_color">#202020</color>
     <color name="black_border_color">#25FFFFFF</color>
+    <color name="black_bottom_sheet_color">#121212</color>
+
+    <!-- Manual Material-style theme color presets -->
+    <color name="theme_color_pipeplay_primary">#CD201F</color>
+    <color name="theme_color_pipeplay_primary_dark">#A81817</color>
+    <color name="theme_color_pipeplay_accent">#E53935</color>
+    <color name="theme_color_neutral_primary">#5F6368</color>
+    <color name="theme_color_neutral_primary_dark">#3C4043</color>
+    <color name="theme_color_neutral_accent">#80868B</color>
+    <color name="theme_color_green_primary">#2E7D32</color>
+    <color name="theme_color_green_primary_dark">#1B5E20</color>
+    <color name="theme_color_green_accent">#4CAF50</color>
+    <color name="theme_color_blue_primary">#1565C0</color>
+    <color name="theme_color_blue_primary_dark">#0D47A1</color>
+    <color name="theme_color_blue_accent">#2196F3</color>
+    <color name="theme_color_purple_primary">#6A1B9A</color>
+    <color name="theme_color_purple_primary_dark">#4A148C</color>
+    <color name="theme_color_purple_accent">#9C27B0</color>
+    <color name="theme_color_orange_primary">#EF6C00</color>
+    <color name="theme_color_orange_primary_dark">#E65100</color>
+    <color name="theme_color_orange_accent">#FF9800</color>
+    <color name="theme_color_pink_primary">#AD1457</color>
+    <color name="theme_color_pink_primary_dark">#880E4F</color>
+    <color name="theme_color_pink_accent">#E91E63</color>
+    <color name="theme_color_red_primary">#C62828</color>
+    <color name="theme_color_red_primary_dark">#B71C1C</color>
+    <color name="theme_color_red_accent">#F44336</color>
 
     <!-- Miscellaneous -->
     <color name="queue_background_color">@color/dark_queue_background_color</color>
     <color name="drawer_header_font_color">#F2FFFFFF</color>
     <color name="duration_background_color">#aa000000</color>
     <color name="live_duration_background_color">#c8E53935</color>
+    <color name="paid_video_background_color">#c90</color>
     <color name="playlist_stream_count_background_color">#e6000000</color>
     <color name="duration_text_color">#EEFFFFFF</color>
     <color name="video_overlay_color">#64000000</color>
@@ -61,6 +89,8 @@
     <color name="subscribe_text_color">#fff</color>
     <color name="subscribed_background_color">#d6d6d6</color>
     <color name="subscribed_text_color">#717171</color>
+
+    <color name="show_replies_button_text_color">#0276aa</color>
 
     <color name="transparent_background_color">#00000000</color>
     <color name="selected_background_color">#96717171</color>
@@ -83,5 +113,17 @@
     <color name="gray">#616161</color>
 
     <color name="black">#000</color>
+
+    <!-- default SponsorBlock segment colors -->
+    <color name="sponsor_segment">#00d400</color>
+    <color name="intro_segment">#00ffff</color>
+    <color name="outro_segment">#0202ed</color>
+    <color name="interaction_segment">#cc00ff</color>
+    <color name="highlight_segment">#ff1983</color>
+    <color name="self_promo_segment">#ffff00</color>
+    <color name="non_music_segment">#ff9900</color>
+    <color name="preview_segment">#008fd6</color>
+    <color name="filler_segment">#7300ff</color>
+    <color name="pending_segment">#ffffff</color>
 
 </resources>

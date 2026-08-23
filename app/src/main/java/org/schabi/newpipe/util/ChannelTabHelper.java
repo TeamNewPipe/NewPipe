@@ -6,8 +6,9 @@ import android.content.SharedPreferences;
 import androidx.annotation.StringRes;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.channel.tabs.ChannelTabs;
+import org.schabi.newpipe.extractor.linkhandler.ChannelTabs;
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
+import org.schabi.newpipe.extractor.search.filter.FilterItem;
 
 import java.util.List;
 import java.util.Set;
@@ -16,64 +17,23 @@ public final class ChannelTabHelper {
     private ChannelTabHelper() {
     }
 
-    /**
-     * @param tab the channel tab to check
-     * @return whether the tab should contain (playable) streams or not
-     */
-    public static boolean isStreamsTab(final String tab) {
-        switch (tab) {
-            case ChannelTabs.VIDEOS:
-            case ChannelTabs.TRACKS:
-            case ChannelTabs.LIKES:
-            case ChannelTabs.SHORTS:
-            case ChannelTabs.LIVESTREAMS:
-            case ChannelTabs.PODCASTS:
-            case ChannelTabs.COURSES:
-                return true;
-            default:
-                return false;
-        }
-    }
-
-    /**
-     * @param tab the channel tab link handler to check
-     * @return whether the tab should contain (playable) streams or not
-     */
-    public static boolean isStreamsTab(final ListLinkHandler tab) {
-        final List<String> contentFilters = tab.getContentFilters();
-        if (contentFilters.isEmpty()) {
-            return false; // this should never happen, but check just to be sure
-        } else {
-            return isStreamsTab(contentFilters.get(0));
-        }
-    }
-
     @StringRes
     private static int getShowTabKey(final String tab) {
         switch (tab) {
-            case ChannelTabs.VIDEOS:
-                return R.string.show_channel_tabs_videos;
-            case ChannelTabs.TRACKS:
-                return R.string.show_channel_tabs_tracks;
-            case ChannelTabs.SHORTS:
-                return R.string.show_channel_tabs_shorts;
-            case ChannelTabs.LIVESTREAMS:
-                return R.string.show_channel_tabs_livestreams;
-            case ChannelTabs.CHANNELS:
-                return R.string.show_channel_tabs_channels;
             case ChannelTabs.PLAYLISTS:
                 return R.string.show_channel_tabs_playlists;
+            case ChannelTabs.LIVESTREAMS:
+                return R.string.show_channel_tabs_livestreams;
+            case ChannelTabs.SHORTS:
+                return R.string.show_channel_tabs_shorts;
+            case ChannelTabs.CHANNELS:
+                return R.string.show_channel_tabs_channels;
             case ChannelTabs.ALBUMS:
                 return R.string.show_channel_tabs_albums;
-            case ChannelTabs.LIKES:
-                return R.string.show_channel_tabs_likes;
             case ChannelTabs.PODCASTS:
                 return R.string.show_channel_tabs_podcasts;
-            case ChannelTabs.COURSES:
-                return R.string.show_channel_tabs_courses;
-            default:
-                return -1;
         }
+        return -1;
     }
 
     @StringRes
@@ -87,12 +47,6 @@ public final class ChannelTabHelper {
                 return R.string.fetch_channel_tabs_shorts;
             case ChannelTabs.LIVESTREAMS:
                 return R.string.fetch_channel_tabs_livestreams;
-            case ChannelTabs.LIKES:
-                return R.string.fetch_channel_tabs_likes;
-            case ChannelTabs.PODCASTS:
-                return R.string.fetch_channel_tabs_podcasts;
-            case ChannelTabs.COURSES:
-                return R.string.fetch_channel_tabs_courses;
             default:
                 return -1;
         }
@@ -101,29 +55,20 @@ public final class ChannelTabHelper {
     @StringRes
     public static int getTranslationKey(final String tab) {
         switch (tab) {
-            case ChannelTabs.VIDEOS:
-                return R.string.channel_tab_videos;
-            case ChannelTabs.TRACKS:
-                return R.string.channel_tab_tracks;
-            case ChannelTabs.SHORTS:
-                return R.string.channel_tab_shorts;
-            case ChannelTabs.LIVESTREAMS:
-                return R.string.channel_tab_livestreams;
-            case ChannelTabs.CHANNELS:
-                return R.string.channel_tab_channels;
             case ChannelTabs.PLAYLISTS:
                 return R.string.channel_tab_playlists;
+            case ChannelTabs.LIVESTREAMS:
+                return R.string.channel_tab_livestreams;
+            case ChannelTabs.SHORTS:
+                return R.string.channel_tab_shorts;
+            case ChannelTabs.CHANNELS:
+                return R.string.channel_tab_channels;
             case ChannelTabs.ALBUMS:
                 return R.string.channel_tab_albums;
-            case ChannelTabs.LIKES:
-                return R.string.channel_tab_likes;
             case ChannelTabs.PODCASTS:
                 return R.string.channel_tab_podcasts;
-            case ChannelTabs.COURSES:
-                return R.string.channel_tab_courses;
-            default:
-                return R.string.unknown_content;
         }
+        return R.string.unknown_content;
     }
 
     public static boolean showChannelTab(final Context context,
@@ -151,12 +96,12 @@ public final class ChannelTabHelper {
     public static boolean fetchFeedChannelTab(final Context context,
                                               final SharedPreferences sharedPreferences,
                                               final ListLinkHandler tab) {
-        final List<String> contentFilters = tab.getContentFilters();
+        final List<FilterItem> contentFilters = tab.getContentFilters();
         if (contentFilters.isEmpty()) {
             return false; // this should never happen, but check just to be sure
         }
 
-        final int key = ChannelTabHelper.getFetchFeedTabKey(contentFilters.get(0));
+        final int key = ChannelTabHelper.getFetchFeedTabKey(contentFilters.get(0).getName());
         if (key == -1) {
             return false;
         }

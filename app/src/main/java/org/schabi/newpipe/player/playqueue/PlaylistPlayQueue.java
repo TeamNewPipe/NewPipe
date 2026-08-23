@@ -20,6 +20,7 @@ public final class PlaylistPlayQueue extends AbstractInfoPlayQueue<PlaylistInfo>
         super(info, index);
     }
 
+
     public PlaylistPlayQueue(final int serviceId,
                              final String url,
                              final Page nextPage,

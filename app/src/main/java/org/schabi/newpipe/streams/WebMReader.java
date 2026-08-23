@@ -348,7 +348,8 @@ public class WebMReader {
             ensure(elemTrackEntry);
         }
 
-        final WebMTrack[] entries = trackEntries.toArray(new WebMTrack[0]);
+        final WebMTrack[] entries = new WebMTrack[trackEntries.size()];
+        trackEntries.toArray(entries);
 
         for (final WebMTrack entry : entries) {
             switch (entry.trackType) {

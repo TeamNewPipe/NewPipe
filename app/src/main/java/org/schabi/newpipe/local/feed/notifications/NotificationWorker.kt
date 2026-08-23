@@ -2,7 +2,6 @@ package org.schabi.newpipe.local.feed.notifications
 
 import android.content.Context
 import android.content.pm.ServiceInfo
-import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.work.Constraints
@@ -16,7 +15,6 @@ import androidx.work.WorkerParameters
 import androidx.work.rxjava3.RxWorker
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
-import java.util.concurrent.TimeUnit
 import org.schabi.newpipe.App
 import org.schabi.newpipe.R
 import org.schabi.newpipe.error.ErrorInfo
@@ -24,6 +22,7 @@ import org.schabi.newpipe.error.ErrorUtil
 import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.local.feed.service.FeedLoadManager
 import org.schabi.newpipe.local.feed.service.FeedLoadService
+import java.util.concurrent.TimeUnit
 
 /*
  * Worker which checks for new streams of subscribed channels
@@ -31,7 +30,7 @@ import org.schabi.newpipe.local.feed.service.FeedLoadService
  */
 class NotificationWorker(
     appContext: Context,
-    workerParams: WorkerParameters
+    workerParams: WorkerParameters,
 ) : RxWorker(appContext, workerParams) {
 
     private val notificationHelper by lazy {
@@ -57,7 +56,7 @@ class NotificationWorker(
             .map { feedUpdateInfoList ->
                 // display notifications for each feedUpdateInfo (i.e. channel)
                 feedUpdateInfoList.forEach { feedUpdateInfo ->
-                    notificationHelper.displayNewStreamsNotifications(feedUpdateInfo)
+                    notificationHelper.displayNewStreamsNotification(feedUpdateInfo)
                 }
                 return@map Result.success()
             }
@@ -80,14 +79,13 @@ class NotificationWorker(
             applicationContext.getString(R.string.notification_channel_id)
         ).setOngoing(true)
             .setProgress(-1, -1, true)
-            .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
+            .setSmallIcon(R.drawable.ic_pipeplay)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setPriority(NotificationCompat.PRIORITY_LOW)
             .setContentTitle(applicationContext.getString(R.string.feed_notification_loading))
             .build()
-        // ServiceInfo constants are not used below Android Q, so 0 is set here
-        val serviceType = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC else 0
-        setForegroundAsync(ForegroundInfo(FeedLoadService.NOTIFICATION_ID, notification, serviceType))
+        setForegroundAsync(ForegroundInfo(FeedLoadService.NOTIFICATION_ID, notification,
+            ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC))
     }
 
     companion object {
@@ -95,8 +93,9 @@ class NotificationWorker(
         private val TAG = NotificationWorker::class.java.simpleName
         private const val WORK_TAG = App.PACKAGE_NAME + "_streams_notifications"
 
-        private fun areNotificationsEnabled(context: Context) = NotificationHelper.areNewStreamsNotificationsEnabled(context) &&
-            NotificationHelper.areNotificationsEnabledOnDevice(context)
+        private fun areNotificationsEnabled(context: Context) =
+            NotificationHelper.areNewStreamsNotificationsEnabled(context) &&
+                NotificationHelper.areNotificationsEnabledOnDevice(context)
 
         /**
          * Schedules a task for the [NotificationWorker]
@@ -140,7 +139,7 @@ class NotificationWorker(
                 .enqueueUniquePeriodicWork(
                     WORK_TAG,
                     if (force) {
-                        ExistingPeriodicWorkPolicy.CANCEL_AND_REENQUEUE
+                        ExistingPeriodicWorkPolicy.REPLACE
                     } else {
                         ExistingPeriodicWorkPolicy.KEEP
                     },

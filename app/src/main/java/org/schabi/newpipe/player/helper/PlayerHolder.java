@@ -8,24 +8,20 @@ import android.os.IBinder;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-
 import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
 
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.player.PlayerBinderInterface;
 import org.schabi.newpipe.player.PlayerService;
 import org.schabi.newpipe.player.Player;
-import org.schabi.newpipe.player.PlayerType;
 import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.event.PlayerServiceExtendedEventListener;
+import org.schabi.newpipe.player.mediasession.PlayerServiceInterface;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
-import org.schabi.newpipe.util.NavigationHelper;
-
-import java.util.Optional;
-import java.util.function.Consumer;
+import org.schabi.newpipe.util.DeviceUtils;
 
 public final class PlayerHolder {
 
@@ -47,35 +43,32 @@ public final class PlayerHolder {
 
     private final PlayerServiceConnection serviceConnection = new PlayerServiceConnection();
     private boolean bound;
-    @Nullable private PlayerService playerService;
-
-    private Optional<Player> getPlayer() {
-        return Optional.ofNullable(playerService)
-                .flatMap(s -> Optional.ofNullable(s.getPlayer()));
-    }
-
-    private Optional<PlayQueue> getPlayQueue() {
-        // player play queue might be null e.g. while player is starting
-        return getPlayer().flatMap(p -> Optional.ofNullable(p.getPlayQueue()));
-    }
+    @Nullable private PlayerServiceInterface playerService;
+    @Nullable private Player player;
 
     /**
-     * Returns the current {@link PlayerType} of the {@link PlayerService} service,
-     * otherwise `null` if no service is running.
+     * Returns the current {@link PlayerService.PlayerType} of the {@link PlayerService} service,
+     * otherwise `null` if no service running.
      *
      * @return Current PlayerType
      */
     @Nullable
-    public PlayerType getType() {
-        return getPlayer().map(Player::getPlayerType).orElse(null);
+    public PlayerService.PlayerType getType() {
+        if (player == null) {
+            return null;
+        }
+        return player.getPlayerType();
     }
 
     public boolean isPlaying() {
-        return getPlayer().map(Player::isPlaying).orElse(false);
+        if (player == null) {
+            return false;
+        }
+        return player.isPlaying();
     }
 
     public boolean isPlayerOpen() {
-        return getPlayer().isPresent();
+        return player != null;
     }
 
     /**
@@ -84,7 +77,7 @@ public final class PlayerHolder {
      * @return true only if the player is open and its play queue is ready (i.e. it is not null)
      */
     public boolean isPlayQueueReady() {
-        return getPlayQueue().isPresent();
+        return player != null && player.getPlayQueue() != null;
     }
 
     public boolean isBound() {
@@ -92,11 +85,16 @@ public final class PlayerHolder {
     }
 
     public int getQueueSize() {
-        return getPlayQueue().map(PlayQueue::size).orElse(0);
+        if (player == null || player.getPlayQueue() == null) {
+            // player play queue might be null e.g. while player is starting
+            return 0;
+        }
+        return player.getPlayQueue().size();
     }
 
-    public int getQueuePosition() {
-        return getPlayQueue().map(PlayQueue::getIndex).orElse(0);
+    @Nullable
+    public PlayerServiceExtendedEventListener getListener() {
+        return listener;
     }
 
     public void setListener(@Nullable final PlayerServiceExtendedEventListener newListener) {
@@ -107,24 +105,20 @@ public final class PlayerHolder {
         }
 
         // Force reload data from service
-        if (playerService != null) {
-            listener.onServiceConnected(playerService);
+        if (player != null) {
+            listener.onServiceConnected(player, playerService, false);
             startPlayerListener();
-            // ^ will call listener.onPlayerConnected() down the line if there is an active player
         }
     }
 
     // helper to handle context in common place as using the same
     // context to bind/unbind a service is crucial
     private Context getCommonContext() {
-        return App.getInstance();
+        return App.getApp();
     }
 
     public void startService(final boolean playAfterConnect,
                              final PlayerServiceExtendedEventListener newListener) {
-        if (DEBUG) {
-            Log.d(TAG, "startService() called with playAfterConnect=" + playAfterConnect);
-        }
         final Context context = getCommonContext();
         setListener(newListener);
         if (bound) {
@@ -134,36 +128,20 @@ public final class PlayerHolder {
         // and NullPointerExceptions inside the service because the service will be
         // bound twice. Prevent it with unbinding first
         unbind(context);
-        final Intent intent = new Intent(context, PlayerService.class);
-        intent.putExtra(PlayerService.SHOULD_START_FOREGROUND_EXTRA, true);
-        ContextCompat.startForegroundService(context, intent);
         serviceConnection.doPlayAfterConnect(playAfterConnect);
         bind(context);
     }
 
     public void stopService() {
-        if (DEBUG) {
-            Log.d(TAG, "stopService() called");
-        }
-        if (playerService != null) {
-            playerService.destroyPlayerAndStopService();
-        }
         final Context context = getCommonContext();
         unbind(context);
-        // destroyPlayerAndStopService() already runs the next line of code, but run it again just
-        // to make sure to stop the service even if playerService is null by any chance.
-        context.stopService(new Intent(context, PlayerService.class));
+        context.stopService(new Intent(context, DeviceUtils.getPlayerServiceClass()));
     }
 
     class PlayerServiceConnection implements ServiceConnection {
 
         private boolean playAfterConnect = false;
 
-        /**
-         * @param playAfterConnection Sets the value of `playAfterConnect` to pass to the {@link
-         * PlayerServiceExtendedEventListener#onPlayerConnected(Player, boolean)} the next time it
-         * is called. The value of `playAfterConnect` will be reset to false after that.
-         */
         public void doPlayAfterConnect(final boolean playAfterConnection) {
             this.playAfterConnect = playAfterConnection;
         }
@@ -183,20 +161,19 @@ public final class PlayerHolder {
             if (DEBUG) {
                 Log.d(TAG, "Player service is connected");
             }
-            final PlayerService.LocalBinder localBinder = (PlayerService.LocalBinder) service;
+            final PlayerBinderInterface localBinder = (PlayerBinderInterface) service;
 
             playerService = localBinder.getService();
+            player = localBinder.getPlayer();
+            if (player == null) {
+                Log.w(TAG, "Ignoring connection to a player service without a player");
+                unbind(getCommonContext());
+                return;
+            }
             if (listener != null) {
-                listener.onServiceConnected(playerService);
+                listener.onServiceConnected(player, playerService, playAfterConnect);
             }
             startPlayerListener();
-            // ^ will call listener.onPlayerConnected() down the line if there is an active player
-
-            if (playerService != null && playerService.getPlayer() != null) {
-                // notify the main activity that binding the service has completed and that there is
-                // a player, so that it can open the bottom mini-player
-                NavigationHelper.sendPlayerStartedEvent(localBinder.getService());
-            }
         }
     }
 
@@ -204,26 +181,21 @@ public final class PlayerHolder {
         if (DEBUG) {
             Log.d(TAG, "bind() called");
         }
-        // BIND_AUTO_CREATE starts the service if it's not already running
-        bound = bind(context, Context.BIND_AUTO_CREATE);
-        if (!bound) {
-            context.unbindService(serviceConnection);
-        }
-    }
 
-    public void tryBindIfNeeded(final Context context) {
-        if (!bound) {
-            // flags=0 means the service will not be started if it does not already exist. In this
-            // case the return value is not useful, as a value of "true" does not really indicate
-            // that the service is going to be bound.
-            bind(context, 0);
-        }
-    }
-
-    private boolean bind(final Context context, final int flags) {
-        final Intent serviceIntent = new Intent(context, PlayerService.class);
+        final Intent serviceIntent = new Intent(context, DeviceUtils.getPlayerServiceClass());
         serviceIntent.setAction(PlayerService.BIND_PLAYER_HOLDER_ACTION);
-        return context.bindService(serviceIntent, serviceConnection, flags);
+        try {
+            bound = context.bindService(serviceIntent, serviceConnection,
+                    Context.BIND_AUTO_CREATE);
+            if (!bound) {
+                Log.e(TAG, "bindService returned false for PlayerHolder connection.");
+                // 不要在这里调用 unbindService!
+                // 可以考虑做一些错误处理，比如通知 Listener 绑定失败
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Exception during bindService for PlayerHolder", e);
+            bound = false; // 确保在异常时 bound 状态正确
+        }
     }
 
     private void unbind(final Context context) {
@@ -232,45 +204,35 @@ public final class PlayerHolder {
         }
 
         if (bound) {
-            context.unbindService(serviceConnection);
+            try {
+                context.unbindService(serviceConnection);
+            } catch (Exception ignore){
+
+            }
             bound = false;
             stopPlayerListener();
             playerService = null;
+            player = null;
             if (listener != null) {
-                listener.onPlayerDisconnected();
                 listener.onServiceDisconnected();
             }
         }
     }
 
     private void startPlayerListener() {
-        if (playerService != null) {
-            // setting the player listener will take care of calling relevant callbacks if the
-            // player in the service is (not) already active, also see playerStateListener below
-            playerService.setPlayerListener(playerStateListener);
+        if (player != null) {
+            player.setFragmentListener(internalListener);
         }
-        getPlayer().ifPresent(p -> p.setFragmentListener(internalListener));
     }
 
     private void stopPlayerListener() {
-        if (playerService != null) {
-            playerService.setPlayerListener(null);
+        if (player != null) {
+            player.removeFragmentListener(internalListener);
         }
-        getPlayer().ifPresent(p -> p.removeFragmentListener(internalListener));
     }
 
-    /**
-     * This listener will be held by the players created by {@link PlayerService}.
-     */
     private final PlayerServiceEventListener internalListener =
             new PlayerServiceEventListener() {
-                @Override
-                public void onViewCreated() {
-                    if (listener != null) {
-                        listener.onViewCreated();
-                    }
-                }
-
                 @Override
                 public void onFullscreenStateChanged(final boolean fullscreen) {
                     if (listener != null) {
@@ -348,25 +310,4 @@ public final class PlayerHolder {
                     unbind(getCommonContext());
                 }
             };
-
-    /**
-     * This listener will be held by bound {@link PlayerService}s to notify of the player starting
-     * or stopping. This is necessary since the service outlives the player e.g. to answer Android
-     * Auto media browser queries.
-     */
-    private final Consumer<Player> playerStateListener = (@Nullable final Player player) -> {
-        if (listener != null) {
-            if (player == null) {
-                // player.fragmentListener=null is already done by player.stopActivityBinding(),
-                // which is called by player.destroy(), which is in turn called by PlayerService
-                // before setting its player to null
-                listener.onPlayerDisconnected();
-            } else {
-                listener.onPlayerConnected(player, serviceConnection.playAfterConnect);
-                // reset the value of playAfterConnect: if it was true before, it is now "consumed"
-                serviceConnection.playAfterConnect = false;
-                player.setFragmentListener(internalListener);
-            }
-        }
-    };
 }

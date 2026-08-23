@@ -1,28 +1,8 @@
 package us.shandian.giga.ui.adapter;
 
-import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
-import static android.content.Intent.FLAG_GRANT_PREFIX_URI_PERMISSION;
-import static android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION;
-import static android.content.Intent.createChooser;
-import static us.shandian.giga.get.DownloadMission.ERROR_CONNECT_HOST;
-import static us.shandian.giga.get.DownloadMission.ERROR_FILE_CREATION;
-import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_NO_CONTENT;
-import static us.shandian.giga.get.DownloadMission.ERROR_INSUFFICIENT_STORAGE;
-import static us.shandian.giga.get.DownloadMission.ERROR_NOTHING;
-import static us.shandian.giga.get.DownloadMission.ERROR_PATH_CREATION;
-import static us.shandian.giga.get.DownloadMission.ERROR_PERMISSION_DENIED;
-import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING;
-import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING_HOLD;
-import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING_STOPPED;
-import static us.shandian.giga.get.DownloadMission.ERROR_PROGRESS_LOST;
-import static us.shandian.giga.get.DownloadMission.ERROR_RESOURCE_GONE;
-import static us.shandian.giga.get.DownloadMission.ERROR_SSL_EXCEPTION;
-import static us.shandian.giga.get.DownloadMission.ERROR_TIMEOUT;
-import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_EXCEPTION;
-import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_HOST;
-
 import android.annotation.SuppressLint;
 import android.app.NotificationManager;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -31,6 +11,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -49,7 +30,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
-import androidx.core.os.HandlerCompat;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
@@ -59,11 +40,10 @@ import com.google.android.material.snackbar.Snackbar;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
-import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.streams.io.StoredFileHelper;
+import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
@@ -85,22 +65,50 @@ import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.FinishedMission;
 import us.shandian.giga.get.Mission;
 import us.shandian.giga.get.MissionRecoveryInfo;
+import us.shandian.giga.get.SabrDownloadException;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
 import us.shandian.giga.service.DownloadManager;
 import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.ui.common.Deleter;
 import us.shandian.giga.ui.common.ProgressDrawable;
 import us.shandian.giga.util.Utility;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+import static android.content.Intent.FLAG_GRANT_PREFIX_URI_PERMISSION;
+import static android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION;
+import static org.schabi.newpipe.util.external_communication.ShareUtils.openAppChooser;
+import static us.shandian.giga.get.DownloadMission.ERROR_CONNECT_HOST;
+import static us.shandian.giga.get.DownloadMission.ERROR_FILE_CREATION;
+import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_NO_CONTENT;
+import static us.shandian.giga.get.DownloadMission.ERROR_INSUFFICIENT_STORAGE;
+import static us.shandian.giga.get.DownloadMission.ERROR_NOTHING;
+import static us.shandian.giga.get.DownloadMission.ERROR_PATH_CREATION;
+import static us.shandian.giga.get.DownloadMission.ERROR_PERMISSION_DENIED;
+import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING;
+import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING_HOLD;
+import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING_STOPPED;
+import static us.shandian.giga.get.DownloadMission.ERROR_PROGRESS_LOST;
+import static us.shandian.giga.get.DownloadMission.ERROR_RESOURCE_GONE;
+import static us.shandian.giga.get.DownloadMission.ERROR_SABR_DOWNLOAD;
+import static us.shandian.giga.get.DownloadMission.ERROR_SSL_EXCEPTION;
+import static us.shandian.giga.get.DownloadMission.ERROR_TIMEOUT;
+import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_EXCEPTION;
+import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_HOST;
+import static us.shandian.giga.postprocessing.Postprocessing.NICONICO_MUXER;
+
 public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callback {
+    private static final SparseArray<String> ALGORITHMS = new SparseArray<>();
     private static final String TAG = "MissionAdapter";
     private static final String UNDEFINED_PROGRESS = "--.-%";
     private static final String DEFAULT_MIME_TYPE = "*/*";
     private static final String UNDEFINED_ETA = "--:--";
 
-    private static final String UPDATER = "updater";
-    private static final String DELETE = "deleteFinishedDownloads";
-
     private static final int HASH_NOTIFICATION_ID = 123790;
+
+    static {
+        ALGORITHMS.put(R.id.md5, "MD5");
+        ALGORITHMS.put(R.id.sha1, "SHA1");
+    }
 
     private final Context mContext;
     private final LayoutInflater mInflater;
@@ -118,6 +126,9 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
     private final View mView;
     private final ArrayList<Mission> mHidden;
     private Snackbar mSnackbar;
+
+    private final Runnable rUpdater = this::updater;
+    private final Runnable rDelete = this::deleteFinishedDownloads;
 
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
@@ -253,7 +264,8 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         h.progress.setMarquee(mission.isRecovering() || !hasError && (!mission.isInitialized() || mission.unknownLength));
 
         double progress;
-        if (mission.unknownLength) {
+        if (mission.unknownLength
+                && (mission.psAlgorithm == null || !NICONICO_MUXER.equals(mission.psAlgorithm.name))) {
             progress = Double.NaN;
             h.progress.setProgress(0.0f);
         } else {
@@ -351,17 +363,28 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         if (BuildConfig.DEBUG)
             Log.v(TAG, "Mime: " + mimeType + " package: " + BuildConfig.APPLICATION_ID + ".provider");
 
-        Intent viewIntent = new Intent(Intent.ACTION_VIEW);
-        viewIntent.setDataAndType(resolveShareableUri(mission), mimeType);
-        viewIntent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
-        viewIntent.addFlags(FLAG_GRANT_PREFIX_URI_PERMISSION);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(resolveShareableUri(mission), mimeType);
+        intent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
 
-        Intent chooserIntent = createChooser(viewIntent, null);
-        chooserIntent.addFlags(FLAG_ACTIVITY_NEW_TASK);
-        chooserIntent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
-        chooserIntent.addFlags(FLAG_GRANT_PREFIX_URI_PERMISSION);
+        intent.addFlags(FLAG_GRANT_PREFIX_URI_PERMISSION);
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.M) {
+            intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+        }
 
-        ShareUtils.openIntentInApp(mContext, chooserIntent);
+
+        try {
+            // First try to open with the default browser
+            mContext.startActivity(intent);
+        } catch (ActivityNotFoundException e1) {
+            try {
+                // If no direct handler, try the app chooser
+                openAppChooser(mContext, intent, true);
+            } catch (ActivityNotFoundException e2) {
+                // If even the app chooser fails, show error and return false
+                Toast.makeText(mContext, R.string.toast_no_player, Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     private void shareFile(Mission mission) {
@@ -372,13 +395,14 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         shareIntent.putExtra(Intent.EXTRA_STREAM, resolveShareableUri(mission));
         shareIntent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
 
-        final Intent intent = createChooser(shareIntent, null);
+        final Intent intent = new Intent(Intent.ACTION_CHOOSER);
+        intent.putExtra(Intent.EXTRA_INTENT, shareIntent);
         // unneeded to set a title to the chooser on Android P and higher because the system
         // ignores this title on these versions
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.O_MR1) {
             intent.putExtra(Intent.EXTRA_TITLE, mContext.getString(R.string.share_dialog_title));
         }
-        intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
 
         mContext.startActivity(intent);
@@ -499,14 +523,14 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 msg = R.string.error_connect_host;
                 break;
             case ERROR_POSTPROCESSING_STOPPED:
-                msg = R.string.error_postprocessing_stopped;
+                msg = R.string.error_postprocessing_stopped_new;
                 break;
             case ERROR_POSTPROCESSING:
             case ERROR_POSTPROCESSING_HOLD:
                 showError(mission, UserAction.DOWNLOAD_POSTPROCESSING, R.string.error_postprocessing_failed);
                 return;
             case ERROR_INSUFFICIENT_STORAGE:
-                msg = R.string.error_insufficient_storage_left;
+                msg = R.string.error_insufficient_storage;
                 break;
             case ERROR_UNKNOWN_EXCEPTION:
                 if (mission.errObject != null) {
@@ -524,6 +548,12 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 break;
             case ERROR_RESOURCE_GONE:
                 msg = R.string.error_download_resource_gone;
+                break;
+            case ERROR_SABR_DOWNLOAD:
+                msg = sabrDownloadErrorMessage(mission.errObject);
+                if (mission.errObject != null && mission.errObject.getMessage() != null) {
+                    msgEx = mission.errObject.getMessage();
+                }
                 break;
             default:
                 if (mission.errCode >= 100 && mission.errCode < 600) {
@@ -554,7 +584,34 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
 
         builder.setNegativeButton(R.string.ok, (dialog, which) -> dialog.cancel())
                 .setTitle(mission.storage.getName())
+                .create()
                 .show();
+    }
+
+    @StringRes
+    private int sabrDownloadErrorMessage(final Exception error) {
+        if (!(error instanceof SabrDownloadException)) {
+            return R.string.error_sabr_download_failed;
+        }
+        switch (((SabrDownloadException) error).getReason()) {
+            case FORMAT:
+                return R.string.error_sabr_download_format;
+            case INITIALIZATION:
+                return R.string.error_sabr_download_initialization;
+            case PROTECTED:
+                return R.string.error_sabr_download_protected;
+            case STALLED:
+                return R.string.error_sabr_download_stalled;
+            case NETWORK:
+                return R.string.error_sabr_download_network;
+            case MUXING:
+                return R.string.error_sabr_download_muxing;
+            case STORAGE:
+                return R.string.error_sabr_download_storage;
+            case PROTOCOL:
+            default:
+                return R.string.error_sabr_download_protocol;
+        }
     }
 
     private void showError(DownloadMission mission, UserAction action, @StringRes int reason) {
@@ -570,16 +627,16 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         }
         request.append("]");
 
-        Integer service;
+        String service;
         try {
-            service = NewPipe.getServiceByUrl(mission.source).getServiceId();
+            service = NewPipe.getServiceByUrl(mission.source).getServiceInfo().getName();
         } catch (Exception e) {
-            service = null;
+            service = ErrorInfo.SERVICE_NONE;
         }
 
         ErrorUtil.createNotification(mContext,
                 new ErrorInfo(ErrorInfo.Companion.throwableToStringList(mission.errObject), action,
-                        request.toString(), service, reason));
+                        service, request.toString(), reason));
     }
 
     public void clearFinishedDownloads(boolean delete) {
@@ -602,12 +659,12 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                     i.remove();
                 }
                 applyChanges();
-                mHandler.removeCallbacksAndMessages(DELETE);
+                mHandler.removeCallbacks(rDelete);
             });
             mSnackbar.setActionTextColor(Color.YELLOW);
             mSnackbar.show();
 
-            HandlerCompat.postDelayed(mHandler, this::deleteFinishedDownloads, DELETE, 5000);
+            mHandler.postDelayed(rDelete, 5000);
         } else if (!delete) {
             mDownloadManager.forgetFinishedDownloads();
             applyChanges();
@@ -621,7 +678,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         while (i.hasNext()) {
             Mission mission = i.next();
             if (mission != null) {
-                mDownloadManager.deleteMission(mission, true);
+                mDownloadManager.deleteMission(mission);
                 mContext.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, mission.storage.getUri()));
             }
             i.remove();
@@ -671,31 +728,19 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         if (id == R.id.menu_item_share) {
             shareFile(h.item.mission);
             return true;
-        } else if (id == R.id.delete) {// delete the entry and the file
-            mDeleter.append(h.item.mission, true);
-            applyChanges();
-            checkMasterButtonsVisibility();
-            return true;
-        } else if (id == R.id.delete_entry) {// just delete the entry
-            mDeleter.append(h.item.mission, false);
+        } else if (id == R.id.delete) {
+            mDeleter.append(h.item.mission);
             applyChanges();
             checkMasterButtonsVisibility();
             return true;
         } else if (id == R.id.md5 || id == R.id.sha1) {
-            final StoredFileHelper storage = h.item.mission.storage;
-            if (!storage.existsAsFile()) {
-                Toast.makeText(mContext, R.string.missing_file, Toast.LENGTH_SHORT).show();
-                mDeleter.append(h.item.mission, true);
-                applyChanges();
-                return true;
-            }
             final NotificationManager notificationManager
                     = ContextCompat.getSystemService(mContext, NotificationManager.class);
             final NotificationCompat.Builder progressNotificationBuilder
                     = new NotificationCompat.Builder(mContext,
                     mContext.getString(R.string.hash_channel_id))
                     .setPriority(NotificationCompat.PRIORITY_HIGH)
-                    .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
+                    .setSmallIcon(R.drawable.ic_pipeplay)
                     .setContentTitle(mContext.getString(R.string.msg_calculating_hash))
                     .setContentText(mContext.getString(R.string.msg_wait))
                     .setProgress(0, 0, true)
@@ -703,12 +748,13 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
 
             notificationManager.notify(HASH_NOTIFICATION_ID, progressNotificationBuilder
                     .build());
+            final StoredFileHelper storage = h.item.mission.storage;
             compositeDisposable.add(
-                    Observable.fromCallable(() -> Utility.checksum(storage, id))
+                    Observable.fromCallable(() -> Utility.checksum(storage, ALGORITHMS.get(id)))
                             .subscribeOn(Schedulers.computation())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(result -> {
-                                ShareUtils.copyToClipboard(mContext, result);
+                                Utility.copyToClipboard(mContext, result);
                                 notificationManager.cancel(HASH_NOTIFICATION_ID);
                             })
             );
@@ -722,8 +768,9 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 Log.w(TAG, "Selected item has a invalid source", e);
             }
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     public void applyChanges() {
@@ -798,13 +845,14 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
 
     public void onResume() {
         mDeleter.resume();
-        HandlerCompat.postDelayed(mHandler, this::updater, UPDATER, 0);
+        mHandler.post(rUpdater);
     }
 
     public void onPaused() {
         mDeleter.pause();
-        mHandler.removeCallbacksAndMessages(UPDATER);
+        mHandler.removeCallbacks(rUpdater);
     }
+
 
     public void recoverMission(DownloadMission mission) {
         ViewHolderItem h = getViewHolder(mission);
@@ -828,7 +876,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             updateProgress(h);
         }
 
-        HandlerCompat.postDelayed(mHandler, this::updater, UPDATER, 1000);
+        mHandler.postDelayed(rUpdater, 1000);
     }
 
     private boolean isNotFinite(double value) {
@@ -872,7 +920,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             super(view);
 
             progress = new ProgressDrawable();
-            itemView.findViewById(R.id.item_bkg).setBackground(progress);
+            ViewCompat.setBackground(itemView.findViewById(R.id.item_bkg), progress);
 
             status = itemView.findViewById(R.id.item_status);
             name = itemView.findViewById(R.id.item_name);
