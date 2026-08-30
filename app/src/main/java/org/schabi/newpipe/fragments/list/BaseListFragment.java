@@ -5,7 +5,6 @@ import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingSc
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -209,10 +208,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     }
 
     protected RecyclerView.LayoutManager getGridLayoutManager() {
-        final Resources resources = activity.getResources();
-        int width = resources.getDimensionPixelSize(R.dimen.video_item_grid_thumbnail_image_width);
-        width += (24 * resources.getDisplayMetrics().density);
-        final int spanCount = Math.floorDiv(resources.getDisplayMetrics().widthPixels, width);
+        final int spanCount = ThemeHelper.getGridSpanCountStreams(activity);
         final GridLayoutManager lm = new GridLayoutManager(activity, spanCount);
         lm.setSpanSizeLookup(infoListAdapter.getSpanSizeLookup(spanCount));
         return lm;
