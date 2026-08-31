@@ -258,7 +258,8 @@ class ErrorInfo private constructor(
                     )
 
                 throwable is ContentNotAvailableException ->
-                    ErrorMessage(R.string.content_not_available)
+                    getLiveStreamOfflineMessage(throwable)
+                    ? : ErrorMessage(R.string.content_not_available)
 
                 // other extractor exceptions
                 throwable is ContentNotSupportedException ->
@@ -309,7 +310,7 @@ class ErrorInfo private constructor(
 
                 // if the service explicitly said that content is not available (e.g. age
                 // restrictions, video deleted, etc.), there is no use in letting users report it
-                is ContentNotAvailableException -> !isContentSurelyNotAvailable(throwable)
+                is ContentNotAvailableException -> !isContentSurelyNotAvailable(throwable) && !isLiveStreamOffline(throwable)
 
                 // we know the content is not supported, no need to let the user report it
                 is ContentNotSupportedException -> false
@@ -358,6 +359,27 @@ class ErrorInfo private constructor(
                 is YoutubeMusicPremiumContentException -> true
 
                 else -> false
+            }
+        }
+
+        fun isLiveStreamOffline(e: ContentNotAvailableException): Boolean {
+            return e.message?.contains("LIVE_STREAM_OFFLINE", ignoreCase = true) == true
+        }
+
+        fun getLiveStreamOfflineMessage(e: ContentNotAvailableException): ErrorMessage? {
+            if (!isLiveStreamOffline(e)) return null
+            // YouTube typically embeds the human-readable start hint in quotes, e.g.:
+            // "Got error LIVE_STREAM_OFFLINE: \"This live event will begin in 27 minutes.\""
+            val hint = e.message
+                ?.substringAfter("LIVE_STREAM_OFFLINE:", missingDelimiterValue = "")
+                ?.trim()
+                ?.trim('"')
+                ?.trim()
+                ?.takeIf { it.isNotEmpty() }
+            return if (hint != null) {
+                ErrorMessage(R.string.live_stream_starts_in, hint)
+            } else {
+                ErrorMessage(R.string.live_stream_not_started_yet)
             }
         }
     }
