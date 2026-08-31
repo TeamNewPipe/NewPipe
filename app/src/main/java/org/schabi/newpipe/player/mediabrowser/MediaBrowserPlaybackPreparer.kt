@@ -23,6 +23,7 @@ import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.extractor.InfoItem.InfoType
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler
+import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager
 import org.schabi.newpipe.player.playqueue.ChannelTabPlayQueue
@@ -32,6 +33,7 @@ import org.schabi.newpipe.player.playqueue.SinglePlayQueue
 import org.schabi.newpipe.util.ChannelTabHelper
 import org.schabi.newpipe.util.ExtractorHelper
 import org.schabi.newpipe.util.NavigationHelper
+import org.schabi.newpipe.util.ServiceHelper
 
 /**
  * This class is used to cleanly separate the Service implementation (in
@@ -62,7 +64,13 @@ class MediaBrowserPlaybackPreparer(
 
     //region Overrides
     override fun getSupportedPrepareActions(): Long {
-        return PlaybackStateCompat.ACTION_PLAY_FROM_MEDIA_ID
+        // Advertise both PLAY_FROM and PREPARE_FROM variants (UAMP pattern): some controllers send
+        // prepareFromSearch instead of playFromSearch, and the connector drops it unless the
+        // matching action is advertised.
+        return PlaybackStateCompat.ACTION_PREPARE_FROM_MEDIA_ID or
+            PlaybackStateCompat.ACTION_PLAY_FROM_MEDIA_ID or
+            PlaybackStateCompat.ACTION_PREPARE_FROM_SEARCH or
+            PlaybackStateCompat.ACTION_PLAY_FROM_SEARCH
     }
 
     override fun onPrepare(playWhenReady: Boolean) {
@@ -91,7 +99,50 @@ class MediaBrowserPlaybackPreparer(
     }
 
     override fun onPrepareFromSearch(query: String, playWhenReady: Boolean, extras: Bundle?) {
-        onUnsupportedError()
+        if (MainActivity.DEBUG) {
+            Log.d(TAG, "onPrepareFromSearch($query, $playWhenReady, $extras)")
+        }
+
+        // An empty query (e.g. a bare "play music" voice command, which Android Auto / AAOS can
+        // send) should start something rather than error out: returning ERROR_CODE_NOT_SUPPORTED
+        // can make the voice agent treat the app as not search-capable. Resume the most recently
+        // played stream instead.
+        if (query.isBlank()) {
+            playMostRecentlyPlayed(playWhenReady)
+            return
+        }
+
+        // Search the user's currently selected service (YouTube by default) and play the first
+        // stream result, mirroring the "Play <something> on NewPipe" voice intent.
+        val serviceId = ServiceHelper.getSelectedServiceId(context)
+
+        disposable?.dispose()
+        disposable = ExtractorHelper.searchFor(serviceId, query, emptyList(), "")
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { searchInfo ->
+                    val firstStream = searchInfo.relatedItems
+                        .filterIsInstance<StreamInfoItem>()
+                        .firstOrNull()
+                    if (firstStream == null) {
+                        onPrepareError(
+                            ContentNotAvailableException("No streams found for query \"$query\"")
+                        )
+                    } else {
+                        clearMediaSessionError.run()
+                        NavigationHelper.playOnBackgroundPlayer(
+                            context,
+                            SinglePlayQueue(firstStream),
+                            playWhenReady
+                        )
+                    }
+                },
+                { throwable ->
+                    Log.e(TAG, "Failed to play from search query [$query]", throwable)
+                    onPrepareError(throwable)
+                }
+            )
     }
 
     override fun onPrepareFromUri(uri: Uri, playWhenReady: Boolean, extras: Bundle?) {
@@ -125,6 +176,33 @@ class MediaBrowserPlaybackPreparer(
     //endregion
 
     //region Building play queues from playlists and history
+    private fun playMostRecentlyPlayed(playWhenReady: Boolean) {
+        disposable?.dispose()
+        disposable = database.streamHistoryDAO().history
+            .firstOrError()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { history ->
+                    val mostRecent = history.firstOrNull()?.toStreamInfoItem()
+                    if (mostRecent == null) {
+                        onUnsupportedError()
+                    } else {
+                        clearMediaSessionError.run()
+                        NavigationHelper.playOnBackgroundPlayer(
+                            context,
+                            SinglePlayQueue(mostRecent),
+                            playWhenReady
+                        )
+                    }
+                },
+                { throwable ->
+                    Log.e(TAG, "Failed to play most recent stream for empty query", throwable)
+                    onPrepareError(throwable)
+                }
+            )
+    }
+
     private fun extractLocalPlayQueue(playlistId: Long, index: Int): Single<PlayQueue> {
         return LocalPlaylistManager(database).getPlaylistStreams(playlistId).firstOrError()
             .map { items -> SinglePlayQueue(items.map { it.toStreamInfoItem() }, index) }
