@@ -59,6 +59,7 @@ You'll see *exactly* what is sent, be able to add **your comments**, and then se
 
 * Make changes on a **separate branch** with a meaningful name, not on the _master_ branch or the _dev_ branch. This is commonly known as *feature branch workflow*. You may then send your changes as a pull request (PR) on GitHub against the `dev` branch.
 * Please **test** (compile and run) your code before submitting changes! Ideally, provide test feedback in the PR description. Untested code will **not** be merged!
+* Filling in the **PR template** is mandatory. Ignoring the template or removing it can get your PR closed without further explanation.
 * Respond if someone requests changes or otherwise raises issues about your PRs.
 * Try to figure out yourself why builds on our CI fail.
 * Make sure your PR is **up-to-date** with the rest of the code. Often, a simple click on "Update branch" will do the job, but if not, you must *rebase* your branch on the `dev` branch manually and resolve the conflicts on your own. You can find help [on the wiki](https://github.com/TeamNewPipe/NewPipe/wiki/How-to-merge-a-PR). Doing this makes the maintainers' job way easier.
