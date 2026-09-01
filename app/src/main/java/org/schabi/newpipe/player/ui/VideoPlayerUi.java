@@ -27,6 +27,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.HapticFeedbackConstants;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -65,7 +66,9 @@ import org.schabi.newpipe.databinding.PlayerBinding;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamSegment;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.views.ChaptersSeekBar;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.ktx.AnimationType;
 import org.schabi.newpipe.player.Player;
@@ -85,6 +88,7 @@ import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.views.player.PlayerFastSeekOverlay;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -146,6 +150,11 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     @NonNull
     private final SeekbarPreviewThumbnailHolder seekbarPreviewThumbnailHolder =
             new SeekbarPreviewThumbnailHolder();
+
+    @NonNull
+    private List<StreamSegment> currentChapters = Collections.emptyList();
+    @Nullable
+    private StreamSegment lastChapterForHaptic = null;
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -589,6 +598,18 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                         binding.currentSeekbarPreviewThumbnail,
                         binding.subtitleView::getWidth);
 
+        // Chapter title tooltip + haptic feedback at chapter boundaries
+        if (!currentChapters.isEmpty()) {
+            final StreamSegment chapter = getChapterAtMs(progress);
+            if (chapter != null && chapter.getTitle() != null) {
+                binding.currentChapterTitle.setText(chapter.getTitle());
+            }
+            if (chapter != lastChapterForHaptic) {
+                lastChapterForHaptic = chapter;
+                seekBar.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK);
+            }
+        }
+
         adjustSeekbarPreviewContainer();
     }
 
@@ -642,6 +663,10 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                 AnimationType.SCALE_AND_ALPHA);
         animate(binding.currentSeekbarPreviewThumbnail, true, DEFAULT_CONTROLS_DURATION,
                 AnimationType.SCALE_AND_ALPHA);
+        if (!currentChapters.isEmpty()) {
+            animate(binding.currentChapterTitle, true, DEFAULT_CONTROLS_DURATION,
+                    AnimationType.SCALE_AND_ALPHA);
+        }
     }
 
     @Override // seekbar listener
@@ -658,6 +683,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.playbackCurrentTime.setText(getTimeString(seekBar.getProgress()));
         animate(binding.currentDisplaySeek, false, 200, AnimationType.SCALE_AND_ALPHA);
         animate(binding.currentSeekbarPreviewThumbnail, false, 200, AnimationType.SCALE_AND_ALPHA);
+        animate(binding.currentChapterTitle, false, 200, AnimationType.SCALE_AND_ALPHA);
 
         if (player.getCurrentState() == STATE_PAUSED_SEEK) {
             player.changeState(STATE_BUFFERING);
@@ -667,6 +693,25 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         }
 
         showControlsThenHide();
+    }
+
+    /**
+     * Returns the chapter active at the given playback position, or {@code null} if
+     * {@code currentChapters} is empty.
+     *
+     * @param positionMs playback position in milliseconds
+     * @return the {@link StreamSegment} whose window contains {@code positionMs}
+     */
+    @Nullable
+    private StreamSegment getChapterAtMs(final long positionMs) {
+        StreamSegment result = null;
+        for (final StreamSegment seg : currentChapters) {
+            if (seg.getStartTimeSeconds() * 1000L > positionMs) {
+                break;
+            }
+            result = seg;
+        }
+        return result;
     }
     //endregion
 
@@ -1036,6 +1081,14 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.channelTextView.setText(info.getUploaderName());
 
         this.seekbarPreviewThumbnailHolder.resetFrom(player.getContext(), info.getPreviewFrames());
+
+        // Chapter markers on seekbar
+        currentChapters = info.getStreamSegments() != null
+                ? info.getStreamSegments() : Collections.emptyList();
+        lastChapterForHaptic = null;
+        ((ChaptersSeekBar) binding.playbackSeekBar)
+                .setChapters(currentChapters, info.getDuration());
+        binding.currentChapterTitle.setVisibility(View.GONE);
     }
 
     private void updateStreamRelatedViews() {
