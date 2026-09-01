@@ -1,3 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="navigate_back">Înapoi</string>
+    <string name="title_activity_about">Despre NewPipe</string>
+    <string name="title_licenses">Licențe terță-parte</string>
+    <string name="license">De %1$s sub %2$s</string>
+    <string name="tab_about">Despre &amp; Întrebări Comune</string>
+    <string name="tab_licenses">Licențe</string>
+    <string name="app_description">Streaming sursă-liberă pentru Android.</string>
+    <string name="contribution_title">Contribuie</string>
+    <string name="contribution_encouragement">Când îți vine idea de; traduceri, schimbări de design, curățare cod sau schimbări reale de cod - Ajutorul este mereu binevenit. Cu cât mai mult, cu cât mai bine!</string>
+    <string name="view_on_github">Vezi pe GitHub</string>
+    <string name="donation_title">Donează</string>
+    <string name="donation_encouragement">NewPipe este creat de voluntari ce își oferă timpul lor liber pentru ați oferi cea mai bună experiență. Oferă înapoi creatorilor pentru a face aplicația și mai bună.</string>
+    <string name="give_back">Oferă Înapoi</string>
+    <string name="website_title">Site Web</string>
+    <string name="website_encouragement">Vizitează site-ul NewPipe pentru mai multe informații si noutăți.</string>
+    <string name="privacy_policy_title">Politica de Confidențialitate NewPipe</string>
+    <string name="privacy_policy_encouragement">Proiectul NewPipe îți ia confidențialitatea foarte în serios. Din acest motiv aplicația nu colectează date fără aprobarea dvs.\nPolitica de confidențialitate a NewPipe explică în detaliu ce date sunt trimise și stocate când trimiți un raport de cădere (Crash).</string>
+    <string name="read_privacy_policy">Citește Politica de confidențialitate</string>
+    <string name="app_license_title">Licența a NewPipe</string>
+    <string name="app_license">NewPipe este o aplicație liberă: Poți folosi, studia, partaja, și a o face mai bună după propria voință. Poți redistribui și/sau modifica aplicația în termenii GNU GPL publicate de Free Software Foundation, toate dintre cele 3 versiuni, or (la opțiunea dvs.) orice versiune mai nouă.</string>
+    <string name="read_full_license">Citește licența</string>
+    <string name="faq_title">Întrebări frecvente</string>
+    <string name="faq_description">Dacă aveți probleme folosind aplicația, uitați-vă la răspunsurile celor mai comune întrebărilor puse!</string>
+    <string name="faq">Vezi în website</string>
+    <string name="open_in_browser">Deschide în browser</string>
+    <string name="done">Gata</string>
+    <string name="not_available">Indisponibil</string>
+    <string name="settings">Setări</string>
+    <string name="search">Caută</string>
+    <string name="content">Conținut</string>
+    <string name="notifications">Notificări</string>
+    <string name="settings_category_video_audio_title">Video și audio</string>
+    <string name="settings_category_downloads_title">Descarcă</string>
+    <string name="settings_category_appearance_title">Aparență</string>
+    <string name="settings_category_history_title">Istorie și cache</string>
+    <string name="settings_category_updates_title">Actualizări</string>
+    <string name="settings_category_backup_restore_title">Copie de rezervă și Restabilire</string>
+    <string name="settings_category_debug_title">Depanare</string>
 </resources>
