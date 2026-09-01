@@ -1,0 +1,38 @@
+name: Template label comment
+
+on:
+  issues:
+    types: [labeled]
+  pull_request:
+    types: [labeled]
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  comment_on_label:
+    name: Comment on labeled issue/PR
+    if: ${{ github.event.label.name == 'template-ignored' || github.event.label.name == 'template-missing' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        
+      - name: Get PR template
+        if: ${{ github.event.pull_request && github.event.label.name == 'template-missing' }}
+        run: |
+          set -euo pipefail
+          {
+            echo 'PR_TEMPLATE<<EOF'
+            curl https://raw.githubusercontent.com/TeamNewPipe/NewPipe/refs/heads/dev/.github/PULL_REQUEST_TEMPLATE.md
+            echo EOF
+          } >> $GITHUB_ENV
+
+      - name: Post comment
+        uses: actions/github-script@v8
+        timeout-minutes: 2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const script = require('.github/workflows/template-label.js');
+            await script({github, context});
