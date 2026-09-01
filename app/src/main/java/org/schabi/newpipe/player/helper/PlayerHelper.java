@@ -9,10 +9,13 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZ
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.provider.Settings;
+import android.view.Surface;
 import android.view.accessibility.CaptioningManager;
 
 import androidx.annotation.IntDef;
@@ -366,6 +369,29 @@ public final class PlayerHelper {
                 context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 0
                     || !context.getPackageManager()
                         .hasSystemFeature(PackageManager.FEATURE_SENSOR_ACCELEROMETER);
+    }
+
+    /**
+     * Restore the correct locked orientation (portrait vs landscape)
+     * according to system rotation lock settings.
+     * If the orientation is not locked globally, resets orientation to UNSPECIFIED.
+     *
+     * @param activity the activity to set the orientation for
+     */
+    public static void restoreLockedOrientation(@NonNull final Activity activity) {
+        if (globalScreenOrientationLocked(activity)) {
+            final int userRotation = Settings.System.getInt(
+                    activity.getContentResolver(),
+                    Settings.System.USER_ROTATION,
+                    Surface.ROTATION_0);
+            if (userRotation == Surface.ROTATION_90 || userRotation == Surface.ROTATION_270) {
+                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+            } else {
+                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            }
+        } else {
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+        }
     }
 
     public static int getProgressiveLoadIntervalBytes(@NonNull final Context context) {
