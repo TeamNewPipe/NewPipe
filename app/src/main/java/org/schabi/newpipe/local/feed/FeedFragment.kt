@@ -53,6 +53,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.time.Instant
 import java.time.OffsetDateTime
 import java.util.function.Consumer
 import org.schabi.newpipe.NewPipeDatabase
@@ -98,7 +99,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
     private var groupId = FeedGroupEntity.GROUP_ALL_ID
     private var groupName = ""
-    private var oldestSubscriptionUpdate: OffsetDateTime? = null
+    private var oldestSubscriptionUpdate: Instant? = null
 
     private lateinit var groupAdapter: GroupieAdapter
 
@@ -422,8 +423,8 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         val oldOldestSubscriptionUpdate = oldestSubscriptionUpdate
 
         groupAdapter.updateAsync(loadedState.items, false) {
-            oldOldestSubscriptionUpdate?.run {
-                highlightNewItemsAfter(oldOldestSubscriptionUpdate)
+            oldOldestSubscriptionUpdate?.let {
+                highlightNewItemsAfter(it)
             }
         }
 
@@ -552,14 +553,14 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     private fun updateRefreshViewState() {
         feedBinding.refreshText.text = getString(
             R.string.feed_oldest_subscription_update,
-            oldestSubscriptionUpdate?.let { Localization.relativeTime(it) } ?: "—"
+            oldestSubscriptionUpdate?.let { Localization.formatRelativeTime(it) } ?: "—"
         )
     }
 
     /**
      * Highlights all items that are after the specified time
      */
-    private fun highlightNewItemsAfter(updateTime: OffsetDateTime) {
+    private fun highlightNewItemsAfter(updateTime: Instant) {
         var highlightCount = 0
 
         var doCheck = true
@@ -572,8 +573,9 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                 resolveDrawable(ctx, android.R.attr.selectableItemBackground)
             }
             if (doCheck) {
+                val instant = item.streamWithState.stream.uploadInstant
                 // If the uploadDate is null or true we should highlight the item
-                if (item.streamWithState.stream.uploadDate?.isAfter(updateTime) != false) {
+                if (instant != null && instant > updateTime) {
                     highlightCount++
 
                     typeface = Typeface.DEFAULT_BOLD

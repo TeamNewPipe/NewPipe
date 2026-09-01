@@ -11,7 +11,7 @@ import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import java.time.OffsetDateTime
+import java.time.Instant
 
 @Entity(
     tableName = SearchHistoryEntry.TABLE_NAME,
@@ -19,7 +19,7 @@ import java.time.OffsetDateTime
 )
 data class SearchHistoryEntry @JvmOverloads constructor(
     @ColumnInfo(name = CREATION_DATE)
-    var creationDate: OffsetDateTime?,
+    var creationInstant: Instant?,
 
     @ColumnInfo(name = SERVICE_ID)
     val serviceId: Int,

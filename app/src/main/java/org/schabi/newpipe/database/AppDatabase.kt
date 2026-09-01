@@ -6,6 +6,7 @@
 
 package org.schabi.newpipe.database
 
+import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
@@ -34,7 +35,7 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity
 
 @TypeConverters(Converters::class)
 @Database(
-    version = Migrations.DB_VER_9,
+    version = Migrations.DB_VER_10,
     entities = [
         SubscriptionEntity::class,
         SearchHistoryEntry::class,
@@ -48,6 +49,9 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity
         FeedGroupEntity::class,
         FeedGroupSubscriptionEntity::class,
         FeedLastUpdatedEntity::class
+    ],
+    autoMigrations = [
+        AutoMigration(from = 9, to = 10)
     ]
 )
 abstract class AppDatabase : RoomDatabase() {

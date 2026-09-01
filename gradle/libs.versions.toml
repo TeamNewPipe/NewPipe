@@ -20,6 +20,7 @@ coil = "3.5.0"
 compose = "1.12.0"
 constraintlayout = "2.2.2"
 core = "1.19.0"
+coreI18n = "1.0.0"
 coroutines = "1.11.0"
 desugar = "2.1.5"
 documentfile = "1.1.0"
@@ -89,6 +90,7 @@ androidx-compose-test-ui-junit = { module = "androidx.compose.ui:ui-test-junit4-
 androidx-compose-test-ui-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 androidx-core = { module = "androidx.core:core-ktx", version.ref = "core" }
+androidx-core-i18n = { module = "androidx.core:core-i18n", version.ref = "coreI18n" }
 androidx-documentfile = { module = "androidx.documentfile:documentfile", version.ref = "documentfile" }
 androidx-fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment" }
 androidx-junit = { module = "androidx.test.ext:junit", version.ref = "junit-ext" }

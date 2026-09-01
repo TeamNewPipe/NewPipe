@@ -10,8 +10,6 @@ import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
 import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 
-import java.time.format.DateTimeFormatter;
-
 public class RemoteBookmarkPlaylistItemHolder extends RemotePlaylistItemHolder {
     private final View itemHandleView;
 
@@ -28,16 +26,14 @@ public class RemoteBookmarkPlaylistItemHolder extends RemotePlaylistItemHolder {
 
     @Override
     public void updateFromItem(final LocalItem localItem,
-                               final HistoryRecordManager historyRecordManager,
-                               final DateTimeFormatter dateTimeFormatter) {
-        if (!(localItem instanceof PlaylistRemoteEntity)) {
+                               final HistoryRecordManager historyRecordManager) {
+        if (!(localItem instanceof PlaylistRemoteEntity item)) {
             return;
         }
-        final PlaylistRemoteEntity item = (PlaylistRemoteEntity) localItem;
 
         itemHandleView.setOnTouchListener(getOnTouchListener(item));
 
-        super.updateFromItem(localItem, historyRecordManager, dateTimeFormatter);
+        super.updateFromItem(localItem, historyRecordManager);
     }
 
     private View.OnTouchListener getOnTouchListener(final PlaylistRemoteEntity item) {

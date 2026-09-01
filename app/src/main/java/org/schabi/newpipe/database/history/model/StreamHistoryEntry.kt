@@ -2,7 +2,7 @@ package org.schabi.newpipe.database.history.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
-import java.time.OffsetDateTime
+import java.time.Instant
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.util.image.ImageStrategy
@@ -15,19 +15,19 @@ data class StreamHistoryEntry(
     val streamId: Long,
 
     @ColumnInfo(name = StreamHistoryEntity.STREAM_ACCESS_DATE)
-    val accessDate: OffsetDateTime,
+    val accessInstant: Instant,
 
     @ColumnInfo(name = StreamHistoryEntity.STREAM_REPEAT_COUNT)
     val repeatCount: Long
 ) {
 
     fun toStreamHistoryEntity(): StreamHistoryEntity {
-        return StreamHistoryEntity(streamId, accessDate, repeatCount)
+        return StreamHistoryEntity(streamId, accessInstant, repeatCount)
     }
 
     fun hasEqualValues(other: StreamHistoryEntry): Boolean {
         return this.streamEntity.uid == other.streamEntity.uid && streamId == other.streamId &&
-            accessDate.isEqual(other.accessDate)
+            accessInstant == other.accessInstant
     }
 
     fun toStreamInfoItem(): StreamInfoItem = StreamInfoItem(
