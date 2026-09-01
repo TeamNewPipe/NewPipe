@@ -11,6 +11,7 @@ import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_SE
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_TABLE
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_URL
 import org.schabi.newpipe.extractor.localization.DateWrapper
+import org.schabi.newpipe.extractor.stream.ContentAvailability
 import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
@@ -52,6 +53,9 @@ data class StreamEntity(
     @ColumnInfo(name = STREAM_THUMBNAIL_URL)
     var thumbnailUrl: String? = null,
 
+    @ColumnInfo(name = STREAM_AVAILABILITY)
+    var contentAvailability: ContentAvailability = ContentAvailability.UNKNOWN,
+
     @ColumnInfo(name = STREAM_VIEWS)
     var viewCount: Long? = null,
 
@@ -69,7 +73,8 @@ data class StreamEntity(
         serviceId = item.serviceId, url = item.url, title = item.name,
         streamType = item.streamType, duration = item.duration, uploader = item.uploaderName,
         uploaderUrl = item.uploaderUrl,
-        thumbnailUrl = ImageStrategy.imageListToDbUrl(item.thumbnails), viewCount = item.viewCount,
+        thumbnailUrl = ImageStrategy.imageListToDbUrl(item.thumbnails),
+        contentAvailability = item.contentAvailability, viewCount = item.viewCount,
         textualUploadDate = item.textualUploadDate, uploadDate = item.uploadDate?.offsetDateTime(),
         isUploadDateApproximation = item.uploadDate?.isApproximation
     )
@@ -79,7 +84,8 @@ data class StreamEntity(
         serviceId = info.serviceId, url = info.url, title = info.name,
         streamType = info.streamType, duration = info.duration, uploader = info.uploaderName,
         uploaderUrl = info.uploaderUrl,
-        thumbnailUrl = ImageStrategy.imageListToDbUrl(info.thumbnails), viewCount = info.viewCount,
+        thumbnailUrl = ImageStrategy.imageListToDbUrl(info.thumbnails),
+        contentAvailability = info.contentAvailability, viewCount = info.viewCount,
         textualUploadDate = info.textualUploadDate, uploadDate = info.uploadDate?.offsetDateTime(),
         isUploadDateApproximation = info.uploadDate?.isApproximation
     )
@@ -102,6 +108,7 @@ data class StreamEntity(
         item.uploaderName = uploader
         item.uploaderUrl = uploaderUrl
         item.thumbnails = ImageStrategy.dbUrlToImageList(thumbnailUrl)
+        item.contentAvailability = contentAvailability
 
         if (viewCount != null) item.viewCount = viewCount as Long
         item.textualUploadDate = textualUploadDate
@@ -123,6 +130,7 @@ data class StreamEntity(
         const val STREAM_UPLOADER = "uploader"
         const val STREAM_UPLOADER_URL = "uploader_url"
         const val STREAM_THUMBNAIL_URL = "thumbnail_url"
+        const val STREAM_AVAILABILITY = "availability"
 
         const val STREAM_VIEWS = "view_count"
         const val STREAM_TEXTUAL_UPLOAD_DATE = "textual_upload_date"
