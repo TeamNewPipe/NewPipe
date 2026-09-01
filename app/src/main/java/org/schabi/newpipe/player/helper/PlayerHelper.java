@@ -454,6 +454,27 @@ public final class PlayerHelper {
                 .apply();
     }
 
+    public static float retrieveVolumeBoostFromPrefs(final Player player) {
+        return player.getPrefs().getFloat(player.getContext().getString(
+                R.string.playback_volume_boost_key), player.getVolumeBoost());
+    }
+
+    public static boolean retrieveAutoVolumeBoostFromPrefs(final Player player) {
+        return player.getPrefs().getBoolean(player.getContext().getString(
+                R.string.playback_auto_volume_boost_key), player.isAutoVolumeBoostEnabled());
+    }
+
+    public static void saveVolumeBoostToPrefs(final Player player,
+                                              final float volumeBoost,
+                                              final boolean autoVolumeBoost) {
+        player.getPrefs().edit()
+                .putFloat(player.getContext().getString(R.string.playback_volume_boost_key),
+                        volumeBoost)
+                .putBoolean(player.getContext().getString(R.string.playback_auto_volume_boost_key),
+                        autoVolumeBoost)
+                .apply();
+    }
+
     public static float getMinimumVideoHeight(final float width) {
         return width / (16.0f / 9.0f); // Respect the 16:9 ratio that most videos have
     }

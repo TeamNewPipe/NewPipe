@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="8dp">
+
+        <org.schabi.newpipe.views.NewPipeTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/volume_boost_summary"
+            android:textSize="14sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <org.schabi.newpipe.views.NewPipeTextView
+                android:id="@+id/volumeBoostStepDown"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:text="-25%"
+                android:textColor="?attr/colorAccent"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+            <org.schabi.newpipe.views.NewPipeTextView
+                android:id="@+id/volumeBoostStepUp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:text="+25%"
+                android:textColor="?attr/colorAccent"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/volumeBoostStepUp"
+                android:layout_toEndOf="@id/volumeBoostStepDown">
+
+                <org.schabi.newpipe.views.NewPipeTextView
+                    android:id="@+id/volumeBoostMinimumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:gravity="center"
+                    android:text="100%"
+                    android:textColor="?attr/colorAccent"
+                    tools:ignore="HardcodedText" />
+
+                <org.schabi.newpipe.views.NewPipeTextView
+                    android:id="@+id/volumeBoostCurrentText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="100%"
+                    android:textColor="?attr/colorAccent"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
+
+                <org.schabi.newpipe.views.NewPipeTextView
+                    android:id="@+id/volumeBoostMaximumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="center"
+                    android:text="300%"
+                    android:textColor="?attr/colorAccent"
+                    tools:ignore="HardcodedText" />
+
+                <androidx.appcompat.widget.AppCompatSeekBar
+                    android:id="@+id/volumeBoostSeekbar"
+                    style="@style/Widget.AppCompat.SeekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/volumeBoostCurrentText"
+                    tools:progress="0" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="?attr/separator_color" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/autoVolumeBoostSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="@string/volume_boost_auto"
+            android:textStyle="bold" />
+
+        <org.schabi.newpipe.views.NewPipeTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/volume_boost_auto_summary"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+</ScrollView>
