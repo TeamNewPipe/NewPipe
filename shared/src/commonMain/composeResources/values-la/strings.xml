@@ -1,4 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="open_in_browser">Aperi in navigatro</string>
+    <string name="open_in_browser">In quaerente aperire</string>
+    <string name="done">Finitus</string>
+    <string name="not_available">Relicus non est</string>
+    <string name="settings">Adaptabilitates</string>
+    <string name="search">Quaerere</string>
+    <string name="content">Contentum</string>
+    <string name="notifications">Nuntius</string>
+    <string name="settings_category_video_audio_title">Video et audio</string>
+    <string name="settings_category_downloads_title">Obtinere</string>
+    <string name="settings_category_appearance_title">Facies</string>
+    <string name="settings_category_history_title">Historia et horreum breve</string>
+    <string name="settings_category_updates_title">Res recenter divulgatae</string>
+    <string name="settings_category_backup_restore_title">Servare et restituere</string>
+    <string name="settings_category_debug_title">Errores reperire et amovere</string>
+    <string name="navigate_back">Retro</string>
+    <string name="title_activity_about">De NewPipe</string>
+    <string name="title_licenses">Licentiae tertianae</string>
+    <string name="license">A %1$s cum %2$s</string>
+    <string name="tab_about">De &amp; FAQ</string>
+    <string name="tab_licenses">Licetiae</string>
+    <string name="app_description">Picturae commotae liberiter et leviter accipere.</string>
+    <string name="contribution_title">Conferre</string>
+    <string name="contribution_encouragement">Aut sententias habes de; interpretationibus, commutationibus designationis, purgatio verbarum, aut commutationibus gravibus verbarum—auxilium semper desideratum est. Quo plus factus est, eo melior fit!</string>
+    <string name="view_on_github">Aspicere in GitHub</string>
+    <string name="donation_title">Donare</string>
+    <string name="donation_encouragement">NewPipe voluntariis, qui donant tempus liber eius te dare visum optimum, elaboratus est. Redde, ut elaboratores NewPipe emendare dum pocillum coffeum potant auxilies.</string>
+    <string name="give_back">Reddere</string>
+    <string name="website_title">Situs interretialis</string>
+    <string name="website_encouragement">Visita situs interretialis NewPipe pro plure informationum et novitatibus.</string>
+    <string name="privacy_policy_title">Politia rerum privatarum NewPipe</string>
+    <string name="privacy_policy_encouragement">Inceptum NewPipe tuas res privatas valde veretur. Itaque usus non sine tua assensione data colligit\nPolitia rerum privatarum NewPipe quae data conservata et missa sunt si relatio interpellationis mittis explicat.</string>
+    <string name="read_privacy_policy">Politia rerum privatarum legere</string>
+    <string name="app_license_title">Licentia NewPipe</string>
+    <string name="app_license">NewPipe partes programmationis libera et copiantes sinistrorsum sunt: Consumere, studere, distribuere, emendare tibi licet. Imprimis redistribuere et/aut mutare, contitione GNU General Public License quomodo divulgatus a Free Software Foundation, aut versio 3 aut posterior versio, tibi licet.</string>
+    <string name="read_full_license">Licentia legere</string>
+    <string name="faq_title">Interrogationes saepe interrogatas</string>
+    <string name="faq_description">Si difficultates usum adhibere habes, aspice ea responsa ad interrogationes crebras!</string>
+    <string name="faq">Aspicere in situ interretiale</string>
 </resources>

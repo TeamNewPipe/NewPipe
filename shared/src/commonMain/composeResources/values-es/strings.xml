@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="navigate_back">Atrás</string>
+    <string name="navigate_back">Spaans</string>
     <string name="title_activity_about">Acerca de NewPipe</string>
     <string name="title_licenses">Licencias de terceros</string>
     <string name="license">Por %1$s bajo %2$s</string>

@@ -27,4 +27,15 @@
     <string name="read_full_license">Lasīt licenci</string>
     <string name="done">Skaidrs</string>
     <string name="give_back">Atbalstīt projektu</string>
+    <string name="settings_category_backup_restore_title">Rezerves kopijas izveide un atjaunošana</string>
+    <string name="settings">Iestatījumi</string>
+    <string name="search">Meklēt</string>
+    <string name="content">Saturs</string>
+    <string name="notifications">Paziņojumi</string>
+    <string name="settings_category_video_audio_title">Video un audio</string>
+    <string name="settings_category_downloads_title">Lejupielādēt</string>
+    <string name="settings_category_appearance_title">Izskats</string>
+    <string name="settings_category_history_title">Vēsture un kešatmiņa</string>
+    <string name="settings_category_updates_title">Atjauninājumi</string>
+    <string name="settings_category_debug_title">Atkļūdošana</string>
 </resources>
