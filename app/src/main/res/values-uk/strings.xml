@@ -149,7 +149,7 @@
     <string name="tab_licenses">Ліцензії</string>
     <string name="contribution_title">Зробіть внесок</string>
     <string name="view_on_github">Переглянути на GitHub</string>
-    <string name="donation_title">Пожертвувати</string>
+    <string name="donation_title">Підтримати</string>
     <string name="website_title">Вебсайт</string>
     <string name="title_activity_history">Історія</string>
     <string name="export_complete_toast">Експортовано</string>
@@ -894,4 +894,6 @@
     <string name="api23_requirement_dialog_title">NewPipe припиняє підтримку Android 5</string>
     <string name="api23_requirement_dialog_message">На жаль, NewPipe залежить від кількох бібліотек, які припинили підтримку Android 5.0 і 5.1. Тому наступна версія NewPipe працюватиме лише на пристроях з Android 6 або новішою версією. Докладніше читайте в дописі в блозі.</string>
     <string name="api23_requirement_dialog_blogpost">Допис у блозі</string>
+    <string name="channel_tab_podcasts">Подкасти</string>
+    <string name="channel_tab_courses">Курси</string>
 </resources>

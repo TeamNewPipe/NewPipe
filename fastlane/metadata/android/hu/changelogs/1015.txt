@@ -1,0 +1,1 @@
+Ez egy gyorsjavító kiadás, amely kijavítja az élő közvetítések működését a media.ccc.de oldalon. Jó hackelést!

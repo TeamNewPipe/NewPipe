@@ -207,17 +207,17 @@
     <string name="charset_letters_and_digits">Літары і лічбы</string>
     <string name="charset_most_special_characters">Большасць спецсімвалаў</string>
     <string name="title_activity_about">Пра NewPipe</string>
-    <string name="title_licenses">Іншыя ліцэнзіі</string>
+    <string name="title_licenses">Староннія ліцэнзіі</string>
     <string name="copyright" formatted="true">© %1$s %2$s пад ліцэнзіяй %3$s</string>
     <string name="tab_about">Аб праграме</string>
     <string name="tab_licenses">Ліцэнзіі</string>
-    <string name="app_description">Свабоднае легкавагавае патокавае прайграванне на Android.</string>
+    <string name="app_description">Легкавагавая праграма з адкрытым зыходным кодам для патокавага прайгравання на Android.</string>
     <string name="contribution_title">Дапамога праекту</string>
     <string name="contribution_encouragement">Вітаецца ўсё - ідэі, пераклад, змены дызайну, чыстка кода або велізарныя змены ў кодзе. Чым больш зроблена, тым лепш!</string>
-    <string name="view_on_github">Адкрыць на GitHub</string>
+    <string name="view_on_github">Старонка на GitHub</string>
     <string name="donation_title">Ахвяраванне</string>
-    <string name="donation_encouragement">NewPipe распрацаваны добраахвотнікамі, якія праводзяць свой вольны час, забяспечваючы лепшы карыстацкі досвед. Дапамажыце распрацоўшчыкам зрабіць NewPipe яшчэ лепшым, пакуль яны атрымліваюць асалоду ад кавы.</string>
-    <string name="give_back">Ахвяраваць грошы</string>
+    <string name="donation_encouragement">NewPipe распрацаваны валанцёрамі, якія прысвячаюць свой вольны час, каб паляпшаць для вас праграму. Зрабіце і вы для іх добрае, хай распрацоўшчыкі пацешаць сябе кубачкам кавы пакуль працуюць над NewPipe.</string>
+    <string name="give_back">Падтрымаць грашыма</string>
     <string name="website_title">Вэб-сайт</string>
     <string name="website_encouragement">Наведайце вэб-сайт, каб атрымаць больш інфармацыі і паглядзець апошнія навіны NewPipe.</string>
     <string name="privacy_policy_title">Палітыка прыватнасці NewPipe</string>
@@ -435,7 +435,7 @@
     <string name="no_playlist_bookmarked_yet">Плэй-лісты яшчэ не дададзены</string>
     <string name="select_a_playlist">Выберыце плэй-ліст</string>
     <string name="default_kiosk_page_summary">Прадвызначаны кіёск</string>
-    <string name="done">Так</string>
+    <string name="done">Гатова</string>
     <string name="subtitle_activity_recaptcha">Па завяршэнні націсніце «Гатова»</string>
     <string name="infinite_videos">∞ відэа</string>
     <string name="more_than_100_videos">100+ відэа</string>
@@ -802,7 +802,7 @@
     <string name="auto_update_check_description">NewPipe можа час ад часу аўтаматычна правяраць наяўнасць новай версіі і апавяшчаць, калі яна будзе даступна. \nУключыць гэту функцыю?</string>
     <string name="import_settings_vulnerable_format">Налады ў імпартаваным экспарце выкарыстоўваюць уразлівы фармат, які састарэў з версіі NewPipe 0.27.0. Пераканайцеся, што імпартаваны экспарт атрыманы з надзейнай крыніцы, і ў будучыні пераважней выкарыстоўваць толькі экспарт, атрыманы з NewPipe 0.27.0 ці навей. Падтрымка імпарту налад у гэтым уразлівым фармаце хутка будзе цалкам выдаленая, і тады старыя версіі NewPipe больш не змогуць імпартаваць наладкі з экспарту з новых версій.</string>
     <string name="no">Не</string>
-    <string name="settings_category_backup_restore_title">Рэзервовае капіяванне і аднаўленне</string>
+    <string name="settings_category_backup_restore_title">Рэзервовыя копіі і аднаўленне</string>
     <string name="reset_settings_title">Скінуць налады</string>
     <string name="reset_settings_summary">Скінуць усе налады на іх прадвызначаныя значэнні</string>
     <string name="reset_all_settings">Пры скіданні ўсіх налад будуць адхілены ўсе вашы змены налад і праграма перазапусціцца. \n \nСапраўды хочаце працягнуць?</string>
@@ -866,4 +866,6 @@
     <string name="api23_requirement_dialog_message">На жаль, NewPipe залежыць ад некалькіх бібліятэк, якія спынілі падтрымку Android 5.0 і 5.1. Таму наступны выпуск NewPipe, будзе працаваць толькі на прыладах з Android 6 і вышэй. Падрабязнасці можна прачытаць ў блогу.</string>
     <string name="api23_requirement_dialog_blogpost">Запіс у блогу</string>
     <string name="sign_in_confirm_not_bot_error">%1$s адмовіўся перадаць даныя, запытаўшы ўваход у сістэму для пацвярджэння, што вы не бот.\n\nМагчыма, ваш IP-адрас быў часова заблакіраваны %1$s. Можна пачакаць некаторы час або перайсці на іншы IP-адрас (напрыклад, уключыўшы/выключыўшы VPN або пераключыўшыся з Wi-Fi на мабільныя даныя).\n\nПаглядзіце гэты <a href="%2$s">раздзел FAQ</a>, каб атрымаць дадатковую інфармацыю.</string>
+    <string name="channel_tab_podcasts">Падкасты</string>
+    <string name="channel_tab_courses">Курсы</string>
 </resources>
