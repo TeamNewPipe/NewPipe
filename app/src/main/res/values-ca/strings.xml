@@ -871,4 +871,6 @@
     <string name="kao_dialog_warning">A l\'agost del 2025, Google va anunciar que, a partir del setembre del 2026, la instal·lació d\'aplicacions requerirà la verificació del desenvolupador per a totes les aplicacions d\'Android en dispositius certificats, incloses les instal·lades fora de la Play Store. Com que els desenvolupadors de NewPipe no estan d\'acord amb aquest requisit, NewPipe deixarà de funcionar en dispositius Android certificats després d\'aquesta data.</string>
     <string name="api23_requirement_dialog_title">NewPipe deixarà de ser compatible amb Android 5.</string>
     <string name="api23_requirement_dialog_message">Malauradament, NewPipe depèn d\'algunes biblioteques que van deixar de ser compatibles amb Android 5.0 i 5.1. Per tant, la propera versió de NewPipe només funcionarà en dispositius amb Android 6 o superior. Llegeix més a la publicació del bloc.</string>
+    <string name="channel_tab_podcasts">pòdcasts</string>
+    <string name="channel_tab_courses">Cursos</string>
 </resources>

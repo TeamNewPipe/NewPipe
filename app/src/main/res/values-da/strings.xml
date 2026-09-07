@@ -522,7 +522,7 @@
     <string name="recovering">gendanner</string>
     <string name="feed_load_error_fast_unknown">\"Hurtig feed\"-tilstand oplyser ikke mere info om dette.</string>
     <string name="check_for_updates">Tjek efter opdateringer</string>
-    <string name="remove_watched_popup_title">Fjern sete videoer?</string>
+    <string name="remove_watched_popup_title">Fjern sete streams?</string>
     <string name="disable_media_tunneling_summary">Deaktivér medietunneling, hvis du oplever en sort skærm eller hakken ved videoafspilning.</string>
     <string name="error_report_open_github_notice">Tjek venligst, om der allerede findes et problem, der diskuterer dit nedbrud. Når du opretter flere tickets, tager du tid fra os, som vi kunne bruge på at løse den faktiske fejl.</string>
     <string name="check_new_streams">Tjek efter nye streams</string>
@@ -540,7 +540,7 @@
     <string name="feed_group_dialog_select_subscriptions">Vælg abonnementer</string>
     <string name="georestricted_content">Dette indhold er ikke tilgængeligt i dit land.</string>
     <string name="video_detail_by">Af %s</string>
-    <string name="remove_watched_popup_warning">Videoer, der er blevet set før og efter tilføjelse til playlisten, vil blive fjernet. \nEr du sikker? Dette kan ikke fortrydes!</string>
+    <string name="remove_watched_popup_warning">Streams, der er blevet set før og efter tilføjelse til playlisten, vil blive fjernet. \nEr du sikker?</string>
     <string name="show_thumbnail_title">Vis miniaturebillede</string>
     <string name="metadata_tags">Tags</string>
     <string name="metadata_age_limit">Aldersbegrænsning</string>
@@ -838,4 +838,6 @@
     <string name="migration_info_7_8_message">YouTube har udfaset den kombinerede trending-side pr. 21. juli 2025. NewPipe har erstattet standardsiden for trending med trending livestreams.\n\nDu kan også vælge andre trending-sider under \"Indstillinger &gt; Indhold &gt; Indhold på hovedsiden\".</string>
     <string name="trending_gaming">Gaming-trends</string>
     <string name="trending_podcasts">Trending podcasts</string>
+    <string name="channel_tab_podcasts">Podcasts</string>
+    <string name="channel_tab_courses">Kurser</string>
 </resources>

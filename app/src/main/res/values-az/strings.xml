@@ -848,4 +848,6 @@
     <string name="api23_requirement_dialog_title">NewPipe Android 5 üçün dəstəyi dayandırır</string>
     <string name="api23_requirement_dialog_blogpost">Bloq elanı</string>
     <string name="api23_requirement_dialog_message">Təəssüf ki, NewPipe Android 5.0 və 5.1 üçün dəstəyi dayandıran bir neçə kitabxanadan asılıdır. Bu səbəbdən, üzücü olaraq növbəti NewPipe buraxılışı yalnız Android 6 və ya daha yüksək versiyalı cihazlarda işləyəcək. Daha çoxunu blog elanında oxu.</string>
+    <string name="channel_tab_podcasts">Podkastlar</string>
+    <string name="channel_tab_courses">Kurslar</string>
 </resources>
