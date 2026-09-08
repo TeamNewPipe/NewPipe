@@ -1,18 +1,20 @@
 /*
   ParallelChunkedDownloader
 
-  - Tries an 8-chunk (configurable up to 16) parallel download using OkHttp.
+  - Starts an asynchronous chunked download manager using OkHttp.
   - Stores each chunk to a temporary "<filename>.partN" inside the mission metadata directory.
   - Resumes by reading existing .part file lengths and requesting only remaining bytes.
   - Merges the part files into the final file via mission.storage.getStream (SharpStream).
   - Reports aggregate progress through mission.notifyProgress(...) to reuse existing notification flow.
-  - On permanent failure, cleans up parts and returns false so caller can fallback.
+  - On permanent failure, cleans up parts and returns to fallback by launching existing single-threaded downloader.
+  - Respects mission.running (pause) by cancelling in-flight requests and allowing resume.
 */
 
 package us.shandian.giga.get;
 
 import okhttp3.Call;
 import okhttp3.ConnectionPool;
+import okhttp3.Dispatcher;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -37,56 +39,62 @@ public final class ParallelChunkedDownloader {
     private static final int MAX_CHUNKS = 16;
     private static final int IO_BUFFER = 64 * 1024; // 64KB
     private static final int CONNECTION_POOL_SIZE = 32;
+    private static final int MAX_RETRIES = 3;
 
     private ParallelChunkedDownloader() { /* utility */ }
 
     /**
-     * Try to download the current resource of the mission using parallel ranged requests.
-     * Blocks until finished or failed. If returns true, the mission is finished for the current resource.
-     * If false is returned, caller should fallback to the existing single-threaded mechanism.
+     * Start an asynchronous chunked download manager for the mission's current resource.
+     * Returns true if the manager was started; false if chunked download is not applicable
+     * (e.g. no range support) and the caller should continue with the existing fallback logic.
+     *
+     * The manager sets mission.threads to a single Thread representing itself so that
+     * mission.notifyFinished() semantics remain compatible.
      */
-    public static boolean tryChunkedDownload(DownloadMission mission) {
-        // Basic preconditions (must be called from a background thread).
+    public static boolean startChunkedDownload(final DownloadMission mission) {
         if (mission == null || mission.urls == null || mission.urls.length == 0) return false;
-        if (mission.metadata == null) return false; // we need a place to store part files
+        if (mission.metadata == null) return false; // need a place to store part files
         if (!mission.running) return false;
 
         final String url = mission.urls[mission.current];
 
-        // Create an OkHttpClient derived from the app client but with larger connection pool and dispatcher defaults.
+        // Create OkHttp client based on app client but with a larger connection pool and custom dispatcher
         OkHttpClient baseClient = DownloaderImpl.getInstance().getClient();
-        OkHttpClient client = baseClient.newBuilder()
+        Dispatcher dispatcher = new Dispatcher();
+        // maxRequests will be adjusted later to chunkCount + 2; set a safe default now
+        dispatcher.setMaxRequests(64);
+        dispatcher.setMaxRequestsPerHost(64);
+
+        OkHttpClient clientTemplate = baseClient.newBuilder()
                 .connectionPool(new ConnectionPool(CONNECTION_POOL_SIZE, 5, TimeUnit.MINUTES))
+                .dispatcher(dispatcher)
                 .build();
 
+        // We'll perform a quick synchronous check to see if range is supported and get content-length.
         long contentLength = -1;
         boolean supportRange = false;
 
-        // 1) HEAD (preferred) to get Content-Length and Accept-Ranges
-        Request headReq = new Request.Builder().url(url).head().build();
-        try (Response r = client.newCall(headReq).execute()) {
-            if (r != null) {
-                String cl = r.header("Content-Length");
-                if (cl != null) {
-                    try { contentLength = Long.parseLong(cl); } catch (NumberFormatException ignored) {}
-                }
-                String ar = r.header("Accept-Ranges");
-                if (ar != null && ar.toLowerCase().contains("bytes")) {
-                    supportRange = true;
+        try {
+            Request headReq = new Request.Builder().url(url).head().build();
+            try (Response r = clientTemplate.newCall(headReq).execute()) {
+                if (r != null) {
+                    String cl = r.header("Content-Length");
+                    if (cl != null) {
+                        try { contentLength = Long.parseLong(cl); } catch (NumberFormatException ignored) {}
+                    }
+                    String ar = r.header("Accept-Ranges");
+                    if (ar != null && ar.toLowerCase().contains("bytes")) {
+                        supportRange = true;
+                    }
                 }
             }
         } catch (IOException ignored) {
-            // We'll attempt a ranged GET test below if HEAD failed or didn't declare ranges.
+            // fall through to ranged GET test
         }
 
-        // If we don't know length or HEAD didn't explicitly announce range support, try a small ranged GET
         if (!supportRange || contentLength <= 0) {
-            Request r = new Request.Builder()
-                    .url(url)
-                    .header("Range", "bytes=0-1")
-                    .get()
-                    .build();
-            try (Response resp = client.newCall(r).execute()) {
+            Request r = new Request.Builder().url(url).header("Range", "bytes=0-1").get().build();
+            try (Response resp = clientTemplate.newCall(r).execute()) {
                 if (resp != null) {
                     int code = resp.code();
                     if (code == 206) supportRange = true;
@@ -95,8 +103,7 @@ public final class ParallelChunkedDownloader {
                         if (cl != null) {
                             try { contentLength = Long.parseLong(cl); } catch (NumberFormatException ignored) {}
                         } else {
-                            // Some servers report full length in Content-Range
-                            String cr = resp.header("Content-Range"); // bytes 0-1/12345
+                            String cr = resp.header("Content-Range");
                             if (cr != null) {
                                 int slash = cr.indexOf('/');
                                 if (slash > 0 && slash + 1 < cr.length()) {
@@ -107,50 +114,52 @@ public final class ParallelChunkedDownloader {
                     }
                 }
             } catch (IOException e) {
-                // If we can't reach server for this check, fallback to existing mechanism
-                return false;
+                return false; // network problem; don't start chunked manager
             }
         }
 
-        // If server doesn't support range or we don't know the total length, fallback
         if (!supportRange || contentLength <= 0) return false;
 
-        // Decide number of chunks
+        // Determine chunk count
         int preferred = DEFAULT_CHUNKS;
         try {
             preferred = Math.max(1, Math.min(MAX_CHUNKS, mission.threadCount > 0 ? mission.threadCount : DEFAULT_CHUNKS));
         } catch (Exception ignored) {}
-        int chunkCount = Math.min(MAX_CHUNKS, preferred);
+        final int chunkCount = Math.min(MAX_CHUNKS, preferred);
+
+        // Adjust dispatcher limits to match concurrency needs
+        dispatcher.setMaxRequests(chunkCount + 2);
+        dispatcher.setMaxRequestsPerHost(chunkCount + 2);
+
+        final OkHttpClient client = clientTemplate.newBuilder().dispatcher(dispatcher).build();
 
         // Compute ranges
-        long total = contentLength;
-        long baseChunkSize = total / chunkCount;
-        long remainder = total % chunkCount;
+        final long total = contentLength;
+        final long baseChunkSize = total / chunkCount;
+        final long remainder = total % chunkCount;
 
-        // Prepare part files in same directory as mission.metadata so they survive restarts
         File tmpDir = mission.metadata.getParentFile();
         if (tmpDir == null) return false;
 
-        List<Chunk> chunks = new ArrayList<>(chunkCount);
+        final List<Chunk> chunks = new ArrayList<>(chunkCount);
         long cursor = 0;
         for (int i = 0; i < chunkCount; i++) {
             long start = cursor;
             long size = baseChunkSize + (i < remainder ? 1 : 0);
             long end = start + size - 1;
-            if (end < start) end = start; // guard
+            if (end < start) end = start;
             File partFile = new File(tmpDir, mission.storage.getName() + ".part" + i);
             chunks.add(new Chunk(i, start, end, partFile));
             cursor += size;
         }
 
-        // Determine already-downloaded progress from existing part file sizes
         final AtomicLong aggregateDownloaded = new AtomicLong(0L);
         for (Chunk c : chunks) {
             if (c.part.exists()) {
                 long existing = c.part.length();
                 long chunkLen = c.end - c.start + 1;
                 if (existing >= chunkLen) {
-                    c.next = c.end + 1; // already done
+                    c.next = c.end + 1;
                     aggregateDownloaded.addAndGet(chunkLen);
                 } else {
                     c.next = c.start + existing;
@@ -161,135 +170,176 @@ public final class ParallelChunkedDownloader {
             }
         }
 
-        // If already complete, merge and finish
-        if (aggregateDownloaded.get() >= total) {
+        // If already complete, merge in background and return true
+        Thread manager = new Thread(() -> {
+            boolean success = false;
             try {
-                mergePartsAndCleanup(mission, chunks, tmpDir);
-                mission.notifyProgress((int)(total - mission.done)); // adjust mission.done if needed
-                return true;
-            } catch (IOException e) {
-                // merging failed; cleanup and fallback
-                deleteParts(chunks);
-                return false;
-            }
-        }
+                if (aggregateDownloaded.get() >= total) {
+                    mergePartsAndCleanup(mission, chunks, tmpDir);
+                    long now = aggregateDownloaded.get();
+                    if (now < total) mission.notifyProgress((int)(total - now));
+                    success = true;
+                } else {
+                    // Start executor and download chunks concurrently
+                    ExecutorService executor = Executors.newFixedThreadPool(chunkCount);
+                    final AtomicLong failureFlag = new AtomicLong(0);
+                    final List<Future<Boolean>> futures = new ArrayList<>(chunkCount);
 
-        // Start concurrent downloads
-        ExecutorService executor = Executors.newFixedThreadPool(chunkCount);
-        List<Future<Boolean>> futures = new ArrayList<>(chunkCount);
-        CountDownLatch latch = new CountDownLatch(chunkCount);
-        final AtomicLong failureFlag = new AtomicLong(0);
+                    for (Chunk c : chunks) {
+                        Future<Boolean> f = executor.submit(() -> {
+                            // skip finished
+                            if (c.next > c.end) return true;
 
-        for (Chunk c : chunks) {
-            Future<Boolean> f = executor.submit(() -> {
-                try {
-                    // If already finished, nothing to do
-                    if (c.next > c.end) {
-                        latch.countDown();
-                        return true;
-                    }
+                            int attempts = 0;
+                            while (c.next <= c.end && mission.running && mission.errCode == DownloadMission.ERROR_NOTHING) {
+                                String range = "bytes=" + c.next + "-" + c.end;
+                                Request req = new Request.Builder().url(url).header("Range", range).get().build();
 
-                    // Append to part file in case it exists
-                    try (RandomAccessFile raf = new RandomAccessFile(c.part, "rw")) {
-                        raf.seek(raf.length());
-                        long pos = c.next;
-                        while (pos <= c.end && mission.running && mission.errCode == DownloadMission.ERROR_NOTHING) {
-                            String range = "bytes=" + pos + "-" + c.end;
-                            Request req = new Request.Builder()
-                                    .url(url)
-                                    .header("Range", range)
-                                    .get()
-                                    .build();
-
-                            Call call = client.newCall(req);
-                            try (Response resp = call.execute()) {
-                                if (resp == null || !resp.isSuccessful()) {
-                                    throw new IOException("HTTP " + (resp == null ? "null" : resp.code()));
-                                }
-                                // Accept 206 or sometimes 200 (some servers ignore Range)
-                                int code = resp.code();
-                                if (code != 206 && code != 200) {
-                                    throw new IOException("Unsupported response " + code);
-                                }
-
-                                ResponseBody body = resp.body();
-                                if (body == null) throw new IOException("Empty body");
-
-                                try (InputStream is = body.byteStream()) {
-                                    byte[] buf = new byte[IO_BUFFER];
-                                    int read;
-                                    while ((read = is.read(buf)) != -1) {
-                                        // compute how many bytes we should actually write (do not exceed chunk)
-                                        int toWrite = read;
-                                        long remaining = c.end - pos + 1;
-                                        if (toWrite > remaining) toWrite = (int) remaining;
-                                        raf.write(buf, 0, toWrite);
-                                        pos += toWrite;
-                                        mission.notifyProgress(toWrite);
-                                        aggregateDownloaded.addAndGet(toWrite);
-                                        if (toWrite < read) break; // extra bytes were sent
-                                        if (pos > c.end) break;
-                                        if (!mission.running) break;
+                                try (Response resp = client.newCall(req).execute()) {
+                                    if (resp == null || !resp.isSuccessful()) {
+                                        throw new IOException("HTTP " + (resp == null ? "null" : resp.code()));
                                     }
+                                    int code = resp.code();
+                                    if (code != 206 && code != 200) {
+                                        throw new IOException("Unsupported response " + code);
+                                    }
+
+                                    ResponseBody body = resp.body();
+                                    if (body == null) throw new IOException("Empty body");
+
+                                    try (InputStream is = body.byteStream(); RandomAccessFile raf = new RandomAccessFile(c.part, "rw")) {
+                                        raf.seek(raf.length());
+                                        long pos = c.next;
+                                        byte[] buf = new byte[IO_BUFFER];
+                                        int read;
+                                        while ((read = is.read(buf)) != -1 && mission.running && mission.errCode == DownloadMission.ERROR_NOTHING) {
+                                            int toWrite = read;
+                                            long remaining = c.end - pos + 1;
+                                            if (toWrite > remaining) toWrite = (int) remaining;
+                                            raf.write(buf, 0, toWrite);
+                                            pos += toWrite;
+                                            mission.notifyProgress(toWrite);
+                                            aggregateDownloaded.addAndGet(toWrite);
+                                            if (toWrite < read) break;
+                                            if (pos > c.end) break;
+                                        }
+                                        c.next = pos;
+                                    }
+
+                                    // successful fetch for this iteration, reset attempts
+                                    attempts = 0;
+
+                                    // if completed, break
+                                    if (c.next > c.end) return true;
+
+                                } catch (IOException e) {
+                                    attempts++;
+                                    if (attempts >= MAX_RETRIES) {
+                                        failureFlag.set(1);
+                                        return false;
+                                    }
+                                    // transient failure: small backoff and retry
+                                    try { Thread.sleep(1000L * attempts); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); return false; }
+                                    continue;
                                 }
                             }
+
+                            // if mission was paused, we didn't fail permanently: just return false to indicate not done
+                            if (!mission.running) return false;
+
+                            return c.part.length() >= (c.end - c.start + 1);
+                        });
+
+                        futures.add(f);
+                    }
+
+                    // Wait for completion while respecting mission pause
+                    boolean aborted = false;
+                    try {
+                        for (Future<Boolean> ff : futures) {
+                            try {
+                                // poll each future with small timeout to remain responsive to pause
+                                while (true) {
+                                    if (!mission.running) {
+                                        aborted = true;
+                                        break;
+                                    }
+                                    try {
+                                        Boolean res = ff.get(1, TimeUnit.SECONDS);
+                                        if (res == null || !res) {
+                                            failureFlag.set(1);
+                                        }
+                                        break;
+                                    } catch (TimeoutException te) {
+                                        // loop and check mission.running again
+                                        continue;
+                                    }
+                                }
+                                if (aborted) break;
+                            } catch (ExecutionException ee) {
+                                failureFlag.set(1);
+                            }
                         }
-                    }
-
-                    // completed or mission stopped
-                    return (c.part.length() >= (c.end - c.start + 1));
-                } catch (Exception e) {
-                    failureFlag.set(1);
-                    return false;
-                } finally {
-                    latch.countDown();
-                }
-            });
-
-            futures.add(f);
-        }
-
-        // Wait for all to complete or for a failure
-        try {
-            // Wait while mission.running; but to keep responsiveness, wait with timeout
-            boolean ok = latch.await(30, TimeUnit.MINUTES); // long cap
-            // If any future failed, treat as permanent failure
-            for (Future<Boolean> ff : futures) {
-                try {
-                    if (!ff.isDone() || !ff.get()) {
+                    } catch (InterruptedException ie) {
+                        Thread.currentThread().interrupt();
                         failureFlag.set(1);
-                        break;
+                    } finally {
+                        executor.shutdownNow();
                     }
-                } catch (Exception e) {
-                    failureFlag.set(1);
-                    break;
+
+                    if (!mission.running) {
+                        // paused: leave part files for resume and do not cleanup
+                        return;
+                    }
+
+                    if (failureFlag.get() != 0) {
+                        // permanent failure: cleanup parts & meta and kick off fallback single-threaded download
+                        deleteParts(chunks);
+                        deleteMetaFile(tmpDir, mission.storage.getName());
+
+                        // Start fallback single-threaded download in a new thread to mimic original behavior
+                        Thread fallback = new Thread(() -> {
+                            Thread.currentThread().setName("[DLFallback] " + mission.storage.getName());
+                            try {
+                                new DownloadRunnableFallback(mission).run();
+                            } catch (Throwable t) {
+                                // let mission.notifyError handle
+                                mission.notifyError(t instanceof Exception ? (Exception) t : new Exception(t));
+                            }
+                        });
+                        mission.threads = new Thread[]{fallback};
+                        fallback.start();
+                        return;
+                    }
+
+                    // Success: merge and cleanup
+                    mergePartsAndCleanup(mission, chunks, tmpDir);
+                    deleteMetaFile(tmpDir, mission.storage.getName());
+                    long now = aggregateDownloaded.get();
+                    if (now < total) mission.notifyProgress((int)(total - now));
+                    success = true;
+                }
+            } catch (Exception ex) {
+                // On unexpected exceptions, cleanup and fallback
+                deleteParts(chunks);
+                deleteMetaFile(tmpDir, mission.storage.getName());
+                try {
+                    Thread fallback = new Thread(() -> new DownloadRunnableFallback(mission).run());
+                    mission.threads = new Thread[]{fallback};
+                    fallback.start();
+                } catch (Exception ignored) {}
+            } finally {
+                if (success) {
+                    // notifyFinished to advance the mission for the current resource
+                    mission.notifyFinished();
                 }
             }
-        } catch (InterruptedException e) {
-            failureFlag.set(1);
-        } finally {
-            executor.shutdownNow();
-        }
+        }, "[ParallelChunkedDownloader] " + mission.storage.getName());
 
-        if (failureFlag.get() != 0 || !mission.running || mission.errCode != DownloadMission.ERROR_NOTHING) {
-            // abort: cleanup parts and return false so caller falls back
-            deleteParts(chunks);
-            return false;
-        }
-
-        // Merge parts into destination via SharpStream (atomic-ish)
-        try {
-            mergePartsAndCleanup(mission, chunks, tmpDir);
-            // Ensure mission.notifyProgress was updated during downloads; final update to reach total
-            long now = aggregateDownloaded.get();
-            if (now < total) {
-                mission.notifyProgress((int)(total - now));
-            }
-            return true;
-        } catch (IOException e) {
-            deleteParts(chunks);
-            return false;
-        }
+        // set the mission thread to manager so pause/interrupt logic works (pauseThreads will interrupt it)
+        mission.threads = new Thread[]{manager};
+        manager.start();
+        return true;
     }
 
     private static void deleteParts(List<Chunk> chunks) {
@@ -298,10 +348,15 @@ public final class ParallelChunkedDownloader {
         }
     }
 
+    private static void deleteMetaFile(File tmpDir, String baseName) {
+        try {
+            File meta = new File(tmpDir, baseName + ".chunks.meta");
+            if (meta.exists()) meta.delete();
+        } catch (Exception ignored) {}
+    }
+
     private static void mergePartsAndCleanup(DownloadMission mission, List<Chunk> chunks, File tmpDir) throws IOException {
-        // Open mission final stream and write parts in order
         try (SharpStream out = mission.storage.getStream()) {
-            // ensure output size is reserved (initializer usually set fs.setLength earlier)
             out.seek(mission.offsets[mission.current]);
             byte[] buf = new byte[IO_BUFFER];
             for (Chunk c : chunks) {
