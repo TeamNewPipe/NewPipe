@@ -19,4 +19,23 @@
     <string name="read_privacy_policy">Ознакомиться с политикой конфиденциальности</string>
     <string name="app_license_title">Лицензия NewPipe</string>
     <string name="app_license">NewPipe - свободное программное обеспечение, распространяемое на условиях копилефта. Вы можете свободно использовать, изучать, распространять и улучшать его. В частности, NewPipe можно распространять и/или изменять на условиях Стандартной общественной лицензии GNU, опубликованной Фондом свободного программного обеспечения, версии 3 либо, по вашему выбору, любой более поздней версии.</string>
+    <string name="faq_title">Часто задаваемые вопросы</string>
+    <string name="faq_description">Если у вас есть проблемы с использованием приложения, проверьте ответы на часто задаваемые вопросы!</string>
+    <string name="faq">Посмотреть на сайте</string>
+    <string name="open_in_browser">Открыть в браузере</string>
+    <string name="not_available">Не доступно</string>
+    <string name="app_description">Свободный и легковесный потоковый плеер для Android.</string>
+    <string name="read_full_license">Прочитать лицензию</string>
+    <string name="done">Готово</string>
+    <string name="settings">Настройки</string>
+    <string name="search">Поиск</string>
+    <string name="content">Контент</string>
+    <string name="notifications">Уведомления</string>
+    <string name="settings_category_video_audio_title">Видео и аудио</string>
+    <string name="settings_category_downloads_title">Скачать</string>
+    <string name="settings_category_appearance_title">Внешний вид</string>
+    <string name="settings_category_history_title">История и кэш</string>
+    <string name="settings_category_updates_title">Обновления</string>
+    <string name="settings_category_backup_restore_title">Резервное копирование и восстановление</string>
+    <string name="settings_category_debug_title">Отладка</string>
 </resources>
