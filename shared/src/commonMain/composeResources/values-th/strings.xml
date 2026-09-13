@@ -1,3 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="navigate_back">กลับ</string>
+    <string name="title_activity_about">เกี่ยวกับ NewPipe</string>
+    <string name="title_licenses">ใบอนุญาตบุคคลที่สาม</string>
+    <string name="license">โดย %1$s ภายใต้ %2$s</string>
+    <string name="tab_about">เกี่ยวกับเรา &amp; คำถามที่พบบ่อย</string>
+    <string name="tab_licenses">ใบอนุญาต</string>
+    <string name="app_description">บริการสตรีมมิ่งแบบเบาและใช้งานง่ายบน Android</string>
+    <string name="contribution_title">มีส่วนช่วย</string>
+    <string name="contribution_encouragement">ไม่ว่าคุณจะมีไอเดียเกี่ยวกับ การแปล การเปลี่ยนแปลงดีไซน์ การปรับปรุงโค้ด หรือการเปลี่ยนแปลงโค้ดครั้งใหญ่ เรายินดีรับความช่วยเหลือเสมอ ยิ่งมากเท่าไหร่ก็ยิ่งดีเท่านั้น!</string>
+    <string name="view_on_github">ดูบน GitHub</string>
+    <string name="donation_title">บริจาค</string>
+    <string name="donation_encouragement">NewPipe พัฒนาโดยอาสาสมัครที่ใช้เวลาว่างในการมอบประสบการณ์การใช้งานที่ดีที่สุดให้กับคุณ ร่วมสนับสนุนนักพัฒนาให้สร้าง NewPipe ให้ดียิ่งขึ้นไปพร้อมกับการจิบกาแฟไป</string>
+    <string name="give_back">ตอบแทน</string>
+    <string name="website_title">เว็บไซต์</string>
+    <string name="website_encouragement">เยี่ยมชมเว็บไซต์ NewPipe เพื่อดูข้อมูลและข่าวสารเพิ่มเติม</string>
+    <string name="privacy_policy_title">นโยบายความเป็นส่วนตัวของ NewPipe</string>
+    <string name="privacy_policy_encouragement">โครงการ NewPipe ให้ความสำคัญกับความเป็นส่วนตัวของคุณเป็นอย่างยิ่ง ดังนั้น แอปจึงไม่เก็บรวบรวมข้อมูลใดๆ โดยไม่ได้รับความยินยอมจากคุณ นโยบายความเป็นส่วนตัวของ NewPipe อธิบายรายละเอียดเกี่ยวกับข้อมูลต่างๆ ที่ถูกส่งและจัดเก็บเมื่อคุณส่งรายงานข้อผิดพลาด</string>
+    <string name="read_privacy_policy">อ่านนโยบายความเป็นส่วนตัว</string>
+    <string name="app_license_title">ใบอนุญาตของ NewPipe</string>
+    <string name="app_license">NewPipe เป็นซอฟต์แวร์เสรีแบบ copyleft: คุณสามารถใช้งาน ศึกษา แบ่งปัน และปรับปรุงได้ตามต้องการ โดยเฉพาะอย่างยิ่ง คุณสามารถแจกจ่ายซ้ำและ/หรือแก้ไขได้ภายใต้เงื่อนไขของ GNU General Public License ที่เผยแพร่โดย Free Software Foundation ไม่ว่าจะเป็นเวอร์ชัน 3 ของ License หรือ (ตามที่คุณเลือก) เวอร์ชันใด ๆ ที่ใหม่กว่า</string>
+    <string name="read_full_license">อ่านใบอนุญาต</string>
+    <string name="faq_title">คำถามที่พบบ่อย</string>
+    <string name="faq_description">หากคุณประสบปัญหาในการใช้งานแอป โปรดตรวจสอบคำตอบสำหรับคำถามที่พบบ่อยเหล่านี้!</string>
+    <string name="faq">ดูรายละเอียดเพิ่มเติมได้ที่เว็บไซต์</string>
+    <string name="open_in_browser">เปิดในเบราว์เซอร์</string>
+    <string name="done">ปิด</string>
+    <string name="not_available">ไม่พร้อมใช้งาน</string>
+    <string name="settings">ตั้งค่า</string>
+    <string name="search">ค้นหา</string>
+    <string name="content">เนื้อหา</string>
+    <string name="notifications">การแจ้งเตือน</string>
+    <string name="settings_category_video_audio_title">วิดีโอและเสียง</string>
+    <string name="settings_category_downloads_title">ดาวน์โหลด</string>
+    <string name="settings_category_appearance_title">รูปร่าง</string>
+    <string name="settings_category_history_title">ประวัติและแคช</string>
+    <string name="settings_category_updates_title">อัปเดต</string>
+    <string name="settings_category_backup_restore_title">สำรองข้อมูลและกู้คืน</string>
+    <string name="settings_category_debug_title">Debug</string>
 </resources>

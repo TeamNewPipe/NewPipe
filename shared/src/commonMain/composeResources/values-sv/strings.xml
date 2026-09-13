@@ -15,7 +15,7 @@
     <string name="app_license_title">NewPipes licens</string>
     <string name="tab_licenses">Licenser</string>
     <string name="donation_title">Donera</string>
-    <string name="faq_description">Läs svaren på vanliga frågor om du har problem med att använda appen.</string>
+    <string name="faq_description">Om du har problem med att använda appen, läs då svaren på de här vanliga frågorna!</string>
     <string name="done">Klar</string>
     <string name="not_available">Icke tillgängligt</string>
     <string name="tab_about">Om och vanliga frågor</string>
@@ -28,4 +28,14 @@
     <string name="view_on_github">Visa på GitHub</string>
     <string name="app_license">NewPipe är fri programvara under en copyleft-licens: du får använda, studera, dela och förbättra programmet. Du får distribuera och ändra det enligt villkoren i GNU General Public License, version 3 eller, om du föredrar det, en senare version.</string>
     <string name="settings_category_downloads_title">Hämtningar</string>
+    <string name="settings">Inställningar</string>
+    <string name="search">Sök</string>
+    <string name="content">Innehåll</string>
+    <string name="notifications">Aviseringar</string>
+    <string name="settings_category_video_audio_title">Ljud och bild</string>
+    <string name="settings_category_appearance_title">Utseende</string>
+    <string name="settings_category_history_title">Historik och cache</string>
+    <string name="settings_category_updates_title">Uppdateringar</string>
+    <string name="settings_category_backup_restore_title">Säkerhetskopiera och återställ</string>
+    <string name="settings_category_debug_title">Felsökning</string>
 </resources>
