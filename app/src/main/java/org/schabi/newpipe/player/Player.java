@@ -501,8 +501,7 @@ public final class Player implements PlaybackListener, Listener {
             }
             simpleExoPlayer.setPlayWhenReady(playWhenReady);
 
-        } else if (intent.getBooleanExtra(RESUME_PLAYBACK, false)
-                && DependentPreferenceHelper.getResumePlaybackEnabled(context)
+        } else if (DependentPreferenceHelper.getResumePlaybackEnabled(context)
                 // !samePlayQueue
                 && (playQueue == null || !playQueue.equalStreamsAndIndex(newQueue))
                 && !newQueue.isEmpty()
