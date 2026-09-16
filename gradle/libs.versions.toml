@@ -4,42 +4,42 @@
 #
 
 [versions]
-about-libraries = "14.2.1"
+about-libraries = "15.1.1"
 acra = "5.13.1"
 activity = "1.13.0"
-agp = "9.2.1"
-appcompat = "1.7.1"
+agp = "9.3.1"
+appcompat = "1.8.0"
 assertj = "3.27.7"
 autoservice-google = "1.1.1"
 autoservice-zacsweers = "1.2.0"
 bridge = "v2.0.2"
 browser = "1.10.0"
 cardview = "1.0.0"
-checkstyle = "13.6.0"
+checkstyle = "13.8.0" # See https://github.com/checkstyle/checkstyle/issues/21175
 coil = "3.5.0"
-compose = "1.11.2"
-constraintlayout = "2.2.1"
-core = "1.18.0" # New versions require compileSdk 37
+compose = "1.12.0"
+constraintlayout = "2.2.2"
+core = "1.19.0"
 coroutines = "1.11.0"
 desugar = "2.1.5"
 documentfile = "1.1.0"
 espresso = "3.7.0"
 exoplayer = "2.19.1"
-fragment = "1.8.9"
+fragment = "1.9.0"
 groupie = "2.10.1"
-jsoup = "1.22.2"
+jsoup = "1.23.1"
 junit = "4.13.2"
 junit-ext = "1.3.0"
 kermit = "2.1.0"
 koin = "4.2.2"
-koin-plugin = "1.0.1"
-kotlin = "2.4.0"
+koin-plugin = "1.1.0"
+kotlin = "2.4.10"
 kotlinx-coroutines-rx3 = "1.11.0"
 kotlinx-serialization-json = "1.11.0"
-ksp = "2.3.8"
+ksp = "2.3.11"
 ktlint = "1.8.0"
 leakcanary = "2.14"
-lifecycle = "2.10.0"
+lifecycle = "2.11.0"
 localbroadcastmanager = "1.1.0"
 markwon = "4.6.2"
 material = "1.11.0" # TODO: update to newer version after bug is fixed. See https://github.com/TeamNewPipe/NewPipe/pull/13018
@@ -48,7 +48,7 @@ media = "1.7.1"
 mockitoCore = "5.23.0"
 multiplatform = "1.11.1"
 navigation3 = "1.1.1"
-okhttp = "5.4.0"
+okhttp = "5.5.0"
 phoenix = "3.0.0"
 preference = "1.2.1"
 prettytime = "5.0.8.Final"
@@ -59,7 +59,7 @@ rxandroid = "3.0.2"
 rxbinding = "4.0.0"
 rxjava = "3.1.12"
 settings = "1.3.0"
-sonarqube = "7.3.0.8198"
+sonarqube = "7.4.0.8496"
 statesaver = "1.4.1" # TODO: Drop because it is deprecated and incompatible with KSP2
 stetho = "1.6.0"
 swiperefreshlayout = "1.2.0"
@@ -73,7 +73,7 @@ teamnewpipe-nanojson = "e9d656ddb49a412a5a0a5d5ef20ca7ef09549996"
 # the corresponding commit hash, since JitPack sometimes deletes artifacts.
 # If there’s already a git hash, just add more of it to the end (or remove a letter)
 # to cause jitpack to regenerate the artifact.
-teamnewpipe-newpipe-extractor = "v0.26.3"
+teamnewpipe-newpipe-extractor = "13a655fe53e0c3065f88725fc1fb594c3ede0169"
 viewpager2 = "1.1.0"
 webkit = "1.15.0" # New versions require minSdk 24
 work = "2.11.2"
@@ -168,6 +168,7 @@ squareup-leakcanary-core = { module = "com.squareup.leakcanary:leakcanary-androi
 squareup-leakcanary-plumber = { module = "com.squareup.leakcanary:plumber-android", version.ref = "leakcanary" }
 squareup-leakcanary-watcher = { module = "com.squareup.leakcanary:leakcanary-object-watcher-android", version.ref = "leakcanary" }
 squareup-okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+squareup-okhttp-brotli = { module = "com.squareup.okhttp3:okhttp-brotli", version.ref = "okhttp" }
 touchlab-kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 zacsweers-autoservice-compiler = { module = "dev.zacsweers.autoservice:auto-service-ksp", version.ref = "autoservice-zacsweers" }
 

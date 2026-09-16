@@ -1,6 +1,5 @@
 package org.schabi.newpipe.fragments.list.playlist;
 
-import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
 import static org.schabi.newpipe.util.ServiceHelper.getServiceById;
@@ -328,9 +327,9 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
         streamCount = result.getStreamCount();
         setStreamCountAndOverallDuration(result.getRelatedItems(), !result.hasNextPage());
 
-        final Description description = result.getDescription();
-        if (description != null && description != Description.EMPTY_DESCRIPTION
-                && !isBlank(description.getContent())) {
+        final Description description = result.getDescription() != null ? result.getDescription()
+                : Description.EMPTY_DESCRIPTION;
+        if (!Description.EMPTY_DESCRIPTION.equals(description)) {
             final TextEllipsizer ellipsizer = new TextEllipsizer(
                     headerBinding.playlistDescription, 5, getServiceById(result.getServiceId()));
             ellipsizer.setStateChangeListener(isEllipsized ->

@@ -1,5 +1,5 @@
 • Increased minimum Android version to 6.0
-• Fixed bugs with importing subscrptions
+• Fixed bugs with importing subscriptions
 • Fixed multiple bugs with video playback
 • Fixed a bug that prevented opening downloads in other app
 • Translation updates

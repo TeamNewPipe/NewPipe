@@ -27,4 +27,15 @@
     <string name="read_full_license">Baca lisensi</string>
     <string name="faq_description">Jika Anda mengalami kesulitan menggunakan aplikasi, pastikan untuk memeriksa jawaban atas pertanyaan umum ini!</string>
     <string name="app_license">Aplikasi ini adalah perangkat lunak bebas copyleft: Anda dapat menggunakan, mempelajari, membagikan, dan memperbaikinya sesuka hati. Secara khusus, Anda dapat mendistribusikan dan/atau memodifikasinya berdasarkan ketentuan Lisensi Publik Umum GNU sebagaimana diterbitkan oleh Free Software Foundation, baik versi 3 dari Lisensi, atau (sesuai pilihan Anda) versi apapun yang lebih baru.</string>
+    <string name="settings">Pengaturan</string>
+    <string name="search">Telusur</string>
+    <string name="content">Konten</string>
+    <string name="notifications">Notifikasi</string>
+    <string name="settings_category_video_audio_title">Audio dan Video</string>
+    <string name="settings_category_downloads_title">Unduh</string>
+    <string name="settings_category_appearance_title">Penampilan</string>
+    <string name="settings_category_history_title">Riwayat &amp; Cache</string>
+    <string name="settings_category_updates_title">Pembaruan</string>
+    <string name="settings_category_backup_restore_title">Cadangkan dan Pulihkan</string>
+    <string name="settings_category_debug_title">Debug</string>
 </resources>

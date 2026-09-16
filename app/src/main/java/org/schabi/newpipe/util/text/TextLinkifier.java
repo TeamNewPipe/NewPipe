@@ -67,17 +67,18 @@ public final class TextLinkifier {
                                        @Nullable final String relatedStreamUrl,
                                        @NonNull final CompositeDisposable disposables,
                                        @Nullable final Consumer<TextView> onCompletion) {
-        switch (description.getType()) {
-            case Description.HTML:
-                TextLinkifier.fromHtml(textView, description.getContent(), htmlCompatFlag,
+        switch (description.type()) {
+            case Description.Type.HTML:
+                TextLinkifier.fromHtml(textView, description.content(), htmlCompatFlag,
                         relatedInfoService, relatedStreamUrl, disposables, onCompletion);
                 break;
-            case Description.MARKDOWN:
-                TextLinkifier.fromMarkdown(textView, description.getContent(),
+            case Description.Type.MARKDOWN:
+                TextLinkifier.fromMarkdown(textView, description.content(),
                         relatedInfoService, relatedStreamUrl, disposables, onCompletion);
                 break;
-            case Description.PLAIN_TEXT: default:
-                TextLinkifier.fromPlainText(textView, description.getContent(),
+            case Description.Type.PLAIN_TEXT:
+            default:
+                TextLinkifier.fromPlainText(textView, description.content(),
                         relatedInfoService, relatedStreamUrl, disposables, onCompletion);
                 break;
         }

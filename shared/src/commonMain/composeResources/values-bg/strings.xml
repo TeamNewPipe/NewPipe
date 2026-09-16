@@ -27,4 +27,15 @@
     <string name="open_in_browser">Отвори в браузър</string>
     <string name="done">Готово</string>
     <string name="not_available">Не е налично</string>
+    <string name="settings">Настройки</string>
+    <string name="search">Търсене</string>
+    <string name="content">Съдържание</string>
+    <string name="notifications">Известия</string>
+    <string name="settings_category_video_audio_title">Видео и аудио</string>
+    <string name="settings_category_downloads_title">Изтегляне</string>
+    <string name="settings_category_appearance_title">Външен вид</string>
+    <string name="settings_category_history_title">История и кеш</string>
+    <string name="settings_category_updates_title">Актуализации</string>
+    <string name="settings_category_backup_restore_title">Архивиране и възстановяване</string>
+    <string name="settings_category_debug_title">Отстраняване на грешки</string>
 </resources>

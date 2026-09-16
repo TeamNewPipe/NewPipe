@@ -4,10 +4,10 @@
     <string name="no_player_found">Niciun player pentru streaming găsit. Instalați VLC\?</string>
     <string name="install">Instalare</string>
     <string name="cancel">Anulare</string>
-    <string name="open_in_browser">Deschidere în browser</string>
+    <string name="open_in_browser">Deschide în browser</string>
     <string name="share">Distribuire</string>
     <string name="download">Descărcare</string>
-    <string name="search">Căutare</string>
+    <string name="search">Caută</string>
     <string name="settings">Setări</string>
     <string name="did_you_mean">V-ați referit la: „%1$s” ?</string>
     <string name="share_dialog_title">Distribuiți cu</string>
@@ -33,8 +33,8 @@
     <string name="show_next_and_similar_title">Arată videoclipurile care \'Urmează\' și cele \'Similare\'</string>
     <string name="unsupported_url">URL nesuportat</string>
     <string name="content_language_title">Limba dorită a conținutului</string>
-    <string name="settings_category_video_audio_title">Video și Audio</string>
-    <string name="settings_category_appearance_title">Aspect</string>
+    <string name="settings_category_video_audio_title">Video și audio</string>
+    <string name="settings_category_appearance_title">Aparență</string>
     <string name="background_player_playing_toast">Redare în fundal</string>
     <string name="content">Conținut</string>
     <string name="show_age_restricted_content_title">Afișați conținutul restricționat de vârstă</string>
@@ -116,7 +116,7 @@
     <string name="resume_on_audio_focus_gain_summary">Continuă redarea după întreruperi (ex: după apeluri)</string>
     <string name="settings_category_player_title">Player</string>
     <string name="settings_category_player_behavior_title">Comportament</string>
-    <string name="settings_category_history_title">Istoric și cache</string>
+    <string name="settings_category_history_title">Istorie și cache</string>
     <string name="undo">Anulare</string>
     <string name="notification_channel_name">Notificare NewPipe</string>
     <string name="notification_channel_description">Notificări pentru playerul NewPipe</string>
@@ -140,23 +140,23 @@
         <item quantity="few">%s videoclipuri</item>
         <item quantity="other">%s de videoclipuri</item>
     </plurals>
-    <string name="settings_category_downloads_title">Descărcări</string>
+    <string name="settings_category_downloads_title">Descarcă</string>
     <string name="settings_file_charset_title">Caractere permise în numele fișierelor</string>
     <string name="settings_file_replacement_character_summary">Caracterele nevalabile sunt înlocuite cu această valoare</string>
     <string name="settings_file_replacement_character_title">Caracter de înlocuire</string>
     <string name="charset_letters_and_digits">Litere și cifre</string>
     <string name="charset_most_special_characters">Caractere speciale</string>
     <string name="title_activity_about">Despre NewPipe</string>
-    <string name="title_licenses">Licențe terță-parte</string>
+    <string name="title_licenses">Licențe terți</string>
     <string name="copyright" formatted="true">© %1$s de %2$s sub %3$s</string>
-    <string name="tab_about">Despre &amp; FAQ</string>
+    <string name="tab_about">Despre &amp; Întrebări Comune</string>
     <string name="tab_licenses">Licențe</string>
-    <string name="app_description">Un player de streaming „ușor” liber, pentru Android.</string>
-    <string name="view_on_github">Vedeți pe GitHub</string>
-    <string name="app_license_title">Licența NewPipe</string>
-    <string name="contribution_encouragement">Fie că aveți idei de: traducere, modificări de design, curățare a codului sau modificări de cod cu adevărat importante - ajutorul este întotdeauna binevenit. Cu cât se face mai mult, cu atât mai bine devine!</string>
-    <string name="read_full_license">Citiți licența</string>
-    <string name="contribution_title">Contribuiți</string>
+    <string name="app_description">Streaming sursă-liberă pentru Android.</string>
+    <string name="view_on_github">Vezi în GitHub</string>
+    <string name="app_license_title">Licența a NewPipe</string>
+    <string name="contribution_encouragement">Când îți vine idea de; traduceri, schimbări de design, curățare cod sau schimbări reale de cod - Ajutorul este mereu binevenit. Cu cât mai mult, cu cât mai bine!</string>
+    <string name="read_full_license">Citește licența</string>
+    <string name="contribution_title">Contribuie</string>
     <string name="title_activity_history">Istoric</string>
     <string name="action_history">Istoric</string>
     <string name="delete_item_search_history">Doriți să ștergeți acest element din istoricul de căutare?</string>
@@ -210,10 +210,10 @@
     <string name="invalid_file">Fișierul nu există sau lipsește permisiunea de a citi sau scrie în el</string>
     <string name="file_name_empty_error">Numele fișierului nu poate fi gol</string>
     <string name="error_occurred_detail">A survenit o eroare: %1$s</string>
-    <string name="donation_encouragement">NewPipe este dezvoltat de voluntari care își petrec timpul liber pentru a vă oferi cea mai bună experiență de utilizare. Donează pentru a ajuta dezvoltatorii să facă NewPipe și mai bun în timp ce ei se bucură de o ceașcă de cafea.</string>
-    <string name="give_back">Dăruiește înapoi</string>
-    <string name="website_title">Site web</string>
-    <string name="website_encouragement">Vizitați site-ul NewPipe pentru mai multe informații și noutăți.</string>
+    <string name="donation_encouragement">NewPipe este creat de voluntari ce își oferă timpul lor liber pentru ați oferi cea mai bună experiență. Oferă înapoi creatorilor pentru a face aplicația și mai bună.</string>
+    <string name="give_back">Oferă Înapoi</string>
+    <string name="website_title">Site Web</string>
+    <string name="website_encouragement">Vizitează Site-ul NewPipe pentru mai multe informații și știri.</string>
     <string name="title_last_played">Ultimele vizionări</string>
     <string name="title_most_played">Cele mai multe vizionări</string>
     <string name="export_complete_toast">Exportat</string>
@@ -240,7 +240,7 @@
     <string name="create">Creați</string>
     <string name="dismiss">Respingeți</string>
     <string name="rename">Redenumiți</string>
-    <string name="donation_title">Donați</string>
+    <string name="donation_title">Donează</string>
     <string name="import_settings">De asemenea, doriți să importați setări?</string>
     <string name="name">Nume</string>
     <string name="playlist_creation_success">Listă de redare creată</string>
@@ -295,11 +295,11 @@
     <string name="resize_zoom">Mărire</string>
     <string name="caption_setting_title">Subtitrări</string>
     <string name="caption_setting_description">Modificați scara textului de legendă a playerului și stilurile de fundal. Necesită repornirea aplicației pentru a intra în vigoare</string>
-    <string name="app_license">NewPipe este un software liber cu copyleft: îl puteți folosi, studia, distribui și îmbunătăți în voie. Mai exact, îl puteți redistribui și/sau modifica în conformitate cu termenii Licenței Publice Generale GNU, așa cum a fost publicată de Free Software Foundation, fie versiunea 3 a Licenței, fie (la alegerea dumneavoastră) orice versiune ulterioară.</string>
-    <string name="privacy_policy_title">Politica de confidențialitate a NewPipe</string>
+    <string name="app_license">NewPipe este o aplicație liberă: Poți folosi, studia, partaja, și a o face mai bună după propria voință. Poți redistribui și/sau modifica aplicația în termenii GNU GPL publicate de Free Software Foundation, toate dintre cele 3 versiuni, or (la opțiunea dvs.) orice versiune mai nouă.</string>
+    <string name="privacy_policy_title">Politica de Confidențialitate NewPipe</string>
     <string name="privacy_policy_encouragement">Proiectul NewPipe ia foarte în serios confidențialitatea dumneavoastră. Prin urmare, aplicația nu colectează niciun fel de date fără consimțământul dumneavoastră.
 \nPolitica de confidențialitate a NewPipe explică în detaliu ce date sunt trimise și stocate atunci când trimiteți un raport de eroare.</string>
-    <string name="read_privacy_policy">Citiți politica de confidențialitate</string>
+    <string name="read_privacy_policy">Citește Politica de confidențialitate</string>
     <string name="saved_tabs_invalid_json">Nu s-au putut citi filele salvate, deci se folosesc cele implicite</string>
     <string name="restore_defaults">Restaurați valorile implicite</string>
     <string name="restore_defaults_confirmation">Doriți să restaurați valorile implicite\?</string>
@@ -694,8 +694,8 @@
     <string name="unknown_format">Format necunoscut</string>
     <string name="unknown_quality">Calitate necunoscută</string>
     <string name="progressive_load_interval_title">Dimensiunea intervalului de încărcare de redare</string>
-    <string name="faq">Vedeți pe website</string>
-    <string name="faq_description">Dacă întâmpinați probleme cu utilizarea aplicației, nu uitați să consultați aceste răspunsuri la întrebări frecvente!</string>
+    <string name="faq">Vezi în website</string>
+    <string name="faq_description">Dacă aveți probleme folosind aplicația, uitați-vă la răspunsurile celor mai comune întrebărilor puse!</string>
     <string name="faq_title">Întrebări frecvente</string>
     <string name="sort">Sortare</string>
     <string name="fast_mode">Modul rapid</string>
@@ -804,7 +804,7 @@
     <string name="show_less">Arată mai puține</string>
     <string name="channel_tab_tracks">Piste</string>
     <string name="error_insufficient_storage">Nu este suficient spațiu liber pe dispozitiv</string>
-    <string name="settings_category_backup_restore_title">Backup și restabilire</string>
+    <string name="settings_category_backup_restore_title">Copie de rezervă și Restabilire</string>
     <string name="auto_update_check_description">NewPipe poate verifica automat din când în când dacă există versiuni noi și vă poate anunța când acestea sunt disponibile.\nDoriți să activați această opțiune?</string>
     <string name="reset_settings_summary">Resetați toate setările la valorile implicite</string>
     <string name="yes">Da</string>

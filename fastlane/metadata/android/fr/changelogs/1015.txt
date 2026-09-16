@@ -1,0 +1,1 @@
+Il s'agit d'un correctif visant à résoudre les problèmes liés aux diffusions en direct sur media.ccc.de. Bon hacking !

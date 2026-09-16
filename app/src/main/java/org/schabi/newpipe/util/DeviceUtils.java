@@ -44,7 +44,7 @@ public final class DeviceUtils {
      * support media tunneling to match the <strong>upcoming</strong> version code.</p>
      * @see #shouldSupportMediaTunneling()
      */
-    public static final int MEDIA_TUNNELING_DEVICE_BLACKLIST_VERSION = 994;
+    public static final int MEDIA_TUNNELING_DEVICE_BLACKLIST_VERSION = 1015;
 
     // region: devices not supporting media tunneling / media tunneling blacklist
     /**
@@ -120,6 +120,16 @@ public final class DeviceUtils {
      *     #10122</a></p>
      */
     private static final boolean HMB9213NW = Build.DEVICE.equals("HMB9213NW");
+    /**
+     * <p>JMGO N1S 4K.</p>
+     * <p>Blacklist reason: fullscreen crash</p>
+     */
+    private static final boolean LONAVLA = Build.DEVICE.equals("lonavla");
+    /**
+     * <p>TCL 65Q651G.</p>
+     * <p>Blacklist reason: fullscreen crash</p>
+     */
+    private static final boolean G10 = Build.DEVICE.equals("G10");
     // endregion
 
     private DeviceUtils() {
@@ -334,7 +344,9 @@ public final class DeviceUtils {
                 && !BRAVIA_ATV3_4K
                 && !PH7M_EU_5596
                 && !TX_50JXW834
-                && !HMB9213NW;
+                && !HMB9213NW
+                && !LONAVLA
+                && !G10;
     }
 
     /**

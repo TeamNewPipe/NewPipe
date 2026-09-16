@@ -890,4 +890,6 @@
     <string name="api23_requirement_dialog_title">NewPipe ukončuje podporu pre Android 5</string>
     <string name="api23_requirement_dialog_message">NewPipe je bohužiaľ závislý od niekoľkých knižníc, ktoré ukončili podporu pre Android 5.0 a 5.1. Ďalšia verzia NewPipe bude preto, žiaľ, fungovať len na zariadeniach s Androidom 6 alebo novším. Viac informácií nájdete v blogovom príspevku.</string>
     <string name="api23_requirement_dialog_blogpost">Blogový príspevok</string>
+    <string name="channel_tab_podcasts">Podcasty</string>
+    <string name="channel_tab_courses">Kurzy</string>
 </resources>

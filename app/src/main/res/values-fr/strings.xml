@@ -12,7 +12,7 @@
     <string name="no_player_found">Aucun lecteur de flux trouvé. Installer VLC \?</string>
     <string name="open_in_browser">Ouvrir dans le navigateur</string>
     <string name="play_with_kodi_title">Lire avec Kodi</string>
-    <string name="search">Rechercher</string>
+    <string name="search">Chercher</string>
     <string name="settings">Paramètres</string>
     <string name="share">Partager</string>
     <string name="share_dialog_title">Partager avec</string>
@@ -253,7 +253,7 @@
     <string name="controls_download_desc">Télécharger le flux</string>
     <string name="auto_queue_title">Ajout automatique du flux suivant à la file de lecture</string>
     <string name="auto_queue_summary">Continue la file de lecture (non répétitive) en ajoutant un flux lié</string>
-    <string name="settings_category_debug_title">Débogage</string>
+    <string name="settings_category_debug_title">Corriger</string>
     <string name="resize_fill">Remplir</string>
     <string name="caption_auto_generated">Générés automatiquement</string>
     <string name="enable_leak_canary_summary">La surveillance des fuites de mémoire peut geler l’application durant le vidage du tas</string>
@@ -889,4 +889,6 @@
     <string name="api23_requirement_dialog_title">NewPipe ne prendra plus en charge Android 5</string>
     <string name="api23_requirement_dialog_message">Malheureusement, NewPipe dépend de certaines bibliothèques qui ne prennent plus en charge Android 5.0 et 5.1. La prochaine version de NewPipe ne fonctionnera donc, à notre grand regret, que sur les appareils équipés d\'Android 6 ou d\'une version ultérieure. Pour en savoir plus, consultez l\'article de blog.</string>
     <string name="api23_requirement_dialog_blogpost">Article de blog</string>
+    <string name="channel_tab_podcasts">Podcasts</string>
+    <string name="channel_tab_courses">Cours</string>
 </resources>

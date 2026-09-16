@@ -46,7 +46,7 @@
     <string name="content_not_available">Contenuto non disponibile</string>
     <string name="parsing_error">Impossibile analizzare il sito web</string>
     <string name="could_not_setup_download_menu">Impossibile impostare il menu di download</string>
-    <string name="content">Contenuti</string>
+    <string name="content">Contenuto</string>
     <string name="show_age_restricted_content_title">Mostra contenuti con restrizioni di età</string>
     <string name="main_bg_subtitle">Tocca la lente d\'ingrandimento per iniziare.</string>
     <string name="duration_live">In diretta</string>
@@ -125,7 +125,7 @@
     <string name="enable_watch_history_summary">Salva la cronologia degli elementi visualizzati</string>
     <string name="resume_on_audio_focus_gain_title">Riprendi la riproduzione</string>
     <string name="resume_on_audio_focus_gain_summary">Continua a riprodurre dopo le interruzioni (es. telefonate)</string>
-    <string name="settings_category_downloads_title">Download</string>
+    <string name="settings_category_downloads_title">Scaricamenti</string>
     <string name="settings_file_charset_title">Caratteri ammessi per i nomi dei file</string>
     <string name="settings_file_replacement_character_summary">I caratteri non validi vengono sostituiti con il valore specificato</string>
     <string name="settings_file_replacement_character_title">Carattere sostitutivo</string>

@@ -27,4 +27,15 @@
     <string name="open_in_browser">以瀏覽器開啟</string>
     <string name="done">完成</string>
     <string name="not_available">不可用</string>
+    <string name="settings">設定</string>
+    <string name="search">搜尋</string>
+    <string name="content">內容</string>
+    <string name="notifications">通知</string>
+    <string name="settings_category_video_audio_title">影片與音訊</string>
+    <string name="settings_category_downloads_title">下載</string>
+    <string name="settings_category_appearance_title">外觀</string>
+    <string name="settings_category_history_title">歷史紀錄與快取</string>
+    <string name="settings_category_updates_title">更新</string>
+    <string name="settings_category_backup_restore_title">備份與還原</string>
+    <string name="settings_category_debug_title">除錯</string>
 </resources>
