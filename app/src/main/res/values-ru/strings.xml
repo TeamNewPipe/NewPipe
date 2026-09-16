@@ -130,7 +130,7 @@
     <string name="resume_on_audio_focus_gain_summary">Возобновлять воспроизведение после перерывов (например, телефонных звонков)</string>
     <string name="notification_channel_name">Уведомление NewPipe</string>
     <string name="notification_channel_description">Уведомления для плеера NewPipe</string>
-    <string name="settings_category_downloads_title">Загрузки</string>
+    <string name="settings_category_downloads_title">Скачать</string>
     <string name="settings_file_charset_title">Допустимые символы имён файлов</string>
     <string name="settings_file_replacement_character_summary">Заменяет недопустимые символы</string>&gt;
     <string name="settings_file_replacement_character_title">Символ для замены</string>
@@ -713,9 +713,9 @@
     <string name="select_quality_external_players">Выберите качество для внешних плееров</string>
     <string name="unknown_quality">Неизвестное качество</string>
     <string name="progressive_load_interval_title">Размер интервала загрузки при воспроизведении</string>
-    <string name="faq_title">Ответы на частые вопросы</string>
-    <string name="faq_description">Если у вас возникли проблемы с использованием приложения, обязательно ознакомьтесь с ответами на распространённые вопросы!</string>
-    <string name="faq">Посмотреть на веб-сайте</string>
+    <string name="faq_title">Часто задаваемые вопросы</string>
+    <string name="faq_description">Если у вас есть проблемы с использованием приложения, проверьте ответы на часто задаваемые вопросы!</string>
+    <string name="faq">Посмотреть на сайте</string>
     <string name="sort">Сортировка</string>
     <string name="app_update_unavailable_toast">У вас последняя версия</string>
     <string name="fast_mode">Быстрый режим</string>

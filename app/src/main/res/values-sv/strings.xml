@@ -47,7 +47,7 @@
     <string name="show_next_and_similar_title">Visa ”Nästa” och ”Liknande videor”</string>
     <string name="unsupported_url">URL:en stöds inte</string>
     <string name="content_language_title">Standardinnehållsspråk</string>
-    <string name="settings_category_video_audio_title">Video och ljud</string>
+    <string name="settings_category_video_audio_title">Ljud och bild</string>
     <string name="settings_category_appearance_title">Utseende</string>
     <string name="background_player_playing_toast">Spelar upp i bakgrunden</string>
     <string name="popup_playing_toast">Spelar upp i popup-läge</string>
@@ -94,7 +94,7 @@
     <string name="show_hold_to_append_summary">Visa ett tips när du trycker på knappen för bakgrunds- eller popupuppspelning på videons detaljsida</string>
     <string name="settings_category_player_title">Spelare</string>
     <string name="settings_category_player_behavior_title">Beteende</string>
-    <string name="settings_category_history_title">Historik och cacheminne</string>
+    <string name="settings_category_history_title">Historik och cache</string>
     <string name="undo">Ångra</string>
     <string name="play_all">Spela alla</string>
     <string name="notification_channel_name">NewPipe-avisering</string>
@@ -196,7 +196,7 @@
     <string name="metadata_cache_wipe_title">Rensa metadatacachen</string>
     <string name="no_player_found_toast">Ingen extern spelare hittades. Du kan installera VLC för att spela upp innehållet.</string>
     <string name="controls_download_desc">Hämta strömmen</string>
-    <string name="use_inexact_seek_summary">Ungefärlig spolning går snabbare men är mindre exakt. Hopp på 5, 15 eller 25 sekunder fungerar inte när alternativet är aktiverat.</string>
+    <string name="use_inexact_seek_summary">Ungefärlig spolning går snabbare men är mindre exakt. Hopp på 5, 15 eller 25 sekunder fungerar inte när alternativet är aktiverat</string>
     <string name="metadata_cache_wipe_summary">Ta bort all cachelagrad metadata</string>
     <string name="metadata_cache_wipe_complete_notice">Metadatacachen har rensats</string>
     <string name="auto_queue_title">Köa nästa ström automatiskt</string>
@@ -315,7 +315,7 @@
     <string name="app_update_notification_channel_name">Avisering för appuppdatering</string>
     <string name="app_update_notification_channel_description">Aviseringar för nya NewPipe-versioner</string>
     <string name="download_to_sdcard_error_title">Extern lagring otillgänglig</string>
-    <string name="saved_tabs_invalid_json">Det gick inte att läsa in de sparade flikarna. Standardflikarna används.</string>
+    <string name="saved_tabs_invalid_json">Det gick inte att läsa in de sparade flikarna, så standardflikarna används</string>
     <string name="restore_defaults">Återställ standardvärden</string>
     <string name="restore_defaults_confirmation">Vill du återställa standardvärdena?</string>
     <string name="subscribers_count_not_available">Antalet prenumeranter är otillgängligt</string>
@@ -532,7 +532,7 @@
     <string name="show_meta_info_title">Visa metainformation</string>
     <string name="show_thumbnail_summary">Använd miniatyrbild som bakgrund till både låsskärm och aviseringar</string>
     <string name="notification_actions_summary">Redigera varje aviseringsåtgärd nedan genom att trycka på den. Välj upp till tre av dem som ska visas i den kompakta aviseringen genom att använda kryssrutorna till höger.</string>
-    <string name="notification_colorize_summary">Låt Android färglägga varje avisering utifrån miniatyrbildens huvudsakliga färg. Funktionen finns inte på alla enheter.</string>
+    <string name="notification_colorize_summary">Låt Android färglägga varje avisering utifrån miniatyrbildens huvudsakliga färg (funktionen finns inte på alla enheter)</string>
     <string name="notification_colorize_title">Färglägg avisering</string>
     <string name="notification_actions_at_most_three">Du kan som mest välja tre åtgärder att visa i den kompakta aviseringen!</string>
     <string name="recaptcha_solve">Lös</string>
@@ -564,7 +564,7 @@
     <string name="feed_load_error_terminated">Innehållsskaparens konto har avslutats. \nNewPipe kommer inte längre att kunna läsa in flödet. \nVill du avsluta prenumerationen på kanalen?</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Du kommer att tillfrågas var varje hämtning ska sparas</string>
     <string name="show_channel_details">Visa kanaldetaljer</string>
-    <string name="no_dir_yet">Ingen hämtningsmapp har angetts. Välj en standardmapp för hämtningar.</string>
+    <string name="no_dir_yet">Ingen hämtningsmapp har angetts än; välj en standardmapp för hämtningar nu</string>
     <string name="msg_calculating_hash">Beräknar hash</string>
     <string name="dont_show">Visa inte</string>
     <string name="low_quality_smaller">Låg kvalitet (mindre)</string>
@@ -619,8 +619,8 @@
     <string name="show_crash_the_player_summary">Visar ett kraschalternativ vid användning av spelaren</string>
     <string name="error_report_channel_name">Aviseringar om felrapporter</string>
     <string name="error_report_channel_description">Aviseringar för rapportering av fel</string>
-    <string name="error_report_notification_title">NewPipe stötte på ett fel. Tryck för att rapportera det.</string>
-    <string name="error_report_notification_toast">Ett fel inträffade. Se aviseringen.</string>
+    <string name="error_report_notification_title">NewPipe stötte på ett fel; tryck för att rapportera det</string>
+    <string name="error_report_notification_toast">Ett fel inträffade; se aviseringen</string>
     <string name="show_error_snackbar">Visa ett tillfälligt felmeddelande</string>
     <string name="create_error_notification">Skapa en felavisering</string>
     <string name="no_appropriate_file_manager_message">Ingen lämplig filhanterare hittades för åtgärden. \nInstallera en filhanterare eller prova att inaktivera \'%s\' i hämtningsinställningarna</string>
@@ -629,7 +629,7 @@
     <string name="detail_pinned_comment_view_description">Fäst kommentar</string>
     <string name="leak_canary_not_available">LeakCanary är inte tillgänglig</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer-standard</string>
-    <string name="progressive_load_interval_summary">Ändra storleken på inläsningsintervallet för progressivt innehåll (för närvarande %s). Ett lägre värde kan påskynda den första inläsningen.</string>
+    <string name="progressive_load_interval_summary">Ändra storleken på inläsningsintervallet för progressivt innehåll (för närvarande %s). Ett lägre värde kan påskynda den första inläsningen</string>
     <string name="streams_notifications_interval_title">Uppdateringsintervall</string>
     <string name="streams_notifications_network_title">Nödvändig nätverksanslutning</string>
     <string name="any_network">Alla nätverk</string>
@@ -662,7 +662,7 @@
     <string name="progressive_load_interval_title">Storlek på inläsningsintervall</string>
     <string name="select_quality_external_players">Välj kvalitet för externa spelare</string>
     <string name="selected_stream_external_player_not_supported">Den valda videoströmmen stöds inte av externa spelare</string>
-    <string name="faq_description">Läs svaren på vanliga frågor om du har problem med att använda appen.</string>
+    <string name="faq_description">Om du har problem med att använda appen, läs då svaren på de här vanliga frågorna!</string>
     <string name="faq_title">Vanliga frågor</string>
     <string name="faq">Visa på webbplatsen</string>
     <string name="sort">Sortera</string>
@@ -769,7 +769,7 @@
     <string name="notification_actions_summary_android13">Redigera aviseringsåtgärderna genom att trycka på dem. De tre första åtgärderna – spela/pausa, föregående och nästa – bestäms av systemet och kan inte ändras.</string>
     <string name="error_insufficient_storage">Inte tillräckligt med ledigt utrymme på enheten</string>
     <string name="no">Nej</string>
-    <string name="settings_category_backup_restore_title">Säkerhetskopiering och återställning</string>
+    <string name="settings_category_backup_restore_title">Säkerhetskopiera och återställ</string>
     <string name="yes">Ja</string>
     <string name="auto_update_check_description">NewPipe kan automatiskt söka efter nya versioner då och då och meddela dig när de är tillgängliga. \nVill du aktivera det?</string>
     <string name="reset_settings_title">Återställ inställningar</string>
@@ -791,7 +791,7 @@
     <string name="migration_info_6_7_title">SoundCloud Topp 50-sida borttagen</string>
     <string name="migration_info_6_7_message">SoundCloud har lagt ner de ursprungliga topp 50-listorna. Motsvarande flik har tagits bort från din startsida.</string>
     <string name="migration_info_7_8_title">YouTubes kombinerade trender har tagits bort</string>
-    <string name="migration_info_7_8_message">YouTube tog bort den kombinerade trendsidan den 21 juli 2025. NewPipe ersatte standardtrendsidan med populära direktsändningar. \nDu kan välja andra trendsidor under ”Inställningar &gt; Innehåll &gt; Innehåll på huvudsidan”.</string>
+    <string name="migration_info_7_8_message">YouTube tog bort den kombinerade trendsidan den 21 juli 2025. NewPipe ersatte standardtrendsidan med populära direktsändningar.\n\nDu kan välja andra trendsidor under ”Inställningar &gt; Innehåll &gt; Innehåll på huvudsidan”.</string>
     <string name="trending_gaming">Speltrender</string>
     <string name="trending_podcasts">Populära poddar</string>
     <string name="trending_movies">Populära filmer och serier</string>
@@ -806,7 +806,7 @@
     <string name="player_http_invalid_status">Servern svarade med HTTP-fel %1$s under uppspelningen</string>
     <string name="youtube_player_http_403">Servern svarade med HTTP-fel 403 under uppspelningen, troligen på grund av en IP-blockering eller problem med avobfuskering av strömnings-URL:er</string>
     <string name="sign_in_confirm_not_bot_error">%1$s vägrade att lämna ut uppgifter och krävde inloggning för att bekräfta att begäran inte kommer från en robot.\n\nDin IP-adress kan ha blockerats tillfälligt av %1$s. Vänta en stund eller byt IP-adress, till exempel genom att slå av och på en VPN-anslutning eller växla mellan Wi-Fi och mobildata.\n\nLäs <a href="%2$s">avsnittet i vanliga frågor</a> för mer information.</string>
-    <string name="unsupported_content_in_country">Innehållet är inte tillgängligt i det valda innehållslandet. \nÄndra valet under ”Inställningar &gt; Innehåll &gt; Standardinnehållsland”.</string>
+    <string name="unsupported_content_in_country">Innehållet är inte tillgängligt i det valda innehållslandet.\n\nÄndra valet under ”Inställningar &gt; Innehåll &gt; Standardinnehållsland”.</string>
     <string name="kao_dialog_warning">I augusti 2025 meddelade Google att från och med september 2026 kommer installation av appar att kräva utvecklarverifiering för alla Android-appar på certifierade enheter, inklusive de som installerats utanför Play Store. Eftersom utvecklarna av NewPipe inte godkänner detta krav kommer NewPipe inte längre att fungera på certifierade Android-enheter efter den tiden.</string>
     <string name="kao_dialog_more_info">Detaljer</string>
     <string name="kao_solution">Lösning</string>
@@ -830,4 +830,6 @@
     <string name="api23_requirement_dialog_title">NewPipe upphör med stödet för Android 5</string>
     <string name="api23_requirement_dialog_message">Tyvärr är NewPipe beroende av ett fåtal bibliotek som slutat stödja Android 5.0 och 5.1. Nästa NewPipe-utgåva kommer därför tyvärr bara att fungera på enheter med Android 6 eller senare. Läs mer i blogginlägget.</string>
     <string name="api23_requirement_dialog_blogpost">Blogginlägg</string>
+    <string name="channel_tab_podcasts">Podcasts</string>
+    <string name="channel_tab_courses">Kurser</string>
 </resources>

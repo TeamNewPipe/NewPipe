@@ -833,4 +833,6 @@
     <string name="api23_requirement_dialog_title">NewPipe 即將停止支援 Android 5</string>
     <string name="api23_requirement_dialog_blogpost">部落格文章</string>
     <string name="api23_requirement_dialog_message">不幸的是，NewPipe 依賴的一些函式庫已停止支援 Android 5.0 和 5.1。因此，下一個版本的 NewPipe 將只能在 Android 6 或更高版本的裝置上運作，非常遺憾。更多資訊請參閱部落格文章。</string>
+    <string name="channel_tab_podcasts">Podcast</string>
+    <string name="channel_tab_courses">課程</string>
 </resources>
