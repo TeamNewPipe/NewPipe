@@ -147,12 +147,12 @@
     <string name="charset_letters_and_digits">Litere și cifre</string>
     <string name="charset_most_special_characters">Caractere speciale</string>
     <string name="title_activity_about">Despre NewPipe</string>
-    <string name="title_licenses">Licențe terți</string>
+    <string name="title_licenses">Licențe terță-parte</string>
     <string name="copyright" formatted="true">© %1$s de %2$s sub %3$s</string>
     <string name="tab_about">Despre &amp; Întrebări Comune</string>
     <string name="tab_licenses">Licențe</string>
     <string name="app_description">Streaming sursă-liberă pentru Android.</string>
-    <string name="view_on_github">Vezi în GitHub</string>
+    <string name="view_on_github">Vezi pe GitHub</string>
     <string name="app_license_title">Licența a NewPipe</string>
     <string name="contribution_encouragement">Când îți vine idea de; traduceri, schimbări de design, curățare cod sau schimbări reale de cod - Ajutorul este mereu binevenit. Cu cât mai mult, cu cât mai bine!</string>
     <string name="read_full_license">Citește licența</string>
@@ -213,7 +213,7 @@
     <string name="donation_encouragement">NewPipe este creat de voluntari ce își oferă timpul lor liber pentru ați oferi cea mai bună experiență. Oferă înapoi creatorilor pentru a face aplicația și mai bună.</string>
     <string name="give_back">Oferă Înapoi</string>
     <string name="website_title">Site Web</string>
-    <string name="website_encouragement">Vizitează Site-ul NewPipe pentru mai multe informații și știri.</string>
+    <string name="website_encouragement">Vizitează site-ul NewPipe pentru mai multe informații si noutăți.</string>
     <string name="title_last_played">Ultimele vizionări</string>
     <string name="title_most_played">Cele mai multe vizionări</string>
     <string name="export_complete_toast">Exportat</string>
@@ -869,4 +869,6 @@
     <string name="api23_requirement_dialog_title">NewPipe nu va mai fi compatibil cu Android 5</string>
     <string name="api23_requirement_dialog_blogpost">Postare blog</string>
     <string name="api23_requirement_dialog_message">Din păcate, NewPipe depinde de câteva biblioteci care nu mai sunt compatibile cu Android 5.0 și 5.1. Prin urmare, următoarea versiune a NewPipe va funcționa doar pe dispozitive cu Android 6 sau o versiune ulterioară. Aflați mai multe în articolul de pe blog.</string>
+    <string name="channel_tab_podcasts">Podcasturi</string>
+    <string name="channel_tab_courses">Cursuri</string>
 </resources>

@@ -149,7 +149,7 @@
     <string name="tab_licenses">Ліцензії</string>
     <string name="contribution_title">Зробіть внесок</string>
     <string name="view_on_github">Переглянути на GitHub</string>
-    <string name="donation_title">Пожертвувати</string>
+    <string name="donation_title">Підтримати</string>
     <string name="website_title">Вебсайт</string>
     <string name="title_activity_history">Історія</string>
     <string name="export_complete_toast">Експортовано</string>
@@ -854,7 +854,7 @@
     <string name="short_thousand">%sтис</string>
     <string name="short_million">%sмлн</string>
     <string name="short_billion">%sмлрд</string>
-    <string name="permission_display_over_apps_message">Щоб використовувати спливаючий програвач, виберіть %1$s у наступному меню налаштувань Android та увімкніть %2$s.</string>
+    <string name="permission_display_over_apps_message">Щоб використовувати спливний програвач, виберіть %1$s у наступному меню налаштувань Android та ввімкніть %2$s.</string>
     <string name="permission_display_over_apps_permission_name">“Дозволити показ поверх інших програм”</string>
     <string name="delete_file">Видалити файл</string>
     <string name="delete_entry">Видалити запис</string>
@@ -864,7 +864,7 @@
     <string name="player_http_invalid_status">Помилка HTTP %1$s отримана від сервера під час відтворення</string>
     <string name="youtube_player_http_403">Під час відтворення від сервера отримано помилку HTTP 403, ймовірно, через заборону IP-адреси або проблеми з деобфускацією URL-адреси потокової передачі</string>
     <string name="sign_in_confirm_not_bot_error">%1$s відмовляється надати дані та запитує пароль для підтвердження, що запитувач не бот.\n\n%1$s міг тимчасово заблокувати вашу IP-адресу. Ви можете почекати деякий час або перейти на іншу IP-адресу (наприклад, увімкнувши/вимкнувши VPN або перемкнувшись з Wi-Fi на мобільні дані).\n\nЩоб дізнатися докладніше, перегляньте <a href="%2$s">цю довідку</a>.</string>
-    <string name="unsupported_content_in_country">Цей контент недоступний для вибраної країни контенту.\n\nЗмініть свій вибір у розділі \"Налаштування &gt; Контент &gt; Країна контенту за замовчуванням\".</string>
+    <string name="unsupported_content_in_country">Ці матеріали недоступні для вибраної країни матеріалів.\n\nЗмініть свій вибір у розділі \"Налаштування &gt; Матеріали &gt; Типова країна матеріалів\".</string>
     <string name="kao_dialog_warning">У серпні 2025 року, Google анонсувала, що з вересня 2026 року, для встановлення застосунків буде потрібна верифікація розробника для всіх Android застосунків на сертифікованих пристроях, включаючи ті, що були встановлені не через Play Store. Оскільки розробники NewPipe не згодні з цією вимогою, NewPipe перестане працювати на сертифікованих Android пристроях після цієї дати.</string>
     <string name="kao_dialog_more_info">Детальніше</string>
     <string name="kao_solution">Вирішення</string>
@@ -894,4 +894,6 @@
     <string name="api23_requirement_dialog_title">NewPipe припиняє підтримку Android 5</string>
     <string name="api23_requirement_dialog_message">На жаль, NewPipe залежить від кількох бібліотек, які припинили підтримку Android 5.0 і 5.1. Тому наступна версія NewPipe працюватиме лише на пристроях з Android 6 або новішою версією. Докладніше читайте в дописі в блозі.</string>
     <string name="api23_requirement_dialog_blogpost">Допис у блозі</string>
+    <string name="channel_tab_podcasts">Подкасти</string>
+    <string name="channel_tab_courses">Курси</string>
 </resources>
