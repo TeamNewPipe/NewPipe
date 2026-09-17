@@ -1,5 +1,6 @@
 package us.shandian.giga.get;
 
+import android.content.Context;
 import android.os.Handler;
 import android.system.ErrnoException;
 import android.system.OsConstants;
@@ -17,6 +18,7 @@ import java.io.InterruptedIOException;
 import java.io.Serializable;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
+import java.net.Proxy;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.UnknownHostException;
@@ -25,6 +27,7 @@ import java.util.Objects;
 
 import javax.net.ssl.SSLException;
 
+import org.schabi.newpipe.util.ProxyManager;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import us.shandian.giga.postprocessing.Postprocessing;
 import us.shandian.giga.service.DownloadManagerService;
@@ -34,7 +37,7 @@ import static org.schabi.newpipe.BuildConfig.DEBUG;
 
 public class DownloadMission extends Mission {
     private static final long serialVersionUID = 6L;// last bump: 07 october 2019
-
+    private final Context context;
     static final int BUFFER_SIZE = 64 * 1024;
     static final int BLOCK_SIZE = 512 * 1024;
 
@@ -153,9 +156,10 @@ public class DownloadMission extends Mission {
     public transient Thread[] threads = new Thread[0];
     public transient Thread init = null;
 
-    public DownloadMission(String[] urls, StoredFileHelper storage, char kind, Postprocessing psInstance) {
+    public DownloadMission(final Context context, String[] urls, StoredFileHelper storage, char kind, Postprocessing psInstance) {
         if (Objects.requireNonNull(urls).length < 1)
             throw new IllegalArgumentException("urls array is empty");
+        this.context = context;
         this.urls = urls;
         this.kind = kind;
         this.offsets = new long[urls.length];
@@ -163,6 +167,7 @@ public class DownloadMission extends Mission {
         this.maxRetry = 3;
         this.storage = storage;
         this.psAlgorithm = psInstance;
+
 
         if (DEBUG && psInstance == null && urls.length > 1) {
             Log.w(TAG, "mission created with multiple urls ¿missing post-processing algorithm?");
@@ -219,7 +224,14 @@ public class DownloadMission extends Mission {
     }
 
     HttpURLConnection openConnection(String url, boolean headRequest, long rangeStart, long rangeEnd) throws IOException {
-        HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+        final ProxyManager proxyManager = new ProxyManager(context);
+        final Proxy proxy = proxyManager.getProxy();
+        final HttpURLConnection conn;
+        if (proxy != null) {
+            conn = (HttpURLConnection) new URL(url).openConnection(proxy);
+        } else {
+             conn = (HttpURLConnection) new URL(url).openConnection();
+        }
         conn.setInstanceFollowRedirects(true);
         conn.setRequestProperty("User-Agent", DownloaderImpl.USER_AGENT);
         conn.setRequestProperty("Accept", "*/*");
