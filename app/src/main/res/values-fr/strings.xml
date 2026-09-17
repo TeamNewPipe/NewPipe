@@ -106,6 +106,7 @@
     <string name="subscribed_button_title">Abonné</string>
     <string name="channel_unsubscribed">Désabonné de la chaîne</string>
     <string name="tab_subscriptions">Abonnements</string>
+    <string name="manage_subscriptions">Gérer les abonnements</string>
     <string name="settings_category_downloads_title">Téléchargement</string>
     <string name="title_licenses">Licences de tiers</string>
     <string name="tab_about">À propos &amp; FAQ</string>
@@ -330,6 +331,7 @@
     <string name="minimize_on_exit_background_description">Minimiser vers le lecteur en arrière-plan</string>
     <string name="minimize_on_exit_popup_description">Réduire vers le lecteur flottant</string>
     <string name="unsubscribe">Se désabonner</string>
+    <string name="unsubscribe_confirmation_selected">Se désabonner des %1$d chaînes sélectionnées \?</string>
     <string name="tab_choose">Sélectionner un onglet</string>
     <string name="settings_category_updates_title">Mises à jour</string>
     <string name="file_deleted">Fichier supprimé</string>

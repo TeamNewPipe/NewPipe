@@ -123,6 +123,7 @@
     <string name="subscribed_button_title">Abonniert</string>
     <string name="channel_unsubscribed">Kanal deabonniert</string>
     <string name="tab_subscriptions">Abonnements</string>
+    <string name="manage_subscriptions">Abonnements verwalten</string>
     <string name="fragment_feed_title">Neuigkeiten</string>
     <string name="enable_search_history_title">Suchverlauf</string>
     <string name="enable_search_history_summary">Suchanfragen lokal speichern</string>
@@ -327,6 +328,7 @@
     <string name="tracks">Titel</string>
     <string name="users">Benutzer</string>
     <string name="unsubscribe">Deabonnieren</string>
+    <string name="unsubscribe_confirmation_selected">Von %1$d ausgewählten Kanälen abbestellen?</string>
     <string name="tab_choose">Tab wählen</string>
     <string name="settings_category_updates_title">Aktualisierungen</string>
     <string name="settings_category_player_notification_title">Wiedergabebenachrichtigung</string>
