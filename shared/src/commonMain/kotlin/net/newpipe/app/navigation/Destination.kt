@@ -16,8 +16,18 @@ import net.newpipe.app.model.License
 sealed interface Destination : NavKey {
 
     @Serializable
+    data object ExoPlayerSettings : Destination
+
+    @Serializable
+    data object VideoAudioSettings : Destination
+
+    @Serializable
+    data object AppearanceSettings : Destination
+
+    @Serializable
     data object Settings : Destination
 
     @Serializable
     data object About : Destination
 }
+
