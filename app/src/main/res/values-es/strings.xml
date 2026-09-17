@@ -118,6 +118,7 @@
     <string name="subscription_change_failed">No se puede cambiar la suscripción</string>
     <string name="subscription_update_failed">No se pudo actualizar la suscripción</string>
     <string name="tab_subscriptions">Suscripciones</string>
+    <string name="manage_subscriptions">Gestionar suscripciones</string>
     <string name="fragment_feed_title">Novedades</string>
     <string name="resume_on_audio_focus_gain_title">Reanudar reproducción</string>
     <string name="resume_on_audio_focus_gain_summary">Continuar reproduciendo después de las interrupciones (ej. llamadas telefónicas)</string>
@@ -377,6 +378,7 @@
     <string name="downloads_storage_use_saf_title">Usar Elegir carpetas del sistema (SAF)</string>
     <string name="downloads_storage_use_saf_summary">El \'Sistema de Acceso al Almacenamiento\' permite descargar en una tarjeta SD externa</string>
     <string name="unsubscribe">Desuscribirse</string>
+    <string name="unsubscribe_confirmation_selected">¿Cancelar suscripción de %1$d canales seleccionados?</string>
     <string name="tab_choose">Elija la pestaña</string>
     <string name="settings_category_updates_title">Actualizaciones</string>
     <string name="events">Eventos</string>
@@ -877,4 +879,6 @@
     <string name="api23_requirement_dialog_title">NewPipe dejará de soportar Android 5</string>
     <string name="api23_requirement_dialog_message">Desafortunadamente, NewPipe depende de algunas bibliotecas que dejaron de soportar Android 5.0 y 5.1. La próxima versión de NewPipe sólo funcionará en dispositivos con Android 6 o superior, tristemente. Lea más en el artículo de nuestro blog.</string>
     <string name="api23_requirement_dialog_blogpost">Artículo</string>
+    <string name="channel_tab_podcasts">Podcasts</string>
+    <string name="channel_tab_courses">Cursos</string>
 </resources>

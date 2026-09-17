@@ -116,6 +116,7 @@
     <string name="subscription_change_failed">Не удалось изменить подписку</string>
     <string name="subscription_update_failed">Не удалось обновить подписку</string>
     <string name="tab_subscriptions">Подписки</string>
+    <string name="manage_subscriptions">Управление подписками</string>
     <string name="fragment_feed_title">Что нового</string>
     <string name="enable_search_history_title">История поиска</string>
     <string name="enable_search_history_summary">Хранить запросы поиска (локально)</string>
@@ -353,6 +354,7 @@
     <string name="subscribers_count_not_available">Количество подписчиков недоступно</string>
     <string name="tab_choose">Выберите вкладку</string>
     <string name="unsubscribe">Отписаться</string>
+    <string name="unsubscribe_confirmation_selected">Отписаться от %1$d выбранных каналов?</string>
     <string name="settings_category_updates_title">Обновления</string>
     <string name="file_deleted">Файл удалён</string>
     <string name="app_update_notification_channel_name">Уведомление об обновлении приложения</string>
@@ -895,4 +897,6 @@
     <string name="api23_requirement_dialog_title">NewPipe прекращает поддержку Android 5</string>
     <string name="api23_requirement_dialog_message">К сожалению, NewPipe зависит от нескольких библиотек, которые прекратили поддерживать Android 5.0 и 5.1. Таким образом, к сожалению следующий выпуск NewPipe будет работать только на устройствах с Android 6 или выше. Подробности в посте в блоге.</string>
     <string name="api23_requirement_dialog_blogpost">Пост в блоге</string>
+    <string name="channel_tab_podcasts">Подкасты</string>
+    <string name="channel_tab_courses">Курсы</string>
 </resources>

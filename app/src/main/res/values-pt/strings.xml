@@ -118,6 +118,7 @@
     <string name="subscription_change_failed">Não foi possível alterar a subscrição</string>
     <string name="subscription_update_failed">Não foi possível atualizar a subscrição</string>
     <string name="tab_subscriptions">Subscrições</string>
+    <string name="manage_subscriptions">Gerenciar subscrições</string>
     <string name="fragment_feed_title">Novidades</string>
     <string name="enable_search_history_title">Pesquisar histórico</string>
     <string name="enable_search_history_summary">Guardar termos de pesquisa localmente</string>
@@ -330,6 +331,7 @@
     <string name="minimize_on_exit_background_description">Ativar reprodutor em segundo plano</string>
     <string name="minimize_on_exit_popup_description">Ativar reprodutor \'popup\'</string>
     <string name="unsubscribe">Cancelar subscrição</string>
+    <string name="unsubscribe_confirmation_selected">Cancelar subscrição de %1$d canais selecionados?</string>
     <string name="tab_choose">Escolher separador</string>
     <string name="settings_category_updates_title">Atualizações</string>
     <string name="file_deleted">Ficheiro eliminado</string>
@@ -886,4 +888,6 @@
     <string name="api23_requirement_dialog_title">O NewPipe deixará de apoiar o Android 5</string>
     <string name="api23_requirement_dialog_message">Infelizmente, o NewPipe depende de algumas bibliotecas que terminaram apoio para o Android 5.0 e 5.1. Por isso, a próxima versão do NewPipe só funcionará em dispositivos com Android 6 ou superior, infelizmente. Saiba mais na publicação do blog.</string>
     <string name="api23_requirement_dialog_blogpost">Postagem no blog</string>
+    <string name="channel_tab_podcasts">Podcasts</string>
+    <string name="channel_tab_courses">Cursos</string>
 </resources>

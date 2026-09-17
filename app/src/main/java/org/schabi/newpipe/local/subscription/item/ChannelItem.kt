@@ -15,7 +15,8 @@ class ChannelItem(
     private val infoItem: ChannelInfoItem,
     private val subscriptionId: Long = -1L,
     var itemVersion: ItemVersion = ItemVersion.NORMAL,
-    var gesturesListener: OnClickGesture<ChannelInfoItem>? = null
+    var gesturesListener: OnClickGesture<ChannelInfoItem>? = null,
+    val isSelected: Boolean = false
 ) : Item<GroupieViewHolder>() {
     override fun getId(): Long = if (subscriptionId == -1L) super.getId() else subscriptionId
 
@@ -40,6 +41,19 @@ class ChannelItem(
         }
 
         CoilHelper.loadAvatar(itemThumbnailView, infoItem.thumbnails)
+
+        if (isSelected) {
+            val ctx = viewHolder.root.context
+            val drawable = androidx.core.content.ContextCompat
+                .getDrawable(ctx, R.drawable.ic_done)?.mutate()
+            drawable?.let {
+                androidx.core.graphics.drawable.DrawableCompat
+                    .setTint(it, android.graphics.Color.WHITE)
+            }
+            itemThumbnailView.foreground = drawable
+        } else {
+            itemThumbnailView.foreground = null
+        }
 
         gesturesListener?.run {
             viewHolder.root.setOnClickListener { selected(infoItem) }
