@@ -159,6 +159,8 @@
     <string name="settings_category_player_notification_title">Player notification</string>
     <string name="settings_category_player_notification_summary">Configure current playing stream notification</string>
     <string name="settings_category_backup_restore_title">Backup and restore</string>
+    <string name="settings_category_network_title">Network</string>
+
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="content">Content</string>
@@ -578,6 +580,9 @@
     <string name="streams_notifications_interval_title">Checking frequency</string>
     <string name="streams_notifications_network_title">Required network connection</string>
     <string name="any_network">Any network</string>
+    <string name="ipv4_only_title">IPv4 only</string>
+    <string name="ipv4_only_summary">Disable IPv6 for network requests. May help if you encounter reCAPTCHAs or connection issues on some networks.</string>
+
     <!-- Updates Settings -->
     <string name="updates_setting_title">Updates</string>
     <string name="updates_setting_description">Show a notification to prompt app update when a new version is available</string>

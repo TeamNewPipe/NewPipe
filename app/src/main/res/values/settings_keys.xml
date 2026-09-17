@@ -1506,6 +1506,9 @@
     <string name="use_exoplayer_decoder_fallback_key">use_exoplayer_decoder_fallback_key</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_key">always_use_exoplayer_set_output_surface_workaround_key</string>
 
+    <string name="ipv4_only_key">ipv4_only</string>
+
+
     <!-- Image quality -->
     <string name="image_quality_key">image_quality_key</string>
     <string name="image_quality_none_key">image_quality_none</string>
