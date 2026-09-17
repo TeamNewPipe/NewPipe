@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import net.newpipe.app.composable.PreferenceRow
 import net.newpipe.app.composable.TopAppBar
+import net.newpipe.app.navigation.Destination
 import net.newpipe.app.navigation.Navigator
 import net.newpipe.app.preview.ThemePreviewProvider
 import net.newpipe.app.screen.settings.model.SettingsCategory
@@ -49,8 +50,16 @@ fun SettingsHomeScreen(
             SettingsCategory(
                 title = type.title,
                 icon = type.icon,
-                // TODO: Replace with a Destination once sub-screens are migrated
-                onClick = {}
+                onClick = {
+                    when (type) {
+                        SettingsCategoryType.APPEARANCE -> navigator.navigateTo(Destination.AppearanceSettings)
+
+                        SettingsCategoryType.VIDEO_AUDIO -> navigator.navigateTo(Destination.VideoAudioSettings)
+
+                        // TODO: wire remaining sub-screens as they are migrated
+                        else -> Unit
+                    }
+                }
             )
         },
         onNavigateUp = { navigator.navigateUp() }
