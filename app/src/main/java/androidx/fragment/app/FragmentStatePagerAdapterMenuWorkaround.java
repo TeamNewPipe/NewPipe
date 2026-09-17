@@ -323,7 +323,13 @@ public abstract class FragmentStatePagerAdapterMenuWorkaround extends PagerAdapt
             for (final String key : keys) {
                 if (key.startsWith("f")) {
                     final int index = Integer.parseInt(key.substring(1));
-                    final Fragment f = mFragmentManager.getFragment(bundle, key);
+                    final Fragment f;
+                    try {
+                        f = mFragmentManager.getFragment(bundle, key);
+                    } catch (final IllegalStateException e) {
+                        Log.w(TAG, "Bad fragment at key " + key, e);
+                        continue;
+                    }
                     if (f != null) {
                         while (mFragments.size() <= index) {
                             mFragments.add(null);
