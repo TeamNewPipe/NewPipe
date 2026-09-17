@@ -30,9 +30,12 @@ import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
 import static com.google.android.exoplayer2.Player.RepeatMode;
 import static org.schabi.newpipe.extractor.ServiceList.YouTube;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
+import static org.schabi.newpipe.player.helper.PlayerHelper.retrieveAutoVolumeBoostFromPrefs;
 import static org.schabi.newpipe.player.helper.PlayerHelper.retrievePlaybackParametersFromPrefs;
 import static org.schabi.newpipe.player.helper.PlayerHelper.retrieveSeekDurationFromPreferences;
+import static org.schabi.newpipe.player.helper.PlayerHelper.retrieveVolumeBoostFromPrefs;
 import static org.schabi.newpipe.player.helper.PlayerHelper.savePlaybackParametersToPrefs;
+import static org.schabi.newpipe.player.helper.PlayerHelper.saveVolumeBoostToPrefs;
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_CLOSE;
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_FAST_FORWARD;
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_FAST_REWIND;
@@ -67,7 +70,6 @@ import androidx.core.math.MathUtils;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.exoplayer2.C;
-import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
@@ -102,6 +104,7 @@ import org.schabi.newpipe.player.helper.CustomRenderersFactory;
 import org.schabi.newpipe.player.helper.LoadController;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
+import org.schabi.newpipe.player.helper.VolumeBoostRenderersFactory;
 import org.schabi.newpipe.player.mediaitem.MediaItemTag;
 import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
 import org.schabi.newpipe.player.notification.NotificationPlayerUi;
@@ -214,7 +217,7 @@ public final class Player implements PlaybackListener, Listener {
     @NonNull
     private final LoadController loadController;
     @NonNull
-    private final DefaultRenderersFactory renderFactory;
+    private final VolumeBoostRenderersFactory renderFactory;
 
     @NonNull
     private final VideoPlaybackResolver videoResolver;
@@ -299,7 +302,8 @@ public final class Player implements PlaybackListener, Listener {
         renderFactory = prefs.getBoolean(
                 context.getString(
                         R.string.always_use_exoplayer_set_output_surface_workaround_key), false)
-                ? new CustomRenderersFactory(context) : new DefaultRenderersFactory(context);
+                ? new CustomRenderersFactory(context)
+                : new VolumeBoostRenderersFactory(context);
 
         renderFactory.setEnableDecoderFallback(
                 prefs.getBoolean(
@@ -607,6 +611,8 @@ public final class Player implements PlaybackListener, Listener {
                 R.string.playback_skip_silence_key), getPlaybackSkipSilence());
         final PlaybackParameters savedParameters = retrievePlaybackParametersFromPrefs(this);
         setPlaybackParameters(savedParameters.speed, savedParameters.pitch, playbackSkipSilence);
+        setVolumeBoost(retrieveVolumeBoostFromPrefs(this),
+                retrieveAutoVolumeBoostFromPrefs(this));
 
         playQueue = queue;
         playQueue.init();
@@ -964,6 +970,32 @@ public final class Player implements PlaybackListener, Listener {
 
     public boolean getPlaybackSkipSilence() {
         return !exoPlayerIsNull() && simpleExoPlayer.getSkipSilenceEnabled();
+    }
+
+    public float getVolumeBoost() {
+        return renderFactory.getVolumeBoost();
+    }
+
+    public boolean isAutoVolumeBoostEnabled() {
+        return renderFactory.isAutomaticVolumeBoost();
+    }
+
+    /**
+     * Sets how much the decoded audio should be amplified, and also saves it to shared
+     * preferences. The gain is rounded up to 2 decimal places before being used or saved.
+     *
+     * @param volumeBoost     the gain to apply when {@code autoVolumeBoost} is disabled, where 1
+     *                        means no amplification at all
+     * @param autoVolumeBoost whether the gain should instead be computed in real time from the
+     *                        loudness of the stream being played
+     */
+    public void setVolumeBoost(final float volumeBoost, final boolean autoVolumeBoost) {
+        final float roundedVolumeBoost = Math.round(volumeBoost * 100.0f) / 100.0f;
+
+        saveVolumeBoostToPrefs(this, roundedVolumeBoost, autoVolumeBoost);
+        renderFactory.setVolumeBoost(roundedVolumeBoost);
+        renderFactory.setAutomaticVolumeBoost(autoVolumeBoost);
+        UIs.call(PlayerUi::onVolumeBoostChanged);
     }
 
     public PlaybackParameters getPlaybackParameters() {
