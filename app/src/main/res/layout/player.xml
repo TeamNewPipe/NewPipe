@@ -416,6 +416,23 @@
                     android:paddingBottom="12dp">
 
                     <org.schabi.newpipe.views.NewPipeTextView
+                        android:id="@+id/currentChapterTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#60000000"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="2dp"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp"
+                        android:visibility="gone"
+                        tools:ignore="RtlHardcoded"
+                        tools:text="Introduction"
+                        tools:visibility="visible" />
+
+                    <org.schabi.newpipe.views.NewPipeTextView
                         android:id="@+id/currentDisplaySeek"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -467,7 +484,7 @@
                     tools:text="1:06:29" />
 
 
-                <org.schabi.newpipe.views.FocusAwareSeekBar
+                <org.schabi.newpipe.views.ChaptersSeekBar
                     android:id="@+id/playbackSeekBar"
                     style="@style/Widget.AppCompat.SeekBar"
                     android:layout_width="0dp"
