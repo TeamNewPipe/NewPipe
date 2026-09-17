@@ -69,7 +69,7 @@ public class StatisticsPlaylistFragment
         final Comparator<StreamStatisticsEntry> comparator;
         switch (sortMode) {
             case LAST_PLAYED:
-                comparator = Comparator.comparing(StreamStatisticsEntry::getLatestAccessDate);
+                comparator = Comparator.comparing(StreamStatisticsEntry::getLatestAccessInstant);
                 break;
             case MOST_PLAYED:
                 comparator = Comparator.comparingLong(StreamStatisticsEntry::getWatchCount);

@@ -77,7 +77,7 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
             }
         }
 
-        final String uploadDate = Localization.relativeTimeOrTextual(itemBuilder.getContext(),
+        final String uploadDate = Localization.formatRelativeTimeOrTextual(itemBuilder.getContext(),
                 infoItem.getUploadDate(),
                 infoItem.getTextualUploadDate());
         if (!TextUtils.isEmpty(uploadDate)) {

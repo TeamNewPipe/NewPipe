@@ -10,6 +10,7 @@ import android.content.Context
 import androidx.room.Room.databaseBuilder
 import kotlin.concurrent.Volatile
 import org.schabi.newpipe.database.AppDatabase
+import org.schabi.newpipe.database.AppDatabase_AutoMigration_9_10_Impl
 import org.schabi.newpipe.database.Migrations.MIGRATION_1_2
 import org.schabi.newpipe.database.Migrations.MIGRATION_2_3
 import org.schabi.newpipe.database.Migrations.MIGRATION_3_4
@@ -28,7 +29,7 @@ object NewPipeDatabase {
         return databaseBuilder(
             context.applicationContext,
             AppDatabase::class.java,
-            AppDatabase.Companion.DATABASE_NAME
+            AppDatabase.DATABASE_NAME
         ).addMigrations(
             MIGRATION_1_2,
             MIGRATION_2_3,
@@ -37,7 +38,8 @@ object NewPipeDatabase {
             MIGRATION_5_6,
             MIGRATION_6_7,
             MIGRATION_7_8,
-            MIGRATION_8_9
+            MIGRATION_8_9,
+            AppDatabase_AutoMigration_9_10_Impl()
         ).build()
     }
 

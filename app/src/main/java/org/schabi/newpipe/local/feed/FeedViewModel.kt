@@ -14,7 +14,7 @@ import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.functions.Function6
 import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
-import java.time.OffsetDateTime
+import java.time.Instant
 import java.util.concurrent.TimeUnit
 import org.schabi.newpipe.App
 import org.schabi.newpipe.R
@@ -61,7 +61,7 @@ class FeedViewModel(
             showPlayedItemsFlowable,
             showPartiallyPlayedItemsFlowable,
             showFutureItemsFlowable,
-            feedDatabaseManager.notLoadedCount(groupId),
+            feedDatabaseManager.getNotLoadedCount(groupId),
             feedDatabaseManager.oldestSubscriptionUpdate(groupId),
 
             Function6 {
@@ -70,7 +70,7 @@ class FeedViewModel(
                     t3: Boolean,
                     t4: Boolean,
                     t5: Long,
-                    t6: List<OffsetDateTime?>
+                    t6: List<Instant?>
                 ->
                 return@Function6 CombineResultEventHolder(t1, t2, t3, t4, t5, t6.firstOrNull())
             }
@@ -116,14 +116,14 @@ class FeedViewModel(
         val t3: Boolean,
         val t4: Boolean,
         val t5: Long,
-        val t6: OffsetDateTime?
+        val t6: Instant?
     )
 
     private data class CombineResultDataHolder(
         val t1: FeedEventManager.Event,
         val t2: List<StreamWithState>,
         val t3: Long,
-        val t4: OffsetDateTime?
+        val t4: Instant?
     )
 
     fun setSaveShowPlayedItems(showPlayedItems: Boolean) {

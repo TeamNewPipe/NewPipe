@@ -905,4 +905,7 @@
     <string name="api23_requirement_dialog_title">NewPipe is dropping support for Android 5</string>
     <string name="api23_requirement_dialog_message">Unfortunately NewPipe depends on a few libraries that dropped support for Android 5.0 and 5.1. The next NewPipe release will therefore only work on devices with Android 6 or higher, sadly. Read more in the blogpost.</string>
     <string name="api23_requirement_dialog_blogpost">Blogpost</string>
+    <string name="history_detail_line">
+        {formatted_views} • {last_viewed_date, date, short} • {service_name}
+    </string>
 </resources>

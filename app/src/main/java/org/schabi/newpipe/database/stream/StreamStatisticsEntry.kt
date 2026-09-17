@@ -9,7 +9,7 @@ package org.schabi.newpipe.database.stream
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Ignore
-import java.time.OffsetDateTime
+import java.time.Instant
 import org.schabi.newpipe.database.LocalItem
 import org.schabi.newpipe.database.history.model.StreamHistoryEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity
@@ -28,7 +28,7 @@ data class StreamStatisticsEntry(
     val streamId: Long,
 
     @ColumnInfo(name = STREAM_LATEST_DATE)
-    val latestAccessDate: OffsetDateTime,
+    val latestAccessInstant: Instant,
 
     @ColumnInfo(name = STREAM_WATCH_COUNT)
     val watchCount: Long

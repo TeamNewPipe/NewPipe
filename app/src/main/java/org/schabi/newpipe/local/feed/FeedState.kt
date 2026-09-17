@@ -1,7 +1,7 @@
 package org.schabi.newpipe.local.feed
 
 import androidx.annotation.StringRes
-import java.time.OffsetDateTime
+import java.time.Instant
 import org.schabi.newpipe.local.feed.item.StreamItem
 
 sealed class FeedState {
@@ -13,7 +13,7 @@ sealed class FeedState {
 
     data class LoadedState(
         val items: List<StreamItem>,
-        val oldestUpdate: OffsetDateTime?,
+        val oldestUpdate: Instant?,
         val notLoadedCount: Long,
         val itemsErrors: List<Throwable>
     ) : FeedState()

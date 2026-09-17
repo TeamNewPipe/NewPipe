@@ -11,8 +11,8 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.functions.Consumer
 import io.reactivex.rxjava3.processors.PublishProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
-import java.time.OffsetDateTime
-import java.time.ZoneOffset
+import java.time.Instant
+import java.time.LocalDate
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 import org.schabi.newpipe.R
@@ -26,6 +26,9 @@ import org.schabi.newpipe.extractor.feed.FeedInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.ktx.getStringSafe
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
+import org.schabi.newpipe.local.feed.service.FeedLoadManager.Companion.BATCH_SIZE
+import org.schabi.newpipe.local.feed.service.FeedLoadManager.Companion.DELAY_BETWEEN_BATCHES_MILLIS
+import org.schabi.newpipe.local.feed.service.FeedLoadManager.Companion.GROUP_NOTIFICATION_ENABLED
 import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.util.ChannelTabHelper
 import org.schabi.newpipe.util.ExtractorHelper.getChannelInfo
@@ -69,29 +72,29 @@ class FeedLoadManager(private val context: Context) {
         )
 
         val outdatedThreshold = if (ignoreOutdatedThreshold) {
-            OffsetDateTime.now(ZoneOffset.UTC)
+            Instant.now()
         } else {
             val thresholdOutdatedSeconds = defaultSharedPreferences.getStringSafe(
                 context.getString(R.string.feed_update_threshold_key),
                 context.getString(R.string.feed_update_threshold_default_value)
-            ).toInt()
-            OffsetDateTime.now(ZoneOffset.UTC).minusSeconds(thresholdOutdatedSeconds.toLong())
+            ).toLong()
+            Instant.now().minusSeconds(thresholdOutdatedSeconds)
         }
 
         /**
          * subscriptions which have not been updated within the feed updated threshold
          */
         val outdatedSubscriptions = when (groupId) {
-            FeedGroupEntity.GROUP_ALL_ID -> feedDatabaseManager.outdatedSubscriptions(
+            FeedGroupEntity.GROUP_ALL_ID -> feedDatabaseManager.getOutdatedSubscriptions(
                 outdatedThreshold
             )
 
-            GROUP_NOTIFICATION_ENABLED -> feedDatabaseManager.outdatedSubscriptionsWithNotificationMode(
+            GROUP_NOTIFICATION_ENABLED -> feedDatabaseManager.getOutdatedSubscriptionsWithNotificationMode(
                 outdatedThreshold,
                 NotificationMode.ENABLED
             )
 
-            else -> feedDatabaseManager.outdatedSubscriptionsForGroup(groupId, outdatedThreshold)
+            else -> feedDatabaseManager.getOutdatedSubscriptionsForGroup(groupId, outdatedThreshold)
         }
 
         // like `currentProgress`, but counts the number of YouTube extractions that have begun, so
@@ -259,7 +262,7 @@ class FeedLoadManager(private val context: Context) {
      * Keep the feed and the stream tables small
      * to reduce loading times when trying to display the feed.
      * <br>
-     * Remove streams from the feed which are older than [FeedDatabaseManager.FEED_OLDEST_ALLOWED_DATE].
+     * Remove streams from the feed which are older than 13 weeks.
      * Remove streams from the database which are not linked / used by any table.
      */
     private fun postProcessFeed() = Completable.fromRunnable {
@@ -326,15 +329,13 @@ class FeedLoadManager(private val context: Context) {
         }
 
         private fun filterNewStreams(list: List<StreamInfoItem>): List<StreamInfoItem> {
+            val oldestAllowedDate = LocalDate.now().minusWeeks(13)
             return list.filter {
-                !feedDatabaseManager.doesStreamExist(it) &&
-                    it.uploadDate != null &&
-                    // Streams older than this date are automatically removed from the feed.
-                    // Therefore, streams which are not in the database,
-                    // but older than this date, are considered old.
-                    it.uploadDate!!.offsetDateTime().isAfter(
-                        FeedDatabaseManager.FEED_OLDEST_ALLOWED_DATE
-                    )
+                // Streams older than this date are automatically removed from the feed.
+                // Therefore, streams which are not in the database,
+                // but older than this date, are considered old.
+                val date = it.uploadDate?.localDateTime?.toLocalDate()
+                !feedDatabaseManager.doesStreamExist(it) && date != null && date > oldestAllowedDate
             }
         }
     }

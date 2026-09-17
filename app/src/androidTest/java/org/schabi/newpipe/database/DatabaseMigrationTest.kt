@@ -144,7 +144,7 @@ class DatabaseMigrationTest {
         assertEquals(DEFAULT_THUMBNAIL, streamFromMigratedDatabase.thumbnailUrl)
         assertNull(streamFromMigratedDatabase.viewCount)
         assertNull(streamFromMigratedDatabase.textualUploadDate)
-        assertNull(streamFromMigratedDatabase.uploadDate)
+        assertNull(streamFromMigratedDatabase.uploadInstant)
         assertNull(streamFromMigratedDatabase.isUploadDateApproximation)
 
         val secondStreamFromMigratedDatabase = listFromDB[1]
@@ -158,7 +158,7 @@ class DatabaseMigrationTest {
         assertEquals("", secondStreamFromMigratedDatabase.thumbnailUrl)
         assertNull(secondStreamFromMigratedDatabase.viewCount)
         assertNull(secondStreamFromMigratedDatabase.textualUploadDate)
-        assertNull(secondStreamFromMigratedDatabase.uploadDate)
+        assertNull(secondStreamFromMigratedDatabase.uploadInstant)
         assertNull(secondStreamFromMigratedDatabase.isUploadDateApproximation)
     }
 

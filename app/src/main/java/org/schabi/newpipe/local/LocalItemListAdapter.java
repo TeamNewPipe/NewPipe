@@ -30,11 +30,8 @@ import org.schabi.newpipe.local.holder.RemotePlaylistCardItemHolder;
 import org.schabi.newpipe.local.holder.RemotePlaylistGridItemHolder;
 import org.schabi.newpipe.local.holder.RemotePlaylistItemHolder;
 import org.schabi.newpipe.util.FallbackViewHolder;
-import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.OnClickGesture;
 
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
@@ -86,7 +83,6 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     private final LocalItemBuilder localItemBuilder;
     private final ArrayList<LocalItem> localItems;
     private final HistoryRecordManager recordManager;
-    private final DateTimeFormatter dateTimeFormatter;
 
     private boolean showFooter = false;
     private Supplier<View> headerSupplier = null;
@@ -98,9 +94,6 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         recordManager = new HistoryRecordManager(context);
         localItemBuilder = new LocalItemBuilder(context);
         localItems = new ArrayList<>();
-
-        dateTimeFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
-                .withLocale(Localization.getPreferredLocale(context));
     }
 
     public void setSelectedListener(final OnClickGesture<LocalItem> listener) {
@@ -365,42 +358,36 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
-    @SuppressWarnings("FinalParameters")
     @Override
-    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder,
+                                 final int position) {
         if (DEBUG) {
             Log.d(TAG, "onBindViewHolder() called with: "
                     + "holder = [" + holder.getClass().getSimpleName() + "], "
                     + "position = [" + position + "]");
         }
 
-        if (holder instanceof LocalItemHolder) {
+        if (holder instanceof LocalItemHolder localItemHolder) {
             // If header isn't null, offset the items by -1
-            if (hasHeader()) {
-                position--;
+            final int itemPosition = hasHeader() ? position - 1 : position;
+            localItemHolder.updateFromItem(localItems.get(itemPosition), recordManager);
+        } else if (holder instanceof HeaderFooterHolder headerFooterHolder) {
+            if (position == 0 && hasHeader()) {
+                headerFooterHolder.view = headerSupplier.get();
+            } else if (position == sizeConsideringHeader() && footer != null && showFooter) {
+                headerFooterHolder.view = footer;
             }
-
-            ((LocalItemHolder) holder)
-                    .updateFromItem(localItems.get(position), recordManager, dateTimeFormatter);
-        } else if (holder instanceof HeaderFooterHolder && position == 0 && hasHeader()) {
-            ((HeaderFooterHolder) holder).view = headerSupplier.get();
-        } else if (holder instanceof HeaderFooterHolder && position == sizeConsideringHeader()
-                && footer != null && showFooter) {
-            ((HeaderFooterHolder) holder).view = footer;
         }
     }
 
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position,
                                  @NonNull final List<Object> payloads) {
-        if (!payloads.isEmpty() && holder instanceof LocalItemHolder) {
+        if (!payloads.isEmpty() && holder instanceof LocalItemHolder localItemHolder) {
             for (final Object payload : payloads) {
-                if (payload instanceof StreamStateEntity) {
-                    ((LocalItemHolder) holder).updateState(localItems
-                            .get(hasHeader() ? position - 1 : position), recordManager);
-                } else if (payload instanceof Boolean) {
-                    ((LocalItemHolder) holder).updateState(localItems
-                            .get(hasHeader() ? position - 1 : position), recordManager);
+                if (payload instanceof StreamStateEntity || payload instanceof Boolean) {
+                    final var item = localItems.get(hasHeader() ? position - 1 : position);
+                    localItemHolder.updateState(item, recordManager);
                 }
             }
         } else {
