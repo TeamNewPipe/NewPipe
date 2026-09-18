@@ -1,0 +1,1 @@
+これは、media.ccc.deのライブ配信を修正するホットフィックスリリースです。Happy Hacking!

@@ -1,3 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="navigate_back">חזרה</string>
+    <string name="title_activity_about">על NewPipe</string>
+    <string name="title_licenses">רישיונות צד־שלישי</string>
+    <string name="license">על ידי %1$s בכפוף לרישיון %2$s</string>
+    <string name="tab_about">על אודות ושו״ת</string>
+    <string name="tab_licenses">רישיונות</string>
+    <string name="app_description">הזרמה חופשית וקלילה ב־Android.</string>
+    <string name="contribution_title">התנדבות</string>
+    <string name="view_on_github">הצגה ב־GitHub</string>
+    <string name="donation_title">תרומה</string>
+    <string name="give_back">לתת בחזרה</string>
+    <string name="website_title">אתר</string>
+    <string name="website_encouragement">יש לבקר באתר של NewPipe למידע נוסף ולחדשות.</string>
+    <string name="privacy_policy_title">מדיניות הפרטיות של NewPipe</string>
+    <string name="read_privacy_policy">הצגת מדיניות הפרטיות</string>
+    <string name="app_license_title">הרישיון של NewPipe</string>
+    <string name="read_full_license">הצגת הרישיון</string>
+    <string name="faq_title">שאלות נפוצות</string>
+    <string name="done">סיום</string>
+    <string name="not_available">לא זמין</string>
+    <string name="open_in_browser">פתיחה בדפדפן</string>
+    <string name="settings">הגדרות</string>
+    <string name="search">חיפוש</string>
+    <string name="content">תוכן</string>
+    <string name="notifications">התראות</string>
+    <string name="settings_category_video_audio_title">וידאו ושמע</string>
+    <string name="settings_category_downloads_title">הורדה</string>
+    <string name="settings_category_appearance_title">מראה</string>
+    <string name="settings_category_history_title">היסטוריה ומטמון</string>
+    <string name="settings_category_updates_title">עדכונים</string>
+    <string name="settings_category_backup_restore_title">גיבוי ושחזור</string>
+    <string name="settings_category_debug_title">ניפוי שגיאות</string>
+    <string name="contribution_encouragement">אם יש לך רעיונות ליכולות מסוימות, בא לך לתרגם, לשנות את העיצוב או לבצע שינויים מהותיים בקוד - אנו תמיד שמחים לקבל עזרה. ככל שיותר דברים נעשים ככה הוא נהיה טוב יותר!</string>
+    <string name="donation_encouragement">NewPipe מפותח על ידי מתנדבים שמשקיעים את זמן החופשי כדי לספק לך את חוויית המשתמש הטובה ביותר. אפשר לתת בחזרה כדי לסייע למפתחים לשפר את NewPipe עוד יותר תוך שהם נהנים מכוס קפה.</string>
+    <string name="privacy_policy_encouragement">מיזם NewPIpe לוקח את הפרטיות שלך ברצינות. לכן, היישומן לא אוסף נתונים עליך ללא הסכמתך.\nמדיניות הפרטיות של NewPipe מסבירה בפירוט אילו נתונים נשלחים ומאוחסנים בעת משלוח דיווח על קריסה.</string>
+    <string name="faq_description">אם נתקלת בבעיות בשימוש ביישומון, חשוב לעיין בתשובות האלו לשאלות נפוצות!</string>
+    <string name="faq">הצגה באתר</string>
 </resources>

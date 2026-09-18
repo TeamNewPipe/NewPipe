@@ -24,8 +24,16 @@
 #### Relies on the following changes
 <!-- Delete this if it doesn't apply to your PR. -->
 - 
+#### Testing/QA
 
-#### APK testing
+##### Devices
+- tested on device/emulator(phone/tablet/TV/...) running Android XX / API level by doing ...
+
+##### Steps for testing
+<!-- Explain which steps you made to test that your changes fix the bug or implement the feature correctly and do not introduce regressions. This is mandatory to ensure that reviewers can quickly identify if you missed a crucial step. Link unit or integration tests here, if created or changed. --->
+- 
+
+##### APK for testing
 <!-- Use a new, meaningfully named branch. The name is used as a suffix for the app ID to allow installing and testing multiple versions of NewPipe, e.g. "commentfix", if your PR implements a bugfix for comments. (No names like "patch-0" and "feature-1".)  -->
 <!-- Remove the following line if you directly link the APK created by the CI pipeline. Directly linking is preferred if you need to let users test.-->
 The APK can be found by going to the "Checks" tab below the title. On the left pane, click on "CI", scroll down to "artifacts" and click "app" to download the zip file which contains the debug APK of this PR. You can find more info and a video demonstration [on this wiki page](https://github.com/TeamNewPipe/NewPipe/wiki/Download-APK-for-PR).

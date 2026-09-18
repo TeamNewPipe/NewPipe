@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import com.evernote.android.state.State;
@@ -34,11 +33,11 @@ public class DescriptionFragment extends BaseDescriptionFragment {
         // keep empty constructor for State when resuming fragment from memory
     }
 
-
-    @Nullable
+    @NonNull
     @Override
     protected Description getDescription() {
-        return streamInfo.getDescription();
+        return streamInfo.getDescription() != null ? streamInfo.getDescription()
+                : Description.EMPTY_DESCRIPTION;
     }
 
     @NonNull

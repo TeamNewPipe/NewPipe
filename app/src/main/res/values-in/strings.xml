@@ -7,7 +7,7 @@
     <string name="open_in_browser">Buka di peramban</string>
     <string name="share">Bagikan</string>
     <string name="download">Unduh</string>
-    <string name="search">Cari</string>
+    <string name="search">Telusur</string>
     <string name="settings">Pengaturan</string>
     <string name="share_dialog_title">Bagi dengan</string>
     <string name="use_external_video_player_title">Gunakan pemutar video lain</string>
@@ -31,8 +31,8 @@
     <string name="show_next_and_similar_title">Video \'Berikutnya\' dan \'Serupa\'</string>
     <string name="unsupported_url">URL tidak didukung</string>
     <string name="content_language_title">Bahasa konten</string>
-    <string name="settings_category_video_audio_title">Video dan audio</string>
-    <string name="settings_category_appearance_title">Tampilan</string>
+    <string name="settings_category_video_audio_title">Audio dan Video</string>
+    <string name="settings_category_appearance_title">Penampilan</string>
     <string name="background_player_playing_toast">Memutar di latar belakang</string>
     <string name="content">Konten</string>
     <string name="show_age_restricted_content_title">Tampilkan konten yang dibatasi usia</string>
@@ -100,7 +100,7 @@
     <string name="show_search_suggestions_title">Saran pencarian</string>
     <string name="show_search_suggestions_summary">Menampilkan saran pencarian saat mencari</string>
     <string name="best_resolution">Kualitas terbaik</string>
-    <string name="settings_category_downloads_title">Unduhan</string>
+    <string name="settings_category_downloads_title">Unduh</string>
     <string name="settings_file_charset_title">Karakter yang diizinkan sebagai nama berkas</string>
     <string name="settings_file_replacement_character_summary">Karakter yang tidak valid akan diganti dengan karakter ini</string>
     <string name="settings_file_replacement_character_title">Karakter pengganti</string>
@@ -139,7 +139,7 @@
     <string name="default_content_country_title">Lokasi Konten</string>
     <string name="settings_category_player_title">Pemutar</string>
     <string name="settings_category_player_behavior_title">Perilaku</string>
-    <string name="settings_category_history_title">Riwayat dan cache</string>
+    <string name="settings_category_history_title">Riwayat &amp; Cache</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="undo">Urungkan</string>
     <string name="play_all">Putar Semua</string>
@@ -800,7 +800,7 @@
 \nApakah Anda yakin ingin melanjutkan?</string>
     <string name="auto_update_check_description">NewPipe dapat memeriksa versi baru secara berkala dan memberi tahu Anda ketika ada yang baru.
 \nApakah Anda ingin mengaktifkan ini?</string>
-    <string name="settings_category_backup_restore_title">Cadangkan dan pulihkan</string>
+    <string name="settings_category_backup_restore_title">Cadangkan dan Pulihkan</string>
     <string name="import_settings_vulnerable_format">Pengaturan dalam ekspor yang diimpor menggunakan format rentan yang tidak digunakan lagi sejak NewPipe 0.27.0. Pastikan ekspor yang diimpor berasal dari sumber tepercaya, dan lebih memilih hanya menggunakan ekspor yang diperoleh dari NewPipe 0.27.0 atau yang lebih baru di masa mendatang. Dukungan untuk mengimpor pengaturan dalam format rentan ini akan segera dihapus sepenuhnya, dan NewPipe versi lama tidak akan dapat lagi mengimpor pengaturan ekspor dari versi baru.</string>
     <string name="audio_track_type_secondary">sekunder</string>
     <string name="share_playlist_as_youtube_temporary_playlist">Daftar putar</string>

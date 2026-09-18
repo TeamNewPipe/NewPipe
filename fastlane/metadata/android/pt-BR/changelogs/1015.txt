@@ -1,0 +1,1 @@
+Este é um hotfix que corrige transmissões ao vivo de media.ccc.de. Feliz Hacking!
