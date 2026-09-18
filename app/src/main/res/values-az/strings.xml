@@ -5,7 +5,7 @@
     <string name="no_player_found">Yayım oynadıcı tapılmadı. \"VLC\" quraşdırılsın\?</string>
     <string name="no_player_found_toast">Yayım oynadıcı tapılmadı (Oynatmaq üçün VLC quraşdıra bilərsiniz).</string>
     <string name="install">Quraşdır</string>
-    <string name="cancel">Ləğv et</string>
+    <string name="cancel">İmtina et</string>
     <string name="open_in_browser">Brauzerdə aç</string>
     <string name="share">Paylaş</string>
     <string name="download">Yüklə</string>
@@ -436,7 +436,7 @@
     <string name="check_for_updates">Yeniləmələri yoxla</string>
     <string name="seekbar_preview_thumbnail_title">Axtarış çubuğunun miniatür önizləməsi</string>
     <string name="permission_denied">Əməliyyat sistem tərəfindən ləğv edildi</string>
-    <string name="auto">Avto</string>
+    <string name="auto">Avtomatik</string>
     <string name="error_http_not_found">Tapılmadı</string>
     <string name="error_http_no_content">Server məlumat göndərmir</string>
     <string name="error_download_resource_gone">Bu endirməni bərpa etmək mümkün deyil</string>
@@ -472,7 +472,7 @@
     <string name="drawer_close">Çəkməcəni Bağla</string>
     <string name="video_player">Video oynadıcı</string>
     <string name="hash_channel_description">Video fayl xülasəsi prosesi üçün bildirişlər</string>
-    <string name="on">Aç</string>
+    <string name="on">Aktiv et</string>
     <string name="notification_scale_to_square_image_title">Miniatürü 1:1 görünüş nisbətinə kəs</string>
     <string name="show_meta_info_summary">Yayım yaradıcısı, məzmunu və ya axtarış sorğusu haqqında əlavə məlumat olan üst məlumat qutularını gizlətmək üçün söndür</string>
     <string name="auto_queue_summary">Əlaqəli yayımı əlavə etməklə (təkrarlanmayan) sonlanacaq oynatma növbəsini davam etdir</string>
@@ -505,7 +505,7 @@
     <string name="description_select_enable">Açıqlamadakı mətni seçməyi aktivləşdir</string>
     <string name="metadata_tags">Etiketlər</string>
     <string name="tablet_mode_title">Planşet rejimi</string>
-    <string name="off">Bağla</string>
+    <string name="off">Bağlı</string>
     <string name="detail_heart_img_view_description">Müəllifdən ürəkləndi</string>
     <string name="open_website_license">Veb saytı aç</string>
     <plurals name="views">

@@ -274,7 +274,7 @@
     <string name="resize_zoom">Zoom</string>
     <string name="caption_auto_generated">Automatiskt genererad</string>
     <string name="caption_setting_title">Textning</string>
-    <string name="caption_setting_description">Ändra spelarens textstorlek och bakgrundsstil. Appen måste startas om innan ändringarna börjar gälla.</string>
+    <string name="caption_setting_description">Ändra spelarens textstorlek och bakgrundsstil. Appen måste startas om innan ändringarna börjar gälla</string>
     <string name="enable_leak_canary_summary">Övervakning av minnesläckor kan göra att appen inte svarar när en heap-dump skapas</string>
     <string name="enable_disposed_exceptions_title">Rapportera fel utanför livscykeln</string>
     <string name="enable_disposed_exceptions_summary">Tvinga rapportering av otillåtna Rx-undantag utanför fragmentets eller aktivitetens livscykel efter rensning</string>
@@ -609,7 +609,7 @@
     <string name="recent">Senaste</string>
     <string name="main_page_content_swipe_remove">Svep objekt för att ta bort dem</string>
     <string name="remote_search_suggestions">Förslag via fjärrsökning</string>
-    <string name="start_main_player_fullscreen_summary">Starta videor direkt i helskärmsläge i stället för i minispelaren när automatisk rotation är låst. Du kan fortfarande öppna minispelaren genom att lämna helskärmsläget.</string>
+    <string name="start_main_player_fullscreen_summary">Starta videor direkt i helskärmsläge i stället för i minispelaren när automatisk rotation är låst. Du kan fortfarande öppna minispelaren genom att lämna helskärmsläget</string>
     <string name="check_for_updates">Sök efter uppdateringar</string>
     <string name="manual_update_description">Sök manuellt efter nya versioner</string>
     <string name="checking_updates_toast">Söker efter uppdateringar…</string>
@@ -699,7 +699,7 @@
     <string name="select_audio_track_external_players">Välj ljudspår för externa spelare</string>
     <string name="unknown_audio_track">Okänt</string>
     <string name="settings_category_exoplayer_title">ExoPlayer-inställningar</string>
-    <string name="settings_category_exoplayer_summary">Hantera vissa ExoPlayer-inställningar. Spelaren måste startas om innan ändringarna börjar gälla.</string>
+    <string name="settings_category_exoplayer_summary">Hantera vissa ExoPlayer-inställningar. Spelaren måste startas om innan ändringarna börjar gälla</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Använd alltid ExoPlayers lösning för inställning av videoutgångsyta</string>
     <string name="prefer_original_audio_title">Föredra originalljud</string>
     <string name="prefer_original_audio_summary">Välj originalljudspåret oavsett språk</string>
@@ -802,7 +802,7 @@
     <string name="delete_entry">Ta bort post</string>
     <string name="account_terminated_service_provides_reason">Konto avslutat\n\n%1$s anger denna anledning: %2$s</string>
     <string name="entry_deleted">Posten borttagen</string>
-    <string name="player_http_403">Servern svarade med HTTP-fel 403 under uppspelningen. Strömnings-URL:en kan ha löpt ut eller IP-adressen kan ha blockerats.</string>
+    <string name="player_http_403">Servern svarade med HTTP-fel 403 under uppspelningen. Strömnings-URL:en kan ha löpt ut eller IP-adressen blivit blockerad</string>
     <string name="player_http_invalid_status">Servern svarade med HTTP-fel %1$s under uppspelningen</string>
     <string name="youtube_player_http_403">Servern svarade med HTTP-fel 403 under uppspelningen, troligen på grund av en IP-blockering eller problem med avobfuskering av strömnings-URL:er</string>
     <string name="sign_in_confirm_not_bot_error">%1$s vägrade att lämna ut uppgifter och krävde inloggning för att bekräfta att begäran inte kommer från en robot.\n\nDin IP-adress kan ha blockerats tillfälligt av %1$s. Vänta en stund eller byt IP-adress, till exempel genom att slå av och på en VPN-anslutning eller växla mellan Wi-Fi och mobildata.\n\nLäs <a href="%2$s">avsnittet i vanliga frågor</a> för mer information.</string>

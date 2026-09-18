@@ -4,7 +4,7 @@
     <string name="upload_date_text">Публикувано на %1$s</string>
     <string name="no_player_found">Не е намерен стрийм плейър. Инсталиране на VLC\?</string>
     <string name="install">Инсталиране</string>
-    <string name="cancel">Отмяна</string>
+    <string name="cancel">Отказ</string>
     <string name="open_in_browser">Отвори в браузър</string>
     <string name="open_in_popup_mode">Отваряне в прозорец</string>
     <string name="share">Споделяне</string>
@@ -42,7 +42,7 @@
     <string name="play_audio">Аудио</string>
     <string name="default_audio_format_title">Аудио формат по подразбиране</string>
     <string name="default_video_format_title">Видео формат по подразбиране</string>
-    <string name="theme_title">Тема на външния вид</string>
+    <string name="theme_title">Тема</string>
     <string name="light_theme_title">Светла</string>
     <string name="dark_theme_title">Тъмна</string>
     <string name="black_theme_title">Черна</string>
@@ -270,8 +270,8 @@
     <string name="resize_fill">Запълни</string>
     <string name="resize_zoom">Увеличи</string>
     <string name="caption_auto_generated">Авто-генерирани</string>
-    <string name="caption_setting_title">Надписи</string>
-    <string name="caption_setting_description">Модифицирай текстовия мащаб на надписите и стила на техния фон. За промените се изисква рестарт на приложението</string>
+    <string name="caption_setting_title">Субтитри</string>
+    <string name="caption_setting_description">Промяна на мащаба на текста на надписите на плейъра и стиловете на фона. Изисква се рестартиране на приложението, за да влезе в сила</string>
     <string name="enable_leak_canary_summary">Следенето за пропускане на памет може да направи приложението нестабилно</string>
     <string name="enable_disposed_exceptions_title">Докладвай за извънредни грешки</string>
     <string name="import_title">Внасяне</string>
@@ -355,7 +355,7 @@
     <string name="local_search_suggestions">Местни предложения за търсене</string>
     <string name="error_report_open_github_notice">Моля проверете дали има създадена дискусия за срив като този. Постъпилите дубликати са в ущърб на така ценното време за разработка.</string>
     <string name="show_meta_info_title">Покажи мета данни</string>
-    <string name="grid">Мрежа</string>
+    <string name="grid">Решетка</string>
     <string name="list">Списък</string>
     <string name="notification_action_3_title">Четвърто действие</string>
     <string name="seek_duration_title">Стъпка на превъртане</string>
@@ -369,7 +369,7 @@
     <string name="auto">Автоматично</string>
     <string name="show_description_summary">Изключете за скриване на описанията под видеата и допълнителната информация</string>
     <string name="wifi_only">Само при Wi-Fi</string>
-    <string name="list_view_mode">Вид на списъка</string>
+    <string name="list_view_mode">Режим на списъчен изглед</string>
     <string name="enable_playback_resume_summary">Възстанови последната позиция</string>
     <string name="app_update_available_notification_title">Нова версия на NewPipe е налична!</string>
     <string name="seekbar_preview_thumbnail_title">Миниатюри на лентата за превъртане</string>
@@ -419,8 +419,8 @@
     <string name="metadata_privacy">Поверителност</string>
     <string name="metadata_language">Език</string>
     <string name="metadata_privacy_internal">Вътрешен</string>
-    <string name="on">Включен</string>
-    <string name="off">Изключен</string>
+    <string name="on">Включено</string>
+    <string name="off">Изключено</string>
     <string name="open_website_license">Отвори уеб-страницата</string>
     <string name="detail_heart_img_view_description">Отбелязан със сърце от автора</string>
     <string name="conferences">Конференции</string>
@@ -517,7 +517,7 @@
     <string name="restricted_video">Това видео е с възрастова граница.
 \n
 \nВключете „%1$s“ в настройките ако искате да го пуснете.</string>
-    <string name="auto_device_theme_title">Автоматична (тази на устройството)</string>
+    <string name="auto_device_theme_title">Автоматична (тема на устройството)</string>
     <string name="notification_scale_to_square_image_summary">Мащабиране на миниатюрата в известието от 16:9 към 1:1 формат (възможни са изкривявания)</string>
     <string name="select_a_playlist">Избете плейлист</string>
     <string name="notifications">Известия</string>
@@ -580,8 +580,8 @@
     <string name="feed_load_error">Грешка при зареждане на емисия</string>
     <string name="feed_show_hide_streams">Покажи/Скрий потоци</string>
     <string name="private_content">Съдържанието е лично, затова не може да бъде възпроизведено или изтеглено от NewPipe.</string>
-    <string name="select_night_theme_toast">Можете да изберете любимата си тъмна тема по-долу</string>
-    <string name="tablet_mode_title">Режим таблет</string>
+    <string name="select_night_theme_toast">Можете да изберете любимата си нощна тема по-долу</string>
+    <string name="tablet_mode_title">Режим на таблет</string>
     <string name="metadata_subscribers">Абонати</string>
     <string name="selected_stream_external_player_not_supported">Избраният поток не се поддъжа от външни плеъри</string>
     <string name="settings_category_exoplayer_title">Настройки на ExoPlayer</string>
@@ -782,7 +782,7 @@
     <string name="hash_channel_description">Известия за напредъка на хеширането на видео</string>
     <string name="streams_notification_channel_name">Нови потоци</string>
     <string name="error_report_channel_name">Известие за доклад за грешка</string>
-    <string name="main_tabs_position_summary">Преместете основния селектор на раздели най-долу</string>
+    <string name="main_tabs_position_summary">Преместване на селектора на главни раздели надолу</string>
     <string name="error_report_notification_title">NewPipe откри грешка, докоснете, за да докладвате</string>
     <string name="no_streams">Няма потоци</string>
     <string name="disable_media_tunneling_title">Деактивиране на медийното тунелиране</string>
