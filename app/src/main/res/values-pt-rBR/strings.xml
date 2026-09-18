@@ -5,7 +5,7 @@
     <string name="what_happened_headline">O que aconteceu:</string>
     <string name="what_device_headline">Informação:</string>
     <string name="video">Vídeo</string>
-    <string name="black_theme_title">Preto (AMOLED)</string>
+    <string name="black_theme_title">Preto</string>
     <string name="cancel">Cancelar</string>
     <string name="checksum">Checksum</string>
     <string name="content">Conteúdo</string>
@@ -294,7 +294,7 @@
     <string name="drawer_open">Abrir gaveta</string>
     <string name="drawer_close">Fechar gaveta</string>
     <string name="caption_setting_title">Legendas</string>
-    <string name="caption_setting_description">Mudar tamanho da legenda e estilos de plano de fundo. Requer reiniciar o aplicativo para ter efeito</string>
+    <string name="caption_setting_description">Modifique a escala do texto da legenda do player e os estilos de fundo. Requer reinicialização do aplicativo para entrar em vigor</string>
     <string name="clear_views_history_title">Remover histórico de reprodução</string>
     <string name="clear_views_history_summary">Remove o histórico de vídeos assistidos e as posições de reprodução</string>
     <string name="delete_view_history_alert">Remover todo o histórico de reprodução?</string>
@@ -346,7 +346,7 @@
     <string name="conferences">Conferências</string>
     <string name="updates_setting_title">Atualizações</string>
     <string name="updates_setting_description">Notificar quando uma nova versão do aplicativo estiver disponível</string>
-    <string name="list_view_mode">Modo de exibição da lista</string>
+    <string name="list_view_mode">Modo de visualização de lista</string>
     <string name="list">Lista</string>
     <string name="grid">Grade</string>
     <string name="auto">Automático</string>
@@ -628,8 +628,8 @@
     <string name="downloads_storage_use_saf_summary_api_29">A \"Estrutura de acesso ao armazenamento\" é compatível apenas com versões a partir do Android 10</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Você será questionado onde salvar cada download</string>
     <string name="no_dir_yet">Nenhuma pasta de download definida ainda, escolha a pasta de download padrão agora</string>
-    <string name="off">Desativado</string>
-    <string name="on">Ativado</string>
+    <string name="off">Não</string>
+    <string name="on">Sim</string>
     <string name="tablet_mode_title">Modo tablet</string>
     <string name="dont_show">Não mostrar</string>
     <string name="low_quality_smaller">Baixa qualidade (menor)</string>
@@ -762,8 +762,8 @@
     <string name="use_exoplayer_decoder_fallback_title">Usar decodificador alternativo do ExoPlayer</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Usar sempre a solução alternativa de configuração da superfície de saída de vídeo do ExoPlayer</string>
     <string name="use_exoplayer_decoder_fallback_summary">Habilite essa opção se você tiver problemas de inicialização do decodificador, que retorna codificadores de baixa prioridade se o decodificador primário falhar. Isso pode resultar em pior desempenho de reprodução</string>
-    <string name="main_tabs_position_summary">Mover o seletor da guia principal para a parte inferior</string>
-    <string name="main_tabs_position_title">Posição de guias principais</string>
+    <string name="main_tabs_position_summary">Mover seletor da guia principal para baixo</string>
+    <string name="main_tabs_position_title">Posição das guias principais</string>
     <string name="no_streams">Nenhum conteúdo</string>
     <string name="no_live_streams">Nenhuma transmissão ao vivo</string>
     <string name="disable_media_tunneling_automatic_info">O túnel de mídia foi desabilitado por padrão em seu dispositivo porque seu modelo é conhecido por não suportá-lo.</string>

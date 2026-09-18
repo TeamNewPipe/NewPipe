@@ -846,7 +846,7 @@
     <string name="migration_info_6_7_title">Сторінку SoundCloud Top 50 видалено</string>
     <string name="migration_info_6_7_message">SoundCloud припинив підтримку оригінальних чартів Топ-50. Відповідну вкладку видалено з вашої головної сторінки.</string>
     <string name="migration_info_7_8_title">Видалено об’єднаний тренд YouTube</string>
-    <string name="migration_info_7_8_message">YouTube припинив підтримку об’єднаної сторінки трендів з 21 липня 2025 року. NewPipe замінив стандартну сторінку трендів на сторінку трендових прямих трансляцій.\n\nВи також можете вибрати різні сторінки трендів у розділі «Налаштування» &gt; «Контент» &gt; «Контент головної сторінки».</string>
+    <string name="migration_info_7_8_message">YouTube припинив підтримку об’єднаної сторінки трендів з 21 липня 2025 року. NewPipe замінив стандартну сторінку трендів на сторінку трендових прямих трансляцій.\n\nВи також можете вибрати різні сторінки трендів у розділі «Налаштування» &gt; «Вміст» &gt; «Вміст головної сторінки».</string>
     <string name="trending_gaming">Ігрові тренди</string>
     <string name="trending_podcasts">Популярні подкасти</string>
     <string name="trending_movies">Популярні фільми та шоу</string>

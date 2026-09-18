@@ -573,7 +573,7 @@
 \nKarena kebijakan YouTube yang baru dengan video yang dibatasi usia, NewPipe tidak bisa mengakses video dan tidak bisa memutarnya.</string>
     <string name="select_night_theme_toast">Kamu bisa pilih tema malam favoritmu dibawah</string>
     <string name="night_theme_summary">Pilih tema malam favoritmu — %s</string>
-    <string name="auto_device_theme_title">Otomatis (tema perangkat)</string>
+    <string name="auto_device_theme_title">Otomatis (sesuai perangkat)</string>
     <string name="radio">Radio</string>
     <string name="featured">Unggulan</string>
     <string name="recaptcha_solve">Selesaikan</string>
