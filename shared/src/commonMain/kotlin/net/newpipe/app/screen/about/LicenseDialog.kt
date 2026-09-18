@@ -71,7 +71,7 @@ fun LicenseDialog(
         onDismissRequest = onDismiss,
         dismissButton = {
             TextButton(
-                onClick = { onOpenWebsite(license.website!!) },
+                onClick = { license.website?.let(onOpenWebsite) },
                 enabled = !license.website.isNullOrBlank()
             ) {
                 Text(text = stringResource(Res.string.website_title))
