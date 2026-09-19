@@ -100,7 +100,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         localItems = new ArrayList<>();
 
         dateTimeFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
-                .withLocale(Localization.getPreferredLocale(context));
+                .withLocale(Localization.getAppLocale());
     }
 
     public void setSelectedListener(final OnClickGesture<LocalItem> listener) {
