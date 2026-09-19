@@ -38,4 +38,8 @@
     <string name="settings_category_updates_title">Pembaruan</string>
     <string name="settings_category_backup_restore_title">Cadangkan dan Pulihkan</string>
     <string name="settings_category_debug_title">Debug</string>
+    <string name="auto_device_theme_title">Otomatis (sesuai perangkat)</string>
+    <string name="light_theme_title">Terang</string>
+    <string name="dark_theme_title">Gelap</string>
+    <string name="black_theme_title">Hitam</string>
 </resources>
