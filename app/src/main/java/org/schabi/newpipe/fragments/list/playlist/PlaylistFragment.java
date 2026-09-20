@@ -36,12 +36,15 @@ import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
+import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper;
 import org.schabi.newpipe.extractor.stream.Description;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
+import org.schabi.newpipe.fragments.list.StreamListFilterController;
+import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.info_list.dialog.InfoItemDialog;
 import org.schabi.newpipe.info_list.dialog.StreamDialogDefaultEntry;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
@@ -70,7 +73,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, PlaylistInfo>
-        implements PlaylistControlViewHolder {
+        implements PlaylistControlViewHolder, StreamListFilterController.Host {
 
     private CompositeDisposable disposables;
     private Subscription bookmarkReactor;
@@ -89,7 +92,9 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
     private MenuItem playlistBookmarkButton;
 
     private long streamCount;
-    private long playlistOverallDurationSeconds;
+
+    private final StreamListFilterController filterController =
+            new StreamListFilterController(this, this);
 
     public static PlaylistFragment getInstance(final int serviceId, final String url,
                                                final String name) {
@@ -131,6 +136,9 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
         headerBinding = PlaylistHeaderBinding
                 .inflate(activity.getLayoutInflater(), itemsList, false);
         playlistControlBinding = headerBinding.playlistControl;
+        filterController.bindViews(headerBinding.streamFilterPanel.getRoot(),
+                playlistControlBinding.playlistCtrlFilterButton,
+                playlistControlBinding.playlistCtrlFilterSeparator);
 
         return headerBinding::getRoot;
     }
@@ -183,6 +191,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
 
     @Override
     public void onDestroyView() {
+        filterController.unbindViews();
         headerBinding = null;
         playlistControlBinding = null;
 
@@ -204,6 +213,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
     @Override
     public void onDestroy() {
         super.onDestroy();
+        filterController.dispose();
 
         if (disposables != null) {
             disposables.dispose();
@@ -222,6 +232,13 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
     @Override
     protected Single<ListExtractor.InfoItemsPage<StreamInfoItem>> loadMoreItemsLogic() {
         return ExtractorHelper.getMorePlaylistItems(serviceId, url, currentNextPage);
+    }
+
+    @Override
+    protected void loadMoreItems() {
+        if (!filterController.onLoadMoreItems()) {
+            super.loadMoreItems();
+        }
     }
 
     @Override
@@ -275,9 +292,11 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
     }
 
     @Override
-    public void handleNextItems(final ListExtractor.InfoItemsPage result) {
-        super.handleNextItems(result);
-        setStreamCountAndOverallDuration(result.getItems(), !result.hasNextPage());
+    public void handleNextItems(final ListExtractor.InfoItemsPage<StreamInfoItem> result) {
+        if (!filterController.onNextItems(result)) {
+            super.handleNextItems(result);
+        }
+        updateStreamCountAndOverallDuration();
     }
 
     @Override
@@ -326,7 +345,8 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
         }
 
         streamCount = result.getStreamCount();
-        setStreamCountAndOverallDuration(result.getRelatedItems(), !result.hasNextPage());
+        filterController.onFirstPageLoaded(result.getRelatedItems(), result.getNextPage());
+        updateStreamCountAndOverallDuration();
 
         final Description description = result.getDescription();
         if (description != null && description != Description.EMPTY_DESCRIPTION
@@ -491,19 +511,67 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
         playlistBookmarkButton.setTitle(titleRes);
     }
 
-    private void setStreamCountAndOverallDuration(final List<StreamInfoItem> list,
-                                                  final boolean isDurationComplete) {
+    // Duration is summed over every item fetched so far, whether it arrived through scrolling
+    // or through the filter controller's preload/background load
+    private void updateStreamCountAndOverallDuration() {
         if (activity != null && headerBinding != null) {
-            playlistOverallDurationSeconds += list.stream()
-                    .mapToLong(x -> x.getDuration())
+            final long overallDurationSeconds = filterController.getLoadedItems().stream()
+                    .mapToLong(StreamInfoItem::getDuration)
                     .sum();
             headerBinding.playlistStreamCount.setText(
                 Localization.concatenateStrings(
                     Localization.localizeStreamCount(activity, streamCount),
-                    Localization.getDurationString(playlistOverallDurationSeconds,
-                            isDurationComplete, true))
+                    Localization.getDurationString(overallDurationSeconds,
+                            filterController.isFullyLoaded(), true))
             );
         }
     }
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // StreamListFilterController.Host
+    //////////////////////////////////////////////////////////////////////////*/
+
+    @NonNull
+    @Override
+    public InfoListAdapter getAdapter() {
+        return infoListAdapter;
+    }
+
+    @NonNull
+    @Override
+    public Single<ListExtractor.InfoItemsPage<StreamInfoItem>> loadPage(
+            @NonNull final Page page) {
+        return ExtractorHelper.getMorePlaylistItems(serviceId, url, page);
+    }
+
+    @Nullable
+    @Override
+    public Page getNextPage() {
+        return currentNextPage;
+    }
+
+    @Override
+    public void setNextPage(@Nullable final Page page) {
+        currentNextPage = page;
+    }
+
+    @Override
+    public void cancelPendingLoad() {
+        if (currentWorker != null) {
+            currentWorker.dispose();
+            currentWorker = null;
+        }
+        isLoading.set(false);
+    }
+
+    @NonNull
+    @Override
+    public String getCacheKey() {
+        return url;
+    }
+
+    @Override
+    public void onItemsLoadedInBackground() {
+        updateStreamCountAndOverallDuration();
+    }
 }

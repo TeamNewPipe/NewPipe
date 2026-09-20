@@ -13,8 +13,8 @@
         tools:visibility="visible" />
 
     <include
-        android:id="@+id/channel_filter_panel"
-        layout="@layout/fragment_channel_filter_panel"
+        android:id="@+id/stream_filter_panel"
+        layout="@layout/stream_filter_panel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"

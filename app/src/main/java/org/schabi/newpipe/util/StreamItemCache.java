@@ -11,16 +11,16 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
- * In-memory LRU cache for fully-loaded channel video lists, keyed by channel tab URL.
- * Caches up to {@code MAX_TOTAL_ITEMS} stream items across all channels, evicting the
- * least-recently-accessed channel when the limit is exceeded. Entries expire after 1 hour.
+ * In-memory LRU cache for fully-loaded stream lists (channel tabs, playlists), keyed by
+ * list URL. Caches up to {@code MAX_TOTAL_ITEMS} stream items across all lists, evicting the
+ * least-recently-accessed list when the limit is exceeded. Entries expire after 1 hour.
  */
-public final class ChannelItemCache {
+public final class StreamItemCache {
 
     private static final int MAX_TOTAL_ITEMS = 10_000;
     private static final long EXPIRY_MILLIS = TimeUnit.HOURS.toMillis(1);
 
-    private static final ChannelItemCache INSTANCE = new ChannelItemCache();
+    private static final StreamItemCache INSTANCE = new StreamItemCache();
 
     private final LruCache<String, CacheEntry> cache =
             new LruCache<String, CacheEntry>(MAX_TOTAL_ITEMS) {
@@ -30,46 +30,46 @@ public final class ChannelItemCache {
                 }
             };
 
-    private ChannelItemCache() {
+    private StreamItemCache() {
     }
 
     /**
      * Returns the singleton instance.
      *
-     * @return the shared {@link ChannelItemCache} instance
+     * @return the shared {@link StreamItemCache} instance
      */
-    public static ChannelItemCache getInstance() {
+    public static StreamItemCache getInstance() {
         return INSTANCE;
     }
 
     /**
-     * Returns the cached item list for the given channel tab URL, or null if absent/expired.
+     * Returns the cached item list for the given list URL, or null if absent/expired.
      *
-     * @param channelTabUrl the URL of the channel tab
+     * @param listUrl the URL of the channel tab or playlist
      * @return a copy of the cached list, or null if absent or expired
      */
     @Nullable
-    public List<StreamInfoItem> getItems(@NonNull final String channelTabUrl) {
-        final CacheEntry entry = cache.get(channelTabUrl);
+    public List<StreamInfoItem> getItems(@NonNull final String listUrl) {
+        final CacheEntry entry = cache.get(listUrl);
         if (entry == null) {
             return null;
         }
         if (entry.isExpired()) {
-            cache.remove(channelTabUrl);
+            cache.remove(listUrl);
             return null;
         }
         return new ArrayList<>(entry.items);
     }
 
     /**
-     * Stores or replaces the item list for the given channel tab URL.
+     * Stores or replaces the item list for the given list URL.
      *
-     * @param channelTabUrl the URL of the channel tab
+     * @param listUrl the URL of the channel tab or playlist
      * @param items         the full list of stream items to cache
      */
-    public void putItems(@NonNull final String channelTabUrl,
+    public void putItems(@NonNull final String listUrl,
                          @NonNull final List<StreamInfoItem> items) {
-        cache.put(channelTabUrl, new CacheEntry(new ArrayList<>(items)));
+        cache.put(listUrl, new CacheEntry(new ArrayList<>(items)));
     }
 
     /**
