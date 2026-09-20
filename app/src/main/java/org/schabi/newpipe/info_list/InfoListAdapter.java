@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.ListUpdateCallback;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.databinding.PignateFooterBinding;
@@ -159,6 +161,72 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
         infoItemList.clear();
         notifyDataSetChanged();
+    }
+
+    /**
+     * Replaces the current item list with {@code newItems} using {@link DiffUtil} to compute
+     * the minimal set of changes. Notifications are offset by the header position so the header
+     * ViewHolder is never recycled — keeping any open spinner dropdown in the header alive.
+     *
+     * @param newItems the replacement item list
+     */
+    public void replaceStreamItems(@Nullable final List<? extends InfoItem> newItems) {
+        // Snapshot both lists before mutating infoItemList so the diff is computed against
+        // a consistent state; infoItemList is then updated before notifications are dispatched
+        final List<InfoItem> oldItems = new ArrayList<>(infoItemList);
+        final List<InfoItem> currentItems =
+                newItems != null ? new ArrayList<>(newItems) : new ArrayList<>();
+        final int headerOffset = hasHeader() ? 1 : 0;
+
+        final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffUtil.Callback() {
+            @Override
+            public int getOldListSize() {
+                return oldItems.size();
+            }
+
+            @Override
+            public int getNewListSize() {
+                return currentItems.size();
+            }
+
+            @Override
+            public boolean areItemsTheSame(final int oldPos, final int newPos) {
+                return oldItems.get(oldPos).getUrl().equals(currentItems.get(newPos).getUrl());
+            }
+
+            @Override
+            public boolean areContentsTheSame(final int oldPos, final int newPos) {
+                return areItemsTheSame(oldPos, newPos);
+            }
+        }, false);
+
+        // Mutate backing list after diff is computed but before notifications are dispatched,
+        // so RecyclerView sees consistent adapter state during any intermediate layout passes
+        infoItemList.clear();
+        infoItemList.addAll(currentItems);
+
+        diffResult.dispatchUpdatesTo(new ListUpdateCallback() {
+            @Override
+            public void onInserted(final int position, final int count) {
+                notifyItemRangeInserted(position + headerOffset, count);
+            }
+
+            @Override
+            public void onRemoved(final int position, final int count) {
+                notifyItemRangeRemoved(position + headerOffset, count);
+            }
+
+            @Override
+            public void onMoved(final int fromPosition, final int toPosition) {
+                notifyItemMoved(fromPosition + headerOffset, toPosition + headerOffset);
+            }
+
+            @Override
+            public void onChanged(final int position, final int count,
+                                  @Nullable final Object payload) {
+                notifyItemRangeChanged(position + headerOffset, count, payload);
+            }
+        });
     }
 
     public void setHeaderSupplier(@Nullable final Supplier<View> headerSupplier) {
