@@ -1873,7 +1873,7 @@ public final class Player implements PlaybackListener, Listener {
                     .observeOn(AndroidSchedulers.mainThread())
                     .doOnError(e -> {
                         if (DEBUG) {
-                            e.printStackTrace();
+                            Log.e(TAG, "Failed to save stream progress state", e);
                         }
                     })
                     .onErrorComplete()
