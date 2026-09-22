@@ -13,7 +13,7 @@ import net.newpipe.app.preferences.ExoPlayerPreferences
 import org.koin.core.annotation.KoinViewModel
 
 @KoinViewModel
-class ExoPlayerSettingsViewModel(private val settings: Settings) : ViewModel() {
+class PlayerSettingsViewModel(private val settings: Settings) : ViewModel() {
 
     val progressiveLoadInterval: StateFlow<String>
         field = stringFlow(ExoPlayerPreferences.KEY_PROGRESSIVE_LOAD_INTERVAL, ExoPlayerPreferences.DEFAULT_PROGRESSIVE_LOAD_INTERVAL)

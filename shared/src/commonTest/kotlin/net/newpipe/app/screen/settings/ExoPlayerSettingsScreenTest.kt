@@ -33,7 +33,7 @@ class ExoPlayerSettingsScreenTest {
     fun rendersTitleAndLoadIntervalRow() = runComposeUiTest {
         withKoin(
             modules = listOf(emptySettings),
-            content = { ExoPlayerSettingsScreenContent() },
+            content = { PlayerSettingsScreenContent() },
             onContent = {
                 onNodeWithText(getString(Res.string.settings_category_exoplayer_title)).assertIsDisplayed()
                 onNodeWithText(getString(Res.string.progressive_load_interval_title)).assertIsDisplayed()
@@ -45,7 +45,7 @@ class ExoPlayerSettingsScreenTest {
     fun loadIntervalSummaryShowsSelectedEntryLabel() = runComposeUiTest {
         withKoin(
             modules = listOf(emptySettings),
-            content = { ExoPlayerSettingsScreenContent() },
+            content = { PlayerSettingsScreenContent() },
             onContent = {
                 onNodeWithText(getString(Res.string.progressive_load_interval_summary, "64 KiB")).assertIsDisplayed()
             }
@@ -56,7 +56,7 @@ class ExoPlayerSettingsScreenTest {
     fun mediaTunnelingInfoShownOnlyWhenAutoDisabled() = runComposeUiTest {
         withKoin(
             modules = listOf(emptySettings),
-            content = { ExoPlayerSettingsScreenContent(mediaTunnelingAutoDisabled = true) },
+            content = { PlayerSettingsScreenContent(mediaTunnelingAutoDisabled = true) },
             onContent = {
                 onNodeWithText(getString(Res.string.disable_media_tunneling_automatic_info), substring = true)
                     .performScrollTo()
