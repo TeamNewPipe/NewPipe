@@ -13,7 +13,6 @@ import net.newpipe.app.platform.AppearanceActions
 import net.newpipe.app.preferences.AppearancePreferences
 import org.koin.core.annotation.KoinViewModel
 
-
 @KoinViewModel
 class AppearanceSettingsViewModel(
     private val settings: Settings,

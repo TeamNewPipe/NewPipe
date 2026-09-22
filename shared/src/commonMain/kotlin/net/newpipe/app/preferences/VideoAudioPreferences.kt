@@ -147,5 +147,15 @@ object VideoAudioPreferences {
         return if (seconds % 10 == 5) ((seconds + 5) * MILLIS_PER_SECOND).toString() else null
     }
 
-    private fun insertHighResolutions(base: List<String>, showHigher: Boolean): List<String> = if (!showHigher) base else base.toMutableList().apply { addAll(1, HIGH_RESOLUTIONS) }
+    private fun insertHighResolutions(
+        base: List<String>,
+        showHigher: Boolean,
+    ): List<String> {
+        if (!showHigher) {
+            return base
+        }
+        return base.toMutableList().apply {
+            addAll(1, HIGH_RESOLUTIONS)
+        }
+    }
 }

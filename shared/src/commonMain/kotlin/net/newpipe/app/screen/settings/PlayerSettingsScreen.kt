@@ -27,7 +27,7 @@ import net.newpipe.app.composable.TopAppBar
 import net.newpipe.app.navigation.Navigator
 import net.newpipe.app.preferences.ExoPlayerPreferences
 import net.newpipe.app.preview.ThemePreviewProvider
-import net.newpipe.app.viewmodel.settings.ExoPlayerSettingsViewModel
+import net.newpipe.app.viewmodel.settings.PlayerSettingsViewModel
 import newpipe.shared.generated.resources.Res
 import newpipe.shared.generated.resources.always_use_exoplayer_set_output_surface_workaround_summary
 import newpipe.shared.generated.resources.always_use_exoplayer_set_output_surface_workaround_title
@@ -45,9 +45,9 @@ import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun ExoPlayerSettingsScreen(
+fun PlayerSettingsScreen(
     navigator: Navigator = koinInject(),
-    viewModel: ExoPlayerSettingsViewModel = koinViewModel()
+    viewModel: PlayerSettingsViewModel = koinViewModel()
 ) {
     val progressiveLoadInterval by viewModel.progressiveLoadInterval.collectAsStateWithLifecycle()
     val useExoplayerDecoderFallback by viewModel.useExoplayerDecoderFallback.collectAsStateWithLifecycle()
@@ -55,7 +55,7 @@ fun ExoPlayerSettingsScreen(
     val mediaTunnelingAutoDisabled by viewModel.mediaTunnelingAutoDisabled.collectAsStateWithLifecycle()
     val alwaysUseSetOutputSurfaceWorkaround by viewModel.alwaysUseSetOutputSurfaceWorkaround.collectAsStateWithLifecycle()
 
-    ExoPlayerSettingsScreenContent(
+    PlayerSettingsScreenContent(
         progressiveLoadInterval = progressiveLoadInterval,
         useExoplayerDecoderFallback = useExoplayerDecoderFallback,
         disableMediaTunneling = disableMediaTunneling,
@@ -70,7 +70,7 @@ fun ExoPlayerSettingsScreen(
 }
 
 @Composable
-fun ExoPlayerSettingsScreenContent(
+fun PlayerSettingsScreenContent(
     progressiveLoadInterval: String = ExoPlayerPreferences.DEFAULT_PROGRESSIVE_LOAD_INTERVAL,
     useExoplayerDecoderFallback: Boolean = ExoPlayerPreferences.DEFAULT_USE_EXOPLAYER_DECODER_FALLBACK,
     disableMediaTunneling: Boolean = ExoPlayerPreferences.DEFAULT_DISABLE_MEDIA_TUNNELING,
@@ -146,6 +146,6 @@ fun ExoPlayerSettingsScreenContent(
 @PreviewWrapper(ThemePreviewProvider::class)
 @PreviewLightDark
 @Composable
-private fun ExoPlayerSettingsScreenPreview() {
-    ExoPlayerSettingsScreenContent()
+private fun PlayerSettingsScreenPreview() {
+    PlayerSettingsScreenContent()
 }
