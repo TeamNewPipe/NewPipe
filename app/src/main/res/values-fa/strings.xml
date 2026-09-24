@@ -855,4 +855,8 @@
     <string name="api23_requirement_dialog_title">نیوپایپ دارد پشتیبانی از اندروید ۵ را رها می‌کند</string>
     <string name="player_http_invalid_status">هنگام پخش کردن کارساز خطای HTTP ‏%1$s داد</string>
     <string name="permission_display_over_apps_message">برای استفاده از پخش‌کنندهٔ بالاپریدنی %1$s را در فهرست تنظیمات اندروید زیر گزیده و %2$s را به کار بیندازید.</string>
+    <string name="channel_tab_podcasts">پادپخش‌ها</string>
+    <string name="channel_tab_courses">دوره‌ها</string>
+    <string name="migration_info_6_7_message">سوندکلود جدول ۵۰ اثر برتر اصلی را متوقّف کرد. زبانهٔ متناظر از صفحهٔ اصلیتان برداشته شد.</string>
+    <string name="migration_info_7_8_message">یوتوب از تاریخ ۳ مرداد ۱۴۰۴، صفحهٔ داغ‌های ترکیبی را متوقّف کرده است. نیوپایپ صفحهٔ داغ پیش‌گزیده را با پخش زنده‌های داغ جایگزین کرده است.\n\nهمچنین می‌توانید صفحات داغ مختلف را در «تنظیمات &gt; محتوا &gt; محتوای صفحه اصلی» بگزینید.</string>
 </resources>

@@ -258,7 +258,7 @@
     <string name="resize_zoom">Nagyítás</string>
     <string name="caption_auto_generated">Automatikusan létrehozott</string>
     <string name="caption_setting_title">Feliratok</string>
-    <string name="caption_setting_description">Feliratok méretének és hátterének stílusbeli módosítása. A módosítások életbe lépésehez az alkalmazás újraindítása szükséges</string>
+    <string name="caption_setting_description">A lejátszó feliratának, szövegméretének és háttérstílusainak módosítása. A módosítások érvénybe lépéséhez újra kell indítani az alkalmazást</string>
     <string name="import_title">Importálás</string>
     <string name="import_from">Importálás a következőből</string>
     <string name="export_to">Exportálás a következőbe</string>
@@ -360,7 +360,7 @@
     <string name="auto">Automatikus</string>
     <string name="grid">Rács</string>
     <string name="list">Lista</string>
-    <string name="list_view_mode">Lista nézet</string>
+    <string name="list_view_mode">Listanézet mód</string>
     <string name="missing_file">A fájl áthelyezve vagy törölve</string>
     <string name="download_to_sdcard_error_message">A külső SD-kártyára történő mentés nem lehetséges. Visszaállítja a letöltési mappa helyét\?</string>
     <string name="download_to_sdcard_error_title">A külső tárhely nem érhető el</string>
@@ -398,7 +398,7 @@
     <string name="show_thumbnail_summary">Bélyegkép használata a zárképernyőn és az értesítéseken is</string>
     <string name="radio">Rádió</string>
     <string name="night_theme_summary">Válassza ki a kedvenc éjszakai témáját — %s</string>
-    <string name="select_night_theme_toast">Lent kiválaszthatja a kedvenc éjszakai témáját</string>
+    <string name="select_night_theme_toast">Az alábbiakban kiválaszthatja kedvenc éjszakai témáját</string>
     <string name="recently_added">Nemrég hozzáadott</string>
     <string name="new_seek_duration_toast">Az ExoPlayer korlátai miatt az előre- és visszatekerés időtartama %d másodpercre lett állítva</string>
     <string name="feed_groups_header_title">Csatornacsoportok</string>
@@ -498,7 +498,7 @@
 \nRemélhetőleg egy következő verzióban már támogatott lesz.</string>
     <string name="no_app_to_open_intent">Az eszközön nincs olyan alkalmazás, amely meg tudja ezt nyitni</string>
     <string name="youtube_music_premium_content">Ez a videó csak YouTube Music Prémium előfizetők számára érhető el, így nem tekinthető meg és nem tölthető le a NewPipe-pal.</string>
-    <string name="auto_device_theme_title">Automatikus (rendszertéma)</string>
+    <string name="auto_device_theme_title">Automatikus (eszköz témája)</string>
     <string name="paid_content">Ez a tartalom csak előfizetőknek érhető el, nem tekinthető meg és nem tölthető le a NewPipe-pal.</string>
     <string name="georestricted_content">Ez a tartalom nem érhető el az országában.</string>
     <string name="private_content">Ez a tartalom privát, így nem tekinthető meg és nem tölthető le a NewPipe-pal.</string>
@@ -719,9 +719,9 @@
     <string name="remove_duplicates_title">Eltávolítja az ismétlődéseket\?</string>
     <string name="remove_duplicates_message">Eltávolítja az összes ismétlődő közvetítést ebből a lejátszólistáról\?</string>
     <string name="audio_track_type_original">eredeti</string>
-    <string name="main_tabs_position_title">Kezdőlap pozíciója</string>
+    <string name="main_tabs_position_title">Fő lapok elhelyezkedése</string>
     <string name="disable_media_tunneling_automatic_info">A médiacsatornázás alapértelmezetten le van tiltva az eszközén, mivel a saját eszközmodellje nem támogatja azt.</string>
-    <string name="main_tabs_position_summary">Kezdőlapválasztó alulra helyezése</string>
+    <string name="main_tabs_position_summary">A fő lapválasztó elhelyezése alulra</string>
     <string name="no_live_streams">Nincs élő közvetítés</string>
     <string name="no_streams">Nincs adatfolyam</string>
     <string name="notification_actions_summary_android13">Az alábbi értesítési műveletek szerkesztéséhez koppintson rá. Az első három műveletet (lejátszás/szünet, előző és következő) a rendszer állítja be, és nem szabhatók testre.</string>

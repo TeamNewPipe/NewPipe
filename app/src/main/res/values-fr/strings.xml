@@ -34,7 +34,7 @@
     <string name="use_external_audio_player_title">Utiliser un lecteur audio externe</string>
     <string name="background_player_playing_toast">Lecture en arrière-plan</string>
     <string name="theme_title">Thème</string>
-    <string name="night_theme_title">Thème de nuit</string>
+    <string name="night_theme_title">Thème « Nuit »</string>
     <string name="dark_theme_title">Sombre</string>
     <string name="light_theme_title">Clair</string>
     <string name="black_theme_title">Noir</string>
@@ -293,8 +293,8 @@
     <string name="preferred_open_action_settings_title">Ouvrir de préférence avec</string>
     <string name="preferred_open_action_settings_summary">Action par défaut lors de l’ouverture de contenu — %s</string>
     <string name="no_streams_available_download">Aucun flux disponible au téléchargement</string>
-    <string name="caption_setting_title">Sous-titres</string>
-    <string name="caption_setting_description">Modifier la taille du texte et les styles d’arrière-plan des sous-titres du lecteur. Le redémarrage de l’application est requis pour appliquer les changements</string>
+    <string name="caption_setting_title">Légendes</string>
+    <string name="caption_setting_description">Modifier la taille du texte des légendes du lecteur et les styles d\'arrière-plan. Un redémarrage de l\'application est nécessaire pour que les modifications prennent effet.</string>
     <string name="playback_pitch">Ton</string>
     <string name="clear_views_history_title">Effacer l’historique des vues</string>
     <string name="clear_views_history_summary">Supprime l’historique des flux lus et des positions de reprise de lecture</string>
@@ -371,7 +371,7 @@
     <string name="error_http_not_found">Introuvable</string>
     <string name="pause_downloads_on_mobile">Interrompre sur les connexions limitées</string>
     <string name="pause_downloads_on_mobile_desc">Utile lors du basculement aux données mobiles, bien que certains téléchargements ne peuvent pas être suspendus</string>
-    <string name="list_view_mode">Mode de vue en liste</string>
+    <string name="list_view_mode">Mode d\'affichage sous forme de liste</string>
     <string name="post_processing">post-traitement</string>
     <string name="enqueue">Ajouter à la file</string>
     <string name="permission_denied">Action refusée par le système</string>
@@ -597,9 +597,9 @@
     <string name="radio">Radio</string>
     <string name="featured">Présentés</string>
     <string name="recaptcha_solve">Résoudre</string>
-    <string name="auto_device_theme_title">Automatique (thème de l’appareil)</string>
+    <string name="auto_device_theme_title">Automatique (thème de l\'appareil)</string>
     <string name="night_theme_summary">Sélectionne votre thème de nuit favori — %s</string>
-    <string name="select_night_theme_toast">Vous pouvez sélectionner votre thème de nuit favori ci-dessous</string>
+    <string name="select_night_theme_toast">Vous pouvez choisir ci-dessous votre thème nocturne préféré</string>
     <string name="download_has_started">Le téléchargement a démarré</string>
     <string name="show_channel_details">Afficher les détails de la chaîne</string>
     <string name="disable_media_tunneling_summary">Désactivez la tunnelisation multimédia si vous constatez un écran noir ou un bégaiement lors de la lecture d’une vidéo.</string>
@@ -625,8 +625,8 @@
     <string name="feed_load_error_account_info">Impossible de charger le flux \'%s\'.</string>
     <string name="feed_load_error">Erreur lors du chargement du flux</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Il vous sera demandé où enregistrer chaque téléchargement</string>
-    <string name="off">Inactif</string>
-    <string name="on">Actif</string>
+    <string name="off">Off</string>
+    <string name="on">On</string>
     <string name="tablet_mode_title">Mode tablette</string>
     <string name="feed_load_error_terminated">Le compte de l’auteur a été résilié.
 \nNewPipe ne sera plus en mesure de charger ce flux à l’avenir.
@@ -764,8 +764,8 @@
     <string name="prefer_descriptive_audio_summary">Sélectionner une piste audio avec des descriptions pour les personnes malvoyantes si disponible</string>
     <string name="select_audio_track_external_players">Sélectionner la piste audio pour les lecteurs externes</string>
     <string name="use_exoplayer_decoder_fallback_summary">Activez cette option si vous rencontrez des problèmes d\'initialisation des décodeurs, ce qui permet de revenir à des décodeurs moins prioritaires si l\'initialisation des décodeurs primaires échoue. Les performances de lecture peuvent être moins bonnes que lors de l\'utilisation des décodeurs primaires</string>
-    <string name="main_tabs_position_summary">Déplacer le sélecteur d\'onglet principal en bas</string>
-    <string name="main_tabs_position_title">Position des onglets principaux</string>
+    <string name="main_tabs_position_summary">Déplacer le sélecteur d\'onglets principal vers le bas</string>
+    <string name="main_tabs_position_title">Emplacement des onglets principaux</string>
     <string name="disable_media_tunneling_automatic_info">La tunnelisation multimédia a été désactivée par défaut sur votre appareil car votre modèle d\'appareil est connu pour ne pas la supporter.</string>
     <string name="no_streams">Aucun flux</string>
     <string name="no_live_streams">Aucun direct</string>

@@ -36,8 +36,8 @@
     <string name="download_path_audio_summary">다운로드된 오디오 파일이 이 곳에 저장됩니다</string>
     <string name="download_path_audio_dialog_title">오디오 파일이 다운로드 될 폴더를 선택하세요</string>
     <string name="theme_title">테마</string>
-    <string name="dark_theme_title">다크 테마</string>
-    <string name="light_theme_title">라이트 테마</string>
+    <string name="dark_theme_title">어둡게</string>
+    <string name="light_theme_title">밝게</string>
     <string name="settings_category_appearance_title">외관</string>
     <string name="background_player_playing_toast">백그라운드에서 재생 중</string>
     <string name="network_error">네트워크 오류</string>
@@ -82,7 +82,7 @@
     <string name="show_higher_resolutions_title">높은 해상도 표시</string>
     <string name="show_higher_resolutions_summary">일부 기기에서만 2K/4K 해상도 재생이 지원됩니다</string>
     <string name="default_video_format_title">기본 비디오 형식</string>
-    <string name="black_theme_title">블랙 테마</string>
+    <string name="black_theme_title">검정</string>
     <string name="popup_remember_size_pos_title">팝업 크기 및 위치 기억</string>
     <string name="popup_remember_size_pos_summary">마지막으로 사용한 팝업 위치 및 크기를 기억합니다</string>
     <string name="show_search_suggestions_title">검색 제안</string>
@@ -93,7 +93,7 @@
     <string name="enable_watch_history_summary">시청했던 비디오 기록을 저장합니다</string>
     <string name="resume_on_audio_focus_gain_title">이어서 재생</string>
     <string name="resume_on_audio_focus_gain_summary">중단 후 계속 재생(예: 전화 통화)</string>
-    <string name="show_hold_to_append_title">\"길게 눌러 대기열에 추가하기\" 팁 표시</string>
+    <string name="show_hold_to_append_title">\"길게 눌러 대기열에 추가\" 팁 표시</string>
     <string name="show_hold_to_append_summary">비디오 \"세부사항:\"에서 배경 또는 팝업 버튼을 누를 때 팁 표시</string>
     <string name="settings_category_player_title">플레이어</string>
     <string name="settings_category_player_behavior_title">동작</string>
@@ -175,7 +175,7 @@
     <string name="play_queue_remove">제거</string>
     <string name="play_queue_stream_detail">상세 정보</string>
     <string name="play_queue_audio_settings">오디오 설정</string>
-    <string name="hold_to_append">눌러서 대기열에 추가</string>
+    <string name="hold_to_append">길게 눌러 대기열에 추가</string>
     <string name="start_here_on_background">백그라운드에서 재생</string>
     <string name="start_here_on_popup">팝업으로 재생</string>
     <string name="no_player_found_toast">스트림 플레이어를 찾을 수 없습니다 (VLC를 설치하여 동영상을 재생할 수 있습니다).</string>
@@ -286,7 +286,7 @@
     <string name="preferred_open_action_settings_title">선호하는 열기 동작</string>
     <string name="preferred_open_action_settings_summary">콘텐츠를 열 때 사용할 기본 동작 — %s</string>
     <string name="caption_setting_title">자막</string>
-    <string name="caption_setting_description">플레이어 자막 글자 크기와 배경 스타일을 수정합니다. 적용하려면 앱을 다시 시작해야 합니다</string>
+    <string name="caption_setting_description">플레이어 자막 글씨 크기나 배경 서식을 변경합니다. 적용하려면 앱을 다시 시작해야 합니다</string>
     <string name="channels">채널</string>
     <string name="playlists">재생목록</string>
     <string name="clear_views_history_title">시청 기록 삭제하기</string>
@@ -336,7 +336,7 @@
     <string name="main_page_content_summary">메인 화면에 표시할 탭을 설정합니다</string>
     <string name="updates_setting_title">업데이트</string>
     <string name="updates_setting_description">새 버전이 있을 경우 앱을 업데이트하도록 알림 표시</string>
-    <string name="list_view_mode">\'목록으로 보기\' 모드</string>
+    <string name="list_view_mode">목록 보기 모드</string>
     <string name="list">목록</string>
     <string name="grid">격자</string>
     <string name="auto">자동</string>
@@ -500,7 +500,7 @@
     <string name="show_description_summary">비활성화하면 비디오 설명과 추가 정보를 표시하지 않습니다</string>
     <string name="show_description_title">설명 표시하기</string>
     <string name="clear_queue_confirmation_summary">한 플레이어에서 다른 플레이어로 전환하면 대기열이 대체될 수 있습니다</string>
-    <string name="night_theme_title">어두운 테마</string>
+    <string name="night_theme_title">야간 테마</string>
     <string name="notification_actions_at_most_three">축소된 알림에서 최대 3개까지 표시될 항목을 고를 수 있습니다!</string>
     <string name="notification_actions_summary">아래의 각 알림 동작을 탭하여 편집합니다. 오른쪽의 체크박스를 사용하여 최대 3개까지 선택하여 압축 알림에 표시합니다.</string>
     <string name="youtube_restricted_mode_enabled_title">YouTube의 \'제한 모드\' 켜기</string>
@@ -590,7 +590,7 @@
     <string name="remove_watched_popup_partially_watched_streams">예, 부분적으로 본 비디오</string>
     <string name="metadata_category">카테고리</string>
     <string name="video_detail_by">%s에 의해</string>
-    <string name="select_night_theme_toast">아래에서 선호하는 어두운 테마를 선택할 수 있습니다</string>
+    <string name="select_night_theme_toast">아래에서 선호하는 야간 테마를 선택할 수 있습니다</string>
     <string name="youtube_music_premium_content">이 영상은 YouTube Music Premium 회원만 볼 수 있기 때문에 NewPipe에서 스트리밍이나 다운로드가 불가능합니다.</string>
     <string name="private_content">이 콘텐츠는 비공개이므로 NewPipe에서 스트리밍하거나 다운로드할 수 없습니다.</string>
     <string name="metadata_privacy_internal">내부</string>
@@ -644,7 +644,7 @@
     <string name="recent">최근</string>
     <string name="account_terminated">계정이 해지됨</string>
     <string name="soundcloud_go_plus_content">이것은 적어도 귀하의 국가에서 SoundCloud Go+ 트랙이므로 NewPipe에서 스트리밍하거나 다운로드할 수 없습니다.</string>
-    <string name="auto_device_theme_title">자동 (장치 테마)</string>
+    <string name="auto_device_theme_title">자동 (기기 테마)</string>
     <string name="detail_pinned_comment_view_description">고정된 댓글</string>
     <string name="featured">추천</string>
     <string name="unknown_format">알 수 없는 형식</string>

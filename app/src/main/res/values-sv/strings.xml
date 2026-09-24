@@ -36,8 +36,8 @@
     <string name="default_audio_format_title">Standardformat för ljud</string>
     <string name="default_video_format_title">Standardformat för video</string>
     <string name="theme_title">Tema</string>
-    <string name="light_theme_title">Ljust</string>
-    <string name="dark_theme_title">Mörkt</string>
+    <string name="light_theme_title">Ljus</string>
+    <string name="dark_theme_title">Mörk</string>
     <string name="black_theme_title">Svart</string>
     <string name="popup_remember_size_pos_title">Kom ihåg popupfönstrets inställningar</string>
     <string name="popup_remember_size_pos_summary">Kom ihåg popupfönstrets senaste storlek och placering</string>
@@ -273,8 +273,8 @@
     <string name="resize_fill">Fyll</string>
     <string name="resize_zoom">Zoom</string>
     <string name="caption_auto_generated">Automatiskt genererad</string>
-    <string name="caption_setting_title">Textning</string>
-    <string name="caption_setting_description">Ändra spelarens textstorlek och bakgrundsstil. Appen måste startas om innan ändringarna börjar gälla.</string>
+    <string name="caption_setting_title">Undertexter</string>
+    <string name="caption_setting_description">Ändra spelarens textstorlek och bakgrundsstil. Appen måste startas om innan ändringarna börjar gälla</string>
     <string name="enable_leak_canary_summary">Övervakning av minnesläckor kan göra att appen inte svarar när en heap-dump skapas</string>
     <string name="enable_disposed_exceptions_title">Rapportera fel utanför livscykeln</string>
     <string name="enable_disposed_exceptions_summary">Tvinga rapportering av otillåtna Rx-undantag utanför fragmentets eller aktivitetens livscykel efter rensning</string>
@@ -322,7 +322,7 @@
     <string name="main_page_content_summary">Vilka flikar visas på huvudsidan</string>
     <string name="updates_setting_title">Uppdateringar</string>
     <string name="updates_setting_description">Visa en avisering när en ny version av appen finns tillgänglig</string>
-    <string name="list_view_mode">Listvy</string>
+    <string name="list_view_mode">Listläge</string>
     <string name="list">Lista</string>
     <string name="grid">Rutnät</string>
     <string name="auto">Automatisk</string>
@@ -515,7 +515,7 @@
     <string name="recaptcha_cookies_cleared">reCAPTCHA-kakor har tagits bort</string>
     <string name="clear_cookie_title">Rensa reCAPTCHA-kakor</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube erbjuder ett \"Begränsat läge\" som döljer material som potentiellt är olämpligt för barn</string>
-    <string name="auto_device_theme_title">Automatiskt (enhetens tema)</string>
+    <string name="auto_device_theme_title">Automatiskt (enhetens förvalda)</string>
     <string name="notification_action_shuffle">Blanda</string>
     <string name="enqueued">Köad</string>
     <string name="downloads_storage_use_saf_summary_api_29">Från och med Android 10 stöds bara \"Storage Access Framework\"</string>
@@ -585,12 +585,12 @@
     <string name="mark_as_watched">Markera som sedd</string>
     <string name="metadata_privacy_unlisted">Olistad</string>
     <string name="featured">Aktuellt</string>
-    <string name="night_theme_title">Nattema</string>
+    <string name="night_theme_title">Natt-tema</string>
     <string name="hash_channel_description">Aviseringar för videohashningsframsteg</string>
     <string name="disable_media_tunneling_summary">Inaktivera medietunnel om du upplever en svart skärm eller att videouppspelningen hackar.</string>
     <string name="disable_media_tunneling_title">Inaktivera medietunnel</string>
     <string name="detail_heart_img_view_description">Hjärtmärkt av innehållsskaparen</string>
-    <string name="select_night_theme_toast">Du kan välja önskat nattema nedan</string>
+    <string name="select_night_theme_toast">Välj ditt favorittema för nattläge nedan</string>
     <string name="night_theme_summary">Välj önskat nattema — %s</string>
     <string name="seekbar_preview_thumbnail_title">Förhandsvisning i sökfältet</string>
     <string name="local_search_suggestions">Lokala sökförslag</string>
@@ -609,7 +609,7 @@
     <string name="recent">Senaste</string>
     <string name="main_page_content_swipe_remove">Svep objekt för att ta bort dem</string>
     <string name="remote_search_suggestions">Förslag via fjärrsökning</string>
-    <string name="start_main_player_fullscreen_summary">Starta videor direkt i helskärmsläge i stället för i minispelaren när automatisk rotation är låst. Du kan fortfarande öppna minispelaren genom att lämna helskärmsläget.</string>
+    <string name="start_main_player_fullscreen_summary">Starta videor direkt i helskärmsläge i stället för i minispelaren när automatisk rotation är låst. Du kan fortfarande öppna minispelaren genom att lämna helskärmsläget</string>
     <string name="check_for_updates">Sök efter uppdateringar</string>
     <string name="manual_update_description">Sök manuellt efter nya versioner</string>
     <string name="checking_updates_toast">Söker efter uppdateringar…</string>
@@ -699,7 +699,7 @@
     <string name="select_audio_track_external_players">Välj ljudspår för externa spelare</string>
     <string name="unknown_audio_track">Okänt</string>
     <string name="settings_category_exoplayer_title">ExoPlayer-inställningar</string>
-    <string name="settings_category_exoplayer_summary">Hantera vissa ExoPlayer-inställningar. Spelaren måste startas om innan ändringarna börjar gälla.</string>
+    <string name="settings_category_exoplayer_summary">Hantera vissa ExoPlayer-inställningar. Spelaren måste startas om innan ändringarna börjar gälla</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Använd alltid ExoPlayers lösning för inställning av videoutgångsyta</string>
     <string name="prefer_original_audio_title">Föredra originalljud</string>
     <string name="prefer_original_audio_summary">Välj originalljudspåret oavsett språk</string>
@@ -802,7 +802,7 @@
     <string name="delete_entry">Ta bort post</string>
     <string name="account_terminated_service_provides_reason">Konto avslutat\n\n%1$s anger denna anledning: %2$s</string>
     <string name="entry_deleted">Posten borttagen</string>
-    <string name="player_http_403">Servern svarade med HTTP-fel 403 under uppspelningen. Strömnings-URL:en kan ha löpt ut eller IP-adressen kan ha blockerats.</string>
+    <string name="player_http_403">Servern svarade med HTTP-fel 403 under uppspelningen. Strömnings-URL:en kan ha löpt ut eller IP-adressen blivit blockerad</string>
     <string name="player_http_invalid_status">Servern svarade med HTTP-fel %1$s under uppspelningen</string>
     <string name="youtube_player_http_403">Servern svarade med HTTP-fel 403 under uppspelningen, troligen på grund av en IP-blockering eller problem med avobfuskering av strömnings-URL:er</string>
     <string name="sign_in_confirm_not_bot_error">%1$s vägrade att lämna ut uppgifter och krävde inloggning för att bekräfta att begäran inte kommer från en robot.\n\nDin IP-adress kan ha blockerats tillfälligt av %1$s. Vänta en stund eller byt IP-adress, till exempel genom att slå av och på en VPN-anslutning eller växla mellan Wi-Fi och mobildata.\n\nLäs <a href="%2$s">avsnittet i vanliga frågor</a> för mer information.</string>

@@ -6,13 +6,13 @@
     <string name="no_player_found_toast">Voogesituseks puudub pleier (selleks saad paigaldada VLC).</string>
     <string name="install">Paigalda</string>
     <string name="cancel">Tühista</string>
-    <string name="open_in_browser">Ava veebilehitsejas</string>
+    <string name="open_in_browser">Ava veebibrauseris</string>
     <string name="open_in_popup_mode">Ava hüpikaknas</string>
     <string name="share">Jaga</string>
     <string name="download">Allalaadimine</string>
     <string name="controls_download_desc">Laadi voog alla</string>
     <string name="search">Otsi</string>
-    <string name="settings">Seaded</string>
+    <string name="settings">Seadistused</string>
     <string name="did_you_mean">Kas mõtlesid: \"%1$s\"\?</string>
     <string name="share_dialog_title">Jaga</string>
     <string name="use_external_video_player_title">Kasuta välist videopleierit</string>
@@ -47,10 +47,10 @@
     <string name="play_audio">Heli</string>
     <string name="default_audio_format_title">Heli vaikevorming</string>
     <string name="default_video_format_title">Video vaikevorming</string>
-    <string name="theme_title">Teema</string>
-    <string name="light_theme_title">Hele</string>
-    <string name="dark_theme_title">Tume</string>
-    <string name="black_theme_title">Must</string>
+    <string name="theme_title">Kujundus</string>
+    <string name="light_theme_title">Hele kujundus</string>
+    <string name="dark_theme_title">Tume kujundus</string>
+    <string name="black_theme_title">Süsimust kujundus</string>
     <string name="popup_remember_size_pos_title">Pea hüpikakna suurus ja asukoht meeles</string>
     <string name="popup_remember_size_pos_summary">Pea hüpikakna viimane suurus ja asukoht meeles</string>
     <string name="use_inexact_seek_title">Kasuta ebatäpset kerimist</string>
@@ -78,10 +78,10 @@
     <string name="content_language_title">Sisu vaikimisi keel</string>
     <string name="settings_category_player_title">Pleier</string>
     <string name="settings_category_player_behavior_title">Käitumine</string>
-    <string name="settings_category_video_audio_title">Pilt ja heli</string>
+    <string name="settings_category_video_audio_title">Video ja heli</string>
     <string name="settings_category_history_title">Ajalugu ja vahemälu</string>
     <string name="settings_category_appearance_title">Välimus</string>
-    <string name="settings_category_debug_title">Silumine</string>
+    <string name="settings_category_debug_title">Veaotsing</string>
     <string name="background_player_playing_toast">Taasesitus taustal</string>
     <string name="popup_playing_toast">Taasesitus hüpikaknas</string>
     <string name="content">Sisu</string>
@@ -200,7 +200,7 @@
     <string name="tab_licenses">Litsentsid</string>
     <string name="contribution_title">Tee kaastööd</string>
     <string name="view_on_github">Vaata GitHubis</string>
-    <string name="donation_title">Anneta</string>
+    <string name="donation_title">Toeta meid rahaliselt</string>
     <string name="website_title">Veebisait</string>
     <string name="website_encouragement">Täiendava info ja uudiste lugemiseks külasta NewPipe\'i veebisaiti.</string>
     <string name="privacy_policy_title">NewPipe\'i andmekaitsepõhimõtted</string>
@@ -299,11 +299,11 @@
     <string name="recaptcha_request_toast">reCAPTCHA nõude taotlus</string>
     <string name="copyright" formatted="true">© %1$s %2$s %3$s alla</string>
     <string name="app_description">Vaba ja lihtne voogesitus Androidis.</string>
-    <string name="contribution_encouragement">Kui sul on ideid kujunduse muutmisest, koodi puhastamisest või suurtest koodi muudatustest - abi on alati teretulnud. Mida rohkem tehtud, seda paremaks läheb!</string>
-    <string name="donation_encouragement">NewPipe\'i arendajad on vabatahtlikud, kes kulutavad oma vaba aega, toomaks sulle parimat kasutuskogemust. On aeg anda tagasi aidates arendajaid ja muuta NewPipe veel paremaks, nautides ise tassi kohvi.</string>
-    <string name="give_back">Anneta</string>
+    <string name="contribution_encouragement">Kui sul on ideid kujunduse muutmise, koodi puhastamise või suurema edasiarenduse osas - abi on alati teretulnud. Mida rohkem tehtud, seda paremaks läheb!</string>
+    <string name="donation_encouragement">NewPipe\'i arendajad on vabatahtlikud, kes kulutavad oma vaba aega, toomaks sulle parimat kasutuskogemust. On aeg anda tagasi aidates arendajaid ja muuta NewPipe\'i veel paremaks, nautides ise tassi kohvi.</string>
+    <string name="give_back">Anna kogukonnale tagasi</string>
     <string name="privacy_policy_encouragement">NewPipe võtab privaatsust väga tõsiselt. Seetõttu ei kogu rakendus ilma nõusolekuta mingeid andmeid. \nNewPipe\'i andmekaitsepõhimõtted selgitavad üksikasjalikult, milliseid andmeid saadetakse ja kogutakse veateate saatmisel.</string>
-    <string name="app_license">NewPipe on vaba ja avatud lähtekoodiga tarkvara. Seada võid kasutada, uurida, jagada ja parandada nii, nagu õigemaks pead. Täpsemalt - seda võid levitada ja/või muuta vastavalt Vaba Tarkvara Sihtasutuse avaldatud GNU Üldise Avaliku Litsentsi v.3 (või sinu valikul hilisema versiooni) tingimustele.</string>
+    <string name="app_license">NewPipe on vaba ja avatud lähtekoodiga tarkvara. Seda võid kasutada, uurida, jagada ja parandada nii, nagu õigemaks pead. Täpsemalt - seda võid levitada ja/või muuta vastavalt Vaba Tarkvara Sihtasutuse avaldatud GNU Üldise Avaliku Litsentsi v.3 (või sinu valikul hilisema versiooni) tingimustele.</string>
     <string name="enable_disposed_exceptions_title">Teavita elutsüklist väljas vigadest</string>
     <string name="import_soundcloud_instructions">Impordi SoundCloudi profiil trükkides URL või oma ID:
 \n
@@ -326,7 +326,7 @@
     <string name="enable_disposed_exceptions_summary">Jõusta väljaspool fragmenti või elutsüklit olevate kättetoimetamatute Rx erindite raporteerimine nende vabastamise järgselt</string>
     <string name="unsubscribe">Lõpeta tellimine</string>
     <string name="tab_choose">Vali vahekaart</string>
-    <string name="settings_category_updates_title">Uuendused</string>
+    <string name="settings_category_updates_title">Tarkvarauuendused</string>
     <string name="events">Sündmused</string>
     <string name="file_deleted">Fail kustutati</string>
     <string name="app_update_notification_channel_name">Rakenduse värskenduse teavitus</string>
@@ -428,9 +428,9 @@
     <string name="recaptcha_solve">Lahenda</string>
     <string name="featured">Esiletõstetud</string>
     <string name="radio">Raadio</string>
-    <string name="auto_device_theme_title">Automaatne (seadme teema)</string>
+    <string name="auto_device_theme_title">Automaatne (seadme kujundus)</string>
     <string name="night_theme_summary">Vali eelistatud teema öiseks kasutuseks — %s</string>
-    <string name="select_night_theme_toast">Järgnevalt saad sa valida sobiva teema öiseks kasutuseks</string>
+    <string name="select_night_theme_toast">Võid alljärgnevast valida sulle sobivaima öise kujunduse</string>
     <string name="download_has_started">Allalaadimine algas</string>
     <string name="related_items_tab_description">Sarnane meedia</string>
     <string name="show_channel_details">Näita kanali lisateavet</string>
@@ -470,7 +470,7 @@
     <string name="youtube_restricted_mode_enabled_summary">YouTube\'is leiduv „Piiratud režiim“ peidab võimaliku täiskasvanutele mõeldud sisu</string>
     <string name="show_age_restricted_content_summary">Näita sisu, mis vanusepiirangu tõttu ilmselt ei sobi lastele (näiteks 18+)</string>
     <string name="peertube_instance_add_https_only">Sa saad kasutada vaid HTTPS-urle</string>
-    <string name="night_theme_title">Öine teema</string>
+    <string name="night_theme_title">Öine kujundus</string>
     <string name="never">Ei iialgi</string>
     <string name="wifi_only">Vaid Wi-Fi võrgus</string>
     <string name="autoplay_summary">Alusta esitamist automaatselt — %s</string>
