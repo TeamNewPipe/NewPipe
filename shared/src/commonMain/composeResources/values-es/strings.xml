@@ -38,4 +38,9 @@
     <string name="settings_category_updates_title">Actualizaciones</string>
     <string name="settings_category_backup_restore_title">Respaldar y restaurar</string>
     <string name="settings_category_debug_title">Depuración</string>
+    <string name="theme_title">Tema</string>
+    <string name="light_theme_title">Claro</string>
+    <string name="dark_theme_title">Oscuro</string>
+    <string name="black_theme_title">Negro</string>
+    <string name="auto_device_theme_title">Automático (tema del dispositivo)</string>
 </resources>
