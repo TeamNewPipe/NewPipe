@@ -38,4 +38,20 @@
     <string name="settings_category_updates_title">Uppdateringar</string>
     <string name="settings_category_backup_restore_title">Säkerhetskopiera och återställ</string>
     <string name="settings_category_debug_title">Felsökning</string>
+    <string name="cancel">Avbryt</string>
+    <string name="card">Kort</string>
+    <string name="theme_title">Tema</string>
+    <string name="light_theme_title">Ljus</string>
+    <string name="dark_theme_title">Mörk</string>
+    <string name="black_theme_title">Svart</string>
+    <string name="auto_device_theme_title">Automatiskt (enhetens förvalda)</string>
+    <string name="night_theme_title">Natt-tema</string>
+    <string name="night_theme_summary">Välj ditt favorittema för nattläge — %1$s</string>
+    <string name="night_theme_available">Detta kan bara väljas om %1$s väljs som tema</string>
+    <string name="select_night_theme_toast">Välj ditt favorittema för nattläge nedan</string>
+    <string name="show_hold_to_append_title">Visa tips för \\"Håll för att köa\\"</string>
+    <string name="show_hold_to_append_summary">Visa tips när du trycker på bakgrunds- eller popup-knappen i videons \\"Detaljer:\\"</string>
+    <string name="tablet_mode_title">Surfplatteläge</string>
+    <string name="list_view_mode">Listläge</string>
+    <string name="caption_setting_title">Undertexter</string>
 </resources>
