@@ -21,7 +21,7 @@
     <string name="show_play_with_kodi_summary">Option anzeigen, um Videos mit Kodi abzuspielen</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Bevorzugtes Audioformat</string>
-    <string name="download_dialog_title">Download</string>
+    <string name="download_dialog_title">Herunterladen</string>
     <string name="show_next_and_similar_title">„Nächste“ und „Ähnliche“ Videos anzeigen</string>
     <string name="unsupported_url">Nicht unterstützte URL</string>
     <string name="settings_category_video_audio_title">Video und Audio</string>
@@ -591,7 +591,7 @@
     <string name="recaptcha_solve">Lösen</string>
     <string name="download_has_started">Download hat begonnen</string>
     <string name="select_night_theme_toast">Du kannst dein bevorzugtes Nachtdesign unten auswählen</string>
-    <string name="night_theme_summary">Wähle dein bevorzugtes Nachtdesign — %s</string>
+    <string name="night_theme_summary">Wähle dein bevorzugtes Nachtdesign aus — %s</string>
     <string name="auto_device_theme_title">Automatisch (Gerätedesign)</string>
     <string name="night_theme_title">Nachtdesign</string>
     <string name="show_channel_details">Kanaldetails anzeigen</string>

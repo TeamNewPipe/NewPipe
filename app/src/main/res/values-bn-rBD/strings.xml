@@ -5,7 +5,7 @@
     <string name="no_player_found">কোন স্ট্রিম প্লেয়ার নেই। VLC ইনস্টল করতে চান\?</string>
     <string name="install">ইনস্টল</string>
     <string name="cancel">বাতিল</string>
-    <string name="open_in_browser">ব্রাউজারে ওপেন করুন</string>
+    <string name="open_in_browser">ব্রাউজারে খুলুন</string>
     <string name="open_in_popup_mode">পপ-আপ মোডে ওপেন করো</string>
     <string name="share">শেয়ার</string>
     <string name="download">ডাউনলোড</string>
@@ -45,7 +45,7 @@
     <string name="unsupported_url">URL সমর্থিত নয়</string>
     <string name="content_language_title">কন্টেন্ট এর জন্য পছন্দসই ভাষা</string>
     <string name="settings_category_video_audio_title">ভিডিও এবং অডিও</string>
-    <string name="settings_category_appearance_title">অ্যাপিয়ারেন্স</string>
+    <string name="settings_category_appearance_title">উপস্থিতি</string>
     <string name="background_player_playing_toast">ব্যাকগ্রাউন্ডে চলছে</string>
     <string name="popup_playing_toast">পপআপ মোডে চলছে</string>
     <string name="content">কন্টেন্ট</string>
@@ -112,14 +112,14 @@
     <string name="enable_watch_history_title">দেখার ইতিহাস</string>
     <string name="settings_category_player_title">প্লেয়ার</string>
     <string name="settings_category_player_behavior_title">ব্যাবহার</string>
-    <string name="settings_category_history_title">ইতিহাস</string>
+    <string name="settings_category_history_title">ইতিহাস এবং ক্যাশ</string>
     <string name="settings_category_debug_title">ডিবাগ</string>
     <string name="always">সবসময়</string>
     <string name="just_once">একবার মাত্র</string>
     <string name="unknown_content">[অজানা]</string>
     <string name="no_views">কোন ভিউ নেই</string>
     <string name="rename">নাম পরিবর্তন করুন</string>
-    <string name="website_title">ওয়েবসাইট</string>
+    <string name="website_title">ওয়েবসাইট</string>
     <string name="no_player_found_toast">কোন স্ট্রিম প্লেয়ার নেই (প্লে করতে VLC ইন্সটল করতে পারেন)।</string>
     <string name="use_external_video_player_summary">কিছু কিছু রেজ্যুলেশনে অডিও বন্ধ করে দেয়</string>
     <string name="subscribe_button_title">সাবস্ক্রাইব</string>
@@ -150,8 +150,8 @@
     <string name="show_search_suggestions_summary">অনুসন্ধানকালীন কী পরামর্শ দেওয়া হবে তা বাছুন</string>
     <string name="show_search_suggestions_title">অনুসন্ধানের পরামর্শ</string>
     <string name="search_showing_result_for">ফলাফল দেখাচ্ছে: %s এর জন্যে</string>
-    <string name="tab_about">সম্পর্কিত</string>
-    <string name="title_activity_about">নিউপাইপ এর সম্বন্ধে</string>
+    <string name="tab_about">পরিচিতি ও প্রশ্নসমূহ</string>
+    <string name="title_activity_about">নিউপাইপ ব্যাপারে</string>
     <string name="trending">ট্রেন্ডিং</string>
     <string name="feed_create_new_group_button_title">নতুন</string>
     <string name="feed_notification_loading">ফিড লোড হচ্ছে…</string>
@@ -194,13 +194,13 @@
     <string name="blank_page_summary">খালি পাতা</string>
     <string name="title_most_played">সবথেকে বেশি চালানো</string>
     <string name="title_last_played">শেষ চালানো</string>
-    <string name="read_full_license">লাইসেন্স পড়ুন</string>
-    <string name="app_license_title">নিউপাইপ এর লাইসেন্স</string>
-    <string name="read_privacy_policy">প্রাইভেসি পলিসি পড়ুন</string>
-    <string name="privacy_policy_title">নিউপাইপ এর গোপনীয়তা নীতি</string>
-    <string name="give_back">ফিরিয়ে দিন</string>
-    <string name="view_on_github">গিটহাব এ দেখুন</string>
-    <string name="title_licenses">থার্ড-পার্টি লাইসেন্স সমূহ</string>
+    <string name="read_full_license">অনুমতিসমূহ পড়ুন</string>
+    <string name="app_license_title">নিউপাইপের অনুমতি</string>
+    <string name="read_privacy_policy">পড়ুন গোপনীয়তার নীতিমালা</string>
+    <string name="privacy_policy_title">নিউপাইপের গোপনীয়তার নীতি</string>
+    <string name="give_back">ফিরিয়ে দিন</string>
+    <string name="view_on_github">গিটহাবে দেখুন</string>
+    <string name="title_licenses">তৃতীয়পক্ষ অনুমতি</string>
     <string name="charset_letters_and_digits">শব্দ ও নম্বর</string>
     <string name="one_item_deleted">একটি আইটেম ডিলিট হয়েছে।</string>
     <string name="no_comments">কোন মন্তব্য নেই</string>
@@ -254,9 +254,9 @@
     <string name="peertube_instance_url_title">পিয়ার টিউব এর ইন্সটান্স সমূহ</string>
     <string name="grid">ছক</string>
     <string name="local">স্থানীয়</string>
-    <string name="done">হয়েছে</string>
+    <string name="done">হয়েছে</string>
     <string name="events">ইভেন্টগুলো</string>
-    <string name="settings_category_updates_title">আপডেট</string>
+    <string name="settings_category_updates_title">আপডেটস</string>
     <string name="minimize_on_exit_none_description">কোনোটি না</string>
     <string name="accept">স্বীকার করো</string>
     <string name="decline">অস্বীকার করো</string>
@@ -277,9 +277,9 @@
     <string name="export_complete_toast">বের করা হয়েছে</string>
     <string name="action_history">ইতিহাস</string>
     <string name="title_activity_history">ইতিহাস</string>
-    <string name="tab_licenses">অনুমতিপত্র</string>
-    <string name="donation_title">দান করো</string>
-    <string name="contribution_title">স্বেচ্ছাস্বেবা</string>
+    <string name="tab_licenses">অনুমতিসমূহ</string>
+    <string name="donation_title">অনুদান</string>
+    <string name="contribution_title">অনুদান</string>
     <string name="settings_category_downloads_title">ডাউনলোড</string>
     <string name="dismiss">সরাও</string>
     <string name="create">তৈরি করো</string>
@@ -324,7 +324,7 @@
         <item quantity="one">%d মিনিট</item>
         <item quantity="other">%d মিনিট</item>
     </plurals>
-    <string name="website_encouragement">আরও তথ্য এবং খবরের জন্য নিউপাইপ ওয়েবসাইট দেখো।</string>
+    <string name="website_encouragement">আরো তথ্য ও খবরের জন্য যান নিউপাইপ ওয়েবসাইটে ।</string>
     <string name="open_with">দিয়ে খুলো</string>
     <string name="comments_tab_description">মতামত</string>
     <string name="off">বন্ধ</string>
@@ -433,7 +433,7 @@
     <string name="clear_queue_confirmation_title">অপেক্ষমাণ সারি বাদ দেওয়ার আগে নিশ্চিত হতে জিজ্ঞেস করো</string>
     <string name="show_age_restricted_content_summary">শিশুদের জন্য বয়সসীমার কারণে অনুপযোগী হতে পারে এমন কন্টেন্ট দেখাও (যেমন ১৮+)</string>
     <string name="clear_views_history_summary">প্লে করা স্ট্রিমসমূহের ইতিহাস এবং প্লেব্যাক অবস্থানসমূহ মুছে দেবে</string>
-    <string name="notifications">নোটিফিকেশনসমূহ</string>
+    <string name="notifications">নটিফিকেশনস</string>
     <string name="error_report_channel_name">ত্রুটি প্রতিবেদন এর নোটিফিকেশন</string>
     <string name="export_data_summary">ইতিহাস, সাবস্ক্রিপশন্স, প্লেলিস্ট ও সেটিংস রপ্তানি করো</string>
     <string name="no_dir_yet">কোনো ডাউনলোড ফোল্ডার ঠিক করা নেই, এখন ডিফল্ট ডাউনলোড ফোল্ডার বাছুন</string>
@@ -447,4 +447,11 @@
     <string name="metadata_tags">ট্যাগসমূহ</string>
     <string name="notification_colorize_summary">অ্যান্ড্রয়েডকে থাম্বনেইলের প্রধান রং অনুযায়ী রঙিন করুন (উল্লেখ্য যে, এটি সব ডিভাইসে উপলব্ধ নয়)</string>
     <string name="unknown_format">অজানা ধরন</string>
+    <string name="contribution_encouragement">ভাষান্তর , কোড মোছা অথবা প্রয়োজনীয় গুরুত্বপূর্ণ কোড সমন্বয় করার মতো এমন ধারনা যদি আপনার থেকে থাকে তা সব সময় সাদরে গৃহীত হবে । যত উন্নত করা হবে ততই এটি ভালো হয়ে উঠবে !</string>
+    <string name="donation_encouragement">সেচ্ছাসেবক কারিগর নিজেদের অবসর সময়ে তৈরি করেছে নিউপাইপ যা আপনাকে দেয় সেরা ব্যবহাকারি অভিজ্ঞতা । কারিগরদের বিনিময়ে সাহায্য করুন যাতে নিউপাইপ আরো উন্নত হয় যেইসময়টাতে তারা তাদের এককাপ কফি উপোভোগ করছে ।</string>
+    <string name="app_license">নিউপাইপ হলো বিনামূল্যের কপিলেফট সফটও্যয়ার । যা আপনি ব্যবহার,চর্চা,ভাগাভাগি এবং স্বেচ্ছায় উন্নত করতে পারেন । বিশেষ করে এটিকে আপনি পূনর্প্রদান এবং পরিবর্তন করতে পারেন মুক্ত সফটও্যয়ার প্রতিষ্ঠানের প্রকাশিত GNU ( General Public License) এর মাধ্যমে, হয় অনুমতি পত্রের ৩য় তম সংস্করণ অথবা পুরোনো কোনো সংস্করণ অনুযায়ী ( আপনার যেটি ইচ্ছা) ।</string>
+    <string name="faq_title">প্রায়ই জিজ্ঞেস করা প্রশ্নসমূহ</string>
+    <string name="faq_description">আপনার যদি এই অ্যাপ ব্যবহারে অসুবিধে হয়, তবে এইসব সাধারন প্রশ্ন গুলোর উত্তরসমূহ অবশ্যই দেখেনিন ।</string>
+    <string name="faq">ওয়েবসাইটে দেখুন</string>
+    <string name="settings_category_backup_restore_title">সংরক্ষণ এবং পুনরুদ্ধার</string>
 </resources>

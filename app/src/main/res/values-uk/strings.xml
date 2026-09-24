@@ -300,7 +300,7 @@
     <string name="preferred_open_action_settings_title">Бажана дія під час відкривання</string>
     <string name="preferred_open_action_settings_summary">Типова дія під час відкриття вмісту — %s</string>
     <string name="caption_setting_title">Субтитри</string>
-    <string name="caption_setting_description">Зміна висоти тексту субтитрів та стилів тла. Потребує перезапуску застосунку</string>
+    <string name="caption_setting_description">Змінити масштаб тексту субтитрів програвача та стилі тла. Потрібен перезапуск, щоб застосувати зміни</string>
     <string name="clear_views_history_title">Очистити історію переглядів</string>
     <string name="clear_views_history_summary">Видаляє історію відтворень і позицій відтворення</string>
     <string name="delete_view_history_alert">Видалити всю історію переглядів\?</string>
@@ -333,9 +333,9 @@
     <string name="playlists">Добірки</string>
     <string name="tracks">Треки</string>
     <string name="users">Користувачі</string>
-    <string name="list_view_mode">Режим перегляду списком</string>
+    <string name="list_view_mode">Режим списку</string>
     <string name="list">Список</string>
-    <string name="grid">Сiтка</string>
+    <string name="grid">Сітка</string>
     <string name="unsubscribe">Відписатися</string>
     <string name="tab_choose">Обрати вкладку</string>
     <string name="settings_category_updates_title">Оновлення</string>
@@ -575,7 +575,7 @@
     <string name="private_content">Цей вміст є приватним, тому його не можна передавати потоково або завантажувати через NewPipe.</string>
     <string name="youtube_music_premium_content">Це відео доступне лише для користувачів YouTube Music Premium, тому його не можна передавати потоково або завантажувати через NewPipe.</string>
     <string name="paid_content">Цей вміст доступний лише користувачам, які заплатили, тому його не можна передавати потоково або завантажувати через NewPipe.</string>
-    <string name="select_night_theme_toast">Ви можете вибрати нічну тему нижче</string>
+    <string name="select_night_theme_toast">Ви можете вибрати улюблену нічну тему нижче</string>
     <string name="featured">Рекомендовані</string>
     <string name="crash_the_app">Збій застосунку</string>
     <string name="show_original_time_ago_title">Початковий час оприлюднення</string>
@@ -765,8 +765,8 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">Цей обхідний шлях вивільняє і повторно встановлює відеокодеки, коли відбувається зміна поверхні, замість того, щоб налаштовувати поверхню на кодек безпосередньо. Це налаштування вже використовується ExoPlayer на деяких пристроях з цією проблемою, але воно працює лише на Android 6 і новіших версіях
 \n
 \nУвімкнення цієї опції може запобігти помилкам відтворення під час перемикання поточного відеопрогравача або переходу до повноекранного режиму</string>
-    <string name="main_tabs_position_summary">Перемістити селектор головної вкладки вниз</string>
-    <string name="main_tabs_position_title">Розташування основних вкладок</string>
+    <string name="main_tabs_position_summary">Перемістити селектор головних вкладок униз</string>
+    <string name="main_tabs_position_title">Розміщення головних вкладок</string>
     <string name="disable_media_tunneling_automatic_info">Тунелювання медіа типово було вимкнено на вашому пристрої, оскільки ваша модель його не підтримує.</string>
     <string name="no_streams">Немає трансляцій</string>
     <string name="no_live_streams">Немає трансляцій наживо</string>
@@ -846,7 +846,7 @@
     <string name="migration_info_6_7_title">Сторінку SoundCloud Top 50 видалено</string>
     <string name="migration_info_6_7_message">SoundCloud припинив підтримку оригінальних чартів Топ-50. Відповідну вкладку видалено з вашої головної сторінки.</string>
     <string name="migration_info_7_8_title">Видалено об’єднаний тренд YouTube</string>
-    <string name="migration_info_7_8_message">YouTube припинив підтримку об’єднаної сторінки трендів з 21 липня 2025 року. NewPipe замінив стандартну сторінку трендів на сторінку трендових прямих трансляцій.\n\nВи також можете вибрати різні сторінки трендів у розділі «Налаштування» &gt; «Контент» &gt; «Контент головної сторінки».</string>
+    <string name="migration_info_7_8_message">YouTube припинив підтримку об’єднаної сторінки трендів з 21 липня 2025 року. NewPipe замінив стандартну сторінку трендів на сторінку трендових прямих трансляцій.\n\nВи також можете вибрати різні сторінки трендів у розділі «Налаштування» &gt; «Вміст» &gt; «Вміст головної сторінки».</string>
     <string name="trending_gaming">Ігрові тренди</string>
     <string name="trending_podcasts">Популярні подкасти</string>
     <string name="trending_movies">Популярні фільми та шоу</string>

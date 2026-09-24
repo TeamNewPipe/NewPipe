@@ -331,7 +331,7 @@
     <string name="main_page_content_summary">Укладкі, бачныя на галоўнай старонцы</string>
     <string name="updates_setting_title">Абнаўленні</string>
     <string name="updates_setting_description">Паказваць апавяшчэнне пры наяўнасці новай версіі</string>
-    <string name="list_view_mode">Выгляд спіса</string>
+    <string name="list_view_mode">Рэжым спіса</string>
     <string name="list">Спіс</string>
     <string name="grid">Сетка</string>
     <string name="auto">Аўтаматычна</string>
@@ -479,14 +479,14 @@
     <string name="feed_group_dialog_empty_selection">Падпіскі не выбраны</string>
     <string name="feed_oldest_subscription_update">Апошняе абнаўленне: %s</string>
     <string name="auto_device_theme_title">Аўтаматычна (тэма прылады)</string>
-    <string name="night_theme_summary">Выберыце любімую начную тэму - %s</string>
-    <string name="description_select_enable">Дазвол вылучэння тэксту ў апісанні</string>
-    <string name="select_night_theme_toast">Вы можаце выбраць сваю любімую начную тэму ніжэй</string>
+    <string name="night_theme_summary">Выберыце ўлюбёную начную тэму - %s</string>
+    <string name="description_select_enable">Дазволіць вылучэнне тэксту ў апісанні</string>
+    <string name="select_night_theme_toast">Улюбёную начную тэму можна выбраць ніжэй</string>
     <string name="night_theme_available">Параметр даступны, толькі калі выбрана тэма %s</string>
     <string name="download_has_started">Спампоўванне пачалося</string>
     <string name="notifications_disabled">Апавяшчэнні адключаны</string>
     <string name="tablet_mode_title">Рэжым планшэта</string>
-    <string name="off">Адключыць</string>
+    <string name="off">Выключыць</string>
     <string name="no_audio_streams_available_for_external_players">Няма аўдыяпатокаў даступных для знешніх плэераў</string>
     <string name="get_notified">Апавяшчаць</string>
     <string name="no_video_streams_available_for_external_players">Няма відэапатокаў даступных для знешніх плэераў</string>
@@ -540,7 +540,7 @@
     <string name="create_error_notification">Стварыць паведамленне пра памылку</string>
     <string name="feed_group_dialog_select_subscriptions">Выберыце падпіскі</string>
     <string name="import_subscriptions_hint">Імпартуйце або экспартуйце падпіскі праз меню з трыма кропкамі ⁝</string>
-    <string name="description_select_disable">Забарона вылучэння тэксту ў апісанні</string>
+    <string name="description_select_disable">Забараніць вылучэнне тэксту ў апісанні</string>
     <string name="fast_mode">Хуткі рэжым</string>
     <string name="faq_description">Калі ў вас узніклі праблемы з выкарыстаннем праграмы, абавязкова азнаёмцеся з адказамі на частыя пытанні!</string>
     <string name="disable_media_tunneling_title">Адключыць тунэляванне мультымедыя</string>
@@ -754,7 +754,7 @@
     <string name="loading_metadata_title">Загрузка метаданых…</string>
     <string name="toggle_screen_orientation">Змяніць арыентацыю экрана</string>
     <string name="image_quality_low">Нізкая якасць</string>
-    <string name="main_tabs_position_title">Размяшчэнне асноўных укладак</string>
+    <string name="main_tabs_position_title">Размяшчэнне ўкладак</string>
     <string name="toggle_fullscreen">Пераключыцца ў поўнаэкранны рэжым</string>
     <string name="feed_fetch_channel_tabs">Атрыманне ўкладак канала</string>
     <string name="metadata_avatars">Аватары</string>
@@ -776,7 +776,7 @@
     <string name="metadata_banners">Банеры</string>
     <string name="channel_tab_playlists">Плэй-лісты</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
-    <string name="main_tabs_position_summary">Перамясціць панэль укладак уніз</string>
+    <string name="main_tabs_position_summary">Перамясціць радок укладак уніз</string>
     <string name="no_live_streams">Няма жывых трансляцый</string>
     <string name="image_quality_summary">Выберыце якасць відарысаў ці ўвогуле не загружаць відарысы, каб паменшыць выкарыстанне даных і памяці. Змены ачышчаюць кэш відарысаў у памяці і на дыску (%s)</string>
     <string name="play">Прайграць</string>
@@ -832,7 +832,7 @@
     <string name="migration_info_7_8_title">Аб\'яднаныя трэнды YouTube выдалены</string>
     <string name="import_subscriptions_title">Імпартаваць падпіскі</string>
     <string name="export_subscriptions_title">Экспартаваць падпіскі</string>
-    <string name="kao_dialog_warning">У жніўні 2025 года Google абвясціў, што з верасня 2026 года для ўсталявання праграм для Android на сертыфікаваныя прылады будзе патрабавацца праверка распрацоўшчыка. Гэта тычыцца і тых праграм, што ўсталёўваюцца па-за Play Store. Паколькі распрацоўшчыкі NewPipe не згодныя з гэтым патрабаваннем, пасля гэтага часу NewPipe больш не будзе працаваць на сертыфікаваных прыладах Android.</string>
+    <string name="kao_dialog_warning">У жніўні 2025 года Google абвясціў, што з верасня 2026 года распрацоўшчыкі праграм Android павінны рэгістравацца, каб мець магчымасць ўсталявання сваіх праграм на сертыфікаваныя прылады. Гэта тычыцца і праграм, якія ўсталёўваюцца не з Play Store. Паколькі распрацоўшчыкі NewPipe не згодныя з такім патрабаваннем, пасля гэтага часу NewPipe больш не будзе працаваць на сертыфікаваных прыладах Android.</string>
     <string name="kao_dialog_more_info">Падрабязнасці</string>
     <string name="kao_solution">Рашэнне</string>
     <string name="permission_display_over_apps_message">Каб выкарыстоўваць аконны прайгравальнік, у наступным меню налад Android выберыце %1$s і ўключыце %2$s.</string>
