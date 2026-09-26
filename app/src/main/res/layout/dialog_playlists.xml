@@ -3,10 +3,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <FrameLayout
+        android:id="@+id/playlist_search_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="8dp"
+        android:background="?attr/rounded_rectangle_background">
+
+        <org.schabi.newpipe.views.NewPipeEditText
+            android:id="@+id/playlist_search_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="8dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="@string/search_playlists"
+            android:imeOptions="actionSearch|flagNoFullscreen"
+            android:inputType="textFilter|textNoSuggestions"
+            android:maxLines="1"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="48dp"
+            android:paddingBottom="12dp"
+            android:textSize="15sp" />
+
+        <FrameLayout
+            android:id="@+id/playlist_search_clear"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="end|center_vertical"
+            android:contentDescription="@string/clear"
+            android:focusable="true"
+            android:visibility="gone">
+
+            <View
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:background="?attr/selectableItemBackgroundBorderless" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/clear"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_close" />
+        </FrameLayout>
+    </FrameLayout>
+
     <RelativeLayout
         android:id="@+id/newPlaylist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/playlist_search_container"
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true">
