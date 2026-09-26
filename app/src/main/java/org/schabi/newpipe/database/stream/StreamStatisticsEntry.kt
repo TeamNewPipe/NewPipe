@@ -13,6 +13,7 @@ import java.time.OffsetDateTime
 import org.schabi.newpipe.database.LocalItem
 import org.schabi.newpipe.database.history.model.StreamHistoryEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity
+import org.schabi.newpipe.database.stream.model.StreamStateEntity.Companion.PLAYBACK_FINISHED_END_MILLISECONDS
 import org.schabi.newpipe.database.stream.model.StreamStateEntity.Companion.STREAM_PROGRESS_MILLIS
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.util.image.ImageStrategy
@@ -50,6 +51,23 @@ data class StreamStatisticsEntry(
             uploaderUrl = streamEntity.uploaderUrl
             thumbnails = ImageStrategy.dbUrlToImageList(streamEntity.thumbnailUrl)
         }
+    }
+
+    /**
+     * The video will be considered as finished, if the time left is less than
+     * [PLAYBACK_FINISHED_END_MILLISECONDS] and the progress is at least 3/4 of the video length.
+     * The state will be saved anyway, so that it can be shown under stream info items, but the
+     * player will not resume if a state is considered as finished. Finished streams are also the
+     * ones that can be filtered out in the feed fragment.
+     * @return whether the stream is finished or not
+     *
+     * TODO: We already have isFinished method under StreamStateEntity in future we can club into
+     * helper class
+     */
+    fun isFinished(): Boolean {
+        val durationInSeconds = streamEntity.duration
+        return progressMillis >= durationInSeconds * 1000 - PLAYBACK_FINISHED_END_MILLISECONDS &&
+            progressMillis >= durationInSeconds * 1000 * 3 / 4
     }
 
     companion object {
