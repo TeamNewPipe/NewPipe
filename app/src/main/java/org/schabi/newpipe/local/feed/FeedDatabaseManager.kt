@@ -28,14 +28,6 @@ class FeedDatabaseManager(context: Context) {
     private val feedGroupTable = database.feedGroupDAO()
     private val streamTable = database.streamDAO()
 
-    companion object {
-        /**
-         * Only items that are newer than this will be saved.
-         */
-        val FEED_OLDEST_ALLOWED_DATE: OffsetDateTime = LocalDate.now().minusWeeks(13)
-            .atStartOfDay().atOffset(ZoneOffset.UTC)
-    }
-
     fun groups() = feedGroupTable.getAll()
 
     fun database() = database
@@ -80,19 +72,12 @@ class FeedDatabaseManager(context: Context) {
         return streamTable.exists(stream.serviceId, stream.url)
     }
 
-    fun upsertAll(
-        subscriptionId: Long,
-        items: List<StreamInfoItem>,
-        oldestAllowedDate: OffsetDateTime = FEED_OLDEST_ALLOWED_DATE
-    ) {
-        val itemsToInsert = items.mapNotNull { stream ->
-            val uploadDate = stream.uploadDate
+    fun upsertAll(subscriptionId: Long, items: List<StreamInfoItem>) {
+        val oldestAllowedDate = LocalDate.now().minusWeeks(1)
+        val itemsToInsert = items.filter { stream ->
+            val uploadDate = stream.uploadDate?.localDateTime?.toLocalDate() ?: LocalDate.MIN
 
-            when {
-                uploadDate == null && stream.streamType == StreamType.LIVE_STREAM -> stream
-                uploadDate != null && uploadDate.offsetDateTime() >= oldestAllowedDate -> stream
-                else -> null
-            }
+            uploadDate >= oldestAllowedDate || stream.streamType == StreamType.LIVE_STREAM
         }
 
         feedTable.unlinkOldLivestreams(subscriptionId)
@@ -110,7 +95,8 @@ class FeedDatabaseManager(context: Context) {
         )
     }
 
-    fun removeOrphansOrOlderStreams(oldestAllowedDate: OffsetDateTime = FEED_OLDEST_ALLOWED_DATE) {
+    fun removeOrphansOrOlderStreams() {
+        val oldestAllowedDate = LocalDate.now().minusWeeks(1).atStartOfDay().atOffset(ZoneOffset.UTC)
         feedTable.unlinkStreamsOlderThan(oldestAllowedDate)
         streamTable.deleteOrphans()
     }
