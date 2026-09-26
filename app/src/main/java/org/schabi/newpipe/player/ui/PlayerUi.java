@@ -169,6 +169,12 @@ public abstract class PlayerUi {
     }
 
     /**
+     * Called when the volume boost, or whether it is adjusted automatically, was changed.
+     */
+    public void onVolumeBoostChanged() {
+    }
+
+    /**
      * @see com.google.android.exoplayer2.Player.Listener#onRenderedFirstFrame
      */
     public void onRenderedFirstFrame() {

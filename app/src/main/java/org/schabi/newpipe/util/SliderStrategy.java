@@ -19,7 +19,43 @@ public interface SliderStrategy {
      */
     double valueOf(int progress);
 
-    // TODO: also implement linear strategy when needed
+    final class Linear implements SliderStrategy {
+        private final double minimum;
+        private final double range;
+
+        private final int maxProgress;
+
+        /**
+         * Linear slider strategy that maps the slider progress evenly onto the interpreted value,
+         * i.e. moving the slider by the same amount always changes the value by the same amount.
+         *
+         * @param minimum     the minimum value of the interpreted value of the slider.
+         * @param maximum     the maximum value of the interpreted value of the slider.
+         * @param maxProgress the maximum possible progress of the slider, this is the
+         *                    value that is shown for the UI and controls the granularity of
+         *                    the slider. Should be as large as possible to avoid floating
+         *                    point round-off error.
+         */
+        public Linear(final double minimum, final double maximum, final int maxProgress) {
+            if (maximum <= minimum) {
+                throw new IllegalArgumentException("Maximum must be greater than minimum");
+            }
+
+            this.minimum = minimum;
+            this.range = maximum - minimum;
+            this.maxProgress = maxProgress;
+        }
+
+        @Override
+        public int progressOf(final double value) {
+            return (int) Math.round((value - minimum) / range * maxProgress);
+        }
+
+        @Override
+        public double valueOf(final int progress) {
+            return minimum + ((double) progress) / ((double) maxProgress) * range;
+        }
+    }
 
     final class Quadratic implements SliderStrategy {
         private final double leftGap;
