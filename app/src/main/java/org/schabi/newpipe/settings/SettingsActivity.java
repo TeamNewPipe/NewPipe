@@ -309,7 +309,7 @@ public class SettingsActivity extends AppCompatActivity implements
             final Fragment current = getSupportFragmentManager()
                     .findFragmentById(FRAGMENT_HOLDER_ID);
             if (current != null) {
-                ft.hide(current);
+                ft.remove(current);
             }
             ft.add(FRAGMENT_HOLDER_ID, searchFragment, PreferenceSearchFragment.NAME)
                     .addToBackStack(PreferenceSearchFragment.NAME)
