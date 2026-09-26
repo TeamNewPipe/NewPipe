@@ -102,7 +102,7 @@ public class StatisticsPlaylistFragment
     public void onResume() {
         super.onResume();
         if (activity != null) {
-            setTitle(activity.getString(R.string.title_activity_history));
+            displaySortMode(sortMode);
         }
     }
 
@@ -384,9 +384,24 @@ public class StatisticsPlaylistFragment
         return new SinglePlayQueue(streamInfoItems, index);
     }
 
+    private void displaySortMode(final StatisticSortMode mode) {
+        final int resourceIdOfSortMode = mode.getResourceId();
+        setTitle(getString(resourceIdOfSortMode));
+    }
+
     private enum StatisticSortMode {
-        LAST_PLAYED,
-        MOST_PLAYED,
+        LAST_PLAYED(R.string.title_last_played),
+        MOST_PLAYED(R.string.title_most_played);
+
+        private final int resourceId;
+
+        StatisticSortMode(final int theResourceId) {
+            this.resourceId = theResourceId;
+        }
+
+        int getResourceId() {
+            return resourceId;
+        }
     }
 }
 
