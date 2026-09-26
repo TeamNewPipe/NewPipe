@@ -29,7 +29,7 @@ class ComposeActivity : ComponentActivity() {
             App(
                 // TODO: Change when everything is in compose and this is the primary activity
                 startDestination = Json.decodeFromString<Destination>(
-                    intent.getStringExtra(Constants.INTENT_SCREEN_KEY)!!
+                    intent.getStringExtra(Constants.INTENT_SCREEN_KEY) ?: return
                 ),
                 onCloseRequest = ::finish
             ) {
