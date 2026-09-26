@@ -51,6 +51,7 @@
 
                     <ImageView
                         android:id="@+id/detail_thumbnail_play_button"
+        android:contentDescription="@string/play"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:layout_gravity="center"

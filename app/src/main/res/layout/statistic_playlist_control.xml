@@ -15,6 +15,7 @@
 
         <ImageView
             android:id="@+id/sortButtonIcon"
+        android:contentDescription="@string/sort"
             android:layout_width="48dp"
             android:layout_height="28dp"
             android:layout_alignParentLeft="true"
