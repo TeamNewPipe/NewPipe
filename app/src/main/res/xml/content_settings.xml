@@ -135,7 +135,24 @@
 
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
+        android:title="@string/settings_category_network_title"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/ipv4_only_key"
+            android:summary="@string/ipv4_only_summary"
+            android:title="@string/ipv4_only_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
         android:title="@string/settings_category_feed_title"
+
         app:singleLineTitle="false"
         app:iconSpaceReserved="false">
 
