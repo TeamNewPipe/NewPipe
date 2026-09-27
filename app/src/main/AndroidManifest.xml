@@ -37,6 +37,7 @@
         android:logo="@mipmap/ic_launcher"
         android:resizeableActivity="true"
         android:theme="@style/OpeningTheme"
+        android:memtagMode="async"
         tools:ignore="AllowBackup">
         <activity
             android:name=".MainActivity"
