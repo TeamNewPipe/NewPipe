@@ -236,7 +236,7 @@
     <string name="rename">Byt namn</string>
     <string name="one_item_deleted">1 objekt borttaget.</string>
     <string name="privacy_policy_title">NewPipes integritetspolicy</string>
-    <string name="privacy_policy_encouragement">NewPipe-projektet tar din integritet på största allvar. Appen samlar därför inte in några uppgifter utan ditt medgivande. \nNewPipes integritetspolicy beskriver vilka uppgifter som skickas och lagras när du skickar en kraschrapport.</string>
+    <string name="privacy_policy_encouragement">NewPipe-projektet tar din integritet på största allvar. Appen samlar därför inte in några uppgifter utan ditt medgivande. \nNewPipes integritetspolicy beskriver i detalj vilka uppgifter som skickas och lagras när du skickar en kraschrapport.</string>
     <string name="read_privacy_policy">Läs integritetspolicyn</string>
     <string name="app_license">NewPipe är fri programvara under en copyleft-licens: du får använda, studera, dela och förbättra programmet. Du får distribuera och ändra det enligt villkoren i GNU General Public License, version 3 eller, om du föredrar det, en senare version.</string>
     <string name="title_last_played">Senast spelade</string>
@@ -325,7 +325,7 @@
     <string name="list_view_mode">Listläge</string>
     <string name="list">Lista</string>
     <string name="grid">Rutnät</string>
-    <string name="auto">Automatisk</string>
+    <string name="auto">Auto</string>
     <string name="app_update_available_notification_title">En NewPipe-uppdatering är tillgänglig!</string>
     <string name="missions_header_finished">Slutförda</string>
     <string name="paused">pausad</string>
@@ -712,8 +712,8 @@
     <string name="audio_track_type_original">original</string>
     <string name="audio_track_type_descriptive">beskrivande</string>
     <string name="audio_track_type_dubbed">dubbad</string>
-    <string name="main_tabs_position_summary">Placera väljaren för huvudflikar längst ned</string>
-    <string name="main_tabs_position_title">Huvudflikarnas placering</string>
+    <string name="main_tabs_position_summary">Flytta huvudflikarna längst ned</string>
+    <string name="main_tabs_position_title">Huvudflikarnas position</string>
     <string name="no_streams">Inga strömningar</string>
     <string name="no_live_streams">Inga direktsändningar</string>
     <string name="disable_media_tunneling_automatic_info">Medietunnel har inaktiverats som standard på din enhet eftersom enhetsmodellen inte stöder funktionen.</string>

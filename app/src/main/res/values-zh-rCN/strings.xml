@@ -327,8 +327,7 @@
     <string name="app_license">NewPipe 是 Copyleft 的自由软件：您可以随时使用、研究共享和改进它。您可以根据自由软件基金会发布的 GNU 通用公共许可证 GPLv3 或（由您选择的）任何更高版本的许可证重新分发或修改该许可证。</string>
     <string name="import_settings">是否要导入设置？</string>
     <string name="privacy_policy_title">NewPipe 隐私政策</string>
-    <string name="privacy_policy_encouragement">NewPipe 项目非常重视您的隐私。因此，未经您的同意，应用程序不会收集任何数据。
-\nNewPipe 的隐私政策详细解释了发送崩溃报告时会发送和存储的数据。</string>
+    <string name="privacy_policy_encouragement">NewPipe 项目非常重视您的隐私。因此，未经您的同意，本应用不会收集任何数据。 \nNewPipe 的隐私政策详细解释了发送崩溃报告时会发送和存储的数据。</string>
     <string name="read_privacy_policy">阅读隐私政策</string>
     <string name="start_accept_privacy_policy">为了遵守欧盟的《通用数据保护条例 (GDPR)》，我们特此提醒您注意 NewPipe 的隐私政策，请您仔细阅读。
 \n您必须在同意以后才能向我们发送错误报告。</string>
@@ -646,8 +645,7 @@
     <string name="create_error_notification">创建一条错误通知</string>
     <string name="no_appropriate_file_manager_message">找不到适合此操作的文件管理器。
 \n请安装一文件管理器或尝试在下载设置中禁用“%s”</string>
-    <string name="no_appropriate_file_manager_message_android_10">找不到适合此操作的文件管理器。
-\n请安装兼容存储访问框架(SAF)的文件管理器</string>
+    <string name="no_appropriate_file_manager_message_android_10">找不到适合此操作的文件管理器。 \n请安装兼容存储访问框架（SAF）的文件管理器</string>
     <string name="error_report_notification_title">NewPipe 遇到了一个错误，点击此处报告此错误</string>
     <string name="detail_pinned_comment_view_description">置顶评论</string>
     <string name="leak_canary_not_available">LeakCanary 不可用</string>

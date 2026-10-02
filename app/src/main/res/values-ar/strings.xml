@@ -265,7 +265,7 @@
     <string name="playlist_thumbnail_change_success">تم تغيير الصورة المصغرة لقائمة التشغيل.</string>
     <string name="caption_none">بدون تسميات توضيحية</string>
     <string name="caption_setting_title">تسميات توضيحية</string>
-    <string name="caption_setting_description">تعديل مشغل نص التسمية التوضيحية وأنماط الخلفية. يتطلب إعادة تشغيل التطبيق لتصبح التغييرات سارية المفعول</string>
+    <string name="caption_setting_description">تعديل مشغل نص التسمية التوضيحية وأنماط الخلفية. يتطلب إعادة تشغيل لتصبح التغييرات سارية المفعول</string>
     <string name="enable_leak_canary_summary">قد تتسبب مراقبة تسرب الذاكرة في عدم استجابة التطبيق عند تفريغ السجلات</string>
     <string name="enable_disposed_exceptions_title">تقرير الأخطاء خارج دورة الحياة</string>
     <string name="enable_disposed_exceptions_summary">فرض الإبلاغ عن استثناءات Rx غير القابلة للتسليم خارج دورة حياة الجزء أو النشاط بعد التخلص منها</string>
@@ -315,8 +315,7 @@
     <string name="unhook_checkbox">إلغاء الارتباط (قد يسبب تشويه)</string>
     <string name="import_settings">هل تريد أيضا استيراد الإعدادات؟</string>
     <string name="privacy_policy_title">سياسة خصوصية NewPipe</string>
-    <string name="privacy_policy_encouragement">يأخذ مشروع NewPipe خصوصيتك على محمل الجد. لذلك، لا يجمع التطبيق أي بيانات دون موافقتك.
-\nتوضح سياسة خصوصية NewPipe بالتفصيل البيانات التي يتم إرسالها وتخزينها عند إرسال تقرير الأعطال.</string>
+    <string name="privacy_policy_encouragement">يأخذ مشروع NewPipe خصوصيتك على محمل الجد. لذلك، لا يجمع التطبيق أي بيانات دون موافقتك.\nتوضح سياسة خصوصية NewPipe بالتفصيل البيانات التي يتم إرسالها وتخزينها عند إرسال تقرير الأعطال.</string>
     <string name="read_privacy_policy">اقرأ سياسة الخصوصية</string>
     <string name="start_accept_privacy_policy">من أجل الامتثال للائحة الأوروبية العامة لحماية البيانات (GDPR)، فإننا نلفت انتباهك إلى سياسة خصوصية NewPipe. يرجى قراءتها بعناية.
 \nويجب عليك قبولها لإرسال تقرير الأخطاء إلينا.</string>
@@ -622,7 +621,7 @@
     <string name="featured">المميزة</string>
     <string name="recaptcha_solve">حل</string>
     <string name="download_has_started">بدأ التنزيل</string>
-    <string name="select_night_theme_toast">يمكنك اختيار نسقك الليلي المفضل أدناه</string>
+    <string name="select_night_theme_toast">يمكنك تحديد سمة الليل المفضلة لديك أدناه</string>
     <string name="night_theme_summary">حدد موضوعك الليلي المفضل — %s</string>
     <string name="auto_device_theme_title">تلقائي (سمة الجهاز)</string>
     <string name="night_theme_title">الثيم الليلي</string>
@@ -913,7 +912,7 @@
     </plurals>
     <string name="import_subscriptions_title">استيراد الاشتراكات</string>
     <string name="export_subscriptions_title">تصدير الاشتراكات</string>
-    <string name="import_subscriptions_summary">إسترد الاشتراكات من ملف JSON تم تصديره مسبقاً</string>
+    <string name="import_subscriptions_summary">إسترد الاشتراكات من ملف .json تم تصديره مسبقاً</string>
     <string name="export_subscriptions_summary">قم بتصدير اشتراكاتك إلى ملف بصيغة .json</string>
     <string name="import_from_previous_export">الاستيراد من التصدير السابق</string>
     <string name="api23_requirement_dialog_title">سيوقف NewPipe الدعم لنظام أندرويد 5</string>
@@ -935,4 +934,5 @@
         <item quantity="many">استيراد %d اشتراكًا…</item>
         <item quantity="other">استيراد %d اشتراك…</item>
     </plurals>
+    <string name="channel_tab_courses">الدورات</string>
 </resources>
