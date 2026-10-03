@@ -36,3 +36,10 @@ jobs:
         with:
           name: app
           path: app/build/outputs/apk/release/*.apk
+- name: Download a Build Artifact
+  uses: actions/download-artifact@v3.1.0
+  with:
+    # Artifact name
+    name: # optional
+    # Destination path
+    path: # optional
