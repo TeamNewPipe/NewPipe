@@ -136,8 +136,10 @@ object VideoAudioPreferences {
     fun seekDurationSeconds(durationMs: String): Int = durationMs.toInt() / MILLIS_PER_SECOND
 
     /** ExoPlayer can't inexact-seek in 5-second steps in audio, so those durations are hidden. */
-    fun seekDurationsMs(inexactSeek: Boolean): List<String> = if (!inexactSeek) SEEK_DURATIONS_MS else SEEK_DURATIONS_MS.filter { seekDurationSeconds(it) % 10 != 5 }
-
+    fun seekDurationsMs(inexactSeek: Boolean): List<String> = when {
+        inexactSeek -> SEEK_DURATIONS_MS.filter { seekDurationSeconds(it) % 10 != 5 }
+        else -> SEEK_DURATIONS_MS
+    }
     /**
      * The seek duration to switch to when [inexactSeek] hides the currently selected one or null when no adjustment is needed.
      */

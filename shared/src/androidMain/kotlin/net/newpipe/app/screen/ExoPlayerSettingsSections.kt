@@ -14,7 +14,12 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import net.newpipe.app.composable.ListPreference
 import net.newpipe.app.composable.ListPreferenceEntry
 import net.newpipe.app.composable.SwitchPreference
-import net.newpipe.app.preferences.ExoPlayerPreferences
+import net.newpipe.app.preferences.ExoPlayerPreferences.DEFAULT_ALWAYS_USE_SET_OUTPUT_SURFACE_WORKAROUND
+import net.newpipe.app.preferences.ExoPlayerPreferences.DEFAULT_DISABLE_MEDIA_TUNNELING
+import net.newpipe.app.preferences.ExoPlayerPreferences.DEFAULT_PROGRESSIVE_LOAD_INTERVAL
+import net.newpipe.app.preferences.ExoPlayerPreferences.DEFAULT_USE_EXOPLAYER_DECODER_FALLBACK
+import net.newpipe.app.preferences.ExoPlayerPreferences.PROGRESSIVE_LOAD_INTERVALS
+import net.newpipe.app.preferences.ExoPlayerPreferences.PROGRESSIVE_LOAD_INTERVAL_EXOPLAYER_DEFAULT
 import net.newpipe.app.preview.ThemePreviewProvider
 import net.newpipe.app.viewmodel.settings.PlayerSettingsViewModel
 import newpipe.shared.generated.resources.Res
@@ -37,7 +42,8 @@ fun ExoPlayerSettingsSections(viewModel: PlayerSettingsViewModel = koinViewModel
     val useExoplayerDecoderFallback by viewModel.useExoplayerDecoderFallback.collectAsStateWithLifecycle()
     val disableMediaTunneling by viewModel.disableMediaTunneling.collectAsStateWithLifecycle()
     val mediaTunnelingAutoDisabled by viewModel.mediaTunnelingAutoDisabled.collectAsStateWithLifecycle()
-    val alwaysUseSetOutputSurfaceWorkaround by viewModel.alwaysUseSetOutputSurfaceWorkaround.collectAsStateWithLifecycle()
+    val alwaysUseSetOutputSurfaceWorkaround by viewModel.alwaysUseSetOutputSurfaceWorkaround
+        .collectAsStateWithLifecycle()
 
     ExoPlayerSettingsSectionsContent(
         progressiveLoadInterval = progressiveLoadInterval,
@@ -54,11 +60,11 @@ fun ExoPlayerSettingsSections(viewModel: PlayerSettingsViewModel = koinViewModel
 
 @Composable
 fun ExoPlayerSettingsSectionsContent(
-    progressiveLoadInterval: String = ExoPlayerPreferences.DEFAULT_PROGRESSIVE_LOAD_INTERVAL,
-    useExoplayerDecoderFallback: Boolean = ExoPlayerPreferences.DEFAULT_USE_EXOPLAYER_DECODER_FALLBACK,
-    disableMediaTunneling: Boolean = ExoPlayerPreferences.DEFAULT_DISABLE_MEDIA_TUNNELING,
+    progressiveLoadInterval: String = DEFAULT_PROGRESSIVE_LOAD_INTERVAL,
+    useExoplayerDecoderFallback: Boolean = DEFAULT_USE_EXOPLAYER_DECODER_FALLBACK,
+    disableMediaTunneling: Boolean = DEFAULT_DISABLE_MEDIA_TUNNELING,
     mediaTunnelingAutoDisabled: Boolean = false,
-    alwaysUseSetOutputSurfaceWorkaround: Boolean = ExoPlayerPreferences.DEFAULT_ALWAYS_USE_SET_OUTPUT_SURFACE_WORKAROUND,
+    alwaysUseSetOutputSurfaceWorkaround: Boolean = DEFAULT_ALWAYS_USE_SET_OUTPUT_SURFACE_WORKAROUND,
     onProgressiveLoadIntervalChange: (String) -> Unit = {},
     onUseExoplayerDecoderFallbackChange: (Boolean) -> Unit = {},
     onDisableMediaTunnelingChange: (Boolean) -> Unit = {},
@@ -66,13 +72,19 @@ fun ExoPlayerSettingsSectionsContent(
 ) {
     val exoPlayerDefaultLabel = stringResource(Res.string.progressive_load_interval_exoplayer_default)
 
-    val loadIntervalEntries = ExoPlayerPreferences.PROGRESSIVE_LOAD_INTERVALS.map { value ->
+    val loadIntervalEntries = PROGRESSIVE_LOAD_INTERVALS.map { value ->
         ListPreferenceEntry(
             value = value,
-            title = if (value == ExoPlayerPreferences.PROGRESSIVE_LOAD_INTERVAL_EXOPLAYER_DEFAULT) exoPlayerDefaultLabel else "$value KiB"
+            title = when (value) {
+                PROGRESSIVE_LOAD_INTERVAL_EXOPLAYER_DEFAULT -> exoPlayerDefaultLabel
+                else -> "$value KiB"
+            }
         )
     }
-    val selectedLoadIntervalTitle = loadIntervalEntries.firstOrNull { it.value == progressiveLoadInterval }?.title.orEmpty()
+    val selectedLoadIntervalTitle = loadIntervalEntries
+        .firstOrNull { it.value == progressiveLoadInterval }
+        ?.title
+        .orEmpty()
 
     val tunnelingBaseSummary = stringResource(Res.string.disable_media_tunneling_summary)
     val tunnelingSummary = if (mediaTunnelingAutoDisabled) {
