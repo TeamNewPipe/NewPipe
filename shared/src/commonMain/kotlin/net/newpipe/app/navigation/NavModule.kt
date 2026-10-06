@@ -44,7 +44,7 @@ fun navModule() = module {
         VideoAudioSettingsScreen()
     }
 
-    navigation<Destination.ExoPlayerSettings> {
+    navigation<Destination.PlayerSettings> {
         PlayerSettingsScreen()
     }
 }

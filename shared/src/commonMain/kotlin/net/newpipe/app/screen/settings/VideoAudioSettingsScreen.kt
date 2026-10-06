@@ -33,6 +33,7 @@ import net.newpipe.app.composable.SwitchPreference
 import net.newpipe.app.composable.TopAppBar
 import net.newpipe.app.navigation.Destination
 import net.newpipe.app.navigation.Navigator
+import net.newpipe.app.platform.PlayerSettingsSections
 import net.newpipe.app.preferences.VideoAudioPreferences
 import net.newpipe.app.preview.ThemePreviewProvider
 import net.newpipe.app.viewmodel.settings.VideoAudioSettingsViewModel
@@ -117,7 +118,8 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 fun VideoAudioSettingsScreen(
     navigator: Navigator = koinInject(),
-    viewModel: VideoAudioSettingsViewModel = koinViewModel()
+    viewModel: VideoAudioSettingsViewModel = koinViewModel(),
+    playerSettings: PlayerSettingsSections = koinInject()
 ) {
     val defaultResolution by viewModel.defaultResolution.collectAsStateWithLifecycle()
     val defaultPopupResolution by viewModel.defaultPopupResolution.collectAsStateWithLifecycle()
@@ -144,6 +146,7 @@ fun VideoAudioSettingsScreen(
     val seekDuration by viewModel.seekDuration.collectAsStateWithLifecycle()
     val clearQueueConfirmation by viewModel.clearQueueConfirmation.collectAsStateWithLifecycle()
     val ignoreHardwareMediaButtons by viewModel.ignoreHardwareMediaButtons.collectAsStateWithLifecycle()
+    val playerSettingsAvailable = remember { playerSettings.isAvailable }
 
     // Option lists are pure functions of their toggles, so derive them instead of storing them.
     val resolutionValues = remember(showHigherResolutions) {
@@ -210,7 +213,8 @@ fun VideoAudioSettingsScreen(
         onSeekDurationChange = viewModel::setSeekDuration,
         onClearQueueConfirmationChange = viewModel::setClearQueueConfirmation,
         onIgnoreHardwareMediaButtonsChange = viewModel::setIgnoreHardwareMediaButtons,
-        onOpenExoPlayerSettings = { navigator.navigateTo(Destination.ExoPlayerSettings) },
+        playerSettingsAvailable = playerSettingsAvailable,
+        onOpenPlayerSettings = { navigator.navigateTo(Destination.PlayerSettings) },
         onNavigateUp = { navigator.navigateUp() }
     )
 }
@@ -270,7 +274,8 @@ fun VideoAudioSettingsScreenContent(
     onSeekDurationChange: (String) -> Unit = {},
     onClearQueueConfirmationChange: (Boolean) -> Unit = {},
     onIgnoreHardwareMediaButtonsChange: (Boolean) -> Unit = {},
-    onOpenExoPlayerSettings: () -> Unit = {},
+    playerSettingsAvailable: Boolean = true,
+    onOpenPlayerSettings: () -> Unit = {},
     onNavigateUp: () -> Unit = {}
 ) {
     val scope = rememberCoroutineScope()
@@ -399,11 +404,13 @@ fun VideoAudioSettingsScreenContent(
                 onCheckedChange = onPreferDescriptiveAudioChange
             )
 
-            PreferenceRow(
-                title = stringResource(Res.string.settings_category_exoplayer_title),
-                summary = stringResource(Res.string.settings_category_exoplayer_summary),
-                onClick = onOpenExoPlayerSettings
-            )
+            if (playerSettingsAvailable) {
+                PreferenceRow(
+                    title = stringResource(Res.string.settings_category_exoplayer_title),
+                    summary = stringResource(Res.string.settings_category_exoplayer_summary),
+                    onClick = onOpenPlayerSettings
+                )
+            }
 
             PreferenceCategoryTitle(title = stringResource(Res.string.settings_category_player_title))
             SwitchPreference(
