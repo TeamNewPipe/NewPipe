@@ -70,7 +70,7 @@ class VideoAudioSettingsScreenTest {
     }
 
     @Test
-    fun rendersExoPlayerSettingsLink() = runComposeUiTest {
+    fun rendersPlayerSettingsLink() = runComposeUiTest {
         withKoin(
             modules = listOf(emptySettings),
             content = { VideoAudioSettingsScreenContent() },

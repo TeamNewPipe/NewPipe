@@ -7,7 +7,6 @@ package net.newpipe.app.navigation
 
 import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable
-import net.newpipe.app.model.License
 
 /**
  * Destinations for navigation in compose
@@ -16,7 +15,7 @@ import net.newpipe.app.model.License
 sealed interface Destination : NavKey {
 
     @Serializable
-    data object ExoPlayerSettings : Destination
+    data object PlayerSettings : Destination
 
     @Serializable
     data object VideoAudioSettings : Destination
