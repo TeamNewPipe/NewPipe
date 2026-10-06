@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="privacy_policy_encouragement">NewPipe-projektet tar din integritet på stort allvar. Därför samlar appen inte in någon data utan ditt samtycke.\nNewPipes integritetspolicy förklarar i detalj vilken data som skickas och lagras då du skickar en kraschrapport.</string>
+    <string name="privacy_policy_encouragement">NewPipe-projektet tar din integritet på största allvar. Appen samlar därför inte in några uppgifter utan ditt medgivande. \nNewPipes integritetspolicy beskriver i detalj vilka uppgifter som skickas och lagras när du skickar en kraschrapport.</string>
     <string name="navigate_back">Tillbaka</string>
     <string name="title_activity_about">Om NewPipe</string>
     <string name="title_licenses">Tredjepartslicenser</string>
@@ -54,4 +54,12 @@
     <string name="tablet_mode_title">Surfplatteläge</string>
     <string name="list_view_mode">Listläge</string>
     <string name="caption_setting_title">Undertexter</string>
+    <string name="on">På</string>
+    <string name="off">Av</string>
+    <string name="list">Lista</string>
+    <string name="grid">Rutnät</string>
+    <string name="caption_setting_description">Ändra spelarens textstorlek och bakgrundsstil. Appen måste startas om innan ändringarna börjar gälla</string>
+    <string name="main_tabs_position_title">Huvudflikarnas position</string>
+    <string name="main_tabs_position_summary">Flytta huvudflikarna längst ned</string>
+    <string name="auto">Auto</string>
 </resources>
