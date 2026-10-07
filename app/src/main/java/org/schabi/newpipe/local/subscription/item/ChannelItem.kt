@@ -1,8 +1,11 @@
 package org.schabi.newpipe.local.subscription.item
 
 import android.content.Context
+import android.graphics.Color
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
 import org.schabi.newpipe.R
@@ -43,14 +46,13 @@ class ChannelItem(
         CoilHelper.loadAvatar(itemThumbnailView, infoItem.thumbnails)
 
         if (isSelected) {
-            val ctx = viewHolder.root.context
-            val drawable = androidx.core.content.ContextCompat
-                .getDrawable(ctx, R.drawable.ic_done)?.mutate()
-            drawable?.let {
-                androidx.core.graphics.drawable.DrawableCompat
-                    .setTint(it, android.graphics.Color.WHITE)
+            val context = viewHolder.root.context
+            val checkmarkDrawable = ContextCompat.getDrawable(context, R.drawable.ic_done)
+                ?.mutate()
+            checkmarkDrawable?.let {
+                DrawableCompat.setTint(it, Color.WHITE)
             }
-            itemThumbnailView.foreground = drawable
+            itemThumbnailView.foreground = checkmarkDrawable
         } else {
             itemThumbnailView.foreground = null
         }
