@@ -52,7 +52,10 @@ class ExoPlayerSettingsSectionsTest {
             Hosted { ExoPlayerSettingsSectionsContent(mediaTunnelingAutoDisabled = true) }
         }
 
-        onNodeWithText(getString(Res.string.disable_media_tunneling_automatic_info), substring = true)
+        onNodeWithText(
+            getString(Res.string.disable_media_tunneling_automatic_info),
+            substring = true
+        )
             .performScrollTo()
             .assertIsDisplayed()
     }
@@ -66,7 +69,10 @@ class ExoPlayerSettingsSectionsTest {
         onNodeWithText(getString(Res.string.disable_media_tunneling_summary), substring = true)
             .performScrollTo()
             .assertIsDisplayed()
-        onNodeWithText(getString(Res.string.disable_media_tunneling_automatic_info), substring = true)
+        onNodeWithText(
+            getString(Res.string.disable_media_tunneling_automatic_info),
+            substring = true
+        )
             .assertDoesNotExist()
     }
 }

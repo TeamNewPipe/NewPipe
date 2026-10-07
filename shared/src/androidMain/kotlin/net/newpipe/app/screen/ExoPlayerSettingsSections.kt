@@ -39,9 +39,11 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 fun ExoPlayerSettingsSections(viewModel: PlayerSettingsViewModel = koinViewModel()) {
     val progressiveLoadInterval by viewModel.progressiveLoadInterval.collectAsStateWithLifecycle()
-    val useExoplayerDecoderFallback by viewModel.useExoplayerDecoderFallback.collectAsStateWithLifecycle()
+    val useExoplayerDecoderFallback by viewModel.useExoplayerDecoderFallback
+        .collectAsStateWithLifecycle()
     val disableMediaTunneling by viewModel.disableMediaTunneling.collectAsStateWithLifecycle()
-    val mediaTunnelingAutoDisabled by viewModel.mediaTunnelingAutoDisabled.collectAsStateWithLifecycle()
+    val mediaTunnelingAutoDisabled by viewModel.mediaTunnelingAutoDisabled
+        .collectAsStateWithLifecycle()
     val alwaysUseSetOutputSurfaceWorkaround by viewModel.alwaysUseSetOutputSurfaceWorkaround
         .collectAsStateWithLifecycle()
 
@@ -54,7 +56,8 @@ fun ExoPlayerSettingsSections(viewModel: PlayerSettingsViewModel = koinViewModel
         onProgressiveLoadIntervalChange = viewModel::setProgressiveLoadInterval,
         onUseExoplayerDecoderFallbackChange = viewModel::setUseExoplayerDecoderFallback,
         onDisableMediaTunnelingChange = viewModel::setDisableMediaTunneling,
-        onAlwaysUseSetOutputSurfaceWorkaroundChange = viewModel::setAlwaysUseSetOutputSurfaceWorkaround
+        onAlwaysUseSetOutputSurfaceWorkaroundChange =
+            viewModel::setAlwaysUseSetOutputSurfaceWorkaround
     )
 }
 
@@ -70,7 +73,8 @@ fun ExoPlayerSettingsSectionsContent(
     onDisableMediaTunnelingChange: (Boolean) -> Unit = {},
     onAlwaysUseSetOutputSurfaceWorkaroundChange: (Boolean) -> Unit = {}
 ) {
-    val exoPlayerDefaultLabel = stringResource(Res.string.progressive_load_interval_exoplayer_default)
+    val exoPlayerDefaultLabel =
+        stringResource(Res.string.progressive_load_interval_exoplayer_default)
 
     val loadIntervalEntries = PROGRESSIVE_LOAD_INTERVALS.map { value ->
         ListPreferenceEntry(
@@ -88,7 +92,9 @@ fun ExoPlayerSettingsSectionsContent(
 
     val tunnelingBaseSummary = stringResource(Res.string.disable_media_tunneling_summary)
     val tunnelingSummary = if (mediaTunnelingAutoDisabled) {
-        tunnelingBaseSummary + " " + stringResource(Res.string.disable_media_tunneling_automatic_info)
+        tunnelingBaseSummary + " " + stringResource(
+            Res.string.disable_media_tunneling_automatic_info
+        )
     } else {
         tunnelingBaseSummary
     }
@@ -98,7 +104,10 @@ fun ExoPlayerSettingsSectionsContent(
         entries = loadIntervalEntries,
         selectedValue = progressiveLoadInterval,
         onValueSelected = onProgressiveLoadIntervalChange,
-        summary = stringResource(Res.string.progressive_load_interval_summary, selectedLoadIntervalTitle)
+        summary = stringResource(
+            Res.string.progressive_load_interval_summary,
+            selectedLoadIntervalTitle
+        )
     )
     SwitchPreference(
         title = stringResource(Res.string.use_exoplayer_decoder_fallback_title),
@@ -114,7 +123,9 @@ fun ExoPlayerSettingsSectionsContent(
     )
     SwitchPreference(
         title = stringResource(Res.string.always_use_exoplayer_set_output_surface_workaround_title),
-        summary = stringResource(Res.string.always_use_exoplayer_set_output_surface_workaround_summary),
+        summary = stringResource(
+            Res.string.always_use_exoplayer_set_output_surface_workaround_summary
+        ),
         checked = alwaysUseSetOutputSurfaceWorkaround,
         onCheckedChange = onAlwaysUseSetOutputSurfaceWorkaroundChange
     )
