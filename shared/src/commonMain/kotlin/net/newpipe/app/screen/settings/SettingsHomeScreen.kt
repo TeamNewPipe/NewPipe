@@ -52,9 +52,13 @@ fun SettingsHomeScreen(
                 icon = type.icon,
                 onClick = {
                     when (type) {
-                        SettingsCategoryType.APPEARANCE -> navigator.navigateTo(Destination.AppearanceSettings)
+                        SettingsCategoryType.APPEARANCE -> navigator.navigateTo(
+                            Destination.AppearanceSettings
+                        )
 
-                        SettingsCategoryType.VIDEO_AUDIO -> navigator.navigateTo(Destination.VideoAudioSettings)
+                        SettingsCategoryType.VIDEO_AUDIO -> navigator.navigateTo(
+                            Destination.VideoAudioSettings
+                        )
 
                         // TODO: wire remaining sub-screens as they are migrated
                         else -> Unit

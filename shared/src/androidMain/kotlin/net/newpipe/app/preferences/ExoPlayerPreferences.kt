@@ -9,8 +9,10 @@ object ExoPlayerPreferences {
     const val KEY_PROGRESSIVE_LOAD_INTERVAL = "progressive_load_interval"
     const val KEY_USE_EXOPLAYER_DECODER_FALLBACK = "use_exoplayer_decoder_fallback_key"
     const val KEY_DISABLE_MEDIA_TUNNELING = "disable_media_tunneling_key"
-    const val KEY_DISABLED_MEDIA_TUNNELING_AUTOMATICALLY = "disabled_media_tunneling_automatically_key"
-    const val KEY_ALWAYS_USE_SET_OUTPUT_SURFACE_WORKAROUND = "always_use_exoplayer_set_output_surface_workaround_key"
+    const val KEY_DISABLED_MEDIA_TUNNELING_AUTOMATICALLY =
+        "disabled_media_tunneling_automatically_key"
+    const val KEY_ALWAYS_USE_SET_OUTPUT_SURFACE_WORKAROUND =
+        "always_use_exoplayer_set_output_surface_workaround_key"
 
     const val PROGRESSIVE_LOAD_INTERVAL_EXOPLAYER_DEFAULT = "exoplayer_default"
 
@@ -23,5 +25,6 @@ object ExoPlayerPreferences {
     const val MEDIA_TUNNELING_USER_MANAGED = 0
     const val MEDIA_TUNNELING_FLAG_UNSET = -1
 
-    val PROGRESSIVE_LOAD_INTERVALS = listOf("1", "16", "64", "256", PROGRESSIVE_LOAD_INTERVAL_EXOPLAYER_DEFAULT)
+    val PROGRESSIVE_LOAD_INTERVALS =
+        listOf("1", "16", "64", "256", PROGRESSIVE_LOAD_INTERVAL_EXOPLAYER_DEFAULT)
 }

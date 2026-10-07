@@ -14,7 +14,7 @@ import com.russhwolf.settings.MapSettings
 import com.russhwolf.settings.Settings
 import kotlin.test.Test
 import net.newpipe.app.extensions.withKoin
-import net.newpipe.app.preferences.VideoAudioPreferences
+import net.newpipe.app.preferences.VideoAudioPreferences.BEST_RESOLUTION
 import newpipe.shared.generated.resources.Res
 import newpipe.shared.generated.resources.best_resolution
 import newpipe.shared.generated.resources.default_resolution_title
@@ -37,7 +37,8 @@ class VideoAudioSettingsScreenTest {
             modules = listOf(emptySettings),
             content = { VideoAudioSettingsScreenContent() },
             onContent = {
-                onNodeWithText(getString(Res.string.settings_category_video_audio_title)).assertIsDisplayed()
+                onNodeWithText(getString(Res.string.settings_category_video_audio_title))
+                    .assertIsDisplayed()
                 onNodeWithText(getString(Res.string.default_resolution_title)).assertIsDisplayed()
             }
         )
@@ -61,7 +62,7 @@ class VideoAudioSettingsScreenTest {
         withKoin(
             modules = listOf(emptySettings),
             content = {
-                VideoAudioSettingsScreenContent(defaultResolution = VideoAudioPreferences.BEST_RESOLUTION)
+                VideoAudioSettingsScreenContent(defaultResolution = BEST_RESOLUTION)
             },
             onContent = {
                 onNodeWithText(getString(Res.string.best_resolution)).assertIsDisplayed()

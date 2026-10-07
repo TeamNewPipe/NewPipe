@@ -35,6 +35,58 @@ import net.newpipe.app.navigation.Destination
 import net.newpipe.app.navigation.Navigator
 import net.newpipe.app.platform.PlayerSettingsSections
 import net.newpipe.app.preferences.VideoAudioPreferences
+import net.newpipe.app.preferences.VideoAudioPreferences.AUDIO_FORMATS
+import net.newpipe.app.preferences.VideoAudioPreferences.AUTOPLAY_ALWAYS
+import net.newpipe.app.preferences.VideoAudioPreferences.AUTOPLAY_NEVER
+import net.newpipe.app.preferences.VideoAudioPreferences.AUTOPLAY_WIFI
+import net.newpipe.app.preferences.VideoAudioPreferences.BASE_MOBILE_DATA_RESOLUTIONS
+import net.newpipe.app.preferences.VideoAudioPreferences.BASE_RESOLUTIONS
+import net.newpipe.app.preferences.VideoAudioPreferences.BEST_RESOLUTION
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_AUDIO_FORMAT
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_AUTOPLAY
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_AUTO_QUEUE
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_CLEAR_QUEUE_CONFIRMATION
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_IGNORE_HARDWARE_MEDIA_BUTTONS
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_LEFT_GESTURE_CONTROL
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_LIMIT_MOBILE_DATA_USAGE
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_MINIMIZE_ON_EXIT
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_POPUP_REMEMBER_SIZE_POS
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_POPUP_RESOLUTION
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_PREFERRED_OPEN_ACTION
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_PREFER_DESCRIPTIVE_AUDIO
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_PREFER_ORIGINAL_AUDIO
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_RESOLUTION
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_RESUME_ON_AUDIO_FOCUS_GAIN
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_RIGHT_GESTURE_CONTROL
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_SEEKBAR_PREVIEW_THUMBNAIL
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_SEEK_DURATION_MS
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_SHOW_HIGHER_RESOLUTIONS
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_SHOW_PLAY_WITH_KODI
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_START_MAIN_PLAYER_FULLSCREEN
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_USE_EXTERNAL_AUDIO_PLAYER
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_USE_EXTERNAL_VIDEO_PLAYER
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_USE_INEXACT_SEEK
+import net.newpipe.app.preferences.VideoAudioPreferences.DEFAULT_VIDEO_FORMAT
+import net.newpipe.app.preferences.VideoAudioPreferences.GESTURE_BRIGHTNESS
+import net.newpipe.app.preferences.VideoAudioPreferences.GESTURE_NONE
+import net.newpipe.app.preferences.VideoAudioPreferences.GESTURE_VOLUME
+import net.newpipe.app.preferences.VideoAudioPreferences.LIMIT_DATA_USAGE_NONE
+import net.newpipe.app.preferences.VideoAudioPreferences.MINIMIZE_ON_EXIT_BACKGROUND
+import net.newpipe.app.preferences.VideoAudioPreferences.MINIMIZE_ON_EXIT_NONE
+import net.newpipe.app.preferences.VideoAudioPreferences.MINIMIZE_ON_EXIT_POPUP
+import net.newpipe.app.preferences.VideoAudioPreferences.OPEN_ACTION_ADD_TO_PLAYLIST
+import net.newpipe.app.preferences.VideoAudioPreferences.OPEN_ACTION_ALWAYS_ASK
+import net.newpipe.app.preferences.VideoAudioPreferences.OPEN_ACTION_BACKGROUND_PLAYER
+import net.newpipe.app.preferences.VideoAudioPreferences.OPEN_ACTION_DOWNLOAD
+import net.newpipe.app.preferences.VideoAudioPreferences.OPEN_ACTION_ENQUEUE
+import net.newpipe.app.preferences.VideoAudioPreferences.OPEN_ACTION_POPUP_PLAYER
+import net.newpipe.app.preferences.VideoAudioPreferences.OPEN_ACTION_SHOW_INFO
+import net.newpipe.app.preferences.VideoAudioPreferences.OPEN_ACTION_VIDEO_PLAYER
+import net.newpipe.app.preferences.VideoAudioPreferences.SEEKBAR_THUMBNAIL_HIGH_QUALITY
+import net.newpipe.app.preferences.VideoAudioPreferences.SEEKBAR_THUMBNAIL_LOW_QUALITY
+import net.newpipe.app.preferences.VideoAudioPreferences.SEEKBAR_THUMBNAIL_NONE
+import net.newpipe.app.preferences.VideoAudioPreferences.SEEK_DURATIONS_MS
+import net.newpipe.app.preferences.VideoAudioPreferences.VIDEO_FORMATS
 import net.newpipe.app.preview.ThemePreviewProvider
 import net.newpipe.app.viewmodel.settings.VideoAudioSettingsViewModel
 import newpipe.shared.generated.resources.Res
@@ -135,7 +187,8 @@ fun VideoAudioSettingsScreen(
     val seekbarPreviewThumbnail by viewModel.seekbarPreviewThumbnail.collectAsStateWithLifecycle()
     val preferredOpenAction by viewModel.preferredOpenAction.collectAsStateWithLifecycle()
     val minimizeOnExit by viewModel.minimizeOnExit.collectAsStateWithLifecycle()
-    val startMainPlayerFullscreen by viewModel.startMainPlayerFullscreen.collectAsStateWithLifecycle()
+    val startMainPlayerFullscreen by viewModel.startMainPlayerFullscreen
+        .collectAsStateWithLifecycle()
     val autoplay by viewModel.autoplay.collectAsStateWithLifecycle()
     val autoQueue by viewModel.autoQueue.collectAsStateWithLifecycle()
     val resumeOnAudioFocusGain by viewModel.resumeOnAudioFocusGain.collectAsStateWithLifecycle()
@@ -145,7 +198,8 @@ fun VideoAudioSettingsScreen(
     val useInexactSeek by viewModel.useInexactSeek.collectAsStateWithLifecycle()
     val seekDuration by viewModel.seekDuration.collectAsStateWithLifecycle()
     val clearQueueConfirmation by viewModel.clearQueueConfirmation.collectAsStateWithLifecycle()
-    val ignoreHardwareMediaButtons by viewModel.ignoreHardwareMediaButtons.collectAsStateWithLifecycle()
+    val ignoreHardwareMediaButtons by viewModel.ignoreHardwareMediaButtons
+        .collectAsStateWithLifecycle()
     val playerSettingsAvailable = remember { playerSettings.isAvailable }
 
     // Option lists are pure functions of their toggles, so derive them instead of storing them.
@@ -221,34 +275,34 @@ fun VideoAudioSettingsScreen(
 
 @Composable
 fun VideoAudioSettingsScreenContent(
-    defaultResolution: String = VideoAudioPreferences.DEFAULT_RESOLUTION,
-    defaultPopupResolution: String = VideoAudioPreferences.DEFAULT_POPUP_RESOLUTION,
-    mobileDataResolution: String = VideoAudioPreferences.DEFAULT_LIMIT_MOBILE_DATA_USAGE,
-    showHigherResolutions: Boolean = VideoAudioPreferences.DEFAULT_SHOW_HIGHER_RESOLUTIONS,
-    resolutionValues: List<String> = VideoAudioPreferences.BASE_RESOLUTIONS,
-    mobileDataResolutionValues: List<String> = VideoAudioPreferences.BASE_MOBILE_DATA_RESOLUTIONS,
-    videoFormat: String = VideoAudioPreferences.DEFAULT_VIDEO_FORMAT,
-    audioFormat: String = VideoAudioPreferences.DEFAULT_AUDIO_FORMAT,
-    preferOriginalAudio: Boolean = VideoAudioPreferences.DEFAULT_PREFER_ORIGINAL_AUDIO,
-    preferDescriptiveAudio: Boolean = VideoAudioPreferences.DEFAULT_PREFER_DESCRIPTIVE_AUDIO,
-    useExternalVideoPlayer: Boolean = VideoAudioPreferences.DEFAULT_USE_EXTERNAL_VIDEO_PLAYER,
-    useExternalAudioPlayer: Boolean = VideoAudioPreferences.DEFAULT_USE_EXTERNAL_AUDIO_PLAYER,
-    showPlayWithKodi: Boolean = VideoAudioPreferences.DEFAULT_SHOW_PLAY_WITH_KODI,
-    seekbarPreviewThumbnail: String = VideoAudioPreferences.DEFAULT_SEEKBAR_PREVIEW_THUMBNAIL,
-    preferredOpenAction: String = VideoAudioPreferences.DEFAULT_PREFERRED_OPEN_ACTION,
-    minimizeOnExit: String = VideoAudioPreferences.DEFAULT_MINIMIZE_ON_EXIT,
-    startMainPlayerFullscreen: Boolean = VideoAudioPreferences.DEFAULT_START_MAIN_PLAYER_FULLSCREEN,
-    autoplay: String = VideoAudioPreferences.DEFAULT_AUTOPLAY,
-    autoQueue: Boolean = VideoAudioPreferences.DEFAULT_AUTO_QUEUE,
-    resumeOnAudioFocusGain: Boolean = VideoAudioPreferences.DEFAULT_RESUME_ON_AUDIO_FOCUS_GAIN,
-    leftGestureControl: String = VideoAudioPreferences.DEFAULT_LEFT_GESTURE_CONTROL,
-    rightGestureControl: String = VideoAudioPreferences.DEFAULT_RIGHT_GESTURE_CONTROL,
-    popupRememberSizePos: Boolean = VideoAudioPreferences.DEFAULT_POPUP_REMEMBER_SIZE_POS,
-    useInexactSeek: Boolean = VideoAudioPreferences.DEFAULT_USE_INEXACT_SEEK,
-    seekDuration: String = VideoAudioPreferences.DEFAULT_SEEK_DURATION_MS,
-    seekDurationValues: List<String> = VideoAudioPreferences.SEEK_DURATIONS_MS,
-    clearQueueConfirmation: Boolean = VideoAudioPreferences.DEFAULT_CLEAR_QUEUE_CONFIRMATION,
-    ignoreHardwareMediaButtons: Boolean = VideoAudioPreferences.DEFAULT_IGNORE_HARDWARE_MEDIA_BUTTONS,
+    defaultResolution: String = DEFAULT_RESOLUTION,
+    defaultPopupResolution: String = DEFAULT_POPUP_RESOLUTION,
+    mobileDataResolution: String = DEFAULT_LIMIT_MOBILE_DATA_USAGE,
+    showHigherResolutions: Boolean = DEFAULT_SHOW_HIGHER_RESOLUTIONS,
+    resolutionValues: List<String> = BASE_RESOLUTIONS,
+    mobileDataResolutionValues: List<String> = BASE_MOBILE_DATA_RESOLUTIONS,
+    videoFormat: String = DEFAULT_VIDEO_FORMAT,
+    audioFormat: String = DEFAULT_AUDIO_FORMAT,
+    preferOriginalAudio: Boolean = DEFAULT_PREFER_ORIGINAL_AUDIO,
+    preferDescriptiveAudio: Boolean = DEFAULT_PREFER_DESCRIPTIVE_AUDIO,
+    useExternalVideoPlayer: Boolean = DEFAULT_USE_EXTERNAL_VIDEO_PLAYER,
+    useExternalAudioPlayer: Boolean = DEFAULT_USE_EXTERNAL_AUDIO_PLAYER,
+    showPlayWithKodi: Boolean = DEFAULT_SHOW_PLAY_WITH_KODI,
+    seekbarPreviewThumbnail: String = DEFAULT_SEEKBAR_PREVIEW_THUMBNAIL,
+    preferredOpenAction: String = DEFAULT_PREFERRED_OPEN_ACTION,
+    minimizeOnExit: String = DEFAULT_MINIMIZE_ON_EXIT,
+    startMainPlayerFullscreen: Boolean = DEFAULT_START_MAIN_PLAYER_FULLSCREEN,
+    autoplay: String = DEFAULT_AUTOPLAY,
+    autoQueue: Boolean = DEFAULT_AUTO_QUEUE,
+    resumeOnAudioFocusGain: Boolean = DEFAULT_RESUME_ON_AUDIO_FOCUS_GAIN,
+    leftGestureControl: String = DEFAULT_LEFT_GESTURE_CONTROL,
+    rightGestureControl: String = DEFAULT_RIGHT_GESTURE_CONTROL,
+    popupRememberSizePos: Boolean = DEFAULT_POPUP_REMEMBER_SIZE_POS,
+    useInexactSeek: Boolean = DEFAULT_USE_INEXACT_SEEK,
+    seekDuration: String = DEFAULT_SEEK_DURATION_MS,
+    seekDurationValues: List<String> = SEEK_DURATIONS_MS,
+    clearQueueConfirmation: Boolean = DEFAULT_CLEAR_QUEUE_CONFIRMATION,
+    ignoreHardwareMediaButtons: Boolean = DEFAULT_IGNORE_HARDWARE_MEDIA_BUTTONS,
     onDefaultResolutionChange: (String) -> Unit = {},
     onDefaultPopupResolutionChange: (String) -> Unit = {},
     onMobileDataResolutionChange: (String) -> Unit = {},
@@ -286,53 +340,78 @@ fun VideoAudioSettingsScreenContent(
 
     fun resolutionEntry(value: String) = ListPreferenceEntry(
         value = value,
-        title = if (value == VideoAudioPreferences.BEST_RESOLUTION) bestResolutionLabel else value
+        title = if (value == BEST_RESOLUTION) bestResolutionLabel else value
     )
 
     fun mobileDataEntry(value: String) = ListPreferenceEntry(
         value = value,
-        title = if (value == VideoAudioPreferences.LIMIT_DATA_USAGE_NONE) noLimitLabel else value
+        title = if (value == LIMIT_DATA_USAGE_NONE) noLimitLabel else value
     )
 
-    fun selectedTitle(entries: List<ListPreferenceEntry>, value: String) = entries.firstOrNull { it.value == value }?.title.orEmpty()
+    fun selectedTitle(entries: List<ListPreferenceEntry>, value: String) =
+        entries.firstOrNull { it.value == value }?.title.orEmpty()
 
     val resolutionEntries = resolutionValues.map(::resolutionEntry)
     val mobileDataEntries = mobileDataResolutionValues.map(::mobileDataEntry)
-    val videoFormatEntries = VideoAudioPreferences.VIDEO_FORMATS.map { (value, label) ->
+    val videoFormatEntries = VIDEO_FORMATS.map { (value, label) ->
         ListPreferenceEntry(value, label)
     }
-    val audioFormatEntries = VideoAudioPreferences.AUDIO_FORMATS.map { (value, label) ->
+    val audioFormatEntries = AUDIO_FORMATS.map { (value, label) ->
         ListPreferenceEntry(value, label)
     }
     val seekbarThumbnailEntries = listOf(
-        ListPreferenceEntry(VideoAudioPreferences.SEEKBAR_THUMBNAIL_HIGH_QUALITY, stringResource(Res.string.high_quality_larger)),
-        ListPreferenceEntry(VideoAudioPreferences.SEEKBAR_THUMBNAIL_LOW_QUALITY, stringResource(Res.string.low_quality_smaller)),
-        ListPreferenceEntry(VideoAudioPreferences.SEEKBAR_THUMBNAIL_NONE, stringResource(Res.string.dont_show))
+        ListPreferenceEntry(
+            SEEKBAR_THUMBNAIL_HIGH_QUALITY,
+            stringResource(Res.string.high_quality_larger)
+        ),
+        ListPreferenceEntry(
+            SEEKBAR_THUMBNAIL_LOW_QUALITY,
+            stringResource(Res.string.low_quality_smaller)
+        ),
+        ListPreferenceEntry(SEEKBAR_THUMBNAIL_NONE, stringResource(Res.string.dont_show))
     )
     val openActionEntries = listOf(
-        ListPreferenceEntry(VideoAudioPreferences.OPEN_ACTION_SHOW_INFO, stringResource(Res.string.show_info)),
-        ListPreferenceEntry(VideoAudioPreferences.OPEN_ACTION_VIDEO_PLAYER, stringResource(Res.string.video_player)),
-        ListPreferenceEntry(VideoAudioPreferences.OPEN_ACTION_BACKGROUND_PLAYER, stringResource(Res.string.background_player)),
-        ListPreferenceEntry(VideoAudioPreferences.OPEN_ACTION_POPUP_PLAYER, stringResource(Res.string.popup_player)),
-        ListPreferenceEntry(VideoAudioPreferences.OPEN_ACTION_DOWNLOAD, stringResource(Res.string.download)),
-        ListPreferenceEntry(VideoAudioPreferences.OPEN_ACTION_ADD_TO_PLAYLIST, stringResource(Res.string.add_to_playlist)),
-        ListPreferenceEntry(VideoAudioPreferences.OPEN_ACTION_ENQUEUE, stringResource(Res.string.enqueue_stream)),
-        ListPreferenceEntry(VideoAudioPreferences.OPEN_ACTION_ALWAYS_ASK, stringResource(Res.string.always_ask_open_action))
+        ListPreferenceEntry(OPEN_ACTION_SHOW_INFO, stringResource(Res.string.show_info)),
+        ListPreferenceEntry(OPEN_ACTION_VIDEO_PLAYER, stringResource(Res.string.video_player)),
+        ListPreferenceEntry(
+            OPEN_ACTION_BACKGROUND_PLAYER,
+            stringResource(Res.string.background_player)
+        ),
+        ListPreferenceEntry(OPEN_ACTION_POPUP_PLAYER, stringResource(Res.string.popup_player)),
+        ListPreferenceEntry(OPEN_ACTION_DOWNLOAD, stringResource(Res.string.download)),
+        ListPreferenceEntry(
+            OPEN_ACTION_ADD_TO_PLAYLIST,
+            stringResource(Res.string.add_to_playlist)
+        ),
+        ListPreferenceEntry(OPEN_ACTION_ENQUEUE, stringResource(Res.string.enqueue_stream)),
+        ListPreferenceEntry(
+            OPEN_ACTION_ALWAYS_ASK,
+            stringResource(Res.string.always_ask_open_action)
+        )
     )
     val minimizeOnExitEntries = listOf(
-        ListPreferenceEntry(VideoAudioPreferences.MINIMIZE_ON_EXIT_NONE, stringResource(Res.string.minimize_on_exit_none_description)),
-        ListPreferenceEntry(VideoAudioPreferences.MINIMIZE_ON_EXIT_BACKGROUND, stringResource(Res.string.minimize_on_exit_background_description)),
-        ListPreferenceEntry(VideoAudioPreferences.MINIMIZE_ON_EXIT_POPUP, stringResource(Res.string.minimize_on_exit_popup_description))
+        ListPreferenceEntry(
+            MINIMIZE_ON_EXIT_NONE,
+            stringResource(Res.string.minimize_on_exit_none_description)
+        ),
+        ListPreferenceEntry(
+            MINIMIZE_ON_EXIT_BACKGROUND,
+            stringResource(Res.string.minimize_on_exit_background_description)
+        ),
+        ListPreferenceEntry(
+            MINIMIZE_ON_EXIT_POPUP,
+            stringResource(Res.string.minimize_on_exit_popup_description)
+        )
     )
     val autoplayEntries = listOf(
-        ListPreferenceEntry(VideoAudioPreferences.AUTOPLAY_ALWAYS, stringResource(Res.string.always)),
-        ListPreferenceEntry(VideoAudioPreferences.AUTOPLAY_WIFI, stringResource(Res.string.wifi_only)),
-        ListPreferenceEntry(VideoAudioPreferences.AUTOPLAY_NEVER, stringResource(Res.string.never))
+        ListPreferenceEntry(AUTOPLAY_ALWAYS, stringResource(Res.string.always)),
+        ListPreferenceEntry(AUTOPLAY_WIFI, stringResource(Res.string.wifi_only)),
+        ListPreferenceEntry(AUTOPLAY_NEVER, stringResource(Res.string.never))
     )
     val gestureEntries = listOf(
-        ListPreferenceEntry(VideoAudioPreferences.GESTURE_BRIGHTNESS, stringResource(Res.string.brightness)),
-        ListPreferenceEntry(VideoAudioPreferences.GESTURE_VOLUME, stringResource(Res.string.volume)),
-        ListPreferenceEntry(VideoAudioPreferences.GESTURE_NONE, stringResource(Res.string.none))
+        ListPreferenceEntry(GESTURE_BRIGHTNESS, stringResource(Res.string.brightness)),
+        ListPreferenceEntry(GESTURE_VOLUME, stringResource(Res.string.volume)),
+        ListPreferenceEntry(GESTURE_NONE, stringResource(Res.string.none))
     )
     val seekDurationEntries = seekDurationValues.map { value ->
         val seconds = VideoAudioPreferences.seekDurationSeconds(value)
@@ -412,7 +491,9 @@ fun VideoAudioSettingsScreenContent(
                 )
             }
 
-            PreferenceCategoryTitle(title = stringResource(Res.string.settings_category_player_title))
+            PreferenceCategoryTitle(
+                title = stringResource(Res.string.settings_category_player_title)
+            )
             SwitchPreference(
                 title = stringResource(Res.string.use_external_video_player_title),
                 summary = stringResource(Res.string.use_external_video_player_summary),
@@ -437,7 +518,9 @@ fun VideoAudioSettingsScreenContent(
                 onValueSelected = onSeekbarPreviewThumbnailChange
             )
 
-            PreferenceCategoryTitle(title = stringResource(Res.string.settings_category_player_behavior_title))
+            PreferenceCategoryTitle(
+                title = stringResource(Res.string.settings_category_player_behavior_title)
+            )
             ListPreference(
                 title = stringResource(Res.string.preferred_open_action_settings_title),
                 entries = openActionEntries,
@@ -514,10 +597,13 @@ fun VideoAudioSettingsScreenContent(
                 summary = stringResource(Res.string.use_inexact_seek_summary),
                 checked = useInexactSeek,
                 onCheckedChange = { checked ->
-                    VideoAudioPreferences.adjustedSeekDurationMs(seekDuration, checked)?.let { adjustedMs ->
+                    VideoAudioPreferences.adjustedSeekDurationMs(seekDuration, checked)
+                        ?.let { adjustedMs ->
                         val newSeconds = VideoAudioPreferences.seekDurationSeconds(adjustedMs)
                         scope.launch {
-                            snackbarHostState.showSnackbar(getString(Res.string.new_seek_duration_toast, newSeconds))
+                            snackbarHostState.showSnackbar(
+                                getString(Res.string.new_seek_duration_toast, newSeconds)
+                            )
                         }
                     }
                     onUseInexactSeekChange(checked)

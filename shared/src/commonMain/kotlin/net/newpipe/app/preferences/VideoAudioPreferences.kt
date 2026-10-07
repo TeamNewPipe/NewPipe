@@ -129,9 +129,11 @@ object VideoAudioPreferences {
     /** Seek durations in milliseconds, stored as strings like the legacy app. */
     val SEEK_DURATIONS_MS = listOf("5000", "10000", "15000", "20000", "25000", "30000")
 
-    fun resolutions(showHigher: Boolean): List<String> = insertHighResolutions(BASE_RESOLUTIONS, showHigher)
+    fun resolutions(showHigher: Boolean): List<String> =
+        insertHighResolutions(BASE_RESOLUTIONS, showHigher)
 
-    fun mobileDataResolutions(showHigher: Boolean): List<String> = insertHighResolutions(BASE_MOBILE_DATA_RESOLUTIONS, showHigher)
+    fun mobileDataResolutions(showHigher: Boolean): List<String> =
+        insertHighResolutions(BASE_MOBILE_DATA_RESOLUTIONS, showHigher)
 
     fun seekDurationSeconds(durationMs: String): Int = durationMs.toInt() / MILLIS_PER_SECOND
 
@@ -141,7 +143,8 @@ object VideoAudioPreferences {
         else -> SEEK_DURATIONS_MS
     }
     /**
-     * The seek duration to switch to when [inexactSeek] hides the currently selected one or null when no adjustment is needed.
+     * The seek duration to switch to when [inexactSeek] hides the currently selected
+     * one, or null when no adjustment is needed.
      */
     fun adjustedSeekDurationMs(currentMs: String, inexactSeek: Boolean): String? {
         if (!inexactSeek) return null

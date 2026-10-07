@@ -61,7 +61,10 @@ class PlayerSettingsViewModel(private val settings: Settings) : ViewModel() {
     fun setDisableMediaTunneling(value: Boolean) {
         disableMediaTunneling.persist(KEY_DISABLE_MEDIA_TUNNELING, value)
         if (!value) {
-            settings.putInt(KEY_DISABLED_MEDIA_TUNNELING_AUTOMATICALLY, MEDIA_TUNNELING_USER_MANAGED)
+            settings.putInt(
+                KEY_DISABLED_MEDIA_TUNNELING_AUTOMATICALLY,
+                MEDIA_TUNNELING_USER_MANAGED
+            )
             mediaTunnelingAutoDisabled.value = false
         }
     }
