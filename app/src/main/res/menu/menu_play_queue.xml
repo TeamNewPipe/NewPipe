@@ -34,6 +34,13 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/action_stop_after_current_track"
+        android:checkable="true"
+        android:orderInCategory="1"
+        android:title="@string/stop_after_current_track"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_settings"
         android:orderInCategory="1"
         android:title="@string/settings"
