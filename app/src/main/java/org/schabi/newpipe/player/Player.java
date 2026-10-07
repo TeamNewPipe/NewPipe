@@ -1282,6 +1282,24 @@ public final class Player implements PlaybackListener, Listener {
         }
     }
 
+    /**
+     * Whether playback should pause once the current track finishes, instead of advancing to
+     * the next item in the queue. Unlike {@link #getRepeatMode()}, this is not an ExoPlayer/
+     * MediaSession concept (their repeat-mode enum has no such state), so it's tracked here as
+     * an independent one-shot flag: it's cleared automatically the moment it takes effect, the
+     * same way a sleep timer or "stop after this" toggle behaves elsewhere. The queue itself is
+     * left untouched, so playback can simply be resumed from where it stopped.
+     */
+    private boolean stopAfterCurrentTrack;
+
+    public boolean isStopAfterCurrentTrack() {
+        return stopAfterCurrentTrack;
+    }
+
+    public void toggleStopAfterCurrentTrack() {
+        stopAfterCurrentTrack = !stopAfterCurrentTrack;
+    }
+
     @Override
     public void onRepeatModeChanged(@RepeatMode final int repeatMode) {
         if (DEBUG) {
@@ -1453,6 +1471,17 @@ public final class Player implements PlaybackListener, Listener {
         switch (discontinuityReason) {
             case DISCONTINUITY_REASON_AUTO_TRANSITION:
             case DISCONTINUITY_REASON_REMOVE:
+                // "Stop after current track" takes priority over any repeat mode: the track
+                // that just finished played through once, which is exactly what was asked for.
+                // It's a one-shot flag, so clear it now that it's done its job. Deliberately no
+                // `break` here — the queue-index bookkeeping below (SEEK_ADJUSTMENT/INTERNAL)
+                // still needs to run so the UI doesn't keep highlighting the track that just
+                // ended while playback is actually paused on the next one.
+                if (discontinuityReason == DISCONTINUITY_REASON_AUTO_TRANSITION
+                        && stopAfterCurrentTrack) {
+                    stopAfterCurrentTrack = false;
+                    pause();
+                }
                 // When player is in single repeat mode and a period transition occurs,
                 // we need to register a view count here since no metadata has changed
                 if (getRepeatMode() == REPEAT_MODE_ONE && newIndex == playQueue.getIndex()) {
