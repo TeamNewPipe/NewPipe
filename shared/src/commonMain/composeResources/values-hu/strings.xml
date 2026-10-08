@@ -49,7 +49,7 @@
     <string name="caption_setting_title">Feliratok</string>
     <string name="night_theme_available">Ez a lehetőség csak akkor érhető el, ha a(z) %1$s van kiválasztva témaként</string>
     <string name="select_night_theme_toast">Az alábbiakban kiválaszthatja kedvenc éjszakai témáját</string>
-    <string name="show_hold_to_append_title">\\"Tartsa lenyomva a sorba állításhoz\\" tipp megjelenítése</string>
+    <string name="show_hold_to_append_title">Tartsa lenyomva a sorba állításhoz tipp megjelenítése</string>
     <string name="show_hold_to_append_summary">Tipp megjelenítése a háttér vagy a felugró ablak gombjának megnyomásakor a videó \\"Részletek:\\" részében</string>
     <string name="list_view_mode">Listanézet mód</string>
     <string name="caption_setting_description">A lejátszó feliratának, szövegméretének és háttérstílusainak módosítása. A módosítások érvénybe lépéséhez újra kell indítani az alkalmazást</string>
