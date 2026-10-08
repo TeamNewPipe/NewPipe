@@ -165,5 +165,21 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Always use ExoPlayer's video output surface setting workaround</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">This workaround releases and re-instantiates video codecs when a surface change occurs, instead of setting the surface to the codec directly. Already used by ExoPlayer on some devices with this issue, this setting has only an effect on Android 6 and higher\n\nEnabling this option may prevent playback errors when switching the current video player or switching to fullscreen</string>
 
-
+    <!-- Debug Settings -->
+    <string name="leakcanary">LeakCanary</string>
+    <string name="enable_leak_canary_summary">Memory leak monitoring may cause the app to become unresponsive when heap dumping</string>
+    <string name="leak_canary_not_available">LeakCanary is not available</string>
+    <string name="show_memory_leaks">Show memory leaks</string>
+    <string name="enable_disposed_exceptions_title">Report out-of-lifecycle errors</string>
+    <string name="enable_disposed_exceptions_summary">Force reporting of undeliverable Rx exceptions outside of fragment or activity lifecycle after disposal</string>
+    <string name="show_original_time_ago_title">Show original time ago on items</string>
+    <string name="show_original_time_ago_summary">Original texts from services will be visible in stream items</string>
+    <string name="show_crash_the_player_title">Show "Crash the player"</string>
+    <string name="show_crash_the_player_summary">Shows a crash option when using the player</string>
+    <string name="check_new_streams">Run check for new streams</string>
+    <string name="crash_the_app">Crash the app</string>
+    <string name="show_error_snackbar">Show an error snackbar</string>
+    <string name="create_error_notification">Create an error notification</string>
+    <string name="error_snackbar_message">Sorry, something went wrong.</string>
+    <string name="error_snackbar_action">Report</string>
 </resources>
