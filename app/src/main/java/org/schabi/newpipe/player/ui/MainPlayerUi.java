@@ -935,6 +935,14 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         binding.metadataView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
         binding.playerCloseButton.setVisibility(isFullscreen ? View.GONE : View.VISIBLE);
         setupScreenRotationButton();
+
+        if (!isFullscreen) {
+            getParentActivity().ifPresent(activity -> {
+                if (!DeviceUtils.isTablet(activity)) {
+                    PlayerHelper.restoreLockedOrientation(activity);
+                }
+            });
+        }
     }
 
     public void checkLandscape() {
