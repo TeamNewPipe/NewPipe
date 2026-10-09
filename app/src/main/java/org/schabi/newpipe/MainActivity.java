@@ -709,9 +709,10 @@ public class MainActivity extends AppCompatActivity {
             // and no other CommentRepliesFragments are on top of the back stack
             // to show the top level comments again.
             openDetailFragmentFromCommentReplies(fm, true);
-        } else if (!NavigationHelper.tryGotoSearchFragment(fm)) {
-            // If search fragment wasn't found in the backstack go to the main fragment
-            NavigationHelper.gotoMainFragment(fm);
+        } else if (fm.getBackStackEntryCount() > 1) {
+            fm.popBackStack();
+        } else {
+            finish();
         }
     }
 
