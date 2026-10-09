@@ -11,6 +11,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.v2.runComposeUiTest
 import kotlin.test.Test
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 @OptIn(ExperimentalTestApi::class)
@@ -44,5 +45,17 @@ class PreferenceRowTest {
 
         onNodeWithText(title).assertIsDisplayed()
         onNodeWithText(summary).assertIsDisplayed()
+    }
+
+    @Test
+    fun disabledRowDoesNotFire() = runComposeUiTest {
+        val title = "Test title"
+        var fired = false
+        setContent {
+            PreferenceRow(title = title, enabled = false, onClick = { fired = true })
+        }
+
+        onNodeWithText(title).performClick()
+        assertFalse(fired)
     }
 }

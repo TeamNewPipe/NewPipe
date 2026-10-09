@@ -43,5 +43,6 @@ internal object NoOpDebugActions : DebugActions {
 
     override fun reportDummyError() = logUnsupported("reportDummyError")
 
-    private fun logUnsupported(action: String) = Logger.w(messageString = "Debug action '$action' is unsupported on this platform")
+    private fun logUnsupported(action: String) =
+        Logger.w(messageString = "Debug action '$action' is unsupported on this platform")
 }
