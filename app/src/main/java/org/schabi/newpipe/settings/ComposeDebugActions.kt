@@ -34,13 +34,6 @@ class ComposeDebugActions(private val context: Context) : DebugActions {
 
     private fun dummyErrorInfo() = ErrorInfo(RuntimeException(DUMMY), UserAction.UI_ERROR, DUMMY)
 
-    /**
-     * LeakCanary only ships in debug builds, so it is reached through the build-variant dependent
-     * bridge the legacy debug settings fragment already defines.
-     *
-     * TODO: move [DebugSettingsFragment.DebugSettingsBVDLeakCanaryAPI] out of the fragment when
-     *  the legacy debug settings fragment is deleted.
-     */
     private fun loadLeakCanary(): DebugSettingsFragment.DebugSettingsBVDLeakCanaryAPI? = runCatching {
         Class.forName(DebugSettingsFragment.DebugSettingsBVDLeakCanaryAPI.IMPL_CLASS)
             .getDeclaredConstructor()
