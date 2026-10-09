@@ -24,6 +24,7 @@ import io.reactivex.rxjava3.plugins.RxJavaPlugins
 import java.io.IOException
 import java.io.InterruptedIOException
 import java.net.SocketException
+import okhttp3.OkHttpClient
 import org.acra.ACRA.init
 import org.acra.ACRA.isACRASenderServiceProcess
 import org.acra.config.CoreConfigurationBuilder
@@ -34,6 +35,7 @@ import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExt
 import org.schabi.newpipe.ktx.hasAssignableCause
 import org.schabi.newpipe.settings.NewPipeSettings
 import org.schabi.newpipe.util.BridgeStateSaverInitializer
+import org.schabi.newpipe.util.IPv4Dns
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.ServiceHelper
 import org.schabi.newpipe.util.StateSaver
@@ -136,7 +138,9 @@ open class App :
         }.build()
 
     protected open fun getDownloader(): Downloader {
-        val downloader = DownloaderImpl.init(null)
+        val builder = OkHttpClient.Builder()
+            .dns(IPv4Dns(this))
+        val downloader = DownloaderImpl.init(builder)
         setCookiesToDownloader(downloader)
         return downloader
     }
