@@ -32,6 +32,7 @@ class M4aNoDash extends Postprocessing {
     int process(SharpStream out, SharpStream... sources) throws IOException {
         Mp4FromDashWriter muxer = new Mp4FromDashWriter(sources[0]);
         muxer.setMainBrand(0x4D344120);// binary string "M4A "
+        muxer.setMetadata(streamInfo.getName(), streamInfo.getUploaderName(), fetchCoverArt());
         muxer.parseSources();
         muxer.selectTracks(0);
         muxer.build(out);
