@@ -207,7 +207,7 @@
     <string name="website_title">Weboldal</string>
     <string name="website_encouragement">Látogassa meg a NewPipe weboldalát további információkért és hírekért.</string>
     <string name="privacy_policy_title">A NewPipe adatvédelmi irányelvei</string>
-    <string name="privacy_policy_encouragement">A NewPipe projekt komolyan veszi az adatvédelmét. Az alkalmazás nem gyűjt semmilyen adatot a beleegyezése nélkül.\nA NewPipe adatvédelmi irányelve részletesen elmagyarázza, mely adatok kerülnek elküldésre és tárolásra az alkalmazás összeomlásának jelentésekor.</string>
+    <string name="privacy_policy_encouragement">A NewPipe projekt kiemelten fontosnak tartja az Ön adatainak védelmét. Ezért az alkalmazás az Ön hozzájárulása nélkül semmilyen adatot nem gyűjt.\nA NewPipe adatvédelmi irányelvei részletesen ismertetik, hogy összeomlási jelentés küldésekor milyen adatok kerülnek továbbításra és tárolásra.</string>
     <string name="read_privacy_policy">Adatvédelmi irányelvek megtekintése</string>
     <string name="app_license_title">A NewPipe licence</string>
     <string name="read_full_license">Licenc megtekintése</string>

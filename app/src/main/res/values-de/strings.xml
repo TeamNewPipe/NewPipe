@@ -20,7 +20,7 @@
     <string name="show_play_with_kodi_title">Option „Mit Kodi abspielen“ anzeigen</string>
     <string name="show_play_with_kodi_summary">Option anzeigen, um Videos mit Kodi abzuspielen</string>
     <string name="play_audio">Audio</string>
-    <string name="default_audio_format_title">Bevorzugtes Audioformat</string>
+    <string name="default_audio_format_title">Standard-Audioformat</string>
     <string name="download_dialog_title">Herunterladen</string>
     <string name="show_next_and_similar_title">„Nächste“ und „Ähnliche“ Videos anzeigen</string>
     <string name="unsupported_url">Nicht unterstützte URL</string>
@@ -87,13 +87,13 @@
     <string name="all">Alle</string>
     <string name="disabled">Deaktiviert</string>
     <string name="open_in_popup_mode">Im Pop-up-Modus öffnen</string>
-    <string name="default_video_format_title">Bevorzugtes Videoformat</string>
+    <string name="default_video_format_title">Standard-Videoformat</string>
     <string name="popup_playing_toast">Im Pop-up-Modus abspielen</string>
     <string name="msg_popup_permission">Diese Berechtigung ist für das
 \nÖffnen im Pop-up-Modus erforderlich</string>
-    <string name="default_popup_resolution_title">Standardauflösung des Pop-ups</string>
+    <string name="default_popup_resolution_title">Pop-up-Standardauflösung</string>
     <string name="show_higher_resolutions_title">Höhere Auflösungen anzeigen</string>
-    <string name="show_higher_resolutions_summary">Nur manche Geräte können Videos in 2K/4K abspielen</string>
+    <string name="show_higher_resolutions_summary">Nur manche Geräte können 2K-/4K-Videos abspielen</string>
     <string name="controls_background_title">Hintergrund</string>
     <string name="controls_popup_title">Pop-up</string>
     <string name="popup_remember_size_pos_title">Eigenschaften des Pop-ups merken</string>
@@ -313,7 +313,7 @@
     <string name="decline">Ablehnen</string>
     <string name="start_accept_privacy_policy">Um der europäischen Datenschutz-Grundverordnung (DSGVO) gerecht zu werden, weisen wir hiermit auf NewPipes Datenschutzerklärung hin. Bitte lies sie sorgfältig durch. \nDu musst dieser zustimmen, um den Fehlerbericht an uns zu senden.</string>
     <string name="limit_data_usage_none_description">Unbegrenzt</string>
-    <string name="limit_mobile_data_usage_title">Auflösung bei Verwendung mobiler Daten begrenzen</string>
+    <string name="limit_mobile_data_usage_title">Auflösung bei der Nutzung mobiler Daten begrenzen</string>
     <string name="minimize_on_exit_title">Beim App-Wechsel minimieren</string>
     <string name="minimize_on_exit_summary">Aktion beim Umschalten auf eine andere App vom Haupt-Videoplayer — %s</string>
     <string name="minimize_on_exit_none_description">Keine</string>
@@ -664,7 +664,7 @@
 \nBitte installiere einen Storage Access Framework kompatiblen Dateimanager</string>
     <string name="detail_pinned_comment_view_description">Angehefteter Kommentar</string>
     <string name="leak_canary_not_available">LeakCanary ist nicht verfügbar</string>
-    <string name="progressive_load_interval_exoplayer_default">ExoPlayer Standard</string>
+    <string name="progressive_load_interval_exoplayer_default">ExoPlayer-Standard</string>
     <string name="notifications">Benachrichtigungen</string>
     <string name="streams_notification_channel_description">Benachrichtigen über neue abonnierbare Streams</string>
     <string name="streams_notification_channel_name">Neue Streams</string>
