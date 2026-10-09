@@ -64,6 +64,7 @@ public class StatisticsPlaylistFragment
     /* Used for independent events */
     private Subscription databaseSubscription;
     private HistoryRecordManager recordManager;
+    private boolean isFullyWatchedFilterApply = true;
 
     private List<StreamStatisticsEntry> processResult(final List<StreamStatisticsEntry> results) {
         final Comparator<StreamStatisticsEntry> comparator;
@@ -78,6 +79,12 @@ public class StatisticsPlaylistFragment
                 return null;
         }
         Collections.sort(results, comparator.reversed());
+
+        // Filter fully watched videos
+        if (!isFullyWatchedFilterApply) {
+            return results.stream().filter(it -> !it.isFinished()).toList();
+        }
+
         return results;
     }
 
@@ -277,6 +284,10 @@ public class StatisticsPlaylistFragment
         PlayButtonHelper.initPlaylistControlClickListener(activity, playlistControlBinding, this);
 
         headerBinding.sortButton.setOnClickListener(view -> toggleSortMode());
+        headerBinding.fullyWatchedFilterButtonCheckBox.setOnClickListener(view -> {
+            isFullyWatchedFilterApply = !isFullyWatchedFilterApply;
+            startLoading(true);
+        });
 
         hideLoading();
     }
