@@ -22,4 +22,14 @@
     <string name="open_in_browser">Otvori u pregledniku</string>
     <string name="done">Gotovo</string>
     <string name="not_available">Nije dostupno</string>
+    <string name="tab_licenses">Licence</string>
+    <string name="contribution_encouragement">Ako imate ideja za prijevod, promjene u dizajnu, čišćenje koda ili neke veće promjene u kodu, pomoć je uvijek dobrodošla. Što više radimo, to bolji postajemo!</string>
+    <string name="view_on_github">Pogledaj na GitHubu</string>
+    <string name="donation_title">Doniraj</string>
+    <string name="donation_encouragement">NewPipe razvijaju volonteri koji provode vrijeme kako bi doprinijeli najboljem korisničkom iskustvu. Doprinesi programerima kako bi poboljšali NewPipe dok uživaju u šalici kave.</string>
+    <string name="settings">Postavke</string>
+    <string name="search">Pretraga</string>
+    <string name="content">Sadržaj</string>
+    <string name="notifications">Obavijesti</string>
+    <string name="settings_category_video_audio_title">Video i audio</string>
 </resources>
