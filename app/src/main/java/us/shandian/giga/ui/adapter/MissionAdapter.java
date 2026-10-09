@@ -1,7 +1,6 @@
 package us.shandian.giga.ui.adapter;
 
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
-import static android.content.Intent.FLAG_GRANT_PREFIX_URI_PERMISSION;
 import static android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION;
 import static android.content.Intent.createChooser;
 import static us.shandian.giga.get.DownloadMission.ERROR_CONNECT_HOST;
@@ -70,12 +69,12 @@ import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.io.File;
 import java.net.URI;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Locale;
-import java.text.DateFormat;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
@@ -348,20 +347,28 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
 
         String mimeType = resolveMimeType(mission);
 
-        if (BuildConfig.DEBUG)
+        if (BuildConfig.DEBUG) {
             Log.v(TAG, "Mime: " + mimeType + " package: " + BuildConfig.APPLICATION_ID + ".provider");
+        }
 
+        // Create the intent to view/play the downloaded file
         Intent viewIntent = new Intent(Intent.ACTION_VIEW);
+
+        // Attach the file URI and its corresponding MIME type
         viewIntent.setDataAndType(resolveShareableUri(mission), mimeType);
-        viewIntent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
-        viewIntent.addFlags(FLAG_GRANT_PREFIX_URI_PERMISSION);
 
-        Intent chooserIntent = createChooser(viewIntent, null);
-        chooserIntent.addFlags(FLAG_ACTIVITY_NEW_TASK);
-        chooserIntent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
-        chooserIntent.addFlags(FLAG_GRANT_PREFIX_URI_PERMISSION);
+        /*
+         * Note: We pass viewIntent directly to openIntentInApp instead of using Intent.createChooser().
+         * On modern Android versions, wrapping an intent with createChooser() prevents the
+         * system from showing the "Always" option, forcing the user to pick an app every time.
+         * By removing the chooser, we allow the OS to respect and save the user's default app preference.
+         */
+        viewIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        viewIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        viewIntent.addFlags(Intent.FLAG_GRANT_PREFIX_URI_PERMISSION);
 
-        ShareUtils.openIntentInApp(mContext, chooserIntent);
+        // Open the intent directly to trigger the standard system resolver
+        ShareUtils.openIntentInApp(mContext, viewIntent);
     }
 
     private void shareFile(Mission mission) {
