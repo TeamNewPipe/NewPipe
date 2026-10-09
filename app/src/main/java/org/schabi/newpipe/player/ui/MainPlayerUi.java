@@ -61,6 +61,7 @@ import org.schabi.newpipe.player.gesture.BasePlayerGestureListener;
 import org.schabi.newpipe.player.gesture.MainPlayerGestureListener;
 import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
 import org.schabi.newpipe.player.helper.PlayerHelper;
+import org.schabi.newpipe.player.helper.VolumeBoostDialog;
 import org.schabi.newpipe.player.mediaitem.MediaItemTag;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueAdapter;
@@ -860,6 +861,14 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
                 PlaybackParameterDialog.newInstance(player.getPlaybackSpeed(),
                                 player.getPlaybackPitch(), player.getPlaybackSkipSilence(),
                                 player::setPlaybackParameters)
+                        .show(activity.getSupportFragmentManager(), null));
+    }
+
+    @Override
+    protected void onVolumeBoostClicked() {
+        getParentActivity().ifPresent(activity ->
+                VolumeBoostDialog.newInstance(player.getVolumeBoost(),
+                                player.isAutoVolumeBoostEnabled(), player::setVolumeBoost)
                         .show(activity.getSupportFragmentManager(), null));
     }
 

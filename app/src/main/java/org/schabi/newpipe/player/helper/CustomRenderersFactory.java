@@ -3,7 +3,6 @@ package org.schabi.newpipe.player.helper;
 import android.content.Context;
 import android.os.Handler;
 
-import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.Renderer;
 import com.google.android.exoplayer2.mediacodec.MediaCodecSelector;
 import com.google.android.exoplayer2.video.VideoRendererEventListener;
@@ -11,8 +10,8 @@ import com.google.android.exoplayer2.video.VideoRendererEventListener;
 import java.util.ArrayList;
 
 /**
- * A {@link DefaultRenderersFactory} which only uses {@link CustomMediaCodecVideoRenderer} as an
- * implementation of video codec renders.
+ * A {@link VolumeBoostRenderersFactory} which only uses {@link CustomMediaCodecVideoRenderer} as
+ * an implementation of video codec renders.
  *
  * <p>
  * As no ExoPlayer extension is currently used, the reflection code used by ExoPlayer to try to
@@ -20,7 +19,7 @@ import java.util.ArrayList;
  * changed in the case an extension is shipped with the app, such as the AV1 one.
  * </p>
  */
-public final class CustomRenderersFactory extends DefaultRenderersFactory {
+public final class CustomRenderersFactory extends VolumeBoostRenderersFactory {
 
     public CustomRenderersFactory(final Context context) {
         super(context);
