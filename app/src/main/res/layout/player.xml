@@ -421,15 +421,17 @@
                         android:layout_height="wrap_content"
                         android:background="#60000000"
                         android:ellipsize="end"
-                        android:maxLines="1"
+                        android:maxWidth="250dp"
+                        android:maxLines="2"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
                         android:paddingBottom="2dp"
+                        android:gravity="center"
                         android:textColor="@android:color/white"
                         android:textSize="12sp"
                         android:visibility="gone"
                         tools:ignore="RtlHardcoded"
-                        tools:text="Introduction"
+                        tools:text="This is a very long chapter title filled with needlessly little information despite its length"
                         tools:visibility="visible" />
 
                     <org.schabi.newpipe.views.NewPipeTextView
@@ -455,7 +457,8 @@
                         android:paddingTop="2dp"
                         android:src="@drawable/placeholder_thumbnail_video"
                         android:visibility="gone"
-                        tools:visibility="visible" />
+                        tools:visibility="visible"
+                        tools:ignore="ContentDescription" />
 
                 </LinearLayout>
 
@@ -482,7 +485,6 @@
                     android:textColor="@android:color/white"
                     tools:ignore="HardcodedText"
                     tools:text="1:06:29" />
-
 
                 <org.schabi.newpipe.views.ChaptersSeekBar
                     android:id="@+id/playbackSeekBar"
