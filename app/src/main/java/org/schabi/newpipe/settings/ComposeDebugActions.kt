@@ -1,3 +1,8 @@
+/*
+* SPDX-FileCopyrightText: 2026 NewPipe e.V. <https://newpipe-ev.de>
+* SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
 package org.schabi.newpipe.settings
 
 import android.content.Context
@@ -32,7 +37,11 @@ class ComposeDebugActions(private val context: Context) : DebugActions {
 
     override fun reportDummyError() = ErrorUtil.openActivity(context, dummyErrorInfo())
 
-    private fun dummyErrorInfo() = ErrorInfo(RuntimeException(DUMMY), UserAction.UI_ERROR, DUMMY)
+    private fun dummyErrorInfo() = ErrorInfo(
+        RuntimeException(DUMMY_EXCEPTION_TEXT),
+        UserAction.UI_ERROR,
+        DUMMY_EXCEPTION_TEXT
+    )
 
     private fun loadLeakCanary(): DebugSettingsFragment.DebugSettingsBVDLeakCanaryAPI? = runCatching {
         Class.forName(DebugSettingsFragment.DebugSettingsBVDLeakCanaryAPI.IMPL_CLASS)
@@ -41,6 +50,6 @@ class ComposeDebugActions(private val context: Context) : DebugActions {
     }.getOrNull()
 
     private companion object {
-        const val DUMMY = "Dummy"
+        const val DUMMY_EXCEPTION_TEXT = "Dummy"
     }
 }
