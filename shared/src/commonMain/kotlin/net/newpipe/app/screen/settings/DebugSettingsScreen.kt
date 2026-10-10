@@ -8,6 +8,7 @@ package net.newpipe.app.screen.settings
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
@@ -21,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewWrapper
@@ -59,7 +61,7 @@ import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 
-private const val DUMMY = "Dummy"
+private const val DUMMY_EXCEPTION_TEXT = "Dummy"
 
 @Composable
 fun DebugSettingsScreen(
@@ -86,7 +88,7 @@ fun DebugSettingsScreen(
         onShowCrashThePlayerChange = viewModel::setShowCrashThePlayer,
         onShowMemoryLeaks = debugActions::showMemoryLeaks,
         onCheckNewStreams = debugActions::checkNewStreams,
-        onCrashTheApp = { throw RuntimeException(DUMMY) },
+        onCrashTheApp = { throw RuntimeException(DUMMY_EXCEPTION_TEXT) },
         onReportDummyError = debugActions::reportDummyError,
         onCreateErrorNotification = debugActions::createErrorNotification,
         onNavigateUp = { navigator.navigateUp() }
@@ -134,6 +136,7 @@ fun DebugSettingsScreenContent(
                 .padding(top = paddingValues.calculateTopPadding())
                 .verticalScroll(rememberScrollState())
                 .padding(WindowInsets.navigationBars.asPaddingValues())
+                .fillMaxHeight(),
         ) {
             SwitchPreference(
                 title = stringResource(Res.string.leakcanary),
