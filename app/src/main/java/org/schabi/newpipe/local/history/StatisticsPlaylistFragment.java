@@ -193,29 +193,26 @@ public class StatisticsPlaylistFragment
 
         headerBinding.historySearchInput.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(final CharSequence s,
-                                          final int start,
-                                          final int count,
-                                          final int after) {
-            }
-
-            @Override
-            public void onTextChanged(final CharSequence s,
-                                      final int start,
-                                      final int before,
+            public void onTextChanged(final CharSequence s, final int start, final int before,
                                       final int count) {
-                final String userInputText = s.toString();
-                filterHistory(userInputText);
+                filterHistory(s.toString());
             }
 
             @Override
-            public void afterTextChanged(final Editable s) {
+            public void afterTextChanged(final Editable editable) {
+                // not needed
+            }
+
+            @Override
+            public void beforeTextChanged(final CharSequence s, final int i, final int i1,
+                                          final int i2) {
+                // not needed
             }
         });
     }
 
-    private void filterHistory(final String query) {
-        if (itemListAdapter == null) {
+    private void filterHistory(@Nullable final String query) {
+        if (itemListAdapter == null || query == null) {
             return;
         }
 
@@ -241,23 +238,10 @@ public class StatisticsPlaylistFragment
 
     private boolean matchesHistoryEntry(final StreamStatisticsEntry historyEntry,
                                         final String lowerQuery) {
-        final String title = historyEntry.getStreamEntity().getTitle();
-        if (null != title) {
-            final String lowerTitle = title.toLowerCase(Locale.ROOT);
-            if (lowerTitle.contains(lowerQuery)) {
-                return true;
-            }
-        }
-
-        final String uploader = historyEntry.getStreamEntity().getUploader();
-        if (null != uploader) {
-            final String lowerUploader = uploader.toLowerCase(Locale.ROOT);
-            if (lowerUploader.contains(lowerQuery)) {
-                return true;
-            }
-        }
-
-        return false;
+        final String title = historyEntry.getStreamEntity().getTitle().toLowerCase(Locale.ROOT);
+        final String uploader = historyEntry.getStreamEntity().getUploader()
+                .toLowerCase(Locale.ROOT);
+        return title.contains(lowerQuery) || uploader.contains(lowerQuery);
     }
 
     @Override
@@ -372,8 +356,8 @@ public class StatisticsPlaylistFragment
 
         allHistoryEntries = new ArrayList<>(result);
 
-        final String currentQuery =
-                headerBinding.historySearchInput.getText().toString();
+        final Editable maybeQuery = headerBinding.historySearchInput.getText();
+        final String currentQuery = maybeQuery == null ? null : maybeQuery.toString();
         filterHistory(currentQuery);
 
         if (itemsListState != null && itemsList.getLayoutManager() != null) {
