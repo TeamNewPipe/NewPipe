@@ -211,39 +211,6 @@ public class StatisticsPlaylistFragment
         });
     }
 
-    private void filterHistory(@Nullable final String query) {
-        if (itemListAdapter == null || query == null) {
-            return;
-        }
-
-        itemListAdapter.clearStreamItemList();
-
-        if (query.isEmpty()) {
-            itemListAdapter.addItems(processResult(allHistoryEntries));
-            return;
-        }
-
-        final List<StreamStatisticsEntry> filtered = new ArrayList<>();
-
-        final String lowerQuery = query.toLowerCase(Locale.ROOT);
-
-        for (final StreamStatisticsEntry historyEntry : allHistoryEntries) {
-            if (matchesHistoryEntry(historyEntry, lowerQuery)) {
-                filtered.add(historyEntry);
-            }
-        }
-
-        itemListAdapter.addItems(processResult(filtered));
-    }
-
-    private boolean matchesHistoryEntry(final StreamStatisticsEntry historyEntry,
-                                        final String lowerQuery) {
-        final String title = historyEntry.getStreamEntity().getTitle().toLowerCase(Locale.ROOT);
-        final String uploader = historyEntry.getStreamEntity().getUploader()
-                .toLowerCase(Locale.ROOT);
-        return title.contains(lowerQuery) || uploader.contains(lowerQuery);
-    }
-
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         if (item.getItemId() == R.id.action_history_clear) {
@@ -377,20 +344,41 @@ public class StatisticsPlaylistFragment
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // Fragment Error Handling
+    // Search Filter and Sorting
     ///////////////////////////////////////////////////////////////////////////
 
-    @Override
-    protected void resetFragment() {
-        super.resetFragment();
-        if (databaseSubscription != null) {
-            databaseSubscription.cancel();
+    private void filterHistory(@Nullable final String query) {
+        if (itemListAdapter == null || query == null) {
+            return;
         }
+
+        itemListAdapter.clearStreamItemList();
+
+        if (query.isEmpty()) {
+            itemListAdapter.addItems(processResult(allHistoryEntries));
+            return;
+        }
+
+        final List<StreamStatisticsEntry> filtered = new ArrayList<>();
+
+        final String lowerQuery = query.toLowerCase(Locale.ROOT);
+
+        for (final StreamStatisticsEntry historyEntry : allHistoryEntries) {
+            if (matchesHistoryEntry(historyEntry, lowerQuery)) {
+                filtered.add(historyEntry);
+            }
+        }
+
+        itemListAdapter.addItems(processResult(filtered));
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Utils
-    //////////////////////////////////////////////////////////////////////////*/
+    private boolean matchesHistoryEntry(final StreamStatisticsEntry historyEntry,
+                                        final String lowerQuery) {
+        final String title = historyEntry.getStreamEntity().getTitle().toLowerCase(Locale.ROOT);
+        final String uploader = historyEntry.getStreamEntity().getUploader()
+                .toLowerCase(Locale.ROOT);
+        return title.contains(lowerQuery) || uploader.contains(lowerQuery);
+    }
 
     private void toggleSortMode() {
         if (sortMode == StatisticSortMode.LAST_PLAYED) {
@@ -408,6 +396,42 @@ public class StatisticsPlaylistFragment
         }
         startLoading(true);
     }
+
+    private void displaySortMode(final StatisticSortMode mode) {
+        final int resourceIdOfSortMode = mode.getResourceId();
+        setTitle(getString(resourceIdOfSortMode));
+    }
+
+    private enum StatisticSortMode {
+        LAST_PLAYED(R.string.title_last_played),
+        MOST_PLAYED(R.string.title_most_played);
+
+        private final int resourceId;
+
+        StatisticSortMode(final int theResourceId) {
+            this.resourceId = theResourceId;
+        }
+
+        int getResourceId() {
+            return resourceId;
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Fragment Error Handling
+    ///////////////////////////////////////////////////////////////////////////
+
+    @Override
+    protected void resetFragment() {
+        super.resetFragment();
+        if (databaseSubscription != null) {
+            databaseSubscription.cancel();
+        }
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Utils
+    //////////////////////////////////////////////////////////////////////////*/
 
     private PlayQueue getPlayQueueStartingAt(final StreamStatisticsEntry infoItem) {
         return getPlayQueue(Math.max(itemListAdapter.getItemsList().indexOf(infoItem), 0));
@@ -478,26 +502,6 @@ public class StatisticsPlaylistFragment
             }
         }
         return new SinglePlayQueue(streamInfoItems, index);
-    }
-
-    private void displaySortMode(final StatisticSortMode mode) {
-        final int resourceIdOfSortMode = mode.getResourceId();
-        setTitle(getString(resourceIdOfSortMode));
-    }
-
-    private enum StatisticSortMode {
-        LAST_PLAYED(R.string.title_last_played),
-        MOST_PLAYED(R.string.title_most_played);
-
-        private final int resourceId;
-
-        StatisticSortMode(final int theResourceId) {
-            this.resourceId = theResourceId;
-        }
-
-        int getResourceId() {
-            return resourceId;
-        }
     }
 }
 
