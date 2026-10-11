@@ -64,6 +64,7 @@ public class StatisticsPlaylistFragment
     @State
     Parcelable itemsListState;
     private StatisticSortMode sortMode = StatisticSortMode.LAST_PLAYED;
+    private boolean applyIsFullyWatchedFilter = true;
 
     private StatisticPlaylistControlBinding headerBinding;
     private PlaylistControlBinding playlistControlBinding;
@@ -71,7 +72,6 @@ public class StatisticsPlaylistFragment
     /* Used for independent events */
     private Subscription databaseSubscription;
     private HistoryRecordManager recordManager;
-    private boolean isFullyWatchedFilterApply = true;
 
     private List<StreamStatisticsEntry> allHistoryEntries = new ArrayList<>();
 
@@ -90,7 +90,7 @@ public class StatisticsPlaylistFragment
         Collections.sort(results, comparator.reversed());
 
         // Filter fully watched videos
-        if (!isFullyWatchedFilterApply) {
+        if (!applyIsFullyWatchedFilter) {
             return results.stream().filter(it -> !it.isFinished()).toList();
         }
 
@@ -385,7 +385,7 @@ public class StatisticsPlaylistFragment
 
         headerBinding.sortChip.setOnClickListener(view -> toggleSortMode());
         headerBinding.filterWatchedChip.setOnClickListener(view -> {
-            isFullyWatchedFilterApply = !isFullyWatchedFilterApply;
+            applyIsFullyWatchedFilter = !applyIsFullyWatchedFilter;
             startLoading(true);
         });
 
