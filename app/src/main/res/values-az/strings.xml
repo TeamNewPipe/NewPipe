@@ -8,7 +8,7 @@
     <string name="cancel">İmtina et</string>
     <string name="open_in_browser">Brauzerdə aç</string>
     <string name="share">Paylaş</string>
-    <string name="download">Yüklə</string>
+    <string name="download">Yükləmə</string>
     <string name="controls_download_desc">Yayım faylın yüklə</string>
     <string name="search">Axtarış</string>
     <string name="settings">Tənzimləmələr</string>
@@ -31,15 +31,15 @@
     <string name="download_path_audio_title">Səs yükləmə qovluğu</string>
     <string name="download_path_audio_summary">Yüklənilmiş səs faylları burada saxlanılır</string>
     <string name="download_path_audio_dialog_title">Səs faylları üçün yükləmə qovluğu seç</string>
-    <string name="default_resolution_title">Standart format</string>
+    <string name="default_resolution_title">İlkin ayırdetmə</string>
     <string name="show_higher_resolutions_title">Daha böyük formatlar göstər</string>
     <string name="play_with_kodi_title">\"Kodi\" ilə Oynat</string>
     <string name="kore_not_found">Çatışmayan \"Kore\" tətbiqi yüklənilsin\?</string>
     <string name="show_play_with_kodi_title">\"Kodi ilə Oynat\" seçimini göstər</string>
     <string name="show_play_with_kodi_summary">Kodi media mərkəzindən video oynatmaq üçün seçim göstər</string>
     <string name="play_audio">Səs</string>
-    <string name="default_audio_format_title">Standart səs kodlayıcı</string>
-    <string name="default_video_format_title">Standart video kodlayıcı</string>
+    <string name="default_audio_format_title">Standart səs formatı</string>
+    <string name="default_video_format_title">Standart video formatı</string>
     <string name="theme_title">Kolorit</string>
     <string name="light_theme_title">İşıqlı</string>
     <string name="dark_theme_title">Qaranlıq</string>
@@ -48,8 +48,8 @@
     <string name="open_in_popup_mode">Ani görüntü rejimində aç</string>
     <string name="autoplay_title">Avtomatik oynat</string>
     <string name="download_dialog_title">Yüklə</string>
-    <string name="resume_on_audio_focus_gain_summary">Fasilələr ardınca (məsələn, telefon zəngləri) oynatmağa davam etdir</string>
-    <string name="resume_on_audio_focus_gain_title">Oynatmanı davam etdir</string>
+    <string name="resume_on_audio_focus_gain_summary">Fasilələr ardınca (məsələn, telefon zəngləri) oynatmağa davam et</string>
+    <string name="resume_on_audio_focus_gain_title">Oynatmağa davam et</string>
     <string name="enable_watch_history_summary">Baxılmış videoların saxlanılması</string>
     <string name="settings_category_clear_data_title">Məlumat təmizlə</string>
     <string name="enable_playback_state_lists_summary">Siyahılarda oynatma mövqe göstəricilərini göstər</string>
@@ -85,7 +85,7 @@
     <string name="notification_action_1_title">İkinci fəaliyyət düyməsi</string>
     <string name="notification_action_0_title">Birinci fəaliyyət düyməsi</string>
     <string name="show_higher_resolutions_summary">Yalnız bəzi cihazlar 2K/4K videoları oynada bilir</string>
-    <string name="default_popup_resolution_title">Standart ani görüntü formatı</string>
+    <string name="default_popup_resolution_title">İlkin açılan pəncərə ayırdetməsi</string>
     <string name="controls_add_to_playlist_title">Əlavə Et</string>
     <string name="controls_popup_title">Ani Görüntü</string>
     <string name="tab_choose">Paneli Seç</string>
@@ -200,7 +200,7 @@
     <string name="main_page_content">Əsas səhifə məzmunu</string>
     <string name="updates_setting_description">Yeni versiya mövcud olduqda tətbiq yeniləməsini xatırlatmaq üçün bildiriş göstər</string>
     <string name="updates_setting_title">Yeniləmələr</string>
-    <string name="limit_mobile_data_usage_title">Mobil internet istifadə edərkən ayırdetməni məhdudlaşdır</string>
+    <string name="limit_mobile_data_usage_title">Mobil məlumat istifadə edərkən ayırdetməni məhdudlaşdır</string>
     <string name="limit_data_usage_none_description">Limitsiz</string>
     <string name="one_item_deleted">1 element silindi.</string>
     <string name="peertube_instance_add_title">Server əlavə et</string>
@@ -354,7 +354,7 @@
     <string name="preferred_player_fetcher_notification_message">Tələb olunan məzmun yüklənir</string>
     <string name="create_playlist">Yeni Pleylist</string>
     <string name="rename_playlist">Adını dəyişdir</string>
-    <string name="add_to_playlist">Pleylistə əlavə et</string>
+    <string name="add_to_playlist">Oynatma siyahısına əlavə et</string>
     <string name="processing_may_take_a_moment">Emal edilir... Bir az vaxt ala bilər</string>
     <string name="unmute">Səsi aç</string>
     <string name="bookmark_playlist">Pleylisti Əlfəcinlə</string>
@@ -392,7 +392,7 @@
     <string name="minimize_on_exit_popup_description">Ani-pəncərə oynadıcısına kiçilt</string>
     <string name="autoplay_summary">Oynatmanı avtomatik başlat — %s</string>
     <string name="low_quality_smaller">Aşağı keyfiyyət (daha kiçik)</string>
-    <string name="dont_show">Göstərmə</string>
+    <string name="dont_show">Göstərməyin</string>
     <string name="download_failed">Endirmə uğursuz oldu</string>
     <string name="error_http_unsupported_range">Server çox iş parçalı endirmələri qəbul etmir, @string/msg_threads = 1 ilə yenidən cəhd edin</string>
     <string name="delete_downloaded_files_confirm">Bütün endirilmiş fayllar diskdən silinsin\?</string>
@@ -717,9 +717,9 @@
     <string name="unknown_audio_track">Naməlum</string>
     <string name="settings_category_exoplayer_title">ExoPlayer tənzimləmələri</string>
     <string name="settings_category_exoplayer_summary">Bəzi ExoPlayer tənzimləmələrin idarə et. Bu dəyişiklikləri təsirli etmək üçün oynadıcını yenidən başlatmaq tələb olunur</string>
-    <string name="use_exoplayer_decoder_fallback_title">ExoPlayer-in çözücü xüsusiyyətin istifadə et</string>
+    <string name="use_exoplayer_decoder_fallback_title">ExoPlayer-in çözücü ehtiyatı xüsusiyyətin istifadə et</string>
     <string name="use_exoplayer_decoder_fallback_summary">Əsas çözücüləri işlətmə uğursuz olarsa, çözücü işlətmək probleminiz varsa (daha aşağı prioritetli çözücülərə düşür), bu seçimi aktiv edin. Bu, əsas çözücülərdən istifadə ilə müqayisədə zəif oynatma performansı ilə nəticələnə bilər</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Bu həll yolu səthi kodlayıcıya birbaşa tənzimləmək əvəzinə, səth dəyişikliyi olarsa video kodlayıcıları buraxır və yenidən işlədir. Artıq ExoPlayer vasitəsilə bu problemli bəzi cihazlarda istifadə olunur, bu tənzimləmə təsiri yalnız Android 6 və daha yüksəkdə var.\n\nBu seçimi işlətmə cari video oynadıcı dəyişəndə və ya tam ekrana keçəndə oynatma xətaların düzəldə bilər</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Bu həll yolu səthi kodlayıcıya birbaşa tənzimləmək əvəzinə, səth dəyişikliyi olarsa video kodlayıcıları buraxır və yenidən işlədir. Artıq ExoPlayer vasitəsilə bu problemli bəzi cihazlarda istifadə olunur, bu tənzimləmənin təsiri yalnız Android 6 və daha yüksəkdə var. \n \nBu seçimi işlətmə cari video oynadıcı dəyişəndə və ya tam ekrana keçəndə oynatma xətaların düzəldə bilər</string>
     <string name="audio_track_type_original">orijinal</string>
     <string name="audio_track_type_dubbed">dublyaj edilib</string>
     <string name="audio_track_type_descriptive">təsviri</string>
@@ -727,7 +727,7 @@
     <string name="progressive_load_interval_summary">Qabaqcıl məzmunda yükləmə aralığı həcmin dəyişdir (hazırda %s). Daha aşağı dəyər onların ilkin yüklənilməsin sürətləndirə bilər</string>
     <string name="no_streams">Yayım yoxdur</string>
     <string name="no_live_streams">Canlı yayım yoxdur</string>
-    <string name="disable_media_tunneling_automatic_info">Media dövrələmə cihazınızda standart olaraq qeyri-aktiv edilib, çünki cihazınızın modelinin bunu dəstəkləmədiyi məlumdur.</string>
+    <string name="disable_media_tunneling_automatic_info">Media girişi cihazınızda standart olaraq qeyri-aktiv edilib, çünki cihazınızın modelinin bunu dəstəkləmədiyi məlumdur.</string>
     <string name="audio_track_name">%1$s %2$s</string>
     <string name="main_tabs_position_title">Əsas tabel mövqeyi</string>
     <string name="main_tabs_position_summary">Əsas tabel seçicini aşağıya köçür</string>

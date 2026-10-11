@@ -30,8 +30,8 @@
     <string name="detail_uploader_thumbnail_view_description">업로더 썸네일</string>
     <string name="detail_dislikes_img_view_description">싫어요</string>
     <string name="detail_likes_img_view_description">좋아요</string>
-    <string name="use_external_video_player_title">외부 비디오 플레이어 사용</string>
-    <string name="use_external_audio_player_title">외부 오디오 플레이어 사용</string>
+    <string name="use_external_video_player_title">외장 동영상 플레이어 사용</string>
+    <string name="use_external_audio_player_title">외장 오디오 플레이어 사용</string>
     <string name="download_path_audio_title">오디오 다운로드 폴더</string>
     <string name="download_path_audio_summary">다운로드된 오디오 파일이 이 곳에 저장됩니다</string>
     <string name="download_path_audio_dialog_title">오디오 파일이 다운로드 될 폴더를 선택하세요</string>
@@ -68,7 +68,7 @@
     <string name="delete">삭제</string>
     <string name="checksum">체크섬</string>
     <string name="open_in_popup_mode">팝업 모드로 열기</string>
-    <string name="use_external_video_player_summary">일부 해상도에서 소리가 나지 않을 수 있습니다</string>
+    <string name="use_external_video_player_summary">일부 해상도에서 오디오가 제거됩니다</string>
     <string name="subscribe_button_title">구독</string>
     <string name="subscribed_button_title">구독중</string>
     <string name="channel_unsubscribed">구독 취소됨</string>
@@ -79,9 +79,9 @@
     <string name="controls_background_title">백그라운드</string>
     <string name="controls_popup_title">팝업</string>
     <string name="default_popup_resolution_title">기본 팝업 해상도</string>
-    <string name="show_higher_resolutions_title">높은 해상도 표시</string>
-    <string name="show_higher_resolutions_summary">일부 기기에서만 2K/4K 해상도 재생이 지원됩니다</string>
-    <string name="default_video_format_title">기본 비디오 형식</string>
+    <string name="show_higher_resolutions_title">더 높은 해상도 표시</string>
+    <string name="show_higher_resolutions_summary">일부 기기에서만 2K/4K 동영상을 재생할 수 있습니다</string>
+    <string name="default_video_format_title">기본 동영상 형식</string>
     <string name="black_theme_title">검정</string>
     <string name="popup_remember_size_pos_title">팝업 크기 및 위치 기억</string>
     <string name="popup_remember_size_pos_summary">마지막으로 사용한 팝업 위치 및 크기를 기억합니다</string>
@@ -103,7 +103,7 @@
     <string name="all">전부</string>
     <string name="disabled">해제됨</string>
     <string name="clear">지우기</string>
-    <string name="best_resolution">최대 해상도</string>
+    <string name="best_resolution">최고 해상도</string>
     <string name="undo">되돌리기</string>
     <string name="play_all">전부 재생</string>
     <string name="notification_channel_name">NewPipe 알림</string>
@@ -186,7 +186,7 @@
     <string name="use_inexact_seek_title">정확하지 않은 빠른 탐색 사용</string>
     <string name="use_inexact_seek_summary">정확하지 않은 탐색을 사용하면 정확도가 떨어지는 대신 더 빠르게 위치를 탐색할 수 있습니다. 5초, 15초 또는 25초 탐색 기능은 이 기능과 같이 동작하지 않습니다</string>
     <string name="auto_queue_title">다음 스트림을 자동으로 대기열에 추가</string>
-    <string name="auto_queue_summary">관련 스트림을 추가하여 (반복되지 않는) 재생 대기열을 계속 종료</string>
+    <string name="auto_queue_summary">관련 스트림을 추가하여 (미반복) 재생 대기열의 끝을 이어가기</string>
     <string name="default_content_country_title">기본 콘텐츠 국가</string>
     <string name="settings_category_debug_title">디버그</string>
     <string name="always">항상</string>
@@ -308,8 +308,8 @@
 \n버그 보고서를 보내려면 수락해야 합니다.</string>
     <string name="accept">동의</string>
     <string name="decline">동의하지 않음</string>
-    <string name="limit_data_usage_none_description">데이터 제한 없음</string>
-    <string name="limit_mobile_data_usage_title">모바일 데이터 사용 시 화질 제한</string>
+    <string name="limit_data_usage_none_description">제한 없음</string>
+    <string name="limit_mobile_data_usage_title">모바일 데이터 사용 시 해상도 제한</string>
     <string name="unsubscribe">구독 취소</string>
     <string name="tab_choose">탭 선택</string>
     <string name="settings_category_updates_title">업데이트</string>
@@ -415,7 +415,7 @@
     <plurals name="listening">
         <item quantity="other">%s명 청취중</item>
     </plurals>
-    <string name="seek_duration_title">빠른-감기/되감기 찾는 시간</string>
+    <string name="seek_duration_title">빨리감기/되감기 탐색 간격</string>
     <string name="peertube_instance_url_title">피어튜브 인스턴스</string>
     <string name="peertube_instance_url_summary">선호하는 PeerTube 인스턴스 선택</string>
     <string name="peertube_instance_url_help">%s에서 원하는 인스턴스 찾기</string>
@@ -709,10 +709,10 @@
     <string name="ignore_hardware_media_buttons_summary">예를 들어, 물리적 버튼이 망가진 헤드셋을 사용하는 경우 유용합니다</string>
     <string name="feed_show_hide_streams">스트림 보이기/숨기기</string>
     <string name="left_gesture_control_summary">플레이어 화면 왼쪽 절반에 대한 제스처 선택</string>
-    <string name="prefer_original_audio_title">원본 오디오 선호</string>
-    <string name="prefer_original_audio_summary">언어에 관계없이 원본 오디오 트랙 선택</string>
-    <string name="prefer_descriptive_audio_summary">가능한 경우 시각 장애인을 위한 설명이 포함된 오디오 트랙 선택</string>
-    <string name="prefer_descriptive_audio_title">설명이 포함된 오디오 선호</string>
+    <string name="prefer_original_audio_title">원본 오디오 우선</string>
+    <string name="prefer_original_audio_summary">언어와 상관없이 원본 오디오 트랙 선택</string>
+    <string name="prefer_descriptive_audio_summary">시각 장애인을 위한 해설이 든 오디오 트랙이 있다면 선택합니다</string>
+    <string name="prefer_descriptive_audio_title">음성 해설 우선</string>
     <string name="right_gesture_control_summary">플레이어 화면 오른쪽 절반에 대한 제스처 선택</string>
     <string name="right_gesture_control_title">오른쪽 제스처 동작</string>
     <string name="brightness">밝기</string>
