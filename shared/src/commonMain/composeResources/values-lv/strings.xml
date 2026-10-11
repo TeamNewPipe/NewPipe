@@ -38,4 +38,5 @@
     <string name="settings_category_history_title">Vēsture un kešatmiņa</string>
     <string name="settings_category_updates_title">Atjauninājumi</string>
     <string name="settings_category_debug_title">Atkļūdošana</string>
+    <string name="theme_title">IzskataIestatījumaEkrānu</string>
 </resources>
