@@ -128,7 +128,7 @@
     <string name="app_description">Slobodan i jednostavan streaming na Android uređaju.</string>
     <string name="view_on_github">Pogledaj na GitHubu</string>
     <string name="app_license_title">NewPipeova licenca</string>
-    <string name="contribution_encouragement">Ako imate ideja za prijevod, promjene u dizajnu, čišćenje koda ili neke veće promjene u kodu, pomoć je uvijek dobro došla. Što više radimo, to bolji postajemo!</string>
+    <string name="contribution_encouragement">Ako imate ideja za prijevod, promjene u dizajnu, čišćenje koda ili neke veće promjene u kodu, pomoć je uvijek dobrodošla. Što više radimo, to bolji postajemo!</string>
     <string name="read_full_license">Pročitaj licencu</string>
     <string name="contribution_title">Doprinesi</string>
     <string name="title_activity_history">Povijest</string>
@@ -883,4 +883,6 @@
     <string name="api23_requirement_dialog_title">NewPipe ukida podršku za Android 5</string>
     <string name="api23_requirement_dialog_message">Nažalost NewPipe ovisi o nekoliko biblioteka koje su ukinule podršku za Android 5.0 i 5.1. Sljedeće NewPipe izdanje će stoga nažalost raditi samo na uređajima s Androidom 6 ili novije. Pročitaj više u objavi na blogu.</string>
     <string name="api23_requirement_dialog_blogpost">Objava na blogu</string>
+    <string name="channel_tab_podcasts">Podcasti</string>
+    <string name="channel_tab_courses">Tečajevi</string>
 </resources>
