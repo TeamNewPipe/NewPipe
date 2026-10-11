@@ -173,30 +173,7 @@ public class StatisticsPlaylistFragment
             }
         });
 
-        initHistorySearchOverlayActions();
-
         initHistorySearchInputActions();
-
-        initHistorySearchClearActions();
-    }
-
-    private void initHistorySearchOverlayActions() {
-        // Show search overlay
-        headerBinding.searchButton.setOnClickListener(view -> {
-            if (headerBinding.historySearchBar.getVisibility() == View.GONE) {
-                headerBinding.historySearchBar.setVisibility(View.VISIBLE);
-                headerBinding.historySearchInput.requestFocus();
-
-                // Show soft keyboard
-                final InputMethodManager imm =
-                        (InputMethodManager) requireContext()
-                        .getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(
-                        headerBinding.historySearchInput,
-                        InputMethodManager.SHOW_IMPLICIT
-                    );
-            }
-        });
     }
 
     private void initHistorySearchInputActions() {
@@ -234,14 +211,6 @@ public class StatisticsPlaylistFragment
             @Override
             public void afterTextChanged(final Editable s) {
             }
-        });
-    }
-
-    private void initHistorySearchClearActions() {
-        // Clear input & hide search overlay
-        headerBinding.historySearchClearIcon.setOnClickListener(view -> {
-            headerBinding.historySearchInput.setText("");
-            headerBinding.historySearchBar.setVisibility(View.GONE);
         });
     }
 
