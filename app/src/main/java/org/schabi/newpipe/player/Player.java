@@ -1471,17 +1471,11 @@ public final class Player implements PlaybackListener, Listener {
         switch (discontinuityReason) {
             case DISCONTINUITY_REASON_AUTO_TRANSITION:
             case DISCONTINUITY_REASON_REMOVE:
-                // "Stop after current track" takes priority over any repeat mode: the track
-                // that just finished played through once, which is exactly what was asked for.
-                // It's a one-shot flag, so clear it now that it's done its job. Deliberately no
-                // `break` here — the queue-index bookkeeping below (SEEK_ADJUSTMENT/INTERNAL)
-                // still needs to run so the UI doesn't keep highlighting the track that just
-                // ended while playback is actually paused on the next one.
-                if (discontinuityReason == DISCONTINUITY_REASON_AUTO_TRANSITION
-                        && stopAfterCurrentTrack) {
-                    stopAfterCurrentTrack = false;
-                    pause();
-                }
+                // Deliberately no `break` after this — the queue-index bookkeeping below
+                // (SEEK_ADJUSTMENT/INTERNAL) still needs to run so the UI doesn't keep
+                // highlighting the track that just ended while playback is paused on the
+                // next one.
+                maybeStopAfterCurrentTrack(discontinuityReason);
                 // When player is in single repeat mode and a period transition occurs,
                 // we need to register a view count here since no metadata has changed
                 if (getRepeatMode() == REPEAT_MODE_ONE && newIndex == playQueue.getIndex()) {
@@ -1505,6 +1499,20 @@ public final class Player implements PlaybackListener, Listener {
                 break;
             case DISCONTINUITY_REASON_SKIP:
                 break; // only makes Android Studio linter happy, as there are no ads
+        }
+    }
+
+    /**
+     * Honours the one-shot "stop after current track" flag: when the track that just
+     * finished was auto-advanced past, pause playback and clear the flag. Takes priority
+     * over any repeat mode — the finished track played through once, which is exactly
+     * what was asked for.
+     */
+    private void maybeStopAfterCurrentTrack(@DiscontinuityReason final int discontinuityReason) {
+        if (discontinuityReason == DISCONTINUITY_REASON_AUTO_TRANSITION
+                && stopAfterCurrentTrack) {
+            stopAfterCurrentTrack = false;
+            pause();
         }
     }
 
