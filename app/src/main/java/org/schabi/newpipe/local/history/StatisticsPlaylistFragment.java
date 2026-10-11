@@ -18,6 +18,7 @@ import android.text.Editable;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.content.res.AppCompatResources;
 
 import com.evernote.android.state.State;
 import com.google.android.material.snackbar.Snackbar;
@@ -352,7 +353,7 @@ public class StatisticsPlaylistFragment
     ///////////////////////////////////////////////////////////////////////////
 
     private Subscriber<List<StreamStatisticsEntry>> getHistoryObserver() {
-        return new Subscriber<List<StreamStatisticsEntry>>() {
+        return new Subscriber<>() {
             @Override
             public void onSubscribe(final Subscription s) {
                 showLoading();
@@ -413,8 +414,8 @@ public class StatisticsPlaylistFragment
 
         PlayButtonHelper.initPlaylistControlClickListener(activity, playlistControlBinding, this);
 
-        headerBinding.sortButton.setOnClickListener(view -> toggleSortMode());
-        headerBinding.fullyWatchedFilterButtonCheckBox.setOnClickListener(view -> {
+        headerBinding.sortChip.setOnClickListener(view -> toggleSortMode());
+        headerBinding.filterWatchedChip.setOnClickListener(view -> {
             isFullyWatchedFilterApply = !isFullyWatchedFilterApply;
             startLoading(true);
         });
@@ -442,14 +443,15 @@ public class StatisticsPlaylistFragment
         if (sortMode == StatisticSortMode.LAST_PLAYED) {
             sortMode = StatisticSortMode.MOST_PLAYED;
             setTitle(getString(R.string.title_most_played));
-            headerBinding.sortButtonIcon.setImageResource(R.drawable.ic_history);
-            headerBinding.sortButtonText.setText(R.string.title_last_played);
+            headerBinding.sortChip.setChipIcon(AppCompatResources.getDrawable(
+                    activity, R.drawable.ic_history));
+            headerBinding.sortChip.setText(R.string.title_last_played);
         } else {
             sortMode = StatisticSortMode.LAST_PLAYED;
             setTitle(getString(R.string.title_last_played));
-            headerBinding.sortButtonIcon.setImageResource(
-                R.drawable.ic_filter_list);
-            headerBinding.sortButtonText.setText(R.string.title_most_played);
+            headerBinding.sortChip.setChipIcon(AppCompatResources.getDrawable(
+                    activity, R.drawable.ic_filter_list));
+            headerBinding.sortChip.setText(R.string.title_most_played);
         }
         startLoading(true);
     }
