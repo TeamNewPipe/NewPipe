@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Layer 2: Dark smoke tint (#0B0B12 at 58%) -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/glass_tint_dark_smoke" />
+            <corners android:radius="@dimen/glass_radius_full" />
+        </shape>
+    </item>
+
+    <!-- Layer 2b: Faint white wash (#FFFFFF at 7%) -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/glass_tint_white_wash" />
+            <corners android:radius="@dimen/glass_radius_full" />
+        </shape>
+    </item>
+
+    <!-- Layer 3: Specular highlight (top curved glass reflection) -->
+    <item android:bottom="40dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="@color/glass_specular_start"
+                android:endColor="@color/glass_specular_end" />
+            <corners
+                android:topLeftRadius="@dimen/glass_radius_full"
+                android:topRightRadius="@dimen/glass_radius_full"
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp" />
+        </shape>
+    </item>
+
+    <!-- Layer 5: Tiled 128px monochrome noise grain at 4.5% alpha -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/glass_radius_full" />
+        </shape>
+    </item>
+    <item android:drawable="@drawable/glass_noise_tile" />
+
+    <!-- Layer 4: 1dp outer edge highlight stroke -->
+    <item>
+        <shape android:shape="rectangle">
+            <stroke
+                android:width="@dimen/glass_edge_stroke"
+                android:color="@color/glass_stroke_top_left" />
+            <corners android:radius="@dimen/glass_radius_full" />
+        </shape>
+    </item>
+</layer-list>

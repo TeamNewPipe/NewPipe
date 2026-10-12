@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/glass_page_bg">
+
+    <!-- BlurTarget wraps the entire colorful backdrop for real blur reflection -->
+    <eightbitlab.com.blurview.BlurTarget
+        android:id="@+id/preview_blur_target"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="120dp">
+
+                <!-- Colorful header simulating high-vibrancy video thumbnail / artwork -->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/frost_preview_art_header" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|start"
+                        android:layout_margin="16dp"
+                        android:text="Frost Glass Design System Preview"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </FrameLayout>
+
+                <!-- Section title & simulated video cards with vibrant saturated colors -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Feed Simulation (Thumbnails blur under pill)"
+                    android:textColor="@color/glass_text_secondary"
+                    android:textSize="13sp" />
+
+                <!-- Card 1: Vibrant Teal / Amber Artwork -->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/frost_preview_card_art1"
+                    android:elevation="2dp" />
+
+                <!-- Card 2: Vibrant Indigo / Crimson Artwork -->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/frost_preview_card_art2"
+                    android:elevation="2dp" />
+
+                <!-- Card 3: Deep Sunset Artwork -->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/frost_preview_card_art3"
+                    android:elevation="2dp" />
+
+            </LinearLayout>
+        </ScrollView>
+    </eightbitlab.com.blurview.BlurTarget>
+
+    <!-- FLOATING GLASS MINI PLAYER PREVIEW (20dp token radius, bottom aligned) -->
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/preview_mini_player"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="16dp"
+        android:elevation="14dp"
+        android:background="@drawable/glass_card_20_bg">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="10dp">
+
+            <View
+                android:id="@+id/preview_mini_thumb"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/frost_preview_thumb_sample" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/preview_mini_play"
+                android:layout_toEndOf="@id/preview_mini_thumb"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="True Glass Mini Player (20dp)"
+                    android:textColor="@color/glass_text_primary"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:singleLine="true"
+                    android:text="Tokens: #0B0B12 (58%) • Specular • 1dp Edge"
+                    android:textColor="@color/glass_text_secondary"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/preview_mini_play"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_play_arrow"
+                app:tint="@color/glass_text_primary" />
+
+        </RelativeLayout>
+    </eightbitlab.com.blurview.BlurView>
+
+    <!-- FLOATING VERTICAL GLASS NAV PILL (Dynamic Island style, 60dp wide, right edge) -->
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/preview_nav_pill"
+        android:layout_width="@dimen/glass_pill_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="92dp"
+        android:elevation="16dp"
+        android:background="@drawable/glass_pill_bg">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="8dp"
+            android:paddingHorizontal="4dp">
+
+            <!-- Active item sliding red glass capsule indicator -->
+            <View
+                android:id="@+id/preview_active_capsule"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/glass_active_capsule" />
+
+            <!-- Pill Navigation Items Container -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Home Item -->
+                <LinearLayout
+                    android:id="@+id/preview_item_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/preview_icon_home"
+                        android:layout_width="@dimen/glass_icon_size"
+                        android:layout_height="@dimen/glass_icon_size"
+                        android:src="@drawable/ic_home"
+                        app:tint="@color/glass_text_primary" />
+
+                    <TextView
+                        android:id="@+id/preview_label_home"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/rail_home"
+                        android:textColor="@color/glass_text_primary"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Subs Item -->
+                <LinearLayout
+                    android:id="@+id/preview_item_subs"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/preview_icon_subs"
+                        android:layout_width="@dimen/glass_icon_size"
+                        android:layout_height="@dimen/glass_icon_size"
+                        android:src="@drawable/ic_subscriptions"
+                        app:tint="@color/glass_text_secondary" />
+
+                    <TextView
+                        android:id="@+id/preview_label_subs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/rail_subscriptions"
+                        android:textColor="@color/glass_text_secondary"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Library Item -->
+                <LinearLayout
+                    android:id="@+id/preview_item_library"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/preview_icon_library"
+                        android:layout_width="@dimen/glass_icon_size"
+                        android:layout_height="@dimen/glass_icon_size"
+                        android:src="@drawable/ic_bookmark"
+                        app:tint="@color/glass_text_secondary" />
+
+                    <TextView
+                        android:id="@+id/preview_label_library"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/rail_library"
+                        android:textColor="@color/glass_text_secondary"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </FrameLayout>
+    </eightbitlab.com.blurview.BlurView>
+
+    <!-- Top Floating Chips Demo (Tokens: 12dp & full radius) -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|start"
+        android:layout_margin="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/preview_chip_all"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:background="@drawable/glass_chip_bg"
+            android:gravity="center"
+            android:paddingHorizontal="14dp"
+            android:text="All"
+            android:textColor="@color/glass_text_primary"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/preview_chip_gaming"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/glass_chip_bg"
+            android:gravity="center"
+            android:paddingHorizontal="14dp"
+            android:text="Trending"
+            android:textColor="@color/glass_text_secondary"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/preview_chip_toggle_blur"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/glass_chip_bg"
+            android:gravity="center"
+            android:paddingHorizontal="12dp"
+            android:text="Toggle Blur"
+            android:textColor="@color/glass_accent_red"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</FrameLayout>

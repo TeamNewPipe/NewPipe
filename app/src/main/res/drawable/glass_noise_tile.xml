@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+    android:src="@drawable/glass_noise_128"
+    android:tileMode="repeat"
+    android:alpha="0.045" />

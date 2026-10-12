@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Base dark smoke tint -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/glass_tint_dark_smoke" />
+            <corners android:radius="@dimen/glass_radius_full" />
+        </shape>
+    </item>
+    <!-- White wash -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/glass_tint_white_wash" />
+            <corners android:radius="@dimen/glass_radius_full" />
+        </shape>
+    </item>
+    <!-- Top specular highlight -->
+    <item android:bottom="14dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="@color/glass_specular_start"
+                android:endColor="@color/glass_specular_end" />
+            <corners
+                android:topLeftRadius="@dimen/glass_radius_full"
+                android:topRightRadius="@dimen/glass_radius_full"
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp" />
+        </shape>
+    </item>
+    <!-- Noise grain -->
+    <item android:drawable="@drawable/glass_noise_tile" />
+    <!-- 1dp edge stroke -->
+    <item>
+        <shape android:shape="rectangle">
+            <stroke
+                android:width="@dimen/glass_edge_stroke"
+                android:color="@color/glass_stroke_top_left" />
+            <corners android:radius="@dimen/glass_radius_full" />
+        </shape>
+    </item>
+</layer-list>

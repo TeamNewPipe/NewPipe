@@ -157,4 +157,21 @@
 
     <style name="RouterActivityThemeDark" parent="Base.RouterActivityThemeDark" />
 
+    <!-- Glass Design System Styles -->
+    <style name="GlassPill">
+        <item name="android:background">@drawable/glass_pill_bg</item>
+        <item name="android:elevation">16dp</item>
+    </style>
+
+    <style name="GlassCard20">
+        <item name="android:background">@drawable/glass_card_20_bg</item>
+        <item name="android:elevation">14dp</item>
+    </style>
+
+    <style name="GlassChip">
+        <item name="android:background">@drawable/glass_chip_bg</item>
+        <item name="android:textColor">@color/glass_text_primary</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+
 </resources>

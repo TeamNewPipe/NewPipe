@@ -133,4 +133,16 @@
     <!-- Feed Groups dimensions-->
 
     <dimen name="search_suggestion_text_size">16sp</dimen>
+
+    <!-- Glass Design System Tokens -->
+    <dimen name="glass_radius_12">12dp</dimen>
+    <dimen name="glass_radius_20">20dp</dimen>
+    <dimen name="glass_radius_28">28dp</dimen>
+    <dimen name="glass_radius_full">999dp</dimen>
+    <dimen name="glass_pill_width">60dp</dimen>
+    <dimen name="glass_edge_stroke">1dp</dimen>
+    <dimen name="glass_active_glow_radius">8dp</dimen>
+    <dimen name="glass_shadow_blur">24dp</dimen>
+    <dimen name="glass_shadow_offset_y">6dp</dimen>
+    <dimen name="glass_icon_size">24dp</dimen>
 </resources>

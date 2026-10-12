@@ -88,6 +88,12 @@
             android:launchMode="singleTask" />
 
         <activity
+            android:name=".views.glass.GlassPreviewActivity"
+            android:exported="true"
+            android:label="Frost Glass Preview"
+            android:theme="@style/DarkTheme" />
+
+        <activity
             android:name=".settings.SettingsActivity"
             android:exported="false"
             android:label="@string/settings" />

@@ -1,43 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Deep near-solid dark page background (#0E0E14) -->
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="#06080F" />
+            <solid android:color="@color/glass_page_bg" />
         </shape>
     </item>
-    <!-- warm glow, top left -->
+    <!-- Soft low-saturation warm accent blob (accent red #E53935 at very low alpha) -->
     <item>
         <shape android:shape="rectangle">
             <gradient
-                android:centerX="0.05"
-                android:centerY="0.05"
+                android:centerX="0.85"
+                android:centerY="0.20"
                 android:endColor="#00000000"
                 android:gradientRadius="85%p"
-                android:startColor="#40E5395B"
+                android:startColor="#18E53935"
                 android:type="radial" />
         </shape>
     </item>
-    <!-- cool glow, bottom right -->
+    <!-- Soft deep slate ambient blob at bottom -->
     <item>
         <shape android:shape="rectangle">
             <gradient
-                android:centerX="0.95"
-                android:centerY="0.92"
+                android:centerX="0.15"
+                android:centerY="0.85"
                 android:endColor="#00000000"
                 android:gradientRadius="90%p"
-                android:startColor="#404B6BFF"
-                android:type="radial" />
-        </shape>
-    </item>
-    <!-- violet glow, right edge -->
-    <item>
-        <shape android:shape="rectangle">
-            <gradient
-                android:centerX="1.0"
-                android:centerY="0.45"
-                android:endColor="#00000000"
-                android:gradientRadius="60%p"
-                android:startColor="#30A66BFF"
+                android:startColor="#18181E2E"
                 android:type="radial" />
         </shape>
     </item>

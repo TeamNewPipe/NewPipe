@@ -84,4 +84,22 @@
 
     <color name="black">#000</color>
 
+    <!-- Glass Design System Tokens -->
+    <color name="glass_accent_red">#E53935</color>
+    <color name="glass_text_primary">#F2F2F5</color>
+    <color name="glass_text_secondary">#A9A9B5</color>
+    <color name="glass_tint_dark_smoke">#940B0B12</color>
+    <color name="glass_tint_white_wash">#12FFFFFF</color>
+    <color name="glass_specular_start">#1FFFFFFF</color>
+    <color name="glass_specular_end">#00FFFFFF</color>
+    <color name="glass_stroke_top_left">#66FFFFFF</color>
+    <color name="glass_stroke_bottom_right">#14FFFFFF</color>
+    <color name="glass_stroke_inner_dark">#33000000</color>
+    <color name="glass_shadow_color">#59000000</color>
+    <color name="glass_active_capsule_fill">#59E53935</color>
+    <color name="glass_active_capsule_stroke">#B3E53935</color>
+    <color name="glass_active_glow">#66E53935</color>
+    <color name="glass_page_bg">#0E0E14</color>
+    <color name="glass_card_bg">#0E0E14</color>
+
 </resources>
