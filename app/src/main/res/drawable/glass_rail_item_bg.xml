@@ -1,21 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_selected="true">
-        <shape android:shape="rectangle">
-            <gradient
-                android:angle="270"
-                android:endColor="#99B71C1C"
-                android:startColor="#CCFF4B4B" />
-            <stroke
-                android:width="1dp"
-                android:color="#66FFCDD2" />
-            <corners android:radius="28dp" />
-        </shape>
+        <inset
+            android:insetLeft="5dp"
+            android:insetRight="5dp"
+            android:insetTop="3dp"
+            android:insetBottom="3dp">
+            <shape android:shape="rectangle">
+                <gradient
+                    android:angle="270"
+                    android:startColor="#FF2B56"
+                    android:endColor="#D50000" />
+                <stroke
+                    android:width="1dp"
+                    android:color="#80FF80AB" />
+                <corners android:radius="24dp" />
+            </shape>
+        </inset>
+    </item>
+    <item android:state_pressed="true">
+        <inset
+            android:insetLeft="5dp"
+            android:insetRight="5dp"
+            android:insetTop="3dp"
+            android:insetBottom="3dp">
+            <shape android:shape="rectangle">
+                <solid android:color="#26FFFFFF" />
+                <corners android:radius="24dp" />
+            </shape>
+        </inset>
     </item>
     <item>
         <shape android:shape="rectangle">
             <solid android:color="@android:color/transparent" />
-            <corners android:radius="28dp" />
+            <corners android:radius="24dp" />
         </shape>
     </item>
 </selector>

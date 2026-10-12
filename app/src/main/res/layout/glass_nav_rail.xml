@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <eightbitlab.com.blurview.BlurView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/glass_rail_blur"
-    android:layout_width="64dp"
+    android:layout_width="62dp"
     android:layout_height="wrap_content"
     android:layout_gravity="end|bottom"
-    android:layout_marginEnd="8dp"
-    android:layout_marginBottom="104dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="14dp"
+    android:elevation="12dp"
     android:background="@drawable/glass_rail_bg">
 
     <LinearLayout
@@ -13,8 +14,10 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:padding="4dp">
+        android:paddingVertical="6dp"
+        android:paddingHorizontal="2dp">
 
+        <!-- Home Tab -->
         <LinearLayout
             android:id="@+id/rail_home"
             android:layout_width="match_parent"
@@ -23,15 +26,14 @@
             android:clickable="true"
             android:contentDescription="@string/rail_home"
             android:focusable="true"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:orientation="vertical"
-            android:paddingVertical="10dp"
+            android:paddingVertical="8dp"
             android:selected="true">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
                 android:importantForAccessibility="no"
                 android:src="@drawable/ic_home"
                 android:tint="@color/glass_rail_item" />
@@ -43,26 +45,28 @@
                 android:maxLines="1"
                 android:text="@string/rail_home"
                 android:textColor="@color/glass_rail_item"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
+        <!-- Subscriptions Tab -->
         <LinearLayout
             android:id="@+id/rail_subscriptions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:background="@drawable/glass_rail_item_bg"
             android:clickable="true"
             android:contentDescription="@string/rail_subscriptions"
             android:focusable="true"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:orientation="vertical"
-            android:paddingVertical="10dp"
+            android:paddingVertical="8dp"
             android:selected="false">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
                 android:importantForAccessibility="no"
                 android:src="@drawable/ic_subscriptions"
                 android:tint="@color/glass_rail_item" />
@@ -74,26 +78,28 @@
                 android:maxLines="1"
                 android:text="@string/rail_subscriptions"
                 android:textColor="@color/glass_rail_item"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
+        <!-- Library Tab -->
         <LinearLayout
             android:id="@+id/rail_library"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:background="@drawable/glass_rail_item_bg"
             android:clickable="true"
             android:contentDescription="@string/rail_library"
             android:focusable="true"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:orientation="vertical"
-            android:paddingVertical="10dp"
+            android:paddingVertical="8dp"
             android:selected="false">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
                 android:importantForAccessibility="no"
                 android:src="@drawable/ic_bookmark"
                 android:tint="@color/glass_rail_item" />
@@ -105,7 +111,9 @@
                 android:maxLines="1"
                 android:text="@string/rail_library"
                 android:textColor="@color/glass_rail_item"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                android:textStyle="bold" />
         </LinearLayout>
+
     </LinearLayout>
 </eightbitlab.com.blurview.BlurView>

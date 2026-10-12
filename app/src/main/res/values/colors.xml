@@ -24,21 +24,21 @@
     <color name="light_card_item_contrast_color">#E9E9E9</color>
     <color name="light_border_color">#33000000</color>
 
-    <!-- Dark Theme -->
-    <color name="dark_background_color">#222222</color>
-    <color name="dark_dialog_background_color">#424242</color>
-    <color name="dark_settings_accent_color">#ff5252</color>
-    <color name="dark_separator_color">#0affffff</color>
-    <color name="dark_ripple_color">#48ffffff</color>
-    <color name="dark_selected_color">#2affffff</color>
-    <color name="dark_contrast_background_color">#1f717171</color>
-    <color name="dark_shadow_start_color">#82000000</color>
-    <color name="dark_license_background_color">#424242</color>
-    <color name="dark_license_text_color">#ffffff</color>
-    <color name="dark_queue_background_color">#af000000</color>
-    <color name="dark_card_item_background_color">#313131</color>
-    <color name="dark_card_item_contrast_color">#474747</color>
-    <color name="dark_border_color">#33FFFFFF</color>
+    <!-- Dark Theme (Frost) -->
+    <color name="dark_background_color">#0A0C14</color>
+    <color name="dark_dialog_background_color">#141724</color>
+    <color name="dark_settings_accent_color">#FF2D55</color>
+    <color name="dark_separator_color">#15FFFFFF</color>
+    <color name="dark_ripple_color">#33FFFFFF</color>
+    <color name="dark_selected_color">#26FFFFFF</color>
+    <color name="dark_contrast_background_color">#1F161A28</color>
+    <color name="dark_shadow_start_color">#B3000000</color>
+    <color name="dark_license_background_color">#141724</color>
+    <color name="dark_license_text_color">#FFFFFF</color>
+    <color name="dark_queue_background_color">#E60A0C14</color>
+    <color name="dark_card_item_background_color">#121520</color>
+    <color name="dark_card_item_contrast_color">#1A1E2E</color>
+    <color name="dark_border_color">#26FFFFFF</color>
 
     <!-- Black Theme -->
     <color name="black_background_color">#000000</color>

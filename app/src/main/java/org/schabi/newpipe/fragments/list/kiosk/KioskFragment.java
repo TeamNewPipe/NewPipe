@@ -31,10 +31,15 @@ import org.schabi.newpipe.extractor.linkhandler.ListLinkHandlerFactory;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.services.media_ccc.extractors.MediaCCCLiveStreamKiosk;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.Localization;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import io.reactivex.rxjava3.core.Single;
 
@@ -129,9 +134,55 @@ public class KioskFragment extends BaseListInfoFragment<StreamInfoItem, KioskInf
         return ExtractorHelper.getKioskInfo(serviceId, url, forceReload);
     }
 
+    private final List<String> additionalCategories = new ArrayList<>();
+    private int nextCategoryIndex = 0;
+
+    private void initAdditionalCategoriesIfNeeded() {
+        if (additionalCategories.isEmpty()) {
+            try {
+                final StreamingService service = NewPipe.getService(serviceId);
+                for (final String kid : service.getKioskList().getAvailableKiosks()) {
+                    if (!kid.equalsIgnoreCase(kioskId)) {
+                        additionalCategories.add(kid);
+                    }
+                }
+            } catch (final Exception ignored) {
+            }
+        }
+    }
+
+    private boolean hasNextKioskCategory() {
+        initAdditionalCategoriesIfNeeded();
+        return nextCategoryIndex < additionalCategories.size();
+    }
+
+    @Override
+    protected boolean hasMoreItems() {
+        return super.hasMoreItems() || hasNextKioskCategory();
+    }
+
     @Override
     public Single<ListExtractor.InfoItemsPage<StreamInfoItem>> loadMoreItemsLogic() {
-        return ExtractorHelper.getMoreKioskItems(serviceId, url, currentNextPage);
+        if (Page.isValid(currentNextPage)) {
+            return ExtractorHelper.getMoreKioskItems(serviceId, url, currentNextPage);
+        }
+        if (hasNextKioskCategory()) {
+            final String nextCatId = additionalCategories.get(nextCategoryIndex++);
+            try {
+                final StreamingService service = NewPipe.getService(serviceId);
+                final String nextUrl = service.getKioskList()
+                        .getListLinkHandlerFactoryByType(nextCatId).fromId(nextCatId).getUrl();
+                return ExtractorHelper.getKioskInfo(serviceId, nextUrl, false)
+                        .map(info -> new ListExtractor.InfoItemsPage<>(
+                                info.getRelatedItems(),
+                                info.getNextPage(),
+                                Collections.emptyList()
+                        ));
+            } catch (final Exception e) {
+                return Single.just(ListExtractor.InfoItemsPage.emptyPage());
+            }
+        }
+        return Single.just(ListExtractor.InfoItemsPage.emptyPage());
     }
 
     /*//////////////////////////////////////////////////////////////////////////

@@ -81,6 +81,8 @@ import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.local.bookmark.BookmarkFragment;
 import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.local.feed.notifications.NotificationWorker;
+import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
+import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
@@ -250,12 +252,18 @@ public class MainActivity extends AppCompatActivity {
     private void setupGlassRail() {
         final GlassNavRailBinding rail = mainBinding.glassRail;
 
-        rail.getRoot().setupWith(mainBinding.blurTarget).setBlurRadius(18f);
+        rail.getRoot().setupWith(mainBinding.blurTarget).setBlurRadius(8f);
         rail.getRoot().setOutlineProvider(ViewOutlineProvider.BACKGROUND);
         rail.getRoot().setClipToOutline(true);
 
-        rail.railHome.setOnClickListener(v ->
-                NavigationHelper.openMainFragment(getSupportFragmentManager()));
+        rail.railHome.setOnClickListener(v -> {
+            final Fragment f = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
+            if (f instanceof MainFragment) {
+                getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            } else {
+                NavigationHelper.openMainFragment(getSupportFragmentManager());
+            }
+        });
         rail.railSubscriptions.setOnClickListener(v ->
                 NavigationHelper.openSubscriptionFragment(getSupportFragmentManager()));
         rail.railLibrary.setOnClickListener(v ->
@@ -275,7 +283,9 @@ public class MainActivity extends AppCompatActivity {
         rail.railHome.setSelected(fragment instanceof MainFragment);
         rail.railSubscriptions.setSelected(fragment instanceof SubscriptionFragment
                 || fragment instanceof FeedFragment);
-        rail.railLibrary.setSelected(fragment instanceof BookmarkFragment);
+        rail.railLibrary.setSelected(fragment instanceof BookmarkFragment
+                || fragment instanceof LocalPlaylistFragment
+                || fragment instanceof StatisticsPlaylistFragment);
     }
 
     private void setupDrawer() throws ExtractionException {

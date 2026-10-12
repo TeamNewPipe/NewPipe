@@ -32,7 +32,9 @@ public abstract class OnScrollBelowItemsListener extends RecyclerView.OnScrollLi
                 }
             }
 
-            if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
+            // Prefetch threshold so next items start loading before hitting the end
+            final int prefetchThreshold = 4;
+            if ((visibleItemCount + pastVisibleItems) >= (totalItemCount - prefetchThreshold)) {
                 onScrolledDown(recyclerView);
             }
         }

@@ -5,9 +5,14 @@
     android:id="@+id/itemRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
-    android:paddingTop="@dimen/margin_small"
-    android:paddingBottom="@dimen/spacing_micro"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="6dp"
+    android:paddingBottom="12dp"
+    android:background="@drawable/frost_card_bg"
+    android:clipToOutline="true"
+    android:foreground="?attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true">
 
@@ -15,7 +20,7 @@
         android:id="@+id/itemThumbnailView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:scaleType="fitStart"
+        android:scaleType="centerCrop"
         android:src="@drawable/placeholder_thumbnail_playlist"
         app:layout_constraintDimensionRatio="16:9"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +32,7 @@
         android:id="@+id/videoCountOverlay"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/playlist_stream_count_background_color"
+        android:background="#CC0A0A12"
         app:layout_constraintBottom_toBottomOf="@id/itemThumbnailView"
         app:layout_constraintEnd_toEndOf="@id/itemThumbnailView"
         app:layout_constraintTop_toTopOf="@id/itemThumbnailView"
@@ -47,8 +52,6 @@
         app:layout_constraintVertical_chainStyle="packed"
         tools:text="314159" />
 
-    <!--    playIcon includes 8dp start margin to give center aligned look
-            when placed next to the video count -->
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/playIcon"
         android:layout_width="@dimen/player_main_buttons_min_width"
@@ -65,24 +68,28 @@
         android:id="@+id/itemTitleView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_small"
-        android:layout_marginTop="@dimen/spacing_nano"
-        android:layout_marginEnd="@dimen/margin_small"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
         android:ellipsize="end"
         android:maxLines="2"
-        android:textAppearance="?android:textAppearanceListItem"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/itemThumbnailView"
         tools:ignore="RtlHardcoded"
-        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum" />
+        tools:text="Playlist Title Here" />
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemUploaderView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:lines="1"
-        android:textAppearance="?android:textAppearanceSmall"
+        android:textColor="#A6B0C3"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@id/itemTitleView"
         app:layout_constraintStart_toStartOf="@id/itemTitleView"
         app:layout_constraintTop_toBottomOf="@id/itemTitleView"

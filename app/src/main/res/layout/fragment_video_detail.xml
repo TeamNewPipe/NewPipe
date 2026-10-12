@@ -5,13 +5,14 @@
     android:id="@+id/video_item_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/windowBackground"
+    android:background="@android:color/transparent"
     android:focusableInTouchMode="true">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/detail_main_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="?attr/windowBackground">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar_layout"
@@ -601,33 +602,39 @@
     <RelativeLayout
         android:id="@+id/overlay_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0.9"
-        android:background="?attr/windowBackground">
+        android:layout_height="64dp"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginBottom="10dp"
+        android:elevation="12dp"
+        android:clipToOutline="true"
+        android:background="@drawable/frost_mini_player_bg">
 
         <ImageButton
             android:id="@+id/overlay_thumbnail"
-            android:layout_width="62dp"
-            android:layout_height="60dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_alignParentStart="true"
-            android:background="@color/transparent_background_color"
-            android:gravity="center_vertical"
-            android:paddingLeft="@dimen/video_item_search_padding"
-            android:paddingRight="@dimen/video_item_search_padding"
-            android:scaleType="fitCenter"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/frost_mini_thumb_bg"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop"
             tools:ignore="ContentDescription" />
 
         <LinearLayout
             android:id="@+id/overlay_metadata_layout"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="match_parent"
             android:layout_toStartOf="@+id/overlay_buttons_layout"
             android:layout_toEndOf="@+id/overlay_thumbnail"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="6dp"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            android:theme="@style/ContrastTintTheme"
             tools:ignore="RtlHardcoded">
 
             <org.schabi.newpipe.views.NewPipeTextView
@@ -639,68 +646,83 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="@dimen/video_item_search_title_text_size"
+                android:textColor="@android:color/white"
+                android:textSize="13sp"
+                android:textStyle="bold"
                 tools:ignore="RtlHardcoded"
-                tools:text="The Video Title LONG very LONVideo Title LONG very LONG" />
+                tools:text="Video Title" />
 
             <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/overlay_channel_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
                 android:ellipsize="marquee"
                 android:fadingEdge="horizontal"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textSize="@dimen/video_item_search_uploader_text_size"
-                tools:text="The Video Artist  LONG very LONG very Long" />
+                android:textColor="#B3FFFFFF"
+                android:textSize="11sp"
+                tools:text="Channel Name" />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/overlay_buttons_layout"
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
+            android:layout_marginEnd="6dp"
             android:gravity="center_vertical"
-            android:theme="@style/ContrastTintTheme"
             tools:ignore="RtlHardcoded">
 
             <ImageButton
                 android:id="@+id/overlay_play_queue_button"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:background="?attr/selectableItemBackground"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/title_activity_play_queue"
                 android:scaleType="center"
                 android:src="@drawable/ic_list"
+                android:tint="#B3FFFFFF"
                 tools:ignore="RtlHardcoded" />
 
             <ImageButton
                 android:id="@+id/overlay_play_pause_button"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:background="?attr/selectableItemBackground"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="2dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/pause"
                 android:focusable="true"
                 android:focusedByDefault="true"
                 android:scaleType="center"
-                android:src="@drawable/ic_play_arrow" />
+                android:src="@drawable/ic_play_arrow"
+                android:tint="@android:color/white" />
 
             <ImageButton
                 android:id="@+id/overlay_close_button"
-                android:layout_width="48dp"
-                android:layout_height="match_parent"
-                android:background="?attr/selectableItemBackground"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="2dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/close"
-                android:paddingRight="8dp"
                 android:scaleType="center"
                 android:src="@drawable/ic_close"
+                android:tint="#B3FFFFFF"
                 tools:ignore="RtlSymmetry" />
 
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/overlay_progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="12dp"
+            android:progressDrawable="@drawable/frost_mini_progress" />
 
     </RelativeLayout>
 
