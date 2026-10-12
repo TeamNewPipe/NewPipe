@@ -1,25 +1,27 @@
 package org.schabi.newpipe.local.history;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
+import android.view.Gravity;
 import android.view.inputmethod.EditorInfo;
-import android.view.KeyEvent;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.PopupWindow;
 import android.widget.Toast;
-import android.text.TextWatcher;
-import android.text.Editable;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.content.res.AppCompatResources;
-
 import com.evernote.android.state.State;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -31,6 +33,7 @@ import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.PlaylistControlBinding;
 import org.schabi.newpipe.databinding.StatisticPlaylistControlBinding;
+import org.schabi.newpipe.databinding.StatisticPlaylistToolbarBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
@@ -49,9 +52,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.function.Supplier;
-import java.util.Locale;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -65,8 +68,10 @@ public class StatisticsPlaylistFragment
     Parcelable itemsListState;
     private StatisticSortMode sortMode = StatisticSortMode.LAST_PLAYED;
     private boolean applyIsFullyWatchedFilter = false;
+    private boolean isSearchOpen = false;
 
     private StatisticPlaylistControlBinding headerBinding;
+    private StatisticPlaylistToolbarBinding toolbarBinding;
     private PlaylistControlBinding playlistControlBinding;
 
     /* Used for independent events */
@@ -139,6 +144,9 @@ public class StatisticsPlaylistFragment
         if (!useAsFrontPage) {
             setTitle(getString(R.string.title_last_played));
         }
+        toolbarBinding = StatisticPlaylistToolbarBinding.inflate(activity.getLayoutInflater(),
+                (ViewGroup) rootView, false);
+        ((ViewGroup) rootView).addView(toolbarBinding.getRoot());
     }
 
     @Override
@@ -177,7 +185,12 @@ public class StatisticsPlaylistFragment
     }
 
     private void initHistorySearchInputActions() {
-        headerBinding.historySearchInput.setOnEditorActionListener((v, actionId, event) -> {
+        toolbarBinding.searchButton.setOnClickListener(view -> openSearch());
+        toolbarBinding.historySearchClear.setOnClickListener(view -> {
+            closeSearch();
+        });
+
+        toolbarBinding.historySearchInput.setOnEditorActionListener((v, actionId, event) -> {
             if ((EditorInfo.IME_ACTION_SEARCH == actionId)
                     || ((null != event) && (KeyEvent.KEYCODE_ENTER == event.getKeyCode()))) {
 
@@ -191,10 +204,12 @@ public class StatisticsPlaylistFragment
             return false;
         });
 
-        headerBinding.historySearchInput.addTextChangedListener(new TextWatcher() {
+        toolbarBinding.historySearchInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(final CharSequence s, final int start, final int before,
                                       final int count) {
+                toolbarBinding.historySearchClear.setVisibility(
+                        s.length() > 0 ? View.VISIBLE : View.GONE);
                 filterHistory(s.toString());
             }
 
@@ -253,6 +268,7 @@ public class StatisticsPlaylistFragment
         }
 
         headerBinding = null;
+        toolbarBinding = null;
         playlistControlBinding = null;
 
         if (databaseSubscription != null) {
@@ -323,7 +339,7 @@ public class StatisticsPlaylistFragment
 
         allHistoryEntries = new ArrayList<>(result);
 
-        final Editable maybeQuery = headerBinding.historySearchInput.getText();
+        final Editable maybeQuery = toolbarBinding.historySearchInput.getText();
         final String currentQuery = maybeQuery == null ? null : maybeQuery.toString();
         filterHistory(currentQuery);
 
@@ -334,11 +350,13 @@ public class StatisticsPlaylistFragment
 
         PlayButtonHelper.initPlaylistControlClickListener(activity, playlistControlBinding, this);
 
-        headerBinding.sortChip.setOnClickListener(view -> toggleSortMode());
-        headerBinding.filterWatchedChip.setOnClickListener(view -> {
+        toolbarBinding.sortButton.setOnClickListener(view -> showSortMenu());
+        toolbarBinding.filterWatchedButton.setOnClickListener(view -> {
             applyIsFullyWatchedFilter = !applyIsFullyWatchedFilter;
+            updateFilterButton();
             startLoading(true);
         });
+        updateFilterButton();
 
         hideLoading();
     }
@@ -346,6 +364,43 @@ public class StatisticsPlaylistFragment
     ///////////////////////////////////////////////////////////////////////////
     // Search Filter and Sorting
     ///////////////////////////////////////////////////////////////////////////
+
+    private void openSearch() {
+        isSearchOpen = true;
+        setToolbarWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+        toolbarBinding.searchButton.setVisibility(View.GONE);
+        toolbarBinding.historySearchInput.setVisibility(View.VISIBLE);
+        toolbarBinding.historySearchClear.setVisibility(View.VISIBLE);
+        toolbarBinding.historySearchInput.requestFocus();
+        final InputMethodManager imm = (InputMethodManager)
+                requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(toolbarBinding.historySearchInput, InputMethodManager.SHOW_IMPLICIT);
+    }
+
+    private void closeSearch() {
+        isSearchOpen = false;
+        toolbarBinding.historySearchInput.setText("");
+        toolbarBinding.historySearchInput.clearFocus();
+        toolbarBinding.historySearchInput.setVisibility(View.GONE);
+        toolbarBinding.historySearchClear.setVisibility(View.GONE);
+        toolbarBinding.searchButton.setVisibility(View.VISIBLE);
+        setToolbarWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
+        final InputMethodManager imm = (InputMethodManager)
+                requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(toolbarBinding.historySearchInput.getWindowToken(), 0);
+    }
+
+    private void setToolbarWidth(final int width) {
+        final ViewGroup.LayoutParams toolbarLayoutParams =
+                toolbarBinding.getRoot().getLayoutParams();
+        toolbarLayoutParams.width = width;
+        toolbarBinding.getRoot().setLayoutParams(toolbarLayoutParams);
+
+        final ViewGroup.LayoutParams contentLayoutParams =
+                toolbarBinding.toolbarContent.getLayoutParams();
+        contentLayoutParams.width = width;
+        toolbarBinding.toolbarContent.setLayoutParams(contentLayoutParams);
+    }
 
     private void filterHistory(@Nullable final String query) {
         if (itemListAdapter == null || query == null) {
@@ -380,26 +435,53 @@ public class StatisticsPlaylistFragment
         return title.contains(lowerQuery) || uploader.contains(lowerQuery);
     }
 
-    private void toggleSortMode() {
-        if (sortMode == StatisticSortMode.LAST_PLAYED) {
-            sortMode = StatisticSortMode.MOST_PLAYED;
-            setTitle(getString(R.string.title_most_played));
-            headerBinding.sortChip.setChipIcon(AppCompatResources.getDrawable(
-                    activity, R.drawable.ic_history));
-            headerBinding.sortChip.setText(R.string.title_last_played);
-        } else {
-            sortMode = StatisticSortMode.LAST_PLAYED;
-            setTitle(getString(R.string.title_last_played));
-            headerBinding.sortChip.setChipIcon(AppCompatResources.getDrawable(
-                    activity, R.drawable.ic_filter_list));
-            headerBinding.sortChip.setText(R.string.title_most_played);
+    private void showSortMenu() {
+        final View menuView = getLayoutInflater().inflate(R.layout.menu_history_sort, null);
+        final PopupWindow popupWindow = new PopupWindow(menuView,
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setElevation(8);
+
+        menuView.findViewById(R.id.action_sort_last_played).setOnClickListener(view -> {
+            selectSortMode(StatisticSortMode.LAST_PLAYED);
+            popupWindow.dismiss();
+        });
+        menuView.findViewById(R.id.action_sort_most_played).setOnClickListener(view -> {
+            selectSortMode(StatisticSortMode.MOST_PLAYED);
+            popupWindow.dismiss();
+        });
+
+        menuView.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        popupWindow.showAsDropDown(toolbarBinding.sortButton, 0,
+                -menuView.getMeasuredHeight() - toolbarBinding.sortButton.getHeight(), Gravity.END);
+    }
+
+    private void selectSortMode(final StatisticSortMode mode) {
+        if (sortMode != mode) {
+            sortMode = mode;
+            displaySortMode(sortMode);
+            startLoading(true);
         }
-        startLoading(true);
+    }
+
+    private void updateFilterButton() {
+        if (headerBinding == null) {
+            return;
+        }
+        toolbarBinding.filterWatchedButton.setSelected(applyIsFullyWatchedFilter);
+        toolbarBinding.filterWatchedButton.setAlpha(applyIsFullyWatchedFilter ? 1.0f : 0.6f);
+        toolbarBinding.filterWatchedButton.setContentDescription(getString(
+                applyIsFullyWatchedFilter
+                        ? R.string.history_search_show_watched
+                        : R.string.history_search_filter_watched));
     }
 
     private void displaySortMode(final StatisticSortMode mode) {
         final int resourceIdOfSortMode = mode.getResourceId();
-        setTitle(getString(resourceIdOfSortMode));
+        final String title = getString(resourceIdOfSortMode);
+        setTitle(title);
     }
 
     private enum StatisticSortMode {
@@ -504,4 +586,3 @@ public class StatisticsPlaylistFragment
         return new SinglePlayQueue(streamInfoItems, index);
     }
 }
-

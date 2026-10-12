@@ -5,78 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp">
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/historySearchLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="8dp"
-        app:boxBackgroundMode="none"
-        app:endIconMode="clear_text"
-        app:endIconContentDescription="@string/clear"
-        app:hintEnabled="false">
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/historySearchInput"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@drawable/history_search_input_background"
-            android:drawableStart="@drawable/ic_search"
-            android:drawablePadding="12dp"
-            android:hint="@string/search_history"
-            android:imeOptions="actionSearch"
-            android:inputType="text"
-            android:maxLines="1"
-            android:paddingHorizontal="12dp"
-            android:singleLine="true"
-            android:textSize="14sp"
-            tools:ignore="Autofill" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- Horizontal scroll is not needed on normal screen sizes with an English localization,
-         but some locals have very long translations for "most played", e.g. German ... -->
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fillViewport="false"
-        android:scrollbars="none">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingHorizontal="12dp">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/sortChip"
-                android:theme="@style/Theme.MaterialComponents.DayNight.Bridge"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:checkable="false"
-                android:text="@string/title_most_played"
-                app:chipIcon="@drawable/ic_filter_list"
-                app:chipIconVisible="true" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/filterWatchedChip"
-                android:theme="@style/Theme.MaterialComponents.DayNight.Bridge"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:checkable="true"
-                android:checked="false"
-                android:text="@string/history_search_filter_watched" />
-
-        </LinearLayout>
-    </HorizontalScrollView>
+    android:paddingVertical="4dp">
 
     <include
         android:id="@+id/playlist_control"

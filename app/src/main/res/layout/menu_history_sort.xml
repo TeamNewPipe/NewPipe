@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="8dp"
+    android:paddingBottom="16dp"
+    android:theme="@style/Theme.MaterialComponents.DayNight.Bridge"
+    android:orientation="vertical">
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/action_sort_last_played"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/title_last_played"
+        android:textColor="?attr/actionColor"
+        app:backgroundTint="@color/light_youtube_primary_color"
+        app:icon="@drawable/ic_history"
+        app:iconTint="?attr/actionColor" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/action_sort_most_played"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_most_played"
+        android:textColor="?attr/actionColor"
+        app:backgroundTint="@color/light_youtube_primary_color"
+        app:icon="@drawable/ic_trending_up"
+        app:iconTint="?attr/actionColor" />
+
+</LinearLayout>
