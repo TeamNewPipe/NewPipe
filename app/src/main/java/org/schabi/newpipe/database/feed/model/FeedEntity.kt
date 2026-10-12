@@ -1,9 +1,9 @@
 package org.schabi.newpipe.database.feed.model
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.Index
+import androidx.room3.ColumnInfo
+import androidx.room3.Entity
+import androidx.room3.ForeignKey
+import androidx.room3.Index
 import org.schabi.newpipe.database.feed.model.FeedEntity.Companion.FEED_TABLE
 import org.schabi.newpipe.database.feed.model.FeedEntity.Companion.STREAM_ID
 import org.schabi.newpipe.database.feed.model.FeedEntity.Companion.SUBSCRIPTION_ID

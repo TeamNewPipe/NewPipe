@@ -7,7 +7,8 @@
 package org.schabi.newpipe.database
 
 import android.util.Log
-import androidx.room.migration.Migration
+import androidx.room3.migration.Migration
+import androidx.sqlite.execSQL
 import org.schabi.newpipe.MainActivity
 
 object Migrations {
@@ -33,7 +34,7 @@ object Migrations {
     private val TAG = Migrations::class.java.getName()
     private val isDebug = MainActivity.DEBUG
 
-    val MIGRATION_1_2 = Migration(DB_VER_1, DB_VER_2) { db ->
+    val MIGRATION_1_2 = Migration(DB_VER_1, DB_VER_2) { connection ->
         if (isDebug) {
             Log.d(TAG, "Start migrating database")
         }
@@ -46,45 +47,45 @@ object Migrations {
 
         // Not much we can do about this, since room doesn't create tables before migration.
         // It's either this or blasting the entire database anew.
-        db.execSQL(
+        connection.execSQL(
             "CREATE  INDEX `index_search_history_search` " +
                 "ON `search_history` (`search`)"
         )
-        db.execSQL(
+        connection.execSQL(
             "CREATE TABLE IF NOT EXISTS `streams` " +
                 "(`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                 "`service_id` INTEGER NOT NULL, `url` TEXT, `title` TEXT, " +
                 "`stream_type` TEXT, `duration` INTEGER, `uploader` TEXT, " +
                 "`thumbnail_url` TEXT)"
         )
-        db.execSQL(
+        connection.execSQL(
             "CREATE UNIQUE INDEX `index_streams_service_id_url` " +
                 "ON `streams` (`service_id`, `url`)"
         )
-        db.execSQL(
+        connection.execSQL(
             "CREATE TABLE IF NOT EXISTS `stream_history` " +
                 "(`stream_id` INTEGER NOT NULL, `access_date` INTEGER NOT NULL, " +
                 "`repeat_count` INTEGER NOT NULL, PRIMARY KEY(`stream_id`, `access_date`), " +
                 "FOREIGN KEY(`stream_id`) REFERENCES `streams`(`uid`) " +
                 "ON UPDATE CASCADE ON DELETE CASCADE )"
         )
-        db.execSQL(
+        connection.execSQL(
             "CREATE  INDEX `index_stream_history_stream_id` " +
                 "ON `stream_history` (`stream_id`)"
         )
-        db.execSQL(
+        connection.execSQL(
             "CREATE TABLE IF NOT EXISTS `stream_state` " +
                 "(`stream_id` INTEGER NOT NULL, `progress_time` INTEGER NOT NULL, " +
                 "PRIMARY KEY(`stream_id`), FOREIGN KEY(`stream_id`) " +
                 "REFERENCES `streams`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE )"
         )
-        db.execSQL(
+        connection.execSQL(
             "CREATE TABLE IF NOT EXISTS `playlists` " +
                 "(`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                 "`name` TEXT, `thumbnail_url` TEXT)"
         )
-        db.execSQL("CREATE  INDEX `index_playlists_name` ON `playlists` (`name`)")
-        db.execSQL(
+        connection.execSQL("CREATE  INDEX `index_playlists_name` ON `playlists` (`name`)")
+        connection.execSQL(
             "CREATE TABLE IF NOT EXISTS `playlist_stream_join` " +
                 "(`playlist_id` INTEGER NOT NULL, `stream_id` INTEGER NOT NULL, " +
                 "`join_index` INTEGER NOT NULL, PRIMARY KEY(`playlist_id`, `join_index`), " +
@@ -93,33 +94,33 @@ object Migrations {
                 "FOREIGN KEY(`stream_id`) REFERENCES `streams`(`uid`) " +
                 "ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED)"
         )
-        db.execSQL(
+        connection.execSQL(
             "CREATE UNIQUE INDEX " +
                 "`index_playlist_stream_join_playlist_id_join_index` " +
                 "ON `playlist_stream_join` (`playlist_id`, `join_index`)"
         )
-        db.execSQL(
+        connection.execSQL(
             "CREATE  INDEX `index_playlist_stream_join_stream_id` " +
                 "ON `playlist_stream_join` (`stream_id`)"
         )
-        db.execSQL(
+        connection.execSQL(
             "CREATE TABLE IF NOT EXISTS `remote_playlists` " +
                 "(`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                 "`service_id` INTEGER NOT NULL, `name` TEXT, `url` TEXT, " +
                 "`thumbnail_url` TEXT, `uploader` TEXT, `stream_count` INTEGER)"
         )
-        db.execSQL(
+        connection.execSQL(
             "CREATE  INDEX `index_remote_playlists_name` " +
                 "ON `remote_playlists` (`name`)"
         )
-        db.execSQL(
+        connection.execSQL(
             "CREATE UNIQUE INDEX `index_remote_playlists_service_id_url` " +
                 "ON `remote_playlists` (`service_id`, `url`)"
         )
 
         // Populate streams table with existing entries in watch history
         // Latest data first, thus ignoring older entries with the same indices
-        db.execSQL(
+        connection.execSQL(
             "INSERT OR IGNORE INTO streams (service_id, url, title, " +
                 "stream_type, duration, uploader, thumbnail_url) " +
 
@@ -132,7 +133,7 @@ object Migrations {
 
         // Once the streams have PKs, join them with the normalized history table
         // and populate it with the remaining data from watch history
-        db.execSQL(
+        connection.execSQL(
             "INSERT INTO stream_history (stream_id, access_date, repeat_count)" +
                 "SELECT uid, creation_date, 1 " +
                 "FROM watch_history INNER JOIN streams " +
@@ -141,16 +142,16 @@ object Migrations {
                 "ORDER BY creation_date DESC"
         )
 
-        db.execSQL("DROP TABLE IF EXISTS watch_history")
+        connection.execSQL("DROP TABLE IF EXISTS watch_history")
 
         if (isDebug) {
             Log.d(TAG, "Stop migrating database")
         }
     }
 
-    val MIGRATION_2_3 = Migration(DB_VER_2, DB_VER_3) { db ->
+    val MIGRATION_2_3 = Migration(DB_VER_2, DB_VER_3) { connection ->
         // Add NOT NULLs and new fields
-        db.execSQL(
+        connection.execSQL(
             "CREATE TABLE IF NOT EXISTS streams_new " +
                 "(uid INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                 "service_id INTEGER NOT NULL, url TEXT NOT NULL, title TEXT NOT NULL, " +
@@ -160,7 +161,7 @@ object Migrations {
                 "is_upload_date_approximation INTEGER)"
         )
 
-        db.execSQL(
+        connection.execSQL(
             "INSERT INTO streams_new (uid, service_id, url, title, stream_type, " +
                 "duration, uploader, thumbnail_url, view_count, textual_upload_date, " +
                 "upload_date, is_upload_date_approximation) " +
@@ -172,15 +173,15 @@ object Migrations {
                 "FROM streams WHERE url IS NOT NULL"
         )
 
-        db.execSQL("DROP TABLE streams")
-        db.execSQL("ALTER TABLE streams_new RENAME TO streams")
-        db.execSQL(
+        connection.execSQL("DROP TABLE streams")
+        connection.execSQL("ALTER TABLE streams_new RENAME TO streams")
+        connection.execSQL(
             "CREATE UNIQUE INDEX index_streams_service_id_url " +
                 "ON streams (service_id, url)"
         )
 
         // Tables for feed feature
-        db.execSQL(
+        connection.execSQL(
             "CREATE TABLE IF NOT EXISTS feed " +
                 "(stream_id INTEGER NOT NULL, subscription_id INTEGER NOT NULL, " +
                 "PRIMARY KEY(stream_id, subscription_id), " +
@@ -189,14 +190,14 @@ object Migrations {
                 "FOREIGN KEY(subscription_id) REFERENCES subscriptions(uid) " +
                 "ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED)"
         )
-        db.execSQL("CREATE INDEX index_feed_subscription_id ON feed (subscription_id)")
-        db.execSQL(
+        connection.execSQL("CREATE INDEX index_feed_subscription_id ON feed (subscription_id)")
+        connection.execSQL(
             "CREATE TABLE IF NOT EXISTS feed_group " +
                 "(uid INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name TEXT NOT NULL, " +
                 "icon_id INTEGER NOT NULL, sort_order INTEGER NOT NULL)"
         )
-        db.execSQL("CREATE INDEX index_feed_group_sort_order ON feed_group (sort_order)")
-        db.execSQL(
+        connection.execSQL("CREATE INDEX index_feed_group_sort_order ON feed_group (sort_order)")
+        connection.execSQL(
             "CREATE TABLE IF NOT EXISTS feed_group_subscription_join " +
                 "(group_id INTEGER NOT NULL, subscription_id INTEGER NOT NULL, " +
                 "PRIMARY KEY(group_id, subscription_id), " +
@@ -205,11 +206,11 @@ object Migrations {
                 "FOREIGN KEY(subscription_id) REFERENCES subscriptions(uid) " +
                 "ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED)"
         )
-        db.execSQL(
+        connection.execSQL(
             "CREATE INDEX index_feed_group_subscription_join_subscription_id " +
                 "ON feed_group_subscription_join (subscription_id)"
         )
-        db.execSQL(
+        connection.execSQL(
             "CREATE TABLE IF NOT EXISTS feed_last_updated " +
                 "(subscription_id INTEGER NOT NULL, last_updated INTEGER, " +
                 "PRIMARY KEY(subscription_id), " +
@@ -218,33 +219,33 @@ object Migrations {
         )
     }
 
-    val MIGRATION_3_4 = Migration(DB_VER_3, DB_VER_4) { db ->
-        db.execSQL("ALTER TABLE streams ADD COLUMN uploader_url TEXT")
+    val MIGRATION_3_4 = Migration(DB_VER_3, DB_VER_4) { connection ->
+        connection.execSQL("ALTER TABLE streams ADD COLUMN uploader_url TEXT")
     }
 
-    val MIGRATION_4_5 = Migration(DB_VER_4, DB_VER_5) { db ->
-        db.execSQL(
+    val MIGRATION_4_5 = Migration(DB_VER_4, DB_VER_5) { connection ->
+        connection.execSQL(
             "ALTER TABLE `subscriptions` ADD COLUMN `notification_mode` " +
                 "INTEGER NOT NULL DEFAULT 0"
         )
     }
 
-    val MIGRATION_5_6 = Migration(DB_VER_5, DB_VER_6) { db ->
-        db.execSQL(
+    val MIGRATION_5_6 = Migration(DB_VER_5, DB_VER_6) { connection ->
+        connection.execSQL(
             "ALTER TABLE `playlists` ADD COLUMN `is_thumbnail_permanent` " +
                 "INTEGER NOT NULL DEFAULT 0"
         )
     }
 
-    val MIGRATION_6_7 = Migration(DB_VER_6, DB_VER_7) { db ->
+    val MIGRATION_6_7 = Migration(DB_VER_6, DB_VER_7) { connection ->
         // Create a new column thumbnail_stream_id
-        db.execSQL(
+        connection.execSQL(
             "ALTER TABLE `playlists` ADD COLUMN `thumbnail_stream_id` " +
                 "INTEGER NOT NULL DEFAULT -1"
         )
 
         // Migrate the thumbnail_url to the thumbnail_stream_id
-        db.execSQL(
+        connection.execSQL(
             "UPDATE playlists SET thumbnail_stream_id = (" +
                 " SELECT CASE WHEN COUNT(*) != 0 then stream_uid ELSE -1 END" +
                 " FROM (" +
@@ -257,7 +258,7 @@ object Migrations {
         )
 
         // Remove the thumbnail_url field in the playlist table
-        db.execSQL(
+        connection.execSQL(
             "CREATE TABLE IF NOT EXISTS `playlists_new`" +
                 "(uid INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                 "name TEXT, " +
@@ -265,87 +266,79 @@ object Migrations {
                 "thumbnail_stream_id INTEGER NOT NULL)"
         )
 
-        db.execSQL(
+        connection.execSQL(
             "INSERT INTO playlists_new" +
                 " SELECT uid, name, is_thumbnail_permanent, thumbnail_stream_id " +
                 " FROM playlists"
         )
 
-        db.execSQL("DROP TABLE playlists")
-        db.execSQL("ALTER TABLE playlists_new RENAME TO playlists")
-        db.execSQL(
+        connection.execSQL("DROP TABLE playlists")
+        connection.execSQL("ALTER TABLE playlists_new RENAME TO playlists")
+        connection.execSQL(
             "CREATE INDEX IF NOT EXISTS " +
                 "`index_playlists_name` ON `playlists` (`name`)"
         )
     }
 
-    val MIGRATION_7_8 = Migration(DB_VER_7, DB_VER_8) { db ->
-        db.execSQL(
+    val MIGRATION_7_8 = Migration(DB_VER_7, DB_VER_8) { connection ->
+        connection.execSQL(
             "DELETE FROM search_history WHERE id NOT IN (SELECT id FROM (SELECT " +
                 "MIN(id) as id FROM search_history GROUP BY trim(search), service_id ) tmp)"
         )
-        db.execSQL("UPDATE search_history SET search = trim(search)")
+        connection.execSQL("UPDATE search_history SET search = trim(search)")
     }
 
-    val MIGRATION_8_9 = Migration(DB_VER_8, DB_VER_9) { db ->
-        try {
-            db.beginTransaction()
-
-            // Update playlists.
-            // Create a temp table to initialize display_index.
-            db.execSQL(
-                "CREATE TABLE `playlists_tmp` " +
+    val MIGRATION_8_9 = Migration(DB_VER_8, DB_VER_9) { connection ->
+        // Update playlists.
+        // Create a temp table to initialize display_index.
+        connection.execSQL(
+            "CREATE TABLE `playlists_tmp` " +
                     "(`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                     "`name` TEXT, `is_thumbnail_permanent` INTEGER NOT NULL, " +
                     "`thumbnail_stream_id` INTEGER NOT NULL, " +
                     "`display_index` INTEGER NOT NULL)"
-            )
-            db.execSQL(
-                "INSERT INTO `playlists_tmp` " +
+        )
+        connection.execSQL(
+            "INSERT INTO `playlists_tmp` " +
                     "(`uid`, `name`, `is_thumbnail_permanent`, `thumbnail_stream_id`, " +
                     "`display_index`) " +
                     "SELECT `uid`, `name`, `is_thumbnail_permanent`, `thumbnail_stream_id`, " +
                     "-1 " +
                     "FROM `playlists`"
-            )
+        )
 
-            // Replace the old table, note that this also removes the index on the name which
-            // we don't need anymore.
-            db.execSQL("DROP TABLE `playlists`")
-            db.execSQL("ALTER TABLE `playlists_tmp` RENAME TO `playlists`")
+        // Replace the old table, note that this also removes the index on the name which
+        // we don't need anymore.
+        connection.execSQL("DROP TABLE `playlists`")
+        connection.execSQL("ALTER TABLE `playlists_tmp` RENAME TO `playlists`")
 
-            // Update remote_playlists.
-            // Create a temp table to initialize display_index.
-            db.execSQL(
-                "CREATE TABLE `remote_playlists_tmp` " +
+        // Update remote_playlists.
+        // Create a temp table to initialize display_index.
+        connection.execSQL(
+            "CREATE TABLE `remote_playlists_tmp` " +
                     "(`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                     "`service_id` INTEGER NOT NULL, `name` TEXT, `url` TEXT, " +
                     "`thumbnail_url` TEXT, `uploader` TEXT, " +
                     "`display_index` INTEGER NOT NULL," +
                     "`stream_count` INTEGER)"
-            )
-            db.execSQL(
-                "INSERT INTO `remote_playlists_tmp` (`uid`, `service_id`, " +
+        )
+        connection.execSQL(
+            "INSERT INTO `remote_playlists_tmp` (`uid`, `service_id`, " +
                     "`name`, `url`, `thumbnail_url`, `uploader`, `display_index`, " +
                     "`stream_count`)" +
                     "SELECT `uid`, `service_id`, `name`, `url`, `thumbnail_url`, `uploader`, " +
                     "-1, `stream_count` FROM `remote_playlists`"
-            )
+        )
 
-            // Replace the old table, note that this also removes the index on the name which
-            // we don't need anymore.
-            db.execSQL("DROP TABLE `remote_playlists`")
-            db.execSQL("ALTER TABLE `remote_playlists_tmp` RENAME TO `remote_playlists`")
+        // Replace the old table, note that this also removes the index on the name which
+        // we don't need anymore.
+        connection.execSQL("DROP TABLE `remote_playlists`")
+        connection.execSQL("ALTER TABLE `remote_playlists_tmp` RENAME TO `remote_playlists`")
 
-            // Create index on the new table.
-            db.execSQL(
-                "CREATE UNIQUE INDEX `index_remote_playlists_service_id_url` " +
+        // Create index on the new table.
+        connection.execSQL(
+            "CREATE UNIQUE INDEX `index_remote_playlists_service_id_url` " +
                     "ON `remote_playlists` (`service_id`, `url`)"
-            )
-
-            db.setTransactionSuccessful()
-        } finally {
-            db.endTransaction()
-        }
+        )
     }
 }
