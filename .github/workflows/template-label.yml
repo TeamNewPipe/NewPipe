@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-        
+
       - name: Get PR template
         if: ${{ github.event.pull_request && github.event.label.name == 'template-missing' }}
         run: |
@@ -27,6 +27,9 @@ jobs:
             curl https://raw.githubusercontent.com/TeamNewPipe/NewPipe/refs/heads/dev/.github/PULL_REQUEST_TEMPLATE.md
             echo EOF
           } >> $GITHUB_ENV
+
+      - name: Install js-yaml
+        run: npm install --no-save --ignore-scripts js-yaml@4.1.0
 
       - name: Post comment
         uses: actions/github-script@v8
