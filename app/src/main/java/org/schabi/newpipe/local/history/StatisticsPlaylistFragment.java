@@ -1,6 +1,7 @@
 package org.schabi.newpipe.local.history;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.evernote.android.state.State;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.reactivestreams.Subscriber;
@@ -454,8 +456,27 @@ public class StatisticsPlaylistFragment
 
         menuView.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
                 View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        updateSortMenuSelection(menuView);
         popupWindow.showAsDropDown(toolbarBinding.sortButton, 0,
                 -menuView.getMeasuredHeight() - toolbarBinding.sortButton.getHeight(), Gravity.END);
+    }
+
+    private void updateSortMenuSelection(final View menuView) {
+        final int activeColor = getResources().getColor(R.color.contrastColor);
+        final int strokeWidth = (int) (2 * getResources().getDisplayMetrics().density + 0.5f);
+        setSortMenuOptionState(menuView.findViewById(R.id.action_sort_last_played),
+                sortMode == StatisticSortMode.LAST_PLAYED, activeColor, strokeWidth);
+        setSortMenuOptionState(menuView.findViewById(R.id.action_sort_most_played),
+                sortMode == StatisticSortMode.MOST_PLAYED, activeColor, strokeWidth);
+    }
+
+    private void setSortMenuOptionState(final View view, final boolean active,
+                                        final int activeColor, final int strokeWidth) {
+        final ExtendedFloatingActionButton button = (ExtendedFloatingActionButton) view;
+        button.setSelected(active);
+        button.setAlpha(active ? 1.0f : 0.65f);
+        button.setStrokeWidth(active ? strokeWidth : 0);
+        button.setStrokeColor(ColorStateList.valueOf(active ? activeColor : Color.TRANSPARENT));
     }
 
     private void selectSortMode(final StatisticSortMode mode) {

@@ -17,7 +17,8 @@
         android:textColor="?attr/actionColor"
         app:backgroundTint="@color/light_youtube_primary_color"
         app:icon="@drawable/ic_history"
-        app:iconTint="?attr/actionColor" />
+        app:iconTint="?attr/actionColor"
+        app:strokeWidth="0dp" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/action_sort_most_played"
@@ -27,6 +28,7 @@
         android:textColor="?attr/actionColor"
         app:backgroundTint="@color/light_youtube_primary_color"
         app:icon="@drawable/ic_trending_up"
-        app:iconTint="?attr/actionColor" />
+        app:iconTint="?attr/actionColor"
+        app:strokeWidth="0dp" />
 
 </LinearLayout>
