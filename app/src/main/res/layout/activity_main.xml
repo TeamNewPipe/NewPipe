@@ -8,15 +8,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_holder"
+        <!-- Everything inside is what the glass rail blurs behind itself -->
+        <eightbitlab.com.blurview.BlurTarget
+            android:id="@+id/blur_target"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize" />
+            android:layout_height="match_parent">
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragment_holder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="?attr/actionBarSize" />
+
+        </eightbitlab.com.blurview.BlurTarget>
 
         <include
             layout="@layout/toolbar_layout"
             android:id="@+id/toolbar_layout"/>
+
+        <!-- Vertical frosted-glass navigation rail on the right edge -->
+        <include
+            layout="@layout/glass_nav_rail"
+            android:id="@+id/glass_rail" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_player_holder"

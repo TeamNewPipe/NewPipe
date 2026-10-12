@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Frost fork: labels for the glass navigation rail -->
+    <string name="rail_home" translatable="false">Home</string>
+    <string name="rail_subscriptions" translatable="false">Subs</string>
+    <string name="rail_library" translatable="false">Library</string>
+    <string name="rail_more" translatable="false">More</string>
+</resources>

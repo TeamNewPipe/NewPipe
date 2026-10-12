@@ -38,6 +38,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewOutlineProvider;
 import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -63,6 +64,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import org.schabi.newpipe.databinding.ActivityMainBinding;
 import org.schabi.newpipe.databinding.DrawerHeaderBinding;
 import org.schabi.newpipe.databinding.DrawerLayoutBinding;
+import org.schabi.newpipe.databinding.GlassNavRailBinding;
 import org.schabi.newpipe.databinding.InstanceSpinnerLayoutBinding;
 import org.schabi.newpipe.databinding.ToolbarLayoutBinding;
 import org.schabi.newpipe.error.ErrorUtil;
@@ -178,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setSupportActionBar(toolbarLayoutBinding.toolbar);
+        setupGlassRail();
         try {
             setupDrawer();
         } catch (final Exception e) {
@@ -238,6 +241,28 @@ public class MainActivity extends AppCompatActivity {
         sharedPrefEditor.putBoolean(KEY_IS_IN_BACKGROUND, true).apply();
         Log.d(TAG, "App moved to background");
     }
+    /**
+     * Wires up the frosted-glass navigation rail on the right edge.
+     */
+    private void setupGlassRail() {
+        final GlassNavRailBinding rail = mainBinding.glassRail;
+
+        rail.getRoot().setupWith(mainBinding.blurTarget).setBlurRadius(18f);
+        rail.getRoot().setOutlineProvider(ViewOutlineProvider.BACKGROUND);
+        rail.getRoot().setClipToOutline(true);
+
+        rail.railHome.setOnClickListener(v ->
+                NavigationHelper.openMainFragment(getSupportFragmentManager()));
+        rail.railSubscriptions.setOnClickListener(v ->
+                NavigationHelper.openSubscriptionFragment(getSupportFragmentManager()));
+        rail.railSearch.setOnClickListener(v ->
+                NavigationHelper.openSearchFragment(getSupportFragmentManager(),
+                        ServiceHelper.getSelectedServiceId(this), ""));
+        rail.railLibrary.setOnClickListener(v ->
+                NavigationHelper.openBookmarksFragment(getSupportFragmentManager()));
+        rail.railMore.setOnClickListener(v -> mainBinding.getRoot().open());
+    }
+
     private void setupDrawer() throws ExtractionException {
         addDrawerMenuForCurrentService();
 

@@ -286,6 +286,8 @@ dependencies {
     // Image loading
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
+    // Real backdrop blur for the frosted-glass UI (works with XML views)
+    implementation("com.github.Dimezis:BlurView:version-3.2.0")
 
     // Markdown library for Android
     implementation(libs.noties.markwon.core)
