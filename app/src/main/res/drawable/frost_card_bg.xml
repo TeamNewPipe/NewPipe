@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
-    <!-- Restraint rule: Near-solid dark (#0E0E14) for video cards, never glass-on-glass -->
-    <solid android:color="@color/glass_card_bg" />
-    <stroke
-        android:width="@dimen/glass_edge_stroke"
-        android:color="#18FFFFFF" />
-    <corners android:radius="@dimen/glass_radius_20" />
-</shape>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient android:angle="315" android:startColor="#BB252735"
+                android:centerColor="#B311141E" android:endColor="#BD17111E" />
+            <corners android:radius="20dp" />
+            <stroke android:width="1dp" android:color="#35FFFFFF" />
+        </shape>
+    </item>
+    <item android:bottom="1dp" android:left="1dp" android:right="1dp" android:top="1dp">
+        <shape android:shape="rectangle">
+            <gradient android:angle="270" android:startColor="#0FFFFFFF"
+                android:endColor="#00FFFFFF" />
+            <corners android:radius="19dp" />
+        </shape>
+    </item>
+</layer-list>

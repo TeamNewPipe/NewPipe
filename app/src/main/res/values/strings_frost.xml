@@ -11,4 +11,10 @@
     <string name="hub_history_sub" translatable="false">What you watched recently</string>
     <string name="hub_playlists" translatable="false">Playlists</string>
     <string name="hub_playlists_sub" translatable="false">Your local and bookmarked playlists</string>
+    <string name="hub_continue_watching">Continue watching</string>
+    <string name="hub_see_all">See all</string>
+    <string name="hub_your_playlists">Your playlists</string>
+    <string name="hub_history_empty">Videos you watch will appear here.</string>
+    <string name="hub_playlists_empty">Save videos to a playlist to build your library.</string>
+    <string name="hub_loading_error">Could not load your library. Reopen this page to try again.</string>
 </resources>
