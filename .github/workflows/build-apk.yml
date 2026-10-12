@@ -1,0 +1,49 @@
+name: Build APK
+
+on:
+  workflow_dispatch:
+    inputs:
+      variant:
+        description: 'Build variant (continuous = minified + installable, debug = fast)'
+        type: choice
+        options:
+          - continuous
+          - debug
+        default: continuous
+  push:
+    branches:
+      - 'frost/**'
+
+concurrency:
+  group: build-apk-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
+    env:
+      VARIANT: ${{ inputs.variant || 'continuous' }}
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up JDK
+        uses: actions/setup-java@v5
+        with:
+          java-version: 21
+          distribution: 'temurin'
+          cache: 'gradle'
+
+      - name: Build ${{ env.VARIANT }} APK
+        run: ./gradlew "assemble${VARIANT^}" --stacktrace -DskipFormatKtlint
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v7
+        with:
+          name: NewPipe-Frost-${{ env.VARIANT }}
+          path: app/build/outputs/apk/${{ env.VARIANT }}/*.apk
+          if-no-files-found: error
+          retention-days: 14
