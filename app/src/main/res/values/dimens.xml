@@ -145,4 +145,5 @@
     <dimen name="glass_shadow_blur">24dp</dimen>
     <dimen name="glass_shadow_offset_y">6dp</dimen>
     <dimen name="glass_icon_size">24dp</dimen>
+    <dimen name="list_bottom_clear_padding">128dp</dimen>
 </resources>

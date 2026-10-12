@@ -234,6 +234,16 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         super.initViews(rootView, savedInstanceState);
 
         itemsList = rootView.findViewById(R.id.items_list);
+        if (itemsList != null) {
+            itemsList.setClipToPadding(false);
+            final int clearBottom = getResources().getDimensionPixelSize(R.dimen.list_bottom_clear_padding);
+            itemsList.setPadding(
+                    itemsList.getPaddingLeft(),
+                    itemsList.getPaddingTop(),
+                    itemsList.getPaddingRight(),
+                    clearBottom
+            );
+        }
         refreshItemViewMode();
 
         final Supplier<View> listHeaderSupplier = getListHeaderSupplier();

@@ -1,116 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 <eightbitlab.com.blurview.BlurView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/glass_rail_blur"
-    android:layout_width="62dp"
+    android:layout_width="@dimen/glass_pill_width"
     android:layout_height="wrap_content"
     android:layout_gravity="end|bottom"
-    android:layout_marginEnd="10dp"
-    android:layout_marginBottom="14dp"
-    android:elevation="12dp"
-    android:background="@drawable/glass_rail_bg">
+    android:layout_marginEnd="12dp"
+    android:layout_marginBottom="12dp"
+    android:elevation="16dp"
+    android:background="@drawable/glass_pill_bg">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
         android:paddingVertical="6dp"
-        android:paddingHorizontal="2dp">
+        android:paddingHorizontal="4dp">
 
-        <!-- Home Tab -->
+        <!-- Active item sliding red glass capsule indicator (#E53935 at 35% alpha) -->
+        <View
+            android:id="@+id/rail_active_capsule"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@drawable/glass_active_capsule" />
+
         <LinearLayout
-            android:id="@+id/rail_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/glass_rail_item_bg"
-            android:clickable="true"
-            android:contentDescription="@string/rail_home"
-            android:focusable="true"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingVertical="8dp">
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:importantForAccessibility="no"
-                android:src="@drawable/ic_home"
-                android:tint="@color/glass_rail_item" />
+            <!-- Home Tab -->
+            <LinearLayout
+                android:id="@+id/rail_home"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:contentDescription="@string/rail_home"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:maxLines="1"
-                android:text="@string/rail_home"
-                android:textColor="@color/glass_rail_item"
-                android:textSize="10sp"
-                android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/rail_icon_home"
+                    android:layout_width="@dimen/glass_icon_size"
+                    android:layout_height="@dimen/glass_icon_size"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_home"
+                    app:tint="@color/glass_text_primary" />
+
+                <TextView
+                    android:id="@+id/rail_text_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:maxLines="1"
+                    android:text="@string/rail_home"
+                    android:textColor="@color/glass_text_primary"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Subscriptions Tab -->
+            <LinearLayout
+                android:id="@+id/rail_subscriptions"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:contentDescription="@string/rail_subscriptions"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/rail_icon_subscriptions"
+                    android:layout_width="@dimen/glass_icon_size"
+                    android:layout_height="@dimen/glass_icon_size"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_subscriptions"
+                    app:tint="@color/glass_text_secondary" />
+
+                <TextView
+                    android:id="@+id/rail_text_subscriptions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:maxLines="1"
+                    android:text="@string/rail_subscriptions"
+                    android:textColor="@color/glass_text_secondary"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Library Tab -->
+            <LinearLayout
+                android:id="@+id/rail_library"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:contentDescription="@string/rail_library"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/rail_icon_library"
+                    android:layout_width="@dimen/glass_icon_size"
+                    android:layout_height="@dimen/glass_icon_size"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_bookmark"
+                    app:tint="@color/glass_text_secondary" />
+
+                <TextView
+                    android:id="@+id/rail_text_library"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:maxLines="1"
+                    android:text="@string/rail_library"
+                    android:textColor="@color/glass_text_secondary"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
         </LinearLayout>
-
-        <!-- Subscriptions Tab -->
-        <LinearLayout
-            android:id="@+id/rail_subscriptions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:background="@drawable/glass_rail_item_bg"
-            android:clickable="true"
-            android:contentDescription="@string/rail_subscriptions"
-            android:focusable="true"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingVertical="8dp">
-
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:importantForAccessibility="no"
-                android:src="@drawable/ic_subscriptions"
-                android:tint="@color/glass_rail_item" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:maxLines="1"
-                android:text="@string/rail_subscriptions"
-                android:textColor="@color/glass_rail_item"
-                android:textSize="10sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <!-- Library Tab -->
-        <LinearLayout
-            android:id="@+id/rail_library"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:background="@drawable/glass_rail_item_bg"
-            android:clickable="true"
-            android:contentDescription="@string/rail_library"
-            android:focusable="true"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingVertical="8dp">
-
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:importantForAccessibility="no"
-                android:src="@drawable/ic_bookmark"
-                android:tint="@color/glass_rail_item" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:maxLines="1"
-                android:text="@string/rail_library"
-                android:textColor="@color/glass_rail_item"
-                android:textSize="10sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-    </LinearLayout>
+    </FrameLayout>
 </eightbitlab.com.blurview.BlurView>

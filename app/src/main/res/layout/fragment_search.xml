@@ -40,6 +40,8 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/search_meta_info_separator"
         android:scrollbars="vertical"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/list_bottom_clear_padding"
         app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/list_stream_item" />
 

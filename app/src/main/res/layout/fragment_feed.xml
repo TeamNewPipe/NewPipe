@@ -80,6 +80,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/list_bottom_clear_padding"
             android:visibility="gone"
             tools:listitem="@layout/list_stream_item"
             tools:visibility="visible" />

@@ -247,15 +247,22 @@ public class MainActivity extends AppCompatActivity {
         sharedPrefEditor.putBoolean(KEY_IS_IN_BACKGROUND, true).apply();
         Log.d(TAG, "App moved to background");
     }
+    private int systemBarBottomInset = 0;
+
     /**
      * Wires up the frosted-glass navigation rail on the right edge.
      */
     private void setupGlassRail() {
         final GlassNavRailBinding rail = mainBinding.glassRail;
 
-        rail.getRoot().setupWith(mainBinding.blurTarget).setBlurRadius(8f);
-        rail.getRoot().setOutlineProvider(ViewOutlineProvider.BACKGROUND);
-        rail.getRoot().setClipToOutline(true);
+        // Apply Phase 0.5 Glass Design System (Full radius, real backdrop blur, grain, specular highlight)
+        org.schabi.newpipe.views.glass.GlassDrawable.setupBlurView(
+                rail.getRoot(), mainBinding.blurTarget, org.schabi.newpipe.views.glass.GlassDrawable.RADIUS_FULL);
+
+        // Apply 150ms press spring scale to rail items
+        org.schabi.newpipe.views.glass.GlassMotion.applyPressScale(rail.railHome);
+        org.schabi.newpipe.views.glass.GlassMotion.applyPressScale(rail.railSubscriptions);
+        org.schabi.newpipe.views.glass.GlassMotion.applyPressScale(rail.railLibrary);
 
         rail.railHome.setOnClickListener(v -> {
             final Fragment f = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
@@ -269,9 +276,20 @@ public class MainActivity extends AppCompatActivity {
                 NavigationHelper.openSubscriptionFragment(getSupportFragmentManager()));
         rail.railLibrary.setOnClickListener(v -> openLibraryHub());
 
-        rail.railHome.setSelected(true);
+        // Listen for WindowInsets dynamically (no hardcoded status/nav bar heights)
+        androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener(mainBinding.getRoot(), (v, insets) -> {
+            final androidx.core.graphics.Insets bars = insets.getInsets(
+                    androidx.core.view.WindowInsetsCompat.Type.systemBars());
+            systemBarBottomInset = bars.bottom;
+            updateRailPosition();
+            return insets;
+        });
+
         getSupportFragmentManager().addOnBackStackChangedListener(this::updateRailSelection);
-        mainBinding.getRoot().post(this::updateRailSelection);
+        mainBinding.getRoot().post(() -> {
+            updateRailSelection();
+            updateRailPosition();
+        });
 
         try {
             final com.google.android.material.bottomsheet.BottomSheetBehavior<?> bsb =
@@ -281,6 +299,7 @@ public class MainActivity extends AppCompatActivity {
                     new com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback() {
                 @Override
                 public void onStateChanged(@NonNull final View bottomSheet, final int newState) {
+                    updateRailPosition();
                     if (newState == com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED) {
                         rail.getRoot().setVisibility(View.GONE);
                     } else if (newState == com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED
@@ -293,8 +312,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onSlide(@NonNull final View bottomSheet, final float slideOffset) {
                     if (slideOffset > 0.05f) {
-                        rail.getRoot().setAlpha(Math.max(0f, 1f - slideOffset * 2f));
-                        if (slideOffset > 0.5f) {
+                        rail.getRoot().setAlpha(Math.max(0f, 1f - slideOffset * 2.5f));
+                        if (slideOffset > 0.4f) {
                             rail.getRoot().setVisibility(View.GONE);
                         }
                     } else {
@@ -308,19 +327,76 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Highlights the rail item that matches the fragment currently on screen.
+     * Updates the dynamic bottom position of the nav rail based on WindowInsets
+     * and the mini player's state and peek height, ensuring it sits cleanly above
+     * the mini player without covering its controls.
+     */
+    private void updateRailPosition() {
+        final GlassNavRailBinding rail = mainBinding.glassRail;
+        final ViewGroup.LayoutParams baseLp = rail.getRoot().getLayoutParams();
+        if (!(baseLp instanceof androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams)) {
+            return;
+        }
+        final androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams lp =
+                (androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams) baseLp;
+
+        final int margin12 = (int) (12 * getResources().getDisplayMetrics().density);
+        lp.rightMargin = margin12;
+
+        int miniPlayerOffset = 0;
+        try {
+            final com.google.android.material.bottomsheet.BottomSheetBehavior<?> bsb =
+                    com.google.android.material.bottomsheet.BottomSheetBehavior.from(
+                            mainBinding.fragmentPlayerHolder);
+            if (bsb.getState() == com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED) {
+                miniPlayerOffset = bsb.getPeekHeight();
+            }
+        } catch (final Exception ignored) {
+        }
+
+        final int bottomMargin = Math.max(systemBarBottomInset, 0) + miniPlayerOffset + margin12;
+        if (lp.bottomMargin != bottomMargin) {
+            lp.bottomMargin = bottomMargin;
+            rail.getRoot().setLayoutParams(lp);
+        }
+    }
+
+    /**
+     * Highlights the rail item that matches the fragment currently on screen
+     * using the 250ms overshoot sliding red glass capsule indicator and typography tokens.
      */
     private void updateRailSelection() {
         final Fragment fragment = getSupportFragmentManager()
                 .findFragmentById(R.id.fragment_holder);
         final GlassNavRailBinding rail = mainBinding.glassRail;
-        rail.railHome.setSelected(fragment instanceof MainFragment);
-        rail.railSubscriptions.setSelected(fragment instanceof SubscriptionFragment
-                || fragment instanceof FeedFragment);
-        rail.railLibrary.setSelected(fragment instanceof LibraryHubFragment
+
+        final boolean isHome = fragment instanceof MainFragment;
+        final boolean isSubs = fragment instanceof SubscriptionFragment
+                || fragment instanceof FeedFragment;
+        final boolean isLib = fragment instanceof LibraryHubFragment
                 || fragment instanceof BookmarkFragment
                 || fragment instanceof LocalPlaylistFragment
-                || fragment instanceof StatisticsPlaylistFragment);
+                || fragment instanceof StatisticsPlaylistFragment;
+
+        rail.railHome.setSelected(isHome);
+        rail.railSubscriptions.setSelected(isSubs);
+        rail.railLibrary.setSelected(isLib);
+
+        final View targetView = isSubs ? rail.railSubscriptions : (isLib ? rail.railLibrary : rail.railHome);
+        targetView.post(() -> org.schabi.newpipe.views.glass.GlassMotion.slideIndicator(
+                rail.railActiveCapsule, targetView.getTop()));
+
+        final int primaryColor = androidx.core.content.ContextCompat.getColor(this, R.color.glass_text_primary);
+        final int secondaryColor = androidx.core.content.ContextCompat.getColor(this, R.color.glass_text_secondary);
+
+        rail.railIconHome.setImageTintList(android.content.res.ColorStateList.valueOf(isHome ? primaryColor : secondaryColor));
+        rail.railTextHome.setTextColor(isHome ? primaryColor : secondaryColor);
+
+        rail.railIconSubscriptions.setImageTintList(android.content.res.ColorStateList.valueOf(isSubs ? primaryColor : secondaryColor));
+        rail.railTextSubscriptions.setTextColor(isSubs ? primaryColor : secondaryColor);
+
+        rail.railIconLibrary.setImageTintList(android.content.res.ColorStateList.valueOf(isLib ? primaryColor : secondaryColor));
+        rail.railTextLibrary.setTextColor(isLib ? primaryColor : secondaryColor);
     }
 
     private void openLibraryHub() {
