@@ -269,6 +269,7 @@ public class MainActivity extends AppCompatActivity {
         rail.railLibrary.setOnClickListener(v ->
                 NavigationHelper.openBookmarksFragment(getSupportFragmentManager()));
 
+        rail.railHome.setSelected(true);
         getSupportFragmentManager().addOnBackStackChangedListener(this::updateRailSelection);
         mainBinding.getRoot().post(this::updateRailSelection);
     }
