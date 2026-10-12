@@ -36,9 +36,9 @@
     <color name="dark_license_background_color">#141724</color>
     <color name="dark_license_text_color">#FFFFFF</color>
     <color name="dark_queue_background_color">#E60A0C14</color>
-    <color name="dark_card_item_background_color">#121520</color>
-    <color name="dark_card_item_contrast_color">#1A1E2E</color>
-    <color name="dark_border_color">#26FFFFFF</color>
+    <color name="dark_card_item_background_color">#66181C2E</color>
+    <color name="dark_card_item_contrast_color">#801A1E30</color>
+    <color name="dark_border_color">#33FFFFFF</color>
 
     <!-- Black Theme -->
     <color name="black_background_color">#000000</color>

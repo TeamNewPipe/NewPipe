@@ -6,7 +6,8 @@
 
     <org.schabi.newpipe.views.FocusAwareCoordinator
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/frost_window_bg">
 
         <!-- Everything inside is what the glass rail blurs behind itself -->
         <eightbitlab.com.blurview.BlurTarget
@@ -36,6 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
+            android:elevation="14dp"
             app:behavior_hideable="true"
             app:behavior_peekHeight="0dp"
             app:layout_behavior="org.schabi.newpipe.player.gesture.CustomBottomSheetBehavior" />

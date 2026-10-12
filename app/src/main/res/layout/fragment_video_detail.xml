@@ -603,10 +603,11 @@
         android:id="@+id/overlay_layout"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:layout_gravity="bottom"
+        android:layout_gravity="top"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="76dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
         android:elevation="12dp"
         android:clipToOutline="true"
         android:background="@drawable/frost_mini_player_bg">

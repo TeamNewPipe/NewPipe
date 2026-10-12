@@ -272,6 +272,39 @@ public class MainActivity extends AppCompatActivity {
         rail.railHome.setSelected(true);
         getSupportFragmentManager().addOnBackStackChangedListener(this::updateRailSelection);
         mainBinding.getRoot().post(this::updateRailSelection);
+
+        try {
+            final com.google.android.material.bottomsheet.BottomSheetBehavior<?> bsb =
+                    com.google.android.material.bottomsheet.BottomSheetBehavior.from(
+                            mainBinding.fragmentPlayerHolder);
+            bsb.addBottomSheetCallback(
+                    new com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback() {
+                @Override
+                public void onStateChanged(@NonNull final View bottomSheet, final int newState) {
+                    if (newState == com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED) {
+                        rail.getRoot().setVisibility(View.GONE);
+                    } else if (newState == com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED
+                            || newState == com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN) {
+                        rail.getRoot().setVisibility(View.VISIBLE);
+                        rail.getRoot().setAlpha(1f);
+                    }
+                }
+
+                @Override
+                public void onSlide(@NonNull final View bottomSheet, final float slideOffset) {
+                    if (slideOffset > 0.05f) {
+                        rail.getRoot().setAlpha(Math.max(0f, 1f - slideOffset * 2f));
+                        if (slideOffset > 0.5f) {
+                            rail.getRoot().setVisibility(View.GONE);
+                        }
+                    } else {
+                        rail.getRoot().setVisibility(View.VISIBLE);
+                        rail.getRoot().setAlpha(1f);
+                    }
+                }
+            });
+        } catch (final Exception ignored) {
+        }
     }
 
     /**

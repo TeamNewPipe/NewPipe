@@ -215,7 +215,13 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     }
 
     private void updateTitleForTab(final int tabPosition) {
-        setTitle(tabsList.get(tabPosition).getTabName(requireContext()));
+        if (activity != null && activity.getSupportActionBar() != null) {
+            activity.getSupportActionBar().setTitle(
+                    android.text.Html.fromHtml(
+                            "<b><font color='#FFFFFF'>NewPipe </font></b><font color='#FF2D55'><b>Frost</b></font>",
+                            android.text.Html.FROM_HTML_MODE_LEGACY));
+            activity.getSupportActionBar().setSubtitle("Free. Private. Yours.");
+        }
     }
 
     public void commitPlaylistTabs() {
@@ -243,17 +249,11 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         tabLayout.setLayoutParams(tabParams);
         viewPager.setLayoutParams(pagerParams);
 
-        // change the background and icon color of the tab layout:
-        // service-colored at the top, app-background-colored at the bottom
-        tabLayout.setBackgroundColor(ThemeHelper.resolveColorFromAttr(requireContext(),
-                bottom ? android.R.attr.windowBackground : R.attr.colorPrimary));
-
-        @ColorInt final int iconColor = bottom
-                ? ThemeHelper.resolveColorFromAttr(requireContext(), android.R.attr.colorAccent)
-                : Color.WHITE;
+        tabLayout.setBackgroundColor(Color.TRANSPARENT);
+        @ColorInt final int iconColor = Color.WHITE;
         tabLayout.setTabRippleColor(ColorStateList.valueOf(iconColor).withAlpha(32));
         tabLayout.setTabIconTint(ColorStateList.valueOf(iconColor));
-        tabLayout.setSelectedTabIndicatorColor(iconColor);
+        tabLayout.setSelectedTabIndicatorColor(Color.TRANSPARENT);
     }
 
     @Override

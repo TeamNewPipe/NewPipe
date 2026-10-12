@@ -4,22 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <org.schabi.newpipe.views.ScrollableTabLayout
         android:id="@+id/main_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:background="@android:color/transparent"
-        app:tabRippleColor="@color/white"
-        app:tabIconTint="@color/white"
-        app:tabIndicatorColor="@color/white"
-        app:tabGravity="fill"
+        android:clipToPadding="false"
+        android:paddingHorizontal="6dp"
+        android:paddingVertical="4dp"
         app:tabBackground="@drawable/frost_chip_bg"
+        app:tabGravity="start"
+        app:tabIconTint="@color/white"
+        app:tabIndicatorColor="@android:color/transparent"
         app:tabIndicatorHeight="0dp"
-        app:tabMinWidth="60dp"
-        app:tabPaddingEnd="14dp"
-        app:tabPaddingStart="14dp" />
+        app:tabMinWidth="48dp"
+        app:tabMode="scrollable"
+        app:tabPaddingEnd="12dp"
+        app:tabPaddingStart="12dp"
+        app:tabRippleColor="#33FFFFFF" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager"
