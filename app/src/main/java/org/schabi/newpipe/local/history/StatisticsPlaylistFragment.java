@@ -64,7 +64,7 @@ public class StatisticsPlaylistFragment
     @State
     Parcelable itemsListState;
     private StatisticSortMode sortMode = StatisticSortMode.LAST_PLAYED;
-    private boolean applyIsFullyWatchedFilter = true;
+    private boolean applyIsFullyWatchedFilter = false;
 
     private StatisticPlaylistControlBinding headerBinding;
     private PlaylistControlBinding playlistControlBinding;
@@ -90,7 +90,7 @@ public class StatisticsPlaylistFragment
         Collections.sort(results, comparator.reversed());
 
         // Filter fully watched videos
-        if (!applyIsFullyWatchedFilter) {
+        if (applyIsFullyWatchedFilter) {
             return results.stream().filter(it -> !it.isFinished()).toList();
         }
 

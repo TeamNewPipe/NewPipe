@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:checkable="true"
-                android:checked="true"
+                android:checked="false"
                 android:text="@string/history_search_filter_watched" />
 
         </LinearLayout>
