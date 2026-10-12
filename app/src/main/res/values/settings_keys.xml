@@ -1421,7 +1421,7 @@
     </string-array>
 
     <string name="list_view_mode_key">list_view_mode</string>
-    <string name="list_view_mode_value">@string/list_view_mode_auto_key</string>
+    <string name="list_view_mode_value">@string/list_view_mode_card_key</string>
 
     <!-- TODO: Use these across the app instead of hardcoding it -->
     <string name="list_view_mode_auto_key">auto</string>

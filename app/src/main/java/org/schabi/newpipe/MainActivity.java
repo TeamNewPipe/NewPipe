@@ -78,7 +78,10 @@ import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.comments.CommentRepliesFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
+import org.schabi.newpipe.local.bookmark.BookmarkFragment;
+import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.local.feed.notifications.NotificationWorker;
+import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.helper.PlayerHolder;
@@ -255,12 +258,24 @@ public class MainActivity extends AppCompatActivity {
                 NavigationHelper.openMainFragment(getSupportFragmentManager()));
         rail.railSubscriptions.setOnClickListener(v ->
                 NavigationHelper.openSubscriptionFragment(getSupportFragmentManager()));
-        rail.railSearch.setOnClickListener(v ->
-                NavigationHelper.openSearchFragment(getSupportFragmentManager(),
-                        ServiceHelper.getSelectedServiceId(this), ""));
         rail.railLibrary.setOnClickListener(v ->
                 NavigationHelper.openBookmarksFragment(getSupportFragmentManager()));
-        rail.railMore.setOnClickListener(v -> mainBinding.getRoot().open());
+
+        getSupportFragmentManager().addOnBackStackChangedListener(this::updateRailSelection);
+        mainBinding.getRoot().post(this::updateRailSelection);
+    }
+
+    /**
+     * Highlights the rail item that matches the fragment currently on screen.
+     */
+    private void updateRailSelection() {
+        final Fragment fragment = getSupportFragmentManager()
+                .findFragmentById(R.id.fragment_holder);
+        final GlassNavRailBinding rail = mainBinding.glassRail;
+        rail.railHome.setSelected(fragment instanceof MainFragment);
+        rail.railSubscriptions.setSelected(fragment instanceof SubscriptionFragment
+                || fragment instanceof FeedFragment);
+        rail.railLibrary.setSelected(fragment instanceof BookmarkFragment);
     }
 
     private void setupDrawer() throws ExtractionException {

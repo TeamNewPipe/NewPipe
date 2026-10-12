@@ -15,7 +15,11 @@
         app:tabIconTint="@color/white"
         app:tabIndicatorColor="@color/white"
         app:tabGravity="fill"
-        app:tabMinWidth="60dp" />
+        app:tabBackground="@drawable/frost_chip_bg"
+        app:tabIndicatorHeight="0dp"
+        app:tabMinWidth="60dp"
+        app:tabPaddingEnd="14dp"
+        app:tabPaddingStart="14dp" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager"
