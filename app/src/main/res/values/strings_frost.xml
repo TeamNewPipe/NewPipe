@@ -5,4 +5,10 @@
     <string name="rail_subscriptions" translatable="false">Subs</string>
     <string name="rail_library" translatable="false">Library</string>
     <string name="rail_more" translatable="false">More</string>
+    <string name="hub_downloads" translatable="false">Downloads</string>
+    <string name="hub_downloads_sub" translatable="false">Videos and audio saved offline</string>
+    <string name="hub_history" translatable="false">History</string>
+    <string name="hub_history_sub" translatable="false">What you watched recently</string>
+    <string name="hub_playlists" translatable="false">Playlists</string>
+    <string name="hub_playlists_sub" translatable="false">Your local and bookmarked playlists</string>
 </resources>

@@ -51,8 +51,8 @@
         <item name="colorPrimary">@color/dark_youtube_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_youtube_primary_color</item>
         <item name="colorAccent">@color/dark_youtube_accent_color</item>
-        <item name="android:windowBackground">@color/dark_background_color</item>
-        <item name="windowBackground">@color/dark_background_color</item>
+        <item name="android:windowBackground">@drawable/frost_window_bg</item>
+        <item name="windowBackground">@drawable/frost_window_bg</item>
 
         <item name="separator_color">@color/dark_separator_color</item>
         <item name="contrast_background_color">@color/dark_contrast_background_color</item>
@@ -66,14 +66,15 @@
         <item name="card_item_contrast_color">@color/dark_card_item_contrast_color</item>
         <item name="border_color">@color/dark_border_color</item>
         <item name="dashed_border">@drawable/dashed_border_dark</item>
+            <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
     <style name="Base.DarkTheme" parent="Base.V21.DarkTheme" />
     <style name="DarkTheme" parent="Base.DarkTheme"/>
 
     <!-- Black Theme -->
     <style name="Base.V21.BlackTheme" parent="DarkTheme">
-        <item name="android:windowBackground">@color/black_background_color</item>
-        <item name="windowBackground">@color/black_background_color</item>
+        <item name="android:windowBackground">@drawable/frost_window_bg</item>
+        <item name="windowBackground">@drawable/frost_window_bg</item>
 
         <item name="separator_color">@color/black_separator_color</item>
         <item name="contrast_background_color">@color/black_contrast_background_color</item>
@@ -82,6 +83,7 @@
         <item name="card_item_contrast_color">@color/black_card_item_contrast_color</item>
         <item name="border_color">@color/black_border_color</item>
         <item name="dashed_border">@drawable/dashed_border_black</item>
+            <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
     <style name="Base.BlackTheme" parent="Base.V21.BlackTheme" />
     <style name="BlackTheme" parent="Base.BlackTheme"/>

@@ -78,6 +78,7 @@ import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.comments.CommentRepliesFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
+import org.schabi.newpipe.frost.LibraryHubFragment;
 import org.schabi.newpipe.local.bookmark.BookmarkFragment;
 import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.local.feed.notifications.NotificationWorker;
@@ -266,8 +267,7 @@ public class MainActivity extends AppCompatActivity {
         });
         rail.railSubscriptions.setOnClickListener(v ->
                 NavigationHelper.openSubscriptionFragment(getSupportFragmentManager()));
-        rail.railLibrary.setOnClickListener(v ->
-                NavigationHelper.openBookmarksFragment(getSupportFragmentManager()));
+        rail.railLibrary.setOnClickListener(v -> openLibraryHub());
 
         rail.railHome.setSelected(true);
         getSupportFragmentManager().addOnBackStackChangedListener(this::updateRailSelection);
@@ -284,9 +284,22 @@ public class MainActivity extends AppCompatActivity {
         rail.railHome.setSelected(fragment instanceof MainFragment);
         rail.railSubscriptions.setSelected(fragment instanceof SubscriptionFragment
                 || fragment instanceof FeedFragment);
-        rail.railLibrary.setSelected(fragment instanceof BookmarkFragment
+        rail.railLibrary.setSelected(fragment instanceof LibraryHubFragment
+                || fragment instanceof BookmarkFragment
                 || fragment instanceof LocalPlaylistFragment
                 || fragment instanceof StatisticsPlaylistFragment);
+    }
+
+    private void openLibraryHub() {
+        final Fragment current = getSupportFragmentManager()
+                .findFragmentById(R.id.fragment_holder);
+        if (current instanceof LibraryHubFragment) {
+            return;
+        }
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_holder, new LibraryHubFragment())
+                .addToBackStack(null)
+                .commit();
     }
 
     private void setupDrawer() throws ExtractionException {
