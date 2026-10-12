@@ -2,7 +2,7 @@
 <resources>
     <string name="navigate_back">Zurück</string>
     <string name="title_activity_about">Über NewPipe</string>
-    <string name="tab_about">Über &amp; FAQ</string>
+    <string name="tab_about">Über und FAQ</string>
     <string name="tab_licenses">Lizenzen</string>
     <string name="donation_title">Spenden</string>
     <string name="view_on_github">Auf GitHub ansehen</string>

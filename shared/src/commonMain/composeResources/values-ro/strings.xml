@@ -6,7 +6,7 @@
     <string name="license">De %1$s sub %2$s</string>
     <string name="tab_about">Despre &amp; Întrebări frecvente</string>
     <string name="tab_licenses">Licențe</string>
-    <string name="app_description">Streaming sursă-liberă pentru Android.</string>
+    <string name="app_description">Streaming gratuit și ușor pe Android.</string>
     <string name="contribution_title">Contribuie</string>
     <string name="contribution_encouragement">Indiferent dacă ai idei legate de traduceri, modificări de design, curățarea codului sau modificări majore ale codului — ajutorul tău este întotdeauna binevenit. Cu cât se face mai mult, cu atât rezultatul este mai bun!</string>
     <string name="view_on_github">Vezi pe GitHub</string>
@@ -77,7 +77,7 @@
     <string name="settings_category_player_behavior_title">Comportament</string>
     <string name="show_info">Afișează informații</string>
     <string name="always_ask_open_action">Întreabă întotdeauna</string>
-    <string name="minimize_on_exit_title">Minimizează la comutarea între aplicații</string>
+    <string name="minimize_on_exit_title">Minimizează la trecerea dintre aplicații</string>
     <string name="autoplay_title">Redare automată</string>
     <string name="autoplay_summary">Pornește redarea automat — %1$s</string>
     <string name="always">Întotdeauna</string>
@@ -91,7 +91,7 @@
     <string name="right_gesture_control_title">Acțiune gest la dreapta</string>
     <string name="brightness">Luminozitate</string>
     <string name="volume">Volum</string>
-    <string name="none">Niciun</string>
+    <string name="none">Niciunul</string>
     <string name="use_inexact_seek_title">Utilizează căutarea rapidă inexactă</string>
     <string name="seek_duration_title">Durata căutării cu derulare rapidă înainte/înapoi</string>
     <string name="new_seek_duration_toast">Din cauza unor limitări ale ExoPlayer, durata de căutare a fost setată la %1$d secunde</string>

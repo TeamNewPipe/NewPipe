@@ -1,3 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="navigate_back">Takaisin</string>
+    <string name="title_activity_about">Tietoja NewPipestä</string>
+    <string name="title_licenses">Kolmannen osapuolen lisenssit</string>
+    <string name="tab_about">Tietoja ja UKK</string>
+    <string name="tab_licenses">Lisenssit</string>
+    <string name="app_description">Vapaata ja kevyttä suoratoistoa Androidilla.</string>
+    <string name="contribution_title">Osallistu</string>
+    <string name="contribution_encouragement">Olkoon sinulla ideoita; käännöksistä, designmuutoksista, koodin siivoamisesta tai raskaista koodimuutoksista—apu on aina tervetullutta. Mitä enemmän saadaan tehtyä, sen paremmaksi sovellus tulee!</string>
+    <string name="view_on_github">Näytä GitHub:ssa</string>
+    <string name="donation_title">Lahjoita</string>
+    <string name="donation_encouragement">NewPipe on vapaaehtoisten vapaa-ajallaan kehittämä tuoden sinulle parhaan mahdollisen käyttäjäkokemuksen. Nyt on aika auttaa kehittäjiä tekemään NewPipesta vielä parempi heidän nauttiessaan kupin kahvia.</string>
+    <string name="give_back">Anna takaisin</string>
+    <string name="website_title">Verkkosivusto</string>
+    <string name="website_encouragement">Käy verkkosivuillamme saadaksesi lisää tietoa ja uusimmat uutiset NewPipestä.</string>
+    <string name="privacy_policy_title">NewPipen tietosuojakäytäntö</string>
+    <string name="privacy_policy_encouragement">NewPipe ottaa yksityisyytesi tosissaan. Siksi se ei kerää sinulta mitään tietoja ilman lupaasi.\nNewPipen tietosuojakäytännössä selitetään tarkasti mitä tietoja lähetetään tai tallennetaan virheraportin yhteydessä.</string>
+    <string name="read_privacy_policy">Lue tietosuojakäytäntö</string>
+    <string name="app_license_title">NewPipen lisenssi</string>
+    <string name="app_license">NewPipe on vapaata ohjelmistoa. Voit käyttää, opiskella, jakaa ja parantaa sitä mielesi mukaan. Tarkemmin sanottuna voit jakaa sitä edelleen tai muokata sitä Free Software Foundationin julkaiseman GNU General Public Licensen, version 3 tai uudemman, ehdoilla.</string>
+    <string name="read_full_license">Lue lisenssi</string>
+    <string name="faq_title">Usein kysytyt kysymykset</string>
+    <string name="faq_description">Jos sinulla on ongelmia sovelluksen käytössä, muista katsoa nämä vastaukset yleisiin kysymyksiin!</string>
+    <string name="faq">Katso verkkosivuilla</string>
+    <string name="open_in_browser">Avaa selaimessa</string>
+    <string name="done">Valmis</string>
+    <string name="not_available">Ei käytettävissä</string>
+    <string name="settings">Asetukset</string>
+    <string name="search">Hae</string>
+    <string name="content">Sisältö</string>
+    <string name="notifications">Ilmoitukset</string>
+    <string name="settings_category_video_audio_title">Video ja ääni</string>
+    <string name="settings_category_downloads_title">Lataukset</string>
+    <string name="settings_category_appearance_title">Ulkonäkö</string>
+    <string name="settings_category_history_title">Historia ja välimuisti</string>
+    <string name="settings_category_updates_title">Päivitykset</string>
+    <string name="settings_category_backup_restore_title">Varmuuskopiointi ja palauttaminen</string>
+    <string name="settings_category_debug_title">Vianjäljitys</string>
+    <string name="theme_title">Teema</string>
+    <string name="light_theme_title">Vaalea</string>
+    <string name="dark_theme_title">Tumma</string>
+    <string name="black_theme_title">Musta</string>
+    <string name="auto_device_theme_title">Automaattinen (laite)</string>
+    <string name="night_theme_title">Yöteema</string>
 </resources>
