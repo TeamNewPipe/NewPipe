@@ -44,7 +44,7 @@
                     android:textColor="@color/glass_text_secondary" android:textSize="12sp" />
             </LinearLayout>
             <ImageView android:layout_width="20dp" android:layout_height="20dp"
-                android:importantForAccessibility="no" android:src="@drawable/ic_chevron_right"
+                android:importantForAccessibility="no" android:src="@drawable/ic_expand_more" android:rotation="270"
                 android:tint="@color/glass_text_secondary" />
         </LinearLayout>
         <LinearLayout android:id="@+id/hub_downloads" android:layout_width="match_parent"
@@ -66,7 +66,7 @@
                     android:textColor="@color/glass_text_secondary" android:textSize="12sp" />
             </LinearLayout>
             <ImageView android:layout_width="20dp" android:layout_height="20dp"
-                android:importantForAccessibility="no" android:src="@drawable/ic_chevron_right"
+                android:importantForAccessibility="no" android:src="@drawable/ic_expand_more" android:rotation="270"
                 android:tint="@color/glass_text_secondary" />
         </LinearLayout>
         <LinearLayout android:id="@+id/hub_playlists" android:layout_width="match_parent"
@@ -88,7 +88,7 @@
                     android:textColor="@color/glass_text_secondary" android:textSize="12sp" />
             </LinearLayout>
             <ImageView android:layout_width="20dp" android:layout_height="20dp"
-                android:importantForAccessibility="no" android:src="@drawable/ic_chevron_right"
+                android:importantForAccessibility="no" android:src="@drawable/ic_expand_more" android:rotation="270"
                 android:tint="@color/glass_text_secondary" />
         </LinearLayout>
         <LinearLayout android:layout_width="match_parent" android:layout_height="48dp"

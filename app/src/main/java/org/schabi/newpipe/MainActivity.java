@@ -186,6 +186,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setSupportActionBar(toolbarLayoutBinding.toolbar);
+        org.schabi.newpipe.views.glass.GlassDrawable.setupBlurView(
+                toolbarLayoutBinding.headerBackdrop, mainBinding.blurTarget, 0);
         setupGlassRail();
         try {
             setupDrawer();

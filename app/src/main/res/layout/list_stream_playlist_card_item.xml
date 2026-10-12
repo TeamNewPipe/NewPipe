@@ -7,7 +7,11 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/margin_normal"
     android:layout_marginBottom="@dimen/margin_small"
-    android:background="?attr/selectableItemBackground"
+    android:background="@drawable/frost_card_bg"
+    android:clipToOutline="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:layout_marginHorizontal="12dp"
+    android:paddingBottom="12dp"
     android:clickable="true"
     android:focusable="true">
 

@@ -142,7 +142,6 @@ public final class VideoDetailFragment
         OnKeyDownListener {
     public static final String KEY_SWITCHING_PLAYERS = "switching_players";
 
-    private static final float MAX_OVERLAY_ALPHA = 1.0f;
     private static final float MAX_PLAYER_HEIGHT = 0.7f;
 
     public static final String ACTION_SHOW_MAIN_PLAYER =
@@ -1016,7 +1015,7 @@ public final class VideoDetailFragment
             // is up to date and not being currently recomputed
             binding.tabLayout.post(() -> {
                 final var activity = getActivity();
-                if (activity != null) {
+                if (activity != null && binding != null) {
                     final Rect pagerHitRect = new Rect();
                     binding.viewPager.getHitRect(pagerHitRect);
 
@@ -1322,6 +1321,7 @@ public final class VideoDetailFragment
                     }
                     playerUi.setupVideoSurfaceIfNeeded();
                     if (bottomSheetState == BottomSheetBehavior.STATE_COLLAPSED) {
+                        CoilUtils.dispose(binding.overlayThumbnail);
                         binding.overlayThumbnail.setImageDrawable(null);
                         playerUiHideControls();
                     }
@@ -1395,12 +1395,16 @@ public final class VideoDetailFragment
     }
 
     private void setHeightThumbnail(final int newHeight, final DisplayMetrics metrics) {
-        final boolean minimized = bottomSheetState == BottomSheetBehavior.STATE_COLLAPSED;
+        final boolean minimized = lastStableBottomSheetState == BottomSheetBehavior.STATE_COLLAPSED;
         final int videoHeight = minimized ? DeviceUtils.dpToPx(81, requireContext()) : newHeight;
-        final int videoWidth = minimized ? DeviceUtils.dpToPx(144, requireContext())
-                : isFullscreen() ? FrameLayout.LayoutParams.MATCH_PARENT
-                : binding.detailMainContent.getWidth() > 0
-                ? binding.detailMainContent.getWidth() : FrameLayout.LayoutParams.MATCH_PARENT;
+        final int videoWidth;
+        if (minimized) {
+            videoWidth = DeviceUtils.dpToPx(144, requireContext());
+        } else if (isFullscreen() || binding.detailMainContent.getWidth() == 0) {
+            videoWidth = FrameLayout.LayoutParams.MATCH_PARENT;
+        } else {
+            videoWidth = binding.detailMainContent.getWidth();
+        }
         final FrameLayout.LayoutParams videoParams = new FrameLayout.LayoutParams(
                 videoWidth, videoHeight);
         if (minimized) {
@@ -1417,6 +1421,10 @@ public final class VideoDetailFragment
         binding.detailMainContent.setLayoutParams(contentParams);
         binding.detailMainContent.setVisibility(minimized || isFullscreen()
                 ? View.INVISIBLE : View.VISIBLE);
+        if (binding.relatedItemsLayout != null) {
+            binding.relatedItemsLayout.setVisibility(minimized || isFullscreen() || !showRelatedItems
+                    ? View.GONE : View.VISIBLE);
+        }
         if (isPlayerAvailable()) {
             final int maxHeight = (int) (metrics.heightPixels * MAX_PLAYER_HEIGHT);
             player.UIs().get(VideoPlayerUi.class).ifPresent(ui ->
@@ -2393,10 +2401,6 @@ public final class VideoDetailFragment
     }
 
     private void setupBottomPlayer() {
-        final CoordinatorLayout.LayoutParams params =
-                (CoordinatorLayout.LayoutParams) binding.appBarLayout.getLayoutParams();
-        final AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
-
         final FrameLayout bottomSheetLayout = activity.findViewById(R.id.fragment_player_holder);
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetLayout);
         bottomSheetBehavior.setState(lastStableBottomSheetState);
@@ -2406,12 +2410,7 @@ public final class VideoDetailFragment
         if (bottomSheetState != BottomSheetBehavior.STATE_HIDDEN) {
             manageSpaceAtTheBottom(bottomSheetState == BottomSheetBehavior.STATE_EXPANDED);
             bottomSheetBehavior.setPeekHeight(peekHeight);
-            if (bottomSheetState == BottomSheetBehavior.STATE_COLLAPSED) {
-                binding.overlayLayout.setAlpha(MAX_OVERLAY_ALPHA);
-            } else if (bottomSheetState == BottomSheetBehavior.STATE_EXPANDED) {
-                binding.overlayLayout.setAlpha(0);
-                setOverlayElementsClickable(false);
-            }
+            setOverlayElementsClickable(bottomSheetState == BottomSheetBehavior.STATE_COLLAPSED);
         }
 
         bottomSheetCallback = new BottomSheetBehavior.BottomSheetCallback() {
@@ -2445,7 +2444,7 @@ public final class VideoDetailFragment
                             player.UIs().get(MainPlayerUi.class)
                                     .ifPresent(MainPlayerUi::toggleFullscreen);
                         }
-                        setOverlayLook(binding.appBarLayout, behavior, 1);
+                        updatePlayerPresentation();
                         break;
                     case BottomSheetBehavior.STATE_COLLAPSED:
                         moveFocusToMainFragment(true);
@@ -2459,7 +2458,7 @@ public final class VideoDetailFragment
                             player.UIs().get(MainPlayerUi.class)
                                     .ifPresent(MainPlayerUi::closeItemsList);
                         }
-                        setOverlayLook(binding.appBarLayout, behavior, 0);
+                        updatePlayerPresentation();
                         break;
                     case BottomSheetBehavior.STATE_DRAGGING:
                     case BottomSheetBehavior.STATE_SETTLING:
@@ -2481,7 +2480,10 @@ public final class VideoDetailFragment
 
             @Override
             public void onSlide(@NonNull final View bottomSheet, final float slideOffset) {
-                setOverlayLook(binding.appBarLayout, behavior, slideOffset);
+                if (binding != null) {
+                    // Resize only at stable states, not on every animation frame.
+                    binding.overlayLayout.setAlpha(1 - Math.max(0, slideOffset));
+                }
             }
         };
 
@@ -2495,8 +2497,7 @@ public final class VideoDetailFragment
             }
         };
         getParentFragmentManager().addOnBackStackChangedListener(playerBackStackListener);
-        setOverlayLook(binding.appBarLayout, behavior,
-                bottomSheetState == BottomSheetBehavior.STATE_EXPANDED ? 1 : 0);
+        updatePlayerPresentation();
     }
 
     private void updateOverlayPlayQueueButtonVisibility() {
@@ -2516,6 +2517,7 @@ public final class VideoDetailFragment
                                    @NonNull final List<Image> thumbnails) {
         binding.overlayTitleTextView.setText(isEmpty(overlayTitle) ? "" : overlayTitle);
         binding.overlayChannelTextView.setText(isEmpty(uploader) ? "" : uploader);
+        CoilUtils.dispose(binding.overlayThumbnail);
         binding.overlayThumbnail.setImageDrawable(null);
         // The actual video surface stays visible underneath the transparent expand button.
         // Use artwork only for audio/background playback, never over a live video.
@@ -2533,9 +2535,7 @@ public final class VideoDetailFragment
                 playerIsPlaying ? R.string.pause : R.string.play));
     }
 
-    private void setOverlayLook(final AppBarLayout appBar,
-                                final AppBarLayout.Behavior behavior,
-                                final float slideOffset) {
+    private void updatePlayerPresentation() {
         if (binding == null) {
             return;
         }
@@ -2547,9 +2547,7 @@ public final class VideoDetailFragment
         binding.overlayLayout.setAlpha(1);
         binding.getRoot().setBackgroundResource(minimized
                 ? android.R.color.transparent : R.drawable.frost_window_bg);
-        if (behavior != null) {
-            behavior.setTopAndBottomOffset(0);
-        }
+        binding.appBarLayout.setExpanded(true, false);
         if (minimized) {
             playerUiHideControls();
         }
