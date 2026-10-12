@@ -6,10 +6,12 @@
 
 package org.schabi.newpipe.database.playlist.dao
 
-import androidx.room.Dao
-import androidx.room.Query
-import androidx.room.RewriteQueriesToDropUnusedColumns
-import androidx.room.Transaction
+import androidx.room3.Dao
+import androidx.room3.DaoReturnTypeConverters
+import androidx.room3.Query
+import androidx.room3.RewriteQueriesToDropUnusedColumns
+import androidx.room3.Transaction
+import androidx.room3.rxjava3.RxDaoReturnTypeConverters
 import io.reactivex.rxjava3.core.Flowable
 import org.schabi.newpipe.database.BasicDAO
 import org.schabi.newpipe.database.playlist.PlaylistDuplicatesEntry
@@ -19,6 +21,7 @@ import org.schabi.newpipe.database.playlist.model.PlaylistEntity.Companion.DEFAU
 import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity
 
 @Dao
+@DaoReturnTypeConverters(RxDaoReturnTypeConverters::class)
 interface PlaylistStreamDAO : BasicDAO<PlaylistStreamEntity> {
 
     @Query("SELECT * FROM playlist_stream_join")
