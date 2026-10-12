@@ -54,7 +54,7 @@ phoenix = "3.0.0"
 preference = "1.2.1"
 prettytime = "5.0.8.Final"
 recyclerview = "1.4.0"
-room = "2.8.5" # Needs migration to 3.x, may as well be moved to shared
+room = "3.0.3"
 runner = "1.7.0"
 rxandroid = "3.0.2"
 rxbinding = "4.0.0"
@@ -63,6 +63,7 @@ settings = "1.3.0"
 sonarqube = "7.5.0.8588"
 statesaver = "1.4.1" # TODO: Drop because it is deprecated and incompatible with KSP2
 stetho = "1.6.0"
+sqlite = "2.7.1"
 swiperefreshlayout = "1.2.0"
 # You can use a local version by uncommenting a few lines in settings.gradle
 # Or you can use a commit you pushed to GitHub by just replacing TeamNewPipe with your GitHub
@@ -99,12 +100,13 @@ androidx-localbroadcastmanager = { module = "androidx.localbroadcastmanager:loca
 androidx-media = { module = "androidx.media:media", version.ref = "media" }
 androidx-preference = { module = "androidx.preference:preference", version.ref = "preference" }
 androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
-androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
-androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
-androidx-room-rxjava3 = { module = "androidx.room:room-rxjava3", version.ref = "room" }
-androidx-room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
+androidx-room-compiler = { module = "androidx.room3:room3-compiler", version.ref = "room" }
+androidx-room-runtime = { module = "androidx.room3:room3-runtime", version.ref = "room" }
+androidx-room-rxjava3 = { module = "androidx.room3:room3-rxjava3", version.ref = "room" }
+androidx-room-testing = { module = "androidx.room3:room3-testing", version.ref = "room" }
 androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
 androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
+androidx-sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
 androidx-test-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
 androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }
 androidx-webkit = { module = "androidx.webkit:webkit", version.ref = "webkit" }
@@ -179,6 +181,7 @@ about-libraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "ab
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-legacy-kapt = { id = "com.android.legacy-kapt", version.ref = "agp" } # Needed for statesaver
 android-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
+androidx-room = { id = "androidx.room3", version.ref = "room" }
 google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 jetbrains-compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "multiplatform" }
 jetbrains-kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
