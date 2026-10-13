@@ -44,7 +44,7 @@ public class TvPlayerActivity extends FragmentActivity {
                     .putExtra(Player.PLAYER_TYPE, PlayerType.MAIN)
                     .putExtra(Player.RESUME_PLAYBACK, true);
             ContextCompat.startForegroundService(this, serviceIntent);
-            pendingPlayQueue = null;
+            setPendingPlayQueue(null);
         }
 
         if (savedInstanceState == null) {

@@ -48,13 +48,13 @@ class LoungeSession(
                     activeLoungeToken = resolveLoungeTokenFromDial()
                 }
 
-                if (activeLoungeToken.isNullOrEmpty()) {
-                    throw IllegalStateException("Unable to get Lounge token for ${device.name}")
+                check(!activeLoungeToken.isNullOrEmpty()) {
+                    "Unable to get Lounge token for ${device.name}"
                 }
 
                 // Perform initial Browser Channel bind handshake
-                if (!bind()) {
-                    throw IllegalStateException("Failed to bind Lounge session for ${device.name}")
+                check(bind()) {
+                    "Failed to bind Lounge session for ${device.name}"
                 }
 
                 isConnected.set(true)
@@ -175,8 +175,8 @@ class LoungeSession(
         val token = activeLoungeToken ?: return
         Thread {
             try {
-                if (sid.isNullOrEmpty() || gsessionId.isNullOrEmpty()) {
-                    if (!bind()) return@Thread
+                if ((sid.isNullOrEmpty() || gsessionId.isNullOrEmpty()) && !bind()) {
+                    return@Thread
                 }
 
                 val formBuilder = FormBody.Builder().add("count", "1")
@@ -196,11 +196,9 @@ class LoungeSession(
                 val code = response.code
                 response.close()
 
-                if ((code == 400 || code == 404) && retryOnFailure) {
+                if ((code == 400 || code == 404) && retryOnFailure && bind()) {
                     // Session expired or out of sync; re-bind and retry command
-                    if (bind()) {
-                        sendCommand(params, retryOnFailure = false)
-                    }
+                    sendCommand(params, retryOnFailure = false)
                 }
             } catch (ignored: Exception) {
                 // Ignore transient network errors when sending lounge command

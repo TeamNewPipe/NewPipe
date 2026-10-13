@@ -72,6 +72,7 @@ public class TvPlaybackSupportFragment extends VideoSupportFragment
     @Override
     public void surfaceChanged(@NonNull final SurfaceHolder holder, final int format,
                                final int width, final int height) {
+        // No-op for TV playback fragment
     }
 
     @Override
@@ -86,26 +87,32 @@ public class TvPlaybackSupportFragment extends VideoSupportFragment
     /* PlayerServiceExtendedEventListener callbacks */
     @Override
     public void onViewCreated() {
+        // No-op: handled in player glue
     }
 
     @Override
     public void onFullscreenStateChanged(final boolean fullscreen) {
+        // No-op: TV interface is always fullscreen landscape
     }
 
     @Override
     public void onScreenRotationButtonClicked() {
+        // No-op: orientation is locked to landscape on TV
     }
 
     @Override
     public void onMoreOptionsLongClicked() {
+        // No-op: not triggered on TV remote
     }
 
     @Override
     public void onPlayerError(final PlaybackException error, final boolean isCatchableException) {
+        // No-op: error handled by player glue adapter
     }
 
     @Override
     public void hideSystemUiIfNeeded() {
+        // No-op: system UI is managed by Theme.NewPipe.Tv.Player
     }
 
     @Override
@@ -142,6 +149,7 @@ public class TvPlaybackSupportFragment extends VideoSupportFragment
 
     @Override
     public void onServiceConnected(@NonNull final PlayerService playerService) {
+        // No-op: state synchronized via PlayerHolder
     }
 
     @Override
@@ -154,13 +162,16 @@ public class TvPlaybackSupportFragment extends VideoSupportFragment
 
     @Override
     public void onPlayerDisconnected() {
+        // No-op: handled on session cleanup
     }
 
     @Override
     public void onServiceDisconnected() {
+        // No-op: unbind cleans up adapter
     }
 
     @Override
     public void onServiceStopped() {
+        // No-op: activity handles teardown
     }
 }

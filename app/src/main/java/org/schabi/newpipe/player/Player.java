@@ -1555,94 +1555,20 @@ public final class Player implements PlaybackListener, Listener {
     // Any error code not explicitly covered here are either unrelated to NewPipe use case
     // (e.g. DRM) or not recoverable (e.g. Decoder error). In both cases, the player should
     // shutdown.
-    @SuppressWarnings("SwitchIntDef")
     @Override
     public void onPlayerError(@NonNull final PlaybackException error) {
         Log.e(TAG, "ExoPlayer - onPlayerError() called with:", error);
 
         saveStreamProgressState();
-        boolean isCatchableException = false;
+        final boolean isCatchableException;
 
         if (isPlaylistStuckException(error)) {
-            // Live HLS stream playlist didn't update within the stuck duration window
-            isCatchableException = true;
-            if (playlistStuckRecoveryCount < 2) {
-                playlistStuckRecoveryCount++;
-                Log.w(TAG, "PlaylistStuckException detected, re-syncing to live edge (attempt "
-                        + playlistStuckRecoveryCount + ")");
-                simpleExoPlayer.seekToDefaultPosition();
-                simpleExoPlayer.prepare();
-                onBuffering();
-            } else {
-                Log.w(TAG, "PlaylistStuckException persists after retries, "
-                        + "live stream ended or offline");
-                simpleExoPlayer.stop();
-                Toast.makeText(context, R.string.error_livestream_ended, Toast.LENGTH_SHORT).show();
-            }
+            isCatchableException = handlePlaylistStuckRecovery();
         } else if (error.errorCode == ERROR_CODE_IO_BAD_HTTP_STATUS
                 && isHttpForbiddenOrExpired(error)) {
-            if (http403RecoveryCount < 1) {
-                http403RecoveryCount++;
-                isCatchableException = true;
-                Log.w(TAG, "HTTP 403/410 Forbidden detected, self-healing stream "
-                        + "by evicting cache and refreshing URLs");
-                if (currentMetadata != null) {
-                    InfoCache.getInstance().removeInfo(
-                            currentMetadata.getServiceId(),
-                            currentMetadata.getStreamUrl(),
-                            InfoCache.Type.STREAM);
-                }
-                if (playQueue != null && playQueue.getItem() != null) {
-                    playQueue.getItem().setForceReload(true);
-                }
-                setRecovery();
-                reloadPlayQueueManager();
-                onBuffering();
-            } else {
-                Log.e(TAG, "HTTP 403/410 Forbidden persists after fresh URL refresh");
-                if (!exoPlayerIsNull() && playQueue != null) {
-                    playQueue.error();
-                }
-            }
+            isCatchableException = handleHttpForbiddenRecovery();
         } else {
-            switch (error.errorCode) {
-                case ERROR_CODE_BEHIND_LIVE_WINDOW:
-                    isCatchableException = true;
-                    simpleExoPlayer.seekToDefaultPosition();
-                    simpleExoPlayer.prepare();
-                    // Inform the user that we are reloading the stream by
-                    // switching to the buffering state
-                    onBuffering();
-                    break;
-                case ERROR_CODE_IO_INVALID_HTTP_CONTENT_TYPE:
-                case ERROR_CODE_IO_BAD_HTTP_STATUS:
-                case ERROR_CODE_IO_FILE_NOT_FOUND:
-                case ERROR_CODE_IO_NO_PERMISSION:
-                case ERROR_CODE_IO_CLEARTEXT_NOT_PERMITTED:
-                case ERROR_CODE_IO_READ_POSITION_OUT_OF_RANGE:
-                case ERROR_CODE_PARSING_CONTAINER_MALFORMED:
-                case ERROR_CODE_PARSING_MANIFEST_MALFORMED:
-                case ERROR_CODE_PARSING_CONTAINER_UNSUPPORTED:
-                case ERROR_CODE_PARSING_MANIFEST_UNSUPPORTED:
-                    // Source errors, signal on playQueue and move on:
-                    if (!exoPlayerIsNull() && playQueue != null) {
-                        playQueue.error();
-                    }
-                    break;
-                case ERROR_CODE_TIMEOUT:
-                case ERROR_CODE_IO_UNSPECIFIED:
-                case ERROR_CODE_IO_NETWORK_CONNECTION_FAILED:
-                case ERROR_CODE_IO_NETWORK_CONNECTION_TIMEOUT:
-                case ERROR_CODE_UNSPECIFIED:
-                    // Reload playback on unexpected errors:
-                    setRecovery();
-                    reloadPlayQueueManager();
-                    break;
-                default:
-                    // API, remote and renderer errors belong here:
-                    onPlaybackShutdown();
-                    break;
-            }
+            isCatchableException = handleStandardPlayerError(error);
         }
 
         if (!isCatchableException) {
@@ -1652,6 +1578,92 @@ public final class Player implements PlaybackListener, Listener {
         if (fragmentListener != null) {
             fragmentListener.onPlayerError(error, isCatchableException);
         }
+    }
+
+    private boolean handlePlaylistStuckRecovery() {
+        if (playlistStuckRecoveryCount < 2) {
+            playlistStuckRecoveryCount++;
+            Log.w(TAG, "PlaylistStuckException detected, re-syncing to live edge (attempt "
+                    + playlistStuckRecoveryCount + ")");
+            simpleExoPlayer.seekToDefaultPosition();
+            simpleExoPlayer.prepare();
+            onBuffering();
+        } else {
+            Log.w(TAG, "PlaylistStuckException persists after retries, "
+                    + "live stream ended or offline");
+            simpleExoPlayer.stop();
+            Toast.makeText(context, R.string.error_livestream_ended, Toast.LENGTH_SHORT).show();
+        }
+        return true;
+    }
+
+    private boolean handleHttpForbiddenRecovery() {
+        if (http403RecoveryCount < 1) {
+            http403RecoveryCount++;
+            Log.w(TAG, "HTTP 403/410 Forbidden detected, self-healing stream "
+                    + "by evicting cache and refreshing URLs");
+            if (currentMetadata != null) {
+                InfoCache.getInstance().removeInfo(
+                        currentMetadata.getServiceId(),
+                        currentMetadata.getStreamUrl(),
+                        InfoCache.Type.STREAM);
+            }
+            if (playQueue != null && playQueue.getItem() != null) {
+                playQueue.getItem().setForceReload(true);
+            }
+            setRecovery();
+            reloadPlayQueueManager();
+            onBuffering();
+            return true;
+        } else {
+            Log.e(TAG, "HTTP 403/410 Forbidden persists after fresh URL refresh");
+            if (!exoPlayerIsNull() && playQueue != null) {
+                playQueue.error();
+            }
+            return false;
+        }
+    }
+
+    @SuppressWarnings("SwitchIntDef")
+    private boolean handleStandardPlayerError(@NonNull final PlaybackException error) {
+        switch (error.errorCode) {
+            case ERROR_CODE_BEHIND_LIVE_WINDOW:
+                simpleExoPlayer.seekToDefaultPosition();
+                simpleExoPlayer.prepare();
+                // Inform the user that we are reloading the stream by
+                // switching to the buffering state
+                onBuffering();
+                return true;
+            case ERROR_CODE_IO_INVALID_HTTP_CONTENT_TYPE:
+            case ERROR_CODE_IO_BAD_HTTP_STATUS:
+            case ERROR_CODE_IO_FILE_NOT_FOUND:
+            case ERROR_CODE_IO_NO_PERMISSION:
+            case ERROR_CODE_IO_CLEARTEXT_NOT_PERMITTED:
+            case ERROR_CODE_IO_READ_POSITION_OUT_OF_RANGE:
+            case ERROR_CODE_PARSING_CONTAINER_MALFORMED:
+            case ERROR_CODE_PARSING_MANIFEST_MALFORMED:
+            case ERROR_CODE_PARSING_CONTAINER_UNSUPPORTED:
+            case ERROR_CODE_PARSING_MANIFEST_UNSUPPORTED:
+                // Source errors, signal on playQueue and move on:
+                if (!exoPlayerIsNull() && playQueue != null) {
+                    playQueue.error();
+                }
+                break;
+            case ERROR_CODE_TIMEOUT:
+            case ERROR_CODE_IO_UNSPECIFIED:
+            case ERROR_CODE_IO_NETWORK_CONNECTION_FAILED:
+            case ERROR_CODE_IO_NETWORK_CONNECTION_TIMEOUT:
+            case ERROR_CODE_UNSPECIFIED:
+                // Reload playback on unexpected errors:
+                setRecovery();
+                reloadPlayQueueManager();
+                break;
+            default:
+                // API, remote and renderer errors belong here:
+                onPlaybackShutdown();
+                break;
+        }
+        return false;
     }
 
     /* package-private */ static boolean isPlaylistStuckException(
