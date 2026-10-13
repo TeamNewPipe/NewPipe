@@ -297,7 +297,8 @@ public class MainActivity extends AppCompatActivity {
         rail.railHome.setOnClickListener(v -> {
             final Fragment f = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
             if (f instanceof MainFragment) {
-                getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                getSupportFragmentManager().popBackStack(null,
+                        FragmentManager.POP_BACK_STACK_INCLUSIVE);
             } else {
                 NavigationHelper.openMainFragment(getSupportFragmentManager());
             }
@@ -307,7 +308,8 @@ public class MainActivity extends AppCompatActivity {
         rail.railLibrary.setOnClickListener(v -> openLibraryHub());
 
         // Listen for WindowInsets dynamically (no hardcoded status/nav bar heights)
-        androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener(mainBinding.getRoot(), (v, insets) -> {
+        androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener(
+                mainBinding.getRoot(), (v, insets) -> {
             final androidx.core.graphics.Insets bars = insets.getInsets(
                     androidx.core.view.WindowInsetsCompat.Type.systemBars());
             systemBarBottomInset = bars.bottom;
@@ -412,20 +414,24 @@ public class MainActivity extends AppCompatActivity {
         rail.railSubscriptions.setSelected(isSubs);
         rail.railLibrary.setSelected(isLib);
 
-        final View targetView = isSubs ? rail.railSubscriptions : (isLib ? rail.railLibrary : rail.railHome);
+        final View targetView = isSubs ? rail.railSubscriptions
+                : (isLib ? rail.railLibrary : rail.railHome);
         targetView.post(() -> GlassMotion.slideIndicator(
                 rail.railActiveCapsule, targetView.getTop()));
 
         final int primaryColor = ContextCompat.getColor(this, R.color.glass_text_primary);
         final int secondaryColor = ContextCompat.getColor(this, R.color.glass_text_secondary);
 
-        rail.railIconHome.setImageTintList(android.content.res.ColorStateList.valueOf(isHome ? primaryColor : secondaryColor));
+        rail.railIconHome.setImageTintList(android.content.res.ColorStateList.valueOf(
+                isHome ? primaryColor : secondaryColor));
         rail.railTextHome.setTextColor(isHome ? primaryColor : secondaryColor);
 
-        rail.railIconSubscriptions.setImageTintList(android.content.res.ColorStateList.valueOf(isSubs ? primaryColor : secondaryColor));
+        rail.railIconSubscriptions.setImageTintList(android.content.res.ColorStateList.valueOf(
+                isSubs ? primaryColor : secondaryColor));
         rail.railTextSubscriptions.setTextColor(isSubs ? primaryColor : secondaryColor);
 
-        rail.railIconLibrary.setImageTintList(android.content.res.ColorStateList.valueOf(isLib ? primaryColor : secondaryColor));
+        rail.railIconLibrary.setImageTintList(android.content.res.ColorStateList.valueOf(
+                isLib ? primaryColor : secondaryColor));
         rail.railTextLibrary.setTextColor(isLib ? primaryColor : secondaryColor);
     }
 
