@@ -20,14 +20,11 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.PowerManager;
-import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.R;
 
@@ -60,7 +57,7 @@ public class GlassDrawable extends Drawable {
     public static final int COLOR_SPECULAR_START = 0x1FFFFFFF;  // ~12% white
     public static final int COLOR_SPECULAR_END = 0x00FFFFFF;    // transparent
     public static final int COLOR_STROKE_TOP_LEFT = 0x66FFFFFF; // 40% white
-    public static final int COLOR_STROKE_BOT_RIGHT = 0x14FFFFFF;// 8% white
+    public static final int COLOR_STROKE_BOT_RIGHT = 0x14FFFFFF; // 8% white
     public static final int COLOR_INNER_DARK = 0x33000000;      // 20% black
     public static final int COLOR_CAPSULE_FILL = 0x59E53935;    // #E53935 at 35% alpha
     public static final int COLOR_CAPSULE_STROKE = 0xB3E53935;  // #E53935 at 70% alpha
@@ -100,7 +97,8 @@ public class GlassDrawable extends Drawable {
         this(context, radiusToken, false);
     }
 
-    public GlassDrawable(@NonNull final Context context, final int radiusToken, final boolean isActiveCapsule) {
+    public GlassDrawable(@NonNull final Context context, final int radiusToken,
+                         final boolean isActiveCapsule) {
         this.context = context.getApplicationContext();
         this.density = context.getResources().getDisplayMetrics().density;
         this.radiusToken = radiusToken;
@@ -135,10 +133,12 @@ public class GlassDrawable extends Drawable {
         // Load 128px monochrome noise grain tile
         try {
             if (sharedNoiseBitmap == null) {
-                sharedNoiseBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.glass_noise_128);
+                sharedNoiseBitmap = BitmapFactory.decodeResource(context.getResources(),
+                        R.drawable.glass_noise_128);
             }
             if (sharedNoiseBitmap != null) {
-                noiseShader = new BitmapShader(sharedNoiseBitmap, Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
+                noiseShader = new BitmapShader(sharedNoiseBitmap,
+                        Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
                 grainPaint.setShader(noiseShader);
                 grainPaint.setAlpha((int) (255 * 0.045f)); // 4.5% alpha grain
             }
@@ -186,7 +186,8 @@ public class GlassDrawable extends Drawable {
 
         if (liquidSurface) {
             ambientPaint.setShader(new LinearGradient(boundsF.left, boundsF.top,
-                    boundsF.right, boundsF.bottom, ambientTop, ambientBottom, Shader.TileMode.CLAMP));
+                    boundsF.right, boundsF.bottom, ambientTop, ambientBottom,
+                    Shader.TileMode.CLAMP));
         }
 
         // 1dp outer edge gradient stroke (top-left #66FFFFFF to bottom-right #14FFFFFF)
@@ -295,7 +296,12 @@ public class GlassDrawable extends Drawable {
     // Factory methods
     //////////////////////////////////////////////////////////////////////////*/
 
-    /** A separate liquid material: rail tokens and rendering are deliberately unchanged. */
+    /**
+     * A separate liquid material: rail tokens and rendering are deliberately unchanged.
+     * @param context resource context
+     * @param radius corner radius in dp
+     * @return thumbnail-tinted reflective card material
+     */
     public static GlassDrawable createLiquidSurface(final Context context, final int radius) {
         final GlassDrawable drawable = new GlassDrawable(context, radius);
         drawable.liquidSurface = true;
@@ -304,7 +310,10 @@ public class GlassDrawable extends Drawable {
         return drawable;
     }
 
-    /** Sample a few software pixels; never retain the thumbnail or allocate a second full image. */
+    /**
+     * Sample a few software pixels without retaining or copying the full thumbnail.
+     * @param thumbnail software bitmap, or null to reset a recycled card
+     */
     public void setThumbnail(@Nullable final Bitmap thumbnail) {
         if (!liquidSurface) {
             return;
@@ -357,6 +366,8 @@ public class GlassDrawable extends Drawable {
 
     /**
      * Checks if device is in low-end hardware or battery-saver mode.
+     * @param context resource context
+     * @return whether battery saver is active
      */
     public static boolean isLowEndOrPowerSave(@NonNull final Context context) {
         try {
@@ -372,6 +383,9 @@ public class GlassDrawable extends Drawable {
     /**
      * Binds a BlurView to a target with the Frost glass design system.
      * Configures radius 22f, backdrop saturation boost ~1.3x, outline clipping, and fallback.
+     * @param blurView destination surface
+     * @param blurTarget source backdrop
+     * @param radiusToken corner radius in dp
      */
     public static void setupBlurView(@NonNull final BlurView blurView,
                                      @NonNull final BlurTarget blurTarget,
@@ -399,6 +413,8 @@ public class GlassDrawable extends Drawable {
 
     /**
      * Boosts backdrop vibrancy so thumbnail colors glow through.
+     * @param view destination view
+     * @param saturation color saturation multiplier
      */
     public static void applySaturationBoost(@NonNull final View view, final float saturation) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
