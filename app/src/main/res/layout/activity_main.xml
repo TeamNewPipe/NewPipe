@@ -2,12 +2,16 @@
 <org.schabi.newpipe.views.FocusAwareDrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:clipChildren="false">
 
     <org.schabi.newpipe.views.FocusAwareCoordinator
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/frost_window_bg">
+        android:background="@drawable/frost_window_bg"
+        android:clipToPadding="false"
+        android:clipChildren="false">
 
         <!-- Everything inside is what the glass rail blurs behind itself -->
         <eightbitlab.com.blurview.BlurTarget

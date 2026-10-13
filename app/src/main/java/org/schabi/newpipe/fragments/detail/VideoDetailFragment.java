@@ -1422,7 +1422,8 @@ public final class VideoDetailFragment
 
     private void setHeightThumbnail(final int newHeight, final DisplayMetrics metrics) {
         final boolean minimized = lastStableBottomSheetState == BottomSheetBehavior.STATE_COLLAPSED;
-        final int miniWidth = Math.min(getResources().getDimensionPixelSize(R.dimen.mini_player_width),
+        final int miniWidth = Math.min(
+                getResources().getDimensionPixelSize(R.dimen.mini_player_width),
                 metrics.widthPixels - DeviceUtils.dpToPx(40, requireContext()));
         final int videoHeight = minimized ? miniWidth * 9 / 16 : newHeight;
         final int videoWidth;
@@ -1447,7 +1448,13 @@ public final class VideoDetailFragment
             final ViewGroup.LayoutParams overlayParams = binding.overlayLayout.getLayoutParams();
             overlayParams.height = videoHeight;
             binding.overlayLayout.setLayoutParams(overlayParams);
-            bottomSheetBehavior.setPeekHeight(videoHeight + DeviceUtils.dpToPx(16, requireContext()));
+            final var insets = androidx.core.view.ViewCompat.getRootWindowInsets(binding.getRoot());
+            final int bottomInset = insets == null ? 0 : insets.getInsets(
+                    androidx.core.view.WindowInsetsCompat.Type.systemBars()).bottom;
+            if (bottomSheetBehavior != null) {
+                bottomSheetBehavior.setPeekHeight(videoHeight
+                        + DeviceUtils.dpToPx(16, requireContext()) + bottomInset);
+            }
         }
         binding.detailThumbnailImageView.setLayoutParams(new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
@@ -1603,6 +1610,8 @@ public final class VideoDetailFragment
         }
 
         CoilUtils.dispose(binding.detailThumbnailImageView);
+        CoilUtils.dispose(binding.detailAmbientBackdrop);
+        binding.detailAmbientBackdrop.setImageDrawable(null);
         CoilUtils.dispose(binding.detailSubChannelThumbnailView);
         CoilUtils.dispose(binding.overlayThumbnail);
         CoilUtils.dispose(binding.detailUploaderThumbnailView);
@@ -1698,7 +1707,8 @@ public final class VideoDetailFragment
         checkUpdateProgressInfo(info);
         CoilHelper.INSTANCE.loadDetailsThumbnail(binding.detailThumbnailImageView,
                 info.getThumbnails());
-        CoilHelper.INSTANCE.loadDetailsThumbnail(binding.detailAmbientBackdrop, info.getThumbnails());
+        CoilHelper.INSTANCE.loadDetailsThumbnail(binding.detailAmbientBackdrop,
+                info.getThumbnails());
         showMetaInfoInTextView(info.getMetaInfo(), binding.detailMetaInfoTextView,
                 binding.detailMetaInfoSeparator, disposables);
 
@@ -2097,8 +2107,7 @@ public final class VideoDetailFragment
         }
         activity.getWindow().getDecorView().setSystemUiVisibility(0);
         activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        activity.getWindow().setStatusBarColor(ThemeHelper.resolveColorFromAttr(
-                requireContext(), android.R.attr.colorPrimary));
+        activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
     }
 
     private void hideSystemUi() {
@@ -2579,7 +2588,8 @@ public final class VideoDetailFragment
         final FrameLayout holder = activity.findViewById(R.id.fragment_player_holder);
         final CoordinatorLayout.LayoutParams holderParams =
                 (CoordinatorLayout.LayoutParams) holder.getLayoutParams();
-        final int miniWidth = Math.min(getResources().getDimensionPixelSize(R.dimen.mini_player_width),
+        final int miniWidth = Math.min(
+                getResources().getDimensionPixelSize(R.dimen.mini_player_width),
                 getResources().getDisplayMetrics().widthPixels
                         - DeviceUtils.dpToPx(40, requireContext()));
         holderParams.width = minimized ? miniWidth + DeviceUtils.dpToPx(16, requireContext())
@@ -2594,6 +2604,8 @@ public final class VideoDetailFragment
         binding.overlayLayout.setAlpha(1);
         binding.getRoot().setBackgroundResource(minimized
                 ? android.R.color.transparent : R.drawable.frost_window_bg);
+        binding.getRoot().setClickable(!minimized);
+        binding.getRoot().setLongClickable(!minimized);
         binding.appBarLayout.setExpanded(true, false);
         if (minimized) {
             playerUiHideControls();

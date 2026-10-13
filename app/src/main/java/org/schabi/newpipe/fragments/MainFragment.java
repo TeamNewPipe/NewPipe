@@ -44,7 +44,6 @@ import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.settings.tabs.TabsManager;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
-import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.ScrollableTabLayout;
 
 import java.util.ArrayList;
@@ -211,15 +210,19 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 // Explicit centered bounds avoid Material's icon baseline/inset drift.
                 final android.widget.FrameLayout iconFrame = new android.widget.FrameLayout(
                         requireContext());
-                final android.widget.ImageView icon = new android.widget.ImageView(requireContext());
+                final android.widget.ImageView icon =
+                        new android.widget.ImageView(requireContext());
                 icon.setImageResource(tab.getTabIconRes(requireContext()));
                 icon.setImageTintList(ColorStateList.valueOf(Color.WHITE));
                 icon.setScaleType(android.widget.ImageView.ScaleType.FIT_CENTER);
-                final int iconSize = org.schabi.newpipe.util.DeviceUtils.dpToPx(24, requireContext());
+                final int iconSize = org.schabi.newpipe.util.DeviceUtils.dpToPx(
+                        24, requireContext());
                 iconFrame.addView(icon, new android.widget.FrameLayout.LayoutParams(
                         iconSize, iconSize, android.view.Gravity.CENTER));
-                final int tabSize = org.schabi.newpipe.util.DeviceUtils.dpToPx(52, requireContext());
-                iconFrame.setLayoutParams(new android.view.ViewGroup.LayoutParams(tabSize, tabSize));
+                final int tabSize = org.schabi.newpipe.util.DeviceUtils.dpToPx(52,
+                        requireContext());
+                iconFrame.setLayoutParams(new android.view.ViewGroup.LayoutParams(
+                        tabSize, tabSize));
                 icon.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
                 tabToSet.view.setPadding(0, 0, 0, 0);
                 tabToSet.setCustomView(iconFrame);
@@ -233,7 +236,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         if (activity != null && activity.getSupportActionBar() != null) {
             activity.getSupportActionBar().setTitle(
                     android.text.Html.fromHtml(
-                            "<b><font color='#FFFFFF'>NewPipe </font></b><font color='#FF2D55'><b>Frost</b></font>",
+                            "<b><font color='#FFFFFF'>NewPipe </font></b>"
+                                    + "<font color='#FF2D55'><b>Frost</b></font>",
                             android.text.Html.FROM_HTML_MODE_LEGACY));
             activity.getSupportActionBar().setSubtitle("Free. Private. Yours.");
         }

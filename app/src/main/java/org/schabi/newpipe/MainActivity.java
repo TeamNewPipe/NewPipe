@@ -189,6 +189,7 @@ public class MainActivity extends AppCompatActivity {
         org.schabi.newpipe.views.glass.GlassDrawable.setupBlurView(
                 toolbarLayoutBinding.headerBackdrop, mainBinding.blurTarget, 0);
         setupGlassRail();
+        setupLiquidStatusBar();
         try {
             setupDrawer();
         } catch (final Exception e) {
@@ -219,6 +220,28 @@ public class MainActivity extends AppCompatActivity {
         }
 
         MigrationManager.showUserInfoIfPresent(this);
+    }
+
+    private void setupLiquidStatusBar() {
+        androidx.core.view.WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        getWindow().setStatusBarColor(android.graphics.Color.TRANSPARENT);
+        final var controller = androidx.core.view.WindowCompat.getInsetsController(
+                getWindow(), mainBinding.getRoot());
+        controller.setAppearanceLightStatusBars(false);
+        // Extend only the header's blur into the system status region. Rail insets stay unchanged.
+        androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener(
+                toolbarLayoutBinding.getRoot(), (view, insets) -> {
+                    final int top = insets.getInsets(
+                            androidx.core.view.WindowInsetsCompat.Type.systemBars()).top;
+                    mainBinding.getRoot().setPadding(0, top, 0, 0);
+                    final View backdrop = toolbarLayoutBinding.headerBackdrop;
+                    final ViewGroup.LayoutParams params = backdrop.getLayoutParams();
+                    params.height = toolbarLayoutBinding.toolbar.getMinimumHeight() + top;
+                    backdrop.setLayoutParams(params);
+                    backdrop.setTranslationY(-top);
+                    return insets;
+                });
+        androidx.core.view.ViewCompat.requestApplyInsets(mainBinding.getRoot());
     }
 
     @Override

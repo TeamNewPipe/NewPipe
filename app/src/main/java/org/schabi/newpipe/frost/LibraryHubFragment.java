@@ -78,8 +78,10 @@ public class LibraryHubFragment extends Fragment {
         historyAdapter.setSelectedListener(new OnClickGesture<>() {
             @Override
             public void selected(final LocalItem selectedItem) {
-                final StreamEntity stream = ((StreamStatisticsEntry) selectedItem).getStreamEntity();
-                NavigationHelper.openVideoDetailFragment(requireContext(), getParentFragmentManager(),
+                final StreamEntity stream =
+                        ((StreamStatisticsEntry) selectedItem).getStreamEntity();
+                NavigationHelper.openVideoDetailFragment(requireContext(),
+                        getParentFragmentManager(),
                         stream.getServiceId(), stream.getUrl(), stream.getTitle(), null, false);
             }
         });
