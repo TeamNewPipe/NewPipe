@@ -653,7 +653,7 @@
             android:background="@android:color/transparent"
             android:padding="0dp"
             android:scaleType="centerCrop"
-            android:contentDescription="@string/start_main_player_fullscreen" />
+            android:contentDescription="@string/play" />
 
         <!-- Metadata remains available to accessibility without recreating an audio strip. -->
         <LinearLayout
