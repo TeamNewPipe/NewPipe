@@ -95,8 +95,9 @@ class CastPlayerUi(player: Player) : PlayerUi(player) {
 
     override fun onPlaying() {
         super.onPlaying()
-        if (castManager.isConnected && isCastingActive
-            && !player.exoPlayerIsNull() && player.exoPlayer.isPlaying) {
+        if (castManager.isConnected && isCastingActive &&
+            !player.exoPlayerIsNull() && player.exoPlayer.isPlaying
+        ) {
             player.pause()
         }
     }
@@ -118,8 +119,9 @@ class CastPlayerUi(player: Player) : PlayerUi(player) {
             if (!it.url.isNullOrEmpty()) it.url else it.originalUrl
         } ?: currentItem?.url
 
-        if (mediaKey != null && mediaKey == lastLoadedMediaKey
-            && session.getPlayerState() != CastPlayerState.IDLE) {
+        if (mediaKey != null && mediaKey == lastLoadedMediaKey &&
+            session.getPlayerState() != CastPlayerState.IDLE
+        ) {
             return
         }
         lastLoadedMediaKey = mediaKey

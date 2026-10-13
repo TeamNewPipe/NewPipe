@@ -72,6 +72,7 @@ class CastChannelSession(
         Thread {
             try {
                 val host = device.hostAddress?.hostAddress ?: return@Thread
+
                 @Suppress("kotlin:S4830")
                 val trustManager = object : X509TrustManager {
                     override fun getAcceptedIssuers(): Array<X509Certificate> = emptyArray()
@@ -165,7 +166,12 @@ class CastChannelSession(
     ) {
         val ytVideoId = CastUtils.extractYouTubeVideoId(streamUrl)
         val request = MediaLoadRequest(
-            streamUrl, title, artist, thumbnailUrl, startPositionMs, ytVideoId
+            streamUrl,
+            title,
+            artist,
+            thumbnailUrl,
+            startPositionMs,
+            ytVideoId
         )
         val targetAppId = if (ytVideoId != null) {
             APP_ID_YOUTUBE
@@ -189,10 +195,13 @@ class CastChannelSession(
                 if (request.youtubeVideoId != null) {
                     val flingPayload = JSONObject().apply {
                         put("type", "flingVideo")
-                        put("data", JSONObject().apply {
-                            put("videoId", request.youtubeVideoId)
-                            put("currentTime", request.startPositionMs / 1000.0)
-                        })
+                        put(
+                            "data",
+                            JSONObject().apply {
+                                put("videoId", request.youtubeVideoId)
+                                put("currentTime", request.startPositionMs / 1000.0)
+                            }
+                        )
                     }
                     sendMessage(tid, NS_YOUTUBE_MDX, flingPayload)
                     currentPositionMs = request.startPositionMs
@@ -258,10 +267,13 @@ class CastChannelSession(
                     if (pendingYtId != null) {
                         val seekPayload = JSONObject().apply {
                             put("type", "flingVideo")
-                            put("data", JSONObject().apply {
-                                put("videoId", pendingYtId)
-                                put("currentTime", positionMs / 1000.0)
-                            })
+                            put(
+                                "data",
+                                JSONObject().apply {
+                                    put("videoId", pendingYtId)
+                                    put("currentTime", positionMs / 1000.0)
+                                }
+                            )
                         }
                         sendMessage(tid, NS_YOUTUBE_MDX, seekPayload)
                     }

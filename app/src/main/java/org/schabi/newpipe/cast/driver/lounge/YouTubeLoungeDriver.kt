@@ -33,7 +33,10 @@ class YouTubeLoungeDriver(
         private const val GET_SCREEN_URL = "https://www.youtube.com/api/lounge/pairing/get_screen"
 
         private val SSDP_MULTICAST_ADDR = byteArrayOf(
-            239.toByte(), 255.toByte(), 255.toByte(), 250.toByte()
+            239.toByte(),
+            255.toByte(),
+            255.toByte(),
+            250.toByte()
         )
         private const val SSDP_PORT = 1900
     }
