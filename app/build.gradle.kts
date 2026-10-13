@@ -105,6 +105,10 @@ configure<ApplicationExtension> {
         abortOnError = false
     }
 
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+    }
+
     compileOptions {
         // Flag to enable support for the new language APIs
         isCoreLibraryDesugaringEnabled = true

@@ -58,6 +58,7 @@ import android.media.AudioManager;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -76,6 +77,8 @@ import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.Tracks;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.source.hls.playlist.HlsPlaylistTracker;
+import com.google.android.exoplayer2.upstream.HttpDataSource;
 import com.google.android.exoplayer2.text.CueGroup;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
@@ -125,6 +128,7 @@ import org.schabi.newpipe.player.ui.PopupPlayerUi;
 import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.DependentPreferenceHelper;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.InfoCache;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.SerializedCache;
@@ -238,6 +242,8 @@ public final class Player implements PlaybackListener, Listener {
     // minimized to background but will resume automatically to the original player type
     private boolean isAudioOnly = false;
     private boolean isPrepared = false;
+    private int http403RecoveryCount = 0;
+    private int playlistStuckRecoveryCount = 0;
 
     /*//////////////////////////////////////////////////////////////////////////
     // UIs, listeners and disposables
@@ -1096,6 +1102,8 @@ public final class Player implements PlaybackListener, Listener {
                 }
                 break;
             case com.google.android.exoplayer2.Player.STATE_READY: //3
+                http403RecoveryCount = 0;
+                playlistStuckRecoveryCount = 0;
                 if (!isPrepared) {
                     isPrepared = true;
                     onPrepared(playWhenReady);
@@ -1555,43 +1563,86 @@ public final class Player implements PlaybackListener, Listener {
         saveStreamProgressState();
         boolean isCatchableException = false;
 
-        switch (error.errorCode) {
-            case ERROR_CODE_BEHIND_LIVE_WINDOW:
-                isCatchableException = true;
+        if (isPlaylistStuckException(error)) {
+            // Live HLS stream playlist didn't update within the stuck duration window
+            isCatchableException = true;
+            if (playlistStuckRecoveryCount < 2) {
+                playlistStuckRecoveryCount++;
+                Log.w(TAG, "PlaylistStuckException detected, re-syncing to live edge (attempt "
+                        + playlistStuckRecoveryCount + ")");
                 simpleExoPlayer.seekToDefaultPosition();
                 simpleExoPlayer.prepare();
-                // Inform the user that we are reloading the stream by
-                // switching to the buffering state
                 onBuffering();
-                break;
-            case ERROR_CODE_IO_INVALID_HTTP_CONTENT_TYPE:
-            case ERROR_CODE_IO_BAD_HTTP_STATUS:
-            case ERROR_CODE_IO_FILE_NOT_FOUND:
-            case ERROR_CODE_IO_NO_PERMISSION:
-            case ERROR_CODE_IO_CLEARTEXT_NOT_PERMITTED:
-            case ERROR_CODE_IO_READ_POSITION_OUT_OF_RANGE:
-            case ERROR_CODE_PARSING_CONTAINER_MALFORMED:
-            case ERROR_CODE_PARSING_MANIFEST_MALFORMED:
-            case ERROR_CODE_PARSING_CONTAINER_UNSUPPORTED:
-            case ERROR_CODE_PARSING_MANIFEST_UNSUPPORTED:
-                // Source errors, signal on playQueue and move on:
+            } else {
+                Log.w(TAG, "PlaylistStuckException persists after retries, "
+                        + "live stream ended or offline");
+                simpleExoPlayer.stop();
+                Toast.makeText(context, R.string.error_livestream_ended, Toast.LENGTH_SHORT).show();
+            }
+        } else if (error.errorCode == ERROR_CODE_IO_BAD_HTTP_STATUS
+                && isHttpForbiddenOrExpired(error)) {
+            if (http403RecoveryCount < 1) {
+                http403RecoveryCount++;
+                isCatchableException = true;
+                Log.w(TAG, "HTTP 403/410 Forbidden detected, self-healing stream "
+                        + "by evicting cache and refreshing URLs");
+                if (currentMetadata != null) {
+                    InfoCache.getInstance().removeInfo(
+                            currentMetadata.getServiceId(),
+                            currentMetadata.getStreamUrl(),
+                            InfoCache.Type.STREAM);
+                }
+                if (playQueue != null && playQueue.getItem() != null) {
+                    playQueue.getItem().setForceReload(true);
+                }
+                setRecovery();
+                reloadPlayQueueManager();
+                onBuffering();
+            } else {
+                Log.e(TAG, "HTTP 403/410 Forbidden persists after fresh URL refresh");
                 if (!exoPlayerIsNull() && playQueue != null) {
                     playQueue.error();
                 }
-                break;
-            case ERROR_CODE_TIMEOUT:
-            case ERROR_CODE_IO_UNSPECIFIED:
-            case ERROR_CODE_IO_NETWORK_CONNECTION_FAILED:
-            case ERROR_CODE_IO_NETWORK_CONNECTION_TIMEOUT:
-            case ERROR_CODE_UNSPECIFIED:
-                // Reload playback on unexpected errors:
-                setRecovery();
-                reloadPlayQueueManager();
-                break;
-            default:
-                // API, remote and renderer errors belong here:
-                onPlaybackShutdown();
-                break;
+            }
+        } else {
+            switch (error.errorCode) {
+                case ERROR_CODE_BEHIND_LIVE_WINDOW:
+                    isCatchableException = true;
+                    simpleExoPlayer.seekToDefaultPosition();
+                    simpleExoPlayer.prepare();
+                    // Inform the user that we are reloading the stream by
+                    // switching to the buffering state
+                    onBuffering();
+                    break;
+                case ERROR_CODE_IO_INVALID_HTTP_CONTENT_TYPE:
+                case ERROR_CODE_IO_BAD_HTTP_STATUS:
+                case ERROR_CODE_IO_FILE_NOT_FOUND:
+                case ERROR_CODE_IO_NO_PERMISSION:
+                case ERROR_CODE_IO_CLEARTEXT_NOT_PERMITTED:
+                case ERROR_CODE_IO_READ_POSITION_OUT_OF_RANGE:
+                case ERROR_CODE_PARSING_CONTAINER_MALFORMED:
+                case ERROR_CODE_PARSING_MANIFEST_MALFORMED:
+                case ERROR_CODE_PARSING_CONTAINER_UNSUPPORTED:
+                case ERROR_CODE_PARSING_MANIFEST_UNSUPPORTED:
+                    // Source errors, signal on playQueue and move on:
+                    if (!exoPlayerIsNull() && playQueue != null) {
+                        playQueue.error();
+                    }
+                    break;
+                case ERROR_CODE_TIMEOUT:
+                case ERROR_CODE_IO_UNSPECIFIED:
+                case ERROR_CODE_IO_NETWORK_CONNECTION_FAILED:
+                case ERROR_CODE_IO_NETWORK_CONNECTION_TIMEOUT:
+                case ERROR_CODE_UNSPECIFIED:
+                    // Reload playback on unexpected errors:
+                    setRecovery();
+                    reloadPlayQueueManager();
+                    break;
+                default:
+                    // API, remote and renderer errors belong here:
+                    onPlaybackShutdown();
+                    break;
+            }
         }
 
         if (!isCatchableException) {
@@ -1601,6 +1652,34 @@ public final class Player implements PlaybackListener, Listener {
         if (fragmentListener != null) {
             fragmentListener.onPlayerError(error, isCatchableException);
         }
+    }
+
+    /* package-private */ static boolean isPlaylistStuckException(
+            @NonNull final PlaybackException error) {
+        Throwable cause = error;
+        while (cause != null) {
+            if (cause instanceof HlsPlaylistTracker.PlaylistStuckException) {
+                return true;
+            }
+            cause = cause.getCause();
+        }
+        return false;
+    }
+
+    /* package-private */ static boolean isHttpForbiddenOrExpired(
+            @NonNull final PlaybackException error) {
+        Throwable cause = error;
+        while (cause != null) {
+            if (cause instanceof HttpDataSource.InvalidResponseCodeException) {
+                final int responseCode =
+                        ((HttpDataSource.InvalidResponseCodeException) cause).responseCode;
+                if (responseCode == 403 || responseCode == 410) {
+                    return true;
+                }
+            }
+            cause = cause.getCause();
+        }
+        return false;
     }
 
     private void createErrorNotification(@NonNull final PlaybackException error) {
@@ -1702,6 +1781,8 @@ public final class Player implements PlaybackListener, Listener {
             }
 
             if (removeThumbnailBeforeSync) {
+                http403RecoveryCount = 0;
+                playlistStuckRecoveryCount = 0;
                 // unset the current (now outdated) thumbnail to ensure it is not used during sync
                 onThumbnailLoaded(null);
             }

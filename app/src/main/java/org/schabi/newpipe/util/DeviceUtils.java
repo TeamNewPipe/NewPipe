@@ -33,7 +33,7 @@ import java.lang.reflect.Method;
 public final class DeviceUtils {
 
     private static final String AMAZON_FEATURE_FIRE_TV = "amazon.hardware.fire_tv";
-    private static final boolean SAMSUNG = Build.MANUFACTURER.equals("samsung");
+    private static final boolean SAMSUNG = "samsung".equalsIgnoreCase(Build.MANUFACTURER);
     private static Boolean isTV = null;
     private static Boolean isFireTV = null;
 
@@ -53,38 +53,38 @@ public final class DeviceUtils {
      * <p>Board: HiSilicon Hi3798MV200</p>
      */
     private static final boolean HI3798MV200 = Build.VERSION.SDK_INT == 24
-            && Build.DEVICE.equals("Hi3798MV200");
+            && "Hi3798MV200".equals(Build.DEVICE);
     /**
      * <p>Zephir TS43UHD-2.</p>
      * <p>Blacklist reason: black screen</p>
      */
     private static final boolean CVT_MT5886_EU_1G = Build.VERSION.SDK_INT == 24
-            && Build.DEVICE.equals("cvt_mt5886_eu_1g");
+            && "cvt_mt5886_eu_1g".equals(Build.DEVICE);
     /**
      * Hilife TV.
      * <p>Blacklist reason: black screen</p>
      */
     private static final boolean REALTEKATV = Build.VERSION.SDK_INT == 25
-            && Build.DEVICE.equals("RealtekATV");
+            && "RealtekATV".equals(Build.DEVICE);
     /**
      * <p>Phillips 4K (O)LED TV.</p>
      * Supports custom ROMs with different API levels
      */
     private static final boolean PH7M_EU_5596 = Build.VERSION.SDK_INT >= 26
-            && Build.DEVICE.equals("PH7M_EU_5596");
+            && "PH7M_EU_5596".equals(Build.DEVICE);
     /**
      * <p>Philips QM16XE.</p>
      * <p>Blacklist reason: black screen</p>
      */
     private static final boolean QM16XE_U = Build.VERSION.SDK_INT == 23
-            && Build.DEVICE.equals("QM16XE_U");
+            && "QM16XE_U".equals(Build.DEVICE);
     /**
      * <p>Sony Bravia VH1.</p>
      * <p>Processor: MT5895</p>
      * <p>Blacklist reason: fullscreen crash / stuttering</p>
      */
     private static final boolean BRAVIA_VH1 = Build.VERSION.SDK_INT == 29
-            && Build.DEVICE.equals("BRAVIA_VH1");
+            && "BRAVIA_VH1".equals(Build.DEVICE);
     /**
      * <p>Sony Bravia VH2.</p>
      * <p>Blacklist reason: fullscreen crash; this includes model A90J as reported in
@@ -92,14 +92,14 @@ public final class DeviceUtils {
      * #9023</a></p>
      */
     private static final boolean BRAVIA_VH2 = Build.VERSION.SDK_INT == 29
-            && Build.DEVICE.equals("BRAVIA_VH2");
+            && "BRAVIA_VH2".equals(Build.DEVICE);
     /**
      * <p>Sony Bravia Android TV platform 2.</p>
      * Uses a MediaTek MT5891 (MT5596) SoC.
      * @see <a href="https://github.com/CiNcH83/bravia_atv2">
      *     https://github.com/CiNcH83/bravia_atv2</a>
      */
-    private static final boolean BRAVIA_ATV2 = Build.DEVICE.equals("BRAVIA_ATV2");
+    private static final boolean BRAVIA_ATV2 = "BRAVIA_ATV2".equals(Build.DEVICE);
     /**
      * <p>Sony Bravia Android TV platform 3 4K.</p>
      * <p>Uses ARM MT5891 and a {@link #BRAVIA_ATV2} motherboard.</p>
@@ -107,29 +107,29 @@ public final class DeviceUtils {
      * @see <a href="https://browser.geekbench.com/v4/cpu/9101105">
      *     https://browser.geekbench.com/v4/cpu/9101105</a>
      */
-    private static final boolean BRAVIA_ATV3_4K = Build.DEVICE.equals("BRAVIA_ATV3_4K");
+    private static final boolean BRAVIA_ATV3_4K = "BRAVIA_ATV3_4K".equals(Build.DEVICE);
     /**
      * <p>Panasonic 4KTV-JUP.</p>
      * <p>Blacklist reason: fullscreen crash</p>
      */
-    private static final boolean TX_50JXW834 = Build.DEVICE.equals("TX_50JXW834");
+    private static final boolean TX_50JXW834 = "TX_50JXW834".equals(Build.DEVICE);
     /**
      * <p>Bouygtel4K / Bouygues Telecom Bbox 4K.</p>
      * <p>Blacklist reason: black screen; reported at
      * <a href="https://github.com/TeamNewPipe/NewPipe/pull/10122#issuecomment-1638475769">
      *     #10122</a></p>
      */
-    private static final boolean HMB9213NW = Build.DEVICE.equals("HMB9213NW");
+    private static final boolean HMB9213NW = "HMB9213NW".equals(Build.DEVICE);
     /**
      * <p>JMGO N1S 4K.</p>
      * <p>Blacklist reason: fullscreen crash</p>
      */
-    private static final boolean LONAVLA = Build.DEVICE.equals("lonavla");
+    private static final boolean LONAVLA = "lonavla".equals(Build.DEVICE);
     /**
      * <p>TCL 65Q651G.</p>
      * <p>Blacklist reason: fullscreen crash</p>
      */
-    private static final boolean G10 = Build.DEVICE.equals("G10");
+    private static final boolean G10 = "G10".equals(Build.DEVICE);
     // endregion
 
     private DeviceUtils() {

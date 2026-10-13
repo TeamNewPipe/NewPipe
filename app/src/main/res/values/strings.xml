@@ -918,4 +918,5 @@
     <string name="cast_link">Link</string>
     <string name="cast_pairing_failed">Could not link TV code. Please check the code and try again.</string>
     <string name="cast_volume">Volume</string>
+    <string name="error_livestream_ended">The live stream has ended or connection stalled</string>
 </resources>

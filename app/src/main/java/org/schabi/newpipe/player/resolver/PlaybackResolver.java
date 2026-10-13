@@ -235,7 +235,11 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                 }
                 break;
             case C.CONTENT_TYPE_HLS:
-                factory = dataSource.getLiveHlsMediaSourceFactory();
+                if (metadata.getServiceId() == ServiceList.YouTube.getServiceId()) {
+                    factory = dataSource.getLiveYoutubeHlsMediaSourceFactory();
+                } else {
+                    factory = dataSource.getLiveHlsMediaSourceFactory();
+                }
                 break;
             case C.CONTENT_TYPE_OTHER:
             case C.CONTENT_TYPE_RTSP:
