@@ -74,6 +74,53 @@ public final class PlayerHolder {
         return getPlayer().map(Player::isPlaying).orElse(false);
     }
 
+    public void play() {
+        getPlayer().ifPresent(Player::play);
+    }
+
+    public void pause() {
+        getPlayer().ifPresent(Player::pause);
+    }
+
+    public void seekTo(final long positionMs) {
+        getPlayer().ifPresent(p -> p.seekTo(positionMs));
+    }
+
+    public void playNext() {
+        getPlayer().ifPresent(Player::playNext);
+    }
+
+    public void playPrevious() {
+        getPlayer().ifPresent(Player::playPrevious);
+    }
+
+    public long getCurrentPosition() {
+        return getPlayer()
+                .map(p -> p.getExoPlayer() != null ? p.getExoPlayer().getCurrentPosition() : 0L)
+                .orElse(0L);
+    }
+
+    public long getDuration() {
+        return getPlayer()
+                .map(p -> p.getExoPlayer() != null ? p.getExoPlayer().getDuration() : 0L)
+                .orElse(0L);
+    }
+
+    public long getBufferedPosition() {
+        return getPlayer()
+                .map(p -> p.getExoPlayer() != null ? p.getExoPlayer().getBufferedPosition() : 0L)
+                .orElse(0L);
+    }
+
+    @Nullable
+    public PlayerService getPlayerService() {
+        return playerService;
+    }
+
+    public Optional<Player> getPlayerInstance() {
+        return getPlayer();
+    }
+
     public boolean isPlayerOpen() {
         return getPlayer().isPresent();
     }

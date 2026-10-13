@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ SPDX-FileCopyrightText: 2026 NewPipe e.V. <https://newpipe-ev.de>
+  ~ SPDX-License-Identifier: GPL-3.0-or-later
+  -->
+<resources>
+
+    <!-- Base NewPipe Android TV Theme -->
+    <style name="Theme.NewPipe.Tv" parent="Theme.Leanback">
+        <item name="defaultBrandColor">#E62117</item>
+        <item name="defaultSearchColor">#E62117</item>
+        <item name="defaultSearchBrightColor">@color/white</item>
+        <item name="defaultSectionHeaderColor">@color/white</item>
+        <item name="playbackProgressPrimaryColor">#E62117</item>
+        <item name="playbackControlsIconHighlightColor">#E62117</item>
+        <item name="android:windowBackground">#121212</item>
+    </style>
+
+    <!-- TV Browse Theme -->
+    <style name="Theme.NewPipe.Tv.Browse" parent="Theme.Leanback.Browse">
+        <item name="defaultBrandColor">#E62117</item>
+        <item name="defaultSearchColor">#E62117</item>
+        <item name="defaultSearchBrightColor">@color/white</item>
+        <item name="defaultSectionHeaderColor">@color/white</item>
+        <item name="android:windowBackground">#121212</item>
+    </style>
+
+    <!-- TV Details Theme -->
+    <style name="Theme.NewPipe.Tv.Details" parent="Theme.Leanback.Details">
+        <item name="defaultBrandColor">#E62117</item>
+        <item name="defaultSearchColor">#E62117</item>
+        <item name="defaultSearchBrightColor">@color/white</item>
+        <item name="android:windowBackground">#121212</item>
+    </style>
+
+    <!-- TV Fullscreen Player Theme -->
+    <style name="Theme.NewPipe.Tv.Player" parent="Theme.Leanback">
+        <item name="playbackProgressPrimaryColor">#E62117</item>
+        <item name="playbackControlsIconHighlightColor">#E62117</item>
+        <item name="android:windowBackground">@color/black</item>
+    </style>
+
+    <!-- TV Search Theme -->
+    <style name="Theme.NewPipe.Tv.Search" parent="Theme.Leanback">
+        <item name="defaultBrandColor">#E62117</item>
+        <item name="defaultSearchColor">#E62117</item>
+        <item name="defaultSearchBrightColor">@color/white</item>
+        <item name="android:windowBackground">#121212</item>
+    </style>
+
+    <!-- TV Settings Theme -->
+    <style name="Theme.NewPipe.Tv.Settings" parent="Theme.Leanback">
+        <item name="defaultBrandColor">#E62117</item>
+        <item name="android:windowBackground">#121212</item>
+    </style>
+
+</resources>

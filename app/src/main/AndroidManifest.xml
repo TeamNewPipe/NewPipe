@@ -48,9 +48,63 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Android TV 10-Foot Activities -->
+        <activity
+            android:name=".tv.ui.TvMainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout|smallestScreenSize"
+            android:theme="@style/Theme.NewPipe.Tv.Browse">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".tv.ui.TvVideoDetailsActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout|smallestScreenSize"
+            android:theme="@style/Theme.NewPipe.Tv.Details" />
+
+        <activity
+            android:name=".tv.ui.TvPlayerActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout|smallestScreenSize"
+            android:theme="@style/Theme.NewPipe.Tv.Player" />
+
+        <activity
+            android:name=".tv.ui.TvSearchActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout|smallestScreenSize"
+            android:theme="@style/Theme.NewPipe.Tv.Search" />
+
+        <activity
+            android:name=".tv.ui.TvChannelActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout|smallestScreenSize"
+            android:theme="@style/Theme.NewPipe.Tv.Browse" />
+
+        <activity
+            android:name=".tv.ui.TvSettingsActivity"
+            android:exported="false"
+            android:label="@string/settings"
+            android:screenOrientation="landscape"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout|smallestScreenSize"
+            android:theme="@style/Theme.NewPipe.Tv.Settings" />
 
         <receiver
             android:name="androidx.media.session.MediaButtonReceiver"

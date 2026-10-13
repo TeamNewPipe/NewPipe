@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ SPDX-FileCopyrightText: 2026 NewPipe e.V. <https://newpipe-ev.de>
+  ~ SPDX-License-Identifier: GPL-3.0-or-later
+  -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#3A3A3A" />
+            <stroke android:width="2dp" android:color="#E62117" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#242424" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+</selector>

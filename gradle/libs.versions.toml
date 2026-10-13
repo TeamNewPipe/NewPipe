@@ -39,6 +39,7 @@ kotlinx-serialization-json = "1.11.0"
 ksp = "2.3.12"
 ktlint = "1.8.0"
 leakcanary = "2.14"
+leanback = "1.2.0"
 lifecycle = "2.11.0"
 localbroadcastmanager = "1.1.0"
 markwon = "4.6.2"
@@ -92,6 +93,8 @@ androidx-core = { module = "androidx.core:core-ktx", version.ref = "core" }
 androidx-documentfile = { module = "androidx.documentfile:documentfile", version.ref = "documentfile" }
 androidx-fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment" }
 androidx-junit = { module = "androidx.test.ext:junit", version.ref = "junit-ext" }
+androidx-leanback = { module = "androidx.leanback:leanback", version.ref = "leanback" }
+androidx-leanback-preference = { module = "androidx.leanback:leanback-preference", version.ref = "leanback" }
 androidx-lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 androidx-localbroadcastmanager = { module = "androidx.localbroadcastmanager:localbroadcastmanager", version.ref = "localbroadcastmanager" }

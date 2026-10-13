@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ SPDX-FileCopyrightText: 2026 NewPipe e.V. <https://newpipe-ev.de>
+  ~ SPDX-License-Identifier: GPL-3.0-or-later
+  -->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/settings_category_appearance_title">
+        <SwitchPreference
+            android:key="tv_mode_force_enabled"
+            android:title="Force Android TV UI"
+            android:summary="Always use 10-foot TV interface on this device"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/settings_category_video_audio_title">
+        <ListPreference
+            android:key="default_resolution"
+            android:title="@string/default_resolution_title"
+            android:entries="@array/resolution_list_description"
+            android:entryValues="@array/resolution_list_values"
+            android:defaultValue="1080p" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/settings_category_history_title">
+        <SwitchPreference
+            android:key="@string/enable_watch_history_key"
+            android:title="@string/enable_watch_history_title"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

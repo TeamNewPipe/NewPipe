@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ SPDX-FileCopyrightText: 2026 NewPipe e.V. <https://newpipe-ev.de>
+  ~ SPDX-License-Identifier: GPL-3.0-or-later
+  -->
+<resources>
+    <string name="channel">Channel</string>
+    <string name="recent_videos">Recent videos</string>
+    <string name="related_videos">Related videos</string>
+    <string name="controls_comments_title">Comments</string>
+    <string name="subscribers_count">%s subscribers</string>
+</resources>

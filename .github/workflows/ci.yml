@@ -8,6 +8,7 @@ on:
       - master
       - refactor
       - release**
+      - feat/**
     paths-ignore:
       - 'README.md'
       - 'doc/**'
@@ -20,6 +21,7 @@ on:
     branches:
       - dev
       - master
+      - feat/**
     paths-ignore:
       - 'README.md'
       - 'doc/**'
@@ -108,6 +110,53 @@ jobs:
         if: failure()
         with:
           name: android-test-report-api${{ matrix.api-level }}
+          path: app/build/reports/androidTests/connected/**
+
+  test-android-tv:
+    name: Test Android TV (API ${{ matrix.api-level }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - api-level: 30
+            target: android-tv
+            arch: x86
+
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: set up JDK
+        uses: actions/setup-java@v5
+        with:
+          java-version: 21
+          distribution: "temurin"
+          cache: 'gradle'
+
+      - name: Run Android TV tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: ${{ matrix.target }}
+          arch: ${{ matrix.arch }}
+          profile: tv_1080p
+          script: ./gradlew connectedCheck --stacktrace
+
+      - name: Upload Android TV test report on failure
+        uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: android-tv-test-report-api${{ matrix.api-level }}
           path: app/build/reports/androidTests/connected/**
 
   sonar:
