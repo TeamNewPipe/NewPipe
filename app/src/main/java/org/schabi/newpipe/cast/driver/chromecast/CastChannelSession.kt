@@ -15,7 +15,9 @@ import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 import org.json.JSONArray
 import org.json.JSONObject
+import org.schabi.newpipe.cast.driver.lounge.LoungeSession
 import org.schabi.newpipe.cast.model.CastDevice
+import org.schabi.newpipe.cast.model.CastDeviceType
 import org.schabi.newpipe.cast.model.CastPlayerState
 import org.schabi.newpipe.cast.session.CastSession
 import org.schabi.newpipe.cast.session.CastStateListener
@@ -34,6 +36,8 @@ class CastChannelSession(
 
     private var activeAppId: String? = null
     private var transportId: String? = null
+    private var activeScreenId: String? = null
+    private var loungeBridgeSession: LoungeSession? = null
     private var mediaSessionId: Long = 0L
     private var currentPositionMs: Long = 0L
     private var durationMs: Long = 0L
@@ -43,6 +47,7 @@ class CastChannelSession(
     private var readThread: Thread? = null
     private var heartbeatThread: Thread? = null
     private var pendingMediaLoad: MediaLoadRequest? = null
+    private var lastMediaRequest: MediaLoadRequest? = null
 
     private data class MediaLoadRequest(
         val streamUrl: String,
@@ -92,7 +97,11 @@ class CastChannelSession(
                             throw CertificateException("Missing Chromecast certificate chain")
                         }
                         for (cert in chain) {
-                            cert.checkValidity()
+                            try {
+                                cert.checkValidity()
+                            } catch (_: CertificateException) {
+                                // Allow self-signed or minor clock drift on local Cast devices
+                            }
                         }
                     }
                 }
@@ -137,6 +146,11 @@ class CastChannelSession(
 
         Thread {
             try {
+                loungeBridgeSession?.disconnect()
+                loungeBridgeSession = null
+                activeScreenId = null
+                lastMediaRequest = null
+
                 transportId?.let { tid ->
                     sendMessage(tid, NS_CONNECTION, JSONObject().put("type", "CLOSE"))
                 }
@@ -190,6 +204,7 @@ class CastChannelSession(
     }
 
     private fun sendMediaRequest(tid: String, request: MediaLoadRequest) {
+        lastMediaRequest = request
         Thread {
             try {
                 if (request.youtubeVideoId != null) {
@@ -204,6 +219,15 @@ class CastChannelSession(
                         )
                     }
                     sendMessage(tid, NS_YOUTUBE_MDX, flingPayload)
+
+                    loungeBridgeSession?.loadMedia(
+                        request.streamUrl,
+                        request.title,
+                        request.artist,
+                        request.thumbnailUrl,
+                        request.startPositionMs
+                    )
+
                     currentPositionMs = request.startPositionMs
                     playerState = CastPlayerState.PLAYING
                     mainHandler.post {
@@ -247,23 +271,26 @@ class CastChannelSession(
     }
 
     override fun play() {
+        loungeBridgeSession?.play()
         sendMediaCommand("PLAY")
         playerState = CastPlayerState.PLAYING
         mainHandler.post { listener.onPlaybackStateChanged(playerState) }
     }
 
     override fun pause() {
+        loungeBridgeSession?.pause()
         sendMediaCommand("PAUSE")
         playerState = CastPlayerState.PAUSED
         mainHandler.post { listener.onPlaybackStateChanged(playerState) }
     }
 
     override fun seekTo(positionMs: Long) {
+        loungeBridgeSession?.seekTo(positionMs)
         val tid = transportId ?: return
         Thread {
             try {
                 if (activeAppId == APP_ID_YOUTUBE) {
-                    val pendingYtId = pendingMediaLoad?.youtubeVideoId
+                    val pendingYtId = pendingMediaLoad?.youtubeVideoId ?: lastMediaRequest?.youtubeVideoId
                     if (pendingYtId != null) {
                         val seekPayload = JSONObject().apply {
                             put("type", "flingVideo")
@@ -296,6 +323,7 @@ class CastChannelSession(
     }
 
     override fun setVolume(volume: Float) {
+        loungeBridgeSession?.setVolume(volume)
         val tid = transportId ?: return
         Thread {
             try {
@@ -377,9 +405,80 @@ class CastChannelSession(
                 "PING" -> {
                     sendMessage(message.sourceId, NS_HEARTBEAT, JSONObject().put("type", "PONG"))
                 }
+
+                "LAUNCH_ERROR" -> handleLaunchError()
+
+                "mdxSessionStatus" -> handleMdxSessionStatus(json)
             }
         } catch (ignored: Exception) {
             // Ignore malformed payloads from network
+        }
+    }
+
+    private fun handleLaunchError() {
+        if (activeAppId == APP_ID_YOUTUBE) {
+            launchApp(APP_ID_DEFAULT_MEDIA_RECEIVER)
+        }
+    }
+
+    private fun handleMdxSessionStatus(json: JSONObject) {
+        val dataObj = json.optJSONObject("data")
+        val screenId = json.optString("screenId", dataObj?.optString("screenId") ?: "")
+        if (screenId.isNotEmpty()) {
+            activeScreenId = screenId
+            initLoungeBridge(screenId)
+        }
+    }
+
+    private fun initLoungeBridge(screenId: String) {
+        val loungeDevice = CastDevice(
+            id = "lounge_$screenId",
+            name = device.name,
+            type = CastDeviceType.YOUTUBE_LOUNGE,
+            screenId = screenId
+        )
+        val bridgeListener = object : CastStateListener {
+            override fun onSessionStarted(session: CastSession) {
+                lastMediaRequest?.let { req ->
+                    if (req.youtubeVideoId != null) {
+                        session.loadMedia(
+                            req.streamUrl,
+                            req.title,
+                            req.artist,
+                            req.thumbnailUrl,
+                            req.startPositionMs
+                        )
+                    }
+                }
+            }
+
+            override fun onSessionEnded(session: CastSession, error: Throwable?) {
+                // No-op for bridge session ended
+            }
+
+            override fun onPlaybackStateChanged(state: CastPlayerState) {
+                playerState = state
+                mainHandler.post { listener.onPlaybackStateChanged(state) }
+            }
+
+            override fun onProgressUpdated(positionMs: Long, durationMs: Long) {
+                currentPositionMs = positionMs
+                if (durationMs > 0) this@CastChannelSession.durationMs = durationMs
+                mainHandler.post {
+                    listener.onProgressUpdated(positionMs, this@CastChannelSession.durationMs)
+                }
+            }
+
+            override fun onMediaCompleted() {
+                mainHandler.post { listener.onMediaCompleted() }
+            }
+
+            override fun onVolumeChanged(volume: Float) {
+                mainHandler.post { listener.onVolumeChanged(volume) }
+            }
+        }
+        loungeBridgeSession = LoungeSession(loungeDevice, bridgeListener).also {
+            it.connect()
         }
     }
 

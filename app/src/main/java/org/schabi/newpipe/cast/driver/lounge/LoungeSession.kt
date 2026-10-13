@@ -45,7 +45,11 @@ class LoungeSession(
         Thread {
             try {
                 if (activeLoungeToken.isNullOrEmpty()) {
-                    activeLoungeToken = resolveLoungeTokenFromDial()
+                    activeLoungeToken = if (!device.screenId.isNullOrEmpty()) {
+                        fetchLoungeTokenForScreenId(device.screenId)
+                    } else {
+                        resolveLoungeTokenFromDial()
+                    }
                 }
 
                 check(!activeLoungeToken.isNullOrEmpty()) {
@@ -252,7 +256,7 @@ class LoungeSession(
         return fetchLoungeTokenForScreenId(screenId)
     }
 
-    private fun fetchLoungeTokenForScreenId(screenId: String): String? {
+    internal fun fetchLoungeTokenForScreenId(screenId: String): String? {
         return try {
             val formBody = FormBody.Builder()
                 .add("screen_ids", screenId)

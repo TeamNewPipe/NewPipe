@@ -1,6 +1,7 @@
 package org.schabi.newpipe.cast.driver.lounge
 
 import android.content.Context
+import android.net.wifi.WifiManager
 import android.os.Handler
 import android.os.Looper
 import androidx.preference.PreferenceManager
@@ -26,6 +27,7 @@ class YouTubeLoungeDriver(
 
     private val isDiscovering = AtomicBoolean(false)
     private var ssdpThread: Thread? = null
+    private var multicastLock: WifiManager.MulticastLock? = null
     private val mainHandler = Handler(Looper.getMainLooper())
 
     companion object {
@@ -49,6 +51,16 @@ class YouTubeLoungeDriver(
 
         // First, load previously paired TVs from preferences
         loadSavedDevices().forEach { onDeviceFound(it) }
+
+        try {
+            val wifiManager = context.applicationContext.getSystemService(Context.WIFI_SERVICE) as? WifiManager
+            multicastLock = wifiManager?.createMulticastLock("NewPipeCastSSDP")?.apply {
+                setReferenceCounted(true)
+                acquire()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
         // Second, search for Smart TVs via SSDP/DIAL
         ssdpThread = Thread {
@@ -97,6 +109,16 @@ class YouTubeLoungeDriver(
         isDiscovering.set(false)
         ssdpThread?.interrupt()
         ssdpThread = null
+        try {
+            multicastLock?.let {
+                if (it.isHeld) {
+                    it.release()
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        multicastLock = null
     }
 
     override fun createSession(device: CastDevice, listener: CastStateListener): CastSession {
