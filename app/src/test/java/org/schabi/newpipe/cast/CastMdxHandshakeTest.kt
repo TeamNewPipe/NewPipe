@@ -5,12 +5,12 @@
 
 package org.schabi.newpipe.cast
 
-import org.json.JSONObject
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Test
 import org.schabi.newpipe.cast.model.CastDevice
 import org.schabi.newpipe.cast.model.CastDeviceType
+import org.schabi.newpipe.cast.util.CastUtils
 
 class CastMdxHandshakeTest {
 
@@ -23,9 +23,7 @@ class CastMdxHandshakeTest {
             }
         """.trimIndent()
 
-        val json = JSONObject(payload)
-        val dataObj = json.optJSONObject("data")
-        val screenId = json.optString("screenId", dataObj?.optString("screenId") ?: "")
+        val screenId = CastUtils.extractScreenId(payload)
 
         assertEquals("screen-abc-123", screenId)
     }
@@ -42,11 +40,24 @@ class CastMdxHandshakeTest {
             }
         """.trimIndent()
 
-        val json = JSONObject(payload)
-        val dataObj = json.optJSONObject("data")
-        val screenId = json.optString("screenId", dataObj?.optString("screenId") ?: "")
+        val screenId = CastUtils.extractScreenId(payload)
 
         assertEquals("nested-screen-456", screenId)
+    }
+
+    @Test
+    fun testParseMdxSessionStatusWithScreenUnderscoreId() {
+        val payload = """
+            {
+                "data": {
+                    "screen_id": "screen-und-789"
+                }
+            }
+        """.trimIndent()
+
+        val screenId = CastUtils.extractScreenId(payload)
+
+        assertEquals("screen-und-789", screenId)
     }
 
     @Test

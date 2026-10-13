@@ -396,6 +396,9 @@ class CastChannelSession(
 
     private fun handleIncomingMessage(message: CastMessage) {
         try {
+            if (message.namespace == NS_YOUTUBE_MDX) {
+                handleMdxSessionStatus(message.payloadUtf8)
+            }
             val json = JSONObject(message.payloadUtf8)
             when (json.optString("type")) {
                 "RECEIVER_STATUS" -> handleReceiverStatus(json)
@@ -408,7 +411,7 @@ class CastChannelSession(
 
                 "LAUNCH_ERROR" -> handleLaunchError()
 
-                "mdxSessionStatus" -> handleMdxSessionStatus(json)
+                "mdxSessionStatus" -> handleMdxSessionStatus(message.payloadUtf8)
             }
         } catch (ignored: Exception) {
             // Ignore malformed payloads from network
@@ -421,10 +424,9 @@ class CastChannelSession(
         }
     }
 
-    private fun handleMdxSessionStatus(json: JSONObject) {
-        val dataObj = json.optJSONObject("data")
-        val screenId = json.optString("screenId", dataObj?.optString("screenId") ?: "")
-        if (screenId.isNotEmpty()) {
+    private fun handleMdxSessionStatus(payloadUtf8: String) {
+        val screenId = CastUtils.extractScreenId(payloadUtf8)
+        if (!screenId.isNullOrEmpty() && screenId != activeScreenId) {
             activeScreenId = screenId
             initLoungeBridge(screenId)
         }

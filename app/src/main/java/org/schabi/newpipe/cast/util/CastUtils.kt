@@ -11,6 +11,8 @@ object CastUtils {
 
     private val RAW_ID_PATTERN = Pattern.compile("^[a-zA-Z0-9_-]{11}$")
 
+    private val SCREEN_ID_PATTERN = Pattern.compile("\"screen(?:Id|_id)\"\\s*:\\s*\"([^\"]+)\"")
+
     /**
      * Extracts an 11-character YouTube video ID from various URL formats
      * (standard watch, shorts, embeds, youtu.be, mobile) or returns the ID
@@ -30,6 +32,22 @@ object CastUtils {
             if (matcher.find()) {
                 return matcher.group(1)
             }
+        }
+        return null
+    }
+
+    /**
+     * Extracts screenId from an MDX status JSON payload or string without relying
+     * on Android platform stubs during JVM execution.
+     */
+    @JvmStatic
+    fun extractScreenId(payloadJson: String?): String? {
+        if (payloadJson.isNullOrBlank()) {
+            return null
+        }
+        val matcher = SCREEN_ID_PATTERN.matcher(payloadJson)
+        if (matcher.find()) {
+            return matcher.group(1)
         }
         return null
     }
