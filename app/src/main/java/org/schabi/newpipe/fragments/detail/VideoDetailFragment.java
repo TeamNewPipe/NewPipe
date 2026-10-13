@@ -2539,7 +2539,7 @@ public final class VideoDetailFragment
     }
 
     private void updateOverlayPlayQueueButtonVisibility() {
-            // binding is null when rotating the device...
+        if (binding != null) {
             binding.overlayPlayQueueButton.setVisibility(View.GONE);
         }
     }
