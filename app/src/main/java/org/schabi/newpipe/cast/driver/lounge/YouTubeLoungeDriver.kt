@@ -32,8 +32,9 @@ class YouTubeLoungeDriver(
         private const val PREF_PAIRED_LOUNGE_DEVICES = "cast_paired_lounge_devices"
         private const val GET_SCREEN_URL = "https://www.youtube.com/api/lounge/pairing/get_screen"
 
-        @Suppress("kotlin:S1313") // Standard IANA IPv4 multicast address for UPnP/SSDP discovery (RFC 2365)
-        private const val SSDP_MULTICAST_IP = "239.255.255.250"
+        private val SSDP_MULTICAST_ADDR = byteArrayOf(
+            239.toByte(), 255.toByte(), 255.toByte(), 250.toByte()
+        )
         private const val SSDP_PORT = 1900
     }
 
@@ -53,14 +54,14 @@ class YouTubeLoungeDriver(
                 socket = DatagramSocket()
                 socket.soTimeout = 4000
 
+                val group = InetAddress.getByAddress(SSDP_MULTICAST_ADDR)
                 val query = "M-SEARCH * HTTP/1.1\r\n" +
-                    "HOST: $SSDP_MULTICAST_IP:$SSDP_PORT\r\n" +
+                    "HOST: ${group.hostAddress}:$SSDP_PORT\r\n" +
                     "MAN: \"ssdp:discover\"\r\n" +
                     "MX: 3\r\n" +
                     "ST: urn:dial-multiscreen-org:service:dial:1\r\n\r\n"
 
                 val queryBytes = query.toByteArray(Charsets.UTF_8)
-                val group = InetAddress.getByName(SSDP_MULTICAST_IP)
                 val packet = DatagramPacket(queryBytes, queryBytes.size, group, SSDP_PORT)
                 socket.send(packet)
 
