@@ -7,10 +7,20 @@
     android:layout_height="match_parent"
     android:background="?attr/windowBackground">
 
+    <ImageView
+        android:id="@+id/detail_ambient_backdrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:alpha="0.32"
+        android:importantForAccessibility="no" />
+
+
+
     <eightbitlab.com.blurview.BlurView
         android:id="@+id/mini_backdrop"
         android:layout_width="match_parent"
-        android:layout_height="96dp"
+        android:layout_height="135dp"
         android:layout_marginHorizontal="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/frost_mini_player_bg"
@@ -631,133 +641,68 @@
     <RelativeLayout
         android:id="@+id/overlay_layout"
         android:layout_width="match_parent"
-        android:layout_height="96dp"
-        android:layout_gravity="top"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_height="135dp"
+        android:layout_marginHorizontal="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:elevation="0dp"
-        android:clipToOutline="true"
-        android:background="@android:color/transparent"
         android:visibility="gone">
 
         <ImageButton
             android:id="@+id/overlay_thumbnail"
-            android:layout_width="144dp"
-            android:layout_height="81dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:clipToOutline="true"
+            android:padding="0dp"
             android:scaleType="centerCrop"
-            android:contentDescription="@string/play" />
+            android:contentDescription="@string/start_main_player_fullscreen" />
 
+        <!-- Metadata remains available to accessibility without recreating an audio strip. -->
         <LinearLayout
             android:id="@+id/overlay_metadata_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="44dp"
-            android:layout_toEndOf="@+id/overlay_thumbnail"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="6dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            tools:ignore="RtlHardcoded">
-
+            android:visibility="gone">
             <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/overlay_title_text_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="marquee"
-                android:fadingEdge="horizontal"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:scrollHorizontally="true"
-                android:singleLine="true"
-                android:textColor="@android:color/white"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                tools:ignore="RtlHardcoded"
-                tools:text="Video Title" />
-
+                android:layout_width="match_parent" android:layout_height="wrap_content" />
             <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/overlay_channel_text_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:ellipsize="marquee"
-                android:fadingEdge="horizontal"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:scrollHorizontally="true"
-                android:singleLine="true"
-                android:textColor="#B3FFFFFF"
-                android:textSize="11sp"
-                tools:text="Channel Name" />
-
+                android:layout_width="match_parent" android:layout_height="wrap_content" />
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/overlay_buttons_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="44dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="6dp"
-            android:layout_marginBottom="4dp"
-            android:gravity="center_vertical"
-            tools:ignore="RtlHardcoded">
-
+            android:layout_width="match_parent"
+            android:layout_height="48dp">
             <ImageButton
                 android:id="@+id/overlay_play_queue_button"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/title_activity_play_queue"
-                android:scaleType="center"
-                android:src="@drawable/ic_list"
-                android:tint="#B3FFFFFF"
-                tools:ignore="RtlHardcoded" />
-
+                android:layout_width="48dp" android:layout_height="48dp"
+                android:visibility="gone"
+                android:contentDescription="@string/title_activity_play_queue" />
             <ImageButton
                 android:id="@+id/overlay_play_pause_button"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:layout_marginStart="2dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="44dp" android:layout_height="44dp"
+                android:layout_alignParentStart="true" android:layout_margin="4dp"
+                android:background="@drawable/frost_duration_bg"
                 android:contentDescription="@string/pause"
-                android:focusable="true"
-                android:focusedByDefault="true"
-                android:scaleType="center"
-                android:src="@drawable/ic_play_arrow"
+                android:scaleType="center" android:src="@drawable/ic_play_arrow"
                 android:tint="@android:color/white" />
-
             <ImageButton
                 android:id="@+id/overlay_close_button"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:layout_marginStart="2dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="44dp" android:layout_height="44dp"
+                android:layout_alignParentEnd="true" android:layout_margin="4dp"
+                android:background="@drawable/frost_duration_bg"
                 android:contentDescription="@string/close"
-                android:scaleType="center"
-                android:src="@drawable/ic_close"
-                android:tint="#B3FFFFFF"
-                tools:ignore="RtlSymmetry" />
-
-        </LinearLayout>
+                android:scaleType="center" android:src="@drawable/ic_close"
+                android:tint="@android:color/white" />
+        </RelativeLayout>
 
         <ProgressBar
             android:id="@+id/overlay_progress_bar"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_width="match_parent" android:layout_height="2dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginHorizontal="12dp"
             android:progressDrawable="@drawable/frost_mini_progress" />
-
     </RelativeLayout>
-
 
 </FrameLayout>

@@ -17,4 +17,5 @@
     <string name="hub_history_empty">Videos you watch will appear here.</string>
     <string name="hub_playlists_empty">Save videos to a playlist to build your library.</string>
     <string name="hub_loading_error">Could not load your library. Reopen this page to try again.</string>
+    <string name="expand_video">Expand video: %1$s</string>
 </resources>
