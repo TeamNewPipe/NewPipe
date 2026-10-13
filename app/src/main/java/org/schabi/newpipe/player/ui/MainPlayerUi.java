@@ -46,6 +46,11 @@ import com.google.android.exoplayer2.ui.SubtitleView;
 import com.google.android.exoplayer2.video.VideoSize;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.cast.model.CastPlayerState;
+import org.schabi.newpipe.cast.session.CastSession;
+import org.schabi.newpipe.cast.session.CastSessionManager;
+import org.schabi.newpipe.cast.session.CastStateListener;
+import org.schabi.newpipe.cast.ui.CastDeviceBottomSheet;
 import org.schabi.newpipe.databinding.PlayerBinding;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamSegment;
@@ -167,6 +172,12 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         }));
         binding.queueButton.setOnClickListener(v -> onQueueClicked());
         binding.segmentsButton.setOnClickListener(v -> onSegmentsClicked());
+        if (binding.castButton != null) {
+            binding.castButton.setOnClickListener(v -> onCastButtonClicked());
+        }
+
+        CastSessionManager.getInstance(context).addListener(getCastStateListener());
+        updateCastState(CastSessionManager.getInstance(context).getCurrentSession());
 
         binding.addToPlaylistButton.setOnClickListener(v ->
                 getParentActivity().map(FragmentActivity::getSupportFragmentManager)
@@ -201,6 +212,9 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         binding.queueButton.setOnClickListener(null);
         binding.segmentsButton.setOnClickListener(null);
         binding.addToPlaylistButton.setOnClickListener(null);
+        if (binding.castButton != null) {
+            binding.castButton.setOnClickListener(null);
+        }
 
         context.getContentResolver().unregisterContentObserver(settingsContentObserver);
 
@@ -235,6 +249,10 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     @Override
     public void destroy() {
         super.destroy();
+
+        if (castStateListener != null) {
+            CastSessionManager.getInstance(context).removeListener(castStateListener);
+        }
 
         // Exit from fullscreen when user closes the player via notification
         if (isFullscreen) {
@@ -975,6 +993,83 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         // DisplayMetrics from activity context knows about MultiWindow feature
         // while DisplayMetrics from app context doesn't
         return DeviceUtils.isLandscape(getParentContext().orElse(player.getService()));
+    }
+    //endregion
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Cast Integration
+    //////////////////////////////////////////////////////////////////////////*/
+    //region Cast Integration
+
+    private CastStateListener castStateListener;
+
+    private CastStateListener getCastStateListener() {
+        if (castStateListener == null) {
+            castStateListener = new CastStateListener() {
+                @Override
+                public void onSessionStarted(@NonNull final CastSession session) {
+                    updateCastState(session);
+                }
+
+                @Override
+                public void onSessionEnded(@NonNull final CastSession session,
+                                           @Nullable final Throwable error) {
+                    updateCastState(null);
+                }
+
+                @Override
+                public void onPlaybackStateChanged(@NonNull final CastPlayerState state) {
+                    // No-op: playback state changes handled in CastPlayerUi
+                }
+
+                @Override
+                public void onProgressUpdated(final long positionMs, final long durationMs) {
+                    // No-op: progress updates handled in CastPlayerUi
+                }
+
+                @Override
+                public void onMediaCompleted() {
+                    // No-op: stream advancement handled in CastPlayerUi
+                }
+
+                @Override
+                public void onVolumeChanged(final float volume) {
+                    // No-op: volume controls handled in CastDeviceBottomSheet
+                }
+            };
+        }
+        return castStateListener;
+    }
+
+    private void onCastButtonClicked() {
+        getParentActivity().map(FragmentActivity::getSupportFragmentManager)
+                .ifPresent(fragmentManager ->
+                        new CastDeviceBottomSheet().show(fragmentManager, "CastDeviceBottomSheet"));
+    }
+
+    private void updateCastState(@Nullable final CastSession session) {
+        if (session != null && session.isConnected()) {
+            if (binding.castButton != null) {
+                binding.castButton.setImageResource(R.drawable.ic_cast_connected);
+            }
+            if (binding.castOverlay != null) {
+                binding.castOverlay.setVisibility(View.VISIBLE);
+            }
+            if (binding.castStatusText != null) {
+                binding.castStatusText.setText(context.getString(R.string.casting_to,
+                        session.getDevice().getName()));
+            }
+            if (binding.castDeviceNameText != null) {
+                binding.castDeviceNameText.setText(session.getDevice().getName());
+            }
+        } else {
+            if (binding.castButton != null) {
+                binding.castButton.setImageResource(R.drawable.ic_cast);
+            }
+            if (binding.castOverlay != null) {
+                binding.castOverlay.setVisibility(View.GONE);
+            }
+        }
     }
     //endregion
 }

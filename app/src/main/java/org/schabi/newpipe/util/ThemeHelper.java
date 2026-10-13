@@ -114,6 +114,38 @@ public final class ThemeHelper {
     }
 
     /**
+     * Return a bottom sheet dialog theme styled according to the selected theme.
+     *
+     * @param context context to get the selected theme
+     * @return the bottom sheet dialog style
+     */
+    @StyleRes
+    public static int getBottomSheetDialogTheme(final Context context) {
+        final Resources res = context.getResources();
+        final String lightThemeKey = res.getString(R.string.light_theme_key);
+        final String blackThemeKey = res.getString(R.string.black_theme_key);
+        final String automaticDeviceThemeKey = res.getString(R.string.auto_device_theme_key);
+        final String selectedThemeKey = getSelectedThemeKey(context);
+
+        if (selectedThemeKey.equals(lightThemeKey)) {
+            return R.style.LightBottomSheetDialogTheme;
+        } else if (selectedThemeKey.equals(blackThemeKey)) {
+            return R.style.BlackBottomSheetDialogTheme;
+        } else if (selectedThemeKey.equals(automaticDeviceThemeKey)) {
+            if (isDeviceDarkThemeEnabled(context)) {
+                final String selectedNightThemeKey = getSelectedNightThemeKey(context);
+                if (selectedNightThemeKey.equals(blackThemeKey)) {
+                    return R.style.BlackBottomSheetDialogTheme;
+                }
+                return R.style.DarkBottomSheetDialogTheme;
+            } else {
+                return R.style.LightBottomSheetDialogTheme;
+            }
+        }
+        return R.style.DarkBottomSheetDialogTheme;
+    }
+
+    /**
      * Return the selected theme styled according to the serviceId.
      *
      * @param context   context to get the selected theme

@@ -905,4 +905,17 @@
     <string name="api23_requirement_dialog_title">NewPipe is dropping support for Android 5</string>
     <string name="api23_requirement_dialog_message">Unfortunately NewPipe depends on a few libraries that dropped support for Android 5.0 and 5.1. The next NewPipe release will therefore only work on devices with Android 6 or higher, sadly. Read more in the blogpost.</string>
     <string name="api23_requirement_dialog_blogpost">Blogpost</string>
+
+    <!-- Google Cast & Smart TV Streaming -->
+    <string name="cast">Cast</string>
+    <string name="cast_to_device">Cast to a device</string>
+    <string name="casting_to">Casting to %s</string>
+    <string name="cast_disconnect">Disconnect</string>
+    <string name="cast_link_with_tv_code">Link with TV code</string>
+    <string name="cast_enter_tv_code">Enter 12-digit code from TV</string>
+    <string name="cast_connecting">Connecting…</string>
+    <string name="cast_no_devices_found">Searching for devices…</string>
+    <string name="cast_link">Link</string>
+    <string name="cast_pairing_failed">Could not link TV code. Please check the code and try again.</string>
+    <string name="cast_volume">Volume</string>
 </resources>

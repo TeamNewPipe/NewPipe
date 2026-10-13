@@ -84,6 +84,10 @@ import com.google.android.exoplayer2.video.VideoSize;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.cast.model.CastPlayerState;
+import org.schabi.newpipe.cast.session.CastSession;
+import org.schabi.newpipe.cast.session.CastSessionManager;
+import org.schabi.newpipe.cast.ui.CastPlayerUi;
 import org.schabi.newpipe.databinding.PlayerBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
@@ -315,7 +319,8 @@ public final class Player implements PlaybackListener, Listener {
         // PlayerUi#initPlayer(), and UIs.call() guarantees UI order is preserved.
         UIs = new PlayerUiList(
                 new MediaSessionPlayerUi(this, mediaSession, sessionConnector),
-                new NotificationPlayerUi(this)
+                new NotificationPlayerUi(this),
+                new CastPlayerUi(this)
         );
     }
 
@@ -1715,6 +1720,11 @@ public final class Player implements PlaybackListener, Listener {
         if (DEBUG) {
             Log.d(TAG, "seekBy() called with: position = [" + positionMillis + "]");
         }
+        final CastSessionManager castManager = CastSessionManager.getInstance(context);
+        if (castManager.isConnected() && castManager.getCurrentSession() != null) {
+            castManager.getCurrentSession().seekTo(positionMillis);
+            return;
+        }
         if (!exoPlayerIsNull()) {
             // prevent invalid positions when fast-forwarding/-rewinding
             simpleExoPlayer.seekTo(MathUtils.clamp(positionMillis, 0,
@@ -1747,6 +1757,11 @@ public final class Player implements PlaybackListener, Listener {
         if (DEBUG) {
             Log.d(TAG, "play() called");
         }
+        final CastSessionManager castManager = CastSessionManager.getInstance(context);
+        if (castManager.isConnected() && castManager.getCurrentSession() != null) {
+            castManager.getCurrentSession().play();
+            return;
+        }
         if (audioReactor == null || playQueue == null || exoPlayerIsNull()) {
             return;
         }
@@ -1773,6 +1788,10 @@ public final class Player implements PlaybackListener, Listener {
         if (DEBUG) {
             Log.d(TAG, "pause() called");
         }
+        final CastSessionManager castManager = CastSessionManager.getInstance(context);
+        if (castManager.isConnected() && castManager.getCurrentSession() != null) {
+            castManager.getCurrentSession().pause();
+        }
         if (audioReactor == null || exoPlayerIsNull()) {
             return;
         }
@@ -1784,6 +1803,17 @@ public final class Player implements PlaybackListener, Listener {
     public void playPause() {
         if (DEBUG) {
             Log.d(TAG, "onPlayPause() called");
+        }
+
+        final CastSessionManager castManager = CastSessionManager.getInstance(context);
+        if (castManager.isConnected() && castManager.getCurrentSession() != null) {
+            final CastSession session = castManager.getCurrentSession();
+            if (session.getPlayerState() == CastPlayerState.PLAYING) {
+                session.pause();
+            } else {
+                session.play();
+            }
+            return;
         }
 
         if (getPlayWhenReady()

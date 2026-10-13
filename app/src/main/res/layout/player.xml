@@ -21,6 +21,51 @@
         android:layout_alignBottom="@+id/surfaceView"
         android:background="@android:color/black" />
 
+    <RelativeLayout
+        android:id="@+id/castOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"
+        android:gravity="center"
+        android:visibility="gone"
+        tools:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/ic_cast_connected"
+                app:tint="?attr/colorAccent" />
+
+            <TextView
+                android:id="@+id/castStatusText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/cast_to_device"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/castDeviceNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="14sp"
+                tools:text="Living Room TV" />
+        </LinearLayout>
+    </RelativeLayout>
+
     <com.google.android.exoplayer2.ui.SubtitleView
         android:id="@+id/subtitleView"
         android:layout_width="match_parent"
@@ -219,6 +264,21 @@
                         android:textStyle="bold"
                         tools:ignore="RtlHardcoded,RtlSymmetry"
                         tools:text="1x" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/castButton"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:contentDescription="@string/cast"
+                        android:focusable="true"
+                        android:padding="6dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_cast"
+                        app:tint="@color/white"
+                        tools:ignore="RtlHardcoded" />
 
                     <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/queueButton"
