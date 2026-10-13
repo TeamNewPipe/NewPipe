@@ -11,6 +11,7 @@ import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.Outline;
 import android.graphics.Path;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
@@ -68,6 +69,11 @@ public class GlassDrawable extends Drawable {
     private final float density;
     private final int radiusToken;
     private final boolean isActiveCapsule;
+
+    private boolean liquidSurface;
+    private int ambientTop = 0x404D8EF0;
+    private int ambientBottom = 0x406F375E;
+    private final Paint ambientPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
     private final Paint smokeTintPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint whiteWashPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -178,6 +184,11 @@ public class GlassDrawable extends Drawable {
                 Shader.TileMode.CLAMP
         ));
 
+        if (liquidSurface) {
+            ambientPaint.setShader(new LinearGradient(boundsF.left, boundsF.top,
+                    boundsF.right, boundsF.bottom, ambientTop, ambientBottom, Shader.TileMode.CLAMP));
+        }
+
         // 1dp outer edge gradient stroke (top-left #66FFFFFF to bottom-right #14FFFFFF)
         final float halfStroke = dpToPx(0.5f);
         outerStrokeRectF.set(
@@ -225,6 +236,10 @@ public class GlassDrawable extends Drawable {
 
             // Layer 2b: Faint white wash (#FFFFFF at 7%)
             canvas.drawRoundRect(boundsF, cornerRadius, cornerRadius, whiteWashPaint);
+        }
+
+        if (liquidSurface) {
+            canvas.drawRoundRect(boundsF, cornerRadius, cornerRadius, ambientPaint);
         }
 
         // Layer 3: Specular highlight (top 35% gradient)
@@ -279,6 +294,42 @@ public class GlassDrawable extends Drawable {
     /*//////////////////////////////////////////////////////////////////////////
     // Factory methods
     //////////////////////////////////////////////////////////////////////////*/
+
+    /** A separate liquid material: rail tokens and rendering are deliberately unchanged. */
+    public static GlassDrawable createLiquidSurface(final Context context, final int radius) {
+        final GlassDrawable drawable = new GlassDrawable(context, radius);
+        drawable.liquidSurface = true;
+        drawable.smokeTintPaint.setColor(0x70101826);
+        drawable.whiteWashPaint.setColor(0x20FFFFFF);
+        return drawable;
+    }
+
+    /** Sample a few software pixels; never retain the thumbnail or allocate a second full image. */
+    public void setThumbnail(@Nullable final Bitmap thumbnail) {
+        if (!liquidSurface) {
+            return;
+        }
+        ambientTop = 0x404D8EF0;
+        ambientBottom = 0x406F375E;
+        if (thumbnail != null && !thumbnail.isRecycled()) {
+            final int width = thumbnail.getWidth();
+            final int height = thumbnail.getHeight();
+            ambientTop = (thumbnail.getPixel(width / 3, height / 3) & 0x00FFFFFF) | 0x50000000;
+            ambientBottom = (thumbnail.getPixel(width * 2 / 3, height * 2 / 3)
+                    & 0x00FFFFFF) | 0x40000000;
+        }
+        onBoundsChange(getBounds());
+        invalidateSelf();
+    }
+
+    @Override
+    public void getOutline(@NonNull final Outline outline) {
+        if (liquidSurface) {
+            outline.setRoundRect(getBounds(), getCornerRadius(boundsF));
+        } else {
+            super.getOutline(outline);
+        }
+    }
 
     public static GlassDrawable createPill(@NonNull final Context context) {
         return new GlassDrawable(context, RADIUS_FULL);

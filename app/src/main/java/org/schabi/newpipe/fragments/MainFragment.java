@@ -208,7 +208,22 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             final TabLayout.Tab tabToSet = binding.mainTabLayout.getTabAt(i);
             if (tabToSet != null) {
                 final Tab tab = tabsList.get(i);
-                tabToSet.setIcon(tab.getTabIconRes(requireContext()));
+                // Explicit centered bounds avoid Material's icon baseline/inset drift.
+                final android.widget.FrameLayout iconFrame = new android.widget.FrameLayout(
+                        requireContext());
+                final android.widget.ImageView icon = new android.widget.ImageView(requireContext());
+                icon.setImageResource(tab.getTabIconRes(requireContext()));
+                icon.setImageTintList(ColorStateList.valueOf(Color.WHITE));
+                icon.setScaleType(android.widget.ImageView.ScaleType.FIT_CENTER);
+                final int iconSize = org.schabi.newpipe.util.DeviceUtils.dpToPx(24, requireContext());
+                iconFrame.addView(icon, new android.widget.FrameLayout.LayoutParams(
+                        iconSize, iconSize, android.view.Gravity.CENTER));
+                final int tabSize = org.schabi.newpipe.util.DeviceUtils.dpToPx(52, requireContext());
+                iconFrame.setLayoutParams(new android.view.ViewGroup.LayoutParams(tabSize, tabSize));
+                icon.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+                tabToSet.view.setPadding(0, 0, 0, 0);
+                tabToSet.setCustomView(iconFrame);
+                tabToSet.setIcon(null);
                 tabToSet.setContentDescription(tab.getTabName(requireContext()));
             }
         }

@@ -7,6 +7,8 @@ import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import coil3.executeBlocking
 import coil3.imageLoader
+import coil3.request.allowHardware
+import coil3.request.SuccessResult
 import coil3.request.Disposable
 import coil3.request.ImageRequest
 import coil3.request.error
@@ -22,6 +24,7 @@ import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.Image
 import org.schabi.newpipe.ktx.scale
+import org.schabi.newpipe.views.glass.GlassDrawable
 
 object CoilHelper {
     private val TAG = CoilHelper::class.java.simpleName
@@ -155,6 +158,18 @@ object CoilHelper {
         val request =
             getImageRequest(target.context, url, placeholderResId, showPlaceholder)
                 .target(target)
+                .allowHardware(false)
+                .listener(object : ImageRequest.Listener {
+                    override fun onStart(request: ImageRequest) {
+                        val surface = (target.parent as? android.view.View)?.background as? GlassDrawable
+                        surface?.setThumbnail(null)
+                    }
+
+                    override fun onSuccess(request: ImageRequest, result: SuccessResult) {
+                        val surface = (target.parent as? android.view.View)?.background as? GlassDrawable
+                        surface?.setThumbnail(result.image.toBitmap())
+                    }
+                })
                 .build()
         target.context.imageLoader.enqueue(request)
     }
