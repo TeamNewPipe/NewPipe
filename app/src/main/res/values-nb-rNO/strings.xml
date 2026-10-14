@@ -19,16 +19,16 @@
     <string name="download_path_audio_title">Nedlastingsmappe for lyd</string>
     <string name="download_path_audio_summary">Nedlastede lydfiler lagres her</string>
     <string name="download_path_audio_dialog_title">Velg nedlastingsmappe for lydfiler</string>
-    <string name="default_resolution_title">Forvalgt oppløsning</string>
+    <string name="default_resolution_title">Standard oppløsning</string>
     <string name="play_with_kodi_title">Spill av med Kodi</string>
     <string name="kore_not_found">Installer manglende Kode-app\?</string>
     <string name="show_play_with_kodi_title">Vis \"Spill av med Kodi\"-valg</string>
-    <string name="show_play_with_kodi_summary">Vis valg for avspilling via Kodi mediasenter</string>
+    <string name="show_play_with_kodi_summary">Vis valg om å spille av video via Kodi mediasenter</string>
     <string name="play_audio">Lyd</string>
-    <string name="default_audio_format_title">Forvalgt lydformat</string>
+    <string name="default_audio_format_title">Standard lydformat</string>
     <string name="theme_title">Tema</string>
-    <string name="dark_theme_title">Mørk</string>
-    <string name="light_theme_title">Lys</string>
+    <string name="dark_theme_title">Mørkt</string>
+    <string name="light_theme_title">Lyst</string>
     <string name="download_dialog_title">Last ned</string>
     <string name="show_next_and_similar_title">Vis «Neste» og «Lignende» -videoer</string>
     <string name="unsupported_url">Nettadressen støttes ikke</string>
@@ -81,10 +81,10 @@
     <string name="no_available_dir">Definer en nedlastingsmappe senere i innstillingene</string>
     <string name="title_activity_recaptcha">reCAPTCHA-oppgave</string>
     <string name="open_in_popup_mode">Åpne i oppsprettsmodus</string>
-    <string name="default_popup_resolution_title">Forvalgt oppsprettsoppløsning</string>
+    <string name="default_popup_resolution_title">Standard sprettopp-oppløsning</string>
     <string name="show_higher_resolutions_title">Vis høyere oppløsninger</string>
-    <string name="show_higher_resolutions_summary">Det er bare noen enheter som kan spille 2K-/4K-videoer</string>
-    <string name="default_video_format_title">Forvalgt videoformat</string>
+    <string name="show_higher_resolutions_summary">Bare noen enheter er i stand til å spille av 2K/4K-videoer</string>
+    <string name="default_video_format_title">Standard videoformat</string>
     <string name="black_theme_title">Svart</string>
     <string name="popup_playing_toast">Spiller av i oppsprettsmodus</string>
     <string name="all">Alle</string>
@@ -92,7 +92,7 @@
     <string name="msg_popup_permission">Denne tilgangen trengs for
 \nåpning i oppsprettsmodus</string>
     <string name="recaptcha_request_toast">reCAPTCHA-oppgave forespurt</string>
-    <string name="use_external_video_player_summary">Fjerner lyd ved noen oppløsninger</string>
+    <string name="use_external_video_player_summary">Fjerner lyd på noen oppløsninger</string>
     <string name="subscribe_button_title">Abonner</string>
     <string name="subscribed_button_title">Abonnert</string>
     <string name="channel_unsubscribed">Kanalabonnent oppsagt</string>
@@ -102,8 +102,8 @@
     <string name="fragment_feed_title">Hva er nytt</string>
     <string name="controls_background_title">Bakgrunn</string>
     <string name="controls_popup_title">Oppsprett</string>
-    <string name="popup_remember_size_pos_title">Husk oppsprettsegenskaper</string>
-    <string name="popup_remember_size_pos_summary">Husk siste størrelse og posisjon for oppsprettsvinduet</string>
+    <string name="popup_remember_size_pos_title">Husk sprettopp-egenskaper</string>
+    <string name="popup_remember_size_pos_summary">Husk siste størrelse og posisjon på sprettopp</string>
     <string name="show_search_suggestions_title">Søkeforslag</string>
     <string name="show_search_suggestions_summary">Vis søkeforslag ved søk</string>
     <string name="enable_search_history_title">Søkehistorikk</string>
@@ -123,14 +123,14 @@
     <string name="title_activity_about">Om NewPipe</string>
     <string name="title_licenses">Tredjepartslisenser</string>
     <string name="copyright" formatted="true">© %1$s av %2$s lisensiert %3$s</string>
-    <string name="tab_about">Om og Ofte stilte spørsmål</string>
+    <string name="tab_about">Om og ofte stilte spørsmål</string>
     <string name="tab_licenses">Lisenser</string>
-    <string name="app_description">Fri lett strømming på Android.</string>
-    <string name="resume_on_audio_focus_gain_title">Fortsett avspilling</string>
-    <string name="resume_on_audio_focus_gain_summary">Fortsett å spille etter avbrytelser (f.eks. telefonsamtaler)</string>
+    <string name="app_description">Fri lettvektsstrømming på Android.</string>
+    <string name="resume_on_audio_focus_gain_title">Gjenoppta avspilling</string>
+    <string name="resume_on_audio_focus_gain_summary">Fortsett avspilling etter avbrytelser (for eksempel telefonanrop)</string>
     <string name="settings_category_player_title">Avspiller</string>
     <string name="settings_category_player_behavior_title">Oppførsel</string>
-    <string name="settings_category_history_title">Historikk og mellomlagring</string>
+    <string name="settings_category_history_title">Logg og mellomlager</string>
     <string name="undo">Angre</string>
     <string name="search_no_results">Ingen resultater</string>
     <string name="empty_list_subtitle">Bare ufisk her</string>
@@ -149,10 +149,10 @@
         <item quantity="one">Én video</item>
         <item quantity="other">%s videoer</item>
     </plurals>
-    <string name="view_on_github">Vis på GitHub</string>
-    <string name="app_license_title">NewPipe sin lisens</string>
-    <string name="contribution_encouragement">Hvorvidt du har idéer vedrørende oversettelser, designendringer, koderenskning, eller tunge kodeendringer—hjelp er alltids kjærkommen. Desto mer som gjøres, desto bedre blir det!</string>
-    <string name="read_full_license">Les lisensen</string>
+    <string name="view_on_github">Se på GitHub</string>
+    <string name="app_license_title">NewPipes lisens</string>
+    <string name="contribution_encouragement">Uansett om du har idéer om: oversettelse, designendringer, kodeforbedring, eller virkelig tunge kodeendringer så er hjelp alltid velkommen. Jo mer som blir gjort, jo bedre blir det!</string>
+    <string name="read_full_license">Les lisens</string>
     <string name="contribution_title">Bidra</string>
     <string name="title_activity_history">Historikk</string>
     <string name="action_history">Historikk</string>
@@ -180,9 +180,9 @@
     <string name="trending">På vei opp</string>
     <string name="start_here_on_background">Start avspilling i bakgrunnen</string>
     <string name="start_here_on_popup">Start avspilling i et oppsprett</string>
-    <string name="donation_title">Doner</string>
-    <string name="donation_encouragement">NewPipe utvikles av frivillige som bruker sin fritid til å gi deg den beste brukeropplevelsen. Gi tilbake for å hjelpe utviklere å gjøre NewPipe enda bedre, mens de nyter en varm kopp kaffe.</string>
-    <string name="give_back">Bidra</string>
+    <string name="donation_title">Donér</string>
+    <string name="donation_encouragement">NewPipe utvikles av bidragsytere som bruker fritiden sin på å gi deg den beste brukeropplevelsen. Gi tilbake til miljøet for å hjelpe utviklerne med å gjøre NewPipe enda bedre mens de nyter en kopp kaffe.</string>
+    <string name="give_back">Gi tilbake</string>
     <string name="website_title">Nettside</string>
     <string name="website_encouragement">Besøk NewPipe-nettsiden for mer info og nyheter.</string>
     <string name="default_content_country_title">Forvalgt innholdsland</string>
@@ -199,7 +199,7 @@
     <string name="audio_streams_empty">Fant ingen lydstrømmer</string>
     <string name="video_player">Videoavspiller</string>
     <string name="background_player">Bakgrunnsavspiller</string>
-    <string name="popup_player">Oppsprettsavspiller</string>
+    <string name="popup_player">Sprettopp-avspiller</string>
     <string name="preferred_player_fetcher_notification_title">Henter informasjon…</string>
     <string name="preferred_player_fetcher_notification_message">Laster forespurt innhold</string>
     <string name="import_data_title">Importer database</string>
@@ -221,11 +221,11 @@
     <string name="rename">Gi nytt navn</string>
     <string name="title_last_played">Sist spilt</string>
     <string name="title_most_played">Mest spilt</string>
-    <string name="always_ask_open_action">Alltid spør</string>
+    <string name="always_ask_open_action">Spør alltid</string>
     <string name="create_playlist">Ny spilleliste</string>
     <string name="rename_playlist">Gi nytt navn</string>
     <string name="name">Navn</string>
-    <string name="add_to_playlist">Legg til i spilleliste</string>
+    <string name="add_to_playlist">Legg til spilleliste</string>
     <string name="set_as_playlist_thumbnail">Sett som miniatyrbilde for spilleliste</string>
     <string name="bookmark_playlist">Bokmerk spilleliste</string>
     <string name="unbookmark_playlist">Fjern bokmerke</string>
@@ -237,7 +237,7 @@
     <string name="resize_fit">Tilpass</string>
     <string name="resize_fill">Fyll</string>
     <string name="resize_zoom">Forstørr</string>
-    <string name="use_inexact_seek_title">Bruk rask unøyaktig spoling</string>
+    <string name="use_inexact_seek_title">Bruk raskt unøyaktig søk</string>
     <string name="settings_category_debug_title">Feilsøking</string>
     <string name="file">Fil</string>
     <string name="invalid_directory">Ingen slik mappe</string>
@@ -257,9 +257,9 @@
     <string name="metadata_cache_wipe_title">Tøm hurtiglagret metadata</string>
     <string name="metadata_cache_wipe_summary">Fjern all hurtiglagret nettsidedata</string>
     <string name="metadata_cache_wipe_complete_notice">Metadatahurtiglager tømt</string>
-    <string name="auto_queue_title">Sett neste strøm i kø automatisk</string>
+    <string name="auto_queue_title">Legg neste strøm i kø automatisk</string>
     <string name="no_streams_available_download">Ingen strømmer tilgjengelige for nedlasting</string>
-    <string name="preferred_open_action_settings_title">Foretrukket åpningshandling</string>
+    <string name="preferred_open_action_settings_title">Foretrekt \"åpne\"-handling</string>
     <string name="preferred_open_action_settings_summary">Forvalgt handling ved åpning av innhold — %s</string>
     <string name="import_soundcloud_instructions_hint">din-ID, soundcloud.com/dinid</string>
     <string name="import_network_expensive_warning">Husk at denne handlingen kan belaste nettverket tungt.
@@ -277,8 +277,8 @@
     <string name="delete_search_history_alert">Slett hele søkehistorikken\?</string>
     <string name="search_history_deleted">Søkehistorikken er slettet</string>
     <string name="one_item_deleted">Ett element slettet.</string>
-    <string name="caption_setting_title">Undertekster</string>
-    <string name="caption_setting_description">Endre spillerens undertekststørrelse og bakgrunnsstiler. Krever omstart av appen for å tre i kraft</string>
+    <string name="caption_setting_title">Undertekst</string>
+    <string name="caption_setting_description">Modifiser avspillingsundertekststørrelse og bakgrunnsstiler. Krever restart av app for å tre i kraft</string>
     <string name="app_license">NewPipe er copyleft fri programvare: Du kan bruke, studere og forbedre den etter egen vilje. Spesifikt kan du redistribuere og/eller modifisere den i henhold til vilkårene gitt i GNU General Public-lisensen, som er publisert av Free Software Foundation, enten versjon 3 av lisensen, eller (etter eget ønske) enhver senere versjon.</string>
     <string name="import_settings">Ønsker du også å importere innstillinger?</string>
     <string name="subscriptions_import_unsuccessful">Kunne ikke importere abonnementer</string>
@@ -304,21 +304,20 @@
     <string name="enable_disposed_exceptions_title">Rapporter feil utenfor livssyklusen</string>
     <string name="enable_disposed_exceptions_summary">Tving rapportering av uleverbare Rx-unntak utenom fragment eller aktivitetslevetid etter forkastelse</string>
     <string name="unhook_checkbox">Avhekt (kan forårsake forvrenging)</string>
-    <string name="privacy_policy_title">NewPipes personvernspraksis</string>
-    <string name="privacy_policy_encouragement">NewPipe-prosjektet tar ditt personvern veldig alvorlig. Derfor samler ikke appen inn data uten ditt samtykke.
-\nNewPipes personvernspraksis forklarer i detalj hvilken data som sendes og lagres når du sender en krasjrapport.</string>
-    <string name="read_privacy_policy">Les personvernspraksis</string>
+    <string name="privacy_policy_title">NewPipes personvernerklæring</string>
+    <string name="privacy_policy_encouragement">NewPipe-prosjektet tar personvernet ditt veldig seriøst. Derfor samler ikke appen inn noe data uten ditt samtykke.\nNewPipes personvernerklæring forklarer i detalj hvilke data som sendes og lagres når du sender en kræsjrapport.</string>
+    <string name="read_privacy_policy">Les personvernerklæring</string>
     <string name="start_accept_privacy_policy">For å overholde EUs personvernforordning (GDPR), vil vi rette oppmerksomheten din mot NewPipe sin personvernerklæring. Vennligst les den nøye.
 \nDu må godta den, for å sende oss feilrapporten.</string>
     <string name="accept">Godta</string>
     <string name="decline">Avslå</string>
-    <string name="limit_data_usage_none_description">Ubegrenset</string>
+    <string name="limit_data_usage_none_description">Ingen begrensning</string>
     <string name="limit_mobile_data_usage_title">Begrens oppløsning når mobildata brukes</string>
-    <string name="minimize_on_exit_title">Minimer ved appbytte</string>
+    <string name="minimize_on_exit_title">Minimer på appbytte</string>
     <string name="minimize_on_exit_summary">Handling ved bytting til annen app fra hovedspiller — %s</string>
     <string name="minimize_on_exit_none_description">Ingen</string>
-    <string name="minimize_on_exit_background_description">Minimer til bakgrunnsspiller</string>
-    <string name="minimize_on_exit_popup_description">Minimer til oppsprettsspiller</string>
+    <string name="minimize_on_exit_background_description">Minimer til bakgrunnsavspiller</string>
+    <string name="minimize_on_exit_popup_description">Minimer til sprettopp-avspiller</string>
     <string name="channels">Kanaler</string>
     <string name="playlists">Spillelister</string>
     <string name="tracks">Spor</string>
@@ -346,7 +345,7 @@
     <string name="list_view_mode">Listevisningsmodus</string>
     <string name="list">Liste</string>
     <string name="grid">Rutenett</string>
-    <string name="auto">Automatisk</string>
+    <string name="auto">Auto</string>
     <string name="app_update_available_notification_title">Ny NewPipe-versjon er tilgjengelig!</string>
     <string name="missions_header_finished">Fullført</string>
     <string name="paused">pauset</string>
@@ -376,7 +375,7 @@
     <string name="pause_downloads_on_mobile_desc">Nyttig ved veksling til mobildata, selv om noen nedlastinger ikke kan settes på pause</string>
     <string name="show_comments_title">Vis kommentarer</string>
     <string name="show_comments_summary">Skru av for å skjule kommentarer</string>
-    <string name="autoplay_title">Spill av automatisk</string>
+    <string name="autoplay_title">Autoavspill</string>
     <string name="no_comments">Ingen kommentarer</string>
     <string name="error_unable_to_load_comments">Kunne ikke laste inn kommentarer</string>
     <string name="close">Lukk</string>
@@ -437,7 +436,7 @@
     <string name="playlist_no_uploader">Autogenerert (fant ingen opplaster)</string>
     <string name="recovering">gjenoppretter</string>
     <string name="error_download_resource_gone">Kan ikke gjenopprette denne nedlastingen</string>
-    <string name="seek_duration_title">Hurtigframoverspoling/-tilbakespolingsvarighet</string>
+    <string name="seek_duration_title">Rask frem- og tilbakespolingssøkevarighet</string>
     <string name="permission_display_over_apps">Gi tillatelse til å vise over andre apper</string>
     <string name="app_language_title">Programspråk</string>
     <string name="systems_language">Systemforvalg</string>
@@ -549,7 +548,7 @@
     <string name="notification_action_nothing">Ingenting</string>
     <string name="show_memory_leaks">Vis minnelekkasjer</string>
     <string name="enqueued">Satt i kø</string>
-    <string name="enqueue_stream">Sett i kø</string>
+    <string name="enqueue_stream">Legg i kø</string>
     <string name="clear_cookie_title">Tøm reCAPTCHA-kaker</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA-kaker har blitt slettet</string>
     <string name="clear_cookie_summary">Tøm kaker som NewPipe lagrer når du løser en reCAPTCHA</string>
@@ -582,13 +581,13 @@
     <string name="soundcloud_go_plus_content">Dette er et spor fra SoundCloud Go+, ihvertfall i ditt land, så det kan ikke strømmes eller lastes ned av NewPipe.</string>
     <string name="georestricted_content">Innholdet er ikke tilgjengelig i din region.</string>
     <string name="download_has_started">Nedlastingen har startet</string>
-    <string name="select_night_theme_toast">Du kan velge ditt favorittnattema nedenfor</string>
+    <string name="select_night_theme_toast">Du kan velge ditt favoritt-nattema nedenfor</string>
     <string name="night_theme_summary">Velg ditt favorittnattema — %s</string>
     <string name="auto_device_theme_title">Automatisk (enhetstema)</string>
     <string name="radio">Radio</string>
     <string name="featured">Framhevet</string>
     <string name="recaptcha_solve">Løs</string>
-    <string name="night_theme_title">Nattdrakt</string>
+    <string name="night_theme_title">Nattmodus</string>
     <string name="show_channel_details">Vis kanaldetaljer</string>
     <string name="disable_media_tunneling_summary">Skru av media-tunnelering hvis du opplever svart skjerm eller videohakking</string>
     <string name="disable_media_tunneling_title">Skru av media-tunnelering</string>
@@ -608,7 +607,7 @@
     <string name="no_dir_yet">Ingen nedlastingsmappe er satt ennå, velg en standard nedlastingsmappe nå</string>
     <string name="off">Av</string>
     <string name="on">På</string>
-    <string name="tablet_mode_title">Nettbrett-modus</string>
+    <string name="tablet_mode_title">Nettbrettmodus</string>
     <string name="open_website_license">Åpne nettside</string>
     <string name="metadata_privacy_internal">Intern</string>
     <string name="metadata_privacy_private">Privat</string>
@@ -640,7 +639,7 @@
     <string name="start_main_player_fullscreen_summary">Ikke start videoer i minispilleren, men bytt til fullskjermsmodus direkte dersom auto-rotering er låst. Du har fremdeles tilgang til minispilleren ved å avslutte fullskjermsvisningen</string>
     <string name="detail_heart_img_view_description">Hjertemerket av skaperen</string>
     <string name="main_page_content_swipe_remove">Dra elementer for å fjerne dem</string>
-    <string name="start_main_player_fullscreen_title">Start hovedspiller i fullskjerm</string>
+    <string name="start_main_player_fullscreen_title">Start hovedavspiller i fullskjermmodus</string>
     <string name="enqueue_next_stream">Still i kø neste</string>
     <string name="enqueued_next">I kø neste</string>
     <string name="check_for_updates">Se etter oppdateringer</string>
@@ -667,7 +666,7 @@
     <string name="progressive_load_interval_title">Intervallstørrelse for avspillingsinnlasting</string>
     <string name="progressive_load_interval_summary">Endre størrelsen på lasteintervallet på progressivt innhold (for øyeblikket %s). En lavere verdi kan øke hastigheten på den første videoinnlastingen. Endringer krever omstart av spilleren</string>
     <string name="settings_category_player_notification_title">Spillervarsel</string>
-    <string name="notifications">Varsler</string>
+    <string name="notifications">Varslinger</string>
     <string name="streams_notification_channel_name">Nye strømmer</string>
     <string name="streams_notification_channel_description">Varsler om nye strømmer for abonnementer</string>
     <plurals name="new_streams">
@@ -689,7 +688,7 @@
     <string name="unknown_format">Ukjent format</string>
     <string name="unknown_quality">Ukjent kvalitet</string>
     <string name="faq_title">Ofte stilte spørsmål</string>
-    <string name="faq">Vis på nettsiden</string>
+    <string name="faq">Se på nettside</string>
     <string name="check_new_streams">Start sjekk etter nye strømmer</string>
     <string name="enable_streams_notifications_title">Varsel om nye strømmer</string>
     <string name="streams_notifications_interval_title">Hyppighet for sjekk</string>
@@ -700,7 +699,7 @@
     <string name="no_audio_streams_available_for_external_players">Ingen lydstrømmer er tilgjengelige for eksterne spillere</string>
     <string name="sort">Sorter</string>
     <string name="toggle_all">Velg alle</string>
-    <string name="faq_description">Hvis du har problemer med å bruke appen, så bør du sjekke ut disse svarene fra generelle spørsmål!</string>
+    <string name="faq_description">Hvis du har problemer med å bruke appen, sørg for å sjekke ut disse svarene på vanlige spørsmål!</string>
     <string name="unset_playlist_thumbnail">Skru av vedvarende miniatyrbilde</string>
     <string name="night_theme_available">Dette valget er kun tilgjengelig dersom %s er valgt som tema</string>
     <string name="msg_failed_to_copy">Klarte ikke å kopiere til utklippstavlen</string>
@@ -722,7 +721,7 @@
     <string name="feed_show_upcoming">Kommende</string>
     <string name="left_gesture_control_title">Venstre håndvendingshandling</string>
     <string name="right_gesture_control_title">Høyre håndvendingshandling</string>
-    <string name="volume">Lydstyrke</string>
+    <string name="volume">Volum</string>
     <string name="remove_duplicates_title">Fjern duplikater\?</string>
     <string name="feed_show_hide_streams">Vis/skjul strømmer</string>
     <string name="feed_show_partially_watched">Delvis sett</string>
@@ -740,18 +739,18 @@
     <string name="next_stream">Neste strøm</string>
     <string name="metadata_subchannel_avatars">Underkanalavatarer</string>
     <string name="open_play_queue">Åpne avspillingskø</string>
-    <string name="prefer_original_audio_summary">Velg opprinnelig lydspor uavhengig av språk</string>
+    <string name="prefer_original_audio_summary">Velg det originale lydsporet uavhengig av språket</string>
     <string name="image_quality_none">Ikke last inn bilder</string>
     <string name="image_quality_high">Høy kvalitet</string>
     <string name="channel_tab_about">Om</string>
     <string name="share_playlist">Del spilleliste</string>
     <string name="channel_tab_albums">Album</string>
     <string name="replay">Gjenta</string>
-    <string name="prefer_descriptive_audio_summary">Velg et lydspor med beskrivelser for synshemmede hvis tilgjengelig</string>
+    <string name="prefer_descriptive_audio_summary">Velg et lydspor med beskrivelser for mennesker med nedsatt synsevne om tilgjengelig</string>
     <string name="image_quality_medium">Middels kvalitet</string>
-    <string name="prefer_descriptive_audio_title">Foretrekk beskrivende lyd</string>
+    <string name="prefer_descriptive_audio_title">Foretrekk deskriptiv lyd</string>
     <string name="metadata_uploader_avatars">Opplasteravatarer</string>
-    <string name="prefer_original_audio_title">Foretrekk opprinnelig lyd</string>
+    <string name="prefer_original_audio_title">Foretrekk original lyd</string>
     <string name="play_queue_audio_track">Lyd: %s</string>
     <string name="channel_tab_playlists">Spillelister</string>
     <string name="audio_track">Lydspor</string>
@@ -770,7 +769,7 @@
         <item quantity="other">%s svar</item>
     </plurals>
     <string name="main_tabs_position_summary">Flytt hovedfanevelgeren til bunnen</string>
-    <string name="main_tabs_position_title">Hovedfaneposisjon</string>
+    <string name="main_tabs_position_title">Hovedfanerposisjon</string>
     <string name="channel_tab_videos">Videoer</string>
     <string name="unknown_audio_track">Ukjent</string>
     <string name="channel_tab_livestreams">Direkte</string>
@@ -790,4 +789,5 @@
     <string name="use_exoplayer_decoder_fallback_title">Bruk ExoPlayers dekodings-tilbakefall</string>
     <string name="settings_category_exoplayer_summary">Håndter noen ExoPlayer-innstillinger. Disse endringeren krever omstart av avspilleren.</string>
     <string name="show_channel_tabs_summary">Hvilke faner som vises på kanalsidene</string>
+    <string name="settings_category_backup_restore_title">Sikkerhetskopi og gjenopprett</string>
 </resources>

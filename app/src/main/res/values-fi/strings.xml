@@ -9,7 +9,7 @@
     <string name="open_in_popup_mode">Avaa ponnahdusikkunatilassa</string>
     <string name="share">Jaa</string>
     <string name="download">Lataus</string>
-    <string name="search">Haku</string>
+    <string name="search">Hae</string>
     <string name="settings">Asetukset</string>
     <string name="did_you_mean">Tarkoititko ”%1$s”\?</string>
     <string name="share_dialog_title">Jaa</string>
@@ -43,7 +43,7 @@
     <string name="default_audio_format_title">Oletusääniformaatti</string>
     <string name="default_video_format_title">Oletusvideoformaatti</string>
     <string name="theme_title">Teema</string>
-    <string name="light_theme_title">Kirkas</string>
+    <string name="light_theme_title">Vaalea</string>
     <string name="dark_theme_title">Tumma</string>
     <string name="black_theme_title">Musta</string>
     <string name="popup_remember_size_pos_title">Muista ponnahdusikkunan ominaisuudet</string>
@@ -63,7 +63,7 @@
     <string name="settings_category_player_behavior_title">Käyttäytyminen</string>
     <string name="settings_category_video_audio_title">Video ja ääni</string>
     <string name="settings_category_history_title">Historia ja välimuisti</string>
-    <string name="settings_category_appearance_title">Ulkoasu</string>
+    <string name="settings_category_appearance_title">Ulkonäkö</string>
     <string name="background_player_playing_toast">Toistaa taustalla</string>
     <string name="popup_playing_toast">Toistetaan ponnahdusikkunatilassa</string>
     <string name="content">Sisältö</string>
@@ -134,19 +134,19 @@
 \nponnahdusikkunatilan käyttämiseksi</string>
     <string name="title_activity_recaptcha">reCAPTCHA Haaste</string>
     <string name="recaptcha_request_toast">reCAPTCHA-haaste pyydetty</string>
-    <string name="settings_category_downloads_title">Lataus</string>
+    <string name="settings_category_downloads_title">Lataukset</string>
     <string name="settings_file_charset_title">Sallitut merkit tiedostonimissä</string>
     <string name="settings_file_replacement_character_summary">Kielletyt merkit korvataan tällä arvolla</string>
     <string name="settings_file_replacement_character_title">Korvaava merkki</string>
     <string name="charset_letters_and_digits">Kirjaimet ja numerot</string>
     <string name="charset_most_special_characters">Suurin osa erikoismerkeistä</string>
-    <string name="title_activity_about">Tietoja NewPipe</string>
-    <string name="title_licenses">Kolmannen osapuolen Lisenssit</string>
-    <string name="tab_about">Tietoja &amp; UKK</string>
+    <string name="title_activity_about">Tietoja NewPipestä</string>
+    <string name="title_licenses">Kolmannen osapuolen lisenssit</string>
+    <string name="tab_about">Tietoja ja UKK</string>
     <string name="tab_licenses">Lisenssit</string>
     <string name="app_description">Vapaata ja kevyttä suoratoistoa Androidilla.</string>
     <string name="view_on_github">Näytä GitHub:ssa</string>
-    <string name="app_license_title">NewPipe:n Lisenssi</string>
+    <string name="app_license_title">NewPipen lisenssi</string>
     <string name="contribution_encouragement">Olkoon sinulla ideoita; käännöksistä, designmuutoksista, koodin siivoamisesta tai raskaista koodimuutoksista—apu on aina tervetullutta. Mitä enemmän saadaan tehtyä, sen paremmaksi sovellus tulee!</string>
     <string name="read_full_license">Lue lisenssi</string>
     <string name="contribution_title">Osallistu</string>
@@ -183,8 +183,8 @@
     <string name="donation_title">Lahjoita</string>
     <string name="donation_encouragement">NewPipe on vapaaehtoisten vapaa-ajallaan kehittämä tuoden sinulle parhaan mahdollisen käyttäjäkokemuksen. Nyt on aika auttaa kehittäjiä tekemään NewPipesta vielä parempi heidän nauttiessaan kupin kahvia.</string>
     <string name="give_back">Anna takaisin</string>
-    <string name="website_title">Websivu</string>
-    <string name="website_encouragement">Käy verkkosivuillamme saadaksesi lisää tietoa ja uusimmat uutiset NewPipe:stä.</string>
+    <string name="website_title">Verkkosivusto</string>
+    <string name="website_encouragement">Käy verkkosivuillamme saadaksesi lisää tietoa ja uusimmat uutiset NewPipestä.</string>
     <string name="no_player_found_toast">Suoratoistosoitinta ei löytynyt (voit asentaa VLC:n toistaaksesi).</string>
     <string name="controls_download_desc">Lataa suoratoistotiedosto</string>
     <string name="show_info">Näytä lisätietoja</string>
@@ -198,7 +198,7 @@
     <string name="metadata_cache_wipe_complete_notice">Metatiedot poistettu</string>
     <string name="auto_queue_summary">Jatka päättyvää (ei uudelleentoistettavaa) toistojonoa lisäämällä siihen aiheeseen liittyvä suoratoistosisältö</string>
     <string name="default_content_country_title">Sisällön oletusmaa</string>
-    <string name="settings_category_debug_title">Virheenkorjaus</string>
+    <string name="settings_category_debug_title">Vianjäljitys</string>
     <string name="channels">Kanavat</string>
     <string name="playlists">Soittolistat</string>
     <string name="tracks">Ääniraidat</string>
@@ -235,12 +235,11 @@
     <string name="rename">Nimeä uudelleen</string>
     <string name="one_item_deleted">1 poistettu.</string>
     <string name="privacy_policy_title">NewPipen tietosuojakäytäntö</string>
-    <string name="privacy_policy_encouragement">NewPipe ottaa yksityisyytesi tosissaan. Siksi se ei kerää sinulta mitään tietoja ilman lupaasi.
-\nNewPipen tietosuojakäytännössä selitetään tarkasti mitä tietoja lähetetään tai tallennetaan virheraportin yhteydessä.</string>
+    <string name="privacy_policy_encouragement">NewPipe ottaa yksityisyytesi tosissaan. Siksi se ei kerää sinulta mitään tietoja ilman lupaasi.\nNewPipen tietosuojakäytännössä selitetään tarkasti mitä tietoja lähetetään tai tallennetaan virheraportin yhteydessä.</string>
     <string name="read_privacy_policy">Lue tietosuojakäytäntö</string>
     <string name="auto_queue_title">Lisää ehdotettu suoratoistosisältö automaattisesti soittolistaan</string>
     <string name="no_streams_available_download">Suoratoistosisältöä ei saatavilla ladattavaksi</string>
-    <string name="app_license">NewPipe on vapaata ohjelmistoa. Voit käyttää, opiskella, jakaa ja parantaa sitä mielesi mukaan. Tarkemmin sanottuna voit jakaa sitä edelleen ja/tai muokata sitä Free Software Foundationin julkaiseman GNU General Public Licensen, version 3 tai uudemman, ehdoilla.</string>
+    <string name="app_license">NewPipe on vapaata ohjelmistoa. Voit käyttää, opiskella, jakaa ja parantaa sitä mielesi mukaan. Tarkemmin sanottuna voit jakaa sitä edelleen tai muokata sitä Free Software Foundationin julkaiseman GNU General Public Licensen, version 3 tai uudemman, ehdoilla.</string>
     <string name="title_last_played">Viimeksi toistettu</string>
     <string name="title_most_played">Eniten toistetut</string>
     <string name="export_complete_toast">Vienti valmis</string>
@@ -574,7 +573,7 @@
     <string name="download_has_started">Lataus on alkanut</string>
     <string name="select_night_theme_toast">Voit valita suosikkiyöteemasi alta</string>
     <string name="night_theme_summary">Valitse suosikki yöteemasi — %s</string>
-    <string name="auto_device_theme_title">Automaattinen (laitteen teema)</string>
+    <string name="auto_device_theme_title">Automaattinen (laite)</string>
     <string name="radio">Radio</string>
     <string name="featured">Esitellyt</string>
     <string name="paid_content">Tämä sisältö on saatavilla vain maksaneille käyttäjillä, joten NewPipe ei voi suoratoistaa tai ladata sitä.</string>
@@ -726,7 +725,7 @@
     <string name="streams_notifications_network_title">Vaadittu verkkoyhteys</string>
     <string name="check_new_streams">Suorita uusien streamien tarkistaminen</string>
     <string name="feed_fetch_channel_tabs">Hae kanavavälilehdet</string>
-    <string name="faq_title">Usein Kysytyt Kysymykset</string>
+    <string name="faq_title">Usein kysytyt kysymykset</string>
     <string name="app_update_unavailable_toast">Käytät uusinta NewPipen versiota</string>
     <string name="metadata_avatars">Avatarit</string>
     <string name="use_exoplayer_decoder_fallback_summary">Ota tämä vaihtoehto käyttöön, jos sinulla on dekooderin alustusongelmia, jotka liittyvät alemman prioriteetin dekooderiin, jos ensisijaisen dekooderin alustus epäonnistuu. Tämä voi heikentää toiston suorituskykyä kuin käytettäessä ensisijaisia dekoodeja</string>

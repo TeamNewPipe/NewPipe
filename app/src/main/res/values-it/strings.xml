@@ -133,7 +133,7 @@
     <string name="charset_most_special_characters">La maggior parte dei caratteri speciali</string>
     <string name="title_activity_history">Cronologia</string>
     <string name="action_history">Cronologia</string>
-    <string name="settings_category_player_title">Lettore multimediale</string>
+    <string name="settings_category_player_title">Lettore</string>
     <string name="settings_category_player_behavior_title">Comportamento</string>
     <string name="settings_category_history_title">Cronologia e cache</string>
     <string name="undo">Rifai</string>
@@ -201,7 +201,7 @@
     <string name="video_streams_empty">Nessun flusso video trovato</string>
     <string name="audio_streams_empty">Nessun flusso audio trovato</string>
     <string name="video_player">Lettore video</string>
-    <string name="background_player">Riproduzione in sottofondo</string>
+    <string name="background_player">Riproduttore in sottofondo</string>
     <string name="popup_player">Lettore popup</string>
     <string name="preferred_player_fetcher_notification_title">Raccolta informazioni in corso…</string>
     <string name="preferred_player_fetcher_notification_message">Caricamento del contenuto richiesto</string>
@@ -215,7 +215,7 @@
     <string name="could_not_import_all_files">Attenzione: Impossibile importare tutti i file.</string>
     <string name="override_current_data">Questa operazione sostituirà le tue impostazioni attuali.</string>
     <string name="controls_download_desc">Scarica il video</string>
-    <string name="show_info">Mostra informazioni</string>
+    <string name="show_info">Mostra info</string>
     <string name="tab_bookmarks">Playlist salvate</string>
     <string name="controls_add_to_playlist_title">Aggiungi a</string>
     <string name="detail_drag_description">Trascina per riordinare</string>
@@ -224,7 +224,7 @@
     <string name="rename">Rinomina</string>
     <string name="title_last_played">Ultima riproduzione</string>
     <string name="title_most_played">I più riprodotti</string>
-    <string name="always_ask_open_action">Chiedi ogni volta</string>
+    <string name="always_ask_open_action">Chiedi sempre</string>
     <string name="create_playlist">Nuova playlist</string>
     <string name="rename_playlist">Rinomina</string>
     <string name="name">Nome</string>
@@ -322,7 +322,7 @@
     <string name="playback_reset">Reset</string>
     <string name="minimize_on_exit_title">Comportamento al cambio di app</string>
     <string name="minimize_on_exit_summary">Azione da eseguire cambiando app dal lettore video principale — %s</string>
-    <string name="minimize_on_exit_none_description">Nessuna</string>
+    <string name="minimize_on_exit_none_description">Nessuno</string>
     <string name="minimize_on_exit_background_description">Riproduci in sottofondo</string>
     <string name="minimize_on_exit_popup_description">Passa in modalità popup</string>
     <string name="channels">Canali</string>
@@ -628,8 +628,8 @@
     <string name="downloads_storage_use_saf_summary_api_29">A partire da Android 10 è supportato solo il Framework di accesso all\'archiviazione</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">È necessario specificare la destinazione di ogni dowload</string>
     <string name="no_dir_yet">Non è impostata alcuna cartella per i file scaricati, scegliere quella predefinita</string>
-    <string name="off">Off</string>
-    <string name="on">On</string>
+    <string name="off">Disattivo</string>
+    <string name="on">Attivo</string>
     <string name="tablet_mode_title">Modalità tablet</string>
     <string name="dont_show">Non mostrare</string>
     <string name="low_quality_smaller">Qualità bassa (più piccola)</string>
