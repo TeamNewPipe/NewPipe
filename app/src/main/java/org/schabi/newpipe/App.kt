@@ -34,12 +34,14 @@ import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExt
 import org.schabi.newpipe.ktx.hasAssignableCause
 import org.schabi.newpipe.settings.NewPipeSettings
 import org.schabi.newpipe.util.BridgeStateSaverInitializer
+import org.schabi.newpipe.util.CacheDirUtils
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.ServiceHelper
 import org.schabi.newpipe.util.StateSaver
 import org.schabi.newpipe.util.image.ImageStrategy
 import org.schabi.newpipe.util.image.PreferredImageQuality
 import org.schabi.newpipe.util.potoken.PoTokenProviderImpl
+import org.schabi.newpipe.util.subtitle.SubtitleDeduplicator
 
 /*
  * Copyright (C) Hans-Christoph Steiner 2016 <hans@eds.org>
@@ -93,6 +95,8 @@ open class App :
                 .getInt(getString(R.string.last_used_preferences_version), -1)
         isFirstRun = lastUsedPrefVersion == -1
 
+        val appCacheDirPath = CacheDirUtils.getPreferredAppCacheDirPath(this)
+
         // Initialize settings first because other initializations can use its values
         NewPipeSettings.initSettings(this)
 
@@ -124,6 +128,8 @@ open class App :
         configureRxJavaErrorHandler()
 
         YoutubeStreamExtractor.setPoTokenProvider(PoTokenProviderImpl)
+
+        SubtitleDeduplicator.setCacheDirPath(appCacheDirPath)
     }
 
     override fun newImageLoader(context: Context): ImageLoader = ImageLoader
