@@ -166,6 +166,8 @@
     <string name="show_age_restricted_content_summary">Show content possibly unsuitable for children because it has an age limit (like 18+)</string>
     <string name="youtube_restricted_mode_enabled_title">Turn on YouTube\'s \"Restricted Mode\"</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube provides a \"Restricted Mode\" which hides potentially mature content</string>
+    <string name="disable_ipv6_title">Disable IPv6</string>
+    <string name="disable_ipv6_summary">Only connect over IPv4. Some networks and services behave badly over IPv6 — try this if streams fail to load or you keep getting \"sign in to confirm you\'re not a bot\". Requires restarting the app.</string>
     <string name="restricted_video">This video is age restricted.\n\nTurn on \"%1$s\" in the settings if you want to see it.</string>
     <string name="restricted_video_no_stream">This video is age-restricted.
 \nDue to new YouTube policies with age-restricted videos, NewPipe cannot access any of its video streams and thus is unable to play it.</string>
