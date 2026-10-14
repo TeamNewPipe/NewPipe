@@ -11,6 +11,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.functions.Consumer
 import io.reactivex.rxjava3.processors.PublishProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.time.LocalDate
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.util.concurrent.atomic.AtomicBoolean
@@ -259,7 +260,7 @@ class FeedLoadManager(private val context: Context) {
      * Keep the feed and the stream tables small
      * to reduce loading times when trying to display the feed.
      * <br>
-     * Remove streams from the feed which are older than [FeedDatabaseManager.FEED_OLDEST_ALLOWED_DATE].
+     * Remove streams from the feed which are older than one week.
      * Remove streams from the database which are not linked / used by any table.
      */
     private fun postProcessFeed() = Completable.fromRunnable {
@@ -326,16 +327,16 @@ class FeedLoadManager(private val context: Context) {
         }
 
         private fun filterNewStreams(list: List<StreamInfoItem>): List<StreamInfoItem> {
+            val oldestAllowedDate = LocalDate.now().minusWeeks(1)
             return list.filter {
-                !feedDatabaseManager.doesStreamExist(it) &&
-                    it.uploadDate != null &&
-                    // Streams older than this date are automatically removed from the feed.
-                    // Therefore, streams which are not in the database,
-                    // but older than this date, are considered old.
-                    it.uploadDate!!.offsetDateTime().isAfter(
-                        FeedDatabaseManager.FEED_OLDEST_ALLOWED_DATE
-                    )
+                val uploadDate = it.uploadDate?.localDateTime?.toLocalDate() ?: LocalDate.MIN
+
+                // Streams older than this date are automatically removed from the feed.
+                // Therefore, streams which are not in the database,
+                // but older than this date, are considered old.
+                !feedDatabaseManager.doesStreamExist(it) && uploadDate > oldestAllowedDate
             }
+                .take(10)
         }
     }
 
