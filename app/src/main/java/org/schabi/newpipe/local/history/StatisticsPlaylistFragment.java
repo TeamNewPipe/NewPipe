@@ -1,20 +1,30 @@
 package org.schabi.newpipe.local.history;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Gravity;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import com.evernote.android.state.State;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.reactivestreams.Subscriber;
@@ -25,6 +35,7 @@ import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.PlaylistControlBinding;
 import org.schabi.newpipe.databinding.StatisticPlaylistControlBinding;
+import org.schabi.newpipe.databinding.StatisticPlaylistToolbarBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
@@ -43,6 +54,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.function.Supplier;
 
@@ -57,13 +69,18 @@ public class StatisticsPlaylistFragment
     @State
     Parcelable itemsListState;
     private StatisticSortMode sortMode = StatisticSortMode.LAST_PLAYED;
+    private boolean applyIsFullyWatchedFilter = false;
+    private boolean isSearchOpen = false;
 
     private StatisticPlaylistControlBinding headerBinding;
+    private StatisticPlaylistToolbarBinding toolbarBinding;
     private PlaylistControlBinding playlistControlBinding;
 
     /* Used for independent events */
     private Subscription databaseSubscription;
     private HistoryRecordManager recordManager;
+
+    private List<StreamStatisticsEntry> allHistoryEntries = new ArrayList<>();
 
     private List<StreamStatisticsEntry> processResult(final List<StreamStatisticsEntry> results) {
         final Comparator<StreamStatisticsEntry> comparator;
@@ -78,6 +95,12 @@ public class StatisticsPlaylistFragment
                 return null;
         }
         Collections.sort(results, comparator.reversed());
+
+        // Filter fully watched videos
+        if (applyIsFullyWatchedFilter) {
+            return results.stream().filter(it -> !it.isFinished()).toList();
+        }
+
         return results;
     }
 
@@ -123,6 +146,9 @@ public class StatisticsPlaylistFragment
         if (!useAsFrontPage) {
             setTitle(getString(R.string.title_last_played));
         }
+        toolbarBinding = StatisticPlaylistToolbarBinding.inflate(activity.getLayoutInflater(),
+                (ViewGroup) rootView, false);
+        ((ViewGroup) rootView).addView(toolbarBinding.getRoot());
     }
 
     @Override
@@ -154,6 +180,50 @@ public class StatisticsPlaylistFragment
                 if (selectedItem instanceof StreamStatisticsEntry) {
                     showInfoItemDialog((StreamStatisticsEntry) selectedItem);
                 }
+            }
+        });
+
+        initHistorySearchInputActions();
+    }
+
+    private void initHistorySearchInputActions() {
+        toolbarBinding.searchButton.setOnClickListener(view -> openSearch());
+        toolbarBinding.historySearchClear.setOnClickListener(view -> {
+            closeSearch();
+        });
+
+        toolbarBinding.historySearchInput.setOnEditorActionListener((v, actionId, event) -> {
+            if ((EditorInfo.IME_ACTION_SEARCH == actionId)
+                    || ((null != event) && (KeyEvent.KEYCODE_ENTER == event.getKeyCode()))) {
+
+                // hide keyboard
+                final InputMethodManager imm = (InputMethodManager)
+                        requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+
+                return true;
+            }
+            return false;
+        });
+
+        toolbarBinding.historySearchInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(final CharSequence s, final int start, final int before,
+                                      final int count) {
+                toolbarBinding.historySearchClear.setVisibility(
+                        s.length() > 0 ? View.VISIBLE : View.GONE);
+                filterHistory(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(final Editable editable) {
+                // not needed
+            }
+
+            @Override
+            public void beforeTextChanged(final CharSequence s, final int i, final int i1,
+                                          final int i2) {
+                // not needed
             }
         });
     }
@@ -200,6 +270,7 @@ public class StatisticsPlaylistFragment
         }
 
         headerBinding = null;
+        toolbarBinding = null;
         playlistControlBinding = null;
 
         if (databaseSubscription != null) {
@@ -220,7 +291,7 @@ public class StatisticsPlaylistFragment
     ///////////////////////////////////////////////////////////////////////////
 
     private Subscriber<List<StreamStatisticsEntry>> getHistoryObserver() {
-        return new Subscriber<List<StreamStatisticsEntry>>() {
+        return new Subscriber<>() {
             @Override
             public void onSubscribe(final Subscription s) {
                 showLoading();
@@ -268,7 +339,12 @@ public class StatisticsPlaylistFragment
             return;
         }
 
-        itemListAdapter.addItems(processResult(result));
+        allHistoryEntries = new ArrayList<>(result);
+
+        final Editable maybeQuery = toolbarBinding.historySearchInput.getText();
+        final String currentQuery = maybeQuery == null ? null : maybeQuery.toString();
+        filterHistory(currentQuery);
+
         if (itemsListState != null && itemsList.getLayoutManager() != null) {
             itemsList.getLayoutManager().onRestoreInstanceState(itemsListState);
             itemsListState = null;
@@ -276,9 +352,172 @@ public class StatisticsPlaylistFragment
 
         PlayButtonHelper.initPlaylistControlClickListener(activity, playlistControlBinding, this);
 
-        headerBinding.sortButton.setOnClickListener(view -> toggleSortMode());
+        toolbarBinding.sortButton.setOnClickListener(view -> showSortMenu());
+        toolbarBinding.filterWatchedButton.setOnClickListener(view -> {
+            applyIsFullyWatchedFilter = !applyIsFullyWatchedFilter;
+            updateFilterButton();
+            startLoading(true);
+        });
+        updateFilterButton();
 
         hideLoading();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Search Filter and Sorting
+    ///////////////////////////////////////////////////////////////////////////
+
+    private void openSearch() {
+        isSearchOpen = true;
+        setToolbarWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+        toolbarBinding.searchButton.setVisibility(View.GONE);
+        toolbarBinding.historySearchInput.setVisibility(View.VISIBLE);
+        toolbarBinding.historySearchClear.setVisibility(View.VISIBLE);
+        toolbarBinding.historySearchInput.requestFocus();
+        final InputMethodManager imm = (InputMethodManager)
+                requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(toolbarBinding.historySearchInput, InputMethodManager.SHOW_IMPLICIT);
+    }
+
+    private void closeSearch() {
+        isSearchOpen = false;
+        toolbarBinding.historySearchInput.setText("");
+        toolbarBinding.historySearchInput.clearFocus();
+        toolbarBinding.historySearchInput.setVisibility(View.GONE);
+        toolbarBinding.historySearchClear.setVisibility(View.GONE);
+        toolbarBinding.searchButton.setVisibility(View.VISIBLE);
+        setToolbarWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
+        final InputMethodManager imm = (InputMethodManager)
+                requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(toolbarBinding.historySearchInput.getWindowToken(), 0);
+    }
+
+    private void setToolbarWidth(final int width) {
+        final ViewGroup.LayoutParams toolbarLayoutParams =
+                toolbarBinding.getRoot().getLayoutParams();
+        toolbarLayoutParams.width = width;
+        toolbarBinding.getRoot().setLayoutParams(toolbarLayoutParams);
+
+        final ViewGroup.LayoutParams contentLayoutParams =
+                toolbarBinding.toolbarContent.getLayoutParams();
+        contentLayoutParams.width = width;
+        toolbarBinding.toolbarContent.setLayoutParams(contentLayoutParams);
+    }
+
+    private void filterHistory(@Nullable final String query) {
+        if (itemListAdapter == null || query == null) {
+            return;
+        }
+
+        itemListAdapter.clearStreamItemList();
+
+        if (query.isEmpty()) {
+            itemListAdapter.addItems(processResult(allHistoryEntries));
+            return;
+        }
+
+        final List<StreamStatisticsEntry> filtered = new ArrayList<>();
+
+        final String lowerQuery = query.toLowerCase(Locale.ROOT);
+
+        for (final StreamStatisticsEntry historyEntry : allHistoryEntries) {
+            if (matchesHistoryEntry(historyEntry, lowerQuery)) {
+                filtered.add(historyEntry);
+            }
+        }
+
+        itemListAdapter.addItems(processResult(filtered));
+    }
+
+    private boolean matchesHistoryEntry(final StreamStatisticsEntry historyEntry,
+                                        final String lowerQuery) {
+        final String title = historyEntry.getStreamEntity().getTitle().toLowerCase(Locale.ROOT);
+        final String uploader = historyEntry.getStreamEntity().getUploader()
+                .toLowerCase(Locale.ROOT);
+        return title.contains(lowerQuery) || uploader.contains(lowerQuery);
+    }
+
+    private void showSortMenu() {
+        final View menuView = getLayoutInflater().inflate(R.layout.menu_history_sort, null);
+        final PopupWindow popupWindow = new PopupWindow(menuView,
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setElevation(8);
+
+        menuView.findViewById(R.id.action_sort_last_played).setOnClickListener(view -> {
+            selectSortMode(StatisticSortMode.LAST_PLAYED);
+            popupWindow.dismiss();
+        });
+        menuView.findViewById(R.id.action_sort_most_played).setOnClickListener(view -> {
+            selectSortMode(StatisticSortMode.MOST_PLAYED);
+            popupWindow.dismiss();
+        });
+
+        menuView.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        updateSortMenuSelection(menuView);
+        popupWindow.showAsDropDown(toolbarBinding.sortButton, 0,
+                -menuView.getMeasuredHeight() - toolbarBinding.sortButton.getHeight(), Gravity.END);
+    }
+
+    private void updateSortMenuSelection(final View menuView) {
+        final int activeColor = getResources().getColor(R.color.contrastColor);
+        final int strokeWidth = (int) (2 * getResources().getDisplayMetrics().density + 0.5f);
+        setSortMenuOptionState(menuView.findViewById(R.id.action_sort_last_played),
+                sortMode == StatisticSortMode.LAST_PLAYED, activeColor, strokeWidth);
+        setSortMenuOptionState(menuView.findViewById(R.id.action_sort_most_played),
+                sortMode == StatisticSortMode.MOST_PLAYED, activeColor, strokeWidth);
+    }
+
+    private void setSortMenuOptionState(final View view, final boolean active,
+                                        final int activeColor, final int strokeWidth) {
+        final ExtendedFloatingActionButton button = (ExtendedFloatingActionButton) view;
+        button.setSelected(active);
+        button.setAlpha(active ? 1.0f : 0.65f);
+        button.setStrokeWidth(active ? strokeWidth : 0);
+        button.setStrokeColor(ColorStateList.valueOf(active ? activeColor : Color.TRANSPARENT));
+    }
+
+    private void selectSortMode(final StatisticSortMode mode) {
+        if (sortMode != mode) {
+            sortMode = mode;
+            displaySortMode(sortMode);
+            startLoading(true);
+        }
+    }
+
+    private void updateFilterButton() {
+        if (headerBinding == null) {
+            return;
+        }
+        toolbarBinding.filterWatchedButton.setSelected(applyIsFullyWatchedFilter);
+        toolbarBinding.filterWatchedButton.setAlpha(applyIsFullyWatchedFilter ? 1.0f : 0.6f);
+        toolbarBinding.filterWatchedButton.setContentDescription(getString(
+                applyIsFullyWatchedFilter
+                        ? R.string.history_search_show_watched
+                        : R.string.history_search_filter_watched));
+    }
+
+    private void displaySortMode(final StatisticSortMode mode) {
+        final int resourceIdOfSortMode = mode.getResourceId();
+        final String title = getString(resourceIdOfSortMode);
+        setTitle(title);
+    }
+
+    private enum StatisticSortMode {
+        LAST_PLAYED(R.string.title_last_played),
+        MOST_PLAYED(R.string.title_most_played);
+
+        private final int resourceId;
+
+        StatisticSortMode(final int theResourceId) {
+            this.resourceId = theResourceId;
+        }
+
+        int getResourceId() {
+            return resourceId;
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -296,22 +535,6 @@ public class StatisticsPlaylistFragment
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
-
-    private void toggleSortMode() {
-        if (sortMode == StatisticSortMode.LAST_PLAYED) {
-            sortMode = StatisticSortMode.MOST_PLAYED;
-            setTitle(getString(R.string.title_most_played));
-            headerBinding.sortButtonIcon.setImageResource(R.drawable.ic_history);
-            headerBinding.sortButtonText.setText(R.string.title_last_played);
-        } else {
-            sortMode = StatisticSortMode.LAST_PLAYED;
-            setTitle(getString(R.string.title_last_played));
-            headerBinding.sortButtonIcon.setImageResource(
-                R.drawable.ic_filter_list);
-            headerBinding.sortButtonText.setText(R.string.title_most_played);
-        }
-        startLoading(true);
-    }
 
     private PlayQueue getPlayQueueStartingAt(final StreamStatisticsEntry infoItem) {
         return getPlayQueue(Math.max(itemListAdapter.getItemsList().indexOf(infoItem), 0));
@@ -383,25 +606,4 @@ public class StatisticsPlaylistFragment
         }
         return new SinglePlayQueue(streamInfoItems, index);
     }
-
-    private void displaySortMode(final StatisticSortMode mode) {
-        final int resourceIdOfSortMode = mode.getResourceId();
-        setTitle(getString(resourceIdOfSortMode));
-    }
-
-    private enum StatisticSortMode {
-        LAST_PLAYED(R.string.title_last_played),
-        MOST_PLAYED(R.string.title_most_played);
-
-        private final int resourceId;
-
-        StatisticSortMode(final int theResourceId) {
-            this.resourceId = theResourceId;
-        }
-
-        int getResourceId() {
-            return resourceId;
-        }
-    }
 }
-
