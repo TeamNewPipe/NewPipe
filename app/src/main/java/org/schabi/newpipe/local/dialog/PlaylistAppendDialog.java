@@ -3,9 +3,12 @@ package org.schabi.newpipe.local.dialog;
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.DEFAULT_THUMBNAIL_ID;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +24,10 @@ import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.local.LocalItemListAdapter;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -32,7 +38,10 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
     private RecyclerView playlistRecyclerView;
     private LocalItemListAdapter playlistAdapter;
     private TextView playlistDuplicateIndicator;
+    private EditText playlistSearchEditText;
+    private View playlistSearchClear;
 
+    private List<PlaylistDuplicatesEntry> allPlaylists = new ArrayList<>();
     private final CompositeDisposable playlistDisposables = new CompositeDisposable();
 
     /**
@@ -82,6 +91,11 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
         final View newPlaylistButton = view.findViewById(R.id.newPlaylist);
         newPlaylistButton.setOnClickListener(ignored -> openCreatePlaylistDialog());
 
+        // Setup search functionality
+        playlistSearchEditText = view.findViewById(R.id.playlist_search_edit_text);
+        playlistSearchClear = view.findViewById(R.id.playlist_search_clear);
+        setupSearch();
+
         playlistDisposables.add(playlistManager
                 .getPlaylistDuplicates(getStreamEntities().get(0).getUrl())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -103,11 +117,65 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
         playlistDisposables.clear();
         playlistRecyclerView = null;
         playlistAdapter = null;
+        playlistSearchEditText = null;
+        playlistSearchClear = null;
+        allPlaylists.clear();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Helper
     //////////////////////////////////////////////////////////////////////////*/
+
+    private void setupSearch() {
+        if (playlistSearchEditText == null || playlistSearchClear == null) {
+            return;
+        }
+
+        playlistSearchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(final CharSequence s, final int start,
+                                          final int count, final int after) {
+            }
+
+            @Override
+            public void onTextChanged(final CharSequence s, final int start,
+                                      final int before, final int count) {
+            }
+
+            @Override
+            public void afterTextChanged(final Editable s) {
+                final String query = s.toString();
+                playlistSearchClear.setVisibility(
+                        query.isEmpty() ? View.GONE : View.VISIBLE);
+                filterPlaylists(query);
+            }
+        });
+
+        playlistSearchClear.setOnClickListener(v -> {
+            playlistSearchEditText.setText("");
+            playlistSearchClear.setVisibility(View.GONE);
+        });
+    }
+
+    private void filterPlaylists(final String query) {
+        if (playlistAdapter == null || allPlaylists.isEmpty()) {
+            return;
+        }
+
+        if (query.isEmpty()) {
+            playlistAdapter.clearStreamItemList();
+            playlistAdapter.addItems(allPlaylists);
+        } else {
+            final String lowerCaseQuery = query.toLowerCase(Locale.getDefault());
+            final List<PlaylistDuplicatesEntry> filteredPlaylists = allPlaylists.stream()
+                    .filter(playlist -> playlist.name.toLowerCase(Locale.getDefault())
+                            .contains(lowerCaseQuery))
+                    .collect(Collectors.toList());
+
+            playlistAdapter.clearStreamItemList();
+            playlistAdapter.addItems(filteredPlaylists);
+        }
+    }
 
     /** Display create playlist dialog. */
     public void openCreatePlaylistDialog() {
@@ -129,6 +197,7 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
         if (playlistAdapter != null
                 && playlistRecyclerView != null
                 && playlistDuplicateIndicator != null) {
+            allPlaylists = playlists;
             playlistAdapter.clearStreamItemList();
             playlistAdapter.addItems(playlists);
             playlistRecyclerView.setVisibility(View.VISIBLE);
