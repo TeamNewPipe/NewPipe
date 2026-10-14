@@ -1,7 +1,15 @@
-const yaml = require('js-yaml');
+/*
+ * SPDX-FileCopyrightText: 2026 NewPipe e.V. <https://newpipe-ev.de>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
 /*
  * Script for commenting on issues/PRs when the template is missing or ignored
+ * to encourage proper use of the templates.
  */
+
+const yaml = require('js-yaml');
+
 module.exports = async ({github, context}) => {
 
     const label = context.payload.label && context.payload.label.name;

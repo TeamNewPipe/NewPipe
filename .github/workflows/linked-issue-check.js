@@ -1,3 +1,8 @@
+/*
+ * SPDX-FileCopyrightText: 2026 NewPipe e.V. <https://newpipe-ev.de>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
 module.exports = async ({github, context}) => {
     const pullRequest = context.payload.pull_request;
     const query = `query($owner: String!, $repo: String!, $number: Int!) {
