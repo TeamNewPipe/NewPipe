@@ -3,10 +3,10 @@
     <string name="upload_date_text">Δημοσιεύθηκε στις %1$s</string>
     <string name="no_player_found">Δε βρέθηκε αναπαραγωγός ροής δεδομένων. Εγκατάσταση του VLC;</string>
     <string name="install">Εγκατάσταση</string>
-    <string name="cancel">Άκυρο</string>
-    <string name="open_in_browser">Άνοιγμα σε πρόγραμμα περιήγησης</string>
+    <string name="cancel">Ακύρωση</string>
+    <string name="open_in_browser">Άνοιγμα στον περιηγητή</string>
     <string name="share">Κοινοποίηση</string>
-    <string name="download">Λήψη</string>
+    <string name="download">Λήξη</string>
     <string name="search">Αναζήτηση</string>
     <string name="settings">Ρυθμίσεις</string>
     <string name="did_you_mean">Μήπως εννοείτε \"%1$s\";</string>
@@ -27,8 +27,8 @@
     <string name="play_audio">Ήχος</string>
     <string name="default_audio_format_title">Προεπιλεγμένη μορφή ήχου</string>
     <string name="theme_title">Θέμα</string>
-    <string name="dark_theme_title">Σκοτεινό</string>
-    <string name="light_theme_title">Φωτεινό</string>
+    <string name="dark_theme_title">Σκοτεινή</string>
+    <string name="light_theme_title">Φωτεινή</string>
     <string name="download_dialog_title">Λήψη</string>
     <string name="show_next_and_similar_title">Εμφάνιση «Επόμενου» και «Σχετικών» βίντεο</string>
     <string name="unsupported_url">Δεν υποστηρίζεται η διεύθυνση URL</string>
@@ -63,7 +63,7 @@
     <string name="delete">Διαγραφή</string>
     <string name="msg_error">Σφάλμα</string>
     <string name="msg_running_detail">Πατήστε για λεπτομέρειες</string>
-    <string name="settings_category_downloads_title">Λήψη</string>
+    <string name="settings_category_downloads_title">Κατεβάσματα</string>
     <string name="charset_letters_and_digits">Γράμματα και ψηφία</string>
     <string name="tab_licenses">Άδειες</string>
     <string name="title_activity_history">Ιστορικό</string>
@@ -205,17 +205,17 @@
     <string name="settings_file_replacement_character_title">Αντικαταστάτης χαρακτήρας</string>
     <string name="charset_most_special_characters">Οι περισσότεροι ειδικοί χαρακτήρες</string>
     <string name="title_activity_about">Σχετικά με το NewPipe</string>
-    <string name="title_licenses">Άδειες Τρίτων</string>
+    <string name="title_licenses">Άδειες τρίτων κατασκευαστών</string>
     <string name="copyright" formatted="true">© %1$s από %2$s υπό %3$s</string>
-    <string name="tab_about">Πληροφορίες &amp; Συχνές Ερωτήσεις</string>
-    <string name="app_description">Ανοιχτού κώδικα, ελαφριά εφαρμογή Android, για την αναπαραγωγή πολυμέσων από το διαδίκτυο.</string>
-    <string name="contribution_title">Συνεισφέρετε</string>
+    <string name="tab_about">Πληροφορίες και συχνές ερωτήσεις</string>
+    <string name="app_description">Ανοιχτού κώδικα, ελαφριά εφαρμογή Android, για την αναπαραγωγή πολυμεσων από το διαδίκτυο.</string>
+    <string name="contribution_title">Συνεισφορά</string>
     <string name="contribution_encouragement">Αν έχετε ιδέες για μετάφραση, αλλαγή σχεδιασμού, εκκαθάριση ή ριζικές αλλαγές κώδικα της εφαρμογής, η βοήθεια σας είναι πάντα ευπρόσδεκτη. Όσο περισσότερη έχουμε, τόσο καλύτεροι γινόμαστε!</string>
     <string name="view_on_github">Δείτε το στο GitHub</string>
-    <string name="donation_title">Δωρεά</string>
+    <string name="donation_title">Κάνε δωρεά</string>
     <string name="donation_encouragement">Το NewPipe αναπτύσσεται από εθελοντές που δαπανούν τον ελεύθερο χρόνο τους για να σας προσφέρουν τη βέλτιστη δυνατή εμπειρία χρήστη. Ανταποδώστε το, για να βοηθήσετε τους προγραμματιστές του NewPipe να το κάνουν ακόμα καλύτερο, όσο απολαμβάνουν ένα φλιτζάνι καφέ.</string>
     <string name="give_back">Προσφέρετε</string>
-    <string name="website_title">Ιστότοπος</string>
+    <string name="website_title">Ιστοτόπος</string>
     <string name="website_encouragement">Επισκευτείτε τον ιστότοπο του NewPipe για περισσότερες πληροφορίες και νέα.</string>
     <string name="privacy_policy_title">Πολιτική ιδιωτικού απόρρητου του NewPipe</string>
     <string name="privacy_policy_encouragement">Το NewPipe παίρνει πολύ σοβαρά την ιδιωτικότητα σας. Έτσι, η εφαρμογή αυτή δεν συλλέγει δεδομένα από εσάς χωρίς τη συγκατάθεσή σας.
@@ -346,7 +346,7 @@
     <string name="list_view_mode">Προβολή λίστας</string>
     <string name="list">Λίστα</string>
     <string name="grid">Πλέγμα</string>
-    <string name="auto">Αυτόματα</string>
+    <string name="auto">Αυτόματο</string>
     <string name="app_update_available_notification_title">Μια νέα έκδοση του NewPipe είναι διαθέσιμη!</string>
     <string name="missions_header_finished">Ολοκληρώθηκε</string>
     <string name="missions_header_pending">Εκκρεμεί</string>
@@ -455,7 +455,7 @@
     <string name="title_activity_play_queue">Αναπαραγωγή ουράς</string>
     <string name="no_playlist_bookmarked_yet">Δεν υπάρχουν σελιδοδείκτες λίστας αναπαραγωγής ακόμα</string>
     <string name="select_a_playlist">Επιλέξτε μια λίστα αναπαραγωγής</string>
-    <string name="done">Τέλος</string>
+    <string name="done">Ολοκλήρωση</string>
     <string name="subtitle_activity_recaptcha">Πατήστε «Τέλος» όταν επιλυθεί</string>
     <string name="infinite_videos">∞ βίντεο</string>
     <string name="more_than_100_videos">100+ βίντεο</string>
@@ -539,7 +539,7 @@
     <string name="show_memory_leaks">Εμφάνιση διαρροών μνήμης</string>
     <string name="unmute">Κατάργηση σίγασης</string>
     <string name="enqueued">Προστέθηκε στην ουρά</string>
-    <string name="enqueue_stream">Προσθήκη στην ουρά</string>
+    <string name="enqueue_stream">Προσθήκη σε ουρά</string>
     <string name="most_liked">Πιο αγαπημένα</string>
     <string name="error_report_open_github_notice">Παρακαλούμε ελέγξτε αν το πρόβλημα σας έχει ήδη αναφερθεί. Οι διπλές αναφορές μας στερούν το χρόνο που θα μπορούσαμε να διαθέσουμε για την επίλυση του προβλήματος.</string>
     <string name="clear_cookie_summary">Εκκαθάριση των cookies που αποθηκεύει η εφαρμογή όταν επιλύετε ένα reCAPTCHA</string>
@@ -591,7 +591,7 @@
     <string name="night_theme_title">Νυχτερινό θέμα</string>
     <string name="show_channel_details">Εμφάνιση λεπτομερειών καναλιού</string>
     <string name="disable_media_tunneling_summary">Απενεργοποιήστε το media tunneling, αν παρατηρείτε μαύρη οθόνη ή διακοπές κατά την αναπαραγωγή βίντεο.</string>
-    <string name="disable_media_tunneling_title">Απενεργοποίηση media tunneling</string>
+    <string name="disable_media_tunneling_title">Διατυπή σήραγγα των μέσων μαζικής ενημέρωσης</string>
     <string name="metadata_privacy_internal">Εσωτερικό</string>
     <string name="metadata_privacy_private">Ιδιωτικό</string>
     <string name="metadata_privacy_unlisted">Εκτός λίστας</string>
@@ -622,7 +622,7 @@
     <string name="on">Ενεργό</string>
     <string name="tablet_mode_title">Κατάσταση tablet</string>
     <string name="comments_are_disabled">Τα σχόλια είναι απενεργοποιημένα</string>
-    <string name="dont_show">Απόκρυψη</string>
+    <string name="dont_show">Μην εμφανίζεις</string>
     <string name="low_quality_smaller">Χαμηλή ποιότητα (μικρότερο)</string>
     <string name="high_quality_larger">Υψηλή ποιότητα (μεγαλύτερο)</string>
     <string name="seekbar_preview_thumbnail_title">Προεπισκόπηση στην μπάρα αναζήτησης</string>
@@ -725,7 +725,7 @@
     <string name="right_gesture_control_summary">Επιλέξτε χειρονομία για το δεξί μισό της οθόνης του προγράμματος αναπαραγωγής</string>
     <string name="right_gesture_control_title">Ενέργεια δεξιάς χειρονομίας</string>
     <string name="brightness">Φωτεινότητα</string>
-    <string name="volume">Ένταση</string>
+    <string name="volume">Όγκος</string>
     <string name="none">Καμία</string>
     <string name="prefer_original_audio_title">Προτίμηση πρωτότυπου ήχου</string>
     <string name="prefer_original_audio_summary">Επιλογή του πρωτότυπου κομματιού ήχου ανεξάρτητα από τη γλώσσα</string>

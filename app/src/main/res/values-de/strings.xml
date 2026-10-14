@@ -107,7 +107,7 @@
     <string name="tab_licenses">Lizenzen</string>
     <string name="read_full_license">Lizenz lesen</string>
     <string name="copyright" formatted="true">© %1$s von %2$s unter %3$s</string>
-    <string name="tab_about">Über &amp; FAQ</string>
+    <string name="tab_about">Über und FAQ</string>
     <string name="app_description">Freies und schlankes Streaming für Android.</string>
     <string name="app_license_title">NewPipes Lizenz</string>
     <string name="contribution_encouragement">Ob Ideen, Übersetzungen, Design-Änderungen, Code-Aufräumen oder richtig große Code-Änderungen — Hilfe ist immer willkommen. Je mehr geholfen wird, desto besser wird NewPipe!</string>

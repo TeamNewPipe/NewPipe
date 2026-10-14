@@ -11,8 +11,8 @@
     <string name="settings">Nastavení</string>
     <string name="did_you_mean">Mysleli jste „%1$s“\?</string>
     <string name="share_dialog_title">Sdílet s</string>
-    <string name="use_external_video_player_title">Použít externí přehrávač videí</string>
-    <string name="use_external_audio_player_title">Použít externí audio přehrávač</string>
+    <string name="use_external_video_player_title">Použít externí videopřehrávač</string>
+    <string name="use_external_audio_player_title">Použít externí audiopřehrávač</string>
     <string name="download_path_audio_summary">Sem bude ukládáno stažené audio</string>
     <string name="download_path_audio_dialog_title">Zvolte adresář pro stažené audio soubory</string>
     <string name="download_path_audio_title">Adresář pro stažené audio</string>
@@ -86,12 +86,12 @@
     <string name="open_in_popup_mode">Otevřít ve vyskakovacím okně</string>
     <string name="msg_popup_permission">Toto oprávnění je vyžadováno
 \npro otevření ve vyskakovacím okně</string>
-    <string name="use_external_video_player_summary">Odstraňuje zvuk v některých rozlišeních</string>
-    <string name="show_higher_resolutions_title">Zobrazovat vyšší rozlišení</string>
-    <string name="show_higher_resolutions_summary">Pouze některá zařízení dokáží přehrát 2K/4K videa</string>
+    <string name="use_external_video_player_summary">U některých rozlišení odstraní zvuk</string>
+    <string name="show_higher_resolutions_title">Zobrazit vyšší rozlišení</string>
+    <string name="show_higher_resolutions_summary">Pouze některá zařízení dokáží přehrávat 2K/4K videa</string>
     <string name="default_video_format_title">Výchozí formát videa</string>
-    <string name="popup_remember_size_pos_title">Pamatovat si vlastnosti vyskakovacího okna</string>
-    <string name="popup_remember_size_pos_summary">Pamatovat si poslední velikost a pozici vyskakovacího okna</string>
+    <string name="popup_remember_size_pos_title">Zapamatovat si vlastnosti vyskakovacího okna</string>
+    <string name="popup_remember_size_pos_summary">Zapamatovat si poslední velikost a pozici vyskakovacího okna</string>
     <string name="subscribe_button_title">Odebírat</string>
     <string name="subscribed_button_title">Odebíráno</string>
     <string name="channel_unsubscribed">Odběr zrušen</string>
@@ -108,8 +108,8 @@
     <string name="enable_search_history_summary">Hledané výrazy lokálně uchovávat</string>
     <string name="enable_watch_history_title">Historie sledování</string>
     <string name="enable_watch_history_summary">Evidovat zhlédnutá videa</string>
-    <string name="resume_on_audio_focus_gain_title">Obnovit přehrávání</string>
-    <string name="resume_on_audio_focus_gain_summary">Pokračovat v přehrávání po přerušení (např. hovor)</string>
+    <string name="resume_on_audio_focus_gain_title">Pokračovat v přehrávání</string>
+    <string name="resume_on_audio_focus_gain_summary">Pokračovat v přehrávání po přerušení (např. telefonní hovory)</string>
     <string name="settings_category_player_title">Přehrávač</string>
     <string name="settings_category_player_behavior_title">Chování</string>
     <string name="settings_category_history_title">Historie a mezipaměť</string>
@@ -209,9 +209,9 @@
     <string name="no_valid_zip_file">Žádný platný soubor ZIP</string>
     <string name="could_not_import_all_files">Upozornění: Nelze importovat všechny soubory.</string>
     <string name="override_current_data">Tímto se anuluje vaše aktuální nastavení.</string>
-    <string name="video_player">Přehrávač videa</string>
+    <string name="video_player">Videopřehrávač</string>
     <string name="background_player">Přehrávač na pozadí</string>
-    <string name="popup_player">Přehrávač v okně</string>
+    <string name="popup_player">Vyskakovací přehrávač</string>
     <string name="preferred_player_fetcher_notification_title">Získávám informace…</string>
     <string name="preferred_player_fetcher_notification_message">Načítání požadovaného obsahu</string>
     <string name="controls_download_desc">Stáhnout soubor streamu</string>
@@ -245,14 +245,14 @@
     <string name="enable_leak_canary_summary">Monitoring úniku paměti může způsobit nereagování aplikace při heap dumpingu</string>
     <string name="enable_disposed_exceptions_title">Nahlásit mimo-cyklické chyby</string>
     <string name="enable_disposed_exceptions_summary">Vynutit hlášení nedoručitelných výjimek Rx mimo životnost fragmentu nebo aktivity po odstranění</string>
-    <string name="use_inexact_seek_title">Použít rychlé nepřesné hledání</string>
-    <string name="use_inexact_seek_summary">Nepřesné hledání umožní přehrávači posouvat se rychleji, ale se sníženou přesností. Posouvání po 5, 15 nebo 25 vteřinách s tímto nefunguje</string>
+    <string name="use_inexact_seek_title">Použít rychlé nepřesné posouvání</string>
+    <string name="use_inexact_seek_summary">Nepřesné posouvání umožňuje přehrávači přesouvat se na pozice rychleji se sníženou přesností. Posun o 5, 15 nebo 25 sekund není s touto možností podporován</string>
     <string name="thumbnail_cache_wipe_complete_notice">Mezipaměť obrázků vymazána</string>
     <string name="metadata_cache_wipe_title">Vymazat metadata v mezipaměti</string>
     <string name="metadata_cache_wipe_summary">Odstranit všechna data webových stránek v mezipaměti</string>
     <string name="metadata_cache_wipe_complete_notice">Mezipaměť metadat vymazána</string>
-    <string name="auto_queue_title">Další stream automaticky vložit do fronty</string>
-    <string name="auto_queue_summary">Pokračovat konečnou (neopakující se) frontu playbacku připojením souvisejícího streamu</string>
+    <string name="auto_queue_title">Automaticky přidat další stream do fronty</string>
+    <string name="auto_queue_summary">Pokračovat v končící (neopakující se) frontě přehrávání přidáním doporučeného streamu</string>
     <string name="file">Soubor</string>
     <string name="invalid_directory">Neexistující složka</string>
     <string name="invalid_source">Neexistující zdroj souboru/obsahu</string>
@@ -292,7 +292,7 @@
     <string name="playback_pitch">Výška tónu</string>
     <string name="unhook_checkbox">Odpojit (může způsobit zkreslení)</string>
     <string name="no_streams_available_download">Ke stažení nejsou dostupné žádné streamy</string>
-    <string name="preferred_open_action_settings_title">Preferovaná akce „otevření“</string>
+    <string name="preferred_open_action_settings_title">Preferovaná akce „otevřít“</string>
     <string name="preferred_open_action_settings_summary">Výchozí chování při otevírání obsahu — %s</string>
     <string name="caption_setting_title">Titulky</string>
     <string name="caption_setting_description">Upravit velikost textu titulků a styly pozadí. Změny se projeví po restartu aplikace</string>
@@ -323,12 +323,12 @@
     <string name="accept">Přijmout</string>
     <string name="decline">Odmítnout</string>
     <string name="limit_data_usage_none_description">Bez omezení</string>
-    <string name="limit_mobile_data_usage_title">Omezit rozlišení při použití mobilních dat</string>
-    <string name="minimize_on_exit_title">Minimalizovat při přepínání aplikací</string>
+    <string name="limit_mobile_data_usage_title">Omezit rozlišení při používání mobilních dat</string>
+    <string name="minimize_on_exit_title">Minimalizovat při přepnutí aplikace</string>
     <string name="minimize_on_exit_summary">Akce při přepínání aplikací z hlavního přehrávače videa — %s</string>
     <string name="minimize_on_exit_none_description">Žádná</string>
-    <string name="minimize_on_exit_background_description">Minimalizovat přehrávač na pozadí</string>
-    <string name="minimize_on_exit_popup_description">Minimalizovat přehrávač do vyskakovacího okna</string>
+    <string name="minimize_on_exit_background_description">Minimalizovat na přehrávač na pozadí</string>
+    <string name="minimize_on_exit_popup_description">Minimalizovat na vyskakovací přehrávač</string>
     <string name="unsubscribe">Přestat odebírat</string>
     <string name="tab_choose">Zvolit panel</string>
     <string name="settings_category_updates_title">Aktualizace</string>
@@ -425,7 +425,7 @@
         <item quantity="other">%s posluchačů</item>
     </plurals>
     <string name="default_kiosk_page_summary">Výchozí kiosek</string>
-    <string name="seek_duration_title">Délka přetočení vpřed/zpět</string>
+    <string name="seek_duration_title">Trvání rychlého přetočení vpřed/vzad</string>
     <string name="peertube_instance_url_title">Instance PeerTube</string>
     <string name="peertube_instance_url_summary">Vybrat oblíbené instance PeerTube</string>
     <string name="peertube_instance_url_help">Vyhledat instance, které se vám líbí, na %s</string>
@@ -542,8 +542,8 @@
     <string name="unsupported_url_dialog_message">Nelze rozpoznat zadanou adresu URL. Otevřít pomocí jiné aplikace\?</string>
     <string name="auto_queue_toggle">Automatické přehravání</string>
     <string name="clear_queue_confirmation_description">Fronta aktivního přehrávače bude smazána</string>
-    <string name="clear_queue_confirmation_summary">Při přechodu z jednoho přehrávače do druhého může dojít k smazání fronty</string>
-    <string name="clear_queue_confirmation_title">Žádat potvrzení před vyklizením fronty</string>
+    <string name="clear_queue_confirmation_summary">Přepnutí z jednoho přehrávače na jiný může nahradit vaši frontu</string>
+    <string name="clear_queue_confirmation_title">Zeptat se na potvrzení před vymazáním fronty</string>
     <string name="notification_action_nothing">Nic</string>
     <string name="notification_action_buffering">Bufferovat</string>
     <string name="notification_action_shuffle">Promíchat</string>
@@ -559,7 +559,7 @@
     <string name="notification_scale_to_square_image_title">Oříznout poměr stran miniatury na 1:1</string>
     <string name="show_memory_leaks">Zobrazit úniky paměti</string>
     <string name="enqueued">Zařazeno do fronty</string>
-    <string name="enqueue_stream">Zařadit do fronty</string>
+    <string name="enqueue_stream">Přidat do fronty</string>
     <string name="clear_cookie_summary">Vymazat cookies, které NewPipe uloží, po vyřešení reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Cookies reCAPTCHA byly vymazány</string>
     <string name="clear_cookie_title">Vymazat cookies reCAPTCHA</string>
@@ -600,8 +600,8 @@
     <string name="restricted_video_no_stream">Toto video je věkově omezeno.
 \nKvůli novým pravidlům YouTube ohledně věkově omezených videí nemůže NewPipe získat přístup na streamy videa, a tak je nemůže přehrát.</string>
     <string name="night_theme_title">Noční motiv</string>
-    <string name="disable_media_tunneling_summary">Vypněte media-tunelling, pokud během přehrávání zaznamenáte temnou obrazovku nebo zadrhávání.</string>
-    <string name="disable_media_tunneling_title">Vypnout media-tunelling</string>
+    <string name="disable_media_tunneling_summary">Zakažte tunelování médií, pokud máte potíže s černou obrazovkou nebo sekáním při přehrávání videa.</string>
+    <string name="disable_media_tunneling_title">Zakázat tunelování médií</string>
     <string name="open_website_license">Přejít na website</string>
     <string name="metadata_privacy_internal">Interní</string>
     <string name="metadata_privacy_private">Soukromé</string>
@@ -634,7 +634,7 @@
     <string name="dont_show">Nezobrazovat</string>
     <string name="low_quality_smaller">Nízká kvalita (menší)</string>
     <string name="high_quality_larger">Vysoká kvalita (větší)</string>
-    <string name="seekbar_preview_thumbnail_title">Náhled miniatur na vyhledávací liště</string>
+    <string name="seekbar_preview_thumbnail_title">Náhledy na liště videa</string>
     <string name="comments_are_disabled">Komentáře jsou vypnuty</string>
     <string name="detail_heart_img_view_description">Srdíčko od tvůrce</string>
     <string name="mark_as_watched">Označit jako zhlédnuté</string>
@@ -650,7 +650,7 @@
     </plurals>
     <string name="remote_search_suggestions">Vzdálené návrhy vyhledávání</string>
     <string name="local_search_suggestions">Lokální návrhy vyhledávání</string>
-    <string name="start_main_player_fullscreen_summary">Pokud je vypnuté automatické otáčení, nespouštět video v mini přehrávači, ale přepnout se přímo do režimu celé obrazovky. Do mini přehrávače se lze i nadále dostat ukončením režimu celé obrazovky</string>
+    <string name="start_main_player_fullscreen_summary">Nespouštět videa v mini přehrávači, ale rovnou přepnout na celoobrazovkový režim, pokud je automatické otáčení vypnuté. Minipřehrávač můžete stále otevřít opuštěním celé obrazovky</string>
     <string name="enqueued_next">Další ve frontě</string>
     <string name="enqueue_next_stream">Přidat do fronty (další)</string>
     <string name="main_page_content_swipe_remove">Tažením položky odstraníte</string>
@@ -675,7 +675,7 @@
     <string name="detail_pinned_comment_view_description">Připnutý komentář</string>
     <string name="crash_the_player">Shodit přehrávač</string>
     <string name="leak_canary_not_available">LeakCanary není dostupné</string>
-    <string name="progressive_load_interval_exoplayer_default">Výchozí ExoPlayer</string>
+    <string name="progressive_load_interval_exoplayer_default">Výchozí nastavení služby ExoPlayer</string>
     <string name="settings_category_player_notification_summary">Nastavit oznámení o právě přehrávaném streamu</string>
     <string name="enable_streams_notifications_title">Oznámení o nových streamech</string>
     <string name="enable_streams_notifications_summary">Oznámit o nových streamech od vašich odběrů</string>
@@ -723,8 +723,8 @@
     <string name="msg_failed_to_copy">Kopírování do schránky se nezdařilo</string>
     <string name="duplicate_in_playlist">Zašedlé playlisty již obsahují tuto položku.</string>
     <string name="playlist_add_stream_success_duplicate">Duplikát přidán %dkrát</string>
-    <string name="ignore_hardware_media_buttons_title">Ignorovat události hardwarových tlačítek médií</string>
-    <string name="ignore_hardware_media_buttons_summary">Užitečné například v případě, že používáte sluchátka s rozbitými fyzickými tlačítky</string>
+    <string name="ignore_hardware_media_buttons_title">Ignorovat hardwarová multimediální tlačítka</string>
+    <string name="ignore_hardware_media_buttons_summary">Užitečné například pokud používáte sluchátka s rozbitými fyzickými tlačítky</string>
     <string name="remove_duplicates_title">Odstranit duplicity\?</string>
     <string name="feed_hide_streams_title">Zobrazit následující streamy</string>
     <string name="feed_show_hide_streams">Zobrazit/skrýt streamy</string>
@@ -736,21 +736,21 @@
     <string name="left_gesture_control_title">Akce levého gesta</string>
     <string name="right_gesture_control_title">Akce pravého gesta</string>
     <string name="volume">Hlasitost</string>
-    <string name="none">Žádné</string>
-    <string name="left_gesture_control_summary">Vyberte gesto pro levou polovinu obrazovky přehrávače</string>
+    <string name="none">Žádný</string>
+    <string name="left_gesture_control_summary">Vyberte si gesto pro levou polovinu obrazovky přehrávače</string>
     <string name="brightness">Jas</string>
-    <string name="right_gesture_control_summary">Vyberte gesto pro pravou polovinu obrazovky přehrávače</string>
+    <string name="right_gesture_control_summary">Vyberte si gesto pro pravou polovinu obrazovky přehrávače</string>
     <string name="progressive_load_interval_summary">Změna velikosti intervalu načítání progresivního obsahu (aktuálně %s). Nižší hodnota může urychlit jejich počáteční načítání</string>
-    <string name="prefer_original_audio_title">Upřednostňovat původní zvuk</string>
-    <string name="prefer_original_audio_summary">Vybrat původní zvukovou stopu bez ohledu na jazyk</string>
-    <string name="prefer_descriptive_audio_title">Upřednostňovat popisný zvuk</string>
-    <string name="prefer_descriptive_audio_summary">Vybrat zvukovou stopu s popisem pro zrakově postižené, pokud je k dispozici</string>
+    <string name="prefer_original_audio_title">Preferovat původní zvuk</string>
+    <string name="prefer_original_audio_summary">Vybrat původní zvukovou stopu nezávisle na jazyce</string>
+    <string name="prefer_descriptive_audio_title">Preferovat popisný zvuk</string>
+    <string name="prefer_descriptive_audio_summary">Vybrat zvukovou stopu s popisem pro zrakově postižené, pokud je dostupná</string>
     <string name="unknown_audio_track">Neznámá</string>
-    <string name="settings_category_exoplayer_title">Nastavení přehrávače ExoPlayer</string>
-    <string name="settings_category_exoplayer_summary">Správa některých nastavení přehrávače ExoPlayer. Tyto změny vyžadují restartování přehrávače, aby se projevily</string>
-    <string name="use_exoplayer_decoder_fallback_title">Použít funkci náhradního dekodéru přehrávače ExoPlayer</string>
-    <string name="use_exoplayer_decoder_fallback_summary">Tuto možnost povolte, pokud máte problémy s inicializací dekodéru. V případě selhání inicializace primárních dekodérů se přehrávač vrátí zpět k dekodérům s nižší prioritou. To může mít za následek nižší výkon přehrávání než při použití primárních dekodérů</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_title">Vždy použít nastavení povrchu výstupu videa v přehrávači ExoPlayer</string>
+    <string name="settings_category_exoplayer_title">Nastavení služby ExoPlayer</string>
+    <string name="settings_category_exoplayer_summary">Správa některých nastavení služby ExoPlayer. Tyto změny vyžadují restart</string>
+    <string name="use_exoplayer_decoder_fallback_title">Použít záložní funkci dekodéru ExoPlayer</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Povolte tuto možnost, pokud máte potíže s inicializací dekodéru. Tato možnost použije dekodéry s nižší prioritou, pokud inicializace primárních dekodérů selže. Důsledkem může být horší výkon při přehrávání oproti použití primárních dekodérů</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Vždy používat náhradu nastavení výstupního povrchu videa služby ExoPlayer</string>
     <string name="audio_track_name">%1$s %2$s</string>
     <string name="audio_track_type_original">původní</string>
     <string name="audio_track_type_dubbed">dabovaná</string>
@@ -758,13 +758,11 @@
     <string name="audio_track">Zvuková stopa</string>
     <string name="audio_track_present_in_video">V tomto streamu by již měla být přítomna zvuková stopa</string>
     <string name="select_audio_track_external_players">Vyberte zvukovou stopu pro externí přehrávače</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Toto obejití uvolní a znovu nainstaluje kodeky videa, když dojde ke změně povrchu, místo aby se povrch nastavil přímo na kodek. Toto nastavení, které již bylo použito v přehrávači ExoPlayer na některých zařízeních s tímto problémem, má vliv pouze na Android 6 a vyšší.
-\n
-\nPovolení této možnosti může zabránit chybám při přehrávání při přepnutí aktuálního přehrávače videa nebo při přepnutí na celou obrazovku</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Tato náhrada uvolňuje a znovu instancuje video kodeky při změně povrchu, namísto přímého přiřazení kodeku k povrchu. Toto nastavení, které již ExoPlayer využívá na některých zařízeních s tímto problémem, má vliv pouze na systému Android 6 a vyšších.\n\nPovolení této možnosti může zabránit chybám při přehrávání při přepnutí aktuálního přehrávače videa nebo při přepnutí do režimu celé obrazovky</string>
     <string name="play_queue_audio_track">Zvuk: %s</string>
     <string name="main_tabs_position_title">Pozice hlavních karet</string>
     <string name="main_tabs_position_summary">Přesunout výběr hlavní karty dolů</string>
-    <string name="disable_media_tunneling_automatic_info">Na vašem zařízení byl zakázán media tunelling, protože model vašeho zařízení jej nepodporuje.</string>
+    <string name="disable_media_tunneling_automatic_info">Tunelování médií bylo na vašem zařízení ve výchozím nastavení zakázáno, protože jej váš model zařízení nepodporuje.</string>
     <string name="no_streams">Žádná videa</string>
     <string name="no_live_streams">Žádné živé přenosy</string>
     <string name="loading_metadata_title">Načítání metadat…</string>
