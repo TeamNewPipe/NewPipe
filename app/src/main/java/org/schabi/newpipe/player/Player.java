@@ -80,6 +80,7 @@ import com.google.android.exoplayer2.text.CueGroup;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
+import com.google.android.exoplayer2.upstream.HttpDataSource;
 import com.google.android.exoplayer2.video.VideoSize;
 
 import org.schabi.newpipe.MainActivity;
@@ -121,6 +122,7 @@ import org.schabi.newpipe.player.ui.PopupPlayerUi;
 import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.DependentPreferenceHelper;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.InfoCache;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.SerializedCache;
@@ -195,6 +197,9 @@ public final class Player implements PlaybackListener, Listener {
 
     @Nullable
     private PlayQueueItem currentItem;
+    // the last item whose stream info was re-fetched after an HTTP 403, to retry only once
+    @Nullable
+    private PlayQueueItem itemRefreshedAfterForbidden;
     @Nullable
     private MediaItemTag currentMetadata;
     @Nullable
@@ -731,6 +736,27 @@ public final class Player implements PlaybackListener, Listener {
             Log.d(TAG, "Setting recovery, queue: " + queuePos + ", pos: " + windowPos);
         }
         playQueue.setRecovery(queuePos, windowPos);
+    }
+
+    private boolean refreshStreamAfterForbidden(@NonNull final PlaybackException error) {
+        if (!(error.getCause() instanceof HttpDataSource.InvalidResponseCodeException)
+                || ((HttpDataSource.InvalidResponseCodeException) error.getCause())
+                        .responseCode != 403
+                || playQueue == null) {
+            return false;
+        }
+
+        final PlayQueueItem item = playQueue.getItem();
+        if (item == null || item == itemRefreshedAfterForbidden) {
+            return false;
+        }
+
+        itemRefreshedAfterForbidden = item;
+        InfoCache.getInstance().removeInfo(item.getServiceId(), item.getUrl(),
+                InfoCache.Type.STREAM);
+        setRecovery();
+        reloadPlayQueueManager();
+        return true;
     }
 
     public void reloadPlayQueueManager() {
@@ -1559,8 +1585,20 @@ public final class Player implements PlaybackListener, Listener {
                 // switching to the buffering state
                 onBuffering();
                 break;
-            case ERROR_CODE_IO_INVALID_HTTP_CONTENT_TYPE:
             case ERROR_CODE_IO_BAD_HTTP_STATUS:
+                // YouTube stream URLs are bound to the IP that extracted them, so they are
+                // rejected with 403 once the device's IP changes. Drop the cached stream info and
+                // extract again once, before treating this as a source error.
+                if (refreshStreamAfterForbidden(error)) {
+                    isCatchableException = true;
+                    onBuffering();
+                    break;
+                }
+                if (!exoPlayerIsNull() && playQueue != null) {
+                    playQueue.error();
+                }
+                break;
+            case ERROR_CODE_IO_INVALID_HTTP_CONTENT_TYPE:
             case ERROR_CODE_IO_FILE_NOT_FOUND:
             case ERROR_CODE_IO_NO_PERMISSION:
             case ERROR_CODE_IO_CLEARTEXT_NOT_PERMITTED:
