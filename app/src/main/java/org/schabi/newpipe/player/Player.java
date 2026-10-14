@@ -1507,6 +1507,10 @@ public final class Player implements PlaybackListener, Listener {
      * finished was auto-advanced past, pause playback and clear the flag. Takes priority
      * over any repeat mode — the finished track played through once, which is exactly
      * what was asked for.
+     *
+     * @param discontinuityReason the reason the current track changed, as reported by
+     *                            the player; only {@link #DISCONTINUITY_REASON_AUTO_TRANSITION}
+     *                            triggers the stop
      */
     private void maybeStopAfterCurrentTrack(@DiscontinuityReason final int discontinuityReason) {
         if (discontinuityReason == DISCONTINUITY_REASON_AUTO_TRANSITION
