@@ -464,6 +464,7 @@
     <string name="processing_may_take_a_moment">Processing… May take a moment</string>
     <string name="mute">Mute</string>
     <string name="unmute">Unmute</string>
+    <string name="stop_after_current_track">Stop after this track</string>
     <string name="set_as_playlist_thumbnail">Set as playlist thumbnail</string>
     <string name="unset_playlist_thumbnail">Unset permanent thumbnail</string>
     <string name="bookmark_playlist">Bookmark Playlist</string>

@@ -121,6 +121,8 @@ public final class PlayQueueActivity extends AppCompatActivity
                     .setVisible(!player.popupPlayerSelected());
             menu.findItem(R.id.action_switch_background)
                     .setVisible(!player.audioPlayerSelected());
+            menu.findItem(R.id.action_stop_after_current_track)
+                    .setChecked(player.isStopAfterCurrentTrack());
         }
         return super.onPrepareOptionsMenu(m);
     }
@@ -142,6 +144,10 @@ public final class PlayQueueActivity extends AppCompatActivity
             return true;
         } else if (itemId == R.id.action_mute) {
             player.toggleMute();
+            return true;
+        } else if (itemId == R.id.action_stop_after_current_track) {
+            player.toggleStopAfterCurrentTrack();
+            item.setChecked(player.isStopAfterCurrentTrack());
             return true;
         } else if (itemId == R.id.action_system_audio) {
             startActivity(new Intent(Settings.ACTION_SOUND_SETTINGS));
