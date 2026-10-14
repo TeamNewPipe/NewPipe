@@ -36,6 +36,22 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
         setupAppLanguagePreferences();
         setupImageQualityPref();
+        setupIPv4OnlyPref();
+    }
+
+    private void setupIPv4OnlyPref() {
+        requirePreference(R.string.ipv4_only_key).setOnPreferenceChangeListener(
+                (preference, newValue) -> {
+                    // Evict all connections to ensure the new DNS setting takes effect immediately.
+                    // This must be done on a background thread to avoid NetworkOnMainThreadException.
+                    new Thread(() -> {
+                        final var downloader = DownloaderImpl.getInstance();
+                        if (downloader != null) {
+                            downloader.getClient().connectionPool().evictAll();
+                        }
+                    }).start();
+                    return true;
+                });
     }
 
     private void setupAppLanguagePreferences() {

@@ -5,6 +5,7 @@ import com.facebook.stetho.Stetho
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import leakcanary.LeakCanary
 import okhttp3.OkHttpClient
+import org.schabi.newpipe.util.IPv4Dns
 import org.schabi.newpipe.extractor.downloader.Downloader
 
 class DebugApp : App() {
@@ -26,6 +27,7 @@ class DebugApp : App() {
     override fun getDownloader(): Downloader {
         val downloader = DownloaderImpl.init(
             OkHttpClient.Builder()
+                .dns(IPv4Dns(this))
                 .addNetworkInterceptor(StethoInterceptor())
         )
         setCookiesToDownloader(downloader)
