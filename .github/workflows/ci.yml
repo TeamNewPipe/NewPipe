@@ -8,46 +8,78 @@ on:
       - master
       - refactor
       - release**
-    paths-ignore:
-      - 'README.md'
-      - 'doc/**'
-      - 'fastlane/**'
-      - 'assets/**'
-      - '.github/**/*.md'
-      - '.github/FUNDING.yml'
-      - '.github/ISSUE_TEMPLATE/**'
   push:
     branches:
       - dev
       - master
-    paths-ignore:
-      - 'README.md'
-      - 'doc/**'
-      - 'fastlane/**'
-      - 'assets/**'
-      - '.github/**/*.md'
-      - '.github/FUNDING.yml'
-      - '.github/ISSUE_TEMPLATE/**'
 
 jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      only_ignored: ${{ steps.check.outputs.only_ignored }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Determine if only ignored files changed
+        id: check
+        run: |
+          echo "Checking changed files against ignore list..."
+          # If not a pull_request event, assume there are relevant changes
+          if [ "${{ github.event_name }}" != "pull_request" ]; then
+            echo "only_ignored=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          git fetch origin ${{ github.event.pull_request.base.ref }} --depth=1 || true
+          CHANGED=$(git diff --name-only origin/${{ github.event.pull_request.base.ref }}...HEAD || true)
+          echo "$CHANGED"
+          if [ -z "$CHANGED" ]; then
+            echo "only_ignored=true" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          only_ignored=true
+          for file in $CHANGED; do
+            case "$file" in
+              README.md | doc/* | fastlane/* | assets/* | .github/*.md | .github/**/*.md | .github/FUNDING.yml | .github/ISSUE_TEMPLATE/*)
+                # ignored file - continue
+                ;;
+              *)
+              only_ignored=false
+              break
+                ;;
+            esac
+          done
+          echo "only_ignored=$only_ignored" >> $GITHUB_OUTPUT
+
   build-and-test-jvm:
+    needs: detect-changes
     runs-on: ubuntu-latest
 
     permissions:
       contents: read
 
     steps:
-      - uses: actions/checkout@v6
-      - uses: gradle/actions/wrapper-validation@v6
+      - name: Exit early when only ignored files changed
+        if: ${{ needs.detect-changes.outputs.only_ignored == 'true' }}
+        run: echo "Only ignored files changed in this PR — exiting job successfully."
+
+      - name: Checkout repository
+        if: ${{ needs.detect-changes.outputs.only_ignored != 'true' }}
+        uses: actions/checkout@v6
+      - name: Validate Gradle wrapper
+        if: ${{ needs.detect-changes.outputs.only_ignored != 'true' }}
+        uses: gradle/actions/wrapper-validation@v6
 
       - name: create and checkout branch
+        if: ${{ needs.detect-changes.outputs.only_ignored != 'true' && github.event_name == 'pull_request' }}
         # push events already checked out the branch
-        if: github.event_name == 'pull_request'
         env:
           BRANCH: ${{ github.head_ref }}
         run: git checkout -B "$BRANCH"
 
       - name: set up JDK
+        if: ${{ needs.detect-changes.outputs.only_ignored != 'true' }}
         uses: actions/setup-java@v5
         with:
           java-version: 21
@@ -55,15 +87,18 @@ jobs:
           cache: 'gradle'
 
       - name: Build debug APK and run jvm tests
+        if: ${{ needs.detect-changes.outputs.only_ignored != 'true' }}
         run: ./gradlew assembleContinuous lintContinuous testDebugUnitTest --stacktrace -DskipFormatKtlint
 
       - name: Upload APK
+        if: ${{ needs.detect-changes.outputs.only_ignored != 'true' }}
         uses: actions/upload-artifact@v7
         with:
           name: app
           path: app/build/outputs/apk/continuous/*.apk
 
   test-android:
+    needs: detect-changes
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
@@ -80,15 +115,23 @@ jobs:
       contents: read
 
     steps:
-      - uses: actions/checkout@v6
+      - name: Exit early when only ignored files changed
+        if: ${{ needs.detect-changes.outputs.only_ignored == 'true' }}
+        run: echo "Only ignored files changed in this PR — exiting job successfully."
+
+      - name: Checkout repository
+        if: ${{ needs.detect-changes.outputs.only_ignored != 'true' }}
+        uses: actions/checkout@v6
 
       - name: Enable KVM
+        if: ${{ needs.detect-changes.outputs.only_ignored != 'true' }}
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
 
       - name: set up JDK
+        if: ${{ needs.detect-changes.outputs.only_ignored != 'true' }}
         uses: actions/setup-java@v5
         with:
           java-version: 21
@@ -96,6 +139,7 @@ jobs:
           cache: 'gradle'
 
       - name: Run android tests
+        if: ${{ needs.detect-changes.outputs.only_ignored != 'true' }}
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
@@ -104,40 +148,8 @@ jobs:
           script: ./gradlew connectedCheck --stacktrace
 
       - name: Upload test report when tests fail # because the printed out stacktrace (console) is too short, see also #7553
+        if: ${{ needs.detect-changes.outputs.only_ignored != 'true' || failure() }}
         uses: actions/upload-artifact@v7
-        if: failure()
         with:
           name: android-test-report-api${{ matrix.api-level }}
           path: app/build/reports/androidTests/connected/**
-
-  sonar:
-    if: ${{ false }} # the key has expired and needs to be regenerated by the sonar admins
-    runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
-
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-
-      - name: Set up JDK
-        uses: actions/setup-java@v5
-        with:
-          java-version: 21
-          distribution: "temurin"
-          cache: 'gradle'
-
-      - name: Cache SonarCloud packages
-        uses: actions/cache@v5
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
-
-      - name: Build and analyze
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew build sonar --info
