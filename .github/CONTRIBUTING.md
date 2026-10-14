@@ -49,7 +49,7 @@ You'll see *exactly* what is sent, be able to add **your comments**, and then se
 
 ### Before starting development
 
-* If you want to help out with an existing bug report or feature request, **leave a comment** on that issue saying you want to try your hand at it.
+* If you want to help out with an existing bug report or feature request, **leave a comment** on that issue saying you want to try your hand at it. Please wait for a response from the maintainers before starting development. This prevents multiple people from working on the same issue at the same time, which can lead to wasted effort and frustration. PRs that do not reference an existing issue which is **assigned** to you might be closed without further explanation.
 * If there is no existing issue for what you want to work on, **open a new one**  describing the changes you are planning to introduce. This gives the team and the community a chance to give **feedback** before you spend time on something that is already in development, should be done differently, or should be avoided completely.
 * Please show **intention to maintain your features** and code after you contribute a PR. Unmaintained code is a hassle for core developers. If you do not intend to maintain features you plan to contribute, please rethink your submission, or clearly state that in the PR description.
 * Create PRs that cover only **one specific issue/solution/bug**. Do not create PRs that are huge monoliths and could have been split into multiple independent contributions.
