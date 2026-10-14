@@ -136,7 +136,7 @@ open class App :
         }.build()
 
     protected open fun getDownloader(): Downloader {
-        val downloader = DownloaderImpl.init(null)
+        val downloader = DownloaderImpl.init(null, this)
         setCookiesToDownloader(downloader)
         return downloader
     }
