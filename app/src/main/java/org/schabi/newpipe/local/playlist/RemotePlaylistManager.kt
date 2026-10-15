@@ -13,7 +13,7 @@ import org.schabi.newpipe.database.AppDatabase
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo
 
-class RemotePlaylistManager(private val database: AppDatabase) {
+class RemotePlaylistManager(database: AppDatabase) {
     private val playlistRemoteTable = database.playlistRemoteDAO()
 
     val playlists: Flowable<MutableList<PlaylistRemoteEntity>>
@@ -38,10 +38,10 @@ class RemotePlaylistManager(private val database: AppDatabase) {
         deletedItems: List<Long>
     ): Completable {
         return Completable.fromRunnable {
-            database.runInTransaction {
-                deletedItems.forEach { playlistRemoteTable.deletePlaylist(it) }
-                updateItems.forEach { playlistRemoteTable.upsert(it) }
-            }
+            playlistRemoteTable.updatePlaylists(
+                updateItems = updateItems,
+                deletedItems = deletedItems
+            )
         }.subscribeOn(Schedulers.io())
     }
 
