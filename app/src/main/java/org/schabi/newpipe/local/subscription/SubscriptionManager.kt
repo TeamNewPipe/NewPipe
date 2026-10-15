@@ -1,6 +1,7 @@
 package org.schabi.newpipe.local.subscription
 
 import android.content.Context
+import androidx.room3.withWriteTransaction
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
@@ -50,11 +51,11 @@ class SubscriptionManager(context: Context) {
         }
     }
 
-    fun upsertAll(infoList: List<Pair<ChannelInfo, ChannelTabInfo?>>) {
+    suspend fun upsertAll(infoList: List<Pair<ChannelInfo, ChannelTabInfo?>>) {
         val listEntities = infoList.map { SubscriptionEntity.from(it.first) }
         subscriptionTable.upsertAll(listEntities)
 
-        database.runInTransaction {
+        database.withWriteTransaction {
             infoList.forEachIndexed { index, info ->
                 // There may be no tabs on the channel to refresh the feed from
                 if (info.second == null) return@forEachIndexed
