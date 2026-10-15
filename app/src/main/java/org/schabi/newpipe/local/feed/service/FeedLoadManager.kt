@@ -3,6 +3,7 @@ package org.schabi.newpipe.local.feed.service
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
+import androidx.room3.withWriteTransaction
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
@@ -15,6 +16,7 @@ import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
+import kotlinx.coroutines.runBlocking
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.subscription.NotificationMode
@@ -287,37 +289,39 @@ class FeedLoadManager(private val context: Context) {
     private inner class DatabaseConsumer : Consumer<List<Notification<FeedUpdateInfo>>> {
 
         override fun accept(list: List<Notification<FeedUpdateInfo>>) {
-            feedDatabaseManager.database().runInTransaction {
-                for (notification in list) {
-                    when {
-                        notification.isOnNext -> {
-                            val info = notification.value!!
+            runBlocking {
+                feedDatabaseManager.database().withWriteTransaction {
+                    for (notification in list) {
+                        when {
+                            notification.isOnNext -> {
+                                val info = notification.value!!
 
-                            notification.value!!.newStreams = filterNewStreams(info.streams)
+                                notification.value!!.newStreams = filterNewStreams(info.streams)
 
-                            feedDatabaseManager.upsertAll(info.uid, info.streams)
-                            subscriptionManager.updateFromInfo(info)
+                                feedDatabaseManager.upsertAll(info.uid, info.streams)
+                                subscriptionManager.updateFromInfo(info)
 
-                            if (info.errors.isNotEmpty()) {
-                                feedResultsHolder.addErrors(
-                                    info.errors.map {
-                                        FeedLoadService.RequestException(
-                                            info.uid,
-                                            "${info.serviceId}:${info.url}",
-                                            it
-                                        )
-                                    }
-                                )
-                                feedDatabaseManager.markAsOutdated(info.uid)
+                                if (info.errors.isNotEmpty()) {
+                                    feedResultsHolder.addErrors(
+                                        info.errors.map {
+                                            FeedLoadService.RequestException(
+                                                info.uid,
+                                                "${info.serviceId}:${info.url}",
+                                                it
+                                            )
+                                        }
+                                    )
+                                    feedDatabaseManager.markAsOutdated(info.uid)
+                                }
                             }
-                        }
 
-                        notification.isOnError -> {
-                            val error = notification.error
-                            feedResultsHolder.addError(error!!)
+                            notification.isOnError -> {
+                                val error = notification.error
+                                feedResultsHolder.addError(error!!)
 
-                            if (error is FeedLoadService.RequestException) {
-                                feedDatabaseManager.markAsOutdated(error.subscriptionId)
+                                if (error is FeedLoadService.RequestException) {
+                                    feedDatabaseManager.markAsOutdated(error.subscriptionId)
+                                }
                             }
                         }
                     }
