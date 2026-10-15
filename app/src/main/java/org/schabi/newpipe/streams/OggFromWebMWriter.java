@@ -7,6 +7,7 @@ import android.util.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.streams.WebMReader.Cluster;
@@ -194,7 +195,7 @@ public class OggFromWebMWriter implements Closeable {
         }
 
         /* step 3: create packet with metadata */
-        final byte[] buffer = makeMetadata();
+        final byte[] buffer = makeMetadata(webmTrack.codecId, streamInfo);
         if (buffer != null) {
             addPacketSegment(buffer.length);
             makePacketheader(0x00, header, buffer);
@@ -283,22 +284,27 @@ public class OggFromWebMWriter implements Closeable {
     }
 
     @Nullable
-    private byte[] makeMetadata() {
+    @VisibleForTesting
+    static byte[] makeMetadata(@Nullable final String codecId,
+                               @Nullable final StreamInfo streamInfo) {
         if (DEBUG) {
-            Log.d("OggFromWebMWriter", "Downloading media with codec ID " + webmTrack.codecId);
+            Log.d("OggFromWebMWriter", "Downloading media with codec ID " + codecId);
         }
 
-        if ("A_OPUS".equals(webmTrack.codecId)) {
+        if ("A_OPUS".equals(codecId)) {
             final var metadata = new ArrayList<Pair<String, String>>();
             if (streamInfo != null) {
                 metadata.add(Pair.create("COMMENT", streamInfo.getUrl()));
                 metadata.add(Pair.create("GENRE", streamInfo.getCategory()));
                 metadata.add(Pair.create("ARTIST", streamInfo.getUploaderName()));
                 metadata.add(Pair.create("TITLE", streamInfo.getName()));
-                metadata.add(Pair.create("DATE", streamInfo
-                        .getUploadDate()
-                        .getLocalDateTime()
-                        .format(DateTimeFormatter.ISO_DATE)));
+                // the upload date is optional and null when the service does not provide it
+                if (streamInfo.getUploadDate() != null) {
+                    metadata.add(Pair.create("DATE", streamInfo
+                            .getUploadDate()
+                            .getLocalDateTime()
+                            .format(DateTimeFormatter.ISO_DATE)));
+                }
             }
 
             if (DEBUG) {
@@ -309,7 +315,7 @@ public class OggFromWebMWriter implements Closeable {
             }
 
             return makeOpusTagsHeader(metadata);
-        } else if ("A_VORBIS".equals(webmTrack.codecId)) {
+        } else if ("A_VORBIS".equals(codecId)) {
             return new byte[]{
                     0x03, // ¿¿¿???
                     0x76, 0x6f, 0x72, 0x62, 0x69, 0x73, // "vorbis" binary string
@@ -354,7 +360,7 @@ public class OggFromWebMWriter implements Closeable {
     private static byte[] makeOpusTagsHeader(final List<Pair<String, String>> keyValueLines) {
         final var tags = keyValueLines
                 .stream()
-                .filter(p -> !p.second.isBlank())
+                .filter(p -> p.second != null && !p.second.isBlank())
                 .map(OggFromWebMWriter::makeOpusMetadataTag)
                 .collect(Collectors.toUnmodifiableList());
 
