@@ -13,6 +13,7 @@ import androidx.room3.Transaction
 import androidx.room3.rxjava3.RxDaoReturnTypeConverters
 import io.reactivex.rxjava3.core.Flowable
 import org.schabi.newpipe.database.BasicDAO
+import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry
 import org.schabi.newpipe.database.playlist.model.PlaylistEntity
 
 @Dao
@@ -47,5 +48,11 @@ interface PlaylistDAO : BasicDAO<PlaylistEntity> {
             update(playlist)
             return playlist.uid
         }
+    }
+
+    @Transaction
+    fun updatePlaylists(updateItems: List<PlaylistMetadataEntry>, deletedItems: List<Long>) {
+        deletedItems.forEach { uid -> deletePlaylist(uid) }
+        updateItems.forEach { item -> upsertPlaylist(PlaylistEntity(item)) }
     }
 }
