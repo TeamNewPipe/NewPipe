@@ -136,4 +136,10 @@ interface PlaylistStreamDAO : BasicDAO<PlaylistStreamEntity> {
         """
     )
     fun getPlaylistDuplicatesMetadata(streamUrl: String): Flowable<MutableList<PlaylistDuplicatesEntry>>
+
+    @Transaction
+    fun updatePlaylistStreams(playlistId: Long, joinEntities: List<PlaylistStreamEntity>) {
+        deleteBatch(playlistId)
+        insertAll(joinEntities)
+    }
 }

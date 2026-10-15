@@ -43,7 +43,7 @@ class LocalPlaylistViewModel(application: Application) : AndroidViewModel(applic
     fun removeWatchedStreams(playlistId: Long, removePartiallyWatched: Boolean) {
         _workState.value = WorkState.Loading
 
-        val historyIdsMaybe = recordManager.streamHistorySortedById
+        val historyIdsMaybe = recordManager.getStreamHistorySortedById()
             .firstElement()
             .map { historyList ->
                 historyList.map { it.streamId }
