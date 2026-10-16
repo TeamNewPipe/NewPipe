@@ -6,13 +6,13 @@
     <string name="no_player_found_toast">Non se atopou ningún reprodutor de transmisión (podes instalar VLC para reproducilo).</string>
     <string name="install">Instalar</string>
     <string name="cancel">Cancelar</string>
-    <string name="open_in_browser">Abrir no navegador</string>
+    <string name="open_in_browser">Abir no navegador</string>
     <string name="open_in_popup_mode">Abrir no modo popup</string>
     <string name="share">Compartillar</string>
     <string name="download">Descarregar</string>
     <string name="controls_download_desc">Descargar o ficheiro de emisión</string>
-    <string name="search">Procurar</string>
-    <string name="settings">Opcións</string>
+    <string name="search">Busca</string>
+    <string name="settings">Configuración</string>
     <string name="did_you_mean">Non querería dicir \"%1$s\"\?</string>
     <string name="share_dialog_title">Compartillar con</string>
     <string name="use_external_video_player_title">Usar un reprodutor de vídeo externo</string>
@@ -77,10 +77,10 @@
     <string name="default_content_country_title">País predeterminado para o contido</string>
     <string name="settings_category_player_title">Reprodutor</string>
     <string name="settings_category_player_behavior_title">Comportamento</string>
-    <string name="settings_category_video_audio_title">Vídeo e audio</string>
+    <string name="settings_category_video_audio_title">Vídeo e son</string>
     <string name="settings_category_history_title">Historial e caché</string>
-    <string name="settings_category_appearance_title">Aparencia</string>
-    <string name="settings_category_debug_title">Depuración</string>
+    <string name="settings_category_appearance_title">Apariencia</string>
+    <string name="settings_category_debug_title">Depurar</string>
     <string name="background_player_playing_toast">Reproducindo en segundo plano</string>
     <string name="popup_playing_toast">Reproducindo en modo «popup»</string>
     <string name="content">Contido</string>
@@ -194,7 +194,7 @@
     <string name="one_item_deleted">1 elemento foi eliminado.</string>
     <string name="title_activity_recaptcha">Desafío reCAPTCHA</string>
     <string name="recaptcha_request_toast">ReCAPTCHA reto solicitado</string>
-    <string name="settings_category_downloads_title">Descarregar</string>
+    <string name="settings_category_downloads_title">Descargar</string>
     <string name="settings_file_charset_title">Caracteres permitidos nos nomes de ficheiros</string>
     <string name="settings_file_replacement_character_summary">Os caracteres inválidos serán substituídos por este valor</string>
     <string name="settings_file_replacement_character_title">Carácter de substitución</string>
@@ -219,8 +219,8 @@
 \nA política de privacidade do NewPipe explica con máis detalle que datos son enviados e gardados cando envía un relatorio de erros.</string>
     <string name="read_privacy_policy">Le a política de privacidade</string>
     <string name="app_license_title">Licenza de NewPipe</string>
-    <string name="app_license">NewPipe é un software libre copyleft: Pode usar, estudar compartillar e melloralo a vontade. En concreto, pode redistribuír e / ou modificala segundo os termos da Licenza Pública Xeral GNU publicada pola Free Software Foundation, xa sexa a versión 3 da licenza, ou (na súa opción) calquera outra versión posterior.</string>
-    <string name="read_full_license">Ler a licenza</string>
+    <string name="app_license">NewPipe é software libre con copyleft: podes usalo, estudalo, compartilo e melloralo como queiras. En concreto, podes redistribúilo e/ou modificalo segundo os termos da Licenza Pública Xeral de GNU, tal e como a publica a Free Software Foundation, xa sexa na versión 3 da Licenza ou (a túa elección) en calquera versión posterior.</string>
+    <string name="read_full_license">Ler licenza</string>
     <string name="title_activity_history">Historial</string>
     <string name="action_history">Historial</string>
     <string name="delete_item_search_history">Desexa eliminar este elemento do historial de procura?</string>
@@ -696,9 +696,9 @@
     <string name="selected_stream_external_player_not_supported">As emisións seleccionadas non son soportadas polos reprodutores externos</string>
     <string name="no_video_streams_available_for_external_players">Non hai emisións de vídeo dispoñíbeis para reprodutores externos</string>
     <string name="no_audio_streams_available_for_external_players">Non hai emisións de audio dispoñíbeis para reprodutores externos</string>
-    <string name="faq">Ver na páxina web</string>
-    <string name="faq_title">Preguntas máis frecuentes</string>
-    <string name="faq_description">Se tes problemas para usala aplicación, asegúrate de consultar estas respostas ás preguntas comúns!</string>
+    <string name="faq">Ver no sitio web</string>
+    <string name="faq_title">Preguntas frecuentes</string>
+    <string name="faq_description">Se tes dificultades para usar a aplicación, bótalle unha ollada a estas respostas a preguntas frecuentes!</string>
     <string name="sort">Ordenar</string>
     <string name="fast_mode">Modo rápido</string>
     <string name="app_update_unavailable_toast">Estás executando a última versión de NewPipe</string>
@@ -779,7 +779,7 @@
     <string name="metadata_subchannel_avatars">Avatar da subcanle</string>
     <string name="metadata_subscribers">Subscritores</string>
     <string name="loading_metadata_title">A cargar metadatos…</string>
-    <string name="settings_category_backup_restore_title">Copia de seguranza e restauración</string>
+    <string name="settings_category_backup_restore_title">Copia de seguridade e restauración</string>
     <string name="yes">Si</string>
     <string name="no">Non</string>
     <string name="auto_update_check_description">NewPipe pode revisar automaticamente por actualizacións periodicamente e notificalo unha vez estean dispoñíbeis.
