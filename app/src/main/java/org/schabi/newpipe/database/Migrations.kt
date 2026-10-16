@@ -293,18 +293,18 @@ object Migrations {
         // Create a temp table to initialize display_index.
         connection.execSQL(
             "CREATE TABLE `playlists_tmp` " +
-                    "(`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-                    "`name` TEXT, `is_thumbnail_permanent` INTEGER NOT NULL, " +
-                    "`thumbnail_stream_id` INTEGER NOT NULL, " +
-                    "`display_index` INTEGER NOT NULL)"
+                "(`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+                "`name` TEXT, `is_thumbnail_permanent` INTEGER NOT NULL, " +
+                "`thumbnail_stream_id` INTEGER NOT NULL, " +
+                "`display_index` INTEGER NOT NULL)"
         )
         connection.execSQL(
             "INSERT INTO `playlists_tmp` " +
-                    "(`uid`, `name`, `is_thumbnail_permanent`, `thumbnail_stream_id`, " +
-                    "`display_index`) " +
-                    "SELECT `uid`, `name`, `is_thumbnail_permanent`, `thumbnail_stream_id`, " +
-                    "-1 " +
-                    "FROM `playlists`"
+                "(`uid`, `name`, `is_thumbnail_permanent`, `thumbnail_stream_id`, " +
+                "`display_index`) " +
+                "SELECT `uid`, `name`, `is_thumbnail_permanent`, `thumbnail_stream_id`, " +
+                "-1 " +
+                "FROM `playlists`"
         )
 
         // Replace the old table, note that this also removes the index on the name which
@@ -316,18 +316,18 @@ object Migrations {
         // Create a temp table to initialize display_index.
         connection.execSQL(
             "CREATE TABLE `remote_playlists_tmp` " +
-                    "(`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-                    "`service_id` INTEGER NOT NULL, `name` TEXT, `url` TEXT, " +
-                    "`thumbnail_url` TEXT, `uploader` TEXT, " +
-                    "`display_index` INTEGER NOT NULL," +
-                    "`stream_count` INTEGER)"
+                "(`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+                "`service_id` INTEGER NOT NULL, `name` TEXT, `url` TEXT, " +
+                "`thumbnail_url` TEXT, `uploader` TEXT, " +
+                "`display_index` INTEGER NOT NULL," +
+                "`stream_count` INTEGER)"
         )
         connection.execSQL(
             "INSERT INTO `remote_playlists_tmp` (`uid`, `service_id`, " +
-                    "`name`, `url`, `thumbnail_url`, `uploader`, `display_index`, " +
-                    "`stream_count`)" +
-                    "SELECT `uid`, `service_id`, `name`, `url`, `thumbnail_url`, `uploader`, " +
-                    "-1, `stream_count` FROM `remote_playlists`"
+                "`name`, `url`, `thumbnail_url`, `uploader`, `display_index`, " +
+                "`stream_count`)" +
+                "SELECT `uid`, `service_id`, `name`, `url`, `thumbnail_url`, `uploader`, " +
+                "-1, `stream_count` FROM `remote_playlists`"
         )
 
         // Replace the old table, note that this also removes the index on the name which
@@ -338,7 +338,7 @@ object Migrations {
         // Create index on the new table.
         connection.execSQL(
             "CREATE UNIQUE INDEX `index_remote_playlists_service_id_url` " +
-                    "ON `remote_playlists` (`service_id`, `url`)"
+                "ON `remote_playlists` (`service_id`, `url`)"
         )
     }
 }

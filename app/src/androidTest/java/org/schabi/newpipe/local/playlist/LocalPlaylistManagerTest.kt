@@ -56,7 +56,7 @@ class LocalPlaylistManagerTest {
         // This should not behave like this.
         // It should throw an error because currently the result is null
         result.test().await().assertComplete()
-        manager.playlists.test().awaitCount(1).assertValue(emptyList())
+        manager.getPlaylists().test().awaitCount(1).assertValue(mutableListOf())
     }
 
     @Test()
