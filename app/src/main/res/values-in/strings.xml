@@ -7,31 +7,31 @@
     <string name="open_in_browser">Buka di peramban</string>
     <string name="share">Bagikan</string>
     <string name="download">Unduh</string>
-    <string name="search">Telusur</string>
+    <string name="search">Telusuri</string>
     <string name="settings">Pengaturan</string>
     <string name="share_dialog_title">Bagi dengan</string>
-    <string name="use_external_video_player_title">Gunakan pemutar video lain</string>
-    <string name="use_external_audio_player_title">Gunakan pemutar audio lain</string>
+    <string name="use_external_video_player_title">Gunakan pemutar video eksternal</string>
+    <string name="use_external_audio_player_title">Gunakan pemutar audio eksternal</string>
     <string name="download_path_title">Folder unduhan video</string>
     <string name="download_path_summary">Berkas video yang diunduh disimpan di sini</string>
     <string name="download_path_dialog_title">Pilih folder unduhan untuk berkas video</string>
     <string name="download_path_audio_title">Folder unduhan audio</string>
     <string name="download_path_audio_summary">Berkas audio yang diunduh disimpan di sini</string>
     <string name="download_path_audio_dialog_title">Pilih folder unduhan untuk berkas audio</string>
-    <string name="default_resolution_title">Pilih kualitas</string>
+    <string name="default_resolution_title">Resolusi bawaan</string>
     <string name="play_with_kodi_title">Putar dengan Kodi</string>
     <string name="kore_not_found">Pasang aplikasi Kore yang hilang?</string>
     <string name="show_play_with_kodi_title">Tampilkan opsi \"Putar dengan Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Tampilkan opsi untuk memutar video via Kodi</string>
+    <string name="show_play_with_kodi_summary">Tampilkan opsi untuk memutar video melalui pusat media Kodi</string>
     <string name="play_audio">Audio</string>
-    <string name="default_audio_format_title">Format audio</string>
+    <string name="default_audio_format_title">Format audio bawaan</string>
     <string name="dark_theme_title">Gelap</string>
     <string name="light_theme_title">Terang</string>
     <string name="download_dialog_title">Unduh</string>
     <string name="show_next_and_similar_title">Video \'Berikutnya\' dan \'Serupa\'</string>
     <string name="unsupported_url">URL tidak didukung</string>
     <string name="content_language_title">Bahasa konten</string>
-    <string name="settings_category_video_audio_title">Audio dan Video</string>
+    <string name="settings_category_video_audio_title">Video dan audio</string>
     <string name="settings_category_appearance_title">Penampilan</string>
     <string name="background_player_playing_toast">Memutar di latar belakang</string>
     <string name="content">Konten</string>
@@ -74,7 +74,7 @@
     <string name="msg_wait">Mohon tunggu…</string>
     <string name="msg_copied">Disalin ke papan klip</string>
     <string name="no_available_dir">Silakan pilih folder unduhan di pengaturan</string>
-    <string name="no_player_found">Pemutar streaming tidak ketemu. Pasang VLC?</string>
+    <string name="no_player_found">Pemutar streaming tidak ditemukan. Pasang VLC?</string>
     <string name="app_ui_crash">App/UI rusak</string>
     <string name="info_labels">Apa:\nPermintaan:\nBahasa Konten:\nNegara Konten:\nBahasa Apl:\nLayanan:\nWaktu GMT:\nPaket:\nVersi:\nVersi OS:</string>
     <string name="msg_threads">Thread</string>
@@ -87,20 +87,20 @@
 \nmembuka di mode sembul</string>
     <string name="popup_playing_toast">Memutar dalam mode sembul</string>
     <string name="disabled">Dinonaktifkan</string>
-    <string name="default_video_format_title">Format video</string>
-    <string name="default_popup_resolution_title">Kualitas sembulan bawaan</string>
-    <string name="show_higher_resolutions_title">Tampilkan kualitas lebih</string>
-    <string name="show_higher_resolutions_summary">Hanya perangkat tertentu mendukung video 2K/4K</string>
+    <string name="default_video_format_title">Format video bawaan</string>
+    <string name="default_popup_resolution_title">Resolusi popup bawaan</string>
+    <string name="show_higher_resolutions_title">Tampilkan resolusi yang lebih tinggi</string>
+    <string name="show_higher_resolutions_summary">Hanya beberapa perangkat yang dapat memutar video 2K/4K</string>
     <string name="controls_background_title">Latar Belakang</string>
     <string name="controls_popup_title">Sembulan</string>
     <string name="clear">Bersihkan</string>
-    <string name="use_external_video_player_summary">Menghapus audio di kualitas tertentu</string>
-    <string name="popup_remember_size_pos_title">Ingat ciri-ciri sembulan</string>
-    <string name="popup_remember_size_pos_summary">Ingat ukuran dan posisi terakhir sembulan</string>
+    <string name="use_external_video_player_summary">Menghapus audio pada beberapa resolusi</string>
+    <string name="popup_remember_size_pos_title">Ingat properti popup</string>
+    <string name="popup_remember_size_pos_summary">Ingat ukuran dan posisi terakhir popup</string>
     <string name="show_search_suggestions_title">Saran pencarian</string>
     <string name="show_search_suggestions_summary">Menampilkan saran pencarian saat mencari</string>
-    <string name="best_resolution">Kualitas terbaik</string>
-    <string name="settings_category_downloads_title">Unduh</string>
+    <string name="best_resolution">Resolusi terbaik</string>
+    <string name="settings_category_downloads_title">Unduhan</string>
     <string name="settings_file_charset_title">Karakter yang diizinkan sebagai nama berkas</string>
     <string name="settings_file_replacement_character_summary">Karakter yang tidak valid akan diganti dengan karakter ini</string>
     <string name="settings_file_replacement_character_title">Karakter pengganti</string>
@@ -114,14 +114,14 @@
     <string name="app_description">Streaming ringan Libre di Android.</string>
     <string name="view_on_github">Lihat di GitHub</string>
     <string name="app_license_title">Lisensi NewPipe</string>
-    <string name="contribution_encouragement">Baik Anda memiliki ide tentang; terjemahan, pengubahan desain, pembersihan kode, atau pengubahan kode yang besar—bantuan selalu diterima. Semakin banyak yang dilakukan, semakin banyak hasilnya!</string>
+    <string name="contribution_encouragement">Apapun ide tentang; terjemahan, pengubahan desain, pembersihan kode, atau pengubahan kode yang besar—bantuan selalu diterima. Semakin banyak yang dilakukan, semakin baik hasilnya!</string>
     <string name="read_full_license">Baca lisensi</string>
     <string name="contribution_title">Kontribusi</string>
     <string name="subscribe_button_title">Berlanggan</string>
     <string name="subscribed_button_title">Dilanggani</string>
     <string name="fragment_feed_title">Apa Yang Baru</string>
     <string name="resume_on_audio_focus_gain_title">Lanjutkan pemutaran</string>
-    <string name="resume_on_audio_focus_gain_summary">Melanjutkan pemutaran setelah interupsi (mis. panggilan telepon)</string>
+    <string name="resume_on_audio_focus_gain_summary">Lanjutkan pemutaran setelah gangguan (misalnya panggilan telepon)</string>
     <string name="enable_search_history_title">Riwayat pencarian</string>
     <string name="enable_search_history_summary">Simpan pencarian di perangkat</string>
     <string name="enable_watch_history_title">Riwayat tontonan</string>
@@ -132,14 +132,14 @@
     <string name="metadata_cache_wipe_title">Hapus metadata tembolok</string>
     <string name="metadata_cache_wipe_summary">Hapus semua data laman web tembolok</string>
     <string name="metadata_cache_wipe_complete_notice">Tembolok metadata dihapus</string>
-    <string name="auto_queue_summary">Melanjutkan akhir dari antrean pemutaran (tak berulang) dengan menambahkan video terkait</string>
+    <string name="auto_queue_summary">Lanjutkan antrean pemutaran yang berakhir (tanpa pengulangan) dengan menambahkan aliran yang terkait</string>
     <string name="enable_watch_history_summary">Simpan daftar video yang telah ditonton</string>
     <string name="show_hold_to_append_title">Tip \"Tahan untuk menambahkan\"</string>
     <string name="show_hold_to_append_summary">Tampilkan tip ketika menekan tombol latar belakang atau popup di dalam video \"Detail:\"</string>
     <string name="default_content_country_title">Lokasi Konten</string>
     <string name="settings_category_player_title">Pemutar</string>
     <string name="settings_category_player_behavior_title">Perilaku</string>
-    <string name="settings_category_history_title">Riwayat &amp; Cache</string>
+    <string name="settings_category_history_title">Riwayat dan cache</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="undo">Urungkan</string>
     <string name="play_all">Putar Semua</string>
@@ -214,14 +214,14 @@
     <string name="drawer_close">Tutup Laci</string>
     <string name="video_player">Pemutar video</string>
     <string name="background_player">Pemutar latar belakang</string>
-    <string name="popup_player">Pemutar sembulan</string>
-    <string name="always_ask_open_action">Selalu bertanya</string>
+    <string name="popup_player">Pemutar popup</string>
+    <string name="always_ask_open_action">Selalu tanyakan</string>
     <string name="preferred_player_fetcher_notification_title">Mendapatkan info…</string>
     <string name="preferred_player_fetcher_notification_message">Memuat konten yang diminta</string>
     <string name="create_playlist">Daftar Putar Baru</string>
     <string name="rename_playlist">Ubah Nama</string>
     <string name="name">Nama</string>
-    <string name="add_to_playlist">Tambah ke daftar putar</string>
+    <string name="add_to_playlist">Tambahkan ke daftar putar</string>
     <string name="set_as_playlist_thumbnail">Atur sebagai thumbnail daftar putar</string>
     <string name="bookmark_playlist">Markah Daftar Putar</string>
     <string name="unbookmark_playlist">Hapus Markah</string>
@@ -250,18 +250,18 @@
     <string name="no_streams_available_download">Tidak ada video yang tersedia untuk diunduh</string>
     <string name="one_item_deleted">1 item dihapus.</string>
     <string name="tab_bookmarks">Daftar Markah</string>
-    <string name="auto_queue_title">Putar otomatis video berikutnya</string>
+    <string name="auto_queue_title">Antrekan otomatis aliran berikutnya</string>
     <string name="channel_unsubscribed">Batal berlanggan saluran</string>
     <string name="subscription_update_failed">Tidak dapat perbarui langganan</string>
     <string name="tab_subscriptions">Langganan</string>
-    <string name="use_inexact_seek_title">Pakai intip cepat tak presisi</string>
-    <string name="use_inexact_seek_summary">Intip tak presisi membantu pengguna mengintip posisi video dengan cepat tapi presisi rendah. Mengintip 5, 15, atau 25 detik saja tidak berfungsi</string>
+    <string name="use_inexact_seek_title">Gunakan pencarian cepat yang tidak tepat</string>
+    <string name="use_inexact_seek_summary">Pencarian tidak tepat memungkinkan pemutar untuk mencari posisi dengan lebih cepat, namun dengan presisi yang berkurang. Mencari selama 5, 15, atau 25 detik tidak akan berhasil</string>
     <string name="app_license">Aplikasi ini adalah perangkat lunak bebas copyleft: Anda dapat menggunakan, mempelajari, membagikan, dan memperbaikinya sesuka hati. Secara khusus, Anda dapat mendistribusikan dan/atau memodifikasinya berdasarkan ketentuan Lisensi Publik Umum GNU sebagaimana diterbitkan oleh Free Software Foundation, baik versi 3 dari Lisensi, atau (sesuai pilihan Anda) versi apapun yang lebih baru.</string>
     <string name="import_settings">Apakah Anda juga ingin mengimpor pengaturan\?</string>
-    <string name="preferred_open_action_settings_title">Tindakan \'buka\' yang diinginkan</string>
+    <string name="preferred_open_action_settings_title">Tindakan \'buka\' yang disukai</string>
     <string name="preferred_open_action_settings_summary">Tindakan bawaan ketika membuka konten — %s</string>
     <string name="caption_setting_title">Teks</string>
-    <string name="caption_setting_description">Ubah skala teks keterangan pemutar dan gaya latar belakang. Dibutuhkan mulai ulang aplikasi agar perubahan berlaku.</string>
+    <string name="caption_setting_description">Ubah skala teks keterangan pemutar dan gaya latar belakang. Membutuhkan mulai ulang aplikasi agar dapat diterapkan</string>
     <string name="enable_leak_canary_summary">Pemantauan kebocoran memori dapat menyebabkan apl menjadi tidak responsif saat heap dumping</string>
     <string name="enable_disposed_exceptions_title">Laporkan galat out-of-lifecycle</string>
     <string name="enable_disposed_exceptions_summary">Paksa pelaporan eksepsi Rx yang tak terkirim di luar fragmen atau siklus hidup aktivitas setelah dibuang</string>
@@ -302,8 +302,7 @@
     <string name="tracks">Trek</string>
     <string name="users">Pengguna</string>
     <string name="privacy_policy_title">Kebijakan Privasi NewPipe</string>
-    <string name="privacy_policy_encouragement">Proyek NewPipe sangat memperhatikan privasi kamu. Oleh karena itu, aplikasi ini tidak mengumpulkan data apa pun tanpa persetujuan Anda.
-\nKebijakan privasi NewPipe menjelaskan secara detail data apa saja yang dikirim dan disimpan ketika kamu mengirimkan laporan kerusakan aplikasi.</string>
+    <string name="privacy_policy_encouragement">Proyek NewPipe sangat mementingkan privasi Anda. Oleh karena itu, aplikasi ini tidak mengumpulkan data apapun tanpa persetujuan Anda.\nKebijakan privasi NewPipe menjelaskan secara rinci data apa saja yang dikirim dan disimpan saat Anda mengirim laporan kerusakan.</string>
     <string name="read_privacy_policy">Baca kebijakan privasi</string>
     <string name="skip_silence_checkbox">Percepat saat diam</string>
     <string name="playback_step">Langkah</string>
@@ -312,11 +311,11 @@
 \nAnda harus menerimanya untuk mengirimkan laporan bug kepada kami.</string>
     <string name="accept">Setuju</string>
     <string name="decline">Tolak</string>
-    <string name="limit_data_usage_none_description">Tanpa batas</string>
-    <string name="limit_mobile_data_usage_title">Batasi kualitas saat dengan data seluler</string>
-    <string name="minimize_on_exit_title">Minimalkan saat beralih apl</string>
+    <string name="limit_data_usage_none_description">Tidak ada batasan</string>
+    <string name="limit_mobile_data_usage_title">Batasi resolusi saat menggunakan data seluler</string>
+    <string name="minimize_on_exit_title">Minimalkan saat beralih aplikasi</string>
     <string name="minimize_on_exit_summary">Tindakan ketika beralih ke apl lain dari pemutar video utama — %s</string>
-    <string name="minimize_on_exit_none_description">Nihil</string>
+    <string name="minimize_on_exit_none_description">Tidak ada</string>
     <string name="minimize_on_exit_background_description">Minimalkan ke pemutar latar belakang</string>
     <string name="minimize_on_exit_popup_description">Minimalkan ke pemutar popup</string>
     <string name="unsubscribe">Batal Berlanggan</string>
@@ -436,13 +435,13 @@
     <string name="app_language_title">Bahasa apl</string>
     <string name="systems_language">Bawaan sistem</string>
     <string name="done">Selesai</string>
-    <string name="seek_duration_title">Durasi maju/mundur cepat</string>
+    <string name="seek_duration_title">Durasi pencarian maju/mundur cepat</string>
     <string name="subtitle_activity_recaptcha">Tekan \"Selesai\" saat selesai</string>
     <string name="videos_string">Video</string>
     <plurals name="seconds">
         <item quantity="other">%d detik</item>
     </plurals>
-    <string name="new_seek_duration_toast">Karena kendala ExoPlayer, durasi pencarian ditetapkan ke %d detik</string>
+    <string name="new_seek_duration_toast">Karena keterbatasan ExoPlayer, durasi pencarian disetel ke %d detik</string>
     <plurals name="minutes">
         <item quantity="other">%d menit</item>
     </plurals>
@@ -516,14 +515,14 @@
     <string name="no_playlist_bookmarked_yet">Belum ada markah daftar putar</string>
     <string name="select_a_playlist">Pilih daftar putar</string>
     <string name="never">Tidak pernah</string>
-    <string name="wifi_only">Hanya pada Wi-Fi</string>
+    <string name="wifi_only">Hanya di Wi-Fi</string>
     <string name="autoplay_summary">Otomatis mulai pemutaran — %s</string>
     <string name="title_activity_play_queue">Putar antrean</string>
     <string name="unsupported_url_dialog_message">URL tidak dikenali. Buka dengan aplikasi lain\?</string>
     <string name="auto_queue_toggle">Otomatis antre</string>
     <string name="clear_queue_confirmation_description">Antrean dari pemutar yang aktif akan digantikan</string>
-    <string name="clear_queue_confirmation_summary">Beralih ke pemutar yang lain mungkin akan mengganti antrean Anda</string>
-    <string name="clear_queue_confirmation_title">Konfirmasikan sebelum mengosongkan antrean</string>
+    <string name="clear_queue_confirmation_summary">Beralih dari satu pemutar ke yang lain mungkin menggantikan antrean Anda</string>
+    <string name="clear_queue_confirmation_title">Minta konfirmasi sebelum menghapus antrean</string>
     <string name="notification_action_nothing">Tidak ada</string>
     <string name="notification_action_buffering">Bufer</string>
     <string name="notification_action_shuffle">Aduk</string>
@@ -539,7 +538,7 @@
     <string name="notification_scale_to_square_image_title">Ubah ukuran thumbnail ke rasio aspek 1:1</string>
     <string name="show_memory_leaks">Tampilkan kebocoran memori</string>
     <string name="enqueued">Ditambahkan</string>
-    <string name="enqueue_stream">Tambahkan</string>
+    <string name="enqueue_stream">Antrekan</string>
     <string name="clear_cookie_summary">Hapus kuki yang disimpan oleh NewPipe saat Anda memecahkan reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Kuki reCAPTCHA telah dihapus</string>
     <string name="clear_cookie_title">Hapus kuki reCAPTCHA</string>
@@ -573,15 +572,15 @@
 \nKarena kebijakan YouTube yang baru dengan video yang dibatasi usia, NewPipe tidak bisa mengakses video dan tidak bisa memutarnya.</string>
     <string name="select_night_theme_toast">Anda bisa memilih tema malam favorit Anda di bawah ini</string>
     <string name="night_theme_summary">Pilih tema malam favoritmu — %s</string>
-    <string name="auto_device_theme_title">Otomatis (sesuai perangkat)</string>
+    <string name="auto_device_theme_title">Otomatis (tema perangkat)</string>
     <string name="radio">Radio</string>
     <string name="featured">Unggulan</string>
     <string name="recaptcha_solve">Selesaikan</string>
-    <string name="night_theme_title">Tema gelap</string>
+    <string name="night_theme_title">Tema malam</string>
     <string name="download_has_started">Pengunduhan dimulai</string>
     <string name="show_channel_details">Tampilkan detail channel</string>
-    <string name="disable_media_tunneling_summary">Nonaktifkan terowongan media (tunnel) jika anda mengalami sebuah layar hitam atau kerusakan dalam memutar video.</string>
-    <string name="disable_media_tunneling_title">Nonaktifkan terowongan media (tunnel)</string>
+    <string name="disable_media_tunneling_summary">Matikan penerowongan/tunneling media jika Anda mengalami layar hitam atau tersendat saat memutar video.</string>
+    <string name="disable_media_tunneling_title">Matikan penerowongan/tunneling media</string>
     <string name="metadata_privacy_internal">Internal</string>
     <string name="metadata_privacy_private">Privasi</string>
     <string name="metadata_privacy_unlisted">Tidak didaftar</string>
@@ -608,7 +607,7 @@
     <string name="downloads_storage_use_saf_summary_api_29">Mulai Android 10, hanya \'Storage Access Framework\' yang didukung</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Anda akan ditanya lokasi penyimpanan berkas unduhan</string>
     <string name="no_dir_yet">Belum ada folder unduhan terpasang, pilih folder unduhan sekarang</string>
-    <string name="off">Nonaktif</string>
+    <string name="off">Mati</string>
     <string name="on">Hidup</string>
     <string name="tablet_mode_title">Mode tablet</string>
     <string name="dont_show">Jangan tampilkan</string>
@@ -617,7 +616,7 @@
     <string name="comments_are_disabled">Komentar dinonaktifkan</string>
     <string name="seekbar_preview_thumbnail_title">Pratinjau thumbnail bilah laju</string>
     <string name="mark_as_watched">Tandai \'sudah tonton\'</string>
-    <string name="start_main_player_fullscreen_title">Buka pemutar utama dalam layar penuh</string>
+    <string name="start_main_player_fullscreen_title">Mulai pemutar utama dalam layar penuh</string>
     <plurals name="download_finished_notification">
         <item quantity="other">%s unduhan selesai</item>
     </plurals>
@@ -630,7 +629,7 @@
     </plurals>
     <string name="enqueue_next_stream">tambahkan ke selanjutnya</string>
     <string name="enqueued_next">telah ditambahkan ke selanjutnya</string>
-    <string name="start_main_player_fullscreen_summary">Jangan memulai memutar video di mini player, tapi nyalakan langsung di mode layar penuh, jika rotasi otomatis terkunci. Anda tetap dapat mengakses mini player dengan keluar dari layar penuh</string>
+    <string name="start_main_player_fullscreen_summary">Jangan memulai video di pemutar mini, tetapi langsung beralih ke mode layar penuh, jika rotasi otomatis terkunci. Anda masih dapat mengakses pemutar mini dengan keluar dari layar penuh</string>
     <string name="processing_may_take_a_moment">Memproses… Mungkin butuh waktu sebentar</string>
     <string name="check_for_updates">Periksa Pembaruan</string>
     <string name="manual_update_description">Periksa secara manual untuk melihat aplikasi versi baru</string>
@@ -651,7 +650,7 @@
 \nSilakan pasang pengelola berkas yang kompatibel dengan Storage Access Framework</string>
     <string name="detail_pinned_comment_view_description">Komentar dipin</string>
     <string name="leak_canary_not_available">LeakCanary tidak tersedia</string>
-    <string name="progressive_load_interval_exoplayer_default">ExoPlayer bawaan</string>
+    <string name="progressive_load_interval_exoplayer_default">Bawaan ExoPlayer</string>
     <string name="loading_stream_details">Memuat detail penjaliran …</string>
     <string name="streams_notifications_interval_title">Frekuensi pemeriksaan</string>
     <string name="streams_notifications_network_title">Dibutuhkan koneksi jaringan</string>
@@ -682,7 +681,7 @@
     <string name="no_audio_streams_available_for_external_players">Tidak ada stream audio yang tersedia untuk pemain eksternal</string>
     <string name="select_quality_external_players">Pilih kualitas untuk pemain eksternal</string>
     <string name="unknown_format">Format tidak diketahui</string>
-    <string name="progressive_load_interval_title">Ukuran selang pemuatan putar balik</string>
+    <string name="progressive_load_interval_title">Ukuran interval pemuatan pemutaran</string>
     <string name="faq_title">Pertanyaan yang sering diajukan</string>
     <string name="faq_description">Jika Anda mengalami kesulitan menggunakan aplikasi, pastikan untuk memeriksa jawaban atas pertanyaan umum ini!</string>
     <string name="faq">Lihat di situs web</string>
@@ -697,8 +696,8 @@
     <string name="card">Kartu</string>
     <string name="duplicate_in_playlist">Daftar putar yang bewarna abu-abu sudah berisi item ini.</string>
     <string name="playlist_add_stream_success_duplicate">Duplikat ditambahkan %d kali</string>
-    <string name="ignore_hardware_media_buttons_summary">Berguna, misalnya, jika kamu menggunakan sebuah set kepala dengan tombol fisik yang rusak</string>
-    <string name="ignore_hardware_media_buttons_title">Abaikan peristiwa tombol media perangkat keras</string>
+    <string name="ignore_hardware_media_buttons_summary">Berguna, misalnya, jika Anda menggunakan headset dengan tombol fisik yang rusak</string>
+    <string name="ignore_hardware_media_buttons_title">Abaikan peristiwa tombol media pada perangkat keras</string>
     <string name="remove_duplicates">Hapus duplikat</string>
     <string name="feed_show_watched">Ditonton secara lengkap</string>
     <string name="feed_show_partially_watched">Ditonton sebagian</string>
@@ -710,20 +709,18 @@
     <string name="left_gesture_control_summary">Pilih gestur untuk bagian kiri layar pemutar</string>
     <string name="left_gesture_control_title">Tindakan gestur kiri</string>
     <string name="none">Tidak ada</string>
-    <string name="right_gesture_control_summary">Pilih gestur untuk bagian kanan dari layar pemutar</string>
+    <string name="right_gesture_control_summary">Pilih gestur untuk bagian kanan layar pemutar</string>
     <string name="right_gesture_control_title">Tindakan gestur kanan</string>
     <string name="brightness">Kecerahan</string>
     <string name="volume">Volume</string>
-    <string name="settings_category_exoplayer_summary">Kelola beberapa pengaturan ExoPlayer. Perubahan ini mengharuskan pemain memulai ulang agar diterapkan</string>
-    <string name="use_exoplayer_decoder_fallback_summary">Aktifkan opsi ini jika Anda mengalami masalah inisialisasi dekoder, yang akan kembali ke dekoder dengan prioritas lebih rendah jika inisialisasi dekoder primer gagal. Hal ini dapat mengakibatkan performa pemutaran yang buruk dibandingkan saat menggunakan dekoder primer</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Solusi ini melepaskan dan memasang kembali codec video ketika terjadi perubahan permukaan, alih-alih mengatur permukaan ke codec secara langsung. Sudah digunakan oleh ExoPlayer pada beberapa perangkat dengan masalah ini, pengaturan ini hanya berpengaruh pada Android 6 dan yang lebih tinggi
-\n
-\nMengaktifkan opsi ini dapat mencegah kesalahan pemutaran saat mengganti pemutar video saat ini atau beralih ke layar penuh</string>
+    <string name="settings_category_exoplayer_summary">Kelola beberapa pengaturan ExoPlayer. Perubahan ini memerlukan mulai ulang pemutar agar dapat diterapkan</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Hidupkan opsi ini jika Anda mengalami masalah inisialisasi dekoder, yang akan dikembalikan ke dekoder dengan prioritas lebih rendah jika inisialisasi dekoder utama gagal. Hal ini dapat menyebabkan kinerja pemutaran yang buruk dibandingkan saat menggunakan dekoder utama</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Solusi ini merilis dan membuat ulang instansi codec video ketika terjadi perubahan permukaan, alih-alih menyetel permukaan ke codec secara langsung. Sudah digunakan oleh ExoPlayer pada beberapa perangkat yang mengalami masalah ini, pengaturan ini hanya berpengaruh pada Android 6 dan lebih tinggi\n\nMenghidupkan opsi ini dapat mencegah kesalahan pemutaran saat mengganti pemutar video saat ini atau beralih ke layar penuh</string>
     <string name="progressive_load_interval_summary">Ubah ukuran selang pemuatan pada konten progresif (saat ini %s). Nilai yang lebih rendah dapat mempercepat pemuatan awal konten</string>
-    <string name="prefer_original_audio_title">Pilih audio asli</string>
-    <string name="prefer_original_audio_summary">Pilih trek audio asli apa pun bahasanya</string>
-    <string name="prefer_descriptive_audio_title">PIlih audio deskriptif</string>
-    <string name="prefer_descriptive_audio_summary">Pilih trek audio dengan deskripsi untuk orang tunanetra jika tersedia</string>
+    <string name="prefer_original_audio_title">Lebih suka audio asli</string>
+    <string name="prefer_original_audio_summary">Pilih trek audio asli apapun bahasanya</string>
+    <string name="prefer_descriptive_audio_title">Lebih suka audio deskriptif</string>
+    <string name="prefer_descriptive_audio_summary">Pilih trek audio dengan deskripsi untuk penyandang tunanetra jika tersedia</string>
     <string name="play_queue_audio_track">Suara: %s</string>
     <string name="audio_track">Trek audio</string>
     <string name="audio_track_present_in_video">Trek audio harus sudah ada dalam aliran ini</string>
@@ -738,7 +735,7 @@
     <string name="main_tabs_position_summary">Pindahkan tab utama ke bagian bawah</string>
     <string name="main_tabs_position_title">Posisi tab utama</string>
     <string name="audio_track_name">%1$s %2$s</string>
-    <string name="disable_media_tunneling_automatic_info">Terowongan media dinonaktifkan secara bawaan di perangkat Anda karena model perangkat Anda tidak mendukungnya.</string>
+    <string name="disable_media_tunneling_automatic_info">Penerowongan/tunneling media dimatikan secara bawaan di perangkat Anda karena model perangkat Anda diketahui tidak mendukungnya.</string>
     <string name="no_live_streams">Tidak ada siaran langsung</string>
     <string name="channel_tab_videos">Video</string>
     <string name="metadata_subscribers">Pelanggan</string>
@@ -791,7 +788,7 @@
         <item quantity="other">%s balasan</item>
     </plurals>
     <string name="error_insufficient_storage">Tidak ada ruang yang cukup pada perangkat</string>
-    <string name="yes">Iya</string>
+    <string name="yes">Ya</string>
     <string name="no">Tidak</string>
     <string name="reset_settings_title">Atur ulang pengaturan</string>
     <string name="reset_settings_summary">Atur ulang pengaturan ke nilai bawaan</string>
@@ -800,7 +797,7 @@
 \nApakah Anda yakin ingin melanjutkan?</string>
     <string name="auto_update_check_description">NewPipe dapat memeriksa versi baru secara berkala dan memberi tahu Anda ketika ada yang baru.
 \nApakah Anda ingin mengaktifkan ini?</string>
-    <string name="settings_category_backup_restore_title">Cadangkan dan Pulihkan</string>
+    <string name="settings_category_backup_restore_title">Cadangkan dan pulihkan</string>
     <string name="import_settings_vulnerable_format">Pengaturan dalam ekspor yang diimpor menggunakan format rentan yang tidak digunakan lagi sejak NewPipe 0.27.0. Pastikan ekspor yang diimpor berasal dari sumber tepercaya, dan lebih memilih hanya menggunakan ekspor yang diperoleh dari NewPipe 0.27.0 atau yang lebih baru di masa mendatang. Dukungan untuk mengimpor pengaturan dalam format rentan ini akan segera dihapus sepenuhnya, dan NewPipe versi lama tidak akan dapat lagi mengimpor pengaturan ekspor dari versi baru.</string>
     <string name="audio_track_type_secondary">sekunder</string>
     <string name="share_playlist_as_youtube_temporary_playlist">Daftar putar</string>
@@ -808,8 +805,8 @@
     <string name="feed_group_page_summary">Halaman grup saluran</string>
     <string name="no_feed_group_created_yet">Belum ada grup umpan yang dibuat</string>
     <string name="select_a_feed_group">Pilih grup umpan</string>
-    <string name="search_with_service_name">Cari %1$s</string>
-    <string name="search_with_service_name_and_filter">Cari %1$s (%2$s)</string>
+    <string name="search_with_service_name">Telusuri %1$s</string>
+    <string name="search_with_service_name_and_filter">Telusuri %1$s (%2$s)</string>
     <string name="channel_tab_likes">Suka</string>
     <string name="migration_info_6_7_title">Halaman Top 50 SoundCloud dihapus</string>
     <string name="migration_info_6_7_message">SoundCloud telah menghentikan dukungan tangga lagu Top 50. Tab terkait telah dihapus dari halaman utama Anda.</string>

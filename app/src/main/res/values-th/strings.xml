@@ -51,7 +51,7 @@
     <string name="theme_title">ธีม</string>
     <string name="light_theme_title">สว่าง</string>
     <string name="dark_theme_title">มืด</string>
-    <string name="black_theme_title">สีดำ</string>
+    <string name="black_theme_title">ดำ</string>
     <string name="popup_remember_size_pos_title">จำขนาดและตำแหน่งของป๊อปอัพ</string>
     <string name="popup_remember_size_pos_summary">จำขนาดและตำแหน่งสุดท้ายของป๊อปอัพ</string>
     <string name="use_inexact_seek_title">ใช้การข้ามที่ไม่แม่นยำ</string>
@@ -270,7 +270,7 @@
     <string name="resize_fill">เติม</string>
     <string name="resize_zoom">ขยาย</string>
     <string name="caption_auto_generated">สร้างขึ้นโดยอัตโนมัติ</string>
-    <string name="caption_setting_title">คำบรรยายภาพ</string>
+    <string name="caption_setting_title">คำบรรยาย</string>
     <string name="caption_setting_description">ปรับเปลี่ยนขนาดตัวอักษร สีของข้อความหรือพื้นหลังของคำอธิบายภาพ (จำเป็นตองปิดและเปิดแอปใหม่เพื่อให้การเปลี่ยนแปลงมีผล)</string>
     <string name="enable_leak_canary_summary">การตรวจสอบการรั่วไหลของหน่วยความจำอาจทำให้แอปจะไม่ตอบสนองเมื่อมีการดึงข้อมูลจากหน่วยความจำ</string>
     <string name="import_title">นำเข้า</string>
@@ -367,7 +367,7 @@
     <string name="notification_scale_to_square_image_summary">ตัดหน้าปกวิดีโอที่แสดงในการแจ้งเตือนจากอัตราส่วน 16:9 เป็น 1:1</string>
     <string name="crash_the_player">เครื่องเล่นวิดีโอแครช</string>
     <string name="notification_action_1_title">ปุ่มคำสั่งที่สอง</string>
-    <string name="night_theme_title">โหมดกลางคืน</string>
+    <string name="night_theme_title">ธีมมืด</string>
     <string name="prefer_original_audio_summary">เลือกเสียงต้นฉบับโดยไม่คำนึงถึงภาษาที่ใช้</string>
     <string name="show_description_summary">ปิดเพื่อซ่อนคำอธิบายของวิดีโอและข้อมูลเพิ่มเติมอื่นๆ</string>
     <string name="prefer_original_audio_title">ชอบเสียงต้นฉบับมากกว่า</string>
@@ -452,4 +452,7 @@
     <string name="youtube_restricted_mode_enabled_title">เปิดใช้งาน \"โหมดจำกัด\" ของ YouTube</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube มี \"โหมดจำกัด\" ที่สามารถซ่อนเนื้อหาที่ไม่เหมาะสมได้</string>
     <string name="restricted_video">วิดีโอนี้มีข้อจำกัดด้านอายุ\n\nหากต้องการรับชม โปรดเปิดใช้งาน \"%1$s\" ในตั้งค่า</string>
+    <string name="auto_device_theme_title">อัตโนมัติ (ตามธีมของอุปกรณ์)</string>
+    <string name="select_night_theme_toast">คุณสามารถเลือกธีมมืดที่ต้องการได้ด้านล่าง</string>
+    <string name="tablet_mode_title">โหมดแท็บเล็ต</string>
 </resources>

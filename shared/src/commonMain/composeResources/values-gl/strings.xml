@@ -18,4 +18,24 @@
     <string name="privacy_policy_encouragement">O proxecto NewPipe tómase moi en serio a túa privacidade. Polo tanto, a aplicación non recompila ningún dato sen o teu consentimento.\nA política de privacidade de NewPipe explica en detalle que datos se envían e almacenan cando envías un informe de erro.</string>
     <string name="read_privacy_policy">Le a política de privacidade</string>
     <string name="app_license_title">Licenza de NewPipe</string>
+    <string name="navigate_back">Atrás</string>
+    <string name="app_license">NewPipe é software libre con copyleft: podes usalo, estudalo, compartilo e melloralo como queiras. En concreto, podes redistribúilo e/ou modificalo segundo os termos da Licenza Pública Xeral de GNU, tal e como a publica a Free Software Foundation, xa sexa na versión 3 da Licenza ou (a túa elección) en calquera versión posterior.</string>
+    <string name="read_full_license">Ler licenza</string>
+    <string name="faq_title">Preguntas frecuentes</string>
+    <string name="faq_description">Se tes dificultades para usar a aplicación, bótalle unha ollada a estas respostas a preguntas frecuentes!</string>
+    <string name="faq">Ver no sitio web</string>
+    <string name="open_in_browser">Abir no navegador</string>
+    <string name="done">Feito</string>
+    <string name="not_available">Non dispoñible</string>
+    <string name="settings">Configuración</string>
+    <string name="search">Busca</string>
+    <string name="content">Contido</string>
+    <string name="notifications">Notificacións</string>
+    <string name="settings_category_video_audio_title">Vídeo e son</string>
+    <string name="settings_category_downloads_title">Descargar</string>
+    <string name="settings_category_appearance_title">Apariencia</string>
+    <string name="settings_category_history_title">Historial e caché</string>
+    <string name="settings_category_updates_title">Actualizacións</string>
+    <string name="settings_category_backup_restore_title">Copia de seguridade e restauración</string>
+    <string name="settings_category_debug_title">Depurar</string>
 </resources>
