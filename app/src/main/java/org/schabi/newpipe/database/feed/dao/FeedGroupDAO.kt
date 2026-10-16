@@ -1,17 +1,20 @@
 package org.schabi.newpipe.database.feed.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import androidx.room.Transaction
-import androidx.room.Update
+import androidx.room3.Dao
+import androidx.room3.DaoReturnTypeConverters
+import androidx.room3.Insert
+import androidx.room3.OnConflictStrategy
+import androidx.room3.Query
+import androidx.room3.Transaction
+import androidx.room3.Update
+import androidx.room3.rxjava3.RxDaoReturnTypeConverters
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Maybe
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.feed.model.FeedGroupSubscriptionEntity
 
 @Dao
+@DaoReturnTypeConverters(RxDaoReturnTypeConverters::class)
 abstract class FeedGroupDAO {
 
     @Query("SELECT * FROM feed_group ORDER BY sort_order ASC")

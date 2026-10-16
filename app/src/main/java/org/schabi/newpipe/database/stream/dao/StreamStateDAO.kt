@@ -6,16 +6,19 @@
 
 package org.schabi.newpipe.database.stream.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import androidx.room.Transaction
+import androidx.room3.Dao
+import androidx.room3.DaoReturnTypeConverters
+import androidx.room3.Insert
+import androidx.room3.OnConflictStrategy
+import androidx.room3.Query
+import androidx.room3.Transaction
+import androidx.room3.rxjava3.RxDaoReturnTypeConverters
 import io.reactivex.rxjava3.core.Flowable
 import org.schabi.newpipe.database.BasicDAO
 import org.schabi.newpipe.database.stream.model.StreamStateEntity
 
 @Dao
+@DaoReturnTypeConverters(RxDaoReturnTypeConverters::class)
 interface StreamStateDAO : BasicDAO<StreamStateEntity> {
 
     @Query("SELECT * FROM " + StreamStateEntity.STREAM_STATE_TABLE)
@@ -34,7 +37,7 @@ interface StreamStateDAO : BasicDAO<StreamStateEntity> {
     @Query("DELETE FROM " + StreamStateEntity.STREAM_STATE_TABLE + " WHERE " + StreamStateEntity.JOIN_STREAM_ID + " = :streamId")
     fun deleteState(streamId: Long): Int
 
-    @Insert(onConflict = OnConflictStrategy.Companion.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun silentInsertInternal(streamState: StreamStateEntity)
 
     @Transaction

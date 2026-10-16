@@ -14,6 +14,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlinx.serialization)
     alias(libs.plugins.sonarqube)
     alias(libs.plugins.about.libraries)
+    alias(libs.plugins.androidx.room)
     checkstyle
 }
 
@@ -140,8 +141,8 @@ configure<ApplicationExtension> {
     }
 }
 
-ksp {
-    arg("room.schemaLocation", "$projectDir/schemas")
+room3 {
+    schemaDirectory("$projectDir/schemas")
 }
 
 // Custom dependency configuration for ktlint
@@ -243,6 +244,7 @@ dependencies {
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.rxjava3)
+    implementation(libs.androidx.sqlite.bundled)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.swiperefreshlayout)
     implementation(libs.androidx.viewpager2)
@@ -324,6 +326,8 @@ dependencies {
     androidTestImplementation(libs.androidx.runner)
     androidTestImplementation(libs.androidx.room.testing)
     androidTestImplementation(libs.assertj.core)
+    androidTestImplementation(libs.androidx.sqlite.bundled)
+    androidTestImplementation(libs.jetbrains.coroutines.test)
 }
 
 aboutLibraries {

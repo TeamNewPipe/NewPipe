@@ -6,9 +6,11 @@
 
 package org.schabi.newpipe.database.history.dao
 
-import androidx.room.Dao
-import androidx.room.Query
-import androidx.room.RewriteQueriesToDropUnusedColumns
+import androidx.room3.Dao
+import androidx.room3.DaoReturnTypeConverters
+import androidx.room3.Query
+import androidx.room3.RewriteQueriesToDropUnusedColumns
+import androidx.room3.rxjava3.RxDaoReturnTypeConverters
 import io.reactivex.rxjava3.core.Flowable
 import org.schabi.newpipe.database.BasicDAO
 import org.schabi.newpipe.database.history.model.StreamHistoryEntity
@@ -16,6 +18,7 @@ import org.schabi.newpipe.database.history.model.StreamHistoryEntry
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry
 
 @Dao
+@DaoReturnTypeConverters(RxDaoReturnTypeConverters::class)
 abstract class StreamHistoryDAO : BasicDAO<StreamHistoryEntity> {
 
     @Query("SELECT * FROM stream_history")
