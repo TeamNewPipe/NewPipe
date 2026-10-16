@@ -1,12 +1,13 @@
 package org.schabi.newpipe.database
 
-import android.content.ContentValues
-import android.database.sqlite.SQLiteDatabase
-import androidx.room.Room
-import androidx.room.testing.MigrationTestHelper
+import androidx.room3.Room
+import androidx.room3.testing.MigrationTestHelper
+import androidx.sqlite.driver.bundled.BundledSQLiteDriver
+import androidx.sqlite.execSQL
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNull
@@ -37,95 +38,84 @@ class DatabaseMigrationTest {
         private const val DEFAULT_THIRD_URL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     }
 
+    private val instrumentation = InstrumentationRegistry.getInstrumentation()
+
     @get:Rule
     val testHelper = MigrationTestHelper(
-        InstrumentationRegistry.getInstrumentation(),
-        AppDatabase::class.java
+        instrumentation = instrumentation,
+        databaseClass = AppDatabase::class,
+        driver = BundledSQLiteDriver(),
+        file = instrumentation.targetContext.getDatabasePath(AppDatabase.DATABASE_NAME)
     )
 
     @Test
-    fun migrateDatabaseFrom2to3() {
-        val databaseInV2 = testHelper.createDatabase(AppDatabase.DATABASE_NAME, Migrations.DB_VER_2)
+    fun migrateDatabaseFrom2to3() = runTest {
+        val databaseInV2 = testHelper.createDatabase(version = Migrations.DB_VER_2)
 
         databaseInV2.run {
-            insert(
-                "streams",
-                SQLiteDatabase.CONFLICT_FAIL,
-                ContentValues().apply {
-                    put("service_id", DEFAULT_SERVICE_ID)
-                    put("url", DEFAULT_URL)
-                    put("title", DEFAULT_TITLE)
-                    put("stream_type", DEFAULT_TYPE.name)
-                    put("duration", DEFAULT_DURATION)
-                    put("uploader", DEFAULT_UPLOADER_NAME)
-                    put("thumbnail_url", DEFAULT_THUMBNAIL)
-                }
-            )
-            insert(
-                "streams",
-                SQLiteDatabase.CONFLICT_FAIL,
-                ContentValues().apply {
-                    put("service_id", DEFAULT_SECOND_SERVICE_ID)
-                    put("url", DEFAULT_SECOND_URL)
-                }
-            )
-            insert(
-                "streams",
-                SQLiteDatabase.CONFLICT_FAIL,
-                ContentValues().apply {
-                    put("service_id", DEFAULT_SERVICE_ID)
-                }
-            )
+            val sql = """
+                INSERT OR FAIL INTO streams
+                (service_id, url, title, stream_type, duration, uploader, thumbnail_url)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+            """.trimIndent()
+
+            prepare(sql).use { statement ->
+                statement.bindInt(1, DEFAULT_SERVICE_ID)
+                statement.bindText(2, DEFAULT_URL)
+                statement.bindText(3, DEFAULT_TITLE)
+                statement.bindText(4, DEFAULT_TYPE.name)
+                statement.bindLong(5, DEFAULT_DURATION)
+                statement.bindText(6, DEFAULT_UPLOADER_NAME)
+                statement.bindText(7, DEFAULT_THUMBNAIL)
+                statement.step()
+            }
+
+            prepare(sql).use { statement ->
+                statement.bindInt(1, DEFAULT_SECOND_SERVICE_ID)
+                statement.bindText(2, DEFAULT_SECOND_URL)
+                statement.step()
+            }
+
+            prepare(sql).use { statement ->
+                statement.bindInt(1, DEFAULT_SERVICE_ID)
+                statement.step()
+            }
             close()
         }
 
         testHelper.runMigrationsAndValidate(
-            AppDatabase.DATABASE_NAME,
-            Migrations.DB_VER_3,
-            true,
-            Migrations.MIGRATION_2_3
+            version = Migrations.DB_VER_3,
+            migrations = listOf(Migrations.MIGRATION_2_3)
         )
 
         testHelper.runMigrationsAndValidate(
-            AppDatabase.DATABASE_NAME,
-            Migrations.DB_VER_4,
-            true,
-            Migrations.MIGRATION_3_4
+            version = Migrations.DB_VER_4,
+            migrations = listOf(Migrations.MIGRATION_3_4)
         )
 
         testHelper.runMigrationsAndValidate(
-            AppDatabase.DATABASE_NAME,
-            Migrations.DB_VER_5,
-            true,
-            Migrations.MIGRATION_4_5
+            version = Migrations.DB_VER_5,
+            migrations = listOf(Migrations.MIGRATION_4_5)
         )
 
         testHelper.runMigrationsAndValidate(
-            AppDatabase.DATABASE_NAME,
-            Migrations.DB_VER_6,
-            true,
-            Migrations.MIGRATION_5_6
+            version = Migrations.DB_VER_6,
+            migrations = listOf(Migrations.MIGRATION_5_6)
         )
 
         testHelper.runMigrationsAndValidate(
-            AppDatabase.DATABASE_NAME,
-            Migrations.DB_VER_7,
-            true,
-            Migrations.MIGRATION_6_7
+            version = Migrations.DB_VER_7,
+            migrations = listOf(Migrations.MIGRATION_6_7)
         )
 
         testHelper.runMigrationsAndValidate(
-            AppDatabase.DATABASE_NAME,
-            Migrations.DB_VER_8,
-            true,
-            Migrations.MIGRATION_7_8
+            version = Migrations.DB_VER_8,
+            migrations = listOf(Migrations.MIGRATION_7_8)
         )
 
         testHelper.runMigrationsAndValidate(
-            AppDatabase.DATABASE_NAME,
-            Migrations.DB_VER_9,
-            true,
-            Migrations.MIGRATION_8_9
+            version = Migrations.DB_VER_9,
+            migrations = listOf(Migrations.MIGRATION_8_9)
         )
 
         val migratedDatabaseV3 = getMigratedDatabase()
@@ -163,8 +153,8 @@ class DatabaseMigrationTest {
     }
 
     @Test
-    fun migrateDatabaseFrom7to8() {
-        val databaseInV7 = testHelper.createDatabase(AppDatabase.DATABASE_NAME, Migrations.DB_VER_7)
+    fun migrateDatabaseFrom7to8() = runTest {
+        val databaseInV7 = testHelper.createDatabase(version = Migrations.DB_VER_7)
 
         val defaultSearch1 = " abc "
         val defaultSearch2 = " abc"
@@ -175,53 +165,43 @@ class DatabaseMigrationTest {
         val otherServiceId = ServiceList.SoundCloud.serviceId
 
         databaseInV7.run {
-            insert(
-                "search_history",
-                SQLiteDatabase.CONFLICT_FAIL,
-                ContentValues().apply {
-                    put("service_id", serviceId)
-                    put("search", defaultSearch1)
-                }
-            )
-            insert(
-                "search_history",
-                SQLiteDatabase.CONFLICT_FAIL,
-                ContentValues().apply {
-                    put("service_id", serviceId)
-                    put("search", defaultSearch2)
-                }
-            )
-            insert(
-                "search_history",
-                SQLiteDatabase.CONFLICT_FAIL,
-                ContentValues().apply {
-                    put("service_id", otherServiceId)
-                    put("search", defaultSearch1)
-                }
-            )
-            insert(
-                "search_history",
-                SQLiteDatabase.CONFLICT_FAIL,
-                ContentValues().apply {
-                    put("service_id", otherServiceId)
-                    put("search", defaultSearch2)
-                }
-            )
+            val sql = "INSERT OR FAIL INTO search_history (service_id, search) VALUES (?, ?)"
+
+            prepare(sql).use { statement ->
+                statement.bindInt(1, serviceId)
+                statement.bindText(2, defaultSearch1)
+                statement.step()
+            }
+
+            prepare(sql).use { statement ->
+                statement.bindInt(1, serviceId)
+                statement.bindText(2, defaultSearch2)
+                statement.step()
+            }
+
+            prepare(sql).use { statement ->
+                statement.bindInt(1, otherServiceId)
+                statement.bindText(2, defaultSearch1)
+                statement.step()
+            }
+
+            prepare(sql).use { statement ->
+                statement.bindInt(1, otherServiceId)
+                statement.bindText(2, defaultSearch2)
+                statement.step()
+            }
+
             close()
         }
 
         testHelper.runMigrationsAndValidate(
-            AppDatabase.DATABASE_NAME,
-            Migrations.DB_VER_8,
-            true,
-            Migrations.MIGRATION_7_8
+            version = Migrations.DB_VER_8,
+            migrations = listOf(Migrations.MIGRATION_7_8)
         )
 
         testHelper.runMigrationsAndValidate(
-            AppDatabase.DATABASE_NAME,
-            Migrations.DB_VER_9,
-            true,
-            Migrations.MIGRATION_8_9
+            version = Migrations.DB_VER_9,
+            migrations = listOf(Migrations.MIGRATION_8_9)
         )
 
         val migratedDatabaseV8 = getMigratedDatabase()
@@ -234,66 +214,82 @@ class DatabaseMigrationTest {
     }
 
     @Test
-    fun migrateDatabaseFrom8to9() {
-        val databaseInV8 = testHelper.createDatabase(AppDatabase.DATABASE_NAME, Migrations.DB_VER_8)
+    fun migrateDatabaseFrom8to9() = runTest {
+        val databaseInV8 = testHelper.createDatabase(version = Migrations.DB_VER_8)
 
         val localUid1: Long
         val localUid2: Long
         val remoteUid1: Long
         val remoteUid2: Long
+
         databaseInV8.run {
-            localUid1 = insert(
-                "playlists",
-                SQLiteDatabase.CONFLICT_FAIL,
-                ContentValues().apply {
-                    put("name", DEFAULT_NAME + "1")
-                    put("is_thumbnail_permanent", false)
-                    put("thumbnail_stream_id", -1)
-                }
-            )
-            localUid2 = insert(
-                "playlists",
-                SQLiteDatabase.CONFLICT_FAIL,
-                ContentValues().apply {
-                    put("name", DEFAULT_NAME + "2")
-                    put("is_thumbnail_permanent", false)
-                    put("thumbnail_stream_id", -1)
-                }
-            )
-            delete(
-                "playlists",
-                "uid = ?",
-                Array(1) { localUid1 }
-            )
-            remoteUid1 = insert(
-                "remote_playlists",
-                SQLiteDatabase.CONFLICT_FAIL,
-                ContentValues().apply {
-                    put("service_id", DEFAULT_SERVICE_ID)
-                    put("url", DEFAULT_URL)
-                }
-            )
-            remoteUid2 = insert(
-                "remote_playlists",
-                SQLiteDatabase.CONFLICT_FAIL,
-                ContentValues().apply {
-                    put("service_id", DEFAULT_SECOND_SERVICE_ID)
-                    put("url", DEFAULT_SECOND_URL)
-                }
-            )
-            delete(
-                "remote_playlists",
-                "uid = ?",
-                Array(1) { remoteUid2 }
-            )
+            val remotePlaylistsSQL = """
+                INSERT OR FAIL INTO remote_playlists
+                (service_id, url)
+                VALUES (?, ?)
+            """.trimIndent()
+            val playlistsSQL = """
+                INSERT OR FAIL INTO playlists
+                (name, is_thumbnail_permanent, thumbnail_stream_id)
+                VALUES (?, ?, ?)
+            """.trimIndent()
+
+            prepare(playlistsSQL).use { statement ->
+                statement.bindText(1, DEFAULT_NAME + "1")
+                statement.bindBoolean(2, false)
+                statement.bindInt(3, -1)
+                statement.step()
+            }
+
+            prepare("SELECT MAX(uid) FROM playlists").use { statement ->
+                statement.step()
+                localUid1 = statement.getLong(0)
+            }
+
+            prepare(playlistsSQL).use { statement ->
+                statement.bindText(1, DEFAULT_NAME + "2")
+                statement.bindBoolean(2, false)
+                statement.bindInt(3, -1)
+                statement.step()
+            }
+
+            prepare("SELECT MAX(uid) FROM playlists").use { statement ->
+                statement.step()
+                localUid2 = statement.getLong(0)
+            }
+
+            execSQL("DELETE FROM playlists WHERE uid = $localUid1")
+
+            prepare(remotePlaylistsSQL).use { statement ->
+                statement.bindInt(1, DEFAULT_SERVICE_ID)
+                statement.bindText(2, DEFAULT_URL)
+                statement.step()
+            }
+
+            prepare("SELECT MAX(uid) FROM remote_playlists").use { statement ->
+                statement.step()
+                remoteUid1 = statement.getLong(0)
+            }
+
+            prepare(remotePlaylistsSQL).use { statement ->
+                statement.bindInt(1, DEFAULT_SECOND_SERVICE_ID)
+                statement.bindText(2, DEFAULT_SECOND_URL)
+                statement.step()
+            }
+
+            prepare("SELECT MAX(uid) FROM remote_playlists").use { statement ->
+                statement.step()
+                remoteUid2 = statement.getLong(0)
+            }
+
+            execSQL("DELETE FROM remote_playlists WHERE uid = $remoteUid2")
+
             close()
         }
 
         testHelper.runMigrationsAndValidate(
-            AppDatabase.DATABASE_NAME,
-            Migrations.DB_VER_9,
-            true,
-            Migrations.MIGRATION_8_9
+            version = Migrations.DB_VER_9,
+            migrations = listOf(Migrations.MIGRATION_8_9)
         )
 
         val migratedDatabaseV9 = getMigratedDatabase()

@@ -326,6 +326,8 @@ dependencies {
     androidTestImplementation(libs.androidx.runner)
     androidTestImplementation(libs.androidx.room.testing)
     androidTestImplementation(libs.assertj.core)
+    androidTestImplementation(libs.androidx.sqlite.bundled)
+    androidTestImplementation(libs.jetbrains.coroutines.test)
 }
 
 aboutLibraries {

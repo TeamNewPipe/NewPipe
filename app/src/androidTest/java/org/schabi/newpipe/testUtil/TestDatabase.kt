@@ -1,6 +1,6 @@
 package org.schabi.newpipe.testUtil
 
-import androidx.room.Room
+import androidx.room3.Room
 import androidx.test.core.app.ApplicationProvider
 import org.junit.Assert.assertSame
 import org.schabi.newpipe.NewPipeDatabase
