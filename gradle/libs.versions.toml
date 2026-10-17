@@ -39,6 +39,7 @@ kotlinx-serialization-json = "1.11.0"
 ksp = "2.3.11"
 ktlint = "1.8.0"
 leakcanary = "2.14"
+leakcanaryVersion = "1.0.0"
 lifecycle = "2.11.0"
 localbroadcastmanager = "1.1.0"
 markwon = "4.6.2"
@@ -77,7 +78,6 @@ teamnewpipe-newpipe-extractor = "65cabc2ba5216ee871ace4a9963c08bdbf5d5dc0"
 viewpager2 = "1.1.0"
 webkit = "1.15.0" # New versions require minSdk 24
 work = "2.11.2"
-leakcanaryVersion = "1.0.0"
 
 [libraries]
 acra-core = { module = "ch.acra:acra-core", version.ref = "acra" }
@@ -149,6 +149,7 @@ koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", ver
 kotlin-test-core = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlinx-coroutines-rx3 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-rx3", version.ref = "kotlinx-coroutines-rx3" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
+leakcanary = { group = "com.android.tools.studio.leakcanary", name = "leakcanary", version.ref = "leakcanaryVersion" }
 lisawray-groupie-core = { module = "com.github.lisawray.groupie:groupie", version.ref = "groupie" }
 lisawray-groupie-viewbinding = { module = "com.github.lisawray.groupie:groupie-viewbinding", version.ref = "groupie" }
 livefront-bridge = { module = "com.github.livefront:bridge", version.ref = "bridge" }
@@ -172,7 +173,6 @@ squareup-okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhtt
 squareup-okhttp-brotli = { module = "com.squareup.okhttp3:okhttp-brotli", version.ref = "okhttp" }
 touchlab-kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 zacsweers-autoservice-compiler = { module = "dev.zacsweers.autoservice:auto-service-ksp", version.ref = "autoservice-zacsweers" }
-leakcanary = { group = "com.android.tools.studio.leakcanary", name = "leakcanary", version.ref = "leakcanaryVersion" }
 
 [plugins]
 about-libraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "about-libraries" }
