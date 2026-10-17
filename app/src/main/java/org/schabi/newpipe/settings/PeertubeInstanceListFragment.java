@@ -121,6 +121,8 @@ public class PeertubeInstanceListFragment extends Fragment {
 
     @Override
     public void onDestroyView() {
+        // a pending addInstance() request would otherwise update the destroyed view
+        disposables.clear();
         binding = null;
         super.onDestroyView();
     }
