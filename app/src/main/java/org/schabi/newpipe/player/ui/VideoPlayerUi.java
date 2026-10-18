@@ -1562,6 +1562,28 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                     return true;
                 }
                 break;
+            case KeyEvent.KEYCODE_SPACE:
+            case KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE:
+                player.playPause();
+                return true;
+            case KeyEvent.KEYCODE_MEDIA_PLAY:
+                player.play();
+                return true;
+            case KeyEvent.KEYCODE_MEDIA_PAUSE:
+                player.pause();
+                return true;
+            case KeyEvent.KEYCODE_J:
+            case KeyEvent.KEYCODE_MEDIA_FAST_REWIND:
+                player.fastRewind();
+                return true;
+            case KeyEvent.KEYCODE_L:
+            case KeyEvent.KEYCODE_MEDIA_FAST_FORWARD:
+                player.fastForward();
+                return true;
+            case KeyEvent.KEYCODE_M:
+            case KeyEvent.KEYCODE_VOLUME_MUTE:
+                player.toggleMute();
+                return true;
             default:
                 break; // ignore other keys
         }

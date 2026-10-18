@@ -106,6 +106,9 @@
     <string name="metadata_cache_wipe_title">Wipe cached metadata</string>
     <string name="metadata_cache_wipe_summary">Remove all cached webpage data</string>
     <string name="metadata_cache_wipe_complete_notice">Metadata cache wiped</string>
+    <string name="clear_cache_shortcut_label">Clear cache</string>
+    <string name="clear_cache_shortcut_long_label">Clear NewPipe cache</string>
+    <string name="clear_cache_complete_notice">Cache cleared</string>
     <string name="auto_queue_title">Auto-enqueue next stream</string>
     <string name="auto_queue_summary">Continue ending (non-repeating) playback queue by appending a related stream</string>
     <string name="auto_queue_toggle">Auto-enqueuing</string>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Long-press "Clear cache" action on the app icon.
+        See https://github.com/TeamNewPipe/NewPipe/issues/8981
+    -->
+    <shortcut
+        android:shortcutId="clear_cache"
+        android:enabled="true"
+        android:icon="@drawable/ic_delete"
+        android:shortcutShortLabel="@string/clear_cache_shortcut_label"
+        android:shortcutLongLabel="@string/clear_cache_shortcut_long_label">
+        <intent android:action="org.schabi.newpipe.action.CLEAR_CACHE" />
+
+        <!--
+            The intent is resolved within this app via ClearCacheActivity's
+            intent-filter, so no targetPackage is needed (the debug build's
+            applicationIdSuffix must not be hardcoded here).
+        -->
+    </shortcut>
+
+</shortcuts>
