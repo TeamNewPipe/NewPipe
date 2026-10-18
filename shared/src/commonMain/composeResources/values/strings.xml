@@ -182,4 +182,39 @@
     <string name="create_error_notification">Create an error notification</string>
     <string name="error_snackbar_message">Sorry, something went wrong.</string>
     <string name="error_snackbar_action">Report</string>
+
+    <!-- Download Settings -->
+    <string name="ok">OK</string>
+    <string name="downloads_storage_ask_title">Ask where to download</string>
+    <string name="downloads_storage_ask_summary">You will be asked where to save each download.\nEnable the system folder picker (SAF) if you want to download to an external SD card</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">You will be asked where to save each download</string>
+    <string name="downloads_storage_use_saf_title">Use system folder picker (SAF)</string>
+    <string name="downloads_storage_use_saf_summary">The 'Storage Access Framework' allows downloads to an external SD card</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Starting from Android 10 only 'Storage Access Framework' is supported</string>
+    <string name="download_path_title">Video download folder</string>
+    <string name="download_path_summary">Downloaded video files are stored here</string>
+    <string name="download_path_audio_title">Audio download folder</string>
+    <string name="download_path_audio_summary">Downloaded audio files are stored here</string>
+    <string name="settings_file_charset_title">Allowed characters in filenames</string>
+    <string name="charset_letters_and_digits">Letters and digits</string>
+    <string name="charset_most_special_characters">Most special characters</string>
+    <string name="settings_file_replacement_character_title">Replacement character</string>
+    <string name="settings_file_replacement_character_summary">Invalid characters are replaced with this value</string>
+    <string name="max_retry_msg">Maximum retries</string>
+    <string name="max_retry_desc">Maximum number of attempts before canceling the download</string>
+    <string name="pause_downloads_on_mobile">Interrupt on metered networks</string>
+    <string name="pause_downloads_on_mobile_desc">Useful when switching to mobile data, although some downloads cannot be suspended</string>
+    <string name="enable_queue_limit">Limit download queue</string>
+    <string name="enable_queue_limit_desc">One download will run at the same time</string>
+
+    <!-- Download Settings: folder picker errors -->
+    <string name="general_error">Error</string>
+    <string name="invalid_directory">No such folder</string>
+    <string name="no_available_dir">Please define a download folder later in settings</string>
+    <string name="download_to_sdcard_error_title">External storage unavailable</string>
+    <string name="download_to_sdcard_error_message">Downloading to external SD card not possible. Reset download folder location?</string>
+    <string name="no_app_to_open_intent">No app on your device can open this</string>
+    <string name="no_appropriate_file_manager_message">No appropriate file manager was found for this action.\nPlease install a file manager or try to disable '%1$s' in the download settings</string>
+    <string name="no_appropriate_file_manager_message_android_10">No appropriate file manager was found for this action.\nPlease install a Storage Access Framework compatible file manager</string>
+
 </resources>
