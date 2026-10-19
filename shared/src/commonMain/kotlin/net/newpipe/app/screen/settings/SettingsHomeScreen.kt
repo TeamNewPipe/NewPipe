@@ -64,6 +64,10 @@ fun SettingsHomeScreen(
                             Destination.ContentSettings
                         )
 
+                        SettingsCategoryType.UPDATES -> navigator.navigateTo(
+                            Destination.UpdateSettings
+                        )
+
                         SettingsCategoryType.DEBUG -> navigator.navigateTo(
                             Destination.DebugSettings
                         )

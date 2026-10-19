@@ -56,6 +56,11 @@
     <string name="settings_category_appearance_title">Appearance</string>
     <string name="settings_category_history_title">History and cache</string>
     <string name="settings_category_updates_title">Updates</string>
+    <string name="updates_setting_title">Updates</string>
+    <string name="updates_setting_description">Show a notification to prompt app update when a new version is available</string>
+    <string name="manual_update_title">Check for updates</string>
+    <string name="manual_update_description">Manually check for new versions</string>
+    <string name="checking_updates_toast">Checking for updates…</string>
     <string name="settings_category_backup_restore_title">Backup and restore</string>
     <string name="settings_category_debug_title">Debug</string>
 

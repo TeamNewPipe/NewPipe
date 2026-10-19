@@ -11,6 +11,7 @@ import net.newpipe.app.screen.about.AboutScreen
 import net.newpipe.app.screen.settings.AppearanceSettingsScreen
 import net.newpipe.app.screen.settings.ContentSettingsScreen
 import net.newpipe.app.screen.settings.DebugSettingsScreen
+import net.newpipe.app.screen.settings.UpdateSettingsScreen
 import net.newpipe.app.screen.settings.PlayerSettingsScreen
 import net.newpipe.app.screen.settings.SettingsHomeScreen
 import net.newpipe.app.screen.settings.VideoAudioSettingsScreen
@@ -48,6 +49,10 @@ fun navModule() = module {
 
     navigation<Destination.ContentSettings> {
         ContentSettingsScreen()
+    }
+
+    navigation<Destination.UpdateSettings> {
+        UpdateSettingsScreen()
     }
 
     navigation<Destination.PlayerSettings> {

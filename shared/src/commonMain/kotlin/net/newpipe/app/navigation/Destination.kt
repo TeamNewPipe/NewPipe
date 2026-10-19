@@ -27,6 +27,9 @@ sealed interface Destination : NavKey {
     data object ContentSettings : Destination
 
     @Serializable
+    data object UpdateSettings : Destination
+
+    @Serializable
     data object AppearanceSettings : Destination
 
     @Serializable
