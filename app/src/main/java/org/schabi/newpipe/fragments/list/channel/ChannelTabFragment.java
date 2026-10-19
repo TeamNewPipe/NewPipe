@@ -158,6 +158,7 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
                     return null;
                 }
             } catch (final ParsingException e) {
+                // silently ignore the error, as the app can continue to function normally
                 Log.w(TAG, "Could not recreate tab handler", e);
                 return null;
             }
