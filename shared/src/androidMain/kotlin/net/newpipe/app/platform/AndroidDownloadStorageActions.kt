@@ -65,10 +65,13 @@ class AndroidDownloadStorageActions(context: Context) : DownloadStorageActions {
             val bridge = host
             currentOnResult(
                 when {
-                    folder == null || bridge == null ->
+                    folder == null || bridge == null -> {
                         FolderPickResult.Failed(DownloadFolderError.INVALID_DIRECTORY)
+                    }
 
-                    else -> bridge.acquireFolder(folder)
+                    else -> {
+                        bridge.acquireFolder(folder)
+                    }
                 }
             )
         }
@@ -93,9 +96,10 @@ class AndroidDownloadStorageActions(context: Context) : DownloadStorageActions {
         }
     }
 
-    private fun newPipeFolderIn(directoryName: String): String = File(File(Environment.getExternalStorageDirectory(), directoryName), NEWPIPE_FOLDER)
-        .toURI()
-        .toString()
+    private fun newPipeFolderIn(directoryName: String): String {
+        val directory = File(Environment.getExternalStorageDirectory(), directoryName)
+        return File(directory, NEWPIPE_FOLDER).toURI().toString()
+    }
 
     private fun loadHost(context: Context): DownloadStorageHost? = runCatching {
         Class.forName(HOST_CLASS)
