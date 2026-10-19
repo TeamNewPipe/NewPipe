@@ -46,6 +46,7 @@ import net.newpipe.app.preferences.DownloadPreferences.DEFAULT_PAUSE_ON_METERED_
 import net.newpipe.app.preferences.DownloadPreferences.DEFAULT_REPLACEMENT_CHARACTER
 import net.newpipe.app.preferences.DownloadPreferences.DEFAULT_STORAGE_ASK
 import net.newpipe.app.preferences.DownloadPreferences.DEFAULT_STORAGE_USE_SAF
+import net.newpipe.app.preferences.DownloadPreferences.MAXIMUM_RETRIES_NONE
 import net.newpipe.app.preferences.DownloadPreferences.MAXIMUM_RETRY_COUNTS
 import net.newpipe.app.preview.ThemePreviewProvider
 import net.newpipe.app.viewmodel.settings.DownloadSettingsViewModel
@@ -71,11 +72,11 @@ import newpipe.shared.generated.resources.general_error
 import newpipe.shared.generated.resources.invalid_directory
 import newpipe.shared.generated.resources.max_retry_desc
 import newpipe.shared.generated.resources.max_retry_msg
-import newpipe.shared.generated.resources.minimize_on_exit_none_description
 import newpipe.shared.generated.resources.no_app_to_open_intent
 import newpipe.shared.generated.resources.no_appropriate_file_manager_message
 import newpipe.shared.generated.resources.no_appropriate_file_manager_message_android_10
 import newpipe.shared.generated.resources.no_available_dir
+import newpipe.shared.generated.resources.none
 import newpipe.shared.generated.resources.ok
 import newpipe.shared.generated.resources.pause_downloads_on_mobile
 import newpipe.shared.generated.resources.pause_downloads_on_mobile_desc
@@ -187,9 +188,13 @@ fun DownloadSettingsScreenContent(
         )
     )
 
-    val noRetriesLabel = stringResource(Res.string.minimize_on_exit_none_description)
-    val maximumRetryEntries = listOf(ListPreferenceEntry(noRetriesLabel, noRetriesLabel)) +
-        MAXIMUM_RETRY_COUNTS.map { count -> ListPreferenceEntry(count, count) }
+    val noRetriesLabel = stringResource(Res.string.none)
+    val maximumRetryEntries = MAXIMUM_RETRY_COUNTS.map { count ->
+        ListPreferenceEntry(
+            value = count,
+            title = if (count == MAXIMUM_RETRIES_NONE) noRetriesLabel else count
+        )
+    }
 
     val storageAskSummary = when {
         storageAccessFrameworkConfigurable ->
