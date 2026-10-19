@@ -1553,6 +1553,26 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                     return true;
                 }
 
+                // On non-TV devices with a hardware keyboard, arrow keys should seek
+                // instead of jumping between UI elements or focusing player controls.
+                // TV devices keep their D-pad navigation behavior.
+                // See https://github.com/TeamNewPipe/NewPipe/issues/10448
+                if (!DeviceUtils.isTv(context)) {
+                    switch (keyCode) {
+                        case KeyEvent.KEYCODE_DPAD_LEFT:
+                            player.fastRewind();
+                            return true;
+                        case KeyEvent.KEYCODE_DPAD_RIGHT:
+                            player.fastForward();
+                            return true;
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                            player.playPause();
+                            return true;
+                        default:
+                            break; // UP/DDOWN keep falling through to the UI logic below
+                    }
+                }
+
                 if (isControlsVisible()) {
                     hideControls(DEFAULT_CONTROLS_DURATION, DPAD_CONTROLS_HIDE_TIME);
                 } else {
