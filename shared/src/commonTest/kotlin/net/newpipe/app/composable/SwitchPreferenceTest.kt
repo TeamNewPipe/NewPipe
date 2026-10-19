@@ -6,6 +6,7 @@
 package net.newpipe.app.composable
 
 import androidx.compose.ui.test.ExperimentalTestApi
+import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.v2.runComposeUiTest
@@ -43,5 +44,22 @@ class SwitchPreferenceTest {
 
         onNodeWithText(title).performClick()
         assertFalse(fired)
+    }
+
+    @Test
+    fun disabledRowReportsItsStateOnTheTitle() = runComposeUiTest {
+        val title = "Enable feature"
+        setContent {
+            SwitchPreference(
+                title = title,
+                summary = "Some explanation",
+                checked = false,
+                onCheckedChange = {},
+                enabled = false
+            )
+        }
+
+        // The title and the switch state must be one node
+        onNodeWithText(title).assertIsNotEnabled()
     }
 }

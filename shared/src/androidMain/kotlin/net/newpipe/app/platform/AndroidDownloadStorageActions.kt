@@ -47,7 +47,6 @@ class AndroidDownloadStorageActions(context: Context) : DownloadStorageActions {
         if (folder == Uri.EMPTY) {
             return null
         }
-        // Plain file paths read better without their scheme; SAF trees have no readable path.
         return when (folder.scheme) {
             ContentResolver.SCHEME_FILE -> folder.path
             else -> folder.toString()
@@ -56,13 +55,10 @@ class AndroidDownloadStorageActions(context: Context) : DownloadStorageActions {
 
     @Composable
     override fun rememberFolderPicker(onResult: (FolderPickResult) -> Unit): () -> Unit {
-        // The screen passes a fresh lambda on every recomposition, so read it through a state
-        // holder instead of capturing the first one inside remember below.
         val currentOnResult by rememberUpdatedState(onResult)
 
         val launcher = rememberLauncherForActivityResult(StartActivityForResult()) { result ->
             if (result.resultCode != Activity.RESULT_OK) {
-                // The user backed out of the picker; the legacy screen stays silent too.
                 return@rememberLauncherForActivityResult
             }
             val folder = result.data?.data

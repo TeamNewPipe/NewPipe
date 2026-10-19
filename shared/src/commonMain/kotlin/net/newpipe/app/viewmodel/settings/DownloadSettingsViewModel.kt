@@ -26,6 +26,7 @@ import net.newpipe.app.preferences.DownloadPreferences.KEY_PAUSE_ON_METERED_NETW
 import net.newpipe.app.preferences.DownloadPreferences.KEY_REPLACEMENT_CHARACTER
 import net.newpipe.app.preferences.DownloadPreferences.KEY_STORAGE_ASK
 import net.newpipe.app.preferences.DownloadPreferences.KEY_STORAGE_USE_SAF
+import net.newpipe.app.preferences.DownloadPreferences.normalizedMaximumRetries
 import org.koin.core.annotation.KoinViewModel
 
 @KoinViewModel
@@ -53,15 +54,19 @@ class DownloadSettingsViewModel(
         field = stringFlow(KEY_REPLACEMENT_CHARACTER, DEFAULT_REPLACEMENT_CHARACTER)
 
     val maximumRetries: StateFlow<String>
-        field = stringFlow(KEY_MAXIMUM_RETRIES, DEFAULT_MAXIMUM_RETRIES)
+        field = MutableStateFlow(repairedMaximumRetries())
 
     val pauseOnMeteredNetwork: StateFlow<Boolean>
-        field = booleanFlow(KEY_PAUSE_ON_METERED_NETWORK, DEFAULT_PAUSE_ON_METERED_NETWORK)
+        field = booleanFlow(
+            KEY_PAUSE_ON_METERED_NETWORK,
+            DEFAULT_PAUSE_ON_METERED_NETWORK
+        )
 
     val limitQueue: StateFlow<Boolean>
         field = booleanFlow(KEY_LIMIT_QUEUE, DEFAULT_LIMIT_QUEUE)
 
-    fun setStorageAsk(value: Boolean) = storageAsk.persist(KEY_STORAGE_ASK, value)
+    fun setStorageAsk(value: Boolean) = storageAsk
+        .persist(KEY_STORAGE_ASK, value)
 
     fun setUseStorageAccessFramework(value: Boolean) {
         useStorageAccessFramework.persist(KEY_STORAGE_USE_SAF, value)
@@ -81,23 +86,33 @@ class DownloadSettingsViewModel(
         }
     }
 
-    fun setVideoDownloadFolder(value: String) = videoDownloadFolder.persistFolder(KEY_DOWNLOAD_FOLDER_VIDEO, value)
+    fun setVideoDownloadFolder(value: String) = videoDownloadFolder
+        .persistFolder(KEY_DOWNLOAD_FOLDER_VIDEO, value)
 
-    fun setAudioDownloadFolder(value: String) = audioDownloadFolder.persistFolder(KEY_DOWNLOAD_FOLDER_AUDIO, value)
+    fun setAudioDownloadFolder(value: String) = audioDownloadFolder
+        .persistFolder(KEY_DOWNLOAD_FOLDER_AUDIO, value)
 
-    fun setFileCharset(value: String) = fileCharset.persist(KEY_FILE_CHARSET, value)
+    fun setFileCharset(value: String) = fileCharset
+        .persist(KEY_FILE_CHARSET, value)
 
-    fun setReplacementCharacter(value: String) = replacementCharacter.persist(KEY_REPLACEMENT_CHARACTER, value)
+    fun setReplacementCharacter(value: String) = replacementCharacter
+        .persist(KEY_REPLACEMENT_CHARACTER, value)
 
-    fun setMaximumRetries(value: String) = maximumRetries.persist(KEY_MAXIMUM_RETRIES, value)
+    fun setMaximumRetries(value: String) = maximumRetries
+        .persist(KEY_MAXIMUM_RETRIES, value)
 
-    fun setPauseOnMeteredNetwork(value: Boolean) = pauseOnMeteredNetwork.persist(KEY_PAUSE_ON_METERED_NETWORK, value)
+    fun setPauseOnMeteredNetwork(value: Boolean) = pauseOnMeteredNetwork
+        .persist(KEY_PAUSE_ON_METERED_NETWORK, value)
 
     fun setLimitQueue(value: Boolean) = limitQueue.persist(KEY_LIMIT_QUEUE, value)
 
-    private fun stringFlow(key: String, defaultValue: String) = MutableStateFlow(settings.getString(key, defaultValue))
+    private fun stringFlow(key: String, defaultValue: String) = MutableStateFlow(
+        settings.getString(key, defaultValue)
+    )
 
-    private fun booleanFlow(key: String, defaultValue: Boolean) = MutableStateFlow(settings.getBoolean(key, defaultValue))
+    private fun booleanFlow(key: String, defaultValue: Boolean) = MutableStateFlow(
+        settings.getBoolean(key, defaultValue)
+    )
 
     private fun MutableStateFlow<String>.persist(key: String, newValue: String) {
         settings.putString(key, newValue)
@@ -116,5 +131,14 @@ class DownloadSettingsViewModel(
             settings.putString(key, newValue)
         }
         value = newValue
+    }
+
+    private fun repairedMaximumRetries(): String {
+        val stored = settings.getString(KEY_MAXIMUM_RETRIES, DEFAULT_MAXIMUM_RETRIES)
+        val repaired = normalizedMaximumRetries(stored)
+        if (repaired != stored) {
+            settings.putString(KEY_MAXIMUM_RETRIES, repaired)
+        }
+        return repaired
     }
 }
