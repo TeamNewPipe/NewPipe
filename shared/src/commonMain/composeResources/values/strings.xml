@@ -39,6 +39,17 @@
     <string name="settings">Settings</string>
     <string name="search">Search</string>
     <string name="content">Content</string>
+    <string name="app_language_title">App language</string>
+    <string name="systems_language">System default</string>
+    <string name="image_quality_title">Image quality</string>
+    <string name="image_quality_summary">Choose the quality of images and whether to load images at all, to reduce data and memory usage. Changes clear both in-memory and on-disk image cache</string>
+    <string name="image_quality_none">Do not load images</string>
+    <string name="image_quality_low">Low quality</string>
+    <string name="image_quality_medium">Medium quality</string>
+    <string name="image_quality_high">High quality</string>
+    <string name="youtube_restricted_mode_enabled_title">Turn on YouTube\'s "Restricted Mode"</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube provides a "Restricted Mode" which hides potentially mature content</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Image cache wiped</string>
     <string name="notifications">Notifications</string>
     <string name="settings_category_video_audio_title">Video and audio</string>
     <string name="settings_category_downloads_title">Download</string>

@@ -9,6 +9,7 @@ import androidx.compose.runtime.mutableStateListOf
 import co.touchlab.kermit.Logger
 import net.newpipe.app.screen.about.AboutScreen
 import net.newpipe.app.screen.settings.AppearanceSettingsScreen
+import net.newpipe.app.screen.settings.ContentSettingsScreen
 import net.newpipe.app.screen.settings.DebugSettingsScreen
 import net.newpipe.app.screen.settings.PlayerSettingsScreen
 import net.newpipe.app.screen.settings.SettingsHomeScreen
@@ -43,6 +44,10 @@ fun navModule() = module {
 
     navigation<Destination.VideoAudioSettings> {
         VideoAudioSettingsScreen()
+    }
+
+    navigation<Destination.ContentSettings> {
+        ContentSettingsScreen()
     }
 
     navigation<Destination.PlayerSettings> {

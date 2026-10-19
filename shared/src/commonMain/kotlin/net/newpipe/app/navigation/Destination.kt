@@ -24,6 +24,9 @@ sealed interface Destination : NavKey {
     data object VideoAudioSettings : Destination
 
     @Serializable
+    data object ContentSettings : Destination
+
+    @Serializable
     data object AppearanceSettings : Destination
 
     @Serializable

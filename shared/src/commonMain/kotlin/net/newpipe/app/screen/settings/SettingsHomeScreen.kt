@@ -60,6 +60,10 @@ fun SettingsHomeScreen(
                             Destination.VideoAudioSettings
                         )
 
+                        SettingsCategoryType.CONTENT -> navigator.navigateTo(
+                            Destination.ContentSettings
+                        )
+
                         SettingsCategoryType.DEBUG -> navigator.navigateTo(
                             Destination.DebugSettings
                         )
