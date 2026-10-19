@@ -197,16 +197,22 @@ fun DownloadSettingsScreenContent(
     }
 
     val storageAskSummary = when {
-        storageAccessFrameworkConfigurable ->
+        storageAccessFrameworkConfigurable -> {
             stringResource(Res.string.downloads_storage_ask_summary)
+        }
 
-        else -> stringResource(Res.string.downloads_storage_ask_summary_no_saf_notice)
+        else -> {
+            stringResource(Res.string.downloads_storage_ask_summary_no_saf_notice)
+        }
     }
     val useStorageAccessFrameworkSummary = when {
-        storageAccessFrameworkConfigurable ->
+        storageAccessFrameworkConfigurable -> {
             stringResource(Res.string.downloads_storage_use_saf_summary)
+        }
 
-        else -> stringResource(Res.string.downloads_storage_use_saf_summary_api_29)
+        else -> {
+            stringResource(Res.string.downloads_storage_use_saf_summary_api_29)
+        }
     }
 
     Scaffold(
@@ -312,28 +318,46 @@ private fun DownloadFolderErrorDialog(
     val safTitle = stringResource(Res.string.downloads_storage_use_saf_title)
 
     val title = when (error) {
-        DownloadFolderError.NO_FILE_MANAGER -> stringResource(Res.string.no_app_to_open_intent)
-
-        DownloadFolderError.EXTERNAL_STORAGE_UNAVAILABLE ->
-            stringResource(Res.string.download_to_sdcard_error_title)
-
-        DownloadFolderError.INVALID_DIRECTORY,
-        DownloadFolderError.NOT_WRITABLE -> stringResource(Res.string.general_error)
-    }
-    val message = when (error) {
-        DownloadFolderError.NO_FILE_MANAGER -> when {
-            storageAccessFrameworkConfigurable ->
-                stringResource(Res.string.no_appropriate_file_manager_message, safTitle)
-
-            else -> stringResource(Res.string.no_appropriate_file_manager_message_android_10)
+        DownloadFolderError.NO_FILE_MANAGER -> {
+            stringResource(Res.string.no_app_to_open_intent)
         }
 
-        DownloadFolderError.INVALID_DIRECTORY -> stringResource(Res.string.invalid_directory)
+        DownloadFolderError.EXTERNAL_STORAGE_UNAVAILABLE -> {
+            stringResource(Res.string.download_to_sdcard_error_title)
+        }
 
-        DownloadFolderError.NOT_WRITABLE -> stringResource(Res.string.no_available_dir)
+        DownloadFolderError.INVALID_DIRECTORY,
+        DownloadFolderError.NOT_WRITABLE -> {
+            stringResource(Res.string.general_error)
+        }
+    }
 
-        DownloadFolderError.EXTERNAL_STORAGE_UNAVAILABLE ->
+    // Only Android 9 and below can be told to turn SAF off
+    val fileManagerMessage = when {
+        storageAccessFrameworkConfigurable -> {
+            stringResource(Res.string.no_appropriate_file_manager_message, safTitle)
+        }
+
+        else -> {
+            stringResource(Res.string.no_appropriate_file_manager_message_android_10)
+        }
+    }
+    val message = when (error) {
+        DownloadFolderError.NO_FILE_MANAGER -> {
+            fileManagerMessage
+        }
+
+        DownloadFolderError.INVALID_DIRECTORY -> {
+            stringResource(Res.string.invalid_directory)
+        }
+
+        DownloadFolderError.NOT_WRITABLE -> {
+            stringResource(Res.string.no_available_dir)
+        }
+
+        DownloadFolderError.EXTERNAL_STORAGE_UNAVAILABLE -> {
             stringResource(Res.string.download_to_sdcard_error_message)
+        }
     }
 
     AlertDialog(
