@@ -366,6 +366,38 @@ public final class PlayQueueActivity extends AppCompatActivity
         }
     }
 
+    private void updateQueueTime(final int currentProgress) {
+        if (player == null || player.getPlayQueue() == null) {
+            queueControlBinding.queueTotalDuration.setVisibility(View.GONE);
+            return;
+        }
+
+        final PlayQueue playQueue = player.getPlayQueue();
+        final List<PlayQueueItem> streams = playQueue.getStreams();
+        final int currentIndex = playQueue.getIndex();
+
+        if (streams.isEmpty() || currentIndex < 0 || currentIndex >= streams.size()) {
+            queueControlBinding.queueTotalDuration.setVisibility(View.GONE);
+            return;
+        }
+
+        final long before = streams.subList(0, currentIndex).stream()
+                .mapToLong(PlayQueueItem::getDuration)
+                .sum();
+
+        final long total = streams.stream()
+                .mapToLong(PlayQueueItem::getDuration)
+                .sum();
+
+        final long queueProgress = before + currentProgress / 1000L;
+
+        queueControlBinding.queueTotalDuration.setText(
+                Localization.getDurationString(queueProgress) + " / " + Localization.getDurationString(total)
+        );
+
+        queueControlBinding.queueTotalDuration.setVisibility(View.VISIBLE);
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // Component On-Click Listener
     ////////////////////////////////////////////////////////////////////////////
@@ -498,6 +530,7 @@ public final class PlayQueueActivity extends AppCompatActivity
                 queueControlBinding.currentTime.getLayoutParams();
         currentTimeParams.width = queueControlBinding.endTime.getWidth();
         queueControlBinding.currentTime.setLayoutParams(currentTimeParams);
+        updateQueueTime(currentProgress);
     }
 
     @Override
