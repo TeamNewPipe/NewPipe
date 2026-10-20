@@ -20,6 +20,12 @@ jobs:
       github.event.pull_request.author_association != 'OWNER'
     runs-on: ubuntu-latest
     steps:
+      - name: Dump Author Association
+        env:
+          AUTHOR_ASSOCIATION: ${{ github.event.pull_request.author_association }}
+        run: |
+          echo "Author Association: $AUTHOR_ASSOCIATION"
+
       - uses: actions/checkout@v6
 
       - name: Check linked issues
