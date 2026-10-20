@@ -2,7 +2,7 @@
 <resources>
     <string name="main_bg_subtitle">শুরু করতে আতস কাঁচটিতে টিপ দাও।</string>
     <string name="upload_date_text">%1$s তারিখে প্রকাশিত</string>
-    <string name="no_player_found">কোন স্ট্রিম প্লেয়ার নেই। VLC ইনস্টল করতে চান\?</string>
+    <string name="no_player_found">কোন স্ট্রিম প্লেয়ার নেই। VLC ইনস্টল করতে চান?</string>
     <string name="install">ইনস্টল</string>
     <string name="cancel">বাতিল</string>
     <string name="open_in_browser">ব্রাউজারে খুলুন</string>
@@ -11,7 +11,7 @@
     <string name="download">ডাউনলোড</string>
     <string name="search">খুঁজুন</string>
     <string name="settings">সেটিংস</string>
-    <string name="did_you_mean">আপনি কি %1$s বুঝিয়েছেন\?</string>
+    <string name="did_you_mean">আপনি কি %1$s বুঝিয়েছেন?</string>
     <string name="share_dialog_title">শেয়ার করুন</string>
     <string name="use_external_video_player_title">বাইরের ভিডিও প্লেয়ার ব্যবহার করুন</string>
     <string name="use_external_audio_player_title">অন্য অডিও প্লেয়ার ব্যবহার করুন</string>
@@ -28,7 +28,7 @@
     <string name="show_higher_resolutions_title">উচ্চ রেজ্যুলেশন দেখাও</string>
     <string name="show_higher_resolutions_summary">শুধু কিছু ডিভাইস 2K/4K ভিডিও চালাতে পারে</string>
     <string name="play_with_kodi_title">Kodi এর মাধ্যমে চালাও</string>
-    <string name="kore_not_found">হারানো কোর ইনস্টল করবেন\?</string>
+    <string name="kore_not_found">হারানো কোর ইনস্টল করবেন?</string>
     <string name="show_play_with_kodi_title">\"Kodi দিয়ে চালাও\" অপশন দেখাও</string>
     <string name="show_play_with_kodi_summary">Kodi মিডিয়া সেন্টারে এর মাধ্যমে ভিডিও প্লে করার জন্য একটি বিকল্প দেখাও</string>
     <string name="play_audio">অডিও</string>
@@ -98,8 +98,7 @@
     <string name="msg_wait">অনুগ্রহপূর্বক অপেক্ষা করো…</string>
     <string name="msg_copied">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>
     <string name="no_available_dir">পরে সেটিংস থেকে একটি ডাউনলোড ফোল্ডার নির্ধারণ করে দিন</string>
-    <string name="msg_popup_permission">পপআপ মোডে চালু হতে
-\nএই অনুমতির প্রয়োজন আছে</string>
+    <string name="msg_popup_permission">পপআপ মোডে চালু হতে \nএই অনুমতির প্রয়োজন আছে</string>
     <string name="title_activity_recaptcha">reCAPTCHA চ্যালেঞ্জ</string>
     <string name="recaptcha_request_toast">reCAPTCHA চ্যালেঞ্জ অনুরোধ করা হয়েছে</string>
     <!-- End of GigaGet's Strings -->
@@ -172,7 +171,7 @@
     <string name="limit_data_usage_none_description">সীমাহীন</string>
     <string name="caption_none">কোন ক্যাপশন নেই</string>
     <string name="playlist_creation_success">প্লে লিস্ট তৈরি হয়েছে</string>
-    <string name="delete_playlist_prompt">প্লে লিস্ট ডিলিট করতে চান\?</string>
+    <string name="delete_playlist_prompt">প্লে লিস্ট ডিলিট করতে চান?</string>
     <string name="unbookmark_playlist">বুকমার্ক মুছুন</string>
     <string name="unmute">আন মিউট</string>
     <string name="mute">মিউট</string>
@@ -208,7 +207,7 @@
     <string name="no_subscribers">কোন সাবস্ক্রাইবার নেই</string>
     <string name="search_no_results">কোন রেজাল্ট নেই</string>
     <string name="error_report_open_issue_button_text">গিটহাব এ এরর রিপোর্ট করুন</string>
-    <string name="restore_defaults_confirmation">আপনি কি ডিফল্ট এ ফিরতে চান\?</string>
+    <string name="restore_defaults_confirmation">আপনি কি ডিফল্ট এ ফিরতে চান?</string>
     <string name="restore_defaults">ডিফল্ট এ ফিরে যান</string>
     <string name="no_streams_available_download">ডাউন লোড এর জন্য কোন স্ট্রিম নেই</string>
     <string name="error_occurred_detail">একটা এরর হয়েছেঃ %1$s</string>
@@ -221,15 +220,15 @@
     <string name="player_stream_failure">স্ট্রিম টি চালানো গেল না</string>
     <string name="download_to_sdcard_error_title">বাহ্যিক স্টোরেজ নেই</string>
     <string name="search_history_deleted">অনুসন্ধান ইতিহাস মোছা হয়েছে</string>
-    <string name="delete_search_history_alert">সমগ্র সার্চ ইতিহাস মুছবেন\?</string>
+    <string name="delete_search_history_alert">সমগ্র সার্চ ইতিহাস মুছবেন?</string>
     <string name="clear_search_history_summary">সার্চের ইতিহাস মোছা হয়</string>
     <string name="clear_search_history_title">সার্চ ইতিহাস মুছুন</string>
     <string name="watch_history_states_deleted">প্লেব্যাক অবস্থানসমূহ মোছা হয়েছে</string>
-    <string name="delete_playback_states_alert">সমস্ত প্লে লিস্ট এর অবস্থান মুছবেন\?</string>
+    <string name="delete_playback_states_alert">সমস্ত প্লে লিস্ট এর অবস্থান মুছবেন?</string>
     <string name="clear_playback_states_summary">সমস্ত প্লে লিস্ট এর অবস্থান মুছে ফেলুন</string>
     <string name="clear_playback_states_title">প্লে লিস্ট এর অবস্থান মুছে ফেলুন</string>
     <string name="watch_history_deleted">দেখা ভিডিওর ইতিহাস মোছা হয়েছে</string>
-    <string name="delete_view_history_alert">সম্পূর্ণ দেখার ইতিহাস মুছে ফেলুন\?</string>
+    <string name="delete_view_history_alert">সম্পূর্ণ দেখার ইতিহাস মুছে ফেলুন?</string>
     <string name="clear_views_history_title">দেখার ইতিহাস মুছে ফেলুন</string>
     <string name="export_data_title">ডাটা বেস এক্সপোর্ট করুন</string>
     <string name="import_data_title">ডাটাবেস আনুন</string>
@@ -300,7 +299,7 @@
     <string name="feed_update_threshold_title">ফিড হালনাগাদ প্রবেশস্থল</string>
     <string name="settings_category_feed_title">ফিড</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">শুধুমাত্র অদলবদ্ধ সদস্যতা দেখাও</string>
-    <string name="feed_group_dialog_delete_message">আপনি কি এ গ্রুপটি মুছতে চান\?</string>
+    <string name="feed_group_dialog_delete_message">আপনি কি এ গ্রুপটি মুছতে চান?</string>
     <string name="feed_group_dialog_empty_name">খালি গ্রুপ নেম</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d নির্বাচিত</item>
@@ -394,7 +393,7 @@
     <string name="clear_queue_confirmation_description">সক্রিয় প্লেয়ারের অপেক্ষমাণ সারি প্রতিস্থাপিত হবে</string>
     <string name="resume_on_audio_focus_gain_summary">বিঘ্ন ঘটার পরে চালানো অব্যাহত রাখো (যেমন. ফোনকল)</string>
     <string name="enable_playback_state_lists_summary">প্লেব্যাক অবস্থানের চিহ্নসমূহ তালিকায় দেখাও</string>
-    <string name="unsupported_url_dialog_message">URL টি বোঝা যায়নি। অন্য অ্যাপ দিয়ে খুলবো\?</string>
+    <string name="unsupported_url_dialog_message">URL টি বোঝা যায়নি। অন্য অ্যাপ দিয়ে খুলবো?</string>
     <string name="default_content_country_title">কনটেন্টের জন্য পূর্বনির্ধারিত দেশ</string>
     <string name="external_player_unsupported_link_type">বাইরের প্লেয়ারসমূহ এ ধরনের লিঙ্কসমূহ সমর্থন করে না</string>
     <string name="msg_calculating_hash">হ্যাশ হিসাব করা হচ্ছে</string>
@@ -425,9 +424,7 @@
     <string name="notification_action_shuffle">এলোমেলো</string>
     <string name="notification_action_buffering">বাফারিং</string>
     <string name="notification_colorize_title">নোটিফিকেশন বর্ণিল করো</string>
-    <string name="restricted_video">এই ভিডিও বয়স দ্বারা সীমিত।
-\n
-\nএটি দেখতে চাইলে সেটিংস থেকে \"%1$s\" চালু করুন।</string>
+    <string name="restricted_video">এই ভিডিও বয়স দ্বারা সীমিত। \n \nএটি দেখতে চাইলে সেটিংস থেকে \"%1$s\" চালু করুন।</string>
     <string name="toggle_all">সব টগল করো</string>
     <string name="you_successfully_subscribed">আপনি এখন এই চ্যানেলের গ্রাহক</string>
     <string name="clear_queue_confirmation_title">অপেক্ষমাণ সারি বাদ দেওয়ার আগে নিশ্চিত হতে জিজ্ঞেস করো</string>

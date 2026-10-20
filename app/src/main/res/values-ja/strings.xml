@@ -9,7 +9,7 @@
     <string name="download">ダウンロード</string>
     <string name="search">検索</string>
     <string name="settings">設定</string>
-    <string name="did_you_mean">もしかして: 「%1$s」\?</string>
+    <string name="did_you_mean">もしかして: 「%1$s」?</string>
     <string name="share_dialog_title">共有</string>
     <string name="download_path_title">動画を保存するフォルダー</string>
     <string name="download_path_summary">ダウンロードした動画をここに保存します</string>
@@ -84,8 +84,7 @@
     <string name="black_theme_title">ブラック</string>
     <string name="all">すべて</string>
     <string name="open_in_popup_mode">ポップアップモードで開く</string>
-    <string name="msg_popup_permission">ポップアップモードで開くには
-\n権限の許可が必要です</string>
+    <string name="msg_popup_permission">ポップアップモードで開くには \n権限の許可が必要です</string>
     <string name="popup_playing_toast">ポップアップモードで再生中</string>
     <string name="disabled">無効</string>
     <string name="default_video_format_title">デフォルトの動画形式</string>
@@ -281,15 +280,7 @@
     <string name="caption_auto_generated">自動生成</string>
     <string name="caption_setting_description">プレーヤーのキャプションテキストの縮尺と背景スタイルを変更します。有効にするには、アプリの再起動が必要です</string>
     <string name="empty_list_subtitle">何もありません</string>
-    <string name="import_youtube_instructions">Google takeout から YouTube の登録リストをインポート:
-\n
-\n1. この URL を開きます: %1$s
-\n2. ログインしていなければログインします
-\n3. \"すべて選択\" をクリックし、そして \"選択をすべて解除\" をクリック、そして \"登録チャンネル\" のみを選択し、\"OK\" をクリック
-\n4. \"次のステップ\" をクリックし、そして \"エクスポートを作成\" をクリック
-\n5. 表示されたら \"ダウンロード\" ボタンをクリック
-\n6. ファイルからインポートをクリックしてダウンロードした zip ファイルを選択
-\n7. (インポートが失敗したら) csv ファイル (たいてい、\"YouTube と YouTube Music/登録チャンネル/登録チャンネル.csv\" にある) を抽出し、ファイルからインポートをクリックして抽出した csv ファイルを選択</string>
+    <string name="import_youtube_instructions">Google takeout から YouTube の登録リストをインポート: \n \n1. この URL を開きます: %1$s \n2. ログインしていなければログインします \n3. \"すべて選択\" をクリックし、そして \"選択をすべて解除\" をクリック、そして \"登録チャンネル\" のみを選択し、\"OK\" をクリック \n4. \"次のステップ\" をクリックし、そして \"エクスポートを作成\" をクリック \n5. 表示されたら \"ダウンロード\" ボタンをクリック \n6. ファイルからインポートをクリックしてダウンロードした zip ファイルを選択 \n7. (インポートが失敗したら) csv ファイル (たいてい、\"YouTube と YouTube Music/登録チャンネル/登録チャンネル.csv\" にある) を抽出し、ファイルからインポートをクリックして抽出した csv ファイルを選択</string>
     <string name="playback_reset">リセット</string>
     <string name="accept">同意する</string>
     <string name="decline">拒否する</string>
@@ -303,16 +294,9 @@
     <string name="enable_leak_canary_summary">メモリリークの監視は、ヒープダンピング時にアプリが無反応になる原因となります</string>
     <string name="enable_disposed_exceptions_title">ライフサイクルエラーの報告</string>
     <string name="enable_disposed_exceptions_summary">破棄されたフラグメントまたはアクティビティの、ライフサイクル範囲外での配信不能なRx例外を強制的に報告します</string>
-    <string name="import_soundcloud_instructions">URL または ID を入力して SoundCloud プロファイルをインポートします:
-\n
-\n1. Web ブラウザーで \"デスクトップモード\" を有効にします (サイトは携帯デバイスで利用できません)
-\n2. この URL に移動します: %1$s
-\n3. 必要に応じてログインします
-\n4. リダイレクトされたプロファイル URL をコピーします。</string>
+    <string name="import_soundcloud_instructions">URL または ID を入力して SoundCloud プロファイルをインポートします: \n \n1. Web ブラウザーで \"デスクトップモード\" を有効にします (サイトは携帯デバイスで利用できません) \n2. この URL に移動します: %1$s \n3. 必要に応じてログインします \n4. リダイレクトされたプロファイル URL をコピーします。</string>
     <string name="import_soundcloud_instructions_hint">あなたのID, soundcloud.com/あなたのid</string>
-    <string name="import_network_expensive_warning">この操作により通信料金が増えることがあります。ご注意ください。
-\n
-\n続行しますか\?</string>
+    <string name="import_network_expensive_warning">この操作により通信料金が増えることがあります。ご注意ください。 \n \n続行しますか?</string>
     <string name="playback_speed_control">再生速度を変更</string>
     <string name="unhook_checkbox">速度と音程を連動せずに変更 (歪むかもしれません)</string>
     <string name="skip_silence_checkbox">無音の間に早送り</string>
@@ -324,11 +308,10 @@
     <string name="app_update_notification_channel_description">新しい NewPipe バージョンの通知</string>
     <string name="download_to_sdcard_error_title">外部記憶装置は利用できません</string>
     <string name="restore_defaults">既定値に戻す</string>
-    <string name="restore_defaults_confirmation">既定の設定を復元しますか\?</string>
+    <string name="restore_defaults_confirmation">既定の設定を復元しますか?</string>
     <string name="subscribers_count_not_available">登録者数は利用できません</string>
     <string name="conferences">会議</string>
-    <string name="start_accept_privacy_policy">ヨーロッパの一般データ保護規制（GDPR）に準拠するために、NewPipeの個人情報保護方針にご注意ください。よく読んでください。
-\n私たちに不具合報告を送るためには、これを受け入れなければなりません。</string>
+    <string name="start_accept_privacy_policy">ヨーロッパの一般データ保護規制（GDPR）に準拠するために、NewPipeの個人情報保護方針にご注意ください。よく読んでください。 \n私たちに不具合報告を送るためには、これを受け入れなければなりません。</string>
     <string name="updates_setting_title">アプリの更新</string>
     <string name="list_view_mode">リストビュー モード</string>
     <string name="list">リスト</string>
@@ -363,7 +346,7 @@
     <string name="max_retry_desc">ダウンロードを中止するまでの最大再試行回数</string>
     <string name="file_deleted">ファイルを削除しました</string>
     <string name="app_update_notification_channel_name">アプリの更新通知</string>
-    <string name="download_to_sdcard_error_message">外部 SD カードにダウンロードできません。ダウンロードフォルダーの場所をリセットしますか\?</string>
+    <string name="download_to_sdcard_error_message">外部 SD カードにダウンロードできません。ダウンロードフォルダーの場所をリセットしますか?</string>
     <string name="saved_tabs_invalid_json">保存されたタブを読み込めないため、デフォルトのタブを使用します</string>
     <string name="main_page_content_summary">メインページに表示されるタブ</string>
     <string name="updates_setting_description">新しいバージョンが利用可能なときにアプリの更新を確認する通知を表示します</string>
@@ -388,19 +371,18 @@
     <string name="error_postprocessing_stopped">ファイルの作業中に NewPipe が閉じられました</string>
     <string name="error_insufficient_storage_left">デバイスに空き容量がありません</string>
     <string name="error_progress_lost">ファイルが削除されたため、進行状況が失われました</string>
-    <string name="confirm_prompt">ダウンロード履歴、またはダウンロードしたファイルを消去しますか\?</string>
+    <string name="confirm_prompt">ダウンロード履歴、またはダウンロードしたファイルを消去しますか?</string>
     <string name="enable_queue_limit">ダウンロード キューの制限</string>
     <string name="enable_queue_limit_desc">同時に１つのダウンロードが実行されます</string>
     <string name="start_downloads">ダウンロードの開始</string>
     <string name="pause_downloads">ダウンロードの一時停止</string>
     <string name="downloads_storage_ask_title">ダウンロード先を尋ねる</string>
-    <string name="downloads_storage_ask_summary">ダウンロードのたびに保存する場所を尋ねます。
-\nSD カードにダウンロードしたい場合はシステム フォルダ ピッカー (SAF) を有効化します</string>
+    <string name="downloads_storage_ask_summary">ダウンロードのたびに保存する場所を尋ねます。 \nSD カードにダウンロードしたい場合はシステム フォルダ ピッカー (SAF) を有効化します</string>
     <string name="downloads_storage_use_saf_title">システム フォルダ ピッカー (SAF) を使用する</string>
     <string name="downloads_storage_use_saf_summary">ストレージアクセスフレームワークは、外部 SD カードへのダウンロードが可能です</string>
     <string name="clear_playback_states_title">再生位置の削除</string>
     <string name="clear_playback_states_summary">すべての再生位置を削除します</string>
-    <string name="delete_playback_states_alert">すべての再生位置を削除しますか\?</string>
+    <string name="delete_playback_states_alert">すべての再生位置を削除しますか?</string>
     <string name="drawer_header_description">サービスの切り替え、現在の選択:</string>
     <plurals name="videos">
         <item quantity="other">%s本の動画</item>
@@ -474,28 +456,14 @@
     <string name="feed_use_dedicated_fetch_method_summary">いくつかのサービスで利用可能。通常よりも高速ですが制限された情報が取得され、たいていの場合不完全です (例: 再生時間、種類、ライブ ステータスなどがない)</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">高速モードを有効化</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">高速モードを無効化</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">フィードの読み込みが遅すぎると思いますか？ その場合、高速読み込みを有効化してみてください (設定、もしくは下のボタンを押して変更することができます)。
-\n
-\nNewPipe は2つの読み込み方法を提供します:
-\n・登録チャンネル全体を取得します。これは低速ですが完全です。
-\n・専用のサービス エンドポイントを使用します。これは高速ですが、たいていの場合不完全です。
-\n
-\n2つの違いとして、高速なものは通常、再生時間や種類 (ライブと通常の動画を区別できない) などの情報が不足して、正しい量の情報より少なく取得することがあります。
-\n
-\nYouTubeは、この高速な読み込み方法をRSSフィードで提供するサービスのひとつです。
-\n
-\nつまり、読み込み方法の選択は速度または正確さのどちらを優先するか、あなたの好みによります。</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">フィードの読み込みが遅すぎると思いますか？ その場合、高速読み込みを有効化してみてください (設定、もしくは下のボタンを押して変更することができます)。 \n \nNewPipe は2つの読み込み方法を提供します: \n・登録チャンネル全体を取得します。これは低速ですが完全です。 \n・専用のサービス エンドポイントを使用します。これは高速ですが、たいていの場合不完全です。 \n \n2つの違いとして、高速なものは通常、再生時間や種類 (ライブと通常の動画を区別できない) などの情報が不足して、正しい量の情報より少なく取得することがあります。 \n \nYouTubeは、この高速な読み込み方法をRSSフィードで提供するサービスのひとつです。 \n \nつまり、読み込み方法の選択は速度または正確さのどちらを優先するか、あなたの好みによります。</string>
     <string name="infinite_videos">∞ の動画</string>
     <string name="more_than_100_videos">100 以上の動画</string>
-    <string name="content_not_supported">このコンテンツはまだ NewPipe でサポートされていません。
-\n
-\n今後のバージョンでサポートされるかもしれません。</string>
+    <string name="content_not_supported">このコンテンツはまだ NewPipe でサポートされていません。 \n \n今後のバージョンでサポートされるかもしれません。</string>
     <string name="songs">曲</string>
     <string name="artists">アーティスト</string>
     <string name="albums">アルバム</string>
-    <string name="restricted_video">この動画には年齢制限があります。
-\n
-\n閲覧したい場合、設定から \"%1$s\" を有効化してください。</string>
+    <string name="restricted_video">この動画には年齢制限があります。 \n \n閲覧したい場合、設定から \"%1$s\" を有効化してください。</string>
     <string name="remove_watched_popup_warning">プレイリストへの追加前または追加後に視聴済みとなった動画が削除されます。\nよろしいですか？</string>
     <string name="remove_watched_popup_partially_watched_streams">はい、部分的に視聴した動画も削除します</string>
     <string name="remove_watched_popup_title">視聴済みの動画を削除しますか？</string>
@@ -568,8 +536,7 @@
     <string name="soundcloud_go_plus_content">これは SoundCloud Go+ トラックなので、少なくともあなたの国では、NewPipeではストリーミングやダウンロードができません。</string>
     <string name="georestricted_content">このコンテンツは、お住まいの国ではご利用いただけません。</string>
     <string name="crash_the_app">アプリのクラッシュ</string>
-    <string name="restricted_video_no_stream">この動画は年齢制限があります。
-\n年齢制限付き動画を含む新しい YouTube ポリシーにより、NewPipe は動画ストリームにアクセスできないため再生できません。</string>
+    <string name="restricted_video_no_stream">この動画は年齢制限があります。 \n年齢制限付き動画を含む新しい YouTube ポリシーにより、NewPipe は動画ストリームにアクセスできないため再生できません。</string>
     <string name="select_night_theme_toast">以下からお好みの夜間テーマを選択できます</string>
     <string name="auto_device_theme_title">自動 (デバイスのテーマ)</string>
     <string name="night_theme_summary">お好みの夜間テーマを選択 — %s</string>
@@ -604,9 +571,7 @@
     <string name="description_select_enable">説明文のテキストの選択を有効にする</string>
     <string name="description_select_note">今説明文のテキストを選択できます。選択モード中はページがちらついたりリンクがクリックできなくなったりすることに注意してください。</string>
     <string name="account_terminated">停止されたアカウント</string>
-    <string name="feed_load_error_terminated">この投稿者のアカウントは停止されています。
-\nNewPipe は将来的にこのフィードを読み込めなくなります。
-\nこのチャンネルの登録を解除しますか？</string>
+    <string name="feed_load_error_terminated">この投稿者のアカウントは停止されています。 \nNewPipe は将来的にこのフィードを読み込めなくなります。 \nこのチャンネルの登録を解除しますか？</string>
     <string name="off">オフ</string>
     <string name="on">オン</string>
     <string name="tablet_mode_title">タブレットモード</string>
@@ -642,10 +607,8 @@
     <string name="error_report_notification_title">エラーが発生しました (タップすると報告できます)</string>
     <string name="show_error_snackbar">スナックバーにエラーを表示</string>
     <string name="detail_pinned_comment_view_description">固定されたコメント</string>
-    <string name="no_appropriate_file_manager_message_android_10">この動作に適切なファイルマネージャが見つかりませんでした。
-\nStorage Access Framework と互換性のあるファイルマネージャをインストールしてください</string>
-    <string name="no_appropriate_file_manager_message">この動作に適切なファイルマネージャが見つかりませんでした。
-\nファイルマネージャをインストールするか、ダウンロード設定で \'%s\' を無効にすることをお試しください</string>
+    <string name="no_appropriate_file_manager_message_android_10">この動作に適切なファイルマネージャが見つかりませんでした。 \nStorage Access Framework と互換性のあるファイルマネージャをインストールしてください</string>
+    <string name="no_appropriate_file_manager_message">この動作に適切なファイルマネージャが見つかりませんでした。 \nファイルマネージャをインストールするか、ダウンロード設定で \'%s\' を無効にすることをお試しください</string>
     <string name="show_crash_the_player_summary">プレイヤー使用時にクラッシュオプションを表示</string>
     <string name="create_error_notification">エラー通知を作成</string>
     <string name="error_report_channel_description">エラーを報告する通知</string>
@@ -696,9 +659,9 @@
     <string name="duplicate_in_playlist">灰色で表示されているプレイリストには、すでにこのアイテムが含まれています。</string>
     <string name="playlist_add_stream_success_duplicate">%d 回重複追加されました</string>
     <string name="unset_playlist_thumbnail">固定サムネイルの設定を解除</string>
-    <string name="remove_duplicates_title">重複を削除しますか\?</string>
+    <string name="remove_duplicates_title">重複を削除しますか?</string>
     <string name="ignore_hardware_media_buttons_summary">たとえば、物理ボタンが壊れたヘッドセットを使用している場合に便利です</string>
-    <string name="remove_duplicates_message">この再生リスト内の重複したストリームをすべて削除しますか\?</string>
+    <string name="remove_duplicates_message">この再生リスト内の重複したストリームをすべて削除しますか?</string>
     <string name="ignore_hardware_media_buttons_title">ハードウェア メディア ボタン イベントを無視する</string>
     <string name="remove_duplicates">重複を削除</string>
     <string name="feed_hide_streams_title">次のストリームを表示</string>
@@ -729,9 +692,7 @@
     <string name="prefer_original_audio_summary">言語に関係なくオリジナルのオーディオトラックを選択する</string>
     <string name="audio_track">オーディオトラック</string>
     <string name="use_exoplayer_decoder_fallback_summary">デコーダの初期化に問題がある場合は、このオプションを有効化してプライマリ デコーダ初期化失敗時に低い優先度のデコーダにフォールバックします。プライマリ デコーダ使用時よりパフォーマンスが悪化する可能性があります</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_summary">この解決策は直接コーデックをサーフェスに設定する代わりに、サーフェスが変更された際に映像コーデックを開放し再インスタンス化します。すでにいくつかのデバイスでこの解決策が使用されていますが、Android 6 以降でのみ機能します
-\n
-\nこのオプションを有効化することでプレイヤーを切り替えたり、フルスクリーンに切り替えたりする際の再生エラーを防ぎます</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">この解決策は直接コーデックをサーフェスに設定する代わりに、サーフェスが変更された際に映像コーデックを開放し再インスタンス化します。すでにいくつかのデバイスでこの解決策が使用されていますが、Android 6 以降でのみ機能します \n \nこのオプションを有効化することでプレイヤーを切り替えたり、フルスクリーンに切り替えたりする際の再生エラーを防ぎます</string>
     <string name="progressive_load_interval_summary">読み込み間隔を変更します。（現在 %s）この値を小さくすると再生開始までの時間が短くなります。変更を適用するには再起動が必要です</string>
     <string name="audio_track_present_in_video">オーディオトラックは既にこのせせらぎに存在している必要があります</string>
     <string name="main_tabs_position_title">メインタブの場所</string>
@@ -779,8 +740,7 @@
     <string name="metadata_thumbnails">サムネイル</string>
     <string name="share_playlist_with_list">URLリストで共有</string>
     <string name="share_playlist_with_titles">タイトル付きで共有</string>
-    <string name="share_playlist_content_details">%1$s
-\n%2$s</string>
+    <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="share_playlist">プレイリストを共有</string>
     <string name="video_details_list_item">- %1$s： %2$s</string>
     <plurals name="replies">
@@ -793,13 +753,10 @@
     <string name="settings_category_backup_restore_title">バックアップと復元</string>
     <string name="yes">はい</string>
     <string name="no">いいえ</string>
-    <string name="auto_update_check_description">NewPipe は定期的に新しいバージョンを自動的にチェックし、更新可能になると通知します。
-\n有効にしますか？</string>
+    <string name="auto_update_check_description">NewPipe は定期的に新しいバージョンを自動的にチェックし、更新可能になると通知します。 \n有効にしますか？</string>
     <string name="reset_settings_title">設定をリセット</string>
     <string name="reset_settings_summary">全ての設定をデフォルト状態にリセットします</string>
-    <string name="reset_all_settings">全ての設定をリセットすると、優先設定が全て破棄され、アプリが再起動します。
-\n
-\n続行しますか？</string>
+    <string name="reset_all_settings">全ての設定をリセットすると、優先設定が全て破棄され、アプリが再起動します。 \n \n続行しますか？</string>
     <string name="import_settings_vulnerable_format">インポートされているエクスポートの設定は、NewPipe 0.27.0以降は非推奨であった脆弱な形式を使用します。 インポートされているエクスポートは信頼できる情報源からであり、将来的にはNewPipe 0.27.0かこれより新しいバージョンから得られるエクスポートのみを優先して使用します。 この脆弱な形式で設定をインポートするための対応はすぐに完全に削除され、新しいバージョンからエクスポートの設定をインポートすることは出来ません。</string>
     <string name="share_playlist_as_youtube_temporary_playlist">YouTubeの一時的なプレイリストとして共有</string>
     <string name="audio_track_type_secondary">二次的</string>

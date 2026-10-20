@@ -53,7 +53,7 @@
     <string name="use_external_video_player_title">બાહ્ય વિડિઓ પ્લેયરનો ઉપયોગ કરો</string>
     <string name="share_dialog_title">સાથે શેર કરો</string>
     <string name="search_showing_result_for">%s માટે પરિણામો બતાવી રહ્યું છે</string>
-    <string name="did_you_mean">શું તમારો મતલબ %1$s છે\?</string>
+    <string name="did_you_mean">શું તમારો મતલબ %1$s છે?</string>
     <string name="settings">સેટિંગ્સ</string>
     <string name="search">શોધો</string>
     <string name="controls_download_desc">સ્ટ્રીમ ફાઇલ ડાઉનલોડ કરો</string>
@@ -65,7 +65,7 @@
     <string name="cancel">રદ કરો</string>
     <string name="install">સ્થાપિત કરો</string>
     <string name="no_player_found_toast">કોઈ સ્ટ્રીમ પ્લેયર મળ્યો નથી (તમે તેને ચલાવવા માટે VLC ઇન્સ્ટોલ કરી શકો છો).</string>
-    <string name="no_player_found">કોઈ સ્ટ્રીમ પ્લેયર મળ્યો નથી. વીએલસી સ્થાપિત કરીએ\?</string>
+    <string name="no_player_found">કોઈ સ્ટ્રીમ પ્લેયર મળ્યો નથી. વીએલસી સ્થાપિત કરીએ?</string>
     <string name="upload_date_text">%1$s પર પ્રકાશિત</string>
     <string name="main_bg_subtitle">પ્રારંભ કરવા માટે વિપુલ - દર્શક કાચને ટેપ કરો.</string>
     <string name="mark_as_watched">જોયેલું તરીકે ચિહ્નિત કરો</string>

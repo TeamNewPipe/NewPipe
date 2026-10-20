@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="no_player_found">Geen stream-speler gevind nie. Installeer VLC\?</string>
+    <string name="no_player_found">Geen stream-speler gevind nie. Installeer VLC?</string>
     <string name="main_bg_subtitle">Tik op \"Soek\" om aan die gang te kom</string>
     <string name="read_full_license">Lees lisensie</string>
     <string name="faq_title">Gereelde vrae</string>

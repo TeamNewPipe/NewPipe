@@ -25,7 +25,7 @@
     <string name="play_audio">Suara ati</string>
     <string name="show_play_with_kodi_summary">Duduhke pilihan muter video nganggo Kodi</string>
     <string name="show_play_with_kodi_title">Duduhke pilihan \"Puter nganggo Kodi\"</string>
-    <string name="kore_not_found">Aplikasi Kore rung ono, pasang\?</string>
+    <string name="kore_not_found">Aplikasi Kore rung ono, pasang?</string>
     <string name="play_with_kodi_title">Puter nganggo Kodi</string>
     <string name="show_higher_resolutions_summary">Mung piranti tertentu sing iso muter video 2K/4K</string>
     <string name="show_higher_resolutions_title">Duduhke resolusi luwih gedhe</string>
@@ -54,7 +54,7 @@
     <string name="use_external_video_player_summary">Busak suara ing resolusi cuk</string>
     <string name="use_external_video_player_title">Gunake pemuter video liyane</string>
     <string name="share_dialog_title">Bagi nganggo</string>
-    <string name="did_you_mean">Maksude: %1$s\?</string>
+    <string name="did_you_mean">Maksude: %1$s?</string>
     <string name="settings">Setelan</string>
     <string name="search">Goleki</string>
     <string name="controls_download_desc">Unduh file</string>
@@ -65,7 +65,7 @@
     <string name="cancel">Orasido</string>
     <string name="install">Pasang</string>
     <string name="no_player_found_toast">Ra ono pamuter (Sampeyan iso masang VLC kanggo muter iku).</string>
-    <string name="no_player_found">Pamuter ora ditemokke. Pasang VLC\?</string>
+    <string name="no_player_found">Pamuter ora ditemokke. Pasang VLC?</string>
     <string name="upload_date_text">Diterbitake ing %1$s</string>
     <string name="main_bg_subtitle">Pencet lup kanggo nglekasi</string>
 </resources>

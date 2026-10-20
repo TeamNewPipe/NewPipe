@@ -146,4 +146,20 @@
     <string name="disable_media_tunneling_automatic_info">O tunelamento de mídia foi desativado por padrão no seu dispositivo porque sabe-se que o modelo do seu dispositivo não é compatível.</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Sempre usar solução alternativa de configuração de superfície de saída de vídeo do ExoPlayer</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">Esta solução alternativa libera e reinstancia codecs de vídeo quando ocorre uma alteração de superfície, em vez de definir a superfície diretamente para o codec. Já usada pelo ExoPlayer em alguns dispositivos com esse problema, essa configuração só tem efeito no Android 6 e superior\n\nAtivar esta opção pode evitar erros de reprodução ao mudar o player de vídeo atual ou mudar para tela cheia</string>
+    <string name="leakcanary">Configurações de depuração</string>
+    <string name="enable_leak_canary_summary">O monitoramento de vazamento de memória pode fazer com que o aplicativo pare de responder durante o despejo de heap</string>
+    <string name="leak_canary_not_available">LeakCanary não está disponível</string>
+    <string name="show_memory_leaks">Mostrar vazamentos de memória</string>
+    <string name="enable_disposed_exceptions_title">Relatar erros fora do ciclo de vida</string>
+    <string name="enable_disposed_exceptions_summary">Forçar relatórios de exceções Rx não entregues fora do fragmento ou do ciclo de vida da atividade após o descarte</string>
+    <string name="show_original_time_ago_title">Mostrar o tempo atrás original nos itens</string>
+    <string name="show_original_time_ago_summary">Os textos originais dos serviços ficarão visíveis nos itens do stream</string>
+    <string name="show_crash_the_player_title">Mostrar Travamento no player</string>
+    <string name="show_crash_the_player_summary">Mostra uma opção de travamento ao usar o player</string>
+    <string name="check_new_streams">Executar verificação de novos streams</string>
+    <string name="crash_the_app">Travar o aplicativo</string>
+    <string name="show_error_snackbar">Mostrar uma barra de erro</string>
+    <string name="create_error_notification">Criar uma notificação de erro</string>
+    <string name="error_snackbar_message">Desculpe, algo deu errado.</string>
+    <string name="error_snackbar_action">Reportar</string>
 </resources>

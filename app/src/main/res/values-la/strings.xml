@@ -39,7 +39,7 @@
     <string name="use_external_video_player_title">Utere lusorem taeniae externum</string>
     <string name="share_dialog_title">Communicare cum</string>
     <string name="search_showing_result_for">Praecessi propter: %s</string>
-    <string name="did_you_mean">Intendi \"%1$s\"\?</string>
+    <string name="did_you_mean">Intendi \"%1$s\"?</string>
     <string name="settings">Adaptabilitates</string>
     <string name="main_bg_subtitle">Tange \"Quaere\" ad initium.</string>
     <string name="search">Quaerere</string>

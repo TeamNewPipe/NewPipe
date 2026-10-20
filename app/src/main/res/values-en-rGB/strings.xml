@@ -4,38 +4,23 @@
     <string name="show_play_with_kodi_summary">Display an option to play a video via Kodi media centre</string>
     <string name="notification_colorize_summary">Have Android customise the notification’s colour according to the main colour in the thumbnail (note that this is not available on all devices)</string>
     <string name="notification_colorize_title">Colourise notification</string>
-    <string name="import_soundcloud_instructions">Import a SoundCloud profile by typing either the URL or your ID:
-\n
-\n1. Enable ‘desktop mode’ in a web browser (the site is not available for mobile devices)
-\n2. Go to this URL: %1$s
-\n3. Log in when asked
-\n4. Copy the profile URL you were redirected to.</string>
-    <string name="import_youtube_instructions">Import YouTube subscriptions from Google takeout:
-\n
-\n1. Go to this URL: %1$s
-\n2. Log in when asked
-\n3. Click on ‘All data included’, then on ‘Deselect all’, then select only ‘subscriptions’ and click ‘OK’
-\n4. Click on ‘Next step’ and then on ‘Create export’
-\n5. Click on the ‘Download’ button after it appears
-\n6. Click on IMPORT FILE below and select the downloaded .zip file
-\n7. [If the .zip import fails] Extract the .csv file (usually under ‘YouTube and YouTube Music/subscriptions/subscriptions.csv’), click on IMPORT FILE below and select the extracted csv file</string>
+    <string name="import_soundcloud_instructions">Import a SoundCloud profile by typing either the URL or your ID: \n \n1. Enable ‘desktop mode’ in a web browser (the site is not available for mobile devices) \n2. Go to this URL: %1$s \n3. Log in when asked \n4. Copy the profile URL you were redirected to.</string>
+    <string name="import_youtube_instructions">Import YouTube subscriptions from Google takeout: \n \n1. Go to this URL: %1$s \n2. Log in when asked \n3. Click on ‘All data included’, then on ‘Deselect all’, then select only ‘subscriptions’ and click ‘OK’ \n4. Click on ‘Next step’ and then on ‘Create export’ \n5. Click on the ‘Download’ button after it appears \n6. Click on IMPORT FILE below and select the downloaded .zip file \n7. [If the .zip import fails] Extract the .csv file (usually under ‘YouTube and YouTube Music/subscriptions/subscriptions.csv’), click on IMPORT FILE below and select the extracted csv file</string>
     <string name="subtitle_activity_recaptcha">Press ‘Done’ when solved</string>
-    <string name="restricted_video">This video is age restricted.
-\n
-\nTurn on ‘%1$s’ in the settings if you want to see it.</string>
+    <string name="restricted_video">This video is age restricted. \n \nTurn on ‘%1$s’ in the settings if you want to see it.</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube provides a ‘Restricted Mode’ which hides potentially mature content</string>
     <string name="youtube_restricted_mode_enabled_title">Turn on YouTube’s ‘Restricted Mode’</string>
     <string name="show_hold_to_append_summary">Show tip when pressing the background or the pop-up button in video ‘Details:’</string>
     <string name="show_hold_to_append_title">Show ‘Hold to append’ tip</string>
     <string name="show_play_with_kodi_title">Show ‘Play with Kodi’ option</string>
-    <string name="did_you_mean">Did you mean ‘%1$s’\?</string>
+    <string name="did_you_mean">Did you mean ‘%1$s’?</string>
     <string name="main_bg_subtitle">Tap the magnifying glass to get started.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Channel’s avatar thumbnail</string>
     <string name="feed_update_threshold_summary">Time after last update before a subscription is considered outdated – %s</string>
     <string name="autoplay_summary">Start playback automatically – %s</string>
     <string name="minimize_on_exit_summary">Action when switching to other app from main video player – %s</string>
     <string name="preferred_open_action_settings_summary">Default action when opening content – %s</string>
-    <string name="contribution_encouragement">Whether you have ideas of; translation, design changes, code cleaning, or real heavy code changes – help is always welcome. The more is done, the better it gets!</string>
+    <string name="contribution_encouragement">Whether you have ideas of; translation, design changes, code cleaning, or real heavy code changes – help is always welcome. The more is done, the better it gets!</string>
     <string name="switch_to_main">Switch to Main</string>
     <string name="switch_to_popup">Switch to Pop-up</string>
     <string name="switch_to_background">Switch to Background</string>
@@ -51,20 +36,8 @@
     <string name="settings_category_video_audio_title">Video and audio</string>
     <string name="settings_category_player_title">Player</string>
     <string name="cancel">Cancel</string>
-    <string name="content_not_supported">This content is not yet supported by NewPipe.
-\n
-\nHopefully, it will be supported in a future version.</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Do you think feed loading is too slow\? If so, try enabling fast loading (you can change it in settings or by pressing the button below).
-\n
-\nNewPipe offers two feed loading methods:
-\n• Fetching the whole subscription channel, which is slow but complete.
-\n• Using a dedicated service endpoint, which is fast but usually not complete.
-\n
-\nThe difference between the two is that the fast one usually lacks some information, like the item\'s duration or type (can\'t distinguish between live videos and normal ones) and it may return fewer items.
-\n
-\nYouTube is an example of a service that offers this fast method with its RSS feed.
-\n
-\nSo the choice boils down to what you prefer: speed or complete information.</string>
+    <string name="content_not_supported">This content is not yet supported by NewPipe. \n \nHopefully, it will be supported in a future version.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Do you think feed loading is too slow? If so, try enabling fast loading (you can change it in settings or by pressing the button below). \n \nNewPipe offers two feed loading methods: \n• Fetching the whole subscription channel, which is slow but complete. \n• Using a dedicated service endpoint, which is fast but usually not complete. \n \nThe difference between the two is that the fast one usually lacks some information, like the item\'s duration or type (can\'t distinguish between live videos and normal ones) and it may return fewer items. \n \nYouTube is an example of a service that offers this fast method with its RSS feed. \n \nSo the choice boils down to what you prefer: speed or complete information.</string>
     <string name="feed_use_dedicated_fetch_method_summary">Available in some services, it is usually much faster but may return a limited number of items and often incomplete information (e.g. no duration, item type, no live status).</string>
     <string name="max_retry_desc">Maximum number of attempts before cancelling the download</string>
     <string name="read_full_license">Read licence</string>
@@ -72,14 +45,14 @@
     <string name="app_license_title">NewPipe’s licence</string>
     <string name="tab_licenses">Licences</string>
     <string name="title_licenses">Third-party licences</string>
-    <string name="download_to_sdcard_error_message">Downloading to SD card not possible. Reset download folder location\?</string>
+    <string name="download_to_sdcard_error_message">Downloading to SD card not possible. Reset download folder location?</string>
     <string name="settings_category_player_behavior_title">Behaviour</string>
     <string name="peertube_instance_url_summary">Select your favourite PeerTube instances</string>
     <string name="resume_on_audio_focus_gain_summary">Continue playing after interruptions (e.g. phone calls)</string>
     <string name="upload_date_text">Published on %1$s</string>
     <string name="error_report_button_text">Report via e-mail</string>
     <string name="night_theme_summary">Select your favorite night theme – %s</string>
-    <string name="no_player_found">No stream player found. Install VLC\?</string>
+    <string name="no_player_found">No stream player found. Install VLC?</string>
     <string name="install">Install</string>
     <string name="ok">Okay</string>
     <string name="open_in_browser">Open in browser</string>

@@ -69,7 +69,7 @@
     <string name="select_a_channel">Sty yat n tbadut</string>
     <string name="channel_page_summary">Tasna n Tbadut</string>
     <string name="kiosk_page_summary">Tasna n ukiyusk</string>
-    <string name="delete_item_search_history">Is nit txsed ad tkksed aferdis-a seg umezruy n urezzu\?</string>
+    <string name="delete_item_search_history">Is nit txsed ad tkksed aferdis-a seg umezruy n urezzu?</string>
     <string name="view_on_github">Ẓeṛ g GitHub</string>
     <plurals name="videos">
         <item quantity="one">%s uvidyu</item>
@@ -84,9 +84,9 @@
     <string name="error_report_open_issue_button_text">Mel g GitHub</string>
     <string name="watch_history_deleted">Ittwakkes umzruy n wannay.</string>
     <string name="search_history_deleted">Ittwakkes umezruy n urezzu.</string>
-    <string name="delete_search_history_alert">Kkes amzruy n urezzu maṛṛa\?</string>
+    <string name="delete_search_history_alert">Kkes amzruy n urezzu maṛṛa?</string>
     <string name="clear_search_history_title">Sfeḍ amzruy n urezzu</string>
-    <string name="delete_view_history_alert">Kkes amzruy n wannay maṛṛa\?</string>
+    <string name="delete_view_history_alert">Kkes amzruy n wannay maṛṛa?</string>
     <string name="app_update_notification_channel_description">Tineɣmisin i tleqqimt tamaynut n NewPipe</string>
     <string name="play_all">Γer maṛṛa</string>
     <string name="file_deleted">Ittwakkes ufaylu</string>
@@ -141,7 +141,7 @@
     <string name="use_external_audio_player_title">Ssemres ameɣri n imsli abeṛṛani</string>
     <string name="use_external_video_player_summary">La-ittekkes imsli d kra n tɣariwin</string>
     <string name="use_external_video_player_title">Asenṭeḍ ameɣri n uvidyu abeṛṛani</string>
-    <string name="did_you_mean">Txsed ad tarad \"%1$s\"\?</string>
+    <string name="did_you_mean">Txsed ad tarad \"%1$s\"?</string>
     <string name="night_theme_title">Asgum n yiḍ</string>
     <string name="open_with">Ṛẓem s</string>
     <string name="feed_groups_header_title">Tirubba n tbadut</string>

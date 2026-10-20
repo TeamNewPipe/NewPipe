@@ -11,11 +11,11 @@
     <string name="main_bg_subtitle">ᱮᱦᱚᱵ ᱞᱟᱹᱜᱤᱫ ᱢᱮᱜᱽᱱᱤᱯᱷᱟᱭᱤᱝ ᱜᱽᱞᱟᱥ ᱨᱮ ᱚᱛᱟᱭ ᱢᱮ ᱾</string>
     <string name="use_external_video_player_title">ᱵᱟᱦᱨᱮ ᱣᱤᱰᱤᱭᱚ ᱯᱞᱮᱭᱟᱹᱨ ᱵᱮᱵᱷᱟᱨ ᱢᱮ</string>
     <string name="search_showing_result_for">ᱛᱮᱞᱟ ᱫᱮᱠᱷᱟᱣᱜᱽ ᱠᱟᱱᱟᱺ%s</string>
-    <string name="did_you_mean">ᱟᱢᱟᱜ ᱚᱨᱛᱷᱚ \"%1$s\" ᱥᱮ\?</string>
+    <string name="did_you_mean">ᱟᱢᱟᱜ ᱚᱨᱛᱷᱚ \"%1$s\" ᱥᱮ?</string>
     <string name="controls_download_desc">ᱥᱴᱨᱤᱢ ᱨᱮᱫ ᱰᱟᱩᱱᱞᱳᱰ ᱢᱮ</string>
     <string name="open_in_popup_mode">ᱯᱚᱯᱚᱯ ᱢᱳᱰ ᱨᱮ ᱠᱷᱩᱞᱟᱹᱭ ᱢᱮ</string>
     <string name="no_player_found_toast">ᱚᱠᱟ ᱥᱴᱨᱤᱢ ᱯᱞᱮᱭᱟᱹᱨ ᱵᱟᱭ ᱧᱟᱢ ᱞᱮᱱᱟ (ᱟᱢ VLC ᱯᱞᱮᱭᱟᱹᱨ ᱵᱚᱦᱟᱞ ᱠᱟᱛᱮ ᱚᱱᱟ ᱨᱮ ᱯᱞᱮ ᱫᱟᱲᱮᱭᱟᱜᱼᱟᱢ)᱾</string>
-    <string name="no_player_found">ᱚᱠᱟ ᱥᱴᱨᱤᱢ ᱯᱞᱮᱭᱟᱹᱨ ᱵᱟᱭ ᱧᱟᱢ ᱞᱮᱱᱟ ᱾ VLC ᱵᱚᱦᱟᱞ ᱟᱢ ᱥᱮ\?</string>
+    <string name="no_player_found">ᱚᱠᱟ ᱥᱴᱨᱤᱢ ᱯᱞᱮᱭᱟᱹᱨ ᱵᱟᱭ ᱧᱟᱢ ᱞᱮᱱᱟ ᱾ VLC ᱵᱚᱦᱟᱞ ᱟᱢ ᱥᱮ?</string>
     <string name="upload_date_text">%1$s ᱨᱮ ᱩᱪᱷᱟᱹᱱ ᱮᱱᱟ</string>
     <string name="subscribe_button_title">ᱥᱟᱹᱵᱥᱠᱨᱟᱭᱤᱵᱽ</string>
     <string name="unsubscribe">ᱟᱹᱱᱥᱟᱹᱵᱥᱠᱨᱟᱭᱤᱵᱽ</string>
@@ -44,7 +44,7 @@
     <string name="play_with_kodi_title">Kodi ᱥᱟᱞᱟᱜ ᱪᱟᱹᱞᱩᱭ ᱢᱮ</string>
     <string name="show_higher_resolutions_summary">ᱠᱷᱟᱹᱞᱤ ᱛᱤᱱᱟᱹᱝ ᱜᱟᱱ ᱥᱟᱫᱷᱚᱱ ᱢᱮᱱᱟᱜᱼᱟ ᱚᱠᱟ ᱫᱚ 2K/4K ᱣᱤᱰᱤᱭᱚ ᱠᱚ ᱪᱟᱹᱞᱩ ᱫᱟᱲᱮᱭᱟᱜᱼᱟᱭ</string>
     <string name="open_with">ᱥᱟᱞᱟᱜ ᱠᱷᱩᱞᱟᱹᱭ ᱢᱮ</string>
-    <string name="kore_not_found">Kore ᱮᱯ ᱵᱟᱭ ᱧᱟᱢ ᱞᱮᱱᱟ, ᱵᱚᱦᱟᱞ ᱟ ᱥᱮ\?</string>
+    <string name="kore_not_found">Kore ᱮᱯ ᱵᱟᱭ ᱧᱟᱢ ᱞᱮᱱᱟ, ᱵᱚᱦᱟᱞ ᱟ ᱥᱮ?</string>
     <string name="show_play_with_kodi_summary">Kodi ᱢᱮᱰᱤᱭᱟ ᱯᱞᱮᱭᱟᱹᱨ ᱛᱮ ᱣᱤᱰᱤᱭᱚ ᱯᱞᱮ ᱨᱮᱭᱟᱜ ᱚᱯᱥᱚᱱ ᱫᱮᱠᱷᱟᱣᱢᱮ</string>
     <string name="show_play_with_kodi_title">\"Kodi ᱛᱮ ᱪᱟᱹᱞᱩ\" ᱚᱯᱥᱚᱱ ᱫᱮᱠᱷᱟᱣᱢᱮ</string>
     <string name="notification_colorize_title">ᱱᱚᱴᱤᱯᱷᱤᱠᱮᱥᱚᱱ ᱠᱚᱞᱚᱨ ᱠᱟᱜ ᱢᱮ</string>
@@ -99,8 +99,7 @@
     <string name="select_quality_external_players">ᱵᱟᱦᱨᱮ ᱮᱱᱮᱡᱤᱭᱟᱹ ᱠᱚ ᱞᱟᱹᱜᱤᱫ ᱛᱮ ᱵᱟᱪᱷᱟᱣ ᱢᱮ</string>
     <string name="unknown_format">ᱵᱟᱝ ᱵᱟᱰᱟᱭ ᱟᱠᱟᱱ ᱯᱷᱚᱨᱢᱮᱴ</string>
     <string name="no_streams">ᱵᱟᱹᱱᱩᱜᱼᱟ ᱫᱟᱜ</string>
-    <string name="msg_popup_permission">ᱱᱚᱶᱟ ᱞᱟᱹᱠᱛᱤᱭᱟᱱ ᱞᱟᱹᱠᱛᱤ ᱠᱟᱱᱟ_x000D_
-\nᱯᱚᱯ-ᱟᱯ ᱢᱚᱰ ᱨᱮ ᱮᱛᱦᱚᱵ ᱢᱮ</string>
+    <string name="msg_popup_permission">ᱱᱚᱶᱟ ᱞᱟᱹᱠᱛᱤᱭᱟᱱ ᱞᱟᱹᱠᱛᱤ ᱠᱟᱱᱟ_x000D_ \nᱯᱚᱯ-ᱟᱯ ᱢᱚᱰ ᱨᱮ ᱮᱛᱦᱚᱵ ᱢᱮ</string>
     <string name="subtitle_activity_recaptcha">ᱡᱚᱠᱷᱚᱱ ᱥᱟᱦᱟᱣ ᱟᱠᱟᱱᱟ \"Done\" ᱚᱞ ᱢᱮ</string>
     <string name="give_back">ᱨᱩᱣᱟ.</string>
     <string name="select_a_kiosk">ᱠᱤᱭᱳᱥᱠ ᱵᱟᱪᱷᱟᱣ ᱢᱮ</string>
@@ -120,12 +119,7 @@
     <string name="disable_media_tunneling_automatic_info">ᱟᱢᱟᱜ ᱚᱱᱚᱞ ᱨᱮ ᱢᱤᱰᱤᱭᱟ ᱴᱩᱱᱮᱞᱤᱝ ᱫᱚ ᱰᱤᱯᱚᱞᱴ ᱞᱮᱠᱟᱛᱮ ᱵᱚᱫᱚᱞ ᱟᱠᱟᱱᱟ ᱪᱮᱫᱟᱜ ᱥᱮ ᱟᱢᱟᱜ ᱚᱱᱚᱞ ᱢᱚᱰᱮᱞ ᱱᱚᱶᱟ ᱵᱟᱭ ᱥᱚᱦᱚᱫᱟ ᱾</string>
     <string name="crash_the_app">ᱮᱯᱞᱤᱠᱮᱥᱚᱱ ᱵᱚᱫᱚᱞ ᱢᱮ</string>
     <string name="show_error_snackbar">ᱢᱤᱫ error ᱥᱱᱮᱠᱵᱟᱨ ᱧᱮᱞ ᱢᱮ</string>
-    <string name="import_soundcloud_instructions">URL ᱥᱮ ᱟᱢᱟᱜ ID ᱚᱞ ᱠᱟᱛᱮᱜ ᱢᱤᱫ SoundCloud ᱯᱨᱚᱯᱷᱟᱭᱤᱞ ᱮᱢ ᱢᱮ:_x000D_
-\n_x000D_
-\n1. ᱢᱤᱫ ᱣᱮᱵᱽ-ᱵᱽᱨᱟᱣᱡᱚᱨ ᱨᱮ \"ᱰᱮᱥᱠᱴᱚᱯ ᱢᱳᱰ\" ᱮᱱᱮᱡ ᱢᱮ (ᱡᱚᱵᱮᱛᱟᱨᱮ ᱢᱚᱵᱟᱭᱤᱞ ᱰᱤᱵᱟᱤᱥ ᱞᱟᱹᱜᱤᱫ ᱵᱟᱝ ᱧᱟᱢᱚᱜᱼᱟ)_x000D_
-\n2. ᱱᱚᱶᱟ URL ᱨᱮ ᱪᱟᱞᱟᱜ ᱢᱮ: %1$s_x000D_
-\n3. ᱞᱚᱜᱤᱱ ᱢᱮ ᱡᱚᱠᱷᱚᱱ ᱞᱟᱹᱠᱛᱤ ᱠᱟᱱᱟ_x000D_
-\n4. ᱟᱢ ᱚᱠᱟ ᱨᱮ ᱥᱮᱞᱮᱫ ᱞᱮᱱᱟᱢ ᱚᱱᱟ ᱯᱨᱚᱯᱷᱟᱭᱤᱞ URL ᱠᱚᱯᱤ ᱢᱮ.</string>
+    <string name="import_soundcloud_instructions">URL ᱥᱮ ᱟᱢᱟᱜ ID ᱚᱞ ᱠᱟᱛᱮᱜ ᱢᱤᱫ SoundCloud ᱯᱨᱚᱯᱷᱟᱭᱤᱞ ᱮᱢ ᱢᱮ:_x000D_ \n_x000D_ \n1. ᱢᱤᱫ ᱣᱮᱵᱽ-ᱵᱽᱨᱟᱣᱡᱚᱨ ᱨᱮ \"ᱰᱮᱥᱠᱴᱚᱯ ᱢᱳᱰ\" ᱮᱱᱮᱡ ᱢᱮ (ᱡᱚᱵᱮᱛᱟᱨᱮ ᱢᱚᱵᱟᱭᱤᱞ ᱰᱤᱵᱟᱤᱥ ᱞᱟᱹᱜᱤᱫ ᱵᱟᱝ ᱧᱟᱢᱚᱜᱼᱟ)_x000D_ \n2. ᱱᱚᱶᱟ URL ᱨᱮ ᱪᱟᱞᱟᱜ ᱢᱮ: %1$s_x000D_ \n3. ᱞᱚᱜᱤᱱ ᱢᱮ ᱡᱚᱠᱷᱚᱱ ᱞᱟᱹᱠᱛᱤ ᱠᱟᱱᱟ_x000D_ \n4. ᱟᱢ ᱚᱠᱟ ᱨᱮ ᱥᱮᱞᱮᱫ ᱞᱮᱱᱟᱢ ᱚᱱᱟ ᱯᱨᱚᱯᱷᱟᱭᱤᱞ URL ᱠᱚᱯᱤ ᱢᱮ.</string>
     <string name="playback_speed_control">ᱯᱞᱮᱵᱮᱠ ᱥᱯᱤᱰ ᱠᱚᱱᱴᱨᱚᱞ</string>
     <string name="playback_tempo">ᱴᱮᱢᱯᱳ</string>
     <string name="unhook_checkbox">ᱵᱚᱫᱚᱞ ᱢᱮ (ᱵᱚᱫᱚᱞ ᱦᱩᱭ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ)</string>
@@ -134,7 +128,7 @@
     <string name="accept">ᱮᱠᱥᱮᱯᱴ</string>
     <string name="enable_streams_notifications_title">ᱱᱟᱣᱟ ᱥᱴᱨᱚᱢ ᱨᱮᱭᱟᱜ ᱠᱷᱚᱵᱚᱨ</string>
     <string name="streams_notifications_interval_title">ᱪᱟᱪᱞᱟᱣ ᱚᱵᱚᱥᱛᱟ</string>
-    <string name="manual_update_title">ᱱᱟᱣᱟ ᱥᱟᱦᱴᱟ ᱧᱮᱞ ᱢᱮ</string>
+    <string name="manual_update_title" translatable="false">ᱱᱟᱣᱟ ᱥᱟᱦᱴᱟ ᱧᱮᱞ ᱢᱮ</string>
     <string name="paused">ᱛᱷᱟᱯᱚᱱ</string>
     <string name="overwrite_unrelated_warning">ᱱᱚᱶᱟ ᱧᱩᱛᱩᱢ ᱟᱱᱟᱜ ᱢᱤᱫ ᱯᱷᱤᱞ ᱢᱮᱱᱟᱜᱼᱟ</string>
     <string name="overwrite_finished_warning">ᱱᱚᱶᱟ ᱧᱩᱛᱩᱢ ᱟᱱ ᱢᱤᱫ ᱰᱟᱩᱱᱞᱚᱰ ᱟᱠᱟᱱ ᱯᱷᱤᱞ ᱢᱮᱱᱟᱜᱼᱟ</string>
@@ -173,9 +167,7 @@
     <string name="settings_category_debug_title">ᱰᱤᱵᱩᱜ</string>
     <string name="settings_category_player_notification_title">ᱠᱷᱮᱞᱚᱸᱰᱤᱭᱟᱹ ᱵᱟᱰᱟᱭ</string>
     <string name="background_player_playing_toast">ᱛᱷᱚᱠ ᱨᱮ ᱥᱮᱞᱮᱫᱚᱜ</string>
-    <string name="restricted_video">ᱱᱚᱶᱟ ᱵᱷᱤᱰᱤᱭᱳ ᱫᱚ ᱩᱢᱮᱨ ᱦᱟᱹᱴᱤᱧ ᱠᱟᱱᱟ._x000D_
-\n_x000D_
-\nᱡᱩᱫᱤ ᱟᱢ ᱱᱚᱶᱟ ᱧᱮᱞᱢᱮ ᱠᱷᱟᱱ ᱟᱢᱟᱜ ᱥᱤᱴᱤᱝ ᱨᱮ %1$s\" ᱚᱞ ᱢᱮ ᱾\"</string>
+    <string name="restricted_video">ᱱᱚᱶᱟ ᱵᱷᱤᱰᱤᱭᱳ ᱫᱚ ᱩᱢᱮᱨ ᱦᱟᱹᱴᱤᱧ ᱠᱟᱱᱟ._x000D_ \n_x000D_ \nᱡᱩᱫᱤ ᱟᱢ ᱱᱚᱶᱟ ᱧᱮᱞᱢᱮ ᱠᱷᱟᱱ ᱟᱢᱟᱜ ᱥᱤᱴᱤᱝ ᱨᱮ %1$s\" ᱚᱞ ᱢᱮ ᱾\"</string>
     <string name="downloads">ᱰᱟᱩᱱᱞᱚᱰ</string>
     <string name="downloads_title">ᱰᱟᱩᱱᱞᱚᱰ</string>
     <string name="albums">ᱟᱞᱵᱚᱢ</string>
@@ -277,9 +269,7 @@
     <string name="import_file_title">ᱤᱢᱯᱳᱨᱴ ᱯᱷᱤᱞ</string>
     <string name="previous_export">ᱢᱟᱲᱟᱝ ᱮᱠᱥᱯᱚᱨᱴ</string>
     <string name="subscriptions_import_unsuccessful">ᱥᱚᱵᱥᱠᱨᱤᱯᱥᱚᱱ ᱮᱢ ᱫᱟᱲᱮᱭᱟᱜ ᱵᱟᱝ ᱠᱟᱱᱟ</string>
-    <string name="import_network_expensive_warning">\"ᱱᱚᱶᱟ ᱚᱯᱨᱮᱥᱚᱱ ᱨᱮ ᱱᱮᱴᱣᱟᱨᱠ ᱰᱷᱮᱨ ᱦᱩᱭ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ ᱢᱮᱱᱛᱮ ᱢᱟᱱᱟᱣ ᱢᱮ ᱾\"
-\n
-\nᱟᱢ ᱫᱚ ᱪᱮᱫ ᱮᱢ ᱪᱟᱞᱟᱜ ᱠᱟᱱᱟ?\"</string>
+    <string name="import_network_expensive_warning">\"ᱱᱚᱶᱟ ᱚᱯᱨᱮᱥᱚᱱ ᱨᱮ ᱱᱮᱴᱣᱟᱨᱠ ᱰᱷᱮᱨ ᱦᱩᱭ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ ᱢᱮᱱᱛᱮ ᱢᱟᱱᱟᱣ ᱢᱮ ᱾\" \n \nᱟᱢ ᱫᱚ ᱪᱮᱫ ᱮᱢ ᱪᱟᱞᱟᱜ ᱠᱟᱱᱟ?\"</string>
     <string name="playback_reset">ᱨᱤᱥᱮᱴ</string>
     <string name="semitone">ᱥᱮᱢᱤᱴᱚᱱ</string>
     <string name="decline">ᱰᱷᱮᱨᱚᱜ</string>
@@ -364,8 +354,7 @@
     <string name="question_mark">\?</string>
     <string name="share_playlist">ᱥᱮᱨᱮᱧ ᱛᱟᱹᱞᱠᱟᱹ ᱮᱢ</string>
     <string name="share_playlist_with_titles">ᱧᱩᱛᱩᱢ ᱥᱟᱶ ᱮᱱᱮᱢ ᱢᱮ</string>
-    <string name="share_playlist_content_details">%1$s
-\n%2$s</string>
+    <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="show_more">ᱟᱨᱦᱚᱸ ᱧᱮᱞ ᱢᱮ</string>
     <string name="show_less">ᱠᱚᱢ ᱧᱮᱞ ᱢᱮ</string>
     <string name="clear_queue_confirmation_title">ᱛᱟᱹᱞᱠᱟᱹ ᱪᱟᱪᱞᱟᱣ ᱞᱟᱹᱜᱤᱫ ᱯᱟᱹᱛᱭᱟᱹᱣ ᱮᱢ ᱢᱮ</string>
@@ -420,8 +409,7 @@
     <string name="settings_category_player_notification_summary">ᱚᱛᱱᱚᱜ ᱪᱤᱛᱟᱹᱨ ᱠᱷᱚᱸᱫᱽᱨᱚᱸᱫᱽ ᱥᱟᱯᱲᱟᱣ</string>
     <string name="show_age_restricted_content_summary">ᱜᱤᱫᱨᱟᱹ ᱠᱚ ᱞᱟᱹᱜᱤᱫ ᱵᱟᱝ ᱞᱟᱹᱠᱛᱤᱭᱟᱱ ᱠᱟᱛᱷᱟ ᱠᱚ ᱵᱚᱫᱚᱞ ᱢᱮ ᱪᱮᱫᱟᱜ ᱥᱮ ᱱᱚᱣᱟ ᱨᱮ ᱢᱤᱫ ᱩᱢᱮᱨ ᱞᱤᱢᱤᱴ ᱢᱮᱱᱟᱜᱼᱟ (ᱡᱮᱞᱮᱠᱟ ᱑᱘+)</string>
     <string name="youtube_restricted_mode_enabled_summary">ᱭᱩᱴᱭᱩᱵᱽ ᱢᱤᱫ \"Restricted Mode\" ᱮᱢᱚᱜᱼᱟ ᱡᱟᱦᱟᱸ ᱫᱚ ᱯᱚᱴᱮᱱᱥᱤᱭᱟᱞ ᱢᱚᱰᱩᱞ ᱠᱚᱱᱴᱮᱱᱴ (mature content) ᱫᱚᱦᱚᱭᱟ</string>
-    <string name="restricted_video_no_stream">ᱱᱤᱭᱟᱹ ᱵᱷᱤᱰᱤᱭᱳ ᱫᱚ ᱩᱢᱚᱨ ᱞᱟᱹᱜᱤᱫ ᱜᱮ᱾_x000D_
-\nᱭᱩᱴᱭᱩᱵᱽ ᱨᱮ ᱵᱷᱤᱰᱤᱭᱳ ᱨᱮᱱᱟᱜ ᱩᱢᱮᱨ ᱫᱚᱦᱚ ᱞᱟᱹᱜᱤᱫ ᱱᱟᱣᱟ ᱯᱳᱞᱤᱥᱤ ᱠᱷᱟᱹᱛᱤᱨ, ᱱᱤᱭᱩ ᱯᱟᱭᱤᱯᱷ ᱫᱚ ᱟᱡᱟᱜ ᱵᱷᱤᱰᱤᱭᱳ ᱥᱴᱨᱤᱢ ᱨᱮᱱᱟᱜ ᱡᱟᱦᱟᱸᱭ ᱦᱚᱸ ᱥᱮᱴᱮᱨ ᱫᱟᱲᱮᱭᱟᱜ-ᱟ ᱵᱟᱝ ᱟᱨ ᱚᱱᱟᱛᱮ ᱱᱚᱶᱟ ᱯᱞᱮᱭ ᱫᱟᱲᱮᱭᱟᱜ-ᱟ᱾</string>
+    <string name="restricted_video_no_stream">ᱱᱤᱭᱟᱹ ᱵᱷᱤᱰᱤᱭᱳ ᱫᱚ ᱩᱢᱚᱨ ᱞᱟᱹᱜᱤᱫ ᱜᱮ᱾_x000D_ \nᱭᱩᱴᱭᱩᱵᱽ ᱨᱮ ᱵᱷᱤᱰᱤᱭᱳ ᱨᱮᱱᱟᱜ ᱩᱢᱮᱨ ᱫᱚᱦᱚ ᱞᱟᱹᱜᱤᱫ ᱱᱟᱣᱟ ᱯᱳᱞᱤᱥᱤ ᱠᱷᱟᱹᱛᱤᱨ, ᱱᱤᱭᱩ ᱯᱟᱭᱤᱯᱷ ᱫᱚ ᱟᱡᱟᱜ ᱵᱷᱤᱰᱤᱭᱳ ᱥᱴᱨᱤᱢ ᱨᱮᱱᱟᱜ ᱡᱟᱦᱟᱸᱭ ᱦᱚᱸ ᱥᱮᱴᱮᱨ ᱫᱟᱲᱮᱭᱟᱜ-ᱟ ᱵᱟᱝ ᱟᱨ ᱚᱱᱟᱛᱮ ᱱᱚᱶᱟ ᱯᱞᱮᱭ ᱫᱟᱲᱮᱭᱟᱜ-ᱟ᱾</string>
     <string name="duration_live">ᱡᱤᱣᱤ</string>
     <string name="playlists">ᱠᱷᱮᱞᱚᱸᱰᱤᱭᱟᱹ ᱠᱚ</string>
     <string name="videos_string">ᱵᱷᱤᱰᱤᱭᱳ</string>
@@ -537,18 +525,9 @@
     <string name="check_new_streams">ᱱᱟᱣᱟ ᱥᱴᱨᱤᱢ ᱞᱟᱹᱜᱤᱫ ᱪᱟᱪᱞᱟᱣ ᱢᱮ</string>
     <string name="create_error_notification">ᱢᱤᱫ error notification ᱛᱮᱭᱟᱨ ᱢᱮ</string>
     <string name="subscriptions_export_unsuccessful">ᱥᱮᱞᱮᱫ ᱮᱠᱥᱯᱳᱨᱴ ᱵᱟᱝ ᱦᱩᱭ ᱫᱟᱲᱮᱭᱟᱜ ᱠᱟᱱᱟ</string>
-    <string name="import_youtube_instructions">\"ᱜᱩᱜᱩᱞ ᱴᱮᱠᱟᱣᱩᱴ ᱠᱷᱚᱱ ᱭᱩᱴᱭᱩᱵᱽ ᱥᱚᱵᱽᱥᱠᱨᱟᱭᱵᱽᱥ ᱤᱱᱯᱳᱨᱴ ᱢᱮ:
-\n
-\n1. ᱱᱚᱶᱟ URL ᱨᱮ ᱪᱟᱞᱟᱜ ᱢᱮ: %1$s
-\n2. ᱞᱚᱜᱤᱱ ᱢᱮ ᱡᱚᱠᱷᱚᱱ ᱞᱟᱹᱠᱛᱤ ᱠᱟᱱᱟ
-\n3. \"\'All data included\"\' ᱨᱮ ᱞᱤᱱ ᱢᱮ, ᱛᱟᱭᱚᱢ \"\'Deselect all\"\' ᱨᱮ ᱞᱤᱱ ᱢᱮ, ᱛᱟᱭᱚᱢ \"\'subscriptions\"\' ᱨᱮ ᱞᱤᱱ ᱢᱮ ᱟᱨ \"\'OK\"\' ᱨᱮ ᱞᱤᱱ ᱢᱮ
-\n4. \"Next step\" ᱨᱮ ᱟᱨ ᱚᱱᱟ ᱛᱟᱭᱚᱢ \"Create export\" ᱨᱮ ᱞᱤᱱ ᱢᱮ
-\n5. ᱱᱚᱶᱟ ᱧᱮᱞ ᱛᱟᱭᱚᱢ \"\"Download\"\" ᱵᱩᱴᱚᱱ ᱨᱮ ᱠᱞᱤᱠ ᱢᱮ
-\n6. ᱞᱟᱛᱟᱨ ᱨᱮ IMPORT FILE ᱨᱮ ᱞᱤᱱ ᱢᱮ ᱟᱨ ᱰᱟᱩᱱᱞᱚᱰ ᱟᱠᱟᱱ . zip ᱯᱷᱤᱞ ᱵᱟᱪᱷᱟᱣ ᱢᱮ
-\n7. ᱡᱩᱫᱤ .zip ᱤᱱᱯᱷᱚᱨᱴ ᱞᱟᱹᱠᱛᱤᱭᱟᱱ ᱵᱟᱝ ᱠᱟᱱᱟ ᱮᱱᱠᱷᱟᱱ .csv ᱯᱷᱤᱞ ᱮᱠᱥᱴᱨᱟᱠᱴ ᱢᱮ (\"ᱭᱩᱴᱭᱩᱵᱽ ᱟᱨ ᱭᱩᱴᱭᱩᱵᱽ ᱢᱤᱣᱡᱤᱠ/ᱥᱵᱽᱥᱠᱨᱟᱭᱵᱮᱥᱚᱱ/ᱥᱵᱽᱥᱠᱨᱟᱭᱵᱮᱥᱚᱱ.ᱥᱤᱵᱷ\" ᱨᱮ), ᱞᱟᱛᱟᱨ ᱨᱮ IMPORT FILE ᱨᱮ ᱠᱞᱤᱠ ᱢᱮ ᱟᱨ ᱮᱠᱥᱴᱨᱟᱠᱴ ᱟᱠᱟᱱ csv ᱯᱷᱤᱞ ᱵᱟᱪᱷᱟᱣ ᱢᱮ</string>
+    <string name="import_youtube_instructions">\"ᱜᱩᱜᱩᱞ ᱴᱮᱠᱟᱣᱩᱴ ᱠᱷᱚᱱ ᱭᱩᱴᱭᱩᱵᱽ ᱥᱚᱵᱽᱥᱠᱨᱟᱭᱵᱽᱥ ᱤᱱᱯᱳᱨᱴ ᱢᱮ: \n \n1. ᱱᱚᱶᱟ URL ᱨᱮ ᱪᱟᱞᱟᱜ ᱢᱮ: %1$s \n2. ᱞᱚᱜᱤᱱ ᱢᱮ ᱡᱚᱠᱷᱚᱱ ᱞᱟᱹᱠᱛᱤ ᱠᱟᱱᱟ \n3. \"\'All data included\"\' ᱨᱮ ᱞᱤᱱ ᱢᱮ, ᱛᱟᱭᱚᱢ \"\'Deselect all\"\' ᱨᱮ ᱞᱤᱱ ᱢᱮ, ᱛᱟᱭᱚᱢ \"\'subscriptions\"\' ᱨᱮ ᱞᱤᱱ ᱢᱮ ᱟᱨ \"\'OK\"\' ᱨᱮ ᱞᱤᱱ ᱢᱮ \n4. \"Next step\" ᱨᱮ ᱟᱨ ᱚᱱᱟ ᱛᱟᱭᱚᱢ \"Create export\" ᱨᱮ ᱞᱤᱱ ᱢᱮ \n5. ᱱᱚᱶᱟ ᱧᱮᱞ ᱛᱟᱭᱚᱢ \"\"Download\"\" ᱵᱩᱴᱚᱱ ᱨᱮ ᱠᱞᱤᱠ ᱢᱮ \n6. ᱞᱟᱛᱟᱨ ᱨᱮ IMPORT FILE ᱨᱮ ᱞᱤᱱ ᱢᱮ ᱟᱨ ᱰᱟᱩᱱᱞᱚᱰ ᱟᱠᱟᱱ . zip ᱯᱷᱤᱞ ᱵᱟᱪᱷᱟᱣ ᱢᱮ \n7. ᱡᱩᱫᱤ .zip ᱤᱱᱯᱷᱚᱨᱴ ᱞᱟᱹᱠᱛᱤᱭᱟᱱ ᱵᱟᱝ ᱠᱟᱱᱟ ᱮᱱᱠᱷᱟᱱ .csv ᱯᱷᱤᱞ ᱮᱠᱥᱴᱨᱟᱠᱴ ᱢᱮ (\"ᱭᱩᱴᱭᱩᱵᱽ ᱟᱨ ᱭᱩᱴᱭᱩᱵᱽ ᱢᱤᱣᱡᱤᱠ/ᱥᱵᱽᱥᱠᱨᱟᱭᱵᱮᱥᱚᱱ/ᱥᱵᱽᱥᱠᱨᱟᱭᱵᱮᱥᱚᱱ.ᱥᱤᱵᱷ\" ᱨᱮ), ᱞᱟᱛᱟᱨ ᱨᱮ IMPORT FILE ᱨᱮ ᱠᱞᱤᱠ ᱢᱮ ᱟᱨ ᱮᱠᱥᱴᱨᱟᱠᱴ ᱟᱠᱟᱱ csv ᱯᱷᱤᱞ ᱵᱟᱪᱷᱟᱣ ᱢᱮ</string>
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
-    <string name="start_accept_privacy_policy">\"ᱤᱭᱩᱨᱚᱯᱤᱭᱚ ᱡᱚᱡᱚᱱᱟ ᱯᱨᱚᱫᱚᱭᱚᱜᱤᱠᱤ (ᱡᱤ.ᱰᱤ.ᱯᱤ.ᱟᱨ.) ᱥᱟᱞᱟᱜ ᱥᱚᱢᱵᱚᱸᱫᱷ ᱞᱟᱹᱜᱤᱫ ᱛᱮ, ᱱᱚᱣᱟ ᱦᱚᱛᱮᱛᱮ ᱱᱤᱭᱩ ᱯᱟᱭᱤᱯ ᱨᱮᱭᱟᱜ ᱯᱨᱟᱭᱵᱷᱮᱴ ᱯᱚᱞᱤᱥᱤ ᱨᱮ ᱟᱵᱚᱣᱟᱜ ᱟᱫᱷᱤᱱᱤᱭᱚᱢ ᱠᱚ ᱩᱫᱩᱜ ᱦᱚᱪᱚᱭᱟ। ᱱᱚᱶᱟ ᱫᱚ ᱞᱟᱹᱭᱛᱮ ᱯᱟᱲᱦᱟᱣ ᱢᱮ ᱾
-\nᱟᱢ ᱫᱚ ᱱᱚᱶᱟ ᱯᱟᱹᱛᱭᱟᱹᱣ ᱢᱮ ᱡᱮ ᱟᱢ ᱵᱷᱤᱜᱽ ᱨᱮᱯᱳᱨᱴ ᱮᱢ ᱢᱮ ᱾\"</string>
+    <string name="start_accept_privacy_policy">\"ᱤᱭᱩᱨᱚᱯᱤᱭᱚ ᱡᱚᱡᱚᱱᱟ ᱯᱨᱚᱫᱚᱭᱚᱜᱤᱠᱤ (ᱡᱤ.ᱰᱤ.ᱯᱤ.ᱟᱨ.) ᱥᱟᱞᱟᱜ ᱥᱚᱢᱵᱚᱸᱫᱷ ᱞᱟᱹᱜᱤᱫ ᱛᱮ, ᱱᱚᱣᱟ ᱦᱚᱛᱮᱛᱮ ᱱᱤᱭᱩ ᱯᱟᱭᱤᱯ ᱨᱮᱭᱟᱜ ᱯᱨᱟᱭᱵᱷᱮᱴ ᱯᱚᱞᱤᱥᱤ ᱨᱮ ᱟᱵᱚᱣᱟᱜ ᱟᱫᱷᱤᱱᱤᱭᱚᱢ ᱠᱚ ᱩᱫᱩᱜ ᱦᱚᱪᱚᱭᱟ। ᱱᱚᱶᱟ ᱫᱚ ᱞᱟᱹᱭᱛᱮ ᱯᱟᱲᱦᱟᱣ ᱢᱮ ᱾ \nᱟᱢ ᱫᱚ ᱱᱚᱶᱟ ᱯᱟᱹᱛᱭᱟᱹᱣ ᱢᱮ ᱡᱮ ᱟᱢ ᱵᱷᱤᱜᱽ ᱨᱮᱯᱳᱨᱴ ᱮᱢ ᱢᱮ ᱾\"</string>
     <string name="enable_streams_notifications_summary">ᱥᱚᱵᱥᱠᱨᱟᱭᱵᱮᱥᱚᱱ ᱠᱷᱚᱱ ᱱᱟᱣᱟ ᱥᱴᱨᱤᱢ ᱠᱚ ᱵᱟᱰᱟᱭ ᱢᱮ</string>
     <string name="updates_setting_title">ᱚᱯᱰᱮᱴᱥ</string>
     <string name="updates_setting_description">ᱡᱚᱠᱷᱚᱱ ᱱᱟᱣᱟ ᱵᱟᱨᱥᱚᱱ ᱢᱮᱱᱟᱜ-ᱟ ᱮᱯ ᱟᱯᱰᱮᱴ ᱞᱟᱹᱜᱤᱫ ᱯᱟᱹᱛᱭᱟᱹᱣ ᱵᱚᱫᱚᱞ ᱢᱮ</string>
@@ -578,8 +557,7 @@
     <string name="pause_downloads_on_mobile_desc">ᱢᱚᱵᱟᱤᱞ ᱰᱟᱴᱟ ᱨᱮ ᱵᱚᱫᱚᱞ ᱞᱟᱹᱜᱤᱫ ᱵᱮᱵᱚᱦᱟᱨᱚᱜ ᱟ, ᱢᱮᱱᱠᱷᱟᱱ ᱛᱤᱱᱟᱹᱜ ᱜᱟᱱ ᱰᱟᱩᱱᱞᱚᱰ ᱠᱚ ᱵᱚᱫᱚᱞ ᱫᱟᱲᱮᱭᱟᱜ ᱟ</string>
     <string name="enable_queue_limit_desc">ᱢᱤᱫᱴᱟᱹᱝ ᱰᱟᱩᱱᱞᱚᱰ ᱢᱤᱫ ᱚᱠᱛᱚ ᱨᱮ ᱪᱟᱞᱟᱜᱼᱟ</string>
     <string name="pause_downloads">ᱰᱟᱩᱱᱞᱚᱰ ᱠᱚ ᱵᱚᱫᱚᱞ ᱢᱮ</string>
-    <string name="downloads_storage_ask_summary">ᱡᱚᱛᱚ ᱰᱟᱩᱱᱞᱚᱰ ᱠᱚ ᱡᱟᱦᱟᱸ ᱨᱮ ᱫᱚᱦᱚᱭ ᱢᱮ ᱚᱱᱟ ᱟᱢᱮᱢ ᱩᱫᱩᱜᱟ._x000D_
-\nᱡᱩᱫᱤ ᱟᱢ ᱵᱟᱦᱨᱮ SD ᱠᱟᱨᱰ ᱨᱮ ᱰᱟᱩᱱᱞᱚᱰ ᱞᱟᱹᱜᱤᱫ ᱮᱠᱴᱤᱵᱷ ᱢᱮ</string>
+    <string name="downloads_storage_ask_summary">ᱡᱚᱛᱚ ᱰᱟᱩᱱᱞᱚᱰ ᱠᱚ ᱡᱟᱦᱟᱸ ᱨᱮ ᱫᱚᱦᱚᱭ ᱢᱮ ᱚᱱᱟ ᱟᱢᱮᱢ ᱩᱫᱩᱜᱟ._x000D_ \nᱡᱩᱫᱤ ᱟᱢ ᱵᱟᱦᱨᱮ SD ᱠᱟᱨᱰ ᱨᱮ ᱰᱟᱩᱱᱞᱚᱰ ᱞᱟᱹᱜᱤᱫ ᱮᱠᱴᱤᱵᱷ ᱢᱮ</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">ᱟᱢ ᱡᱟᱦᱟᱸ ᱨᱮ ᱡᱚᱛᱚ ᱰᱟᱩᱱᱞᱚᱰ ᱥᱟᱦᱴᱟ ᱠᱚ ᱵᱚᱫᱚᱞ ᱦᱚᱪᱚᱭ ᱢᱮ</string>
     <string name="downloads_storage_use_saf_summary">\'ᱥᱴᱚᱨᱮᱡᱽ ᱮᱠᱥᱮᱥ ᱯᱷᱨᱮᱢᱠᱣᱟᱨᱠ\' ᱢᱤᱫ ᱵᱟᱦᱨᱮ SD ᱠᱟᱨᱰ ᱨᱮ ᱰᱟᱩᱱᱞᱚᱰ ᱞᱟᱹᱜᱤᱫ ᱮᱢᱚᱜ ᱟ</string>
     <string name="downloads_storage_use_saf_summary_api_29">ᱚᱸᱰᱨᱚᱭᱮᱰ ᱑᱐ ᱠᱷᱚᱱ ᱮᱛᱚᱦᱚᱵ ᱠᱟᱛᱮ \'ᱥᱴᱳᱨᱮᱡ ᱮᱠᱥᱮᱥ ᱯᱷᱨᱮᱢᱚᱠ\' ᱜᱮ ᱥᱚᱯᱷᱚᱨᱴ ᱟᱠᱟᱱᱟ</string>
@@ -598,29 +576,15 @@
     <string name="feed_update_threshold_summary">ᱢᱤᱫ ᱥᱚᱵᱥᱠᱨᱟᱭᱵᱽᱥᱚᱱ ᱵᱟᱥᱠᱮᱴᱮᱰ ᱦᱩᱭᱩᱜ ᱢᱟᱬᱟᱝ ᱨᱮ ᱯᱟᱹᱪᱷᱤᱢ ᱩᱫᱩᱜ ᱠᱷᱚᱱ ᱛᱟᱭᱚᱢ ᱚᱠᱛᱚ ⁇ %s</string>
     <string name="feed_load_error">Error loading feed ᱥᱟᱯᱲᱟᱣ</string>
     <string name="feed_load_error_account_info">\'%s\' ᱞᱟᱹᱜᱤᱫ ᱯᱷᱤᱰ ᱞᱚᱰ ᱵᱟᱝ ᱦᱩᱭ ᱫᱟᱲᱮᱭᱟᱜ-ᱟ.</string>
-    <string name="feed_load_error_terminated">ᱮᱠᱴᱚᱨᱟᱜ ᱮᱠᱟᱶᱴ ᱫᱚ ᱛᱷᱟᱯᱚᱱ ᱟᱠᱟᱱᱟ ᱾
-\nNewPipe ᱫᱚ ᱱᱚᱣᱟ ᱯᱷᱤᱰ ᱫᱚ ᱟᱵᱚ ᱦᱟᱵᱤᱡ ᱵᱟᱝ ᱞᱚᱰ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ ᱾
-\nᱟᱢ ᱱᱚᱣᱟ ᱪᱟᱱᱮᱨ ᱠᱷᱚᱱ ᱟᱹᱪᱩᱨ ᱚᱪᱚᱜ ᱠᱟᱹᱢᱤᱭᱟᱢ ᱥᱮ?</string>
+    <string name="feed_load_error_terminated">ᱮᱠᱴᱚᱨᱟᱜ ᱮᱠᱟᱶᱴ ᱫᱚ ᱛᱷᱟᱯᱚᱱ ᱟᱠᱟᱱᱟ ᱾ \nNewPipe ᱫᱚ ᱱᱚᱣᱟ ᱯᱷᱤᱰ ᱫᱚ ᱟᱵᱚ ᱦᱟᱵᱤᱡ ᱵᱟᱝ ᱞᱚᱰ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ ᱾ \nᱟᱢ ᱱᱚᱣᱟ ᱪᱟᱱᱮᱨ ᱠᱷᱚᱱ ᱟᱹᱪᱩᱨ ᱚᱪᱚᱜ ᱠᱟᱹᱢᱤᱭᱟᱢ ᱥᱮ?</string>
     <string name="feed_load_error_fast_unknown">ᱯᱷᱚᱥᱴ ᱯᱷᱤᱰ ᱢᱚᱰ ᱱᱚᱶᱟ ᱨᱮ ᱵᱟᱹᱲᱛᱤ ᱵᱟᱰᱟᱭ ᱮᱢ ᱮᱫᱟ ᱾</string>
     <string name="feed_use_dedicated_fetch_method_title">ᱡᱩᱫᱤ ᱢᱮᱱᱟᱜᱼᱟ ᱮᱢ ᱟᱠᱟᱱ ᱡᱚᱢᱟᱜ ᱠᱷᱚᱱ ᱦᱟᱛᱟᱣ</string>
     <string name="feed_use_dedicated_fetch_method_summary">ᱟᱭᱢᱟ ᱥᱮᱵᱟ ᱨᱮ ᱧᱟᱢᱚᱜᱼᱟ, ᱱᱚᱶᱟ ᱫᱚ ᱟᱥᱚᱠᱟᱭ ᱛᱮ ᱟᱹᱰᱤ ᱦᱩᱰᱤᱧ ᱜᱮᱭᱟ ᱢᱮᱱᱠᱷᱟᱱ ᱢᱤᱫ ᱞᱮᱠᱟᱱ ᱤᱱᱴᱮᱢᱥ ᱟᱨ ᱟᱥᱚᱠᱟᱭ ᱛᱮ ᱵᱟᱝ ᱯᱩᱨᱟᱹᱣ ᱟᱠᱟᱱ ᱤᱱᱯᱷᱚᱨᱢᱮᱥᱚᱱ (ᱡᱮᱞᱮᱠᱟ ᱺ ᱚᱠᱛᱚ ᱵᱟᱝ, ᱤᱱᱴᱮᱢᱥ ᱨᱮᱱᱟᱜ ᱞᱮᱠᱷᱟ, ᱚᱞᱤᱵᱽ ᱥᱴᱮᱴᱥ ᱵᱟᱝ) ᱨᱩᱣᱟᱹᱲ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">ᱯᱷᱮᱥᱵᱩᱠ ᱢᱚᱰ ᱵᱚᱫᱚᱞ ᱢᱮ</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">ᱟᱢᱟᱜ ᱢᱚᱱᱮ ᱨᱮ ᱡᱚᱢᱟᱜ ᱨᱮᱱᱟᱜ ᱞᱚᱰ ᱟᱹᱰᱤ ᱟᱞᱜᱟ ᱜᱮᱭᱟ? ᱡᱩᱫᱤ ᱱᱚᱶᱟ ᱦᱩᱭᱩᱜ ᱠᱟᱱᱟ, ᱮᱱᱠᱷᱟᱱ ᱥᱯᱤᱰ ᱞᱚᱰ ᱮᱱᱟᱝ ᱮᱱᱮᱡ (ᱡᱟᱦᱟᱸ ᱫᱚ ᱟᱢ ᱥᱤᱴᱤᱝ ᱨᱮ ᱥᱮ ᱞᱟᱛᱟᱨ ᱨᱮᱭᱟᱜ ᱵᱩᱛᱟᱹᱢ ᱚᱞ ᱠᱟᱛᱮᱢ ᱵᱚᱫᱚᱞ ᱫᱟᱲᱮᱭᱟᱜ-ᱟ)
-\n
-\nᱱᱤᱣ ᱯᱟᱭᱤᱯ ᱫᱚ ᱵᱟᱨᱭᱟ ᱯᱷᱤᱰ ᱞᱚᱰ ᱥᱴᱨᱮᱴᱡᱤ ᱮᱢᱚᱜ ᱠᱟᱱᱟ:
-\n• ᱡᱚᱛᱚ ᱥᱚᱵᱽᱥᱠᱨᱟᱭᱵᱽ ᱪᱮᱱᱮᱞ ᱦᱟᱛᱟᱣ, ᱡᱟᱦᱟᱸ ᱫᱚ ᱟᱞᱜᱟ ᱜᱮᱭᱟ ᱢᱮᱱᱠᱷᱟᱱ ᱯᱩᱨᱟᱹᱣᱜᱼᱟ ᱾
-\n• ᱰᱮᱰᱤᱠᱮᱴᱮᱰ ᱥᱮᱵᱟ ᱮᱱᱰ ᱯᱚᱭᱮᱱᱴ ᱵᱮᱵᱷᱟᱨ, ᱡᱟᱦᱟᱸ ᱫᱚ ᱦᱩᱲᱟᱹᱜ ᱜᱮᱭᱟ ᱢᱮᱱᱠᱷᱟᱱ ᱟᱥᱚᱠᱟᱭ ᱛᱮ ᱯᱩᱨᱟᱹᱣ ᱫᱚ ᱵᱟᱝ ᱦᱩᱭᱩᱜᱼᱟ ᱾
-\n
-\nᱵᱟᱨᱭᱟ ᱛᱟᱞᱟᱨᱮᱱᱟᱜ ᱵᱷᱮᱜᱟᱨ ᱫᱚ ᱦᱩᱭᱩᱜ ᱠᱟᱱᱟ ᱡᱮ ᱦᱩᱲᱟᱹᱜ ᱢᱤᱫᱴᱟᱹᱝ ᱜᱮ ᱤᱱᱯᱷᱚᱨᱢᱮᱥᱚᱱ ᱵᱟᱹᱱᱩᱜᱼᱟ, ᱡᱮᱞᱮᱠᱟ ᱤᱢᱮᱠᱥ ᱨᱮᱱᱟᱜ ᱚᱠᱛᱚ ᱥᱮ ᱛᱷᱚᱠ (ᱡᱟᱦᱟᱸ ᱫᱚ ᱞᱟᱭᱤᱵᱷᱤᱰᱤᱭᱳ ᱟᱨ ᱱᱚᱨᱢᱟᱞ ᱨᱮᱱᱟᱜ ᱵᱷᱮᱜᱟᱨ ᱵᱟᱭ ᱵᱟᱰᱟᱭ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ) ᱟᱨ ᱱᱚᱶᱟ ᱠᱚᱢ ᱤᱢᱮᱠᱥ ᱠᱚ ᱨᱩᱣᱟᱹᱲ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ ᱾
-\n
-\nᱭᱩᱴᱭᱩᱵᱽ ᱫᱚ ᱢᱤᱫᱴᱮᱱ ᱥᱮᱵᱟ ᱨᱮᱱᱟᱜ ᱢᱤᱫ ᱞᱟᱹᱱᱟᱹᱤ ᱠᱟᱱᱟ ᱡᱟᱦᱟᱸ ᱫᱚ ᱱᱚᱶᱟ ᱦᱚᱨᱟ ᱟᱡᱟᱜ RSS ᱯᱷᱤᱰ ᱥᱟᱶᱛᱮ ᱮᱢᱚᱜ ᱠᱟᱱᱟ ᱾
-\n
-\nᱚᱱᱟᱛᱮ ᱵᱟᱪᱷᱟᱣ ᱫᱚ ᱟᱢ ᱪᱮᱫ ᱜᱮᱢ ᱵᱷᱟᱹᱵᱤᱛᱟ: ᱦᱩᱲᱟᱹᱜ ᱟᱨᱵᱟᱝ ᱥᱟᱹᱠᱷᱭᱟᱹᱛ ᱠᱟᱛᱷᱟ ᱾</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">ᱟᱢᱟᱜ ᱢᱚᱱᱮ ᱨᱮ ᱡᱚᱢᱟᱜ ᱨᱮᱱᱟᱜ ᱞᱚᱰ ᱟᱹᱰᱤ ᱟᱞᱜᱟ ᱜᱮᱭᱟ? ᱡᱩᱫᱤ ᱱᱚᱶᱟ ᱦᱩᱭᱩᱜ ᱠᱟᱱᱟ, ᱮᱱᱠᱷᱟᱱ ᱥᱯᱤᱰ ᱞᱚᱰ ᱮᱱᱟᱝ ᱮᱱᱮᱡ (ᱡᱟᱦᱟᱸ ᱫᱚ ᱟᱢ ᱥᱤᱴᱤᱝ ᱨᱮ ᱥᱮ ᱞᱟᱛᱟᱨ ᱨᱮᱭᱟᱜ ᱵᱩᱛᱟᱹᱢ ᱚᱞ ᱠᱟᱛᱮᱢ ᱵᱚᱫᱚᱞ ᱫᱟᱲᱮᱭᱟᱜ-ᱟ) \n \nᱱᱤᱣ ᱯᱟᱭᱤᱯ ᱫᱚ ᱵᱟᱨᱭᱟ ᱯᱷᱤᱰ ᱞᱚᱰ ᱥᱴᱨᱮᱴᱡᱤ ᱮᱢᱚᱜ ᱠᱟᱱᱟ: \n• ᱡᱚᱛᱚ ᱥᱚᱵᱽᱥᱠᱨᱟᱭᱵᱽ ᱪᱮᱱᱮᱞ ᱦᱟᱛᱟᱣ, ᱡᱟᱦᱟᱸ ᱫᱚ ᱟᱞᱜᱟ ᱜᱮᱭᱟ ᱢᱮᱱᱠᱷᱟᱱ ᱯᱩᱨᱟᱹᱣᱜᱼᱟ ᱾ \n• ᱰᱮᱰᱤᱠᱮᱴᱮᱰ ᱥᱮᱵᱟ ᱮᱱᱰ ᱯᱚᱭᱮᱱᱴ ᱵᱮᱵᱷᱟᱨ, ᱡᱟᱦᱟᱸ ᱫᱚ ᱦᱩᱲᱟᱹᱜ ᱜᱮᱭᱟ ᱢᱮᱱᱠᱷᱟᱱ ᱟᱥᱚᱠᱟᱭ ᱛᱮ ᱯᱩᱨᱟᱹᱣ ᱫᱚ ᱵᱟᱝ ᱦᱩᱭᱩᱜᱼᱟ ᱾ \n \nᱵᱟᱨᱭᱟ ᱛᱟᱞᱟᱨᱮᱱᱟᱜ ᱵᱷᱮᱜᱟᱨ ᱫᱚ ᱦᱩᱭᱩᱜ ᱠᱟᱱᱟ ᱡᱮ ᱦᱩᱲᱟᱹᱜ ᱢᱤᱫᱴᱟᱹᱝ ᱜᱮ ᱤᱱᱯᱷᱚᱨᱢᱮᱥᱚᱱ ᱵᱟᱹᱱᱩᱜᱼᱟ, ᱡᱮᱞᱮᱠᱟ ᱤᱢᱮᱠᱥ ᱨᱮᱱᱟᱜ ᱚᱠᱛᱚ ᱥᱮ ᱛᱷᱚᱠ (ᱡᱟᱦᱟᱸ ᱫᱚ ᱞᱟᱭᱤᱵᱷᱤᱰᱤᱭᱳ ᱟᱨ ᱱᱚᱨᱢᱟᱞ ᱨᱮᱱᱟᱜ ᱵᱷᱮᱜᱟᱨ ᱵᱟᱭ ᱵᱟᱰᱟᱭ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ) ᱟᱨ ᱱᱚᱶᱟ ᱠᱚᱢ ᱤᱢᱮᱠᱥ ᱠᱚ ᱨᱩᱣᱟᱹᱲ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ ᱾ \n \nᱭᱩᱴᱭᱩᱵᱽ ᱫᱚ ᱢᱤᱫᱴᱮᱱ ᱥᱮᱵᱟ ᱨᱮᱱᱟᱜ ᱢᱤᱫ ᱞᱟᱹᱱᱟᱹᱤ ᱠᱟᱱᱟ ᱡᱟᱦᱟᱸ ᱫᱚ ᱱᱚᱶᱟ ᱦᱚᱨᱟ ᱟᱡᱟᱜ RSS ᱯᱷᱤᱰ ᱥᱟᱶᱛᱮ ᱮᱢᱚᱜ ᱠᱟᱱᱟ ᱾ \n \nᱚᱱᱟᱛᱮ ᱵᱟᱪᱷᱟᱣ ᱫᱚ ᱟᱢ ᱪᱮᱫ ᱜᱮᱢ ᱵᱷᱟᱹᱵᱤᱛᱟ: ᱦᱩᱲᱟᱹᱜ ᱟᱨᱵᱟᱝ ᱥᱟᱹᱠᱷᱭᱟᱹᱛ ᱠᱟᱛᱷᱟ ᱾</string>
     <string name="feed_show_hide_streams">ᱥᱴᱨᱤᱢ ᱠᱚ ᱵᱚᱫᱚᱞ/ᱥᱚᱫᱚᱨ ᱢᱮ</string>
     <string name="feed_fetch_channel_tabs_summary">ᱡᱚᱠᱷᱚᱱ ᱯᱷᱤᱰ ᱚᱯᱰᱮᱴ ᱦᱩᱭᱩᱜᱼᱟ, ᱚᱱᱟ ᱞᱟᱹᱜᱤᱫ ᱛᱮ ᱴᱮᱵᱽ ᱠᱚ ᱦᱟᱛᱟᱣ ᱢᱮ ᱾ ᱡᱩᱫᱤ ᱢᱤᱫ ᱪᱮᱱᱮᱞ ᱫᱚ fast mode ᱵᱮᱵᱷᱟᱨ ᱠᱟᱛᱮ update ᱟᱠᱟᱱᱟ ᱮᱱᱠᱷᱟᱱ ᱱᱚᱶᱟ option ᱫᱚ ᱵᱟᱹᱱᱩᱜ-ᱟ ᱾</string>
-    <string name="content_not_supported">ᱱᱩᱣᱟ ᱯᱟᱭᱤᱯ ᱱᱤᱛ ᱦᱟᱹᱵᱤᱡ ᱱᱚᱶᱟ ᱥᱟᱦᱴᱟᱨᱮ ᱥᱚᱯᱷᱴᱣᱮᱭᱟᱨ ᱵᱟᱹᱱᱩᱜ-ᱟ᱾_x000D_
-\n_x000D_
-\nᱱᱚᱶᱟ ᱫᱚ ᱢᱚᱵᱟᱤᱞ ᱣᱟᱨᱥᱚᱱ ᱨᱮ ᱥᱚᱯᱷᱴᱣᱮᱨ ᱦᱩᱭᱩᱜᱼᱟ ᱾</string>
+    <string name="content_not_supported">ᱱᱩᱣᱟ ᱯᱟᱭᱤᱯ ᱱᱤᱛ ᱦᱟᱹᱵᱤᱡ ᱱᱚᱶᱟ ᱥᱟᱦᱴᱟᱨᱮ ᱥᱚᱯᱷᱴᱣᱮᱭᱟᱨ ᱵᱟᱹᱱᱩᱜ-ᱟ᱾_x000D_ \n_x000D_ \nᱱᱚᱶᱟ ᱫᱚ ᱢᱚᱵᱟᱤᱞ ᱣᱟᱨᱥᱚᱱ ᱨᱮ ᱥᱚᱯᱷᱴᱣᱮᱨ ᱦᱩᱭᱩᱜᱼᱟ ᱾</string>
     <string name="show_thumbnail_summary">ᱞᱚᱠ ᱥᱠᱨᱤᱱ ᱛᱷᱚᱠ ᱟᱨ ᱱᱳᱴᱤᱯᱷᱤᱠᱮᱥᱚᱱ ᱵᱟᱱᱟᱨ ᱞᱟᱹᱜᱤᱫ ᱛᱚᱢᱱᱤᱞ ᱵᱮᱵᱷᱟᱨ ᱢᱮ</string>
     <string name="no_app_to_open_intent">ᱟᱢᱟᱜ ᱰᱤᱵᱟᱤᱥ ᱨᱮ ᱱᱚᱶᱟ ᱮᱯ ᱵᱟᱹᱱᱩᱜ-ᱟ</string>
     <string name="no_appropriate_file_manager_message">ᱱᱚᱶᱟ ᱠᱟᱹᱢᱤ ᱞᱟᱹᱜᱤᱫ ᱫᱚ ᱞᱟᱹᱠᱛᱤᱭᱟᱱ ᱯᱷᱤᱞ ᱢᱮᱱᱮᱡᱚᱨ ᱵᱟᱝ ᱧᱟᱢ ᱞᱮᱱᱟ ᱾ %s</string>
@@ -656,9 +620,7 @@
     <string name="feed_show_partially_watched">ᱡᱟᱹᱥᱛᱤ ᱧᱮᱞ ᱟᱠᱟᱱᱟ</string>
     <string name="feed_show_upcoming">ᱢᱟᱲᱟᱝ ᱨᱮ</string>
     <string name="use_exoplayer_decoder_fallback_summary">ᱡᱩᱫᱤ ᱟᱢᱟᱜ ᱰᱤᱠᱳᱰᱟᱨ ᱮᱛᱚᱦᱚᱵ ᱨᱮᱭᱟᱜ ᱞᱟᱹᱞᱤᱥ ᱛᱟᱦᱮᱸᱱᱟ, ᱮᱱᱠᱷᱟᱱ ᱱᱚᱶᱟ ᱵᱟᱪᱷᱱᱟᱣ ᱫᱚ ᱮᱥᱮᱨ ᱢᱮ, ᱡᱟᱦᱟᱫᱚ ᱮᱛᱚᱦᱚᱵ ᱰᱤᱠᱳᱰᱟᱨ ᱮᱛᱚᱦᱚᱵ ᱵᱟᱝ ᱦᱩᱭ ᱞᱮᱱ ᱠᱷᱟᱱ ᱞᱟᱛᱟᱨᱼᱯᱨᱳᱭᱨᱤᱴᱤ ᱰᱤᱠᱳᱰᱟᱨ ᱨᱮ ᱨᱩᱣᱟᱹᱲ ᱦᱮᱡᱚᱜᱼᱟ ᱾ ᱱᱚᱶᱟ ᱨᱮᱭᱟᱜ ᱚᱡᱮ ᱫᱚ ᱮᱛᱚᱦᱚᱵ ᱰᱤᱠᱳᱰᱟᱨ ᱠᱚ ᱵᱮᱣᱦᱟᱨ ᱚᱠᱛᱚ ᱠᱷᱚᱱ ᱵᱮᱼᱲᱤᱪᱟᱹᱲ ᱯᱟᱥᱱᱟᱶ ᱦᱩᱭ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ ᱾</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_summary">ᱱᱚᱶᱟ ᱠᱟᱹᱢᱤ ᱦᱚᱨᱟ ᱫᱚ ᱥᱩᱨᱥᱩᱯᱩᱨ ᱵᱚᱫᱚᱞ ᱦᱩᱭ ᱞᱮᱱ ᱠᱷᱟᱱ ᱵᱷᱤᱰᱤᱭᱳ ᱠᱳᱰᱮᱠ ᱠᱚ ᱵᱚᱫᱚᱞ ᱟᱨ ᱨᱤ-ᱤᱱᱥᱴᱟᱱᱥᱟᱭᱤᱴ (re-instantiates) ᱮᱫᱟ, ᱚᱱᱟ ᱫᱚ ᱥᱩᱨᱥᱩᱯᱩᱨ ᱠᱳᱰᱮᱠ ᱨᱮ ᱞᱟᱹᱜᱤᱫ ᱛᱮ ᱥᱩᱯᱩᱨ ᱥᱩᱯᱩᱨ ᱛᱮ ᱥᱮᱴᱮᱨᱚᱜ ᱨᱮᱱᱟᱜ ᱠᱟᱱᱟ ᱾ ᱱᱚᱶᱟ ᱥᱟᱛᱟᱢ ᱥᱟᱶᱛᱮ ᱮᱠᱥᱳᱯᱞᱮᱭᱟᱨ ᱟᱭᱢᱟ ᱚᱱᱚᱞ ᱨᱮ ᱵᱮᱵᱷᱟᱨ ᱟᱠᱟᱱᱟ, ᱱᱚᱶᱟ ᱥᱤᱴᱤᱝ ᱫᱚ ᱟᱱᱰᱨᱚᱭᱮᱰ ᱖ ᱟᱨ ᱚᱱᱟ ᱠᱷᱚᱱ ᱪᱮᱛᱟᱱ ᱨᱮᱜᱮ ᱟᱯᱷᱮᱠᱴ ᱟᱠᱟᱱᱟ
-\n
-\nᱱᱮᱛᱟᱨᱟᱜ ᱵᱷᱤᱰᱤᱭᱳ ᱯᱞᱮᱭᱟᱨ ᱥᱮ ᱯᱷᱩᱞᱥᱠᱨᱤᱱ ᱨᱮ ᱥᱮᱞᱮᱫᱚᱜ ᱡᱚᱠᱷᱚᱱ ᱱᱚᱶᱟ ᱵᱟᱪᱷᱟᱣ ᱮᱢ ᱫᱚᱦᱚ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">ᱱᱚᱶᱟ ᱠᱟᱹᱢᱤ ᱦᱚᱨᱟ ᱫᱚ ᱥᱩᱨᱥᱩᱯᱩᱨ ᱵᱚᱫᱚᱞ ᱦᱩᱭ ᱞᱮᱱ ᱠᱷᱟᱱ ᱵᱷᱤᱰᱤᱭᱳ ᱠᱳᱰᱮᱠ ᱠᱚ ᱵᱚᱫᱚᱞ ᱟᱨ ᱨᱤ-ᱤᱱᱥᱴᱟᱱᱥᱟᱭᱤᱴ (re-instantiates) ᱮᱫᱟ, ᱚᱱᱟ ᱫᱚ ᱥᱩᱨᱥᱩᱯᱩᱨ ᱠᱳᱰᱮᱠ ᱨᱮ ᱞᱟᱹᱜᱤᱫ ᱛᱮ ᱥᱩᱯᱩᱨ ᱥᱩᱯᱩᱨ ᱛᱮ ᱥᱮᱴᱮᱨᱚᱜ ᱨᱮᱱᱟᱜ ᱠᱟᱱᱟ ᱾ ᱱᱚᱶᱟ ᱥᱟᱛᱟᱢ ᱥᱟᱶᱛᱮ ᱮᱠᱥᱳᱯᱞᱮᱭᱟᱨ ᱟᱭᱢᱟ ᱚᱱᱚᱞ ᱨᱮ ᱵᱮᱵᱷᱟᱨ ᱟᱠᱟᱱᱟ, ᱱᱚᱶᱟ ᱥᱤᱴᱤᱝ ᱫᱚ ᱟᱱᱰᱨᱚᱭᱮᱰ ᱖ ᱟᱨ ᱚᱱᱟ ᱠᱷᱚᱱ ᱪᱮᱛᱟᱱ ᱨᱮᱜᱮ ᱟᱯᱷᱮᱠᱴ ᱟᱠᱟᱱᱟ \n \nᱱᱮᱛᱟᱨᱟᱜ ᱵᱷᱤᱰᱤᱭᱳ ᱯᱞᱮᱭᱟᱨ ᱥᱮ ᱯᱷᱩᱞᱥᱠᱨᱤᱱ ᱨᱮ ᱥᱮᱞᱮᱫᱚᱜ ᱡᱚᱠᱷᱚᱱ ᱱᱚᱶᱟ ᱵᱟᱪᱷᱟᱣ ᱮᱢ ᱫᱚᱦᱚ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ</string>
     <string name="show_channel_tabs_summary">ᱪᱮᱱᱟᱞ ᱥᱟᱦᱴᱟ ᱠᱚᱨᱮ ᱪᱮᱫ ᱴᱮᱵᱽ ᱠᱚ ᱵᱚᱫᱚᱞᱟ</string>
     <string name="open_play_queue">ᱚᱯᱮᱱ ᱯᱞᱮ ᱠᱭᱩᱤ</string>
     <string name="toggle_fullscreen">ᱡᱚᱛᱚ ᱥᱠᱨᱤᱱ ᱨᱮ ᱵᱷᱮᱡᱟ ᱢᱮ</string>
@@ -720,8 +682,7 @@
     <string name="tab_licenses">ᱞᱟᱭᱥᱮᱱᱥ</string>
     <string name="contribution_title">ᱥᱮᱞᱮᱫᱚᱜ ᱢᱮ</string>
     <string name="privacy_policy_title">ᱱᱤᱭᱩ ᱯᱟᱭᱯᱮ ᱨᱮᱱᱟᱜ ᱯᱨᱟᱭᱵᱷᱮᱴᱤ ᱯᱚᱞᱤᱥᱤ</string>
-    <string name="privacy_policy_encouragement">ᱱᱤᱣ ᱯᱟᱭᱤᱯ ᱯᱨᱚᱡᱮᱠᱴ ᱟᱢᱟᱜ ᱯᱨᱟᱭᱵᱷᱮᱴ ᱟᱹᱰᱤ ᱥᱚᱨᱮᱥ ᱜᱮᱭᱟ. ᱚᱱᱟᱛᱮ, ᱟᱢᱟᱜ ᱟᱹᱭᱫᱟᱹᱨᱤ ᱵᱟᱹᱱᱩᱜ ᱠᱷᱟᱱ ᱱᱚᱶᱟ ᱮᱯᱞᱤᱠᱮᱥᱚᱱ ᱡᱟᱦᱟᱱ ᱰᱮᱴᱟ ᱵᱟᱭ ᱥᱟᱢᱟᱝᱟ ᱾_x000D_
-\nᱱᱤᱣ ᱯᱟᱭᱤᱯ ᱨᱮᱱᱟᱜ ᱯᱨᱟᱭᱵᱷᱮᱴ ᱯᱚᱞᱤᱥᱤ ᱨᱮ ᱡᱟᱦᱟᱸᱱ ᱰᱮᱴᱟ ᱠᱚ ᱟᱢ ᱠᱨᱮᱥᱚᱨ ᱨᱮᱯᱳᱨᱴ ᱚᱠᱟᱛᱮ ᱟᱢ ᱚᱠᱟ ᱞᱮᱠᱟᱛᱮ ᱟᱢᱟᱜ ᱰᱮᱴᱟ ᱠᱚ ᱵᱚᱫᱚᱞᱟ ᱟᱨ ᱵᱚᱫᱚᱞᱟ ᱚᱱᱟ ᱵᱟᱵᱚᱫ ᱛᱮ ᱡᱚᱛᱚ ᱵᱟᱰᱟᱭ ᱮᱢᱚᱜ ᱟ᱾</string>
+    <string name="privacy_policy_encouragement">ᱱᱤᱣ ᱯᱟᱭᱤᱯ ᱯᱨᱚᱡᱮᱠᱴ ᱟᱢᱟᱜ ᱯᱨᱟᱭᱵᱷᱮᱴ ᱟᱹᱰᱤ ᱥᱚᱨᱮᱥ ᱜᱮᱭᱟ. ᱚᱱᱟᱛᱮ, ᱟᱢᱟᱜ ᱟᱹᱭᱫᱟᱹᱨᱤ ᱵᱟᱹᱱᱩᱜ ᱠᱷᱟᱱ ᱱᱚᱶᱟ ᱮᱯᱞᱤᱠᱮᱥᱚᱱ ᱡᱟᱦᱟᱱ ᱰᱮᱴᱟ ᱵᱟᱭ ᱥᱟᱢᱟᱝᱟ ᱾_x000D_ \nᱱᱤᱣ ᱯᱟᱭᱤᱯ ᱨᱮᱱᱟᱜ ᱯᱨᱟᱭᱵᱷᱮᱴ ᱯᱚᱞᱤᱥᱤ ᱨᱮ ᱡᱟᱦᱟᱸᱱ ᱰᱮᱴᱟ ᱠᱚ ᱟᱢ ᱠᱨᱮᱥᱚᱨ ᱨᱮᱯᱳᱨᱴ ᱚᱠᱟᱛᱮ ᱟᱢ ᱚᱠᱟ ᱞᱮᱠᱟᱛᱮ ᱟᱢᱟᱜ ᱰᱮᱴᱟ ᱠᱚ ᱵᱚᱫᱚᱞᱟ ᱟᱨ ᱵᱚᱫᱚᱞᱟ ᱚᱱᱟ ᱵᱟᱵᱚᱫ ᱛᱮ ᱡᱚᱛᱚ ᱵᱟᱰᱟᱭ ᱮᱢᱚᱜ ᱟ᱾</string>
     <string name="read_privacy_policy">ᱯᱨᱟᱭᱵᱷᱮᱴᱤ ᱯᱚᱞᱤᱥ ᱯᱟᱲᱦᱟᱣ ᱢᱮ</string>
     <string name="read_full_license">ᱞᱟᱭᱥᱮᱱᱥ ᱯᱟᱲᱦᱟᱣ ᱢᱮ</string>
     <string name="faq_title">ᱟᱥᱚᱠᱟᱭ ᱛᱮ ᱚᱞ ᱟᱠᱟᱱ ᱯᱩᱥᱴᱟ</string>

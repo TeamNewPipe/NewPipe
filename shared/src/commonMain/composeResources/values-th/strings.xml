@@ -38,4 +38,16 @@
     <string name="settings_category_updates_title">อัปเดต</string>
     <string name="settings_category_backup_restore_title">สำรองข้อมูลและกู้คืน</string>
     <string name="settings_category_debug_title">Debug</string>
+    <string name="theme_title">ธีม</string>
+    <string name="light_theme_title">สว่าง</string>
+    <string name="dark_theme_title">มืด</string>
+    <string name="black_theme_title">ดำ</string>
+    <string name="auto_device_theme_title">อัตโนมัติ (ตามธีมของอุปกรณ์)</string>
+    <string name="night_theme_title">ธีมมืด</string>
+    <string name="night_theme_summary">เลือกธีมมืดที่คุณชอบ — %1$s</string>
+    <string name="night_theme_available">ตัวเลือกนี้ใช้ได้เฉพาะเมื่อธีมเป็น %1$s เท่านั้น</string>
+    <string name="select_night_theme_toast">คุณสามารถเลือกธีมมืดที่ต้องการได้ด้านล่าง</string>
+    <string name="tablet_mode_title">โหมดแท็บเล็ต</string>
+    <string name="list_view_mode">โหมดมุมมองรายการ</string>
+    <string name="caption_setting_title">คำบรรยาย</string>
 </resources>

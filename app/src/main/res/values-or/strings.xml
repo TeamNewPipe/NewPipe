@@ -37,7 +37,7 @@
     </plurals>
     <string name="feed_create_new_group_button_title">ନୂଆ</string>
     <string name="upload_date_text">%1$s ରେ ପ୍ରକାଶିତ</string>
-    <string name="no_player_found">କୌଣସି ଷ୍ଟ୍ରିମ୍ ପ୍ଲେୟାର୍ ମିଳିଲା ନାହିଁ । VLC ସଂସ୍ଥାପନ କରନ୍ତୁ \?</string>
+    <string name="no_player_found">କୌଣସି ଷ୍ଟ୍ରିମ୍ ପ୍ଲେୟାର୍ ମିଳିଲା ନାହିଁ । VLC ସଂସ୍ଥାପନ କରନ୍ତୁ ?</string>
     <string name="no_player_found_toast">କୌଣସି ଷ୍ଟ୍ରୀମ ପ୍ଲେୟାର ନାହିଁ ।</string>
     <string name="install">ସଂସ୍ଥାପନ କରନ୍ତୁ</string>
     <string name="open_in_popup_mode">ପପ୍ଅପ୍ ମୋଡ୍ ରେ ଖୋଲନ୍ତୁ</string>
@@ -46,7 +46,7 @@
     <string name="mark_as_watched">ଦେଖାଯାଇଥିବା ପରି ଚିହ୍ନିତ କର</string>
     <string name="download">ଡାଉନଲୋଡ୍ କରନ୍ତୁ</string>
     <string name="settings">ସେଟିଂ</string>
-    <string name="did_you_mean">ତୁମେ ଏହା ଚାଂହ କି \"%1$s\"\?</string>
+    <string name="did_you_mean">ତୁମେ ଏହା ଚାଂହ କି \"%1$s\"?</string>
     <string name="controls_download_desc">ଫାଇଲ୍ ଡାଉନଲୋଡ କରନ୍ତୁ</string>
     <string name="share">ପଠାନ୍ତୁ</string>
     <string name="search">ସନ୍ଧାନ</string>
@@ -115,7 +115,7 @@
     <string name="resume_on_audio_focus_gain_title">ଖେଳିବା ଆରମ୍ଭ କରନ୍ତୁ</string>
     <string name="start_main_player_fullscreen_title">ଫୁଲ ସ୍କ୍ରିନରେ ମୁଖ୍ୟ ପ୍ଲେୟାର ଆରମ୍ଭ କରନ୍ତୁ</string>
     <string name="autoplay_title">ସ୍ୱତଃଚାଳନ</string>
-    <string name="unsupported_url_dialog_message">URL ଚିହ୍ନି ପାରିଲା ନାହିଁ । ଅନ୍ୟ ଏକ ଆପ୍ ସହିତ ଖୋଲନ୍ତୁ\?</string>
+    <string name="unsupported_url_dialog_message">URL ଚିହ୍ନି ପାରିଲା ନାହିଁ । ଅନ୍ୟ ଏକ ଆପ୍ ସହିତ ଖୋଲନ୍ତୁ?</string>
     <string name="default_content_country_title">ଡିଫଲ୍ଟ ବିଷୟବସ୍ତୁ ଦେଶ</string>
     <string name="content_language_title">ଡିଫଲ୍ଟ ବିଷୟବସ୍ତୁ ଭାଷା</string>
     <string name="peertube_instance_url_title">PeerTube ଉଦାହରଣ</string>
@@ -149,43 +149,21 @@
     <string name="notification_actions_summary">ଏହା ଉପରେ ଟ୍ୟାପ କରି ନିମ୍ନରେ ଦିଆଯାଇଥିବା ପ୍ରତ୍ୟେକ ବିଜ୍ଞପ୍ତି କାର୍ଯ୍ୟକୁ ସମ୍ପାଦନ କରନ୍ତୁ । ଡାହାଣ ପଟେ ଥିବା ଚେକବକ୍ସଗୁଡ଼ିକୁ ବ୍ୟବହାର କରି କମ୍ପାକ୍ଟ ବିଜ୍ଞପ୍ତିରେ ଦର୍ଶାଇବା ପାଇଁ ସେଗୁଡ଼ିକ ମଧ୍ୟରୁ ତିନିଟି ଚୟନ କରନ୍ତୁ ।</string>
     <string name="show_meta_info_summary">ଷ୍ଟ୍ରିମ୍ ସୃଷ୍ଟିକର୍ତ୍ତା, ଷ୍ଟ୍ରିମ୍ ବିଷୟବସ୍ତୁ କିମ୍ବା ଏକ ସନ୍ଧାନ ଅନୁରୋଧ ବିଷୟରେ ଅତିରିକ୍ତ ସୂଚନା ସହିତ ମେଟା ସୂଚନା ବାକ୍ସଗୁଡ଼ିକୁ ଲୁଚାଇବାକୁ ବନ୍ଦ କରନ୍ତୁ</string>
     <string name="show_age_restricted_content_summary">ପିଲାମାନଙ୍କ ପାଇଁ ସମ୍ଭବତ content ଅନୁପଯୁକ୍ତ ବିଷୟବସ୍ତୁ ଦେଖାନ୍ତୁ କାରଣ ଏହାର ବୟସ ସୀମା ଅଛି (ଯେପରିକି 18+)</string>
-    <string name="restricted_video_no_stream">ଏହି ଭିଡିଓ ବୟସ-ସୀମିତ ଅଟେ ।
-\nବୟସ-ସୀମିତ ଭିଡିଓ ସହିତ ନୂତନ ୟୁଟ୍ୟୁବ୍ ନୀତି ହେତୁ, NewPipe ଏହାର କୌଣସି ଭିଡିଓ ଷ୍ଟ୍ରିମ୍ ପ୍ରବେଶ କରିପାରିବ ନାହିଁ ଏବଂ ଏହିପରି ଏହାକୁ ଚଲାଇବାରେ ଅସମର୍ଥ ।</string>
+    <string name="restricted_video_no_stream">ଏହି ଭିଡିଓ ବୟସ-ସୀମିତ ଅଟେ । \nବୟସ-ସୀମିତ ଭିଡିଓ ସହିତ ନୂତନ ୟୁଟ୍ୟୁବ୍ ନୀତି ହେତୁ, NewPipe ଏହାର କୌଣସି ଭିଡିଓ ଷ୍ଟ୍ରିମ୍ ପ୍ରବେଶ କରିପାରିବ ନାହିଁ ଏବଂ ଏହିପରି ଏହାକୁ ଚଲାଇବାରେ ଅସମର୍ଥ ।</string>
     <string name="app_license">NewPipe ହେଉଛି copyleft libre ସଫ୍ଟୱେର୍: ଆପଣ ନିଜ ଇଚ୍ଛାରେ ଏହାକୁ ବ୍ୟବହାର, ଅଧ୍ୟୟନ, ଅଂଶୀଦାର ଏବଂ ଉନ୍ନତି କରିପାରିବେ । ନିର୍ଦ୍ଦିଷ୍ଟ ଭାବରେ ଆପଣ ମାଗଣା ସଫ୍ଟୱେର୍ ଫାଉଣ୍ଡେସନ୍ ଦ୍ଵାରା ପ୍ରକାଶିତ GNU ଜେନେରାଲ୍ ପବ୍ଲିକ୍ ଲାଇସେନ୍ସର ସର୍ତ୍ତାବଳୀ ଅନୁଯାୟୀ ଏହାକୁ ପୁନ istr ବଣ୍ଟନ ଏବଂ / କିମ୍ବା ରୂପାନ୍ତର କରିପାରିବେ, ଲାଇସେନ୍ସର ସଂସ୍କରଣ 3 କିମ୍ବା ପରବର୍ତ୍ତୀ ସଂସ୍କରଣରେ (ଆପଣଙ୍କ ବିକଳ୍ପରେ) ।</string>
     <string name="show_crash_the_player_title">\"ପ୍ଲେୟାର୍ କ୍ରାସ୍\" ଦେଖାନ୍ତୁ</string>
-    <string name="import_youtube_instructions">ଗୁଗୁଲ୍ ନିଆଯିବା ଠାରୁ ୟୁଟ୍ୟୁବ୍ ସଦସ୍ୟତା ଆମଦାନୀ କରନ୍ତୁ:
-\n
-\n1. ଏହି URL କୁ ଯାଆନ୍ତୁ: %1$s ।
-\n2. ପଚରାଗଲେ ଲଗ୍ ଇନ୍ କରନ୍ତୁ ।
-\n3. \"ସମସ୍ତ ତଥ୍ୟ ଅନ୍ତର୍ଭୂକ୍ତ\" ଉପରେ କ୍ଲିକ୍ କରନ୍ତୁ, ତାପରେ \"ସମସ୍ତ ଚୟନ କରନ୍ତୁ\" ଉପରେ କ୍ଲିକ୍ କରନ୍ତୁ, ତାପରେ କେବଳ \"ସଦସ୍ୟତା\" ଚୟନ କରନ୍ତୁ ଏବଂ \"ଓକେ\" କ୍ଲିକ୍ କରନ୍ତୁ ।
-\n4. \"ପରବର୍ତ୍ତୀ ପଦକ୍ଷେପ\" ଏବଂ ତାପରେ \"ରପ୍ତାନି ସୃଷ୍ଟି\" ଉପରେ କ୍ଲିକ୍ କରନ୍ତୁ ।
-\n5. ଏହା ଦେଖାଯିବା ପରେ \"ଡାଉନଲୋଡ୍\" ବଟନ୍ ଉପରେ କ୍ଲିକ୍ କରନ୍ତୁ ।
-\n6. ନିମ୍ନରେ IMPORT FILE ଉପରେ କ୍ଲିକ୍ କରନ୍ତୁ ଏବଂ ଡାଉନଲୋଡ୍ ହୋଇଥିବା .zip ଫାଇଲ୍ ଚୟନ କରନ୍ତୁ ।
-\n7. [ଯଦି .zip ଆମଦାନି ବିଫଳ]</string>
+    <string name="import_youtube_instructions">ଗୁଗୁଲ୍ ନିଆଯିବା ଠାରୁ ୟୁଟ୍ୟୁବ୍ ସଦସ୍ୟତା ଆମଦାନୀ କରନ୍ତୁ: \n \n1. ଏହି URL କୁ ଯାଆନ୍ତୁ: %1$s । \n2. ପଚରାଗଲେ ଲଗ୍ ଇନ୍ କରନ୍ତୁ । \n3. \"ସମସ୍ତ ତଥ୍ୟ ଅନ୍ତର୍ଭୂକ୍ତ\" ଉପରେ କ୍ଲିକ୍ କରନ୍ତୁ, ତାପରେ \"ସମସ୍ତ ଚୟନ କରନ୍ତୁ\" ଉପରେ କ୍ଲିକ୍ କରନ୍ତୁ, ତାପରେ କେବଳ \"ସଦସ୍ୟତା\" ଚୟନ କରନ୍ତୁ ଏବଂ \"ଓକେ\" କ୍ଲିକ୍ କରନ୍ତୁ । \n4. \"ପରବର୍ତ୍ତୀ ପଦକ୍ଷେପ\" ଏବଂ ତାପରେ \"ରପ୍ତାନି ସୃଷ୍ଟି\" ଉପରେ କ୍ଲିକ୍ କରନ୍ତୁ । \n5. ଏହା ଦେଖାଯିବା ପରେ \"ଡାଉନଲୋଡ୍\" ବଟନ୍ ଉପରେ କ୍ଲିକ୍ କରନ୍ତୁ । \n6. ନିମ୍ନରେ IMPORT FILE ଉପରେ କ୍ଲିକ୍ କରନ୍ତୁ ଏବଂ ଡାଉନଲୋଡ୍ ହୋଇଥିବା .zip ଫାଇଲ୍ ଚୟନ କରନ୍ତୁ । \n7. [ଯଦି .zip ଆମଦାନି ବିଫଳ]</string>
     <string name="pause_downloads_on_mobile_desc">ମୋବାଇଲ୍ ଡାଟା ସୁଇଚ୍ କରିବା ସମୟରେ ଉପଯୋଗୀ, ଯଦିଓ କିଛି ଡାଉନଲୋଡ୍ ସ୍ଥଗିତ ହୋଇପାରିବ ନାହିଁ</string>
     <string name="feed_use_dedicated_fetch_method_summary">କେତେକ ସେବାରେ ଉପଲବ୍ଧ, ଏହା ସାଧାରଣତଃ ଅଧିକ ତୀବ୍ର ଅଟେ କିନ୍ତୁ ଏକ ସୀମିତ ପରିମାଣର ଆଇଟମ୍ ଏବଂ ପ୍ରାୟତଃ ଅସମ୍ପୂର୍ଣ୍ଣ ସୂଚନା ଫେରସ୍ତ କରିପାରେ (ଯଥା କୌଣସି ଅବଧି, ଆଇଟମ୍ ପ୍ରକାର, ଜୀବନ୍ତ ସ୍ଥିତି ନାହିଁ)</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">ଆପଣ ଭାବୁଛନ୍ତି କି ଫିଡ୍ ଲୋଡିଂ ବହୁତ ଧୀର ଅଟେ\? ଯଦି ଏହା ହୁଏ, ଦ୍ରୁତ ଲୋଡିଂ ସକ୍ଷମ କରିବାକୁ ଚେଷ୍ଟା କରନ୍ତୁ (ଆପଣ ଏହାକୁ ସେଟିଂସମୂହରେ କିମ୍ବା ତଳେ ଥିବା ବଟନ୍ ଦବାଇ ଏହାକୁ ପରିବର୍ତ୍ତନ କରିପାରିବେ) ।
-\n
-\nNewPipe ଦୁଇଟି ଫିଡ୍ ଲୋଡିଂ କ strateg ଶଳ ପ୍ରଦାନ କରେ:
-\n• ସମଗ୍ର ସବସ୍କ୍ରିପସନ୍ ଚ୍ୟାନେଲ୍ ଆଣିବା, ଯାହା ଧୀର କିନ୍ତୁ ସଂପୂର୍ଣ୍ଣ ।
-\nଏକ ଉତ୍ସର୍ଗୀକୃତ ସେବା ଶେଷ ପଏଣ୍ଟ ବ୍ୟବହାର କରିବା, ଯାହା ଦ୍ରୁତ କିନ୍ତୁ ସାଧାରଣତଃ ସଂପୂର୍ଣ୍ଣ ନୁହେଁ ।
-\n
-\nଉଭୟଙ୍କ ମଧ୍ୟରେ ପାର୍ଥକ୍ୟ ହେଉଛି ଦ୍ରୁତତମରେ ସାଧାରଣତ some କିଛି ସୂଚନା ଅଭାବ ଥାଏ, ଯେପରିକି ଆଇଟମ୍ ର ଅବଧି କିମ୍ବା ପ୍ରକାର (ଲାଇଭ୍ ଭିଡିଓ ଏବଂ ସାଧାରଣ ଭିଡିଓ ମଧ୍ୟରେ ପାର୍ଥକ୍ୟ କରିପାରିବ ନାହିଁ) ଏବଂ ଏହା କମ୍ ଆଇଟମ୍ ଫେରସ୍ତ କରିପାରେ ।
-\n
-\nୟୁଟ୍ୟୁବ୍ ହେଉଛି ଏକ ସେବାର ଏକ ଉଦାହରଣ ଯାହା ଏହାର RSS ଫିଡ୍ ସହିତ ଏହି ଦ୍ରୁତ ପଦ୍ଧତି ପ୍ରଦାନ କରେ ।
-\n
-\nତେଣୁ ଆପଣ ଯାହା ପସନ୍ଦ କରନ୍ତି ତାହା ପସନ୍ଦ ଫୁଟିବ: ଗତି କିମ୍ବା ସଠିକ୍ ସୂଚନା ।</string>
-    <string name="no_appropriate_file_manager_message">ଏହି କାର୍ଯ୍ୟ ପାଇଁ କୌଣସି ଉପଯୁକ୍ତ ଫାଇଲ ପରିଚାଳକ ମିଳିଲା ନାହିଁ ।
-\nଦୟାକରି ଏକ ଫାଇଲ୍ ମ୍ୟାନେଜର୍ ସଂସ୍ଥାପନ କରନ୍ତୁ କିମ୍ବା ଡାଉନଲୋଡ୍ ସେଟିଂସମୂହରେ \'%s\' ଅକ୍ଷମ କରିବାକୁ ଚେଷ୍ଟା କରନ୍ତୁ</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">ଆପଣ ଭାବୁଛନ୍ତି କି ଫିଡ୍ ଲୋଡିଂ ବହୁତ ଧୀର ଅଟେ? ଯଦି ଏହା ହୁଏ, ଦ୍ରୁତ ଲୋଡିଂ ସକ୍ଷମ କରିବାକୁ ଚେଷ୍ଟା କରନ୍ତୁ (ଆପଣ ଏହାକୁ ସେଟିଂସମୂହରେ କିମ୍ବା ତଳେ ଥିବା ବଟନ୍ ଦବାଇ ଏହାକୁ ପରିବର୍ତ୍ତନ କରିପାରିବେ) । \n \nNewPipe ଦୁଇଟି ଫିଡ୍ ଲୋଡିଂ କ strateg ଶଳ ପ୍ରଦାନ କରେ: \n• ସମଗ୍ର ସବସ୍କ୍ରିପସନ୍ ଚ୍ୟାନେଲ୍ ଆଣିବା, ଯାହା ଧୀର କିନ୍ତୁ ସଂପୂର୍ଣ୍ଣ । \nଏକ ଉତ୍ସର୍ଗୀକୃତ ସେବା ଶେଷ ପଏଣ୍ଟ ବ୍ୟବହାର କରିବା, ଯାହା ଦ୍ରୁତ କିନ୍ତୁ ସାଧାରଣତଃ ସଂପୂର୍ଣ୍ଣ ନୁହେଁ । \n \nଉଭୟଙ୍କ ମଧ୍ୟରେ ପାର୍ଥକ୍ୟ ହେଉଛି ଦ୍ରୁତତମରେ ସାଧାରଣତ some କିଛି ସୂଚନା ଅଭାବ ଥାଏ, ଯେପରିକି ଆଇଟମ୍ ର ଅବଧି କିମ୍ବା ପ୍ରକାର (ଲାଇଭ୍ ଭିଡିଓ ଏବଂ ସାଧାରଣ ଭିଡିଓ ମଧ୍ୟରେ ପାର୍ଥକ୍ୟ କରିପାରିବ ନାହିଁ) ଏବଂ ଏହା କମ୍ ଆଇଟମ୍ ଫେରସ୍ତ କରିପାରେ । \n \nୟୁଟ୍ୟୁବ୍ ହେଉଛି ଏକ ସେବାର ଏକ ଉଦାହରଣ ଯାହା ଏହାର RSS ଫିଡ୍ ସହିତ ଏହି ଦ୍ରୁତ ପଦ୍ଧତି ପ୍ରଦାନ କରେ । \n \nତେଣୁ ଆପଣ ଯାହା ପସନ୍ଦ କରନ୍ତି ତାହା ପସନ୍ଦ ଫୁଟିବ: ଗତି କିମ୍ବା ସଠିକ୍ ସୂଚନା ।</string>
+    <string name="no_appropriate_file_manager_message">ଏହି କାର୍ଯ୍ୟ ପାଇଁ କୌଣସି ଉପଯୁକ୍ତ ଫାଇଲ ପରିଚାଳକ ମିଳିଲା ନାହିଁ । \nଦୟାକରି ଏକ ଫାଇଲ୍ ମ୍ୟାନେଜର୍ ସଂସ୍ଥାପନ କରନ୍ତୁ କିମ୍ବା ଡାଉନଲୋଡ୍ ସେଟିଂସମୂହରେ \'%s\' ଅକ୍ଷମ କରିବାକୁ ଚେଷ୍ଟା କରନ୍ତୁ</string>
     <string name="youtube_music_premium_content">ଏହି ଭିଡିଓ କେବଳ ୟୁଟ୍ୟୁବ୍ ମ୍ୟୁଜିକ୍ ପ୍ରିମିୟମ୍ ସଦସ୍ୟଙ୍କ ପାଇଁ ଉପଲବ୍ଧ, ତେଣୁ ଏହାକୁ ନ୍ୟୁପାଇପ୍ ଦ୍ୱାରା ଷ୍ଟ୍ରିମ୍ କିମ୍ବା ଡାଉନଲୋଡ୍ କରାଯାଇପାରିବ ନାହିଁ ।</string>
     <string name="progressive_load_interval_summary">ଧାରଣ ଅନ୍ତରାଳର ଆକାରକୁ ପ୍ରଗତିଶୀଳ ବିଷୟବସ୍ତୁ (ବର୍ତ୍ତମାନ %s) ରେ ପରିବର୍ତ୍ତନ କରନ୍ତୁ । ଗୋଟିଏ ନିମ୍ନମାନ ସେମାନଙ୍କର ପ୍ରାରମ୍ଭିକ ଧାରଣକୁ ତ୍ୱରାନ୍ୱିତ କରିପାରେ</string>
-    <string name="no_appropriate_file_manager_message_android_10">ଏହି କାର୍ଯ୍ୟ ପାଇଁ କୌଣସି ଉପଯୁକ୍ତ ଫାଇଲ ପରିଚାଳକ ମିଳିଲା ନାହିଁ ।
-\nଦୟାକରି ଏକ ଷ୍ଟୋରେଜ୍ ଆକ୍ସେସ୍ ଫ୍ରେମୱାର୍କ ସୁସଙ୍ଗତ ଫାଇଲ୍ ମ୍ୟାନେଜର୍ ସଂସ୍ଥାପନ କରନ୍ତୁ</string>
+    <string name="no_appropriate_file_manager_message_android_10">ଏହି କାର୍ଯ୍ୟ ପାଇଁ କୌଣସି ଉପଯୁକ୍ତ ଫାଇଲ ପରିଚାଳକ ମିଳିଲା ନାହିଁ । \nଦୟାକରି ଏକ ଷ୍ଟୋରେଜ୍ ଆକ୍ସେସ୍ ଫ୍ରେମୱାର୍କ ସୁସଙ୍ଗତ ଫାଇଲ୍ ମ୍ୟାନେଜର୍ ସଂସ୍ଥାପନ କରନ୍ତୁ</string>
     <string name="soundcloud_go_plus_content">ଅନ୍ତତଃ ପକ୍ଷେ ଆପଣଙ୍କ ଦେଶରେ ଏହା ଏକ ସାଉଣ୍ଡକ୍ଲାଉଡ୍ ଗୋ + ଟ୍ରାକ୍, ତେଣୁ ଏହାକୁ ନ୍ୟୁପାଇପ୍ ଦ୍ୱାରା ଷ୍ଟ୍ରିମ୍ କିମ୍ବା ଡାଉନଲୋଡ୍ କରାଯାଇପାରିବ ନାହିଁ ।</string>
     <string name="description_select_note">ଆପଣ ବର୍ତ୍ତମାନ ବର୍ଣ୍ଣନା ଭିତରେ ଟେକ୍ସଟ୍ ଚୟନ କରିପାରିବେ । ଧ୍ୟାନ ଦିଅନ୍ତୁ ଯେ ପୃଷ୍ଠାଟି ଫ୍ଲିକର ହୋଇପାରେ ଏବଂ ଚୟନ ମୋଡରେ ଥିବାବେଳେ ଲିଙ୍କଗୁଡିକ କ୍ଲିକ୍ ହୋଇନପାରେ ।</string>
     <string name="paid_content">ଏହି ବିଷୟବସ୍ତୁ କେବଳ ଉପଭୋକ୍ତାମାନଙ୍କ ପାଇଁ ଉପଲବ୍ଧ, ଯେଉଁମାନେ ଦେୟ ଦେଇଛନ୍ତି, ତେଣୁ ଏହାକୁ NewPipe ଦ୍ୱାରା ଷ୍ଟ୍ରିମିଟ୍ କିମ୍ବା ଡାଉନଲୋଡ୍ କରାଯାଇପାରିବ ନାହିଁ ।</string>
-    <string name="start_accept_privacy_policy">ୟୁରୋପୀୟ ଜେନେରାଲ୍ ଡାଟା ପ୍ରୋଟେକସନ୍ ରେଗୁଲେସନ୍ (GDPR) କୁ ପାଳନ କରିବାକୁ, ଆମେ ଏଠାରେ NewPipe ର ଗୋପନୀୟତା ନୀତି ପ୍ରତି ଆପଣଙ୍କ ଦୃଷ୍ଟି ଆକର୍ଷଣ କରୁ । ଦୟାକରି ଏହାକୁ ଭଲ ଭାବରେ ପଢ଼ନ୍ତୁ ।
-\nଆମକୁ ବଗ୍ ରିପୋର୍ଟ ପଠାଇବାକୁ ତୁମେ ଏହାକୁ ଗ୍ରହଣ କରିବା ଜରୁରୀ ।</string>
+    <string name="start_accept_privacy_policy">ୟୁରୋପୀୟ ଜେନେରାଲ୍ ଡାଟା ପ୍ରୋଟେକସନ୍ ରେଗୁଲେସନ୍ (GDPR) କୁ ପାଳନ କରିବାକୁ, ଆମେ ଏଠାରେ NewPipe ର ଗୋପନୀୟତା ନୀତି ପ୍ରତି ଆପଣଙ୍କ ଦୃଷ୍ଟି ଆକର୍ଷଣ କରୁ । ଦୟାକରି ଏହାକୁ ଭଲ ଭାବରେ ପଢ଼ନ୍ତୁ । \nଆମକୁ ବଗ୍ ରିପୋର୍ଟ ପଠାଇବାକୁ ତୁମେ ଏହାକୁ ଗ୍ରହଣ କରିବା ଜରୁରୀ ।</string>
     <string name="tab_subscriptions">ସଦସ୍ୟତା ଗୁଡ଼ିକ</string>
     <string name="use_external_video_player_summary">କିଛି ରେଜୋଲୁସନରେ ଅଡିଓ ଅପସାରଣ କରେ</string>
     <string name="show_higher_resolutions_title">ଉଚ୍ଚ ରେଜୋଲୁସନ ଦେଖାନ୍ତୁ</string>
@@ -204,7 +182,7 @@
     <string name="controls_add_to_playlist_title">ଏଥିରେ ଯୋଡ଼ିବା</string>
     <string name="default_popup_resolution_title">ଡିଫଲ୍ଟ ପପ୍ଅପ୍ ରେଜୋଲୁସନ</string>
     <string name="show_higher_resolutions_summary">କେବଳ କିଛି ଡିଭାଇସ୍ 2K / 4K ଭିଡିଓ ଚଲାଇ ପାରିବେ</string>
-    <string name="kore_not_found">ନିଖୋଜ କୋର ଆପ୍ ସଂସ୍ଥାପନ କରିବେ\?</string>
+    <string name="kore_not_found">ନିଖୋଜ କୋର ଆପ୍ ସଂସ୍ଥାପନ କରିବେ?</string>
     <string name="notification_scale_to_square_image_title">ଥମ୍ୱନେଲ କୁ 1:1 ଅନୁପାତରେ କ୍ରୋପ୍ କରନ୍ତୁ</string>
     <string name="notification_action_0_title">ପ୍ରଥମ କୃତ୍ୟ ବଟନ୍</string>
     <string name="notification_action_2_title">ତୃତୀୟ କୃତ୍ୟ ବଟନ୍</string>
@@ -260,11 +238,11 @@
     <string name="switch_to_main">ମେନ୍ କୁ ସୁଇଚ୍ କର</string>
     <string name="export_data_title">ଡାଟାବେସ୍ ରପ୍ତାନି କରନ୍ତୁ</string>
     <string name="export_data_summary">ରପ୍ତାନି ଇତିହାସ, ସଦସ୍ୟତା, ପ୍ଲେଲିଷ୍ଟ ଏବଂ ସେଟିଂସମୂହ</string>
-    <string name="delete_view_history_alert">ସମ୍ପୂର୍ଣ୍ଣ ଘଣ୍ଟା ଇତିହାସ ବିଲୋପ କରିବେ କି\?</string>
+    <string name="delete_view_history_alert">ସମ୍ପୂର୍ଣ୍ଣ ଘଣ୍ଟା ଇତିହାସ ବିଲୋପ କରିବେ କି?</string>
     <string name="clear_playback_states_title">ପ୍ଲେବେକ୍ ପୋଜିସନ୍ ଡିଲିଟ୍ କରନ୍ତୁ</string>
     <string name="clear_playback_states_summary">ସମସ୍ତ ପ୍ଲେକ୍ ପୋଜିସନ୍ ଡିଲିଟ୍ କରେ</string>
     <string name="clear_search_history_title">ସନ୍ଧାନ ଇତିହାସ ସଫା କରନ୍ତୁ</string>
-    <string name="delete_search_history_alert">ସମଗ୍ର ସନ୍ଧାନ ଇତିହାସ ବିଲୋପ କରିବେ କି\?</string>
+    <string name="delete_search_history_alert">ସମଗ୍ର ସନ୍ଧାନ ଇତିହାସ ବିଲୋପ କରିବେ କି?</string>
     <string name="download_to_sdcard_error_title">ବହିଃ-ଷ୍ଟୋରେଜ୍ ଅନୁପଲବ୍ଧ</string>
     <string name="network_error">ନେଟୱର୍କ ତ୍ରୁଟି</string>
     <string name="could_not_load_thumbnails">ସମସ୍ତ ଥମ୍ୱନେଲ୍ ଲୋଡ୍ କରିପାରିଲା ନାହିଁ</string>
@@ -276,7 +254,7 @@
     <string name="audio_streams_empty">କୌଣସି ଅଡିଓ ଷ୍ଟ୍ରିମ୍ ମିଳିଲା ନାହିଁ</string>
     <string name="error_occurred_detail">ଏକ ତ୍ରୁଟି ଘଟିଲା:%1$s</string>
     <string name="no_streams_available_download">ଡାଉନଲୋଡ୍ କରିବାକୁ କୌଣସି ଷ୍ଟ୍ରିମ୍ ଉପଲବ୍ଧ ନାହିଁ</string>
-    <string name="restore_defaults_confirmation">ଆପଣ ଡିଫଲ୍ଟ ପୁନଃସ୍ଥାପନ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି\?</string>
+    <string name="restore_defaults_confirmation">ଆପଣ ଡିଫଲ୍ଟ ପୁନଃସ୍ଥାପନ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି?</string>
     <string name="error_report_notification_title">NewPipe ଏକ ତ୍ରୁଟିର ସମ୍ମୁଖୀନ ହେଲା, ରିପୋର୍ଟ କରିବାକୁ ଟ୍ୟାପ୍ କରନ୍ତୁ</string>
     <string name="sorry_string">ଦୁଃଖିତ, ତାହା ହୋଇ ନଥାନ୍ତା ।</string>
     <string name="error_report_button_text">ଇ-ମେଲ ମାଧ୍ୟମରେ ରିପୋର୍ଟ କରନ୍ତୁ</string>
@@ -333,7 +311,7 @@
     <string name="popup_player">ପପ୍ଅପ୍ ପ୍ଲେୟାର୍</string>
     <string name="create_playlist">ନୂତନ ପ୍ଲେଲିଷ୍ଟ</string>
     <string name="unmute">ଅନ୍ମୁଟ୍ କରନ୍ତୁ</string>
-    <string name="delete_playlist_prompt">ଏହି ପ୍ଲେଲିଷ୍ଟ ବିଲୋପ କରିବେ କି\?</string>
+    <string name="delete_playlist_prompt">ଏହି ପ୍ଲେଲିଷ୍ଟ ବିଲୋପ କରିବେ କି?</string>
     <string name="caption_none">କୌଣସି କ୍ୟାପସନ୍ ନାହିଁ</string>
     <string name="resize_fit">ଫିଟ୍</string>
     <string name="enable_leak_canary_summary">ମେମୋରୀ ଲିକ୍ ମନିଟରିଂ ହିପ୍ ଡମ୍ପିଂ କରିବା ସମୟରେ ଆପ୍ ପ୍ରତିକ୍ରିୟାଶୀଳ ହୋଇପାରେ</string>
@@ -346,9 +324,7 @@
     <string name="export_ongoing">ରପ୍ତାନି…</string>
     <string name="import_file_title">ଫାଇଲ୍ ଆମଦାନୀ କରନ୍ତୁ</string>
     <string name="previous_export">ପୂର୍ବ ରପ୍ତାନି</string>
-    <string name="import_network_expensive_warning">ମନେରଖନ୍ତୁ ଏହି ଅପରେସନ୍ ନେଟୱାର୍କ ମହଙ୍ଗା ହୋଇପାରେ ।
-\n
-\nଆପଣ ଜାରି ରଖିବାକୁ ଚାହୁଁଛନ୍ତି କି\?</string>
+    <string name="import_network_expensive_warning">ମନେରଖନ୍ତୁ ଏହି ଅପରେସନ୍ ନେଟୱାର୍କ ମହଙ୍ଗା ହୋଇପାରେ । \n \nଆପଣ ଜାରି ରଖିବାକୁ ଚାହୁଁଛନ୍ତି କି?</string>
     <string name="streams_notifications_interval_title">ବାରମ୍ବାର ଯାଞ୍ଚ କରୁଛି</string>
     <string name="enable_streams_notifications_title">ନୂତନ ଷ୍ଟ୍ରିମ୍ ବିଜ୍ଞପ୍ତିଗୁଡିକ</string>
     <string name="streams_notifications_network_title">ଆବଶ୍ୟକ ନେଟୱର୍କ ସଂଯୋଗ</string>
@@ -376,7 +352,7 @@
     <string name="error_postprocessing_failed">ପରବର୍ତ୍ତୀ ପ୍ରକ୍ରିୟାକରଣ ବିଫଳ ହେଲା</string>
     <string name="error_postprocessing_stopped">ଫାଇଲରେ କାମ କରିବାବେଳେ ନ୍ୟୁ ପାଇପ୍ ବନ୍ଦ ହୋଇଯାଇଥିଲା</string>
     <string name="error_insufficient_storage_left">ଡିଭାଇସରେ କୌଣସି ସ୍ଥାନ ବାକି ନାହିଁ</string>
-    <string name="delete_downloaded_files_confirm">ଡିସ୍କରୁ ସମସ୍ତ ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଫାଇଲଗୁଡ଼ିକୁ ଲିଭାନ୍ତୁ\?</string>
+    <string name="delete_downloaded_files_confirm">ଡିସ୍କରୁ ସମସ୍ତ ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଫାଇଲଗୁଡ଼ିକୁ ଲିଭାନ୍ତୁ?</string>
     <string name="stop">ବନ୍ଦ କର</string>
     <string name="max_retry_msg">ସର୍ବାଧିକ ପୁନଃଚେଷ୍ଟା</string>
     <string name="pause_downloads_on_mobile">ମିଟର ନେଟୱାର୍କରେ ବାଧା</string>
@@ -387,7 +363,7 @@
     <string name="downloads_storage_use_saf_summary_api_29">ଆଣ୍ଡ୍ରଏଡ୍ 10 ରୁ କେବଳ \'ଷ୍ଟୋରେଜ୍ ଆକ୍ସେସ୍ ଫ୍ରେମୱାର୍କ\' ସମର୍ଥିତ</string>
     <string name="choose_instance_prompt">ଏକ ଉଦାହରଣ ବାଛନ୍ତୁ</string>
     <string name="new_seek_duration_toast">ExoPlayer ପ୍ରତିବନ୍ଧକ ହେତୁ ସନ୍ଧାନ ସମୟସୀମା %d ସେକେଣ୍ଡରେ ସେଟ୍ ହୋଇଥିଲା</string>
-    <string name="feed_group_dialog_delete_message">ଆପଣ ଏହି ଗୋଷ୍ଠୀ ବିଲୋପ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି\?</string>
+    <string name="feed_group_dialog_delete_message">ଆପଣ ଏହି ଗୋଷ୍ଠୀ ବିଲୋପ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି?</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">କେବଳ ଅଣସଂଗଠିତ ସଦସ୍ୟତା ଦେଖାନ୍ତୁ</string>
     <string name="settings_category_feed_title">ଫିଡ୍</string>
     <string name="feed_update_threshold_title">ଫିଡ୍ ଅପଡେଟ୍ ସୀମା</string>
@@ -490,12 +466,10 @@
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer ଡିଫଲ୍ଟ</string>
     <string name="metadata_age_limit">ବୟସ ସୀମା</string>
     <string name="unknown_quality">ଅଜ୍ଞାତ ଗୁଣବତ୍ତା</string>
-    <string name="restricted_video">ଏହି ଭିଡିଓ ବୟସ ସୀମିତ ଅଟେ ।
-\n
-\nଯଦି ଆପଣ ଏହାକୁ ଦେଖିବାକୁ ଚାହୁଁଛନ୍ତି ତେବେ ସେଟିଂସମୂହରେ \"%1$s\" ଟର୍ନ୍ ଅନ୍ କରନ୍ତୁ ।</string>
+    <string name="restricted_video">ଏହି ଭିଡିଓ ବୟସ ସୀମିତ ଅଟେ । \n \nଯଦି ଆପଣ ଏହାକୁ ଦେଖିବାକୁ ଚାହୁଁଛନ୍ତି ତେବେ ସେଟିଂସମୂହରେ \"%1$s\" ଟର୍ନ୍ ଅନ୍ କରନ୍ତୁ ।</string>
     <string name="error_report_title">ତ୍ରୁଟି ରିପୋର୍ଟ</string>
     <string name="albums">ଆଲବମ୍ ଗୁଡ଼ିକ</string>
-    <string name="download_to_sdcard_error_message">ବହିଃ SD କାର୍ଡରେ ଡାଉନଲୋଡ୍ କରିବା ସମ୍ଭଵ ନୁହେଁ। ଡାଉନଲୋଡ୍ ଫୋଲ୍ଡର୍ ଅବସ୍ଥାନ ପୁନଃସେଟ୍ କରିବେ କି\?</string>
+    <string name="download_to_sdcard_error_message">ବହିଃ SD କାର୍ଡରେ ଡାଉନଲୋଡ୍ କରିବା ସମ୍ଭଵ ନୁହେଁ। ଡାଉନଲୋଡ୍ ଫୋଲ୍ଡର୍ ଅବସ୍ଥାନ ପୁନଃସେଟ୍ କରିବେ କି?</string>
     <string name="file_deleted">ଫାଇଲ୍ ଡିଲିଟ୍ ହୋଇଛି</string>
     <string name="just_once">କେବଳ ଥରେ</string>
     <string name="notification_channel_name">ନୂତନ ପାଇପ୍ ବିଜ୍ଞପ୍ତି</string>
@@ -507,7 +481,7 @@
     <string name="import_data_summary">ଆପଣଙ୍କର ସାମ୍ପ୍ରତିକ ଇତିହାସ, ସଦସ୍ୟତା, ପ୍ଲେଲିଷ୍ଟ ଏବଂ (ଇଚ୍ଛାଧୀନ) ସେଟିଂସମୂହକୁ ନବଲିଖନ କରେ</string>
     <string name="clear_views_history_title">ଘଣ୍ଟା ଇତିହାସ ସଫା କରନ୍ତୁ</string>
     <string name="clear_views_history_summary">ଖେଳାଯାଇଥିବା ଷ୍ଟ୍ରିମ୍ ଏବଂ ପ୍ଲେକ୍ ସ୍ଥିତିକୁ ବିଲୋପ କରେ</string>
-    <string name="delete_playback_states_alert">ସମସ୍ତ ପ୍ଲେକ୍ ପୋଜିସନ୍ ବିଲୋପ କରିବେ କି\?</string>
+    <string name="delete_playback_states_alert">ସମସ୍ତ ପ୍ଲେକ୍ ପୋଜିସନ୍ ବିଲୋପ କରିବେ କି?</string>
     <string name="clear_search_history_summary">ସନ୍ଧାନ କୀ ଶବ୍ଦର ଇତିହାସ ବିଲୋପ କରେ</string>
     <string name="general_error">ତ୍ରୁଟି</string>
     <string name="player_unrecoverable_failure">ପୁନରୁଦ୍ଧାର ନ ହୋଇପାରିଲା ପରି ପ୍ଲେୟାର ତ୍ରୁଟି ଘଟିଲା</string>
@@ -519,7 +493,7 @@
     <string name="error_report_notification_toast">ଏକ ତ୍ରୁଟି ଘଟିଛି, ବିଜ୍ଞପ୍ତିକୁ ଦେଖନ୍ତୁ</string>
     <string name="copy_for_github">ଫର୍ମାଟ୍ ହୋଇଥିବା ରିପୋର୍ଟ କପି କରନ୍ତୁ</string>
     <string name="permission_display_over_apps">ଅନ୍ୟ ଆପ୍ସ ଉପରେ ପ୍ରଦର୍ଶନ କରିବାକୁ ଅନୁମତି ଦିଅନ୍ତୁ</string>
-    <string name="error_report_open_github_notice">ଦୟାକରି ଯାଞ୍ଚ କରନ୍ତୁ ଯେ ଆପଣଙ୍କର କ୍ରାସ୍ ବିଷୟରେ ଆଲୋଚନା କରୁଥିବା ଏକ ସମସ୍ୟା ପୂର୍ବରୁ ଅଛି କି\? ନକଲ ଟିକେଟ୍ ତିଆରି କରିବାବେଳେ, ଆପଣ ଆମଠାରୁ ସମୟ ନିଅନ୍ତି ଯାହାକୁ ଆମେ ପ୍ରକୃତ ତ୍ରୁଟି ସୁଧାରିବା ସହିତ ଖର୍ଚ୍ଚ କରିପାରିବା ।</string>
+    <string name="error_report_open_github_notice">ଦୟାକରି ଯାଞ୍ଚ କରନ୍ତୁ ଯେ ଆପଣଙ୍କର କ୍ରାସ୍ ବିଷୟରେ ଆଲୋଚନା କରୁଥିବା ଏକ ସମସ୍ୟା ପୂର୍ବରୁ ଅଛି କି? ନକଲ ଟିକେଟ୍ ତିଆରି କରିବାବେଳେ, ଆପଣ ଆମଠାରୁ ସମୟ ନିଅନ୍ତି ଯାହାକୁ ଆମେ ପ୍ରକୃତ ତ୍ରୁଟି ସୁଧାରିବା ସହିତ ଖର୍ଚ୍ଚ କରିପାରିବା ।</string>
     <string name="your_comment">ଆପଣଙ୍କର ମନ୍ତବ୍ୟ (ଇଂରାଜୀରେ):</string>
     <string name="related_items_tab_description">ସମ୍ବନ୍ଧୀୟ ଆଇଟମ୍ ଗୁଡ଼ିକ</string>
     <string name="detail_drag_description">ପୁନଃ ସଯାଇବାକୁ ଡ୍ରାଗ୍ କରନ୍ତୁ</string>
@@ -537,29 +511,22 @@
     <string name="copyright">© %1$s ଦ୍ଵାରା %2$s ରେ %3$s</string>
     <string name="contribution_encouragement">ଆପଣଙ୍କର ଧାରଣା ଅଛି କି ନାହିଁ; ଅନୁବାଦ, ଡିଜାଇନ୍ ପରିବର୍ତ୍ତନ, କୋଡ୍ ସଫା କରିବା, କିମ୍ବା ପ୍ରକୃତ ଭାରୀ କୋଡ୍ ପରିବର୍ତ୍ତନ - ସାହାଯ୍ୟ ସର୍ବଦା ସ୍ୱାଗତଯୋଗ୍ୟ ।ଯେତେ ଭଲ ହୁଏ ସେତେ ଭଲ ହୁଏ!</string>
     <string name="app_description">ଆଣ୍ଡ୍ରଏଡରେ ସ୍ଵାଧୀନ ହାଲୁକା ଷ୍ଟ୍ରିମିଂ ।</string>
-    <string name="privacy_policy_encouragement">ନ୍ୟୁ ପାଇପ୍ ପ୍ରୋଜେକ୍ଟ ଆପଣଙ୍କ ଗୋପନୀୟତାକୁ ଅତି ଗମ୍ଭୀରତାର ସହିତ ନେଇଥାଏ । ତେଣୁ, ଆପଣଙ୍କ ସମ୍ମତି ବିନା ଆପ୍ କୌଣସି ତଥ୍ୟ ସଂଗ୍ରହ କରେ ନାହିଁ ।
-\nNewPipe ର ଗୋପନୀୟତା ନୀତି ବିସ୍ତୃତ ଭାବରେ ବ୍ୟାଖ୍ୟା କରେ ଯେତେବେଳେ ଆପଣ କ୍ରାସ୍ ରିପୋର୍ଟ ପଠାନ୍ତି କେଉଁ ତଥ୍ୟ ପଠାଯାଏ ଏବଂ ଗଚ୍ଛିତ ହୁଏ ।</string>
+    <string name="privacy_policy_encouragement">ନ୍ୟୁ ପାଇପ୍ ପ୍ରୋଜେକ୍ଟ ଆପଣଙ୍କ ଗୋପନୀୟତାକୁ ଅତି ଗମ୍ଭୀରତାର ସହିତ ନେଇଥାଏ । ତେଣୁ, ଆପଣଙ୍କ ସମ୍ମତି ବିନା ଆପ୍ କୌଣସି ତଥ୍ୟ ସଂଗ୍ରହ କରେ ନାହିଁ । \nNewPipe ର ଗୋପନୀୟତା ନୀତି ବିସ୍ତୃତ ଭାବରେ ବ୍ୟାଖ୍ୟା କରେ ଯେତେବେଳେ ଆପଣ କ୍ରାସ୍ ରିପୋର୍ଟ ପଠାନ୍ତି କେଉଁ ତଥ୍ୟ ପଠାଯାଏ ଏବଂ ଗଚ୍ଛିତ ହୁଏ ।</string>
     <string name="main_page_content">ମୁଖ୍ୟ ପୃଷ୍ଠାର ବିଷୟବସ୍ତୁ</string>
     <string name="select_a_playlist">ଏକ ପ୍ଲେଲିଷ୍ଟ ଚୟନ କରନ୍ତୁ</string>
     <string name="import_complete_toast">ଆମଦାନୀ ହୋଇଛି</string>
     <string name="override_current_data">ଏହା ତୁମର ସାମ୍ପ୍ରତିକ ସେଟଅପ୍ କୁ ନବଲିଖନ କରିବ ।</string>
     <string name="title_activity_play_queue">ଧାଡି ଚଲାନ୍ତୁ</string>
-    <string name="msg_popup_permission">ଏହି ଅନୁମତି ଆବଶ୍ୟକ
-\nପପ୍ଅପ୍ ମୋଡ୍ ରେ ଖୋଲ</string>
+    <string name="msg_popup_permission">ଏହି ଅନୁମତି ଆବଶ୍ୟକ \nପପ୍ଅପ୍ ମୋଡ୍ ରେ ଖୋଲ</string>
     <string name="create_error_notification">ଏକ ତ୍ରୁଟି ବିଜ୍ଞପ୍ତି ସୃଷ୍ଟି କରନ୍ତୁ</string>
     <string name="export_to">କୁ ରପ୍ତାନି କରନ୍ତୁ</string>
-    <string name="import_soundcloud_instructions">URL କିମ୍ବା ଆପଣଙ୍କର ID ଟାଇପ୍ କରି ଏକ ସାଉଣ୍ଡ କ୍ଲାଉଡ୍ ପ୍ରୋଫାଇଲ୍ ଆମଦାନୀ କରନ୍ତୁ:
-\n
-\nଏକ ୱେବ୍ ବ୍ରାଉଜରରେ “ଡେସ୍କଟପ୍ ମୋଡ୍” ସକ୍ଷମ କର (ମୋବାଇଲ୍ ଡିଭାଇସ୍ ପାଇଁ ସାଇଟ୍ ଉପଲବ୍ଧ ନୁହେଁ)
-\n2. ଏହି URL କୁ ଯାଆନ୍ତୁ:%1$s ।
-\n3. ପଚରାଗଲେ ଲଗ୍ ଇନ୍ କରନ୍ତୁ ।
-\n4. ଆପଣ ପୁନଃ ନିର୍ଦ୍ଦେଶିତ ହୋଇଥିବା ପ୍ରୋଫାଇଲ୍ URL କପି କରନ୍ତୁ ।</string>
+    <string name="import_soundcloud_instructions">URL କିମ୍ବା ଆପଣଙ୍କର ID ଟାଇପ୍ କରି ଏକ ସାଉଣ୍ଡ କ୍ଲାଉଡ୍ ପ୍ରୋଫାଇଲ୍ ଆମଦାନୀ କରନ୍ତୁ: \n \nଏକ ୱେବ୍ ବ୍ରାଉଜରରେ “ଡେସ୍କଟପ୍ ମୋଡ୍” ସକ୍ଷମ କର (ମୋବାଇଲ୍ ଡିଭାଇସ୍ ପାଇଁ ସାଇଟ୍ ଉପଲବ୍ଧ ନୁହେଁ) \n2. ଏହି URL କୁ ଯାଆନ୍ତୁ:%1$s । \n3. ପଚରାଗଲେ ଲଗ୍ ଇନ୍ କରନ୍ତୁ । \n4. ଆପଣ ପୁନଃ ନିର୍ଦ୍ଦେଶିତ ହୋଇଥିବା ପ୍ରୋଫାଇଲ୍ URL କପି କରନ୍ତୁ ।</string>
     <string name="playback_pitch">ପିଚ୍</string>
     <string name="limit_mobile_data_usage_title">ମୋବାଇଲ୍ ଡାଟା ବ୍ୟବହାର କରିବା ସମୟରେ ରେଜୋଲୁସନ ସୀମିତ କରନ୍ତୁ</string>
     <string name="checking_updates_toast">ଅଦ୍ୟତନ ପାଇଁ ଯାଞ୍ଚ କରୁଛି…</string>
     <string name="seekbar_preview_thumbnail_title">ସେକ୍ବାର୍ ଥମ୍ୱନେଲ୍ ପୂର୍ବାବଲୋକନ</string>
     <string name="high_quality_larger">ଉଚ୍ଚ ଗୁଣବତ୍ତା (ବଡ଼)</string>
-    <string name="confirm_prompt">ଆପଣ ଆପଣଙ୍କର ଡାଉନଲୋଡ୍ ଇତିହାସ ସଫା କରିବାକୁ କିମ୍ବା ସମସ୍ତ ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଫାଇଲଗୁଡିକ ବିଲୋପ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି\?</string>
+    <string name="confirm_prompt">ଆପଣ ଆପଣଙ୍କର ଡାଉନଲୋଡ୍ ଇତିହାସ ସଫା କରିବାକୁ କିମ୍ବା ସମସ୍ତ ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଫାଇଲଗୁଡିକ ବିଲୋପ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି?</string>
     <string name="error_unknown_host">ସର୍ଭର ଖୋଜି ପାଇଲା ନାହିଁ</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s ଡାଉନଲୋଡ୍ ଡିଲିଟ୍ ହୋଇଛି</item>
@@ -571,17 +538,14 @@
     </plurals>
     <string name="feed_load_error_account_info">\'%s\' ପାଇଁ ଫିଡ୍ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ ।</string>
     <string name="feed_new_items">ନୂତନ ଫିଡ୍ ଆଇଟମ୍</string>
-    <string name="feed_load_error_terminated">ଲେଖକଙ୍କ ଆକାଉଣ୍ଟକୁ ବନ୍ଦ କରିଦିଆଯାଇଛି ।
-\nଭବିଷ୍ୟତରେ NewPipe ଏହି ଫିଡ୍ ଲୋଡ୍ କରିବାକୁ ସମର୍ଥ ହେବ ନାହିଁ ।
-\nଆପଣ ଏହି ଚ୍ୟାନେଲରୁ ସଦସ୍ୟତା ରଦ୍ଦ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି\?</string>
+    <string name="feed_load_error_terminated">ଲେଖକଙ୍କ ଆକାଉଣ୍ଟକୁ ବନ୍ଦ କରିଦିଆଯାଇଛି । \nଭବିଷ୍ୟତରେ NewPipe ଏହି ଫିଡ୍ ଲୋଡ୍ କରିବାକୁ ସମର୍ଥ ହେବ ନାହିଁ । \nଆପଣ ଏହି ଚ୍ୟାନେଲରୁ ସଦସ୍ୟତା ରଦ୍ଦ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି?</string>
     <string name="metadata_privacy_internal">ଅନ୍ତଃସ୍ଥ</string>
     <string name="you_successfully_subscribed">ଆପଣ ବର୍ତ୍ତମାନ ଏହି ଚ୍ୟାନେଲକୁ ସବସ୍କ୍ରାଇବ କରିଛନ୍ତି</string>
     <string name="no_video_streams_available_for_external_players">ବହିଃ-ଚାଳକ ନିମନ୍ତେ କୌଣସି ଵିଡ଼ିଓ ଷ୍ଟ୍ରିମ୍ ଉପଲବ୍ଧ ନାହିଁ</string>
     <string name="detail_heart_img_view_description">ସୃଷ୍ଟିକର୍ତ୍ତାଙ୍କ ଦ୍ୱାରା ହୃଦୟ</string>
     <string name="streams_not_yet_supported_removed">ଷ୍ଟ୍ରିମ୍ ଯାହା ଏପର୍ଯ୍ୟନ୍ତ ଡାଉନଲୋଡର୍ ଦ୍ୱାରା ସମର୍ଥିତ ନୁହେଁ</string>
     <string name="unknown_format">ଅଜ୍ଞାତ ଫର୍ମାଟ୍</string>
-    <string name="downloads_storage_ask_summary">ପ୍ରତ୍ୟେକ ଡାଉନଲୋଡ୍‍କୁ କେଉଁଠାରେ ସଞ୍ଚୟ କରାଯିବ ତା\' ଆପଣଙ୍କୁ ପଚରାଯିବ।
-\nଯଦି ଆପଣ ଏକ ବହିଃ SD କାର୍ଡରେ ଡାଉନଲୋଡ୍ କରିବାକୁ ଚାହୁଁଛନ୍ତି ତେବେ ସିଷ୍ଟମ୍ ଫୋଲ୍ଡର୍ ଚୟକ (SAF)କୁ ସକ୍ଷମ କରନ୍ତୁ</string>
+    <string name="downloads_storage_ask_summary">ପ୍ରତ୍ୟେକ ଡାଉନଲୋଡ୍‍କୁ କେଉଁଠାରେ ସଞ୍ଚୟ କରାଯିବ ତା\' ଆପଣଙ୍କୁ ପଚରାଯିବ। \nଯଦି ଆପଣ ଏକ ବହିଃ SD କାର୍ଡରେ ଡାଉନଲୋଡ୍ କରିବାକୁ ଚାହୁଁଛନ୍ତି ତେବେ ସିଷ୍ଟମ୍ ଫୋଲ୍ଡର୍ ଚୟକ (SAF)କୁ ସକ୍ଷମ କରନ୍ତୁ</string>
     <string name="show_memory_leaks">ମେମୋରୀ ଲିକ୍ ଦେଖାନ୍ତୁ</string>
     <string name="show_original_time_ago_title">ଆଇଟମଗୁଡିକରେ ମୂଳ ସମୟ ପୂର୍ବରୁ ଦେଖାନ୍ତୁ</string>
     <string name="enable_disposed_exceptions_summary">ବିସର୍ଜନ ପରେ ଖଣ୍ଡ କିମ୍ବା କାର୍ଯ୍ୟକଳାପ ଜୀବନଚକ୍ର ବାହାରେ ଅଣସଂରକ୍ଷିତ Rx ବ୍ୟତିକ୍ରମଗୁଡିକର ଫୋର୍ସ ରିପୋର୍ଟିଂ</string>
@@ -621,7 +585,7 @@
     <string name="faq_title">ପ୍ରାୟତଃ ପଚରାଯାଇଥିବା ପ୍ରଶ୍ନ</string>
     <string name="faq_description">ଯଦି ଆପଣ ଆପ୍ ବ୍ୟବହାର କରିବାରେ ଅସୁବିଧାର ସମ୍ମୁଖୀନ ହେଉଛନ୍ତି, ସାଧାରଣ ପ୍ରଶ୍ନର ଏହି ଉତ୍ତରଗୁଡିକ ଯାଞ୍ଚ କରିବାକୁ ନିଶ୍ଚିତ ହୁଅନ୍ତୁ!</string>
     <string name="faq">ୱେବସାଇଟ୍ ରେ ଦେଖନ୍ତୁ</string>
-    <string name="delete_item_search_history">ଆପଣ ସନ୍ଧାନ ଇତିହାସରୁ ଏହି ଆଇଟମ୍ ବିଲୋପ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି\?</string>
+    <string name="delete_item_search_history">ଆପଣ ସନ୍ଧାନ ଇତିହାସରୁ ଏହି ଆଇଟମ୍ ବିଲୋପ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି?</string>
     <string name="title_most_played">ଅଧିକାଂଶ ପ୍ଲେ ହୋଇଛି</string>
     <string name="main_page_content_summary">ମୁଖ୍ୟ ପୃଷ୍ଠାରେ କେଉଁ ଟ୍ୟାବଗୁଡ଼ିକ ଦେଖାଯାଏ</string>
     <string name="select_a_channel">ଏକ ଚ୍ୟାନେଲ୍ ଚୟନ କରନ୍ତୁ</string>
@@ -629,7 +593,7 @@
     <string name="no_channel_subscribed_yet">ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଚ୍ୟାନେଲ ରେ ସଦସ୍ୟତା ନାହିଁ</string>
     <string name="select_a_kiosk">ଏକ କିଓସ୍କ ଚୟନ କରନ୍ତୁ</string>
     <string name="could_not_import_all_files">ଚେତାବନୀ: ସମସ୍ତ ଫାଇଲ୍ ଆମଦାନି କରିପାରିଲା ନାହିଁ ।</string>
-    <string name="import_settings">ଆପଣ ସେଟିଂସମୂହ ମଧ୍ୟ ଆମଦାନୀ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି\?</string>
+    <string name="import_settings">ଆପଣ ସେଟିଂସମୂହ ମଧ୍ୟ ଆମଦାନୀ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି?</string>
     <string name="error_unable_to_load_comments">ମନ୍ତବ୍ୟ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ</string>
     <string name="most_liked">ଅଧିକାଂଶ ପସନ୍ଦ କରନ୍ତି</string>
     <string name="show_channel_details">ଚ୍ୟାନେଲର ବିବରଣୀ ଦେଖାନ୍ତୁ</string>
@@ -678,9 +642,7 @@
     <string name="feed_update_threshold_summary">ଏକ ସଦସ୍ୟତା ପୂର୍ବରୁ ଶେଷ ଅଦ୍ୟତନ ପରେ ସମୟ ପୁରୁଣା ବୋଲି ବିବେଚନା କରାଯାଏ -%s</string>
     <string name="feed_load_error">ଫିଡ୍ ଲୋଡ୍ କରିବାରେ ତ୍ରୁଟି</string>
     <string name="feed_load_error_fast_unknown">ଫାଷ୍ଟ ଫିଡ୍ ମୋଡ୍ ଏହା ଉପରେ ଅଧିକ ସୂଚନା ପ୍ରଦାନ କରେ ନାହିଁ ।</string>
-    <string name="content_not_supported">ଏହି ବିଷୟବସ୍ତୁ ଏପର୍ଯ୍ୟନ୍ତ NewPipe ଦ୍ୱାରା ସମର୍ଥିତ ନୁହେଁ ।
-\n
-\nଭବିଷ୍ୟତ ସଂସ୍କରଣରେ ଏହା ସମର୍ଥିତ ହେବ ବୋଲି ଆଶା କରୁଛି ।</string>
+    <string name="content_not_supported">ଏହି ବିଷୟବସ୍ତୁ ଏପର୍ଯ୍ୟନ୍ତ NewPipe ଦ୍ୱାରା ସମର୍ଥିତ ନୁହେଁ । \n \nଭବିଷ୍ୟତ ସଂସ୍କରଣରେ ଏହା ସମର୍ଥିତ ହେବ ବୋଲି ଆଶା କରୁଛି ।</string>
     <string name="select_night_theme_toast">ଆପଣ ନିମ୍ନରେ ଆପଣଙ୍କର ପ୍ରିୟ ରାତିର ଥିମ୍ ଚୟନ କରିପାରିବେ</string>
     <string name="download_has_started">ଡାଉନଲୋଡ୍ ଆରମ୍ଭ ହୋଇଛି</string>
     <string name="metadata_tags">ଟ୍ୟାଗ୍ସ</string>
@@ -714,8 +676,8 @@
     <string name="ignore_hardware_media_buttons_title">ହାର୍ଡୱେର୍ ମିଡିଆ ବଟନ୍ ଇଭେଣ୍ଟଗୁଡ଼ିକୁ ଉପେକ୍ଷା କରନ୍ତୁ</string>
     <string name="ignore_hardware_media_buttons_summary">ଉପଯୋଗୀ, ଉଦାହରଣ ସ୍ୱରୂପ, ଯଦି ଆପଣ ଭଙ୍ଗା ଶାରୀରିକ ବଟନ୍ ସହିତ ହେଡସେଟ୍ ବ୍ୟବହାର କରୁଛନ୍ତି</string>
     <string name="remove_duplicates">ନକଲଗୁଡିକ ଅପସାରଣ କରନ୍ତୁ</string>
-    <string name="remove_duplicates_title">ନକଲ ଗୁଡିକ ହଟାନ୍ତୁ\?</string>
-    <string name="remove_duplicates_message">ଆପଣ ଏହି ପ୍ଲେଲିଷ୍ଟରେ ଥିବା ସମସ୍ତ ନକଲ ଷ୍ଟ୍ରିମ୍ ଅପସାରଣ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି\?</string>
+    <string name="remove_duplicates_title">ନକଲ ଗୁଡିକ ହଟାନ୍ତୁ?</string>
+    <string name="remove_duplicates_message">ଆପଣ ଏହି ପ୍ଲେଲିଷ୍ଟରେ ଥିବା ସମସ୍ତ ନକଲ ଷ୍ଟ୍ରିମ୍ ଅପସାରଣ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି?</string>
     <string name="feed_hide_streams_title">ନିମ୍ନଲିଖିତ ଷ୍ଟ୍ରିମ୍ ଗୁଡିକ ଦେଖାନ୍ତୁ</string>
     <string name="feed_show_hide_streams">ଷ୍ଟ୍ରିମ୍ ଗୁଡିକ ଦେଖାନ୍ତୁ/ଲୁଚାନ୍ତୁ</string>
     <string name="feed_show_watched">ପୁରା ଦେଖାଯାଇଛି</string>
@@ -749,9 +711,7 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_title">ସର୍ବଦା ExoPlayer ର ଭିଡ଼ିଓ ଆଉଟପୁଟ୍ ପୃଷ୍ଠ ବିନ୍ୟାସ କାର୍ଯ୍ଯକ୍ଷେତ୍ରକୁ ବ୍ୟବହାର କରନ୍ତୁ</string>
     <string name="disable_media_tunneling_automatic_info">ଆପଣଙ୍କର ଡିଭାଇସରେ ଡିଫଲ୍ଟ ଭାବରେ ମିଡିଆ ସୁଡଙ୍ଗକୁ ନିଷ୍କ୍ରିୟ କରାଯାଇଛି କାରଣ ଆପଣଙ୍କର ଡିଭାଇସ ମଡେଲ ଏହାକୁ ସମର୍ଥନ କରୁନାହିଁ ବୋଲି ଜଣାଅଛି ।</string>
     <string name="settings_category_exoplayer_title">ExoPlayer ବିନ୍ୟାସଗୁଡ଼ିକ</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_summary">ଏହି ୱାର୍କଆରାଉଣ୍ଡ ଭିଡିଓ କୋଡେକଗୁଡ଼ିକୁ ରିଲିଜ କରିଥାଏ ଏବଂ ପୁନଃସ୍ଥାପନ କରିଥାଏ ଯେତେବେଳେ ଗୋଟିଏ ପୃଷ୍ଠ ପରିବର୍ତ୍ତନ ହୋଇଥାଏ, ଭୂପୃଷ୍ଠକୁ ସିଧାସଳଖ କୋଡେକରେ ସେଟ କରିବା ପରିବର୍ତ୍ତେ । ଏହି ସମସ୍ୟା ସହିତ କିଛି ଉପକରଣରେ ExoPlayer ଦ୍ୱାରା ପୂର୍ବରୁ ବ୍ୟବହୃତ, ଏହି ସଂରଚନା କେବଳ ଆଣ୍ଡ୍ରଏଡ 6 ଏବଂ ଉଚ୍ଚତର ଉପରେ ପ୍ରଭାବ ପକାଇଥାଏ
-\n
-\nଏହି ବିକଳ୍ପକୁ ସକ୍ରିୟ କରିବା ସାମ୍ପ୍ରତିକ ଭିଡିଓ ପ୍ଲେୟାରକୁ ବଦଳାଇବା କିମ୍ବା ସମ୍ପୂର୍ଣ୍ଣ ପରଦାକୁ ପରିବର୍ତ୍ତନ କରିବା ସମୟରେ ପ୍ଲେବ୍ୟାକ ତ୍ରୁଟିକୁ ପ୍ରତିରୋଧ କରିପାରେ</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">ଏହି ୱାର୍କଆରାଉଣ୍ଡ ଭିଡିଓ କୋଡେକଗୁଡ଼ିକୁ ରିଲିଜ କରିଥାଏ ଏବଂ ପୁନଃସ୍ଥାପନ କରିଥାଏ ଯେତେବେଳେ ଗୋଟିଏ ପୃଷ୍ଠ ପରିବର୍ତ୍ତନ ହୋଇଥାଏ, ଭୂପୃଷ୍ଠକୁ ସିଧାସଳଖ କୋଡେକରେ ସେଟ କରିବା ପରିବର୍ତ୍ତେ । ଏହି ସମସ୍ୟା ସହିତ କିଛି ଉପକରଣରେ ExoPlayer ଦ୍ୱାରା ପୂର୍ବରୁ ବ୍ୟବହୃତ, ଏହି ସଂରଚନା କେବଳ ଆଣ୍ଡ୍ରଏଡ 6 ଏବଂ ଉଚ୍ଚତର ଉପରେ ପ୍ରଭାବ ପକାଇଥାଏ \n \nଏହି ବିକଳ୍ପକୁ ସକ୍ରିୟ କରିବା ସାମ୍ପ୍ରତିକ ଭିଡିଓ ପ୍ଲେୟାରକୁ ବଦଳାଇବା କିମ୍ବା ସମ୍ପୂର୍ଣ୍ଣ ପରଦାକୁ ପରିବର୍ତ୍ତନ କରିବା ସମୟରେ ପ୍ଲେବ୍ୟାକ ତ୍ରୁଟିକୁ ପ୍ରତିରୋଧ କରିପାରେ</string>
     <string name="no_streams">କୌଣସି ସ୍ରୋତ ନାହିଁ</string>
     <string name="no_live_streams">କୌଣସି ଲାଇଭ ଷ୍ଟ୍ରିମ୍ ନାହିଁ</string>
     <string name="image_quality_title">ପ୍ରତିଛବି ଗୁଣବତ୍ତା</string>
@@ -793,8 +753,7 @@
     <string name="channel_tab_livestreams">ଲାଇଭ୍</string>
     <string name="share_playlist_with_list">URL ତାଲିକା ସହଭାଗ କରନ୍ତୁ</string>
     <string name="share_playlist_with_titles">ଶୀର୍ଷକଗୁଡ଼ିକ ସହିତ ଅଂଶୀଦାର କରନ୍ତୁ</string>
-    <string name="share_playlist_content_details">%1$s
-\n%2$s</string>
+    <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="share_playlist">ଖେଳ ତାଲିକା ସହଭାଗ କରନ୍ତୁ</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <string name="show_more">ଅଧିକ ଦର୍ଶାନ୍ତୁ</string>
@@ -808,12 +767,9 @@
     <string name="settings_category_backup_restore_title">ବ୍ୟାକଅପ୍ ଏବଂ ପୁନରୁଦ୍ଧାର କରନ୍ତୁ</string>
     <string name="yes">ହଁ</string>
     <string name="no">ନା</string>
-    <string name="auto_update_check_description">NewPipe ସ୍ୱୟଂଚାଳିତ ଭାବରେ ସମୟ ସମୟରେ ନୂତନ ସଂସ୍କରଣଗୁଡିକ ଯାଞ୍ଚ କରିପାରିବ ଏବଂ ଥରେ ଉପଲବ୍ଧ ହେବା ପରେ ଆପଣଙ୍କୁ ସୂଚିତ କରିପାରିବ ।
-\nଆପଣ ଏହାକୁ ସକ୍ଷମ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି?</string>
+    <string name="auto_update_check_description">NewPipe ସ୍ୱୟଂଚାଳିତ ଭାବରେ ସମୟ ସମୟରେ ନୂତନ ସଂସ୍କରଣଗୁଡିକ ଯାଞ୍ଚ କରିପାରିବ ଏବଂ ଥରେ ଉପଲବ୍ଧ ହେବା ପରେ ଆପଣଙ୍କୁ ସୂଚିତ କରିପାରିବ । \nଆପଣ ଏହାକୁ ସକ୍ଷମ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି?</string>
     <string name="reset_settings_title">ସେଟିଂସମୂହ ପୁନଃସେଟ୍ କରନ୍ତୁ</string>
     <string name="reset_settings_summary">ସମସ୍ତ ସେଟିଂସମୂହକୁ ସେମାନଙ୍କର ଡିଫଲ୍ଟ ମୂଲ୍ୟରେ ପୁନଃସେଟ୍ କରନ୍ତୁ</string>
-    <string name="reset_all_settings">ସମସ୍ତ ସେଟିଂସମୂହକୁ ପୁନଃ ସେଟ୍ କରିବା ଦ୍ବାରା ଆପଣଙ୍କର ସମସ୍ତ ପସନ୍ଦିତ ସେଟିଂସମୂହ ପରିତ୍ୟାଗ ହେବ ଏବଂ ଆପ୍ ପୁନଃ ସେଟ୍ଆରମ୍ଭ ହେବ ।
-\n
-\nଆପଣ ଆଗକୁ ବଢିବାକୁ ଚାହୁଁଛନ୍ତି କି?</string>
+    <string name="reset_all_settings">ସମସ୍ତ ସେଟିଂସମୂହକୁ ପୁନଃ ସେଟ୍ କରିବା ଦ୍ବାରା ଆପଣଙ୍କର ସମସ୍ତ ପସନ୍ଦିତ ସେଟିଂସମୂହ ପରିତ୍ୟାଗ ହେବ ଏବଂ ଆପ୍ ପୁନଃ ସେଟ୍ଆରମ୍ଭ ହେବ । \n \nଆପଣ ଆଗକୁ ବଢିବାକୁ ଚାହୁଁଛନ୍ତି କି?</string>
     <string name="import_settings_vulnerable_format">ଆମଦାନୀ ହେଉଥିବା ରପ୍ତାନିରେ ଥିବା ସେଟିଂସମୂହ ଏକ ଅସୁରକ୍ଷିତ ଫର୍ମାଟ୍ ବ୍ୟବହାର କରେ ଯାହା NewPipe 0.27.0 ପରଠାରୁ ପୁରୁଣା ହୋଇଯାଇଥିଲା । ନିଶ୍ଚିତ କରନ୍ତୁ ଯେ ଆମଦାନୀ ହେଉଥିବା ରପ୍ତାନି ଏକ ବିଶ୍ୱସ୍ତ ଉତ୍ସରୁ ଆସିଛି ଏବଂ ଭବିଷ୍ୟତରେ କେବଳ NewPipe 0.27.0 କିମ୍ବା ନୂତନରୁ ପ୍ରାପ୍ତ ରପ୍ତାନି ବ୍ୟବହାର କରିବାକୁ ପସନ୍ଦ କରନ୍ତୁ । ଏହି ଅସୁରକ୍ଷିତ ଫର୍ମାଟରେ ସେଟିଂସମୂହ ଆମଦାନି ପାଇଁ ସମର୍ଥନ ଶୀଘ୍ର ସମ୍ପୂର୍ଣ୍ଣ ରୂପେ ଅପସାରିତ ହେବ, ଏବଂ ତା’ପରେ ନୂତନ ପାଇପ୍ ର ପୁରୁଣା ସଂସ୍କରଣଗୁଡ଼ିକ ନୂତନ ସଂସ୍କରଣରୁ ରପ୍ତାନୀର ସେଟିଂସମୂହ ଆମଦାନୀ କରିବାକୁ ସମର୍ଥ ହେବ ନାହିଁ ।</string>
 </resources>

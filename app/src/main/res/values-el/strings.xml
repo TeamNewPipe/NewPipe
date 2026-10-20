@@ -195,8 +195,7 @@
     <string name="msg_wait">Παρακαλώ περιμένετε…</string>
     <string name="msg_copied">Αντιγράφηκε στο πρόχειρο</string>
     <string name="no_available_dir">Παρακαλώ ορίστε έναν φάκελο λήψεων αργότερα στις ρυθμίσεις</string>
-    <string name="msg_popup_permission">Αυτή η άδεια είναι απαραίτητη για
-\nτο άνοιγμα αναδυόμενων παραθύρων</string>
+    <string name="msg_popup_permission">Αυτή η άδεια είναι απαραίτητη για \nτο άνοιγμα αναδυόμενων παραθύρων</string>
     <string name="one_item_deleted">1 αντικείμενο διαγράφηκε.</string>
     <string name="title_activity_recaptcha">Δοκιμασία reCAPTCHA</string>
     <string name="recaptcha_request_toast">Ζητήθηκε δοκιμασία reCAPTCHA</string>
@@ -218,8 +217,7 @@
     <string name="website_title">Ιστοτόπος</string>
     <string name="website_encouragement">Επισκευτείτε τον ιστότοπο του NewPipe για περισσότερες πληροφορίες και νέα.</string>
     <string name="privacy_policy_title">Πολιτική ιδιωτικού απόρρητου του NewPipe</string>
-    <string name="privacy_policy_encouragement">Το NewPipe παίρνει πολύ σοβαρά την ιδιωτικότητα σας. Έτσι, η εφαρμογή αυτή δεν συλλέγει δεδομένα από εσάς χωρίς τη συγκατάθεσή σας.
-\nΗ πολιτική ιδιωτικού απόρρητου του NewPipe εξηγεί λεπτομερώς ποια δεδομένα αποστέλλονται και αποθηκεύονται όταν επιλέγετε να στείλετε μια αναφορά σφαλμάτων.</string>
+    <string name="privacy_policy_encouragement">Το NewPipe παίρνει πολύ σοβαρά την ιδιωτικότητα σας. Έτσι, η εφαρμογή αυτή δεν συλλέγει δεδομένα από εσάς χωρίς τη συγκατάθεσή σας. \nΗ πολιτική ιδιωτικού απόρρητου του NewPipe εξηγεί λεπτομερώς ποια δεδομένα αποστέλλονται και αποθηκεύονται όταν επιλέγετε να στείλετε μια αναφορά σφαλμάτων.</string>
     <string name="read_privacy_policy">Ανάγνωση της πολιτικής ιδιωτικού απόρρητου</string>
     <string name="app_license_title">Η άδεια του NewPipe</string>
     <string name="app_license">Το NewPipe είναι copylelft ελεύθερο λογισμικό: Μπορείτε να το χρησιμοποιήσετε, να το μελετήσετε, να το μοιραστείτε και να το βελτιώσετε κατά βούληση. Ειδικότερα, μπορείτε να το αναδιανείμετε ή/και να το τροποποιήσετε υπό την άδεια GNU General Public Licence όπως αυτή εκδόθηκε από το Free Software Foundation, είτε υπό την έκδοση 3 της άδειας, είτε (προαιρετικά) υπό οποιαδήποτε μεταγενέστερη άδεια.</string>
@@ -287,24 +285,9 @@
     <string name="previous_export">Προηγούμενη εξαγωγή</string>
     <string name="subscriptions_import_unsuccessful">Δεν ήταν δυνατή η εισαγωγή των εγγραφών</string>
     <string name="subscriptions_export_unsuccessful">Δεν ήταν δυνατή η εξαγωγή των εγγραφών</string>
-    <string name="import_youtube_instructions">Κάντε εισαγωγή των εγγραφών σας στο YouTube από το Google takeout:
-\n
-\n1. Πλοηγηθείτε στο: %1$s
-\n2. Εισέλθετε στο λογαριασμό σας, όταν σας ζητηθεί.
-\n3. Πατήστε το «Περιλαμβάνονται όλα τα δεδομένα του YouTube», στη συνέχεια «Κατάργηση επιλογής όλων» και επιλέξτε μόνο το «συνδρομές» και «ΟΚ».
-\n4. Πατήστε «Επόμενο βήμα» και μετά «Δημιουργία εξαγωγής».
-\n5. Πατήστε «Λήψη» όταν εμφανιστεί.
-\n6. Πατήστε το ΕΙΣΑΓΩΓΗ ΑΡΧΕΙΟΥ και επιλέξτε το ληφθέν αρχείο zip.
-\n7. Αν η εισαγωγή από το zip αποτύχει, εξάγετε το αρχείο .csv (συνήθως βρίσκεται στο \"YouTube και YouTube Music/subscriptions/subscriptions.csv\"), πατήστε το ΕΙΣΑΓΩΓΗ ΑΡΧΕΙΟΥ και επιλέξτε το ληφθέν αρχείο csv</string>
-    <string name="import_soundcloud_instructions">Για να εισάγετε τον λογαριασμό SoundCloud σας, πληκτρολογήστε τον σύνδεσμο ή το ID σας:
-\n
-\n1. Ενεργοποιήστε τη λειτουργία «Desktop mode» στον φυλλομετρητή σας (καθώς η ιστοσελίδα δεν είναι διαθέσιμη για κινητά)
-\n2. Πλοηθηθείτε στο %1$s
-\n3. Εισέλθετε στο λογαριασμό σας, όταν σας ζητηθεί
-\n4. Αντιγράψτε τον σύνδεσμο του λογαριασμού στον οποίο ανακατευθυνθήκατε.</string>
-    <string name="import_network_expensive_warning">Αυτή η διαδικασία μπορεί να χρησιμοποιήσει μεγάλο όγκο δεδομένων.
-\n
-\nΕπιθυμείτε να συνεχίσετε;</string>
+    <string name="import_youtube_instructions">Κάντε εισαγωγή των εγγραφών σας στο YouTube από το Google takeout: \n \n1. Πλοηγηθείτε στο: %1$s \n2. Εισέλθετε στο λογαριασμό σας, όταν σας ζητηθεί. \n3. Πατήστε το «Περιλαμβάνονται όλα τα δεδομένα του YouTube», στη συνέχεια «Κατάργηση επιλογής όλων» και επιλέξτε μόνο το «συνδρομές» και «ΟΚ». \n4. Πατήστε «Επόμενο βήμα» και μετά «Δημιουργία εξαγωγής». \n5. Πατήστε «Λήψη» όταν εμφανιστεί. \n6. Πατήστε το ΕΙΣΑΓΩΓΗ ΑΡΧΕΙΟΥ και επιλέξτε το ληφθέν αρχείο zip. \n7. Αν η εισαγωγή από το zip αποτύχει, εξάγετε το αρχείο .csv (συνήθως βρίσκεται στο \"YouTube και YouTube Music/subscriptions/subscriptions.csv\"), πατήστε το ΕΙΣΑΓΩΓΗ ΑΡΧΕΙΟΥ και επιλέξτε το ληφθέν αρχείο csv</string>
+    <string name="import_soundcloud_instructions">Για να εισάγετε τον λογαριασμό SoundCloud σας, πληκτρολογήστε τον σύνδεσμο ή το ID σας: \n \n1. Ενεργοποιήστε τη λειτουργία «Desktop mode» στον φυλλομετρητή σας (καθώς η ιστοσελίδα δεν είναι διαθέσιμη για κινητά) \n2. Πλοηθηθείτε στο %1$s \n3. Εισέλθετε στο λογαριασμό σας, όταν σας ζητηθεί \n4. Αντιγράψτε τον σύνδεσμο του λογαριασμού στον οποίο ανακατευθυνθήκατε.</string>
+    <string name="import_network_expensive_warning">Αυτή η διαδικασία μπορεί να χρησιμοποιήσει μεγάλο όγκο δεδομένων. \n \nΕπιθυμείτε να συνεχίσετε;</string>
     <string name="playback_speed_control">Έλεγχος ταχύτητας αναπαραγωγής</string>
     <string name="playback_tempo">Τέμπο</string>
     <string name="playback_pitch">Τόνος</string>
@@ -316,8 +299,7 @@
     <string name="skip_silence_checkbox">Γρήγορη αναπαραγωγή κατά τη διάρκεια της σίγασης</string>
     <string name="playback_step">Βήμα</string>
     <string name="playback_reset">Επαναφορά</string>
-    <string name="start_accept_privacy_policy">Προς συμμόρφωση με τον Ευρωπαϊκό Γενικό Κανονισμό για την Προστασία Δεδομένων (GDPR), σας εφιστούμε την προσοχή στην πολιτική προστασίας προσωπικών δεδομένων του NewPipe. Παραλούμε, διαβάστε την προσεκτικά.
-\nΘα πρέπει να την αποδεχτείτε προκειμένου να μας αποστείλετε την αναφορά σφάλματος.</string>
+    <string name="start_accept_privacy_policy">Προς συμμόρφωση με τον Ευρωπαϊκό Γενικό Κανονισμό για την Προστασία Δεδομένων (GDPR), σας εφιστούμε την προσοχή στην πολιτική προστασίας προσωπικών δεδομένων του NewPipe. Παραλούμε, διαβάστε την προσεκτικά. \nΘα πρέπει να την αποδεχτείτε προκειμένου να μας αποστείλετε την αναφορά σφάλματος.</string>
     <string name="accept">Αποδοχή</string>
     <string name="decline">Απόρριψη</string>
     <string name="limit_data_usage_none_description">Χωρίς όριο</string>
@@ -401,8 +383,7 @@
     <string name="start_downloads">Έναρξη λήψεων</string>
     <string name="pause_downloads">Παύση λήψεων</string>
     <string name="downloads_storage_ask_title">Ερώτηση πού να γίνει η λήψη</string>
-    <string name="downloads_storage_ask_summary">Θα ερωτηθείτε πού να αποθηκεύσετε κάθε λήψη.
-\nΕνεργοποιήστε τον επιλογέα φακέλων συστήματος (SAF), αν θέλετε να κάνετε λήψεις σε εξωτερική κάρτα μνήμης</string>
+    <string name="downloads_storage_ask_summary">Θα ερωτηθείτε πού να αποθηκεύσετε κάθε λήψη. \nΕνεργοποιήστε τον επιλογέα φακέλων συστήματος (SAF), αν θέλετε να κάνετε λήψεις σε εξωτερική κάρτα μνήμης</string>
     <string name="downloads_storage_use_saf_title">Χρήση επιλογέα φακέλων συστήματος (SAF)</string>
     <string name="downloads_storage_use_saf_summary">Το «Πλαίσιο Πρόσβασης Αποθήκευσης» (SAF) επιτρέπει λήψεις σε μια εξωτερική κάρτα SD</string>
     <string name="clear_playback_states_title">Διαγραφή θέσεων αναπαραγωγής</string>
@@ -432,9 +413,7 @@
     <string name="search_showing_result_for">Εμφάνιση αποτελεσμάτων για: %s</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Ενεργοποίηση γρήγορης λειτουργίας</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Απενεργοποίηση γρήγορης λειτουργίας</string>
-    <string name="content_not_supported">Αυτό το περιεχόμενο δεν υποστηρίζεται ακόμη από το NewPipe.
-\n
-\nΕλπίζουμε ότι θα υποστηριχθεί σε μια μελλοντική έκδοση.</string>
+    <string name="content_not_supported">Αυτό το περιεχόμενο δεν υποστηρίζεται ακόμη από το NewPipe. \n \nΕλπίζουμε ότι θα υποστηριχθεί σε μια μελλοντική έκδοση.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Μικρογραφία avatar του καναλιού</string>
     <string name="channel_created_by">Δημιουργήθηκε από %s</string>
     <string name="playlist_page_summary">Σελίδα λίστας αναπαραγωγής</string>
@@ -465,9 +444,7 @@
     <string name="artists">Καλλιτέχνες</string>
     <string name="albums">Άλμπουμ</string>
     <string name="songs">Τραγούδια</string>
-    <string name="restricted_video">Αυτό το βίντεο έχει περιορισμό ηλικίας.
-\n
-\nΕνεργοποιήστε το «%1$s» στις ρυθμίσεις εάν θέλετε να το δείτε.</string>
+    <string name="restricted_video">Αυτό το βίντεο έχει περιορισμό ηλικίας. \n \nΕνεργοποιήστε το «%1$s» στις ρυθμίσεις εάν θέλετε να το δείτε.</string>
     <string name="youtube_restricted_mode_enabled_title">Ενεργοποίηση \"Περιορισμένη Λειτουργία\" του YouTube</string>
     <string name="unsupported_url_dialog_message">Δεν ήταν δυνατή η αναγνώριση της διεύθυνσης URL. Άνοιγμα με άλλη εφαρμογή;</string>
     <string name="auto_queue_toggle">Αυτόματη προσθήκη στην ουρά</string>
@@ -487,17 +464,7 @@
     <string name="notification_scale_to_square_image_summary">Περικοπή της μικρογραφίας βίντεο που εμφανίζεται στην ειδοποίηση από 16:9 σε αναλογία διαστάσεων 1:1</string>
     <string name="notification_scale_to_square_image_title">Περικοπή μικρογραφίας σε αναλογία διαστάσεων 1:1</string>
     <string name="notification_action_buffering">Φόρτωση</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Πιστεύετε ότι η ροή φορτώνει πολύ αργά; Δοκιμάστε να ενεργοποιήσετε τη γρήγορη φόρτωση (από τις ρυθμίσεις ή πατώντας το παρακάτω κουμπί).
-\n
-\nΤο NewPipe προσφέρει δύο στρατηγικές φόρτωσης ροής:
-\n- Λήψη ολόκληρου του καναλιού συνδρομής, το οποίο είναι αργό αλλά πλήρες.
-\n- Χρήση ενός αποκλειστικού τελικού σημείου υπηρεσίας, το οποίο είναι γρήγορο αλλά συνήθως δεν είναι πλήρες.
-\n
-\nΗ διαφορά μεταξύ των δύο είναι ότι η γρήγορη συνήθως στερείται κάποιες πληροφορίες, όπως η διάρκεια ή ο τύπος του στοιχείου (δεν μπορεί να διακρίνει μεταξύ ζωντανών βίντεο και κανονικών) και μπορεί να επιστρέψει λιγότερα στοιχεία.
-\n
-\nΤο YouTube είναι ένα παράδειγμα υπηρεσίας της γρήγορης μεθόδου με τη ροή RSS.
-\n
-\nΣυνεπώς επιλέγετε ανάλογα: ταχύτητα ή ακριβείς πληροφορίες.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Πιστεύετε ότι η ροή φορτώνει πολύ αργά; Δοκιμάστε να ενεργοποιήσετε τη γρήγορη φόρτωση (από τις ρυθμίσεις ή πατώντας το παρακάτω κουμπί). \n \nΤο NewPipe προσφέρει δύο στρατηγικές φόρτωσης ροής: \n- Λήψη ολόκληρου του καναλιού συνδρομής, το οποίο είναι αργό αλλά πλήρες. \n- Χρήση ενός αποκλειστικού τελικού σημείου υπηρεσίας, το οποίο είναι γρήγορο αλλά συνήθως δεν είναι πλήρες. \n \nΗ διαφορά μεταξύ των δύο είναι ότι η γρήγορη συνήθως στερείται κάποιες πληροφορίες, όπως η διάρκεια ή ο τύπος του στοιχείου (δεν μπορεί να διακρίνει μεταξύ ζωντανών βίντεο και κανονικών) και μπορεί να επιστρέψει λιγότερα στοιχεία. \n \nΤο YouTube είναι ένα παράδειγμα υπηρεσίας της γρήγορης μεθόδου με τη ροή RSS. \n \nΣυνεπώς επιλέγετε ανάλογα: ταχύτητα ή ακριβείς πληροφορίες.</string>
     <string name="feed_oldest_subscription_update">Η ροή ανανεώθηκε: %s</string>
     <string name="feed_notification_loading">Φόρτωση ροής…</string>
     <string name="feed_processing_message">Επεξεργασία ροής…</string>
@@ -579,8 +546,7 @@
     <string name="private_content">Αυτό το περιεχόμενο είναι ιδιωτικό και δεν μπορεί να αναπαραχθεί ή να το κατεβάσετε με το NewPipe.</string>
     <string name="soundcloud_go_plus_content">Αυτό είναι ένα κομμάτι SoundCloud Go+, τουλάχιστον στη χώρα σας. Έτσι δεν μπορεί να αναπαραχθεί ή να το κατεβάσετε με το NewPipe.</string>
     <string name="georestricted_content">Αυτό το περιεχόμενο δεν είναι διαθέσιμο στη χώρα σας.</string>
-    <string name="restricted_video_no_stream">Αυτό το βίντεο έχει περιορισμό ηλικίας.
-\nΛόγω της νέας πολιτικής του YouTube για αυτά τα βίντεο, το NewPipe δεν μπορεί να το αναπαράγει.</string>
+    <string name="restricted_video_no_stream">Αυτό το βίντεο έχει περιορισμό ηλικίας. \nΛόγω της νέας πολιτικής του YouTube για αυτά τα βίντεο, το NewPipe δεν μπορεί να το αναπαράγει.</string>
     <string name="featured">Επιλεγμένα</string>
     <string name="radio">Ράδιο</string>
     <string name="recaptcha_solve">Λύση</string>
@@ -609,9 +575,7 @@
     <string name="open_website_license">Ανοικτή ιστοσελίδα</string>
     <string name="account_terminated">Ο λογαριασμός διαγράφηκε</string>
     <string name="feed_load_error_fast_unknown">Η κατάσταση γρήγορης τροφοδοσίας δεν παρέχει περισσότερες πληροφορίες.</string>
-    <string name="feed_load_error_terminated">Ο λογαριασμός του δημιουργού έχει διαγραφεί.
-\nΤο NewPipe δε θα μπορεί να φορτώσει αυτή την τροφοδοσία στο μέλλον.
-\nΘέλετε να απεγγραφείτε από αυτό το κανάλι;</string>
+    <string name="feed_load_error_terminated">Ο λογαριασμός του δημιουργού έχει διαγραφεί. \nΤο NewPipe δε θα μπορεί να φορτώσει αυτή την τροφοδοσία στο μέλλον. \nΘέλετε να απεγγραφείτε από αυτό το κανάλι;</string>
     <string name="feed_load_error_account_info">Αδυναμία φόρτωσης τροφοδοσίας για \'%s\'.</string>
     <string name="feed_load_error">Σφάλμα φόρτωσης τροφοδοσίας</string>
     <string name="downloads_storage_use_saf_summary_api_29">Από το Android 10 και μετά, μόνο το Πλαίσιο Πρόσβασης Αποθήκευσης υποστηρίζεται</string>
@@ -655,10 +619,8 @@
     <string name="error_report_channel_description">Ειδοποιήσεις για την αναφορά σφαλμάτων</string>
     <string name="error_report_notification_toast">Συνέβη ένα σφάλμα. Δείτε την ειδοποίηση</string>
     <string name="create_error_notification">Δημιουργία ειδοποίησης σφάλματος</string>
-    <string name="no_appropriate_file_manager_message">Δε βρέθηκε κατάλληλος διαχειριστής αρχείων για αυτή την ενέργεια.
-\nΕγκαταστήστε έναν ή δοκιμάστε να απενεργοποιήσετε το \'%s\' στις ρυθμίσεις λήψεων</string>
-    <string name="no_appropriate_file_manager_message_android_10">Δε βρέθηκε κατάλληλος διαχειριστής αρχείων για αυτή την ενέργεια.
-\nΕγκαταστήστε έναν συμβατό με το Πλαίσιο Πρόσβασης Αποθήκευσης</string>
+    <string name="no_appropriate_file_manager_message">Δε βρέθηκε κατάλληλος διαχειριστής αρχείων για αυτή την ενέργεια. \nΕγκαταστήστε έναν ή δοκιμάστε να απενεργοποιήσετε το \'%s\' στις ρυθμίσεις λήψεων</string>
+    <string name="no_appropriate_file_manager_message_android_10">Δε βρέθηκε κατάλληλος διαχειριστής αρχείων για αυτή την ενέργεια. \nΕγκαταστήστε έναν συμβατό με το Πλαίσιο Πρόσβασης Αποθήκευσης</string>
     <string name="error_report_notification_title">Το NewPipe παρουσίασε ένα σφάλμα. Πατήστε για αναφορά</string>
     <string name="show_error_snackbar">Εμφάνιση μιας snackbar σφάλματος</string>
     <string name="detail_pinned_comment_view_description">Καρφιτσωμένο σχόλιο</string>
@@ -740,9 +702,7 @@
     <string name="use_exoplayer_decoder_fallback_title">Χρησιμοποιήστε την δυνατότητα εναλλακτικού αποκωδικοποιητή του ExoPlayer</string>
     <string name="use_exoplayer_decoder_fallback_summary">Ενεργοποιήστε αυτήν την επιλογή εάν αντιμετωπίζετε προβλήματα με την προετοιμασία του αποκωδικοποιητή, η οποία επιστρέφει σε αποκωδικοποιητές χαμηλότερης προτεραιότητας εάν αποτύχει η προετοιμασία του πρωτεύοντος αποκωδικοποιητή. Αυτό μπορεί να έχει ως αποτέλεσμα κακή απόδοση αναπαραγωγής από ότι όταν χρησιμοποιείτε κύριους αποκωδικοποιητές</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Χρησιμοποιείτε πάντα τον εναλλακτικό τρόπο ρύθμισης της επιφάνειας εξόδου βίντεο του ExoPlayer</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Αυτή η λύση απελευθερώνει και επαναφέρει τους κωδικοποιητές βίντεο όταν συμβαίνει μια αλλαγή επιφάνειας, αντί να ρυθμίζει την επιφάνεια απευθείας στον κωδικοποιητή. Χρησιμοποιείται ήδη από το ExoPlayer σε ορισμένες συσκευές με αυτό το πρόβλημα, αυτή η ρύθμιση έχει επίδραση μόνο σε Android 6 και νεότερη έκδοση.
-\n
-\nΗ ενεργοποίηση αυτής της επιλογής μπορεί να αποτρέψει σφάλματα αναπαραγωγής κατά την εναλλαγή του τρέχοντος προγράμματος αναπαραγωγής βίντεο ή τη μετάβαση σε πλήρη οθόνη</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Αυτή η λύση απελευθερώνει και επαναφέρει τους κωδικοποιητές βίντεο όταν συμβαίνει μια αλλαγή επιφάνειας, αντί να ρυθμίζει την επιφάνεια απευθείας στον κωδικοποιητή. Χρησιμοποιείται ήδη από το ExoPlayer σε ορισμένες συσκευές με αυτό το πρόβλημα, αυτή η ρύθμιση έχει επίδραση μόνο σε Android 6 και νεότερη έκδοση. \n \nΗ ενεργοποίηση αυτής της επιλογής μπορεί να αποτρέψει σφάλματα αναπαραγωγής κατά την εναλλαγή του τρέχοντος προγράμματος αναπαραγωγής βίντεο ή τη μετάβαση σε πλήρη οθόνη</string>
     <string name="audio_track_name">%1$s %2$s</string>
     <string name="audio_track_type_original">αρχικό</string>
     <string name="audio_track_type_dubbed">μεταγλωττισμένο</string>
@@ -793,8 +753,7 @@
     <string name="metadata_banners">Ταμπέλες</string>
     <string name="share_playlist_with_list">Κοινοποίηση λίστας URL</string>
     <string name="share_playlist_with_titles">Κοινοποίηση με τίτλους</string>
-    <string name="share_playlist_content_details">%1$s
-\n%2$s</string>
+    <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="share_playlist">Κοινοποίηση λίστας</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <plurals name="replies">
@@ -808,13 +767,10 @@
     <string name="no">Όχι</string>
     <string name="yes">Ναι</string>
     <string name="settings_category_backup_restore_title">Αντίγραφο ασφαλείας και επαναφορά</string>
-    <string name="auto_update_check_description">Το NewPipe μπορεί να ελέγχει αυτόματα για νέες εκδόσεις και να σας ειδοποιεί μόλις είναι διαθέσιμες.
-\nΘέλετε να το ενεργοποιήσετε;</string>
+    <string name="auto_update_check_description">Το NewPipe μπορεί να ελέγχει αυτόματα για νέες εκδόσεις και να σας ειδοποιεί μόλις είναι διαθέσιμες. \nΘέλετε να το ενεργοποιήσετε;</string>
     <string name="reset_settings_title">Επαναφορά ρυθμίσεων</string>
     <string name="reset_settings_summary">Επαναφορά όλων των ρυθμίσεων στις αρχικές τιμές τους</string>
-    <string name="reset_all_settings">Η επαναφορά όλων των ρυθμίσεων θα απορρίψει όλες τις τροποποιημένες ρυθμίσεις σας και θα επανεκκινήσει την εφαρμογή.
-\n
-\nΕίστε βέβαιοι ότι θέλετε να συνεχίσετε;</string>
+    <string name="reset_all_settings">Η επαναφορά όλων των ρυθμίσεων θα απορρίψει όλες τις τροποποιημένες ρυθμίσεις σας και θα επανεκκινήσει την εφαρμογή. \n \nΕίστε βέβαιοι ότι θέλετε να συνεχίσετε;</string>
     <string name="import_settings_vulnerable_format">Οι ρυθμίσεις στην εξαγωγή που εισάγεται χρησιμοποιούν μια ευάλωτη μορφή που είχε καταργηθεί από το NewPipe 0.27.0. Βεβαιωθείτε ότι η εξαγωγή που εισάγεται προέρχεται από αξιόπιστη πηγή και προτιμήστε να χρησιμοποιείτε μόνο εξαγωγές που λαμβάνονται από το NewPipe 0.27.0 ή νεότερο στο μέλλον. Η υποστήριξη για εισαγωγή ρυθμίσεων σε αυτήν την ευάλωτη μορφή θα καταργηθεί σύντομα εντελώς και, στη συνέχεια, οι παλιές εκδόσεις του NewPipe δεν θα μπορούν πλέον να εισάγουν ρυθμίσεις εξαγωγών από νέες εκδόσεις.</string>
     <string name="audio_track_type_secondary">δευτερεύων</string>
     <string name="tab_bookmarks_short">Λίστες αναπαραγωγής</string>

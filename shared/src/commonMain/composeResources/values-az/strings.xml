@@ -86,7 +86,7 @@
     <string name="low_quality_smaller">Aşağı keyfiyyət (daha kiçik)</string>
     <string name="dont_show">Göstərməyin</string>
     <string name="settings_category_player_behavior_title">Davranış</string>
-    <string name="preferred_open_action_settings_title">"Açıq" fəaliyyətə üstünlük verilir</string>
+    <string name="preferred_open_action_settings_title">Açıq fəaliyyətə üstünlük verilir</string>
     <string name="preferred_open_action_settings_summary">Məzmunu açarkən standart hərəkət — %1$s</string>
     <string name="show_info">Məlumat göstər</string>
     <string name="video_player">Video oynadıcı</string>
@@ -145,4 +145,20 @@
     <string name="disable_media_tunneling_automatic_info">Media girişi cihazınızda standart olaraq qeyri-aktiv edilib, çünki cihazınızın modelinin bunu dəstəkləmədiyi məlumdur.</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Həmişə ExoPlayer-in video çıxış səthi tənzimləməsin istifadə et</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">Bu həll yolu səthi kodlayıcıya birbaşa tənzimləmək əvəzinə, səth dəyişikliyi olarsa video kodlayıcıları buraxır və yenidən işlədir. Artıq ExoPlayer vasitəsilə bu problemli bəzi cihazlarda istifadə olunur, bu tənzimləmənin təsiri yalnız Android 6 və daha yüksəkdə var. \n \nBu seçimi işlətmə cari video oynadıcı dəyişəndə və ya tam ekrana keçəndə oynatma xətaların düzəldə bilər</string>
+    <string name="show_crash_the_player_title">Oynadıcını çökdür Göstər</string>
+    <string name="error_snackbar_message">Bağışlayın, nəsə səhv oldu.</string>
+    <string name="leakcanary">LeakCanary</string>
+    <string name="crash_the_app">Tətbiq çökdü</string>
+    <string name="enable_leak_canary_summary">Yaddaş sızma monitorinqi yığın boşaltma zamanı tətbiqin cavab verməməsinə səbəb ola bilər</string>
+    <string name="show_memory_leaks">Yaddaş sızmalarını göstər</string>
+    <string name="check_new_streams">Yeni yayımları yoxlamanı işə sal</string>
+    <string name="show_crash_the_player_summary">Oynadıcını istifadə edərkən çökdürmə seçimini göstərir</string>
+    <string name="show_original_time_ago_title">Elementlərdə orijinal, əvvəlki vaxtı göstər</string>
+    <string name="create_error_notification">Xəta bildirişi yarat</string>
+    <string name="leak_canary_not_available">LeakCanary mövcud deyil</string>
+    <string name="show_original_time_ago_summary">Xidmətlərdən orijinal mətnlər yayım elementlərində görünəcək</string>
+    <string name="enable_disposed_exceptions_title">Yaşam dövrəsi xaricindəki xətaları bildir</string>
+    <string name="enable_disposed_exceptions_summary">Utilizasiyadan sonra fraqment və ya fəaliyyətin yaşam dövründən kənarda, çatdırıla bilməyən Rx istisnaları barədə məlumat verməsinə məcbur et</string>
+    <string name="show_error_snackbar">Xəta balonu göstər</string>
+    <string name="error_snackbar_action">Məlumat Ver</string>
 </resources>

@@ -39,7 +39,7 @@
     <string name="play_queue_audio_settings">ऑडियो सेटिंग्स</string>
     <string name="main_bg_subtitle">आरंभ करने के लिए आवर्धक कांच को स्पर्श करें।</string>
     <string name="cancel">रद्द करें</string>
-    <string name="did_you_mean">क्या आप का मतलब \"%1$s\" था\?</string>
+    <string name="did_you_mean">क्या आप का मतलब \"%1$s\" था?</string>
     <string name="share_dialog_title">के साथ शेयर करें</string>
     <string name="use_external_video_player_title">बाहरी वीडियो प्लेयर का उपयोग करें</string>
     <string name="use_external_video_player_summary">कुछ रिजॉल्युशनों पर ध्वनि हट सकती है</string>
@@ -58,7 +58,7 @@
     <string name="show_higher_resolutions_title">उच्च रिजॉल्युशन दिखाएं</string>
     <string name="show_higher_resolutions_summary">केवल कुछ ही डिवाईस 2K/4K में वीडियो चला सकते हैं</string>
     <string name="play_with_kodi_title">Kodi में चलाएं</string>
-    <string name="kore_not_found">गैर- मौजूदा Kore ऐप इंस्टॉल करें\?</string>
+    <string name="kore_not_found">गैर- मौजूदा Kore ऐप इंस्टॉल करें?</string>
     <string name="show_play_with_kodi_title">\"Kodi में चलाएं\" वाला विकल्प दिखाएँ</string>
     <string name="show_play_with_kodi_summary">Kodi मीडिया सेंटर से वीडियो चलने के लिए विकल्प प्रदर्शित करें</string>
     <string name="default_audio_format_title">डिफ़ॉल्ट ऑडियो फॉर्मेट</string>
@@ -152,8 +152,7 @@
     <string name="msg_wait">कृपया प्रतीक्षा करें…</string>
     <string name="msg_copied">क्लिपबोर्ड पर कॉपी हो गया है</string>
     <string name="no_available_dir">कृपया बाद में सेटिंग्स में डाउनलोड स्थान चुनें</string>
-    <string name="msg_popup_permission">पॉपअप मोड में खोलने के लिए
-\nइस अनुमति की जरुरत है</string>
+    <string name="msg_popup_permission">पॉपअप मोड में खोलने के लिए \nइस अनुमति की जरुरत है</string>
     <string name="title_activity_recaptcha">reCAPTCHA चुनौती</string>
     <string name="recaptcha_request_toast">reCAPTCHA चुनौती का अनुरोध किया</string>
     <string name="settings_category_downloads_title">डाउनलोड</string>
@@ -165,7 +164,7 @@
     <string name="copyright" formatted="true">%2$s के द्वारा © %1$s जो %3$s के अधीन आते हैं</string>
     <string name="app_description">एंड्राइड के लिए हल्का और मुफ्त स्ट्रीमिंग एप्लिकेशन।</string>
     <string name="contribution_encouragement">अगर आपके पास कोई सुझाव हो जैसे कि - अनुवाद करना, डिजाईन में बदलाव करना, कोड को साफ़ रखना, या फिर कोड में जायदा बदलाव लाना हो तो - सहायता के लिए आपका स्वागत है। जितना ज्यादा होगा उतना बेहतर होगा !</string>
-    <string name="delete_item_search_history">क्या आप इसको खोज इतिहास से मिटाना चाहते हैं \?</string>
+    <string name="delete_item_search_history">क्या आप इसको खोज इतिहास से मिटाना चाहते हैं ?</string>
     <string name="main_page_content">मुख्य पृष्ठ की विषयवस्तु</string>
     <string name="blank_page_summary">खाली पन्ना</string>
     <string name="kiosk_page_summary">कियोस्क पन्ना</string>
@@ -229,7 +228,7 @@
     <string name="set_as_playlist_thumbnail">प्लेलिस्ट थंमनेल के रूप में सैंट करें</string>
     <string name="bookmark_playlist">प्लेलिस्ट बुकमार्क करें</string>
     <string name="unbookmark_playlist">बुकमार्क हटायें</string>
-    <string name="delete_playlist_prompt">प्लेलिस्ट को मिटाना चाहते हैं\?</string>
+    <string name="delete_playlist_prompt">प्लेलिस्ट को मिटाना चाहते हैं?</string>
     <string name="playlist_creation_success">प्लेलिस्ट बना दी गई</string>
     <string name="playlist_add_stream_success">प्लेलिस्ट में जोड़ा गया</string>
     <string name="playlist_thumbnail_change_success">प्लेलिस्ट का थंमनेल बदल दिया गया।</string>
@@ -256,11 +255,11 @@
     <string name="users">उपभोगता</string>
     <string name="clear_views_history_title">देखे हुए वीडियो की सूची साफ करें</string>
     <string name="clear_views_history_summary">चलाई गए स्ट्रीमों के इतिहास और प्लेबैक स्थानों को मिटाता है</string>
-    <string name="delete_view_history_alert">क्या देखा गया सब इतिहास मिटा दिया जाए\?</string>
+    <string name="delete_view_history_alert">क्या देखा गया सब इतिहास मिटा दिया जाए?</string>
     <string name="watch_history_deleted">देखा हुआ इतिहास मिटा दिया गया</string>
     <string name="clear_search_history_title">खोज इतिहास को साफ करें</string>
     <string name="clear_search_history_summary">खोजे गए शब्दों का इतिहास साफ करता है</string>
-    <string name="delete_search_history_alert">पूरे खोज इतिहास को मिटा दें\?</string>
+    <string name="delete_search_history_alert">पूरे खोज इतिहास को मिटा दें?</string>
     <string name="search_history_deleted">खोज इतिहास मिटाया गया</string>
     <string name="invalid_directory">ऐसा कोई फ़ोल्डर मौजूद नहीं</string>
     <string name="invalid_source">अमान्य फाइल/विषय - वस्तु का स्रोत</string>
@@ -272,7 +271,7 @@
     <string name="privacy_policy_title">न्यूपाइप की प्राइवेसी पॉलिसी</string>
     <string name="privacy_policy_encouragement">न्यूपाइप परियोजना आपकी गोपनीयता को बहुत गंभीर रूप से लेता है। इसलिए, ऐप आपकी अनुमति के बिना कोई डेटा जमा नहीं करता।\nन्यूपाइप की गोपनीयता नीति विस्तार से समझाती है कि कौनसा डेटा भेजा और संग्रह किया जाता है जब आप क्रेश विवरण भेजते हैं।</string>
     <string name="read_privacy_policy">प्राइवेसी पॉलिसी पढ़ें</string>
-    <string name="import_settings">क्या आप सेटिंग्स भी आयात करना चाहते हैं\?</string>
+    <string name="import_settings">क्या आप सेटिंग्स भी आयात करना चाहते हैं?</string>
     <string name="preferred_open_action_settings_title">\'खोलने\' पर तरजीही एक्शन</string>
     <string name="preferred_open_action_settings_summary">सामग्री खोलते समय डिफ़ॉल्ट कारवाही — %s</string>
     <string name="caption_setting_title">अनुशीर्षक</string>
@@ -286,19 +285,9 @@
     <string name="previous_export">पहले वाला निर्यात</string>
     <string name="subscriptions_import_unsuccessful">सब्सक्रिप्शन आयात नहीं कर सके</string>
     <string name="subscriptions_export_unsuccessful">सब्सक्रिप्शन निर्यात नहीं कर सके</string>
-    <string name="import_youtube_instructions">गूगल टेकआउट से यूट्यूब सदस्यता आयात करें:
-\n
-\n1. इस यूआरएल पर जाएं: %1$s
-\n2. पूछे जाने पर लॉग इन करें
-\n3. \"सभी डाटा शामिल करें\" पर क्लिक करें, फिर \"सभी को अचयनित करें\" पर, फिर केवल \"सदस्यताएँ\" चुनें और \" ठीक है\" पर क्लिक करें
-\n4. \"अगला चरण\" पर क्लिक करें और फिर \"निर्यात बनाएं\"
-\n5. प्रकट होने के बाद \"डाउनलोड\" बटन पर क्लिक करें
-\n6. नीचे आयात फ़ाइल पर क्लिक करें और डाउनलोड की गई .zip फ़ाइल चुनें
-\n7. [यदि .zip आयात विफल हो जाता है] .csv फ़ाइल निकालें (आमतौर पर \"यूट्यूब और यूट्यूब म्युज़िक/सब्सक्रिपशन/subscriptions.csv\" के अंतर्गत), नीचे आयात फ़ाइल पर क्लिक करें और निकाली गई सीएसवी फ़ाइल चुनें</string>
+    <string name="import_youtube_instructions">गूगल टेकआउट से यूट्यूब सदस्यता आयात करें: \n \n1. इस यूआरएल पर जाएं: %1$s \n2. पूछे जाने पर लॉग इन करें \n3. \"सभी डाटा शामिल करें\" पर क्लिक करें, फिर \"सभी को अचयनित करें\" पर, फिर केवल \"सदस्यताएँ\" चुनें और \" ठीक है\" पर क्लिक करें \n4. \"अगला चरण\" पर क्लिक करें और फिर \"निर्यात बनाएं\" \n5. प्रकट होने के बाद \"डाउनलोड\" बटन पर क्लिक करें \n6. नीचे आयात फ़ाइल पर क्लिक करें और डाउनलोड की गई .zip फ़ाइल चुनें \n7. [यदि .zip आयात विफल हो जाता है] .csv फ़ाइल निकालें (आमतौर पर \"यूट्यूब और यूट्यूब म्युज़िक/सब्सक्रिपशन/subscriptions.csv\" के अंतर्गत), नीचे आयात फ़ाइल पर क्लिक करें और निकाली गई सीएसवी फ़ाइल चुनें</string>
     <string name="import_soundcloud_instructions_hint">आपका आईडी, soundcloud.com/(आपका आईडी)</string>
-    <string name="import_network_expensive_warning">ध्यान रखें, यह तरीका नेटवर्क खर्चीला हो सकता है।
-\n
-\nक्या आप आगे बढ़ना चाहते हैं\?</string>
+    <string name="import_network_expensive_warning">ध्यान रखें, यह तरीका नेटवर्क खर्चीला हो सकता है। \n \nक्या आप आगे बढ़ना चाहते हैं?</string>
     <string name="playback_speed_control">प्लेबैक स्पीड कंट्रोल</string>
     <string name="playback_tempo">ताल</string>
     <string name="playback_pitch">पिच</string>
@@ -324,9 +313,9 @@
     <string name="app_update_notification_channel_name">ऐप अपडेट नोटीफिकेशन</string>
     <string name="app_update_notification_channel_description">नए नयूपाईप अपडेट का नोटिफ़िकेशन</string>
     <string name="download_to_sdcard_error_title">एक्सटर्नल स्टोरेज अनुपलब्ध</string>
-    <string name="download_to_sdcard_error_message">SD कार्ड पर डाउनलोड करना संभव नहीं। डाउनलोड स्थान पुनः चुनें\?</string>
+    <string name="download_to_sdcard_error_message">SD कार्ड पर डाउनलोड करना संभव नहीं। डाउनलोड स्थान पुनः चुनें?</string>
     <string name="restore_defaults">डिफ़ॉल्टस पुन: स्थापित करें</string>
-    <string name="restore_defaults_confirmation">क्या आप डिफ़ॉल्टस पर लौटना चाहते है\?</string>
+    <string name="restore_defaults_confirmation">क्या आप डिफ़ॉल्टस पर लौटना चाहते है?</string>
     <string name="subscribers_count_not_available">सब्सक्राइबर संख्या अनुपलब्ध</string>
     <string name="main_page_content_summary">मुख्य पृष्ठ पर कौन से टैब दिखाए जाते हैं</string>
     <string name="updates_setting_title">अपडेटस</string>
@@ -378,27 +367,20 @@
     <string name="error_insufficient_storage_left">डिवाइस पर जगह समाप्त</string>
     <string name="error_progress_lost">प्रगति खो गई, क्योंकि फ़ाइल मिटा दी गई थी</string>
     <string name="error_timeout">कनेक्शन का समय समाप्त</string>
-    <string name="confirm_prompt">क्या आप अपना डाउनलोड इतिहास मिटाना चाहते हैं या सभी डाउनलोड की गई फ़ाइलों को हटाना चाहते हैं\?</string>
+    <string name="confirm_prompt">क्या आप अपना डाउनलोड इतिहास मिटाना चाहते हैं या सभी डाउनलोड की गई फ़ाइलों को हटाना चाहते हैं?</string>
     <string name="enable_queue_limit">डाउनलोड कतार सीमित करें</string>
     <string name="enable_queue_limit_desc">एक ही समय में एक डाउनलोड चलेगा</string>
     <string name="start_downloads">डाउनलोड प्रारंभ करें</string>
     <string name="pause_downloads">डाउनलोड रोकें</string>
     <string name="downloads_storage_ask_title">डाउनलोड कहाँ करना है, के लिए पूछें</string>
-    <string name="downloads_storage_ask_summary">आपको हर डाउनलोड का स्थान पूछा जाएगा
-\nयदि आप बाहरी एसडी कार्ड में डाउनलोड करना चाहते हैं तो सिस्टम फोल्डर पिकर (SAF) को सक्षम करें</string>
+    <string name="downloads_storage_ask_summary">आपको हर डाउनलोड का स्थान पूछा जाएगा \nयदि आप बाहरी एसडी कार्ड में डाउनलोड करना चाहते हैं तो सिस्टम फोल्डर पिकर (SAF) को सक्षम करें</string>
     <string name="downloads_storage_use_saf_title">सिस्टम फोल्डर पिकर (SAF) का प्रयोग करें</string>
     <string name="clear_playback_states_title">प्लेबैक स्थानों को मिटाएं</string>
     <string name="clear_playback_states_summary">सारे प्लेबैक स्थानों को मिटाता है</string>
-    <string name="delete_playback_states_alert">सारे प्लेबैक स्थानों को मिटाएं\?</string>
+    <string name="delete_playback_states_alert">सारे प्लेबैक स्थानों को मिटाएं?</string>
     <string name="enable_disposed_exceptions_summary">हैंडलिंग के बाद फ्रैगमेंट या एक्टिविटी लूप के बाहर अनहैंडल्ड Rx एक्सेप्शन की रिपोर्टिंग को बलपूर्वक लागू करें</string>
-    <string name="import_soundcloud_instructions">साउंडक्लाउड प्रोफाइल निर्यात करने के लिए आईडी या युआरएल दीजिये:
-\n
-\n1. अपने वेब ब्राउज़र में \"डेस्कटॉप मोड\" चालू करें (वेबसाइट मोबाइल उपकरणों के लिए उपलब्ध नहीं है)
-\n2. इस युआरएल को खोलें: %1$s
-\n3. लॉग इन करें
-\n4. आप जिस प्रोफाइल युआरएल पे भेजे जाते हैं उसे कॉपी करें।</string>
-    <string name="start_accept_privacy_policy">यूरोपीय जनरल डेटा प्रोटेक्शन रेगुलेशन (जीडीपीआर) का अनुपालन करने के लिए, हम आपका ध्यान न्यूपाइप की गोपनीयता नीति पे डालना चाहते हैं। इसे बारीकी से पढ़िए।
-\nआपको अगर हमें कोई त्रुटि रिपोर्ट भेजना हो तो इसे स्वीकार करना होगा।</string>
+    <string name="import_soundcloud_instructions">साउंडक्लाउड प्रोफाइल निर्यात करने के लिए आईडी या युआरएल दीजिये: \n \n1. अपने वेब ब्राउज़र में \"डेस्कटॉप मोड\" चालू करें (वेबसाइट मोबाइल उपकरणों के लिए उपलब्ध नहीं है) \n2. इस युआरएल को खोलें: %1$s \n3. लॉग इन करें \n4. आप जिस प्रोफाइल युआरएल पे भेजे जाते हैं उसे कॉपी करें।</string>
+    <string name="start_accept_privacy_policy">यूरोपीय जनरल डेटा प्रोटेक्शन रेगुलेशन (जीडीपीआर) का अनुपालन करने के लिए, हम आपका ध्यान न्यूपाइप की गोपनीयता नीति पे डालना चाहते हैं। इसे बारीकी से पढ़िए। \nआपको अगर हमें कोई त्रुटि रिपोर्ट भेजना हो तो इसे स्वीकार करना होगा।</string>
     <string name="saved_tabs_invalid_json">सहेजे टैब्स को पढ़ने में रूकावट, इसलिए सामान्य टैब्स का इस्तेमाल हो रहा है</string>
     <string name="updates_setting_description">जब नई अपडेट उपलब्ध हो, तब एप अपडेट करने के लिए अधिसूचना दिखाई जाये</string>
     <string name="list_view_mode">सूचि देखने वाला ढंग</string>
@@ -421,20 +403,8 @@
     </plurals>
     <string name="feed_use_dedicated_fetch_method_enable_button">तेज मोड सक्षम करें</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">तेज मोड अक्षम करें</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">क्या आपको लगता है कि फीड लोडिंग बहुत धीमी है\? यदि ऐसा है, तो तेज़ लोडिंग को सक्षम करने का प्रयास करें (आप इसे सेटिंग्स में या नीचे दिए गए बटन को दबाकर बदल सकते हैं)।
-\n
-\nन्यूपाइप दो फीड लोडिंग रणनीति प्रदान करता है:
-\n• संपूर्ण सदस्यता चैनल प्राप्त करना, जो धीमा है लेकिन पूरा होता है।
-\n• एक समर्पित सेवा के समापन बिंदु का उपयोग करना, जो तेज़ है लेकिन आमतौर पर पूरा नहीं होता है।
-\n
-\nदोनों के बीच अंतर यह है कि तेज वाली रणनीति में आमतौर पर कुछ जानकारी का अभाव होता है, जैसे कि आइटम की अवधि या प्रकार (लाइव वीडियो और सामान्य वीडियो के बीच अंतर पता नहीं लगा सकते हैं) और ऐसा भी हो सकता है कि ये कम आइटम दिखाए।
-\n
-\nयूट्यूब ऐसी सेवा का एक उदाहरण है जो आरएसएस फ़ीड के साथ ये तेज़ विधि प्रदान करता है।
-\n
-\nतो आखिर में चुनाव आपकी पसंद पर है: गति या फिर सटीक जानकारी।</string>
-    <string name="content_not_supported">यह सामग्री फिलहाल न्यूपाइप सपोर्ट नहीं करता है।
-\n
-\nआशा है कि भविष्य के संस्करणों में सपोर्ट किया जायेगा।</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">क्या आपको लगता है कि फीड लोडिंग बहुत धीमी है? यदि ऐसा है, तो तेज़ लोडिंग को सक्षम करने का प्रयास करें (आप इसे सेटिंग्स में या नीचे दिए गए बटन को दबाकर बदल सकते हैं)। \n \nन्यूपाइप दो फीड लोडिंग रणनीति प्रदान करता है: \n• संपूर्ण सदस्यता चैनल प्राप्त करना, जो धीमा है लेकिन पूरा होता है। \n• एक समर्पित सेवा के समापन बिंदु का उपयोग करना, जो तेज़ है लेकिन आमतौर पर पूरा नहीं होता है। \n \nदोनों के बीच अंतर यह है कि तेज वाली रणनीति में आमतौर पर कुछ जानकारी का अभाव होता है, जैसे कि आइटम की अवधि या प्रकार (लाइव वीडियो और सामान्य वीडियो के बीच अंतर पता नहीं लगा सकते हैं) और ऐसा भी हो सकता है कि ये कम आइटम दिखाए। \n \nयूट्यूब ऐसी सेवा का एक उदाहरण है जो आरएसएस फ़ीड के साथ ये तेज़ विधि प्रदान करता है। \n \nतो आखिर में चुनाव आपकी पसंद पर है: गति या फिर सटीक जानकारी।</string>
+    <string name="content_not_supported">यह सामग्री फिलहाल न्यूपाइप सपोर्ट नहीं करता है। \n \nआशा है कि भविष्य के संस्करणों में सपोर्ट किया जायेगा।</string>
     <string name="detail_sub_channel_thumbnail_view_description">चैनल का अवतार थंमनेल</string>
     <string name="video_detail_by">%s के द्वारा</string>
     <string name="channel_created_by">%s के द्वारा बनाया गया</string>
@@ -448,14 +418,12 @@
     <string name="clear_cookie_title">ReCAPTCHA कुकीज़ साफ़ करें</string>
     <string name="albums">एल्बम</string>
     <string name="videos_string">वीडियो</string>
-    <string name="restricted_video">यह वीडियो उम्र प्रतिबंधित है।
-\n
-\nयदि आप इसे देखना चाहते हैं तो सेटिंग में \"%1$s\" चालू करें।</string>
+    <string name="restricted_video">यह वीडियो उम्र प्रतिबंधित है। \n \nयदि आप इसे देखना चाहते हैं तो सेटिंग में \"%1$s\" चालू करें।</string>
     <string name="youtube_restricted_mode_enabled_summary">यूट्यूब एक \"प्रतिबंधित मोड\" प्रदान करता है जो संभावित रूप से परिपक्व सामग्री को छुपाता है</string>
     <string name="youtube_restricted_mode_enabled_title">यूट्यूब का \"प्रतिबंधित मोड\" चालू करें</string>
     <string name="show_age_restricted_content_summary">वह सामग्री भी दिखाएं जो आयु सीमा की वजह से शायद बच्चों के लिए अनुपयुक्त हो (जैसे 18+)</string>
     <string name="peertube_instance_add_https_only">केवल HTTPS यूआरएल ही समर्थित हैं</string>
-    <string name="unsupported_url_dialog_message">URL की पहचान नहीं हो सकी। दूसरे ऐप से खोलें\?</string>
+    <string name="unsupported_url_dialog_message">URL की पहचान नहीं हो सकी। दूसरे ऐप से खोलें?</string>
     <string name="auto_queue_toggle">ऑटो-कतारबद्ध करें</string>
     <string name="clear_queue_confirmation_title">कतार को मिटाने से पहले सत्यापन के लिए पूछें</string>
     <string name="seek_duration_title">फास्ट-फॉरवर्ड/-रिवाइंड सीक अवधि</string>
@@ -529,8 +497,7 @@
     <string name="night_theme_summary">अपनी पसंदीदा नाइट थीम चुने — %s</string>
     <string name="select_night_theme_toast">आप अपनी पसंदीदा नाइट थीम नीचे चुन सकते हैं</string>
     <string name="download_has_started">डाउनलोड शुरू हुआ</string>
-    <string name="restricted_video_no_stream">यह वीडियो आयु-प्रतिबंधित है।
-\nयूट्यूब की नई नीतियों के कारण न्यूपाइप किसी भी आयु प्रतिबंधित वीडियो स्ट्रीम का इस्तेमाल नहीं कर सकता है और इस कारण इसे वीडियो को प्ले करने में असमर्थ है।</string>
+    <string name="restricted_video_no_stream">यह वीडियो आयु-प्रतिबंधित है। \nयूट्यूब की नई नीतियों के कारण न्यूपाइप किसी भी आयु प्रतिबंधित वीडियो स्ट्रीम का इस्तेमाल नहीं कर सकता है और इस कारण इसे वीडियो को प्ले करने में असमर्थ है।</string>
     <string name="peertube_instance_url_title">पियरट्यूब इंसटैंस</string>
     <string name="featured">फीचर्ड</string>
     <string name="night_theme_title">रात्रि थीम</string>
@@ -579,7 +546,7 @@
     <string name="high_quality_larger">उच्च गुणवत्ता (बड़ा)</string>
     <string name="checking_updates_toast">अपडेटस के लिए जांच हो रही है…</string>
     <string name="recovering">पुन: प्राप्ति हो रही</string>
-    <string name="delete_downloaded_files_confirm">डिस्क से सभी डाउनलोड की गई फ़ाइलें मिटाएं\?</string>
+    <string name="delete_downloaded_files_confirm">डिस्क से सभी डाउनलोड की गई फ़ाइलें मिटाएं?</string>
     <string name="downloads_storage_use_saf_summary_api_29">एंड्रॉइड 10 से शुरू होकर केवल \'स्टोरेज एक्सेस फ्रेमवर्क\' समर्थित है</string>
     <string name="choose_instance_prompt">एक इंस्टेंस चुनें</string>
     <string name="remove_watched_popup_partially_watched_streams">हां, और आंशिक रूप से देखे गए वीडियो भी</string>
@@ -636,7 +603,7 @@
     <string name="progressive_load_interval_title">प्लेबैक लोड अंतराल आकार</string>
     <string name="feed_group_dialog_empty_name">समूह का नाम नहीं</string>
     <string name="feed_group_dialog_select_subscriptions">सब्सक्रिप्शनस चुनें</string>
-    <string name="feed_group_dialog_delete_message">क्या आप इस समूह को हटाना चाहते हैं\?</string>
+    <string name="feed_group_dialog_delete_message">क्या आप इस समूह को हटाना चाहते हैं?</string>
     <string name="feed_create_new_group_button_title">नया</string>
     <string name="settings_category_feed_title">फ़ीड</string>
     <string name="feed_new_items">नये फ़ीड आइटम</string>
@@ -678,12 +645,9 @@
     <string name="feed_group_show_only_ungrouped_subscriptions">केवल असमूहीकृत सब्सक्रिप्शनस दिखाएं</string>
     <string name="feed_load_error_fast_unknown">फ़ास्ट फ़ीड मोड इस पर अधिक जानकारी प्रदान नहीं करता है।</string>
     <string name="feed_update_threshold_summary">अपडेट अंतराल जब सब्सक्रिप्शन फ़ीड दोबारा अपडेट किये जा सकें — %s</string>
-    <string name="feed_load_error_terminated">लेखक का खाता समाप्त कर दिया गया है।
-\nन्यूपाइप भविष्य में इस फीड को लोड नहीं कर पाएगा।
-\nक्या आप इस चैनल की सदस्यता समाप्त करना चाहते हैं\?</string>
+    <string name="feed_load_error_terminated">लेखक का खाता समाप्त कर दिया गया है। \nन्यूपाइप भविष्य में इस फीड को लोड नहीं कर पाएगा। \nक्या आप इस चैनल की सदस्यता समाप्त करना चाहते हैं?</string>
     <string name="selected_stream_external_player_not_supported">चयनित स्ट्रीम बाहरी प्लेयरस द्वारा समर्थित नहीं है</string>
-    <string name="no_appropriate_file_manager_message_android_10">इस क्रिया के लिए कोई उपयुक्त फ़ाइल प्रबंधक नहीं मिला।
-\nकृपया स्टोरेज एक्सेस फ्रेमवर्क संगत फ़ाइल प्रबंधक इंस्टॉल करें</string>
+    <string name="no_appropriate_file_manager_message_android_10">इस क्रिया के लिए कोई उपयुक्त फ़ाइल प्रबंधक नहीं मिला। \nकृपया स्टोरेज एक्सेस फ्रेमवर्क संगत फ़ाइल प्रबंधक इंस्टॉल करें</string>
     <string name="metadata_privacy_private">निजी</string>
     <string name="metadata_privacy_internal">आंतरिक</string>
     <string name="detail_pinned_comment_view_description">पिन की हुई टिप्पणी</string>
@@ -693,8 +657,7 @@
     <string name="no_video_streams_available_for_external_players">बाहरी प्लेयरस के लिए कोई वीडियो स्ट्रीम उपलब्ध नहीं है</string>
     <string name="no_audio_streams_available_for_external_players">बाहरी प्लेयरस के लिए कोई ऑडियो स्ट्रीम उपलब्ध नहीं है</string>
     <string name="feed_use_dedicated_fetch_method_summary">कुछ सेवाओं में उपलब्ध, यह आमतौर पर बहुत तेज होता है लेकिन सीमित मात्रा में जानकारी प्रदान कर पाता है और वह भी अक्सर अधूरी जानकारी (जैसे कि अवधि, आइटम की किसम, स्ट्रीम लाइव है, नहीं बता पाता)</string>
-    <string name="no_appropriate_file_manager_message">इस क्रिया के लिए कोई उपयुक्त फ़ाइल प्रबंधक नहीं मिला।
-\nकृपया फ़ाइल प्रबंधक इंस्टॉल करें या डाउनलोड सेटिंग में \'%s\' को अक्षम करने का प्रयास करें</string>
+    <string name="no_appropriate_file_manager_message">इस क्रिया के लिए कोई उपयुक्त फ़ाइल प्रबंधक नहीं मिला। \nकृपया फ़ाइल प्रबंधक इंस्टॉल करें या डाउनलोड सेटिंग में \'%s\' को अक्षम करने का प्रयास करें</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s डाउनलोड हटाए गए</item>
         <item quantity="other">%1$s डाउनलोड्स हटाए गए</item>
@@ -711,8 +674,8 @@
     <string name="duplicate_in_playlist">धुंधली की गई प्‍लेलिस्‍ट में पहले से ही यह आइटम है।</string>
     <string name="playlist_add_stream_success_duplicate">डुप्लीकेट जोड़ा गया %d बार</string>
     <string name="remove_duplicates">डुप्लीकेट हटाएं</string>
-    <string name="remove_duplicates_title">डुप्लीकेट हटाए जाएं\?</string>
-    <string name="remove_duplicates_message">क्या आप इस प्लेलिस्ट में मौजूद सभी डुप्लीकेट स्ट्रीम हटाना चाहते हैं\?</string>
+    <string name="remove_duplicates_title">डुप्लीकेट हटाए जाएं?</string>
+    <string name="remove_duplicates_message">क्या आप इस प्लेलिस्ट में मौजूद सभी डुप्लीकेट स्ट्रीम हटाना चाहते हैं?</string>
     <string name="feed_hide_streams_title">निम्नलिखित स्ट्रीम दिखाएँ</string>
     <string name="feed_show_upcoming">आगामी</string>
     <string name="ignore_hardware_media_buttons_title">हार्डवेयर मीडिया बटन घटनाओं की अनदेखी करें</string>
@@ -744,9 +707,7 @@
     <string name="audio_track_present_in_video">एक ऑडियो ट्रैक पहले से ही इस स्ट्रीम में मौजूद होना चाहिए</string>
     <string name="use_exoplayer_decoder_fallback_summary">इस विकल्प को सक्षम करें यदि आपके पास डिकोडर आरंभीकरण समस्याएं हैं, जो प्राथमिक डिकोडर आरंभ करने में विफल होने पर कम प्राथमिकता वाले डिकोडर पर वापस आ जाती है। इससे प्राथमिक डिकोडर का उपयोग करने की तुलना में खराब प्लेबैक प्रदर्शन हो सकता है</string>
     <string name="settings_category_exoplayer_summary">कुछ एक्सोप्लेयर सेटिंग्स प्रबंधित करें। इन परिवर्तनों को प्रभावी बनाने के लिए प्लेयर को पुनरारंभ करने की आवश्यकता होती है</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_summary">सतह को सीधे कोडेक पर सेट करने के बजाय, सतह परिवर्तन होने पर यह वर्कअराउंड वीडियो कोडेक्स को जारी और पुन: चालू करता है। इस समस्या के साथ कुछ उपकरणों पर ExoPlayer द्वारा पहले से ही उपयोग किया जाता है, इस सेटिंग का केवल Android 6 और उच्चतर पर प्रभाव पड़ता है
-\n
-\nइस विकल्प को सक्षम करने से वर्तमान वीडियो प्लेयर स्विच करते समय या फुलस्क्रीन पर स्विच करते समय प्लेबैक त्रुटियों को रोका जा सकता है</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">सतह को सीधे कोडेक पर सेट करने के बजाय, सतह परिवर्तन होने पर यह वर्कअराउंड वीडियो कोडेक्स को जारी और पुन: चालू करता है। इस समस्या के साथ कुछ उपकरणों पर ExoPlayer द्वारा पहले से ही उपयोग किया जाता है, इस सेटिंग का केवल Android 6 और उच्चतर पर प्रभाव पड़ता है \n \nइस विकल्प को सक्षम करने से वर्तमान वीडियो प्लेयर स्विच करते समय या फुलस्क्रीन पर स्विच करते समय प्लेबैक त्रुटियों को रोका जा सकता है</string>
     <string name="main_tabs_position_title">मुख्य टैब की स्थिति</string>
     <string name="main_tabs_position_summary">मुख्य टैब सिलेक्टर को नीचे ले जाएँ</string>
     <string name="audio_track_name">%1$s %2$s</string>
@@ -792,8 +753,7 @@
     <string name="metadata_thumbnails">थंमनेल</string>
     <string name="share_playlist_with_list">URL सूची साझा करें</string>
     <string name="share_playlist_with_titles">शीर्षकों के साथ साझा करें</string>
-    <string name="share_playlist_content_details">%1$s
-\n%2$s</string>
+    <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="share_playlist">प्लेलिस्ट साझा करें</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <plurals name="replies">
@@ -803,13 +763,10 @@
     <string name="show_more">और दिखाओ</string>
     <string name="notification_actions_summary_android13">नीचे दी गई प्रत्येक अधिसूचना कार्रवाई पर टैप करके उसे संपादित करें। पहली तीन क्रियाएँ (चलाएँ/रोकें, पिछली और अगली) सिस्टम द्वारा निर्धारित की जाती हैं और इन्हें अनुकूलित नहीं किया जा सकता है।</string>
     <string name="show_less">कम दिखाएं</string>
-    <string name="auto_update_check_description">न्यूपाइप समय-समय पर स्वचालित रूप से नए संस्करणों की जांच कर सकती है और उपलब्ध होने पर आपको सूचित कर सकती है।
-\nक्या आप इसे सक्षम करना चाहते हैं?</string>
+    <string name="auto_update_check_description">न्यूपाइप समय-समय पर स्वचालित रूप से नए संस्करणों की जांच कर सकती है और उपलब्ध होने पर आपको सूचित कर सकती है। \nक्या आप इसे सक्षम करना चाहते हैं?</string>
     <string name="reset_settings_title">सेटिंग्स रीसेट करें</string>
     <string name="reset_settings_summary">सभी सेटिंग्स को उनके डिफ़ॉल्ट मानों पर रीसेट करें</string>
-    <string name="reset_all_settings">सभी सेटिंग्स को रीसेट करने से आपकी सभी पसंदीदा सेटिंग्स खारिज हो जाएंगी और ऐप पुनः प्रारंभ हो जाएगा।
-\n
-\nक्या आप सुनिश्चित रूप से आगे बढ़ना चाहते हैं?</string>
+    <string name="reset_all_settings">सभी सेटिंग्स को रीसेट करने से आपकी सभी पसंदीदा सेटिंग्स खारिज हो जाएंगी और ऐप पुनः प्रारंभ हो जाएगा। \n \nक्या आप सुनिश्चित रूप से आगे बढ़ना चाहते हैं?</string>
     <string name="yes">हाँ</string>
     <string name="no">नहीं</string>
     <string name="error_insufficient_storage">डिवाइस पर पर्याप्त खाली स्थान नहीं है</string>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="upload_date_text">ni li kama lon lon tenpo %1$s</string>
-    <string name="no_player_found">sina jo ala e ilo pi lukin e sitelen tawa. sina wile kama jo e ilo VLC anu seme\?</string>
+    <string name="no_player_found">sina jo ala e ilo pi lukin e sitelen tawa. sina wile kama jo e ilo VLC anu seme?</string>
     <string name="install">o kama jo.</string>
     <string name="cancel">o weka.</string>
     <string name="ok">pona.</string>
@@ -25,7 +25,7 @@
     <string name="no_player_found_toast">sina jo ala e ilo pi lukin e sitelen tawa. (sina wile lukin la, sina ken kama jo e ilo VLC).</string>
     <string name="search">o lukin sitelen</string>
     <string name="settings">ante</string>
-    <string name="did_you_mean">sina wile toki e \"%1$s\" anu seme\?</string>
+    <string name="did_you_mean">sina wile toki e \"%1$s\" anu seme?</string>
     <string name="search_showing_result_for">mi lawa la sina wile toki e: %s</string>
     <string name="share_dialog_title">o pana e ni tawa</string>
     <string name="subscribe_button_title">jan ni li pana e sitelen tawa la, o toki tawa mi</string>
@@ -41,7 +41,7 @@
     <string name="download_path_audio_title">poki lipu kalama lon ilo sina</string>
     <string name="download_path_audio_summary">poki lipu kalama lon ilo sina li lon ma ni</string>
     <string name="show_higher_resolutions_title">o oko e pona lukin pi sitelen tawa pi pona mute mute</string>
-    <string name="kore_not_found">sina wile kama jo e ilo Kole (Kore) anu seme\?</string>
+    <string name="kore_not_found">sina wile kama jo e ilo Kole (Kore) anu seme?</string>
     <string name="notification_action_repeat">sin</string>
     <string name="black_theme_title">pimeja</string>
     <string name="play_audio">kalama</string>

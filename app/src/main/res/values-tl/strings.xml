@@ -2,9 +2,7 @@
 <resources>
     <string name="light_theme_title">Maliwanag</string>
     <string name="dark_theme_title">Madilim</string>
-    <string name="restricted_video_no_stream">Ang video na ito ay may paghihigpit sa edad.
-\n
-\nDahil sa mga bagong polisiya ng Youtube, hindi maaring ma-access ng NewPipe ang mga video streams nito, kaya hindi ito maipapalabas.</string>
+    <string name="restricted_video_no_stream">Ang video na ito ay may paghihigpit sa edad. \n \nDahil sa mga bagong polisiya ng Youtube, hindi maaring ma-access ng NewPipe ang mga video streams nito, kaya hindi ito maipapalabas.</string>
     <string name="subscription_change_failed">Di-mabago ang subscription</string>
     <string name="show_comments_summary">Patayin upang maitago ang mga puna</string>
     <string name="mark_as_watched">I-tanda bilang napanood na</string>
@@ -12,7 +10,7 @@
     <string name="download">I-download</string>
     <string name="controls_download_desc">I-download ang stream file</string>
     <string name="settings">Ayos ng App</string>
-    <string name="did_you_mean">Ibig mo bang sabihin \"%1$s\"\?</string>
+    <string name="did_you_mean">Ibig mo bang sabihin \"%1$s\"?</string>
     <string name="search_showing_result_for">Ipinapakita ang mga resulta para sa: %s</string>
     <string name="open_with">Buksan sa</string>
     <string name="main_bg_subtitle">Pindutin ang magnifiying glass upang magsimula.</string>
@@ -61,9 +59,7 @@
     <string name="error_unable_to_load_comments">Hindi mai-karga ang mga puna</string>
     <string name="detail_pinned_comment_view_description">Naka-pin na puna</string>
     <string name="show_description_summary">Patayin upang itago ang paglalarawan ng video at ang karagdagang kaalaman nito</string>
-    <string name="restricted_video">Ang video na ito ay may paghihigpit sa edad.
-\n
-\nBuksan ang \"%1$s\" sa ayos ng app kung gusto mong makita ito.</string>
+    <string name="restricted_video">Ang video na ito ay may paghihigpit sa edad. \n \nBuksan ang \"%1$s\" sa ayos ng app kung gusto mong makita ito.</string>
     <string name="artists">Mga Artista</string>
     <string name="controls_popup_title">Nakalutang</string>
 </resources>

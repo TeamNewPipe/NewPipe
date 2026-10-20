@@ -2,7 +2,7 @@
 <resources>
     <string name="main_bg_subtitle">Başlamaq üçün böyüdücü lupaya toxun.</string>
     <string name="upload_date_text">%1$s tarixində yayımlanıb</string>
-    <string name="no_player_found">Yayım oynadıcı tapılmadı. \"VLC\" quraşdırılsın\?</string>
+    <string name="no_player_found">Yayım oynadıcı tapılmadı. \"VLC\" quraşdırılsın?</string>
     <string name="no_player_found_toast">Yayım oynadıcı tapılmadı (Oynatmaq üçün VLC quraşdıra bilərsiniz).</string>
     <string name="install">Quraşdır</string>
     <string name="cancel">İmtina et</string>
@@ -12,7 +12,7 @@
     <string name="controls_download_desc">Yayım faylın yüklə</string>
     <string name="search">Axtarış</string>
     <string name="settings">Tənzimləmələr</string>
-    <string name="did_you_mean">\"%1$s\" nəzərdə tuturdunuz\?</string>
+    <string name="did_you_mean">\"%1$s\" nəzərdə tuturdunuz?</string>
     <string name="share_dialog_title">ilə paylaş</string>
     <string name="use_external_video_player_title">Xarici video oynadıcı istifadə et</string>
     <string name="use_external_video_player_summary">Bəzi formatlarda səsi silir</string>
@@ -34,7 +34,7 @@
     <string name="default_resolution_title">İlkin ayırdetmə</string>
     <string name="show_higher_resolutions_title">Daha böyük formatlar göstər</string>
     <string name="play_with_kodi_title">\"Kodi\" ilə Oynat</string>
-    <string name="kore_not_found">Çatışmayan \"Kore\" tətbiqi yüklənilsin\?</string>
+    <string name="kore_not_found">Çatışmayan \"Kore\" tətbiqi yüklənilsin?</string>
     <string name="show_play_with_kodi_title">\"Kodi ilə Oynat\" seçimini göstər</string>
     <string name="show_play_with_kodi_summary">Kodi media mərkəzindən video oynatmaq üçün seçim göstər</string>
     <string name="play_audio">Səs</string>
@@ -109,7 +109,7 @@
     <string name="settings_category_player_title">Oynadıcı</string>
     <string name="content_language_title">Cari məzmun dili</string>
     <string name="default_content_country_title">Cari məzmun ölkəsi</string>
-    <string name="unsupported_url_dialog_message">URL\'i tanımaq olmadı. Başqa tətbiqlə açılsın\?</string>
+    <string name="unsupported_url_dialog_message">URL\'i tanımaq olmadı. Başqa tətbiqlə açılsın?</string>
     <string name="unsupported_url">Dəstəklənməyən URL\'i</string>
     <string name="show_hold_to_append_title">\"Növbələmək üçün basılı saxla\" tövsiyəsin göstər</string>
     <string name="show_next_and_similar_title">\"Növbəti\" və \"Oxşar\" videoları göstər</string>
@@ -131,9 +131,7 @@
     <string name="downloads_title">Endirilənlər</string>
     <string name="downloads">Endirilənlər</string>
     <string name="duration_live">Canlı</string>
-    <string name="restricted_video">Bu video yaş məhdudiyyətlidir.
-\n
-\nOnu görmək istəyirsinizsə, tənzimləmələrdə \"%1$s\" seçimini aktivləşdirin.</string>
+    <string name="restricted_video">Bu video yaş məhdudiyyətlidir. \n \nOnu görmək istəyirsinizsə, tənzimləmələrdə \"%1$s\" seçimini aktivləşdirin.</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube potensial yetkin məzmunu gizlədən \"Məhdud Rejim\" təmin edir</string>
     <string name="peertube_instance_url_title">\"PeerTube\" serverləri</string>
     <string name="notification_actions_at_most_three">Yığcam bildirişdə göstərmək üçün ən çoxu üç fəaliyyət seçə bilərsiniz!</string>
@@ -141,7 +139,7 @@
     <string name="settings_category_feed_title">Axın</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Yalnız qrupsuz abunəlikləri göstər</string>
     <string name="feed_create_new_group_button_title">Yeni</string>
-    <string name="feed_group_dialog_delete_message">Bu qrupu silmək istəyirsiniz\?</string>
+    <string name="feed_group_dialog_delete_message">Bu qrupu silmək istəyirsiniz?</string>
     <string name="feed_group_dialog_empty_name">Boş qrup adı</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d seçildi</item>
@@ -173,15 +171,15 @@
     <string name="playlists">Pleylistlər</string>
     <string name="general_error">Xəta</string>
     <string name="search_history_deleted">Axtarış tarixçəsi silindi</string>
-    <string name="delete_search_history_alert">Bütün axtarış tarixçəsi silinsin\?</string>
+    <string name="delete_search_history_alert">Bütün axtarış tarixçəsi silinsin?</string>
     <string name="clear_search_history_summary">Açar sözlər axtarışı tarixçəsin silir</string>
     <string name="clear_search_history_title">Axtarış tarixçəsini sil</string>
     <string name="watch_history_states_deleted">Oynatma mövqeləri silindi</string>
-    <string name="delete_playback_states_alert">Bütün oynatma mövqeləri silinsin\?</string>
+    <string name="delete_playback_states_alert">Bütün oynatma mövqeləri silinsin?</string>
     <string name="clear_playback_states_summary">Bütün oynatma mövqelərini silir</string>
     <string name="clear_playback_states_title">Oynatma mövqelərini sil</string>
     <string name="watch_history_deleted">Baxış tarixçəsi silindi</string>
-    <string name="delete_view_history_alert">Bütün baxış tarixçəsi silinsin\?</string>
+    <string name="delete_view_history_alert">Bütün baxış tarixçəsi silinsin?</string>
     <string name="clear_views_history_title">Baxış tarixçəsini təmizlə</string>
     <string name="clear_cookie_summary">reCAPTCHA həll edərkən NewPipe saxladığı bazaları sil</string>
     <string name="channel_created_by">%s tərəfindən yaradıldı</string>
@@ -206,13 +204,12 @@
     <string name="peertube_instance_add_title">Server əlavə et</string>
     <string name="peertube_instance_url_summary">Sevimli \"PeerTube\" serverlərinizi seçin</string>
     <string name="delete_downloaded_files">Endirilmiş faylları sil</string>
-    <string name="confirm_prompt">Endirmə tarixçənizi təmizləmək və ya bütün endirilmiş faylları silmək istəyirsiniz\?</string>
+    <string name="confirm_prompt">Endirmə tarixçənizi təmizləmək və ya bütün endirilmiş faylları silmək istəyirsiniz?</string>
     <string name="clear_download_history">Endirmə tarixçəsini təmizlə</string>
     <string name="start_downloads">Endirmələri başlat</string>
     <string name="pause_downloads">Endirmələri dayandır</string>
     <string name="downloads_storage_ask_title">Haraya endiriləcəyini soruş</string>
-    <string name="downloads_storage_ask_summary">Sizdən hər endirmənin harada saxlanılacağı soruşulacaq.
-\nXarici SD karta endirmək istəyirsinizsə, sistem qovluğu seçicisini (SAF) aktiv edin</string>
+    <string name="downloads_storage_ask_summary">Sizdən hər endirmənin harada saxlanılacağı soruşulacaq. \nXarici SD karta endirmək istəyirsinizsə, sistem qovluğu seçicisini (SAF) aktiv edin</string>
     <string name="downloads_storage_use_saf_summary">\'Yaddaş Giriş Quruluşu\' xarici SD karta endirməyə imkan verir</string>
     <string name="systems_language">Sistem standartı</string>
     <string name="app_language_title">Tətbiq dili</string>
@@ -243,7 +240,7 @@
     <string name="content_not_available">Məzmun əlçatmazdır</string>
     <string name="could_not_load_thumbnails">Bütün miniatürləri yükləmək alınmadı</string>
     <string name="network_error">Şəbəkə səhvi</string>
-    <string name="download_to_sdcard_error_message">Xarici SD karta endirmək mümkün deyil. Endirmə qovluğunun yeri sıfırlansın\?</string>
+    <string name="download_to_sdcard_error_message">Xarici SD karta endirmək mümkün deyil. Endirmə qovluğunun yeri sıfırlansın?</string>
     <string name="download_to_sdcard_error_title">Xarici yaddaş əlçatan deyil</string>
     <string name="clear_views_history_summary">Oynadılmış yayımlar tarixçəsini və oynatma mövqelərini silir</string>
     <string name="show_meta_info_title">Üst məlumatı göstər</string>
@@ -271,11 +268,10 @@
     <string name="player_recoverable_failure">Oynadıcı xətası bərpa edilir</string>
     <string name="player_unrecoverable_failure">Bərpa olunmayan oynatma xətası baş verdi</string>
     <string name="ok">Oldu</string>
-    <string name="restricted_video_no_stream">Bu video yaş məhdudiyyətlidir.
-\nYaş məhdudiyyəti olan videolarla bağlı yeni YouTube siyasətlərinə görə, NewPipe bu cür video yayımlara daxil ola və oynada bilməz.</string>
+    <string name="restricted_video_no_stream">Bu video yaş məhdudiyyətlidir. \nYaş məhdudiyyəti olan videolarla bağlı yeni YouTube siyasətlərinə görə, NewPipe bu cür video yayımlara daxil ola və oynada bilməz.</string>
     <string name="audio_streams_empty">Səs yayımı tapılmadı</string>
     <string name="permission_display_over_apps">Digər tətbiqlərin üzərində göstərməyə icazə ver</string>
-    <string name="restore_defaults_confirmation">İlkin tənzimləmələri qaytarmaq istəyirsiniz\?</string>
+    <string name="restore_defaults_confirmation">İlkin tənzimləmələri qaytarmaq istəyirsiniz?</string>
     <string name="enqueue_next_stream">Növbəti sıraya sal</string>
     <string name="retry">Təkrar Cəhd Et</string>
     <string name="settings_category_player_notification_summary">Cari oynatma yayımı bildirişini konfiqurasiya et</string>
@@ -326,19 +322,18 @@
     <string name="website_title">Veb sayt</string>
     <string name="website_encouragement">Əlavə məlumat və xəbərlər üçün NewPipe Veb saytını ziyarət et.</string>
     <string name="privacy_policy_title">NewPipe-ın Məxfilik Siyasəti</string>
-    <string name="privacy_policy_encouragement">NewPipe layihəsi məxfiliyinizə çox ciddi yanaşır. Nəticə etibarı ilə, tətbiq sizin razılığınız olmadan heç bir məlumat toplamır.
-\nNewPipe məxfilik siyasəti xəta məlumatı göndərdiyiniz zaman hansı məlumatların göndərildiyini və saxlanıldığını ətraflı izah edir.</string>
+    <string name="privacy_policy_encouragement">NewPipe layihəsi məxfiliyinizə çox ciddi yanaşır. Nəticə etibarı ilə, tətbiq sizin razılığınız olmadan heç bir məlumat toplamır. \nNewPipe məxfilik siyasəti xəta məlumatı göndərdiyiniz zaman hansı məlumatların göndərildiyini və saxlanıldığını ətraflı izah edir.</string>
     <string name="read_privacy_policy">Məxfilik siyasətini oxu</string>
     <string name="app_license_title">NewPipe-ın Lisenziyası</string>
     <string name="action_history">Tarixçə</string>
-    <string name="delete_item_search_history">Bu elementi axtarış tarixçəsindən silmək istəyirsiniz\?</string>
+    <string name="delete_item_search_history">Bu elementi axtarış tarixçəsindən silmək istəyirsiniz?</string>
     <string name="title_last_played">Son Oynadılan</string>
     <string name="title_most_played">Ən Çox Oynadılan</string>
     <string name="select_a_kiosk">Bölmə seç</string>
     <string name="import_complete_toast">İdxal edildi</string>
     <string name="no_valid_zip_file">Etibarlı ZIP faylı yoxdur</string>
     <string name="could_not_import_all_files">Xəbərdarlıq: Bütün faylları idxal etmək mümkün olmadı.</string>
-    <string name="import_settings">Tənzimləmələri də idxal etmək istəyirsiniz\?</string>
+    <string name="import_settings">Tənzimləmələri də idxal etmək istəyirsiniz?</string>
     <string name="top_50">Ən yaxşı 50</string>
     <string name="new_and_hot">Yeni və populyar</string>
     <string name="local">Yerli</string>
@@ -359,28 +354,21 @@
     <string name="unmute">Səsi aç</string>
     <string name="bookmark_playlist">Pleylisti Əlfəcinlə</string>
     <string name="unbookmark_playlist">Əlfəcini Silin</string>
-    <string name="delete_playlist_prompt">Bu pleylist silinsin\?</string>
+    <string name="delete_playlist_prompt">Bu pleylist silinsin?</string>
     <string name="playlist_creation_success">Pleylist yaradıldı</string>
     <string name="playlist_thumbnail_change_success">Pleylist miniatürü dəyişdirildi.</string>
     <string name="playlist_no_uploader">Avtomatik yaradıldı (heç bir yükləyici tapılmadı)</string>
     <string name="caption_auto_generated">Avtomatik yaradıldı</string>
     <string name="caption_setting_title">Titrlər</string>
-    <string name="leak_canary_not_available">LeakCanary yoxdur</string>
+    <string name="leak_canary_not_available">LeakCanary mövcud deyil</string>
     <string name="enable_leak_canary_summary">Yaddaş sızma monitorinqi yığın boşaltma zamanı tətbiqin cavab verməməsinə səbəb ola bilər</string>
     <string name="show_memory_leaks">Yaddaş sızmalarını göstər</string>
     <string name="enable_disposed_exceptions_summary">Utilizasiyadan sonra fraqment və ya fəaliyyətin yaşam dövründən kənarda, çatdırıla bilməyən Rx istisnaları barədə məlumat verməsinə məcbur et</string>
-    <string name="show_original_time_ago_summary">Xidmətlərdən alınmış orijinal mətnlər yayım elementlərində görünəcək</string>
+    <string name="show_original_time_ago_summary">Xidmətlərdən orijinal mətnlər yayım elementlərində görünəcək</string>
     <string name="check_new_streams">Yeni yayımları yoxlamanı işə sal</string>
-    <string name="import_soundcloud_instructions">URL və ya ID\'nizi daxil etməklə SoundCloud profilini idxal edin:
-\n
-\n1. Veb-brauzerdə \"iş masası rejimini\" aktiv edin (sayt mobil cihazlar üçün mövcud deyil)
-\n2. Bu URL\'ə keçin: %1$s
-\n3. Soruşulduqda daxil olun
-\n4. Yönləndirildiyiniz profilin URL\'sini kopyalayın.</string>
+    <string name="import_soundcloud_instructions">URL və ya ID\'nizi daxil etməklə SoundCloud profilini idxal edin: \n \n1. Veb-brauzerdə \"iş masası rejimini\" aktiv edin (sayt mobil cihazlar üçün mövcud deyil) \n2. Bu URL\'ə keçin: %1$s \n3. Soruşulduqda daxil olun \n4. Yönləndirildiyiniz profilin URL\'sini kopyalayın.</string>
     <string name="import_soundcloud_instructions_hint">ID\'niz, soundcloud.com/ID\'niz</string>
-    <string name="import_network_expensive_warning">Unutmayın ki, bu əməliyyat şəbəkəyə ağır yük ola bilər.
-\n
-\nDavam etmək istəyirsiniz\?</string>
+    <string name="import_network_expensive_warning">Unutmayın ki, bu əməliyyat şəbəkəyə ağır yük ola bilər. \n \nDavam etmək istəyirsiniz?</string>
     <string name="skip_silence_checkbox">Səssizlik zamanı sürətlə irəli</string>
     <string name="enable_streams_notifications_title">Yeni yayım bildirişləri</string>
     <string name="enable_streams_notifications_summary">Abunəliklərdən yeni yayımlar haqqında bildir</string>
@@ -395,16 +383,14 @@
     <string name="dont_show">Göstərməyin</string>
     <string name="download_failed">Endirmə uğursuz oldu</string>
     <string name="error_http_unsupported_range">Server çox iş parçalı endirmələri qəbul etmir, @string/msg_threads = 1 ilə yenidən cəhd edin</string>
-    <string name="delete_downloaded_files_confirm">Bütün endirilmiş fayllar diskdən silinsin\?</string>
+    <string name="delete_downloaded_files_confirm">Bütün endirilmiş fayllar diskdən silinsin?</string>
     <string name="max_retry_msg">Maksimum təkrar cəhdlər</string>
     <string name="remove_watched_popup_warning">Pleylistə əlavə olunandan əvvəl və sonrakı baxılan yayımlar silinəcək. \nSiz əminsiniz?</string>
     <string name="feed_groups_header_title">Kanal qrupları</string>
     <string name="feed_new_items">Yeni axın elementləri</string>
     <string name="feed_update_threshold_summary">Abunəlik köhnəlmiş hesab edilənə qədərki son yeniləmədən sonrakı vaxt — %s</string>
     <string name="feed_load_error">Axın yükləmə xətası</string>
-    <string name="content_not_supported">Bu məzmun hələ NewPipe tərəfindən dəstəklənmir.
-\n 
-\nÜmid edirik ki, gələcək versiyada dəstəklənəcək.</string>
+    <string name="content_not_supported">Bu məzmun hələ NewPipe tərəfindən dəstəklənmir. \n \nÜmid edirik ki, gələcək versiyada dəstəklənəcək.</string>
     <string name="show_thumbnail_summary">Həm kilid ekranı fonu, həm də bildirişlər üçün miniatür istifadə et</string>
     <string name="recent">Ən Yeni</string>
     <string name="georestricted_content">Bu məzmun ölkənizdə mövcud deyil.</string>
@@ -465,9 +451,7 @@
     <string name="checking_updates_toast">Yeniləmələr yoxlanılır…</string>
     <string name="app_update_available_notification_title">NewPipe yeniləməsi mövcuddur!</string>
     <string name="metadata_licence">Lisenziya</string>
-    <string name="feed_load_error_terminated">Müəllifin hesabı bağlanıb.
-\nNewPipe gələcəkdə bu axını yükləyə bilməyəcək.
-\nBu kanaldan abunəliyi çıxarmaq istəyirsiniz\?</string>
+    <string name="feed_load_error_terminated">Müəllifin hesabı bağlanıb. \nNewPipe gələcəkdə bu axını yükləyə bilməyəcək. \nBu kanaldan abunəliyi çıxarmaq istəyirsiniz?</string>
     <string name="featured">Seçilən</string>
     <string name="drawer_close">Çəkməcəni Bağla</string>
     <string name="video_player">Video oynadıcı</string>
@@ -563,8 +547,7 @@
     <string name="app_description">Android-də pulsuz, çevik yayımlanma.</string>
     <string name="copyright">© %1$s, %2$s tərəfindən %3$s altında</string>
     <string name="settings_category_downloads_title">Yüklə</string>
-    <string name="msg_popup_permission">Bu icazə, ani görüntü rejimində
-\naçmaq üçün lazımdır</string>
+    <string name="msg_popup_permission">Bu icazə, ani görüntü rejimində \naçmaq üçün lazımdır</string>
     <string name="msg_copied">Buferə köçürüldü</string>
     <string name="msg_threads">Hissələr</string>
     <string name="rename">Adını dəyişdir</string>
@@ -589,7 +572,7 @@
     <string name="playback_pitch">Ucalıq</string>
     <string name="radio">Radio</string>
     <string name="show_crash_the_player_title">\"Oynadıcını çökdür\" Göstər</string>
-    <string name="show_crash_the_player_summary">Oynadıcını istifadə edərkən çökdürmə seçimini göstər</string>
+    <string name="show_crash_the_player_summary">Oynadıcını istifadə edərkən çökdürmə seçimini göstərir</string>
     <string name="show_error_snackbar">Xəta balonu göstər</string>
     <string name="create_error_notification">Xəta bildirişi yarat</string>
     <string name="import_from">Burdan idxal et</string>
@@ -692,12 +675,12 @@
     <string name="ignore_hardware_media_buttons_title">Cihaz daxili media düyməsi problemlərinə məhəl qoyma</string>
     <string name="ignore_hardware_media_buttons_summary">Məsələn, fiziki düymələri qırılan qulaqlıq işlədirsinizsə faydalıdır</string>
     <string name="remove_duplicates">Dublikatları sil</string>
-    <string name="remove_duplicates_title">Dublikatlar silinsin\?</string>
+    <string name="remove_duplicates_title">Dublikatlar silinsin?</string>
     <string name="feed_hide_streams_title">Aşağıdakı yayımları göstər</string>
     <string name="feed_show_hide_streams">Yayımları Göstər/Gizlə</string>
     <string name="feed_show_watched">Tam baxılıb</string>
     <string name="feed_show_partially_watched">Qismən baxılıb</string>
-    <string name="remove_duplicates_message">Bu pleylistdəki bütün dublikat yayımları silmək istəyirsiniz\?</string>
+    <string name="remove_duplicates_message">Bu pleylistdəki bütün dublikat yayımları silmək istəyirsiniz?</string>
     <string name="feed_show_upcoming">Yaxınlaşan</string>
     <string name="left_gesture_control_title">Sol jest fəaliyyəti</string>
     <string name="right_gesture_control_summary">Oynadıcı ekranının sağ yarısı üçün jest seç</string>
@@ -741,8 +724,7 @@
     <string name="notification_actions_summary_android13">Aşağıdakı hər bildiriş fəaliyyətin ona toxunub redaktə edin. İlk üç fəaliyyət (oynatma/fasilə, əvvəlki və növbəti) sistem tərəfindən tənzimlənib və dəyişdirilə bilməz.</string>
     <string name="no">Xeyr</string>
     <string name="settings_category_backup_restore_title">Nüsxələmə və bərpa</string>
-    <string name="auto_update_check_description">NewPipe arabir avtomatik şəkildə yeni versiyaları yoxlaya və onlar mövcud olduqda sizə bildirə bilər.
-\nBunu aktivləşdirmək istəyirsiniz?</string>
+    <string name="auto_update_check_description">NewPipe arabir avtomatik şəkildə yeni versiyaları yoxlaya və onlar mövcud olduqda sizə bildirə bilər. \nBunu aktivləşdirmək istəyirsiniz?</string>
     <string name="yes">Bəli</string>
     <string name="reset_settings_title">Tənzimləmələri sıfırla</string>
     <string name="reset_settings_summary">Bütün tənzimləmələri standart dəyərlərinə sıfırla</string>
@@ -781,14 +763,10 @@
     <string name="share_playlist">Oynatma siyahısın paylaş</string>
     <string name="share_playlist_with_titles">Başlıqlarla paylaşın</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
-    <string name="share_playlist_content_details">%1$s
-\n%2$s</string>
+    <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="show_more">Daha çox göstər</string>
     <string name="show_less">Daha qısa göstər</string>
-    <string name="reset_all_settings">Bütün tənzimləmələri sıfırlama üstünlük verdiyiniz seçimlərin hamısın ləğv edəcək və tətbiq yenidən açılacaq.
-\n
-\n
-\nDavam etmək istədiyinizə əminsiniz?</string>
+    <string name="reset_all_settings">Bütün tənzimləmələri sıfırlama üstünlük verdiyiniz seçimlərin hamısın ləğv edəcək və tətbiq yenidən açılacaq. \n \n \nDavam etmək istədiyinizə əminsiniz?</string>
     <string name="channel_tab_livestreams">Canlı</string>
     <string name="channel_tab_albums">Albomlar</string>
     <string name="image_quality_title">Şəkil keyfiyyəti</string>
