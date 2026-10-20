@@ -51,6 +51,7 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
     // applied on the main thread in handleResult()
     @Nullable
     private ListLinkHandler lightweightTabHandler;
+
     @NonNull
     public static ChannelTabFragment getInstance(final int serviceId,
                                                  final ListLinkHandler tabHandler,
@@ -98,15 +99,16 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
         }
         return null;
     }
+
     @Override
     protected Single<ChannelTabInfo> loadResult(final boolean forceLoad) {
         final ListLinkHandler handler = tabHandler;
         return ExtractorHelper.getChannelTab(serviceId, handler, forceLoad)
-                // Creating the lightweight handler may perform network requests so it must not
+                // Creating the lightweight handler, may perform network requests so it must not
                 // happen on the main thread.
                 // doOnSuccess runs on the same background thread that loaded the tab.
-                .doOnSuccess(result -> lightweightTabHandler =
-                                    createLightweightTabHandler(result, handler));
+                .doOnSuccess(result ->
+                        lightweightTabHandler = createLightweightTabHandler(result, handler));
     }
 
     @Override
@@ -159,14 +161,12 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
                 }
             } catch (final ParsingException e) {
                 // silently ignore the error, as the app can continue to function normally
-                Log.w(TAG, "Could not recreate tab handler", e);
+                Log.w(TAG, "Could not recreate channel tab handler", e);
                 return null;
             }
         } else {
             return null;
         }
-
-
     }
 
     @Override
