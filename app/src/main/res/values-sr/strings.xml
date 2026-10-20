@@ -9,14 +9,14 @@
     <string name="download">Преузми</string>
     <string name="search">Претрага</string>
     <string name="settings">Подешавања</string>
-    <string name="did_you_mean">Да ли сте мислили: „%1$s“\?</string>
+    <string name="did_you_mean">Да ли сте мислили: „%1$s“?</string>
     <string name="share_dialog_title">Делите помоћу</string>
     <string name="download_path_title">Фолдер за преузимање видео снимака</string>
     <string name="download_path_summary">Преузети видео снимци се чувају овде</string>
     <string name="download_path_dialog_title">Изаберите фолдер за преузимање видео снимака</string>
     <string name="default_resolution_title">Подразумевана резолуција</string>
     <string name="play_with_kodi_title">Пусти помоћу Kodi-ја</string>
-    <string name="kore_not_found">Инсталирати апликацију Kore која недостаје\?</string>
+    <string name="kore_not_found">Инсталирати апликацију Kore која недостаје?</string>
     <string name="show_play_with_kodi_title">Прикажи опцију „Пусти помоћу Kodi-ја“</string>
     <string name="show_play_with_kodi_summary">Прикажите опцију за пуштање видео снимака преко Kodi медија центра</string>
     <string name="play_audio">Аудио снимак</string>
@@ -84,8 +84,7 @@
     <string name="black_theme_title">Црна</string>
     <string name="all">Све</string>
     <string name="open_in_popup_mode">Отвори у искачућем облику</string>
-    <string name="msg_popup_permission">Ова дозвола је потребна за
-\nотварање у искачућем режиму</string>
+    <string name="msg_popup_permission">Ова дозвола је потребна за \nотварање у искачућем режиму</string>
     <string name="popup_playing_toast">Пуштање у режиму искачућег прозора</string>
     <string name="disabled">Онемогућено</string>
     <string name="default_video_format_title">Подразумевани формат видео снимка</string>
@@ -164,7 +163,7 @@
     <string name="player_stream_failure">Није могуће пустити овај ток</string>
     <string name="player_unrecoverable_failure">Дошло је до непоправљиве грешке плејера</string>
     <string name="player_recoverable_failure">Опорављање од грешке плејера</string>
-    <string name="delete_item_search_history">Желите ли да избришете ову ставку из историје претраге\?</string>
+    <string name="delete_item_search_history">Желите ли да избришете ову ставку из историје претраге?</string>
     <string name="main_page_content">Садржај главне странице</string>
     <string name="blank_page_summary">Празна страница</string>
     <string name="kiosk_page_summary">Киоск страница</string>
@@ -214,8 +213,7 @@
     <string name="choose_instance_prompt">Изаберите инстанцу</string>
     <string name="downloads_storage_use_saf_summary">„Storage Access Framework“ омогућава преузимање на спољну, SD (меморијску), картицу</string>
     <string name="downloads_storage_use_saf_title">Користи системски бирач фолдера (SAF)</string>
-    <string name="downloads_storage_ask_summary">Бићете упитани где желите да сачувате свако преузимање.
-\nОмогућите системски бирач фолдера (SAF), ако желите да преузмете на спољну, SD (меморијску), картицу</string>
+    <string name="downloads_storage_ask_summary">Бићете упитани где желите да сачувате свако преузимање. \nОмогућите системски бирач фолдера (SAF), ако желите да преузмете на спољну, SD (меморијску), картицу</string>
     <string name="downloads_storage_ask_title">Питај где да се преузме</string>
     <string name="pause_downloads">Паузирај преузимања</string>
     <string name="start_downloads">Започни преузимања</string>
@@ -228,7 +226,7 @@
     <string name="max_retry_msg">Највише покушаја</string>
     <string name="stop">Заустави</string>
     <string name="delete_downloaded_files">Избриши преузете фајлове</string>
-    <string name="confirm_prompt">Желите ли да очистите историју преузимања или избришете све преузете фајлове\?</string>
+    <string name="confirm_prompt">Желите ли да очистите историју преузимања или избришете све преузете фајлове?</string>
     <string name="clear_download_history">Очисти историју преузимања</string>
     <string name="error_download_resource_gone">Није могуће опоравити ово преузимање</string>
     <string name="error_timeout">Веза је истекла</string>
@@ -280,8 +278,7 @@
     <string name="decline">Одбиј</string>
     <string name="limit_data_usage_none_description">Без ограничења</string>
     <string name="accept">Прихвати</string>
-    <string name="start_accept_privacy_policy">Да бисмо били у складу са Европском општом уредбом о заштити података (GDPR), скрећемо вам пажњу на политику приватности NewPipe-а. Пажљиво је прочитајте.
-\nМорате је прихватити да бисте нам послали извештај о грешци.</string>
+    <string name="start_accept_privacy_policy">Да бисмо били у складу са Европском општом уредбом о заштити података (GDPR), скрећемо вам пажњу на политику приватности NewPipe-а. Пажљиво је прочитајте. \nМорате је прихватити да бисте нам послали извештај о грешци.</string>
     <string name="playback_reset">Ресетуј</string>
     <string name="playback_step">Корак</string>
     <string name="skip_silence_checkbox">Премотавање унапред током тишине</string>
@@ -289,25 +286,10 @@
     <string name="playback_pitch">Висина тона</string>
     <string name="playback_tempo">Брзина</string>
     <string name="playback_speed_control">Контроле брзине репродукције</string>
-    <string name="import_network_expensive_warning">Имајте на уму да ова операција може потрошити доста података.
-\n
-\nЖелите ли да наставите\?</string>
+    <string name="import_network_expensive_warning">Имајте на уму да ова операција може потрошити доста података. \n \nЖелите ли да наставите?</string>
     <string name="import_soundcloud_instructions_hint">ВашID, soundcloud.com/yourid</string>
-    <string name="import_soundcloud_instructions">Увезите SoundCloud профил тако што ћете откуцати URL адресу или свој ID:
-\n
-\n1. Омогућите „верзију сајта за рачунар“ у веб-прегледачу (сајт није доступан за мобилне уређаје)
-\n2. Идите на ову URL адресу: %1$s
-\n3. Пријавите се када се то од вас затражи
-\n4. Копирајте URL адресу профила на који сте преусмерени.</string>
-    <string name="import_youtube_instructions">Увезите YouTube праћења из Google Takeout-а:
-\n
-\n1. Идите на ову URL адресу: %1$s
-\n2. Пријавите се када се то од вас затражи
-\n3. Кликните на „Сви подаци укључени“, затим на „Опозови све“, затим изаберите само „праћења“ и кликните на „ У реду“
-\n4. Кликните на „Следећи корак“, а затим на „Направи извоз“
-\n5. Кликните на дугме „Преузми“ након што се појави
-\n6. Кликните на УВЕЗИ ФАЈЛ испод и изаберите преузети .zip фајл
-\n7. [Ако увоз .zip не успе] Извуците .csv фајл (обично под „YouTube and YouTube Music/subscriptions/subscriptions.csv“), кликните на УВЕЗИ ФАЈЛ испод и изаберите извучени csv фајл</string>
+    <string name="import_soundcloud_instructions">Увезите SoundCloud профил тако што ћете откуцати URL адресу или свој ID: \n \n1. Омогућите „верзију сајта за рачунар“ у веб-прегледачу (сајт није доступан за мобилне уређаје) \n2. Идите на ову URL адресу: %1$s \n3. Пријавите се када се то од вас затражи \n4. Копирајте URL адресу профила на који сте преусмерени.</string>
+    <string name="import_youtube_instructions">Увезите YouTube праћења из Google Takeout-а: \n \n1. Идите на ову URL адресу: %1$s \n2. Пријавите се када се то од вас затражи \n3. Кликните на „Сви подаци укључени“, затим на „Опозови све“, затим изаберите само „праћења“ и кликните на „ У реду“ \n4. Кликните на „Следећи корак“, а затим на „Направи извоз“ \n5. Кликните на дугме „Преузми“ након што се појави \n6. Кликните на УВЕЗИ ФАЈЛ испод и изаберите преузети .zip фајл \n7. [Ако увоз .zip не успе] Извуците .csv фајл (обично под „YouTube and YouTube Music/subscriptions/subscriptions.csv“), кликните на УВЕЗИ ФАЈЛ испод и изаберите извучени csv фајл</string>
     <string name="subscriptions_export_unsuccessful">Није могуће извести праћења</string>
     <string name="subscriptions_import_unsuccessful">Није могуће увести праћења</string>
     <string name="previous_export">Претходни извоз</string>
@@ -335,7 +317,7 @@
     <string name="playlist_thumbnail_change_success">Сличица плејлисте је промењена.</string>
     <string name="playlist_add_stream_success">Додато на плејлисту</string>
     <string name="playlist_creation_success">Плејлиста је направљена</string>
-    <string name="delete_playlist_prompt">Избрисати ову плејлисту\?</string>
+    <string name="delete_playlist_prompt">Избрисати ову плејлисту?</string>
     <string name="bookmark_playlist">Обележи плејлисту</string>
     <string name="unbookmark_playlist">Уклони обележивач</string>
     <string name="set_as_playlist_thumbnail">Постави као сличицу плејлисте</string>
@@ -365,7 +347,7 @@
     <string name="recently_added">Недавно додато</string>
     <string name="local">Локално</string>
     <string name="error_unable_to_load_comments">Није могуће учитати коментаре</string>
-    <string name="import_settings">Желите ли да увезете и подешавања\?</string>
+    <string name="import_settings">Желите ли да увезете и подешавања?</string>
     <string name="override_current_data">Ово ће заменити ваше тренутно подешавање.</string>
     <string name="could_not_import_all_files">Упозорење: Није могуће увести све фајлове.</string>
     <string name="no_valid_zip_file">Нема важећег ZIP фајла</string>
@@ -379,8 +361,7 @@
     <string name="title_last_played">Последње пуштано</string>
     <string name="app_license">NewPipe је слободан софтвер за копирање: Можете га користити, проучавати, делити и побољшавати по жељи. Конкретно, можете га поново дистрибуирати и/или модификовати под условима GNU Опште јавне лиценце коју је објавила Фондација за слободни софтвер, било верзију 3 лиценце или (по вашем избору) било коју каснију верзију.</string>
     <string name="read_privacy_policy">Прочитај политику приватности</string>
-    <string name="privacy_policy_encouragement">Пројекат NewPipe веома озбиљно схвата вашу приватност. Стога, апликација не прикупља никакве податке без вашег пристанка.
-\nПолитика приватности NewPipe-а детаљно објашњава који се подаци шаљу и чувају када пошаљете извештај о отказивању апликације.</string>
+    <string name="privacy_policy_encouragement">Пројекат NewPipe веома озбиљно схвата вашу приватност. Стога, апликација не прикупља никакве податке без вашег пристанка. \nПолитика приватности NewPipe-а детаљно објашњава који се подаци шаљу и чувају када пошаљете извештај о отказивању апликације.</string>
     <string name="privacy_policy_title">Политика приватности NewPipe-а</string>
     <string name="done">Готово</string>
     <string name="recaptcha_solve">Реши</string>
@@ -415,7 +396,7 @@
     <string name="copy_for_github">Копирајте форматирани извештај</string>
     <string name="permission_display_over_apps">Дајте дозволу за приказивање преко других апликација</string>
     <string name="restore_defaults">Врати подразумеване вредности</string>
-    <string name="restore_defaults_confirmation">Желите ли да вратите подразумеване вредности\?</string>
+    <string name="restore_defaults_confirmation">Желите ли да вратите подразумеване вредности?</string>
     <string name="saved_tabs_invalid_json">Није могуће прочитати сачуване картице, тако да се користе подразумеване</string>
     <string name="no_streams_available_download">Нема токова доступних за преузимање</string>
     <string name="error_occurred_detail">Дошло је до грешке: %1$s</string>
@@ -427,18 +408,18 @@
     <string name="video_streams_empty">Нису пронађени видео токови</string>
     <string name="audio_streams_empty">Нису пронађени аудио токови</string>
     <string name="external_player_unsupported_link_type">Спољни плејери не подржавају ове врсте линкова</string>
-    <string name="download_to_sdcard_error_message">Преузимање на спољну, SD (меморијску), картицу није могуће. Ресетовати локацију фолдера за преузимање\?</string>
+    <string name="download_to_sdcard_error_message">Преузимање на спољну, SD (меморијску), картицу није могуће. Ресетовати локацију фолдера за преузимање?</string>
     <string name="download_to_sdcard_error_title">Спољна меморија није доступна</string>
     <string name="search_history_deleted">Историја претраге је избрисана</string>
-    <string name="delete_search_history_alert">Избрисати целу историју претраге\?</string>
+    <string name="delete_search_history_alert">Избрисати целу историју претраге?</string>
     <string name="clear_search_history_summary">Брише историју кључних речи за претрагу</string>
     <string name="clear_search_history_title">Очисти историју претраге</string>
     <string name="watch_history_states_deleted">Позиције репродукције су избрисане</string>
-    <string name="delete_playback_states_alert">Избрисати све позиције репродукције\?</string>
+    <string name="delete_playback_states_alert">Избрисати све позиције репродукције?</string>
     <string name="clear_playback_states_summary">Брише све позиције репродукције</string>
     <string name="clear_playback_states_title">Избриши позиције репродукције</string>
     <string name="watch_history_deleted">Историја гледања је избрисана</string>
-    <string name="delete_view_history_alert">Избрисати целу историју гледања\?</string>
+    <string name="delete_view_history_alert">Избрисати целу историју гледања?</string>
     <string name="clear_views_history_summary">Брише историју пуштаних токова и позиције репродукције</string>
     <string name="clear_views_history_title">Очисти историју гледања</string>
     <string name="clear_cookie_summary">Чисти колачиће које NewPipe чува када решите „reCAPTCHA“</string>
@@ -466,11 +447,8 @@
     <string name="videos_string">Видео снимци</string>
     <string name="playlists">Плејлисте</string>
     <string name="channels">Канали</string>
-    <string name="restricted_video_no_stream">Овај видео снимак је старосно ограничен.
-\nЗбог нових YouTube смерница за старосно ограничене видео снимке, NewPipe не може да им приступи, па није у могућности да их пушта.</string>
-    <string name="restricted_video">Овај видео снимак је старосно ограничен.
-\n
-\nУкључите „%1$s“ у подешавањима, ако желите да га видите.</string>
+    <string name="restricted_video_no_stream">Овај видео снимак је старосно ограничен. \nЗбог нових YouTube смерница за старосно ограничене видео снимке, NewPipe не може да им приступи, па није у могућности да их пушта.</string>
+    <string name="restricted_video">Овај видео снимак је старосно ограничен. \n \nУкључите „%1$s“ у подешавањима, ако желите да га видите.</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube омогућава „Ограничени режим“ који скрива потенцијални садржај за одрасле</string>
     <string name="youtube_restricted_mode_enabled_title">Укључи YouTube-ов „Ограничени режим“</string>
     <string name="show_age_restricted_content_summary">Приказивање садржаја који можда није прикладан за децу, јер има старосну границу (попут 18+)</string>
@@ -483,7 +461,7 @@
     <string name="peertube_instance_url_help">Пронађите инстанце које вам се свиђају на %s</string>
     <string name="peertube_instance_url_title">PeerTube инстанце</string>
     <string name="peertube_instance_url_summary">Изаберите своје омиљене PeerTube инстанце</string>
-    <string name="unsupported_url_dialog_message">URL адреса није препозната. Отворити помоћу друге апликације\?</string>
+    <string name="unsupported_url_dialog_message">URL адреса није препозната. Отворити помоћу друге апликације?</string>
     <string name="autoplay_title">Аутоматско пуштање</string>
     <string name="settings_category_clear_data_title">Чишћење података</string>
     <string name="enable_playback_state_lists_summary">Прикажите индикаторе положаја репродукције на листама</string>
@@ -540,20 +518,8 @@
     <string name="video_detail_by">Од %s</string>
     <string name="channel_created_by">Направио %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Сличица аватара канала</string>
-    <string name="content_not_supported">NewPipe још увек не подржава овај садржај.
-\n
-\nНадамо се да ће бити подржан у будућој верзији.</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Мислите ли да је учитавање фида превише споро\? Ако јесте, покушајте да омогућите брзо учитавање (можете га променити у подешавањима или притиском на дугме испод).
-\n
-\nNewPipe нуди две стратегије учитавања фида:
-\n• Прикупљање целог претплатничког канала, што је споро, али потпуно.
-\n• Коришћење наменске крајње тачке услуге, која је брза, али обично није потпуна.
-\n
-\nРазлика између њих је у томе што брзом начину обично недостају неке информације, као што је трајање или врста ставке (не могу да се разликују видео снимци уживо и нормални) и може да врати мање ставки.
-\n
-\nYouTube је пример услуге која нуди ову брзу методу са својим RSS фидом.
-\n
-\nДакле, избор се своди на оно што ви преферирате: брзину или прецизне информације.</string>
+    <string name="content_not_supported">NewPipe још увек не подржава овај садржај. \n \nНадамо се да ће бити подржан у будућој верзији.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Мислите ли да је учитавање фида превише споро? Ако јесте, покушајте да омогућите брзо учитавање (можете га променити у подешавањима или притиском на дугме испод). \n \nNewPipe нуди две стратегије учитавања фида: \n• Прикупљање целог претплатничког канала, што је споро, али потпуно. \n• Коришћење наменске крајње тачке услуге, која је брза, али обично није потпуна. \n \nРазлика између њих је у томе што брзом начину обично недостају неке информације, као што је трајање или врста ставке (не могу да се разликују видео снимци уживо и нормални) и може да врати мање ставки. \n \nYouTube је пример услуге која нуди ову брзу методу са својим RSS фидом. \n \nДакле, избор се своди на оно што ви преферирате: брзину или прецизне информације.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Онемогући брзи режим</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Омогући брзи режим</string>
     <string name="feed_use_dedicated_fetch_method_summary">Доступан у неким услугама, обично је много бржи, али може да врати ограничену количину ставки и често непотпуне информације (нпр. нема трајања, врсте ставке, нема статуса уживо)</string>
@@ -564,7 +530,7 @@
     <string name="settings_category_feed_title">Фид</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Прикажи само негруписана праћења</string>
     <string name="feed_create_new_group_button_title">Нова</string>
-    <string name="feed_group_dialog_delete_message">Желите ли да избришете ову групу\?</string>
+    <string name="feed_group_dialog_delete_message">Желите ли да избришете ову групу?</string>
     <string name="feed_group_dialog_empty_name">Празан назив групе</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d изабран</item>
@@ -620,9 +586,7 @@
     <string name="description_select_note">Сада можете изабрати текст унутар описа. Имајте на уму да страница може треперети и да се на линкове можда неће моћи кликнути док сте у режиму избора.</string>
     <string name="account_terminated">Налог укинут</string>
     <string name="feed_load_error_fast_unknown">Режим брзог фида не пружа више информација о овоме.</string>
-    <string name="feed_load_error_terminated">Налог аутора је укинут.
-\nNewPipe убудуће неће моћи да учита овај фид.
-\nЖелите ли да прекинете праћење овог канала\?</string>
+    <string name="feed_load_error_terminated">Налог аутора је укинут. \nNewPipe убудуће неће моћи да учита овај фид. \nЖелите ли да прекинете праћење овог канала?</string>
     <string name="feed_load_error_account_info">Није могуће учитати фид за „%s“.</string>
     <string name="feed_load_error">Грешка при учитавању фида</string>
     <string name="downloads_storage_use_saf_summary_api_29">Од Android-а 10 само „Storage Access Framework“ је подржан</string>
@@ -668,7 +632,7 @@
     <string name="show_error_snackbar">Прикажи траку са грешком</string>
     <string name="streams_notifications_interval_title">Учесталост провере</string>
     <string name="card">Картица</string>
-    <string name="remove_duplicates_title">Уклонити дупликате\?</string>
+    <string name="remove_duplicates_title">Уклонити дупликате?</string>
     <string name="remove_duplicates_message">Желите ли да уклоните све дупликате токова на овој плејлисти?</string>
     <string name="feed_show_upcoming">Предстојеће</string>
     <string name="settings_category_exoplayer_title">Подешавања ExoPlayer-а</string>
@@ -688,7 +652,7 @@
     <string name="semitone">Полутон</string>
     <string name="enable_streams_notifications_summary">Обавештавање о новим токовима из праћења</string>
     <string name="checking_updates_toast">Провера ажурирања…</string>
-    <string name="delete_downloaded_files_confirm">Избрисати све преузете фајлове са диска\?</string>
+    <string name="delete_downloaded_files_confirm">Избрисати све преузете фајлове са диска?</string>
     <string name="remove_duplicates">Уклони дупликате</string>
     <string name="detail_pinned_comment_view_description">Прикачен коментар</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer подразумевано</string>
@@ -737,8 +701,7 @@
     <string name="percent">Проценат</string>
     <string name="app_update_unavailable_toast">Користите најновију верзију NewPipe-а</string>
     <string name="dont_show">Не приказуј</string>
-    <string name="no_appropriate_file_manager_message">Није пронађен одговарајући менаџер фајлова за ову радњу.
-\nИнсталирајте менаџер фајлова или покушајте да онемогућите „%s“ у подешавањима преузимања</string>
+    <string name="no_appropriate_file_manager_message">Није пронађен одговарајући менаџер фајлова за ову радњу. \nИнсталирајте менаџер фајлова или покушајте да онемогућите „%s“ у подешавањима преузимања</string>
     <string name="faq_title">Често постављана питања</string>
     <string name="show_crash_the_player_summary">Приказује опцију рушења, када користите плејер</string>
     <plurals name="deleted_downloads_toast">
@@ -746,8 +709,7 @@
         <item quantity="few">Избрисано је %1$s преузимања</item>
         <item quantity="other">Избрисано је %1$s преузимања</item>
     </plurals>
-    <string name="no_appropriate_file_manager_message_android_10">Није пронађен одговарајући менаџер фајлова за ову радњу.
-\nИнсталирајте менаџер фајлова компатибилан са Storage Access Framework-ом</string>
+    <string name="no_appropriate_file_manager_message_android_10">Није пронађен одговарајући менаџер фајлова за ову радњу. \nИнсталирајте менаџер фајлова компатибилан са Storage Access Framework-ом</string>
     <string name="detail_heart_img_view_description">Срце од стране креатора</string>
     <string name="notifications_disabled">Обавештења су онемогућена</string>
     <string name="get_notified">Добијајте обавештења</string>
@@ -757,9 +719,7 @@
     <string name="audio_track_type_dubbed">синхронизовани</string>
     <string name="settings_category_exoplayer_summary">Управљајте неким подешавањима ExoPlayer-а. Ове промене захтевају рестартовање плејера да би се примениле</string>
     <string name="prefer_original_audio_title">Преферирај оригинални аудио снимак</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Ово заобилазно решење ослобађа и поново инстанцира кодеке видео снимка када дође до промене површине, уместо да се површина директно поставља на кодек. ExoPlayer већ користи ово на неким уређајима са овим проблемом, ово подешавање утиче само на Android 6 и новије верзије.
-\n
-\nОмогућавање ове опције може спречити грешке при репродукцији приликом пребацивања тренутног плејера видео снимака или преласка на цео екран</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Ово заобилазно решење ослобађа и поново инстанцира кодеке видео снимка када дође до промене површине, уместо да се површина директно поставља на кодек. ExoPlayer већ користи ово на неким уређајима са овим проблемом, ово подешавање утиче само на Android 6 и новије верзије. \n \nОмогућавање ове опције може спречити грешке при репродукцији приликом пребацивања тренутног плејера видео снимака или преласка на цео екран</string>
     <string name="play_queue_audio_track">Аудио снимак: %s</string>
     <string name="fast_mode">Брзи режим</string>
     <string name="enumeration_comma">,</string>
@@ -806,8 +766,7 @@
     <string name="previous_stream">Претходни ток</string>
     <string name="share_playlist_with_list">Дели листу URL адреса</string>
     <string name="share_playlist_with_titles">Дели са насловима</string>
-    <string name="share_playlist_content_details">%1$s
-\n%2$s</string>
+    <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="share_playlist">Дели плејлисту</string>
     <string name="video_details_list_item">-%1$s: %2$s</string>
     <plurals name="replies">
@@ -822,13 +781,10 @@
     <string name="settings_category_backup_restore_title">Прављење резервне копије и враћање</string>
     <string name="reset_settings_title">Ресетуј подешавања</string>
     <string name="reset_settings_summary">Ресетујте сва подешавања на подразумеване вредности</string>
-    <string name="reset_all_settings">Ресетовање свих подешавања ће одбацити сва жељена подешавања и поново покренути апликацију.
-\n
-\nЖелите ли заиста да наставите?</string>
+    <string name="reset_all_settings">Ресетовање свих подешавања ће одбацити сва жељена подешавања и поново покренути апликацију. \n \nЖелите ли заиста да наставите?</string>
     <string name="no">Не</string>
     <string name="yes">Да</string>
-    <string name="auto_update_check_description">NewPipe може аутоматски да проверава да ли постоје нове верзије с времена на време и да вас обавести када буду доступне.
-\nЖелите ли да омогућите ово?</string>
+    <string name="auto_update_check_description">NewPipe може аутоматски да проверава да ли постоје нове верзије с времена на време и да вас обавести када буду доступне. \nЖелите ли да омогућите ово?</string>
     <string name="import_settings_vulnerable_format">Подешавања у извозу који се увозе користе рањив формат који је застарео од NewPipe верзије 0.27.0. Уверите се да извоз који се увози долази из поузданог извора и радије користите само извозе добијене из NewPipe 0.27.0 или новије верзије, у будућности. Подршка за увоз подешавања у овом рањивом формату ће ускоро бити потпуно уклоњена и тада старе NewPipe верзије више неће моћи да увозе подешавања извоза из нових верзија.</string>
     <string name="audio_track_type_secondary">секундарни</string>
     <string name="share_playlist_as_youtube_temporary_playlist">Дели као YouTube привремену плејлисту</string>

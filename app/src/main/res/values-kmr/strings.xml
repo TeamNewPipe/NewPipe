@@ -75,7 +75,7 @@
     <string name="error_report_button_text">Vê xeletiyê bi e-nameyê ragihînin</string>
     <string name="sorry_string">Bibore, divê wiya çênebûya.</string>
     <string name="permission_display_over_apps">Destûrê bidin ku hûn li ser sepanên din nîşan bidin</string>
-    <string name="restore_defaults_confirmation">Ma hûn dixwazin defaultan vegerînin\?</string>
+    <string name="restore_defaults_confirmation">Ma hûn dixwazin defaultan vegerînin?</string>
     <string name="restore_defaults">Veguhêrin Pêngavên</string>
     <string name="saved_tabs_invalid_json">Nekarin tabên tomarkirî bixwînin, ji ber vê yekê yên default bikar bînin</string>
     <string name="no_streams_available_download">Ji bo dakêşanê çem tune</string>
@@ -97,19 +97,19 @@
     <string name="parsing_error">Malperê nekare parsek bike</string>
     <string name="could_not_load_thumbnails">Nekarî hemî wêneyan barkir</string>
     <string name="network_error">Çewtiya torê</string>
-    <string name="download_to_sdcard_error_message">Dakêşandin ji karta SD ya derveyî re ne gengaz e. Cihê peldanka dakêşanê ji nû ve were çêkirin\?</string>
+    <string name="download_to_sdcard_error_message">Dakêşandin ji karta SD ya derveyî re ne gengaz e. Cihê peldanka dakêşanê ji nû ve were çêkirin?</string>
     <string name="download_to_sdcard_error_title">Depoya derveyî tune</string>
     <string name="general_error">Şaşî</string>
     <string name="search_history_deleted">Dîroka lêgerînê hate jêbirin.</string>
-    <string name="delete_search_history_alert">Dîroka tevahî lêgerînê jê bibe\?</string>
+    <string name="delete_search_history_alert">Dîroka tevahî lêgerînê jê bibe?</string>
     <string name="clear_search_history_summary">Dîroka peyvên sereke yên lêgerînê jê dike</string>
     <string name="clear_search_history_title">Dîroka lêgerînê paqij bike</string>
     <string name="watch_history_states_deleted">Helwestên lîstinê hatine jêbirin.</string>
-    <string name="delete_playback_states_alert">Hemî pozîsyonên lîstinê werin jêbirin\?</string>
+    <string name="delete_playback_states_alert">Hemî pozîsyonên lîstinê werin jêbirin?</string>
     <string name="clear_playback_states_summary">Hemî çeperên lîstinê ji holê radike</string>
     <string name="clear_playback_states_title">Helwestên lîstokê jêbirin</string>
     <string name="watch_history_deleted">Dîroka temaşekirinê hate jêbirin.</string>
-    <string name="delete_view_history_alert">Tevahiya dîroka temaşekirinê tê jêbirin\?</string>
+    <string name="delete_view_history_alert">Tevahiya dîroka temaşekirinê tê jêbirin?</string>
     <string name="clear_views_history_summary">Dîroka herikên lîstî û helwestên lîstinê jêbirin</string>
     <string name="clear_views_history_title">Dîroka temaşekirinê paqij bikin</string>
     <string name="clear_cookie_summary">Dema ku hûn reCAPTCHA-yê çareser bikin cookie-yên ku NewPipe tomar dike paqij bikin</string>
@@ -137,7 +137,7 @@
     <string name="undo">Betal bike</string>
     <string name="best_resolution">Çareseriya çêtirîn</string>
     <string name="error_unable_to_load_comments">Ouldîrove nehat barkirin</string>
-    <string name="import_settings">Ma hûn dixwazin mîhengan jî îthal bikin\?</string>
+    <string name="import_settings">Ma hûn dixwazin mîhengan jî îthal bikin?</string>
     <string name="override_current_data">Ev ê sazkirina xweya heyî ji holê rabike.</string>
     <string name="could_not_import_all_files">Hişyarî: Nikare hemû pelan bîne hundur.</string>
     <string name="no_valid_zip_file">Pelê ZIP-yê derbasdar tune</string>
@@ -156,7 +156,7 @@
     <string name="main_page_content">Naveroka rûpelê sereke</string>
     <string name="title_most_played">Pir lîstin</string>
     <string name="title_last_played">Lîstika dawîn</string>
-    <string name="delete_item_search_history">Ma hûn dixwazin vî tiştî ji dîroka lêgerînê paqij bikin\?</string>
+    <string name="delete_item_search_history">Ma hûn dixwazin vî tiştî ji dîroka lêgerînê paqij bikin?</string>
     <string name="action_history">Dîrok</string>
     <string name="title_activity_history">Dîrok</string>
     <string name="read_full_license">Destûrê bixwînin</string>
@@ -177,9 +177,7 @@
     <string name="downloads_title">Dakêşandin</string>
     <string name="downloads">Dakêşandin</string>
     <string name="duration_live">Jîyan</string>
-    <string name="restricted_video">Ev vîdyo temen tê sînorkirin.
-\n
-\nHeke hûn dixwazin bibînin \"%1$s\" di mîhengan de veke.</string>
+    <string name="restricted_video">Ev vîdyo temen tê sînorkirin. \n \nHeke hûn dixwazin bibînin \"%1$s\" di mîhengan de veke.</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube \"Modeya Bicîhkirî\" peyda dike ku naveroka potansiyel gihîştî vedişêre</string>
     <string name="youtube_restricted_mode_enabled_title">\"Modeya Bicîh\" a YouTube-ê veke</string>
     <string name="show_age_restricted_content_summary">Naverok ji bo zarokan dibe ku ne guncan be nîşan bikin ji ber ku sînorek temenê wê heye (mîna 18+)</string>
@@ -204,7 +202,7 @@
     <string name="peertube_instance_url_title">Mînakên PeerTube</string>
     <string name="content_language_title">Zimanê naveroka bixweber</string>
     <string name="default_content_country_title">Welatê naverokê standard</string>
-    <string name="unsupported_url_dialog_message">URL-yê nasnakin. Bi sepek din vedibe\?</string>
+    <string name="unsupported_url_dialog_message">URL-yê nasnakin. Bi sepek din vedibe?</string>
     <string name="unsupported_url">URL-ya ku nayê piştgirî kirin</string>
     <string name="show_hold_to_append_summary">Dema ku hûn paşnav an bişkoja popupê ya di vîdyoyê de \"Hûrgulî:\" bişkînin tip nîşan bidin</string>
     <string name="show_hold_to_append_title">Serişteya \"Ji bo pêvekirinê bigire\" nîşan bide</string>
@@ -269,10 +267,9 @@
     <string name="notification_scale_to_square_image_title">Mîqneya pîvanê bi rêjeya aliyî ya 1:1 ve</string>
     <string name="show_play_with_kodi_summary">Vebijarkek ji bo lîstina vîdyoyek bi navgîniya navenda medya Kodi nîşan bidin</string>
     <string name="show_play_with_kodi_title">Vebijarka \"Bi Kodi re lîstin\" nîşan bidin</string>
-    <string name="kore_not_found">Sepana Kore ya wenda saz dike\?</string>
+    <string name="kore_not_found">Sepana Kore ya wenda saz dike?</string>
     <string name="play_with_kodi_title">Bi Kodî re bilîzin</string>
-    <string name="msg_popup_permission">Vê destûr hewce ye ku
-\ndi moda popupê de vekin</string>
+    <string name="msg_popup_permission">Vê destûr hewce ye ku \ndi moda popupê de vekin</string>
     <string name="show_higher_resolutions_summary">Tenê hin cîhaz dikarin vîdyoyên 2K/4K bilîzin</string>
     <string name="show_higher_resolutions_title">Pêşniyarên mezintir nîşan bidin</string>
     <string name="default_popup_resolution_title">Çareseriya popupê ya jixweber</string>
@@ -301,7 +298,7 @@
     <string name="use_external_video_player_title">Vîdyoyek derveyî bikar bînin</string>
     <string name="share_dialog_title">Parve dikin li gel</string>
     <string name="search_showing_result_for">Encaman ji bo: %s nîşan dide</string>
-    <string name="did_you_mean">Mebesta we \"%1$s\" bû\?</string>
+    <string name="did_you_mean">Mebesta we \"%1$s\" bû?</string>
     <string name="settings">Mîhengên</string>
     <string name="search">Gerr</string>
     <string name="controls_download_desc">Pelê çemê dakêşin</string>
@@ -313,7 +310,7 @@
     <string name="cancel">Bişûndekirin</string>
     <string name="install">Lêkirin</string>
     <string name="no_player_found_toast">Vebijarkek streaming nehat dîtin (hûn dikarin VLC-yê saz bikin da ku lê bilîze).</string>
-    <string name="no_player_found">Lîstikvanek herikê nehat dîtin. VLC saz bikin\?</string>
+    <string name="no_player_found">Lîstikvanek herikê nehat dîtin. VLC saz bikin?</string>
     <string name="upload_date_text">Li ser hate weşandin %1$s</string>
     <string name="main_bg_subtitle">Ji bo destpêkirinê \"Lêgerîn\" bitikînin</string>
     <string name="feed_use_dedicated_fetch_method_summary">Di hin karûbaran de heye, ew bi gelemperî pir zûtir e lê dibe ku hejmarek bi sînor a tiştan vegerîne û bi gelemperî agahdariya bêkêmasî vebigere (mînakî bê domdanî, celebek tişt, bê statûya zindî).</string>
@@ -324,7 +321,7 @@
     <string name="settings_category_feed_title">Xwedî kirin</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Tenê aboneyên ne kombûyî nîşan bidin</string>
     <string name="feed_create_new_group_button_title">Nû</string>
-    <string name="feed_group_dialog_delete_message">Ma hûn dixwazin vê komê jê bibin\?</string>
+    <string name="feed_group_dialog_delete_message">Ma hûn dixwazin vê komê jê bibin?</string>
     <string name="feed_group_dialog_empty_name">Navê koma vala</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d hilbijart</item>
@@ -362,8 +359,7 @@
     <string name="systems_language">Pergala wekî ku heyî</string>
     <string name="app_language_title">Zimanê appê</string>
     <string name="choose_instance_prompt">Mînakek hilbijêrin</string>
-    <string name="downloads_storage_use_saf_summary">\'Çarçoveya Gihîştina Storage\' daxistinan li qertek SD ya derveyî dihêle.
-\nHin cîhaz lihevnehatî ne</string>
+    <string name="downloads_storage_use_saf_summary">\'Çarçoveya Gihîştina Storage\' daxistinan li qertek SD ya derveyî dihêle. \nHin cîhaz lihevnehatî ne</string>
     <string name="downloads_storage_use_saf_title">SAF bikar bînin</string>
     <string name="downloads_storage_ask_summary">Dê ji we were pirsîn ka hûn ê her dakêşanê li ku derê hilanînê</string>
     <string name="downloads_storage_ask_title">Li ku derê dakêşin bipirsin</string>
@@ -378,7 +374,7 @@
     <string name="max_retry_msg">Zêdetir dubarekirin çêbû</string>
     <string name="stop">Rawestan</string>
     <string name="delete_downloaded_files">Pelên dakêşandî hilweşînin</string>
-    <string name="confirm_prompt">Ma hûn dixwazin dîroka dakêşanê xwe paqij bikin an hemî pelên dakêşandî jê bibin\?</string>
+    <string name="confirm_prompt">Ma hûn dixwazin dîroka dakêşanê xwe paqij bikin an hemî pelên dakêşandî jê bibin?</string>
     <string name="clear_download_history">Dîroka dakêşanê paqij bikin</string>
     <string name="error_download_resource_gone">Vê dakêşanê nikare paşde bibe</string>
     <string name="error_timeout">Dema girêdanê</string>
@@ -430,8 +426,7 @@
     <string name="limit_data_usage_none_description">Sînor tune</string>
     <string name="decline">Paşvegerrî</string>
     <string name="accept">Baweranîn</string>
-    <string name="start_accept_privacy_policy">Ji bo ku em rêzê li Rêziknameya Parastina Daneya Giştî ya Ewropî (GDPR) bigirin, em herby bala we dikişînin ser siyaseta nepeniya NewPipe. Ji kerema xwe bi baldarî bixwînin.
-\nDivê hûn wê qebûl bikin da ku em rapora çewtiyê ji me re bişînin.</string>
+    <string name="start_accept_privacy_policy">Ji bo ku em rêzê li Rêziknameya Parastina Daneya Giştî ya Ewropî (GDPR) bigirin, em herby bala we dikişînin ser siyaseta nepeniya NewPipe. Ji kerema xwe bi baldarî bixwînin. \nDivê hûn wê qebûl bikin da ku em rapora çewtiyê ji me re bişînin.</string>
     <string name="playback_reset">Reset bikin</string>
     <string name="playback_step">Gav</string>
     <string name="skip_silence_checkbox">Di dema bêdengiyê de zû-zû</string>
@@ -439,16 +434,9 @@
     <string name="playback_pitch">Avêtin</string>
     <string name="playback_tempo">Lez</string>
     <string name="playback_speed_control">Kontrolên Leza Piştê tomarkirinê</string>
-    <string name="import_network_expensive_warning">Di hişê xwe de bimînin ev operasyon dikare bihayê torê be.
-\n
-\nMa hûn dixwazin berdewam bikin\?</string>
+    <string name="import_network_expensive_warning">Di hişê xwe de bimînin ev operasyon dikare bihayê torê be. \n \nMa hûn dixwazin berdewam bikin?</string>
     <string name="import_soundcloud_instructions_hint">Dixwaze, soundcloud.com/yourid</string>
-    <string name="import_soundcloud_instructions">Bi navnîşana URL an Nasnameya xwe profîlek SoundCloud bikirin:
-\n
-\n1. Di rû-gerokê de \"moda sermaseyê\" çalak bike (malper ji bo cîhazên mobîl peyda nabe)
-\n2. Herin vê URL-ê: %1$s
-\n3. Dema ku ji we were pirsîn bikevin hundur
-\n4. URL-ya profîlê ku hûn lê hatine rêve kirin kopî bikin.</string>
+    <string name="import_soundcloud_instructions">Bi navnîşana URL an Nasnameya xwe profîlek SoundCloud bikirin: \n \n1. Di rû-gerokê de \"moda sermaseyê\" çalak bike (malper ji bo cîhazên mobîl peyda nabe) \n2. Herin vê URL-ê: %1$s \n3. Dema ku ji we were pirsîn bikevin hundur \n4. URL-ya profîlê ku hûn lê hatine rêve kirin kopî bikin.</string>
     <string name="subscriptions_export_unsuccessful">Nikare abonetiyê bişîne</string>
     <string name="subscriptions_import_unsuccessful">Nekarîn abone nekarin</string>
     <string name="previous_export">Hinardeya berê</string>
@@ -475,7 +463,7 @@
     <string name="playlist_thumbnail_change_success">Mîcnama lîsteya lîstikê guherî.</string>
     <string name="playlist_add_stream_success">Lîsteya lîstinê</string>
     <string name="playlist_creation_success">Lîsteya lîstinê hate afirandin</string>
-    <string name="delete_playlist_prompt">Vê lîsteya lîstinê were jêbirin\?</string>
+    <string name="delete_playlist_prompt">Vê lîsteya lîstinê were jêbirin?</string>
     <string name="unbookmark_playlist">Lîsteya lîsteyê nîşan hilînin</string>
     <string name="bookmark_playlist">Lîsteya lîsteyê nîşan bikin</string>
     <string name="set_as_playlist_thumbnail">Wekî Thumbnailê Lîsteya Lîsteyê saz bikin</string>
@@ -513,8 +501,7 @@
     <string name="trending">Tiştên Trend</string>
     <string name="app_license_title">Lîsansa NewPipe</string>
     <string name="read_privacy_policy">Polîtîkaya nepeniyê bixwînin</string>
-    <string name="privacy_policy_encouragement">Projeya NewPipe nepenîtiya we pir cidî digire. Ji ber vê yekê, sepanê bêyî razîbûna we tu daneyan kom nake.
-\nSiyaseta taybetîtiyê ya NewPipe dema ku hûn rapora qeza dişînin çi daneyên têne şandin û hilanîn bi berfirehî vedibêje.</string>
+    <string name="privacy_policy_encouragement">Projeya NewPipe nepenîtiya we pir cidî digire. Ji ber vê yekê, sepanê bêyî razîbûna we tu daneyan kom nake. \nSiyaseta taybetîtiyê ya NewPipe dema ku hûn rapora qeza dişînin çi daneyên têne şandin û hilanîn bi berfirehî vedibêje.</string>
     <string name="privacy_policy_title">Siyaseta taybetîtiyê ya NewPipe</string>
     <string name="website_encouragement">Ji bo bêtir agahdarî û nûçeyan biçin Malpera NewPipe.</string>
     <string name="website_title">Malper</string>
@@ -535,14 +522,7 @@
     <string name="done">Kirî</string>
     <string name="recaptcha_request_toast">reCAPTCHA dijwarî xwestin</string>
     <string name="subtitle_activity_recaptcha">Dema ku çareser bibe \"Kirî\" çap bikin</string>
-    <string name="import_youtube_instructions">Tevlêbûnên YouTube-ê ji barkirina Google-ê bikişînin:
-\n
-\n1. Herin vê URL-ê: %1$s
-\n2. Dema ku ji we tê xwestin bikevin hundur
-\n3. Li ser \"Hemî daneyên tê de\" bikirtînin, dûre \"Hemî hilbijêrin\" hilbijêrinîn, paşê tenê \"abonetiyê\" hilbijêrin û \"OK\" bikirtînin
-\n4. Li ser \"Pênga Next\" û paşê jî li ser \"Afirandina hinardeyê\" bitikînin
-\n5. Bişkojka \"Dakêşanê\" bitikîne piştî ku xuya dibe û
-\n6. Ji zip zipê dakêşandî pelê .json derxînin (bi gelemperî di bin \"YouTube û YouTube de Music/subscriptions/subscriptions.json\") û wê li vir îthal bikin.</string>
+    <string name="import_youtube_instructions">Tevlêbûnên YouTube-ê ji barkirina Google-ê bikişînin: \n \n1. Herin vê URL-ê: %1$s \n2. Dema ku ji we tê xwestin bikevin hundur \n3. Li ser \"Hemî daneyên tê de\" bikirtînin, dûre \"Hemî hilbijêrin\" hilbijêrinîn, paşê tenê \"abonetiyê\" hilbijêrin û \"OK\" bikirtînin \n4. Li ser \"Pênga Next\" û paşê jî li ser \"Afirandina hinardeyê\" bitikînin \n5. Bişkojka \"Dakêşanê\" bitikîne piştî ku xuya dibe û \n6. Ji zip zipê dakêşandî pelê .json derxînin (bi gelemperî di bin \"YouTube û YouTube de Music/subscriptions/subscriptions.json\") û wê li vir îthal bikin.</string>
     <string name="show_thumbnail_summary">Hem ji bo paşnavê dîmendera kilît û hem jî ji bo agahdarkirinê wêneyên nîgarê bikar bînin</string>
     <string name="no_app_to_open_intent">Tu cîhaz li ser amûrê we nikare vê vebike</string>
     <string name="chapters">Beş</string>
@@ -552,20 +532,8 @@
     <string name="video_detail_by">Bi %s</string>
     <string name="channel_created_by">Ji hêla %s ve hatî afirandin</string>
     <string name="detail_sub_channel_thumbnail_view_description">Avrêl avatar a Qenal</string>
-    <string name="content_not_supported">Vê naverok hîn ji hêla NewPipe ve nayê piştgirî kirin.
-\n
-\nEw ê hêvî dikim ku di guhertoyek pêşerojê de piştgirî bibe.</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Li gorî we barkirina xwarinê pir hêdî ye\? Ger wusa ye, barkirina zû biceribîne (hûn dikarin wê di mîhengan de an bi tikandina bişkoja jêrîn biguherînin).
-\n
-\nNewPipe du stratejiyên barkirina xwarinê pêşkêşî dike:
-\n• Dîtina tevahî kanala abonetiyê, ku hêdî ye lê temam e.
-\n• Bikaranîna xala dawîn a karûbarê taybetî, ku bilez e lê bi gelemperî ne temam e.
-\n
-\nCûdaiya di navbera her duyan de ev e ku ya bilez bi gelemperî hin agahdarî, mîna dirêjahî an celebê (nekare vîdyoyên zindî û yên normal cuda bike) tune û dibe ku ew kêmtir tiştan jî vegerîne.
-\n
-\nYouTube nimûneyek xizmetê ye ku bi xwarina RSS-ê vê rêbaza bilez pêşkêşî dike.
-\n
-\nJi ber vê yekê bijarde bi tiştê ku hûn tercîh dikin ve girêdayî ye: leza an agahdariya rastîn.</string>
+    <string name="content_not_supported">Vê naverok hîn ji hêla NewPipe ve nayê piştgirî kirin. \n \nEw ê hêvî dikim ku di guhertoyek pêşerojê de piştgirî bibe.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Li gorî we barkirina xwarinê pir hêdî ye? Ger wusa ye, barkirina zû biceribîne (hûn dikarin wê di mîhengan de an bi tikandina bişkoja jêrîn biguherînin). \n \nNewPipe du stratejiyên barkirina xwarinê pêşkêşî dike: \n• Dîtina tevahî kanala abonetiyê, ku hêdî ye lê temam e. \n• Bikaranîna xala dawîn a karûbarê taybetî, ku bilez e lê bi gelemperî ne temam e. \n \nCûdaiya di navbera her duyan de ev e ku ya bilez bi gelemperî hin agahdarî, mîna dirêjahî an celebê (nekare vîdyoyên zindî û yên normal cuda bike) tune û dibe ku ew kêmtir tiştan jî vegerîne. \n \nYouTube nimûneyek xizmetê ye ku bi xwarina RSS-ê vê rêbaza bilez pêşkêşî dike. \n \nJi ber vê yekê bijarde bi tiştê ku hûn tercîh dikin ve girêdayî ye: leza an agahdariya rastîn.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Modeya lezgîn neçalak bikin</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Modeya lezgîn çalak bikin</string>
     <string name="tab_licenses">Destûrên</string>

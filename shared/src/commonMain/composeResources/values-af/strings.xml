@@ -34,9 +34,9 @@
     <string name="contribution_encouragement">Of jy Ideas het vir; vertaling, ontwerp veranderinge, kode netjies maak, of groot kode veranderinge - hulp word altyd waardeer. Hoe meer gedoen word, hoe beter raak dit!</string>
     <string name="view_on_github">Bekyk op GitHub</string>
     <string name="donation_encouragement">NewPipe word ontwikkel deur vrywilligers wat hul vrye tyd gebruik om die beste verbruikers ondervinding te bring. Gee terug om die ontwikkelaars te help om NewPipe nog beter te maak terwyl hulle n koffie geniet.</string>
-    <string name="privacy_policy_encouragement">Die NewPipe projek is erenstig oor privaatheid. As gevolg daarvan sal die toepassing nie enige data versamel of stoor sonder jou toestemming nie.\nNewPipe se privaatheids beleid verduidelik in detail watter data deur gestuur en gestoor word wanneer jy n "crash report" stuur.</string>
+    <string name="privacy_policy_encouragement">Die NewPipe projek is erenstig oor privaatheid. As gevolg daarvan sal die toepassing nie enige data versamel of stoor sonder jou toestemming nie.\nNewPipe se privaatheids beleid verduidelik in detail watter data deur gestuur en gestoor word wanneer jy n crash report stuur.</string>
     <string name="app_license_title">NewPipe Se Lisensie</string>
-    <string name="app_license">NewPipe is n kopielinks sagteware: Jy mag dit gebruik, bestudeer, uitdeel en verbeter net soos jy lus kry. Meer spesifiek mag jy dit uitdeel en/ of verander onder die voorwardes van die GNU "General Public License" soos dit gepubliseer is deur die "Free Software Foundation", of weergawe 3 van die lisensie of enige latere weergawe.</string>
+    <string name="app_license">NewPipe is n kopielinks sagteware: Jy mag dit gebruik, bestudeer, uitdeel en verbeter net soos jy lus kry. Meer spesifiek mag jy dit uitdeel en/ of verander onder die voorwardes van die GNU General Public License soos dit gepubliseer is deur die Free Software Foundation, of weergawe 3 van die lisensie of enige latere weergawe.</string>
     <string name="settings_category_debug_title">Foute Herstel</string>
     <string name="theme_title">Tema</string>
     <string name="light_theme_title">Lig</string>
@@ -48,7 +48,7 @@
     <string name="night_theme_available">"Hierdie opsie is slegs beskikbaar wanneer  %1$s gekies word as Tema"</string>
     <string name="select_night_theme_toast">Jy kan jou gunstelling nag tema hieronder kies</string>
     <string name="show_hold_to_append_title">Wys \\"Hou vas om in die tou te plaas\\" wenk</string>
-    <string name="show_hold_to_append_summary">Wys wenk wanner die agtergrond gedruk word of die "popup" knoppie in n video \\"Details:\\"</string>
+    <string name="show_hold_to_append_summary">Wys wenk wanner die agtergrond gedruk word of die popup knoppie in n video \\"Details:\\"</string>
     <string name="tablet_mode_title">Tabletmodus</string>
     <string name="list_view_mode">Lysaansigmodus</string>
     <string name="caption_setting_title">Onderskrifte</string>

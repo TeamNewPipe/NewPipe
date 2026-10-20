@@ -2,7 +2,7 @@
 <resources>
     <string name="main_bg_subtitle">Aloita napauttamalla suurennuslasia.</string>
     <string name="upload_date_text">Julkaistu %1$s</string>
-    <string name="no_player_found">Ei löytynyt suoratoistosoitinta. Asennetaanko VLC\?</string>
+    <string name="no_player_found">Ei löytynyt suoratoistosoitinta. Asennetaanko VLC?</string>
     <string name="install">Asenna</string>
     <string name="cancel">Peruuta</string>
     <string name="open_in_browser">Avaa selaimessa</string>
@@ -11,7 +11,7 @@
     <string name="download">Lataus</string>
     <string name="search">Hae</string>
     <string name="settings">Asetukset</string>
-    <string name="did_you_mean">Tarkoititko ”%1$s”\?</string>
+    <string name="did_you_mean">Tarkoititko ”%1$s”?</string>
     <string name="share_dialog_title">Jaa</string>
     <string name="use_external_video_player_title">Käytä ulkoista videosoitinta</string>
     <string name="use_external_video_player_summary">Ääni saattaa lakata toimimasta joillakin resoluutioilla</string>
@@ -36,7 +36,7 @@
     <string name="show_higher_resolutions_title">Näytä korkeammat resoluutiot</string>
     <string name="show_higher_resolutions_summary">Vain jotkin laitteet voivat toistaa 2K/4K-videota</string>
     <string name="play_with_kodi_title">Toista Kodissa</string>
-    <string name="kore_not_found">Asennetaanko puuttuva Kore-sovellus\?</string>
+    <string name="kore_not_found">Asennetaanko puuttuva Kore-sovellus?</string>
     <string name="show_play_with_kodi_title">Näytä ”Toista Kodissa”-vaihtoehto</string>
     <string name="show_play_with_kodi_summary">Näyttää vaihtoehdon videon toistamiseen Kodi-mediasoittimessa</string>
     <string name="play_audio">Ääni</string>
@@ -130,8 +130,7 @@
     <string name="msg_wait">Odota…</string>
     <string name="msg_copied">Kopioitu leikepöydälle</string>
     <string name="no_available_dir">Määritä latauskansio myöhemmin asetuksissa</string>
-    <string name="msg_popup_permission">Tämä käyttöoikeus tarvitaan
-\nponnahdusikkunatilan käyttämiseksi</string>
+    <string name="msg_popup_permission">Tämä käyttöoikeus tarvitaan \nponnahdusikkunatilan käyttämiseksi</string>
     <string name="title_activity_recaptcha">reCAPTCHA Haaste</string>
     <string name="recaptcha_request_toast">reCAPTCHA-haaste pyydetty</string>
     <string name="settings_category_downloads_title">Lataukset</string>
@@ -215,11 +214,11 @@
     <string name="export_data_summary">Vie historia, tilaukset, soittolistat ja asetukset</string>
     <string name="clear_views_history_title">Poista katseluhistoria</string>
     <string name="clear_views_history_summary">Poistaa toistohistorian ja toistokohdat</string>
-    <string name="delete_view_history_alert">Poista koko katseluhistoria\?</string>
+    <string name="delete_view_history_alert">Poista koko katseluhistoria?</string>
     <string name="watch_history_deleted">Katseluhistoria poistettu</string>
     <string name="clear_search_history_title">Poista hakuhistoria</string>
     <string name="clear_search_history_summary">Poistaa historian haetuista videoista</string>
-    <string name="delete_search_history_alert">Poista koko hakuhistoria\?</string>
+    <string name="delete_search_history_alert">Poista koko hakuhistoria?</string>
     <string name="search_history_deleted">Hakuhistoria poistettu</string>
     <string name="external_player_unsupported_link_type">Ulkoiset soittimet eivät tue tämänkaltaisia linkkejä</string>
     <string name="video_streams_empty">Suoratoistovideoita ei löytynyt</string>
@@ -265,7 +264,7 @@
     <string name="set_as_playlist_thumbnail">Aseta soittolistan kuvakkeeksi</string>
     <string name="bookmark_playlist">Tallenna soittolista kirjanmerkkeihin</string>
     <string name="unbookmark_playlist">Poista kirjanmerkki</string>
-    <string name="delete_playlist_prompt">Poistetaanko tämä soittolista\?</string>
+    <string name="delete_playlist_prompt">Poistetaanko tämä soittolista?</string>
     <string name="playlist_creation_success">Soittolista luotu</string>
     <string name="playlist_add_stream_success">Lisätty soittolistaan</string>
     <string name="playlist_thumbnail_change_success">Soittolistan kuvake muutettu.</string>
@@ -288,25 +287,10 @@
     <string name="previous_export">Edellinen vienti</string>
     <string name="subscriptions_import_unsuccessful">Tilauksia ei voitu tuoda</string>
     <string name="subscriptions_export_unsuccessful">Tilauksia ei voitu viedä</string>
-    <string name="import_youtube_instructions">Tuo YouTube-tilaukset Google Takeoutista:
-\n
-\n1. Mene osoitteeseen: %1$s
-\n2. Kirjaudu sisään pyydettäessä
-\n3. Klikkaa \"Kaikki Youtube-data valittuna\", sitten \"Poista kaikki valinnat\", sitten ainoastaan \"tilaukset\" ja klikkaa \"OK\"
-\n4. Klikkaa \"Seuraava vaihe\" ja \"Luo vienti\"
-\n5. Klikkaa \"Lataa\"-painiketta tämän ilmestyessä
-\n6. Klikkaa TUO TIEDOSTO alhaalta ja valitse ladattu .zip-tiedosto
-\n7. [Jos zip-tiedoston tuonti epäonnistuu] Pura .csv-tiedosto (yleensä sijainnissa \"Youtube ja Youtube Musiikki/tilaukset/tilaukset.csv\") ja klikkaa TUO TIEDOSTO alhaalta ja valitse purettu csv-tiedosto</string>
-    <string name="import_soundcloud_instructions">Tuo SoundCloud-profiili kirjoittamalla joko osoite tai ID:si:
-\n
-\n1. Laita päälle työpöytämoodi selaimessasi (tai käytä tietokonetta, tämä sivu ei toimi mobiilisivuna)
-\n2. Mene tähän osoitteeseen: %1$s
-\n3. Kirjaudu sisään kysyttäessä.
-\n4. Kopioi se nettiosoite johon sinut ohjattiin.</string>
+    <string name="import_youtube_instructions">Tuo YouTube-tilaukset Google Takeoutista: \n \n1. Mene osoitteeseen: %1$s \n2. Kirjaudu sisään pyydettäessä \n3. Klikkaa \"Kaikki Youtube-data valittuna\", sitten \"Poista kaikki valinnat\", sitten ainoastaan \"tilaukset\" ja klikkaa \"OK\" \n4. Klikkaa \"Seuraava vaihe\" ja \"Luo vienti\" \n5. Klikkaa \"Lataa\"-painiketta tämän ilmestyessä \n6. Klikkaa TUO TIEDOSTO alhaalta ja valitse ladattu .zip-tiedosto \n7. [Jos zip-tiedoston tuonti epäonnistuu] Pura .csv-tiedosto (yleensä sijainnissa \"Youtube ja Youtube Musiikki/tilaukset/tilaukset.csv\") ja klikkaa TUO TIEDOSTO alhaalta ja valitse purettu csv-tiedosto</string>
+    <string name="import_soundcloud_instructions">Tuo SoundCloud-profiili kirjoittamalla joko osoite tai ID:si: \n \n1. Laita päälle työpöytämoodi selaimessasi (tai käytä tietokonetta, tämä sivu ei toimi mobiilisivuna) \n2. Mene tähän osoitteeseen: %1$s \n3. Kirjaudu sisään kysyttäessä. \n4. Kopioi se nettiosoite johon sinut ohjattiin.</string>
     <string name="import_soundcloud_instructions_hint">sinun käyttäjänimesi, soundcloud.com/&lt;sinun käyttäjänimesi&gt;</string>
-    <string name="import_network_expensive_warning">Ota huomioon että tämä operaatio voi käyttää paljon dataa. 
-\n
-\nHaluatko jatkaa\?</string>
+    <string name="import_network_expensive_warning">Ota huomioon että tämä operaatio voi käyttää paljon dataa. \n \nHaluatko jatkaa?</string>
     <string name="playback_speed_control">Toistonopeuden säätimet</string>
     <string name="playback_tempo">Nopeus</string>
     <string name="playback_pitch">Sävelkorkeus</string>
@@ -314,8 +298,7 @@
     <string name="skip_silence_checkbox">Kelaa eteenpäin hiljaisissa kohdissa</string>
     <string name="playback_step">Askel</string>
     <string name="playback_reset">Nollaa</string>
-    <string name="start_accept_privacy_policy">Noudattaaksemme EU:n yleistä tietosuoja-asetusta (GDPR), meidän pitää muistuttaa sinua lukemaan NewPipen tietosuojakäytäntö. Lue se tarkkaan.
-\nSinun pitää myös hyväksyä se, jotta voit lähettää virheraportin.</string>
+    <string name="start_accept_privacy_policy">Noudattaaksemme EU:n yleistä tietosuoja-asetusta (GDPR), meidän pitää muistuttaa sinua lukemaan NewPipen tietosuojakäytäntö. Lue se tarkkaan. \nSinun pitää myös hyväksyä se, jotta voit lähettää virheraportin.</string>
     <string name="accept">Hyväksy</string>
     <string name="decline">Hylkää</string>
     <string name="limit_data_usage_none_description">Ei rajaa</string>
@@ -352,11 +335,11 @@
     <string name="subscribers_count_not_available">Tilaajien lukumäärä ei saatavilla</string>
     <string name="drawer_header_description">Kytke palvelu, tällä hetkellä valittuna:</string>
     <string name="permission_display_over_apps">Myönnä käyttöoikeus näyttää muiden sovellusten päällä</string>
-    <string name="restore_defaults_confirmation">Haluatko palauttaa oletusarvot\?</string>
+    <string name="restore_defaults_confirmation">Haluatko palauttaa oletusarvot?</string>
     <string name="restore_defaults">Palauta oletusarvot</string>
     <string name="saved_tabs_invalid_json">Ei voitu lukea talletettuja välilehtiä, joten käytetään oletusvälilehtiä</string>
     <string name="missing_file">Tiedosto siirretty tai poistettu</string>
-    <string name="download_to_sdcard_error_message">Lataaminen ulkoiselle SD-kortille ei ole mahdollista. Nollataanko latauskansion sijainti\?</string>
+    <string name="download_to_sdcard_error_message">Lataaminen ulkoiselle SD-kortille ei ole mahdollista. Nollataanko latauskansion sijainti?</string>
     <string name="download_to_sdcard_error_title">Ulkoinen tallennustila ei käytettävissä</string>
     <string name="app_update_notification_channel_description">Ilmoitukset uusista NewPipe-versioista</string>
     <string name="app_update_notification_channel_name">Sovelluspäivitysilmoitus</string>
@@ -366,9 +349,7 @@
     <string name="songs">Kappaleet</string>
     <string name="events">Tapahtumat</string>
     <string name="videos_string">Videot</string>
-    <string name="restricted_video">Tämä video on ikärajoitettu.
-\n
-\nSalli ”%1$s” asetuksissa katsoaksesi.</string>
+    <string name="restricted_video">Tämä video on ikärajoitettu. \n \nSalli ”%1$s” asetuksissa katsoaksesi.</string>
     <string name="youtube_restricted_mode_enabled_title">Ota käyttöön YouTuben ”Rajoitettu tila”</string>
     <string name="settings_category_updates_title">Päivitykset</string>
     <string name="peertube_instance_add_exists">Instanssi on jo olemassa</string>
@@ -385,7 +366,7 @@
     <string name="show_original_time_ago_summary">Palvelujen alkuperäiset tekstit näkyvät suoratoistettavassa sisällössä</string>
     <string name="show_comments_summary">Poista käytöstä piilottaaksesi kommentit</string>
     <string name="watch_history_states_deleted">Toistokohdat poistettu</string>
-    <string name="delete_playback_states_alert">Poistetaanko kaikki toistokohdat\?</string>
+    <string name="delete_playback_states_alert">Poistetaanko kaikki toistokohdat?</string>
     <string name="clear_playback_states_summary">Poistaa kaikki toistokohdat</string>
     <string name="clear_playback_states_title">Poista toistokohdat</string>
     <string name="enable_playback_state_lists_summary">Näytä toistokohtien osoittimet listoissa</string>
@@ -398,27 +379,15 @@
     <string name="clear_download_history">Tyhjennä lataushistoria</string>
     <string name="close">Sulje</string>
     <string name="delete_downloaded_files">Poista ladatut tiedostot</string>
-    <string name="confirm_prompt">Haluatko tyhjentää lataushistoriasi vai poistaa kaikki ladatut tiedostot\?</string>
+    <string name="confirm_prompt">Haluatko tyhjentää lataushistoriasi vai poistaa kaikki ladatut tiedostot?</string>
     <string name="no_comments">Ei kommentteja</string>
     <string name="show_comments_title">Näytä kommentit</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanavan hahmokuvake</string>
     <string name="video_detail_by">Kenen toimesta: %s</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Onko syötteen lataaminen mielestäsi liian hidas\? Voit koittaa ottaa käyttöön nopean lataamisen (voit vaihtaa sen asetuksista tai painamalla alla olevaa painiketta).
-\n
-\nNewPipe tarjoaa kaksi tapaa ladata syöte:
-\n• Koko tilatun kanavan lataaminen, mikä on hidasta, mutta lataa syötteen kokonaisuudessaan.
-\n• Erityisen palvelu-endpointin käyttö, mikä on nopeaa, mutta yleensä ei lataa syötettä kokonaisuudessaan.
-\n
-\nNäiden kahden välinen ero on, että nopean tavan lataamista tiedoista yleensä puuttuu esim. sisällön kesto tai tyyppi (ei voi erotella livevideoita ja tavallisia) tai se ei lataa kaikkea sisältöä.
-\n
-\nYouTube on esimerkki palvelusta, joka tarjoaa nopean tavan RSS-syötteen avulla.
-\n
-\nValinta riippuu siitä, mitä halutaan: nopeutta vai tarkkoja tietoja.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Onko syötteen lataaminen mielestäsi liian hidas? Voit koittaa ottaa käyttöön nopean lataamisen (voit vaihtaa sen asetuksista tai painamalla alla olevaa painiketta). \n \nNewPipe tarjoaa kaksi tapaa ladata syöte: \n• Koko tilatun kanavan lataaminen, mikä on hidasta, mutta lataa syötteen kokonaisuudessaan. \n• Erityisen palvelu-endpointin käyttö, mikä on nopeaa, mutta yleensä ei lataa syötettä kokonaisuudessaan. \n \nNäiden kahden välinen ero on, että nopean tavan lataamista tiedoista yleensä puuttuu esim. sisällön kesto tai tyyppi (ei voi erotella livevideoita ja tavallisia) tai se ei lataa kaikkea sisältöä. \n \nYouTube on esimerkki palvelusta, joka tarjoaa nopean tavan RSS-syötteen avulla. \n \nValinta riippuu siitä, mitä halutaan: nopeutta vai tarkkoja tietoja.</string>
     <string name="default_kiosk_page_summary">Oletuskioski</string>
     <string name="channel_created_by">%s:n luoma</string>
-    <string name="content_not_supported">NewPipe ei vielä tue tätä sisältöä.
-\n
-\nToivottavasti sitä tuetaan myöhemmässä versiossa.</string>
+    <string name="content_not_supported">NewPipe ei vielä tue tätä sisältöä. \n \nToivottavasti sitä tuetaan myöhemmässä versiossa.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Poista nopea tila käytöstä</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Ota nopea tila käyttöön</string>
     <string name="feed_use_dedicated_fetch_method_summary">Saatavilla joissakin palveluissa, on yleensä paljon nopeampi, mutta voi palauttaa rajallisen määrän sisältöä ja usein epätäydelliset tiedot (esim. ei kestoa, ei sisällön tyyppiä, ei livestatusta)</string>
@@ -428,7 +397,7 @@
     <string name="feed_update_threshold_title">Syötteen päivitysväli</string>
     <string name="settings_category_feed_title">Syöte</string>
     <string name="feed_create_new_group_button_title">Uusi</string>
-    <string name="feed_group_dialog_delete_message">Haluatko poistaa tämän ryhmän\?</string>
+    <string name="feed_group_dialog_delete_message">Haluatko poistaa tämän ryhmän?</string>
     <string name="feed_group_dialog_empty_name">Tyhjä ryhmän nimi</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d valittu</item>
@@ -464,8 +433,7 @@
     <string name="choose_instance_prompt">Valitse instanssi</string>
     <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' sallii lataukset ulkoiselle SD-kortille</string>
     <string name="downloads_storage_use_saf_title">Ota SAF käyttöön</string>
-    <string name="downloads_storage_ask_summary">Jokaisen latauksen kohde kysytään.
-\nSalli SAF, jos haluat tallentaa ulkoiselle SD-kortille</string>
+    <string name="downloads_storage_ask_summary">Jokaisen latauksen kohde kysytään. \nSalli SAF, jos haluat tallentaa ulkoiselle SD-kortille</string>
     <string name="downloads_storage_ask_title">Kysy mihin ladataan</string>
     <string name="start_downloads">Aloita lataukset</string>
     <string name="enable_queue_limit_desc">Salli vain yksi lataus kerrallaan</string>
@@ -528,7 +496,7 @@
     <string name="wifi_only">Vain Wi-Fi-verkossa</string>
     <string name="autoplay_summary">Aloita toisto automaattisesti — %s</string>
     <string name="title_activity_play_queue">Toistojono</string>
-    <string name="unsupported_url_dialog_message">Ei tunnistettu URL:ää. Avataanko toisessa sovelluksessa\?</string>
+    <string name="unsupported_url_dialog_message">Ei tunnistettu URL:ää. Avataanko toisessa sovelluksessa?</string>
     <string name="auto_queue_toggle">Automaattinen jonoon lisääminen</string>
     <string name="clear_queue_confirmation_description">Aktiivisen soittimen jono korvataan</string>
     <string name="clear_queue_confirmation_summary">Soittimesta toiseen vaihtaminen saattaa korvata jonosi</string>
@@ -585,8 +553,7 @@
     <string name="recaptcha_solve">Ratkaise</string>
     <string name="hash_channel_description">Ilmoitukset videon hajautuksen etenemisestä</string>
     <string name="hash_channel_name">Videon hajautusilmoitus</string>
-    <string name="restricted_video_no_stream">Tämä video on ikärajoitettu.
-\nYouTuben uusien ikärajoitusperiaatteiden mukaisesti NewPipella ei ole pääsyä videoon eikä sitä voida toistaa.</string>
+    <string name="restricted_video_no_stream">Tämä video on ikärajoitettu. \nYouTuben uusien ikärajoitusperiaatteiden mukaisesti NewPipella ei ole pääsyä videoon eikä sitä voida toistaa.</string>
     <string name="night_theme_title">Yöteema</string>
     <string name="description_select_disable">Poista käytöstä tekstinvalinta kuvauskentän sisältä</string>
     <string name="description_select_note">Voit nyt valita tekstin kuvauskentän sisältä. Huomioithan, että valintatilan aikana sivu voi vilkkua ja linkit eivät ehkä ole klikattavia.</string>
@@ -614,9 +581,7 @@
     <string name="metadata_category">Kategoria</string>
     <string name="description_select_enable">Salli tekstin valinta kuvauksessa</string>
     <string name="account_terminated">Tili suljettu</string>
-    <string name="feed_load_error_terminated">Tekijän käyttäjätili on suljettu.
-\nNewPipe ei pysty lataamaan tätä syötettä tulevaisuudessa.
-\nHaluatko poistaa kanavan tilauksesta\?</string>
+    <string name="feed_load_error_terminated">Tekijän käyttäjätili on suljettu. \nNewPipe ei pysty lataamaan tätä syötettä tulevaisuudessa. \nHaluatko poistaa kanavan tilauksesta?</string>
     <string name="feed_load_error_account_info">Ei voitu ladata syötettä hakusanalle \'%s\'.</string>
     <string name="feed_load_error">Virhe syötteen lataamisessa</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Sinulta kysytään joka kerta, minne tiedosto ladataan</string>
@@ -655,10 +620,8 @@
     <string name="leak_canary_not_available">LeakCanary ei ole saatavilla</string>
     <string name="show_crash_the_player_title">Näytä \"Kaada soitin\"</string>
     <string name="crash_the_player">Kaada soitin</string>
-    <string name="no_appropriate_file_manager_message_android_10">Toiminnolle ei löytynyt sopivaa tiedostonhallintaohjelmaa.
-\nAsenna tiedostonhallintaohjelma, joka on yhteensopiva Storage Access Frameworkin kanssa.</string>
-    <string name="no_appropriate_file_manager_message">Toiminnolle ei löytynyt sopivaa tiedostonhallintaohjelmaa.
-\nAsenna tiedostonhallintaohjelma tai kokeile asettaa \'%s\' pois käytöstä latausasetuksista</string>
+    <string name="no_appropriate_file_manager_message_android_10">Toiminnolle ei löytynyt sopivaa tiedostonhallintaohjelmaa. \nAsenna tiedostonhallintaohjelma, joka on yhteensopiva Storage Access Frameworkin kanssa.</string>
+    <string name="no_appropriate_file_manager_message">Toiminnolle ei löytynyt sopivaa tiedostonhallintaohjelmaa. \nAsenna tiedostonhallintaohjelma tai kokeile asettaa \'%s\' pois käytöstä latausasetuksista</string>
     <string name="show_crash_the_player_summary">Näytä soitinta käytettäessä soittimen kaatamisen vaihtoehto</string>
     <string name="show_error_snackbar">Näytä virheen ponnahdusilmoitus</string>
     <string name="feed_new_items">Uudet syötteet</string>
@@ -697,7 +660,7 @@
     <string name="unknown_audio_track">Tuntematon</string>
     <string name="enable_streams_notifications_title">Ilmoitukset uusista streameista</string>
     <string name="show_channel_tabs_summary">Mitä välilehtiä kanavasivuilla näytetään</string>
-    <string name="remove_duplicates_title">Poistetaanko kaksoiskappaleet\?</string>
+    <string name="remove_duplicates_title">Poistetaanko kaksoiskappaleet?</string>
     <string name="feed_show_hide_streams">Näytä/piilota streamit</string>
     <string name="share_playlist_with_list">Jaa URL-luettelo</string>
     <plurals name="new_streams">
@@ -749,7 +712,7 @@
     <string name="no_audio_streams_available_for_external_players">Ulkoisille soittimille ei ole saatavilla äänistreameja</string>
     <string name="rewind">Kelaa taaksepäin</string>
     <string name="feed_fetch_channel_tabs_summary">Noudettavat välilehdet syötettä päivitettäessä. Tällä valinnalla ei ole vaikutusta, jos kanava päivitetään käyttämällä nopeaa tilaa.</string>
-    <string name="delete_downloaded_files_confirm">Poistetaanko kaikki ladatut tiedostot levyltä\?</string>
+    <string name="delete_downloaded_files_confirm">Poistetaanko kaikki ladatut tiedostot levyltä?</string>
     <string name="image_quality_medium">Keskilaatu</string>
     <string name="metadata_uploader_avatars">Lataajan avatarit</string>
     <string name="percent">Prosentti</string>
@@ -780,7 +743,7 @@
     <string name="you_successfully_subscribed">Olet nyt tilannut tämän kanavan</string>
     <string name="previous_stream">Edellinen stream</string>
     <string name="channel_tab_livestreams">Live</string>
-    <string name="remove_duplicates_message">Haluatko poistaa kaikki ylimääräiset identtiset suoratoistot tästä soittolistasta\?</string>
+    <string name="remove_duplicates_message">Haluatko poistaa kaikki ylimääräiset identtiset suoratoistot tästä soittolistasta?</string>
     <string name="streams_not_yet_supported_removed">Suoratoistot, joita lataaja ei vielä tue, ei näytetä</string>
     <plurals name="replies">
         <item quantity="one">%s vastaus</item>
@@ -791,14 +754,11 @@
     <string name="show_channel_tabs">Kanavan välilehdet</string>
     <string name="yes">Kyllä</string>
     <string name="no">Ei</string>
-    <string name="reset_all_settings">Kaikkien asetusten nollaaminen hävittää kaikki valitsemasi asetukset ja käynnistää sovelluksen uudelleen.
-\n
-\nOletko varma, että haluat jatkaa?</string>
+    <string name="reset_all_settings">Kaikkien asetusten nollaaminen hävittää kaikki valitsemasi asetukset ja käynnistää sovelluksen uudelleen. \n \nOletko varma, että haluat jatkaa?</string>
     <string name="settings_category_backup_restore_title">Varmuuskopiointi ja palauttaminen</string>
     <string name="reset_settings_title">Nollaa asetukset</string>
     <string name="reset_settings_summary">Palauta kaikki asetukset oletusarvoihin</string>
-    <string name="auto_update_check_description">NewPipe voi automaattisesti tarkistaa päivitysten saatavuuden silloin tällöin ja ilmoittaa kun niitä on saatavilla.
-\nHaluatko ottaa tämän käyttöön?</string>
+    <string name="auto_update_check_description">NewPipe voi automaattisesti tarkistaa päivitysten saatavuuden silloin tällöin ja ilmoittaa kun niitä on saatavilla. \nHaluatko ottaa tämän käyttöön?</string>
     <string name="error_insufficient_storage">Laitteella ei ole riittävästi vapaata tilaa</string>
     <string name="share_playlist_as_youtube_temporary_playlist">Jaa tilapäisenä YouTube-soittolistana</string>
     <string name="channel_tab_tracks">Raidat</string>

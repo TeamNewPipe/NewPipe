@@ -9,7 +9,7 @@
     <string name="download">Prevziať</string>
     <string name="search">Hľadať</string>
     <string name="settings">Nastavenia</string>
-    <string name="did_you_mean">Mysleli ste \"%1$s\"\?</string>
+    <string name="did_you_mean">Mysleli ste \"%1$s\"?</string>
     <string name="share_dialog_title">Zdieľať s</string>
     <string name="use_external_video_player_title">Použiť externý prehrávač videa</string>
     <string name="use_external_audio_player_title">Použiť externý prehrávač zvuku</string>
@@ -21,7 +21,7 @@
     <string name="download_path_audio_summary">Stiahnuté zvukové súbory sú uložené tu</string>
     <string name="default_resolution_title">Štandardné rozlíšenie</string>
     <string name="play_with_kodi_title">Prehrať cez Kodi</string>
-    <string name="kore_not_found">Nainštalovať chýbajúcu aplikáciu Kore\?</string>
+    <string name="kore_not_found">Nainštalovať chýbajúcu aplikáciu Kore?</string>
     <string name="show_play_with_kodi_title">Zobraziť možnosť \"Prehrať cez Kodi\"</string>
     <string name="show_play_with_kodi_summary">Zobrazí možnosť prehrať video cez mediálne centrum Kodi</string>
     <string name="play_audio">Zvuk</string>
@@ -84,8 +84,7 @@
     <string name="all">Všetko</string>
     <string name="recaptcha_request_toast">Požiadavka reCAPTCHA</string>
     <string name="open_in_popup_mode">Otvoriť vo vyskakovacom okne</string>
-    <string name="msg_popup_permission">Tieto práva sú potrebné pre
-\nprehrávanie v mini okne</string>
+    <string name="msg_popup_permission">Tieto práva sú potrebné pre \nprehrávanie v mini okne</string>
     <string name="default_video_format_title">Preferovaný formát videa</string>
     <string name="popup_playing_toast">Prehrávanie v mini okne</string>
     <string name="disabled">Vypnuté</string>
@@ -145,6 +144,7 @@
     <plurals name="subscribers">
         <item quantity="one">%s odberateľ</item>
         <item quantity="few">%s odberatelia</item>
+        <item quantity="many">%s odberateľov</item>
         <item quantity="other">%s odberateľov</item>
     </plurals>
     <string name="no_views">Žiadne zobrazenia</string>
@@ -158,6 +158,7 @@
     <plurals name="videos">
         <item quantity="one">%s video</item>
         <item quantity="few">%s videá</item>
+        <item quantity="many">%s videí</item>
         <item quantity="other">%s videí</item>
     </plurals>
     <string name="no_player_found_toast">Nebol nájdený žiadny prehrávač pre stream (môžete si nainštalovať napr. VLC).</string>
@@ -274,25 +275,10 @@
     <string name="previous_export">Predchádzajúci export</string>
     <string name="subscriptions_import_unsuccessful">Nemožno importovať odbery</string>
     <string name="subscriptions_export_unsuccessful">Nemožno exportovať odbery</string>
-    <string name="import_youtube_instructions">Import odberov služby YouTube pomocou Google takeout:
-\n
-\n1. Prejdite na túto adresu URL: %1$s
-\n2. Po výzve sa prihláste do svojho účtu
-\n3. Kliknite na \"Zahrnuté sú všetky údaj služby YouTube\", kliknite na \"Zrušiť výber\", zaškrtnite \"odbery\" a kliknite na OK
-\n4. Kliknite na \"Ďalší krok\" a potom na \"Vytvoriť export\"
-\n5. Po chvíli sa objaví tlačidlo s nápisom \"Stiahnuť\"
-\n6. Kliknite na IMPORT ZO SÚBORU a zvoľte stiahnutý zip súbor
-\n7. Ak import zip súbory zlyhá. Stiahnutý súbor otvorte a extrahujte .csv súbor (nachádza sa v \"/Takeout/YouTube a YouTube Music/odbery/\"), tento súbor importujte do NewPipe</string>
-    <string name="import_soundcloud_instructions">Importovať SoundCloud profil zadaním URL adresy alebo vášho ID:
-\n
-\n1. Prepnite režim na \"desktop\" (web nie je dostupný pre mobilné zariadenia)
-\n2. Prejdite na túto URL adresu: %1$s
-\n3. Po výzve sa prihláste do svojho účtu
-\n4. Skopírujte adresu URL, na ktorú ste boli presmerovaní.</string>
+    <string name="import_youtube_instructions">Import odberov služby YouTube pomocou Google takeout: \n \n1. Prejdite na túto adresu URL: %1$s \n2. Po výzve sa prihláste do svojho účtu \n3. Kliknite na \"Zahrnuté sú všetky údaj služby YouTube\", kliknite na \"Zrušiť výber\", zaškrtnite \"odbery\" a kliknite na OK \n4. Kliknite na \"Ďalší krok\" a potom na \"Vytvoriť export\" \n5. Po chvíli sa objaví tlačidlo s nápisom \"Stiahnuť\" \n6. Kliknite na IMPORT ZO SÚBORU a zvoľte stiahnutý zip súbor \n7. Ak import zip súbory zlyhá. Stiahnutý súbor otvorte a extrahujte .csv súbor (nachádza sa v \"/Takeout/YouTube a YouTube Music/odbery/\"), tento súbor importujte do NewPipe</string>
+    <string name="import_soundcloud_instructions">Importovať SoundCloud profil zadaním URL adresy alebo vášho ID: \n \n1. Prepnite režim na \"desktop\" (web nie je dostupný pre mobilné zariadenia) \n2. Prejdite na túto URL adresu: %1$s \n3. Po výzve sa prihláste do svojho účtu \n4. Skopírujte adresu URL, na ktorú ste boli presmerovaní.</string>
     <string name="import_soundcloud_instructions_hint">vašeID, soundcloud.com/vašeid</string>
-    <string name="import_network_expensive_warning">Operácia môže byť náročná na počet prenesených dát.
-\n
-\nChcete pokračovať?</string>
+    <string name="import_network_expensive_warning">Operácia môže byť náročná na počet prenesených dát. \n \nChcete pokračovať?</string>
     <string name="playback_speed_control">Ovládanie rýchlosti prehrávania</string>
     <string name="playback_tempo">Rýchlosť</string>
     <string name="playback_pitch">Výška</string>
@@ -303,7 +289,7 @@
     <string name="watch_history_deleted">História pozerania bola vymazaná</string>
     <string name="clear_search_history_title">Vymazať históriu vyhľadávania</string>
     <string name="clear_search_history_summary">Odstráni históriu vyhľadávania kľúčových slov</string>
-    <string name="delete_search_history_alert">Vymazať celú históriu vyhľadávania\?</string>
+    <string name="delete_search_history_alert">Vymazať celú históriu vyhľadávania?</string>
     <string name="search_history_deleted">História vyhľadávaní bola vymazaná</string>
     <string name="one_item_deleted">1 položka bola vymazaná.</string>
     <string name="app_license">NewPipe je voľný softvér s copyleftom: Môžete ho používať, študovať, zdieľať a vylepšovať podľa vlastného uváženia. Konkrétne ho môžete redistribuovať a/alebo modifikovať podľa podmienok Všeobecnej verejnej licencie GNU, ako ju uverejnila Free Software Foundation, buď verzie 3 licencie, alebo (podľa vášho výberu) akejkoľvek neskoršej verzie.</string>
@@ -311,8 +297,7 @@
     <string name="privacy_policy_encouragement">Projekt NewPipe berie ochranu vašich osobných údajov veľmi vážne. Aplikácia preto bez vášho súhlasu nezhromažďuje žiadne údaje.\nV zásadách ochrany osobných údajov NewPipe je podrobne vysvetlené, aké údaje sa odosielajú a ukladajú pri zaslaní správy o chybe.</string>
     <string name="read_privacy_policy">Prečítajte si zásady ochrany osobných údajov</string>
     <string name="import_settings">Chcete zároveň importovať aj nastavenia?</string>
-    <string name="start_accept_privacy_policy">V súlade s Európskym Všeobecným Nariadením o Ochrane Údajov (GDPR), chceme upriamiť Vašu pozornosť na zmluvu o ochrane osobných údajov v NewPipe. Starostlivo si ju prečítajte.
-\nMusíte ju prijať pred nahlásením chyby.</string>
+    <string name="start_accept_privacy_policy">V súlade s Európskym Všeobecným Nariadením o Ochrane Údajov (GDPR), chceme upriamiť Vašu pozornosť na zmluvu o ochrane osobných údajov v NewPipe. Starostlivo si ju prečítajte. \nMusíte ju prijať pred nahlásením chyby.</string>
     <string name="accept">Prijať</string>
     <string name="decline">Odmietnuť</string>
     <string name="limit_data_usage_none_description">Bez limitu</string>
@@ -337,10 +322,10 @@
     <string name="app_update_notification_channel_name">Oznámenie o aktualizácii aplikácie</string>
     <string name="app_update_notification_channel_description">Upozornenia na novú verziu NewPipe</string>
     <string name="download_to_sdcard_error_title">Externé úložisko je nedostupné</string>
-    <string name="download_to_sdcard_error_message">Sťahovanie na externú SD kartu nie je možné. Obnoviť umiestnenie priečinka na sťahovanie\?</string>
+    <string name="download_to_sdcard_error_message">Sťahovanie na externú SD kartu nie je možné. Obnoviť umiestnenie priečinka na sťahovanie?</string>
     <string name="saved_tabs_invalid_json">Chyba pri načítavaní uložených kariet, použijú sa predvolené</string>
     <string name="restore_defaults">Obnoviť predvolené nastavenia</string>
-    <string name="restore_defaults_confirmation">Chcete obnoviť predvolené hodnoty\?</string>
+    <string name="restore_defaults_confirmation">Chcete obnoviť predvolené hodnoty?</string>
     <string name="subscribers_count_not_available">Počet odberateľov nie je k dispozícii</string>
     <string name="main_page_content_summary">Aké karty sa zobrazujú na hlavnej stránke</string>
     <string name="conferences">Konferencie</string>
@@ -398,31 +383,32 @@
     <string name="error_insufficient_storage_left">V zariadení už nie je voľné miesto</string>
     <string name="error_progress_lost">Nemožno pokračovať, súbor bol vymazaný</string>
     <string name="error_timeout">Spojenie vypršalo</string>
-    <string name="confirm_prompt">Chcete vymazať históriu sťahovania alebo odstrániť všetky stiahnuté súbory\?</string>
+    <string name="confirm_prompt">Chcete vymazať históriu sťahovania alebo odstrániť všetky stiahnuté súbory?</string>
     <string name="enable_queue_limit">Limitovať počet položiek pri sťahovaní</string>
     <string name="enable_queue_limit_desc">Súbory sa budú sťahovať jeden po druhom</string>
     <string name="start_downloads">Spustite sťahovanie</string>
     <string name="pause_downloads">Pozastaviť sťahovanie</string>
     <string name="downloads_storage_ask_title">Pýtať sa na adresár sťahovania</string>
-    <string name="downloads_storage_ask_summary">Pri každom sťahovaní súboru sa bude vyžadovať zadanie cieľového adresára.
-\nAk chcete súbory sťahovať na externú SD kartu povoľte možnosť výberu adresára (SAF)</string>
+    <string name="downloads_storage_ask_summary">Pri každom sťahovaní súboru sa bude vyžadovať zadanie cieľového adresára. \nAk chcete súbory sťahovať na externú SD kartu povoľte možnosť výberu adresára (SAF)</string>
     <string name="downloads_storage_use_saf_title">Použite výber adresára (SAF)</string>
     <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" umožňuje sťahovanie na externú SD kartu</string>
     <string name="clear_playback_states_title">Odstrániť pozície prehrávania</string>
     <string name="clear_playback_states_summary">Odstráni všetky pozície prehrávania</string>
-    <string name="delete_playback_states_alert">Odstrániť všetky pozície prehrávania\?</string>
+    <string name="delete_playback_states_alert">Odstrániť všetky pozície prehrávania?</string>
     <string name="drawer_header_description">Prepnúť službu, práve vybraté:</string>
     <string name="default_kiosk_page_summary">Predvolený kiosk</string>
     <string name="no_one_watching">Toto nikto nesleduje</string>
     <plurals name="watching">
         <item quantity="one">%s sleduje</item>
         <item quantity="few">%s sledujú</item>
+        <item quantity="many">%s sleduje</item>
         <item quantity="other">%s sleduje</item>
     </plurals>
     <string name="no_one_listening">Toto nikto nepočúva</string>
     <plurals name="listening">
         <item quantity="one">%s poslucháč</item>
         <item quantity="few">%s poslucháči</item>
+        <item quantity="many">%s poslucháčov</item>
         <item quantity="other">%s poslucháčov</item>
     </plurals>
     <string name="seek_duration_title">Dĺžka rýchleho pretáčania</string>
@@ -455,21 +441,25 @@
     <plurals name="seconds">
         <item quantity="one">%d sekunda</item>
         <item quantity="few">%d sekundy</item>
+        <item quantity="many">%d sekúnd</item>
         <item quantity="other">%d sekúnd</item>
     </plurals>
     <plurals name="minutes">
         <item quantity="one">%d minuta</item>
         <item quantity="few">%d minuty</item>
+        <item quantity="many">%d minút</item>
         <item quantity="other">%d minút</item>
     </plurals>
     <plurals name="hours">
         <item quantity="one">%d hodina</item>
         <item quantity="few">%d hodiny</item>
+        <item quantity="many">%d hodín</item>
         <item quantity="other">%d hodín</item>
     </plurals>
     <plurals name="days">
         <item quantity="one">%d deň</item>
         <item quantity="few">%d dni</item>
+        <item quantity="many">%d dní</item>
         <item quantity="other">%d dní</item>
     </plurals>
     <string name="feed_groups_header_title">Skupiny kanálov</string>
@@ -482,10 +472,11 @@
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d vybraný</item>
         <item quantity="few">%d vybrané</item>
+        <item quantity="many">%d vybraných</item>
         <item quantity="other">%d vybraných</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Bez názvu skupiny</string>
-    <string name="feed_group_dialog_delete_message">Chcete zmazať vybranú skupinu\?</string>
+    <string name="feed_group_dialog_delete_message">Chcete zmazať vybranú skupinu?</string>
     <string name="feed_create_new_group_button_title">Nový</string>
     <string name="settings_category_feed_title">Zdroj</string>
     <string name="feed_update_threshold_title">Interval obnovy zdroja</string>
@@ -495,20 +486,8 @@
     <string name="feed_use_dedicated_fetch_method_summary">Služba je dostupná len pre určité zdroje, zvyčajne je rýchlejšia ale môže vrátiť obmedzený počet položiek alebo neúplné informácie (napr. dĺžka, typ, status)</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Povoliť rýchly režim</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Zakázať rýchly režim</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Myslíte si, že načítavanie informačného kanála je príliš pomalé\? Ak áno, skúste povoliť rýchle načítanie (môžete ho zmeniť v nastaveniach alebo stlačením tlačidla nižšie). 
-\n 
-\nNewPipe ponúka dve stratégie načítania informačného kanála: 
-\n• Načítava sa celý kanál prihlásenia na odber, ktorý je pomalý, ale úplný. 
-\n• Používanie vyhradeného koncového bodu služby, ktorý je rýchly, ale zvyčajne nie je kompletný. 
-\n 
-\nRozdiel medzi nimi je ten, že v prípade rýchleho zvyčajne chýbajú nejaké informácie, napríklad trvanie alebo typ položky (nedá sa rozlíšiť medzi živými videami a normálnymi videami) a môže načítať menej položiek. 
-\n 
-\nYouTube je príkladom služby, ktorá ponúka túto rýchlu metódu s informačným kanálom RSS. 
-\n 
-\nTakže výber sa zredukuje na to, čo uprednostňujete: rýchlosť alebo presné informácie.</string>
-    <string name="content_not_supported">Tento obsah ešte nie je podporovaný v NwPipe.
-\n
-\nMožno v budúcnosti sa to zmení.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Myslíte si, že načítavanie informačného kanála je príliš pomalé? Ak áno, skúste povoliť rýchle načítanie (môžete ho zmeniť v nastaveniach alebo stlačením tlačidla nižšie). \n \nNewPipe ponúka dve stratégie načítania informačného kanála: \n• Načítava sa celý kanál prihlásenia na odber, ktorý je pomalý, ale úplný. \n• Používanie vyhradeného koncového bodu služby, ktorý je rýchly, ale zvyčajne nie je kompletný. \n \nRozdiel medzi nimi je ten, že v prípade rýchleho zvyčajne chýbajú nejaké informácie, napríklad trvanie alebo typ položky (nedá sa rozlíšiť medzi živými videami a normálnymi videami) a môže načítať menej položiek. \n \nYouTube je príkladom služby, ktorá ponúka túto rýchlu metódu s informačným kanálom RSS. \n \nTakže výber sa zredukuje na to, čo uprednostňujete: rýchlosť alebo presné informácie.</string>
+    <string name="content_not_supported">Tento obsah ešte nie je podporovaný v NwPipe. \n \nMožno v budúcnosti sa to zmení.</string>
     <string name="remove_watched_popup_partially_watched_streams">Áno aj čiastočne pozreté videá</string>
     <string name="remove_watched_popup_warning">Videá, ktoré ste sledovali pred a po pridaní do playlistu, budú odstránené. \nNaozaj to chcete urobiť?</string>
     <string name="remove_watched_popup_title">Odstrániť pozerané videá?</string>
@@ -520,9 +499,7 @@
     <string name="artists">Umelci</string>
     <string name="songs">Skladby</string>
     <string name="albums">Albumy</string>
-    <string name="restricted_video">Vekovo obmedzené video.
-\n
-\nPre zobrazenie videa povoľte \"%1$s\" v nastaveniach.</string>
+    <string name="restricted_video">Vekovo obmedzené video. \n \nPre zobrazenie videa povoľte \"%1$s\" v nastaveniach.</string>
     <string name="youtube_restricted_mode_enabled_title">Zapnúť \"Obmedzený režim YouTube\"</string>
     <string name="video_detail_by">%s</string>
     <string name="channel_created_by">Vytvoril %s</string>
@@ -539,7 +516,7 @@
     <string name="no_playlist_bookmarked_yet">Žiadne záložky playlistov</string>
     <string name="select_a_playlist">Vyberte playlist</string>
     <string name="error_report_open_github_notice">Skontrolujte prosím, či rovnaká chyba už nie je nahlásená. Vytváranie duplicitných hlásení komplikuje prácu vývojárov.</string>
-    <string name="unsupported_url_dialog_message">Nemožno rozpoznať URL. Otvoriť pomocou inej aplikácie\?</string>
+    <string name="unsupported_url_dialog_message">Nemožno rozpoznať URL. Otvoriť pomocou inej aplikácie?</string>
     <string name="auto_queue_toggle">Automatický rad</string>
     <string name="clear_queue_confirmation_description">Zoznam aktuálneho prehrávača bude prepísaný</string>
     <string name="clear_queue_confirmation_summary">Prepnutie z jedného prehrávača na druhý môže nahradiť vaše poradie</string>
@@ -589,8 +566,7 @@
     <string name="soundcloud_go_plus_content">Táto skladba je typu SoundCloud Go+, pre vašu krajinu je tento typ zakázaný a preto ju NewPipe nemôže streamovať ani sťahovať.</string>
     <string name="georestricted_content">Tento obsah nie je vo vašej krajine k dispozícii.</string>
     <string name="crash_the_app">Vynútiť zastavenie</string>
-    <string name="restricted_video_no_stream">Toto video je vekovo obmedzené.
-\nNewPipe ho nemôže prehrať z dôvodu nových pravidiel služby YouTube pre videá s vekovým obmedzením.</string>
+    <string name="restricted_video_no_stream">Toto video je vekovo obmedzené. \nNewPipe ho nemôže prehrať z dôvodu nových pravidiel služby YouTube pre videá s vekovým obmedzením.</string>
     <string name="download_has_started">Sťahovanie začalo</string>
     <string name="select_night_theme_toast">Dolu si môžete vybrať svoju obľúbenú nočnú tému</string>
     <string name="night_theme_summary">Vyberte si svoju obľúbenú nočnú tému — %s</string>
@@ -620,9 +596,7 @@
     <string name="open_website_license">Otvoriť webstránku</string>
     <string name="account_terminated">Účet bol zrušený</string>
     <string name="feed_load_error_fast_unknown">Tento rýchly režim neposkytuje viac informácií.</string>
-    <string name="feed_load_error_terminated">Účet autora bol zrušený.
-\nPreto ho NewPipe nebude môcť v budúcnosti načítať.
-\nChcete sa odhlásiť z odberu tohto kanála\?</string>
+    <string name="feed_load_error_terminated">Účet autora bol zrušený. \nPreto ho NewPipe nebude môcť v budúcnosti načítať. \nChcete sa odhlásiť z odberu tohto kanála?</string>
     <string name="feed_load_error_account_info">Nemožno načítať informačný kanál \'%s\'.</string>
     <string name="feed_load_error">Chyba pri načítaní kanála</string>
     <string name="downloads_storage_use_saf_summary_api_29">Od Androidu 10 je podporovaný len \'Storage Access Framework\'</string>
@@ -636,11 +610,13 @@
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s sťahovanie zmazané</item>
         <item quantity="few">%1$s sťahovania zmazané</item>
+        <item quantity="many">%1$s sťahovaní zmazaných</item>
         <item quantity="other">%1$s sťahovaní zmazaných</item>
     </plurals>
     <plurals name="download_finished_notification">
         <item quantity="one">Sťahovanie ukončené</item>
         <item quantity="few">%s ukončené sťahovania</item>
+        <item quantity="many">%s ukončených sťahovaní</item>
         <item quantity="other">%s ukončených sťahovaní</item>
     </plurals>
     <string name="dont_show">Neukazovať</string>
@@ -660,12 +636,10 @@
     <string name="manual_update_description">Ručne skontrolovať nové verzie</string>
     <string name="checking_updates_toast">Kontrolujú sa aktualizácie…</string>
     <string name="feed_new_items">Nové položky informačného kanála</string>
-    <string name="no_appropriate_file_manager_message">Pre túto akciu sa nenašiel vhodný správca súborov.
-\nNainštalujte si správcu súborov alebo skúste vypnúť \'%s\' v nastaveniach sťahovania</string>
+    <string name="no_appropriate_file_manager_message">Pre túto akciu sa nenašiel vhodný správca súborov. \nNainštalujte si správcu súborov alebo skúste vypnúť \'%s\' v nastaveniach sťahovania</string>
     <string name="show_crash_the_player_title">Zobraziť „Zhodiť prehrávač“</string>
     <string name="leak_canary_not_available">LeakCanary nie je k dispozícii</string>
-    <string name="no_appropriate_file_manager_message_android_10">Pre túto akciu sa nenašiel vhodný správca súborov.
-\nNainštalujte správcu súborov kompatibilného s rozhraním Storage Access Framework</string>
+    <string name="no_appropriate_file_manager_message_android_10">Pre túto akciu sa nenašiel vhodný správca súborov. \nNainštalujte správcu súborov kompatibilného s rozhraním Storage Access Framework</string>
     <string name="detail_pinned_comment_view_description">Pripnutý komentár</string>
     <string name="crash_the_player">Zlyhanie prehrávača</string>
     <string name="error_report_channel_name">Nahlásenie chyby</string>
@@ -678,7 +652,7 @@
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer preddefinovaný</string>
     <string name="notifications">Oznámenia</string>
     <string name="streams_notifications_interval_title">Frekvencia kontroly</string>
-    <string name="delete_downloaded_files_confirm">Vymazať všetky stiahnuté súbory z disku\?</string>
+    <string name="delete_downloaded_files_confirm">Vymazať všetky stiahnuté súbory z disku?</string>
     <string name="notifications_disabled">Upozornenia sú vypnuté</string>
     <string name="settings_category_player_notification_title">Upozornenie z prehrávača</string>
     <string name="settings_category_player_notification_summary">Nastavte oznámenie aktuálneho streamu prehrávania</string>
@@ -691,6 +665,7 @@
     <plurals name="new_streams">
         <item quantity="one">%s nový stream</item>
         <item quantity="few">%s nové streamy</item>
+        <item quantity="many">%s nových streamov</item>
         <item quantity="other">%s nových streamov</item>
     </plurals>
     <string name="check_new_streams">Skontrolovať nové streamy</string>
@@ -731,7 +706,7 @@
     <string name="volume">Hlasitosť</string>
     <string name="none">Nič</string>
     <string name="remove_duplicates">Odstrániť duplikáty</string>
-    <string name="remove_duplicates_title">Odstrániť duplikáty\?</string>
+    <string name="remove_duplicates_title">Odstrániť duplikáty?</string>
     <string name="feed_show_partially_watched">Rozpozerané</string>
     <string name="feed_show_watched">Dopozerané</string>
     <string name="ignore_hardware_media_buttons_summary">Toto sa môže hodiť v prípade, že máte pokazené tlačidlá na slúchadlách</string>
@@ -758,9 +733,7 @@
     <string name="prefer_descriptive_audio_summary">Vyberte zvukovú stopu s popisom pre osoby so zrakovým postihnutím, ak je k dispozícii</string>
     <string name="feed_show_hide_streams">Zobrazovať/Skrývať streamy</string>
     <string name="settings_category_exoplayer_title">Nastavenia ExoPlayer</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Toto riešenie uvoľní a znovu nastaví videokodeky pri zmene rozhrania namiesto priameho nastavenia rozhrania kodeku. Nastavenie už používa ExoPlayer na niektorých zariadeniach s týmto problémom a týka sa len systému Android 6 a vyššie
-\n
-\nPovolením tejto možnosti môžete zabrániť chybám prehrávania pri zmene aktuálneho prehrávača videa alebo pri prepnutí do režimu celej obrazovky</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Toto riešenie uvoľní a znovu nastaví videokodeky pri zmene rozhrania namiesto priameho nastavenia rozhrania kodeku. Nastavenie už používa ExoPlayer na niektorých zariadeniach s týmto problémom a týka sa len systému Android 6 a vyššie \n \nPovolením tejto možnosti môžete zabrániť chybám prehrávania pri zmene aktuálneho prehrávača videa alebo pri prepnutí do režimu celej obrazovky</string>
     <string name="audio_track_type_descriptive">popisná</string>
     <string name="channel_tab_videos">Videá</string>
     <string name="metadata_subscribers">Odberatelia</string>
@@ -813,22 +786,19 @@
     <plurals name="replies">
         <item quantity="one">%s odpoveď</item>
         <item quantity="few">%s odpovede</item>
+        <item quantity="many">%s odpovedí</item>
         <item quantity="other">%s odpovedí</item>
     </plurals>
     <string name="video_details_list_item">- %1$s: %2$s</string>
-    <string name="share_playlist_content_details">%1$s
-\n%2$s</string>
+    <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="error_insufficient_storage">Nedostatok voľného miesta v zariadení</string>
     <string name="reset_settings_summary">Obnoví všetky nastavenia na pôvodné hodnoty</string>
     <string name="reset_settings_title">Obnoviť nastavenia</string>
     <string name="settings_category_backup_restore_title">Záloha a obnovenie</string>
-    <string name="reset_all_settings">Obnovením nastavení sa zrušia všetky preferované nastavenia a aplikácia sa reštartuje.
-\n
-\nSte si istí, že chcete pokračovať?</string>
+    <string name="reset_all_settings">Obnovením nastavení sa zrušia všetky preferované nastavenia a aplikácia sa reštartuje. \n \nSte si istí, že chcete pokračovať?</string>
     <string name="no">Nie</string>
     <string name="yes">Áno</string>
-    <string name="auto_update_check_description">NewPipe môže z času na čas automaticky kontrolovať nové verzie a upozorniť vás, keď budú k dispozícii.
-\nChcete to povoliť?</string>
+    <string name="auto_update_check_description">NewPipe môže z času na čas automaticky kontrolovať nové verzie a upozorniť vás, keď budú k dispozícii. \nChcete to povoliť?</string>
     <string name="import_settings_vulnerable_format">Nastavenia v importovanom exporte používajú zraniteľný formát, ktorý bol od verzie NewPipe 0.27.0 zrušený. Uistite sa, že importovaný export pochádza z dôveryhodného zdroja, a v budúcnosti radšej používajte len exporty získané z verzie NewPipe 0.27.0 alebo novšej. Podpora importu nastavení v tomto zraniteľnom formáte bude čoskoro úplne odstránená a potom už staré verzie programu NewPipe nebudú môcť importovať nastavenia exportov z nových verzií.</string>
     <string name="audio_track_type_secondary">sekundárny</string>
     <string name="share_playlist_as_youtube_temporary_playlist">Zdieľať ako dočasný playlist YouTube</string>

@@ -2,7 +2,7 @@
 <resources>
     <string name="main_bg_subtitle">Norėdami pradėti paspauskite padidinimo stiklą.</string>
     <string name="upload_date_text">Publikuota %1$s</string>
-    <string name="no_player_found">Nerastas srauto grotuvas. Įdiegti VLC\?</string>
+    <string name="no_player_found">Nerastas srauto grotuvas. Įdiegti VLC?</string>
     <string name="install">Įdiegti</string>
     <string name="cancel">Atšaukti</string>
     <string name="open_in_browser">Atverti naršyklėje</string>
@@ -29,7 +29,7 @@
     <string name="show_higher_resolutions_title">Rodyti didesnes raiškas</string>
     <string name="show_higher_resolutions_summary">Tik kai kurie įrenginiai palaiko 2K/4K vaizdo įrašų peržiūrą</string>
     <string name="play_with_kodi_title">Groti su Kodi</string>
-    <string name="kore_not_found">Įdiegti nereastą Kode programėlę\?</string>
+    <string name="kore_not_found">Įdiegti nereastą Kode programėlę?</string>
     <string name="show_play_with_kodi_title">Rodyti „Peržiūra su Kodi“ pasirinkimą</string>
     <string name="show_play_with_kodi_summary">Rodyti pasirinkimą peržiūrėti vaizdo įrašus per Kodi mediacentrą</string>
     <string name="play_audio">Garso įrašas</string>
@@ -87,11 +87,13 @@
     <plurals name="subscribers">
         <item quantity="one">%s prenumeratorius</item>
         <item quantity="few">%s prenumeratoriai</item>
+        <item quantity="many">%s prenumeratorių</item>
         <item quantity="other">%s prenumeratorių</item>
     </plurals>
     <plurals name="videos">
         <item quantity="one">%s vaizdo įrašas</item>
         <item quantity="few">%s vaizdo įrašai</item>
+        <item quantity="many">%s vaizdo įrašų</item>
         <item quantity="other">%s vaizdo įrašų</item>
     </plurals>
     <string name="start">Pradėti</string>
@@ -107,8 +109,7 @@
     <string name="msg_wait">Prašome palaukti…</string>
     <string name="msg_copied">Nukopijuota į iškarpinę</string>
     <string name="no_available_dir">Prašome pasirinkti galimą atsisiuntimų aplankalą</string>
-    <string name="msg_popup_permission">Šis leidimas reikalingas
-\natidarymui iššokančio lango rėžime</string>
+    <string name="msg_popup_permission">Šis leidimas reikalingas \natidarymui iššokančio lango rėžime</string>
     <string name="title_activity_recaptcha">reCAPTCHA iššūkis</string>
     <string name="recaptcha_request_toast">prašomas reCAPTCHA iššūkis</string>
     <string name="subscribe_button_title">Prenumeruoti</string>
@@ -144,6 +145,7 @@
     <plurals name="views">
         <item quantity="one">%s peržiūra</item>
         <item quantity="few">%s peržiūros</item>
+        <item quantity="many">%s peržiūrų</item>
         <item quantity="other">%s peržiūrų</item>
     </plurals>
     <string name="no_videos">Nėra vaizdo įrašų</string>
@@ -233,7 +235,7 @@
     <string name="set_as_playlist_thumbnail">Nustatyti kaip grojaraščio miniatiūrą</string>
     <string name="bookmark_playlist">Pridėti grojaraštį į žymes</string>
     <string name="unbookmark_playlist">Pašalinti žymes</string>
-    <string name="delete_playlist_prompt">Ištrinti šį grojaraštį\?</string>
+    <string name="delete_playlist_prompt">Ištrinti šį grojaraštį?</string>
     <string name="playlist_creation_success">Grojaraštis sukurtas</string>
     <string name="playlist_add_stream_success">Pridėta į grojaraštį</string>
     <string name="playlist_thumbnail_change_success">Grojaraščio paveikslėlis pakeistas.</string>
@@ -260,12 +262,14 @@
     <plurals name="listening">
         <item quantity="one">%s klausytojas</item>
         <item quantity="few">%s klausytojai</item>
+        <item quantity="many">%s klausytojų</item>
         <item quantity="other">%s klausytojų</item>
     </plurals>
     <string name="no_one_listening">Niekas neklauso</string>
     <plurals name="watching">
         <item quantity="one">%s žiūri</item>
         <item quantity="few">%s žiūri</item>
+        <item quantity="many">%s žiūri</item>
         <item quantity="other">%s žiūri</item>
     </plurals>
     <string name="no_one_watching">Niekas nežiūri</string>
@@ -277,7 +281,7 @@
     <string name="error_report_open_issue_button_text">Pranešti per GitHub</string>
     <string name="copy_for_github">Kopijuoti formatuotą pranešimą</string>
     <string name="permission_display_over_apps">Suteikti leidimą rodyti virš kitų programų</string>
-    <string name="restore_defaults_confirmation">Ar norite atstatyti numatytuosius\?</string>
+    <string name="restore_defaults_confirmation">Ar norite atstatyti numatytuosius?</string>
     <string name="restore_defaults">Atstatyti numatytuosius</string>
     <string name="saved_tabs_invalid_json">Įkelti išsaugotų kortelių nepavyko, naudojamos numatytosios</string>
     <string name="no_streams_available_download">Nėra srautų parsiuntimui</string>
@@ -287,16 +291,16 @@
     <string name="invalid_source">Tokio failo/turinio šaltinio nėra</string>
     <string name="invalid_directory">Tokio aplanko nėra</string>
     <string name="missing_file">Failas perkeltas ar ištrintas</string>
-    <string name="download_to_sdcard_error_message">Įrašyti į išorinę SD kortelę nepavyko. Atstatyti atsisiuntimo aplanką\?</string>
+    <string name="download_to_sdcard_error_message">Įrašyti į išorinę SD kortelę nepavyko. Atstatyti atsisiuntimo aplanką?</string>
     <string name="download_to_sdcard_error_title">Išorinė saugykla neprieinama</string>
     <string name="search_history_deleted">Paieškos istorija pašalinta</string>
-    <string name="delete_search_history_alert">Išvalyti visą paieškos istoriją\?</string>
+    <string name="delete_search_history_alert">Išvalyti visą paieškos istoriją?</string>
     <string name="clear_search_history_summary">Išvalo paieškos istoriją</string>
     <string name="clear_search_history_title">Išvalyti paieško istoriją</string>
     <string name="clear_playback_states_summary">Pašalina visas atkūrimo vietas</string>
     <string name="clear_playback_states_title">Pašalinti atkūrimo vietas</string>
     <string name="watch_history_deleted">Žiūrėjimo istorija pašalinta</string>
-    <string name="delete_view_history_alert">Išvalyti visą žiūrėjimo istoriją\?</string>
+    <string name="delete_view_history_alert">Išvalyti visą žiūrėjimo istoriją?</string>
     <string name="clear_views_history_summary">Išvalo atkurtų srautų ir atkūrimo vietos istoriją</string>
     <string name="clear_views_history_title">Išvalyti žiūrėjimo istoriją</string>
     <string name="clear_cookie_summary">Išvalyti slapukus kuriuos NewPipe išsaugojo kai vedėte reCAPTCHA</string>
@@ -317,11 +321,8 @@
     <string name="videos_string">Vaizdo įrašai</string>
     <string name="playlists">Grojaraščiai</string>
     <string name="channels">Kanalai</string>
-    <string name="restricted_video_no_stream">Šiam video taikomas amžiaus apribojimas.
-\nDėl naujų YouTube amžiaus ribojimų NewPipe negali pasiekti ir atkurti šių video srautų.</string>
-    <string name="restricted_video">Šiam video taikomas amžiaus apribojimas
-\n
-\nĮjunkite \"%1$s\" norėdami peržiūrėti.</string>
+    <string name="restricted_video_no_stream">Šiam video taikomas amžiaus apribojimas. \nDėl naujų YouTube amžiaus ribojimų NewPipe negali pasiekti ir atkurti šių video srautų.</string>
+    <string name="restricted_video">Šiam video taikomas amžiaus apribojimas \n \nĮjunkite \"%1$s\" norėdami peržiūrėti.</string>
     <string name="youtube_restricted_mode_enabled_summary">Youtube turi „apribotą režimą“ kuriame slepiamas galimai suaugusiems skirtas turinys</string>
     <string name="youtube_restricted_mode_enabled_title">Įjungti YouTube „apribotą režimą“</string>
     <string name="show_age_restricted_content_summary">Rodyti turinį kuris gali būti netinkamas vaikams (18+)</string>
@@ -332,7 +333,7 @@
     <string name="peertube_instance_url_help">Pasirinkite patikusias kopijas %s</string>
     <string name="peertube_instance_url_summary">Pasirinkite mėgiamiausias PeerTube kopijas</string>
     <string name="peertube_instance_url_title">PeerTube kopijos</string>
-    <string name="unsupported_url_dialog_message">URL neatpažintas. Atverti kita programa\?</string>
+    <string name="unsupported_url_dialog_message">URL neatpažintas. Atverti kita programa?</string>
     <string name="autoplay_title">Automatinis atkūrimas</string>
     <string name="settings_category_clear_data_title">Išvalyti duomenis</string>
     <string name="enable_playback_state_lists_summary">Sąraše rodyti atkūrimo vietos indikatorių</string>
@@ -364,7 +365,7 @@
     <string name="notification_scale_to_square_image_summary">Apkirpti video miniatiūrų rodomų pranešime kraštinių santykį iš 16:9 į 1:1</string>
     <string name="notification_scale_to_square_image_title">Apkirpti miniatiūrų dydi 1:1 santykiu</string>
     <string name="watch_history_states_deleted">Atkūrimo vietos pašalintos</string>
-    <string name="delete_playback_states_alert">Pašalinti visas atkūrimo vietas\?</string>
+    <string name="delete_playback_states_alert">Pašalinti visas atkūrimo vietas?</string>
     <string name="peertube_instance_add_fail">Netinkama kopija</string>
     <string name="peertube_instance_add_help">Įveskite kopijos URL</string>
     <string name="enable_playback_resume_summary">Atstatyti paskutinį atkūrimo laiką</string>
@@ -375,28 +376,15 @@
     <string name="clear_queue_confirmation_title">Prieš išvalant eilę prašyti patvirtinimo</string>
     <string name="seek_duration_title">Greito prasukimo trukmė</string>
     <string name="use_inexact_seek_summary">Netikslus prasukimas leidžia grotuvui greitai peršokti į kitą vietą su sumažintu tikslumu. 5, 15 ar 25 sekundės to nenaudoja</string>
-    <string name="import_youtube_instructions">Importuokite „YouTube“ prenumeratas iš „Google Takeout“:
-\n
-\n1. Eikite į šį URL adresą: %1$s
-\n2. Prisijunkite, kai būsite paprašyti
-\n3. Spustelėkite „All data included“ (įtraukti visus duomenis), tada „Deselect all“ (panaikinti visų duomenų pasirinkimą), tada pasirinkite tik „Subscriptions“ (prenumeratos) ir spustelėkite „OK“ (gerai).
-\n4. Spustelėkite „Next step“ (kitas žingsnis), tada „Create export“ (sukurti eksportą).
-\n5. Pasirodžius mygtukui „Download“ (Atsisiųsti), spustelėkite jį ir
-\n6. Spustelėkite toliau Importuoti failą ir pasirinkite atsisiųstą ZIP failą
-\n7. [Jei nepavyksta importuoti ZIP failo] Ištraukite .csv failą (paprastai po „YouTube and YouTube Music/subscriptions/subscriptions.json“), spustelėkite toliau esantį Importuoti failą ir pasirinkite išgautą CSV failą</string>
+    <string name="import_youtube_instructions">Importuokite „YouTube“ prenumeratas iš „Google Takeout“: \n \n1. Eikite į šį URL adresą: %1$s \n2. Prisijunkite, kai būsite paprašyti \n3. Spustelėkite „All data included“ (įtraukti visus duomenis), tada „Deselect all“ (panaikinti visų duomenų pasirinkimą), tada pasirinkite tik „Subscriptions“ (prenumeratos) ir spustelėkite „OK“ (gerai). \n4. Spustelėkite „Next step“ (kitas žingsnis), tada „Create export“ (sukurti eksportą). \n5. Pasirodžius mygtukui „Download“ (Atsisiųsti), spustelėkite jį ir \n6. Spustelėkite toliau Importuoti failą ir pasirinkite atsisiųstą ZIP failą \n7. [Jei nepavyksta importuoti ZIP failo] Ištraukite .csv failą (paprastai po „YouTube and YouTube Music/subscriptions/subscriptions.json“), spustelėkite toliau esantį Importuoti failą ir pasirinkite išgautą CSV failą</string>
     <string name="app_license">NewPipe yra „copyleft libre“ programinė įranga: galite ją naudoti, studijuoti ir patobulinti. Konkrečiau, galite ją platinti ir (arba) modifikuoti pagal „Free Software Foundation“ paskelbtą GNU bendrosios viešosios licencijos sąlygas, pasirinktinai pagal 3 licencijos versiją arba (jūsų pasirinkimu) bet kurią vėlesnę versiją.</string>
-    <string name="import_soundcloud_instructions">Importuokite \"SoundCloud\" profilį įvesdami URL arba savo ID:
-\n
-\n1. Interneto naršyklėje įjunkite darbalaukio režimą (svetainė neprieinama mobiliesiems įrenginiams).
-\n2. Eikite šiuo adresu: %1$s
-\n3. Prisijunkite, kai būsite paprašyti
-\n4. Nukopijuokite profilio URL, į kurį buvote nukreipti.</string>
+    <string name="import_soundcloud_instructions">Importuokite \"SoundCloud\" profilį įvesdami URL arba savo ID: \n \n1. Interneto naršyklėje įjunkite darbalaukio režimą (svetainė neprieinama mobiliesiems įrenginiams). \n2. Eikite šiuo adresu: %1$s \n3. Prisijunkite, kai būsite paprašyti \n4. Nukopijuokite profilio URL, į kurį buvote nukreipti.</string>
     <string name="paid_content">Šis turinys prieinamas tik sumokėjusiems naudotojams, todėl \"NewPipe\" negali jo transliuoti ar atsisiųsti.</string>
     <string name="youtube_music_premium_content">Šis vaizdo įrašas prieinamas tik \"YouTube Music Premium\" nariams, todėl \"NewPipe\" negali jo transliuoti ar atsisiųsti.</string>
     <string name="disable_media_tunneling_summary">Išjunkite medijos tuneliavimą, jei vaizdo įrašo atkūrimo metu atsiranda juodas ekranas arba užstrigimas.</string>
     <string name="caption_setting_description">Pakeiskite grotuvo subtitrų teksto mastelį ir fono stilių. Pakeitimai įsigalios iš naujo paleidus programą</string>
     <string name="private_content">Šis turinys yra privatus, todėl \"NewPipe\" jo negali transliuoti ar atsisiųsti.</string>
-    <string name="confirm_prompt">Ar norite išvalyti atsisiuntimų istoriją ar ištrinti visus atsisiųstus failus\?</string>
+    <string name="confirm_prompt">Ar norite išvalyti atsisiuntimų istoriją ar ištrinti visus atsisiųstus failus?</string>
     <string name="feed_update_threshold_summary">Laikas po paskutinio atnaujinimo, po kurio prenumerata laikoma pasenusia — %s</string>
     <string name="error_http_unsupported_range">Serveris nepriima daugiasrautinių atsisiuntimų, pakartokite bandymą su @string/msg_threads = 1</string>
     <string name="show_thumbnail_summary">Naudoti miniatiūrą užrakinimo ekrano fonui ir pranešimams</string>
@@ -429,16 +417,19 @@
     <plurals name="days">
         <item quantity="one">%d diena</item>
         <item quantity="few">%d dienos</item>
+        <item quantity="many">%d dienų</item>
         <item quantity="other">%d dienų</item>
     </plurals>
     <plurals name="minutes">
         <item quantity="one">%d minutes</item>
         <item quantity="few">%d minutės</item>
+        <item quantity="many">%d minučių</item>
         <item quantity="other">%d minučių</item>
     </plurals>
     <plurals name="seconds">
         <item quantity="one">%d sekundė</item>
         <item quantity="few">%d sekundės</item>
+        <item quantity="many">%d sekundžių</item>
         <item quantity="other">%d sekundžių</item>
     </plurals>
     <string name="systems_language">Sistemos numatytoji</string>
@@ -492,55 +483,38 @@
     <string name="recently_added">Nesenai pridėta</string>
     <string name="local">Vietinė</string>
     <string name="error_unable_to_load_comments">Komentarų įkelti nepavyko</string>
-    <string name="import_settings">Ar norite importuoti nustatymus\?</string>
+    <string name="import_settings">Ar norite importuoti nustatymus?</string>
     <string name="no_playlist_bookmarked_yet">Kol kas nėra grojaraščio žymų</string>
     <string name="select_a_playlist">Pasirinkite grojaraštį</string>
     <string name="default_kiosk_page_summary">Numatytasis režimas</string>
     <string name="main_page_content_summary">Kokios kortelės rodomos pagrindiniame puslapyje</string>
     <string name="read_privacy_policy">Skaityti privatumo politiką</string>
-    <string name="privacy_policy_encouragement">NewPipe į jūsų privatumą žiūri labai rimtai. Programa be jūsų sutikimo nerenka jokių duomenų.
-\nNewPipe privatumo politika išsamiai parodo kokie duomenys siunčiami ir saugomi pranešant apie problemą.</string>
+    <string name="privacy_policy_encouragement">NewPipe į jūsų privatumą žiūri labai rimtai. Programa be jūsų sutikimo nerenka jokių duomenų. \nNewPipe privatumo politika išsamiai parodo kokie duomenys siunčiami ir saugomi pranešant apie problemą.</string>
     <string name="privacy_policy_title">NewPipe privatumo politika</string>
     <string name="done">Atlikta</string>
     <string name="recaptcha_solve">Išspręsta</string>
     <string name="subtitle_activity_recaptcha">Paspauskite \"atlikta\" kai išspręsta</string>
     <string name="error_report_open_github_notice">Patikrinkite ar apie problemą su kuria susidūrėte dar nėra pranešta. Sukurdami kelis pranešimus apie tą pačią problemą atimate iš mūsų laiką kurį galėtume skirti klaidų taisymui.</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Ar manote, kad kanalas kraunamas per lėtai\? Jei taip, pabandykite įjungti greitąjį įkrovimą (tai galite pakeisti nustatymuose arba paspaudę toliau esantį mygtuką).
-\n
-\n\"NewPipe\" siūlo dvi kanalo įkėlimo strategijas:
-\n- Visos prenumeratos kanalo atsisiuntimas, kuris yra lėtas, bet išsamus.
-\n- Naudojant specialų paslaugos galinį tašką, kuris yra greitas, bet paprastai neišsamus.
-\n
-\nSkirtumas tarp šių dviejų būdų yra tas, kad greitasis būdas paprastai neturi tam tikros informacijos, pavyzdžiui, elemento trukmės ar tipo (negalima atskirti tiesioginių ir įprastų vaizdo įrašų), ir gali grąžinti mažiau elementų.
-\n
-\n\"YouTube\" yra pavyzdys paslaugos, kuris siūlo šį greitąjį metodą su savo RSS kanalu.
-\n
-\nTaigi pasirinkimas priklauso nuo to, ko labiau norite: greičio ar tikslios informacijos.</string>
-    <string name="start_accept_privacy_policy">Siekdami laikytis Europos bendrojo duomenų apsaugos reglamento (GDPR), atkreipiame jūsų dėmesį į NewPipe privatumo politiką. Prašome atidžiai ją perskaityti.
-\nNorėdami išsiųsti mums pranešimą apie klaidą, turite su ja sutikti.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Ar manote, kad kanalas kraunamas per lėtai? Jei taip, pabandykite įjungti greitąjį įkrovimą (tai galite pakeisti nustatymuose arba paspaudę toliau esantį mygtuką). \n \n\"NewPipe\" siūlo dvi kanalo įkėlimo strategijas: \n- Visos prenumeratos kanalo atsisiuntimas, kuris yra lėtas, bet išsamus. \n- Naudojant specialų paslaugos galinį tašką, kuris yra greitas, bet paprastai neišsamus. \n \nSkirtumas tarp šių dviejų būdų yra tas, kad greitasis būdas paprastai neturi tam tikros informacijos, pavyzdžiui, elemento trukmės ar tipo (negalima atskirti tiesioginių ir įprastų vaizdo įrašų), ir gali grąžinti mažiau elementų. \n \n\"YouTube\" yra pavyzdys paslaugos, kuris siūlo šį greitąjį metodą su savo RSS kanalu. \n \nTaigi pasirinkimas priklauso nuo to, ko labiau norite: greičio ar tikslios informacijos.</string>
+    <string name="start_accept_privacy_policy">Siekdami laikytis Europos bendrojo duomenų apsaugos reglamento (GDPR), atkreipiame jūsų dėmesį į NewPipe privatumo politiką. Prašome atidžiai ją perskaityti. \nNorėdami išsiųsti mums pranešimą apie klaidą, turite su ja sutikti.</string>
     <string name="feed_use_dedicated_fetch_method_summary">Prieinama kai kuriose tarnybose, paprastai yra daug greitesnė, tačiau gali grąžinti ribotą kiekį elementų ir dažnai neišsamią informaciją (pvz., nėra trukmės, elemento tipo, nėra tiesioginės būsenos)</string>
     <string name="remove_watched_popup_warning">Vaizdo įrašai, kurie buvo peržiūrėti prieš juos įtraukiant į grojaraštį ir po to, kai jie buvo įtraukti į grojaraštį, bus pašalinti. \nAr tikrai? To negalima atšaukti!</string>
     <string name="soundcloud_go_plus_content">Tai \"SoundCloud Go+\" kūrinys, bent jau jūsų šalyje, todėl jo negalima transliuoti ar atsisiųsti per \"NewPipe\".</string>
-    <string name="content_not_supported">Šio turinio \"NewPipe\" dar nepalaiko.
-\n
-\nTikimės, kad jis bus palaikomas būsimoje versijoje.</string>
+    <string name="content_not_supported">Šio turinio \"NewPipe\" dar nepalaiko. \n \nTikimės, kad jis bus palaikomas būsimoje versijoje.</string>
     <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" leidžia atsisiųsti duomenis į išorinę SD kortelę</string>
-    <string name="import_network_expensive_warning">Atminkite, kad ši operacija gali brangiai kainuoti tinkle.
-\n
-\nAr norite tęsti\?</string>
+    <string name="import_network_expensive_warning">Atminkite, kad ši operacija gali brangiai kainuoti tinkle. \n \nAr norite tęsti?</string>
     <string name="updates_setting_description">Rodyti pranešimą, kuriame raginama atnaujinti programą, kai yra nauja versija</string>
     <string name="new_seek_duration_toast">Dėl ExoPlayer apribojimų prasukimo trukmė buvo nustatyta %d sekundės</string>
     <string name="pause_downloads_on_mobile_desc">Naudinga pereinant prie mobiliųjų duomenų, nors kai kurių atsisiuntimų sustabdyti negalima</string>
     <string name="minimize_on_exit_summary">Veiksmas, kai iš pagrindinio vaizdo įrašų grotuvo pereinama į kitą programą — %s</string>
     <string name="show_original_time_ago_summary">Srauto elementuose bus matomi orginalūs tekstai iš paslaugų</string>
-    <string name="downloads_storage_ask_summary">Jūsų bus paklausta, kur išsaugoti kiekvieną atsisiuntimą.
-\nĮgalinkite sisteminį aplanko parinktuką (SAP) jeigu norite, kad būtų atsiųsta į išorinę SD kortelę</string>
+    <string name="downloads_storage_ask_summary">Jūsų bus paklausta, kur išsaugoti kiekvieną atsisiuntimą. \nĮgalinkite sisteminį aplanko parinktuką (SAP) jeigu norite, kad būtų atsiųsta į išorinę SD kortelę</string>
     <string name="select_night_theme_toast">Žemiau galite pasirinkti mėgstamą nakties temą</string>
     <string name="download_already_pending">Šiuo pavadinimu yra laukiama atsisiuntimo</string>
     <string name="overwrite_finished_warning">Atsisiųstas failas su šiuo pavadinimu jau egzistuoja</string>
     <string name="max_retry_desc">Didžiausias bandymų skaičius prieš atšaukiant atsisiuntimą</string>
     <string name="night_theme_summary">Pasirinkite mėgstamiausią nakties temą — %s</string>
-    <string name="feed_group_dialog_delete_message">Ar norite panaikinti šią grupę\?</string>
+    <string name="feed_group_dialog_delete_message">Ar norite panaikinti šią grupę?</string>
     <string name="error_progress_lost">Eiga prarasta, nes failas buvo panaikintas</string>
     <string name="overwrite_unrelated_warning">Failas šiuo pavadinimu jau egzistuoja</string>
     <string name="error_path_creation">Nepavyko sukurti paskirties aplanko</string>
@@ -580,6 +554,7 @@
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d pasirinktas</item>
         <item quantity="few">%d pasirinkti</item>
+        <item quantity="many">%d pasirinkta</item>
         <item quantity="other">%d pasirinkta</item>
     </plurals>
     <string name="feed_group_dialog_select_subscriptions">Pasirinkite prenumeratas</string>
@@ -588,6 +563,7 @@
     <plurals name="hours">
         <item quantity="one">%d valanda</item>
         <item quantity="few">%d valandos</item>
+        <item quantity="many">%d valandų</item>
         <item quantity="other">%d valandų</item>
     </plurals>
     <string name="start_downloads">Pradėti siuntimus</string>
@@ -624,9 +600,7 @@
     <string name="description_select_note">Dabar apraše galite pasirinkti tekstą aprašyme. Atminkite, kad puslapis gali mirgėti, o nuorodos gali būti nespustelėjamos, kai veikia pasirinkimo režimas.</string>
     <string name="account_terminated">Paskyra anuliuota</string>
     <string name="feed_load_error_fast_unknown">Greito srauto režimas nesuteikia daugiau informacijos apie tai.</string>
-    <string name="feed_load_error_terminated">Autoriaus paskyra anuliuota.
-\n„NewPipe“ negalės įkelti šio kanalo ateityje.
-\nAr norite atsisakyti šio kanalo prenumeratos\?</string>
+    <string name="feed_load_error_terminated">Autoriaus paskyra anuliuota. \n„NewPipe“ negalės įkelti šio kanalo ateityje. \nAr norite atsisakyti šio kanalo prenumeratos?</string>
     <string name="feed_load_error">Klaida įkeliant srautą</string>
     <string name="downloads_storage_use_saf_summary_api_29">Pradedant Android 10 palaikoma tik \'Storage Access Framework\'</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Jūsų bus paklausta, kur išsaugoti kiekvieną atsiuntimą</string>
@@ -643,11 +617,13 @@
     <plurals name="deleted_downloads_toast">
         <item quantity="one">Ištrintas %1$s atsiuntimas</item>
         <item quantity="few">Ištrinti %1$s atsiuntimai</item>
+        <item quantity="many">Ištrinta %1$s atsiuntimų</item>
         <item quantity="other">Ištrinta %1$s atsiuntimų</item>
     </plurals>
     <plurals name="download_finished_notification">
         <item quantity="one">Atsiuntimas baigtas</item>
         <item quantity="few">%s atsiuntimai baigti</item>
+        <item quantity="many">%s atsiuntimų baigta</item>
         <item quantity="other">%s atsiuntimų baigta</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Perbraukite elementus, kad juos pašalintumėte</string>
@@ -664,14 +640,12 @@
     <string name="show_crash_the_player_summary">Naudojant grotuvą rodo lūžio parinkty</string>
     <string name="show_error_snackbar">Rodyti klaidos juostą</string>
     <string name="detail_pinned_comment_view_description">Prisegtas komentaras</string>
-    <string name="no_appropriate_file_manager_message_android_10">Nerasta tinkama failų tvarkyklė. 
-\nĮdiekite „Storage Access Framework“ suderinamą su šia failų tvarkykle</string>
+    <string name="no_appropriate_file_manager_message_android_10">Nerasta tinkama failų tvarkyklė. \nĮdiekite „Storage Access Framework“ suderinamą su šia failų tvarkykle</string>
     <string name="error_report_channel_description">Pranešimai pranešimui apie klaidas</string>
     <string name="show_crash_the_player_title">Rodyti „Grotuvas užlūžo“</string>
     <string name="create_error_notification">Kurti klaidos pranešimą</string>
     <string name="error_report_notification_title">NewPipe susidūrė su klaida, paspauskite norėdami pranešti</string>
-    <string name="no_appropriate_file_manager_message">Šiam veiksmui nebuvo rasta tinkama failų tvarkyklė.
-\nĮdiekite failų tvarkyklę arba pabandykite išjungti \"%s\" atsisiuntimo nustatymuose</string>
+    <string name="no_appropriate_file_manager_message">Šiam veiksmui nebuvo rasta tinkama failų tvarkyklė. \nĮdiekite failų tvarkyklę arba pabandykite išjungti \"%s\" atsisiuntimo nustatymuose</string>
     <string name="crash_the_player">Užlūžo</string>
     <string name="error_report_channel_name">Klaidos pranešimo pranešimas</string>
     <string name="error_report_notification_toast">Įvyko klaida, peržiūrėti pranešimą</string>
@@ -686,6 +660,7 @@
     <plurals name="new_streams">
         <item quantity="one">%s nauja transliacija</item>
         <item quantity="few">%s naujos transliacijos</item>
+        <item quantity="many">%s naujų transliacijų</item>
         <item quantity="other">%s naujų transliacijų</item>
     </plurals>
     <string name="get_notified">Gaukite pranešimą</string>
@@ -694,7 +669,7 @@
     <string name="streams_not_yet_supported_removed">Transliacijos, kurių dar nepalaiko atsisiuntimo programa, nerodomos</string>
     <string name="unknown_format">Nežinomas formatas</string>
     <string name="any_network">Bet koks tinklas</string>
-    <string name="delete_downloaded_files_confirm">Ištrinti visus atsisiųstus failus iš disko\?</string>
+    <string name="delete_downloaded_files_confirm">Ištrinti visus atsisiųstus failus iš disko?</string>
     <string name="settings_category_player_notification_title">Grotuvo pranešimas</string>
     <string name="streams_notification_channel_description">Pranešimai apie naujas transliacijas prenumeratoms</string>
     <string name="streams_notification_channel_name">Naujos transliacijos</string>
@@ -718,7 +693,7 @@
     <string name="fast_mode">Greitasis režimas</string>
     <string name="app_update_unavailable_toast">Naudojate naujausią „NewPipe“ versiją</string>
     <string name="app_update_available_notification_text">Bakstelėkite, kad atsisiųstumėte %s</string>
-    <string name="remove_duplicates_message">Ar norite pašalinti visus pasikartojančius srautus iš šio grojaraščio\?</string>
+    <string name="remove_duplicates_message">Ar norite pašalinti visus pasikartojančius srautus iš šio grojaraščio?</string>
     <string name="feed_show_upcoming">Būsimas</string>
     <string name="duplicate_in_playlist">Grojaraščiai jau turintys šį elementą išaktyvuoti.</string>
     <string name="playlist_add_stream_success_duplicate">Kartojasi pridėta %d kartus</string>
@@ -737,7 +712,7 @@
     <string name="audio_track">Audio takelis</string>
     <string name="card">Kortelė</string>
     <string name="remove_duplicates">Pašalinti besikartojančius</string>
-    <string name="remove_duplicates_title">Pašalinti besikartojančius\?</string>
+    <string name="remove_duplicates_title">Pašalinti besikartojančius?</string>
     <string name="feed_hide_streams_title">Rodyti šiuos srautus</string>
     <string name="feed_show_partially_watched">Iš dalies peržiūrėta</string>
     <string name="settings_category_exoplayer_title">\"ExoPlayer\" nustatymai</string>
@@ -755,9 +730,7 @@
     <string name="audio_track_present_in_video">Šiame sraute jau turėtų būti garso takelis</string>
     <string name="select_audio_track_external_players">Pasirinkite garso takelį išoriniams grotuvams</string>
     <string name="unknown_audio_track">Nežinomas</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Šis apeinamasis sprendimas atlaisvina ir iš naujo nustato vaizdo kodekus, kai pasikeičia paviršius, užuot tiesiogiai nustatęs paviršių kodekui. Šis nustatymas jau naudojamas \"ExoPlayer\" kai kuriuose įrenginiuose, kuriuose buvo ši problema, šis nustatymas turi poveikį tik \"Android 6\" ir naujesniuose įrenginiuose.
-\n
-\nĮjungus šią parinktį gali būti išvengta atkūrimo klaidų, kai perjungiamas dabartinis vaizdo grotuvas arba pereinama į visą ekraną</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Šis apeinamasis sprendimas atlaisvina ir iš naujo nustato vaizdo kodekus, kai pasikeičia paviršius, užuot tiesiogiai nustatęs paviršių kodekui. Šis nustatymas jau naudojamas \"ExoPlayer\" kai kuriuose įrenginiuose, kuriuose buvo ši problema, šis nustatymas turi poveikį tik \"Android 6\" ir naujesniuose įrenginiuose. \n \nĮjungus šią parinktį gali būti išvengta atkūrimo klaidų, kai perjungiamas dabartinis vaizdo grotuvas arba pereinama į visą ekraną</string>
     <string name="audio_track_type_dubbed">dubliuotas</string>
     <string name="use_exoplayer_decoder_fallback_summary">Įjunkite šią parinktį, jei kyla dekoderio inicializavimo problemų, o nepavykus inicializuoti pagrindinių dekoderių, grįžtama prie žemesnio prioriteto dekoderių. Dėl to atkūrimo našumas gali būti prastesnis nei naudojant pirminius dekoderius</string>
     <string name="audio_track_type_descriptive">aprašomasis</string>
@@ -768,9 +741,7 @@
     <string name="channel_tab_livestreams">Gyva transliacija</string>
     <string name="channel_tab_shorts">Trumpi</string>
     <string name="show_more">Rodyti daugiau</string>
-    <string name="reset_all_settings">Visų nustatymų atstatymas į numatytasias reikšmes panaikins visus jūsų pasirinkimus ir iš naujo paleis programą.
-\n
-\nAr norite tęsti?</string>
+    <string name="reset_all_settings">Visų nustatymų atstatymas į numatytasias reikšmes panaikins visus jūsų pasirinkimus ir iš naujo paleis programą. \n \nAr norite tęsti?</string>
     <string name="loading_metadata_title">Metaduomenų įkėlimas…</string>
     <string name="metadata_banners">Baneriai</string>
     <string name="metadata_subscribers">Prenumeratoriai</string>
@@ -781,8 +752,7 @@
     <string name="no">Ne</string>
     <string name="main_tabs_position_summary">Pagrindinio skirtuko parinkiklio perkėlimas į apačią</string>
     <string name="disable_media_tunneling_automatic_info">Medijos tuneliavimas buvo išjungtas pagal numatytuosius nustatymus jūsų prietaise, nes žinoma, kad jūsų prietaiso modelis jo nepalaiko.</string>
-    <string name="auto_update_check_description">\"NewPipe\" gali automatiškai patikrinti, ar yra naujų versijų, ir pranešti jums, kai jos pasirodys.
-\nAr norite tai įjungti?</string>
+    <string name="auto_update_check_description">\"NewPipe\" gali automatiškai patikrinti, ar yra naujų versijų, ir pranešti jums, kai jos pasirodys. \nAr norite tai įjungti?</string>
     <string name="image_quality_none">Neįkelti paveikslėlių</string>
     <string name="audio_track_name">%1$s %2$s</string>
     <string name="notification_actions_summary_android13">Redaguokite kiekvieną toliau pateiktą pranešimo veiksmą bakstelėdami jį. Pirmi trys veiksmai (groti/pauzė, ankstensnis ir paskesnis) yra sistemos numatytieji ir negali būti pakeisti.</string>
@@ -824,10 +794,10 @@
     <plurals name="replies">
         <item quantity="one">%s atsakymas</item>
         <item quantity="few">%s atsakymai</item>
+        <item quantity="many">%s atsakymų</item>
         <item quantity="other">%s atsakymų</item>
     </plurals>
-    <string name="share_playlist_content_details">%1$s
-\n%2$s</string>
+    <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="question_mark">\?</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <string name="tab_bookmarks_short">Grojaraščiai</string>

@@ -9,7 +9,7 @@
     <string name="download">ダウンロード</string>
     <string name="search">きんさく</string>
     <string name="settings">しってい</string>
-    <string name="did_you_mean">むしかしてぃ： 「%1$s」\?</string>
+    <string name="did_you_mean">むしかしてぃ： 「%1$s」?</string>
     <string name="share_dialog_title">ちゅーゆーいん</string>
     <string name="download_path_title">ちゃーしがふずんするフォルダー</string>
     <string name="download_path_summary">ダウンロードさどぅうがくまんかいふずんさびーん</string>
@@ -84,8 +84,7 @@
     <string name="black_theme_title">ブラック</string>
     <string name="all">まじり</string>
     <string name="open_in_popup_mode">ポップアップモードっしふぃらちゅん</string>
-    <string name="msg_popup_permission">ポップアップモードっしふぃらちゅんがー
-\nきんぎんぬきょかがふぃちようでぃす</string>
+    <string name="msg_popup_permission">ポップアップモードっしふぃらちゅんがー \nきんぎんぬきょかがふぃちようでぃす</string>
     <string name="popup_playing_toast">ポップアップモードっしさいせいちゅう</string>
     <string name="disabled">んーか</string>
     <string name="default_video_format_title">デフォルトぬちゃーがけいしき</string>
@@ -264,8 +263,7 @@
     </plurals>
     <string name="one_item_deleted">てぃーちぬアイテムぬさちゅるじょさりやびたん。</string>
     <string name="give_back">しーいんすん</string>
-    <string name="privacy_policy_encouragement">NewPipeプロジェクトーうんじゅがプライバシーふぃじょうにてーしちなちょーいびーん。うんじゅがちゃーいがねーんかぎり、アプレーいかなるデータんしゅうしゅうさびらん。
-\nNewPipeぬプライバシー・ポリシーっしぇー、クラッシュリポートそうしんじんかいちゃぬぐとーるしゅるいぬデータぬあんしん・きるくされいがしーょうさいにしちめいそーいびーん。</string>
+    <string name="privacy_policy_encouragement">NewPipeプロジェクトーうんじゅがプライバシーふぃじょうにてーしちなちょーいびーん。うんじゅがちゃーいがねーんかぎり、アプレーいかなるデータんしゅうしゅうさびらん。 \nNewPipeぬプライバシー・ポリシーっしぇー、クラッシュリポートそうしんじんかいちゃぬぐとーるしゅるいぬデータぬあんしん・きるくされいがしーょうさいにしちめいそーいびーん。</string>
     <string name="app_license">NewPipeーコピーレフトなソフトウェアやいびーん。うんじょーじゆうにうりさし、きんきゅうしー、きょうゆうし、あんしがいじんするくとぅがなやびーん。うんじょー、GNUフリーソフトウェアじぇーやんんがかんかいすん GNU General Publicライセンスバージョン3いかぬむとぅんかい、じゆうにさえーいーん・しゅうせいうくないるくとぅがなやびーん。</string>
     <string name="title_last_played">さいしゅうさいせいにちじ</string>
     <string name="title_most_played">むっとぅむさいせいさったんちゃーしが</string>
@@ -284,15 +282,7 @@
     <string name="caption_auto_generated">じどうせいせい</string>
     <string name="caption_setting_description">プレーヤーぬキャプションテキストぬしーゅくしゃくとぅはいけいスタイルへいるかんさびーん。ゆうこうなすんがー、アプリぬさいきちゃーがふぃちようやいびーん</string>
     <string name="empty_list_subtitle">ぬーんあいびらん</string>
-    <string name="import_youtube_instructions">Google takeoutからYouTubeぬとぅうるいちゅるリストインポート：
-\n
-\n1. くぬURLふぃらちゃびーん： %1$s
-\n2. ログインしうぅらんだれーログインさびーん
-\n3. \"まじりしんたく\" クリックしー、あんし \"しんたくまじりかいじょ\" クリック、あんし \"んでぃうるいちゅるチャンネル\" ぬみしんたくし、\"OK\" クリック
-\n4. \"ちぎぬステップ\" クリックしー、あんし \"エクスポートさくせい\" クリック
-\n5. ひょうじされいねー \"ダウンロード\" ボタンクリック
-\n6. ファイルからインポートクリックしダウンロードさるzipファイルしんたく
-\n7.（インポートぬしーやんじねー）csvファイル（たいてい、\"YouTubeとぅYouTube Music/とぅうるいちゅるチャンネル/とぅうるいちゅるチャンネル.csv\" んかいあん）ちゅうさゅちし、ファイルからインポートクリックしてぃちゅうしゅちしたcsvファイルしんたく</string>
+    <string name="import_youtube_instructions">Google takeoutからYouTubeぬとぅうるいちゅるリストインポート： \n \n1. くぬURLふぃらちゃびーん： %1$s \n2. ログインしうぅらんだれーログインさびーん \n3. \"まじりしんたく\" クリックしー、あんし \"しんたくまじりかいじょ\" クリック、あんし \"んでぃうるいちゅるチャンネル\" ぬみしんたくし、\"OK\" クリック \n4. \"ちぎぬステップ\" クリックしー、あんし \"エクスポートさくせい\" クリック \n5. ひょうじされいねー \"ダウンロード\" ボタンクリック \n6. ファイルからインポートクリックしダウンロードさるzipファイルしんたく \n7.（インポートぬしーやんじねー）csvファイル（たいてい、\"YouTubeとぅYouTube Music/とぅうるいちゅるチャンネル/とぅうるいちゅるチャンネル.csv\" んかいあん）ちゅうさゅちし、ファイルからインポートクリックしてぃちゅうしゅちしたcsvファイルしんたく</string>
     <string name="playback_reset">リセット</string>
     <string name="accept">ちゃーいすん</string>
     <string name="decline">きょふぃする</string>
@@ -306,16 +296,9 @@
     <string name="enable_leak_canary_summary">メモリリークぬかんしぇー、ヒープダンピングじんかいアプリぬむはんのうになるぎんいんとぅなやびーん</string>
     <string name="enable_disposed_exceptions_title">ライフサイクルエラーぬほうくーく</string>
     <string name="enable_disposed_exceptions_summary">はきさったるフラグメントあらんでぃアクティビティぬ、ライフサイクルはんいぬいでぃのーいしんふぬうなRxれいがいちーょうせいてぃきにほうくくさびーん</string>
-    <string name="import_soundcloud_instructions">URLあらんでぃIDんかいゅうりょくしてぃSoundCloudプロファイルインポートさびーん：：
-\n
-\n1. Webブラウザーっし \"デスクトップモード\" ゆうこうなさびーん（サイトーけいたいデバイスでぃりようなやびらん）
-\n2. くぬURLんかいうぅいちゃーさびーん： %1$s
-\n3. ふぃちぐとぅうぅーじてぃログインさびーん
-\n4. リダイレクトさったるプロファイルURLコピーさびーん。</string>
+    <string name="import_soundcloud_instructions">URLあらんでぃIDんかいゅうりょくしてぃSoundCloudプロファイルインポートさびーん：： \n \n1. Webブラウザーっし \"デスクトップモード\" ゆうこうなさびーん（サイトーけいたいデバイスでぃりようなやびらん） \n2. くぬURLんかいうぅいちゃーさびーん： %1$s \n3. ふぃちぐとぅうぅーじてぃログインさびーん \n4. リダイレクトさったるプロファイルURLコピーさびーん。</string>
     <string name="import_soundcloud_instructions_hint">うんじゅがID, soundcloud.com/うんじゅがid</string>
-    <string name="import_network_expensive_warning">くぬあしっさにゆりちうしんりょうきんがかじゅーいるくとぅがあいびーん。ぐちゅういください。
-\n
-\nずっこうさびーが？</string>
+    <string name="import_network_expensive_warning">くぬあしっさにゆりちうしんりょうきんがかじゅーいるくとぅがあいびーん。ぐちゅういください。 \n \nずっこうさびーが？</string>
     <string name="playback_speed_control">とうるくさゃすう</string>
     <string name="unhook_checkbox">すくどぅとぅうんていりんちゃーさじんかいへいるかん（ゆがむんかむしりやびらん）</string>
     <string name="skip_silence_checkbox">むうんぬあいだにはやうくり</string>
@@ -330,8 +313,7 @@
     <string name="restore_defaults_confirmation">きていぬしっていふちゅるぎんさびーが？</string>
     <string name="subscribers_count_not_available">とうるくさゃすうはりようでぃきましん</string>
     <string name="conferences">がいぎ</string>
-    <string name="start_accept_privacy_policy">ヨーロッパぬいちぱんデータふぐきせい（GDPR）にじゅんきょしーんたみに、NewPipeぬくじんじょうほうふぐほうしんにぐちゅういください。ゆーゆでぃくぃみそーれー。
-\nわったーんかいふぐあいほうくーくうくいんでー、くりうけいりらんだれーなやびらん。</string>
+    <string name="start_accept_privacy_policy">ヨーロッパぬいちぱんデータふぐきせい（GDPR）にじゅんきょしーんたみに、NewPipeぬくじんじょうほうふぐほうしんにぐちゅういください。ゆーゆでぃくぃみそーれー。 \nわったーんかいふぐあいほうくーくうくいんでー、くりうけいりらんだれーなやびらん。</string>
     <string name="updates_setting_title">アプリぬこうしん</string>
     <string name="list_view_mode">リストビューモード</string>
     <string name="list">リスト</string>
@@ -397,8 +379,7 @@
     <string name="start_downloads">ダウンロードぬかいし</string>
     <string name="pause_downloads">ダウンロードぬいちじていし</string>
     <string name="downloads_storage_ask_title">ダウンロードさきたんにいん</string>
-    <string name="downloads_storage_ask_summary">ダウンロードぬたびにふずんすーしょたんにやびーん。
-\nSDカードんかいダウンロードさるいばあえーシステムフォルダピッカー（SAF）ゆーいるこうかさびーん</string>
+    <string name="downloads_storage_ask_summary">ダウンロードぬたびにふずんすーしょたんにやびーん。 \nSDカードんかいダウンロードさるいばあえーシステムフォルダピッカー（SAF）ゆーいるこうかさびーん</string>
     <string name="downloads_storage_use_saf_title">システムフォルダピッカー（SAF）しようすん</string>
     <string name="downloads_storage_use_saf_summary">ストレージアクセスフレームワークー、がいぶSDカードんかいぬダウンロードぬかのうやいびーん</string>
     <string name="clear_playback_states_title">さいせいいちのさくじょ</string>
@@ -485,28 +466,14 @@
     <string name="feed_use_dedicated_fetch_method_summary">いくちがぬサービスっしりようかのう。ちうじーょうゆりむこうすくでぃすがせいぎんさりたじょうほうがしゅとぅくさり、たいていぬばあいふかんじんやいびーん（れい： さいせいじがん、しーゅるい、ライブステータスんでーがねーん）</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">こうすくモードゆーいんかんが</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">こうすくモードんーかなやー</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">フィードぬゆみくみがにーしじーんでぃうむやびーが？うぬばあい、こうすくゆみくみゆーいるこうかしんーちくぃみそーれー（しってい、あらんでぃしちゃぬボタンうしてぃへんかんするくとぅがなやびーん）。
-\n
-\nNewPipeーたーちぬゆみくみほうほうていきょうさびーん：
-\n・とうるいちゅるチャンネルじんたいしゅとぅくさびーん。くれーていすくやいびーしがかんじんやいびーん。
-\n・しんようぬサービスエンドポイントしーようさびーん。くれーこうすくやいびーしが、たいていぬばあいふかんじんやいびーん。
-\n
-\nたーちぬちがいとぅしてぃ、こうすくなむのーちうじょう、さいせいじがんてぃがろーしーゅるい（ライブんでぃちうじーょうぬどうがをくびちでぃきない）んでーぬじょうほうがふすくしてぃ、ただしいーょうぬじょうほうゆりすくなくしゅとぅくするくとぅがあいびーん。
-\n
-\nYouTubeー、くぬこうすくやーゆみくみほうほうRSSフィードっしていきょうするサービスぬてぃーちやいびーん。
-\n
-\nちまり、ゆみくみほうほうぬしんたくはすくどぅあらんでぃゆいかくさぬどぅちらゆーいるしんすが、うんじゅがしちがゆやびーん。</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">フィードぬゆみくみがにーしじーんでぃうむやびーが？うぬばあい、こうすくゆみくみゆーいるこうかしんーちくぃみそーれー（しってい、あらんでぃしちゃぬボタンうしてぃへんかんするくとぅがなやびーん）。 \n \nNewPipeーたーちぬゆみくみほうほうていきょうさびーん： \n・とうるいちゅるチャンネルじんたいしゅとぅくさびーん。くれーていすくやいびーしがかんじんやいびーん。 \n・しんようぬサービスエンドポイントしーようさびーん。くれーこうすくやいびーしが、たいていぬばあいふかんじんやいびーん。 \n \nたーちぬちがいとぅしてぃ、こうすくなむのーちうじょう、さいせいじがんてぃがろーしーゅるい（ライブんでぃちうじーょうぬどうがをくびちでぃきない）んでーぬじょうほうがふすくしてぃ、ただしいーょうぬじょうほうゆりすくなくしゅとぅくするくとぅがあいびーん。 \n \nYouTubeー、くぬこうすくやーゆみくみほうほうRSSフィードっしていきょうするサービスぬてぃーちやいびーん。 \n \nちまり、ゆみくみほうほうぬしんたくはすくどぅあらんでぃゆいかくさぬどぅちらゆーいるしんすが、うんじゅがしちがゆやびーん。</string>
     <string name="infinite_videos">∞ぬちゃーしが</string>
     <string name="more_than_100_videos">100いじょうぬちゃーしが</string>
-    <string name="content_not_supported">くぬコンテンツーなーらNewPipeっしサポートさりやびらん。
-\n
-\nくんぐぬバージョンっしサポートさりーんかむしりやびらん。</string>
+    <string name="content_not_supported">くぬコンテンツーなーらNewPipeっしサポートさりやびらん。 \n \nくんぐぬバージョンっしサポートさりーんかむしりやびらん。</string>
     <string name="songs">きょく</string>
     <string name="artists">アーティスト</string>
     <string name="albums">アルバム</string>
-    <string name="restricted_video">くぬちゃーがんかいはにーるれいうぅいゆいぎんぬあいびーん。
-\n
-\nいちらんさるいばあい、しっていから \"%1$s\" ゆーいるこうかしみそーれー。</string>
+    <string name="restricted_video">くぬちゃーがんかいはにーるれいうぅいゆいぎんぬあいびーん。 \n \nいちらんさるいばあい、しっていから \"%1$s\" ゆーいるこうかしみそーれー。</string>
     <string name="remove_watched_popup_warning">プレイリストんかいちいからさりーるめーんちいからさったるあとぅんしちょうさんちゃーしがはプレイリストからさくじょさりやびーん。 \nゆたさいびーが？くぬあしっさーむとぅんかいむどぅしやびらん！</string>
     <string name="remove_watched_popup_partially_watched_streams">はい、ぶぶんてぃちーがしちょうさんちゃーしがんさちゅるじょさびーん</string>
     <string name="remove_watched_popup_title">しちょうじみぬちゃーしがさちゅるじょさびーが？</string>
@@ -579,8 +546,7 @@
     <string name="soundcloud_go_plus_content">くれーSoundCloud Go+トラックやくとぅ、すくなくとぅむうんじゅがくにっしぇー、NewPipeっしぇーストリーミングてぃがろーダウンロードぬなやびらん。</string>
     <string name="georestricted_content">くぬコンテンツー、うすんまいぬくにっしぇーぐりよういただきやびらん。</string>
     <string name="crash_the_app">アプリぬクラッシュ</string>
-    <string name="restricted_video_no_stream">くぬちゃーがはにーるれいうぅいゆいぎんぬあいびーん。
-\nされいせいぎんちきちゃーがくくむんみーさるYouTubeポリシーにゆり、NewPipeーちゃーがストリームんかいアクセスならんたみさいせいうぅいなやびらん。</string>
+    <string name="restricted_video_no_stream">くぬちゃーがはにーるれいうぅいゆいぎんぬあいびーん。 \nされいせいぎんちきちゃーがくくむんみーさるYouTubeポリシーにゆり、NewPipeーちゃーがストリームんかいアクセスならんたみさいせいうぅいなやびらん。</string>
     <string name="select_night_theme_toast">いかからうくぬみぬやっくゎんテーマさんたくなやびーん</string>
     <string name="auto_device_theme_title">じちゃー（デバイスぬテーマ）</string>
     <string name="night_theme_summary">うくぬみぬやっくゎんテーマしんたく — %s</string>
@@ -615,9 +581,7 @@
     <string name="description_select_enable">しちめいぶんぬテキストぬしんたくゆうこうなすん</string>
     <string name="description_select_note">なましちめいぶんぬテキストさんたくなやびーん。しんたくモードちゅおーページぬちらちちゃいリンクぬクリックならんなたいしーんくとぅんかいちゅういしみそーれー。</string>
     <string name="account_terminated">ていしさったるアカウント</string>
-    <string name="feed_load_error_terminated">くぬとうこうしゃぬアカウントーていしさりとーいびーん。
-\nNewPipeーしーょうらいてぃきにくぬフィードゆみくみらんなやびーん。
-\nくぬチャンネルぬとぅうるいちゅんこーいじょさびーが？</string>
+    <string name="feed_load_error_terminated">くぬとうこうしゃぬアカウントーていしさりとーいびーん。 \nNewPipeーしーょうらいてぃきにくぬフィードゆみくみらんなやびーん。 \nくぬチャンネルぬとぅうるいちゅんこーいじょさびーが？</string>
     <string name="off">オフ</string>
     <string name="on">オン</string>
     <string name="tablet_mode_title">タブレットモード</string>
@@ -655,10 +619,8 @@
     <string name="error_report_notification_title">エラーぬはっせいさびたん（タップしーねーほうくーくなやびーん）</string>
     <string name="show_error_snackbar">スナックバーんかいエラーひょうじ</string>
     <string name="detail_pinned_comment_view_description">くていさったるコメント</string>
-    <string name="no_appropriate_file_manager_message_android_10">くぬちゃーさうぅてぃくしーちやーファイルマネージャぬみちかやびらんたん。
-\nStorage Access Frameworkとぅぐかんゆいぬあんファイルマネージャインストールしみそーれー</string>
-    <string name="no_appropriate_file_manager_message">くぬちゃーさうぅてぃくしーちやーファイルマネージャぬみちかやびらんたん
-\nファイルマネージャインストールすが、ダウンロードしっていっし \'%s\' んーかなするくとぅうたみしくぃみそーれー</string>
+    <string name="no_appropriate_file_manager_message_android_10">くぬちゃーさうぅてぃくしーちやーファイルマネージャぬみちかやびらんたん。 \nStorage Access Frameworkとぅぐかんゆいぬあんファイルマネージャインストールしみそーれー</string>
+    <string name="no_appropriate_file_manager_message">くぬちゃーさうぅてぃくしーちやーファイルマネージャぬみちかやびらんたん \nファイルマネージャインストールすが、ダウンロードしっていっし \'%s\' んーかなするくとぅうたみしくぃみそーれー</string>
     <string name="show_crash_the_player_summary">プレイヤーしようじんかいクラッシュオプションひょうじ</string>
     <string name="create_error_notification">エラーちうちさくせい</string>
     <string name="error_report_channel_description">エラーほうくーくすんちうち</string>
@@ -742,9 +704,7 @@
     <string name="audio_track_present_in_video">オーディオトラックーしでぃにくぬししらぎんかいすんじぇーそーるふぃちようがあいびーん</string>
     <string name="disable_media_tunneling_automatic_info">うちかいぬデバイスぬモデルっしぇーメディアトンネリングぬサポートさりてぃうぅらんたみ、くぬデバイスっしぇーメディアトンネリングぬデフォルトっしんーかなとーいびーん。</string>
     <string name="use_exoplayer_decoder_fallback_summary">デコーダぬしーむんだいぬあーあえー、くぬオプションゆーいるこうかしプライマリデコーダしーょきかしっぺーじにふぃくいゆうしんどぅぬデコーダんかいフォールバックさびーん。プライマリデコーダしようじやかパフォーマンスぬあっかすがのうゆいがあいびーん</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_summary">くぬかいきちさこーちょくしちコーデックサーフェスんかいしっていしーんかわりんかい、サーフェスぬへいるかんさったるさいんかいえいぞうコーデックかいほうしさいインスタンスがさびーん。しでぃにいくちがぬデバイスっしくぬかいきちさくぬささりとーいびーしが、Android 6いくてぃぬみちぬーさびーん
-\n
-\nくぬオプションゆーいるこうかしーんくとぅっしプレイヤーきりけーたい、フルスクリーンんかいきりけーたいしーんさいぬさいせいエラーふしじゃびーん</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">くぬかいきちさこーちょくしちコーデックサーフェスんかいしっていしーんかわりんかい、サーフェスぬへいるかんさったるさいんかいえいぞうコーデックかいほうしさいインスタンスがさびーん。しでぃにいくちがぬデバイスっしくぬかいきちさくぬささりとーいびーしが、Android 6いくてぃぬみちぬーさびーん \n \nくぬオプションゆーいるこうかしーんくとぅっしプレイヤーきりけーたい、フルスクリーンんかいきりけーたいしーんさいぬさいせいエラーふしじゃびーん</string>
     <string name="audio_track_type_dubbed">ふきけー</string>
     <string name="settings_category_exoplayer_summary">ExoPlayerぬしっていかんりさびーん。くりらぬへんかんはんえいすんがープレイヤーぬさいきちゃーがふぃちようやいびーん</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">ちゃーExoPlayerぬえいぞうしーゅちりょくサーフェスしっていぬかいきちさくしようすん</string>
@@ -793,8 +753,7 @@
     <string name="metadata_thumbnails">サムネイル</string>
     <string name="share_playlist_with_list">URLリストっしちゅーゆーいん</string>
     <string name="share_playlist_with_titles">タイトルちきっしちゅーゆーいん</string>
-    <string name="share_playlist_content_details">%1$s
-\n%2$s</string>
+    <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="share_playlist">プレイリストちゅーゆーいん</string>
     <string name="video_details_list_item">- %1$s： %2$s</string>
     <plurals name="replies">
@@ -805,15 +764,12 @@
     <string name="show_less">ひょうじいきらくすん</string>
     <string name="notification_actions_summary_android13">いかぬちうちアクションタップしへんしゅうさびーん。さいしょぬみーちぬアクション （さいせい/いちじていし、めーんかい、ちぎんかい）ーシステムにゆってぃしっていさりてぃうぅい、カスタマイズすしぇーなやびらん。</string>
     <string name="yes">はい</string>
-    <string name="auto_update_check_description">NewPipeーてぃんじちーがみーさるバージョンじちゃーてぃきんかいチェックしー、こうしんがのうないるとぅちうちさびーん。
-\nゆうこうなさびーが？</string>
+    <string name="auto_update_check_description">NewPipeーてぃんじちーがみーさるバージョンじちゃーてぃきんかいチェックしー、こうしんがのうないるとぅちうちさびーん。 \nゆうこうなさびーが？</string>
     <string name="error_insufficient_storage">デバイスぬあきゆういょうがふすくそーいびーん</string>
     <string name="no">うぅーうぅー</string>
     <string name="settings_category_backup_restore_title">バックアップとぅふくぎん</string>
     <string name="reset_settings_title">しっていリセット</string>
     <string name="reset_settings_summary">まじりぬしっていデフォルトじょうたいんかいリセットさびーん</string>
-    <string name="reset_all_settings">まじりぬしっていリセットしーねー、ゆーいるしんしっていぬまじりはちされい、アプリぬさいきちゃーさびーん。
-\n
-\nずっこうさびーが？</string>
+    <string name="reset_all_settings">まじりぬしっていリセットしーねー、ゆーいるしんしっていぬまじりはちされい、アプリぬさいきちゃーさびーん。 \n \nずっこうさびーが？</string>
     <string name="import_settings_vulnerable_format">インポートさりとーるエクスポートぬしってえー、NewPipe 0.27.0いこおーふぃするいしょうでぃあったけいしきしーようさびーん。 インポートさりとーるエクスポートーしんらいないるじょうほうぎんからでぃあり、しょうらいていちがーNewPipe 0.27.0がくりやかみーさるバージョンからいらりーるエクスポートぬみゆーいるしんししようさびーん。 くぬぜいじゃくやるけいしきっししっていインポートするたみぬたいおおーちゃーきかんじんにさくじょされい、みーさるバージョンからエクスポートぬしっていインポートすしぇーなやびらん。</string>
 </resources>

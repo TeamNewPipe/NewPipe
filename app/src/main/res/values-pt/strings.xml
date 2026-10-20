@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="upload_date_text">Publicado em %1$s</string>
-    <string name="no_player_found">Reprodutor de vídeo não encontrado. Instalar VLC\?</string>
+    <string name="no_player_found">Reprodutor de vídeo não encontrado. Instalar VLC?</string>
     <string name="install">Instalar</string>
     <string name="cancel">Cancelar</string>
     <string name="open_in_browser">Abrir no navegador</string>
@@ -9,7 +9,7 @@
     <string name="download">Descarregar</string>
     <string name="search">Pesquisar</string>
     <string name="settings">Configurações</string>
-    <string name="did_you_mean">Será que queria dizer \"%1$s\"\?</string>
+    <string name="did_you_mean">Será que queria dizer \"%1$s\"?</string>
     <string name="share_dialog_title">Partilhar com</string>
     <string name="use_external_video_player_title">Usar player de vídeo externo</string>
     <string name="use_external_audio_player_title">Usar reprodutor de áudio externo</string>
@@ -18,7 +18,7 @@
     <string name="download_path_dialog_title">Escolha a pasta para guardar os ficheiros de vídeo</string>
     <string name="default_resolution_title">Resolução padrão</string>
     <string name="play_with_kodi_title">Reproduzir no Kodi</string>
-    <string name="kore_not_found">Instalar Kore\?</string>
+    <string name="kore_not_found">Instalar Kore?</string>
     <string name="show_play_with_kodi_title">Mostrar opção \"Reproduzir no Kodi\"</string>
     <string name="show_play_with_kodi_summary">Exibir uma opção para reproduzir um vídeo através do centro de média Kodi</string>
     <string name="play_audio">Áudio</string>
@@ -51,7 +51,7 @@
     <string name="sorry_string">Bolas, isto não deveria ter acontecido.</string>
     <string name="error_report_button_text">Reportar por e-mail</string>
     <string name="error_snackbar_message">Desculpe mas algo correu mal.</string>
-    <string name="error_snackbar_action">Relatório</string>
+    <string name="error_snackbar_action">Reportar</string>
     <string name="what_device_headline">Informação:</string>
     <string name="what_happened_headline">O que ocorreu:</string>
     <string name="your_comment">Comentários (em inglês):</string>
@@ -82,8 +82,7 @@
     <string name="open_in_popup_mode">Abrir no modo popup</string>
     <string name="black_theme_title">Preto</string>
     <string name="all">Tudo</string>
-    <string name="msg_popup_permission">Esta permissão é necessária
-\npara o modo popup</string>
+    <string name="msg_popup_permission">Esta permissão é necessária \npara o modo popup</string>
     <string name="title_activity_recaptcha">Desafio reCAPTCHA</string>
     <string name="recaptcha_request_toast">Desafio reCAPTCHA solicitado</string>
     <string name="popup_playing_toast">Reproduzir no modo poppup</string>
@@ -159,7 +158,7 @@
     <string name="charset_most_special_characters">Mais caracteres especiais</string>
     <string name="title_activity_history">Histórico</string>
     <string name="action_history">Histórico</string>
-    <string name="delete_item_search_history">Deseja remover este item do histórico de pesquisas\?</string>
+    <string name="delete_item_search_history">Deseja remover este item do histórico de pesquisas?</string>
     <string name="play_all">Reproduzir tudo</string>
     <string name="unknown_content">[Desconhecido]</string>
     <string name="player_unrecoverable_failure">Ocorreu um erro compulsivo do reprodutor</string>
@@ -240,7 +239,7 @@
     <string name="add_to_playlist">Adicionar à playlist</string>
     <string name="bookmark_playlist">Guardar lista de reprodução como favorita</string>
     <string name="unbookmark_playlist">Remover marcador</string>
-    <string name="delete_playlist_prompt">Eliminar esta lista de reprodução\?</string>
+    <string name="delete_playlist_prompt">Eliminar esta lista de reprodução?</string>
     <string name="playlist_creation_success">Lista de reprodução criada</string>
     <string name="playlist_add_stream_success">Adicionado à lista de reprodução</string>
     <string name="playlist_thumbnail_change_success">Miniatura da lista de reprodução alterada.</string>
@@ -257,21 +256,8 @@
     <string name="previous_export">Exportação anterior</string>
     <string name="subscriptions_import_unsuccessful">Não foi possível importar as subscrições</string>
     <string name="subscriptions_export_unsuccessful">Não foi possível exportar as subscrições</string>
-    <string name="import_youtube_instructions">Importar subscrições do YouTube do Google Takeout:
-\n
-\n1. Aceda ao URL: %1$s
-\n2. Inicie sessão
-\n3. Clique em \"Todos os dados incluídos\", depois em \"Desmarcar todos\", selecione \"Subscrições\" e clique em \"OK\".
-\n4. Clique em \"Próximo passo\" e, depois, em \"Criar exportação\".
-\n5. Clique no botão \"Descarregar\" após aparecer
-\n6. Clique em IMPORT FILE abaixo e selecione o ficheiro .zip descarregado
-\n7. [Se a importação falhar] Extraia o ficheiro .csv (geralmente em \"YouTube e YouTube Music/subscriptions/subscriptions.csv\"), clique em IMPORT FILE abaixo e selecione o ficheiro csv extraído</string>
-    <string name="import_soundcloud_instructions">Importe o seu perfil SoundCloud digitando o URL ou a ID.:
-\n
-\n1. Ative o modo desktop do seu navegador web (o site não está disponível para dispositivos móveis)
-\n2. Aceda a este URL: %1$s
-\n3. Inicie a sessão
-\n4. Copie o URL do seu perfil.</string>
+    <string name="import_youtube_instructions">Importar subscrições do YouTube do Google Takeout: \n \n1. Aceda ao URL: %1$s \n2. Inicie sessão \n3. Clique em \"Todos os dados incluídos\", depois em \"Desmarcar todos\", selecione \"Subscrições\" e clique em \"OK\". \n4. Clique em \"Próximo passo\" e, depois, em \"Criar exportação\". \n5. Clique no botão \"Descarregar\" após aparecer \n6. Clique em IMPORT FILE abaixo e selecione o ficheiro .zip descarregado \n7. [Se a importação falhar] Extraia o ficheiro .csv (geralmente em \"YouTube e YouTube Music/subscriptions/subscriptions.csv\"), clique em IMPORT FILE abaixo e selecione o ficheiro csv extraído</string>
+    <string name="import_soundcloud_instructions">Importe o seu perfil SoundCloud digitando o URL ou a ID.: \n \n1. Ative o modo desktop do seu navegador web (o site não está disponível para dispositivos móveis) \n2. Aceda a este URL: %1$s \n3. Inicie a sessão \n4. Copie o URL do seu perfil.</string>
     <string name="import_soundcloud_instructions_hint">suaID, soundcloud.com/suaID</string>
     <string name="playback_speed_control">Controlos para velocidade de reprodução</string>
     <string name="playback_tempo">Ritmo</string>
@@ -284,22 +270,21 @@
     <string name="tracks">Faixas</string>
     <string name="users">Utilizadores</string>
     <string name="clear_views_history_summary">Remove o histórico dos vídeos reproduzidos e as posições de reprodução</string>
-    <string name="delete_view_history_alert">Remover todo o histórico de visualizações\?</string>
+    <string name="delete_view_history_alert">Remover todo o histórico de visualizações?</string>
     <string name="watch_history_deleted">Histórico de vídeos eliminado</string>
     <string name="clear_search_history_title">Remover histórico de pesquisas</string>
     <string name="clear_search_history_summary">Remove o histórico de pesquisas</string>
-    <string name="delete_search_history_alert">Remover todo o histórico de pesquisas\?</string>
+    <string name="delete_search_history_alert">Remover todo o histórico de pesquisas?</string>
     <string name="search_history_deleted">Histórico de pesquisa removido</string>
     <string name="one_item_deleted">1 item eliminado.</string>
     <string name="donation_encouragement">O NewPipe é desenvolvido por voluntários que passam o seu tempo livre a trazer-lhe a melhor experiência de utilizador. Retribua para ajudar os programadores a fazer o NewPipe ainda melhor enquanto tomam uma chávena de café.</string>
     <string name="give_back">Retribuir</string>
     <string name="privacy_policy_title">Política de Privacidade do NewPipe</string>
-    <string name="privacy_policy_encouragement">O projeto NewPipe leva a sua privacidade muito a sério. Por isso, não recolhe dados sem o seu consentimento.
-\nA polícia de privacidade do NewPipe explica, em detalhe, os tipos de dados enviados sempre que submete um relatório de erro.</string>
+    <string name="privacy_policy_encouragement">O projeto NewPipe leva a sua privacidade muito a sério. Portanto, a app não coleta nenhum dado sem o seu consentimento.\nA política de privacidade do NewPipe explica detalhadamente quais dados são enviados e armazenados ao enviar um relatório de erro.</string>
     <string name="read_privacy_policy">Leia a política de privacidade</string>
     <string name="auto_queue_title">Enfileirar automaticamente o próximo stream</string>
     <string name="app_license">NewPipe é um software copyleft libre: pode usá-lo, estudá-lo, partilhá-lo e melhorá-lo à vontade. Especificamente, pode redistribuí-lo e/ou modificá-lo sob os termos da Licença Pública Geral GNU conforme publicada pela Free Software Foundation, seja a versão 3 da Licença ou (ao seu critério) qualquer versão posterior.</string>
-    <string name="import_settings">Também deseja importar as definições\?</string>
+    <string name="import_settings">Também deseja importar as definições?</string>
     <string name="hold_to_append">Toque longo para colocar na fila</string>
     <string name="preferred_open_action_settings_title">Ação \'abrir\' preferida</string>
     <string name="preferred_open_action_settings_summary">Ação padrão ao abrir o conteúdo — %s</string>
@@ -307,19 +292,16 @@
     <string name="resize_fit">Ajustar</string>
     <string name="resize_fill">Preencher</string>
     <string name="caption_setting_description">Modifique a escala do texto da legenda do player e os estilos de fundo. Requer reinicialização da app para entrar em vigor</string>
-    <string name="enable_leak_canary_summary">A monitorização de memória pode tornar a aplicação instável</string>
-    <string name="enable_disposed_exceptions_title">Reportar erros \'out-of-lifecycle\'</string>
-    <string name="enable_disposed_exceptions_summary">Forçar reporte de exceções Rx não entregáveis ocorrendo fora do fragmento ou ciclo de vida da atividade após eliminação</string>
-    <string name="import_network_expensive_warning">Tenha em atenção de que esta operação pode sobrecarregar a sua rede.
-\n
-\nDeseja continuar\?</string>
+    <string name="enable_leak_canary_summary">O monitoramento de vazamento de memória pode fazer com que a app pare de responder durante o despejo de heap</string>
+    <string name="enable_disposed_exceptions_title">Relatar erros fora do ciclo de vida</string>
+    <string name="enable_disposed_exceptions_summary">Forçar relatórios de exceções Rx não entregues fora do fragmento ou do ciclo de vida da atividade após o descarte</string>
+    <string name="import_network_expensive_warning">Tenha em atenção de que esta operação pode sobrecarregar a sua rede. \n \nDeseja continuar?</string>
     <string name="playback_pitch">Velocidade</string>
     <string name="unhook_checkbox">Desvincular (pode causar distorção)</string>
     <string name="skip_silence_checkbox">Avanço rápido durante silêncio</string>
     <string name="playback_step">Passo</string>
     <string name="playback_reset">Repor</string>
-    <string name="start_accept_privacy_policy">Para cumprir com o Regulamento Geral da Proteção de Dados (RGPD), chamamos a sua atenção para a política de privacidade do NewPipe. Por favor, leia com atenção.
-\nTem que aceitar esta política para nos poder enviar o seu relatório.</string>
+    <string name="start_accept_privacy_policy">Para cumprir com o Regulamento Geral da Proteção de Dados (RGPD), chamamos a sua atenção para a política de privacidade do NewPipe. Por favor, leia com atenção. \nTem que aceitar esta política para nos poder enviar o seu relatório.</string>
     <string name="accept">Aceitar</string>
     <string name="decline">Recusar</string>
     <string name="limit_data_usage_none_description">Sem limite</string>
@@ -336,10 +318,10 @@
     <string name="app_update_notification_channel_name">Notificação de nova versão</string>
     <string name="app_update_notification_channel_description">Notificações para novas versões do NewPipe</string>
     <string name="download_to_sdcard_error_title">Armazenamento externo indisponível</string>
-    <string name="download_to_sdcard_error_message">Não é possível guardar no cartão SD. Repor pasta de descargas\?</string>
+    <string name="download_to_sdcard_error_message">Não é possível guardar no cartão SD. Repor pasta de descargas?</string>
     <string name="saved_tabs_invalid_json">Não foi possível ler os separadores guardados e vamos usar os separadores padrão</string>
     <string name="restore_defaults">Repor predefinições</string>
-    <string name="restore_defaults_confirmation">Deseja repor as predefinições\?</string>
+    <string name="restore_defaults_confirmation">Deseja repor as predefinições?</string>
     <string name="subscribers_count_not_available">Número de subscrições indisponível</string>
     <string name="main_page_content_summary">Separadores mostrados na página principal</string>
     <string name="updates_setting_title">Atualizações</string>
@@ -404,13 +386,12 @@
     <string name="start_downloads">Iniciar descargas</string>
     <string name="pause_downloads">Pausa nas descargas</string>
     <string name="downloads_storage_ask_title">Perguntar onde guardar</string>
-    <string name="downloads_storage_ask_summary">Ser-lhe-á perguntado onde guardar cada descarga.
-\nAtive o seletor de pastas do sistema (SAF) se quiser descarregar para um cartão SD externo</string>
+    <string name="downloads_storage_ask_summary">Ser-lhe-á perguntado onde guardar cada descarga. \nAtive o seletor de pastas do sistema (SAF) se quiser descarregar para um cartão SD externo</string>
     <string name="downloads_storage_use_saf_title">Utilizar seletor de pastas do sistema (SAF)</string>
     <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' permite descargas para um cartão SD externo</string>
     <string name="clear_playback_states_title">Remover posições de reprodução</string>
     <string name="clear_playback_states_summary">Remove todas as posições de reprodução</string>
-    <string name="delete_playback_states_alert">Remover todas as posições de reprodução\?</string>
+    <string name="delete_playback_states_alert">Remover todas as posições de reprodução?</string>
     <string name="drawer_header_description">Alternar serviço atualmente selecionado:</string>
     <string name="default_kiosk_page_summary">\'Kiosk\' padrão</string>
     <string name="no_one_watching">Ninguém está a ver</string>
@@ -448,17 +429,7 @@
     <string name="systems_language">Predefinição do sistema</string>
     <string name="subtitle_activity_recaptcha">Prima \"Feito\" ao resolver</string>
     <string name="done">Concluído</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Acha que a fonte demora muito tempo a carregar? Se sim, tente ativar o carregamento rápido (pode alterar a opção nas definições ou no botão abaixo).
-\n
-\nNewPipe oferece duas estratégias de carregamento:
-\n- Obter todo o canal - lento, mas completo.
-\n- Usar um \'endpoint\' dedicado - mais rápido, mas não completo.
-\n
-\nA diferença entre os dois é que o rápido geralmente carece de alguma informação, como a duração ou tipo do item (não consegue distinguir entre vídeos em direto e vídeos normais) e pode mostrar menos itens.
-\n
-\nO YouTube é um exemplo de um serviço que oferece este método rápido com a sua fonte RSS.
-\n
-\nAssim, a escolha resume-se ao que prefere: velocidade ou informação precisa.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Acha que a fonte demora muito tempo a carregar? Se sim, tente ativar o carregamento rápido (pode alterar a opção nas definições ou no botão abaixo). \n \nNewPipe oferece duas estratégias de carregamento: \n- Obter todo o canal - lento, mas completo. \n- Usar um \'endpoint\' dedicado - mais rápido, mas não completo. \n \nA diferença entre os dois é que o rápido geralmente carece de alguma informação, como a duração ou tipo do item (não consegue distinguir entre vídeos em direto e vídeos normais) e pode mostrar menos itens. \n \nO YouTube é um exemplo de um serviço que oferece este método rápido com a sua fonte RSS. \n \nAssim, a escolha resume-se ao que prefere: velocidade ou informação precisa.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Desativar modo rápido</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Ativar modo rápido</string>
     <string name="feed_use_dedicated_fetch_method_summary">Disponível em alguns serviços, é geralmente muito mais rápido, mas pode devolver uma quantidade limitada de itens e muitas vezes informações incompletas (por exemplo, sem duração, tipo de item, sem estado ativo)</string>
@@ -506,23 +477,19 @@
     <string name="unmute">Ativar som</string>
     <string name="mute">Sem som</string>
     <string name="videos_string">Vídeos</string>
-    <string name="content_not_supported">Este conteúdo ainda não é suportado pelo NewPipe. 
-\n 
-\nEsperamos que seja suportado numa versão futura.</string>
+    <string name="content_not_supported">Este conteúdo ainda não é suportado pelo NewPipe. \n \nEsperamos que seja suportado numa versão futura.</string>
     <string name="infinite_videos">∞ vídeos</string>
     <string name="more_than_100_videos">+100 vídeos</string>
     <string name="artists">Artistas</string>
     <string name="albums">Álbuns</string>
     <string name="songs">Músicas</string>
-    <string name="restricted_video">Este vídeo está restringido a adultos.
-\n
-\nPara o poder ver, tem que ativar \"%1$s\" nas definições.</string>
+    <string name="restricted_video">Este vídeo está restringido a adultos. \n \nPara o poder ver, tem que ativar \"%1$s\" nas definições.</string>
     <string name="remove_watched_popup_warning">Os vídeos que tenham sido vistos antes e após serem adicionados à lista de reprodução serão removidos. \nTem a certeza?</string>
     <string name="remove_watched_popup_partially_watched_streams">Sim e também os vídeos parcialmente vistos</string>
     <string name="remove_watched_popup_title">Remover transmissões vistas?</string>
     <string name="remove_watched">Remover visualizados</string>
-    <string name="show_original_time_ago_summary">Os textos originais dos serviços serão visíveis nos itens do vídeo</string>
-    <string name="show_original_time_ago_title">Mostrar antiguidade nos itens</string>
+    <string name="show_original_time_ago_summary">Os textos originais dos serviços ficarão visíveis nos elementos de transmissão</string>
+    <string name="show_original_time_ago_title">Mostrar o tempo desde o original nos elementos</string>
     <string name="youtube_restricted_mode_enabled_title">Ativar \"Modo restrito\" do YouTube</string>
     <string name="video_detail_by">Por %s</string>
     <string name="channel_created_by">Criado por %s</string>
@@ -557,7 +524,7 @@
     <string name="notification_actions_at_most_three">Pode selecionar, no máximo, três ações para mostrar na notificação compacta!</string>
     <string name="notification_action_repeat">Repetir</string>
     <string name="notification_action_4_title">Quinto botão de ação</string>
-    <string name="show_memory_leaks">Mostrar \'leaks\' de memória</string>
+    <string name="show_memory_leaks">Mostrar vazamentos de memória</string>
     <string name="enqueued">Colocado na fila</string>
     <string name="enqueue_stream">Enfileirar</string>
     <string name="clear_cookie_summary">Limpar cookies que NewPipe armazena quando resolve um reCAPTCHA</string>
@@ -583,9 +550,8 @@
     <string name="show_description_summary">Desative para ocultar a descrição do vídeo e informações adicionais</string>
     <string name="show_description_title">Mostrar descrição</string>
     <string name="open_with">Abrir com</string>
-    <string name="crash_the_app">Terminar aplicação</string>
-    <string name="restricted_video_no_stream">Este vídeo tem uma restrição de idade.
-\nDevido às novas políticas do YouTube quanto a restrição de alguns vídeos, o NewPipe não pode aceder a estes vídeos e, por isso, não os consegue reproduzir.</string>
+    <string name="crash_the_app">Travar a app</string>
+    <string name="restricted_video_no_stream">Este vídeo tem uma restrição de idade. \nDevido às novas políticas do YouTube quanto a restrição de alguns vídeos, o NewPipe não pode aceder a estes vídeos e, por isso, não os consegue reproduzir.</string>
     <string name="paid_content">Este conteúdo só está disponível para utilizadores pagantes e não pode ser reproduzido ou descarregado pelo NewPipe.</string>
     <string name="youtube_music_premium_content">Este vídeo só está disponível para os membros do YouTube Music Premium e não pode ser reproduzido ou descarregado pelo NewPipe.</string>
     <string name="private_content">Este conteúdo é privado e não pode ser reproduzido ou descarregado pelo NewPipe.</string>
@@ -606,9 +572,7 @@
     <string name="no_dir_yet">Ainda não definiu uma pasta para as descargas. Escolha agora a pasta a utilizar</string>
     <string name="account_terminated">Conta encerrada</string>
     <string name="feed_load_error_fast_unknown">O modo de fonte rápida não fornece mais informações sobre isto.</string>
-    <string name="feed_load_error_terminated">A conta do autor foi encerrada.
-\nNewPipe não será capaz de carregar esta fonte.
-\nDeseja cancelar a subscrição deste canal?</string>
+    <string name="feed_load_error_terminated">A conta do autor foi encerrada. \nNewPipe não será capaz de carregar esta fonte. \nDeseja cancelar a subscrição deste canal?</string>
     <string name="feed_load_error_account_info">Não foi possível carregar a fonte para \'%s\'.</string>
     <string name="feed_load_error">Erro ao carregar a fonte</string>
     <string name="downloads_storage_use_saf_summary_api_29">A partir do Android 10, apenas é compatível o \'Storage Access Framework\'</string>
@@ -662,24 +626,23 @@
     <string name="feed_new_items">Novos itens</string>
     <string name="crash_the_player">Terminou o reprodutor</string>
     <string name="show_crash_the_player_title">Mostrar \"Travar o reprodutor\"</string>
-    <string name="show_crash_the_player_summary">Mostra uma opção para terminar o reprodutor</string>
+    <string name="show_crash_the_player_summary">Mostra uma opção de travamento ao usar o reprodutor</string>
     <string name="error_report_channel_name">Notificação para relatórios de erro</string>
     <string name="error_report_channel_description">Notificações para reportar erros</string>
     <string name="error_report_notification_title">NewPipe encontrou um erro, toque para reportar</string>
     <string name="error_report_notification_toast">Ocorreu um erro, veja a notificação</string>
-    <string name="show_error_snackbar">Mostrar uma barra de erros</string>
+    <string name="show_error_snackbar">Mostrar uma barra de erro</string>
     <string name="create_error_notification">Criar uma notificação de erro</string>
-    <string name="no_appropriate_file_manager_message">Não foi encontrado um gestor de ficheiros apropriado para esta ação.
-\nPor favor, instale um gestor de ficheiros ou tente desativar \'%s\' nas definições das descargas</string>
+    <string name="no_appropriate_file_manager_message">Não foi encontrado um gestor de ficheiros apropriado para esta ação. \nPor favor, instale um gestor de ficheiros ou tente desativar \'%s\' nas definições das descargas</string>
     <string name="no_appropriate_file_manager_message_android_10">Nenhum gestor de ficheiros apropriado foi encontrado para esta ação. \nPor favor, instale um gestor de ficheiros compatível com o Storage Access Framework</string>
     <string name="detail_pinned_comment_view_description">Comentário afixado</string>
-    <string name="leak_canary_not_available">LeakCanary não disponível</string>
+    <string name="leak_canary_not_available">LeakCanary não está disponível</string>
     <string name="progressive_load_interval_exoplayer_default">Padrão do ExoPlayer</string>
     <string name="settings_category_player_notification_title">Notificação do reprodutor</string>
     <string name="settings_category_player_notification_summary">Configurar notificação da reprodução do vídeo atual</string>
     <string name="notifications">Notificações</string>
     <string name="loading_stream_details">A carregar detalhes do vídeo…</string>
-    <string name="check_new_streams">Procurar novos vídeos</string>
+    <string name="check_new_streams">Executar verificação de novas transmissões</string>
     <string name="enable_streams_notifications_title">Notificações sobre novos vídeos</string>
     <string name="enable_streams_notifications_summary">Notificar sobre novos vídeos nas subscrições</string>
     <string name="streams_notifications_interval_title">Frequência da verificação</string>
@@ -725,7 +688,7 @@
     <string name="ignore_hardware_media_buttons_title">Ignorar eventos de botão de média de hardware</string>
     <string name="ignore_hardware_media_buttons_summary">Útil, por exemplo, se usar auscultadores com botões físicos quebrados</string>
     <string name="remove_duplicates">Remover duplicados</string>
-    <string name="remove_duplicates_title">Remover duplicados\?</string>
+    <string name="remove_duplicates_title">Remover duplicados?</string>
     <string name="feed_show_hide_streams">Mostrar/ocultar vídeos</string>
     <string name="feed_show_upcoming">Brevemente</string>
     <string name="remove_duplicates_message">Deseja remover todos os vídeos duplicados desta lista de reprodução?</string>
@@ -774,8 +737,7 @@
     <string name="show_channel_tabs_summary">Os separadores a mostrar na página Canal</string>
     <string name="share_playlist_with_list">Partilhar URL</string>
     <string name="share_playlist_with_titles">Partilhar com título</string>
-    <string name="share_playlist_content_details">%1$s
-\n%2$s</string>
+    <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="show_channel_tabs">Separadores do canal</string>
     <string name="channel_tab_shorts">Curtos</string>
     <string name="toggle_screen_orientation">Alternar orientação do ecrã</string>
@@ -821,11 +783,8 @@
     <string name="reset_settings_summary">Repor valores originais de todas as definições</string>
     <string name="settings_category_backup_restore_title">Backup e restauração</string>
     <string name="reset_settings_title">Repor definições</string>
-    <string name="reset_all_settings">A restauração de todas as configurações descartará todas as suas configurações preferidas e reiniciará a aplicação.
-\n
-\nTem certeza que deseja continuar?</string>
-    <string name="auto_update_check_description">O NewPipe pode verificar automaticamente se há novas versões de tempos em tempos e notificá-lo quando elas estiverem disponíveis.
-\nDeseja ativar essa opção?</string>
+    <string name="reset_all_settings">A restauração de todas as configurações descartará todas as suas configurações preferidas e reiniciará a aplicação. \n \nTem certeza que deseja continuar?</string>
+    <string name="auto_update_check_description">O NewPipe pode verificar automaticamente se há novas versões de tempos em tempos e notificá-lo quando elas estiverem disponíveis. \nDeseja ativar essa opção?</string>
     <string name="import_settings_vulnerable_format">As configurações na exportação a serem importadas usam um formato vulnerável depreciado desde NewPipe 0.27.0. Certifique-se de que a exportação que é importada é de uma fonte confiável e prefira usar apenas as exportações obtidas do NewPipe 0.27.0 ou mais recentes no futuro. O suporte para importar configurações neste formato vulnerável será removido em breve completamente e, em seguida, versões antigas do NewPipe não serão capazes de importar configurações de exportações de novas versões.</string>
     <string name="audio_track_type_secondary">secundário</string>
     <string name="share_playlist_as_youtube_temporary_playlist">Partilhar como lista de reprodução temporária do YouTube</string>

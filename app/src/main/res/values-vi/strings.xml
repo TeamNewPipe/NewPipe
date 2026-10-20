@@ -2,7 +2,7 @@
 <resources>
     <string name="main_bg_subtitle">Nhấn vào kính lúp để bắt đầu.</string>
     <string name="upload_date_text">Đăng vào %1$s</string>
-    <string name="no_player_found">Không tìm thấy trình phát trực tuyến. Cài đặt VLC\?</string>
+    <string name="no_player_found">Không tìm thấy trình phát trực tuyến. Cài đặt VLC?</string>
     <string name="install">Cài đặt</string>
     <string name="cancel">Hủy</string>
     <string name="open_in_browser">Mở trong trình duyệt</string>
@@ -11,7 +11,7 @@
     <string name="download">Tải xuống</string>
     <string name="search">Tìm kiếm</string>
     <string name="settings">Cài đặt</string>
-    <string name="did_you_mean">Ý bạn là \"%1$s\"\?</string>
+    <string name="did_you_mean">Ý bạn là \"%1$s\"?</string>
     <string name="share_dialog_title">Chia sẻ với</string>
     <string name="use_external_video_player_title">Sử dụng trình phát video bên ngoài</string>
     <string name="use_external_video_player_summary">Loại bỏ âm thanh ở một số độ phân giải</string>
@@ -28,7 +28,7 @@
     <string name="show_higher_resolutions_title">Hiện độ phân giải cao hơn</string>
     <string name="show_higher_resolutions_summary">Chỉ một số thiết bị có thể phát video 2K/4K</string>
     <string name="play_with_kodi_title">Phát với Kodi</string>
-    <string name="kore_not_found">Cài đặt ứng dụng Kore bị thiếu\?</string>
+    <string name="kore_not_found">Cài đặt ứng dụng Kore bị thiếu?</string>
     <string name="show_play_with_kodi_title">Hiển thị tùy chọn \"Phát với Kodi\"</string>
     <string name="show_play_with_kodi_summary">Hiển thị tùy chọn phát video qua trung tâm truyền thông Kodi</string>
     <string name="play_audio">Âm thanh</string>
@@ -95,8 +95,7 @@
     <string name="msg_wait">Vui lòng chờ…</string>
     <string name="msg_copied">Đã sao chép vào khay nhớ tạm</string>
     <string name="no_available_dir">Vui lòng xác định thư mục tải xuống sau trong cài đặt</string>
-    <string name="msg_popup_permission">Sự cho phép này là cần thiết để
-\nmở trong chế độ bật lên</string>
+    <string name="msg_popup_permission">Sự cho phép này là cần thiết để \nmở trong chế độ bật lên</string>
     <string name="title_activity_recaptcha">reCAPTCHA</string>
     <string name="recaptcha_request_toast">Yêu cầu reCAPTCHA</string>
     <string name="title_activity_about">Về NewPipe</string>
@@ -164,11 +163,11 @@
     <string name="export_data_summary">Xuất lịch sử, đăng ký, danh sách phát và các cài đặt</string>
     <string name="clear_views_history_title">Xóa lịch sử xem</string>
     <string name="clear_views_history_summary">Xóa lịch sử các luồng đã phát và các vị trí phát lại</string>
-    <string name="delete_view_history_alert">Xóa toàn bộ lịch sử xem\?</string>
+    <string name="delete_view_history_alert">Xóa toàn bộ lịch sử xem?</string>
     <string name="watch_history_deleted">Đã xoá lịch sử xem</string>
     <string name="clear_search_history_title">Xóa lịch sử tìm kiếm</string>
     <string name="clear_search_history_summary">Xóa lịch sử tìm kiếm mà bạn đã ghi</string>
-    <string name="delete_search_history_alert">Xóa toàn bộ lịch sử tìm kiếm\?</string>
+    <string name="delete_search_history_alert">Xóa toàn bộ lịch sử tìm kiếm?</string>
     <string name="search_history_deleted">Đã xóa lịch sử tìm kiếm</string>
     <string name="player_stream_failure">Không thể phát luồng này</string>
     <string name="player_unrecoverable_failure">Đã xảy ra lỗi trình phát không thể khôi phục</string>
@@ -212,8 +211,7 @@
     <string name="website_title">Trang web</string>
     <string name="website_encouragement">Ghé thăm Trang web NewPipe để biết thêm thông tin và tin tức.</string>
     <string name="privacy_policy_title">Chính sách Quyền riêng tư của NewPipe</string>
-    <string name="privacy_policy_encouragement">NewPipe rất coi trọng quyền riêng tư của bạn. Do đó, ứng dụng không thu thập bất kỳ dữ liệu nào mà không có sự đồng ý của bạn.
-\nChính sách bảo mật của NewPipe giải thích chi tiết dữ liệu nào được gửi và lưu trữ khi bạn gửi báo cáo sự cố.</string>
+    <string name="privacy_policy_encouragement">NewPipe rất coi trọng quyền riêng tư của bạn. Do đó, ứng dụng không thu thập bất kỳ dữ liệu nào mà không có sự đồng ý của bạn. \nChính sách bảo mật của NewPipe giải thích chi tiết dữ liệu nào được gửi và lưu trữ khi bạn gửi báo cáo sự cố.</string>
     <string name="read_privacy_policy">Đọc chính sách quyền riêng tư</string>
     <string name="title_activity_history">Lịch sử</string>
     <string name="action_history">Lịch sử</string>
@@ -258,7 +256,7 @@
     <string name="set_as_playlist_thumbnail">Đặt làm hình thu nhỏ của danh sách phát</string>
     <string name="bookmark_playlist">Đánh dấu danh sách phát</string>
     <string name="unbookmark_playlist">Loại bỏ đánh dấu</string>
-    <string name="delete_playlist_prompt">Xóa danh sách phát này\?</string>
+    <string name="delete_playlist_prompt">Xóa danh sách phát này?</string>
     <string name="playlist_creation_success">Đã tạo danh sách phát</string>
     <string name="playlist_add_stream_success">Đã thêm danh sách phát</string>
     <string name="playlist_thumbnail_change_success">Hình thu nhỏ của danh sách phát đã thay đổi.</string>
@@ -281,24 +279,9 @@
     <string name="previous_export">Xuất trước</string>
     <string name="subscriptions_import_unsuccessful">Không thể nhập kênh đăng ký</string>
     <string name="subscriptions_export_unsuccessful">Không thể xuất kênh đăng ký</string>
-    <string name="import_youtube_instructions">Nhập danh sách đăng ký YouTube từ Google Takeout:
-\n
-\n1. Vào URL này: %1$s
-\n2. Đăng nhập khi được yêu cầu
-\n3. Nhấn chọn \"Bao gồm tất cả dữ liệu trên YouTube\", sau đó nhấn \"Bỏ chọn tất cả\", sau đó chỉ chọn mục \"đăng ký\" rồi nhấn OK
-\n4. Nhấn nút \"Bước tiếp theo\" rồi nhấn \"Tạo tệp xuất\"
-\n5. Nhấn nút \"Tải xuống\" khi nó xuất hiện
-\n6. Từ file zip mới tải về, trích xuất file .json ra (thường nằm ở đường dẫn \"YouTube và YouTube Music/đăng ký/subscriptions.json\") rồi nhập vào đây.
-\n7. [Nếu nhập file .zip không thành công] Hãy giải nén tệp .csv (thường nó được để dưới phần \"YouTube and YouTube Music/subscriptions/subscriptions.csv\"), nhấn vào nút NHẬP TỆP ở phía bên dưới rồi chọn tệp csv đã được giải nén</string>
-    <string name="import_soundcloud_instructions">Để nhập hồ sơ SoundCloud bằng cách nhập URL hoặc ID của bạn, hãy làm các bước như sau:
-\n
-\n1. Bật \"chế độ máy tính\" trong trình duyệt web (trang web không khả dụng cho thiết bị di động)
-\n2. Truy cập URL này: %1$s
-\n3. Đăng nhập khi được hỏi
-\n4. Sao chép URL tiểu sử mà bạn đã được chuyển hướng đến.</string>
-    <string name="import_network_expensive_warning">Hãy nhớ rằng hoạt động này có thể khiến bạn bị mất kênh bạn đã đăng ký trước đó.
-\n
-\nBạn có muốn tiếp tục không\?</string>
+    <string name="import_youtube_instructions">Nhập danh sách đăng ký YouTube từ Google Takeout: \n \n1. Vào URL này: %1$s \n2. Đăng nhập khi được yêu cầu \n3. Nhấn chọn \"Bao gồm tất cả dữ liệu trên YouTube\", sau đó nhấn \"Bỏ chọn tất cả\", sau đó chỉ chọn mục \"đăng ký\" rồi nhấn OK \n4. Nhấn nút \"Bước tiếp theo\" rồi nhấn \"Tạo tệp xuất\" \n5. Nhấn nút \"Tải xuống\" khi nó xuất hiện \n6. Từ file zip mới tải về, trích xuất file .json ra (thường nằm ở đường dẫn \"YouTube và YouTube Music/đăng ký/subscriptions.json\") rồi nhập vào đây. \n7. [Nếu nhập file .zip không thành công] Hãy giải nén tệp .csv (thường nó được để dưới phần \"YouTube and YouTube Music/subscriptions/subscriptions.csv\"), nhấn vào nút NHẬP TỆP ở phía bên dưới rồi chọn tệp csv đã được giải nén</string>
+    <string name="import_soundcloud_instructions">Để nhập hồ sơ SoundCloud bằng cách nhập URL hoặc ID của bạn, hãy làm các bước như sau: \n \n1. Bật \"chế độ máy tính\" trong trình duyệt web (trang web không khả dụng cho thiết bị di động) \n2. Truy cập URL này: %1$s \n3. Đăng nhập khi được hỏi \n4. Sao chép URL tiểu sử mà bạn đã được chuyển hướng đến.</string>
+    <string name="import_network_expensive_warning">Hãy nhớ rằng hoạt động này có thể khiến bạn bị mất kênh bạn đã đăng ký trước đó. \n \nBạn có muốn tiếp tục không?</string>
     <string name="playback_speed_control">Điều khiển tốc độ phát lại</string>
     <string name="playback_tempo">Tốc độ</string>
     <string name="playback_pitch">Độ cao</string>
@@ -306,8 +289,7 @@
     <string name="skip_silence_checkbox">Chuyển nhanh qua khoảng lặng</string>
     <string name="playback_step">Bước</string>
     <string name="playback_reset">Đặt lại</string>
-    <string name="start_accept_privacy_policy">Để tuân thủ Quy định bảo vệ dữ liệu chung của châu Âu (GDPR), chúng tôi sẽ thu hút sự chú ý của bạn đến chính sách bảo mật của NewPipe. Vui lòng đọc kỹ.
-\nBạn phải chấp nhận nó để gửi cho chúng tôi báo cáo lỗi.</string>
+    <string name="start_accept_privacy_policy">Để tuân thủ Quy định bảo vệ dữ liệu chung của châu Âu (GDPR), chúng tôi sẽ thu hút sự chú ý của bạn đến chính sách bảo mật của NewPipe. Vui lòng đọc kỹ. \nBạn phải chấp nhận nó để gửi cho chúng tôi báo cáo lỗi.</string>
     <string name="accept">Chấp nhận</string>
     <string name="decline">Từ chối</string>
     <string name="limit_data_usage_none_description">Không giới hạn</string>
@@ -325,10 +307,10 @@
     <string name="app_update_notification_channel_name">Thông báo cập nhật ứng dụng</string>
     <string name="app_update_notification_channel_description">Thông báo phiên bản NewPipe mới</string>
     <string name="download_to_sdcard_error_title">Bộ nhớ ngoài không khả dụng</string>
-    <string name="download_to_sdcard_error_message">Không thể tải vào thẻ SD ngoài. Đặt lại vị trí tải về\?</string>
+    <string name="download_to_sdcard_error_message">Không thể tải vào thẻ SD ngoài. Đặt lại vị trí tải về?</string>
     <string name="saved_tabs_invalid_json">Không thể đọc tab đã lưu, sử dụng tab mặc định</string>
     <string name="restore_defaults">Khôi phục về mặc định</string>
-    <string name="restore_defaults_confirmation">Bạn có muốn khôi phục về mặc định\?</string>
+    <string name="restore_defaults_confirmation">Bạn có muốn khôi phục về mặc định?</string>
     <string name="subscribers_count_not_available">Số người đăng ký không khả dụng</string>
     <string name="main_page_content_summary">Chọn các tab để hiện trên trang chủ</string>
     <string name="top_50">Top 50 phổ biến</string>
@@ -388,17 +370,16 @@
     <string name="error_insufficient_storage_left">Không đủ dung lượng trên máy</string>
     <string name="error_progress_lost">Quá trình tải bị hủy, vì tập tin đã bị xoá</string>
     <string name="error_timeout">Kết nối hết thời gian</string>
-    <string name="confirm_prompt">Bạn muốn xóa lịch sử tải về hay xóa tất cả những file đã tải về\?</string>
+    <string name="confirm_prompt">Bạn muốn xóa lịch sử tải về hay xóa tất cả những file đã tải về?</string>
     <string name="enable_queue_limit">Giới hạn hàng chờ tải xuống</string>
     <string name="enable_queue_limit_desc">Chỉ một lần tải mỗi lượt</string>
     <string name="start_downloads">Bắt đầu tải xuống</string>
     <string name="pause_downloads">Tạm dừng tải xuống</string>
     <string name="downloads_storage_ask_title">Hỏi nơi thư mục để tải xuống</string>
-    <string name="downloads_storage_ask_summary">Bạn sẽ được hỏi nơi lưu vào mỗi lần tải xuống.
-\nHãy bật trình chọn thư mục của hệ thống (SAF) nếu bạn muốn tải xuống vào một cái thẻ nhớ</string>
+    <string name="downloads_storage_ask_summary">Bạn sẽ được hỏi nơi lưu vào mỗi lần tải xuống. \nHãy bật trình chọn thư mục của hệ thống (SAF) nếu bạn muốn tải xuống vào một cái thẻ nhớ</string>
     <string name="clear_playback_states_title">Xóa vị trí phát</string>
     <string name="clear_playback_states_summary">Xóa tất cả vị trí phát</string>
-    <string name="delete_playback_states_alert">Xóa tất cả vị trí phát\?</string>
+    <string name="delete_playback_states_alert">Xóa tất cả vị trí phát?</string>
     <string name="feed_groups_header_title">Nhóm kênh</string>
     <string name="choose_instance_prompt">Chọn một thực thể</string>
     <string name="peertube_instance_add_exists">Thực thể đã tồn tại</string>
@@ -450,9 +431,7 @@
     <string name="albums">Album</string>
     <string name="songs">Bài hát</string>
     <string name="videos_string">Các video</string>
-    <string name="restricted_video">Video này bị giới hạn độ tuổi.
-\n
-\nBật \"%1$s\" trong cài đặt nếu bạn muốn xem video này.</string>
+    <string name="restricted_video">Video này bị giới hạn độ tuổi. \n \nBật \"%1$s\" trong cài đặt nếu bạn muốn xem video này.</string>
     <string name="youtube_restricted_mode_enabled_title">Bật chế độ hạn chế YouTube</string>
     <string name="peertube_instance_add_https_only">Chỉ URL HTTPS được hỗ trợ</string>
     <string name="peertube_instance_url_summary">Chọn thực thể PeerTube ưa thích</string>
@@ -464,20 +443,8 @@
     <string name="video_detail_by">Bởi %s</string>
     <string name="channel_created_by">Được tạo bởi %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Ảnh đại diện của kênh</string>
-    <string name="content_not_supported">NewPipe chưa hỗ trợ loại nội dung này.
-\n
-\nCó thể nó sẽ được hỗ trợ bởi một phiên bản mới hơn trong tương lai.</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Bạn có nghĩ rằng tải nguồn cấp dữ liệu quá chậm? Nếu vậy, hãy thử bật tải nhanh (bạn có thể thay đổi nó này trong cài đặt hoặc bằng cách nhấn nút bên dưới).
-\n
-\nNewPipe cung cấp hai chiến lược tải nguồn cấp dữ liệu:
-\n• Tìm nạp toàn bộ kênh đăng ký, tuy chậm nhưng đầy đủ.
-\n• Sử dụng điểm cuối dịch vụ chuyên dụng, nhanh nhưng thường không hoàn thiện.
-\n
-\nSự khác biệt giữa hai loại này là cái nào nhanh thường thiếu một số thông tin, chẳng hạn như thời lượng hoặc loại mục (không thể phân biệt giữa các video trực tiếp và bình thường) và nó có thể trả về ít mục hơn.
-\n
-\nYouTube là một ví dụ về dịch vụ cung cấp phương pháp nhanh này với nguồn cấp RSS.
-\n
-\nVì vậy, sự lựa chọn tập trung vào những gì bạn thích: tốc độ hoặc thông tin chính xác.</string>
+    <string name="content_not_supported">NewPipe chưa hỗ trợ loại nội dung này. \n \nCó thể nó sẽ được hỗ trợ bởi một phiên bản mới hơn trong tương lai.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Bạn có nghĩ rằng tải nguồn cấp dữ liệu quá chậm? Nếu vậy, hãy thử bật tải nhanh (bạn có thể thay đổi nó này trong cài đặt hoặc bằng cách nhấn nút bên dưới). \n \nNewPipe cung cấp hai chiến lược tải nguồn cấp dữ liệu: \n• Tìm nạp toàn bộ kênh đăng ký, tuy chậm nhưng đầy đủ. \n• Sử dụng điểm cuối dịch vụ chuyên dụng, nhanh nhưng thường không hoàn thiện. \n \nSự khác biệt giữa hai loại này là cái nào nhanh thường thiếu một số thông tin, chẳng hạn như thời lượng hoặc loại mục (không thể phân biệt giữa các video trực tiếp và bình thường) và nó có thể trả về ít mục hơn. \n \nYouTube là một ví dụ về dịch vụ cung cấp phương pháp nhanh này với nguồn cấp RSS. \n \nVì vậy, sự lựa chọn tập trung vào những gì bạn thích: tốc độ hoặc thông tin chính xác.</string>
     <string name="feed_use_dedicated_fetch_method_title">Tìm nạp từ nguồn cấp dữ liệu chuyên dụng khi có sẵn</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Bật chế độ nhanh</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Tắt chế độ nhanh</string>
@@ -487,7 +454,7 @@
     <string name="feed_update_threshold_title">Ngưỡng cập nhật nguồn cấp dữ liệu</string>
     <string name="settings_category_feed_title">Nguồn cấp dữ liệu</string>
     <string name="feed_create_new_group_button_title">Tạo mới</string>
-    <string name="feed_group_dialog_delete_message">Bạn có muốn xóa nhóm này\?</string>
+    <string name="feed_group_dialog_delete_message">Bạn có muốn xóa nhóm này?</string>
     <string name="feed_group_dialog_empty_name">Tên nhóm trống</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="other">Đã chọn %d</item>
@@ -570,8 +537,7 @@
     <string name="soundcloud_go_plus_content">Đây là bản nhạc SoundCloud Go+, ít nhất là ở quốc gia của bạn, vì vậy NewPipe không thể phát trực tuyến hoặc tải xuống bản nhạc này.</string>
     <string name="georestricted_content">Nội dung này không có sẵn ở quốc gia của bạn.</string>
     <string name="crash_the_app">Làm văng ứng dụng</string>
-    <string name="restricted_video_no_stream">Video này bị giới hạn độ tuổi.
-\nDo chính sách mới của YouTube với các video bị giới hạn độ tuổi, NewPipe không thể truy cập bất kỳ luồng video nào của nó và do đó không thể phát nó.</string>
+    <string name="restricted_video_no_stream">Video này bị giới hạn độ tuổi. \nDo chính sách mới của YouTube với các video bị giới hạn độ tuổi, NewPipe không thể truy cập bất kỳ luồng video nào của nó và do đó không thể phát nó.</string>
     <string name="night_theme_title">Chủ đề đêm</string>
     <string name="featured">Nổi bật</string>
     <string name="show_channel_details">Hiện chi tiết kênh</string>
@@ -599,9 +565,7 @@
     <string name="description_select_note">Bây giờ bạn có thể chọn văn bản trong mô tả. Lưu ý rằng trang có thể nhấp nháy và các liên kết có thể không nhấn vào được trong khi ở chế độ chọn.</string>
     <string name="account_terminated">Tài khoản đã bị chấm dứt</string>
     <string name="feed_load_error_fast_unknown">Chế độ nạp nhanh không cung cấp thêm thông tin về điều này.</string>
-    <string name="feed_load_error_terminated">Tài khoản của tác giả đã bị chấm dứt.
-\nNewPipe sẽ không thể tải nguồn cấp dữ liệu này trong tương lai.
-\nBạn có muốn hủy đăng ký khỏi kênh này không\?</string>
+    <string name="feed_load_error_terminated">Tài khoản của tác giả đã bị chấm dứt. \nNewPipe sẽ không thể tải nguồn cấp dữ liệu này trong tương lai. \nBạn có muốn hủy đăng ký khỏi kênh này không?</string>
     <string name="feed_load_error_account_info">Không thể tải nguồn cấp dữ liệu cho \'%s\'.</string>
     <string name="feed_load_error">Lỗi tải nguồn cấp dữ liệu</string>
     <string name="downloads_storage_use_saf_summary_api_29">\'Khung truy cập lưu trữ\' chỉ được hỗ trợ từ Android 10 trở lên</string>
@@ -641,10 +605,8 @@
     <string name="checking_updates_toast">Đang kiểm tra cập nhật…</string>
     <string name="feed_new_items">Mục nguồn cấp dữ liệu mới</string>
     <string name="crash_the_player">Làm sập trình phát</string>
-    <string name="no_appropriate_file_manager_message_android_10">Không tìm thấy ứng dụng quản lý tệp phù hợp nào để thực hiện hành động.
-\nVui lòng cài đặt ứng dụng quản lý tệp tương thích với Storage Access Framework</string>
-    <string name="no_appropriate_file_manager_message">Không tìm thấy trình quản lý tệp nào thích hợp cho hành động này.
-\nVui lòng cài đặt một trình quản lý tệp hoặc thử tắt \'%s\' trong thiết đặt tải xuống</string>
+    <string name="no_appropriate_file_manager_message_android_10">Không tìm thấy ứng dụng quản lý tệp phù hợp nào để thực hiện hành động. \nVui lòng cài đặt ứng dụng quản lý tệp tương thích với Storage Access Framework</string>
+    <string name="no_appropriate_file_manager_message">Không tìm thấy trình quản lý tệp nào thích hợp cho hành động này. \nVui lòng cài đặt một trình quản lý tệp hoặc thử tắt \'%s\' trong thiết đặt tải xuống</string>
     <string name="leak_canary_not_available">LeakCanary không khả dụng</string>
     <string name="progressive_load_interval_exoplayer_default">Mặc định ExoPlayer</string>
     <string name="detail_pinned_comment_view_description">Bình luận được ghim</string>
@@ -663,7 +625,7 @@
     <string name="streams_notifications_interval_title">Thời gian kiểm tra</string>
     <string name="streams_notifications_network_title">Yêu cầu kết nối mạng</string>
     <string name="any_network">Bất kỳ loại mạng nào (có thể tính phí)</string>
-    <string name="delete_downloaded_files_confirm">Xóa tất cả các tệp đã tải xuống khỏi bộ nhớ\?</string>
+    <string name="delete_downloaded_files_confirm">Xóa tất cả các tệp đã tải xuống khỏi bộ nhớ?</string>
     <string name="notifications_disabled">Thông báo bị tắt</string>
     <string name="get_notified">Được thông báo</string>
     <string name="you_successfully_subscribed">Bạn hiện đã đăng ký kênh này</string>
@@ -696,7 +658,7 @@
     <string name="ignore_hardware_media_buttons_title">Bỏ qua nhận nút phương tiện vật lý</string>
     <string name="remove_duplicates">Loại bỏ các bản trùng lặp</string>
     <string name="remove_duplicates_title">Loại bỏ các bản trùng lặp?</string>
-    <string name="remove_duplicates_message">Bạn có muốn loại bỏ mọi luồng trùng lặp trong danh sách phát này\?</string>
+    <string name="remove_duplicates_message">Bạn có muốn loại bỏ mọi luồng trùng lặp trong danh sách phát này?</string>
     <string name="feed_show_hide_streams">Hiện/Ẩn luồng phát</string>
     <string name="feed_hide_streams_title">Hiển thị các luồng phát sau</string>
     <string name="feed_show_watched">Đã xem đầy đủ</string>
@@ -705,9 +667,7 @@
     <string name="progressive_load_interval_summary">Thay đổi kích thước khoảng thời gian tải trên nội dung lũy tiến (hiện tại là %s). Giá trị thấp hơn có thể tăng tốc độ tải ban đầu của chúng</string>
     <string name="audio_track_present_in_video">Một bản âm thanh đã có sẵn trong luồng này</string>
     <string name="use_exoplayer_decoder_fallback_title">Sử dụng tính năng bộ giải mã dự phòng của ExoPlayer</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Giải pháp thay thế này giải phóng và khởi tạo lại codec video khi xảy ra thay đổi bề mặt, thay vì cài đặt trực tiếp bề mặt vào codec. Đã được ExoPlayer sử dụng trên một số thiết bị gặp sự cố này, cài đặt này chỉ ảnh hưởng đến Android 6 trở lên
-\n
-\nBật tùy chọn này có thể ngăn lỗi phát lại khi chuyển đổi trình phát video hiện tại hoặc chuyển sang chế độ toàn màn hình</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Giải pháp thay thế này giải phóng và khởi tạo lại codec video khi xảy ra thay đổi bề mặt, thay vì cài đặt trực tiếp bề mặt vào codec. Đã được ExoPlayer sử dụng trên một số thiết bị gặp sự cố này, cài đặt này chỉ ảnh hưởng đến Android 6 trở lên \n \nBật tùy chọn này có thể ngăn lỗi phát lại khi chuyển đổi trình phát video hiện tại hoặc chuyển sang chế độ toàn màn hình</string>
     <string name="use_exoplayer_decoder_fallback_summary">Bật tùy chọn này nếu bạn gặp sự cố khởi tạo bộ giải mã, vấn đề này sẽ quay trở lại bộ giải mã có mức độ ưu tiên thấp hơn nếu quá trình khởi tạo bộ giải mã chính thất bại. Điều này có thể dẫn đến hiệu suất phát lại kém hơn so với khi sử dụng bộ giải mã chính</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Luôn dùng biện pháp thay thế cho bề mặt đầu ra video cho ExoPlayer</string>
     <string name="audio_track_type_original">nguyên gốc</string>
@@ -765,8 +725,7 @@
     <string name="question_mark">\?</string>
     <string name="share_playlist_with_list">Chia sẻ danh sách URL</string>
     <string name="share_playlist_with_titles">Chia sẻ với Tiêu đề</string>
-    <string name="share_playlist_content_details">%1$s
-\n%2$s</string>
+    <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="channel_tab_shorts">Video ngắn</string>
     <string name="image_quality_low">Chất lượng thấp</string>
     <string name="image_quality_none">Không tải ảnh</string>
@@ -788,16 +747,15 @@
     </plurals>
     <string name="error_insufficient_storage">Không đủ dung lượng trống trên thiết bị</string>
     <string name="settings_category_backup_restore_title">Sao lưu và khôi phục</string>
-    <string name="reset_settings_title">Đặt lại cài đặt</string>
-    <string name="reset_settings_summary">Đặt lại tất cả cài đặt về giá trị mặc định</string>
+    <string name="reset_settings_title">Đặt lại cài đặt</string>
+    <string name="reset_settings_summary">Đặt lại tất cả cài đặt về giá trị mặc định</string>
     <string name="reset_all_settings">Việc đặt lại tất cả cài đặt sẽ loại bỏ tất cả các cài đặt mà bạn đã đặt và khởi động lại ứng dụng. \n \nBạn có chắc muốn tiếp tục?</string>
     <string name="no">Không</string>
-    <string name="auto_update_check_description">NewPipe có thể tự động kiểm tra các phiên bản mới theo thời gian và thông báo cho bạn khi chúng có sẵn.
-\nBạn có muốn kích hoạt tính năng này không?</string>
+    <string name="auto_update_check_description">NewPipe có thể tự động kiểm tra các phiên bản mới theo thời gian và thông báo cho bạn khi chúng có sẵn. \nBạn có muốn kích hoạt tính năng này không?</string>
     <string name="yes">Có</string>
-    <string name="import_settings_vulnerable_format">Cài đặt trong xuất đang được nhập sử dụng định dạng dễ bị tấn công và không được dùng nữa kể từ NewPipe 0.27.0. Đảm bảo rằng bản xuất đang được nhập là từ một nguồn đáng tin cậy và chỉ ưu tiên sử dụng các bản xuất lấy từ NewPipe 0.27.0 hoặc mới hơn trong tương lai. Hỗ trợ nhập cài đặt ở định dạng dễ bị tấn công này sẽ sớm bị xóa hoàn toàn và khi đó các phiên bản cũ của NewPipe sẽ không thể nhập cài đặt xuất từ phiên bản mới nữa.</string>
-    <string name="search_with_service_name">Tìm kiếm %1$s</string>
-    <string name="search_with_service_name_and_filter">Tìm kiếm %1$s (%2$s)</string>
+    <string name="import_settings_vulnerable_format">Cài đặt trong xuất đang được nhập sử dụng định dạng dễ bị tấn công và không được dùng nữa kể từ NewPipe 0.27.0. Đảm bảo rằng bản xuất đang được nhập là từ một nguồn đáng tin cậy và chỉ ưu tiên sử dụng các bản xuất lấy từ NewPipe 0.27.0 hoặc mới hơn trong tương lai. Hỗ trợ nhập cài đặt ở định dạng dễ bị tấn công này sẽ sớm bị xóa hoàn toàn và khi đó các phiên bản cũ của NewPipe sẽ không thể nhập cài đặt xuất từ phiên bản mới nữa.</string>
+    <string name="search_with_service_name">Tìm kiếm %1$s</string>
+    <string name="search_with_service_name_and_filter">Tìm kiếm %1$s (%2$s)</string>
     <string name="tab_bookmarks_short">Danh sách phát</string>
     <string name="short_thousand">%sN</string>
     <string name="short_million">%sTr</string>

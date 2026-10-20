@@ -2,7 +2,7 @@
 <resources>
     <string name="main_bg_subtitle">Притиснете на лупата за да започнете.</string>
     <string name="upload_date_text">Објавено на %1$s</string>
-    <string name="no_player_found">Не е пронајден плеер за стримови. Сакате да инсталирате VLC\?</string>
+    <string name="no_player_found">Не е пронајден плеер за стримови. Сакате да инсталирате VLC?</string>
     <string name="no_player_found_toast">Не е пронајден плеер за стримови (можеш да инсталираш VLC)</string>
     <string name="install">Инсталирај</string>
     <string name="cancel">Откажи</string>
@@ -41,7 +41,7 @@
     <string name="show_higher_resolutions_title">Прикажи повисоки резолуции</string>
     <string name="show_higher_resolutions_summary">Само одредени уреди поддржуваат 2К/4К видеа</string>
     <string name="play_with_kodi_title">Пушти на Kodi</string>
-    <string name="kore_not_found">Апликацијата Kore не е најдена. Сакате да ја инсталирате\?</string>
+    <string name="kore_not_found">Апликацијата Kore не е најдена. Сакате да ја инсталирате?</string>
     <string name="show_play_with_kodi_title">Прикажи ја „Пушти со Kodi“ опцијата</string>
     <string name="show_play_with_kodi_summary">Прикажи опција да се пушти видео со Kodi media center</string>
     <string name="play_audio">Звук</string>
@@ -177,8 +177,7 @@
     <string name="msg_wait">Почекајте…</string>
     <string name="msg_copied">Копирано во привремена меморија</string>
     <string name="no_available_dir">Ве молиме, определете папка за преземања подоцна во поставките</string>
-    <string name="msg_popup_permission">Оваа привилегија е потребна за
-\nотворање во подпрозорче</string>
+    <string name="msg_popup_permission">Оваа привилегија е потребна за \nотворање во подпрозорче</string>
     <string name="title_activity_recaptcha">reCAPTCHA Предизвик</string>
     <string name="recaptcha_request_toast">Потребен е reCAPTCHA предизвик</string>
     <string name="settings_category_downloads_title">Превземања</string>
@@ -265,21 +264,10 @@
     <string name="previous_export">Претходно изнесување</string>
     <string name="subscriptions_import_unsuccessful">Неуспешно внесување членства</string>
     <string name="subscriptions_export_unsuccessful">Неуспешно изнесување членства</string>
-    <string name="import_youtube_instructions">Внеси YouTube членства, преку симнување на извозен фајл: 
-\n 
-\n1. Оди на оваа врска: %1$s 
-\n2. Пријави се на твојот профил 
-\n3. Ќе започне превземање (тој фајл ти треба)</string>
-    <string name="import_soundcloud_instructions">Внеси SoundCloud членства, преку внесување URL или ID на профилот: 
-\n 
-\n1. Вклучете „десктоп режим“ во вашиот пребарувач (страната не е достапна за мобилни уреди) 
-\n2. Одете на оваа врска: %1$s 
-\n3. Пријавете се на вашиот профил 
-\n4. Копирајте го URL-то на кое бевте пренасочени (тоа е URL-то на вашиот профил).</string>
+    <string name="import_youtube_instructions">Внеси YouTube членства, преку симнување на извозен фајл: \n \n1. Оди на оваа врска: %1$s \n2. Пријави се на твојот профил \n3. Ќе започне превземање (тој фајл ти треба)</string>
+    <string name="import_soundcloud_instructions">Внеси SoundCloud членства, преку внесување URL или ID на профилот: \n \n1. Вклучете „десктоп режим“ во вашиот пребарувач (страната не е достапна за мобилни уреди) \n2. Одете на оваа врска: %1$s \n3. Пријавете се на вашиот профил \n4. Копирајте го URL-то на кое бевте пренасочени (тоа е URL-то на вашиот профил).</string>
     <string name="import_soundcloud_instructions_hint">korisnickoime, soundcloud.com/korisnickoime</string>
-    <string name="import_network_expensive_warning">Треба да знаеш дека оваа операција троши многу интернет.
-\n
-\nСакаш да продолжиш?</string>
+    <string name="import_network_expensive_warning">Треба да знаеш дека оваа операција троши многу интернет. \n \nСакаш да продолжиш?</string>
     <string name="playback_speed_control">Контрола на брзината на траката</string>
     <string name="playback_tempo">Темпо</string>
     <string name="playback_pitch">Тон</string>
@@ -301,11 +289,9 @@
     <string name="caption_setting_title">Преводи</string>
     <string name="caption_setting_description">Смени ја големината и стилот на преводот. Потребен е рестарт за промена</string>
     <string name="privacy_policy_title">NewPipe - политика за приватност</string>
-    <string name="privacy_policy_encouragement">Проектот NewPipe сериозно ја сфаќа вашата приватност. Затоа апликацијата не собира ваши податоци без ваша дозвола.
-\nПолитиката за приватност на NewPipe детално објаснува кои податоци се зачувани и пратени кога праќате извештај за грешка во апликацијата.</string>
+    <string name="privacy_policy_encouragement">Проектот NewPipe сериозно ја сфаќа вашата приватност. Затоа апликацијата не собира ваши податоци без ваша дозвола. \nПолитиката за приватност на NewPipe детално објаснува кои податоци се зачувани и пратени кога праќате извештај за грешка во апликацијата.</string>
     <string name="read_privacy_policy">Прочитај ја политиката за приватност</string>
-    <string name="start_accept_privacy_policy">За да постапуваме соодветно со регулацијата за заштита на податоци (GDPR) на ЕУ, вараме да обрнете внимание на политиката за приватност на NewPipe.
-\nВе молиме прочитајте ја внимателно. Мора да ја прифатите за да ни го испратите извештајот за грешка во апликацијата.</string>
+    <string name="start_accept_privacy_policy">За да постапуваме соодветно со регулацијата за заштита на податоци (GDPR) на ЕУ, вараме да обрнете внимание на политиката за приватност на NewPipe. \nВе молиме прочитајте ја внимателно. Мора да ја прифатите за да ни го испратите извештајот за грешка во апликацијата.</string>
     <string name="accept">Прифати</string>
     <string name="decline">Отфрли</string>
     <string name="limit_data_usage_none_description">Неограничено</string>
@@ -385,8 +371,7 @@
     <string name="pause_downloads">Паузирај преземања</string>
     <string name="downloads_storage_ask_summary">Ќе бидете прашани каде да го зачувате секое преземање.\nАктивирајте го инструментот за избор на системска папка (SAF), ако сакате да преземате на SD картичка</string>
     <string name="downloads_storage_use_saf_title">Користи го инструментот за избор на системска папка (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">Рамката за пристап до складирање овозможува преземања во надворешна SD-картичка.
-\nЗабелешка: некои уреди не се поддржани.</string>
+    <string name="downloads_storage_use_saf_summary">Рамката за пристап до складирање овозможува преземања во надворешна SD-картичка. \nЗабелешка: некои уреди не се поддржани.</string>
     <string name="show_comments_summary">Исклучете за да ги скриете коментарите</string>
     <string name="enable_playback_state_lists_title">Позиции во листите</string>
     <string name="enable_playback_state_lists_summary">Покажете ги индикаторите за позиција за репродукција во листите</string>

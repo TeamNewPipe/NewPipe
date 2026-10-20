@@ -95,8 +95,7 @@
     <string name="msg_wait">請稍候…</string>
     <string name="msg_copied">已複製到剪貼簿</string>
     <string name="no_available_dir">稍後請在設定中選擇下載資料夾</string>
-    <string name="msg_popup_permission">使用懸浮視窗模式
-\n需要此權限</string>
+    <string name="msg_popup_permission">使用懸浮視窗模式 \n需要此權限</string>
     <string name="title_activity_recaptcha">reCAPTCHA 驗證</string>
     <string name="recaptcha_request_toast">已請求 reCAPTCHA 驗證</string>
     <string name="controls_popup_title">懸浮視窗</string>
@@ -257,15 +256,8 @@
     <string name="invalid_file">檔案不存在或缺少讀寫檔案的權限</string>
     <string name="import_youtube_instructions">從 Google Takeout 匯入您的 YouTube 訂閱： \n \n1. 移至此網址：%1$s \n2. 當被提示時登入帳號 \n3. 按一下「包含所有資料」，接著「取消選取全部」，然後僅勾選「訂閱」並按一下「確定」 \n4. 按一下「下一步」然後「建立匯出」 \n5. 在「下載」按鈕出現後按一下它 \n6. 點擊下方的「匯入檔案」並選取已下載的 zip 檔案 \n7. [若 zip 匯入失敗] 擷取 .csv 檔案 (通常位於「YouTube 與 YouTube Music/訂閱/訂閱.csv」)，按一下下方的「匯入檔案」並選取擷取的 csv 檔案</string>
     <string name="import_soundcloud_instructions_hint">您的 ID, soundcloud.com/yourid</string>
-    <string name="import_network_expensive_warning">請記住，此操作可造成昂貴網路花費。 
-\n 
-\n您是否希望繼續？</string>
-    <string name="import_soundcloud_instructions">透過輸入 URL 或您的 ID 來匯入 SoundCloud 個人設定檔： 
-\n 
-\n1. 在瀏覽器中啟用「桌面模式」(該網站不適用於行動裝置) 
-\n2. 移至此網址： %1$s 
-\n3. 當被提示時登入帳號 
-\n4. 複製您被重新導向到的個人設定檔網址。</string>
+    <string name="import_network_expensive_warning">請記住，此操作可造成昂貴網路花費。 \n \n您是否希望繼續？</string>
+    <string name="import_soundcloud_instructions">透過輸入 URL 或您的 ID 來匯入 SoundCloud 個人設定檔： \n \n1. 在瀏覽器中啟用「桌面模式」(該網站不適用於行動裝置) \n2. 移至此網址： %1$s \n3. 當被提示時登入帳號 \n4. 複製您被重新導向到的個人設定檔網址。</string>
     <string name="thumbnail_cache_wipe_complete_notice">已清除圖片快取</string>
     <string name="metadata_cache_wipe_title">清除已快取的詮釋資料</string>
     <string name="metadata_cache_wipe_summary">移除所有已快取的網頁資料</string>
@@ -291,11 +283,9 @@
     <string name="app_license">NewPipe 是一個 Copyleft 的自由軟體：您可以隨意使用、研究、分享並改進它。在遵守由自由軟體基金會所發佈的 GNU 通用公共授權條款的狀況下，您可以自由地再散佈及／或修改它；授權條款預設使用第三版，但您也可以選擇更新的版本。</string>
     <string name="import_settings">您是否要同時匯入設定？</string>
     <string name="privacy_policy_title">NewPipe 的隱私政策</string>
-    <string name="privacy_policy_encouragement">NewPipe 專案非常重視您的隱私。因此，未經您同意此程式不會收集任何資料。 
-\nNewPipe 的隱私權政策詳細說明了當您發送錯誤回報時，什麼資料會被傳送及儲存。</string>
+    <string name="privacy_policy_encouragement">NewPipe 專案非常重視您的隱私。因此，未經您同意此程式不會收集任何資料。 \nNewPipe 的隱私權政策詳細說明了當您發送錯誤回報時，什麼資料會被傳送及儲存。</string>
     <string name="read_privacy_policy">閱讀隱私政策</string>
-    <string name="start_accept_privacy_policy">為配合歐洲通用資料保護條例 ( GDPR ) ，我們在此請您注意 NewPipe 的隱私政策。請務必仔細閱讀。 
-\n您必須接受它才能向我們發送錯誤報告。</string>
+    <string name="start_accept_privacy_policy">為配合歐洲通用資料保護條例 ( GDPR ) ，我們在此請您注意 NewPipe 的隱私政策。請務必仔細閱讀。 \n您必須接受它才能向我們發送錯誤報告。</string>
     <string name="accept">接受</string>
     <string name="decline">拒絕</string>
     <string name="limit_data_usage_none_description">沒有限制</string>
@@ -387,8 +377,7 @@
     <string name="start_downloads">開始下載</string>
     <string name="pause_downloads">暫停下載</string>
     <string name="downloads_storage_ask_title">詢問要下載到哪裡</string>
-    <string name="downloads_storage_ask_summary">每次下載都會詢問您要下載到哪裡。
-\n如果您想要下載到外部的 SD 記憶卡的話，請啟用系統資料夾挑選器 (SAF)</string>
+    <string name="downloads_storage_ask_summary">每次下載都會詢問您要下載到哪裡。 \n如果您想要下載到外部的 SD 記憶卡的話，請啟用系統資料夾挑選器 (SAF)</string>
     <string name="downloads_storage_use_saf_title">使用系統資料夾挑選器 (SAF)</string>
     <string name="downloads_storage_use_saf_summary">「儲存空間存取框架」讓您可以下載到外部的 SD 記憶卡</string>
     <string name="clear_playback_states_title">刪除播放位置</string>
@@ -468,17 +457,13 @@
     <string name="feed_use_dedicated_fetch_method_enable_button">啟用快速模式</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">停用快速模式</string>
     <string name="feed_use_dedicated_fetch_method_help_text">您覺得 feed 載入太慢了嗎？如果是的話，試著啟用快速載入 (您可以在設定中變更或按下下方的按鈕)。 \n \nNewPipe 提供兩個 feed 載入策略： \n• 擷取整個訂閱頻道，慢但是完整。 \n• 使用專用的伺服器端點，較快速但是通常不完整。 \n \n兩者之間的差別是，較快速的通常缺少部份資訊，如項目的持續時間或類型（無法區分直播影片或一般影片），而且其可能會回傳較少項目。 \n \nYouTube 是一種透過其 RSS feed 提供這種快速方式的例子。 \n \n因此，請選取您較偏好的：速度或準確的資訊。</string>
-    <string name="content_not_supported">NewPipe 尚未支援此內容。
-\n
-\n希望它會在未來的版本中支援。</string>
+    <string name="content_not_supported">NewPipe 尚未支援此內容。 \n \n希望它會在未來的版本中支援。</string>
     <string name="infinite_videos">∞ 部影片</string>
     <string name="more_than_100_videos">超過 100 部影片</string>
     <string name="artists">演出者</string>
     <string name="albums">專輯</string>
     <string name="songs">歌曲</string>
-    <string name="restricted_video">此影片設有年齡限制。
-\n
-\n如果您想要觀看，請在設定中開啟「%1$s」。</string>
+    <string name="restricted_video">此影片設有年齡限制。 \n \n如果您想要觀看，請在設定中開啟「%1$s」。</string>
     <string name="remove_watched_popup_partially_watched_streams">是的，包括已部份觀看的影片</string>
     <string name="remove_watched_popup_warning">已觀看過的串流在加入播放清單後將被移除。\n您確定嗎？</string>
     <string name="remove_watched_popup_title">移除已觀看的串流？</string>
@@ -551,8 +536,7 @@
     <string name="private_content">此內容為私人內容，因此無法由 NewPipe 串流或下載。</string>
     <string name="soundcloud_go_plus_content">這是 SoundCloud Go+ 的曲目，因此至少在您的國家無法由 NewPipe 串流或下載。</string>
     <string name="georestricted_content">此內容在您所在的國家不可用。</string>
-    <string name="restricted_video_no_stream">此影片有年齡限制。
-\n因為 YouTube 新的年齡影片限制政策，NewPipe 無法存取任何這類的視訊串流，因此無法播放。</string>
+    <string name="restricted_video_no_stream">此影片有年齡限制。 \n因為 YouTube 新的年齡影片限制政策，NewPipe 無法存取任何這類的視訊串流，因此無法播放。</string>
     <string name="radio">廣播</string>
     <string name="featured">精選</string>
     <string name="recaptcha_solve">解決</string>
@@ -582,9 +566,7 @@
     <string name="open_website_license">開啟網站</string>
     <string name="account_terminated">帳號已終止</string>
     <string name="feed_load_error_fast_unknown">快速 feed 模式不會提供更多資訊。</string>
-    <string name="feed_load_error_terminated">作者的帳號已被終止。
-\nNewPipe 未來將無法載入此 feed。
-\n您想要取消訂閱此頻道嗎？</string>
+    <string name="feed_load_error_terminated">作者的帳號已被終止。 \nNewPipe 未來將無法載入此 feed。 \n您想要取消訂閱此頻道嗎？</string>
     <string name="feed_load_error_account_info">無法載入「%s」。</string>
     <string name="feed_load_error">載入 feed 時發生錯誤</string>
     <string name="downloads_storage_use_saf_summary_api_29">從 Android 10 開始僅支援「儲存空間存取框架」</string>
@@ -712,9 +694,7 @@
     <string name="prefer_original_audio_summary">無論語言都選取原始音訊軌道</string>
     <string name="settings_category_exoplayer_summary">管理一些 ExoPlayer 設定。這些變更需要重新啟動播放程式才會生效</string>
     <string name="use_exoplayer_decoder_fallback_summary">若您有解碼器初始化的問題，請啟用此選項，若主要的解碼器初始化失敗，其將會汰退至較低優先度的解碼器。這可能會導致播放效能比使用主要解碼器時差</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_summary">此解決方法是在發生表面變動時釋放並重新確認視訊編解碼器，而非直接將表面設定為編解碼器。ExoPlayer 已在部份有問題的裝置上使用了此設定，此設定僅對 Android 6 或更新版本有效。
-\n
-\n啟用此選項可以避免在切換目前視訊播放程式或切換到全螢幕時出現播放錯誤</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">此解決方法是在發生表面變動時釋放並重新確認視訊編解碼器，而非直接將表面設定為編解碼器。ExoPlayer 已在部份有問題的裝置上使用了此設定，此設定僅對 Android 6 或更新版本有效。 \n \n啟用此選項可以避免在切換目前視訊播放程式或切換到全螢幕時出現播放錯誤</string>
     <string name="main_tabs_position_summary">將主分頁選擇器移動至底部</string>
     <string name="main_tabs_position_title">主分頁位置</string>
     <string name="audio_track_name">%1$s %2$s</string>
@@ -760,8 +740,7 @@
     <string name="image_quality_summary">選擇影像品質以及是否載入影像，以減少資料與記憶體使用。變更會清除記憶體中與磁碟上的影像快取 — %s</string>
     <string name="share_playlist_with_list">分享網址清單</string>
     <string name="share_playlist_with_titles">分享標題</string>
-    <string name="share_playlist_content_details">%1$s
-\n%2$s</string>
+    <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="share_playlist">分享播放清單</string>
     <string name="video_details_list_item">- %1$s：%2$s</string>
     <plurals name="replies">
@@ -774,13 +753,10 @@
     <string name="settings_category_backup_restore_title">備份與還原</string>
     <string name="reset_settings_title">重設設定</string>
     <string name="reset_settings_summary">將所有設定重設為預設值</string>
-    <string name="reset_all_settings">重設所有設定將會放棄您的所有偏好設定並重新啟動應用程式。
-\n
-\n您確定您想要繼續嗎？</string>
+    <string name="reset_all_settings">重設所有設定將會放棄您的所有偏好設定並重新啟動應用程式。 \n \n您確定您想要繼續嗎？</string>
     <string name="yes">是</string>
     <string name="no">否</string>
-    <string name="auto_update_check_description">NewPipe 可以隨時自動檢查新版本，並在新版本可用時通知您。
-\n您想要啟用此功能嗎？</string>
+    <string name="auto_update_check_description">NewPipe 可以隨時自動檢查新版本，並在新版本可用時通知您。 \n您想要啟用此功能嗎？</string>
     <string name="import_settings_vulnerable_format">匯入的匯出中的設定使用自 NewPipe 0.27.0 起已廢棄的脆弱格式。請確定匯入的匯出是來自可信賴的來源，並在未來只使用從 NewPipe 0.27.0 或更新版本取得的匯出。對於匯入此脆弱格式設定的支援即將完全移除，屆時舊版本的 NewPipe 將無法再匯入新版本匯出的設定。</string>
     <string name="audio_track_type_secondary">次要</string>
     <string name="share_playlist_as_youtube_temporary_playlist">分享為 YouTube 臨時播放清單</string>

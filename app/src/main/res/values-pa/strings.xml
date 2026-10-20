@@ -13,7 +13,7 @@
     <string name="controls_download_desc">ਸਟ੍ਰੀਮ ਫ਼ਾਈਲ ਡਾਊਨਲੋਡ ਕਰੋ</string>
     <string name="search">ਖੋਜ ਕਰੋ</string>
     <string name="settings">ਸੈਟਿੰਗਾਂ</string>
-    <string name="did_you_mean">ਕੀ ਤੁਹਾਡਾ ਮਤਲਬ ਸੀ \"%1$s\"\?</string>
+    <string name="did_you_mean">ਕੀ ਤੁਹਾਡਾ ਮਤਲਬ ਸੀ \"%1$s\"?</string>
     <string name="share_dialog_title">ਦੇ ਨਾਲ ਸਾਂਝਾ ਕਰੋ</string>
     <string name="use_external_video_player_title">ਬਾਹਰੀ ਵੀਡੀਓ ਪਲੇਅਰ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
     <string name="use_external_video_player_summary">ਕੁਝ ਰੈਜ਼ੋਲਿਊਸ਼ਨਾਂ \'ਤੇ ਆਵਾਜ਼ ਹਟ ਸਕਦੀ ਹੈ</string>
@@ -110,10 +110,10 @@
     <string name="export_data_summary">ਇਤਿਹਾਸ, ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ, ਪਲੇਲਿਸਟਾਂ ਅਤੇ ਸੈਟਿੰਗਾਂ ਐਕਸਪੋਰਟ ਕਰੋ</string>
     <string name="clear_views_history_title">ਵੇਖੇ ਗਏ ਵੀਡੀਓਜ਼ ਦੀ ਸੂਚੀ ਮਿਟਾਓ</string>
     <string name="clear_views_history_summary">ਚਲਾਈਆਂ ਗਈਆਂ ਸਟ੍ਰੀਮਾਂ ਦੇ ਇਤਿਹਾਸ ਅਤੇ ਪਲੇ-ਸਥਿਤੀਆਂ ਨੂੰ ਮਿਟਾਉਂਦਾ ਹੈ</string>
-    <string name="delete_view_history_alert">ਕੀ ਵੇਖੇ ਗਏ ਵੀਡੀਓਜ਼ ਦਾ ਇਤਿਹਾਸ ਮਿਟਾ ਦਿੱਤਾ ਜਾਵੇ\?</string>
+    <string name="delete_view_history_alert">ਕੀ ਵੇਖੇ ਗਏ ਵੀਡੀਓਜ਼ ਦਾ ਇਤਿਹਾਸ ਮਿਟਾ ਦਿੱਤਾ ਜਾਵੇ?</string>
     <string name="clear_search_history_title">ਖੋਜ ਸੂਚੀ ਦਾ ਇਤਿਹਾਸ ਮਿਟਾਓ</string>
     <string name="clear_search_history_summary">ਖੋਜ ਸ਼ਬਦਾਂ ਦੀ ਸੂਚੀ ਮਿਟਾਉਂਦਾ ਹੈ</string>
-    <string name="delete_search_history_alert">ਕੀ ਸਾਰੀ ਖੋਜ ਸੂਚੀ ਮਿਟਾ ਦਿੱਤੀ ਜਾਵੇ \?</string>
+    <string name="delete_search_history_alert">ਕੀ ਸਾਰੀ ਖੋਜ ਸੂਚੀ ਮਿਟਾ ਦਿੱਤੀ ਜਾਵੇ ?</string>
     <string name="search_history_deleted">ਖੋਜ ਸੂਚੀ ਦਾ ਇਤਿਹਾਸ ਮਿਟਾ ਦਿੱਤਾ ਗਿਆ</string>
     <string name="general_error">ਤਰੁੱਟੀ</string>
     <string name="network_error">ਨੈੱਟਵਰਕ ਤਰੁੱਟੀ</string>
@@ -213,7 +213,7 @@
     <string name="read_full_license">ਲਾਇਸੈਂਸ ਪੜ੍ਹੋ</string>
     <string name="title_activity_history">ਇਤਿਹਾਸ</string>
     <string name="action_history">ਇਤਿਹਾਸ</string>
-    <string name="delete_item_search_history">ਕੀ ਤੁਸੀਂ ਇਸਨੂੰ ਖੋਜ ਇਤਿਹਾਸ ਵਿੱਚੋਂ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ\?</string>
+    <string name="delete_item_search_history">ਕੀ ਤੁਸੀਂ ਇਸਨੂੰ ਖੋਜ ਇਤਿਹਾਸ ਵਿੱਚੋਂ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
     <string name="title_last_played">ਆਖਰੀ ਚਲਾਈ ਗਈ</string>
     <string name="title_most_played">ਸਭ ਤੋਂ ਜਿਆਦਾ ਚਲਾਈ ਗਈ</string>
     <string name="main_page_content">ਮੁੱਖ ਪੰਨੇ ਦੀ ਸਮੱਗਰੀ</string>
@@ -285,7 +285,7 @@
     <string name="playback_tempo">ਤਾਲ</string>
     <string name="playback_pitch">ਪਿੱਚ</string>
     <string name="unhook_checkbox">ਅਲਹਿਦਾ ਕਰੋ (ਵਿਗਾੜ ਪੈ ਸਕਦਾ ਹੈ)</string>
-    <string name="import_settings">ਕੀ ਤੁਸੀਂ ਸੈਟਿੰਗਾਂ ਨੂੰ ਵੀ ਇੰਪੋਰਟ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ\?</string>
+    <string name="import_settings">ਕੀ ਤੁਸੀਂ ਸੈਟਿੰਗਾਂ ਨੂੰ ਵੀ ਇੰਪੋਰਟ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
     <string name="privacy_policy_title">ਨਿਊਪਾਈਪ ਦੀ ਗੋਪਨੀਯਤਾ ਨੀਤੀ</string>
     <string name="privacy_policy_encouragement">ਨਿਊਪਾਈਪ ਪ੍ਰੋਜੈਕਟ ਤੁਹਾਡੀ ਗੋਪਨੀਯਤਾ ਨੂੰ ਬਹੁਤ ਗੰਭੀਰਤਾ ਨਾਲ ਲੈਂਦਾ ਹੈ। ਇਸ ਲਈ ਐਪ ਤੁਹਾਡੀ ਸਹਿਮਤੀ ਤੋਂ ਬਿਨਾਂ ਕੋਈ ਵੀ ਡਾਟਾ ਇੱਕਠਾ ਨਹੀਂ ਕਰਦਾ।\nਨਿਊਪਾਈਪ ਦੀ ਗੋਪਨੀਯਤਾ ਨੀਤੀ ਵਿਸਥਾਰ ਵਿੱਚ ਦੱਸਦੀ ਹੈ ਕਿ ਜਦੋਂ ਤੁਸੀਂ ਕਰੈਸ਼ ਰਿਪੋਰਟ ਭੇਜਦੇ ਹੋ ਤਾਂ ਕਿਹੜਾ ਡਾਟਾ ਭੇਜਿਆ ਜਾਂ ਸਟੋਰ ਕੀਤਾ ਜਾਂਦਾ ਹੈ।</string>
     <string name="read_privacy_policy">ਗੋਪਨੀਯਤਾ ਨੀਤੀ ਪੜ੍ਹੋ</string>
@@ -314,10 +314,10 @@
     <string name="app_update_notification_channel_name">ਐਪ ਅੱਪਡੇਟ ਨੋਟੀਫਿਕੇਸ਼ਨ</string>
     <string name="app_update_notification_channel_description">ਨਵੇਂ ਨਿਊਪਾਈਪ ਸੰਸਕਰਣਾਂ ਲਈ ਪ੍ਰਾਪਤ ਸੂਚਨਾਵਾਂ</string>
     <string name="download_to_sdcard_error_title">ਬਾਹਰੀ ਸਟੋਰੇਜ ਉਪਲਬਧ ਨਹੀਂ ਹੈ</string>
-    <string name="download_to_sdcard_error_message">ਬਾਹਰੀ SD ਕਾਰਡ ਤੇ ਡਾਊਨਲੋਡ ਕਰਨਾ ਸੰਭਵ ਨਹੀਂ ਹੈ। ਕੀ ਡਾਊਨਲੋਡ ਫ਼ੋਲਡਰ ਦੀ ਸਥਿਤੀ ਨੂੰ ਰੀਸੈਟ ਕੀਤਾ ਜਾਵੇ \?</string>
+    <string name="download_to_sdcard_error_message">ਬਾਹਰੀ SD ਕਾਰਡ ਤੇ ਡਾਊਨਲੋਡ ਕਰਨਾ ਸੰਭਵ ਨਹੀਂ ਹੈ। ਕੀ ਡਾਊਨਲੋਡ ਫ਼ੋਲਡਰ ਦੀ ਸਥਿਤੀ ਨੂੰ ਰੀਸੈਟ ਕੀਤਾ ਜਾਵੇ ?</string>
     <string name="saved_tabs_invalid_json">ਸਾਂਭੀਆਂ ਟੈਬਾਂ ਨਹੀਂ ਪੜ੍ਹ ਹੋਈਆਂ, ਇਸ ਲਈ ਡਿਫਾਲਟ ਟੈਬਾਂ ਦੀ ਵਰਤੋਂ ਹੋ ਰਹੀ ਹੈ</string>
     <string name="restore_defaults">ਡੀਫ਼ਾਲਟ ਮੁੜ-ਸਥਾਪਿਤ ਕਰੋ</string>
-    <string name="restore_defaults_confirmation">ਕੀ ਤੁਸੀਂ ਡਿਫਾਲਟ ਮੁੜ-ਸਥਾਪਿਤ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ\?</string>
+    <string name="restore_defaults_confirmation">ਕੀ ਤੁਸੀਂ ਡਿਫਾਲਟ ਮੁੜ-ਸਥਾਪਿਤ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
     <string name="subscribers_count_not_available">ਸਬਸਕ੍ਰਾਈਬਰਾਂ ਦੀ ਗਿਣਤੀ ਅਣ-ਉਪਲਬਧ</string>
     <string name="main_page_content_summary">ਮੁੱਖ ਪੰਨੇ ਤੇ ਕਿਹੜੇ ਟੈਬ ਵਿਖਾਏ ਜਾਣਗੇ</string>
     <string name="updates_setting_title">ਅੱਪਡੇਟਾਂ</string>
@@ -377,14 +377,13 @@
     <string name="error_insufficient_storage_left">ਡਿਵਾਈਸ ਤੇ ਕੋਈ ਜਗ੍ਹਾ ਨਹੀਂ ਬਚੀ ਹੈ</string>
     <string name="error_progress_lost">ਪ੍ਰਗਤੀ ਖਤਮ ਹੋ ਗਈ, ਕਿਉਂਕਿ ਫਾਈਲ ਮਿਟਾਈ ਗਈ</string>
     <string name="error_timeout">ਕੁਨੈਕਸ਼ਨ ਦਾ ਸਮਾਂ ਸਮਾਪਤ</string>
-    <string name="confirm_prompt">ਕੀ ਤੁਸੀਂ ਆਪਣਾ ਡਾਊਨਲੋਡ ਇਤਿਹਾਸ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ ਜਾਂ ਡਾਊਨਲੋਡ ਕੀਤੀਆਂ ਸਾਰੀਆਂ ਫ਼ਾਈਲਾਂ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ\?</string>
+    <string name="confirm_prompt">ਕੀ ਤੁਸੀਂ ਆਪਣਾ ਡਾਊਨਲੋਡ ਇਤਿਹਾਸ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ ਜਾਂ ਡਾਊਨਲੋਡ ਕੀਤੀਆਂ ਸਾਰੀਆਂ ਫ਼ਾਈਲਾਂ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
     <string name="enable_queue_limit">ਡਾਊਨਲੋਡ ਕਤਾਰ ਸੀਮਤ ਕਰੋ</string>
     <string name="enable_queue_limit_desc">ਇੱਕ ਹੀ ਸਮੇਂ ਤੇ ਇੱਕੋ ਡਾਊਨਲੋਡ ਚੱਲੇਗਾ</string>
     <string name="start_downloads">ਡਾਊਨਲੋਡ ਸ਼ੁਰੂ ਕਰੋ</string>
     <string name="pause_downloads">ਡਾਊਨਲੋਡਸ ਰੋਕੋ</string>
     <string name="downloads_storage_ask_title">ਡਾਊਨਲੋਡ ਕਿੱਥੇ ਕਰਨਾ ਹੈ, ਦੇ ਲਈ ਪੁੱਛੋ</string>
-    <string name="downloads_storage_ask_summary">ਤੁਹਾਨੂੰ ਹਰ ਵਾਰ ਪੁੱਛਿਆ ਜਾਵੇਗਾ ਕਿ ਡਾਊਨਲੋਡ ਨੂੰ ਕਿੱਥੇ ਸਾਂਭਣਾ ਹੈ।
-\nਜੇ ਤੁਸੀਂ ਡਾਊਨਲੋਡ ਨੂੰ ਕਿਸੇ ਬਾਹਰੀ SD ਕਾਰਡ ਤੇ ਸਾਂਭਣਾ ਚਾਹੁੰਦੇ ਹੋ ਤਾਂ ਸਿਸਟਮ ਡਾਊਨਲੋਡ ਫ਼ੋਲਡਰ ਚੋਣਕਾਰ (SAF) ਚਾਲੂ ਕਰੋ</string>
+    <string name="downloads_storage_ask_summary">ਤੁਹਾਨੂੰ ਹਰ ਵਾਰ ਪੁੱਛਿਆ ਜਾਵੇਗਾ ਕਿ ਡਾਊਨਲੋਡ ਨੂੰ ਕਿੱਥੇ ਸਾਂਭਣਾ ਹੈ। \nਜੇ ਤੁਸੀਂ ਡਾਊਨਲੋਡ ਨੂੰ ਕਿਸੇ ਬਾਹਰੀ SD ਕਾਰਡ ਤੇ ਸਾਂਭਣਾ ਚਾਹੁੰਦੇ ਹੋ ਤਾਂ ਸਿਸਟਮ ਡਾਊਨਲੋਡ ਫ਼ੋਲਡਰ ਚੋਣਕਾਰ (SAF) ਚਾਲੂ ਕਰੋ</string>
     <string name="downloads_storage_use_saf_title">ਸਿਸਟਮ ਡਾਊਨਲੋਡ ਫ਼ੋਲਡਰ ਚੋਣਕਾਰ (SAF) ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
     <string name="downloads_storage_use_saf_summary">\'ਸਟੋਰੇਜ ਐਕਸੈਸ ਫ਼ਰੇਮਵਰਕ\' ਬਾਹਰੀ SD ਕਾਰਡ ਵਿੱਚ ਡਾਊਨਲੋਡ ਕਰਨ ਦਿੰਦਾ ਹੈ</string>
     <string name="notification_scale_to_square_image_title">ਥੰਮਨੇਲ ਨੂੰ 1:1 ਮਾਪ ਦਾ ਕਰੋ</string>
@@ -410,8 +409,7 @@
     <string name="recaptcha_cookies_cleared">reCAPTCHA ਦੀਆਂ ਕੁਕੀਜ਼ ਸਾਫ਼ ਹੋ ਗਈਆਂ ਹਨ</string>
     <string name="clear_cookie_title">reCAPTCHA ਦੀਆਂ ਕੁਕੀਜ਼ ਸਾਫ਼ ਕਰੋ</string>
     <string name="hash_channel_description">ਵੀਡਿਓ ਹੈਸ਼ਿੰਗ ਦੀ ਕਾਰਵਾਈ ਦੀ ਮੌਜੂਦਾ ਹਾਲਤ ਦੇ ਨੋਟੀਫਿਕੇਸ਼ਨ</string>
-    <string name="restricted_video_no_stream">ਇਹ ਵੀਡੀਓ ਉਮਰ-ਹੱਦ ਮੁਤਾਬਕ ਪਾਬੰਦੀਸ਼ੁਦਾ ਹੈ।
-\nਯੂਟਿਊਬ ਦੀਆਂ ਉਮਰ-ਹੱਦ ਪਾਬੰਦੀਸ਼ੁਦਾ ਵੀਡੀਓਜ਼ ਬਾਰੇ ਨੀਤੀਆਂ ਦੇ ਕਾਰਨ ਨਿਊ-ਪਾਈਪ ਇਸਦੀਆਂ ਵੀਡੀਓ ਸਟ੍ਰੀਮ ਤੱਕ ਨਹੀਂ ਪਹੁੰਚ ਸਕਦੀ ਅਤੇ ਇਸੇ ਕਰਕੇ ਇਸਨੂੰ ਚਲਾ ਵੀ ਨਹੀਂ ਸਕਦੀ।</string>
+    <string name="restricted_video_no_stream">ਇਹ ਵੀਡੀਓ ਉਮਰ-ਹੱਦ ਮੁਤਾਬਕ ਪਾਬੰਦੀਸ਼ੁਦਾ ਹੈ। \nਯੂਟਿਊਬ ਦੀਆਂ ਉਮਰ-ਹੱਦ ਪਾਬੰਦੀਸ਼ੁਦਾ ਵੀਡੀਓਜ਼ ਬਾਰੇ ਨੀਤੀਆਂ ਦੇ ਕਾਰਨ ਨਿਊ-ਪਾਈਪ ਇਸਦੀਆਂ ਵੀਡੀਓ ਸਟ੍ਰੀਮ ਤੱਕ ਨਹੀਂ ਪਹੁੰਚ ਸਕਦੀ ਅਤੇ ਇਸੇ ਕਰਕੇ ਇਸਨੂੰ ਚਲਾ ਵੀ ਨਹੀਂ ਸਕਦੀ।</string>
     <string name="notification_scale_to_square_image_summary">ਨੋਟੀਫਿਕੇਸ਼ਨ ਵਿੱਚ ਵਿਖਾਏ ਵੀਡਿਓ ਥੰਮਨੇਲ ਨੂੰ 16:9 ਦੀ ਬਜਾਏ 1:1 ਅਨੁਪਾਤ ਦਾ ਵਿਖਾਓ</string>
     <string name="open_with">ਇਸ ਵਿੱਚ ਖੋਲ੍ਹੋ</string>
     <string name="open_website_license">ਵੈਬਸਾਈਟ ਖੋਲ੍ਹੋ</string>
@@ -449,14 +447,10 @@
     <string name="playlist_page_summary">ਪਲੇਲਿਸਟ ਪੰਨਾ</string>
     <string name="video_detail_by">%s ਦੁਆਰਾ</string>
     <string name="channel_created_by">%s ਦੁਆਰਾ ਬਣਾਇਆ ਗਿਆ</string>
-    <string name="content_not_supported">ਇਹ ਸਮੱਗਰੀ ਹਾਲੇ ਨਿਊ-ਪਾਈਪ \'ਤੇ ਕੰਮ ਨਹੀਂ ਕਰਦੀ।
-\n
-\nਉਮੀਦ ਹੈ ਆਉਣ ਵਾਲ਼ੇ ਕਿਸੇ ਵਰਜਨ ਵਿੱਚ ਇਹ ਕੰਮ ਕਰੇਗੀ।</string>
+    <string name="content_not_supported">ਇਹ ਸਮੱਗਰੀ ਹਾਲੇ ਨਿਊ-ਪਾਈਪ \'ਤੇ ਕੰਮ ਨਹੀਂ ਕਰਦੀ। \n \nਉਮੀਦ ਹੈ ਆਉਣ ਵਾਲ਼ੇ ਕਿਸੇ ਵਰਜਨ ਵਿੱਚ ਇਹ ਕੰਮ ਕਰੇਗੀ।</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">ਤੇਜ਼ ਮੋਡ ਬੰਦ ਕਰੋ</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">ਤੇਜ਼ ਮੋਡ ਚਾਲੂ ਕਰੋ</string>
-    <string name="feed_load_error_terminated">ਲੇਖਕ ਦਾ ਖਾਤਾ ਬੰਦ ਹੋ ਚੁੱਕਿਆ ਹੈ।
-\nਨਿਊ-ਪਾਈਪ ਭਵਿੱਖ ਵਿੱਚ ਇਸ ਫ਼ੀਡ ਨੂੰ ਲੋਡ ਨਹੀਂ ਕਰ ਸਕੇਗੀ।
-\nਕੀ ਤੁਸੀਂ ਇਸ ਚੈਨਲ ਨੂੰ ਅਨ-ਸਬਸਕ੍ਰਾਈਬ ਕਰਨਾ ਚਾਹੋਗੇ\?</string>
+    <string name="feed_load_error_terminated">ਲੇਖਕ ਦਾ ਖਾਤਾ ਬੰਦ ਹੋ ਚੁੱਕਿਆ ਹੈ। \nਨਿਊ-ਪਾਈਪ ਭਵਿੱਖ ਵਿੱਚ ਇਸ ਫ਼ੀਡ ਨੂੰ ਲੋਡ ਨਹੀਂ ਕਰ ਸਕੇਗੀ। \nਕੀ ਤੁਸੀਂ ਇਸ ਚੈਨਲ ਨੂੰ ਅਨ-ਸਬਸਕ੍ਰਾਈਬ ਕਰਨਾ ਚਾਹੋਗੇ?</string>
     <string name="feed_load_error_account_info">\'%s\' ਵਾਸਤੇ ਫ਼ੀਡ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੀ।</string>
     <string name="feed_load_error">ਫ਼ੀਡ ਲੋਡ ਕਰਨ ਵਿੱਚ ਤਰੁੱਟੀ ਰਹੀ</string>
     <string name="feed_update_threshold_option_always_update">ਹਮੇਸ਼ਾਂ ਅੱਪਡੇਟ ਕਰੋ</string>
@@ -464,7 +458,7 @@
     <string name="settings_category_feed_title">ਫ਼ੀਡ</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">ਸਿਰਫ਼ ਉਹ ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ ਵਿਖਾਓ ਜੋ ਕਿਸੇ ਗਰੁੱਪ ਵਿੱਚ ਨਹੀਂ ਪਾਈਆਂ ਹੋਈਆਂ</string>
     <string name="feed_create_new_group_button_title">ਨਵਾਂ</string>
-    <string name="feed_group_dialog_delete_message">ਕੀ ਤੁਸੀਂ ਇਸ ਗਰੁੱਪ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ\?</string>
+    <string name="feed_group_dialog_delete_message">ਕੀ ਤੁਸੀਂ ਇਸ ਗਰੁੱਪ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
     <string name="feed_group_dialog_empty_name">ਗਰੁੱਪ ਦਾ ਨਾਮ ਨਹੀਂ</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d ਚੁਣੀ</item>
@@ -539,7 +533,7 @@
     <string name="comments_tab_description">ਟਿੱਪਣੀਆਂ</string>
     <string name="error_report_open_issue_button_text">ਗਿਟਹੱਬ \'ਤੇ ਜਾ ਕੇ ਇਤਲਾਹ ਦਿਓ</string>
     <string name="permission_display_over_apps">ਦੂਜੀਆਂ ਐਪਾਂ ਦੇ ਉੱਤੇ ਵਿਖਾਉਣ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ</string>
-    <string name="delete_playback_states_alert">ਕੀ ਸਾਰੀਆਂ ਪਲੇ-ਸਥਿਤੀਆਂ ਮਿਟਾਉਣੀਆਂ ਹਨ\?</string>
+    <string name="delete_playback_states_alert">ਕੀ ਸਾਰੀਆਂ ਪਲੇ-ਸਥਿਤੀਆਂ ਮਿਟਾਉਣੀਆਂ ਹਨ?</string>
     <string name="clear_playback_states_summary">ਸਾਰੀਆਂ ਪਲੇ-ਸਥਿਤੀਆਂ ਮਿਟਾਉਂਦਾ ਹੈ</string>
     <string name="clear_playback_states_title">ਪਲੇ-ਸਥਿਤੀਆਂ ਮਿਟਾਓ</string>
     <string name="hash_channel_name">ਵੀਡੀਓ ਹੈਸ਼ ਇਤਲਾਹ</string>
@@ -547,9 +541,7 @@
     <string name="artists">ਕਲਾਕਾਰ</string>
     <string name="songs">ਗੀਤ</string>
     <string name="videos_string">ਵੀਡੀਓ</string>
-    <string name="restricted_video">ਇਹ ਵੀਡੀਓ ਉਮਰ-ਪਾਬੰਦੀਸ਼ੁਦਾ ਹੈ।
-\n
-\nਜੇ ਤੁਸੀਂ ਇਸਨੂੰ ਵੇਖਣਾ ਚਾਹੁੰਦੇ ਹੋ ਤਾਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚੋਂ \"%1$s\" ਚਾਲੂ ਕਰੋ।</string>
+    <string name="restricted_video">ਇਹ ਵੀਡੀਓ ਉਮਰ-ਪਾਬੰਦੀਸ਼ੁਦਾ ਹੈ। \n \nਜੇ ਤੁਸੀਂ ਇਸਨੂੰ ਵੇਖਣਾ ਚਾਹੁੰਦੇ ਹੋ ਤਾਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚੋਂ \"%1$s\" ਚਾਲੂ ਕਰੋ।</string>
     <string name="youtube_restricted_mode_enabled_summary">ਯੂਟਿਊਬ \"ਪਾਬੰਦੀਸ਼ੁਦਾ ਮੋਡ\" ਉਪਲਬਧ ਕਰਾਉਂਦਾ ਹੈ ਜੋ ਬਾਲਗਾਂ ਵਾਲ਼ੀ ਸਮੱਗਰੀ ਲੁਕਾਉਂਦਾ ਹੈ</string>
     <string name="youtube_restricted_mode_enabled_title">ਯੂਟਿਊਬ ਦਾ ਪਾਬੰਦੀਸ਼ੁਦਾ ਮੋਡ ਚਾਲੂ ਕਰੋ</string>
     <string name="show_age_restricted_content_summary">ਉਹ ਸਮੱਗਰੀ ਵੀ ਵਿਖਾਓ ਜੋ ਉਮਰ-ਸੀਮਾ ਕਰਕੇ ਬੱਚਿਆਂ ਲਈ ਸ਼ਾਇਦ ਸਹੀ ਨਾ ਹੋਵੇ (ਜਿਵੇਂ 18+)</string>
@@ -561,7 +553,7 @@
     <string name="peertube_instance_url_help">ਤੁਹਾਡੇ ਪਸੰਦੀਦਾ ਇੰਸਟੈਂਸ %s \'ਤੇ ਲੱਭੋ</string>
     <string name="peertube_instance_url_summary">ਆਪਣੇ ਪਸੰਦੀਦਾ ਪੀਅਰਟਿਊਬ ਇੰਸਟੈਂਸ ਚੁਣੋ</string>
     <string name="peertube_instance_url_title">ਪੀਅਰਟਿਊਬ ਇੰਸਟੈਂਸ</string>
-    <string name="unsupported_url_dialog_message">URL ਪਛਾਣ ਨਹੀਂ ਹੋਇਆ। ਕਿਸੇ ਹੋਰ ਐਪ ਨਾਲ਼ ਖੋਲ੍ਹਣਾ ਹੈ\?</string>
+    <string name="unsupported_url_dialog_message">URL ਪਛਾਣ ਨਹੀਂ ਹੋਇਆ। ਕਿਸੇ ਹੋਰ ਐਪ ਨਾਲ਼ ਖੋਲ੍ਹਣਾ ਹੈ?</string>
     <string name="auto_queue_toggle">ਆਟੋ ਕਤਾਰਬੱਧ ਕਰੋ</string>
     <string name="show_meta_info_summary">ਸਟ੍ਰੀਮ ਨਿਰਮਾਤਾ, ਸਟ੍ਰੀਮ ਸਮੱਗਰੀ ਜਾਂ ਖੋਜ ਬੇਨਤੀ ਦੇ ਬਾਰੇ ਵਿੱਚ ਅਤਿਰਿਕਤ ਜਾਣਕਾਰੀ ਦਿੰਦੇ ਮੈਟਾ ਜਾਣਕਾਰੀ ਬਕਸੇ ਨੂੰ ਲੁਕਾਉਣ ਲਈ ਬੰਦ ਕਰੋ</string>
     <string name="show_meta_info_title">ਮੈਟਾ ਜਾਣਕਾਰੀ ਵਿਖਾਓ</string>
@@ -645,7 +637,7 @@
     <string name="any_network">ਕੋਈ ਵੀ ਨੈੱਟਵਰਕ</string>
     <string name="check_for_updates">ਅੱਪਡੇਟ ਲਈ ਜਾਂਚ ਕਰੋ</string>
     <string name="low_quality_smaller">ਘੱਟ ਗੁਣਵੱਤਾ (ਛੋਟਾ ਆਕਾਰ)</string>
-    <string name="delete_downloaded_files_confirm">ਡਿਸਕ ਤੋਂ ਸਾਰੀਆਂ ਡਾਊਨਲੋਡ ਕੀਤੀਆਂ ਫਾਈਲਾਂ ਹਟਾਓ\?</string>
+    <string name="delete_downloaded_files_confirm">ਡਿਸਕ ਤੋਂ ਸਾਰੀਆਂ ਡਾਊਨਲੋਡ ਕੀਤੀਆਂ ਫਾਈਲਾਂ ਹਟਾਓ?</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s ਡਾਊਨਲੋਡ ਹਟਾਇਆ</item>
         <item quantity="other">%1$s ਡਾਊਨਲੋਡ ਹਟਾਏ</item>
@@ -666,22 +658,11 @@
     <string name="streams_notifications_network_title">ਨੈੱਟਵਰਕ ਦੀ ਕਿਸਮ</string>
     <string name="manual_update_description">ਨਵੇਂ ਸੰਸਕਰਣਾਂ ਲਈ ਹੱਥੀਂ ਜਾਂਚ ਕਰੋ</string>
     <string name="high_quality_larger">ਵਧੀਆ ਗੁਣਵੱਤਾ (ਵੱਡਾ ਆਕਾਰ)</string>
-    <string name="no_appropriate_file_manager_message">ਇਸ ਕਾਰਜ ਲਈ ਕੋਈ ਢੁਕਵਾਂ ਫਾਈਲ ਮੈਨੇਜਰ ਨਹੀਂ ਮਿਲਿਆ।
-\nਕ੍ਰਿਪਾ ਕਰਕੇ ਫਾਈਲ ਮੈਨੇਜਰ ਇੰਨਸਟਾਲ ਕਰੋ ਜਾਂ ਡਾਊਨਲੋਡ ਸੈਟਿੰਗ ਵਿੱਚ \'%s\' ਅਸਮਰੱਥ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
+    <string name="no_appropriate_file_manager_message">ਇਸ ਕਾਰਜ ਲਈ ਕੋਈ ਢੁਕਵਾਂ ਫਾਈਲ ਮੈਨੇਜਰ ਨਹੀਂ ਮਿਲਿਆ। \nਕ੍ਰਿਪਾ ਕਰਕੇ ਫਾਈਲ ਮੈਨੇਜਰ ਇੰਨਸਟਾਲ ਕਰੋ ਜਾਂ ਡਾਊਨਲੋਡ ਸੈਟਿੰਗ ਵਿੱਚ \'%s\' ਅਸਮਰੱਥ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
     <string name="you_successfully_subscribed">ਤੁਸੀਂ ਇਸ ਚੈਨਲ ਨੂੰ ਸਬਸਕ੍ਰਾਈਬ ਕਰ ਲਿਆ ਹੈ</string>
     <string name="no_video_streams_available_for_external_players">ਕੋਈ ਵੀਡੀਓ ਸਟ੍ਰੀਮ ਬਾਹਰੀ ਪਲੇਅਰਾਂ ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ ਹੈ</string>
     <string name="progressive_load_interval_exoplayer_default">ਐਕਸੋਪਲੇਅਰ ਡਿਫ਼ਾਲਟ</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">ਕੀ ਤੁਹਾਨੂੰ ਲੱਗਦਾ ਹੈ ਫੀਡ ਹੌਲੀ ਲੋਡ ਹੋ ਰਹੀ ਹੈ\? ਅਜਿਹਾ ਹੈ ਤਾਂ ਤੇਜ਼ ਫੀਡ ਕ੍ਰਿਆਸ਼ੀਲ ਕਰਕੇ ਵੇਖੋ (ਤੁਸੀਂ ਇਸਨੂੰ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਜਾ ਕੇ ਜਾਂ ਹੇਠਲਾ ਬਟਨ ਦੱਬ ਕੇ ਕਰ ਸਕਦੇ ਹੋ )
-\n
-\nਨਿਊਪਾਈਪ ਫੀਡ ਲੋਡ ਕਰਨ ਲਈ ਦੋ ਤਰਾਂ ਦੀਆਂ ਵਿਧੀਆਂ ਦੀ ਪੇਸ਼ਕਸ਼ ਕਰਦੀ ਹੈ:
-\n• ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਚੈਨਲ ਤੋਂ ਪੂਰੀ ਜਾਣਕਾਰੀ ਲੈਂਦੀ ਹੈ ਜੋ ਹੌਲ੍ਹੀ ਮਿਲਦੀ ਹੈ।
-\n• ਸਮਰਪਿਤ ਸੇਵਾ ਅੰਤਮ ਬਿੰਦੂ ਤੋਂ, ਜੋ ਕਿ ਤੇਜ਼ ਮਿਲਦੀ ਹੈ ਪਰ ਆਮਤੌਰ ਤੇ ਅਧੂਰੀ/ਅਣਸਟੀਕ ਹੁੰਦੀ ਹੈ।
-\n
-\nਇਨਾਂ ਦੋਹਾਂ ਵਿੱਚ ਫਰਕ ਇਹ ਹੁੰਦਾ ਹੈ ਕਿ ਤੇਜ਼ ਤਰੀਕਾ ਆਮ ਤੌਰ ਤੇ ਕੁਝ ਜਾਣਕਾਰੀ ਨਹੀਂ ਦੇ ਪਾਉਂਦਾ ਜਿਵੇਂ ਕਿ ਨਗਾਂ ਦੀ ਅਵਧੀ ਜਾਂ ਕਿਸਮ(ਕਿ ਵੀਡੀਓ ਲਾਈਵ ਹਨ ਜਾਂ ਆਮ) ਤੇ ਘੱਟ ਨਗ ਦਿਖ ਸਕਦੇ ਹਨ।
-\n
-\nਯੂਟਿਊਬ ਇੱਕ ਅਜਿਹੀ ਸੇਵਾ ਹੈ ਜਿਹੜੀ RSS ਫੀਡ ਜ਼ਰੀਏ ਇਹ ਤੇਜ਼ ਤਰੀਕਾ ਪ੍ਰਦਾਨ ਕਰਦੀ ਹੈ।
-\n
-\nਤੁਹਾਡੀ ਚੋਣ ਇਸ ਗੱਲ ਤੇ ਮੁਨੱਸਰ ਕਰਦੀ ਹੈ ਕਿ ਤੁਸੀਂ ਗਤੀ ਤੇ ਸਟੀਕਤਾ ਵਿੱਚੋਂ ਕਿਸ ਨੂੰ ਪ੍ਰਾਥਮਿਕਤਾ ਦਿੰਦੇ ਹੋ।</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">ਕੀ ਤੁਹਾਨੂੰ ਲੱਗਦਾ ਹੈ ਫੀਡ ਹੌਲੀ ਲੋਡ ਹੋ ਰਹੀ ਹੈ? ਅਜਿਹਾ ਹੈ ਤਾਂ ਤੇਜ਼ ਫੀਡ ਕ੍ਰਿਆਸ਼ੀਲ ਕਰਕੇ ਵੇਖੋ (ਤੁਸੀਂ ਇਸਨੂੰ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਜਾ ਕੇ ਜਾਂ ਹੇਠਲਾ ਬਟਨ ਦੱਬ ਕੇ ਕਰ ਸਕਦੇ ਹੋ ) \n \nਨਿਊਪਾਈਪ ਫੀਡ ਲੋਡ ਕਰਨ ਲਈ ਦੋ ਤਰਾਂ ਦੀਆਂ ਵਿਧੀਆਂ ਦੀ ਪੇਸ਼ਕਸ਼ ਕਰਦੀ ਹੈ: \n• ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਚੈਨਲ ਤੋਂ ਪੂਰੀ ਜਾਣਕਾਰੀ ਲੈਂਦੀ ਹੈ ਜੋ ਹੌਲ੍ਹੀ ਮਿਲਦੀ ਹੈ। \n• ਸਮਰਪਿਤ ਸੇਵਾ ਅੰਤਮ ਬਿੰਦੂ ਤੋਂ, ਜੋ ਕਿ ਤੇਜ਼ ਮਿਲਦੀ ਹੈ ਪਰ ਆਮਤੌਰ ਤੇ ਅਧੂਰੀ/ਅਣਸਟੀਕ ਹੁੰਦੀ ਹੈ। \n \nਇਨਾਂ ਦੋਹਾਂ ਵਿੱਚ ਫਰਕ ਇਹ ਹੁੰਦਾ ਹੈ ਕਿ ਤੇਜ਼ ਤਰੀਕਾ ਆਮ ਤੌਰ ਤੇ ਕੁਝ ਜਾਣਕਾਰੀ ਨਹੀਂ ਦੇ ਪਾਉਂਦਾ ਜਿਵੇਂ ਕਿ ਨਗਾਂ ਦੀ ਅਵਧੀ ਜਾਂ ਕਿਸਮ(ਕਿ ਵੀਡੀਓ ਲਾਈਵ ਹਨ ਜਾਂ ਆਮ) ਤੇ ਘੱਟ ਨਗ ਦਿਖ ਸਕਦੇ ਹਨ। \n \nਯੂਟਿਊਬ ਇੱਕ ਅਜਿਹੀ ਸੇਵਾ ਹੈ ਜਿਹੜੀ RSS ਫੀਡ ਜ਼ਰੀਏ ਇਹ ਤੇਜ਼ ਤਰੀਕਾ ਪ੍ਰਦਾਨ ਕਰਦੀ ਹੈ। \n \nਤੁਹਾਡੀ ਚੋਣ ਇਸ ਗੱਲ ਤੇ ਮੁਨੱਸਰ ਕਰਦੀ ਹੈ ਕਿ ਤੁਸੀਂ ਗਤੀ ਤੇ ਸਟੀਕਤਾ ਵਿੱਚੋਂ ਕਿਸ ਨੂੰ ਪ੍ਰਾਥਮਿਕਤਾ ਦਿੰਦੇ ਹੋ।</string>
     <string name="fast_mode">ਤੇਜ ਮੋਡ</string>
     <string name="import_subscriptions_hint">3-ਡੌਟ ਮੀਨੂ ਤੋਂ ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ ਨੂੰ ਇੰਪੋਰਟ ਜਾਂ ਐਕਸਪੋਰਟ ਕਰੋ</string>
     <string name="app_update_unavailable_toast">ਤੁਸੀਂ ਨਿਊਪਾਈਪ ਦਾ ਨਵੀਨਤਮ ਸੰਸਕਰਣ ਚਲਾ ਰਹੇ ਹੋ</string>
@@ -694,8 +675,8 @@
     <string name="playlist_add_stream_success_duplicate">ਡੁਪਲੀਕੇਟ ਜੋੜ੍ਹਿਆ ਗਿਆ %d ਵਾਰ</string>
     <string name="ignore_hardware_media_buttons_summary">ਉਪਯੋਗੀ ਹੈ, ਉਦਾਹਰਨ ਲਈ, ਜੇਕਰ ਤੁਸੀਂ ਟੁੱਟੇ ਭੌਤਿਕ ਬਟਨਾਂ ਵਾਲਾ ਹੈੱਡਸੈੱਟ ਵਰਤ ਰਹੇ ਹੋ</string>
     <string name="remove_duplicates">ਡੁਪਲੀਕੇਟ ਹਟਾਓ</string>
-    <string name="remove_duplicates_title">ਡੁਪਲੀਕੇਟ ਹਟਾਉਣੇ ਹਨ\?</string>
-    <string name="remove_duplicates_message">ਕੀ ਤੁਸੀਂ ਇਸ ਪਲੇਲਿਸਟ ਵਿੱਚ ਸਾਰੀਆਂ ਡੁਪਲੀਕੇਟ ਸਟ੍ਰੀਮਾਂ ਨੂੰ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ\?</string>
+    <string name="remove_duplicates_title">ਡੁਪਲੀਕੇਟ ਹਟਾਉਣੇ ਹਨ?</string>
+    <string name="remove_duplicates_message">ਕੀ ਤੁਸੀਂ ਇਸ ਪਲੇਲਿਸਟ ਵਿੱਚ ਸਾਰੀਆਂ ਡੁਪਲੀਕੇਟ ਸਟ੍ਰੀਮਾਂ ਨੂੰ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
     <string name="feed_hide_streams_title">ਨਿਮਨਲਿਖਤ ਸਟ੍ਰੀਮਾਂ ਵਿਖਾਓ</string>
     <string name="feed_show_watched">ਪੂਰੀ ਵੇਖਿਆ</string>
     <string name="feed_show_partially_watched">ਅੰਸ਼ਕ ਤੌਰ \'ਤੇ ਵੇਖਿਆ ਗਿਆ</string>
@@ -710,9 +691,7 @@
     <string name="right_gesture_control_summary">ਪਲੇਅਰ ਸਕ੍ਰੀਨ ਦੇ ਸੱਜੇ ਅੱਧ ਲਈ ਸੰਕੇਤ ਚੁਣੋ</string>
     <string name="volume">ਆਵਾਜ਼</string>
     <string name="use_exoplayer_decoder_fallback_summary">ਇਹ ਆਪਸ਼ਨ ਨੂੰ ਇਨੇਬਲ ਕਰੋ ਜੇ ਤੁਹਾਨੂੰ ਡੀਕੋਡਰ ਸ਼ੁਰੂ ਕਰਨ ਦੀਆਂ ਸਮੱਸਿਆਵਾਂ ਹਨ, ਜੋ ਪ੍ਰਾਇਮਰੀ ਡੀਕੋਡਰਾਂ ਦੀ ਸ਼ੁਰੂਆਤ ਅਸਫਲ ਹੋਣ ਤੇ ਹੇਠਲੇ-ਪ੍ਰਾਥਮਿਕਤਾ ਡੀਕੋਡਰਾਂ \'ਤੇ ਵਾਪਸ ਲੈ ਜਾਂਦੀ ਹੈ। ਇਸ ਨਾਲ ਪ੍ਰਾਇਮਰੀ ਡੀਕੋਡਰਾਂ ਦੀ ਤੁਲਨਾ ਮਾੜੀ ਪਲੇਅਬੈਕ ਕਾਰਗੁਜ਼ਾਰੀ ਹੋ ਸਕਦੀ ਹੈ</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_summary">ਇਹ ਵਰਕਅਰਾਊਂਡ ਸਤਹ ਨੂੰ ਸਿੱਧਾ ਕੋਡੇਕ ਤੇ ਸੈੱਟ ਕਰਨ ਦੀ ਬਜਾਏ, ਸਤਹ ਵਿੱਚ ਤਬਦੀਲੀ ਹੋਣ ਤੇ ਵੀਡੀਓ ਕੋਡੈਕਸ ਨੂੰ ਜਾਰੀ ਅਤੇ ਮੁੜ-ਬਹਾਲ ਕਰਦਾ ਹੈ। ਇਸ ਸਮੱਸਿਆ ਵਾਲੇ ਕੁਝ ਡਿਵਾਈਸਾਂ \'ਤੇ ਐਕਸੋਪਲੇਅਰ ਦੁਆਰਾ ਇਹ ਪਹਿਲਾਂ ਹੀ ਵਰਤਿਆ ਜਾ ਰਿਹਾ ਹੈ, ਇਸ ਸੈਟਿੰਗ ਦਾ ਸਿਰਫ਼ ਐਂਡਰੌਇਡ 6 ਅਤੇ ਉਸ ਤੋਂ ਵੱਧ \'ਤੇ ਪ੍ਰਭਾਵ ਹੈ
-\n
-\nਇਸ ਵਿਕਲਪ ਨੂੰ ਸਮਰੱਥ ਕਰਨ ਨਾਲ ਮੌਜੂਦਾ ਵੀਡੀਓ ਪਲੇਅਰ ਨੂੰ ਸਵਿੱਚ ਕਰਨ ਜਾਂ ਪੂਰੀ ਸਕ੍ਰੀਨ \'ਤੇ ਸਵਿੱਚ ਕਰਨ ਵੇਲੇ ਪਲੇਅਬੈਕ ਤਰੁੱਟੀਆਂ ਨੂੰ ਹੱਲ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">ਇਹ ਵਰਕਅਰਾਊਂਡ ਸਤਹ ਨੂੰ ਸਿੱਧਾ ਕੋਡੇਕ ਤੇ ਸੈੱਟ ਕਰਨ ਦੀ ਬਜਾਏ, ਸਤਹ ਵਿੱਚ ਤਬਦੀਲੀ ਹੋਣ ਤੇ ਵੀਡੀਓ ਕੋਡੈਕਸ ਨੂੰ ਜਾਰੀ ਅਤੇ ਮੁੜ-ਬਹਾਲ ਕਰਦਾ ਹੈ। ਇਸ ਸਮੱਸਿਆ ਵਾਲੇ ਕੁਝ ਡਿਵਾਈਸਾਂ \'ਤੇ ਐਕਸੋਪਲੇਅਰ ਦੁਆਰਾ ਇਹ ਪਹਿਲਾਂ ਹੀ ਵਰਤਿਆ ਜਾ ਰਿਹਾ ਹੈ, ਇਸ ਸੈਟਿੰਗ ਦਾ ਸਿਰਫ਼ ਐਂਡਰੌਇਡ 6 ਅਤੇ ਉਸ ਤੋਂ ਵੱਧ \'ਤੇ ਪ੍ਰਭਾਵ ਹੈ \n \nਇਸ ਵਿਕਲਪ ਨੂੰ ਸਮਰੱਥ ਕਰਨ ਨਾਲ ਮੌਜੂਦਾ ਵੀਡੀਓ ਪਲੇਅਰ ਨੂੰ ਸਵਿੱਚ ਕਰਨ ਜਾਂ ਪੂਰੀ ਸਕ੍ਰੀਨ \'ਤੇ ਸਵਿੱਚ ਕਰਨ ਵੇਲੇ ਪਲੇਅਬੈਕ ਤਰੁੱਟੀਆਂ ਨੂੰ ਹੱਲ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ</string>
     <string name="prefer_original_audio_title">ਮੂਲ ਆਡੀਓ ਨੂੰ ਤਰਜੀਹ ਦਿਓ</string>
     <string name="prefer_original_audio_summary">ਭਾਸ਼ਾ ਦੀ ਪਰਵਾਹ ਕੀਤੇ ਬਿਨਾਂ ਮੂਲ ਆਡੀਓ ਟਰੈਕ ਚੁਣੋ</string>
     <string name="prefer_descriptive_audio_title">ਵਰਣਨਾਤਮਕ ਆਡੀਓ ਨੂੰ ਤਰਜੀਹ ਦਿਓ</string>
@@ -774,8 +753,7 @@
     <string name="metadata_thumbnails">ਥੰਮਨੇਲ</string>
     <string name="share_playlist_with_list">URL ਸੂਚੀ ਸਾਂਝੀ ਕਰੋ</string>
     <string name="share_playlist_with_titles">ਸਿਰਲੇਖਾਂ ਨਾਲ ਸਾਂਝਾ ਕਰੋ</string>
-    <string name="share_playlist_content_details">%1$s
-\n%2$s</string>
+    <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="share_playlist">ਪਲੇਲਿਸਟ ਸਾਂਝੀ ਕਰੋ</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <plurals name="replies">
@@ -786,14 +764,11 @@
     <string name="notification_actions_summary_android13">ਇਸ \'ਤੇ ਟੈਪ ਕਰਕੇ ਹੇਠਾਂ ਹਰੇਕ ਸੂਚਨਾ ਕਾਰਵਾਈ ਨੂੰ ਸੰਪਾਦਿਤ ਕਰੋ। ਪਹਿਲੀਆਂ ਤਿੰਨ ਕਾਰਵਾਈਆਂ (ਚਲਾਓ/ਰੋਕੋ, ਪਿਛਲਾ ਅਤੇ ਅਗਲਾ) ਸਿਸਟਮ ਦੁਆਰਾ ਸੈੱਟ ਕੀਤੀਆਂ ਗਈਆਂ ਹਨ ਅਤੇ ਉਹਨਾਂ ਨੂੰ ਅਨੁਕੂਲਿਤ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ।</string>
     <string name="show_less">ਘੱਟ ਵਿਖਾਓ</string>
     <string name="yes">ਹਾਂ</string>
-    <string name="auto_update_check_description">ਨਿਊਪਾਈਪ ਸਮੇਂ-ਸਮੇਂ \'ਤੇ ਨਵੇਂ ਸੰਸਕਰਣਾਂ ਦੀ ਸਵੈਚਲਿਤ ਤੌਰ \'ਤੇ ਜਾਂਚ ਕਰ ਸਕਦੀ ਹੈ ਅਤੇ ਇੱਕ ਵਾਰ ਉਪਲਬਧ ਹੋਣ \'ਤੇ ਤੁਹਾਨੂੰ ਸੂਚਿਤ ਕਰ ਸਕਦੀ ਹੈ।
-\nਕੀ ਤੁਸੀਂ ਇਸਨੂੰ ਇਨੇਬਲ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+    <string name="auto_update_check_description">ਨਿਊਪਾਈਪ ਸਮੇਂ-ਸਮੇਂ \'ਤੇ ਨਵੇਂ ਸੰਸਕਰਣਾਂ ਦੀ ਸਵੈਚਲਿਤ ਤੌਰ \'ਤੇ ਜਾਂਚ ਕਰ ਸਕਦੀ ਹੈ ਅਤੇ ਇੱਕ ਵਾਰ ਉਪਲਬਧ ਹੋਣ \'ਤੇ ਤੁਹਾਨੂੰ ਸੂਚਿਤ ਕਰ ਸਕਦੀ ਹੈ। \nਕੀ ਤੁਸੀਂ ਇਸਨੂੰ ਇਨੇਬਲ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
     <string name="settings_category_backup_restore_title">ਬੈਕਅੱਪ ਅਤੇ ਰੀਸਟੋਰ</string>
     <string name="reset_settings_title">ਸੈਟਿੰਗਾਂ ਨੂੰ ਰੀਸੈਟ ਕਰੋ</string>
     <string name="reset_settings_summary">ਸਾਰੀਆਂ ਸੈਟਿੰਗਾਂ ਨੂੰ ਉਹਨਾਂ ਦੇ ਡਿਫ਼ਾਲਟ ਮੁੱਲਾਂ \'ਤੇ ਰੀਸੈਟ ਕਰੋ</string>
-    <string name="reset_all_settings">ਸਾਰੀਆਂ ਸੈਟਿੰਗਾਂ ਨੂੰ ਰੀਸੈੱਟ ਕਰਨ ਨਾਲ ਤੁਹਾਡੀਆਂ ਸਾਰੀਆਂ ਤਰਜੀਹੀ ਸੈਟਿੰਗਾਂ ਰੱਦ ਹੋ ਜਾਣਗੀਆਂ ਅਤੇ ਐਪ ਰੀਸਟਾਰਟ ਹੋ ਜਾਵੇਗਾ।
-\n
-\nਕੀ ਤੁਸੀਂ ਯਕੀਨੀ ਤੌਰ \'ਤੇ ਅੱਗੇ ਵਧਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+    <string name="reset_all_settings">ਸਾਰੀਆਂ ਸੈਟਿੰਗਾਂ ਨੂੰ ਰੀਸੈੱਟ ਕਰਨ ਨਾਲ ਤੁਹਾਡੀਆਂ ਸਾਰੀਆਂ ਤਰਜੀਹੀ ਸੈਟਿੰਗਾਂ ਰੱਦ ਹੋ ਜਾਣਗੀਆਂ ਅਤੇ ਐਪ ਰੀਸਟਾਰਟ ਹੋ ਜਾਵੇਗਾ। \n \nਕੀ ਤੁਸੀਂ ਯਕੀਨੀ ਤੌਰ \'ਤੇ ਅੱਗੇ ਵਧਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
     <string name="error_insufficient_storage">ਡਿਵਾਈਸ \'ਤੇ ਲੋੜੀਂਦੀ ਖਾਲੀ ਥਾਂ ਨਹੀਂ ਹੈ</string>
     <string name="no">ਨਹੀਂ</string>
     <string name="import_settings_vulnerable_format">ਇੰਪੋਰਟ ਕੀਤੇ ਜਾ ਰਹੇ ਐਕਸਪੋਰਟ ਵਿੱਚ ਸੈਟਿੰਗਾਂ ਇੱਕ ਕਮਜ਼ੋਰ ਫਾਰਮੈਟ ਦੀ ਵਰਤੋਂ ਕਰਦੀਆਂ ਹਨ ਜੋ ਨਿਊਪਾਈਪ 0.27.0 ਤੋਂ ਬਰਤਰਫ਼ ਕੀਤਾ ਗਿਆ ਸੀ। ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਇੰਪੋਰਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਨਿਰਯਾਤ ਇੱਕ ਭਰੋਸੇਯੋਗ ਸਰੋਤ ਤੋਂ ਹੈ, ਅਤੇ ਸਿਰਫ਼ ਨਿਊਪਾਈਪ 0.27.0 ਜਾਂ ਇਸਤੋਂ ਨਵੇਂ ਤੋਂ ਪ੍ਰਾਪਤ ਕੀਤੇ ਐਕਸਪੋਰਟ ਦੀ ਵਰਤੋਂ ਕਰਨ ਨੂੰ ਤਰਜੀਹ ਦਿਓ। ਇਸ ਕਮਜ਼ੋਰ ਫਾਰਮੈਟ ਵਿੱਚ ਸੈਟਿੰਗਾਂ ਨੂੰ ਆਯਾਤ ਕਰਨ ਲਈ ਸਮਰਥਨ ਜਲਦੀ ਹੀ ਪੂਰੀ ਤਰ੍ਹਾਂ ਹਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ ਅਤੇ ਫਿਰ ਨਿਊਪਾਈਪ ਦੇ ਪੁਰਾਣੇ ਸੰਸਕਰਣ ਹੁਣ ਨਵੇਂ ਸੰਸਕਰਣਾਂ ਤੋਂ ਐਕਸਪੋਰਟ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਨੂੰ ਇੰਪੋਰਟ ਕਰਨ ਦੇ ਯੋਗ ਨਹੀਂ ਹੋਣਗੇ।</string>

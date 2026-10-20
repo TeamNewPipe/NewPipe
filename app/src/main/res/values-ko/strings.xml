@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="upload_date_text">%1$s에 업로드됨</string>
-    <string name="no_player_found">스트림 플레이어가 발견되지 않았습니다. VLC를 설치할까요\?</string>
+    <string name="no_player_found">스트림 플레이어가 발견되지 않았습니다. VLC를 설치할까요?</string>
     <string name="install">설치</string>
     <string name="cancel">취소</string>
     <string name="open_in_browser">브라우저에서 열기</string>
@@ -9,14 +9,14 @@
     <string name="download">다운로드</string>
     <string name="search">검색</string>
     <string name="settings">설정</string>
-    <string name="did_you_mean">\"%1$s\"를 찾으셨나요\?</string>
+    <string name="did_you_mean">\"%1$s\"를 찾으셨나요?</string>
     <string name="share_dialog_title">다음으로 공유</string>
     <string name="download_path_title">비디오 다운로드 폴더</string>
     <string name="download_path_summary">다운로드된 비디오 파일이 이 곳에 저장됩니다</string>
     <string name="download_path_dialog_title">비디오 파일이 다운로드 될 폴더를 선택하세요</string>
     <string name="default_resolution_title">기본 해상도</string>
     <string name="play_with_kodi_title">Kodi로 재생</string>
-    <string name="kore_not_found">누락된 Kore 앱을 설치하겠습니까\?</string>
+    <string name="kore_not_found">누락된 Kore 앱을 설치하겠습니까?</string>
     <string name="show_play_with_kodi_title">\"Kodi로 재생\" 옵션 표시</string>
     <string name="show_play_with_kodi_summary">비디오를 Kodi 미디어 센터를 사용해 재생하는 옵션을 표시합니다</string>
     <string name="play_audio">오디오</string>
@@ -134,8 +134,7 @@
     <string name="msg_wait">잠시만 기다리세요…</string>
     <string name="msg_copied">클립보드에 복사됨</string>
     <string name="no_available_dir">다운로드 할 폴더를 설정에서 지정하세요</string>
-    <string name="msg_popup_permission">이 권한은 팝업 모드에서
-\n열기 위해 필요합니다</string>
+    <string name="msg_popup_permission">이 권한은 팝업 모드에서 \n열기 위해 필요합니다</string>
     <string name="recaptcha_request_toast">reCAPTCHA 확인 요청됨</string>
     <string name="settings_category_downloads_title">다운로드</string>
     <string name="settings_file_charset_title">파일명에 허용되는 문자</string>
@@ -255,25 +254,10 @@
     <string name="previous_export">이전 내보내기</string>
     <string name="subscriptions_import_unsuccessful">구독 목록 가져오기 실패</string>
     <string name="subscriptions_export_unsuccessful">구독 목록 내보내기 실패</string>
-    <string name="import_youtube_instructions">Google 테이크아웃에서 YouTube 구독목록 가져오기:
-\n
-\n1. 이 URL로 이동합니다: %1$s
-\n2. 요청에 따라 로그인 합니다
-\n3. \"모든 데이터 포함됨\"을 클릭한 뒤, \"모두 선택 해제\"를 클릭한 후 \"구독정보\"만 선택하고 \"확인\"을 클릭합니다
-\n4. \"다음 단계\"를 클릭한 다음 \"내보내기 생성\"을 클릭합니다
-\n5. \"다운로드\" 버튼이 나타나면 클릭합니다
-\n6. 아래의 \"파일 가져오기\"를 클릭하고 다운로드한 .zip 파일을 선택합니다
-\n7. [.zip 파일 가져오기를 실패한 경우] .csv 파일(일반적으로 \"YouTube 및 YouTube Music/구독정보/구독정보.csv\")을 압축해제한 다음, 아래의 \"파일 가져오기\"를 클릭한 후 압축해제한 csv 파일을 선택합니다</string>
-    <string name="import_soundcloud_instructions">URL 또는 ID를 입력하여 SoundCloud 프로필을 가져옵니다:
-\n 
-\n1. 웹 브라우저에서 \"데스크톱 모드\"를 활성화합니다(모바일 장치에서는 사이트를 사용할 수 없습니다)
-\n2. 다음 URL로 이동: %1$s
-\n3. 요청 시 로그인
-\n4. 리디렉션된 프로필 URL을 복사합니다.</string>
+    <string name="import_youtube_instructions">Google 테이크아웃에서 YouTube 구독목록 가져오기: \n \n1. 이 URL로 이동합니다: %1$s \n2. 요청에 따라 로그인 합니다 \n3. \"모든 데이터 포함됨\"을 클릭한 뒤, \"모두 선택 해제\"를 클릭한 후 \"구독정보\"만 선택하고 \"확인\"을 클릭합니다 \n4. \"다음 단계\"를 클릭한 다음 \"내보내기 생성\"을 클릭합니다 \n5. \"다운로드\" 버튼이 나타나면 클릭합니다 \n6. 아래의 \"파일 가져오기\"를 클릭하고 다운로드한 .zip 파일을 선택합니다 \n7. [.zip 파일 가져오기를 실패한 경우] .csv 파일(일반적으로 \"YouTube 및 YouTube Music/구독정보/구독정보.csv\")을 압축해제한 다음, 아래의 \"파일 가져오기\"를 클릭한 후 압축해제한 csv 파일을 선택합니다</string>
+    <string name="import_soundcloud_instructions">URL 또는 ID를 입력하여 SoundCloud 프로필을 가져옵니다: \n \n1. 웹 브라우저에서 \"데스크톱 모드\"를 활성화합니다(모바일 장치에서는 사이트를 사용할 수 없습니다) \n2. 다음 URL로 이동: %1$s \n3. 요청 시 로그인 \n4. 리디렉션된 프로필 URL을 복사합니다.</string>
     <string name="import_soundcloud_instructions_hint">프로필ID, soundcloud.com/프로필ID</string>
-    <string name="import_network_expensive_warning">경고: 데이터가 많이 소모될 수 있습니다. 
-\n 
-\n계속하시겠습니까\?</string>
+    <string name="import_network_expensive_warning">경고: 데이터가 많이 소모될 수 있습니다. \n \n계속하시겠습니까?</string>
     <string name="thumbnail_cache_wipe_complete_notice">이미지 캐시 지워짐</string>
     <string name="metadata_cache_wipe_title">캐시된 메타데이터 지우기</string>
     <string name="metadata_cache_wipe_summary">캐시된 모든 웹페이지 데이터 지우기</string>
@@ -291,21 +275,19 @@
     <string name="playlists">재생목록</string>
     <string name="clear_views_history_title">시청 기록 삭제하기</string>
     <string name="clear_views_history_summary">동영상 시청 기록과 저장된 재생 위치를 삭제합니다</string>
-    <string name="delete_view_history_alert">모든 시청 기록을 삭제하시겠습니까\?</string>
+    <string name="delete_view_history_alert">모든 시청 기록을 삭제하시겠습니까?</string>
     <string name="watch_history_deleted">동영상 시청 기록이 삭제되었습니다</string>
     <string name="clear_search_history_title">검색 기록 삭제</string>
     <string name="clear_search_history_summary">검색 기록을 모두 삭제합니다</string>
-    <string name="delete_search_history_alert">모든 검색 기록을 삭제하시겠습니까\?</string>
+    <string name="delete_search_history_alert">모든 검색 기록을 삭제하시겠습니까?</string>
     <string name="search_history_deleted">검색 기록이 삭제되었습니다</string>
     <string name="privacy_policy_title">NewPipe의 개인정보취급방침</string>
-    <string name="privacy_policy_encouragement">NewPipe 프로젝트는 사용자의 개인 정보 보호를 최우선으로 생각하며, 동의 없이 어떠한 정보도 수집하지 않습니다. 
-\nNewPipe 개인정보 보호 정책에서는 오류 보고 시 어떠한 정보가 수집되고 저장되는지 자세히 명시되어 있습니다.</string>
+    <string name="privacy_policy_encouragement">NewPipe 프로젝트는 사용자의 개인 정보 보호를 최우선으로 생각하며, 동의 없이 어떠한 정보도 수집하지 않습니다. \nNewPipe 개인정보 보호 정책에서는 오류 보고 시 어떠한 정보가 수집되고 저장되는지 자세히 명시되어 있습니다.</string>
     <string name="read_privacy_policy">개인정보취급방침 읽기</string>
     <string name="app_license">NewPipe는 카피레프트 자유 소프트웨어입니다: 마음대로 사용하고, 연구하고, 공유하고, 개선할 수 있습니다. 특히 자유 소프트웨어 재단에서 발행한 GNU 일반 공중 사용 라이센스의 조건에 따라 라이센스 버전 3 또는 (귀하의 선택에 따라) 이후 버전을 재배포 및/또는 수정할 수 있습니다.</string>
-    <string name="import_settings">설정도 가져오시겠습니까\?</string>
+    <string name="import_settings">설정도 가져오시겠습니까?</string>
     <string name="skip_silence_checkbox">무음 구간 빨리 감기</string>
-    <string name="start_accept_privacy_policy">유럽 연합 일반 데이터 보호 규정(GDPR)을 준수하기 위해 NewPipe의 개인 정보 보호 정책에 주의를 기울입니다. 주의 깊게 읽으십시오.
-\n버그 보고서를 보내려면 수락해야 합니다.</string>
+    <string name="start_accept_privacy_policy">유럽 연합 일반 데이터 보호 규정(GDPR)을 준수하기 위해 NewPipe의 개인 정보 보호 정책에 주의를 기울입니다. 주의 깊게 읽으십시오. \n버그 보고서를 보내려면 수락해야 합니다.</string>
     <string name="accept">동의</string>
     <string name="decline">동의하지 않음</string>
     <string name="limit_data_usage_none_description">제한 없음</string>
@@ -320,7 +302,7 @@
     <string name="app_update_notification_channel_name">앱 업데이트 알림</string>
     <string name="app_update_notification_channel_description">새 NewPipe 버전 알림</string>
     <string name="download_to_sdcard_error_title">외부 저장소 없음</string>
-    <string name="download_to_sdcard_error_message">SD 카드로 다운로드 할 수 없습니다. 다운로드 폴더 경로를 초기화 하시겠습니까\?</string>
+    <string name="download_to_sdcard_error_message">SD 카드로 다운로드 할 수 없습니다. 다운로드 폴더 경로를 초기화 하시겠습니까?</string>
     <string name="one_item_deleted">1개의 항목이 삭제되었습니다.</string>
     <string name="minimize_on_exit_title">앱 전환시 최소화</string>
     <string name="minimize_on_exit_summary">비디오 플레이어에서 다른 앱으로 전환 시 다음과 같은 동작 실행 — %s</string>
@@ -331,7 +313,7 @@
     <string name="playback_reset">초기화</string>
     <string name="saved_tabs_invalid_json">저장된 탭을 불러올 수 없었으므로, 기본 탭을 사용합니다</string>
     <string name="restore_defaults">기본설정으로 되돌리기</string>
-    <string name="restore_defaults_confirmation">초기 설정으로 복원하시겠습니까\?</string>
+    <string name="restore_defaults_confirmation">초기 설정으로 복원하시겠습니까?</string>
     <string name="subscribers_count_not_available">구독자 수를 가져올 수 없습니다</string>
     <string name="main_page_content_summary">메인 화면에 표시할 탭을 설정합니다</string>
     <string name="updates_setting_title">업데이트</string>
@@ -389,18 +371,17 @@
     <string name="error_insufficient_storage_left">남은 저장공간이 없습니다</string>
     <string name="error_progress_lost">파일이 삭제되어 진행이 중지되었습니다</string>
     <string name="error_timeout">연결시간 초과</string>
-    <string name="confirm_prompt">모든 다운로드 기록과 파일을 삭제합니다.확실합니까\?</string>
+    <string name="confirm_prompt">모든 다운로드 기록과 파일을 삭제합니다.확실합니까?</string>
     <string name="enable_queue_limit">다운로드 대기 제한</string>
     <string name="start_downloads">다운로드 시작</string>
     <string name="pause_downloads">다운로드 일시정지</string>
     <string name="downloads_storage_ask_title">다운로드 위치를 묻기</string>
-    <string name="downloads_storage_ask_summary">각 다운로드를 저장할 위치를 묻는 메시지가 표시됩니다.
-\n외부 SD 카드에 다운로드하려면 시스템 폴더 선택기(SAF) 활성화</string>
+    <string name="downloads_storage_ask_summary">각 다운로드를 저장할 위치를 묻는 메시지가 표시됩니다. \n외부 SD 카드에 다운로드하려면 시스템 폴더 선택기(SAF) 활성화</string>
     <string name="downloads_storage_use_saf_title">시스템 폴더 선택기(SAF) 사용</string>
     <string name="downloads_storage_use_saf_summary">\'저장영역 접속 프레임워크\'를 통해 외부 SD 카드로 다운로드 가능</string>
     <string name="clear_playback_states_title">재생 위치 삭제</string>
     <string name="clear_playback_states_summary">모든 재생 위치를 삭제</string>
-    <string name="delete_playback_states_alert">모든 재생 위치를 삭제하시겠습니까\?</string>
+    <string name="delete_playback_states_alert">모든 재생 위치를 삭제하시겠습니까?</string>
     <plurals name="videos">
         <item quantity="other">%s 동영상</item>
     </plurals>
@@ -436,7 +417,7 @@
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="other">%d 선택</item>
     </plurals>
-    <string name="feed_group_dialog_delete_message">이 그룹을 삭제하시겠어요\?</string>
+    <string name="feed_group_dialog_delete_message">이 그룹을 삭제하시겠어요?</string>
     <string name="feed_create_new_group_button_title">새로운</string>
     <string name="settings_category_feed_title">피드</string>
     <string name="feed_processing_message">피드를 프로세싱합니다…</string>
@@ -452,9 +433,7 @@
     <string name="infinite_videos">∞ 비디오</string>
     <string name="more_than_100_videos">100+ 비디오</string>
     <string name="songs">노래</string>
-    <string name="restricted_video">이 비디오는 연령제한이 있습니다.
-\n
-\n만약, 시청을 원한다면 설정에 \"%1$s\"를 활성화 하세요.</string>
+    <string name="restricted_video">이 비디오는 연령제한이 있습니다. \n \n만약, 시청을 원한다면 설정에 \"%1$s\"를 활성화 하세요.</string>
     <string name="done">완료</string>
     <string name="artists">아티스트</string>
     <string name="albums">앨범</string>
@@ -483,7 +462,7 @@
     <string name="remove_watched_popup_title">시청 기록을 지우겠습니까?</string>
     <string name="remove_watched">시청 기록 지우기</string>
     <string name="title_activity_play_queue">재생목록 실행</string>
-    <string name="unsupported_url_dialog_message">URL을 인식할 수 없습니다. 다른 앱으로 여시겠습니까\?</string>
+    <string name="unsupported_url_dialog_message">URL을 인식할 수 없습니다. 다른 앱으로 여시겠습니까?</string>
     <string name="clear_queue_confirmation_title">대기열을 지우기 전에 확인 요청</string>
     <string name="notification_colorize_summary">안드로이드에서 썸네일 이미지의 기본 색상에 따라 알림 색상을 사용자 지정 (일부 기기에서는 사용할 수 없음)</string>
     <string name="notification_action_buffering">버퍼링</string>
@@ -561,7 +540,7 @@
     <string name="low_quality_smaller">저품질 (작게)</string>
     <string name="dont_show">표시하지 않음</string>
     <string name="checking_updates_toast">업데이트 확인 중…</string>
-    <string name="delete_downloaded_files_confirm">디스크에서 다운로드한 모든 파일을 지우겠습니까\?</string>
+    <string name="delete_downloaded_files_confirm">디스크에서 다운로드한 모든 파일을 지우겠습니까?</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="other">%1$s 다운로드 삭제됨</item>
     </plurals>
@@ -574,8 +553,7 @@
     <string name="tablet_mode_title">태블릿 모드</string>
     <string name="local_search_suggestions">지역 검색 제안</string>
     <string name="remote_search_suggestions">원격 검색 제안</string>
-    <string name="restricted_video_no_stream">이 동영상은 연령 제한이 있습니다.
-\n연령 제한 동영상에 대한 새로운 YouTube 정책으로 인해 NewPipe는 동영상 스트림에 접속할 수 없으므로 재생할 수 없습니다.</string>
+    <string name="restricted_video_no_stream">이 동영상은 연령 제한이 있습니다. \n연령 제한 동영상에 대한 새로운 YouTube 정책으로 인해 NewPipe는 동영상 스트림에 접속할 수 없으므로 재생할 수 없습니다.</string>
     <string name="clear_cookie_summary">reCAPTCHA를 해결할 때 NewPipe가 저장하는 쿠키 지우기</string>
     <string name="description_tab_description">설명</string>
     <string name="comments_tab_description">댓글</string>
@@ -604,9 +582,7 @@
     <string name="feed_new_items">새로운 피드 항목</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">그룹화되지 않은 구독만 표시</string>
     <string name="feed_load_error_account_info">\'%s\'에 대한 피드를 불러올 수 없습니다.</string>
-    <string name="feed_load_error_terminated">제작자의 계정이 해지되었습니다.
-\nNewPipe는 앞으로 이 피드를 불러올 수 없습니다.
-\n이 채널의 구독을 취소하겠습니까\?</string>
+    <string name="feed_load_error_terminated">제작자의 계정이 해지되었습니다. \nNewPipe는 앞으로 이 피드를 불러올 수 없습니다. \n이 채널의 구독을 취소하겠습니까?</string>
     <string name="feed_load_error_fast_unknown">빠른 공급 모드는 이에 대한 자세한 정보를 제공하지 않습니다.</string>
     <string name="feed_use_dedicated_fetch_method_title">사용 가능한 경우 전용 피드에서 가져오기</string>
     <string name="paid_content">이 콘텐츠는 유료 사용자만 사용할 수 있으므로 NewPipe에서 스트리밍 또는 다운로드할 수 없습니다.</string>
@@ -666,24 +642,10 @@
     <string name="night_theme_summary">선호하는 어두운 테마 선택 — %s</string>
     <string name="download_has_started">다운로드가 시작되었습니다</string>
     <string name="description_select_note">이제 설명 내에서 텍스트를 선택할 수 있습니다. 선택 모드에서는 페이지가 깜박이고 링크를 클릭할 수 없는 경우가 있습니다.</string>
-    <string name="no_appropriate_file_manager_message_android_10">이 작업에 적합한 파일 관리자를 찾을 수 없습니다.
-\n저장영역 접속 프레임워크 호환 파일 관리자를 설치하십시오</string>
-    <string name="no_appropriate_file_manager_message">이 작업에 적합한 파일 관리자를 찾을 수 없습니다.
-\n파일 관리자를 설치하거나 다운로드 설정에서 \'%s\'을(를) 비활성화하십시오</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">피드 로딩이 너무 느리다고 생각하시나요\? 그렇다면 빠른 로딩을 활성화해 보세요. (설정에서 변경하거나 아래 버튼을 눌러 변경할 수 있습니다)
-\n
-\nNewPipe는 두 가지 피드 로딩 전략을 제공합니다:
-\n• 전체 구독 채널 가져오기: 느리지만 완전합니다.
-\n• 전용 서비스 엔드포인트 사용: 빠르지만 일반적으로 완전하지 않습니다.
-\n
-\n이 두 가지의 차이점은 빠른 방식이 일반적으로 항목의 길이나 유형(실시간 동영상과 일반 동영상을 구분할 수 없음)과 같은 일부 정보가 부족하고 더 적은 항목을 반환할 수 있다는 점입니다.
-\n
-\nYouTube는 RSS 피드를 통해 이 빠른 방법을 제공하는 서비스의 예입니다.
-\n
-\n따라서 선택은 속도와 정확한 정보 중 무엇을 선호하느냐에 달려 있습니다.</string>
-    <string name="content_not_supported">이 기능은 아직 NewPipe에서 지원하지 않습니다.
-\n
-\n이후 버전에서 지원될 예정입니다.</string>
+    <string name="no_appropriate_file_manager_message_android_10">이 작업에 적합한 파일 관리자를 찾을 수 없습니다. \n저장영역 접속 프레임워크 호환 파일 관리자를 설치하십시오</string>
+    <string name="no_appropriate_file_manager_message">이 작업에 적합한 파일 관리자를 찾을 수 없습니다. \n파일 관리자를 설치하거나 다운로드 설정에서 \'%s\'을(를) 비활성화하십시오</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">피드 로딩이 너무 느리다고 생각하시나요? 그렇다면 빠른 로딩을 활성화해 보세요. (설정에서 변경하거나 아래 버튼을 눌러 변경할 수 있습니다) \n \nNewPipe는 두 가지 피드 로딩 전략을 제공합니다: \n• 전체 구독 채널 가져오기: 느리지만 완전합니다. \n• 전용 서비스 엔드포인트 사용: 빠르지만 일반적으로 완전하지 않습니다. \n \n이 두 가지의 차이점은 빠른 방식이 일반적으로 항목의 길이나 유형(실시간 동영상과 일반 동영상을 구분할 수 없음)과 같은 일부 정보가 부족하고 더 적은 항목을 반환할 수 있다는 점입니다. \n \nYouTube는 RSS 피드를 통해 이 빠른 방법을 제공하는 서비스의 예입니다. \n \n따라서 선택은 속도와 정확한 정보 중 무엇을 선호하느냐에 달려 있습니다.</string>
+    <string name="content_not_supported">이 기능은 아직 NewPipe에서 지원하지 않습니다. \n \n이후 버전에서 지원될 예정입니다.</string>
     <string name="faq_description">앱 사용에 문제가 있는 경우, 일반적인 질문에 대한 다음 답변을 확인하세요!</string>
     <string name="faq_title">자주 묻는 질문</string>
     <string name="faq">웹사이트에서 보기</string>
@@ -699,8 +661,8 @@
     <string name="card">카드</string>
     <string name="msg_failed_to_copy">클립보드 복사 실패</string>
     <string name="remove_duplicates">복제 삭제</string>
-    <string name="remove_duplicates_title">복제를 삭제하시겠습니까\?</string>
-    <string name="remove_duplicates_message">이 재생목록의 모든 스트림 복사본을 삭제하겠습니까\?</string>
+    <string name="remove_duplicates_title">복제를 삭제하시겠습니까?</string>
+    <string name="remove_duplicates_message">이 재생목록의 모든 스트림 복사본을 삭제하겠습니까?</string>
     <string name="feed_hide_streams_title">다음 스트림 표시</string>
     <string name="feed_show_partially_watched">부분적 시청</string>
     <string name="feed_show_watched">완전 시청</string>
@@ -732,9 +694,7 @@
     <string name="audio_track_type_dubbed">더빙됨</string>
     <string name="audio_track_type_descriptive">설명</string>
     <string name="use_exoplayer_decoder_fallback_summary">디코더 초기화 문제가 있는 경우 이 옵션을 활성화하면 기본 디코더 초기화에 실패할 경우 우선순위가 낮은 디코더로 되돌아갑니다. 이 경우 기본 디코더를 사용할 때보다 재생 성능이 저하될 수 있음</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_summary">이 해결 방법은 인터페이스가 변경될 때 인터페이스를 코덱으로 직접 설정하는 대신 비디오 코덱을 해제하고 다시 인스턴스화합니다. 이 문제가 있는 일부 기기에서 ExoPlayer가 이미 사용 중인 이 설정은 안드로이드 6 이상에서만 적용
-\n
-\n이 옵션을 활성화하면 현재 동영상 플레이어를 전환하거나 전체 화면으로 전환할 때 재생 오류를 방지할 수 있음</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">이 해결 방법은 인터페이스가 변경될 때 인터페이스를 코덱으로 직접 설정하는 대신 비디오 코덱을 해제하고 다시 인스턴스화합니다. 이 문제가 있는 일부 기기에서 ExoPlayer가 이미 사용 중인 이 설정은 안드로이드 6 이상에서만 적용 \n \n이 옵션을 활성화하면 현재 동영상 플레이어를 전환하거나 전체 화면으로 전환할 때 재생 오류를 방지할 수 있음</string>
     <string name="main_tabs_position_summary">메인 탭 선택기를 하단으로 이동</string>
     <string name="audio_track_name">%1$s %2$s</string>
     <string name="main_tabs_position_title">메인 탭 위치</string>
@@ -746,8 +706,7 @@
     <string name="show_channel_tabs_summary">채널 페이지에 표시되는 탭</string>
     <string name="share_playlist_with_list">URL 목록 공유</string>
     <string name="share_playlist_with_titles">타이틀로 공유</string>
-    <string name="share_playlist_content_details">%1$s
-\n%2$s</string>
+    <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="show_channel_tabs">채널 탭</string>
     <string name="channel_tab_shorts">쇼츠</string>
     <string name="loading_metadata_title">메타데이터 불러오기 중…</string>
@@ -790,11 +749,8 @@
     <string name="error_insufficient_storage">기기에 저장공간이 충분하지 않습니다</string>
     <string name="show_less">덜보기</string>
     <string name="settings_category_backup_restore_title">백업 및 복원</string>
-    <string name="auto_update_check_description">NewPipe에서 자동으로 새 버전을 확인하고 업데이트가 있으면 알려줍니다.
-\n이 기능을 켜시겠습니까?</string>
-    <string name="reset_all_settings">모든 설정을 초기화하면 설정해둔 사항이 모두 삭제되며 앱을 다시 시작합니다.
-\n
-\n정말 계속하시겠습니까?</string>
+    <string name="auto_update_check_description">NewPipe에서 자동으로 새 버전을 확인하고 업데이트가 있으면 알려줍니다. \n이 기능을 켜시겠습니까?</string>
+    <string name="reset_all_settings">모든 설정을 초기화하면 설정해둔 사항이 모두 삭제되며 앱을 다시 시작합니다. \n \n정말 계속하시겠습니까?</string>
     <string name="import_settings_vulnerable_format">가져오려는 설정 파일이 NewPipe 0.27.0 이상에서는 권장하지 않는 취약한 형식으로 작성되어 있습니다. 설정 파일의 출처를 신뢰할 수 있는지 꼭 확인하시기 바라며, 다음부터는 가급적 NewPipe 0.27.0 이후의 설정 파일만 이용하시기 바랍니다. 이 취약한 형식의 설정 파일은 곧 더 이상 지원되지 않으며, 오래된 버전의 NewPipe에서 새 버전의 설정 파일을 가져오는 것도 불가능해질 예정입니다.</string>
     <plurals name="replies">
         <item quantity="other">답글 %s개</item>

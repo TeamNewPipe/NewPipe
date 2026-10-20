@@ -10,7 +10,7 @@
     <string name="download">İndir</string>
     <string name="search">Ara</string>
     <string name="settings">Ayarlar</string>
-    <string name="did_you_mean">Bunu mu demek istediniz: \"%1$s\"\?</string>
+    <string name="did_you_mean">Bunu mu demek istediniz: \"%1$s\"?</string>
     <string name="share_dialog_title">Şununla paylaş</string>
     <string name="use_external_video_player_title">Dış video oynatıcı kullan</string>
     <string name="use_external_audio_player_title">Dış ses oynatıcı kullan</string>
@@ -22,7 +22,7 @@
     <string name="download_path_audio_dialog_title">Ses dosyaları için indirme klasörünü seç</string>
     <string name="default_resolution_title">Varsayılan çözünürlük</string>
     <string name="play_with_kodi_title">Kodi ile oynat</string>
-    <string name="kore_not_found">Eksik Kore uygulaması yüklensin mi\?</string>
+    <string name="kore_not_found">Eksik Kore uygulaması yüklensin mi?</string>
     <string name="show_play_with_kodi_title">\"Kodi ile oynat\" seçeneğini göster</string>
     <string name="show_play_with_kodi_summary">Kodi ortam merkezi üzerinden video oynatmak için bir seçenek göster</string>
     <string name="default_audio_format_title">Varsayılan ses biçimi</string>
@@ -88,8 +88,7 @@
     <string name="disabled">Devre dışı</string>
     <string name="your_comment">Yorumunuz (İngilizce):</string>
     <string name="error_details_headline">Ayrıntılar:</string>
-    <string name="msg_popup_permission">Bu izin, açılır pencere kipinde
-\naçmak için gereklidir</string>
+    <string name="msg_popup_permission">Bu izin, açılır pencere kipinde \naçmak için gereklidir</string>
     <string name="title_activity_recaptcha">reCAPTCHA formu</string>
     <string name="recaptcha_request_toast">reCAPTCHA formu istendi</string>
     <string name="controls_background_title">Arka plan</string>
@@ -152,7 +151,7 @@
     <string name="no_videos">Video yok</string>
     <string name="title_activity_history">Geçmiş</string>
     <string name="action_history">Geçmiş</string>
-    <string name="delete_item_search_history">Bu ögeyi arama geçmişinden silmek istiyor musunuz\?</string>
+    <string name="delete_item_search_history">Bu ögeyi arama geçmişinden silmek istiyor musunuz?</string>
     <string name="show_hold_to_append_title">\"Basılı tutarak kuyruğa ekle\" ipucunu göster</string>
     <string name="show_hold_to_append_summary">Video \"Ayrıntılar:\" sayfasında arka plan ya da açılır pencere düğmesine basıldığında ipucu göster</string>
     <string name="play_all">Tümünü Oynat</string>
@@ -225,7 +224,7 @@
     <string name="set_as_playlist_thumbnail">Oynatma listesi küçük resmi olarak ayarla</string>
     <string name="bookmark_playlist">Oynatma listesini yer imlerine ekle</string>
     <string name="unbookmark_playlist">Yer imini kaldır</string>
-    <string name="delete_playlist_prompt">Bu oynatma listesi silinsin mi\?</string>
+    <string name="delete_playlist_prompt">Bu oynatma listesi silinsin mi?</string>
     <string name="playlist_creation_success">Oynatma listesi oluşturuldu</string>
     <string name="playlist_add_stream_success">Oynatma listesine eklendi</string>
     <string name="playlist_thumbnail_change_success">Oynatma listesinin küçük resmi değiştirildi.</string>
@@ -257,25 +256,10 @@
     <string name="previous_export">Önceki dışa aktarım</string>
     <string name="subscriptions_import_unsuccessful">Abonelikler içe aktarılamadı</string>
     <string name="subscriptions_export_unsuccessful">Abonelikler dışa aktarılamadı</string>
-    <string name="import_youtube_instructions">Google Takeout\'tan YouTube aboneliklerini içe aktar:
-\n
-\n1. Şu adrese gidin: %1$s
-\n2. Sorulduğunda hesabınıza giriş yapın
-\n3. \"Tüm veriler dahil\"e ve sonrasında \"Hiçbirini seçme\"ye tıklayın, ardından yalnızca \"abonelikler\"i seçin ve \"Tamam\"a tıklayın
-\n4. \"Sonraki adım\"a ve ardından \"Dışa aktar\"a tıklayın
-\n5. Göründüğünde \"İndir\" düğmesini tıklayın
-\n6. Aşağıdaki DOSYAYI İÇE AKTAR düğmesini tıklayın ve indirilen .zip dosyasını seçin
-\n7. [.zip içe aktarma işlemi başarısız olursa] .csv dosyasını çıkarın (genellikle \"YouTube and YouTube Music/subscriptions/subscriptions.csv\"), aşağıdaki DOSYAYI İÇE AKTAR düğmesini tıklayın ve çıkarılan csv dosyasını seçin</string>
-    <string name="import_soundcloud_instructions">URL\'yi veya ID\'nizi yazarak SoundCloud profilini içe aktarın:
-\n
-\n1. Web tarayıcısında \"masaüstü kipi\" etkinleştirin (site, mobil aygıtlar için uygun değildir)
-\n2. Şu adrese gidin: %1$s
-\n3. Sorulduğunda giriş yapın
-\n4. Yönlendirildiğiniz profil URL\'sini kopyalayın.</string>
+    <string name="import_youtube_instructions">Google Takeout\'tan YouTube aboneliklerini içe aktar: \n \n1. Şu adrese gidin: %1$s \n2. Sorulduğunda hesabınıza giriş yapın \n3. \"Tüm veriler dahil\"e ve sonrasında \"Hiçbirini seçme\"ye tıklayın, ardından yalnızca \"abonelikler\"i seçin ve \"Tamam\"a tıklayın \n4. \"Sonraki adım\"a ve ardından \"Dışa aktar\"a tıklayın \n5. Göründüğünde \"İndir\" düğmesini tıklayın \n6. Aşağıdaki DOSYAYI İÇE AKTAR düğmesini tıklayın ve indirilen .zip dosyasını seçin \n7. [.zip içe aktarma işlemi başarısız olursa] .csv dosyasını çıkarın (genellikle \"YouTube and YouTube Music/subscriptions/subscriptions.csv\"), aşağıdaki DOSYAYI İÇE AKTAR düğmesini tıklayın ve çıkarılan csv dosyasını seçin</string>
+    <string name="import_soundcloud_instructions">URL\'yi veya ID\'nizi yazarak SoundCloud profilini içe aktarın: \n \n1. Web tarayıcısında \"masaüstü kipi\" etkinleştirin (site, mobil aygıtlar için uygun değildir) \n2. Şu adrese gidin: %1$s \n3. Sorulduğunda giriş yapın \n4. Yönlendirildiğiniz profil URL\'sini kopyalayın.</string>
     <string name="import_soundcloud_instructions_hint">kimliginiz, soundcloud.com/kimliginiz</string>
-    <string name="import_network_expensive_warning">Bu sürecin ağa yük olabileceğini unutmayın.
-\n
-\nSürdürmek istiyor musunuz\?</string>
+    <string name="import_network_expensive_warning">Bu sürecin ağa yük olabileceğini unutmayın. \n \nSürdürmek istiyor musunuz?</string>
     <string name="thumbnail_cache_wipe_complete_notice">Resim önbelleği temizlendi</string>
     <string name="metadata_cache_wipe_title">Önbelleğe alınmış meta verileri silin</string>
     <string name="metadata_cache_wipe_summary">Önbelleğe alınmış tüm web sayfası verilerini kaldır</string>
@@ -291,11 +275,11 @@
     <string name="caption_setting_description">Oynatıcı alt yazı metin ölçeğini ve arka plan biçimini değiştirin. Etkili olması için uygulamayı yeniden başlatma gerektirir</string>
     <string name="clear_views_history_title">İzleme geçmişini temizle</string>
     <string name="clear_views_history_summary">Oynatılan akışların geçmişini ve kalınan oynatım konumlarını siler</string>
-    <string name="delete_view_history_alert">İzleme geçmişinin tamamı silinsin mi\?</string>
+    <string name="delete_view_history_alert">İzleme geçmişinin tamamı silinsin mi?</string>
     <string name="watch_history_deleted">İzleme geçmişi silindi</string>
     <string name="clear_search_history_title">Arama geçmişini temizle</string>
     <string name="clear_search_history_summary">Aramada kullanılan anahtar kelimelerin geçmişini siler</string>
-    <string name="delete_search_history_alert">Tüm arama geçmişi silinsin mi\?</string>
+    <string name="delete_search_history_alert">Tüm arama geçmişi silinsin mi?</string>
     <string name="search_history_deleted">Arama geçmişi silindi</string>
     <string name="one_item_deleted">1 öge silindi.</string>
     <string name="app_license">NewPipe, telif müsaadeli özgür yazılımdır: İstediğiniz gibi kullanabilir, öğrenebilir, paylaşabilir ve geliştirebilirsiniz. Özellikle, Özgür Yazılım Vakfı tarafından yayımlanan GNU Genel Kamu Lisansı 3. sürümü veya (isterseniz) daha sonraki sürümleri koşulları altında yeniden dağıtabilir ve/veya değiştirebilirsiniz.</string>
@@ -303,8 +287,7 @@
     <string name="privacy_policy_title">NewPipe\'ın Gizlilik İlkesi</string>
     <string name="privacy_policy_encouragement">NewPipe projesi, gizliliğinizi çok önemsiyor. Bu nedenle, uygulama izniniz olmadan herhangi bir veri toplamaz.\nNewPipe\'ın gizlilik ilkesi, çökme raporu gönderdiğinizde hangi verilerin gönderildiğini ve saklandığını ayrıntılı olarak açıklar.</string>
     <string name="read_privacy_policy">Gizlilik ilkesini oku</string>
-    <string name="start_accept_privacy_policy">Avrupa Genel Veri Koruma Yönetmeliğine (GDPR) uymak için, dikkatinizi NewPipe\'ın gizlilik ilkesine çekiyoruz. Lütfen dikkatlice okuyun.
-\nBize hata bildirimini göndermek için kabul etmelisiniz.</string>
+    <string name="start_accept_privacy_policy">Avrupa Genel Veri Koruma Yönetmeliğine (GDPR) uymak için, dikkatinizi NewPipe\'ın gizlilik ilkesine çekiyoruz. Lütfen dikkatlice okuyun. \nBize hata bildirimini göndermek için kabul etmelisiniz.</string>
     <string name="accept">Kabul et</string>
     <string name="decline">Reddet</string>
     <string name="limit_data_usage_none_description">Sınır yok</string>
@@ -328,10 +311,10 @@
     <string name="app_update_notification_channel_name">Uygulama güncelleme bildirimi</string>
     <string name="app_update_notification_channel_description">Yeni NewPipe sürümleri için bildirimler</string>
     <string name="download_to_sdcard_error_title">Dış depolama kullanılamıyor</string>
-    <string name="download_to_sdcard_error_message">Dış SD karta indirilemiyor. İndirme klasörü konumu sıfırlansın mı\?</string>
+    <string name="download_to_sdcard_error_message">Dış SD karta indirilemiyor. İndirme klasörü konumu sıfırlansın mı?</string>
     <string name="saved_tabs_invalid_json">Kayıtlı sekmeler okunamadı, bu nedenle öntanımlılar kullanılıyor</string>
     <string name="restore_defaults">Öntanımlıları geri yükle</string>
-    <string name="restore_defaults_confirmation">Öntanımlıları geri yüklemek istiyor musunuz\?</string>
+    <string name="restore_defaults_confirmation">Öntanımlıları geri yüklemek istiyor musunuz?</string>
     <string name="subscribers_count_not_available">Abone sayısı yok</string>
     <string name="main_page_content_summary">Ana sayfada hangi sekmeler gösterilir</string>
     <string name="updates_setting_title">Güncellemeler</string>
@@ -389,19 +372,18 @@
     <string name="error_insufficient_storage_left">Aygıt üzerinde yer yok</string>
     <string name="error_progress_lost">İlerleme kaybedildi, çünkü dosya silinmiş</string>
     <string name="error_timeout">Bağlantı zaman aşımı</string>
-    <string name="confirm_prompt">İndirme geçmişinizi temizlemek veya indirilen tüm dosyaları silmek istiyor musunuz\?</string>
+    <string name="confirm_prompt">İndirme geçmişinizi temizlemek veya indirilen tüm dosyaları silmek istiyor musunuz?</string>
     <string name="enable_queue_limit">İndirme kuyruğunu sınırla</string>
     <string name="enable_queue_limit_desc">Aynı anda yalnızca bir indirme yürütülecek</string>
     <string name="start_downloads">İndirmeleri başlat</string>
     <string name="pause_downloads">İndirmeleri duraklat</string>
     <string name="downloads_storage_ask_title">Nereye indirileceğini sor</string>
-    <string name="downloads_storage_ask_summary">Her indirmede nereye kaydedileceği sorulacak.
-\nDış SD karta indirmek istiyorsanız sistem klasör seçiciyi (SAF) etkinleştirin</string>
+    <string name="downloads_storage_ask_summary">Her indirmede nereye kaydedileceği sorulacak. \nDış SD karta indirmek istiyorsanız sistem klasör seçiciyi (SAF) etkinleştirin</string>
     <string name="downloads_storage_use_saf_title">Sistem klasör seçiciyi (SAF) kullan</string>
     <string name="downloads_storage_use_saf_summary">\'Depolama Erişimi Çerçevesi\' dış SD karta indirmeyi sağlar</string>
     <string name="clear_playback_states_title">Oynatım konumlarını sil</string>
     <string name="clear_playback_states_summary">Tüm oynatım konumlarını siler</string>
-    <string name="delete_playback_states_alert">Tüm oynatım konumları silinsin mi\?</string>
+    <string name="delete_playback_states_alert">Tüm oynatım konumları silinsin mi?</string>
     <string name="drawer_header_description">Hizmeti değiştir, şu anda seçili olan:</string>
     <plurals name="videos">
         <item quantity="one">%s video</item>
@@ -473,7 +455,7 @@
         <item quantity="other">%d öge seçildi</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Boş grup adı</string>
-    <string name="feed_group_dialog_delete_message">Bu grubu silmek istiyor musunuz\?</string>
+    <string name="feed_group_dialog_delete_message">Bu grubu silmek istiyor musunuz?</string>
     <string name="feed_create_new_group_button_title">Yeni</string>
     <string name="settings_category_feed_title">Akış</string>
     <string name="feed_update_threshold_title">Akış güncelleme eşiği</string>
@@ -483,28 +465,14 @@
     <string name="feed_use_dedicated_fetch_method_summary">Bazı servislerde kullanılabilir, genellikle daha hızlıdır ancak kısıtlı sayıda öge ve eksik bilgi (örn. süre, öge türü, canlı durumu olmaksızın) getirilebilir</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Hızlı kipi etkinleştir</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Hızlı kipi devre dışı bırak</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Akışın çok yavaş yüklendiğini mi düşünüyorsunuz\? Öyleyse, hızlı yüklemeyi etkinleştirin (ayarlardan değiştirebilir veya aşağıdaki düğmeye dokunabilirsiniz).
-\n
-\nNewPipe iki akış yükleme yordamı sunar:
-\n• Tüm abonelik kanalını edinme, bu yavaş ancak tamdır.
-\n• Adanmış hizmet son noktası kullanır, bu hızlıdır ancak genellikle tam değildir.
-\n
-\nİkisinin arasındaki fark, hızlı olanın genellikle ögenin süresi veya türü (canlı ve sıradan videoları ayrımsayamaz) gibi bazı bilgilerden yoksunluğu ve daha az öge getirmesidir.
-\n
-\nYouTube, RSS akışıyla bu hızlı yöntemi sunan servislerden biridir.
-\n
-\nSeçim, sizin neyi yeğlediğinize kalmış: hız veya kusursuz bilgi.</string>
-    <string name="content_not_supported">Bu içerik henüz NewPipe tarafından desteklenmiyor.
-\n
-\nUmarım gelecekteki bir sürümde desteklenir.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Akışın çok yavaş yüklendiğini mi düşünüyorsunuz? Öyleyse, hızlı yüklemeyi etkinleştirin (ayarlardan değiştirebilir veya aşağıdaki düğmeye dokunabilirsiniz). \n \nNewPipe iki akış yükleme yordamı sunar: \n• Tüm abonelik kanalını edinme, bu yavaş ancak tamdır. \n• Adanmış hizmet son noktası kullanır, bu hızlıdır ancak genellikle tam değildir. \n \nİkisinin arasındaki fark, hızlı olanın genellikle ögenin süresi veya türü (canlı ve sıradan videoları ayrımsayamaz) gibi bazı bilgilerden yoksunluğu ve daha az öge getirmesidir. \n \nYouTube, RSS akışıyla bu hızlı yöntemi sunan servislerden biridir. \n \nSeçim, sizin neyi yeğlediğinize kalmış: hız veya kusursuz bilgi.</string>
+    <string name="content_not_supported">Bu içerik henüz NewPipe tarafından desteklenmiyor. \n \nUmarım gelecekteki bir sürümde desteklenir.</string>
     <string name="infinite_videos">∞ video</string>
     <string name="more_than_100_videos">100+ video</string>
     <string name="artists">Sanatçılar</string>
     <string name="albums">Albümler</string>
     <string name="songs">Şarkılar</string>
-    <string name="restricted_video">Bu video yaş kısıtlıdır.
-\n
-\nGörmek istiyorsanız ayarlarda \"%1$s\" seçeneğini açın.</string>
+    <string name="restricted_video">Bu video yaş kısıtlıdır. \n \nGörmek istiyorsanız ayarlarda \"%1$s\" seçeneğini açın.</string>
     <string name="remove_watched_popup_warning">Oynatma listesine eklenmeden önce ve sonra izlenen yayınlar kaldırılacaktır. \nEmin misiniz?</string>
     <string name="remove_watched_popup_partially_watched_streams">Evet ve kısmen izlenmiş videolar</string>
     <string name="remove_watched_popup_title">İzlenen yayınları kaldır?</string>
@@ -527,7 +495,7 @@
     <string name="wifi_only">Yalnızca Wi-Fi</string>
     <string name="autoplay_summary">Oynatmayı kendiliğinden başlat — %s</string>
     <string name="title_activity_play_queue">Oynatma kuyruğu</string>
-    <string name="unsupported_url_dialog_message">URL tanınamadı. Başka bir uygulamayla açılsın mı\?</string>
+    <string name="unsupported_url_dialog_message">URL tanınamadı. Başka bir uygulamayla açılsın mı?</string>
     <string name="auto_queue_toggle">Otomatik kuyruğa alış</string>
     <string name="clear_queue_confirmation_description">Etkin oynatıcının kuyruğu değiştirilecek</string>
     <string name="clear_queue_confirmation_summary">Bir oynatıcıdan diğerine geçmek kuyruğunuzu değiştirebilir</string>
@@ -577,8 +545,7 @@
     <string name="private_content">Bu içerik özeldir, bu nedenle NewPipe tarafından oynatılamaz ve indirilemez.</string>
     <string name="soundcloud_go_plus_content">Bu SoundCloud Go+ parçasıdır, en azından sizin ülkenizde, bu nedenle NewPipe tarafından oynatılamaz ve indirilemez.</string>
     <string name="georestricted_content">Bu içerik ülkenizde kullanılamaz.</string>
-    <string name="restricted_video_no_stream">Bu video yaş kısıtlıdır.
-\nYouTube\'un yeni yaş kısıtlı videolar ilkesi gereği, NewPipe böylesi videoların akışına erişemez ve bu nedenle oynatamaz.</string>
+    <string name="restricted_video_no_stream">Bu video yaş kısıtlıdır. \nYouTube\'un yeni yaş kısıtlı videolar ilkesi gereği, NewPipe böylesi videoların akışına erişemez ve bu nedenle oynatamaz.</string>
     <string name="featured">Öne çıkan</string>
     <string name="radio">Radyo</string>
     <string name="recaptcha_solve">Çöz</string>
@@ -608,9 +575,7 @@
     <string name="open_website_license">Web sitesini aç</string>
     <string name="account_terminated">Hesap sonlandırıldı</string>
     <string name="feed_load_error_fast_unknown">Hızlı besleme kipi bununla ilgili daha çok bilgi sağlamıyor.</string>
-    <string name="feed_load_error_terminated">Yazarın hesabı sonlandırılmış.
-\nNewPipe, bu beslemeyi gelecekte yükleyemeyecek.
-\nBu kanalın aboneliğinden çıkmak ister misiniz\?</string>
+    <string name="feed_load_error_terminated">Yazarın hesabı sonlandırılmış. \nNewPipe, bu beslemeyi gelecekte yükleyemeyecek. \nBu kanalın aboneliğinden çıkmak ister misiniz?</string>
     <string name="feed_load_error_account_info">\'%s\' için besleme yüklenemedi.</string>
     <string name="feed_load_error">Besleme yüklenirken hata</string>
     <string name="downloads_storage_use_saf_summary_api_29">\'Depolama Erişimi Çerçevesi\' yalnızca Android 10\'dan başlayarak desteklenmektedir</string>
@@ -652,10 +617,8 @@
     <string name="show_crash_the_player_title">\"Oynatıcıyı çöktür\"ü göster</string>
     <string name="create_error_notification">Hata bildirimi oluştur</string>
     <string name="show_error_snackbar">Hata balonu göster</string>
-    <string name="no_appropriate_file_manager_message">Bu eyleme uygun dosya yönetici yok.
-\nLütfen dosya yönetici kurun veya indirme ayarlarında \'%s\' devre dışı bırakın</string>
-    <string name="no_appropriate_file_manager_message_android_10">Bu eyleme uygun dosya yönetici bulunamadı.
-\nLütfen Depolama Erişimi Çerçevesi uyumlu dosya yönetici kurun</string>
+    <string name="no_appropriate_file_manager_message">Bu eyleme uygun dosya yönetici yok. \nLütfen dosya yönetici kurun veya indirme ayarlarında \'%s\' devre dışı bırakın</string>
+    <string name="no_appropriate_file_manager_message_android_10">Bu eyleme uygun dosya yönetici bulunamadı. \nLütfen Depolama Erişimi Çerçevesi uyumlu dosya yönetici kurun</string>
     <string name="error_report_channel_description">Hata raporları için bildirimler</string>
     <string name="show_crash_the_player_summary">Oynatıcı kullanırken çöktürme seçeneği gösterir</string>
     <string name="crash_the_player">Oynatıcıyı çökert</string>
@@ -681,7 +644,7 @@
     <string name="enable_streams_notifications_summary">Aboneliklerden yeni akışlarla ilgili bildirim gönder</string>
     <string name="streams_notifications_interval_title">Denetleme sıklığı</string>
     <string name="any_network">Herhangi bir ağ</string>
-    <string name="delete_downloaded_files_confirm">İndirilen tüm dosyalar diskten silinsin mi\?</string>
+    <string name="delete_downloaded_files_confirm">İndirilen tüm dosyalar diskten silinsin mi?</string>
     <string name="enumeration_comma">,</string>
     <string name="toggle_all">Tümünü değiştir</string>
     <string name="percent">Yüzde</string>
@@ -712,8 +675,8 @@
     <string name="ignore_hardware_media_buttons_title">Donanımsal ortam düğmesi olaylarını yoksay</string>
     <string name="ignore_hardware_media_buttons_summary">Örneğin, fiziksel düğmeleri bozuk bir kulaklık kullanıyorsanız kullanışlıdır</string>
     <string name="remove_duplicates">Kopyaları kaldır</string>
-    <string name="remove_duplicates_title">Kopyalar kaldırılsın mı\?</string>
-    <string name="remove_duplicates_message">Bu oynatma listesindeki tüm yinelenen akışları kaldırmak istiyor musunuz\?</string>
+    <string name="remove_duplicates_title">Kopyalar kaldırılsın mı?</string>
+    <string name="remove_duplicates_message">Bu oynatma listesindeki tüm yinelenen akışları kaldırmak istiyor musunuz?</string>
     <string name="feed_hide_streams_title">Aşağıdaki akışları göster</string>
     <string name="feed_show_hide_streams">Akışları göster/gizle</string>
     <string name="feed_show_watched">Tamamen izlendi</string>
@@ -746,9 +709,7 @@
     <string name="disable_media_tunneling_automatic_info">Ortam tünelleme öntanımlı olarak devre dışı bırakılmıştır çünkü aygıt modelinizin desteği bilinmemektedir.</string>
     <string name="use_exoplayer_decoder_fallback_summary">Çözücü ilklendirme sorunlarınız varsa bu seçeneği etkinleştirin, eğer birincil çözücülerin ilklendirmesi başarısızsa düşük öncelikli çözücülere dönülür. Bu, birincil çözücüler kullanılırkenki başarımdan daha kötü sonuçlanabilir</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Her zaman ExoPlayer\'ın video çıktısı yüzey ayar çözümünü kullan</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Bu çözüm, bir yüzey değişimi yaşandığında yüzeyi doğrudan kodlayıcıya ayarlamaktansa video kodlayıcısını serbest bırakır ve yeniden örneklendirir. Bu sorunu olan bazı aygıtlarda ExoPlayer tarafından halihazırda kullanılır, bu ayar yalnızca Android 6 ve üstünde etkilidir
-\n
-\nBu ayarı etkinleştirmek, geçerli video oynatıcısını değiştirirken veya tam ekrana geçerkenki oynatma hatalarını önleyebilir</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Bu çözüm, bir yüzey değişimi yaşandığında yüzeyi doğrudan kodlayıcıya ayarlamaktansa video kodlayıcısını serbest bırakır ve yeniden örneklendirir. Bu sorunu olan bazı aygıtlarda ExoPlayer tarafından halihazırda kullanılır, bu ayar yalnızca Android 6 ve üstünde etkilidir \n \nBu ayarı etkinleştirmek, geçerli video oynatıcısını değiştirirken veya tam ekrana geçerkenki oynatma hatalarını önleyebilir</string>
     <string name="progressive_load_interval_summary">Progresif içeriklerdeki yükleme aralığı boyutunu değiştir (şu anda %s). Daha düşük değer ilk yüklemeyi hızlandırabilir</string>
     <string name="left_gesture_control_title">Sol hareket işlemi</string>
     <string name="right_gesture_control_summary">Parmağınızı ekranın sağ yarısında kaydırırken ne yapılacağını seçin</string>
@@ -760,8 +721,7 @@
     <string name="show_channel_tabs_summary">Kanal sayfalarında hangi sekmelerin gösterileceği</string>
     <string name="share_playlist_with_list">Adres Listesiyle Paylaş</string>
     <string name="share_playlist_with_titles">Başlıklarla Paylaş</string>
-    <string name="share_playlist_content_details">%1$s
-\n%2$s</string>
+    <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="show_channel_tabs">Kanal sekmeleri</string>
     <string name="channel_tab_shorts">Shorts</string>
     <string name="loading_metadata_title">Üst Veri Yükleniyor…</string>
@@ -807,13 +767,10 @@
     <string name="settings_category_backup_restore_title">Yedekle ve geri yükle</string>
     <string name="reset_settings_title">Ayarları sıfırla</string>
     <string name="reset_settings_summary">Tüm ayarları öntanımlı değerlerine sıfırlayın</string>
-    <string name="reset_all_settings">Tüm ayarları sıfırlamak, tercih edilen tüm ayarlarınızı kaldırır ve uygulamayı yeniden başlatır.
-\n
-\nDevam etmek istediğinizden emin misiniz?</string>
+    <string name="reset_all_settings">Tüm ayarları sıfırlamak, tercih edilen tüm ayarlarınızı kaldırır ve uygulamayı yeniden başlatır. \n \nDevam etmek istediğinizden emin misiniz?</string>
     <string name="yes">Evet</string>
     <string name="no">Hayır</string>
-    <string name="auto_update_check_description">NewPipe zaman zaman yeni sürümleri kendiliğinden denetleyebilir ve kullanılabilir olduklarında sizi bilgilendirebilir.
-\nBunu etkinleştirmek istiyor musunuz?</string>
+    <string name="auto_update_check_description">NewPipe zaman zaman yeni sürümleri kendiliğinden denetleyebilir ve kullanılabilir olduklarında sizi bilgilendirebilir. \nBunu etkinleştirmek istiyor musunuz?</string>
     <string name="import_settings_vulnerable_format">İçe aktarılmakta olan dışa aktarımdaki ayarlar, NewPipe 0.27.0\'dan itibaren kullanımdan kaldırılan güvenlik açığı olan bir biçim kullanmaktadır. İçe aktarılmakta olan dışa aktarımın güvenilir bir kaynaktan alındığından emin olun ve gelecekte yalnızca NewPipe 0.27.0 veya daha yeni sürümlerden alınan dışa aktarımları kullanmayı tercih edin. Bu güvenlik açığı bulunan biçimdeki ayarları içe aktarma desteği yakında tamamen kaldırılacak ve ardından NewPipe\'ın eski sürümleri artık yeni sürümlerden dışa aktarılan ayarların içe aktarımını yapamayacaktır.</string>
     <string name="audio_track_type_secondary">ikincil</string>
     <string name="tab_bookmarks_short">Oynatma Listeleri</string>

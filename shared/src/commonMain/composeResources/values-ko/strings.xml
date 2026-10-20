@@ -61,7 +61,7 @@
     <string name="night_theme_available">이 옵션은 %1$s 테마를 선택해야 이용할 수 있습니다</string>
     <string name="select_night_theme_toast">아래에서 선호하는 야간 테마를 선택할 수 있습니다</string>
     <string name="show_hold_to_append_title">길게 눌러 대기열에 추가 팁 표시</string>
-    <string name="show_hold_to_append_summary">비디오 "세부사항:"에서 배경 또는 팝업 버튼을 누를 때 팁 표시</string>
+    <string name="show_hold_to_append_summary">비디오 세부사항:에서 배경 또는 팝업 버튼을 누를 때 팁 표시</string>
     <string name="default_resolution_title">기본 해상도</string>
     <string name="default_popup_resolution_title">기본 팝업 해상도</string>
     <string name="limit_mobile_data_usage_title">모바일 데이터 사용 시 해상도 제한</string>
@@ -79,7 +79,7 @@
     <string name="use_external_video_player_title">외장 동영상 플레이어 사용</string>
     <string name="use_external_video_player_summary">일부 해상도에서 오디오가 제거됩니다</string>
     <string name="use_external_audio_player_title">외장 오디오 플레이어 사용</string>
-    <string name="show_play_with_kodi_title">"Kodi로 재생" 옵션 표시</string>
+    <string name="show_play_with_kodi_title">Kodi로 재생 옵션 표시</string>
     <string name="show_play_with_kodi_summary">비디오를 Kodi 미디어 센터를 사용해 재생하는 옵션을 표시합니다</string>
     <string name="seekbar_preview_thumbnail_title">탐색막대 썸네일 미리보기</string>
     <string name="high_quality_larger">고품질 (크게)</string>

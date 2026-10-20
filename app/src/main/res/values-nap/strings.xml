@@ -26,12 +26,12 @@
     <string name="use_external_video_player_summary">Leve l\'audio cu alcune risuluzioni</string>
     <string name="share_dialog_title">Condividi cu</string>
     <string name="search_showing_result_for">Resultati pe\': %s</string>
-    <string name="did_you_mean">Vulive ricere \"%1$s\"\?</string>
+    <string name="did_you_mean">Vulive ricere \"%1$s\"?</string>
     <string name="settings">Impostazioni</string>
     <string name="controls_download_desc">Scarica \'o flusso d\' \'o file</string>
     <string name="download">Scarica</string>
     <string name="share">Condividi</string>
     <string name="no_player_found_toast">Nisciuno lettore truvato (può installà VLC p\' \'o reprodurre).</string>
-    <string name="no_player_found">Nisciuno lettore truvato. Vuo\' installà VLC\?</string>
+    <string name="no_player_found">Nisciuno lettore truvato. Vuo\' installà VLC?</string>
     <string name="main_bg_subtitle">Priemme \"Truova\" p\'accummencià</string>
 </resources>

@@ -115,11 +115,11 @@
     <string name="export_data_summary">Экспарт гісторыі, падпісак, плэй-лістоў і налад</string>
     <string name="clear_views_history_title">Ачысціць гісторыю праглядаў</string>
     <string name="clear_views_history_summary">Выдаліць гісторыю прайграных патокаў і пазіцыі прайгравання</string>
-    <string name="delete_view_history_alert">Выдаліць усю гісторыю праглядаў\?</string>
+    <string name="delete_view_history_alert">Выдаліць усю гісторыю праглядаў?</string>
     <string name="watch_history_deleted">Гісторыя праглядаў выдалена</string>
     <string name="clear_search_history_title">Ачысціць гісторыю пошуку</string>
     <string name="clear_search_history_summary">Выдаліць гісторыю пошукавых запытаў</string>
-    <string name="delete_search_history_alert">Выдаліць усю гісторыю пошуку\?</string>
+    <string name="delete_search_history_alert">Выдаліць усю гісторыю пошуку?</string>
     <string name="search_history_deleted">Гісторыя пошуку выдалена</string>
     <string name="general_error">Памылка</string>
     <string name="network_error">Памылка сеткі</string>
@@ -296,9 +296,7 @@
     <string name="import_youtube_instructions">Імпарт падпісак YouTube з Google Takeout: \n \n1. Перайдзіце па гэтым URL: %1$s \n2. Увайдзіце, калі вас папросяць \n3. Націсніце на «Усе даныя ўключаны», затым на «Зняць выбар з усіх», затым выберыце толькі «падпіскі» і націсніце «ОК» \n4. Націсніце «Наступны крок», а затым «Стварыць экспарт» \n5. Націсніце на кнопку «Спампаваць» пасля таго, як яна з\'явіцца \n6. Ніжэй націсніце на ІМПАРТАВАЦЬ ФАЙЛ і выберыце спампаваны файл .zip \n7. [Калі не ўдаецца імпартаваць .zip] Трэба выняць файл .csv (звычайна ў раздзеле «YouTube і YouTube Music/subscriptions/subscriptions.csv»), ніжэй націсніце ІМПАРТАВАЦЬ ФАЙЛ і выберыце выняты файл CSV</string>
     <string name="import_soundcloud_instructions">Каб імпартаваць профіль SoundCloud, увядзіце URL або свой ID:\n\n1. Уключыце «Версія для ПК» у браўзеры (сайт не падтрымліваецца мабільнымі прыладамі) \n2. Перайдзіце на: %1$s \n3. Увайдзіце, калі неабходна \n4. Скапіруйце URL-адрас профілю, на які вас перанакіравала.</string>
     <string name="import_soundcloud_instructions_hint">вашID, soundcloud.com/вашID</string>
-    <string name="import_network_expensive_warning">Гэтае дзеянне можа выклікаць вялікі расход трафіку. 
-\n 
-\nПрацягнуць?</string>
+    <string name="import_network_expensive_warning">Гэтае дзеянне можа выклікаць вялікі расход трафіку. \n \nПрацягнуць?</string>
     <string name="playback_speed_control">Кіраванне хуткасцю прайгравання</string>
     <string name="playback_tempo">Тэмп</string>
     <string name="playback_pitch">Тон</string>
@@ -442,7 +440,7 @@
     <string name="error_report_open_issue_button_text">Паведаміць на GitHub</string>
     <string name="copy_for_github">Скапіяваць адфарматаваную справаздачу</string>
     <string name="permission_display_over_apps">Дайце дазвол на адлюстраванне паверх іншых праграм</string>
-    <string name="delete_playback_states_alert">Выдаліць усе пазіцыі прайгравання\?</string>
+    <string name="delete_playback_states_alert">Выдаліць усе пазіцыі прайгравання?</string>
     <string name="clear_playback_states_title">Выдаліць пазіцыі прайгравання</string>
     <string name="clear_cookie_title">Ачысціць файлы cookie з reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Файлы cookie з reCAPTCHA ачышчаны</string>
@@ -461,7 +459,7 @@
     <string name="notification_colorize_summary">Афарбоўваць апавяшчэнне асноўным колерам мініяцюры. Падтрымліваецца не ўсімі прыладамі</string>
     <string name="notification_actions_at_most_three">У кампактным апавяшчэнні даступна не больш за тры дзеянні!</string>
     <string name="notification_actions_summary">Каб адрэдагаваць кожнае з дзеянняў у апавяшчэнні, націсніце на яго. З дапамогай сцяжкоў справа, выберыце да трох дзеянняў, якія будуць паказвацца ў кампактным апавяшчэнні.</string>
-    <string name="unsupported_url_dialog_message">Не ўдалося распазнаць URL-адрас. Адкрыць у іншай праграме\?</string>
+    <string name="unsupported_url_dialog_message">Не ўдалося распазнаць URL-адрас. Адкрыць у іншай праграме?</string>
     <string name="settings_category_player_notification_title">Апавяшчэнне плэера</string>
     <string name="notifications">Апавяшчэнні</string>
     <string name="streams_notification_channel_name">Новыя трансляцыі</string>
@@ -566,9 +564,7 @@
     <string name="show_description_summary">Выключыце, каб схаваць апісанне відэа і дадатковую інфармацыю</string>
     <string name="local_search_suggestions">Прапановы пры лакальным пошуку</string>
     <string name="settings_category_player_notification_summary">Наладзіць апавяшчэнне пра паток, які зараз прайграецца</string>
-    <string name="restricted_video">Гэта відэа абмежавана па ўзросце.
-\n
-\nУключыце «%1$s» у наладах, калі хочаце бачыць гэта.</string>
+    <string name="restricted_video">Гэта відэа абмежавана па ўзросце. \n \nУключыце «%1$s» у наладах, калі хочаце бачыць гэта.</string>
     <string name="error_report_channel_name">Апавяшчэнне аб памылцы</string>
     <string name="error_report_channel_description">Апавяшчэнні для паведамлення аб памылках</string>
     <string name="error_report_notification_title">Адбылася памылка NewPipe, націсніце, каб адправіць справаздачу</string>
@@ -583,8 +579,7 @@
     <string name="ignore_hardware_media_buttons_summary">Карысна, напрыклад, калі вы карыстаецеся гарнітурай са зламанымі фізічнымі кнопкамі</string>
     <string name="show_meta_info_summary">Выключыце, каб схаваць палі метаданых з дадатковымі звесткамі пра стваральніка патоку, змесціва патоку або пошукавы запыт</string>
     <string name="remote_search_suggestions">Прапановы пры аддаленым пошуку</string>
-    <string name="restricted_video_no_stream">Гэта відэа абмежавана па ўзросце.
-\nУ сувязі з новай палітыкай YouTube у дачыненні да відэа з узроставымі абмежаваннямі, NewPipe не можа атрымаць доступ ні да аднаго са сваіх відэапатокаў і, такім чынам, не можа іх прайграваць.</string>
+    <string name="restricted_video_no_stream">Гэта відэа абмежавана па ўзросце. \nУ сувязі з новай палітыкай YouTube у дачыненні да відэа з узроставымі абмежаваннямі, NewPipe не можа атрымаць доступ ні да аднаго са сваіх відэапатокаў і, такім чынам, не можа іх прайграваць.</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube забяспечвае «Абмежаваны рэжым», які хавае патэнцыйна змесціва для дарослых</string>
     <string name="msg_calculating_hash">Разлік хэша</string>
     <string name="recaptcha_solve">Вырашана</string>
@@ -626,7 +621,7 @@
     <string name="feed_subscription_not_loaded_count">Не загружана: %d</string>
     <string name="downloads_storage_use_saf_summary_api_29">Пачынаючы з Android 10 падтрымліваецца толькі «Storage Access Framework»</string>
     <string name="checking_updates_toast">Праверка абнаўленняў…</string>
-    <string name="remove_duplicates_title">Выдаліць дублікаты\?</string>
+    <string name="remove_duplicates_title">Выдаліць дублікаты?</string>
     <string name="remove_duplicates">Выдаліць дублікаты</string>
     <string name="remove_duplicates_message">Выдаліць усе дубліраваныя патокі ў гэтым плэйлісце?</string>
     <string name="feed_new_items">Новыя элементы стужкі</string>
@@ -747,8 +742,7 @@
     <string name="show_channel_tabs_summary">Якія ўкладкі паказваюцца на старонцы канала</string>
     <string name="share_playlist_with_list">Абагуліць спіс URL-адрасоў</string>
     <string name="share_playlist_with_titles">Абагуліць назвы</string>
-    <string name="share_playlist_content_details">%1$s
-\n%2$s</string>
+    <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="show_channel_tabs">Укладкі канала</string>
     <string name="channel_tab_shorts">Shorts</string>
     <string name="loading_metadata_title">Загрузка метаданых…</string>
@@ -816,9 +810,9 @@
     <string name="search_with_service_name_and_filter">Пошук %1$s (%2$s)</string>
     <string name="channel_tab_likes">Спадабалася</string>
     <string name="permission_display_over_apps_permission_name">«Дазволіць паказ па-над астатнімі праграмамі»</string>
-    <string name="short_thousand">%s тыс.</string>
-    <string name="short_million">%s млн</string>
-    <string name="short_billion">%s млрд</string>
+    <string name="short_thousand">%s тыс.</string>
+    <string name="short_million">%s млн</string>
+    <string name="short_billion">%s млрд</string>
     <string name="delete_file">Выдаліць файл</string>
     <string name="delete_entry">Выдаліць запіс</string>
     <string name="migration_info_6_7_title">Старонка SoundCloud Top 50 выдалена</string>
