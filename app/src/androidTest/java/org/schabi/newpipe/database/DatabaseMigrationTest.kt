@@ -1,19 +1,15 @@
 package org.schabi.newpipe.database
 
-import androidx.room3.Room
 import androidx.room3.testing.MigrationTestHelper
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import androidx.sqlite.execSQL
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import java.io.File
 import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.schabi.newpipe.database.playlist.model.PlaylistEntity
-import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity
 import org.schabi.newpipe.extractor.ServiceList
 import org.schabi.newpipe.extractor.stream.StreamType
 
@@ -43,7 +39,7 @@ class DatabaseMigrationTest {
         instrumentation = instrumentation,
         databaseClass = AppDatabase::class,
         driver = BundledSQLiteDriver(),
-        file = instrumentation.targetContext.getDatabasePath(AppDatabase.DATABASE_NAME)
+        file = File.createTempFile("test", ".db")
     )
 
     @Test
