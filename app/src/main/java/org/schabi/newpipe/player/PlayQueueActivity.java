@@ -392,7 +392,8 @@ public final class PlayQueueActivity extends AppCompatActivity
         final long queueProgress = before + currentProgress / 1000L;
 
         queueControlBinding.queueTotalDuration.setText(
-                Localization.getDurationString(queueProgress) + " / " + Localization.getDurationString(total)
+                Localization.getDurationString(queueProgress) + " / "
+                        + Localization.getDurationString(total)
         );
 
         queueControlBinding.queueTotalDuration.setVisibility(View.VISIBLE);
