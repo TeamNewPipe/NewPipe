@@ -35,7 +35,7 @@ fun DescriptionText(
 fun rememberParsedDescription(description: Description): AnnotatedString {
     // TODO: Handle links and hashtags, Markdown.
     return remember(description) {
-        if (description.type == Description.HTML) {
+        if (description.type == Description.Type.HTML) {
             val styles = TextLinkStyles(SpanStyle(textDecoration = TextDecoration.Underline))
             AnnotatedString.fromHtml(description.content, styles)
         } else {

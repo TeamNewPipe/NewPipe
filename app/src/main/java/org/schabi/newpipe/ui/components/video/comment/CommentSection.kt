@@ -219,7 +219,7 @@ private fun CommentSectionSuccessPreview() {
         CommentsInfoItem(
             commentText = Description(
                 "Comment 1\n\nThis line should be hidden by default.",
-                Description.PLAIN_TEXT
+                Description.Type.PLAIN_TEXT
             ),
             uploaderName = "Test",
             replies = Page(""),
@@ -227,7 +227,7 @@ private fun CommentSectionSuccessPreview() {
         )
     ) + (2..10).map {
         CommentsInfoItem(
-            commentText = Description("Comment $it", Description.PLAIN_TEXT),
+            commentText = Description("Comment $it", Description.Type.PLAIN_TEXT),
             uploaderName = "Test"
         )
     }

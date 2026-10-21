@@ -105,7 +105,7 @@ public abstract class BaseDescriptionFragment extends BaseFragment {
 
     private void setupDescription() {
         final Description description = getDescription();
-        if (description == null || isEmpty(description.getContent())
+        if (description == null || isEmpty(description.content())
                 || description == Description.EMPTY_DESCRIPTION) {
             binding.detailDescriptionView.setVisibility(View.GONE);
             binding.detailSelectDescriptionButton.setVisibility(View.GONE);

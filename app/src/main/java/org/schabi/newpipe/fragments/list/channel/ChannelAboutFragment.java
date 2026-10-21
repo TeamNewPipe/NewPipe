@@ -43,7 +43,7 @@ public class ChannelAboutFragment extends BaseDescriptionFragment {
     @Nullable
     @Override
     protected Description getDescription() {
-        return new Description(channelInfo.getDescription(), Description.PLAIN_TEXT);
+        return new Description(channelInfo.getDescription(), Description.Type.PLAIN_TEXT);
     }
 
     @NonNull

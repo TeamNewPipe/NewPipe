@@ -231,7 +231,7 @@ fun CommentsInfoItem(
 private class CommentPreviewProvider : CollectionPreviewParameterProvider<CommentsInfoItem>(
     listOf(
         CommentsInfoItem(
-            commentText = Description("Hello world!\n\nThis line should be hidden by default.", Description.PLAIN_TEXT),
+            commentText = Description("Hello world!\n\nThis line should be hidden by default.", Description.Type.PLAIN_TEXT),
             uploaderName = "Test",
             likeCount = 100,
             isPinned = false,
@@ -241,7 +241,7 @@ private class CommentPreviewProvider : CollectionPreviewParameterProvider<Commen
             isEdited = false
         ),
         CommentsInfoItem(
-            commentText = Description("Hello world, long long long text lorem ipsum dolor sit amet!<br><br>This line should be hidden by default.", Description.HTML),
+            commentText = Description("Hello world, long long long text lorem ipsum dolor sit amet!<br><br>This line should be hidden by default.", Description.Type.HTML),
             uploaderName = "Test",
             likeCount = 92847,
             isPinned = true,
@@ -251,7 +251,7 @@ private class CommentPreviewProvider : CollectionPreviewParameterProvider<Commen
             isEdited = true
         ),
         CommentsInfoItem(
-            commentText = Description("Hello world, long long long text lorem ipsum dolor sit amet!<br><br>This line should be hidden by default.", Description.HTML),
+            commentText = Description("Hello world, long long long text lorem ipsum dolor sit amet!<br><br>This line should be hidden by default.", Description.Type.HTML),
             uploaderName = "Test really long long long long lorem ipsum dolor sit amet consectetur",
             likeCount = 92847,
             isPinned = true,
@@ -261,7 +261,7 @@ private class CommentPreviewProvider : CollectionPreviewParameterProvider<Commen
             isEdited = true
         ),
         CommentsInfoItem(
-            commentText = Description("Short comment", Description.HTML),
+            commentText = Description("Short comment", Description.Type.HTML),
             uploaderName = "Test really long long long long lorem ipsum dolor sit amet consectetur",
             likeCount = 92847,
             isPinned = false,
