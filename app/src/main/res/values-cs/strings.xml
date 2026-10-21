@@ -557,7 +557,7 @@
     <string name="comments_tab_description">Komentáře</string>
     <string name="show_description_title">Zobrazit popis</string>
     <string name="open_with">Otevřít s</string>
-    <string name="no_app_to_open_intent">Na Vašem zařízení není aplikace, která to umí otevřít</string>
+    <string name="no_app_to_open_intent">Na vašem zařízení se nenachází aplikace, která by tento odkaz dokázala otevřít</string>
     <string name="related_items_tab_description">Podobné položky</string>
     <string name="show_description_summary">Vypnout pro skrytí popisu videa a doplňkové informace</string>
     <string name="crash_the_app">Shodit aplikaci</string>

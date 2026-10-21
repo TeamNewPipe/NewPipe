@@ -208,7 +208,7 @@
     <string name="clear_download_history">Endirmə tarixçəsini təmizlə</string>
     <string name="start_downloads">Endirmələri başlat</string>
     <string name="pause_downloads">Endirmələri dayandır</string>
-    <string name="downloads_storage_ask_title">Haraya endiriləcəyini soruş</string>
+    <string name="downloads_storage_ask_title">Haraya yüklənəcəyini soruş</string>
     <string name="downloads_storage_ask_summary">Sizdən hər endirmənin harada saxlanılacağı soruşulacaq. \nXarici SD karta endirmək istəyirsinizsə, sistem qovluğu seçicisini (SAF) aktiv edin</string>
     <string name="downloads_storage_use_saf_summary">\'Yaddaş Giriş Quruluşu\' xarici SD karta endirməyə imkan verir</string>
     <string name="systems_language">Sistem standartı</string>
@@ -477,9 +477,9 @@
     <string name="pause_downloads_on_mobile_desc">Bəzi endirmələri dayandırmaq mümkün olmasa da, mobil dataya keçərkən faydalıdır</string>
     <string name="close">Bağla</string>
     <string name="error_progress_lost">Fayl silindiyi üçün irəliləyiş itirildi</string>
-    <string name="max_retry_desc">Endirməni ləğv etməzdən əvvəl ümumi cəhdlərin sayı</string>
+    <string name="max_retry_desc">Yükləməni ləğv etməzdən əvvəl maksimum cəhdlərin sayı</string>
     <string name="pause_downloads_on_mobile">Ölçülmüş şəbəkələrdə dayandır</string>
-    <string name="enable_queue_limit">Endirmə növbəsini məhdudlaşdır</string>
+    <string name="enable_queue_limit">Yükləmə növbəsini məhdudlaşdırın</string>
     <string name="enable_queue_limit_desc">Eyni vaxtda ancaq bir endirmə həyata keçiriləcək</string>
     <string name="account_terminated">Hesab ləğv edildi</string>
     <string name="download_has_started">Yükləmə başladı</string>

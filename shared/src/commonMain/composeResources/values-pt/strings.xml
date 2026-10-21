@@ -162,4 +162,5 @@
     <string name="left_gesture_control_summary">Escolha o gesto para a metade esquerda do ecrã do reprodutor</string>
     <string name="always_ask_open_action">Sempre perguntar</string>
     <string name="video_player">Player de vídeo</string>
+    <string name="downloads_storage_ask_title">Perguntar para onde descarregar</string>
 </resources>
