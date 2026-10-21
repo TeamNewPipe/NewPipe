@@ -6,7 +6,9 @@
 package net.newpipe.app.screen.settings
 
 import androidx.compose.ui.test.ExperimentalTestApi
+import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
@@ -53,8 +55,8 @@ class DebugSettingsScreenTest {
             modules = listOf(emptySettings),
             content = { DebugSettingsScreenContent(leakCanaryAvailable = false) },
             onContent = {
-                onNodeWithText(getString(Res.string.leak_canary_not_available))
-                    .assertIsDisplayed()
+                onAllNodesWithText(getString(Res.string.leak_canary_not_available))
+                    .assertCountEquals(2)
                 onNodeWithText(getString(Res.string.enable_leak_canary_summary))
                     .assertDoesNotExist()
             }
