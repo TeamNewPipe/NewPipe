@@ -16,29 +16,29 @@ import org.schabi.newpipe.databinding.PlaylistControlBinding;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
+import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.channel.tabs.ChannelTabInfo;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandlerFactory;
 import org.schabi.newpipe.extractor.linkhandler.ReadyChannelTabListLinkHandler;
-import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
+import org.schabi.newpipe.fragments.list.StreamListFilterController;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistControlViewHolder;
 import org.schabi.newpipe.player.playqueue.ChannelTabPlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.ui.emptystate.EmptyStateUtil;
 import org.schabi.newpipe.util.ChannelTabHelper;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.PlayButtonHelper;
 
-import java.util.List;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.Single;
 
 public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTabInfo>
-        implements PlaylistControlViewHolder {
+        implements PlaylistControlViewHolder, StreamListFilterController.Host {
 
     // states must be protected and not private for State being able to access them
     @State
@@ -47,6 +47,9 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
     protected String channelName;
 
     private PlaylistControlBinding playlistControlBinding;
+    private View streamsHeader = null;
+    private final StreamListFilterController filterController =
+            new StreamListFilterController(this, this);
 
     @NonNull
     public static ChannelTabFragment getInstance(final int serviceId,
@@ -89,15 +92,29 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        filterController.unbindViews();
         playlistControlBinding = null;
+        streamsHeader = null;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        filterController.dispose();
     }
 
     @Override
     protected Supplier<View> getListHeaderSupplier() {
         if (ChannelTabHelper.isStreamsTab(tabHandler)) {
-            playlistControlBinding = PlaylistControlBinding
-                    .inflate(activity.getLayoutInflater(), itemsList, false);
-            return playlistControlBinding::getRoot;
+            streamsHeader = activity.getLayoutInflater()
+                    .inflate(R.layout.channel_streams_header, itemsList, false);
+            playlistControlBinding = PlaylistControlBinding.bind(
+                    streamsHeader.findViewById(R.id.playlist_control));
+            filterController.bindViews(
+                    streamsHeader.findViewById(R.id.stream_filter_panel),
+                    playlistControlBinding.playlistCtrlFilterButton,
+                    playlistControlBinding.playlistCtrlFilterSeparator);
+            return () -> streamsHeader;
         }
         return null;
     }
@@ -110,6 +127,20 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
     @Override
     protected Single<ListExtractor.InfoItemsPage<InfoItem>> loadMoreItemsLogic() {
         return ExtractorHelper.getMoreChannelTabItems(serviceId, tabHandler, currentNextPage);
+    }
+
+    @Override
+    protected void loadMoreItems() {
+        if (!filterController.onLoadMoreItems()) {
+            super.loadMoreItems();
+        }
+    }
+
+    @Override
+    public void handleNextItems(final ListExtractor.InfoItemsPage<InfoItem> result) {
+        if (!filterController.onNextItems(result)) {
+            super.handleNextItems(result);
+        }
     }
 
     @Override
@@ -161,17 +192,57 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
 
             PlayButtonHelper.initPlaylistControlClickListener(
                     activity, playlistControlBinding, this);
+
+            filterController.onFirstPageLoaded(result.getRelatedItems(), result.getNextPage());
         }
     }
 
     @Override
     public PlayQueue getPlayQueue() {
-        final List<StreamInfoItem> streamItems = infoListAdapter.getItemsList().stream()
-                .filter(StreamInfoItem.class::isInstance)
-                .map(StreamInfoItem.class::cast)
-                .collect(Collectors.toList());
-
         return new ChannelTabPlayQueue(currentInfo.getServiceId(), tabHandler,
-                currentInfo.getNextPage(), streamItems, 0);
+                currentInfo.getNextPage(),
+                StreamListFilterController.filterStreams(infoListAdapter.getItemsList()), 0);
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // StreamListFilterController.Host
+    //////////////////////////////////////////////////////////////////////////*/
+
+    @NonNull
+    @Override
+    public InfoListAdapter getAdapter() {
+        return infoListAdapter;
+    }
+
+    @NonNull
+    @Override
+    public Single<ListExtractor.InfoItemsPage<InfoItem>> loadPage(@NonNull final Page page) {
+        return ExtractorHelper.getMoreChannelTabItems(serviceId, tabHandler, page);
+    }
+
+    @Nullable
+    @Override
+    public Page getNextPage() {
+        return currentNextPage;
+    }
+
+    @Override
+    public void setNextPage(@Nullable final Page page) {
+        currentNextPage = page;
+    }
+
+    @Override
+    public void cancelPendingLoad() {
+        if (currentWorker != null) {
+            currentWorker.dispose();
+            currentWorker = null;
+        }
+        isLoading.set(false);
+    }
+
+    @NonNull
+    @Override
+    public String getCacheKey() {
+        return tabHandler.getUrl();
     }
 }

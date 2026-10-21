@@ -105,11 +105,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/playlist_description_read_more">
+        android:layout_below="@id/playlist_description_read_more"
+        android:orientation="vertical">
 
         <include
             android:id="@+id/playlist_control"
             layout="@layout/playlist_control" />
+
+        <include
+            android:id="@+id/stream_filter_panel"
+            layout="@layout/stream_filter_panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible" />
     </LinearLayout>
 
 </RelativeLayout>

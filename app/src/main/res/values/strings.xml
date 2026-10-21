@@ -923,4 +923,41 @@
     <string name="api23_requirement_dialog_title">NewPipe is dropping support for Android 5</string>
     <string name="api23_requirement_dialog_message">Unfortunately NewPipe depends on a few libraries that dropped support for Android 5.0 and 5.1. The next NewPipe release will therefore only work on devices with Android 6 or higher, sadly. Read more in the blogpost.</string>
     <string name="api23_requirement_dialog_blogpost">Blogpost</string>
+
+    <!-- Channel filter/sort -->
+    <string name="filter_toggle_button_description">Toggle filter panel</string>
+    <string name="filter_toggle_button_label">Filter</string>
+    <string name="filter_sort_label">Sort</string>
+    <string name="filter_age_label">Age</string>
+    <string name="filter_name_label">Name</string>
+    <string name="filter_views_label">Views</string>
+    <string name="filter_name_hint">e.g. hello, hel*, *llo, *ell*</string>
+    <string name="filter_views_none">--</string>
+    <string name="filter_views_1k">1K</string>
+    <string name="filter_views_10k">10K</string>
+    <string name="filter_views_100k">100K</string>
+    <string name="filter_views_1m">1M</string>
+    <string name="filter_views_10m">10M</string>
+    <string name="filter_views_100m">100M</string>
+    <string name="filter_views_custom">Custom…</string>
+    <string name="filter_views_custom_hint">min views</string>
+    <string name="filter_sort_date">Date</string>
+    <string name="filter_sort_views">Views</string>
+    <string name="filter_sort_name">Name</string>
+    <string name="filter_age_none">--</string>
+    <string name="filter_age_1_day">1 Day</string>
+    <string name="filter_age_2_days">2 Days</string>
+    <string name="filter_age_4_days">4 Days</string>
+    <string name="filter_age_1_week">1 Week</string>
+    <string name="filter_age_2_weeks">2 Weeks</string>
+    <string name="filter_age_1_month">1 Month</string>
+    <string name="filter_age_2_months">2 Months</string>
+    <string name="filter_age_4_months">4 Months</string>
+    <string name="filter_age_1_year">1 Year</string>
+    <string name="filter_age_2_years">2 Years</string>
+    <string name="filter_age_5_years">5 Years</string>
+    <string name="filter_age_custom">Custom…</string>
+    <string name="filter_age_custom_hint">e.g. 3 days, 2 weeks</string>
+    <string name="filter_loading_progress">Loading… %1$d videos so far</string>
+    <string name="filter_loading_done">%1$d videos loaded</string>
 </resources>
