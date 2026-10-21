@@ -385,7 +385,7 @@
     <string name="enable_queue_limit_desc">Permitir apenas uma descarga de cada vez</string>
     <string name="start_downloads">Iniciar descargas</string>
     <string name="pause_downloads">Pausa nas descargas</string>
-    <string name="downloads_storage_ask_title">Perguntar onde guardar</string>
+    <string name="downloads_storage_ask_title">Perguntar para onde descarregar</string>
     <string name="downloads_storage_ask_summary">Ser-lhe-á perguntado onde guardar cada descarga. \nAtive o seletor de pastas do sistema (SAF) se quiser descarregar para um cartão SD externo</string>
     <string name="downloads_storage_use_saf_title">Utilizar seletor de pastas do sistema (SAF)</string>
     <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' permite descargas para um cartão SD externo</string>
@@ -843,4 +843,5 @@
     <string name="api23_requirement_dialog_title">O NewPipe deixará de apoiar o Android 5</string>
     <string name="api23_requirement_dialog_message">Infelizmente, o NewPipe depende de algumas bibliotecas que terminaram apoio para o Android 5.0 e 5.1. Por isso, a próxima versão do NewPipe só funcionará em dispositivos com Android 6 ou superior, infelizmente. Saiba mais na publicação do blog.</string>
     <string name="api23_requirement_dialog_blogpost">Postagem no blog</string>
+    <string name="channel_tab_courses">Cursos</string>
 </resources>
