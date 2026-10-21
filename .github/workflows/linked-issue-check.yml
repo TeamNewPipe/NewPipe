@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2026 NewPipe e.V. <https://newpipe-ev.de>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-name: Check linked issue
+name: Check for linked issue
 
 on:
   pull_request_target:
@@ -14,10 +14,10 @@ permissions:
 
 jobs:
   check-linked-issue:
-    name: Check linked issue and assignee
+    name: Check for linked issues and author being assigned to at least one issue
     if: >-
-      github.event.pull_request.author_association != 'MEMBER' &&
-      github.event.pull_request.author_association != 'OWNER'
+      !contains(fromJSON('["MEMBER", "OWNER", "COLLABORATOR"]'),
+        github.event.pull_request.author_association)
     runs-on: ubuntu-latest
     steps:
       - name: Dump Author Association
