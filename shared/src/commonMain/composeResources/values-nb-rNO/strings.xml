@@ -81,7 +81,7 @@
     <string name="low_quality_smaller">Lav kvalitet (mindre)</string>
     <string name="dont_show">Ikke vis</string>
     <string name="settings_category_player_behavior_title">Oppførsel</string>
-    <string name="preferred_open_action_settings_title">Foretrekt "åpne"-handling</string>
+    <string name="preferred_open_action_settings_title">Foretrekt åpne-handling</string>
     <string name="preferred_open_action_settings_summary">Standard handling når innhold åpnes — %1$s</string>
     <string name="show_info">Vis info</string>
     <string name="video_player">Videoavspiller</string>

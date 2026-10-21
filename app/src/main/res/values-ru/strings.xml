@@ -16,7 +16,7 @@
     <string name="download_path_dialog_title">Введите путь к папке для скачивания видео</string>
     <string name="default_resolution_title">Разрешение по умолчанию</string>
     <string name="play_with_kodi_title">Воспроизвести в Kodi</string>
-    <string name="kore_not_found">Приложение Kore не найдено, установить\?</string>
+    <string name="kore_not_found">Приложение Kore не найдено, установить?</string>
     <string name="show_play_with_kodi_title">Показать опцию «Воспроизвести в Kodi»</string>
     <string name="show_play_with_kodi_summary">Показать опцию воспроизведения через медиацентр Kodi</string>
     <string name="play_audio">Аудио</string>
@@ -88,8 +88,7 @@
     <string name="clear">Очистить</string>
     <string name="all">Всё</string>
     <string name="info_labels">Что:\nЗапрос:\nЯзык контента:\nСтрана контента:\nЯзык приложения:\nСервис:\nВремя по Гринвичу:\nПакет:\nВерсия пакета:\nВерсия ОС:</string>
-    <string name="msg_popup_permission">Это разрешение нужно для
-\nвоспроизведения в окне</string>
+    <string name="msg_popup_permission">Это разрешение нужно для \nвоспроизведения в окне</string>
     <string name="open_in_popup_mode">Открыть во всплывающем окне</string>
     <string name="show_search_suggestions_summary">Выберите отображаемые предложения поиска</string>
     <string name="disabled">Отключено</string>
@@ -149,24 +148,27 @@
         <item quantity="one">%s подписчик</item>
         <item quantity="few">%s подписчика</item>
         <item quantity="many">%s подписчиков</item>
+        <item quantity="other">%s подписчиков</item>
     </plurals>
     <string name="no_views">Нет просмотров</string>
     <plurals name="views">
         <item quantity="one">%s просмотр</item>
         <item quantity="few">%s просмотра</item>
         <item quantity="many">%s просмотров</item>
+        <item quantity="other">%s просмотров</item>
     </plurals>
     <string name="no_videos">Нет видео</string>
     <plurals name="videos">
         <item quantity="one">%s видео</item>
         <item quantity="few">%s видео</item>
-        <item quantity="many">%s видео</item>
-        <item quantity="other">%s видео</item>
+        <item quantity="many">%s видео</item>
+        <item quantity="other">%s видео</item>
     </plurals>
     <plurals name="new_streams">
         <item quantity="one">%s новое видео</item>
         <item quantity="few">%s новых видео</item>
         <item quantity="many">%s новых видео</item>
+        <item quantity="other">%s новых видео</item>
     </plurals>
     <string name="delete_item_search_history">Удалить этот элемент из истории поиска?</string>
     <string name="main_page_content">Главная страница</string>
@@ -254,7 +256,7 @@
     <string name="set_as_playlist_thumbnail">На миниатюру плейлиста</string>
     <string name="bookmark_playlist">Сохранить плейлист</string>
     <string name="unbookmark_playlist">Удалить плейлист</string>
-    <string name="delete_playlist_prompt">Удалить плейлист\?</string>
+    <string name="delete_playlist_prompt">Удалить плейлист?</string>
     <string name="playlist_creation_success">Плейлист создан</string>
     <string name="playlist_add_stream_success">Добавлено в плейлист</string>
     <string name="playlist_thumbnail_change_success">Миниатюра плейлиста изменена.</string>
@@ -275,25 +277,10 @@
     <string name="previous_export">Предыдущий экспорт</string>
     <string name="subscriptions_import_unsuccessful">Не удалось импортировать подписки</string>
     <string name="subscriptions_export_unsuccessful">Не удалось экспортировать подписки</string>
-    <string name="import_youtube_instructions">Импортируйте подписки YouTube с помощью Google Takeout:
-\n
-\n1. Перейдите по ссылке: %1$s
-\n2. Авторизуйтесь, если потребуется
-\n3. Отметьте пункт «YouTube и YouTube Music», затем выберите тип «подписки»
-\n4. Нажмите «Далее» и «Создать экспорт»
-\n5. Нажмите кнопку «Скачать», когда она появится
-\n6. Нажмите ИМПОРТ ФАЙЛА внизу и выберите скачанный ZIP-архив
-\n7. [Если импортировать ZIP-файл не удалось] Из скачанного ZIP-архива распакуйте CSV-файл (обычно это «YouTube и YouTube Music/подписки/подписки.csv»), нажмите ИМПОРТ ФАЙЛА и выберите этот CSV-файл</string>
-    <string name="import_soundcloud_instructions">Импортируйте профиль SoundCloud, введя его URL или ID:
-\n
-\n1. Включите «Версия для ПК» в браузере (сайт не поддерживается мобильными устройствами)
-\n2. Перейдите по ссылке %1$s
-\n3. Авторизуйтесь, если потребуется
-\n4. Скопируйте URL профиля из адресной строки.</string>
+    <string name="import_youtube_instructions">Импортируйте подписки YouTube с помощью Google Takeout: \n \n1. Перейдите по ссылке: %1$s \n2. Авторизуйтесь, если потребуется \n3. Отметьте пункт «YouTube и YouTube Music», затем выберите тип «подписки» \n4. Нажмите «Далее» и «Создать экспорт» \n5. Нажмите кнопку «Скачать», когда она появится \n6. Нажмите ИМПОРТ ФАЙЛА внизу и выберите скачанный ZIP-архив \n7. [Если импортировать ZIP-файл не удалось] Из скачанного ZIP-архива распакуйте CSV-файл (обычно это «YouTube и YouTube Music/подписки/подписки.csv»), нажмите ИМПОРТ ФАЙЛА и выберите этот CSV-файл</string>
+    <string name="import_soundcloud_instructions">Импортируйте профиль SoundCloud, введя его URL или ID: \n \n1. Включите «Версия для ПК» в браузере (сайт не поддерживается мобильными устройствами) \n2. Перейдите по ссылке %1$s \n3. Авторизуйтесь, если потребуется \n4. Скопируйте URL профиля из адресной строки.</string>
     <string name="import_soundcloud_instructions_hint">вашID, soundcloud.com/вашID</string>
-    <string name="import_network_expensive_warning">Это действие может вызвать большой расход трафика.
-\n 
-\nПродолжить?</string>
+    <string name="import_network_expensive_warning">Это действие может вызвать большой расход трафика. \n \nПродолжить?</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кэш изображений очищен</string>
     <string name="metadata_cache_wipe_title">Очистить кэш метаданных</string>
     <string name="metadata_cache_wipe_complete_notice">Кэш метаданных очищен</string>
@@ -307,23 +294,21 @@
     <string name="caption_setting_title">Субтитры</string>
     <string name="caption_setting_description">Изменить размер текста и стиль субтитров. Нужен перезапуск</string>
     <string name="clear_views_history_title">Очистить историю</string>
-    <string name="delete_view_history_alert">Удалить всю историю просмотров\?</string>
+    <string name="delete_view_history_alert">Удалить всю историю просмотров?</string>
     <string name="watch_history_deleted">История просмотров удалена</string>
     <string name="clear_search_history_title">Очистить запросы поиска</string>
     <string name="clear_search_history_summary">Удалить все запросы поиска</string>
     <string name="clear_views_history_summary">Удалить историю воспроизведённых потоков и позиции воспроизведения</string>
-    <string name="delete_search_history_alert">Удалить всю историю поиска\?</string>
+    <string name="delete_search_history_alert">Удалить всю историю поиска?</string>
     <string name="search_history_deleted">История поиска удалена</string>
     <string name="one_item_deleted">1 элемент удалён.</string>
     <string name="app_license">NewPipe - свободное программное обеспечение, распространяемое на условиях копилефта. Вы можете свободно использовать, изучать, распространять и улучшать его. В частности, NewPipe можно распространять и/или изменять на условиях Стандартной общественной лицензии GNU, опубликованной Фондом свободного программного обеспечения, версии 3 либо, по вашему выбору, любой более поздней версии.</string>
     <string name="preferred_open_action_settings_title">При открытии ссылки</string>
     <string name="import_settings">Хотите импортировать настройки?</string>
     <string name="privacy_policy_title">Политика конфиденциальности NewPipe</string>
-    <string name="privacy_policy_encouragement">Проект NewPipe очень серьёзно относится к вашей конфиденциальности. Приложение не собирает никакие данные без вашего согласия.
-\nПолитика конфиденциальности подробно объясняет, какие данные обрабатываются и хранятся при отправке отчёта о сбоях.</string>
+    <string name="privacy_policy_encouragement">Проект NewPipe очень серьёзно относится к вашей конфиденциальности. Приложение не собирает никакие данные без вашего согласия. \nПолитика конфиденциальности подробно объясняет, какие данные обрабатываются и хранятся при отправке отчёта о сбоях.</string>
     <string name="read_privacy_policy">Ознакомиться с политикой конфиденциальности</string>
-    <string name="start_accept_privacy_policy">В соответствии с Общим регламентом по защите данных ЕС (GDPR), обращаем ваше внимание на политику конфиденциальности NewPipe. Пожалуйста, внимательно ознакомьтесь с ней.
-\nВам необходимо принять её условия, чтобы отправить нам отчёт об ошибке.</string>
+    <string name="start_accept_privacy_policy">В соответствии с Общим регламентом по защите данных ЕС (GDPR), обращаем ваше внимание на политику конфиденциальности NewPipe. Пожалуйста, внимательно ознакомьтесь с ней. \nВам необходимо принять её условия, чтобы отправить нам отчёт об ошибке.</string>
     <string name="accept">Принять</string>
     <string name="decline">Отклонить</string>
     <string name="limit_data_usage_none_description">Без ограничений</string>
@@ -344,11 +329,11 @@
     <string name="list">Список</string>
     <string name="grid">Сетка</string>
     <string name="auto">Автоматически</string>
-    <string name="download_to_sdcard_error_message">Загрузка на SD-карту невозможна. Сбросить расположение папки загрузки\?</string>
+    <string name="download_to_sdcard_error_message">Загрузка на SD-карту невозможна. Сбросить расположение папки загрузки?</string>
     <string name="download_to_sdcard_error_title">Внешнее хранилище недоступно</string>
     <string name="main_page_content_summary">Вкладки, видимые на главной странице</string>
     <string name="restore_defaults">Значения по умолчанию</string>
-    <string name="restore_defaults_confirmation">Восстановить значения по умолчанию\?</string>
+    <string name="restore_defaults_confirmation">Восстановить значения по умолчанию?</string>
     <string name="saved_tabs_invalid_json">Ошибка чтения сохранённых вкладок. Используются вкладки по умолчанию</string>
     <string name="subscribers_count_not_available">Количество подписчиков недоступно</string>
     <string name="tab_choose">Выберите вкладку</string>
@@ -404,19 +389,18 @@
     <string name="error_postprocessing_stopped">NewPipe была закрыта во время работы над файлом</string>
     <string name="error_insufficient_storage_left">Закончилось свободное место на устройстве</string>
     <string name="error_progress_lost">Прогресс потерян, так как файл был удалён</string>
-    <string name="confirm_prompt">Действительно удалить историю загрузок и загруженные файлы\?</string>
+    <string name="confirm_prompt">Действительно удалить историю загрузок и загруженные файлы?</string>
     <string name="enable_queue_limit">Ограничить очередь загрузки</string>
     <string name="enable_queue_limit_desc">Только одна одновременная загрузка</string>
     <string name="start_downloads">Начать загрузку</string>
     <string name="pause_downloads">Приостановить загрузку</string>
     <string name="downloads_storage_ask_title">Запрашивать папку загрузки</string>
-    <string name="downloads_storage_ask_summary">Для каждой загрузки запрашивать папку для сохранения.
-\nВключите системный выбор папки (SAF), если хотите загружать на внешнюю SD-карту</string>
+    <string name="downloads_storage_ask_summary">Для каждой загрузки запрашивать папку для сохранения. \nВключите системный выбор папки (SAF), если хотите загружать на внешнюю SD-карту</string>
     <string name="downloads_storage_use_saf_title">Системный выбор папки (SAF)</string>
     <string name="downloads_storage_use_saf_summary">«Storage Access Framework» позволяет сохранять файлы на внешнюю SD-карту</string>
     <string name="clear_playback_states_title">Очистить позиции воспроизведения</string>
     <string name="clear_playback_states_summary">Удалить все позиции воспроизведения</string>
-    <string name="delete_playback_states_alert">Удалить все позиции воспроизведения\?</string>
+    <string name="delete_playback_states_alert">Удалить все позиции воспроизведения?</string>
     <string name="drawer_header_description">Переключение сервисов, сейчас выбрано:</string>
     <string name="default_kiosk_page_summary">Киоск по умолчанию</string>
     <string name="no_one_watching">Никто не смотрел</string>
@@ -424,12 +408,14 @@
         <item quantity="one">%s зритель</item>
         <item quantity="few">%s зрителя</item>
         <item quantity="many">%s зрителей</item>
+        <item quantity="other">%s зрителей</item>
     </plurals>
     <string name="no_one_listening">Нет слушателей</string>
     <plurals name="listening">
         <item quantity="one">%s слушатель</item>
         <item quantity="few">%s слушателя</item>
         <item quantity="many">%s слушателей</item>
+        <item quantity="other">%s слушателей</item>
     </plurals>
     <string name="seek_duration_title">Шаг перемотки</string>
     <string name="peertube_instance_url_title">Серверы PeerTube</string>
@@ -459,6 +445,7 @@
         <item quantity="one">%d секунда</item>
         <item quantity="few">%d секунды</item>
         <item quantity="many">%d секунд</item>
+        <item quantity="other">%d секунд</item>
     </plurals>
     <string name="new_seek_duration_toast">Из-за ограничений ExoPlayer точность перемотки составляет %d секунд</string>
     <string name="mute">Отключить звук</string>
@@ -476,18 +463,21 @@
         <item quantity="one">%d день</item>
         <item quantity="few">%d дня</item>
         <item quantity="many">%d дней</item>
+        <item quantity="other">%d дней</item>
     </plurals>
     <plurals name="hours">
         <item quantity="one">%d час</item>
         <item quantity="few">%d часа</item>
         <item quantity="many">%d часов</item>
+        <item quantity="other">%d часов</item>
     </plurals>
     <plurals name="minutes">
         <item quantity="one">%d минута</item>
         <item quantity="few">%d минуты</item>
         <item quantity="many">%d минут</item>
+        <item quantity="other">%d минут</item>
     </plurals>
-    <string name="feed_group_dialog_delete_message">Удалить эту группу\?</string>
+    <string name="feed_group_dialog_delete_message">Удалить эту группу?</string>
     <string name="feed_subscription_not_loaded_count">Не загружено: %d</string>
     <string name="feed_create_new_group_button_title">Создать</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Обычный режим</string>
@@ -499,26 +489,12 @@
     <string name="feed_update_threshold_option_always_update">Обновлять всегда</string>
     <string name="feed_group_dialog_empty_selection">Подписки не выбраны</string>
     <string name="feed_groups_header_title">Группы каналов</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Если подписки обновляются слишком медленно, попробуйте быстрый режим (включите в настройках или кнопкой внизу).
-\n
-\nNewPipe может обновлять подписки двумя способами:
-\n• получение канала целиком, медленное, с полными сведениями;
-\n• обновление по RSS, быстрое, с потерей сведений.
-\n
-\nПри быстром обновлении теряются длительность элемента и его тип (трансляция или обычное видео), могут быть получены не все элементы канала.
-\n
-\nКак пример, YouTube поддерживает быстрое обновление.
-\n
-\nВыбор за вами: скорость или точность.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Если подписки обновляются слишком медленно, попробуйте быстрый режим (включите в настройках или кнопкой внизу). \n \nNewPipe может обновлять подписки двумя способами: \n• получение канала целиком, медленное, с полными сведениями; \n• обновление по RSS, быстрое, с потерей сведений. \n \nПри быстром обновлении теряются длительность элемента и его тип (трансляция или обычное видео), могут быть получены не все элементы канала. \n \nКак пример, YouTube поддерживает быстрое обновление. \n \nВыбор за вами: скорость или точность.</string>
     <string name="feed_use_dedicated_fetch_method_title">Получать из выделенной ленты, когда доступно</string>
     <string name="feed_use_dedicated_fetch_method_summary">Доступно для некоторых сервисов, быстрое, может возвращать не всё содержимое канала и не содержать часть сведений (длительность, статус трансляции)</string>
     <string name="feed_update_threshold_summary">Период актуальности подписок после обновления — %s</string>
-    <string name="restricted_video">Это видео имеет возрастное ограничение.
-\n
-\nВключите «%1$s» в настройках, если хотите его видеть.</string>
-    <string name="content_not_supported">NewPipe не поддерживает этот контент. 
-\n 
-\nВозможно, поддержка появится в следующих версиях.</string>
+    <string name="restricted_video">Это видео имеет возрастное ограничение. \n \nВключите «%1$s» в настройках, если хотите его видеть.</string>
+    <string name="content_not_supported">NewPipe не поддерживает этот контент. \n \nВозможно, поддержка появится в следующих версиях.</string>
     <string name="infinite_videos">∞ видео</string>
     <string name="more_than_100_videos">100+ видео</string>
     <string name="songs">Треки</string>
@@ -546,7 +522,7 @@
     <string name="wifi_only">Только по Wi-Fi</string>
     <string name="autoplay_summary">Автовоспроизведение — %s</string>
     <string name="title_activity_play_queue">Очередь воспроизведения</string>
-    <string name="unsupported_url_dialog_message">Не удалось распознать URL. Открыть в другом приложении\?</string>
+    <string name="unsupported_url_dialog_message">Не удалось распознать URL. Открыть в другом приложении?</string>
     <string name="auto_queue_toggle">Авто-очередь</string>
     <string name="clear_queue_confirmation_description">Очередь активного плеера будет заменена</string>
     <string name="clear_queue_confirmation_title">Подтверждать очистку очереди</string>
@@ -602,8 +578,7 @@
     <string name="night_theme_summary">Выберите предпочтительную ночную тему — %s</string>
     <string name="auto_device_theme_title">Автоматически (тема устройства)</string>
     <string name="radio">Радио</string>
-    <string name="restricted_video_no_stream">Это видео имеет возрастные ограничения.
-\nСогласно новой политике YouTube в отношении видео с возрастными ограничениями NewPipe не может иметь доступ ни к одному потоку этого видео и, таким образом, не может воспроизвести его.</string>
+    <string name="restricted_video_no_stream">Это видео имеет возрастные ограничения. \nСогласно новой политике YouTube в отношении видео с возрастными ограничениями NewPipe не может иметь доступ ни к одному потоку этого видео и, таким образом, не может воспроизвести его.</string>
     <string name="night_theme_title">Ночная тема</string>
     <string name="featured">Популярное</string>
     <string name="recaptcha_solve">Решить</string>
@@ -626,9 +601,7 @@
     <string name="metadata_host">Сервер</string>
     <string name="metadata_privacy">Доступность</string>
     <string name="feed_load_error_fast_unknown">В быстром режиме обновления подробности об этом не предоставляются.</string>
-    <string name="feed_load_error_terminated">Аккаунт автора отключён.
-\nNewPipe не сможет загружать эту подписку в будущем.
-\nОтписаться от этого канала\?</string>
+    <string name="feed_load_error_terminated">Аккаунт автора отключён. \nNewPipe не сможет загружать эту подписку в будущем. \nОтписаться от этого канала?</string>
     <string name="feed_load_error_account_info">Не удалось загрузить подписку \'%s\'.</string>
     <string name="feed_load_error">Ошибка загрузки подписки</string>
     <string name="open_website_license">Открыть веб-сайт</string>
@@ -691,16 +664,14 @@
     <string name="error_report_notification_toast">Произошла ошибка, подробнее в уведомлении</string>
     <string name="show_error_snackbar">Показать снэк-бар с ошибкой</string>
     <string name="create_error_notification">Показать уведомление об ошибке</string>
-    <string name="no_appropriate_file_manager_message">Не найден подходящий для этого действия файловый менеджер.
-\nУстановите файловый менеджер, или попробуйте отключить \'%s\' в настройках загрузок</string>
-    <string name="no_appropriate_file_manager_message_android_10">Не найден подходящий для этого действия файловый менеджер.
-\nУстановите файловый менеджер, совместимый с Storage Access Framework</string>
+    <string name="no_appropriate_file_manager_message">Не найден подходящий для этого действия файловый менеджер. \nУстановите файловый менеджер, или попробуйте отключить \'%s\' в настройках загрузок</string>
+    <string name="no_appropriate_file_manager_message_android_10">Не найден подходящий для этого действия файловый менеджер. \nУстановите файловый менеджер, совместимый с Storage Access Framework</string>
     <string name="detail_pinned_comment_view_description">Закреплённый комментарий</string>
     <string name="leak_canary_not_available">LeakCanary недоступна</string>
     <string name="progressive_load_interval_exoplayer_default">Стандартное значение ExoPlayer</string>
     <string name="loading_stream_details">Загрузка сведений о трансляции…</string>
     <string name="check_new_streams">Проверить наличие новых трансляций</string>
-    <string name="delete_downloaded_files_confirm">Удалить все загруженные файлы\?</string>
+    <string name="delete_downloaded_files_confirm">Удалить все загруженные файлы?</string>
     <string name="settings_category_player_notification_title">Уведомление плеера</string>
     <string name="enumeration_comma">,</string>
     <string name="semitone">Полутон</string>
@@ -734,9 +705,9 @@
     <string name="feed_show_watched">Полностью просмотрено</string>
     <string name="feed_show_upcoming">Предстоящие</string>
     <string name="remove_duplicates">Удалить дубликаты</string>
-    <string name="remove_duplicates_title">Удалить дубликаты\?</string>
+    <string name="remove_duplicates_title">Удалить дубликаты?</string>
     <string name="feed_show_partially_watched">Частично просмотрено</string>
-    <string name="remove_duplicates_message">Удалить все дубликаты потоков в этом плейлисте\?</string>
+    <string name="remove_duplicates_message">Удалить все дубликаты потоков в этом плейлисте?</string>
     <string name="left_gesture_control_summary">Жест для левой стороны экрана плеера</string>
     <string name="left_gesture_control_title">Действие жеста слева</string>
     <string name="right_gesture_control_summary">Жест для правой стороны экрана плеера</string>
@@ -763,9 +734,7 @@
     <string name="audio_track_present_in_video">Звуковая дорожка уже должна присутствовать в этом потоке</string>
     <string name="select_audio_track_external_players">Выберите звуковую дорожку для внешних проигрывателей</string>
     <string name="use_exoplayer_decoder_fallback_summary">Включите этот параметр, если у вас есть проблемы с инициализацией декодера, который возвращается к декодерам с более низким приоритетом в случае сбоя инициализации основных декодеров. Это может привести к ухудшению качества воспроизведения по сравнению с использованием первичных декодеров</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Этот обходной путь освобождает и повторно создаёт видеокодеки при изменении поверхности вместо того, чтобы напрямую устанавливать поверхность для кодека. Уже используется ExoPlayer на некоторых устройствах с этой проблемой, этот параметр влияет только на устройства с Android 6 и выше
-\n
-\nВключение этого параметра может предотвратить ошибки воспроизведения при переключении текущего видеоплеера или переключении в полноэкранный режим</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Этот обходной путь освобождает и повторно создаёт видеокодеки при изменении поверхности вместо того, чтобы напрямую устанавливать поверхность для кодека. Уже используется ExoPlayer на некоторых устройствах с этой проблемой, этот параметр влияет только на устройства с Android 6 и выше \n \nВключение этого параметра может предотвратить ошибки воспроизведения при переключении текущего видеоплеера или переключении в полноэкранный режим</string>
     <string name="main_tabs_position_summary">Переместить основные вкладки в нижнюю часть экрана</string>
     <string name="main_tabs_position_title">Положение основных вкладок</string>
     <string name="no_streams">Нет стримов</string>
@@ -778,8 +747,7 @@
     <string name="show_channel_tabs_summary">Какие вкладки отображаются на страницах каналов</string>
     <string name="share_playlist_with_list">Поделиться списком URL-адресов</string>
     <string name="share_playlist_with_titles">Поделиться названиями</string>
-    <string name="share_playlist_content_details">%1$s
-\n%2$s</string>
+    <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="show_channel_tabs">Вкладки канала</string>
     <string name="channel_tab_shorts">Shorts</string>
     <string name="loading_metadata_title">Загрузка метаданных…</string>
@@ -829,11 +797,8 @@
     <string name="no">Нет</string>
     <string name="settings_category_backup_restore_title">Резервное копирование и восстановление</string>
     <string name="reset_settings_title">Сбросить настройки</string>
-    <string name="auto_update_check_description">NewPipe может автоматически проверять наличие обновлений и уведомить вас, когда они будут доступны.
-\nЖелаете включить эту функцию?</string>
-    <string name="reset_all_settings">Сброс всех настроек приведёт к сбросу всех ваших настроек и перезапуску приложения.
-\n
-\nВы уверены, что хотите продолжить?</string>
+    <string name="auto_update_check_description">NewPipe может автоматически проверять наличие обновлений и уведомить вас, когда они будут доступны. \nЖелаете включить эту функцию?</string>
+    <string name="reset_all_settings">Сброс всех настроек приведёт к сбросу всех ваших настроек и перезапуску приложения. \n \nВы уверены, что хотите продолжить?</string>
     <string name="import_settings_vulnerable_format">Настройки в импортируемом экспорте используют уязвимый формат, который устарел с версии NewPipe 0.27.0. Убедитесь, что импортируемый экспорт получен из надёжного источника, и в будущем предпочтительнее использовать только экспорт, полученный из NewPipe 0.27.0 или новее. Поддержка импорта настроек в этом уязвимом формате скоро будет полностью удалена, и тогда старые версии NewPipe больше не смогут импортировать настройки из экспорта из новых версий.</string>
     <string name="audio_track_type_secondary">вторичный</string>
     <string name="share_playlist_as_youtube_temporary_playlist">Поделиться как временным плейлистом YouTube</string>

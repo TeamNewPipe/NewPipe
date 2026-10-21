@@ -9,7 +9,7 @@
     <string name="download">Last ned</string>
     <string name="search">Søk</string>
     <string name="settings">Innstillinger</string>
-    <string name="did_you_mean">Mente du «%1$s»\?</string>
+    <string name="did_you_mean">Mente du «%1$s»?</string>
     <string name="share_dialog_title">Del med</string>
     <string name="use_external_video_player_title">Bruk ekstern videoavspiller</string>
     <string name="use_external_audio_player_title">Bruk ekstern lydavspiller</string>
@@ -21,7 +21,7 @@
     <string name="download_path_audio_dialog_title">Velg nedlastingsmappe for lydfiler</string>
     <string name="default_resolution_title">Standard oppløsning</string>
     <string name="play_with_kodi_title">Spill av med Kodi</string>
-    <string name="kore_not_found">Installer manglende Kode-app\?</string>
+    <string name="kore_not_found">Installer manglende Kode-app?</string>
     <string name="show_play_with_kodi_title">Vis \"Spill av med Kodi\"-valg</string>
     <string name="show_play_with_kodi_summary">Vis valg om å spille av video via Kodi mediasenter</string>
     <string name="play_audio">Lyd</string>
@@ -89,8 +89,7 @@
     <string name="popup_playing_toast">Spiller av i oppsprettsmodus</string>
     <string name="all">Alle</string>
     <string name="disabled">Avskrudd</string>
-    <string name="msg_popup_permission">Denne tilgangen trengs for
-\nåpning i oppsprettsmodus</string>
+    <string name="msg_popup_permission">Denne tilgangen trengs for \nåpning i oppsprettsmodus</string>
     <string name="recaptcha_request_toast">reCAPTCHA-oppgave forespurt</string>
     <string name="use_external_video_player_summary">Fjerner lyd på noen oppløsninger</string>
     <string name="subscribe_button_title">Abonner</string>
@@ -229,7 +228,7 @@
     <string name="set_as_playlist_thumbnail">Sett som miniatyrbilde for spilleliste</string>
     <string name="bookmark_playlist">Bokmerk spilleliste</string>
     <string name="unbookmark_playlist">Fjern bokmerke</string>
-    <string name="delete_playlist_prompt">Slett denne spillelisten\?</string>
+    <string name="delete_playlist_prompt">Slett denne spillelisten?</string>
     <string name="playlist_creation_success">Spilleliste opprettet</string>
     <string name="playlist_add_stream_success">Lagt til i spilleliste</string>
     <string name="playlist_thumbnail_change_success">Miniatyrbilde for spilleliste endret.</string>
@@ -262,19 +261,17 @@
     <string name="preferred_open_action_settings_title">Foretrekt \"åpne\"-handling</string>
     <string name="preferred_open_action_settings_summary">Forvalgt handling ved åpning av innhold — %s</string>
     <string name="import_soundcloud_instructions_hint">din-ID, soundcloud.com/dinid</string>
-    <string name="import_network_expensive_warning">Husk at denne handlingen kan belaste nettverket tungt.
-\n
-\nØnsker du å fortsette?</string>
+    <string name="import_network_expensive_warning">Husk at denne handlingen kan belaste nettverket tungt. \n \nØnsker du å fortsette?</string>
     <string name="playback_speed_control">Fartskontroller for avspilling</string>
     <string name="playback_tempo">Hastighet</string>
     <string name="playback_pitch">Tonehøyde</string>
     <string name="clear_views_history_title">Tøm avspillingshistorikk</string>
     <string name="clear_views_history_summary">Slett historikken og posisjon for avspilte strømmer</string>
-    <string name="delete_view_history_alert">Slett hele visningshistorikken\?</string>
+    <string name="delete_view_history_alert">Slett hele visningshistorikken?</string>
     <string name="watch_history_deleted">Visningshistorikken er slettet</string>
     <string name="clear_search_history_title">Tøm søkehistorikk</string>
     <string name="clear_search_history_summary">Sletter historikken for søkte nøkkelord</string>
-    <string name="delete_search_history_alert">Slett hele søkehistorikken\?</string>
+    <string name="delete_search_history_alert">Slett hele søkehistorikken?</string>
     <string name="search_history_deleted">Søkehistorikken er slettet</string>
     <string name="one_item_deleted">Ett element slettet.</string>
     <string name="caption_setting_title">Undertekst</string>
@@ -283,21 +280,8 @@
     <string name="import_settings">Ønsker du også å importere innstillinger?</string>
     <string name="subscriptions_import_unsuccessful">Kunne ikke importere abonnementer</string>
     <string name="subscriptions_export_unsuccessful">Kunne ikke eksportere abonnementer</string>
-    <string name="import_youtube_instructions">Importer YoutTube-abonnementer fra Google takeout:
-\n
-\n1. Gå til denne nettadressen: %1$s
-\n2. Logg inn når forespurt
-\n3. Klikk på \"All data inkludert\", så på \"Fjern merket for alle\", så på kun \"Abonnementer\", og klikk så \"OK\"
-\n4. Klikk på \"Neste steg\" og så på \"Opprett eksport\"
-\n5. Klikk på \"Last ned\"-knappen etter den vises
-\n6. Klikk på IMPORTER FIL under og velg den nedlastede .zip filen
-\n7. [Dersom .zip importen feiler] Pakk ut .csv filen (vanligvis under \"YouTube og YouTube Music/subscriptions/subscriptions.csv\"), klikk på IMPORTER FIL under og velg den utpakkede csv filen</string>
-    <string name="import_soundcloud_instructions">Importer en SoundCloud-profil ved å skrive enten nettadressen eller din ID:
-\n
-\n1. Skru på \"skrivebordsmodus\" i en nettleser ( siden er ikke tilgjengelig for mobile enheter)
-\n2. Gå til denne nettadressen: %1$s
-\n3. Logg inn når forespurt
-\n4. Kopier profil-nettadressen du ble videresendt til.</string>
+    <string name="import_youtube_instructions">Importer YoutTube-abonnementer fra Google takeout: \n \n1. Gå til denne nettadressen: %1$s \n2. Logg inn når forespurt \n3. Klikk på \"All data inkludert\", så på \"Fjern merket for alle\", så på kun \"Abonnementer\", og klikk så \"OK\" \n4. Klikk på \"Neste steg\" og så på \"Opprett eksport\" \n5. Klikk på \"Last ned\"-knappen etter den vises \n6. Klikk på IMPORTER FIL under og velg den nedlastede .zip filen \n7. [Dersom .zip importen feiler] Pakk ut .csv filen (vanligvis under \"YouTube og YouTube Music/subscriptions/subscriptions.csv\"), klikk på IMPORTER FIL under og velg den utpakkede csv filen</string>
+    <string name="import_soundcloud_instructions">Importer en SoundCloud-profil ved å skrive enten nettadressen eller din ID: \n \n1. Skru på \"skrivebordsmodus\" i en nettleser ( siden er ikke tilgjengelig for mobile enheter) \n2. Gå til denne nettadressen: %1$s \n3. Logg inn når forespurt \n4. Kopier profil-nettadressen du ble videresendt til.</string>
     <string name="use_inexact_seek_summary">Unøyaktig spoling lar spilleren søke posisjoner raskere med redusert presisjon. Å søke i 5, 15 eller 25 sekunder fungerer ikke med dette</string>
     <string name="auto_queue_summary">Fortsett fullendt (ikke-repeterende) avspillingskø ved å legge til en relatert strøm</string>
     <string name="enable_leak_canary_summary">Overvåkning av minnelekkasjer kan forårsake at appen ikke svarer under heap dumping</string>
@@ -307,8 +291,7 @@
     <string name="privacy_policy_title">NewPipes personvernerklæring</string>
     <string name="privacy_policy_encouragement">NewPipe-prosjektet tar personvernet ditt veldig seriøst. Derfor samler ikke appen inn noe data uten ditt samtykke.\nNewPipes personvernerklæring forklarer i detalj hvilke data som sendes og lagres når du sender en kræsjrapport.</string>
     <string name="read_privacy_policy">Les personvernerklæring</string>
-    <string name="start_accept_privacy_policy">For å overholde EUs personvernforordning (GDPR), vil vi rette oppmerksomheten din mot NewPipe sin personvernerklæring. Vennligst les den nøye.
-\nDu må godta den, for å sende oss feilrapporten.</string>
+    <string name="start_accept_privacy_policy">For å overholde EUs personvernforordning (GDPR), vil vi rette oppmerksomheten din mot NewPipe sin personvernerklæring. Vennligst les den nøye. \nDu må godta den, for å sende oss feilrapporten.</string>
     <string name="accept">Godta</string>
     <string name="decline">Avslå</string>
     <string name="limit_data_usage_none_description">Ingen begrensning</string>
@@ -333,10 +316,10 @@
     <string name="app_update_notification_channel_name">Varsel om appoppdatering</string>
     <string name="app_update_notification_channel_description">Merknader for nye NewPipe-versjoner</string>
     <string name="download_to_sdcard_error_title">Ekstern lagring utilgjengelig</string>
-    <string name="download_to_sdcard_error_message">Nedlasting til eksternt SD-kort er ikke mulig. Tilbakestill plassering av nedlastingsmappe\?</string>
+    <string name="download_to_sdcard_error_message">Nedlasting til eksternt SD-kort er ikke mulig. Tilbakestill plassering av nedlastingsmappe?</string>
     <string name="saved_tabs_invalid_json">Kunne ikke leste lagrede faner, så bruker forvalgte</string>
     <string name="restore_defaults">Gjenopprett forvalg</string>
-    <string name="restore_defaults_confirmation">Ønsker du å gjenopprette forvalg\?</string>
+    <string name="restore_defaults_confirmation">Ønsker du å gjenopprette forvalg?</string>
     <string name="subscribers_count_not_available">Abonnementsantall utilgjengelig</string>
     <string name="main_page_content_summary">Hvilke faner vises på hovedsiden</string>
     <string name="conferences">Konferanser</string>
@@ -394,19 +377,18 @@
     <string name="error_insufficient_storage_left">Ingen ledig plass på enheten</string>
     <string name="error_progress_lost">Framdrift gikk tapt, fordi filen ble slettet</string>
     <string name="error_timeout">Tilkoblingsavbrudd</string>
-    <string name="confirm_prompt">Ønsker du å slette din nedlastingshistorikk eller slette alle nedlastede filer\?</string>
+    <string name="confirm_prompt">Ønsker du å slette din nedlastingshistorikk eller slette alle nedlastede filer?</string>
     <string name="enable_queue_limit">Begrens nedlastingskø</string>
     <string name="enable_queue_limit_desc">Én nedlasting av gangen</string>
     <string name="start_downloads">Start nedlastinger</string>
     <string name="pause_downloads">Sett nedlastinger på pause</string>
     <string name="downloads_storage_ask_title">Spør om hvor ting skal lastes ned til</string>
-    <string name="downloads_storage_ask_summary">Du vil bli spurt om hvor hver nedlasting skal plasseres
-\nAktiver system mappe velgeren (SAF) dersom du vil laste ned til et eksternt SD kort</string>
+    <string name="downloads_storage_ask_summary">Du vil bli spurt om hvor hver nedlasting skal plasseres \nAktiver system mappe velgeren (SAF) dersom du vil laste ned til et eksternt SD kort</string>
     <string name="downloads_storage_use_saf_title">Bruk systemmappevelger (SAF)</string>
     <string name="downloads_storage_use_saf_summary">\'Lagringstilgangsrammeverk\' (SAF) tillater nedlasting til et eksternt SD-kort</string>
     <string name="clear_playback_states_title">Slett avspillingsposisjoner</string>
     <string name="clear_playback_states_summary">Sletter alle avspillingsposisjoner</string>
-    <string name="delete_playback_states_alert">Slett alle avspillingsposisjoner\?</string>
+    <string name="delete_playback_states_alert">Slett alle avspillingsposisjoner?</string>
     <string name="drawer_header_description">Skru tjeneste av/på, for tiden er dette status:</string>
     <string name="no_one_watching">Ingen ser på</string>
     <plurals name="watching">
@@ -463,7 +445,7 @@
     </plurals>
     <string name="feed_subscription_not_loaded_count">Ikke innlastet: %d</string>
     <string name="feed_group_dialog_empty_name">Tomt gruppenavn</string>
-    <string name="feed_group_dialog_delete_message">Ønsker du å slette denne gruppen\?</string>
+    <string name="feed_group_dialog_delete_message">Ønsker du å slette denne gruppen?</string>
     <string name="feed_create_new_group_button_title">Ny</string>
     <string name="feed_update_threshold_option_always_update">Alltid oppdater</string>
     <plurals name="feed_group_dialog_selection_count">
@@ -479,9 +461,7 @@
     <string name="feed_processing_message">Behandler strøm…</string>
     <string name="feed_notification_loading">Laster inn strøm…</string>
     <string name="feed_oldest_subscription_update">Strøm sist oppdatert: %s</string>
-    <string name="restricted_video">Denne videoen er aldersbegrenset.
-\n
-\nSkru på «%1$s» i innstillingene hvis du vil se den.</string>
+    <string name="restricted_video">Denne videoen er aldersbegrenset. \n \nSkru på «%1$s» i innstillingene hvis du vil se den.</string>
     <string name="infinite_videos">∞ videoer</string>
     <string name="more_than_100_videos">100+ videoer</string>
     <string name="artists">Artister</string>
@@ -505,17 +485,7 @@
     <string name="show_original_time_ago_title">Vis opprinnelig tidsforskjell for elementer</string>
     <string name="notification_action_buffering">Bygger mellomlager</string>
     <string name="notification_action_shuffle">Tilfeldig rekkefølge</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Synes du at strøminnlastingen er for treg\? Prøv å skru på rask innlasting (du kan endre det i innstillingene, eller ved å trykke på knappen nedenfor).
-\n
-\nNewPipe tilbyr to strøminnlastingsstrategier:
-\n• Hent hele abonnementskanalen, noe som er tregt, men fullstendig.
-\n• Bruk av et dedikert tjenesteendepunkt, noe som er raskt men vanligvis ikke fullstendig.
-\n
-\nForskjellen mellom dem er at den raske vanligvis mangler info, som elementers varighet eller type (kan ikke skille mellom direktesendinger og normale videoer) og det kan gi færre elementer.
-\n
-\nYouTube er et eksempel på en tjeneste som tilbyr denne raske metoden med sin RSS-informasjonskanal.
-\n
-\nValget koker ned til det du foretrekker: hastighet eller presis info.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Synes du at strøminnlastingen er for treg? Prøv å skru på rask innlasting (du kan endre det i innstillingene, eller ved å trykke på knappen nedenfor). \n \nNewPipe tilbyr to strøminnlastingsstrategier: \n• Hent hele abonnementskanalen, noe som er tregt, men fullstendig. \n• Bruk av et dedikert tjenesteendepunkt, noe som er raskt men vanligvis ikke fullstendig. \n \nForskjellen mellom dem er at den raske vanligvis mangler info, som elementers varighet eller type (kan ikke skille mellom direktesendinger og normale videoer) og det kan gi færre elementer. \n \nYouTube er et eksempel på en tjeneste som tilbyr denne raske metoden med sin RSS-informasjonskanal. \n \nValget koker ned til det du foretrekker: hastighet eller presis info.</string>
     <string name="show_original_time_ago_summary">Originaltekster fra tjenester vil vises for elementer i strømmen</string>
     <string name="error_report_open_github_notice">Sjekk om det allerede eksisterer et problem som diskuterer ditt krasj. Når du oppretter duplikatbilletter, tar du tid fra oss som vi kan bruke på å fikse den faktiske feilen.</string>
     <string name="notification_actions_at_most_three">Du kan maksimalt velge tre handlinger som skal vises i kompaktvarselet!</string>
@@ -527,10 +497,8 @@
     <string name="new_seek_duration_toast">Som følge av begrensninger i ExoPlayer er blafringsdistansen kun %d sekunder</string>
     <string name="remove_watched_popup_warning">Videoer som har blitt sett før og etter at de er lagt til spillelisten, vil bli fjernet. \nEr du sikker? Dette kan ikke angres!</string>
     <string name="autoplay_summary">Start avspilling automatisk — %s</string>
-    <string name="unsupported_url_dialog_message">Kunne ikke gjenkjenne angitt nettadresse. Åpne den med et annet program\?</string>
-    <string name="content_not_supported">Innholdet støttes ikke enda av NewPipe.
-\n
-\nStøtte vil forhåpentligvis komme til i en senere versjon.</string>
+    <string name="unsupported_url_dialog_message">Kunne ikke gjenkjenne angitt nettadresse. Åpne den med et annet program?</string>
+    <string name="content_not_supported">Innholdet støttes ikke enda av NewPipe. \n \nStøtte vil forhåpentligvis komme til i en senere versjon.</string>
     <string name="playlist_page_summary">Spillelisteside</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanalens avatar-miniatyrbilde</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Skru på hurtigmodus</string>
@@ -573,8 +541,7 @@
     <string name="show_description_title">Vis beskrivelse</string>
     <string name="open_with">Åpne med</string>
     <string name="crash_the_app">Krasj programmet</string>
-    <string name="restricted_video_no_stream">Denne videoen er aldersbegrenset.
-\nSom følge av YouTube sin praksis med slike har ikke NewPipe tilgang til videostrømmene, og kan derfor ikke spille den.</string>
+    <string name="restricted_video_no_stream">Denne videoen er aldersbegrenset. \nSom følge av YouTube sin praksis med slike har ikke NewPipe tilgang til videostrømmene, og kan derfor ikke spille den.</string>
     <string name="paid_content">Innholdet er kun tilgjengelig for brukere som har betalt, så det kan ikke strømmes eller lastes ned av NewPipe.</string>
     <string name="private_content">Innholdet er privat, så det kan ikke strømmes eller lastes ned av NewPipe.</string>
     <string name="youtube_music_premium_content">Videoen er kun tilgjengelig for YouTube Music Premium-medlemmer, så den kan ikke strømmes eller lastes ned av NewPipe.</string>
@@ -593,9 +560,7 @@
     <string name="disable_media_tunneling_title">Skru av media-tunnelering</string>
     <string name="description_select_note">Du kan nå velge tekst inne i beskrivelsen. Merk at siden kan flimre og lenker er kanskje ikke klikkbare i utvalgsmodus.</string>
     <string name="feed_load_error_fast_unknown">Hurtigmodus for informasjonskanal tilbyr ikke mer info om dette.</string>
-    <string name="feed_load_error_terminated">Skaperens konto har blitt terminert.
-\nNewPipe vil ikke kunne laste inn denne informasjonskanalen i fremtiden.
-\nØnsker du å oppheve ditt abonnement på denne kanalen\?</string>
+    <string name="feed_load_error_terminated">Skaperens konto har blitt terminert. \nNewPipe vil ikke kunne laste inn denne informasjonskanalen i fremtiden. \nØnsker du å oppheve ditt abonnement på denne kanalen?</string>
     <string name="description_select_disable">Skru av merking av tekst i beskrivelsen</string>
     <string name="description_select_enable">Skru på merking av tekst i beskrivelsen</string>
     <string name="account_terminated">Konto terminert</string>
@@ -657,10 +622,8 @@
     <string name="error_report_notification_title">NewPipe oppdaget en feil, trykk for å rapportere</string>
     <string name="create_error_notification">Opprett en feilmerknad</string>
     <string name="show_error_snackbar">Vis en feil hurtigbar</string>
-    <string name="no_appropriate_file_manager_message">Ingen passende filbehandler ble funnet for denne handlingen.
-\nVennligst installer en filbehandler, eller prøv å skru av \'%s\' i nedlastingsinnstillingene</string>
-    <string name="no_appropriate_file_manager_message_android_10">Ingen passende filbehandler ble funnet for denne handlingen.
-\nVennligst installer en Storage Access Framework kompatibel filbehandler</string>
+    <string name="no_appropriate_file_manager_message">Ingen passende filbehandler ble funnet for denne handlingen. \nVennligst installer en filbehandler, eller prøv å skru av \'%s\' i nedlastingsinnstillingene</string>
+    <string name="no_appropriate_file_manager_message_android_10">Ingen passende filbehandler ble funnet for denne handlingen. \nVennligst installer en Storage Access Framework kompatibel filbehandler</string>
     <string name="leak_canary_not_available">LeakCanary er ikke tilgjengelig</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer-forvalg</string>
     <string name="progressive_load_interval_title">Intervallstørrelse for avspillingsinnlasting</string>
@@ -679,7 +642,7 @@
     <string name="semitone">Halvtone</string>
     <string name="selected_stream_external_player_not_supported">Den valgte strømmen støttes ikke av eksterne spillere</string>
     <string name="loading_stream_details">Laster inn strømdetaljer…</string>
-    <string name="delete_downloaded_files_confirm">Slett alle nedlastede filer fra harddisken\?</string>
+    <string name="delete_downloaded_files_confirm">Slett alle nedlastede filer fra harddisken?</string>
     <string name="notifications_disabled">Varsler er deaktivert</string>
     <string name="you_successfully_subscribed">Du abonnerer nå på denne kanalen</string>
     <string name="streams_not_yet_supported_removed">Strømmer som ennå ikke er støttet av nedlasteren, vises ikke</string>
@@ -717,20 +680,19 @@
     <string name="right_gesture_control_summary">Velg håndvending for høyre halvdel av avspillerskjermen</string>
     <string name="none">Ingen</string>
     <string name="remove_duplicates">Fjern duplikater</string>
-    <string name="remove_duplicates_message">Fjern alle duplikatstrømmer i denne spillelisten\?</string>
+    <string name="remove_duplicates_message">Fjern alle duplikatstrømmer i denne spillelisten?</string>
     <string name="feed_show_upcoming">Kommende</string>
     <string name="left_gesture_control_title">Venstre håndvendingshandling</string>
     <string name="right_gesture_control_title">Høyre håndvendingshandling</string>
     <string name="volume">Volum</string>
-    <string name="remove_duplicates_title">Fjern duplikater\?</string>
+    <string name="remove_duplicates_title">Fjern duplikater?</string>
     <string name="feed_show_hide_streams">Vis/skjul strømmer</string>
     <string name="feed_show_partially_watched">Delvis sett</string>
     <string name="ignore_hardware_media_buttons_summary">Nyttig hvis hodsettet ditt har knapper som fungerer dårlig</string>
     <string name="feed_hide_streams_title">Vis følgende strømmer</string>
     <string name="question_mark">\?</string>
     <string name="metadata_subscribers">Abonnenter</string>
-    <string name="share_playlist_content_details">%1$s
-\n%2$s</string>
+    <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="show_channel_tabs">Kanalfaner</string>
     <string name="loading_metadata_title">Laster inn metadata …</string>
     <string name="image_quality_low">Lav kvalitet</string>

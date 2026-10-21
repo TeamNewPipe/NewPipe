@@ -242,9 +242,7 @@
     <string name="downloads_title">Lejupielādes</string>
     <string name="downloads">Lejupielādes</string>
     <string name="duration_live">Tiešraide</string>
-    <string name="restricted_video">Šis video ir vecuma ierobežots.
-\n
-\nIeslēdziet \"%1$s\" iestatījumos, ja vēlaties to redzēt.</string>
+    <string name="restricted_video">Šis video ir vecuma ierobežots. \n \nIeslēdziet \"%1$s\" iestatījumos, ja vēlaties to redzēt.</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube piedāvā \"ierobežotu režīmu\", kas slēpj potenciāli pieaugušo saturu</string>
     <string name="youtube_restricted_mode_enabled_title">Ieslēgt YouTube \"Ierobežoto režīmu\"</string>
     <string name="show_age_restricted_content_summary">Rādīt saturu, iespējams nepiemērotu bērniem, jo tam ir vecuma ierobežojums</string>
@@ -566,8 +564,7 @@
     <string name="crash_the_app">Izraisīt lietotnes nobrukšanu</string>
     <string name="show_channel_details">Rādīt kanāla informāciju</string>
     <string name="recaptcha_solve">Atrisināt</string>
-    <string name="restricted_video_no_stream">Šis video ir ierobežots ar vecumu.
-\nŅemot vērā jauno YouTube politiku ar vecuma ierobežotiem videoklipiem, Newpipe nevar piekļūt šim videoklipam.</string>
+    <string name="restricted_video_no_stream">Šis video ir ierobežots ar vecumu. \nŅemot vērā jauno YouTube politiku ar vecuma ierobežotiem videoklipiem, Newpipe nevar piekļūt šim videoklipam.</string>
     <string name="night_theme_title">Nakts režīma motīvs</string>
     <string name="off">Izslēgts</string>
     <string name="on">Ieslēgts</string>
@@ -704,8 +701,7 @@
     <string name="metadata_thumbnails">Sīkattēli</string>
     <string name="sort">Kārtot</string>
     <string name="auto_update_check_description">NewPipe pati var veikt jaunas versijas pārbaudi laiku pa laikam un informēt jūs, kad tā ir pieejama.\nVai tiešām vēlaties ieslēgt šo funkciju?</string>
-    <string name="no_appropriate_file_manager_message">Netika atrasts atbilstošs failu pārvaldnieks šai darbībai.
-\nLūdzu instalējiet failu pārvaldnieku vai pamēģiniet atspējot \'%s\' lejuplādēšanas iestatījumos</string>
+    <string name="no_appropriate_file_manager_message">Netika atrasts atbilstošs failu pārvaldnieks šai darbībai. \nLūdzu instalējiet failu pārvaldnieku vai pamēģiniet atspējot \'%s\' lejuplādēšanas iestatījumos</string>
     <string name="audio_track_type_original">oriģinālais</string>
     <string name="streams_notifications_network_title">Nepieciešams tīkla savienojums</string>
     <string name="reset_settings_summary">Atiestata visus iestatījumus uz to sākotnējām vērtībām</string>
@@ -729,8 +725,7 @@
     <string name="channel_tab_channels">Kanāli</string>
     <string name="channel_tab_playlists">Atskaņošanas saraksti</string>
     <string name="channel_tab_albums">Albumi</string>
-    <string name="no_appropriate_file_manager_message_android_10">Netika atrasts atbilstošs failu pārvaldnieks šai darbībai.
-\nLūdzu lejuplādējiet ar krātuves pieejas struktūras saderīgu failu pārvaldnieku</string>
+    <string name="no_appropriate_file_manager_message_android_10">Netika atrasts atbilstošs failu pārvaldnieks šai darbībai. \nLūdzu lejuplādējiet ar krātuves pieejas struktūras saderīgu failu pārvaldnieku</string>
     <string name="no_live_streams">Nav tiešraides</string>
     <string name="show_error_snackbar">Rādīt kļūdas paziņojumu</string>
     <string name="feed_fetch_channel_tabs">Piegādāt kanālu cilnes</string>
@@ -740,8 +735,7 @@
     <string name="settings_category_exoplayer_title">ExoPlayer iestatījumi</string>
     <string name="show_channel_tabs">Kanālu cilnes</string>
     <string name="question_mark">\?</string>
-    <string name="share_playlist_content_details">%1$s
-\n%2$s</string>
+    <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="get_notified">Paziņot kanāla jaunumus</string>
     <string name="metadata_subchannel_avatars">Apakškanālu avatāri</string>
     <string name="metadata_uploader_avatars">Augšuplādētāju avatāri</string>
@@ -818,8 +812,8 @@
     <string name="account_terminated_service_provides_reason">Konts slēgts\n\n%1$s norāda, ka iemesls kādēļ: %2$s</string>
     <string name="player_http_403">Atskaņošanas laikā no servera saņemta HTTP 403 kļūda, ko, iespējams, izraisīja straumēšanas URL derīguma beigu termiņš vai IP aizliegums</string>
     <string name="player_http_invalid_status">Atskaņošanas laikā no servera saņemta HTTP %1$s kļūda</string>
-    <string name="youtube_player_http_403">Atskaņošanas laikā no servera saņemta HTTP 403 kļūda, ko, iespējams, izraisīja IP aizliegums vai straumēšanas URL atšifrēšanas (deobfuskācijas) problēmas</string>
-    <string name="kao_dialog_warning">2025. gada augustā Google paziņoja, ka, sākot ar 2026. gada septembri, lai uzstādītu lietotnes, būs nepieciešama izstrādātāja verifikācija visām Android lietotnēm sertificētajās ierīcēs, tostarp arī tām, kuras uzstādītas ārpus Play veikala. Tā kā NewPipe izstrādātāji nepiekrīt un negrib pieņemt šo prasību, pēc šī datuma NewPipe vairs nedarbosies sertificētajās Android ierīcēs.</string>
+    <string name="youtube_player_http_403">Atskaņošanas laikā no servera saņemta HTTP 403 kļūda, ko, iespējams, izraisīja IP aizliegums vai straumēšanas URL atšifrēšanas (deobfuskācijas) problēmas</string>
+    <string name="kao_dialog_warning">2025. gada augustā Google paziņoja, ka, sākot ar 2026. gada septembri, lai uzstādītu lietotnes, būs nepieciešama izstrādātāja verifikācija visām Android lietotnēm sertificētajās ierīcēs, tostarp arī tām, kuras uzstādītas ārpus Play veikala. Tā kā NewPipe izstrādātāji nepiekrīt un negrib pieņemt šo prasību, pēc šī datuma NewPipe vairs nedarbosies sertificētajās Android ierīcēs.</string>
     <string name="kao_dialog_more_info">Detalizētāka informācija</string>
     <string name="kao_solution">Risinājums</string>
     <string name="migration_info_6_7_message">SoundCloud likvidēja oriģinālos Top 50 topus. Atbilstošā cilne noņemta no jūsu galvenās lapas.</string>

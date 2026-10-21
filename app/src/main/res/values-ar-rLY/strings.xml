@@ -50,12 +50,9 @@
     <string name="delete_view_history_alert">حذف سجل المشاهدة بالكامل؟</string>
     <string name="play_with_kodi_title">تشغيل بواسطة كودي</string>
     <string name="one_item_deleted">تم حذف عنصر واحد.</string>
-    <string name="import_network_expensive_warning">ضع في اعتبارك أن هذه العملية يمكن أن تكون مكلفة اذا كنت تستخدم بيانات اشتراك انترنت.
-\n
-\nهل تريد الاستمرار؟</string>
+    <string name="import_network_expensive_warning">ضع في اعتبارك أن هذه العملية يمكن أن تكون مكلفة اذا كنت تستخدم بيانات اشتراك انترنت. \n \nهل تريد الاستمرار؟</string>
     <string name="close">إغلاق</string>
-    <string name="privacy_policy_encouragement">يأخذ مشروع NewPipe خصوصيتك على محمل الجد. لذلك، لا يجمع التطبيق أي بيانات دون موافقتك.
-\nتوضح سياسة خصوصية NewPipe بالتفصيل البيانات التي يتم إرسالها وتخزينها عند إرسال تقرير الأعطال.</string>
+    <string name="privacy_policy_encouragement">يأخذ مشروع NewPipe خصوصيتك على محمل الجد. لذلك، لا يجمع التطبيق أي بيانات دون موافقتك. \nتوضح سياسة خصوصية NewPipe بالتفصيل البيانات التي يتم إرسالها وتخزينها عند إرسال تقرير الأعطال.</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="zero">لاشيء مُحدّد</item>
         <item quantity="one">واحدة محددة</item>
@@ -149,9 +146,7 @@
     <string name="enqueued_next">تم وضع التالي على قائمة الانتظار</string>
     <string name="main_page_content_swipe_remove">اسحب العناصر لإزالتها</string>
     <string name="what_device_headline">معلومات:</string>
-    <string name="feed_load_error_terminated">حساب منشئ المحتوى قد تم إنهائه.
-\nلن يتمكن NewPipe من تحميل هذه الخلاصة في المستقبل.
-\nهل تريد إلغاء الاشتراك من هذه القناة؟</string>
+    <string name="feed_load_error_terminated">حساب منشئ المحتوى قد تم إنهائه. \nلن يتمكن NewPipe من تحميل هذه الخلاصة في المستقبل. \nهل تريد إلغاء الاشتراك من هذه القناة؟</string>
     <string name="minimize_on_exit_popup_description">تصغير إلى مشغل منبثق</string>
     <string name="error_postprocessing_stopped">تم إغلاق NewPipe أثناء العمل على الملف</string>
     <string name="background_player">مشغل الخلفية</string>
@@ -182,17 +177,7 @@
     <string name="view_on_github">عرض على GitHub</string>
     <string name="error_details_headline">التفاصيل:</string>
     <string name="playback_pitch">تردد الصوت</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">هل تعتقد أن تحميل التغذية بطيءٌ جدًا؟ إذا كان الأمر كذلك، فحاول تمكين التحميل السريع (يمكنك تغييره في الإعدادات أو بالضغط على الزر أدناه).
-\n
-\nيقدم NewPipe استراتيجيتين لتحميل الخلاصة:
-\n• جلب قناة الاشتراك بأكملها، وهي بطيئة ولكنها كاملة.
-\n• استخدام نقطة نهاية خدمة مخصصة، وهي سريعة ولكنها عادةً لا تكتمل.
-\n
-\nالفرق بين الاثنين هو أن العنصر السريع عادة ما يفتقر إلى بعض المعلومات، مثل مدة العنصر أو نوعه (لا يمكن التمييز بين مقاطع الفيديو المباشرة والأخرى العادية) وقد يعيد عناصر أقل.
-\n
-\nيوتيوب هو مثال على الخدمة التي تقدمها هذه طريقة سريعة مع تغذية RSS الخاصة بها.
-\n
-\nلذا فإن الاختيار يتلخص في ما تفضله: السرعة أو المعلومات الدقيقة.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">هل تعتقد أن تحميل التغذية بطيءٌ جدًا؟ إذا كان الأمر كذلك، فحاول تمكين التحميل السريع (يمكنك تغييره في الإعدادات أو بالضغط على الزر أدناه). \n \nيقدم NewPipe استراتيجيتين لتحميل الخلاصة: \n• جلب قناة الاشتراك بأكملها، وهي بطيئة ولكنها كاملة. \n• استخدام نقطة نهاية خدمة مخصصة، وهي سريعة ولكنها عادةً لا تكتمل. \n \nالفرق بين الاثنين هو أن العنصر السريع عادة ما يفتقر إلى بعض المعلومات، مثل مدة العنصر أو نوعه (لا يمكن التمييز بين مقاطع الفيديو المباشرة والأخرى العادية) وقد يعيد عناصر أقل. \n \nيوتيوب هو مثال على الخدمة التي تقدمها هذه طريقة سريعة مع تغذية RSS الخاصة بها. \n \nلذا فإن الاختيار يتلخص في ما تفضله: السرعة أو المعلومات الدقيقة.</string>
     <string name="file_deleted">تم حذف الملف</string>
     <string name="download_dialog_title">تنزيل</string>
     <string name="channel_page_summary">صفحة القناة</string>
@@ -356,8 +341,7 @@
         <item quantity="many">%d ثانية</item>
         <item quantity="other">%d ثانية</item>
     </plurals>
-    <string name="downloads_storage_ask_summary">سيتم سؤالك عن مكان حفظ كل تنزيل.
-\nتمكين منتقي مجلد النظام (SAF) إذا كنت تريد التنزيل إلى بطاقة SD خارجية</string>
+    <string name="downloads_storage_ask_summary">سيتم سؤالك عن مكان حفظ كل تنزيل. \nتمكين منتقي مجلد النظام (SAF) إذا كنت تريد التنزيل إلى بطاقة SD خارجية</string>
     <string name="resume_on_audio_focus_gain_title">استئناف التشغيل</string>
     <string name="unknown_quality">جودة غير معروفة</string>
     <string name="georestricted_content">هذا المحتوى غير متوفر في بلدك.</string>
@@ -374,8 +358,7 @@
     <string name="auto_queue_toggle">قائمة انتظار تلقائيّة</string>
     <string name="feed_subscription_not_loaded_count">غير محمل: %d</string>
     <string name="enqueue_stream">قائمة الانتظار</string>
-    <string name="restricted_video_no_stream">هذا الفيديو مقيد بالفئة العمرية.
-\nنظرًا لسياسات YouTube الجديدة المتعلقة بمقاطع الفيديو المقيدة بالفئة العمرية، لا يمكن لـ NewPipe الوصول إلى أي من تدفقات الفيديو الخاصة به، وبالتالي لا يتمكن من تشغيلها.</string>
+    <string name="restricted_video_no_stream">هذا الفيديو مقيد بالفئة العمرية. \nنظرًا لسياسات YouTube الجديدة المتعلقة بمقاطع الفيديو المقيدة بالفئة العمرية، لا يمكن لـ NewPipe الوصول إلى أي من تدفقات الفيديو الخاصة به، وبالتالي لا يتمكن من تشغيلها.</string>
     <string name="add_to_playlist">إضافة إلى قائمة التشغيل</string>
     <string name="channels">القنوات</string>
     <string name="dont_show">لا تظهر</string>
@@ -412,9 +395,7 @@
     <string name="import_settings">هل تريد أيضا استيراد الإعدادات؟</string>
     <string name="metadata_cache_wipe_title">امسح البيانات الوصفيّة المخزّنة مؤقّتًا</string>
     <string name="delete_downloaded_files">حذف الملفات المحملة</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_summary">يقوم هذا الحل البديل بتحرير وإعادة إنشاء نماذج برامج ترميز الفيديو عند حدوث تغيير في السطح، بدلا من تعيين السطح إلى برنامج الترميز مباشرة. تم استخدام هذا الإعداد بالفعل بواسطة ExoPlayer على بعض الأجهزة التي تعاني من هذه المشكلة ، وهذا الإعداد له تأثير فقط على Android 6 والإصدارات الأحدث
-\n
-\nقد يؤدي تمكين هذا الخيار إلى منع أخطاء التشغيل عند تبديل مشغل الفيديو الحالي أو التبديل إلى وضع ملء الشاشة</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">يقوم هذا الحل البديل بتحرير وإعادة إنشاء نماذج برامج ترميز الفيديو عند حدوث تغيير في السطح، بدلا من تعيين السطح إلى برنامج الترميز مباشرة. تم استخدام هذا الإعداد بالفعل بواسطة ExoPlayer على بعض الأجهزة التي تعاني من هذه المشكلة ، وهذا الإعداد له تأثير فقط على Android 6 والإصدارات الأحدث \n \nقد يؤدي تمكين هذا الخيار إلى منع أخطاء التشغيل عند تبديل مشغل الفيديو الحالي أو التبديل إلى وضع ملء الشاشة</string>
     <string name="ok">موافق</string>
     <string name="enable_watch_history_summary">تتبّع مقاطع الفيديو التي تمّت مشاهدتها</string>
     <string name="audio_streams_empty">لم يتم العثور على أي بث صوتي</string>
@@ -424,8 +405,7 @@
     <string name="action_history">التاريخ</string>
     <string name="popup_playing_toast">تشغيل في وضع منبثق</string>
     <string name="mute">كتم الصوت</string>
-    <string name="msg_popup_permission">هذا الإذن مطلوب
-\nللفتح في وضع النافذة المنبثقة</string>
+    <string name="msg_popup_permission">هذا الإذن مطلوب \nللفتح في وضع النافذة المنبثقة</string>
     <string name="settings_category_feed_title">الموجز</string>
     <string name="remove_watched_popup_warning">ستتم إزالة مقاطع الفيديو التي تمت مشاهدتها قبل وبعد إضافتها إلى قائمة التشغيل. \nهل أنت واثق؟ لا يمكن التراجع عن هذا!</string>
     <string name="detail_dislikes_img_view_description">عدم الإعجاب</string>
@@ -443,8 +423,7 @@
     <string name="app_language_title">لغة التطبيق</string>
     <string name="feed_notification_loading">تحميل الموجز…</string>
     <string name="manual_update_description">التحقق يدويا من وجود إصدارات جديدة</string>
-    <string name="no_appropriate_file_manager_message_android_10">لم يتم العثور على مدير ملفات مناسب لهذا الإجراء.
-\nالرجاء تثبيت مدير ملفات متوافق مع إطار عمل الوصول إلى التخزين</string>
+    <string name="no_appropriate_file_manager_message_android_10">لم يتم العثور على مدير ملفات مناسب لهذا الإجراء. \nالرجاء تثبيت مدير ملفات متوافق مع إطار عمل الوصول إلى التخزين</string>
     <string name="show_crash_the_player_summary">إظهار خيار تعطل عند استخدام المشغل</string>
     <string name="error_report_open_github_notice">يرجى مراجعة ما إذا توجد بالفعل مشكلة تناقش التحطم الموجود بالفعل. عند إنشاء تذاكر مكررة، فإنك تستغرق منا وقتًا يمكن أن نقضيه في إصلاح الخطأ الفعلي.</string>
     <string name="open_play_queue">فتح قائمة انتظار التسغيل</string>
@@ -466,12 +445,7 @@
     <string name="use_inexact_seek_summary">خاصية التقديم الغير دقيق تسمح للمشغل بالقفز خلال الفديو بشكل أسرع مع دقة قفز أقل. خاصية القفز ل5، 15 او 25 لا تعمل مع القفز الغير دقيق</string>
     <string name="paused">متوقف</string>
     <string name="controls_popup_title">نافذة منبثقة</string>
-    <string name="import_soundcloud_instructions">قم باستيراد ملف تعريف SoundCloud عن طريق كتابة عنوان URL أو معرفك:
-\n
-\n1. تمكين \"وضع سطح المكتب\" في متصفح الويب (الموقع غير متاح للأجهزة المحمولة)
-\n2. انتقل إلى عنوان URL هذا: %1$s
-\n3. تسجيل الدخول عندما يطلب منك
-\n4. انسخ عنوان URL للملف الشخصي الذي تمت إعادة توجيهك إليه.</string>
+    <string name="import_soundcloud_instructions">قم باستيراد ملف تعريف SoundCloud عن طريق كتابة عنوان URL أو معرفك: \n \n1. تمكين \"وضع سطح المكتب\" في متصفح الويب (الموقع غير متاح للأجهزة المحمولة) \n2. انتقل إلى عنوان URL هذا: %1$s \n3. تسجيل الدخول عندما يطلب منك \n4. انسخ عنوان URL للملف الشخصي الذي تمت إعادة توجيهك إليه.</string>
     <string name="select_a_playlist">اختر قائمة تشغيل</string>
     <string name="metadata_age_limit">الحد العمري</string>
     <string name="no_app_to_open_intent">لا يوجد تطبيق على جهازك يمكنه فتح هذا</string>
@@ -583,9 +557,7 @@
     <string name="notification_action_shuffle">خلط</string>
     <string name="autoplay_summary">بدء التشغيل تلقائياً — %s</string>
     <string name="drawer_close">إغلاق الدرج</string>
-    <string name="content_not_supported">هذا المحتوى ليس مدعومًا من قبل NewPipe.
-\n
-\nنأمل أن يكون مدعومًا في التحديثات القادمة.</string>
+    <string name="content_not_supported">هذا المحتوى ليس مدعومًا من قبل NewPipe. \n \nنأمل أن يكون مدعومًا في التحديثات القادمة.</string>
     <plurals name="minutes">
         <item quantity="zero">لا دقيقة</item>
         <item quantity="one">دقيقة واحدة</item>
@@ -605,15 +577,7 @@
     <string name="detail_likes_img_view_description">الإعجابات</string>
     <string name="general_error">خطأ</string>
     <string name="download_path_audio_dialog_title">اختر مجلد التنزيل للملفات الصوتية</string>
-    <string name="import_youtube_instructions">استيراد اشتراكات YouTube من Google takeout:
-\n
-\n1. انتقل إلى عنوان URL هذا: %1$s
-\n2. تسجيل الدخول عند سؤالك
-\n3. انقر على \"جميع البيانات المدرجة\"، ثم على \"إلغاء تحديد جميع\"، ثم حدد فقط \"الاشتراكات\" وانقر على \"موافق\"
-\n4. انقر على \"الخطوة التالية\" ثم على \"إنشاء التصدير\"
-\n5. انقر على زر \"تحميل\" بعد ظهوره
-\n6. انقر على IMPORT FILE أدناه وحدد الملف البريدي تحميلها
-\n7. [إذا فشل استيراد الرمز البريدي] استخراج ملف .csv (عادة تحت عنوان \"يوتيوب ويوتيوب الموسيقى / الاشتراكات / الاشتراكات.csv\")، انقر على IMPORT FILE أدناه وحدد ملف csv المستخرج</string>
+    <string name="import_youtube_instructions">استيراد اشتراكات YouTube من Google takeout: \n \n1. انتقل إلى عنوان URL هذا: %1$s \n2. تسجيل الدخول عند سؤالك \n3. انقر على \"جميع البيانات المدرجة\"، ثم على \"إلغاء تحديد جميع\"، ثم حدد فقط \"الاشتراكات\" وانقر على \"موافق\" \n4. انقر على \"الخطوة التالية\" ثم على \"إنشاء التصدير\" \n5. انقر على زر \"تحميل\" بعد ظهوره \n6. انقر على IMPORT FILE أدناه وحدد الملف البريدي تحميلها \n7. [إذا فشل استيراد الرمز البريدي] استخراج ملف .csv (عادة تحت عنوان \"يوتيوب ويوتيوب الموسيقى / الاشتراكات / الاشتراكات.csv\")، انقر على IMPORT FILE أدناه وحدد ملف csv المستخرج</string>
     <string name="notification_action_buffering">جارٍ التحميل</string>
     <string name="soundcloud_go_plus_content">هذا مسار SoundCloud Go+، على الأقل في بلدك، لذلك لا يمكن دفقه أو تنزيله بواسطة NewPipe.</string>
     <string name="wifi_only">فقط على شبكة Wi-Fi</string>
@@ -719,8 +683,7 @@
     <string name="blank_page_summary">صفحة فارغة</string>
     <string name="never">أبدا</string>
     <string name="msg_failed_to_copy">فشل النسخ إلى الحافظة</string>
-    <string name="start_accept_privacy_policy">من أجل الامتثال للائحة الأوروبية العامة لحماية البيانات (GDPR)، فإننا نلفت انتباهك إلى سياسة خصوصية NewPipe. يرجى قراءتها بعناية.
-\nويجب عليك قبولها لإرسال تقرير الأخطاء إلينا.</string>
+    <string name="start_accept_privacy_policy">من أجل الامتثال للائحة الأوروبية العامة لحماية البيانات (GDPR)، فإننا نلفت انتباهك إلى سياسة خصوصية NewPipe. يرجى قراءتها بعناية. \nويجب عليك قبولها لإرسال تقرير الأخطاء إلينا.</string>
     <string name="enable_disposed_exceptions_summary">فرض الإبلاغ عن استثناءات Rx غير القابلة للتسليم خارج دورة حياة الجزء أو النشاط بعد التخلص منها</string>
     <string name="settings_category_player_notification_summary">ضبط إشعار مشغل البث الحالي</string>
     <string name="export_data_title">تصدير قاعدة البيانات</string>
@@ -809,9 +772,7 @@
     <string name="contribution_encouragement">إذا كانت لديك أفكار؛ أو ترجمة، أو تغييرات تخص التصميم، أو تنظيف و تحسين الشفرة البرمجية، أو تعديلات عميقة عليها، فتذكر أنّ مساعدتك دائما موضع ترحيب. وكلما أتممنا شيئا كلما كان ذلك أفضل!</string>
     <string name="main_page_content_summary">اختار الألسنة التي تودّ ظهورها على الصفحة الرئيسية</string>
     <string name="download_path_title">مجلد تحميل الفيديو</string>
-    <string name="restricted_video">هذا الفيديو مقيد بالفئة العمرية.
-\n
-\nقم بتفيل \"%1$s\" في الإعدادات إذا كنت تريد رؤيته.</string>
+    <string name="restricted_video">هذا الفيديو مقيد بالفئة العمرية. \n \nقم بتفيل \"%1$s\" في الإعدادات إذا كنت تريد رؤيته.</string>
     <string name="ignore_hardware_media_buttons_title">تجاهل أحداث ازرار الوسائط الأجهزة</string>
     <string name="tab_choose">اختر لسانًا</string>
     <string name="audio">الصوت</string>
@@ -837,16 +798,14 @@
     <string name="done">منجز</string>
     <string name="error_report_title">تقرير عن المشكلة</string>
     <string name="enqueued">أُضيفَ إلى قائمة الانتظار</string>
-    <string name="no_appropriate_file_manager_message">لم يتم العثور على مدير ملفات مناسب لهذا الإجراء.
-\nيرجى تثبيت مدير ملفات أو محاولة تعطيل \"%s\" في إعدادات التنزيل</string>
+    <string name="no_appropriate_file_manager_message">لم يتم العثور على مدير ملفات مناسب لهذا الإجراء. \nيرجى تثبيت مدير ملفات أو محاولة تعطيل \"%s\" في إعدادات التنزيل</string>
     <string name="video_player">مشغل الفيديو</string>
     <string name="video_detail_by">بواسطة %s</string>
     <string name="description_tab_description">وصف</string>
     <string name="missions_header_pending">ريثما</string>
     <string name="share_playlist_with_list">شارك الرابط التشعبي للقائمة</string>
     <string name="share_playlist_with_titles">شارِكها بالترجمات النصية</string>
-    <string name="share_playlist_content_details">%1$s
-\n%2$s</string>
+    <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="share_playlist">شارِك قائمة التشغيل</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>

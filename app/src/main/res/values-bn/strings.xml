@@ -32,7 +32,7 @@
     <string name="caption_none">কোন ক্যাপশন নেই</string>
     <string name="playlist_add_stream_success">প্লেলিস্টকৃত</string>
     <string name="playlist_creation_success">প্লে লিস্ট তৈরি হয়েছে</string>
-    <string name="delete_playlist_prompt">প্লে লিস্ট ডিলিট করতে চান\?</string>
+    <string name="delete_playlist_prompt">প্লে লিস্ট ডিলিট করতে চান?</string>
     <string name="unbookmark_playlist">বুকমার্ক মুছুন</string>
     <string name="unmute">আন মিউট</string>
     <string name="mute">মিউট</string>
@@ -82,8 +82,7 @@
     <string name="recaptcha_request_toast">reCAPTCHA চ্যালেঞ্জ অনুরোধ করা হয়েছে</string>
     <string name="title_activity_recaptcha">reCAPTCHA চ্যালেঞ্জ</string>
     <string name="one_item_deleted">একটি আইটেম ডিলিট হয়েছে।</string>
-    <string name="msg_popup_permission">এই অনুমতিটি 
-\nপপআপ মোডে খুলতে প্রয়োজন</string>
+    <string name="msg_popup_permission">এই অনুমতিটি \nপপআপ মোডে খুলতে প্রয়োজন</string>
     <string name="no_available_dir">অনুগ্রহ করে একটি উপলব্ধ ডাউনলোড ডিরেক্টরি নির্বাচন করো</string>
     <string name="msg_copied">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>
     <string name="msg_wait">অনুগ্রহপূর্বক অপেক্ষা করো…</string>
@@ -122,7 +121,7 @@
     <string name="error_report_open_issue_button_text">গিটহাব এ এরর রিপোর্ট করুন</string>
     <string name="error_report_button_text">মেইলের মাধ্যমে ত্রুটি প্রতিবেদন করুন</string>
     <string name="sorry_string">দুঃখিত, এটা ঘটা উচিত ছিল না।</string>
-    <string name="restore_defaults_confirmation">তুমি কি এই সহজাত পছন্দ ফিরত চাও\?</string>
+    <string name="restore_defaults_confirmation">তুমি কি এই সহজাত পছন্দ ফিরত চাও?</string>
     <string name="restore_defaults">ডিফল্ট এ ফিরে যান</string>
     <string name="no_streams_available_download">ডাউন লোড এর জন্য কোন স্ট্রিম নেই</string>
     <string name="error_occurred_detail">একটা এরর হয়েছেঃ %1$s</string>
@@ -142,15 +141,15 @@
     <string name="download_to_sdcard_error_title">বাহ্যিক স্টোরেজ নেই</string>
     <string name="general_error">ত্রুটি</string>
     <string name="search_history_deleted">সার্চ ইতিহাস ডিলিট হয়েছে</string>
-    <string name="delete_search_history_alert">সমগ্র সার্চ ইতিহাস মুছবেন\?</string>
+    <string name="delete_search_history_alert">সমগ্র সার্চ ইতিহাস মুছবেন?</string>
     <string name="clear_search_history_summary">সার্চের ইতিহাস মোছা হয়</string>
     <string name="clear_search_history_title">সার্চ ইতিহাস মুছুন</string>
     <string name="watch_history_states_deleted">প্লে ব্যাক এর অবস্থান মোছা হয়েছে</string>
-    <string name="delete_playback_states_alert">সমস্ত প্লে লিস্ট এর অবস্থান মুছবেন\?</string>
+    <string name="delete_playback_states_alert">সমস্ত প্লে লিস্ট এর অবস্থান মুছবেন?</string>
     <string name="clear_playback_states_summary">সমস্ত প্লে লিস্ট এর অবস্থান মুছে ফেলুন</string>
     <string name="clear_playback_states_title">প্লে লিস্ট এর অবস্থান মুছে ফেলুন</string>
     <string name="watch_history_deleted">দেখার ইতিহাস মুছে গেছে</string>
-    <string name="delete_view_history_alert">সম্পূর্ণ দেখার ইতিহাস মুছে ফেলুন\?</string>
+    <string name="delete_view_history_alert">সম্পূর্ণ দেখার ইতিহাস মুছে ফেলুন?</string>
     <string name="clear_views_history_title">দেখার ইতিহাস মুছে ফেলুন</string>
     <string name="export_data_title">ডাটা বেস এক্সপোর্ট করুন</string>
     <string name="import_data_title">ডাটাবেস আনুন</string>
@@ -479,7 +478,7 @@
     <string name="featured">বিশেষ</string>
     <string name="recaptcha_solve">সমাধান করো</string>
     <string name="feed_update_threshold_summary">শেষ হালনাগাদের পর একটি সাবস্ক্রিপশনের আগের সময় সেকেলে বিবেচিত — %s</string>
-    <string name="feed_group_dialog_delete_message">তুমি কি এ গ্রুপটি মুছতে চাও\?</string>
+    <string name="feed_group_dialog_delete_message">তুমি কি এ গ্রুপটি মুছতে চাও?</string>
     <string name="website_encouragement">আরও তথ্য এবং খবরের জন্য নিউপাইপ ওয়েবসাইট দেখো।</string>
     <string name="override_current_data">এতে তোমার বর্তমান অবস্থা সরানো হবে।</string>
     <string name="could_not_import_all_files">সতর্কতা: সব তথ্য আনা যায়নি।</string>
@@ -500,17 +499,15 @@
     <string name="error_path_creation">এই উদ্দিষ্ট ফোল্ডার বানানো যায় নি</string>
     <string name="overwrite_unrelated_warning">এই নামের একটি ফাইল আগে থেকে আছে</string>
     <string name="preferred_open_action_settings_summary">এইরকম তথ্য খোলার সহজাত ক্রিয়া – %s</string>
-    <string name="import_settings">পছন্দসমূহ কি আমদানি করতে চাও\?</string>
+    <string name="import_settings">পছন্দসমূহ কি আমদানি করতে চাও?</string>
     <string name="settings_file_replacement_character_summary">অবৈধ অক্ষরগুলো এই মান দ্বারা প্রতিস্থাপিত</string>
     <string name="permission_display_over_apps">অন্য অ্যাপের উপরে দেখাতে অনুমতি দাও</string>
     <string name="peertube_instance_url_help">%s-এ তোমার পছন্দের ইন্সট্যান্স খুজো</string>
     <string name="clear_views_history_summary">প্লে করা স্ট্রিমের ইতিহাস এবং প্লেব্যাক অবস্থানগুলি মুছে দেয়</string>
-    <string name="restricted_video">এই ভিডিওটি বয়সসীমাবদ্ধ ।
-\n
-\nতুমি এটি দেখতে চাইলে পছন্দসমূহে \"%1$s\" চালু করো।</string>
+    <string name="restricted_video">এই ভিডিওটি বয়সসীমাবদ্ধ । \n \nতুমি এটি দেখতে চাইলে পছন্দসমূহে \"%1$s\" চালু করো।</string>
     <string name="youtube_restricted_mode_enabled_summary">Youtube একটি \"সীমাবদ্ধ মোড\" সরবরাহ করে যা সম্ভাব্য বয়সসীমাবদ্ধ বিষয়গুলি গুপ্ত রাখে</string>
     <string name="show_age_restricted_content_summary">শিশুদের জন্যে সম্ভবত অনুপযুক্ত বিষয়গুলোও দেখান যেগুলির একটি বয়সসীমা রয়েছে (যেমন ১৮+ বিষয়সমূহ)</string>
-    <string name="unsupported_url_dialog_message">ইউআরএলটি চিহ্নিত করা যায়নি। অন্য অ্যাপ্লিকেশনে খুলতে চাও\?</string>
+    <string name="unsupported_url_dialog_message">ইউআরএলটি চিহ্নিত করা যায়নি। অন্য অ্যাপ্লিকেশনে খুলতে চাও?</string>
     <string name="error_postprocessing_stopped">এই ফাইলে কাজ করার সময় নিউপাইপ বন্ধ করা হয়েছে</string>
     <string name="download_already_pending">এই নামের একটি ডাউনলোড প্রক্রিয়ারত</string>
     <string name="saved_tabs_invalid_json">সংরক্ষিত ট্যাব পড়া যায় নি, তাই সহজাতটি ব্যবহার করা হচ্ছে</string>
@@ -521,15 +518,13 @@
     <string name="enable_queue_limit_desc">একটি ডাউনলোড একই সময়ে চলতে পারবে</string>
     <string name="max_retry_desc">ডাউনলোড বাতিল করার আগে সর্বোচ্চ চেষ্টা</string>
     <string name="private_content">এই তথ্যটি ব্যক্তিগত, তাই নিউপাইপ এটির ধারাপ্রচার বা ডাউনলোড করতে পারবে না।</string>
-    <string name="download_to_sdcard_error_message">এসডি কার্ডে নামানো যাচ্ছে না। ডাউনলোড স্থান ফিরাবে বা পাল্টাবে\?</string>
+    <string name="download_to_sdcard_error_message">এসডি কার্ডে নামানো যাচ্ছে না। ডাউনলোড স্থান ফিরাবে বা পাল্টাবে?</string>
     <string name="show_thumbnail_summary">বন্ধ পর্দার পটভূমি ও বিজ্ঞপ্তির পটভূমি উভয় জায়গায় এই প্রতিচ্ছবি ব্যবহার করো</string>
-    <string name="privacy_policy_encouragement">নিউপাইপ প্রকল্প তোমার গোপনীয়তা গুরুত্বের সাথে নেয়। তাই এই অ্যাপ তোমার অনুমতি ছাড়া কোনো তথ্য পাঠায় না।
-\nনিউপাইপের গোপনীয়তা নীতিমালা কোন তথ্য পাঠানো হয় ও সংরক্ষণ হয় তা ব্যাখ্যা করে।</string>
+    <string name="privacy_policy_encouragement">নিউপাইপ প্রকল্প তোমার গোপনীয়তা গুরুত্বের সাথে নেয়। তাই এই অ্যাপ তোমার অনুমতি ছাড়া কোনো তথ্য পাঠায় না। \nনিউপাইপের গোপনীয়তা নীতিমালা কোন তথ্য পাঠানো হয় ও সংরক্ষণ হয় তা ব্যাখ্যা করে।</string>
     <string name="clear_cookie_summary">রিক্যাপচা পূরণ করলে নিউপাইপ যেসব কুকি রাখে তা মুছো</string>
     <string name="show_original_time_ago_summary">ধারা ভুক্তিতে সেবাগুলোর মূল লেখা দৃশ্যমান হবে</string>
-    <string name="delete_item_search_history">অনুসন্ধান ইতিহাস থেকে এই ভুক্তিটি মুছবে\?</string>
-    <string name="downloads_storage_ask_summary">প্রত্যেক ডাউনলোড কোথায় রাখা হবে তা জিজ্ঞেস করা হবে।
-\nমেমোরি কার্ডে ডাউনলোড করতে সিস্টেম ফোল্ডার পিকার (SAF) এনেবল করুন</string>
+    <string name="delete_item_search_history">অনুসন্ধান ইতিহাস থেকে এই ভুক্তিটি মুছবে?</string>
+    <string name="downloads_storage_ask_summary">প্রত্যেক ডাউনলোড কোথায় রাখা হবে তা জিজ্ঞেস করা হবে। \nমেমোরি কার্ডে ডাউনলোড করতে সিস্টেম ফোল্ডার পিকার (SAF) এনেবল করুন</string>
     <string name="download_already_running">এই নামের একটি ডাউনলোড চলমান</string>
     <string name="disable_media_tunneling_title">মিডিয়া সুরঙ্গকরণ অক্ষম</string>
     <string name="feed_load_error_fast_unknown">দ্রুত ফিড অবস্থা এ বিষয়ে এর বেশি তথ্য দেয় না।</string>
@@ -555,9 +550,7 @@
     <string name="metadata_licence">অনুমতিপত্র</string>
     <string name="metadata_tags">চিরকুট (ট্যাগ)</string>
     <string name="metadata_category">বিষয়শ্রেণি</string>
-    <string name="import_network_expensive_warning">মনে রাখবে এই ক্রিয়ার নেটওয়ার্ক খরচ বেশি হতে পারে।
-\n
-\nচালিয়ে যাবে\?</string>
+    <string name="import_network_expensive_warning">মনে রাখবে এই ক্রিয়ার নেটওয়ার্ক খরচ বেশি হতে পারে। \n \nচালিয়ে যাবে?</string>
     <string name="tablet_mode_title">ট্যাবলেট অবস্থা</string>
     <string name="off">বন্ধ</string>
     <string name="on">চালু</string>
