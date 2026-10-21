@@ -186,7 +186,9 @@ public final class Player implements PlaybackListener, Listener {
     // Playback
     //////////////////////////////////////////////////////////////////////////*/
 
-    // play queue might be null e.g. while player is starting
+    /**
+     * The play queue might be {@code null} e.g. while player is starting
+     */
     @Nullable
     private PlayQueue playQueue;
 
@@ -230,8 +232,10 @@ public final class Player implements PlaybackListener, Listener {
     private PlayerType playerType = PlayerType.MAIN;
     private int currentState = STATE_PREFLIGHT;
 
-    // audio only mode does not mean that player type is background, but that the player was
-    // minimized to background but will resume automatically to the original player type
+    /**
+     * Audio-only mode does not mean that player type is background, but that the player was
+     * minimized to background and will change to the original player type automatically.
+     */
     private boolean isAudioOnly = false;
     private boolean isPrepared = false;
 
@@ -934,7 +938,7 @@ public final class Player implements PlaybackListener, Listener {
 
     private void onThumbnailLoaded(@Nullable final Bitmap bitmap) {
         // Avoid useless thumbnail updates, if the thumbnail has not actually changed. Based on the
-        // thumbnail loading code, this if would be skipped only when both bitmaps are `null`, since
+        // thumbnail loading code, this would be skipped only when both bitmaps are `null`, since
         // onThumbnailLoaded won't be called twice with the same nonnull bitmap by Coil's target.
         if (currentThumbnail != bitmap) {
             currentThumbnail = bitmap;
@@ -1522,7 +1526,7 @@ public final class Player implements PlaybackListener, Listener {
      * <li>From {@link PlaybackException#ERROR_CODE_IO_INVALID_HTTP_CONTENT_TYPE BAD_IO} to
      * {@link PlaybackException#ERROR_CODE_PARSING_MANIFEST_UNSUPPORTED UNSUPPORTED_FORMATS}:
      * If the stream source is validated by the extractor but not recognized by the player,
-     * then we can try to recover playback by signalling an error on the {@link PlayQueue}.</li>
+     * then we can try to recover playback by signaling an error on the {@link PlayQueue}.</li>
      * <li>For {@link PlaybackException#ERROR_CODE_TIMEOUT PLAYER_TIMEOUT},
      * {@link PlaybackException#ERROR_CODE_IO_UNSPECIFIED MEDIA_SOURCE_RESOLVER_TIMEOUT} and
      * {@link PlaybackException#ERROR_CODE_IO_NETWORK_CONNECTION_FAILED NO_NETWORK}:
@@ -1541,7 +1545,7 @@ public final class Player implements PlaybackListener, Listener {
      */
     // Any error code not explicitly covered here are either unrelated to NewPipe use case
     // (e.g. DRM) or not recoverable (e.g. Decoder error). In both cases, the player should
-    // shutdown.
+    // shut down.
     @SuppressWarnings("SwitchIntDef")
     @Override
     public void onPlayerError(@NonNull final PlaybackException error) {
@@ -2241,7 +2245,7 @@ public final class Player implements PlaybackListener, Listener {
             reloadPlayQueueManager();
         });
 
-        // Disable or enable video and subtitles renderers depending of the
+        // Disable or enable video and subtitles renderers depending on the
         // videoAndSubtitlesEnabled value
         trackSelector.setParameters(trackSelector.buildUponParameters()
                 .setTrackTypeDisabled(C.TRACK_TYPE_TEXT, !videoAndSubtitlesEnabled)
@@ -2354,7 +2358,7 @@ public final class Player implements PlaybackListener, Listener {
         try {
             return !exoPlayerIsNull() && simpleExoPlayer.isCurrentMediaItemDynamic();
         } catch (final IndexOutOfBoundsException e) {
-            // Why would this even happen =(... but lets log it anyway, better safe than sorry
+            // Why would this even happen =(... but let's log it anyway, better safe than sorry
             if (DEBUG) {
                 Log.d(TAG, "player.isCurrentWindowDynamic() failed: ", e);
             }

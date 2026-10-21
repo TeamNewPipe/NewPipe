@@ -243,7 +243,7 @@ public final class PopupPlayerUi extends VideoPlayerUi {
     //region Popup position and size
 
     /**
-     * Check if {@link #popupLayoutParams}' position is within a arbitrary boundary
+     * Check if {@link #popupLayoutParams}' position is within an arbitrary boundary
      * that goes from (0, 0) to (screenWidth, screenHeight).
      * <p>
      * If it's out of these boundaries, {@link #popupLayoutParams}' position is changed
