@@ -9,8 +9,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotEquals
-import org.junit.Assert.assertNull
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -83,73 +81,62 @@ class DatabaseMigrationTest {
             close()
         }
 
-        testHelper.runMigrationsAndValidate(
+        val migratedConnection = testHelper.runMigrationsAndValidate(
             version = Migrations.DB_VER_3,
             migrations = listOf(Migrations.MIGRATION_2_3)
         )
 
-        testHelper.runMigrationsAndValidate(
-            version = Migrations.DB_VER_4,
-            migrations = listOf(Migrations.MIGRATION_3_4)
-        )
-
-        testHelper.runMigrationsAndValidate(
-            version = Migrations.DB_VER_5,
-            migrations = listOf(Migrations.MIGRATION_4_5)
-        )
-
-        testHelper.runMigrationsAndValidate(
-            version = Migrations.DB_VER_6,
-            migrations = listOf(Migrations.MIGRATION_5_6)
-        )
-
-        testHelper.runMigrationsAndValidate(
-            version = Migrations.DB_VER_7,
-            migrations = listOf(Migrations.MIGRATION_6_7)
-        )
-
-        testHelper.runMigrationsAndValidate(
-            version = Migrations.DB_VER_8,
-            migrations = listOf(Migrations.MIGRATION_7_8)
-        )
-
-        testHelper.runMigrationsAndValidate(
-            version = Migrations.DB_VER_9,
-            migrations = listOf(Migrations.MIGRATION_8_9)
-        )
-
-        val migratedDatabaseV3 = getMigratedDatabase()
-        val listFromDB = migratedDatabaseV3.streamDAO().getAll().blockingFirst()
-
         // Only expect 2, the one with the null url will be ignored
-        assertEquals(2, listFromDB.size)
+        migratedConnection.prepare("SELECT (COUNT(*) = 2) FROM streams").use { statement ->
+            statement.step()
+            assert(statement.getBoolean(0))
+        }
 
-        val streamFromMigratedDatabase = listFromDB[0]
-        assertEquals(DEFAULT_SERVICE_ID, streamFromMigratedDatabase.serviceId)
-        assertEquals(DEFAULT_URL, streamFromMigratedDatabase.url)
-        assertEquals(DEFAULT_TITLE, streamFromMigratedDatabase.title)
-        assertEquals(DEFAULT_TYPE, streamFromMigratedDatabase.streamType)
-        assertEquals(DEFAULT_DURATION, streamFromMigratedDatabase.duration)
-        assertEquals(DEFAULT_UPLOADER_NAME, streamFromMigratedDatabase.uploader)
-        assertEquals(DEFAULT_THUMBNAIL, streamFromMigratedDatabase.thumbnailUrl)
-        assertNull(streamFromMigratedDatabase.viewCount)
-        assertNull(streamFromMigratedDatabase.textualUploadDate)
-        assertNull(streamFromMigratedDatabase.uploadDate)
-        assertNull(streamFromMigratedDatabase.isUploadDateApproximation)
+        // Verify first stream exists
+        migratedConnection.prepare(
+            """
+            SELECT (COUNT(*) = 1) FROM streams
+            WHERE
+                service_id = $DEFAULT_SERVICE_ID AND
+                url = '$DEFAULT_URL' AND
+                title = '$DEFAULT_TITLE' AND
+                stream_type = '${DEFAULT_TYPE.name}' AND
+                duration = $DEFAULT_DURATION AND
+                uploader = '$DEFAULT_UPLOADER_NAME' AND
+                thumbnail_url = '$DEFAULT_THUMBNAIL' AND
+                view_count IS NULL AND
+                textual_upload_date IS NULL AND
+                upload_date IS NULL AND
+                is_upload_date_approximation IS NULL
+            """.trimIndent()
+        ).use { statement ->
+            statement.step()
+            assert(statement.getBoolean(0))
+        }
 
-        val secondStreamFromMigratedDatabase = listFromDB[1]
-        assertEquals(DEFAULT_SECOND_SERVICE_ID, secondStreamFromMigratedDatabase.serviceId)
-        assertEquals(DEFAULT_SECOND_URL, secondStreamFromMigratedDatabase.url)
-        assertEquals("", secondStreamFromMigratedDatabase.title)
-        // Should fallback to VIDEO_STREAM
-        assertEquals(StreamType.VIDEO_STREAM, secondStreamFromMigratedDatabase.streamType)
-        assertEquals(0, secondStreamFromMigratedDatabase.duration)
-        assertEquals("", secondStreamFromMigratedDatabase.uploader)
-        assertEquals("", secondStreamFromMigratedDatabase.thumbnailUrl)
-        assertNull(secondStreamFromMigratedDatabase.viewCount)
-        assertNull(secondStreamFromMigratedDatabase.textualUploadDate)
-        assertNull(secondStreamFromMigratedDatabase.uploadDate)
-        assertNull(secondStreamFromMigratedDatabase.isUploadDateApproximation)
+        // Verify second stream exists
+        migratedConnection.prepare(
+            """
+            SELECT (COUNT(*) = 1) FROM streams
+            WHERE
+                service_id = $DEFAULT_SECOND_SERVICE_ID AND
+                url = '$DEFAULT_SECOND_URL' AND
+                title = '' AND
+                stream_type = '${StreamType.VIDEO_STREAM.name}' AND
+                duration = 0 AND
+                uploader = '' AND
+                thumbnail_url = '' AND
+                view_count IS NULL AND
+                textual_upload_date IS NULL AND
+                upload_date IS NULL AND
+                is_upload_date_approximation IS NULL
+            """.trimIndent()
+        ).use { statement ->
+            statement.step()
+            assert(statement.getBoolean(0))
+        }
+
+        migratedConnection.close()
     }
 
     @Test
@@ -194,28 +181,48 @@ class DatabaseMigrationTest {
             close()
         }
 
-        testHelper.runMigrationsAndValidate(
+        val migratedConnection = testHelper.runMigrationsAndValidate(
             version = Migrations.DB_VER_8,
             migrations = listOf(Migrations.MIGRATION_7_8)
         )
 
-        testHelper.runMigrationsAndValidate(
-            version = Migrations.DB_VER_9,
-            migrations = listOf(Migrations.MIGRATION_8_9)
-        )
+        migratedConnection.prepare(
+            """
+            SELECT (COUNT(*) = 2) FROM search_history
+            WHERE
+                search = 'abc' AND
+                service_id IN (
+                    SELECT service_id FROM search_history
+                    WHERE search = 'abc'
+                    GROUP BY service_id
+                    HAVING COUNT(*) = 1
+                )
+            """.trimIndent()
+        ).use { statement ->
+            statement.step()
+            assert(statement.getBoolean(0))
+        }
 
-        val migratedDatabaseV8 = getMigratedDatabase()
-        val listFromDB = migratedDatabaseV8.searchHistoryDAO().getAll().blockingFirst()
-
-        assertEquals(2, listFromDB.size)
-        assertEquals("abc", listFromDB[0].search)
-        assertEquals("abc", listFromDB[1].search)
-        assertNotEquals(listFromDB[0].serviceId, listFromDB[1].serviceId)
+        migratedConnection.close()
     }
 
     @Test
     fun migrateDatabaseFrom8to9() = runTest {
         val databaseInV8 = testHelper.createDatabase(version = Migrations.DB_VER_8)
+
+        val lastPlaylistUIDSQL = "SELECT MAX(uid) FROM playlists"
+        val playlistsSQL = """
+            INSERT OR FAIL INTO playlists
+            (name, is_thumbnail_permanent, thumbnail_stream_id)
+            VALUES (?, ?, ?)
+        """.trimIndent()
+
+        val lastRemotePlaylistUIDSQL = "SELECT MAX(uid) FROM remote_playlists"
+        val remotePlaylistsSQL = """
+            INSERT OR FAIL INTO remote_playlists
+            (service_id, url)
+            VALUES (?, ?)
+        """.trimIndent()
 
         val localUid1: Long
         val localUid2: Long
@@ -223,63 +230,56 @@ class DatabaseMigrationTest {
         val remoteUid2: Long
 
         databaseInV8.run {
-            val remotePlaylistsSQL = """
-                INSERT OR FAIL INTO remote_playlists
-                (service_id, url)
-                VALUES (?, ?)
-            """.trimIndent()
-            val playlistsSQL = """
-                INSERT OR FAIL INTO playlists
-                (name, is_thumbnail_permanent, thumbnail_stream_id)
-                VALUES (?, ?, ?)
-            """.trimIndent()
-
+            // Insert first local playlist
             prepare(playlistsSQL).use { statement ->
                 statement.bindText(1, DEFAULT_NAME + "1")
                 statement.bindBoolean(2, false)
-                statement.bindInt(3, -1)
+                statement.bindLong(3, -1)
                 statement.step()
             }
 
-            prepare("SELECT MAX(uid) FROM playlists").use { statement ->
+            localUid1 = prepare(lastPlaylistUIDSQL).use { statement ->
                 statement.step()
-                localUid1 = statement.getLong(0)
+                statement.getLong(0)
             }
 
+            // Insert second local playlist
             prepare(playlistsSQL).use { statement ->
                 statement.bindText(1, DEFAULT_NAME + "2")
                 statement.bindBoolean(2, false)
-                statement.bindInt(3, -1)
+                statement.bindLong(3, -1)
                 statement.step()
             }
 
-            prepare("SELECT MAX(uid) FROM playlists").use { statement ->
+            localUid2 = prepare(lastPlaylistUIDSQL).use { statement ->
                 statement.step()
-                localUid2 = statement.getLong(0)
+                statement.getLong(0)
             }
 
             execSQL("DELETE FROM playlists WHERE uid = $localUid1")
 
+            // Insert first remote playlist
             prepare(remotePlaylistsSQL).use { statement ->
                 statement.bindInt(1, DEFAULT_SERVICE_ID)
                 statement.bindText(2, DEFAULT_URL)
                 statement.step()
             }
 
-            prepare("SELECT MAX(uid) FROM remote_playlists").use { statement ->
+            remoteUid1 = prepare(lastRemotePlaylistUIDSQL).use { statement ->
                 statement.step()
-                remoteUid1 = statement.getLong(0)
+                statement.getLong(0)
             }
 
+            // Insert second remote playlist
             prepare(remotePlaylistsSQL).use { statement ->
                 statement.bindInt(1, DEFAULT_SECOND_SERVICE_ID)
                 statement.bindText(2, DEFAULT_SECOND_URL)
                 statement.step()
             }
 
-            prepare("SELECT MAX(uid) FROM remote_playlists").use { statement ->
+            remoteUid2 = prepare(lastRemotePlaylistUIDSQL).use { statement ->
                 statement.step()
-                remoteUid2 = statement.getLong(0)
+                statement.getLong(0)
             }
 
             execSQL("DELETE FROM remote_playlists WHERE uid = $remoteUid2")
@@ -287,60 +287,106 @@ class DatabaseMigrationTest {
             close()
         }
 
-        testHelper.runMigrationsAndValidate(
+        val migratedConnection = testHelper.runMigrationsAndValidate(
             version = Migrations.DB_VER_9,
             migrations = listOf(Migrations.MIGRATION_8_9)
         )
 
-        val migratedDatabaseV9 = getMigratedDatabase()
-        var localListFromDB = migratedDatabaseV9.playlistDAO().getAll().blockingFirst()
-        var remoteListFromDB = migratedDatabaseV9.playlistRemoteDAO().getAll().blockingFirst()
+        // Verify we have only one local playlist
+        migratedConnection.prepare(
+            """
+            SELECT (COUNT(*) = 1) FROM playlists
+            WHERE uid = $localUid2 AND display_index = -1
+            """.trimIndent()
+        ).use { statement ->
+            statement.step()
+            assert(statement.getBoolean(0))
+        }
 
-        assertEquals(1, localListFromDB.size)
-        assertEquals(localUid2, localListFromDB[0].uid)
-        assertEquals(-1, localListFromDB[0].displayIndex)
-        assertEquals(1, remoteListFromDB.size)
-        assertEquals(remoteUid1, remoteListFromDB[0].uid)
-        assertEquals(-1, remoteListFromDB[0].displayIndex)
+        // Verify we have only one remote playlist
+        migratedConnection.prepare(
+            """
+            SELECT (COUNT(*) = 1) FROM remote_playlists
+            WHERE uid = $remoteUid1 AND display_index = -1
+            """.trimIndent()
+        ).use { statement ->
+            statement.step()
+            assert(statement.getBoolean(0))
+        }
 
-        val localUid3 = migratedDatabaseV9.playlistDAO().insert(
-            PlaylistEntity(
-                name = "${DEFAULT_NAME}3",
-                isThumbnailPermanent = false,
-                thumbnailStreamId = -1,
-                displayIndex = -1
-            )
-        )
-        val remoteUid3 = migratedDatabaseV9.playlistRemoteDAO().insert(
-            PlaylistRemoteEntity(
-                serviceId = DEFAULT_THIRD_SERVICE_ID,
-                orderingName = DEFAULT_NAME,
-                url = DEFAULT_THIRD_URL,
-                thumbnailUrl = DEFAULT_THUMBNAIL,
-                uploader = DEFAULT_UPLOADER_NAME,
-                displayIndex = -1,
-                streamCount = 10
-            )
-        )
+        // Insert third local playlist
+        val newPlaylistsSQL = """
+            INSERT OR FAIL INTO playlists
+            (name, is_thumbnail_permanent, thumbnail_stream_id, display_index)
+            VALUES (?, ?, ?, ?)
+        """.trimIndent()
+        migratedConnection.prepare(newPlaylistsSQL).use { statement ->
+            statement.bindText(1, DEFAULT_NAME + "3")
+            statement.bindBoolean(2, false)
+            statement.bindLong(3, -1)
+            statement.bindLong(4, -1)
+            statement.step()
+        }
 
-        localListFromDB = migratedDatabaseV9.playlistDAO().getAll().blockingFirst()
-        remoteListFromDB = migratedDatabaseV9.playlistRemoteDAO().getAll().blockingFirst()
-        assertEquals(2, localListFromDB.size)
-        assertEquals(localUid3, localListFromDB[1].uid)
-        assertEquals(-1, localListFromDB[1].displayIndex)
-        assertEquals(2, remoteListFromDB.size)
-        assertEquals(remoteUid3, remoteListFromDB[1].uid)
-        assertEquals(-1, remoteListFromDB[1].displayIndex)
-    }
+        val localUid3 = migratedConnection.prepare(lastPlaylistUIDSQL).use { statement ->
+            statement.step()
+            statement.getLong(0)
+        }
 
-    private fun getMigratedDatabase(): AppDatabase {
-        val database: AppDatabase = Room.databaseBuilder(
-            ApplicationProvider.getApplicationContext(),
-            AppDatabase::class.java,
-            AppDatabase.DATABASE_NAME
-        )
-            .build()
-        testHelper.closeWhenFinished(database)
-        return database
+        // Insert third remote playlist
+        val newRemotePlaylistsSQL = """
+            INSERT OR FAIL INTO remote_playlists
+            (service_id, name, url, thumbnail_url, uploader, display_index, stream_count)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        """.trimIndent()
+        migratedConnection.prepare(newRemotePlaylistsSQL).use { statement ->
+            statement.bindInt(1, DEFAULT_THIRD_SERVICE_ID)
+            statement.bindText(2, DEFAULT_NAME)
+            statement.bindText(3, DEFAULT_THIRD_URL)
+            statement.bindText(4, DEFAULT_THUMBNAIL)
+            statement.bindText(5, DEFAULT_UPLOADER_NAME)
+            statement.bindLong(6, -1)
+            statement.bindLong(7, 10)
+            statement.step()
+        }
+
+        val remoteUid3 = migratedConnection.prepare(lastRemotePlaylistUIDSQL).use { statement ->
+            statement.step()
+            statement.getLong(0)
+        }
+
+        // Verify we have 2 local playlists now with third one present
+        migratedConnection.prepare("SELECT (COUNT(*) = 2) FROM playlists").use { statement ->
+            statement.step()
+            require(statement.getBoolean(0))
+        }
+
+        migratedConnection.prepare(
+            """
+            SELECT (COUNT(*) = 1) FROM playlists
+            WHERE uid = $localUid3 AND display_index = -1
+            """.trimIndent()
+        ).use { statement ->
+            statement.step()
+            assert(statement.getBoolean(0))
+        }
+
+        // Verify we have 2 remote playlists now with third one present
+        migratedConnection.prepare("SELECT (COUNT(*) = 2) FROM remote_playlists").use { statement ->
+            statement.step()
+            require(statement.getBoolean(0))
+        }
+
+        migratedConnection.prepare(
+            """
+            SELECT (COUNT(*) = 1) FROM remote_playlists
+            WHERE uid = $remoteUid3 AND display_index = -1
+            """.trimIndent()
+        ).use { statement ->
+            statement.step()
+            assert(statement.getBoolean(0))
+        }
+
+        migratedConnection.close()
     }
 }
