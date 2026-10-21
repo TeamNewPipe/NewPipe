@@ -18,7 +18,7 @@ import java.nio.charset.StandardCharsets;
  * <p>
  * If media requests are relative, the URI from which the manifest comes from (either the
  * manifest URI (preferred) or the master URI (if applicable)) must be returned, otherwise the
- * content will be not playable, as it will be an invalid URL, or it may be treat as something
+ * content will be not playable, as it will be an invalid URL, or it may be treated as something
  * unexpected, for instance as a file for
  * {@link com.google.android.exoplayer2.upstream.DefaultDataSource DefaultDataSource}s.
  * </p>

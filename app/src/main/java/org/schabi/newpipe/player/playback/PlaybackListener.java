@@ -72,7 +72,7 @@ public interface PlaybackListener {
     /**
      * Called when the play queue can no longer be played or used.
      * Currently, this means the play queue is empty and complete.
-     * Signals to the listener that it should shutdown.
+     * Signals to the listener that it should shut down.
      * <p>
      * May be called at any time.
      * </p>

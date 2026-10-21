@@ -373,7 +373,7 @@ public abstract class PlayQueue implements Serializable {
      * to that of the target.
      * If the moved item is not the currently playing and moves to an index <b>AFTER</b> the
      * current playing index, then the current playing index is decremented.
-     * Vice versa if the an item after the currently playing is moved <b>BEFORE</b>.
+     * Vice versa if an item after the currently playing is moved <b>BEFORE</b>.
      * </p>
      *
      * @param source the original index of the item

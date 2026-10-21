@@ -810,7 +810,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
     /**
      * Update the play/pause button ({@link R.id.playPauseButton}) to reflect the action
-     * that will be performed when the button is clicked..
+     * that will be performed when the button is clicked.
      * @param action the action that is performed when the play/pause button is clicked
      */
     private void updatePlayPauseButton(final PlayButtonAction action) {
