@@ -86,9 +86,9 @@ public class SettingsActivity extends AppCompatActivity implements
 
     @Override
     protected void onCreate(final Bundle savedInstanceBundle) {
-        setTheme(ThemeHelper.getSettingsThemeStyle(this));
-
+        setTheme(ThemeHelper.getTheme(this));
         super.onCreate(savedInstanceBundle);
+
         Bridge.restoreInstanceState(this, savedInstanceBundle);
         final boolean restored = savedInstanceBundle != null;
 

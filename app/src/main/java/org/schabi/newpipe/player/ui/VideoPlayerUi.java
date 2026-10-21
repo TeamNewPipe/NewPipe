@@ -40,7 +40,6 @@ import android.widget.SeekBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.core.graphics.BitmapCompat;
@@ -178,13 +177,10 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.playbackSeekBar.getProgressDrawable()
                 .setColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY));
 
-        final ContextThemeWrapper themeWrapper = new ContextThemeWrapper(context,
-                R.style.DarkPopupMenu);
-
-        qualityPopupMenu = new PopupMenu(themeWrapper, binding.qualityTextView);
-        audioTrackPopupMenu = new PopupMenu(themeWrapper, binding.audioTrackTextView);
+        qualityPopupMenu = new PopupMenu(context, binding.qualityTextView);
+        audioTrackPopupMenu = new PopupMenu(context, binding.audioTrackTextView);
         playbackSpeedPopupMenu = new PopupMenu(context, binding.playbackSpeed);
-        captionPopupMenu = new PopupMenu(themeWrapper, binding.captionTextView);
+        captionPopupMenu = new PopupMenu(context, binding.captionTextView);
 
         binding.progressBarLoadingPanel.getIndeterminateDrawable()
                 .setColorFilter(new PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY));

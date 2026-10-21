@@ -45,10 +45,7 @@ fun AboutScreen(padding: PaddingValues) {
             tabIndex = pagerState.currentPage
         }
 
-        SecondaryTabRow(
-            selectedTabIndex = tabIndex,
-            containerColor = MaterialTheme.colorScheme.primaryContainer
-        ) {
+        SecondaryTabRow(selectedTabIndex = tabIndex) {
             TITLES.forEachIndexed { index, titleId ->
                 Tab(
                     text = { Text(text = stringResource(titleId)) },
