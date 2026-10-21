@@ -56,7 +56,7 @@ public final class InfoCache {
         CHANNEL_TAB,
         COMMENTS,
         PLAYLIST,
-        KIOSK,
+        KIOSK
     }
 
     public static InfoCache getInstance() {
