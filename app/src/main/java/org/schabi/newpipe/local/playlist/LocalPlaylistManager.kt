@@ -11,7 +11,9 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.rx3.rxMaybe
 import org.schabi.newpipe.database.AppDatabase
 import org.schabi.newpipe.database.playlist.PlaylistDuplicatesEntry
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry
@@ -35,20 +37,18 @@ class LocalPlaylistManager(private val database: AppDatabase) {
         // Save to the database directly.
         // Make sure the new playlist is always on the top of bookmark.
         // The index will be reassigned to non-negative number in BookmarkFragment.
-        return Maybe.fromCallable {
-            runBlocking {
-                database.withWriteTransaction {
-                    val streamIds = streamTable.upsertAll(streams)
-                    val newPlaylist = PlaylistEntity(
-                        name = name,
-                        isThumbnailPermanent = false,
-                        thumbnailStreamId = streamIds[0],
-                        displayIndex = -1
-                    )
-                    insertJoinEntities(playlistTable.insert(newPlaylist), streamIds, 0)
-                }
+        return rxMaybe(Dispatchers.IO) {
+            database.withWriteTransaction {
+                val streamIds = streamTable.upsertAll(streams)
+                val newPlaylist = PlaylistEntity(
+                    name = name,
+                    isThumbnailPermanent = false,
+                    thumbnailStreamId = streamIds[0],
+                    displayIndex = -1
+                )
+                insertJoinEntities(playlistTable.insert(newPlaylist), streamIds, 0)
             }
-        }.subscribeOn(Schedulers.io())
+        }
     }
 
     fun appendToPlaylist(playlistId: Long, streams: List<StreamEntity>): Maybe<List<Long>> {
