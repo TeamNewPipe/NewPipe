@@ -237,20 +237,6 @@ class HistoryRecordManager(context: Context) {
             .subscribeOn(Schedulers.io())
     }
 
-    fun saveStreamState(info: StreamInfo, progressMillis: Long): Completable {
-        return Completable.fromAction {
-            runBlocking {
-                database.withWriteTransaction {
-                    val streamId = streamTable.upsert(StreamEntity(info))
-                    val state = StreamStateEntity(streamId, progressMillis)
-                    if (state.isValid(info.duration)) {
-                        streamStateTable.upsert(state)
-                    }
-                }
-            }
-        }.subscribeOn(Schedulers.io())
-    }
-
     fun loadStreamState(info: InfoItem): Maybe<StreamStateEntity> {
         return Maybe.fromCallable {
             streamTable.getStream(info.serviceId.toLong(), info.url)
@@ -277,6 +263,20 @@ class HistoryRecordManager(context: Context) {
                 streamStateTable.getState(streamId)
                     .blockingFirst()
                     .firstOrNull()
+            }
+        }.subscribeOn(Schedulers.io())
+    }
+
+    fun saveStreamState(info: StreamInfo, progressMillis: Long): Completable {
+        return Completable.fromAction {
+            runBlocking {
+                database.withWriteTransaction {
+                    val streamId = streamTable.upsert(StreamEntity(info))
+                    val state = StreamStateEntity(streamId, progressMillis)
+                    if (state.isValid(info.duration)) {
+                        streamStateTable.upsert(state)
+                    }
+                }
             }
         }.subscribeOn(Schedulers.io())
     }
