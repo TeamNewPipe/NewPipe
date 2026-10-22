@@ -16,7 +16,11 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.rx3.rxCompletable
+import kotlinx.coroutines.rx3.rxMaybe
+import kotlinx.coroutines.withContext
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.LocalItem
@@ -72,46 +76,44 @@ class HistoryRecordManager(context: Context) {
 
         val currentTime = OffsetDateTime.now(ZoneOffset.UTC)
 
-        return Maybe.fromCallable {
-            runBlocking {
-                database.withWriteTransaction {
-                    val streamId: Long
-                    val duration: Long
+        return rxMaybe(Dispatchers.IO) {
+            database.withWriteTransaction {
+                val streamId: Long
+                val duration: Long
 
-                    // Duration will not exist if the item was loaded with fast mode, so fetch it
-                    // if empty
-                    if (info.duration < 0) {
-                        val completeInfo = ExtractorHelper.getStreamInfo(
-                            info.serviceId,
-                            info.url,
-                            false
-                        ).subscribeOn(Schedulers.io()).blockingGet()
+                // Duration will not exist if the item was loaded with fast mode, so fetch it
+                // if empty
+                if (info.duration < 0) {
+                    val completeInfo = ExtractorHelper.getStreamInfo(
+                        info.serviceId,
+                        info.url,
+                        false
+                    ).subscribeOn(Schedulers.io()).blockingGet()
 
-                        duration = completeInfo.duration
-                        streamId = streamTable.upsert(StreamEntity(completeInfo))
-                    } else {
-                        duration = info.duration
-                        streamId = streamTable.upsert(StreamEntity(info))
-                    }
+                    duration = completeInfo.duration
+                    streamId = streamTable.upsert(StreamEntity(completeInfo))
+                } else {
+                    duration = info.duration
+                    streamId = streamTable.upsert(StreamEntity(info))
+                }
 
-                    // Update the stream progress to the full duration of the video
-                    val entity = StreamStateEntity(
-                        streamId,
-                        duration * 1000
-                    )
-                    streamStateTable.upsert(entity)
+                // Update the stream progress to the full duration of the video
+                val entity = StreamStateEntity(
+                    streamId,
+                    duration * 1000
+                )
+                streamStateTable.upsert(entity)
 
-                    // Add a history entry
-                    val latestEntry = streamHistoryTable.getLatestEntry(streamId)
-                    if (latestEntry == null) {
-                        // never actually viewed: add history entry but with 0 views
-                        streamHistoryTable.insert(StreamHistoryEntity(streamId, currentTime, 0))
-                    } else {
-                        0L
-                    }
+                // Add a history entry
+                val latestEntry = streamHistoryTable.getLatestEntry(streamId)
+                if (latestEntry == null) {
+                    // never actually viewed: add history entry but with 0 views
+                    streamHistoryTable.insert(StreamHistoryEntity(streamId, currentTime, 0))
+                } else {
+                    0L
                 }
             }
-        }.subscribeOn(Schedulers.io())
+        }
     }
 
     fun onViewed(info: StreamInfo): Maybe<Long> {
@@ -120,24 +122,22 @@ class HistoryRecordManager(context: Context) {
         }
 
         val currentTime = OffsetDateTime.now(ZoneOffset.UTC)
-        return Maybe.fromCallable {
-            runBlocking {
-                database.withWriteTransaction {
-                    val streamId = streamTable.upsert(StreamEntity(info))
-                    val latestEntry = streamHistoryTable.getLatestEntry(streamId)
+        return rxMaybe(Dispatchers.IO) {
+            database.withWriteTransaction {
+                val streamId = streamTable.upsert(StreamEntity(info))
+                val latestEntry = streamHistoryTable.getLatestEntry(streamId)
 
-                    if (latestEntry != null) {
-                        streamHistoryTable.delete(latestEntry)
-                        latestEntry.accessDate = currentTime
-                        latestEntry.repeatCount = latestEntry.repeatCount + 1
-                        streamHistoryTable.insert(latestEntry)
-                    } else {
-                        // just viewed for the first time: set 1 view
-                        streamHistoryTable.insert(StreamHistoryEntity(streamId, currentTime, 1))
-                    }
+                if (latestEntry != null) {
+                    streamHistoryTable.delete(latestEntry)
+                    latestEntry.accessDate = currentTime
+                    latestEntry.repeatCount = latestEntry.repeatCount + 1
+                    streamHistoryTable.insert(latestEntry)
+                } else {
+                    // just viewed for the first time: set 1 view
+                    streamHistoryTable.insert(StreamHistoryEntity(streamId, currentTime, 1))
                 }
             }
-        }.subscribeOn(Schedulers.io())
+        }
     }
 
     fun deleteStreamHistoryAndState(streamId: Long): Completable {
@@ -177,8 +177,9 @@ class HistoryRecordManager(context: Context) {
         val currentTime = OffsetDateTime.now(ZoneOffset.UTC)
         val newEntry = SearchHistoryEntry(currentTime, serviceId, search)
 
-        return Maybe.fromCallable {
-            runBlocking {
+        // TODO: Do this in a viewmodel once UI is migrated to avoid cancellations
+        return rxMaybe(Dispatchers.IO) {
+            withContext(NonCancellable) {
                 database.withWriteTransaction {
                     val latestEntry = searchHistoryTable.latestEntry
                     if (latestEntry != null && latestEntry.hasEqualValues(newEntry)) {
@@ -189,7 +190,7 @@ class HistoryRecordManager(context: Context) {
                     }
                 }
             }
-        }.subscribeOn(Schedulers.io())
+        }
     }
 
     fun deleteSearchHistory(search: String): Single<Int> {
@@ -268,17 +269,15 @@ class HistoryRecordManager(context: Context) {
     }
 
     fun saveStreamState(info: StreamInfo, progressMillis: Long): Completable {
-        return Completable.fromAction {
-            runBlocking {
-                database.withWriteTransaction {
-                    val streamId = streamTable.upsert(StreamEntity(info))
-                    val state = StreamStateEntity(streamId, progressMillis)
-                    if (state.isValid(info.duration)) {
-                        streamStateTable.upsert(state)
-                    }
+        return rxCompletable(Dispatchers.IO) {
+            database.withWriteTransaction {
+                val streamId = streamTable.upsert(StreamEntity(info))
+                val state = StreamStateEntity(streamId, progressMillis)
+                if (state.isValid(info.duration)) {
+                    streamStateTable.upsert(state)
                 }
             }
-        }.subscribeOn(Schedulers.io())
+        }
     }
 
     // ///////////////////////////////////////////////////////
