@@ -80,7 +80,7 @@ class LocalPlaylistManager(private val database: AppDatabase) {
             PlaylistStreamEntity(playlistId, streamId, index)
         }
 
-        return Completable.fromAction {
+        return Completable.fromRunnable {
             playlistStreamTable.updatePlaylistStreams(playlistId, joinEntities)
         }.subscribeOn(Schedulers.io())
     }
