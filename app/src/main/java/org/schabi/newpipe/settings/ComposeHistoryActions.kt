@@ -17,7 +17,6 @@ import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.local.history.HistoryRecordManager
 import org.schabi.newpipe.util.InfoCache
 
-@Suppress("unused")
 class ComposeHistoryActions(private val context: Context) : HistoryActions {
 
     private val recordManager = HistoryRecordManager(context)
