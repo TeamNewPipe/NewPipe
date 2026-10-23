@@ -11,6 +11,7 @@ import net.newpipe.app.screen.about.AboutScreen
 import net.newpipe.app.screen.settings.AppearanceSettingsScreen
 import net.newpipe.app.screen.settings.DebugSettingsScreen
 import net.newpipe.app.screen.settings.DownloadSettingsScreen
+import net.newpipe.app.screen.settings.HistorySettingsScreen
 import net.newpipe.app.screen.settings.PlayerSettingsScreen
 import net.newpipe.app.screen.settings.SettingsHomeScreen
 import net.newpipe.app.screen.settings.VideoAudioSettingsScreen
@@ -56,6 +57,10 @@ fun navModule() = module {
 
     navigation<Destination.DownloadSettings> {
         DownloadSettingsScreen()
+    }
+
+    navigation<Destination.HistorySettings> {
+        HistorySettingsScreen()
     }
 }
 
