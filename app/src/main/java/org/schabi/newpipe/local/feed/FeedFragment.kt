@@ -182,6 +182,16 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         }
     }
 
+    /**
+     * Clears the action bar subtitle when leaving the fragment to prevent
+     * the feed group name from leaking into subsequent views (#13366).
+     */
+    override fun onStop() {
+        super.onStop()
+        // Unconditionally clear the subtitle so it doesn't leak into other fragments
+        activity?.supportActionBar?.subtitle = null
+    }
+
     private fun setupListViewMode() {
         // does everything needed to setup the layouts for grid or list modes
         groupAdapter.spanCount = if (shouldUseGridLayout(context)) getGridSpanCountStreams(context) else 1
