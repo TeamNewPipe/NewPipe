@@ -1,49 +1,42 @@
 <p align="center"><a href="https://newpipe.net"><img src="assets/new_pipe_icon_5.png" width="150"></a></p> 
 <h2 align="center"><b>NewPipe</b></h2>
-<h4 align="center">Свободный и легковесный клиент потоковых сервисов для Android.</h4>
+<h4 align="center">A libre lightweight streaming front-end for Android.</h4>
 
-<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-en.svg" alt="Скачать на F-Droid" width=206/></a></p>
+<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-en.svg" alt="Get it on F-Droid" width=206/></a></p>
 
 <p align="center">
-<a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub release"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg"></a>
+<a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub NewPipe releases"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
 <a href="https://github.com/TeamNewPipe/NewPipe-nightly/releases" alt="GitHub NewPipe nightly releases"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe-nightly.svg?labelColor=purple&label=dev%20nightly"></a>
-<a href="https://www.gnu.org/licenses/gpl-3.0" alt="Лицензия: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
-<a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Состояние сборки"><img src="https://github.com/TeamNewPipe/NewPipe/actions/workflows/ci.yml/badge.svg?branch=dev&event=push"></a>
-<a href="https://hosted.weblate.org/engage/newpipe/" alt="Состояние перевода"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
+<a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
+<a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Build Status"><img src="https://github.com/TeamNewPipe/NewPipe/actions/workflows/ci.yml/badge.svg?branch=dev&event=push"></a>
+<a href="https://hosted.weblate.org/engage/newpipe/" alt="Translation Status"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
 </p>
 
 <p align="center">
-<a href="https://web.libera.chat/#newpipe" alt="Канал IRC: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
+<a href="https://web.libera.chat/#newpipe" alt="IRC channel: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
 <a href="https://matrix.to/#/#newpipe:matrix.newpipe-ev.de" alt="Matrix channel: #newpipe"><img src="https://img.shields.io/badge/Matrix%20chat-%23newpipe-blue"></a>
 </p>
 
 <hr>
-<p align="center"><a href="#screenshots">Скриншоты</a> &bull; <a href="#supported-services">Поддерживаемые сервисы</a> &bull; <a href="#description">Описание</a> &bull; <a href="#features">Возможности</a> &bull; <a href="#installation-and-updates">Установка и обновления</a> &bull; <a href="#contribution">Участие</a> &bull; <a href="#donate">Пожертвование</a> &bull; <a href="#license">Лицензия</a></p>
-<p align="center"><a href="https://newpipe.net">Сайт</a> &bull; <a href="https://newpipe.net/blog/">Блог</a> &bull; <a href="https://newpipe.net/FAQ/">ЧЗВ</a> &bull; <a href="https://newpipe.net/press/">Пресса</a></p>
+<p align="center"><a href="#screenshots">Screenshots</a> &bull; <a href="#supported-services">Supported Services</a> &bull; <a href="#description">Description</a> &bull; <a href="#features">Features</a> &bull; <a href="#installation-and-updates">Installation and updates</a> &bull; <a href="#contribution">Contribution</a> &bull; <a href="#donate">Donate</a> &bull; <a href="#license">License</a></p>
+<p align="center"><a href="https://newpipe.net">Website</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Press</a></p>
 <hr>
 
-*Read this document in other languages: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md) , [العربية](README.ar.md)*
+*Read this document in other languages: [Deutsch](doc/README.de.md), [English](README.md), [Español](doc/README.es.md), [Français](doc/README.fr.md), [हिन्दी](doc/README.hi.md), [Italiano](doc/README.it.md), [한국어](doc/README.ko.md), [Português Brasil](doc/README.pt_BR.md), [Polski](doc/README.pl.md), [ਪੰਜਾਬੀ ](doc/README.pa.md), [日本語](doc/README.ja.md), [Română](doc/README.ro.md), [Soomaali](doc/README.so.md), [Türkçe](doc/README.tr.md), [正體中文](doc/README.zh_TW.md), [অসমীয়া](doc/README.asm.md), [うちなーぐち](doc/README.sr.md), [Српски](README.ar.md) , [العربية]{19}*
 
-> [!warning]
+> [!warning]\
 > <b>ЭТО ПРИЛОЖЕНИЕ НАХОДИТСЯ В СТАДИИ БЕТА, ПОЭТОМУ ВЫ МОЖЕТЕ ОБНАРУЖИТЬ ОШИБКИ. ЕСЛИ ЭТО СЛУЧИТСЯ, ОТКРОЙТЕ ВОПРОС В НАШЕМ РЕПОЗИТОРИИ GITHUB, ЗАПОЛНЯ ЕГО ПО ШАБЛОНУ.</b>
->
+> 
 > <b>РАЗМЕЩЕНИЕ NEWPIPE ИЛИ ЕГО ОТВЕТВЛЕНИЙ В МАГАЗИНЕ GOOGLE PLAY НАРУШАЕТ ИХ УСЛОВИЯ И ПОЛОЖЕНИЯ.</b>
+> 
+> <b>"NewPipe" IS A REGISTERED WORD MARK SUBJECT TO [ITS TRADEMARK POLICY](https://newpipe-ev.de/policy/trademark/). INFRINGING APPLICATIONS WILL NOT BE TOLERATED.</b>
 
 ## Скриншоты
 
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/00.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/00.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png)
-<br/><br/>
-[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png)
-[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png)
-
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/00.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/00.png) [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/01.png) [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/02.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/02.png) [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/03.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/03.png) [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/04.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/04.png) [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/05.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/05.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/06.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/06.png) [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/07.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/07.png) [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/08.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/08.png)
+<br/><br/>\
+[<img src="fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png" width=405>](fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png) [<img src="fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png" width=405>](fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png)
 
 ### Поддерживаемые сервисы
 
@@ -93,6 +86,9 @@ NewPipe работает, извлекая необходимые данные �
 * Откройте в Kodi
 * Смотрите/блокируйте материалы с возрастным ограничением
 
+<!-- Hidden span to keep old links compatible. You should remove this span if you're translating the README into another language.-->
+<span id="updates"></span>
+
 ## Установка и обновления
 Вы можете установить NewPipe одним из следующих способов:
  1. Добавьте наш пользовательский репозиторий в F-Droid и установите его оттуда. Инструкции находятся здесь: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
@@ -109,13 +105,20 @@ NewPipe работает, извлекая необходимые данные �
 3. Загрузите APK из нового источника и установите его.
 4. Импортируйте данные из шага 1 через «Настройки» > «Содержимое» > «Импортировать базу данных».
 
-<b>Примечание: когда вы импортируете базу данных в официальное приложение, убедитесь, что это именно та база данных, которую вы экспортировали _из_ официального приложения. Если вы импортируете базу данных, экспортированную из APK, отличного от официального приложения, это может привести к ошибке. Такое действие не поддерживается, и вы должны делать его только тогда, когда абсолютно уверены, что знаете, что делаете.</b>
+> [!Note] When you're importing a database into the official app, always make sure that it is the one you exported _from_ the official app. If you import a database exported from an APK other than the official app, it may break things. Such an action is unsupported, and you should only do so when you're absolutely certain you know what you're doing.
+
+### APK Info
+
+This is the SHA fingerprint of NewPipe's signing key to verify downloaded APKs which are signed by us. The fingerprint is also available on [NewPipe's website](https://newpipe.net#download). This is relevant for method 2.
+```
+CB:84:06:9B:D6:81:16:BA:FA:E5:EE:4E:E5:B0:8A:56:7A:A6:D8:98:40:4E:7C:B1:2F:9E:75:6D:F5:CF:5C:AB
+```
 
 ## Участие
-Если у вас есть идеи, переводы, изменения дизайна, очистка кода или даже серьезные изменения кода, помощь всегда приветствуется. Приложение становится всё лучше и лучше с каждым вкладом, независимо от того, большой он или маленький! Если вы хотите принять участие, ознакомьтесь с нашими [заметками об участии](/.github/CONTRIBUTING.md).
+Если у вас есть идеи, переводы, изменения дизайна, очистка кода или даже серьезные изменения кода, помощь всегда приветствуется. Приложение становится всё лучше и лучше с каждым вкладом, независимо от того, большой он или маленький! Если вы хотите принять участие, ознакомьтесь с нашими [заметками об участии](.github/CONTRIBUTING.md).
 
 <a href="https://hosted.weblate.org/engage/newpipe/">
-<img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Состояние перевода">
+<img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Translation status" />
 </a>
 
 ## Пожертвование
@@ -124,8 +127,8 @@ NewPipe работает, извлекая необходимые данные �
 <table>
   <tr>
     <td><a href="https://liberapay.com/TeamNewPipe/"><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/"><img src="assets/liberapay_qr_code.png" alt="Посетите NewPipe на liberapay.com" width="100px"></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="assets/liberapay_donate_button.svg" alt="Пожертвование через Liberapay" height="35px"></a></td>
+    <td><a href="https://liberapay.com/TeamNewPipe/"><img src="assets/liberapay_qr_code.png" alt="Visit NewPipe at liberapay.com" width="100px"></a></td>
+    <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="assets/liberapay_donate_button.svg" alt="Donate via Liberapay" height="35px"></a></td>
   </tr>
 </table>
 
@@ -134,6 +137,6 @@ NewPipe работает, извлекая необходимые данные �
 Целью проекта NewPipe является предоставление конфиденциального анонимного доступа к мультимедийным веб-сервисам. Поэтому приложение не собирает никаких данных без вашего согласия. Политика конфиденциальности NewPipe подробно объясняет, какие данные отправляются и сохраняются, когда вы отправляете отчёт о сбое или оставляете комментарий в нашем блоге. Вы можете найти документ [здесь](https://newpipe.net/legal/privacy/).
 
 ## Лицензия
-[![Изображение GNU GPLv3](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.ru.html)  
+[![Изображение GNU GPLv3](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 NewPipe — это бесплатное программное обеспечение: вы можете использовать, изучать, делиться и улучшать его по своему усмотрению. В частности, вы можете распространять и/или изменять ее в соответствии с условиями [Стандартной общественной лицензии GNU](https://www.gnu.org/licenses/gpl.html) (GPL-3.0), опубликованной Free Software Foundation, либо версии 3 Лицензии или (на ваш выбор) любая более поздняя версия.
