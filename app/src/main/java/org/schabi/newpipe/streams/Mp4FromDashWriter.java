@@ -11,6 +11,7 @@ import org.schabi.newpipe.streams.io.SharpStream;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 /**
@@ -47,6 +48,10 @@ public class Mp4FromDashWriter {
     private Mp4DashChunk[] readersChunks;
 
     private int overrideMainBrand = 0x00;
+
+    private String metadataTitle;
+    private String metadataArtist;
+    private byte[] metadataCover;
 
     private final ArrayList<Integer> compatibleBrands = new ArrayList<>(5);
 
@@ -114,6 +119,12 @@ public class Mp4FromDashWriter {
 
     public void setMainBrand(final int brand) {
         overrideMainBrand = brand;
+    }
+
+    public void setMetadata(final String title, final String artist, final byte[] cover) {
+        metadataTitle = title;
+        metadataArtist = artist;
+        metadataCover = cover;
     }
 
     public boolean isDone() {
@@ -720,7 +731,119 @@ public class Mp4FromDashWriter {
             makeTrak(i, durations[i], defaultMediaTime[i], tablesInfo[i], is64);
         }
 
+        if (metadataTitle != null || metadataArtist != null || metadataCover != null) {
+            makeUdta();
+        }
+
         return lengthFor(start);
+    }
+
+    private void makeUdta() throws IOException {
+        final int start = auxOffset();
+
+        auxWrite(new byte[]{
+                0x00, 0x00, 0x00, 0x00, 0x75, 0x64, 0x74, 0x61
+        });
+
+        makeMeta();
+
+        lengthFor(start);
+    }
+
+    private void makeMeta() throws IOException {
+        final int start = auxOffset();
+
+        auxWrite(new byte[]{
+                0x00, 0x00, 0x00, 0x00, 0x6D, 0x65, 0x74, 0x61,
+                0x00, 0x00, 0x00, 0x00
+        });
+
+        makeMetaHdlr();
+        makeIlst();
+
+        lengthFor(start);
+    }
+
+    private void makeMetaHdlr() throws IOException {
+        final int start = auxOffset();
+
+        auxWrite(new byte[]{
+                0x00, 0x00, 0x00, 0x00, 0x68, 0x64, 0x6C, 0x72,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                0x6D, 0x64, 0x69, 0x72, 0x61, 0x70, 0x70, 0x6C, // "mdir" handler, "appl" manuf.
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                0x00
+        });
+
+        lengthFor(start);
+    }
+
+    private void makeIlst() throws IOException {
+        final int start = auxOffset();
+
+        auxWrite(new byte[]{
+                0x00, 0x00, 0x00, 0x00, 0x69, 0x6C, 0x73, 0x74
+        });
+
+        if (metadataTitle != null && !metadataTitle.isEmpty()) {
+            makeIlstEntry(new byte[]{(byte) 0xA9, 0x6E, 0x61, 0x6D}, metadataTitle); // nam
+        }
+        if (metadataArtist != null && !metadataArtist.isEmpty()) {
+            makeIlstEntry(new byte[]{(byte) 0xA9, 0x41, 0x52, 0x54}, metadataArtist); // ART
+            makeIlstEntry(new byte[]{0x61, 0x41, 0x52, 0x54}, metadataArtist); // aART
+        }
+        if (metadataCover != null && metadataCover.length > 0) {
+            makeIlstCover();
+        }
+
+        lengthFor(start);
+    }
+
+    private void makeIlstEntry(final byte[] fourCc, final String value) throws IOException {
+        final byte[] text = value.getBytes(StandardCharsets.UTF_8);
+        final int start = auxOffset();
+
+        auxWrite(new byte[]{0x00, 0x00, 0x00, 0x00});
+        auxWrite(fourCc);
+
+        final int dataStart = auxOffset();
+
+        auxWrite(new byte[]{
+                0x00, 0x00, 0x00, 0x00, 0x64, 0x61, 0x74, 0x61,
+                0x00, 0x00, 0x00, 0x01, // UTF-8 text
+                0x00, 0x00, 0x00, 0x00
+        });
+        auxWrite(text);
+
+        lengthFor(dataStart);
+        lengthFor(start);
+    }
+
+    private void makeIlstCover() throws IOException {
+        final int start = auxOffset();
+        final int type = detectImageDataType(metadataCover); // 13 JPEG, 14 PNG, 0 unspecified
+
+        auxWrite(new byte[]{0x00, 0x00, 0x00, 0x00, 0x63, 0x6F, 0x76, 0x72});
+
+        final int dataStart = auxOffset();
+
+        auxWrite(new byte[]{0x00, 0x00, 0x00, 0x00, 0x64, 0x61, 0x74, 0x61});
+        auxWrite(ByteBuffer.allocate(8).putInt(type).putInt(0x00).array());
+        auxWrite(metadataCover);
+
+        lengthFor(dataStart);
+        lengthFor(start);
+    }
+
+    private static int detectImageDataType(final byte[] data) {
+        if (data.length > 2 && (data[0] & 0xFF) == 0xFF && (data[1] & 0xFF) == 0xD8) {
+            return 13;
+        }
+        if (data.length > 3 && (data[0] & 0xFF) == 0x89 && data[1] == 0x50
+                && data[2] == 0x4E && data[3] == 0x47) {
+            return 14;
+        }
+        return 0;
     }
 
     private void makeTrak(final int index, final long duration, final int defaultMediaTime,
