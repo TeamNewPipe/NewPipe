@@ -217,4 +217,37 @@
     <string name="no_appropriate_file_manager_message">No appropriate file manager was found for this action.\nPlease install a file manager or try to disable '%1$s' in the download settings</string>
     <string name="no_appropriate_file_manager_message_android_10">No appropriate file manager was found for this action.\nPlease install a Storage Access Framework compatible file manager</string>
 
+    <!-- History and cache Settings -->
+    <string name="enable_watch_history_title">Watch history</string>
+    <string name="enable_watch_history_summary">Keep track of watched videos</string>
+    <string name="enable_playback_resume_title">Resume playback</string>
+    <string name="enable_playback_resume_summary">Restore last playback position</string>
+    <string name="enable_playback_state_lists_title">Positions in lists</string>
+    <string name="enable_playback_state_lists_summary">Show playback position indicators in lists</string>
+    <string name="enable_search_history_title">Search history</string>
+    <string name="enable_search_history_summary">Store search queries locally</string>
+
+    <!-- History and cache Settings: clear data -->
+    <string name="settings_category_clear_data_title">Clear data</string>
+    <string name="delete">Delete</string>
+    <string name="metadata_cache_wipe_title">Wipe cached metadata</string>
+    <string name="metadata_cache_wipe_summary">Remove all cached webpage data</string>
+    <string name="metadata_cache_wipe_complete_notice">Metadata cache wiped</string>
+    <string name="clear_views_history_title">Clear watch history</string>
+    <string name="clear_views_history_summary">Deletes the history of played streams and the playback positions</string>
+    <string name="delete_view_history_alert">Delete entire watch history?</string>
+    <string name="watch_history_deleted">Watch history deleted</string>
+    <string name="clear_playback_states_title">Delete playback positions</string>
+    <string name="clear_playback_states_summary">Deletes all playback positions</string>
+    <string name="delete_playback_states_alert">Delete all playback positions?</string>
+    <string name="watch_history_states_deleted">Playback positions deleted</string>
+    <string name="clear_search_history_title">Clear search history</string>
+    <string name="clear_search_history_summary">Deletes history of search keywords</string>
+    <string name="delete_search_history_alert">Delete entire search history?</string>
+    <string name="search_history_deleted">Search history deleted</string>
+    <string name="clear_cookie_title">Clear reCAPTCHA cookies</string>
+    <string name="clear_cookie_summary">Clear cookies that NewPipe stores when you solve a reCAPTCHA</string>
+    <string name="recaptcha_cookies_cleared">reCAPTCHA cookies have been cleared</string>
+
+
 </resources>
