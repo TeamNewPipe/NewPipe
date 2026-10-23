@@ -456,6 +456,7 @@
     <string name="preferred_player_fetcher_notification_title">Getting info…</string>
     <string name="preferred_player_fetcher_notification_message">"Loading requested content"</string>
     <!-- Local Playlist -->
+    <string name="search_playlists">Search playlists</string>
     <string name="create_playlist">New Playlist</string>
     <string name="duplicate_in_playlist">The playlists that are grayed out already contain this item.</string>
     <string name="rename_playlist">Rename</string>
