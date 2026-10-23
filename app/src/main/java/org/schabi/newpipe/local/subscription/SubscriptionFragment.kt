@@ -206,8 +206,43 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 handleFeedGroups(groups, listViewMode)
             }
         }
+        viewModel.managementModeLiveData.observe(viewLifecycleOwner) { enabled ->
+            binding.managementContainer.visibility = if (enabled == true) View.VISIBLE else View.GONE
+        }
+
+        binding.btnSelectAll.setOnClickListener { viewModel.selectAll() }
+        binding.btnCancel.setOnClickListener { viewModel.setManagementMode(false) }
+        binding.btnUnsubscribe.setOnClickListener {
+            val count = viewModel.getSelectedCount()
+            if (count > 0) {
+                showUnsubscribeDialog(count)
+            }
+        }
 
         setupInitialLayout()
+    }
+
+    private fun showUnsubscribeDialog(count: Int) {
+        AlertDialog.Builder(requireContext())
+            .setTitle(R.string.unsubscribe)
+            .setMessage(getString(R.string.unsubscribe_confirmation_selected, count))
+            .setPositiveButton(R.string.unsubscribe) { _, _ ->
+                disposables.add(
+                    viewModel.unsubscribeSelected()
+                        .subscribe(
+                            {
+                                Toast.makeText(
+                                    requireContext(),
+                                    R.string.channel_unsubscribed,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            },
+                            { showError(ErrorInfo(it, UserAction.SOMETHING_ELSE, "Subscriptions")) }
+                        )
+                )
+            }
+            .setNegativeButton(R.string.cancel, null)
+            .show()
     }
 
     private fun setupInitialLayout() {
@@ -282,7 +317,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         val commands = arrayOf(
             getString(R.string.share),
             getString(R.string.open_in_browser),
-            getString(R.string.unsubscribe)
+            getString(R.string.unsubscribe),
+            getString(R.string.manage_subscriptions)
         )
 
         val actions = DialogInterface.OnClickListener { _, i ->
@@ -297,6 +333,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 1 -> ShareUtils.openUrlInBrowser(requireContext(), selectedItem.url)
 
                 2 -> deleteChannel(selectedItem)
+
+                3 -> manageSubscriptions(selectedItem)
             }
         }
 
@@ -319,18 +357,33 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         )
     }
 
+    private fun manageSubscriptions(selectedItem: ChannelInfoItem) {
+        viewModel.setManagementMode(true)
+        viewModel.toggleSelection(selectedItem.url)
+    }
+
     override fun doInitialLoadLogic() = Unit
     override fun startLoading(forceLoad: Boolean) = Unit
 
     private val listenerChannelItem = object : OnClickGesture<ChannelInfoItem> {
-        override fun selected(selectedItem: ChannelInfoItem) = NavigationHelper.openChannelFragment(
-            fm,
-            selectedItem.serviceId,
-            selectedItem.url,
-            selectedItem.name
-        )
+        override fun selected(selectedItem: ChannelInfoItem) {
+            if (viewModel.isManagementMode()) {
+                viewModel.toggleSelection(selectedItem.url)
+            } else {
+                NavigationHelper.openChannelFragment(
+                    fm,
+                    selectedItem.serviceId,
+                    selectedItem.url,
+                    selectedItem.name
+                )
+            }
+        }
 
-        override fun held(selectedItem: ChannelInfoItem) = showLongTapDialog(selectedItem)
+        override fun held(selectedItem: ChannelInfoItem) {
+            if (!viewModel.isManagementMode()) {
+                showLongTapDialog(selectedItem)
+            }
+        }
     }
 
     override fun handleResult(result: SubscriptionState) {

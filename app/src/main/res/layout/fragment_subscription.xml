@@ -1,16 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/toolbar_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_alignParentTop="true"
+        android:background="?attr/toolbar_shadow" />
+
+    <LinearLayout
+        android:id="@+id/management_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:visibility="gone"
+        style="?android:attr/buttonBarStyle"
+        tools:visibility="visible">
+
+        <ImageButton
+            android:id="@+id/btn_select_all"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/all"
+            android:src="@drawable/ic_select_all"
+            app:tint="@color/defaultIconTint" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btn_unsubscribe"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/unsubscribe" />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/items_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/toolbar_shadow"
+        android:layout_above="@id/management_container"
         android:scrollbars="vertical"
         android:visibility="gone"
-        tools:listitem="@layout/list_channel_item" />
+        tools:listitem="@layout/list_channel_item"
+        tools:visibility="visible" />
 
     <!--ERROR PANEL-->
     <include
@@ -22,7 +75,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:visibility="gone"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 
     <include
         android:id="@+id/empty_state_view"
@@ -34,11 +87,5 @@
         android:layout_marginTop="50dp"
         android:visibility="gone"
         tools:visibility="visible" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:layout_alignParentTop="true"
-        android:background="?attr/toolbar_shadow" />
 
 </RelativeLayout>
