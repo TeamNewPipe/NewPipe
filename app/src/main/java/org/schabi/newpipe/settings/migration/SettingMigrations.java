@@ -240,6 +240,20 @@ public final class SettingMigrations {
         }
     };
 
+    private static final Migration MIGRATION_9_10 = new Migration(9, 10) {
+        @Override
+        protected void migrate(@NonNull final Context context) {
+            // New Updates on KAO campaign should be displayed right away
+            final var lastCheckKey = context.getString(R.string.kao_last_checked_key);
+            final Long lastCheckedEpochMillis = sp.getLong(lastCheckKey, 0L);
+            if (lastCheckedEpochMillis != 0) {
+                sp.edit()
+                        .putLong(lastCheckKey, 0L)
+                        .apply();
+            }
+        }
+    };
+
     /**
      * List of all implemented migrations.
      * <p>
@@ -256,12 +270,13 @@ public final class SettingMigrations {
             MIGRATION_6_7,
             MIGRATION_7_8,
             MIGRATION_8_9,
+            MIGRATION_9_10
     };
 
     /**
      * Version number for preferences. Must be incremented every time a migration is necessary.
      */
-    private static final int VERSION = 9;
+    private static final int VERSION = 10;
 
 
     static void runMigrationsIfNeeded(@NonNull final Context context) {
