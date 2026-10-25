@@ -992,7 +992,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (lastCheck.plus(30, ChronoUnit.DAYS).isBefore(now)) {
             final String detailsUrl = getKeepAndroidOpenDetailsUrl();
-            final var solutionUrl = "https://github.com/woheller69/FreeDroidWarn#solutions";
 
             final var dialog = new AlertDialog.Builder(this)
                     .setTitle("Keep Android Open")
@@ -1001,16 +1000,13 @@ public class MainActivity extends AppCompatActivity {
                     .setPositiveButton(android.R.string.ok, (d, w) -> prefs.edit()
                             .putLong(lastCheckKey, now.toEpochMilli())
                             .apply())
-                    .setNeutralButton(R.string.kao_solution, null)
-                    .setNegativeButton(R.string.kao_dialog_more_info, null)
+                    .setNeutralButton(R.string.kao_dialog_more_info, null)
                     .show();
 
             // If we use setNeutralButton/setNegativeButton, dialog will close after pressing the
             // buttons, but we want it to close only when positive button is pressed
-            dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-                    .setOnClickListener(v -> ShareUtils.openUrlInBrowser(this, detailsUrl));
             dialog.getButton(AlertDialog.BUTTON_NEUTRAL)
-                    .setOnClickListener(v -> ShareUtils.openUrlInBrowser(this, solutionUrl));
+                    .setOnClickListener(v -> ShareUtils.openUrlInBrowser(this, detailsUrl));
         }
     }
 
