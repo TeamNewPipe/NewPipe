@@ -41,7 +41,7 @@ import net.newpipe.app.preferences.HistoryPreferences.DEFAULT_ENABLE_PLAYBACK_ST
 import net.newpipe.app.preferences.HistoryPreferences.DEFAULT_ENABLE_SEARCH_HISTORY
 import net.newpipe.app.preferences.HistoryPreferences.DEFAULT_ENABLE_WATCH_HISTORY
 import net.newpipe.app.preview.ThemePreviewProvider
-import net.newpipe.app.viewmodel.settings.HistoryMessage
+import net.newpipe.app.screen.settings.model.HistoryMessage
 import net.newpipe.app.viewmodel.settings.HistorySettingsViewModel
 import newpipe.shared.generated.resources.Res
 import newpipe.shared.generated.resources.cancel
