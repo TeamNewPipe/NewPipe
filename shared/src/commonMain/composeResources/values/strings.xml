@@ -249,5 +249,72 @@
     <string name="clear_cookie_summary">Clear cookies that NewPipe stores when you solve a reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA cookies have been cleared</string>
 
+    <!-- Content Settings -->
+    <string name="app_language_title">App language</string>
+    <string name="systems_language">System default</string>
+    <string name="content_language_title">Default content language</string>
+    <string name="default_content_country_title">Default content country</string>
+    <string name="main_page_content">Content of main page</string>
+    <string name="main_page_content_summary">What tabs are shown on the main page</string>
+    <string name="show_channel_tabs">Channel tabs</string>
+    <string name="show_channel_tabs_summary">What tabs are shown on the channel pages</string>
+    <string name="peertube_instance_url_title">PeerTube instances</string>
+    <string name="peertube_instance_url_summary">Select your favorite PeerTube instances</string>
+    <string name="show_age_restricted_content_title">Show age restricted content</string>
+    <string name="show_age_restricted_content_summary">Show content possibly unsuitable for children because it has an age limit (like 18+)</string>
+    <string name="youtube_restricted_mode_enabled_title">Turn on YouTube's "Restricted Mode"</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube provides a "Restricted Mode" which hides potentially mature content</string>
+    <string name="show_search_suggestions_title">Search suggestions</string>
+    <string name="show_search_suggestions_summary">Choose the suggestions to show when searching</string>
+    <string name="local_search_suggestions">Local search suggestions</string>
+    <string name="remote_search_suggestions">Remote search suggestions</string>
+    <string name="image_quality_title">Image quality</string>
+    <string name="image_quality_summary">Choose the quality of images and whether to load images at all, to reduce data and memory usage. Changes clear both in-memory and on-disk image cache — %1$s</string>
+    <string name="image_quality_none">Do not load images</string>
+    <string name="image_quality_low">Low quality</string>
+    <string name="image_quality_medium">Medium quality</string>
+    <string name="image_quality_high">High quality</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Image cache wiped</string>
+    <string name="show_comments_title">Show comments</string>
+    <string name="show_comments_summary">Turn off to hide comments</string>
+    <string name="show_next_and_similar_title">Show 'Next' and 'Similar' videos</string>
+    <string name="show_description_title">Show description</string>
+    <string name="show_description_summary">Turn off to hide video description and additional information</string>
+    <string name="show_meta_info_title">Show meta info</string>
+    <string name="show_meta_info_summary">Turn off to hide meta info boxes with additional information about the stream creator, stream content or a search request</string>
+    <string name="channel_tab_videos">Videos</string>
+    <string name="channel_tab_tracks">Tracks</string>
+    <string name="channel_tab_shorts">Shorts</string>
+    <string name="channel_tab_livestreams">Live</string>
+    <string name="channel_tab_channels">Channels</string>
+    <string name="channel_tab_playlists">Playlists</string>
+    <string name="channel_tab_albums">Albums</string>
+    <string name="channel_tab_likes">Likes</string>
+    <string name="channel_tab_podcasts">Podcasts</string>
+    <string name="channel_tab_courses">Courses</string>
+    <string name="channel_tab_about">About</string>
+
+    <!-- Content Settings: feed -->
+    <string name="settings_category_feed_title">Feed</string>
+    <string name="feed_update_threshold_title">Feed update threshold</string>
+    <string name="feed_update_threshold_summary">Time after last update before a subscription is considered outdated — %1$s</string>
+    <string name="feed_update_threshold_option_always_update">Always update</string>
+    <string name="feed_use_dedicated_fetch_method_title">Fetch from dedicated feed when available</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Available in some services, it is usually much faster but may return a limited amount of items and often incomplete information (e.g. no duration, item type, no live status)</string>
+    <string name="feed_fetch_channel_tabs">Fetch channel tabs</string>
+    <string name="feed_fetch_channel_tabs_summary">Tabs to fetch when updating the feed. This option has no effect if a channel is updated using fast mode.</string>
+    <plurals name="minutes">
+        <item quantity="one">%1$d minute</item>
+        <item quantity="other">%1$d minutes</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%1$d hour</item>
+        <item quantity="other">%1$d hours</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%1$d day</item>
+        <item quantity="other">%1$d days</item>
+    </plurals>
+
 
 </resources>
