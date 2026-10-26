@@ -22,15 +22,8 @@ import net.newpipe.app.preferences.HistoryPreferences.KEY_ENABLE_PLAYBACK_STATE_
 import net.newpipe.app.preferences.HistoryPreferences.KEY_ENABLE_SEARCH_HISTORY
 import net.newpipe.app.preferences.HistoryPreferences.KEY_ENABLE_WATCH_HISTORY
 import net.newpipe.app.preferences.HistoryPreferences.KEY_RECAPTCHA_COOKIES
+import net.newpipe.app.screen.settings.model.HistoryMessage
 import org.koin.core.annotation.KoinViewModel
-
-enum class HistoryMessage {
-    METADATA_CACHE_WIPED,
-    WATCH_HISTORY_DELETED,
-    PLAYBACK_STATES_DELETED,
-    SEARCH_HISTORY_DELETED,
-    RECAPTCHA_COOKIES_CLEARED
-}
 
 @KoinViewModel
 class HistorySettingsViewModel(
