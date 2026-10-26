@@ -38,6 +38,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -185,6 +187,24 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
 
         binding.getRoot().addOnLayoutChangeListener(this);
 
+        // fitsSystemWindows only pads the controls by the system bars, but with gesture navigation
+        // the system reserves a taller area at the bottom for its gestures. In fullscreen, keep
+        // the controls out of that area, otherwise dragging the seekbar triggers system gestures.
+        ViewCompat.setOnApplyWindowInsetsListener(binding.playbackControlRoot,
+                (view, windowInsets) -> {
+                    final WindowInsetsCompat result =
+                            ViewCompat.onApplyWindowInsets(view, windowInsets);
+                    if (isFullscreen) {
+                        final int gestureBottom = windowInsets.getInsets(
+                                WindowInsetsCompat.Type.mandatorySystemGestures()).bottom;
+                        if (gestureBottom > view.getPaddingBottom()) {
+                            view.setPadding(view.getPaddingLeft(), view.getPaddingTop(),
+                                    view.getPaddingRight(), gestureBottom);
+                        }
+                    }
+                    return result;
+                });
+
         binding.moreOptionsButton.setOnLongClickListener(v -> {
             player.getFragmentListener()
                     .ifPresent(PlayerServiceEventListener::onMoreOptionsLongClicked);
@@ -205,6 +225,8 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         context.getContentResolver().unregisterContentObserver(settingsContentObserver);
 
         binding.getRoot().removeOnLayoutChangeListener(this);
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.playbackControlRoot, null);
     }
 
     @Override
