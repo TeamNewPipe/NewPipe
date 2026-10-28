@@ -89,7 +89,7 @@ class CommentSectionInstrumentedTest {
     fun commentListLoadsAndScrolls() {
         val comments = (1..25).map { index ->
             CommentsInfoItem(
-                commentText = Description("Comment $index", Description.PLAIN_TEXT),
+                commentText = Description("Comment $index", Description.Type.PLAIN_TEXT),
                 uploaderName = "Uploader $index",
                 replies = Page(""),
                 replyCount = 0
@@ -135,7 +135,7 @@ class CommentSectionInstrumentedTest {
             .performClick()
 
         val recoveredComment = CommentsInfoItem(
-            commentText = Description("Recovered comment", Description.PLAIN_TEXT),
+            commentText = Description("Recovered comment", Description.Type.PLAIN_TEXT),
             uploaderName = "Uploader",
             replies = Page(""),
             replyCount = 0
@@ -181,7 +181,7 @@ class CommentSectionInstrumentedTest {
             .performClick()
 
         val recoveredComment = CommentsInfoItem(
-            commentText = Description("Recovered comment", Description.PLAIN_TEXT),
+            commentText = Description("Recovered comment", Description.Type.PLAIN_TEXT),
             uploaderName = "Uploader",
             replies = Page(""),
             replyCount = 0
@@ -226,7 +226,7 @@ class CommentSectionInstrumentedTest {
             .performClick()
 
         val firstComment = CommentsInfoItem(
-            commentText = Description("First comment", Description.PLAIN_TEXT),
+            commentText = Description("First comment", Description.Type.PLAIN_TEXT),
             uploaderName = "Uploader",
             replies = Page(""),
             replyCount = 0

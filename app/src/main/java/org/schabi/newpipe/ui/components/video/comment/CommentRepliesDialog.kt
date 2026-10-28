@@ -163,7 +163,7 @@ private fun CommentRepliesDialog(
 @Composable
 private fun CommentRepliesDialogPreview() {
     val comment = CommentsInfoItem(
-        commentText = Description("Hello world!", Description.PLAIN_TEXT),
+        commentText = Description("Hello world!", Description.Type.PLAIN_TEXT),
         uploaderName = "Test",
         likeCount = 100,
         isPinned = true,
@@ -173,7 +173,7 @@ private fun CommentRepliesDialogPreview() {
         CommentsInfoItem(
             commentText = Description(
                 "Reply $i: ${LoremIpsum(i * i).values.first()}",
-                Description.PLAIN_TEXT
+                Description.Type.PLAIN_TEXT
             ),
             uploaderName = LoremIpsum(11 - i).values.first()
         )

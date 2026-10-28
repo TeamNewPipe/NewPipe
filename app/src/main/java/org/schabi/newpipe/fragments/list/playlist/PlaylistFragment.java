@@ -330,7 +330,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
 
         final Description description = result.getDescription();
         if (description != null && description != Description.EMPTY_DESCRIPTION
-                && !isBlank(description.getContent())) {
+                && !isBlank(description.content())) {
             final TextEllipsizer ellipsizer = new TextEllipsizer(
                     headerBinding.playlistDescription, 5, getServiceById(result.getServiceId()));
             ellipsizer.setStateChangeListener(isEllipsized ->

@@ -146,7 +146,7 @@ fun CommentRepliesHeader(comment: CommentsInfoItem, onCommentAuthorOpened: () ->
 @Composable
 fun CommentRepliesHeaderPreview() {
     val comment = CommentsInfoItem(
-        commentText = Description(LoremIpsum(50).values.first(), Description.PLAIN_TEXT),
+        commentText = Description(LoremIpsum(50).values.first(), Description.Type.PLAIN_TEXT),
         uploaderName = "Test really long lorem ipsum dolor sit",
         likeCount = 1000,
         isPinned = true,
