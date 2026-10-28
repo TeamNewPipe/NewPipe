@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -394,6 +395,8 @@ fun ContentSettingsScreenContent(
                 checked = showMetaInfo,
                 onCheckedChange = onShowMetaInfoChange
             )
+
+            HorizontalDivider()
 
             PreferenceCategoryTitle(title = stringResource(Res.string.settings_category_feed_title))
 
