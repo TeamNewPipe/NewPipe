@@ -15,6 +15,7 @@ import org.schabi.newpipe.database.history.model.StreamHistoryEntity
 import org.schabi.newpipe.database.history.model.StreamHistoryEntry
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry
 import org.schabi.newpipe.database.stream.model.StreamEntity
+import org.schabi.newpipe.database.stream.model.StreamStateEntity
 import org.schabi.newpipe.local.history.SortKey
 
 @Dao
@@ -44,7 +45,7 @@ interface StreamHistoryDAO {
     fun getHistory(): Flowable<List<StreamHistoryEntry>>
 
     @RawQuery(
-        observedEntities = [StreamStatisticsEntry::class, StreamEntity::class, StreamHistoryEntity::class]
+        observedEntities = [StreamEntity::class, StreamHistoryEntity::class, StreamStateEntity::class]
     )
     fun getOrderedHistoryByRaw(query: SupportSQLiteQuery): PagingSource<Int, StreamStatisticsEntry>
 

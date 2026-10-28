@@ -51,11 +51,11 @@ fun StreamMenu(
 
             if (PlayerHolder.queuePosition < PlayerHolder.queueSize - 1) {
                 DropdownTextMenuItem(
-                    text = R.string.enqueue_stream,
+                    text = R.string.enqueue_next_stream,
                     onClick = {
                         onDismissRequest()
                         SparseItemUtil.fetchItemInfoIfSparse(context, info) {
-                            NavigationHelper.enqueueOnPlayer(context, it)
+                            NavigationHelper.enqueueNextOnPlayer(context, it)
                         }
                     }
                 )

@@ -13,6 +13,7 @@ import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NO_SERVICE_ID
 import org.schabi.newpipe.util.ServiceHelper
+import org.schabi.newpipe.util.TournesolScoreCache
 import org.schabi.newpipe.util.image.ImageStrategy
 
 @Parcelize
@@ -36,8 +37,12 @@ class Stream(
     constructor(item: StreamInfoItem) : this(
         item.serviceId, item.url, item.name, item.thumbnails, item.uploaderName.orEmpty(),
         item.streamType, item.uploaderUrl, item.duration, item.detailText,
-        tournesolScore = item.tournesolScore,
-        tournesolUnsafeReasons = item.tournesolUnsafeReasons,
+        tournesolScore = item.tournesolScore ?: TournesolScoreCache.get(item.url),
+        tournesolUnsafeReasons = if (item.tournesolScore != null) {
+            item.tournesolUnsafeReasons
+        } else {
+            TournesolScoreCache.getEntry(item.url)?.unsafeReasons ?: emptyList()
+        },
         tournesolBestCriteria = item.tournesolBestCriteria,
         tournesolWorstCriteria = item.tournesolWorstCriteria
     )
@@ -46,7 +51,10 @@ class Stream(
         entry.streamEntity.serviceId, entry.streamEntity.url, entry.streamEntity.title,
         ImageStrategy.dbUrlToImageList(entry.streamEntity.thumbnailUrl), entry.streamEntity.uploader,
         entry.streamEntity.streamType, entry.streamEntity.uploaderUrl, entry.streamEntity.duration,
-        entry.detailText, entry.streamId
+        entry.detailText, entry.streamId,
+        tournesolScore = TournesolScoreCache.get(entry.streamEntity.url),
+        tournesolUnsafeReasons = TournesolScoreCache.getEntry(entry.streamEntity.url)?.unsafeReasons
+            ?: emptyList()
     )
 
     fun toStreamInfoItem(): StreamInfoItem {
@@ -55,6 +63,10 @@ class Stream(
         item.uploaderName = uploaderName
         item.uploaderUrl = uploaderUrl
         item.thumbnails = thumbnails
+        item.tournesolScore = tournesolScore
+        item.setTournesolUnsafeReasons(tournesolUnsafeReasons)
+        item.tournesolBestCriteria = tournesolBestCriteria
+        item.tournesolWorstCriteria = tournesolWorstCriteria
         return item
     }
 }
@@ -62,23 +74,26 @@ class Stream(
 private val StreamInfoItem.detailText: String
     get() {
         val context = App.instance
-        val views = if (viewCount >= 0) {
-            when (streamType) {
-                StreamType.AUDIO_LIVE_STREAM -> Localization.listeningCount(context, viewCount)
-                StreamType.LIVE_STREAM -> Localization.shortWatchingCount(context, viewCount)
-                else -> Localization.shortViewCount(context, viewCount)
+        val count = viewCount
+        val views = if (count >= 0) {
+            val raw = when (streamType) {
+                StreamType.AUDIO_LIVE_STREAM -> Localization.listeningCount(context, count)
+                StreamType.LIVE_STREAM -> Localization.shortWatchingCount(context, count)
+                else -> Localization.shortViewCount(context, count)
             }
+            "\uD83D\uDC41\uFE0F $raw"
         } else {
             ""
         }
         val date = Localization.relativeTimeOrTextual(context, uploadDate, textualUploadDate)
+            ?.let { "\uD83D\uDD52\uFE0F $it" }
 
         return if (views.isEmpty()) {
             date.orEmpty()
         } else if (date.isNullOrEmpty()) {
             views
         } else {
-            "$views • $date"
+            "$date • $views"
         }
     }
 

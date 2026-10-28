@@ -45,11 +45,14 @@ fun PlayerOptions(queue: PlayQueue) {
     var selectedOption by rememberSaveable { mutableStateOf(PlayerType.NONE) }
 
     LaunchedEffect(selectedOption) {
-        when (selectedOption) {
-            PlayerType.MAIN -> playOnMainPlayer(context.findFragmentActivity(), queue)
-            PlayerType.BACKGROUND -> playOnBackgroundPlayer(context, queue, true)
-            PlayerType.POPUP -> playOnPopupPlayer(context, queue, false)
-            else -> {}
+        if (selectedOption != PlayerType.NONE) {
+            when (selectedOption) {
+                PlayerType.MAIN -> playOnMainPlayer(context.findFragmentActivity(), queue)
+                PlayerType.BACKGROUND -> playOnBackgroundPlayer(context, queue, true)
+                PlayerType.POPUP -> playOnPopupPlayer(context, queue, false)
+                else -> {}
+            }
+            selectedOption = PlayerType.NONE
         }
     }
 
