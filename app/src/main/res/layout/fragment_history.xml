@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Keep the existing history controls outside the scrolling adapter. -->
+    <include
+        android:id="@+id/history_controls"
+        layout="@layout/statistic_playlist_control"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <!-- Reuse the list, loading, empty and error views without changing playlists. -->
+    <include
+        layout="@layout/fragment_playlist"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>
