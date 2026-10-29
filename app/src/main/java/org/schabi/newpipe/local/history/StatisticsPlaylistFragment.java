@@ -44,7 +44,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Supplier;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -95,7 +94,7 @@ public class StatisticsPlaylistFragment
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_playlist, container, false);
+        return inflater.inflate(R.layout.fragment_history, container, false);
     }
 
     @Override
@@ -120,18 +119,12 @@ public class StatisticsPlaylistFragment
     @Override
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
+        headerBinding = StatisticPlaylistControlBinding.bind(
+                rootView.findViewById(R.id.history_controls));
+        playlistControlBinding = headerBinding.playlistControl;
         if (!useAsFrontPage) {
             setTitle(getString(R.string.title_last_played));
         }
-    }
-
-    @Override
-    protected Supplier<View> getListHeaderSupplier() {
-        headerBinding = StatisticPlaylistControlBinding.inflate(activity.getLayoutInflater(),
-                itemsList, false);
-        playlistControlBinding = headerBinding.playlistControl;
-
-        return headerBinding::getRoot;
     }
 
     @Override
@@ -179,6 +172,30 @@ public class StatisticsPlaylistFragment
         recordManager.getStreamStatistics()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getHistoryObserver());
+    }
+
+    @Override
+    public void showLoading() {
+        super.showLoading();
+        showHistoryControls(false);
+    }
+
+    @Override
+    public void showEmptyState() {
+        super.showEmptyState();
+        showHistoryControls(false);
+    }
+
+    @Override
+    public void handleError() {
+        super.handleError();
+        showHistoryControls(false);
+    }
+
+    private void showHistoryControls(final boolean show) {
+        if (headerBinding != null) {
+            headerBinding.getRoot().setVisibility(show ? View.VISIBLE : View.GONE);
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -259,8 +276,6 @@ public class StatisticsPlaylistFragment
             return;
         }
 
-        playlistControlBinding.getRoot().setVisibility(View.VISIBLE);
-
         itemListAdapter.clearStreamItemList();
 
         if (result.isEmpty()) {
@@ -277,6 +292,8 @@ public class StatisticsPlaylistFragment
         PlayButtonHelper.initPlaylistControlClickListener(activity, playlistControlBinding, this);
 
         headerBinding.sortButton.setOnClickListener(view -> toggleSortMode());
+        playlistControlBinding.getRoot().setVisibility(View.VISIBLE);
+        showHistoryControls(true);
 
         hideLoading();
     }
