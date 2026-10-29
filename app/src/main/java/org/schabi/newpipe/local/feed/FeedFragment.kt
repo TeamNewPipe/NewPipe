@@ -172,6 +172,10 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         super.onResume()
         updateRelativeTimeViews()
 
+        if (groupName.isNotEmpty()) {
+            activity?.supportActionBar?.subtitle = groupName
+        }
+
         if (updateListViewModeOnResume) {
             updateListViewModeOnResume = false
 
@@ -188,8 +192,10 @@ class FeedFragment : BaseStateFragment<FeedState>() {
      */
     override fun onStop() {
         super.onStop()
-        // Unconditionally clear the subtitle so it doesn't leak into other fragments
-        activity?.supportActionBar?.subtitle = null
+        // Clear subtitle only if it currently matches group name.
+        if (activity?.supportActionBar?.subtitle == groupName) {
+            activity?.supportActionBar?.subtitle = null
+        }
     }
 
     private fun setupListViewMode() {
