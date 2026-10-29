@@ -316,5 +316,15 @@
         <item quantity="other">%1$d days</item>
     </plurals>
 
+    <!-- Notification Settings -->
+    <string name="settings_category_player_notification_title">Player notification</string>
+    <string name="settings_category_player_notification_summary">Configure current playing stream notification</string>
+    <string name="enable_streams_notifications_title">New streams notifications</string>
+    <string name="enable_streams_notifications_summary">Notify about new streams from subscriptions</string>
+    <string name="streams_notifications_interval_title">Checking frequency</string>
+    <string name="streams_notifications_network_title">Required network connection</string>
+    <string name="any_network">Any network</string>
+    <string name="channels">Channels</string>
+    <string name="notifications_disabled">Notifications are disabled</string>
 
 </resources>
