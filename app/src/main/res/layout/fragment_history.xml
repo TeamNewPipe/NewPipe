@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- Keep the existing history controls outside the scrolling adapter. -->
+    <!-- The sort button and the playlist actions are pinned above the list instead of being part
+         of the scrolling adapter, so that they stay reachable in long history lists. -->
     <include
         android:id="@+id/history_controls"
         layout="@layout/statistic_playlist_control"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone" />
+        android:visibility="gone"
+        tools:visibility="visible" />
 
-    <!-- Reuse the list, loading, empty and error views without changing playlists. -->
+    <!-- Reuses the list, the loading indicator, the empty state and the error panel of
+         fragment_playlist.xml, so that playlists keep their existing layout. -->
     <include
+        android:id="@+id/history_list_container"
         layout="@layout/fragment_playlist"
         android:layout_width="match_parent"
         android:layout_height="0dp"

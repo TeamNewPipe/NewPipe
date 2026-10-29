@@ -39,6 +39,8 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.PlayButtonHelper;
 
+import static org.schabi.newpipe.ktx.ViewUtils.animate;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -131,6 +133,8 @@ public class StatisticsPlaylistFragment
     protected void initListeners() {
         super.initListeners();
 
+        headerBinding.sortButton.setOnClickListener(view -> toggleSortMode());
+
         itemListAdapter.setSelectedListener(new OnClickGesture<>() {
             @Override
             public void selected(final LocalItem selectedItem) {
@@ -175,12 +179,6 @@ public class StatisticsPlaylistFragment
     }
 
     @Override
-    public void showLoading() {
-        super.showLoading();
-        showHistoryControls(false);
-    }
-
-    @Override
     public void showEmptyState() {
         super.showEmptyState();
         showHistoryControls(false);
@@ -192,9 +190,19 @@ public class StatisticsPlaylistFragment
         showHistoryControls(false);
     }
 
+    /**
+     * Shows or hides the controls which are pinned above the history list.
+     *
+     * <p>They are only hidden while there is nothing to act on, i.e. while the history is empty or
+     * an error is shown. They are deliberately kept visible while a reload is running, so that
+     * switching the sort mode does not make the whole controls bar flicker and the list jump
+     * around.</p>
+     *
+     * @param show whether the controls should be visible
+     */
     private void showHistoryControls(final boolean show) {
         if (headerBinding != null) {
-            headerBinding.getRoot().setVisibility(show ? View.VISIBLE : View.GONE);
+            animate(headerBinding.getRoot(), show, 150);
         }
     }
 
@@ -291,7 +299,6 @@ public class StatisticsPlaylistFragment
 
         PlayButtonHelper.initPlaylistControlClickListener(activity, playlistControlBinding, this);
 
-        headerBinding.sortButton.setOnClickListener(view -> toggleSortMode());
         playlistControlBinding.getRoot().setVisibility(View.VISIBLE);
         showHistoryControls(true);
 
