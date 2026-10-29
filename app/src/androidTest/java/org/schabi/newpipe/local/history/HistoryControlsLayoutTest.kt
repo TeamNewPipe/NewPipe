@@ -18,56 +18,94 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.schabi.newpipe.R
 
+/**
+ * Layout tests for [R.layout.fragment_history].
+ *
+ * They guard the regression described in issue #13487: the history controls must be laid out
+ * above the list and must not be part of the scrolling adapter, otherwise they scroll out of the
+ * screen again as soon as a history list grows.
+ */
 @RunWith(AndroidJUnit4::class)
 class HistoryControlsLayoutTest {
     @Test
-    fun controlsStayAboveLongListInPortrait() = verifyScrollingLayout(480, 800)
-
-    @Test
-    fun controlsStayAboveLongListInLandscape() = verifyScrollingLayout(800, 480)
-
-    @Test
-    fun controlsStartHiddenUntilHistoryIsLoaded() {
-        InstrumentationRegistry.getInstrumentation().runOnMainSync {
-            val root = inflateHistory()
-            assertEquals(View.GONE, root.findViewById<View>(R.id.history_controls).visibility)
-        }
+    fun controlsStayAboveLongListInPortrait() = onMainThread {
+        verifyControlsStayPinned(portraitWidth, portraitHeight)
     }
 
-    private fun verifyScrollingLayout(width: Int, height: Int) {
-        InstrumentationRegistry.getInstrumentation().runOnMainSync {
-            val root = inflateHistory()
-            val controls = root.findViewById<View>(R.id.history_controls)
-            controls.visibility = View.VISIBLE
-            controls.findViewById<View>(R.id.playlist_control).visibility = View.VISIBLE
-            val list = root.findViewById<RecyclerView>(R.id.items_list)
-            val manager = LinearLayoutManager(root.context)
-            list.layoutManager = manager
-            list.adapter = HistoryRows()
+    @Test
+    fun controlsStayAboveLongListInLandscape() = onMainThread {
+        verifyControlsStayPinned(portraitHeight, portraitWidth)
+    }
 
-            root.measure(
-                View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY),
-                View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY)
-            )
-            root.layout(0, 0, width, height)
-            val originalTop = controls.top
-            val originalBottom = controls.bottom
-            assertTrue(originalBottom > originalTop)
-            assertTrue(list.height > 0)
-            assertTrue(list.canScrollVertically(1))
-            assertFalse(isDescendantOf(controls, list))
-            // The included list container starts below the controls, so no row is covered.
-            assertTrue((list.parent as View).top >= originalBottom)
+    @Test
+    fun controlsDoNotCoverTheList() = onMainThread {
+        val history = layoutHistory(portraitWidth, portraitHeight)
+        assertTrue(history.controls.bottom <= history.container.top)
+    }
 
-            list.scrollBy(0, height * 4)
-            assertTrue(manager.findFirstVisibleItemPosition() > 0)
-            assertEquals(originalTop, controls.top)
-            assertEquals(originalBottom, controls.bottom)
+    @Test
+    fun controlsLeaveMostOfTheScreenToTheListInLandscape() = onMainThread {
+        val history = layoutHistory(portraitHeight, portraitWidth)
+        // The two 50dp rows must not eat up a meaningful part of a landscape screen.
+        assertTrue(history.controls.bottom < portraitWidth * 0.35f)
+        assertTrue(history.list.height > portraitWidth / 2)
+    }
 
-            list.scrollBy(0, -height * 4)
-            assertEquals(0, manager.findFirstVisibleItemPosition())
-            assertEquals(originalTop, controls.top)
-        }
+    @Test
+    fun controlsStartHiddenUntilHistoryIsLoaded() = onMainThread {
+        val root = inflateHistory()
+        assertEquals(View.GONE, root.findViewById<View>(R.id.history_controls).visibility)
+    }
+
+    private fun verifyControlsStayPinned(width: Int, height: Int) {
+        val history = layoutHistory(width, height)
+        val controls = history.controls
+        val list = history.list
+        val manager = history.manager
+
+        assertTrue(controls.height > 0)
+        assertTrue(list.height > 0)
+        assertTrue(list.canScrollVertically(1))
+        // The controls are a sibling of the list container, not a header inside the adapter.
+        assertFalse(isDescendantOf(controls, list))
+
+        val pinnedBottom = controls.bottom
+        val containerTop = history.container.top
+        assertEquals(pinnedBottom, containerTop)
+
+        list.scrollBy(0, height * 4)
+        assertTrue(manager.findFirstVisibleItemPosition() > 0)
+        assertEquals(containerTop, history.container.top)
+        assertTrue(list.canScrollVertically(-1))
+
+        list.scrollBy(0, -height * 4)
+        assertEquals(0, manager.findFirstVisibleItemPosition())
+        assertEquals(containerTop, history.container.top)
+    }
+
+    /**
+     * Inflates and lays out [R.layout.fragment_history], then pretends that the history was loaded
+     * so that the controls are visible. Must be called on the main thread.
+     */
+    private fun layoutHistory(width: Int, height: Int): LaidOutHistory {
+        val root = inflateHistory()
+        val controls = root.findViewById<View>(R.id.history_controls)
+        controls.visibility = View.VISIBLE
+        controls.findViewById<View>(R.id.playlist_control).visibility = View.VISIBLE
+
+        val container = root.findViewById<View>(R.id.history_list_container)
+        val list = root.findViewById<RecyclerView>(R.id.items_list)
+        val manager = LinearLayoutManager(root.context)
+        list.layoutManager = manager
+        list.adapter = HistoryRows()
+
+        root.measure(
+            View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY),
+            View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY)
+        )
+        root.layout(0, 0, width, height)
+
+        return LaidOutHistory(controls, container, list, manager)
     }
 
     private fun inflateHistory(): View {
@@ -86,6 +124,31 @@ class HistoryControlsLayoutTest {
         }
         return false
     }
+
+    private fun onMainThread(block: () -> Unit) {
+        InstrumentationRegistry.getInstrumentation().runOnMainSync(block)
+    }
+
+    /**
+     * Screen sizes in dp converted to pixels, so that the assertions do not depend on the density
+     * of the emulator the tests happen to run on.
+     */
+    private val density: Float
+        get() = ApplicationProvider.getApplicationContext<Context>().resources
+            .displayMetrics.density
+
+    private val portraitWidth: Int
+        get() = (360 * density).toInt()
+
+    private val portraitHeight: Int
+        get() = (640 * density).toInt()
+
+    private class LaidOutHistory(
+        val controls: View,
+        val container: View,
+        val list: RecyclerView,
+        val manager: LinearLayoutManager
+    )
 
     private class HistoryRows : RecyclerView.Adapter<RowHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RowHolder {
