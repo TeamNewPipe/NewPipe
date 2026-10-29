@@ -7,6 +7,8 @@ import android.util.Log
 import androidx.preference.PreferenceManager
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
+import com.grack.nanojson.JsonObject
+import com.grack.nanojson.JsonParser
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Single
 import java.io.File
@@ -19,7 +21,6 @@ import net.openid.appauth.TokenResponse
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import org.json.JSONObject
 import org.schabi.newpipe.DownloaderImpl
 
 object TournesolAuthManager {
@@ -218,48 +219,62 @@ object TournesolAuthManager {
     }
 
     fun performPasswordLogin(username: String, password: String): Single<TokenResponse> {
-        return TournesolSecretExtractor().extractSecrets()
-            .flatMap { secrets ->
-                val clientId = secrets.first
-                val clientSecret = secrets.second
+        val formBody = FormBody.Builder()
+            .add("grant_type", "password")
+            .add("username", username)
+            .add("password", password)
+            .add("scope", OAUTH_SCOPE)
+            .build()
 
-                val formBody = FormBody.Builder()
-                    .add("grant_type", "password")
-                    .add("username", username)
-                    .add("password", password)
-                    .add("scope", OAUTH_SCOPE)
-                    .build()
-
-                performTokenRequest(
-                    clientId = clientId,
-                    clientSecret = clientSecret,
-                    formBody = formBody,
-                    grantType = "password",
-                    refreshTokenFallback = null
-                )
-            }
+        return performTokenRequestWithFallback(
+            formBody = formBody,
+            grantType = "password",
+            refreshTokenFallback = null
+        )
     }
 
     fun performTokenRefresh(refreshToken: String): Single<TokenResponse> {
-        return TournesolSecretExtractor().extractSecrets()
-            .flatMap { secrets ->
-                val clientId = secrets.first
-                val clientSecret = secrets.second
+        val formBody = FormBody.Builder()
+            .add("grant_type", "refresh_token")
+            .add("refresh_token", refreshToken)
+            .add("scope", OAUTH_SCOPE)
+            .build()
 
-                val formBody = FormBody.Builder()
-                    .add("grant_type", "refresh_token")
-                    .add("refresh_token", refreshToken)
-                    .add("scope", OAUTH_SCOPE)
-                    .build()
+        return performTokenRequestWithFallback(
+            formBody = formBody,
+            grantType = "refresh_token",
+            refreshTokenFallback = refreshToken
+        )
+    }
 
-                performTokenRequest(
-                    clientId = clientId,
-                    clientSecret = clientSecret,
-                    formBody = formBody,
-                    grantType = "refresh_token",
-                    refreshTokenFallback = refreshToken
-                )
+    private fun performTokenRequestWithFallback(
+        formBody: FormBody,
+        grantType: String,
+        refreshTokenFallback: String?
+    ): Single<TokenResponse> {
+        val initialSecrets = TournesolSecretExtractor.getDefaultOrCachedSecrets()
+        return performTokenRequest(
+            clientId = initialSecrets.first,
+            clientSecret = initialSecrets.second,
+            formBody = formBody,
+            grantType = grantType,
+            refreshTokenFallback = refreshTokenFallback
+        ).onErrorResumeNext { error ->
+            if (error.message?.contains("invalid_client", ignoreCase = true) == true) {
+                TournesolSecretExtractor().extractSecrets()
+                    .flatMap { refreshedSecrets ->
+                        performTokenRequest(
+                            clientId = refreshedSecrets.first,
+                            clientSecret = refreshedSecrets.second,
+                            formBody = formBody,
+                            grantType = grantType,
+                            refreshTokenFallback = refreshTokenFallback
+                        )
+                    }
+            } else {
+                Single.error(error)
             }
+        }
     }
 
     private fun performTokenRequest(
@@ -270,7 +285,8 @@ object TournesolAuthManager {
         refreshTokenFallback: String?
     ): Single<TokenResponse> {
         return Single.create { emitter ->
-            val client = DownloaderImpl.getInstance()?.getClient() ?: OkHttpClient.Builder()
+            val baseClient = DownloaderImpl.getInstance()?.getClient() ?: OkHttpClient()
+            val client = baseClient.newBuilder()
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
                 .build()
@@ -294,7 +310,7 @@ object TournesolAuthManager {
                 client.newCall(request).execute().use { response ->
                     if (response.isSuccessful && response.body != null) {
                         val responseBody = response.body!!.string()
-                        val json = JSONObject(responseBody)
+                        val json = JsonParser.`object`().from(responseBody)
                         emitter.onSuccess(
                             buildTokenResponse(
                                 clientId = clientId,
@@ -317,10 +333,10 @@ object TournesolAuthManager {
     private fun buildTokenResponse(
         clientId: String,
         grantType: String,
-        json: JSONObject,
+        json: JsonObject,
         refreshTokenFallback: String?
     ): TokenResponse {
-        val accessToken = json.optString("access_token")
+        val accessToken = json.getString("access_token", "")
         if (accessToken.isBlank()) {
             throw IOException("Token response missing access_token")
         }
@@ -337,20 +353,20 @@ object TournesolAuthManager {
         val builder = TokenResponse.Builder(requestBuilder.build())
 
         builder.setAccessToken(accessToken)
-        builder.setTokenType(json.optString("token_type"))
+        builder.setTokenType(json.getString("token_type", ""))
         if (json.has("expires_in")) {
             builder.setAccessTokenExpirationTime(
                 System.currentTimeMillis() + (json.getLong("expires_in") * 1000)
             )
         }
 
-        val refreshToken = json.optString("refresh_token").takeIf { it.isNotBlank() }
+        val refreshToken = json.getString("refresh_token", "").takeIf { it.isNotBlank() }
             ?: refreshTokenFallback
         if (!refreshToken.isNullOrBlank()) {
             builder.setRefreshToken(refreshToken)
         }
 
-        val scope = json.optString("scope")
+        val scope = json.getString("scope", "")
         if (scope.isNotBlank()) {
             builder.setScope(scope)
         }
