@@ -22,7 +22,7 @@
 <p align="center"><a href="https://newpipe.net">ਵੈੱਬਸਾਈਟ</a> &bull; <a href="https://newpipe.net/blog/">ਬਲੌਗ</a> &bull; <a href="https://newpipe.net/FAQ/">ਆਮ ਸਵਾਲ ਜਵਾਬ</a> &bull; <a href="https://newpipe.net/press/">ਪ੍ਰੈਸ</a></p>
 <hr>
 
-*Read this document in other languages: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md) , [العربية](README.ar.md)*
+*Read this document in other languages: [Deutsch](/doc/README.de.md), [English](/doc/README.md), [Español](/doc/README.es.md), [Français](/doc/README.fr.md), [हिन्दी](/doc/README.hi.md), [Italiano](/doc/README.it.md), [한국어](/doc/README.ko.md), [Português Brasil](/doc/README.pt_BR.md), [Polski](/doc/README.pl.md), [ਪੰਜਾਬੀ ](/doc/README.pa.md), [日本語](/doc/README.ja.md), [Română](/doc/README.ro.md), [Soomaali](/doc/README.so.md), [Türkçe](/doc/README.tr.md), [正體中文](/doc/README.zh_TW.md), [অসমীয়া](/doc/README.asm.md), [うちなーぐち](/doc/README.ryu.md), [Српски](/doc/README.sr.md) , [العربية](/doc/README.ar.md)*
 
 > [!warning]
 > <b>ਇਹ ਐਪ ਬੀਟਾ ਵਿੱਚ ਹੈ, ਇਸ ਲਈ ਤੁਸੀਂ ਬੱਗ ਦਾ ਸਾਹਮਣਾ ਕਰ ਸਕਦੇ ਹੋ। ਜੇਕਰ ਤੁਸੀਂ ਅਜਿਹਾ ਕਰਦੇ ਹੋ, ਤਾਂ ਟੈਮਪਲੇਟ ਨੂੰ ਭਰ ਕੇ ਸਾਡੀ ਗਿਟਹੱਬ ਰਿਪੋਜ਼ਟਰੀ ਵਿੱਚ ਇੱਕ ਮੁੱਦਾ ਖੋਲ੍ਹੋ</b>
