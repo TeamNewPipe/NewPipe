@@ -186,12 +186,11 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         }
     }
 
-    /**
-     * Clears the action bar subtitle when leaving the fragment to prevent
-     * the feed group name from leaking into subsequent views.
-     */
     override fun onStop() {
         super.onStop()
+
+        // Clear the activities' action bar subtitle when leaving the fragment to prevent
+        // the feed group name from leaking into subsequent views. (#13366)
         if (activity?.supportActionBar?.subtitle == groupName) {
             activity?.supportActionBar?.subtitle = null
         }
