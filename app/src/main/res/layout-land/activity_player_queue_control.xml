@@ -300,6 +300,19 @@
             android:textColor="?attr/colorAccent"
             tools:ignore="HardcodedText"
             tools:text="1:23:49" />
+        <!-- Play queue progress / total duration -->
+        <org.schabi.newpipe.views.NewPipeTextView
+            android:id="@+id/queue_total_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="12sp"
+            android:singleLine="true"
+            android:visibility="gone"
+            tools:text="Queue: 123"
+            tools:visibility="visible" />
 
         <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/live_sync"
