@@ -47,8 +47,11 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
 
     private PlaylistControlBinding playlistControlBinding;
 
-    // Lightweight replacement for tabHandler, created on a background thread in loadResult() and
-    // applied on the main thread in handleResult()
+    /**
+     * Replacement for {@code tabHandler} without the raw data it may contain.
+     * Created on a background thread as {@code BandcampChannelLinkHandlerFactory}
+     * performs network requests, which must not be performed on the main thread.
+     */
     @Nullable
     private ListLinkHandler lightweightTabHandler;
 
@@ -102,13 +105,11 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
 
     @Override
     protected Single<ChannelTabInfo> loadResult(final boolean forceLoad) {
-        final ListLinkHandler handler = tabHandler;
-        return ExtractorHelper.getChannelTab(serviceId, handler, forceLoad)
-                // Creating the lightweight handler, may perform network requests so it must not
+        return ExtractorHelper.getChannelTab(serviceId, tabHandler, forceLoad)
+                // Creating the lightweight handler may perform network requests, so it must not
                 // happen on the main thread.
-                // doOnSuccess runs on the same background thread that loaded the tab.
                 .doOnSuccess(result ->
-                        lightweightTabHandler = createLightweightTabHandler(result, handler));
+                        lightweightTabHandler = createLightweightTabHandler(result, tabHandler));
     }
 
     @Override
@@ -156,17 +157,13 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
                     // some services do not have a ChannelTabLHFactory
                     return channelTabLHFactory.fromQuery(handler.getId(),
                             handler.getContentFilters(), handler.getSortFilter());
-                } else {
-                    return null;
                 }
             } catch (final ParsingException e) {
                 // silently ignore the error, as the app can continue to function normally
                 Log.w(TAG, "Could not recreate channel tab handler", e);
-                return null;
             }
-        } else {
-            return null;
         }
+        return null;
     }
 
     @Override
