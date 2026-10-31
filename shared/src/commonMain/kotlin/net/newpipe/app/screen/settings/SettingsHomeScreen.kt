@@ -72,6 +72,10 @@ fun SettingsHomeScreen(
                             Destination.HistorySettings
                         )
 
+                        SettingsCategoryType.CONTENT -> navigator.navigateTo(
+                            Destination.ContentSettings
+                        )
+
                         // TODO: wire remaining sub-screens as they are migrated
                         else -> Unit
                     }
