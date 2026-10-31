@@ -146,15 +146,14 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
                                     @NonNull final PlaylistDuplicatesEntry playlist,
                                     @NonNull final List<StreamEntity> streams) {
 
-        final String toastText;
         if (playlist.getTimesStreamIsContained() > 0) {
-            toastText = getString(R.string.playlist_add_stream_success_duplicate,
-                    playlist.getTimesStreamIsContained());
-        } else {
-            toastText = getString(R.string.playlist_add_stream_success);
+            Toast.makeText(getContext(), R.string.playlist_add_stream_duplicate_forbidden,
+                    Toast.LENGTH_SHORT).show();
+            return;
         }
 
-        final Toast successToast = Toast.makeText(getContext(), toastText, Toast.LENGTH_SHORT);
+        final Toast successToast = Toast.makeText(getContext(),
+                R.string.playlist_add_stream_success, Toast.LENGTH_SHORT);
 
         playlistDisposables.add(manager.appendToPlaylist(playlist.getUid(), streams)
                 .observeOn(AndroidSchedulers.mainThread())

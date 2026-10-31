@@ -52,12 +52,23 @@ class LocalPlaylistManager(private val database: AppDatabase) {
     }
 
     fun appendToPlaylist(playlistId: Long, streams: List<StreamEntity>): Maybe<List<Long>> {
+        val existingStreams = getPlaylistStreams(playlistId).firstElement().blockingGet() ?: emptyList()
+        val existingCleanUrls = existingStreams.map { cleanTimingFromUrl(it.streamEntity.url) }.toSet()
+
+        val nonDuplicateStreams = streams.filter { stream ->
+            cleanTimingFromUrl(stream.url) !in existingCleanUrls
+        }
+
+        if (nonDuplicateStreams.isEmpty()) {
+            return Maybe.empty()
+        }
+
         return playlistStreamTable.getMaximumIndexOf(playlistId)
             .firstElement()
             .map { maxJoinIndex ->
                 runBlocking {
                     database.withWriteTransaction<List<Long>> {
-                        val streamIds = streamTable.upsertAll(streams)
+                        val streamIds = streamTable.upsertAll(nonDuplicateStreams)
                         insertJoinEntities(playlistId, streamIds, maxJoinIndex + 1)
                     }
                 }
@@ -108,7 +119,8 @@ class LocalPlaylistManager(private val database: AppDatabase) {
      * @return a list of [PlaylistDuplicatesEntry]
      */
     fun getPlaylistDuplicates(streamUrl: String): Flowable<MutableList<PlaylistDuplicatesEntry>> {
-        return playlistStreamTable.getPlaylistDuplicatesMetadata(streamUrl)
+        val cleanUrl = cleanTimingFromUrl(streamUrl)
+        return playlistStreamTable.getPlaylistDuplicatesMetadata(cleanUrl)
             .subscribeOn(Schedulers.io())
     }
 
@@ -177,5 +189,14 @@ class LocalPlaylistManager(private val database: AppDatabase) {
 
     companion object {
         private const val THUMBNAIL_ID_LEAVE_UNCHANGED = -2L
+
+        @JvmStatic
+        fun cleanTimingFromUrl(url: String?): String {
+            if (url.isNullOrBlank()) return ""
+            return url
+                .replace(Regex("([?&])(t|time_continue|start|at)=[^&]*&?"), "$1")
+                .replace(Regex("[?&]$"), "")
+                .replace(Regex("#t=[^&]*"), "")
+        }
     }
 }

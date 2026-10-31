@@ -435,14 +435,13 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             return;
         }
 
-        itemListAdapter.clearStreamItemList();
-
         if (result.isEmpty()) {
+            itemListAdapter.updateItemsWithDiff(Collections.emptyList());
             showEmptyState();
             return;
         }
 
-        itemListAdapter.addItems(result);
+        itemListAdapter.updateItemsWithDiff(result);
         if (itemsListState != null) {
             itemsList.getLayoutManager().onRestoreInstanceState(itemsListState);
             itemsListState = null;

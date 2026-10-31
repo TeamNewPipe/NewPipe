@@ -183,6 +183,45 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         notifyDataSetChanged();
     }
 
+    public void updateItemsWithDiff(@NonNull final List<? extends LocalItem> newItems) {
+        final List<LocalItem> oldItems = new ArrayList<>(localItems);
+        final List<LocalItem> updatedList = new ArrayList<>(newItems);
+        final LocalItemDiffCallback diffCallback = new LocalItemDiffCallback(oldItems, updatedList);
+        final androidx.recyclerview.widget.DiffUtil.DiffResult diffResult =
+                androidx.recyclerview.widget.DiffUtil.calculateDiff(diffCallback);
+
+        localItems.clear();
+        localItems.addAll(updatedList);
+
+        final int headerOffset = hasHeader() ? 1 : 0;
+        if (headerOffset == 0) {
+            diffResult.dispatchUpdatesTo(this);
+        } else {
+            diffResult.dispatchUpdatesTo(new androidx.recyclerview.widget.ListUpdateCallback() {
+                @Override
+                public void onInserted(final int position, final int count) {
+                    notifyItemRangeInserted(position + headerOffset, count);
+                }
+
+                @Override
+                public void onRemoved(final int position, final int count) {
+                    notifyItemRangeRemoved(position + headerOffset, count);
+                }
+
+                @Override
+                public void onMoved(final int fromPosition, final int toPosition) {
+                    notifyItemMoved(fromPosition + headerOffset, toPosition + headerOffset);
+                }
+
+                @Override
+                public void onChanged(final int position, final int count,
+                                      @Nullable final Object payload) {
+                    notifyItemRangeChanged(position + headerOffset, count, payload);
+                }
+            });
+        }
+    }
+
     public void setItemViewMode(final ItemViewMode itemViewMode) {
         this.itemViewMode = itemViewMode;
     }

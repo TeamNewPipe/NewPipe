@@ -36,6 +36,7 @@ import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.ServiceList;
+import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper;
 import org.schabi.newpipe.extractor.stream.Description;
@@ -67,6 +68,7 @@ import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, PlaylistInfo>
         implements PlaylistControlViewHolder {
@@ -219,6 +221,28 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
+    public void startLoading(final boolean forceLoad) {
+        useInitialItemListLoadScrollListener();
+        showListFooter(false);
+
+        currentInfo = null;
+        if (currentWorker != null) {
+            currentWorker.dispose();
+        }
+        currentWorker = loadResult(forceLoad)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe((@NonNull final PlaylistInfo result) -> {
+                    isLoading.set(false);
+                    currentInfo = result;
+                    currentNextPage = result.getNextPage();
+                    handleResult(result);
+                }, throwable ->
+                        showError(new ErrorInfo(throwable, UserAction.REQUESTED_PLAYLIST,
+                                "Start loading: " + url, serviceId, url)));
+    }
+
+    @Override
     protected Single<ListExtractor.InfoItemsPage<StreamInfoItem>> loadMoreItemsLogic() {
         return ExtractorHelper.getMorePlaylistItems(serviceId, url, currentNextPage);
     }
@@ -274,14 +298,54 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void handleNextItems(final ListExtractor.InfoItemsPage result) {
-        super.handleNextItems(result);
+        isLoading.set(false);
+        currentNextPage = result.getNextPage();
+
+        final List<InfoItem> currentList = new ArrayList<>(infoListAdapter.getItemsList());
+        if (result.getItems() != null) {
+            currentList.addAll(result.getItems());
+        }
+        infoListAdapter.updateItemsWithDiff(currentList);
+
+        showListFooter(hasMoreItems());
+
+        if (!result.getErrors().isEmpty()) {
+            showSnackBarError(new ErrorInfo(result.getErrors(), UserAction.REQUESTED_PLAYLIST,
+                    "Get next items of: " + url, serviceId, url));
+        }
+
         setStreamCountAndOverallDuration(result.getItems(), !result.hasNextPage());
     }
 
     @Override
     public void handleResult(@NonNull final PlaylistInfo result) {
-        super.handleResult(result);
+        name = result.getName();
+        setTitle(name);
+
+        playlistOverallDurationSeconds = 0;
+
+        final List<StreamInfoItem> relatedItems = result.getRelatedItems();
+        if (relatedItems != null && !relatedItems.isEmpty()) {
+            infoListAdapter.updateItemsWithDiff(new ArrayList<>(relatedItems));
+            showListFooter(hasMoreItems());
+        } else if (hasMoreItems()) {
+            loadMoreItems();
+        } else {
+            infoListAdapter.updateItemsWithDiff(List.of());
+            showEmptyState();
+        }
+
+        if (!result.getErrors().isEmpty()) {
+            final List<Throwable> errors = new ArrayList<>(result.getErrors());
+            errors.removeIf(ContentNotSupportedException.class::isInstance);
+
+            if (!errors.isEmpty()) {
+                showError(new ErrorInfo(result.getErrors(),
+                        UserAction.REQUESTED_PLAYLIST, "Start loading: " + url, serviceId, url));
+            }
+        }
 
         animate(headerBinding.getRoot(), true, 100);
         animate(headerBinding.uploaderLayout, true, 300);

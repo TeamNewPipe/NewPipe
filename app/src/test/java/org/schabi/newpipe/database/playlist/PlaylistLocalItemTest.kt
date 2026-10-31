@@ -16,32 +16,32 @@ class PlaylistLocalItemTest {
 
     @Test
     fun emptyPlaylists() {
-        val localPlaylists = listOf<PlaylistMetadataEntry?>()
-        val remotePlaylists = listOf<PlaylistRemoteEntity?>()
+        val localPlaylists = listOf<PlaylistMetadataEntry>()
+        val remotePlaylists = listOf<PlaylistRemoteEntity>()
         val mergedPlaylists = MergedPlaylistManager.merge(localPlaylists, remotePlaylists)
         assertEquals(0, mergedPlaylists.size)
     }
 
     @Test
     fun onlyLocalPlaylists() {
-        val localPlaylists = listOf<PlaylistMetadataEntry?>(
+        val localPlaylists = listOf<PlaylistMetadataEntry>(
             PlaylistMetadataEntry(1, "name1", "", 0, false, -1, 1),
             PlaylistMetadataEntry(2, "name2", "", 1, false, -1, 1),
             PlaylistMetadataEntry(3, "name3", "", 3, false, -1, 1)
         )
-        val remotePlaylists = listOf<PlaylistRemoteEntity?>()
+        val remotePlaylists = listOf<PlaylistRemoteEntity>()
         val mergedPlaylists = MergedPlaylistManager.merge(localPlaylists, remotePlaylists)
 
         assertEquals(3, mergedPlaylists.size)
-        assertEquals(0L, mergedPlaylists[0]!!.displayIndex)
-        assertEquals(1L, mergedPlaylists[1]!!.displayIndex)
-        assertEquals(3L, mergedPlaylists[2]!!.displayIndex)
+        assertEquals(0L, mergedPlaylists[0].displayIndex)
+        assertEquals(1L, mergedPlaylists[1].displayIndex)
+        assertEquals(3L, mergedPlaylists[2].displayIndex)
     }
 
     @Test
     fun onlyRemotePlaylists() {
-        val localPlaylists = listOf<PlaylistMetadataEntry?>()
-        val remotePlaylists = listOf<PlaylistRemoteEntity?>(
+        val localPlaylists = listOf<PlaylistMetadataEntry>()
+        val remotePlaylists = listOf<PlaylistRemoteEntity>(
             PlaylistRemoteEntity(1, 1, "name1", "url1", "", "", 1, 1),
             PlaylistRemoteEntity(2, 2, "name2", "url2", "", "", 2, 1),
             PlaylistRemoteEntity(3, 3, "name3", "url3", "", "", 4, 1)
@@ -49,18 +49,18 @@ class PlaylistLocalItemTest {
         val mergedPlaylists = MergedPlaylistManager.merge(localPlaylists, remotePlaylists)
 
         assertEquals(3, mergedPlaylists.size)
-        assertEquals(1L, mergedPlaylists[0]!!.displayIndex)
-        assertEquals(2L, mergedPlaylists[1]!!.displayIndex)
-        assertEquals(4L, mergedPlaylists[2]!!.displayIndex)
+        assertEquals(1L, mergedPlaylists[0].displayIndex)
+        assertEquals(2L, mergedPlaylists[1].displayIndex)
+        assertEquals(4L, mergedPlaylists[2].displayIndex)
     }
 
     @Test
     fun sameIndexWithDifferentName() {
-        val localPlaylists = listOf<PlaylistMetadataEntry?>(
+        val localPlaylists = listOf<PlaylistMetadataEntry>(
             PlaylistMetadataEntry(1, "name1", "", 0, false, -1, 1),
             PlaylistMetadataEntry(2, "name2", "", 1, false, -1, 1)
         )
-        val remotePlaylists = listOf<PlaylistRemoteEntity?>(
+        val remotePlaylists = listOf<PlaylistRemoteEntity>(
             PlaylistRemoteEntity(1, 1, "name3", "url1", "", "", 0, 1),
             PlaylistRemoteEntity(2, 2, "name4", "url2", "", "", 1, 1)
         )
@@ -79,11 +79,11 @@ class PlaylistLocalItemTest {
 
     @Test
     fun sameNameWithDifferentIndex() {
-        val localPlaylists = listOf<PlaylistMetadataEntry?>(
+        val localPlaylists = listOf<PlaylistMetadataEntry>(
             PlaylistMetadataEntry(1, "name1", "", 1, false, -1, 1),
             PlaylistMetadataEntry(2, "name2", "", 3, false, -1, 1)
         )
-        val remotePlaylists = listOf<PlaylistRemoteEntity?>(
+        val remotePlaylists = listOf<PlaylistRemoteEntity>(
             PlaylistRemoteEntity(1, 1, "name1", "url1", "", "", 0, 1),
             PlaylistRemoteEntity(2, 2, "name2", "url2", "", "", 2, 1)
         )
