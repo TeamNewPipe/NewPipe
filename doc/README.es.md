@@ -111,7 +111,7 @@ Además, si quiere cambiar el método de instalación por alguna razón (por eje
 
 Si tiene ideas, traducciones, cambios de diseño, limpieza de código o cambios grandes de código, su ayuda es siempre bienvenida. ¡Cuanto más hagamos, NewPipe será mucho mejor!
 
-Si quiere involucrarse, fíjese en nuestras [notas de contribución](../.github/CONTRIBUTING.md).
+Si quiere involucrarse, fíjese en nuestras [notas de contribución](/.github/CONTRIBUTING.md).
 
 <a href="https://hosted.weblate.org/engage/newpipe/es/">
 <img src="https://hosted.weblate.org/widgets/newpipe/es/287x66-grey.png" alt="Estado de la Traducción" />

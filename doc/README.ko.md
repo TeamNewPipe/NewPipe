@@ -111,7 +111,7 @@ NewPipe는 서비스의 공식 API를 이용하여 정보를 받아오는 방식
 당신이 아이디어, 번역, 디자인 변경, 코드 정리, 또는 정말 큰 코드 수정에 대한 의견이 있다면, 도움은 항상 환영합니다.
 더 많이 수행될수록 더 많이 발전할 수 있습니다! 
 
-만약 참여하고 싶다면, 우리의 [기여 공지](../.github/CONTRIBUTING.md)를 참고하십시오.
+만약 참여하고 싶다면, 우리의 [기여 공지](/.github/CONTRIBUTING.md)를 참고하십시오.
 
 <a href="https://hosted.weblate.org/engage/newpipe/">
 <img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Translation status" />

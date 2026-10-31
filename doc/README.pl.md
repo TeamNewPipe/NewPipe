@@ -108,7 +108,7 @@ W międzyczasie, jeśli z jakiegoś powodu chcesz zmienić źródło (np. rdzenn
 Jeśli masz jakieś pomysły, tłumaczenia, zmiany designu, oczyszczony kod, lub wielkie zmiany w kodzie, pomoc jest zawsze mile widziana.
 Im więcej jest zrobione, tym lepsza staje się aplikacja!
 
-Jeśli chcesz pomóc, przeczytaj [Notkę o wkładzie](../.github/CONTRIBUTING.md).
+Jeśli chcesz pomóc, przeczytaj [Notkę o wkładzie](/.github/CONTRIBUTING.md).
 
 <a href="https://hosted.weblate.org/engage/newpipe/">
 <img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Translation status" />

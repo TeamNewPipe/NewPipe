@@ -111,7 +111,7 @@ Recomandăm metoda 1 pentru majoritatea utilizatorilor. APK-urile din metodele 1
 Dacă aveţi idei, traduceri, schimbări de design, curaţarea codului, sau schimbări majore ale codului, ajutorul este întotdeauna binevenit.
 Cu cât se face mai mult cu atât mai bună devine aplicaţia!
 
-Dacă doriţi să vă implicaţi, accesaţi [notele noastre de contribuţie](../.github/CONTRIBUTING.md).
+Dacă doriţi să vă implicaţi, accesaţi [notele noastre de contribuţie](/.github/CONTRIBUTING.md).
 
 <a href="https://hosted.weblate.org/engage/newpipe/">
 <img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Translation status" />

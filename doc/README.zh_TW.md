@@ -115,7 +115,7 @@ NewPipe 支援多種服務。我們的[使用文件](https://teamnewpipe.github.
 ## 貢獻
 若你有任何想法、翻譯、設計、整理原始碼或大範圍的原始碼改動，我們歡迎任何幫助。
 
-若你想參與，請閱讀[貢獻須知（英文）](../.github/CONTRIBUTING.md)。
+若你想參與，請閱讀[貢獻須知（英文）](/.github/CONTRIBUTING.md)。
 
 <a href="https://hosted.weblate.org/engage/newpipe/">
 <img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Translation status" />

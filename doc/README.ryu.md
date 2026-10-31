@@ -115,7 +115,7 @@ NewPipeーふくすんぬサービスんかいたいおうそーいびーん。[
 ふんやちゅん、デザインぬへんかん、コードぬせいり、だいきぶやーコードぬへんかんんでーぬたしきーやいちやてぃんかんぎうぅいさびーん。
 ゆりじょーとぅーまじゅんちゅくいとぅらさびら！
 
-むしこうきんさるいばあい、[こうきんノート](../.github/CONTRIBUTING.md)ぐかくにんくぃみそーれー。
+むしこうきんさるいばあい、[こうきんノート](/.github/CONTRIBUTING.md)ぐかくにんくぃみそーれー。
 
 <a href="https://hosted.weblate.org/engage/newpipe/">
 <img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="ふんやちゅるじょうたい" />

@@ -106,7 +106,7 @@ Waxaa kale, hadaad rabto inaad tixraacayada kala badasho sabab jirta awgeed (tus
 ## Kusoo Kordhin
 Hadaad hayso fikrado; rogid, qaab badal, nadiifin koodh, ama koodhka ood si wayn wax oga badashaa—caawinta marwalba waa lasoo dhawaynayaa. Waxbadan hadii la qabto waxbadan ayaa fiicnaan!
 
-Hadaad jeceshahay inaad qayb ka noqoto, fiiri [ogaysiisyada kusoo kordhinta](../.github/CONTRIBUTING.md).
+Hadaad jeceshahay inaad qayb ka noqoto, fiiri [ogaysiisyada kusoo kordhinta](/.github/CONTRIBUTING.md).
 
 <a href="https://hosted.weblate.org/engage/newpipe/">
 <img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Heerka turjimaada" />

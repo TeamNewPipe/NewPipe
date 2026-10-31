@@ -115,7 +115,7 @@ NewPipe は複数のサービスに対応しています。[ドキュメント](
 翻訳、デザインの変更、コードの整理、大規模なコードの変更などの助けはいつでも歓迎します。
 より良いものを一緒に作り上げましょう！
 
-もし貢献をしたい場合、[貢献ノート](../.github/CONTRIBUTING.md)をご確認ください。
+もし貢献をしたい場合、[貢献ノート](/.github/CONTRIBUTING.md)をご確認ください。
 
 <a href="https://hosted.weblate.org/engage/newpipe/">
 <img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="翻訳状態" />

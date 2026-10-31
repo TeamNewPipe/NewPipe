@@ -110,7 +110,7 @@ Bu arada, herhangi bir nedenle kaynakları değiştirmek istiyorsanız (örneği
 Fikirleriniz, çevirileriniz, tasarım değişiklikleriniz, kod temizlemeniz veya ağır kod değişiklikleriniz olsun, yardımınıza her zaman açığız.
 Yapılan her değişiklikle NewPipe daha da iyi bir konuma geliyor!
 
-Eğer yer almak istiyorsanız, [katkı sağlayanlar için hazırladığımız notları](../.github/CONTRIBUTING.md) kontrol edin.
+Eğer yer almak istiyorsanız, [katkı sağlayanlar için hazırladığımız notları](/.github/CONTRIBUTING.md) kontrol edin.
 
 <a href="https://hosted.weblate.org/engage/newpipe/">
 <img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Çeviri istatistikleri" />
