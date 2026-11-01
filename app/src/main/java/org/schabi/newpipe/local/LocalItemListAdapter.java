@@ -197,28 +197,8 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         if (headerOffset == 0) {
             diffResult.dispatchUpdatesTo(this);
         } else {
-            diffResult.dispatchUpdatesTo(new androidx.recyclerview.widget.ListUpdateCallback() {
-                @Override
-                public void onInserted(final int position, final int count) {
-                    notifyItemRangeInserted(position + headerOffset, count);
-                }
-
-                @Override
-                public void onRemoved(final int position, final int count) {
-                    notifyItemRangeRemoved(position + headerOffset, count);
-                }
-
-                @Override
-                public void onMoved(final int fromPosition, final int toPosition) {
-                    notifyItemMoved(fromPosition + headerOffset, toPosition + headerOffset);
-                }
-
-                @Override
-                public void onChanged(final int position, final int count,
-                                      @Nullable final Object payload) {
-                    notifyItemRangeChanged(position + headerOffset, count, payload);
-                }
-            });
+            diffResult.dispatchUpdatesTo(new org.schabi.newpipe.util.OffsetListUpdateCallback(
+                    this, headerOffset));
         }
     }
 

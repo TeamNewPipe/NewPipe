@@ -1,15 +1,15 @@
 package org.schabi.newpipe.info_list
 
-import androidx.recyclerview.widget.DiffUtil
 import org.schabi.newpipe.extractor.InfoItem
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
+import org.schabi.newpipe.util.BaseDiffCallback
 
 class InfoItemDiffCallback(
-    private val oldList: List<InfoItem>,
-    private val newList: List<InfoItem>
-) : DiffUtil.Callback() {
+    oldList: List<InfoItem>,
+    newList: List<InfoItem>
+) : BaseDiffCallback<InfoItem>(oldList, newList) {
 
     private val oldOccurrenceIndices: IntArray = computeOccurrenceIndices(oldList)
     private val newOccurrenceIndices: IntArray = computeOccurrenceIndices(newList)
@@ -38,18 +38,11 @@ class InfoItemDiffCallback(
         return indices
     }
 
-    override fun getOldListSize(): Int = oldList.size
-
-    override fun getNewListSize(): Int = newList.size
-
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         val oldItem = oldList[oldItemPosition]
         val newItem = newList[newItemPosition]
 
-        if (oldItem.infoType != newItem.infoType) {
-            return false
-        }
-        if (oldItem.serviceId != newItem.serviceId) {
+        if (oldItem.infoType != newItem.infoType || oldItem.serviceId != newItem.serviceId) {
             return false
         }
 

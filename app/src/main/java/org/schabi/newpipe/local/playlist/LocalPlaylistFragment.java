@@ -48,6 +48,7 @@ import org.schabi.newpipe.databinding.LocalPlaylistHeaderBinding;
 import org.schabi.newpipe.databinding.PlaylistControlBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistControlViewHolder;
@@ -181,6 +182,32 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         return headerBinding::getRoot;
     }
 
+    private static final int PAGE_SIZE = 30;
+    private final List<PlaylistStreamEntry> allStreams = new ArrayList<>();
+    private int currentDisplayCount = PAGE_SIZE;
+
+    protected boolean hasMoreItems() {
+        return allStreams.size() > currentDisplayCount;
+    }
+
+    protected void loadMoreItems() {
+        if (!hasMoreItems()) {
+            return;
+        }
+        currentDisplayCount += PAGE_SIZE;
+        updatePagedItems();
+    }
+
+    private void updatePagedItems() {
+        if (itemListAdapter == null) {
+            return;
+        }
+        final List<PlaylistStreamEntry> pagedList =
+                allStreams.subList(0, Math.min(currentDisplayCount, allStreams.size()));
+        itemListAdapter.updateItemsWithDiff(pagedList);
+        setStreamCountAndOverallDuration(itemListAdapter.getItemsList());
+    }
+
     @Override
     protected void initListeners() {
         super.initListeners();
@@ -189,6 +216,15 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
         itemTouchHelper.attachToRecyclerView(itemsList);
+
+        itemsList.addOnScrollListener(new OnScrollBelowItemsListener() {
+            @Override
+            public void onScrolledDown(final RecyclerView recyclerView) {
+                if (hasMoreItems()) {
+                    loadMoreItems();
+                }
+            }
+        });
 
         itemListAdapter.setSelectedListener(new OnClickGesture<>() {
             @Override
@@ -435,18 +471,21 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             return;
         }
 
+        allStreams.clear();
+        allStreams.addAll(result);
+
         if (result.isEmpty()) {
             itemListAdapter.updateItemsWithDiff(Collections.emptyList());
             showEmptyState();
             return;
         }
 
-        itemListAdapter.updateItemsWithDiff(result);
+        updatePagedItems();
+
         if (itemsListState != null) {
             itemsList.getLayoutManager().onRestoreInstanceState(itemsListState);
             itemsListState = null;
         }
-        setStreamCountAndOverallDuration(itemListAdapter.getItemsList());
 
         PlayButtonHelper.initPlaylistControlClickListener(activity, playlistControlBinding, this);
 

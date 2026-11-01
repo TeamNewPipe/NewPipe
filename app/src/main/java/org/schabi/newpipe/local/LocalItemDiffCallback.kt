@@ -1,18 +1,14 @@
 package org.schabi.newpipe.local
 
-import androidx.recyclerview.widget.DiffUtil
 import org.schabi.newpipe.database.LocalItem
 import org.schabi.newpipe.database.playlist.PlaylistLocalItem
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry
+import org.schabi.newpipe.util.BaseDiffCallback
 
 class LocalItemDiffCallback(
-    private val oldList: List<LocalItem>,
-    private val newList: List<LocalItem>
-) : DiffUtil.Callback() {
-
-    override fun getOldListSize(): Int = oldList.size
-
-    override fun getNewListSize(): Int = newList.size
+    oldList: List<LocalItem>,
+    newList: List<LocalItem>
+) : BaseDiffCallback<LocalItem>(oldList, newList) {
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         val oldItem = oldList[oldItemPosition]
