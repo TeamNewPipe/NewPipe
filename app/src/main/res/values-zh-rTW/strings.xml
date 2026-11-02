@@ -789,7 +789,7 @@
     <string name="youtube_player_http_403">播放時收到來自伺服器的 HTTP 錯誤 403，可能因 IP 封鎖或串流網址去混淆化問題所致</string>
     <string name="sign_in_confirm_not_bot_error">%1$s 拒絕提供資料，要求登入以確認請求者並非機器人。\n\n您的 IP 位址可能已被 %1$s 暫時封鎖，您可稍候片刻或切換至其他 IP 位址（例如開啟/關閉 VPN，或從 Wi-Fi 切換至行動數據）。\n\n更多資訊請參見<a href="%2$s">此 FAQ 條目</a>。</string>
     <string name="unsupported_content_in_country">此內容目前無法於您所選的國家/地區提供。\n\n請至「設定」→「內容」→「預設內容國家」變更您的選擇。</string>
-    <string name="kao_dialog_warning">2025年8月，Google 宣佈自2026年9月起，所有經認證裝置上的 Android 應用程式（包含不是透過 Play 商店安裝的應用程式）皆須通過開發者驗證方可安裝。由於 NewPipe 開發團隊不接受此項要求，該應用程式屆時將無法在經認證的 Android 裝置上運作。</string>
+
     <string name="kao_dialog_more_info">詳細資訊</string>
     <string name="kao_solution">解決方案</string>
     <plurals name="export_subscriptions">

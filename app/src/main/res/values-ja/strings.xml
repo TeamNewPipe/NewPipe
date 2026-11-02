@@ -760,7 +760,7 @@
     <string name="import_settings_vulnerable_format">インポートされているエクスポートの設定は、NewPipe 0.27.0以降は非推奨であった脆弱な形式を使用します。 インポートされているエクスポートは信頼できる情報源からであり、将来的にはNewPipe 0.27.0かこれより新しいバージョンから得られるエクスポートのみを優先して使用します。 この脆弱な形式で設定をインポートするための対応はすぐに完全に削除され、新しいバージョンからエクスポートの設定をインポートすることは出来ません。</string>
     <string name="share_playlist_as_youtube_temporary_playlist">YouTubeの一時的なプレイリストとして共有</string>
     <string name="audio_track_type_secondary">二次的</string>
-    <string name="kao_dialog_warning">2025年8月、Googleは、2026年9月以降、Playストア以外からインストールするアプリを含め、認定済み端末上のすべてのAndroidアプリのインストールに開発者の確認が必要になると発表しました。NewPipeの開発者はこの要件に同意していないため、それ以降、NewPipeは認定済みAndroid端末で動作しなくなります。</string>
+
     <string name="kao_dialog_more_info">詳細</string>
     <string name="kao_solution">解決</string>
     <string name="short_billion">%sB</string>

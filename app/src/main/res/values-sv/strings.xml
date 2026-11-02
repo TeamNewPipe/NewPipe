@@ -803,7 +803,7 @@
     <string name="youtube_player_http_403">Servern svarade med HTTP-fel 403 under uppspelningen, troligen på grund av en IP-blockering eller problem med avobfuskering av strömmarnas webbadresser</string>
     <string name="sign_in_confirm_not_bot_error">%1$s vägrade att lämna ut uppgifter och krävde inloggning för att bekräfta att begäran inte kommer från en robot.\n\nDin IP-adress kan ha blockerats tillfälligt av %1$s. Vänta en stund eller byt IP-adress, till exempel genom att slå av och på en VPN-anslutning eller växla mellan Wi-Fi och mobildata.\n\nLäs <a href="%2$s">avsnittet i vanliga frågor</a> för mer information.</string>
     <string name="unsupported_content_in_country">Innehållet är inte tillgängligt i det valda innehållslandet.\n\nÄndra valet under ”Inställningar &gt; Innehåll &gt; Standardinnehållsland”.</string>
-    <string name="kao_dialog_warning">I augusti 2025 meddelade Google att från och med september 2026 kommer installation av appar att kräva utvecklarverifiering för alla Android-appar på certifierade enheter, inklusive de som installerats utanför Play Store. Eftersom utvecklarna av NewPipe inte godkänner detta krav kommer NewPipe inte längre att fungera på certifierade Android-enheter efter den tiden.</string>
+
     <string name="kao_dialog_more_info">Detaljer</string>
     <string name="kao_solution">Lösning</string>
     <plurals name="export_subscriptions">

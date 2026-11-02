@@ -826,7 +826,7 @@
     <string name="migration_info_7_8_title">Аб\'яднаныя трэнды YouTube выдалены</string>
     <string name="import_subscriptions_title">Імпартаваць падпіскі</string>
     <string name="export_subscriptions_title">Экспартаваць падпіскі</string>
-    <string name="kao_dialog_warning">У жніўні 2025 года Google абвясціў, што з верасня 2026 года распрацоўшчыкі праграм Android павінны рэгістравацца, каб мець магчымасць ўсталявання сваіх праграм на сертыфікаваныя прылады. Гэта тычыцца і праграм, якія ўсталёўваюцца не з Play Store. Паколькі распрацоўшчыкі NewPipe не згодныя з такім патрабаваннем, пасля гэтага часу NewPipe больш не будзе працаваць на сертыфікаваных прыладах Android.</string>
+
     <string name="kao_dialog_more_info">Падрабязнасці</string>
     <string name="kao_solution">Рашэнне</string>
     <string name="permission_display_over_apps_message">Каб выкарыстоўваць аконны прайгравальнік, у наступным меню налад Android выберыце %1$s і ўключыце %2$s.</string>

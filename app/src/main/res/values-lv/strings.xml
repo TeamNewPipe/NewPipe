@@ -813,7 +813,7 @@
     <string name="player_http_403">Atskaņošanas laikā no servera saņemta HTTP 403 kļūda, ko, iespējams, izraisīja straumēšanas URL derīguma beigu termiņš vai IP aizliegums</string>
     <string name="player_http_invalid_status">Atskaņošanas laikā no servera saņemta HTTP %1$s kļūda</string>
     <string name="youtube_player_http_403">Atskaņošanas laikā no servera saņemta HTTP 403 kļūda, ko, iespējams, izraisīja IP aizliegums vai straumēšanas URL atšifrēšanas (deobfuskācijas) problēmas</string>
-    <string name="kao_dialog_warning">2025. gada augustā Google paziņoja, ka, sākot ar 2026. gada septembri, lai uzstādītu lietotnes, būs nepieciešama izstrādātāja verifikācija visām Android lietotnēm sertificētajās ierīcēs, tostarp arī tām, kuras uzstādītas ārpus Play veikala. Tā kā NewPipe izstrādātāji nepiekrīt un negrib pieņemt šo prasību, pēc šī datuma NewPipe vairs nedarbosies sertificētajās Android ierīcēs.</string>
+
     <string name="kao_dialog_more_info">Detalizētāka informācija</string>
     <string name="kao_solution">Risinājums</string>
     <string name="migration_info_6_7_message">SoundCloud likvidēja oriģinālos Top 50 topus. Atbilstošā cilne noņemta no jūsu galvenās lapas.</string>

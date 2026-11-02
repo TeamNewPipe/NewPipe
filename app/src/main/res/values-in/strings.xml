@@ -789,7 +789,7 @@
     <string name="short_thousand">%sK</string>
     <string name="short_million">%sM</string>
     <string name="short_billion">%sB</string>
-    <string name="kao_dialog_warning">Pada Agustus 2025, Google mengumumkan bahwa mulai September 2026, pemasangan aplikasi akan memerlukan verifikasi pengembang untuk semua aplikasi Android pada perangkat bersertifikasi, termasuk yang dipasang di luar Play Store. Karena pengembang NewPipe tidak menyetujui persyaratan ini, NewPipe tidak akan lagi berfungsi pada perangkat Android bersertifikasi setelah waktu tersebut.</string>
+
     <string name="kao_dialog_more_info">Rincian</string>
     <string name="kao_solution">Solusi</string>
     <plurals name="export_subscriptions">

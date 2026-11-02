@@ -801,7 +801,7 @@
     <string name="short_thousand">%smii</string>
     <string name="short_million">%s mil.</string>
     <string name="short_billion">%s mld.</string>
-    <string name="kao_dialog_warning">În august 2025, Google a anunțat că, începând din septembrie 2026, instalarea aplicațiilor va necesita verificarea dezvoltatorului pentru toate aplicațiile Android de pe dispozitivele certificate, inclusiv pentru cele instalate din afara Play Store. Deoarece dezvoltatorii NewPipe nu sunt de acord cu această cerință, NewPipe nu va mai funcționa pe dispozitivele Android certificate după acea dată.</string>
+
     <string name="kao_solution">Soluție</string>
     <string name="kao_dialog_more_info">Detalii</string>
     <string name="unsupported_content_in_country">Acest conținut nu este disponibil pentru țara de conținut selectată în prezent.\n\nModificați selecția din „Setări &gt; Conținut &gt; Țara implicită pentru conținut”.</string>
