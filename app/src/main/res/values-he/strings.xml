@@ -837,7 +837,7 @@
     <string name="import_subscriptions_summary">ייבוא מנויים מייצוא קודם בקובץ .json</string>
     <string name="export_subscriptions_summary">ייצא את המינויים שלך לקובץ .json</string>
     <string name="import_from_previous_export">ייבוא מייצוא קודם</string>
-    <string name="kao_dialog_warning">באוגוסט 2025, גוגל הודיעה כי החל מספטמבר 2026, התקנת יישומים תדרוש אימות מפתח עבור כל יישומי אנדרואיד במכשירים מוסמכים, כולל אלה שהותקנו מחוץ לחנות Play. מכיוון שהמפתחים של NewPipe אינם מסכימים לדרישה זו, NewPipe כבר לא יעבוד על מכשירי אנדרואיד מוסמכים לאחר זמן זה.</string>
+
     <string name="kao_dialog_more_info">פרטים</string>
     <string name="kao_solution">פתרון</string>
     <string name="api23_requirement_dialog_title">NewPipe מורידה את התמיכה באנדרואיד 5</string>

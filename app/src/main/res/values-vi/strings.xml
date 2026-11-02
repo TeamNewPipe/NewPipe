@@ -785,7 +785,7 @@
     <string name="account_terminated_service_provides_reason">Tài khoản bị vô hiệu hóa. \n\n%1$s cung cấp lý do này: %2$s</string>
     <string name="entry_deleted">Entry đã xóa</string>
     <string name="player_http_invalid_status">Đã xảy ra lỗi HTTP %1$s trong khi phát</string>
-    <string name="kao_dialog_warning">Từ tháng 8 năm 2025, Google đã thông báo rằng kể từ tháng 9 năm 2026, việc cài app sẽ yêu cầu các nhà phát triển phải xác minh trên những thiết bị đã chứng nhận, kể cả đối với các ứng dụng ngoài Play Store. Vì các nhà phát triển của NewPipe không đồng ý với điều kiện này, nên có lẽ NewPipe sẽ không còn hoạt động trên các máy Android được chứng nhận sau thời điểm ấy.</string>
+
     <string name="kao_dialog_more_info">Chi tiết</string>
     <string name="kao_solution">Giải pháp</string>
     <string name="api23_requirement_dialog_title">NewPipe sẽ ngừng hỗ trợ phiên bản Android 5.x vào bản cập nhật sau</string>
