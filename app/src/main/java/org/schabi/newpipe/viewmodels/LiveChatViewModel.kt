@@ -40,14 +40,21 @@ class LiveChatViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
                 val extractor = service.getCommentsExtractor(url)
                 extractor.setLiveChatContinuation(liveChatContinuation)
                 val info = CommentsInfo.getInfo(extractor)
-                _liveChatItems.value = info.relatedItems
+                _liveChatItems.value = info.relatedItems.take(MAX_LIVE_CHAT_ITEMS)
                 var nextPage = info.nextPage
                 while (isActive) {
                     delay(3.seconds)
                     if (nextPage == null) continue
                     val result = CommentsInfo.getMoreItems(service, url, nextPage)
                     if (result.items.isNotEmpty()) {
-                        _liveChatItems.value = result.items + _liveChatItems.value
+                        _liveChatItems.value = buildList(MAX_LIVE_CHAT_ITEMS) {
+                            addAll(result.items.take(MAX_LIVE_CHAT_ITEMS))
+                            if (size < MAX_LIVE_CHAT_ITEMS) {
+                                addAll(
+                                    _liveChatItems.value.take(MAX_LIVE_CHAT_ITEMS - size)
+                                )
+                            }
+                        }
                     }
                     nextPage = result.nextPage
                 }
@@ -59,6 +66,7 @@ class LiveChatViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
     }
 
     companion object {
+        private const val MAX_LIVE_CHAT_ITEMS = 200
         const val KEY_LIVE_CHAT_CONTINUATION = "live_chat_continuation"
     }
 }
