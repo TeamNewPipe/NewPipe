@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -12,12 +11,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import org.schabi.newpipe.App
-import org.schabi.newpipe.error.ErrorUtil
+import org.schabi.newpipe.MainActivity.DEBUG
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.comments.CommentsInfo
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
-import org.schabi.newpipe.extractor.exceptions.ExtractionException
+import org.schabi.newpipe.ktx.isNetworkRelated
 import org.schabi.newpipe.util.KEY_SERVICE_ID
 import org.schabi.newpipe.util.KEY_URL
 
@@ -33,6 +31,9 @@ class LiveChatViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
     private val _error = MutableStateFlow<Throwable?>(null)
     val error: StateFlow<Throwable?> = _error
 
+    private val _hasNetworkIssues = MutableStateFlow<Boolean>(false)
+    val hasNetworkIssues: StateFlow<Boolean> = _hasNetworkIssues
+
     init {
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -43,23 +44,41 @@ class LiveChatViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
                 _liveChatItems.value = info.relatedItems.take(MAX_LIVE_CHAT_ITEMS)
                 var nextPage = info.nextPage
                 while (isActive) {
-                    delay(3.seconds)
-                    if (nextPage == null) continue
-                    val result = CommentsInfo.getMoreItems(service, url, nextPage)
-                    if (result.items.isNotEmpty()) {
-                        _liveChatItems.value = buildList(MAX_LIVE_CHAT_ITEMS) {
-                            addAll(result.items.take(MAX_LIVE_CHAT_ITEMS))
-                            if (size < MAX_LIVE_CHAT_ITEMS) {
-                                addAll(
-                                    _liveChatItems.value.take(MAX_LIVE_CHAT_ITEMS - size)
-                                )
+                    try {
+                        delay(3.seconds)
+                        if (nextPage == null) continue
+                        val result = CommentsInfo.getMoreItems(service, url, nextPage)
+                        if (result.items.isNotEmpty()) {
+                            _liveChatItems.value = buildList(MAX_LIVE_CHAT_ITEMS) {
+                                addAll(result.items.take(MAX_LIVE_CHAT_ITEMS))
+                                if (size < MAX_LIVE_CHAT_ITEMS) {
+                                    addAll(
+                                        _liveChatItems.value.take(MAX_LIVE_CHAT_ITEMS - size)
+                                    )
+                                }
                             }
                         }
+                        nextPage = result.nextPage
+                        if (_hasNetworkIssues.value) {
+                            _hasNetworkIssues.value = false
+                        }
+                    } catch (e: Exception) {
+                        if (DEBUG) {
+                            Log.e(TAG, "Error loading live chat comments", e)
+                        }
+                        if (e.isNetworkRelated) {
+                            // retry on network related exceptions
+                            // and do not stop the comment polling
+                            _hasNetworkIssues.value = true
+                        } else {
+                            throw e
+                        }
                     }
-                    nextPage = result.nextPage
                 }
             } catch (e: Exception) {
-                Log.e("LiveChatViewModel", "Error loading live chat comments", e)
+                if (DEBUG) {
+                    Log.e(TAG, "Error loading live chat comments", e)
+                }
                 _error.value = e
             }
         }
@@ -68,5 +87,7 @@ class LiveChatViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
     companion object {
         private const val MAX_LIVE_CHAT_ITEMS = 200
         const val KEY_LIVE_CHAT_CONTINUATION = "live_chat_continuation"
+
+        private const val TAG = "LiveChatViewModel"
     }
 }

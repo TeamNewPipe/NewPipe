@@ -38,6 +38,7 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.error.ErrorUtil
 import org.schabi.newpipe.ui.components.common.LazyColumnThemedScrollbar
 import org.schabi.newpipe.ui.components.common.LoadingIndicator
+import org.schabi.newpipe.ui.components.common.NetworkIssue
 import org.schabi.newpipe.viewmodels.LiveChatViewModel
 
 @Composable
@@ -70,6 +71,7 @@ fun LiveChatSection(liveChatViewModel: LiveChatViewModel = viewModel()) {
             throwable = error!!
         )
     }
+    val hasNetworkIssues by liveChatViewModel.hasNetworkIssues.collectAsStateWithLifecycle()
 
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumnThemedScrollbar(state = state) {
@@ -85,6 +87,12 @@ fun LiveChatSection(liveChatViewModel: LiveChatViewModel = viewModel()) {
                         text = stringResource(id = R.string.live_chat_tab_description),
                         style = MaterialTheme.typography.titleMedium
                     )
+                }
+
+                if (hasNetworkIssues) {
+                    item {
+                        NetworkIssue()
+                    }
                 }
 
                 if (liveChatItems.isEmpty()) {
