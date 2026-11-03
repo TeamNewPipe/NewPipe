@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import org.schabi.newpipe.extractor.comments.CommentsInfo
+import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.paging.CommentsSource
 import org.schabi.newpipe.ui.components.video.comment.CommentInfo
 import org.schabi.newpipe.util.KEY_URL
@@ -36,7 +37,7 @@ class CommentsViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), Resource.Loading)
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val comments: Flow<PagingData<org.schabi.newpipe.extractor.comments.CommentsInfoItem>> = uiState
+    val comments: Flow<PagingData<CommentsInfoItem>> = uiState
         .filterIsInstance<Resource.Success<CommentInfo>>()
         .flatMapLatest {
             Pager(PagingConfig(pageSize = 20, enablePlaceholders = false)) {

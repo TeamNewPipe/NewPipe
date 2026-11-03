@@ -30,6 +30,7 @@ import kotlinx.coroutines.flow.flowOf
 import org.schabi.newpipe.R
 import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.UserAction
+import org.schabi.newpipe.extractor.Page
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.ui.components.common.ErrorPanel
@@ -231,7 +232,7 @@ private fun CommentSectionSuccessPreview() {
                 Description.Type.PLAIN_TEXT
             ),
             uploaderName = "Test",
-            replies = org.schabi.newpipe.extractor.Page(""),
+            replies = Page(""),
             replyCount = 10
         )
     ) + (2..10).map {
