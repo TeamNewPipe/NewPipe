@@ -1,17 +1,23 @@
 package org.schabi.newpipe.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import org.schabi.newpipe.App
+import org.schabi.newpipe.error.ErrorUtil
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.comments.CommentsInfo
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
+import org.schabi.newpipe.extractor.exceptions.ExtractionException
 import org.schabi.newpipe.util.KEY_SERVICE_ID
 import org.schabi.newpipe.util.KEY_URL
 
@@ -24,6 +30,9 @@ class LiveChatViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
     private val _liveChatItems = MutableStateFlow<List<CommentsInfoItem>>(emptyList())
     val liveChatItems: StateFlow<List<CommentsInfoItem>> = _liveChatItems
 
+    private val _error = MutableStateFlow<Throwable?>(null)
+    val error: StateFlow<Throwable?> = _error
+
     init {
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -34,7 +43,7 @@ class LiveChatViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
                 _liveChatItems.value = info.relatedItems
                 var nextPage = info.nextPage
                 while (isActive) {
-                    delay(3000)
+                    delay(3.seconds)
                     if (nextPage == null) continue
                     val result = CommentsInfo.getMoreItems(service, url, nextPage)
                     if (result.items.isNotEmpty()) {
@@ -43,7 +52,8 @@ class LiveChatViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
                     nextPage = result.nextPage
                 }
             } catch (e: Exception) {
-                // Ignore initialization errors
+                Log.e("LiveChatViewModel", "Error loading live chat comments", e)
+                _error.value = e
             }
         }
     }

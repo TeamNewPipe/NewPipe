@@ -27,6 +27,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -34,6 +35,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.launch
 import org.schabi.newpipe.R
+import org.schabi.newpipe.error.ErrorUtil
 import org.schabi.newpipe.ui.components.common.LazyColumnThemedScrollbar
 import org.schabi.newpipe.ui.components.common.LoadingIndicator
 import org.schabi.newpipe.viewmodels.LiveChatViewModel
@@ -44,6 +46,7 @@ fun LiveChatSection(liveChatViewModel: LiveChatViewModel = viewModel()) {
     val state = rememberLazyListState()
     val nestedScrollInterop = rememberNestedScrollInteropConnection()
     val coroutineScope = rememberCoroutineScope()
+    val context = LocalContext.current
 
     // Track whether user is at the top of the list
     val isAtTop by remember { derivedStateOf { state.firstVisibleItemIndex == 0 } }
@@ -55,6 +58,18 @@ fun LiveChatSection(liveChatViewModel: LiveChatViewModel = viewModel()) {
     }
 
     val unreadCount = liveChatItems.size - lastSeenCount.value
+
+    // Track whether an error was caught and show it if error occurs
+    val errorSeen = remember { mutableStateOf(false) }
+    val error by liveChatViewModel.error.collectAsStateWithLifecycle()
+    if (error != null && !errorSeen.value) {
+        errorSeen.value = true
+        ErrorUtil.showUiErrorSnackbar(
+            context = context,
+            request = "Loading live chat comments",
+            throwable = error!!
+        )
+    }
 
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumnThemedScrollbar(state = state) {
