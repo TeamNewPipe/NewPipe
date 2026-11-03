@@ -9,6 +9,15 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class ThrowableExtensionsTest {
+    @Test fun `network related causes`() {
+        assertTrue(IOException().isNetworkRelated)
+        assertTrue(InterruptedIOException().isNetworkRelated)
+        assertTrue(SocketException().isNetworkRelated)
+        assertTrue(SSLException("IO").isNetworkRelated)
+
+        assertFalse(RuntimeException().isNetworkRelated)
+    }
+
     @Test fun `assignable causes`() {
         assertTrue(Throwable().hasAssignableCause<Throwable>())
         assertTrue(Exception().hasAssignableCause<Exception>())
