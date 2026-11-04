@@ -30,6 +30,7 @@ include("shared")
 include(":core:model")
 include(":core:data")
 include(":core:designsystem")
+include(":feature:library")
 
 // Use a local copy of NewPipe Extractor by uncommenting the lines below.
 // We assume, that NewPipe and NewPipe Extractor have the same parent directory.

@@ -128,6 +128,18 @@ fun currentColorScheme(
         settings, AppearancePreferences.KEY_NIGHT_THEME, AppearancePreferences.DEFAULT_NIGHT_THEME
     )
 
+    return yewplayColorScheme(theme, nightTheme, useDarkTheme)
+}
+
+/**
+ * YewPlay: color scheme for the given theme preferences, without Koin, so that screens hosted
+ * outside the Compose navigation (e.g. in the app's fragments) use the same colors.
+ *
+ * @param theme the "theme" preference value
+ * @param nightTheme the "night_theme" preference value
+ * @param useDarkTheme whether the system is in dark mode (for the automatic theme)
+ */
+fun yewplayColorScheme(theme: String, nightTheme: String, useDarkTheme: Boolean): ColorScheme {
     val nightScheme = when (nightTheme) {
         AppearancePreferences.THEME_BLACK -> blackScheme
         else -> darkScheme

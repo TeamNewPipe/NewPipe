@@ -890,4 +890,10 @@
     <string name="yp_feed_yesterday">Ontem</string>
     <string name="yp_feed_this_week">Esta semana</string>
     <string name="yp_feed_older">Mais antigos</string>
+    <string name="yp_library_continue">Continue de onde parou</string>
+    <string name="yp_library_saved_playlists">Playlists salvas</string>
+    <plurals name="yp_video_count">
+        <item quantity="one">%d vídeo</item>
+        <item quantity="other">%d vídeos</item>
+    </plurals>
 </resources>

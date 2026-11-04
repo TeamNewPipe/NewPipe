@@ -26,7 +26,10 @@ data class YpPlaylist(
     val name: String,
     val thumbnailUrl: String?,
     val streamCount: Long,
-    val isLocal: Boolean
+    val isLocal: Boolean,
+    /** Service and URL of a bookmarked (remote) playlist; unused for local ones. */
+    val serviceId: Int = -1,
+    val url: String? = null
 )
 
 /** A subscribed channel. */

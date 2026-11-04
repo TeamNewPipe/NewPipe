@@ -950,4 +950,10 @@
     <string name="yp_feed_yesterday">Yesterday</string>
     <string name="yp_feed_this_week">This week</string>
     <string name="yp_feed_older">Older</string>
+    <string name="yp_library_continue">Continue where you left off</string>
+    <string name="yp_library_saved_playlists">Saved playlists</string>
+    <plurals name="yp_video_count">
+        <item quantity="one">%d video</item>
+        <item quantity="other">%d videos</item>
+    </plurals>
 </resources>
