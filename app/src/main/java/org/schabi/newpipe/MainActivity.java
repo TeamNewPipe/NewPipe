@@ -78,7 +78,7 @@ import org.schabi.newpipe.fragments.LibraryFragment;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.comments.CommentRepliesFragment;
-import org.schabi.newpipe.fragments.list.search.SearchFragment;
+import org.schabi.newpipe.fragments.list.search.YpSearchFragment;
 import org.schabi.newpipe.local.bookmark.BookmarkFragment;
 import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.local.feed.notifications.NotificationWorker;
@@ -124,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
 
     /** YewPlay: true while the bottom bar selection is being synced from the back stack. */
     private boolean syncingBottomNav = false;
+    /** YewPlay: top margin of the fragment holder below the toolbar, read once. */
+    private int toolbarMarginTop = -1;
 
     private boolean servicesShown = false;
 
@@ -737,9 +739,8 @@ public class MainActivity extends AppCompatActivity {
 
         final Fragment fragment =
                 getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
-        if (!(fragment instanceof SearchFragment)) {
-            toolbarLayoutBinding.toolbarSearchContainer.getRoot().setVisibility(View.GONE);
-        }
+        // YewPlay: the Compose search screen draws its own field
+        toolbarLayoutBinding.toolbarSearchContainer.getRoot().setVisibility(View.GONE);
 
         final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -816,9 +817,35 @@ public class MainActivity extends AppCompatActivity {
     // YewPlay: floating bottom bar
     //////////////////////////////////////////////////////////////////////////*/
 
+    /**
+     * YewPlay: screens drawn fully in Compose (Search) have their own top bar, so the
+     * activity's toolbar and the space kept for it are hidden while they are shown.
+     *
+     * @param fragment the fragment now shown
+     */
+    private void updateToolbarForFragment(@Nullable final Fragment fragment) {
+        final boolean ownTopBar = fragment instanceof YpSearchFragment;
+        final View toolbar = toolbarLayoutBinding.getRoot();
+        final View holder = mainBinding.fragmentHolder;
+        if (!(holder.getLayoutParams() instanceof ViewGroup.MarginLayoutParams)) {
+            return;
+        }
+        final ViewGroup.MarginLayoutParams params =
+                (ViewGroup.MarginLayoutParams) holder.getLayoutParams();
+        if (toolbarMarginTop < 0) {
+            toolbarMarginTop = params.topMargin;
+        }
+        final int marginTop = ownTopBar ? 0 : toolbarMarginTop;
+        toolbar.setVisibility(ownTopBar ? View.GONE : View.VISIBLE);
+        if (params.topMargin != marginTop) {
+            params.topMargin = marginTop;
+            holder.setLayoutParams(params);
+        }
+    }
+
     private static boolean isBottomNavigationRoot(@Nullable final Fragment fragment) {
         return fragment instanceof MainFragment
-                || fragment instanceof SearchFragment
+                || fragment instanceof YpSearchFragment
                 || fragment instanceof FeedFragment
                 || fragment instanceof LibraryFragment;
     }
@@ -915,10 +942,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void syncBottomNavigation(@Nullable final Fragment fragment) {
+        updateToolbarForFragment(fragment);
         final int itemId;
         if (fragment instanceof MainFragment) {
             itemId = R.id.yp_nav_home;
-        } else if (fragment instanceof SearchFragment) {
+        } else if (fragment instanceof YpSearchFragment) {
             itemId = R.id.yp_nav_search;
         } else if (fragment instanceof FeedFragment || fragment instanceof SubscriptionFragment) {
             itemId = R.id.yp_nav_subscriptions;
