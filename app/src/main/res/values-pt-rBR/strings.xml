@@ -901,4 +901,6 @@
     <string name="yp_play">Reproduzir</string>
     <string name="yp_shuffle">Aleatório</string>
     <string name="yp_local_playlist">Playlist local</string>
+    <string name="yp_storage_used">%s usados pelo app</string>
+    <string name="yp_storage_free">%s livres</string>
 </resources>

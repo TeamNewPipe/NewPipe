@@ -10,11 +10,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
+import android.os.StatFs;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -44,6 +47,7 @@ import us.shandian.giga.service.DownloadManager;
 import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.service.DownloadManagerService.DownloadManagerBinder;
 import us.shandian.giga.ui.adapter.MissionAdapter;
+import us.shandian.giga.util.Utility;
 
 public class MissionsFragment extends Fragment {
 
@@ -230,6 +234,27 @@ public class MissionsFragment extends Fragment {
                 .show();
     }
 
+    /** YewPlay: "1.4 GB used by the app" and "38 GB free", with a bar (proposal, page 15). */
+    private void updateStorageSummary() {
+        View root = getView();
+        if (root == null || mBinder == null) return;
+        long used = mBinder.getDownloadManager().getFinishedBytes();
+        long free;
+        try {
+            free = new StatFs(Environment.getExternalStorageDirectory().getPath()).getAvailableBytes();
+        } catch (IllegalArgumentException e) {
+            free = 0;
+        }
+        TextView usedView = root.findViewById(R.id.yp_storage_used);
+        TextView freeView = root.findViewById(R.id.yp_storage_free);
+        ProgressBar bar = root.findViewById(R.id.yp_storage_bar);
+        usedView.setText(getString(R.string.yp_storage_used, Utility.formatBytes(used)));
+        freeView.setText(getString(R.string.yp_storage_free, Utility.formatBytes(free)));
+        long total = used + free;
+        bar.setProgress(total <= 0 ? 0 : (int) (used * 1000 / total));
+        root.findViewById(R.id.yp_storage_summary).setVisibility(View.VISIBLE);
+    }
+
     private void updateList() {
         if (mLinear) {
             mList.setLayoutManager(mLinearManager);
@@ -240,6 +265,8 @@ public class MissionsFragment extends Fragment {
         // destroy all created views in the recycler
         mList.setAdapter(null);
         mAdapter.notifyDataSetChanged();
+
+        updateStorageSummary();
 
         // re-attach the adapter in grid/lineal mode
         mAdapter.setLinear(mLinear);

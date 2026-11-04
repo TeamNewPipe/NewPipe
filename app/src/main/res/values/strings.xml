@@ -961,4 +961,6 @@
     <string name="yp_play">Play</string>
     <string name="yp_shuffle">Shuffle</string>
     <string name="yp_local_playlist">Local playlist</string>
+    <string name="yp_storage_used">%s used by the app</string>
+    <string name="yp_storage_free">%s free</string>
 </resources>

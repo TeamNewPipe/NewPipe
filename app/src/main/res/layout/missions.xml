@@ -3,6 +3,47 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!-- YewPlay: espaço usado pelo app e espaço livre (proposta, p. 15) -->
+    <LinearLayout
+        android:id="@+id/yp_storage_summary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/yp_screen_margin"
+        android:paddingTop="4dp"
+        android:paddingBottom="8dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/yp_storage_used"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="@style/TextAppearance.YewPlay.MetaStrong"
+                android:fontFamily="@font/instrument_sans_semibold" />
+
+            <TextView
+                android:id="@+id/yp_storage_free"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.YewPlay.Meta" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/yp_storage_bar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_marginTop="6dp"
+            android:max="1000"
+            android:progressDrawable="?attr/progress_horizontal_drawable" />
+    </LinearLayout>
+
     <include
         android:id="@+id/list_empty_view"
         layout="@layout/list_empty_view"

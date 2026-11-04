@@ -485,6 +485,19 @@ public class DownloadManager {
     /**
      * Forget all finished downloads, but, doesn't delete any file
      */
+    /**
+     * YewPlay: total size of the finished downloads, for the storage summary.
+     */
+    public long getFinishedBytes() {
+        long total = 0;
+        synchronized (this) {
+            for (FinishedMission mission : mMissionsFinished) {
+                total += Math.max(0, mission.length);
+            }
+        }
+        return total;
+    }
+
     public void forgetFinishedDownloads() {
         synchronized (this) {
             for (FinishedMission mission : mMissionsFinished) {
