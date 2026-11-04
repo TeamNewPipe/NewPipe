@@ -5,36 +5,25 @@
 
 package net.newpipe.app.screen.about
 
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.ColorScheme
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SecondaryTabRow
-import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRowDefaults
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewWrapper
-import androidx.compose.ui.util.fastForEachIndexed
-import kotlinx.coroutines.launch
 import net.newpipe.app.composable.TopAppBar
 import net.newpipe.app.navigation.Navigator
 import net.newpipe.app.preview.ThemePreviewProvider
-import net.newpipe.app.screen.about.navigation.Page
-import net.newpipe.app.theme.currentServiceScheme
 import newpipe.shared.generated.resources.Res
-import newpipe.shared.generated.resources.title_activity_about
+import newpipe.shared.generated.resources.yp_about_licenses
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 
+/**
+ * YewPlay: "About YewPlay" is a single screen; the licenses open in their own screen.
+ */
 @Composable
 fun AboutScreen(navigator: Navigator = koinInject()) {
     AboutScreenContent(
@@ -44,72 +33,41 @@ fun AboutScreen(navigator: Navigator = koinInject()) {
 
 @Composable
 fun AboutScreenContent(
-    pages: List<Page> = listOf(Page.ABOUT, Page.LICENSE),
     onNavigateUp: () -> Unit = {},
-    serviceScheme: ColorScheme = currentServiceScheme(),
-    onPageContent: @Composable (page: Page) -> Unit = { page ->
-        when (page) {
-            Page.ABOUT -> AboutPage()
-            Page.LICENSE -> LicensePage()
-        }
-    }
+    content: @Composable () -> Unit = { AboutPage() }
 ) {
     Scaffold(
-        topBar = {
-            TopAppBar(
-                title = stringResource(Res.string.title_activity_about),
-                onNavigateUp = onNavigateUp
-            )
-        }
+        topBar = { TopAppBar(onNavigateUp = onNavigateUp) }
     ) { paddingValues ->
-        Column(
+        Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(top = paddingValues.calculateTopPadding())
         ) {
-            val pagerState = rememberPagerState { pages.size }
-            val coroutineScope = rememberCoroutineScope()
+            content()
+        }
+    }
+}
 
-            SecondaryTabRow(
-                modifier = Modifier.fillMaxWidth(),
-                containerColor = serviceScheme.primaryContainer,
-                indicator = {
-                    TabRowDefaults.SecondaryIndicator(
-                        modifier = Modifier.tabIndicatorOffset(
-                            selectedTabIndex = pagerState.currentPage,
-                            matchContentSize = false
-                        ),
-                        // YewPlay: the active tab is marked in ruby (a state color)
-                        color = MaterialTheme.colorScheme.tertiary
-                    )
-                },
-                selectedTabIndex = pagerState.currentPage
-            ) {
-                pages.fastForEachIndexed { index, page ->
-                    Tab(
-                        selected = pagerState.currentPage == index,
-                        text = {
-                            Text(
-                                text = stringResource(page.localizedTitle),
-                                color = if (pagerState.currentPage == index) {
-                                    serviceScheme.onPrimaryContainer
-                                } else {
-                                    MaterialTheme.colorScheme.onSurfaceVariant
-                                }
-                            )
-                        },
-                        onClick = {
-                            coroutineScope.launch {
-                                pagerState.animateScrollToPage(index)
-                            }
-                        }
-                    )
-                }
-            }
-
-            HorizontalPager(modifier = Modifier.fillMaxSize(), state = pagerState) { page ->
-                onPageContent(pages[page])
-            }
+/**
+ * YewPlay: list of the YewPlay license and the third-party licenses.
+ */
+@Composable
+fun LicensesScreen(navigator: Navigator = koinInject()) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = stringResource(Res.string.yp_about_licenses),
+                onNavigateUp = { navigator.navigateUp() }
+            )
+        }
+    ) { paddingValues ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = paddingValues.calculateTopPadding())
+        ) {
+            LicensePage()
         }
     }
 }
@@ -118,12 +76,5 @@ fun AboutScreenContent(
 @PreviewLightDark
 @Composable
 private fun AboutScreenPreview() {
-    AboutScreenContent(
-        onPageContent = { page ->
-            when (page) {
-                Page.ABOUT -> AboutPageContent()
-                Page.LICENSE -> LicensePageContent()
-            }
-        }
-    )
+    AboutScreenContent(content = { AboutPageContent() })
 }

@@ -253,4 +253,15 @@
     <string name="recaptcha_cookies_cleared">reCAPTCHA cookies have been cleared</string>
 
 
+    <string name="yp_about_title">About YewPlay</string>
+    <string name="yp_about_version">Version %1$s</string>
+    <string name="yp_about_based_on">Based on %1$s %2$s</string>
+    <string name="yp_about_section_help">Help and project</string>
+    <string name="yp_about_section_legal">Legal information</string>
+    <string name="yp_about_faq">Frequently asked questions</string>
+    <string name="yp_about_source">Source code</string>
+    <string name="yp_about_site">NewPipe website</string>
+    <string name="yp_about_privacy">Privacy policy</string>
+    <string name="yp_about_licenses">Licenses</string>
+    <string name="yp_about_support">Support the project</string>
 </resources>
