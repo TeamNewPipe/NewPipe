@@ -390,7 +390,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
         final int subscribedText = ContextCompat.getColor(activity, R.color.subscribed_text_color);
         // YewPlay: "Inscrever-se" usa a cor de ação (marfim no escuro, tinta no claro)
         final int subscribeBackground = ThemeHelper
-                .resolveColorFromAttr(activity, R.attr.colorAccent);
+                .resolveColorFromAttr(activity, android.R.attr.colorAccent);
         final int subscribeText = ContextCompat.getColor(activity, R.color.subscribe_text_color);
 
         if (isSubscribed) {
