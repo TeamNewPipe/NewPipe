@@ -896,4 +896,6 @@
     </plurals>
     <string name="channel_tab_courses">الدورات</string>
     <string name="channel_tab_podcasts">البودكاست</string>
+    <string name="manual_update_title" translatable="false">@string/check_for_updates</string>
+    <string name="kao_dialog_warning">بدأت جوجل في فرض متطلب جديد للتحقق من مصداقية مطوري أندرويد يجعل من الصعب تثبيت NewPipe في البرازيل وإندونيسيا وسنغافورة وتايلاند، مع خطة للتطبيق عالمياً في عام 2027.\n\nإذا لم يتم تغيير المتطلبات، فقد يصبح من الصعب أو المستحيل تثبيت NewPipe على أجهزة أندرويد المعتمدة في المستقبل القريب.</string>
 </resources>
