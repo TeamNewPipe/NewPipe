@@ -81,6 +81,7 @@ class YpSearchFragment : BaseFragment(), BackPressable {
                                 fm.popBackStackImmediate()
                                 requireActivity().startActivity(event.intent)
                             }
+
                             is SearchEvent.ShowError ->
                                 ErrorUtil.showSnackbar(this@YpSearchFragment, event.errorInfo)
                         }
@@ -156,8 +157,10 @@ class YpSearchFragment : BaseFragment(), BackPressable {
                     null,
                     false
                 )
+
                 is YpChannelItem ->
                     NavigationHelper.openChannelFragment(fm, item.serviceId, item.url, item.name)
+
                 is YpPlaylistItem ->
                     NavigationHelper.openPlaylistFragment(fm, item.serviceId, item.url, item.name)
             }
@@ -225,12 +228,11 @@ class YpSearchFragment : BaseFragment(), BackPressable {
         private const val STATE_FILTER = "yp_search_filter"
 
         @JvmStatic
-        fun newInstance(serviceId: Int, searchString: String?): YpSearchFragment =
-            YpSearchFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(KEY_SERVICE_ID, serviceId)
-                    putString(KEY_SEARCH_STRING, searchString.orEmpty())
-                }
+        fun newInstance(serviceId: Int, searchString: String?): YpSearchFragment = YpSearchFragment().apply {
+            arguments = Bundle().apply {
+                putInt(KEY_SERVICE_ID, serviceId)
+                putString(KEY_SEARCH_STRING, searchString.orEmpty())
             }
+        }
     }
 }

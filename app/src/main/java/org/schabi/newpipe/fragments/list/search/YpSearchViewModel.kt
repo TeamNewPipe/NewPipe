@@ -240,8 +240,11 @@ class YpSearchViewModel(application: Application) : AndroidViewModel(application
                 remoteSuggestions(query),
                 BiFunction(::mergeSuggestions)
             )
+
             showLocalSuggestions -> localSuggestions(query, 25)
+
             remoteNow -> remoteSuggestions(query)
+
             else -> Observable.just(emptyList())
         }
     }
@@ -251,15 +254,13 @@ class YpSearchViewModel(application: Application) : AndroidViewModel(application
         remote: List<SearchSuggestion>
     ): List<SearchSuggestion> = local + remote.filter { r -> local.none { it.query == r.query } }
 
-    private fun localSuggestions(query: String, limit: Int): Observable<List<SearchSuggestion>> =
-        historyRecordManager.getRelatedSearches(query, limit, 25)
-            .toObservable()
-            .map { entries -> entries.map { SearchSuggestion(it, fromHistory = true) } }
+    private fun localSuggestions(query: String, limit: Int): Observable<List<SearchSuggestion>> = historyRecordManager.getRelatedSearches(query, limit, 25)
+        .toObservable()
+        .map { entries -> entries.map { SearchSuggestion(it, fromHistory = true) } }
 
-    private fun remoteSuggestions(query: String): Observable<List<SearchSuggestion>> =
-        ExtractorHelper.suggestionsFor(serviceId, query)
-            .toObservable()
-            .map { entries -> entries.map { SearchSuggestion(it, fromHistory = false) } }
+    private fun remoteSuggestions(query: String): Observable<List<SearchSuggestion>> = ExtractorHelper.suggestionsFor(serviceId, query)
+        .toObservable()
+        .map { entries -> entries.map { SearchSuggestion(it, fromHistory = false) } }
 
     /* ---------------------------------------------------------------------------------------- */
     /* Search                                                                                    */
@@ -576,8 +577,7 @@ class YpSearchViewModel(application: Application) : AndroidViewModel(application
     /* Mapping                                                                                   */
     /* ---------------------------------------------------------------------------------------- */
 
-    private fun isSupported(item: InfoItem) =
-        item is StreamInfoItem || item is ChannelInfoItem || item is PlaylistInfoItem
+    private fun isSupported(item: InfoItem) = item is StreamInfoItem || item is ChannelInfoItem || item is PlaylistInfoItem
 
     private fun toUi(item: InfoItem): YpListItem = when (item) {
         is StreamInfoItem -> {
@@ -597,6 +597,7 @@ class YpSearchViewModel(application: Application) : AndroidViewModel(application
                 details = streamDetails(item)
             )
         }
+
         is ChannelInfoItem -> YpChannelItem(
             serviceId = item.serviceId,
             url = item.url,
@@ -605,6 +606,7 @@ class YpSearchViewModel(application: Application) : AndroidViewModel(application
             description = item.description?.takeIf { it.isNotBlank() },
             details = channelDetails(item)
         )
+
         else -> {
             val playlist = item as PlaylistInfoItem
             YpPlaylistItem(
@@ -621,10 +623,13 @@ class YpSearchViewModel(application: Application) : AndroidViewModel(application
     private fun streamDetails(item: StreamInfoItem): String {
         val views = when {
             item.viewCount < 0 -> ""
+
             item.streamType == StreamType.AUDIO_LIVE_STREAM ->
                 Localization.listeningCount(app, item.viewCount)
+
             item.streamType == StreamType.LIVE_STREAM ->
                 Localization.shortWatchingCount(app, item.viewCount)
+
             else -> Localization.shortViewCount(app, item.viewCount)
         }
         val date = Localization
@@ -645,6 +650,7 @@ class YpSearchViewModel(application: Application) : AndroidViewModel(application
         return when {
             subscribers != null && streams != null ->
                 Localization.concatenateStrings(subscribers, streams)
+
             else -> subscribers ?: streams
         }
     }
@@ -667,8 +673,7 @@ class YpSearchViewModel(application: Application) : AndroidViewModel(application
 
     private fun isAllFilter() = contentFilter.isEmpty() || contentFilter[0] == "all"
 
-    private fun selectedFilterIndex() =
-        if (contentFilter.isEmpty()) 0 else filters.indexOf(contentFilter[0]).coerceAtLeast(0)
+    private fun selectedFilterIndex() = if (contentFilter.isEmpty()) 0 else filters.indexOf(contentFilter[0]).coerceAtLeast(0)
 
     private fun hint(): String {
         val name = service?.serviceInfo?.name ?: return ""
