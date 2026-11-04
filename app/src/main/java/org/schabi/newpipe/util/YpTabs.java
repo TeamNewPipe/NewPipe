@@ -31,7 +31,8 @@ public final class YpTabs {
      * @param tab  the tab
      * @param name the label
      */
-    public static void setLabel(@NonNull final TabLayout.Tab tab, @NonNull final CharSequence name) {
+    public static void setLabel(@NonNull final TabLayout.Tab tab,
+                                @NonNull final CharSequence name) {
         final TabLayout parent = tab.parent;
         if (parent == null) {
             return;
