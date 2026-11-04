@@ -13,13 +13,16 @@
 
         <ImageView
             android:id="@+id/item_icon"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:layout_centerVertical="true"
-            android:contentDescription="TODO"
+            android:layout_marginStart="8dp"
+            android:layout_marginVertical="12dp"
+            android:background="@drawable/yp_icon_tile"
+            android:contentDescription="@null"
             android:gravity="center"
-            android:padding="15dp"
-            android:scaleType="fitXY"
+            android:padding="16dp"
+            android:scaleType="fitCenter"
             app:tint="?attr/actionColor" />
 
         <org.schabi.newpipe.views.NewPipeTextView

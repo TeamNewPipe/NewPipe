@@ -102,7 +102,7 @@ public class MissionsFragment extends Fragment {
         View v = inflater.inflate(R.layout.missions, container, false);
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(requireActivity());
-        mLinear = mPrefs.getBoolean("linear", false);
+        mLinear = mPrefs.getBoolean("linear", true); // YewPlay: list by default
 
         // Bind the service
         mContext.bindService(new Intent(mContext, DownloadManagerService.class), mConnection, Context.BIND_AUTO_CREATE);
