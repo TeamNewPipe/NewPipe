@@ -40,3 +40,9 @@ data class YpChannel(
     val avatarUrl: String?,
     val hasNewVideos: Boolean = false
 )
+
+/** A group of subscribed channels ("Music", "Finance", ...). */
+data class YpGroup(
+    val id: Long,
+    val name: String
+)

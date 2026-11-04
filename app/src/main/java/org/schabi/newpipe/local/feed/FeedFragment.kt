@@ -36,6 +36,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.core.content.edit
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.os.bundleOf
@@ -50,6 +53,12 @@ import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.OnItemClickListener
 import com.xwray.groupie.OnItemLongClickListener
+import io.github.yewplay.core.designsystem.YpTheme
+import io.github.yewplay.core.model.YpChannel
+import io.github.yewplay.core.model.YpGroup
+import io.github.yewplay.feature.subscriptions.SubscriptionsActions
+import io.github.yewplay.feature.subscriptions.SubscriptionsHeader
+import io.github.yewplay.feature.subscriptions.SubscriptionsStrings
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -58,6 +67,8 @@ import java.time.LocalDate
 import java.time.OffsetDateTime
 import java.time.ZoneId
 import java.util.function.Consumer
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.reactive.asFlow
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
@@ -80,6 +91,8 @@ import org.schabi.newpipe.local.feed.item.StreamItem
 import org.schabi.newpipe.local.feed.item.YpDayHeaderItem
 import org.schabi.newpipe.local.feed.service.FeedLoadService
 import org.schabi.newpipe.local.subscription.SubscriptionManager
+import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialog
+import org.schabi.newpipe.local.yewplay.YpThemePrefs
 import org.schabi.newpipe.util.DeviceUtils
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
@@ -112,6 +125,9 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
     private var lastNewItemsCount = 0
 
+    /** YewPlay: channels with videos from the last 24 hours, for the ruby dot on the avatars. */
+    private val recentUploaders = MutableStateFlow<Set<String>>(emptySet())
+
     init {
         setHasOptionsMenu(true)
     }
@@ -139,6 +155,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     override fun onViewCreated(rootView: View, savedInstanceState: Bundle?) {
         // super.onViewCreated() calls initListeners() which require the binding to be initialized
         _feedBinding = FragmentFeedBinding.bind(rootView)
+        setupSubscriptionsHeader()
         super.onViewCreated(rootView, savedInstanceState)
 
         val factory = FeedViewModel.getFactory(requireContext(), groupId)
@@ -429,6 +446,67 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     }
 
     /**
+     * YewPlay: avatars of the subscribed channels (ruby dot on the ones with new videos) and the
+     * channel groups as tabs, drawn by the Compose header in :feature:subscriptions.
+     */
+    private fun setupSubscriptionsHeader() {
+        val context = requireContext()
+        val subscriptions = SubscriptionManager(context).subscriptions().asFlow()
+        val groups = FeedDatabaseManager(context).groups().asFlow()
+        val themeKey = YpThemePrefs.themeKey(context)
+        val nightThemeKey = YpThemePrefs.nightThemeKey(context)
+        val strings = SubscriptionsStrings(
+            all = getString(R.string.yp_feed_all),
+            addGroup = getString(R.string.yp_feed_add_group)
+        )
+        val actions = SubscriptionsActions(
+            openChannel = { channel ->
+                NavigationHelper.openChannelFragment(fm, channel.serviceId, channel.url, channel.name)
+            },
+            selectGroup = { group -> selectFeedGroup(group) },
+            addGroup = { FeedGroupDialog.newInstance().show(parentFragmentManager, null) }
+        )
+        feedBinding.ypSubscriptionsHeader.setViewCompositionStrategy(
+            ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
+        )
+        feedBinding.ypSubscriptionsHeader.setContent {
+            val subscriptionList by subscriptions.collectAsState(initial = emptyList())
+            val groupList by groups.collectAsState(initial = emptyList())
+            val recent by recentUploaders.collectAsState()
+            YpTheme(themeKey, nightThemeKey) {
+                SubscriptionsHeader(
+                    channels = subscriptionList
+                        .mapNotNull { subscription ->
+                            subscription.url?.let { url ->
+                                YpChannel(
+                                    serviceId = subscription.serviceId,
+                                    url = url,
+                                    name = subscription.name.orEmpty(),
+                                    avatarUrl = subscription.avatarUrl,
+                                    hasNewVideos = url in recent
+                                )
+                            }
+                        }
+                        .sortedByDescending { it.hasNewVideos },
+                    groups = groupList.map { YpGroup(it.uid, it.name) },
+                    selectedGroupId = groupId.takeIf { it != FeedGroupEntity.GROUP_ALL_ID },
+                    strings = strings,
+                    actions = actions
+                )
+            }
+        }
+    }
+
+    private fun selectFeedGroup(group: YpGroup?) {
+        val newGroupId = group?.id ?: FeedGroupEntity.GROUP_ALL_ID
+        if (newGroupId == groupId) {
+            return
+        }
+        parentFragmentManager.popBackStack()
+        NavigationHelper.openFeedFragment(parentFragmentManager, newGroupId, group?.name)
+    }
+
+    /**
      * YewPlay: groups the feed (newest first) under "Today", "Yesterday", "This week" and
      * "Older" headers. Items without a date stay in the group of the item before them.
      */
@@ -463,6 +541,12 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             else -> StreamItem.ItemVersion.NORMAL
         }
         loadedState.items.forEach { it.itemVersion = itemVersion }
+
+        val dayAgo = OffsetDateTime.now().minusDays(1)
+        recentUploaders.value = loadedState.items.mapNotNull { item ->
+            val stream = item.streamWithState.stream
+            stream.uploaderUrl.takeIf { stream.uploadDate?.isAfter(dayAgo) == true }
+        }.toSet()
 
         // This need to be saved in a variable as the update occurs async
         val oldOldestSubscriptionUpdate = oldestSubscriptionUpdate

@@ -36,6 +36,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
@@ -156,6 +157,16 @@ fun LibraryScreen(
 
 private const val CONTINUE_LIMIT = 10
 
+/** "4:05", "12:30" or "1:02:03". */
+private fun formatDuration(totalSeconds: Long): String {
+    val hours = totalSeconds / 3600
+    val minutes = (totalSeconds % 3600) / 60
+    val seconds = totalSeconds % 60
+    val mmss = "${minutes.toString().padStart(if (hours > 0) 2 else 1, '0')}:" +
+        seconds.toString().padStart(2, '0')
+    return if (hours > 0) "$hours:$mmss" else mmss
+}
+
 @Composable
 private fun Shortcut(
     icon: Painter,
@@ -214,6 +225,19 @@ private fun ContinueCard(video: YpVideo, onClick: () -> Unit) {
                 contentDescription = null,
                 contentScale = ContentScale.Crop
             )
+            if (video.durationSeconds > 0) {
+                Text(
+                    modifier = Modifier
+                        .align(Alignment.BottomEnd)
+                        .padding(end = 6.dp, bottom = 10.dp)
+                        .clip(RoundedCornerShape(6.dp))
+                        .background(Color(0xCC18141A))
+                        .padding(horizontal = 6.dp, vertical = 2.dp),
+                    text = formatDuration(video.durationSeconds),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = Color(0xFFF3EEE9)
+                )
+            }
             // ruby line for how much was watched
             Box(
                 modifier = Modifier

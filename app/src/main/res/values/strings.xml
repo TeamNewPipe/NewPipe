@@ -956,4 +956,6 @@
         <item quantity="one">%d video</item>
         <item quantity="other">%d videos</item>
     </plurals>
+    <string name="yp_feed_all">All</string>
+    <string name="yp_feed_add_group">+ Group</string>
 </resources>

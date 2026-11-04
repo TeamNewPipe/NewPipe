@@ -212,7 +212,7 @@
     <style name="TextAppearance.YewPlay.ToolbarTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:fontFamily">@font/bricolage_grotesque_bold</item>
         <item name="fontFamily">@font/bricolage_grotesque_bold</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">26sp</item>
         <item name="android:textColor">?attr/actionColor</item>
     </style>
 

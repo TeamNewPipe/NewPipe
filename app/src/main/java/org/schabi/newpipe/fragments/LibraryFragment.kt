@@ -24,6 +24,7 @@ import io.github.yewplay.feature.library.LibraryStrings
 import org.schabi.newpipe.BaseFragment
 import org.schabi.newpipe.R
 import org.schabi.newpipe.local.yewplay.YpLibraryRepository
+import org.schabi.newpipe.local.yewplay.YpThemePrefs
 import org.schabi.newpipe.util.NavigationHelper
 
 /**
@@ -44,14 +45,8 @@ class LibraryFragment : BaseFragment() {
     ): View {
         val context = requireContext()
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-        val themeKey = prefs.getString(
-            getString(R.string.theme_key),
-            getString(R.string.default_theme_value)
-        ) ?: getString(R.string.default_theme_value)
-        val nightThemeKey = prefs.getString(
-            getString(R.string.night_theme_key),
-            getString(R.string.default_night_theme_value)
-        ) ?: getString(R.string.default_night_theme_value)
+        val themeKey = YpThemePrefs.themeKey(context)
+        val nightThemeKey = YpThemePrefs.nightThemeKey(context)
         val historyEnabled = prefs.getBoolean(getString(R.string.enable_watch_history_key), true)
         val repository = YpLibraryRepository(context)
 
