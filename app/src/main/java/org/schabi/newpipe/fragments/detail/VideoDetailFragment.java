@@ -2428,12 +2428,12 @@ public final class VideoDetailFragment
             return;
         }
         final Description description = info.getDescription();
-        final String content = description == null ? null : description.getContent();
+        final String content = description == null ? null : description.content();
         if (isEmpty(content)) {
             preview.setVisibility(View.GONE);
             return;
         }
-        final String text = description.getType() == Description.HTML
+        final String text = description.type() == Description.Type.HTML
                 ? HtmlCompat.fromHtml(content, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
                 : content;
         binding.ypDetailDescriptionText.setText(text.trim());
