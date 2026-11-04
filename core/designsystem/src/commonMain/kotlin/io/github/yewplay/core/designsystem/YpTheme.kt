@@ -5,7 +5,9 @@
 package io.github.yewplay.core.designsystem
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import net.newpipe.app.theme.AppTheme
 import net.newpipe.app.theme.yewplayColorScheme
 
@@ -15,8 +17,9 @@ import net.newpipe.app.theme.yewplayColorScheme
  */
 @Composable
 fun YpTheme(themeKey: String, nightThemeKey: String, content: @Composable () -> Unit) {
-    AppTheme(
-        colorScheme = yewplayColorScheme(themeKey, nightThemeKey, isSystemInDarkTheme()),
-        content = content
-    )
+    val colorScheme = yewplayColorScheme(themeKey, nightThemeKey, isSystemInDarkTheme())
+    AppTheme(colorScheme = colorScheme) {
+        // screens hosted in fragments have no Surface, so give texts the theme's content color
+        CompositionLocalProvider(LocalContentColor provides colorScheme.onBackground, content = content)
+    }
 }

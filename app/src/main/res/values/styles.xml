@@ -37,6 +37,8 @@
         <item name="actionOverflowMenuStyle">@style/YewPlayOverflowMenu</item>
         <item name="popupMenuStyle">@style/YewPlayPopupMenu</item>
         <item name="toolbarStyle">@style/YewPlayToolbar</item>
+        <!-- taller top bar for the large screen titles (with room for a subtitle) -->
+        <item name="actionBarSize">64dp</item>
         <item name="colorSurface">@color/yp_surface</item>
         <item name="colorOnSurface">@color/yp_on_bg</item>
         <item name="colorSecondary">@color/yp_on_bg</item>
