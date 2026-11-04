@@ -12,7 +12,11 @@
         android:layout_alignParentTop="true"
         android:background="?attr/colorPrimary"
         app:tabGravity="fill"
+        app:tabMode="scrollable"
         app:tabMinWidth="48dp"
+        app:tabTextAppearance="@style/TextAppearance.YewPlay.Tab"
+        app:tabSelectedTextColor="@color/yp_on_bg"
+        app:tabTextColor="@color/yp_muted"
         app:tabPaddingStart="12dp"
         app:tabPaddingEnd="12dp" />
 

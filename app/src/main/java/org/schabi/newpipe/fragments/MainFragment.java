@@ -54,6 +54,7 @@ import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.ScrollableTabLayout;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -73,6 +74,10 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     private String mainTabsPositionKey;
     /** YewPlay: true when the home shows the kiosks of the current service as text tabs. */
     private boolean usingServiceKioskTabs = false;
+    private static final int YOUTUBE_SERVICE_ID = 0;
+    private static final String YOUTUBE_TRENDING_KIOSK = "Trending";
+    private static final List<String> HOME_KIOSK_ORDER = Arrays.asList("trending_music",
+            "trending_gaming", "trending_movies_and_shows", "trending_podcasts_episodes", "live");
 
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment's LifeCycle
@@ -226,17 +231,52 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             final int serviceId = ServiceHelper.getSelectedServiceId(requireContext());
             final StreamingService service = NewPipe.getService(serviceId);
             final String defaultKioskId = service.getKioskList().getDefaultKioskId();
-            kioskTabs.add(new Tab.KioskTab(serviceId, defaultKioskId));
+            final List<String> kioskIds = new ArrayList<>();
+            kioskIds.add(defaultKioskId);
+            // known YouTube kiosks first, in the order of the proposal
+            for (final String kioskId : HOME_KIOSK_ORDER) {
+                if (!kioskIds.contains(kioskId)
+                        && service.getKioskList().getAvailableKiosks().contains(kioskId)) {
+                    kioskIds.add(kioskId);
+                }
+            }
             for (final String kioskId : service.getKioskList().getAvailableKiosks()) {
-                if (!kioskId.equals(defaultKioskId)) {
+                if (!kioskIds.contains(kioskId)) {
+                    kioskIds.add(kioskId);
+                }
+            }
+            for (final String kioskId : kioskIds) {
+                // YouTube discontinued its combined trending page: that kiosk no longer loads
+                if (!(serviceId == YOUTUBE_SERVICE_ID && YOUTUBE_TRENDING_KIOSK.equals(kioskId))) {
                     kioskTabs.add(new Tab.KioskTab(serviceId, kioskId));
                 }
             }
         } catch (final ExtractionException | RuntimeException e) {
             return tabsManager.getTabs();
         }
+        if (kioskTabs.isEmpty()) {
+            return tabsManager.getTabs();
+        }
         usingServiceKioskTabs = true;
         return kioskTabs;
+    }
+
+    private String getShortKioskName(final Tab tab) {
+        if (tab instanceof Tab.KioskTab) {
+            switch (((Tab.KioskTab) tab).getKioskId()) {
+                case "trending_music":
+                    return getString(R.string.yp_kiosk_music);
+                case "trending_gaming":
+                    return getString(R.string.yp_kiosk_gaming);
+                case "trending_movies_and_shows":
+                    return getString(R.string.yp_kiosk_movies);
+                case "trending_podcasts_episodes":
+                    return getString(R.string.yp_kiosk_podcasts);
+                default:
+                    break;
+            }
+        }
+        return tab.getTabName(requireContext());
     }
 
     private void showServiceChooser() {
@@ -300,9 +340,9 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             final TabLayout.Tab tabToSet = binding.mainTabLayout.getTabAt(i);
             if (tabToSet != null) {
                 final Tab tab = tabsList.get(i);
-                // YewPlay: text tabs; the first kiosk of the service is "All"
-                final String name = usingServiceKioskTabs && i == 0
-                        ? getString(R.string.yp_home_all) : tab.getTabName(requireContext());
+                // YewPlay: short text tabs ("Music", "Gaming", ...)
+                final String name = usingServiceKioskTabs
+                        ? getShortKioskName(tab) : tab.getTabName(requireContext());
                 tabToSet.setIcon(null);
                 tabToSet.setText(name);
                 tabToSet.setContentDescription(name);

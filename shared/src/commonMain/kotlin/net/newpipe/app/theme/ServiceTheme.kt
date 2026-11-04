@@ -12,60 +12,60 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalInspectionMode
 import com.russhwolf.settings.Settings
 import net.newpipe.app.Constants.KEY_STREAMING_SERVICE
 import org.koin.compose.koinInject
 
+// YewPlay: the bars use the background color for every service; color never identifies the service
 val youTubeLightScheme = lightColorScheme(
-    primaryContainer = Color(0xFFE53935),
-    onPrimaryContainer = Color(0xFFFFFFFF)
+    primaryContainer = backgroundLight,
+    onPrimaryContainer = onBackgroundLight
 )
 
 val youTubeDarkScheme = darkColorScheme(
-    primaryContainer = Color(0xFF992722),
-    onPrimaryContainer = Color(0xFFFFFFFF)
+    primaryContainer = backgroundDark,
+    onPrimaryContainer = onBackgroundDark
 )
 
 val soundCloudLightScheme = lightColorScheme(
-    primaryContainer = Color(0xFFF57C00),
-    onPrimaryContainer = Color(0xFFFFFFFF)
+    primaryContainer = backgroundLight,
+    onPrimaryContainer = onBackgroundLight
 )
 
 val soundCloudDarkScheme = darkColorScheme(
-    primaryContainer = Color(0xFFA35300),
-    onPrimaryContainer = Color(0xFFFFFFFF)
+    primaryContainer = backgroundDark,
+    onPrimaryContainer = onBackgroundDark
 )
 
 val mediaCCCLightScheme = lightColorScheme(
-    primaryContainer = Color(0xFF9E9E9E),
-    onPrimaryContainer = Color(0xFFFFFFFF)
+    primaryContainer = backgroundLight,
+    onPrimaryContainer = onBackgroundLight
 )
 
 val mediaCCCDarkScheme = darkColorScheme(
-    primaryContainer = Color(0xFF878787),
-    onPrimaryContainer = Color(0xFFFFFFFF)
+    primaryContainer = backgroundDark,
+    onPrimaryContainer = onBackgroundDark
 )
 
 val peerTubeLightScheme = lightColorScheme(
-    primaryContainer = Color(0xFFFF6F00),
-    onPrimaryContainer = Color(0xFFFFFFFF)
+    primaryContainer = backgroundLight,
+    onPrimaryContainer = onBackgroundLight
 )
 
 val peerTubeDarkScheme = darkColorScheme(
-    primaryContainer = Color(0xFFA34700),
-    onPrimaryContainer = Color(0xFFFFFFFF)
+    primaryContainer = backgroundDark,
+    onPrimaryContainer = onBackgroundDark
 )
 
 val bandCampLightScheme = lightColorScheme(
-    primaryContainer = Color(0xFF17A0C4),
-    onPrimaryContainer = Color(0xFFFFFFFF)
+    primaryContainer = backgroundLight,
+    onPrimaryContainer = onBackgroundLight
 )
 
 val bandCampDarkScheme = darkColorScheme(
-    primaryContainer = Color(0xFF1383A1),
-    onPrimaryContainer = Color(0xFFFFFFFF)
+    primaryContainer = backgroundDark,
+    onPrimaryContainer = onBackgroundDark
 )
 
 /**

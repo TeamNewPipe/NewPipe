@@ -113,7 +113,8 @@ fun AboutPageContent(
                         BuildConfig.BASE_APP_NAME,
                         BuildConfig.BASE_VERSION_NAME
                     ),
-                    style = MaterialTheme.typography.titleMedium,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center
                 )
                 Text(

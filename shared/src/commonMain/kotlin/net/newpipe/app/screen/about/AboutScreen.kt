@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.ColorScheme
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SecondaryTabRow
 import androidx.compose.material3.Tab
@@ -78,7 +79,8 @@ fun AboutScreenContent(
                             selectedTabIndex = pagerState.currentPage,
                             matchContentSize = false
                         ),
-                        color = serviceScheme.onPrimaryContainer
+                        // YewPlay: the active tab is marked in ruby (a state color)
+                        color = MaterialTheme.colorScheme.tertiary
                     )
                 },
                 selectedTabIndex = pagerState.currentPage
@@ -89,7 +91,11 @@ fun AboutScreenContent(
                         text = {
                             Text(
                                 text = stringResource(page.localizedTitle),
-                                color = serviceScheme.onPrimaryContainer
+                                color = if (pagerState.currentPage == index) {
+                                    serviceScheme.onPrimaryContainer
+                                } else {
+                                    MaterialTheme.colorScheme.onSurfaceVariant
+                                }
                             )
                         },
                         onClick = {

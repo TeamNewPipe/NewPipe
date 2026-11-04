@@ -850,7 +850,7 @@
     <string name="yp_nav_search">Busca</string>
     <string name="yp_nav_subscriptions">Inscrições</string>
     <string name="yp_nav_library">Biblioteca</string>
-    <string name="yp_home_title">Em alta</string>
+    <string name="yp_home_title">Início</string>
     <string name="yp_home_all">Tudo</string>
     <string name="yp_choose_service">Escolher serviço</string>
     <string name="yp_library_history">Histórico</string>
@@ -872,4 +872,8 @@
     <string name="yp_empty_title">Nada por aqui ainda</string>
     <string name="yp_subscriptions_empty_title">Seus canais aparecem aqui</string>
     <string name="yp_subscriptions_empty_text">Inscreva-se em canais para receber os vídeos novos neste feed. Não precisa de conta. Para importar inscrições, use o menu ⋮.</string>
+    <string name="yp_kiosk_music">Música</string>
+    <string name="yp_kiosk_gaming">Jogos</string>
+    <string name="yp_kiosk_movies">Filmes</string>
+    <string name="yp_kiosk_podcasts">Podcasts</string>
 </resources>

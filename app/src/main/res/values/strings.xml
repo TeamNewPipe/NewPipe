@@ -910,7 +910,7 @@
     <string name="yp_nav_search">Search</string>
     <string name="yp_nav_subscriptions">Subscriptions</string>
     <string name="yp_nav_library">Library</string>
-    <string name="yp_home_title">Trending</string>
+    <string name="yp_home_title">Home</string>
     <string name="yp_home_all">All</string>
     <string name="yp_choose_service">Choose service</string>
     <string name="yp_library_history">History</string>
@@ -932,4 +932,8 @@
     <string name="yp_empty_title">Nothing here yet</string>
     <string name="yp_subscriptions_empty_title">Your channels show up here</string>
     <string name="yp_subscriptions_empty_text">Subscribe to channels to get their new videos in this feed. No account needed. To import subscriptions, use the ⋮ menu.</string>
+    <string name="yp_kiosk_music">Music</string>
+    <string name="yp_kiosk_gaming">Gaming</string>
+    <string name="yp_kiosk_movies">Movies</string>
+    <string name="yp_kiosk_podcasts">Podcasts</string>
 </resources>
