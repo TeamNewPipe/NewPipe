@@ -40,8 +40,7 @@
         android:layout_toEndOf="@+id/detail_pinned_view"
         android:ellipsize="end"
         android:lines="1"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="@dimen/comment_item_title_text_size"
+        android:textAppearance="@style/TextAppearance.YewPlay.ItemTitle"
         tools:text="Author Name, Lorem ipsum • 5 months ago" />
 
     <org.schabi.newpipe.views.NewPipeTextView

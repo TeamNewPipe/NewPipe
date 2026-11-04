@@ -106,9 +106,10 @@
         <item name="colorAccent">?attr/toolbarSearchColor</item>
     </style>
 
+    <!-- YewPlay: avatares em quadrado arredondado, não círculo -->
     <style name="CircularImageView">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">50%</item>
+        <item name="cornerSize">32%</item>
     </style>
 
 </resources>

@@ -1595,13 +1595,11 @@ public final class VideoDetailFragment
 
         if (info.getDuration() > 0) {
             binding.detailDurationView.setText(Localization.getDurationString(info.getDuration()));
-            binding.detailDurationView.setBackgroundColor(
-                    ContextCompat.getColor(activity, R.color.duration_background_color));
+            binding.detailDurationView.setBackgroundResource(R.drawable.yp_badge_duration);
             animate(binding.detailDurationView, true, 100);
         } else if (info.getStreamType() == StreamType.LIVE_STREAM) {
             binding.detailDurationView.setText(R.string.duration_live);
-            binding.detailDurationView.setBackgroundColor(
-                    ContextCompat.getColor(activity, R.color.live_duration_background_color));
+            binding.detailDurationView.setBackgroundResource(R.drawable.yp_badge_live);
             animate(binding.detailDurationView, true, 100);
         } else {
             binding.detailDurationView.setVisibility(View.GONE);

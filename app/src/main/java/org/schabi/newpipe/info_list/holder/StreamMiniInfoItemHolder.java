@@ -5,7 +5,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
@@ -57,8 +56,7 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
 
         if (item.getDuration() > 0) {
             itemDurationView.setText(Localization.getDurationString(item.getDuration()));
-            itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(),
-                    R.color.duration_background_color));
+            itemDurationView.setBackgroundResource(R.drawable.yp_badge_duration);
             itemDurationView.setVisibility(View.VISIBLE);
 
             StreamStateEntity state2 = null;
@@ -77,8 +75,7 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
             }
         } else if (StreamTypeUtil.isLiveStream(item.getStreamType())) {
             itemDurationView.setText(R.string.duration_live);
-            itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(),
-                    R.color.live_duration_background_color));
+            itemDurationView.setBackgroundResource(R.drawable.yp_badge_live);
             itemDurationView.setVisibility(View.VISIBLE);
             itemProgressView.setVisibility(View.GONE);
         } else {
