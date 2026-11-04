@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -18,16 +19,18 @@
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
+        android:minHeight="52dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp">
 
         <ImageView
             android:id="@+id/item_suggestion_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginRight="16dp"
+            app:tint="@color/yp_muted"
             tools:ignore="ContentDescription,RtlHardcoded"
             tools:src="@drawable/ic_history" />
 
@@ -38,8 +41,11 @@
             android:layout_gravity="center_vertical"
             android:ellipsize="end"
             android:maxLines="2"
+            android:fontFamily="@font/instrument_sans_regular"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="14sp"
+            android:textColor="@color/yp_on_bg"
+            android:textSize="15sp"
+            app:fontFamily="@font/instrument_sans_regular"
             tools:ignore="RtlHardcoded"
             tools:text="Search query" />
     </LinearLayout>
@@ -55,15 +61,16 @@
         android:clickable="true"
         android:focusable="true"
         android:paddingLeft="16dp"
-        android:paddingTop="10dp"
-        android:paddingRight="16dp"
-        android:paddingBottom="8dp">
+        android:paddingTop="16dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="16dp">
 
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center"
             android:src="@drawable/ic_search_add"
+            app:tint="@color/yp_muted"
             tools:ignore="ContentDescription,RtlHardcoded" />
     </LinearLayout>
 
