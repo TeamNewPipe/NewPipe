@@ -223,7 +223,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
         activity.supportActionBar?.setDisplayShowTitleEnabled(true)
         // YewPlay: the full feed is the "Subscriptions" destination of the bottom bar
-        if (groupName == null) {
+        if (groupName.isEmpty()) {
             activity.supportActionBar?.setTitle(R.string.yp_nav_subscriptions)
         } else {
             activity.supportActionBar?.setTitle(R.string.fragment_feed_title)
