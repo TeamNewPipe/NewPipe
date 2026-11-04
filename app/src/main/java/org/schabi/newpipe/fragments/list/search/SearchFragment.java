@@ -866,6 +866,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         if (theSearchString.isEmpty()) {
             return;
         }
+        // YewPlay: feature the first channel only when all result types are shown
+        infoListAdapter.setFeatureFirstChannel(theContentFilter == null
+                || theContentFilter.length == 0 || "all".equals(theContentFilter[0]));
 
         // Check if theSearchString is a URL which can be opened by NewPipe directly
         // and open it if possible.

@@ -18,6 +18,7 @@ import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.info_list.holder.ChannelCardInfoItemHolder;
+import org.schabi.newpipe.info_list.holder.ChannelFeaturedInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelGridInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelMiniInfoItemHolder;
@@ -74,6 +75,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int CHANNEL_HOLDER_TYPE = 0x201;
     private static final int GRID_CHANNEL_HOLDER_TYPE = 0x202;
     private static final int CARD_CHANNEL_HOLDER_TYPE = 0x203;
+    private static final int FEATURED_CHANNEL_HOLDER_TYPE = 0x204;
     private static final int MINI_PLAYLIST_HOLDER_TYPE = 0x300;
     private static final int PLAYLIST_HOLDER_TYPE = 0x301;
     private static final int GRID_PLAYLIST_HOLDER_TYPE = 0x302;
@@ -86,6 +88,8 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private final HistoryRecordManager recordManager;
 
     private boolean useMiniVariant = false;
+    /** YewPlay: show a channel in the first position as a featured card. */
+    private boolean featureFirstChannel = false;
     private boolean showFooter = false;
 
     private ItemViewMode itemMode = ItemViewMode.LIST;
@@ -113,6 +117,15 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public void setOnCommentsSelectedListener(final OnClickGesture<CommentsInfoItem> listener) {
         infoItemBuilder.setOnCommentsSelectedListener(listener);
+    }
+
+    /**
+     * YewPlay: show a channel in the first position of the list as a featured card.
+     *
+     * @param featureFirstChannel whether the first channel should be featured
+     */
+    public void setFeatureFirstChannel(final boolean featureFirstChannel) {
+        this.featureFirstChannel = featureFirstChannel;
     }
 
     public void setUseMiniVariant(final boolean useMiniVariant) {
@@ -249,7 +262,10 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     return STREAM_HOLDER_TYPE;
                 }
             case CHANNEL:
-                if (itemMode == ItemViewMode.CARD) {
+                if (featureFirstChannel && position == 0 && !useMiniVariant
+                        && itemMode != ItemViewMode.GRID) {
+                    return FEATURED_CHANNEL_HOLDER_TYPE;
+                } else if (itemMode == ItemViewMode.CARD) {
                     return CARD_CHANNEL_HOLDER_TYPE;
                 } else if (itemMode == ItemViewMode.GRID) {
                     return GRID_CHANNEL_HOLDER_TYPE;
@@ -310,6 +326,8 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 return new ChannelCardInfoItemHolder(infoItemBuilder, parent);
             case GRID_CHANNEL_HOLDER_TYPE:
                 return new ChannelGridInfoItemHolder(infoItemBuilder, parent);
+            case FEATURED_CHANNEL_HOLDER_TYPE:
+                return new ChannelFeaturedInfoItemHolder(infoItemBuilder, parent);
             case MINI_PLAYLIST_HOLDER_TYPE:
                 return new PlaylistMiniInfoItemHolder(infoItemBuilder, parent);
             case PLAYLIST_HOLDER_TYPE:
