@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- YewPlay: bloco da descrição recolhida na página do vídeo -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?attr/colorControlHighlight">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/yp_surface" />
+            <corners android:radius="12dp" />
+        </shape>
+    </item>
+</ripple>
