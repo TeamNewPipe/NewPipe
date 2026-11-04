@@ -106,6 +106,7 @@
             android:singleLine="true"
             android:textAppearance="@style/TextAppearance.YewPlay.ListenTitle"
             android:fontFamily="@font/bricolage_grotesque_bold"
+            app:fontFamily="@font/bricolage_grotesque_bold"
             tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec aliquam augue, eget cursus est. Ut id tristique enim, ut scelerisque tellus. Sed ultricies ipsum non mauris ultricies, commodo malesuada velit porta." />
 
         <LinearLayout
@@ -363,6 +364,7 @@
             android:text="1x"
             android:textAppearance="@style/TextAppearance.YewPlay.ItemTitle"
             android:fontFamily="@font/instrument_sans_semibold"
+            app:fontFamily="@font/instrument_sans_semibold"
             tools:ignore="HardcodedText" />
 
         <ImageButton

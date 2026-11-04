@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- YewPlay: Biblioteca, que reúne tudo o que é do usuário -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -25,7 +26,8 @@
         android:paddingBottom="4dp"
         android:text="@string/yp_library_your_playlists"
         android:textAppearance="@style/TextAppearance.YewPlay.SectionTitle"
-        android:fontFamily="@font/bricolage_grotesque_bold" />
+        android:fontFamily="@font/bricolage_grotesque_bold"
+        app:fontFamily="@font/bricolage_grotesque_bold" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/yp_library_playlists"

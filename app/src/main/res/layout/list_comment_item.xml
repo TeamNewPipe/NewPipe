@@ -42,6 +42,7 @@
         android:lines="1"
         android:textAppearance="@style/TextAppearance.YewPlay.ItemTitle"
         android:fontFamily="@font/instrument_sans_semibold"
+        app:fontFamily="@font/instrument_sans_semibold"
         tools:text="Author Name, Lorem ipsum • 5 months ago" />
 
     <org.schabi.newpipe.views.NewPipeTextView

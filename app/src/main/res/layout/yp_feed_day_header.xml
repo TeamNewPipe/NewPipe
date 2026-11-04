@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- YewPlay: título de grupo do feed de inscrições ("Hoje", "Ontem", ...) -->
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/yp_day_header_title"
     android:layout_width="match_parent"
@@ -10,4 +11,5 @@
     android:paddingBottom="4dp"
     android:textAppearance="@style/TextAppearance.YewPlay.SectionTitle"
     android:fontFamily="@font/bricolage_grotesque_bold"
+    app:fontFamily="@font/bricolage_grotesque_bold"
     tools:text="Hoje" />

@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 
@@ -27,6 +28,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapterMenuWorkaround;
@@ -261,6 +263,25 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         return kioskTabs;
     }
 
+    /**
+     * YewPlay: the tab layout ignores the text appearance for caps and font, so the label is
+     * styled directly: sentence case, a single line and Instrument Sans SemiBold.
+     *
+     * @param tab the tab whose label is styled
+     */
+    private void styleTabText(@NonNull final TabLayout.Tab tab) {
+        final ViewGroup tabView = tab.view;
+        for (int i = 0; i < tabView.getChildCount(); i++) {
+            if (tabView.getChildAt(i) instanceof TextView) {
+                final TextView label = (TextView) tabView.getChildAt(i);
+                label.setAllCaps(false);
+                label.setSingleLine(true);
+                label.setTypeface(ResourcesCompat.getFont(requireContext(),
+                        R.font.instrument_sans_semibold));
+            }
+        }
+    }
+
     private String getShortKioskName(final Tab tab) {
         if (tab instanceof Tab.KioskTab) {
             switch (((Tab.KioskTab) tab).getKioskId()) {
@@ -346,6 +367,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 tabToSet.setIcon(null);
                 tabToSet.setText(name);
                 tabToSet.setContentDescription(name);
+                styleTabText(tabToSet);
             }
         }
     }

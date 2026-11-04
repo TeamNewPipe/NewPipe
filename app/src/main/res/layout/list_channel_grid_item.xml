@@ -32,6 +32,7 @@
         android:lines="1"
         android:textAppearance="@style/TextAppearance.YewPlay.ItemTitle"
         android:fontFamily="@font/instrument_sans_semibold"
+        app:fontFamily="@font/instrument_sans_semibold"
         tools:ignore="RtlHardcoded"
         tools:text="Channel Title, Lorem ipsum" />
 

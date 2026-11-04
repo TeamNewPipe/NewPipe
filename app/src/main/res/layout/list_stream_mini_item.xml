@@ -41,6 +41,7 @@
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.YewPlay.Badge"
         android:fontFamily="@font/instrument_sans_semibold"
+        app:fontFamily="@font/instrument_sans_semibold"
         tools:ignore="RtlHardcoded"
         tools:text="1:09:10" />
 
@@ -56,6 +57,7 @@
         android:maxLines="2"
         android:textAppearance="@style/TextAppearance.YewPlay.ItemTitle"
         android:fontFamily="@font/instrument_sans_semibold"
+        app:fontFamily="@font/instrument_sans_semibold"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum" />
 
     <org.schabi.newpipe.views.NewPipeTextView

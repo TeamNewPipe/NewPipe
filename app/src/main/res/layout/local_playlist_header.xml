@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -19,6 +20,7 @@
         android:paddingBottom="6dp"
         android:textAppearance="@style/TextAppearance.YewPlay.ScreenTitle"
         android:fontFamily="@font/bricolage_grotesque_bold"
+        app:fontFamily="@font/bricolage_grotesque_bold"
         android:textSize="@dimen/playlist_detail_title_text_size"
         tools:text="Mix musics #23 title Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum" />
 

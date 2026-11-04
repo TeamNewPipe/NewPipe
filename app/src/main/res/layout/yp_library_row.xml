@@ -28,6 +28,7 @@
         android:layout_weight="1"
         android:textAppearance="@style/TextAppearance.YewPlay.ItemTitle"
         android:fontFamily="@font/instrument_sans_semibold"
+        app:fontFamily="@font/instrument_sans_semibold"
         tools:text="Histórico" />
 
     <ImageView

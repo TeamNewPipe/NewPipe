@@ -26,7 +26,8 @@
         android:gravity="center"
         android:text="@string/yp_empty_title"
         android:textAppearance="@style/TextAppearance.YewPlay.SectionTitle"
-        android:fontFamily="@font/bricolage_grotesque_bold" />
+        android:fontFamily="@font/bricolage_grotesque_bold"
+        app:fontFamily="@font/bricolage_grotesque_bold" />
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:layout_width="wrap_content"
