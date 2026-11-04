@@ -859,4 +859,14 @@
     <string name="yp_library_your_playlists">Suas playlists</string>
     <string name="yp_library_settings">Configurações</string>
     <string name="yp_subscriptions_channels">Canais</string>
+    <string name="yp_settings_group_playback">Reprodução</string>
+    <string name="yp_settings_group_personalization">Personalização</string>
+    <string name="yp_settings_group_your_data">Seus dados</string>
+    <string name="yp_settings_video_audio_summary">Qualidade padrão, segundo plano e janela</string>
+    <string name="yp_settings_downloads_summary">Pasta, formato e downloads simultâneos</string>
+    <string name="yp_settings_appearance_summary">Tema e tamanho da lista</string>
+    <string name="yp_settings_content_summary">Idioma, região e serviços</string>
+    <string name="yp_settings_notifications_summary">Avisos de vídeos novos das inscrições</string>
+    <string name="yp_settings_history_summary">Pesquisas, reproduções e espaço usado</string>
+    <string name="yp_settings_backup_summary">Exportar inscrições e configurações</string>
 </resources>

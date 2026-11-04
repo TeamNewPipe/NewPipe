@@ -122,7 +122,7 @@
     <dimen name="playlist_ctrl_height">50dp</dimen>
     <dimen name="playlist_ctrl_separator_margin">10dp</dimen>
     <!-- Text Size -->
-    <dimen name="playlist_detail_title_text_size">16sp</dimen>
+    <dimen name="playlist_detail_title_text_size">26sp</dimen>
     <dimen name="playlist_detail_subtext_size">12sp</dimen>
     <!-- Elements Size -->
     <dimen name="playlist_detail_uploader_image_size">24dp</dimen>

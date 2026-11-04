@@ -97,15 +97,15 @@
     <color name="selected_background_color">#662C262F</color>
 
     <!-- GigaGet theme -->
-    <color name="bluegray">#607D8B</color>
+    <color name="bluegray">@color/yp_surface</color>
 
     <!-- GigaGet download Theme colors -->
-    <color name="audio_left_to_load_color">#669C9399</color>
-    <color name="audio_already_load_color">@color/yp_cinza_quente</color>
-    <color name="video_left_to_load_color">#66E0364F</color>
-    <color name="video_already_load_color">@color/yp_rubi</color>
-    <color name="subtitle_left_to_load_color">#662C262F</color>
-    <color name="subtitle_already_load_color">@color/yp_fumaca</color>
+    <color name="audio_left_to_load_color">@color/yp_surface</color>
+    <color name="audio_already_load_color">@color/yp_surface_2</color>
+    <color name="video_left_to_load_color">@color/yp_surface</color>
+    <color name="video_already_load_color">@color/yp_surface_2</color>
+    <color name="subtitle_left_to_load_color">@color/yp_surface</color>
+    <color name="subtitle_already_load_color">@color/yp_surface_2</color>
 
     <!-- GigaGet Component colors -->
     <color name="white">#FFFFFF</color>

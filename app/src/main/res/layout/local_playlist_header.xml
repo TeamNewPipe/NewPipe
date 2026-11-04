@@ -17,7 +17,7 @@
         android:paddingHorizontal="@dimen/video_item_search_padding"
         android:paddingTop="@dimen/video_item_search_padding"
         android:paddingBottom="6dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="@style/TextAppearance.YewPlay.ScreenTitle"
         android:textSize="@dimen/playlist_detail_title_text_size"
         tools:text="Mix musics #23 title Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum" />
 

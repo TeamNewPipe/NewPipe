@@ -50,6 +50,8 @@
         <!-- mantém os widgets AppCompat; os componentes Material são usados só onde pedidos -->
         <item name="viewInflaterClass">androidx.appcompat.app.AppCompatViewInflater</item>
         <item name="buttonStyle">@style/YewPlayAppCompatButton</item>
+        <item name="preferenceCategoryTitleTextColor">@color/yp_muted</item>
+        <item name="preferenceCategoryTitleTextAppearance">@style/TextAppearance.YewPlay.PreferenceCategory</item>
         <item name="android:buttonStyle">@style/YewPlayAppCompatButton</item>
     </style>
     <style name="Base" parent="Base.V21"/>
@@ -414,6 +416,19 @@
         <item name="android:fontFamily">@font/instrument_sans_medium</item>
         <item name="fontFamily">@font/instrument_sans_medium</item>
         <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+
+    <style name="TextAppearance.YewPlay.PreferenceCategory" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/instrument_sans_semibold</item>
+        <item name="fontFamily">@font/instrument_sans_semibold</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="TextAppearance.YewPlay.ChannelTitle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/bricolage_grotesque_bold</item>
+        <item name="fontFamily">@font/bricolage_grotesque_bold</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
     <!-- Settings -->

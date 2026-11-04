@@ -7,6 +7,8 @@
     <string name="tab_about">Sobre &amp; Perguntas Frequentes</string>
     <string name="tab_licenses">Licenças</string>
     <string name="app_version_based_on">Versão %1$s · Baseado no %2$s %3$s</string>
+    <string name="yp_about_summary">Livre e sem anúncios. O código é aberto sob a licença GPLv3 e o app não exige conta nem coleta seus dados.</string>
+    <string name="yp_about_credits">O YewPlay é feito a partir do NewPipe. Obrigado à equipe e a todos os colaboradores do projeto original.</string>
     <string name="app_description">Streaming leve e gratuito no Android.</string>
     <string name="contribution_title">Contribuir</string>
     <string name="contribution_encouragement">Caso você tenha ideias; tradução, alterações de design, limpeza de código ou alterações realmente pesadas de código, a ajuda é sempre bem-vinda. Quanto mais for feito, melhor será!</string>

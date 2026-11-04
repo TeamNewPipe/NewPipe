@@ -22,6 +22,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -60,6 +61,8 @@ import newpipe.shared.generated.resources.read_privacy_policy
 import newpipe.shared.generated.resources.view_on_github
 import newpipe.shared.generated.resources.website_encouragement
 import newpipe.shared.generated.resources.website_title
+import newpipe.shared.generated.resources.yp_about_credits
+import newpipe.shared.generated.resources.yp_about_summary
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
@@ -100,7 +103,7 @@ fun AboutPageContent(
                 Spacer(modifier = Modifier.height(spaceXSmall))
                 Text(
                     text = BuildConfig.APP_NAME,
-                    style = MaterialTheme.typography.titleLarge,
+                    style = MaterialTheme.typography.headlineMedium,
                     textAlign = TextAlign.Center
                 )
                 Text(
@@ -121,11 +124,40 @@ fun AboutPageContent(
             }
         }
 
+        // YewPlay: the license summed up in one sentence
+        item {
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = spaceLarge),
+                shape = MaterialTheme.shapes.medium,
+                color = MaterialTheme.colorScheme.surfaceContainer
+            ) {
+                Text(
+                    modifier = Modifier.padding(spaceLarge),
+                    text = stringResource(Res.string.yp_about_summary),
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
+        }
+
         // Links about NewPipe
         items(items = links, key = { link -> link.url }) { link ->
             LinkListItem(
                 link = link,
                 onAction = { onOpenUrl(link.url) }
+            )
+        }
+
+        // YewPlay: credits to the original project
+        item {
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(spaceLarge),
+                text = stringResource(Res.string.yp_about_credits),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
     }

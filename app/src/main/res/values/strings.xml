@@ -919,4 +919,14 @@
     <string name="yp_library_your_playlists">Your playlists</string>
     <string name="yp_library_settings">Settings</string>
     <string name="yp_subscriptions_channels">Channels</string>
+    <string name="yp_settings_group_playback">Playback</string>
+    <string name="yp_settings_group_personalization">Personalization</string>
+    <string name="yp_settings_group_your_data">Your data</string>
+    <string name="yp_settings_video_audio_summary">Default quality, background and window</string>
+    <string name="yp_settings_downloads_summary">Folder, format and simultaneous downloads</string>
+    <string name="yp_settings_appearance_summary">Theme and list layout</string>
+    <string name="yp_settings_content_summary">Language, region and services</string>
+    <string name="yp_settings_notifications_summary">Alerts for new videos from your subscriptions</string>
+    <string name="yp_settings_history_summary">Searches, playback and space used</string>
+    <string name="yp_settings_backup_summary">Export subscriptions and settings</string>
 </resources>
