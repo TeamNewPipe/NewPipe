@@ -15,6 +15,7 @@ plugins {
     alias(libs.plugins.sonarqube)
     alias(libs.plugins.about.libraries)
     alias(libs.plugins.androidx.room)
+    alias(libs.plugins.jetbrains.kotlin.compose)
     checkstyle
 }
 
@@ -221,6 +222,14 @@ dependencies {
 
     // NewPipe libraries
     implementation(projects.shared)
+
+    // YewPlay modules and Compose for the redesigned screens
+    implementation(projects.core.data)
+    implementation(projects.core.designsystem)
+    implementation(libs.jetbrains.compose.foundation)
+    implementation(libs.jetbrains.compose.material3)
+    implementation(libs.jetbrains.compose.runtime)
+    implementation(libs.jetbrains.compose.ui)
     implementation(libs.newpipe.nanojson)
     implementation(libs.newpipe.extractor)
     implementation(libs.newpipe.filepicker)
