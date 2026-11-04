@@ -22,6 +22,7 @@
             android:layout_weight="1"
             android:background="?attr/colorPrimary"
             android:theme="@style/ToolbarTheme"
+            app:titleTextAppearance="@style/TextAppearance.YewPlay.ToolbarTitle.Small"
             app:layout_scrollFlags="scroll|enterAlways"
             app:title="@string/app_name" />
 
@@ -158,6 +159,8 @@
         <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/current_time"
             android:layout_width="wrap_content"
+            android:maxLines="1"
+            android:minWidth="44dp"
             android:layout_height="match_parent"
             android:gravity="center"
             android:minHeight="40dp"
@@ -183,6 +186,8 @@
         <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/end_time"
             android:layout_width="wrap_content"
+            android:maxLines="1"
+            android:minWidth="44dp"
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="-:--:--"
@@ -247,6 +252,7 @@
         <ImageButton
             android:id="@+id/control_fast_rewind"
             android:layout_width="40dp"
+            android:visibility="gone"
             android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
@@ -298,6 +304,7 @@
         <ImageButton
             android:id="@+id/control_fast_forward"
             android:layout_width="40dp"
+            android:visibility="gone"
             android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"

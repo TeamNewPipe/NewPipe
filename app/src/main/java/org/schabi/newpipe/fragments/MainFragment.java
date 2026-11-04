@@ -12,8 +12,6 @@ import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,7 +19,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 
@@ -30,7 +27,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapterMenuWorkaround;
@@ -55,6 +51,7 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.YpTabs;
 import org.schabi.newpipe.views.ScrollableTabLayout;
 
 import java.util.ArrayList;
@@ -265,27 +262,6 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         return kioskTabs;
     }
 
-    /**
-     * YewPlay: the tab layout re-applies its own text style (caps, two lines), so each label is
-     * a custom view: sentence case, a single line and Instrument Sans SemiBold.
-     *
-     * @param tab  the tab whose label is set
-     * @param name the label
-     */
-    private void styleTabText(@NonNull final TabLayout.Tab tab, @NonNull final String name) {
-        final TextView label = new TextView(requireContext());
-        label.setText(name);
-        label.setAllCaps(false);
-        label.setSingleLine(true);
-        label.setGravity(Gravity.CENTER);
-        label.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
-        label.setTypeface(ResourcesCompat.getFont(requireContext(),
-                R.font.instrument_sans_semibold));
-        label.setTextColor(ContextCompat.getColorStateList(requireContext(),
-                R.color.yp_tab_text));
-        tab.setCustomView(label);
-    }
-
     private String getShortKioskName(final Tab tab) {
         if (tab instanceof Tab.KioskTab) {
             switch (((Tab.KioskTab) tab).getKioskId()) {
@@ -371,7 +347,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 tabToSet.setIcon(null);
                 tabToSet.setText(name);
                 tabToSet.setContentDescription(name);
-                styleTabText(tabToSet, name);
+                YpTabs.setLabel(tabToSet, name);
             }
         }
     }

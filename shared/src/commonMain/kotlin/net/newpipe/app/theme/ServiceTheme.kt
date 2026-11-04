@@ -7,6 +7,7 @@ package net.newpipe.app.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ColorScheme
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.darkColorScheme
@@ -152,12 +153,14 @@ fun currentServiceScheme(
 fun currentServiceTopAppBarColors(
     serviceScheme: ColorScheme = currentServiceScheme()
 ): TopAppBarColors {
+    // YewPlay: bars follow the theme chosen in the app (not the system), for every service
+    val colors = MaterialTheme.colorScheme
     return TopAppBarDefaults.topAppBarColors(
-        containerColor = serviceScheme.primaryContainer,
-        scrolledContainerColor = serviceScheme.primaryContainer,
-        navigationIconContentColor = serviceScheme.onPrimaryContainer,
-        titleContentColor = serviceScheme.onPrimaryContainer,
-        subtitleContentColor = serviceScheme.onPrimaryContainer,
-        actionIconContentColor = serviceScheme.onPrimaryContainer
+        containerColor = colors.background,
+        scrolledContainerColor = colors.background,
+        navigationIconContentColor = colors.onBackground,
+        titleContentColor = colors.onBackground,
+        subtitleContentColor = colors.onSurfaceVariant,
+        actionIconContentColor = colors.onBackground
     )
 }

@@ -114,6 +114,11 @@ public final class PlayQueueActivity extends AppCompatActivity
         setContentView(queueControlBinding.getRoot());
 
         setSupportActionBar(queueControlBinding.toolbar);
+        // YewPlay: flat, transparent top bar on the "Listen" screen
+        queueControlBinding.toolbar.setBackgroundColor(Color.TRANSPARENT);
+        queueControlBinding.appbar.setBackgroundColor(Color.TRANSPARENT);
+        queueControlBinding.appbar.setElevation(0f);
+        queueControlBinding.appbar.setStateListAnimator(null);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle(R.string.title_activity_play_queue);
@@ -353,6 +358,7 @@ public final class PlayQueueActivity extends AppCompatActivity
         queueControlBinding.toolbar.setBackgroundColor(Color.TRANSPARENT);
         queueControlBinding.appbar.setBackgroundColor(Color.TRANSPARENT);
         queueControlBinding.appbar.setElevation(0f);
+        queueControlBinding.appbar.setStateListAnimator(null);
     }
 
     /**

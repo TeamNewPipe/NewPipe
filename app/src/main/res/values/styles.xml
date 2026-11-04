@@ -218,6 +218,10 @@
         <item name="android:textColor">?attr/actionColor</item>
     </style>
 
+    <style name="TextAppearance.YewPlay.ToolbarTitle.Small">
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <style name="TextAppearance.YewPlay.ToolbarSubtitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
         <item name="android:fontFamily">@font/instrument_sans_regular</item>
         <item name="android:textSize">13sp</item>

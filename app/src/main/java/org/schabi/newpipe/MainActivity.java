@@ -51,6 +51,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
@@ -836,6 +838,18 @@ public class MainActivity extends AppCompatActivity {
         });
         getSupportFragmentManager().addOnBackStackChangedListener(() -> syncBottomNavigation(
                 getSupportFragmentManager().findFragmentById(R.id.fragment_holder)));
+
+        // hide the bar while the keyboard is open (e.g. while typing a search)
+        mainBinding.getRoot().getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+            final WindowInsetsCompat insets =
+                    ViewCompat.getRootWindowInsets(mainBinding.getRoot());
+            final boolean keyboardOpen = insets != null
+                    && insets.isVisible(WindowInsetsCompat.Type.ime());
+            final int visibility = keyboardOpen ? View.GONE : View.VISIBLE;
+            if (bottomNav.getVisibility() != visibility) {
+                bottomNav.setVisibility(visibility);
+            }
+        });
 
         final BottomSheetBehavior<FragmentContainerView> behavior =
                 BottomSheetBehavior.from(mainBinding.fragmentPlayerHolder);

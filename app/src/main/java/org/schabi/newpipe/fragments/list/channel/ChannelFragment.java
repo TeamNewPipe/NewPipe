@@ -51,6 +51,7 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.YpTabs;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.image.CoilHelper;
 import org.schabi.newpipe.util.image.ImageStrategy;
@@ -491,7 +492,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
         tabAdapter.notifyDataSetUpdate();
 
         for (int i = 0; i < tabAdapter.getCount(); i++) {
-            binding.tabLayout.getTabAt(i).setText(tabAdapter.getItemTitle(i));
+            YpTabs.setLabel(binding.tabLayout.getTabAt(i), tabAdapter.getItemTitle(i));
         }
 
         // Restore previously selected tab

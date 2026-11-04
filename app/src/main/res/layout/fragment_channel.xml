@@ -150,10 +150,11 @@
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
             app:tabGravity="fill"
-            app:tabIndicatorColor="@color/white"
+            app:tabIndicatorColor="@color/yp_state"
             app:tabMode="scrollable"
-            app:tabRippleColor="@color/white"
-            app:tabTextColor="@color/white" />
+            app:tabRippleColor="@color/light_ripple_color"
+            app:tabSelectedTextColor="@color/yp_on_bg"
+            app:tabTextColor="@color/yp_muted" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager"
