@@ -2388,10 +2388,8 @@ public final class VideoDetailFragment
         if (subscriptionManager == null) {
             subscriptionManager = new SubscriptionManager(requireContext());
         }
-        final int serviceId = info.getServiceId();
-        final String url = info.getUploaderUrl();
         subscriptionDisposable = subscriptionManager.subscriptionTable()
-                .getSubscriptionFlowable(serviceId, url)
+                .getSubscriptionFlowable(info.getServiceId(), info.getUploaderUrl())
                 .map(List::isEmpty)
                 .distinctUntilChanged()
                 .observeOn(AndroidSchedulers.mainThread())
