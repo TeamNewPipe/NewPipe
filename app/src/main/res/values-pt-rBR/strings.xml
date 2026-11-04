@@ -17,7 +17,7 @@
     <string name="delete">Excluir</string>
     <string name="detail_dislikes_img_view_description">Não gostei</string>
     <string name="detail_likes_img_view_description">Curtidas</string>
-    <string name="download">Download</string>
+    <string name="download">Baixar</string>
     <string name="download_dialog_title">Download</string>
     <string name="error_details_headline">Detalhes:</string>
     <string name="error_report_button_text">Relatar por e-mail</string>
@@ -92,8 +92,8 @@
     <string name="disabled">Desativado</string>
     <string name="msg_popup_permission">Essa permissão é necessária \npara abrir em modo Popup</string>
     <string name="clear">Limpar</string>
-    <string name="controls_popup_title">Popup</string>
-    <string name="controls_background_title">Segundo plano</string>
+    <string name="controls_popup_title">Janela</string>
+    <string name="controls_background_title">Ouvir</string>
     <string name="popup_remember_size_pos_title">Lembrar das propriedades do pop-up</string>
     <string name="popup_remember_size_pos_summary">Lembrar do último tamanho e posição do pop-up</string>
     <string name="use_external_video_player_summary">Remove áudio em algumas resoluções</string>
@@ -214,7 +214,7 @@
     <string name="controls_download_desc">Salvar arquivo para reprodução sem internet</string>
     <string name="show_info">Mostrar informações</string>
     <string name="tab_bookmarks">Playlists favoritas</string>
-    <string name="controls_add_to_playlist_title">Adicionar a</string>
+    <string name="controls_add_to_playlist_title">Salvar</string>
     <string name="detail_drag_description">Arraste para ordenar</string>
     <string name="create">Criar</string>
     <string name="dismiss">Descartar</string>

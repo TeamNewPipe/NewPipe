@@ -9,6 +9,8 @@
     <dimen name="yp_bottom_bar_margin">12dp</dimen>
     <!-- altura da barra + margem inferior: espaço reservado no fim das telas -->
     <dimen name="yp_bottom_bar_space">76dp</dimen>
+    <!-- YewPlay: capa da tela Ouvir -->
+    <dimen name="yp_listen_cover_size">200dp</dimen>
     <!-- Common dimensions -->
     <dimen name="margin_normal">16dp</dimen>
     <dimen name="margin_small">8dp</dimen>
@@ -77,7 +79,7 @@
 
     <!-- Video Item Detail View Dimensions-->
     <!-- Text Size -->
-    <dimen name="video_item_detail_title_text_size">15sp</dimen>
+    <dimen name="video_item_detail_title_text_size">19sp</dimen>
     <dimen name="video_item_detail_views_text_size">13sp</dimen>
     <dimen name="video_item_detail_likes_text_size">12sp</dimen>
     <dimen name="video_item_detail_uploader_text_size">12sp</dimen>
@@ -102,7 +104,7 @@
     <dimen name="video_item_detail_heart_margin">5dp</dimen>
     <dimen name="video_item_detail_error_panel_margin">50dp</dimen>
     <!-- Control panel -->
-    <dimen name="detail_control_text_size">12sp</dimen>
+    <dimen name="detail_control_text_size">12.5sp</dimen>
     <dimen name="detail_control_width">80dp</dimen>
     <dimen name="detail_control_height">55dp</dimen>
     <dimen name="detail_control_padding">6dp</dimen>

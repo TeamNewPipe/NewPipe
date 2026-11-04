@@ -377,6 +377,45 @@
         <item name="android:textSize">11sp</item>
     </style>
 
+    <!-- YewPlay: player -->
+    <style name="YewPlaySeekBar" parent="Widget.AppCompat.SeekBar">
+        <item name="android:progressTint">@color/yp_state</item>
+        <item name="android:thumbTint">@color/yp_state</item>
+        <item name="android:progressBackgroundTint">@color/yp_muted</item>
+        <item name="android:secondaryProgressTint">@color/yp_muted</item>
+    </style>
+
+    <style name="YewPlaySeekBar.OnVideo">
+        <item name="android:progressTint">@color/yp_rubi</item>
+        <item name="android:thumbTint">@color/yp_rubi</item>
+        <item name="android:progressBackgroundTint">#66F3EEE9</item>
+        <item name="android:secondaryProgressTint">#99F3EEE9</item>
+    </style>
+
+    <style name="YewPlayShape.ListenCover" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">22dp</item>
+    </style>
+
+    <style name="TextAppearance.YewPlay.ListenTitle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/bricolage_grotesque_bold</item>
+        <item name="fontFamily">@font/bricolage_grotesque_bold</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <style name="TextAppearance.YewPlay.DetailTitle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/bricolage_grotesque_bold</item>
+        <item name="fontFamily">@font/bricolage_grotesque_bold</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <style name="TextAppearance.YewPlay.ActionLabel" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/instrument_sans_medium</item>
+        <item name="fontFamily">@font/instrument_sans_medium</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+
     <!-- Settings -->
     <style name="LightSettingsTheme" parent="LightTheme">
         <item name="colorAccent">@color/light_settings_accent_color</item>

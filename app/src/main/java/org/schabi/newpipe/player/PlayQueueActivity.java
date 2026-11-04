@@ -46,6 +46,7 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.image.CoilHelper;
 
 import java.util.List;
 import java.util.Optional;
@@ -539,6 +540,11 @@ public final class PlayQueueActivity extends AppCompatActivity
         if (info != null) {
             queueControlBinding.songName.setText(info.getName());
             queueControlBinding.artistName.setText(info.getUploaderName());
+            // YewPlay: large cover on the "Listen" screen (portrait layout only)
+            if (queueControlBinding.ypCover != null) {
+                CoilHelper.INSTANCE.loadDetailsThumbnail(queueControlBinding.ypCover,
+                        info.getThumbnails());
+            }
 
             queueControlBinding.endTime.setVisibility(View.GONE);
             queueControlBinding.liveSync.setVisibility(View.GONE);

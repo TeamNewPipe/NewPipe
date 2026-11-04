@@ -31,7 +31,7 @@
         android:id="@+id/play_queue"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/metadata"
+        android:layout_above="@id/yp_cover"
         android:layout_below="@id/appbar"
         android:scrollbars="vertical"
         app:layoutManager="LinearLayoutManager"
@@ -56,6 +56,20 @@
         tools:text="1:06:29"
         tools:visibility="visible" />
 
+    <!-- YewPlay: capa grande do que está tocando -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/yp_cover"
+        android:layout_width="@dimen/yp_listen_cover_size"
+        android:layout_height="@dimen/yp_listen_cover_size"
+        android:layout_above="@id/metadata"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
+        android:importantForAccessibility="no"
+        android:scaleType="centerCrop"
+        android:src="@drawable/placeholder_thumbnail_video"
+        app:shapeAppearanceOverlay="@style/YewPlayShape.ListenCover" />
+
     <LinearLayout
         android:id="@+id/metadata"
         android:layout_width="match_parent"
@@ -65,7 +79,8 @@
         android:clickable="true"
         android:focusable="true"
         android:orientation="vertical"
-        android:padding="8dp"
+        android:paddingHorizontal="@dimen/yp_screen_margin"
+        android:paddingVertical="8dp"
         tools:ignore="RtlHardcoded,RtlSymmetry">
 
         <org.schabi.newpipe.views.NewPipeTextView
@@ -77,8 +92,7 @@
             android:marqueeRepeatLimit="marquee_forever"
             android:scrollHorizontally="true"
             android:singleLine="true"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="14sp"
+            android:textAppearance="@style/TextAppearance.YewPlay.ListenTitle"
             tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec aliquam augue, eget cursus est. Ut id tristique enim, ut scelerisque tellus. Sed ultricies ipsum non mauris ultricies, commodo malesuada velit porta." />
 
         <LinearLayout
@@ -99,8 +113,7 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="12sp"
+                android:textAppearance="@style/TextAppearance.YewPlay.Meta"
                 tools:text="Duis posuere arcu condimentum lobortis mattis." />
 
             <!-- Play queue progress / total duration -->
@@ -135,14 +148,14 @@
             android:gravity="center"
             android:minHeight="40dp"
             android:text="-:--:--"
-            android:textColor="?attr/colorAccent"
+            android:textColor="?android:attr/textColorSecondary"
             tools:ignore="HardcodedText"
             tools:text="1:06:29" />
 
 
         <androidx.appcompat.widget.AppCompatSeekBar
             android:id="@+id/seek_bar"
-            style="@style/Widget.AppCompat.SeekBar"
+            style="@style/YewPlaySeekBar"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -159,7 +172,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="-:--:--"
-            android:textColor="?attr/colorAccent"
+            android:textColor="?android:attr/textColorSecondary"
             tools:ignore="HardcodedText"
             tools:text="1:23:49" />
 
@@ -173,7 +186,7 @@
             android:paddingRight="4dp"
             android:text="@string/duration_live"
             android:textAllCaps="true"
-            android:textColor="?attr/colorAccent"
+            android:textColor="@color/yp_state"
             android:visibility="gone" />
     </LinearLayout>
 
@@ -204,8 +217,8 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/control_backward"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:layout_toLeftOf="@+id/control_fast_rewind"
@@ -233,25 +246,26 @@
 
         <ImageButton
             android:id="@+id/control_play_pause"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:background="@drawable/yp_play_circle"
             android:clickable="true"
             android:focusable="true"
+            android:padding="18dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_pause"
-            app:tint="?attr/colorAccent"
+            app:tint="@color/yp_on_action"
             tools:ignore="ContentDescription" />
 
         <ProgressBar
             android:id="@+id/control_progress_bar"
             style="?android:attr/progressBarStyleLargeInverse"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_centerInParent="true"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
@@ -283,8 +297,8 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/control_forward"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"
             android:layout_toRightOf="@+id/control_fast_forward"
