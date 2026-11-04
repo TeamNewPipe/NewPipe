@@ -19,7 +19,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       pull-requests: write
 
     steps:
@@ -93,3 +93,28 @@ jobs:
           } > comment.md
           head -c 60000 comment.md > comment_trim.md
           gh pr comment "$PR" --repo "${{ github.repository }}" --body-file comment_trim.md
+
+      - name: Publish build summary to ci-logs branch
+        if: always() && github.event_name == 'push'
+        env:
+          OUTCOME: ${{ steps.build.outcome }}
+          BRANCH: ${{ github.ref_name }}
+          SHA: ${{ github.sha }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          name=$(echo "$BRANCH" | tr '/' '_')
+          mkdir -p /tmp/ci && cd /tmp/ci
+          git init -q && git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git fetch -q --depth 1 origin ci-logs && git checkout -q FETCH_HEAD || git checkout -q --orphan ci-logs
+          {
+            echo "branch: $BRANCH"; echo "sha: $SHA"; echo "outcome: $OUTCOME"; echo "run: $RUN_URL"; echo
+            echo "== errors =="
+            grep -E "^e: |error:|ERROR|Error:|FAILED|What went wrong|AAPT|Unresolved|cannot find symbol|Execution failed" "$GITHUB_WORKSPACE/build.log" | grep -v "^\s*at " | head -300 || true
+            echo; echo "== warnings =="
+            grep -E "^w: |warning:" "$GITHUB_WORKSPACE/build.log" | head -200 || true
+            echo; echo "== tail =="
+            tail -200 "$GITHUB_WORKSPACE/build.log"
+          } > "$name.log"
+          git add "$name.log"
+          git -c user.name=yewplay-ci -c user.email=ci@yewplay.invalid commit -q -m "ci: $BRANCH $OUTCOME ${SHA:0:7}"
+          git push -q origin HEAD:refs/heads/ci-logs
