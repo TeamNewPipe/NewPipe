@@ -86,8 +86,13 @@ class LibraryFragment : BaseFragment() {
                         actions = LibraryActions(
                             openVideo = { video ->
                                 NavigationHelper.openVideoDetailFragment(
-                                    requireContext(), fm, video.serviceId, video.url,
-                                    video.title, null, false
+                                    requireContext(),
+                                    fm,
+                                    video.serviceId,
+                                    video.url,
+                                    video.title,
+                                    null,
+                                    false
                                 )
                             },
                             openHistory = { NavigationHelper.openStatisticFragment(fm) },
@@ -97,12 +102,17 @@ class LibraryFragment : BaseFragment() {
                             openPlaylist = { playlist ->
                                 if (playlist.isLocal) {
                                     NavigationHelper.openLocalPlaylistFragment(
-                                        fm, playlist.id, playlist.name
+                                        fm,
+                                        playlist.id,
+                                        playlist.name
                                     )
                                 } else {
                                     playlist.url?.let { url ->
                                         NavigationHelper.openPlaylistFragment(
-                                            fm, playlist.serviceId, url, playlist.name
+                                            fm,
+                                            playlist.serviceId,
+                                            url,
+                                            playlist.name
                                         )
                                     }
                                 }
