@@ -2344,6 +2344,8 @@ public final class VideoDetailFragment
     /**
      * YewPlay: the mini player sits right above the floating navigation bar, so the bottom sheet
      * peeks by the mini player height plus the space taken by the bar.
+     *
+     * @return the peek height of the bottom sheet, in pixels
      */
     private int getMiniPlayerPeekHeight() {
         return getResources().getDimensionPixelSize(R.dimen.mini_player_height)
