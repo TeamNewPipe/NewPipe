@@ -946,4 +946,8 @@
     <string name="yp_sleep_timer_set">Playback will pause in %d min</string>
     <string name="yp_sleep_timer_cancelled">Sleep timer off</string>
     <string name="yp_sleep_timer_minutes">%d min</string>
+    <string name="yp_feed_today">Today</string>
+    <string name="yp_feed_yesterday">Yesterday</string>
+    <string name="yp_feed_this_week">This week</string>
+    <string name="yp_feed_older">Older</string>
 </resources>

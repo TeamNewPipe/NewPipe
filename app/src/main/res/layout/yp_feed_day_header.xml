@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- YewPlay: título de grupo do feed de inscrições ("Hoje", "Ontem", ...) -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/yp_day_header_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/yp_screen_margin"
+    android:paddingTop="16dp"
+    android:paddingBottom="4dp"
+    android:textAppearance="@style/TextAppearance.YewPlay.SectionTitle"
+    tools:text="Hoje" />

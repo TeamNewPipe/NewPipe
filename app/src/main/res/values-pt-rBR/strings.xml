@@ -886,4 +886,8 @@
     <string name="yp_sleep_timer_set">O player vai pausar em %d min</string>
     <string name="yp_sleep_timer_cancelled">Timer desligado</string>
     <string name="yp_sleep_timer_minutes">%d min</string>
+    <string name="yp_feed_today">Hoje</string>
+    <string name="yp_feed_yesterday">Ontem</string>
+    <string name="yp_feed_this_week">Esta semana</string>
+    <string name="yp_feed_older">Mais antigos</string>
 </resources>
