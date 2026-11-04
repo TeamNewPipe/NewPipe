@@ -24,7 +24,7 @@
         android:fontFamily="@font/instrument_sans_semibold"
         app:fontFamily="@font/instrument_sans_semibold"
         app:layout_constraintBottom_toTopOf="@+id/itemChannelDescriptionView"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/yp_channel_subscribe"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/itemThumbnailView"
         app:layout_constraintTop_toTopOf="parent"
@@ -39,7 +39,7 @@
         android:maxLines="2"
         android:textAppearance="@style/TextAppearance.YewPlay.Meta"
         app:layout_constraintBottom_toTopOf="@+id/itemAdditionalDetails"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/yp_channel_subscribe"
         app:layout_constraintStart_toStartOf="@+id/itemTitleView"
         app:layout_constraintTop_toBottomOf="@+id/itemTitleView"
         tools:text="Channel description, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blandit" />
@@ -66,11 +66,30 @@
         android:layout_marginRight="@dimen/video_item_search_avatar_right_margin"
         android:src="@drawable/placeholder_person"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/itemTitleView"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearance="@style/CircularImageView"
         tools:ignore="RtlHardcoded" />
+
+    <!-- YewPlay: inscrever-se direto da lista (proposta, p. 13) -->
+    <TextView
+        android:id="@+id/yp_channel_subscribe"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/yp_button_primary"
+        android:gravity="center"
+        android:paddingHorizontal="14dp"
+        android:text="@string/subscribe_button_title"
+        android:textAppearance="@style/TextAppearance.YewPlay.ItemTitle"
+        android:fontFamily="@font/instrument_sans_semibold"
+        app:fontFamily="@font/instrument_sans_semibold"
+        android:textColor="@color/yp_on_action"
+        android:textSize="13sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
