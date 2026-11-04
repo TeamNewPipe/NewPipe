@@ -87,7 +87,7 @@
     <string name="msg_copied">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>
     <string name="msg_wait">অনুগ্রহপূর্বক অপেক্ষা করো…</string>
     <string name="msg_running_detail">বিস্তারিত জানার জন্য আলতো চাপ</string>
-    <string name="msg_running">NewPipe ডাউনলোড হচ্ছে</string>
+    <string name="msg_running">YewPlay ডাউনলোড হচ্ছে</string>
     <string name="msg_error">ত্রুটি</string>
     <string name="msg_threads">থ্রেড</string>
     <string name="msg_name">ফাইলের নাম</string>
@@ -602,7 +602,7 @@
     <string name="streams_notifications_network_title">নেটওয়ার্ক সংযোগ দরকার</string>
     <string name="streams_notification_channel_description">সদস্যতার জন্য নতুন স্ট্রীম সম্পর্কে বিজ্ঞপ্তি</string>
     <string name="error_report_channel_description">ত্রুটি রিপোর্ট করার জন্য বিজ্ঞপ্তি</string>
-    <string name="error_report_notification_title">NewPipe একটি ত্রুটির সম্মুখীন হয়েছে, রিপোর্ট করতে আলতো চাপুন</string>
+    <string name="error_report_notification_title">YewPlay একটি ত্রুটির সম্মুখীন হয়েছে, রিপোর্ট করতে আলতো চাপুন</string>
     <string name="error_report_notification_toast">একটি ত্রুটি ঘটেছে, বিজ্ঞপ্তি দেখুন</string>
     <string name="error_report_open_github_notice">আপনার ক্র্যাশ নিয়ে আলোচনা করা একটি সমস্যা ইতিমধ্যেই বিদ্যমান কিনা অনুগ্রহ করে পরীক্ষা করুন৷ ডুপ্লিকেট টিকিট তৈরি করে আপনি আমাদের কাছ থেকে সময় নেন তা আমরা প্রকৃত বাগ ঠিক করার জন্য ব্যয় করতে পারি।</string>
     <string name="invalid_file">ফাইলটি বিদ্যমান নেই বা এটি পড়ার বা লেখার অনুমতির অভাব রয়েছে</string>

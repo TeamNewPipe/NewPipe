@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="navigate_back">Voltar</string>
-    <string name="title_activity_about">Sobre o NewPipe</string>
+    <string name="title_activity_about">Sobre o YewPlay</string>
     <string name="title_licenses">Licenças de terceiros</string>
     <string name="license">Por %1$s sob %2$s</string>
     <string name="tab_about">Sobre &amp; Perguntas Frequentes</string>
     <string name="tab_licenses">Licenças</string>
+    <string name="app_version_based_on">Versão %1$s · Baseado no %2$s %3$s</string>
     <string name="app_description">Streaming leve e gratuito no Android.</string>
     <string name="contribution_title">Contribuir</string>
     <string name="contribution_encouragement">Caso você tenha ideias; tradução, alterações de design, limpeza de código ou alterações realmente pesadas de código, a ajuda é sempre bem-vinda. Quanto mais for feito, melhor será!</string>
@@ -18,8 +19,8 @@
     <string name="privacy_policy_title">Política de Privacidade do NewPipe</string>
     <string name="privacy_policy_encouragement">O projeto NewPipe leva a sua privacidade muito a sério. Portanto, o aplicativo não coleta nenhum dado sem o seu consentimento.\nA política de privacidade do NewPipe explica detalhadamente quais dados são enviados e armazenados quando você envia um relatório de falha.</string>
     <string name="read_privacy_policy">Leia a política de privacidade</string>
-    <string name="app_license_title">Licença do NewPipe</string>
-    <string name="app_license">NewPipe é um software copyleft libre: você pode usá-lo, estudá-lo, compartilhá-lo e melhorá-lo à vontade. Especificamente, você pode redistribuí-lo e/ou modificá-lo sob os termos da Licença Pública Geral GNU conforme publicada pela Free Software Foundation, seja a versão 3 da Licença ou (a seu critério) qualquer versão posterior.</string>
+    <string name="app_license_title">Licença do YewPlay</string>
+    <string name="app_license">YewPlay é um software copyleft libre: você pode usá-lo, estudá-lo, compartilhá-lo e melhorá-lo à vontade. Especificamente, você pode redistribuí-lo e/ou modificá-lo sob os termos da Licença Pública Geral GNU conforme publicada pela Free Software Foundation, seja a versão 3 da Licença ou (a seu critério) qualquer versão posterior.</string>
     <string name="read_full_license">Ler licença</string>
     <string name="faq_title">Perguntas frequentes</string>
     <string name="faq_description">Se você estiver tendo problemas para usar o aplicativo, verifique estas respostas para perguntas comuns!</string>

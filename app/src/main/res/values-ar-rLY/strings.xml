@@ -146,9 +146,9 @@
     <string name="enqueued_next">تم وضع التالي على قائمة الانتظار</string>
     <string name="main_page_content_swipe_remove">اسحب العناصر لإزالتها</string>
     <string name="what_device_headline">معلومات:</string>
-    <string name="feed_load_error_terminated">حساب منشئ المحتوى قد تم إنهائه. \nلن يتمكن NewPipe من تحميل هذه الخلاصة في المستقبل. \nهل تريد إلغاء الاشتراك من هذه القناة؟</string>
+    <string name="feed_load_error_terminated">حساب منشئ المحتوى قد تم إنهائه. \nلن يتمكن YewPlay من تحميل هذه الخلاصة في المستقبل. \nهل تريد إلغاء الاشتراك من هذه القناة؟</string>
     <string name="minimize_on_exit_popup_description">تصغير إلى مشغل منبثق</string>
-    <string name="error_postprocessing_stopped">تم إغلاق NewPipe أثناء العمل على الملف</string>
+    <string name="error_postprocessing_stopped">تم إغلاق YewPlay أثناء العمل على الملف</string>
     <string name="background_player">مشغل الخلفية</string>
     <string name="audio_track_type_descriptive">وصفي</string>
     <string name="popup_remember_size_pos_title">تذكر خصائص النوافذ المنبثقة</string>
@@ -177,7 +177,7 @@
     <string name="view_on_github">عرض على GitHub</string>
     <string name="error_details_headline">التفاصيل:</string>
     <string name="playback_pitch">تردد الصوت</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">هل تعتقد أن تحميل التغذية بطيءٌ جدًا؟ إذا كان الأمر كذلك، فحاول تمكين التحميل السريع (يمكنك تغييره في الإعدادات أو بالضغط على الزر أدناه). \n \nيقدم NewPipe استراتيجيتين لتحميل الخلاصة: \n• جلب قناة الاشتراك بأكملها، وهي بطيئة ولكنها كاملة. \n• استخدام نقطة نهاية خدمة مخصصة، وهي سريعة ولكنها عادةً لا تكتمل. \n \nالفرق بين الاثنين هو أن العنصر السريع عادة ما يفتقر إلى بعض المعلومات، مثل مدة العنصر أو نوعه (لا يمكن التمييز بين مقاطع الفيديو المباشرة والأخرى العادية) وقد يعيد عناصر أقل. \n \nيوتيوب هو مثال على الخدمة التي تقدمها هذه طريقة سريعة مع تغذية RSS الخاصة بها. \n \nلذا فإن الاختيار يتلخص في ما تفضله: السرعة أو المعلومات الدقيقة.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">هل تعتقد أن تحميل التغذية بطيءٌ جدًا؟ إذا كان الأمر كذلك، فحاول تمكين التحميل السريع (يمكنك تغييره في الإعدادات أو بالضغط على الزر أدناه). \n \nيقدم YewPlay استراتيجيتين لتحميل الخلاصة: \n• جلب قناة الاشتراك بأكملها، وهي بطيئة ولكنها كاملة. \n• استخدام نقطة نهاية خدمة مخصصة، وهي سريعة ولكنها عادةً لا تكتمل. \n \nالفرق بين الاثنين هو أن العنصر السريع عادة ما يفتقر إلى بعض المعلومات، مثل مدة العنصر أو نوعه (لا يمكن التمييز بين مقاطع الفيديو المباشرة والأخرى العادية) وقد يعيد عناصر أقل. \n \nيوتيوب هو مثال على الخدمة التي تقدمها هذه طريقة سريعة مع تغذية RSS الخاصة بها. \n \nلذا فإن الاختيار يتلخص في ما تفضله: السرعة أو المعلومات الدقيقة.</string>
     <string name="file_deleted">تم حذف الملف</string>
     <string name="download_dialog_title">تنزيل</string>
     <string name="channel_page_summary">صفحة القناة</string>
@@ -289,7 +289,7 @@
     <string name="enumeration_comma">,</string>
     <string name="playlist_page_summary">صفحة قائمة التشغيل</string>
     <string name="toggle_screen_orientation">تبديل تدوير الشاشة</string>
-    <string name="app_update_available_notification_title">تحديث NewPipe متاح!</string>
+    <string name="app_update_available_notification_title">تحديث YewPlay متاح!</string>
     <string name="search_history_deleted">تم حذف سجل البحث</string>
     <string name="show_meta_info_summary">قم بإيقاف التشغيل لإخفاء مربعات المعلومات الوصفية بمعلومات إضافية حول منشئ البث أو محتوى البث أو طلب البحث</string>
     <string name="hash_channel_description">إشعارات لتقدم تجزئة الفيديو</string>
@@ -303,7 +303,7 @@
     <string name="read_privacy_policy">الإطلاع على سياسة الخصوصية</string>
     <string name="youtube_restricted_mode_enabled_summary">يوفر YouTube \"وضع تقييد المحتوى\" الذي يخفي المحتوى المحتمل للكبار</string>
     <string name="show_comments_summary">عطّله لإخفاء التعليقات</string>
-    <string name="error_report_notification_title">واجه NewPipe خطأ، اضغط للتقرير</string>
+    <string name="error_report_notification_title">واجه YewPlay خطأ، اضغط للتقرير</string>
     <string name="default_kiosk_page_summary">الكشك الافتراضي</string>
     <string name="show_search_suggestions_title">اقتراحات البحث</string>
     <string name="skip_silence_checkbox">تسريع إلى الأمام أثناء الصمت</string>
@@ -358,7 +358,7 @@
     <string name="auto_queue_toggle">قائمة انتظار تلقائيّة</string>
     <string name="feed_subscription_not_loaded_count">غير محمل: %d</string>
     <string name="enqueue_stream">قائمة الانتظار</string>
-    <string name="restricted_video_no_stream">هذا الفيديو مقيد بالفئة العمرية. \nنظرًا لسياسات YouTube الجديدة المتعلقة بمقاطع الفيديو المقيدة بالفئة العمرية، لا يمكن لـ NewPipe الوصول إلى أي من تدفقات الفيديو الخاصة به، وبالتالي لا يتمكن من تشغيلها.</string>
+    <string name="restricted_video_no_stream">هذا الفيديو مقيد بالفئة العمرية. \nنظرًا لسياسات YouTube الجديدة المتعلقة بمقاطع الفيديو المقيدة بالفئة العمرية، لا يمكن لـ YewPlay الوصول إلى أي من تدفقات الفيديو الخاصة به، وبالتالي لا يتمكن من تشغيلها.</string>
     <string name="add_to_playlist">إضافة إلى قائمة التشغيل</string>
     <string name="channels">القنوات</string>
     <string name="dont_show">لا تظهر</string>
@@ -371,7 +371,7 @@
     <string name="no_dir_yet">لم يتم تعيين مجلد التحميل، الرجاء اختيار مجلد التحميل الافتراضي الآن</string>
     <string name="feed_update_threshold_title">عتبة تحديث الموجز</string>
     <string name="select_night_theme_toast">يمكنك اختيار نسقك الليلي المفضل أدناه</string>
-    <string name="app_update_unavailable_toast">أنت تقوم بتشغيل أحدث إصدار من NewPipe</string>
+    <string name="app_update_unavailable_toast">أنت تقوم بتشغيل أحدث إصدار من YewPlay</string>
     <string name="delete">احذف</string>
     <string name="decline">رفض</string>
     <string name="start">ابدأ</string>
@@ -416,7 +416,7 @@
     <string name="artists">الفنانين</string>
     <string name="download_has_started">بدأ التنزيل</string>
     <string name="audio_track_present_in_video">يجب أن يكون هناك مسار صوتي موجود بالفعل في هذا البث</string>
-    <string name="private_content">هذا المحتوى خاص، لذلك لا يمكن دفقه أو تنزيله بواسطة NewPipe.</string>
+    <string name="private_content">هذا المحتوى خاص، لذلك لا يمكن دفقه أو تنزيله بواسطة YewPlay.</string>
     <string name="default_popup_resolution_title">الدقة الافتراضية للنوافذ المنبثقة</string>
     <string name="thumbnail_cache_wipe_complete_notice">تم إفراغ مساحة ذاكرة التخزين المؤقتة الخاصة بالصور</string>
     <string name="error_report_channel_name">إشعار الإبلاغ عن الأخطاء</string>
@@ -512,7 +512,7 @@
     <string name="parsing_error">تعذر تحليل الموقع</string>
     <string name="feed_fetch_channel_tabs_summary">الألسنة التي سيتم جلبها عند تحديث الموجز. ليس لهذا الخيار أي تأثير إذا تم تحديث القناة باستخدام الوضع السريع.</string>
     <string name="create_error_notification">قم بإنشاء تنبيه بالخطأ</string>
-    <string name="app_update_notification_channel_description">إشعارات لإصدار NewPipe الجديد</string>
+    <string name="app_update_notification_channel_description">إشعارات لإصدار YewPlay الجديد</string>
     <string name="restore_defaults">استعادة الضبط الافتراضي</string>
     <string name="pause_downloads_on_mobile">المقاطعة على الشبكات المقيسة</string>
     <string name="override_current_data">هذا سوف يُزيل إعداداتك الحالية.</string>
@@ -540,7 +540,7 @@
     <string name="clear_views_history_title">محو سجل المشاهدة</string>
     <string name="left_gesture_control_title">إجراء الإيماءة اليسرى</string>
     <string name="no_videos">لاتوجد فيديوهات</string>
-    <string name="notification_channel_name">تنبيهات NewPipe</string>
+    <string name="notification_channel_name">تنبيهات YewPlay</string>
     <string name="delete_downloaded_files_confirm">محو جميع الملفات التي تم تنزيلها من القرص؟</string>
     <string name="subtitle_activity_recaptcha">اضغط على \"تم\" عند حلها</string>
     <string name="no_one_listening">لا أحد يستمع</string>
@@ -557,7 +557,7 @@
     <string name="notification_action_shuffle">خلط</string>
     <string name="autoplay_summary">بدء التشغيل تلقائياً — %s</string>
     <string name="drawer_close">إغلاق الدرج</string>
-    <string name="content_not_supported">هذا المحتوى ليس مدعومًا من قبل NewPipe. \n \nنأمل أن يكون مدعومًا في التحديثات القادمة.</string>
+    <string name="content_not_supported">هذا المحتوى ليس مدعومًا من قبل YewPlay. \n \nنأمل أن يكون مدعومًا في التحديثات القادمة.</string>
     <plurals name="minutes">
         <item quantity="zero">لا دقيقة</item>
         <item quantity="one">دقيقة واحدة</item>
@@ -579,7 +579,7 @@
     <string name="download_path_audio_dialog_title">اختر مجلد التنزيل للملفات الصوتية</string>
     <string name="import_youtube_instructions">استيراد اشتراكات YouTube من Google takeout: \n \n1. انتقل إلى عنوان URL هذا: %1$s \n2. تسجيل الدخول عند سؤالك \n3. انقر على \"جميع البيانات المدرجة\"، ثم على \"إلغاء تحديد جميع\"، ثم حدد فقط \"الاشتراكات\" وانقر على \"موافق\" \n4. انقر على \"الخطوة التالية\" ثم على \"إنشاء التصدير\" \n5. انقر على زر \"تحميل\" بعد ظهوره \n6. انقر على IMPORT FILE أدناه وحدد الملف البريدي تحميلها \n7. [إذا فشل استيراد الرمز البريدي] استخراج ملف .csv (عادة تحت عنوان \"يوتيوب ويوتيوب الموسيقى / الاشتراكات / الاشتراكات.csv\")، انقر على IMPORT FILE أدناه وحدد ملف csv المستخرج</string>
     <string name="notification_action_buffering">جارٍ التحميل</string>
-    <string name="soundcloud_go_plus_content">هذا مسار SoundCloud Go+، على الأقل في بلدك، لذلك لا يمكن دفقه أو تنزيله بواسطة NewPipe.</string>
+    <string name="soundcloud_go_plus_content">هذا مسار SoundCloud Go+، على الأقل في بلدك، لذلك لا يمكن دفقه أو تنزيله بواسطة YewPlay.</string>
     <string name="wifi_only">فقط على شبكة Wi-Fi</string>
     <string name="show_thumbnail_title">إظهار الصورة المصغرة</string>
     <string name="playback_speed_control">ضوابط سرعة التشغيل</string>
@@ -589,7 +589,7 @@
     <string name="percent">النسبة المئوية</string>
     <string name="title_activity_recaptcha">تحدي الكابتشا</string>
     <string name="no_subscribers">ليس هناك مشترِكون</string>
-    <string name="paid_content">يتوفر هذا المحتوى فقط للمستخدمين الذين قاموا بالدفع، لذلك لا يمكن بثه أو تنزيله عبر NewPipe.</string>
+    <string name="paid_content">يتوفر هذا المحتوى فقط للمستخدمين الذين قاموا بالدفع، لذلك لا يمكن بثه أو تنزيله عبر YewPlay.</string>
     <string name="recent">حديثة</string>
     <string name="subscription_update_failed">تعذر تحديث الاشتراك</string>
     <string name="clear_queue_confirmation_description">سيتم استبدال قائمة انتظار للمشغل النشط</string>
@@ -651,7 +651,7 @@
     <string name="subscribers_count_not_available">عدد المشتركين غير متاح</string>
     <string name="feed_group_dialog_select_subscriptions">حدد الاشتراكات</string>
     <string name="tab_subscriptions">الاشتراكات</string>
-    <string name="app_license">NewPipe هو برنامج مفتوح المصدر وبحقوق متروكة: يمكنك استخدام الكود ودراسته وتحسينه كما شئت. وعلى وجه التحديد يمكنك إعادة توزيعه / أو تعديله تحت شروط رخصة GNU العمومية والتي نشرتها مؤسسة البرمجيات الحرة، سواء الإصدار 3 من الرخصة، أو (باختيارك) أي إصدار أحدث.</string>
+    <string name="app_license">YewPlay هو برنامج مفتوح المصدر وبحقوق متروكة: يمكنك استخدام الكود ودراسته وتحسينه كما شئت. وعلى وجه التحديد يمكنك إعادة توزيعه / أو تعديله تحت شروط رخصة GNU العمومية والتي نشرتها مؤسسة البرمجيات الحرة، سواء الإصدار 3 من الرخصة، أو (باختيارك) أي إصدار أحدث.</string>
     <string name="show_play_with_kodi_summary">اعرض خيار لتشغيل الفيديو عبر مركز وسائط Kodi</string>
     <string name="post_processing">قيد المعالجة</string>
     <string name="rename_playlist">إعادة تسمية</string>
@@ -728,12 +728,12 @@
     <string name="website_encouragement">قم بزيارة موقع NewPipe لمزيد من المعلومات والمستجدات.</string>
     <string name="no_channel_subscribed_yet">لم يتم الاشتراك في أي قناة بعد</string>
     <string name="start_main_player_fullscreen_summary">لا تبدأ تشغيل مقاطع الفيديو في المشغل المصغر، ولكن قم بتدوير وضع ملء الشاشة مباشرة، إذا تم تأمين التدوير التلقائي. لا يزال بإمكانك الوصول إلى المشغل المصغر عن طريق الخروج من ملء الشاشة</string>
-    <string name="app_license_title">تراخيص NewPipe</string>
+    <string name="app_license_title">تراخيص YewPlay</string>
     <string name="feed_update_threshold_option_always_update">تحديث دائمًا</string>
     <string name="tab_licenses">التراخيص</string>
     <string name="export_ongoing">عملية التصدير جارية …</string>
     <string name="minimize_on_exit_background_description">تصغير إلى مشغل الخلفية</string>
-    <string name="notification_channel_description">تنبيهات مشغل NewPipe</string>
+    <string name="notification_channel_description">تنبيهات مشغل YewPlay</string>
     <string name="import_complete_toast">تمَّت عملية الإستيراد</string>
     <string name="metadata_thumbnails">الصور المصغرة</string>
     <string name="loading_stream_details">تحميل تفاصيل البث…</string>
@@ -744,7 +744,7 @@
     <string name="settings_category_exoplayer_title">إعدادات ExoPlayer</string>
     <string name="app_update_notification_channel_name">تنبيه تحديث التطبيق</string>
     <string name="unmute">غير صامت</string>
-    <string name="clear_cookie_summary">امسح ملفات تعريف الارتباط التي يخزنها NewPipe عند حل reCAPTCHA</string>
+    <string name="clear_cookie_summary">امسح ملفات تعريف الارتباط التي يخزنها YewPlay عند حل reCAPTCHA</string>
     <string name="new_seek_duration_toast">نظرا لقيود مشغل ExoPlayer مدة التقديم تم ضبطها الى %d ثانية</string>
     <string name="top_50">أفضل ٥٠</string>
     <string name="brightness">السطوع</string>
@@ -785,7 +785,7 @@
     <string name="downloads_storage_use_saf_summary_api_29">بدءًا من Android 10، يتم دعم \"Storage Access Framework\" فقط</string>
     <string name="generate_unique_name">إنشاء اسم فريد</string>
     <string name="error_ssl_exception">فشل الاتصال الآمن</string>
-    <string name="youtube_music_premium_content">يتوفر هذا الفيديو فقط لأعضاء YouTube Music Premium، لذلك لا يمكن بثه أو تنزيله من قبل NewPipe.</string>
+    <string name="youtube_music_premium_content">يتوفر هذا الفيديو فقط لأعضاء YouTube Music Premium، لذلك لا يمكن بثه أو تنزيله من قبل YewPlay.</string>
     <string name="previous_stream">البث السابق</string>
     <string name="play_all">تشغيل الكل</string>
     <string name="theme_title">السمة</string>

@@ -80,8 +80,8 @@
     <string name="action_history">Cronologia</string>
     <string name="title_activity_history">Cronologia</string>
     <string name="read_full_license">Leghe sa litzèntzia</string>
-    <string name="app_license">NewPipe est unu programma lìberu cun litzèntzia copyleft: lu podes impreare, cumpartzire e megiorare comente cheres. Pro èssere prus craros, lu podes torrare a intregare in suta de sos tèrmines de sa Litzèntzia Generale Pùblica GNU publicada dae sa Free Software Foundation, sa versione 3 de sa litzèntzia o, si preferis, una prus noa.</string>
-    <string name="app_license_title">Litzèntzia de NewPipe</string>
+    <string name="app_license">YewPlay est unu programma lìberu cun litzèntzia copyleft: lu podes impreare, cumpartzire e megiorare comente cheres. Pro èssere prus craros, lu podes torrare a intregare in suta de sos tèrmines de sa Litzèntzia Generale Pùblica GNU publicada dae sa Free Software Foundation, sa versione 3 de sa litzèntzia o, si preferis, una prus noa.</string>
+    <string name="app_license_title">Litzèntzia de YewPlay</string>
     <string name="read_privacy_policy">Leghe sa polìtica de riservadesa</string>
     <string name="privacy_policy_encouragement">Su progetu NewPipe pigat sa riservadesa tua in manera sèria a beru. Pro custa resone s\'aplicatzione non collit perunu datu chene su cunsensu tuo. \n Sa polìtica de riservadesa de NewPipe ispiegat a sa minuda ite genia de datos benint imbiados cando imbias unu raportu de errore.</string>
     <string name="privacy_policy_title">Polìtica de riservadesa de NewPipe</string>
@@ -98,7 +98,7 @@
     <string name="tab_about">Informatziones e PF</string>
     <string name="copyright">© %1$s de %2$s cun litzèntzia %3$s</string>
     <string name="title_licenses">Litzèntzias de tertzas partes</string>
-    <string name="title_activity_about">In subra de NewPipe</string>
+    <string name="title_activity_about">In subra de YewPlay</string>
     <string name="charset_most_special_characters">Majoria de sos caràteres ispetziales</string>
     <string name="charset_letters_and_digits">Lìteras e tzifras</string>
     <string name="settings_file_replacement_character_title">Caràtere de remplasamentu</string>
@@ -114,7 +114,7 @@
     <string name="msg_copied">Copiadu in punta de billete</string>
     <string name="msg_wait">Iseta…</string>
     <string name="msg_running_detail">Toca pro detàllios</string>
-    <string name="msg_running">NewPipe est iscarrighende</string>
+    <string name="msg_running">YewPlay est iscarrighende</string>
     <string name="msg_error">Errore</string>
     <string name="msg_threads">Connessiones simultàneas</string>
     <string name="msg_name">Nùmene de su documentu</string>
@@ -192,7 +192,7 @@
     <string name="player_stream_failure">Riprodutzione de custu flussu fallida</string>
     <string name="app_ui_crash">S\'apl./s\'IU s\'est serrada</string>
     <string name="no_playlist_bookmarked_yet">Galu perunu sinnalibru de iscalitas</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Pensas chi su carrigamentu de sa fonte de cuntenutos (su feed) siat tropu lentu? Si est gasi, proa a abilitare su carrigamentu lestru (lu podes mudare in sas impostatziones o incarchende su butone inoghe in suta). \n \nNewPipe oferit duas istrategias de carrigamentu de sas fontes de cuntenutos: \n • Recuperende totu su canale de iscritzione, cosa chi est lenta ma prus cumprida. \n • Impreende unu puntu de essida de unu servìtziu dedicadu, cosa chi est lestra ma, de sòlitu, non cumprida. \n \nSa diferèntzia printzipale intre sas duas est su fatu chi cun sa lestra, de sòlitu, unas cantas informatziones mancant, che a sa longària de s\'elementu o sa casta sua (non podet bìdere sa diferèntzia intre sos vìdeos indireta e sos chi sunt normales) diat pòdere frunire prus pagos elementos. \n \nYouTube est un\'esèmpiu de unu servìtziu chi frunit custu mètodu lestru cun sa fonte de cuntenutos RSS sua. \n \nDuncas s\'issèberu dipendet dae su chi preferis tue: sa lestresa o sas informatziones a sa minuda.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Pensas chi su carrigamentu de sa fonte de cuntenutos (su feed) siat tropu lentu? Si est gasi, proa a abilitare su carrigamentu lestru (lu podes mudare in sas impostatziones o incarchende su butone inoghe in suta). \n \nYewPlay oferit duas istrategias de carrigamentu de sas fontes de cuntenutos: \n • Recuperende totu su canale de iscritzione, cosa chi est lenta ma prus cumprida. \n • Impreende unu puntu de essida de unu servìtziu dedicadu, cosa chi est lestra ma, de sòlitu, non cumprida. \n \nSa diferèntzia printzipale intre sas duas est su fatu chi cun sa lestra, de sòlitu, unas cantas informatziones mancant, che a sa longària de s\'elementu o sa casta sua (non podet bìdere sa diferèntzia intre sos vìdeos indireta e sos chi sunt normales) diat pòdere frunire prus pagos elementos. \n \nYouTube est un\'esèmpiu de unu servìtziu chi frunit custu mètodu lestru cun sa fonte de cuntenutos RSS sua. \n \nDuncas s\'issèberu dipendet dae su chi preferis tue: sa lestresa o sas informatziones a sa minuda.</string>
     <string name="downloads_storage_use_saf_summary">Sa \'Storage Access Framework\' (Istrutura de Atzessu a s\'Archiviatzione) permitet sos iscarrigamentos in un\'ischeda SD esterna</string>
     <string name="queued">postu in lista</string>
     <string name="updates_setting_description">Ammustra una notìfica pro cussigiare un\'agiornamentu de s\'aplicatzione cando b\'est una versione noa a disponimentu</string>
@@ -214,7 +214,7 @@
     <string name="video_detail_by">De %s</string>
     <string name="channel_created_by">Creadu dae %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniadura de avatar de su canale</string>
-    <string name="content_not_supported">Custu cuntenutu no est galu suportadu dae NewPipe. \n \n Isperamus chi at a èssere suportadu in una versione benidora.</string>
+    <string name="content_not_supported">Custu cuntenutu no est galu suportadu dae YewPlay. \n \n Isperamus chi at a èssere suportadu in una versione benidora.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Disabìlita sa modalidade lestra</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Abìlita sa modalidade lestra</string>
     <string name="feed_use_dedicated_fetch_method_summary">A disponimentu in unos cantos servìtzios, de sòlitu est meda prus lestru ma diat pòdere frunire unu nùmeru limitadu de elementos e, fatu-fatu, informatziones no intreas (es. peruna longària, casta de elementu, indicadore de istadu in direta)</string>
@@ -282,7 +282,7 @@
     <string name="error_timeout">Connessione iscadida</string>
     <string name="error_progress_lost">Su progressu s\'est pèrdidu, ca su documentu est istadu iscantzelladu</string>
     <string name="error_insufficient_storage_left">Perunu ispàtziu abarradu in su dispositivu</string>
-    <string name="error_postprocessing_stopped">NewPipe est istadu serradu in su mentres chi fiat traballende a su documentu</string>
+    <string name="error_postprocessing_stopped">YewPlay est istadu serradu in su mentres chi fiat traballende a su documentu</string>
     <string name="error_postprocessing_failed">Post-protzessamentu fallidu</string>
     <string name="error_http_not_found">No agatadu</string>
     <string name="error_http_unsupported_range">Custu serbidore no atzetat iscarrigamentos a filos mùltiplos, torra a proare cun @string/msg_threads = 1</string>
@@ -308,7 +308,7 @@
     <string name="paused">in pàusa</string>
     <string name="missions_header_pending">In isetu</string>
     <string name="missions_header_finished">Acabadu</string>
-    <string name="app_update_available_notification_title">B\'est un\'agiornamentu de NewPipe disponìbile!</string>
+    <string name="app_update_available_notification_title">B\'est un\'agiornamentu de YewPlay disponìbile!</string>
     <string name="auto">Automàtica</string>
     <string name="grid">Grìllia</string>
     <string name="list">Lista</string>
@@ -360,10 +360,10 @@
     <string name="switch_to_popup">Cola a sa ventanedda</string>
     <string name="switch_to_background">Cola a s\'isfundu</string>
     <string name="unknown_content">[Disconnotu]</string>
-    <string name="app_update_notification_channel_description">Notìficas pro sas versiones noas de NewPipe</string>
+    <string name="app_update_notification_channel_description">Notìficas pro sas versiones noas de YewPlay</string>
     <string name="app_update_notification_channel_name">Notìfica de agiornamentu de s\'aplicatzione</string>
-    <string name="notification_channel_description">Notìficas pro su riproduidore de NewPipe</string>
-    <string name="notification_channel_name">Notìficas de NewPipe</string>
+    <string name="notification_channel_description">Notìficas pro su riproduidore de YewPlay</string>
+    <string name="notification_channel_name">Notìficas de YewPlay</string>
     <string name="file">Documentu</string>
     <string name="just_once">Una borta ebbia</string>
     <string name="always">Semper</string>
@@ -516,7 +516,7 @@
     <string name="show_memory_leaks">Ammustra sas pèrdidas de memòria</string>
     <string name="enqueued">Annànghidu a sa lista</string>
     <string name="enqueue_stream">Pone in lista</string>
-    <string name="clear_cookie_summary">Iscantzella sos testimòngios chi NewPipe sarvat cando risolves unu reCAPTCHA</string>
+    <string name="clear_cookie_summary">Iscantzella sos testimòngios chi YewPlay sarvat cando risolves unu reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">As isboidadu sos testimòngios reCAPTCHA</string>
     <string name="clear_cookie_title">Isbòida sos testimòngios reCAPTCHA</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube frunit una \"Modalidade cun restritziones\" chi cuat sos cuntenudos chi diant pòdere èssere pro adultos</string>
@@ -540,13 +540,13 @@
     <string name="show_description_summary">Istuda pro cuare sa descritzione de su vìdeu e sas informatziones additzionales</string>
     <string name="show_description_title">Ammustra sa descritzione</string>
     <string name="open_with">Aberi cun</string>
-    <string name="paid_content">Custu vìdeu est a disponimentu petzi pro sos impreadores chi ant pagadu, e duncas non podet èssere riproduidu o iscarrigadu dae NewPipe.</string>
-    <string name="youtube_music_premium_content">Custu vìdeu est a disponimentu petzi pro sos membros de YouTube Music Premium, e duncas non podet èssere riproduidu o iscarrigadu dae NewPipe.</string>
-    <string name="private_content">Custu cuntenutu est privadu, e duncas non podet èssere riproduidu o iscarrigadu dae NewPipe.</string>
-    <string name="soundcloud_go_plus_content">Custa est una rasta SoundCloud Go+, a su mancu in su paisu tuo, e duncas non podet èssere riproduida o iscarrigada dae NewPipe.</string>
+    <string name="paid_content">Custu vìdeu est a disponimentu petzi pro sos impreadores chi ant pagadu, e duncas non podet èssere riproduidu o iscarrigadu dae YewPlay.</string>
+    <string name="youtube_music_premium_content">Custu vìdeu est a disponimentu petzi pro sos membros de YouTube Music Premium, e duncas non podet èssere riproduidu o iscarrigadu dae YewPlay.</string>
+    <string name="private_content">Custu cuntenutu est privadu, e duncas non podet èssere riproduidu o iscarrigadu dae YewPlay.</string>
+    <string name="soundcloud_go_plus_content">Custa est una rasta SoundCloud Go+, a su mancu in su paisu tuo, e duncas non podet èssere riproduida o iscarrigada dae YewPlay.</string>
     <string name="georestricted_content">Custu cuntenutu no est a disponimentu in su paisu tuo.</string>
     <string name="crash_the_app">Faghe serrare s\'aplicatzione</string>
-    <string name="restricted_video_no_stream">Custu vìdeu tenet unu lìmite de edade. \nPro neghe de sas polìticas noas de YouTube in subra de sos vìdeos limitados pro edade, NewPipe non podet atzèdere a perunu flussu vìdeu de custa genia e duncas non los podet riproduire.</string>
+    <string name="restricted_video_no_stream">Custu vìdeu tenet unu lìmite de edade. \nPro neghe de sas polìticas noas de YouTube in subra de sos vìdeos limitados pro edade, YewPlay non podet atzèdere a perunu flussu vìdeu de custa genia e duncas non los podet riproduire.</string>
     <string name="radio">Ràdiu</string>
     <string name="featured">In evidèntzia</string>
     <string name="recaptcha_solve">Risolve</string>
@@ -577,7 +577,7 @@
     <string name="open_website_license">Aberi su situ web</string>
     <string name="account_terminated">Contu serradu</string>
     <string name="feed_load_error_fast_unknown">Su recùperu lestru de sos flussos non frunit àteras informatziones in subra de custu.</string>
-    <string name="feed_load_error_terminated">Su contu de s\'autore l\'ant serradu. \nNewPipe no at a èssere prus in gradu de carrigare custu flussu in su tempus benidore. \nCheres bogare s\'iscritzione a custu canale?</string>
+    <string name="feed_load_error_terminated">Su contu de s\'autore l\'ant serradu. \nYewPlay no at a èssere prus in gradu de carrigare custu flussu in su tempus benidore. \nCheres bogare s\'iscritzione a custu canale?</string>
     <string name="feed_load_error_account_info">Carrigamentu de su flussu pro \'%s\' fallidu.</string>
     <string name="feed_load_error">Errore carrighende su flussu</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">T\'at a bènnere pedidu in ue sarvare cada documentu</string>
@@ -611,7 +611,7 @@
     <string name="check_for_updates">Chirca agiornamentos</string>
     <string name="manual_update_description">Verìfica in manera manuale pro versiones noas</string>
     <string name="checking_updates_toast">Controllende sos agiornamentos…</string>
-    <string name="error_report_notification_title">NewPipe at rilevadu un\'errore, toca pro lu sinnalare</string>
+    <string name="error_report_notification_title">YewPlay at rilevadu un\'errore, toca pro lu sinnalare</string>
     <string name="error_report_notification_toast">B\'at àpidu un\'errore, pòmpia sa notìfica</string>
     <string name="show_error_snackbar">Ammustra una barra de errore</string>
     <string name="error_report_channel_description">Notìficas pro sinnalare errores</string>
@@ -665,7 +665,7 @@
     <string name="app_update_available_notification_text">Toca pro iscarrigare %s</string>
     <string name="fast_mode">Modalidade lestra</string>
     <string name="import_subscriptions_hint">Importa o esporta iscritziones dae su menù a 3 puntos</string>
-    <string name="app_update_unavailable_toast">Ses impreende s\'ùrtima versione de NewPipe</string>
+    <string name="app_update_unavailable_toast">Ses impreende s\'ùrtima versione de YewPlay</string>
     <string name="night_theme_available">Custa optzione est a disponimentu petzi si %s est seletzionadu comente tema</string>
     <string name="card">Carta</string>
     <string name="msg_failed_to_copy">Còpia in punta de billete fallida</string>
@@ -759,7 +759,7 @@
     <string name="notification_actions_summary_android13">Modìfica cada atzione de notìfica inoghe in suta tochende·la. Sas primas tres atziones (riprodutzione/pàusa, antepostu e imbeniente) sunt impostadas dae su sistema e non si podent personalizare.</string>
     <string name="error_insufficient_storage">Non b\'at ispàtziu lìberu bastante in su dispositivu</string>
     <string name="show_less">Mustra de mancu</string>
-    <string name="auto_update_check_description">NewPipe podet chircare in automàticu versiones noas cada tantu e notificare·ti cando sunt a disponimentu. \nLu boles abilitare?</string>
+    <string name="auto_update_check_description">YewPlay podet chircare in automàticu versiones noas cada tantu e notificare·ti cando sunt a disponimentu. \nLu boles abilitare?</string>
     <string name="no">Nono</string>
     <string name="settings_category_backup_restore_title">Còpia de seguresa e riprìstinu</string>
     <plurals name="replies">

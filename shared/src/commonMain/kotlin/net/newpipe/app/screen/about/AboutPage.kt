@@ -20,7 +20,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -43,6 +43,7 @@ import net.newpipe.app.theme.spaceXSmall
 import net.newpipe.app.theme.spaceXXSmall
 import newpipe.shared.generated.resources.Res
 import newpipe.shared.generated.resources.app_description
+import newpipe.shared.generated.resources.app_version_based_on
 import newpipe.shared.generated.resources.contribution_encouragement
 import newpipe.shared.generated.resources.contribution_title
 import newpipe.shared.generated.resources.donation_encouragement
@@ -91,7 +92,7 @@ fun AboutPageContent(
                 Image(
                     modifier = Modifier
                         .requiredSize(iconTVDPI)
-                        .clip(CircleShape)
+                        .clip(RoundedCornerShape(percent = 29))
                         .background(color = logoBackground),
                     painter = painterResource(Res.drawable.ic_foreground),
                     contentDescription = BuildConfig.APP_NAME
@@ -103,7 +104,12 @@ fun AboutPageContent(
                     textAlign = TextAlign.Center
                 )
                 Text(
-                    text = BuildConfig.VERSION_NAME,
+                    text = stringResource(
+                        Res.string.app_version_based_on,
+                        BuildConfig.VERSION_NAME,
+                        BuildConfig.BASE_APP_NAME,
+                        BuildConfig.BASE_VERSION_NAME
+                    ),
                     style = MaterialTheme.typography.titleMedium,
                     textAlign = TextAlign.Center
                 )

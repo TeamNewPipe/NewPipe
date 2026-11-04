@@ -93,7 +93,7 @@
     <string name="msg_name">ফাইলের নাম</string>
     <string name="msg_threads">থ্রেড</string>
     <string name="msg_error">ত্রুটি</string>
-    <string name="msg_running">NewPipe ডাউনলোড হচ্ছে</string>
+    <string name="msg_running">YewPlay ডাউনলোড হচ্ছে</string>
     <string name="msg_running_detail">বিস্তারিত জানার জন্য আলতো চাপ</string>
     <string name="msg_wait">অনুগ্রহপূর্বক অপেক্ষা করো…</string>
     <string name="msg_copied">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>

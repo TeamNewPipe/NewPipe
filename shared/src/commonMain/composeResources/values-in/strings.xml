@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="navigate_back">Kembali</string>
-    <string name="title_activity_about">Tentang NewPipe</string>
+    <string name="title_activity_about">Tentang YewPlay</string>
     <string name="title_licenses">Lisensi Pihak-ketiga</string>
     <string name="license">Oleh %1$s di bawah %2$s</string>
     <string name="tab_about">Tentang &amp; FAQ</string>
@@ -12,7 +12,7 @@
     <string name="website_encouragement">Kunjungi Situs Web NewPipe untuk info dan berita lainnya.</string>
     <string name="privacy_policy_title">Kebijakan Privasi NewPipe</string>
     <string name="website_title">Situs web</string>
-    <string name="app_license_title">Lisensi NewPipe</string>
+    <string name="app_license_title">Lisensi YewPlay</string>
     <string name="faq_title">Pertanyaan yang sering diajukan</string>
     <string name="open_in_browser">Buka di peramban</string>
     <string name="done">Selesai</string>

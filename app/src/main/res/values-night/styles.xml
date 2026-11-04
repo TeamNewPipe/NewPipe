@@ -3,7 +3,8 @@
 
     <!-- Opening Theme -->
     <style name="Base.OpeningTheme" parent="Base.V21.OpeningTheme">
-        <item name="android:navigationBarColor">@color/dark_youtube_primary_color</item>
+        <item name="android:navigationBarColor">@color/yewplay_splash_background</item>
+        <item name="android:statusBarColor">@color/yewplay_splash_background</item>
     </style>
 
 </resources>

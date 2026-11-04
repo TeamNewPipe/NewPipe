@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="navigate_back">Geri</string>
-    <string name="title_activity_about">NewPipe Haqqında</string>
+    <string name="title_activity_about">YewPlay Haqqında</string>
     <string name="title_licenses">Üçüncü tərəf Lisenziyaları</string>
     <string name="license">%1$s tərəfindən %2$s altında</string>
     <string name="tab_about">Haqqında &amp; FAQ</string>
@@ -17,7 +17,7 @@
     <string name="website_encouragement">Əlavə məlumat və xəbərlər üçün NewPipe Veb saytını ziyarət et.</string>
     <string name="privacy_policy_title">NewPipe-ın Məxfilik Siyasəti</string>
     <string name="read_privacy_policy">Məxfilik siyasətini oxu</string>
-    <string name="app_license_title">NewPipe-ın Lisenziyası</string>
+    <string name="app_license_title">YewPlay-ın Lisenziyası</string>
     <string name="read_full_license">Lisenziyanı oxu</string>
     <string name="faq_title">Tez-tez soruşulan suallar</string>
     <string name="faq">Veb saytda bax</string>
@@ -25,7 +25,7 @@
     <string name="done">Bitdi</string>
     <string name="not_available">Əlçatan deyil</string>
     <string name="privacy_policy_encouragement">NewPipe layihəsi məxfiliyinizə çox ciddi yanaşır. Nəticə etibarı ilə, tətbiq sizin razılığınız olmadan heç bir məlumat toplamır. \nNewPipe məxfilik siyasəti xəta məlumatı göndərdiyiniz zaman hansı məlumatların göndərildiyini və saxlanıldığını ətraflı izah edir.</string>
-    <string name="app_license">NewPipe müəllif hüquqlu sərbəst tətbiqdir: Siz onu istədiyiniz zaman istifadə edə, öyrənə, paylaşa və təkmilləşdirə bilərsiniz. Xüsusilə, siz Lisenziyanın 3-cü versiyası və ya (seçiminizə görə) hər hansı sonrakı versiyada Azad Proqram Təminatı Fondu tərəfindən dərc edilən GNU Ümumi İctimai Lisenziya şərtlərinə uyğun olaraq onu yenidən paylaya və/yaxud dəyişdirə bilərsiniz.</string>
+    <string name="app_license">YewPlay müəllif hüquqlu sərbəst tətbiqdir: Siz onu istədiyiniz zaman istifadə edə, öyrənə, paylaşa və təkmilləşdirə bilərsiniz. Xüsusilə, siz Lisenziyanın 3-cü versiyası və ya (seçiminizə görə) hər hansı sonrakı versiyada Azad Proqram Təminatı Fondu tərəfindən dərc edilən GNU Ümumi İctimai Lisenziya şərtlərinə uyğun olaraq onu yenidən paylaya və/yaxud dəyişdirə bilərsiniz.</string>
     <string name="faq_description">Tətbiqi istifadə etməkdə çətinlik çəkirsinizsə, ümumi suallara bu cavabları yoxladığınıza əmin olun!</string>
     <string name="settings">Tənzimləmələr</string>
     <string name="search">Axtarış</string>

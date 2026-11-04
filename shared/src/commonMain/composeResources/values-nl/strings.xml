@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="navigate_back">Terug</string>
-    <string name="title_activity_about">Over NewPipe</string>
+    <string name="title_activity_about">Over YewPlay</string>
     <string name="title_licenses">Licenties van derden</string>
     <string name="license">Door %1$s onder %2$s</string>
     <string name="tab_about">Over &amp; veel­gestelde vragen</string>
@@ -11,7 +11,7 @@
     <string name="website_title">Website</string>
     <string name="done">Klaar</string>
     <string name="give_back">Terug­geven</string>
-    <string name="app_license_title">De licentie van NewPipe</string>
+    <string name="app_license_title">De licentie van YewPlay</string>
     <string name="not_available">Niet beschik­baar</string>
     <string name="faq_title">Veelgestelde vragen</string>
     <string name="faq">Bekijken op website</string>

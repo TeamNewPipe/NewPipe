@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="navigate_back">Quay lại</string>
-    <string name="title_activity_about">Về NewPipe</string>
+    <string name="title_activity_about">Về YewPlay</string>
     <string name="title_licenses">Các giấy phép Bên thứ ba</string>
     <string name="tab_licenses">Giấy phép</string>
     <string name="contribution_title">Đóng góp</string>
@@ -13,7 +13,7 @@
     <string name="website_encouragement">Ghé thăm Trang web NewPipe để biết thêm thông tin và tin tức.</string>
     <string name="privacy_policy_title">Chính sách Quyền riêng tư của NewPipe</string>
     <string name="read_privacy_policy">Đọc chính sách quyền riêng tư</string>
-    <string name="app_license_title">Giấy phép của NewPipe</string>
+    <string name="app_license_title">Giấy phép của YewPlay</string>
     <string name="read_full_license">Đọc giấy phép</string>
     <string name="faq_title">Câu hỏi thường gặp</string>
     <string name="faq_description">Nếu bạn gặp vấn đề khi sử dụng ứng dụng, hãy chắc chắn rằng bạn kiểm tra câu trà lời cho câu hỏi thường gặp!</string>

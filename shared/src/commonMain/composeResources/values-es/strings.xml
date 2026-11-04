@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="navigate_back">Spaans</string>
-    <string name="title_activity_about">Acerca de NewPipe</string>
+    <string name="title_activity_about">Acerca de YewPlay</string>
     <string name="title_licenses">Licencias de terceros</string>
     <string name="license">Por %1$s bajo %2$s</string>
     <string name="tab_about">Acerca de y preguntas frecuentes</string>
@@ -18,8 +18,8 @@
     <string name="privacy_policy_title">Política de privacidad de NewPipe</string>
     <string name="privacy_policy_encouragement">El proyecto NewPipe se toma muy en serio tu privacidad. Por ello, la aplicación no recopila ningún dato sin tu consentimiento. \nLa política de privacidad de NewPipe explica en detalle qué datos se envían y almacenan al enviar un informe de fallo.</string>
     <string name="read_privacy_policy">Leer política de privacidad</string>
-    <string name="app_license_title">Licencia de NewPipe</string>
-    <string name="app_license">NewPipe es software libre con copyleft: puedes usarlo, estudiarlo, compartirlo y mejorarlo a voluntad. Específicamente, puedes redistribuirlo y/o modificarlo bajo los términos de la Licencia Pública General de GNU publicada por la Free Software Foundation, ya sea la versión 3 de la licencia o (a tu elección) cualquier versión posterior.</string>
+    <string name="app_license_title">Licencia de YewPlay</string>
+    <string name="app_license">YewPlay es software libre con copyleft: puedes usarlo, estudiarlo, compartirlo y mejorarlo a voluntad. Específicamente, puedes redistribuirlo y/o modificarlo bajo los términos de la Licencia Pública General de GNU publicada por la Free Software Foundation, ya sea la versión 3 de la licencia o (a tu elección) cualquier versión posterior.</string>
     <string name="read_full_license">Leer licencia</string>
     <string name="faq_title">Preguntas frecuentes</string>
     <string name="faq_description">Si tienes problemas al usar la aplicación, ¡Asegúrate de verificar estas respuestas a preguntas comunes!</string>

@@ -9,7 +9,8 @@
         <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
     <style name="Base.OpeningTheme" parent="Base.V21.OpeningTheme">
-        <item name="android:navigationBarColor">@color/light_youtube_primary_color</item>
+        <item name="android:navigationBarColor">@color/yewplay_splash_background</item>
+        <item name="android:statusBarColor">@color/yewplay_splash_background</item>
     </style>
     <style name="OpeningTheme" parent="Base.OpeningTheme" />
 

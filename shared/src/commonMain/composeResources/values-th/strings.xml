@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="navigate_back">กลับ</string>
-    <string name="title_activity_about">เกี่ยวกับ NewPipe</string>
+    <string name="title_activity_about">เกี่ยวกับ YewPlay</string>
     <string name="title_licenses">ใบอนุญาตบุคคลที่สาม</string>
     <string name="license">โดย %1$s ภายใต้ %2$s</string>
     <string name="tab_about">เกี่ยวกับเรา &amp; คำถามที่พบบ่อย</string>
@@ -18,8 +18,8 @@
     <string name="privacy_policy_title">นโยบายความเป็นส่วนตัวของ NewPipe</string>
     <string name="privacy_policy_encouragement">โครงการ NewPipe ให้ความสำคัญกับความเป็นส่วนตัวของคุณเป็นอย่างยิ่ง ดังนั้น แอปจึงไม่เก็บรวบรวมข้อมูลใดๆ โดยไม่ได้รับความยินยอมจากคุณ นโยบายความเป็นส่วนตัวของ NewPipe อธิบายรายละเอียดเกี่ยวกับข้อมูลต่างๆ ที่ถูกส่งและจัดเก็บเมื่อคุณส่งรายงานข้อผิดพลาด</string>
     <string name="read_privacy_policy">อ่านนโยบายความเป็นส่วนตัว</string>
-    <string name="app_license_title">ใบอนุญาตของ NewPipe</string>
-    <string name="app_license">NewPipe เป็นซอฟต์แวร์เสรีแบบ copyleft: คุณสามารถใช้งาน ศึกษา แบ่งปัน และปรับปรุงได้ตามต้องการ โดยเฉพาะอย่างยิ่ง คุณสามารถแจกจ่ายซ้ำและ/หรือแก้ไขได้ภายใต้เงื่อนไขของ GNU General Public License ที่เผยแพร่โดย Free Software Foundation ไม่ว่าจะเป็นเวอร์ชัน 3 ของ License หรือ (ตามที่คุณเลือก) เวอร์ชันใด ๆ ที่ใหม่กว่า</string>
+    <string name="app_license_title">ใบอนุญาตของ YewPlay</string>
+    <string name="app_license">YewPlay เป็นซอฟต์แวร์เสรีแบบ copyleft: คุณสามารถใช้งาน ศึกษา แบ่งปัน และปรับปรุงได้ตามต้องการ โดยเฉพาะอย่างยิ่ง คุณสามารถแจกจ่ายซ้ำและ/หรือแก้ไขได้ภายใต้เงื่อนไขของ GNU General Public License ที่เผยแพร่โดย Free Software Foundation ไม่ว่าจะเป็นเวอร์ชัน 3 ของ License หรือ (ตามที่คุณเลือก) เวอร์ชันใด ๆ ที่ใหม่กว่า</string>
     <string name="read_full_license">อ่านใบอนุญาต</string>
     <string name="faq_title">คำถามที่พบบ่อย</string>
     <string name="faq_description">หากคุณประสบปัญหาในการใช้งานแอป โปรดตรวจสอบคำตอบสำหรับคำถามที่พบบ่อยเหล่านี้!</string>

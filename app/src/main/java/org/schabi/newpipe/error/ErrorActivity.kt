@@ -87,9 +87,9 @@ class ErrorActivity : AppCompatActivity() {
         // print current time, as zoned ISO8601 timestamp
         currentTimeStamp = ZonedDateTime.now().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
 
-        binding.errorReportEmailButton.setOnClickListener { _ ->
-            openPrivacyPolicyDialog(this, "EMAIL")
-        }
+        // YewPlay: o e-mail de relatórios pertence à equipe do NewPipe, que pede que forks
+        // não enviem relatórios para ela. Os relatórios do YewPlay vão para o GitHub do fork.
+        binding.errorReportEmailButton.visibility = android.view.View.GONE
 
         binding.errorReportCopyButton.setOnClickListener { _ ->
             ShareUtils.copyToClipboard(this, buildMarkdown())
@@ -277,6 +277,6 @@ class ErrorActivity : AppCompatActivity() {
         private const val ERROR_EMAIL_ADDRESS = "crashreport@newpipe.schabi.org"
         private const val ERROR_EMAIL_SUBJECT = "Exception in "
 
-        private const val ERROR_GITHUB_ISSUE_URL = "https://github.com/TeamNewPipe/NewPipe/issues"
+        private const val ERROR_GITHUB_ISSUE_URL = "https://github.com/juscelino25bezerra-art/Yewplay/issues"
     }
 }

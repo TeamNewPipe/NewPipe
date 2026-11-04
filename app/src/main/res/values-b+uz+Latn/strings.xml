@@ -82,7 +82,7 @@
     <string name="use_external_audio_player_title">Tashqi audio pleerdan foydalanish</string>
     <string name="use_external_video_player_summary">Ba\'zi piksellarda ovozni o\'chirish</string>
     <string name="clear_views_history_title">Tomosha tarixini tozalash</string>
-    <string name="clear_cookie_summary">ReCAPTCHA-ni hal qilganingizda NewPipe-da saqlanadigan cookie-fayllarni o\'chirib tashlang</string>
+    <string name="clear_cookie_summary">ReCAPTCHA-ni hal qilganingizda YewPlay-da saqlanadigan cookie-fayllarni o\'chirib tashlang</string>
     <string name="export_data_summary">Eksport tarixi, obunalari va pleylistlari</string>
     <string name="import_data_summary">Joriy tarixingiz va obunalaringizni bekor qiladi</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA cookies fayllari o\'chirildi</string>
@@ -93,10 +93,10 @@
     <string name="switch_to_popup">Pop-upga o\'tish</string>
     <string name="switch_to_background">Orqa fonga o\'tish</string>
     <string name="unknown_content">[Noma\'lum]</string>
-    <string name="app_update_notification_channel_description">NewPipe yangi versiyasi haqida bildirishnomalar</string>
+    <string name="app_update_notification_channel_description">YewPlay yangi versiyasi haqida bildirishnomalar</string>
     <string name="app_update_notification_channel_name">Ilovani yangilash bildirishnomasi</string>
-    <string name="notification_channel_description">NewPipe fon va popup pleyerlari uchun bildirishnomalar</string>
-    <string name="notification_channel_name">NewPipe bildirishnomasi</string>
+    <string name="notification_channel_description">YewPlay fon va popup pleyerlari uchun bildirishnomalar</string>
+    <string name="notification_channel_name">YewPlay bildirishnomasi</string>
     <string name="file">Fayl</string>
     <string name="just_once">Faqat bittasi</string>
     <string name="always">Har doim</string>
@@ -186,8 +186,8 @@
     <string name="action_history">Tarix</string>
     <string name="title_activity_history">Tarix</string>
     <string name="read_full_license">Litsenziyani o\'qish</string>
-    <string name="app_license">NewPipe - bu nusxa ko\'chirish dasturiy ta\'minotidir: Siz foydalanishingiz, baham ko\'rishingiz va o\'zingizning xohishingiz bilan yaxshilashingiz mumkin. Xususan, siz uni bepul dasturiy ta\'minot fondi tomonidan e\'lon qilingan GNU umumiy jamoat litsenziyasi shartlari asosida qayta tarqatishingiz va / yoki o\'zgartirishingiz mumkin, Litsenziyaning 3-versiyasi yoki (sizning xohishingizga ko\'ra) har qanday keyingi versiyada.</string>
-    <string name="app_license_title">NewPipe litsenziyasi</string>
+    <string name="app_license">YewPlay - bu nusxa ko\'chirish dasturiy ta\'minotidir: Siz foydalanishingiz, baham ko\'rishingiz va o\'zingizning xohishingiz bilan yaxshilashingiz mumkin. Xususan, siz uni bepul dasturiy ta\'minot fondi tomonidan e\'lon qilingan GNU umumiy jamoat litsenziyasi shartlari asosida qayta tarqatishingiz va / yoki o\'zgartirishingiz mumkin, Litsenziyaning 3-versiyasi yoki (sizning xohishingizga ko\'ra) har qanday keyingi versiyada.</string>
+    <string name="app_license_title">YewPlay litsenziyasi</string>
     <string name="read_privacy_policy">Maxfiylik siyosatini o\'qish</string>
     <string name="privacy_policy_encouragement">NewPipe loyihasi sizning shaxsiy hayotingizga jiddiy e\'tibor beradi. Shuning uchun ilova sizning roziligingizsiz biron bir ma\'lumot to\'plamaydi. \nNewPipe-ning maxfiylik siyosati halokat to\'g\'risidagi hisobotni yuborganingizda qanday ma\'lumotlar yuborilishi va saqlanishi haqida batafsil ma\'lumot beradi.</string>
     <string name="privacy_policy_title">NewPipe-ning maxfiylik siyosati</string>
@@ -204,7 +204,7 @@
     <string name="tab_about">Haqida</string>
     <string name="copyright">© %1$s tomonidan %2$s gacha %3$s</string>
     <string name="title_licenses">Uchinchi tomon litsenziyalari</string>
-    <string name="title_activity_about">NewPipe haqida</string>
+    <string name="title_activity_about">YewPlay haqida</string>
     <string name="charset_most_special_characters">Ko\'pchilik maxsus belgilar</string>
     <string name="charset_letters_and_digits">Yozuvlar va raqamlar</string>
     <string name="settings_file_replacement_character_title">O\'zgartirish belgisi</string>
@@ -325,8 +325,8 @@
     <string name="video_detail_by">%s tomonidan</string>
     <string name="channel_created_by">%s tomonidan yaratilgan</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanal avatari eskizi</string>
-    <string name="content_not_supported">Ushbu tarkib hali NewPipe tomonidan qo\'llab-quvvatlanmaydi. \n \nUmid qilamanki, kelgusi versiyada qo\'llab-quvvatlanadi.</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Sizningcha, ta\'minotni yuklash juda sekinmi? Agar shunday bo\'lsa, tez yuklashni yoqib ko\'ring (uni sozlamalardan yoki quyidagi tugmani bosib o\'zgartirishingiz mumkin). \n \nNewPipe ikkita lentani yuklash strategiyasini taklif qiladi: \n• Sekin, lekin to\'liq bo\'lgan obuna kanalini to\'liq olish. \n• Tez, lekin odatda to\'liq bo\'lmagan maxsus xizmatning so\'nggi nuqtasidan foydalanish. \n \nIkkalasining farqi shundaki, tezkor narsaning davomiyligi yoki turi kabi ba\'zi ma\'lumotlarga ega emas (jonli videolar va oddiy videolarni ajrata olmaydi) va u kamroq narsalarni qaytarishi mumkin. \n \nYouTube ushbu tezkor usulni RSS tasmasi bilan taqdim etadigan xizmatning namunasidir. \n \nShunday qilib, tanlov siz afzal ko\'rgan narsaga bog\'liq: tezlik yoki aniq ma\'lumot.</string>
+    <string name="content_not_supported">Ushbu tarkib hali YewPlay tomonidan qo\'llab-quvvatlanmaydi. \n \nUmid qilamanki, kelgusi versiyada qo\'llab-quvvatlanadi.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Sizningcha, ta\'minotni yuklash juda sekinmi? Agar shunday bo\'lsa, tez yuklashni yoqib ko\'ring (uni sozlamalardan yoki quyidagi tugmani bosib o\'zgartirishingiz mumkin). \n \nYewPlay ikkita lentani yuklash strategiyasini taklif qiladi: \n• Sekin, lekin to\'liq bo\'lgan obuna kanalini to\'liq olish. \n• Tez, lekin odatda to\'liq bo\'lmagan maxsus xizmatning so\'nggi nuqtasidan foydalanish. \n \nIkkalasining farqi shundaki, tezkor narsaning davomiyligi yoki turi kabi ba\'zi ma\'lumotlarga ega emas (jonli videolar va oddiy videolarni ajrata olmaydi) va u kamroq narsalarni qaytarishi mumkin. \n \nYouTube ushbu tezkor usulni RSS tasmasi bilan taqdim etadigan xizmatning namunasidir. \n \nShunday qilib, tanlov siz afzal ko\'rgan narsaga bog\'liq: tezlik yoki aniq ma\'lumot.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Tez rejimni o\'chirish</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Tez rejimni yoqish</string>
     <string name="feed_use_dedicated_fetch_method_summary">Ba\'zi xizmatlarda mavjud bo\'lib, u tezroq bo\'ladi, lekin cheklangan miqdordagi narsalar va ko\'pincha to\'liq bo\'lmagan ma\'lumotlarni qaytarishi mumkin (masalan, davomiyligi, element turi, jonli holatda bo\'lmagan).</string>
@@ -396,7 +396,7 @@
     <string name="error_timeout">Ulanish vaqti tugadi</string>
     <string name="error_progress_lost">Siljish yo\'qoldi, chunki fayl o\'chirildi</string>
     <string name="error_insufficient_storage_left">Qurilmada bo\'sh joy qolmadi</string>
-    <string name="error_postprocessing_stopped">NewPipe fayl ustida ishlash paytida yopilgan</string>
+    <string name="error_postprocessing_stopped">YewPlay fayl ustida ishlash paytida yopilgan</string>
     <string name="error_postprocessing_failed">Keyingi ishlov berilmadi</string>
     <string name="error_http_not_found">Topilmadi</string>
     <string name="error_http_unsupported_range">Server ko\'p tarmoqli yuklamalarni qabul qilmaydi, @ string / msg_threads = 1 bilan qayta urinib ko\'ring</string>
@@ -423,7 +423,7 @@
     <string name="paused">to\'xtatildi</string>
     <string name="missions_header_pending">Kutilmoqda</string>
     <string name="missions_header_finished">Tugatildi</string>
-    <string name="app_update_available_notification_title">NewPipe yangilanishi mavjud!</string>
+    <string name="app_update_available_notification_title">YewPlay yangilanishi mavjud!</string>
     <string name="auto">Avto</string>
     <string name="grid">Tarmoq</string>
     <string name="list">Ro\'yxat</string>

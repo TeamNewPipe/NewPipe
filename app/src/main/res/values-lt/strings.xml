@@ -104,7 +104,7 @@
     <string name="msg_name">Failo pavadinimas</string>
     <string name="msg_threads">Gijos</string>
     <string name="msg_error">Klaida</string>
-    <string name="msg_running">NewPipe atsisiunčiama</string>
+    <string name="msg_running">YewPlay atsisiunčiama</string>
     <string name="msg_running_detail">Bakstelėkite, kad peržiūrėtumėte išsamią informaciją</string>
     <string name="msg_wait">Prašome palaukti…</string>
     <string name="msg_copied">Nukopijuota į iškarpinę</string>
@@ -132,8 +132,8 @@
     <string name="settings_category_history_title">Istorija ir podėlis</string>
     <string name="undo">Atgal</string>
     <string name="play_all">Groti viską</string>
-    <string name="notification_channel_name">NewPipe pranešimai</string>
-    <string name="notification_channel_description">NewPipe grotuvo pranešimai</string>
+    <string name="notification_channel_name">YewPlay pranešimai</string>
+    <string name="notification_channel_description">YewPlay grotuvo pranešimai</string>
     <string name="unknown_content">[Nežinoma]</string>
     <string name="player_stream_failure">Srauto atkurti nepavyko</string>
     <string name="player_unrecoverable_failure">Įvyko nepataisoma grotuvo klaida</string>
@@ -155,7 +155,7 @@
     <string name="settings_file_replacement_character_title">Pakaitinis simbolis</string>
     <string name="charset_letters_and_digits">Raidės ir skaičiai</string>
     <string name="charset_most_special_characters">Ypatingieji simboliai</string>
-    <string name="title_activity_about">Apie NewPipe</string>
+    <string name="title_activity_about">Apie YewPlay</string>
     <string name="title_licenses">Trečiųjų šalių licencijos</string>
     <string name="copyright" formatted="true">© %1$s %2$s pagal %3$s</string>
     <string name="tab_about">Apie ir DUK</string>
@@ -169,7 +169,7 @@
     <string name="give_back">Duokite grąžos</string>
     <string name="website_title">Interneto puslapis</string>
     <string name="website_encouragement">Kad sužinotumėte daugiau apie NewPipe apsilankykite mūsų interneto puslapyje.</string>
-    <string name="app_license_title">NewPipe licencija</string>
+    <string name="app_license_title">YewPlay licencija</string>
     <string name="read_full_license">Skaityti licenciją</string>
     <string name="title_activity_history">Istorija</string>
     <string name="action_history">Istorija</string>
@@ -303,12 +303,12 @@
     <string name="delete_view_history_alert">Išvalyti visą žiūrėjimo istoriją?</string>
     <string name="clear_views_history_summary">Išvalo atkurtų srautų ir atkūrimo vietos istoriją</string>
     <string name="clear_views_history_title">Išvalyti žiūrėjimo istoriją</string>
-    <string name="clear_cookie_summary">Išvalyti slapukus kuriuos NewPipe išsaugojo kai vedėte reCAPTCHA</string>
+    <string name="clear_cookie_summary">Išvalyti slapukus kuriuos YewPlay išsaugojo kai vedėte reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA slapukai išvalyti</string>
     <string name="clear_cookie_title">Išvalyti reCAPTCHA slapukus</string>
     <string name="hash_channel_description">Pranešimas apie video maišos progresą</string>
     <string name="hash_channel_name">Video maišos pranešimas</string>
-    <string name="app_update_notification_channel_description">Pranešimas apie naują NewPipe versiją</string>
+    <string name="app_update_notification_channel_description">Pranešimas apie naują YewPlay versiją</string>
     <string name="app_update_notification_channel_name">Programos atnaujinimo pranešimas</string>
     <string name="file">Failą</string>
     <string name="file_deleted">Failas panaikintas</string>
@@ -321,7 +321,7 @@
     <string name="videos_string">Vaizdo įrašai</string>
     <string name="playlists">Grojaraščiai</string>
     <string name="channels">Kanalai</string>
-    <string name="restricted_video_no_stream">Šiam video taikomas amžiaus apribojimas. \nDėl naujų YouTube amžiaus ribojimų NewPipe negali pasiekti ir atkurti šių video srautų.</string>
+    <string name="restricted_video_no_stream">Šiam video taikomas amžiaus apribojimas. \nDėl naujų YouTube amžiaus ribojimų YewPlay negali pasiekti ir atkurti šių video srautų.</string>
     <string name="restricted_video">Šiam video taikomas amžiaus apribojimas \n \nĮjunkite \"%1$s\" norėdami peržiūrėti.</string>
     <string name="youtube_restricted_mode_enabled_summary">Youtube turi „apribotą režimą“ kuriame slepiamas galimai suaugusiems skirtas turinys</string>
     <string name="youtube_restricted_mode_enabled_title">Įjungti YouTube „apribotą režimą“</string>
@@ -377,13 +377,13 @@
     <string name="seek_duration_title">Greito prasukimo trukmė</string>
     <string name="use_inexact_seek_summary">Netikslus prasukimas leidžia grotuvui greitai peršokti į kitą vietą su sumažintu tikslumu. 5, 15 ar 25 sekundės to nenaudoja</string>
     <string name="import_youtube_instructions">Importuokite „YouTube“ prenumeratas iš „Google Takeout“: \n \n1. Eikite į šį URL adresą: %1$s \n2. Prisijunkite, kai būsite paprašyti \n3. Spustelėkite „All data included“ (įtraukti visus duomenis), tada „Deselect all“ (panaikinti visų duomenų pasirinkimą), tada pasirinkite tik „Subscriptions“ (prenumeratos) ir spustelėkite „OK“ (gerai). \n4. Spustelėkite „Next step“ (kitas žingsnis), tada „Create export“ (sukurti eksportą). \n5. Pasirodžius mygtukui „Download“ (Atsisiųsti), spustelėkite jį ir \n6. Spustelėkite toliau Importuoti failą ir pasirinkite atsisiųstą ZIP failą \n7. [Jei nepavyksta importuoti ZIP failo] Ištraukite .csv failą (paprastai po „YouTube and YouTube Music/subscriptions/subscriptions.json“), spustelėkite toliau esantį Importuoti failą ir pasirinkite išgautą CSV failą</string>
-    <string name="app_license">NewPipe yra „copyleft libre“ programinė įranga: galite ją naudoti, studijuoti ir patobulinti. Konkrečiau, galite ją platinti ir (arba) modifikuoti pagal „Free Software Foundation“ paskelbtą GNU bendrosios viešosios licencijos sąlygas, pasirinktinai pagal 3 licencijos versiją arba (jūsų pasirinkimu) bet kurią vėlesnę versiją.</string>
+    <string name="app_license">YewPlay yra „copyleft libre“ programinė įranga: galite ją naudoti, studijuoti ir patobulinti. Konkrečiau, galite ją platinti ir (arba) modifikuoti pagal „Free Software Foundation“ paskelbtą GNU bendrosios viešosios licencijos sąlygas, pasirinktinai pagal 3 licencijos versiją arba (jūsų pasirinkimu) bet kurią vėlesnę versiją.</string>
     <string name="import_soundcloud_instructions">Importuokite \"SoundCloud\" profilį įvesdami URL arba savo ID: \n \n1. Interneto naršyklėje įjunkite darbalaukio režimą (svetainė neprieinama mobiliesiems įrenginiams). \n2. Eikite šiuo adresu: %1$s \n3. Prisijunkite, kai būsite paprašyti \n4. Nukopijuokite profilio URL, į kurį buvote nukreipti.</string>
-    <string name="paid_content">Šis turinys prieinamas tik sumokėjusiems naudotojams, todėl \"NewPipe\" negali jo transliuoti ar atsisiųsti.</string>
-    <string name="youtube_music_premium_content">Šis vaizdo įrašas prieinamas tik \"YouTube Music Premium\" nariams, todėl \"NewPipe\" negali jo transliuoti ar atsisiųsti.</string>
+    <string name="paid_content">Šis turinys prieinamas tik sumokėjusiems naudotojams, todėl \"YewPlay\" negali jo transliuoti ar atsisiųsti.</string>
+    <string name="youtube_music_premium_content">Šis vaizdo įrašas prieinamas tik \"YouTube Music Premium\" nariams, todėl \"YewPlay\" negali jo transliuoti ar atsisiųsti.</string>
     <string name="disable_media_tunneling_summary">Išjunkite medijos tuneliavimą, jei vaizdo įrašo atkūrimo metu atsiranda juodas ekranas arba užstrigimas.</string>
     <string name="caption_setting_description">Pakeiskite grotuvo subtitrų teksto mastelį ir fono stilių. Pakeitimai įsigalios iš naujo paleidus programą</string>
-    <string name="private_content">Šis turinys yra privatus, todėl \"NewPipe\" jo negali transliuoti ar atsisiųsti.</string>
+    <string name="private_content">Šis turinys yra privatus, todėl \"YewPlay\" jo negali transliuoti ar atsisiųsti.</string>
     <string name="confirm_prompt">Ar norite išvalyti atsisiuntimų istoriją ar ištrinti visus atsisiųstus failus?</string>
     <string name="feed_update_threshold_summary">Laikas po paskutinio atnaujinimo, po kurio prenumerata laikoma pasenusia — %s</string>
     <string name="error_http_unsupported_range">Serveris nepriima daugiasrautinių atsisiuntimų, pakartokite bandymą su @string/msg_threads = 1</string>
@@ -392,7 +392,7 @@
     <string name="georestricted_content">Šis turinys nėra prieinamas jūsų šalyje.</string>
     <string name="no_app_to_open_intent">Jokia programa jūsų įrenginyje negali atidaryti šio</string>
     <string name="enable_queue_limit_desc">Vienu metu bus vykdomas tik vienas atsisiuntimas</string>
-    <string name="error_postprocessing_stopped">NewPipe buvo uždaryta kol dirbo su failu</string>
+    <string name="error_postprocessing_stopped">YewPlay buvo uždaryta kol dirbo su failu</string>
     <string name="error_http_no_content">Serveris nesiunčia duomenų</string>
     <string name="error_ssl_exception">Užmegzti saugaus ryšio nepavyko</string>
     <string name="limit_mobile_data_usage_title">Riboti raišką naudojant mobilius duomenis</string>
@@ -495,12 +495,12 @@
     <string name="recaptcha_solve">Išspręsta</string>
     <string name="subtitle_activity_recaptcha">Paspauskite \"atlikta\" kai išspręsta</string>
     <string name="error_report_open_github_notice">Patikrinkite ar apie problemą su kuria susidūrėte dar nėra pranešta. Sukurdami kelis pranešimus apie tą pačią problemą atimate iš mūsų laiką kurį galėtume skirti klaidų taisymui.</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Ar manote, kad kanalas kraunamas per lėtai? Jei taip, pabandykite įjungti greitąjį įkrovimą (tai galite pakeisti nustatymuose arba paspaudę toliau esantį mygtuką). \n \n\"NewPipe\" siūlo dvi kanalo įkėlimo strategijas: \n- Visos prenumeratos kanalo atsisiuntimas, kuris yra lėtas, bet išsamus. \n- Naudojant specialų paslaugos galinį tašką, kuris yra greitas, bet paprastai neišsamus. \n \nSkirtumas tarp šių dviejų būdų yra tas, kad greitasis būdas paprastai neturi tam tikros informacijos, pavyzdžiui, elemento trukmės ar tipo (negalima atskirti tiesioginių ir įprastų vaizdo įrašų), ir gali grąžinti mažiau elementų. \n \n\"YouTube\" yra pavyzdys paslaugos, kuris siūlo šį greitąjį metodą su savo RSS kanalu. \n \nTaigi pasirinkimas priklauso nuo to, ko labiau norite: greičio ar tikslios informacijos.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Ar manote, kad kanalas kraunamas per lėtai? Jei taip, pabandykite įjungti greitąjį įkrovimą (tai galite pakeisti nustatymuose arba paspaudę toliau esantį mygtuką). \n \n\"YewPlay\" siūlo dvi kanalo įkėlimo strategijas: \n- Visos prenumeratos kanalo atsisiuntimas, kuris yra lėtas, bet išsamus. \n- Naudojant specialų paslaugos galinį tašką, kuris yra greitas, bet paprastai neišsamus. \n \nSkirtumas tarp šių dviejų būdų yra tas, kad greitasis būdas paprastai neturi tam tikros informacijos, pavyzdžiui, elemento trukmės ar tipo (negalima atskirti tiesioginių ir įprastų vaizdo įrašų), ir gali grąžinti mažiau elementų. \n \n\"YouTube\" yra pavyzdys paslaugos, kuris siūlo šį greitąjį metodą su savo RSS kanalu. \n \nTaigi pasirinkimas priklauso nuo to, ko labiau norite: greičio ar tikslios informacijos.</string>
     <string name="start_accept_privacy_policy">Siekdami laikytis Europos bendrojo duomenų apsaugos reglamento (GDPR), atkreipiame jūsų dėmesį į NewPipe privatumo politiką. Prašome atidžiai ją perskaityti. \nNorėdami išsiųsti mums pranešimą apie klaidą, turite su ja sutikti.</string>
     <string name="feed_use_dedicated_fetch_method_summary">Prieinama kai kuriose tarnybose, paprastai yra daug greitesnė, tačiau gali grąžinti ribotą kiekį elementų ir dažnai neišsamią informaciją (pvz., nėra trukmės, elemento tipo, nėra tiesioginės būsenos)</string>
     <string name="remove_watched_popup_warning">Vaizdo įrašai, kurie buvo peržiūrėti prieš juos įtraukiant į grojaraštį ir po to, kai jie buvo įtraukti į grojaraštį, bus pašalinti. \nAr tikrai? To negalima atšaukti!</string>
-    <string name="soundcloud_go_plus_content">Tai \"SoundCloud Go+\" kūrinys, bent jau jūsų šalyje, todėl jo negalima transliuoti ar atsisiųsti per \"NewPipe\".</string>
-    <string name="content_not_supported">Šio turinio \"NewPipe\" dar nepalaiko. \n \nTikimės, kad jis bus palaikomas būsimoje versijoje.</string>
+    <string name="soundcloud_go_plus_content">Tai \"SoundCloud Go+\" kūrinys, bent jau jūsų šalyje, todėl jo negalima transliuoti ar atsisiųsti per \"YewPlay\".</string>
+    <string name="content_not_supported">Šio turinio \"YewPlay\" dar nepalaiko. \n \nTikimės, kad jis bus palaikomas būsimoje versijoje.</string>
     <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" leidžia atsisiųsti duomenis į išorinę SD kortelę</string>
     <string name="import_network_expensive_warning">Atminkite, kad ši operacija gali brangiai kainuoti tinkle. \n \nAr norite tęsti?</string>
     <string name="updates_setting_description">Rodyti pranešimą, kuriame raginama atnaujinti programą, kai yra nauja versija</string>
@@ -529,7 +529,7 @@
     <string name="feed_oldest_subscription_update">Paskutinis atnaujinimas: %s</string>
     <string name="downloads_storage_ask_title">Klausti kur parsiųsti</string>
     <string name="overwrite_failed">failo perrašyti nepavyko</string>
-    <string name="app_update_available_notification_title">Prieinamas NewPipe atnaujinimas!</string>
+    <string name="app_update_available_notification_title">Prieinamas YewPlay atnaujinimas!</string>
     <string name="minimize_on_exit_title">Perjungiant programą sumažinti</string>
     <string name="unhook_checkbox">Atkabinti (gali iškraipyti)</string>
     <string name="subscriptions_export_unsuccessful">Nepavyko eksportuoti prenumeratų</string>
@@ -600,7 +600,7 @@
     <string name="description_select_note">Dabar apraše galite pasirinkti tekstą aprašyme. Atminkite, kad puslapis gali mirgėti, o nuorodos gali būti nespustelėjamos, kai veikia pasirinkimo režimas.</string>
     <string name="account_terminated">Paskyra anuliuota</string>
     <string name="feed_load_error_fast_unknown">Greito srauto režimas nesuteikia daugiau informacijos apie tai.</string>
-    <string name="feed_load_error_terminated">Autoriaus paskyra anuliuota. \n„NewPipe“ negalės įkelti šio kanalo ateityje. \nAr norite atsisakyti šio kanalo prenumeratos?</string>
+    <string name="feed_load_error_terminated">Autoriaus paskyra anuliuota. \n„YewPlay“ negalės įkelti šio kanalo ateityje. \nAr norite atsisakyti šio kanalo prenumeratos?</string>
     <string name="feed_load_error">Klaida įkeliant srautą</string>
     <string name="downloads_storage_use_saf_summary_api_29">Pradedant Android 10 palaikoma tik \'Storage Access Framework\'</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Jūsų bus paklausta, kur išsaugoti kiekvieną atsiuntimą</string>
@@ -644,7 +644,7 @@
     <string name="error_report_channel_description">Pranešimai pranešimui apie klaidas</string>
     <string name="show_crash_the_player_title">Rodyti „Grotuvas užlūžo“</string>
     <string name="create_error_notification">Kurti klaidos pranešimą</string>
-    <string name="error_report_notification_title">NewPipe susidūrė su klaida, paspauskite norėdami pranešti</string>
+    <string name="error_report_notification_title">YewPlay susidūrė su klaida, paspauskite norėdami pranešti</string>
     <string name="no_appropriate_file_manager_message">Šiam veiksmui nebuvo rasta tinkama failų tvarkyklė. \nĮdiekite failų tvarkyklę arba pabandykite išjungti \"%s\" atsisiuntimo nustatymuose</string>
     <string name="crash_the_player">Užlūžo</string>
     <string name="error_report_channel_name">Klaidos pranešimo pranešimas</string>
@@ -691,7 +691,7 @@
     <string name="sort">Rikiuoti</string>
     <string name="import_subscriptions_hint">Importuokite arba eksportuokite prenumeratas iš 3 taškelių meniu</string>
     <string name="fast_mode">Greitasis režimas</string>
-    <string name="app_update_unavailable_toast">Naudojate naujausią „NewPipe“ versiją</string>
+    <string name="app_update_unavailable_toast">Naudojate naujausią „YewPlay“ versiją</string>
     <string name="app_update_available_notification_text">Bakstelėkite, kad atsisiųstumėte %s</string>
     <string name="remove_duplicates_message">Ar norite pašalinti visus pasikartojančius srautus iš šio grojaraščio?</string>
     <string name="feed_show_upcoming">Būsimas</string>
@@ -752,7 +752,7 @@
     <string name="no">Ne</string>
     <string name="main_tabs_position_summary">Pagrindinio skirtuko parinkiklio perkėlimas į apačią</string>
     <string name="disable_media_tunneling_automatic_info">Medijos tuneliavimas buvo išjungtas pagal numatytuosius nustatymus jūsų prietaise, nes žinoma, kad jūsų prietaiso modelis jo nepalaiko.</string>
-    <string name="auto_update_check_description">\"NewPipe\" gali automatiškai patikrinti, ar yra naujų versijų, ir pranešti jums, kai jos pasirodys. \nAr norite tai įjungti?</string>
+    <string name="auto_update_check_description">\"YewPlay\" gali automatiškai patikrinti, ar yra naujų versijų, ir pranešti jums, kai jos pasirodys. \nAr norite tai įjungti?</string>
     <string name="image_quality_none">Neįkelti paveikslėlių</string>
     <string name="audio_track_name">%1$s %2$s</string>
     <string name="notification_actions_summary_android13">Redaguokite kiekvieną toliau pateiktą pranešimo veiksmą bakstelėdami jį. Pirmi trys veiksmai (groti/pauzė, ankstensnis ir paskesnis) yra sistemos numatytieji ir negali būti pakeisti.</string>

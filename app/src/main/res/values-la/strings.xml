@@ -66,7 +66,7 @@
     <string name="search_no_results">Nullae resultationes</string>
     <string name="settings_category_appearance_title">Facies</string>
     <string name="settings_category_player_behavior_title">Mos</string>
-    <string name="notification_channel_name">NewPipe notitia</string>
+    <string name="notification_channel_name">YewPlay notitia</string>
     <plurals name="listening">
         <item quantity="one">%s audiens</item>
         <item quantity="other">%s audientes</item>
@@ -133,7 +133,7 @@
     <string name="settings_category_updates_title">Res recenter divulgatae</string>
     <string name="settings_category_backup_restore_title">Servare et restituere</string>
     <string name="settings_category_debug_title">Errores reperire et amovere</string>
-    <string name="title_activity_about">De NewPipe</string>
+    <string name="title_activity_about">De YewPlay</string>
     <string name="title_licenses">Licentiae tertianae</string>
     <string name="tab_about">De &amp; FAQ</string>
     <string name="tab_licenses">Licetiae</string>
@@ -147,8 +147,8 @@
     <string name="website_encouragement">Visita situs interretialis NewPipe pro plure informationum et novitatibus.</string>
     <string name="privacy_policy_title">Politia rerum privatarum NewPipe</string>
     <string name="read_privacy_policy">Politia rerum privatarum legere</string>
-    <string name="app_license_title">Licentia NewPipe</string>
-    <string name="app_license">NewPipe partes programmationis libera et copiantes sinistrorsum sunt: Consumere, studere, distribuere, emendare tibi licet. Imprimis redistribuere et/aut mutare, contitione GNU General Public License quomodo divulgatus a Free Software Foundation, aut versio 3 aut posterior versio, tibi licet.</string>
+    <string name="app_license_title">Licentia YewPlay</string>
+    <string name="app_license">YewPlay partes programmationis libera et copiantes sinistrorsum sunt: Consumere, studere, distribuere, emendare tibi licet. Imprimis redistribuere et/aut mutare, contitione GNU General Public License quomodo divulgatus a Free Software Foundation, aut versio 3 aut posterior versio, tibi licet.</string>
     <string name="read_full_license">Licentia legere</string>
     <string name="faq_title">Interrogationes saepe interrogatas</string>
     <string name="faq_description">Si difficultates usum adhibere habes, aspice ea responsa ad interrogationes crebras!</string>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- YewPlay: tela de abertura com fundo grafite e o ícone centralizado. -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:drawable="@color/light_youtube_primary_color"/>
+    <item android:drawable="@color/yewplay_splash_background" />
 
-    <item>
-        <bitmap
-            android:src="@drawable/ic_newpipe_triangle_white"
-            android:gravity="center_vertical|center_horizontal" />
-    </item>
+    <item
+        android:width="96dp"
+        android:height="96dp"
+        android:drawable="@drawable/ic_yewplay_logo"
+        android:gravity="center" />
 </layer-list>

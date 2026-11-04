@@ -2,7 +2,7 @@
 <resources>
     <string name="app_description">Android'de özgür ve hafif bir oynatıcı.</string>
     <string name="navigate_back">Geri</string>
-    <string name="title_activity_about">NewPipe Hakkında</string>
+    <string name="title_activity_about">YewPlay Hakkında</string>
     <string name="title_licenses">Üçüncü Taraf Lisansları</string>
     <string name="license">%1$s tarafından, %2$s altında</string>
     <string name="tab_about">Hakkında ve SSS</string>
@@ -18,8 +18,8 @@
     <string name="privacy_policy_title">NewPipe'ın Gizlilik İlkesi</string>
     <string name="privacy_policy_encouragement">NewPipe projesi, gizliliğinizi çok önemsiyor. Bu nedenle, uygulama izniniz olmadan herhangi bir veri toplamaz.\nNewPipe\\'ın gizlilik ilkesi, çökme raporu gönderdiğinizde hangi verilerin gönderildiğini ve saklandığını ayrıntılı olarak açıklar.</string>
     <string name="read_privacy_policy">Gizlilik ilkesini oku</string>
-    <string name="app_license_title">NewPipe'ın Lisansı</string>
-    <string name="app_license">NewPipe, telif müsaadeli özgür yazılımdır: İstediğiniz gibi kullanabilir, öğrenebilir, paylaşabilir ve geliştirebilirsiniz. Özellikle, Özgür Yazılım Vakfı tarafından yayımlanan GNU Genel Kamu Lisansı 3. sürümü veya (isterseniz) daha sonraki sürümleri koşulları altında yeniden dağıtabilir ve/veya değiştirebilirsiniz.</string>
+    <string name="app_license_title">YewPlay'ın Lisansı</string>
+    <string name="app_license">YewPlay, telif müsaadeli özgür yazılımdır: İstediğiniz gibi kullanabilir, öğrenebilir, paylaşabilir ve geliştirebilirsiniz. Özellikle, Özgür Yazılım Vakfı tarafından yayımlanan GNU Genel Kamu Lisansı 3. sürümü veya (isterseniz) daha sonraki sürümleri koşulları altında yeniden dağıtabilir ve/veya değiştirebilirsiniz.</string>
     <string name="read_full_license">Lisansı oku</string>
     <string name="faq_title">Sık Sorulan Sorular</string>
     <string name="faq_description">Uygulamayı kullanırken sorun yaşıyorsanız, sık sorulan sorulara verilen bu yanıtlara göz atmayı unutmayın!</string>

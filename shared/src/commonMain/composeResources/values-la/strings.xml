@@ -15,7 +15,7 @@
     <string name="settings_category_backup_restore_title">Servare et restituere</string>
     <string name="settings_category_debug_title">Errores reperire et amovere</string>
     <string name="navigate_back">Retro</string>
-    <string name="title_activity_about">De NewPipe</string>
+    <string name="title_activity_about">De YewPlay</string>
     <string name="title_licenses">Licentiae tertianae</string>
     <string name="license">A %1$s cum %2$s</string>
     <string name="tab_about">De &amp; FAQ</string>
@@ -32,8 +32,8 @@
     <string name="privacy_policy_title">Politia rerum privatarum NewPipe</string>
     <string name="privacy_policy_encouragement">Inceptum NewPipe tuas res privatas valde veretur. Itaque usus non sine tua assensione data colligit\nPolitia rerum privatarum NewPipe quae data conservata et missa sunt si relatio interpellationis mittis explicat.</string>
     <string name="read_privacy_policy">Politia rerum privatarum legere</string>
-    <string name="app_license_title">Licentia NewPipe</string>
-    <string name="app_license">NewPipe partes programmationis libera et copiantes sinistrorsum sunt: Consumere, studere, distribuere, emendare tibi licet. Imprimis redistribuere et/aut mutare, contitione GNU General Public License quomodo divulgatus a Free Software Foundation, aut versio 3 aut posterior versio, tibi licet.</string>
+    <string name="app_license_title">Licentia YewPlay</string>
+    <string name="app_license">YewPlay partes programmationis libera et copiantes sinistrorsum sunt: Consumere, studere, distribuere, emendare tibi licet. Imprimis redistribuere et/aut mutare, contitione GNU General Public License quomodo divulgatus a Free Software Foundation, aut versio 3 aut posterior versio, tibi licet.</string>
     <string name="read_full_license">Licentia legere</string>
     <string name="faq_title">Interrogationes saepe interrogatas</string>
     <string name="faq_description">Si difficultates usum adhibere habes, aspice ea responsa ad interrogationes crebras!</string>

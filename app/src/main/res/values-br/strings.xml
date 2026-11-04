@@ -94,9 +94,9 @@
     <string name="always">Atav</string>
     <string name="file">Restr</string>
     <string name="notifications">Rebuzadurioù</string>
-    <string name="notification_channel_name">Rebuzadur NewPipe</string>
-    <string name="notification_channel_description">Rebuzadurioù evit al lenner NewPipe</string>
-    <string name="app_update_notification_channel_description">Rebuzadurioù evit handelvoù nevez NewPipe</string>
+    <string name="notification_channel_name">Rebuzadur YewPlay</string>
+    <string name="notification_channel_description">Rebuzadurioù evit al lenner YewPlay</string>
+    <string name="app_update_notification_channel_description">Rebuzadurioù evit handelvoù nevez YewPlay</string>
     <string name="streams_notification_channel_name">Lanvioù nevez</string>
     <string name="just_once">Ur wech nemetken</string>
     <string name="best_resolution">Diarunusted wellañ</string>

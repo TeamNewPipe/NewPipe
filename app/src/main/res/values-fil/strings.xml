@@ -118,12 +118,12 @@
     <string name="notifications_disabled">Nakapatay ang Mga Notipikasyon</string>
     <string name="metadata_privacy_public">Publiko</string>
     <string name="comments_tab_description">Mga Puna</string>
-    <string name="msg_running">Nagda-dawnload ang NewPipe</string>
+    <string name="msg_running">Nagda-dawnload ang YewPlay</string>
     <string name="on">Naka-bukas</string>
     <string name="app_language_title">Wika ng App</string>
     <string name="tab_about">Tungkol dito</string>
-    <string name="restricted_video_no_stream">Ang video na ito ay may paghihigpit sa edad. \nDahil sa mga bagong polisiya ng Youtube, hindi maaring ma-access ng NewPipe ang mga video streams nito, kaya hindi ito maipapalabas.</string>
-    <string name="notification_channel_name">Notipikasyon sa NewPipe</string>
+    <string name="restricted_video_no_stream">Ang video na ito ay may paghihigpit sa edad. \nDahil sa mga bagong polisiya ng Youtube, hindi maaring ma-access ng YewPlay ang mga video streams nito, kaya hindi ito maipapalabas.</string>
+    <string name="notification_channel_name">Notipikasyon sa YewPlay</string>
     <plurals name="listening">
         <item quantity="one">%s nakikinig</item>
         <item quantity="other">Mga %s nakikinig</item>
@@ -147,7 +147,7 @@
         <item quantity="other">mga %d oras</item>
     </plurals>
     <string name="systems_language">Karaniwan ng Sistema</string>
-    <string name="private_content">Nakapribado ang content na ito, kaya hindi ito maipalabas o mai-download ng NewPipe.</string>
+    <string name="private_content">Nakapribado ang content na ito, kaya hindi ito maipalabas o mai-download ng YewPlay.</string>
     <string name="download_has_started">Sinisimulan na ang Pagdownload</string>
     <string name="detail_heart_img_view_description">Pinusuan ng creator</string>
     <string name="video_detail_by">Ni %s</string>
@@ -230,7 +230,7 @@
     <string name="show_age_restricted_content_summary">Ipakita ang nilalamang maaaring makahamak sa bata dahil limitado ito sa edad (hal. 18+)</string>
     <string name="youtube_restricted_mode_enabled_summary">May \"Restricted Mode\" ang YouTube kung saan nakatago ang nilalamang hindi pambata</string>
     <string name="app_update_notification_channel_name">Notipikasyon sa pag-update ng app</string>
-    <string name="notification_channel_description">Mga notipikasyon para sa player ng NewPipe</string>
+    <string name="notification_channel_description">Mga notipikasyon para sa player ng YewPlay</string>
     <string name="artists">Mga artista</string>
     <string name="youtube_restricted_mode_enabled_title">Gamitin ang \"Restricted Mode\" ng YouTube</string>
     <string name="popup_playing_toast">Nagpe-play sa popup mode</string>

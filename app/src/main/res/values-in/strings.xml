@@ -69,7 +69,7 @@
     <string name="ok">Baik</string>
     <string name="msg_name">Nama berkas</string>
     <string name="msg_error">Galat</string>
-    <string name="msg_running">NewPipe Sedang Mengunduh</string>
+    <string name="msg_running">YewPlay Sedang Mengunduh</string>
     <string name="msg_running_detail">Sentuh untuk melihat detail</string>
     <string name="msg_wait">Mohon tunggu…</string>
     <string name="msg_copied">Disalin ke papan klip</string>
@@ -105,14 +105,14 @@
     <string name="settings_file_replacement_character_title">Karakter pengganti</string>
     <string name="charset_letters_and_digits">Huruf dan angka</string>
     <string name="charset_most_special_characters">Karakter spesial umum</string>
-    <string name="title_activity_about">Tentang NewPipe</string>
+    <string name="title_activity_about">Tentang YewPlay</string>
     <string name="title_licenses">Lisensi Pihak-ketiga</string>
     <string name="copyright" formatted="true">© %1$s oleh %2$s di bawah %3$s</string>
     <string name="tab_about">Tentang &amp; FAQ</string>
     <string name="tab_licenses">Lisensi</string>
     <string name="app_description">Streaming ringan Libre di Android.</string>
     <string name="view_on_github">Lihat di GitHub</string>
-    <string name="app_license_title">Lisensi NewPipe</string>
+    <string name="app_license_title">Lisensi YewPlay</string>
     <string name="contribution_encouragement">Apapun ide tentang; terjemahan, pengubahan desain, pembersihan kode, atau pengubahan kode yang besar—bantuan selalu diterima. Semakin banyak yang dilakukan, semakin baik hasilnya!</string>
     <string name="read_full_license">Baca lisensi</string>
     <string name="contribution_title">Kontribusi</string>
@@ -124,7 +124,7 @@
     <string name="enable_search_history_title">Riwayat pencarian</string>
     <string name="enable_search_history_summary">Simpan pencarian di perangkat</string>
     <string name="enable_watch_history_title">Riwayat tontonan</string>
-    <string name="notification_channel_name">Notifikasi NewPipe</string>
+    <string name="notification_channel_name">Notifikasi YewPlay</string>
     <string name="title_activity_history">Riwayat</string>
     <string name="action_history">Riwayat</string>
     <string name="thumbnail_cache_wipe_complete_notice">Tembolok gambar dihapus</string>
@@ -145,7 +145,7 @@
     <string name="always">Selalu</string>
     <string name="just_once">Hanya Sekali</string>
     <string name="file">Berkas</string>
-    <string name="notification_channel_description">Notifikasi untuk pemutar NewPipe</string>
+    <string name="notification_channel_description">Notifikasi untuk pemutar YewPlay</string>
     <string name="unknown_content">[Tidak diketahui]</string>
     <string name="switch_to_background">Alihkan ke Latar Belakang</string>
     <string name="switch_to_popup">Alihkan ke Popup</string>
@@ -308,7 +308,7 @@
     <string name="events">Acara</string>
     <string name="file_deleted">Berkas dihapus</string>
     <string name="app_update_notification_channel_name">Notifikasi pembaruan apl</string>
-    <string name="app_update_notification_channel_description">Notifikasi untuk versi-versi NewPipe baru</string>
+    <string name="app_update_notification_channel_description">Notifikasi untuk versi-versi YewPlay baru</string>
     <string name="download_to_sdcard_error_title">Penyimpanan eksternal tidak tersedia</string>
     <string name="download_to_sdcard_error_message">Tidak bisa mengunduh ke kartu SD eksternal. Atur ulang lokasi folder unduhan?</string>
     <string name="saved_tabs_invalid_json">Tidak bisa membaca tab yang disimpan, beralih menggunakan tab bawaan</string>
@@ -323,7 +323,7 @@
     <string name="list">Daftar</string>
     <string name="grid">Kisi</string>
     <string name="auto">Otomatis</string>
-    <string name="app_update_available_notification_title">Pembaruan NewPipe telah tersedia!</string>
+    <string name="app_update_available_notification_title">Pembaruan YewPlay telah tersedia!</string>
     <string name="missions_header_finished">Selesai</string>
     <string name="missions_header_pending">Tertunda</string>
     <string name="paused">dijeda</string>
@@ -367,7 +367,7 @@
     <string name="overwrite_unrelated_warning">Berkas dengan nama yang sama sudah ada</string>
     <string name="overwrite_failed">tidak bisa menimpa ulang berkas</string>
     <string name="download_already_pending">Ada unduhan yang dijeda dengan nama ini</string>
-    <string name="error_postprocessing_stopped">NewPipe telah ditutup saat sedang memproses berkas</string>
+    <string name="error_postprocessing_stopped">YewPlay telah ditutup saat sedang memproses berkas</string>
     <string name="error_insufficient_storage_left">Tidak ada ruang kosong tersisa pada perangkat</string>
     <string name="error_progress_lost">Kehilangan laju, karena berkas telah dihapus</string>
     <string name="confirm_prompt">Apakah Anda yakin ingin menghapus semua riwayat unduhan dan berkas yang telah diunduh?</string>
@@ -462,12 +462,12 @@
     <string name="remove_watched_popup_title">Hapus siaran yang sudah ditonton?</string>
     <string name="remove_watched">Buang ditonton</string>
     <string name="restricted_video">Video ini dibatasi usia. \n \nAktifkan \"%1$s\" di dalam pengaturan jika Anda ingin melihatnya.</string>
-    <string name="content_not_supported">Konten ini belum didukung oleh NewPipe. \n \nSemoga akan didukung pada versi berikutnya.</string>
+    <string name="content_not_supported">Konten ini belum didukung oleh YewPlay. \n \nSemoga akan didukung pada versi berikutnya.</string>
     <string name="remove_watched_popup_partially_watched_streams">Iya, dan video yang ditonton sebagian</string>
     <string name="remove_watched_popup_warning">Siaran yang telah ditonton sebelum dan sesudah ditambahkan ke daftar putar akan dihapus. \nAnda yakin?</string>
     <string name="unmute">Batal bisukan</string>
     <string name="mute">Bisukan</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Apakah Anda merasa pemuatan langganan sangat lambat? Jika iya, coba nyalakan pemuatan cepat (Anda bisa mengubahnya di dalam pengaturan atau dengan menekan tombol di bawah) \n \nNewPipe menyediakan dua strategi pemuatan langganan: \n• Mengambil semua kanal langganan, yang lebih lambat tapi lengkap. \n• Menggunakan layanan endpoint khusus, yang lebih cepat namun terkadang tidak lengkap. \n \nPerbedaan di antara keduanya adalah yang lebih cepat biasanya kekurangan beberapa informasi, seperti durasi atau tipe item (tidak bisa membedakan antara video siaran langsung atau yang biasa) dan mungkin menampilkan lebih sedikit item. \n \nYouTube adalah contoh layanan yang menyediakan metode pengambilan cepat dengan layanan RSS mereka. \n \nJadi pilihlah yang sesuai yang Anda inginkan: kecepatan atau kelengkapan informasi.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Apakah Anda merasa pemuatan langganan sangat lambat? Jika iya, coba nyalakan pemuatan cepat (Anda bisa mengubahnya di dalam pengaturan atau dengan menekan tombol di bawah) \n \nYewPlay menyediakan dua strategi pemuatan langganan: \n• Mengambil semua kanal langganan, yang lebih lambat tapi lengkap. \n• Menggunakan layanan endpoint khusus, yang lebih cepat namun terkadang tidak lengkap. \n \nPerbedaan di antara keduanya adalah yang lebih cepat biasanya kekurangan beberapa informasi, seperti durasi atau tipe item (tidak bisa membedakan antara video siaran langsung atau yang biasa) dan mungkin menampilkan lebih sedikit item. \n \nYouTube adalah contoh layanan yang menyediakan metode pengambilan cepat dengan layanan RSS mereka. \n \nJadi pilihlah yang sesuai yang Anda inginkan: kecepatan atau kelengkapan informasi.</string>
     <string name="show_original_time_ago_summary">Teks asli dari layanan akan terlihat di item aliran</string>
     <string name="show_original_time_ago_title">Tampilkan “waktu yang lalu” asli pada item</string>
     <string name="youtube_restricted_mode_enabled_title">Aktifkan \"Mode Terbatas\"</string>
@@ -507,7 +507,7 @@
     <string name="show_memory_leaks">Tampilkan kebocoran memori</string>
     <string name="enqueued">Ditambahkan</string>
     <string name="enqueue_stream">Antrekan</string>
-    <string name="clear_cookie_summary">Hapus kuki yang disimpan oleh NewPipe saat Anda memecahkan reCAPTCHA</string>
+    <string name="clear_cookie_summary">Hapus kuki yang disimpan oleh YewPlay saat Anda memecahkan reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Kuki reCAPTCHA telah dihapus</string>
     <string name="clear_cookie_title">Hapus kuki reCAPTCHA</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube menyediakan \"Mode Terbatas\" yang menyembunyikan konten dewasa</string>
@@ -530,13 +530,13 @@
     <string name="show_description_summary">Nonaktifkan untuk menyembunyikan deskripsi dan informasi tambahan</string>
     <string name="show_description_title">Tampilkan deskripsi</string>
     <string name="open_with">Buka dengan</string>
-    <string name="paid_content">Konten ini hanya tersedia untuk pengguna yang telah membayar, sehingga tidak bisa diputar atau diunduh oleh NewPipe.</string>
-    <string name="youtube_music_premium_content">Video ini hanya tersedia untuk anggota YouTube Music Premium, sehingga tidak bisa diputar atau diunduh oleh NewPipe.</string>
-    <string name="private_content">Konten ini bersifat privat, sehingga tidak dapat diputar atau diunduh oleh NewPipe.</string>
-    <string name="soundcloud_go_plus_content">Ini adalah sebuah trek SoundCloud Go +, setidaknya di negara Anda, sehingga tidak bisa diputar atau diunduh oleh NewPipe.</string>
+    <string name="paid_content">Konten ini hanya tersedia untuk pengguna yang telah membayar, sehingga tidak bisa diputar atau diunduh oleh YewPlay.</string>
+    <string name="youtube_music_premium_content">Video ini hanya tersedia untuk anggota YouTube Music Premium, sehingga tidak bisa diputar atau diunduh oleh YewPlay.</string>
+    <string name="private_content">Konten ini bersifat privat, sehingga tidak dapat diputar atau diunduh oleh YewPlay.</string>
+    <string name="soundcloud_go_plus_content">Ini adalah sebuah trek SoundCloud Go +, setidaknya di negara Anda, sehingga tidak bisa diputar atau diunduh oleh YewPlay.</string>
     <string name="georestricted_content">Konten ini tidak tersedia di negara Anda.</string>
     <string name="crash_the_app">Hancurkan aplikasinya</string>
-    <string name="restricted_video_no_stream">Video ini dibatasi usia. \nKarena kebijakan YouTube yang baru dengan video yang dibatasi usia, NewPipe tidak bisa mengakses video dan tidak bisa memutarnya.</string>
+    <string name="restricted_video_no_stream">Video ini dibatasi usia. \nKarena kebijakan YouTube yang baru dengan video yang dibatasi usia, YewPlay tidak bisa mengakses video dan tidak bisa memutarnya.</string>
     <string name="select_night_theme_toast">Anda bisa memilih tema malam favorit Anda di bawah ini</string>
     <string name="night_theme_summary">Pilih tema malam favoritmu — %s</string>
     <string name="auto_device_theme_title">Otomatis (tema perangkat)</string>
@@ -566,7 +566,7 @@
     <string name="open_website_license">Buka situs web</string>
     <string name="account_terminated">Akun dinonaktifkan</string>
     <string name="feed_load_error_fast_unknown">Mode langganan cepat tidak menyediakan lebih banyak info tentang ini.</string>
-    <string name="feed_load_error_terminated">Akun kreator telah dinonaktifkan. \nNewPipe tidak akan bisa memuat langganan ini lagi. \nApakah Anda ingin berhenti berlangganan channel ini?</string>
+    <string name="feed_load_error_terminated">Akun kreator telah dinonaktifkan. \nYewPlay tidak akan bisa memuat langganan ini lagi. \nApakah Anda ingin berhenti berlangganan channel ini?</string>
     <string name="feed_load_error_account_info">Tidak bisa memuat langganan untuk \'%s\'.</string>
     <string name="feed_load_error">Galat memuat langganan</string>
     <string name="downloads_storage_use_saf_summary_api_29">Mulai Android 10, hanya \'Storage Access Framework\' yang didukung</string>
@@ -609,7 +609,7 @@
     <string name="show_error_snackbar">Tampilkan snackbar kesalahan</string>
     <string name="create_error_notification">Buat notifikasi kesalahan</string>
     <string name="no_appropriate_file_manager_message">Tidak ada pengelola berkas yang ditemukan untuk tindakan ini. \nSilakan pasang pengelola berkas atau coba nonaktifkan \'%s\' di pengaturan unduhan</string>
-    <string name="error_report_notification_title">NewPipe mengalami sebuah kegalatan, ketuk untuk melaporkan</string>
+    <string name="error_report_notification_title">YewPlay mengalami sebuah kegalatan, ketuk untuk melaporkan</string>
     <string name="no_appropriate_file_manager_message_android_10">Tidak ada pengelola berkas yang ditemukan untuk tindakan ini. \nSilakan pasang pengelola berkas yang kompatibel dengan Storage Access Framework</string>
     <string name="detail_pinned_comment_view_description">Komentar dipin</string>
     <string name="leak_canary_not_available">LeakCanary tidak tersedia</string>
@@ -651,7 +651,7 @@
     <string name="sort">Urutan</string>
     <string name="fast_mode">Mode cepat</string>
     <string name="import_subscriptions_hint">Impor atau ekspor langganan dari menu 3 titik</string>
-    <string name="app_update_unavailable_toast">Anda menjalankan NewPipe versi terkini</string>
+    <string name="app_update_unavailable_toast">Anda menjalankan YewPlay versi terkini</string>
     <string name="app_update_available_notification_text">Ketuk untuk mengunduh %s</string>
     <string name="night_theme_available">Opsi ini hanya tersedia jika %s dipilih untuk Tema</string>
     <string name="unset_playlist_thumbnail">Batalkan penetapan gambar kecil permanen</string>
@@ -755,7 +755,7 @@
     <string name="reset_settings_title">Atur ulang pengaturan</string>
     <string name="reset_settings_summary">Atur ulang pengaturan ke nilai bawaan</string>
     <string name="reset_all_settings">Mengatur ulang semua pengaturan akan mengabaikan pengaturan Anda yang disukai dan memulai ulang aplikasi. \n \nApakah Anda yakin ingin melanjutkan?</string>
-    <string name="auto_update_check_description">NewPipe dapat memeriksa versi baru secara berkala dan memberi tahu Anda ketika ada yang baru. \nApakah Anda ingin mengaktifkan ini?</string>
+    <string name="auto_update_check_description">YewPlay dapat memeriksa versi baru secara berkala dan memberi tahu Anda ketika ada yang baru. \nApakah Anda ingin mengaktifkan ini?</string>
     <string name="settings_category_backup_restore_title">Cadangkan dan pulihkan</string>
     <string name="import_settings_vulnerable_format">Pengaturan dalam ekspor yang diimpor menggunakan format rentan yang tidak digunakan lagi sejak NewPipe 0.27.0. Pastikan ekspor yang diimpor berasal dari sumber tepercaya, dan lebih memilih hanya menggunakan ekspor yang diperoleh dari NewPipe 0.27.0 atau yang lebih baru di masa mendatang. Dukungan untuk mengimpor pengaturan dalam format rentan ini akan segera dihapus sepenuhnya, dan NewPipe versi lama tidak akan dapat lagi mengimpor pengaturan ekspor dari versi baru.</string>
     <string name="audio_track_type_secondary">sekunder</string>

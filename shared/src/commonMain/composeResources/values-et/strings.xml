@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="navigate_back">Tagasi</string>
-    <string name="title_activity_about">Rakenduse teave: NewPipe</string>
+    <string name="title_activity_about">Rakenduse teave: YewPlay</string>
     <string name="title_licenses">Kolmanda osapoole litsentsid</string>
     <string name="license">Arendaja: %1$s, kasutatud litsents: %2$s</string>
     <string name="tab_about">Rakenduse teave ja KKK</string>
@@ -18,8 +18,8 @@
     <string name="privacy_policy_title">NewPipe'i andmekaitsepõhimõtted</string>
     <string name="privacy_policy_encouragement">NewPipe võtab privaatsust väga tõsiselt. Seetõttu ei kogu rakendus ilma nõusolekuta mingeid andmeid. \nNewPipe'i andmekaitsepõhimõtted selgitavad üksikasjalikult, milliseid andmeid saadetakse ja kogutakse veateate koostamisel.</string>
     <string name="read_privacy_policy">Loe andmekaitsepõhimõtteid</string>
-    <string name="app_license_title">NewPipe'i litsents</string>
-    <string name="app_license">NewPipe on vaba ja avatud lähtekoodiga tarkvara. Seda võid kasutada, uurida, jagada ja parandada nii, nagu õigemaks pead. Täpsemalt - seda võid levitada ja/või muuta vastavalt Vaba Tarkvara Sihtasutuse avaldatud GNU Üldise Avaliku Litsentsi v.3 (või sinu valikul hilisema versiooni) tingimustele.</string>
+    <string name="app_license_title">YewPlay'i litsents</string>
+    <string name="app_license">YewPlay on vaba ja avatud lähtekoodiga tarkvara. Seda võid kasutada, uurida, jagada ja parandada nii, nagu õigemaks pead. Täpsemalt - seda võid levitada ja/või muuta vastavalt Vaba Tarkvara Sihtasutuse avaldatud GNU Üldise Avaliku Litsentsi v.3 (või sinu valikul hilisema versiooni) tingimustele.</string>
     <string name="read_full_license">Loe litsentsi</string>
     <string name="faq_title">Korduma kippuvad küsimused</string>
     <string name="faq_description">Kui sul tekib selle rakenduse kasutamisel probleeme, siis esmalt vaata, kas vastus leidub korduma kippuvate küsimuste hulgas!</string>

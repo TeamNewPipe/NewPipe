@@ -103,8 +103,8 @@
     <string name="always">Заўсёды</string>
     <string name="just_once">Толькі цяпер</string>
     <string name="file">Файл</string>
-    <string name="notification_channel_name">Апавяшчэнне NewPipe</string>
-    <string name="notification_channel_description">Апавяшчэнні для прайгравальніка NewPipe</string>
+    <string name="notification_channel_name">Апавяшчэнне YewPlay</string>
+    <string name="notification_channel_description">Апавяшчэнні для прайгравальніка YewPlay</string>
     <string name="unknown_content">[Невядома]</string>
     <string name="switch_to_background">Перайсці ў фонавы рэжым</string>
     <string name="switch_to_popup">Перайсці ў аконны рэжым</string>
@@ -191,7 +191,7 @@
     <string name="msg_name">Назва файла</string>
     <string name="msg_threads">Патокі</string>
     <string name="msg_error">Памылка</string>
-    <string name="msg_running">NewPipe спампоўвае</string>
+    <string name="msg_running">YewPlay спампоўвае</string>
     <string name="msg_running_detail">Падрабязнасці</string>
     <string name="msg_wait">Пачакайце…</string>
     <string name="msg_copied">Скапіявана ў буфер абмену</string>
@@ -206,7 +206,7 @@
     <string name="settings_file_replacement_character_title">Сімвал для замены</string>
     <string name="charset_letters_and_digits">Літары і лічбы</string>
     <string name="charset_most_special_characters">Большасць спецсімвалаў</string>
-    <string name="title_activity_about">Пра NewPipe</string>
+    <string name="title_activity_about">Пра YewPlay</string>
     <string name="title_licenses">Староннія ліцэнзіі</string>
     <string name="copyright" formatted="true">© %1$s %2$s пад ліцэнзіяй %3$s</string>
     <string name="tab_about">Аб праграме</string>
@@ -223,8 +223,8 @@
     <string name="privacy_policy_title">Палітыка прыватнасці NewPipe</string>
     <string name="privacy_policy_encouragement">Праект NewPipe вельмі адказна ставіцца да вашай прыватнасці. Таму праграма не збірае ніякіх даных без вашай згоды. \nПалітыка прыватнасці NewPipe падрабязна тлумачыць, якія даныя адпраўляюцца і захоўваюцца пры адпраўцы справаздачы пра збой.</string>
     <string name="read_privacy_policy">Прачытаць палітыку прыватнасці</string>
-    <string name="app_license_title">Ліцэнзія NewPipe</string>
-    <string name="app_license">NewPipe - гэта свабоднае праграмнае забеспячэнне (копілефт). Вы можаце выкарыстоўваць, вывучаць, дзяліцца і паляпшаць яго па жаданні. У прыватнасці, можаце распаўсюджваць і/ці змяняць яго згодна з умовамі, апублікаванай Фондам свабоднага праграмнага забеспячэння, Агульнай грамадскай ліцэнзіі GNU версіі 3 або любой пазнейшай (на ваш выбар).</string>
+    <string name="app_license_title">Ліцэнзія YewPlay</string>
+    <string name="app_license">YewPlay - гэта свабоднае праграмнае забеспячэнне (копілефт). Вы можаце выкарыстоўваць, вывучаць, дзяліцца і паляпшаць яго па жаданні. У прыватнасці, можаце распаўсюджваць і/ці змяняць яго згодна з умовамі, апублікаванай Фондам свабоднага праграмнага забеспячэння, Агульнай грамадскай ліцэнзіі GNU версіі 3 або любой пазнейшай (на ваш выбар).</string>
     <string name="read_full_license">Прачытаць ліцэнзію</string>
     <string name="title_activity_history">Гісторыя</string>
     <string name="action_history">Гісторыя</string>
@@ -319,7 +319,7 @@
     <string name="settings_category_updates_title">Абнаўленні</string>
     <string name="file_deleted">Файл выдалены</string>
     <string name="app_update_notification_channel_name">Апавяшчэнне пра абнаўленне праграмы</string>
-    <string name="app_update_notification_channel_description">Апавяшчэнні пра новыя версіі NewPipe</string>
+    <string name="app_update_notification_channel_description">Апавяшчэнні пра новыя версіі YewPlay</string>
     <string name="download_to_sdcard_error_title">Знешняе сховішча недаступна</string>
     <string name="download_to_sdcard_error_message">Спампоўванне на знешнюю SD-карту немагчыма. Скінуць размяшчэнне папкі спампоўвання?</string>
     <string name="saved_tabs_invalid_json">Не ўдалося прачытаць захаваныя ўкладкі, таму выкарыстоўваюцца прадвызначаныя</string>
@@ -333,7 +333,7 @@
     <string name="list">Спіс</string>
     <string name="grid">Сетка</string>
     <string name="auto">Аўтаматычна</string>
-    <string name="app_update_available_notification_title">Даступна абнаўленне NewPipe!</string>
+    <string name="app_update_available_notification_title">Даступна абнаўленне YewPlay!</string>
     <string name="missions_header_finished">Завершана</string>
     <string name="missions_header_pending">У чарзе</string>
     <string name="paused">прыпынена</string>
@@ -379,7 +379,7 @@
     <string name="overwrite_finished_warning">Спампаваны файл з такой назвай ужо існуе</string>
     <string name="overwrite_failed">немагчыма перазапісаць файл</string>
     <string name="download_already_pending">Файл з такой назвай ужо ў чарзе спампоўвання</string>
-    <string name="error_postprocessing_stopped">Праграма NewPipe была закрыта падчас працы з файлам</string>
+    <string name="error_postprocessing_stopped">Праграма YewPlay была закрыта падчас працы з файлам</string>
     <string name="error_insufficient_storage_left">На прыладзе скончылася вольнае месца</string>
     <string name="error_progress_lost">Прагрэс страчаны, бо файл быў выдалены</string>
     <string name="error_timeout">Скончыўся час злучэння</string>
@@ -411,7 +411,7 @@
     <string name="choose_instance_prompt">Выберыце сервер</string>
     <string name="delete_downloaded_files">Выдаліць спампаваныя файлы</string>
     <string name="show_original_time_ago_summary">Зыходныя тэксты з сэрвісаў будуць бачны ў ленце элементаў</string>
-    <string name="clear_cookie_summary">Ачысціць файлы cookie, якія NewPipe захоўвае пры рашэнні reCAPTCHA</string>
+    <string name="clear_cookie_summary">Ачысціць файлы cookie, якія YewPlay захоўвае пры рашэнні reCAPTCHA</string>
     <string name="peertube_instance_add_exists">Сервер (інстанс) ужо існуе</string>
     <string name="peertube_instance_add_fail">Не ўдалося праверыць сервер</string>
     <string name="peertube_instance_add_help">Увядзіце URL-адрас сервера</string>
@@ -545,7 +545,7 @@
     <string name="seekbar_preview_thumbnail_title">Мініяцюра з перадпраглядам у паласе перамотвання</string>
     <string name="high_quality_larger">Высокая якасць (больш)</string>
     <string name="dont_show">Не паказваць</string>
-    <string name="app_update_unavailable_toast">Вы выкарыстоўваеце апошнюю версію NewPipe</string>
+    <string name="app_update_unavailable_toast">Вы выкарыстоўваеце апошнюю версію YewPlay</string>
     <string name="error_download_resource_gone">Немагчыма аднавіць спампоўванне</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">Выдалены %1$s спампаваны файл</item>
@@ -567,7 +567,7 @@
     <string name="restricted_video">Гэта відэа абмежавана па ўзросце. \n \nУключыце «%1$s» у наладах, калі хочаце бачыць гэта.</string>
     <string name="error_report_channel_name">Апавяшчэнне аб памылцы</string>
     <string name="error_report_channel_description">Апавяшчэнні для паведамлення аб памылках</string>
-    <string name="error_report_notification_title">Адбылася памылка NewPipe, націсніце, каб адправіць справаздачу</string>
+    <string name="error_report_notification_title">Адбылася памылка YewPlay, націсніце, каб адправіць справаздачу</string>
     <string name="start_main_player_fullscreen_summary">Калі аўтапаварот адключаны, відэа адразу запускаецца ў поўнаэкранным рэжыме. Міні-плэер застаецца даступным, трэба толькі выйсці з поўнаэкраннага рэжыму</string>
     <string name="peertube_instance_url_help">Шукайце серверы, якія вам даспадобы, на %s</string>
     <string name="show_meta_info_title">Паказваць метаданыя</string>
@@ -579,7 +579,7 @@
     <string name="ignore_hardware_media_buttons_summary">Карысна, напрыклад, калі вы карыстаецеся гарнітурай са зламанымі фізічнымі кнопкамі</string>
     <string name="show_meta_info_summary">Выключыце, каб схаваць палі метаданых з дадатковымі звесткамі пра стваральніка патоку, змесціва патоку або пошукавы запыт</string>
     <string name="remote_search_suggestions">Прапановы пры аддаленым пошуку</string>
-    <string name="restricted_video_no_stream">Гэта відэа абмежавана па ўзросце. \nУ сувязі з новай палітыкай YouTube у дачыненні да відэа з узроставымі абмежаваннямі, NewPipe не можа атрымаць доступ ні да аднаго са сваіх відэапатокаў і, такім чынам, не можа іх прайграваць.</string>
+    <string name="restricted_video_no_stream">Гэта відэа абмежавана па ўзросце. \nУ сувязі з новай палітыкай YouTube у дачыненні да відэа з узроставымі абмежаваннямі, YewPlay не можа атрымаць доступ ні да аднаго са сваіх відэапатокаў і, такім чынам, не можа іх прайграваць.</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube забяспечвае «Абмежаваны рэжым», які хавае патэнцыйна змесціва для дарослых</string>
     <string name="msg_calculating_hash">Разлік хэша</string>
     <string name="recaptcha_solve">Вырашана</string>
@@ -660,7 +660,7 @@
     <string name="settings_category_feed_title">Стужка</string>
     <string name="feed_update_threshold_summary">Час пасля апошняга абнаўлення, перш чым падпіска лічыцца састарэлай — %s</string>
     <string name="feed_load_error">Памылка загрузкі канала</string>
-    <string name="feed_load_error_terminated">Уліковы запіс аўтара быў спынены. \nNewPipe не зможа загрузіць гэты канал у будучыні. \nАдпісацца ад канала?</string>
+    <string name="feed_load_error_terminated">Уліковы запіс аўтара быў спынены. \nYewPlay не зможа загрузіць гэты канал у будучыні. \nАдпісацца ад канала?</string>
     <string name="feed_load_error_fast_unknown">Рэжым хуткай загрузкі стужкі не дае дадатковай інфармацыі аб гэтым.</string>
     <string name="feed_use_dedicated_fetch_method_title">Атрыманне даных са спецыяльнага канала, калі ён ёсць</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Уключыць хуткі рэжым</string>
@@ -685,27 +685,27 @@
     <string name="radio">Радыё</string>
     <string name="feed_hide_streams_title">Паказваць наступныя патокі</string>
     <string name="feed_show_hide_streams">Паказаць/схаваць трансляцыі</string>
-    <string name="content_not_supported">Гэты кантэнт яшчэ не падтрымліваецца NewPipe.\n\nСпадзяёмся, што падтрымка з\'явіцца ў наступных версіях.</string>
+    <string name="content_not_supported">Гэты кантэнт яшчэ не падтрымліваецца YewPlay.\n\nСпадзяёмся, што падтрымка з\'явіцца ў наступных версіях.</string>
     <string name="playlist_page_summary">Старонка плэй-ліста</string>
     <string name="show_thumbnail_title">Паказваць мініяцюру</string>
     <string name="show_thumbnail_summary">Выкарыстоўваць мініяцюру як фон для экрана блакіроўкі і апавяшчэнняў</string>
     <string name="no_appropriate_file_manager_message">Для гэтага дзеяння не знойдзены прыдатны файлавы менеджар. \nУсталюйце файлавы менеджар або паспрабуйце адключыць «%s» у наладах спампоўвання</string>
     <string name="georestricted_content">Гэты кантэнт недаступны ў вашай краіне.</string>
-    <string name="soundcloud_go_plus_content">Гэта трэк SoundCloud Go+ (прынамсі ў вашай краіне), таму NewPipe не можа яго прайграць або спампаваць.</string>
-    <string name="private_content">Гэты кантэнт прыватны, таму NewPipe не можа яго прайграць або спампаваць.</string>
-    <string name="youtube_music_premium_content">Гэта відэа даступна толькі для падпісчыкаў YouTube Music Premium, таму NewPipe не можа яго прайграць або спампаваць.</string>
+    <string name="soundcloud_go_plus_content">Гэта трэк SoundCloud Go+ (прынамсі ў вашай краіне), таму YewPlay не можа яго прайграць або спампаваць.</string>
+    <string name="private_content">Гэты кантэнт прыватны, таму YewPlay не можа яго прайграць або спампаваць.</string>
+    <string name="youtube_music_premium_content">Гэта відэа даступна толькі для падпісчыкаў YouTube Music Premium, таму YewPlay не можа яго прайграць або спампаваць.</string>
     <string name="account_terminated">Уліковы запіс спынены</string>
     <string name="featured">Вартае ўвагі</string>
     <string name="metadata_privacy_internal">Унутраная</string>
     <string name="feed_show_watched">Прагледжаныя цалкам</string>
-    <string name="paid_content">Гэты кантэнт даступны карыстальнікам толькі за плату, таму NewPipe не можа яго прайграць або спампаваць.</string>
+    <string name="paid_content">Гэты кантэнт даступны карыстальнікам толькі за плату, таму YewPlay не можа яго прайграць або спампаваць.</string>
     <string name="feed_use_dedicated_fetch_method_summary">Даступна для некаторых сэрвісаў, звычайна значна хутчэй, але можа перадаваць абмежаваную колькасць элементаў і не ўсю інфармацыю (можа адсутнічаць працягласць, тып элемента, паказчык трансляцыі)</string>
     <string name="metadata_age_limit">Узроставае абмежаванне</string>
     <string name="no_appropriate_file_manager_message_android_10">Для гэтага дзеяння не знойдзены прыдатны файлавы менеджар. \nУсталюйце файлавы менеджар, сумяшчальны з Storage Access Framework</string>
     <string name="no_app_to_open_intent">На прыладзе няма праграмы, каб адкрыць гэты файл</string>
     <string name="progressive_load_interval_exoplayer_default">Стандартнае значэнне ExoPlayer</string>
     <string name="feed_show_partially_watched">Прагледжаныя часткова</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Лічыце, што загрузка каналаў адбываецца занадта павольна? Калі так, паспрабуйце ўключыць хуткую загрузку (можна змяніць у наладах або націснуўшы кнопку ніжэй). \n \nNewPipe прапануе два спосабы загрузкі каналаў: \n• Атрыманне ўсяго канала падпіскі. Павольны, але інфармацыя поўная). \n• Выкарыстанне спецыяльнай канчатковай кропкі абслугоўвання. Хуткі, але звычайна інфармацыя няпоўная). \n \nРозніца паміж імі ў тым, што ў хуткім звычайна адсутнічае частка інфармацыі, напрыклад, працягласць або тып (немагчыма адрозніць трансляцыі ад звычайных відэа), і ён можа вяртаць менш элементаў. \n \nYouTube з\'яўляецца прыкладам сэрвісу, які прапануе гэты хуткі метад праз RSS-канал. \n \nТакім чынам, выбар залежыць ад таго, чаму вы аддаяце перавагу: хуткасці або дакладнасці інфармацыя.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Лічыце, што загрузка каналаў адбываецца занадта павольна? Калі так, паспрабуйце ўключыць хуткую загрузку (можна змяніць у наладах або націснуўшы кнопку ніжэй). \n \nYewPlay прапануе два спосабы загрузкі каналаў: \n• Атрыманне ўсяго канала падпіскі. Павольны, але інфармацыя поўная). \n• Выкарыстанне спецыяльнай канчатковай кропкі абслугоўвання. Хуткі, але звычайна інфармацыя няпоўная). \n \nРозніца паміж імі ў тым, што ў хуткім звычайна адсутнічае частка інфармацыі, напрыклад, працягласць або тып (немагчыма адрозніць трансляцыі ад звычайных відэа), і ён можа вяртаць менш элементаў. \n \nYouTube з\'яўляецца прыкладам сэрвісу, які прапануе гэты хуткі метад праз RSS-канал. \n \nТакім чынам, выбар залежыць ад таго, чаму вы аддаяце перавагу: хуткасці або дакладнасці інфармацыя.</string>
     <string name="metadata_privacy">Прыватнасць</string>
     <string name="metadata_language">Мова</string>
     <string name="metadata_support">Падтрымка</string>
@@ -793,7 +793,7 @@
     <string name="notification_actions_summary_android13">Каб адрэдагаваць кожнае з дзеянняў у апавяшчэнні, націсніце на яго. Першыя тры дзеянні (прайграванне/паўза, папярэдні і наступны) зададзены сістэмай, іх змяніць немагчыма.</string>
     <string name="error_insufficient_storage">Недастаткова вольнага месца на прыладзе</string>
     <string name="yes">Так</string>
-    <string name="auto_update_check_description">NewPipe можа час ад часу аўтаматычна правяраць наяўнасць новай версіі і апавяшчаць, калі яна будзе даступна. \nУключыць гэту функцыю?</string>
+    <string name="auto_update_check_description">YewPlay можа час ад часу аўтаматычна правяраць наяўнасць новай версіі і апавяшчаць, калі яна будзе даступна. \nУключыць гэту функцыю?</string>
     <string name="import_settings_vulnerable_format">Налады ў імпартаваным экспарце выкарыстоўваюць уразлівы фармат, які састарэў з версіі NewPipe 0.27.0. Пераканайцеся, што імпартаваны экспарт атрыманы з надзейнай крыніцы, і ў будучыні пераважней выкарыстоўваць толькі экспарт, атрыманы з NewPipe 0.27.0 ці навей. Падтрымка імпарту налад у гэтым уразлівым фармаце хутка будзе цалкам выдаленая, і тады старыя версіі NewPipe больш не змогуць імпартаваць наладкі з экспарту з новых версій.</string>
     <string name="no">Не</string>
     <string name="settings_category_backup_restore_title">Рэзервовыя копіі і аднаўленне</string>

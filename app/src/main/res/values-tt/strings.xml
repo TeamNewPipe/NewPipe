@@ -43,7 +43,7 @@
     <string name="content">Эчтәлек</string>
     <string name="duration_live">Турыдан-туры</string>
     <string name="clear">Чистарту</string>
-    <string name="notification_channel_name">NewPipe искәртүе</string>
+    <string name="notification_channel_name">YewPlay искәртүе</string>
     <string name="file_deleted">Файл бетерелде</string>
     <string name="notifications">Искәртүләр</string>
     <string name="unknown_content">[Билгесез]</string>

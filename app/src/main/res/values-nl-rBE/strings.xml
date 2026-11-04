@@ -99,8 +99,8 @@
     <string name="always">Altijd</string>
     <string name="just_once">Eenmalig</string>
     <string name="file">Bestand</string>
-    <string name="notification_channel_name">NewPipe-melding</string>
-    <string name="notification_channel_description">Meldingen voor NewPipe-achtergrond- en pop-upspelers</string>
+    <string name="notification_channel_name">YewPlay-melding</string>
+    <string name="notification_channel_description">Meldingen voor YewPlay-achtergrond- en pop-upspelers</string>
     <string name="unknown_content">[Onbekend]</string>
     <string name="switch_to_background">Verplaatsen naar achtergrond</string>
     <string name="switch_to_popup">Verplaatsen naar pop-up</string>
@@ -173,7 +173,7 @@
     <string name="msg_name">Bestandsnaam</string>
     <string name="msg_threads">Threads</string>
     <string name="msg_error">Fout</string>
-    <string name="msg_running">NewPipe is aan het downloaden</string>
+    <string name="msg_running">YewPlay is aan het downloaden</string>
     <string name="msg_running_detail">Tik voor meer informatie</string>
     <string name="msg_wait">Even geduld…</string>
     <string name="msg_copied">Gekopieerd naar klembord</string>
@@ -187,7 +187,7 @@
     <string name="settings_file_replacement_character_title">Vervangend teken</string>
     <string name="charset_letters_and_digits">Letters en cijfers</string>
     <string name="charset_most_special_characters">Meeste speciale tekens</string>
-    <string name="title_activity_about">Over NewPipe</string>
+    <string name="title_activity_about">Over YewPlay</string>
     <string name="title_licenses">Derdepartijlicenties</string>
     <string name="copyright" formatted="true">© %1$s door %2$s, uitgebracht onder de %3$s</string>
     <string name="tab_about">Over</string>
@@ -201,7 +201,7 @@
     <string name="give_back">Teruggeven</string>
     <string name="website_title">Website</string>
     <string name="website_encouragement">Bezoek de website van NewPipe voor meer informatie en het laatste nieuws.</string>
-    <string name="app_license_title">Licentie van NewPipe</string>
+    <string name="app_license_title">Licentie van YewPlay</string>
     <string name="read_full_license">Licentie lezen</string>
     <string name="title_activity_history">Geschiedenis</string>
     <string name="action_history">Geschiedenis</string>
@@ -286,7 +286,7 @@
     <string name="delete_search_history_alert">De hele zoekgeschiedenis verwijderen?</string>
     <string name="search_history_deleted">Zoekgeschiedenis verwijderd</string>
     <string name="one_item_deleted">1 item verwijderd.</string>
-    <string name="app_license">NewPipe is vrije software: u kan het gebruiken, bestuderen, delen en verbeteren zoveel u maar wil. U kan het opnieuw uitgeven en/of aanpassen volgens de voorwaarden van de GNU General Public License, gepubliceerd door de Free Software Foundation, versie 3 van de licentie, of (indien gewenst) om het even welke latere versie.</string>
+    <string name="app_license">YewPlay is vrije software: u kan het gebruiken, bestuderen, delen en verbeteren zoveel u maar wil. U kan het opnieuw uitgeven en/of aanpassen volgens de voorwaarden van de GNU General Public License, gepubliceerd door de Free Software Foundation, versie 3 van de licentie, of (indien gewenst) om het even welke latere versie.</string>
     <string name="import_settings">Wilt u ook de instellingen importeren?</string>
     <string name="privacy_policy_title">Privacybeleid van NewPipe</string>
     <string name="privacy_policy_encouragement">Het NewPipe-project neemt privacy serieus. Daarom verzamelt de app geen gegevens zonder uw toestemming. \nNewPipe\'s privacybeleid legt gedetailleerd uit welke gegevens verstuurd en opgeslagen worden als u een crashrapport verstuurt.</string>
@@ -314,7 +314,7 @@
     <string name="events">Gebeurtenissen</string>
     <string name="file_deleted">Bestand verwijderd</string>
     <string name="app_update_notification_channel_name">Appupdatemelding</string>
-    <string name="app_update_notification_channel_description">Meldingen voor nieuwe versies van NewPipe</string>
+    <string name="app_update_notification_channel_description">Meldingen voor nieuwe versies van YewPlay</string>
     <string name="download_to_sdcard_error_title">Externe opslag niet beschikbaar</string>
     <string name="download_to_sdcard_error_message">Downloaden naar externe SD-kaart is niet mogelijk. Download map opnieuw instellen?</string>
     <string name="saved_tabs_invalid_json">Fout bij het lezen van de opgeslagen tabbladen, waardoor standaard tabbladen worden gebruikt</string>
@@ -329,7 +329,7 @@
     <string name="list">Lijst</string>
     <string name="grid">Raster</string>
     <string name="auto">Auto</string>
-    <string name="app_update_available_notification_title">NewPipe update is beschikbaar!</string>
+    <string name="app_update_available_notification_title">YewPlay update is beschikbaar!</string>
     <string name="missions_header_finished">Voltooid</string>
     <string name="paused">gepauzeerd</string>
     <string name="queued">toegevoegd aan wachtrij</string>
@@ -368,8 +368,8 @@
     <string name="video_detail_by">Door %s</string>
     <string name="channel_created_by">Gemaakt door %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanaal avatar afbeelding</string>
-    <string name="content_not_supported">Deze inhoud wordt nog niet ondersteund door NewPipe. \n \nHopelijk zal dit bij een toekomstige versie ondersteund worden.</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Denk je dat het laden van de feed te sloom is? Zo ja, probeer snel laden in te schakelen (in de instellingen of door op onderstaande knop te drukken). \n \nNewPipe biedt twee strategieën aan voor het laden van de feed: \n• Het hele abonnementskanaal ophalen, wat sloom maar compleet is. \n• Een speciale feed ophalen, wat snel maar meestal incompleet is. \n \nHet verschil tussen de twee is dat de snelle meestal wat informatie mist, zoals de duur of type (live of een normale video) van het item en dat er mogelijk minder items zijn. \n \nYouTube is een voorbeeld van een service die deze snelle methode aanbiedt door zijn RSS-feed. \n \nDe keuze komt dus neer op wat je liever hebt: snelheid of precieze informatie.</string>
+    <string name="content_not_supported">Deze inhoud wordt nog niet ondersteund door YewPlay. \n \nHopelijk zal dit bij een toekomstige versie ondersteund worden.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Denk je dat het laden van de feed te sloom is? Zo ja, probeer snel laden in te schakelen (in de instellingen of door op onderstaande knop te drukken). \n \nYewPlay biedt twee strategieën aan voor het laden van de feed: \n• Het hele abonnementskanaal ophalen, wat sloom maar compleet is. \n• Een speciale feed ophalen, wat snel maar meestal incompleet is. \n \nHet verschil tussen de twee is dat de snelle meestal wat informatie mist, zoals de duur of type (live of een normale video) van het item en dat er mogelijk minder items zijn. \n \nYouTube is een voorbeeld van een service die deze snelle methode aanbiedt door zijn RSS-feed. \n \nDe keuze komt dus neer op wat je liever hebt: snelheid of precieze informatie.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Snelle modus uitschakelen</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Snelle modus inschakelen</string>
     <string name="feed_use_dedicated_fetch_method_summary">Beschikbaar in sommige services, het is meestal veel sneller, maar kan een beperkte hoeveelheid items en vaak onvolledige informatie (bijv. geen duur, item type, of live status) bevatten.</string>
@@ -431,7 +431,7 @@
     <string name="error_download_resource_gone">Kan deze download niet herstellen</string>
     <string name="error_timeout">Verbinding time-out</string>
     <string name="error_insufficient_storage_left">Geen vrije ruimte meer op het apparaat</string>
-    <string name="error_postprocessing_stopped">NewPipe werd gesloten terwijl het bezig was met het bestand</string>
+    <string name="error_postprocessing_stopped">YewPlay werd gesloten terwijl het bezig was met het bestand</string>
     <string name="download_already_pending">Er staat al een download met deze naam in wacht</string>
     <string name="overwrite_failed">Kan bestand niet overschrijven</string>
     <string name="overwrite_unrelated_warning">Er bestaat al een bestand met deze naam</string>
@@ -478,7 +478,7 @@
     <string name="delete_playback_states_alert">Alle afspeelposities verwijderen?</string>
     <string name="clear_playback_states_summary">Verwijdert alle geschiedenis van afspeelposities</string>
     <string name="clear_playback_states_title">Verwijder geschiedenis afspeelposities</string>
-    <string name="clear_cookie_summary">Verwijder cookies die NewPipe opslaat wanneer u een reCAPTCHA oplost</string>
+    <string name="clear_cookie_summary">Verwijder cookies die YewPlay opslaat wanneer u een reCAPTCHA oplost</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA cookies zijn verwijderd</string>
     <string name="clear_cookie_title">Verwijder reCAPTCHA cookies</string>
     <string name="artists">Artiesten</string>
@@ -538,13 +538,13 @@
     <string name="description_tab_description">Beschrijving</string>
     <string name="related_items_tab_description">Gerelateerde items</string>
     <string name="comments_tab_description">Reacties</string>
-    <string name="restricted_video_no_stream">Deze video heeft een leeftijdsbeperking. \nAls gevolg van het nieuwe YouTube-beleid met video\'s met leeftijdsbeperkingen heeft NewPipe geen toegang tot deze videostreams en kan deze dus niet afspelen.</string>
+    <string name="restricted_video_no_stream">Deze video heeft een leeftijdsbeperking. \nAls gevolg van het nieuwe YouTube-beleid met video\'s met leeftijdsbeperkingen heeft YewPlay geen toegang tot deze videostreams en kan deze dus niet afspelen.</string>
     <string name="show_description_summary">Zet uit om videobeschrijving en extra informatie te verbergen</string>
     <string name="show_description_title">Toon beschrijving</string>
     <string name="night_theme_title">Nacht thema</string>
     <string name="open_with">Open met</string>
     <string name="featured">Featured</string>
-    <string name="private_content">Deze inhoud is privé, waardoor het niet kan worden gestreamd of gedownload door NewPipe.</string>
+    <string name="private_content">Deze inhoud is privé, waardoor het niet kan worden gestreamd of gedownload door YewPlay.</string>
     <string name="crash_the_app">Laat de app crashen</string>
     <string name="disable_media_tunneling_summary">Schakel media tunneling uit indien u een zwart scherm of haperingen vaststelt bij het afspelen van video\'s</string>
     <string name="download_has_started">De download is begonnen</string>
@@ -552,9 +552,9 @@
     <string name="night_theme_summary">Kies uw favoriete nachtthema - %s</string>
     <string name="auto_device_theme_title">Automatisch (thema van de telefoon)</string>
     <string name="radio">Radio</string>
-    <string name="paid_content">Deze inhoud is enkel toegankelijk voor betalende gebruikers, waardoor het niet kan worden gestreamd of gedownload door NewPipe.</string>
-    <string name="youtube_music_premium_content">Deze video is enkel toegankelijk voor YouTube Music Premium leden, waardoor het niet kan worden gestreamd of gedownload door NewPipe.</string>
-    <string name="soundcloud_go_plus_content">Dit is (tenminste in uw land) een SoundCloud Go+ titel, waardoor het niet kan worden gestreamd of gedownload door NewPipe.</string>
+    <string name="paid_content">Deze inhoud is enkel toegankelijk voor betalende gebruikers, waardoor het niet kan worden gestreamd of gedownload door YewPlay.</string>
+    <string name="youtube_music_premium_content">Deze video is enkel toegankelijk voor YouTube Music Premium leden, waardoor het niet kan worden gestreamd of gedownload door YewPlay.</string>
+    <string name="soundcloud_go_plus_content">Dit is (tenminste in uw land) een SoundCloud Go+ titel, waardoor het niet kan worden gestreamd of gedownload door YewPlay.</string>
     <string name="georestricted_content">Deze inhoud is niet toegankelijk in uw land.</string>
     <string name="no_app_to_open_intent">Geen app beschikbaar om dit te openen</string>
     <string name="chapters">Hoofdstukken</string>
@@ -577,7 +577,7 @@
     <string name="notifications">Meldingen</string>
     <string name="streams_notification_channel_name">Nieuwe streams</string>
     <string name="streams_notification_channel_description">Meldingen over nieuwe streams voor abonnementen</string>
-    <string name="error_report_notification_title">NewPipe meldt een fout, tik om te rapporteren</string>
+    <string name="error_report_notification_title">YewPlay meldt een fout, tik om te rapporteren</string>
     <plurals name="new_streams">
         <item quantity="one">%s nieuwe stream</item>
         <item quantity="other">%s nieuwe streams</item>
