@@ -46,6 +46,7 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.image.CoilHelper;
 
 import java.util.List;
@@ -280,6 +281,29 @@ public final class PlayQueueActivity extends AppCompatActivity
         queueControlBinding.controlFastForward.setOnClickListener(this);
         queueControlBinding.controlForward.setOnClickListener(this);
         queueControlBinding.controlShuffle.setOnClickListener(this);
+        // YewPlay: speed, share and queue below the controls (portrait layout only)
+        if (queueControlBinding.ypListenActions != null) {
+            queueControlBinding.ypListenSpeed.setOnClickListener(this);
+            queueControlBinding.ypListenShare.setOnClickListener(this);
+            queueControlBinding.ypListenQueue.setOnClickListener(this);
+        }
+    }
+
+    /**
+     * YewPlay: the "Listen" screen shows the large cover by default; the queue button swaps it
+     * with the play queue.
+     */
+    private void toggleQueueVisibility() {
+        if (queueControlBinding.ypCoverContainer == null) {
+            return;
+        }
+        final boolean showQueue =
+                queueControlBinding.playQueue.getVisibility() != View.VISIBLE;
+        queueControlBinding.playQueue.setVisibility(showQueue ? View.VISIBLE : View.GONE);
+        queueControlBinding.ypCoverContainer.setVisibility(showQueue ? View.GONE : View.VISIBLE);
+        if (showQueue) {
+            scrollToSelected();
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -428,6 +452,13 @@ public final class PlayQueueActivity extends AppCompatActivity
             scrollToSelected();
         } else if (view.getId() == queueControlBinding.liveSync.getId()) {
             player.seekToDefault();
+        } else if (view.getId() == R.id.yp_listen_speed) {
+            openPlaybackParameterDialog();
+        } else if (view.getId() == R.id.yp_listen_share) {
+            ShareUtils.shareText(this, player.getVideoTitle(), player.getVideoUrlAtCurrentTime(),
+                    null);
+        } else if (view.getId() == R.id.yp_listen_queue) {
+            toggleQueueVisibility();
         }
     }
 
@@ -628,6 +659,9 @@ public final class PlayQueueActivity extends AppCompatActivity
     }
 
     private void onPlaybackParameterChanged(@Nullable final PlaybackParameters parameters) {
+        if (parameters != null && queueControlBinding.ypListenSpeed != null) {
+            queueControlBinding.ypListenSpeed.setText(formatSpeed(parameters.speed));
+        }
         if (parameters != null && menu != null && player != null) {
             final MenuItem item = menu.findItem(R.id.action_playback_speed);
             item.setTitle(formatSpeed(parameters.speed));

@@ -616,7 +616,12 @@
                 app:elevation="16dp"
                 app:tabBackground="?attr/windowBackground"
                 app:tabGravity="fill"
-                app:tabIconTint="?attr/colorAccent"
+                app:tabIconTint="@color/yp_tab_icon"
+            app:tabInlineLabel="true"
+            app:tabTextAppearance="@style/TextAppearance.YewPlay.Tab"
+            app:tabSelectedTextColor="@color/yp_on_bg"
+            app:tabTextColor="@color/yp_muted"
+            app:tabIndicatorColor="@color/yp_state"
                 app:tabIndicatorGravity="top" />
 
         </org.schabi.newpipe.views.FocusAwareCoordinator>

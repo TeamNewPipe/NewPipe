@@ -173,6 +173,7 @@ public final class VideoDetailFragment
     @StringRes
     @NonNull
     final List<Integer> tabContentDescriptions = new ArrayList<>();
+    final List<Integer> tabLabels = new ArrayList<>();
     private boolean tabSettingsChanged = false;
     private int lastAppBarVerticalOffset = Integer.MAX_VALUE; // prevents useless updates
 
@@ -898,12 +899,14 @@ public final class VideoDetailFragment
         pageAdapter.clearAllItems();
         tabIcons.clear();
         tabContentDescriptions.clear();
+        tabLabels.clear();
 
         if (shouldShowComments()) {
             pageAdapter.addFragment(
                     CommentsFragment.getInstance(serviceId, url, title), COMMENTS_TAB_TAG);
             tabIcons.add(R.drawable.ic_comment);
             tabContentDescriptions.add(R.string.comments_tab_description);
+            tabLabels.add(R.string.yp_tab_comments);
         }
 
         if (showRelatedItems && binding.relatedItemsLayout == null) {
@@ -911,6 +914,7 @@ public final class VideoDetailFragment
             pageAdapter.addFragment(EmptyFragment.newInstance(false), RELATED_TAB_TAG);
             tabIcons.add(R.drawable.ic_art_track);
             tabContentDescriptions.add(R.string.related_items_tab_description);
+            tabLabels.add(R.string.yp_tab_up_next);
         }
 
         if (showDescription) {
@@ -918,6 +922,7 @@ public final class VideoDetailFragment
             pageAdapter.addFragment(EmptyFragment.newInstance(false), DESCRIPTION_TAB_TAG);
             tabIcons.add(R.drawable.ic_description);
             tabContentDescriptions.add(R.string.description_tab_description);
+            tabLabels.add(R.string.yp_tab_description);
         }
 
         if (pageAdapter.getCount() == 0) {
@@ -948,6 +953,10 @@ public final class VideoDetailFragment
             if (tab != null) {
                 tab.setIcon(tabIcons.get(i));
                 tab.setContentDescription(tabContentDescriptions.get(i));
+                // YewPlay: labeled tabs ("Comments", "Up next", "Description")
+                if (i < tabLabels.size()) {
+                    tab.setText(tabLabels.get(i));
+                }
             }
         }
     }

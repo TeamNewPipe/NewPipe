@@ -31,9 +31,10 @@
         android:id="@+id/play_queue"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/yp_cover"
+        android:layout_above="@id/metadata"
         android:layout_below="@id/appbar"
         android:scrollbars="vertical"
+        android:visibility="gone"
         app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/play_queue_item" />
 
@@ -56,19 +57,30 @@
         tools:text="1:06:29"
         tools:visibility="visible" />
 
-    <!-- YewPlay: capa grande do que está tocando -->
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/yp_cover"
-        android:layout_width="@dimen/yp_listen_cover_size"
-        android:layout_height="@dimen/yp_listen_cover_size"
+    <!-- YewPlay: capa grande do que está tocando; a fila fica atrás do botão "Fila" -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/yp_cover_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_above="@id/metadata"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="8dp"
-        android:importantForAccessibility="no"
-        android:scaleType="centerCrop"
-        android:src="@drawable/placeholder_thumbnail_video"
-        app:shapeAppearanceOverlay="@style/YewPlayShape.ListenCover" />
+        android:layout_below="@id/appbar">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/yp_cover"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="28dp"
+            android:importantForAccessibility="no"
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder_thumbnail_video"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/YewPlayShape.ListenCover" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <LinearLayout
         android:id="@+id/metadata"
@@ -195,8 +207,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="12dp"
+        android:layout_above="@+id/yp_listen_actions"
+        android:layout_marginBottom="4dp"
         tools:ignore="RtlHardcoded">
 
         <ImageButton
@@ -327,4 +339,48 @@
             tools:ignore="ContentDescription" />
 
     </RelativeLayout>
+
+    <!-- YewPlay: velocidade, compartilhar e fila, embaixo dos controles -->
+    <LinearLayout
+        android:id="@+id/yp_listen_actions"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/yp_screen_margin">
+
+        <TextView
+            android:id="@+id/yp_listen_speed"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/playback_speed_control"
+            android:gravity="center"
+            android:text="1x"
+            android:textAppearance="@style/TextAppearance.YewPlay.ItemTitle"
+            tools:ignore="HardcodedText" />
+
+        <ImageButton
+            android:id="@+id/yp_listen_share"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/share"
+            android:src="@drawable/ic_share"
+            app:tint="@color/yp_on_bg" />
+
+        <ImageButton
+            android:id="@+id/yp_listen_queue"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/title_activity_play_queue"
+            android:src="@drawable/ic_playlist_play"
+            app:tint="@color/yp_on_bg" />
+    </LinearLayout>
 </RelativeLayout>

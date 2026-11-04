@@ -876,4 +876,7 @@
     <string name="yp_kiosk_gaming">Jogos</string>
     <string name="yp_kiosk_movies">Filmes</string>
     <string name="yp_kiosk_podcasts">Podcasts</string>
+    <string name="yp_tab_comments">Comentários</string>
+    <string name="yp_tab_up_next">A seguir</string>
+    <string name="yp_tab_description">Descrição</string>
 </resources>
