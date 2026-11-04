@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="contrastColor">@color/white</color>
-    <color name="defaultIconTint">@color/white</color>
+    <color name="contrastColor">@color/yp_marfim</color>
+    <color name="defaultIconTint">@color/yp_marfim</color>
+    <color name="placeholder_background">@color/yp_fumaca</color>
+    <color name="placeholder_foreground">@color/yp_cinza_quente</color>
+
+    <!-- YewPlay: papéis semânticos do tema escuro -->
+    <color name="yp_bg">@color/yp_grafite</color>
+    <color name="yp_surface">@color/yp_grafite_claro</color>
+    <color name="yp_surface_2">@color/yp_fumaca</color>
+    <color name="yp_on_bg">@color/yp_marfim</color>
+    <color name="yp_muted">@color/yp_cinza_quente</color>
+    <color name="yp_state">@color/yp_rubi</color>
+    <color name="yp_on_action">@color/yp_grafite</color>
 </resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- YewPlay: fundo dos diálogos, com cantos arredondados de 20dp -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:inset="16dp">
+    <shape android:shape="rectangle">
+        <solid android:color="@color/yp_surface" />
+        <corners android:radius="20dp" />
+    </shape>
+</inset>

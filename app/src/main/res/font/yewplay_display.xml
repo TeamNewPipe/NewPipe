@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- YewPlay: Bricolage Grotesque (SIL OFL 1.1) para títulos. -->
+<font-family xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <font
+        android:font="@font/bricolage_grotesque_semibold"
+        android:fontStyle="normal"
+        android:fontWeight="600"
+        app:font="@font/bricolage_grotesque_semibold"
+        app:fontStyle="normal"
+        app:fontWeight="600" />
+    <font
+        android:font="@font/bricolage_grotesque_bold"
+        android:fontStyle="normal"
+        android:fontWeight="700"
+        app:font="@font/bricolage_grotesque_bold"
+        app:fontStyle="normal"
+        app:fontWeight="700" />
+    <font
+        android:font="@font/bricolage_grotesque_extrabold"
+        android:fontStyle="normal"
+        android:fontWeight="800"
+        app:font="@font/bricolage_grotesque_extrabold"
+        app:fontStyle="normal"
+        app:fontWeight="800" />
+</font-family>

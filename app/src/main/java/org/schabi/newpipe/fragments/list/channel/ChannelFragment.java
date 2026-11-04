@@ -21,7 +21,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.ColorUtils;
 import androidx.core.view.MenuProvider;
 import androidx.preference.PreferenceManager;
 
@@ -389,8 +388,9 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
         final int subscribedBackground = ContextCompat
                 .getColor(activity, R.color.subscribed_background_color);
         final int subscribedText = ContextCompat.getColor(activity, R.color.subscribed_text_color);
-        final int subscribeBackground = ColorUtils.blendARGB(ThemeHelper
-                .resolveColorFromAttr(activity, R.attr.colorPrimary), subscribedBackground, 0.35f);
+        // YewPlay: "Inscrever-se" usa a cor de ação (marfim no escuro, tinta no claro)
+        final int subscribeBackground = ThemeHelper
+                .resolveColorFromAttr(activity, R.attr.colorAccent);
         final int subscribeText = ContextCompat.getColor(activity, R.color.subscribe_text_color);
 
         if (isSubscribed) {

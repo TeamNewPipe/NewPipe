@@ -100,7 +100,7 @@
         android:paddingTop="6dp"
         android:text="@string/show_more"
         android:layout_marginBottom="6dp"
-        android:textColor="?attr/colorPrimary" />
+        android:textColor="?attr/colorAccent" />
 
     <LinearLayout
         android:layout_width="match_parent"

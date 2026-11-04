@@ -45,7 +45,7 @@
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/ic_add"
-        app:backgroundTint="?attr/colorPrimary"
+        app:backgroundTint="?attr/colorAccent"
         app:fabSize="auto" />
 
 </RelativeLayout>
