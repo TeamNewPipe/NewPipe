@@ -20,6 +20,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import androidx.appcompat.app.AlertDialog;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,9 +41,13 @@ import org.schabi.newpipe.databinding.FragmentMainBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
 import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.settings.tabs.TabsManager;
+import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -49,6 +55,7 @@ import org.schabi.newpipe.views.ScrollableTabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MainFragment extends BaseFragment implements TabLayout.OnTabSelectedListener {
     private FragmentMainBinding binding;
@@ -64,6 +71,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     private String youtubeRestrictedModeEnabledKey;
     private boolean mainTabsPositionBottom;
     private String mainTabsPositionKey;
+    /** YewPlay: true when the home shows the kiosks of the current service as text tabs. */
+    private boolean usingServiceKioskTabs = false;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment's LifeCycle
@@ -160,6 +169,18 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                     + "menu = [" + menu + "], inflater = [" + inflater + "]");
         }
         inflater.inflate(R.menu.menu_main_fragment, menu);
+        // YewPlay: search lives in the bottom bar; the home action picks the service instead
+        final MenuItem searchItem = menu.findItem(R.id.action_search);
+        if (searchItem != null) {
+            searchItem.setVisible(false);
+        }
+        menu.add(Menu.NONE, R.id.menu_item_yp_choose_service, Menu.NONE,
+                        R.string.yp_choose_service)
+                .setIcon(R.drawable.ic_public)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        if (binding != null && !tabsList.isEmpty()) {
+            updateTitleForTab(binding.pager.getCurrentItem());
+        }
 
         final ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null) {
@@ -169,6 +190,10 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
+        if (item.getItemId() == R.id.menu_item_yp_choose_service) {
+            showServiceChooser();
+            return true;
+        }
         if (item.getItemId() == R.id.action_search) {
             try {
                 NavigationHelper.openSearchFragment(getFM(),
@@ -185,9 +210,76 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     // Tabs
     //////////////////////////////////////////////////////////////////////////*/
 
+    /**
+     * YewPlay: unless the user customized the tabs (advanced option kept from NewPipe), the home
+     * shows the kiosks of the current service ("All", "Music", "Gaming", ...) as text tabs.
+     *
+     * @return the tabs to show in the home
+     */
+    private List<Tab> getHomeTabs() {
+        usingServiceKioskTabs = false;
+        if (prefs.contains(getString(R.string.saved_tabs_key))) {
+            return tabsManager.getTabs();
+        }
+        final List<Tab> kioskTabs = new ArrayList<>();
+        try {
+            final int serviceId = ServiceHelper.getSelectedServiceId(requireContext());
+            final StreamingService service = NewPipe.getService(serviceId);
+            final String defaultKioskId = service.getKioskList().getDefaultKioskId();
+            kioskTabs.add(new Tab.KioskTab(serviceId, defaultKioskId));
+            for (final String kioskId : service.getKioskList().getAvailableKiosks()) {
+                if (!kioskId.equals(defaultKioskId)) {
+                    kioskTabs.add(new Tab.KioskTab(serviceId, kioskId));
+                }
+            }
+        } catch (final ExtractionException | RuntimeException e) {
+            return tabsManager.getTabs();
+        }
+        usingServiceKioskTabs = true;
+        return kioskTabs;
+    }
+
+    private void showServiceChooser() {
+        final List<StreamingService> services = NewPipe.getServices();
+        final int selectedId = ServiceHelper.getSelectedServiceId(requireContext());
+        final String[] names = new String[services.size()];
+        int checked = 0;
+        for (int i = 0; i < services.size(); i++) {
+            names[i] = services.get(i).getServiceInfo().getName();
+            if (services.get(i).getServiceId() == selectedId) {
+                checked = i;
+            }
+        }
+        new AlertDialog.Builder(requireContext())
+                .setTitle(R.string.yp_choose_service)
+                .setSingleChoiceItems(names, checked, (dialog, which) -> {
+                    dialog.dismiss();
+                    final int newId = services.get(which).getServiceId();
+                    if (newId != selectedId) {
+                        ServiceHelper.setSelectedServiceId(requireContext(), newId);
+                        requireActivity().recreate();
+                    }
+                })
+                .setNegativeButton(R.string.cancel, null)
+                .show();
+    }
+
+    private String getServiceAndRegionSubtitle() {
+        try {
+            final int serviceId = ServiceHelper.getSelectedServiceId(requireContext());
+            final String serviceName = NewPipe.getService(serviceId).getServiceInfo().getName();
+            final String countryCode = Localization.getPreferredContentCountry(requireContext())
+                    .getCountryCode();
+            final String country = new Locale("", countryCode).getDisplayCountry();
+            return country.isEmpty() ? serviceName : serviceName + " · " + country;
+        } catch (final Exception e) {
+            return null;
+        }
+    }
+
     private void setupTabs() {
         tabsList.clear();
-        tabsList.addAll(tabsManager.getTabs());
+        tabsList.addAll(getHomeTabs());
 
         if (pagerAdapter == null || !pagerAdapter.sameTabs(tabsList)) {
             pagerAdapter = new SelectedTabsPagerAdapter(requireContext(),
@@ -208,14 +300,26 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             final TabLayout.Tab tabToSet = binding.mainTabLayout.getTabAt(i);
             if (tabToSet != null) {
                 final Tab tab = tabsList.get(i);
-                tabToSet.setIcon(tab.getTabIconRes(requireContext()));
-                tabToSet.setContentDescription(tab.getTabName(requireContext()));
+                // YewPlay: text tabs; the first kiosk of the service is "All"
+                final String name = usingServiceKioskTabs && i == 0
+                        ? getString(R.string.yp_home_all) : tab.getTabName(requireContext());
+                tabToSet.setIcon(null);
+                tabToSet.setText(name);
+                tabToSet.setContentDescription(name);
             }
         }
     }
 
     private void updateTitleForTab(final int tabPosition) {
-        setTitle(tabsList.get(tabPosition).getTabName(requireContext()));
+        if (usingServiceKioskTabs) {
+            setTitle(getString(R.string.yp_home_title));
+        } else {
+            setTitle(tabsList.get(tabPosition).getTabName(requireContext()));
+        }
+        final ActionBar actionBar = activity.getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setSubtitle(getServiceAndRegionSubtitle());
+        }
     }
 
     public void commitPlaylistTabs() {

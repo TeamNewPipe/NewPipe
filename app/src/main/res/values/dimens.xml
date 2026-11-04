@@ -4,6 +4,11 @@
     <dimen name="yp_screen_margin">20dp</dimen>
     <dimen name="yp_item_vertical_padding">8dp</dimen>
     <dimen name="yp_touch_target">48dp</dimen>
+    <!-- YewPlay: barra flutuante (26dp de raio, 12dp das bordas) -->
+    <dimen name="yp_bottom_bar_height">64dp</dimen>
+    <dimen name="yp_bottom_bar_margin">12dp</dimen>
+    <!-- altura da barra + margem inferior: espaço reservado no fim das telas -->
+    <dimen name="yp_bottom_bar_space">76dp</dimen>
     <!-- Common dimensions -->
     <dimen name="margin_normal">16dp</dimen>
     <dimen name="margin_small">8dp</dimen>

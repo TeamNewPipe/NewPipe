@@ -45,6 +45,7 @@ import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.fragments.LibraryFragment;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
@@ -567,6 +568,18 @@ public final class NavigationHelper {
                                         @Nullable final String groupName) {
         defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, FeedFragment.newInstance(groupId, groupName))
+                .addToBackStack(null)
+                .commit();
+    }
+
+    /**
+     * YewPlay: opens the "Library" destination of the bottom bar.
+     *
+     * @param fragmentManager the fragment manager of the main activity
+     */
+    public static void openLibraryFragment(final FragmentManager fragmentManager) {
+        defaultTransaction(fragmentManager)
+                .replace(R.id.fragment_holder, new LibraryFragment())
                 .addToBackStack(null)
                 .commit();
     }

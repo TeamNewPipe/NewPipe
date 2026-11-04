@@ -222,7 +222,12 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         super.onCreateOptionsMenu(menu, inflater)
 
         activity.supportActionBar?.setDisplayShowTitleEnabled(true)
-        activity.supportActionBar?.setTitle(R.string.fragment_feed_title)
+        // YewPlay: the full feed is the "Subscriptions" destination of the bottom bar
+        if (groupName == null) {
+            activity.supportActionBar?.setTitle(R.string.yp_nav_subscriptions)
+        } else {
+            activity.supportActionBar?.setTitle(R.string.fragment_feed_title)
+        }
         activity.supportActionBar?.subtitle = groupName
 
         inflater.inflate(R.menu.menu_feed_fragment, menu)
@@ -251,6 +256,9 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             return true
         } else if (item.itemId == R.id.menu_item_feed_toggle_played_items) {
             showStreamVisibilityDialog()
+        } else if (item.itemId == R.id.menu_item_yp_channels) {
+            NavigationHelper.openSubscriptionFragment(parentFragmentManager)
+            return true
         }
 
         return super.onOptionsItemSelected(item)

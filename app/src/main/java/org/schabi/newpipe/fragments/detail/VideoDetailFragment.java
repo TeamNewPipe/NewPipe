@@ -2322,11 +2322,13 @@ public final class VideoDetailFragment
      * @param showMore whether main fragment should be expanded or not
      */
     private void manageSpaceAtTheBottom(final boolean showMore) {
-        final int peekHeight = getResources().getDimensionPixelSize(R.dimen.mini_player_height);
+        final int peekHeight = getMiniPlayerPeekHeight();
         final ViewGroup holder = requireActivity().findViewById(R.id.fragment_holder);
         final int newBottomPadding;
         if (showMore) {
-            newBottomPadding = 0;
+            // YewPlay: a barra flutuante continua na tela mesmo sem mini-player
+            newBottomPadding = getResources()
+                    .getDimensionPixelSize(R.dimen.yp_bottom_bar_space);
         } else {
             newBottomPadding = peekHeight;
         }
@@ -2339,6 +2341,15 @@ public final class VideoDetailFragment
                 newBottomPadding);
     }
 
+    /**
+     * YewPlay: the mini player sits right above the floating navigation bar, so the bottom sheet
+     * peeks by the mini player height plus the space taken by the bar.
+     */
+    private int getMiniPlayerPeekHeight() {
+        return getResources().getDimensionPixelSize(R.dimen.mini_player_height)
+                + getResources().getDimensionPixelSize(R.dimen.yp_bottom_bar_space);
+    }
+
     private void setupBottomPlayer() {
         final CoordinatorLayout.LayoutParams params =
                 (CoordinatorLayout.LayoutParams) binding.appBarLayout.getLayoutParams();
@@ -2349,7 +2360,7 @@ public final class VideoDetailFragment
         bottomSheetBehavior.setState(lastStableBottomSheetState);
         updateBottomSheetState(lastStableBottomSheetState);
 
-        final int peekHeight = getResources().getDimensionPixelSize(R.dimen.mini_player_height);
+        final int peekHeight = getMiniPlayerPeekHeight();
         if (bottomSheetState != BottomSheetBehavior.STATE_HIDDEN) {
             manageSpaceAtTheBottom(false);
             bottomSheetBehavior.setPeekHeight(peekHeight);

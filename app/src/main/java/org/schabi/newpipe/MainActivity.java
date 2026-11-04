@@ -47,7 +47,6 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -59,6 +58,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.schabi.newpipe.databinding.ActivityMainBinding;
 import org.schabi.newpipe.databinding.DrawerHeaderBinding;
@@ -72,11 +72,17 @@ import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
 import org.schabi.newpipe.fragments.BackPressable;
+import org.schabi.newpipe.fragments.LibraryFragment;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.comments.CommentRepliesFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
+import org.schabi.newpipe.local.bookmark.BookmarkFragment;
+import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.local.feed.notifications.NotificationWorker;
+import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
+import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
+import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.helper.PlayerHolder;
@@ -114,7 +120,8 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayoutBinding drawerLayoutBinding;
     private ToolbarLayoutBinding toolbarLayoutBinding;
 
-    private ActionBarDrawerToggle toggle;
+    /** YewPlay: true while the bottom bar selection is being synced from the back stack. */
+    private boolean syncingBottomNav = false;
 
     private boolean servicesShown = false;
 
@@ -183,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (final Exception e) {
             ErrorUtil.showUiErrorSnackbar(this, "Setting up drawer", e);
         }
+        setupBottomNavigation();
         if (DeviceUtils.isTv(this)) {
             FocusOverlayView.setupFocusObserver(this);
         }
@@ -241,10 +249,9 @@ public class MainActivity extends AppCompatActivity {
     private void setupDrawer() throws ExtractionException {
         addDrawerMenuForCurrentService();
 
-        toggle = new ActionBarDrawerToggle(this, mainBinding.getRoot(),
-                toolbarLayoutBinding.toolbar, R.string.drawer_open, R.string.drawer_close);
-        toggle.syncState();
-        mainBinding.getRoot().addDrawerListener(toggle);
+        // YewPlay: the side menu was replaced by the floating bottom bar. The drawer is kept
+        // (locked closed) only so that its menu-building code keeps working unchanged.
+        mainBinding.getRoot().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         mainBinding.getRoot().addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
             private int lastService;
 
@@ -789,18 +796,131 @@ public class MainActivity extends AppCompatActivity {
 
         final Fragment fragment = getSupportFragmentManager()
                 .findFragmentById(R.id.fragment_holder);
-        if (fragment instanceof MainFragment) {
+        mainBinding.getRoot().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        // the home sets its own subtitle (service and region); clear it everywhere else
+        getSupportActionBar().setSubtitle(null);
+        if (isBottomNavigationRoot(fragment)) {
+            // YewPlay: the four destinations of the bottom bar have no "up" arrow
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-            if (toggle != null) {
-                toggle.syncState();
-                toolbarLayoutBinding.toolbar.setNavigationOnClickListener(v -> mainBinding.getRoot()
-                        .open());
-                mainBinding.getRoot().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED);
-            }
+            toolbarLayoutBinding.toolbar.setNavigationOnClickListener(null);
         } else {
-            mainBinding.getRoot().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             toolbarLayoutBinding.toolbar.setNavigationOnClickListener(v -> onHomeButtonPressed());
+        }
+        syncBottomNavigation(fragment);
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // YewPlay: floating bottom bar
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private static boolean isBottomNavigationRoot(@Nullable final Fragment fragment) {
+        return fragment instanceof MainFragment
+                || fragment instanceof SearchFragment
+                || fragment instanceof FeedFragment
+                || fragment instanceof LibraryFragment;
+    }
+
+    private void setupBottomNavigation() {
+        final BottomNavigationView bottomNav = mainBinding.ypBottomNav;
+        bottomNav.setOnItemSelectedListener(item -> {
+            if (!syncingBottomNav) {
+                navigateToBottomDestination(item.getItemId());
+            }
+            return true;
+        });
+        bottomNav.setOnItemReselectedListener(item -> {
+            if (!syncingBottomNav) {
+                navigateToBottomDestination(item.getItemId());
+            }
+        });
+        getSupportFragmentManager().addOnBackStackChangedListener(() -> syncBottomNavigation(
+                getSupportFragmentManager().findFragmentById(R.id.fragment_holder)));
+
+        final BottomSheetBehavior<FragmentContainerView> behavior =
+                BottomSheetBehavior.from(mainBinding.fragmentPlayerHolder);
+        behavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull final View bottomSheet, final int newState) {
+                if (newState == BottomSheetBehavior.STATE_DRAGGING
+                        || newState == BottomSheetBehavior.STATE_SETTLING) {
+                    return; // onSlide keeps the bar position in sync while moving
+                }
+                updateBottomNavigationForSheet(newState, newState
+                        == BottomSheetBehavior.STATE_EXPANDED ? 1f : 0f);
+            }
+
+            @Override
+            public void onSlide(@NonNull final View bottomSheet, final float slideOffset) {
+                updateBottomNavigationForSheet(behavior.getState(), slideOffset);
+            }
+        });
+        mainBinding.getRoot().post(() ->
+                updateBottomNavigationForSheet(behavior.getState(),
+                        behavior.getState() == BottomSheetBehavior.STATE_EXPANDED ? 1f : 0f));
+    }
+
+    /**
+     * Hides the bottom bar while the player is expanded and joins it with the mini player when
+     * the player is collapsed, so that both look like a single floating capsule.
+     *
+     * @param state       the bottom sheet state
+     * @param slideOffset the bottom sheet slide offset (0 = collapsed, 1 = expanded)
+     */
+    private void updateBottomNavigationForSheet(final int state, final float slideOffset) {
+        final BottomNavigationView bottomNav = mainBinding.ypBottomNav;
+        final float space = getResources().getDimension(R.dimen.yp_bottom_bar_space);
+        bottomNav.setTranslationY(Math.max(0f, Math.min(1f, slideOffset)) * space);
+        final boolean miniPlayerVisible = state != BottomSheetBehavior.STATE_HIDDEN
+                && BottomSheetBehavior.from(mainBinding.fragmentPlayerHolder).getPeekHeight() > 0;
+        bottomNav.setBackgroundResource(miniPlayerVisible
+                ? R.drawable.yp_bottom_bar_background_attached
+                : R.drawable.yp_bottom_bar_background);
+    }
+
+    private void navigateToBottomDestination(final int itemId) {
+        final FragmentManager fm = getSupportFragmentManager();
+        final BottomSheetBehavior<FragmentContainerView> behavior =
+                BottomSheetBehavior.from(mainBinding.fragmentPlayerHolder);
+        if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        }
+        try {
+            NavigationHelper.gotoMainFragment(fm);
+            if (itemId == R.id.yp_nav_search) {
+                NavigationHelper.openSearchFragment(fm,
+                        ServiceHelper.getSelectedServiceId(this), "");
+            } else if (itemId == R.id.yp_nav_subscriptions) {
+                NavigationHelper.openFeedFragment(fm);
+            } else if (itemId == R.id.yp_nav_library) {
+                NavigationHelper.openLibraryFragment(fm);
+            }
+        } catch (final Exception e) {
+            ErrorUtil.showUiErrorSnackbar(this, "Opening bottom bar destination", e);
+        }
+    }
+
+    private void syncBottomNavigation(@Nullable final Fragment fragment) {
+        final int itemId;
+        if (fragment instanceof MainFragment) {
+            itemId = R.id.yp_nav_home;
+        } else if (fragment instanceof SearchFragment) {
+            itemId = R.id.yp_nav_search;
+        } else if (fragment instanceof FeedFragment || fragment instanceof SubscriptionFragment) {
+            itemId = R.id.yp_nav_subscriptions;
+        } else if (fragment instanceof LibraryFragment
+                || fragment instanceof StatisticsPlaylistFragment
+                || fragment instanceof BookmarkFragment
+                || fragment instanceof LocalPlaylistFragment) {
+            itemId = R.id.yp_nav_library;
+        } else {
+            return; // channels, playlists, etc. keep the destination they were opened from
+        }
+        final MenuItem item = mainBinding.ypBottomNav.getMenu().findItem(itemId);
+        if (item != null && !item.isChecked()) {
+            syncingBottomNav = true;
+            item.setChecked(true);
+            syncingBottomNav = false;
         }
     }
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- YewPlay: barra com o mini-player encaixado em cima (só os cantos de baixo arredondados) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/yp_surface" />
+    <corners
+        android:bottomLeftRadius="26dp"
+        android:bottomRightRadius="26dp"
+        android:topLeftRadius="0dp"
+        android:topRightRadius="0dp" />
+</shape>

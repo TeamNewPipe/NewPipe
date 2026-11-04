@@ -12,7 +12,9 @@
             android:id="@+id/fragment_holder"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize" />
+            android:layout_marginTop="?attr/actionBarSize"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/yp_bottom_bar_space" />
 
         <include
             layout="@layout/toolbar_layout"
@@ -26,6 +28,26 @@
             app:behavior_hideable="true"
             app:behavior_peekHeight="0dp"
             app:layout_behavior="org.schabi.newpipe.player.gesture.CustomBottomSheetBehavior" />
+
+        <!-- YewPlay: barra flutuante com os quatro destinos; o mini-player encaixa logo acima -->
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/yp_bottom_nav"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/yp_bottom_bar_height"
+            android:layout_gravity="bottom"
+            android:layout_marginHorizontal="@dimen/yp_bottom_bar_margin"
+            android:layout_marginBottom="@dimen/yp_bottom_bar_margin"
+            android:background="@drawable/yp_bottom_bar_background"
+            android:elevation="6dp"
+            app:elevation="6dp"
+            app:itemIconSize="22dp"
+            app:itemIconTint="@color/yp_nav_item"
+            app:itemRippleColor="@color/light_ripple_color"
+            app:itemTextAppearanceActive="@style/TextAppearance.YewPlay.NavLabel"
+            app:itemTextAppearanceInactive="@style/TextAppearance.YewPlay.NavLabel"
+            app:itemTextColor="@color/yp_nav_item"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/menu_yp_bottom_nav" />
 
     </org.schabi.newpipe.views.FocusAwareCoordinator>
 

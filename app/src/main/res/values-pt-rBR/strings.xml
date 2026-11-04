@@ -845,4 +845,18 @@
     <string name="api23_requirement_dialog_blogpost">Postagem no blog</string>
     <string name="channel_tab_podcasts">Podcasts</string>
     <string name="channel_tab_courses">Cursos</string>
+    <!-- YewPlay -->
+    <string name="yp_nav_home">Início</string>
+    <string name="yp_nav_search">Busca</string>
+    <string name="yp_nav_subscriptions">Inscrições</string>
+    <string name="yp_nav_library">Biblioteca</string>
+    <string name="yp_home_title">Em alta</string>
+    <string name="yp_home_all">Tudo</string>
+    <string name="yp_choose_service">Escolher serviço</string>
+    <string name="yp_library_history">Histórico</string>
+    <string name="yp_library_downloads">Downloads</string>
+    <string name="yp_library_about">Sobre e apoio</string>
+    <string name="yp_library_your_playlists">Suas playlists</string>
+    <string name="yp_library_settings">Configurações</string>
+    <string name="yp_subscriptions_channels">Canais</string>
 </resources>

@@ -371,6 +371,12 @@
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
+    <style name="TextAppearance.YewPlay.NavLabel" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/instrument_sans_medium</item>
+        <item name="fontFamily">@font/instrument_sans_medium</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+
     <!-- Settings -->
     <style name="LightSettingsTheme" parent="LightTheme">
         <item name="colorAccent">@color/light_settings_accent_color</item>

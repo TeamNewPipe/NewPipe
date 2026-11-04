@@ -630,7 +630,15 @@
         android:layout_height="match_parent"
         android:alpha="0.9"
         android:background="?attr/windowBackground"
-        android:descendantFocusability="blocksDescendants">
+        android:descendantFocusability="blocksDescendants"
+        android:paddingHorizontal="@dimen/yp_bottom_bar_margin">
+
+        <!-- YewPlay: fundo do mini-player, que forma uma cápsula com a barra flutuante -->
+        <View
+            android:id="@+id/yp_overlay_capsule"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/mini_player_height"
+            android:background="@drawable/yp_mini_player_background" />
 
         <ImageButton
             android:id="@+id/overlay_thumbnail"

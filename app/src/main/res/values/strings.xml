@@ -905,4 +905,18 @@
     <string name="api23_requirement_dialog_title">NewPipe is dropping support for Android 5</string>
     <string name="api23_requirement_dialog_message">Unfortunately NewPipe depends on a few libraries that dropped support for Android 5.0 and 5.1. The next NewPipe release will therefore only work on devices with Android 6 or higher, sadly. Read more in the blogpost.</string>
     <string name="api23_requirement_dialog_blogpost">Blogpost</string>
+    <!-- YewPlay -->
+    <string name="yp_nav_home">Home</string>
+    <string name="yp_nav_search">Search</string>
+    <string name="yp_nav_subscriptions">Subscriptions</string>
+    <string name="yp_nav_library">Library</string>
+    <string name="yp_home_title">Trending</string>
+    <string name="yp_home_all">All</string>
+    <string name="yp_choose_service">Choose service</string>
+    <string name="yp_library_history">History</string>
+    <string name="yp_library_downloads">Downloads</string>
+    <string name="yp_library_about">About and support</string>
+    <string name="yp_library_your_playlists">Your playlists</string>
+    <string name="yp_library_settings">Settings</string>
+    <string name="yp_subscriptions_channels">Channels</string>
 </resources>
