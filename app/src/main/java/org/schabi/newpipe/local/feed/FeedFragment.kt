@@ -24,7 +24,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Typeface
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import android.os.Parcelable
@@ -38,6 +37,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.edit
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
@@ -613,7 +613,8 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         for (i in 0 until groupAdapter.itemCount) {
             val item = groupAdapter.getItem(i) as? StreamItem ?: continue
 
-            var typeface = Typeface.DEFAULT
+            // YewPlay: keep the app fonts (Instrument Sans); new items use the bold weight
+            var fontRes = R.font.instrument_sans_semibold
             var backgroundSupplier = { ctx: Context ->
                 resolveDrawable(ctx, android.R.attr.selectableItemBackground)
             }
@@ -622,7 +623,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                 if (item.streamWithState.stream.uploadDate?.isAfter(updateTime) != false) {
                     highlightCount++
 
-                    typeface = Typeface.DEFAULT_BOLD
+                    fontRes = R.font.instrument_sans_bold
                     backgroundSupplier = { ctx: Context ->
                         // Merge the drawables together. Otherwise we would lose the "select" effect
                         LayerDrawable(
@@ -645,7 +646,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             item.execBindEnd = Consumer { viewBinding ->
                 val context = viewBinding.itemRoot.context
                 viewBinding.itemRoot.background = backgroundSupplier.invoke(context)
-                viewBinding.itemVideoTitleView.typeface = typeface
+                viewBinding.itemVideoTitleView.typeface = ResourcesCompat.getFont(context, fontRes)
             }
         }
 

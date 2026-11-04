@@ -21,6 +21,7 @@
         android:ellipsize="end"
         android:lines="1"
         android:textAppearance="@style/TextAppearance.YewPlay.ItemTitle"
+        android:fontFamily="@font/instrument_sans_semibold"
         app:layout_constraintBottom_toTopOf="@+id/itemChannelDescriptionView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

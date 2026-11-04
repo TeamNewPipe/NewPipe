@@ -25,7 +25,8 @@
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="@string/yp_subscriptions_empty_title"
-        android:textAppearance="@style/TextAppearance.YewPlay.SectionTitle" />
+        android:textAppearance="@style/TextAppearance.YewPlay.SectionTitle"
+        android:fontFamily="@font/bricolage_grotesque_bold" />
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:layout_width="wrap_content"

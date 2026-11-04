@@ -24,7 +24,8 @@
         android:paddingTop="20dp"
         android:paddingBottom="4dp"
         android:text="@string/yp_library_your_playlists"
-        android:textAppearance="@style/TextAppearance.YewPlay.SectionTitle" />
+        android:textAppearance="@style/TextAppearance.YewPlay.SectionTitle"
+        android:fontFamily="@font/bricolage_grotesque_bold" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/yp_library_playlists"

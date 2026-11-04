@@ -177,6 +177,7 @@
                         android:paddingTop="12dp"
                         android:paddingBottom="8dp"
                         android:textAppearance="@style/TextAppearance.YewPlay.DetailTitle"
+                        android:fontFamily="@font/bricolage_grotesque_bold"
                         android:textSize="@dimen/video_item_detail_title_text_size"
                         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum. Nunc eleifend est quis ipsum porttitor egestas. Sed facilisis, nisl quis eleifend pellentesque, orci metus egestas dolor, at accumsan eros metus quis libero." />
 
@@ -324,6 +325,7 @@
                                 android:paddingHorizontal="14dp"
                                 android:text="@string/subscribe_button_title"
                                 android:textAppearance="@style/TextAppearance.YewPlay.ItemTitle"
+                                android:fontFamily="@font/instrument_sans_semibold"
                                 android:textColor="@color/yp_on_action"
                                 android:textSize="13sp"
                                 android:visibility="gone"
@@ -445,6 +447,7 @@
                             android:paddingVertical="@dimen/detail_control_padding"
                             android:text="@string/download"
                             android:textAppearance="@style/TextAppearance.YewPlay.ActionLabel"
+                            android:fontFamily="@font/instrument_sans_medium"
                             android:textSize="@dimen/detail_control_text_size" />
 
                         <org.schabi.newpipe.views.NewPipeTextView
@@ -463,6 +466,7 @@
                             android:paddingVertical="@dimen/detail_control_padding"
                             android:text="@string/controls_background_title"
                             android:textAppearance="@style/TextAppearance.YewPlay.ActionLabel"
+                            android:fontFamily="@font/instrument_sans_medium"
                             android:textSize="@dimen/detail_control_text_size" />                        <org.schabi.newpipe.views.NewPipeTextView
                             android:id="@+id/detail_controls_playlist_append"
                             android:layout_width="@dimen/detail_control_width"
@@ -479,6 +483,7 @@
                             android:paddingVertical="@dimen/detail_control_padding"
                             android:text="@string/controls_add_to_playlist_title"
                             android:textAppearance="@style/TextAppearance.YewPlay.ActionLabel"
+                            android:fontFamily="@font/instrument_sans_medium"
                             android:textSize="@dimen/detail_control_text_size" />
 
                         <org.schabi.newpipe.views.NewPipeTextView
@@ -497,6 +502,7 @@
                             android:paddingVertical="@dimen/detail_control_padding"
                             android:text="@string/controls_popup_title"
                             android:textAppearance="@style/TextAppearance.YewPlay.ActionLabel"
+                            android:fontFamily="@font/instrument_sans_medium"
                             android:textSize="@dimen/detail_control_text_size" />
 
                     </LinearLayout>

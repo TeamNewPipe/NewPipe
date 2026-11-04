@@ -9,4 +9,5 @@
     android:paddingTop="16dp"
     android:paddingBottom="4dp"
     android:textAppearance="@style/TextAppearance.YewPlay.SectionTitle"
+    android:fontFamily="@font/bricolage_grotesque_bold"
     tools:text="Hoje" />

@@ -69,7 +69,8 @@
             android:singleLine="true"
             android:text="XXX.xx"
             android:textColor="@color/yp_on_bg"
-            android:textAppearance="@style/TextAppearance.YewPlay.ItemTitle" />
+            android:textAppearance="@style/TextAppearance.YewPlay.ItemTitle"
+            android:fontFamily="@font/instrument_sans_semibold" />
 
         <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/item_size"

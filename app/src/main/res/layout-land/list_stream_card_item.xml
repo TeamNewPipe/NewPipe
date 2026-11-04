@@ -30,6 +30,7 @@
         android:paddingVertical="@dimen/video_item_search_duration_vertical_padding"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.YewPlay.Badge"
+        android:fontFamily="@font/instrument_sans_semibold"
         app:layout_constraintBottom_toBottomOf="@id/itemThumbnailView"
         app:layout_constraintRight_toRightOf="@id/itemThumbnailView"
         tools:text="1:09:10" />
@@ -42,6 +43,7 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:textAppearance="@style/TextAppearance.YewPlay.FeaturedTitle"
+        android:fontFamily="@font/bricolage_grotesque_semibold"
         app:layout_constraintBottom_toTopOf="@+id/itemUploaderView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/itemThumbnailView"
@@ -55,6 +57,7 @@
         android:ellipsize="end"
         android:lines="1"
         android:textAppearance="@style/TextAppearance.YewPlay.MetaStrong"
+        android:fontFamily="@font/instrument_sans_semibold"
         app:layout_constraintBottom_toTopOf="@+id/itemAdditionalDetails"
         app:layout_constraintEnd_toEndOf="@+id/itemVideoTitleView"
         app:layout_constraintStart_toStartOf="@+id/itemVideoTitleView"
