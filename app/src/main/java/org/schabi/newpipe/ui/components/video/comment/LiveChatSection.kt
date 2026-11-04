@@ -39,10 +39,13 @@ import org.schabi.newpipe.error.ErrorUtil
 import org.schabi.newpipe.ui.components.common.LazyColumnThemedScrollbar
 import org.schabi.newpipe.ui.components.common.LoadingIndicator
 import org.schabi.newpipe.ui.components.common.NetworkIssue
+import org.schabi.newpipe.ui.emptystate.EmptyStateComposable
+import org.schabi.newpipe.ui.emptystate.EmptyStateSpec
 import org.schabi.newpipe.viewmodels.LiveChatViewModel
 
 @Composable
 fun LiveChatSection(liveChatViewModel: LiveChatViewModel = viewModel()) {
+    val isLoading by liveChatViewModel.isLoading.collectAsStateWithLifecycle()
     val liveChatItems by liveChatViewModel.liveChatItems.collectAsStateWithLifecycle()
     val state = rememberLazyListState()
     val nestedScrollInterop = rememberNestedScrollInteropConnection()
@@ -95,7 +98,7 @@ fun LiveChatSection(liveChatViewModel: LiveChatViewModel = viewModel()) {
                     }
                 }
 
-                if (liveChatItems.isEmpty()) {
+                if (isLoading) {
                     item {
                         Box(
                             modifier = Modifier
@@ -105,6 +108,15 @@ fun LiveChatSection(liveChatViewModel: LiveChatViewModel = viewModel()) {
                         ) {
                             LoadingIndicator()
                         }
+                    }
+                } else if (liveChatItems.isEmpty()) {
+                    item {
+                        EmptyStateComposable(
+                            spec = EmptyStateSpec.NoComments,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .heightIn(min = 128.dp)
+                        )
                     }
                 } else {
                     items(liveChatItems.size, key = { liveChatItems[it].commentId }) {
