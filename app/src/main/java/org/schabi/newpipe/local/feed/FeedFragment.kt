@@ -24,7 +24,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Typeface
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import android.os.Parcelable
@@ -37,7 +36,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.core.content.edit
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
@@ -45,16 +48,27 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.evernote.android.state.State
+import com.xwray.groupie.Group
 import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.OnItemClickListener
 import com.xwray.groupie.OnItemLongClickListener
+import io.github.yewplay.core.designsystem.YpTheme
+import io.github.yewplay.core.model.YpChannel
+import io.github.yewplay.core.model.YpGroup
+import io.github.yewplay.feature.subscriptions.SubscriptionsActions
+import io.github.yewplay.feature.subscriptions.SubscriptionsHeader
+import io.github.yewplay.feature.subscriptions.SubscriptionsStrings
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.time.LocalDate
 import java.time.OffsetDateTime
+import java.time.ZoneId
 import java.util.function.Consumer
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.reactive.asFlow
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
@@ -74,8 +88,11 @@ import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.ktx.animateHideRecyclerViewAllowingScrolling
 import org.schabi.newpipe.ktx.slideUp
 import org.schabi.newpipe.local.feed.item.StreamItem
+import org.schabi.newpipe.local.feed.item.YpDayHeaderItem
 import org.schabi.newpipe.local.feed.service.FeedLoadService
 import org.schabi.newpipe.local.subscription.SubscriptionManager
+import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialog
+import org.schabi.newpipe.local.yewplay.YpThemePrefs
 import org.schabi.newpipe.util.DeviceUtils
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
@@ -108,6 +125,9 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
     private var lastNewItemsCount = 0
 
+    /** YewPlay: channels with videos from the last 24 hours, for the ruby dot on the avatars. */
+    private val recentUploaders = MutableStateFlow<Set<String>>(emptySet())
+
     init {
         setHasOptionsMenu(true)
     }
@@ -135,6 +155,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     override fun onViewCreated(rootView: View, savedInstanceState: Bundle?) {
         // super.onViewCreated() calls initListeners() which require the binding to be initialized
         _feedBinding = FragmentFeedBinding.bind(rootView)
+        setupSubscriptionsHeader()
         super.onViewCreated(rootView, savedInstanceState)
 
         val factory = FeedViewModel.getFactory(requireContext(), groupId)
@@ -222,7 +243,12 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         super.onCreateOptionsMenu(menu, inflater)
 
         activity.supportActionBar?.setDisplayShowTitleEnabled(true)
-        activity.supportActionBar?.setTitle(R.string.fragment_feed_title)
+        // YewPlay: the full feed is the "Subscriptions" destination of the bottom bar
+        if (groupName.isEmpty()) {
+            activity.supportActionBar?.setTitle(R.string.yp_nav_subscriptions)
+        } else {
+            activity.supportActionBar?.setTitle(R.string.fragment_feed_title)
+        }
         activity.supportActionBar?.subtitle = groupName
 
         inflater.inflate(R.menu.menu_feed_fragment, menu)
@@ -251,6 +277,9 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             return true
         } else if (item.itemId == R.id.menu_item_feed_toggle_played_items) {
             showStreamVisibilityDialog()
+        } else if (item.itemId == R.id.menu_item_yp_channels) {
+            NavigationHelper.openSubscriptionFragment(parentFragmentManager)
+            return true
         }
 
         return super.onOptionsItemSelected(item)
@@ -416,6 +445,94 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         }
     }
 
+    /**
+     * YewPlay: avatars of the subscribed channels (ruby dot on the ones with new videos) and the
+     * channel groups as tabs, drawn by the Compose header in :feature:subscriptions.
+     */
+    private fun setupSubscriptionsHeader() {
+        val context = requireContext()
+        val subscriptions = SubscriptionManager(context).subscriptions().asFlow()
+        val groups = FeedDatabaseManager(context).groups().asFlow()
+        val themeKey = YpThemePrefs.themeKey(context)
+        val nightThemeKey = YpThemePrefs.nightThemeKey(context)
+        val strings = SubscriptionsStrings(
+            all = getString(R.string.yp_feed_all),
+            addGroup = getString(R.string.yp_feed_add_group)
+        )
+        val actions = SubscriptionsActions(
+            openChannel = { channel ->
+                NavigationHelper.openChannelFragment(fm, channel.serviceId, channel.url, channel.name)
+            },
+            selectGroup = { group -> selectFeedGroup(group) },
+            addGroup = { FeedGroupDialog.newInstance().show(parentFragmentManager, null) }
+        )
+        feedBinding.ypSubscriptionsHeader.setViewCompositionStrategy(
+            ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
+        )
+        feedBinding.ypSubscriptionsHeader.setContent {
+            val subscriptionList by subscriptions.collectAsState(initial = emptyList())
+            val groupList by groups.collectAsState(initial = emptyList())
+            val recent by recentUploaders.collectAsState()
+            YpTheme(themeKey, nightThemeKey) {
+                SubscriptionsHeader(
+                    channels = subscriptionList
+                        .mapNotNull { subscription ->
+                            subscription.url?.let { url ->
+                                YpChannel(
+                                    serviceId = subscription.serviceId,
+                                    url = url,
+                                    name = subscription.name.orEmpty(),
+                                    avatarUrl = subscription.avatarUrl,
+                                    hasNewVideos = url in recent
+                                )
+                            }
+                        }
+                        .sortedByDescending { it.hasNewVideos },
+                    groups = groupList.map { YpGroup(it.uid, it.name) },
+                    selectedGroupId = groupId.takeIf { it != FeedGroupEntity.GROUP_ALL_ID },
+                    strings = strings,
+                    actions = actions
+                )
+            }
+        }
+    }
+
+    private fun selectFeedGroup(group: YpGroup?) {
+        val newGroupId = group?.id ?: FeedGroupEntity.GROUP_ALL_ID
+        if (newGroupId == groupId) {
+            return
+        }
+        parentFragmentManager.popBackStack()
+        NavigationHelper.openFeedFragment(parentFragmentManager, newGroupId, group?.name)
+    }
+
+    /**
+     * YewPlay: groups the feed (newest first) under "Today", "Yesterday", "This week" and
+     * "Older" headers. Items without a date stay in the group of the item before them.
+     */
+    private fun groupItemsByDay(items: List<StreamItem>): List<Group> {
+        val today = LocalDate.now()
+        val result = ArrayList<Group>(items.size + 4)
+        var lastHeader = 0
+        for (item in items) {
+            val date = item.streamWithState.stream.uploadDate
+                ?.atZoneSameInstant(ZoneId.systemDefault())?.toLocalDate()
+            val header = when {
+                date == null -> if (lastHeader == 0) R.string.yp_feed_today else lastHeader
+                !date.isBefore(today) -> R.string.yp_feed_today
+                date == today.minusDays(1) -> R.string.yp_feed_yesterday
+                date.isAfter(today.minusDays(7)) -> R.string.yp_feed_this_week
+                else -> R.string.yp_feed_older
+            }
+            if (header != lastHeader) {
+                result.add(YpDayHeaderItem(header))
+                lastHeader = header
+            }
+            result.add(item)
+        }
+        return result
+    }
+
     @SuppressLint("StringFormatMatches")
     private fun handleLoadedState(loadedState: FeedState.LoadedState) {
         val itemVersion = when (getItemViewMode(requireContext())) {
@@ -425,10 +542,16 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         }
         loadedState.items.forEach { it.itemVersion = itemVersion }
 
+        val dayAgo = OffsetDateTime.now().minusDays(1)
+        recentUploaders.value = loadedState.items.mapNotNull { item ->
+            val stream = item.streamWithState.stream
+            stream.uploaderUrl.takeIf { stream.uploadDate?.isAfter(dayAgo) == true }
+        }.toSet()
+
         // This need to be saved in a variable as the update occurs async
         val oldOldestSubscriptionUpdate = oldestSubscriptionUpdate
 
-        groupAdapter.updateAsync(loadedState.items, false) {
+        groupAdapter.updateAsync(groupItemsByDay(loadedState.items), false) {
             oldOldestSubscriptionUpdate?.run {
                 highlightNewItemsAfter(oldOldestSubscriptionUpdate)
             }
@@ -572,9 +695,10 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         var doCheck = true
 
         for (i in 0 until groupAdapter.itemCount) {
-            val item = groupAdapter.getItem(i) as StreamItem
+            val item = groupAdapter.getItem(i) as? StreamItem ?: continue
 
-            var typeface = Typeface.DEFAULT
+            // YewPlay: keep the app fonts (Instrument Sans); new items use the bold weight
+            var fontRes = R.font.instrument_sans_semibold
             var backgroundSupplier = { ctx: Context ->
                 resolveDrawable(ctx, android.R.attr.selectableItemBackground)
             }
@@ -583,7 +707,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                 if (item.streamWithState.stream.uploadDate?.isAfter(updateTime) != false) {
                     highlightCount++
 
-                    typeface = Typeface.DEFAULT_BOLD
+                    fontRes = R.font.instrument_sans_bold
                     backgroundSupplier = { ctx: Context ->
                         // Merge the drawables together. Otherwise we would lose the "select" effect
                         LayerDrawable(
@@ -606,17 +730,15 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             item.execBindEnd = Consumer { viewBinding ->
                 val context = viewBinding.itemRoot.context
                 viewBinding.itemRoot.background = backgroundSupplier.invoke(context)
-                viewBinding.itemVideoTitleView.typeface = typeface
+                viewBinding.itemVideoTitleView.typeface = ResourcesCompat.getFont(context, fontRes)
             }
         }
 
         // Force updates all items so that the highlighting is correct
         // If this isn't done visible items that are already highlighted will stay in a highlighted
         // state until the user scrolls them out of the visible area which causes a update/bind-call
-        groupAdapter.notifyItemRangeChanged(
-            0,
-            highlightCount.coerceIn(lastNewItemsCount, groupAdapter.itemCount)
-        )
+        // (day headers are interleaved with the items, so refresh the whole list)
+        groupAdapter.notifyItemRangeChanged(0, groupAdapter.itemCount)
 
         if (highlightCount > 0) {
             showNewItemsLoaded()

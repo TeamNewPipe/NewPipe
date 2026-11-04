@@ -7,7 +7,7 @@
     <string name="msg_wait">Ji kerema xwe bisekinin…</string>
     <string name="msg_calculating_hash">Hesab hesibandin</string>
     <string name="msg_running_detail">Ji bo hûrguliyan tap bikin</string>
-    <string name="msg_running">Daxistina NewPipe</string>
+    <string name="msg_running">Daxistina YewPlay</string>
     <string name="msg_error">Şaşî</string>
     <string name="msg_threads">Mijar</string>
     <string name="msg_name">Navê pelê</string>
@@ -112,7 +112,7 @@
     <string name="delete_view_history_alert">Tevahiya dîroka temaşekirinê tê jêbirin?</string>
     <string name="clear_views_history_summary">Dîroka herikên lîstî û helwestên lîstinê jêbirin</string>
     <string name="clear_views_history_title">Dîroka temaşekirinê paqij bikin</string>
-    <string name="clear_cookie_summary">Dema ku hûn reCAPTCHA-yê çareser bikin cookie-yên ku NewPipe tomar dike paqij bikin</string>
+    <string name="clear_cookie_summary">Dema ku hûn reCAPTCHA-yê çareser bikin cookie-yên ku YewPlay tomar dike paqij bikin</string>
     <string name="export_data_summary">Dîrok, abone, lîsteyên lîstin û mîhengan hinarde bikin</string>
     <string name="import_data_summary">Dîroka, abonî, lîsteyên lîstinê û mîhengên (vebijarkî) we yên heyî ji holê radike</string>
     <string name="recaptcha_cookies_cleared">çerezên reCAPTCHA hatine paqij kirin</string>
@@ -125,10 +125,10 @@
     <string name="unknown_content">[Nenas]</string>
     <string name="hash_channel_description">Agahdarî ji bo pêşveçûna heşandina vîdyoyê</string>
     <string name="hash_channel_name">Dîtina Agahdariya Vîdyoyê</string>
-    <string name="app_update_notification_channel_description">Notifications ji bo guhertoya nû ya NewPipe</string>
+    <string name="app_update_notification_channel_description">Notifications ji bo guhertoya nû ya YewPlay</string>
     <string name="app_update_notification_channel_name">Nûvekirina Agahdariyê Appê</string>
-    <string name="notification_channel_description">Agahdarî ji bo lîstikvanên paşnav û popup ên NewPipe</string>
-    <string name="notification_channel_name">Agahdariya NewPipe</string>
+    <string name="notification_channel_description">Agahdarî ji bo lîstikvanên paşnav û popup ên YewPlay</string>
+    <string name="notification_channel_name">Agahdariya YewPlay</string>
     <string name="file">Dosî</string>
     <string name="just_once">Tenê Carek</string>
     <string name="always">Herdem</string>
@@ -160,7 +160,7 @@
     <string name="action_history">Dîrok</string>
     <string name="title_activity_history">Dîrok</string>
     <string name="read_full_license">Destûrê bixwînin</string>
-    <string name="app_license">NewPipe nermalava kopîleft libre ye: Hûn dikarin li gorî kêfa xwe bikar bînin, parve bikin û baştir bikin. Bi taybetî hûn dikarin wê di bin mercên Lîsansa Giştî ya GNU ya Giştî ya ku ji hêla Weqfa Nermalava Azad ve hatî weşandin de, an guhertoya 3 ya Lîsansê, an jî (li gorî vebijarka we) guhertoyek paşîn ji nû ve belav bikin û / an biguherînin.</string>
+    <string name="app_license">YewPlay nermalava kopîleft libre ye: Hûn dikarin li gorî kêfa xwe bikar bînin, parve bikin û baştir bikin. Bi taybetî hûn dikarin wê di bin mercên Lîsansa Giştî ya GNU ya Giştî ya ku ji hêla Weqfa Nermalava Azad ve hatî weşandin de, an guhertoya 3 ya Lîsansê, an jî (li gorî vebijarka we) guhertoyek paşîn ji nû ve belav bikin û / an biguherînin.</string>
     <string name="clear">Zelal</string>
     <string name="disabled">Bêmecel</string>
     <string name="artists">Hunermend</string>
@@ -380,7 +380,7 @@
     <string name="error_timeout">Dema girêdanê</string>
     <string name="error_progress_lost">Pêşkeftin winda bû, ji ber ku pel hate jêbirin</string>
     <string name="error_insufficient_storage_left">Cih li cîhazê namîne</string>
-    <string name="error_postprocessing_stopped">Dema ku pel dixebitî NewPipe hate girtin</string>
+    <string name="error_postprocessing_stopped">Dema ku pel dixebitî YewPlay hate girtin</string>
     <string name="error_postprocessing_failed">Pêvajoya şûnda têk çû</string>
     <string name="error_http_not_found">Peyda nebû</string>
     <string name="error_http_unsupported_range">Pêşkêşker dakêşanên pir-têl qebûl nake, bi @string/msg_threads = 1 re dîsa biceribîne</string>
@@ -407,7 +407,7 @@
     <string name="paused">sekinî</string>
     <string name="missions_header_pending">Nexelas</string>
     <string name="missions_header_finished">Qediya</string>
-    <string name="app_update_available_notification_title">Nûvekirina NewPipe heye!</string>
+    <string name="app_update_available_notification_title">Nûvekirina YewPlay heye!</string>
     <string name="auto">Jixweber</string>
     <string name="grid">Qefes</string>
     <string name="list">Rêzok</string>
@@ -499,7 +499,7 @@
     <string name="new_and_hot">Nû û germ</string>
     <string name="top_50">Yekem 50</string>
     <string name="trending">Tiştên Trend</string>
-    <string name="app_license_title">Lîsansa NewPipe</string>
+    <string name="app_license_title">Lîsansa YewPlay</string>
     <string name="read_privacy_policy">Polîtîkaya nepeniyê bixwînin</string>
     <string name="privacy_policy_encouragement">Projeya NewPipe nepenîtiya we pir cidî digire. Ji ber vê yekê, sepanê bêyî razîbûna we tu daneyan kom nake. \nSiyaseta taybetîtiyê ya NewPipe dema ku hûn rapora qeza dişînin çi daneyên têne şandin û hilanîn bi berfirehî vedibêje.</string>
     <string name="privacy_policy_title">Siyaseta taybetîtiyê ya NewPipe</string>
@@ -512,7 +512,7 @@
     <string name="contribution_encouragement">Ka ramanên we hene; werger, guherandinên sêwiranê, paqijkirina kodê, an guherînên koda giran ên rastîn-alîkarî her gav bi xêr hatî. Ya ku çêdibe çêtir dibe!</string>
     <string name="contribution_title">Paraxwe dayin</string>
     <string name="app_description">Li Android-ê veguhastina ronahiya sivik.</string>
-    <string name="title_activity_about">Derbarê NewPipe</string>
+    <string name="title_activity_about">Derbarê YewPlay</string>
     <string name="charset_most_special_characters">Pir karakterên taybetî</string>
     <string name="charset_letters_and_digits">Name û reqem</string>
     <string name="settings_file_replacement_character_title">Karaktera guheztinê</string>
@@ -532,8 +532,8 @@
     <string name="video_detail_by">Bi %s</string>
     <string name="channel_created_by">Ji hêla %s ve hatî afirandin</string>
     <string name="detail_sub_channel_thumbnail_view_description">Avrêl avatar a Qenal</string>
-    <string name="content_not_supported">Vê naverok hîn ji hêla NewPipe ve nayê piştgirî kirin. \n \nEw ê hêvî dikim ku di guhertoyek pêşerojê de piştgirî bibe.</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Li gorî we barkirina xwarinê pir hêdî ye? Ger wusa ye, barkirina zû biceribîne (hûn dikarin wê di mîhengan de an bi tikandina bişkoja jêrîn biguherînin). \n \nNewPipe du stratejiyên barkirina xwarinê pêşkêşî dike: \n• Dîtina tevahî kanala abonetiyê, ku hêdî ye lê temam e. \n• Bikaranîna xala dawîn a karûbarê taybetî, ku bilez e lê bi gelemperî ne temam e. \n \nCûdaiya di navbera her duyan de ev e ku ya bilez bi gelemperî hin agahdarî, mîna dirêjahî an celebê (nekare vîdyoyên zindî û yên normal cuda bike) tune û dibe ku ew kêmtir tiştan jî vegerîne. \n \nYouTube nimûneyek xizmetê ye ku bi xwarina RSS-ê vê rêbaza bilez pêşkêşî dike. \n \nJi ber vê yekê bijarde bi tiştê ku hûn tercîh dikin ve girêdayî ye: leza an agahdariya rastîn.</string>
+    <string name="content_not_supported">Vê naverok hîn ji hêla YewPlay ve nayê piştgirî kirin. \n \nEw ê hêvî dikim ku di guhertoyek pêşerojê de piştgirî bibe.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Li gorî we barkirina xwarinê pir hêdî ye? Ger wusa ye, barkirina zû biceribîne (hûn dikarin wê di mîhengan de an bi tikandina bişkoja jêrîn biguherînin). \n \nYewPlay du stratejiyên barkirina xwarinê pêşkêşî dike: \n• Dîtina tevahî kanala abonetiyê, ku hêdî ye lê temam e. \n• Bikaranîna xala dawîn a karûbarê taybetî, ku bilez e lê bi gelemperî ne temam e. \n \nCûdaiya di navbera her duyan de ev e ku ya bilez bi gelemperî hin agahdarî, mîna dirêjahî an celebê (nekare vîdyoyên zindî û yên normal cuda bike) tune û dibe ku ew kêmtir tiştan jî vegerîne. \n \nYouTube nimûneyek xizmetê ye ku bi xwarina RSS-ê vê rêbaza bilez pêşkêşî dike. \n \nJi ber vê yekê bijarde bi tiştê ku hûn tercîh dikin ve girêdayî ye: leza an agahdariya rastîn.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Modeya lezgîn neçalak bikin</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Modeya lezgîn çalak bikin</string>
     <string name="tab_licenses">Destûrên</string>

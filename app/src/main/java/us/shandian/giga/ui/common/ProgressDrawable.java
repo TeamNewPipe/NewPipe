@@ -1,5 +1,6 @@
 package us.shandian.giga.ui.common;
 
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
@@ -15,6 +16,8 @@ import androidx.annotation.NonNull;
 
 public class ProgressDrawable extends Drawable {
     private static final int MARQUEE_INTERVAL = 150;
+    /** YewPlay: ruby, the state color. */
+    private static final int YP_PROGRESS_COLOR = 0xFFE0364F;
 
     private float mProgress;
     private int mBackgroundColor, mForegroundColor;
@@ -56,19 +59,30 @@ public class ProgressDrawable extends Drawable {
         int width = getBounds().width();
         int height = getBounds().height();
 
+        // YewPlay: flat rows with a thin ruby progress line at the bottom, instead of filling
+        // the whole item; finished downloads have no line at all
+        if (mProgress >= 1f && mMarqueeLine == null) {
+            return;
+        }
+        final float density = Resources.getSystem().getDisplayMetrics().density;
+        final int line = Math.max(2, Math.round(3 * density));
+        final int inset = Math.round(12 * density);
+        canvas.save();
+        canvas.clipRect(inset, height - line - inset / 2, width - inset, height - inset / 2);
+
         Paint paint = new Paint();
 
         paint.setColor(mBackgroundColor);
         canvas.drawRect(0, 0, width, height, paint);
 
-        paint.setColor(mForegroundColor);
+        paint.setColor(YP_PROGRESS_COLOR);
 
         if (mMarqueeLine != null) {
             if (mMarqueeSize < 1) setupMarquee(width, height);
 
             int size = mMarqueeSize;
             Paint paint2 = new Paint();
-            paint2.setColor(mForegroundColor);
+            paint2.setColor(YP_PROGRESS_COLOR);
             paint2.setStrokeWidth(size);
             paint2.setStyle(Paint.Style.STROKE);
 
@@ -89,6 +103,7 @@ public class ProgressDrawable extends Drawable {
             marquee.close();
 
             canvas.drawPath(marquee, paint2);// draw marquee
+            canvas.restore();
 
             if (System.currentTimeMillis() >= mMarqueeNext) {
                 // program next update
@@ -98,7 +113,8 @@ public class ProgressDrawable extends Drawable {
             return;
         }
 
-        canvas.drawRect(0, 0, (int) (mProgress * width), height, paint);
+        canvas.drawRect(inset, 0, inset + (int) (mProgress * (width - 2 * inset)), height, paint);
+        canvas.restore();
     }
 
     @Override

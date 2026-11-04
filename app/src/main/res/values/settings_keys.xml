@@ -257,7 +257,7 @@
     <string name="dark_theme_key">dark_theme</string>
     <string name="black_theme_key">black_theme</string>
     <string name="auto_device_theme_key">auto_device_theme</string>
-    <string name="default_theme_value">@string/auto_device_theme_key</string>
+    <string name="default_theme_value">@string/dark_theme_key</string>
     <string name="default_night_theme_value">@string/dark_theme_key</string>
     <string-array name="theme_values_list">
         <item>@string/light_theme_key</item>

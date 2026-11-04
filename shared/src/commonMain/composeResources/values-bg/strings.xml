@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="navigate_back">Назад</string>
-    <string name="title_activity_about">Относно NewPipe</string>
+    <string name="title_activity_about">Относно YewPlay</string>
     <string name="title_licenses">Лицензи на трети страни</string>
     <string name="license">От %1$s под %2$s</string>
     <string name="tab_about">За нас и ЧЗВ</string>
@@ -18,8 +18,8 @@
     <string name="privacy_policy_title">Политика за поверителност на NewPipe</string>
     <string name="privacy_policy_encouragement">Проектът NewPipe приема вашата поверителност много сериозно. Следователно приложението не събира никакви данни без вашето съгласие.\nПолитиката за поверителност на NewPipe обяснява подробно какви данни се изпращат и съхраняват, когато изпращате отчет за срив.</string>
     <string name="read_privacy_policy">Прочетете политиката за поверителност</string>
-    <string name="app_license_title">Лиценз на NewPipe</string>
-    <string name="app_license">NewPipe е софтуер с авторско право: Можете да го използвате, изучавате, споделяте и подобрявате по ваше желание. По-конкретно, можете да го разпространявате и/или променяте съгласно условията на Общия публичен лиценз на GNU, публикуван от Фондацията за свободен софтуер, или версия 3 на Лиценза, или (по ваш избор) всяка по-късна версия.</string>
+    <string name="app_license_title">Лиценз на YewPlay</string>
+    <string name="app_license">YewPlay е софтуер с авторско право: Можете да го използвате, изучавате, споделяте и подобрявате по ваше желание. По-конкретно, можете да го разпространявате и/или променяте съгласно условията на Общия публичен лиценз на GNU, публикуван от Фондацията за свободен софтуер, или версия 3 на Лиценза, или (по ваш избор) всяка по-късна версия.</string>
     <string name="read_full_license">Прочетете лиценза</string>
     <string name="faq_title">Често задавани въпроси</string>
     <string name="faq_description">Ако имате проблеми с използването на приложението, не забравяйте да разгледате тези отговори на често задавани въпроси!</string>

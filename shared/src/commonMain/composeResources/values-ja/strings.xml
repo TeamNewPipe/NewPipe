@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="navigate_back">戻る</string>
-    <string name="title_activity_about">NewPipeについて</string>
+    <string name="title_activity_about">YewPlayについて</string>
     <string name="title_licenses">サードパーティライセンス</string>
     <string name="license">%1$s作、%2$sライセンス</string>
     <string name="tab_about">概要とよくある質問</string>
@@ -18,8 +18,8 @@
     <string name="privacy_policy_title">NewPipeのプライバシーポリシー</string>
     <string name="privacy_policy_encouragement">NewPipeプロジェクトは、ユーザーのプライバシーを非常に重視しています。そのため、このアプリがユーザーの同意なくデータを収集することはありません。\nNewPipeのプライバシーポリシーでは、クラッシュレポートを送信した際に、どのようなデータが送信および保存されるかを詳しく説明しています。</string>
     <string name="read_privacy_policy">プライバシーポリシーを読む</string>
-    <string name="app_license_title">NewPipeのライセンス</string>
-    <string name="app_license">NewPipeは、コピーレフトの自由ソフトウェアです。自由に使用、研究、共有、改良できます。具体的には、フリーソフトウェア財団が公開しているGNU General Public Licenseのバージョン3、またはそれ以降の任意のバージョンの条件に従って、再配布や改変を行えます。</string>
+    <string name="app_license_title">YewPlayのライセンス</string>
+    <string name="app_license">YewPlayは、コピーレフトの自由ソフトウェアです。自由に使用、研究、共有、改良できます。具体的には、フリーソフトウェア財団が公開しているGNU General Public Licenseのバージョン3、またはそれ以降の任意のバージョンの条件に従って、再配布や改変を行えます。</string>
     <string name="read_full_license">ライセンスを読む</string>
     <string name="faq_title">よくある質問</string>
     <string name="faq_description">アプリの使用中に問題が発生した場合は、よくある質問への回答をご確認ください！</string>

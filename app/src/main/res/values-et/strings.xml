@@ -99,8 +99,8 @@
     <string name="always">Alati</string>
     <string name="just_once">Üks kord</string>
     <string name="file">Fail</string>
-    <string name="notification_channel_name">NewPipe\'i teavitus</string>
-    <string name="notification_channel_description">NewPipe\'i meediaesitaja teavitused</string>
+    <string name="notification_channel_name">YewPlay\'i teavitus</string>
+    <string name="notification_channel_description">YewPlay\'i meediaesitaja teavitused</string>
     <string name="unknown_content">[Tundmatu]</string>
     <string name="switch_to_background">Lülita taustale</string>
     <string name="switch_to_popup">Lülita hüpikpleierile</string>
@@ -180,7 +180,7 @@
     <string name="msg_name">Failinimi</string>
     <string name="msg_threads">Lõimed</string>
     <string name="msg_error">Viga</string>
-    <string name="msg_running">NewPipe\'i on allalaadimisel</string>
+    <string name="msg_running">YewPlay\'i on allalaadimisel</string>
     <string name="msg_running_detail">Üksikasjade nägemiseks toksa</string>
     <string name="msg_wait">Palun oota…</string>
     <string name="msg_copied">Kopeeriti lõikepuhvrisse</string>
@@ -193,7 +193,7 @@
     <string name="settings_file_replacement_character_title">Asendustähemärk</string>
     <string name="charset_letters_and_digits">Tähed ja numbrid</string>
     <string name="charset_most_special_characters">Erimärgid</string>
-    <string name="title_activity_about">Rakenduse teave: NewPipe</string>
+    <string name="title_activity_about">Rakenduse teave: YewPlay</string>
     <string name="title_licenses">Kolmanda osapoole litsentsid</string>
     <string name="tab_about">Rakenduse teave ja KKK</string>
     <string name="tab_licenses">Litsentsid</string>
@@ -204,7 +204,7 @@
     <string name="website_encouragement">Täiendava info ja uudiste lugemiseks külasta NewPipe\'i veebisaiti.</string>
     <string name="privacy_policy_title">NewPipe\'i andmekaitsepõhimõtted</string>
     <string name="read_privacy_policy">Loe andmekaitsepõhimõtteid</string>
-    <string name="app_license_title">NewPipe\'i litsents</string>
+    <string name="app_license_title">YewPlay\'i litsents</string>
     <string name="read_full_license">Loe litsentsi</string>
     <string name="title_activity_history">Ajalugu</string>
     <string name="action_history">Ajalugu</string>
@@ -292,7 +292,7 @@
     <string name="donation_encouragement">NewPipe\'i arendajad on vabatahtlikud, kes kulutavad oma vaba aega, toomaks sulle parimat kasutuskogemust. On aeg anda tagasi aidates arendajaid ja muuta NewPipe\'i veel paremaks, nautides ise tassi kohvi.</string>
     <string name="give_back">Anna kogukonnale tagasi</string>
     <string name="privacy_policy_encouragement">NewPipe võtab privaatsust väga tõsiselt. Seetõttu ei kogu rakendus ilma nõusolekuta mingeid andmeid. \nNewPipe\'i andmekaitsepõhimõtted selgitavad üksikasjalikult, milliseid andmeid saadetakse ja kogutakse veateate saatmisel.</string>
-    <string name="app_license">NewPipe on vaba ja avatud lähtekoodiga tarkvara. Seda võid kasutada, uurida, jagada ja parandada nii, nagu õigemaks pead. Täpsemalt - seda võid levitada ja/või muuta vastavalt Vaba Tarkvara Sihtasutuse avaldatud GNU Üldise Avaliku Litsentsi v.3 (või sinu valikul hilisema versiooni) tingimustele.</string>
+    <string name="app_license">YewPlay on vaba ja avatud lähtekoodiga tarkvara. Seda võid kasutada, uurida, jagada ja parandada nii, nagu õigemaks pead. Täpsemalt - seda võid levitada ja/või muuta vastavalt Vaba Tarkvara Sihtasutuse avaldatud GNU Üldise Avaliku Litsentsi v.3 (või sinu valikul hilisema versiooni) tingimustele.</string>
     <string name="enable_disposed_exceptions_title">Teavita elutsüklist väljas vigadest</string>
     <string name="import_soundcloud_instructions">Impordi SoundCloudi profiil trükkides URL või oma ID: \n \n1. Luba \"töölaua režiim\" veebilehitsejas (mobiilsete seadmete jaoks leht pole kättesaadav) \n2. Ava URL: %1$s \n3. Logi sisse \n4. Kopeeri suunatud profiili URL.</string>
     <string name="import_soundcloud_instructions_hint">sinu_ID, soundcloud.com/sinu_id</string>
@@ -314,7 +314,7 @@
     <string name="events">Sündmused</string>
     <string name="file_deleted">Fail kustutati</string>
     <string name="app_update_notification_channel_name">Rakenduse värskenduse teavitus</string>
-    <string name="app_update_notification_channel_description">Teavitus NewPipe\'i uuetest versioonidest</string>
+    <string name="app_update_notification_channel_description">Teavitus YewPlay\'i uuetest versioonidest</string>
     <string name="download_to_sdcard_error_title">Väline andmekandja pole saadaval</string>
     <string name="download_to_sdcard_error_message">Allalaadimine välisele SD-kaardile ei ole võimalik. Kas lähtestada allalaadimiste kataloogi asukoht?</string>
     <string name="saved_tabs_invalid_json">Tõrge salvestatud vahekaaride lugemisel; kasutatakse vaikeväärtusi</string>
@@ -329,7 +329,7 @@
     <string name="list">Nimekiri</string>
     <string name="grid">Võrgustik</string>
     <string name="auto">Auto</string>
-    <string name="app_update_available_notification_title">NewPipe\'i värskendus on saadaval!</string>
+    <string name="app_update_available_notification_title">YewPlay\'i värskendus on saadaval!</string>
     <string name="missions_header_finished">Lõpetatud</string>
     <string name="missions_header_pending">Ootel</string>
     <string name="paused">peatatud</string>
@@ -405,10 +405,10 @@
     <string name="no_app_to_open_intent">Ükski sinu seadme rakendus ei saa seda avada</string>
     <string name="crash_the_app">Jooksuta rakendus kokku</string>
     <string name="georestricted_content">See sisu ei ole sinu riigis saadaval.</string>
-    <string name="soundcloud_go_plus_content">Vähemalt sinu riigis on see SoundCloud Go+ teenuse lugu, seega ei saa seda NewPipe\'i kaudu voogedastada ega alla laadida.</string>
-    <string name="private_content">See sisu on privaatne, seega ei saa seda NewPipe\'i kaudu voogedastada ega alla laadida.</string>
-    <string name="youtube_music_premium_content">See video on saadaval ainult YouTube Music Premium teenuse tellijatele, seega ei saa seda NewPipe\'i kaudu voogedastada ega alla laadida.</string>
-    <string name="paid_content">See sisu on kättesaadav ainult tasulise teenuse kasutajatele, seega ei saa seda NewPipe\'i kaudu voogedastada ega alla laadida.</string>
+    <string name="soundcloud_go_plus_content">Vähemalt sinu riigis on see SoundCloud Go+ teenuse lugu, seega ei saa seda YewPlay\'i kaudu voogedastada ega alla laadida.</string>
+    <string name="private_content">See sisu on privaatne, seega ei saa seda YewPlay\'i kaudu voogedastada ega alla laadida.</string>
+    <string name="youtube_music_premium_content">See video on saadaval ainult YouTube Music Premium teenuse tellijatele, seega ei saa seda YewPlay\'i kaudu voogedastada ega alla laadida.</string>
+    <string name="paid_content">See sisu on kättesaadav ainult tasulise teenuse kasutajatele, seega ei saa seda YewPlay\'i kaudu voogedastada ega alla laadida.</string>
     <string name="recaptcha_solve">Lahenda</string>
     <string name="featured">Esiletõstetud</string>
     <string name="radio">Raadio</string>
@@ -438,7 +438,7 @@
     <string name="delete_playback_states_alert">Kas kustutame kõik taasesituste asukohad?</string>
     <string name="clear_playback_states_summary">Kustutab kõik taasesituse käigus salvestatud asukohad</string>
     <string name="clear_playback_states_title">Kustuta taasesituste asukohad</string>
-    <string name="clear_cookie_summary">Kustuta küpsised, mille NewPipe on reCAPTCHA vastamise ajal salvestanud</string>
+    <string name="clear_cookie_summary">Kustuta küpsised, mille YewPlay on reCAPTCHA vastamise ajal salvestanud</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA küpsised on kustutatud</string>
     <string name="clear_cookie_title">Kustuta reCAPTCHA küpsised</string>
     <string name="hash_channel_name">Teavitus video räsi kohta</string>
@@ -446,7 +446,7 @@
     <string name="albums">Albumid</string>
     <string name="songs">Laulud</string>
     <string name="videos_string">Videod</string>
-    <string name="restricted_video_no_stream">Sellel videol on vanusepiirang. \nVastavalt YouTube uuetele reeglitele, mis käitlevad vanusepiirangutega materjali, NewPipe ei saa seda kätte ning vastavalt ei suuda seda ka esitada.</string>
+    <string name="restricted_video_no_stream">Sellel videol on vanusepiirang. \nVastavalt YouTube uuetele reeglitele, mis käitlevad vanusepiirangutega materjali, YewPlay ei saa seda kätte ning vastavalt ei suuda seda ka esitada.</string>
     <string name="restricted_video">Sellel videol on vanusepiirang. \n \nKui sa soovid seda näha, siis lülita seadistustest „%1$s“ sisse.</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube\'is leiduv „Piiratud režiim“ peidab võimaliku täiskasvanutele mõeldud sisu</string>
     <string name="show_age_restricted_content_summary">Näita sisu, mis vanusepiirangu tõttu ilmselt ei sobi lastele (näiteks 18+)</string>
@@ -529,11 +529,11 @@
     <string name="enable_queue_limit_desc">Luba korraga vaid üks allalaadimine</string>
     <string name="enable_queue_limit">Piira allalaadimiste järjekorda</string>
     <string name="error_progress_lost">Faili kustutamisega läks ka tööjärg kautsi</string>
-    <string name="error_postprocessing_stopped">NewPipe lõpetas faili töötlemisel töö</string>
+    <string name="error_postprocessing_stopped">YewPlay lõpetas faili töötlemisel töö</string>
     <string name="disable_media_tunneling_summary">Lülita meedia tunneldamine välja juhul, kui esitamisel tekib must ekraan või pildi kuvamine on katkendlik.</string>
     <string name="disable_media_tunneling_title">Lülita meedia tunneldamine välja</string>
     <string name="drawer_header_description">Vaheta teenust, hetkel on kasutusel:</string>
-    <string name="content_not_supported">NewPipe hetkel sellist võimaluist ei toeta. \n \nAga loodetavasti jõuame sellise võimaluse tulevasse versiooni lisada.</string>
+    <string name="content_not_supported">YewPlay hetkel sellist võimaluist ei toeta. \n \nAga loodetavasti jõuame sellise võimaluse tulevasse versiooni lisada.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanali tunnuspilt</string>
     <string name="channel_created_by">Looja: %s</string>
     <string name="show_thumbnail_title">Näita pisipilte</string>
@@ -579,7 +579,7 @@
     <string name="feed_use_dedicated_fetch_method_enable_button">Luba kiire režiim</string>
     <string name="feed_use_dedicated_fetch_method_title">Hangi võimalusel spetsiaalsest voost</string>
     <string name="feed_load_error_fast_unknown">Kiirvoo režiim ei paku selle kohta täiendavat teavet.</string>
-    <string name="feed_load_error_terminated">Autori konto on suletud. \nTulevikus ei saa NewPipe seda meediavoogu laadida. \nKas soovid tühistada selle kanali tellimuse?</string>
+    <string name="feed_load_error_terminated">Autori konto on suletud. \nTulevikus ei saa YewPlay seda meediavoogu laadida. \nKas soovid tühistada selle kanali tellimuse?</string>
     <string name="feed_load_error_account_info">Voo \'%s\' laadimine ei õnnestnud.</string>
     <string name="feed_load_error">Via voo laadimisel</string>
     <string name="feed_update_threshold_option_always_update">Värskenda alati</string>
@@ -590,7 +590,7 @@
     <string name="downloads_storage_use_saf_summary_api_29">Android 10st alates on toetatud ainult salvestusjuurdepääsu raamistik \'Storage Access Framework\'</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Sinult küsitakse iga kord, kuhu alla laadimine salvestada</string>
     <string name="detail_heart_img_view_description">Südamlik autor</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Kas sinu meelest on voo laadimine aeglane? Sel juhul proovi lubada kiire laadimine (seda saad muuta seadetes või vajutades allolevat nuppu). \n \nNewPipe pakub kahte voo laadimise strateegiat: \n• Tellitud kanali täielik, kuid aeglane hankimine. \n• Teenuse spetsiaalse otspunkti kasutamine, mis on kiire, kuid tavaliselt mittetäielik. \n \nErinevus nende kahe vahel seisneb selles, et kiirel puudub tavaliselt teave, näiteks üksuse pikkus või tüüp (ei saa eristada reaalajas videoid tavalistest) ja see võib tagastada vähem üksusi. \n \nYouTube on näide teenusest, mis pakub seda kiirmeetodit oma RSS-vooga. \n \nNii et valik taandub sellele, mida eelistad: kiirus või täpne teave.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Kas sinu meelest on voo laadimine aeglane? Sel juhul proovi lubada kiire laadimine (seda saad muuta seadetes või vajutades allolevat nuppu). \n \nYewPlay pakub kahte voo laadimise strateegiat: \n• Tellitud kanali täielik, kuid aeglane hankimine. \n• Teenuse spetsiaalse otspunkti kasutamine, mis on kiire, kuid tavaliselt mittetäielik. \n \nErinevus nende kahe vahel seisneb selles, et kiirel puudub tavaliselt teave, näiteks üksuse pikkus või tüüp (ei saa eristada reaalajas videoid tavalistest) ja see võib tagastada vähem üksusi. \n \nYouTube on näide teenusest, mis pakub seda kiirmeetodit oma RSS-vooga. \n \nNii et valik taandub sellele, mida eelistad: kiirus või täpne teave.</string>
     <string name="mark_as_watched">Märgi vaadatuks</string>
     <string name="remote_search_suggestions">Kaugotsingu soovitused</string>
     <string name="local_search_suggestions">Kohaliku otsingu soovitused</string>
@@ -614,7 +614,7 @@
     <string name="feed_new_items">Uued andmevoo kirjed</string>
     <string name="show_crash_the_player_title">Näita „Jooksuta meediamängija kokku“ nupukest</string>
     <string name="show_crash_the_player_summary">Näitab valikut meediamängija kokkujooksutamiseks</string>
-    <string name="error_report_notification_title">NewPipe\'i töös tekkis viga, sellest teavitamiseks toksa</string>
+    <string name="error_report_notification_title">YewPlay\'i töös tekkis viga, sellest teavitamiseks toksa</string>
     <string name="crash_the_player">Jooksuta meediamängija kokku</string>
     <string name="show_error_snackbar">Näita veateate akent</string>
     <string name="error_report_channel_name">Teavitus vigadest</string>
@@ -665,7 +665,7 @@
     <string name="app_update_available_notification_text">%s allalaadimiseks toksa</string>
     <string name="fast_mode">Kiirrežiim</string>
     <string name="import_subscriptions_hint">Tellimusi saad importida või eksportida 3 punktiga menüüst</string>
-    <string name="app_update_unavailable_toast">Sa kasutad NewPipe\'i uusimat versiooni</string>
+    <string name="app_update_unavailable_toast">Sa kasutad YewPlay\'i uusimat versiooni</string>
     <string name="night_theme_available">See valik on kasutusel vaid %s teema puhul</string>
     <string name="msg_failed_to_copy">Lõikelauale kopeerimine ei õnnestunud</string>
     <string name="unset_playlist_thumbnail">Eemalda püsiv pisipilt</string>
@@ -764,7 +764,7 @@
     <string name="show_less">Näita vähem</string>
     <string name="notification_actions_summary_android13">Muuda iga teavituse tegevust sellel toksates. Kolm esimest tegevust (esita/peata esitus, eelmine video, järgmine video) on süsteemsed ja neid ei saa muuta.</string>
     <string name="settings_category_backup_restore_title">Varundus ja taastamine</string>
-    <string name="auto_update_check_description">NewPipe võib aeg-ajalt automaatselt kontrollida uute versioonide olemasolu ning sind vastavalt teavitada. \nKas sa soovid sellist võimalust kasutada?</string>
+    <string name="auto_update_check_description">YewPlay võib aeg-ajalt automaatselt kontrollida uute versioonide olemasolu ning sind vastavalt teavitada. \nKas sa soovid sellist võimalust kasutada?</string>
     <string name="reset_settings_title">Lähtesta seadistused</string>
     <string name="reset_settings_summary">Lähtesta kõik seadistused nende vaikimisi väärtusteks</string>
     <string name="error_insufficient_storage">Seadmes pole enam piisavalt vaba ruumi</string>

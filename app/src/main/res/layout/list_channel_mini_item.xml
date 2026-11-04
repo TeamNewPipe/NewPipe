@@ -8,7 +8,8 @@
     android:background="?attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
-    android:padding="@dimen/video_item_search_padding">
+    android:paddingHorizontal="@dimen/yp_screen_margin"
+    android:paddingVertical="@dimen/yp_item_vertical_padding">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/itemThumbnailView"
@@ -31,8 +32,9 @@
         android:layout_toRightOf="@+id/itemThumbnailView"
         android:ellipsize="end"
         android:lines="1"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="@dimen/video_item_search_title_text_size"
+        android:textAppearance="@style/TextAppearance.YewPlay.ItemTitle"
+        android:fontFamily="@font/instrument_sans_semibold"
+        app:fontFamily="@font/instrument_sans_semibold"
         tools:ignore="RtlHardcoded"
         tools:text="Channel Title, Lorem ipsum" />
 
@@ -43,8 +45,7 @@
         android:layout_below="@+id/itemTitleView"
         android:layout_toRightOf="@+id/itemThumbnailView"
         android:lines="1"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="@dimen/video_item_search_upload_date_text_size"
+        android:textAppearance="@style/TextAppearance.YewPlay.Meta"
         tools:ignore="RtlHardcoded"
         tools:text="10M subscribers" />
 

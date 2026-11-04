@@ -69,7 +69,7 @@
     <string name="msg_name">ファイルめい</string>
     <string name="msg_threads">どうじらしみーちずくすん</string>
     <string name="msg_error">エラー</string>
-    <string name="msg_running">ダウンロードちゅう（NewPipe）</string>
+    <string name="msg_running">ダウンロードちゅう（YewPlay）</string>
     <string name="msg_running_detail">タップししーょうさいをひょうじ</string>
     <string name="msg_wait">うまちくぃみそーれー…</string>
     <string name="msg_copied">クリップボードんかいコピーさびたん</string>
@@ -100,14 +100,14 @@
     <string name="show_search_suggestions_title">きんさくくうふぬひょうじ</string>
     <string name="show_search_suggestions_summary">きーるさくじんかいふぃいょうじするこうふをしんたくさびーん</string>
     <string name="best_resolution">さいこう</string>
-    <string name="title_activity_about">NewPipeにちいてぃ</string>
+    <string name="title_activity_about">YewPlayにちいてぃ</string>
     <string name="title_licenses">サードパーティーライセンス</string>
     <string name="copyright" formatted="true">© %1$s さくしゃ %2$s ライセンス %3$s</string>
     <string name="tab_about">バージョンじょうほうとぅゆくあるしちむん</string>
     <string name="tab_licenses">ライセンス</string>
     <string name="app_description">Androidんきーぬフリーっしけいりょうなストリーミング。</string>
     <string name="view_on_github">GitHubっしひょうじ</string>
-    <string name="app_license_title">NewPipeぬライセンス</string>
+    <string name="app_license_title">YewPlayぬライセンス</string>
     <string name="contribution_encouragement">ふんやちゅん、デザインぬへんかん、コードぬせいり、ちゃーさぬんぶさるコードぬへんかんんでー、アイデアうむちっしぇーあいびらに？ヘルポーいちやてぃんかんぎうぅいさびーん。ゆりじょーとぅーまじゅんちゅくいとぅらさびら！</string>
     <string name="read_full_license">ライセンスゆむん</string>
     <string name="contribution_title">かんきんすん</string>
@@ -130,7 +130,7 @@
     <string name="settings_category_history_title">りりきとぅキャッシュ</string>
     <string name="undo">むとぅんかいむどぅすん</string>
     <string name="play_all">まじりさいせい</string>
-    <string name="notification_channel_name">NewPipeぬちうち</string>
+    <string name="notification_channel_name">YewPlayぬちうち</string>
     <string name="unknown_content">[ふめいうぅい]</string>
     <string name="player_stream_failure">ちゃーしがぬさいゆいがなやびらんたん</string>
     <string name="player_unrecoverable_failure">かいふくふのうなエラーぬはっせいさびたん</string>
@@ -264,14 +264,14 @@
     <string name="one_item_deleted">てぃーちぬアイテムぬさちゅるじょさりやびたん。</string>
     <string name="give_back">しーいんすん</string>
     <string name="privacy_policy_encouragement">NewPipeプロジェクトーうんじゅがプライバシーふぃじょうにてーしちなちょーいびーん。うんじゅがちゃーいがねーんかぎり、アプレーいかなるデータんしゅうしゅうさびらん。 \nNewPipeぬプライバシー・ポリシーっしぇー、クラッシュリポートそうしんじんかいちゃぬぐとーるしゅるいぬデータぬあんしん・きるくされいがしーょうさいにしちめいそーいびーん。</string>
-    <string name="app_license">NewPipeーコピーレフトなソフトウェアやいびーん。うんじょーじゆうにうりさし、きんきゅうしー、きょうゆうし、あんしがいじんするくとぅがなやびーん。うんじょー、GNUフリーソフトウェアじぇーやんんがかんかいすん GNU General Publicライセンスバージョン3いかぬむとぅんかい、じゆうにさえーいーん・しゅうせいうくないるくとぅがなやびーん。</string>
+    <string name="app_license">YewPlayーコピーレフトなソフトウェアやいびーん。うんじょーじゆうにうりさし、きんきゅうしー、きょうゆうし、あんしがいじんするくとぅがなやびーん。うんじょー、GNUフリーソフトウェアじぇーやんんがかんかいすん GNU General Publicライセンスバージョン3いかぬむとぅんかい、じゆうにさえーいーん・しゅうせいうくないるくとぅがなやびーん。</string>
     <string name="title_last_played">さいしゅうさいせいにちじ</string>
     <string name="title_most_played">むっとぅむさいせいさったんちゃーしが</string>
     <string name="resize_zoom">かくだい</string>
     <string name="controls_add_to_playlist_title">プレイリスト</string>
     <string name="show_hold_to_append_title">「ながうしっしキューんかいちちが」ぬヒントひょうじ</string>
     <string name="tracks">トラック</string>
-    <string name="notification_channel_description">NewPipeぬプレイヤーぬちうち</string>
+    <string name="notification_channel_description">YewPlayぬプレイヤーぬちうち</string>
     <string name="new_and_hot">しんちゃくとぅにんき</string>
     <string name="hold_to_append">ながうしっしキューんかいちちが</string>
     <string name="start_here_on_popup">ポップアップっしりんずくささるゆいかいし</string>
@@ -307,7 +307,7 @@
     <string name="tab_choose">タブしんたく</string>
     <string name="settings_category_updates_title">アプリぬこうしん</string>
     <string name="events">イベント</string>
-    <string name="app_update_notification_channel_description">みーさるNewPipeバージョンぬちうち</string>
+    <string name="app_update_notification_channel_description">みーさるYewPlayバージョンぬちうち</string>
     <string name="download_to_sdcard_error_title">がいぶちうちゅるすうちはりようなやびらん</string>
     <string name="restore_defaults">っちいちんかいむどぅすん</string>
     <string name="restore_defaults_confirmation">きていぬしっていふちゅるぎんさびーが？</string>
@@ -319,7 +319,7 @@
     <string name="list">リスト</string>
     <string name="grid">グリッド</string>
     <string name="auto">じちゃー</string>
-    <string name="app_update_available_notification_title">NewPipeぬアップデートぬあいびーん！</string>
+    <string name="app_update_available_notification_title">YewPlayぬアップデートぬあいびーん！</string>
     <string name="missions_header_finished">かんりょう</string>
     <string name="missions_header_pending">じゅんばんにしょりちゅう</string>
     <string name="paused">いちじていし</string>
@@ -370,7 +370,7 @@
     <string name="missing_file">ファイルぬうぅいちゃーあらんでぃさくじょさりやびたん</string>
     <string name="overwrite_failed">ファイルうわがきなやびらん</string>
     <string name="download_already_pending">いぬファイルめいぬダウンロードぬしでぃにしんこうちゅうやいびーん</string>
-    <string name="error_postprocessing_stopped">ファイルぬさぎょうちゅうにNewPipeぬくーららりやびたん</string>
+    <string name="error_postprocessing_stopped">ファイルぬさぎょうちゅうにYewPlayぬくーららりやびたん</string>
     <string name="error_insufficient_storage_left">デバイスんかいにりらりょうぬあいびらん</string>
     <string name="error_progress_lost">ファイルぬさちゅるじょさったるたみ、しんこうじょうちゅーがうしならりやびたん</string>
     <string name="confirm_prompt">ダウンロードりりき、あらんでぃダウンロードさるファイルしーょうきょさびーが？</string>
@@ -466,10 +466,10 @@
     <string name="feed_use_dedicated_fetch_method_summary">いくちがぬサービスっしりようかのう。ちうじーょうゆりむこうすくでぃすがせいぎんさりたじょうほうがしゅとぅくさり、たいていぬばあいふかんじんやいびーん（れい： さいせいじがん、しーゅるい、ライブステータスんでーがねーん）</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">こうすくモードゆーいんかんが</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">こうすくモードんーかなやー</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">フィードぬゆみくみがにーしじーんでぃうむやびーが？うぬばあい、こうすくゆみくみゆーいるこうかしんーちくぃみそーれー（しってい、あらんでぃしちゃぬボタンうしてぃへんかんするくとぅがなやびーん）。 \n \nNewPipeーたーちぬゆみくみほうほうていきょうさびーん： \n・とうるいちゅるチャンネルじんたいしゅとぅくさびーん。くれーていすくやいびーしがかんじんやいびーん。 \n・しんようぬサービスエンドポイントしーようさびーん。くれーこうすくやいびーしが、たいていぬばあいふかんじんやいびーん。 \n \nたーちぬちがいとぅしてぃ、こうすくなむのーちうじょう、さいせいじがんてぃがろーしーゅるい（ライブんでぃちうじーょうぬどうがをくびちでぃきない）んでーぬじょうほうがふすくしてぃ、ただしいーょうぬじょうほうゆりすくなくしゅとぅくするくとぅがあいびーん。 \n \nYouTubeー、くぬこうすくやーゆみくみほうほうRSSフィードっしていきょうするサービスぬてぃーちやいびーん。 \n \nちまり、ゆみくみほうほうぬしんたくはすくどぅあらんでぃゆいかくさぬどぅちらゆーいるしんすが、うんじゅがしちがゆやびーん。</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">フィードぬゆみくみがにーしじーんでぃうむやびーが？うぬばあい、こうすくゆみくみゆーいるこうかしんーちくぃみそーれー（しってい、あらんでぃしちゃぬボタンうしてぃへんかんするくとぅがなやびーん）。 \n \nYewPlayーたーちぬゆみくみほうほうていきょうさびーん： \n・とうるいちゅるチャンネルじんたいしゅとぅくさびーん。くれーていすくやいびーしがかんじんやいびーん。 \n・しんようぬサービスエンドポイントしーようさびーん。くれーこうすくやいびーしが、たいていぬばあいふかんじんやいびーん。 \n \nたーちぬちがいとぅしてぃ、こうすくなむのーちうじょう、さいせいじがんてぃがろーしーゅるい（ライブんでぃちうじーょうぬどうがをくびちでぃきない）んでーぬじょうほうがふすくしてぃ、ただしいーょうぬじょうほうゆりすくなくしゅとぅくするくとぅがあいびーん。 \n \nYouTubeー、くぬこうすくやーゆみくみほうほうRSSフィードっしていきょうするサービスぬてぃーちやいびーん。 \n \nちまり、ゆみくみほうほうぬしんたくはすくどぅあらんでぃゆいかくさぬどぅちらゆーいるしんすが、うんじゅがしちがゆやびーん。</string>
     <string name="infinite_videos">∞ぬちゃーしが</string>
     <string name="more_than_100_videos">100いじょうぬちゃーしが</string>
-    <string name="content_not_supported">くぬコンテンツーなーらNewPipeっしサポートさりやびらん。 \n \nくんぐぬバージョンっしサポートさりーんかむしりやびらん。</string>
+    <string name="content_not_supported">くぬコンテンツーなーらYewPlayっしサポートさりやびらん。 \n \nくんぐぬバージョンっしサポートさりーんかむしりやびらん。</string>
     <string name="songs">きょく</string>
     <string name="artists">アーティスト</string>
     <string name="albums">アルバム</string>
@@ -518,7 +518,7 @@
     <string name="show_age_restricted_content_summary">されいせいぎん（18+んでー）ぬいゆーいっし、わらびんかえーふていくしーちなかのうゆいぬあるコンテンツひょうじすん</string>
     <string name="enqueue_stream">キューんかいちちが</string>
     <string name="enqueued">キューんかいちいからさびたん</string>
-    <string name="clear_cookie_summary">reCAPTCHAとぅちゃるとぅちにNewPipeぬふずんさるCookieしーょうきょさびーん</string>
+    <string name="clear_cookie_summary">reCAPTCHAとぅちゃるとぅちにYewPlayぬふずんさるCookieしーょうきょさびーん</string>
     <string name="clear_cookie_title">reCAPTCHAぬCookieしーょうきょ</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHAぬCookieぬしーょうきょさりやびたん</string>
     <string name="show_memory_leaks">メモリリークひょうじ</string>
@@ -540,13 +540,13 @@
     <string name="show_meta_info_summary">ちゃーしがさくせいしゃ、ちゃーしがコンテンツ、きんさくリクエストんかいかんすんちいかじょうほうくくむんメタじょうほうボックスふぃふぃょうじなすんがーオフなさびーん</string>
     <string name="no_app_to_open_intent">うちかいぬデバイスじょうぬアプリっしぇー、くりふぃらちゅしぇーなやびらん</string>
     <string name="chapters">チャプター</string>
-    <string name="paid_content">くぬコンテンツーゆーいるりょうぬユーザーぬみがいようないるたみ、NewPipeっしぬストリーミングてぃがろーダウンロードーなやびらん。</string>
-    <string name="youtube_music_premium_content">くぬちゃーしがーYouTubeミュージックプレミアムかいさるんぬみがいようないるようなとーくとぅ、NewPipeっしストリーミングてぃがろーダウンロードうくないしぇーなやびらん。</string>
-    <string name="private_content">くぬコンテンツーふぃかかいぬたみ、NewPipeっしストリーミングてぃがろーダウンロードすしぇーなやびらん。</string>
-    <string name="soundcloud_go_plus_content">くれーSoundCloud Go+トラックやくとぅ、すくなくとぅむうんじゅがくにっしぇー、NewPipeっしぇーストリーミングてぃがろーダウンロードぬなやびらん。</string>
+    <string name="paid_content">くぬコンテンツーゆーいるりょうぬユーザーぬみがいようないるたみ、YewPlayっしぬストリーミングてぃがろーダウンロードーなやびらん。</string>
+    <string name="youtube_music_premium_content">くぬちゃーしがーYouTubeミュージックプレミアムかいさるんぬみがいようないるようなとーくとぅ、YewPlayっしストリーミングてぃがろーダウンロードうくないしぇーなやびらん。</string>
+    <string name="private_content">くぬコンテンツーふぃかかいぬたみ、YewPlayっしストリーミングてぃがろーダウンロードすしぇーなやびらん。</string>
+    <string name="soundcloud_go_plus_content">くれーSoundCloud Go+トラックやくとぅ、すくなくとぅむうんじゅがくにっしぇー、YewPlayっしぇーストリーミングてぃがろーダウンロードぬなやびらん。</string>
     <string name="georestricted_content">くぬコンテンツー、うすんまいぬくにっしぇーぐりよういただきやびらん。</string>
     <string name="crash_the_app">アプリぬクラッシュ</string>
-    <string name="restricted_video_no_stream">くぬちゃーがはにーるれいうぅいゆいぎんぬあいびーん。 \nされいせいぎんちきちゃーがくくむんみーさるYouTubeポリシーにゆり、NewPipeーちゃーがストリームんかいアクセスならんたみさいせいうぅいなやびらん。</string>
+    <string name="restricted_video_no_stream">くぬちゃーがはにーるれいうぅいゆいぎんぬあいびーん。 \nされいせいぎんちきちゃーがくくむんみーさるYouTubeポリシーにゆり、YewPlayーちゃーがストリームんかいアクセスならんたみさいせいうぅいなやびらん。</string>
     <string name="select_night_theme_toast">いかからうくぬみぬやっくゎんテーマさんたくなやびーん</string>
     <string name="auto_device_theme_title">じちゃー（デバイスぬテーマ）</string>
     <string name="night_theme_summary">うくぬみぬやっくゎんテーマしんたく — %s</string>
@@ -581,7 +581,7 @@
     <string name="description_select_enable">しちめいぶんぬテキストぬしんたくゆうこうなすん</string>
     <string name="description_select_note">なましちめいぶんぬテキストさんたくなやびーん。しんたくモードちゅおーページぬちらちちゃいリンクぬクリックならんなたいしーんくとぅんかいちゅういしみそーれー。</string>
     <string name="account_terminated">ていしさったるアカウント</string>
-    <string name="feed_load_error_terminated">くぬとうこうしゃぬアカウントーていしさりとーいびーん。 \nNewPipeーしーょうらいてぃきにくぬフィードゆみくみらんなやびーん。 \nくぬチャンネルぬとぅうるいちゅんこーいじょさびーが？</string>
+    <string name="feed_load_error_terminated">くぬとうこうしゃぬアカウントーていしさりとーいびーん。 \nYewPlayーしーょうらいてぃきにくぬフィードゆみくみらんなやびーん。 \nくぬチャンネルぬとぅうるいちゅんこーいじょさびーが？</string>
     <string name="off">オフ</string>
     <string name="on">オン</string>
     <string name="tablet_mode_title">タブレットモード</string>
@@ -661,7 +661,7 @@
     <string name="sort">ならびがい</string>
     <string name="faq">ウェブサイトひょうじ</string>
     <string name="app_update_available_notification_text">タップし%sダウンロード</string>
-    <string name="app_update_unavailable_toast">うんじょーNewPipeぬさいしんばんきどうそーいびーん</string>
+    <string name="app_update_unavailable_toast">うんじょーYewPlayぬさいしんばんきどうそーいびーん</string>
     <string name="faq_title">ゆーあしちまん</string>
     <string name="faq_description">アアプリぬちかいかたんかいくまたるとぅちぇー、ゆーあんさちむぬんかいくてーとーいびーくとぅ、じふぃんーちくぃみそーれー！</string>
     <string name="night_theme_available">%sぬテーマなさんたくさったーあいぬみ、くぬしんたくしがりようかのうやいびーん</string>
@@ -764,7 +764,7 @@
     <string name="show_less">ひょうじいきらくすん</string>
     <string name="notification_actions_summary_android13">いかぬちうちアクションタップしへんしゅうさびーん。さいしょぬみーちぬアクション （さいせい/いちじていし、めーんかい、ちぎんかい）ーシステムにゆってぃしっていさりてぃうぅい、カスタマイズすしぇーなやびらん。</string>
     <string name="yes">はい</string>
-    <string name="auto_update_check_description">NewPipeーてぃんじちーがみーさるバージョンじちゃーてぃきんかいチェックしー、こうしんがのうないるとぅちうちさびーん。 \nゆうこうなさびーが？</string>
+    <string name="auto_update_check_description">YewPlayーてぃんじちーがみーさるバージョンじちゃーてぃきんかいチェックしー、こうしんがのうないるとぅちうちさびーん。 \nゆうこうなさびーが？</string>
     <string name="error_insufficient_storage">デバイスぬあきゆういょうがふすくそーいびーん</string>
     <string name="no">うぅーうぅー</string>
     <string name="settings_category_backup_restore_title">バックアップとぅふくぎん</string>

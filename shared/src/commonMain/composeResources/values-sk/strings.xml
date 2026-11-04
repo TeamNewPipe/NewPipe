@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="title_activity_about">O aplikácii NewPipe</string>
+    <string name="title_activity_about">O aplikácii YewPlay</string>
     <string name="title_licenses">Licencie tretích strán</string>
     <string name="license">Od %1$s pod licenciou %2$s</string>
     <string name="tab_about">O nás a často kladené otázky</string>
@@ -17,8 +17,8 @@
     <string name="privacy_policy_title">Zásady ochrany osobných údajov NewPipe</string>
     <string name="privacy_policy_encouragement">Projekt NewPipe berie ochranu vašich osobných údajov veľmi vážne. Aplikácia preto bez vášho súhlasu nezhromažďuje žiadne údaje.\nV zásadách ochrany osobných údajov NewPipe je podrobne vysvetlené, aké údaje sa odosielajú a ukladajú pri zaslaní správy o chybe.</string>
     <string name="read_privacy_policy">Prečítajte si zásady ochrany osobných údajov</string>
-    <string name="app_license_title">Licencia NewPipe</string>
-    <string name="app_license">NewPipe je voľný softvér s copyleftom: Môžete ho používať, študovať, zdieľať a vylepšovať podľa vlastného uváženia. Konkrétne ho môžete redistribuovať a/alebo modifikovať podľa podmienok Všeobecnej verejnej licencie GNU, ako ju uverejnila Free Software Foundation, buď verzie 3 licencie, alebo (podľa vášho výberu) akejkoľvek neskoršej verzie.</string>
+    <string name="app_license_title">Licencia YewPlay</string>
+    <string name="app_license">YewPlay je voľný softvér s copyleftom: Môžete ho používať, študovať, zdieľať a vylepšovať podľa vlastného uváženia. Konkrétne ho môžete redistribuovať a/alebo modifikovať podľa podmienok Všeobecnej verejnej licencie GNU, ako ju uverejnila Free Software Foundation, buď verzie 3 licencie, alebo (podľa vášho výberu) akejkoľvek neskoršej verzie.</string>
     <string name="read_full_license">Prečítajte si licenciu</string>
     <string name="faq_title">Často kladené otázky</string>
     <string name="faq_description">Ak máte problémy s používaním aplikácie, určite si prečítajte tieto odpovede na zvyčajné otázky!</string>

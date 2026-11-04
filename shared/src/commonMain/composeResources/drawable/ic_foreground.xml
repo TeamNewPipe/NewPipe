@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ SPDX-FileCopyrightText: 2026 NewPipe e.V. <https://newpipe-ev.de>
-  ~ SPDX-License-Identifier: GPL-3.0-or-later
-  -->
+<!-- YewPlay: triângulo de "play" com pontas suavizadas. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="470dp"
-    android:height="464dp"
-    android:viewportWidth="470"
-    android:viewportHeight="464">
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
     <path
-        android:pathData="M144.1,388.93L191.69,358.59L192.69,157.51L315.15,230.22L226.54,281.32V339.8L410.63,230.22L143.85,73.44L144.1,388.93Z"
-        android:fillColor="#ffffff"
-        android:fillType="evenOdd"/>
+        android:fillColor="#F3EEE9"
+        android:pathData="M40.11,40.00Q40.11,35.00 44.45,37.49L68.84,51.51Q73.17,54.00 68.84,56.49L44.45,70.51Q40.11,73.00 40.11,68.00Z" />
 </vector>

@@ -22,6 +22,7 @@
             android:layout_weight="1"
             android:background="?attr/colorPrimary"
             android:theme="@style/ToolbarTheme"
+            app:titleTextAppearance="@style/TextAppearance.YewPlay.ToolbarTitle.Small"
             app:layout_scrollFlags="scroll|enterAlways"
             app:title="@string/app_name" />
 
@@ -34,6 +35,7 @@
         android:layout_above="@id/metadata"
         android:layout_below="@id/appbar"
         android:scrollbars="vertical"
+        android:visibility="gone"
         app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/play_queue_item" />
 
@@ -56,6 +58,31 @@
         tools:text="1:06:29"
         tools:visibility="visible" />
 
+    <!-- YewPlay: capa grande do que está tocando; a fila fica atrás do botão "Fila" -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/yp_cover_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/metadata"
+        android:layout_below="@id/appbar">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/yp_cover"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="28dp"
+            android:importantForAccessibility="no"
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder_thumbnail_video"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/YewPlayShape.ListenCover" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     <LinearLayout
         android:id="@+id/metadata"
         android:layout_width="match_parent"
@@ -65,7 +92,8 @@
         android:clickable="true"
         android:focusable="true"
         android:orientation="vertical"
-        android:padding="8dp"
+        android:paddingHorizontal="@dimen/yp_screen_margin"
+        android:paddingVertical="8dp"
         tools:ignore="RtlHardcoded,RtlSymmetry">
 
         <org.schabi.newpipe.views.NewPipeTextView
@@ -77,8 +105,9 @@
             android:marqueeRepeatLimit="marquee_forever"
             android:scrollHorizontally="true"
             android:singleLine="true"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="14sp"
+            android:textAppearance="@style/TextAppearance.YewPlay.ListenTitle"
+            android:fontFamily="@font/bricolage_grotesque_bold"
+            app:fontFamily="@font/bricolage_grotesque_bold"
             tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec aliquam augue, eget cursus est. Ut id tristique enim, ut scelerisque tellus. Sed ultricies ipsum non mauris ultricies, commodo malesuada velit porta." />
 
         <LinearLayout
@@ -99,8 +128,7 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="12sp"
+                android:textAppearance="@style/TextAppearance.YewPlay.Meta"
                 tools:text="Duis posuere arcu condimentum lobortis mattis." />
 
             <!-- Play queue progress / total duration -->
@@ -131,18 +159,20 @@
         <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/current_time"
             android:layout_width="wrap_content"
+            android:maxLines="1"
+            android:minWidth="44dp"
             android:layout_height="match_parent"
             android:gravity="center"
             android:minHeight="40dp"
             android:text="-:--:--"
-            android:textColor="?attr/colorAccent"
+            android:textColor="?android:attr/textColorSecondary"
             tools:ignore="HardcodedText"
             tools:text="1:06:29" />
 
 
         <androidx.appcompat.widget.AppCompatSeekBar
             android:id="@+id/seek_bar"
-            style="@style/Widget.AppCompat.SeekBar"
+            style="@style/YewPlaySeekBar"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -156,10 +186,12 @@
         <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/end_time"
             android:layout_width="wrap_content"
+            android:maxLines="1"
+            android:minWidth="44dp"
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="-:--:--"
-            android:textColor="?attr/colorAccent"
+            android:textColor="?android:attr/textColorSecondary"
             tools:ignore="HardcodedText"
             tools:text="1:23:49" />
 
@@ -173,7 +205,7 @@
             android:paddingRight="4dp"
             android:text="@string/duration_live"
             android:textAllCaps="true"
-            android:textColor="?attr/colorAccent"
+            android:textColor="@color/yp_state"
             android:visibility="gone" />
     </LinearLayout>
 
@@ -182,8 +214,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="12dp"
+        android:layout_above="@+id/yp_listen_actions"
+        android:layout_marginBottom="4dp"
         tools:ignore="RtlHardcoded">
 
         <ImageButton
@@ -204,8 +236,8 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/control_backward"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:layout_toLeftOf="@+id/control_fast_rewind"
@@ -220,6 +252,7 @@
         <ImageButton
             android:id="@+id/control_fast_rewind"
             android:layout_width="40dp"
+            android:visibility="gone"
             android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
@@ -233,25 +266,26 @@
 
         <ImageButton
             android:id="@+id/control_play_pause"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:background="@drawable/yp_play_circle"
             android:clickable="true"
             android:focusable="true"
+            android:padding="18dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_pause"
-            app:tint="?attr/colorAccent"
+            app:tint="@color/yp_on_action"
             tools:ignore="ContentDescription" />
 
         <ProgressBar
             android:id="@+id/control_progress_bar"
             style="?android:attr/progressBarStyleLargeInverse"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_centerInParent="true"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
@@ -270,6 +304,7 @@
         <ImageButton
             android:id="@+id/control_fast_forward"
             android:layout_width="40dp"
+            android:visibility="gone"
             android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"
@@ -283,8 +318,8 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/control_forward"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"
             android:layout_toRightOf="@+id/control_fast_forward"
@@ -313,4 +348,60 @@
             tools:ignore="ContentDescription" />
 
     </RelativeLayout>
+
+    <!-- YewPlay: velocidade, compartilhar e fila, embaixo dos controles -->
+    <LinearLayout
+        android:id="@+id/yp_listen_actions"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/yp_screen_margin">
+
+        <TextView
+            android:id="@+id/yp_listen_speed"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/playback_speed_control"
+            android:gravity="center"
+            android:text="1x"
+            android:textAppearance="@style/TextAppearance.YewPlay.ItemTitle"
+            android:fontFamily="@font/instrument_sans_semibold"
+            app:fontFamily="@font/instrument_sans_semibold"
+            tools:ignore="HardcodedText" />
+
+        <ImageButton
+            android:id="@+id/yp_listen_timer"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/yp_sleep_timer"
+            android:src="@drawable/yp_ic_timer"
+            app:tint="@color/yp_on_bg" />
+
+        <ImageButton
+            android:id="@+id/yp_listen_share"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/share"
+            android:src="@drawable/ic_share"
+            app:tint="@color/yp_on_bg" />
+
+        <ImageButton
+            android:id="@+id/yp_listen_queue"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/title_activity_play_queue"
+            android:src="@drawable/ic_playlist_play"
+            app:tint="@color/yp_on_bg" />
+    </LinearLayout>
 </RelativeLayout>

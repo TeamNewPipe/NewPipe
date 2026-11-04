@@ -8,7 +8,8 @@
     android:background="?attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
-    android:padding="@dimen/video_item_search_padding">
+    android:paddingHorizontal="@dimen/yp_screen_margin"
+    android:paddingVertical="@dimen/yp_item_vertical_padding">
 
     <TextView
         android:id="@+id/itemTitleView"
@@ -19,8 +20,9 @@
         android:layout_toRightOf="@+id/itemThumbnailView"
         android:ellipsize="end"
         android:lines="1"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="@dimen/video_item_search_title_text_size"
+        android:textAppearance="@style/TextAppearance.YewPlay.ItemTitle"
+        android:fontFamily="@font/instrument_sans_semibold"
+        app:fontFamily="@font/instrument_sans_semibold"
         app:layout_constraintBottom_toTopOf="@+id/itemChannelDescriptionView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -35,8 +37,7 @@
         android:layout_marginBottom="@dimen/channel_item_description_to_details_margin"
         android:ellipsize="end"
         android:maxLines="2"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="@dimen/video_item_search_uploader_text_size"
+        android:textAppearance="@style/TextAppearance.YewPlay.Meta"
         app:layout_constraintBottom_toTopOf="@+id/itemAdditionalDetails"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/itemTitleView"
@@ -51,8 +52,7 @@
         android:layout_toEndOf="@+id/itemThumbnailView"
         android:layout_toRightOf="@+id/itemThumbnailView"
         android:lines="1"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="@dimen/video_item_search_upload_date_text_size"
+        android:textAppearance="@style/TextAppearance.YewPlay.Meta"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@+id/itemTitleView"
         app:layout_constraintTop_toBottomOf="@+id/itemChannelDescriptionView"

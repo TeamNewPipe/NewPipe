@@ -4,8 +4,14 @@ import static org.schabi.newpipe.QueueItemMenuUtil.openPopupMenu;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
@@ -17,9 +23,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,9 +57,17 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
+import org.schabi.newpipe.util.image.CoilHelper;
+import org.schabi.newpipe.util.image.ImageStrategy;
 
 import java.util.List;
 import java.util.Optional;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Maybe;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public final class PlayQueueActivity extends AppCompatActivity
         implements PlayerEventListener, SeekBar.OnSeekBarChangeListener,
@@ -73,6 +92,11 @@ public final class PlayQueueActivity extends AppCompatActivity
 
     private ActivityPlayerQueueControlBinding queueControlBinding;
 
+    /** YewPlay: work that tints the "Listen" screen with the color of the cover. */
+    private final CompositeDisposable coverColorDisposables = new CompositeDisposable();
+    @Nullable
+    private String lastCoverUrl = null;
+
     private ItemTouchHelper itemTouchHelper;
 
     private Menu menu;
@@ -90,6 +114,11 @@ public final class PlayQueueActivity extends AppCompatActivity
         setContentView(queueControlBinding.getRoot());
 
         setSupportActionBar(queueControlBinding.toolbar);
+        // YewPlay: flat, transparent top bar on the "Listen" screen
+        queueControlBinding.toolbar.setBackgroundColor(Color.TRANSPARENT);
+        queueControlBinding.appbar.setBackgroundColor(Color.TRANSPARENT);
+        queueControlBinding.appbar.setElevation(0f);
+        queueControlBinding.appbar.setStateListAnimator(null);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle(R.string.title_activity_play_queue);
@@ -173,6 +202,7 @@ public final class PlayQueueActivity extends AppCompatActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        coverColorDisposables.clear();
         unbind();
     }
 
@@ -279,6 +309,115 @@ public final class PlayQueueActivity extends AppCompatActivity
         queueControlBinding.controlFastForward.setOnClickListener(this);
         queueControlBinding.controlForward.setOnClickListener(this);
         queueControlBinding.controlShuffle.setOnClickListener(this);
+        // YewPlay: speed, share and queue below the controls (portrait layout only)
+        if (queueControlBinding.ypListenActions != null) {
+            queueControlBinding.ypListenSpeed.setOnClickListener(this);
+            queueControlBinding.ypListenTimer.setOnClickListener(this);
+            updateSleepTimerButton();
+            queueControlBinding.ypListenShare.setOnClickListener(this);
+            queueControlBinding.ypListenQueue.setOnClickListener(this);
+        }
+    }
+
+    /**
+     * YewPlay: tints the top of the "Listen" screen with the average color of the cover.
+     *
+     * @param info the stream whose cover gives the color
+     */
+    private void updateCoverBackground(@NonNull final StreamInfo info) {
+        final String url = ImageStrategy.choosePreferredImage(info.getThumbnails());
+        if (url == null || url.equals(lastCoverUrl)) {
+            return;
+        }
+        lastCoverUrl = url;
+        final Context appContext = getApplicationContext();
+        coverColorDisposables.clear();
+        coverColorDisposables.add(Maybe.fromCallable(() -> {
+            final Bitmap bitmap = CoilHelper.INSTANCE.loadBitmapBlocking(appContext, url, 0);
+            return bitmap == null ? null : averageColor(bitmap);
+        })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::applyCoverBackground, e -> { }));
+    }
+
+    private static int averageColor(@NonNull final Bitmap source) {
+        Bitmap bitmap = source;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
+                && bitmap.getConfig() == Bitmap.Config.HARDWARE) {
+            bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, false);
+        }
+        return Bitmap.createScaledBitmap(bitmap, 1, 1, true).getPixel(0, 0);
+    }
+
+    private void applyCoverBackground(final int coverColor) {
+        final int background = ContextCompat.getColor(this, R.color.yp_bg);
+        final int top = ColorUtils.blendARGB(coverColor | 0xFF000000, background, 0.55f);
+        queueControlBinding.getRoot().setBackground(new GradientDrawable(
+                GradientDrawable.Orientation.TOP_BOTTOM, new int[]{top, background}));
+        queueControlBinding.toolbar.setBackgroundColor(Color.TRANSPARENT);
+        queueControlBinding.appbar.setBackgroundColor(Color.TRANSPARENT);
+        queueControlBinding.appbar.setElevation(0f);
+        queueControlBinding.appbar.setStateListAnimator(null);
+    }
+
+    /**
+     * YewPlay: lets the user pause playback after a number of minutes.
+     */
+    private void openSleepTimerDialog() {
+        final int[] minutes = {15, 30, 45, 60, 90};
+        final boolean active = YpSleepTimer.isActive();
+        final String[] labels = new String[minutes.length + (active ? 1 : 0)];
+        for (int i = 0; i < minutes.length; i++) {
+            labels[i] = getString(R.string.yp_sleep_timer_minutes, minutes[i]);
+        }
+        if (active) {
+            labels[minutes.length] = getString(R.string.yp_sleep_timer_off);
+        }
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.yp_sleep_timer_title)
+                .setItems(labels, (dialog, which) -> {
+                    if (which < minutes.length) {
+                        if (player != null) {
+                            YpSleepTimer.start(player, minutes[which]);
+                            Toast.makeText(this, getString(R.string.yp_sleep_timer_set,
+                                    minutes[which]), Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        YpSleepTimer.cancel();
+                        Toast.makeText(this, R.string.yp_sleep_timer_cancelled,
+                                Toast.LENGTH_SHORT).show();
+                    }
+                    updateSleepTimerButton();
+                })
+                .show();
+    }
+
+    /** YewPlay: the timer icon turns ruby (a state color) while the timer is running. */
+    private void updateSleepTimerButton() {
+        if (queueControlBinding.ypListenTimer == null) {
+            return;
+        }
+        queueControlBinding.ypListenTimer.setImageTintList(ColorStateList.valueOf(
+                ContextCompat.getColor(this, YpSleepTimer.isActive()
+                        ? R.color.yp_state : R.color.yp_on_bg)));
+    }
+
+    /**
+     * YewPlay: the "Listen" screen shows the large cover by default; the queue button swaps it
+     * with the play queue.
+     */
+    private void toggleQueueVisibility() {
+        if (queueControlBinding.ypCoverContainer == null) {
+            return;
+        }
+        final boolean showQueue =
+                queueControlBinding.playQueue.getVisibility() != View.VISIBLE;
+        queueControlBinding.playQueue.setVisibility(showQueue ? View.VISIBLE : View.GONE);
+        queueControlBinding.ypCoverContainer.setVisibility(showQueue ? View.GONE : View.VISIBLE);
+        if (showQueue) {
+            scrollToSelected();
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -427,6 +566,15 @@ public final class PlayQueueActivity extends AppCompatActivity
             scrollToSelected();
         } else if (view.getId() == queueControlBinding.liveSync.getId()) {
             player.seekToDefault();
+        } else if (view.getId() == R.id.yp_listen_speed) {
+            openPlaybackParameterDialog();
+        } else if (view.getId() == R.id.yp_listen_timer) {
+            openSleepTimerDialog();
+        } else if (view.getId() == R.id.yp_listen_share) {
+            ShareUtils.shareText(this, player.getVideoTitle(),
+                    player.getVideoUrlAtCurrentTime());
+        } else if (view.getId() == R.id.yp_listen_queue) {
+            toggleQueueVisibility();
         }
     }
 
@@ -539,6 +687,12 @@ public final class PlayQueueActivity extends AppCompatActivity
         if (info != null) {
             queueControlBinding.songName.setText(info.getName());
             queueControlBinding.artistName.setText(info.getUploaderName());
+            // YewPlay: large cover on the "Listen" screen (portrait layout only)
+            if (queueControlBinding.ypCover != null) {
+                CoilHelper.INSTANCE.loadDetailsThumbnail(queueControlBinding.ypCover,
+                        info.getThumbnails());
+                updateCoverBackground(info);
+            }
 
             queueControlBinding.endTime.setVisibility(View.GONE);
             queueControlBinding.liveSync.setVisibility(View.GONE);
@@ -622,6 +776,9 @@ public final class PlayQueueActivity extends AppCompatActivity
     }
 
     private void onPlaybackParameterChanged(@Nullable final PlaybackParameters parameters) {
+        if (parameters != null && queueControlBinding.ypListenSpeed != null) {
+            queueControlBinding.ypListenSpeed.setText(formatSpeed(parameters.speed));
+        }
         if (parameters != null && menu != null && player != null) {
             final MenuItem item = menu.findItem(R.id.action_playback_speed);
             item.setTitle(formatSpeed(parameters.speed));

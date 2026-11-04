@@ -3,7 +3,6 @@ package org.schabi.newpipe.local.feed.item
 import android.content.Context
 import android.text.TextUtils
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import com.xwray.groupie.viewbinding.BindableItem
 import java.util.concurrent.TimeUnit
@@ -71,12 +70,7 @@ data class StreamItem(
 
         if (stream.duration > 0) {
             viewBinding.itemDurationView.text = Localization.getDurationString(stream.duration)
-            viewBinding.itemDurationView.setBackgroundColor(
-                ContextCompat.getColor(
-                    viewBinding.itemDurationView.context,
-                    R.color.duration_background_color
-                )
-            )
+            viewBinding.itemDurationView.setBackgroundResource(R.drawable.yp_badge_duration)
             viewBinding.itemDurationView.visibility = View.VISIBLE
 
             if (stateProgressTime != null) {
@@ -88,12 +82,7 @@ data class StreamItem(
             }
         } else if (StreamTypeUtil.isLiveStream(stream.streamType)) {
             viewBinding.itemDurationView.setText(R.string.duration_live)
-            viewBinding.itemDurationView.setBackgroundColor(
-                ContextCompat.getColor(
-                    viewBinding.itemDurationView.context,
-                    R.color.live_duration_background_color
-                )
-            )
+            viewBinding.itemDurationView.setBackgroundResource(R.drawable.yp_badge_live)
             viewBinding.itemDurationView.visibility = View.VISIBLE
             viewBinding.itemProgressView.visibility = View.GONE
         } else {

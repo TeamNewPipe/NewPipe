@@ -188,7 +188,9 @@
                             android:maxLines="1"
                             android:paddingTop="12dp"
                             android:paddingBottom="8dp"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textAppearance="@style/TextAppearance.YewPlay.DetailTitle"
+                            android:fontFamily="@font/bricolage_grotesque_bold"
+                            app:fontFamily="@font/bricolage_grotesque_bold"
                             android:textSize="@dimen/video_item_detail_title_text_size"
                             tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum. Nunc eleifend est quis ipsum porttitor egestas. Sed facilisis, nisl quis eleifend pellentesque, orci metus egestas dolor, at accumsan eros metus quis libero." />
 
@@ -349,6 +351,7 @@
 
                                 <ImageView
                                     android:id="@+id/detail_thumbs_up_img_view"
+                                android:background="?attr/selectableItemBackgroundBorderless"
                                     android:layout_width="@dimen/video_item_detail_like_image_width"
                                     android:layout_height="@dimen/video_item_detail_like_image_height"
                                     android:layout_below="@id/detail_view_count_view"
@@ -357,6 +360,8 @@
 
                                 <org.schabi.newpipe.views.NewPipeTextView
                                     android:id="@+id/detail_thumbs_up_count_view"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:contentDescription="@string/yp_liked_save"
                                     android:layout_width="wrap_content"
                                     android:layout_height="@dimen/video_item_detail_like_image_height"
                                     android:layout_below="@id/detail_view_count_view"
@@ -423,20 +428,24 @@
                             android:padding="@dimen/detail_control_padding">
 
                             <org.schabi.newpipe.views.NewPipeTextView
-                                android:id="@+id/detail_controls_playlist_append"
+                                android:id="@+id/detail_controls_download"
                                 android:layout_width="@dimen/detail_control_width"
                                 android:layout_height="@dimen/detail_control_height"
                                 android:layout_gravity="center_vertical"
                                 android:layout_weight="1"
                                 android:background="?attr/selectableItemBackgroundBorderless"
                                 android:clickable="true"
-                                android:contentDescription="@string/add_to_playlist"
-                                android:drawableTop="@drawable/ic_playlist_add"
+                                android:contentDescription="@string/controls_download_desc"
+                                android:drawableTop="@drawable/ic_file_download"
                                 android:focusable="true"
                                 android:gravity="center"
-                                android:paddingVertical="@dimen/detail_control_padding"
-                                android:text="@string/controls_add_to_playlist_title"
-                                android:textSize="@dimen/detail_control_text_size" />
+                                android:drawablePadding="4dp"
+                            android:paddingVertical="@dimen/detail_control_padding"
+                                android:text="@string/download"
+                                android:textAppearance="@style/TextAppearance.YewPlay.ActionLabel"
+                                android:fontFamily="@font/instrument_sans_medium"
+                                app:fontFamily="@font/instrument_sans_medium"
+                            android:textSize="@dimen/detail_control_text_size" />
 
                             <org.schabi.newpipe.views.NewPipeTextView
                                 android:id="@+id/detail_controls_background"
@@ -450,9 +459,31 @@
                                 android:drawableTop="@drawable/ic_headset"
                                 android:focusable="true"
                                 android:gravity="center"
-                                android:paddingVertical="@dimen/detail_control_padding"
+                                android:drawablePadding="4dp"
+                            android:paddingVertical="@dimen/detail_control_padding"
                                 android:text="@string/controls_background_title"
-                                android:textSize="@dimen/detail_control_text_size" />
+                                android:textAppearance="@style/TextAppearance.YewPlay.ActionLabel"
+                                android:fontFamily="@font/instrument_sans_medium"
+                                app:fontFamily="@font/instrument_sans_medium"
+                            android:textSize="@dimen/detail_control_text_size" />                            <org.schabi.newpipe.views.NewPipeTextView
+                                android:id="@+id/detail_controls_playlist_append"
+                                android:layout_width="@dimen/detail_control_width"
+                                android:layout_height="@dimen/detail_control_height"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="1"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:clickable="true"
+                                android:contentDescription="@string/add_to_playlist"
+                                android:drawableTop="@drawable/ic_playlist_add"
+                                android:focusable="true"
+                                android:gravity="center"
+                                android:drawablePadding="4dp"
+                            android:paddingVertical="@dimen/detail_control_padding"
+                                android:text="@string/controls_add_to_playlist_title"
+                                android:textAppearance="@style/TextAppearance.YewPlay.ActionLabel"
+                                android:fontFamily="@font/instrument_sans_medium"
+                                app:fontFamily="@font/instrument_sans_medium"
+                            android:textSize="@dimen/detail_control_text_size" />
 
                             <org.schabi.newpipe.views.NewPipeTextView
                                 android:id="@+id/detail_controls_popup"
@@ -466,25 +497,13 @@
                                 android:drawableTop="@drawable/ic_picture_in_picture"
                                 android:focusable="true"
                                 android:gravity="center"
-                                android:paddingVertical="@dimen/detail_control_padding"
+                                android:drawablePadding="4dp"
+                            android:paddingVertical="@dimen/detail_control_padding"
                                 android:text="@string/controls_popup_title"
-                                android:textSize="@dimen/detail_control_text_size" />
-
-                            <org.schabi.newpipe.views.NewPipeTextView
-                                android:id="@+id/detail_controls_download"
-                                android:layout_width="@dimen/detail_control_width"
-                                android:layout_height="@dimen/detail_control_height"
-                                android:layout_gravity="center_vertical"
-                                android:layout_weight="1"
-                                android:background="?attr/selectableItemBackgroundBorderless"
-                                android:clickable="true"
-                                android:contentDescription="@string/controls_download_desc"
-                                android:drawableTop="@drawable/ic_file_download"
-                                android:focusable="true"
-                                android:gravity="center"
-                                android:paddingVertical="@dimen/detail_control_padding"
-                                android:text="@string/download"
-                                android:textSize="@dimen/detail_control_text_size" />
+                                android:textAppearance="@style/TextAppearance.YewPlay.ActionLabel"
+                                android:fontFamily="@font/instrument_sans_medium"
+                                app:fontFamily="@font/instrument_sans_medium"
+                            android:textSize="@dimen/detail_control_text_size" />
 
                         </LinearLayout>
 
@@ -628,9 +647,17 @@
         android:id="@+id/overlay_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:alpha="0.9"
+        android:alpha="1"
         android:background="?attr/windowBackground"
-        android:descendantFocusability="blocksDescendants">
+        android:descendantFocusability="blocksDescendants"
+        android:paddingHorizontal="@dimen/yp_bottom_bar_margin">
+
+        <!-- YewPlay: fundo do mini-player, que forma uma cápsula com a barra flutuante -->
+        <View
+            android:id="@+id/yp_overlay_capsule"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/mini_player_height"
+            android:background="@drawable/yp_mini_player_background" />
 
         <ImageButton
             android:id="@+id/overlay_thumbnail"

@@ -9,37 +9,75 @@
         <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
     <style name="Base.OpeningTheme" parent="Base.V21.OpeningTheme">
-        <item name="android:navigationBarColor">@color/light_youtube_primary_color</item>
+        <item name="android:navigationBarColor">@color/yewplay_splash_background</item>
+        <item name="android:statusBarColor">@color/yewplay_splash_background</item>
     </style>
     <style name="OpeningTheme" parent="Base.OpeningTheme" />
 
     <!-- Base Theme -->
-    <style name="Base.V21" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="actionColor">@color/white</item>
+    <!-- YewPlay: barras na cor do fundo, marfim/tinta para ação, rubi só para estado.
+         Instrument Sans em toda a interface. -->
+    <style name="Base.V21" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
+        <item name="actionColor">@color/yp_on_bg</item>
         <item name="floatingActionButtonStyle">@style/FloatingActionButtonTheme</item>
-        <item name="toolbarSearchColor">@color/white</item>
-        <item name="colorControlActivated">?attr/colorPrimary</item>
+        <item name="toolbarSearchColor">@color/yp_on_bg</item>
+        <item name="colorControlActivated">?attr/colorAccent</item>
+        <item name="colorControlNormal">@color/yp_muted</item>
+        <item name="android:textColorPrimary">@color/yp_text_primary</item>
+        <item name="android:textColorSecondary">@color/yp_text_secondary</item>
+        <item name="android:textColorTertiary">@color/yp_muted</item>
+        <item name="android:textColorLink">@color/yp_on_bg</item>
+        <item name="android:textColorHighlight">#66E0364F</item>
+        <item name="android:fontFamily">@font/yewplay_sans</item>
+        <item name="fontFamily">@font/yewplay_sans</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryDark</item>
+        <item name="alertDialogTheme">@style/YewPlayAlertDialog</item>
+        <item name="android:alertDialogTheme">@style/YewPlayAlertDialog</item>
+        <item name="actionOverflowMenuStyle">@style/YewPlayOverflowMenu</item>
+        <item name="popupMenuStyle">@style/YewPlayPopupMenu</item>
+        <item name="toolbarStyle">@style/YewPlayToolbar</item>
+        <!-- taller top bar for the large screen titles (with room for a subtitle) -->
+        <item name="actionBarSize">64dp</item>
+        <item name="colorSurface">@color/yp_surface</item>
+        <item name="colorOnSurface">@color/yp_on_bg</item>
+        <item name="colorSecondary">@color/yp_on_bg</item>
+        <item name="colorOnSecondary">@color/yp_on_action</item>
+        <item name="colorOnPrimary">@color/yp_on_bg</item>
+        <item name="snackbarStyle">@style/YewPlaySnackbar</item>
+        <item name="snackbarButtonStyle">@style/YewPlaySnackbarButton</item>
+        <item name="snackbarTextViewStyle">@style/YewPlaySnackbarText</item>
+        <item name="tabStyle">@style/YewPlayTabs</item>
+        <item name="materialButtonStyle">@style/YewPlayButton</item>
+        <!-- mantém os widgets AppCompat; os componentes Material são usados só onde pedidos -->
+        <item name="viewInflaterClass">androidx.appcompat.app.AppCompatViewInflater</item>
+        <item name="buttonStyle">@style/YewPlayAppCompatButton</item>
+        <item name="preferenceCategoryTitleTextColor">@color/yp_muted</item>
+        <item name="preferenceCategoryTitleTextAppearance">@style/TextAppearance.YewPlay.PreferenceCategory</item>
+        <item name="android:buttonStyle">@style/YewPlayAppCompatButton</item>
     </style>
     <style name="Base" parent="Base.V21"/>
 
     <!-- Light Theme -->
     <style name="Base.V21.LightTheme" parent="Base">
-        <item name="colorPrimary">@color/light_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/light_youtube_primary_color</item>
-        <item name="colorAccent">@color/light_youtube_accent_color</item>
-        <item name="android:windowBackground">@color/light_background_color</item>
-        <item name="windowBackground">@color/light_background_color</item>
+        <item name="colorPrimary">@color/yp_papel</item>
+        <item name="colorPrimaryDark">@color/yp_papel</item>
+        <item name="colorAccent">@color/yp_on_bg</item>
+        <item name="android:windowBackground">@color/yp_papel</item>
+        <item name="windowBackground">@color/yp_papel</item>
+        <item name="android:colorBackground">@color/yp_papel</item>
+        <item name="android:windowLightStatusBar">true</item>
 
         <item name="separator_color">@color/light_separator_color</item>
-        <item name="contrast_background_color">@color/light_contrast_background_color</item>
+        <item name="contrast_background_color">@color/yp_papel_escuro</item>
         <item name="checked_selector">@drawable/selector_checked_light</item>
         <item name="focused_selector">@drawable/selector_focused_light</item>
         <item name="toolbar_shadow">@drawable/toolbar_shadow_light</item>
         <item name="selector">@drawable/selector_light</item>
         <item name="colorControlHighlight">@color/light_ripple_color</item>
         <item name="progress_horizontal_drawable">@drawable/progress_youtube_horizontal_light</item>
-        <item name="card_item_background_color">@color/light_card_item_background_color</item>
-        <item name="card_item_contrast_color">@color/light_card_item_contrast_color</item>
+        <item name="card_item_background_color">@color/yp_papel_escuro</item>
+        <item name="card_item_contrast_color">@color/yp_areia</item>
         <item name="border_color">@color/light_border_color</item>
         <item name="dashed_border">@drawable/dashed_border_light</item>
     </style>
@@ -48,22 +86,23 @@
 
     <!-- Dark Theme -->
     <style name="Base.V21.DarkTheme" parent="Base">
-        <item name="colorPrimary">@color/dark_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/dark_youtube_primary_color</item>
-        <item name="colorAccent">@color/dark_youtube_accent_color</item>
-        <item name="android:windowBackground">@color/dark_background_color</item>
-        <item name="windowBackground">@color/dark_background_color</item>
+        <item name="colorPrimary">@color/yp_grafite</item>
+        <item name="colorPrimaryDark">@color/yp_grafite</item>
+        <item name="colorAccent">@color/yp_on_bg</item>
+        <item name="android:windowBackground">@color/yp_grafite</item>
+        <item name="windowBackground">@color/yp_grafite</item>
+        <item name="android:colorBackground">@color/yp_grafite</item>
 
         <item name="separator_color">@color/dark_separator_color</item>
-        <item name="contrast_background_color">@color/dark_contrast_background_color</item>
+        <item name="contrast_background_color">@color/yp_grafite_claro</item>
         <item name="checked_selector">@drawable/selector_checked_dark</item>
         <item name="focused_selector">@drawable/selector_focused_dark</item>
         <item name="toolbar_shadow">@drawable/toolbar_shadow_dark</item>
         <item name="selector">@drawable/selector_dark</item>
         <item name="colorControlHighlight">@color/dark_ripple_color</item>
         <item name="progress_horizontal_drawable">@drawable/progress_youtube_horizontal_dark</item>
-        <item name="card_item_background_color">@color/dark_card_item_background_color</item>
-        <item name="card_item_contrast_color">@color/dark_card_item_contrast_color</item>
+        <item name="card_item_background_color">@color/yp_grafite_claro</item>
+        <item name="card_item_contrast_color">@color/yp_fumaca</item>
         <item name="border_color">@color/dark_border_color</item>
         <item name="dashed_border">@drawable/dashed_border_dark</item>
     </style>
@@ -71,9 +110,13 @@
     <style name="DarkTheme" parent="Base.DarkTheme"/>
 
     <!-- Black Theme -->
+    <!-- AMOLED: preto puro no lugar do grafite -->
     <style name="Base.V21.BlackTheme" parent="DarkTheme">
+        <item name="colorPrimary">@color/yp_preto</item>
+        <item name="colorPrimaryDark">@color/yp_preto</item>
         <item name="android:windowBackground">@color/black_background_color</item>
         <item name="windowBackground">@color/black_background_color</item>
+        <item name="android:colorBackground">@color/black_background_color</item>
 
         <item name="separator_color">@color/black_separator_color</item>
         <item name="contrast_background_color">@color/black_contrast_background_color</item>
@@ -88,35 +131,311 @@
 
     <!-- Dialogs -->
     <style name="LightDialogTheme" parent="Theme.AppCompat.DayNight.Dialog">
-        <item name="colorPrimary">@color/light_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/light_youtube_primary_color</item>
-        <item name="colorAccent">@color/light_youtube_accent_color</item>
-        <item name="android:windowBackground">@color/light_dialog_background_color</item>
-        <item name="windowBackground">@color/light_dialog_background_color</item>
+        <item name="colorPrimary">@color/yp_papel</item>
+        <item name="colorPrimaryDark">@color/yp_papel</item>
+        <item name="colorAccent">@color/yp_on_bg</item>
+        <item name="android:windowBackground">@color/yp_papel</item>
+        <item name="windowBackground">@color/yp_papel</item>
+        <item name="android:textColorPrimary">@color/yp_on_bg</item>
+        <item name="android:textColorSecondary">@color/yp_muted</item>
+        <item name="android:fontFamily">@font/yewplay_sans</item>
+        <item name="fontFamily">@font/yewplay_sans</item>
     </style>
 
     <style name="DarkDialogTheme" parent="Theme.AppCompat.DayNight.Dialog">
-        <item name="colorPrimary">@color/dark_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/dark_youtube_primary_color</item>
-        <item name="colorAccent">@color/dark_youtube_accent_color</item>
-        <item name="android:windowBackground">@color/dark_dialog_background_color</item>
-        <item name="windowBackground">@color/dark_dialog_background_color</item>
+        <item name="colorPrimary">@color/yp_grafite_claro</item>
+        <item name="colorPrimaryDark">@color/yp_grafite_claro</item>
+        <item name="colorAccent">@color/yp_on_bg</item>
+        <item name="android:windowBackground">@color/yp_grafite_claro</item>
+        <item name="windowBackground">@color/yp_grafite_claro</item>
+        <item name="android:textColorPrimary">@color/yp_on_bg</item>
+        <item name="android:textColorSecondary">@color/yp_muted</item>
+        <item name="android:fontFamily">@font/yewplay_sans</item>
+        <item name="fontFamily">@font/yewplay_sans</item>
     </style>
 
     <style name="LightDialogMinWidthTheme" parent="Theme.AppCompat.DayNight.Dialog.MinWidth">
-        <item name="colorPrimary">@color/light_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/light_youtube_primary_color</item>
-        <item name="colorAccent">@color/light_youtube_accent_color</item>
-        <item name="android:windowBackground">@color/light_dialog_background_color</item>
-        <item name="windowBackground">@color/light_dialog_background_color</item>
+        <item name="colorPrimary">@color/yp_papel</item>
+        <item name="colorPrimaryDark">@color/yp_papel</item>
+        <item name="colorAccent">@color/yp_on_bg</item>
+        <item name="android:windowBackground">@color/yp_papel</item>
+        <item name="windowBackground">@color/yp_papel</item>
+        <item name="android:textColorPrimary">@color/yp_on_bg</item>
+        <item name="android:textColorSecondary">@color/yp_muted</item>
+        <item name="android:fontFamily">@font/yewplay_sans</item>
+        <item name="fontFamily">@font/yewplay_sans</item>
     </style>
 
     <style name="DarkDialogMinWidthTheme" parent="Theme.AppCompat.DayNight.Dialog.MinWidth">
-        <item name="colorPrimary">@color/dark_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/dark_youtube_primary_color</item>
-        <item name="colorAccent">@color/dark_youtube_accent_color</item>
-        <item name="android:windowBackground">@color/dark_dialog_background_color</item>
-        <item name="windowBackground">@color/dark_dialog_background_color</item>
+        <item name="colorPrimary">@color/yp_grafite_claro</item>
+        <item name="colorPrimaryDark">@color/yp_grafite_claro</item>
+        <item name="colorAccent">@color/yp_on_bg</item>
+        <item name="android:windowBackground">@color/yp_grafite_claro</item>
+        <item name="windowBackground">@color/yp_grafite_claro</item>
+        <item name="android:textColorPrimary">@color/yp_on_bg</item>
+        <item name="android:textColorSecondary">@color/yp_muted</item>
+        <item name="android:fontFamily">@font/yewplay_sans</item>
+        <item name="fontFamily">@font/yewplay_sans</item>
+    </style>
+
+    <!-- YewPlay: diálogos e menus -->
+    <style name="YewPlayAlertDialog" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <item name="colorAccent">@color/yp_on_bg</item>
+        <item name="android:windowBackground">@drawable/yp_dialog_background</item>
+        <item name="android:textColorPrimary">@color/yp_on_bg</item>
+        <item name="android:textColorSecondary">@color/yp_muted</item>
+        <item name="android:fontFamily">@font/yewplay_sans</item>
+        <item name="fontFamily">@font/yewplay_sans</item>
+        <item name="buttonBarPositiveButtonStyle">@style/YewPlayDialogButton</item>
+        <item name="buttonBarNegativeButtonStyle">@style/YewPlayDialogButton</item>
+        <item name="buttonBarNeutralButtonStyle">@style/YewPlayDialogButton</item>
+    </style>
+
+    <style name="YewPlayDialogButton" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/yp_on_bg</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/instrument_sans_semibold</item>
+    </style>
+
+    <style name="YewPlayPopupMenu" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:popupBackground">@drawable/yp_popup_background</item>
+    </style>
+
+    <style name="YewPlayOverflowMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:popupBackground">@drawable/yp_popup_background</item>
+    </style>
+
+    <!-- YewPlay: título das barras em Bricolage Grotesque -->
+    <style name="YewPlayToolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="titleTextAppearance">@style/TextAppearance.YewPlay.ToolbarTitle</item>
+        <item name="subtitleTextAppearance">@style/TextAppearance.YewPlay.ToolbarSubtitle</item>
+    </style>
+
+    <style name="TextAppearance.YewPlay.ToolbarTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:fontFamily">@font/bricolage_grotesque_bold</item>
+        <item name="fontFamily">@font/bricolage_grotesque_bold</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">?attr/actionColor</item>
+    </style>
+
+    <style name="TextAppearance.YewPlay.ToolbarTitle.Small">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextAppearance.YewPlay.ToolbarSubtitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
+        <item name="android:fontFamily">@font/instrument_sans_regular</item>
+        <item name="android:textSize">13sp</item>
+        <item name="fontFamily">@font/instrument_sans_regular</item>
+        <item name="android:textColor">@color/yp_muted</item>
+    </style>
+
+    <!-- YewPlay: aviso com ação (fundo marfim/tinta, ação em negrito) -->
+    <style name="YewPlaySnackbar" parent="Widget.MaterialComponents.Snackbar">
+        <item name="backgroundTint">@color/yp_on_bg</item>
+        <item name="shapeAppearance">@style/YewPlayShape.Medium</item>
+        <item name="android:layout_margin">12dp</item>
+    </style>
+
+    <style name="YewPlaySnackbarText" parent="Widget.MaterialComponents.Snackbar.TextView">
+        <item name="android:textColor">@color/yp_on_action</item>
+        <item name="android:fontFamily">@font/instrument_sans_medium</item>
+    </style>
+
+    <style name="YewPlaySnackbarButton" parent="Widget.MaterialComponents.Button.TextButton.Snackbar">
+        <item name="android:textColor">@color/yp_on_action</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/instrument_sans_bold</item>
+    </style>
+
+    <!-- YewPlay: abas em texto, sem caixa alta; a aba ativa ganha um traço rubi -->
+    <style name="YewPlayTabs" parent="Widget.MaterialComponents.TabLayout">
+        <item name="tabTextAppearance">@style/TextAppearance.YewPlay.Tab</item>
+        <item name="tabSelectedTextColor">@color/yp_on_bg</item>
+        <item name="tabTextColor">@color/yp_muted</item>
+        <item name="tabIndicatorColor">@color/yp_state</item>
+        <item name="tabIndicator">@drawable/yp_tab_indicator</item>
+        <item name="tabIndicatorFullWidth">false</item>
+        <item name="tabIconTint">@color/yp_tab_icon</item>
+        <item name="tabRippleColor">@color/light_ripple_color</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="TextAppearance.YewPlay.Tab" parent="TextAppearance.Design.Tab">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/instrument_sans_semibold</item>
+        <item name="fontFamily">@font/instrument_sans_semibold</item>
+    </style>
+
+    <!-- YewPlay: botões com 12dp de raio e 44dp de altura -->
+    <style name="YewPlayButton" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="backgroundTint">@color/yp_on_bg</item>
+        <item name="android:textColor">@color/yp_on_action</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/instrument_sans_semibold</item>
+        <item name="android:minHeight">44dp</item>
+        <item name="shapeAppearance">@style/YewPlayShape.Button</item>
+        <item name="iconTint">@color/yp_on_action</item>
+        <item name="iconSize">19dp</item>
+    </style>
+
+    <style name="YewPlayButton.Secondary">
+        <item name="backgroundTint">@color/yp_surface_2</item>
+        <item name="android:textColor">@color/yp_on_bg</item>
+        <item name="iconTint">@color/yp_on_bg</item>
+    </style>
+
+    <style name="YewPlayAppCompatButton" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/yp_button_primary</item>
+        <item name="android:textColor">@color/yp_on_action</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/instrument_sans_semibold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:minHeight">44dp</item>
+        <item name="android:paddingHorizontal">18dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <style name="YewPlayAppCompatButton.Secondary">
+        <item name="android:background">@drawable/yp_button_secondary</item>
+        <item name="android:textColor">@color/yp_on_bg</item>
+    </style>
+
+    <style name="YewPlayShape.Button" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="YewPlayShape.Medium" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <!-- YewPlay: miniatura em lista, 10dp de raio -->
+    <style name="YewPlayShape.Thumbnail" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
+    </style>
+
+    <!-- YewPlay: avatar de canal em quadrado arredondado (32% do lado) -->
+    <style name="YewPlayShape.Avatar" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">32%</item>
+    </style>
+
+    <!-- YewPlay: capa de áudio e de playlist -->
+    <style name="YewPlayShape.Cover" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">14dp</item>
+    </style>
+
+    <!-- YewPlay: tipografia dos itens (proposta, página 7) -->
+    <style name="TextAppearance.YewPlay.ItemTitle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/instrument_sans_semibold</item>
+        <item name="fontFamily">@font/instrument_sans_semibold</item>
+        <item name="android:textSize">14.5sp</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:lineSpacingExtra">1sp</item>
+    </style>
+
+    <style name="TextAppearance.YewPlay.FeaturedTitle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/bricolage_grotesque_semibold</item>
+        <item name="fontFamily">@font/bricolage_grotesque_semibold</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <style name="TextAppearance.YewPlay.Meta" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/instrument_sans_regular</item>
+        <item name="fontFamily">@font/instrument_sans_regular</item>
+        <item name="android:textSize">12.5sp</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+
+    <style name="TextAppearance.YewPlay.MetaStrong" parent="TextAppearance.YewPlay.Meta">
+        <item name="android:fontFamily">@font/instrument_sans_semibold</item>
+        <item name="fontFamily">@font/instrument_sans_semibold</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <style name="TextAppearance.YewPlay.Badge" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/instrument_sans_semibold</item>
+        <item name="fontFamily">@font/instrument_sans_semibold</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/duration_text_color</item>
+    </style>
+
+    <style name="TextAppearance.YewPlay.ScreenTitle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/bricolage_grotesque_bold</item>
+        <item name="fontFamily">@font/bricolage_grotesque_bold</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:letterSpacing">-0.025</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <style name="TextAppearance.YewPlay.SectionTitle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/bricolage_grotesque_bold</item>
+        <item name="fontFamily">@font/bricolage_grotesque_bold</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <style name="TextAppearance.YewPlay.NavLabel" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/instrument_sans_medium</item>
+        <item name="fontFamily">@font/instrument_sans_medium</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+
+    <!-- YewPlay: player -->
+    <style name="YewPlaySeekBar" parent="Widget.AppCompat.SeekBar">
+        <item name="android:progressTint">@color/yp_state</item>
+        <item name="android:thumbTint">@color/yp_state</item>
+        <item name="android:progressBackgroundTint">@color/yp_muted</item>
+        <item name="android:secondaryProgressTint">@color/yp_muted</item>
+    </style>
+
+    <style name="YewPlaySeekBar.OnVideo">
+        <item name="android:progressTint">@color/yp_rubi</item>
+        <item name="android:thumbTint">@color/yp_rubi</item>
+        <item name="android:progressBackgroundTint">#66F3EEE9</item>
+        <item name="android:secondaryProgressTint">#99F3EEE9</item>
+    </style>
+
+    <style name="YewPlayShape.ListenCover" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">22dp</item>
+    </style>
+
+    <style name="TextAppearance.YewPlay.ListenTitle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/bricolage_grotesque_bold</item>
+        <item name="fontFamily">@font/bricolage_grotesque_bold</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <style name="TextAppearance.YewPlay.DetailTitle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/bricolage_grotesque_bold</item>
+        <item name="fontFamily">@font/bricolage_grotesque_bold</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <style name="TextAppearance.YewPlay.ActionLabel" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/instrument_sans_medium</item>
+        <item name="fontFamily">@font/instrument_sans_medium</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+
+    <style name="TextAppearance.YewPlay.PreferenceCategory" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/instrument_sans_semibold</item>
+        <item name="fontFamily">@font/instrument_sans_semibold</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="TextAppearance.YewPlay.ChannelTitle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/bricolage_grotesque_bold</item>
+        <item name="fontFamily">@font/bricolage_grotesque_bold</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
     <!-- Settings -->

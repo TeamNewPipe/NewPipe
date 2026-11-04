@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="navigate_back">Zpět</string>
-    <string name="title_activity_about">O aplikaci NewPipe</string>
+    <string name="title_activity_about">O aplikaci YewPlay</string>
     <string name="title_licenses">Licence třetích stran</string>
     <string name="license">Od %1$s pod licencí %2$s</string>
     <string name="tab_about">O aplikaci a dotazy</string>
@@ -18,8 +18,8 @@
     <string name="privacy_policy_title">Ochrana soukromí NewPipe</string>
     <string name="privacy_policy_encouragement">Projekt NewPipe bere vaše soukromí velice vážně. Proto aplikace neshromažďuje žádné údaje bez vašeho souhlasu. \nZásady ochrany soukromí NewPipe podrobně vysvětlují, jaké údaje jsou odesílány a ukládány, když odešlete zprávu o pádu aplikace.</string>
     <string name="read_privacy_policy">Přečíst zásady ochrany osobních údajů</string>
-    <string name="app_license_title">Licence NewPipe</string>
-    <string name="app_license">NewPipe je copyleftovaný svobodný software: můžete jej jakkoli používat, studovat, sdílet a vylepšovat. Redistribuovat a/nebo upravovat jej můžete pod podmínkami licence GNU General Public License zveřejněné nadací Free Software Foundation, buď ve verzi 3, nebo v jakékoli novější verzi (záleží na vás).</string>
+    <string name="app_license_title">Licence YewPlay</string>
+    <string name="app_license">YewPlay je copyleftovaný svobodný software: můžete jej jakkoli používat, studovat, sdílet a vylepšovat. Redistribuovat a/nebo upravovat jej můžete pod podmínkami licence GNU General Public License zveřejněné nadací Free Software Foundation, buď ve verzi 3, nebo v jakékoli novější verzi (záleží na vás).</string>
     <string name="read_full_license">Přečíst licenci</string>
     <string name="faq_title">Často kladené dotazy</string>
     <string name="faq_description">Pokud máte problémy s používáním aplikace, podívejte se na tyto odpovědi, které zodpovídají nejčastější dotazy!</string>

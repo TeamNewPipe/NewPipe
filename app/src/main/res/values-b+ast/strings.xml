@@ -66,7 +66,7 @@
     <string name="settings_category_player_behavior_title">Comportamientu</string>
     <string name="settings_category_history_title">Historial y caché</string>
     <string name="best_resolution">La meyor resolución</string>
-    <string name="notification_channel_name">Avisu permanente de NewPipe</string>
+    <string name="notification_channel_name">Avisu permanente de YewPlay</string>
     <string name="search_no_results">Nun hai resultaos</string>
     <string name="empty_list_subtitle">Equí nun hai más que grillos</string>
     <plurals name="subscribers">
@@ -82,13 +82,13 @@
     <string name="settings_file_charset_title">Caráuteres permitíos nos nomes de los ficheros</string>
     <string name="charset_letters_and_digits">Lletres y díxitos</string>
     <string name="charset_most_special_characters">La mayoría de caráuteres especiales</string>
-    <string name="title_activity_about">Tocante a NewPipe</string>
+    <string name="title_activity_about">Tocante a YewPlay</string>
     <string name="title_licenses">Llicencies de terceros</string>
     <string name="copyright" formatted="true">© %1$s por %2$s baxo %3$s</string>
     <string name="tab_about">Tocante a</string>
     <string name="tab_licenses">Llicencies</string>
     <string name="view_on_github">Ver en GitHub</string>
-    <string name="app_license_title">Llicencia de NewPipe</string>
+    <string name="app_license_title">Llicencia de YewPlay</string>
     <string name="contribution_encouragement">Si tienes idees, quies traducir, facer dalgún cambéu nel diseñu, acuriosar poco o muncho\'l códigu… Agradecemos l\'ayuda. ¡Cuanto más se faiga, meyor!</string>
     <string name="read_full_license">Lleer</string>
     <string name="contribution_title">Collaboración</string>
@@ -211,7 +211,7 @@
     <string name="subscribed_button_title">Soscribiéstite</string>
     <string name="no_videos">Nun hai vídeos</string>
     <string name="delete_search_history_alert">¿Desaniciar tol historial de busques?</string>
-    <string name="app_update_available_notification_title">¡Hai un anovamientu pa NewPipe!</string>
+    <string name="app_update_available_notification_title">¡Hai un anovamientu pa YewPlay!</string>
     <string name="error_progress_lost">Perdióse\'l progresu porque se desanició\'l ficheru</string>
     <string name="peertube_instance_url_title">Instancies de PeerTube</string>
     <string name="peertube_instance_add_exists">La instancia yá esiste</string>
@@ -261,8 +261,8 @@
     <string name="video_detail_by">Por %s</string>
     <string name="channel_created_by">Canal creada por %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Avatar de la canal</string>
-    <string name="content_not_supported">Esti conteníu entá nun ta sofitáu por NewPipe. \n \nQuiciabes nel futuru sí.</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">¿Cuides que la carga del feed ye perlenta? Si ye asina, activa la carga rápida (pues camudalo nos axustes o primiendo\'l botón d\'embaxo). \n \nNewPipe ufre dos estratexes de descarga de feeds: \n• Dir en cata de tola canal de soscripciones, lo cual ye lento pero completo. \n• Usar un serviciu final dedicáu, lo cual ye rápido mas xeneralmente incompleto. \n \nLa diferencia ente los dos ye qu\'al más rápidu, polo xeneral, fálta-y dalguna información como\'l tipu (nun pue estremar ente vídeos en direuto o normales) o la duración de los elementos (que devuelve menos). \n \nYouTube ye l\'exemplu d\'un serviciu qu\'ufre esti métodu rápidu col so feed RSS. \n \nPolo que tu escueyes según lo que prefieras, si velocidá o información precisa.</string>
+    <string name="content_not_supported">Esti conteníu entá nun ta sofitáu por YewPlay. \n \nQuiciabes nel futuru sí.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">¿Cuides que la carga del feed ye perlenta? Si ye asina, activa la carga rápida (pues camudalo nos axustes o primiendo\'l botón d\'embaxo). \n \nYewPlay ufre dos estratexes de descarga de feeds: \n• Dir en cata de tola canal de soscripciones, lo cual ye lento pero completo. \n• Usar un serviciu final dedicáu, lo cual ye rápido mas xeneralmente incompleto. \n \nLa diferencia ente los dos ye qu\'al más rápidu, polo xeneral, fálta-y dalguna información como\'l tipu (nun pue estremar ente vídeos en direuto o normales) o la duración de los elementos (que devuelve menos). \n \nYouTube ye l\'exemplu d\'un serviciu qu\'ufre esti métodu rápidu col so feed RSS. \n \nPolo que tu escueyes según lo que prefieras, si velocidá o información precisa.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Desactivar el mou rápidu</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Activar el mou rápidu</string>
     <string name="feed_use_dedicated_fetch_method_summary">Disponible en dalgunos preseos, suel ser muncho más rápido mas podría devolver un númberu llendáu d\'elementos y davezu información completa (por exemplu, falta de la duración, el tipu d\'elementu o l\'estáu de la tresmisión).</string>
@@ -305,7 +305,7 @@
     <string name="delete_downloaded_files">Desaniciar lo baxao</string>
     <string name="clear_download_history">Llimpiar l\'historial de descargues</string>
     <string name="error_download_resource_gone">Esta descarga nun pue recuperase</string>
-    <string name="error_postprocessing_stopped">NewPipe zarróse mentanto trabayaba nel ficheru</string>
+    <string name="error_postprocessing_stopped">YewPlay zarróse mentanto trabayaba nel ficheru</string>
     <string name="error_postprocessing_failed">Falló\'l posprocesamientu</string>
     <string name="error_http_not_found">Nun s\'atopó</string>
     <string name="show_error">Amosar el fallu</string>
@@ -380,7 +380,7 @@
     <string name="kiosk_page_summary">Páxina de quioscu</string>
     <string name="title_most_played">Lo más reproducío</string>
     <string name="title_last_played">Lo último reproducío</string>
-    <string name="app_license">NewPipe ye software copyleft: pues usalu, estudialu, compartilu y ameyoralu como quieras. N\'especial, pues redistribuyilu y/o modificalu baxo los términos de la GNU General Public License según espublizó la Free Software Foundation, quier la versión 3 de la llicencia quier (na to opinión) cualesquier versión posterior.</string>
+    <string name="app_license">YewPlay ye software copyleft: pues usalu, estudialu, compartilu y ameyoralu como quieras. N\'especial, pues redistribuyilu y/o modificalu baxo los términos de la GNU General Public License según espublizó la Free Software Foundation, quier la versión 3 de la llicencia quier (na to opinión) cualesquier versión posterior.</string>
     <string name="privacy_policy_encouragement">El proyeutu de NewPipe toma mui en serio la privacidá. Poro, l\'aplicación nun recueye nengún datu ensin el to consentimientu. \nLa política de privacidá de NewPipe desplica en detalle los datos que s\'unvien y atroxen cuando unvies un informe de casque.</string>
     <string name="app_description">Un aplicación llibre pa ver/sentir plataformes de tresmisión n\'Android.</string>
     <string name="settings_file_replacement_character_title">Caráuteres de troquéu</string>
@@ -390,7 +390,7 @@
     <string name="one_item_deleted">Desanicióse 1 elementu.</string>
     <string name="no_available_dir">Defini una capeta de descargues dempués, nos axustes de l\'aplicación</string>
     <string name="msg_running_detail">Toca pa los detalles</string>
-    <string name="msg_running">Descarga de NewPipe</string>
+    <string name="msg_running">Descarga de YewPlay</string>
     <string name="msg_name">Nome del ficheru</string>
     <string name="rename">Renomar</string>
     <string name="pause">Posar</string>
@@ -420,7 +420,7 @@
     <string name="error_report_open_issue_button_text">Informar en GitHub</string>
     <string name="copy_for_github">Copiar l\'informe con formatu</string>
     <string name="error_report_button_text">Informar d\'esti fallu per corréu</string>
-    <string name="permission_display_over_apps">Da\'l permisu p\'amosar NewPipe penriba d\'otres aplicaciones</string>
+    <string name="permission_display_over_apps">Da\'l permisu p\'amosar YewPlay penriba d\'otres aplicaciones</string>
     <string name="saved_tabs_invalid_json">Nun pudieron lleese les llingüetes guardaes polo que van usase les predeterminaes</string>
     <string name="no_streams_available_download">Nun hai fluxos disponibles pa baxar</string>
     <string name="file_name_empty_error">El nome del ficheru nun pue tar baleru</string>
@@ -446,15 +446,15 @@
     <string name="delete_view_history_alert">¿Desaniciar tol historial de vídeos vistos?</string>
     <string name="clear_views_history_summary">Desanicia l\'historial de fluxos reproducíos y el de puntos de reproducción</string>
     <string name="clear_views_history_title">Llimpiar l\'historial de los vídeos vistos</string>
-    <string name="clear_cookie_summary">Llimpia les cookies que NewPipe atrroxa cuando soluciones un reCAPTCHA</string>
+    <string name="clear_cookie_summary">Llimpia les cookies que YewPlay atrroxa cuando soluciones un reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Llimpiáronse les cookies de reCAPTCHA</string>
     <string name="clear_cookie_title">Llimpiar les cookies de reCAPTCHA</string>
     <string name="switch_to_main">Cambiar al reproductor principal</string>
     <string name="switch_to_popup">Cambiar al reproductor en ventanu</string>
     <string name="switch_to_background">Cambiar al reproductor en segundu planu</string>
-    <string name="app_update_notification_channel_description">Anovamientos pa NewPipe</string>
+    <string name="app_update_notification_channel_description">Anovamientos pa YewPlay</string>
     <string name="app_update_notification_channel_name">Avisos d\'anovamientos</string>
-    <string name="notification_channel_description">Avisos de los reproductores en segundu planu y en ventanu de NewPipe</string>
+    <string name="notification_channel_description">Avisos de los reproductores en segundu planu y en ventanu de YewPlay</string>
     <string name="just_once">Namás una vegada</string>
     <string name="file_deleted">Desanicióse\'l ficheru</string>
     <string name="undo">Desfacer</string>

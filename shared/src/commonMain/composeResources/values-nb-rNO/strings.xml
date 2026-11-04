@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="navigate_back">Tilbake</string>
-    <string name="title_activity_about">Om NewPipe</string>
+    <string name="title_activity_about">Om YewPlay</string>
     <string name="title_licenses">Tredjepartslisenser</string>
     <string name="license">Av %1$s under %2$s</string>
     <string name="tab_about">Om og ofte stilte spørsmål</string>
@@ -18,7 +18,7 @@
     <string name="privacy_policy_title">NewPipes personvernerklæring</string>
     <string name="privacy_policy_encouragement">NewPipe-prosjektet tar personvernet ditt veldig seriøst. Derfor samler ikke appen inn noe data uten ditt samtykke.\nNewPipes personvernerklæring forklarer i detalj hvilke data som sendes og lagres når du sender en kræsjrapport.</string>
     <string name="read_privacy_policy">Les personvernerklæring</string>
-    <string name="app_license_title">NewPipes lisens</string>
+    <string name="app_license_title">YewPlays lisens</string>
     <string name="read_full_license">Les lisens</string>
     <string name="faq_title">Ofte stilte spørsmål</string>
     <string name="faq_description">Hvis du har problemer med å bruke appen, sørg for å sjekke ut disse svarene på vanlige spørsmål!</string>

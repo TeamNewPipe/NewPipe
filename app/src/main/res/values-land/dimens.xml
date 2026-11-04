@@ -25,7 +25,7 @@
 
     <!-- Video Item Detail View Dimensions-->
     <!-- Text Size -->
-    <dimen name="video_item_detail_title_text_size">16sp</dimen>
+    <dimen name="video_item_detail_title_text_size">20sp</dimen>
     <dimen name="video_item_detail_views_text_size">14sp</dimen>
     <dimen name="video_item_detail_likes_text_size">13sp</dimen>
     <dimen name="video_item_detail_uploader_text_size">12sp</dimen>

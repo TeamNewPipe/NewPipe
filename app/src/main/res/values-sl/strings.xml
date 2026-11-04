@@ -106,7 +106,7 @@
     <string name="tab_about">O programu</string>
     <string name="tab_licenses">Dovoljenja</string>
     <string name="view_on_github">Pokaži na Github</string>
-    <string name="app_license_title">Dovoljenje NewPipe</string>
+    <string name="app_license_title">Dovoljenje YewPlay</string>
     <string name="read_full_license">Preberi določila dovoljenja</string>
     <string name="app_description">Odprtokodni predvajalnik za Android.</string>
     <string name="subscribe_button_title">Naroči</string>
@@ -128,8 +128,8 @@
     <string name="enable_watch_history_summary">Sledi zgodovini predvajanih posnetkov</string>
     <string name="resume_on_audio_focus_gain_title">Nadaljuj predvajanje</string>
     <string name="resume_on_audio_focus_gain_summary">Nadaljuj s predvajanjem po prekinitvi (npr. po telefonskem klicu)</string>
-    <string name="notification_channel_name">Obvestila NewPipe</string>
-    <string name="notification_channel_description">Obvestila predvajalnika NewPipe</string>
+    <string name="notification_channel_name">Obvestila YewPlay</string>
+    <string name="notification_channel_description">Obvestila predvajalnika YewPlay</string>
     <string name="contribution_title">Doprinos k projektu</string>
     <string name="title_activity_history">Zgodovina</string>
     <string name="action_history">Zgodovina</string>
@@ -208,7 +208,7 @@
     <string name="error_download_resource_gone">Ni mogoče povrniti prenos</string>
     <string name="error_progress_lost">Napredek je izgubljen, ker je bila datoteka izbrisana</string>
     <string name="error_insufficient_storage_left">Ni več prostora v vaši napravi</string>
-    <string name="error_postprocessing_stopped">NewPipe se je zaprl medtem ko je delal z datoteko</string>
+    <string name="error_postprocessing_stopped">YewPlay se je zaprl medtem ko je delal z datoteko</string>
     <string name="error_http_not_found">Ni najden</string>
     <string name="error_http_no_content">Strežnik ne pošilja informacij</string>
     <string name="error_connect_host">Ni mogoče vspostaviti povezavo s strežnikom</string>
@@ -294,7 +294,7 @@
     <string name="search_history_deleted">Zgodovina iskanja izbrisana</string>
     <string name="delete_search_history_alert">Izbrišem vso zgodovino brskanja?</string>
     <string name="clear_search_history_title">Izbriši zgodovino brskanja</string>
-    <string name="clear_cookie_summary">Izbriši piškotke, ki jih NewPipe shrani, ko rešite reCAPTCHA</string>
+    <string name="clear_cookie_summary">Izbriši piškotke, ki jih YewPlay shrani, ko rešite reCAPTCHA</string>
     <string name="clear_cookie_title">Izbrišite piškodke reCAPTCHA</string>
     <string name="enable_playback_resume_title">Nadaljuj s predvajanjem</string>
     <string name="enable_playback_resume_summary">Povrni zadnji položaj predvajanja</string>
@@ -349,7 +349,7 @@
     <string name="override_current_data">To bo nadomestilo vaše trenutne nastavitve.</string>
     <string name="could_not_import_all_files">Opozorilo: ni mogoče uvoziti vseh datotek.</string>
     <string name="select_a_playlist">Izberi seznam predvajanja</string>
-    <string name="app_license">NewPipe je prosta in odprta programska oprema: lahko jo uporabljaš, preučuješ in izboljšaš po želji. Lahko jo distributiraš in/ali spremeniš pod pogoji GNU General Public Licence, kot jo je izdala Free Software Foundation v različici 3 ali po izbiri v katerikoli novejši različici.</string>
+    <string name="app_license">YewPlay je prosta in odprta programska oprema: lahko jo uporabljaš, preučuješ in izboljšaš po želji. Lahko jo distributiraš in/ali spremeniš pod pogoji GNU General Public Licence, kot jo je izdala Free Software Foundation v različici 3 ali po izbiri v katerikoli novejši različici.</string>
     <string name="privacy_policy_encouragement">Projekt NewPipe jemlje vašo zasebnost zelo resno. Aplikacija zato ne zbira kakršnih koli podatkov brez vašega dovoljenja. \nPolitika zasebnosti NewPipe-a podrobno pojasnjuje, kateri podatki so poslani in shranjeni, ko pošljete poročilo o zrušitvi.</string>
     <string name="give_back">Pomagaj</string>
     <string name="donation_encouragement">NewPipe razvijajo prostovoljci, ki preživljajo svoj prosti čas, da vam prinašajo najboljšo uporabniško izkušnjo. Pomagajte razvijalcem pri izdelavi še boljšega NewPipe-a medtem ko uživajo skodelico kave.</string>
@@ -400,7 +400,7 @@
     <string name="recaptcha_cookies_cleared">Piškotki reCAPTCHA so bili izbrisani</string>
     <string name="hash_channel_description">Obvestila za zgoščevanje videa v teku</string>
     <string name="hash_channel_name">Obvestilo hash-a videa</string>
-    <string name="app_update_notification_channel_description">Obvestila za nove verzije NewPipe</string>
+    <string name="app_update_notification_channel_description">Obvestila za nove verzije YewPlay</string>
     <string name="artists">Izvajalci</string>
     <string name="albums">Albumi</string>
     <string name="songs">Pesmi</string>
@@ -428,7 +428,7 @@
     <string name="search_showing_result_for">Prikazujem rezultate za %s</string>
     <string name="enqueue">Vrsta</string>
     <string name="queued">V vrsti</string>
-    <string name="app_update_available_notification_title">NewPipe posodobitve so na voljo!</string>
+    <string name="app_update_available_notification_title">YewPlay posodobitve so na voljo!</string>
     <string name="auto">Avtomatsko</string>
     <string name="grid">Mreža</string>
     <string name="never">Nikoli</string>

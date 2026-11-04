@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="navigate_back">חזרה</string>
-    <string name="title_activity_about">על NewPipe</string>
+    <string name="title_activity_about">על YewPlay</string>
     <string name="title_licenses">רישיונות צד־שלישי</string>
     <string name="license">על ידי %1$s בכפוף לרישיון %2$s</string>
     <string name="tab_about">על אודות ושו״ת</string>
@@ -15,7 +15,7 @@
     <string name="website_encouragement">יש לבקר באתר של NewPipe למידע נוסף ולחדשות.</string>
     <string name="privacy_policy_title">מדיניות הפרטיות של NewPipe</string>
     <string name="read_privacy_policy">הצגת מדיניות הפרטיות</string>
-    <string name="app_license_title">הרישיון של NewPipe</string>
+    <string name="app_license_title">הרישיון של YewPlay</string>
     <string name="read_full_license">הצגת הרישיון</string>
     <string name="faq_title">שאלות נפוצות</string>
     <string name="done">סיום</string>

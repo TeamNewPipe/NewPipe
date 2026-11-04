@@ -24,7 +24,7 @@
     <string name="settings_category_history_title">Geskiedenis en kas</string>
     <string name="settings_category_updates_title">Opdateerings</string>
     <string name="settings_category_backup_restore_title">Rugsteun en herstel</string>
-    <string name="title_activity_about">NewPipe Besonderhede</string>
+    <string name="title_activity_about">YewPlay Besonderhede</string>
     <string name="title_licenses">Derdeparty Lisensies</string>
     <string name="tab_about">Besonderhede &amp; Gereelde Vrae</string>
     <string name="tab_licenses">Lisensies</string>
@@ -33,8 +33,8 @@
     <string name="contribution_encouragement">Of jy Ideas het vir; vertaling, ontwerp veranderinge, kode netjies maak, of groot kode veranderinge - hulp word altyd waardeer. Hoe meer gedoen word, hoe beter raak dit!</string>
     <string name="view_on_github">Bekyk op GitHub</string>
     <string name="donation_encouragement">NewPipe word ontwikkel deur vrywilligers wat hul vrye tyd gebruik om die beste verbruikers ondervinding te bring. Gee terug om die ontwikkelaars te help om NewPipe nog beter te maak terwyl hulle n koffie geniet.</string>
-    <string name="app_license_title">NewPipe Se Lisensie</string>
-    <string name="app_license">NewPipe is n kopielinks sagteware: Jy mag dit gebruik, bestudeer, uitdeel en verbeter net soos jy lus kry. Meer spesifiek mag jy dit uitdeel en/ of verander onder die voorwardes van die GNU \"General Public License\" soos dit gepubliseer is deur die \"Free Software Foundation\", of weergawe 3 van die lisensie of enige latere weergawe.</string>
+    <string name="app_license_title">YewPlay Se Lisensie</string>
+    <string name="app_license">YewPlay is n kopielinks sagteware: Jy mag dit gebruik, bestudeer, uitdeel en verbeter net soos jy lus kry. Meer spesifiek mag jy dit uitdeel en/ of verander onder die voorwardes van die GNU \"General Public License\" soos dit gepubliseer is deur die \"Free Software Foundation\", of weergawe 3 van die lisensie of enige latere weergawe.</string>
     <string name="settings_category_debug_title">Foute Herstel</string>
     <string name="theme_title">Tema</string>
     <string name="light_theme_title">Lig</string>

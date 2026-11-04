@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="navigate_back">Înapoi</string>
-    <string name="title_activity_about">Despre NewPipe</string>
+    <string name="title_activity_about">Despre YewPlay</string>
     <string name="title_licenses">Licențe terță-parte</string>
     <string name="license">De %1$s sub %2$s</string>
     <string name="tab_about">Despre &amp; Întrebări frecvente</string>
@@ -18,8 +18,8 @@
     <string name="privacy_policy_title">Politica de Confidențialitate NewPipe</string>
     <string name="privacy_policy_encouragement">Proiectul NewPipe acordă o importanță deosebită confidențialității datelor tale. Prin urmare, aplicația nu colectează nicio informație fără consimțământul tău.\nPolitica de confidențialitate a NewPipe explică în detaliu ce date sunt transmise și stocate atunci când trimiți un raport de eroare.</string>
     <string name="read_privacy_policy">Citește Politica de confidențialitate</string>
-    <string name="app_license_title">Licența NewPipe</string>
-    <string name="app_license">NewPipe este o aplicație liberă: Poți folosi, studia, partaja, și a o face mai bună după propria voință. Poți redistribui și/sau modifica aplicația în termenii GNU GPL publicate de Free Software Foundation, toate dintre cele 3 versiuni, or (la opțiunea dvs.) orice versiune mai nouă.</string>
+    <string name="app_license_title">Licența YewPlay</string>
+    <string name="app_license">YewPlay este o aplicație liberă: Poți folosi, studia, partaja, și a o face mai bună după propria voință. Poți redistribui și/sau modifica aplicația în termenii GNU GPL publicate de Free Software Foundation, toate dintre cele 3 versiuni, or (la opțiunea dvs.) orice versiune mai nouă.</string>
     <string name="read_full_license">Citește licența</string>
     <string name="faq_title">Întrebări frecvente</string>
     <string name="faq_description">Dacă aveți probleme folosind aplicația, uitați-vă la răspunsurile celor mai comune întrebărilor puse!</string>

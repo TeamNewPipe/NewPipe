@@ -21,7 +21,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.ColorUtils;
 import androidx.core.view.MenuProvider;
 import androidx.preference.PreferenceManager;
 
@@ -52,6 +51,7 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.YpTabs;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.image.CoilHelper;
 import org.schabi.newpipe.util.image.ImageStrategy;
@@ -389,8 +389,9 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
         final int subscribedBackground = ContextCompat
                 .getColor(activity, R.color.subscribed_background_color);
         final int subscribedText = ContextCompat.getColor(activity, R.color.subscribed_text_color);
-        final int subscribeBackground = ColorUtils.blendARGB(ThemeHelper
-                .resolveColorFromAttr(activity, R.attr.colorPrimary), subscribedBackground, 0.35f);
+        // YewPlay: "Inscrever-se" usa a cor de ação (marfim no escuro, tinta no claro)
+        final int subscribeBackground = ThemeHelper
+                .resolveColorFromAttr(activity, android.R.attr.colorAccent);
         final int subscribeText = ContextCompat.getColor(activity, R.color.subscribe_text_color);
 
         if (isSubscribed) {
@@ -491,7 +492,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
         tabAdapter.notifyDataSetUpdate();
 
         for (int i = 0; i < tabAdapter.getCount(); i++) {
-            binding.tabLayout.getTabAt(i).setText(tabAdapter.getItemTitle(i));
+            YpTabs.setLabel(binding.tabLayout.getTabAt(i), tabAdapter.getItemTitle(i));
         }
 
         // Restore previously selected tab

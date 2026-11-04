@@ -217,7 +217,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             h.date.setText("");
         } else {
             h.progress.setMarquee(false);
-            h.status.setText("100%");
+            h.status.setText(""); // YewPlay: finished items show size and date only
             h.progress.setProgress(1.0f);
             h.size.setText(Utility.formatBytes(item.mission.length));
 

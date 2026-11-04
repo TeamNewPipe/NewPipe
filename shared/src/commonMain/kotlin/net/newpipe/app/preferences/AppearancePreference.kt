@@ -30,7 +30,7 @@ object AppearancePreferences {
     const val LIST_VIEW_GRID = "grid"
     const val LIST_VIEW_CARD = "card"
 
-    const val DEFAULT_THEME = THEME_AUTO_DEVICE
+    const val DEFAULT_THEME = THEME_DARK
     const val DEFAULT_NIGHT_THEME = THEME_DARK
     const val DEFAULT_TABLET_MODE = TABLET_MODE_AUTO
     const val DEFAULT_LIST_VIEW_MODE = LIST_VIEW_AUTO

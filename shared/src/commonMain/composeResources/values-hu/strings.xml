@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="navigate_back">Vissza</string>
-    <string name="title_activity_about">A NewPipe névjegye</string>
+    <string name="title_activity_about">A YewPlay névjegye</string>
     <string name="title_licenses">Harmadik féltől származó licencek</string>
     <string name="license">Szerző: %1$s · Licenc: %2$s</string>
     <string name="tab_about">Névjegy és GYIK</string>
@@ -18,8 +18,8 @@
     <string name="privacy_policy_title">A NewPipe adatvédelmi irányelvei</string>
     <string name="privacy_policy_encouragement">A NewPipe projekt kiemelten fontosnak tartja az Ön adatainak védelmét. Ezért az alkalmazás az Ön hozzájárulása nélkül semmilyen adatot nem gyűjt.\nA NewPipe adatvédelmi irányelvei részletesen ismertetik, hogy összeomlási jelentés küldésekor milyen adatok kerülnek továbbításra és tárolásra.</string>
     <string name="read_privacy_policy">Adatvédelmi irányelvek megtekintése</string>
-    <string name="app_license_title">A NewPipe licence</string>
-    <string name="app_license">A NewPipe copyleft, szabad szoftver: Ön szabadon használhatja, tanulmányozhatja, megoszthatja és továbbfejlesztheti. Különösen jogosult arra, hogy a Free Software Foundation által közzétett GNU General Public License feltételei szerint terjessze és/vagy módosítsa, akár a licenc 3-as verziója, akár – saját belátása szerint – bármely későbbi verziója alapján.</string>
+    <string name="app_license_title">A YewPlay licence</string>
+    <string name="app_license">A YewPlay copyleft, szabad szoftver: Ön szabadon használhatja, tanulmányozhatja, megoszthatja és továbbfejlesztheti. Különösen jogosult arra, hogy a Free Software Foundation által közzétett GNU General Public License feltételei szerint terjessze és/vagy módosítsa, akár a licenc 3-as verziója, akár – saját belátása szerint – bármely későbbi verziója alapján.</string>
     <string name="read_full_license">Licenc megtekintése</string>
     <string name="faq_title">Gyakran ismételt kérdések</string>
     <string name="faq_description">Ha problémái adódnak az alkalmazás használata során, érdemes áttekintenie a gyakori kérdésekre adott válaszokat!</string>

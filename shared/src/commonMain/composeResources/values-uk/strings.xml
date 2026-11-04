@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="navigate_back">Назад</string>
-    <string name="title_activity_about">Про NewPipe</string>
+    <string name="title_activity_about">Про YewPlay</string>
     <string name="title_licenses">Ліцензії третіх сторін</string>
     <string name="tab_about">Про нас і ЧаПи</string>
     <string name="tab_licenses">Ліцензії</string>
@@ -17,8 +17,8 @@
     <string name="privacy_policy_title">Політика конфіденційності NewPipe</string>
     <string name="privacy_policy_encouragement">Проєкт NewPipe дуже серйозно ставиться до вашої приватності. Тому застосунок не збирає жодних даних без вашої згоди. \nПолітика приватності NewPipe докладно описує, які дані надсилаються і зберігаються у звіті про збій.</string>
     <string name="read_privacy_policy">Ознайомитися з політикою конфіденційності</string>
-    <string name="app_license_title">Ліцензія NewPipe</string>
-    <string name="app_license">NewPipe — це copyleft libre програмне забезпечення: ви можете вільно використовувати, вивчати, поширювати та вдосконалювати його. Зокрема, ви можете розповсюджувати та/або змінювати його на умовах GNU General Public License, опублікованої Free Software Foundation, версії 3 або (на ваш вибір) будь-якої пізнішої версії.</string>
+    <string name="app_license_title">Ліцензія YewPlay</string>
+    <string name="app_license">YewPlay — це copyleft libre програмне забезпечення: ви можете вільно використовувати, вивчати, поширювати та вдосконалювати його. Зокрема, ви можете розповсюджувати та/або змінювати його на умовах GNU General Public License, опублікованої Free Software Foundation, версії 3 або (на ваш вибір) будь-якої пізнішої версії.</string>
     <string name="read_full_license">Ознайомитися з ліцензією</string>
     <string name="faq_title">Поширені запитання</string>
     <string name="faq_description">Якщо у вас виникають труднощі з використанням застосунку, обов’язково перегляньте відповіді на поширені запитання!</string>

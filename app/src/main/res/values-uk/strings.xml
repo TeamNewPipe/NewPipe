@@ -73,7 +73,7 @@
     <string name="msg_name">Назва файлу</string>
     <string name="msg_threads">Потоки</string>
     <string name="msg_error">Помилка</string>
-    <string name="msg_running">NewPipe завантажує</string>
+    <string name="msg_running">YewPlay завантажує</string>
     <string name="msg_running_detail">Деталі</string>
     <string name="msg_wait">Зачекайте…</string>
     <string name="msg_copied">Скопійовано до буфера обміну</string>
@@ -121,8 +121,8 @@
     <string name="play_all">Відтворити все</string>
     <string name="always">Завжди</string>
     <string name="just_once">Лише раз</string>
-    <string name="notification_channel_name">Сповіщення NewPipe</string>
-    <string name="notification_channel_description">Сповіщення для програвачів NewPipe</string>
+    <string name="notification_channel_name">Сповіщення YewPlay</string>
+    <string name="notification_channel_description">Сповіщення для програвачів YewPlay</string>
     <string name="unknown_content">[Невідомо]</string>
     <string name="switch_to_background">Перейти у фоновий режим</string>
     <string name="switch_to_popup">Перемкнути у вікно</string>
@@ -144,7 +144,7 @@
     <string name="settings_file_replacement_character_title">Замінні символи</string>
     <string name="charset_letters_and_digits">Букви та цифри</string>
     <string name="charset_most_special_characters">Більшість спеціальних символів</string>
-    <string name="title_activity_about">Про NewPipe</string>
+    <string name="title_activity_about">Про YewPlay</string>
     <string name="tab_licenses">Ліцензії</string>
     <string name="contribution_title">Зробіть внесок</string>
     <string name="view_on_github">Переглянути на GitHub</string>
@@ -209,7 +209,7 @@
     <string name="donation_encouragement">NewPipe розробляють волонтери, які у вільний час створюють для вас найкращий користувацький досвід. Підтримайте розробників, щоб допомогти зробити NewPipe ще кращим, поки вони насолоджуються чашкою кави.</string>
     <string name="give_back">Віддячити</string>
     <string name="website_encouragement">Відвідайте вебсайт NewPipe, щоб дізнатися більше інформації та новин.</string>
-    <string name="app_license_title">Ліцензія NewPipe</string>
+    <string name="app_license_title">Ліцензія YewPlay</string>
     <string name="read_full_license">Ознайомитися з ліцензією</string>
     <string name="action_history">Історія</string>
     <string name="delete_item_search_history">Видалити цей елемент з історії пошуку?</string>
@@ -297,7 +297,7 @@
     <string name="delete_search_history_alert">Видалити всю історію пошуку?</string>
     <string name="search_history_deleted">Історію пошуку видалено</string>
     <string name="one_item_deleted">Видалено 1 елемент.</string>
-    <string name="app_license">NewPipe — це copyleft libre програмне забезпечення: ви можете вільно використовувати, вивчати, поширювати та вдосконалювати його. Зокрема, ви можете розповсюджувати та/або змінювати його на умовах GNU General Public License, опублікованої Free Software Foundation, версії 3 або (на ваш вибір) будь-якої пізнішої версії.</string>
+    <string name="app_license">YewPlay — це copyleft libre програмне забезпечення: ви можете вільно використовувати, вивчати, поширювати та вдосконалювати його. Зокрема, ви можете розповсюджувати та/або змінювати його на умовах GNU General Public License, опублікованої Free Software Foundation, версії 3 або (на ваш вибір) будь-якої пізнішої версії.</string>
     <string name="import_settings">Імпортувати разом з налаштуваннями?</string>
     <string name="privacy_policy_title">Політика конфіденційності NewPipe</string>
     <string name="privacy_policy_encouragement">Проєкт NewPipe дуже серйозно ставиться до вашої приватності. Тому застосунок не збирає жодних даних без вашої згоди. \nПолітика приватності NewPipe докладно описує, які дані надсилаються і зберігаються у звіті про збій.</string>
@@ -328,7 +328,7 @@
     <string name="events">Події</string>
     <string name="file_deleted">Файл видалено</string>
     <string name="app_update_notification_channel_name">Сповіщення про оновлення застосунку</string>
-    <string name="app_update_notification_channel_description">Сповіщення про нові версії NewPipe</string>
+    <string name="app_update_notification_channel_description">Сповіщення про нові версії YewPlay</string>
     <string name="download_to_sdcard_error_title">Зовнішнє сховище недоступне</string>
     <string name="restore_defaults">Відновити типові налаштування</string>
     <string name="restore_defaults_confirmation">Відновити типові значення?</string>
@@ -336,7 +336,7 @@
     <string name="conferences">Конференції</string>
     <string name="updates_setting_title">Оновлення</string>
     <string name="auto">Автоматично</string>
-    <string name="app_update_available_notification_title">Доступне оновлення NewPipe!</string>
+    <string name="app_update_available_notification_title">Доступне оновлення YewPlay!</string>
     <string name="missions_header_finished">Завершено</string>
     <string name="missions_header_pending">Очікує</string>
     <string name="paused">призупинено</string>
@@ -379,7 +379,7 @@
     <string name="missing_file">Файл переміщено або видалено</string>
     <string name="overwrite_failed">не можу перезаписати файл</string>
     <string name="download_already_pending">Завантаження з такою назвою вже додано в чергу</string>
-    <string name="error_postprocessing_stopped">NewPipe був закритий під час роботи над файлом</string>
+    <string name="error_postprocessing_stopped">YewPlay був закритий під час роботи над файлом</string>
     <string name="error_insufficient_storage_left">На пристрої не залишилося вільного простору</string>
     <string name="error_progress_lost">Прогрес втрачено через видалення файлу</string>
     <string name="error_timeout">Час очікування з\'єднання вичерпано</string>
@@ -464,8 +464,8 @@
     <string name="local">Локальне</string>
     <string name="videos_string">Відео</string>
     <string name="peertube_instance_add_fail">Не вдалося перевірити сервер</string>
-    <string name="content_not_supported">NewPipe ще не підтримує цей вміст. \n \nМожливо, підтримка з\'явиться в наступних версіях.</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Якщо оновлення підписок здається вам занадто повільним, спробуйте увімкнути швидкий режим (змінити можна в налаштуваннях або кнопкою внизу). \n \nNewPipe дозволяє оновлювати підписки різними способами: \n• Отримання каналу цілком, повільно, але з повною інформацією. \n• Оновлення через RSS-канал, швидко, але інформація не повна. \n \nЗа швидкого оновлення втрачається тривалість елемента і його тип (не можна визначити, трансляція це або звичайне відео), а також елементи каналу. \n \nYouTube є прикладом такої служби, яка дозволяє виконувати швидке оновлення по RSS. \n \nВибір за вами: швидкість або точність.</string>
+    <string name="content_not_supported">YewPlay ще не підтримує цей вміст. \n \nМожливо, підтримка з\'явиться в наступних версіях.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Якщо оновлення підписок здається вам занадто повільним, спробуйте увімкнути швидкий режим (змінити можна в налаштуваннях або кнопкою внизу). \n \nYewPlay дозволяє оновлювати підписки різними способами: \n• Отримання каналу цілком, повільно, але з повною інформацією. \n• Оновлення через RSS-канал, швидко, але інформація не повна. \n \nЗа швидкого оновлення втрачається тривалість елемента і його тип (не можна визначити, трансляція це або звичайне відео), а також елементи каналу. \n \nYouTube є прикладом такої служби, яка дозволяє виконувати швидке оновлення по RSS. \n \nВибір за вами: швидкість або точність.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Звичайний режим</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Швидкий режим</string>
     <string name="feed_use_dedicated_fetch_method_summary">Доступно для деяких служб, швидке, але може повертати не весь вміст каналу і часто неповну інформацію (тривалість, тип елемента, статус трансляції)</string>
@@ -548,10 +548,10 @@
     <string name="night_theme_title">Нічна тема</string>
     <string name="video_detail_by">Від %s</string>
     <string name="show_thumbnail_summary">Використовувати ескізи для фону екрана блокування і для сповіщень</string>
-    <string name="soundcloud_go_plus_content">Це доріжка для SoundCloud Go+, принаймні у вашій країні, тому її не можна передавати потоково або завантажувати через NewPipe.</string>
-    <string name="private_content">Цей вміст є приватним, тому його не можна передавати потоково або завантажувати через NewPipe.</string>
-    <string name="youtube_music_premium_content">Це відео доступне лише для користувачів YouTube Music Premium, тому його не можна передавати потоково або завантажувати через NewPipe.</string>
-    <string name="paid_content">Цей вміст доступний лише користувачам, які заплатили, тому його не можна передавати потоково або завантажувати через NewPipe.</string>
+    <string name="soundcloud_go_plus_content">Це доріжка для SoundCloud Go+, принаймні у вашій країні, тому її не можна передавати потоково або завантажувати через YewPlay.</string>
+    <string name="private_content">Цей вміст є приватним, тому його не можна передавати потоково або завантажувати через YewPlay.</string>
+    <string name="youtube_music_premium_content">Це відео доступне лише для користувачів YouTube Music Premium, тому його не можна передавати потоково або завантажувати через YewPlay.</string>
+    <string name="paid_content">Цей вміст доступний лише користувачам, які заплатили, тому його не можна передавати потоково або завантажувати через YewPlay.</string>
     <string name="select_night_theme_toast">Ви можете вибрати улюблену нічну тему нижче</string>
     <string name="featured">Рекомендовані</string>
     <string name="crash_the_app">Збій застосунку</string>
@@ -565,7 +565,7 @@
     <string name="clear_cookie_title">Очистити реп\'яшки (cookies) reCAPTCHA</string>
     <string name="hash_channel_description">Сповіщення про перебіг відеогешування</string>
     <string name="hash_channel_name">Сповіщення про відеохешування</string>
-    <string name="restricted_video_no_stream">Це відео має вікові обмеження. \nЗгідно з новою політикою YouTube щодо відео з віковими обмеженнями NewPipe не може мати доступ до жодного потоку цього відео і, таким чином, не має можливості відтворити його.</string>
+    <string name="restricted_video_no_stream">Це відео має вікові обмеження. \nЗгідно з новою політикою YouTube щодо відео з віковими обмеженнями YewPlay не може мати доступ до жодного потоку цього відео і, таким чином, не має можливості відтворити його.</string>
     <string name="show_age_restricted_content_summary">Показувати вміст, який, можливо, не підходить для дітей, бо має вікове обмеження (наприклад, 18+)</string>
     <string name="show_meta_info_summary">Вимкніть, щоб приховати поля метаданих (автор потоку, вміст потоку або пошуковий запит)</string>
     <string name="show_description_summary">Вимкніть, щоб приховати опис відео та додаткові відомості</string>
@@ -600,7 +600,7 @@
     <string name="description_select_note">Тепер можна виділяти текст в описі. Зауважте, що сторінка може мигати і посилання можуть не працювати в режимі виділення.</string>
     <string name="feed_load_error_account_info">Неможливо завантажити стрічку для «%s».</string>
     <string name="feed_load_error">Помилка завантаження стрічки</string>
-    <string name="feed_load_error_terminated">Обліковий запис автора припинено. \nNewPipe не зможе завантажити цей канал у майбутньому. \nВідписатися від цього каналу?</string>
+    <string name="feed_load_error_terminated">Обліковий запис автора припинено. \nYewPlay не зможе завантажити цей канал у майбутньому. \nВідписатися від цього каналу?</string>
     <string name="off">Вимкнути</string>
     <string name="on">Увімкнути</string>
     <string name="tablet_mode_title">Режим планшета</string>
@@ -642,7 +642,7 @@
     <string name="crash_the_player">Збій програвача</string>
     <string name="error_report_channel_name">Сповіщення про звіт про помилку</string>
     <string name="error_report_channel_description">Сповіщення для звітів про помилки</string>
-    <string name="error_report_notification_title">Сталася помилка NewPipe, торкніться, щоб звітувати</string>
+    <string name="error_report_notification_title">Сталася помилка YewPlay, торкніться, щоб звітувати</string>
     <string name="error_report_notification_toast">Сталася помилка. Перегляньте сповіщення</string>
     <string name="no_appropriate_file_manager_message">Для цієї дії не знайдено відповідного файлового менеджера. \nУстановіть файловий менеджер або спробуйте вимкнути «%s» у налаштуваннях завантажень</string>
     <string name="no_appropriate_file_manager_message_android_10">Для цієї дії не знайдено відповідного файлового менеджера. \nУстановіть файловий менеджер, сумісний зі Storage Access Framework</string>
@@ -688,7 +688,7 @@
     <string name="faq_title">Поширені запитання</string>
     <string name="faq_description">Якщо у вас виникають труднощі з використанням застосунку, обов’язково перегляньте відповіді на поширені запитання!</string>
     <string name="sort">Сортувати</string>
-    <string name="app_update_unavailable_toast">Ви використовуєте найновішу версію NewPipe</string>
+    <string name="app_update_unavailable_toast">Ви використовуєте найновішу версію YewPlay</string>
     <string name="app_update_available_notification_text">Торкніться, щоб завантажити %s</string>
     <string name="import_subscriptions_hint">Імпорт або експорт підписок з 3-крапкового меню</string>
     <string name="fast_mode">Швидкий режим</string>
@@ -794,7 +794,7 @@
     <string name="error_insufficient_storage">Недостатньо вільного простору на пристрої</string>
     <string name="reset_settings_title">Скинути налаштування</string>
     <string name="settings_category_backup_restore_title">Резервна копія та відновлення</string>
-    <string name="auto_update_check_description">NewPipe може час від часу автоматично перевіряти наявність нових версій і сповіщати вас про їх появу. \nХочете увімкнути цю функцію?</string>
+    <string name="auto_update_check_description">YewPlay може час від часу автоматично перевіряти наявність нових версій і сповіщати вас про їх появу. \nХочете увімкнути цю функцію?</string>
     <string name="yes">Так</string>
     <string name="no">Ні</string>
     <string name="reset_settings_summary">Скинути всі налаштування до усталених значень</string>

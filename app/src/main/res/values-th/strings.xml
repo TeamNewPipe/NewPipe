@@ -107,10 +107,10 @@
     <string name="always">ตลอดเวลา</string>
     <string name="just_once">เพียงครั้งเดียว</string>
     <string name="file">ไฟล์</string>
-    <string name="notification_channel_name">การแจ้งเตือน NewPipe</string>
-    <string name="notification_channel_description">การแจ้งเตือนของแอป NewPipe เมื่อเล่นสื่อในโหมดพื้นหลังและป๊อปอัพ</string>
+    <string name="notification_channel_name">การแจ้งเตือน YewPlay</string>
+    <string name="notification_channel_description">การแจ้งเตือนของแอป YewPlay เมื่อเล่นสื่อในโหมดพื้นหลังและป๊อปอัพ</string>
     <string name="app_update_notification_channel_name">การแจ้งเตือนการอัปเดตแอป</string>
-    <string name="app_update_notification_channel_description">การแจ้งเตือนสำหรับ NewPipe เวอร์ชั่นใหม่</string>
+    <string name="app_update_notification_channel_description">การแจ้งเตือนสำหรับ YewPlay เวอร์ชั่นใหม่</string>
     <string name="unknown_content">[ไม่ทราบ]</string>
     <string name="switch_to_background">สลับไปยังโหมดพื้นหลัง</string>
     <string name="switch_to_popup">สลับไปยังโหมดป๊อปอัพ</string>
@@ -183,7 +183,7 @@
     <string name="dismiss">ไม่สนใจ</string>
     <string name="rename">เปลี่ยนชื่อ</string>
     <string name="msg_name">ชื่อไฟล์</string>
-    <string name="msg_running">NewPipe กำลังดาวน์โหลด</string>
+    <string name="msg_running">YewPlay กำลังดาวน์โหลด</string>
     <string name="msg_running_detail">แตะเพื่อดูรายละเอียด</string>
     <string name="msg_wait">โปรดรอ…</string>
     <string name="msg_copied">คัดลอกไปที่คลิปบอร์ดแล้ว</string>
@@ -196,7 +196,7 @@
     <string name="settings_file_replacement_character_title">อักขระทดแทน</string>
     <string name="charset_letters_and_digits">ตัวอักษรและตัวเลข</string>
     <string name="charset_most_special_characters">อักขระพิเศษส่วนใหญ่</string>
-    <string name="title_activity_about">เกี่ยวกับ NewPipe</string>
+    <string name="title_activity_about">เกี่ยวกับ YewPlay</string>
     <string name="title_licenses">ใบอนุญาตบุคคลที่สาม</string>
     <string name="copyright" formatted="true">© %1$s โดย %2$s ภายใต้ %3$s</string>
     <string name="tab_about">เกี่ยวกับเรา &amp; คำถามที่พบบ่อย</string>
@@ -212,7 +212,7 @@
     <string name="privacy_policy_title">นโยบายความเป็นส่วนตัวของ NewPipe</string>
     <string name="privacy_policy_encouragement">โครงการ NewPipe คำนึงถึงความเป็นส่วนตัวของคุณอย่างจริงจัง ดังนั้นแอปจะไม่เก็บรวบรวมข้อมูลใดๆ โดยไม่ได้รับความยินยอมจากคุณ \nนโยบายความเป็นส่วนตัวของ NewPipe มีการอธิบายในรายละเอียดเกี่ยวกับข้อมูลที่จะถูกส่งออกไปและเก็บไว้เมื่อคุณรายงานความผิดพลาดของแอป</string>
     <string name="read_privacy_policy">อ่านนโยบายความเป็นส่วนตัว</string>
-    <string name="app_license_title">ใบอนุญาตของ NewPipe</string>
+    <string name="app_license_title">ใบอนุญาตของ YewPlay</string>
     <string name="read_full_license">อ่านใบอนุญาต</string>
     <string name="title_activity_history">ประวัติ</string>
     <string name="action_history">ประวัติ</string>
@@ -306,7 +306,7 @@
     <string name="list">รายการ</string>
     <string name="grid">ตาราง</string>
     <string name="auto">อัตโนมัติ</string>
-    <string name="app_update_available_notification_title">NewPipe พร้อมให้อัพเดทแล้ว!</string>
+    <string name="app_update_available_notification_title">YewPlay พร้อมให้อัพเดทแล้ว!</string>
     <string name="missions_header_finished">เสร็จแล้ว</string>
     <string name="missions_header_pending">อยู่ในคิว</string>
     <string name="paused">หยุดชั่วคราว</string>
@@ -416,7 +416,7 @@
     <string name="feed_show_upcoming">กำลังจะมา</string>
     <string name="search_with_service_name">ค้นหา %1$s</string>
     <string name="donation_encouragement">NewPipe พัฒนาโดยอาสาสมัครที่ใช้เวลาว่างในการมอบประสบการณ์การใช้งานที่ดีที่สุดให้กับคุณ ร่วมสนับสนุนนักพัฒนาให้สร้าง NewPipe ให้ดียิ่งขึ้นไปพร้อมกับการจิบกาแฟไป</string>
-    <string name="app_license">NewPipe เป็นซอฟต์แวร์เสรีแบบ copyleft: คุณสามารถใช้งาน ศึกษา แบ่งปัน และปรับปรุงได้ตามต้องการ โดยเฉพาะอย่างยิ่ง คุณสามารถแจกจ่ายซ้ำและ/หรือแก้ไขได้ภายใต้เงื่อนไขของ GNU General Public License ที่เผยแพร่โดย Free Software Foundation ไม่ว่าจะเป็นเวอร์ชัน 3 ของ License หรือ (ตามที่คุณเลือก) เวอร์ชันใด ๆ ที่ใหม่กว่า</string>
+    <string name="app_license">YewPlay เป็นซอฟต์แวร์เสรีแบบ copyleft: คุณสามารถใช้งาน ศึกษา แบ่งปัน และปรับปรุงได้ตามต้องการ โดยเฉพาะอย่างยิ่ง คุณสามารถแจกจ่ายซ้ำและ/หรือแก้ไขได้ภายใต้เงื่อนไขของ GNU General Public License ที่เผยแพร่โดย Free Software Foundation ไม่ว่าจะเป็นเวอร์ชัน 3 ของ License หรือ (ตามที่คุณเลือก) เวอร์ชันใด ๆ ที่ใหม่กว่า</string>
     <string name="faq_title">คำถามที่พบบ่อย</string>
     <string name="faq_description">หากคุณประสบปัญหาในการใช้งานแอป โปรดตรวจสอบคำตอบสำหรับคำถามที่พบบ่อยเหล่านี้!</string>
     <string name="faq">ดูรายละเอียดเพิ่มเติมได้ที่เว็บไซต์</string>

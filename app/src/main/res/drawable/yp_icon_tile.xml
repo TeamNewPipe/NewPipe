@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- YewPlay: fundo do ícone de tipo de arquivo nos downloads -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/yp_surface_2" />
+    <corners android:radius="10dp" />
+</shape>

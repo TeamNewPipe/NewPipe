@@ -14,7 +14,9 @@
         android:maxLines="2"
         android:paddingHorizontal="@dimen/video_item_search_padding"
         android:paddingTop="@dimen/video_item_search_padding"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="@style/TextAppearance.YewPlay.ScreenTitle"
+        android:fontFamily="@font/bricolage_grotesque_bold"
+        app:fontFamily="@font/bricolage_grotesque_bold"
         android:textSize="@dimen/playlist_detail_title_text_size"
         tools:text="Mix musics #23 title Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum" />
 
@@ -100,7 +102,7 @@
         android:paddingTop="6dp"
         android:text="@string/show_more"
         android:layout_marginBottom="6dp"
-        android:textColor="?attr/colorPrimary" />
+        android:textColor="?attr/colorAccent" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- YewPlay: grade de 4dp; margem lateral de 20dp em todas as telas -->
+    <dimen name="yp_screen_margin">20dp</dimen>
+    <dimen name="yp_item_vertical_padding">8dp</dimen>
+    <dimen name="yp_touch_target">48dp</dimen>
+    <!-- YewPlay: barra flutuante (26dp de raio, 12dp das bordas) -->
+    <dimen name="yp_bottom_bar_height">64dp</dimen>
+    <dimen name="yp_bottom_bar_margin">12dp</dimen>
+    <!-- altura da barra + margem inferior: espaço reservado no fim das telas -->
+    <dimen name="yp_bottom_bar_space">76dp</dimen>
+    <!-- YewPlay: capa da tela Ouvir -->
+    <dimen name="yp_listen_cover_size">200dp</dimen>
     <!-- Common dimensions -->
     <dimen name="margin_normal">16dp</dimen>
     <dimen name="margin_small">8dp</dimen>
@@ -28,8 +39,8 @@
     <dimen name="video_item_search_upload_date_text_size">12sp</dimen>
     <!-- Elements Size -->
     <!-- 16 / 9 ratio-->
-    <dimen name="video_item_search_thumbnail_image_width">124dp</dimen>
-    <dimen name="video_item_search_thumbnail_image_height">70dp</dimen>
+    <dimen name="video_item_search_thumbnail_image_width">144dp</dimen>
+    <dimen name="video_item_search_thumbnail_image_height">81dp</dimen>
     <dimen name="video_item_search_avatar_image_width">70dp</dimen>
     <dimen name="video_item_search_avatar_image_height">70dp</dimen>
     <dimen name="video_item_search_avatar_left_margin">27dp</dimen>
@@ -41,12 +52,12 @@
     <dimen name="channel_item_grid_thumbnail_image_size">92dp</dimen>
     <dimen name="channel_item_grid_min_width">128dp</dimen>
     <!-- Calculated: 2*video_item_search_padding + video_item_search_thumbnail_image_height -->
-    <dimen name="video_item_search_height">96dp</dimen>
+    <dimen name="video_item_search_height">105dp</dimen>
     <!-- Paddings & Margins -->
     <dimen name="video_item_search_padding">12dp</dimen>
-    <dimen name="video_item_search_image_right_margin">6dp</dimen>
-    <dimen name="video_item_search_duration_vertical_padding">1sp</dimen>
-    <dimen name="video_item_search_duration_horizontal_padding">5sp</dimen>
+    <dimen name="video_item_search_image_right_margin">12dp</dimen>
+    <dimen name="video_item_search_duration_vertical_padding">2dp</dimen>
+    <dimen name="video_item_search_duration_horizontal_padding">6dp</dimen>
     <dimen name="video_item_search_duration_margin">2dp</dimen>
     <dimen name="channel_item_grid_padding">12dp</dimen>
     <dimen name="comments_horizontal_padding">16dp</dimen>
@@ -68,7 +79,7 @@
 
     <!-- Video Item Detail View Dimensions-->
     <!-- Text Size -->
-    <dimen name="video_item_detail_title_text_size">15sp</dimen>
+    <dimen name="video_item_detail_title_text_size">19sp</dimen>
     <dimen name="video_item_detail_views_text_size">13sp</dimen>
     <dimen name="video_item_detail_likes_text_size">12sp</dimen>
     <dimen name="video_item_detail_uploader_text_size">12sp</dimen>
@@ -93,7 +104,7 @@
     <dimen name="video_item_detail_heart_margin">5dp</dimen>
     <dimen name="video_item_detail_error_panel_margin">50dp</dimen>
     <!-- Control panel -->
-    <dimen name="detail_control_text_size">12sp</dimen>
+    <dimen name="detail_control_text_size">12.5sp</dimen>
     <dimen name="detail_control_width">80dp</dimen>
     <dimen name="detail_control_height">55dp</dimen>
     <dimen name="detail_control_padding">6dp</dimen>
@@ -111,7 +122,7 @@
     <dimen name="playlist_ctrl_height">50dp</dimen>
     <dimen name="playlist_ctrl_separator_margin">10dp</dimen>
     <!-- Text Size -->
-    <dimen name="playlist_detail_title_text_size">16sp</dimen>
+    <dimen name="playlist_detail_title_text_size">26sp</dimen>
     <dimen name="playlist_detail_subtext_size">12sp</dimen>
     <!-- Elements Size -->
     <dimen name="playlist_detail_uploader_image_size">24dp</dimen>

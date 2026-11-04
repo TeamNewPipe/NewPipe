@@ -8,10 +8,12 @@
     android:background="?attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
-    android:padding="@dimen/video_item_search_padding">
+    android:paddingHorizontal="@dimen/yp_screen_margin"
+    android:paddingVertical="@dimen/yp_item_vertical_padding">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/itemThumbnailView"
+        app:shapeAppearanceOverlay="@style/YewPlayShape.Thumbnail"
         android:layout_width="90dp"
         android:layout_height="50dp"
         android:layout_alignParentStart="true"
@@ -24,18 +26,21 @@
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemStreamCountView"
+        android:layout_marginBottom="6dp"
+        android:layout_marginEnd="6dp"
+        android:textAllCaps="false"
         android:layout_width="45dp"
         android:layout_height="match_parent"
         android:layout_alignTop="@id/itemThumbnailView"
         android:layout_alignRight="@id/itemThumbnailView"
         android:layout_alignBottom="@id/itemThumbnailView"
-        android:background="@color/playlist_stream_count_background_color"
+        android:background="@drawable/yp_badge_duration"
         android:gravity="center"
         android:paddingTop="4dp"
         android:paddingBottom="6dp"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/duration_text_color"
-        android:textSize="@dimen/video_item_search_duration_text_size"
+        android:textAppearance="@style/TextAppearance.YewPlay.Badge"
+        android:fontFamily="@font/instrument_sans_semibold"
+        app:fontFamily="@font/instrument_sans_semibold"
         android:textStyle="bold"
         app:drawableTint="@color/duration_text_color"
         app:drawableTopCompat="@drawable/ic_playlist_play"
@@ -66,8 +71,9 @@
         android:layout_toRightOf="@+id/itemThumbnailView"
         android:ellipsize="end"
         android:maxLines="2"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="@dimen/video_item_search_title_text_size"
+        android:textAppearance="@style/TextAppearance.YewPlay.ItemTitle"
+        android:fontFamily="@font/instrument_sans_semibold"
+        app:fontFamily="@font/instrument_sans_semibold"
         tools:ignore="RtlHardcoded"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum" />
 
@@ -80,8 +86,7 @@
         android:layout_toRightOf="@+id/itemThumbnailView"
         android:ellipsize="end"
         android:lines="1"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="@dimen/video_item_search_uploader_text_size"
+        android:textAppearance="@style/TextAppearance.YewPlay.Meta"
         tools:ignore="RtlHardcoded"
         tools:text="Uploader really long lorem ipsum dolor sit amet consectetur" />
 

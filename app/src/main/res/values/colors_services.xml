@@ -1,38 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- YewPlay: todos os serviços usam a mesma paleta; a cor não identifica o serviço. -->
     <!-- YouTube -->
-    <color name="light_youtube_primary_color">#e53935</color>
-    <color name="light_youtube_accent_color">#000000</color>
+    <color name="light_youtube_primary_color">@color/yp_papel</color>
+    <color name="light_youtube_accent_color">@color/yp_tinta</color>
 
-    <color name="dark_youtube_primary_color">#992722</color>
-    <color name="dark_youtube_accent_color">#FFFFFF</color>
+    <color name="dark_youtube_primary_color">@color/yp_grafite</color>
+    <color name="dark_youtube_accent_color">@color/yp_marfim</color>
 
     <!-- SoundCloud -->
-    <color name="light_soundcloud_primary_color">#f57c00</color>
-    <color name="light_soundcloud_accent_color">#000000</color>
+    <color name="light_soundcloud_primary_color">@color/yp_papel</color>
+    <color name="light_soundcloud_accent_color">@color/yp_tinta</color>
 
-    <color name="dark_soundcloud_primary_color">#a35300</color>
-    <color name="dark_soundcloud_accent_color">#FFFFFF</color>
+    <color name="dark_soundcloud_primary_color">@color/yp_grafite</color>
+    <color name="dark_soundcloud_accent_color">@color/yp_marfim</color>
 
     <!-- PeerTube -->
-    <color name="light_peertube_primary_color">#ff6f00</color>
-    <color name="light_peertube_accent_color">#000000</color>
+    <color name="light_peertube_primary_color">@color/yp_papel</color>
+    <color name="light_peertube_accent_color">@color/yp_tinta</color>
 
-    <color name="dark_peertube_primary_color">#a34700</color>
-    <color name="dark_peertube_accent_color">#FFFFFF</color>
+    <color name="dark_peertube_primary_color">@color/yp_grafite</color>
+    <color name="dark_peertube_accent_color">@color/yp_marfim</color>
 
     <!-- media.ccc.de -->
-    <color name="light_media_ccc_primary_color">#9e9e9e</color>
-    <color name="light_media_ccc_accent_color">#000000</color>
+    <color name="light_media_ccc_primary_color">@color/yp_papel</color>
+    <color name="light_media_ccc_accent_color">@color/yp_tinta</color>
 
-    <color name="dark_media_ccc_primary_color">#878787</color>
-    <color name="dark_media_ccc_accent_color">#FFFFFF</color>
+    <color name="dark_media_ccc_primary_color">@color/yp_grafite</color>
+    <color name="dark_media_ccc_accent_color">@color/yp_marfim</color>
 
     <!-- Bandcamp -->
-    <color name="light_bandcamp_primary_color">#17a0c4</color>
-    <color name="light_bandcamp_accent_color">#000000</color>
+    <color name="light_bandcamp_primary_color">@color/yp_papel</color>
+    <color name="light_bandcamp_accent_color">@color/yp_tinta</color>
 
-    <color name="dark_bandcamp_primary_color">#1383a1</color>
-    <color name="dark_bandcamp_accent_color">#FFFFFF</color>
+    <color name="dark_bandcamp_primary_color">@color/yp_grafite</color>
+    <color name="dark_bandcamp_accent_color">@color/yp_marfim</color>
 
 </resources>

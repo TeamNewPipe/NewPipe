@@ -1,86 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="contrastColor">@color/black</color>
-    <color name="defaultIconTint">@color/black</color>
+    <color name="contrastColor">@color/yp_tinta</color>
+    <color name="defaultIconTint">@color/yp_tinta</color>
 
-    <color name="ic_launcher_background">#CD201F</color>
+    <color name="ic_launcher_background">#E0364F</color>
+    <color name="yewplay_splash_background">#18141A</color>
 
-    <color name="placeholder_background">#999999</color>
-    <color name="placeholder_foreground">#6C6C6C</color>
+    <color name="placeholder_background">@color/yp_areia</color>
+    <color name="placeholder_foreground">@color/yp_cinza_quente_claro</color>
+
+    <!-- YewPlay: paleta escura (padrão) -->
+    <color name="yp_grafite">#18141A</color>
+    <color name="yp_grafite_claro">#221D24</color>
+    <color name="yp_fumaca">#2C262F</color>
+    <color name="yp_marfim">#F3EEE9</color>
+    <color name="yp_cinza_quente">#9C9399</color>
+    <color name="yp_rubi">#E0364F</color>
+
+    <!-- YewPlay: paleta clara (tons de papel, nunca branco puro) -->
+    <color name="yp_papel">#F6F2EE</color>
+    <color name="yp_papel_escuro">#ECE6E1</color>
+    <color name="yp_areia">#E3DCD7</color>
+    <color name="yp_tinta">#1C171E</color>
+    <color name="yp_cinza_quente_claro">#6B6268</color>
+    <color name="yp_rubi_escuro">#C8243C</color>
+
+    <!-- YewPlay: AMOLED (preto puro no lugar do grafite) -->
+    <color name="yp_preto">#000000</color>
+    <color name="yp_preto_claro">#110F12</color>
+    <color name="yp_preto_fumaca">#1C181E</color>
+
+    <!-- YewPlay: papéis semânticos (estes valores são do tema claro; values-night tem os do escuro) -->
+    <color name="yp_bg">@color/yp_papel</color>
+    <color name="yp_surface">@color/yp_papel_escuro</color>
+    <color name="yp_surface_2">@color/yp_areia</color>
+    <color name="yp_on_bg">@color/yp_tinta</color>
+    <color name="yp_muted">@color/yp_cinza_quente_claro</color>
+    <color name="yp_state">@color/yp_rubi_escuro</color>
+    <color name="yp_on_action">@color/yp_papel</color>
 
     <!-- Light Theme -->
-    <color name="light_background_color">#EEEEEE</color>
-    <color name="light_dialog_background_color">#EEEEEE</color>
-    <color name="light_settings_accent_color">#e53935</color>
-    <color name="light_separator_color">#32000000</color>
-    <color name="light_ripple_color">#48868686</color>
-    <color name="light_selected_color">#2a868686</color>
-    <color name="light_contrast_background_color">#1fa6a6a6</color>
-    <color name="light_shadow_start_color">#5a000000</color>
-    <color name="light_license_background_color">#ffffff</color>
-    <color name="light_license_text_color">#212121</color>
-    <color name="light_card_item_background_color">#F8F8F8</color>
-    <color name="light_card_item_contrast_color">#E9E9E9</color>
-    <color name="light_border_color">#33000000</color>
+    <color name="light_background_color">@color/yp_papel</color>
+    <color name="light_dialog_background_color">@color/yp_papel</color>
+    <color name="light_settings_accent_color">@color/yp_tinta</color>
+    <color name="light_separator_color">#1F1C171E</color>
+    <color name="light_ripple_color">#1F1C171E</color>
+    <color name="light_selected_color">#141C171E</color>
+    <color name="light_contrast_background_color">@color/yp_papel_escuro</color>
+    <color name="light_shadow_start_color">#331C171E</color>
+    <color name="light_license_background_color">@color/yp_papel</color>
+    <color name="light_license_text_color">@color/yp_tinta</color>
+    <color name="light_card_item_background_color">@color/yp_papel_escuro</color>
+    <color name="light_card_item_contrast_color">@color/yp_areia</color>
+    <color name="light_border_color">#291C171E</color>
 
     <!-- Dark Theme -->
-    <color name="dark_background_color">#222222</color>
-    <color name="dark_dialog_background_color">#424242</color>
-    <color name="dark_settings_accent_color">#ff5252</color>
-    <color name="dark_separator_color">#0affffff</color>
-    <color name="dark_ripple_color">#48ffffff</color>
-    <color name="dark_selected_color">#2affffff</color>
-    <color name="dark_contrast_background_color">#1f717171</color>
-    <color name="dark_shadow_start_color">#82000000</color>
-    <color name="dark_license_background_color">#424242</color>
-    <color name="dark_license_text_color">#ffffff</color>
-    <color name="dark_queue_background_color">#af000000</color>
-    <color name="dark_card_item_background_color">#313131</color>
-    <color name="dark_card_item_contrast_color">#474747</color>
-    <color name="dark_border_color">#33FFFFFF</color>
+    <color name="dark_background_color">@color/yp_grafite</color>
+    <color name="dark_dialog_background_color">@color/yp_grafite_claro</color>
+    <color name="dark_settings_accent_color">@color/yp_marfim</color>
+    <color name="dark_separator_color">#14F3EEE9</color>
+    <color name="dark_ripple_color">#24F3EEE9</color>
+    <color name="dark_selected_color">#1AF3EEE9</color>
+    <color name="dark_contrast_background_color">@color/yp_grafite_claro</color>
+    <color name="dark_shadow_start_color">#80000000</color>
+    <color name="dark_license_background_color">@color/yp_grafite_claro</color>
+    <color name="dark_license_text_color">@color/yp_marfim</color>
+    <color name="dark_queue_background_color">#E618141A</color>
+    <color name="dark_card_item_background_color">@color/yp_grafite_claro</color>
+    <color name="dark_card_item_contrast_color">@color/yp_fumaca</color>
+    <color name="dark_border_color">#24F3EEE9</color>
 
-    <!-- Black Theme -->
-    <color name="black_background_color">#000000</color>
+    <!-- Black Theme (AMOLED) -->
+    <color name="black_background_color">@color/yp_preto</color>
     <color name="black_settings_accent_color">@color/dark_settings_accent_color</color>
-    <color name="black_separator_color">#1effffff</color>
-    <color name="black_contrast_background_color">#23454545</color>
-    <color name="black_card_item_background_color">#0F0F0F</color>
-    <color name="black_card_item_contrast_color">#202020</color>
-    <color name="black_border_color">#25FFFFFF</color>
+    <color name="black_separator_color">#14F3EEE9</color>
+    <color name="black_contrast_background_color">@color/yp_preto_claro</color>
+    <color name="black_card_item_background_color">@color/yp_preto_claro</color>
+    <color name="black_card_item_contrast_color">@color/yp_preto_fumaca</color>
+    <color name="black_border_color">#1FF3EEE9</color>
 
     <!-- Miscellaneous -->
     <color name="queue_background_color">@color/dark_queue_background_color</color>
-    <color name="drawer_header_font_color">#F2FFFFFF</color>
-    <color name="duration_background_color">#aa000000</color>
-    <color name="live_duration_background_color">#c8E53935</color>
-    <color name="playlist_stream_count_background_color">#e6000000</color>
-    <color name="duration_text_color">#EEFFFFFF</color>
-    <color name="video_overlay_color">#64000000</color>
+    <color name="drawer_header_font_color">@color/yp_on_bg</color>
+    <color name="duration_background_color">#CC18141A</color>
+    <color name="live_duration_background_color">@color/yp_rubi</color>
+    <color name="playlist_stream_count_background_color">#E618141A</color>
+    <color name="duration_text_color">@color/yp_marfim</color>
+    <color name="video_overlay_color">#6618141A</color>
 
-    <color name="subscribe_text_color">#fff</color>
-    <color name="subscribed_background_color">#d6d6d6</color>
-    <color name="subscribed_text_color">#717171</color>
+    <color name="subscribe_text_color">@color/yp_on_action</color>
+    <color name="subscribed_background_color">@color/yp_surface_2</color>
+    <color name="subscribed_text_color">@color/yp_on_bg</color>
 
     <color name="transparent_background_color">#00000000</color>
-    <color name="selected_background_color">#96717171</color>
+    <color name="selected_background_color">#662C262F</color>
 
     <!-- GigaGet theme -->
-    <color name="bluegray">#607D8B</color>
+    <color name="bluegray">@color/yp_surface</color>
 
     <!-- GigaGet download Theme colors -->
-    <color name="audio_left_to_load_color">#555555</color>
-    <color name="audio_already_load_color">#000000</color>
-    <color name="video_left_to_load_color">#CD5656</color>
-    <color name="video_already_load_color">#BC211D</color>
-    <color name="subtitle_left_to_load_color">#008ea4</color>
-    <color name="subtitle_already_load_color">#005a71</color>
+    <color name="audio_left_to_load_color">@color/yp_surface</color>
+    <color name="audio_already_load_color">@color/yp_surface_2</color>
+    <color name="video_left_to_load_color">@color/yp_surface</color>
+    <color name="video_already_load_color">@color/yp_surface_2</color>
+    <color name="subtitle_left_to_load_color">@color/yp_surface</color>
+    <color name="subtitle_already_load_color">@color/yp_surface_2</color>
 
     <!-- GigaGet Component colors -->
     <color name="white">#FFFFFF</color>
-    <color name="white_secondary">#C9CACB</color>
+    <color name="white_secondary">@color/yp_cinza_quente</color>
 
-    <color name="gray">#616161</color>
+    <color name="gray">@color/yp_cinza_quente_claro</color>
 
     <color name="black">#000</color>
 

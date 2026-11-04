@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="navigate_back">Voltar</string>
-    <string name="title_activity_about">Sobre o NewPipe</string>
+    <string name="title_activity_about">Sobre o YewPlay</string>
     <string name="title_licenses">Licenças de terceiros</string>
     <string name="license">Por %1$s sob %2$s</string>
     <string name="tab_about">Sobre &amp; Perguntas Frequentes</string>
@@ -18,8 +18,8 @@
     <string name="privacy_policy_title">Política de Privacidade do NewPipe</string>
     <string name="privacy_policy_encouragement">O projeto NewPipe leva a sua privacidade muito a sério. Portanto, a app não coleta nenhum dado sem o seu consentimento.\nA política de privacidade do NewPipe explica detalhadamente quais dados são enviados e armazenados ao enviar um relatório de erro.</string>
     <string name="read_privacy_policy">Leia a política de privacidade</string>
-    <string name="app_license_title">Licença do NewPipe</string>
-    <string name="app_license">NewPipe é um software copyleft libre: pode usá-lo, estudá-lo, partilhá-lo e melhorá-lo à vontade. Especificamente, pode redistribuí-lo e/ou modificá-lo sob os termos da Licença Pública Geral GNU conforme publicada pela Free Software Foundation, seja a versão 3 da Licença ou (ao seu critério) qualquer versão posterior.</string>
+    <string name="app_license_title">Licença do YewPlay</string>
+    <string name="app_license">YewPlay é um software copyleft libre: pode usá-lo, estudá-lo, partilhá-lo e melhorá-lo à vontade. Especificamente, pode redistribuí-lo e/ou modificá-lo sob os termos da Licença Pública Geral GNU conforme publicada pela Free Software Foundation, seja a versão 3 da Licença ou (ao seu critério) qualquer versão posterior.</string>
     <string name="read_full_license">Ler licença</string>
     <string name="faq_title">Perguntas frequentes</string>
     <string name="faq_description">Se tem problemas a usar a app, verifique estas respostas para perguntas comuns!</string>

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Follows service's primary color -->
+    <!-- YewPlay: botão principal na cor de ação (marfim no escuro, tinta no claro) -->
     <style name="ServiceColoredButton" parent="Widget.AppCompat.Button.Colored">
-        <item name="colorButtonNormal">?attr/colorPrimary</item>
+        <item name="colorButtonNormal">?attr/colorAccent</item>
         <item name="android:textColor">@color/subscribe_text_color</item>
-        <item name="colorControlHighlight">@color/dark_ripple_color</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/instrument_sans_semibold</item>
+        <item name="colorControlHighlight">@color/light_ripple_color</item>
     </style>
 
 
@@ -15,7 +17,7 @@
         <item name="colorPrimaryDark">@color/light_youtube_primary_color</item>
         <item name="colorAccent">@color/light_settings_accent_color</item>
 
-        <item name="actionColor">@color/white</item>
+        <item name="actionColor">@color/yp_tinta</item>
         <item name="nnf_toolbarTheme">@style/ToolbarTheme</item>
 
         <item name="android:windowBackground">@color/light_background_color</item>
@@ -29,7 +31,7 @@
         <item name="colorPrimaryDark">@color/dark_youtube_primary_color</item>
         <item name="colorAccent">@color/dark_settings_accent_color</item>
 
-        <item name="actionColor">@color/white</item>
+        <item name="actionColor">@color/yp_marfim</item>
         <item name="nnf_toolbarTheme">@style/ToolbarTheme</item>
 
         <item name="android:windowBackground">@color/dark_background_color</item>
@@ -68,8 +70,10 @@
 
     <style name="DarkPopupMenu" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    <!-- YewPlay: a barra tem a cor do fundo, então ícones e textos usam a cor de ação -->
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.DayNight.ActionBar">
         <item name="popupTheme">@style/ToolbarPopupTheme</item>
+        <item name="colorControlNormal">?attr/actionColor</item>
         <item name="android:textColorPrimary">?attr/actionColor</item>
         <item name="android:textColorSecondary">?attr/actionColor</item>
         <item name="tint">?attr/actionColor</item>
@@ -102,9 +106,10 @@
         <item name="colorAccent">?attr/toolbarSearchColor</item>
     </style>
 
+    <!-- YewPlay: avatares em quadrado arredondado, não círculo -->
     <style name="CircularImageView">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">50%</item>
+        <item name="cornerSize">32%</item>
     </style>
 
 </resources>

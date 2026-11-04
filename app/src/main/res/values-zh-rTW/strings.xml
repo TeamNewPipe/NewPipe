@@ -90,7 +90,7 @@
     <string name="msg_name">檔案名稱</string>
     <string name="msg_threads">執行緒數目</string>
     <string name="msg_error">錯誤</string>
-    <string name="msg_running">NewPipe 下載中</string>
+    <string name="msg_running">YewPlay 下載中</string>
     <string name="msg_running_detail">輕觸以顯示詳細資訊</string>
     <string name="msg_wait">請稍候…</string>
     <string name="msg_copied">已複製到剪貼簿</string>
@@ -117,8 +117,8 @@
     <string name="settings_category_player_behavior_title">行為</string>
     <string name="settings_category_history_title">歷史紀錄與快取</string>
     <string name="undo">復原</string>
-    <string name="notification_channel_name">NewPipe 通知</string>
-    <string name="notification_channel_description">NewPipe 播放器的通知</string>
+    <string name="notification_channel_name">YewPlay 通知</string>
+    <string name="notification_channel_description">YewPlay 播放器的通知</string>
     <string name="search_no_results">沒有結果</string>
     <string name="empty_list_subtitle">這裡空空如也</string>
     <string name="no_subscribers">無訂閱者</string>
@@ -136,15 +136,15 @@
     <string name="settings_file_replacement_character_title">替換字元</string>
     <string name="charset_letters_and_digits">字母與數字</string>
     <string name="charset_most_special_characters">大部分的特殊字元</string>
-    <string name="title_activity_about">關於 NewPipe</string>
+    <string name="title_activity_about">關於 YewPlay</string>
     <string name="title_licenses">第三方授權條款</string>
     <string name="copyright" formatted="true">© %1$s 由 %2$s 使用 %3$s 授權條款發布</string>
     <string name="tab_about">關於 &amp; 常見問題</string>
     <string name="tab_licenses">授權條款</string>
     <string name="app_description">在 Android 上自由且輕量的串流。</string>
     <string name="view_on_github">在 GitHub 上檢視</string>
-    <string name="app_license_title">NewPipe 的授權條款</string>
-    <string name="contribution_encouragement">不管您有什麼點子 ── 翻譯、設計、清理或撰寫大量程式碼 ── 我們永遠歡迎您來幫忙。做得越多，NewPipe 就會更好！</string>
+    <string name="app_license_title">YewPlay 的授權條款</string>
+    <string name="contribution_encouragement">不管您有什麼點子 ── 翻譯、設計、清理或撰寫大量程式碼 ── 我們永遠歡迎您來幫忙。做得越多，YewPlay 就會更好！</string>
     <string name="read_full_license">閱讀授權條款</string>
     <string name="contribution_title">貢獻</string>
     <string name="title_activity_history">歷史紀錄</string>
@@ -280,7 +280,7 @@
     <string name="delete_search_history_alert">刪除所有搜尋歷史紀錄？</string>
     <string name="search_history_deleted">搜尋紀錄已刪除</string>
     <string name="one_item_deleted">已刪除一個項目。</string>
-    <string name="app_license">NewPipe 是一個 Copyleft 的自由軟體：您可以隨意使用、研究、分享並改進它。在遵守由自由軟體基金會所發佈的 GNU 通用公共授權條款的狀況下，您可以自由地再散佈及／或修改它；授權條款預設使用第三版，但您也可以選擇更新的版本。</string>
+    <string name="app_license">YewPlay 是一個 Copyleft 的自由軟體：您可以隨意使用、研究、分享並改進它。在遵守由自由軟體基金會所發佈的 GNU 通用公共授權條款的狀況下，您可以自由地再散佈及／或修改它；授權條款預設使用第三版，但您也可以選擇更新的版本。</string>
     <string name="import_settings">您是否要同時匯入設定？</string>
     <string name="privacy_policy_title">NewPipe 的隱私政策</string>
     <string name="privacy_policy_encouragement">NewPipe 專案非常重視您的隱私。因此，未經您同意此程式不會收集任何資料。 \nNewPipe 的隱私權政策詳細說明了當您發送錯誤回報時，什麼資料會被傳送及儲存。</string>
@@ -307,7 +307,7 @@
     <string name="settings_category_updates_title">更新</string>
     <string name="file_deleted">已刪除檔案</string>
     <string name="app_update_notification_channel_name">應用程式更新通知</string>
-    <string name="app_update_notification_channel_description">新 NewPipe 版本通知</string>
+    <string name="app_update_notification_channel_description">新 YewPlay 版本通知</string>
     <string name="download_to_sdcard_error_title">無法使用外部儲存空間</string>
     <string name="download_to_sdcard_error_message">無法下載到外部 SD 卡。重設下載資料夾位置？</string>
     <string name="saved_tabs_invalid_json">無法讀取已儲存的分頁，因此使用預設分頁</string>
@@ -321,7 +321,7 @@
     <string name="list">清單</string>
     <string name="grid">網格</string>
     <string name="auto">自動</string>
-    <string name="app_update_available_notification_title">有可用的 NewPipe 更新！</string>
+    <string name="app_update_available_notification_title">有可用的 YewPlay 更新！</string>
     <string name="missions_header_finished">已完成</string>
     <string name="missions_header_pending">有待處理</string>
     <string name="paused">已暫停</string>
@@ -368,7 +368,7 @@
     <string name="overwrite_unrelated_warning">同名的檔案已存在</string>
     <string name="overwrite_failed">無法覆寫檔案</string>
     <string name="download_already_pending">已有正在擱置的下載與此同名</string>
-    <string name="error_postprocessing_stopped">NewPipe 在處理檔案時被關閉</string>
+    <string name="error_postprocessing_stopped">YewPlay 在處理檔案時被關閉</string>
     <string name="error_insufficient_storage_left">裝置上沒有剩餘的空間</string>
     <string name="error_progress_lost">進度遺失，因為檔案已被刪除</string>
     <string name="confirm_prompt">您想要清除您的下載歷史紀錄，還是刪除所有已下載的檔案？</string>
@@ -456,8 +456,8 @@
     <string name="feed_use_dedicated_fetch_method_summary">其在某些服務中可用，且通常較快速，但可能只會回傳有限的項目，而且資訊通常不完整 (例如：沒有持續時間、項目類型、沒有即時狀態)</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">啟用快速模式</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">停用快速模式</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">您覺得 feed 載入太慢了嗎？如果是的話，試著啟用快速載入 (您可以在設定中變更或按下下方的按鈕)。 \n \nNewPipe 提供兩個 feed 載入策略： \n• 擷取整個訂閱頻道，慢但是完整。 \n• 使用專用的伺服器端點，較快速但是通常不完整。 \n \n兩者之間的差別是，較快速的通常缺少部份資訊，如項目的持續時間或類型（無法區分直播影片或一般影片），而且其可能會回傳較少項目。 \n \nYouTube 是一種透過其 RSS feed 提供這種快速方式的例子。 \n \n因此，請選取您較偏好的：速度或準確的資訊。</string>
-    <string name="content_not_supported">NewPipe 尚未支援此內容。 \n \n希望它會在未來的版本中支援。</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">您覺得 feed 載入太慢了嗎？如果是的話，試著啟用快速載入 (您可以在設定中變更或按下下方的按鈕)。 \n \nYewPlay 提供兩個 feed 載入策略： \n• 擷取整個訂閱頻道，慢但是完整。 \n• 使用專用的伺服器端點，較快速但是通常不完整。 \n \n兩者之間的差別是，較快速的通常缺少部份資訊，如項目的持續時間或類型（無法區分直播影片或一般影片），而且其可能會回傳較少項目。 \n \nYouTube 是一種透過其 RSS feed 提供這種快速方式的例子。 \n \n因此，請選取您較偏好的：速度或準確的資訊。</string>
+    <string name="content_not_supported">YewPlay 尚未支援此內容。 \n \n希望它會在未來的版本中支援。</string>
     <string name="infinite_videos">∞ 部影片</string>
     <string name="more_than_100_videos">超過 100 部影片</string>
     <string name="artists">演出者</string>
@@ -507,7 +507,7 @@
     <string name="show_memory_leaks">顯示記憶體洩漏</string>
     <string name="enqueued">已加入佇列</string>
     <string name="enqueue_stream">加入佇列</string>
-    <string name="clear_cookie_summary">清除 NewPipe 在您解決 reCAPTCHA 時儲存的 cookie</string>
+    <string name="clear_cookie_summary">清除 YewPlay 在您解決 reCAPTCHA 時儲存的 cookie</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA cookies 已被清除</string>
     <string name="clear_cookie_title">清除 reCAPTCHA cookies</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube 有提供「嚴格篩選模式」，可以隱藏潛在的成人內容</string>
@@ -531,12 +531,12 @@
     <string name="open_with">以……開啟</string>
     <string name="no_app_to_open_intent">您的裝置上沒有應用程式可以開啟這個</string>
     <string name="crash_the_app">應用程式當機</string>
-    <string name="paid_content">此內容僅對已付費的內容可用，因此無法由 NewPipe 串流或下載。</string>
-    <string name="youtube_music_premium_content">此影片僅供 YouTube Music Premium 會員使用，因此無法由 NewPipe 串流或下載。</string>
-    <string name="private_content">此內容為私人內容，因此無法由 NewPipe 串流或下載。</string>
-    <string name="soundcloud_go_plus_content">這是 SoundCloud Go+ 的曲目，因此至少在您的國家無法由 NewPipe 串流或下載。</string>
+    <string name="paid_content">此內容僅對已付費的內容可用，因此無法由 YewPlay 串流或下載。</string>
+    <string name="youtube_music_premium_content">此影片僅供 YouTube Music Premium 會員使用，因此無法由 YewPlay 串流或下載。</string>
+    <string name="private_content">此內容為私人內容，因此無法由 YewPlay 串流或下載。</string>
+    <string name="soundcloud_go_plus_content">這是 SoundCloud Go+ 的曲目，因此至少在您的國家無法由 YewPlay 串流或下載。</string>
     <string name="georestricted_content">此內容在您所在的國家不可用。</string>
-    <string name="restricted_video_no_stream">此影片有年齡限制。 \n因為 YouTube 新的年齡影片限制政策，NewPipe 無法存取任何這類的視訊串流，因此無法播放。</string>
+    <string name="restricted_video_no_stream">此影片有年齡限制。 \n因為 YouTube 新的年齡影片限制政策，YewPlay 無法存取任何這類的視訊串流，因此無法播放。</string>
     <string name="radio">廣播</string>
     <string name="featured">精選</string>
     <string name="recaptcha_solve">解決</string>
@@ -566,7 +566,7 @@
     <string name="open_website_license">開啟網站</string>
     <string name="account_terminated">帳號已終止</string>
     <string name="feed_load_error_fast_unknown">快速 feed 模式不會提供更多資訊。</string>
-    <string name="feed_load_error_terminated">作者的帳號已被終止。 \nNewPipe 未來將無法載入此 feed。 \n您想要取消訂閱此頻道嗎？</string>
+    <string name="feed_load_error_terminated">作者的帳號已被終止。 \nYewPlay 未來將無法載入此 feed。 \n您想要取消訂閱此頻道嗎？</string>
     <string name="feed_load_error_account_info">無法載入「%s」。</string>
     <string name="feed_load_error">載入 feed 時發生錯誤</string>
     <string name="downloads_storage_use_saf_summary_api_29">從 Android 10 開始僅支援「儲存空間存取框架」</string>
@@ -609,7 +609,7 @@
     <string name="create_error_notification">建立錯誤通知</string>
     <string name="no_appropriate_file_manager_message_android_10">找不到適合此動作的檔案管理員。 \n請安裝相容於儲存空間存取框架的檔案管理員</string>
     <string name="no_appropriate_file_manager_message">找不到適合此動作的檔案管理員。 \n請安裝檔案管理員或在下載設定裡嘗試停用「%s」</string>
-    <string name="error_report_notification_title">NewPipe 遭遇了一個錯誤，輕觸以回報</string>
+    <string name="error_report_notification_title">YewPlay 遭遇了一個錯誤，輕觸以回報</string>
     <string name="error_report_notification_toast">發生錯誤，請查看通知</string>
     <string name="detail_pinned_comment_view_description">釘選的留言</string>
     <string name="leak_canary_not_available">LeakCanary 無法使用</string>
@@ -649,7 +649,7 @@
     <string name="faq">在網站上檢視</string>
     <string name="sort">排序</string>
     <string name="faq_description">若您在使用此應用程式時遇到任何問題，請務必先看看常見問題的答案！</string>
-    <string name="app_update_unavailable_toast">您正在執行最新版本的 NewPipe</string>
+    <string name="app_update_unavailable_toast">您正在執行最新版本的 YewPlay</string>
     <string name="app_update_available_notification_text">輕觸以下載 %s</string>
     <string name="fast_mode">快速模式</string>
     <string name="import_subscriptions_hint">從三點式選單匯入或匯出訂閱</string>
@@ -756,7 +756,7 @@
     <string name="reset_all_settings">重設所有設定將會放棄您的所有偏好設定並重新啟動應用程式。 \n \n您確定您想要繼續嗎？</string>
     <string name="yes">是</string>
     <string name="no">否</string>
-    <string name="auto_update_check_description">NewPipe 可以隨時自動檢查新版本，並在新版本可用時通知您。 \n您想要啟用此功能嗎？</string>
+    <string name="auto_update_check_description">YewPlay 可以隨時自動檢查新版本，並在新版本可用時通知您。 \n您想要啟用此功能嗎？</string>
     <string name="import_settings_vulnerable_format">匯入的匯出中的設定使用自 NewPipe 0.27.0 起已廢棄的脆弱格式。請確定匯入的匯出是來自可信賴的來源，並在未來只使用從 NewPipe 0.27.0 或更新版本取得的匯出。對於匯入此脆弱格式設定的支援即將完全移除，屆時舊版本的 NewPipe 將無法再匯入新版本匯出的設定。</string>
     <string name="audio_track_type_secondary">次要</string>
     <string name="share_playlist_as_youtube_temporary_playlist">分享為 YouTube 臨時播放清單</string>

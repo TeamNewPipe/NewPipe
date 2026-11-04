@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- YewPlay: triângulo de "play" com pontas suavizadas. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M5.42,5.20Q5.42,3.00 7.33,4.10L19.18,10.90Q21.08,12.00 19.18,13.10L7.33,19.90Q5.42,21.00 5.42,18.80Z" />
+</vector>

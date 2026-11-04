@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="navigate_back">Retour</string>
-    <string name="title_activity_about">À propos de NewPipe</string>
+    <string name="title_activity_about">À propos de YewPlay</string>
     <string name="title_licenses">Licences de tiers</string>
     <string name="license">Par %1$s sous %2$s</string>
     <string name="tab_about">À propos &amp; FAQ</string>
@@ -18,8 +18,8 @@
     <string name="privacy_policy_title">Politique de confidentialité de NewPipe</string>
     <string name="privacy_policy_encouragement">Le projet NewPipe accorde une grande importance à la protection de vos données personnelles. C'est pourquoi l'application ne collecte aucune donnée sans votre consentement.\nLa politique de confidentialité de NewPipe explique en détail quelles données sont transmises et stockées lorsque vous envoyez un rapport d'erreur.</string>
     <string name="read_privacy_policy">Consultez notre politique de confidentialité</string>
-    <string name="app_license_title">Licence de NewPipe</string>
-    <string name="app_license">NewPipe est un logiciel libre sous licence copyleft : vous pouvez l'utiliser, l'étudier, le partager et l'améliorer à votre guise. Plus précisément, vous pouvez le redistribuer et/ou le modifier selon les termes de la Licence publique générale GNU telle que publiée par la Free Software Foundation, soit la version 3 de la licence, soit (à votre choix) toute version ultérieure.</string>
+    <string name="app_license_title">Licence de YewPlay</string>
+    <string name="app_license">YewPlay est un logiciel libre sous licence copyleft : vous pouvez l'utiliser, l'étudier, le partager et l'améliorer à votre guise. Plus précisément, vous pouvez le redistribuer et/ou le modifier selon les termes de la Licence publique générale GNU telle que publiée par la Free Software Foundation, soit la version 3 de la licence, soit (à votre choix) toute version ultérieure.</string>
     <string name="read_full_license">Lire la licence</string>
     <string name="faq_title">Foire aux questions</string>
     <string name="faq_description">Si vous rencontrez des difficultés avec l'application, n'hésitez pas à consulter ces réponses aux questions fréquentes !</string>

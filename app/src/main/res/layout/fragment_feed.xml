@@ -4,10 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- YewPlay: channels with new videos and groups as tabs (Compose) -->
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/yp_subscriptions_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
+
     <RelativeLayout
         android:id="@+id/refresh_root_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/yp_subscriptions_header"
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"

@@ -72,7 +72,7 @@
     <string name="msg_name">Nombre del archivo</string>
     <string name="msg_threads">Subprocesos</string>
     <string name="msg_error">Error</string>
-    <string name="msg_running">NewPipe está descargando</string>
+    <string name="msg_running">YewPlay está descargando</string>
     <string name="msg_running_detail">Toca para ver detalles</string>
     <string name="msg_wait">Espere, por favor…</string>
     <string name="msg_copied">Copiado al portapapeles</string>
@@ -100,14 +100,14 @@
     <string name="show_search_suggestions_title">Sugerencias de búsqueda</string>
     <string name="show_search_suggestions_summary">Elegir las sugerencias a mostrar al buscar</string>
     <string name="best_resolution">Mejor resolución</string>
-    <string name="title_activity_about">Acerca de NewPipe</string>
+    <string name="title_activity_about">Acerca de YewPlay</string>
     <string name="title_licenses">Licencias de terceros</string>
     <string name="copyright" formatted="true">© %1$s por %2$s, bajo %3$s</string>
     <string name="tab_about">Acerca de y preguntas frecuentes</string>
     <string name="tab_licenses">Licencias</string>
     <string name="app_description">Streaming libre y ligero en Android.</string>
     <string name="view_on_github">Ver en GitHub</string>
-    <string name="app_license_title">Licencia de NewPipe</string>
+    <string name="app_license_title">Licencia de YewPlay</string>
     <string name="contribution_encouragement">Tanto si tiene ideas de traducción, cambios de diseño, limpieza de código o modificaciones profundas en el código, la ayuda siempre es bienvenida. ¡Cuanto más se haga, mejor se vuelve!</string>
     <string name="read_full_license">Leer licencia</string>
     <string name="contribution_title">Contribuir</string>
@@ -132,8 +132,8 @@
     <string name="enable_watch_history_summary">Almacenar historial de vídeos vistos</string>
     <string name="title_activity_history">Historial</string>
     <string name="action_history">Historial</string>
-    <string name="notification_channel_name">Notificación de NewPipe</string>
-    <string name="notification_channel_description">Notificaciones para el reproductor de NewPipe</string>
+    <string name="notification_channel_name">Notificación de YewPlay</string>
+    <string name="notification_channel_description">Notificaciones para el reproductor de YewPlay</string>
     <string name="settings_category_player_title">Reproductor</string>
     <string name="settings_category_player_behavior_title">Funcionamiento</string>
     <string name="settings_category_history_title">Historial y caché</string>
@@ -290,7 +290,7 @@
     <string name="delete_search_history_alert">¿Borrar todo el historial de búsqueda?</string>
     <string name="search_history_deleted">Historial de búsquedas borrado</string>
     <string name="one_item_deleted">Se ha borrado 1 elemento.</string>
-    <string name="app_license">NewPipe es software libre con copyleft: puedes usarlo, estudiarlo, compartirlo y mejorarlo a voluntad. Específicamente, puedes redistribuirlo y/o modificarlo bajo los términos de la Licencia Pública General de GNU publicada por la Free Software Foundation, ya sea la versión 3 de la licencia o (a tu elección) cualquier versión posterior.</string>
+    <string name="app_license">YewPlay es software libre con copyleft: puedes usarlo, estudiarlo, compartirlo y mejorarlo a voluntad. Específicamente, puedes redistribuirlo y/o modificarlo bajo los términos de la Licencia Pública General de GNU publicada por la Free Software Foundation, ya sea la versión 3 de la licencia o (a tu elección) cualquier versión posterior.</string>
     <string name="import_settings">¿Quieres importar también los ajustes?</string>
     <string name="privacy_policy_title">Política de privacidad de NewPipe</string>
     <string name="privacy_policy_encouragement">El proyecto NewPipe toma tu privacidad muy en serio. Por ello, la aplicación no recopila ningún dato sin tu consentimiento. \nLa política de privacidad de NewPipe explica en detalle qué datos se envían y almacenan al enviar un informe de fallo.</string>
@@ -354,7 +354,7 @@
     <string name="error_http_unsupported_range">El servidor no acepta descargas multi-hilos, intente de nuevo con @string/msg_threads = 1</string>
     <string name="error_http_not_found">No encontrado</string>
     <string name="error_postprocessing_failed">Falló el posprocesamiento</string>
-    <string name="error_postprocessing_stopped">NewPipe se cerró mientras se trabajaba en el archivo</string>
+    <string name="error_postprocessing_stopped">YewPlay se cerró mientras se trabajaba en el archivo</string>
     <string name="error_insufficient_storage_left">No hay suficiente espacio disponible en el dispositivo</string>
     <string name="error_progress_lost">Progreso perdido, porque el archivo fue borrado</string>
     <string name="error_timeout">El tiempo de conexión expiro</string>
@@ -368,7 +368,7 @@
     <string name="settings_category_updates_title">Actualizaciones</string>
     <string name="events">Eventos</string>
     <string name="app_update_notification_channel_name">Notificación de actualización de la aplicación</string>
-    <string name="app_update_notification_channel_description">Notificaciones de nuevas versiones de NewPipe</string>
+    <string name="app_update_notification_channel_description">Notificaciones de nuevas versiones de YewPlay</string>
     <string name="download_to_sdcard_error_title">Almacenamiento externo no disponible</string>
     <string name="download_to_sdcard_error_message">No es posible descargar a una tarjeta SD externa. ¿Restablecer la ubicación de la carpeta de descarga?</string>
     <string name="saved_tabs_invalid_json">No se pudo leer las pestañas guardadas, se usarán las pestañas predefinidas</string>
@@ -381,7 +381,7 @@
     <string name="updates_setting_description">Mostrar una notificación para solicitar actualizar la aplicación al haber una nueva versión disponible</string>
     <string name="list_view_mode">Modo de vista de lista</string>
     <string name="auto">Automático</string>
-    <string name="app_update_available_notification_title">¡Actualización de NewPipe disponible!</string>
+    <string name="app_update_available_notification_title">¡Actualización de YewPlay disponible!</string>
     <string name="show_comments_title">Mostrar comentarios</string>
     <string name="show_comments_summary">Deshabilitar para ocultar comentarios</string>
     <string name="autoplay_title">Reproducción automática</string>
@@ -480,7 +480,7 @@
     <string name="feed_use_dedicated_fetch_method_enable_button">Habilitar modo rápido</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Deshabilitar modo rápido</string>
     <string name="feed_use_dedicated_fetch_method_help_text">¿Piensas que la carga de contenidos es muy lenta? Entonces intenta habilitar la carga rápida (puedes cambiarlo en los ajustes o pulsando el botón debajo). \n \nNewpipe ofrece dos formas de cargar los contenidos: \n• Obtener todos los canales con suscripciones, lento pero completo. \n• Usar un punto dedicado de servicio, más rápido pero usualmente incompleto. \n \nLa diferencia es que en la forma rápida usualmente falta algo de información, como la duración o tipo de ítem (no se puede diferenciar entre videos normales y en vivo) y puede que aparezcan menos ítems. \n \nYouTube es un ejemplo de un servicio que ofrece este método rápido con su listado de contenidos por RSS. \n \nEntonces la elección se limita a qué prefieres: velocidad o información exacta.</string>
-    <string name="content_not_supported">Este contenido aún no es soportado por NewPipe. \n \nEsperamos que sea soportado en una versión futura.</string>
+    <string name="content_not_supported">Este contenido aún no es soportado por YewPlay. \n \nEsperamos que sea soportado en una versión futura.</string>
     <string name="infinite_videos">∞ vídeos</string>
     <string name="more_than_100_videos">Más de 100 vídeos</string>
     <string name="artists">Artistas</string>
@@ -527,7 +527,7 @@
     <string name="notification_action_1_title">Botón de segunda acción</string>
     <string name="notification_action_0_title">Botón de primera acción</string>
     <string name="notification_scale_to_square_image_summary">Recortar la relación de aspecto de la miniatura del vídeo mostrada en la notificación de 16:9 a 1:1</string>
-    <string name="clear_cookie_summary">Vaciar las cookies que NewPipe guarda al resolver un reCAPTCHA</string>
+    <string name="clear_cookie_summary">Vaciar las cookies que YewPlay guarda al resolver un reCAPTCHA</string>
     <string name="show_age_restricted_content_summary">Mostrar contenido inapropiado para niños porque tiene un limite de edad (como 18+)</string>
     <string name="show_memory_leaks">Mostrar pérdidas de memoria</string>
     <string name="enqueued">Añadido a la cola</string>
@@ -553,13 +553,13 @@
     <string name="show_meta_info_title">Mostrar meta información</string>
     <string name="show_description_title">Mostrar descripción</string>
     <string name="open_with">Abrir con</string>
-    <string name="soundcloud_go_plus_content">Esta es una pista de SoundCloud Go+, al menos en tu país, por lo que no puede ser transmitido ni descargado por NewPipe.</string>
+    <string name="soundcloud_go_plus_content">Esta es una pista de SoundCloud Go+, al menos en tu país, por lo que no puede ser transmitido ni descargado por YewPlay.</string>
     <string name="crash_the_app">La aplicación dejó de funcionar</string>
-    <string name="paid_content">Este contenido solo está disponible para los usuarios que hayan pagado, por lo que no puede ser transmitido o descargado por NewPipe.</string>
-    <string name="youtube_music_premium_content">Este vídeo solo está disponible para los miembros de YouTube Music Premium, por lo que no puede ser transmitido ni descargado por NewPipe.</string>
-    <string name="private_content">Este contenido es privado, por lo que no puede ser transmitido ni descargado por NewPipe.</string>
+    <string name="paid_content">Este contenido solo está disponible para los usuarios que hayan pagado, por lo que no puede ser transmitido o descargado por YewPlay.</string>
+    <string name="youtube_music_premium_content">Este vídeo solo está disponible para los miembros de YouTube Music Premium, por lo que no puede ser transmitido ni descargado por YewPlay.</string>
+    <string name="private_content">Este contenido es privado, por lo que no puede ser transmitido ni descargado por YewPlay.</string>
     <string name="georestricted_content">Este contenido no está disponible en tu país.</string>
-    <string name="restricted_video_no_stream">Este vídeo tiene restricción de edad. \nDebido a las nuevas políticas de YouTube con vídeos con restricción de edad, NewPipe no puede acceder a ninguna de sus transmisiones de vídeo, y por lo tanto, no puede reproducirlo.</string>
+    <string name="restricted_video_no_stream">Este vídeo tiene restricción de edad. \nDebido a las nuevas políticas de YouTube con vídeos con restricción de edad, YewPlay no puede acceder a ninguna de sus transmisiones de vídeo, y por lo tanto, no puede reproducirlo.</string>
     <string name="radio">Radio</string>
     <string name="download_has_started">La descarga ha comenzado</string>
     <string name="recaptcha_solve">Solucionar</string>
@@ -587,7 +587,7 @@
     <string name="feed_load_error_account_info">No fue posible cargar el feed por \'%s\'.</string>
     <string name="account_terminated">Cuenta cancelada</string>
     <string name="feed_load_error_fast_unknown">El modo de muro rápido no arroja más información sobre esto.</string>
-    <string name="feed_load_error_terminated">La cuenta del autor ha sido cancelada.\nNewPipe no podrá acceder a ella en el futuro.\n¿Quieres desuscribirte de este canal?</string>
+    <string name="feed_load_error_terminated">La cuenta del autor ha sido cancelada.\nYewPlay no podrá acceder a ella en el futuro.\n¿Quieres desuscribirte de este canal?</string>
     <string name="feed_load_error">Error al cargar el muro</string>
     <string name="downloads_storage_use_saf_summary_api_29">Desde Android 10 solo el \'Sistema de Acceso al Almacenamiento\' es soportado</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Se le preguntará dónde guardar cada descarga</string>
@@ -632,7 +632,7 @@
     <string name="show_crash_the_player_title">Mostrar \"Cerrar abruptamente el reproductor\"</string>
     <string name="error_report_channel_description">Notificaciones para informar errores</string>
     <string name="error_report_channel_name">Notificación de informe de errores</string>
-    <string name="error_report_notification_title">NewPipe ha detectado un error, pulse aquí para informar</string>
+    <string name="error_report_notification_title">YewPlay ha detectado un error, pulse aquí para informar</string>
     <string name="error_report_notification_toast">Se produjo un error, vea la notificación</string>
     <string name="create_error_notification">Crear una notificación de error</string>
     <string name="show_error_snackbar">Mostrar una barra de error</string>
@@ -680,7 +680,7 @@
     <string name="sort">Ordenar</string>
     <string name="fast_mode">Modo rápido</string>
     <string name="import_subscriptions_hint">Importa o exporta las suscripciones desde el menú con los tres puntos</string>
-    <string name="app_update_unavailable_toast">Está ejecutando la última versión de NewPipe</string>
+    <string name="app_update_unavailable_toast">Está ejecutando la última versión de YewPlay</string>
     <string name="app_update_available_notification_text">Pulsa para descargar %s</string>
     <string name="night_theme_available">Esta opción sólo está disponible si %s está seleccionado para el tema</string>
     <string name="unset_playlist_thumbnail">Desactivar las miniaturas permanente</string>
@@ -787,7 +787,7 @@
     <string name="reset_all_settings">Restablecer todos los ajustes descartará todos sus ajustes preferidos y reiniciará la aplicación. \n \n¿Estás seguro que quieres continuar?</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
-    <string name="auto_update_check_description">NewPipe puede buscar automáticamente nuevas versiones de vez en cuando y notificarle cuando estén disponibles. \n¿Quieres habilitar esto?</string>
+    <string name="auto_update_check_description">YewPlay puede buscar automáticamente nuevas versiones de vez en cuando y notificarle cuando estén disponibles. \n¿Quieres habilitar esto?</string>
     <string name="import_settings_vulnerable_format">Los ajustes de la exportación que se importa utiliza un formato vulnerable que quedó obsoleto desde NewPipe 0.27.0. Asegúrese de que la exportación que se está importando provenga de una fuente confiable y prefiera usar solo exportaciones obtenidas de NewPipe 0.27.0 o posterior en el futuro. La compatibilidad con la importación de configuraciones en este formato vulnerable pronto se eliminará por completo y, luego, las versiones antiguas de NewPipe ya no podrán importar configuraciones de exportaciones desde las nuevas versiones.</string>
     <string name="audio_track_type_secondary">secundaria</string>
     <string name="share_playlist_as_youtube_temporary_playlist">Compartir como lista de reproducción temporal de YouTube</string>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="navigate_back">Retounen</string>
-    <string name="title_activity_about">Konsènan NewPipe</string>
+    <string name="title_activity_about">Konsènan YewPlay</string>
     <string name="title_licenses">Lisans twazyèm pati</string>
     <string name="license">Pa %1$s anba %2$s</string>
     <string name="tab_about">Konsènan &amp; Kesyon yo poze souvan</string>

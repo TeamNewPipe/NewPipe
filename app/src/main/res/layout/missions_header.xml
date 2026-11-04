@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<!-- YewPlay: título de seção dos downloads ("Baixando", "Concluídos") -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="30dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginLeft="8dp"
-    android:layout_marginTop="16dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginRight="8dp"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/yp_screen_margin"
+    android:paddingTop="16dp"
+    android:paddingBottom="4dp">
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/item_name"
@@ -16,8 +15,8 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:text="relative header"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:textAppearance="@style/TextAppearance.YewPlay.SectionTitle"
+        android:fontFamily="@font/bricolage_grotesque_bold"
+        app:fontFamily="@font/bricolage_grotesque_bold" />
 
 </LinearLayout>

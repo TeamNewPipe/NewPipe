@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="navigate_back">Indietro</string>
-    <string name="title_activity_about">Informazioni su NewPipe</string>
+    <string name="title_activity_about">Informazioni su YewPlay</string>
     <string name="title_licenses">Licenze di terze parti</string>
     <string name="license">Da %1$s sotto %2$s</string>
     <string name="tab_about">Informazioni e domande frequenti</string>
@@ -16,7 +16,7 @@
     <string name="website_encouragement">Visita il sito di NewPipe per maggiori info e notizie.</string>
     <string name="privacy_policy_title">Politica di riservatezza di NewPipe</string>
     <string name="read_privacy_policy">Leggi la politica di riservatezza</string>
-    <string name="app_license_title">Licenza di NewPipe</string>
+    <string name="app_license_title">Licenza di YewPlay</string>
     <string name="read_full_license">Leggi la licenza</string>
     <string name="faq_title">Domande frequenti</string>
     <string name="faq_description">Se stai avendo problemi durante l'uso dell'app, dai un occhio alle risposte a queste domande comuni!</string>
@@ -26,7 +26,7 @@
     <string name="not_available">Non disponibile</string>
     <string name="donation_encouragement">NewPipe è sviluppato da volontari che impiegano il loro tempo libero per offrirti un'esperienza d'uso migliore. Restituisci il favore, aiutandoli a rendere NewPipe ancora più piacevole mentre si gustano una tazza di caffè.</string>
     <string name="privacy_policy_encouragement">Il progetto NewPipe tiene molto alla tua privacy. Perciò, l'app non raccoglie alcun dato senza il tuo consenso. \nL'informativa sulla privacy spiega nel dettaglio quali dati vengono trattati e memorizzati durante l'invio di segnalazioni per arresti anomali.</string>
-    <string name="app_license">NewPipe è software libre copyleft: puoi utilizzare, studiare, condividere e migliorare a volontà il suo codice sorgente. Nello specifico è possibile ridistribuirlo e/o modificarlo in base ai termini della GNU General Public License come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza sia (a vostra scelta) qualsiasi versione successiva.</string>
+    <string name="app_license">YewPlay è software libre copyleft: puoi utilizzare, studiare, condividere e migliorare a volontà il suo codice sorgente. Nello specifico è possibile ridistribuirlo e/o modificarlo in base ai termini della GNU General Public License come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza sia (a vostra scelta) qualsiasi versione successiva.</string>
     <string name="settings">Impostazioni</string>
     <string name="search">Cerca</string>
     <string name="content">Contenuto</string>

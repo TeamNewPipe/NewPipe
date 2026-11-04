@@ -9,13 +9,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 import kotlinx.serialization.json.Json
 import net.newpipe.Constants
 import net.newpipe.app.navigation.Destination
-import net.newpipe.app.theme.currentService
 
 /**
  * Entry point for compose-related UI components on Android
@@ -34,11 +35,12 @@ class ComposeActivity : ComponentActivity() {
                 onCloseRequest = ::finish
             ) {
                 val view = LocalView.current
-                val service = currentService()
+                // YewPlay: dark status bar icons on the light theme, light ones otherwise
+                val lightTheme = MaterialTheme.colorScheme.background.luminance() > 0.5f
 
-                DisposableEffect(service) {
+                DisposableEffect(lightTheme) {
                     val windowController = WindowCompat.getInsetsController(window, view)
-                    windowController.isAppearanceLightStatusBars = service.isSchemeColorDensityLight
+                    windowController.isAppearanceLightStatusBars = lightTheme
                     onDispose {
                         windowController.isAppearanceLightStatusBars = false
                     }

@@ -123,9 +123,9 @@
     <string name="switch_to_popup">Ani Görüntüyə Keçid</string>
     <string name="switch_to_background">Fona Keçid</string>
     <string name="unknown_content">[Naməlum]</string>
-    <string name="app_update_notification_channel_description">Yeni \"NewPipe\" versiyaları üçün bildirişlər</string>
+    <string name="app_update_notification_channel_description">Yeni \"YewPlay\" versiyaları üçün bildirişlər</string>
     <string name="app_update_notification_channel_name">Tətbiq yeniləmə bildirişi</string>
-    <string name="notification_channel_description">NewPipe oynadıcısı üçün bildirişlər</string>
+    <string name="notification_channel_description">YewPlay oynadıcısı üçün bildirişlər</string>
     <string name="all">Hamısı</string>
     <string name="error_report_title">Xəta hesabatı</string>
     <string name="downloads_title">Endirilənlər</string>
@@ -181,7 +181,7 @@
     <string name="watch_history_deleted">Baxış tarixçəsi silindi</string>
     <string name="delete_view_history_alert">Bütün baxış tarixçəsi silinsin?</string>
     <string name="clear_views_history_title">Baxış tarixçəsini təmizlə</string>
-    <string name="clear_cookie_summary">reCAPTCHA həll edərkən NewPipe saxladığı bazaları sil</string>
+    <string name="clear_cookie_summary">reCAPTCHA həll edərkən YewPlay saxladığı bazaları sil</string>
     <string name="channel_created_by">%s tərəfindən yaradıldı</string>
     <string name="resize_zoom">Yaxınlaşdır</string>
     <string name="resize_fill">Doldur</string>
@@ -233,7 +233,7 @@
     <string name="feed_update_threshold_title">Axın yeniləmə aralığı</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Sürətli rejimi aktivləşdir</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Sürətli rejimi bağla</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Axının çox yavaş yükləndiyini düşünürsünüz? \n Elədirsə, sürətli yükləməni işə salmağı sınayın (tənzimləmələrdə dəyişə və ya aşağıdakı düyməni basa bilərsiniz). \n \nNewPipe 2 axın yükləmə üsulu təklif edir: \n• Yavaş, lakin tam şəkildə bütün abunəlik kanalı gətirilir. \n• Ayrılmış xidmət uc nöqtəsi istifadə etmək, bu sürətlidir, amma tam deyil. \n \nİkisi arasında fərq budur ki, sürətlisində, adətən elementin müddəti və növü kimi bəzi məlumatlar çatışmır (canlı video ilə adisini ayırd edə bilmir) və daha az elementlər gətirir. \n \nYouTube öz RSS axını ilə bu sürətli metodu təklif edən xidmətlərdən biridir. \n \nBeləliklə, seçim sizin nəyə üstünlük verməyinizdən asılıdır: sürət yoxsa dəqiq məlumat.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Axının çox yavaş yükləndiyini düşünürsünüz? \n Elədirsə, sürətli yükləməni işə salmağı sınayın (tənzimləmələrdə dəyişə və ya aşağıdakı düyməni basa bilərsiniz). \n \nYewPlay 2 axın yükləmə üsulu təklif edir: \n• Yavaş, lakin tam şəkildə bütün abunəlik kanalı gətirilir. \n• Ayrılmış xidmət uc nöqtəsi istifadə etmək, bu sürətlidir, amma tam deyil. \n \nİkisi arasında fərq budur ki, sürətlisində, adətən elementin müddəti və növü kimi bəzi məlumatlar çatışmır (canlı video ilə adisini ayırd edə bilmir) və daha az elementlər gətirir. \n \nYouTube öz RSS axını ilə bu sürətli metodu təklif edən xidmətlərdən biridir. \n \nBeləliklə, seçim sizin nəyə üstünlük verməyinizdən asılıdır: sürət yoxsa dəqiq məlumat.</string>
     <string name="player_stream_failure">Bu yayımı oynatmaq alınmadı</string>
     <string name="app_ui_crash">Tətbiq/UI çökdü</string>
     <string name="could_not_setup_download_menu">Endirmə menyusunu qurmaq mümkün olmadı</string>
@@ -268,7 +268,7 @@
     <string name="player_recoverable_failure">Oynadıcı xətası bərpa edilir</string>
     <string name="player_unrecoverable_failure">Bərpa olunmayan oynatma xətası baş verdi</string>
     <string name="ok">Oldu</string>
-    <string name="restricted_video_no_stream">Bu video yaş məhdudiyyətlidir. \nYaş məhdudiyyəti olan videolarla bağlı yeni YouTube siyasətlərinə görə, NewPipe bu cür video yayımlara daxil ola və oynada bilməz.</string>
+    <string name="restricted_video_no_stream">Bu video yaş məhdudiyyətlidir. \nYaş məhdudiyyəti olan videolarla bağlı yeni YouTube siyasətlərinə görə, YewPlay bu cür video yayımlara daxil ola və oynada bilməz.</string>
     <string name="audio_streams_empty">Səs yayımı tapılmadı</string>
     <string name="permission_display_over_apps">Digər tətbiqlərin üzərində göstərməyə icazə ver</string>
     <string name="restore_defaults_confirmation">İlkin tənzimləmələri qaytarmaq istəyirsiniz?</string>
@@ -281,7 +281,7 @@
     <string name="error_report_channel_description">Xəta hesabatları üçün bildirişlər</string>
     <string name="file_name_empty_error">Fayl adı boş ola bilməz</string>
     <string name="saved_tabs_invalid_json">Saxlanmış səhifələri oxumaq alınmadı, ona görə standart səhifələr istifadə et</string>
-    <string name="error_report_notification_title">NewPipe xəta ilə qarşılaşdı, bildirmək üçün toxun</string>
+    <string name="error_report_notification_title">YewPlay xəta ilə qarşılaşdı, bildirmək üçün toxun</string>
     <string name="sorry_string">Bağışla, bu baş verməməli idi.</string>
     <string name="error_report_button_text">E-poçt- dan məlumat ver</string>
     <string name="error_report_open_issue_button_text">GitHub\'da Məlumat Ver</string>
@@ -324,7 +324,7 @@
     <string name="privacy_policy_title">NewPipe-ın Məxfilik Siyasəti</string>
     <string name="privacy_policy_encouragement">NewPipe layihəsi məxfiliyinizə çox ciddi yanaşır. Nəticə etibarı ilə, tətbiq sizin razılığınız olmadan heç bir məlumat toplamır. \nNewPipe məxfilik siyasəti xəta məlumatı göndərdiyiniz zaman hansı məlumatların göndərildiyini və saxlanıldığını ətraflı izah edir.</string>
     <string name="read_privacy_policy">Məxfilik siyasətini oxu</string>
-    <string name="app_license_title">NewPipe-ın Lisenziyası</string>
+    <string name="app_license_title">YewPlay-ın Lisenziyası</string>
     <string name="action_history">Tarixçə</string>
     <string name="delete_item_search_history">Bu elementi axtarış tarixçəsindən silmək istəyirsiniz?</string>
     <string name="title_last_played">Son Oynadılan</string>
@@ -390,11 +390,11 @@
     <string name="feed_new_items">Yeni axın elementləri</string>
     <string name="feed_update_threshold_summary">Abunəlik köhnəlmiş hesab edilənə qədərki son yeniləmədən sonrakı vaxt — %s</string>
     <string name="feed_load_error">Axın yükləmə xətası</string>
-    <string name="content_not_supported">Bu məzmun hələ NewPipe tərəfindən dəstəklənmir. \n \nÜmid edirik ki, gələcək versiyada dəstəklənəcək.</string>
+    <string name="content_not_supported">Bu məzmun hələ YewPlay tərəfindən dəstəklənmir. \n \nÜmid edirik ki, gələcək versiyada dəstəklənəcək.</string>
     <string name="show_thumbnail_summary">Həm kilid ekranı fonu, həm də bildirişlər üçün miniatür istifadə et</string>
     <string name="recent">Ən Yeni</string>
     <string name="georestricted_content">Bu məzmun ölkənizdə mövcud deyil.</string>
-    <string name="paid_content">Bu məzmun yalnız ödəniş etmiş istifadəçilər üçün əlçatandır, beləliklə, NewPipe tərəfindən yayımlana və ya yüklənilə bilməz.</string>
+    <string name="paid_content">Bu məzmun yalnız ödəniş etmiş istifadəçilər üçün əlçatandır, beləliklə, YewPlay tərəfindən yayımlana və ya yüklənilə bilməz.</string>
     <string name="auto_device_theme_title">Avtomatik (cihaz koloriti)</string>
     <string name="night_theme_summary">Sevimli gecə koloritinizi seçin — %s</string>
     <string name="detail_pinned_comment_view_description">Sancaqlanmış şərh</string>
@@ -449,9 +449,9 @@
     <string name="queued">növbədədir</string>
     <string name="post_processing">sonrakı emal olunur</string>
     <string name="checking_updates_toast">Yeniləmələr yoxlanılır…</string>
-    <string name="app_update_available_notification_title">NewPipe yeniləməsi mövcuddur!</string>
+    <string name="app_update_available_notification_title">YewPlay yeniləməsi mövcuddur!</string>
     <string name="metadata_licence">Lisenziya</string>
-    <string name="feed_load_error_terminated">Müəllifin hesabı bağlanıb. \nNewPipe gələcəkdə bu axını yükləyə bilməyəcək. \nBu kanaldan abunəliyi çıxarmaq istəyirsiniz?</string>
+    <string name="feed_load_error_terminated">Müəllifin hesabı bağlanıb. \nYewPlay gələcəkdə bu axını yükləyə bilməyəcək. \nBu kanaldan abunəliyi çıxarmaq istəyirsiniz?</string>
     <string name="featured">Seçilən</string>
     <string name="drawer_close">Çəkməcəni Bağla</string>
     <string name="video_player">Video oynadıcı</string>
@@ -515,7 +515,7 @@
     <string name="downloads_storage_use_saf_title">Sistem qovluğu seçicisini (SAF) istifadə et</string>
     <string name="error_timeout">Bağlantı fasiləsi</string>
     <string name="error_insufficient_storage_left">Cihazda yer yoxdur</string>
-    <string name="error_postprocessing_stopped">Fayl üzərində işləyərkən NewPipe bağlandı</string>
+    <string name="error_postprocessing_stopped">Fayl üzərində işləyərkən YewPlay bağlandı</string>
     <string name="error_postprocessing_failed">Emaldan sonra uğursuz oldu</string>
     <string name="error_connect_host">Serverə qoşulmaq mümkün deyil</string>
     <string name="error_unknown_host">Serveri tapmaq olmadı</string>
@@ -587,8 +587,8 @@
     <string name="chapters">Bölmələr</string>
     <string name="no_app_to_open_intent">Cihazınızdakı heç bir tətbiq bunu aça bilməz</string>
     <string name="show_thumbnail_title">Miniatürü göstər</string>
-    <string name="soundcloud_go_plus_content">Bu, ən azı sizin ölkənizdə olan SoundCloud Go+ trekidir, ona görə də NewPipe tərəfindən yayımlamaq və ya endirmək mümkün deyil.</string>
-    <string name="private_content">Bu məzmun şəxsidir, ona görə də NewPipe tərəfindən yayımlamaq və ya endirmək mümkün deyil.</string>
+    <string name="soundcloud_go_plus_content">Bu, ən azı sizin ölkənizdə olan SoundCloud Go+ trekidir, ona görə də YewPlay tərəfindən yayımlamaq və ya endirmək mümkün deyil.</string>
+    <string name="private_content">Bu məzmun şəxsidir, ona görə də YewPlay tərəfindən yayımlamaq və ya endirmək mümkün deyil.</string>
     <string name="metadata_support">Dəstək</string>
     <string name="metadata_privacy">Məxfilik</string>
     <string name="metadata_host">Sahib</string>
@@ -611,12 +611,12 @@
     <string name="your_comment">Şərhiniz (İngiliscə):</string>
     <string name="detail_thumbnail_view_description">Video oynat, müddət:</string>
     <string name="no_available_dir">Zəhmət olmasa, endirmə qovluğunu daha sonra tənzimləmələrdə təyin et</string>
-    <string name="msg_running">NewPipe Endirilir</string>
+    <string name="msg_running">YewPlay Endirilir</string>
     <string name="msg_calculating_hash">Hash hesablanır</string>
     <string name="settings_file_charset_title">Fayl adlarında icazə verilən simvollar</string>
-    <string name="title_activity_about">NewPipe Haqqında</string>
+    <string name="title_activity_about">YewPlay Haqqında</string>
     <string name="tab_licenses">Lisenziyalar</string>
-    <string name="app_license">NewPipe müəllif hüquqlu sərbəst tətbiqdir: Siz onu istədiyiniz zaman istifadə edə, öyrənə, paylaşa və təkmilləşdirə bilərsiniz. Xüsusilə, siz Lisenziyanın 3-cü versiyası və ya (seçiminizə görə) hər hansı sonrakı versiyada Azad Proqram Təminatı Fondu tərəfindən dərc edilən GNU Ümumi İctimai Lisenziya şərtlərinə uyğun olaraq onu yenidən paylaya və/yaxud dəyişdirə bilərsiniz.</string>
+    <string name="app_license">YewPlay müəllif hüquqlu sərbəst tətbiqdir: Siz onu istədiyiniz zaman istifadə edə, öyrənə, paylaşa və təkmilləşdirə bilərsiniz. Xüsusilə, siz Lisenziyanın 3-cü versiyası və ya (seçiminizə görə) hər hansı sonrakı versiyada Azad Proqram Təminatı Fondu tərəfindən dərc edilən GNU Ümumi İctimai Lisenziya şərtlərinə uyğun olaraq onu yenidən paylaya və/yaxud dəyişdirə bilərsiniz.</string>
     <string name="export_complete_toast">İxrac edildi</string>
     <string name="main_page_content_swipe_remove">Elementləri silmək üçün sürüşdür</string>
     <string name="no_playlist_bookmarked_yet">Hələ,əlfəcinlənmiş pleylistlər yoxdur</string>
@@ -645,7 +645,7 @@
     <string name="no_appropriate_file_manager_message">Bu əməliyyat üçün uyğun fayl meneceri tapılmadı. Zəhmət olmasa, fayl menecerini quraşdır və ya endirmə tənzimləmələrində \'%s\'-i qeyri-aktiv etməyə çalış</string>
     <string name="feed_load_error_account_info">\'%s\' üçün axın yükləmək mümkün olmadı.</string>
     <string name="no_appropriate_file_manager_message_android_10">Bu fəaliyyət üçün uyğun fayl meneceri tapılmadı.\nXahiş olunur, Yaddaş Giriş Quruluşuna uyğun fayl meneceri quraşdırın</string>
-    <string name="youtube_music_premium_content">Bu video yalnız YouTube Music Premium üzvləri üçün əlçatandır, ona görə də NewPipe tərəfindən yayımlamaq və ya endirmək mümkün deyil.</string>
+    <string name="youtube_music_premium_content">Bu video yalnız YouTube Music Premium üzvləri üçün əlçatandır, ona görə də YewPlay tərəfindən yayımlamaq və ya endirmək mümkün deyil.</string>
     <string name="description_select_note">İndi açıqlamadakı mətni seçə bilərsiniz. Nəzərə alın ki, seçim rejimində səhifə titrəyə və linklər kliklənməyə bilər.</string>
     <string name="notification_scale_to_square_image_summary">Bildirişdə göstərilən video miniatürünü 16:9-dan 1:1 görünüş nisbətinə qədər kəs</string>
     <string name="notification_actions_summary">Aşağıdakı hər bir bildiriş fəaliyyətini üzərinə toxunaraq redaktə edin. Sağdakı təsdiq qutuların istifadə edərək yığcam bildirişdə göstərmək üçün onların üçünü seçin.</string>
@@ -662,7 +662,7 @@
     <string name="faq_title">Tez-tez soruşulan suallar</string>
     <string name="faq">Veb saytda bax</string>
     <string name="sort">Çeşidlə</string>
-    <string name="app_update_unavailable_toast">NewPipe\'ın ən son versiyasın işlədirsiniz</string>
+    <string name="app_update_unavailable_toast">YewPlay\'ın ən son versiyasın işlədirsiniz</string>
     <string name="fast_mode">Sürətli rejim</string>
     <string name="import_subscriptions_hint">3 nöqtə menyudan abunəlikləri idxal və ya ixrac et</string>
     <string name="app_update_available_notification_text">%s endirmək üçün toxun</string>
@@ -724,7 +724,7 @@
     <string name="notification_actions_summary_android13">Aşağıdakı hər bildiriş fəaliyyətin ona toxunub redaktə edin. İlk üç fəaliyyət (oynatma/fasilə, əvvəlki və növbəti) sistem tərəfindən tənzimlənib və dəyişdirilə bilməz.</string>
     <string name="no">Xeyr</string>
     <string name="settings_category_backup_restore_title">Nüsxələmə və bərpa</string>
-    <string name="auto_update_check_description">NewPipe arabir avtomatik şəkildə yeni versiyaları yoxlaya və onlar mövcud olduqda sizə bildirə bilər. \nBunu aktivləşdirmək istəyirsiniz?</string>
+    <string name="auto_update_check_description">YewPlay arabir avtomatik şəkildə yeni versiyaları yoxlaya və onlar mövcud olduqda sizə bildirə bilər. \nBunu aktivləşdirmək istəyirsiniz?</string>
     <string name="yes">Bəli</string>
     <string name="reset_settings_title">Tənzimləmələri sıfırla</string>
     <string name="reset_settings_summary">Bütün tənzimləmələri standart dəyərlərinə sıfırla</string>

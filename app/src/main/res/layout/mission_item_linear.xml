@@ -7,18 +7,22 @@
         android:id="@+id/item_bkg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:background="@color/bluegray">
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginVertical="4dp"
+        android:background="@color/yp_surface">
 
         <ImageView
             android:id="@+id/item_icon"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:layout_centerVertical="true"
-            android:contentDescription="TODO"
+            android:layout_marginStart="8dp"
+            android:layout_marginVertical="12dp"
+            android:background="@drawable/yp_icon_tile"
+            android:contentDescription="@null"
             android:gravity="center"
-            android:padding="15dp"
-            android:scaleType="fitXY"
+            android:padding="16dp"
+            android:scaleType="fitCenter"
             app:tint="?attr/actionColor" />
 
         <org.schabi.newpipe.views.NewPipeTextView
@@ -30,9 +34,10 @@
             android:ellipsize="end"
             android:padding="6dp"
             android:text="XXX.xx"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textColor="@color/yp_on_bg"
+            android:textAppearance="@style/TextAppearance.YewPlay.ItemTitle"
+            android:fontFamily="@font/instrument_sans_semibold"
+            app:fontFamily="@font/instrument_sans_semibold" />
 
         <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/item_size"
@@ -43,7 +48,7 @@
             android:padding="6dp"
             android:singleLine="true"
             android:text="100.00MB"
-            android:textColor="@color/white"
+            android:textColor="@color/yp_muted"
             android:textSize="12sp" />
 
         <org.schabi.newpipe.views.NewPipeTextView
@@ -58,7 +63,7 @@
             android:padding="6dp"
             android:singleLine="true"
             android:text="0%"
-            android:textColor="@color/white"
+            android:textColor="@color/yp_on_bg"
             android:textSize="12sp"
             android:textStyle="bold" />
 
@@ -71,7 +76,7 @@
             android:padding="6dp"
             android:singleLine="true"
             android:text=""
-            android:textColor="@color/white"
+            android:textColor="@color/yp_muted"
             android:textSize="12sp" />
 
         <ImageView

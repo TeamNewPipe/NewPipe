@@ -284,7 +284,7 @@
     <string name="seekbar_preview_thumbnail_title">Seekbar thumbnail preview ᱧᱮᱞᱢᱮ</string>
     <string name="low_quality_smaller">ᱠᱚᱢ ᱠᱣᱟᱞᱤᱴᱤ (ᱢᱤᱫ ᱠᱷᱚᱱ ᱠᱚᱢ)</string>
     <string name="dont_show">ᱵᱟᱝ ᱧᱮᱞᱚᱜ</string>
-    <string name="app_update_unavailable_toast">ᱟᱢ NewPipe ᱨᱮᱭᱟᱜ ᱱᱟᱣᱟ ᱵᱟᱨᱥᱚᱱ ᱪᱟᱞᱟᱜ ᱠᱟᱱᱟ</string>
+    <string name="app_update_unavailable_toast">ᱟᱢ YewPlay ᱨᱮᱭᱟᱜ ᱱᱟᱣᱟ ᱵᱟᱨᱥᱚᱱ ᱪᱟᱞᱟᱜ ᱠᱟᱱᱟ</string>
     <string name="missions_header_pending">ᱯᱮᱱᱰᱤᱝ</string>
     <string name="queued">ᱠᱩᱠᱞᱤ</string>
     <string name="post_processing">ᱯᱟᱥᱴᱟ ᱯᱨᱚᱥᱟᱥᱚᱱ</string>
@@ -425,7 +425,7 @@
     <string name="switch_to_main">ᱢᱩᱬᱩᱛ ᱨᱮ ᱞᱤᱱ ᱢᱮ</string>
     <string name="export_data_title">ᱮᱠᱥᱯᱳᱨᱴ ᱰᱮᱴᱟᱵᱮᱥ</string>
     <string name="import_data_summary">ᱟᱢᱟᱜ ᱱᱮᱛᱟᱨᱟᱜ ᱱᱟᱜᱟᱢ, ᱥᱟᱵᱽᱥᱠᱨᱟᱭᱵᱽᱥ, ᱯᱷᱟᱭᱞᱤᱥᱴ ᱟᱨ (ᱵᱟᱪᱷᱱᱟᱣ ᱞᱮᱠᱟᱛᱮ) ᱥᱤᱴᱤᱝ ᱠᱚ ᱩᱪᱟᱹᱲᱟ</string>
-    <string name="clear_cookie_summary">ᱟᱢ ᱢᱤᱫ reCAPTCHA ᱥᱟᱯᱲᱟᱣ ᱞᱮᱠᱷᱟᱱ NewPipe ᱥᱟᱦᱴᱟᱨᱮ ᱥᱚᱫᱚᱨ ᱟᱠᱟᱱ ᱠᱩᱠᱤ ᱠᱚ ᱵᱚᱫᱚᱞ ᱢᱮ</string>
+    <string name="clear_cookie_summary">ᱟᱢ ᱢᱤᱫ reCAPTCHA ᱥᱟᱯᱲᱟᱣ ᱞᱮᱠᱷᱟᱱ YewPlay ᱥᱟᱦᱴᱟᱨᱮ ᱥᱚᱫᱚᱨ ᱟᱠᱟᱱ ᱠᱩᱠᱤ ᱠᱚ ᱵᱚᱫᱚᱞ ᱢᱮ</string>
     <string name="clear_playback_states_title">ᱯᱷᱟᱭᱞᱟᱣ ᱴᱷᱟᱶ ᱠᱚ ᱵᱚᱫᱚᱞ ᱢᱮ</string>
     <string name="clear_playback_states_summary">ᱡᱚᱛᱚ ᱯᱞᱮᱤᱯᱷᱟᱭᱤᱰ ᱯᱚᱡᱤᱥᱚᱱ ᱠᱚ ᱵᱚᱫᱚᱞᱟ</string>
     <string name="delete_playback_states_alert">ᱡᱚᱛᱚ ᱯᱞᱮᱵᱟᱠ ᱯᱳᱡᱤᱥᱚᱱ ᱠᱚ ᱵᱚᱫᱚᱞ ᱢᱮ?</string>
@@ -445,7 +445,7 @@
     <string name="saved_tabs_invalid_json">ᱥᱚᱞᱦᱮ ᱟᱠᱟᱱ ᱴᱮᱵᱽ ᱠᱚ ᱵᱟᱝ ᱯᱟᱲᱦᱟᱣ ᱫᱟᱲᱮᱭᱟᱜ ᱠᱟᱱᱟ, ᱚᱱᱟᱛᱮ ᱵᱮᱵᱷᱟᱨᱤᱡᱽ ᱠᱚ</string>
     <string name="restore_defaults_confirmation">ᱟᱢ ᱥᱩᱯᱚᱨᱴ ᱠᱚ ᱵᱚᱫᱚᱞ ᱢᱮᱢᱮ?</string>
     <string name="permission_display_over_apps">ᱮᱴᱟᱜ ᱮᱯ ᱨᱮ ᱵᱚᱫᱚᱞ ᱞᱟᱹᱜᱤᱫ ᱫᱟᱣ ᱮᱢ ᱢᱮ</string>
-    <string name="error_report_notification_title">NewPipe ᱨᱮ ᱢᱤᱫᱴᱟᱹᱝ ᱵᱷᱩᱞ ᱧᱟᱢ ᱞᱮᱱᱟ, ᱠᱷᱚᱵᱚᱨ ᱞᱟᱹᱜᱤᱫ ᱴᱟᱯ ᱢᱮ</string>
+    <string name="error_report_notification_title">YewPlay ᱨᱮ ᱢᱤᱫᱴᱟᱹᱝ ᱵᱷᱩᱞ ᱧᱟᱢ ᱞᱮᱱᱟ, ᱠᱷᱚᱵᱚᱨ ᱞᱟᱹᱜᱤᱫ ᱴᱟᱯ ᱢᱮ</string>
     <string name="sorry_string">ᱤᱧᱤᱧ ᱵᱟᱹᱧ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ, ᱱᱚᱶᱟ ᱫᱚ ᱵᱟᱝ ᱦᱩᱭᱩᱜ ᱞᱟᱹᱠᱛᱤ ᱛᱟᱦᱮᱸᱫ ᱾</string>
     <string name="error_report_button_text">ᱤ-ᱢᱮᱞ ᱤᱫᱤ ᱠᱟᱛᱮ ᱨᱤᱯᱚᱨᱴ ᱢᱮ</string>
     <string name="copy_for_github">ᱯᱷᱚᱨᱢᱮᱴ ᱟᱠᱟᱱ ᱨᱤᱯᱳᱨᱴ ᱠᱚᱯᱤ ᱢᱮ</string>
@@ -466,7 +466,7 @@
     <string name="no_subscribers">ᱚᱵᱷᱤᱱᱮᱛᱟᱨ ᱵᱟᱹᱱᱩᱜᱼᱟ</string>
     <string name="no_one_watching">ᱚᱠᱚᱭ ᱦᱚᱸ ᱵᱟᱝ ᱧᱮᱞᱚᱜ ᱠᱟᱱᱟ</string>
     <string name="done">ᱜᱚᱴᱟ ᱟᱠᱟᱱᱟ</string>
-    <string name="title_activity_about">NewPipe ᱵᱚᱵᱚᱛ</string>
+    <string name="title_activity_about">YewPlay ᱵᱚᱵᱚᱛ</string>
     <string name="title_licenses">ᱯᱮᱨᱟᱜ ᱞᱟᱭᱥᱮᱱᱥ</string>
     <string name="donation_title">ᱰᱳᱱᱮᱴ ᱢᱮ</string>
     <string name="no_one_listening">ᱡᱟᱦᱟᱸᱭ ᱜᱮᱭ ᱟᱸᱡᱚᱢᱟ</string>
@@ -576,7 +576,7 @@
     <string name="feed_update_threshold_summary">ᱢᱤᱫ ᱥᱚᱵᱥᱠᱨᱟᱭᱵᱽᱥᱚᱱ ᱵᱟᱥᱠᱮᱴᱮᱰ ᱦᱩᱭᱩᱜ ᱢᱟᱬᱟᱝ ᱨᱮ ᱯᱟᱹᱪᱷᱤᱢ ᱩᱫᱩᱜ ᱠᱷᱚᱱ ᱛᱟᱭᱚᱢ ᱚᱠᱛᱚ ⁇ %s</string>
     <string name="feed_load_error">Error loading feed ᱥᱟᱯᱲᱟᱣ</string>
     <string name="feed_load_error_account_info">\'%s\' ᱞᱟᱹᱜᱤᱫ ᱯᱷᱤᱰ ᱞᱚᱰ ᱵᱟᱝ ᱦᱩᱭ ᱫᱟᱲᱮᱭᱟᱜ-ᱟ.</string>
-    <string name="feed_load_error_terminated">ᱮᱠᱴᱚᱨᱟᱜ ᱮᱠᱟᱶᱴ ᱫᱚ ᱛᱷᱟᱯᱚᱱ ᱟᱠᱟᱱᱟ ᱾ \nNewPipe ᱫᱚ ᱱᱚᱣᱟ ᱯᱷᱤᱰ ᱫᱚ ᱟᱵᱚ ᱦᱟᱵᱤᱡ ᱵᱟᱝ ᱞᱚᱰ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ ᱾ \nᱟᱢ ᱱᱚᱣᱟ ᱪᱟᱱᱮᱨ ᱠᱷᱚᱱ ᱟᱹᱪᱩᱨ ᱚᱪᱚᱜ ᱠᱟᱹᱢᱤᱭᱟᱢ ᱥᱮ?</string>
+    <string name="feed_load_error_terminated">ᱮᱠᱴᱚᱨᱟᱜ ᱮᱠᱟᱶᱴ ᱫᱚ ᱛᱷᱟᱯᱚᱱ ᱟᱠᱟᱱᱟ ᱾ \nYewPlay ᱫᱚ ᱱᱚᱣᱟ ᱯᱷᱤᱰ ᱫᱚ ᱟᱵᱚ ᱦᱟᱵᱤᱡ ᱵᱟᱝ ᱞᱚᱰ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ ᱾ \nᱟᱢ ᱱᱚᱣᱟ ᱪᱟᱱᱮᱨ ᱠᱷᱚᱱ ᱟᱹᱪᱩᱨ ᱚᱪᱚᱜ ᱠᱟᱹᱢᱤᱭᱟᱢ ᱥᱮ?</string>
     <string name="feed_load_error_fast_unknown">ᱯᱷᱚᱥᱴ ᱯᱷᱤᱰ ᱢᱚᱰ ᱱᱚᱶᱟ ᱨᱮ ᱵᱟᱹᱲᱛᱤ ᱵᱟᱰᱟᱭ ᱮᱢ ᱮᱫᱟ ᱾</string>
     <string name="feed_use_dedicated_fetch_method_title">ᱡᱩᱫᱤ ᱢᱮᱱᱟᱜᱼᱟ ᱮᱢ ᱟᱠᱟᱱ ᱡᱚᱢᱟᱜ ᱠᱷᱚᱱ ᱦᱟᱛᱟᱣ</string>
     <string name="feed_use_dedicated_fetch_method_summary">ᱟᱭᱢᱟ ᱥᱮᱵᱟ ᱨᱮ ᱧᱟᱢᱚᱜᱼᱟ, ᱱᱚᱶᱟ ᱫᱚ ᱟᱥᱚᱠᱟᱭ ᱛᱮ ᱟᱹᱰᱤ ᱦᱩᱰᱤᱧ ᱜᱮᱭᱟ ᱢᱮᱱᱠᱷᱟᱱ ᱢᱤᱫ ᱞᱮᱠᱟᱱ ᱤᱱᱴᱮᱢᱥ ᱟᱨ ᱟᱥᱚᱠᱟᱭ ᱛᱮ ᱵᱟᱝ ᱯᱩᱨᱟᱹᱣ ᱟᱠᱟᱱ ᱤᱱᱯᱷᱚᱨᱢᱮᱥᱚᱱ (ᱡᱮᱞᱮᱠᱟ ᱺ ᱚᱠᱛᱚ ᱵᱟᱝ, ᱤᱱᱴᱮᱢᱥ ᱨᱮᱱᱟᱜ ᱞᱮᱠᱷᱟ, ᱚᱞᱤᱵᱽ ᱥᱴᱮᱴᱥ ᱵᱟᱝ) ᱨᱩᱣᱟᱹᱲ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ</string>
@@ -673,7 +673,7 @@
     <string name="msg_name">ᱯᱷᱤᱞᱤᱢ ᱧᱩᱛᱩᱢ</string>
     <string name="msg_threads">ᱛᱷᱤᱭᱮᱴᱚᱨ</string>
     <string name="msg_error">ᱪᱷᱟᱸᱪ</string>
-    <string name="msg_running">NewPipe ᱮᱯᱞᱤᱠᱮᱥᱚᱱ</string>
+    <string name="msg_running">YewPlay ᱮᱯᱞᱤᱠᱮᱥᱚᱱ</string>
     <string name="msg_running_detail">ᱵᱟᱰᱟᱭ ᱞᱟᱹᱜᱤᱫ ᱴᱟᱯ ᱢᱮ</string>
     <string name="msg_calculating_hash">ᱦᱟᱥᱤ ᱠᱚᱞᱠᱟᱛᱟ</string>
     <string name="no_dir_yet">ᱱᱤᱛ ᱦᱟᱹᱵᱤᱡ ᱰᱟᱩᱱᱞᱚᱰ ᱯᱷᱳᱞᱰᱟᱨ ᱥᱮᱴ ᱵᱟᱝ, ᱱᱤᱛ ᱦᱟᱹᱵᱤᱡ ᱰᱟᱩᱱᱞᱚᱰ ᱯᱷᱳᱞᱰᱟᱨ ᱵᱟᱪᱷᱟᱣ ᱢᱮ</string>

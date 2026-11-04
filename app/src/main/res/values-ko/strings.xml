@@ -106,8 +106,8 @@
     <string name="best_resolution">최고 해상도</string>
     <string name="undo">되돌리기</string>
     <string name="play_all">전부 재생</string>
-    <string name="notification_channel_name">NewPipe 알림</string>
-    <string name="notification_channel_description">NewPipe 플레이어 알림</string>
+    <string name="notification_channel_name">YewPlay 알림</string>
+    <string name="notification_channel_description">YewPlay 플레이어 알림</string>
     <string name="unknown_content">[알 수 없음]</string>
     <string name="app_ui_crash">앱/UI 충돌</string>
     <string name="player_stream_failure">이 스트림을 재생할 수 없습니다</string>
@@ -129,7 +129,7 @@
     <string name="msg_name">파일명</string>
     <string name="msg_threads">스레드</string>
     <string name="msg_error">오류</string>
-    <string name="msg_running">NewPipe 다운로드 중</string>
+    <string name="msg_running">YewPlay 다운로드 중</string>
     <string name="msg_running_detail">터치해서 상세 정보 확인</string>
     <string name="msg_wait">잠시만 기다리세요…</string>
     <string name="msg_copied">클립보드에 복사됨</string>
@@ -142,7 +142,7 @@
     <string name="settings_file_replacement_character_title">대체 문자</string>
     <string name="charset_letters_and_digits">문자 및 숫자</string>
     <string name="charset_most_special_characters">가장 특수한 문자</string>
-    <string name="title_activity_about">NewPipe 정보</string>
+    <string name="title_activity_about">YewPlay 정보</string>
     <string name="title_licenses">서드파티 라이선스</string>
     <string name="copyright" formatted="true">© %3$s 하에서 %2$s 에 의한 %1$s</string>
     <string name="tab_about">정보 및 FAQ</string>
@@ -156,7 +156,7 @@
     <string name="give_back">보답하기</string>
     <string name="website_title">웹사이트</string>
     <string name="website_encouragement">더 많은 정보와 뉴스를 확인하려면 NewPipe 웹사이트에 방문하세요.</string>
-    <string name="app_license_title">NewPipe의 라이선스</string>
+    <string name="app_license_title">YewPlay의 라이선스</string>
     <string name="read_full_license">라이선스 읽기</string>
     <string name="title_activity_history">기록</string>
     <string name="action_history">기록</string>
@@ -284,7 +284,7 @@
     <string name="privacy_policy_title">NewPipe의 개인정보취급방침</string>
     <string name="privacy_policy_encouragement">NewPipe 프로젝트는 사용자의 개인 정보 보호를 최우선으로 생각하며, 동의 없이 어떠한 정보도 수집하지 않습니다. \nNewPipe 개인정보 보호 정책에서는 오류 보고 시 어떠한 정보가 수집되고 저장되는지 자세히 명시되어 있습니다.</string>
     <string name="read_privacy_policy">개인정보취급방침 읽기</string>
-    <string name="app_license">NewPipe는 카피레프트 자유 소프트웨어입니다: 마음대로 사용하고, 연구하고, 공유하고, 개선할 수 있습니다. 특히 자유 소프트웨어 재단에서 발행한 GNU 일반 공중 사용 라이센스의 조건에 따라 라이센스 버전 3 또는 (귀하의 선택에 따라) 이후 버전을 재배포 및/또는 수정할 수 있습니다.</string>
+    <string name="app_license">YewPlay는 카피레프트 자유 소프트웨어입니다: 마음대로 사용하고, 연구하고, 공유하고, 개선할 수 있습니다. 특히 자유 소프트웨어 재단에서 발행한 GNU 일반 공중 사용 라이센스의 조건에 따라 라이센스 버전 3 또는 (귀하의 선택에 따라) 이후 버전을 재배포 및/또는 수정할 수 있습니다.</string>
     <string name="import_settings">설정도 가져오시겠습니까?</string>
     <string name="skip_silence_checkbox">무음 구간 빨리 감기</string>
     <string name="start_accept_privacy_policy">유럽 연합 일반 데이터 보호 규정(GDPR)을 준수하기 위해 NewPipe의 개인 정보 보호 정책에 주의를 기울입니다. 주의 깊게 읽으십시오. \n버그 보고서를 보내려면 수락해야 합니다.</string>
@@ -300,7 +300,7 @@
     <string name="events">이벤트</string>
     <string name="file_deleted">파일 삭제됨</string>
     <string name="app_update_notification_channel_name">앱 업데이트 알림</string>
-    <string name="app_update_notification_channel_description">새 NewPipe 버전 알림</string>
+    <string name="app_update_notification_channel_description">새 YewPlay 버전 알림</string>
     <string name="download_to_sdcard_error_title">외부 저장소 없음</string>
     <string name="download_to_sdcard_error_message">SD 카드로 다운로드 할 수 없습니다. 다운로드 폴더 경로를 초기화 하시겠습니까?</string>
     <string name="one_item_deleted">1개의 항목이 삭제되었습니다.</string>
@@ -322,7 +322,7 @@
     <string name="list">목록</string>
     <string name="grid">격자</string>
     <string name="auto">자동</string>
-    <string name="app_update_available_notification_title">NewPipe 업데이트를 사용할 수 있습니다!</string>
+    <string name="app_update_available_notification_title">YewPlay 업데이트를 사용할 수 있습니다!</string>
     <string name="missions_header_finished">완료됨</string>
     <string name="missions_header_pending">대기열에 있음</string>
     <string name="paused">일시중지됨</string>
@@ -502,7 +502,7 @@
     <string name="settings_category_player_notification_summary">현재 재생 중인 스트림 알림 구성</string>
     <string name="show_age_restricted_content_summary">연령 제한(예: 18세 이상)이 있어 어린이에게 적합하지 않을 수 있는 콘텐츠 표시</string>
     <string name="error_report_channel_description">오류 보고 알림</string>
-    <string name="error_report_notification_title">NewPipe에 오류가 발생했습니다. 보고하려면 탭하세요</string>
+    <string name="error_report_notification_title">YewPlay에 오류가 발생했습니다. 보고하려면 탭하세요</string>
     <string name="error_report_notification_toast">오류가 발생했습니다. 알림을 참조하세요</string>
     <string name="copy_for_github">서식이 지정된 보고서 복사</string>
     <string name="related_items_tab_description">관련 항목</string>
@@ -553,8 +553,8 @@
     <string name="tablet_mode_title">태블릿 모드</string>
     <string name="local_search_suggestions">지역 검색 제안</string>
     <string name="remote_search_suggestions">원격 검색 제안</string>
-    <string name="restricted_video_no_stream">이 동영상은 연령 제한이 있습니다. \n연령 제한 동영상에 대한 새로운 YouTube 정책으로 인해 NewPipe는 동영상 스트림에 접속할 수 없으므로 재생할 수 없습니다.</string>
-    <string name="clear_cookie_summary">reCAPTCHA를 해결할 때 NewPipe가 저장하는 쿠키 지우기</string>
+    <string name="restricted_video_no_stream">이 동영상은 연령 제한이 있습니다. \n연령 제한 동영상에 대한 새로운 YouTube 정책으로 인해 YewPlay는 동영상 스트림에 접속할 수 없으므로 재생할 수 없습니다.</string>
+    <string name="clear_cookie_summary">reCAPTCHA를 해결할 때 YewPlay가 저장하는 쿠키 지우기</string>
     <string name="description_tab_description">설명</string>
     <string name="comments_tab_description">댓글</string>
     <string name="recaptcha_solve">해결</string>
@@ -569,8 +569,8 @@
     <string name="metadata_category">카테고리</string>
     <string name="video_detail_by">%s에 의해</string>
     <string name="select_night_theme_toast">아래에서 선호하는 야간 테마를 선택할 수 있습니다</string>
-    <string name="youtube_music_premium_content">이 영상은 YouTube Music Premium 회원만 볼 수 있기 때문에 NewPipe에서 스트리밍이나 다운로드가 불가능합니다.</string>
-    <string name="private_content">이 콘텐츠는 비공개이므로 NewPipe에서 스트리밍하거나 다운로드할 수 없습니다.</string>
+    <string name="youtube_music_premium_content">이 영상은 YouTube Music Premium 회원만 볼 수 있기 때문에 YewPlay에서 스트리밍이나 다운로드가 불가능합니다.</string>
+    <string name="private_content">이 콘텐츠는 비공개이므로 YewPlay에서 스트리밍하거나 다운로드할 수 없습니다.</string>
     <string name="metadata_privacy_internal">내부</string>
     <string name="processing_may_take_a_moment">처리 중... 시간이 걸릴 수 있습니다</string>
     <string name="progressive_load_interval_title">재생 로드 간격 크기</string>
@@ -582,10 +582,10 @@
     <string name="feed_new_items">새로운 피드 항목</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">그룹화되지 않은 구독만 표시</string>
     <string name="feed_load_error_account_info">\'%s\'에 대한 피드를 불러올 수 없습니다.</string>
-    <string name="feed_load_error_terminated">제작자의 계정이 해지되었습니다. \nNewPipe는 앞으로 이 피드를 불러올 수 없습니다. \n이 채널의 구독을 취소하겠습니까?</string>
+    <string name="feed_load_error_terminated">제작자의 계정이 해지되었습니다. \nYewPlay는 앞으로 이 피드를 불러올 수 없습니다. \n이 채널의 구독을 취소하겠습니까?</string>
     <string name="feed_load_error_fast_unknown">빠른 공급 모드는 이에 대한 자세한 정보를 제공하지 않습니다.</string>
     <string name="feed_use_dedicated_fetch_method_title">사용 가능한 경우 전용 피드에서 가져오기</string>
-    <string name="paid_content">이 콘텐츠는 유료 사용자만 사용할 수 있으므로 NewPipe에서 스트리밍 또는 다운로드할 수 없습니다.</string>
+    <string name="paid_content">이 콘텐츠는 유료 사용자만 사용할 수 있으므로 YewPlay에서 스트리밍 또는 다운로드할 수 없습니다.</string>
     <string name="metadata_support">지원</string>
     <string name="metadata_language">언어</string>
     <string name="metadata_age_limit">연령 제한</string>
@@ -619,7 +619,7 @@
     <string name="chapters">챕터</string>
     <string name="recent">최근</string>
     <string name="account_terminated">계정이 해지됨</string>
-    <string name="soundcloud_go_plus_content">이것은 적어도 귀하의 국가에서 SoundCloud Go+ 트랙이므로 NewPipe에서 스트리밍하거나 다운로드할 수 없습니다.</string>
+    <string name="soundcloud_go_plus_content">이것은 적어도 귀하의 국가에서 SoundCloud Go+ 트랙이므로 YewPlay에서 스트리밍하거나 다운로드할 수 없습니다.</string>
     <string name="auto_device_theme_title">자동 (기기 테마)</string>
     <string name="detail_pinned_comment_view_description">고정된 댓글</string>
     <string name="featured">추천</string>
@@ -644,15 +644,15 @@
     <string name="description_select_note">이제 설명 내에서 텍스트를 선택할 수 있습니다. 선택 모드에서는 페이지가 깜박이고 링크를 클릭할 수 없는 경우가 있습니다.</string>
     <string name="no_appropriate_file_manager_message_android_10">이 작업에 적합한 파일 관리자를 찾을 수 없습니다. \n저장영역 접속 프레임워크 호환 파일 관리자를 설치하십시오</string>
     <string name="no_appropriate_file_manager_message">이 작업에 적합한 파일 관리자를 찾을 수 없습니다. \n파일 관리자를 설치하거나 다운로드 설정에서 \'%s\'을(를) 비활성화하십시오</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">피드 로딩이 너무 느리다고 생각하시나요? 그렇다면 빠른 로딩을 활성화해 보세요. (설정에서 변경하거나 아래 버튼을 눌러 변경할 수 있습니다) \n \nNewPipe는 두 가지 피드 로딩 전략을 제공합니다: \n• 전체 구독 채널 가져오기: 느리지만 완전합니다. \n• 전용 서비스 엔드포인트 사용: 빠르지만 일반적으로 완전하지 않습니다. \n \n이 두 가지의 차이점은 빠른 방식이 일반적으로 항목의 길이나 유형(실시간 동영상과 일반 동영상을 구분할 수 없음)과 같은 일부 정보가 부족하고 더 적은 항목을 반환할 수 있다는 점입니다. \n \nYouTube는 RSS 피드를 통해 이 빠른 방법을 제공하는 서비스의 예입니다. \n \n따라서 선택은 속도와 정확한 정보 중 무엇을 선호하느냐에 달려 있습니다.</string>
-    <string name="content_not_supported">이 기능은 아직 NewPipe에서 지원하지 않습니다. \n \n이후 버전에서 지원될 예정입니다.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">피드 로딩이 너무 느리다고 생각하시나요? 그렇다면 빠른 로딩을 활성화해 보세요. (설정에서 변경하거나 아래 버튼을 눌러 변경할 수 있습니다) \n \nYewPlay는 두 가지 피드 로딩 전략을 제공합니다: \n• 전체 구독 채널 가져오기: 느리지만 완전합니다. \n• 전용 서비스 엔드포인트 사용: 빠르지만 일반적으로 완전하지 않습니다. \n \n이 두 가지의 차이점은 빠른 방식이 일반적으로 항목의 길이나 유형(실시간 동영상과 일반 동영상을 구분할 수 없음)과 같은 일부 정보가 부족하고 더 적은 항목을 반환할 수 있다는 점입니다. \n \nYouTube는 RSS 피드를 통해 이 빠른 방법을 제공하는 서비스의 예입니다. \n \n따라서 선택은 속도와 정확한 정보 중 무엇을 선호하느냐에 달려 있습니다.</string>
+    <string name="content_not_supported">이 기능은 아직 YewPlay에서 지원하지 않습니다. \n \n이후 버전에서 지원될 예정입니다.</string>
     <string name="faq_description">앱 사용에 문제가 있는 경우, 일반적인 질문에 대한 다음 답변을 확인하세요!</string>
     <string name="faq_title">자주 묻는 질문</string>
     <string name="faq">웹사이트에서 보기</string>
     <string name="sort">정렬</string>
     <string name="fast_mode">빠른 모드</string>
     <string name="import_subscriptions_hint">점 3개 메뉴에서 구독 가져오기 또는 내보내기</string>
-    <string name="app_update_unavailable_toast">최신 버전의 NewPipe를 실행 중입니다</string>
+    <string name="app_update_unavailable_toast">최신 버전의 YewPlay를 실행 중입니다</string>
     <string name="app_update_available_notification_text">%s를 다운로드하려면 탭하세요</string>
     <string name="unset_playlist_thumbnail">영구 썸네일 설정 해제</string>
     <string name="night_theme_available">이 옵션은 %s가 테마로 선택되었을 경우에만 사용할 수 있습니다</string>
@@ -749,7 +749,7 @@
     <string name="error_insufficient_storage">기기에 저장공간이 충분하지 않습니다</string>
     <string name="show_less">덜보기</string>
     <string name="settings_category_backup_restore_title">백업 및 복원</string>
-    <string name="auto_update_check_description">NewPipe에서 자동으로 새 버전을 확인하고 업데이트가 있으면 알려줍니다. \n이 기능을 켜시겠습니까?</string>
+    <string name="auto_update_check_description">YewPlay에서 자동으로 새 버전을 확인하고 업데이트가 있으면 알려줍니다. \n이 기능을 켜시겠습니까?</string>
     <string name="reset_all_settings">모든 설정을 초기화하면 설정해둔 사항이 모두 삭제되며 앱을 다시 시작합니다. \n \n정말 계속하시겠습니까?</string>
     <string name="import_settings_vulnerable_format">가져오려는 설정 파일이 NewPipe 0.27.0 이상에서는 권장하지 않는 취약한 형식으로 작성되어 있습니다. 설정 파일의 출처를 신뢰할 수 있는지 꼭 확인하시기 바라며, 다음부터는 가급적 NewPipe 0.27.0 이후의 설정 파일만 이용하시기 바랍니다. 이 취약한 형식의 설정 파일은 곧 더 이상 지원되지 않으며, 오래된 버전의 NewPipe에서 새 버전의 설정 파일을 가져오는 것도 불가능해질 예정입니다.</string>
     <plurals name="replies">

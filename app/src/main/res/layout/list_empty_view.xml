@@ -1,18 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- YewPlay: estado vazio com ilustração simples, título e explicação -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
     android:minHeight="128dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/yp_screen_margin"
+    android:paddingVertical="16dp">
+
+    <ImageView
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:background="@drawable/yp_empty_tile"
+        android:importantForAccessibility="no"
+        android:padding="22dp"
+        android:src="@drawable/ic_smart_display"
+        app:tint="@color/yp_muted" />
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="¯\\_(ツ)_/¯"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        tools:ignore="HardcodedText" />
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/yp_empty_title"
+        android:textAppearance="@style/TextAppearance.YewPlay.SectionTitle"
+        android:fontFamily="@font/bricolage_grotesque_bold"
+        app:fontFamily="@font/bricolage_grotesque_bold" />
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:layout_width="wrap_content"
@@ -20,6 +35,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="6dp"
         android:gravity="center"
-        android:paddingHorizontal="16dp"
-        android:text="@string/empty_list_subtitle" />
+        android:text="@string/empty_list_subtitle"
+        android:textAppearance="@style/TextAppearance.YewPlay.Meta"
+        android:textSize="14sp" />
 </LinearLayout>

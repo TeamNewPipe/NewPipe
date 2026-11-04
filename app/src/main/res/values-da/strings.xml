@@ -111,10 +111,10 @@
     <string name="always">Altid</string>
     <string name="just_once">Kun Én Gang</string>
     <string name="file">Fil</string>
-    <string name="notification_channel_name">NewPipe-notifikation</string>
-    <string name="notification_channel_description">Notifikationer for NewPipes afspiller</string>
+    <string name="notification_channel_name">YewPlay-notifikation</string>
+    <string name="notification_channel_description">Notifikationer for YewPlays afspiller</string>
     <string name="app_update_notification_channel_name">Notifikation om app-opdatering</string>
-    <string name="app_update_notification_channel_description">Notifikationer for nye NewPipe-versioner</string>
+    <string name="app_update_notification_channel_description">Notifikationer for nye YewPlay-versioner</string>
     <string name="unknown_content">[Ukendt]</string>
     <string name="switch_to_background">Skift til baggrund</string>
     <string name="switch_to_popup">Skift til popup</string>
@@ -190,7 +190,7 @@
     <string name="msg_name">Filnavn</string>
     <string name="msg_threads">Tråde</string>
     <string name="msg_error">Fejl</string>
-    <string name="msg_running">NewPipe henter</string>
+    <string name="msg_running">YewPlay henter</string>
     <string name="msg_running_detail">Tryk for detaljer</string>
     <string name="msg_wait">Vent venligst…</string>
     <string name="msg_copied">Kopieret til udklipsholder</string>
@@ -205,7 +205,7 @@
     <string name="settings_file_replacement_character_title">Erstatningstegn</string>
     <string name="charset_letters_and_digits">Bogstaver og cifre</string>
     <string name="charset_most_special_characters">De fleste specialtegn</string>
-    <string name="title_activity_about">Om NewPipe</string>
+    <string name="title_activity_about">Om YewPlay</string>
     <string name="title_licenses">Tredjepartslicenser</string>
     <string name="copyright" formatted="true">© %1$s af %2$s under %3$s</string>
     <string name="tab_about">Om &amp; Ofte Stillede Spørgsmål</string>
@@ -221,8 +221,8 @@
     <string name="website_encouragement">Besøg NewPipe\'s hjemmeside for flere oplysninger og nyheder.</string>
     <string name="privacy_policy_title">NewPipe\'s Privatlivspolitik</string>
     <string name="read_privacy_policy">Læs privatlivspolitik</string>
-    <string name="app_license_title">NewPipe\'s Licens</string>
-    <string name="app_license">NewPipe er copyleft, fri software: Du kan bruge, studere, dele og forbedre den, som du vil. Specifikt kan du redistribuere og/eller ændre den under betingelserne i GNU General Public License som udgivet af Free Software Foundation, enten version 3 af licensen eller (efter dit ønske) en vilkårlig senere version.</string>
+    <string name="app_license_title">YewPlay\'s Licens</string>
+    <string name="app_license">YewPlay er copyleft, fri software: Du kan bruge, studere, dele og forbedre den, som du vil. Specifikt kan du redistribuere og/eller ændre den under betingelserne i GNU General Public License som udgivet af Free Software Foundation, enten version 3 af licensen eller (efter dit ønske) en vilkårlig senere version.</string>
     <string name="read_full_license">Læs licens</string>
     <string name="title_activity_history">Historik</string>
     <string name="action_history">Historik</string>
@@ -346,7 +346,7 @@
     <string name="minimize_on_exit_none_description">Ingen</string>
     <string name="minimize_on_exit_background_description">Minimer til baggrundsafspiller</string>
     <string name="minimize_on_exit_popup_description">Minimer til popup-afspiller</string>
-    <string name="app_update_available_notification_title">En NewPipe-opdatering er tilgængelig!</string>
+    <string name="app_update_available_notification_title">En YewPlay-opdatering er tilgængelig!</string>
     <string name="paused">sat på pause</string>
     <string name="queued">sat i kø</string>
     <string name="max_retry_msg">Maks. antal genforsøg</string>
@@ -425,11 +425,11 @@
     <string name="recaptcha_cookies_cleared">reCAPTCHA-cookies blev ryddet</string>
     <string name="delete_playback_states_alert">Slet alle afspilningspositioner?</string>
     <string name="missing_file">Filen er flyttet eller slettet</string>
-    <string name="error_report_notification_title">NewPipe stødte ind i en fejl; tryk for at rapportere</string>
+    <string name="error_report_notification_title">YewPlay stødte ind i en fejl; tryk for at rapportere</string>
     <string name="error_report_open_issue_button_text">Rapportér på GitHub</string>
     <string name="high_quality_larger">Høj kvalitet (større)</string>
     <string name="enable_queue_limit">Begræns downloadkøen</string>
-    <string name="clear_cookie_summary">Ryd de cookies, som NewPipe opbevarer, når du løser en reCAPTCHA</string>
+    <string name="clear_cookie_summary">Ryd de cookies, som YewPlay opbevarer, når du løser en reCAPTCHA</string>
     <string name="notification_colorize_title">Farvelæg notifikation</string>
     <string name="settings_category_player_notification_title">Afspiller-notifikation</string>
     <string name="error_report_notification_toast">En fejl opstod; se notifikationen</string>
@@ -474,7 +474,7 @@
     <string name="notification_colorize_summary">Få Android til at vælge notifikationens farve ud fra den primære farve i miniaturebilledet (virker ikke på alle enheder)</string>
     <string name="night_theme_title">Nat-tema</string>
     <string name="seek_duration_title">Søgningsvarighed for spole frem/tilbage</string>
-    <string name="restricted_video_no_stream">Denne video er aldersbegrænset. \nGrundet nye YouTube-politikker om aldersbegrænsede videoer har NewPipe ikke adgang til nogen af dens videostreams og kan derfor ikke afspille dem.</string>
+    <string name="restricted_video_no_stream">Denne video er aldersbegrænset. \nGrundet nye YouTube-politikker om aldersbegrænsede videoer har YewPlay ikke adgang til nogen af dens videostreams og kan derfor ikke afspille dem.</string>
     <string name="crash_the_player">Crash afspilleren</string>
     <string name="clear_queue_confirmation_title">Spørg om bekræftelse, før du rydder en kø</string>
     <string name="seekbar_preview_thumbnail_title">Forhåndsvisning af miniaturebilleder på statuslinje</string>
@@ -513,7 +513,7 @@
     <string name="check_new_streams">Tjek efter nye streams</string>
     <string name="create_error_notification">Lav en fejlnotifikation</string>
     <string name="local">Lokale</string>
-    <string name="feed_load_error_terminated">Udgiverens konto er blevet lukket. \nNewPipe vil ikke være i stand til at indlæse dette feed i fremtiden. \nØnsker du at afmelde denne kanal?</string>
+    <string name="feed_load_error_terminated">Udgiverens konto er blevet lukket. \nYewPlay vil ikke være i stand til at indlæse dette feed i fremtiden. \nØnsker du at afmelde denne kanal?</string>
     <string name="feed_oldest_subscription_update">Feed sidst opdateret: %s</string>
     <string name="feed_subscription_not_loaded_count">Ikke indlæst: %d</string>
     <string name="feed_notification_loading">Indlæser feed…</string>
@@ -527,10 +527,10 @@
     <string name="show_thumbnail_title">Vis miniaturebillede</string>
     <string name="metadata_tags">Tags</string>
     <string name="metadata_age_limit">Aldersbegrænsning</string>
-    <string name="content_not_supported">Dette indhold understøttes endnu ikke af NewPipe. \n \nVi håber at kunne understøtte det i en fremtiden.</string>
-    <string name="paid_content">Dette indhold er kun tilgængeligt for brugere, som har betalt for det, så det kan ikke streames eller hentes af NewPipe.</string>
+    <string name="content_not_supported">Dette indhold understøttes endnu ikke af YewPlay. \n \nVi håber at kunne understøtte det i en fremtiden.</string>
+    <string name="paid_content">Dette indhold er kun tilgængeligt for brugere, som har betalt for det, så det kan ikke streames eller hentes af YewPlay.</string>
     <string name="account_terminated">Konto lukket</string>
-    <string name="private_content">Dette indhold er privat, så det kan ikke streames eller hentes af NewPipe.</string>
+    <string name="private_content">Dette indhold er privat, så det kan ikke streames eller hentes af YewPlay.</string>
     <string name="recently_added">Nyligt tilføjede</string>
     <string name="featured">Fremhævede</string>
     <plurals name="listening">
@@ -576,7 +576,7 @@
     <string name="choose_instance_prompt">Vælg en instans</string>
     <string name="error_timeout">Forbindelse afbrudt</string>
     <string name="error_progress_lost">Fremskridt tabt, fordi filen blev slettet</string>
-    <string name="error_postprocessing_stopped">NewPipe blev lukket under arbejde på filen</string>
+    <string name="error_postprocessing_stopped">YewPlay blev lukket under arbejde på filen</string>
     <string name="overwrite_failed">kan ikke overskrive filen</string>
     <string name="start_accept_privacy_policy">For at overholde den europæiske databeskyttelsesforordning (GDPR) henviser vi hermed din opmærksomhed til NewPipes privatlivspolitik. Læs den venligst omhyggeligt. \nDu skal acceptere den for at kunne sende os fejlrapporten.</string>
     <string name="unhook_checkbox">Aflænk (kan skabe forvrængning)</string>
@@ -612,7 +612,7 @@
     <string name="show_error_snackbar">Vis en fejl snackbar</string>
     <string name="downloads_storage_use_saf_title">Brug systemets mappevælger (SAF)</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanalens avatar-miniaturebillede</string>
-    <string name="soundcloud_go_plus_content">Dette er et SoundCloud Go+-nummer, i hvert fald i dit land, så det kan ikke streames eller hentes af NewPipe.</string>
+    <string name="soundcloud_go_plus_content">Dette er et SoundCloud Go+-nummer, i hvert fald i dit land, så det kan ikke streames eller hentes af YewPlay.</string>
     <string name="no_appropriate_file_manager_message_android_10">Ingen passende filhåndtering blev fundet til denne handling. \nInstaller venligst en Storage Access Framework-kompatibel filhåndtering.</string>
     <string name="no_appropriate_file_manager_message">Ingen passende filhåndtering blev fundet til denne handling. \nInstaller venligst en filhåndtering, eller prøv at deaktivere \'%s\' i downloadindstillingerne.</string>
     <string name="description_select_enable">Aktivér valg af tekst i beskrivelsen</string>
@@ -635,12 +635,12 @@
     <string name="no_video_streams_available_for_external_players">Ingen videostreams er tilgængelige for eksterne afspillere</string>
     <string name="off">Fra</string>
     <string name="tablet_mode_title">Tablet-tilstand</string>
-    <string name="youtube_music_premium_content">Denne video er kun tilgængelig for YouTube Musik Premium-medlemmer, så den kan ikke streames eller hentes af NewPipe.</string>
+    <string name="youtube_music_premium_content">Denne video er kun tilgængelig for YouTube Musik Premium-medlemmer, så den kan ikke streames eller hentes af YewPlay.</string>
     <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" gør det muligt at hente til et eksternt SD-kort</string>
     <string name="enable_disposed_exceptions_summary">Tving rapportering af ikke-levérbare Rx-undtagelser uden for fragmentets eller aktivitetens livscyklus efter bortskaffelse</string>
     <string name="app_update_available_notification_text">Tryk for at hente %s</string>
     <string name="downloads_storage_use_saf_summary_api_29">Fra og med Android 10 understøttes kun \"Storage Access Framework\"</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Synes du, at feed-indlæsning er for langsom? Hvis det er tilfældet, så prøv at aktivere hurtig indlæsning (du kan ændre det i indstillingerne eller ved at trykke på knappen nedenfor). \n \nNewPipe tilbyder to strategier til feed-indlæsning: \n- Hentning af hele abonnementskanalen, hvilket er langsomt, men komplet. \n- Brug af et dedikeret service endpoint, hvilket er hurtigt, men normalt ikke komplet. \n \nForskellen mellem de to, er, at den hurtige metode normalt mangler nogle oplysninger, f.eks. elementets varighed eller type (kan ikke skelne mellem livevideoer og normale videoer), og den returnerer muligvis færre elementer. \n \nYouTube er et eksempel på en tjeneste, der tilbyder denne hurtige metode med sit RSS-feed. \n \nValget er altså et spørgsmål om, hvad du foretrækker: hastighed eller præcise oplysninger.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Synes du, at feed-indlæsning er for langsom? Hvis det er tilfældet, så prøv at aktivere hurtig indlæsning (du kan ændre det i indstillingerne eller ved at trykke på knappen nedenfor). \n \nYewPlay tilbyder to strategier til feed-indlæsning: \n- Hentning af hele abonnementskanalen, hvilket er langsomt, men komplet. \n- Brug af et dedikeret service endpoint, hvilket er hurtigt, men normalt ikke komplet. \n \nForskellen mellem de to, er, at den hurtige metode normalt mangler nogle oplysninger, f.eks. elementets varighed eller type (kan ikke skelne mellem livevideoer og normale videoer), og den returnerer muligvis færre elementer. \n \nYouTube er et eksempel på en tjeneste, der tilbyder denne hurtige metode med sit RSS-feed. \n \nValget er altså et spørgsmål om, hvad du foretrækker: hastighed eller præcise oplysninger.</string>
     <string name="selected_stream_external_player_not_supported">Den valgte stream understøttes ikke af eksterne afspillere</string>
     <string name="night_theme_available">Denne indstilling er kun tilgængelig, hvis %s er valgt som tema</string>
     <string name="description_select_note">Du kan nu vælge tekst inde i beskrivelsen. Bemærk, at siden kan flimre, og links muligvis ikke kan klikkes på, mens du er i markeringstilstand.</string>
@@ -650,7 +650,7 @@
     <string name="faq_title">Ofte stillede spørgsmål</string>
     <string name="faq_description">Hvis du har problemer med at bruge appen, bør du tjekke disse svar på almindelige spørgsmål!</string>
     <string name="faq">Se på hjemmesiden</string>
-    <string name="app_update_unavailable_toast">Du kører den nyeste version af NewPipe</string>
+    <string name="app_update_unavailable_toast">Du kører den nyeste version af YewPlay</string>
     <string name="new_seek_duration_toast">Grundet ExoPlayer-begrænsninger blev søgevarigheden sat til %d sekunder</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Vis kun ugrupperede abonnementer</string>
     <string name="playlist_page_summary">Playlisteside</string>
@@ -768,7 +768,7 @@
     <string name="no">Nej</string>
     <string name="reset_settings_title">Nulstil indstillinger</string>
     <string name="reset_settings_summary">Nulstil alle indstillinger til deres standardværdier</string>
-    <string name="auto_update_check_description">NewPipe kan automatisk tjekke efter nye versioner indimellem og give dig besked, når de er tilgængelige. \nØnsker du at aktivere dette?</string>
+    <string name="auto_update_check_description">YewPlay kan automatisk tjekke efter nye versioner indimellem og give dig besked, når de er tilgængelige. \nØnsker du at aktivere dette?</string>
     <string name="reset_all_settings">Hvis du nulstiller alle indstillinger, kasseres alle dine foretrukne indstillinger, og appen genstartes. \n \nEr du sikker på, at du vil fortsætte?</string>
     <string name="import_settings_vulnerable_format">Indstillingerne i den eksport, der importeres, bruger et sårbart format, der er blevet forældet siden NewPipe 0.27.0. Sørg for, at den eksport, der importeres, er fra en pålidelig kilde, og brug helst kun eksport fra NewPipe 0.27.0 eller nyere i fremtiden. Understøttelse af import af indstillinger i dette sårbare format fjernes snart helt, og så vil gamle versioner af NewPipe ikke længere være i stand til at importere indstillinger fra eksport fra nye versioner.</string>
     <string name="settings_category_backup_restore_title">Sikkerhedskopiering og gendannelse</string>

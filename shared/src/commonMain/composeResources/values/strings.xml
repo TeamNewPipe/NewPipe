@@ -8,11 +8,14 @@
     <string name="navigate_back">Back</string>
 
     <!-- AboutScreen -->
-    <string name="title_activity_about">About NewPipe</string>
+    <string name="title_activity_about">About YewPlay</string>
     <string name="title_licenses">Third-party Licenses</string>
     <string name="license">By %1$s under %2$s</string>
     <string name="tab_about">About \u0026 FAQ</string>
     <string name="tab_licenses">Licenses</string>
+    <string name="app_version_based_on">Version %1$s · Based on %2$s %3$s</string>
+    <string name="yp_about_summary">Libre and ad-free. The code is open under the GPLv3 license and the app needs no account and collects none of your data.</string>
+    <string name="yp_about_credits">YewPlay is built on NewPipe. Thanks to the team and every contributor of the original project.</string>
     <string name="app_description">Libre lightweight streaming on Android.</string>
     <string name="contribution_title">Contribute</string>
     <string name="contribution_encouragement">Whether you have ideas of; translation, design changes, code cleaning, or real heavy code changes—help is always welcome. The more is done the better it gets!</string>
@@ -25,8 +28,8 @@
     <string name="privacy_policy_title">NewPipe's Privacy Policy</string>
     <string name="privacy_policy_encouragement">The NewPipe project takes your privacy very seriously. Therefore, the app does not collect any data without your consent.\nNewPipe's privacy policy explains in detail what data is sent and stored when you send a crash report.</string>
     <string name="read_privacy_policy">Read privacy policy</string>
-    <string name="app_license_title">NewPipe's License</string>
-    <string name="app_license">NewPipe is copyleft libre software: You can use, study, share, and improve it at will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
+    <string name="app_license_title">YewPlay's License</string>
+    <string name="app_license">YewPlay is copyleft libre software: You can use, study, share, and improve it at will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
     <string name="read_full_license">Read license</string>
     <string name="faq_title">Frequently asked questions</string>
     <string name="faq_description">If you are having trouble using the app, be sure to check out these answers to common questions!</string>
@@ -246,8 +249,19 @@
     <string name="delete_search_history_alert">Delete entire search history?</string>
     <string name="search_history_deleted">Search history deleted</string>
     <string name="clear_cookie_title">Clear reCAPTCHA cookies</string>
-    <string name="clear_cookie_summary">Clear cookies that NewPipe stores when you solve a reCAPTCHA</string>
+    <string name="clear_cookie_summary">Clear cookies that YewPlay stores when you solve a reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA cookies have been cleared</string>
 
 
+    <string name="yp_about_title">About YewPlay</string>
+    <string name="yp_about_version">Version %1$s</string>
+    <string name="yp_about_based_on">Based on %1$s %2$s</string>
+    <string name="yp_about_section_help">Help and project</string>
+    <string name="yp_about_section_legal">Legal information</string>
+    <string name="yp_about_faq">Frequently asked questions</string>
+    <string name="yp_about_source">Source code</string>
+    <string name="yp_about_site">NewPipe website</string>
+    <string name="yp_about_privacy">Privacy policy</string>
+    <string name="yp_about_licenses">Licenses</string>
+    <string name="yp_about_support">Support the project</string>
 </resources>

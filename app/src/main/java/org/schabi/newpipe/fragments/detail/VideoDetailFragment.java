@@ -42,6 +42,7 @@ import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.AttrRes;
@@ -65,11 +66,16 @@ import com.google.android.material.tabs.TabLayout;
 
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.NewPipeDatabase;
+import org.schabi.newpipe.database.playlist.PlaylistDuplicatesEntry;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
+import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.databinding.FragmentVideoDetailBinding;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
+import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
+import org.schabi.newpipe.local.subscription.SubscriptionManager;
 import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.Image;
@@ -119,10 +125,12 @@ import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.image.CoilHelper;
+import org.schabi.newpipe.util.image.ImageStrategy;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -131,6 +139,8 @@ import java.util.function.Consumer;
 
 import coil3.util.CoilUtils;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Maybe;
+import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -142,7 +152,8 @@ public final class VideoDetailFragment
         OnKeyDownListener {
     public static final String KEY_SWITCHING_PLAYERS = "switching_players";
 
-    private static final float MAX_OVERLAY_ALPHA = 0.9f;
+    // YewPlay: opaque mini player, so the video does not show through the floating capsule
+    private static final float MAX_OVERLAY_ALPHA = 1f;
     private static final float MAX_PLAYER_HEIGHT = 0.7f;
 
     public static final String ACTION_SHOW_MAIN_PLAYER =
@@ -212,6 +223,10 @@ public final class VideoDetailFragment
     private Disposable currentWorker;
     @NonNull
     private final CompositeDisposable disposables = new CompositeDisposable();
+    @Nullable
+    private Disposable subscriptionDisposable = null;
+    @Nullable
+    private SubscriptionManager subscriptionManager = null;
     @Nullable
     private Disposable positionSubscriber = null;
 
@@ -400,6 +415,9 @@ public final class VideoDetailFragment
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (subscriptionDisposable != null) {
+            subscriptionDisposable.dispose();
+        }
 
         // Stop the service when user leaves the app with double back press
         // if video player is selected. Otherwise unbind
@@ -650,6 +668,11 @@ public final class VideoDetailFragment
         // Forcefully catch click events uncaught by children because otherwise
         // they will be caught by underlying view and "click through" will happen
         binding.getRoot().setOnClickListener(v -> { });
+
+        // YewPlay: without an account a like cannot reach the service, so tapping the like
+        // count saves the video in the local "Liked" playlist instead
+        binding.detailThumbsUpImgView.setOnClickListener(v -> likeCurrentStream());
+        binding.detailThumbsUpCountView.setOnClickListener(v -> likeCurrentStream());
         binding.getRoot().setOnLongClickListener(v -> true);
 
         setOnClickListeners();
@@ -1593,15 +1616,15 @@ public final class VideoDetailFragment
             binding.detailThumbsDisabledView.setVisibility(View.GONE);
         }
 
+        setupSubscribeButton(info);
+
         if (info.getDuration() > 0) {
             binding.detailDurationView.setText(Localization.getDurationString(info.getDuration()));
-            binding.detailDurationView.setBackgroundColor(
-                    ContextCompat.getColor(activity, R.color.duration_background_color));
+            binding.detailDurationView.setBackgroundResource(R.drawable.yp_badge_duration);
             animate(binding.detailDurationView, true, 100);
         } else if (info.getStreamType() == StreamType.LIVE_STREAM) {
             binding.detailDurationView.setText(R.string.duration_live);
-            binding.detailDurationView.setBackgroundColor(
-                    ContextCompat.getColor(activity, R.color.live_duration_background_color));
+            binding.detailDurationView.setBackgroundResource(R.drawable.yp_badge_live);
             animate(binding.detailDurationView, true, 100);
         } else {
             binding.detailDurationView.setVisibility(View.GONE);
@@ -2324,11 +2347,13 @@ public final class VideoDetailFragment
      * @param showMore whether main fragment should be expanded or not
      */
     private void manageSpaceAtTheBottom(final boolean showMore) {
-        final int peekHeight = getResources().getDimensionPixelSize(R.dimen.mini_player_height);
+        final int peekHeight = getMiniPlayerPeekHeight();
         final ViewGroup holder = requireActivity().findViewById(R.id.fragment_holder);
         final int newBottomPadding;
         if (showMore) {
-            newBottomPadding = 0;
+            // YewPlay: a barra flutuante continua na tela mesmo sem mini-player
+            newBottomPadding = getResources()
+                    .getDimensionPixelSize(R.dimen.yp_bottom_bar_space);
         } else {
             newBottomPadding = peekHeight;
         }
@@ -2341,6 +2366,138 @@ public final class VideoDetailFragment
                 newBottomPadding);
     }
 
+    /**
+     * YewPlay: shows an ivory "Subscribe" button next to the channel. It uses the same local
+     * subscriptions as the channel page, so no account is needed.
+     *
+     * @param info the stream whose uploader can be subscribed to
+     */
+    private void setupSubscribeButton(@NonNull final StreamInfo info) {
+        if (subscriptionDisposable != null) {
+            subscriptionDisposable.dispose();
+            subscriptionDisposable = null;
+        }
+        final TextView button = binding.ypDetailSubscribeButton;
+        if (button == null) {
+            return;
+        }
+        if (isEmpty(info.getUploaderUrl())) {
+            button.setVisibility(View.GONE);
+            return;
+        }
+        if (subscriptionManager == null) {
+            subscriptionManager = new SubscriptionManager(requireContext());
+        }
+        subscriptionDisposable = subscriptionManager.subscriptionTable()
+                .getSubscriptionFlowable(info.getServiceId(), info.getUploaderUrl())
+                .map(List::isEmpty)
+                .distinctUntilChanged()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(notSubscribed -> {
+                    if (binding == null) {
+                        return;
+                    }
+                    final TextView b = binding.ypDetailSubscribeButton;
+                    b.setVisibility(View.VISIBLE);
+                    b.setText(notSubscribed ? R.string.subscribe_button_title
+                            : R.string.subscribed_button_title);
+                    b.setBackgroundResource(notSubscribed ? R.drawable.yp_button_primary
+                            : R.drawable.yp_button_secondary);
+                    b.setTextColor(ContextCompat.getColor(requireContext(), notSubscribed
+                            ? R.color.yp_on_action : R.color.yp_on_bg));
+                    b.setOnClickListener(v -> toggleSubscription(info, notSubscribed));
+                }, e -> {
+                    if (binding != null && binding.ypDetailSubscribeButton != null) {
+                        binding.ypDetailSubscribeButton.setVisibility(View.GONE);
+                    }
+                });
+    }
+
+    private void toggleSubscription(@NonNull final StreamInfo info, final boolean subscribe) {
+        final SubscriptionManager manager = subscriptionManager;
+        if (manager == null) {
+            return;
+        }
+        final Completable action;
+        if (subscribe) {
+            final SubscriptionEntity entity = new SubscriptionEntity();
+            entity.setServiceId(info.getServiceId());
+            entity.setUrl(info.getUploaderUrl());
+            entity.setName(info.getUploaderName());
+            entity.setAvatarUrl(ImageStrategy.imageListToDbUrl(info.getUploaderAvatars()));
+            if (info.getUploaderSubscriberCount() > -1) {
+                entity.setSubscriberCount(info.getUploaderSubscriberCount());
+            }
+            action = Completable.fromAction(() -> manager.insertSubscription(entity));
+        } else {
+            action = manager.deleteSubscription(info.getServiceId(), info.getUploaderUrl());
+        }
+        disposables.add(action
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(() -> { }, e -> ErrorUtil.showUiErrorSnackbar(this,
+                        "Updating subscription from the video page", e)));
+    }
+
+    /**
+     * YewPlay: saves the current video in the local "Liked" playlist, creating the playlist the
+     * first time. Nothing is sent to the service, since YewPlay works without an account.
+     */
+    private void likeCurrentStream() {
+        if (currentInfo == null) {
+            return;
+        }
+        final Context context = requireContext();
+        final LocalPlaylistManager manager =
+                new LocalPlaylistManager(NewPipeDatabase.getInstance(context));
+        final String likedName = getString(R.string.yp_liked_playlist_name);
+        final List<StreamEntity> streams =
+                Collections.singletonList(new StreamEntity(currentInfo));
+        disposables.add(manager.getPlaylistDuplicates(currentInfo.getUrl())
+                .firstElement()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(entries -> {
+                    final PlaylistDuplicatesEntry liked = findLikedPlaylist(entries, likedName);
+                    if (liked != null && liked.getTimesStreamIsContained() > 0) {
+                        Toast.makeText(context, R.string.yp_liked_already, Toast.LENGTH_SHORT)
+                                .show();
+                        return;
+                    }
+                    final Maybe<List<Long>> save = liked == null
+                            ? manager.createPlaylist(likedName, streams)
+                            : manager.appendToPlaylist(liked.getUid(), streams);
+                    disposables.add(save
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(ids -> Toast.makeText(context, R.string.yp_liked_added,
+                                            Toast.LENGTH_SHORT).show(),
+                                    e -> ErrorUtil.showUiErrorSnackbar(this,
+                                            "Saving liked video", e)));
+                }, e -> ErrorUtil.showUiErrorSnackbar(this, "Loading liked playlist", e)));
+    }
+
+    @Nullable
+    private static PlaylistDuplicatesEntry findLikedPlaylist(
+            @NonNull final List<PlaylistDuplicatesEntry> entries,
+            @NonNull final String likedName) {
+        for (final PlaylistDuplicatesEntry entry : entries) {
+            if (likedName.equals(entry.getOrderingName())) {
+                return entry;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * YewPlay: the mini player sits right above the floating navigation bar, so the bottom sheet
+     * peeks by the mini player height plus the space taken by the bar.
+     *
+     * @return the peek height of the bottom sheet, in pixels
+     */
+    private int getMiniPlayerPeekHeight() {
+        return getResources().getDimensionPixelSize(R.dimen.mini_player_height)
+                + getResources().getDimensionPixelSize(R.dimen.yp_bottom_bar_space);
+    }
+
     private void setupBottomPlayer() {
         final CoordinatorLayout.LayoutParams params =
                 (CoordinatorLayout.LayoutParams) binding.appBarLayout.getLayoutParams();
@@ -2351,7 +2508,7 @@ public final class VideoDetailFragment
         bottomSheetBehavior.setState(lastStableBottomSheetState);
         updateBottomSheetState(lastStableBottomSheetState);
 
-        final int peekHeight = getResources().getDimensionPixelSize(R.dimen.mini_player_height);
+        final int peekHeight = getMiniPlayerPeekHeight();
         if (bottomSheetState != BottomSheetBehavior.STATE_HIDDEN) {
             manageSpaceAtTheBottom(false);
             bottomSheetBehavior.setPeekHeight(peekHeight);

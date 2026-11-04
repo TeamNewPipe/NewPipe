@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="navigate_back">رجوع</string>
-    <string name="title_activity_about">حول NewPipe</string>
+    <string name="title_activity_about">حول YewPlay</string>
     <string name="title_licenses">تراخيص الطرف الثالث</string>
     <string name="license">بواسطة %1$s تحت %2$s</string>
     <string name="tab_about">حول و الأسئلة الشائعة</string>
@@ -18,8 +18,8 @@
     <string name="privacy_policy_title">سياسة خصوصية NewPipe</string>
     <string name="privacy_policy_encouragement">يهتم مشروع NewPipe بخصوصيتك، لذلك لا يجمع التطبيق أي بيانات دون موافقتك.\nتوضح سياسة الخصوصية الخاصة بـ NewPipe بالتفصيل البيانات التي يتم إرسالها وحفظها عند إرسال تقرير عن تعطل التطبيق.</string>
     <string name="read_privacy_policy">اقرأ سياسة الخصوصية</string>
-    <string name="app_license_title">ترخيص NewPipe</string>
-    <string name="app_license">NewPipe هو برنامج مفتوح المصدر مرخص بموجب حقوق النشر: يمكنك استخدامه ودراسته ومشاركته وتحسينه كما تشاء. وبالتحديد، يمكنك إعادة توزيعه و/أو تعديله وفقًا لشروط رخصة GNU العمومية العامة كما نشرتها مؤسسة البرمجيات الحرة، سواء الإصدار 3 من الرخصة، أو (حسب اختيارك) أي إصدار لاحق.</string>
+    <string name="app_license_title">ترخيص YewPlay</string>
+    <string name="app_license">YewPlay هو برنامج مفتوح المصدر مرخص بموجب حقوق النشر: يمكنك استخدامه ودراسته ومشاركته وتحسينه كما تشاء. وبالتحديد، يمكنك إعادة توزيعه و/أو تعديله وفقًا لشروط رخصة GNU العمومية العامة كما نشرتها مؤسسة البرمجيات الحرة، سواء الإصدار 3 من الرخصة، أو (حسب اختيارك) أي إصدار لاحق.</string>
     <string name="read_full_license">اقرأ الرخصة</string>
     <string name="faq_title">الأسئلة الشائعة</string>
     <string name="faq_description">إذا كنت تواجه مشكلة في استخدام التطبيق، فتأكد من مراجعة هذه الإجابات على الأسئلة الشائعة!</string>

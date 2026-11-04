@@ -2,7 +2,7 @@
 <resources>
     <string name="app_description">Frjáls og léttur streymisspilari fyrir Android.</string>
     <string name="navigate_back">Til baka</string>
-    <string name="title_activity_about">Um NewPipe</string>
+    <string name="title_activity_about">Um YewPlay</string>
     <string name="tab_about">Um okkur &amp; algengar spurningar</string>
     <string name="website_title">Vefsíða</string>
     <string name="privacy_policy_encouragement">NewPipe verkefnið tekur friðhelgi þína mjög alvarlega. Þess vegna safnar forritið engu án samþykkis þíns. \n\nPersónuverndarstefna NewPipe útskýrir í smáatriðum hvaða gögn eru send og geymd þegar þú sendir hrunskýrslu.</string>
@@ -18,8 +18,8 @@
     <string name="website_encouragement">Fyrir frekari upplýsingar og nýjustu fréttir um NewPipe geturðu skoðað heimasíðu okkar.</string>
     <string name="privacy_policy_title">Persónuverndarstefna NewPipe</string>
     <string name="read_privacy_policy">Lesa persónuverndarstefnu</string>
-    <string name="app_license_title">Hugbúnaðarleyfi NewPipe</string>
-    <string name="app_license">NewPipe er „copyleft“ frjáls hugbúnaður: Þú getur notað, rannsakað, deilt og bætt honum að vild. Þú getur endurdreift og breytt því samkvæmt skilmálum GNU GPL notendaleyfi eins og það er gefið út af Frjálsa Hugbúnaðarstofnuninni, annað hvort útgáfu 3 af leyfinu, eða (að eigin vali) hvaða síðari útgáfu sem er.</string>
+    <string name="app_license_title">Hugbúnaðarleyfi YewPlay</string>
+    <string name="app_license">YewPlay er „copyleft“ frjáls hugbúnaður: Þú getur notað, rannsakað, deilt og bætt honum að vild. Þú getur endurdreift og breytt því samkvæmt skilmálum GNU GPL notendaleyfi eins og það er gefið út af Frjálsa Hugbúnaðarstofnuninni, annað hvort útgáfu 3 af leyfinu, eða (að eigin vali) hvaða síðari útgáfu sem er.</string>
     <string name="read_full_license">Lesa notkunarleyfi</string>
     <string name="faq_title">Algengar spurningar</string>
     <string name="faq_description">Ef þú átt í vandræðum með að nota forritið vertu viss um að skoða þessi svör við algengum spurningum!</string>

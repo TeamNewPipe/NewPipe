@@ -127,26 +127,27 @@
 
             <ImageButton
                 android:id="@+id/control_play_pause"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
                 android:layout_centerInParent="true"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
+                android:background="@drawable/yp_play_circle"
                 android:clickable="true"
                 android:focusable="true"
-                android:scaleType="fitCenter"
+                android:padding="18dp"
+            android:scaleType="fitCenter"
                 android:src="@drawable/ic_pause"
                 android:contentDescription="@string/pause"
-                app:tint="?attr/colorAccent" />
+                app:tint="@color/yp_on_action" />
 
             <ProgressBar
                 android:id="@+id/control_progress_bar"
                 style="?android:attr/progressBarStyleLargeInverse"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
                 android:layout_centerInParent="true"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
@@ -276,13 +277,13 @@
             android:gravity="center"
             android:minHeight="40dp"
             android:text="-:--:--"
-            android:textColor="?attr/colorAccent"
+            android:textColor="?android:attr/textColorSecondary"
             tools:ignore="HardcodedText"
             tools:text="1:06:29" />
 
         <androidx.appcompat.widget.AppCompatSeekBar
             android:id="@+id/seek_bar"
-            style="@style/Widget.AppCompat.SeekBar"
+            style="@style/YewPlaySeekBar"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -297,7 +298,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="-:--:--"
-            android:textColor="?attr/colorAccent"
+            android:textColor="?android:attr/textColorSecondary"
             tools:ignore="HardcodedText"
             tools:text="1:23:49" />
 
@@ -324,7 +325,7 @@
             android:paddingRight="4dp"
             android:text="@string/duration_live"
             android:textAllCaps="true"
-            android:textColor="?attr/colorAccent"
+            android:textColor="@color/yp_state"
             android:visibility="gone" />
     </LinearLayout>
 </RelativeLayout>

@@ -30,8 +30,9 @@
         android:layout_centerHorizontal="true"
         android:ellipsize="end"
         android:lines="1"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="@dimen/video_item_search_title_text_size"
+        android:textAppearance="@style/TextAppearance.YewPlay.ItemTitle"
+        android:fontFamily="@font/instrument_sans_semibold"
+        app:fontFamily="@font/instrument_sans_semibold"
         tools:ignore="RtlHardcoded"
         tools:text="Channel Title, Lorem ipsum" />
 
@@ -42,8 +43,7 @@
         android:layout_below="@id/itemTitleView"
         android:layout_centerHorizontal="true"
         android:lines="1"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="@dimen/video_item_search_upload_date_text_size"
+        android:textAppearance="@style/TextAppearance.YewPlay.Meta"
         tools:ignore="RtlHardcoded"
         tools:text="10M subscribers • 100 videos" />
 
@@ -53,8 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/itemAdditionalDetails"
         android:layout_centerHorizontal="true"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="@dimen/video_item_search_upload_date_text_size"
+        android:textAppearance="@style/TextAppearance.YewPlay.Meta"
         android:gravity="center"
         tools:ignore="RtlHardcoded"
         tools:text="@tools:sample/lorem/random" />

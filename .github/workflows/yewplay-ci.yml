@@ -1,0 +1,120 @@
+name: YewPlay CI
+
+# Compila o app em qualquer PR e em pushes para branches claude/** e yewplay/**.
+# Se a compilação falhar, publica no PR um resumo dos erros para facilitar a correção.
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - 'claude/**'
+      - 'yewplay/**'
+
+concurrency:
+  group: yewplay-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: set up JDK
+        uses: actions/setup-java@v5
+        with:
+          java-version: 21
+          distribution: "temurin"
+          cache: 'gradle'
+
+      - name: Build debug APK
+        id: build
+        run: |
+          set -o pipefail
+          ./gradlew assembleDebug lintDebug --stacktrace -DskipFormatKtlint 2>&1 | tee build.log
+
+      - name: Upload APK
+        if: success()
+        uses: actions/upload-artifact@v7
+        with:
+          name: yewplay-debug-apk
+          path: app/build/outputs/apk/debug/*.apk
+
+      - name: Upload lint report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: lint-report
+          path: app/build/reports/lint-results-debug.*
+          if-no-files-found: ignore
+
+      - name: Comment result on PR
+        if: always() && github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+          OUTCOME: ${{ steps.build.outcome }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          {
+            if [ "$OUTCOME" = "success" ]; then
+              echo "### ✅ Build OK (\`${SHA:0:7}\`)"
+              echo
+              echo "APK de debug disponível nos artefatos: $RUN_URL"
+              echo
+              echo "<details><summary>Avisos de lint/compilação</summary>"
+              echo
+              echo '```'
+              grep -E "^(w: |warning:)|Warning:|Lint found" build.log | head -60 || true
+              echo '```'
+              echo "</details>"
+            else
+              echo "### ❌ Build falhou (\`${SHA:0:7}\`)"
+              echo
+              echo "Execução: $RUN_URL"
+              echo
+              echo '```'
+              grep -E "^e: |error:|ERROR|Error:|FAILED|What went wrong|> Task .* FAILED|AAPT|Unresolved|cannot find symbol|Execution failed" build.log | grep -v "^\s*at " | head -150 || true
+              echo '```'
+              echo
+              echo "<details><summary>Final do log</summary>"
+              echo
+              echo '```'
+              tail -120 build.log
+              echo '```'
+              echo "</details>"
+            fi
+          } > comment.md
+          head -c 60000 comment.md > comment_trim.md
+          gh pr comment "$PR" --repo "${{ github.repository }}" --body-file comment_trim.md
+
+      - name: Publish build summary to ci-logs branch
+        if: always() && github.event_name == 'push'
+        env:
+          OUTCOME: ${{ steps.build.outcome }}
+          BRANCH: ${{ github.ref_name }}
+          SHA: ${{ github.sha }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          name=$(echo "$BRANCH" | tr '/' '_')
+          mkdir -p /tmp/ci && cd /tmp/ci
+          git init -q && git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git fetch -q --depth 1 origin ci-logs && git checkout -q FETCH_HEAD || git checkout -q --orphan ci-logs
+          {
+            echo "branch: $BRANCH"; echo "sha: $SHA"; echo "outcome: $OUTCOME"; echo "run: $RUN_URL"; echo
+            echo "== errors =="
+            grep -E "^e: |error:|ERROR|Error:|FAILED|What went wrong|AAPT|Unresolved|cannot find symbol|Execution failed" "$GITHUB_WORKSPACE/build.log" | grep -v "^\s*at " | head -300 || true
+            echo; echo "== warnings =="
+            grep -E "^w: |warning:" "$GITHUB_WORKSPACE/build.log" | head -200 || true
+            echo; echo "== tail =="
+            tail -200 "$GITHUB_WORKSPACE/build.log"
+          } > "$name.log"
+          git add "$name.log"
+          git -c user.name=yewplay-ci -c user.email=ci@yewplay.invalid commit -q -m "ci: $BRANCH $OUTCOME ${SHA:0:7}"
+          git push -q origin HEAD:refs/heads/ci-logs

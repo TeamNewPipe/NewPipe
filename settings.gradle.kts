@@ -26,6 +26,13 @@ include(":app") // androidApp
 include(":desktopApp")
 include("shared")
 
+// YewPlay modules
+include(":core:model")
+include(":core:data")
+include(":core:designsystem")
+include(":feature:library")
+include(":feature:subscriptions")
+
 // Use a local copy of NewPipe Extractor by uncommenting the lines below.
 // We assume, that NewPipe and NewPipe Extractor have the same parent directory.
 // If this is not the case, please change the path in includeBuild().

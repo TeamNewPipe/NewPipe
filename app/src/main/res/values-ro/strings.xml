@@ -72,7 +72,7 @@
     <string name="msg_name">Numele fișierului</string>
     <string name="msg_threads">Fire</string>
     <string name="msg_error">Eroare</string>
-    <string name="msg_running">NewPipe descarcă</string>
+    <string name="msg_running">YewPlay descarcă</string>
     <string name="msg_running_detail">Atingeți pentru detalii</string>
     <string name="msg_wait">Vă rugăm așteptați…</string>
     <string name="msg_copied">Copiat în clipboard</string>
@@ -117,8 +117,8 @@
     <string name="settings_category_player_behavior_title">Comportament</string>
     <string name="settings_category_history_title">Istoric și cache</string>
     <string name="undo">Anulare</string>
-    <string name="notification_channel_name">Notificare NewPipe</string>
-    <string name="notification_channel_description">Notificări pentru playerul NewPipe</string>
+    <string name="notification_channel_name">Notificare YewPlay</string>
+    <string name="notification_channel_description">Notificări pentru playerul YewPlay</string>
     <string name="search_no_results">Fără rezultate</string>
     <string name="empty_list_subtitle">Nimic aici în afară de sunetul greierilor</string>
     <string name="no_subscribers">Fără abonați</string>
@@ -145,14 +145,14 @@
     <string name="settings_file_replacement_character_title">Caracter de înlocuire</string>
     <string name="charset_letters_and_digits">Litere și cifre</string>
     <string name="charset_most_special_characters">Caractere speciale</string>
-    <string name="title_activity_about">Despre NewPipe</string>
+    <string name="title_activity_about">Despre YewPlay</string>
     <string name="title_licenses">Licențe terță-parte</string>
     <string name="copyright" formatted="true">© %1$s de %2$s sub %3$s</string>
     <string name="tab_about">Despre &amp; Întrebări frecvente</string>
     <string name="tab_licenses">Licențe</string>
     <string name="app_description">Streaming gratuit și ușor pe Android.</string>
     <string name="view_on_github">Vezi pe GitHub</string>
-    <string name="app_license_title">Licența NewPipe</string>
+    <string name="app_license_title">Licența YewPlay</string>
     <string name="contribution_encouragement">Indiferent dacă ai idei legate de traduceri, modificări de design, curățarea codului sau modificări majore ale codului — ajutorul tău este întotdeauna binevenit. Cu cât se face mai mult, cu atât rezultatul este mai bun!</string>
     <string name="read_full_license">Citește licența</string>
     <string name="contribution_title">Contribuie</string>
@@ -274,7 +274,7 @@
     <string name="events">Evenimente</string>
     <string name="file_deleted">Fișier șters</string>
     <string name="app_update_notification_channel_name">Notificare de actualizare a aplicației</string>
-    <string name="app_update_notification_channel_description">Notificări pentru noi versiuni NewPipe</string>
+    <string name="app_update_notification_channel_description">Notificări pentru noi versiuni YewPlay</string>
     <string name="watch_history_deleted">Istoricul de vizionări a fost șters</string>
     <string name="clear_search_history_title">Ștergeți istoricul căutărilor</string>
     <string name="clear_search_history_summary">Șterge istoricul cuvintelor cheie de căutare</string>
@@ -294,7 +294,7 @@
     <string name="resize_zoom">Mărire</string>
     <string name="caption_setting_title">Subtitrări</string>
     <string name="caption_setting_description">Modificați dimensiunea textului subtitrărilor playerului și stilurile de fundal. Pentru ca modificările să intre în vigoare, este necesară repornirea aplicației</string>
-    <string name="app_license">NewPipe este o aplicație liberă: Poți folosi, studia, partaja, și a o face mai bună după propria voință. Poți redistribui și/sau modifica aplicația în termenii GNU GPL publicate de Free Software Foundation, toate dintre cele 3 versiuni, or (la opțiunea dvs.) orice versiune mai nouă.</string>
+    <string name="app_license">YewPlay este o aplicație liberă: Poți folosi, studia, partaja, și a o face mai bună după propria voință. Poți redistribui și/sau modifica aplicația în termenii GNU GPL publicate de Free Software Foundation, toate dintre cele 3 versiuni, or (la opțiunea dvs.) orice versiune mai nouă.</string>
     <string name="privacy_policy_title">Politica de Confidențialitate NewPipe</string>
     <string name="privacy_policy_encouragement">Proiectul NewPipe acordă o importanță deosebită confidențialității datelor tale. Prin urmare, aplicația nu colectează nicio informație fără consimțământul tău.\nPolitica de confidențialitate a NewPipe explică în detaliu ce date sunt transmise și stocate atunci când trimiți un raport de eroare.</string>
     <string name="read_privacy_policy">Citește Politica de confidențialitate</string>
@@ -335,7 +335,7 @@
     <string name="done">Gata</string>
     <string name="subtitle_activity_recaptcha">Apăsați „Gata” după ce ați rezolvat problema</string>
     <string name="error_report_open_issue_button_text">Raportați pe GitHub</string>
-    <string name="clear_cookie_summary">Ștergeți cookie-urile pe care NewPipe le stochează atunci când rezolvați un reCAPTCHA</string>
+    <string name="clear_cookie_summary">Ștergeți cookie-urile pe care YewPlay le stochează atunci când rezolvați un reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Cookie-urile reCAPTCHA au fost șterse</string>
     <string name="clear_cookie_title">Ștergeți cookie-urile reCAPTCHA</string>
     <string name="hash_channel_description">Notificări pentru progresul hashing-ului video</string>
@@ -374,8 +374,8 @@
     <string name="video_detail_by">De %s</string>
     <string name="channel_created_by">Creat de %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniatura de avatar a canalului</string>
-    <string name="content_not_supported">Acest conținut nu este încă acceptat de NewPipe. \n \nSperăm că va fi acceptat într-o versiune viitoare.</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Credeți că încărcarea fluxului este prea lentă? Dacă da, încercați să activați încărcarea rapidă (puteți schimba acest lucru în setări sau apăsând butonul de mai jos). \n \nNewPipe oferă două strategii de încărcare a fluxului: \n• Preluarea întregului canal de abonament, care este lent, dar complet. \n• Utilizarea unui punct final de serviciu dedicat, care este rapid, dar de obicei nu este complet. \n \nDiferența dintre cele două este că în cazul celei rapide lipsesc de obicei unele informații, cum ar fi durata sau tipul articolului (nu poate face distincția între videoclipurile live și cele normale) și poate returna mai puține articole. \n \nYouTube este un exemplu de serviciu care oferă această metodă rapidă prin intermediul fluxului său RSS. \n \nAșadar, alegerea se reduce la ceea ce preferați: rapiditate sau informații precise.</string>
+    <string name="content_not_supported">Acest conținut nu este încă acceptat de YewPlay. \n \nSperăm că va fi acceptat într-o versiune viitoare.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Credeți că încărcarea fluxului este prea lentă? Dacă da, încercați să activați încărcarea rapidă (puteți schimba acest lucru în setări sau apăsând butonul de mai jos). \n \nYewPlay oferă două strategii de încărcare a fluxului: \n• Preluarea întregului canal de abonament, care este lent, dar complet. \n• Utilizarea unui punct final de serviciu dedicat, care este rapid, dar de obicei nu este complet. \n \nDiferența dintre cele două este că în cazul celei rapide lipsesc de obicei unele informații, cum ar fi durata sau tipul articolului (nu poate face distincția între videoclipurile live și cele normale) și poate returna mai puține articole. \n \nYouTube este un exemplu de serviciu care oferă această metodă rapidă prin intermediul fluxului său RSS. \n \nAșadar, alegerea se reduce la ceea ce preferați: rapiditate sau informații precise.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Dezactivați modul rapid</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Activați modul rapid</string>
     <string name="feed_use_dedicated_fetch_method_summary">Disponibilă în unele servicii, este, de obicei, mult mai rapidă, dar poate returna un număr limitat de articole și adesea informații incomplete (de exemplu, fără durată, fără tipul de articol, fără stare în direct)</string>
@@ -455,7 +455,7 @@
     <string name="error_timeout">Conexiunea a expirat</string>
     <string name="error_progress_lost">Progres pierdut, deoarece fișierul a fost șters</string>
     <string name="error_insufficient_storage_left">Nu a mai rămas spațiu pe dispozitiv</string>
-    <string name="error_postprocessing_stopped">NewPipe a fost închis în timp ce lucra la fișier</string>
+    <string name="error_postprocessing_stopped">YewPlay a fost închis în timp ce lucra la fișier</string>
     <string name="error_postprocessing_failed">Post-procesarea a eșuat</string>
     <string name="error_http_not_found">Nu a fost găsit</string>
     <string name="error_http_unsupported_range">Serverul nu acceptă descărcări cu mai multe fire, încercați din nou cu @string/msg_threads = 1</string>
@@ -482,7 +482,7 @@
     <string name="paused">Întrerupt</string>
     <string name="missions_header_pending">În așteptare</string>
     <string name="missions_header_finished">Finalizat</string>
-    <string name="app_update_available_notification_title">Actualizare NewPipe disponibilă!</string>
+    <string name="app_update_available_notification_title">Actualizare YewPlay disponibilă!</string>
     <string name="auto">Auto</string>
     <string name="grid">Grilă</string>
     <string name="list">Listă</string>
@@ -554,15 +554,15 @@
     <string name="recaptcha_solve">Rezolvați</string>
     <string name="featured">Evidențiate</string>
     <string name="select_night_theme_toast">Mai jos poți selecta tema de noapte preferată</string>
-    <string name="restricted_video_no_stream">Acest videoclip este restricționat în funcție de vârstă. \nDin cauza noilor politici YouTube privind videoclipurile cu restricții de vârstă, NewPipe nu poate accesa niciunul dintre fluxurile sale video și, prin urmare, nu îl poate reda.</string>
+    <string name="restricted_video_no_stream">Acest videoclip este restricționat în funcție de vârstă. \nDin cauza noilor politici YouTube privind videoclipurile cu restricții de vârstă, YewPlay nu poate accesa niciunul dintre fluxurile sale video și, prin urmare, nu îl poate reda.</string>
     <string name="download_has_started">Descărcarea a început</string>
     <string name="night_theme_summary">Selectați tema de noapte preferată — %s</string>
     <string name="auto_device_theme_title">Automată (tema dispozitivului)</string>
     <string name="radio">Radio</string>
-    <string name="paid_content">Acest conținut este disponibil doar pentru utilizatorii care au plătit, ca atare nu poate fi difuzat sau descărcat de NewPipe.</string>
-    <string name="youtube_music_premium_content">Acest videoclip este disponibil doar pentru membrii YouTube Music Premium, ca atare nu poate fi difuzat sau descărcat de NewPipe.</string>
-    <string name="private_content">Acest conținut este privat, ca atare nu poate fi difuzat sau descărcat de NewPipe.</string>
-    <string name="soundcloud_go_plus_content">Aceasta este o piesă SoundCloud Go+, cel puțin în țara dvs., deci nu poate fi difuzată sau descărcată de NewPipe.</string>
+    <string name="paid_content">Acest conținut este disponibil doar pentru utilizatorii care au plătit, ca atare nu poate fi difuzat sau descărcat de YewPlay.</string>
+    <string name="youtube_music_premium_content">Acest videoclip este disponibil doar pentru membrii YouTube Music Premium, ca atare nu poate fi difuzat sau descărcat de YewPlay.</string>
+    <string name="private_content">Acest conținut este privat, ca atare nu poate fi difuzat sau descărcat de YewPlay.</string>
+    <string name="soundcloud_go_plus_content">Aceasta este o piesă SoundCloud Go+, cel puțin în țara dvs., deci nu poate fi difuzată sau descărcată de YewPlay.</string>
     <string name="georestricted_content">Acest conținut nu este disponibil în țara dumneavoastră.</string>
     <string name="show_channel_details">Afișați detaliile canalului</string>
     <string name="night_theme_title">Temă de noapte</string>
@@ -591,7 +591,7 @@
     <string name="description_select_note">Acum puteți selecta text în interiorul descrierii. Rețineți că este posibil ca pagina să pâlpâie, iar linkurile să nu poată fi accesate în modul de selecție.</string>
     <string name="account_terminated">Contul a fost închis</string>
     <string name="feed_load_error_fast_unknown">Modul rapid nu furnizează mai multe informații în acest sens.</string>
-    <string name="feed_load_error_terminated">Contul autorului a fost închis. \nNewPipe nu va mai putea încărca acest flux în viitor. \nDoriți să vă dezabonați de la acest canal?</string>
+    <string name="feed_load_error_terminated">Contul autorului a fost închis. \nYewPlay nu va mai putea încărca acest flux în viitor. \nDoriți să vă dezabonați de la acest canal?</string>
     <string name="feed_load_error_account_info">Nu s-a putut încărca fluxul pentru „%s”.</string>
     <string name="feed_load_error">Eroare la încărcarea fluxului</string>
     <string name="downloads_storage_use_saf_summary_api_29">Începând cu Android 10, este acceptat doar „Storage Access Framework”</string>
@@ -626,7 +626,7 @@
     <string name="error_report_channel_name">Notificare cu raport de eroare</string>
     <string name="show_crash_the_player_summary">Afișează opțiunea de a întrerupe atunci când utilizați playerul</string>
     <string name="error_report_notification_toast">A apărut o eroare, consultați notificarea</string>
-    <string name="error_report_notification_title">NewPipe a întămpinat o eroare, apăsați ca să raportați</string>
+    <string name="error_report_notification_title">YewPlay a întămpinat o eroare, apăsați ca să raportați</string>
     <string name="checking_updates_toast">Se verifică actualizări…</string>
     <string name="error_report_channel_description">Notificări pentru a raporta erori</string>
     <string name="create_error_notification">Creați o notificare de eroare</string>
@@ -677,7 +677,7 @@
     <string name="sort">Sortare</string>
     <string name="fast_mode">Modul rapid</string>
     <string name="import_subscriptions_hint">Importați sau exportați abonamente din meniul cu 3 puncte</string>
-    <string name="app_update_unavailable_toast">Folosiți cea mai recentă versiune NewPipe</string>
+    <string name="app_update_unavailable_toast">Folosiți cea mai recentă versiune YewPlay</string>
     <string name="app_update_available_notification_text">Atingeți pentru a descărca %s</string>
     <string name="night_theme_available">Această opțiune este disponibilă numai dacă %s este selectată ca temă</string>
     <string name="card">Cartelă</string>
@@ -779,7 +779,7 @@
     <string name="channel_tab_tracks">Piste</string>
     <string name="error_insufficient_storage">Nu este suficient spațiu liber pe dispozitiv</string>
     <string name="settings_category_backup_restore_title">Copie de rezervă și Restabilire</string>
-    <string name="auto_update_check_description">NewPipe poate verifica automat din când în când dacă există versiuni noi și vă poate anunța când acestea sunt disponibile.\nDoriți să activați această opțiune?</string>
+    <string name="auto_update_check_description">YewPlay poate verifica automat din când în când dacă există versiuni noi și vă poate anunța când acestea sunt disponibile.\nDoriți să activați această opțiune?</string>
     <string name="reset_settings_summary">Resetați toate setările la valorile implicite</string>
     <string name="yes">Da</string>
     <string name="no">Nu</string>
