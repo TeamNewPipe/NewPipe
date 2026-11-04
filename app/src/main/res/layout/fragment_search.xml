@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- YewPlay: tipos de resultado em abas (Compose) acima do conteúdo da busca -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/yp_search_filters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1">
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/correct_suggestion"
@@ -118,3 +130,5 @@
         android:background="?attr/toolbar_shadow" />
 
 </RelativeLayout>
+
+</LinearLayout>

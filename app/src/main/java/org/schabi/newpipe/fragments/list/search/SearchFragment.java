@@ -78,6 +78,7 @@ import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
+import org.schabi.newpipe.local.yewplay.YpComposeBridge;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -230,6 +231,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         super.onViewCreated(rootView, savedInstanceState);
 
         updateService();
+        updateFilterTabs();
         // Add the service name to search string hint
         // to make it more obvious which platform is being searched.
         if (service != null) {
@@ -388,6 +390,12 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         searchToolbarContainer = activity.findViewById(R.id.toolbar_search_container);
         searchEditText = searchToolbarContainer.findViewById(R.id.toolbar_search_edit_text);
         searchClear = searchToolbarContainer.findViewById(R.id.toolbar_search_clear);
+        final View cancel = searchToolbarContainer.findViewById(R.id.yp_search_cancel);
+        if (cancel != null) {
+            cancel.setOnClickListener(v ->
+                    requireActivity().getOnBackPressedDispatcher().onBackPressed());
+        }
+        updateFilterTabs();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -446,7 +454,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         final ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null) {
             supportActionBar.setDisplayShowTitleEnabled(false);
-            supportActionBar.setDisplayHomeAsUpEnabled(true);
+            // YewPlay: "Cancel" next to the search field replaces the up arrow
+            supportActionBar.setDisplayHomeAsUpEnabled(false);
         }
 
         int itemId = 0;
@@ -998,7 +1007,63 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         }
 
         contentFilter = theContentFilter.toArray(new String[0]);
+        updateFilterTabs();
 
+        if (!TextUtils.isEmpty(searchString)) {
+            search(searchString, contentFilter, sortFilter);
+        }
+    }
+
+    /**
+     * YewPlay: the content filters of the service as text tabs (All, Videos, Channels,
+     * Playlists, Songs) above the results; the remaining filters stay in the menu.
+     *
+     * @return the filters shown as tabs
+     */
+    private List<String> getTabFilters() {
+        final List<String> filters = new ArrayList<>();
+        if (service == null) {
+            return filters;
+        }
+        for (final String filter : service.getSearchQHFactory().getAvailableContentFilter()) {
+            final boolean otherMusicFilter = filter.startsWith("music_")
+                    && !filter.equals(YoutubeSearchQueryHandlerFactory.MUSIC_SONGS);
+            if (!otherMusicFilter && !filter.startsWith("sepia_")) {
+                filters.add(filter);
+            }
+        }
+        return filters;
+    }
+
+    private void updateFilterTabs() {
+        if (searchBinding == null || getContext() == null) {
+            return;
+        }
+        final List<String> filters = getTabFilters();
+        if (filters.size() < 2) {
+            searchBinding.ypSearchFilters.setVisibility(View.GONE);
+            return;
+        }
+        final String current = contentFilter.length == 0 ? filters.get(0) : contentFilter[0];
+        final List<String> labels = new ArrayList<>();
+        for (final String filter : filters) {
+            labels.add(ServiceHelper.getTranslatedFilterString(filter, requireContext()));
+        }
+        searchBinding.ypSearchFilters.setVisibility(View.VISIBLE);
+        YpComposeBridge.setTextTabs(searchBinding.ypSearchFilters, labels,
+                Math.max(0, filters.indexOf(current)),
+                index -> selectFilterFromTab(filters.get(index)));
+    }
+
+    private void selectFilterFromTab(final String filter) {
+        for (int i = 0; i < menuItemToFilterName.size(); i++) {
+            if (filter.equals(menuItemToFilterName.valueAt(i))) {
+                filterItemCheckedId = menuItemToFilterName.keyAt(i);
+            }
+        }
+        contentFilter = new String[]{filter};
+        activity.invalidateOptionsMenu();
+        updateFilterTabs();
         if (!TextUtils.isEmpty(searchString)) {
             search(searchString, contentFilter, sortFilter);
         }

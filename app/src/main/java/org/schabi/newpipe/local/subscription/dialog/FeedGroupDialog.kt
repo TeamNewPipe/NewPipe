@@ -146,6 +146,8 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         super.onViewCreated(view, savedInstanceState)
         _feedGroupCreateBinding = DialogFeedGroupCreateBinding.bind(view)
         _searchLayoutBinding = feedGroupCreateBinding.subscriptionsHeaderSearchContainer
+        // YewPlay: "Cancel" belongs to the main search only
+        searchLayoutBinding.ypSearchCancel.visibility = View.GONE
 
         viewModel = ViewModelProvider(
             this,
