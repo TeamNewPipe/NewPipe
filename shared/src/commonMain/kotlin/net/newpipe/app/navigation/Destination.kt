@@ -21,6 +21,9 @@ sealed interface Destination : NavKey {
     data object HistorySettings : Destination
 
     @Serializable
+    data object NotificationSettings : Destination
+
+    @Serializable
     data object DownloadSettings : Destination
 
     @Serializable
