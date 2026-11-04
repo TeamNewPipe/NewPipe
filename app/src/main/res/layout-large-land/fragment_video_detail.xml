@@ -576,40 +576,6 @@
 
                         </LinearLayout>
 
-                        <!-- YewPlay: descrição recolhida; "Mostrar mais" abre a aba da descrição -->
-                        <LinearLayout
-                            android:id="@+id/yp_detail_description_preview"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="12dp"
-                            android:layout_marginBottom="12dp"
-                            android:background="@drawable/yp_description_preview_background"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:orientation="vertical"
-                            android:padding="12dp"
-                            android:visibility="gone"
-                            tools:visibility="visible">
-
-                            <TextView
-                                android:id="@+id/yp_detail_description_text"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:ellipsize="end"
-                                android:maxLines="3"
-                                android:textAppearance="@style/TextAppearance.YewPlay.Meta"
-                                android:textSize="13.5sp"
-                                tools:text="Uma rotina simples, em cinco passos, para começar o dia com calma." />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:text="@string/show_more"
-                                android:textAppearance="@style/TextAppearance.YewPlay.ItemTitle"
-                                android:textSize="13.5sp" />
-                        </LinearLayout>
-
                         <View
                             android:id="@+id/detail_meta_info_separator"
                             android:layout_width="match_parent"

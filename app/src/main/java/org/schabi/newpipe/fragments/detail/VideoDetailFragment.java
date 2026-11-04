@@ -54,7 +54,6 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
-import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
@@ -87,7 +86,6 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.extractor.stream.Description;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
@@ -1619,7 +1617,6 @@ public final class VideoDetailFragment
         }
 
         setupSubscribeButton(info);
-        setupDescriptionPreview(info);
 
         if (info.getDuration() > 0) {
             binding.detailDurationView.setText(Localization.getDurationString(info.getDuration()));
@@ -2414,37 +2411,6 @@ public final class VideoDetailFragment
                         binding.ypDetailSubscribeButton.setVisibility(View.GONE);
                     }
                 });
-    }
-
-    /**
-     * YewPlay: shows the first lines of the description right on the video page; tapping it
-     * ("Show more") opens the description tab.
-     *
-     * @param info the stream whose description is shown
-     */
-    private void setupDescriptionPreview(@NonNull final StreamInfo info) {
-        final View preview = binding.ypDetailDescriptionPreview;
-        if (preview == null) {
-            return;
-        }
-        final Description description = info.getDescription();
-        final String content = description == null ? null : description.content();
-        if (isEmpty(content)) {
-            preview.setVisibility(View.GONE);
-            return;
-        }
-        final String text = description.type() == Description.Type.HTML
-                ? HtmlCompat.fromHtml(content, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
-                : content;
-        binding.ypDetailDescriptionText.setText(text.trim());
-        preview.setVisibility(View.VISIBLE);
-        preview.setOnClickListener(v -> {
-            final int position = pageAdapter.getItemPositionByTitle(DESCRIPTION_TAB_TAG);
-            if (position >= 0) {
-                binding.appBarLayout.setExpanded(false, true);
-                binding.viewPager.setCurrentItem(position, true);
-            }
-        });
     }
 
     private void toggleSubscription(@NonNull final StreamInfo info, final boolean subscribe) {
