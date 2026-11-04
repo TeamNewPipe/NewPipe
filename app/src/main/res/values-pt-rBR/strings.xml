@@ -34,12 +34,12 @@
     <string name="msg_running_detail">Toque para mais detalhes</string>
     <string name="msg_running">O YewPlay está baixando</string>
     <string name="msg_wait">Por favor, espere…</string>
-    <string name="network_error">Erro de rede</string>
+    <string name="network_error">Sem conexão</string>
     <string name="open_in_browser">Abrir no navegador</string>
     <string name="pause">Pausar</string>
     <string name="title_activity_recaptcha">Desafio reCAPTCHA</string>
     <string name="recaptcha_request_toast">Desafio reCAPTCHA solicitado</string>
-    <string name="retry">Tentar novamente</string>
+    <string name="retry">Tentar de novo</string>
     <string name="content_language_title">Idioma padrão do conteúdo</string>
     <string name="settings">Configurações</string>
     <string name="settings_category_appearance_title">Aparência</string>
@@ -58,7 +58,7 @@
     <string name="downloads_title">Downloads</string>
     <string name="did_you_mean">Você quis dizer \"%1$s\"?</string>
     <string name="app_ui_crash">O aplicativo travou</string>
-    <string name="background_player_playing_toast">Reproduzindo em segundo plano</string>
+    <string name="background_player_playing_toast">Ouvindo em segundo plano</string>
     <string name="could_not_setup_download_menu">O menu de download não pôde ser configurado</string>
     <string name="detail_thumbnail_view_description">Reproduzir vídeo, duração:</string>
     <string name="detail_uploader_thumbnail_view_description">Foto de perfil do autor</string>
@@ -82,20 +82,20 @@
     <string name="use_external_video_player_title">Usar player de vídeo externo</string>
     <string name="show_play_with_kodi_title">Mostrar opção \"Reproduzir no Kodi\"</string>
     <string name="info_labels">O que aconteceu:\nPedido:\nIdioma do conteúdo:\nPaís do conteúdo:\nIdioma do aplicativo:\nServiço:\nHora GMT:\nPacote:\nVersão:\nVersão do SO:</string>
-    <string name="open_in_popup_mode">Reproduzir no modo flutuante</string>
-    <string name="default_popup_resolution_title">Resolução padrão do pop-up</string>
+    <string name="open_in_popup_mode">Abrir em janela</string>
+    <string name="default_popup_resolution_title">Resolução padrão da janela</string>
     <string name="show_higher_resolutions_title">Mostrar resoluções mais altas</string>
     <string name="show_higher_resolutions_summary">Apenas alguns dispositivos podem reproduzir vídeos 2K/4K</string>
     <string name="default_video_format_title">Formato de vídeo padrão</string>
-    <string name="popup_playing_toast">Reproduzindo em modo Popup</string>
+    <string name="popup_playing_toast">Reproduzindo em janela</string>
     <string name="all">Todos</string>
     <string name="disabled">Desativado</string>
-    <string name="msg_popup_permission">Essa permissão é necessária \npara abrir em modo Popup</string>
+    <string name="msg_popup_permission">Esta permissão é necessária para abrir em janela</string>
     <string name="clear">Limpar</string>
     <string name="controls_popup_title">Janela</string>
     <string name="controls_background_title">Ouvir</string>
-    <string name="popup_remember_size_pos_title">Lembrar das propriedades do pop-up</string>
-    <string name="popup_remember_size_pos_summary">Lembrar do último tamanho e posição do pop-up</string>
+    <string name="popup_remember_size_pos_title">Lembrar tamanho e posição da janela</string>
+    <string name="popup_remember_size_pos_summary">Abrir a janela com o último tamanho e posição usados</string>
     <string name="use_external_video_player_summary">Remove áudio em algumas resoluções</string>
     <string name="show_search_suggestions_title">Sugestões de busca</string>
     <string name="show_search_suggestions_summary">Escolha as sugestões a serem exibidas enquanto estiver buscando</string>
@@ -157,7 +157,7 @@
         <item quantity="other">%s vídeos</item>
     </plurals>
     <string name="settings_category_player_title">Player</string>
-    <string name="empty_list_subtitle">Nada aqui além de grilos</string>
+    <string name="empty_list_subtitle">Quando houver algo, vai aparecer aqui.</string>
     <string name="delete_item_search_history">Deseja excluir este item do histórico de busca?</string>
     <string name="main_page_content">Conteúdo da tela inicial</string>
     <string name="blank_page_summary">Página em branco</string>
@@ -180,8 +180,8 @@
     <string name="play_queue_audio_settings">Configurações de áudio</string>
     <string name="hold_to_append">Toque longo para pôr na fila</string>
     <string name="unknown_content">[Desconhecido]</string>
-    <string name="start_here_on_background">Reproduzir em segundo plano</string>
-    <string name="start_here_on_popup">Reproduzir em um Popup</string>
+    <string name="start_here_on_background">Ouvir a partir daqui</string>
+    <string name="start_here_on_popup">Abrir em janela a partir daqui</string>
     <string name="donation_title">Doar</string>
     <string name="donation_encouragement">O NewPipe é desenvolvido por voluntários que passam seu tempo livre trazendo a você a melhor experiência de usuário. Retribua para ajudar os desenvolvedores a tornar o NewPipe ainda melhor enquanto tomam uma xícara de café.</string>
     <string name="give_back">Retribuir</string>
@@ -191,15 +191,15 @@
     <string name="default_content_country_title">País padrão do conteúdo</string>
     <string name="always">Sempre</string>
     <string name="just_once">Apenas uma vez</string>
-    <string name="switch_to_background">Mudar para segundo plano</string>
-    <string name="switch_to_popup">Mudar para Popup</string>
+    <string name="switch_to_background">Mudar para Ouvir</string>
+    <string name="switch_to_popup">Mudar para janela</string>
     <string name="switch_to_main">Mudar para principal</string>
     <string name="external_player_unsupported_link_type">Players externos não suportam estes tipos de URL</string>
     <string name="video_streams_empty">Nenhuma transmissão de vídeo encontrada</string>
     <string name="audio_streams_empty">Nenhuma transmissão de áudio encontrada</string>
     <string name="video_player">Player de vídeo</string>
-    <string name="background_player">Player em segundo plano</string>
-    <string name="popup_player">Player pop-up</string>
+    <string name="background_player">Ouvir</string>
+    <string name="popup_player">Janela</string>
     <string name="preferred_player_fetcher_notification_title">Obtendo informação…</string>
     <string name="preferred_player_fetcher_notification_message">Carregando conteúdo solicitado</string>
     <string name="import_data_title">Importar base de dados</string>
@@ -301,8 +301,8 @@
     <string name="minimize_on_exit_title">Minimizar na troca de aplicativos</string>
     <string name="minimize_on_exit_summary">Ação ao mudar de aplicativo a partir do player principal - %s</string>
     <string name="minimize_on_exit_none_description">Nenhum</string>
-    <string name="minimize_on_exit_background_description">Minimizar para player em segundo plano</string>
-    <string name="minimize_on_exit_popup_description">Minimizar para player pop-up</string>
+    <string name="minimize_on_exit_background_description">Continuar ouvindo em segundo plano</string>
+    <string name="minimize_on_exit_popup_description">Continuar em janela</string>
     <string name="skip_silence_checkbox">Avançar durante o silêncio</string>
     <string name="playback_step">Passo</string>
     <string name="playback_reset">Redefinir</string>
@@ -333,7 +333,7 @@
     <string name="grid">Grade</string>
     <string name="auto">Automático</string>
     <string name="app_update_available_notification_title">Uma atualização do YewPlay está disponível!</string>
-    <string name="missions_header_finished">Finalizado</string>
+    <string name="missions_header_finished">Concluídos</string>
     <string name="paused">pausado</string>
     <string name="queued">na fila</string>
     <string name="post_processing">pós-processamento</string>
@@ -454,7 +454,7 @@
         <item quantity="other">%d dias</item>
     </plurals>
     <string name="feed_groups_header_title">Grupo de canais</string>
-    <string name="feed_oldest_subscription_update">Última atualização do feed: %s</string>
+    <string name="feed_oldest_subscription_update">Atualizado %s</string>
     <string name="feed_subscription_not_loaded_count">Não carregado: %d</string>
     <string name="feed_notification_loading">Carregando feed…</string>
     <string name="feed_processing_message">Processando feed…</string>
@@ -626,7 +626,7 @@
     <string name="crash_the_player">Travar reprodução</string>
     <string name="show_crash_the_player_title">Mostrar \"Travar reprodução\"</string>
     <string name="show_crash_the_player_summary">Mostra uma opção de travamento ao usar o player</string>
-    <string name="feed_new_items">Novos itens do feed</string>
+    <string name="feed_new_items">Vídeos novos das inscrições</string>
     <string name="error_report_channel_name">Notificação de relatório de erro</string>
     <string name="error_report_channel_description">Notificações para reportar erros</string>
     <string name="error_report_notification_title">O YewPlay encontrou um erro, toque para relatar</string>
@@ -797,7 +797,7 @@
     <string name="channel_tab_likes">Curtidas</string>
     <string name="migration_info_6_7_title">Página Top 50 do SoundCloud removida</string>
     <string name="migration_info_6_7_message">O SoundCloud descontinuou as paradas originais do Top 50. A aba correspondente foi removida da sua página principal.</string>
-    <string name="permission_display_over_apps_message">Para usar o Popup Player, selecione %1$s no seguinte menu de configurações do Android e ative %2$s.</string>
+    <string name="permission_display_over_apps_message">Para abrir vídeos em janela, selecione %1$s no menu de configurações do Android a seguir e ative %2$s.</string>
     <string name="permission_display_over_apps_permission_name">“Permitir exibição sobre outros aplicativos”</string>
     <string name="short_thousand">%sK</string>
     <string name="short_million">%sM</string>
@@ -869,4 +869,7 @@
     <string name="yp_settings_notifications_summary">Avisos de vídeos novos das inscrições</string>
     <string name="yp_settings_history_summary">Pesquisas, reproduções e espaço usado</string>
     <string name="yp_settings_backup_summary">Exportar inscrições e configurações</string>
+    <string name="yp_empty_title">Nada por aqui ainda</string>
+    <string name="yp_subscriptions_empty_title">Seus canais aparecem aqui</string>
+    <string name="yp_subscriptions_empty_text">Inscreva-se em canais para receber os vídeos novos neste feed. Não precisa de conta. Para importar inscrições, use o menu ⋮.</string>
 </resources>

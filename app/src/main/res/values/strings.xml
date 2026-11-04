@@ -283,7 +283,7 @@
     <string name="related_items_tab_description">Related items</string>
     <string name="description_tab_description">Description</string>
     <string name="search_no_results">No results</string>
-    <string name="empty_list_subtitle">Nothing here but crickets</string>
+    <string name="empty_list_subtitle">When there is something, it will show up here.</string>
     <string name="import_subscriptions_hint">Import or export subscriptions from the 3-dot menu</string>
     <string name="detail_drag_description">Drag to reorder</string>
     <string name="video">Video</string>
@@ -711,7 +711,7 @@
     <string name="fragment_feed_title">What\'s New</string>
     <string name="feed_group_page_summary">Channel group page</string>
     <string name="feed_groups_header_title">Channel groups</string>
-    <string name="feed_oldest_subscription_update">Feed last updated: %s</string>
+    <string name="feed_oldest_subscription_update">Updated %s</string>
     <string name="feed_subscription_not_loaded_count">Not loaded: %d</string>
     <string name="feed_notification_loading">Loading feed…</string>
     <string name="feed_processing_message">Processing feed…</string>
@@ -929,4 +929,7 @@
     <string name="yp_settings_notifications_summary">Alerts for new videos from your subscriptions</string>
     <string name="yp_settings_history_summary">Searches, playback and space used</string>
     <string name="yp_settings_backup_summary">Export subscriptions and settings</string>
+    <string name="yp_empty_title">Nothing here yet</string>
+    <string name="yp_subscriptions_empty_title">Your channels show up here</string>
+    <string name="yp_subscriptions_empty_text">Subscribe to channels to get their new videos in this feed. No account needed. To import subscriptions, use the ⋮ menu.</string>
 </resources>
