@@ -6,13 +6,16 @@
 
 package org.schabi.newpipe.database.history.dao
 
-import androidx.room.Dao
-import androidx.room.Query
+import androidx.room3.Dao
+import androidx.room3.DaoReturnTypeConverters
+import androidx.room3.Query
+import androidx.room3.rxjava3.RxDaoReturnTypeConverters
 import io.reactivex.rxjava3.core.Flowable
 import org.schabi.newpipe.database.BasicDAO
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry
 
 @Dao
+@DaoReturnTypeConverters(RxDaoReturnTypeConverters::class)
 interface SearchHistoryDAO : BasicDAO<SearchHistoryEntry> {
 
     @get:Query("SELECT * FROM search_history WHERE id = (SELECT MAX(id) FROM search_history)")

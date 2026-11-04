@@ -19,7 +19,6 @@ import androidx.work.workDataOf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.reactive.awaitFirst
 import kotlinx.coroutines.withContext
-import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.R
 
@@ -52,9 +51,7 @@ class SubscriptionExportWorker(
                 }
             }
 
-            if (BuildConfig.DEBUG) {
-                Log.i(TAG, "Exported $qty subscriptions")
-            }
+            Log.i(TAG, "Exported $qty subscriptions")
 
             withContext(Dispatchers.Main) {
                 Toast
@@ -63,10 +60,8 @@ class SubscriptionExportWorker(
             }
 
             Result.success()
-        } catch (e: Exception) {
-            if (BuildConfig.DEBUG) {
-                Log.e(TAG, "Error while exporting subscriptions", e)
-            }
+        } catch (exception: Exception) {
+            Log.e(TAG, "Error while exporting subscriptions", exception)
 
             withContext(Dispatchers.Main) {
                 Toast

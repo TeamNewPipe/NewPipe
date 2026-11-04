@@ -81,18 +81,42 @@
             android:textSize="14sp"
             tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec aliquam augue, eget cursus est. Ut id tristique enim, ut scelerisque tellus. Sed ultricies ipsum non mauris ultricies, commodo malesuada velit porta." />
 
-        <org.schabi.newpipe.views.NewPipeTextView
-            android:id="@+id/artist_name"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="marquee"
-            android:fadingEdge="horizontal"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="12sp"
-            tools:text="Duis posuere arcu condimentum lobortis mattis." />
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- Video author -->
+
+            <org.schabi.newpipe.views.NewPipeTextView
+                android:id="@+id/artist_name"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="12sp"
+                tools:text="Duis posuere arcu condimentum lobortis mattis." />
+
+            <!-- Play queue progress / total duration -->
+            <org.schabi.newpipe.views.NewPipeTextView
+                android:id="@+id/queue_total_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textSize="12sp"
+                android:singleLine="true"
+                android:visibility="gone"
+                tools:text="16:20 / 48:30"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout

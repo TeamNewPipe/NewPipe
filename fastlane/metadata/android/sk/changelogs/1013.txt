@@ -1,0 +1,7 @@
+- [YouTube] Obídenie vynútenia SABR pomocou iného prehrávača. Videá a streamy sú opäť dostupné v rozlíšeniach odlišných od 360p!
+- [YouTube] Opravené extrahovanie položiek z playlistov a niektorých vlastností v modeloch zobrazenia lockup.
+- [YouTube] Odstránené náhradné riešenia pre neznámu pozíciu pri extrahovaní počtu/dátumu v zobrazení lockup.
+- [YouTube] Používajte formáty xTags na extrahovanie typu zvukovej stopy.
+- [Bandcamp] Opravené vyhľadávanie na Bandcamp.
+
+Veľká vďaka všetkým, ktorí sa podieľali na tejto verzii!

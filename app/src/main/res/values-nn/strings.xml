@@ -2,7 +2,7 @@
 <resources>
     <string name="main_bg_subtitle">Trykk på aukeglaset for å byrja.</string>
     <string name="upload_date_text">Gjeve ut den %1$s</string>
-    <string name="no_player_found">Fann ingen straumavspelarar. Legg inn VLC\?</string>
+    <string name="no_player_found">Fann ingen straumavspelarar. Legg inn VLC?</string>
     <string name="no_player_found_toast">Fann ingen straumavspelarar (du kan leggja inn VLC for å spela av straumen).</string>
     <string name="install">Legg inn</string>
     <string name="cancel">Avbryt</string>
@@ -14,7 +14,7 @@
     <string name="share">Del</string>
     <string name="search">Søk</string>
     <string name="settings">Innstillingar</string>
-    <string name="did_you_mean">Meinte du «%1$s»\?</string>
+    <string name="did_you_mean">Meinte du «%1$s»?</string>
     <string name="share_dialog_title">Del med</string>
     <string name="use_external_video_player_title">Nytt ytre videospelar</string>
     <string name="use_external_video_player_summary">Tek bort ljod ved somme oppløysingar</string>
@@ -42,7 +42,7 @@
     <string name="download_path_title">Videohentingsmappe</string>
     <string name="download_path_audio_summary">Henta ljodfiler vert gøymde her</string>
     <string name="download_path_audio_dialog_title">Vel hentemappe for ljodfiler</string>
-    <string name="kore_not_found">Legg inn saknande Kore-app\?</string>
+    <string name="kore_not_found">Legg inn saknande Kore-app?</string>
     <string name="search_showing_result_for">Viser svar for: %s</string>
     <string name="subscription_change_failed">Greidde ikkje å brigde fylginga</string>
     <string name="tablet_mode_title">Nettbrettvising</string>
@@ -99,7 +99,7 @@
     <string name="show_search_suggestions_summary">Vis søkjeframlegg ved søk</string>
     <string name="enable_watch_history_title">Visingshistorikk</string>
     <string name="enable_playback_resume_title">Spel av der du slapp</string>
-    <string name="unsupported_url_dialog_message">Kjente ikkje att nettadressa. Opn med ein annan app\?</string>
+    <string name="unsupported_url_dialog_message">Kjente ikkje att nettadressa. Opn med ein annan app?</string>
     <string name="default_content_country_title">Forvalt innhaldsland</string>
     <string name="settings_category_player_title">Avspelar</string>
     <string name="crash_the_player">Krasj avspelaren</string>

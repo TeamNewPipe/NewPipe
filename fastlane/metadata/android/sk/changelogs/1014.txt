@@ -1,0 +1,5 @@
+• Zvýšila sa minimálna verzia systému Android na 6.0
+• Opravené chyby pri importe odberov
+• Opravené viaceré chyby pri prehrávaní videa
+• Opravená chyba, ktorá bránila otvoreniu stiahnutých súborov v inej aplikácii
+• Aktualizácie prekladov

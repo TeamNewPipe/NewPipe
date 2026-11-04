@@ -98,7 +98,7 @@ public class FailedMediaSource extends BaseMediaSource implements ManagedMediaSo
      * <br><br>
      * If the exception is not known, e.g. {@link java.net.UnknownHostException} or some
      * other network issue, then no source info is refreshed and
-     * {@link #maybeThrowSourceInfoRefreshError()} be will triggered.
+     * {@link #maybeThrowSourceInfoRefreshError()} will be triggered.
      * <br><br>
      * Note that this method is called only once until {@link #releaseSourceInternal()} is called,
      * so if no action is done in here, playback will stall unless

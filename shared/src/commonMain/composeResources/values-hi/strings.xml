@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="navigate_back">वापस</string>
+    <string name="navigate_back">वापस जाएं</string>
     <string name="title_activity_about">न्यूपाइप के बारे में जानें</string>
     <string name="title_licenses">थर्ड-पार्टी लाइसेंस</string>
     <string name="license">%1$s द्वारा %2$s के अंतर्गत</string>
@@ -27,4 +27,17 @@
     <string name="open_in_browser">ब्राउज़र में खोलें</string>
     <string name="done">संपन्न</string>
     <string name="not_available">अनुपलब्ध</string>
+    <string name="settings">सेटिंग्स</string>
+    <string name="search">खोजें</string>
+    <string name="content">विषयवस्तु</string>
+    <string name="notifications">नोटीफिकेशन</string>
+    <string name="settings_category_video_audio_title">वीडियो और ऑडियो</string>
+    <string name="settings_category_downloads_title">डाउनलोड</string>
+    <string name="settings_category_appearance_title">दिखावट</string>
+    <string name="settings_category_history_title">इतिहास और कैश</string>
+    <string name="settings_category_updates_title">अपडेटस</string>
+    <string name="settings_category_backup_restore_title">बैकअप और रिस्टोर</string>
+    <string name="settings_category_debug_title">डीबग</string>
+    <string name="theme_title">थीम</string>
+    <string name="light_theme_title">लाइट</string>
 </resources>

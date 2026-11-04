@@ -1,3 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="privacy_policy_encouragement">Projekt NewPipe ozbiljno shvaća temu o privatnosti. Stoga aplikacija ne prikuplja podatke bez tvog pristanka. \nNewPipeova pravila o privatnosti detaljno objašnjavaju koji se podaci šalju i spremaju kad šalješ izvještaje o prekidu rada aplikacije.</string>
+    <string name="read_privacy_policy">Pročitaj pravila o privatnosti</string>
+    <string name="app_license_title">NewPipeova licenca</string>
+    <string name="app_description">Slobodan i jednostavan streaming na Android uređaju.</string>
+    <string name="navigate_back">Natrag</string>
+    <string name="title_activity_about">O aplikaciji NewPipe</string>
+    <string name="title_licenses">Licence treće strane</string>
+    <string name="license">Od %1$s pod %2$s</string>
+    <string name="tab_about">Informacije i ČPP</string>
+    <string name="contribution_title">Doprinesi</string>
+    <string name="give_back">Daj nešto zauzvrat</string>
+    <string name="website_title">Web-stranica</string>
+    <string name="website_encouragement">Posjeti NewPipe web-stranicu za više informacija i vijesti.</string>
+    <string name="privacy_policy_title">NewPipe pravila o privatnosti</string>
+    <string name="app_license">NewPipe je copyleft libre softver: Može se koristiti, proučavati i poboljšavati po volji. Konkretno, može se redistribuirati i / ili modificirati pod uvjetima GNU opće javne licence koju je objavila zaklada Free Software Foundation, pod verzijom 3 licence, ili (po vlastitom izboru) bilo koje kasnije verzije.</string>
+    <string name="read_full_license">Pročitaj licencu</string>
+    <string name="faq_title">Često postavljena pitanja</string>
+    <string name="faq_description">Ako imaš problema s korištenjem aplikacije, pogledaj odgovore na česta pitanja!</string>
+    <string name="faq">Pogledaj na web-stranici</string>
+    <string name="open_in_browser">Otvori u pregledniku</string>
+    <string name="done">Gotovo</string>
+    <string name="not_available">Nije dostupno</string>
+    <string name="tab_licenses">Licence</string>
+    <string name="contribution_encouragement">Ako imate ideja za prijevod, promjene u dizajnu, čišćenje koda ili neke veće promjene u kodu, pomoć je uvijek dobrodošla. Što više radimo, to bolji postajemo!</string>
+    <string name="view_on_github">Pogledaj na GitHubu</string>
+    <string name="donation_title">Doniraj</string>
+    <string name="donation_encouragement">NewPipe razvijaju volonteri koji provode vrijeme kako bi doprinijeli najboljem korisničkom iskustvu. Doprinesi programerima kako bi poboljšali NewPipe dok uživaju u šalici kave.</string>
+    <string name="settings">Postavke</string>
+    <string name="search">Pretraga</string>
+    <string name="content">Sadržaj</string>
+    <string name="notifications">Obavijesti</string>
+    <string name="settings_category_video_audio_title">Video i audio</string>
 </resources>

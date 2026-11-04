@@ -6,9 +6,9 @@
 
 package org.schabi.newpipe.database
 
-import androidx.room.Database
-import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
+import androidx.room3.ColumnTypeConverters
+import androidx.room3.Database
+import androidx.room3.RoomDatabase
 import org.schabi.newpipe.database.feed.dao.FeedDAO
 import org.schabi.newpipe.database.feed.dao.FeedGroupDAO
 import org.schabi.newpipe.database.feed.model.FeedEntity
@@ -32,7 +32,7 @@ import org.schabi.newpipe.database.stream.model.StreamStateEntity
 import org.schabi.newpipe.database.subscription.SubscriptionDAO
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
 
-@TypeConverters(Converters::class)
+@ColumnTypeConverters(Converters::class)
 @Database(
     version = Migrations.DB_VER_9,
     entities = [

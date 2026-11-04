@@ -1,1 +1,6 @@
-Fixed YouTube not playing any stream
+Toto je aktualizácia typu „hotfix“, ktorá odstraňuje chyby na YouTube:
+• [YouTube] Oprava problému s nenahraním žiadnych informácií o videu, oprava chýb HTTP 403 pri prehrávaní videí a obnovenie prehrávania niektorých videí s vekovým obmedzením
+• Oprava problému s nemennou veľkosťou titulkov
+• Oprava problému s dvojitým stiahnutím informácií pri otvorení streamu
+• [Soundcloud] Odstránenie neprehrateľných streamov chránených technológiou DRM
+• Aktualizované preklady

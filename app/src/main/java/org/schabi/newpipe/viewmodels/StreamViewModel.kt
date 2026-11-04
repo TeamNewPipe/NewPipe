@@ -21,7 +21,7 @@ class StreamViewModel(application: Application) : AndroidViewModel(application) 
 
     fun markAsWatched(stream: StreamInfoItem) {
         viewModelScope.launch {
-            historyRecordManager.markAsWatched(stream).await()
+            historyRecordManager.markAsWatched(stream).awaitSingleOrNull()
         }
     }
 

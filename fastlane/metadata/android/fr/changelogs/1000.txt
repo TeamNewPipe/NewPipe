@@ -1,9 +1,13 @@
 Améliorations
-• Rendre la description de la liste de lecture cliquable pour afficher plus / moins de contenu.
-• Ne lancer la lecture que d'un seul élément dans l'écran de l'historique.
+• Rendre la description de la playlist cliquable pour afficher plus ou moins de contenu
+• [PeerTube] Gérer automatiquement les liens vers les instances `subscribeto.me`
+• Ne lancer la lecture que d’un seul élément dans l’écran de l’historique
 
 Corrections
-• Correction des plantages de l'aperçu de la barre de recherche.
-• Correction de l'ajout à la playlist d'un élément sans vignette.
-• Correction de la fenêtre contextuelle de mise en file d'attente des éléments associés.
-• Ajustement de la disposition des éléments des signets de la liste de lecture.
+• Correction de la visibilité du bouton RSS
+• Correction des plantages de l’aperçu de la barre de recherche
+• Correction de l’ajout à une liste de lecture d’un élément sans vignette
+• Correction de la fermeture de la boîte de dialogue de téléchargement avant son apparition
+• Correction de la fenêtre contextuelle de mise en file d’attente de la liste des éléments associés
+• Correction de l’ordre dans la boîte de dialogue « Ajouter à la liste de lecture »
+• Ajustement de la mise en page des éléments des signets de la liste de lecture

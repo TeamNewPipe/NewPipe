@@ -15,7 +15,7 @@ public interface ManagedMediaSource extends MediaSource {
      *                        {@link ManagedMediaSource}, then it should be replaced.
      * @param isInterruptable specifies if this {@link ManagedMediaSource} potentially
      *                        being played.
-     * @return whether this could be replaces
+     * @return whether this could be replaced
      */
     boolean shouldBeReplacedWith(@NonNull PlayQueueItem newIdentity, boolean isInterruptable);
 

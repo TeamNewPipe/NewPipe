@@ -1,0 +1,7 @@
+- [YouTube] Se evitó el bloqueo de SABR con otro cliente de reproducción. ¡Videos y directos disponibles en más de 360p otra vez!
+- [YouTube] Corregida extracción de listas de reproducción y propiedades en lockup view models.
+- [YouTube] Eliminados métodos alternativos de posición a ciegas en recuento y fecha de vistas de bloqueo.
+- [YouTube] Uso de xTags de formato para tipo de pista de audio.
+- [Bandcamp] Corregida su búsqueda.
+
+¡Muchas gracias a todos los implicados en este lanzamiento!

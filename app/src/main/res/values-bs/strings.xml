@@ -16,7 +16,7 @@
     <string name="controls_background_title">Pozadina</string>
     <string name="search">Pretraži</string>
     <string name="settings">Podešavanja</string>
-    <string name="did_you_mean">Jeste li mislili \"%1$s\"\?</string>
+    <string name="did_you_mean">Jeste li mislili \"%1$s\"?</string>
     <string name="show_info">Prikažite informaciju</string>
     <string name="share_dialog_title">Podijelite pomoću</string>
     <string name="search_showing_result_for">Pokazuju se rezultati za: %s</string>
@@ -83,7 +83,7 @@
     <string name="show_meta_info_summary">Isključite da bi ste sakrili meta-informacijske kutije sa dodatnim informacijama o praviocu prijenosa, sadržaju prijenosa ili zahtjevu za pretraživanje</string>
     <string name="controls_download_desc">Preuzmite datoteku za prijenos</string>
     <string name="thumbnail_cache_wipe_complete_notice">Keširane slike su izbrisane</string>
-    <string name="no_player_found">Nije pronađen nijedan medijski prijenosnik. Hoćete VLC instalisati\?</string>
+    <string name="no_player_found">Nije pronađen nijedan medijski prijenosnik. Hoćete VLC instalisati?</string>
     <string name="no_player_found_toast">Nijedan medijski prijenosnik nije nađen na vašem uređaju (možete VLC instalisati da bi ste ga pokrenili).</string>
     <string name="metadata_cache_wipe_summary">Uklonite sve keširane podatke web stranica</string>
     <string name="auto_queue_title">Automatski sljedeći prijenos u red stavite</string>

@@ -1,0 +1,5 @@
+• Androidi miinimumversioon on nüüd 6.0
+• Parandasime tellimuste importimisega seotud vead
+• Parandasime mitmeid videote taasesitusega seotud vead
+• Parandasime vea, mis takistas allalaaditud failide avamist teistes rakendustes
+• Tõlgete uuendused

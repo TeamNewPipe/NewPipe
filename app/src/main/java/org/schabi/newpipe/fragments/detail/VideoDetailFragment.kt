@@ -1236,9 +1236,14 @@ class VideoDetailFragment :
             player?.UIs()?.get(MainPlayerUi::class)?.let { playerUi ->
                 // sometimes binding would be null here, even though getView() != null above u.u
                 nullableBinding?.let { b ->
-                    // prevent from re-adding a view multiple times
-                    playerUi.removeViewFromParent()
-                    b.playerPlaceholder.addView(playerUi.getBinding().getRoot())
+                    // Only reparent the view if it's not already in the playerPlaceholder.
+                    // Removing and re-adding a SurfaceView destroys its native surface,
+                    // causing a black screen until the video decoder hits the next
+                    // keyframe (2-5 seconds on typical DASH/HLS streams).
+                    if (playerUi.getBinding().getRoot().parent != b.playerPlaceholder) {
+                        playerUi.removeViewFromParent()
+                        b.playerPlaceholder.addView(playerUi.getBinding().getRoot())
+                    }
                     playerUi.setupVideoSurfaceIfNeeded()
                 }
             }

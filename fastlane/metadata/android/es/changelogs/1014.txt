@@ -1,0 +1,5 @@
+• Se aumento la versión mínima de Android a 6.0
+• Se corrigieron errores al importar suscripciones
+• Se corrigieron múltiples errores con la reproducción de video
+• Se corrigió un error que impedía abrir las descargas en otra aplicación.
+• Actualizaciones de traducción

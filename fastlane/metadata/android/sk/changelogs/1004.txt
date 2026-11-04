@@ -1,1 +1,3 @@
-Fixed YouTube not playing any stream
+Táto verzia rieši problém, keď YouTube poskytoval iba stream v rozlíšení 360p.
+
+Upozorňujeme, že riešenie použité v tejto verzii je pravdepodobne dočasné a z dlhodobého hľadiska bude potrebné implementovať video protokol SABR, avšak členovia TeamNewPipe sú momentálne zaneprázdnení, takže akúkoľvek pomoc veľmi uvítame! https://github.com/TeamNewPipe/NewPipe/issues/12248

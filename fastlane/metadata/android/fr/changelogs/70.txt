@@ -1,7 +1,26 @@
-### Améliorations
-* Les fichiers téléchargés peuvent maintenant être ouverts en un seul clic. 
-* Post-traitement pour les téléchargements et implémentation des fonctionnalités manquantes #1759 par @kapodamy
-* Déplacer les téléchargements sérialisés en attente (fichiers `.giga`) vers les données de l'application.
+ATTENTION : cette version est probablement truffée de bugs, tout comme la précédente. Cependant, compte tenu de l'arrêt complet depuis le 17, mieux vaut une version buguée que pas de version du tout. N'est-ce pas ? ¯\_(ツ)_/¯
 
-### Corrigé
-* Correction d'un crash avec la résolution par défaut réglée sur la meilleure et la résolution limitée des données mobiles #1835
+### Améliorations
+* Les fichiers téléchargés peuvent désormais être ouverts en un seul clic #1879 
+* Abandon de la prise en charge d'Android 4.1 à 4.3 #1884 
+* Suppression de l'ancien lecteur #1884 
+* Suppression des flux de la file d’attente de lecture en les faisant glisser vers la droite #1915 
+* Suppression du flux mis automatiquement en file d’attente lorsqu’un nouveau flux est ajouté manuellement #1878 
+
+* Post-traitement des téléchargements et implémentation des fonctionnalités manquantes #1759 par @kapodamy
+  * Infrastructure de post-traitement
+  * « Infrastructure » de gestion correcte des erreurs (pour le téléchargeur)
+  * File d’attente au lieu de téléchargements multiples
+  * Déplacer les téléchargements en attente sérialisés (fichiers `.giga`) vers les données de l’application
+  * Implémenter un nombre maximal de tentatives de téléchargement
+  * Mise en pause correcte des téléchargements multithread
+  * Arrêter les téléchargements lors du passage au réseau mobile (ne fonctionne jamais, voir le 2e point)
+  * Enregistrer le nombre de threads pour les prochains téléchargements
+  * Correction de nombreuses incohérences
+
+### Corrections
+* Correction d'un plantage lorsque la résolution par défaut est réglée sur « optimale » et que la résolution est limitée par les données mobiles #1835
+* Correction d'un plantage du lecteur contextuel #1874 
+* Correction d'un NPE lors de la tentative d'ouverture du lecteur en arrière-plan #1901
+* Correction de l'insertion de nouveaux flux lorsque la mise en file d'attente automatique est activée #1878
+* Correction du problème de décryptage lors de l'arrêt

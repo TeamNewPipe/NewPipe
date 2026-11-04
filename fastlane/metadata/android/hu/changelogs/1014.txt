@@ -1,0 +1,5 @@
+• Minimális Android-verzió 6.0-ra növelve
+• Feliratkozások importálásával kapcsolatos hibák javítása
+• Több, a videólejátszással kapcsolatos hiba javítása
+• Kijavítottunk egy hibát, amely megakadályozta a letöltések megnyitását egy másik alkalmazásban
+• Fordítási frissítések

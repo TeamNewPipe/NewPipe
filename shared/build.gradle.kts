@@ -122,14 +122,15 @@ kotlin {
         }
         androidMain.dependencies {
             implementation(libs.jetbrains.compose.preview)
-            implementation(libs.androidx.activity.compose)
+            implementation(libs.androidx.activity)
+            implementation(libs.androidx.appcompat)
             implementation(libs.androidx.preference)
             implementation(libs.androidx.browser)
         }
         val androidDeviceTest by getting {
             dependencies {
-                implementation(libs.androidx.compose.ui.test.manifest)
-                implementation(libs.androidx.compose.ui.test.junit4)
+                implementation(libs.androidx.compose.test.ui.manifest)
+                implementation(libs.androidx.compose.test.ui.junit)
 
                 // Needed because androidx.compose.test.ui.junit pulls an older dependency
                 // which crashes on new Android versions
@@ -146,10 +147,6 @@ kotlin {
 
 dependencies {
     androidRuntimeClasspath(libs.jetbrains.compose.tooling)
-}
-
-koinCompiler {
-    userLogs = true // See what the compiler plugin detects
 }
 
 aboutLibraries {

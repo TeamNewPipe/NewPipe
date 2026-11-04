@@ -331,7 +331,7 @@ abstract class PlayQueue internal constructor(
      * to that of the target.
      * If the moved item is not the currently playing and moves to an index **AFTER** the
      * current playing index, then the current playing index is decremented.
-     * Vice versa if the an item after the currently playing is moved **BEFORE**.
+     * Vice versa if an item after the currently playing is moved **BEFORE**.
      *
      * @param source the original index of the item
      * @param target the new index of the item

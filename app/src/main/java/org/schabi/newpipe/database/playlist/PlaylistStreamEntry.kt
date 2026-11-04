@@ -6,8 +6,8 @@
 
 package org.schabi.newpipe.database.playlist
 
-import androidx.room.ColumnInfo
-import androidx.room.Embedded
+import androidx.room3.ColumnInfo
+import androidx.room3.Embedded
 import org.schabi.newpipe.database.LocalItem
 import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity

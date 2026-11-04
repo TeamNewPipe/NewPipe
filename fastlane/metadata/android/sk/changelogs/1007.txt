@@ -1,1 +1,11 @@
-Fixed YouTube not playing any stream
+Táto oprava odstraňuje chybu „Obsah nie je k dispozícii“: Videá na YouTube je teraz možné opäť prehrávať!
+
+Opravuje tiež niekoľko chýb, ktoré sa objavili vo verzii 0.28.1:
+• Presúvanie položiek zo zoznamu prehrávania bolo možné len na susedné pozície
+• Blikanie názvu/komentárov medzi aktuálnym a predchádzajúcim videom
+• Nefungovala možnosť „Spustiť hlavný prehrávač na celú obrazovku“
+
+Ďalšie vylepšenia:
+• [YouTube] Opäť je možné prehrávať živé vysielania až 4 hodiny dozadu
+• Pri prehrávaní na pozadí sa živé vysielanie nenačíta
+• Nové používateľské rozhranie pre funkciu „Odstrániť zo zoznamu pozretých“

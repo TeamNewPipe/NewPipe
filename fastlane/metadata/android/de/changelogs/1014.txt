@@ -1,0 +1,5 @@
+• Die minimale unterstützte Android-Version ist jetzt 6.0
+• Fehler beim Importieren von Abonnements behoben
+• Mehrere Fehler beim Abspielen von Videos behoben
+• Ein Fehler behoben, der dass Öffnen von Downloads in anderen Apps verhindert hat
+• Übersetzungen aktualisiert

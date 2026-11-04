@@ -1,0 +1,5 @@
+• La version minimale d'Android a été portée à 6.0
+• Correction de bugs liés à l'importation des abonnements
+• Correction de plusieurs bugs liés à la lecture vidéo
+• Correction d'un bug qui empêchait d'ouvrir les fichiers téléchargés dans une autre application
+• Mises à jour des traductions

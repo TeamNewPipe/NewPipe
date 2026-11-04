@@ -6,14 +6,17 @@
 
 package org.schabi.newpipe.database.playlist.dao
 
-import androidx.room.Dao
-import androidx.room.Query
-import androidx.room.Transaction
+import androidx.room3.Dao
+import androidx.room3.DaoReturnTypeConverters
+import androidx.room3.Query
+import androidx.room3.Transaction
+import androidx.room3.rxjava3.RxDaoReturnTypeConverters
 import io.reactivex.rxjava3.core.Flowable
 import org.schabi.newpipe.database.BasicDAO
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity
 
 @Dao
+@DaoReturnTypeConverters(RxDaoReturnTypeConverters::class)
 interface PlaylistRemoteDAO : BasicDAO<PlaylistRemoteEntity> {
 
     @Query("SELECT * FROM remote_playlists")
@@ -52,4 +55,10 @@ interface PlaylistRemoteDAO : BasicDAO<PlaylistRemoteEntity> {
 
     @Query("DELETE FROM remote_playlists WHERE uid = :playlistId")
     fun deletePlaylist(playlistId: Long): Int
+
+    @Transaction
+    fun updatePlaylists(updateItems: List<PlaylistRemoteEntity>, deletedItems: List<Long>) {
+        deletedItems.forEach { deletePlaylist(it) }
+        updateItems.forEach { upsert(it) }
+    }
 }

@@ -258,7 +258,7 @@ class PopupPlayerGestureListener(
 
         // -- Determine if the ClosingOverlayView (red X) has to be shown or hidden --
         val showClosingOverlayView: Boolean = playerUi.isInsideClosingRadius(movingEvent)
-        // Check if an view is in expected state and if not animate it into the correct state
+        // Check if a view is in expected state and if not animate it into the correct state
         if (binding.closingOverlay.isVisible != showClosingOverlayView) {
             binding.closingOverlay.animate(showClosingOverlayView, 200)
         }

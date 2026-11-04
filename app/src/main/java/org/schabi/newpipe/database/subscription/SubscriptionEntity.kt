@@ -6,21 +6,24 @@
 
 package org.schabi.newpipe.database.subscription
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.Ignore
-import androidx.room.Index
-import androidx.room.PrimaryKey
+import androidx.room3.ColumnInfo
+import androidx.room3.Entity
+import androidx.room3.Ignore
+import androidx.room3.Index
+import androidx.room3.PrimaryKey
 import org.schabi.newpipe.extractor.channel.ChannelInfo
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
 import org.schabi.newpipe.util.NO_SERVICE_ID
 import org.schabi.newpipe.util.image.ImageStrategy
 
 @Entity(
-    tableName = SubscriptionEntity.Companion.SUBSCRIPTION_TABLE,
+    tableName = SubscriptionEntity.SUBSCRIPTION_TABLE,
     indices = [
         Index(
-            value = [SubscriptionEntity.Companion.SUBSCRIPTION_SERVICE_ID, SubscriptionEntity.Companion.SUBSCRIPTION_URL],
+            value = [
+                SubscriptionEntity.SUBSCRIPTION_SERVICE_ID,
+                SubscriptionEntity.SUBSCRIPTION_URL
+            ],
             unique = true
         )
     ]

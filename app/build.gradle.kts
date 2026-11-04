@@ -2,8 +2,8 @@
  * SPDX-FileCopyrightText: 2025 NewPipe e.V. <https://newpipe-ev.de>
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
+
 import com.android.build.api.dsl.ApplicationExtension
-import com.mikepenz.aboutlibraries.plugin.DuplicateMode
 import java.util.regex.Pattern
 
 plugins {
@@ -16,6 +16,7 @@ plugins {
     alias(libs.plugins.sonarqube)
     alias(libs.plugins.hilt)
     alias(libs.plugins.about.libraries)
+    alias(libs.plugins.androidx.room)
     checkstyle
 }
 
@@ -31,10 +32,7 @@ val normalizedWorkingBranch = workingBranch
 kotlin {
     jvmToolchain(21)
     compilerOptions {
-        // TODO: Drop annotation default target when it is stable
-        freeCompilerArgs.addAll(
-            "-Xannotation-default-target=param-property"
-        )
+        freeCompilerArgs.addAll("-Xannotation-default-target=param-property")
     }
 }
 
@@ -149,10 +147,9 @@ configure<ApplicationExtension> {
     }
 }
 
-ksp {
-    arg("room.schemaLocation", "$projectDir/schemas")
+room3 {
+    schemaDirectory("$projectDir/schemas")
 }
-
 
 // Custom dependency configuration for ktlint
 val ktlint by configurations.creating
@@ -224,12 +221,6 @@ sonar {
     }
 }
 
-aboutLibraries {
-    // note: offline mode prevents the plugin from fetching licenses at build time, which would be
-    // harmful for reproducible builds
-    offlineMode = true
-}
-
 dependencies {
     // Desugaring
     coreLibraryDesugaring(libs.android.desugar)
@@ -242,71 +233,62 @@ dependencies {
 
     // Checkstyle
     checkstyle(libs.puppycrawl.checkstyle)
+    debugImplementation(libs.leakcanary)
     ktlint(libs.pinterest.ktlint)
 
-    /** Kotlin **/
-    implementation(libs.kotlin.stdlib)
-
-    /** AndroidX **/
+    // AndroidX
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.cardview)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.core)
     implementation(libs.androidx.documentfile)
+    implementation(libs.androidx.fragment)
     implementation(libs.androidx.fragment.compose)
     implementation(libs.androidx.lifecycle.livedata)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel)
+    implementation(libs.androidx.localbroadcastmanager)
     implementation(libs.androidx.media)
     implementation(libs.androidx.preference)
     implementation(libs.androidx.recyclerview)
-    implementation(libs.androidx.room.paging)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.rxjava3)
+    implementation(libs.androidx.sqlite.bundled)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.swiperefreshlayout)
-    implementation(libs.androidx.work.runtime.ktx)
+    implementation(libs.androidx.work.runtime)
     implementation(libs.androidx.work.rxjava3)
     implementation(libs.google.android.material)
     implementation(libs.androidx.webkit)
 
-    /** Compose & other modern patterns **/
     // Jetpack Compose
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.adaptive)
     implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation(libs.androidx.compose.ui.text) // Needed for parsing HTML to AnnotatedString
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.compose.ui.text)
     implementation(libs.androidx.compose.material.icons.extended)
-
-    // Jetpack navigatio3
     implementation(libs.androidx.navigation3.ui)
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.androidx.navigation3.viewmodel)
-
-    // Jetpack Compose related dependencies
     implementation(libs.androidx.paging.compose)
-    implementation(libs.androidx.hilt.navigation.compose)
-
-    // Coroutines interop
-    implementation(libs.kotlinx.coroutines.rx3)
-
-    // Library loading for About screen
-    implementation(libs.about.libraries.compose.m3)
+    implementation(libs.androidx.room.paging)
 
     // Hilt
+    implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
-    // Scroll
-    implementation(libs.lazy.column.scrollbar)
+    // Coroutines interop
+    implementation(libs.kotlinx.coroutines.rx3)
 
     // Kotlinx Serialization
     implementation(libs.kotlinx.serialization.json)
 
     // Third-party libraries
     implementation(libs.livefront.bridge)
+    implementation(libs.lazy.column.scrollbar)
     implementation(libs.evernote.statesaver.core)
     kapt(libs.evernote.statesaver.compiler)
 
@@ -315,6 +297,7 @@ dependencies {
 
     // HTTP client
     implementation(libs.squareup.okhttp)
+    implementation(libs.squareup.okhttp.brotli)
 
     // Media player
     implementation(libs.google.exoplayer.core)
@@ -337,6 +320,7 @@ dependencies {
     // Markdown library for Android
     implementation(libs.noties.markwon.core)
     implementation(libs.noties.markwon.linkify)
+    implementation(libs.about.libraries.compose.m3)
 
     // Crash reporting
     implementation(libs.acra.core)
@@ -363,10 +347,9 @@ dependencies {
     debugImplementation(libs.facebook.stetho.core)
     debugImplementation(libs.facebook.stetho.okhttp3)
 
-    // Jetpack Compose
     debugImplementation(libs.androidx.compose.ui.tooling)
 
-    /** Testing **/
+    // Testing
     testImplementation(libs.junit)
     testImplementation(libs.mockito.core)
 
@@ -377,6 +360,8 @@ dependencies {
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+    androidTestImplementation(libs.androidx.sqlite.bundled)
+    androidTestImplementation(libs.jetbrains.coroutines.test)
 }
 
 aboutLibraries {

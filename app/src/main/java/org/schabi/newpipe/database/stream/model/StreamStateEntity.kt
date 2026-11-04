@@ -6,10 +6,10 @@
 
 package org.schabi.newpipe.database.stream.model
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.ForeignKey.Companion.CASCADE
+import androidx.room3.ColumnInfo
+import androidx.room3.Entity
+import androidx.room3.ForeignKey
+import androidx.room3.ForeignKey.Companion.CASCADE
 import org.schabi.newpipe.database.stream.model.StreamStateEntity.Companion.PLAYBACK_FINISHED_END_MILLISECONDS
 
 @Entity(
@@ -18,7 +18,7 @@ import org.schabi.newpipe.database.stream.model.StreamStateEntity.Companion.PLAY
     foreignKeys = [
         ForeignKey(
             entity = StreamEntity::class,
-            parentColumns = arrayOf("uid"),
+            parentColumns = ["uid"],
             childColumns = arrayOf("stream_id"),
             onDelete = CASCADE,
             onUpdate = CASCADE
