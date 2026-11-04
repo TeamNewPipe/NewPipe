@@ -274,9 +274,10 @@
                             </FrameLayout>
 
                             <LinearLayout
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_marginLeft="8dp"
+                                android:layout_weight="1"
                                 android:gravity="center_vertical"
                                 android:orientation="vertical">
 
@@ -309,6 +310,24 @@
                                     tools:text="Uploader" />
 
                             </LinearLayout>
+
+                            <!-- YewPlay: inscrever-se no canal sem sair do vídeo -->
+                            <TextView
+                                android:id="@+id/yp_detail_subscribe_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="36dp"
+                                android:layout_marginStart="8dp"
+                                android:background="@drawable/yp_button_primary"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:gravity="center"
+                                android:paddingHorizontal="14dp"
+                                android:text="@string/subscribe_button_title"
+                                android:textAppearance="@style/TextAppearance.YewPlay.ItemTitle"
+                                android:textColor="@color/yp_on_action"
+                                android:textSize="13sp"
+                                android:visibility="gone"
+                                tools:visibility="visible" />
                         </LinearLayout>
 
                         <!-- VIEW & THUMBS -->

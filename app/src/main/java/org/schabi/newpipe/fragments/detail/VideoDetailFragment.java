@@ -42,6 +42,7 @@ import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.AttrRes;
@@ -68,11 +69,13 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.database.playlist.PlaylistDuplicatesEntry;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
+import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.databinding.FragmentVideoDetailBinding;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
+import org.schabi.newpipe.local.subscription.SubscriptionManager;
 import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.Image;
@@ -122,6 +125,7 @@ import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.image.CoilHelper;
+import org.schabi.newpipe.util.image.ImageStrategy;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -136,6 +140,7 @@ import java.util.function.Consumer;
 import coil3.util.CoilUtils;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Maybe;
+import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -218,6 +223,10 @@ public final class VideoDetailFragment
     private Disposable currentWorker;
     @NonNull
     private final CompositeDisposable disposables = new CompositeDisposable();
+    @Nullable
+    private Disposable subscriptionDisposable = null;
+    @Nullable
+    private SubscriptionManager subscriptionManager = null;
     @Nullable
     private Disposable positionSubscriber = null;
 
@@ -406,6 +415,9 @@ public final class VideoDetailFragment
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (subscriptionDisposable != null) {
+            subscriptionDisposable.dispose();
+        }
 
         // Stop the service when user leaves the app with double back press
         // if video player is selected. Otherwise unbind
@@ -1604,6 +1616,8 @@ public final class VideoDetailFragment
             binding.detailThumbsDisabledView.setVisibility(View.GONE);
         }
 
+        setupSubscribeButton(info);
+
         if (info.getDuration() > 0) {
             binding.detailDurationView.setText(Localization.getDurationString(info.getDuration()));
             binding.detailDurationView.setBackgroundResource(R.drawable.yp_badge_duration);
@@ -2350,6 +2364,81 @@ public final class VideoDetailFragment
                 holder.getPaddingTop(),
                 holder.getPaddingRight(),
                 newBottomPadding);
+    }
+
+    /**
+     * YewPlay: shows an ivory "Subscribe" button next to the channel. It uses the same local
+     * subscriptions as the channel page, so no account is needed.
+     *
+     * @param info the stream whose uploader can be subscribed to
+     */
+    private void setupSubscribeButton(@NonNull final StreamInfo info) {
+        if (subscriptionDisposable != null) {
+            subscriptionDisposable.dispose();
+            subscriptionDisposable = null;
+        }
+        final TextView button = binding.ypDetailSubscribeButton;
+        if (button == null) {
+            return;
+        }
+        if (isEmpty(info.getUploaderUrl())) {
+            button.setVisibility(View.GONE);
+            return;
+        }
+        if (subscriptionManager == null) {
+            subscriptionManager = new SubscriptionManager(requireContext());
+        }
+        final int serviceId = info.getServiceId();
+        final String url = info.getUploaderUrl();
+        subscriptionDisposable = subscriptionManager.subscriptionTable()
+                .getSubscriptionFlowable(serviceId, url)
+                .map(List::isEmpty)
+                .distinctUntilChanged()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(notSubscribed -> {
+                    if (binding == null) {
+                        return;
+                    }
+                    final TextView b = binding.ypDetailSubscribeButton;
+                    b.setVisibility(View.VISIBLE);
+                    b.setText(notSubscribed ? R.string.subscribe_button_title
+                            : R.string.subscribed_button_title);
+                    b.setBackgroundResource(notSubscribed ? R.drawable.yp_button_primary
+                            : R.drawable.yp_button_secondary);
+                    b.setTextColor(ContextCompat.getColor(requireContext(), notSubscribed
+                            ? R.color.yp_on_action : R.color.yp_on_bg));
+                    b.setOnClickListener(v -> toggleSubscription(info, notSubscribed));
+                }, e -> {
+                    if (binding != null && binding.ypDetailSubscribeButton != null) {
+                        binding.ypDetailSubscribeButton.setVisibility(View.GONE);
+                    }
+                });
+    }
+
+    private void toggleSubscription(@NonNull final StreamInfo info, final boolean subscribe) {
+        final SubscriptionManager manager = subscriptionManager;
+        if (manager == null) {
+            return;
+        }
+        final Completable action;
+        if (subscribe) {
+            final SubscriptionEntity entity = new SubscriptionEntity();
+            entity.setServiceId(info.getServiceId());
+            entity.setUrl(info.getUploaderUrl());
+            entity.setName(info.getUploaderName());
+            entity.setAvatarUrl(ImageStrategy.imageListToDbUrl(info.getUploaderAvatars()));
+            if (info.getUploaderSubscriberCount() > -1) {
+                entity.setSubscriberCount(info.getUploaderSubscriberCount());
+            }
+            action = Completable.fromAction(() -> manager.insertSubscription(entity));
+        } else {
+            action = manager.deleteSubscription(info.getServiceId(), info.getUploaderUrl());
+        }
+        disposables.add(action
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(() -> { }, e -> ErrorUtil.showUiErrorSnackbar(this,
+                        "Updating subscription from the video page", e)));
     }
 
     /**
