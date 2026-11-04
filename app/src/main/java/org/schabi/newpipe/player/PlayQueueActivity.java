@@ -455,8 +455,8 @@ public final class PlayQueueActivity extends AppCompatActivity
         } else if (view.getId() == R.id.yp_listen_speed) {
             openPlaybackParameterDialog();
         } else if (view.getId() == R.id.yp_listen_share) {
-            ShareUtils.shareText(this, player.getVideoTitle(), player.getVideoUrlAtCurrentTime(),
-                    null);
+            ShareUtils.shareText(this, player.getVideoTitle(),
+                    player.getVideoUrlAtCurrentTime());
         } else if (view.getId() == R.id.yp_listen_queue) {
             toggleQueueVisibility();
         }
