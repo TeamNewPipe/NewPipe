@@ -91,29 +91,6 @@ public final class ThemeHelper {
     }
 
     /**
-     * Return a dialog theme styled according to the (default) selected theme.
-     *
-     * @param context context to get the selected theme
-     * @return the dialog style (the default one)
-     */
-    @StyleRes
-    public static int getDialogTheme(final Context context) {
-        return isLightThemeSelected(context) ? R.style.LightDialogTheme : R.style.DarkDialogTheme;
-    }
-
-    /**
-     * Return a min-width dialog theme styled according to the (default) selected theme.
-     *
-     * @param context context to get the selected theme
-     * @return the dialog style (the default one)
-     */
-    @StyleRes
-    public static int getMinWidthDialogTheme(final Context context) {
-        return isLightThemeSelected(context) ? R.style.LightDialogMinWidthTheme
-                : R.style.DarkDialogMinWidthTheme;
-    }
-
-    /**
      * Return the selected theme styled according to the serviceId.
      *
      * @param context   context to get the selected theme
@@ -181,35 +158,33 @@ public final class ThemeHelper {
     }
 
     @StyleRes
-    public static int getSettingsThemeStyle(final Context context) {
+    public static int getTheme(@NonNull final Context context) {
         final Resources res = context.getResources();
         final String lightTheme = res.getString(R.string.light_theme_key);
         final String blackTheme = res.getString(R.string.black_theme_key);
         final String automaticDeviceTheme = res.getString(R.string.auto_device_theme_key);
-
-
         final String selectedTheme = getSelectedThemeKey(context);
 
         if (selectedTheme.equals(lightTheme)) {
-            return R.style.LightSettingsTheme;
+            return R.style.LightTheme;
         } else if (selectedTheme.equals(blackTheme)) {
-            return R.style.BlackSettingsTheme;
+            return R.style.BlackTheme;
         } else if (selectedTheme.equals(automaticDeviceTheme)) {
             if (isDeviceDarkThemeEnabled(context)) {
                 // use the dark theme variant preferred by the user
                 final String selectedNightTheme = getSelectedNightThemeKey(context);
                 if (selectedNightTheme.equals(blackTheme)) {
-                    return R.style.BlackSettingsTheme;
+                    return R.style.BlackTheme;
                 } else {
-                    return R.style.DarkSettingsTheme;
+                    return R.style.DarkTheme;
                 }
             } else {
                 // there is only one day theme
-                return R.style.LightSettingsTheme;
+                return R.style.LightTheme;
             }
         } else {
             // default to dark theme
-            return R.style.DarkSettingsTheme;
+            return R.style.DarkTheme;
         }
     }
 
