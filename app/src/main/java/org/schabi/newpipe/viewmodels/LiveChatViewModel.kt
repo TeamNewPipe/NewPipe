@@ -5,6 +5,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlin.time.Duration.Companion.seconds
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -25,6 +26,9 @@ class LiveChatViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
     private val liveChatContinuation: String =
         savedStateHandle.get<String>(KEY_LIVE_CHAT_CONTINUATION) ?: ""
 
+    private val _isLoading = MutableStateFlow<Boolean>(true)
+    val isLoading: StateFlow<Boolean> = _isLoading
+
     private val _liveChatItems = MutableStateFlow<List<CommentsInfoItem>>(emptyList())
     val liveChatItems: StateFlow<List<CommentsInfoItem>> = _liveChatItems
 
@@ -43,10 +47,14 @@ class LiveChatViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
                 val info = CommentsInfo.getInfo(extractor)
                 _liveChatItems.value = info.relatedItems.take(MAX_LIVE_CHAT_ITEMS)
                 var nextPage = info.nextPage
+                _isLoading.value = false
+
                 while (isActive) {
+                    delay(3.seconds)
+                    if (nextPage == null) {
+                        break
+                    }
                     try {
-                        delay(3.seconds)
-                        if (nextPage == null) continue
                         val result = CommentsInfo.getMoreItems(service, url, nextPage)
                         if (result.items.isNotEmpty()) {
                             _liveChatItems.value = buildList(MAX_LIVE_CHAT_ITEMS) {
