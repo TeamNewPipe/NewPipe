@@ -936,11 +936,8 @@
     <string name="yp_kiosk_gaming">Gaming</string>
     <string name="yp_kiosk_movies">Movies</string>
     <string name="yp_kiosk_podcasts">Podcasts</string>
-    <string name="yp_tab_comments">Comments</string>
-    <string name="yp_tab_up_next">Up next</string>
-    <string name="yp_tab_description">Description</string>
-    <string name="yp_liked_playlist_name">Liked</string>
-    <string name="yp_liked_added">Saved to Liked</string>
-    <string name="yp_liked_already">Already in Liked</string>
-    <string name="yp_liked_save">Save to Liked</string>
+    <string name="yp_liked_playlist_name">Likes</string>
+    <string name="yp_liked_added">Saved to Likes</string>
+    <string name="yp_liked_already">Already in Likes</string>
+    <string name="yp_liked_save">Save to Likes</string>
 </resources>
