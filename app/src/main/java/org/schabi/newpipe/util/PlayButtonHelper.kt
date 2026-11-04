@@ -49,6 +49,12 @@ object PlayButtonHelper {
             NavigationHelper.playOnBackgroundPlayer(activity, fragment.getPlayQueue(), false)
             showHoldToAppendToastIfNeeded(activity)
         }
+        // YewPlay: "Shuffle" plays the whole playlist in random order
+        playlistControlBinding.ypPlaylistShuffleButton.setOnClickListener {
+            val queue = fragment.getPlayQueue()
+            queue.shuffle()
+            NavigationHelper.playOnMainPlayer(activity, queue)
+        }
 
         // long click listener
         playlistControlBinding.playlistCtrlPlayAllButton.setOnLongClickListener {

@@ -958,4 +958,7 @@
     </plurals>
     <string name="yp_feed_all">All</string>
     <string name="yp_feed_add_group">+ Group</string>
+    <string name="yp_play">Play</string>
+    <string name="yp_shuffle">Shuffle</string>
+    <string name="yp_local_playlist">Local playlist</string>
 </resources>

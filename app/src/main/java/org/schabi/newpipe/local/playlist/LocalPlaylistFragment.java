@@ -54,6 +54,7 @@ import org.schabi.newpipe.fragments.list.playlist.PlaylistControlViewHolder;
 import org.schabi.newpipe.info_list.dialog.InfoItemDialog;
 import org.schabi.newpipe.info_list.dialog.StreamDialogDefaultEntry;
 import org.schabi.newpipe.local.BaseLocalListFragment;
+import org.schabi.newpipe.local.yewplay.YpComposeBridge;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.util.DeviceUtils;
@@ -68,6 +69,7 @@ import org.schabi.newpipe.util.external_communication.ShareUtils;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Supplier;
 
@@ -443,6 +445,13 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
 
         itemListAdapter.addItems(result);
+        // YewPlay: cover mosaic with the first thumbnails of the playlist
+        if (headerBinding != null) {
+            YpComposeBridge.setMosaicCover(headerBinding.ypPlaylistCover, result.stream()
+                    .limit(4)
+                    .map(entry -> entry.getStreamEntity().getThumbnailUrl())
+                    .collect(Collectors.toList()));
+        }
         if (itemsListState != null) {
             itemsList.getLayoutManager().onRestoreInstanceState(itemsListState);
             itemsListState = null;

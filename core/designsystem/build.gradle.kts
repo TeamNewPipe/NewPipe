@@ -30,6 +30,7 @@ kotlin {
             dependencies {
                 api(projects.shared)
                 api(projects.core.model)
+                implementation(libs.coil.compose)
                 implementation(libs.jetbrains.compose.runtime)
                 implementation(libs.jetbrains.compose.foundation)
                 implementation(libs.jetbrains.compose.material3)

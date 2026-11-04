@@ -1,48 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- YewPlay: capa em mosaico, título e contagem lado a lado; botões embaixo (proposta, p. 14) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/contrast_background_color">
+    android:orientation="vertical"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
 
-    <org.schabi.newpipe.views.NewPipeTextView
-        android:id="@+id/playlist_title_view"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:ellipsize="end"
-        android:focusable="true"
-        android:maxLines="2"
-        android:paddingHorizontal="@dimen/video_item_search_padding"
-        android:paddingTop="@dimen/video_item_search_padding"
-        android:paddingBottom="6dp"
-        android:textAppearance="@style/TextAppearance.YewPlay.ScreenTitle"
-        android:fontFamily="@font/bricolage_grotesque_bold"
-        app:fontFamily="@font/bricolage_grotesque_bold"
-        android:textSize="@dimen/playlist_detail_title_text_size"
-        tools:text="Mix musics #23 title Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/yp_screen_margin">
 
-    <org.schabi.newpipe.views.NewPipeTextView
-        android:id="@+id/playlist_stream_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/playlist_title_view"
-        android:layout_alignParentLeft="true"
-        android:ellipsize="end"
-        android:gravity="right|center_vertical"
-        android:maxLines="1"
-        android:paddingHorizontal="@dimen/video_item_search_padding"
-        android:textSize="@dimen/playlist_detail_subtext_size"
-        tools:ignore="RtlHardcoded"
-        tools:text="234 videos" />
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/yp_playlist_cover"
+            android:layout_width="112dp"
+            android:layout_height="112dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <org.schabi.newpipe.views.NewPipeTextView
+                android:id="@+id/playlist_title_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:ellipsize="end"
+                android:focusable="true"
+                android:maxLines="2"
+                android:textAppearance="@style/TextAppearance.YewPlay.ScreenTitle"
+                android:fontFamily="@font/bricolage_grotesque_bold"
+                app:fontFamily="@font/bricolage_grotesque_bold"
+                android:textSize="24sp"
+                tools:text="Importante" />
+
+            <org.schabi.newpipe.views.NewPipeTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/yp_local_playlist"
+                android:textAppearance="@style/TextAppearance.YewPlay.Meta" />
+
+            <org.schabi.newpipe.views.NewPipeTextView
+                android:id="@+id/playlist_stream_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textAppearance="@style/TextAppearance.YewPlay.Meta"
+                tools:text="4 vídeos • 1h 12min" />
+        </LinearLayout>
+    </LinearLayout>
 
     <include
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/playlist_control"
         layout="@layout/playlist_control"
-        android:layout_below="@id/playlist_stream_count" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp" />
 
-</RelativeLayout>
+</LinearLayout>

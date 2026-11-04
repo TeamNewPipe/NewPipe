@@ -898,4 +898,7 @@
     </plurals>
     <string name="yp_feed_all">Todos</string>
     <string name="yp_feed_add_group">+ Grupo</string>
+    <string name="yp_play">Reproduzir</string>
+    <string name="yp_shuffle">Aleatório</string>
+    <string name="yp_local_playlist">Playlist local</string>
 </resources>
