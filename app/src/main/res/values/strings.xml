@@ -940,4 +940,10 @@
     <string name="yp_liked_added">Saved to Likes</string>
     <string name="yp_liked_already">Already in Likes</string>
     <string name="yp_liked_save">Save to Likes</string>
+    <string name="yp_sleep_timer">Sleep timer</string>
+    <string name="yp_sleep_timer_title">Pause after</string>
+    <string name="yp_sleep_timer_off">Turn off timer</string>
+    <string name="yp_sleep_timer_set">Playback will pause in %d min</string>
+    <string name="yp_sleep_timer_cancelled">Sleep timer off</string>
+    <string name="yp_sleep_timer_minutes">%d min</string>
 </resources>

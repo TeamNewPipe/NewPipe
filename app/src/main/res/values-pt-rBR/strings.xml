@@ -880,4 +880,10 @@
     <string name="yp_liked_added">Salvo em Curtidas</string>
     <string name="yp_liked_already">Já está em Curtidas</string>
     <string name="yp_liked_save">Salvar em Curtidas</string>
+    <string name="yp_sleep_timer">Timer de desligar</string>
+    <string name="yp_sleep_timer_title">Pausar depois de</string>
+    <string name="yp_sleep_timer_off">Desligar timer</string>
+    <string name="yp_sleep_timer_set">O player vai pausar em %d min</string>
+    <string name="yp_sleep_timer_cancelled">Timer desligado</string>
+    <string name="yp_sleep_timer_minutes">%d min</string>
 </resources>

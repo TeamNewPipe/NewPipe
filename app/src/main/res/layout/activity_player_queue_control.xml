@@ -364,6 +364,16 @@
             tools:ignore="HardcodedText" />
 
         <ImageButton
+            android:id="@+id/yp_listen_timer"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/yp_sleep_timer"
+            android:src="@drawable/yp_ic_timer"
+            app:tint="@color/yp_on_bg" />
+
+        <ImageButton
             android:id="@+id/yp_listen_share"
             android:layout_width="0dp"
             android:layout_height="48dp"
