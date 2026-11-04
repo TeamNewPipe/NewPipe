@@ -65,11 +65,14 @@ import com.google.android.material.tabs.TabLayout;
 
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.NewPipeDatabase;
+import org.schabi.newpipe.database.playlist.PlaylistDuplicatesEntry;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.FragmentVideoDetailBinding;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
+import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.Image;
@@ -123,6 +126,7 @@ import org.schabi.newpipe.util.image.CoilHelper;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -131,6 +135,7 @@ import java.util.function.Consumer;
 
 import coil3.util.CoilUtils;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -652,6 +657,11 @@ public final class VideoDetailFragment
         // Forcefully catch click events uncaught by children because otherwise
         // they will be caught by underlying view and "click through" will happen
         binding.getRoot().setOnClickListener(v -> { });
+
+        // YewPlay: without an account a like cannot reach the service, so tapping the like
+        // count saves the video in the local "Liked" playlist instead
+        binding.detailThumbsUpImgView.setOnClickListener(v -> likeCurrentStream());
+        binding.detailThumbsUpCountView.setOnClickListener(v -> likeCurrentStream());
         binding.getRoot().setOnLongClickListener(v -> true);
 
         setOnClickListeners();
@@ -2349,6 +2359,54 @@ public final class VideoDetailFragment
                 holder.getPaddingTop(),
                 holder.getPaddingRight(),
                 newBottomPadding);
+    }
+
+    /**
+     * YewPlay: saves the current video in the local "Liked" playlist, creating the playlist the
+     * first time. Nothing is sent to the service, since YewPlay works without an account.
+     */
+    private void likeCurrentStream() {
+        if (currentInfo == null) {
+            return;
+        }
+        final Context context = requireContext();
+        final LocalPlaylistManager manager =
+                new LocalPlaylistManager(NewPipeDatabase.getInstance(context));
+        final String likedName = getString(R.string.yp_liked_playlist_name);
+        final List<StreamEntity> streams =
+                Collections.singletonList(new StreamEntity(currentInfo));
+        disposables.add(manager.getPlaylistDuplicates(currentInfo.getUrl())
+                .firstElement()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(entries -> {
+                    final PlaylistDuplicatesEntry liked = findLikedPlaylist(entries, likedName);
+                    if (liked != null && liked.getTimesStreamIsContained() > 0) {
+                        Toast.makeText(context, R.string.yp_liked_already, Toast.LENGTH_SHORT)
+                                .show();
+                        return;
+                    }
+                    final Maybe<List<Long>> save = liked == null
+                            ? manager.createPlaylist(likedName, streams)
+                            : manager.appendToPlaylist(liked.getUid(), streams);
+                    disposables.add(save
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(ids -> Toast.makeText(context, R.string.yp_liked_added,
+                                            Toast.LENGTH_SHORT).show(),
+                                    e -> ErrorUtil.showUiErrorSnackbar(this,
+                                            "Saving liked video", e)));
+                }, e -> ErrorUtil.showUiErrorSnackbar(this, "Loading liked playlist", e)));
+    }
+
+    @Nullable
+    private static PlaylistDuplicatesEntry findLikedPlaylist(
+            @NonNull final List<PlaylistDuplicatesEntry> entries,
+            @NonNull final String likedName) {
+        for (final PlaylistDuplicatesEntry entry : entries) {
+            if (likedName.equals(entry.getOrderingName())) {
+                return entry;
+            }
+        }
+        return null;
     }
 
     /**

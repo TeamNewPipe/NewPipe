@@ -336,6 +336,7 @@
 
                             <ImageView
                                 android:id="@+id/detail_thumbs_up_img_view"
+                                android:background="?attr/selectableItemBackgroundBorderless"
                                 android:layout_width="@dimen/video_item_detail_like_image_width"
                                 android:layout_height="@dimen/video_item_detail_like_image_height"
                                 android:layout_below="@id/detail_view_count_view"
@@ -344,6 +345,8 @@
 
                             <org.schabi.newpipe.views.NewPipeTextView
                                 android:id="@+id/detail_thumbs_up_count_view"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:contentDescription="@string/yp_liked_save"
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/video_item_detail_like_image_height"
                                 android:layout_below="@id/detail_view_count_view"

@@ -879,4 +879,8 @@
     <string name="yp_tab_comments">Comentários</string>
     <string name="yp_tab_up_next">A seguir</string>
     <string name="yp_tab_description">Descrição</string>
+    <string name="yp_liked_playlist_name">Curtidos</string>
+    <string name="yp_liked_added">Salvo em Curtidos</string>
+    <string name="yp_liked_already">Já está em Curtidos</string>
+    <string name="yp_liked_save">Salvar em Curtidos</string>
 </resources>
