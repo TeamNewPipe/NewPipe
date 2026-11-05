@@ -168,7 +168,7 @@ class SubscriptionImportWorker(
         val maxProgress = subscriptions.size
         val notification = NotificationCompat
             .Builder(context, NOTIFICATION_CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
+            .setSmallIcon(R.drawable.ic_stat_yewplay)
             .setOngoing(true)
             .setProgress(maxProgress, progress, progress == 0)
             .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)

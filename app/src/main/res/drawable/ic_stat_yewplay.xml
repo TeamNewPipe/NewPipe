@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- YewPlay: ícone de notificação e barra de status (Y e play) -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+  <group android:translateX="-6.7258" android:translateY="-6.8361" android:scaleX="0.073579" android:scaleY="0.073579">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M108,128L192,128L274,266L274,384L190,384L190,266Z"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="6"
+        android:strokeLineJoin="round" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M272,128L356,128L281,254L239,184Z"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="6"
+        android:strokeLineJoin="round" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M391.71,319.50Q402.97,326.00 391.71,332.50L313.77,377.50Q302.51,384.00 302.51,371.00L302.51,281.00Q302.51,268.00 313.77,274.50Z" />
+  </group>
+</vector>

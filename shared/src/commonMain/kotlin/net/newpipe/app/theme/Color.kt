@@ -15,8 +15,6 @@ import androidx.compose.ui.graphics.Color
  *  - tertiary e error são o rubi
  */
 
-val logoBackground = Color(0xFFE0364F)
-
 /** Rubi: ao vivo, progresso, aba ativa, notificação nova. Nunca decoração. */
 val yewplayRubi = Color(0xFFE0364F)
 val yewplayRubiEscuro = Color(0xFFC8243C)

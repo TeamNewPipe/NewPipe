@@ -6,7 +6,6 @@
 package net.newpipe.app.screen.about
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,7 +21,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -31,7 +29,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -46,9 +43,8 @@ import net.newpipe.app.navigation.Destination
 import net.newpipe.app.navigation.Navigator
 import net.newpipe.app.platform.ShareHandler
 import net.newpipe.app.preview.ThemePreviewProvider
-import net.newpipe.app.theme.logoBackground
 import newpipe.shared.generated.resources.Res
-import newpipe.shared.generated.resources.ic_foreground
+import newpipe.shared.generated.resources.ic_yewplay_logo
 import newpipe.shared.generated.resources.yp_about_based_on
 import newpipe.shared.generated.resources.yp_about_credits
 import newpipe.shared.generated.resources.yp_about_faq
@@ -179,11 +175,8 @@ private fun AboutHeader() {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
-            modifier = Modifier
-                .size(64.dp)
-                .clip(RoundedCornerShape(percent = 29))
-                .background(color = logoBackground),
-            painter = painterResource(Res.drawable.ic_foreground),
+            modifier = Modifier.size(64.dp),
+            painter = painterResource(Res.drawable.ic_yewplay_logo),
             contentDescription = BuildConfig.APP_NAME
         )
         Spacer(modifier = Modifier.width(16.dp))

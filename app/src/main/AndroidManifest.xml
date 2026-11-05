@@ -31,10 +31,11 @@
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:banner="@mipmap/newpipe_tv_banner"
+        android:banner="@mipmap/yewplay_tv_banner"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:logo="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:resizeableActivity="true"
         android:theme="@style/OpeningTheme"
         android:memtagMode="async"

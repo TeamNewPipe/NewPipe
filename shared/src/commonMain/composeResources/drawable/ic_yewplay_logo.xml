@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- YewPlay: ícone arredondado (Y grafite e play rubi sobre marfim), para o Sobre -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+    <!-- solid ivory: vector gradients need Android 7, the app runs on 6 -->
+    <path
+        android:fillColor="#F6F1EC"
+        android:pathData="M118,0H394A118,118 0 0 1 512,118V394A118,118 0 0 1 394,512H118A118,118 0 0 1 0,394V118A118,118 0 0 1 118,0Z" />
+    <path
+        android:fillColor="#18141A"
+        android:pathData="M108,128L192,128L274,266L274,384L190,384L190,266Z"
+        android:strokeColor="#18141A"
+        android:strokeLineJoin="round"
+        android:strokeWidth="6" />
+    <path
+        android:fillColor="#18141A"
+        android:pathData="M272,128L356,128L281,254L239,184Z"
+        android:strokeColor="#18141A"
+        android:strokeLineJoin="round"
+        android:strokeWidth="6" />
+    <path
+        android:fillColor="#E0364F"
+        android:pathData="M391.71,319.50Q402.97,326.00 391.71,332.50L313.77,377.50Q302.51,384.00 302.51,371.00L302.51,281.00Q302.51,268.00 313.77,274.50Z" />
+</vector>

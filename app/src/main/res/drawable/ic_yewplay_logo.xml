@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- YewPlay: triângulo de "play" com pontas suavizadas. -->
+<!-- YewPlay: ícone arredondado (Y grafite e play rubi sobre marfim), para a abertura, o menu e o Sobre -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="96dp"
     android:height="96dp"
-    android:viewportWidth="96"
-    android:viewportHeight="96">
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+    <!-- solid ivory: vector gradients need Android 7, the app runs on 6 -->
+    <path
+        android:fillColor="#F6F1EC"
+        android:pathData="M118,0H394A118,118 0 0 1 512,118V394A118,118 0 0 1 394,512H118A118,118 0 0 1 0,394V118A118,118 0 0 1 118,0Z" />
+    <path
+        android:fillColor="#18141A"
+        android:pathData="M108,128L192,128L274,266L274,384L190,384L190,266Z"
+        android:strokeColor="#18141A"
+        android:strokeLineJoin="round"
+        android:strokeWidth="6" />
+    <path
+        android:fillColor="#18141A"
+        android:pathData="M272,128L356,128L281,254L239,184Z"
+        android:strokeColor="#18141A"
+        android:strokeLineJoin="round"
+        android:strokeWidth="6" />
     <path
         android:fillColor="#E0364F"
-        android:pathData="M27.84,0H68.16A27.84,27.84 0 0 1 96,27.84V68.16A27.84,27.84 0 0 1 68.16,96H27.84A27.84,27.84 0 0 1 0,68.16V27.84A27.84,27.84 0 0 1 27.84,0Z" />
-    <path
-        android:fillColor="#F3EEE9"
-        android:pathData="M32.65,32.50Q32.65,27.00 37.42,29.74L64.42,45.26Q69.19,48.00 64.42,50.74L37.42,66.26Q32.65,69.00 32.65,63.50Z" />
+        android:pathData="M391.71,319.50Q402.97,326.00 391.71,332.50L313.77,377.50Q302.51,384.00 302.51,371.00L302.51,281.00Q302.51,268.00 313.77,274.50Z" />
 </vector>

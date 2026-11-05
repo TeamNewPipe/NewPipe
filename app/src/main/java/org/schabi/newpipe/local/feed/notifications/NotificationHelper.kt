@@ -51,8 +51,8 @@ class NotificationHelper(val context: Context) {
             .setNumber(newStreams.size)
             .setBadgeIconType(NotificationCompat.BADGE_ICON_LARGE)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
-            .setColor(ContextCompat.getColor(context, R.color.ic_launcher_background))
+            .setSmallIcon(R.drawable.ic_stat_yewplay)
+            .setColor(ContextCompat.getColor(context, R.color.yp_notification_accent))
             .setColorized(true)
             .setAutoCancel(true)
             .setCategory(NotificationCompat.CATEGORY_SOCIAL)
@@ -75,7 +75,7 @@ class NotificationHelper(val context: Context) {
         )
 
         val avatarIcon =
-            CoilHelper.loadBitmapBlocking(context, data.avatarUrl, R.drawable.ic_newpipe_triangle_white)
+            CoilHelper.loadBitmapBlocking(context, data.avatarUrl, R.drawable.ic_stat_yewplay)
         summaryBuilder.setLargeIcon(avatarIcon)
 
         // Show individual stream notifications, set channel icon only if there is actually one
@@ -109,12 +109,12 @@ class NotificationHelper(val context: Context) {
             context,
             context.getString(R.string.streams_notification_channel_id)
         )
-            .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
+            .setSmallIcon(R.drawable.ic_stat_yewplay)
             .setLargeIcon(channelIcon)
             .setContentTitle(item.name)
             .setContentText(item.uploaderName)
             .setGroup(item.uploaderUrl)
-            .setColor(ContextCompat.getColor(context, R.color.ic_launcher_background))
+            .setColor(ContextCompat.getColor(context, R.color.yp_notification_accent))
             .setColorized(true)
             .setAutoCancel(true)
             .setCategory(NotificationCompat.CATEGORY_SOCIAL)

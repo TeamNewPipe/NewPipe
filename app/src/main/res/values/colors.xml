@@ -4,7 +4,8 @@
     <color name="contrastColor">@color/yp_tinta</color>
     <color name="defaultIconTint">@color/yp_tinta</color>
 
-    <color name="ic_launcher_background">#E0364F</color>
+    <!-- YewPlay: cor de destaque das notificações (rubi do ícone) -->
+    <color name="yp_notification_accent">#E0364F</color>
     <color name="yewplay_splash_background">#18141A</color>
 
     <color name="placeholder_background">@color/yp_areia</color>
