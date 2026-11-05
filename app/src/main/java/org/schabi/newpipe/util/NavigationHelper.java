@@ -48,7 +48,7 @@ import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.LibraryFragment;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
-import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
+import org.schabi.newpipe.fragments.list.channel.YpChannelFragment;
 import org.schabi.newpipe.fragments.list.comments.CommentRepliesFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
@@ -473,7 +473,7 @@ public final class NavigationHelper {
                                            final int serviceId, final String url,
                                            @NonNull final String name) {
         defaultTransaction(fragmentManager)
-                .replace(R.id.fragment_holder, ChannelFragment.getInstance(serviceId, url, name))
+                .replace(R.id.fragment_holder, YpChannelFragment.getInstance(serviceId, url, name))
                 .addToBackStack(null)
                 .commit();
     }
@@ -664,7 +664,7 @@ public final class NavigationHelper {
     }
 
     /**
-     * Opens {@link ChannelFragment}.
+     * Opens {@link YpChannelFragment}.
      * Use this instead of {@link #openChannelFragment(FragmentManager, int, String, String)}
      * when no fragments are used / no FragmentManager is available.
      * @param context

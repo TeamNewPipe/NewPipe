@@ -77,6 +77,7 @@ import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.LibraryFragment;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
+import org.schabi.newpipe.fragments.list.channel.YpChannelFragment;
 import org.schabi.newpipe.fragments.list.comments.CommentRepliesFragment;
 import org.schabi.newpipe.fragments.list.search.YpSearchFragment;
 import org.schabi.newpipe.local.bookmark.BookmarkFragment;
@@ -818,13 +819,14 @@ public class MainActivity extends AppCompatActivity {
     //////////////////////////////////////////////////////////////////////////*/
 
     /**
-     * YewPlay: screens drawn fully in Compose (Search) have their own top bar, so the
+     * YewPlay: screens drawn fully in Compose (Search, Channel) have their own top bar, so the
      * activity's toolbar and the space kept for it are hidden while they are shown.
      *
      * @param fragment the fragment now shown
      */
     private void updateToolbarForFragment(@Nullable final Fragment fragment) {
-        final boolean ownTopBar = fragment instanceof YpSearchFragment;
+        final boolean ownTopBar = fragment instanceof YpSearchFragment
+                || fragment instanceof YpChannelFragment;
         final View toolbar = toolbarLayoutBinding.getRoot();
         final View holder = mainBinding.fragmentHolder;
         if (!(holder.getLayoutParams() instanceof ViewGroup.MarginLayoutParams)) {

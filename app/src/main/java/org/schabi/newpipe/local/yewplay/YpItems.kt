@@ -34,8 +34,9 @@ import org.schabi.newpipe.util.image.ImageStrategy
 object YpItems {
 
     /** Whether a list can show this item (videos, channels and playlists). */
-    fun isSupported(item: InfoItem): Boolean =
-        item is StreamInfoItem || item is ChannelInfoItem || item is PlaylistInfoItem
+    fun isSupported(item: InfoItem): Boolean {
+        return item is StreamInfoItem || item is ChannelInfoItem || item is PlaylistInfoItem
+    }
 
     /**
      * Maps an item of a list.
@@ -45,31 +46,30 @@ object YpItems {
      * @param showUploader false inside a channel, where the channel is not repeated
      * @return the item for the Compose list
      */
-    fun toUi(context: Context, item: InfoItem, showUploader: Boolean = true): YpListItem =
-        when (item) {
-            is StreamInfoItem -> stream(context, item, showUploader)
+    fun toUi(context: Context, item: InfoItem, showUploader: Boolean = true): YpListItem = when (item) {
+        is StreamInfoItem -> stream(context, item, showUploader)
 
-            is ChannelInfoItem -> YpChannelItem(
-                serviceId = item.serviceId,
-                url = item.url,
-                name = item.name,
-                avatarUrl = ImageStrategy.choosePreferredImage(item.thumbnails),
-                description = item.description?.takeIf { it.isNotBlank() },
-                details = channelDetails(context, item)
+        is ChannelInfoItem -> YpChannelItem(
+            serviceId = item.serviceId,
+            url = item.url,
+            name = item.name,
+            avatarUrl = ImageStrategy.choosePreferredImage(item.thumbnails),
+            description = item.description?.takeIf { it.isNotBlank() },
+            details = channelDetails(context, item)
+        )
+
+        else -> {
+            val playlist = item as PlaylistInfoItem
+            YpPlaylistItem(
+                serviceId = playlist.serviceId,
+                url = playlist.url,
+                name = playlist.name,
+                thumbnailUrl = ImageStrategy.choosePreferredImage(playlist.thumbnails),
+                uploaderName = playlist.uploaderName,
+                countText = Localization.localizeStreamCountMini(context, playlist.streamCount)
             )
-
-            else -> {
-                val playlist = item as PlaylistInfoItem
-                YpPlaylistItem(
-                    serviceId = playlist.serviceId,
-                    url = playlist.url,
-                    name = playlist.name,
-                    thumbnailUrl = ImageStrategy.choosePreferredImage(playlist.thumbnails),
-                    uploaderName = playlist.uploaderName,
-                    countText = Localization.localizeStreamCountMini(context, playlist.streamCount)
-                )
-            }
         }
+    }
 
     private fun stream(context: Context, item: StreamInfoItem, showUploader: Boolean): YpStreamItem {
         val live = StreamTypeUtil.isLiveStream(item.streamType)
