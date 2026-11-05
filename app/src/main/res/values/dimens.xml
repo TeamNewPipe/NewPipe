@@ -41,10 +41,10 @@
     <!-- 16 / 9 ratio-->
     <dimen name="video_item_search_thumbnail_image_width">144dp</dimen>
     <dimen name="video_item_search_thumbnail_image_height">81dp</dimen>
-    <dimen name="video_item_search_avatar_image_width">70dp</dimen>
-    <dimen name="video_item_search_avatar_image_height">70dp</dimen>
-    <dimen name="video_item_search_avatar_left_margin">27dp</dimen>
-    <dimen name="video_item_search_avatar_right_margin">33dp</dimen>
+    <dimen name="video_item_search_avatar_image_width">64dp</dimen>
+    <dimen name="video_item_search_avatar_image_height">64dp</dimen>
+    <dimen name="video_item_search_avatar_left_margin">0dp</dimen>
+    <dimen name="video_item_search_avatar_right_margin">16dp</dimen>
     <dimen name="video_item_grid_thumbnail_image_width">164dp</dimen>
     <dimen name="video_item_grid_thumbnail_image_height">92dp</dimen>
 

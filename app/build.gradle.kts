@@ -226,7 +226,9 @@ dependencies {
     // YewPlay modules and Compose for the redesigned screens
     implementation(projects.core.data)
     implementation(projects.core.designsystem)
+    implementation(projects.feature.channel)
     implementation(projects.feature.library)
+    implementation(projects.feature.search)
     implementation(projects.feature.subscriptions)
     implementation(libs.jetbrains.compose.foundation)
     implementation(libs.jetbrains.compose.material3)
