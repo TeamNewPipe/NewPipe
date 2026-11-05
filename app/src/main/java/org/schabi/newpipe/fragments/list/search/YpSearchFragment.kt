@@ -108,7 +108,8 @@ class YpSearchFragment : BaseFragment(), BackPressable {
                             search = painterResource(R.drawable.ic_search),
                             clear = painterResource(R.drawable.ic_close),
                             history = painterResource(R.drawable.ic_history),
-                            insert = painterResource(R.drawable.ic_search_add)
+                            insert = painterResource(R.drawable.ic_search_add),
+                            more = painterResource(R.drawable.ic_more_vert)
                         ),
                         actions = actions()
                     )

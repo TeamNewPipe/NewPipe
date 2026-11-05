@@ -8,19 +8,16 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
@@ -29,7 +26,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -58,18 +54,23 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import io.github.yewplay.core.designsystem.YpChannelRow
+import io.github.yewplay.core.designsystem.YpErrorLabels
+import io.github.yewplay.core.designsystem.YpErrorState
 import io.github.yewplay.core.designsystem.YpFeaturedChannelCard
+import io.github.yewplay.core.designsystem.YpLoadingMore
+import io.github.yewplay.core.designsystem.YpMessageState
 import io.github.yewplay.core.designsystem.YpPlaylistRow
 import io.github.yewplay.core.designsystem.YpScreenMargin
+import io.github.yewplay.core.designsystem.YpSkeletonList
 import io.github.yewplay.core.designsystem.YpSubscribeLabels
 import io.github.yewplay.core.designsystem.YpTextTabs
 import io.github.yewplay.core.designsystem.YpVideoRow
 import io.github.yewplay.core.model.YpChannelItem
+import io.github.yewplay.core.model.YpError
 import io.github.yewplay.core.model.YpListItem
 import io.github.yewplay.core.model.YpPlaylistItem
 import io.github.yewplay.core.model.YpStreamItem
@@ -79,15 +80,6 @@ data class SearchSuggestion(val query: String, val fromHistory: Boolean)
 
 /** A notice of the service shown above the results (e.g. about a current event). */
 data class SearchNotice(val title: String?, val text: String, val url: String?)
-
-/** An error that replaces the results, with the actions it allows. */
-data class SearchError(
-    val message: String,
-    /** "Report" or "Solve" (captcha); null when neither applies. */
-    val actionLabel: String?,
-    val canRetry: Boolean,
-    val canOpenInBrowser: Boolean
-)
 
 /** Everything the search screen shows. */
 data class SearchUiState(
@@ -111,7 +103,7 @@ data class SearchUiState(
     val isLoadingMore: Boolean = false,
     val hasMore: Boolean = false,
     val isEmpty: Boolean = false,
-    val error: SearchError? = null,
+    val error: YpError? = null,
     /** Changes whenever the field should take the focus and open the keyboard. */
     val focusRequest: Int = 0
 )
@@ -135,7 +127,8 @@ data class SearchIcons(
     val search: Painter,
     val clear: Painter,
     val history: Painter,
-    val insert: Painter
+    val insert: Painter,
+    val more: Painter
 )
 
 /** What the screen asks the app to do. */
@@ -183,10 +176,16 @@ fun SearchScreen(
             }
             Box(modifier = Modifier.weight(1f)) {
                 when {
-                    state.error != null -> ErrorState(state.error, strings, actions)
-                    state.isLoading -> LoadingState()
-                    state.isEmpty -> EmptyState(strings)
-                    else -> Results(state, strings, actions)
+                    state.error != null -> YpErrorState(
+                        error = state.error,
+                        labels = YpErrorLabels(strings.retry, strings.openInBrowser),
+                        onRetry = actions.onRetry,
+                        onAction = actions.onErrorAction,
+                        onOpenInBrowser = actions.onOpenInBrowser
+                    )
+                    state.isLoading -> YpSkeletonList()
+                    state.isEmpty -> YpMessageState(strings.noResults, strings.noResultsDetail)
+                    else -> Results(state, strings, icons, actions)
                 }
             }
         }
@@ -363,7 +362,12 @@ private fun SuggestionList(
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun Results(state: SearchUiState, strings: SearchStrings, actions: SearchActions) {
+private fun Results(
+    state: SearchUiState,
+    strings: SearchStrings,
+    icons: SearchIcons,
+    actions: SearchActions
+) {
     val listState = rememberSaveable(state.searchId, saver = LazyListState.Saver) {
         LazyListState()
     }
@@ -396,7 +400,8 @@ private fun Results(state: SearchUiState, strings: SearchStrings, actions: Searc
                 is YpStreamItem -> YpVideoRow(
                     item = item,
                     onClick = { actions.onItemClick(item) },
-                    onLongClick = { actions.onItemLongClick(item) }
+                    onLongClick = { actions.onItemLongClick(item) },
+                    moreIcon = icons.more
                 )
                 is YpChannelItem -> if (index == 0 && state.featureFirstChannel) {
                     YpFeaturedChannelCard(
@@ -422,20 +427,7 @@ private fun Results(state: SearchUiState, strings: SearchStrings, actions: Searc
             }
         }
         if (state.isLoadingMore) {
-            item(key = "more") {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    CircularProgressIndicator(
-                        modifier = Modifier.size(24.dp),
-                        strokeWidth = 2.dp,
-                        color = MaterialTheme.colorScheme.tertiary
-                    )
-                }
-            }
+            item(key = "more") { YpLoadingMore() }
         }
     }
 }
@@ -494,125 +486,6 @@ private fun Notice(notice: SearchNotice, onClick: () -> Unit) {
             text = notice.text,
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant
-        )
-    }
-}
-
-/** Blocks in the shape of the results while they load (proposal, p. 17). */
-@Composable
-private fun LoadingState() {
-    val block = MaterialTheme.colorScheme.surfaceContainer
-    Column(modifier = Modifier.fillMaxSize()) {
-        repeat(7) {
-            Row(
-                modifier = Modifier.padding(horizontal = YpScreenMargin, vertical = 8.dp),
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                Box(
-                    modifier = Modifier
-                        .width(160.dp)
-                        .aspectRatio(16f / 9f)
-                        .clip(RoundedCornerShape(10.dp))
-                        .background(block)
-                )
-                Column(
-                    modifier = Modifier.weight(1f),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    SkeletonLine(1f)
-                    SkeletonLine(0.7f)
-                    SkeletonLine(0.45f)
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun SkeletonLine(fraction: Float) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth(fraction)
-            .height(12.dp)
-            .clip(RoundedCornerShape(6.dp))
-            .background(MaterialTheme.colorScheme.surfaceContainer)
-    )
-}
-
-@Composable
-private fun EmptyState(strings: SearchStrings) {
-    CenteredMessage(title = strings.noResults, detail = strings.noResultsDetail) {}
-}
-
-@Composable
-private fun ErrorState(error: SearchError, strings: SearchStrings, actions: SearchActions) {
-    CenteredMessage(title = error.message, detail = null) {
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            if (error.canRetry) {
-                PillButton(strings.retry, primary = true, onClick = actions.onRetry)
-            }
-            error.actionLabel?.let { PillButton(it, primary = !error.canRetry, actions.onErrorAction) }
-        }
-        if (error.canOpenInBrowser) {
-            TextButton(onClick = actions.onOpenInBrowser) {
-                Text(
-                    text = strings.openInBrowser,
-                    style = MaterialTheme.typography.labelLarge,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun CenteredMessage(
-    title: String,
-    detail: String?,
-    buttons: @Composable () -> Unit
-) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = 32.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = title,
-            style = MaterialTheme.typography.titleMedium,
-            textAlign = TextAlign.Center
-        )
-        if (detail != null) {
-            Spacer(Modifier.height(6.dp))
-            Text(
-                text = detail,
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                textAlign = TextAlign.Center
-            )
-        }
-        Spacer(Modifier.height(20.dp))
-        buttons()
-    }
-}
-
-@Composable
-private fun PillButton(label: String, primary: Boolean, onClick: () -> Unit) {
-    val colors = MaterialTheme.colorScheme
-    Box(
-        modifier = Modifier
-            .height(40.dp)
-            .clip(RoundedCornerShape(12.dp))
-            .background(if (primary) colors.primary else colors.surfaceContainerHighest)
-            .clickable(onClick = onClick)
-            .padding(horizontal = 18.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = label,
-            style = MaterialTheme.typography.labelLarge,
-            color = if (primary) colors.onPrimary else colors.onSurface
         )
     }
 }

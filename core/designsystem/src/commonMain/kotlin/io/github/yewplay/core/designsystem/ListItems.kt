@@ -23,6 +23,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -39,7 +41,10 @@ import io.github.yewplay.core.model.YpChannelItem
 import io.github.yewplay.core.model.YpPlaylistItem
 import io.github.yewplay.core.model.YpStreamItem
 
-private val ThumbnailWidth = 160.dp
+private val ThumbnailWidth = 144.dp
+
+/** Channel avatars are rounded squares, 32% of the side (proposal, p. 7). */
+val YpAvatarShape = RoundedCornerShape(percent = 32)
 private val ThumbnailShape = RoundedCornerShape(10.dp)
 private val BadgeBackground = Color(0xCC18141A)
 private val BadgeText = Color(0xFFF3EEE9)
@@ -54,13 +59,19 @@ fun YpVideoRow(
     item: YpStreamItem,
     onClick: () -> Unit,
     onLongClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    moreIcon: Painter? = null
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
             .combinedClickable(onClick = onClick, onLongClick = onLongClick)
-            .padding(horizontal = YpScreenMargin, vertical = 8.dp),
+            .padding(
+                start = YpScreenMargin,
+                end = if (moreIcon != null) 4.dp else YpScreenMargin,
+                top = 8.dp,
+                bottom = 8.dp
+            ),
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         YpThumbnail(
@@ -83,6 +94,23 @@ fun YpVideoRow(
             }
             if (item.details.isNotEmpty()) {
                 YpMetaText(item.details)
+            }
+        }
+        if (moreIcon != null) {
+            // the item menu, also reachable with a long press
+            Box(
+                modifier = Modifier
+                    .size(40.dp)
+                    .clip(CircleShape)
+                    .clickable(onClick = onLongClick),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    modifier = Modifier.size(18.dp),
+                    painter = moreIcon,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant
+                )
             }
         }
     }
@@ -113,8 +141,8 @@ fun YpThumbnail(
         if (durationText != null) {
             Text(
                 modifier = Modifier
-                    .align(Alignment.BottomEnd)
-                    .padding(end = 6.dp, bottom = 6.dp)
+                    .align(if (isLive) Alignment.BottomStart else Alignment.BottomEnd)
+                    .padding(horizontal = 6.dp, vertical = 6.dp)
                     .clip(RoundedCornerShape(6.dp))
                     .background(if (isLive) MaterialTheme.colorScheme.tertiary else BadgeBackground)
                     .padding(horizontal = 6.dp, vertical = 2.dp),
@@ -216,7 +244,8 @@ fun YpFeaturedChannelCard(
                 subscribed = subscribed,
                 labels = labels,
                 onClick = onToggleSubscription,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                height = 44
             )
         }
     }
@@ -288,7 +317,7 @@ fun YpAvatar(url: String?, size: Int, modifier: Modifier = Modifier) {
     AsyncImage(
         modifier = modifier
             .size(size.dp)
-            .clip(CircleShape)
+            .clip(YpAvatarShape)
             .background(MaterialTheme.colorScheme.surfaceContainer),
         model = url,
         contentDescription = null,
@@ -302,12 +331,13 @@ fun YpSubscribeButton(
     subscribed: Boolean,
     labels: YpSubscribeLabels,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    height: Int = 36
 ) {
     val colors = MaterialTheme.colorScheme
     Box(
         modifier = modifier
-            .height(36.dp)
+            .height(height.dp)
             .clip(RoundedCornerShape(12.dp))
             .background(if (subscribed) colors.surfaceContainerHighest else colors.primary)
             .clickable(onClick = onClick)
@@ -331,4 +361,87 @@ private fun YpMetaText(text: String, maxLines: Int = 1) {
         maxLines = maxLines,
         overflow = TextOverflow.Ellipsis
     )
+}
+
+/** Icons of the playlist controls, from the app's drawables. */
+data class YpPlaylistControlIcons(val play: Painter, val shuffle: Painter, val listen: Painter)
+
+/** Labels of the playlist controls, from the app's strings. */
+data class YpPlaylistControlLabels(val play: String, val shuffle: String, val listen: String)
+
+/** Play, Shuffle and Listen above a list of videos (proposal, p. 14). Hold to enqueue. */
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun YpPlaylistControls(
+    icons: YpPlaylistControlIcons,
+    labels: YpPlaylistControlLabels,
+    onPlay: () -> Unit,
+    onShuffle: () -> Unit,
+    onListen: () -> Unit,
+    onPlayLongClick: () -> Unit,
+    onListenLongClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val colors = MaterialTheme.colorScheme
+    val shape = RoundedCornerShape(12.dp)
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = YpScreenMargin, vertical = 8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .weight(1f)
+                .height(44.dp)
+                .clip(shape)
+                .background(colors.primary)
+                .combinedClickable(onClick = onPlay, onLongClick = onPlayLongClick),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                modifier = Modifier.size(19.dp),
+                painter = icons.play,
+                contentDescription = null,
+                tint = colors.onPrimary
+            )
+            Spacer(Modifier.width(6.dp))
+            Text(text = labels.play, style = MaterialTheme.typography.labelLarge, color = colors.onPrimary)
+        }
+        Row(
+            modifier = Modifier
+                .weight(1f)
+                .height(44.dp)
+                .clip(shape)
+                .background(colors.surfaceContainerHighest)
+                .clickable(onClick = onShuffle),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                modifier = Modifier.size(19.dp),
+                painter = icons.shuffle,
+                contentDescription = null,
+                tint = colors.onSurface
+            )
+            Spacer(Modifier.width(6.dp))
+            Text(text = labels.shuffle, style = MaterialTheme.typography.labelLarge, color = colors.onSurface)
+        }
+        Box(
+            modifier = Modifier
+                .size(44.dp)
+                .clip(shape)
+                .background(colors.surfaceContainerHighest)
+                .combinedClickable(onClick = onListen, onLongClick = onListenLongClick),
+            contentAlignment = Alignment.Center
+        ) {
+            Icon(
+                modifier = Modifier.size(20.dp),
+                painter = icons.listen,
+                contentDescription = labels.listen,
+                tint = colors.onSurface
+            )
+        }
+    }
 }

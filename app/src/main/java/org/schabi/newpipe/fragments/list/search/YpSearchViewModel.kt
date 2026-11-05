@@ -10,10 +10,8 @@ import androidx.core.text.HtmlCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.preference.PreferenceManager
 import io.github.yewplay.core.model.YpChannelItem
+import io.github.yewplay.core.model.YpError
 import io.github.yewplay.core.model.YpListItem
-import io.github.yewplay.core.model.YpPlaylistItem
-import io.github.yewplay.core.model.YpStreamItem
-import io.github.yewplay.feature.search.SearchError
 import io.github.yewplay.feature.search.SearchNotice
 import io.github.yewplay.feature.search.SearchSuggestion
 import io.github.yewplay.feature.search.SearchUiState
@@ -34,7 +32,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import org.schabi.newpipe.R
-import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.extractor.InfoItem
@@ -44,22 +41,17 @@ import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.Page
 import org.schabi.newpipe.extractor.StreamingService
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
-import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem
 import org.schabi.newpipe.extractor.search.SearchExtractor
 import org.schabi.newpipe.extractor.search.SearchInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
-import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.ktx.isInterruptedCaused
 import org.schabi.newpipe.local.history.HistoryRecordManager
 import org.schabi.newpipe.local.subscription.SubscriptionManager
+import org.schabi.newpipe.local.yewplay.YpItems
 import org.schabi.newpipe.settings.NewPipeSettings
-import org.schabi.newpipe.util.DependentPreferenceHelper
 import org.schabi.newpipe.util.ExtractorHelper
-import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.ServiceHelper
-import org.schabi.newpipe.util.StreamTypeUtil
-import org.schabi.newpipe.util.image.ImageStrategy
 
 /** One-off things the screen asks of the fragment. */
 sealed interface SearchEvent {
@@ -394,7 +386,7 @@ class YpSearchViewModel(application: Application) : AndroidViewModel(application
                         _state.update { state ->
                             state.copy(
                                 isLoading = false,
-                                error = SearchError(
+                                error = YpError(
                                     message = app.getString(R.string.unsupported_url),
                                     actionLabel = null,
                                     canRetry = false,
@@ -416,13 +408,13 @@ class YpSearchViewModel(application: Application) : AndroidViewModel(application
         }
         lastSearchedString = searchString
         nextPage = result.nextPage
-        val items = result.relatedItems.filter(::isSupported)
+        val items = result.relatedItems.filter(YpItems::isSupported)
         rawItems = items
         val correction = result.searchSuggestion?.trim()?.takeIf { it.isNotEmpty() }
         _state.update {
             it.copy(
                 isLoading = false,
-                items = items.map(::toUi),
+                items = items.map { YpItems.toUi(app, it) },
                 isEmpty = items.isEmpty(),
                 correction = correction,
                 isCorrected = result.isCorrectedSearch,
@@ -446,12 +438,12 @@ class YpSearchViewModel(application: Application) : AndroidViewModel(application
             )
         }
         nextPage = result.nextPage
-        val items = result.items.filter(::isSupported)
+        val items = result.items.filter(YpItems::isSupported)
         rawItems = rawItems + items
         _state.update {
             it.copy(
                 isLoadingMore = false,
-                items = it.items + items.map(::toUi),
+                items = it.items + items.map { YpItems.toUi(app, it) },
                 hasMore = Page.isValid(nextPage)
             )
         }
@@ -465,22 +457,7 @@ class YpSearchViewModel(application: Application) : AndroidViewModel(application
         }
         val info = ErrorInfo(error, UserAction.SEARCHED, searchString, serviceId, browserUrl())
         lastError = info
-        val actionLabel = when {
-            info.recaptchaUrl != null -> app.getString(R.string.recaptcha_solve)
-            info.isReportable -> app.getString(R.string.error_snackbar_action)
-            else -> null
-        }
-        _state.update {
-            it.copy(
-                isLoading = false,
-                error = SearchError(
-                    message = info.getMessage(app).toString(),
-                    actionLabel = actionLabel,
-                    canRetry = info.isRetryable,
-                    canOpenInBrowser = info.openInBrowserUrl != null
-                )
-            )
-        }
+        _state.update { it.copy(isLoading = false, error = YpItems.errorUi(app, info)) }
     }
 
     /* ---------------------------------------------------------------------------------------- */
@@ -491,14 +468,7 @@ class YpSearchViewModel(application: Application) : AndroidViewModel(application
         val subscribe = _state.value.subscribed[item.url] != true
         val channel = channelItemFor(item)
         val action = if (subscribe) {
-            val entity = SubscriptionEntity(
-                serviceId = item.serviceId,
-                url = item.url,
-                name = item.name,
-                avatarUrl = channel?.let { ImageStrategy.imageListToDbUrl(it.thumbnails) },
-                subscriberCount = channel?.subscriberCount?.takeIf { it >= 0 },
-                description = channel?.description
-            )
+            val entity = YpItems.subscriptionFor(item, channel)
             Completable.fromAction { subscriptionManager.insertSubscription(entity) }
         } else {
             Completable.fromAction {
@@ -518,142 +488,29 @@ class YpSearchViewModel(application: Application) : AndroidViewModel(application
     }
 
     private fun loadExtras(items: List<InfoItem>) {
-        val channels = items.filterIsInstance<ChannelInfoItem>()
-        if (channels.isNotEmpty()) {
-            disposables.add(
-                Single.fromCallable {
-                    channels.associate { channel ->
-                        channel.url to subscriptionManager.subscriptionTable()
-                            .getSubscriptionFlowable(channel.serviceId, channel.url)
-                            .blockingFirst()
-                            .isNotEmpty()
-                    }
-                }
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                        { found -> _state.update { it.copy(subscribed = it.subscribed + found) } },
-                        { }
-                    )
-            )
-        }
-
-        val streams = items.filterIsInstance<StreamInfoItem>().filter { it.duration > 0 }
-        if (streams.isNotEmpty() && DependentPreferenceHelper.getPositionsInListsEnabled(app)) {
-            disposables.add(
-                Single.fromCallable {
-                    streams.mapNotNull { stream ->
-                        historyRecordManager.loadStreamState(stream).blockingGet()?.let { state ->
-                            val fraction = state.progressMillis / 1000f / stream.duration
-                            stream.url to fraction.coerceIn(0f, 1f)
-                        }
-                    }.toMap()
-                }
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                        { progress -> applyProgress(progress) },
-                        { }
-                    )
-            )
-        }
-    }
-
-    private fun applyProgress(progress: Map<String, Float>) {
-        if (progress.isEmpty()) {
-            return
-        }
-        _state.update { state ->
-            state.copy(
-                items = state.items.map { item ->
-                    val fraction = progress[item.url]
-                    if (item is YpStreamItem && fraction != null) item.copy(progress = fraction) else item
-                }
-            )
-        }
+        disposables.add(
+            YpItems.loadSubscribed(subscriptionManager, items)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    { found -> _state.update { it.copy(subscribed = it.subscribed + found) } },
+                    { }
+                )
+        )
+        disposables.add(
+            YpItems.loadProgress(app, historyRecordManager, items)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    { progress ->
+                        _state.update { it.copy(items = YpItems.withProgress(it.items, progress)) }
+                    },
+                    { }
+                )
+        )
     }
 
     /* ---------------------------------------------------------------------------------------- */
     /* Mapping                                                                                   */
     /* ---------------------------------------------------------------------------------------- */
-
-    private fun isSupported(item: InfoItem) = item is StreamInfoItem || item is ChannelInfoItem || item is PlaylistInfoItem
-
-    private fun toUi(item: InfoItem): YpListItem = when (item) {
-        is StreamInfoItem -> {
-            val live = StreamTypeUtil.isLiveStream(item.streamType)
-            YpStreamItem(
-                serviceId = item.serviceId,
-                url = item.url,
-                title = item.name,
-                uploaderName = item.uploaderName.orEmpty(),
-                thumbnailUrl = ImageStrategy.choosePreferredImage(item.thumbnails),
-                durationText = when {
-                    item.duration > 0 -> Localization.getDurationString(item.duration)
-                    live -> app.getString(R.string.duration_live)
-                    else -> null
-                },
-                isLive = live,
-                details = streamDetails(item)
-            )
-        }
-
-        is ChannelInfoItem -> YpChannelItem(
-            serviceId = item.serviceId,
-            url = item.url,
-            name = item.name,
-            avatarUrl = ImageStrategy.choosePreferredImage(item.thumbnails),
-            description = item.description?.takeIf { it.isNotBlank() },
-            details = channelDetails(item)
-        )
-
-        else -> {
-            val playlist = item as PlaylistInfoItem
-            YpPlaylistItem(
-                serviceId = playlist.serviceId,
-                url = playlist.url,
-                name = playlist.name,
-                thumbnailUrl = ImageStrategy.choosePreferredImage(playlist.thumbnails),
-                uploaderName = playlist.uploaderName,
-                countText = Localization.localizeStreamCountMini(app, playlist.streamCount)
-            )
-        }
-    }
-
-    private fun streamDetails(item: StreamInfoItem): String {
-        val views = when {
-            item.viewCount < 0 -> ""
-
-            item.streamType == StreamType.AUDIO_LIVE_STREAM ->
-                Localization.listeningCount(app, item.viewCount)
-
-            item.streamType == StreamType.LIVE_STREAM ->
-                Localization.shortWatchingCount(app, item.viewCount)
-
-            else -> Localization.shortViewCount(app, item.viewCount)
-        }
-        val date = Localization
-            .relativeTimeOrTextual(app, item.uploadDate, item.textualUploadDate)
-            .orEmpty()
-        return when {
-            date.isEmpty() -> views
-            views.isEmpty() -> date
-            else -> Localization.concatenateStrings(views, date)
-        }
-    }
-
-    private fun channelDetails(item: ChannelInfoItem): String? {
-        val subscribers = item.subscriberCount.takeIf { it >= 0 }
-            ?.let { Localization.shortSubscriberCount(app, it) }
-        val streams = item.streamCount.takeIf { it >= 0 }
-            ?.let { Localization.localizeStreamCount(app, it) }
-        return when {
-            subscribers != null && streams != null ->
-                Localization.concatenateStrings(subscribers, streams)
-
-            else -> subscribers ?: streams
-        }
-    }
 
     private fun notices(metaInfo: List<MetaInfo>): List<SearchNotice> {
         val prefs = PreferenceManager.getDefaultSharedPreferences(app)

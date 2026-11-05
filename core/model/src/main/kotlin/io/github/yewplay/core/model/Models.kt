@@ -90,3 +90,12 @@ data class YpPlaylistItem(
     /** "42 videos"; may be empty. */
     val countText: String
 ) : YpListItem
+
+/** An error that replaces a screen's content, with the actions it allows. */
+data class YpError(
+    val message: String,
+    /** "Report" or "Solve" (captcha); null when neither applies. */
+    val actionLabel: String?,
+    val canRetry: Boolean,
+    val canOpenInBrowser: Boolean
+)
