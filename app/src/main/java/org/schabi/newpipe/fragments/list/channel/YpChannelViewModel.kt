@@ -245,8 +245,7 @@ class YpChannelViewModel(application: Application) : AndroidViewModel(applicatio
         )
     }
 
-    private fun largest(images: List<Image>): String? =
-        images.maxByOrNull { it.width.toLong() * it.height }?.url
+    private fun largest(images: List<Image>): String? = images.maxByOrNull { it.width.toLong() * it.height }?.url
 
     /* ---------------------------------------------------------------------------------------- */
     /* Subscription and notifications                                                            */
@@ -489,9 +488,8 @@ class YpChannelViewModel(application: Application) : AndroidViewModel(applicatio
      * @param item an item of the selected tab
      * @return the stream item, if it is a stream
      */
-    fun streamItemFor(item: YpListItem): StreamInfoItem? =
-        rawItems[_state.value.selectedTab].orEmpty()
-            .firstOrNull { it.url == item.url && it.serviceId == item.serviceId } as? StreamInfoItem
+    fun streamItemFor(item: YpListItem): StreamInfoItem? = rawItems[_state.value.selectedTab].orEmpty()
+        .firstOrNull { it.url == item.url && it.serviceId == item.serviceId } as? StreamInfoItem
 
     private fun emitError(errorInfo: ErrorInfo) {
         _events.tryEmit(ChannelEvent.ShowError(errorInfo))

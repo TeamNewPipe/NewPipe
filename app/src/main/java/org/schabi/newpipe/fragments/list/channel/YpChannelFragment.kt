@@ -297,13 +297,12 @@ class YpChannelFragment : BaseFragment() {
         private const val STATE_FRONT_PAGE = "yp_channel_front_page"
 
         @JvmStatic
-        fun getInstance(serviceId: Int, url: String?, name: String?): YpChannelFragment =
-            YpChannelFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(KEY_SERVICE_ID, serviceId)
-                    putString(KEY_URL, url)
-                    putString(KEY_TITLE, name.orEmpty())
-                }
+        fun getInstance(serviceId: Int, url: String?, name: String?): YpChannelFragment = YpChannelFragment().apply {
+            arguments = Bundle().apply {
+                putInt(KEY_SERVICE_ID, serviceId)
+                putString(KEY_URL, url)
+                putString(KEY_TITLE, name.orEmpty())
             }
+        }
     }
 }
