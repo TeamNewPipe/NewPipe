@@ -20,6 +20,7 @@ import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.ListInfo;
 import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
+import org.schabi.newpipe.local.channel.BlockedChannelManager;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.views.NewPipeRecyclerView;
 
@@ -46,6 +47,7 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
     @Nullable
     protected Page currentNextPage;
     protected Disposable currentWorker;
+    private BlockedChannelManager blockedChannelManager;
 
     protected BaseListInfoFragment(final UserAction errorUserAction) {
         this.errorUserAction = errorUserAction;
@@ -54,6 +56,7 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
     @Override
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
+        blockedChannelManager = new BlockedChannelManager(rootView.getContext());
         setTitle(name);
         showListFooter(hasMoreItems());
     }
@@ -145,6 +148,11 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
         }
         currentWorker = loadResult(forceLoad)
                 .subscribeOn(Schedulers.io())
+                .flatMap(result -> blockedChannelManager.filterList(result.getRelatedItems())
+                        .map(filteredItems -> {
+                            result.setRelatedItems(filteredItems);
+                            return result;
+                        }))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((@NonNull final L result) -> {
                     isLoading.set(false);
@@ -177,6 +185,12 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
 
         currentWorker = loadMoreItemsLogic()
                 .subscribeOn(Schedulers.io())
+                .flatMap(result -> blockedChannelManager.filterList(result.getItems())
+                        .map(filteredItems -> new ListExtractor.InfoItemsPage<>(
+                                filteredItems,
+                                result.getNextPage(),
+                                result.getErrors()
+                        )))
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally(this::allowDownwardFocusScroll)
                 .subscribe(infoItemsPage -> {
