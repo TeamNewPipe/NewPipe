@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="16dp"
+    android:paddingTop="16dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="16dp">
+
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:id="@+id/blockedChannelsSummary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/blocked_channels_summary"
+        android:textAppearance="?textAppearanceListItemSecondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/blockedChannelsList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/blockedChannelsSummary"
+        tools:listitem="@layout/item_blocked_channel" />
+
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:id="@+id/emptyState"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/no_blocked_channels"
+        android:textAppearance="?textAppearanceListItem"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/blockedChannelsList"
+        app:layout_constraintEnd_toEndOf="@id/blockedChannelsList"
+        app:layout_constraintStart_toStartOf="@id/blockedChannelsList"
+        app:layout_constraintTop_toTopOf="@id/blockedChannelsList"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
