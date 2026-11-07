@@ -6,10 +6,12 @@
 package net.newpipe.app.composable
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material3.AlertDialog
@@ -78,8 +80,13 @@ fun ListPreference(
             onDismissRequest = { showDialog = false },
             title = { Text(text = title) },
             text = {
-                Column(modifier = Modifier.selectableGroup()) {
-                    entries.forEach { entry ->
+                val listState = rememberLazyListState(
+                    initialFirstVisibleItemIndex = entries
+                        .indexOfFirst { it.value == selectedValue }
+                        .coerceAtLeast(0)
+                )
+                LazyColumn(state = listState, modifier = Modifier.selectableGroup()) {
+                    items(items = entries, key = { entry -> entry.value }) { entry ->
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
