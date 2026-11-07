@@ -1,0 +1,9 @@
+Kapitelanzeige auf der Videoplayer-Suchleiste 
+[YouTube] Unterstützung für Tabs „Podcasts“ und „Kurse“
+Verbesserte Darstellung der Suchmenü-Titel
+Anzeige vollständiger Untertitelnamen, sofern vom Dienst bereitgestellt
+Verschiedene Player-Fixes, u. a. Audio-Ducking, Black Screens und Öffnen von Links mit Zeitstempeln
+[YouTube] Kleinere Fixes und Optimierungen
+…
+
+Vielen Dank an die diesjährigen ANU-Software-Engineering-Studierenden, die im Rahmen ihres OSS-Einsatzes zu NewPipe beigetragen haben!

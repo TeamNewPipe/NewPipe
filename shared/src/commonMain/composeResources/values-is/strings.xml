@@ -1,4 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_description">Frjáls og léttur streymisspilari fyrir Android.</string>
+    <string name="navigate_back">Til baka</string>
+    <string name="title_activity_about">Um NewPipe</string>
+    <string name="tab_about">Um okkur &amp; algengar spurningar</string>
+    <string name="website_title">Vefsíða</string>
+    <string name="privacy_policy_encouragement">NewPipe verkefnið tekur friðhelgi þína mjög alvarlega. Þess vegna safnar forritið engu án samþykkis þíns. \n\nPersónuverndarstefna NewPipe útskýrir í smáatriðum hvaða gögn eru send og geymd þegar þú sendir hrunskýrslu.</string>
+    <string name="title_licenses">Notkunarleyfi utanaðkomandi aðila</string>
+    <string name="license">Frá %1$s með %2$s</string>
+    <string name="tab_licenses">Hugbúnaðarleyfi</string>
+    <string name="contribution_title">Taka þátt</string>
+    <string name="contribution_encouragement">Allt er velkomið — hugmyndir, þýðingar, endurhönnun, kóðahreinsun eða miklar kóðabreytingar. Því fleiri, því betra!</string>
+    <string name="view_on_github">Skoða á GitHub</string>
+    <string name="donation_title">Styrkja</string>
+    <string name="donation_encouragement">NewPipe er þróað af sjálfboðaliðum sem eyða frítíma sínum í að færa þér bestu notendaupplifunina. Gefðu til baka til að hjálpa forriturum að gera NewPipe enn betri á meðan þeir njóta kaffibolla.</string>
+    <string name="give_back">Gefa til baka</string>
+    <string name="website_encouragement">Fyrir frekari upplýsingar og nýjustu fréttir um NewPipe geturðu skoðað heimasíðu okkar.</string>
+    <string name="privacy_policy_title">Persónuverndarstefna NewPipe</string>
+    <string name="read_privacy_policy">Lesa persónuverndarstefnu</string>
+    <string name="app_license_title">Hugbúnaðarleyfi NewPipe</string>
+    <string name="app_license">NewPipe er „copyleft“ frjáls hugbúnaður: Þú getur notað, rannsakað, deilt og bætt honum að vild. Þú getur endurdreift og breytt því samkvæmt skilmálum GNU GPL notendaleyfi eins og það er gefið út af Frjálsa Hugbúnaðarstofnuninni, annað hvort útgáfu 3 af leyfinu, eða (að eigin vali) hvaða síðari útgáfu sem er.</string>
+    <string name="read_full_license">Lesa notkunarleyfi</string>
+    <string name="faq_title">Algengar spurningar</string>
+    <string name="faq_description">Ef þú átt í vandræðum með að nota forritið vertu viss um að skoða þessi svör við algengum spurningum!</string>
+    <string name="faq">Skoða á vefsíðu</string>
+    <string name="open_in_browser">Opna í vafra</string>
+    <string name="done">Lokið</string>
+    <string name="not_available">Ekki tiltækt</string>
+    <string name="settings">Stillingar</string>
+    <string name="search">Leita</string>
+    <string name="content">Efni</string>
+    <string name="notifications">Tilkynningar</string>
+    <string name="settings_category_video_audio_title">Mynd og hljóð</string>
+    <string name="settings_category_downloads_title">Niðurhal</string>
+    <string name="settings_category_appearance_title">Útlit</string>
+    <string name="settings_category_history_title">Ferill og skyndiminni</string>
+    <string name="settings_category_updates_title">Uppfærslur</string>
+    <string name="settings_category_backup_restore_title">Öryggisafrita og endurheimta</string>
+    <string name="settings_category_debug_title">Villuleit</string>
 </resources>

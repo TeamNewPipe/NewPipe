@@ -7,8 +7,11 @@
 package org.schabi.newpipe
 
 import android.content.Context
-import androidx.room.Room.databaseBuilder
+import androidx.room3.Room.databaseBuilder
+import androidx.room3.useWriterConnection
+import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import kotlin.concurrent.Volatile
+import kotlinx.coroutines.runBlocking
 import org.schabi.newpipe.database.AppDatabase
 import org.schabi.newpipe.database.Migrations.MIGRATION_1_2
 import org.schabi.newpipe.database.Migrations.MIGRATION_2_3
@@ -28,7 +31,7 @@ object NewPipeDatabase {
         return databaseBuilder(
             context.applicationContext,
             AppDatabase::class.java,
-            AppDatabase.Companion.DATABASE_NAME
+            AppDatabase.DATABASE_NAME
         ).addMigrations(
             MIGRATION_1_2,
             MIGRATION_2_3,
@@ -38,7 +41,7 @@ object NewPipeDatabase {
             MIGRATION_6_7,
             MIGRATION_7_8,
             MIGRATION_8_9
-        ).build()
+        ).setDriver(BundledSQLiteDriver()).build()
     }
 
     @JvmStatic
@@ -59,10 +62,15 @@ object NewPipeDatabase {
 
     @JvmStatic
     fun checkpoint() {
-        checkNotNull(databaseInstance) { "database is not initialized" }
-        val c = databaseInstance!!.query("pragma wal_checkpoint(full)", null)
-        if (c.moveToFirst() && c.getInt(0) == 1) {
-            throw RuntimeException("Checkpoint was blocked from completing")
+        val database = checkNotNull(databaseInstance) { "database is not initialized" }
+        runBlocking {
+            database.useWriterConnection { transactor ->
+                transactor.usePrepared("pragma wal_checkpoint(full)") { statement ->
+                    if (statement.step() && statement.getInt(0) == 1) {
+                        throw RuntimeException("Checkpoint was blocked from completing")
+                    }
+                }
+            }
         }
     }
 

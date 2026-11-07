@@ -38,4 +38,6 @@
     <string name="settings_category_updates_title">अपडेटस</string>
     <string name="settings_category_backup_restore_title">बैकअप और रिस्टोर</string>
     <string name="settings_category_debug_title">डीबग</string>
+    <string name="theme_title">थीम</string>
+    <string name="light_theme_title">लाइट</string>
 </resources>

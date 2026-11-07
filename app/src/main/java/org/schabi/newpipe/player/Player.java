@@ -186,7 +186,9 @@ public final class Player implements PlaybackListener, Listener {
     // Playback
     //////////////////////////////////////////////////////////////////////////*/
 
-    // play queue might be null e.g. while player is starting
+    /**
+     * The play queue might be {@code null} e.g. while player is starting
+     */
     @Nullable
     private PlayQueue playQueue;
 
@@ -230,8 +232,10 @@ public final class Player implements PlaybackListener, Listener {
     private PlayerType playerType = PlayerType.MAIN;
     private int currentState = STATE_PREFLIGHT;
 
-    // audio only mode does not mean that player type is background, but that the player was
-    // minimized to background but will resume automatically to the original player type
+    /**
+     * Audio-only mode does not mean that player type is background, but that the player was
+     * minimized to background and will change to the original player type automatically.
+     */
     private boolean isAudioOnly = false;
     private boolean isPrepared = false;
 
@@ -634,6 +638,14 @@ public final class Player implements PlaybackListener, Listener {
         simpleExoPlayer.setWakeMode(C.WAKE_MODE_NETWORK);
         simpleExoPlayer.setHandleAudioBecomingNoisy(true);
 
+        // Enable ExoPlayer automatic audio focus management
+        simpleExoPlayer.setAudioAttributes(
+            new com.google.android.exoplayer2.audio.AudioAttributes.Builder()
+                .setUsage(C.USAGE_MEDIA)
+                .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
+                .build(),
+            true);
+
         audioReactor = new AudioReactor(context, simpleExoPlayer);
 
         registerBroadcastReceiver();
@@ -926,7 +938,7 @@ public final class Player implements PlaybackListener, Listener {
 
     private void onThumbnailLoaded(@Nullable final Bitmap bitmap) {
         // Avoid useless thumbnail updates, if the thumbnail has not actually changed. Based on the
-        // thumbnail loading code, this if would be skipped only when both bitmaps are `null`, since
+        // thumbnail loading code, this would be skipped only when both bitmaps are `null`, since
         // onThumbnailLoaded won't be called twice with the same nonnull bitmap by Coil's target.
         if (currentThumbnail != bitmap) {
             currentThumbnail = bitmap;
@@ -1173,10 +1185,6 @@ public final class Player implements PlaybackListener, Listener {
         }
 
         UIs.call(PlayerUi::onPrepared);
-
-        if (playWhenReady && !isMuted()) {
-            audioReactor.requestAudioFocus();
-        }
     }
 
     private void onBlocked() {
@@ -1324,11 +1332,18 @@ public final class Player implements PlaybackListener, Listener {
     public void toggleMute() {
         final boolean wasMuted = isMuted();
         simpleExoPlayer.setVolume(wasMuted ? 1 : 0);
-        if (wasMuted) {
-            audioReactor.requestAudioFocus();
-        } else {
-            audioReactor.abandonAudioFocus();
-        }
+
+        // Update audio focus
+        // When wasMuted is true, we want to play sound, so ExoPlayer has to handle audio focus in
+        // this case; when wasMuted is false, we don't want to play sound, so no audio focus should
+        // be done
+        simpleExoPlayer.setAudioAttributes(
+                new com.google.android.exoplayer2.audio.AudioAttributes.Builder()
+                        .setUsage(C.USAGE_MEDIA)
+                        .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
+                        .build(),
+                wasMuted);
+
         UIs.call(playerUi -> playerUi.onMuteUnmuteChanged(!wasMuted));
         notifyPlaybackUpdateToListeners();
     }
@@ -1511,7 +1526,7 @@ public final class Player implements PlaybackListener, Listener {
      * <li>From {@link PlaybackException#ERROR_CODE_IO_INVALID_HTTP_CONTENT_TYPE BAD_IO} to
      * {@link PlaybackException#ERROR_CODE_PARSING_MANIFEST_UNSUPPORTED UNSUPPORTED_FORMATS}:
      * If the stream source is validated by the extractor but not recognized by the player,
-     * then we can try to recover playback by signalling an error on the {@link PlayQueue}.</li>
+     * then we can try to recover playback by signaling an error on the {@link PlayQueue}.</li>
      * <li>For {@link PlaybackException#ERROR_CODE_TIMEOUT PLAYER_TIMEOUT},
      * {@link PlaybackException#ERROR_CODE_IO_UNSPECIFIED MEDIA_SOURCE_RESOLVER_TIMEOUT} and
      * {@link PlaybackException#ERROR_CODE_IO_NETWORK_CONNECTION_FAILED NO_NETWORK}:
@@ -1530,7 +1545,7 @@ public final class Player implements PlaybackListener, Listener {
      */
     // Any error code not explicitly covered here are either unrelated to NewPipe use case
     // (e.g. DRM) or not recoverable (e.g. Decoder error). In both cases, the player should
-    // shutdown.
+    // shut down.
     @SuppressWarnings("SwitchIntDef")
     @Override
     public void onPlayerError(@NonNull final PlaybackException error) {
@@ -1740,10 +1755,6 @@ public final class Player implements PlaybackListener, Listener {
             return;
         }
 
-        if (!isMuted()) {
-            audioReactor.requestAudioFocus();
-        }
-
         if (currentState == STATE_COMPLETED) {
             if (playQueue.getIndex() == 0) {
                 seekToDefault();
@@ -1755,7 +1766,6 @@ public final class Player implements PlaybackListener, Listener {
         if (isStopped()) {
             // Some phones suspend a paused player after 10 minutes. This causes the player to
             // enter STATE_IDLE, causing playback to fail. So we try to recover from that here.
-            setRecovery();
             reloadPlayQueueManager();
         }
 
@@ -1771,7 +1781,6 @@ public final class Player implements PlaybackListener, Listener {
             return;
         }
 
-        audioReactor.abandonAudioFocus();
         simpleExoPlayer.pause();
         saveStreamProgressState();
     }
@@ -1868,7 +1877,7 @@ public final class Player implements PlaybackListener, Listener {
                     .observeOn(AndroidSchedulers.mainThread())
                     .doOnError(e -> {
                         if (DEBUG) {
-                            e.printStackTrace();
+                            Log.e(TAG, "Failed to save stream progress state", e);
                         }
                     })
                     .onErrorComplete()
@@ -2236,7 +2245,7 @@ public final class Player implements PlaybackListener, Listener {
             reloadPlayQueueManager();
         });
 
-        // Disable or enable video and subtitles renderers depending of the
+        // Disable or enable video and subtitles renderers depending on the
         // videoAndSubtitlesEnabled value
         trackSelector.setParameters(trackSelector.buildUponParameters()
                 .setTrackTypeDisabled(C.TRACK_TYPE_TEXT, !videoAndSubtitlesEnabled)
@@ -2349,7 +2358,7 @@ public final class Player implements PlaybackListener, Listener {
         try {
             return !exoPlayerIsNull() && simpleExoPlayer.isCurrentMediaItemDynamic();
         } catch (final IndexOutOfBoundsException e) {
-            // Why would this even happen =(... but lets log it anyway, better safe than sorry
+            // Why would this even happen =(... but let's log it anyway, better safe than sorry
             if (DEBUG) {
                 Log.d(TAG, "player.isCurrentWindowDynamic() failed: ", e);
             }

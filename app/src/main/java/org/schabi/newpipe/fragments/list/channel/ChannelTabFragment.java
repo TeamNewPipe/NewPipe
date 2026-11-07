@@ -47,6 +47,14 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
 
     private PlaylistControlBinding playlistControlBinding;
 
+    /**
+     * Replacement for {@code tabHandler} without the raw data it may contain.
+     * Created on a background thread as {@code BandcampChannelLinkHandlerFactory}
+     * performs network requests, which must not be performed on the main thread.
+     */
+    @Nullable
+    private ListLinkHandler lightweightTabHandler;
+
     @NonNull
     public static ChannelTabFragment getInstance(final int serviceId,
                                                  final ListLinkHandler tabHandler,
@@ -97,7 +105,11 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
 
     @Override
     protected Single<ChannelTabInfo> loadResult(final boolean forceLoad) {
-        return ExtractorHelper.getChannelTab(serviceId, tabHandler, forceLoad);
+        return ExtractorHelper.getChannelTab(serviceId, tabHandler, forceLoad)
+                // Creating the lightweight handler may perform network requests, so it must not
+                // happen on the main thread.
+                .doOnSuccess(result ->
+                        lightweightTabHandler = createLightweightTabHandler(result, tabHandler));
     }
 
     @Override
@@ -115,32 +127,53 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
         super.setTitle(channelName);
     }
 
-    @Override
-    public void handleResult(@NonNull final ChannelTabInfo result) {
-        super.handleResult(result);
-
+    /**
+     * Creates a link handler with the same properties as {@code handler}, but without the raw
+     * data a {@link ReadyChannelTabListLinkHandler} may contain. Must not be called on the main
+     * thread, since some services perform network requests to build the link handler.
+     *
+     * @param result  the loaded tab info, used to get the service's channel tab factory
+     * @param handler the link handler that was used to load the tab
+     * @return the lightweight link handler, or {@code null} if it is not needed or could not
+     *         be created
+     */
+    @Nullable
+    private ListLinkHandler createLightweightTabHandler(final ChannelTabInfo result,
+                                                        final ListLinkHandler handler) {
         // FIXME this is a really hacky workaround, to avoid storing useless data in the fragment
         //  state. The problem is, `ReadyChannelTabListLinkHandler` might contain raw JSON data that
         //  uses a lot of memory (e.g. ~800KB for YouTube). While 800KB doesn't seem much, if
         //  you combine just a couple of channel tab fragments you easily go over the 1MB
         //  save&restore transaction limit, and get `TransactionTooLargeException`s. A proper
         //  solution would require rethinking about `ReadyChannelTabListLinkHandler`s.
-        if (tabHandler instanceof ReadyChannelTabListLinkHandler) {
+        if (handler instanceof ReadyChannelTabListLinkHandler) {
             try {
-                // once `handleResult` is called, the parsed data was already saved to cache, so
+                // once the tab info has been loaded, the parsed data was already saved to cache, so
                 // we can discard any raw data in ReadyChannelTabListLinkHandler and create a
                 // link handler with identical properties, but without any raw data
                 final ListLinkHandlerFactory channelTabLHFactory = result.getService()
                         .getChannelTabLHFactory();
                 if (channelTabLHFactory != null) {
-                    // some services do not not have a ChannelTabLHFactory
-                    tabHandler = channelTabLHFactory.fromQuery(tabHandler.getId(),
-                            tabHandler.getContentFilters(), tabHandler.getSortFilter());
+                    // some services do not have a ChannelTabLHFactory
+                    return channelTabLHFactory.fromQuery(handler.getId(),
+                            handler.getContentFilters(), handler.getSortFilter());
                 }
             } catch (final ParsingException e) {
                 // silently ignore the error, as the app can continue to function normally
                 Log.w(TAG, "Could not recreate channel tab handler", e);
             }
+        }
+        return null;
+    }
+
+    @Override
+    public void handleResult(@NonNull final ChannelTabInfo result) {
+        super.handleResult(result);
+
+        // Swap in the lightweight handler prepared in loadResult(), now that we are on main thread
+        if (lightweightTabHandler != null) {
+            tabHandler = lightweightTabHandler;
+            lightweightTabHandler = null;
         }
 
         if (playlistControlBinding != null) {

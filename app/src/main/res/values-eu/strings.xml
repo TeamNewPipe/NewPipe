@@ -29,7 +29,7 @@
     <string name="detail_dislikes_img_view_description">Desatseginak</string>
     <string name="detail_likes_img_view_description">Atseginak</string>
     <string name="no_player_found">Ez da igorpen-erreproduzigailurik aurkitu. VLC instalatu?</string>
-    <string name="did_you_mean">\"%1$s\" esan nahi al zenuen\?</string>
+    <string name="did_you_mean">\"%1$s\" esan nahi al zenuen?</string>
     <string name="use_external_video_player_title">Erabili kanpo bideo-erreproduzitzailea</string>
     <string name="use_external_audio_player_title">Erabili kanpo audio-erreproduzitzailea</string>
     <string name="background_player_playing_toast">Atzeko planoan erreproduzitzen</string>
@@ -97,8 +97,7 @@
     <string name="msg_wait">Itxaron mesedez…</string>
     <string name="msg_copied">Arbelera kopiatuta</string>
     <string name="no_available_dir">Ezarri deskargetarako karpeta bat ezarpenetan geroago</string>
-    <string name="msg_popup_permission">Baimen hau beharrezkoa da
-\nlaster-leiho moduan irekitzeko</string>
+    <string name="msg_popup_permission">Baimen hau beharrezkoa da \nlaster-leiho moduan irekitzeko</string>
     <string name="title_activity_recaptcha">reCAPTCHA erronka</string>
     <string name="recaptcha_request_toast">reCAPTCHA erronka eskatu da</string>
     <string name="title_activity_about">NewPipe-i buruz</string>
@@ -280,9 +279,7 @@
     <string name="import_youtube_instructions">Inportatu YouTube harpidetzak Google takeout-etik: \n \n1. Joan URL honetara: %1$s \n2. Hasi saioa eskatzen zaizunean \n3. Hautatu «Datu guztiak barne», gero «Kendu hautapen guztiak», eta hautatu «harpidetzak» soilik eta egin klik «Ados» botoian \n4. Egin klik «Hurrengo pausua» eta «Sortu esportazioa» botoietan \n5. Egin klik «Deskargatu» botoian agertzen denean \n6. Egin klik INPORTATU FITXATEGIA botoian eta hautatu deskargatutako .zip fitxategia \n7. [.zip inportazioak huts egiten badu] Erauzi .csv fitxategia deskargatutako takeout zip-etik (normalean «Youtube eta Youtube Music/harpidetzak/harpidetzak.csv»), egin klik INPORTATU FITXATEGIA botoian eta hautatu erauzitako csv fitxategia</string>
     <string name="import_soundcloud_instructions">Inportatu SoundCloud profila URL-a edo zure ID-a idatziz: \n \n1. Gaitu «mahaigain modua» web nabigatzailean (gunea ez dabil mugikorretan) \n2. Joan URL honetara: %1$s \n3. Hasi saioa eskatzen zaizunean \n4. Kopiatu profilaren URL-a eraman zaizun orritik.</string>
     <string name="import_soundcloud_instructions_hint">zureID,soundcloud.com/zureid</string>
-    <string name="import_network_expensive_warning">Eragiketa honek sarearen erabilera handia egin lezake.
-\n
-\nJarraitu nahi duzu?</string>
+    <string name="import_network_expensive_warning">Eragiketa honek sarearen erabilera handia egin lezake. \n \nJarraitu nahi duzu?</string>
     <string name="playback_speed_control">Erreprodukzio-abiaduraren kontrolak</string>
     <string name="playback_tempo">Tempoa</string>
     <string name="playback_pitch">Tonua</string>
@@ -319,7 +316,7 @@
     <string name="app_update_notification_channel_name">Aplikazioaren eguneraketen jakinarazpena</string>
     <string name="app_update_notification_channel_description">NewPipe aplikazioaren bertsio berrien jakinarazpena</string>
     <string name="download_to_sdcard_error_title">Kanpoko biltegiratzea ez dago eskuragarri</string>
-    <string name="download_to_sdcard_error_message">Ezin da SD txartel batera deskargatu. Deskargen karpeta berrezarri nahi duzu\?</string>
+    <string name="download_to_sdcard_error_message">Ezin da SD txartel batera deskargatu. Deskargen karpeta berrezarri nahi duzu?</string>
     <string name="saved_tabs_invalid_json">Ezin izan dira gordetako fitxak irakurri, lehenetsitakoak erabiltzen</string>
     <string name="restore_defaults">Berrezarri lehenetsitakoak</string>
     <string name="restore_defaults_confirmation">Lehenetsitako balioak berrezarri nahi dituzu?</string>
@@ -386,8 +383,7 @@
     <string name="start_downloads">Hasi deskargak</string>
     <string name="pause_downloads">Pausatu deskargak</string>
     <string name="downloads_storage_ask_title">Galdetu non deskargatu</string>
-    <string name="downloads_storage_ask_summary">Non gorde galdetuko zaizu deskarga bakoitzean.
-\nGaitu sistemaren karpeta hautatzailea (SAF) kanpoko SD txartel batera deskargatu nahi baduzu</string>
+    <string name="downloads_storage_ask_summary">Non gorde galdetuko zaizu deskarga bakoitzean. \nGaitu sistemaren karpeta hautatzailea (SAF) kanpoko SD txartel batera deskargatu nahi baduzu</string>
     <string name="no_one_watching">Ez dago inor ikusten</string>
     <plurals name="watching">
         <item quantity="one">Ikusle %s</item>
@@ -434,17 +430,7 @@
         <item quantity="other">%d segundo</item>
     </plurals>
     <string name="new_seek_duration_toast">ExoPlayer-en mugak direla eta bilaketaren iraupena %d segundotan ezarri da</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Jarioaren karga motelegia dela uste duzu\? Hala bada, saiatu karga azkarra gaitzen (ezarpenetan edo beheko botoia sakatzen aldatu dezakezu).
-\n
-\nNewPipe jarioak kargatzeko bi estrategia eskaintzen ditu:
-\n• Harpidetza kanal osoa eskuratu, motela baina osoa.
-\n• Amaiera-puntu dedikatua erabiliz, arina baina ez osatua.
-\n
-\nBien arteko diferentzia arinak normalean informazioa falta dela da, elementuaren iraupena edo mota adibidez (ezin du bideo normalen eta zuzenekoen artean bereizi) eta elementu gutxiago buelta ditzake.
-\n
-\nYouTube da bere RSS jarioaren bidez metodo azkarra eskaintzen duen zerbitzu bat adibidez.
-\n
-\nBeraz aukerak zure nahietara murrizten dira: abiadura edo informazio zehatza.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Jarioaren karga motelegia dela uste duzu? Hala bada, saiatu karga azkarra gaitzen (ezarpenetan edo beheko botoia sakatzen aldatu dezakezu). \n \nNewPipe jarioak kargatzeko bi estrategia eskaintzen ditu: \n• Harpidetza kanal osoa eskuratu, motela baina osoa. \n• Amaiera-puntu dedikatua erabiliz, arina baina ez osatua. \n \nBien arteko diferentzia arinak normalean informazioa falta dela da, elementuaren iraupena edo mota adibidez (ezin du bideo normalen eta zuzenekoen artean bereizi) eta elementu gutxiago buelta ditzake. \n \nYouTube da bere RSS jarioaren bidez metodo azkarra eskaintzen duen zerbitzu bat adibidez. \n \nBeraz aukerak zure nahietara murrizten dira: abiadura edo informazio zehatza.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Desgaitu modu azkarra</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Gaitu modu azkarra</string>
     <string name="feed_use_dedicated_fetch_method_summary">Zerbitzu batzuetan eskuragarri, normalean askoz azkarragoa da, baina elementu kopuru mugatu eta osatu gabeko informazioa itzuli dezake (adib. iraupenik ez, elementu mota, zuzeneko egoerarik ez)</string>
@@ -454,7 +440,7 @@
     <string name="feed_update_threshold_title">Jarioaren eguneratze atalasea</string>
     <string name="settings_category_feed_title">Jarioa</string>
     <string name="feed_create_new_group_button_title">Berria</string>
-    <string name="feed_group_dialog_delete_message">Talde hau ezabatu nahi duzu\?</string>
+    <string name="feed_group_dialog_delete_message">Talde hau ezabatu nahi duzu?</string>
     <string name="feed_group_dialog_empty_name">Talde izena hutsik</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d hautatuta</item>
@@ -513,7 +499,7 @@
     <string name="show_age_restricted_content_summary">Adinez mugatuta dagoen eta haurrentzako desegokia izan daitezkeen edukia erakutsi (+18 adibidez)</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube-ren «Modu mugatua» helduentzako edukia izan daitekeen edukia ezkutatzen du</string>
     <string name="youtube_restricted_mode_enabled_title">Gaitu YouTube-ren «Modu mugatua»</string>
-    <string name="unsupported_url_dialog_message">Ezin izan da URL-a ezagutu. Beste aplikazio batekin ireki\?</string>
+    <string name="unsupported_url_dialog_message">Ezin izan da URL-a ezagutu. Beste aplikazio batekin ireki?</string>
     <string name="auto_queue_toggle">Auto-ilaratzea</string>
     <string name="clear_queue_confirmation_description">Erreprodukzio-ilara aktiboa ordezkatuko da</string>
     <string name="clear_queue_confirmation_summary">Erreproduzitzaile batetik beste batera aldatzeak ilara ordezkatu dezake</string>
@@ -563,8 +549,7 @@
     <string name="georestricted_content">Eduki hau ez dago eskuragarri zure herrialdean.</string>
     <string name="crash_the_app">Aplikazioa kraskatu</string>
     <string name="recaptcha_solve">Ebatzi</string>
-    <string name="restricted_video_no_stream">Bideo hau adinez mugatua dago.
-\nAdinez mugatutako bideoekiko YouTube-ren politika berriengatik, NewPipe-k ezin ditu bideoen igorpen hauek atzitu eta erreproduzitu.</string>
+    <string name="restricted_video_no_stream">Bideo hau adinez mugatua dago. \nAdinez mugatutako bideoekiko YouTube-ren politika berriengatik, NewPipe-k ezin ditu bideoen igorpen hauek atzitu eta erreproduzitu.</string>
     <string name="download_has_started">Deskarga hasi da</string>
     <string name="select_night_theme_toast">Behean gaueko gai gogokoena hautatu dezakezu</string>
     <string name="night_theme_summary">Hautatu zure gaueko gai gogokoena — %s</string>
@@ -586,9 +571,7 @@
     <string name="description_select_disable">Desgaitu deskribapenaren testu-hautaketa</string>
     <string name="description_select_enable">Deskribapenaren testu-hautaketa gaitu</string>
     <string name="description_select_note">Orain deskribapenaren barruko testua hauta dezakezu. Kontuan izan orrialdea keinuka hasi dezakela eta estekak ezin direla klikatu hautaketa moduan zauden bitartean.</string>
-    <string name="feed_load_error_terminated">Egilearen kontua itxi da.
-\nNewPipe-k ezingo du etorkizunean jario hau kargatu.
-\nKanal honetatik harpidetza kendu nahi duzu\?</string>
+    <string name="feed_load_error_terminated">Egilearen kontua itxi da. \nNewPipe-k ezingo du etorkizunean jario hau kargatu. \nKanal honetatik harpidetza kendu nahi duzu?</string>
     <string name="feed_load_error_account_info">Ezin izan da \'%s\' jarioa kargatu.</string>
     <string name="feed_load_error">Errorea jarioa kargatzean</string>
     <string name="downloads_storage_use_saf_summary_api_29">Android 10etik aurrera \'Biltegiaren Sarrera Framework\'a soilik onartzen da</string>
@@ -633,13 +616,11 @@
     <string name="check_for_updates">Bilatu eguneraketak</string>
     <string name="manual_update_description">Bilatu bertsio berriak eskuz</string>
     <string name="feed_new_items">Elementu berriak jarioan</string>
-    <string name="no_appropriate_file_manager_message_android_10">Ez da fitxategi kudeatzaile bat aurkitu ekintza honetarako.
-\nMesedez, instalatu Storage Access Framework-ekin bateragarria den fitxategi kudeatzaile bat</string>
+    <string name="no_appropriate_file_manager_message_android_10">Ez da fitxategi kudeatzaile bat aurkitu ekintza honetarako. \nMesedez, instalatu Storage Access Framework-ekin bateragarria den fitxategi kudeatzaile bat</string>
     <string name="detail_pinned_comment_view_description">Ainguratutako iruzkina</string>
     <string name="crash_the_player">Erreproduzitzailea kraskatu</string>
     <string name="checking_updates_toast">Eguneraketak bilatzen…</string>
-    <string name="no_appropriate_file_manager_message">Ez da fitxategi kudeatzaile bat aurkitu ekintza honetarako.
-\nMesedez, instalatu fitxategi kudeatzaile bat edo saiatu \'%s\' desgaitzen deskarga ezarpenetan</string>
+    <string name="no_appropriate_file_manager_message">Ez da fitxategi kudeatzaile bat aurkitu ekintza honetarako. \nMesedez, instalatu fitxategi kudeatzaile bat edo saiatu \'%s\' desgaitzen deskarga ezarpenetan</string>
     <string name="show_crash_the_player_summary">Erreproduzitzailea erabiltzean kraskadura aukera erakusten du</string>
     <string name="show_error_snackbar">Erakutsi errore barra bat</string>
     <string name="create_error_notification">Sortu errore jakinarazpen bat</string>
@@ -655,7 +636,7 @@
     <string name="enumeration_comma">,</string>
     <string name="toggle_all">Txandakatu denak</string>
     <string name="enable_streams_notifications_summary">Harpidetzen igorpen berriei buruz jakinarazi</string>
-    <string name="delete_downloaded_files_confirm">Ezabatu deskargatutako fitxategi guztiak biltegitik\?</string>
+    <string name="delete_downloaded_files_confirm">Ezabatu deskargatutako fitxategi guztiak biltegitik?</string>
     <string name="streams_notification_channel_description">Harpidetzen igorpen berrien jakinarazpenak</string>
     <string name="loading_stream_details">Igorpenaren xehetasunak kargatzen…</string>
     <plurals name="new_streams">
@@ -694,7 +675,7 @@
     <string name="ignore_hardware_media_buttons_title">Ezikusi hardware multimedia-botoien gertaerak</string>
     <string name="ignore_hardware_media_buttons_summary">Erabilgarria, adibidez, botoi fisiko hautsiak dituen entzungailua erabiltzen ari bazara</string>
     <string name="remove_duplicates">Kendu bikoiztuak</string>
-    <string name="remove_duplicates_title">Kendu bikoiztuak\?</string>
+    <string name="remove_duplicates_title">Kendu bikoiztuak?</string>
     <string name="remove_duplicates_message">Igorpen bikoiztu guztiak kendu nahi dituzu zerrenda honetatik?</string>
     <string name="feed_hide_streams_title">Erakutsi hurrengo igorpenak</string>
     <string name="feed_show_hide_streams">Erakutsi/Ezkutatu igorpenak</string>
@@ -754,21 +735,15 @@
     <string name="question_mark">\?</string>
     <string name="import_settings_vulnerable_format">Inportatzen den esportazioko ezarpenek NewPipe 0.27.0 geroztik zaharkituta zegoen formatu ahula erabiltzen dute. Ziurtatu inportatzen ari den esportazioa iturri fidagarri batekoa dela, eta etorkizunean NewPipe 0.27.0 edo berriagoa den esportazioak soilik erabili. Formatu ahul honetan ezarpenak inportatzeko euskarria erabat kenduko da laster, eta NewPipe-ren bertsio zaharrek ezin izango dituzte bertsio berrietatik esportazioen ezarpenak inportatu.</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
-    <string name="share_playlist_content_details">%1$s
-\n%2$s</string>
+    <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="yes">Bai</string>
     <string name="settings_category_backup_restore_title">Babeskopia eta berrezarpena</string>
-    <string name="auto_update_check_description">NewPipe-k bertsio berriak bilatu ditzake eta eskuragarri daudenean jakinarazi.
-\nHau gaitu nahi duzu?</string>
+    <string name="auto_update_check_description">NewPipe-k bertsio berriak bilatu ditzake eta eskuragarri daudenean jakinarazi. \nHau gaitu nahi duzu?</string>
     <string name="reset_settings_title">Berrezarri ezarpenak</string>
     <string name="reset_settings_summary">Berrezarri ezarpen guztiak lehenetsitako baliotara</string>
-    <string name="reset_all_settings">Ezarpenak berrezartzeak zure ezarpen gogokoenak baztertzen ditu eta aplikazioa berrabiarazten du.
-\n
-\nAurrera egin nahi duzu?</string>
+    <string name="reset_all_settings">Ezarpenak berrezartzeak zure ezarpen gogokoenak baztertzen ditu eta aplikazioa berrabiarazten du. \n \nAurrera egin nahi duzu?</string>
     <string name="error_insufficient_storage">Ez dago leku libre nahikorik gailuan</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Konponbide honek azal aldaketa bat gertatzean bideo kodekak askatu eta berrezartzen ditu, azalaren kodeka zuzenean ezarri ordez. ExoPlayer-ek dagoeneko erabiltzen du arazoak dituzten gailu batzuetan. Ezarpen honek Android 6 eta berriagotan funtzionatzen du soilik
-\n
-\nAukera hau gaitzeak erreprodukzio erroreak saihestu ditzake bideo-erreproduktorea aldatzean edo pantaila osoan jartzean</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Konponbide honek azal aldaketa bat gertatzean bideo kodekak askatu eta berrezartzen ditu, azalaren kodeka zuzenean ezarri ordez. ExoPlayer-ek dagoeneko erabiltzen du arazoak dituzten gailu batzuetan. Ezarpen honek Android 6 eta berriagotan funtzionatzen du soilik \n \nAukera hau gaitzeak erreprodukzio erroreak saihestu ditzake bideo-erreproduktorea aldatzean edo pantaila osoan jartzean</string>
     <string name="audio_track_type_dubbed">bikoiztua</string>
     <string name="channel_tab_videos">Bideoak</string>
     <string name="channel_tab_tracks">Pistak</string>

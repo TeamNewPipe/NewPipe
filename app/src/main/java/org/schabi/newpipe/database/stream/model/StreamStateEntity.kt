@@ -6,13 +6,12 @@
 
 package org.schabi.newpipe.database.stream.model
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.ForeignKey.Companion.CASCADE
+import androidx.room3.ColumnInfo
+import androidx.room3.Entity
+import androidx.room3.ForeignKey
+import androidx.room3.ForeignKey.Companion.CASCADE
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_ID
 import org.schabi.newpipe.database.stream.model.StreamStateEntity.Companion.JOIN_STREAM_ID
-import org.schabi.newpipe.database.stream.model.StreamStateEntity.Companion.PLAYBACK_FINISHED_END_MILLISECONDS
 import org.schabi.newpipe.database.stream.model.StreamStateEntity.Companion.STREAM_STATE_TABLE
 
 @Entity(

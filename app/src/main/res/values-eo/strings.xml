@@ -8,7 +8,7 @@
     <string name="download">Elŝuti</string>
     <string name="search">Serĉi</string>
     <string name="settings">Agordoj</string>
-    <string name="did_you_mean">Ĉu vi signifis \"%1$s\"\?</string>
+    <string name="did_you_mean">Ĉu vi signifis \"%1$s\"?</string>
     <string name="share_dialog_title">Konigi kun</string>
     <string name="use_external_video_player_title">Uzi eksteran filmetoludilon</string>
     <string name="use_external_audio_player_title">Uzi eksteran sonludilon</string>
@@ -93,8 +93,7 @@
         <item quantity="one">%s filmeto</item>
         <item quantity="other">%s filmetoj</item>
     </plurals>
-    <string name="msg_popup_permission">Tiu permeso estas necesa por
-\nmalfermi en ŝprucfenestra modo</string>
+    <string name="msg_popup_permission">Tiu permeso estas necesa por \nmalfermi en ŝprucfenestra modo</string>
     <string name="popup_playing_toast">Ludante en ŝprucfenestra modo</string>
     <string name="disabled">Malŝatitaj</string>
     <string name="clear">Forviŝi</string>
@@ -153,7 +152,7 @@
     <string name="set_as_playlist_thumbnail">Meti kiel bildeto de ludlisto</string>
     <string name="bookmark_playlist">Legosigno Ludlisto</string>
     <string name="unbookmark_playlist">Forviŝi Legosignon</string>
-    <string name="delete_playlist_prompt">Ĉu forviŝi ĉi tiun ludliston \?</string>
+    <string name="delete_playlist_prompt">Ĉu forviŝi ĉi tiun ludliston ?</string>
     <string name="playlist_creation_success">Ludlisto kreita</string>
     <string name="playlist_add_stream_success">Ludlistita</string>
     <string name="playlist_thumbnail_change_success">Bildeto de ludlisto ŝanĝiĝita.</string>
@@ -165,20 +164,8 @@
     <string name="invalid_source">Tia dosiero/enhavo ne ekzistas</string>
     <string name="file_name_empty_error">Dosiernomo ne povas esti malplena</string>
     <string name="error_occurred_detail">Eraro okazis: %1$s</string>
-    <string name="import_youtube_instructions">Importu Jutubajn abonaĵojn per elŝuti la dosieron de eksporto :
-\n
-\n1. Iru ĉe tiu retpaĝo: %1$s
-\n2. Ensalutu kiam oni petas vin
-\n3. Click on \"All data included\", then on \"Deselect all\", then select only \"subscriptions\" and click \"OK\"
-\n4. Click on \"Next step\" and then on \"Create export\"
-\n5. Click on the \"Download\" button after it appears and
-\n6. From the downloaded takeout zip extract the .json file (usually under \"YouTube and YouTube Music/subscriptions/subscriptions.json\") and import it here.</string>
-    <string name="import_soundcloud_instructions">Importu Soundcloud-n profilon tajpante ĉu la ligilon, ĉu vian ID :
-\n 
-\n1. Ebligu komputilon modon en retumilon (la retejo malhaveblas por poŝtelefonoj)
-\n2. Iru tien: %1$s
-\n3. Ensalutu kiam oni petas vin 
-\n4. Kopiu la ligilon de profilo ke oni kondikis vin.</string>
+    <string name="import_youtube_instructions">Importu Jutubajn abonaĵojn per elŝuti la dosieron de eksporto : \n \n1. Iru ĉe tiu retpaĝo: %1$s \n2. Ensalutu kiam oni petas vin \n3. Click on \"All data included\", then on \"Deselect all\", then select only \"subscriptions\" and click \"OK\" \n4. Click on \"Next step\" and then on \"Create export\" \n5. Click on the \"Download\" button after it appears and \n6. From the downloaded takeout zip extract the .json file (usually under \"YouTube and YouTube Music/subscriptions/subscriptions.json\") and import it here.</string>
+    <string name="import_soundcloud_instructions">Importu Soundcloud-n profilon tajpante ĉu la ligilon, ĉu vian ID : \n \n1. Ebligu komputilon modon en retumilon (la retejo malhaveblas por poŝtelefonoj) \n2. Iru tien: %1$s \n3. Ensalutu kiam oni petas vin \n4. Kopiu la ligilon de profilo ke oni kondikis vin.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bildokaŝmemoro vakigis</string>
     <string name="metadata_cache_wipe_title">Vakigi kaŝmemorigitajn metadatumojn</string>
     <string name="metadata_cache_wipe_summary">Vakigi tutajn kaŝmemorigitajn retpaĝajn datumojn</string>
@@ -186,10 +173,10 @@
     <string name="no_streams_available_download">Neniuj torentoj haveblaj por elŝuti</string>
     <string name="clear_views_history_title">Forviŝi vidohistorion</string>
     <string name="clear_views_history_summary">Forviŝi la historion de viditaj filmetojn kaj ludajn poziciojn</string>
-    <string name="delete_view_history_alert">Ĉu vi volas forviŝi la tutan historion \?</string>
+    <string name="delete_view_history_alert">Ĉu vi volas forviŝi la tutan historion ?</string>
     <string name="clear_search_history_title">Forviŝi la historion de serĉoj</string>
     <string name="clear_search_history_summary">Forviŝi la serĉajn ŝlosilvortojn</string>
-    <string name="delete_search_history_alert">Ĉu vi volas forviŝi la totalon de la historio de serĉo \?</string>
+    <string name="delete_search_history_alert">Ĉu vi volas forviŝi la totalon de la historio de serĉo ?</string>
     <string name="search_history_deleted">Historio de serĉo forviŝita</string>
     <string name="limit_mobile_data_usage_title">Limigi distingumon uzante telefonan retkonekton</string>
     <string name="minimize_on_exit_popup_description">Minimumigi al ŝprucfenestra ludilo</string>
@@ -204,7 +191,7 @@
     <string name="app_update_notification_channel_name">Sciigo por ĝisdatigo de apo</string>
     <string name="app_update_notification_channel_description">Sciigo por novaj versioj de NewPipe</string>
     <string name="download_to_sdcard_error_title">Ekstera konservejo malhavebla</string>
-    <string name="download_to_sdcard_error_message">Elŝuti al ekstera SD-karto ne eblas. Ĉu vi volas restarigi la elŝutan dosierujon \?</string>
+    <string name="download_to_sdcard_error_message">Elŝuti al ekstera SD-karto ne eblas. Ĉu vi volas restarigi la elŝutan dosierujon ?</string>
     <string name="queued">viciĝita</string>
     <string name="enqueue">Envicigi</string>
     <string name="stop">Halti</string>
@@ -227,7 +214,7 @@
     <string name="watch_history_states_deleted">Ludaj pozicioj forviŝitaj</string>
     <string name="missing_file">Dosiero movita aŭ forviŝita</string>
     <string name="overwrite_failed">ne povas dispremi la dosieron</string>
-    <string name="confirm_prompt">Ĉu vi volas forviŝi vian historion de elŝutoj aŭ forviŝi la tutajn elŝutitajn dosierojn\?</string>
+    <string name="confirm_prompt">Ĉu vi volas forviŝi vian historion de elŝutoj aŭ forviŝi la tutajn elŝutitajn dosierojn?</string>
     <string name="enable_queue_limit">Limigi la elŝutan atendovicon</string>
     <string name="enable_queue_limit_desc">Unu elŝuto ruliĝos en la sama tempo</string>
     <string name="start_downloads">Komenci elŝutojn</string>
@@ -238,7 +225,7 @@
     <string name="downloads_storage_use_saf_summary">La \"Atinga Framo al la Memoro\" ebligas elŝuti al ekstera SD-karto</string>
     <string name="clear_playback_states_title">Forviŝi ludajn poziciojn</string>
     <string name="clear_playback_states_summary">Forviŝi la totalon de ludaj pozicioj</string>
-    <string name="delete_playback_states_alert">Ĉu vi volas forviŝi ĉiujn ludajn poziciojn \?</string>
+    <string name="delete_playback_states_alert">Ĉu vi volas forviŝi ĉiujn ludajn poziciojn ?</string>
     <string name="sorry_string">Pardonu, eraro okazis.</string>
     <string name="error_snackbar_message">Pardonon, io mizokasis.</string>
     <string name="what_happened_headline">Kio okazis:</string>
@@ -285,7 +272,7 @@
     </plurals>
     <string name="no_views">Neniuj spektoj</string>
     <string name="no_videos">Neniu filmeto</string>
-    <string name="delete_item_search_history">Ĉu vi volas forviŝi tion eron el la historio de serĉo \?</string>
+    <string name="delete_item_search_history">Ĉu vi volas forviŝi tion eron el la historio de serĉo ?</string>
     <string name="main_page_content">Enhavo de la ĉefpaĝo</string>
     <string name="blank_page_summary">Malplena Paĝo</string>
     <string name="kiosk_page_summary">Kioska Paĝo</string>
@@ -336,9 +323,7 @@
     <string name="subscriptions_import_unsuccessful">Ne povis importi abonojn</string>
     <string name="subscriptions_export_unsuccessful">Ne povis eksporti abonojn</string>
     <string name="import_soundcloud_instructions_hint">via salutnomo, soundcloud.com/salutnomo</string>
-    <string name="import_network_expensive_warning">Memoru, ke ĉi tiu operacio povas esti multekosta en la reto.
-\n
-\nĈu vi volas daŭrigi\?</string>
+    <string name="import_network_expensive_warning">Memoru, ke ĉi tiu operacio povas esti multekosta en la reto. \n \nĈu vi volas daŭrigi?</string>
     <string name="playback_speed_control">Kontroloj de rapideco de ludo</string>
     <string name="playback_tempo">Tempoindiko</string>
     <string name="playback_pitch">Ludkampo</string>
@@ -349,13 +334,11 @@
     <string name="caption_setting_description">Modifi la dimension de la teksto kaj la fonajn stilojn de la subtitoloj de la ludilo. Ĝi bezonas restarto de la apo por efektiviĝi.</string>
     <string name="one_item_deleted">1 ero forviŝita.</string>
     <string name="app_license">NewPipe estas programaro sub rajtoceda permesilo: Vi povas uzi, studi, komuniki kaj plibonigi ĝin kiel vi volas. Precize, vi povas redistribui kaj/aŭ modifi ĝin sub la kondiĉoj de la Ĝenerala Publika Permesilo de GNU, kiel publikigita per la Free Software Foundation, ĉu en la versio 3, ĉu (se vi volas) ajna posta versio.</string>
-    <string name="import_settings">Ĉu vi volas ankaŭ importi agordojn\?</string>
+    <string name="import_settings">Ĉu vi volas ankaŭ importi agordojn?</string>
     <string name="privacy_policy_title">Privateca politiko de NewPipe</string>
-    <string name="privacy_policy_encouragement">La NewPipe projekto serioze respektas vian privatecon. Konsekvence, la apo ne kolektas ajnan datumon sen via konsento.
-\nLa privateco politiko de NewPipe detale eksplikas kion datumon estas sendita kaj stokita kiam vi sendas falegosignalon.</string>
+    <string name="privacy_policy_encouragement">La NewPipe projekto serioze respektas vian privatecon. Konsekvence, la apo ne kolektas ajnan datumon sen via konsento. \nLa privateco politiko de NewPipe detale eksplikas kion datumon estas sendita kaj stokita kiam vi sendas falegosignalon.</string>
     <string name="read_privacy_policy">Legi la privatecan politikon</string>
-    <string name="start_accept_privacy_policy">Por konformiĝi al la Ĝenerala Datum-Protekta Regularon (GDPR), ni allogas vian atenton al la privateca politiko de NewPipe. Bonvolu atentive legi ĝin.
-\nVi devas akcepti ĝin por sendi la cimsignalon al ni.</string>
+    <string name="start_accept_privacy_policy">Por konformiĝi al la Ĝenerala Datum-Protekta Regularon (GDPR), ni allogas vian atenton al la privateca politiko de NewPipe. Bonvolu atentive legi ĝin. \nVi devas akcepti ĝin por sendi la cimsignalon al ni.</string>
     <string name="accept">Akcepti</string>
     <string name="decline">Rifuzi</string>
     <string name="limit_data_usage_none_description">Neniu limo</string>
@@ -411,7 +394,7 @@
     <string name="no_one_watching">Neniu spektas</string>
     <plurals name="watching">
         <item quantity="one">%s spektanto</item>
-        <item quantity="other">%s spektantoj</item>
+        <item quantity="other">%s spektantoj</item>
     </plurals>
     <string name="no_one_listening">Neniu aŭskultas</string>
     <plurals name="listening">
@@ -560,7 +543,7 @@
     <string name="left_gesture_control_summary">Elekti geston por maldekstra duono de ludil-ekrano</string>
     <string name="youtube_restricted_mode_enabled_title">Ŝalti \"Limigitan Reĝimon\" de YouTube</string>
     <string name="fast_mode">Rapida reĝimo</string>
-    <string name="unsupported_url_dialog_message">Ne eblas rekoni la ligilon. Ĉu malfermi per alia apo\?</string>
+    <string name="unsupported_url_dialog_message">Ne eblas rekoni la ligilon. Ĉu malfermi per alia apo?</string>
     <string name="recaptcha_cookies_cleared">Kuketojn de reCAPTCHA estis forigita</string>
     <string name="show_age_restricted_content_summary">Montri enhavon, kiu eble maltaŭgas por infanoj, ĉar ĝi havas aĝo-limon (kiel \"18+\")</string>
     <string name="streams_notification_channel_name">Novaj fluoj</string>

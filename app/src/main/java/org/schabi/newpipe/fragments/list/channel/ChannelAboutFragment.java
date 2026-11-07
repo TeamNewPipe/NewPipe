@@ -40,10 +40,10 @@ public class ChannelAboutFragment extends BaseDescriptionFragment {
         binding.constraintLayout.setPadding(0, DeviceUtils.dpToPx(8, requireContext()), 0, 0);
     }
 
-    @Nullable
+    @NonNull
     @Override
     protected Description getDescription() {
-        return new Description(channelInfo.getDescription(), Description.PLAIN_TEXT);
+        return Description.of(channelInfo.getDescription(), Description.Type.PLAIN_TEXT);
     }
 
     @NonNull

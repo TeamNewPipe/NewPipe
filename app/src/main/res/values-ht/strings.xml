@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="contribution_title">Kontribye</string>
+    <string name="contribution_encouragement">Kit ou gen lide pou tradiksyon, chanjman nan konsepsyon, netwayaj kòd, oswa gwo chanjman nan kòd la menm—nou toujou akeyi èd. Plis nou fè bagay yo avanse, se plis rezilta a ap pi bon!</string>
+    <string name="view_on_github">Gade sou GitHub</string>
+    <string name="donation_title">Fè yon don</string>
+    <string name="donation_encouragement">Se volontè ki devlope NewPipe; yo pase tan lib yo ap travay pou ofri w pi bon eksperyans itilizatè posib. Ou ka bay yon kontribisyon pou ede devlopè yo fè NewPipe vin pi bon toujou, pandan y ap jwi yon tas kafe.</string>
+    <string name="give_back">Bay an retou</string>
+    <string name="website_title">Sitwèb</string>
+    <string name="website_encouragement">Vizite sitwèb NewPipe la pou plis enfòmasyon ak nouvèl.</string>
+    <string name="privacy_policy_title">Politik Konfidansyalite NewPipe</string>
+    <string name="read_privacy_policy">Li politik konfidansyalite a</string>
+</resources>

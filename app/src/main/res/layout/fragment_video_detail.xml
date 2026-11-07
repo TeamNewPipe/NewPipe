@@ -51,13 +51,13 @@
 
                     <ImageView
                         android:id="@+id/detail_thumbnail_play_button"
+                        android:contentDescription="@string/play"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:layout_gravity="center"
                         android:background="@android:color/transparent"
                         android:src="@drawable/ic_play_arrow_shadow"
                         android:visibility="invisible"
-                        tools:ignore="ContentDescription"
                         tools:visibility="visible" />
 
                     <org.schabi.newpipe.views.NewPipeTextView

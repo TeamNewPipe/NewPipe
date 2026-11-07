@@ -123,10 +123,4 @@ object PoTokenProviderImpl : PoTokenProvider {
 
         return PoTokenResult(visitorData, playerPot, streamingPot)
     }
-
-    override fun getWebEmbedClientPoToken(videoId: String): PoTokenResult? = null
-
-    override fun getAndroidClientPoToken(videoId: String): PoTokenResult? = null
-
-    override fun getIosClientPoToken(videoId: String): PoTokenResult? = null
 }

@@ -1,3 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="navigate_back">পেছনে</string>
+    <string name="title_activity_about">নিউপাইপ ব্যাপারে</string>
+    <string name="title_licenses">তৃতীয়পক্ষ অনুমতি</string>
+    <string name="license">“%2$s-এর অধীনে %1$s দ্বারা”</string>
+    <string name="tab_about">পরিচিতি ও প্রশ্নসমূহ</string>
+    <string name="tab_licenses">অনুমতিসমূহ</string>
+    <string name="contribution_title">অনুদান</string>
+    <string name="contribution_encouragement">ভাষান্তর , কোড মোছা অথবা প্রয়োজনীয় গুরুত্বপূর্ণ কোড সমন্বয় করার মতো এমন ধারনা যদি আপনার থেকে থাকে তা সব সময় সাদরে গৃহীত হবে । যত উন্নত করা হবে ততই এটি ভালো হয়ে উঠবে !</string>
+    <string name="view_on_github">গিটহাবে দেখুন</string>
+    <string name="donation_title">অনুদান</string>
+    <string name="donation_encouragement">সেচ্ছাসেবক কারিগর নিজেদের অবসর সময়ে তৈরি করেছে নিউপাইপ যা আপনাকে দেয় সেরা ব্যবহাকারি অভিজ্ঞতা । কারিগরদের বিনিময়ে সাহায্য করুন যাতে নিউপাইপ আরো উন্নত হয় যেইসময়টাতে তারা তাদের এককাপ কফি উপোভোগ করছে ।</string>
+    <string name="give_back">ফিরিয়ে দিন</string>
+    <string name="website_title">ওয়েবসাইট</string>
+    <string name="website_encouragement">আরো তথ্য ও খবরের জন্য যান নিউপাইপ ওয়েবসাইটে ।</string>
+    <string name="privacy_policy_title">নিউপাইপের গোপনীয়তার নীতি</string>
+    <string name="privacy_policy_encouragement">নিউপাইপ প্রজেক্টটি আপনার গোপনীয়তাকে খুবই গুরুত্ব দেয় । তাই , এই অ্যাপ কোনো তথ্যই আপনার অনুমতি ছাড়া সংগ্রহ করে না । আপনি যখন কোনো ক্র্যাশ রিপোর্ট পাঠান তখন কোন্ তথ্য সরবরাহ ও জমা হয় তার বিশদ বিশ্লেষণ করা হয়েছে নিউপাইপের গোপনীয়তার নীতি মালায় ।</string>
+    <string name="read_privacy_policy">পড়ুন গোপনীয়তার নীতিমালা</string>
+    <string name="app_license_title">নিউপাইপের অনুমতি</string>
+    <string name="settings_category_history_title">ইতিহাস এবং ক্যাশ</string>
+    <string name="settings_category_updates_title">আপডেটস</string>
+    <string name="app_license">নিউপাইপ হলো বিনামূল্যের কপিলেফট সফটও্যয়ার । যা আপনি ব্যবহার,চর্চা,ভাগাভাগি এবং স্বেচ্ছায় উন্নত করতে পারেন । বিশেষ করে এটিকে আপনি পূনর্প্রদান এবং পরিবর্তন করতে পারেন মুক্ত সফটও্যয়ার প্রতিষ্ঠানের প্রকাশিত GNU ( General Public License) এর মাধ্যমে, হয় অনুমতি পত্রের ৩য় তম সংস্করণ অথবা পুরোনো কোনো সংস্করণ অনুযায়ী ( আপনার যেটি ইচ্ছা) ।</string>
+    <string name="read_full_license">অনুমতিসমূহ পড়ুন</string>
+    <string name="faq_title">প্রায়ই জিজ্ঞেস করা প্রশ্নসমূহ</string>
+    <string name="faq_description">আপনার যদি এই অ্যাপ ব্যবহারে অসুবিধে হয়, তবে এইসব সাধারন প্রশ্ন গুলোর উত্তরসমূহ অবশ্যই দেখেনিন ।</string>
+    <string name="faq">ওয়েবসাইটে দেখুন</string>
+    <string name="open_in_browser">ব্রাউজারে খুলুন</string>
+    <string name="done">হয়েছে</string>
+    <string name="not_available">অনুপলব্ধ</string>
+    <string name="settings">সেটিংস</string>
+    <string name="search">খুঁজুন</string>
+    <string name="content">কন্টেন্ট</string>
+    <string name="notifications">নটিফিকেশনস</string>
+    <string name="settings_category_video_audio_title">ভিডিও এবং অডিও</string>
+    <string name="settings_category_downloads_title">ডাউনলোড</string>
+    <string name="settings_category_appearance_title">উপস্থিতি</string>
+    <string name="settings_category_backup_restore_title">সংরক্ষণ এবং পুনরুদ্ধার</string>
+    <string name="settings_category_debug_title">ডিবাগ</string>
 </resources>

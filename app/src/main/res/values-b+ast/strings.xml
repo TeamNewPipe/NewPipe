@@ -5,7 +5,7 @@
     <string name="open_in_browser">Abrir nun restolador</string>
     <string name="share">Compartir</string>
     <string name="settings">Axustes</string>
-    <string name="did_you_mean">¿Quxesti dicir «%1$s»\?</string>
+    <string name="did_you_mean">¿Quxesti dicir «%1$s»?</string>
     <string name="use_external_video_player_title">Usar un reproductor esternu de videu</string>
     <string name="use_external_audio_player_title">Usar un reproductor esternu d\'audiu</string>
     <string name="default_resolution_title">Resolución predeterminada</string>
@@ -43,8 +43,7 @@
     <string name="detail_dislikes_img_view_description">Tarrezmes</string>
     <string name="default_video_format_title">Formatu de videu predetermináu</string>
     <string name="black_theme_title">Prietu</string>
-    <string name="msg_popup_permission">Precísase esti permisu p\'abrir
-\nnel mou ventanu</string>
+    <string name="msg_popup_permission">Precísase esti permisu p\'abrir \nnel mou ventanu</string>
     <string name="title_activity_recaptcha">Retu de reCAPTCHA</string>
     <string name="recaptcha_request_toast">Solicitóse un retu de reCAPTCHA</string>
     <string name="controls_background_title">En segundu planu</string>
@@ -95,7 +94,7 @@
     <string name="contribution_title">Collaboración</string>
     <string name="title_activity_history">Historial</string>
     <string name="action_history">Historial</string>
-    <string name="delete_item_search_history">¿Quies desaniciar esti elementu del historial de busques\?</string>
+    <string name="delete_item_search_history">¿Quies desaniciar esti elementu del historial de busques?</string>
     <string name="play_all">Reproducir too</string>
     <string name="player_stream_failure">Nun pudo reproducise esti fluxu</string>
     <string name="player_unrecoverable_failure">Asocedió un fallu irrecuperable del reproductor</string>
@@ -128,7 +127,7 @@
     <string name="create_playlist">Llista de reproducción nueva</string>
     <string name="name">Nome</string>
     <string name="add_to_playlist">Amestar a una llista de reproducción</string>
-    <string name="delete_playlist_prompt">¿Desanicair esta llista de reproducción\?</string>
+    <string name="delete_playlist_prompt">¿Desanicair esta llista de reproducción?</string>
     <string name="caption_none">Ensin sotítulos</string>
     <string name="resize_fit">Axustar</string>
     <string name="resize_fill">Rellenar</string>
@@ -140,7 +139,7 @@
     <string name="export_ongoing">Esportando…</string>
     <string name="subscriptions_export_unsuccessful">Nun pudieron esportase les soscripciones</string>
     <string name="preferred_open_action_settings_title">Aición d\'apertura preferida</string>
-    <string name="import_settings">¿Quies tamién importar los axustes\?</string>
+    <string name="import_settings">¿Quies tamién importar los axustes?</string>
     <string name="read_privacy_policy">Lleer</string>
     <string name="channels">Canales</string>
     <string name="playlists">Llistes de reproducción</string>
@@ -173,34 +172,21 @@
     <string name="subscriptions_import_unsuccessful">Nun pudieron importase les soscripciones</string>
     <string name="caption_setting_title">Sotítulos</string>
     <string name="accept">Aceutar</string>
-    <string name="restore_defaults_confirmation">¿Quies reafitar los valores\?</string>
+    <string name="restore_defaults_confirmation">¿Quies reafitar los valores?</string>
     <string name="error_unknown_host">Nun pudo atopase\'l sirvidor</string>
     <string name="error_http_unsupported_range">El sirvidor nun aceuta descargues multifilu, volvi tentalo con @string/msg_threads = 1</string>
     <string name="no_comments">Nun hai comentarios</string>
     <string name="settings_category_clear_data_title">Llimpieza de datos</string>
     <string name="show_comments_title">Amosar los comentarios</string>
     <string name="show_comments_summary">Desactiva esta opción p\'anubrir los comentarios</string>
-    <string name="start_accept_privacy_policy">Pa cumplir cola Regulación Xeneral de Proteición de Datos (RGPD), pidímoste que mires la política de privacidá de NewPipe. Lleila con procuru.
-\nHas aceutala pa unvianos informes de fallos.</string>
+    <string name="start_accept_privacy_policy">Pa cumplir cola Regulación Xeneral de Proteición de Datos (RGPD), pidímoste que mires la política de privacidá de NewPipe. Lleila con procuru. \nHas aceutala pa unvianos informes de fallos.</string>
     <string name="minimize_on_exit_summary">L\'aición al cambiar a otra aplicación dende\'l reproductor de videu princpial — %s</string>
     <string name="max_retry_desc">El númberu máximu d\'intentos pa encaboxar la descarga</string>
-    <string name="confirm_prompt">¿Quies llimpiar l\'historial de descargues o desaniciar tolos ficheros baxaos\?</string>
+    <string name="confirm_prompt">¿Quies llimpiar l\'historial de descargues o desaniciar tolos ficheros baxaos?</string>
     <string name="previous_export">Esportación anterior</string>
     <string name="import_file_title">Importación d\'un ficheru</string>
-    <string name="import_youtube_instructions">Importa les soscripciones de YouTube dende Google Takeout:
-\n
-\n1. Vete a esta URL: %1$s
-\n2. Anicia sesión cuando se te pida
-\n3. Calca en «Tolos datos incluyíos», darréu en «Deseleicionar too», dempués esbilla namás «soscripciones» y calca «Aceutar»
-\n4. Calca en «Pasu siguiente» y darréu en «Crear una esportación»
-\n5. Calca nel botón «Baxar» dempués de qu\'apaeza y
-\n6. A partir del ficheru baxáu, estrái\'l ficheru .json (polo xeneral baxo «YouTube and YouTube Music/subscriptions/subscriptions.json») ya impórtalu equí.</string>
-    <string name="import_soundcloud_instructions">Importa un perfil de SoundCloud teclexando la URL o la to ID:
-\n
-\n1. Activa\'l «mou d\'escritoriu» nun restolador web (el sitiu nun ta disponible pa móviles)
-\n2. Vete a esta URL: %1$s
-\n3. Anicia sesión cuando se te pida
-\n4. Copia la URL del perfil al que te redirixeron.</string>
+    <string name="import_youtube_instructions">Importa les soscripciones de YouTube dende Google Takeout: \n \n1. Vete a esta URL: %1$s \n2. Anicia sesión cuando se te pida \n3. Calca en «Tolos datos incluyíos», darréu en «Deseleicionar too», dempués esbilla namás «soscripciones» y calca «Aceutar» \n4. Calca en «Pasu siguiente» y darréu en «Crear una esportación» \n5. Calca nel botón «Baxar» dempués de qu\'apaeza y \n6. A partir del ficheru baxáu, estrái\'l ficheru .json (polo xeneral baxo «YouTube and YouTube Music/subscriptions/subscriptions.json») ya impórtalu equí.</string>
+    <string name="import_soundcloud_instructions">Importa un perfil de SoundCloud teclexando la URL o la to ID: \n \n1. Activa\'l «mou d\'escritoriu» nun restolador web (el sitiu nun ta disponible pa móviles) \n2. Vete a esta URL: %1$s \n3. Anicia sesión cuando se te pida \n4. Copia la URL del perfil al que te redirixeron.</string>
     <string name="import_soundcloud_instructions_hint">soundcloud.com/LaToID</string>
     <string name="minimize_on_exit_title">Minimizar al cambiar d\'aplicación</string>
     <string name="minimize_on_exit_background_description">Minimizar al reproductor en segundu planu</string>
@@ -224,7 +210,7 @@
     <string name="share_dialog_title">Compartir con</string>
     <string name="subscribed_button_title">Soscribiéstite</string>
     <string name="no_videos">Nun hai vídeos</string>
-    <string name="delete_search_history_alert">¿Desaniciar tol historial de busques\?</string>
+    <string name="delete_search_history_alert">¿Desaniciar tol historial de busques?</string>
     <string name="app_update_available_notification_title">¡Hai un anovamientu pa NewPipe!</string>
     <string name="error_progress_lost">Perdióse\'l progresu porque se desanició\'l ficheru</string>
     <string name="peertube_instance_url_title">Instancies de PeerTube</string>
@@ -261,12 +247,12 @@
         <item quantity="one">%d día</item>
         <item quantity="other">%d díes</item>
     </plurals>
-    <string name="feed_group_dialog_delete_message">¿Quies desaniciar esti grupu\?</string>
+    <string name="feed_group_dialog_delete_message">¿Quies desaniciar esti grupu?</string>
     <string name="metadata_cache_wipe_complete_notice">Llimpióse la caché de metadatos</string>
     <string name="metadata_cache_wipe_summary">Desanicia tolos datos na caché de les páxines web</string>
     <string name="metadata_cache_wipe_title">Llimpiar los metadatos de la caché</string>
     <string name="thumbnail_cache_wipe_complete_notice">Llimpióse la caché d\'imáxenes</string>
-    <string name="kore_not_found">¿Instalar Kode\?</string>
+    <string name="kore_not_found">¿Instalar Kode?</string>
     <string name="info_labels">Qué asocedió:\nSolicitú:\nLlingua del conteníu:\nPaís del conteníu:\nLlingua de l\'aplicación:\nServiciu:\nHora en GMT:\nPaquete:\nVersión de l\'aplicación:\nVersión del SO:</string>
     <string name="no_player_found_toast">Nun s\'atopó nengún reproductor de fluxos (pues instalar VLC pa reproducilos).</string>
     <string name="show_thumbnail_summary">Amuesa una miniatura nel fondu de la pantalla de bloquéu y dientro de los avisos</string>
@@ -275,20 +261,8 @@
     <string name="video_detail_by">Por %s</string>
     <string name="channel_created_by">Canal creada por %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Avatar de la canal</string>
-    <string name="content_not_supported">Esti conteníu entá nun ta sofitáu por NewPipe.
-\n
-\nQuiciabes nel futuru sí.</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">¿Cuides que la carga del feed ye perlenta\? Si ye asina, activa la carga rápida (pues camudalo nos axustes o primiendo\'l botón d\'embaxo).
-\n
-\nNewPipe ufre dos estratexes de descarga de feeds:
-\n• Dir en cata de tola canal de soscripciones, lo cual ye lento pero completo.
-\n• Usar un serviciu final dedicáu, lo cual ye rápido mas xeneralmente incompleto.
-\n
-\nLa diferencia ente los dos ye qu\'al más rápidu, polo xeneral, fálta-y dalguna información como\'l tipu (nun pue estremar ente vídeos en direuto o normales) o la duración de los elementos (que devuelve menos).
-\n
-\nYouTube ye l\'exemplu d\'un serviciu qu\'ufre esti métodu rápidu col so feed RSS.
-\n
-\nPolo que tu escueyes según lo que prefieras, si velocidá o información precisa.</string>
+    <string name="content_not_supported">Esti conteníu entá nun ta sofitáu por NewPipe. \n \nQuiciabes nel futuru sí.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">¿Cuides que la carga del feed ye perlenta? Si ye asina, activa la carga rápida (pues camudalo nos axustes o primiendo\'l botón d\'embaxo). \n \nNewPipe ufre dos estratexes de descarga de feeds: \n• Dir en cata de tola canal de soscripciones, lo cual ye lento pero completo. \n• Usar un serviciu final dedicáu, lo cual ye rápido mas xeneralmente incompleto. \n \nLa diferencia ente los dos ye qu\'al más rápidu, polo xeneral, fálta-y dalguna información como\'l tipu (nun pue estremar ente vídeos en direuto o normales) o la duración de los elementos (que devuelve menos). \n \nYouTube ye l\'exemplu d\'un serviciu qu\'ufre esti métodu rápidu col so feed RSS. \n \nPolo que tu escueyes según lo que prefieras, si velocidá o información precisa.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Desactivar el mou rápidu</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Activar el mou rápidu</string>
     <string name="feed_use_dedicated_fetch_method_summary">Disponible en dalgunos preseos, suel ser muncho más rápido mas podría devolver un númberu llendáu d\'elementos y davezu información completa (por exemplu, falta de la duración, el tipu d\'elementu o l\'estáu de la tresmisión).</string>
@@ -317,8 +291,7 @@
     <string name="remove_watched_popup_title">¿Desaniciar los vídeos vistos?</string>
     <string name="remove_watched">Desaniciar lo visto</string>
     <string name="choose_instance_prompt">Escoyeta d\'una instancia</string>
-    <string name="downloads_storage_use_saf_summary">El «Storage Access Framework» permite les descargues nuna tarxeta SD esterna.
-\nDalgunos preseos son incompatibles</string>
+    <string name="downloads_storage_use_saf_summary">El «Storage Access Framework» permite les descargues nuna tarxeta SD esterna. \nDalgunos preseos son incompatibles</string>
     <string name="downloads_storage_use_saf_title">Usar SAF</string>
     <string name="downloads_storage_ask_summary">Va pidísete l\'allugamientu onde guardar les descargues con cauna</string>
     <string name="pause_downloads">Posar les descargues</string>
@@ -358,9 +331,7 @@
     <string name="skip_silence_checkbox">Avance rápidu nos silencios</string>
     <string name="unhook_checkbox">Separtar (pue causar distorsión)</string>
     <string name="playback_speed_control">Controles de la velocidá de reproducción</string>
-    <string name="import_network_expensive_warning">Ten en cuenta qu\'esta operación pue ser esixente cola rede.
-\n
-\n¿Quies siguir\?</string>
+    <string name="import_network_expensive_warning">Ten en cuenta qu\'esta operación pue ser esixente cola rede. \n \n¿Quies siguir?</string>
     <string name="export_to">Esportar a</string>
     <string name="import_from">Importar dende</string>
     <string name="import_title">Importar</string>
@@ -410,8 +381,7 @@
     <string name="title_most_played">Lo más reproducío</string>
     <string name="title_last_played">Lo último reproducío</string>
     <string name="app_license">NewPipe ye software copyleft: pues usalu, estudialu, compartilu y ameyoralu como quieras. N\'especial, pues redistribuyilu y/o modificalu baxo los términos de la GNU General Public License según espublizó la Free Software Foundation, quier la versión 3 de la llicencia quier (na to opinión) cualesquier versión posterior.</string>
-    <string name="privacy_policy_encouragement">El proyeutu de NewPipe toma mui en serio la privacidá. Poro, l\'aplicación nun recueye nengún datu ensin el to consentimientu.
-\nLa política de privacidá de NewPipe desplica en detalle los datos que s\'unvien y atroxen cuando unvies un informe de casque.</string>
+    <string name="privacy_policy_encouragement">El proyeutu de NewPipe toma mui en serio la privacidá. Poro, l\'aplicación nun recueye nengún datu ensin el to consentimientu. \nLa política de privacidá de NewPipe desplica en detalle los datos que s\'unvien y atroxen cuando unvies un informe de casque.</string>
     <string name="app_description">Un aplicación llibre pa ver/sentir plataformes de tresmisión n\'Android.</string>
     <string name="settings_file_replacement_character_title">Caráuteres de troquéu</string>
     <string name="settings_file_replacement_character_summary">Los caráuteres que nun son válidos van trocase por esti valor</string>
@@ -463,17 +433,17 @@
     <string name="could_not_setup_download_menu">Nun pudo configurase\'l menú de descarga</string>
     <string name="content_not_available">El conteníu nun ta disponible</string>
     <string name="network_error">Fallu de la rede</string>
-    <string name="download_to_sdcard_error_message">La descarga a la tarxeta SD nun ye posible. ¿Reafitar l\'allugamientu de la carpeta de descarga\?</string>
+    <string name="download_to_sdcard_error_message">La descarga a la tarxeta SD nun ye posible. ¿Reafitar l\'allugamientu de la carpeta de descarga?</string>
     <string name="download_to_sdcard_error_title">L\'almacenamientu esternu nun ta disponible</string>
     <string name="search_history_deleted">Desanicióse l\'historial de busques.</string>
     <string name="clear_search_history_summary">Desanicia l\'historial de les pallabres clave de busca</string>
     <string name="clear_search_history_title">Llimpiar l\'historial de busca</string>
     <string name="watch_history_states_deleted">Desaniciáronse los puntos de reproducción.</string>
-    <string name="delete_playback_states_alert">¿Desaniciar tolos puntos de reproducción\?</string>
+    <string name="delete_playback_states_alert">¿Desaniciar tolos puntos de reproducción?</string>
     <string name="clear_playback_states_summary">Desanicia tolos puntos de reproducción</string>
     <string name="clear_playback_states_title">Desaniciar los puntos de reproducción</string>
     <string name="watch_history_deleted">Desanicióse l\'historial de vídeos vistos.</string>
-    <string name="delete_view_history_alert">¿Desaniciar tol historial de vídeos vistos\?</string>
+    <string name="delete_view_history_alert">¿Desaniciar tol historial de vídeos vistos?</string>
     <string name="clear_views_history_summary">Desanicia l\'historial de fluxos reproducíos y el de puntos de reproducción</string>
     <string name="clear_views_history_title">Llimpiar l\'historial de los vídeos vistos</string>
     <string name="clear_cookie_summary">Llimpia les cookies que NewPipe atrroxa cuando soluciones un reCAPTCHA</string>
@@ -494,9 +464,7 @@
     <string name="songs">Canciones</string>
     <string name="all">Too</string>
     <string name="error_report_title">Informe d\'un fallu</string>
-    <string name="restricted_video">Tien una torga por edá.
-\n
-\nActiva «%1$s» nos axustes de l\'aplicación si quies velu.</string>
+    <string name="restricted_video">Tien una torga por edá. \n \nActiva «%1$s» nos axustes de l\'aplicación si quies velu.</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube forne\'l «Mou torgáu» qu\'anubre conteníu\'l que seya potencialmente p\'adultos</string>
     <string name="youtube_restricted_mode_enabled_title">Activar el «Mou torgáu» de YouTube</string>
     <string name="show_age_restricted_content_summary">Amuesa\'l conteníu que quiciabes nun seya afayadizu pa guaḥes porque tien una llende d\'edá (como +18)</string>
@@ -506,7 +474,7 @@
     <string name="peertube_instance_add_title">Amiestu d\'una instancia</string>
     <string name="peertube_instance_url_help">Atopa les instancies que te presten en %s</string>
     <string name="peertube_instance_url_summary">Esbilla les instancies de PeerTube que prefieras</string>
-    <string name="unsupported_url_dialog_message">Nun pudo reconocese la URL. ¿Abrila con otra aplicación\?</string>
+    <string name="unsupported_url_dialog_message">Nun pudo reconocese la URL. ¿Abrila con otra aplicación?</string>
     <string name="show_hold_to_append_summary">Amuesa\'l mensaxe al primir el nel botón «En segundu planu» o «Ventanu» nel «Details:» de los vídeos</string>
     <string name="show_hold_to_append_title">Amosar el mensaxe «Ten primío p\'amestar a la cola»</string>
     <string name="show_next_and_similar_title">Amosar los vídeos siguientes y asemeyaos</string>
@@ -556,6 +524,6 @@
     <string name="download">Baxar</string>
     <string name="open_in_popup_mode">Abrir nel mou ventanu</string>
     <string name="install">Instalar</string>
-    <string name="no_player_found">Nun s\'atopó nengún reproductor de fluxos. ¿Instalar VLC\?</string>
+    <string name="no_player_found">Nun s\'atopó nengún reproductor de fluxos. ¿Instalar VLC?</string>
     <string name="main_bg_subtitle">Toca «Buscar» pa entamar</string>
 </resources>

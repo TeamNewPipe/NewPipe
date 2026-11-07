@@ -9,7 +9,7 @@
     <string name="download">డౌన్లోడ్</string>
     <string name="search">వెతుకు</string>
     <string name="settings">అమరికలు</string>
-    <string name="did_you_mean">మీ ఉద్దేశ్యం \"%1$s\"\?</string>
+    <string name="did_you_mean">మీ ఉద్దేశ్యం \"%1$s\"?</string>
     <string name="share_dialog_title">పంచుకో</string>
     <string name="use_external_audio_player_title">బాహ్య ఆడియో ప్లేయర్ని ఉపయోగించండి</string>
     <string name="subscribe_button_title">సభ్యత్వం</string>
@@ -28,7 +28,7 @@
     <string name="download_path_audio_summary">ఆడియో కోసం డౌన్లోడ్ మార్గాన్ని నమోదు చేయండి</string>
     <string name="download_path_audio_dialog_title">ఆడియో ఫైల్లకు డౌన్లోడ్ మార్గాన్ని ఇవ్వండి</string>
     <string name="play_with_kodi_title">కోడితో ప్లే చేయండి</string>
-    <string name="kore_not_found">కోరే ఆప్ కనుగొనబడలేదు. దీన్ని ఇన్స్టాల్ చెయ్యాలా\?</string>
+    <string name="kore_not_found">కోరే ఆప్ కనుగొనబడలేదు. దీన్ని ఇన్స్టాల్ చెయ్యాలా?</string>
     <string name="show_play_with_kodi_title">కోరే అనువర్తనం కనుగొనబడలేదు. దీన్ని ఇన్స్టాల్ చేయండి</string>
     <string name="play_audio">ఆడియో</string>
     <string name="default_audio_format_title">డిఫాల్ట్ ఆడియో ఫార్మాట్</string>
@@ -133,7 +133,7 @@
     <string name="play_queue_stream_detail">వివరాలు</string>
     <string name="play_queue_audio_settings">ఆడియో సెట్టింగ్లు</string>
     <string name="hold_to_append">ఎన్క్యూలో పట్టుకోండి</string>
-    <string name="no_player_found">మీదగ్గర వీడియోకి కావాల్సిన ప్లేయర్ లేదు. VLC ప్లేయర్ని ఇన్స్టాల్ చేసుకుంటారా\?</string>
+    <string name="no_player_found">మీదగ్గర వీడియోకి కావాల్సిన ప్లేయర్ లేదు. VLC ప్లేయర్ని ఇన్స్టాల్ చేసుకుంటారా?</string>
     <string name="no_player_found_toast">మీదగ్గర వీడియోకి కావాల్సిన ప్లేయర్ లేదు (మీరు VLCని ఇన్స్టాల్ చేసుకోండి ).</string>
     <string name="open_in_popup_mode">పాపప్ మోడ్లో తెరవండి</string>
     <string name="default_popup_resolution_title">డిఫాల్ట్ పాపప్ స్పష్టత</string>
@@ -146,7 +146,7 @@
     <string name="notification_scale_to_square_image_summary">నోటిఫికేషన్‌లో చూపబడిన వీడియో థంబ్‌నెయిల్‌ను 16:9 నుండి 1:1 కారక నిష్పత్తికి మార్చుము</string>
     <string name="notification_action_repeat">పునరావృతం చేయండి</string>
     <string name="show_hold_to_append_summary">వీడియో \"వివరాలు:\"లో బ్యాక్‌గ్రౌండ్ లేదా పాప్‌అప్ బటన్‌ను నొక్కినప్పుడు చిట్కాను చూపు</string>
-    <string name="unsupported_url_dialog_message">URLని గుర్తించడం సాధ్యపడలేదు. మరొక యాప్‌తో తెరవాలా\?</string>
+    <string name="unsupported_url_dialog_message">URLని గుర్తించడం సాధ్యపడలేదు. మరొక యాప్‌తో తెరవాలా?</string>
     <string name="notification_colorize_title">నోటిఫికేషన్‌ను రంగులమయం చేయండి</string>
     <string name="local_search_suggestions">స్థానిక శోధన సూచనలు</string>
     <string name="remote_search_suggestions">రిమోట్ శోధన సూచనలు</string>
@@ -224,11 +224,8 @@
     <string name="events">ఈవెంట్స్</string>
     <string name="app_update_notification_channel_description">కొత్త NewPipe వెర్షన్ కోసం నోటిఫికేషన్‌లు</string>
     <string name="show_age_restricted_content_summary">కంటెంట్‌కి వయస్సు పరిమితి (18+ వంటివి) ఉన్నందున పిల్లలకు అనుచితమైన కంటెంట్‌ను చూపండి</string>
-    <string name="restricted_video_no_stream">ఈ వీడియో వయో పరిమితి విధించబడింది.
-\nవయో-నియంత్రిత వీడియోలతో కూడిన కొత్త YouTube విధానాల కారణంగా, NewPipe దాని వీడియో స్ట్రీమ్‌లలో దేనినీ యాక్సెస్ చేయదు మరియు దానిని ప్లే చేయడం సాధ్యం కాదు.</string>
-    <string name="restricted_video">ఈ వీడియోకు వయో పరిమితి ఉంది.
-\n
-\nమీరు దీన్ని చూడాలనుకుంటే సెట్టింగ్‌లలో \"%1$s\"ని ఆన్ చేయండి.</string>
+    <string name="restricted_video_no_stream">ఈ వీడియో వయో పరిమితి విధించబడింది. \nవయో-నియంత్రిత వీడియోలతో కూడిన కొత్త YouTube విధానాల కారణంగా, NewPipe దాని వీడియో స్ట్రీమ్‌లలో దేనినీ యాక్సెస్ చేయదు మరియు దానిని ప్లే చేయడం సాధ్యం కాదు.</string>
+    <string name="restricted_video">ఈ వీడియోకు వయో పరిమితి ఉంది. \n \nమీరు దీన్ని చూడాలనుకుంటే సెట్టింగ్‌లలో \"%1$s\"ని ఆన్ చేయండి.</string>
     <string name="tracks">ట్రాక్స్</string>
     <string name="songs">పాటలు</string>
     <string name="switch_to_background">వెనుకగా మార్చు</string>
@@ -256,7 +253,7 @@
     <string name="unknown_content">[తెలియదు]</string>
     <string name="file_name_empty_error">ఫైల్ పేరు ఖాళీగా ఉండకూడదు</string>
     <string name="saved_tabs_invalid_json">సేవ్ చేసిన ట్యాబ్‌లను చదవడం సాధ్యం కాలేదు, కాబట్టి డిఫాల్ట్ వాటిని ఉపయోగిస్తోంది</string>
-    <string name="restore_defaults_confirmation">మీరు డిఫాల్ట్‌లను పునరుద్ధరించాలనుకుంటున్నారా\?</string>
+    <string name="restore_defaults_confirmation">మీరు డిఫాల్ట్‌లను పునరుద్ధరించాలనుకుంటున్నారా?</string>
     <string name="watch_history_states_deleted">ప్లేబ్యాక్ స్థానాలు తొలగించబడ్డాయి</string>
     <string name="external_player_unsupported_link_type">బాహ్య ప్లేయర్‌లు ఈ రకమైన లింక్‌లకు మద్దతు ఇవ్వవు</string>
     <string name="checksum">చెక్సమ్</string>
@@ -265,13 +262,13 @@
     <string name="no_one_listening">ఎవరూ వినడం లేదు</string>
     <string name="no_one_watching">ఎవరూ చూడటం లేదు</string>
     <string name="no_comments">వ్యాఖ్యలు లేవు</string>
-    <string name="download_to_sdcard_error_message">బాహ్య SD కార్డ్‌కి డౌన్‌లోడ్ చేయడం సాధ్యం కాదు. డౌన్‌లోడ్ ఫోల్డర్ స్థానాన్ని రీసెట్ చేయాలా\?</string>
+    <string name="download_to_sdcard_error_message">బాహ్య SD కార్డ్‌కి డౌన్‌లోడ్ చేయడం సాధ్యం కాదు. డౌన్‌లోడ్ ఫోల్డర్ స్థానాన్ని రీసెట్ చేయాలా?</string>
     <string name="create">సృష్టించు</string>
     <string name="no_streams_available_download">డౌన్‌లోడ్ చేయడానికి స్ట్రీమ్‌లు ఏవీ అందుబాటులో లేవు</string>
     <string name="restore_defaults">డిఫాల్ట్‌ విలువలకు మార్చు</string>
     <string name="detail_drag_description">క్రమాన్ని మార్చడానికి లాగండి</string>
     <string name="clear_views_history_title">వీక్షణ చరిత్రను శుభ్రపరచుము</string>
-    <string name="delete_view_history_alert">మొత్తం వీక్షణ చరిత్రను తొలగించాలా\?</string>
+    <string name="delete_view_history_alert">మొత్తం వీక్షణ చరిత్రను తొలగించాలా?</string>
     <string name="clear_playback_states_title">ప్లేబ్యాక్ స్థానాలను తొలగించండి</string>
     <string name="download_to_sdcard_error_title">బాహ్య నిల్వ అందుబాటులో లేదు</string>
     <string name="app_ui_crash">యాప్/UI విఫలమైనది</string>
@@ -289,12 +286,12 @@
     <string name="infinite_videos">∞ వీడియోలు</string>
     <string name="comments_are_disabled">వ్యాఖ్యలు నిలిపివేయబడ్డాయి</string>
     <string name="clear_cookie_summary">మీరు reCAPTCHAని పరిష్కరించినప్పుడు NewPipe స్టోర్ చేసే కుక్కీలను క్లియర్ చేయండి</string>
-    <string name="delete_playback_states_alert">అన్ని ప్లేబ్యాక్ స్థానాలను తొలగించాలా\?</string>
+    <string name="delete_playback_states_alert">అన్ని ప్లేబ్యాక్ స్థానాలను తొలగించాలా?</string>
     <string name="watch_history_deleted">వీక్షణ చరిత్ర తొలగించబడింది</string>
     <string name="search_history_deleted">శోధన చరిత్ర తొలగించబడింది</string>
     <string name="clear_search_history_title">శోధన చరిత్రను శుభ్రపరచు</string>
     <string name="clear_search_history_summary">శోధన కీలకపదాల చరిత్రను తొలగిస్తుంది</string>
-    <string name="delete_search_history_alert">మొత్తం శోధన చరిత్రను తొలగించాలా\?</string>
+    <string name="delete_search_history_alert">మొత్తం శోధన చరిత్రను తొలగించాలా?</string>
     <string name="clear_playback_states_summary">అన్ని ప్లేబ్యాక్ స్థానాలను తొలగిస్తుంది</string>
     <string name="clear_views_history_summary">ప్లే చేసిన స్ట్రీమ్‌ల చరిత్ర మరియు ప్లేబ్యాక్ స్థానాలను తొలగిస్తుంది</string>
     <string name="invalid_source">అటువంటి ఫైల్/కంటెంట్ సోర్స్ లేదు</string>
@@ -316,8 +313,7 @@
     <string name="undo">చెరుపు</string>
     <string name="main_page_content_swipe_remove">వాటిని తీసివేయడానికి వాటిని స్వైప్ చేయండి</string>
     <string name="website_encouragement">మరింత సమాచారం మరియు వార్తల కోసం NewPipe వెబ్‌సైట్‌ని సందర్శించండి.</string>
-    <string name="privacy_policy_encouragement">NewPipe ప్రాజెక్ట్ మీ గోప్యతను చాలా తీవ్రంగా పరిగణిస్తుంది. కాబట్టి, మీ సమ్మతి లేకుండా యాప్ ఎలాంటి డేటాను సేకరించదు.
-\nNewPipe యొక్క గోప్యతా విధానం మీరు క్రాష్ నివేదికను పంపినప్పుడు ఏ డేటా పంపబడుతుందో మరియు నిల్వ చేయబడుతుందో వివరంగా వివరిస్తుంది.</string>
+    <string name="privacy_policy_encouragement">NewPipe ప్రాజెక్ట్ మీ గోప్యతను చాలా తీవ్రంగా పరిగణిస్తుంది. కాబట్టి, మీ సమ్మతి లేకుండా యాప్ ఎలాంటి డేటాను సేకరించదు. \nNewPipe యొక్క గోప్యతా విధానం మీరు క్రాష్ నివేదికను పంపినప్పుడు ఏ డేటా పంపబడుతుందో మరియు నిల్వ చేయబడుతుందో వివరంగా వివరిస్తుంది.</string>
     <string name="app_license">NewPipe అనేది కాపీ లెఫ్ట్ లిబ్రే సాఫ్ట్‌వేర్: మీరు దీన్ని ఇష్టానుసారంగా ఉపయోగించవచ్చు, అధ్యయనం చేయవచ్చు మరియు మెరుగుపరచవచ్చు. ప్రత్యేకంగా మీరు ఫ్రీ సాఫ్ట్‌వేర్ ఫౌండేషన్ ద్వారా ప్రచురించబడిన GNU జనరల్ పబ్లిక్ లైసెన్స్ నిబంధనల ప్రకారం, లైసెన్స్ యొక్క వెర్షన్ 3 లేదా (మీ ఐచ్ఛికం ప్రకారం) ఏదైనా తర్వాతి సంస్కరణలో దాన్ని పునఃపంపిణీ చేయవచ్చు మరియు/లేదా సవరించవచ్చు.</string>
     <string name="no_playlist_bookmarked_yet">ప్లేజాబితా బుక్‌మార్క్‌లు ఇంకా లేవు</string>
     <string name="read_privacy_policy">గోప్యతా విధానాన్ని చదవండి</string>
@@ -325,8 +321,7 @@
     <string name="donation_title">విరాళం ఇవ్వండి</string>
     <string name="select_a_kiosk">కియోస్క్‌ని ఎంచుకోండి</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA కుక్కీలను క్లియర్ చేయండి</string>
-    <string name="msg_popup_permission">దీనికి ఈ అనుమతి అవసరం
-\nతేలియాడే పద్ధతిలో తెరవండి</string>
+    <string name="msg_popup_permission">దీనికి ఈ అనుమతి అవసరం \nతేలియాడే పద్ధతిలో తెరవండి</string>
     <string name="copyright">© %3$s కింద %2$s ద్వారా %1$s</string>
     <string name="title_last_played">చివరిగా ఆడింది</string>
     <string name="export_data_summary">చరిత్ర, సభ్యత్వాలు, ప్లేజాబితాలు మరియు అమరికలను ఎగుమతిచేయుము</string>
@@ -378,7 +373,7 @@
     <string name="mute">మూగ</string>
     <string name="could_not_import_all_files">హెచ్చరిక: అన్ని ఫైల్‌లను దిగుమతి చేయడం సాధ్యపడలేదు.</string>
     <string name="override_current_data">ఇది మీ ప్రస్తుత సెటప్‌ను భర్తీ చేస్తుంది.</string>
-    <string name="import_settings">మీరు అమరికలను కూడా దిగుమతి చేయాలనుకుంటున్నారా\?</string>
+    <string name="import_settings">మీరు అమరికలను కూడా దిగుమతి చేయాలనుకుంటున్నారా?</string>
     <string name="error_unable_to_load_comments">వ్యాఖ్యలను లోడ్ చేయడం సాధ్యపడలేదు</string>
     <string name="recently_added">ఇటీవల జోడించినవి</string>
     <string name="most_liked">చాలా నచ్చింది</string>
@@ -400,7 +395,7 @@
     <string name="set_as_playlist_thumbnail">వినోదజాబితాకు సూక్ష్మచిత్రంగా మార్చుము</string>
     <string name="bookmark_playlist">వినోదజాబితాను ఇష్టంశంగా మార్చుము</string>
     <string name="unbookmark_playlist">ఇష్టంశాన్ని తొలగించండి</string>
-    <string name="delete_playlist_prompt">ఇష్టంశాన్ని నాశనం చేయాలా\?</string>
+    <string name="delete_playlist_prompt">ఇష్టంశాన్ని నాశనం చేయాలా?</string>
     <string name="resize_fit">తగినది</string>
     <string name="resize_fill">పూరించండి</string>
     <string name="resize_zoom">పరివీక్షణ</string>
@@ -422,9 +417,7 @@
     <string name="loading_stream_details">స్ట్రీమ్ వివరాలను లోడ్ చేస్తోంది…</string>
     <string name="show_memory_leaks">మెమరీ లీక్‌లను చూపించు</string>
     <string name="enable_disposed_exceptions_title">జీవితచక్రం లేని లోపాలను నివేదించండి</string>
-    <string name="import_network_expensive_warning">ఈ చర్య నెట్‌వర్క్ ఖరీదైనదని గుర్తుంచుకోండి.
-\n
-\nమీరు కొనసాగించాలనుకుంటున్నారా\?</string>
+    <string name="import_network_expensive_warning">ఈ చర్య నెట్‌వర్క్ ఖరీదైనదని గుర్తుంచుకోండి. \n \nమీరు కొనసాగించాలనుకుంటున్నారా?</string>
     <string name="percent">శాతం</string>
     <string name="semitone">అర్ధరాగం</string>
     <string name="progressive_load_interval_title">ప్లేబ్యాక్ లోడ్ విరామం పరిమాణం</string>

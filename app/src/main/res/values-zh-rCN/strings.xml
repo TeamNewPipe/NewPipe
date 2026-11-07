@@ -14,16 +14,16 @@
     <string name="search">搜索</string>
     <string name="settings">设置</string>
     <string name="share_dialog_title">分享给</string>
-    <string name="download_path_title">视频下载路径</string>
-    <string name="download_path_summary">已下载的视频将存储于此</string>
+    <string name="download_path_title">视频下载文件夹</string>
+    <string name="download_path_summary">下载的视频文件存储在这里</string>
     <string name="download_path_dialog_title">请选择下载视频的保存位置</string>
-    <string name="download_path_audio_summary">已下载的音频将存储于此</string>
+    <string name="download_path_audio_summary">下载的音频文件存储在这里</string>
     <string name="download_path_audio_dialog_title">选择下载音频的储存位置</string>
     <string name="play_with_kodi_title">使用 Kodi 播放</string>
     <string name="theme_title">主题</string>
-    <string name="light_theme_title">浅色</string>
-    <string name="dark_theme_title">深色</string>
-    <string name="black_theme_title">暗黑</string>
+    <string name="light_theme_title">浅</string>
+    <string name="dark_theme_title">深</string>
+    <string name="black_theme_title">黑</string>
     <string name="download_dialog_title">下载</string>
     <string name="unsupported_url">不支持的 URL</string>
     <string name="settings_category_appearance_title">外观</string>
@@ -37,19 +37,19 @@
     <string name="show_search_suggestions_title">显示搜索建议</string>
     <string name="subscribe_button_title">订阅</string>
     <string name="subscribed_button_title">已订阅</string>
-    <string name="enable_watch_history_title">记录播放记录</string>
+    <string name="enable_watch_history_title">观看历史</string>
     <string name="settings_category_player_title">播放器</string>
     <string name="settings_category_history_title">历史记录和缓存</string>
     <string name="undo">撤销</string>
     <string name="play_all">播放全部</string>
-    <string name="always">总是</string>
+    <string name="always">始终</string>
     <string name="just_once">仅一次</string>
     <string name="controls_add_to_playlist_title">添加至</string>
     <string name="file">文件</string>
-    <string name="clear_views_history_title">清空播放历史</string>
+    <string name="clear_views_history_title">清除观看历史</string>
     <string name="minimize_on_exit_none_description">无</string>
-    <string name="minimize_on_exit_background_description">最小化至后台播放</string>
-    <string name="minimize_on_exit_popup_description">最小化至悬浮窗播放</string>
+    <string name="minimize_on_exit_background_description">最小化到后台播放器</string>
+    <string name="minimize_on_exit_popup_description">最小化到弹窗播放器</string>
     <string name="channels">频道</string>
     <string name="playlists">播放列表</string>
     <string name="unsubscribe">取消订阅</string>
@@ -61,8 +61,8 @@
     <string name="app_update_available_notification_title">NewPipe 可更新！</string>
     <string name="error_http_unsupported_range">服务器不接受多线程下载, 使用 @string/msg_threads = 1 重试</string>
     <string name="autoplay_title">自动播放</string>
-    <string name="settings_category_clear_data_title">清空数据</string>
-    <string name="watch_history_deleted">播放历史已删除</string>
+    <string name="settings_category_clear_data_title">清除数据</string>
+    <string name="watch_history_deleted">已删除观看历史</string>
     <string name="detail_likes_img_view_description">喜欢</string>
     <string name="detail_dislikes_img_view_description">不喜欢</string>
     <string name="video">视频</string>
@@ -75,7 +75,7 @@
     <string name="pause">暂停</string>
     <string name="delete">删除</string>
     <string name="checksum">校验</string>
-    <string name="ok">确定</string>
+    <string name="ok">好</string>
     <string name="msg_name">文件名</string>
     <string name="msg_threads">线程数</string>
     <string name="msg_error">错误</string>
@@ -90,9 +90,9 @@
     <string name="tab_licenses">许可证</string>
     <string name="settings_category_downloads_title">下载</string>
     <string name="settings_file_charset_title">文件名中允许的字符</string>
-    <string name="settings_file_replacement_character_summary">无效字符将会被替换为该字符</string>
+    <string name="settings_file_replacement_character_summary">这个值将替换无效字符</string>
     <string name="charset_letters_and_digits">字母和数字</string>
-    <string name="charset_most_special_characters">特殊字符</string>
+    <string name="charset_most_special_characters">多数特殊字符</string>
     <string name="search_no_results">没有结果</string>
     <string name="no_subscribers">无人订阅</string>
     <plurals name="subscribers">
@@ -122,7 +122,7 @@
     <string name="default_resolution_title">默认分辨率</string>
     <string name="kore_not_found">未找到 Kore。是否安装 Kore？</string>
     <string name="show_play_with_kodi_title">显示“使用 Kodi 播放”选项</string>
-    <string name="show_play_with_kodi_summary">显示“通过 Kodi 媒体中心播放视频”选项</string>
+    <string name="show_play_with_kodi_summary">显示通过 Kodi 媒体中心播放视频的选项</string>
     <string name="play_audio">音频</string>
     <string name="default_audio_format_title">默认音频格式</string>
     <string name="show_next_and_similar_title">显示“接下来”和“相似视频”</string>
@@ -142,8 +142,8 @@
     <string name="app_ui_crash">App/UI 崩溃</string>
     <string name="sorry_string">抱歉, 这本不该发生。</string>
     <string name="error_report_button_text">使用电子邮件反馈</string>
-    <string name="error_snackbar_message">抱歉，发生了一些错误。</string>
-    <string name="error_snackbar_action">反馈</string>
+    <string name="error_snackbar_message">抱歉，出错了。</string>
+    <string name="error_snackbar_action">报告</string>
     <string name="what_device_headline">信息：</string>
     <string name="what_happened_headline">发生了什么：</string>
     <string name="info_labels">详情：\n请求：\n内容语言：\n内容国家：\n客户端语言：\n服务：\nGMT时间：\n包名：\n版本：\n操作系统版本：</string>
@@ -152,19 +152,18 @@
     <string name="detail_thumbnail_view_description">播放视频，时长：</string>
     <string name="detail_uploader_thumbnail_view_description">视频上传者的头像缩略图</string>
     <string name="msg_running">NewPipe 正在下载</string>
-    <string name="no_available_dir">请稍后在设置中设定下载目录</string>
-    <string name="msg_popup_permission">使用悬浮窗模式
-\n需要该权限</string>
+    <string name="no_available_dir">请稍后在设置中定义一个下载文件夹</string>
+    <string name="msg_popup_permission">使用悬浮窗模式 \n需要该权限</string>
     <string name="title_activity_recaptcha">reCAPTCHA 验证</string>
     <string name="recaptcha_request_toast">已请求新的 reCAPTCHA 验证</string>
     <string name="popup_playing_toast">在悬浮窗中播放</string>
-    <string name="default_popup_resolution_title">悬浮窗默认分辨率</string>
-    <string name="show_higher_resolutions_title">使用更高的分辨率</string>
-    <string name="show_higher_resolutions_summary">仅部分设备支持播放 2K 或 4K 视频</string>
+    <string name="default_popup_resolution_title">默认弹窗分辨率</string>
+    <string name="show_higher_resolutions_title">显示更高分辨率</string>
+    <string name="show_higher_resolutions_summary">仅一些设备能播放 2K/4K 视频</string>
     <string name="clear">清除</string>
-    <string name="popup_remember_size_pos_title">记住悬浮窗属性（大小与位置）</string>
-    <string name="popup_remember_size_pos_summary">记住上一次使用悬浮窗的大小和位置</string>
-    <string name="use_external_video_player_summary">部分分辨率下没有音频</string>
+    <string name="popup_remember_size_pos_title">记住弹窗属性</string>
+    <string name="popup_remember_size_pos_summary">记住弹窗的最后尺寸和位置</string>
+    <string name="use_external_video_player_summary">删除某些分辨率的音频</string>
     <string name="show_search_suggestions_summary">选择搜索时显示的建议</string>
     <string name="best_resolution">最佳分辨率</string>
     <string name="app_description">自由且小巧的 Android 媒体播放器。</string>
@@ -179,11 +178,11 @@
     <string name="subscription_update_failed">无法更新订阅</string>
     <string name="tab_subscriptions">订阅</string>
     <string name="fragment_feed_title">最新</string>
-    <string name="resume_on_audio_focus_gain_title">自动恢复播放</string>
-    <string name="resume_on_audio_focus_gain_summary">在播放被打断（例如突然来电）后恢复播放</string>
-    <string name="enable_search_history_title">记录搜索历史</string>
-    <string name="enable_search_history_summary">Newpipe 将在本地存储搜索历史记录</string>
-    <string name="enable_watch_history_summary">Newpipe 将保留播放记录</string>
+    <string name="resume_on_audio_focus_gain_title">继续播放</string>
+    <string name="resume_on_audio_focus_gain_summary">中断后继续播放（如通话）</string>
+    <string name="enable_search_history_title">搜索历史</string>
+    <string name="enable_search_history_summary">本地存储搜索查询</string>
+    <string name="enable_watch_history_summary">保留看过的视频的痕迹</string>
     <string name="title_activity_history">历史记录</string>
     <string name="action_history">历史记录</string>
     <string name="notification_channel_name">NewPipe 通知</string>
@@ -231,7 +230,7 @@
     <string name="audio_streams_empty">找不到音频串流</string>
     <string name="video_player">视频播放器</string>
     <string name="background_player">后台播放器</string>
-    <string name="popup_player">悬浮窗播放器</string>
+    <string name="popup_player">弹窗播放器</string>
     <string name="preferred_player_fetcher_notification_title">正在获取信息…</string>
     <string name="preferred_player_fetcher_notification_message">正在加载请求的内容</string>
     <string name="import_data_title">导入数据库</string>
@@ -247,11 +246,11 @@
     <string name="tab_bookmarks">收藏</string>
     <string name="title_last_played">最近观看</string>
     <string name="title_most_played">最多观看</string>
-    <string name="always_ask_open_action">每次询问</string>
+    <string name="always_ask_open_action">始终询问</string>
     <string name="create_playlist">新建播放列表</string>
     <string name="rename_playlist">重命名</string>
     <string name="name">名称</string>
-    <string name="add_to_playlist">添加至播放列表</string>
+    <string name="add_to_playlist">添加到播放列表</string>
     <string name="set_as_playlist_thumbnail">设为播放列表封面</string>
     <string name="bookmark_playlist">收藏播放列表</string>
     <string name="unbookmark_playlist">删除收藏</string>
@@ -265,14 +264,14 @@
     <string name="resize_zoom">缩放画面</string>
     <string name="settings_category_debug_title">调试</string>
     <string name="caption_auto_generated">自动生成</string>
-    <string name="enable_leak_canary_summary">内存泄漏监测可能会导致应用在堆转储时无响应</string>
-    <string name="enable_disposed_exceptions_title">报告超出生命周期的错误</string>
-    <string name="enable_disposed_exceptions_summary">强制报告处理后的未送达的 Activity 或 Fragment 生命周期之外的 Rx 异常</string>
-    <string name="use_inexact_seek_title">使用快速寻址（不精确）</string>
-    <string name="use_inexact_seek_summary">快速寻址定位允许播放器以较低精确度为代价换取更快的寻址定位速度。此功能不适用于以 5、15 或 25 秒为隔的寻址定位</string>
-    <string name="auto_queue_title">自动将“接下来”视频加入播放队列</string>
-    <string name="auto_queue_summary">播放完（非循环）队列中的最后一个视频后，自动将一个相关视频添加到当前播放队列</string>
-    <string name="invalid_directory">没有该文件夹</string>
+    <string name="enable_leak_canary_summary">内存泄露监测可能导致应用在堆栈转储时变得无响应</string>
+    <string name="enable_disposed_exceptions_title">报告生命周期外错误</string>
+    <string name="enable_disposed_exceptions_summary">在处置后强制报告片段或活动外的接收异常</string>
+    <string name="use_inexact_seek_title">使用快速非精确查找</string>
+    <string name="use_inexact_seek_summary">非精确查找允许播放器降低精度更快地跳转到位置。不适用 5 秒、15 秒或 25 秒跳转</string>
+    <string name="auto_queue_title">自动将下一个音视频流加入队列</string>
+    <string name="auto_queue_summary">在（非重复）播放队列结束后通过附加相关音视频流来延续队列</string>
+    <string name="invalid_directory">没有这样的文件夹</string>
     <string name="invalid_source">无相似文件/内容源</string>
     <string name="invalid_file">文件不存在，或缺少读写文件权限</string>
     <string name="file_name_empty_error">文件名不能为空</string>
@@ -286,57 +285,40 @@
     <string name="previous_export">先前的导出</string>
     <string name="subscriptions_import_unsuccessful">无法导入订阅</string>
     <string name="subscriptions_export_unsuccessful">无法导出订阅</string>
-    <string name="import_youtube_instructions">从 Google takeout 导入 YouTube 订阅：
-\n
-\n1. 打开这个网址：%1$s
-\n2. 登录谷歌账号
-\n3. 单击“包含所有数据”，然后单击“取消全选”，然后仅选择“订阅”并单击“确定”
-\n4. 点击“下一步”，然后点击“创建导出作业”
-\n5. 出现“下载”按钮后点击它
-\n6. 单击下面的导入文件并选择下载的 .zip 文件
-\n7.（如果 .zip 导入失败）解压 .csv文件（通常在“YouTube和YouTube Music/subscriptions/subscriptions.csv”下），点击下方的导入文件，选择解压出来的 csv 文件</string>
-    <string name="import_soundcloud_instructions">通过输入网址或你的 ID 导入 SoundCloud 配置文件：
-\n
-\n1. 在浏览器中启用“电脑模式“（该网站未适配移动设备）；
-\n2. 打开该网站：%1$s；
-\n3. 登录（如果需要）；
-\n4. 复制得到的配置文件下载地址。</string>
+    <string name="import_youtube_instructions">从 Google takeout 导入 YouTube 订阅： \n \n1. 打开这个网址：%1$s \n2. 登录谷歌账号 \n3. 单击“包含所有数据”，然后单击“取消全选”，然后仅选择“订阅”并单击“确定” \n4. 点击“下一步”，然后点击“创建导出作业” \n5. 出现“下载”按钮后点击它 \n6. 单击下面的导入文件并选择下载的 .zip 文件 \n7.（如果 .zip 导入失败）解压 .csv文件（通常在“YouTube和YouTube Music/subscriptions/subscriptions.csv”下），点击下方的导入文件，选择解压出来的 csv 文件</string>
+    <string name="import_soundcloud_instructions">通过输入网址或你的 ID 导入 SoundCloud 配置文件： \n \n1. 在浏览器中启用“电脑模式“（该网站未适配移动设备）； \n2. 打开该网站：%1$s； \n3. 登录（如果需要）； \n4. 复制得到的配置文件下载地址。</string>
     <string name="import_soundcloud_instructions_hint">你的 ID：soundcloud.com/［你的ID］</string>
-    <string name="import_network_expensive_warning">该操作消耗大量流量，
-\n
-\n你想继续吗？</string>
+    <string name="import_network_expensive_warning">该操作消耗大量流量， \n \n你想继续吗？</string>
     <string name="thumbnail_cache_wipe_complete_notice">清空图像缓存成功</string>
-    <string name="metadata_cache_wipe_title">清空已缓存的元数据</string>
-    <string name="metadata_cache_wipe_summary">清空已缓存的网页数据</string>
-    <string name="metadata_cache_wipe_complete_notice">清空元数据缓存成功</string>
+    <string name="metadata_cache_wipe_title">擦除已缓存的元数据</string>
+    <string name="metadata_cache_wipe_summary">删除所有已缓存的网页数据</string>
+    <string name="metadata_cache_wipe_complete_notice">已擦除元数据缓存</string>
     <string name="playback_speed_control">播放速度控制</string>
     <string name="playback_tempo">节奏</string>
     <string name="playback_pitch">音调</string>
     <string name="unhook_checkbox">解除音视挂钩（可能导致失真）</string>
-    <string name="preferred_open_action_settings_title">首选“打开”操作</string>
+    <string name="preferred_open_action_settings_title">首选的“打开”动作</string>
     <string name="preferred_open_action_settings_summary">打开内容时的默认操作 — %s</string>
     <string name="no_streams_available_download">没有可下载的串流</string>
     <string name="caption_setting_title">字幕</string>
-    <string name="caption_setting_description">修改播放器字幕文本比例和背景样式。重启应用后生效</string>
-    <string name="clear_views_history_summary">删除串流播放历史和播放痕迹记录</string>
-    <string name="delete_view_history_alert">删除全部播放历史？</string>
-    <string name="clear_search_history_title">清空搜索历史</string>
-    <string name="clear_search_history_summary">清空搜索历史关键词</string>
-    <string name="delete_search_history_alert">是否删除全部搜索历史？</string>
-    <string name="search_history_deleted">搜索历史已删除</string>
+    <string name="caption_setting_description">修改播放器字幕文本缩放和背景样式。需要重启应用生效</string>
+    <string name="clear_views_history_summary">删除已播放串流的历史记录和播放位置</string>
+    <string name="delete_view_history_alert">删除全部观看历史？</string>
+    <string name="clear_search_history_title">清除搜索历史</string>
+    <string name="clear_search_history_summary">删除搜索关键词历史</string>
+    <string name="delete_search_history_alert">删除所有搜索历史？</string>
+    <string name="search_history_deleted">已删除搜索历史</string>
     <string name="app_license">NewPipe 是 Copyleft 的自由软件：您可以随时使用、研究共享和改进它。您可以根据自由软件基金会发布的 GNU 通用公共许可证 GPLv3 或（由您选择的）任何更高版本的许可证重新分发或修改该许可证。</string>
     <string name="import_settings">是否要导入设置？</string>
     <string name="privacy_policy_title">NewPipe 隐私政策</string>
-    <string name="privacy_policy_encouragement">NewPipe 项目非常重视您的隐私。因此，未经您的同意，应用程序不会收集任何数据。
-\nNewPipe 的隐私政策详细解释了发送崩溃报告时会发送和存储的数据。</string>
+    <string name="privacy_policy_encouragement">NewPipe 项目非常重视您的隐私。因此，未经您的同意，本应用不会收集任何数据。 \nNewPipe 的隐私政策详细解释了发送崩溃报告时会发送和存储的数据。</string>
     <string name="read_privacy_policy">阅读隐私政策</string>
-    <string name="start_accept_privacy_policy">为了遵守欧盟的《通用数据保护条例 (GDPR)》，我们特此提醒您注意 NewPipe 的隐私政策，请您仔细阅读。
-\n您必须在同意以后才能向我们发送错误报告。</string>
+    <string name="start_accept_privacy_policy">为了遵守欧盟的《通用数据保护条例 (GDPR)》，我们特此提醒您注意 NewPipe 的隐私政策，请您仔细阅读。 \n您必须在同意以后才能向我们发送错误报告。</string>
     <string name="accept">接受</string>
     <string name="decline">拒绝</string>
     <string name="limit_data_usage_none_description">无限制</string>
-    <string name="limit_mobile_data_usage_title">使用移动数据播放时降低分辨率</string>
-    <string name="minimize_on_exit_title">退出应用时最小化</string>
+    <string name="limit_mobile_data_usage_title">使用手机流量时限制分辨率</string>
+    <string name="minimize_on_exit_title">应用切换时最小化</string>
     <string name="minimize_on_exit_summary">从主播放器切换到其他应用时的操作 — %s</string>
     <string name="skip_silence_checkbox">静音时快进</string>
     <string name="playback_step">比例调整</string>
@@ -347,8 +329,8 @@
     <string name="content_language_title">视频默认语言</string>
     <string name="app_update_notification_channel_name">应用更新通知</string>
     <string name="app_update_notification_channel_description">NewPipe 新版本的通知</string>
-    <string name="download_to_sdcard_error_title">外置存储不可用</string>
-    <string name="download_to_sdcard_error_message">无法下载到外部 SD 卡，修改下载文件夹位置？</string>
+    <string name="download_to_sdcard_error_title">外部存储不可用</string>
+    <string name="download_to_sdcard_error_message">无法下载到外部 SD 卡。重置下载文件夹位置？</string>
     <string name="saved_tabs_invalid_json">读取已保存标签时发生错误，因此使用默认标签</string>
     <string name="restore_defaults">恢复默认</string>
     <string name="restore_defaults_confirmation">是否恢复默认值？</string>
@@ -370,20 +352,20 @@
     <string name="error_postprocessing_failed">后期处理失败</string>
     <string name="stop">停止</string>
     <string name="max_retry_msg">最大重试次数</string>
-    <string name="max_retry_desc">取消下载前的最多重试次数</string>
-    <string name="pause_downloads_on_mobile">切换到按流量计费的网络后中断下载</string>
-    <string name="pause_downloads_on_mobile_desc">切换至移动数据时可能有用，虽然部分下载无法被暂停</string>
+    <string name="max_retry_desc">取消下载前的最多尝试几次</string>
+    <string name="pause_downloads_on_mobile">在按流量计费网络上中断</string>
+    <string name="pause_downloads_on_mobile_desc">切换到手机流量时有用，尽管一些下载无法被暂停</string>
     <string name="events">事件</string>
     <string name="conferences">会议大会</string>
     <string name="show_comments_title">显示评论</string>
     <string name="show_comments_summary">是否隐藏评论</string>
     <string name="error_unable_to_load_comments">无法加载评论</string>
     <string name="close">关闭</string>
-    <string name="enable_playback_resume_title">记录播放痕迹历史</string>
-    <string name="enable_playback_resume_summary">再次打开播放过的视频时, 自动定位到上次播放时位置</string>
-    <string name="enable_playback_state_lists_title">在列表中显示历史播放位置</string>
-    <string name="enable_playback_state_lists_summary">在列表中，使用底端进度条显示某一视频上次播放时的播放位置</string>
-    <string name="watch_history_states_deleted">已删除播放痕迹历史</string>
+    <string name="enable_playback_resume_title">继续播放</string>
+    <string name="enable_playback_resume_summary">恢复最后播放位置</string>
+    <string name="enable_playback_state_lists_title">列表中位置</string>
+    <string name="enable_playback_state_lists_summary">在列表中显示播放位置指示器</string>
+    <string name="watch_history_states_deleted">已删除播放位置</string>
     <string name="missing_file">文件已被移动或被删除</string>
     <string name="overwrite_unrelated_warning">同名文件已存在</string>
     <string name="overwrite_finished_warning">同名的已下载文件已经存在</string>
@@ -394,18 +376,17 @@
     <string name="error_progress_lost">进度丢失，文件已被删除</string>
     <string name="error_timeout">连接超时</string>
     <string name="confirm_prompt">是否清空下载记录或删除所有下载的文件？</string>
-    <string name="enable_queue_limit">限制下载并行任务数</string>
-    <string name="enable_queue_limit_desc">同一时间内只允许进行一个下载任务</string>
+    <string name="enable_queue_limit">限制下载队列</string>
+    <string name="enable_queue_limit_desc">并行下载数为 1</string>
     <string name="start_downloads">开始下载</string>
     <string name="pause_downloads">暂停下载</string>
-    <string name="downloads_storage_ask_title">总是询问下载位置</string>
-    <string name="downloads_storage_ask_summary">系统将询问您将每次下载的保存位置。
-\n如果要下载到外部 SD 卡，请启用系统文件夹选择器 (SAF)</string>
-    <string name="downloads_storage_use_saf_title">使用系统文件夹选择器 (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">存储访问框架（SAF）允许下载文件到外部 SD 卡</string>
-    <string name="clear_playback_states_title">删除播放痕迹历史</string>
-    <string name="clear_playback_states_summary">删除所有播放痕迹历史</string>
-    <string name="delete_playback_states_alert">是否删除全部播放痕迹历史？</string>
+    <string name="downloads_storage_ask_title">询问下载到哪里</string>
+    <string name="downloads_storage_ask_summary">应用会询问在哪里保存每个下载。\n如果想下载到外部 SD 卡，请启用系统文件夹选择器（SAF）</string>
+    <string name="downloads_storage_use_saf_title">使用系统文件夹选择器（SAF）</string>
+    <string name="downloads_storage_use_saf_summary">“存储访问框架”允许下载到外部 SD 卡</string>
+    <string name="clear_playback_states_title">删除播放位置</string>
+    <string name="clear_playback_states_summary">删除所有播放位置</string>
+    <string name="delete_playback_states_alert">删除所有播放位置？</string>
     <string name="default_kiosk_page_summary">『时下流行』页-默认</string>
     <string name="no_one_watching">没有人在观看</string>
     <plurals name="watching">
@@ -430,7 +411,7 @@
     <string name="recovering">正在恢复</string>
     <string name="error_download_resource_gone">无法恢复此下载</string>
     <string name="choose_instance_prompt">选择一个服务器</string>
-    <string name="seek_duration_title">快进 / 快退的寻址定位时间间隔</string>
+    <string name="seek_duration_title">快进/快退跳转时长</string>
     <string name="clear_download_history">清空下载记录</string>
     <string name="delete_downloaded_files">删除下载文件</string>
     <string name="permission_display_over_apps">授予在其他应用上层显示的权限</string>
@@ -475,28 +456,14 @@
     <string name="feed_use_dedicated_fetch_method_summary">仅在某些服务中可用，通常速度更快，但返回的视频数量可能有限，而且信息通常不完整（如无视频时长、类型，无直播状态）</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">启用快速模式</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">停用快速模式</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">您是否觉得 feed 加载太慢？如果是这样，请尝试启用快速加载（可在设置中修改，也可使用下面的按钮修改）
-\n
-\nNewPipe 提供两种 feed 加载策略:
-\n•获取整个订阅频道，很慢但是很完整。
-\n•使用专用的服务端点，比较快但通常不完整
-\n
-\n两者之间的区别在于，后者通常缺少一些信息，如视频的持续时间或类型（无法区分直播视频和普通视频），并且可能返回更少的视频条目。
-\n
-\nYouTube 是一个通过其 RSS feed 提供这种快速方法的服务示例。
-\n
-\n因此，选择哪种方式取决于您的偏好：加载速度还是信息准确。</string>
-    <string name="content_not_supported">NewPipe 尚不支持该内容。
-\n
-\n也许未来版本会支持它。</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">您是否觉得 feed 加载太慢？如果是这样，请尝试启用快速加载（可在设置中修改，也可使用下面的按钮修改） \n \nNewPipe 提供两种 feed 加载策略: \n•获取整个订阅频道，很慢但是很完整。 \n•使用专用的服务端点，比较快但通常不完整 \n \n两者之间的区别在于，后者通常缺少一些信息，如视频的持续时间或类型（无法区分直播视频和普通视频），并且可能返回更少的视频条目。 \n \nYouTube 是一个通过其 RSS feed 提供这种快速方法的服务示例。 \n \n因此，选择哪种方式取决于您的偏好：加载速度还是信息准确。</string>
+    <string name="content_not_supported">NewPipe 尚不支持该内容。 \n \n也许未来版本会支持它。</string>
     <string name="infinite_videos">∞ 部视频</string>
     <string name="more_than_100_videos">100+ 部视频</string>
     <string name="artists">艺术家</string>
     <string name="albums">专辑</string>
     <string name="songs">歌曲</string>
-    <string name="restricted_video">该视频有年龄限制!
-\n
-\n如果您想要观看，请在设置中启用“%1$s”。</string>
+    <string name="restricted_video">该视频有年龄限制! \n \n如果您想要观看，请在设置中启用“%1$s”。</string>
     <string name="video_detail_by">由 %s</string>
     <string name="channel_created_by">由 %s 创建</string>
     <string name="detail_sub_channel_thumbnail_view_description">频道的头像缩略图</string>
@@ -504,8 +471,8 @@
     <string name="remove_watched_popup_warning">已经看过且在之后被加入播放列表的视频将被删除。 \n您确定吗？</string>
     <string name="remove_watched_popup_title">移除看过的视频？</string>
     <string name="remove_watched">移除看过的视频</string>
-    <string name="show_original_time_ago_summary">来自服务的原始文本将在串流项目中可见</string>
-    <string name="show_original_time_ago_title">在项目上显示原始时间</string>
+    <string name="show_original_time_ago_summary">在串流项目中可以看到服务的原始文本</string>
+    <string name="show_original_time_ago_title">显示项目的原始距今时间</string>
     <string name="youtube_restricted_mode_enabled_title">启用 YouTube“受限模式”</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">仅显示未分组订阅</string>
     <string name="playlist_page_summary">播放列表页</string>
@@ -516,14 +483,14 @@
     <string name="copy_for_github">复制已整理的报告</string>
     <string name="search_showing_result_for">显示结果：%s</string>
     <string name="never">从不</string>
-    <string name="wifi_only">仅在 Wi-Fi 下</string>
+    <string name="wifi_only">仅 Wi-Fi 连接</string>
     <string name="autoplay_summary">自动开始播放 — %s</string>
     <string name="title_activity_play_queue">播放队列</string>
-    <string name="unsupported_url_dialog_message">无法识别此 URL。是否用其他应用打开\?</string>
+    <string name="unsupported_url_dialog_message">无法识别此 URL。是否用其他应用打开?</string>
     <string name="auto_queue_toggle">自动加入播放队列</string>
     <string name="clear_queue_confirmation_description">当前播放队列将被替换</string>
-    <string name="clear_queue_confirmation_summary">从一个播放器切换到另一个播放器后，你的播放队列可能会被替换</string>
-    <string name="clear_queue_confirmation_title">清空播放队列前再次确认</string>
+    <string name="clear_queue_confirmation_summary">从一个播放器切换到另一个播放器可能替换你的队列</string>
+    <string name="clear_queue_confirmation_title">清空队列前请求确认</string>
     <string name="notification_action_nothing">无</string>
     <string name="notification_action_buffering">正在缓冲</string>
     <string name="notification_action_shuffle">随机播放</string>
@@ -537,12 +504,12 @@
     <string name="notification_action_0_title">第一操作按钮</string>
     <string name="notification_scale_to_square_image_summary">将通知中视频缩略图的长宽比从 16:9 裁剪到 1:1</string>
     <string name="notification_scale_to_square_image_title">裁剪缩略图至 1:1 比例</string>
-    <string name="show_memory_leaks">显示内存泄漏</string>
+    <string name="show_memory_leaks">显示内存泄露</string>
     <string name="enqueued">已加入播放队列</string>
-    <string name="enqueue_stream">加入播放队列</string>
-    <string name="clear_cookie_summary">清空与本地存储的 reCAPTCHA 验证码有关的 cookie</string>
-    <string name="recaptcha_cookies_cleared">reCAPTCHA cookie 已被清空</string>
-    <string name="clear_cookie_title">清空 reCAPTCHA cookie</string>
+    <string name="enqueue_stream">加入队列</string>
+    <string name="clear_cookie_summary">清除 NewPipe 在你解决 reCAPTCHA 时存储的 cookies</string>
+    <string name="recaptcha_cookies_cleared">已清除 reCAPTCHA cookies</string>
+    <string name="clear_cookie_title">清除 reCAPTCHA cookies</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube提供了“受限模式”，可以隐藏潜在的成人内容</string>
     <string name="show_age_restricted_content_summary">展示有年龄限制的、可能不适合儿童观看的内容（比如 18+）</string>
     <string name="notification_colorize_summary">让 Android 系统根据视频缩略图的主色彩给通知着色（注意，该特性仅在部分设备上可用）</string>
@@ -562,26 +529,25 @@
     <string name="comments_tab_description">评论</string>
     <string name="show_description_summary">显示视频描述和其他信息</string>
     <string name="open_with">打开方式</string>
-    <string name="no_app_to_open_intent">设备上没有应用可以打开</string>
+    <string name="no_app_to_open_intent">设备上没有应用可以打开这个</string>
     <string name="crash_the_app">让应用崩溃</string>
     <string name="paid_content">此内容仅对已付费的用户可用，因此 NewPipe 无法流式传输或下载该内容。</string>
     <string name="youtube_music_premium_content">该视频仅供 YouTube Music Premium 会员使用，NewPipe 无法流式传输或下载该视频。</string>
     <string name="private_content">此内容是私有的，因此 NewPipe 无法流式传输或下载该内容。</string>
     <string name="soundcloud_go_plus_content">这是 SoundCloud Go +曲目，至少在你所在的国家/地区是这样，因此 NewPipe 无法流式传输或下载它。</string>
     <string name="georestricted_content">此内容在你所在的国家/地区不可用。</string>
-    <string name="restricted_video_no_stream">这个视频有年龄限制。
-\n由于 YouTube 针对此类视频的新政策，NewPipe 无法访问其任何视频流，因此无法播放该视频。</string>
+    <string name="restricted_video_no_stream">这个视频有年龄限制。 \n由于 YouTube 针对此类视频的新政策，NewPipe 无法访问其任何视频流，因此无法播放该视频。</string>
     <string name="recaptcha_solve">处理</string>
     <string name="radio">电台</string>
     <string name="featured">精选</string>
-    <string name="auto_device_theme_title">自动（系统主题）</string>
+    <string name="auto_device_theme_title">自动（设备主题）</string>
     <string name="download_has_started">下载已开始</string>
-    <string name="select_night_theme_toast">在此选择您最喜欢的夜间主题</string>
+    <string name="select_night_theme_toast">你可以在下面选择喜爱的夜晚主题</string>
     <string name="night_theme_summary">选择你最喜欢的夜间主题 — %s</string>
     <string name="night_theme_title">夜间主题</string>
     <string name="show_channel_details">显示频道详情</string>
-    <string name="disable_media_tunneling_summary">如果在视频播放中遇到黑屏或卡顿的情况，请停用媒体隧道。</string>
-    <string name="disable_media_tunneling_title">停用媒体隧道</string>
+    <string name="disable_media_tunneling_summary">如果遇到黑屏或视频播放卡顿，请禁用视频隧道。</string>
+    <string name="disable_media_tunneling_title">禁用媒体隧道</string>
     <string name="description_select_disable">停用简介中的文本选择功能</string>
     <string name="metadata_privacy_internal">内部</string>
     <string name="metadata_privacy_private">私享</string>
@@ -600,22 +566,20 @@
     <string name="open_website_license">打开网站</string>
     <string name="account_terminated">账号被终止</string>
     <string name="feed_load_error_fast_unknown">快速 Feed 模式不提供关于这个的更多信息。</string>
-    <string name="feed_load_error_terminated">作者账号已被终止。
-\nNewPipe 今后将无法加载此 Feed。
-\n你要退订此频道吗？</string>
+    <string name="feed_load_error_terminated">作者账号已被终止。 \nNewPipe 今后将无法加载此 Feed。 \n你要退订此频道吗？</string>
     <string name="feed_load_error_account_info">无法加载“%s”的 Feed。</string>
     <string name="feed_load_error">加载 Feed 时出错</string>
-    <string name="downloads_storage_use_saf_summary_api_29">仅 Android 10 及以上版本支持“存储访问框架”</string>
-    <string name="downloads_storage_ask_summary_no_saf_notice">你会被问到在哪里保存每个下载</string>
+    <string name="downloads_storage_use_saf_summary_api_29">从 Android 10 起只支持“存储访问框架”</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">会询问每个下载保存到哪里</string>
     <string name="no_dir_yet">尚未设置下载文件夹，现在选择默认下载文件夹</string>
     <string name="tablet_mode_title">平板模式</string>
-    <string name="off">关闭</string>
-    <string name="on">开启</string>
+    <string name="off">关</string>
+    <string name="on">开</string>
     <string name="comments_are_disabled">评论功能已停用</string>
     <string name="seekbar_preview_thumbnail_title">进度条缩略图预览</string>
     <string name="dont_show">不显示</string>
-    <string name="low_quality_smaller">低品质（较小）</string>
-    <string name="high_quality_larger">高品质（较大）</string>
+    <string name="low_quality_smaller">低画质（更小）</string>
+    <string name="high_quality_larger">高画质（更大）</string>
     <string name="detail_heart_img_view_description">被创作者喜爱</string>
     <string name="mark_as_watched">标记为已观看</string>
     <string name="remote_search_suggestions">远程搜索建议</string>
@@ -627,8 +591,8 @@
         <item quantity="other">完成了 %s 个下载</item>
     </plurals>
     <string name="main_page_content_swipe_remove">滑动即可删除项目</string>
-    <string name="start_main_player_fullscreen_summary">若自动旋转被锁定，不在以小窗播放器形式中播放视频，而直接切换到全屏模式。仍可以通过退出全屏以切换至小窗播放器</string>
-    <string name="start_main_player_fullscreen_title">以全屏启动主播放器</string>
+    <string name="start_main_player_fullscreen_summary">如果锁定了自动旋转，不要在迷你播放器中启动视频，而是直接转向全屏模式。你仍可通过退出全屏访问迷你播放器</string>
+    <string name="start_main_player_fullscreen_title">全屏启动主播放器</string>
     <string name="enqueued_next">已添加为下一个播放</string>
     <string name="enqueue_next_stream">下一个播放</string>
     <string name="processing_may_take_a_moment">处理中…可能需要一些时间</string>
@@ -637,17 +601,15 @@
     <string name="check_for_updates">检查更新</string>
     <string name="feed_new_items">新订阅源条目</string>
     <string name="show_crash_the_player_title">显示\"使播放器崩溃\"</string>
-    <string name="show_crash_the_player_summary">在使用播放器时显示一个崩溃选项</string>
+    <string name="show_crash_the_player_summary">使用播放器时显示崩溃选项</string>
     <string name="crash_the_player">使播放器崩溃</string>
     <string name="error_report_channel_name">错误报告通知</string>
     <string name="error_report_channel_description">提示报告错误的通知</string>
     <string name="error_report_notification_toast">发生错误，详见通知</string>
-    <string name="show_error_snackbar">显示错误警示SnackBar</string>
-    <string name="create_error_notification">创建一条错误通知</string>
-    <string name="no_appropriate_file_manager_message">找不到适合此操作的文件管理器。
-\n请安装一文件管理器或尝试在下载设置中禁用“%s”</string>
-    <string name="no_appropriate_file_manager_message_android_10">找不到适合此操作的文件管理器。
-\n请安装兼容存储访问框架(SAF)的文件管理器</string>
+    <string name="show_error_snackbar">显示错误提示栏</string>
+    <string name="create_error_notification">创建错误通知</string>
+    <string name="no_appropriate_file_manager_message">找不到适合此操作的文件管理器。 \n请安装一文件管理器或尝试在下载设置中禁用“%s”</string>
+    <string name="no_appropriate_file_manager_message_android_10">找不到适合此操作的文件管理器。 \n请安装兼容存储访问框架（SAF）的文件管理器</string>
     <string name="error_report_notification_title">NewPipe 遇到了一个错误，点击此处报告此错误</string>
     <string name="detail_pinned_comment_view_description">置顶评论</string>
     <string name="leak_canary_not_available">LeakCanary 不可用</string>
@@ -668,7 +630,7 @@
     </plurals>
     <string name="streams_notification_channel_description">被订阅的新串流的通知</string>
     <string name="loading_stream_details">正在加载串流详情…</string>
-    <string name="check_new_streams">检查新串流</string>
+    <string name="check_new_streams">运行新串流检查</string>
     <string name="any_network">任何网络</string>
     <string name="delete_downloaded_files_confirm">清除所有下载的文件？</string>
     <string name="get_notified">获取通知</string>
@@ -682,7 +644,7 @@
     <string name="no_video_streams_available_for_external_players">没有视频流可用于外部播放器</string>
     <string name="streams_not_yet_supported_removed">不显示下载器尚不支持的串流</string>
     <string name="unknown_quality">未知画质</string>
-    <string name="progressive_load_interval_title">播放加载间隔大小</string>
+    <string name="progressive_load_interval_title">播放加载间隔时长</string>
     <string name="faq_title">常见问题</string>
     <string name="faq_description">如果你在使用本应用时遇到问题，请务必查看这些常见问题的答案！</string>
     <string name="faq">在网站上查看</string>
@@ -697,7 +659,7 @@
     <string name="msg_failed_to_copy">无法复制到剪贴板</string>
     <string name="duplicate_in_playlist">变灰的播放列表已经包含此项目。</string>
     <string name="playlist_add_stream_success_duplicate">重复添加了 %d 次</string>
-    <string name="ignore_hardware_media_buttons_summary">如果你在使用一副物理按钮坏掉的耳机，该选项应该会有帮助</string>
+    <string name="ignore_hardware_media_buttons_summary">在用物理按键坏掉的耳机等情况下有用</string>
     <string name="ignore_hardware_media_buttons_title">忽略硬件媒体按钮事件</string>
     <string name="remove_duplicates_title">删除重复吗？</string>
     <string name="remove_duplicates_message">你想删除这个播放列表中所有重复项吗？</string>
@@ -709,36 +671,34 @@
     <string name="remove_duplicates">删除重复</string>
     <string name="brightness">亮度</string>
     <string name="volume">音量</string>
-    <string name="right_gesture_control_title">右半边手势动作</string>
-    <string name="left_gesture_control_title">左半边手势动作</string>
+    <string name="right_gesture_control_title">右半边手势操作</string>
+    <string name="left_gesture_control_title">左半边手势操作</string>
     <string name="left_gesture_control_summary">选择播放器屏幕左半边手势</string>
     <string name="right_gesture_control_summary">选择播放器屏幕右半边手势</string>
     <string name="none">无</string>
     <string name="progressive_load_interval_summary">更改渐进式内容的加载间隔大小（当前为 %s）。较低的值可加快初始加载</string>
-    <string name="prefer_descriptive_audio_title">偏好描述性音频</string>
-    <string name="prefer_descriptive_audio_summary">如果可用，为视障人群选择带描述的音轨</string>
+    <string name="prefer_descriptive_audio_title">首选描述性视频</string>
+    <string name="prefer_descriptive_audio_summary">如可用，为视频障碍人士选择带描述信息的音轨</string>
     <string name="play_queue_audio_track">音频：%s</string>
     <string name="audio_track_present_in_video">此串流中应该已经有音轨</string>
     <string name="select_audio_track_external_players">选择外部播放器音轨</string>
     <string name="unknown_audio_track">未知</string>
-    <string name="settings_category_exoplayer_summary">管理一些 ExoPlayer 设置。这些更改需要重启播放器才能生效</string>
-    <string name="use_exoplayer_decoder_fallback_title">使用 ExoPlayer 的编码器回退功能</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_title">始终使用 ExoPlayer 的视频输出界面设置变通方法</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_summary">此变通方法在发生界面更改时会释放并重新初始化视频编解码器，而不是直接将编解码器设置到新界面。在某些有这个问题的设备上，Exoplayer 已经在使用这个方法。此设置仅适用于 Android 6 及更高的系统版本
-\n
-\n启用此选项可防止切换当前视频播放器或切换到全屏播放时出现播放错误</string>
+    <string name="settings_category_exoplayer_summary">管理一些 ExoPlayer 设置。这些更爱需要重启播放器才能生效</string>
+    <string name="use_exoplayer_decoder_fallback_title">使用 ExoPlayer 的解码器回退特性</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">始终使用 ExoPlayer 的视频输出操作台设置变通解决方法</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">这个变通解决办法在发生操作台变化时释放并重新初始化视频编解码器，而不是直接将操作台设为编解码器。ExoPlayer 已经在一些有这个问题的设备上使用该方法，该设置仅在 Android 6 及更高版本上有效。\n\n启用该选项可在切换当前视频播放器或切换至全屏时防止播放错误</string>
     <string name="audio_track_type_original">原始</string>
     <string name="audio_track_type_dubbed">配音</string>
     <string name="audio_track_type_descriptive">描述</string>
-    <string name="prefer_original_audio_title">偏好原始音频</string>
-    <string name="prefer_original_audio_summary">不管何种语言都选择原始音轨</string>
+    <string name="prefer_original_audio_title">首选原始音频</string>
+    <string name="prefer_original_audio_summary">不论何种语言都选择原始音轨</string>
     <string name="audio_track">音轨</string>
     <string name="settings_category_exoplayer_title">ExoPlayer 设置</string>
-    <string name="use_exoplayer_decoder_fallback_summary">如遇解码器初始化方面的问题可开启此选项。启用后，如主解码器初始化失败，ExoPlayer 将使用较低优先级的解码器进行播放。请注意，这可能导致播放性能下降</string>
-    <string name="main_tabs_position_summary">将主标签页选择器移到底部</string>
-    <string name="main_tabs_position_title">主标签页位置</string>
+    <string name="use_exoplayer_decoder_fallback_summary">如果有解码器初始化问题请启用该选项，启用后如果主解码器初始化失败会让播放器退回到较低优先级的解码器。这可能导致播放性能比使用主解码器时要差</string>
+    <string name="main_tabs_position_summary">将主选项卡选择器移至底部</string>
+    <string name="main_tabs_position_title">主选项卡位置</string>
     <string name="audio_track_name">%1$s %2$s</string>
-    <string name="disable_media_tunneling_automatic_info">媒体隧道功能在你的设备上默认停用，因为已知你的设备型号不支持它。</string>
+    <string name="disable_media_tunneling_automatic_info">媒体隧道在你的设备上默认禁用，因为已知你的设备型号不支持它。</string>
     <string name="no_live_streams">无直播</string>
     <string name="no_streams">无音视频流</string>
     <string name="channel_tab_videos">视频</string>
@@ -780,8 +740,7 @@
     <string name="metadata_thumbnails">缩略图</string>
     <string name="share_playlist_with_list">只包含视频网址</string>
     <string name="share_playlist_with_titles">分享时带视频标题</string>
-    <string name="share_playlist_content_details">%1$s
-\n%2$s</string>
+    <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="share_playlist">分享播放列表</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <plurals name="replies">
@@ -794,12 +753,9 @@
     <string name="settings_category_backup_restore_title">备份和恢复</string>
     <string name="reset_settings_title">重置设置</string>
     <string name="reset_settings_summary">将所有设置重置为默认值</string>
-    <string name="reset_all_settings">重置所有设置会取消你所有的偏好设置并重启应用。
-\n
-\n你确定想要继续吗？</string>
+    <string name="reset_all_settings">重置所有设置会取消你所有的偏好设置并重启应用。 \n \n你确定想要继续吗？</string>
     <string name="no">否</string>
-    <string name="auto_update_check_description">NewPipe 可以自动时不时地检查新版本并在新版本可用时通知你。
-\n你想开启该功能吗？</string>
+    <string name="auto_update_check_description">NewPipe 可以自动时不时地检查新版本并在新版本可用时通知你。 \n你想开启该功能吗？</string>
     <string name="yes">是</string>
     <string name="import_settings_vulnerable_format">正导入的导出文件中的设置使用了有漏洞的格式，该格式已从 NewPipe 0.27.0 版本起被弃用。请确保导入的导出文件来自可信来源，今后最好只使用从 NewPipe 0.27.0 或更新版本获取的导出文件。不久后将完全不支持导入这一有漏洞格式的设置，到时旧版 NewPipe 再不能导入来自新版应用的设置导出文件。</string>
     <string name="audio_track_type_secondary">第二</string>
@@ -833,7 +789,6 @@
     <string name="youtube_player_http_403">播放时从服务器收到 HTTP 403 错误，可能因 IP 封锁或串流 URL 解密问题导致</string>
     <string name="sign_in_confirm_not_bot_error">%1$s 拒绝提供数据， 要求登录确认请求方不是机器人。\n\n你的 IP 可能已经暂时被 %1$s 封禁，你可以等待一段时间或切换到不同 IP （比如开/关 VPN, 或者从 WiFi 连接切换到移动数据）。\n\n请见 <a href="%2$s">此 FAQ条目</a> 获取更多信息。</string>
     <string name="unsupported_content_in_country">此内容对当前选中的内容地区不可用。\n\n要更改选择，请前往 “设置 &gt; 内容 &gt; 默认内容地区”。</string>
-    <string name="kao_dialog_warning">2025 年 8 月，Google 宣布自 2026 年 9 月起，在已认证设备上安装所有安卓应用都需要开发者验证身份，包括在 Play 商店之外安装的应用。由于 NewPipe 开发者反对此要求，NewPipe 在此时间点后不会再在已认证设备上工作。</string>
     <string name="kao_dialog_more_info">详情</string>
     <string name="kao_solution">解决方案</string>
     <plurals name="export_subscriptions">
@@ -853,4 +808,7 @@
     <string name="api23_requirement_dialog_title">NewPipe 正放弃对 Android 5 的支持</string>
     <string name="api23_requirement_dialog_message">NewPipe 依赖几个已经不支持 Android 5 和 5.1 的库文件。下个 NewPipe 版本因此会只在 Android 6 或更高版本上工作。阅读博客文章了解更多信息。</string>
     <string name="api23_requirement_dialog_blogpost">博客文章</string>
+    <string name="channel_tab_podcasts">播客</string>
+    <string name="channel_tab_courses">课程</string>
+    <string name="kao_dialog_warning">Google 已经开始在巴西、印尼、新加坡和泰国强制实施一项新的安卓开发者验证要求，该要求增加了安装 NewPipe 的难度；这项要求计划 2027 年在全球推出。\n\n除非该要求出现变化，否则不久将来在特定安卓设备上安装本应用可能变得更加困难或根本不可能。</string>
 </resources>

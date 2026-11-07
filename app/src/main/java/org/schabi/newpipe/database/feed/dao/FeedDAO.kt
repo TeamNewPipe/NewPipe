@@ -1,11 +1,13 @@
 package org.schabi.newpipe.database.feed.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import androidx.room.Transaction
-import androidx.room.Update
+import androidx.room3.Dao
+import androidx.room3.DaoReturnTypeConverters
+import androidx.room3.Insert
+import androidx.room3.OnConflictStrategy
+import androidx.room3.Query
+import androidx.room3.Transaction
+import androidx.room3.Update
+import androidx.room3.rxjava3.RxDaoReturnTypeConverters
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Maybe
 import java.time.OffsetDateTime
@@ -18,6 +20,7 @@ import org.schabi.newpipe.database.subscription.NotificationMode
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
 
 @Dao
+@DaoReturnTypeConverters(RxDaoReturnTypeConverters::class)
 abstract class FeedDAO {
     @Query("DELETE FROM feed")
     abstract fun deleteAll(): Int
@@ -27,6 +30,10 @@ abstract class FeedDAO {
      *                         [FeedGroupEntity.GROUP_ALL_ID] to not filter by group
      * @param includePlayed    if false, only return all of the live, never-played or non-finished
      *                         feed streams (see `@see` items); if true no filter is applied
+     * @param includePartiallyPlayed if false, exclude streams that have been partially
+     *                         played, keeping only never-played streams or streams whose
+     *                         playback position is within the start/end playback thresholds;
+     *                         if true, no partial-playback filter is applied
      * @param uploadDateBefore get only streams uploaded before this date (useful to filter out
      *                         future streams); use null to not filter by upload date
      * @return the feed streams filtered according to the conditions provided in the parameters

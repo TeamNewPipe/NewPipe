@@ -6,9 +6,9 @@
 
 package org.schabi.newpipe.database.stream
 
-import androidx.room.ColumnInfo
-import androidx.room.Embedded
-import androidx.room.Ignore
+import androidx.room3.ColumnInfo
+import androidx.room3.Embedded
+import androidx.room3.Ignore
 import java.time.OffsetDateTime
 import org.schabi.newpipe.database.LocalItem
 import org.schabi.newpipe.database.history.model.StreamHistoryEntity

@@ -154,12 +154,12 @@
     <string name="updates_setting_description">Monstrar un notification pro requestar le actualisation del application quando un nove version es disponibile</string>
     <string name="updates_setting_title">Actualisationes</string>
     <string name="open_in_popup_mode">Aperir in modo emergente</string>
-    <string name="confirm_prompt">Esque tu vole vacuar le chronologia de discargamentos o deler omne files discargate\?</string>
+    <string name="confirm_prompt">Esque tu vole vacuar le chronologia de discargamentos o deler omne files discargate?</string>
     <string name="clear_download_history">Vacuar le chronologia de discargamentos</string>
-    <string name="delete_item_search_history">Esque tu vole deler iste articulo del chronologia de cerca\?</string>
+    <string name="delete_item_search_history">Esque tu vole deler iste articulo del chronologia de cerca?</string>
     <string name="title_activity_history">Chronologia</string>
     <string name="clear_search_history_summary">Dele le chronologia de parolas clave de cerca</string>
-    <string name="delete_search_history_alert">Deler omne chronologia de cerca\?</string>
+    <string name="delete_search_history_alert">Deler omne chronologia de cerca?</string>
     <string name="search_history_deleted">Chronologia de recerca delite</string>
     <string name="export_data_summary">Exportar le chronologia, subscriptiones, listas de reproduction e configurationes</string>
     <string name="import_data_summary">Reimplaciar tu chronologia, subscriptiones e (optionalmente) configurationes currente</string>
@@ -173,7 +173,7 @@
     </plurals>
     <string name="no_one_watching">Nemo is observante</string>
     <string name="watch_history_deleted">Chronologia de reproductiones vacuate</string>
-    <string name="delete_view_history_alert">Deler omne chronologia de reproductiones\?</string>
+    <string name="delete_view_history_alert">Deler omne chronologia de reproductiones?</string>
     <string name="error_snackbar_message">Pardono, qualcosa vadeva incorrecte.</string>
     <string name="sorry_string">Pardono, illo non deberea haber ocurrite.</string>
     <string name="clear_playback_states_title">Deler le positiones de reproduction</string>
@@ -205,16 +205,16 @@
     <string name="error_snackbar_action">Reportar</string>
     <string name="error_report_open_issue_button_text">Reportar in GitHub</string>
     <string name="permission_display_over_apps">Permitter monstrar supra altere applicationes</string>
-    <string name="restore_defaults_confirmation">Esque tu vole reinitialisar le valores predefinite\?</string>
+    <string name="restore_defaults_confirmation">Esque tu vole reinitialisar le valores predefinite?</string>
     <string name="restore_defaults">Reinitialisar le valores predefinite</string>
     <string name="no_streams_available_download">Nulle fluxos disponibile pro discargar</string>
     <string name="error_occurred_detail">Ocurreva un error: %1$s</string>
     <string name="missing_file">File displaciate o delite</string>
     <string name="app_ui_crash">Falleva le interfacie del application</string>
-    <string name="download_to_sdcard_error_message">Le discarga al carta SD non es possibile. Reinitialisar le location del dossier de discargas\?</string>
+    <string name="download_to_sdcard_error_message">Le discarga al carta SD non es possibile. Reinitialisar le location del dossier de discargas?</string>
     <string name="download_to_sdcard_error_title">Immagazinage externe non disponibile</string>
     <string name="general_error">Error</string>
-    <string name="delete_playback_states_alert">Esque tu vole deler tote le positiones de reproduction\?</string>
+    <string name="delete_playback_states_alert">Esque tu vole deler tote le positiones de reproduction?</string>
     <string name="clear_playback_states_summary">Dele tote le positiones de reproduction</string>
     <string name="use_inexact_seek_title">Usar le recerca rapide e inexacte</string>
     <string name="night_theme_title">Thema nocturne</string>

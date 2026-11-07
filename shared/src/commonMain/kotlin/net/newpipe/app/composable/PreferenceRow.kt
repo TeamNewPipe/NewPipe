@@ -11,6 +11,7 @@ import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewWrapper
@@ -21,6 +22,8 @@ import newpipe.shared.generated.resources.settings_category_video_audio_title
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
+private const val DISABLED_ALPHA = 0.38f
+
 /**
  * A row that mirrors the standard AndroidX preference item
  *
@@ -28,6 +31,7 @@ import org.jetbrains.compose.resources.stringResource
  * @param modifier Modifier applied to the row
  * @param icon Leading icon painter; null hides the leading slot
  * @param summary Optional secondary line under the title
+ * @param enabled Whether the row can be clicked
  * @param onClick Action executed when the row is tapped
  */
 @Composable
@@ -36,10 +40,13 @@ fun PreferenceRow(
     modifier: Modifier = Modifier,
     icon: Painter? = null,
     summary: String? = null,
+    enabled: Boolean = true,
     onClick: () -> Unit = {}
 ) {
     ListItem(
-        modifier = modifier.clickable(onClick = onClick),
+        modifier = modifier
+            .alpha(if (enabled) 1f else DISABLED_ALPHA)
+            .clickable(enabled = enabled, onClick = onClick),
         headlineContent = { Text(text = title) },
         supportingContent = summary?.let { text -> { Text(text = text) } },
         leadingContent = icon?.let { painter ->

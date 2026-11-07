@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="upload_date_text">Objavljeno %1$s</string>
-    <string name="no_player_found">Predvajalnika pretoka ni mogoče najti. Želite namestiti program VLC\?</string>
+    <string name="no_player_found">Predvajalnika pretoka ni mogoče najti. Želite namestiti program VLC?</string>
     <string name="install">Namesti</string>
     <string name="cancel">Prekliči</string>
     <string name="open_in_browser">Odpri v brskalniku</string>
@@ -9,7 +9,7 @@
     <string name="download">Prejmi</string>
     <string name="search">Iskanje</string>
     <string name="settings">Nastavitve</string>
-    <string name="did_you_mean">Ali ste mislili \"%1$s\"\?</string>
+    <string name="did_you_mean">Ali ste mislili \"%1$s\"?</string>
     <string name="share_dialog_title">Omogoči souporabo z</string>
     <string name="use_external_video_player_title">Uporabi zunanji predvajalnik videa</string>
     <string name="use_external_audio_player_title">Uporabi zunanji predvajalnik zvoka</string>
@@ -18,7 +18,7 @@
     <string name="download_path_dialog_title">Izberite mapo za prenos video datotek</string>
     <string name="default_resolution_title">Privzeta ločljivost</string>
     <string name="play_with_kodi_title">Predvajaj s Kodi</string>
-    <string name="kore_not_found">Ali želite namestiti manjkajoči program Kore\?</string>
+    <string name="kore_not_found">Ali želite namestiti manjkajoči program Kore?</string>
     <string name="show_play_with_kodi_title">Pokaži možnost \"Predvajaj s Kodi\"</string>
     <string name="default_audio_format_title">Privzet zapis zvoka</string>
     <string name="play_audio">Zvok</string>
@@ -84,8 +84,7 @@
     <string name="black_theme_title">Črna</string>
     <string name="all">Vse</string>
     <string name="open_in_popup_mode">Odpri v pojavnem načinu</string>
-    <string name="msg_popup_permission">To dovoljenje je potrebno za odpiranje 
-\nv pojavnem načinu</string>
+    <string name="msg_popup_permission">To dovoljenje je potrebno za odpiranje \nv pojavnem načinu</string>
     <string name="popup_playing_toast">Predvajanje v pojavnem načinu</string>
     <string name="disabled">Onemogočeno</string>
     <string name="default_video_format_title">Prednostni zapis video datoteke</string>
@@ -204,7 +203,7 @@
     <string name="pause_downloads_on_mobile_desc">Uporabno ko preklopite na mobilne podatke, četudi nekateri prenosi ne morejo biti začasno ustavljeni</string>
     <string name="max_retry_desc">Največje število poskusov pred preklicom prenosa</string>
     <string name="delete_downloaded_files">Izbriši prenesene datoteke</string>
-    <string name="confirm_prompt">Želite počistiti zgodovino prenosov ali izbrisati vse prenose\?</string>
+    <string name="confirm_prompt">Želite počistiti zgodovino prenosov ali izbrisati vse prenose?</string>
     <string name="clear_download_history">Počisti zgodovino prenosa</string>
     <string name="error_download_resource_gone">Ni mogoče povrniti prenos</string>
     <string name="error_progress_lost">Napredek je izgubljen, ker je bila datoteka izbrisana</string>
@@ -238,7 +237,7 @@
     <string name="resize_zoom">Povečaj</string>
     <string name="resize_fill">Napolni</string>
     <string name="playlist_creation_success">Seznam predvajanja je bil ustvarjen</string>
-    <string name="delete_playlist_prompt">Izbrišem seznam predvajanja\?</string>
+    <string name="delete_playlist_prompt">Izbrišem seznam predvajanja?</string>
     <string name="add_to_playlist">Dodaj v seznam predvajanja</string>
     <string name="rename_playlist">Preimenuj</string>
     <string name="create_playlist">Nov seznam predvajanja</string>
@@ -267,9 +266,9 @@
     <string name="error_occurred_detail">Zgodila se je napaka: %1$s</string>
     <string name="invalid_directory">Ni take mape</string>
     <string name="missing_file">Datoteka premaknjena ali izbrisana</string>
-    <string name="download_to_sdcard_error_message">Prenašanje na zunanjo SD kartico ni mogoče. Resetiram lokacijo mape z prenosi\?</string>
+    <string name="download_to_sdcard_error_message">Prenašanje na zunanjo SD kartico ni mogoče. Resetiram lokacijo mape z prenosi?</string>
     <string name="watch_history_deleted">Zgodovina gledanja izbrisana</string>
-    <string name="delete_view_history_alert">Izbrišem vso zgodovino gledanja\?</string>
+    <string name="delete_view_history_alert">Izbrišem vso zgodovino gledanja?</string>
     <string name="clear_views_history_title">Izbriši zgodovino gledanja</string>
     <string name="export_data_summary">Izvozi zgodovino, naročnine, sezname predvajanj in nastavitve</string>
     <string name="app_update_notification_channel_name">Obvestila posodobitve aplikacije</string>
@@ -291,9 +290,9 @@
     <string name="unsubscribe">Odjava</string>
     <string name="no_player_found_toast">Predvajalnika pretoka ni mogoče najti (namestite lahko VLC program za predvajanje).</string>
     <string name="background_player">Predvajalnik v ozadju</string>
-    <string name="import_settings">Želite uvoziti tudi nastavite\?</string>
+    <string name="import_settings">Želite uvoziti tudi nastavite?</string>
     <string name="search_history_deleted">Zgodovina iskanja izbrisana</string>
-    <string name="delete_search_history_alert">Izbrišem vso zgodovino brskanja\?</string>
+    <string name="delete_search_history_alert">Izbrišem vso zgodovino brskanja?</string>
     <string name="clear_search_history_title">Izbriši zgodovino brskanja</string>
     <string name="clear_cookie_summary">Izbriši piškotke, ki jih NewPipe shrani, ko rešite reCAPTCHA</string>
     <string name="clear_cookie_title">Izbrišite piškodke reCAPTCHA</string>
@@ -351,8 +350,7 @@
     <string name="could_not_import_all_files">Opozorilo: ni mogoče uvoziti vseh datotek.</string>
     <string name="select_a_playlist">Izberi seznam predvajanja</string>
     <string name="app_license">NewPipe je prosta in odprta programska oprema: lahko jo uporabljaš, preučuješ in izboljšaš po želji. Lahko jo distributiraš in/ali spremeniš pod pogoji GNU General Public Licence, kot jo je izdala Free Software Foundation v različici 3 ali po izbiri v katerikoli novejši različici.</string>
-    <string name="privacy_policy_encouragement">Projekt NewPipe jemlje vašo zasebnost zelo resno. Aplikacija zato ne zbira kakršnih koli podatkov brez vašega dovoljenja.
-\nPolitika zasebnosti NewPipe-a podrobno pojasnjuje, kateri podatki so poslani in shranjeni, ko pošljete poročilo o zrušitvi.</string>
+    <string name="privacy_policy_encouragement">Projekt NewPipe jemlje vašo zasebnost zelo resno. Aplikacija zato ne zbira kakršnih koli podatkov brez vašega dovoljenja. \nPolitika zasebnosti NewPipe-a podrobno pojasnjuje, kateri podatki so poslani in shranjeni, ko pošljete poročilo o zrušitvi.</string>
     <string name="give_back">Pomagaj</string>
     <string name="donation_encouragement">NewPipe razvijajo prostovoljci, ki preživljajo svoj prosti čas, da vam prinašajo najboljšo uporabniško izkušnjo. Pomagajte razvijalcem pri izdelavi še boljšega NewPipe-a medtem ko uživajo skodelico kave.</string>
     <string name="subtitle_activity_recaptcha">Pritisni \"končano\" ko je rešena</string>
@@ -382,7 +380,7 @@
     <string name="error_report_open_issue_button_text">Prijavite na GitHub-u</string>
     <string name="copy_for_github">Kopiraj oblikovano poročilo</string>
     <string name="permission_display_over_apps">Odobrite dovoljenje, da se ta aplikacija prikaže pred drugimi aplikacijami</string>
-    <string name="restore_defaults_confirmation">Ali želite obnoviti privzete vrednosti\?</string>
+    <string name="restore_defaults_confirmation">Ali želite obnoviti privzete vrednosti?</string>
     <string name="restore_defaults">Povrni privzeto</string>
     <string name="no_streams_available_download">Nobeden pretok ni na voljo za prenos</string>
     <string name="file_name_empty_error">Ime datoteke ne sme biti prazno</string>
@@ -394,7 +392,7 @@
     <string name="download_to_sdcard_error_title">Zunanja shramba ni na voljo</string>
     <string name="clear_search_history_summary">Izbriše zgodovino ključnih besed za iskanje</string>
     <string name="watch_history_states_deleted">Položaji predvajalnika so bili izbrisani</string>
-    <string name="delete_playback_states_alert">Ali želite izbrisati vse položaje predvajalnika\?</string>
+    <string name="delete_playback_states_alert">Ali želite izbrisati vse položaje predvajalnika?</string>
     <string name="clear_playback_states_summary">Izbriše vse položaje predvajalnika</string>
     <string name="clear_playback_states_title">Izbriši položaje predvajalnika</string>
     <string name="clear_views_history_summary">Izbriše zgodovino predvajanih videoposnetkov in položajev predvajalnika</string>
@@ -409,9 +407,7 @@
     <string name="events">Dogodki</string>
     <string name="tracks">Posnetki</string>
     <string name="videos_string">Videoposnetki</string>
-    <string name="restricted_video">Ta video ima omejitev starosti.
-\n
-\nVklopite \"%1$s\" v nastavitvah, če ga želite predvajati.</string>
+    <string name="restricted_video">Ta video ima omejitev starosti. \n \nVklopite \"%1$s\" v nastavitvah, če ga želite predvajati.</string>
     <string name="youtube_restricted_mode_enabled_summary">Youtube ponuja \"omejeni način\", ki skrije potencialno vsebino za odrasle</string>
     <string name="youtube_restricted_mode_enabled_title">Vklop YouTubovega \"omejenega načina\"</string>
     <string name="show_age_restricted_content_summary">Prikaz vsebin, ki so morda neprimerne za otroke zaradi omejitve starosti (kot na primer 18+)</string>
@@ -423,7 +419,7 @@
     <string name="peertube_instance_url_summary">Izberite vaše najljubše instance PeerTuba</string>
     <string name="peertube_instance_url_title">Instance PeerTube</string>
     <string name="default_content_country_title">Privzeta država vsebine</string>
-    <string name="unsupported_url_dialog_message">URL-ja ni bilo mogoče prepoznati. Želite odpreti z drugo aplikacijo\?</string>
+    <string name="unsupported_url_dialog_message">URL-ja ni bilo mogoče prepoznati. Želite odpreti z drugo aplikacijo?</string>
     <string name="show_hold_to_append_summary">Pokaži nasvet, ko boste pritisnili na ozadje ali pojavno okno v \"Podrobnosti:\"</string>
     <string name="autoplay_title">Samodejno predvajanje</string>
     <string name="enable_playback_state_lists_summary">Pokaži indikator položaja predvajalnika na seznamih</string>

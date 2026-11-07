@@ -7,24 +7,10 @@
     <string name="playback_pitch">പിച്ച്</string>
     <string name="playback_tempo">ടെംപോ</string>
     <string name="playback_speed_control">പ്ലേബാക്ക് വേഗത നിയന്ത്രണങ്ങൾ</string>
-    <string name="import_network_expensive_warning">ഈ പ്രവർത്തനം നെറ്റ്‌വർക്ക് ചെലവേറിയതായിരിക്കുമെന്ന് ഓർമ്മിക്കുക.
-\n
-\nനിങ്ങൾ തുടരാൻ ആഗ്രഹിക്കുന്നുവോ\?</string>
+    <string name="import_network_expensive_warning">ഈ പ്രവർത്തനം നെറ്റ്‌വർക്ക് ചെലവേറിയതായിരിക്കുമെന്ന് ഓർമ്മിക്കുക. \n \nനിങ്ങൾ തുടരാൻ ആഗ്രഹിക്കുന്നുവോ?</string>
     <string name="import_soundcloud_instructions_hint">താങ്കളുടെ ID: yourID, soundcloud.com/yourid</string>
-    <string name="import_soundcloud_instructions">URL അല്ലെങ്കിൽ നിങ്ങളുടെ ഐഡി ടൈപ്പുചെയ്തുകൊണ്ട് ഒരു സൗണ്ട്ക്ലൗഡ് പ്രൊഫൈൽ ഇമ്പോർട്ടുചെയ്യുക:
-\n
-\n1. ഒരു വെബ് ബ്രൗസറിൽ \"ഡെസ്ക്ടോപ്പ് മോഡ്\" പ്രാപ്തമാക്കുക (മൊബൈൽ ഉപകരണങ്ങൾക്കായി സൈറ്റ് ലഭ്യമല്ല)
-\n2. ഈ URL- ലേക്ക് പോകുക: %1$s
-\n3. ആവശ്യപ്പെടുമ്പോൾ ലോഗിൻ ചെയ്യുക
-\n4. നിങ്ങളെ റീഡയറക്‌ടുചെയ്‌ത പ്രൊഫൈൽ URL പകർത്തുക.</string>
-    <string name="import_youtube_instructions">ഗൂഗിൾ ടേക്ക് ഔട്ടിൽ നിന്ന് യൂട്യൂബ് സബ്‌സ്‌ക്രിപ്‌ഷനുകൾ ഇമ്പോർട്ടുചെയ്യുക:
-\n
-\n1. ഈ URL ലേക്ക് പോകുക: %1$s
-\n2. ആവശ്യപ്പെടുമ്പോൾ ലോഗിൻ ചെയ്യുക
-\n3. \"All data included\" ക്ലിക്കുചെയ്യുക, തുടർന്ന് \"Deselect all\" എന്നതിൽ ക്ലിക്കുചെയ്യുക, തുടർന്ന് \"subscriptions\" മാത്രം തിരഞ്ഞെടുത്ത് \"OK\" ക്ലിക്കുചെയ്യുക.
-\n4. \"Next Export\" ക്ലിക്കുചെയ്യുക, തുടർന്ന് \"Create Export\" ക്ലിക്കുചെയ്യുക
-\n5. \"Download\" ബട്ടൺ പ്രത്യക്ഷപ്പെട്ടതിനുശേഷം അതിൽ ക്ലിക്കുചെയ്യുക
-\n6. ഡൗൺ‌ലോഡുചെയ്‌ത ടേക്ക്ഔട്ട് സിപ്പിൽ നിന്ന് .json ഫയൽ എക്‌സ്‌ട്രാക്റ്റുചെയ്യുക (സാധാരണയായി \"YouTube, YouTube Music / subscription / subscription.json\" ന് കീഴിൽ) അത് ഇവിടെ ഇറക്കുമതി ചെയ്യുക.</string>
+    <string name="import_soundcloud_instructions">URL അല്ലെങ്കിൽ നിങ്ങളുടെ ഐഡി ടൈപ്പുചെയ്തുകൊണ്ട് ഒരു സൗണ്ട്ക്ലൗഡ് പ്രൊഫൈൽ ഇമ്പോർട്ടുചെയ്യുക: \n \n1. ഒരു വെബ് ബ്രൗസറിൽ \"ഡെസ്ക്ടോപ്പ് മോഡ്\" പ്രാപ്തമാക്കുക (മൊബൈൽ ഉപകരണങ്ങൾക്കായി സൈറ്റ് ലഭ്യമല്ല) \n2. ഈ URL- ലേക്ക് പോകുക: %1$s \n3. ആവശ്യപ്പെടുമ്പോൾ ലോഗിൻ ചെയ്യുക \n4. നിങ്ങളെ റീഡയറക്‌ടുചെയ്‌ത പ്രൊഫൈൽ URL പകർത്തുക.</string>
+    <string name="import_youtube_instructions">ഗൂഗിൾ ടേക്ക് ഔട്ടിൽ നിന്ന് യൂട്യൂബ് സബ്‌സ്‌ക്രിപ്‌ഷനുകൾ ഇമ്പോർട്ടുചെയ്യുക: \n \n1. ഈ URL ലേക്ക് പോകുക: %1$s \n2. ആവശ്യപ്പെടുമ്പോൾ ലോഗിൻ ചെയ്യുക \n3. \"All data included\" ക്ലിക്കുചെയ്യുക, തുടർന്ന് \"Deselect all\" എന്നതിൽ ക്ലിക്കുചെയ്യുക, തുടർന്ന് \"subscriptions\" മാത്രം തിരഞ്ഞെടുത്ത് \"OK\" ക്ലിക്കുചെയ്യുക. \n4. \"Next Export\" ക്ലിക്കുചെയ്യുക, തുടർന്ന് \"Create Export\" ക്ലിക്കുചെയ്യുക \n5. \"Download\" ബട്ടൺ പ്രത്യക്ഷപ്പെട്ടതിനുശേഷം അതിൽ ക്ലിക്കുചെയ്യുക \n6. ഡൗൺ‌ലോഡുചെയ്‌ത ടേക്ക്ഔട്ട് സിപ്പിൽ നിന്ന് .json ഫയൽ എക്‌സ്‌ട്രാക്റ്റുചെയ്യുക (സാധാരണയായി \"YouTube, YouTube Music / subscription / subscription.json\" ന് കീഴിൽ) അത് ഇവിടെ ഇറക്കുമതി ചെയ്യുക.</string>
     <string name="subscriptions_export_unsuccessful">സബ്‌സ്‌ക്രിപ്‌ഷനുകൾ എക്‌സ്‌പോർട്ടുചെയ്യാനായില്ല</string>
     <string name="subscriptions_import_unsuccessful">സബ്‌സ്‌ക്രിപ്‌ഷനുകൾ ഇറക്കുമതി ചെയ്യാൻ കഴിഞ്ഞില്ല</string>
     <string name="previous_export">മുമ്പത്തെ എക്സ്പോർട്ട്</string>
@@ -48,7 +34,7 @@
     <string name="playlist_thumbnail_change_success">പ്ലേലിസ്റ്റ് ലഘുചിത്രം മാറ്റി.</string>
     <string name="playlist_add_stream_success">പ്ലേലിസ്റ്റ് ചെയ്തു</string>
     <string name="playlist_creation_success">പ്ലേലിസ്റ്റ് സൃഷ്‌ടിച്ചു</string>
-    <string name="delete_playlist_prompt">ഈ പ്ലേലിസ്റ്റ് ഇല്ലാതാക്കണോ\?</string>
+    <string name="delete_playlist_prompt">ഈ പ്ലേലിസ്റ്റ് ഇല്ലാതാക്കണോ?</string>
     <string name="unbookmark_playlist">ബുക്ക്മാർക്ക് നീക്കംചെയ്യുക</string>
     <string name="bookmark_playlist">പ്ലേലിസ്റ്റ് ബുക്ക്മാർക്ക് ചെയ്യുക</string>
     <string name="set_as_playlist_thumbnail">പ്ലേലിസ്റ്റ് ലഘുചിത്രമായി സജ്ജമാക്കുക</string>
@@ -82,7 +68,7 @@
     <string name="top_50">മികച്ച 50</string>
     <string name="trending">ട്രെൻഡിങ്ങ്</string>
     <string name="error_unable_to_load_comments">കമെന്റുകൾ ലോഡുചെയ്യാനായില്ല</string>
-    <string name="import_settings">ക്രമീകരണങ്ങളും ഇമ്പോർട്ടുചെയ്യാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ\?</string>
+    <string name="import_settings">ക്രമീകരണങ്ങളും ഇമ്പോർട്ടുചെയ്യാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</string>
     <string name="override_current_data">ഇത് നിങ്ങളുടെ നിലവിലെ സജ്ജീകരണത്തെ അസാധുവാക്കും.</string>
     <string name="could_not_import_all_files">മുന്നറിയിപ്പ്: എല്ലാ ഫയലുകളും ഇറക്കുമതി ചെയ്യാൻ കഴിഞ്ഞില്ല.</string>
     <string name="no_valid_zip_file">സാധുവായ ZIP ഫയലില്ല</string>
@@ -99,15 +85,14 @@
     <string name="main_page_content">പ്രധാന പേജ് ഉള്ളടക്കം</string>
     <string name="title_most_played">ഏറ്റവും കൂടുതൽ തവണ പ്ലേ ചെയ്തത്</string>
     <string name="title_last_played">അവസാനം പ്ലേ ചെയ്തത്</string>
-    <string name="delete_item_search_history">സെർച്ച് ചരിത്രത്തിൽനിന്ന് ഈ item നീക്കം ചെയ്യട്ടെയോ\?</string>
+    <string name="delete_item_search_history">സെർച്ച് ചരിത്രത്തിൽനിന്ന് ഈ item നീക്കം ചെയ്യട്ടെയോ?</string>
     <string name="action_history">ചരിത്രം</string>
     <string name="title_activity_history">ചരിത്രം</string>
     <string name="read_full_license">ലൈസൻസ് വായിക്കൂ</string>
     <string name="app_license">കോപ്പി‌ലെഫ്റ്റ് ലിബ്രെ സോഫ്റ്റ്വെയറാണ് ന്യൂ‌പൈപ്പ്: നിങ്ങൾക്ക് അത് ഉപയോഗിക്കാനും പഠിക്കാനും പങ്കിടാനും ഇഷ്ടാനുസരണം മെച്ചപ്പെടുത്താനും കഴിയും. സ്വതന്ത്ര സോഫ്റ്റ്‌വെയർ ഫൗണ്ടേഷൻ പ്രസിദ്ധീകരിച്ച ഗ്നു ജനറൽ പബ്ലിക് ലൈസൻസിന്റെ നിബന്ധനകൾ പ്രകാരം, ലൈസൻസിന്റെ മൂന്നാം പതിപ്പ് അല്ലെങ്കിൽ (നിങ്ങളുടെ ഓപ്ഷനിൽ) പിന്നീടുള്ള ഏതെങ്കിലും പതിപ്പ് പ്രകാരം നിങ്ങൾക്ക് ഇത് പുനർവിതരണം ചെയ്യാനും / അല്ലെങ്കിൽ പരിഷ്ക്കരിക്കാനും കഴിയും.</string>
     <string name="app_license_title">ന്യൂപൈപ്പിന്റെ ലൈസൻസ്</string>
     <string name="read_privacy_policy">സ്വകാര്യതാനയം വായിക്കൂ</string>
-    <string name="privacy_policy_encouragement">ദ ന്യൂപൈപ്പ് പ്രോജക്ട് നിങ്ങളുടെ സ്വകാര്യതയെ മാനിക്കുന്നു. അതുകൊണ്ടുതന്നെ, നിങ്ങളുടെ ഒരു ഡേറ്റയും ഞങ്ങൾ ശേഖരിക്കുന്നില്ല. 
-\nനിങ്ങൾ ഒരു ക്രാഷ് റിപ്പോർട്ട് അയക്കുമ്പോൾ അതിൻപ്രകാരം എന്ത് ഡാറ്റ ആണ് ശേഖരിക്കുന്നെന്നും സൂക്ഷിക്കുന്നതെന്നുമൊക്കെ ന്യൂപൈപ്പിന്റെ സ്വകാര്യതാനയം വ്യകതമാക്കുന്നതാണ്.</string>
+    <string name="privacy_policy_encouragement">ദ ന്യൂപൈപ്പ് പ്രോജക്ട് നിങ്ങളുടെ സ്വകാര്യതയെ മാനിക്കുന്നു. അതുകൊണ്ടുതന്നെ, നിങ്ങളുടെ ഒരു ഡേറ്റയും ഞങ്ങൾ ശേഖരിക്കുന്നില്ല. \nനിങ്ങൾ ഒരു ക്രാഷ് റിപ്പോർട്ട് അയക്കുമ്പോൾ അതിൻപ്രകാരം എന്ത് ഡാറ്റ ആണ് ശേഖരിക്കുന്നെന്നും സൂക്ഷിക്കുന്നതെന്നുമൊക്കെ ന്യൂപൈപ്പിന്റെ സ്വകാര്യതാനയം വ്യകതമാക്കുന്നതാണ്.</string>
     <string name="privacy_policy_title">ന്യൂപൈപ്പിന്റെ സ്വകാര്യതാനയം</string>
     <string name="website_encouragement">കൂടുതൽ വിവരങ്ങൾക്കും വാർത്തകൾക്കും ന്യൂപൈപ്പിന്റെ വെബ്സൈറ്റ് സന്ദർശിക്കുക.</string>
     <string name="website_title">വെബ്സൈറ്റ്</string>
@@ -135,8 +120,7 @@
     <string name="subtitle_activity_recaptcha">തീർന്നാൽ \"Done\" അമർത്തുക</string>
     <string name="title_activity_recaptcha">reCAPTCHA ചാലഞ്ച്</string>
     <string name="one_item_deleted">ഒരെണ്ണം നീക്കംചെയ്തു.</string>
-    <string name="msg_popup_permission">പോപപ് മോഡിന്ഈ
-\nഅനുമതി ആവിശ്യമാണ്</string>
+    <string name="msg_popup_permission">പോപപ് മോഡിന്ഈ \nഅനുമതി ആവിശ്യമാണ്</string>
     <string name="no_available_dir">പിന്നീട് ക്രമീകരണങ്ങളിൽ ഒരു ഡൗൺലോഡ് ഫോൾഡർ തിരഞ്ഞെടുക്കണം</string>
     <string name="msg_copied">ക്ലിപ്ബോർഡിലേക്ക് പകർത്തി</string>
     <string name="msg_wait">കാത്തിരിക്കു…</string>
@@ -202,7 +186,7 @@
     <string name="error_report_button_text">ഇമെയിൽ വഴി ഈ പിശക് റിപ്പോർട്ട് ചെയ്യുക</string>
     <string name="sorry_string">ക്ഷമിക്കണം, അത് സംഭവിക്കാൻ പാടില്ലായിരുന്നു.</string>
     <string name="permission_display_over_apps">മറ്റ് ആപ്പുകളുടെ മുകളിൽ വരാനുളള അനുമതി നൽകുക</string>
-    <string name="restore_defaults_confirmation">എല്ലാം പഴയപടി ആക്കട്ടെയോ\?</string>
+    <string name="restore_defaults_confirmation">എല്ലാം പഴയപടി ആക്കട്ടെയോ?</string>
     <string name="restore_defaults">പഴയപടി എല്ലാം പുനസ്ഥാപിക്കുക</string>
     <string name="saved_tabs_invalid_json">സേവ് ആയ ടാബുകൾ വായിക്കാൻ സാധിക്കുന്നില്ല, സ്ഥിര ടാബുകൾ ഉപയോഗെടുത്തുക</string>
     <string name="no_streams_available_download">ഡൗൺലോഡ് ചെയ്യാൻ സ്‌ട്രീമുകൾ ലഭ്യമല്ല</string>
@@ -224,19 +208,19 @@
     <string name="parsing_error">വെബ്സൈറ്റ് വ്യാപരിക്കാനായില്ല</string>
     <string name="could_not_load_thumbnails">ലഘുചിത്രങ്ങൾ ലോഡ് ചെയ്യാനായില്ല</string>
     <string name="network_error">നെറ്റ്‌വർക്ക് പിശക്</string>
-    <string name="download_to_sdcard_error_message">എസ്ഡി കാർഡിലേക്ക്‌ ഡൗൺലോഡ് അസാധ്യം. ഡൗൺലോഡ് ഫോൾഡർ മാറ്റട്ടെ\?</string>
+    <string name="download_to_sdcard_error_message">എസ്ഡി കാർഡിലേക്ക്‌ ഡൗൺലോഡ് അസാധ്യം. ഡൗൺലോഡ് ഫോൾഡർ മാറ്റട്ടെ?</string>
     <string name="download_to_sdcard_error_title">എസ്ഡി സൗകര്യം ലഭ്യമല്ല</string>
     <string name="general_error">പിശക്</string>
     <string name="search_history_deleted">സെർച്ച് ചരിത്രം നീക്കം ചെയ്തു</string>
-    <string name="delete_search_history_alert">സെർച്ച് ചരിത്രം നീക്കം ചെയ്യട്ടെയോ\?</string>
+    <string name="delete_search_history_alert">സെർച്ച് ചരിത്രം നീക്കം ചെയ്യട്ടെയോ?</string>
     <string name="clear_search_history_summary">സെർച്ച് കീവേർഡുകളെ നീക്കം ചെയ്യും</string>
     <string name="clear_search_history_title">സെർച്ച് ചരിത്രം നീക്കം ചെയ്യുക</string>
     <string name="watch_history_states_deleted">പ്ലേബാക്ക് സ്ഥാനങ്ങൾ നീക്കംചെയ്തു</string>
-    <string name="delete_playback_states_alert">പ്ലേബാക്ക് സ്ഥാനങ്ങളെ നീക്കം ചെയ്യട്ടെയോ\?</string>
+    <string name="delete_playback_states_alert">പ്ലേബാക്ക് സ്ഥാനങ്ങളെ നീക്കം ചെയ്യട്ടെയോ?</string>
     <string name="clear_playback_states_summary">എല്ലാ പ്ലേബാക്ക് സ്ഥാനങ്ങളെയും നീക്കംചെയ്യും</string>
     <string name="clear_playback_states_title">പ്ലേബാക്ക് സ്ഥാനങ്ങൾ നീക്കംചെയ്യുക</string>
     <string name="watch_history_deleted">കാഴ്ച ചരിത്രം നീക്കംചെയ്തു</string>
-    <string name="delete_view_history_alert">മൊത്തം കാഴ്ച ചരിത്രം നീക്കട്ടെയോ\?</string>
+    <string name="delete_view_history_alert">മൊത്തം കാഴ്ച ചരിത്രം നീക്കട്ടെയോ?</string>
     <string name="clear_views_history_summary">കണ്ട സ്ട്രീമുകളുടെയും പ്ലേബാക്ക് സ്ഥാനങ്ങളുടെയും ചരിത്രം നീക്കം ചെയ്യും</string>
     <string name="clear_views_history_title">കാഴ്ച ചരിത്രം നീക്കുക</string>
     <string name="export_data_summary">ചരിത്രം, സബ്സ്ക്രിബ്ഷനുകൾ, പ്ലേലിസ്റ്റുകൾ, സജ്ജീകരണങ്ങൾ എന്നിവ ഇറക്കുമതി ചെയ്യുക</string>
@@ -244,8 +228,7 @@
     <string name="export_data_title">ഡാറ്റാബേസ് കയറ്റുമതി ചെയ്യുക</string>
     <string name="import_data_title">ഡാറ്റാബേസ് അവതരിപ്പിക്കുക</string>
     <string name="accept">അംഗീകരിക്കുക</string>
-    <string name="start_accept_privacy_policy">യൂറോപ്യൻ ജനറൽ ഡാറ്റാ പ്രൊട്ടക്ഷൻ റെഗുലേഷൻ (ജിഡിപിആർ) അനുസരിക്കുന്നതിന്, ന്യൂപൈപ്പിന്റെ സ്വകാര്യതാ നയത്തിലേക്ക് ഞങ്ങൾ നിങ്ങളുടെ ശ്രദ്ധ ആകർഷിക്കുന്നു. ദയവായി ഇത് ശ്രദ്ധാപൂർവ്വം വായിക്കുക.
-\nബഗ് റിപ്പോർട്ട് ഞങ്ങൾക്ക് അയയ്ക്കാൻ നിങ്ങൾ അത് അംഗീകരിക്കണം.</string>
+    <string name="start_accept_privacy_policy">യൂറോപ്യൻ ജനറൽ ഡാറ്റാ പ്രൊട്ടക്ഷൻ റെഗുലേഷൻ (ജിഡിപിആർ) അനുസരിക്കുന്നതിന്, ന്യൂപൈപ്പിന്റെ സ്വകാര്യതാ നയത്തിലേക്ക് ഞങ്ങൾ നിങ്ങളുടെ ശ്രദ്ധ ആകർഷിക്കുന്നു. ദയവായി ഇത് ശ്രദ്ധാപൂർവ്വം വായിക്കുക. \nബഗ് റിപ്പോർട്ട് ഞങ്ങൾക്ക് അയയ്ക്കാൻ നിങ്ങൾ അത് അംഗീകരിക്കണം.</string>
     <string name="switch_to_main">പ്രധാനപ്പെട്ടതിലേക്ക് മാറുക</string>
     <string name="switch_to_popup">പോപ്പപ്പിലേക്ക് മാറുക</string>
     <string name="switch_to_background">ബാക്ക്ഗ്രൗണ്ടിലേക്ക്‌ മാറുക</string>
@@ -277,9 +260,7 @@
     <string name="downloads_title">ഡൗൺലോഡുകൾ</string>
     <string name="downloads">ഡൗൺലോഡുകൾ</string>
     <string name="duration_live">ലൈവ്</string>
-    <string name="restricted_video">ഈ വീഡിയോ പ്രായപരിമിതി ഉള്ളതാണ്.
-\n
-\nനിങ്ങൾക്ക് ഇത് കാണണമെങ്കിൽ ക്രമീകരണങ്ങളിൽ \"%1$s\" ഓണാക്കുക.</string>
+    <string name="restricted_video">ഈ വീഡിയോ പ്രായപരിമിതി ഉള്ളതാണ്. \n \nനിങ്ങൾക്ക് ഇത് കാണണമെങ്കിൽ ക്രമീകരണങ്ങളിൽ \"%1$s\" ഓണാക്കുക.</string>
     <string name="show_age_restricted_content_title">പ്രായ നിയന്ത്രിത ഉള്ളടക്കം കാണിക്കുക</string>
     <string name="content">കന്റെന്റ്</string>
     <string name="popup_playing_toast">പോപ്പപ്പ് മോഡിൽ പ്ലേ ചെയ്യുന്നു</string>
@@ -342,7 +323,7 @@
     <string name="play_audio">ഓഡിയോ</string>
     <string name="show_play_with_kodi_summary">Kodi media center വഴി വീഡിയോ പ്ലേ ചെയ്യാനുള്ള ഓപ്ഷൻ കാണിക്കുക</string>
     <string name="show_play_with_kodi_title">\"Kodi ഉപയോഗിച്ച് പ്ലേ ചെയ്യുക\" ഓപ്ഷൻ കാണിക്കുക</string>
-    <string name="kore_not_found">Kore ഇൻസ്റ്റാൾ ചെയ്യട്ടെയോ\?</string>
+    <string name="kore_not_found">Kore ഇൻസ്റ്റാൾ ചെയ്യട്ടെയോ?</string>
     <string name="play_with_kodi_title">Kodi ഉപയോഗിച്ച് പ്ലേ ചെയ്യുക</string>
     <string name="show_higher_resolutions_summary">ചില ഉപകരണങ്ങളിൽ മാത്രമേ 2K/4K വീഡിയോകൾ കാണാൻ സാധിക്കുകയുള്ളൂ</string>
     <string name="show_higher_resolutions_title">ഉയർന്ന റിസല്യൂഷനുകൾ കാണിക്കുക</string>
@@ -371,7 +352,7 @@
     <string name="use_external_video_player_summary">ചില റിസല്യൂഷനുകളിൽ ശബ്ദം കേൾക്കില്ല</string>
     <string name="use_external_video_player_title">പുറമെയുള്ള വീഡിയോ പ്ലേയർ ഉപയോഗിക്കുക</string>
     <string name="share_dialog_title">പങ്കുവയ്ക്കൂ</string>
-    <string name="did_you_mean">തങ്കൾ ഉദ്ദേശിച്ചത് : \"%1$s\" ആണോ\?</string>
+    <string name="did_you_mean">തങ്കൾ ഉദ്ദേശിച്ചത് : \"%1$s\" ആണോ?</string>
     <string name="settings">ക്രമീകരണങ്ങൾ</string>
     <string name="search">തിരയുക</string>
     <string name="controls_download_desc">സ്ട്രീം ഫൈൽ ഡൗൺലോഡ് ചെയ്യുക</string>
@@ -382,23 +363,11 @@
     <string name="cancel">റദ്ദാക്കുക</string>
     <string name="install">ഇൻസ്റ്റാൾ</string>
     <string name="no_player_found_toast">സ്ട്രീം പ്ലയർ കണ്ടെത്താനായില്ല (VLC ഇൻസ്റ്റാൾ ചെയ്താൽ പ്ലേ ചെയ്യാനാകും).</string>
-    <string name="no_player_found">സ്ട്രീം പ്ലയർ കണ്ടെത്താനായില്ല. VLC ഇൻസ്റ്റാൾ ചെയ്യട്ടെ\?</string>
+    <string name="no_player_found">സ്ട്രീം പ്ലയർ കണ്ടെത്താനായില്ല. VLC ഇൻസ്റ്റാൾ ചെയ്യട്ടെ?</string>
     <string name="upload_date_text">%1$s - ന് പ്രസിദ്ധീകരിച്ചു</string>
     <string name="main_bg_subtitle">തുടങ്ങാൻ \"തിരയൽ\" അമർത്തുക.</string>
-    <string name="content_not_supported">ഈ ഉള്ളടക്കത്തെ ഇതുവരെ ന്യൂ‌പൈപ്പ് പിന്തുണയ്‌ക്കുന്നില്ല.
-\n
-\nഭാവിയിലെ ഒരു പതിപ്പിൽ ഇത് പിന്തുണയ്‌ക്കുമെന്ന് പ്രതീക്ഷിക്കുന്നു.</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">ഫീഡ് ലോഡിംഗ് വളരെ മന്ദഗതിയിലാണെന്ന് നിങ്ങൾ കരുതുന്നുണ്ടോ\? അങ്ങനെയാണെങ്കിൽ, വേഗത്തിലുള്ള ലോഡിംഗ് പ്രവർത്തനക്ഷമമാക്കാൻ ശ്രമിക്കുക (നിങ്ങൾക്ക് ഇത് ക്രമീകരണങ്ങളിലോ ചുവടെയുള്ള ബട്ടൺ അമർത്തിയോ മാറ്റാം).
-\n
-\nന്യൂപൈപ്പ് രണ്ട് ഫീഡ് ലോഡിംഗ് തന്ത്രങ്ങൾ വാഗ്ദാനം ചെയ്യുന്നു:
-\nSlow സബ്‌സ്‌ക്രിപ്‌ഷൻ ചാനൽ മുഴുവനും ലഭ്യമാക്കുന്നു, അത് മന്ദഗതിയിലുള്ളതും എന്നാൽ പൂർണ്ണവുമാണ്.
-\nA ഒരു സമർപ്പിത സേവന എൻ‌ഡ്‌പോയിൻറ് ഉപയോഗിക്കുന്നു, അത് വേഗതയേറിയതും എന്നാൽ സാധാരണയായി പൂർത്തിയാകാത്തതുമാണ്.
-\n
-\nരണ്ടും തമ്മിലുള്ള വ്യത്യാസം, വേഗതയേറിയവയ്ക്ക് സാധാരണയായി ഇനത്തിന്റെ ദൈർഘ്യം അല്ലെങ്കിൽ തരം (തത്സമയ വീഡിയോകളും സാധാരണ വീഡിയോകളും തമ്മിൽ വേർതിരിച്ചറിയാൻ കഴിയില്ല) പോലുള്ള ചില വിവരങ്ങൾ ഇല്ല എന്നതാണ്, മാത്രമല്ല ഇത് കുറച്ച് ഇനങ്ങൾ തിരികെ നൽകിയേക്കാം.
-\n
-\nRSS ഫീഡിനൊപ്പം ഈ വേഗത്തിലുള്ള രീതി വാഗ്ദാനം ചെയ്യുന്ന ഒരു സേവനത്തിന്റെ ഉദാഹരണമാണ് YouTube.
-\n
-\nഅതിനാൽ ചോയ്‌സ് നിങ്ങൾ ഇഷ്ടപ്പെടുന്നതിലേക്ക് തിളച്ചുമറിയുന്നു: വേഗത അല്ലെങ്കിൽ കൃത്യമായ വിവരങ്ങൾ.</string>
+    <string name="content_not_supported">ഈ ഉള്ളടക്കത്തെ ഇതുവരെ ന്യൂ‌പൈപ്പ് പിന്തുണയ്‌ക്കുന്നില്ല. \n \nഭാവിയിലെ ഒരു പതിപ്പിൽ ഇത് പിന്തുണയ്‌ക്കുമെന്ന് പ്രതീക്ഷിക്കുന്നു.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">ഫീഡ് ലോഡിംഗ് വളരെ മന്ദഗതിയിലാണെന്ന് നിങ്ങൾ കരുതുന്നുണ്ടോ? അങ്ങനെയാണെങ്കിൽ, വേഗത്തിലുള്ള ലോഡിംഗ് പ്രവർത്തനക്ഷമമാക്കാൻ ശ്രമിക്കുക (നിങ്ങൾക്ക് ഇത് ക്രമീകരണങ്ങളിലോ ചുവടെയുള്ള ബട്ടൺ അമർത്തിയോ മാറ്റാം). \n \nന്യൂപൈപ്പ് രണ്ട് ഫീഡ് ലോഡിംഗ് തന്ത്രങ്ങൾ വാഗ്ദാനം ചെയ്യുന്നു: \nSlow സബ്‌സ്‌ക്രിപ്‌ഷൻ ചാനൽ മുഴുവനും ലഭ്യമാക്കുന്നു, അത് മന്ദഗതിയിലുള്ളതും എന്നാൽ പൂർണ്ണവുമാണ്. \nA ഒരു സമർപ്പിത സേവന എൻ‌ഡ്‌പോയിൻറ് ഉപയോഗിക്കുന്നു, അത് വേഗതയേറിയതും എന്നാൽ സാധാരണയായി പൂർത്തിയാകാത്തതുമാണ്. \n \nരണ്ടും തമ്മിലുള്ള വ്യത്യാസം, വേഗതയേറിയവയ്ക്ക് സാധാരണയായി ഇനത്തിന്റെ ദൈർഘ്യം അല്ലെങ്കിൽ തരം (തത്സമയ വീഡിയോകളും സാധാരണ വീഡിയോകളും തമ്മിൽ വേർതിരിച്ചറിയാൻ കഴിയില്ല) പോലുള്ള ചില വിവരങ്ങൾ ഇല്ല എന്നതാണ്, മാത്രമല്ല ഇത് കുറച്ച് ഇനങ്ങൾ തിരികെ നൽകിയേക്കാം. \n \nRSS ഫീഡിനൊപ്പം ഈ വേഗത്തിലുള്ള രീതി വാഗ്ദാനം ചെയ്യുന്ന ഒരു സേവനത്തിന്റെ ഉദാഹരണമാണ് YouTube. \n \nഅതിനാൽ ചോയ്‌സ് നിങ്ങൾ ഇഷ്ടപ്പെടുന്നതിലേക്ക് തിളച്ചുമറിയുന്നു: വേഗത അല്ലെങ്കിൽ കൃത്യമായ വിവരങ്ങൾ.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">ഫാസ്റ്റ് മോഡ് അപ്രാപ്തമാക്കുക</string>
     <string name="enqueue">ക്യൂ</string>
     <string name="recovering">വീണ്ടെടുക്കുന്നു</string>
@@ -430,7 +399,7 @@
     <string name="feed_update_threshold_title">ഫീഡ് അപ്‌ഡേറ്റ് പരിധി</string>
     <string name="settings_category_feed_title">ഫീഡ്</string>
     <string name="feed_create_new_group_button_title">പുതിയത്</string>
-    <string name="feed_group_dialog_delete_message">ഈ ഗ്രൂപ്പ് ഇല്ലാതാക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ\?</string>
+    <string name="feed_group_dialog_delete_message">ഈ ഗ്രൂപ്പ് ഇല്ലാതാക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</string>
     <string name="feed_group_dialog_empty_name">ശൂന്യമായ ഗ്രൂപ്പ് പേര്</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d തിരഞ്ഞെടുത്തു</item>
@@ -470,8 +439,7 @@
     <string name="choose_instance_prompt">ഒരു സ്ഥിതി തിരഞ്ഞെടുക്കുക</string>
     <string name="downloads_storage_use_saf_summary">സ്റ്റോറേജ് ആക്സസ് ഫ്രെയിംവർക്ക്\' ഒരു ബാഹ്യ SD കാർഡിലേക്ക് ഡൗൺലോഡുകൾ അനുവദിക്കുന്നു</string>
     <string name="downloads_storage_use_saf_title">സിസ്റ്റം ഫോൾഡർ പിക്കർ (SAF) ഉപയോഗിക്കുക</string>
-    <string name="downloads_storage_ask_summary">ഓരോ ഡൗൺ‌ലോഡും എവിടെ സംരക്ഷിക്കണമെന്ന് നിങ്ങളോട് ചോദിക്കും.
-\nതാങ്കൾക്ക് എക്സ്റ്റർനെൽ SD കാർഡിലേക് ഡൌൺലോഡ് ചെയ്യണം എന്ന് ഉണ്ടെങ്കിൽ സിസ്റ്റം ഫോൾഡർ പിക്കർ (SAF) സജ്ജമാക്കുക</string>
+    <string name="downloads_storage_ask_summary">ഓരോ ഡൗൺ‌ലോഡും എവിടെ സംരക്ഷിക്കണമെന്ന് നിങ്ങളോട് ചോദിക്കും. \nതാങ്കൾക്ക് എക്സ്റ്റർനെൽ SD കാർഡിലേക് ഡൌൺലോഡ് ചെയ്യണം എന്ന് ഉണ്ടെങ്കിൽ സിസ്റ്റം ഫോൾഡർ പിക്കർ (SAF) സജ്ജമാക്കുക</string>
     <string name="downloads_storage_ask_title">എവിടെ നിന്ന് ഡൗൺലോഡ് ചെയ്യണമെന്ന് ചോദിക്കുക</string>
     <string name="pause_downloads">ഡൗൺലോഡുകൾ താൽക്കാലികമായി നിർത്തുക</string>
     <string name="start_downloads">ഡൗൺലോഡുകൾ ആരംഭിക്കുക</string>
@@ -484,7 +452,7 @@
     <string name="max_retry_msg">പരമാവധി വീണ്ടും ശ്രമിക്കുന്നു</string>
     <string name="stop">നിർത്തുക</string>
     <string name="delete_downloaded_files">ഡൗൺലോഡ് ചെയ്ത ഫയലുകൾ ഇല്ലാതാക്കുക</string>
-    <string name="confirm_prompt">നിങ്ങളുടെ ഡൗൺലോഡ് ചരിത്രം മായ്‌ക്കണോ ഡൗൺലോഡ് ചെയ്ത എല്ലാ ഫയലുകളും ഇല്ലാതാക്കണോ\?</string>
+    <string name="confirm_prompt">നിങ്ങളുടെ ഡൗൺലോഡ് ചരിത്രം മായ്‌ക്കണോ ഡൗൺലോഡ് ചെയ്ത എല്ലാ ഫയലുകളും ഇല്ലാതാക്കണോ?</string>
     <string name="clear_download_history">ഡൗൺലോഡ് ചരിത്രം മായ്‌ക്കുക</string>
     <string name="error_download_resource_gone">ഈ ഡൗൺലോഡ് വീണ്ടെടുക്കാനാവില്ല</string>
     <string name="error_timeout">കണക്ഷൻ കാലഹരണപ്പെട്ടു</string>
@@ -568,11 +536,10 @@
     <string name="clear_cookie_title">ReCAPTCHA കുക്കികൾ മായ്‌ക്കുക</string>
     <string name="hash_channel_description">വീഡിയോ ഹാഷിംഗ് പുരോഗതിക്കായുള്ള അറിയിപ്പുകൾ</string>
     <string name="hash_channel_name">വീഡിയോ ഹാഷ് അറിയിപ്പ്</string>
-    <string name="restricted_video_no_stream">ഈ വീഡിയോ പ്രായപരിധി നിർണ്ണയിച്ചിരിക്കുന്നു.
-\nപ്രായ-നിയന്ത്രിത വീഡിയോകളുള്ള പുതിയ യൂട്യൂബ് നയങ്ങൾ കാരണം, ന്യൂപൈപ്പിന് അതിന്റെ വീഡിയോ സ്ട്രീമുകളിലൊന്നും ആക്സസ് ചെയ്യാൻ കഴിയില്ല, അതിനാൽ ഇത് പ്ലേ ചെയ്യാൻ കഴിയില്ല.</string>
+    <string name="restricted_video_no_stream">ഈ വീഡിയോ പ്രായപരിധി നിർണ്ണയിച്ചിരിക്കുന്നു. \nപ്രായ-നിയന്ത്രിത വീഡിയോകളുള്ള പുതിയ യൂട്യൂബ് നയങ്ങൾ കാരണം, ന്യൂപൈപ്പിന് അതിന്റെ വീഡിയോ സ്ട്രീമുകളിലൊന്നും ആക്സസ് ചെയ്യാൻ കഴിയില്ല, അതിനാൽ ഇത് പ്ലേ ചെയ്യാൻ കഴിയില്ല.</string>
     <string name="youtube_restricted_mode_enabled_summary">പക്വതയുള്ള ഉള്ളടക്കം മറയ്ക്കുന്ന \"നിയന്ത്രിത മോഡ്\" യൂട്യൂബ് നൽകുന്നു</string>
     <string name="show_age_restricted_content_summary">കുട്ടികൾക്ക് അനുയോജ്യമല്ലാത്ത ഉള്ളടക്കം കാണിക്കുക കാരണം അതിന് പ്രായപരിധി ഉണ്ട് (18+ പോലെ)</string>
-    <string name="unsupported_url_dialog_message">URL തിരിച്ചറിയാൻ കഴിഞ്ഞില്ല. മറ്റൊരു അപ്ലിക്കേഷൻ ഉപയോഗിച്ച് തുറക്കണോ\?</string>
+    <string name="unsupported_url_dialog_message">URL തിരിച്ചറിയാൻ കഴിഞ്ഞില്ല. മറ്റൊരു അപ്ലിക്കേഷൻ ഉപയോഗിച്ച് തുറക്കണോ?</string>
     <string name="auto_queue_toggle">തനിയെ ക്യൂവിൽ കയറ്റുക</string>
     <string name="show_meta_info_summary">സ്ട്രീം സ്രഷ്ടാവ്, സ്ട്രീം ഉള്ളടക്കം അല്ലെങ്കിൽ ഒരു തിരയൽ അഭ്യർത്ഥന എന്നിവയെക്കുറിച്ചുള്ള കൂടുതൽ വിവരങ്ങൾ ഉൾക്കൊള്ളുന്ന മെറ്റാ വിവര ബോക്സുകൾ മറയ്ക്കുന്നതിന് ഓഫാക്കുക</string>
     <string name="show_meta_info_title">മെറ്റാഇൻഫോ കാണിക്കുക</string>
@@ -613,9 +580,7 @@
     <string name="description_select_note">താക്കൾക് ഇപ്പോൾ ഡിസ്ക്രിപ്ഷൻ ബോക്സിലെ ടെക്സ്റ്റ്‌ തിരഞ്ഞെടുക്കാൻ സാധിക്കും. ശ്രെദ്ധിക്കുക സെലെക്ഷൻ മോഡിൽ പേജ് ചിലപ്പോൾ മിന്നുകയും ലിങ്കുകൾ ക്ലിക്ക് ചെയ്യാനാകാതെയും വന്നേക്കാം.</string>
     <string name="account_terminated">അക്കൗണ്ട് ഇല്ലാതായിരിക്കുന്നു</string>
     <string name="feed_load_error_fast_unknown">ഫാസ്റ്റ് ഫീഡ് മോഡ് കൂടുതൽ വിവരങ്ങൾ നൽകില്ല.</string>
-    <string name="feed_load_error_terminated">സൃഷ്ടാവിന്റെ അക്കൗണ്ട് ഇല്ലാതായിരിക്കുന്നു.
-\nഭാവിയിൽ ഫീഡ് ലോഡ് ചെയ്യാൻ ന്യൂ പൈപ്പിന് സാധിക്കില്ല.
-\nതാക്കൾക്ക് ഈ ചാനൽ അൺ സബ്സ്ക്രൈബ് ചെയ്യണോ\?</string>
+    <string name="feed_load_error_terminated">സൃഷ്ടാവിന്റെ അക്കൗണ്ട് ഇല്ലാതായിരിക്കുന്നു. \nഭാവിയിൽ ഫീഡ് ലോഡ് ചെയ്യാൻ ന്യൂ പൈപ്പിന് സാധിക്കില്ല. \nതാക്കൾക്ക് ഈ ചാനൽ അൺ സബ്സ്ക്രൈബ് ചെയ്യണോ?</string>
     <string name="feed_load_error_account_info">\'%s\' ലെ ഫീഡ് ലോഡ് ചെയ്യാൻ സാധികില്ല.</string>
     <string name="feed_load_error">ഫീഡ് ലോഡ് ചെയ്യുന്നതിൽ പിശക് സംഭവിച്ചിരിക്കുന്നു</string>
     <string name="downloads_storage_use_saf_summary_api_29">ആൻഡ്രോയ്ഡ് 10 മുതൽ മാത്രമേ \"സ്റ്റോറേജ് അക്സസ് ഫ്രെയിംവർക്ക്\" പിന്തുണക്കു</string>

@@ -1,0 +1,9 @@
+Display chapters on the video player's seek bar
+[YouTube] Add support for the "Podcasts" and "Courses" tabs
+Improve the appearance of search menu titles
+Show full subtitle names when provided by the service
+Various player fixes, including audio ducking, black screens, and opening links with timestamps
+[YouTube] Minor fixes and housekeeping
+Many internal improvements and bug fixes
+
+Thanks to this year's ANU software engineering students who contributed to NewPipe as part of their OSS assignment!

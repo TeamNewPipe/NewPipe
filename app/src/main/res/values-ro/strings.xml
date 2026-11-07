@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="upload_date_text">Publicat pe %1$s</string>
-    <string name="no_player_found">Niciun player pentru streaming găsit. Instalați VLC\?</string>
+    <string name="no_player_found">Niciun player pentru streaming găsit. Instalați VLC?</string>
     <string name="install">Instalare</string>
-    <string name="cancel">Anulare</string>
-    <string name="open_in_browser">Deschidere în browser</string>
+    <string name="cancel">Anulează</string>
+    <string name="open_in_browser">Deschide în browser</string>
     <string name="share">Distribuire</string>
     <string name="download">Descărcare</string>
-    <string name="search">Căutare</string>
+    <string name="search">Caută</string>
     <string name="settings">Setări</string>
     <string name="did_you_mean">V-ați referit la: „%1$s” ?</string>
     <string name="share_dialog_title">Distribuiți cu</string>
-    <string name="use_external_video_player_title">Folosiți un player video extern</string>
-    <string name="use_external_audio_player_title">Folosește un player audio extern</string>
+    <string name="use_external_video_player_title">Utilizați un player video extern</string>
+    <string name="use_external_audio_player_title">Utilizați un player audio extern</string>
     <string name="download_path_title">Locația videoclipurilor descărcate</string>
     <string name="download_path_summary">Videoclipurile descărcate sunt stocate aici</string>
     <string name="download_path_dialog_title">Alegeți folderul de descărcare pentru fișierele video</string>
     <string name="download_path_audio_title">Dosar de descărcări audio</string>
     <string name="download_path_audio_summary">Fișierele audio descărcate sunt stocate aici</string>
     <string name="download_path_audio_dialog_title">Alegeți folderul de descărcare pentru fișierele audio</string>
-    <string name="default_resolution_title">Rezoluție implicită</string>
+    <string name="default_resolution_title">Rezoluția implicită</string>
     <string name="play_with_kodi_title">Redați folosind Kodi</string>
     <string name="kore_not_found">Aplicația Kore nu a fost găsită. Doriți să o instalați?</string>
     <string name="show_play_with_kodi_title">Arată opțiunea „Redați folosind Kodi”</string>
-    <string name="show_play_with_kodi_summary">Arată opțiunea de redare a videoclipurilor via player-ului media Kodi</string>
+    <string name="show_play_with_kodi_summary">Afișează o opțiune pentru redarea unui videoclip prin intermediul centrului media Kodi</string>
     <string name="play_audio">Audio</string>
-    <string name="default_audio_format_title">Format audio implicit</string>
+    <string name="default_audio_format_title">Formatul audio implicit</string>
     <string name="theme_title">Temă</string>
-    <string name="dark_theme_title">Întunecat</string>
-    <string name="light_theme_title">Luminos</string>
+    <string name="dark_theme_title">Întunecată</string>
+    <string name="light_theme_title">Luminoasă</string>
     <string name="download_dialog_title">Descărcați</string>
     <string name="show_next_and_similar_title">Arată videoclipurile care \'Urmează\' și cele \'Similare\'</string>
     <string name="unsupported_url">URL nesuportat</string>
     <string name="content_language_title">Limba dorită a conținutului</string>
-    <string name="settings_category_video_audio_title">Video și Audio</string>
-    <string name="settings_category_appearance_title">Aspect</string>
+    <string name="settings_category_video_audio_title">Video și audio</string>
+    <string name="settings_category_appearance_title">Aparență</string>
     <string name="background_player_playing_toast">Redare în fundal</string>
     <string name="content">Conținut</string>
     <string name="show_age_restricted_content_title">Afișați conținutul restricționat de vârstă</string>
@@ -78,29 +78,28 @@
     <string name="msg_copied">Copiat în clipboard</string>
     <string name="no_available_dir">Vă rugăm să definiți un folder de descărcare mai târziu în setări</string>
     <string name="open_in_popup_mode">Deschidere în modul popup</string>
-    <string name="msg_popup_permission">Această permisiune este necesară pentru a 
-\ndeschide în mod pop-up</string>
+    <string name="msg_popup_permission">Această permisiune este necesară pentru a \ndeschide în mod pop-up</string>
     <string name="title_activity_recaptcha">Provocare reCAPTCHA</string>
     <string name="recaptcha_request_toast">Provocare reCAPTCHA solicitată</string>
     <string name="default_popup_resolution_title">Rezoluția implicită a ferestrei pop-up</string>
     <string name="show_higher_resolutions_title">Afișează rezoluții mai mari</string>
-    <string name="show_higher_resolutions_summary">Doar anumite dispozitive suportă redarea videoclipurilor 2K/4K</string>
-    <string name="default_video_format_title">Format video implicit</string>
-    <string name="black_theme_title">Negru</string>
+    <string name="show_higher_resolutions_summary">Doar anumite dispozitive pot reda videoclipuri 2K/4K</string>
+    <string name="default_video_format_title">Formatul video implicit</string>
+    <string name="black_theme_title">Neagră</string>
     <string name="popup_playing_toast">Redare în mod pop-up</string>
     <string name="all">Toate</string>
     <string name="disabled">Dezactivat</string>
     <string name="app_ui_crash">Aplicația/UI s-a oprit</string>
     <string name="info_labels">Ce:\nSolicitare:\nLimba conținutului:\nȚara conținutului:\nLimba aplicației:\nServiciu:\nOra GMT:\nPachet:\nVersiune:\nVersiune SO:</string>
-    <string name="use_external_video_player_summary">Elimină sunetul audio la anumite rezoluții</string>
+    <string name="use_external_video_player_summary">Elimină sunetul la anumite rezoluții</string>
     <string name="controls_background_title">Fundal</string>
     <string name="controls_popup_title">Pop-up</string>
-    <string name="popup_remember_size_pos_title">Reține dimensiunea și poziția pop-up-ului</string>
-    <string name="popup_remember_size_pos_summary">Reține ultima dimensiune și poziție a pop-up-ului</string>
+    <string name="popup_remember_size_pos_title">Rețineți proprietățile ferestrelor pop-up</string>
+    <string name="popup_remember_size_pos_summary">Reține ultima dimensiune și poziție a ferestrei pop-up</string>
     <string name="show_search_suggestions_title">Sugestii de căutare</string>
     <string name="show_search_suggestions_summary">Alegeți sugestiile care vor fi afișate la căutare</string>
     <string name="clear">Ștergeți</string>
-    <string name="best_resolution">Rezoluție maximă</string>
+    <string name="best_resolution">Cea mai bună rezoluție</string>
     <string name="subscribe_button_title">Abonare</string>
     <string name="subscribed_button_title">Abonat(ă)</string>
     <string name="channel_unsubscribed">Canal dezabonat</string>
@@ -112,8 +111,8 @@
     <string name="enable_search_history_summary">Stochează local căutările</string>
     <string name="enable_watch_history_title">Istoricul vizionărilor</string>
     <string name="enable_watch_history_summary">Reține videoclipurile vizionate</string>
-    <string name="resume_on_audio_focus_gain_title">Reluați redarea</string>
-    <string name="resume_on_audio_focus_gain_summary">Continuă redarea după întreruperi (ex: după apeluri)</string>
+    <string name="resume_on_audio_focus_gain_title">Reia redarea</string>
+    <string name="resume_on_audio_focus_gain_summary">Continuă redarea după întreruperi (de exemplu, apeluri telefonice)</string>
     <string name="settings_category_player_title">Player</string>
     <string name="settings_category_player_behavior_title">Comportament</string>
     <string name="settings_category_history_title">Istoric și cache</string>
@@ -140,7 +139,7 @@
         <item quantity="few">%s videoclipuri</item>
         <item quantity="other">%s de videoclipuri</item>
     </plurals>
-    <string name="settings_category_downloads_title">Descărcări</string>
+    <string name="settings_category_downloads_title">Descarcă</string>
     <string name="settings_file_charset_title">Caractere permise în numele fișierelor</string>
     <string name="settings_file_replacement_character_summary">Caracterele nevalabile sunt înlocuite cu această valoare</string>
     <string name="settings_file_replacement_character_title">Caracter de înlocuire</string>
@@ -149,14 +148,14 @@
     <string name="title_activity_about">Despre NewPipe</string>
     <string name="title_licenses">Licențe terță-parte</string>
     <string name="copyright" formatted="true">© %1$s de %2$s sub %3$s</string>
-    <string name="tab_about">Despre &amp; FAQ</string>
+    <string name="tab_about">Despre &amp; Întrebări frecvente</string>
     <string name="tab_licenses">Licențe</string>
-    <string name="app_description">Un player de streaming „ușor” liber, pentru Android.</string>
-    <string name="view_on_github">Vedeți pe GitHub</string>
+    <string name="app_description">Streaming gratuit și ușor pe Android.</string>
+    <string name="view_on_github">Vezi pe GitHub</string>
     <string name="app_license_title">Licența NewPipe</string>
-    <string name="contribution_encouragement">Fie că aveți idei de: traducere, modificări de design, curățare a codului sau modificări de cod cu adevărat importante - ajutorul este întotdeauna binevenit. Cu cât se face mai mult, cu atât mai bine devine!</string>
-    <string name="read_full_license">Citiți licența</string>
-    <string name="contribution_title">Contribuiți</string>
+    <string name="contribution_encouragement">Indiferent dacă ai idei legate de traduceri, modificări de design, curățarea codului sau modificări majore ale codului — ajutorul tău este întotdeauna binevenit. Cu cât se face mai mult, cu atât rezultatul este mai bun!</string>
+    <string name="read_full_license">Citește licența</string>
+    <string name="contribution_title">Contribuie</string>
     <string name="title_activity_history">Istoric</string>
     <string name="action_history">Istoric</string>
     <string name="delete_item_search_history">Doriți să ștergeți acest element din istoricul de căutare?</string>
@@ -172,17 +171,17 @@
     <string name="new_and_hot">Noi și populare</string>
     <string name="no_player_found_toast">Niciun player pentru streaming găsit. (Totuși, puteți instala VLC).</string>
     <string name="controls_download_desc">Descărcați fișierul de flux</string>
-    <string name="show_info">Afișare informații</string>
+    <string name="show_info">Afișează informații</string>
     <string name="tab_bookmarks">Playlisturi salvate</string>
     <string name="controls_add_to_playlist_title">Salvare în</string>
-    <string name="use_inexact_seek_title">Folosește parcurgerea rapidă inexactă</string>
-    <string name="use_inexact_seek_summary">Derularea inexactă permite player-ului să deruleze mai rapid, cu o precizie redusă. Derularea timp de 5, 15 sau 25 de secunde nu funcționează cu aceasta</string>
+    <string name="use_inexact_seek_title">Utilizează căutarea rapidă inexactă</string>
+    <string name="use_inexact_seek_summary">Căutarea inexactă permite playerului să se deplaseze mai rapid la anumite poziții, cu o precizie redusă. Căutarea pentru 5, 15 sau 25 de secunde nu funcționează în acest caz</string>
     <string name="thumbnail_cache_wipe_complete_notice">Datele cache de imagini au fost șterse</string>
     <string name="metadata_cache_wipe_title">Șterge cache-ul pentru metadata</string>
     <string name="metadata_cache_wipe_summary">Șterge cache-ul pentru datele de pagini web</string>
     <string name="metadata_cache_wipe_complete_notice">Cache pentru metadata șters</string>
-    <string name="auto_queue_title">Adaugă următorul stream în coadă automat</string>
-    <string name="auto_queue_summary">Continuă coadă de redare (care nu se repetă) prin adăugarea unui flux asemănător</string>
+    <string name="auto_queue_title">Adăugare automată în coadă a fluxului următor</string>
+    <string name="auto_queue_summary">Continuați coada de redare finală (fără repetări) prin adăugarea unui flux asociat</string>
     <string name="show_hold_to_append_title">Afișați sfatul „Țineți apăsat pentru a adăuga”</string>
     <string name="show_hold_to_append_summary">Afișați un sfat la apăsarea fundalului sau a butonului popup în videoclipul „Detalii:”</string>
     <string name="default_content_country_title">Țara implicită pentru conținut</string>
@@ -210,10 +209,10 @@
     <string name="invalid_file">Fișierul nu există sau lipsește permisiunea de a citi sau scrie în el</string>
     <string name="file_name_empty_error">Numele fișierului nu poate fi gol</string>
     <string name="error_occurred_detail">A survenit o eroare: %1$s</string>
-    <string name="donation_encouragement">NewPipe este dezvoltat de voluntari care își petrec timpul liber pentru a vă oferi cea mai bună experiență de utilizare. Donează pentru a ajuta dezvoltatorii să facă NewPipe și mai bun în timp ce ei se bucură de o ceașcă de cafea.</string>
-    <string name="give_back">Dăruiește înapoi</string>
-    <string name="website_title">Site web</string>
-    <string name="website_encouragement">Vizitați site-ul NewPipe pentru mai multe informații și noutăți.</string>
+    <string name="donation_encouragement">NewPipe este creat de voluntari ce își oferă timpul lor liber pentru ați oferi cea mai bună experiență. Oferă înapoi creatorilor pentru a face aplicația și mai bună.</string>
+    <string name="give_back">Oferă Înapoi</string>
+    <string name="website_title">Site Web</string>
+    <string name="website_encouragement">Vizitează site-ul NewPipe pentru mai multe informații si noutăți.</string>
     <string name="title_last_played">Ultimele vizionări</string>
     <string name="title_most_played">Cele mai multe vizionări</string>
     <string name="export_complete_toast">Exportat</string>
@@ -229,18 +228,18 @@
     <string name="start_here_on_popup">Începeți redarea în popup</string>
     <string name="drawer_open">Deschdeți sertarul</string>
     <string name="drawer_close">Închideți sertarul</string>
-    <string name="preferred_open_action_settings_title">Opțiunea de deschidere preferată</string>
+    <string name="preferred_open_action_settings_title">Acțiunea de „deschidere” preferată</string>
     <string name="preferred_open_action_settings_summary">Acțiune implicită la deschiderea conținutului - %s</string>
-    <string name="video_player">Player Video</string>
-    <string name="background_player">Player Fundal</string>
-    <string name="popup_player">Player Popup</string>
-    <string name="always_ask_open_action">Întrebați întotdeauna</string>
+    <string name="video_player">Player video</string>
+    <string name="background_player">Player în fundal</string>
+    <string name="popup_player">Player în fereastră pop-up</string>
+    <string name="always_ask_open_action">Întreabă întotdeauna</string>
     <string name="no_streams_available_download">Nu există fluxuri disponibile pentru descărcare</string>
     <string name="detail_drag_description">Trageți pentru a reordona</string>
     <string name="create">Creați</string>
     <string name="dismiss">Respingeți</string>
     <string name="rename">Redenumiți</string>
-    <string name="donation_title">Donați</string>
+    <string name="donation_title">Donează</string>
     <string name="import_settings">De asemenea, doriți să importați setări?</string>
     <string name="name">Nume</string>
     <string name="playlist_creation_success">Listă de redare creată</string>
@@ -254,10 +253,10 @@
     <string name="tracks">Titluri</string>
     <string name="clear_views_history_title">Ștergeți istoricul vizionărilor</string>
     <string name="clear_views_history_summary">Șterge istoricul fluxurilor redate și pozițiile de redare</string>
-    <string name="delete_view_history_alert">Ștergeți întregul istoric al vizionărilor\?</string>
+    <string name="delete_view_history_alert">Ștergeți întregul istoric al vizionărilor?</string>
     <string name="one_item_deleted">1 element șters.</string>
     <string name="create_playlist">Playlist nou</string>
-    <string name="add_to_playlist">Adăugați la playlist</string>
+    <string name="add_to_playlist">Adaugă la lista de redare</string>
     <string name="import_title">Importare</string>
     <string name="import_from">Importați din</string>
     <string name="export_to">Exportați în</string>
@@ -279,30 +278,29 @@
     <string name="watch_history_deleted">Istoricul de vizionări a fost șters</string>
     <string name="clear_search_history_title">Ștergeți istoricul căutărilor</string>
     <string name="clear_search_history_summary">Șterge istoricul cuvintelor cheie de căutare</string>
-    <string name="delete_search_history_alert">Ștergeți întregul istoric de căutare\?</string>
+    <string name="delete_search_history_alert">Ștergeți întregul istoric de căutare?</string>
     <string name="search_history_deleted">Istoric de căutare șters</string>
     <string name="download_to_sdcard_error_title">Stocare externă indisponibilă</string>
-    <string name="download_to_sdcard_error_message">Descărcarea pe cardul SD extern nu este posibilă. Resetați locația folderului de descărcare\?</string>
+    <string name="download_to_sdcard_error_message">Descărcarea pe cardul SD extern nu este posibilă. Resetați locația folderului de descărcare?</string>
     <string name="preferred_player_fetcher_notification_title">Se obțin informații…</string>
     <string name="preferred_player_fetcher_notification_message">Se încarcă conținutul solicitat</string>
     <string name="rename_playlist">Redenumiți</string>
     <string name="set_as_playlist_thumbnail">Setați ca miniatura listei de redare</string>
-    <string name="delete_playlist_prompt">Ștergeți această listă de redare\?</string>
+    <string name="delete_playlist_prompt">Ștergeți această listă de redare?</string>
     <string name="playlist_thumbnail_change_success">Miniatura listei de redare a fost schimbată.</string>
     <string name="caption_none">Fără subtitrări</string>
     <string name="resize_fit">Potrivire</string>
     <string name="resize_fill">Umplere</string>
     <string name="resize_zoom">Mărire</string>
     <string name="caption_setting_title">Subtitrări</string>
-    <string name="caption_setting_description">Modificați scara textului de legendă a playerului și stilurile de fundal. Necesită repornirea aplicației pentru a intra în vigoare</string>
-    <string name="app_license">NewPipe este un software liber cu copyleft: îl puteți folosi, studia, distribui și îmbunătăți în voie. Mai exact, îl puteți redistribui și/sau modifica în conformitate cu termenii Licenței Publice Generale GNU, așa cum a fost publicată de Free Software Foundation, fie versiunea 3 a Licenței, fie (la alegerea dumneavoastră) orice versiune ulterioară.</string>
-    <string name="privacy_policy_title">Politica de confidențialitate a NewPipe</string>
-    <string name="privacy_policy_encouragement">Proiectul NewPipe ia foarte în serios confidențialitatea dumneavoastră. Prin urmare, aplicația nu colectează niciun fel de date fără consimțământul dumneavoastră.
-\nPolitica de confidențialitate a NewPipe explică în detaliu ce date sunt trimise și stocate atunci când trimiteți un raport de eroare.</string>
-    <string name="read_privacy_policy">Citiți politica de confidențialitate</string>
+    <string name="caption_setting_description">Modificați dimensiunea textului subtitrărilor playerului și stilurile de fundal. Pentru ca modificările să intre în vigoare, este necesară repornirea aplicației</string>
+    <string name="app_license">NewPipe este o aplicație liberă: Poți folosi, studia, partaja, și a o face mai bună după propria voință. Poți redistribui și/sau modifica aplicația în termenii GNU GPL publicate de Free Software Foundation, toate dintre cele 3 versiuni, or (la opțiunea dvs.) orice versiune mai nouă.</string>
+    <string name="privacy_policy_title">Politica de Confidențialitate NewPipe</string>
+    <string name="privacy_policy_encouragement">Proiectul NewPipe acordă o importanță deosebită confidențialității datelor tale. Prin urmare, aplicația nu colectează nicio informație fără consimțământul tău.\nPolitica de confidențialitate a NewPipe explică în detaliu ce date sunt transmise și stocate atunci când trimiți un raport de eroare.</string>
+    <string name="read_privacy_policy">Citește Politica de confidențialitate</string>
     <string name="saved_tabs_invalid_json">Nu s-au putut citi filele salvate, deci se folosesc cele implicite</string>
     <string name="restore_defaults">Restaurați valorile implicite</string>
-    <string name="restore_defaults_confirmation">Doriți să restaurați valorile implicite\?</string>
+    <string name="restore_defaults_confirmation">Doriți să restaurați valorile implicite?</string>
     <string name="subscribers_count_not_available">Numărul de abonați nu este disponibil</string>
     <string name="main_page_content_summary">Ce file vor fi afișate pe pagina principală</string>
     <string name="conferences">Conferințe</string>
@@ -320,9 +318,9 @@
     <string name="missing_file">Fișier mutat sau șters</string>
     <string name="clear_playback_states_title">Șterge pozițiile de redare memorate</string>
     <string name="bookmark_playlist">Marcați lista de redare</string>
-    <string name="limit_mobile_data_usage_title">Limitați rezoluția atunci când utilizați date mobile</string>
+    <string name="limit_mobile_data_usage_title">Limitați rezoluția atunci când utilizați datele mobile</string>
     <string name="permission_display_over_apps">Acordați permisiunea de a afișa peste alte aplicații</string>
-    <string name="delete_playback_states_alert">Ștergeți toate pozițiile din playback\?</string>
+    <string name="delete_playback_states_alert">Ștergeți toate pozițiile din playback?</string>
     <string name="clear_playback_states_summary">Ștergeți toate pozițiile de redare</string>
     <string name="videos_string">Videoclipuri</string>
     <string name="peertube_instance_add_exists">Instanța există deja</string>
@@ -333,7 +331,7 @@
     <string name="peertube_instance_url_help">Găsiți instanțele care vă plac pe %s</string>
     <string name="peertube_instance_url_summary">Selectați instanțele PeerTube preferate</string>
     <string name="peertube_instance_url_title">Instanțe PeerTube</string>
-    <string name="seek_duration_title">Durată derulare rapidă înainte/înapoi</string>
+    <string name="seek_duration_title">Durata căutării cu derulare rapidă înainte/înapoi</string>
     <string name="done">Gata</string>
     <string name="subtitle_activity_recaptcha">Apăsați „Gata” după ce ați rezolvat problema</string>
     <string name="error_report_open_issue_button_text">Raportați pe GitHub</string>
@@ -349,7 +347,7 @@
     <string name="youtube_restricted_mode_enabled_summary">YouTube oferă un „Mod restricționat” care ascunde conținutul potențial matur</string>
     <string name="youtube_restricted_mode_enabled_title">Activați „Modul restricționat” de pe YouTube</string>
     <string name="show_age_restricted_content_summary">Afișați conținut posibil nepotrivit pentru copii, deoarece are o limită de vârstă (cum ar fi 18+)</string>
-    <string name="unsupported_url_dialog_message">Adresa URL nu a putut fi recunoscută. Deschideți cu o altă aplicație\?</string>
+    <string name="unsupported_url_dialog_message">Adresa URL nu a putut fi recunoscută. Deschideți cu o altă aplicație?</string>
     <string name="show_meta_info_title">Afișează informațiile meta</string>
     <string name="notification_colorize_summary">Faceți ca Android să personalizeze culoarea notificării în funcție de culoarea principală din miniatură (rețineți că aceasta nu este disponibilă pe toate dispozitivele)</string>
     <string name="notification_colorize_title">Colorează notificarea</string>
@@ -376,20 +374,8 @@
     <string name="video_detail_by">De %s</string>
     <string name="channel_created_by">Creat de %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniatura de avatar a canalului</string>
-    <string name="content_not_supported">Acest conținut nu este încă acceptat de NewPipe.
-\n
-\nSperăm că va fi acceptat într-o versiune viitoare.</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Credeți că încărcarea fluxului este prea lentă\? Dacă da, încercați să activați încărcarea rapidă (puteți schimba acest lucru în setări sau apăsând butonul de mai jos).
-\n
-\nNewPipe oferă două strategii de încărcare a fluxului:
-\n• Preluarea întregului canal de abonament, care este lent, dar complet.
-\n• Utilizarea unui punct final de serviciu dedicat, care este rapid, dar de obicei nu este complet.
-\n
-\nDiferența dintre cele două este că în cazul celei rapide lipsesc de obicei unele informații, cum ar fi durata sau tipul articolului (nu poate face distincția între videoclipurile live și cele normale) și poate returna mai puține articole.
-\n
-\nYouTube este un exemplu de serviciu care oferă această metodă rapidă prin intermediul fluxului său RSS.
-\n
-\nAșadar, alegerea se reduce la ceea ce preferați: rapiditate sau informații precise.</string>
+    <string name="content_not_supported">Acest conținut nu este încă acceptat de NewPipe. \n \nSperăm că va fi acceptat într-o versiune viitoare.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Credeți că încărcarea fluxului este prea lentă? Dacă da, încercați să activați încărcarea rapidă (puteți schimba acest lucru în setări sau apăsând butonul de mai jos). \n \nNewPipe oferă două strategii de încărcare a fluxului: \n• Preluarea întregului canal de abonament, care este lent, dar complet. \n• Utilizarea unui punct final de serviciu dedicat, care este rapid, dar de obicei nu este complet. \n \nDiferența dintre cele două este că în cazul celei rapide lipsesc de obicei unele informații, cum ar fi durata sau tipul articolului (nu poate face distincția între videoclipurile live și cele normale) și poate returna mai puține articole. \n \nYouTube este un exemplu de serviciu care oferă această metodă rapidă prin intermediul fluxului său RSS. \n \nAșadar, alegerea se reduce la ceea ce preferați: rapiditate sau informații precise.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Dezactivați modul rapid</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Activați modul rapid</string>
     <string name="feed_use_dedicated_fetch_method_summary">Disponibilă în unele servicii, este, de obicei, mult mai rapidă, dar poate returna un număr limitat de articole și adesea informații incomplete (de exemplu, fără durată, fără tipul de articol, fără stare în direct)</string>
@@ -400,7 +386,7 @@
     <string name="settings_category_feed_title">Flux</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Se afișează numai abonamentele negrupate</string>
     <string name="feed_create_new_group_button_title">Nou</string>
-    <string name="feed_group_dialog_delete_message">Doriți să ștergeți acest grup\?</string>
+    <string name="feed_group_dialog_delete_message">Doriți să ștergeți acest grup?</string>
     <string name="feed_group_dialog_empty_name">Numele grupului este gol</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d selectat</item>
@@ -409,8 +395,8 @@
     </plurals>
     <string name="feed_group_dialog_empty_selection">Niciun abonament selectat</string>
     <string name="feed_group_dialog_select_subscriptions">Selectați abonamente</string>
-    <string name="feed_processing_message">Se procesează feedul …</string>
-    <string name="feed_notification_loading">Se încarcă feedul …</string>
+    <string name="feed_processing_message">Se procesează fluxul…</string>
+    <string name="feed_notification_loading">Se încarcă fluxul…</string>
     <string name="feed_subscription_not_loaded_count">Neîncărcat: %d</string>
     <string name="feed_oldest_subscription_update">Ultima actualizare a fluxului: %s</string>
     <string name="feed_groups_header_title">Grupuri de canale</string>
@@ -439,8 +425,7 @@
     <string name="choose_instance_prompt">Alegeți o instanță</string>
     <string name="downloads_storage_use_saf_summary">„Storage Access Framework” permite descărcări pe un card SD extern</string>
     <string name="downloads_storage_use_saf_title">Utilizați selectorul de dosare de sistem (SAF)</string>
-    <string name="downloads_storage_ask_summary">Veți fi întrebat unde să salvați fiecare descărcare.
-\nActivați selectorul de foldere de sistem (SAF) dacă doriți să descărcați pe un card SD extern</string>
+    <string name="downloads_storage_ask_summary">Veți fi întrebat unde să salvați fiecare descărcare. \nActivați selectorul de foldere de sistem (SAF) dacă doriți să descărcați pe un card SD extern</string>
     <string name="downloads_storage_ask_title">Întrebați unde să descărcați</string>
     <string name="pause_downloads">Întrerupeți descărcările</string>
     <string name="max_retry_msg">Numărul maxim de încercări</string>
@@ -448,8 +433,8 @@
     <string name="enable_disposed_exceptions_summary">Forțarea raportării excepțiilor de Rx nedistribuibile în afara ciclului de viață al fragmentului sau al activității după eliminare</string>
     <string name="auto_queue_toggle">Coadă automată</string>
     <string name="clear_queue_confirmation_description">Coada de redare activă va fi înlocuită</string>
-    <string name="clear_queue_confirmation_summary">Trecerea de la un player la altul vă poate înlocui coada de redare</string>
-    <string name="clear_queue_confirmation_title">Solicitați confirmarea înainte de a șterge o listă de redare</string>
+    <string name="clear_queue_confirmation_summary">Trecerea de la un player la altul poate duce la resetarea cozii tale</string>
+    <string name="clear_queue_confirmation_title">Solicitați confirmarea înainte de a goli o coadă</string>
     <plurals name="minutes">
         <item quantity="one">%d minut</item>
         <item quantity="few">%d minute</item>
@@ -464,7 +449,7 @@
     <string name="max_retry_desc">Numărul maxim de încercări înainte de a anula descărcarea</string>
     <string name="stop">Opriți</string>
     <string name="delete_downloaded_files">Ștergeți fișierele descărcate</string>
-    <string name="confirm_prompt">Doriți să ștergeți istoricul descărcărilor sau să ștergeți toate fișierele descărcate\?</string>
+    <string name="confirm_prompt">Doriți să ștergeți istoricul descărcărilor sau să ștergeți toate fișierele descărcate?</string>
     <string name="clear_download_history">Șterge istoricul descărcărilor</string>
     <string name="error_download_resource_gone">Nu se poate recupera această descărcare</string>
     <string name="error_timeout">Conexiunea a expirat</string>
@@ -498,31 +483,28 @@
     <string name="missions_header_pending">În așteptare</string>
     <string name="missions_header_finished">Finalizat</string>
     <string name="app_update_available_notification_title">Actualizare NewPipe disponibilă!</string>
-    <string name="auto">Automat</string>
+    <string name="auto">Auto</string>
     <string name="grid">Grilă</string>
     <string name="list">Listă</string>
-    <string name="list_view_mode">Mod vizualizare listă</string>
+    <string name="list_view_mode">Modul de afișare în listă</string>
     <string name="never">Niciodată</string>
-    <string name="wifi_only">Numai pe Wi-Fi</string>
+    <string name="wifi_only">Doar prin Wi-Fi</string>
     <string name="autoplay_summary">Începeți automat redarea - %s</string>
-    <string name="minimize_on_exit_popup_description">Minimizare la playerul popup</string>
-    <string name="minimize_on_exit_background_description">Minimizați la playerul de fundal</string>
+    <string name="minimize_on_exit_popup_description">Minimizează playerul în fereastră pop-up</string>
+    <string name="minimize_on_exit_background_description">Minimizează playerul în fundal</string>
     <string name="minimize_on_exit_none_description">Niciuna</string>
     <string name="minimize_on_exit_summary">Acțiune la trecerea la altă aplicație de la playerul video principal - %s</string>
-    <string name="minimize_on_exit_title">Minimalizați la comutarea aplicației</string>
+    <string name="minimize_on_exit_title">Minimizează la trecerea dintre aplicații</string>
     <string name="updates_setting_description">Afișați o notificare pentru a solicita actualizarea aplicației atunci când este disponibilă o nouă versiune</string>
     <string name="updates_setting_title">Actualizări</string>
     <string name="limit_data_usage_none_description">Fără limită</string>
-    <string name="start_accept_privacy_policy">Pentru a respecta Regulamentul general european privind protecția datelor (GDPR), vă atragem atenția asupra politicii de confidențialitate a NewPipe. Vă rugăm să o citiți cu atenție.
-\nTrebuie să o acceptați pentru a ne trimite raportul de eroare.</string>
+    <string name="start_accept_privacy_policy">Pentru a respecta Regulamentul general european privind protecția datelor (GDPR), vă atragem atenția asupra politicii de confidențialitate a NewPipe. Vă rugăm să o citiți cu atenție. \nTrebuie să o acceptați pentru a ne trimite raportul de eroare.</string>
     <string name="playback_reset">Resetare</string>
     <string name="playback_step">Etapă</string>
     <string name="skip_silence_checkbox">Înaintare rapidă în timpul tăcerii</string>
     <string name="unhook_checkbox">Decuplați (poate provoca distorsiuni)</string>
     <string name="playback_pitch">Înălțime</string>
-    <string name="import_network_expensive_warning">Rețineți că această operațiune poate fi costisitoare în rețea.
-\n
-\nContinuați\?</string>
+    <string name="import_network_expensive_warning">Rețineți că această operațiune poate fi costisitoare în rețea. \n \nContinuați?</string>
     <string name="import_soundcloud_instructions_hint">ID-ul dvs., soundcloud.com/yourid</string>
     <string name="import_soundcloud_instructions">Importați un profil SoundCloud introducând fie URL-ul, fie ID-ul dvs: \n \n1. Activați „modul desktop” într-un browser web (site-ul nu este disponibil pentru dispozitive mobile) \n2. Mergeți la acest URL: %1$s \n3. Conectați-vă atunci când vi se cere \n4. Copiați URL-ul profilului la care ați fost redirecționat.</string>
     <string name="import_youtube_instructions">Importați abonamentele YouTube din Google takeout: \n \n1. Mergeți la această adresă URL: %1$s \n2. Autentificați-vă atunci când vi se cere \n3. Faceți clic pe „Toate datele incluse”, apoi pe „Deselectați totul”, apoi selectați doar „Abonamente” și faceți clic pe „OK” \n4. Faceți clic pe „Pasul următor” și apoi pe „Creați exportul” \n5. Faceți clic pe butonul „Descărcare” după ce acesta apare \n6. Faceți clic pe IMPORT FIȘIER de mai jos și selectați fișierul .zip descărcat \n7. [În cazul în care importul .zip eșuează] Extrageți fișierul .csv (de obicei sub „YouTube and YouTube Music/subscriptions/subscriptions.csv”), faceți clic pe IMPORT FIȘIER de mai jos și selectați fișierul csv extras</string>
@@ -535,7 +517,7 @@
     <string name="unmute">Activați sunetul</string>
     <string name="mute">Dezactivați sunetul</string>
     <string name="enqueued">Pus în coadă</string>
-    <string name="enqueue_stream">Puneți în coadă</string>
+    <string name="enqueue_stream">Adăugare în coada de așteptare</string>
     <string name="title_activity_play_queue">Coadă de redare</string>
     <string name="most_liked">Cele mai apreciate</string>
     <string name="recently_added">Adăugate recent</string>
@@ -571,12 +553,11 @@
     <string name="crash_the_app">Blocați aplicația</string>
     <string name="recaptcha_solve">Rezolvați</string>
     <string name="featured">Evidențiate</string>
-    <string name="select_night_theme_toast">Puteți selecta tema de noapte preferată mai jos</string>
-    <string name="restricted_video_no_stream">Acest videoclip este restricționat în funcție de vârstă.
-\nDin cauza noilor politici YouTube privind videoclipurile cu restricții de vârstă, NewPipe nu poate accesa niciunul dintre fluxurile sale video și, prin urmare, nu îl poate reda.</string>
+    <string name="select_night_theme_toast">Mai jos poți selecta tema de noapte preferată</string>
+    <string name="restricted_video_no_stream">Acest videoclip este restricționat în funcție de vârstă. \nDin cauza noilor politici YouTube privind videoclipurile cu restricții de vârstă, NewPipe nu poate accesa niciunul dintre fluxurile sale video și, prin urmare, nu îl poate reda.</string>
     <string name="download_has_started">Descărcarea a început</string>
     <string name="night_theme_summary">Selectați tema de noapte preferată — %s</string>
-    <string name="auto_device_theme_title">Automat (tema dispozitivului)</string>
+    <string name="auto_device_theme_title">Automată (tema dispozitivului)</string>
     <string name="radio">Radio</string>
     <string name="paid_content">Acest conținut este disponibil doar pentru utilizatorii care au plătit, ca atare nu poate fi difuzat sau descărcat de NewPipe.</string>
     <string name="youtube_music_premium_content">Acest videoclip este disponibil doar pentru membrii YouTube Music Premium, ca atare nu poate fi difuzat sau descărcat de NewPipe.</string>
@@ -584,13 +565,13 @@
     <string name="soundcloud_go_plus_content">Aceasta este o piesă SoundCloud Go+, cel puțin în țara dvs., deci nu poate fi difuzată sau descărcată de NewPipe.</string>
     <string name="georestricted_content">Acest conținut nu este disponibil în țara dumneavoastră.</string>
     <string name="show_channel_details">Afișați detaliile canalului</string>
-    <string name="night_theme_title">Tema de noapte</string>
+    <string name="night_theme_title">Temă de noapte</string>
     <string name="enqueued_next">Următorul pus în coadă</string>
     <string name="enqueue_next_stream">Adăugați în coadă pe următorul</string>
     <string name="mark_as_watched">Marcare ca vizionat</string>
     <string name="off">Oprit</string>
     <string name="on">Pornit</string>
-    <string name="tablet_mode_title">Mod tabletă</string>
+    <string name="tablet_mode_title">Modul tabletă</string>
     <string name="open_website_license">Deschideți site-ul web</string>
     <string name="detail_heart_img_view_description">Inimă de la creator</string>
     <string name="metadata_privacy_internal">Intern</string>
@@ -610,9 +591,7 @@
     <string name="description_select_note">Acum puteți selecta text în interiorul descrierii. Rețineți că este posibil ca pagina să pâlpâie, iar linkurile să nu poată fi accesate în modul de selecție.</string>
     <string name="account_terminated">Contul a fost închis</string>
     <string name="feed_load_error_fast_unknown">Modul rapid nu furnizează mai multe informații în acest sens.</string>
-    <string name="feed_load_error_terminated">Contul autorului a fost închis.
-\nNewPipe nu va mai putea încărca acest flux în viitor.
-\nDoriți să vă dezabonați de la acest canal\?</string>
+    <string name="feed_load_error_terminated">Contul autorului a fost închis. \nNewPipe nu va mai putea încărca acest flux în viitor. \nDoriți să vă dezabonați de la acest canal?</string>
     <string name="feed_load_error_account_info">Nu s-a putut încărca fluxul pentru „%s”.</string>
     <string name="feed_load_error">Eroare la încărcarea fluxului</string>
     <string name="downloads_storage_use_saf_summary_api_29">Începând cu Android 10, este acceptat doar „Storage Access Framework”</string>
@@ -627,19 +606,19 @@
         <item quantity="few">%s descărcări finalizate</item>
         <item quantity="other">%s de descărcări finalizate</item>
     </plurals>
-    <string name="disable_media_tunneling_title">Dezactivați tunelarea media</string>
+    <string name="disable_media_tunneling_title">Dezactivează tunelarea conținutului media</string>
     <string name="main_page_content_swipe_remove">Glisați elementele pentru a le elimina</string>
     <string name="no_dir_yet">Încă nu este setat niciun folder de descărcare, alegeți acum folderul de descărcare implicit</string>
     <string name="comments_are_disabled">Comentariile sunt dezactivate</string>
-    <string name="start_main_player_fullscreen_summary">Nu porniți videoclipurile în mini player, ci treceți direct la modul ecran complet, dacă rotația automată este blocată. Puteți accesa în continuare mini playerul ieșind din modul fullscreen</string>
-    <string name="start_main_player_fullscreen_title">Porniți playerul principal în ecran complet</string>
+    <string name="start_main_player_fullscreen_summary">Nu porniți videoclipurile în mini-player, ci treceți direct în modul ecran complet, dacă rotirea automată este blocată. Puteți accesa în continuare mini-playerul ieșind din modul ecran complet</string>
+    <string name="start_main_player_fullscreen_title">Pornește playerul principal în modul ecran complet</string>
     <string name="remote_search_suggestions">Sugestii de căutare la distanță</string>
     <string name="local_search_suggestions">Sugestii de căutare locală</string>
     <string name="dont_show">Nu afișa</string>
-    <string name="low_quality_smaller">Calitate scăzută (mai mică)</string>
-    <string name="high_quality_larger">Calitate înaltă (mai mare)</string>
-    <string name="seekbar_preview_thumbnail_title">Miniatură de previzualizare în bara de derulare</string>
-    <string name="disable_media_tunneling_summary">Dezactivați tunelarea media dacă întâmpinați un ecran negru sau blocaje la redarea video.</string>
+    <string name="low_quality_smaller">Calitate scăzută (dimensiune mai mică)</string>
+    <string name="high_quality_larger">Calitate înaltă (dimensiune mai mare)</string>
+    <string name="seekbar_preview_thumbnail_title">Previzualizare miniatură în bara de căutare</string>
+    <string name="disable_media_tunneling_summary">Dezactivați funcția de tunelare media dacă ecranul rămâne negru sau dacă redarea videoclipurilor se întrerupe.</string>
     <string name="processing_may_take_a_moment">Procesarea.. Poate dura un moment</string>
     <string name="check_for_updates">Verifică dacă există actualizări</string>
     <string name="manual_update_description">Verifică manual dacă există versiuni noi</string>
@@ -668,20 +647,18 @@
     <string name="streams_notifications_interval_title">Frecvența verificării</string>
     <string name="streams_notifications_network_title">Conexiune de rețea necesară</string>
     <string name="any_network">Orice rețea</string>
-    <string name="delete_downloaded_files_confirm">Ștergeți toate fișierele descărcate de pe disc\?</string>
+    <string name="delete_downloaded_files_confirm">Ștergeți toate fișierele descărcate de pe disc?</string>
     <string name="notifications_disabled">Notificările sunt dezactivate</string>
     <string name="percent">Procent</string>
     <string name="semitone">Semiton</string>
-    <string name="progressive_load_interval_exoplayer_default">Implicit ExoPlayer</string>
+    <string name="progressive_load_interval_exoplayer_default">Setarea implicită pentru ExoPlayer</string>
     <string name="crash_the_player">Dați crash player-ului</string>
     <string name="leak_canary_not_available">LeakCanary nu este disponibil</string>
     <string name="notifications">Notificări</string>
     <string name="streams_notification_channel_description">Notificări despre noi fluxuri pentru abonamente</string>
     <string name="check_new_streams">Executați verificarea pentru fluxuri noi</string>
-    <string name="no_appropriate_file_manager_message">Nu a fost găsit niciun manager de fișiere adecvat pentru această acțiune.
-\nVă rugăm să instalați un manager de fișiere sau să încercați să dezactivați \'%s\' în setările de descărcare</string>
-    <string name="no_appropriate_file_manager_message_android_10">Nu a fost găsit niciun manager de fișiere adecvat pentru această acțiune.
-\nVă rugăm să instalați un manager de fișiere compatibil cu Storage Access Framework</string>
+    <string name="no_appropriate_file_manager_message">Nu a fost găsit niciun manager de fișiere adecvat pentru această acțiune. \nVă rugăm să instalați un manager de fișiere sau să încercați să dezactivați \'%s\' în setările de descărcare</string>
+    <string name="no_appropriate_file_manager_message_android_10">Nu a fost găsit niciun manager de fișiere adecvat pentru această acțiune. \nVă rugăm să instalați un manager de fișiere compatibil cu Storage Access Framework</string>
     <string name="get_notified">Primiți notificări</string>
     <string name="you_successfully_subscribed">V-ați abonat la acest canal</string>
     <string name="toggle_all">Comutați toate</string>
@@ -693,9 +670,9 @@
     <string name="select_quality_external_players">Selectați calitatea pentru playerele externe</string>
     <string name="unknown_format">Format necunoscut</string>
     <string name="unknown_quality">Calitate necunoscută</string>
-    <string name="progressive_load_interval_title">Dimensiunea intervalului de încărcare de redare</string>
-    <string name="faq">Vedeți pe website</string>
-    <string name="faq_description">Dacă întâmpinați probleme cu utilizarea aplicației, nu uitați să consultați aceste răspunsuri la întrebări frecvente!</string>
+    <string name="progressive_load_interval_title">Dimensiunea intervalului de încărcare la redare</string>
+    <string name="faq">Vezi pe site-ul web</string>
+    <string name="faq_description">Dacă aveți probleme folosind aplicația, uitați-vă la răspunsurile celor mai comune întrebărilor puse!</string>
     <string name="faq_title">Întrebări frecvente</string>
     <string name="sort">Sortare</string>
     <string name="fast_mode">Modul rapid</string>
@@ -708,11 +685,11 @@
     <string name="unset_playlist_thumbnail">Dezactivare miniatură permanentă</string>
     <string name="duplicate_in_playlist">Listele de redare care colorate în gri conțin deja acest element.</string>
     <string name="playlist_add_stream_success_duplicate">Duplicat adăugat de %d ori</string>
-    <string name="ignore_hardware_media_buttons_title">Ignorați evenimentele butonului media hardware</string>
-    <string name="ignore_hardware_media_buttons_summary">Util, de exemplu, dacă utilizați o cască cu butoane fizice defecte</string>
-    <string name="remove_duplicates_message">Doriți să eliminați toate fluxurile dublate din această listă de redare\?</string>
+    <string name="ignore_hardware_media_buttons_title">Ignorați evenimentele generate de butoanele hardware de redare media</string>
+    <string name="ignore_hardware_media_buttons_summary">Folositor, de exemplu, dacă folosești o cască cu butoane fizice defecte</string>
+    <string name="remove_duplicates_message">Doriți să eliminați toate fluxurile dublate din această listă de redare?</string>
     <string name="remove_duplicates">Eliminare dubluri</string>
-    <string name="remove_duplicates_title">Eliminați dublurile\?</string>
+    <string name="remove_duplicates_title">Eliminați dublurile?</string>
     <string name="feed_hide_streams_title">Afișează următoarele fluxuri</string>
     <string name="feed_show_hide_streams">Afișare/Ascundere fluxuri</string>
     <string name="feed_show_watched">Vizionat complet</string>
@@ -728,33 +705,30 @@
     <string name="audio_track_type_descriptive">descriptiv</string>
     <string name="share_playlist_with_list">Distribuiți lista URL</string>
     <string name="share_playlist_with_titles">Distribuiți cu titluri</string>
-    <string name="share_playlist_content_details">%1$s
-\n%2$s</string>
+    <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="show_channel_tabs">Filele canalului</string>
     <string name="volume">Volum</string>
-    <string name="use_exoplayer_decoder_fallback_title">Utilizați funcționalitatea de rezervă a decodorului din ExoPlayer</string>
+    <string name="use_exoplayer_decoder_fallback_title">Utilizați funcția de rezervă a decodorului din ExoPlayer</string>
     <string name="none">Niciunul</string>
     <string name="loading_metadata_title">Se încarcă metadata…</string>
     <string name="toggle_screen_orientation">Schimbați orientarea ecranului</string>
-    <string name="settings_category_exoplayer_summary">Gestionați unele setări pentru ExoPlayer. Aceste schimbări necesită un restart la player ca să aibă efect</string>
+    <string name="settings_category_exoplayer_summary">Gestionați anumite setări ale ExoPlayer. Pentru ca aceste modificări să intre în vigoare, este necesară repornirea playerului</string>
     <string name="image_quality_low">Calitate scăzută</string>
     <string name="main_tabs_position_title">Poziția filelor principale</string>
     <string name="toggle_fullscreen">Schimbați pe ecran complet</string>
     <string name="feed_fetch_channel_tabs">Preluați filele canalului</string>
     <string name="metadata_avatars">Avatare</string>
-    <string name="use_exoplayer_decoder_fallback_summary">Activați această opțiune dacă aveți probleme cu inițializarea decodorului care trece înapoi la decodoare cu prioritate mai scăzută dacă inițializarea decodoarelor principale eșuează. Asta poate duce la performanță de redare mai slabă decât atunci când se utilizează decodoarele principale</string>
-    <string name="right_gesture_control_title">Acțiunea gestului din dreapta</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Activați această opțiune dacă întâmpinați probleme la inițializarea decodoarelor; aceasta va recurge la decodoare cu prioritate mai mică în cazul în care inițializarea decodoarelor principale eșuează. Acest lucru poate duce la o performanță de redare inferioară față de cea obținută la utilizarea decodoarelor principale</string>
+    <string name="right_gesture_control_title">Acțiune gest la dreapta</string>
     <string name="audio_track_name">%1$s %2$s</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_title">Utilizați întotdeauna configurarația suprafeței de ieșire video din ExoPlayer ca soluție alternativă</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Folosiți întotdeauna soluția alternativă pentru setarea suprafeței de ieșire video a ExoPlayer</string>
     <string name="next_stream">Transmisia viitoare</string>
-    <string name="disable_media_tunneling_automatic_info">Tunelizarea media a fost dezactivată în mod implicit pe dispozitivul dumneavoastră deoarece se cunoaște despre acest model de dispozitiv că nu o suportă.</string>
+    <string name="disable_media_tunneling_automatic_info">Funcția de tunelare media a fost dezactivată în mod implicit pe dispozitivul dumneavoastră, deoarece se știe că modelul acesta nu o suportă.</string>
     <string name="metadata_subchannel_avatars">Avatarele subcanalelor</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Această soluție alternativă eliberează și reinstanțează codecurile video când se întamplă o schimbare a suprafeței, în loc de a seta suprafața pentru codec direct. Deja folosită de ExoPlayer pe unele dispozitive cu această problemă, această setare are efect doar pe Android 6 sau mai mare
-\n
-\nActivarea acestei opțiuni poate preveni erorile de redare când se schimbă playerul video curent sau se trece pe ecran complet</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Această soluție alternativă eliberează și reinstanțiază codecurile video atunci când are loc o schimbare a suprafeței, în loc să seteze direct codecul pentru suprafața respectivă. Utilizată deja de ExoPlayer pe unele dispozitive care prezintă această problemă, această setare are efect doar pe Android 6 și versiuni ulterioare\n\nActivarea acestei opțiuni poate preveni apariția erorilor de redare la schimbarea playerului video curent sau la trecerea la modul ecran complet</string>
     <string name="audio_track_present_in_video">O coloană sonoră ar trebui să fie deja prezentă în această transmisie</string>
     <string name="open_play_queue">Deschideți coada de redare</string>
-    <string name="prefer_original_audio_summary">Selectați coloana sonoră originală indiferent de limbă</string>
+    <string name="prefer_original_audio_summary">Selectează pista audio originală, indiferent de limbă</string>
     <string name="image_quality_none">Nu încărcați imagini</string>
     <string name="image_quality_high">Calitate înaltă</string>
     <string name="channel_tab_about">Despre</string>
@@ -766,31 +740,31 @@
     <string name="replay">Reluați</string>
     <string name="audio_track_type_dubbed">dublat</string>
     <string name="feed_fetch_channel_tabs_summary">File ce vor fi preluate când se actualizează fluxul. Această opțiune nu are niciun efect dacă un canal este actualizat folosind modul rapid.</string>
-    <string name="prefer_descriptive_audio_summary">Selectați o coloană sonoră cu descrieri pentru persoane cu deficiențe vizuale, dacă este disponibilă</string>
-    <string name="left_gesture_control_title">Acțiunea gestului din stânga</string>
+    <string name="prefer_descriptive_audio_summary">Selectează o pistă audio cu descrieri pentru persoanele cu deficiențe de vedere, dacă este disponibilă</string>
+    <string name="left_gesture_control_title">Acțiune gest la stânga</string>
     <string name="image_quality_medium">Calitate medie</string>
-    <string name="prefer_descriptive_audio_title">Preferați audioul descriptiv</string>
+    <string name="prefer_descriptive_audio_title">Prefer sunetul descriptiv</string>
     <string name="progressive_load_interval_summary">Modificați dimensiunea intervalului de încărcare pentru conținuturi progresive (în prezent %s). O valoare mai mică poate accelera încărcarea lor inițială</string>
-    <string name="prefer_original_audio_title">Preferați audioul original</string>
+    <string name="prefer_original_audio_title">Prefer sunetul original</string>
     <string name="play_queue_audio_track">Audio: %s</string>
     <string name="metadata_banners">Bannere</string>
     <string name="channel_tab_playlists">Playlisturi</string>
-    <string name="right_gesture_control_summary">Alegeți un gest pentru jumătatea dreaptă din ecranul playerului</string>
+    <string name="right_gesture_control_summary">Alege un gest pentru jumătatea din dreapta a ecranului playerului</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
-    <string name="main_tabs_position_summary">Mutați fila principală în partea de jos</string>
+    <string name="main_tabs_position_summary">Mută selectorul filei principale în partea de jos</string>
     <string name="audio_track">Coloană sonoră</string>
     <string name="no_live_streams">Fără transmisii în direct</string>
     <string name="image_quality_summary">Alegeți calitatea imaginilor și dacă să se încarce sau nu imaginile, pentru a reduce utilizarea datelor și memoriei. Schimbările șterg cache-ul atât din memoria internă cât și din disc --%s</string>
     <string name="play">Redați</string>
     <string name="more_options">Mai multe opțiuni</string>
     <string name="metadata_thumbnails">Miniaturi</string>
-    <string name="settings_category_exoplayer_title">Setări pentru ExoPlayer</string>
+    <string name="settings_category_exoplayer_title">Setări ExoPlayer</string>
     <string name="brightness">Luminozitate</string>
     <string name="duration">Durată</string>
     <string name="no_streams">Fără transmisii</string>
     <string name="channel_tab_channels">Canale</string>
     <string name="previous_stream">Transmisia anterioară</string>
-    <string name="left_gesture_control_summary">Alegeți un gest pentru jumătatea stângă din ecranul playerului</string>
+    <string name="left_gesture_control_summary">Alege un gest pentru jumătatea stângă a ecranului playerului</string>
     <string name="channel_tab_livestreams">În direct</string>
     <string name="channel_tab_shorts">Shorturi</string>
     <string name="metadata_uploader_avatars">Avatarele autorului</string>
@@ -804,7 +778,7 @@
     <string name="show_less">Arată mai puține</string>
     <string name="channel_tab_tracks">Piste</string>
     <string name="error_insufficient_storage">Nu este suficient spațiu liber pe dispozitiv</string>
-    <string name="settings_category_backup_restore_title">Backup și restabilire</string>
+    <string name="settings_category_backup_restore_title">Copie de rezervă și Restabilire</string>
     <string name="auto_update_check_description">NewPipe poate verifica automat din când în când dacă există versiuni noi și vă poate anunța când acestea sunt disponibile.\nDoriți să activați această opțiune?</string>
     <string name="reset_settings_summary">Resetați toate setările la valorile implicite</string>
     <string name="yes">Da</string>
@@ -824,10 +798,10 @@
     <string name="migration_info_6_7_title">Pagina SoundCloud Top 50 a fost eliminată</string>
     <string name="migration_info_6_7_message">SoundCloud a eliminat Top 50. Fila corespunzătoare a fost eliminată din pagina principală.</string>
     <string name="permission_display_over_apps_permission_name">„Permite afișarea deasupra altor aplicații”</string>
-    <string name="short_thousand">%sK</string>
+    <string name="short_thousand">%smii</string>
     <string name="short_million">%s mil.</string>
     <string name="short_billion">%s mld.</string>
-    <string name="kao_dialog_warning">În august 2025, Google a anunțat că, începând din septembrie 2026, instalarea aplicațiilor va necesita verificarea dezvoltatorului pentru toate aplicațiile Android de pe dispozitivele certificate, inclusiv pentru cele instalate din afara Play Store. Deoarece dezvoltatorii NewPipe nu sunt de acord cu această cerință, NewPipe nu va mai funcționa pe dispozitivele Android certificate după acea dată.</string>
+
     <string name="kao_solution">Soluție</string>
     <string name="kao_dialog_more_info">Detalii</string>
     <string name="unsupported_content_in_country">Acest conținut nu este disponibil pentru țara de conținut selectată în prezent.\n\nModificați selecția din „Setări &gt; Conținut &gt; Țara implicită pentru conținut”.</string>
@@ -869,4 +843,6 @@
     <string name="api23_requirement_dialog_title">NewPipe nu va mai fi compatibil cu Android 5</string>
     <string name="api23_requirement_dialog_blogpost">Postare blog</string>
     <string name="api23_requirement_dialog_message">Din păcate, NewPipe depinde de câteva biblioteci care nu mai sunt compatibile cu Android 5.0 și 5.1. Prin urmare, următoarea versiune a NewPipe va funcționa doar pe dispozitive cu Android 6 sau o versiune ulterioară. Aflați mai multe în articolul de pe blog.</string>
+    <string name="channel_tab_podcasts">Podcasturi</string>
+    <string name="channel_tab_courses">Cursuri</string>
 </resources>

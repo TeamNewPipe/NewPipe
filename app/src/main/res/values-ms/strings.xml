@@ -2,7 +2,7 @@
 <resources>
     <string name="main_bg_subtitle">Tekan kanta kaca \"Cari\" untuk bermula</string>
     <string name="upload_date_text">Diterbitkan pada %1$s</string>
-    <string name="no_player_found">Tiada pemain strim ditemui. Muat turun VLC\?</string>
+    <string name="no_player_found">Tiada pemain strim ditemui. Muat turun VLC?</string>
     <string name="no_player_found_toast">Tiada pemain strim yang ditemui (anda boleh memasang VLC untuk memainkan).</string>
     <string name="install">Pasang</string>
     <string name="cancel">Batal</string>
@@ -13,7 +13,7 @@
     <string name="controls_download_desc">Muat turun fail strim</string>
     <string name="search">Carian</string>
     <string name="settings">Tetapan</string>
-    <string name="did_you_mean">Adakah anda maksudkan \"%1$s\"\?</string>
+    <string name="did_you_mean">Adakah anda maksudkan \"%1$s\"?</string>
     <string name="share_dialog_title">Berkongsi dengan</string>
     <string name="use_external_video_player_title">Guna pemain video luaran</string>
     <string name="use_external_video_player_summary">Mengalih keluar audio pada sesetengah resolusi</string>
@@ -121,15 +121,15 @@
     <string name="export_data_summary">Mengeksport sejarah, langganan dan senarai main</string>
     <string name="clear_views_history_title">Hapuskan sejarah tontonan</string>
     <string name="clear_views_history_summary">Hapuskan sejarah strim yang telah dimain</string>
-    <string name="delete_view_history_alert">Padamkan seluruh sejarah tontonan\?</string>
+    <string name="delete_view_history_alert">Padamkan seluruh sejarah tontonan?</string>
     <string name="watch_history_deleted">Sejarah tontonan dipadamkan.</string>
     <string name="clear_search_history_title">Hapuskan sejarah carian</string>
     <string name="clear_search_history_summary">Padamkan sejarah kata kunci carian</string>
-    <string name="delete_search_history_alert">Padamkan seluruh sejarah carian\?</string>
+    <string name="delete_search_history_alert">Padamkan seluruh sejarah carian?</string>
     <string name="search_history_deleted">Sejarah carian dipadamkan.</string>
     <string name="general_error">Ralat</string>
     <string name="download_to_sdcard_error_title">Penyimpanan luaran tidak tersedia</string>
-    <string name="download_to_sdcard_error_message">Tidak mampu Memuat turun ke kad SD luar. Tetapkan semula lokasi folder muat turun\?</string>
+    <string name="download_to_sdcard_error_message">Tidak mampu Memuat turun ke kad SD luar. Tetapkan semula lokasi folder muat turun?</string>
     <string name="network_error">Ralat rangkaian</string>
     <string name="could_not_load_thumbnails">Tidak dapat memuat semua thumbnail</string>
     <string name="parsing_error">Tidak dapat menghuraikan laman web</string>
@@ -150,7 +150,7 @@
     <string name="no_streams_available_download">Tiada strim yang tersedia untuk dimuat turun</string>
     <string name="saved_tabs_invalid_json">Menggunakan tab utama, ralat semasa membaca tab tersimpan</string>
     <string name="restore_defaults">Kembali kepada asal</string>
-    <string name="restore_defaults_confirmation">Adakah anda mahu kembali kepada asal\?</string>
+    <string name="restore_defaults_confirmation">Adakah anda mahu kembali kepada asal?</string>
     <string name="sorry_string">Maaf, itu tidak sepatutnya berlaku.</string>
     <string name="error_report_button_text">Laporkan ralat melalui e-mel</string>
     <string name="error_snackbar_message">Maaf, ada ralat yang berlaku.</string>
@@ -196,8 +196,7 @@
     <string name="msg_wait">Sila tunggu…</string>
     <string name="msg_copied">Disalin ke papan klip</string>
     <string name="no_available_dir">Sila pilih folder muat turun nanti dalam tetapan</string>
-    <string name="msg_popup_permission">Kebenaran ini diperlukan untuk
-\nbuka dalam mod popup</string>
+    <string name="msg_popup_permission">Kebenaran ini diperlukan untuk \nbuka dalam mod popup</string>
     <string name="one_item_deleted">1 item dipadamkan.</string>
     <string name="title_activity_recaptcha">Cabaran reCAPTCHA</string>
     <string name="recaptcha_request_toast">Meminta kod reCAPTCHA</string>
@@ -222,15 +221,14 @@
     <string name="website_title">Laman Web</string>
     <string name="website_encouragement">Lawati Laman Web NewPipe untuk maklumat lanjut dan berita.</string>
     <string name="privacy_policy_title">Dasar Privasi NewPipe</string>
-    <string name="privacy_policy_encouragement">Projek NewPipe mengambil perhatian privasi anda dengan sangat serius. Oleh itu, aplikasi tidak mengumpulkan sebarang data tanpa persetujuan anda.
-\nDasar privasi NewPipe menerangkan secara terperinci apa data dihantar dan disimpan apabila anda menghantar laporan ranap.</string>
+    <string name="privacy_policy_encouragement">Projek NewPipe mengambil perhatian privasi anda dengan sangat serius. Oleh itu, aplikasi tidak mengumpulkan sebarang data tanpa persetujuan anda. \nDasar privasi NewPipe menerangkan secara terperinci apa data dihantar dan disimpan apabila anda menghantar laporan ranap.</string>
     <string name="read_privacy_policy">Baca dasar privasi</string>
     <string name="app_license_title">Lesen NewPipe</string>
     <string name="app_license">NewPipe adalah perisian copyleft percuma: Anda boleh menggunakan, berkongsi kajian dan memperbaikinya mengikut kehendak. Khususnya anda boleh mengagihkan semula dan / atau mengubahnya di bawah syarat GNU General Public License seperti yang diterbitkan oleh Free Software Foundation, sama ada versi 3 dari Lesen, atau (pada pilihan anda) versi yang lebih baru.</string>
     <string name="read_full_license">Baca lesen</string>
     <string name="title_activity_history">Sejarah</string>
     <string name="action_history">Sejarah</string>
-    <string name="delete_item_search_history">Adakah anda mahu memadamkan item ini dari sejarah carian\?</string>
+    <string name="delete_item_search_history">Adakah anda mahu memadamkan item ini dari sejarah carian?</string>
     <string name="title_last_played">Terakhir dimainkan</string>
     <string name="title_most_played">Kebanyakan dimainkan</string>
     <string name="main_page_content">Kandungan halaman utama</string>
@@ -246,7 +244,7 @@
     <string name="no_valid_zip_file">Tiada fail ZIP yang sah</string>
     <string name="could_not_import_all_files">Amaran: Tidak dapat mengimport semua fail.</string>
     <string name="override_current_data">Ini akan menimpa tetapan semasa anda.</string>
-    <string name="import_settings">Adakah anda juga mahu mengimport tetapan\?</string>
+    <string name="import_settings">Adakah anda juga mahu mengimport tetapan?</string>
     <string name="trending">Sohor Kini</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Baru &amp; panas</string>
@@ -274,7 +272,7 @@
     <string name="set_as_playlist_thumbnail">Tetapkan sebagai Thumbnail Senarai Main</string>
     <string name="bookmark_playlist">Menanda senarai main</string>
     <string name="unbookmark_playlist">Hapuskan Penanda Halaman</string>
-    <string name="delete_playlist_prompt">Padamkan senarai main ini\?</string>
+    <string name="delete_playlist_prompt">Padamkan senarai main ini?</string>
     <string name="playlist_creation_success">Senarai main dibuat</string>
     <string name="playlist_add_stream_success">Ditambah ke senarai main</string>
     <string name="playlist_thumbnail_change_success">Thumbnail senarai main berubah.</string>
@@ -297,21 +295,10 @@
     <string name="previous_export">Eksport terdahulu</string>
     <string name="subscriptions_import_unsuccessful">Tidak dapat mengimport langganan</string>
     <string name="subscriptions_export_unsuccessful">Tidak dapat mengeksport langganan</string>
-    <string name="import_youtube_instructions">Import langganan YouTube dengan memuat turun fail eksport:
-\n
-\n1. Pergi ke URL ini: %1$s
-\n2. Log masuk apabila ditanya
-\n3. Muat turun harus bermula (itulah file eksport)</string>
-    <string name="import_soundcloud_instructions">Import profil SoundCloud dengan menaip sama ada URL atau ID anda:
-\n
-\n1. Dayakan \"mod desktop\" dalam pelayar web (laman web tidak tersedia untuk peranti mudah alih)
-\n2. Pergi ke URL ini: %1$s
-\n3. Log masuk apabila ditanya
-\n4. Salin URL profil yang diarahkan ke.</string>
+    <string name="import_youtube_instructions">Import langganan YouTube dengan memuat turun fail eksport: \n \n1. Pergi ke URL ini: %1$s \n2. Log masuk apabila ditanya \n3. Muat turun harus bermula (itulah file eksport)</string>
+    <string name="import_soundcloud_instructions">Import profil SoundCloud dengan menaip sama ada URL atau ID anda: \n \n1. Dayakan \"mod desktop\" dalam pelayar web (laman web tidak tersedia untuk peranti mudah alih) \n2. Pergi ke URL ini: %1$s \n3. Log masuk apabila ditanya \n4. Salin URL profil yang diarahkan ke.</string>
     <string name="import_soundcloud_instructions_hint">idAnda, soundcloud.com/idanda</string>
-    <string name="import_network_expensive_warning">Ingatkan bahawa operasi ini boleh menggunakan banyak data.
-\n
-\nAdakah anda mahu meneruskan\?</string>
+    <string name="import_network_expensive_warning">Ingatkan bahawa operasi ini boleh menggunakan banyak data. \n \nAdakah anda mahu meneruskan?</string>
     <string name="playback_speed_control">Kawalan Kelajuan Pemain</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Nada</string>
@@ -319,8 +306,7 @@
     <string name="skip_silence_checkbox">Cepat ke hadapan semasa berdiam diri</string>
     <string name="playback_step">Langkah</string>
     <string name="playback_reset">Tetapkan semula</string>
-    <string name="start_accept_privacy_policy">Untuk mematuhi Peraturan Perlindungan Data Umum Eropah (GDPR), kami dengan ini menarik perhatian anda kepada dasar privasi NewPipe. Sila baca dengan teliti.
-\nAnda mesti menerimanya untuk menghantar laporan bug kepada kami.</string>
+    <string name="start_accept_privacy_policy">Untuk mematuhi Peraturan Perlindungan Data Umum Eropah (GDPR), kami dengan ini menarik perhatian anda kepada dasar privasi NewPipe. Sila baca dengan teliti. \nAnda mesti menerimanya untuk menghantar laporan bug kepada kami.</string>
     <string name="accept">Terima</string>
     <string name="decline">Tolak</string>
     <string name="limit_data_usage_none_description">Tiada had</string>
@@ -394,13 +380,11 @@
     <string name="albums">Album</string>
     <string name="songs">Lagu</string>
     <string name="videos_string">Video</string>
-    <string name="restricted_video">Video ini ada had umur.
-\n
-\nAktifkan \"%1$s\" dalam tetapan jika anda ingin melihatnya.</string>
+    <string name="restricted_video">Video ini ada had umur. \n \nAktifkan \"%1$s\" dalam tetapan jika anda ingin melihatnya.</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube menyediakan \"Mode Terhad\" yang menyembunyikan kandungan dewasa</string>
     <string name="youtube_restricted_mode_enabled_title">Aktifkan \"Mod Terhad\" YouTube</string>
     <string name="show_age_restricted_content_summary">Tunjuk kandungan yang mungkin tidak wajar untuk kanak-kanak kerana mempunyai had umur (seperti 18+)</string>
-    <string name="unsupported_url_dialog_message">URL tidak dikenali. Buka dengan aplikasi lain\?</string>
+    <string name="unsupported_url_dialog_message">URL tidak dikenali. Buka dengan aplikasi lain?</string>
     <string name="settings_category_clear_data_title">Kosongkan data</string>
     <string name="show_meta_info_summary">Matikan untuk menyembunyikan kotak maklumat meta yang mengandungi maklumat tambahan mengenai pencipta, kandungan siaran atau permintaan carian</string>
     <string name="show_description_summary">Matikan untuk menyembunyikan deskripsi video dan maklumat lanjut</string>

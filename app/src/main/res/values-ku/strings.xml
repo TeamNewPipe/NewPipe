@@ -164,8 +164,7 @@
     <string name="msg_wait">تکایە چاوەڕێبکە…</string>
     <string name="msg_copied">لەبەرگیرایەوە</string>
     <string name="no_available_dir">تکایە فۆڵدەرێک بۆ شوێنی دابەزاندن دیاریبکە لە ڕێکخستنەکان</string>
-    <string name="msg_popup_permission">ئەم دەسەڵاتە پێویستە بۆ
-\nکردنەوەی دۆخی پەنجەرە</string>
+    <string name="msg_popup_permission">ئەم دەسەڵاتە پێویستە بۆ \nکردنەوەی دۆخی پەنجەرە</string>
     <string name="title_activity_recaptcha">reCAPTCHA داواکاری</string>
     <string name="recaptcha_request_toast">reCAPTCHA داواکراوە</string>
     <string name="settings_category_downloads_title">دابەزاندن</string>
@@ -228,21 +227,10 @@
     <string name="previous_export">هاوردەی پێشووتر</string>
     <string name="subscriptions_import_unsuccessful">ناتوانرێ بەشدارییەکان هەناردەبکرێنەوە</string>
     <string name="subscriptions_export_unsuccessful">ناتوانرێ بەشدارییەکان هاوردە بکرێن</string>
-    <string name="import_youtube_instructions">بۆ هێنانەوەی بەشداربوونەکانی یوتوب پێویستە پەڕگەی خەزن بوو بگەڕێنیتەوە:
-\n
-\n1. ئەم بەستەرە بکەوە: s%1$s
-\n2. بچۆرەژوورەوە گەر داوای‌ کرد
-\n3. داگرتنێک دەست پێدەکات (ئەمە پەڕگەی خەزنکراوە)</string>
-    <string name="import_soundcloud_instructions">هەناردەکردنەوەی پەڕەی کەسی SoundCloud بەدانانی بەستەر یاخوود ئایدی:
-\n
-\n1. دۆخی ”Desktop mode” لە وێبگەرەکەتدا چالاک بکە (ئەم ماڵپەڕە بۆ وێبگەری مۆبایلەکان بەردەست نییە)
-\n2. ئەم بەستەرە بکەرەوە : %1$s
-\n3. بچۆرە ژوورەوە گەر داواکرا
-\n4. بەستەری پەڕەی کەسییەکەت دابنێ.</string>
+    <string name="import_youtube_instructions">بۆ هێنانەوەی بەشداربوونەکانی یوتوب پێویستە پەڕگەی خەزن بوو بگەڕێنیتەوە: \n \n1. ئەم بەستەرە بکەوە: s%1$s \n2. بچۆرەژوورەوە گەر داوای‌ کرد \n3. داگرتنێک دەست پێدەکات (ئەمە پەڕگەی خەزنکراوە)</string>
+    <string name="import_soundcloud_instructions">هەناردەکردنەوەی پەڕەی کەسی SoundCloud بەدانانی بەستەر یاخوود ئایدی: \n \n1. دۆخی ”Desktop mode” لە وێبگەرەکەتدا چالاک بکە (ئەم ماڵپەڕە بۆ وێبگەری مۆبایلەکان بەردەست نییە) \n2. ئەم بەستەرە بکەرەوە : %1$s \n3. بچۆرە ژوورەوە گەر داواکرا \n4. بەستەری پەڕەی کەسییەکەت دابنێ.</string>
     <string name="import_soundcloud_instructions_hint">ئایدییەکەت , soundcloud.com/yourid</string>
-    <string name="import_network_expensive_warning">ئەوە بزانە ئەم کردارە پێویستی بە هێڵێکی گران هەیە.
-\n
-\nدەتەوێ بەردەوامبیت؟</string>
+    <string name="import_network_expensive_warning">ئەوە بزانە ئەم کردارە پێویستی بە هێڵێکی گران هەیە. \n \nدەتەوێ بەردەوامبیت؟</string>
     <string name="playback_speed_control">کۆنترۆڵی خێرایی کارپێکەر</string>
     <string name="playback_tempo">خێراییەکان</string>
     <string name="playback_pitch">شەپۆلی دەنگ</string>
@@ -258,11 +246,9 @@
     <string name="delete_search_history_alert">تەواوی گەڕانەکانت بسڕدرێنەوە؟</string>
     <string name="search_history_deleted">مێژووی گەڕانەکانت سڕانەوە.</string>
     <string name="one_item_deleted">1 بابەت سڕایەوە.</string>
-    <string name="app_license">ئەم ئەپە سەرچاوە کراوەیە : دەتوانی بەکاریبهێنی، بیخوێنیتەوە و هاوبەشی پێبکەیت و بەرەوپێشی ببەیت.
-\nبەتایبەتی دەتوانی دابەشیبکەیتەوە یاخوود بگۆڕیت بەپێی مەرجەکانی GNU مۆڵەتنامەی گشتی وەک ئەپێکی بڵاوی خۆڕایی!</string>
+    <string name="app_license">ئەم ئەپە سەرچاوە کراوەیە : دەتوانی بەکاریبهێنی، بیخوێنیتەوە و هاوبەشی پێبکەیت و بەرەوپێشی ببەیت. \nبەتایبەتی دەتوانی دابەشیبکەیتەوە یاخوود بگۆڕیت بەپێی مەرجەکانی GNU مۆڵەتنامەی گشتی وەک ئەپێکی بڵاوی خۆڕایی!</string>
     <string name="privacy_policy_title">سیاسەتی تایبەتی ئەپ</string>
-    <string name="privacy_policy_encouragement">پڕۆژەی ئەپەکە زانیارییە تایبەتییەکانت بەوردی دەپارێزێ. هەروەها ئەپەکە هیچ داتایەک بەبێ ئاگاداری تۆ بەکارنابات. 
-\nسیاسەتی تایبەتی ئەپ بەوردەکاری ڕوونکردنەوەت دەداتێ لەسەر ئەو داتایانەی وەریاندەگرێ و بەکاریاندەبات.</string>
+    <string name="privacy_policy_encouragement">پڕۆژەی ئەپەکە زانیارییە تایبەتییەکانت بەوردی دەپارێزێ. هەروەها ئەپەکە هیچ داتایەک بەبێ ئاگاداری تۆ بەکارنابات. \nسیاسەتی تایبەتی ئەپ بەوردەکاری ڕوونکردنەوەت دەداتێ لەسەر ئەو داتایانەی وەریاندەگرێ و بەکاریاندەبات.</string>
     <string name="read_privacy_policy">خوێندنەوەی سیاسەتی تایبەتی</string>
     <string name="channels">کەناڵەکان</string>
     <string name="playlists">لیستەلێدانەکان</string>
@@ -276,8 +262,7 @@
     <string name="app_update_notification_channel_name">پەیامی نوێکاری ئەپ</string>
     <string name="app_update_notification_channel_description">پەیامەکانی وەشانی نوێی ئەپ</string>
     <string name="download_to_sdcard_error_title">بیرگەی دەرەکی بەردەست نییە</string>
-    <string name="download_to_sdcard_error_message">دابەزاندن لە بیرگەی دەرەکی ناکرێت.
-\nشوێنی فۆڵدەری دابەزاندنەکان دابنرێتەوە؟</string>
+    <string name="download_to_sdcard_error_message">دابەزاندن لە بیرگەی دەرەکی ناکرێت. \nشوێنی فۆڵدەری دابەزاندنەکان دابنرێتەوە؟</string>
     <string name="restore_defaults">گێڕانەوە بۆ بنەڕەت</string>
     <string name="restore_defaults_confirmation">ئایا دەتەوێ بگەڕێنرێتەوە بۆ شێوازی بنەڕەتی؟</string>
     <string name="subscribers_count_not_available">ژمارەی بەشداربووان نادیارە</string>
@@ -356,8 +341,7 @@
     <string name="preferred_open_action_settings_title">کرداری ’کردنەوە’ی پێشنیارکراو</string>
     <string name="preferred_open_action_settings_summary">کرداری بنەڕەتی لەکاتی کردنەوەی بابەت — %s</string>
     <string name="import_settings">ئایا دەتەوێت ڕێکخستنەکانیش هەناردەبکرێن؟</string>
-    <string name="start_accept_privacy_policy">بۆ جێبەجێکردنی فرمانەکان لەگەڵ یاسای پاراستنی داتای گشتی ئەوروپیدا (GDPR) , ئێمە سەرنجت ڕادەکێشین بۆ سیاسەتە تایبەتییەکانی ئەپەکەمان. تکایە بەئاگادارییەوە بیخوێنەوە.
-\nپێویستە قبوڵی بکەیت بۆ ناردنی سکاڵاکانت.</string>
+    <string name="start_accept_privacy_policy">بۆ جێبەجێکردنی فرمانەکان لەگەڵ یاسای پاراستنی داتای گشتی ئەوروپیدا (GDPR) , ئێمە سەرنجت ڕادەکێشین بۆ سیاسەتە تایبەتییەکانی ئەپەکەمان. تکایە بەئاگادارییەوە بیخوێنەوە. \nپێویستە قبوڵی بکەیت بۆ ناردنی سکاڵاکانت.</string>
     <string name="accept">پەسەند</string>
     <string name="decline">ڕەتکردنەوە</string>
     <string name="limit_data_usage_none_description">بێ سنوور</string>
@@ -425,8 +409,7 @@
     <string name="downloads_storage_ask_title">پرسیاربکرێ لەکوێ دابەزێنرێت</string>
     <string name="downloads_storage_ask_summary">پرسیارت لێ دەکرێت بۆ شوێنی دابەزاندنی هەر پەڕگەیەک</string>
     <string name="downloads_storage_use_saf_title">بەکارهێنانی SAF</string>
-    <string name="downloads_storage_use_saf_summary">چوارچێوەی گەیشتن بە بیرگە ڕێگەدەدات بە دابەزاندنی پەڕگەکان لە بیرگەی دەرەکیدا.
-\nتێبینی: هەندێ لە مۆبایلەکان پشتگیری ناکرێن</string>
+    <string name="downloads_storage_use_saf_summary">چوارچێوەی گەیشتن بە بیرگە ڕێگەدەدات بە دابەزاندنی پەڕگەکان لە بیرگەی دەرەکیدا. \nتێبینی: هەندێ لە مۆبایلەکان پشتگیری ناکرێن</string>
     <string name="local">ناوخۆ</string>
     <string name="recently_added">لەم ماوەیەدا بڵاوکرابێتەوە</string>
     <string name="most_liked">زۆرترین بەدڵبوون</string>
@@ -483,17 +466,9 @@
     <string name="feed_use_dedicated_fetch_method_summary">لەهەندێ خزمەتگوزاریدا بەردەستە، هەمیشە خێرایە بەڵام ڕەنگە هەندێ لە بابەتەکان زانیارییەکانیان ناتەواو بێت (وەک نەبوونی ماوە، جۆری بابەت ، نەبوونی پەخش).</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">چالاککردنی دۆخی خێرا</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">چالاک نەکردنی دۆخی خێرا</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">ئایا توانای بارکردن لاوازە؟ گەر وایە ئەوا بارکردنی خێرا تاقی بکەرەوە (دەتوانی بیگۆڕیت لە بەشی ڕێکخستنەکان لەڕێگای گرتەکردن لەم دوگمەیەی خوارەوە).
-\n
-\nئەم ئەپە دوو شێوازی بارکردنت بۆ پێشنیاز دەکات:
-\n- بارکردنی تەواوی کەناڵە بەشدارییەکانت، ئەمەیان خاوە بەڵام تەواوە.
-\n- تەرخانکردنی خزمەتگوزارییەکان ئەمەیان خێرایە بەڵام زۆر تەواو نییە.</string>
-    <string name="content_not_supported">ئەم ناوەڕۆکە پشتگیری نەکراوە لەلایەن ئەپەکەمانەوە.
-\n
-\nهیوادارین بتوانین لە وەشانەکانی داهاتوودا پشتگیری بکەین.</string>
-    <string name="restricted_video">ئەم ڤیدیۆیە بۆ تەمەن سنوردارە.
-\n
-\n%1$s کارا بکە لە ڕێکخستنەکان گەر دەتەوێت بیبینیت.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">ئایا توانای بارکردن لاوازە؟ گەر وایە ئەوا بارکردنی خێرا تاقی بکەرەوە (دەتوانی بیگۆڕیت لە بەشی ڕێکخستنەکان لەڕێگای گرتەکردن لەم دوگمەیەی خوارەوە). \n \nئەم ئەپە دوو شێوازی بارکردنت بۆ پێشنیاز دەکات: \n- بارکردنی تەواوی کەناڵە بەشدارییەکانت، ئەمەیان خاوە بەڵام تەواوە. \n- تەرخانکردنی خزمەتگوزارییەکان ئەمەیان خێرایە بەڵام زۆر تەواو نییە.</string>
+    <string name="content_not_supported">ئەم ناوەڕۆکە پشتگیری نەکراوە لەلایەن ئەپەکەمانەوە. \n \nهیوادارین بتوانین لە وەشانەکانی داهاتوودا پشتگیری بکەین.</string>
+    <string name="restricted_video">ئەم ڤیدیۆیە بۆ تەمەن سنوردارە. \n \n%1$s کارا بکە لە ڕێکخستنەکان گەر دەتەوێت بیبینیت.</string>
     <string name="infinite_videos">∞ ڤیدیۆ</string>
     <string name="more_than_100_videos">+١٠٠ ڤیدیۆ</string>
     <string name="artists">هونەرمەندەکان</string>

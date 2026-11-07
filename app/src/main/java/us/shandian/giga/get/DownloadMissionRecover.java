@@ -16,6 +16,7 @@ import java.io.InterruptedIOException;
 import java.net.HttpURLConnection;
 import java.nio.channels.ClosedByInterruptException;
 import java.util.List;
+import java.util.Objects;
 
 import us.shandian.giga.get.DownloadMission.HttpError;
 
@@ -135,6 +136,7 @@ public class DownloadMissionRecover extends Thread {
                 for (final AudioStream audio : mExtractor.getAudioStreams()) {
                     if (audio.getAverageBitrate() == mRecovery.getDesiredBitrate()
                             && audio.getFormat() == mRecovery.getFormat()
+                            && Objects.equals(audio.getAudioTrackId(), mRecovery.getDesired())
                             && audio.getDeliveryMethod() == DeliveryMethod.PROGRESSIVE_HTTP) {
                         url = audio.getContent();
                         break;

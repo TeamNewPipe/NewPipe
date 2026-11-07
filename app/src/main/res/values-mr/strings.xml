@@ -33,7 +33,7 @@
     <string name="cancel">रद्द करा</string>
     <string name="install">स्थापित करा</string>
     <string name="no_player_found_toast">प्लेअर सापडले नाही (तुम्ही VLC player वापरून फाईल चालवू शकता).</string>
-    <string name="no_player_found">प्लेअर सापडले नाही. VLC प्लेअर इंस्टॉल करू इच्छिता का\?</string>
+    <string name="no_player_found">प्लेअर सापडले नाही. VLC प्लेअर इंस्टॉल करू इच्छिता का?</string>
     <string name="main_bg_subtitle">प्रारंभ करण्यासाठी मॅग्निफाइंग ग्लासवर टॅप करा.</string>
     <string name="play_with_kodi_title">कोडी वापरून चालवा</string>
     <string name="show_higher_resolutions_summary">फक्त काही उपकरणे 2k/4k व्हिडिओ चालवू शकतात</string>
@@ -51,9 +51,9 @@
     <string name="notification_action_2_title">तिसरे क्रिया बटण</string>
     <string name="notification_action_3_title">चौथे क्रिया बटण</string>
     <string name="notification_action_4_title">पाचवे क्रिया बटण</string>
-    <string name="did_you_mean">तुम्हाला \"%1$s\" म्हणायचे आहे का\?</string>
+    <string name="did_you_mean">तुम्हाला \"%1$s\" म्हणायचे आहे का?</string>
     <string name="use_external_video_player_summary">काही रेसॉल्युशनवर ऑडिओ काढून टाकते</string>
-    <string name="kore_not_found">गहाळ Kode ॲप इंस्टॉल करायचे\?</string>
+    <string name="kore_not_found">गहाळ Kode ॲप इंस्टॉल करायचे?</string>
     <string name="notification_scale_to_square_image_summary">16:9 ते 1:1 आस्पेक्ट रेशो पर्यंत नोटिफिकेशनमध्ये दाखवलेली व्हिडिओ थंबनेल क्रॉप करा</string>
     <string name="notification_action_0_title">प्रथम क्रिया बटण</string>
     <string name="notification_scale_to_square_image_title">1:1 आस्पेक्ट रेशोवर थंबनेल क्रॉप करा</string>

@@ -30,7 +30,7 @@
     <string name="settings_category_debug_title">اشکال‌زدایی</string>
     <string name="settings_category_backup_restore_title">پشتیبان و بازگردانی</string>
     <string name="settings_category_history_title">تاریخچه و انباره</string>
-    <string name="settings_category_updates_title">به‌روز رسانی‌ها</string>
+    <string name="settings_category_updates_title">به‌روز رسانی‌ها</string>
     <string name="settings">تنظیمات</string>
     <string name="search">جست‌وجو</string>
     <string name="content">محتوا</string>
@@ -38,4 +38,14 @@
     <string name="settings_category_video_audio_title">ویدیو و صدا</string>
     <string name="settings_category_downloads_title">بارگیری</string>
     <string name="settings_category_appearance_title">ظاهر</string>
+    <string name="black_theme_title">سیاه</string>
+    <string name="night_theme_title">زمینهٔ شب</string>
+    <string name="dark_theme_title">تیره</string>
+    <string name="select_night_theme_toast">می‌توانید زمینهٔ شب دلخواهتان را در زیر بگزینید</string>
+    <string name="light_theme_title">روشن</string>
+    <string name="night_theme_available">این گزینه تنها در صورت گزینش زمینهٔ %1$s در دسترس است</string>
+    <string name="auto_device_theme_title">خودکار (زمینهٔ افزاره)</string>
+    <string name="night_theme_summary">گزینش زمینهٔ شب دلخواهتان — %1$s</string>
+    <string name="theme_title">زمینه</string>
+    <string name="error_snackbar_action">گزارش</string>
 </resources>

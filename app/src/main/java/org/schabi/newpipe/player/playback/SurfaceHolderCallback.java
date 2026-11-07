@@ -8,11 +8,11 @@ import com.google.android.exoplayer2.video.PlaceholderSurface;
 
 /**
  * Prevent error message: 'Unrecoverable player error occurred'
- * In case of rotation some users see this kind of an error which is preventable
+ * In case of rotation some users see this kind of error which is preventable
  * having a Callback that handles the lifecycle of the surface.
  * <p>
- * How?: In case we are no longer able to write to the surface eg. through rotation/putting in
- * background we set set a DummySurface. Although it it works on API >= 23 only.
+ * How?: In case we are no longer able to write to the surface e.g. through rotation/putting in
+ * background we set a DummySurface. Although it works on API >= 23 only.
  * Result: we get a little video interruption (audio is still fine) but we won't get the
  * 'Unrecoverable player error occurred' error message.
  * <p>

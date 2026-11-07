@@ -6,7 +6,7 @@
     <string name="show_play_with_kodi_title">Onyesha chaguo la \"Cheza na Kodi\"</string>
     <string name="show_play_with_kodi_summary">Onyesha chaguo la kucheza video kupitia kituo cha media cha Kodi</string>
     <string name="upload_date_text">iliyochapishwa kwa %1$s</string>
-    <string name="no_player_found">Hakuna stream player kilichopatikana. Sakinisha VLC\?</string>
+    <string name="no_player_found">Hakuna stream player kilichopatikana. Sakinisha VLC?</string>
     <string name="no_player_found_toast">Hakuna stream player kilichopatikana(unaweza sakinisha VLC kuicheza).</string>
     <string name="install">Sakinisha</string>
     <string name="cancel">Cancel</string>
@@ -18,7 +18,7 @@
     <string name="download">Download</string>
     <string name="settings">Settings</string>
     <string name="search">Tafuta</string>
-    <string name="did_you_mean">Ulimaanisha \"%1$s\"\?</string>
+    <string name="did_you_mean">Ulimaanisha \"%1$s\"?</string>
     <string name="ok">OK</string>
     <string name="search_showing_result_for">Inaonyesha matokeo ya:%s</string>
     <string name="use_external_audio_player_title">Tumia kicheza sauti cha nje</string>

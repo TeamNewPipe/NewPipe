@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -66,6 +67,13 @@ public final class PlayQueueActivity extends AppCompatActivity
     private ServiceConnection serviceConnection;
 
     private boolean seeking;
+
+    /**
+     * The calculated max width for {@code R.id.queue_total_duration}
+     * used to set a fixed width for the TextView to prevent {@code R.id.artist_name}
+     * from resetting to left when updating the duration text.
+     */
+    private int queueDurationWidth;
 
     ////////////////////////////////////////////////////////////////////////////
     // Views
@@ -366,6 +374,63 @@ public final class PlayQueueActivity extends AppCompatActivity
         }
     }
 
+    private void updateQueueTime(final int currentProgress) {
+        if (player == null || player.getPlayQueue() == null) {
+            queueControlBinding.queueTotalDuration.setVisibility(View.GONE);
+            return;
+        }
+
+        final PlayQueue playQueue = player.getPlayQueue();
+        final List<PlayQueueItem> streams = playQueue.getStreams();
+        final int currentIndex = playQueue.getIndex();
+
+        if (streams.isEmpty() || currentIndex < 0 || currentIndex >= streams.size()) {
+            queueControlBinding.queueTotalDuration.setVisibility(View.GONE);
+            return;
+        }
+
+        final long before = streams.subList(0, currentIndex).stream()
+                .mapToLong(PlayQueueItem::getDuration)
+                .sum();
+
+        final long total = streams.stream()
+                .mapToLong(PlayQueueItem::getDuration)
+                .sum();
+
+        final long queueProgress = before + currentProgress / 1000L;
+        final String totalDuration = Localization.getDurationString(total);
+
+        // Calculate the max width for the queue time to prevent resetting the artist marquee's
+        // scrolling position when the artist name is longer than the space available.
+        // Without a fixed width the scrolling position is reset every second when updating
+        // the text and thus the width of queueTotalDuration.
+
+        // Use the widest digit for the progress part while preserving its duration format.
+        final StringBuilder widestProgressDuration = new StringBuilder(totalDuration.length());
+        for (int i = 0; i < totalDuration.length(); i++) {
+            final char character = totalDuration.charAt(i);
+            widestProgressDuration.append(Character.isDigit(character) ? '8' : character);
+        }
+
+        final TextView queueDuration = queueControlBinding.queueTotalDuration;
+        final float progressWidth = queueDuration.getPaint()
+                .measureText(widestProgressDuration.toString());
+        final float totalWidth = queueDuration.getPaint().measureText(totalDuration);
+        final float separatorWidth = queueDuration.getPaint().measureText(" / ");
+
+        final int durationWidth = Math.round(progressWidth + separatorWidth + totalWidth);
+
+        if (queueDurationWidth != durationWidth) {
+            queueDuration.setWidth(durationWidth);
+            queueDurationWidth = durationWidth;
+        }
+
+        queueDuration.setText(
+                Localization.getDurationString(queueProgress) + " / " + totalDuration
+        );
+        queueDuration.setVisibility(View.VISIBLE);
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // Component On-Click Listener
     ////////////////////////////////////////////////////////////////////////////
@@ -498,6 +563,7 @@ public final class PlayQueueActivity extends AppCompatActivity
                 queueControlBinding.currentTime.getLayoutParams();
         currentTimeParams.width = queueControlBinding.endTime.getWidth();
         queueControlBinding.currentTime.setLayoutParams(currentTimeParams);
+        updateQueueTime(currentProgress);
     }
 
     @Override
