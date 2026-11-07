@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.appbar.MaterialToolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/statisticsToolbar"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginBottom="16dp"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:background="@drawable/statistics_toolbar_background"
+    android:elevation="4dp"
+    android:theme="@style/ContrastToolbarTheme">
+
+    <LinearLayout
+        android:id="@+id/toolbarContent"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/historySearchInput"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="8dp"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="12dp"
+            android:hint="@string/search_history"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingHorizontal="12dp"
+            android:singleLine="true"
+            android:textSize="14sp"
+            android:textColor="?attr/actionColor"
+            android:textColorHint="@color/edit_text_hint_color"
+            android:visibility="gone"
+            app:drawableTint="?attr/actionColor"
+            tools:ignore="Autofill" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/historySearchClear"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/clear"
+            android:padding="12dp"
+            android:src="@drawable/ic_close"
+            android:visibility="gone"
+            app:tint="?attr/actionColor" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/searchButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/search"
+            android:padding="12dp"
+            android:src="@drawable/ic_search"
+            app:tint="?attr/actionColor" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/filterWatchedButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/history_search_filter_watched"
+            android:padding="8dp"
+            android:src="@drawable/ic_visibility_on"
+            app:tint="?attr/actionColor" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/sortButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/sort"
+            android:padding="8dp"
+            android:src="@drawable/ic_sort"
+            android:layout_marginEnd="16dp"
+            app:tint="?attr/actionColor" />
+    </LinearLayout>
+
+</com.google.android.material.appbar.MaterialToolbar>
