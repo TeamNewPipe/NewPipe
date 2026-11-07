@@ -262,6 +262,12 @@ public class MediaSessionPlayerUi extends PlayerUi
     }
 
     @Override
+    public void onStopAfterCurrentSongChanged(final boolean stopAfterCurrentSong) {
+        super.onStopAfterCurrentSongChanged(stopAfterCurrentSong);
+        updateMediaSessionActions();
+    }
+
+    @Override
     public void onShuffleModeEnabledChanged(final boolean shuffleModeEnabled) {
         super.onShuffleModeEnabledChanged(shuffleModeEnabled);
         updateMediaSessionActions();

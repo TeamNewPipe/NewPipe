@@ -238,6 +238,7 @@ public final class Player implements PlaybackListener, Listener {
      */
     private boolean isAudioOnly = false;
     private boolean isPrepared = false;
+    private boolean stopAfterCurrentSong = false;
 
     /*//////////////////////////////////////////////////////////////////////////
     // UIs, listeners and disposables
@@ -675,6 +676,7 @@ public final class Player implements PlaybackListener, Listener {
         }
         UIs.call(PlayerUi::destroyPlayer);
 
+        stopAfterCurrentSong = false;
         if (!exoPlayerIsNull()) {
             simpleExoPlayer.removeListener(this);
             simpleExoPlayer.stop();
@@ -1267,8 +1269,20 @@ public final class Player implements PlaybackListener, Listener {
         return exoPlayerIsNull() ? REPEAT_MODE_OFF : simpleExoPlayer.getRepeatMode();
     }
 
+    public boolean isStopAfterCurrentSong() {
+        return stopAfterCurrentSong;
+    }
+
     public void cycleNextRepeatMode() {
         if (!exoPlayerIsNull()) {
+            if (stopAfterCurrentSong) {
+                // If stop-after-current is active, first disable it and go to REPEAT_MODE_OFF
+                stopAfterCurrentSong = false;
+                simpleExoPlayer.setRepeatMode(REPEAT_MODE_OFF);
+                UIs.call(playerUi -> playerUi.onStopAfterCurrentSongChanged(false));
+                notifyPlaybackUpdateToListeners();
+                return;
+            }
             @RepeatMode final int repeatMode;
             switch (simpleExoPlayer.getRepeatMode()) {
                 case REPEAT_MODE_OFF:
@@ -1279,8 +1293,12 @@ public final class Player implements PlaybackListener, Listener {
                     break;
                 case REPEAT_MODE_ALL:
                 default:
-                    repeatMode = REPEAT_MODE_OFF;
-                    break;
+                    // Go to "stop after current song" mode
+                    stopAfterCurrentSong = true;
+                    simpleExoPlayer.setRepeatMode(REPEAT_MODE_OFF);
+                    UIs.call(playerUi -> playerUi.onStopAfterCurrentSongChanged(true));
+                    notifyPlaybackUpdateToListeners();
+                    return;
             }
             simpleExoPlayer.setRepeatMode(repeatMode);
         }
@@ -1449,6 +1467,18 @@ public final class Player implements PlaybackListener, Listener {
                     + "discontinuityReason = [" + discontinuityReason + "]");
         }
         if (playQueue == null) {
+            return;
+        }
+
+        // Stop after current song: when the current track ends and the next one is about
+        // to start, stop playback instead of advancing. The queue remains intact.
+        if (stopAfterCurrentSong && (discontinuityReason == DISCONTINUITY_REASON_AUTO_TRANSITION
+                || discontinuityReason == DISCONTINUITY_REASON_REMOVE)
+                && newPosition.mediaItemIndex != playQueue.getIndex()) {
+            stopAfterCurrentSong = false;
+            simpleExoPlayer.setPlayWhenReady(false);
+            UIs.call(playerUi -> playerUi.onStopAfterCurrentSongChanged(false));
+            notifyPlaybackUpdateToListeners();
             return;
         }
 
