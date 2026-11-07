@@ -282,7 +282,7 @@
     <string name="playback_pitch">Ton</string>
     <string name="clear_views_history_title">Effacer l’historique des vues</string>
     <string name="clear_views_history_summary">Supprime l’historique des flux lus et des positions de reprise de lecture</string>
-    <string name="delete_view_history_alert">Voulez-vous supprimer entièrement l’historique des vues ?</string>
+    <string name="delete_view_history_alert">Supprimer tout l\'historique de mes favoris ?</string>
     <string name="watch_history_deleted">Historique des vues supprimé</string>
     <string name="clear_search_history_title">Supprimer l’historique de recherche</string>
     <string name="clear_search_history_summary">Supprime l’historique des mots-clés de recherche</string>
@@ -819,7 +819,6 @@
     <string name="youtube_player_http_403">Erreur HTTP 403 reçue du serveur pendant la lecture, probablement causée par un bannissement d\'IP ou des problèmes de désobfuscation de l\'URL de streaming</string>
     <string name="sign_in_confirm_not_bot_error">%1$s a refusé de fournir des données et a demandé un identifiant pour confirmer que l\'auteur de la requête n\'est pas un robot.\n\nVotre adresse IP a peut-être été temporairement bloquée par %1$s. Vous pouvez patienter ou essayer une autre adresse IP (par exemple, en activant/désactivant un VPN ou en passant du Wi-Fi aux données mobiles).\n\nPour plus d\'informations, veuillez consulter <a href="%2$s">cette FAQ</a>.</string>
     <string name="unsupported_content_in_country">Ce contenu n\'est pas disponible pour le pays actuellement sélectionné.\n\nModifiez votre sélection dans « Paramètres &gt; Contenu &gt; Pays par défaut ».</string>
-
     <string name="kao_dialog_more_info">Détails</string>
     <string name="kao_solution">Solution</string>
     <plurals name="export_subscriptions">
@@ -847,4 +846,5 @@
     <string name="api23_requirement_dialog_blogpost">Article de blog</string>
     <string name="channel_tab_podcasts">Podcasts</string>
     <string name="channel_tab_courses">Cours</string>
+    <string name="kao_dialog_warning">Google a commencé à appliquer une nouvelle exigence de vérification des développeurs Android qui rend l\'installation de NewPipe plus difficile au Brésil, en Indonésie, à Singapour et en Thaïlande, un déploiement mondial étant prévu pour 2027.\n\nÀ moins d\'un changement de ces exigences, l\'installation de NewPipe pourrait devenir plus difficile, voire impossible, sur les appareils Android certifiés dans un avenir proche.</string>
 </resources>

@@ -173,7 +173,7 @@
     <string name="search_history_deleted">Axtarış tarixçəsi silindi</string>
     <string name="delete_search_history_alert">Bütün axtarış tarixçəsi silinsin?</string>
     <string name="clear_search_history_summary">Açar sözlər axtarışı tarixçəsin silir</string>
-    <string name="clear_search_history_title">Axtarış tarixçəsini sil</string>
+    <string name="clear_search_history_title">Axtarış tarixçəsin təmizlə</string>
     <string name="watch_history_states_deleted">Oynatma mövqeləri silindi</string>
     <string name="delete_playback_states_alert">Bütün oynatma mövqeləri silinsin?</string>
     <string name="clear_playback_states_summary">Bütün oynatma mövqelərini silir</string>
@@ -187,7 +187,7 @@
     <string name="resize_fill">Doldur</string>
     <string name="resize_fit">Uyğunlaşdır</string>
     <string name="caption_none">Titrlər Yoxdur</string>
-    <string name="delete">Sil</string>
+    <string name="delete">Silin</string>
     <string name="no_channel_subscribed_yet">Hələ ki, kanal abunəliyi yoxdur</string>
     <string name="select_a_channel">Kanal seç</string>
     <string name="channel_page_summary">Kanal səhifəsi</string>
@@ -803,7 +803,6 @@
     <string name="youtube_player_http_403">HTTP xətası 403 oynadarkən serverdən alındı, ehtimal ki, IP qadağası və ya yayım URL-nin deobfuscation problemləri ilə bağlıdır</string>
     <string name="sign_in_confirm_not_bot_error">%1$s sorğuçunun bot olmadığını təsdiqləmək üçün giriş tələb edərək data təmin etməkdən imtina etdi.\n\nIP-niz %1$s tərəfindən müvəqqəti şəkildə qadağan oluna bilər, bir müddət gözləyə və ya başqa IP-yə keçə bilərsiniz (məsələn, VPN-i açıb/qapatmaqla və ya WiFi-dan mobil dataya keçməklə).\n\nDaha çox məlumat üçün xahiş olunur <a href="%2$s">bu Tez-tez Verilən Suallar qeydinə</a> baxın.</string>
     <string name="unsupported_content_in_country">Bu məzmun hazırda seçilən məzmun ölkəsi üçün əlçatan deyil. \n\nSeçiminizi \"Tənzimləmələr &gt; Məzmun &gt; İlkin məzmun ölkəsi\"- dən dəyişin.</string>
-
     <string name="kao_dialog_more_info">Təfərrüatlar</string>
     <string name="kao_solution">Həll olunma</string>
     <plurals name="export_subscriptions">
@@ -828,4 +827,5 @@
     <string name="api23_requirement_dialog_message">Təəssüf ki, NewPipe Android 5.0 və 5.1 üçün dəstəyi dayandıran bir neçə kitabxanadan asılıdır. Bu səbəbdən, üzücü olaraq növbəti NewPipe buraxılışı yalnız Android 6 və ya daha yüksək versiyalı cihazlarda işləyəcək. Daha çoxunu blog elanında oxu.</string>
     <string name="channel_tab_podcasts">Podkastlar</string>
     <string name="channel_tab_courses">Kurslar</string>
+    <string name="kao_dialog_warning">Google Android tərtibatçı təsdiqlənməsi üzrə yeni tələbin tətbiqinə başlayıb, bu Braziliya, İndoneziya, Sinqapur və Tailandda NewPipe-ın quraşdırılmasını çətinləşdirir; 2027-ci ildə isə sistemin qlobal miqyasda istifadəyə verilməsi planlaşdırılır.\n\nTələblər dəyişdirilməzsə, yaxın gələcəkdə sertifikatlaşdırılmış Android cihazlarında NewPipe quraşdırmaq daha çətin və ya imkansız ola bilər.</string>
 </resources>

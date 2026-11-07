@@ -37,7 +37,7 @@
     <string name="show_search_suggestions_title">显示搜索建议</string>
     <string name="subscribe_button_title">订阅</string>
     <string name="subscribed_button_title">已订阅</string>
-    <string name="enable_watch_history_title">记录播放记录</string>
+    <string name="enable_watch_history_title">观看历史</string>
     <string name="settings_category_player_title">播放器</string>
     <string name="settings_category_history_title">历史记录和缓存</string>
     <string name="undo">撤销</string>
@@ -46,7 +46,7 @@
     <string name="just_once">仅一次</string>
     <string name="controls_add_to_playlist_title">添加至</string>
     <string name="file">文件</string>
-    <string name="clear_views_history_title">清空播放历史</string>
+    <string name="clear_views_history_title">清除观看历史</string>
     <string name="minimize_on_exit_none_description">无</string>
     <string name="minimize_on_exit_background_description">最小化到后台播放器</string>
     <string name="minimize_on_exit_popup_description">最小化到弹窗播放器</string>
@@ -61,8 +61,8 @@
     <string name="app_update_available_notification_title">NewPipe 可更新！</string>
     <string name="error_http_unsupported_range">服务器不接受多线程下载, 使用 @string/msg_threads = 1 重试</string>
     <string name="autoplay_title">自动播放</string>
-    <string name="settings_category_clear_data_title">清空数据</string>
-    <string name="watch_history_deleted">播放历史已删除</string>
+    <string name="settings_category_clear_data_title">清除数据</string>
+    <string name="watch_history_deleted">已删除观看历史</string>
     <string name="detail_likes_img_view_description">喜欢</string>
     <string name="detail_dislikes_img_view_description">不喜欢</string>
     <string name="video">视频</string>
@@ -180,9 +180,9 @@
     <string name="fragment_feed_title">最新</string>
     <string name="resume_on_audio_focus_gain_title">继续播放</string>
     <string name="resume_on_audio_focus_gain_summary">中断后继续播放（如通话）</string>
-    <string name="enable_search_history_title">记录搜索历史</string>
-    <string name="enable_search_history_summary">Newpipe 将在本地存储搜索历史记录</string>
-    <string name="enable_watch_history_summary">Newpipe 将保留播放记录</string>
+    <string name="enable_search_history_title">搜索历史</string>
+    <string name="enable_search_history_summary">本地存储搜索查询</string>
+    <string name="enable_watch_history_summary">保留看过的视频的痕迹</string>
     <string name="title_activity_history">历史记录</string>
     <string name="action_history">历史记录</string>
     <string name="notification_channel_name">NewPipe 通知</string>
@@ -290,9 +290,9 @@
     <string name="import_soundcloud_instructions_hint">你的 ID：soundcloud.com/［你的ID］</string>
     <string name="import_network_expensive_warning">该操作消耗大量流量， \n \n你想继续吗？</string>
     <string name="thumbnail_cache_wipe_complete_notice">清空图像缓存成功</string>
-    <string name="metadata_cache_wipe_title">清空已缓存的元数据</string>
-    <string name="metadata_cache_wipe_summary">清空已缓存的网页数据</string>
-    <string name="metadata_cache_wipe_complete_notice">清空元数据缓存成功</string>
+    <string name="metadata_cache_wipe_title">擦除已缓存的元数据</string>
+    <string name="metadata_cache_wipe_summary">删除所有已缓存的网页数据</string>
+    <string name="metadata_cache_wipe_complete_notice">已擦除元数据缓存</string>
     <string name="playback_speed_control">播放速度控制</string>
     <string name="playback_tempo">节奏</string>
     <string name="playback_pitch">音调</string>
@@ -302,12 +302,12 @@
     <string name="no_streams_available_download">没有可下载的串流</string>
     <string name="caption_setting_title">字幕</string>
     <string name="caption_setting_description">修改播放器字幕文本缩放和背景样式。需要重启应用生效</string>
-    <string name="clear_views_history_summary">删除串流播放历史和播放痕迹记录</string>
-    <string name="delete_view_history_alert">删除全部播放历史？</string>
-    <string name="clear_search_history_title">清空搜索历史</string>
-    <string name="clear_search_history_summary">清空搜索历史关键词</string>
-    <string name="delete_search_history_alert">是否删除全部搜索历史？</string>
-    <string name="search_history_deleted">搜索历史已删除</string>
+    <string name="clear_views_history_summary">删除已播放串流的历史记录和播放位置</string>
+    <string name="delete_view_history_alert">删除全部观看历史？</string>
+    <string name="clear_search_history_title">清除搜索历史</string>
+    <string name="clear_search_history_summary">删除搜索关键词历史</string>
+    <string name="delete_search_history_alert">删除所有搜索历史？</string>
+    <string name="search_history_deleted">已删除搜索历史</string>
     <string name="app_license">NewPipe 是 Copyleft 的自由软件：您可以随时使用、研究共享和改进它。您可以根据自由软件基金会发布的 GNU 通用公共许可证 GPLv3 或（由您选择的）任何更高版本的许可证重新分发或修改该许可证。</string>
     <string name="import_settings">是否要导入设置？</string>
     <string name="privacy_policy_title">NewPipe 隐私政策</string>
@@ -361,11 +361,11 @@
     <string name="show_comments_summary">是否隐藏评论</string>
     <string name="error_unable_to_load_comments">无法加载评论</string>
     <string name="close">关闭</string>
-    <string name="enable_playback_resume_title">记录播放痕迹历史</string>
-    <string name="enable_playback_resume_summary">再次打开播放过的视频时, 自动定位到上次播放时位置</string>
-    <string name="enable_playback_state_lists_title">在列表中显示历史播放位置</string>
-    <string name="enable_playback_state_lists_summary">在列表中，使用底端进度条显示某一视频上次播放时的播放位置</string>
-    <string name="watch_history_states_deleted">已删除播放痕迹历史</string>
+    <string name="enable_playback_resume_title">继续播放</string>
+    <string name="enable_playback_resume_summary">恢复最后播放位置</string>
+    <string name="enable_playback_state_lists_title">列表中位置</string>
+    <string name="enable_playback_state_lists_summary">在列表中显示播放位置指示器</string>
+    <string name="watch_history_states_deleted">已删除播放位置</string>
     <string name="missing_file">文件已被移动或被删除</string>
     <string name="overwrite_unrelated_warning">同名文件已存在</string>
     <string name="overwrite_finished_warning">同名的已下载文件已经存在</string>
@@ -384,9 +384,9 @@
     <string name="downloads_storage_ask_summary">应用会询问在哪里保存每个下载。\n如果想下载到外部 SD 卡，请启用系统文件夹选择器（SAF）</string>
     <string name="downloads_storage_use_saf_title">使用系统文件夹选择器（SAF）</string>
     <string name="downloads_storage_use_saf_summary">“存储访问框架”允许下载到外部 SD 卡</string>
-    <string name="clear_playback_states_title">删除播放痕迹历史</string>
-    <string name="clear_playback_states_summary">删除所有播放痕迹历史</string>
-    <string name="delete_playback_states_alert">是否删除全部播放痕迹历史？</string>
+    <string name="clear_playback_states_title">删除播放位置</string>
+    <string name="clear_playback_states_summary">删除所有播放位置</string>
+    <string name="delete_playback_states_alert">删除所有播放位置？</string>
     <string name="default_kiosk_page_summary">『时下流行』页-默认</string>
     <string name="no_one_watching">没有人在观看</string>
     <plurals name="watching">
@@ -507,9 +507,9 @@
     <string name="show_memory_leaks">显示内存泄露</string>
     <string name="enqueued">已加入播放队列</string>
     <string name="enqueue_stream">加入队列</string>
-    <string name="clear_cookie_summary">清空与本地存储的 reCAPTCHA 验证码有关的 cookie</string>
-    <string name="recaptcha_cookies_cleared">reCAPTCHA cookie 已被清空</string>
-    <string name="clear_cookie_title">清空 reCAPTCHA cookie</string>
+    <string name="clear_cookie_summary">清除 NewPipe 在你解决 reCAPTCHA 时存储的 cookies</string>
+    <string name="recaptcha_cookies_cleared">已清除 reCAPTCHA cookies</string>
+    <string name="clear_cookie_title">清除 reCAPTCHA cookies</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube提供了“受限模式”，可以隐藏潜在的成人内容</string>
     <string name="show_age_restricted_content_summary">展示有年龄限制的、可能不适合儿童观看的内容（比如 18+）</string>
     <string name="notification_colorize_summary">让 Android 系统根据视频缩略图的主色彩给通知着色（注意，该特性仅在部分设备上可用）</string>
@@ -789,7 +789,6 @@
     <string name="youtube_player_http_403">播放时从服务器收到 HTTP 403 错误，可能因 IP 封锁或串流 URL 解密问题导致</string>
     <string name="sign_in_confirm_not_bot_error">%1$s 拒绝提供数据， 要求登录确认请求方不是机器人。\n\n你的 IP 可能已经暂时被 %1$s 封禁，你可以等待一段时间或切换到不同 IP （比如开/关 VPN, 或者从 WiFi 连接切换到移动数据）。\n\n请见 <a href="%2$s">此 FAQ条目</a> 获取更多信息。</string>
     <string name="unsupported_content_in_country">此内容对当前选中的内容地区不可用。\n\n要更改选择，请前往 “设置 &gt; 内容 &gt; 默认内容地区”。</string>
-
     <string name="kao_dialog_more_info">详情</string>
     <string name="kao_solution">解决方案</string>
     <plurals name="export_subscriptions">
@@ -811,4 +810,5 @@
     <string name="api23_requirement_dialog_blogpost">博客文章</string>
     <string name="channel_tab_podcasts">播客</string>
     <string name="channel_tab_courses">课程</string>
+    <string name="kao_dialog_warning">Google 已经开始在巴西、印尼、新加坡和泰国强制实施一项新的安卓开发者验证要求，该要求增加了安装 NewPipe 的难度；这项要求计划 2027 年在全球推出。\n\n除非该要求出现变化，否则不久将来在特定安卓设备上安装本应用可能变得更加困难或根本不可能。</string>
 </resources>

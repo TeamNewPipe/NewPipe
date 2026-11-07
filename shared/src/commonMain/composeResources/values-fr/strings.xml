@@ -62,4 +62,5 @@
     <string name="grid">Grille</string>
     <string name="card">Carte</string>
     <string name="cancel">Annuler</string>
+    <string name="delete_view_history_alert">Supprimer tout l'historique de mes favoris ?</string>
 </resources>

@@ -1,0 +1,6 @@
+Affichage des chapitres sur la barre de défilement du lecteur vidéo
+[YouTube] Ajout de la prise en charge des onglets « Podcasts » et « Cours »
+Amélioration de l'apparence des titres du menu de recherche
+Affichage des noms complets des sous-titres lorsqu'ils sont fournis par le service
+Diverses corrections apportées au lecteur, notamment concernant l'atténuation du son, les écrans noirs et l'ouverture des liens avec des horodatages
+[YouTube] Corrections mineures et mises à jour de maintenance
