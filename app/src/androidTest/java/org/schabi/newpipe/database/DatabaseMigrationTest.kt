@@ -13,6 +13,7 @@ import org.junit.Assert.assertNull
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.schabi.newpipe.database.block.BlockedChannelEntity
 import org.schabi.newpipe.database.playlist.model.PlaylistEntity
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity
 import org.schabi.newpipe.extractor.ServiceList
@@ -337,12 +338,67 @@ class DatabaseMigrationTest {
         assertEquals(-1, remoteListFromDB[1].displayIndex)
     }
 
+    @Test
+    fun migrateDatabaseFrom9to10() {
+        val databaseInV9 = testHelper.createDatabase(AppDatabase.DATABASE_NAME, Migrations.DB_VER_9)
+        // Make sure old data survives the migration
+        databaseInV9.insert(
+            "streams",
+            SQLiteDatabase.CONFLICT_FAIL,
+            ContentValues().apply {
+                put("service_id", DEFAULT_SERVICE_ID)
+                put("url", DEFAULT_URL)
+                put("title", DEFAULT_TITLE)
+                put("stream_type", DEFAULT_TYPE.name)
+                put("duration", DEFAULT_DURATION)
+                put("uploader", DEFAULT_UPLOADER_NAME)
+                put("thumbnail_url", DEFAULT_THUMBNAIL)
+            }
+        )
+        databaseInV9.close()
+
+        testHelper.runMigrationsAndValidate(
+            AppDatabase.DATABASE_NAME,
+            Migrations.DB_VER_10,
+            true,
+            Migrations.MIGRATION_9_10
+        )
+
+        val migratedDatabase = getMigratedDatabase()
+        assertEquals(1, migratedDatabase.streamDAO().getAll().blockingFirst().size)
+
+        // The new table starts empty and works
+        val dao = migratedDatabase.blockedChannelDAO()
+        assertEquals(0, dao.getBlockedUrls().size)
+        dao.upsert(BlockedChannelEntity(url = "https://www.youtube.com/channel/a", name = "B channel"))
+        dao.upsert(BlockedChannelEntity(url = "https://www.youtube.com/channel/b", name = "a channel"))
+        assertEquals(
+            setOf("https://www.youtube.com/channel/a", "https://www.youtube.com/channel/b"),
+            dao.getBlockedUrls().toSet()
+        )
+        // Sorted by name, ignoring case
+        assertEquals(
+            listOf("a channel", "B channel"),
+            dao.getAll().blockingFirst().map { it.name }
+        )
+
+        // The same url can only be blocked once: blocking it again replaces the old entry
+        dao.upsert(BlockedChannelEntity(url = "https://www.youtube.com/channel/a", name = "Renamed"))
+        assertEquals(2, dao.getBlockedUrls().size)
+
+        dao.deleteByUrl("https://www.youtube.com/channel/a")
+        assertEquals(listOf("https://www.youtube.com/channel/b"), dao.getBlockedUrls())
+    }
+
     private fun getMigratedDatabase(): AppDatabase {
         val database: AppDatabase = Room.databaseBuilder(
             ApplicationProvider.getApplicationContext(),
             AppDatabase::class.java,
             AppDatabase.DATABASE_NAME
         )
+            // The tests above stop at an older version, so the newest migration(s) must be known
+            // here for Room to bring the database up to the current version when opening it.
+            .addMigrations(Migrations.MIGRATION_9_10)
             .build()
         testHelper.closeWhenFinished(database)
         return database
