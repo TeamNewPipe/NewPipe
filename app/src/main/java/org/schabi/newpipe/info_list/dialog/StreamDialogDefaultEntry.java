@@ -19,6 +19,7 @@ import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
+import org.schabi.newpipe.local.channel.BlockedChannelUiHelper;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
@@ -138,6 +139,8 @@ public enum StreamDialogDefaultEntry {
     OPEN_IN_BROWSER(R.string.open_in_browser, (fragment, item) ->
             ShareUtils.openUrlInBrowser(fragment.requireContext(), item.getUrl())),
 
+    BLOCK_CHANNEL(R.string.block_channel, (fragment, item) ->
+            BlockedChannelUiHelper.blockChannel(fragment, item)),
 
     MARK_AS_WATCHED(R.string.mark_as_watched, (fragment, item) ->
         new HistoryRecordManager(fragment.getContext())

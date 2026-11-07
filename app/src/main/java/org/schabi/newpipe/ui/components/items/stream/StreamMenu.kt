@@ -8,6 +8,7 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.download.DownloadDialog
 import org.schabi.newpipe.ktx.findFragmentActivity
+import org.schabi.newpipe.local.channel.BlockedChannelUiHelper
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog
 import org.schabi.newpipe.local.dialog.PlaylistDialog
 import org.schabi.newpipe.player.helper.PlayerHolder
@@ -124,6 +125,13 @@ fun StreamMenu(
             onClick = {
                 onDismissRequest()
                 ShareUtils.openUrlInBrowser(context, stream.url)
+            }
+        )
+        DropdownTextMenuItem(
+            text = R.string.block_channel,
+            onClick = {
+                onDismissRequest()
+                BlockedChannelUiHelper.blockChannel(context.findFragmentActivity(), info)
             }
         )
         DropdownTextMenuItem(

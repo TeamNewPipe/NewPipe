@@ -6,6 +6,7 @@ import androidx.sqlite.execSQL
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import java.io.File
+import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
@@ -384,5 +385,57 @@ class DatabaseMigrationTest {
         }
 
         migratedConnection.close()
+    }
+
+    @Test
+    fun migrateDatabaseFrom9to10() = runTest {
+        val databaseInV9 = testHelper.createDatabase(
+            version = Migrations.DB_VER_9
+        )
+
+        // Make sure old data survives the migration
+        databaseInV9.prepare(
+            """
+        INSERT INTO streams (
+            service_id,
+            url,
+            title,
+            stream_type,
+            duration,
+            uploader,
+            thumbnail_url
+        ) VALUES (?, ?, ?, ?, ?, ?, ?)
+            """.trimIndent()
+        ).use { statement ->
+            statement.bindLong(1, DEFAULT_SERVICE_ID.toLong())
+            statement.bindText(2, DEFAULT_URL)
+            statement.bindText(3, DEFAULT_TITLE)
+            statement.bindText(4, DEFAULT_TYPE.name)
+            statement.bindLong(5, DEFAULT_DURATION.toLong())
+            statement.bindText(6, DEFAULT_UPLOADER_NAME)
+            statement.bindText(7, DEFAULT_THUMBNAIL)
+            statement.step()
+        }
+        databaseInV9.close()
+
+        val migratedConnection = testHelper.runMigrationsAndValidate(
+            version = Migrations.DB_VER_10,
+            migrations = listOf(Migrations.MIGRATION_9_10)
+        )
+
+        migratedConnection.prepare(
+            "SELECT COUNT(*) FROM streams"
+        ).use { statement ->
+            statement.step()
+            assertEquals(1L, statement.getLong(0))
+        }
+
+        // The new table starts empty
+        migratedConnection.prepare(
+            "SELECT COUNT(*) FROM blocked_channels"
+        ).use { statement ->
+            assert(statement.step())
+            assertEquals(0L, statement.getLong(0))
+        }
     }
 }
