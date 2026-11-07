@@ -16,6 +16,7 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 import static org.schabi.newpipe.player.helper.PlayerHelper.nextResizeModeAndSaveToPrefs;
 import static org.schabi.newpipe.player.helper.PlayerHelper.retrieveSeekDurationFromPreferences;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -186,12 +187,15 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.playbackSeekBar.getProgressDrawable()
                 .setColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY));
 
-        final ContextThemeWrapper themeWrapper = new ContextThemeWrapper(context,
+        // use the context of the views, so that the popup menus are shown on the display
+        // the player is on (see DisplayAwareContextWrapper)
+        final Context viewContext = binding.getRoot().getContext();
+        final ContextThemeWrapper themeWrapper = new ContextThemeWrapper(viewContext,
                 R.style.DarkPopupMenu);
 
         qualityPopupMenu = new PopupMenu(themeWrapper, binding.qualityTextView);
         audioTrackPopupMenu = new PopupMenu(themeWrapper, binding.audioTrackTextView);
-        playbackSpeedPopupMenu = new PopupMenu(context, binding.playbackSpeed);
+        playbackSpeedPopupMenu = new PopupMenu(viewContext, binding.playbackSpeed);
         captionPopupMenu = new PopupMenu(themeWrapper, binding.captionTextView);
 
         binding.progressBarLoadingPanel.getIndeterminateDrawable()
