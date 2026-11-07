@@ -1479,7 +1479,7 @@ public final class VideoDetailFragment
         // Note for tablet: trying to avoid orientation changes since it's not easy
         // to physically rotate the tablet every time
         if (activity != null && !DeviceUtils.isTablet(activity)) {
-            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+            PlayerHelper.restoreLockedOrientation(activity);
         }
     }
 
@@ -2374,6 +2374,7 @@ public final class VideoDetailFragment
                         manageSpaceAtTheBottom(true);
 
                         bottomSheetBehavior.setPeekHeight(0);
+                        restoreDefaultOrientation();
                         cleanUp();
                         break;
                     case BottomSheetBehavior.STATE_EXPANDED:
