@@ -803,7 +803,6 @@
     <string name="youtube_player_http_403">Oynatırken sunucudan HTTP 403 hatası alındı, IP engeli ya da akış URL’si çözme sorunları olabilir</string>
     <string name="sign_in_confirm_not_bot_error">%1$s veri sağlamıyor, istekçinin robot olmadığını doğrulaması için oturum açmasını istiyor.\n\n%1$s, IP adresinizi geçici olarak engellemiş olabilir, bir süre bekleyebilir ya da başka IP\'ye geçebilirsiniz (örneğin VPN\'i açıp/kapatarak ya da WiFi\'den mobil veriye geçerek).\n\nDaha çok bilgi için <a href="%2$s">bu SSS girdisine</a> bakın.</string>
     <string name="unsupported_content_in_country">Bu içerik şu anda seçili içerik ülkesinde kullanılamıyor.\n\nSeçiminizi \"Ayarlar &gt; İçerik &gt; Öntanımlı içerik ülkesi\"nden değiştirin.</string>
-
     <string name="kao_dialog_more_info">Ayrıntılar</string>
     <string name="kao_solution">Çözüm</string>
     <plurals name="export_subscriptions">
@@ -828,4 +827,5 @@
     <string name="api23_requirement_dialog_blogpost">Blog gönderisi</string>
     <string name="channel_tab_podcasts">Podcastler</string>
     <string name="channel_tab_courses">Dersler</string>
+    <string name="kao_dialog_warning">Google; Brezilya, Endonezya, Singapur ve Tayland\'da NewPipe\'ın kurulumunu zorlaştıran yeni Android geliştirici doğrulama koşulunu uygulamaya başladı; küresel çapta yaygınlaştırma ise 2027\'de planlanıyor.\n\nKoşullar değişmezse NewPipe\'ın sertifikalı Android aygıtlara kurulumu yakın gelecekte daha da zorlaşabilir ya da olanaksızlaşabilir.</string>
 </resources>

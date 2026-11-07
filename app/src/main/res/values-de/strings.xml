@@ -125,8 +125,8 @@
     <string name="fragment_feed_title">Neuigkeiten</string>
     <string name="enable_search_history_title">Suchverlauf</string>
     <string name="enable_search_history_summary">Suchanfragen lokal speichern</string>
-    <string name="enable_watch_history_title">Verlauf ansehen</string>
-    <string name="enable_watch_history_summary">Wiedergabeverlauf speichern</string>
+    <string name="enable_watch_history_title">Wiedergabeverlauf</string>
+    <string name="enable_watch_history_summary">Angeschaute Videos erfassen</string>
     <string name="title_activity_history">Verlauf</string>
     <string name="action_history">Verlauf</string>
     <string name="subscription_change_failed">Abonnement konnte nicht geändert werden</string>
@@ -216,8 +216,8 @@
     <string name="detail_drag_description">Zum Neuordnen ziehen</string>
     <string name="create">Erstellen</string>
     <string name="rename">Umbenennen</string>
-    <string name="title_last_played">Zuletzt wiedergegeben</string>
-    <string name="title_most_played">Am häufigsten wiedergegeben</string>
+    <string name="title_last_played">Zuletzt abgespielt</string>
+    <string name="title_most_played">Am häufigsten abgespielt</string>
     <string name="always_ask_open_action">Immer fragen</string>
     <string name="create_playlist">Neue Wiedergabeliste</string>
     <string name="rename_playlist">Umbenennen</string>
@@ -247,8 +247,8 @@
     <string name="previous_export">Vorheriger Export</string>
     <string name="import_network_expensive_warning">Beachte, dass diese Aktion das Netzwerk stark belasten kann. \n \nMöchtest du fortfahren?</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bilder-Cache gelöscht</string>
-    <string name="metadata_cache_wipe_title">Zwischengespeicherte (Metadaten) löschen</string>
-    <string name="metadata_cache_wipe_summary">Alle zwischengespeicherten Website-Daten entfernen</string>
+    <string name="metadata_cache_wipe_title">Zwischengespeicherte Metadaten löschen</string>
+    <string name="metadata_cache_wipe_summary">Alle zwischengespeicherten Webseiten-Daten löschen</string>
     <string name="metadata_cache_wipe_complete_notice">Metadatencache gelöscht</string>
     <string name="settings_category_debug_title">Fehlersuche</string>
     <string name="invalid_source">Datei-/Inhaltsquelle existiert nicht</string>
@@ -280,12 +280,12 @@
     <string name="caption_setting_title">Untertitel</string>
     <string name="caption_setting_description">Textgröße und Hintergrund der Untertitel im Player anpassen. Erfordert Neustart der App</string>
     <string name="clear_views_history_title">Wiedergabeverlauf löschen</string>
-    <string name="clear_views_history_summary">Den Verlauf der wiedergegebenen Streams und die Wiedergabepositionen löschen</string>
-    <string name="delete_view_history_alert">Den ganzen Wiedergabeverlauf löschen?</string>
+    <string name="clear_views_history_summary">Löscht den Verlauf der abgespielten Streams und die Wiedergabepositionen</string>
+    <string name="delete_view_history_alert">Gesamten Wiedergabeverlauf löschen?</string>
     <string name="watch_history_deleted">Wiedergabeverlauf gelöscht</string>
     <string name="clear_search_history_title">Suchverlauf löschen</string>
-    <string name="clear_search_history_summary">Den Verlauf der Suchbegriffe löschen</string>
-    <string name="delete_search_history_alert">Den gesamten Suchverlauf löschen?</string>
+    <string name="clear_search_history_summary">Löscht den Verlauf der Suchbegriffe</string>
+    <string name="delete_search_history_alert">Gesamten Suchverlauf löschen?</string>
     <string name="search_history_deleted">Suchverlauf gelöscht</string>
     <string name="one_item_deleted">1 Element gelöscht.</string>
     <string name="app_license">NewPipe ist freie Copyleft-Software: Du kannst sie nach Belieben benutzen, untersuchen, mit anderen teilen und verbessern. Insbesondere kannst du sie unter den von der Free Software Foundation veröffentlichten Bedingungen der GNU General Public License, in der Version 3 der Lizenz oder (nach deiner Wahl) jeder späteren Version, weitergeben und/oder verändern.</string>
@@ -396,7 +396,7 @@
     <string name="downloads_storage_use_saf_title">Systemordnerauswahl verwenden (SAF)</string>
     <string name="downloads_storage_use_saf_summary">Das „Storage Access Framework“ ermöglicht das Herunterladen auf eine externe SD-Karte</string>
     <string name="clear_playback_states_title">Wiedergabepositionen löschen</string>
-    <string name="clear_playback_states_summary">Alle Wiedergabepositionen löschen</string>
+    <string name="clear_playback_states_summary">Löscht alle Wiedergabepositionen</string>
     <string name="delete_playback_states_alert">Alle Wiedergabepositionen löschen?</string>
     <string name="drawer_header_description">Dienst umschalten, aktuell ausgewählt:</string>
     <string name="default_kiosk_page_summary">Standard-Kiosk</string>
@@ -484,9 +484,9 @@
     <string name="content_not_supported">Dieser Inhalt wird von NewPipe noch nicht unterstützt. \n \nEr wird hoffentlich in einer zukünftigen Version unterstützt.</string>
     <string name="restricted_video">Dieses Video ist altersbeschränkt. \n \nAktiviere in den Einstellungen „%1$s“, falls du diese sehen möchtest.</string>
     <string name="remove_watched_popup_warning">Streams, die vor und nach dem Hinzufügen zur Wiedergabeliste angeschaut wurden, werden entfernt. \nBist du sicher?</string>
-    <string name="remove_watched_popup_partially_watched_streams">Teilweise angesehene Streams entfernen</string>
-    <string name="remove_watched">Gesehene entfernen</string>
-    <string name="remove_watched_popup_title">Gesehene Streams entfernen?</string>
+    <string name="remove_watched_popup_partially_watched_streams">Teilweise angeschaute Streams entfernen</string>
+    <string name="remove_watched">Angeschaute entfernen</string>
+    <string name="remove_watched_popup_title">Angeschaute Streams entfernen?</string>
     <string name="show_original_time_ago_title">Originalzeit vor Elementen anzeigen</string>
     <string name="show_original_time_ago_summary">Originaltexte von Diensten werden in Stream-Elementen sichtbar sein</string>
     <string name="youtube_restricted_mode_enabled_title">YouTubes „Eingeschränkten Modus“ aktivieren</string>
@@ -593,7 +593,7 @@
     <string name="on">An</string>
     <string name="tablet_mode_title">Tablet-Modus</string>
     <string name="off">Aus</string>
-    <string name="mark_as_watched">Als gesehen markieren</string>
+    <string name="mark_as_watched">Als angeschaut markieren</string>
     <string name="detail_heart_img_view_description">Vom Ersteller mit Herz versehen</string>
     <string name="remote_search_suggestions">Entfernte Suchvorschläge</string>
     <string name="local_search_suggestions">Lokale Suchvorschläge</string>
@@ -625,7 +625,7 @@
     <string name="create_error_notification">Eine Fehlermeldung erstellen</string>
     <string name="show_error_snackbar">Fehler-Kurzmeldung anzeigen</string>
     <string name="no_appropriate_file_manager_message">Für diese Aktion wurde kein geeigneter Dateimanager gefunden.\nBitte installiere einen Dateimanager oder versuche, \'%s\' in den Downloadeinstellungen zu deaktivieren</string>
-    <string name="no_appropriate_file_manager_message_android_10">Für diese Aktion wurde kein geeigneter Dateimanager gefunden.\nBitte installiere einen Storage Access Framework kompatiblen Dateimanager</string>
+    <string name="no_appropriate_file_manager_message_android_10">Für diese Aktion wurde kein geeigneter Dateimanager gefunden.\nBitte installiere einen mit dem Storage Access Framework kompatiblen Dateimanager</string>
     <string name="detail_pinned_comment_view_description">Angehefteter Kommentar</string>
     <string name="leak_canary_not_available">LeakCanary ist nicht verfügbar</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer-Standard</string>
@@ -803,7 +803,6 @@
     <string name="youtube_player_http_403">HTTP-Fehler 403 vom Server während der Wiedergabe erhalten, wahrscheinlich verursacht durch eine IP-Sperre oder Probleme beim Entschlüsseln der Streaming-URL</string>
     <string name="sign_in_confirm_not_bot_error">%1$s hat die Datenbereitstellung verweigert und verlangt eine Anmeldung, um zu bestätigen, dass es sich bei dem Anfragenden nicht um einen Bot handelt.\n\nDeine IP-Adresse wurde möglicherweise vorübergehend von %1$s gesperrt. Du kannst einige Zeit warten oder zu einer anderen IP-Adresse wechseln (z. B. durch Ein- und Ausschalten eines VPNs oder durch Wechseln von WLAN zu mobilen Daten).\n\nWeitere Informationen findest du unter <a href="%2$s">diesem FAQ-Eintrag</a>.</string>
     <string name="unsupported_content_in_country">Dieser Inhalt ist für das aktuell ausgewählte Land des Inhalts nicht verfügbar.\n\nÄndere die Auswahl unter „Einstellungen &gt; Inhalt &gt; Bevorzugtes Land des Inhalts“.</string>
-
     <string name="kao_dialog_more_info">Details</string>
     <string name="kao_solution">Lösung</string>
     <plurals name="export_subscriptions">
@@ -828,4 +827,5 @@
     <string name="api23_requirement_dialog_message">Leider ist NewPipe auf einige Bibliotheken angewiesen, welche die Unterstützung für Android 5.0 und 5.1 eingestellt haben. Die nächste Version von NewPipe wird daher leider nur auf Geräten mit Android 6 oder höher funktionieren. Mehr dazu im Blogbeitrag.</string>
     <string name="channel_tab_podcasts">Podcasts</string>
     <string name="channel_tab_courses">Kurse</string>
+    <string name="kao_dialog_warning">Google hat damit begonnen, eine neue Anforderung zur Entwicklerverifizierung für Android durchzusetzen, die die Installation von NewPipe in Brasilien, Indonesien, Singapur und Thailand erschwert; eine weltweite Einführung ist für 2027 geplant.\n\nSofern die Anforderungen nicht geändert werden, könnte es in naher Zukunft schwieriger oder gar unmöglich werden, NewPipe auf zertifizierten Android-Geräten zu installieren.</string>
 </resources>
