@@ -25,6 +25,10 @@ class BlockedChannelManagerTest {
 
     private fun channel(url: String) = ChannelInfoItem(0, url, "channel")
 
+    private fun playlist(name: String, uploaderUrl: String?) = PlaylistInfoItem(0, "https://www.youtube.com/watch?v=-ABC&listDEF", name).apply {
+        this.uploaderUrl = uploaderUrl
+    }
+
     @Test
     fun `nothing is removed when no channel is blocked`() {
         val items = listOf<InfoItem>(stream("a", blockedUrl), channel(blockedUrl))
@@ -54,10 +58,23 @@ class BlockedChannelManagerTest {
     }
 
     @Test
-    fun `other kinds of items are always kept`() {
-        val playlist = PlaylistInfoItem(0, blockedUrl, "playlist")
+    fun `playlists are removed`() {
+        val playlist = playlist("playlist", blockedUrl)
+        val other = playlist("third playlist", otherUrl)
         assertEquals(InfoType.PLAYLIST, playlist.infoType)
-        val items = listOf<InfoItem>(playlist)
-        assertEquals(items, BlockedChannelManager.filterBlocked(items, setOf(blockedUrl)))
+        val items = listOf<InfoItem>(playlist, other)
+        val kept = listOf<InfoItem>(other)
+        assertEquals(kept, BlockedChannelManager.filterBlocked(items, setOf(blockedUrl)))
+    }
+
+    @Test
+    fun `playlists without an uploader are kept removed`() {
+        val playlist = playlist("playlist", blockedUrl)
+        val noUploader = playlist("playlist no uploader", null)
+        val other = playlist("playlist no uploader", " ")
+        assertEquals(InfoType.PLAYLIST, playlist.infoType)
+        val items = listOf<InfoItem>(playlist, noUploader, other)
+        val kept = listOf<InfoItem>(noUploader, other)
+        assertEquals(kept, BlockedChannelManager.filterBlocked(items, setOf(blockedUrl)))
     }
 }
