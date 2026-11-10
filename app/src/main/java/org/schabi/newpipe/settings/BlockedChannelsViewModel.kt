@@ -7,26 +7,26 @@ package org.schabi.newpipe.settings
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import org.schabi.newpipe.database.block.BlockedChannelEntity
 import org.schabi.newpipe.local.channel.BlockedChannelManager
 
 class BlockedChannelsViewModel(application: Application) : AndroidViewModel(application) {
     private val blockedChannelManager = BlockedChannelManager(application)
     private val disposables = CompositeDisposable()
-    private val mutableBlockedChannels = MutableLiveData<List<BlockedChannelEntity>>(emptyList())
-    val blockedChannelsLiveData: LiveData<List<BlockedChannelEntity>> = mutableBlockedChannels
+    private val mutableBlockedChannels = MutableStateFlow<List<BlockedChannelEntity>>(emptyList())
+    val blockedChannels: StateFlow<List<BlockedChannelEntity>> = mutableBlockedChannels
 
     init {
         disposables.add(
             blockedChannelManager.blockedChannels()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(mutableBlockedChannels::postValue)
+                .subscribe { mutableBlockedChannels.value = it }
         )
     }
 
