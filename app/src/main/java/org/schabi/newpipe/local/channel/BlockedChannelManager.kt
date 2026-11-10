@@ -14,6 +14,7 @@ import org.schabi.newpipe.database.block.BlockedChannelDAO
 import org.schabi.newpipe.database.block.BlockedChannelEntity
 import org.schabi.newpipe.extractor.InfoItem
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
+import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem
 import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 
@@ -47,8 +48,9 @@ class BlockedChannelManager(context: Context) {
 
     companion object {
         /**
-         * Removes the streams uploaded by a blocked channel, and the blocked channels themselves.
-         * Items that are neither streams nor channels (e.g. playlists) are always kept.
+         * Removes the streams and playlists uploaded by a blocked channel,
+         * and the blocked channels themselves.
+         * Items that are neither streams, playlists nor channels (e.g. comments) are always kept.
          */
         @JvmStatic
         fun <T : InfoItem> filterBlocked(items: List<T>, blockedUrls: Set<String>): List<T> {
@@ -62,6 +64,7 @@ class BlockedChannelManager(context: Context) {
             return when (this) {
                 is StreamInfoItem -> !uploaderUrl.isNullOrBlank() && blockedUrls.contains(uploaderUrl)
                 is ChannelInfoItem -> !url.isNullOrBlank() && blockedUrls.contains(url)
+                is PlaylistInfoItem -> !uploaderUrl.isNullOrBlank() && blockedUrls.contains(uploaderUrl)
                 else -> false
             }
         }
