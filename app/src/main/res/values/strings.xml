@@ -146,7 +146,6 @@
     <string name="peertube_instance_url_title">PeerTube instances</string>
     <string name="blocked_channels">Blocked channels</string>
     <string name="blocked_channels_summary">Hide videos and channels from selected creators in Trending, Search, and recommendations</string>
-    <string name="blocked_channels_key">blocked_channels</string>
     <string name="no_blocked_channels">No blocked channels yet</string>
     <string name="block_channel">Block channel</string>
     <string name="unblock">Unblock</string>
