@@ -19,9 +19,12 @@ import net.newpipe.app.extensions.withKoin
 import net.newpipe.app.model.ChannelNotificationCount
 import newpipe.shared.generated.resources.Res
 import newpipe.shared.generated.resources.enable_streams_notifications_title
+import newpipe.shared.generated.resources.hours
 import newpipe.shared.generated.resources.settings
 import newpipe.shared.generated.resources.settings_category_player_notification_title
 import newpipe.shared.generated.resources.streams_notifications_interval_title
+import newpipe.shared.generated.resources.wifi_only
+import org.jetbrains.compose.resources.getPluralString
 import org.jetbrains.compose.resources.getString
 
 @OptIn(ExperimentalTestApi::class)
@@ -70,6 +73,7 @@ class NotificationSettingsScreenTest {
                 onNodeWithText(getString(Res.string.enable_streams_notifications_title))
                     .assertIsNotEnabled()
                 onNodeWithText(getString(Res.string.settings)).performClick()
+                waitForIdle()
                 assertTrue(opened)
             }
         )
@@ -88,6 +92,18 @@ class NotificationSettingsScreenTest {
             onContent = {
                 onNodeWithText(getString(Res.string.settings_category_player_notification_title))
                     .assertIsEnabled()
+            }
+        )
+    }
+
+    @Test
+    fun defaultSummariesMatchTheLegacyDefaults() = runComposeUiTest {
+        withKoin(
+            modules = listOf(settingsModule()),
+            content = { NotificationSettingsScreenContent() },
+            onContent = {
+                onNodeWithText(getPluralString(Res.plurals.hours, 4, 4)).assertIsDisplayed()
+                onNodeWithText(getString(Res.string.wifi_only)).assertIsDisplayed()
             }
         )
     }
