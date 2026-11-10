@@ -71,6 +71,7 @@ import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
 import org.schabi.newpipe.ktx.AnimationType;
 import org.schabi.newpipe.ktx.ExceptionUtils;
+import org.schabi.newpipe.local.channel.BlockedChannelManager;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.ui.emptystate.EmptyStateSpec;
@@ -165,6 +166,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     private SuggestionListAdapter suggestionListAdapter;
     private HistoryRecordManager historyRecordManager;
+    private BlockedChannelManager blockedChannelManager;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -218,6 +220,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
         suggestionListAdapter = new SuggestionListAdapter();
         historyRecordManager = new HistoryRecordManager(context);
+        blockedChannelManager = new BlockedChannelManager(context);
     }
 
     @Override
@@ -917,6 +920,11 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 Arrays.asList(contentFilter),
                 sortFilter)
                 .subscribeOn(Schedulers.io())
+                .flatMap(result -> blockedChannelManager.filterList(result.getRelatedItems())
+                        .map(filteredItems -> {
+                            result.setRelatedItems(filteredItems);
+                            return result;
+                        }))
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEvent((searchResult, throwable) -> isLoading.set(false))
                 .subscribe(this::handleResult, this::onItemError);
@@ -940,6 +948,12 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 sortFilter,
                 nextPage)
                 .subscribeOn(Schedulers.io())
+                .flatMap(result -> blockedChannelManager.filterList(result.getItems())
+                        .map(filteredItems -> new ListExtractor.InfoItemsPage<>(
+                                filteredItems,
+                                result.getNextPage(),
+                                result.getErrors()
+                        )))
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEvent((nextItemsResult, throwable) -> isLoading.set(false))
                 .subscribe(this::handleNextItems, this::onItemError);
