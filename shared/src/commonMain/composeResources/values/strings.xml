@@ -334,4 +334,24 @@
     <string name="manual_update_description">Manually check for new versions</string>
     <string name="checking_updates_toast">Checking for updates…</string>
 
+    <!-- Backup and Restore Settings -->
+    <string name="import_data_title">Import database</string>
+    <string name="import_data_summary">Overrides your current history, subscriptions, playlists and (optionally) settings</string>
+    <string name="export_data_title">Export database</string>
+    <string name="export_data_summary">Export history, subscriptions, playlists and settings</string>
+    <string name="reset_settings_title">Reset settings</string>
+    <string name="reset_settings_summary">Reset all settings to their default values</string>
+    <string name="export_subscriptions_title">Export subscriptions</string>
+    <string name="export_subscriptions_summary">Export your subscriptions to a .json file</string>
+    <string name="import_subscriptions_title">Import subscriptions</string>
+    <string name="import_subscriptions_summary">Import subscriptions from a previous .json export</string>
+    <string name="override_current_data">This will override your current setup.</string>
+    <string name="reset_all_settings">Resetting all settings will discard all of your preferred settings and restarts the app.\n\nAre you sure you want to proceed?</string>
+    <string name="import_network_expensive_warning">Keep in mind this operation can be network expensive.\n\nDo you want to continue?</string>
+    <string name="import_settings">Do you want to also import settings?</string>
+    <string name="import_settings_vulnerable_format">The settings in the export being imported use a vulnerable format that was deprecated since NewPipe 0.27.0. Make sure the export being imported is from a trusted source, and prefer using only exports obtained from NewPipe 0.27.0 or newer in the future. Support for importing settings in this vulnerable format will soon be removed completely, and then old versions of NewPipe will not be able to import settings of exports from new versions anymore.</string>
+    <string name="export_complete_toast">Exported</string>
+    <string name="no_valid_zip_file">No valid ZIP file</string>
+    <string name="could_not_import_all_files">Warning: Could not import all files.</string>
+
 </resources>
