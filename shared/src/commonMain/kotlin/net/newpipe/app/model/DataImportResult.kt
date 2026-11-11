@@ -9,7 +9,7 @@ sealed interface DataImportResult {
 
     data object InvalidFile : DataImportResult
 
-    class Failed(val error: ErrorReport) : DataImportResult
+    data class Failed(val error: ErrorReport) : DataImportResult
 
     data class Imported(val allFilesImported: Boolean, val settingsFormat: SettingsFormat?) : DataImportResult
 }

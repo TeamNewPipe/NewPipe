@@ -9,5 +9,5 @@ sealed interface DataExportResult {
 
     data object Success : DataExportResult
 
-    class Failed(val error: ErrorReport) : DataExportResult
+    data class Failed(val error: ErrorReport) : DataExportResult
 }

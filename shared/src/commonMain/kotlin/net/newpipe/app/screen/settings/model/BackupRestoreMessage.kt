@@ -15,5 +15,5 @@ sealed interface BackupRestoreMessage {
 
     data object PartialImport : BackupRestoreMessage
 
-    class Failed(val error: ErrorReport) : BackupRestoreMessage
+    data class Failed(val error: ErrorReport) : BackupRestoreMessage
 }
