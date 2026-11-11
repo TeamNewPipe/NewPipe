@@ -42,7 +42,13 @@ internal object NoOpBackupRestoreActions : BackupRestoreActions {
     private val unsupportedError = ErrorReport(message = "Backup and restore is unsupported on this platform", open = {})
 
     @Composable
-    override fun rememberFilePicker(file: BackupFile, onNoFileManager: () -> Unit, onPicked: (String) -> Unit): () -> Unit = remember { { logUnsupported("pickFile") } }
+    override fun rememberFilePicker(
+        file: BackupFile,
+        onNoFileManager: () -> Unit,
+        onPicked: (String) -> Unit
+    ): () -> Unit = remember {
+        { logUnsupported("pickFile") }
+    }
 
     override suspend fun exportData(file: String): DataExportResult {
         logUnsupported("exportData")

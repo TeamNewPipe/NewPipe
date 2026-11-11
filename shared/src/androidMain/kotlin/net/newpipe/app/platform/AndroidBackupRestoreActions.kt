@@ -25,7 +25,11 @@ class AndroidBackupRestoreActions(context: Context) : BackupRestoreActions {
     private val host: BackupRestoreHost? = loadHost(context)
 
     @Composable
-    override fun rememberFilePicker(file: BackupFile, onNoFileManager: () -> Unit, onPicked: (String) -> Unit): () -> Unit {
+    override fun rememberFilePicker(
+        file: BackupFile,
+        onNoFileManager: () -> Unit,
+        onPicked: (String) -> Unit
+    ): () -> Unit {
         val currentOnNoFileManager by rememberUpdatedState(onNoFileManager)
         val currentOnPicked by rememberUpdatedState(onPicked)
 
@@ -43,7 +47,10 @@ class AndroidBackupRestoreActions(context: Context) : BackupRestoreActions {
                     try {
                         launcher.launch(bridge.createFilePickerIntent(file))
                     } catch (exception: ActivityNotFoundException) {
-                        Logger.w(messageString = "Unable to launch the backup file picker", throwable = exception)
+                        Logger.w(
+                            messageString = "Unable to launch the backup file picker",
+                            throwable = exception
+                        )
                         currentOnNoFileManager()
                     }
                 }
@@ -51,9 +58,11 @@ class AndroidBackupRestoreActions(context: Context) : BackupRestoreActions {
         }
     }
 
-    override suspend fun exportData(file: String) = host?.exportData(file) ?: NoOpBackupRestoreActions.exportData(file)
+    override suspend fun exportData(file: String) = host?.exportData(file)
+        ?: NoOpBackupRestoreActions.exportData(file)
 
-    override suspend fun importDatabase(file: String) = host?.importDatabase(file) ?: NoOpBackupRestoreActions.importDatabase(file)
+    override suspend fun importDatabase(file: String) = host?.importDatabase(file)
+        ?: NoOpBackupRestoreActions.importDatabase(file)
 
     override suspend fun importSettings(file: String, format: SettingsFormat) {
         host?.importSettings(file, format)
@@ -80,7 +89,10 @@ class AndroidBackupRestoreActions(context: Context) : BackupRestoreActions {
             .getDeclaredConstructor(Context::class.java)
             .newInstance(context) as BackupRestoreHost
     }.onFailure { error ->
-        Logger.w(messageString = "No host backup and restore actions found, skipping host-side changes", throwable = error)
+        Logger.w(
+            messageString = "No host backup and restore actions found, skipping host-side changes",
+            throwable = error
+        )
     }.getOrNull()
 
     private companion object {
