@@ -46,7 +46,6 @@ import org.schabi.newpipe.util.ZipHelper
 /**
  * Host-side backup and restore for the Compose backup and restore settings screen
  */
-@Suppress("unused")
 class ComposeBackupRestoreHost(private val context: Context) : BackupRestoreHost {
 
     private val manager = ImportExportManager(BackupFileLocator(context))
@@ -87,7 +86,6 @@ class ComposeBackupRestoreHost(private val context: Context) : BackupRestoreHost
         }
     }
 
-    @Suppress("DEPRECATION") // Old backups can only be recognised through the deprecated format
     override suspend fun importDatabase(file: String): DataImportResult = withContext(Dispatchers.IO) {
         try {
             val backup = zipFile(file)
@@ -109,7 +107,6 @@ class ComposeBackupRestoreHost(private val context: Context) : BackupRestoreHost
         }
     }
 
-    @Suppress("DEPRECATION") // Old backups can only be read through the deprecated format
     override suspend fun importSettings(file: String, format: SettingsFormat) = withContext(Dispatchers.IO) {
         try {
             val backup = zipFile(file)
@@ -150,10 +147,6 @@ class ComposeBackupRestoreHost(private val context: Context) : BackupRestoreHost
             .enqueueUniqueWork(SubscriptionImportWorker.WORK_NAME, ExistingWorkPolicy.APPEND_OR_REPLACE, request)
     }
 
-    /**
-     * Media tunneling is switched off automatically on devices known to break it, so that choice
-     * must not travel to another device with the imported settings
-     */
     private fun resetDeviceSpecificSettings() {
         val tunnelingKey = context.getString(R.string.disable_media_tunneling_key)
         val automaticTunnelingKey = context.getString(R.string.disabled_media_tunneling_automatically_key)

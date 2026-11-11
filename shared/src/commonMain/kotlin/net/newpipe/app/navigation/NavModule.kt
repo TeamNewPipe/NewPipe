@@ -9,6 +9,7 @@ import androidx.compose.runtime.mutableStateListOf
 import co.touchlab.kermit.Logger
 import net.newpipe.app.screen.about.AboutScreen
 import net.newpipe.app.screen.settings.AppearanceSettingsScreen
+import net.newpipe.app.screen.settings.BackupRestoreSettingsScreen
 import net.newpipe.app.screen.settings.ContentSettingsScreen
 import net.newpipe.app.screen.settings.DebugSettingsScreen
 import net.newpipe.app.screen.settings.DownloadSettingsScreen
@@ -76,6 +77,10 @@ fun navModule() = module {
 
     navigation<Destination.UpdateSettings> {
         UpdateSettingsScreen()
+    }
+
+    navigation<Destination.BackupRestoreSettings> {
+        BackupRestoreSettingsScreen()
     }
 }
 
