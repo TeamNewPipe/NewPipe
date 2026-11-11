@@ -15,6 +15,9 @@ import kotlinx.serialization.Serializable
 sealed interface Destination : NavKey {
 
     @Serializable
+    data object BackupRestoreSettings : Destination
+
+    @Serializable
     data object UpdateSettings : Destination
 
     @Serializable

@@ -84,7 +84,10 @@ fun SettingsHomeScreen(
                             Destination.UpdateSettings
                         )
 
-                        // TODO: wire remaining sub-screens as they are migrated
+                        SettingsCategoryType.BACKUP_RESTORE -> navigator.navigateTo(
+                            Destination.BackupRestoreSettings
+                        )
+
                         else -> Unit
                     }
                 }
