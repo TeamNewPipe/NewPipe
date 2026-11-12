@@ -59,10 +59,11 @@ enum class SettingsCategoryType(
         Destination.UpdateSettings
     ),
 
-//    BACKUP_RESTORE(
-//        Res.string.settings_category_backup_restore_title,
-//        Res.drawable.ic_settings_backup_restore,
-//        Destination.BackupRestoreSettings
-//    ),
+    BACKUP_RESTORE(
+        Res.string.settings_category_backup_restore_title,
+        Res.drawable.ic_settings_backup_restore,
+        Destination.BackupRestoreSettings
+    ),
+
     DEBUG(Res.string.settings_category_debug_title, Res.drawable.ic_bug_report, Destination.DebugSettings)
 }
