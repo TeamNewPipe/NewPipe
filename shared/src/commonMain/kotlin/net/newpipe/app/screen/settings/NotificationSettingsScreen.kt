@@ -37,6 +37,7 @@ import net.newpipe.app.composable.SwitchPreference
 import net.newpipe.app.composable.TopAppBar
 import net.newpipe.app.composable.localizedDuration
 import net.newpipe.app.model.ChannelNotificationCount
+import net.newpipe.app.navigation.Destination
 import net.newpipe.app.navigation.Navigator
 import net.newpipe.app.platform.NotificationActions
 import net.newpipe.app.preferences.NotificationPreferences.DEFAULT_ENABLE_STREAMS_NOTIFICATIONS
@@ -91,6 +92,7 @@ fun NotificationSettingsScreen(
         deviceNotificationsEnabled = deviceNotificationsEnabled,
         isPlayerNotificationExempt = notificationActions.isPlayerNotificationExempt,
         channelNotificationCount = channelNotificationCount,
+        onOpenPlayerNotificationSettings = { navigator.navigateTo(Destination.PlayerNotificationSettings) },
         onNewStreamsNotificationsEnabledChange = viewModel::setNewStreamsNotificationsEnabled,
         onCheckIntervalChange = viewModel::setCheckInterval,
         onRequiredNetworkChange = viewModel::setRequiredNetwork,
@@ -107,6 +109,7 @@ fun NotificationSettingsScreenContent(
     deviceNotificationsEnabled: Boolean = true,
     isPlayerNotificationExempt: Boolean = false,
     channelNotificationCount: ChannelNotificationCount? = null,
+    onOpenPlayerNotificationSettings: () -> Unit = {},
     onNewStreamsNotificationsEnabledChange: (Boolean) -> Unit = {},
     onCheckIntervalChange: (String) -> Unit = {},
     onRequiredNetworkChange: (String) -> Unit = {},
@@ -162,11 +165,11 @@ fun NotificationSettingsScreenContent(
                 .verticalScroll(rememberScrollState())
                 .padding(WindowInsets.navigationBars.asPaddingValues())
         ) {
-            // TODO: open the player notification screen once it is migrated
             PreferenceRow(
                 title = stringResource(Res.string.settings_category_player_notification_title),
                 summary = stringResource(Res.string.settings_category_player_notification_summary),
-                enabled = playerNotificationEnabled
+                enabled = playerNotificationEnabled,
+                onClick = onOpenPlayerNotificationSettings
             )
             SwitchPreference(
                 title = stringResource(Res.string.enable_streams_notifications_title),

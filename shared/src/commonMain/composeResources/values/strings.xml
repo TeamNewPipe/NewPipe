@@ -327,6 +327,33 @@
     <string name="channels">Channels</string>
     <string name="notifications_disabled">Notifications are disabled</string>
 
+    <!-- Player notification -->
+    <string name="notification_scale_to_square_image_title">Crop thumbnail to 1:1 aspect ratio</string>
+    <string name="notification_scale_to_square_image_summary">Crop the video thumbnail shown in the notification from 16:9 to 1:1 aspect ratio</string>
+    <string name="notification_colorize_title">Colorize notification</string>
+    <string name="notification_colorize_summary">Have Android customize the notification's color according to the main color in the thumbnail (note that this is not available on all devices)</string>
+    <string name="show_thumbnail_title">Show thumbnail</string>
+    <string name="show_thumbnail_summary">Use thumbnail for both lock screen background and notifications</string>
+    <string name="notification_action_0_title">First action button</string>
+    <string name="notification_action_1_title">Second action button</string>
+    <string name="notification_action_2_title">Third action button</string>
+    <string name="notification_action_3_title">Fourth action button</string>
+    <string name="notification_action_4_title">Fifth action button</string>
+    <string name="notification_actions_summary">Edit each notification action below by tapping on it. Select up to three of them to be shown in the compact notification by using the checkboxes on the right.</string>
+    <string name="notification_actions_summary_android13">Edit each notification action below by tapping on it. The first three actions (play/pause, previous and next) are set by the system and cannot be customized.</string>
+    <string name="notification_actions_at_most_three">You can select at most three actions to show in the compact notification!</string>
+    <string name="notification_action_nothing">Nothing</string>
+    <string name="notification_action_previous">Previous</string>
+    <string name="notification_action_next">Next</string>
+    <string name="notification_action_rewind">Rewind</string>
+    <string name="notification_action_fast_forward">Fast forward</string>
+    <string name="notification_action_play">Play</string>
+    <string name="notification_action_pause">Pause</string>
+    <string name="notification_action_buffering">Buffering</string>
+    <string name="notification_action_repeat">Repeat</string>
+    <string name="notification_action_shuffle">Shuffle</string>
+    <string name="close">Close</string>
+
     <!-- Update Settings -->
     <string name="updates_setting_title">Updates</string>
     <string name="updates_setting_description">Show a notification to prompt app update when a new version is available</string>
