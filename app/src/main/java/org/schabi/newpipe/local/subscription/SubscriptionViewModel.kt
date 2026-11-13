@@ -6,10 +6,13 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.xwray.groupie.Group
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.HashSet
 import java.util.concurrent.TimeUnit
+import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.info_list.ItemViewMode
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.local.subscription.item.ChannelItem
@@ -28,10 +31,19 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
     )
     private val listViewModeFlowable = listViewMode.distinctUntilChanged()
 
+    private val selectedUrls = BehaviorProcessor.createDefault<Set<String>>(HashSet())
+    private val isManagementMode = BehaviorProcessor.createDefault(false)
+
+    private var currentSubscriptions: List<SubscriptionEntity> = emptyList()
+    private var currentSubscriptionUrls: List<String> = emptyList()
+
     private val mutableStateLiveData = MutableLiveData<SubscriptionState>()
     private val mutableFeedGroupsLiveData = MutableLiveData<Pair<List<Group>, Boolean>>()
+    private val mutableManagementModeLiveData = MutableLiveData<Boolean>()
+
     val stateLiveData: LiveData<SubscriptionState> = mutableStateLiveData
     val feedGroupsLiveData: LiveData<Pair<List<Group>, Boolean>> = mutableFeedGroupsLiveData
+    val managementModeLiveData: LiveData<Boolean> = mutableManagementModeLiveData
 
     private var feedGroupItemsDisposable = Flowable
         .combineLatest(
@@ -52,19 +64,43 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
             { mutableStateLiveData.postValue(SubscriptionState.ErrorState(it)) }
         )
 
-    private var stateItemsDisposable = subscriptionManager.subscriptions()
+    private var stateItemsDisposable = Flowable.combineLatest(
+        subscriptionManager.subscriptions(),
+        selectedUrls,
+        isManagementMode,
+        { subs, selected, management -> Triple(subs, selected, management) }
+    )
         .throttleLatest(DEFAULT_THROTTLE_TIMEOUT, TimeUnit.MILLISECONDS)
-        .map { it.map { entity -> ChannelItem(entity.toChannelInfoItem(), entity.uid, ChannelItem.ItemVersion.MINI) } }
+        .doOnNext { (subscriptions, _, _) ->
+            currentSubscriptions = subscriptions
+            currentSubscriptionUrls = subscriptions.mapNotNull { it.url }
+        }
+        .map { (subscriptions, selected, _) ->
+            subscriptions.map { entity ->
+                ChannelItem(
+                    entity.toChannelInfoItem(),
+                    entity.uid,
+                    ChannelItem.ItemVersion.MINI,
+                    null,
+                    selected.contains(entity.url)
+                )
+            }
+        }
         .subscribeOn(Schedulers.io())
         .subscribe(
             { mutableStateLiveData.postValue(SubscriptionState.LoadedState(it)) },
             { mutableStateLiveData.postValue(SubscriptionState.ErrorState(it)) }
         )
 
+    private var managementModeDisposable = isManagementMode
+        .subscribeOn(Schedulers.io())
+        .subscribe { mutableManagementModeLiveData.postValue(it) }
+
     override fun onCleared() {
         super.onCleared()
         stateItemsDisposable.dispose()
         feedGroupItemsDisposable.dispose()
+        managementModeDisposable.dispose()
     }
 
     fun setListViewMode(newListViewMode: Boolean) {
@@ -73,6 +109,54 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
 
     fun getListViewMode(): Boolean {
         return listViewMode.value ?: true
+    }
+
+    fun toggleSelection(url: String) {
+        val current = selectedUrls.value?.toMutableSet() ?: HashSet()
+        if (current.contains(url)) {
+            current.remove(url)
+        } else {
+            current.add(url)
+        }
+        selectedUrls.onNext(current)
+    }
+
+    fun selectAll() {
+        val currentSelected = selectedUrls.value ?: emptySet()
+        if (currentSelected.size >= currentSubscriptionUrls.size &&
+            currentSelected.containsAll(currentSubscriptionUrls)
+        ) {
+            selectedUrls.onNext(emptySet())
+        } else {
+            selectedUrls.onNext(currentSubscriptionUrls.toSet())
+        }
+    }
+
+    fun setManagementMode(enabled: Boolean) {
+        isManagementMode.onNext(enabled)
+        if (!enabled) {
+            selectedUrls.onNext(HashSet())
+        }
+    }
+
+    fun isManagementMode(): Boolean {
+        return isManagementMode.value ?: false
+    }
+
+    fun getSelectedCount(): Int {
+        return selectedUrls.value?.size ?: 0
+    }
+
+    fun unsubscribeSelected(): Completable {
+        val selected = selectedUrls.value ?: return Completable.complete()
+        val toDelete = currentSubscriptions.filter { selected.contains(it.url) }
+
+        return if (toDelete.isEmpty()) {
+            Completable.complete()
+        } else {
+            subscriptionManager.deleteSubscriptions(toDelete)
+                .doOnComplete { setManagementMode(false) }
+        }
     }
 
     sealed class SubscriptionState {
