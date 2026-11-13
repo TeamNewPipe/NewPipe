@@ -17,6 +17,8 @@ interface NotificationActions {
 
     val isPlayerNotificationExempt: Boolean
 
+    val hasSystemMediaControls: Boolean
+
     fun areNotificationsEnabledOnDevice(): Boolean
 
     fun openSystemNotificationSettings()
@@ -26,11 +28,15 @@ interface NotificationActions {
     fun applyNewStreamsCheckSchedule()
 
     fun channelNotificationCounts(): Flow<ChannelNotificationCount>
+
+    fun recreatePlayerNotification()
 }
 
 internal object NoOpNotificationActions : NotificationActions {
 
     override val isPlayerNotificationExempt = false
+
+    override val hasSystemMediaControls = false
 
     override fun areNotificationsEnabledOnDevice() = true
 
@@ -41,6 +47,8 @@ internal object NoOpNotificationActions : NotificationActions {
     override fun applyNewStreamsCheckSchedule() = logUnsupported("applyNewStreamsCheckSchedule")
 
     override fun channelNotificationCounts(): Flow<ChannelNotificationCount> = emptyFlow()
+
+    override fun recreatePlayerNotification() = logUnsupported("recreatePlayerNotification")
 
     private fun logUnsupported(action: String) = Logger.w(messageString = "Notification action '$action' is unsupported on this platform")
 }

@@ -1,5 +1,6 @@
 package net.newpipe.app.screen.settings.model
 
+import net.newpipe.app.navigation.Destination
 import newpipe.shared.generated.resources.Res
 import newpipe.shared.generated.resources.content
 import newpipe.shared.generated.resources.ic_bug_report
@@ -27,15 +28,42 @@ import org.jetbrains.compose.resources.StringResource
  */
 enum class SettingsCategoryType(
     val title: StringResource,
-    val icon: DrawableResource
+    val icon: DrawableResource,
+    val destination: Destination
 ) {
-    VIDEO_AUDIO(Res.string.settings_category_video_audio_title, Res.drawable.ic_headset),
-    DOWNLOADS(Res.string.settings_category_downloads_title, Res.drawable.ic_file_download),
-    APPEARANCE(Res.string.settings_category_appearance_title, Res.drawable.ic_palette),
-    HISTORY(Res.string.settings_category_history_title, Res.drawable.ic_history),
-    CONTENT(Res.string.content, Res.drawable.ic_language),
-    NOTIFICATIONS(Res.string.notifications, Res.drawable.ic_notifications),
-    UPDATES(Res.string.settings_category_updates_title, Res.drawable.ic_cloud_download),
-    BACKUP_RESTORE(Res.string.settings_category_backup_restore_title, Res.drawable.ic_settings_backup_restore),
-    DEBUG(Res.string.settings_category_debug_title, Res.drawable.ic_bug_report)
+    VIDEO_AUDIO(
+        Res.string.settings_category_video_audio_title,
+        Res.drawable.ic_headset,
+        Destination.VideoAudioSettings
+    ),
+    DOWNLOADS(
+        Res.string.settings_category_downloads_title,
+        Res.drawable.ic_file_download,
+        Destination.DownloadSettings
+    ),
+    APPEARANCE(
+        Res.string.settings_category_appearance_title,
+        Res.drawable.ic_palette,
+        Destination.AppearanceSettings
+    ),
+    HISTORY(
+        Res.string.settings_category_history_title,
+        Res.drawable.ic_history,
+        Destination.HistorySettings
+    ),
+    CONTENT(Res.string.content, Res.drawable.ic_language, Destination.ContentSettings),
+    NOTIFICATIONS(Res.string.notifications, Res.drawable.ic_notifications, Destination.NotificationSettings),
+    UPDATES(
+        Res.string.settings_category_updates_title,
+        Res.drawable.ic_cloud_download,
+        Destination.UpdateSettings
+    ),
+
+    BACKUP_RESTORE(
+        Res.string.settings_category_backup_restore_title,
+        Res.drawable.ic_settings_backup_restore,
+        Destination.BackupRestoreSettings
+    ),
+
+    DEBUG(Res.string.settings_category_debug_title, Res.drawable.ic_bug_report, Destination.DebugSettings)
 }
