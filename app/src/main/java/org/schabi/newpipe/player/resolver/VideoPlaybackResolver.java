@@ -21,6 +21,7 @@ import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.mediaitem.MediaItemTag;
 import org.schabi.newpipe.player.mediaitem.StreamInfoTag;
+import org.schabi.newpipe.streams.AppStreamInfo;
 import org.schabi.newpipe.util.ListHelper;
 
 import java.util.ArrayList;
@@ -136,7 +137,8 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         // Below are auxiliary media sources
 
         // Create subtitle sources
-        final List<SubtitlesStream> subtitlesStreams = info.getSubtitles();
+        final AppStreamInfo appInfo = AppStreamInfo.from(info);
+        final List<SubtitlesStream> subtitlesStreams = appInfo.loadNormalizedSubtitles();
         if (subtitlesStreams != null) {
             // Torrent and non URL subtitles are not supported by ExoPlayer
             final List<SubtitlesStream> nonTorrentAndUrlStreams = getUrlAndNonTorrentStreams(
