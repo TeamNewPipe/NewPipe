@@ -303,6 +303,21 @@
     <string name="decline">Avböj</string>
     <string name="limit_data_usage_none_description">Ingen gräns</string>
     <string name="limit_mobile_data_usage_title">Begränsa upplösningen när mobildata används</string>
+    <string-array name="limit_data_usage_description_list">
+        <item>@string/limit_data_usage_none_description</item>
+        <item>1080p60</item>
+        <item>1080p</item>
+        <item>720p60</item>
+        <item>720p</item>
+        <item>480p</item>
+        <item>360p</item>
+        <item>240p</item>
+        <item>144p</item>
+    </string-array>
+    <string-array name="high_resolution_limit_data_usage_description_list">
+        <item>2160p</item>
+        <item>1440p</item>
+    </string-array>
     <string name="minimize_on_exit_title">Minimera vid byte av app</string>
     <string name="minimize_on_exit_summary">Åtgärd när du växlar från huvudvideospelaren till en annan app — %s</string>
     <string name="minimize_on_exit_none_description">Ingen</string>
@@ -609,6 +624,7 @@
     <string name="remote_search_suggestions">Sökförslag från tjänsten</string>
     <string name="start_main_player_fullscreen_summary">Starta videor direkt i helskärmsläge i stället för i minispelaren när automatisk rotation är låst. Du kan fortfarande öppna minispelaren genom att lämna helskärmsläget</string>
     <string name="check_for_updates">Sök efter uppdateringar</string>
+    <string name="manual_update_title" translatable="false">@string/check_for_updates</string>
     <string name="manual_update_description">Sök manuellt efter nya versioner</string>
     <string name="checking_updates_toast">Söker efter uppdateringar…</string>
     <string name="feed_new_items">Nya flödesobjekt</string>
@@ -803,6 +819,7 @@
     <string name="youtube_player_http_403">Servern svarade med HTTP-fel 403 under uppspelningen, troligen på grund av en IP-blockering eller problem med avobfuskering av strömmarnas webbadresser</string>
     <string name="sign_in_confirm_not_bot_error">%1$s vägrade att lämna ut uppgifter och krävde inloggning för att bekräfta att begäran inte kommer från en robot.\n\nDin IP-adress kan ha blockerats tillfälligt av %1$s. Vänta en stund eller byt IP-adress, till exempel genom att slå av och på en VPN-anslutning eller växla mellan Wi-Fi och mobildata.\n\nLäs <a href="%2$s">avsnittet i vanliga frågor</a> för mer information.</string>
     <string name="unsupported_content_in_country">Innehållet är inte tillgängligt i det valda innehållslandet.\n\nÄndra valet under ”Inställningar &gt; Innehåll &gt; Standardinnehållsland”.</string>
+    <string name="kao_dialog_warning">Google har börjat tillämpa ett nytt krav på utvecklarverifiering för Android. Det gör det svårare att installera NewPipe i Brasilien, Indonesien, Singapore och Thailand. En global utrullning planeras till 2027.\n\nOm kraven inte ändras kan det inom kort bli svårare eller omöjligt att installera NewPipe på certifierade Android-enheter.</string>
 
     <string name="kao_dialog_more_info">Detaljer</string>
     <string name="kao_solution">Lösning</string>
