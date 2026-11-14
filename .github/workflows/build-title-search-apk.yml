@@ -9,7 +9,8 @@ on:
       - title-search
 
 permissions:
-  contents: read
+  # Write access lets the last step publish the APK under Releases.
+  contents: write
 
 jobs:
   build-apk:
@@ -69,6 +70,44 @@ jobs:
           name: NewPipe-title-search-apk
           path: out/*.apk
           if-no-files-found: error
+
+      # Publishes the APK under the repository's Releases section, one release per
+      # version. A new build of the same version replaces that release.
+      - name: publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          CONFIG=buildSrc/src/main/kotlin/ProjectConfig.kt
+          BASE=$(sed -n 's/^const val NEWPIPE_VERSION_NAME = "\(.*\)"$/\1/p' "$CONFIG")
+          SUFFIX=$(sed -n 's/^const val TITLE_SEARCH_VERSION_SUFFIX = "\(.*\)"$/\1/p' "$CONFIG")
+          VERSION="${BASE}${SUFFIX}"
+          TAG="v${VERSION}"
+          if [ -z "$BASE" ] || [ -z "$SUFFIX" ]; then
+            echo "Could not read the version from $CONFIG" >&2
+            exit 1
+          fi
+
+          ASSET="NewPipe-title-search-${VERSION}.apk"
+          cp out/*.apk "$ASSET"
+
+          cat > notes.md <<NOTES
+          Title search for NewPipe ${BASE}: search by title in the Playlists tab, local playlists, online playlists, and Subscriptions.
+
+          **Install:** download ${ASSET} below and open it on your Android phone (Android 6.0 or newer).
+          Full steps, including Samsung One UI settings: https://github.com/${GITHUB_REPOSITORY}/blob/${GITHUB_REF_NAME}/TITLE_SEARCH.md
+
+          Built from commit ${GITHUB_SHA::7}.
+          NOTES
+
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release delete "$TAG" --yes --cleanup-tag
+          fi
+          gh release create "$TAG" "$ASSET" \
+            --target "$GITHUB_SHA" \
+            --title "NewPipe title search ${VERSION}" \
+            --notes-file notes.md \
+            --latest
 
       # Report only: the APK above is already uploaded when these run.
       - name: style checks and title search tests

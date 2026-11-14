@@ -13,11 +13,10 @@ Search ignores case and accents and accepts words in any order. Labels appear in
 
 ## Get the APK
 
-1. Open the **Actions** tab of this repository and select the newest **Build title-search APK** run with a green check.
-2. Sign in to GitHub, if asked. GitHub requires an account to download build files.
-3. Under **Artifacts**, download **NewPipe-title-search-apk**. The download is a zip file holding one APK.
+1. Open this repository's **Releases** section (right column of the front page) and select the newest **NewPipe title search** release.
+2. Under **Assets**, download the file ending in `.apk`, for example `NewPipe-title-search-0.29.1-search.1.0.1.apk`. No GitHub sign-in is needed.
 
-Every push to the `title-search` branch starts a new build. You can also start one from **Actions > Build title-search APK > Run workflow**.
+Every push to the `title-search` branch builds the app and publishes the release. You can also start a build from **Actions > Build title-search APK > Run workflow**.
 
 ## Install on a Samsung phone
 
@@ -28,11 +27,10 @@ The app supports Android 6.0 and newer. Every One UI version runs Android 9 or n
 | 1 to 5 | 9 to 13 | None |
 | 6 to 8 | 14 to 16 | Turn off Auto Blocker during the install |
 
-1. **Get the APK onto the phone.** Download the artifact on the phone itself, or copy it from a computer by USB cable, Google Drive, or OneDrive.
-2. **Unzip it.** Open **My Files**, tap the zip file, and select **Extract**.
-3. **One UI 6 and newer:** open **Settings > Security and privacy > Auto Blocker** and turn it off. It blocks installs from files. Turn it back on after step 5.
-4. **Open the APK** in My Files. When Android asks, select **Settings**, turn on **Allow from this source** for My Files, and go back.
-5. **Select Install.** If Google Play Protect warns about an unknown app, select **More details > Install anyway**.
+1. **Get the APK onto the phone.** Open the release on the phone and tap the APK, or copy it from a computer by USB cable, Google Drive, or OneDrive.
+2. **One UI 6 and newer:** open **Settings > Security and privacy > Auto Blocker** and turn it off. It blocks installs from files. Turn it back on after step 4.
+3. **Open the APK** from the browser's downloads or **My Files**. When Android asks, select **Settings**, turn on **Allow from this source**, and go back.
+4. **Select Install.** If Google Play Protect warns about an unknown app, select **More details > Install anyway**.
 
 The app installs as **NewPipe title-search**, next to any official NewPipe, and keeps its own data. To move subscriptions and playlists:
 
@@ -75,6 +73,7 @@ Uninstall **NewPipe title-search**. The official NewPipe and its data stay untou
 
 - Fixed the build: the desktop module rejected the version name `0.29.1-search.1.0.0`. The shared version name returns to `0.29.1`, and the Android app alone adds `-search.1.0.1`.
 - Added this guide, with install steps by One UI version.
+- Each successful build now publishes the APK under **Releases**, tagged by version (for example, `v0.29.1-search.1.0.1`).
 
 ### 1.0.0 (2026-11-13)
 
